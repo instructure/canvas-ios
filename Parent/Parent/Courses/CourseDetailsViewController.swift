@@ -91,6 +91,12 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         courseReady()
     }
 
+    override func setupPages() {
+        super.setupPages()
+        // This is to prevent the swipe to back gesture interfering with the collectionview horizontal scroll when on the first page
+        pages?.bounces = false
+    }
+
     func configureGrades() {
         gradesViewController = GradeListViewController.create(courseID: courseID, userID: studentID, colorDelegate: self)
         gradesViewController.gradeListCellIconDelegate = self
