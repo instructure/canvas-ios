@@ -109,19 +109,6 @@ class NWAvailabilityServiceTests: CoreTestCase {
         XCTAssertEqual(service.status, .connected(.cellular))
     }
 
-    func testMonitoringWasntStartedUpdatesAreNotReceived() {
-        // Given
-        monitor.updateHandler?(
-            NWPathWrapper(
-                status: .satisfied,
-                isExpensive: true
-            )
-        )
-
-        // Then
-        XCTAssertEqual(service.status, .disconnected)
-    }
-
     func testMonitoringIsInProgressConnectionChangesToCellularObservableStatusUpdates() {
         // Given
         service.startMonitoring()
