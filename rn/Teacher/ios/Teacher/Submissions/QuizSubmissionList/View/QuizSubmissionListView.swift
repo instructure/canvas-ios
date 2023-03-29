@@ -115,7 +115,7 @@ public struct QuizSubmissionListView: View {
             .listRowSeparator(.hidden)
     }
 
-    var submissionList: some View {
+    private var submissionList: some View {
         ForEach(model.submissions) { submission in
             VStack(spacing: 0) {
                 QuizSubmissionListItemView(model: submission, action: { model.submissionDidTap() })
