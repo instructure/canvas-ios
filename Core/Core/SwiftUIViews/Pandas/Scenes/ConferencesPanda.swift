@@ -26,7 +26,7 @@ public struct ConferencesPanda: PandaScene {
     }
     public var height: CGFloat { 210 }
 
-    public init(){}
+    public init() {}
 }
 
 struct ConferencesPanda_Previews: PreviewProvider {

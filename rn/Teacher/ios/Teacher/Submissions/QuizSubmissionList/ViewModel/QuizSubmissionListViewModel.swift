@@ -45,7 +45,7 @@ class QuizSubmissionListViewModel: ObservableObject {
         filterDidChange = CurrentValueSubject<QuizSubmissionListFilter, Never>(filterValue)
 
         setupOutputBindings()
-        setupInputBindings()
+        setupInputBindings(router: router)
     }
 
     public func submissionDidTap() {
@@ -66,7 +66,7 @@ class QuizSubmissionListViewModel: ObservableObject {
             .assign(to: &$subTitle)
     }
 
-    private func setupInputBindings() {
+    private func setupInputBindings(router: Router) {
         let interactor = self.interactor
         subscribeToMessageUsersTapEvents(router: router)
         refreshDidTrigger
