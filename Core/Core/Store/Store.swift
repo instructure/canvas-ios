@@ -111,11 +111,19 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
     private let allObjectsSubject = CurrentValueSubject<[U.Model], Never>([])
     private let stateSubject = CurrentValueSubject<StoreState, Never>(.loading)
     private let hasNextPageSubject = CurrentValueSubject<Bool, Never>(false)
+    private let offlineService: OfflineService
 
     // MARK: -
 
-    public init(env: AppEnvironment, context: NSManagedObjectContext, useCase: U, eventHandler: @escaping EventHandler) {
+    public init(
+        env: AppEnvironment,
+        offlineService: OfflineService = OfflineServiceLive(),
+        context: NSManagedObjectContext,
+        useCase: U,
+        eventHandler: @escaping EventHandler
+    ) {
         self.env = env
+        self.offlineService = offlineService
         self.useCase = useCase
         let scope = useCase.scope
         let request = NSFetchRequest<U.Model>(entityName: String(describing: U.Model.self))
@@ -197,11 +205,13 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
 
     @discardableResult
     public func exhaust(force: Bool = true,
-                        while condition: @escaping (U.Response) -> Bool = { _ in true }
+                        while condition: @escaping (U.Response?) -> Bool = { _ in true }
     ) -> Self {
-        refresh(force: force) { [weak self] response in
+        return refresh(force: force) { [weak self] response in
             if let response = response, condition(response) {
                 self?.exhaustNext(while: condition)
+            } else {
+                _ = condition(nil)
             }
         }
     }
@@ -261,6 +271,18 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
         requested = true
         pending = true
         notify()
+
+        guard !offlineService.isOfflineModeEnabled() else {
+            pending = false
+            error = nil
+            publishState()
+            notify()
+            performUIUpdate {
+                callback?(nil)
+            }
+            return
+        }
+
         useCase.fetch(environment: env, force: force) { [weak self] response, urlResponse, error in
             self?.willChange()
             self?.error = error

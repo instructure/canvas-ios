@@ -1240,6 +1240,7 @@
 		E1849C5B0E2F396DCD066876 /* K5HomeroomSubjectCardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51F32B5254FBD8267A65B93 /* K5HomeroomSubjectCardViewModelTests.swift */; };
 		E19017C3E581AF9EBE21C7A7 /* AddMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441BAEAB800A8160FAFD1619 /* AddMessage.swift */; };
 		E1DE27821844316BF3BD0526 /* FolderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4901C45D3489C29617DA4916 /* FolderTests.swift */; };
+		E1F862AC0EB3607AFA50C6D3 /* OfflineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C81F2417FC03CC54BDDA54 /* OfflineService.swift */; };
 		E1F961E80F6300AE58E3D784 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25D8616D2EB4DC92B0D7FFF /* Typography.swift */; };
 		E22895438D26D9AC3D6694DD /* AssignmentOverridesEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B5C2F2FB5EFAD07BFDAC94 /* AssignmentOverridesEditor.swift */; };
 		E26552D5D56301165B2FE986 /* ContextColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BF33E05607BE1B419DB09 /* ContextColor.swift */; };
@@ -2545,6 +2546,7 @@
 		A7A3D3CACC76DAA385F3D907 /* SyllabusSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusSummaryViewController.swift; sourceTree = "<group>"; };
 		A7A3D97F64FF7A7A2A841159 /* CompletionRequirementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionRequirementTests.swift; sourceTree = "<group>"; };
 		A7B1578C843F6AE5832ABCF8 /* K5ScheduleWeekViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleWeekViewModel.swift; sourceTree = "<group>"; };
+		A7C81F2417FC03CC54BDDA54 /* OfflineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineService.swift; sourceTree = "<group>"; };
 		A7CEDC82CD1F2B9567E08355 /* CourseHomeProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseHomeProperties.swift; sourceTree = "<group>"; };
 		A7DA8B03B9279BBBDBCF285F /* GetCourseSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourseSections.swift; sourceTree = "<group>"; };
 		A7DC13FB9E2590FD01A29016 /* LogEventListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEventListPresenter.swift; sourceTree = "<group>"; };
@@ -5158,6 +5160,14 @@
 			path = SubmitAssignmentExtension;
 			sourceTree = "<group>";
 		};
+		828AE3D15B43595B00C6D436 /* Offline */ = {
+			isa = PBXGroup;
+			children = (
+				A7C81F2417FC03CC54BDDA54 /* OfflineService.swift */,
+			);
+			path = Offline;
+			sourceTree = "<group>";
+		};
 		82BD888278226F4A3144A18E /* ActAsUser */ = {
 			isa = PBXGroup;
 			children = (
@@ -7182,6 +7192,7 @@
 				27ADB9475487129C5B17E703 /* Notifications */,
 				EFC5BE2918B02FD639E403E6 /* ObservedStudents */,
 				B021872794D9056C0C59CC91 /* ObserverAlerts */,
+				828AE3D15B43595B00C6D436 /* Offline */,
 				579DC67CD2F301D4BC34A4A3 /* Pages */,
 				37386414A010343A10C5B44D /* PageViewAnalytics */,
 				5801CF6B4BAAB2FF7FC27374 /* People */,
@@ -8709,7 +8720,11 @@
 				7F7AA9C7343A3978ED3080C6 /* NotificationManager.swift in Sources */,
 				A1FC7A2BD8C3AF4D66B39E7F /* NotificationView.swift in Sources */,
 				4B32E4BBA3BBE0BE56294B3E /* ObserverAlert.swift in Sources */,
+<<<<<<< master
 				380910D5984AECF21C4A1A51 /* OnElementAppear.swift in Sources */,
+=======
+				E1F862AC0EB3607AFA50C6D3 /* OfflineService.swift in Sources */,
+>>>>>>> Network availability aware Store
 				394C4760D46A1639B831848C /* OptionalDatePicker.swift in Sources */,
 				A90693D68DADAC27F3F28A85 /* OutputStreamExtensions.swift in Sources */,
 				6BD284C2AC2C1A327A9C330B /* PSPDFAnnotationExtension.swift in Sources */,
