@@ -41,6 +41,7 @@ class ConversationDetailCell: UITableViewCell {
         messageLabel.textColor = UIColor.textDarkest
         messageLabel.sizeToFit()
         messageLabel.isScrollEnabled = false
+        messageLabel.delegate = self
 
         toLabel.text = m.localizedAudience(myID: myID, userMap: userMap)
         fromLabel.text = userMap[ m.authorID ]?.displayName
@@ -57,5 +58,13 @@ class ConversationDetailCell: UITableViewCell {
         let template = NSLocalizedString("Message from %@, %@, on %@, %@", comment: "")
         accessibilityLabel = String.localizedStringWithFormat(template, fromLabel.text ?? "", toLabel.text ?? "", dateLabel.text ?? "", m.body)
         accessibilityIdentifier = "ConversationDetailCell.\(m.id)"
+    }
+}
+
+extension ConversationDetailCell: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        guard let parent else { return true }
+        AppEnvironment.shared.router.route(to: URL, from: parent)
+        return false
     }
 }
