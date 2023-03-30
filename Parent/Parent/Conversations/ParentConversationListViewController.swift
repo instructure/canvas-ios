@@ -67,6 +67,10 @@ class ParentConversationListViewController: UIViewController, ConversationCourse
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        env.userDefaults?.interfaceStyle == .light ? .darkContent : .lightContent
+    }
+
     @IBAction func refresh() {
         emptyView.isHidden = true
         errorView.isHidden = true

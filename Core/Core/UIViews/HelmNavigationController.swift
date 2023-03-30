@@ -49,7 +49,7 @@ public class HelmNavigationController: UINavigationController {
     }
 
     public override var childForStatusBarStyle: UIViewController? {
-        nil
+        topViewController?.preferredStatusBarStyle != .default ? topViewController : nil
     }
 
     public override var preferredStatusBarStyle: UIStatusBarStyle {
