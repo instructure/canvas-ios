@@ -55,7 +55,6 @@ class ParentConversationListViewController: UIViewController, ConversationCourse
 
         tableView.refreshControl = CircleRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        tableView.refreshControl?.tintColor = Brand.shared.primary
         tableView.separatorColor = .borderMedium
 
         conversations.refresh()
