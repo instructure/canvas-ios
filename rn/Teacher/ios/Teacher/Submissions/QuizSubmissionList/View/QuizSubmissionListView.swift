@@ -35,51 +35,47 @@ public struct QuizSubmissionListView: View {
             if model.state == .loading {
                 loadingIndicator
             } else {
-                List {
-                    switch model.state {
-                    case .data:
-                        submissionList
-                    case .empty:
-                        emptyView
-                    case .error:
-                        Text("There was an error loading submissions. Pull to refresh to try again.")
-                    case .loading:
-                        SwiftUI.EmptyView()
-                    }
-                }
-                .refreshable {
-                    await withCheckedContinuation { continuation in
-                        model.refreshDidTrigger.send {
-                            continuation.resume()
+                GeometryReader { geometry in
+                    List {
+                        switch model.state {
+                        case .data:
+                            submissionList
+                        case .empty:
+                            emptyView(height: 0.9 * geometry.size.height)
+                        case .error:
+                            Text("There was an error loading submissions. Pull to refresh to try again.")
+                        case .loading:
+                            SwiftUI.EmptyView()
                         }
                     }
-                }
-                .listStyle(PlainListStyle())
-                .animation(.default, value: model.submissions)
+                    .refreshable {
+                        await withCheckedContinuation { continuation in
+                            model.refreshDidTrigger.send {
+                                continuation.resume()
+                            }
+                        }
+                    }
+                    .listStyle(PlainListStyle())
+                    .animation(.default, value: model.submissions)
                 }
             }
-            .background(Color.backgroundLightest)
-            .navigationTitle(model.title, subtitle: model.subTitle)
-            .navigationBarItems(trailing: messageUsersButton)
-            .alert(isPresented: $model.showError) {
-                Alert(title: Text("Practice quizzes & surveys do not have detail views."))
-            }
+        }
+        .background(Color.backgroundLightest)
+        .navigationTitle(model.title, subtitle: model.subTitle)
+        .navigationBarItems(trailing: messageUsersButton)
+        .alert(isPresented: $model.showError) {
+            Alert(title: Text("Practice quizzes & surveys do not have detail views."))
+        }
     }
 
-    private var emptyView: some View {
-        VStack {
-            Spacer()
-            HStack {
-                Spacer()
-                InteractivePanda(
-                    scene: ConferencesPanda(),
-                    title: Text("No Submissions"),
-                    subtitle: Text("It seems there aren't any valid submissions to grade."))
-                Spacer()
-            }
-            Spacer()
-        }
+    private func emptyView(height: CGFloat) -> some View {
+        InteractivePanda(
+            scene: ConferencesPanda(),
+            title: Text("No Submissions"),
+            subtitle: Text("It seems there aren't any valid submissions to grade."))
+        .frame(maxWidth: .infinity, minHeight: height, alignment: .center)
         .listRowBackground(SwiftUI.EmptyView())
+        .listRowSeparator(.hidden)
     }
 
     private var filterBarView: some View {
