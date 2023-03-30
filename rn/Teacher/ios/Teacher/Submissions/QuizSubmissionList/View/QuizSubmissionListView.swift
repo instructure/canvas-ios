@@ -40,9 +40,7 @@ public struct QuizSubmissionListView: View {
                     case .data:
                         submissionList
                     case .empty:
-                        InteractivePanda(scene: ConferencesPanda(),
-                            title: Text("No Submissions"),
-                            subtitle: Text("It seems there aren't any valid submissions to grade."))
+                        emptyView
                     case .error:
                         Text("There was an error loading submissions. Pull to refresh to try again.")
                     case .loading:
@@ -66,6 +64,22 @@ public struct QuizSubmissionListView: View {
             .alert(isPresented: $model.showError) {
                 Alert(title: Text("Practice quizzes & surveys do not have detail views."))
             }
+    }
+
+    private var emptyView: some View {
+        VStack {
+            Spacer()
+            HStack {
+                Spacer()
+                InteractivePanda(
+                    scene: ConferencesPanda(),
+                    title: Text("No Submissions"),
+                    subtitle: Text("It seems there aren't any valid submissions to grade."))
+                Spacer()
+            }
+            Spacer()
+        }
+        .listRowBackground(SwiftUI.EmptyView())
     }
 
     private var filterBarView: some View {
