@@ -26,7 +26,7 @@ public struct QuizSubmissionListItem: Equatable {
     public let score: String?
     public let avatarURL: URL?
 
-    public static func generateArray(users: [QuizSubmissionUser], submissions: [QuizSubmission]) -> [QuizSubmissionListItem] {
+    public static func make(users: [QuizSubmissionUser], submissions: [QuizSubmission]) -> [QuizSubmissionListItem] {
         users.map { user in
             var status: QuizSubmissionWorkflowState = .untaken
             var score: String?

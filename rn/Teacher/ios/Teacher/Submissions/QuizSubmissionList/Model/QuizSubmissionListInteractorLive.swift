@@ -47,7 +47,7 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
         Publishers
             .CombineLatest(usersStore.allObjects, submissionsStore.allObjects)
             .map {
-                QuizSubmissionListItem.generateArray(users: $0.0, submissions: $0.1)
+                QuizSubmissionListItem.make(users: $0.0, submissions: $0.1)
             }
             .combineLatest(filter) {
                 $0.applyFilter(filter: $1)
@@ -121,12 +121,8 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
 
     // MARK: - Inputs
     public func refresh() -> Future<Void, Never> {
-        Future<Void, Never> { [self] promise in
-            usersStore.exhaust(force: true)
-            quizStore.refresh(force: true)
-            self.submissionsStore.refreshWithFuture(force: true)
-                .sink { _ in promise(.success(())) }
-                .store(in: &self.subscriptions)
-        }
+        usersStore.exhaust(force: true)
+        quizStore.refresh(force: true)
+        return submissionsStore.refreshWithFuture(force: true)
     }
 }

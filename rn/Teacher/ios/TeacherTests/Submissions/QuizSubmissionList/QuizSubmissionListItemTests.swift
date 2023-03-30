@@ -26,7 +26,7 @@ class QuizSubmissionListItemTests: TeacherTestCase {
         let user = QuizSubmissionUser.save(APIUser.make(id: 1, name: "John", avatar_url: URL(string: "https://example.com/avatar1"), pronouns: "he/him"), in: databaseClient)
         let users = [user, QuizSubmissionUser.make(in: databaseClient)]
         let submissions: [QuizSubmission] = [.make()]
-        let testee = QuizSubmissionListItem.generateArray(users: users, submissions: submissions)
+        let testee = QuizSubmissionListItem.make(users: users, submissions: submissions)
 
         XCTAssertEqual(testee.count, 2)
         XCTAssertEqual(testee[0].id, "1")
@@ -41,7 +41,7 @@ class QuizSubmissionListItemTests: TeacherTestCase {
     func testConnectSubmissions() {
         let users = [QuizSubmissionUser.make(id: "1", in: databaseClient), QuizSubmissionUser.make(id: "2", in: databaseClient)]
         let submissions = [QuizSubmission.make(from: .make(score: 99, user_id: "1", workflow_state: .complete))]
-        let testee = QuizSubmissionListItem.generateArray(users: users, submissions: submissions)
+        let testee = QuizSubmissionListItem.make(users: users, submissions: submissions)
 
         XCTAssertEqual(testee[0].status, .complete)
         XCTAssertEqual(testee[0].score, "99")
