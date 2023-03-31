@@ -265,7 +265,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
             return QuizPreviewAssembly.makeQuizPreviewViewController(courseID: courseID,
                                                                      quizID: quizID)
         } else {
-            return HelmViewController(moduleName: "/courses/:courseID/quizzes/:quizID/edit",
+            return HelmViewController(moduleName: "/courses/:courseID/quizzes/:quizID/preview",
                                       url: url,
                                       params: params,
                                       userInfo: userInfo)
