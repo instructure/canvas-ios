@@ -17,7 +17,6 @@
 //
 
 import SwiftUI
-import Combine
 
 public struct QuizSubmissionListItemViewModel: Identifiable, Equatable {
     public let id: String
@@ -28,7 +27,6 @@ public struct QuizSubmissionListItemViewModel: Identifiable, Equatable {
     public let score: String?
     public let profileImageURL: URL?
     public let a11yLabel: String
-    public let tapAction = PassthroughSubject<Void, Never>()
 
     public init(item: QuizSubmissionListItem) {
         self.id = item.id
@@ -45,11 +43,5 @@ public struct QuizSubmissionListItemViewModel: Identifiable, Equatable {
         self.score = item.score
         self.profileImageURL = item.avatarURL
         self.a11yLabel = displayName + " " + status + " " + (score ?? "")
-    }
-}
-
-extension QuizSubmissionListItemViewModel {
-    public static func == (lhs: QuizSubmissionListItemViewModel, rhs: QuizSubmissionListItemViewModel) -> Bool {
-        lhs.id == rhs.id
     }
 }

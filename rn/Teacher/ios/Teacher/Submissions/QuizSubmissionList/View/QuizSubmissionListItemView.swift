@@ -21,14 +21,16 @@ import SwiftUI
 
 public struct QuizSubmissionListItemView: View {
     private var model: QuizSubmissionListItemViewModel
+    private var cellDidTap: () -> Void
 
-    public init(model: QuizSubmissionListItemViewModel) {
+    public init(model: QuizSubmissionListItemViewModel, cellDidTap: @escaping () -> Void) {
         self.model = model
+        self.cellDidTap = cellDidTap
     }
 
     public var body: some View {
         Button {
-            model.tapAction.send()
+            cellDidTap()
         } label: {
             cellContent
         }
@@ -72,7 +74,7 @@ struct QuizSubmissionListItemView_Previews: PreviewProvider {
     static let env = PreviewEnvironment()
 
     static var previews: some View {
-        QuizSubmissionListItemView(model: .init(item: .make()))
+        QuizSubmissionListItemView(model: .init(item: .make()), cellDidTap: {})
             .previewLayout(.sizeThatFits)
     }
 }

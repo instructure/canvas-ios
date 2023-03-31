@@ -48,23 +48,17 @@ class QuizSubmissionListViewModel: ObservableObject {
         setupInputBindings(router: router)
     }
 
-    private func submissionDidTap() {
+    public func submissionDidTap() {
         showError = true
     }
 
     private func setupOutputBindings() {
-        unowned let uSelf = self
         interactor.state
             .assign(to: &$state)
         interactor.submissions
             .map { submissions in
                 submissions.map {
-                    let itemViewModel = QuizSubmissionListItemViewModel(item: $0)
-                    itemViewModel.tapAction.sink {
-                        uSelf.submissionDidTap()
-                    }
-                    .store(in: &uSelf.subscriptions)
-                    return itemViewModel
+                    QuizSubmissionListItemViewModel(item: $0)
                 }
             }
             .assign(to: &$submissions)

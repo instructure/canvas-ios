@@ -62,7 +62,7 @@ class QuizSubmissionViewModelTests: TeacherTestCase {
 
     func testSubmissionTap() {
         XCTAssertFalse(testee.showError)
-        testee.submissions.first?.tapAction.send()
+        testee.submissionDidTap()
         XCTAssertTrue(testee.showError)
     }
 

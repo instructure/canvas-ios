@@ -128,7 +128,7 @@ public struct QuizSubmissionListView: View {
     private var submissionList: some View {
         ForEach(model.submissions) { submission in
             VStack(spacing: 0) {
-                QuizSubmissionListItemView(model: submission)
+                QuizSubmissionListItemView(model: submission, cellDidTap: { model.submissionDidTap() })
                 Color.borderMedium
                     .frame(height: 0.5)
                     .overlay(Color.backgroundLightest.frame(width: 64), alignment: .leading)
