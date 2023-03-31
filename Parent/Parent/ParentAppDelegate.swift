@@ -157,12 +157,6 @@ extension ParentAppDelegate: LoginDelegate {
     var supportsCanvasNetwork: Bool { false }
     var findSchoolButtonTitle: String { NSLocalizedString("Find School", bundle: .core, comment: "") }
 
-    func openSupportTicket() {
-        guard let presentFrom = topMostViewController() else { return }
-        let subject = String.localizedStringWithFormat("[Parent Login Issue] %@", NSLocalizedString("Trouble logging in", comment: ""))
-        presentFrom.present(UINavigationController(rootViewController: ErrorReportViewController.create(subject: subject)), animated: true)
-    }
-
     func changeUser() {
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
         disableTracking()
