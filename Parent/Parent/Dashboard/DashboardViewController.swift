@@ -161,7 +161,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
     }
 
     func updateHeader() {
-        headerView.backgroundColor = currentColor
+        headerView.backgroundColor = currentColor.darkenToEnsureContrast(against: .white)
         profileButton.addBadge(number: badgeCount, color: currentColor)
         addStudentView.isHidden = false // provides shadow even when avatar covers it
 
