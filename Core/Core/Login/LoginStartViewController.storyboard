@@ -18,8 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Canvas Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1pX-Al-xWp" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="16" y="27.5" width="301" height="19.5"/>
+                                <rect key="frame" x="16" y="20" width="343" height="34"/>
                                 <accessibility key="accessibilityConfiguration" identifier="LoginStart.authenticationMethodLabel"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="Cbc-V0-Xn8"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -29,7 +32,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R5c-gK-Ayu" userLabel="Logo Container">
-                                <rect key="frame" x="0.0" y="510" width="375" height="190"/>
+                                <rect key="frame" x="0.0" y="99.5" width="375" height="190"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="instructureLine" translatesAutoresizingMaskIntoConstraints="NO" id="YBX-Gr-kI6">
                                         <rect key="frame" x="155.5" y="22" width="64" height="64"/>
@@ -67,13 +70,13 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M3X-mo-TCQ" userLabel="Login Tools">
-                                <rect key="frame" x="0.0" y="700" width="375" height="772"/>
+                                <rect key="frame" x="0.0" y="289.5" width="375" height="361.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Pt8-iU-cki">
-                                        <rect key="frame" x="32" y="325" width="311" height="122"/>
+                                        <rect key="frame" x="32" y="2" width="311" height="70"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QqF-GH-4HQ" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="311" height="52"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="311" height="54"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="LoginStart.lastLoginButton"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="54" id="gZw-0g-inL"/>
@@ -93,7 +96,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K3D-iK-gpK" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="68" width="311" height="54"/>
+                                                <rect key="frame" x="0.0" y="70" width="311" height="0.0"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="LoginStart.findSchoolButton"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="54" id="BWz-j5-CZt"/>
@@ -115,10 +118,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="Bkg-T4-H3b">
-                                        <rect key="frame" x="74" y="479" width="233" height="32"/>
+                                        <rect key="frame" x="74" y="104" width="233" height="25.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="750" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6NX-gC-CQL" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="90" height="32"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="90" height="25.5"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="LoginStart.qrCodeButton"/>
                                                 <inset key="imageEdgeInsets" minX="-11" minY="0.0" maxX="8" maxY="0.0"/>
                                                 <state key="normal" title="QR Login" image="qrCode"/>
@@ -133,10 +136,10 @@
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ds0-Rb-5d6">
-                                                <rect key="frame" x="101" y="0.0" width="2" height="32"/>
+                                                <rect key="frame" x="101" y="0.0" width="2" height="25.5"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Brq-Xm-d3G">
-                                                        <rect key="frame" x="0.0" y="7" width="2" height="18"/>
+                                                        <rect key="frame" x="0.0" y="4" width="2" height="18"/>
                                                         <color key="backgroundColor" name="backgroundMedium"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="18" id="a3m-SS-k75"/>
@@ -151,7 +154,7 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9EW-4z-2Mo" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                                <rect key="frame" x="114" y="0.0" width="119" height="32"/>
+                                                <rect key="frame" x="114" y="0.0" width="119" height="25.5"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="LoginStart.canvasNetworkButton"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <state key="normal" title="Canvas Network"/>
@@ -166,13 +169,13 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="g3X-Rb-xXO">
-                                        <rect key="frame" x="55.5" y="511" width="264.5" height="29"/>
+                                        <rect key="frame" x="55.5" y="129.5" width="264.5" height="0.0"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="3Ua-og-syp">
-                                                <rect key="frame" x="0.0" y="0.0" width="264.5" height="29"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="264.5" height="0.0"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We've made a few changes." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qRY-FA-Dia" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="165.5" height="29"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="165.5" height="0.0"/>
                                                         <accessibility key="accessibilityConfiguration" identifier="LoginStart.whatsNewLabel"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" red="0.45098039220000002" green="0.50588235290000005" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -183,7 +186,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="va0-Ci-EPu" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                                        <rect key="frame" x="168.5" y="0.0" width="96" height="29"/>
+                                                        <rect key="frame" x="168.5" y="0.0" width="96" height="0.0"/>
                                                         <accessibility key="accessibilityConfiguration" identifier="LoginStart.whatsNewLink"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <state key="normal" title="See what's new."/>
@@ -200,7 +203,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xBc-5O-QU6">
-                                        <rect key="frame" x="16" y="572" width="343" height="200"/>
+                                        <rect key="frame" x="16" y="161.5" width="343" height="200"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Previous Logins" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Op3-kc-wqp" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="0.0" width="311" height="19.5"/>
@@ -407,23 +410,8 @@
                                     <constraint firstItem="Bkg-T4-H3b" firstAttribute="centerX" secondItem="M3X-mo-TCQ" secondAttribute="centerX" constant="3" id="ynz-4F-ekZ"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Al6-ev-ond" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="325" y="20" width="34" height="34"/>
-                                <accessibility key="accessibilityConfiguration" identifier="LoginStart.helpButton"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="2Zm-3d-YwQ"/>
-                                    <constraint firstAttribute="width" constant="34" id="JY9-gR-cXJ"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="questionLine"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="helpTapped:" destination="QZA-SV-u24" eventType="primaryActionTriggered" id="7VA-YO-tLW"/>
-                                </connections>
-                            </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="instructureLine" translatesAutoresizingMaskIntoConstraints="NO" id="beI-15-M65" userLabel="AnimatableLogo">
-                                <rect key="frame" x="155.5" y="712" width="64" height="64"/>
+                                <rect key="frame" x="155.5" y="301.5" width="64" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="28k-3o-AnI"/>
                                     <constraint firstAttribute="width" constant="64" id="oSd-vg-gmi"/>
@@ -434,7 +422,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="Al6-ev-ond" firstAttribute="leading" secondItem="1pX-Al-xWp" secondAttribute="trailing" constant="8" id="05N-Iw-HQD"/>
                             <constraint firstItem="R5c-gK-Ayu" firstAttribute="leading" secondItem="NxW-YV-uVK" secondAttribute="leading" id="0KA-9H-9dZ"/>
                             <constraint firstItem="M3X-mo-TCQ" firstAttribute="top" secondItem="NxW-YV-uVK" secondAttribute="top" constant="16" id="1bY-nP-oVY"/>
                             <constraint firstItem="M3X-mo-TCQ" firstAttribute="width" secondItem="NxW-YV-uVK" secondAttribute="width" multiplier="0.5" id="7xe-hU-FAq"/>
@@ -444,15 +431,14 @@
                             <constraint firstItem="beI-15-M65" firstAttribute="centerX" secondItem="soV-nE-xVI" secondAttribute="centerX" id="VSk-q8-ZkB"/>
                             <constraint firstItem="R5c-gK-Ayu" firstAttribute="centerY" secondItem="NxW-YV-uVK" secondAttribute="centerY" constant="-139" id="ZaC-BK-0Te"/>
                             <constraint firstItem="M3X-mo-TCQ" firstAttribute="width" secondItem="NxW-YV-uVK" secondAttribute="width" id="akb-Vn-BcQ"/>
+                            <constraint firstItem="1pX-Al-xWp" firstAttribute="top" secondItem="NxW-YV-uVK" secondAttribute="top" constant="20" id="b1q-c0-EKg"/>
                             <constraint firstItem="R5c-gK-Ayu" firstAttribute="centerY" secondItem="NxW-YV-uVK" secondAttribute="centerY" id="cAU-Te-0gb"/>
                             <constraint firstItem="R5c-gK-Ayu" firstAttribute="width" secondItem="NxW-YV-uVK" secondAttribute="width" id="eCC-aC-UMb"/>
                             <constraint firstItem="M3X-mo-TCQ" firstAttribute="centerX" secondItem="NxW-YV-uVK" secondAttribute="centerX" id="gKC-ag-e7m"/>
-                            <constraint firstItem="Al6-ev-ond" firstAttribute="top" secondItem="soV-nE-xVI" secondAttribute="topMargin" constant="20" id="ghQ-Pe-ZZE"/>
                             <constraint firstItem="M3X-mo-TCQ" firstAttribute="top" secondItem="R5c-gK-Ayu" secondAttribute="bottom" id="iYl-v7-M6w"/>
                             <constraint firstItem="R5c-gK-Ayu" firstAttribute="width" secondItem="NxW-YV-uVK" secondAttribute="width" multiplier="0.5" id="mb8-yg-bIz"/>
+                            <constraint firstItem="NxW-YV-uVK" firstAttribute="trailing" secondItem="1pX-Al-xWp" secondAttribute="trailing" constant="16" id="nJb-16-bOD"/>
                             <constraint firstItem="R5c-gK-Ayu" firstAttribute="centerX" secondItem="NxW-YV-uVK" secondAttribute="centerX" id="pfO-Ep-gOg"/>
-                            <constraint firstItem="Al6-ev-ond" firstAttribute="centerY" secondItem="1pX-Al-xWp" secondAttribute="centerY" id="uuY-uw-dPv"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Al6-ev-ond" secondAttribute="trailing" id="wzp-Ir-pXL"/>
                             <constraint firstItem="1pX-Al-xWp" firstAttribute="leading" secondItem="soV-nE-xVI" secondAttribute="leadingMargin" id="yp1-pL-o4n"/>
                         </constraints>
                         <variation key="default">
@@ -493,7 +479,6 @@
                         <outlet property="buttonStackViewCenterYConstraint" destination="1Od-k4-0CJ" id="gBS-W2-QCP"/>
                         <outlet property="canvasNetworkButton" destination="9EW-4z-2Mo" id="88M-G9-xRu"/>
                         <outlet property="findSchoolButton" destination="K3D-iK-gpK" id="egj-nA-DEx"/>
-                        <outlet property="helpButton" destination="Al6-ev-ond" id="E14-Lq-o5v"/>
                         <outlet property="lastLoginButton" destination="QqF-GH-4HQ" id="3cp-0V-JS3"/>
                         <outlet property="loginTopConstraint" destination="1bY-nP-oVY" id="xaL-RQ-vno"/>
                         <outlet property="logoView" destination="YBX-Gr-kI6" id="pbw-zU-yIW"/>
@@ -529,9 +514,6 @@
         </designable>
         <designable name="9EW-4z-2Mo">
             <size key="intrinsicContentSize" width="119" height="32"/>
-        </designable>
-        <designable name="Al6-ev-ond">
-            <size key="intrinsicContentSize" width="24" height="24"/>
         </designable>
         <designable name="B9O-5a-W5N">
             <size key="intrinsicContentSize" width="141" height="14.5"/>

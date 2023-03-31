@@ -24,7 +24,6 @@ class LoginStartViewControllerTests: CoreTestCase {
     var loggedIn: LoginSession?
     var loggedOut: LoginSession?
     var opened: URL?
-    var hasOpenedSupportTicket = false
     var supportsCanvasNetwork = true
     var helpURL: URL?
     var whatsNewURL = URL(string: "whats-new")
@@ -137,9 +136,6 @@ class LoginStartViewControllerTests: CoreTestCase {
         controller.canvasNetworkButton.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual((router.viewControllerCalls.last?.0 as? LoginWebViewController)?.host, "learn.canvas.net")
 
-        controller.helpButton.sendActions(for: .primaryActionTriggered)
-        XCTAssertTrue(hasOpenedSupportTicket)
-
         controller.whatsNewLink.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual(opened, whatsNewURL)
     }
@@ -219,10 +215,6 @@ class LoginStartViewControllerTests: CoreTestCase {
 extension LoginStartViewControllerTests: LoginDelegate {
     func openExternalURL(_ url: URL) {
         opened = url
-    }
-
-    func openSupportTicket() {
-        hasOpenedSupportTicket = true
     }
 
     func userDidLogin(session: LoginSession) {
