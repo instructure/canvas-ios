@@ -23,10 +23,32 @@ public struct InteractivePanda: View {
     private let title: Text?
     private let subtitle: Text?
 
+    public init(scene: PandaScene) {
+        self.scene = scene
+        self.title = nil
+        self.subtitle = nil
+    }
+
     public init(scene: PandaScene, title: Text? = nil, subtitle: Text? = nil) {
         self.scene = scene
         self.title = title
         self.subtitle = subtitle
+    }
+
+    public init(scene: PandaScene, title: String? = nil, subtitle: String? = nil) {
+        self.scene = scene
+
+        if let title {
+            self.title = Text(title)
+        } else {
+            self.title = nil
+        }
+
+        if let subtitle {
+            self.subtitle = Text(subtitle)
+        } else {
+            self.subtitle = nil
+        }
     }
 
     @ViewBuilder

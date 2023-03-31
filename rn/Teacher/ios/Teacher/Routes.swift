@@ -259,7 +259,18 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
             return HelmViewController(moduleName: "/courses/:courseID/quizzes/:quizID", url: url, params: params, userInfo: userInfo)
         }
     },
-    "/courses/:courseID/quizzes/:quizID/preview": nil,
+    "/courses/:courseID/quizzes/:quizID/preview": { url, params, userInfo in
+        if ExperimentalFeature.nativeTeacherQuiz.isEnabled {
+            guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
+            return QuizPreviewAssembly.makeQuizPreviewViewController(courseID: courseID,
+                                                                     quizID: quizID)
+        } else {
+            return HelmViewController(moduleName: "/courses/:courseID/quizzes/:quizID/edit",
+                                      url: url,
+                                      params: params,
+                                      userInfo: userInfo)
+        }
+    },
     "/courses/:courseID/quizzes/:quizID/edit": { url, params, userInfo in
         if ExperimentalFeature.nativeTeacherQuiz.isEnabled {
             guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }

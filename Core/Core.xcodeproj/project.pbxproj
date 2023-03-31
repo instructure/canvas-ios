@@ -1118,6 +1118,11 @@
 		CFDED43EFD2EFE248E2C0AD3 /* FileProgressListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7A16122D559CDD2F497160 /* FileProgressListViewModel.swift */; };
 		CFEC044429D5D459003CA611 /* QuizPreviewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEC044329D5D459003CA611 /* QuizPreviewInteractor.swift */; };
 		CFEC044729D5D9B0003CA611 /* QuizPreviewInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEC044629D5D9B0003CA611 /* QuizPreviewInteractorTests.swift */; };
+		CFFB25DF29D60F0900810D6E /* QuizPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB25DE29D60F0900810D6E /* QuizPreviewView.swift */; };
+		CFFB25E129D60F7500810D6E /* QuizPreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB25E029D60F7500810D6E /* QuizPreviewViewModel.swift */; };
+		CFFB25E329D610DF00810D6E /* QuizPreviewAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB25E229D610DF00810D6E /* QuizPreviewAssembly.swift */; };
+		CFFB25E529D6138100810D6E /* QuizPreviewInteractorLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB25E429D6138100810D6E /* QuizPreviewInteractorLive.swift */; };
+		CFFB25E729D6143B00810D6E /* QuizPreviewInteractorPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB25E629D6143B00810D6E /* QuizPreviewInteractorPreview.swift */; };
 		D01F1A0AB0AAF5643C03EFF1 /* ModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0C6A481F3EFC1B4F0777CB /* ModuleTests.swift */; };
 		D06B1B95D0FF65F7E7761F95 /* Hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = B408E358BA052F9B08697E7E /* Hidden.swift */; };
 		D0F8A60B23C9F14E0F18F68E /* K5ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6985A169550DB5407617B325 /* K5ScheduleViewModel.swift */; };
@@ -2749,6 +2754,11 @@
 		CFAD2AE1CF6B4872E30170B5 /* FileEditorViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEditorViewTests.swift; sourceTree = "<group>"; };
 		CFEC044329D5D459003CA611 /* QuizPreviewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizPreviewInteractor.swift; sourceTree = "<group>"; };
 		CFEC044629D5D9B0003CA611 /* QuizPreviewInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizPreviewInteractorTests.swift; sourceTree = "<group>"; };
+		CFFB25DE29D60F0900810D6E /* QuizPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizPreviewView.swift; sourceTree = "<group>"; };
+		CFFB25E029D60F7500810D6E /* QuizPreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizPreviewViewModel.swift; sourceTree = "<group>"; };
+		CFFB25E229D610DF00810D6E /* QuizPreviewAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizPreviewAssembly.swift; sourceTree = "<group>"; };
+		CFFB25E429D6138100810D6E /* QuizPreviewInteractorLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizPreviewInteractorLive.swift; sourceTree = "<group>"; };
+		CFFB25E629D6143B00810D6E /* QuizPreviewInteractorPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizPreviewInteractorPreview.swift; sourceTree = "<group>"; };
 		D071B9DCC3B9E16B1BEEFF35 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D0795F7FD2E35FF931C3CEAD /* lato_black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_black.ttf; sourceTree = "<group>"; };
 		D08DFC503F7F8CBD23CB14B4 /* UITableViewHeaderFooterViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewHeaderFooterViewExtensionsTests.swift; sourceTree = "<group>"; };
@@ -6344,6 +6354,7 @@
 				CFEC044029D5D3F2003CA611 /* Model */,
 				CFEC044129D5D3F8003CA611 /* View */,
 				CFEC044229D5D3FE003CA611 /* ViewModel */,
+				CFFB25E229D610DF00810D6E /* QuizPreviewAssembly.swift */,
 			);
 			path = QuizPreview;
 			sourceTree = "<group>";
@@ -6352,6 +6363,8 @@
 			isa = PBXGroup;
 			children = (
 				CFEC044329D5D459003CA611 /* QuizPreviewInteractor.swift */,
+				CFFB25E429D6138100810D6E /* QuizPreviewInteractorLive.swift */,
+				CFFB25E629D6143B00810D6E /* QuizPreviewInteractorPreview.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6359,6 +6372,7 @@
 		CFEC044129D5D3F8003CA611 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				CFFB25DE29D60F0900810D6E /* QuizPreviewView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6366,6 +6380,7 @@
 		CFEC044229D5D3FE003CA611 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				CFFB25E029D60F7500810D6E /* QuizPreviewViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -8114,6 +8129,7 @@
 				E22895438D26D9AC3D6694DD /* AssignmentOverridesEditor.swift in Sources */,
 				B086CDC14333B1FF2D4FD912 /* AssignmentPickerItem.swift in Sources */,
 				8E7B332223C8A0D5D03CA42D /* AssignmentPickerListRequest.swift in Sources */,
+				CFFB25DF29D60F0900810D6E /* QuizPreviewView.swift in Sources */,
 				A9A4FB6E3C1EC033E582D356 /* AssignmentPickerListResponse.swift in Sources */,
 				D5C28E238A0A441208652C51 /* AssignmentPickerListService.swift in Sources */,
 				84E36F9F49D586FE3AE5C623 /* AssignmentPickerView.swift in Sources */,
@@ -8169,6 +8185,7 @@
 				E97625C23463E6E2C5720F0C /* ComposeReplyViewController.swift in Sources */,
 				0A4481DABD3748BD3F2B7CD1 /* ComposeViewController.swift in Sources */,
 				99498ED17E382AE029168FD8 /* Conference.swift in Sources */,
+				CFFB25E129D60F7500810D6E /* QuizPreviewViewModel.swift in Sources */,
 				B03CBE639651B9F3DFAA7A3D /* ConferenceCard.swift in Sources */,
 				CE4487612FDBB05A6D2E99DE /* ConferenceDetailsViewController.swift in Sources */,
 				3B59052943074795463524AF /* ConferenceListViewController.swift in Sources */,
@@ -8267,6 +8284,7 @@
 				13AAAEE87EB5FD6AC6D6C3FA /* DiscussionListViewController.swift in Sources */,
 				986DE40F642503CD8CBBFFBB /* DiscussionParticipant.swift in Sources */,
 				7E7DEA3920DE41710E50E3A5 /* DiscussionReplyViewController.swift in Sources */,
+				CFFB25E729D6143B00810D6E /* QuizPreviewInteractorPreview.swift in Sources */,
 				A456900820BD76297E767930 /* DiscussionSectionsPicker.swift in Sources */,
 				B08C598C5D5061358F1805E3 /* DiscussionTopic.swift in Sources */,
 				67E9E81B7B260E3B758D9243 /* DiscussionsPanda.swift in Sources */,
@@ -8609,6 +8627,7 @@
 				4B32E4BBA3BBE0BE56294B3E /* ObserverAlert.swift in Sources */,
 				394C4760D46A1639B831848C /* OptionalDatePicker.swift in Sources */,
 				A90693D68DADAC27F3F28A85 /* OutputStreamExtensions.swift in Sources */,
+				CFFB25E329D610DF00810D6E /* QuizPreviewAssembly.swift in Sources */,
 				6BD284C2AC2C1A327A9C330B /* PSPDFAnnotationExtension.swift in Sources */,
 				DB24A275870663B9A161FD3E /* Page.swift in Sources */,
 				D484C74E299214157F4B69BC /* PageDetailsViewController.swift in Sources */,
@@ -8804,6 +8823,7 @@
 				D7F30D136C7C9DD00D3DE5AC /* WeakViewController.swift in Sources */,
 				78C9CF53CA69935B4600FA08 /* WebSession.swift in Sources */,
 				320CE662C9CA32A411F7005A /* WebSitePreviewView.swift in Sources */,
+				CFFB25E529D6138100810D6E /* QuizPreviewInteractorLive.swift in Sources */,
 				DF57B6CEDF6EE726B97C62B7 /* WebSitePreviewViewModel.swift in Sources */,
 				6F235F385744ABB566E9BB61 /* WebView.swift in Sources */,
 				E0EEDD925FC2094A71515E8C /* WrongAppLinkView.swift in Sources */,

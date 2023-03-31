@@ -18,12 +18,10 @@
 
 import Combine
 
-public enum QuizPreviewInteractorState: Equatable {
-    case loading
-    case error
-    case data(launchURL: URL)
-}
+class QuizPreviewInteractorPreview: QuizPreviewInteractor {
+    var state = CurrentValueSubject<QuizPreviewInteractorState, Never>(.loading)
 
-public protocol QuizPreviewInteractor {
-    var state: CurrentValueSubject<QuizPreviewInteractorState, Never> { get }
+    init(state: QuizPreviewInteractorState) {
+        self.state.send(state)
+    }
 }

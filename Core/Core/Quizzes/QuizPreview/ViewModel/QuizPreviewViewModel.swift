@@ -16,14 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
+import SwiftUI
 
-public enum QuizPreviewInteractorState: Equatable {
-    case loading
-    case error
-    case data(launchURL: URL)
-}
+public class QuizPreviewViewModel: ObservableObject {
+    @Published public var state: QuizPreviewInteractorState = .loading
+    public let navigationTitle = NSLocalizedString("Quiz Preview", comment: "")
+    public let errorTitle = NSLocalizedString("Something Went Wrong", comment: "")
+    public let errorDescription = NSLocalizedString("We couldn't load the quiz preview.\nPlease try again later.", comment: "")
 
-public protocol QuizPreviewInteractor {
-    var state: CurrentValueSubject<QuizPreviewInteractorState, Never> { get }
+    private let interactor: QuizPreviewInteractor
+
+    public init(interactor: QuizPreviewInteractor) {
+        self.interactor = interactor
+
+        interactor
+            .state
+            .assign(to: &$state)
+    }
 }
