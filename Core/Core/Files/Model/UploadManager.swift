@@ -143,7 +143,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 file.bytesSent = 0
                 try context.save()
                 Analytics.shared.logEvent("submit_fileupload_info", parameters: ["size": file.size])
-                requestFileUpload(fileURL: url, uploadContext: uploadContext, fileSize: file.size, fileObjectID: objectID, callback: callback)
+                requestFileUpload(fileURL: url, uploadContext: uploadContext, fileSize: file.size, fileObjectID: objectID, folderPath: folderPath, callback: callback)
             } catch {
                 complete(file: file, error: error)
                 callback?()
