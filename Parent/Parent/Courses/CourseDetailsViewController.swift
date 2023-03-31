@@ -132,7 +132,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         replyButton?.setImage(UIImage.commentSolid, for: .normal)
         replyButton?.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 17, leading: 17, bottom: 15, trailing: 15)
         replyButton?.tintColor = .white
-        replyButton?.backgroundColor = colorScheme?.color
+        replyButton?.backgroundColor = colorScheme?.color.darkenToEnsureContrast(against: .white)
         if let replyButton = replyButton { view.addSubview(replyButton) }
 
         let metrics: [String: CGFloat] = ["buttonSize": buttonSize, "margin": margin, "bottomMargin": bottomMargin]

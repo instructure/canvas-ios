@@ -23,7 +23,7 @@ import Core
 import SwiftUI
 
 class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate {
-    @IBOutlet weak var composeButton: UIButton!
+    @IBOutlet weak var composeButton: FloatingButton!
     @IBOutlet weak var dateHeadingLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var descriptionHeadingLabel: UILabel!
@@ -83,7 +83,7 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         scrollView.refreshControl = refreshControl
 
         composeButton.accessibilityLabel = NSLocalizedString("Compose message to teachers", comment: "")
-        composeButton.backgroundColor = ColorScheme.observee(studentID).color
+        composeButton.backgroundColor = ColorScheme.observee(studentID).color.darkenToEnsureContrast(against: .white)
         composeButton.isHidden = true
 
         dateHeadingLabel.text = NSLocalizedString("Due", comment: "")

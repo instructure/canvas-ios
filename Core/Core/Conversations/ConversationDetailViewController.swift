@@ -20,7 +20,7 @@ import Foundation
 
 public class ConversationDetailViewController: UIViewController {
 
-    @IBOutlet weak var replyButton: UIButton!
+    @IBOutlet weak var replyButton: FloatingButton!
     @IBOutlet weak var tableView: UITableView!
     var conversationID: String!
     let env = AppEnvironment.shared
