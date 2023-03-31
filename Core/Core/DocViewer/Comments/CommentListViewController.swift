@@ -23,7 +23,6 @@ class CommentListViewController: UIViewController {
     @IBOutlet weak var keyboardSpace: NSLayoutConstraint!
     @IBOutlet weak var replyBorderView: UIView!
     @IBOutlet weak var replyButton: UIButton!
-    @IBOutlet weak var replyPlaceholder: UILabel!
     @IBOutlet weak var replyTextView: UITextView!
     @IBOutlet weak var replyView: UIView!
     @IBOutlet weak var replyViewHeight: NSLayoutConstraint!
@@ -56,7 +55,9 @@ class CommentListViewController: UIViewController {
         replyBorderView.backgroundColor = .backgroundLightest
         replyBorderView.layer.borderWidth = 1 / UIScreen.main.scale
         replyBorderView.layer.borderColor = UIColor.borderMedium.cgColor
-        replyTextView.font(.scaledNamedFont(.regular14), lineHeight: .body)
+        replyTextView.placeholderColor = .textDark
+        replyTextView.placeholder = NSLocalizedString("Reply", bundle: .core, comment: "")
+        replyTextView.font(.scaledNamedFont(.regular16), lineHeight: .body)
         replyTextView.adjustsFontForContentSizeCategory = true
         replyTextView.accessibilityLabel = NSLocalizedString("Reply to the annotation or previous comments", bundle: .core, comment: "")
         replyTextView.textColor = .textDarkest
@@ -142,6 +143,5 @@ extension CommentListViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         replyButton.isEnabled = !(textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
         replyButton.alpha = replyButton.isEnabled ? 1 : 0.5
-        replyPlaceholder.isHidden = !textView.text.isEmpty
     }
 }
