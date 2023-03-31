@@ -644,6 +644,7 @@ extension CoreWebView {
             buttonHeightConstraint.constant = buttonHeight
             buttonTopConstraint.constant = buttonTopPadding
             button.superview?.backgroundColor = .backgroundLightest.resolvedColor(with: traitCollection)
+            self.backgroundColor = .backgroundLightest.resolvedColor(with: traitCollection)
         }
 
         parent.addSubview(themeSwitcherButton)
