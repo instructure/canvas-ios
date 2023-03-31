@@ -60,4 +60,16 @@ class QuizSubmissionListItemTests: TeacherTestCase {
         XCTAssertEqual(array.applyFilter(filter: .submitted).first?.name, "Complete")
         XCTAssertEqual(array.applyFilter(filter: .notSubmitted).count, 2)
     }
+
+    func testScoreTruncation() {
+        let users = [QuizSubmissionUser.make(id: "1", in: databaseClient), QuizSubmissionUser.make(id: "2", in: databaseClient)]
+        let submissions = [
+            QuizSubmission.make(from: .make(id: "1", score: 2.66667, user_id: "1", workflow_state: .complete)),
+            QuizSubmission.make(from: .make(id: "2", score: 1.00001, user_id: "2", workflow_state: .complete)),
+        ]
+        let testee = QuizSubmissionListItem.make(users: users, submissions: submissions)
+
+        XCTAssertEqual(testee[0].score, "2.67")
+        XCTAssertEqual(testee[1].score, "1")
+    }
 }

@@ -33,7 +33,8 @@ public struct QuizSubmissionListItem: Equatable {
             if let submission = submissions.first(where: {$0.userID == user.id}) {
                 status = submission.workflowState
                 if let submissionScore = submission.score {
-                    score = String(format: "%g", submissionScore)
+                    let truncated = GradeFormatter.truncate(submissionScore)
+                    score = String(truncated.stringValue)
                 }
             }
             return QuizSubmissionListItem(
