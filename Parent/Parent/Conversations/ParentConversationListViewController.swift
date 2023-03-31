@@ -21,7 +21,7 @@ import Core
 
 class ParentConversationListViewController: UIViewController, ConversationCoursesActionSheetDelegate {
     @IBOutlet weak var loadingView: CircleProgressView!
-    @IBOutlet weak var composeButton: UIButton!
+    @IBOutlet weak var composeButton: FloatingButton!
     @IBOutlet weak var emptyView: EmptyView!
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
