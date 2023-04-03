@@ -863,6 +863,7 @@
 		9F943650D465DF53C24A43B3 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6645F34058D5D3E062F4EA20 /* Store.swift */; };
 		9F9C50A3F2C306A42EDD51F0 /* QuizEditorViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B712A4D2892334D91BDA89E9 /* QuizEditorViewModelTests.swift */; };
 		9FE7C7393686D50248CF963E /* NotificationCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A64ED8A474E0594F364159 /* NotificationCategory.swift */; };
+		A02B71CABA1D83E2DE07926E /* WaitForHTMLElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6207BCFCC5CAE6781A55B9 /* WaitForHTMLElement.swift */; };
 		A05965F447D086B703D73BB8 /* DashboardSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C6EB28368E6CF5D0D549AF /* DashboardSettingsViewModel.swift */; };
 		A07909ACCFE8D0A2672477F6 /* CoreActivityViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF17BF402BA72B5DAE1972C /* CoreActivityViewControllerTests.swift */; };
 		A0A63393418E636CD31D0196 /* CalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14C6C751F59C36371ABD68C /* CalendarEvent.swift */; };
@@ -1957,6 +1958,7 @@
 		4CE169C6808A11C89C825E2E /* en-GB-instukhe */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB-instukhe"; path = "en-GB-instukhe.lproj/Main.strings"; sourceTree = "<group>"; };
 		4D163E504E7D08BC71EFA875 /* BackgroundSessionCompletionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundSessionCompletionTests.swift; sourceTree = "<group>"; };
 		4D196EEA4A84A622D64A9DBF /* DiscussionReplyViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DiscussionReplyViewController.storyboard; sourceTree = "<group>"; };
+		4D6207BCFCC5CAE6781A55B9 /* WaitForHTMLElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitForHTMLElement.swift; sourceTree = "<group>"; };
 		4D8F68F1482BC9797395B3D4 /* UIButtonExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtensionTests.swift; sourceTree = "<group>"; };
 		4DBC6D5D2FBE72049B943C68 /* APIPageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPageTests.swift; sourceTree = "<group>"; };
 		4DC8F574F2D106A97A2EA7AD /* PageViewEventRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewEventRequestManager.swift; sourceTree = "<group>"; };
@@ -4957,6 +4959,7 @@
 				12F8910205CDB48B6B6A7A8D /* PullToRefresh.swift */,
 				DAF2FDC18E3759DA3C0FC3CF /* SkipJSInjection.swift */,
 				D1F524BFCF07852EB40312BF /* SkipQuizPreviewSummary.swift */,
+				4D6207BCFCC5CAE6781A55B9 /* WaitForHTMLElement.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -8825,6 +8828,7 @@
 				AE93F2D0240A9FE37E13A227 /* View.swift in Sources */,
 				82979ADFC2A5F3C13423A4AA /* ViewModelState.swift in Sources */,
 				104AA9B442B689BF55FD90B5 /* WKWebViewExtensions.swift in Sources */,
+				A02B71CABA1D83E2DE07926E /* WaitForHTMLElement.swift in Sources */,
 				D7F30D136C7C9DD00D3DE5AC /* WeakViewController.swift in Sources */,
 				78C9CF53CA69935B4600FA08 /* WebSession.swift in Sources */,
 				320CE662C9CA32A411F7005A /* WebSitePreviewView.swift in Sources */,

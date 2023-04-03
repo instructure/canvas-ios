@@ -20,6 +20,7 @@ import SwiftUI
 
 public struct QuizPreviewView: View {
     @ObservedObject private var viewModel: QuizPreviewViewModel
+    @State private var quizHTMLLoaded = false
 
     public init(viewModel: QuizPreviewViewModel) {
         self.viewModel = viewModel
@@ -29,10 +30,7 @@ public struct QuizPreviewView: View {
         ZStack {
             switch viewModel.state {
             case .loading:
-                ProgressView()
-                    .progressViewStyle(.indeterminateCircle())
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(Color.backgroundLightest)
+                loadingIndicator
             case .error:
                 InteractivePanda(scene: QuizzesPanda(),
                                  title: viewModel.errorTitle,
@@ -40,12 +38,40 @@ public struct QuizPreviewView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .background(Color.backgroundLightest)
             case .data(let launchURL):
-                WebView(url: launchURL,
-                        features: [.invertColorsInDarkMode, .skipQuizPreviewSummary],
-                        canToggleTheme: true)
+                ZStack {
+                    WebView(url: launchURL,
+                            features: [
+                                .invertColorsInDarkMode,
+                                .skipQuizPreviewSummary,
+                                .waitForHTMLElement(elementId: "quiz-instructions") {
+                                    markQuizLoaded()
+                                },
+                            ],
+                            canToggleTheme: true)
+
+                    if !quizHTMLLoaded {
+                        loadingIndicator.zIndex(1)
+                    }
+                }
+                .animation(.default, value: quizHTMLLoaded)
             }
         }
         .navigationTitle(viewModel.navigationTitle)
+    }
+
+    private var loadingIndicator: some View {
+        ProgressView()
+            .progressViewStyle(.indeterminateCircle())
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.backgroundLightest)
+    }
+
+    private func markQuizLoaded() {
+        // The "quiz-instructions" html element becomes visible right after skipping the
+        // preview summary but the UI needs some time to render the quiz without the summary
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            quizHTMLLoaded = true
+        }
     }
 }
 
