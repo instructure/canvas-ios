@@ -99,6 +99,116 @@ class StoreTests: CoreTestCase {
         self.eventsExpectation.fulfill()
     }
 
+    // MARK: - Offline
+
+    func test_OfflineModeIsEnabled_RefreshCalled_ObjectsReturnFromDatabase() {
+        // Given
+        Course.make(from: .make(id: "0"))
+        ExperimentalFeature.offlineMode.isEnabled = true
+
+        // When
+        let expectation = expectation(description: "Refresh callback called")
+        let useCase = TestUseCase(courses: [.make(id: "1")])
+        let store = createStore(useCase: useCase)
+        store.refresh(force: true) { _ in
+            expectation.fulfill()
+        }
+
+        // Then
+        waitForExpectations(timeout: 0.1)
+        let ids = store.map { $0.id }
+        XCTAssertEqual(ids.count, 1)
+        XCTAssert(ids.contains("0"))
+        XCTAssert(!ids.contains("1"))
+        XCTAssertFalse(store.pending)
+        XCTAssertNil(store.error)
+    }
+
+    func test_OfflineModeIsEnabled_ExhaustCalled_ObjectsReturnFromDatabase() {
+        // Given
+        Course.make(from: .make(id: "0"))
+        ExperimentalFeature.offlineMode.isEnabled = true
+
+        // When
+        let expectation = expectation(description: "Exhaust callback called")
+        let useCase = TestUseCase(courses: [.make(id: "1")])
+        let store = createStore(useCase: useCase)
+        store.exhaust(force: true) { _ in
+            expectation.fulfill()
+            return false
+        }
+
+        // Then
+        waitForExpectations(timeout: 0.1)
+        let ids = store.map { $0.id }
+        XCTAssertEqual(ids.count, 1)
+        XCTAssert(ids.contains("0"))
+        XCTAssert(!ids.contains("1"))
+        XCTAssertFalse(store.pending)
+        XCTAssertNil(store.error)
+    }
+
+    func test_OfflineModeIsNotEnabled_RefreshCalled_ObjectsReturnFromNetwork() {
+        // Given
+        Course.make(from: .make(id: "0"))
+        ExperimentalFeature.offlineMode.isEnabled = false
+
+        // When
+        let useCase = TestUseCase(courses: [.make(id: "1")])
+        let store = createStore(useCase: useCase)
+        let expectation = expectation(description: "Refresh callback called")
+        store.refresh(force: true) { _ in
+            expectation.fulfill()
+        }
+
+        // Then
+        waitForExpectations(timeout: 0.1)
+        let ids = store.map { $0.id }
+        XCTAssertEqual(ids.count, 2)
+        XCTAssert(ids.contains("0"))
+        XCTAssert(ids.contains("1"))
+        XCTAssertFalse(store.pending)
+        XCTAssertNil(store.error)
+    }
+
+    func test_OfflineModeIsEnabled_RefreshCalled_StateChangesArePublished() {
+        // Given
+        Course.make(from: .make(id: "0"))
+        ExperimentalFeature.offlineMode.isEnabled = true
+
+        // When
+        let useCase = TestUseCase(courses: [])
+        let store = createStore(useCase: useCase)
+        let expectation = expectation(description: "State update is published")
+        let subscription = store
+            .statePublisher
+            .dropFirst()
+            .sink { state in
+                XCTAssertEqual(state, .data)
+                expectation.fulfill()
+            }
+        store.refresh()
+
+        // Then
+        waitForExpectations(timeout: 10.1)
+        subscription.cancel()
+    }
+
+    private func createStore<U: UseCase>(useCase: U) -> Store<U> {
+        Store(
+            env: environment,
+            offlineService: createNWAvailabilityService(),
+            context: environment.database.viewContext,
+            useCase: useCase
+        ) {}
+    }
+
+    private func createNWAvailabilityService() -> OfflineService {
+        let monitor = NWPathMonitorWrapper(start: { _ in () }, cancel: {})
+        let availabilityService = NWAvailabilityServiceLive(monitor: monitor)
+        return OfflineServiceLive(nwAvailabilityService: availabilityService)
+    }
+
     // MARK: - Reactive Properties Tests -
 
     // MARK: All Objects
