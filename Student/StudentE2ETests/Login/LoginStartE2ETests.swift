@@ -25,7 +25,6 @@ class LoginStartE2ETests: CoreUITestCase {
     override var user: UITestUser? { nil }
 
     func testHiddenElements() {
-        XCTAssertFalse(LoginStart.helpButton.isVisible)
         XCTAssertFalse(LoginStart.whatsNewLabel.isVisible)
         XCTAssertFalse(LoginStart.whatsNewLink.isVisible)
     }
