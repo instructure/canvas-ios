@@ -506,6 +506,7 @@
 		5C4EFA0347772546A01708F4 /* BackgroundSessionCompletionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D163E504E7D08BC71EFA875 /* BackgroundSessionCompletionTests.swift */; };
 		5C5BDC2D04428F514C1042FD /* UseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5D906AACC3F5CC6225A23F /* UseCase.swift */; };
 		5C63C5C72D16FFC9A23E8E24 /* APIDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3040986FCDE272C0739D5B86 /* APIDate.swift */; };
+		5C9304B5AD56EFF156F8C3A8 /* OnElementAppearTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76445B789095BD9F222DFBD /* OnElementAppearTests.swift */; };
 		5CFE89A939B340C4E7DB6A28 /* AlertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1B652F30C16ED1D2DFD6F9 /* AlertAction.swift */; };
 		5D467094DA4F0FD23ABED465 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04DA4482E1C1CBBCFE1C91F /* LoginViewModel.swift */; };
 		5D9A2F314EFD7C344B37BA35 /* CourseInvitationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4004B65E8D9D50E2360818F0 /* CourseInvitationCard.swift */; };
@@ -2537,6 +2538,7 @@
 		A73C2578FA52CE7D131673DE /* UTIFromNSItemProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTIFromNSItemProvider.swift; sourceTree = "<group>"; };
 		A740E2C5C7CC396F706F13C2 /* GetConversationCoursesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetConversationCoursesTests.swift; sourceTree = "<group>"; };
 		A762B577A4D0DEE9B8E86652 /* SafeURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeURL.swift; sourceTree = "<group>"; };
+		A76445B789095BD9F222DFBD /* OnElementAppearTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnElementAppearTests.swift; sourceTree = "<group>"; };
 		A7A3D3CACC76DAA385F3D907 /* SyllabusSummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusSummaryViewController.swift; sourceTree = "<group>"; };
 		A7A3D97F64FF7A7A2A841159 /* CompletionRequirementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionRequirementTests.swift; sourceTree = "<group>"; };
 		A7B1578C843F6AE5832ABCF8 /* K5ScheduleWeekViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleWeekViewModel.swift; sourceTree = "<group>"; };
@@ -3221,6 +3223,7 @@
 				DB57156EC391B74268F6CBD6 /* DisableZoomTests.swift */,
 				E48798A044B256C7A8E4BBC1 /* InvertColorsInDarkModeTests.swift */,
 				5775096E99BC675EC2A68EF0 /* MockCoreWebViewLinkDelegate.swift */,
+				A76445B789095BD9F222DFBD /* OnElementAppearTests.swift */,
 				1030CCC353E61D7519F86524 /* PullToRefreshTests.swift */,
 				EC595D08955BB7E1F839C7DA /* SkipJSInjectionTests.swift */,
 			);
@@ -7985,6 +7988,7 @@
 				77E758F887C9D6348B394BD0 /* NotificationCenterExtensionsTests.swift in Sources */,
 				35A7651A1B0B7D648339F4B9 /* NotificationManagerTests.swift in Sources */,
 				C93CEA168E0C80439E49D0FC /* ObserverAlertTests.swift in Sources */,
+				5C9304B5AD56EFF156F8C3A8 /* OnElementAppearTests.swift in Sources */,
 				2911ECDF66416CF9F2624F2E /* PSPDFAnnotationExtensionTests.swift in Sources */,
 				B27B8AA086E654466F1CD444 /* PageDetailsViewControllerTests.swift in Sources */,
 				595DEC346831EA13132F3D79 /* PageEditorViewTests.swift in Sources */,
