@@ -23,7 +23,6 @@ public enum LoginStart: String, ElementWrapper {
     case authenticationMethodLabel
     case canvasNetworkButton
     case findSchoolButton
-    case helpButton
     case lastLoginButton
     case logoView
     case whatsNewLabel

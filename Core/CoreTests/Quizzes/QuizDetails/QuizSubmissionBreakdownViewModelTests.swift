@@ -39,20 +39,13 @@ class QuizSubmissionBreakdownViewModelTests: CoreTestCase {
         let testee = QuizSubmissionBreakdownViewModel(courseID: courseID, quizID: quizID)
 
         testee.routeToAll(router: router, viewController: WeakViewController(UIViewController()))
-        XCTAssertTrue(router.calls.isEmpty)
-        XCTAssertTrue(testee.showError)
+        XCTAssertTrue(router.lastRoutedTo(URL(string: "courses/1/quizzes/2/submissions")!))
 
         testee.routeToGraded(router: router, viewController: WeakViewController(UIViewController()))
-        XCTAssertTrue(router.calls.isEmpty)
-        XCTAssertTrue(testee.showError)
-
-        testee.routeToUngraded(router: router, viewController: WeakViewController(UIViewController()))
-        XCTAssertTrue(router.calls.isEmpty)
-        XCTAssertTrue(testee.showError)
+        XCTAssertTrue(router.lastRoutedTo(URL(string: "courses/1/quizzes/2/submissions?filter=submitted")!))
 
         testee.routeToUnsubmitted(router: router, viewController: WeakViewController(UIViewController()))
-        XCTAssertTrue(router.calls.isEmpty)
-        XCTAssertTrue(testee.showError)
+        XCTAssertTrue(router.lastRoutedTo(URL(string: "courses/1/quizzes/2/submissions?filter=not_submitted")!))
     }
 
     private func mockSubmissions() {

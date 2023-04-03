@@ -24,7 +24,6 @@ import UniformTypeIdentifiers
 class SubmissionCommentsViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var addCommentBorderView: UIView!
     @IBOutlet weak var addCommentButton: UIButton!
-    @IBOutlet weak var addCommentPlaceholder: UILabel!
     @IBOutlet weak var addCommentTextView: UITextView!
     @IBOutlet weak var addCommentView: UIView!
     @IBOutlet weak var addMediaButton: UIButton!
@@ -65,7 +64,9 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
         addCommentBorderView.layer.borderWidth = 1 / UIScreen.main.scale
         addCommentButton.accessibilityLabel = NSLocalizedString("Send comment", bundle: .student, comment: "")
         addCommentTextView.accessibilityLabel = NSLocalizedString("Add a comment or reply to previous comments", bundle: .student, comment: "")
-        addCommentTextView.font(.scaledNamedFont(.regular14), lineHeight: .body)
+        addCommentTextView.placeholder = NSLocalizedString("Comment", bundle: .student, comment: "")
+        addCommentTextView.placeholderColor = .textDark
+        addCommentTextView.font(.scaledNamedFont(.regular16), lineHeight: .body)
         addCommentTextView.adjustsFontForContentSizeCategory = true
         addCommentTextView.textColor = .textDarkest
         addCommentView.backgroundColor = .backgroundLight
@@ -278,7 +279,6 @@ extension SubmissionCommentsViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         addCommentButton.isEnabled = !(textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
         addCommentButton.alpha = addCommentButton.isEnabled ? 1 : 0.5
-        addCommentPlaceholder.isHidden = !textView.text.isEmpty
     }
 }
 

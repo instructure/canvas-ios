@@ -135,7 +135,7 @@ export function registerScreens (store: Store): void {
     registerScreen('/courses/:courseID/quizzes/:quizID', ExperimentalFeature.nativeTeacherQuiz.isEnabled ? null : QuizDetails, store, { deepLink: true })
     registerScreen('/courses/:courseID/quizzes/:quizID/preview', ExperimentalFeature.nativeTeacherQuiz.isEnabled ? null : QuizPreview, store)
     registerScreen('/courses/:courseID/quizzes/:quizID/edit', ExperimentalFeature.nativeTeacherQuiz.isEnabled ? null : QuizEdit, store, { deepLink: true })
-    registerScreen('/courses/:courseID/quizzes/:quizID/submissions', QuizSubmissions, store, { deepLink: true })
+    registerScreen('/courses/:courseID/quizzes/:quizID/submissions', ExperimentalFeature.nativeTeacherQuiz.isEnabled ? null : QuizSubmissions, store, { deepLink: true })
     registerScreen('/courses/:courseID/users/:userID', null, store, { deepLink: true })
 
     registerScreen('/courses/:courseID/modules', null, null, { canBecomeMaster: true, deepLink: true })

@@ -44,6 +44,7 @@ public extension Bundle {
         return nil
     }
 
+    var appBundleIdentifier: String { bundleIdentifier ?? "com.instructure.app" }
     var isStudentApp: Bool { bundleIdentifier == Bundle.studentBundleID || isStudentTestsRunner }
     var isTeacherApp: Bool { bundleIdentifier == Bundle.teacherBundleID || isTeacherTestsRunner }
     var isParentApp: Bool { bundleIdentifier == Bundle.parentBundleID || isParentTestsRunner }

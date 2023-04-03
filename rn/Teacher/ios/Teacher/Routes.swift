@@ -280,8 +280,15 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
             return HelmViewController(moduleName: "/courses/:courseID/quizzes/:quizID/edit", url: url, params: params, userInfo: userInfo)
         }
     },
-    "/courses/:courseID/quizzes/:quizID/submissions": nil,
-
+    "/courses/:courseID/quizzes/:quizID/submissions": { url, params, userInfo in
+        if ExperimentalFeature.nativeTeacherQuiz.isEnabled {
+            guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
+            let filter = QuizSubmissionListFilter(rawValue: url.queryValue(for: "filter"))
+            return QuizSubmissionListAssembly.makeViewController(env: AppEnvironment.shared, courseID: courseID, quizID: quizID, filter: filter)
+        } else {
+            return HelmViewController(moduleName: "/courses/:courseID/quizzes/:quizID/submissions", url: url, params: params, userInfo: userInfo)
+        }
+    },
     "/courses/:courseID/users": { _, params, _ in
         guard let courseID = params["courseID"] else { return nil }
         return PeopleListViewController.create(context: .course(courseID))

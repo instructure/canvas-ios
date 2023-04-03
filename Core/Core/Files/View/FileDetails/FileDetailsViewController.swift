@@ -253,6 +253,8 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     }
 }
 
+// MARK: - URLSessionDownloadDelegate
+
 extension FileDetailsViewController: URLSessionDownloadDelegate {
     /// This must be called to set `localURL` before initiating download, otherwise there
     /// will be a threading issue with trying to access core data from a different thread.
@@ -284,11 +286,17 @@ extension FileDetailsViewController: URLSessionDownloadDelegate {
     public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         guard let localURL = localURL else { return }
         if let status = (downloadTask.response as? HTTPURLResponse)?.statusCode, status >= 400 {
-            return showError(APIError.from(
-                data: try? Data(contentsOf: location),
-                response: downloadTask.response,
-                error: NSError.internalError()
-            ))
+            if status == 404 {
+                return performUIUpdate {
+                    self.showFileNoLongerExistsDialog()
+                }
+            } else {
+                return showError(APIError.from(
+                    data: try? Data(contentsOf: location),
+                    response: downloadTask.response,
+                    error: NSError.internalError()
+                ))
+            }
         }
         do {
             try FileManager.default.createDirectory(at: localURL.deletingLastPathComponent(), withIntermediateDirectories: true)
@@ -306,6 +314,18 @@ extension FileDetailsViewController: URLSessionDownloadDelegate {
         downloadTask = nil
         performUIUpdate { self.downloadComplete() }
         session.finishTasksAndInvalidate()
+    }
+
+    private func showFileNoLongerExistsDialog() {
+        let alert = UIAlertController(title: NSLocalizedString("File No Longer Exists", comment: ""),
+                                      message: NSLocalizedString("The file has been deleted by the author.", comment: ""),
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Close", comment: ""),
+                                      style: .default,
+                                      handler: { [env] _ in
+            env.router.dismiss(self)
+        }))
+        env.router.show(alert, from: self, options: .modal())
     }
 
     func downloadComplete() {

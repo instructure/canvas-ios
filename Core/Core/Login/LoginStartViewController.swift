@@ -23,7 +23,6 @@ class LoginStartViewController: UIViewController {
     @IBOutlet weak var canvasNetworkButton: UIButton!
     @IBOutlet weak var findSchoolButton: DynamicButton!
     @IBOutlet weak var lastLoginButton: UIButton!
-    @IBOutlet weak var helpButton: UIButton!
     @IBOutlet weak var logoView: UIImageView!
     @IBOutlet weak var previousLoginsLabel: UILabel!
     @IBOutlet weak var previousLoginsTableView: UITableView!
@@ -77,8 +76,6 @@ class LoginStartViewController: UIViewController {
         if let findSchoolButtonTitle = loginDelegate?.findSchoolButtonTitle {
             findSchoolButton.setTitle(findSchoolButtonTitle, for: .normal)
         }
-        helpButton.accessibilityLabel = NSLocalizedString("Help", bundle: .core, comment: "")
-        helpButton.isHidden = !Bundle.main.isParentApp
         authenticationMethodLabel.isHidden = true
         logoView.tintColor = .currentLogoColor()
         animatableLogo.tintColor = logoView.tintColor
@@ -295,10 +292,6 @@ class LoginStartViewController: UIViewController {
         } else {
             showLoginQRCodeTutorial()
         }
-    }
-
-    @IBAction func helpTapped(_ sender: UIButton) {
-        loginDelegate?.openSupportTicket()
     }
 
     @IBAction func whatsNewTapped(_ sender: UIButton) {
