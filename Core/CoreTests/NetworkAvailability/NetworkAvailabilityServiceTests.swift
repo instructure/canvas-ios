@@ -23,15 +23,15 @@ import Combine
 
 @testable import Core
 
-class NWAvailabilityServiceTests: CoreTestCase {
-    var service: NWAvailabilityService!
+class NetworkAvailabilityServiceTests: CoreTestCase {
+    var service: NetworkAvailabilityService!
     var monitor: NWPathMonitorWrapper!
     var subscriptions = Set<AnyCancellable>()
 
     override func setUp() {
         super.setUp()
         monitor = NWPathMonitorWrapper(start: { _ in () }, cancel: {})
-        service = NWAvailabilityServiceLive(monitor: monitor)
+        service = NetworkAvailabilityServiceLive(monitor: monitor)
     }
 
     override func tearDown() {
@@ -44,19 +44,19 @@ class NWAvailabilityServiceTests: CoreTestCase {
     }
 
     func testCellularConnectionState() {
-        let status = NWAvailabilityStatus.connected(.cellular)
+        let status = NetworkAvailabilityStatus.connected(.cellular)
         XCTAssertTrue(status.isConnected)
         XCTAssertFalse(status.isConnectedViaWifi)
     }
 
     func testWifiConnectionState() {
-        let status = NWAvailabilityStatus.connected(.wifi)
+        let status = NetworkAvailabilityStatus.connected(.wifi)
         XCTAssertTrue(status.isConnected)
         XCTAssertTrue(status.isConnectedViaWifi)
     }
 
     func testNoConnectionState() {
-        let status = NWAvailabilityStatus.disconnected
+        let status = NetworkAvailabilityStatus.disconnected
         XCTAssertFalse(status.isConnected)
         XCTAssertFalse(status.isConnectedViaWifi)
     }
@@ -114,7 +114,7 @@ class NWAvailabilityServiceTests: CoreTestCase {
         service.startMonitoring()
         let expectation = expectation(description: "Publisher receives value")
         expectation.expectedFulfillmentCount = 2
-        var status: NWAvailabilityStatus!
+        var status: NetworkAvailabilityStatus!
 
         service.startObservingStatus()
             .sink { newStatus in

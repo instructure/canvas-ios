@@ -197,16 +197,16 @@ class StoreTests: CoreTestCase {
     private func createStore<U: UseCase>(useCase: U) -> Store<U> {
         Store(
             env: environment,
-            offlineService: createNWAvailabilityService(),
+            offlineService: createOfflineService(),
             context: environment.database.viewContext,
             useCase: useCase
         ) {}
     }
 
-    private func createNWAvailabilityService() -> OfflineService {
+    private func createOfflineService() -> OfflineService {
         let monitor = NWPathMonitorWrapper(start: { _ in () }, cancel: {})
-        let availabilityService = NWAvailabilityServiceLive(monitor: monitor)
-        return OfflineServiceLive(nwAvailabilityService: availabilityService)
+        let availabilityService = NetworkAvailabilityServiceLive(monitor: monitor)
+        return OfflineServiceLive(availabilityService: availabilityService)
     }
 
     // MARK: - Reactive Properties Tests -

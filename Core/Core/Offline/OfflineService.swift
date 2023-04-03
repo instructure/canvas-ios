@@ -25,11 +25,11 @@ public protocol OfflineService {
 public final class OfflineServiceLive: OfflineService {
     // MARK: - Dependencies
 
-    private let nwAvailabilityService: NWAvailabilityService
+    private let availabilityService: NetworkAvailabilityService
 
-    public init(nwAvailabilityService: NWAvailabilityService = NWAvailabilityServiceLive()) {
-        self.nwAvailabilityService = nwAvailabilityService
-        self.nwAvailabilityService.startMonitoring()
+    public init(availabilityService: NetworkAvailabilityService = NetworkAvailabilityServiceLive()) {
+        self.availabilityService = availabilityService
+        self.availabilityService.startMonitoring()
     }
 
     public func isOfflineModeEnabled() -> Bool {
@@ -41,6 +41,6 @@ public final class OfflineServiceLive: OfflineService {
     }
 
     private func isNetworkOffline() -> Bool {
-        !nwAvailabilityService.status.isConnected
+        !availabilityService.status.isConnected
     }
 }
