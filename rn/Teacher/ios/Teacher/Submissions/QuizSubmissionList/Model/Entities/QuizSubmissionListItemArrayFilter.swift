@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,21 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Foundation
 
-public struct ConferencesPanda: PandaScene {
-    public var name: String { "conferences" }
-    public var offset: (background: CGSize, foreground: CGSize) {(
-        background: CGSize(width: 40, height: -17),
-        foreground: CGSize(width: -40, height: 37))
-    }
-    public var height: CGFloat { 210 }
+public extension Array where Element == QuizSubmissionListItem {
 
-    public init() {}
-}
-
-struct ConferencesPanda_Previews: PreviewProvider {
-    static var previews: some View {
-        InteractivePanda(scene: ConferencesPanda())
+    func applyFilter(filter: QuizSubmissionListFilter) -> [QuizSubmissionListItem] {
+        switch filter {
+        case .all:
+            return self
+        case .submitted:
+            return self.filter {
+                [.pending_review, .complete].contains($0.status)
+            }
+        case.notSubmitted:
+            return self.filter {
+                [.untaken, .settings_only, .preview].contains($0.status)
+            }
+        }
     }
 }

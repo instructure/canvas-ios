@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,21 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import XCTest
+@testable import Teacher
 
-public struct ConferencesPanda: PandaScene {
-    public var name: String { "conferences" }
-    public var offset: (background: CGSize, foreground: CGSize) {(
-        background: CGSize(width: 40, height: -17),
-        foreground: CGSize(width: -40, height: 37))
-    }
-    public var height: CGFloat { 210 }
+class QuizSubmissionListFilterTests: TeacherTestCase {
 
-    public init() {}
-}
+    func testLocalizedName() {
+        let submitted: QuizSubmissionListFilter = .init(rawValue: "submitted")
+        let notSubmitted: QuizSubmissionListFilter = .init(rawValue: "not_submitted")
+        let all: QuizSubmissionListFilter = .init(rawValue: nil)
 
-struct ConferencesPanda_Previews: PreviewProvider {
-    static var previews: some View {
-        InteractivePanda(scene: ConferencesPanda())
+        XCTAssertEqual(submitted.localizedName, "Submitted")
+        XCTAssertEqual(notSubmitted.localizedName, "Not Submitted")
+        XCTAssertEqual(all.localizedName, "All Submissions")
     }
 }

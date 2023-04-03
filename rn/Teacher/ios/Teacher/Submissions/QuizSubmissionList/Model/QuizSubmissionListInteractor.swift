@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,21 +16,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Core
+import Combine
 
-public struct ConferencesPanda: PandaScene {
-    public var name: String { "conferences" }
-    public var offset: (background: CGSize, foreground: CGSize) {(
-        background: CGSize(width: 40, height: -17),
-        foreground: CGSize(width: -40, height: 37))
-    }
-    public var height: CGFloat { 210 }
+public protocol QuizSubmissionListInteractor {
+    // MARK: - Outputs
+    var state: CurrentValueSubject<StoreState, Never> { get }
+    var submissions: CurrentValueSubject<[QuizSubmissionListItem], Never> { get }
+    var quizTitle: CurrentValueSubject<String, Never> { get }
+    func createMessageUserInfo() -> Future<[String: Any], Never>
 
-    public init() {}
-}
-
-struct ConferencesPanda_Previews: PreviewProvider {
-    static var previews: some View {
-        InteractivePanda(scene: ConferencesPanda())
-    }
+    // MARK: - Inputs
+    func refresh() -> Future<Void, Never>
+    func setFilter(_ scope: QuizSubmissionListFilter) -> Future<Void, Never>
 }

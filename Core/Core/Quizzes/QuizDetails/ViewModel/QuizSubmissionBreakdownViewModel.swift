@@ -21,8 +21,6 @@ import SwiftUI
 public class QuizSubmissionBreakdownViewModel: SubmissionBreakdownViewModelProtocol {
 
     @Published public var isReady: Bool = false
-    @Published public var showError: Bool = false
-    @Published public private(set) var errorText: String?
     @Published public var graded: Int = 0
     @Published public var ungraded: Int = 0
     @Published public var unsubmitted: Int = 0
@@ -30,11 +28,13 @@ public class QuizSubmissionBreakdownViewModel: SubmissionBreakdownViewModelProto
 
     public var noSubmissionTypes = false
     public var paperSubmissionTypes = false
+    public var noGradingNeeded = true
 
     private let quizID: String
     private let courseID: String
     private var submissions: Store<GetAllQuizSubmissions>
     private var enrollments: Store<GetEnrollments>
+    private var submissionsPath: String { "courses/\(courseID)/quizzes/\(quizID)/submissions" }
 
     init(courseID: String, quizID: String) {
         self.quizID = quizID
@@ -60,24 +60,17 @@ public class QuizSubmissionBreakdownViewModel: SubmissionBreakdownViewModelProto
     }
 
     public func routeToAll(router: Router, viewController: WeakViewController) {
-        showPracticeError()
+        router.route(to: submissionsPath, from: viewController)
     }
 
     public func routeToGraded(router: Router, viewController: WeakViewController) {
-        showPracticeError()
+        router.route(to: "\(submissionsPath)?filter=submitted", from: viewController)
     }
 
-    public func routeToUngraded(router: Router, viewController: WeakViewController) {
-        showPracticeError()
-    }
+    public func routeToUngraded(router: Router, viewController: WeakViewController) {}
 
     public func routeToUnsubmitted(router: Router, viewController: WeakViewController) {
-        showPracticeError()
-    }
-
-    private func showPracticeError() {
-        showError = true
-        errorText = NSLocalizedString("Practice quizzes & surveys do not have detail views.", comment: "")
+        router.route(to: "\(submissionsPath)?filter=not_submitted", from: viewController)
     }
 
     private func didUpdate() {

@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,21 +16,27 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Foundation
 
-public struct ConferencesPanda: PandaScene {
-    public var name: String { "conferences" }
-    public var offset: (background: CGSize, foreground: CGSize) {(
-        background: CGSize(width: 40, height: -17),
-        foreground: CGSize(width: -40, height: 37))
+public enum QuizSubmissionListFilter: String, CaseIterable, Hashable {
+    case all, submitted, notSubmitted
+
+    public var localizedName: String {
+        switch self {
+        case .all: return NSLocalizedString("All Submissions", comment: "")
+        case .submitted: return NSLocalizedString("Submitted", comment: "")
+        case .notSubmitted: return NSLocalizedString("Not Submitted", comment: "")
+        }
     }
-    public var height: CGFloat { 210 }
 
-    public init() {}
-}
-
-struct ConferencesPanda_Previews: PreviewProvider {
-    static var previews: some View {
-        InteractivePanda(scene: ConferencesPanda())
+    public init(rawValue: String?) {
+        switch rawValue {
+        case "submitted":
+            self = .submitted
+        case "not_submitted":
+            self = .notSubmitted
+        default:
+            self = .all
+        }
     }
 }
