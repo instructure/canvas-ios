@@ -1191,6 +1191,7 @@
 		DB04CCD4FEFFB8822AC9A3FF /* QuizPreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F845410E6E6ACED5F789AD /* QuizPreviewViewModel.swift */; };
 		DB24A275870663B9A161FD3E /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA649E42DC0C7BD7AC7FD329 /* Page.swift */; };
 		DB25386E992CA6AE6249FA77 /* CourseSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873EA5D9B2BF635206412A8E /* CourseSection.swift */; };
+		DB3A87080B8D3F6DDE766A0E /* ClickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9EA7E2DF2148543F53ECF0 /* ClickTests.swift */; };
 		DB3FC4B8A036EC32FAD91252 /* UTI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E265B340CF82CFFFB35287D6 /* UTI.swift */; };
 		DB4A89A202B4B31601279AF6 /* GetContextUsersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714916675A9B46CCF678AF57 /* GetContextUsersTests.swift */; };
 		DBA228F5A56DC03910F6F754 /* APIPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9869EC73E66B97B137AF1CD5 /* APIPage.swift */; };
@@ -2300,6 +2301,7 @@
 		7F3C5228820111819B5BD53E /* GradeCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeCircleView.swift; sourceTree = "<group>"; };
 		7F3EA8A3F29C878986F6620E /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7F90593278C021782466F67D /* UIMenuExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMenuExtensions.swift; sourceTree = "<group>"; };
+		7F9EA7E2DF2148543F53ECF0 /* ClickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickTests.swift; sourceTree = "<group>"; };
 		7FE2E90722DA48FE7D706B2B /* IDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDTests.swift; sourceTree = "<group>"; };
 		801F893D7D56B3225F8954C0 /* RichContentToolbarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RichContentToolbarView.xib; sourceTree = "<group>"; };
 		805EE53C6A3B009C7E3161D8 /* LTIViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIViewControllerTests.swift; sourceTree = "<group>"; };
@@ -3219,6 +3221,7 @@
 		02B62E4C15E81703A181B820 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				7F9EA7E2DF2148543F53ECF0 /* ClickTests.swift */,
 				E16B9CC49BF56A06655C7335 /* CustomUserAgentTests.swift */,
 				DB57156EC391B74268F6CBD6 /* DisableZoomTests.swift */,
 				E48798A044B256C7A8E4BBC1 /* InvertColorsInDarkModeTests.swift */,
@@ -7723,6 +7726,7 @@
 				E2EF2856A3294EE7FF735F5F /* CalendarViewControllerTests.swift in Sources */,
 				9BEDE30FC2BAA1ED4BA47898 /* CircleProgressViewTests.swift in Sources */,
 				E0DD06D34E1BC0834B11C2D9 /* CircleRefreshControlTests.swift in Sources */,
+				DB3A87080B8D3F6DDE766A0E /* ClickTests.swift in Sources */,
 				14B37E265FCE1EFD149804FC /* ColoredNavViewProtocol.swift in Sources */,
 				865EE3DD688BF572B835E9A7 /* CommunicationChannelTests.swift in Sources */,
 				3EAA68871D0F6493F893CDDB /* CompletionRequirementTests.swift in Sources */,
