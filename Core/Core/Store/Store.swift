@@ -272,7 +272,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
         pending = true
         notify()
 
-        guard !offlineService.isOfflineModeEnabled() else {
+        if offlineService.isOfflineModeEnabled() {
             pending = false
             error = nil
             publishState()
@@ -280,20 +280,19 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
             performUIUpdate {
                 callback?(nil)
             }
-            return
-        }
-
-        useCase.fetch(environment: env, force: force) { [weak self] response, urlResponse, error in
-            self?.willChange()
-            self?.error = error
-            self?.pending = false
-            if let urlResponse = urlResponse {
-                self?.next = self?.useCase.getNext(from: urlResponse)
-            }
-            self?.notify()
-            self?.publishState()
-            performUIUpdate {
-                callback?(response)
+        } else {
+            useCase.fetch(environment: env, force: force) { [weak self] response, urlResponse, error in
+                self?.willChange()
+                self?.error = error
+                self?.pending = false
+                if let urlResponse = urlResponse {
+                    self?.next = self?.useCase.getNext(from: urlResponse)
+                }
+                self?.notify()
+                self?.publishState()
+                performUIUpdate {
+                    callback?(response)
+                }
             }
         }
     }
