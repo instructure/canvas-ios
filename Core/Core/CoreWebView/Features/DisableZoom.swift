@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public class DisableZoom: CoreWebViewFeature {
+private class DisableZoom: CoreWebViewFeature {
     private let script: String =
     """
         var meta = document.createElement('meta');
@@ -33,7 +33,7 @@ public class DisableZoom: CoreWebViewFeature {
 
 public extension CoreWebViewFeature {
 
-    static var disableZoom: DisableZoom {
+    static var disableZoom: CoreWebViewFeature {
         DisableZoom()
     }
 }

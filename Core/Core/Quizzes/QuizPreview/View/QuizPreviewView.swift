@@ -42,8 +42,9 @@ public struct QuizPreviewView: View {
                     WebView(url: launchURL,
                             features: [
                                 .invertColorsInDarkMode,
-                                .skipQuizPreviewSummary,
-                                .waitForHTMLElement(elementId: "quiz-instructions") {
+                                // A quiz properties page is displayed before the actual quiz preview.
+                                .click(elementId: "preview_quiz_button"),
+                                .onAppear(elementId: "quiz-instructions") {
                                     markQuizLoaded()
                                 },
                             ],

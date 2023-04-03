@@ -19,17 +19,20 @@
 import Foundation
 
 /**
- When opening a classic quiz preview url a quiz properties page is displayed before the actual quiz preview.
- This script taps on the button that hides the properties screen and shows the quiz.
+ This feature inserts a script at the end of the document that clicks on an element by its id.
  */
-public class SkipQuizPreviewSummary: CoreWebViewFeature {
-    private let script: String =
-    """
-        var previewButton = document.getElementById('preview_quiz_button');
-        if (previewButton) {
-            previewButton.click();
-        }
-    """
+private class Click: CoreWebViewFeature {
+    private let script: String
+
+    public init(elementId: String) {
+        script =
+        """
+            var element = document.getElementById('\(elementId)');
+            if (element) {
+                element.click();
+            }
+        """
+    }
 
     override func apply(on webView: CoreWebView) {
         webView.addScript(script)
@@ -39,10 +42,9 @@ public class SkipQuizPreviewSummary: CoreWebViewFeature {
 public extension CoreWebViewFeature {
 
     /**
-     When opening a classic quiz preview url a quiz properties page is displayed before the actual quiz preview.
-     This script taps on the button that hides the properties screen and shows the quiz.
+     This feature inserts a script at the end of the document that clicks on an element by its id.
      */
-    static var skipQuizPreviewSummary: SkipQuizPreviewSummary {
-        SkipQuizPreviewSummary()
+    static func click(elementId: String) -> CoreWebViewFeature {
+        Click(elementId: elementId)
     }
 }

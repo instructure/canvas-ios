@@ -18,7 +18,7 @@
 
 import Foundation
 
-public class WaitForHTMLElement: CoreWebViewFeature {
+private class OnElementAppear: CoreWebViewFeature {
     private let eventName = "elementDidAppear"
     private let handlerName = "waitForHTMLElement"
     private let script: String
@@ -64,7 +64,7 @@ public extension CoreWebViewFeature {
         - elementId: The element id that returns an element if passed to `document.getElementById` javascript function.
         - callback: The block to be executed when the given element id is found.
      */
-    static func waitForHTMLElement(elementId: String, callback: @escaping () -> Void) -> WaitForHTMLElement {
-        WaitForHTMLElement(elementId: elementId, callback: callback)
+    static func onAppear(elementId: String, callback: @escaping () -> Void) -> CoreWebViewFeature {
+        OnElementAppear(elementId: elementId, callback: callback)
     }
 }

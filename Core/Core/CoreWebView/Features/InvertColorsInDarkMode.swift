@@ -16,11 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-/**
- This feature injects a javascript into the webview that inverts colors on the loaded website.
- Useful if we load 3rd party content without dark mode support.
- */
-public class InvertColorsInDarkMode: CoreWebViewFeature {
+private class InvertColorsInDarkMode: CoreWebViewFeature {
     private let script: String = {
         let darkCss = """
         @media (prefers-color-scheme: dark) {
@@ -50,7 +46,11 @@ public class InvertColorsInDarkMode: CoreWebViewFeature {
 
 public extension CoreWebViewFeature {
 
-    static var invertColorsInDarkMode: InvertColorsInDarkMode {
+    /**
+     This feature injects a javascript into the webview that inverts colors on the loaded website.
+     Useful if we load 3rd party content without dark mode support.
+     */
+    static var invertColorsInDarkMode: CoreWebViewFeature {
         InvertColorsInDarkMode()
     }
 }
