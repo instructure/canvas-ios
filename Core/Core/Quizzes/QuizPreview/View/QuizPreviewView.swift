@@ -41,7 +41,7 @@ public struct QuizPreviewView: View {
                     .background(Color.backgroundLightest)
             case .data(let launchURL):
                 WebView(url: launchURL,
-                        features: [.invertColorsInDarkMode],
+                        features: [.invertColorsInDarkMode, .skipQuizPreviewSummary],
                         canToggleTheme: true)
             }
         }
