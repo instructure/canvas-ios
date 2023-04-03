@@ -36,9 +36,9 @@ class QuizPreviewInteractorTests: CoreTestCase {
         api.mock(getSubmission, value: nil)
 
         // MARK: - WHEN
-        let testee = QuizPreviewInteractor(courseID: "testCourse",
-                                       quizID: "testQuiz",
-                                       env: environment)
+        let testee = QuizPreviewInteractorLive(courseID: "testCourse",
+                                               quizID: "testQuiz",
+                                               env: environment)
 
         // MARK: - THEN
         waitForState(.data(launchURL: URL(string: "https://test.instructure.com/quiz/testQuiz/take?preview=1&persist_headless=1&force_user=1")!),
@@ -51,9 +51,9 @@ class QuizPreviewInteractorTests: CoreTestCase {
         api.mock(getQuiz, value: nil, error: NSError.instructureError("testError"))
 
         // MARK: - WHEN
-        let testee = QuizPreviewInteractor(courseID: "testCourse",
-                                       quizID: "testQuiz",
-                                       env: environment)
+        let testee = QuizPreviewInteractorLive(courseID: "testCourse",
+                                               quizID: "testQuiz",
+                                               env: environment)
 
         // MARK: - THEN
         waitForState(.error, on: testee)
@@ -66,15 +66,15 @@ class QuizPreviewInteractorTests: CoreTestCase {
         mock.suspend()
 
         // MARK: - WHEN
-        let testee = QuizPreviewInteractor(courseID: "testCourse",
-                                       quizID: "testQuiz",
-                                       env: environment)
+        let testee = QuizPreviewInteractorLive(courseID: "testCourse",
+                                               quizID: "testQuiz",
+                                               env: environment)
 
         // MARK: - THEN
         waitForState(.loading, on: testee)
     }
 
-    private func waitForState(_ expectedState: QuizPreviewInteractor.State = .loading, on testee: QuizPreviewInteractor) {
+    private func waitForState(_ expectedState: QuizPreviewInteractorState = .loading, on testee: QuizPreviewInteractor) {
         let stateReached = expectation(description: "state reached \(expectedState)")
         testee
             .state

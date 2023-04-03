@@ -47,8 +47,7 @@ public struct QuizPreviewView: View {
                                 .onAppear(elementId: "quiz-instructions") {
                                     markQuizLoaded()
                                 },
-                            ],
-                            canToggleTheme: true)
+                            ])
 
                     if !quizHTMLLoaded {
                         loadingIndicator.zIndex(1)
