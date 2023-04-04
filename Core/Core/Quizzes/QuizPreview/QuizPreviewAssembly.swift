@@ -29,8 +29,12 @@ public struct QuizPreviewAssembly {
                                                    env: env)
         let viewModel = QuizPreviewViewModel(interactor: interactor)
         let view = QuizPreviewView(viewModel: viewModel)
+        let viewHost = CoreHostingController(view)
+        viewHost.preferredStatusBarStyleOverride = { viewController in
+            viewController.traitCollection.isDarkInterface ? .lightContent : .darkContent
+        }
 
-        return CoreHostingController(view)
+        return viewHost
     }
 
 #if DEBUG
