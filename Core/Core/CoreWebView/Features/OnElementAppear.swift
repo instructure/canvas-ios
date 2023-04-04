@@ -25,12 +25,6 @@ private class OnElementAppear: CoreWebViewFeature {
     private let elementId: String
     private let callback: () -> Void
 
-    /**
-     - parameters:
-        - elementId: The element id that returns an element if passed to `document.getElementById` javascript function.
-        - callback: The block to be executed when the given element id is found.
-
-     */
     public init(elementId: String, callback: @escaping () -> Void) {
         self.elementId = elementId
         self.callback = callback

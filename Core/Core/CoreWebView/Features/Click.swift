@@ -18,9 +18,6 @@
 
 import Foundation
 
-/**
- This feature inserts a script at the end of the document that clicks on an element by its id.
- */
 private class Click: CoreWebViewFeature {
     private let script: String
 
