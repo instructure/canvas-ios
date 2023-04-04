@@ -1031,6 +1031,7 @@
 		BCE7717AB85B1F37274A0609 /* preview_test.png in Resources */ = {isa = PBXBuildFile; fileRef = E1213CE19AE6458F096761FC /* preview_test.png */; };
 		BD2877D15E75030F1BBA6510 /* GetInboxCourseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3694B40A8B42004A5431A33C /* GetInboxCourseList.swift */; };
 		BD3F3A81AD3719824875D7F9 /* GetAssignmentsByGroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC27EF3ECC13EB2F1095831 /* GetAssignmentsByGroupTests.swift */; };
+		BD927FEBA8ABA6837EE748BB /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E2DB6511139FD56FAE6EE3 /* Script.swift */; };
 		BDDF6993A496E201BA84AE04 /* K5ScheduleSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5545BC860E0410957FE8C73A /* K5ScheduleSubject.swift */; };
 		BE4460591472C977C20035EA /* FontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140D097EF0F5E423219BF36C /* FontExtensions.swift */; };
 		BE46BFD1F5718B24DB93E1BD /* K5ScheduleEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E878EFC35C189D70F1DFC9DF /* K5ScheduleEntryViewModel.swift */; };
@@ -1186,12 +1187,10 @@
 		DA434423003DFEFA2F3A1988 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED26037996232D09E927A44 /* UIViewExtensions.swift */; };
 		DA9DFE454859799465B4AEA9 /* APISubmissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7329E84934D800FEB26F3643 /* APISubmissionTests.swift */; };
 		DAC3791BCFF207004BB9067B /* TitleSubtitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E69C515DED4F944708608A7 /* TitleSubtitleView.xib */; };
-		DADCAD9F1773DF1CBC8FDF0B /* Click.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A23436EE887C4E64775825 /* Click.swift */; };
 		DAEBC99EE0C86163DCCC7B1C /* IndeterminateBarProgressViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00140FF35A92E3E70B878F54 /* IndeterminateBarProgressViewStyle.swift */; };
 		DB04CCD4FEFFB8822AC9A3FF /* QuizPreviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F845410E6E6ACED5F789AD /* QuizPreviewViewModel.swift */; };
 		DB24A275870663B9A161FD3E /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA649E42DC0C7BD7AC7FD329 /* Page.swift */; };
 		DB25386E992CA6AE6249FA77 /* CourseSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873EA5D9B2BF635206412A8E /* CourseSection.swift */; };
-		DB3A87080B8D3F6DDE766A0E /* ClickTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9EA7E2DF2148543F53ECF0 /* ClickTests.swift */; };
 		DB3FC4B8A036EC32FAD91252 /* UTI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E265B340CF82CFFFB35287D6 /* UTI.swift */; };
 		DB4A89A202B4B31601279AF6 /* GetContextUsersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714916675A9B46CCF678AF57 /* GetContextUsersTests.swift */; };
 		DBA228F5A56DC03910F6F754 /* APIPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9869EC73E66B97B137AF1CD5 /* APIPage.swift */; };
@@ -1283,6 +1282,7 @@
 		E9C80E1BA88CACC64C57F89E /* AccessIconView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC6F3DECEDA6385D82B085DA /* AccessIconView.xib */; };
 		EA17C99CFBE113C4C401AD21 /* ProfileSettingsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9756F6CEDD151CB7145E25 /* ProfileSettingsViewControllerTests.swift */; };
 		EA547B500703ECACC2D1271D /* LoginManualOAuthViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139367B56D422A8EC72D1BB3 /* LoginManualOAuthViewControllerTests.swift */; };
+		EA63FAC4C1A5B0841D77CC85 /* ScriptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A9BF018A7BDF4720178D9B /* ScriptTests.swift */; };
 		EA8835145A17B1A601535F2C /* IndeterminateCircleProgressViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0B5776C5E2F63146F22DE7 /* IndeterminateCircleProgressViewStyle.swift */; };
 		EA972AA7AA19A358B592F912 /* FileProgressItemPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0E987B16D3F12CCAE9AE7A /* FileProgressItemPreview.swift */; };
 		EAB2C2B04AC4475CA7C00C70 /* GetFolders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F840AE559BDACCD28D71D1 /* GetFolders.swift */; };
@@ -2301,7 +2301,6 @@
 		7F3C5228820111819B5BD53E /* GradeCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeCircleView.swift; sourceTree = "<group>"; };
 		7F3EA8A3F29C878986F6620E /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7F90593278C021782466F67D /* UIMenuExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMenuExtensions.swift; sourceTree = "<group>"; };
-		7F9EA7E2DF2148543F53ECF0 /* ClickTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickTests.swift; sourceTree = "<group>"; };
 		7FE2E90722DA48FE7D706B2B /* IDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDTests.swift; sourceTree = "<group>"; };
 		801F893D7D56B3225F8954C0 /* RichContentToolbarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RichContentToolbarView.xib; sourceTree = "<group>"; };
 		805EE53C6A3B009C7E3161D8 /* LTIViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIViewControllerTests.swift; sourceTree = "<group>"; };
@@ -2337,7 +2336,9 @@
 		84D7F20136B99ADD6EAB7F8B /* SessionDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDefaults.swift; sourceTree = "<group>"; };
 		855D71FBBD73DF4B9A8D8683 /* GroupContextCardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardViewModelTests.swift; sourceTree = "<group>"; };
 		85A5B6D6D9B884DBDDBEC647 /* GetSubmissionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionsTests.swift; sourceTree = "<group>"; };
+		85A9BF018A7BDF4720178D9B /* ScriptTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptTests.swift; sourceTree = "<group>"; };
 		85D0E3FC18C36A8077C654DD /* ComposeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ComposeViewController.storyboard; sourceTree = "<group>"; };
+		85E2DB6511139FD56FAE6EE3 /* Script.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
 		8634CDF6D6C6D8A081E13FDB /* APISubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISubmission.swift; sourceTree = "<group>"; };
 		86419C4C5A5EA6607893DCD9 /* Permissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permissions.swift; sourceTree = "<group>"; };
 		868E98D68BF6DAF00974AF67 /* FileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTests.swift; sourceTree = "<group>"; };
@@ -2991,7 +2992,6 @@
 		F471835A32C8C21EF77C5949 /* CompletionRequirement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionRequirement.swift; sourceTree = "<group>"; };
 		F47412A7C92BC88064935D93 /* K5HomeroomMissingSubmissionsCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomMissingSubmissionsCount.swift; sourceTree = "<group>"; };
 		F48DE98C91B4774F4C5E404D /* APIObserverAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIObserverAlert.swift; sourceTree = "<group>"; };
-		F4A23436EE887C4E64775825 /* Click.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Click.swift; sourceTree = "<group>"; };
 		F4BB7031E1B4AF7482126585 /* ConversationDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationDetailCell.swift; sourceTree = "<group>"; };
 		F4D17488D0C4506B625E207A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F4DE68B70EF1C6409DDDCF7F /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
@@ -3221,13 +3221,13 @@
 		02B62E4C15E81703A181B820 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				7F9EA7E2DF2148543F53ECF0 /* ClickTests.swift */,
 				E16B9CC49BF56A06655C7335 /* CustomUserAgentTests.swift */,
 				DB57156EC391B74268F6CBD6 /* DisableZoomTests.swift */,
 				E48798A044B256C7A8E4BBC1 /* InvertColorsInDarkModeTests.swift */,
 				5775096E99BC675EC2A68EF0 /* MockCoreWebViewLinkDelegate.swift */,
 				A76445B789095BD9F222DFBD /* OnElementAppearTests.swift */,
 				1030CCC353E61D7519F86524 /* PullToRefreshTests.swift */,
+				85A9BF018A7BDF4720178D9B /* ScriptTests.swift */,
 				EC595D08955BB7E1F839C7DA /* SkipJSInjectionTests.swift */,
 			);
 			path = Features;
@@ -4987,12 +4987,12 @@
 		745C341F983304A1B9440C00 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				F4A23436EE887C4E64775825 /* Click.swift */,
 				873FFDC3F96FEB158947653F /* CustomUserAgent.swift */,
 				14BF5226BD5D83B7EC48E24E /* DisableZoom.swift */,
 				FE3D5F8C27A915BA40A3956B /* InvertColorsInDarkMode.swift */,
 				87BBEB0DA902132E9A440B85 /* OnElementAppear.swift */,
 				12F8910205CDB48B6B6A7A8D /* PullToRefresh.swift */,
+				85E2DB6511139FD56FAE6EE3 /* Script.swift */,
 				DAF2FDC18E3759DA3C0FC3CF /* SkipJSInjection.swift */,
 			);
 			path = Features;
@@ -7726,7 +7726,6 @@
 				E2EF2856A3294EE7FF735F5F /* CalendarViewControllerTests.swift in Sources */,
 				9BEDE30FC2BAA1ED4BA47898 /* CircleProgressViewTests.swift in Sources */,
 				E0DD06D34E1BC0834B11C2D9 /* CircleRefreshControlTests.swift in Sources */,
-				DB3A87080B8D3F6DDE766A0E /* ClickTests.swift in Sources */,
 				14B37E265FCE1EFD149804FC /* ColoredNavViewProtocol.swift in Sources */,
 				865EE3DD688BF572B835E9A7 /* CommunicationChannelTests.swift in Sources */,
 				3EAA68871D0F6493F893CDDB /* CompletionRequirementTests.swift in Sources */,
@@ -8036,6 +8035,7 @@
 				CBD032FB0DC0AA6FBF74B752 /* RubricTests.swift in Sources */,
 				493672BABB3793FED1A4EC19 /* SafeURLTests.swift in Sources */,
 				DFE71639E49CA8EE47E62C1D /* ScannerViewControllerTests.swift in Sources */,
+				EA63FAC4C1A5B0841D77CC85 /* ScriptTests.swift in Sources */,
 				415E3F33B78F1626B43A9EAB /* SearchRecipientTests.swift in Sources */,
 				B20895B04344C8750E52D019 /* SecretTests.swift in Sources */,
 				A2F5E6CEE21857A9E716F267 /* SequenceExtensionsTests.swift in Sources */,
@@ -8254,7 +8254,6 @@
 				13CDE2389B19163EA51C33B9 /* ChatBubbleView.swift in Sources */,
 				AAF6012831D374FE6BCDCCCC /* CircleProgressView.swift in Sources */,
 				873A4D0DC58C3AB633FDC2EC /* CircleRefreshControl.swift in Sources */,
-				DADCAD9F1773DF1CBC8FDF0B /* Click.swift in Sources */,
 				AB8B5FED25C56D4C3A216DF7 /* Clock.swift in Sources */,
 				6027DD23B6C95FF53CABF201 /* ClosedRangeExtensions.swift in Sources */,
 				633ED392BF87F9A20020028D /* ColorExtensions.swift in Sources */,
@@ -8788,6 +8787,7 @@
 				1CED9B876B812342E8E1E7B6 /* ScreenViewTrackable.swift in Sources */,
 				6593446368C93EEFBA9BD7E3 /* ScreenViewTrackableViewController.swift in Sources */,
 				D10513F287E54B3F5FCA98FA /* ScreenViewTracker.swift in Sources */,
+				BD927FEBA8ABA6837EE748BB /* Script.swift in Sources */,
 				FA997E63FE45B5EA76BE4ACD /* ScrollViewWithReader.swift in Sources */,
 				FA8E8126729E58E214018595 /* SearchBar.swift in Sources */,
 				D152C586A3E7451E7CFAA2A1 /* SearchRecipient.swift in Sources */,

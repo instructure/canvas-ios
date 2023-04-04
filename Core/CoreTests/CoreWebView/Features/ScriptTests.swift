@@ -16,32 +16,29 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Core
+import TestsFoundation
+import XCTest
 
-private class Click: CoreWebViewFeature {
-    private let script: String
+class ScriptTests: XCTestCase {
 
-    public init(elementId: String) {
-        script =
+    func testClicksOnElement() {
+        // MARK: - GIVEN
+        let testee = CoreWebViewFeature.script(
         """
-            var element = document.getElementById('\(elementId)');
-            if (element) {
-                element.click();
+            var button = document.getElementById('testElement')
+            if (button) {
+                button.click()
             }
-        """
-    }
+        """)
+        let webView = CoreWebView(features: [testee])
 
-    override func apply(on webView: CoreWebView) {
-        webView.addScript(script)
-    }
-}
+        // MARK: - WHEN
+        webView.loadHTMLString("<a href=\"https://example.com/\" id=\"testElement\"></a>")
 
-public extension CoreWebViewFeature {
-
-    /**
-     This feature inserts a script at the end of the document that clicks on an element by its id.
-     */
-    static func click(elementId: String) -> CoreWebViewFeature {
-        Click(elementId: elementId)
+        // MARK: - THEN
+        waitUntil(shouldFail: true) {
+            webView.url == URL(string: "https://example.com/")!
+        }
     }
 }

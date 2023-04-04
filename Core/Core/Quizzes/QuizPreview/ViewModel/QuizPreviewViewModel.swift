@@ -23,6 +23,14 @@ public class QuizPreviewViewModel: ObservableObject {
     public let navigationTitle = NSLocalizedString("Quiz Preview", comment: "")
     public let errorTitle = NSLocalizedString("Something Went Wrong", comment: "")
     public let errorDescription = NSLocalizedString("We couldn't load the quiz preview.\nPlease try again later.", comment: "")
+    /** After the submission the top of the page is the quiz properties so we scroll down to the results. */
+    public let scrollToResultsJS =
+    """
+        var results = document.querySelector('.quiz-submission')
+        if (results) {
+            results.scrollIntoView(true)
+        }
+    """
 
     private let interactor: QuizPreviewInteractor
 

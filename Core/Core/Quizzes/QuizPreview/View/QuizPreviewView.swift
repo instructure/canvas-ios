@@ -42,12 +42,15 @@ public struct QuizPreviewView: View {
                     WebView(url: launchURL,
                             features: [
                                 .invertColorsInDarkMode,
-                                // A quiz properties page is displayed before the actual quiz preview.
-                                .click(elementId: "preview_quiz_button"),
-                                .onAppear(elementId: "quiz-instructions") {
+                                .script(viewModel.scrollToResultsJS),
+                                .onAppear(elementId: "preview_quiz_button") {
                                     markQuizLoaded()
                                 },
                             ])
+                    .onLink { _ in
+                        // We don't want any custom routing, just allow all navigations
+                        false
+                    }
 
                     if !quizHTMLLoaded {
                         loadingIndicator.zIndex(1)
