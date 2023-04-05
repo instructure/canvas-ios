@@ -47,11 +47,6 @@ public struct QuizPreviewView: View {
                                     markQuizLoaded()
                                 },
                             ])
-                    .onLink { _ in
-                        // We don't want any custom routing, just allow all navigations
-                        false
-                    }
-
                     if !quizHTMLLoaded {
                         loadingIndicator.zIndex(1)
                     }

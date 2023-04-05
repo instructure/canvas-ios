@@ -249,6 +249,10 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
         ), from: viewController)
     }
 
+    public func isModallyPresented(viewController: UIViewController) -> Bool {
+       viewController.navigationController?.viewControllers.count ?? 1 == 1
+    }
+
     func saveAssignment(router: Router, viewController: WeakViewController) {
         guard let assignmentID = assignmentID, let assignment = assignment else {
             router.dismiss(viewController)
@@ -273,14 +277,22 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
             guard let self = self else { return }
             if error != nil {
                 // Practice quizzes don't necessary have assignments
-                router.dismiss(viewController)
+                self.dismiss(router: router, viewController: viewController.value)
                 return
             }
             if result != nil {
                 GetAssignment(courseID: self.courseID, assignmentID: assignmentID, include: GetAssignmentRequest.GetAssignmentInclude.allCases)
                     .fetch(force: true)
-                router.dismiss(viewController)
+                self.dismiss(router: router, viewController: viewController.value)
             }
         } }
+    }
+
+    private func dismiss(router: Router, viewController: UIViewController) {
+        if isModallyPresented(viewController: viewController) || viewController.navigationController == nil {
+            router.dismiss(viewController)
+        } else {
+            viewController.navigationController?.popViewController(animated: true)
+        }
     }
 }
