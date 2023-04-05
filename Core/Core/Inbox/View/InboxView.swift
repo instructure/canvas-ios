@@ -30,7 +30,6 @@ public struct InboxView: View {
         VStack(spacing: 0) {
             InboxFilterBarView(model: model)
             Color.borderMedium
-                .edgesIgnoringSafeArea(.horizontal)
                 .frame(height: 0.5)
             if case .loading = model.state {
                 loadingIndicator
