@@ -43,6 +43,7 @@ RCT_EXPORT_METHOD(refresh)
 
     NSMutableArray<UIWindow *> *windows = [NSMutableArray new];
     NSArray<UIScene *> *connectedScenes = [[UIApplication.sharedApplication connectedScenes] mutableCopy];
+    if (!connectedScenes.count) { return nil; }
     NSPredicate *foregroundActiveScenePredicate = [NSPredicate predicateWithFormat:@"activationState == %d", UISceneActivationStateForegroundActive];
     NSArray<UIWindowScene *> *foregroundActiveWindowScenes = (NSArray<UIWindowScene *> *)[connectedScenes filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
         return [evaluatedObject isKindOfClass:UIWindowScene.class] && [foregroundActiveScenePredicate evaluateWithObject:evaluatedObject];
