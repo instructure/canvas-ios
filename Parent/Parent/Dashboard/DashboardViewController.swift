@@ -92,6 +92,9 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         }
         NotificationCenter.default.addObserver(self, selector: #selector(checkForPolicyChanges), name: UIApplication.didBecomeActiveNotification, object: nil)
         reportScreenView(for: 0, viewController: self)
+        if env.userDefaults?.interfaceStyle == nil {
+            env.userDefaults?.interfaceStyle = .light
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -158,7 +161,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
     }
 
     func updateHeader() {
-        headerView.backgroundColor = currentColor
+        headerView.backgroundColor = currentColor.darkenToEnsureContrast(against: .white)
         profileButton.addBadge(number: badgeCount, color: currentColor)
         addStudentView.isHidden = false // provides shadow even when avatar covers it
 

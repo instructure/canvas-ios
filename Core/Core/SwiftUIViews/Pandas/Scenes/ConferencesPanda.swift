@@ -25,6 +25,8 @@ public struct ConferencesPanda: PandaScene {
         foreground: CGSize(width: -40, height: 37))
     }
     public var height: CGFloat { 210 }
+
+    public init() {}
 }
 
 struct ConferencesPanda_Previews: PreviewProvider {

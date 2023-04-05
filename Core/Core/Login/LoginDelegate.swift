@@ -26,7 +26,6 @@ public protocol LoginDelegate: AnyObject {
 
     func openExternalURL(_ url: URL)
     func openExternalURLinSafari(_ url: URL)
-    func openSupportTicket()
     func userDidLogin(session: LoginSession)
     func userDidStartActing(as session: LoginSession)
     func userDidStopActing(as session: LoginSession)
@@ -41,7 +40,6 @@ public extension LoginDelegate {
     var whatsNewURL: URL? { nil }
     var findSchoolButtonTitle: String { NSLocalizedString("Find my school", bundle: .core, comment: "") }
 
-    func openSupportTicket() {}
     func changeUser() {}
     func openExternalURLinSafari(_ url: URL) {}
 

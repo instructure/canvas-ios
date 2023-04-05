@@ -21,7 +21,7 @@ import Core
 
 class ParentConversationListViewController: UIViewController, ConversationCoursesActionSheetDelegate {
     @IBOutlet weak var loadingView: CircleProgressView!
-    @IBOutlet weak var composeButton: UIButton!
+    @IBOutlet weak var composeButton: FloatingButton!
     @IBOutlet weak var emptyView: EmptyView!
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var errorLabel: UILabel!
@@ -55,7 +55,6 @@ class ParentConversationListViewController: UIViewController, ConversationCourse
 
         tableView.refreshControl = CircleRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        tableView.refreshControl?.tintColor = Brand.shared.primary
         tableView.separatorColor = .borderMedium
 
         conversations.refresh()
@@ -65,6 +64,10 @@ class ParentConversationListViewController: UIViewController, ConversationCourse
         super.viewWillAppear(animated)
         navigationController?.navigationBar.useModalStyle()
         navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        env.userDefaults?.interfaceStyle == .light ? .darkContent : .lightContent
     }
 
     @IBAction func refresh() {
@@ -104,7 +107,7 @@ class ParentConversationListViewController: UIViewController, ConversationCourse
                 user.name
             )
         )
-        env.router.show(compose, from: self, options: .modal(embedInNav: true), analyticsRoute: "/conversations/compose")
+        env.router.show(compose, from: self, options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/conversations/compose")
     }
 }
 

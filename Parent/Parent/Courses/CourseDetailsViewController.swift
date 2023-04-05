@@ -91,6 +91,12 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         courseReady()
     }
 
+    override func setupPages() {
+        super.setupPages()
+        // This is to prevent the swipe to back gesture interfering with the collectionview horizontal scroll when on the first page
+        pages?.bounces = false
+    }
+
     func configureGrades() {
         gradesViewController = GradeListViewController.create(courseID: courseID, userID: studentID, colorDelegate: self)
         gradesViewController.gradeListCellIconDelegate = self
@@ -126,7 +132,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         replyButton?.setImage(UIImage.commentSolid, for: .normal)
         replyButton?.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 17, leading: 17, bottom: 15, trailing: 15)
         replyButton?.tintColor = .white
-        replyButton?.backgroundColor = colorScheme?.color
+        replyButton?.backgroundColor = colorScheme?.color.darkenToEnsureContrast(against: .white)
         if let replyButton = replyButton { view.addSubview(replyButton) }
 
         let metrics: [String: CGFloat] = ["buttonSize": buttonSize, "margin": margin, "bottomMargin": bottomMargin]
@@ -179,7 +185,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
                 subject: subject,
                 hiddenMessage: String.localizedStringWithFormat(template, name, associatedTabConversationLink())
             )
-            env.router.show(compose, from: self, options: .modal(embedInNav: true), analyticsRoute: "/conversations/compose")
+            env.router.show(compose, from: self, options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/conversations/compose")
             replyButton?.isEnabled = true
         }
     }

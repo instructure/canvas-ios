@@ -50,6 +50,7 @@ class DashboardViewControllerTests: ParentTestCase {
         XCTAssertEqual(vc.titleLabel.text, "Short Name (Pro/Noun)")
         XCTAssertEqual(vc.dropdownButton.accessibilityLabel, "Current student: Short Name (Pro/Noun). Tap to switch students")
         XCTAssertEqual(vc.studentListStack.arrangedSubviews.count, students.count + 1) // + add button
+        XCTAssertEqual(vc.headerView.backgroundColor?.hexString, vc.currentColor.darkenToEnsureContrast(against: .white).hexString)
 
         XCTAssert(vc.tabsController.viewControllers?[0] is Parent.CourseListViewController)
         XCTAssert(vc.tabsController.viewControllers?[1] is PlannerViewController)

@@ -28,6 +28,20 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3C9856EABA187C2715A3B3E4"
+               BuildableName = "CoreTester.app"
+               BlueprintName = "CoreTester"
+               ReferencedContainer = "container:../../../Core/Core.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "E81918E3230348440039616A"
                BuildableName = "CoreUITests.framework"
                BlueprintName = "CoreUITests"
@@ -103,6 +117,16 @@
                BuildableName = "CoreTests.xctest"
                BlueprintName = "CoreTests"
                ReferencedContainer = "container:../../../Core/Core.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B15CA25C221DDB820014FB02"
+               BuildableName = "TeacherTests.xctest"
+               BlueprintName = "TeacherTests"
+               ReferencedContainer = "container:Teacher.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

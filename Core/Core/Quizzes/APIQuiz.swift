@@ -80,6 +80,7 @@ public struct APIQuizSubmission: Codable {
     let finished_at: Date?
     let id: ID
     let quiz_id: ID
+    let score: Double?
     let started_at: Date?
     let submission_id: ID
     let user_id: ID
@@ -92,7 +93,6 @@ public struct APIQuizSubmission: Codable {
     // let manually_unlocked: Bool
     // let overdue_and_needs_submission: Bool
     // let score_before_regrade: Double?
-    // let score: Double?
     // let time_spent: TimeInterval?
 }
 
@@ -253,6 +253,7 @@ extension APIQuizSubmission {
         finished_at: Date? = nil,
         id: ID = "1",
         quiz_id: ID = "1",
+        score: Double? = nil,
         started_at: Date? = nil,
         submission_id: ID = "1",
         user_id: ID = "1",
@@ -267,6 +268,7 @@ extension APIQuizSubmission {
             finished_at: finished_at,
             id: id,
             quiz_id: quiz_id,
+            score: score,
             started_at: started_at,
             submission_id: submission_id,
             user_id: user_id,
