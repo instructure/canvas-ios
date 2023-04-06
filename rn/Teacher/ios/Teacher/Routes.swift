@@ -48,8 +48,6 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return CoreHostingController(CourseSettingsView(viewModel: viewModel))
     },
 
-    "/courses/:courseID/user_preferences": nil,
-
     "/:context/:contextID/announcements": { url, _, _ in
         guard let context = Context(path: url.path) else { return nil }
         return AnnouncementListViewController.create(context: context)
