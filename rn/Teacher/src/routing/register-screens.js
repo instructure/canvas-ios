@@ -28,7 +28,6 @@ import AssigneePicker from '../modules/assignee-picker/AssigneePicker'
 import AssigneeSearch from '../modules/assignee-picker/AssigneeSearch'
 import CourseDetailsSplitViewPlaceholder from '../modules/courses/details/components/CourseDetailsSplitViewPlaceholder'
 import AttachmentView from '../common/components/AttachmentView'
-import GroupList from '../modules/groups/GroupList'
 import Attachments from '../modules/attachments/Attachments'
 import PickerPage from '../common/components/PickerPage'
 import PushNotifications from '../modules/developer-menu/PushNotifications'
@@ -138,8 +137,6 @@ export function registerScreens (store: Store): void {
   }
 
   if (isStudent()) {
-    registerScreen('/groups/:groupID/users', GroupList, store)
-
     registerScreen('/courses/:courseID/assignments/:assignmentID', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/assignments/:assignmentID/submissions/:userID', null, store, { deepLink: true })
     registerScreen('/:context/:contextID/conferences', null, store, { canBecomeMaster: true, deepLink: true })
