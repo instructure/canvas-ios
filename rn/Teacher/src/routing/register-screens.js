@@ -39,7 +39,6 @@ import { registerScreen } from './'
 import { isTeacher, isStudent } from '../modules/app'
 
 export function registerScreens (store: Store): void {
-
   registerScreen('/courses/:courseID/address-book', AddressBook, store)
   registerScreen('/picker', PickerPage, store)
   registerScreen('/conversations', Inbox, store, { canBecomeMaster: true, deepLink: true })
