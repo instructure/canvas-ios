@@ -16,15 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-private class DisableZoom: CoreWebViewFeature {
-    private let script: String =
-    """
-        var meta = document.createElement('meta');
-        meta.name = 'viewport';
-        meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
-        var head = document.getElementsByTagName('head')[0];
-        head.appendChild(meta);
-    """
+import Foundation
+
+private class Script: CoreWebViewFeature {
+    private let script: String
+
+    public init(script: String) {
+        self.script = script
+    }
 
     override func apply(on webView: CoreWebView) {
         webView.addScript(script)
@@ -33,7 +32,10 @@ private class DisableZoom: CoreWebViewFeature {
 
 public extension CoreWebViewFeature {
 
-    static var disableZoom: CoreWebViewFeature {
-        DisableZoom()
+    /**
+     This feature inserts an arbitary script at the end of the document.
+     */
+    static func script(_ script: String) -> CoreWebViewFeature {
+        Script(script: script)
     }
 }

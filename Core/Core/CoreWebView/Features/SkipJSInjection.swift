@@ -18,7 +18,7 @@
 
 import WebKit
 
-public class SkipJSInjection: CoreWebViewFeature {
+private class SkipJSInjection: CoreWebViewFeature {
     fileprivate let js: String
 
     public init(_ js: String) {
@@ -28,7 +28,7 @@ public class SkipJSInjection: CoreWebViewFeature {
 
 public extension CoreWebViewFeature {
 
-    static func skipJSInjection(_ js: String) -> SkipJSInjection {
+    static func skipJSInjection(_ js: String) -> CoreWebViewFeature {
         SkipJSInjection(js)
     }
 }

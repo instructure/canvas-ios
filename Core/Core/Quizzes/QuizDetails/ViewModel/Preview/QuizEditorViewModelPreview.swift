@@ -92,6 +92,7 @@ public class QuizEditorViewModelPreview: QuizEditorViewModelProtocol {
     public func quizTypeTapped(router: Router, viewController: WeakViewController) {}
     public func assignmentGroupTapped(router: Router, viewController: WeakViewController) {}
     public func scoreToKeepTapped(router: Router, viewController: WeakViewController) {}
+    public func isModallyPresented(viewController: UIViewController) -> Bool { true }
 }
 
 #endif

@@ -36,13 +36,7 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
     public var body: some View {
         form
             .navigationBarTitle(Text("Edit Quiz Details", bundle: .core), displayMode: .inline)
-            .navBarItems(leading: {
-                Button(action: {
-                    router.dismiss(controller)
-                }, label: {
-                    Text("Cancel", bundle: .core).fontWeight(.regular)
-                })
-            }, trailing: {
+            .navBarItems(leading: cancelButton, trailing: {
                 Button(action: doneTapped, label: {
                     Text("Done", bundle: .core).bold()
                 })
@@ -90,6 +84,17 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
             default:
                 Spacer()
             }
+        }
+    }
+
+    @ViewBuilder
+    private func cancelButton() -> some View {
+        if viewModel.isModallyPresented(viewController: controller.value) {
+            Button(action: {
+                router.dismiss(controller)
+            }, label: {
+                Text("Cancel", bundle: .core).fontWeight(.regular)
+            })
         }
     }
 

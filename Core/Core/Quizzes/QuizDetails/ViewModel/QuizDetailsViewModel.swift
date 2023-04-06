@@ -84,7 +84,7 @@ public class QuizDetailsViewModel: QuizDetailsViewModelProtocol {
         router.route(
             to: "courses/\(courseID)/quizzes/\(quizID)/preview",
             from: viewController,
-            options: .modal(.fullScreen, isDismissable: false, embedInNav: true)
+            options: .modal(.fullScreen, isDismissable: false, embedInNav: true, addDoneButton: true)
         )
     }
 

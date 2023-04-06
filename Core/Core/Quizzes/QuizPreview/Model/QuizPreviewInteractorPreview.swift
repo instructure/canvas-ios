@@ -16,24 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-private class DisableZoom: CoreWebViewFeature {
-    private let script: String =
-    """
-        var meta = document.createElement('meta');
-        meta.name = 'viewport';
-        meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
-        var head = document.getElementsByTagName('head')[0];
-        head.appendChild(meta);
-    """
+import Combine
 
-    override func apply(on webView: CoreWebView) {
-        webView.addScript(script)
-    }
-}
+class QuizPreviewInteractorPreview: QuizPreviewInteractor {
+    var state = CurrentValueSubject<QuizPreviewInteractorState, Never>(.loading)
 
-public extension CoreWebViewFeature {
-
-    static var disableZoom: CoreWebViewFeature {
-        DisableZoom()
+    init(state: QuizPreviewInteractorState) {
+        self.state.send(state)
     }
 }

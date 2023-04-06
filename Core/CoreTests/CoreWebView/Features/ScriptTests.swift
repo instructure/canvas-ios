@@ -16,24 +16,29 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-private class DisableZoom: CoreWebViewFeature {
-    private let script: String =
-    """
-        var meta = document.createElement('meta');
-        meta.name = 'viewport';
-        meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
-        var head = document.getElementsByTagName('head')[0];
-        head.appendChild(meta);
-    """
+import Core
+import TestsFoundation
+import XCTest
 
-    override func apply(on webView: CoreWebView) {
-        webView.addScript(script)
-    }
-}
+class ScriptTests: XCTestCase {
 
-public extension CoreWebViewFeature {
+    func testClicksOnElement() {
+        // MARK: - GIVEN
+        let testee = CoreWebViewFeature.script(
+        """
+            var button = document.getElementById('testElement')
+            if (button) {
+                button.click()
+            }
+        """)
+        let webView = CoreWebView(features: [testee])
 
-    static var disableZoom: CoreWebViewFeature {
-        DisableZoom()
+        // MARK: - WHEN
+        webView.loadHTMLString("<a href=\"https://example.com/\" id=\"testElement\"></a>")
+
+        // MARK: - THEN
+        waitUntil(shouldFail: true) {
+            webView.url == URL(string: "https://example.com/")!
+        }
     }
 }
