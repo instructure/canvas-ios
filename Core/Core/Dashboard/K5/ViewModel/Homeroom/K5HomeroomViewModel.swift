@@ -32,7 +32,7 @@ public class K5HomeroomViewModel: ObservableObject {
     private let env = AppEnvironment.shared
     private var childViewModelChangeListener: AnyCancellable?
     // MARK: Data Sources
-    private lazy var cards = env.subscribe(GetDashboardCards()) { [weak self] in
+    private lazy var cards = env.subscribe(GetDashboardCards(showOnlyTeacherEnrollment: false)) { [weak self] in
         self?.dashboardCardsUpdated()
     }
     private lazy var profile = env.subscribe(GetUserProfile(userID: "self")) { [weak self] in

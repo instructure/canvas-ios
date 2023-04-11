@@ -64,17 +64,17 @@ public struct K5HomeroomMySubjectsView: View {
 #if DEBUG
 
 struct K5HomeroomMySubjectsView_Previews: PreviewProvider {
-    static let cards = [
+    static let courseCardListViewModel = [
         K5HomeroomSubjectCardViewModel(courseId: "1", imageURL: nil, name: "Math", color: .electric, infoLines: []),
         K5HomeroomSubjectCardViewModel(courseId: "2", imageURL: nil, name: "Social Studies", color: .fire, infoLines: []),
         K5HomeroomSubjectCardViewModel(courseId: "3", imageURL: nil, name: "Music", color: nil, infoLines: []),
     ]
 
     static var previews: some View {
-        K5HomeroomMySubjectsView(subjectCards: cards)
+        K5HomeroomMySubjectsView(subjectCards: courseCardListViewModel)
             .previewDevice(PreviewDevice(stringLiteral: "iPad (8th generation)"))
             .environment(\.containerSize, CGSize(width: 800, height: 0))
-        K5HomeroomMySubjectsView(subjectCards: cards)
+        K5HomeroomMySubjectsView(subjectCards: courseCardListViewModel)
             .previewDevice(PreviewDevice(stringLiteral: "iPhone SE (2nd generation)"))
             .environment(\.containerSize, CGSize(width: 370, height: 0))
     }

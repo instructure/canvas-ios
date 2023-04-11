@@ -32,7 +32,7 @@ class DashboardCardsViewModelTests: CoreTestCase {
             .make(id: 2, shortName: "card 2"),
         ])
 
-        let testee = DashboardCardsViewModel(showOnlyTeacherEnrollment: false)
+        let testee = DashboardCourseCardListViewModel(showOnlyTeacherEnrollment: false)
 
         let uiRefreshExpectation = expectation(description: "ui refresh received")
         uiRefreshExpectation.expectedFulfillmentCount = 2 // initial loading state, data state
@@ -55,7 +55,7 @@ class DashboardCardsViewModelTests: CoreTestCase {
     }
 
     func testLayoutSelectionFlagOnEmptyCourses() {
-        let testee = DashboardCardsViewModel(showOnlyTeacherEnrollment: false)
+        let testee = DashboardCourseCardListViewModel(showOnlyTeacherEnrollment: false)
         XCTAssertFalse(testee.shouldShowSettingsButton)
 
         testee.refresh()
@@ -70,7 +70,7 @@ class DashboardCardsViewModelTests: CoreTestCase {
         api.mock(GetCourses(enrollmentState: nil), value: [.make(id: 1)])
         api.mock(GetDashboardCards(), value: [.make(id: 1, shortName: "card 1")])
 
-        let testee = DashboardCardsViewModel(showOnlyTeacherEnrollment: false)
+        let testee = DashboardCourseCardListViewModel(showOnlyTeacherEnrollment: false)
         XCTAssertFalse(testee.shouldShowSettingsButton)
 
         testee.refresh()

@@ -20,7 +20,7 @@ import SwiftUI
 
 public struct DashboardCardView: View, ScreenViewTrackable {
     @StateObject var viewModel: DashboardViewModel
-    @ObservedObject var cards: DashboardCardsViewModel
+    @ObservedObject var courseCardListViewModel: DashboardCourseCardListViewModel
     @ObservedObject var colors: Store<GetCustomColors>
     @ObservedObject var groups: Store<GetDashboardGroups>
     @ObservedObject var notifications: Store<GetAccountNotifications>
@@ -45,7 +45,7 @@ public struct DashboardCardView: View, ScreenViewTrackable {
     private let verticalSpacing: CGFloat = 16
 
     public init(shouldShowGroupList: Bool, showOnlyTeacherEnrollment: Bool) {
-        cards = DashboardCardsViewModel(showOnlyTeacherEnrollment: showOnlyTeacherEnrollment)
+        courseCardListViewModel = DashboardCourseCardListAssembly.makeDashboardCourseCardListViewModel(showOnlyTeacherEnrollment: showOnlyTeacherEnrollment)
         self.shouldShowGroupList = shouldShowGroupList
         let env = AppEnvironment.shared
         layoutViewModel = DashboardLayoutViewModel(interactor: DashboardSettingsInteractorLive(environment: env, defaults: env.userDefaults!))
@@ -134,7 +134,7 @@ public struct DashboardCardView: View, ScreenViewTrackable {
 
     @ViewBuilder
     private var settingsButton: some View {
-        if cards.shouldShowSettingsButton {
+        if courseCardListViewModel.shouldShowSettingsButton {
             Button {
                 guard controller.value.presentedViewController == nil else {
                     controller.value.presentedViewController?.dismiss(animated: true)
@@ -188,21 +188,22 @@ public struct DashboardCardView: View, ScreenViewTrackable {
     }
 
     @ViewBuilder func courseCards(_ size: CGSize) -> some View {
-        switch cards.state {
+        switch courseCardListViewModel.state {
         case .loading:
             ZStack {
                 ProgressView()
                     .progressViewStyle(.indeterminateCircle())
             }
             .frame(minWidth: size.width, minHeight: size.height)
-        case .data(let cards):
+        case .data:
+            let cards = courseCardListViewModel.courseCardList
             coursesHeader(width: size.width)
 
             let hideColorOverlay = settings.first?.hideDashcardColorOverlays == true
             let layoutInfo = layoutViewModel.layoutInfo(for: size.width, horizontalSizeClass: horizontalSizeClass)
             DashboardGrid(itemCount: cards.count, itemWidth: layoutInfo.cardWidth, spacing: layoutInfo.spacing, columnCount: layoutInfo.columns) { cardIndex in
                 let card = cards[cardIndex]
-                CourseCard(card: card,
+                DashboardCourseCard(card: card,
                            hideColorOverlay: hideColorOverlay,
                            showGrade: showGrade,
                            width: layoutInfo.cardWidth,
@@ -217,9 +218,9 @@ public struct DashboardCardView: View, ScreenViewTrackable {
             InteractivePanda(scene: ConferencesPanda(), title: Text("No Courses", bundle: .core), subtitle: Text("It looks like you aren't enrolled in any courses.", bundle: .core))
                 .padding(.top, 50)
                 .padding(.bottom, 50 - verticalSpacing) // group header already has a top padding
-        case .error(let message):
+        case .error:
             ZStack {
-                Text(message)
+                Text("message")
                     .font(.regular16).foregroundColor(.textDanger)
                     .multilineTextAlignment(.center)
             }
@@ -269,7 +270,7 @@ public struct DashboardCardView: View, ScreenViewTrackable {
         groups.exhaust(force: force)
         notifications.exhaust(force: force)
         settings.refresh(force: force)
-        cards.refresh(onComplete: onComplete)
+        courseCardListViewModel.refresh(onComplete: onComplete)
     }
 
     func showAllCourses() {

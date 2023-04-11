@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-struct CourseCard: View {
+struct DashboardCourseCard: View {
     @ObservedObject var card: DashboardCard
     let hideColorOverlay: Bool
     let showGrade: Bool
@@ -168,7 +168,7 @@ struct CourseCard_Previews: PreviewProvider {
     static var previews: some View {
         VStack(alignment: .leading) {
             Text(verbatim: "Grid Layout")
-            CourseCard(card: cardEntity,
+            DashboardCourseCard(card: cardEntity,
                        hideColorOverlay: false,
                        showGrade: true,
                        width: 200,
@@ -178,7 +178,7 @@ struct CourseCard_Previews: PreviewProvider {
             .environment(\.horizontalSizeClass, .compact)
 
             Text(verbatim: "List Layout - Compact Horizontal Size Class").padding(.top)
-            CourseCard(card: cardEntity,
+            DashboardCourseCard(card: cardEntity,
                        hideColorOverlay: false,
                        showGrade: true,
                        width: 400,
@@ -188,7 +188,7 @@ struct CourseCard_Previews: PreviewProvider {
             .environment(\.horizontalSizeClass, .compact)
 
             Text(verbatim: "List Layout - Regular Horizontal Size Class").padding(.top)
-            CourseCard(card: cardEntity,
+            DashboardCourseCard(card: cardEntity,
                        hideColorOverlay: false,
                        showGrade: true,
                        width: 900,

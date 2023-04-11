@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import UIKit
 import CoreData
 
 public final class DashboardCard: NSManagedObject {
@@ -80,31 +81,5 @@ public final class DashboardCard: NSManagedObject {
         }
 
         return model
-    }
-}
-
-public class GetDashboardCards: CollectionUseCase {
-    public typealias Model = DashboardCard
-
-    public var cacheKey: String? { "dashboard/dashboard_cards" }
-    public var request: GetDashboardCardsRequest { GetDashboardCardsRequest() }
-    public var scope: Scope { .all(orderBy: #keyPath(DashboardCard.position)) }
-
-    public init() {
-    }
-
-    public func reset(context: NSManagedObjectContext) {
-        // We don't want the default implementation to delete everything, we'll delete what's no longer needed in the write method
-    }
-
-    public func write(response: [APIDashboardCard]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        let idsToKeep = (response ?? []).map { $0.id.value }
-        let objectsManagedByUseCase: [Model] = client.fetch(scope: scope)
-        let objectsToDelete = objectsManagedByUseCase.filter { !idsToKeep.contains($0.id) }
-        client.delete(objectsToDelete)
-
-        response?.enumerated().forEach {
-            Model.save($0.element, position: $0.offset, in: client)
-        }
     }
 }
