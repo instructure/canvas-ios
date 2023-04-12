@@ -224,9 +224,9 @@ workflows:
         inputs:
         - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
         - command: lint:ci
-    - &yarn-test
-      is_skippable: true
+    - &yarn-test    
       yarn:
+        is_skippable: true
         title: rn yarn test
         inputs:
         - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
