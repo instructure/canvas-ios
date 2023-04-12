@@ -47,6 +47,8 @@ public protocol QuizEditorViewModelProtocol: ObservableObject {
     func quizTypeTapped(router: Router, viewController: WeakViewController)
     func assignmentGroupTapped(router: Router, viewController: WeakViewController)
     func scoreToKeepTapped(router: Router, viewController: WeakViewController)
+
+    func isModallyPresented(viewController: UIViewController) -> Bool
 }
 
 public enum QuizEditorViewModelState: Equatable {

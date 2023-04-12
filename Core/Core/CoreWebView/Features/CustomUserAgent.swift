@@ -18,7 +18,7 @@
 
 import WebKit
 
-public class CustomUserAgent: CoreWebViewFeature {
+private class CustomUserAgent: CoreWebViewFeature {
     private let customUserAgentName: String
 
     public init(_ customUserAgentName: String) {
@@ -32,7 +32,7 @@ public class CustomUserAgent: CoreWebViewFeature {
 
 public extension CoreWebViewFeature {
 
-    static func userAgent(_ userAgent: String) -> CustomUserAgent {
+    static func userAgent(_ userAgent: String) -> CoreWebViewFeature {
         CustomUserAgent(userAgent)
     }
 }
