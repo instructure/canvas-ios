@@ -18,8 +18,8 @@
 
 import SwiftUI
 
-public struct DashboardCardView: View, ScreenViewTrackable {
-    @StateObject var viewModel: DashboardViewModel
+public struct DashboardContainerView: View, ScreenViewTrackable {
+    @StateObject var viewModel: DashboardContainerViewModel
     @ObservedObject var courseCardListViewModel: DashboardCourseCardListViewModel
     @ObservedObject var colors: Store<GetCustomColors>
     @ObservedObject var groups: Store<GetDashboardGroups>
@@ -53,7 +53,7 @@ public struct DashboardCardView: View, ScreenViewTrackable {
         groups = env.subscribe(GetDashboardGroups())
         notifications = env.subscribe(GetAccountNotifications())
         settings = env.subscribe(GetUserSettings(userID: "self"))
-        _viewModel = StateObject(wrappedValue: DashboardViewModel(environment: env))
+        _viewModel = StateObject(wrappedValue: DashboardContainerViewModel(environment: env))
     }
 
     public var body: some View {

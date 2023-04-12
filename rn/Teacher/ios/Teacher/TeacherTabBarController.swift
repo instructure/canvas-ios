@@ -49,7 +49,7 @@ class TeacherTabBarController: UITabBarController {
     }
 
     func coursesTab() -> UIViewController {
-        let cardView = CoreHostingController(DashboardCardView(shouldShowGroupList: false,
+        let cardView = CoreHostingController(DashboardContainerView(shouldShowGroupList: false,
                                                                showOnlyTeacherEnrollment: true))
         let dashboard = DashboardContainerViewController(rootViewController: cardView) { HelmSplitViewController() }
         dashboard.tabBarItem.title = NSLocalizedString("Courses", comment: "")

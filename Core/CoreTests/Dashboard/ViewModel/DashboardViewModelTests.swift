@@ -26,7 +26,7 @@ class DashboardViewModelTests: CoreTestCase {
     func testCreatesSettingsView() {
         // MARK: - GIVEN
         let viewShownExpectation = expectation(description: "Settings was created")
-        let testee = DashboardViewModel(environment: environment)
+        let testee = DashboardContainerViewModel(environment: environment)
         testee.showSettings
             .sink { (view: UIViewController, _) in
                 defer { viewShownExpectation.fulfill() }
