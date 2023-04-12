@@ -42,13 +42,12 @@ RCT_EXPORT_METHOD(refresh)
 - (nullable UIView *)subviewWithIdentifier:(NSString *)identifier {
 
     NSMutableArray<UIWindow *> *windows = [NSMutableArray new];
-    NSArray<UIScene *> *connectedScenes = [[UIApplication.sharedApplication connectedScenes] mutableCopy];
-    if (!connectedScenes.count) { return nil; }
+    NSSet<UIScene *> *connectedScenes = [UIApplication.sharedApplication connectedScenes];
     NSPredicate *foregroundActiveScenePredicate = [NSPredicate predicateWithFormat:@"activationState == %d", UISceneActivationStateForegroundActive];
-    NSArray<UIWindowScene *> *foregroundActiveWindowScenes = (NSArray<UIWindowScene *> *)[connectedScenes filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+    NSSet<UIWindowScene *> *foregroundActiveWindowScenes = (NSSet<UIWindowScene *> *)[connectedScenes filteredSetUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
         return [evaluatedObject isKindOfClass:UIWindowScene.class] && [foregroundActiveScenePredicate evaluateWithObject:evaluatedObject];
     }]];
-    [foregroundActiveWindowScenes enumerateObjectsUsingBlock:^(UIWindowScene *windowScene, NSUInteger idx, BOOL *stop) {
+    [foregroundActiveWindowScenes enumerateObjectsUsingBlock:^(UIWindowScene *windowScene, BOOL *stop) {
         [windows addObjectsFromArray:windowScene.windows];
     }];
     for (UIWindow *window in windows) {
