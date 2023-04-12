@@ -24,10 +24,17 @@ class EmptyViewControllerTests: CoreTestCase {
 
     func testEmptyView() {
         let nav = UINavigationController(rootViewController: controller)
+        let waitExpectation = XCTestExpectation(description: "Wait")
+
         nav.view.layoutIfNeeded()
         nav.viewWillAppear(false)
 
-        XCTAssertEqual(nav.navigationBar.barTintColor!.hexString, Brand.shared.navBackground.hexString)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            waitExpectation.fulfill()
+        }
+        wait(for: [waitExpectation], timeout: 3.0)
+
+        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, Brand.shared.navBackground.hexString)
 
         XCTAssertEqual(controller.view.subviews.count, 1)
         XCTAssert(controller.view.subviews.first is UIImageView)
