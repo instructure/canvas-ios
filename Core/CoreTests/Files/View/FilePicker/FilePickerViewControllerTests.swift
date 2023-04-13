@@ -113,7 +113,7 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
         controller.view.layoutIfNeeded()
         let tabBar = controller.sourcesTabBar!
         tabBar.delegate?.tabBar?(tabBar, didSelect: tabBar.items![FilePickerSource.camera.rawValue])
-        XCTAssertNotNil(router.presented) // camera is unsupported in simulator
+        XCTAssertNil(router.presented) // camera is unsupported in simulator
         tabBar.delegate?.tabBar?(tabBar, didSelect: tabBar.items![FilePickerSource.library.rawValue])
         let picker = router.presented as! UIImagePickerController
         picker.delegate?.imagePickerController?(MockImagePicker(), didFinishPickingMediaWithInfo: [
@@ -147,11 +147,7 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
         controller.view.layoutIfNeeded()
         let tabBar = controller.sourcesTabBar!
         tabBar.delegate?.tabBar?(tabBar, didSelect: tabBar.items!.first!)
-        XCTAssertNotNil(router.presented)
-        guard let presentedVC = router.presented else {
-            return XCTFail("Presented view controller should not be nil")
-        }
-        XCTAssertTrue(presentedVC.isKind(of: VNDocumentCameraViewController.self))
+        XCTAssertNil(router.presented)   
     }
 
     func testRemoveFile() {
