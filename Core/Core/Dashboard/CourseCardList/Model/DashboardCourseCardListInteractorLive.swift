@@ -23,7 +23,6 @@ public class DashboardCourseCardListInteractorLive: DashboardCourseCardListInter
 
     public let state = CurrentValueSubject<StoreState, Never>(.loading)
     public let courseCardList: CurrentValueSubject<[DashboardCard], Never> = .init([])
-    private let courseList: CurrentValueSubject<Course, Never> = .init(.init())
 
     // MARK: - Private State
 
@@ -63,9 +62,11 @@ public class DashboardCourseCardListInteractorLive: DashboardCourseCardListInter
                 return promise(.success(()))
             }
             Publishers
-                .CombineLatest(
+                .CombineLatest4(
                     self.courseCardListStore.refreshWithFuture(force: true),
-                    self.courseListStore.refreshWithFuture(force: true)
+                    self.courseCardListStore.exhaustWithFuture(),
+                    self.courseListStore.refreshWithFuture(force: true),
+                    self.courseListStore.exhaustWithFuture()
                 )
                 .sink { _ in
                     promise(.success(()))
