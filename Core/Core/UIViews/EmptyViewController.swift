@@ -39,6 +39,13 @@ public class EmptyViewController: UIViewController {
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.useStyle(navBarStyle)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            if let parent = self.navigationController?.parent as? UISplitViewController {
+                self.navigationController?.navigationBar.useContextColor(parent.masterNavigationController?.navigationBar.barTintColor)
+                return
+            }
+            self.navigationController?.navigationBar.useStyle(self.navBarStyle)
+        }
+
     }
 }

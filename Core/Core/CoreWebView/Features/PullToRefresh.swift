@@ -18,7 +18,7 @@
 
 import WebKit
 
-public class PullToRefresh: CoreWebViewFeature {
+private class PullToRefresh: CoreWebViewFeature {
     private lazy var refreshControl: CircleRefreshControl = {
         let refreshControl = CircleRefreshControl()
         refreshControl.addTarget(
@@ -66,7 +66,7 @@ public class PullToRefresh: CoreWebViewFeature {
 
 public extension CoreWebViewFeature {
 
-    static func pullToRefresh(color: UIColor? = nil) -> PullToRefresh {
+    static func pullToRefresh(color: UIColor? = nil) -> CoreWebViewFeature {
         PullToRefresh(color: color)
     }
 }

@@ -22,19 +22,40 @@ protocol TestTreeHolder: AnyObject {
     var testTree: TestTree? { get set }
 }
 
-public class CoreHostingController<Content: View>: UIHostingController<CoreHostingBaseView<Content>>, NavigationBarStyled, TestTreeHolder, DefaultViewProvider {
+public class CoreHostingController<Content: View>: UIHostingController<CoreHostingBaseView<Content>>,
+                                                   NavigationBarStyled,
+                                                   TestTreeHolder,
+                                                   DefaultViewProvider {
+    // MARK: - UIViewController Overrides
     public override var shouldAutorotate: Bool { shouldAutorotateValue ?? super.shouldAutorotate }
-    public override var supportedInterfaceOrientations: UIInterfaceOrientationMask { supportedInterfaceOrientationsValue ?? super.supportedInterfaceOrientations }
+    public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        supportedInterfaceOrientationsValue ?? super.supportedInterfaceOrientations
+    }
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
+        if let override = preferredStatusBarStyleOverride {
+            return override(self)
+        } else {
+            return super.preferredStatusBarStyle
+        }
+    }
+
+    // MARK: - Support Variables For Overrides
+    /** The value to be returned by the `shouldAutorotate` property. Nil reverts to the default behaviour of the UIViewController regarding that property. */
+    public var shouldAutorotateValue: Bool?
+    /** The value to be returned by the `supportedInterfaceOrientations` property. Nil reverts to the default behaviour of the UIViewController regarding that property. */
+    public var supportedInterfaceOrientationsValue: UIInterfaceOrientationMask?
+    /** This block can be used to add custom logic to decide what to return from the `preferredStatusBarStyle` property. */
+    public var preferredStatusBarStyleOverride: ((UIViewController) -> UIStatusBarStyle)?
+
+    // MARK: - Public Properties
     public var navigationBarStyle = UINavigationBar.Style.color(nil) // not applied until changed
     public var defaultViewRoute: String? {
         didSet {
             showDefaultDetailViewIfNeeded()
         }
     }
-    /** The value to be returned by the `shouldAutorotate` property. Nil reverts to the default behaviour of the UIViewController regarding that property. */
-    public var shouldAutorotateValue: Bool?
-    /** The value to be returned by the `supportedInterfaceOrientations` property. Nil reverts to the default behaviour of the UIViewController regarding that property. */
-    public var supportedInterfaceOrientationsValue: UIInterfaceOrientationMask?
+
+    // MARK: - Private Variables
     var testTree: TestTree?
     private var screenViewTracker: ScreenViewTrackerLive?
 
