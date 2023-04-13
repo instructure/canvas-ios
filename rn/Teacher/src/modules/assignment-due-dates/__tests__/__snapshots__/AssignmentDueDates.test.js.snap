@@ -120,7 +120,7 @@ exports[`renders with overrides 1`] = `
             }
           />
           <View
-            accessibilityLabel="Available from: Mar 17, 2017 at 12:00 AM"
+            accessibilityLabel="Available from: Mar 17, 2017 at 12:00 AM"
             accessible={true}
           >
             <Text
@@ -155,7 +155,7 @@ exports[`renders with overrides 1`] = `
                 ]
               }
             >
-              Mar 17, 2017 at 12:00 AM
+              Mar 17, 2017 at 12:00 AM
             </Text>
           </View>
           <View
@@ -167,7 +167,7 @@ exports[`renders with overrides 1`] = `
             }
           />
           <View
-            accessibilityLabel="Available until: May 31, 2037 at 11:59 PM"
+            accessibilityLabel="Available until: May 31, 2037 at 11:59 PM"
             accessible={true}
           >
             <Text
@@ -202,7 +202,7 @@ exports[`renders with overrides 1`] = `
                 ]
               }
             >
-              May 31, 2037 at 11:59 PM
+              May 31, 2037 at 11:59 PM
             </Text>
           </View>
           <View
