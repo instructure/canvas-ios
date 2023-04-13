@@ -35,7 +35,7 @@ public class GetDashboardCourses: CollectionUseCase {
 
     private let enrollmentState = GetCoursesRequest.EnrollmentState.active
 
-    public init() {        
+    public init() {
         request = GetCurrentUserCoursesRequest(
             enrollmentState: enrollmentState,
             state: [.current_and_concluded],
