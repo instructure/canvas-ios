@@ -322,7 +322,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -1425,7 +1425,7 @@ exports[`QuizDetails displays access code 1`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -2528,7 +2528,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -3547,7 +3547,7 @@ exports[`QuizDetails renders 1`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -4608,7 +4608,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -5711,7 +5711,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -6772,7 +6772,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -7331,7 +7331,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
           </Text>
         </View>
         <View
-          accessibilityLabel="Show Correct Answers, After Jan 23, 2013 at 11:59 PM"
+          accessibilityLabel="Show Correct Answers, After Jan 23, 2013 at 11:59 PM"
           accessible={true}
           style={
             Object {
@@ -7369,7 +7369,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
               ]
             }
           >
-            After Jan 23, 2013 at 11:59 PM
+            After Jan 23, 2013 at 11:59 PM
           </Text>
         </View>
         <View
@@ -7833,7 +7833,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -8392,7 +8392,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
           </Text>
         </View>
         <View
-          accessibilityLabel="Show Correct Answers, Jan 23, 2013 at 11:59 PM to Jan 24, 2013 at 11:59 PM"
+          accessibilityLabel="Show Correct Answers, Jan 23, 2013 at 11:59 PM to Jan 24, 2013 at 11:59 PM"
           accessible={true}
           style={
             Object {
@@ -8430,7 +8430,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
               ]
             }
           >
-            Jan 23, 2013 at 11:59 PM to Jan 24, 2013 at 11:59 PM
+            Jan 23, 2013 at 11:59 PM to Jan 24, 2013 at 11:59 PM
           </Text>
         </View>
         <View
@@ -8894,7 +8894,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -9453,7 +9453,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
           </Text>
         </View>
         <View
-          accessibilityLabel="Show Correct Answers, Until Jan 24, 2013 at 11:59 PM"
+          accessibilityLabel="Show Correct Answers, Until Jan 24, 2013 at 11:59 PM"
           accessible={true}
           style={
             Object {
@@ -9491,7 +9491,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
               ]
             }
           >
-            Until Jan 24, 2013 at 11:59 PM
+            Until Jan 24, 2013 at 11:59 PM
           </Text>
         </View>
         <View
@@ -9955,7 +9955,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -11016,7 +11016,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -12035,7 +12035,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -13096,7 +13096,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -14157,7 +14157,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                         ]
                       }
                     >
-                       May 31, 2037 at 11:59 PM
+                       May 31, 2037 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -14254,7 +14254,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                           ]
                         }
                       >
-                         Mar 17, 2017 at 12:00 AM
+                         Mar 17, 2017 at 12:00 AM
                       </Text>
                     </Text>
                   </View>
@@ -14304,7 +14304,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                           ]
                         }
                       >
-                         May 31, 2037 at 11:59 PM
+                         May 31, 2037 at 11:59 PM
                       </Text>
                     </Text>
                   </View>
@@ -15252,7 +15252,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -16355,7 +16355,7 @@ exports[`QuizDetails renders published state 1`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -17416,7 +17416,7 @@ exports[`QuizDetails renders published state 2`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -18477,7 +18477,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -19538,7 +19538,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -20599,7 +20599,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -21660,7 +21660,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -22721,7 +22721,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -23782,7 +23782,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -24843,7 +24843,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -25904,7 +25904,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -26965,7 +26965,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -28026,7 +28026,7 @@ exports[`QuizDetails renders time limit 1`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -29087,7 +29087,7 @@ exports[`QuizDetails renders time limit 2`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -30148,7 +30148,7 @@ exports[`QuizDetails renders view responses 1`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -31209,7 +31209,7 @@ exports[`QuizDetails renders view responses 2`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -32228,7 +32228,7 @@ exports[`QuizDetails renders view responses 3`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>
@@ -33247,7 +33247,7 @@ exports[`QuizDetails renders without a description 1`] = `
                         ]
                       }
                     >
-                       Jan 23, 2013 at 11:59 PM
+                       Jan 23, 2013 at 11:59 PM
                     </Text>
                   </Text>
                 </View>

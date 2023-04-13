@@ -18,8 +18,6 @@
 
 // @flow
 
-import 'babel-polyfill'
-
 export { default } from './apis/index'
 export * from './apis/assignmentGroups'
 export * from './apis/assignments'
