@@ -37,6 +37,7 @@ public extension StoreState {
                            p2)
             .map { [$0.0, $0.1] }
             .map { statesToSingleState($0) }
+            .removeDuplicates()
     }
 
     static func combineLatest<P: Publisher<StoreState, Never>>(_ p1: P,
@@ -49,6 +50,7 @@ public extension StoreState {
                             p3)
             .map { [$0.0, $0.1, $0.2] }
             .map { statesToSingleState($0) }
+            .removeDuplicates()
     }
 
     private static func statesToSingleState(_ states: [StoreState]) -> StoreState {

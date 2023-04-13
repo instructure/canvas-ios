@@ -34,7 +34,7 @@ public class DashboardCourseCardListInteractorLive: DashboardCourseCardListInter
 
     public required init(env: AppEnvironment = .shared, showOnlyTeacherEnrollment: Bool) {
         courseCardListStore = env.subscribe(GetDashboardCards(showOnlyTeacherEnrollment: showOnlyTeacherEnrollment))
-        courseListStore = env.subscribe(GetDashboardCourses(enrollmentState: .active))
+        courseListStore = env.subscribe(GetDashboardCourses())
 
         Publishers.CombineLatest(
             courseCardListStore.allObjects,

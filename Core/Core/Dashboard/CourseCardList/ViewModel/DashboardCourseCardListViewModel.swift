@@ -51,7 +51,7 @@ public class DashboardCourseCardListViewModel: ObservableObject {
             .assign(to: &$courseCardList)
 
         interactor.courseCardList
-            .map { $0.isEmpty }
+            .map { !$0.isEmpty }
             .assign(to: &$shouldShowSettingsButton)
     }
 

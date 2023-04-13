@@ -33,10 +33,9 @@ public class GetDashboardCourses: CollectionUseCase {
         return Scope(predicate: predicate, order: order)
     }
 
-    private let enrollmentState: GetCoursesRequest.EnrollmentState
+    private let enrollmentState = GetCoursesRequest.EnrollmentState.active
 
-    public init(enrollmentState: GetCoursesRequest.EnrollmentState) {
-        self.enrollmentState = enrollmentState
+    public init() {        
         request = GetCurrentUserCoursesRequest(
             enrollmentState: enrollmentState,
             state: [.current_and_concluded],
@@ -49,7 +48,7 @@ public class GetDashboardCourses: CollectionUseCase {
         response.forEach {
             CourseListItem.save(
                 $0,
-                enrollmentState: enrollmentState,
+                enrollmentState: .active,
                 in: client
             )
         }
