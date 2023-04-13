@@ -144,7 +144,6 @@
 		E838B69324FD80D800937165 /* SpeedGraderFilesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A17D6724F93D1C00B396EB /* SpeedGraderFilesUITests.swift */; };
 		E841D8B123D6472F00685A63 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E841D8B423D6472F00685A63 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E87612EB245A13F100CBDEBC /* SpeedGraderQuizUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87612EA245A13F100CBDEBC /* SpeedGraderQuizUITests.swift */; };
 		E87612ED245A21A700CBDEBC /* SpeedGraderCommentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87612EC245A21A700CBDEBC /* SpeedGraderCommentUITests.swift */; };
 		E881134922FCA81B00354C59 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D3DA83821876142000D828F /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E8A17D6B24F95ACA00B396EB /* instructure.pdf in Resources */ = {isa = PBXBuildFile; fileRef = E8A17D6A24F95ABD00B396EB /* instructure.pdf */; };
@@ -620,7 +619,6 @@
 		E8315D3A22FC9E60003CD27C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E841D8B923D6472F00685A63 /* TeacherE2ETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherE2ETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E841D8BA23D6472F00685A63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E87612EA245A13F100CBDEBC /* SpeedGraderQuizUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderQuizUITests.swift; sourceTree = "<group>"; };
 		E87612EC245A21A700CBDEBC /* SpeedGraderCommentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderCommentUITests.swift; sourceTree = "<group>"; };
 		E8A17D6724F93D1C00B396EB /* SpeedGraderFilesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderFilesUITests.swift; sourceTree = "<group>"; };
 		E8A17D6A24F95ABD00B396EB /* instructure.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = instructure.pdf; sourceTree = "<group>"; };
@@ -932,7 +930,6 @@
 				B175D62523A96B0F00F8E696 /* IPadSpeedGraderTests.swift */,
 				E87612EC245A21A700CBDEBC /* SpeedGraderCommentUITests.swift */,
 				E8A17D6724F93D1C00B396EB /* SpeedGraderFilesUITests.swift */,
-				E87612EA245A13F100CBDEBC /* SpeedGraderQuizUITests.swift */,
 				E814FC022499273B00CD208A /* SpeedGraderRubricUITests.swift */,
 				B17E1DB4238DA8550022EE0E /* SpeedGraderUITests.swift */,
 			);
@@ -1922,7 +1919,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E838B69324FD80D800937165 /* SpeedGraderFilesUITests.swift in Sources */,
-				E87612EB245A13F100CBDEBC /* SpeedGraderQuizUITests.swift in Sources */,
 				E814FC032499273B00CD208A /* SpeedGraderRubricUITests.swift in Sources */,
 				E87612ED245A21A700CBDEBC /* SpeedGraderCommentUITests.swift in Sources */,
 				3BFD1D412311DED8003AE3AB /* AssignmentPostPolicyTests.swift in Sources */,

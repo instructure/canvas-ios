@@ -48,8 +48,6 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return CoreHostingController(CourseSettingsView(viewModel: viewModel))
     },
 
-    "/courses/:courseID/user_preferences": nil,
-
     "/:context/:contextID/announcements": { url, _, _ in
         guard let context = Context(path: url.path) else { return nil }
         return AnnouncementListViewController.create(context: context)
@@ -250,44 +248,24 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return QuizListViewController.create(courseID: courseID)
     },
 
-    "/courses/:courseID/quizzes/:quizID": { url, params, userInfo in
-        if ExperimentalFeature.nativeTeacherQuiz.isEnabled {
-            guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
-            let viewModel = QuizDetailsViewModel(courseID: courseID, quizID: quizID)
-            return CoreHostingController(QuizDetailsView(viewModel: viewModel))
-        } else {
-            return HelmViewController(moduleName: "/courses/:courseID/quizzes/:quizID", url: url, params: params, userInfo: userInfo)
-        }
+    "/courses/:courseID/quizzes/:quizID": { _, params, _ in
+        guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
+        let viewModel = QuizDetailsViewModel(courseID: courseID, quizID: quizID)
+        return CoreHostingController(QuizDetailsView(viewModel: viewModel))
     },
-    "/courses/:courseID/quizzes/:quizID/preview": { url, params, userInfo in
-        if ExperimentalFeature.nativeTeacherQuiz.isEnabled {
-            guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
-            return QuizPreviewAssembly.makeQuizPreviewViewController(courseID: courseID,
-                                                                     quizID: quizID)
-        } else {
-            return HelmViewController(moduleName: "/courses/:courseID/quizzes/:quizID/preview",
-                                      url: url,
-                                      params: params,
-                                      userInfo: userInfo)
-        }
+    "/courses/:courseID/quizzes/:quizID/preview": { _, params, _ in
+        guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
+        return QuizPreviewAssembly.makeQuizPreviewViewController(courseID: courseID, quizID: quizID)
     },
-    "/courses/:courseID/quizzes/:quizID/edit": { url, params, userInfo in
-        if ExperimentalFeature.nativeTeacherQuiz.isEnabled {
-            guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
-            let viewModel = QuizEditorViewModel(courseID: courseID, quizID: quizID)
-            return CoreHostingController(QuizEditorView(viewModel: viewModel))
-        } else {
-            return HelmViewController(moduleName: "/courses/:courseID/quizzes/:quizID/edit", url: url, params: params, userInfo: userInfo)
-        }
+    "/courses/:courseID/quizzes/:quizID/edit": { _, params, _ in
+        guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
+        let viewModel = QuizEditorViewModel(courseID: courseID, quizID: quizID)
+        return CoreHostingController(QuizEditorView(viewModel: viewModel))
     },
-    "/courses/:courseID/quizzes/:quizID/submissions": { url, params, userInfo in
-        if ExperimentalFeature.nativeTeacherQuiz.isEnabled {
-            guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
-            let filter = QuizSubmissionListFilter(rawValue: url.queryValue(for: "filter"))
-            return QuizSubmissionListAssembly.makeViewController(env: AppEnvironment.shared, courseID: courseID, quizID: quizID, filter: filter)
-        } else {
-            return HelmViewController(moduleName: "/courses/:courseID/quizzes/:quizID/submissions", url: url, params: params, userInfo: userInfo)
-        }
+    "/courses/:courseID/quizzes/:quizID/submissions": { url, params, _ in
+        guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
+        let filter = QuizSubmissionListFilter(rawValue: url.queryValue(for: "filter"))
+        return QuizSubmissionListAssembly.makeViewController(env: AppEnvironment.shared, courseID: courseID, quizID: quizID, filter: filter)
     },
     "/courses/:courseID/users": { _, params, _ in
         guard let courseID = params["courseID"] else { return nil }

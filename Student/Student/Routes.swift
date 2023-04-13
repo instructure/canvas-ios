@@ -339,8 +339,6 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     "/courses/:courseID/users/:userID": contextCard,
     "/groups/:groupID/users/:userID": groupContextCard,
 
-    "/courses/:courseID/user_preferences": nil,
-
     "/dev-menu": nil,
 
     "/dev-menu/experimental-features": { _, _, _ in
