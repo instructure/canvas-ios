@@ -18,8 +18,8 @@
 
 import SwiftUI
 
-struct DashboardCourseCard: View {
-    @ObservedObject var card: DashboardCard
+struct DashboardCourseCardView: View {
+    @ObservedObject var courseCard: DashboardCard
     let hideColorOverlay: Bool
     let showGrade: Bool
     let width: CGFloat
@@ -31,14 +31,14 @@ struct DashboardCourseCard: View {
     @Environment(\.viewController) var controller
 
     var a11yGrade: String {
-        guard let course = card.course, showGrade else { return "" }
+        guard let course = courseCard.course, showGrade else { return "" }
         return course.displayGrade
     }
 
     var body: some View {
         ZStack(alignment: .topLeading) {
             Button {
-                env.router.route(to: "/courses/\(card.id)?contextColor=\(contextColor.hexString.dropFirst())", from: controller)
+                env.router.route(to: "/courses/\(courseCard.id)?contextColor=\(contextColor.hexString.dropFirst())", from: controller)
             } label: {
                 if isWideLayout {
                     regularHorizontalLayout
@@ -47,8 +47,8 @@ struct DashboardCourseCard: View {
                 }
             }
             .buttonStyle(ScaleButtonStyle(scale: 1))
-            .accessibility(label: Text(verbatim: "\(card.shortName) \(card.courseCode) \(a11yGrade)".trimmingCharacters(in: .whitespacesAndNewlines)))
-            .identifier("DashboardCourseCell.\(card.id)")
+            .accessibility(label: Text(verbatim: "\(courseCard.shortName) \(courseCard.courseCode) \(a11yGrade)".trimmingCharacters(in: .whitespacesAndNewlines)))
+            .identifier("DashboardCourseCell.\(courseCard.id)")
 
             gradePill
                 .accessibility(hidden: true) // handled in the button label
@@ -84,8 +84,8 @@ struct DashboardCourseCard: View {
 
     private func courseImage(width: CGFloat, height: CGFloat = 80) -> some View {
         ZStack(alignment: .topLeading) {
-            Color(card.color).frame(width: width, height: height)
-            card.imageURL.map { RemoteImage($0, width: width, height: height) }?
+            Color(courseCard.color).frame(width: width, height: height)
+            courseCard.imageURL.map { RemoteImage($0, width: width, height: height) }?
                 .opacity(hideColorOverlay ? 1 : 0.4)
                 .clipped()
                 // Fix big course image consuming tap events.
@@ -98,11 +98,11 @@ struct DashboardCourseCard: View {
     private var textArea: some View {
         VStack(alignment: .leading, spacing: 2) {
             HStack { Spacer() }
-            Text(card.shortName)
-                .font(.semibold18).foregroundColor(Color(card.color))
+            Text(courseCard.shortName)
+                .font(.semibold18).foregroundColor(Color(courseCard.color))
                 .fixedSize(horizontal: false, vertical: true)
                 .lineLimit(2)
-            Text(card.courseCode)
+            Text(courseCard.courseCode)
                 .font(.semibold12).foregroundColor(.textDark)
                 .lineLimit(2)
             Spacer()
@@ -112,7 +112,7 @@ struct DashboardCourseCard: View {
 
     private var customizeButton: some View {
         Button {
-            guard let course = card.course else { return }
+            guard let course = courseCard.course else { return }
             env.router.show(
                 CoreHostingController(CustomizeCourseView(course: course, hideColorOverlay: hideColorOverlay)),
                 from: controller,
@@ -125,13 +125,13 @@ struct DashboardCourseCard: View {
                 )
                 .frame(width: 44, height: 44)
         }
-        .accessibility(label: Text("Open \(card.shortName) user preferences", bundle: .core))
-        .identifier("DashboardCourseCell.\(card.id).optionsButton")
+        .accessibility(label: Text("Open \(courseCard.shortName) user preferences", bundle: .core))
+        .identifier("DashboardCourseCell.\(courseCard.id).optionsButton")
     }
 
     @ViewBuilder
     private var gradePill: some View {
-        if showGrade, let course = card.course {
+        if showGrade, let course = courseCard.course {
             HStack {
                 if course.hideTotalGrade {
                     Image.lockSolid.size(14)
@@ -152,7 +152,7 @@ struct DashboardCourseCard: View {
 struct CourseCard_Previews: PreviewProvider {
     private static let env = PreviewEnvironment()
     private static let context = env.globalDatabase.viewContext
-    private static var cardEntity: DashboardCard {
+    private static var courseCard: DashboardCard {
         let apiEnrollment = APIEnrollment.make(computed_current_score: 105, computed_current_grade: "A+")
         let apiCourse = APICourse.make(enrollments: [apiEnrollment])
         Course.save(apiCourse, in: context)
@@ -168,7 +168,7 @@ struct CourseCard_Previews: PreviewProvider {
     static var previews: some View {
         VStack(alignment: .leading) {
             Text(verbatim: "Grid Layout")
-            DashboardCourseCard(card: cardEntity,
+            DashboardCourseCardView(courseCard: courseCard,
                        hideColorOverlay: false,
                        showGrade: true,
                        width: 200,
@@ -178,7 +178,7 @@ struct CourseCard_Previews: PreviewProvider {
             .environment(\.horizontalSizeClass, .compact)
 
             Text(verbatim: "List Layout - Compact Horizontal Size Class").padding(.top)
-            DashboardCourseCard(card: cardEntity,
+            DashboardCourseCardView(courseCard: courseCard,
                        hideColorOverlay: false,
                        showGrade: true,
                        width: 400,
@@ -188,7 +188,7 @@ struct CourseCard_Previews: PreviewProvider {
             .environment(\.horizontalSizeClass, .compact)
 
             Text(verbatim: "List Layout - Regular Horizontal Size Class").padding(.top)
-            DashboardCourseCard(card: cardEntity,
+            DashboardCourseCardView(courseCard: courseCard,
                        hideColorOverlay: false,
                        showGrade: true,
                        width: 900,

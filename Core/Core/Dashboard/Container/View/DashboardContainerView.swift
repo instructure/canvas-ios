@@ -196,20 +196,27 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
             }
             .frame(minWidth: size.width, minHeight: size.height)
         case .data:
-            let cards = courseCardListViewModel.courseCardList
+            let courseCardList = courseCardListViewModel.courseCardList
             coursesHeader(width: size.width)
 
             let hideColorOverlay = settings.first?.hideDashcardColorOverlays == true
             let layoutInfo = layoutViewModel.layoutInfo(for: size.width, horizontalSizeClass: horizontalSizeClass)
-            DashboardGrid(itemCount: cards.count, itemWidth: layoutInfo.cardWidth, spacing: layoutInfo.spacing, columnCount: layoutInfo.columns) { cardIndex in
-                let card = cards[cardIndex]
-                DashboardCourseCard(card: card,
-                           hideColorOverlay: hideColorOverlay,
-                           showGrade: showGrade,
-                           width: layoutInfo.cardWidth,
-                           contextColor: card.color,
-                           isWideLayout: layoutInfo.isWideLayout)
-                    .frame(minHeight: layoutInfo.cardMinHeight)
+            DashboardGrid(
+                itemCount: courseCardList.count,
+                itemWidth: layoutInfo.cardWidth,
+                spacing: layoutInfo.spacing,
+                columnCount: layoutInfo.columns
+            ) { cardIndex in
+                let card = courseCardList[cardIndex]
+                DashboardCourseCardView(
+                    courseCard: card,
+                    hideColorOverlay: hideColorOverlay,
+                    showGrade: showGrade,
+                    width: layoutInfo.cardWidth,
+                    contextColor: card.color,
+                    isWideLayout: layoutInfo.isWideLayout
+                )
+                .frame(minHeight: layoutInfo.cardMinHeight)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.bottom, 2)
@@ -220,7 +227,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                 .padding(.bottom, 50 - verticalSpacing) // group header already has a top padding
         case .error:
             ZStack {
-                Text("message")
+                Text("Something went wrong")
                     .font(.regular16).foregroundColor(.textDanger)
                     .multilineTextAlignment(.center)
             }

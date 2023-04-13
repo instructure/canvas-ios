@@ -63,27 +63,4 @@ public class DashboardCourseCardListViewModel: ObservableObject {
             }
             .store(in: &subscriptions)
     }
-//
-//    private func update() {
-//        guard cards.requested, !cards.pending, !courseSectionStatus.isUpdatePending, courses.requested, !courses.pending, !courses.hasNextPage else { return }
-//
-//        guard cards.state != .error else {
-//            state = .error(NSLocalizedString("Something went wrong", comment: ""))
-//            return
-//        }
-//
-//        let cards = filteredCards()
-//        state = cards.isEmpty ? .empty : .data(cards)
-//        shouldShowSettingsButton = !cards.isEmpty
-//    }
-//
-//    private func filteredCards() -> [DashboardCard] {
-//        var filteredCards = cards.all.filter { $0.shouldShow }
-//
-//        if showOnlyTeacherEnrollment {
-//            filteredCards = filteredCards.filter { $0.isTeacherEnrollment }
-//        }
-//
-//        return filteredCards
-//    }
 }
