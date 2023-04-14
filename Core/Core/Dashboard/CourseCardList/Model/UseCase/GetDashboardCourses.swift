@@ -46,9 +46,8 @@ public class GetDashboardCourses: CollectionUseCase {
     public func write(response: [APICourse]?, urlResponse _: URLResponse?, to client: NSManagedObjectContext) {
         guard let response else { return }
         response.forEach {
-            CourseListItem.save(
+            Course.save(
                 $0,
-                enrollmentState: .active,
                 in: client
             )
         }
