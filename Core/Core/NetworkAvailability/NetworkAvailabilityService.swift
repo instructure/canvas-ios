@@ -20,32 +20,32 @@ import Combine
 import Foundation
 import Network
 
-public protocol NWAvailabilityService {
+public protocol NetworkAvailabilityService {
     func startMonitoring()
     func stopMonitoring()
 
-    func startObservingStatus() -> CurrentValueSubject<NWAvailabilityStatus, Never>
-    var status: NWAvailabilityStatus { get }
+    func startObservingStatus() -> CurrentValueSubject<NetworkAvailabilityStatus, Never>
+    var status: NetworkAvailabilityStatus { get }
 }
 
-public final class NWAvailabilityServiceLive: NWAvailabilityService {
+public final class NetworkAvailabilityServiceLive: NetworkAvailabilityService {
     // MARK: - Dependencies
 
     private let monitor: NWPathMonitorWrapper
 
     // MARK: - Properties
 
-    public private(set) var status: NWAvailabilityStatus = .disconnected {
+    public private(set) var status: NetworkAvailabilityStatus = .disconnected {
         didSet {
             statusSubject.send(status)
         }
     }
 
-    private let statusSubject = CurrentValueSubject<NWAvailabilityStatus, Never>(.disconnected)
+    private let statusSubject = CurrentValueSubject<NetworkAvailabilityStatus, Never>(.disconnected)
     private var isMonitoring = false
     private let queue = DispatchQueue(label: "\(Bundle.main.appBundleIdentifier).network-availability")
 
-    /// The `NWAvailabiltyService` component monitors network conditions and reports updates whenever there's a change.
+    /// The `NetworkAvailabiltyService` component monitors network conditions and reports updates whenever there's a change.
     /// - Parameter monitor: When instantiating an `NWPathMonitorWrapper` use a unique `NWPathMonitor` instance. Using a shared instance will cause problems with starting, stopping and observing the changes.
     public init(monitor: NWPathMonitorWrapper = NWPathMonitorWrapper(from: NWPathMonitor())) {
         assert(
@@ -84,7 +84,7 @@ public final class NWAvailabilityServiceLive: NWAvailabilityService {
         monitor.cancel()
     }
 
-    public func startObservingStatus() -> CurrentValueSubject<NWAvailabilityStatus, Never> {
+    public func startObservingStatus() -> CurrentValueSubject<NetworkAvailabilityStatus, Never> {
         statusSubject
     }
 }

@@ -27,16 +27,16 @@ struct SideMenuDeveloperOptionsSection: View {
     var body: some View {
         VStack(spacing: 0) {
             SideMenuSubHeaderView(title: Text("DEVELOPER", bundle: .core))
-            switch viewModel.nwAvailabilityStatus {
+            switch viewModel.networkAvailabilityStatus {
             case let .connected(connectionType):
                 SideMenuItem(
-                    id: "nwAvailabilityStatus",
+                    id: "networkAvailabilityStatus",
                     image: .attendance,
                     title: Text("Connected via \(connectionType.rawValue.capitalized)")
                 )
             case .disconnected:
                 SideMenuItem(
-                    id: "nwAvailabilityStatus",
+                    id: "networkAvailabilityStatus",
                     image: .attendance,
                     title: Text("Disconnected")
                 )
@@ -54,20 +54,20 @@ struct SideMenuDeveloperOptionsSection: View {
 
 extension SideMenuDeveloperOptionsSection {
     final class SideDeveloperOptionsViewModel: ObservableObject {
-        @Published var nwAvailabilityStatus: NWAvailabilityStatus = .disconnected
+        @Published var networkAvailabilityStatus: NetworkAvailabilityStatus = .disconnected
 
-        private let nwAvailabilityService = NWAvailabilityServiceLive()
+        private let networkAvailabilityService = NetworkAvailabilityServiceLive()
         private var subscriptions = Set<AnyCancellable>()
 
         init() {
             unowned let unownedSelf = self
 
-            nwAvailabilityService.startMonitoring()
+            networkAvailabilityService.startMonitoring()
 
-            nwAvailabilityService
+            networkAvailabilityService
                 .startObservingStatus()
                 .receive(on: DispatchQueue.main)
-                .sink { unownedSelf.nwAvailabilityStatus = $0 }
+                .sink { unownedSelf.networkAvailabilityStatus = $0 }
                 .store(in: &subscriptions)
         }
     }

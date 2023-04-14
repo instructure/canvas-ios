@@ -18,7 +18,7 @@
 
 import Foundation
 
-public enum NWAvailabilityStatus {
+public enum NetworkAvailabilityStatus {
     case connected(ConnectionType)
     case disconnected
 
@@ -41,8 +41,8 @@ public enum NWAvailabilityStatus {
     }
 }
 
-extension NWAvailabilityStatus: Equatable {
-    public static func == (lhs: NWAvailabilityStatus, rhs: NWAvailabilityStatus) -> Bool {
+extension NetworkAvailabilityStatus: Equatable {
+    public static func == (lhs: NetworkAvailabilityStatus, rhs: NetworkAvailabilityStatus) -> Bool {
         switch (lhs, rhs) {
         case (.disconnected, .disconnected): return true
         case let (.connected(lhsType), .connected(rhsType)): return lhsType == rhsType

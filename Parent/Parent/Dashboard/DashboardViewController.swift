@@ -86,7 +86,7 @@ class DashboardViewController: ScreenViewTrackableViewController, ErrorViewContr
         permissions.refresh(force: true)
         students.exhaust { [weak self] list in
             // workaround temporary students.isEmpty && !students.pending
-            self?.hasStudents = self?.hasStudents == true || !list.isEmpty
+            self?.hasStudents = self?.hasStudents == true || !(list?.isEmpty ?? true)
             self?.update()
             return true
         }
