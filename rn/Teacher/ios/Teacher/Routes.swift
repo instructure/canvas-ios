@@ -327,6 +327,10 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
         return emptyViewController
     },
+
+    "/about": { _, _, _ in
+        AboutAssembly.makeAboutViewController()
+    },
 ]))
 
 private func discussionDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {

@@ -144,6 +144,9 @@ let router = Router(routes: [
         return WrongAppViewController.create(delegate: loginDelegate)
     },
 
+    RouteHandler("/about") { _, _, _ in
+        AboutAssembly.makeAboutViewController()
+    },
 ])
 
 private func fileList(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {

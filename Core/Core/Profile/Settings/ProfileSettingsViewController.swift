@@ -160,6 +160,8 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
             rows.append(contentsOf: [row])
         }
 
+        rows.append(contentsOf: aboutRow)
+
         return rows
     }
 
@@ -214,6 +216,15 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                 guard let self = self else { return }
                 let vc = PairWithObserverViewController.create()
                 self.env.router.show(vc, from: self, options: .modal(.formSheet, isDismissable: true, embedInNav: true, addDoneButton: true))
+            },
+        ]
+    }
+
+    private var aboutRow: [Row] {
+        return [
+            Row(NSLocalizedString("About", comment: "")) { [weak self] in
+                guard let self else { return }
+                self.env.router.route(to: "/about", from: self)
             },
         ]
     }

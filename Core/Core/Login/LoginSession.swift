@@ -33,6 +33,7 @@ public struct LoginSession: Codable, Hashable {
     public let clientID: String?
     public let clientSecret: String?
 
+    /** Returns the acted user's ID. If the session isn't masquaraded this property returns nil. */
     public var actAsUserID: String? {
         return masquerader == nil ? nil : userID
     }
