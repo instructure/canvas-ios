@@ -39,6 +39,7 @@ public struct InboxView: View {
                         switch model.state {
                         case .data:
                             messagesList
+                                .listRowBackground(SwiftUI.EmptyView())
                             nextPageLoadingIndicator(geometry: geometry)
                                 .onAppear {
                                     model.contentDidScrollToBottom.send()
@@ -190,11 +191,9 @@ struct InboxView_Previews: PreviewProvider {
     static var previews: some View {
         InboxAssembly.makePreview(environment: env,
                                   messages: .make(count: 5, in: context))
-            .previewLayout(.sizeThatFits)
 
         InboxAssembly.makePreview(environment: env,
                                   messages: [])
-            .previewLayout(.sizeThatFits)
             .previewDisplayName("Empty State")
     }
 }
