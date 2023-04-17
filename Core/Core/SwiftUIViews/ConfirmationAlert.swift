@@ -26,6 +26,7 @@ public struct ConfirmationAlertViewModel {
     public let confirmButtonTitle: String
     public let confirmButtonRole: ButtonRole?
     public let confirmDidTap = PassthroughSubject<Void, Never>()
+    public let cancelDidTap = PassthroughSubject<Void, Never>()
 
     public init(title: String,
                 message: String,
@@ -56,7 +57,7 @@ public extension View {
             actions: {
                 Button(viewModel.cancelButtonTitle,
                        role: .cancel,
-                       action: {})
+                       action: viewModel.cancelDidTap.send)
                 Button(viewModel.confirmButtonTitle,
                        role: viewModel.confirmButtonRole,
                        action: viewModel.confirmDidTap.send)
