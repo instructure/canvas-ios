@@ -3503,13 +3503,8 @@
 		14697E76F8F51718E58190BB /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				865ED83B496E0494D0FED015 /* Conference */,
-				383794BF3768CC1E4E2DB4A3 /* Container */,
-				ECED178A8F83AF16F544B33C /* FileUploadNotification */,
-				E3EB3033F22BC365C756FC4D /* Group */,
 				201B925BB996E09FB13AB767 /* K5 */,
 				C639C71D6B46ADFA6667258B /* Model */,
-				A8F849A655FD5415D8446EC4 /* Notification */,
 				EBA47E010C805E39105B9650 /* View */,
 				F57519FF26ED087BEC448ACD /* ViewModel */,
 			);
@@ -4117,13 +4112,6 @@
 				1215A854CF74D536518C189E /* K5ImportantDatesViewModelTests.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		383794BF3768CC1E4E2DB4A3 /* Container */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Container;
 			sourceTree = "<group>";
 		};
 		38552DB3DCD210AB726DEAB0 /* FilePicker */ = {
@@ -5310,13 +5298,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		865ED83B496E0494D0FED015 /* Conference */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Conference;
-			sourceTree = "<group>";
-		};
 		867BFABBF8E7FD67BEFFD103 /* Enrollments */ = {
 			isa = PBXGroup;
 			children = (
@@ -6006,13 +5987,6 @@
 				38CD30A59D9B28E1A04AAA50 /* FileProgressListViewPreview.swift */,
 			);
 			path = PreviewSupport;
-			sourceTree = "<group>";
-		};
-		A8F849A655FD5415D8446EC4 /* Notification */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Notification;
 			sourceTree = "<group>";
 		};
 		A92C485891E28C558D198BAD /* WrongApp */ = {
@@ -6898,13 +6872,6 @@
 			path = Group;
 			sourceTree = "<group>";
 		};
-		E3EB3033F22BC365C756FC4D /* Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Group;
-			sourceTree = "<group>";
-		};
 		E41CE2034B1EB5A268DC66BA /* HorizontalPager */ = {
 			isa = PBXGroup;
 			children = (
@@ -7081,13 +7048,6 @@
 				38552DB3DCD210AB726DEAB0 /* FilePicker */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		ECED178A8F83AF16F544B33C /* FileUploadNotification */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = FileUploadNotification;
 			sourceTree = "<group>";
 		};
 		ED3F6B3732277FB180EA1F29 /* AccountNotifications */ = {
