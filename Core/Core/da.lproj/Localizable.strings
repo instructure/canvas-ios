@@ -944,6 +944,9 @@
 "Fail" = "Ikke bestået";
 
 /* No comment provided by engineer. */
+"Failed to Load Login Page" = "Kunne ikke indlæse login-side";
+
+/* No comment provided by engineer. */
 "Failed to save image" = "Kunne ikke gemme billede";
 
 /* No comment provided by engineer. */
@@ -1056,6 +1059,9 @@
 
 /* No comment provided by engineer. */
 "g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Go back and make sure you entered a valid institution name." = "Gå tilbage, og sørg for, at du har indtastet et gyldigt institutionsnavn.";
 
 /* No comment provided by engineer. */
 "Go to today" = "Gå til I dag";
@@ -2634,6 +2640,9 @@
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "Vi kunne ikke finde nogen, der var sådan.";
+
+/* No comment provided by engineer. */
+"We received no response from the institution.\nGo back and make sure you entered a valid institution name." = "Vi modtog intet svar fra institutionen.\nGå tilbage, og sørg for, at du har indtastet et gyldigt institutionsnavn.";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "Vi har lavet nogle ændringer.";

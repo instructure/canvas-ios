@@ -944,6 +944,9 @@
 "Fail" = "Niepowodzenie";
 
 /* No comment provided by engineer. */
+"Failed to Load Login Page" = "Nie udało się wczytać strony logowania.";
+
+/* No comment provided by engineer. */
 "Failed to save image" = "Nie udało się zapisać obrazu";
 
 /* No comment provided by engineer. */
@@ -1056,6 +1059,9 @@
 
 /* No comment provided by engineer. */
 "g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Go back and make sure you entered a valid institution name." = "Wróć i upewnij się, że wprowadzono prawidłową nazwę instytucji.";
 
 /* No comment provided by engineer. */
 "Go to today" = "Przejdź do dziś";
@@ -2634,6 +2640,9 @@
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "Nie udało się odnaleźć takiej osoby.";
+
+/* No comment provided by engineer. */
+"We received no response from the institution.\nGo back and make sure you entered a valid institution name." = "Nie otrzymano żadnej odpowiedzi z instytucji.\nWróć i upewnij się, że wprowadzono prawidłową nazwę instytucji.";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "Wprowadziliśmy kilka zmian.";

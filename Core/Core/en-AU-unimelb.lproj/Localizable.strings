@@ -944,6 +944,9 @@
 "Fail" = "Fail";
 
 /* No comment provided by engineer. */
+"Failed to Load Login Page" = "Failed to Load Login Page";
+
+/* No comment provided by engineer. */
 "Failed to save image" = "Failed to save image";
 
 /* No comment provided by engineer. */
@@ -1056,6 +1059,9 @@
 
 /* No comment provided by engineer. */
 "g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Go back and make sure you entered a valid institution name." = "Go back and make sure you entered a valid institution name.";
 
 /* No comment provided by engineer. */
 "Go to today" = "Go to today";
@@ -2634,6 +2640,9 @@
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "We couldn’t find somebody like that.";
+
+/* No comment provided by engineer. */
+"We received no response from the institution.\nGo back and make sure you entered a valid institution name." = "We received no response from the institution.\nGo back and make sure you entered a valid institution name.";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "We've made a few changes.";
