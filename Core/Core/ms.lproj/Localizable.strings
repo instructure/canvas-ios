@@ -944,6 +944,9 @@
 "Fail" = "Gagal";
 
 /* No comment provided by engineer. */
+"Failed to Load Login Page" = "Gagal Memuatkan Halaman Log Masuk";
+
+/* No comment provided by engineer. */
 "Failed to save image" = "Gagal menyimpan imej";
 
 /* No comment provided by engineer. */
@@ -1056,6 +1059,9 @@
 
 /* No comment provided by engineer. */
 "g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Go back and make sure you entered a valid institution name." = "Kembali semula dan pastikan anda memasukkan nama institusi yang sah.";
 
 /* No comment provided by engineer. */
 "Go to today" = "Terus ke hari ini";
@@ -2634,6 +2640,9 @@
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "Kami tidak menemui apa-apa sesiapa yang sedemikian.";
+
+/* No comment provided by engineer. */
+"We received no response from the institution.\nGo back and make sure you entered a valid institution name." = "Kami tidak menerima maklum balas daripada institusi.\nKembali semula dan pastikan anda memasukkan nama institusi yang sah.";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "Kami telah membuat beberapa perubahan.";
