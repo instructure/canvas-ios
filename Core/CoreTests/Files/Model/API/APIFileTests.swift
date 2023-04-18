@@ -266,9 +266,7 @@ class PostFileUploadRequestTests: XCTestCase {
 
         XCTAssertEqual(requestable.path, "s3://some/bucket/")
         XCTAssertEqual(requestable.method, .post)
-        XCTAssertEqual(requestable.headers, [
-            HttpHeader.authorization: nil,
-        ])
+        XCTAssertEqual(requestable.headers, [:])
         XCTAssertEqual(requestable.form?.count, 2)
         XCTAssertEqual(requestable.form?.last?.key, "file")
 
