@@ -523,7 +523,7 @@ private func courseDetails(url: URLComponents, params: [String: String], userInf
     }
 
     guard let courseID = params["courseID"],
-          let card = AppEnvironment.shared.subscribe(GetDashboardCards()).all.first(where: { $0.id == courseID })
+          let card = AppEnvironment.shared.subscribe(GetDashboardCards(showOnlyTeacherEnrollment: false)).all.first(where: { $0.id == courseID })
     else {
         return k5SubjectView()
     }
