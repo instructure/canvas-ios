@@ -944,6 +944,9 @@
 "Fail" = "Hylätty";
 
 /* No comment provided by engineer. */
+"Failed to Load Login Page" = "Sisäänkirjautumissivun lataus epäonnistui";
+
+/* No comment provided by engineer. */
 "Failed to save image" = "Kuvan tallennus epäonnistui";
 
 /* No comment provided by engineer. */
@@ -1056,6 +1059,9 @@
 
 /* No comment provided by engineer. */
 "g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Go back and make sure you entered a valid institution name." = "Siirry takaisin ja varmista, että syötit voimassa olevan laitoksen nimen.";
 
 /* No comment provided by engineer. */
 "Go to today" = "Siirry tähän päivään";
@@ -2634,6 +2640,9 @@
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "Emme löytäneet ketään sellaista.";
+
+/* No comment provided by engineer. */
+"We received no response from the institution.\nGo back and make sure you entered a valid institution name." = "Emme saaneet vastausta laitoksesta.\nSiirry takaisin ja varmista, että syötit voimassa olevan laitoksen nimen.";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "olemme tehneet muutamia muutoksia.";

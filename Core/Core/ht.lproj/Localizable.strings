@@ -944,6 +944,9 @@
 "Fail" = "Echwe";
 
 /* No comment provided by engineer. */
+"Failed to Load Login Page" = "Echèk chajman Paj Koneksyon an";
+
+/* No comment provided by engineer. */
 "Failed to save image" = "Echèk anrejistreman imaj";
 
 /* No comment provided by engineer. */
@@ -1056,6 +1059,9 @@
 
 /* No comment provided by engineer. */
 "g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Go back and make sure you entered a valid institution name." = "Retounen epi asire w ou antre yon non enstitisyon ki valid.";
 
 /* No comment provided by engineer. */
 "Go to today" = "Ale nan jodi a";
@@ -2634,6 +2640,9 @@
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "Nou pa kapab jwenn moun konsa.";
+
+/* No comment provided by engineer. */
+"We received no response from the institution.\nGo back and make sure you entered a valid institution name." = "Nou pa t resevwa okenn repons de enstitisyon an.\nRetounen epi asire w ou antre yon non enstitisyon ki valid.";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "Nou te fè kèk chanjman.";

@@ -944,6 +944,9 @@
 "Fail" = "Échec";
 
 /* No comment provided by engineer. */
+"Failed to Load Login Page" = "Échec de chargement de la page de connexion";
+
+/* No comment provided by engineer. */
 "Failed to save image" = "Échec lors de l’enregistrement de l’image";
 
 /* No comment provided by engineer. */
@@ -1056,6 +1059,9 @@
 
 /* No comment provided by engineer. */
 "g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Go back and make sure you entered a valid institution name." = "Revenez en arrière et vérifiez que vous avez saisi un nom d’établissement valide.";
 
 /* No comment provided by engineer. */
 "Go to today" = "Aller à « Aujourd'hui »";
@@ -2634,6 +2640,9 @@
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "Nous n’avons trouvé personne qui corresponde.";
+
+/* No comment provided by engineer. */
+"We received no response from the institution.\nGo back and make sure you entered a valid institution name." = "Nous n’avons reçu aucune réponse de l’établissement.\nRevenez en arrière et vérifiez que vous avez saisi un nom d’établissement valide.";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "Nous avons fait quelques changements.";

@@ -249,6 +249,25 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
         }
     }
 
+    public func exhaustWithFuture(
+        force: Bool = true,
+        while condition: @escaping (U.Response) -> Bool = { _ in true }
+    ) -> Future<Void, Never> {
+        Future<Void, Never> { [weak self] promise in
+            guard let self = self else {
+                promise(.success(()))
+                return
+            }
+            self.refresh(force: force) { [weak self] response in
+                if let response = response, condition(response) {
+                    self?.exhaustNext(while: condition) {
+                        promise(.success(()))
+                    }
+                }
+            }
+        }
+    }
+
     // MARK: - Private Methods
 
     private func notify() {
@@ -258,10 +277,12 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
         }
     }
 
-    private func exhaustNext(while condition: @escaping (U.Response) -> Bool) {
+    private func exhaustNext(while condition: @escaping (U.Response) -> Bool, completion: (() -> Void)? = nil) {
         getNextPage { [weak self] response in
             if let response = response, condition(response) {
-                self?.exhaustNext(while: condition)
+                self?.exhaustNext(while: condition, completion: completion)
+            } else {
+                completion?()
             }
         }
     }

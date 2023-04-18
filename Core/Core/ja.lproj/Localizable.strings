@@ -944,6 +944,9 @@
 "Fail" = "失敗";
 
 /* No comment provided by engineer. */
+"Failed to Load Login Page" = "ログインページの読み込みに失敗しました";
+
+/* No comment provided by engineer. */
 "Failed to save image" = "画像の保存に失敗しました";
 
 /* No comment provided by engineer. */
@@ -1056,6 +1059,9 @@
 
 /* No comment provided by engineer. */
 "g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Go back and make sure you entered a valid institution name." = "元に戻って、有効な機関名を入力したことを確認してください。";
 
 /* No comment provided by engineer. */
 "Go to today" = "今日に進む";
@@ -2634,6 +2640,9 @@
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "そのような人物を見つけることができませんでした。";
+
+/* No comment provided by engineer. */
+"We received no response from the institution.\nGo back and make sure you entered a valid institution name." = "機関からは何の反応もありませんでした。\n元に戻って、有効な機関名を入力したことを確認してください。";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "2、3変更がありました。";

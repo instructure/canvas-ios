@@ -18,14 +18,17 @@
 
 import Combine
 
-public class DashboardViewModel: ObservableObject {
+public class DashboardContainerViewModel: ObservableObject {
     // MARK: - Inputs
+
     public let settingsButtonTapped = PassthroughSubject<Void, Never>()
 
     // MARK: - Outputs
+
     public let showSettings = PassthroughSubject<(view: UIViewController, viewSize: CGSize), Never>()
 
     // MARK: - Private Variables
+
     private var subscriptions = Set<AnyCancellable>()
 
     public init(environment: AppEnvironment) {

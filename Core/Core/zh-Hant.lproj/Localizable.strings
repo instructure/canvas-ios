@@ -944,6 +944,9 @@
 "Fail" = "失敗";
 
 /* No comment provided by engineer. */
+"Failed to Load Login Page" = "無法載入登入頁面";
+
+/* No comment provided by engineer. */
 "Failed to save image" = "無法儲存影像";
 
 /* No comment provided by engineer. */
@@ -1056,6 +1059,9 @@
 
 /* No comment provided by engineer. */
 "g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Go back and make sure you entered a valid institution name." = "請返回並確定您已輸入有效的機構名稱。";
 
 /* No comment provided by engineer. */
 "Go to today" = "前往今天";
@@ -2634,6 +2640,9 @@
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "我們找不到像那樣的人。";
+
+/* No comment provided by engineer. */
+"We received no response from the institution.\nGo back and make sure you entered a valid institution name." = "我們未收到來自機構的回應。\n請返回並確定您已輸入有效的機構名稱。";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "我們作出了一些變更。";

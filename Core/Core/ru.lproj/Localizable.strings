@@ -944,6 +944,9 @@
 "Fail" = "Ошибка";
 
 /* No comment provided by engineer. */
+"Failed to Load Login Page" = "Не удалось загрузить страницу входа в систему";
+
+/* No comment provided by engineer. */
 "Failed to save image" = "Не удалось сохранить изображение";
 
 /* No comment provided by engineer. */
@@ -1056,6 +1059,9 @@
 
 /* No comment provided by engineer. */
 "g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Go back and make sure you entered a valid institution name." = "Вернитесь назад и убедитесь в том, что вы ввели правильное название учреждения.";
 
 /* No comment provided by engineer. */
 "Go to today" = "Перейти к сегодня";
@@ -2634,6 +2640,9 @@
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "Мы не смогли найти никогда похожего.";
+
+/* No comment provided by engineer. */
+"We received no response from the institution.\nGo back and make sure you entered a valid institution name." = "Мы не получили ответ от учреждения.\nВернитесь назад и убедитесь в том, что вы ввели правильное название учреждения.";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "Мы добавили несколько изменений.";

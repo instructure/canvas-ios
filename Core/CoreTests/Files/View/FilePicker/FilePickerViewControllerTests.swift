@@ -16,28 +16,28 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 @testable import Core
 import TestsFoundation
 import VisionKit
+import XCTest
 
 class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate {
     var cancelled = false
-    func cancel(_ controller: FilePickerViewController) {
+    func cancel(_: FilePickerViewController) {
         cancelled = true
     }
 
     var submitted = false
-    func submit(_ controller: FilePickerViewController) {
+    func submit(_: FilePickerViewController) {
         submitted = true
     }
 
     var retried = false
-    func retry(_ controller: FilePickerViewController) {
+    func retry(_: FilePickerViewController) {
         retried = true
     }
 
-    func canSubmit(_ controller: FilePickerViewController) -> Bool {
+    func canSubmit(_: FilePickerViewController) -> Bool {
         return true
     }
 
@@ -82,7 +82,7 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
             file.bytesSent = 2
             try? UploadManager.shared.viewContext.save()
         }
-        XCTAssertEqual(controller.progressView.progress, 2/5)
+        XCTAssertEqual(controller.progressView.progress, 2 / 5)
         let cancelItem = controller.toolbarItems?[1]
         XCTAssertEqual(cancelItem?.title, controller.cancelButtonTitle)
 
@@ -147,7 +147,7 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
         controller.view.layoutIfNeeded()
         let tabBar = controller.sourcesTabBar!
         tabBar.delegate?.tabBar?(tabBar, didSelect: tabBar.items!.first!)
-        XCTAssertNil(router.presented, "document scanner not supported in simulator")
+        XCTAssertNil(router.presented)
     }
 
     func testRemoveFile() {
@@ -171,7 +171,7 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
 
 class MockImagePicker: UIImagePickerController {
     var dismissed = false
-    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+    override func dismiss(animated _: Bool, completion: (() -> Void)? = nil) {
         dismissed = true
         completion?()
     }

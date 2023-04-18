@@ -944,6 +944,9 @@
 "Fail" = "Không đạt";
 
 /* No comment provided by engineer. */
+"Failed to Load Login Page" = "Tải Trang Đăng Nhập Không Thành Công";
+
+/* No comment provided by engineer. */
 "Failed to save image" = "Lưu hình ảnh thất bại";
 
 /* No comment provided by engineer. */
@@ -1056,6 +1059,9 @@
 
 /* No comment provided by engineer. */
 "g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Go back and make sure you entered a valid institution name." = "Quay lại và đảm bảo rằng bạn đã nhập tên tổ chức hợp lệ.";
 
 /* No comment provided by engineer. */
 "Go to today" = "Đi đến hôm nay.";
@@ -2634,6 +2640,9 @@
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "Chúng tôi không tìm được người nào như vậy.";
+
+/* No comment provided by engineer. */
+"We received no response from the institution.\nGo back and make sure you entered a valid institution name." = "Bạn đã không nhận được phản hồi từ tổ chức.\nQuay lại và đảm bảo rằng bạn đã nhập tên tổ chức hợp lệ.";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "Chúng tôi đã thực hiện một số thay đổi.";
