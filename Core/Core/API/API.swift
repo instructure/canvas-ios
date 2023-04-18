@@ -209,7 +209,8 @@ public extension URLSession {
     static var ephemeral: URLSession = {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.urlCache = nil
-        return URLSession(configuration: configuration)
+        return URLSession(configuration: configuration, delegate: FollowRedirect(), delegateQueue: nil)
+
     }()
     static var noFollowRedirect = URLSession(configuration: .ephemeral, delegate: NoFollowRedirect(), delegateQueue: nil)
 }
@@ -225,3 +226,18 @@ public class NoFollowRedirect: NSObject, URLSessionTaskDelegate {
         completionHandler(nil)
     }
 }
+
+public class FollowRedirect: NSObject, URLSessionTaskDelegate {
+    public func urlSession(_ session: URLSession,
+                           task: URLSessionTask,
+                           willPerformHTTPRedirection response: HTTPURLResponse,
+                           newRequest request: URLRequest,
+                           completionHandler: @escaping (URLRequest?) -> Void) {
+        var newRequest = request
+        if let authorizationHeader = task.originalRequest?.value(forHTTPHeaderField: "Authorization"), request.url?.host == AppEnvironment.shared.currentSession?.baseURL.host {
+            newRequest.addValue(authorizationHeader, forHTTPHeaderField: "Authorization")
+        }
+        completionHandler(newRequest)
+    }
+}
+

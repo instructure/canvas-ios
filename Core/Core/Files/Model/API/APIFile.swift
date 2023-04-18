@@ -433,9 +433,6 @@ public struct PostFileUploadRequest: APIRequestable {
 
     public let cachePolicy = URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData
     public let method = APIMethod.post
-    public let headers: [String: String?] = [
-        HttpHeader.authorization: nil,
-    ]
     public var path: String {
         return target.upload_url.absoluteString
     }
