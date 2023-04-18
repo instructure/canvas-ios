@@ -56,7 +56,7 @@ public class FileUploadTargetRequester {
 
             let fileSize = fileItem.localFileURL.lookupFileSize()
             let body = PostFileUploadTargetRequest.Body(name: fileItem.localFileURL.lastPathComponent, on_duplicate: .rename, parent_folder_path: nil, size: fileSize)
-            let request = PostFileUploadTargetRequest(context: fileItem.fileSubmission.fileUploadContext, accessToken: AppEnvironment.shared.currentSession?.accessToken, body: body)
+            let request = PostFileUploadTargetRequest(context: fileItem.fileSubmission.fileUploadContext, body: body)
             api.makeRequest(request) { [self] response, _, error in
                 handleResponse(response, error: error, promise: promise)
             }

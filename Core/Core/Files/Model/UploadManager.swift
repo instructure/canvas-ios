@@ -153,7 +153,7 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
 
     private func requestFileUpload(fileURL url: URL, uploadContext: FileUploadContext, fileSize: Int, fileObjectID: NSManagedObjectID, folderPath: String? = nil, callback: (() -> Void)? = nil) {
         let body = PostFileUploadTargetRequest.Body(name: url.lastPathComponent, on_duplicate: .rename, parent_folder_path: folderPath, size: fileSize)
-        let request = PostFileUploadTargetRequest(context: uploadContext, accessToken: environment.currentSession?.accessToken, body: body)
+        let request = PostFileUploadTargetRequest(context: uploadContext, body: body)
         environment.api.makeRequest(request) { response, _, error in
             self.context.performAndWait {
                 defer { callback?() }
