@@ -233,8 +233,8 @@ public class FollowRedirect: NSObject, URLSessionTaskDelegate {
                            newRequest request: URLRequest,
                            completionHandler: @escaping (URLRequest?) -> Void) {
         var newRequest = request
-        if let authorizationHeader = task.originalRequest?.value(forHTTPHeaderField: "Authorization"), request.url?.host == AppEnvironment.shared.currentSession?.baseURL.host {
-            newRequest.addValue(authorizationHeader, forHTTPHeaderField: "Authorization")
+        if let authorizationHeader = task.originalRequest?.value(forHTTPHeaderField: HttpHeader.authorization), request.url?.host == AppEnvironment.shared.currentSession?.baseURL.host {
+            newRequest.addValue(authorizationHeader, forHTTPHeaderField: HttpHeader.authorization)
         }
         completionHandler(newRequest)
     }
