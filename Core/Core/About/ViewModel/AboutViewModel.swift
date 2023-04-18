@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import Combine
 
 public class AboutViewModel: ObservableObject {
     public static let DefaultEntries: [AboutInfoEntry] = [
@@ -29,7 +30,25 @@ public class AboutViewModel: ObservableObject {
     public let title = NSLocalizedString("About", comment: "")
     public let entries: [AboutInfoEntry]
 
+    private var subscriptions = Set<AnyCancellable>()
+
     public init(entries: [AboutInfoEntry] = DefaultEntries) {
         self.entries = entries
+
+        let observerStore = Store2(useCase: GetCourseListCourses(enrollmentState: .active))
+        observerStore.observeEntities(forceFetch: true, loadAllPages: true)
+            .sink { entities in
+                print("👋 ", entities)
+            }
+            .store(in: &subscriptions)
+
+        let fetchOnceStore = Store2(useCase: GetCourseListCourses(enrollmentState: .invited_or_pending))
+        fetchOnceStore.getEntities()
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { entities in
+                    print("🈯️ ", entities)
+                })
+            .store(in: &subscriptions)
     }
 }
