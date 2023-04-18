@@ -26,7 +26,43 @@ struct AssignmentDueDateItemView: View {
     }
 
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading, spacing: 0) {
+            Text(model.title)
+                .font(.heavy24).foregroundColor(.textDarkest)
+                .padding(16)
+            Section(
+                label: Text("For"),
+                content: Text(model.assignee)
+            )
+            Section(
+                label: Text("Available From"),
+                content: Text(model.from)
+                )
+            Section(
+                label: Text("Available Until"),
+                content: Text(model.until)
+            )
+        }
+    }
+
+    struct Section<Label: View, Content: View>: View {
+        let content: Content
+        let label: Label
+
+        init(label: Label, content: Content) {
+            self.content = content
+            self.label = label
+        }
+        var body: some View {
+            VStack(alignment: .leading, spacing: 0) {
+                label
+                    .font(.medium16).foregroundColor(.textDark)
+                    .padding(.bottom, 4)
+                content
+            }
+            .padding(16)
+            Divider().padding(.horizontal, 16)
+        }
     }
 }
 

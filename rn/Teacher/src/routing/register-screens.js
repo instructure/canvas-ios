@@ -17,7 +17,6 @@
 //
 
 // @flow
-import AssignmentDueDates from '../modules/assignment-due-dates/AssignmentDueDates'
 import Inbox from '../modules/inbox/Inbox'
 import Compose from '../modules/inbox/Compose'
 import AddressBook from '../modules/address-book/AddressBook'
@@ -29,7 +28,6 @@ import AssigneeSearch from '../modules/assignee-picker/AssigneeSearch'
 import CourseDetailsSplitViewPlaceholder from '../modules/courses/details/components/CourseDetailsSplitViewPlaceholder'
 import AttachmentView from '../common/components/AttachmentView'
 import Attachments from '../modules/attachments/Attachments'
-import PickerPage from '../common/components/PickerPage'
 import PushNotifications from '../modules/developer-menu/PushNotifications'
 import RatingRequest from '../modules/developer-menu/RatingRequest'
 import PageViewEvents from '../modules/developer-menu/PageViewEvents'
@@ -40,7 +38,6 @@ import { isTeacher, isStudent } from '../modules/app'
 
 export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/address-book', AddressBook, store)
-  registerScreen('/picker', PickerPage, store)
   registerScreen('/conversations', Inbox, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/conversations/compose', Compose, store)
   registerScreen('/conversations/:conversationID/add_message', Compose, store)
@@ -50,13 +47,13 @@ export function registerScreens (store: Store): void {
 
   registerScreen('/attachment', AttachmentView, store)
   registerScreen('/attachments', Attachments, store)
-  registerScreen('/courses/:courseID/placeholder', CourseDetailsSplitViewPlaceholder, store)
   registerScreen('/dev-menu', DeveloperMenu, store)
   registerScreen('/rating-request', RatingRequest, store)
   registerScreen('/push-notifications', PushNotifications, store)
   registerScreen('/page-view-events', PageViewEvents, store)
 
   registerScreen('/courses', null, store, { canBecomeMaster: true, deepLink: true })
+  registerScreen('/courses/:courseID/placeholder', null, store)
   registerScreen('/courses/:courseID', null, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID/tabs', null, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID/settings', null, store)
@@ -112,7 +109,6 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/syllabus', null, store, { deepLink: true })
 
   if (isTeacher()) {
-    registerScreen('/courses/:courseID/assignments/:assignmentID/due_dates', AssignmentDueDates, store)
     registerScreen('/courses/:courseID/assignments/:assignmentID/assignee-picker', AssigneePicker, store)
     registerScreen('/courses/:courseID/assignments/:assignmentID/assignee-search', AssigneeSearch, store)
 

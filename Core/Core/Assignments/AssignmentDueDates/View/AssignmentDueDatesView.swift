@@ -31,7 +31,6 @@ public struct AssignmentDueDatesView: View {
                 ForEach(model.dueDates) { dueDate in
                     AssignmentDueDateItemView(model: dueDate)
                 }
-
             }
         }
         .background(Color.backgroundLightest)

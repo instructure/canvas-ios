@@ -36,12 +36,18 @@ public class AssignmentDueDatesInteractorLive: AssignmentDueDatesInteractor {
         assignmentStore.statePublisher
             .subscribe(state)
             .store(in: &subscriptions)
-/*
+
         assignmentStore.allObjects
             .map {
-                Array($0.first?.allDates)
+                if let dates = $0.first?.allDates {
+                    return Array(dates)
+                } else {
+                    return []
+                }
+            }
+            .subscribe(dueDates)
+            .store(in: &subscriptions)
 
-*/
         assignmentStore.refresh()
     }
 }
