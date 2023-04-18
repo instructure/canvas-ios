@@ -366,7 +366,7 @@ public struct PostFileUploadTargetRequest: APIRequestable {
         let parent_folder_path: String?
         let size: Int
 
-        public init(name: String, on_duplicate: OnDuplicate, parent_folder_id: String? = nil, parent_folder_path: String? = nil, size: Int, accessToken: String? = nil) {
+        public init(name: String, on_duplicate: OnDuplicate, parent_folder_id: String? = nil, parent_folder_path: String? = nil, size: Int) {
             self.name = name
             self.on_duplicate = on_duplicate
             self.parent_folder_id = parent_folder_id
@@ -381,12 +381,7 @@ public struct PostFileUploadTargetRequest: APIRequestable {
 
     public let context: FileUploadContext
     public let body: Body?
-    public let accessToken: String?
     public let method: APIMethod = .post
-    public var headers: [String: String?] {
-        guard let token = accessToken else { return [HttpHeader.authorization: nil] }
-        return [HttpHeader.authorization: "Bearer \(token)"]
-    }
 
     public var cachePolicy: URLRequest.CachePolicy {
         return .reloadIgnoringLocalAndRemoteCacheData
@@ -405,9 +400,8 @@ public struct PostFileUploadTargetRequest: APIRequestable {
         }
     }
 
-    public init(context: FileUploadContext, accessToken: String? = nil, body: Body?) {
+    public init(context: FileUploadContext, body: Body?) {
         self.context = context
-        self.accessToken = accessToken
         self.body = body
     }
 }
@@ -419,35 +413,29 @@ public struct PostFileUploadRequest: APIRequestable {
     public let fileURL: URL
     public let target: FileUploadTarget
     public let loadBodyFromURL: Bool
-    public let accessToken: String?
 
     /**
          Creates an `APIRequestable` instance for file upload.
          - Parameters:
              - fileURL: The `URL` at which the file is located.
-             - target: `FileUploadTarget` for upload parameters.
-             - isBodyFromURL: By default it's set to **true** meaning that the request will try to read the data from a file.
-             - accessToken: The token to be passed in case of a redirection.
-            See `APIRequestable` for more details.
+             - target: `FileUploadTarget` for upload parameters
+             - isBodyFromURL: By default it's set to **true** meaning that the request will try to read the data from a file. See `APIRequestable` for more details.
      */
     public init(
         fileURL: URL,
         target: FileUploadTarget,
-        isBodyFromURL: Bool = true,
-        accessToken: String? = nil
+        isBodyFromURL: Bool = true
     ) {
         self.fileURL = fileURL
         self.target = target
         loadBodyFromURL = isBodyFromURL
-        self.accessToken = accessToken
     }
 
     public let cachePolicy = URLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData
     public let method = APIMethod.post
-    public var headers: [String: String?] {
-        guard let token = accessToken else { return [HttpHeader.authorization: nil]}
-        return [HttpHeader.authorization: "Bearer \(token)"]
-    }
+    public let headers: [String: String?] = [
+        HttpHeader.authorization: nil,
+    ]
     public var path: String {
         return target.upload_url.absoluteString
     }

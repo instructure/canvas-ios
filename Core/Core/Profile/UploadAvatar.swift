@@ -38,7 +38,7 @@ public class UploadAvatar {
     }
 
     func getTarget() {
-        let request = PostFileUploadTargetRequest(context: .myFiles, accessToken: env.currentSession?.accessToken, body: .init(
+        let request = PostFileUploadTargetRequest(context: .myFiles, body: .init(
             name: url.lastPathComponent,
             on_duplicate: .rename,
             parent_folder_path: "profile pictures",
@@ -57,8 +57,7 @@ public class UploadAvatar {
             PostFileUploadRequest(
                 fileURL: url,
                 target: target,
-                isBodyFromURL: false,
-                accessToken: env.currentSession?.accessToken
+                isBodyFromURL: false
             )
         ) { data, _, error in
             guard let id = data?.id.value, error == nil else {
