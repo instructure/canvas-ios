@@ -210,7 +210,6 @@ public extension URLSession {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.urlCache = nil
         return URLSession(configuration: configuration, delegate: FollowRedirect(), delegateQueue: nil)
-
     }()
     static var noFollowRedirect = URLSession(configuration: .ephemeral, delegate: NoFollowRedirect(), delegateQueue: nil)
 }
@@ -240,4 +239,3 @@ public class FollowRedirect: NSObject, URLSessionTaskDelegate {
         completionHandler(newRequest)
     }
 }
-
