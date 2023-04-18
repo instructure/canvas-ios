@@ -71,17 +71,17 @@ class PlannerTests: CoreUITestCase {
 
         PlannerCalendar.dayButton(year: y, month: m, day: 3).tap()
         PlannerList.event(id: "2236").waitToExist() // third
-        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 3).label(), "March 3, \(y), 4 events")
+        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 3).label(), "March 3, \(y), 3 events")
 
         PlannerList.event(id: "2236").tap()
         app.find(label: "third").waitToExist()
         NavBar.backButton.tap()
 
-        PlannerCalendar.dayButton(year: y, month: m, day: 4).tap()
+        PlannerCalendar.dayButton(year: y, month: m, day: 5).tap()
         PlannerList.emptyTitle.waitToExist()
         XCTAssertEqual(PlannerList.emptyTitle.label(), "No Events Today!")
         XCTAssertEqual(PlannerList.emptyLabel.label(), "It looks like a great day to rest, relax, and recharge.")
-        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 4).label(), "March 4, \(y), 0 events")
+        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 5).label(), "March 5, \(y), 0 events")
     }
 
     func testSwipes() {
@@ -130,7 +130,7 @@ class PlannerTests: CoreUITestCase {
     }
 
     func testCalendarFilter() {
-        PlannerCalendar.dayButton(year: y, month: m, day: 3).tap()
+        PlannerCalendar.dayButton(year: y, month: m, day: 2).tap()
         PlannerCalendar.monthButton.tap() // collapse
         PlannerCalendar.filterButton.tap()
         XCTAssertEqual(PlannerFilter.headerLabel.label(), "Tap to select the courses you want to see on the calendar.")
@@ -142,8 +142,8 @@ class PlannerTests: CoreUITestCase {
         assignments().tap()
         XCTAssertEqual(assignments().isSelected, false)
         NavBar.backButton(label: "Done").tap()
-        PlannerList.event(id: "23334").waitToVanish()
-        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 3).label(), "March 3, \(y), 3 events")
+        PlannerList.event(id: "2234").waitToVanish()
+        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 2).label(), "March 2, \(y), 2 events")
 
         PlannerCalendar.filterButton.tap()
         // At this point each filter's selected state is being loaded. The UI starts with empty selectors so we don't
@@ -154,10 +154,10 @@ class PlannerTests: CoreUITestCase {
         assignments().tap()
         XCTAssertEqual(assignments().isSelected, true)
         NavBar.backButton(label: "Done").tap()
-        PlannerList.event(id: "23334").waitToExist()
-        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 3).label(), "March 3, \(y), 4 events")
+        PlannerList.event(id: "2234").waitToExist()
+        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 2).label(), "March 2, \(y), 4 events")
 
-        PlannerList.event(id: "23334").tap()
-        app.find(label: "This exists just for testing the planner").waitToExist()
+        PlannerList.event(id: "2234").tap()
+        app.find(label: "second").waitToExist()
     }
 }
