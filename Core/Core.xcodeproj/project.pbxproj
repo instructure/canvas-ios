@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -142,6 +142,7 @@
 		1B16EB5E9FB5B32051FD8DA1 /* ContextCardSubmissionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B06A2D9A9EE66CA8A535524 /* ContextCardSubmissionsView.swift */; };
 		1B1E10C907CEE77971005E1E /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 13FCF13DF2AC3D5312FA82A4 /* .swiftlint.yml */; };
 		1B5E29BACBB50B9412A0693A /* MasteryPathAssignmentSetDivider.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46F4E1F07CFEFEF8A2746A7B /* MasteryPathAssignmentSetDivider.xib */; };
+		1C489F06FA56A379700B0A40 /* ConfirmationAlertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1DD933B64BC34037A8D1FE /* ConfirmationAlertTests.swift */; };
 		1C58EFADDFA7D805D2A9AA94 /* UINavigationBarExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9E952584BDF03F6E83581C /* UINavigationBarExtensions.swift */; };
 		1C86551DAD4BF63B6FC66C51 /* GetEnabledFeatureFlagsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D794CE2E7BC135AA6E5339F8 /* GetEnabledFeatureFlagsRequest.swift */; };
 		1CC61E3817A7FBADF5288AB5 /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43FDEDEAEDE882A7AFD945B /* Brand.swift */; };
@@ -1044,6 +1045,7 @@
 		BE46BFD1F5718B24DB93E1BD /* K5ScheduleEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E878EFC35C189D70F1DFC9DF /* K5ScheduleEntryViewModel.swift */; };
 		BE4EEF28DD05562FA1C28E17 /* SyllabusEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEEC1557E35A07662148D0F /* SyllabusEditorView.swift */; };
 		BE5E0D6C957CFD38D0155952 /* APIUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B251A6BBCC60FFF431C150DB /* APIUserTests.swift */; };
+		BE775653CCB1EF925E263040 /* ConfirmationAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FB1FDE58D78AC3EFFDB0B4 /* ConfirmationAlert.swift */; };
 		BE9A702335DF64FBAA00F4E9 /* CourseDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E16677AE71E7A605D60C693 /* CourseDetailsViewModel.swift */; };
 		BF0A0F8A10BFDD7A5C19A2F3 /* K5ScheduleViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D134AC5D975BF3D9C35BF2F /* K5ScheduleViewModelTests.swift */; };
 		BF40752F66B259254CDB927B /* GetEnvironmentFeatureFlagsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972FD90722B1C2E476D08896 /* GetEnvironmentFeatureFlagsRequest.swift */; };
@@ -1977,7 +1979,7 @@
 		4BD5DD42D6197C30DAC5415E /* AssignmentAssigneePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentAssigneePicker.swift; sourceTree = "<group>"; };
 		4BF8139D888212DC95299155 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4BF91515A5A28F35FBD75E03 /* GetObservedStudents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetObservedStudents.swift; sourceTree = "<group>"; };
-		4C02C87B4FD4AD4D7489EE6D /* TestImage.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestImage.svg; sourceTree = "<group>"; };
+		4C02C87B4FD4AD4D7489EE6D /* TestImage.svg */ = {isa = PBXFileReference; path = TestImage.svg; sourceTree = "<group>"; };
 		4C11E387DD144E7B7A7D7405 /* DateSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSection.swift; sourceTree = "<group>"; };
 		4C310E09D98CD58CE1C3D781 /* AssignmentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentListViewModel.swift; sourceTree = "<group>"; };
 		4C752E0B19740ED52EDFF264 /* CoursePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursePickerViewModel.swift; sourceTree = "<group>"; };
@@ -2174,6 +2176,7 @@
 		69C6ACB2CA1DA0D6FD08615A /* APIRubric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRubric.swift; sourceTree = "<group>"; };
 		69C89BCD841FB189E85707E4 /* ContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardViewModel.swift; sourceTree = "<group>"; };
 		6A015403E7E12F833B8AC139 /* GetContextTabsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextTabsTest.swift; sourceTree = "<group>"; };
+		6A1DD933B64BC34037A8D1FE /* ConfirmationAlertTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationAlertTests.swift; sourceTree = "<group>"; };
 		6A79D4D221B7A3F93B0976DE /* K5HomeroomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomViewModel.swift; sourceTree = "<group>"; };
 		6A7DE15F8119BAC967AB03C5 /* Assignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment.swift; sourceTree = "<group>"; };
 		6A938C507337C7A77C47494D /* ConversationParticipant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationParticipant.swift; sourceTree = "<group>"; };
@@ -2532,7 +2535,7 @@
 		A2BF01404113FB190130FEF2 /* APIListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIListTests.swift; sourceTree = "<group>"; };
 		A352C359FEF9F433F0479815 /* AppStoreReviewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreReviewTests.swift; sourceTree = "<group>"; };
 		A39C7A23AEDFA7CAA2A6DDEB /* APIRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestableTests.swift; sourceTree = "<group>"; };
-		A42096D6B21359616953C14C /* preview_test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = preview_test.mp4; sourceTree = "<group>"; };
+		A42096D6B21359616953C14C /* preview_test.mp4 */ = {isa = PBXFileReference; path = preview_test.mp4; sourceTree = "<group>"; };
 		A428BBF27D3A0637022B49F2 /* FileListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListViewControllerTests.swift; sourceTree = "<group>"; };
 		A42E6D4DF3963671589B5A3A /* DashboardCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCardTests.swift; sourceTree = "<group>"; };
 		A43DD0C2A830D421979AEF65 /* InboxMessageScopeFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageScopeFilterTests.swift; sourceTree = "<group>"; };
@@ -2948,6 +2951,7 @@
 		E63874B22907E4203CE202A6 /* AboutViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModelTests.swift; sourceTree = "<group>"; };
 		E660BA17A87F6B0D17FB705F /* CourseSectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSectionTests.swift; sourceTree = "<group>"; };
 		E6EF16BAD60332D4C5D28CC5 /* QuizListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizListViewController.swift; sourceTree = "<group>"; };
+		E6FB1FDE58D78AC3EFFDB0B4 /* ConfirmationAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationAlert.swift; sourceTree = "<group>"; };
 		E6FF50829E8BB2D64C2C9ABA /* UIWindowExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExtensionsTests.swift; sourceTree = "<group>"; };
 		E743B7C668F7B90BAD0C2F3A /* DispatchExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchExtensions.swift; sourceTree = "<group>"; };
 		E7AA5BF16FB919BFCDB3012A /* ModuleSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleSectionHeaderView.swift; sourceTree = "<group>"; };
@@ -7014,6 +7018,7 @@
 			children = (
 				19CD1263396ED2F33ECCC0E8 /* TopBar */,
 				DDF8CCBE68133D937B373DC0 /* UIKitSwiftUIBridging */,
+				6A1DD933B64BC34037A8D1FE /* ConfirmationAlertTests.swift */,
 				886BAEE04736A54ECA573A63 /* CoreDatePickerTests.swift */,
 			);
 			path = SwiftUIViews;
@@ -7032,6 +7037,7 @@
 				ADE954EF8FBBD8539E8E77D5 /* ViewPreferences */,
 				CE063D98DE947BC659237F40 /* AccessIcon.swift */,
 				A54E2246CD24105513606843 /* Avatar.swift */,
+				E6FB1FDE58D78AC3EFFDB0B4 /* ConfirmationAlert.swift */,
 				17B0ECD8F56A853C45B9BD5C /* CoreDatePicker.swift */,
 				B0BCCB262F87C6FE1D7BF597 /* CustomTextField.swift */,
 				89D71DB3F2B3442B2DC96672 /* DisclosureIndicator.swift */,
@@ -7998,6 +8004,7 @@
 				82369D84C18C81A912A19D74 /* ConferenceDetailsViewControllerTests.swift in Sources */,
 				F706A3F72D00E7D1A99AF177 /* ConferenceListViewControllerTests.swift in Sources */,
 				0CDF4F1AF2B3F4CA5452B55B /* ConferenceTests.swift in Sources */,
+				1C489F06FA56A379700B0A40 /* ConfirmationAlertTests.swift in Sources */,
 				F3CD0D39C3A913A8EB75B502 /* ContextCardTests.swift in Sources */,
 				C4B7303D48105DF4CDE2F7CD /* ContextColorTests.swift in Sources */,
 				C5691F7595579E11558DD2C0 /* ContextModelTests.swift in Sources */,
@@ -8539,6 +8546,7 @@
 				CE4487612FDBB05A6D2E99DE /* ConferenceDetailsViewController.swift in Sources */,
 				3B59052943074795463524AF /* ConferenceListViewController.swift in Sources */,
 				CE643DC03312A0867F0F7AAD /* ConferencesPanda.swift in Sources */,
+				BE775653CCB1EF925E263040 /* ConfirmationAlert.swift in Sources */,
 				AACE1DB9A0F7899C1F61A990 /* Context.swift in Sources */,
 				2D74FDC97C1A0A7EFFFB0065 /* ContextButton.swift in Sources */,
 				07CD554C64FBEC1E80134BF4 /* ContextCardBoxView.swift in Sources */,
