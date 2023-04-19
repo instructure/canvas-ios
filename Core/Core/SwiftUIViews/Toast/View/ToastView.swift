@@ -19,23 +19,31 @@
 import SwiftUI
 
 struct ToastView: View {
-    public static let Height: CGFloat = 48
     public let text: String
-    @Environment(\.colorScheme) var colorScheme
+
+    @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.horizontalSizeClass) private var horizontalSize
+    private let padding: CGFloat = 16
+    private var maxWidth: CGFloat? {
+        horizontalSize == .compact ? .infinity : nil
+    }
 
     public var body: some View {
-        ZStack(alignment: .leading) {
-            RoundedRectangle(cornerSize: CGSize(width: 6, height: 6))
-                .foregroundColor(colorScheme == .dark ? .white : .backgroundDarkest)
-                .frame(height: Self.Height)
-            Text(text)
-                .font(.regular14, lineHeight: .fit)
-                .padding(16)
-                .foregroundColor(colorScheme == .light ? .textLightest : .licorice)
-        }
-        .padding(.horizontal, 9)
-        .frame(height: Self.Height)
-        .padding(.bottom, 16)
+        Text(text)
+            .lineLimit(2)
+            .frame(minWidth: 300, maxWidth: maxWidth, alignment: .leading)
+            .font(.regular14, lineHeight: .fit)
+            .padding(padding)
+            // Use textLightest unconditionally when palette is updated
+            .foregroundColor(colorScheme == .light ? .textLightest : .licorice)
+            .background {
+                RoundedRectangle(cornerSize: CGSize(width: 6, height: 6))
+                    // Use backgroundDarkest unconditionally when palette is updated
+                    .foregroundColor(colorScheme == .dark ? .white : .backgroundDarkest)
+            }
+            .padding(.horizontal, padding)
+            .frame(minHeight: 48)
+            .padding(.bottom, padding)
     }
 }
 
@@ -47,7 +55,14 @@ struct ToastView_Previews: PreviewProvider {
             Color.backgroundLightest
             VStack(spacing: 0) {
                 ToastView(text: "File deleted.")
-                ToastView(text: "Really long text to check what happens when it spans to multiple lines.")
+                ToastView(text:
+                                """
+                                Really long text to check what happens when it spans to \
+                                multiple lines. Really long text to check what \
+                                happens when it spans to multiple lines. Really long \
+                                text to check what happens when it spans to multiple \
+                                lines.
+                                """)
             }
         }
         .background(.red)
