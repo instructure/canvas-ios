@@ -21,7 +21,7 @@ import TestsFoundation
 
 class PlannerTests: CoreUITestCase {
     let calendar = Calendar.current
-    let y = 2020
+    let y = 2023
     let m = 3
     lazy var reference = DateComponents(calendar: .current, year: y, month: m, day: 1).date!
 
@@ -71,7 +71,7 @@ class PlannerTests: CoreUITestCase {
 
         PlannerCalendar.dayButton(year: y, month: m, day: 3).tap()
         PlannerList.event(id: "2236").waitToExist() // third
-        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 3).label(), "March 3, \(y), 3 events")
+        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 3).label(), "March 3, \(y), 4 events")
 
         PlannerList.event(id: "2236").tap()
         app.find(label: "third").waitToExist()
