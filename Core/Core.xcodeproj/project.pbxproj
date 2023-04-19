@@ -23,6 +23,7 @@
 		0187F32C12EF33B4D8E0A651 /* GetGroupsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48E201DA0874CE26B423859 /* GetGroupsTests.swift */; };
 		0215A9C5E8E7B2EB71092873 /* GetFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5B788C76651147C12CC7FD /* GetFile.swift */; };
 		024704F565C61DECF256418E /* CalendarDaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242276411E0D174287066C6 /* CalendarDaysViewController.swift */; };
+		02552269B69D45816040E097 /* ToastViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14EF6C4BF522300F88342444 /* ToastViewModelTests.swift */; };
 		025DBADB30B66B2A21FA6C6E /* K5ScheduleDayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E616B25EC360DE86159EC86 /* K5ScheduleDayViewModel.swift */; };
 		025EA9A96E5BED2588152AEB /* AboutViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63874B22907E4203CE202A6 /* AboutViewModelTests.swift */; };
 		02F669F394104B220EA5EA5B /* ConversationCoursesActionSheetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995704AB4B7CA8FBBBF42F14 /* ConversationCoursesActionSheetTests.swift */; };
@@ -1617,6 +1618,7 @@
 		14C286A990BE591022999C25 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Main.strings; sourceTree = "<group>"; };
 		14CD0262DAB15588F58F27D0 /* Plannable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plannable.swift; sourceTree = "<group>"; };
 		14D574E5B2EB2CB4D19C4F92 /* CourseListItemSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListItemSearchTests.swift; sourceTree = "<group>"; };
+		14EF6C4BF522300F88342444 /* ToastViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastViewModelTests.swift; sourceTree = "<group>"; };
 		15154DB2F9F5F7C5F78DF5EB /* MockAnalyticsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAnalyticsHandler.swift; sourceTree = "<group>"; };
 		154AFFC414CC0A0C52B7A557 /* confetti.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = confetti.json; sourceTree = "<group>"; };
 		15E13D146F040A7DB7964CB8 /* ModuleItemDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ModuleItemDetailsViewController.storyboard; sourceTree = "<group>"; };
@@ -6812,6 +6814,14 @@
 			path = FileUploadProgress;
 			sourceTree = "<group>";
 		};
+		D161C528673B142AD74E148C /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				14EF6C4BF522300F88342444 /* ToastViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		D20D538594DCA04B37300B9C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -7051,12 +7061,21 @@
 		E23A8DEF257706A56B749495 /* SwiftUIViews */ = {
 			isa = PBXGroup;
 			children = (
+				E2C5F5F3B84D54A275FAD570 /* Toast */,
 				19CD1263396ED2F33ECCC0E8 /* TopBar */,
 				DDF8CCBE68133D937B373DC0 /* UIKitSwiftUIBridging */,
 				6A1DD933B64BC34037A8D1FE /* ConfirmationAlertTests.swift */,
 				886BAEE04736A54ECA573A63 /* CoreDatePickerTests.swift */,
 			);
 			path = SwiftUIViews;
+			sourceTree = "<group>";
+		};
+		E2C5F5F3B84D54A275FAD570 /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				D161C528673B142AD74E148C /* ViewModel */,
+			);
+			path = Toast;
 			sourceTree = "<group>";
 		};
 		E2C61B43B5FC17EF7944E305 /* SwiftUIViews */ = {
@@ -8376,6 +8395,7 @@
 				9DFB17AF0D9A563B5188BC47 /* TermsOfServiceViewControllerTests.swift in Sources */,
 				6B0939C84E309FAA683FC3D6 /* TestOperationQueue.swift in Sources */,
 				AA05564C5AF63F1704E26CD6 /* TitleSubtitleViewTests.swift in Sources */,
+				02552269B69D45816040E097 /* ToastViewModelTests.swift in Sources */,
 				FDFC1C50B74CBDB04BD2A8D1 /* TodoListViewControllerTests.swift in Sources */,
 				D900D0E084C2956E4BE3FF20 /* TodoTests.swift in Sources */,
 				73F9030BEC7E6831EC6B16FA /* TopBarViewModelTests.swift in Sources */,
