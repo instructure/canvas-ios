@@ -173,7 +173,7 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
   }
 
   viewToastTest = () => {
-    this.props.navigator.show('/dev-menu/toast')
+    this.props.navigator.show('/dev-menu/toast', { modal: true, modalPresentationStyle: 'fullscreen', embedInNavigationController: true })
   }
 
   viewWebSitePreview = async () => {

@@ -32,6 +32,8 @@ struct ToastViewModifier: ViewModifier {
                         }
                 }
             }
+            // iOS 15 disappear animation didn't play without this frame modifier
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             .animation(.easeInOut(duration: ToastViewModel.AnimationTime), value: viewModel.visibleToast)
             .allowsHitTesting(false)
             .accessibilityHidden(true)
