@@ -297,6 +297,10 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         CoreHostingController(WebSitePreviewView())
     },
 
+    "/dev-menu/toast": { _, _, _ in
+        CoreHostingController(ToastTestView())
+    },
+
     "/profile": { _, _, _ in
         return CoreHostingController(SideMenuView(.teacher), customization: SideMenuTransitioningDelegate.applyTransitionSettings)
     },

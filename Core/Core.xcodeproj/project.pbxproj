@@ -74,6 +74,7 @@
 		0C7B7C44FD9D01D2370AF7D4 /* K5ScheduleItemInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401FFA50DDCE927883184DEE /* K5ScheduleItemInfoTests.swift */; };
 		0C813189B3179C04DD6B2647 /* QuizDateSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B638C90D683079FDCDF360 /* QuizDateSectionViewModel.swift */; };
 		0CA5AE8DC4907F5FA438F4CA /* DocViewerAnnotationProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B940D4E2858A889288C7E46 /* DocViewerAnnotationProviderTests.swift */; };
+		0CB9FB2B4F85B3AA7FF20CCC /* ToastTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916E893F3A0D2806FA2A7DAA /* ToastTestView.swift */; };
 		0CDF4F1AF2B3F4CA5452B55B /* ConferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF695463646696F29EB7ACA /* ConferenceTests.swift */; };
 		0D62FB661E27BF9367AF408F /* lato_italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 41C97672C2CD4FD6CDC5B7E1 /* lato_italic.ttf */; };
 		0DB0158F40AD123868D12089 /* DashboardCourseCardListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC252ABCB942A42AF0E2032 /* DashboardCourseCardListInteractor.swift */; };
@@ -404,6 +405,7 @@
 		49AB627B57F0AB9B590F78A1 /* ListFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB28DA824C42BA6567D14CC /* ListFormatterTests.swift */; };
 		49C4447A3D1C0C70FB4EEF92 /* ID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108AFDD475E052C3890311BB /* ID.swift */; };
 		49C5B76025E22799175B83EA /* Submission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C5118085B80784ADF14142 /* Submission.swift */; };
+		49CCBBE2E09C81E5EB2A64DF /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029071D3048B5E694E56A162 /* ToastView.swift */; };
 		49D777908625C66E5A8A2AE7 /* MotionDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D1FCDC915E3D56F933549B /* MotionDetector.swift */; };
 		49E26151E02CA72C34EE514B /* K5ResourcesContactInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C7AAB869C97E1728095FF1 /* K5ResourcesContactInfoView.swift */; };
 		4A0839513E5365168AE81823 /* AssignmentGroupViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022FD9BDD002B6A9278EC28E /* AssignmentGroupViewModelTests.swift */; };
@@ -560,6 +562,7 @@
 		65558E22B5A24AE3D9A78B43 /* DiscussionDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C90C70C1C994E0372260DEED /* DiscussionDetailsViewController.storyboard */; };
 		65860D8782E1C164C177845C /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283FD1E3FABC64568EF817A5 /* UIColorExtensions.swift */; };
 		6593446368C93EEFBA9BD7E3 /* ScreenViewTrackableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE965E5F31352039183E32B8 /* ScreenViewTrackableViewController.swift */; };
+		65B9A76A94A2201DFB809E18 /* ToastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B834443398A2AF78961CAECF /* ToastViewModel.swift */; };
 		65F2B311DE9AC9B215B0944D /* CoursePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C752E0B19740ED52EDFF264 /* CoursePickerViewModel.swift */; };
 		6610B391B052529B10FA2649 /* DashboardInvitationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2194957EFF9E998B69DFE2FD /* DashboardInvitationName.swift */; };
 		6669FC5E6F6ED42D5ABE7A28 /* ListSelectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B2414B16554C07512AD9F9 /* ListSelectionViewModelTests.swift */; };
@@ -751,6 +754,7 @@
 		859CF339BC96EC1EB1C81BE2 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995AF66A8B5294FE7C37C54A /* ArrayExtensions.swift */; };
 		85B2053577C59C6DDECD0D8E /* FilePickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C57A99E23AA37127B23EE41 /* FilePickerTests.swift */; };
 		862546271FFB6C7E6F6563E8 /* LoggerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E107AE8148A79BA4653BBE83 /* LoggerExtensions.swift */; };
+		862CF654FCC3543A76CD0DFA /* ToastViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5690A763B82A24EBA7168D9 /* ToastViewModifier.swift */; };
 		865EE3DD688BF572B835E9A7 /* CommunicationChannelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025E343B90388BAD2A027023 /* CommunicationChannelTests.swift */; };
 		86F31CCE29F59313CB0EDE9B /* DocViewerAnnotationStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B86D5A28FBCF70DE68011B /* DocViewerAnnotationStateManager.swift */; };
 		870CF58A765808AE65275890 /* CourseDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0769DE5616D7B9C4C930E048 /* CourseDetailsView.swift */; };
@@ -1495,6 +1499,7 @@
 		02552E2637B6C7D865BE5E6B /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "en-GB"; path = "en-GB.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		025E343B90388BAD2A027023 /* CommunicationChannelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationChannelTests.swift; sourceTree = "<group>"; };
 		026306C5D0B6912F2B1FC0C1 /* ViewModelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelState.swift; sourceTree = "<group>"; };
+		029071D3048B5E694E56A162 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		02A05573543CD504DA65350D /* AvatarGroupViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarGroupViewTests.swift; sourceTree = "<group>"; };
 		02AC4A482793512AE0211360 /* PageViewSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewSessionTests.swift; sourceTree = "<group>"; };
 		0360570966EB35CEC6F76DFA /* FileUploadProgressObserverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadProgressObserverTests.swift; sourceTree = "<group>"; };
@@ -2431,6 +2436,7 @@
 		91000911EE6B8908833D293D /* GetAllQuizSubmissionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllQuizSubmissionsTests.swift; sourceTree = "<group>"; };
 		913EA4AA26F3C17513E1BDD1 /* DocViewerViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DocViewerViewController.storyboard; sourceTree = "<group>"; };
 		9148CF08DC7CDE238D72ACFE /* APIAccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAccountTests.swift; sourceTree = "<group>"; };
+		916E893F3A0D2806FA2A7DAA /* ToastTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastTestView.swift; sourceTree = "<group>"; };
 		91956458E65DEC161379670F /* PageViewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewEvent.swift; sourceTree = "<group>"; };
 		91BF4C90494840EB4E22383A /* InboxMessageContextFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageContextFilter.swift; sourceTree = "<group>"; };
 		91D33F4B4C39D3F8136047FF /* TransactionExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionExtensionTests.swift; sourceTree = "<group>"; };
@@ -2661,6 +2667,7 @@
 		B7C9D0E55E1B7775E6DC9459 /* InboxViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxViewModelTests.swift; sourceTree = "<group>"; };
 		B80F9C7EFC3019941FF10C40 /* PageViewEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewEventTests.swift; sourceTree = "<group>"; };
 		B81566990034550B4A4B619E /* EmbeddedWebPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedWebPageViewModel.swift; sourceTree = "<group>"; };
+		B834443398A2AF78961CAECF /* ToastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastViewModel.swift; sourceTree = "<group>"; };
 		B83CECA29287C9514E02A455 /* FileUploadNotificationCardItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCardItemViewModel.swift; sourceTree = "<group>"; };
 		B89020C473995D7B373DCD72 /* APIMediaComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIMediaComment.swift; sourceTree = "<group>"; };
 		B8B047E37CBC5A710B7B37D6 /* AssignmentDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsView.swift; sourceTree = "<group>"; };
@@ -2940,6 +2947,7 @@
 		E51F32B5254FBD8267A65B93 /* K5HomeroomSubjectCardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomSubjectCardViewModelTests.swift; sourceTree = "<group>"; };
 		E544A3145A9D3918FB567CB8 /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		E565D8E3FFEAD5F083D35CE5 /* FilePreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePreviewProvider.swift; sourceTree = "<group>"; };
+		E5690A763B82A24EBA7168D9 /* ToastViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastViewModifier.swift; sourceTree = "<group>"; };
 		E5B2414B16554C07512AD9F9 /* ListSelectionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectionViewModelTests.swift; sourceTree = "<group>"; };
 		E5C914ED052B11B1D506C226 /* en-AU-unimelb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "en-AU-unimelb"; path = "en-AU-unimelb.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		E5D17D9D53C855916D2B410B /* AppBackgroundHelperProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBackgroundHelperProtocol.swift; sourceTree = "<group>"; };
@@ -4200,6 +4208,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		3B14D23369C29D02F61EF271 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B834443398A2AF78961CAECF /* ToastViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		3CCBA8BE8D6137ECCA8BF47E /* Quizzes */ = {
 			isa = PBXGroup;
 			children = (
@@ -4295,6 +4311,16 @@
 				C0CC82562D352809583B9955 /* MockURLSession.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		425FAA15374F25FB1D939171 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				916E893F3A0D2806FA2A7DAA /* ToastTestView.swift */,
+				029071D3048B5E694E56A162 /* ToastView.swift */,
+				E5690A763B82A24EBA7168D9 /* ToastViewModifier.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		433ACEDEFAF12BA60446D049 /* Syllabus */ = {
@@ -4672,6 +4698,15 @@
 				2A0E3CAB62083B565F1EA29C /* AssignmentListView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		58B9AB1EA51DCE7F1A4A9EDC /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				425FAA15374F25FB1D939171 /* View */,
+				3B14D23369C29D02F61EF271 /* ViewModel */,
+			);
+			path = Toast;
 			sourceTree = "<group>";
 		};
 		58E667F8223E6F12E8CB3823 /* ViewModel */ = {
@@ -7032,6 +7067,7 @@
 				E41CE2034B1EB5A268DC66BA /* HorizontalPager */,
 				C3266DF41AC3EE6DE29812BA /* Pandas */,
 				F7AC349758614D157135C593 /* ProgressViewStyle */,
+				58B9AB1EA51DCE7F1A4A9EDC /* Toast */,
 				EF6411B19B50D5CAC78E0CAD /* TopBar */,
 				AD0DC2DD5206FDA85595D681 /* UIKitSwiftUIBridging */,
 				ADE954EF8FBBD8539E8E77D5 /* ViewPreferences */,
@@ -9128,6 +9164,10 @@
 				5EEE6BA70DC771CF136ECC53 /* TermsOfServiceViewController.swift in Sources */,
 				20CE8D80B87E6A29C843E479 /* TestIdentifier.swift in Sources */,
 				6D1ED8CCC4AF49EFC1BD29E8 /* TitleSubtitleView.swift in Sources */,
+				0CB9FB2B4F85B3AA7FF20CCC /* ToastTestView.swift in Sources */,
+				49CCBBE2E09C81E5EB2A64DF /* ToastView.swift in Sources */,
+				65B9A76A94A2201DFB809E18 /* ToastViewModel.swift in Sources */,
+				862CF654FCC3543A76CD0DFA /* ToastViewModifier.swift in Sources */,
 				48FC109138063DFE0B0DBC24 /* Todo.swift in Sources */,
 				35592A9A9B1477D41DA36BF1 /* TodoListViewController.swift in Sources */,
 				FC357A8C66BEF6AA9A55EA40 /* TokenLabelView.swift in Sources */,

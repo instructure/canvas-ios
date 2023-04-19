@@ -357,6 +357,10 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         CoreHostingController(WebSitePreviewView())
     },
 
+    "/dev-menu/toast": { _, _, _ in
+        CoreHostingController(ToastTestView())
+    },
+
     "/logs": { _, _, _ in
         return LogEventListViewController.create()
     },
