@@ -944,6 +944,9 @@
 "Fail" = "Falhou";
 
 /* No comment provided by engineer. */
+"Failed to Load Login Page" = "Falha em Carregar Página de Início de Secção";
+
+/* No comment provided by engineer. */
 "Failed to save image" = "Falha ao salvar a imagem";
 
 /* No comment provided by engineer. */
@@ -1056,6 +1059,9 @@
 
 /* No comment provided by engineer. */
 "g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Go back and make sure you entered a valid institution name." = "Volta atrás e certifica-te de que introduziste um nome de instituição válido.";
 
 /* No comment provided by engineer. */
 "Go to today" = "Ir para hoje";
@@ -2634,6 +2640,9 @@
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "Não conseguíamos encontrar alguém assim.";
+
+/* No comment provided by engineer. */
+"We received no response from the institution.\nGo back and make sure you entered a valid institution name." = "Não recebemos qualquer resposta da instituição.\nVolta atrás e certifica-te de que introduziste um nome de instituição válido.";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "Nós fizemos algumas alterações.";

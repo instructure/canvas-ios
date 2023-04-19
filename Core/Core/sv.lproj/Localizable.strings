@@ -944,6 +944,9 @@
 "Fail" = "Misslyckades";
 
 /* No comment provided by engineer. */
+"Failed to Load Login Page" = "Det gick inte att läsa in inloggningssidan";
+
+/* No comment provided by engineer. */
 "Failed to save image" = "Det gick inte att spara bilden";
 
 /* No comment provided by engineer. */
@@ -1056,6 +1059,9 @@
 
 /* No comment provided by engineer. */
 "g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Go back and make sure you entered a valid institution name." = "Gå tillbaka och kontrollera att du angav ett giltigt namn på lärosätet.";
 
 /* No comment provided by engineer. */
 "Go to today" = "Gå till i dag";
@@ -2634,6 +2640,9 @@
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "Det gick inte att hitta någon med de egenskaperna.";
+
+/* No comment provided by engineer. */
+"We received no response from the institution.\nGo back and make sure you entered a valid institution name." = "Vi har inte fått svar från lärosätet.\nGå tillbaka och kontrollera att du angav ett giltigt namn på lärosätet.";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "Vi har gjort några ändringar.";

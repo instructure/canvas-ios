@@ -944,6 +944,9 @@
 "Fail" = "Rahua";
 
 /* No comment provided by engineer. */
+"Failed to Load Login Page" = "I rahua te uta i te whaarangi takiuru";
+
+/* No comment provided by engineer. */
 "Failed to save image" = "I rahua te tiaki i te āhua";
 
 /* No comment provided by engineer. */
@@ -1056,6 +1059,9 @@
 
 /* No comment provided by engineer. */
 "g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Go back and make sure you entered a valid institution name." = "Hoki atu kia mohio kua whakauruhia e koe he ingoa whare whaimana.";
 
 /* No comment provided by engineer. */
 "Go to today" = "Haere ki te rā";
@@ -2634,6 +2640,9 @@
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "Kaore i kitea e mātua he tangata pēna.";
+
+/* No comment provided by engineer. */
+"We received no response from the institution.\nGo back and make sure you entered a valid institution name." = "Kaore ano kia tae mai he whakautu mai i te whare wananga.\nHoki atu kia mohio kua whakauruhia e koe he ingoa whare whaimana.";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "I mahia e mātou he rerekētanga iti";

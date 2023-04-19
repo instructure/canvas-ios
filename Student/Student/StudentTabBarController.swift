@@ -70,7 +70,7 @@ class StudentTabBarController: UITabBarController {
             tabBarImage =  .homeroomTab
             tabBarImageSelected = .homeroomTabActive
         } else {
-            let dashboard = CoreHostingController(DashboardCardView(shouldShowGroupList: true,
+            let dashboard = CoreHostingController(DashboardContainerView(shouldShowGroupList: true,
                                                                     showOnlyTeacherEnrollment: false))
             result = DashboardContainerViewController(rootViewController: dashboard) { HelmSplitViewController() }
 

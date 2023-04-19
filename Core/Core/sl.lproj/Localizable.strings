@@ -944,6 +944,9 @@
 "Fail" = "Neuspelo";
 
 /* No comment provided by engineer. */
+"Failed to Load Login Page" = "Nalaganje strani za prijavo ni uspelo";
+
+/* No comment provided by engineer. */
 "Failed to save image" = "Shranjevanje slike ni uspelo.";
 
 /* No comment provided by engineer. */
@@ -1056,6 +1059,9 @@
 
 /* No comment provided by engineer. */
 "g_pts" = "g_pts";
+
+/* No comment provided by engineer. */
+"Go back and make sure you entered a valid institution name." = "Vrnite se in se prepričajte, da ste vnesli veljavno ime ustanove.";
 
 /* No comment provided by engineer. */
 "Go to today" = "Pojdi na danes";
@@ -2634,6 +2640,9 @@
 
 /* No comment provided by engineer. */
 "We couldn’t find somebody like that." = "Nikogar takšnega nismo uspeli najti.";
+
+/* No comment provided by engineer. */
+"We received no response from the institution.\nGo back and make sure you entered a valid institution name." = "Odgovora ustanove nismo prejeli.\nVrnite se in se prepričajte, da ste vnesli veljavno ime ustanove.";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "Uvedli smo nekaj sprememb.";

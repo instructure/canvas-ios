@@ -695,6 +695,35 @@ class StoreTests: CoreTestCase {
         wait(for: [expectation], timeout: 0.5)
     }
 
+    func testExhaustWithFutureWhileKeepsGoing() {
+        let prev = "https://cgnuonline-eniversity.edu/api/v1/date"
+        let curr = "https://cgnuonline-eniversity.edu/api/v1/date?page=2"
+        let next = "https://cgnuonline-eniversity.edu/api/v1/date?page=3"
+        let headers = [
+            "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1",
+        ]
+        let urlResponse = HTTPURLResponse(url: URL(string: curr)!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
+        let page1 = [APICourse.make(id: "1")]
+        let page2 = [APICourse.make(id: "2")]
+        let useCase = TestUseCase(courses: page1, urlResponse: urlResponse)
+        api.mock(useCase.getNext(from: urlResponse)!, value: page2, response: nil, error: nil)
+        let expectation = XCTestExpectation(description: "exhausted")
+        store = environment.subscribe(useCase) {
+            if self.store.count == 2 {
+                expectation.fulfill()
+            }
+        }
+
+        let publishExpectation = XCTestExpectation(description: "Publisher should have sent initial value")
+        let subscription = store.exhaustWithFuture(while: { _ in return true })
+            .sink { _ in
+                publishExpectation.fulfill()
+            }
+
+        wait(for: [expectation], timeout: 0.5)
+        subscription.cancel()
+    }
+
     func testExhaustWhileStops() {
         let prev = "https://cgnuonline-eniversity.edu/api/v1/date"
         let curr = "https://cgnuonline-eniversity.edu/api/v1/date?page=2"
@@ -718,6 +747,37 @@ class StoreTests: CoreTestCase {
         store.exhaust(while: { _ in return false })
         wait(for: [expectation], timeout: 0.5)
         XCTAssertEqual(store.count, 1)
+    }
+
+    func testExhaustWithFutureWhileStops() {
+        let prev = "https://cgnuonline-eniversity.edu/api/v1/date"
+        let curr = "https://cgnuonline-eniversity.edu/api/v1/date?page=2"
+        let next = "https://cgnuonline-eniversity.edu/api/v1/date?page=3"
+        let headers = [
+            "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1",
+        ]
+        let urlResponse = HTTPURLResponse(url: URL(string: curr)!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
+        let page1 = [APICourse.make(id: "1")]
+        let page2 = [APICourse.make(id: "2")]
+        let useCase = TestUseCase(courses: page1, urlResponse: urlResponse)
+        api.mock(useCase.getNext(from: urlResponse)!, value: page2, response: nil, error: nil)
+        let expectation = XCTestExpectation(description: "exhausted")
+        expectation.isInverted = true
+        store = environment.subscribe(useCase) {
+            if self.store.count == 2 {
+                expectation.fulfill()
+            }
+        }
+
+        let publishExpectation = XCTestExpectation(description: "Publisher should have sent initial value")
+        let subscription = store.exhaustWithFuture(while: { _ in return false })
+            .sink { _ in
+                publishExpectation.fulfill()
+            }
+
+        wait(for: [expectation], timeout: 0.5)
+        XCTAssertEqual(store.count, 1)
+        subscription.cancel()
     }
 
     func testDeletedObjects() {

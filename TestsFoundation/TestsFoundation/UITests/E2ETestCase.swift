@@ -41,7 +41,7 @@ open class E2ETestCase: CoreUITestCase {
         LoginWeb.passwordField.tap().pasteText("password")
         LoginWeb.logInButton.tap()
 
-        homeScreen.waitToExist()
+        homeScreen.waitToExist(20)
         user.session = currentSession()
         setAppThemeToSystem()
     }
