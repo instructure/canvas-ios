@@ -27,7 +27,7 @@ class PlannerTests: CoreUITestCase {
 
     override func setUp() {
         super.setUp()
-        Dashboard.courseCard(id: "263").waitToExist()
+        let courseExists = Dashboard.courseCard(id: "263").waitToExist()
         TabBar.calendarTab.tap()
         navigateToReference()
     }
@@ -130,7 +130,7 @@ class PlannerTests: CoreUITestCase {
     }
 
     func testCalendarFilter() {
-        PlannerCalendar.dayButton(year: y, month: m, day: 2).tap()
+        PlannerCalendar.dayButton(year: y, month: m, day: 3).tap()
         PlannerCalendar.monthButton.tap() // collapse
         PlannerCalendar.filterButton.tap()
         XCTAssertEqual(PlannerFilter.headerLabel.label(), "Tap to select the courses you want to see on the calendar.")
@@ -142,8 +142,8 @@ class PlannerTests: CoreUITestCase {
         assignments().tap()
         XCTAssertEqual(assignments().isSelected, false)
         NavBar.backButton(label: "Done").tap()
-        PlannerList.event(id: "2234").waitToVanish()
-        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 2).label(), "March 2, \(y), 2 events")
+        PlannerList.event(id: "23334").waitToVanish()
+        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 3).label(), "March 3, \(y), 3 events")
 
         PlannerCalendar.filterButton.tap()
         // At this point each filter's selected state is being loaded. The UI starts with empty selectors so we don't
@@ -154,10 +154,10 @@ class PlannerTests: CoreUITestCase {
         assignments().tap()
         XCTAssertEqual(assignments().isSelected, true)
         NavBar.backButton(label: "Done").tap()
-        PlannerList.event(id: "2234").waitToExist()
-        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 2).label(), "March 2, \(y), 4 events")
+        PlannerList.event(id: "23334").waitToExist()
+        XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 3).label(), "March 3, \(y), 4 events")
 
-        PlannerList.event(id: "2234").tap()
-        app.find(label: "second").waitToExist()
+        PlannerList.event(id: "23334").tap()
+        app.find(label: "This exists just for testing the planner").waitToExist()
     }
 }

@@ -175,8 +175,14 @@ public extension Element {
     }
 
     @discardableResult
-    func waitToExist(_ timeout: TimeInterval = 20, shouldFail: Bool = true, file: StaticString = #file, line: UInt = #line) -> Element {
-        let exists = rawElement.waitForExistence(timeout: timeout)
+    func waitToExist(_ timeout: TimeInterval = 10, shouldFail: Bool = true, file: StaticString = #file, line: UInt = #line) -> Element {
+        var exists = rawElement.waitForExistence(timeout: TimeInterval(timeout/2))
+        
+        if !exists {
+            let newRawElement = queryWrapper.rawElement
+            exists = newRawElement.waitForExistence(timeout: TimeInterval(timeout/2))
+        }
+        
 
         if !exists, shouldFail {
             XCTFail("Element \(self) still doesn't exist", file: file, line: line)
