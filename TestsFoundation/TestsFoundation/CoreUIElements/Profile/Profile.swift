@@ -44,7 +44,8 @@ public enum Profile: String, ElementWrapper {
 
     public static func open() {
         // HACK: sometimes a11y stuff doesn't show up...
-        if !Dashboard.profileButton.exists() {
+        let profileButton = Dashboard.profileButton.waitToExist(shouldFail: false)
+        if !profileButton.exists {
             TabBar.calendarTab.tap()
             TabBar.dashboardTab.tap()
         }
