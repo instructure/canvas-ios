@@ -16,8 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import Combine
+import CombineExt
+import Foundation
 
 public class AboutViewModel: ObservableObject {
     public static let DefaultEntries: [AboutInfoEntry] = [
@@ -35,20 +36,30 @@ public class AboutViewModel: ObservableObject {
     public init(entries: [AboutInfoEntry] = DefaultEntries) {
         self.entries = entries
 
-        let observerStore = Store2(useCase: GetCourseListCourses(enrollmentState: .active))
+        let observerStore = ReactiveStore(useCase: GetCourseListCourses(enrollmentState: .active))
         observerStore.observeEntities(forceFetch: true, loadAllPages: true)
             .sink { entities in
-                print("👋 ", entities)
+                print("👋 observeEntities: ", entities)
             }
             .store(in: &subscriptions)
 
-        let fetchOnceStore = Store2(useCase: GetCourseListCourses(enrollmentState: .invited_or_pending))
+        let isLoading = PassthroughRelay<Bool>()
+
+        isLoading
+            .sink(receiveValue: { val in
+                print("💎 isLoading: ", val)
+            })
+            .store(in: &subscriptions)
+
+        let fetchOnceStore = ReactiveStore(useCase: GetCourseListCourses(enrollmentState: .invited_or_pending))
         fetchOnceStore.getEntities()
+            .bindProgress(isLoading)
             .sink(
                 receiveCompletion: { _ in },
                 receiveValue: { entities in
-                    print("🈯️ ", entities)
-                })
+                    print("🈯️ getEntities: ", entities)
+                }
+            )
             .store(in: &subscriptions)
     }
 }

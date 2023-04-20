@@ -28,7 +28,8 @@ public extension Publisher {
         return handleEvents(
             receiveSubscription: { _ in
                 isLoading.accept(true)
-            }, receiveCompletion: { _ in 
+            },
+            receiveCompletion: { _ in
                 isLoading.accept(false)
             }
         )

@@ -21,8 +21,21 @@ import CombineExt
 import CoreData
 import Foundation
 
-public class Store2<U: UseCase> {
-    public enum Store2State {
+public class ReactiveStore<U: UseCase> {
+    public enum Store2State: Equatable {
+        public static func == (lhs: ReactiveStore<U>.Store2State, rhs: ReactiveStore<U>.Store2State) -> Bool {
+            switch (lhs, rhs) {
+            case (.loading, .loading): return true
+            case let (.error(lError), .error(rError)):
+                guard type(of: lhs) == type(of: rhs) else { return false }
+                let error1 = lError as NSError
+                let error2 = rError as NSError
+                return error1.domain == error2.domain && error1.code == error2.code
+            case let (.data(lData), .data(rData)): return lData == rData
+            default: return false
+            }
+        }
+
         case loading, error(Error), data([U.Model])
     }
 
@@ -34,7 +47,7 @@ public class Store2<U: UseCase> {
     private var next: GetNextRequest<U.Response>?
 
     private let forceRefreshRelay = PassthroughRelay<Void>()
-    private let stateRelay = PassthroughRelay<Store2State>()
+    private let stateRelay = CurrentValueRelay<Store2State>(.loading)
 
     private var cancellable: AnyCancellable?
     private var subscriptions = Set<AnyCancellable>()
@@ -67,24 +80,29 @@ public class Store2<U: UseCase> {
             .eraseToAnyPublisher()
     }
 
-    public func observeEntities(forceFetch: Bool, loadAllPages: Bool = false) -> AnyPublisher<Store2State, Never> {
+    public func observeEntities(forceFetch: Bool = false, loadAllPages: Bool = false) -> AnyPublisher<Store2State, Never> {
         cancellable?.cancel()
         cancellable = nil
-
-        stateRelay.accept(.loading)
 
         let scope = useCase.scope
         let request = NSFetchRequest<U.Model>(entityName: String(describing: U.Model.self))
         request.predicate = scope.predicate
         request.sortDescriptors = scope.order
 
-        let entitiesPublisher: AnyPublisher<[U.Model], Error> = forceFetch ?
-            fetchEntitiesFromAPI(useCase: useCase, loadAllPages: loadAllPages, fetchRequest: request) :
-            fetchEntitiesFromCache(fetchRequest: request)
+        let entitiesPublisher: AnyPublisher<[U.Model], Error>!
 
-        unowned let unownedSelf = self
+        if offlineService.isOfflineModeEnabled() {
+            entitiesPublisher = fetchEntitiesFromDatabase(fetchRequest: request)
+        } else {
+            entitiesPublisher = forceFetch ?
+                fetchEntitiesFromAPI(useCase: useCase, loadAllPages: loadAllPages, fetchRequest: request) :
+                fetchEntitiesFromCache(fetchRequest: request)
+        }
 
         cancellable = entitiesPublisher
+            .handleEvents(receiveSubscription: { _ in
+                self.stateRelay.accept(.loading)
+            })
             .catch {
                 self.stateRelay.accept(.error($0))
                 return Empty<[U.Model], Never>(completeImmediately: false)
@@ -106,9 +124,15 @@ public class Store2<U: UseCase> {
         request.predicate = scope.predicate
         request.sortDescriptors = scope.order
 
-        return fetchEntitiesFromAPI(useCase: useCase, loadAllPages: false, fetchRequest: request)
-            .first()
-            .eraseToAnyPublisher()
+        if offlineService.isOfflineModeEnabled() {
+            return fetchEntitiesFromDatabase(fetchRequest: request)
+                .first()
+                .eraseToAnyPublisher()
+        } else {
+            return fetchEntitiesFromAPI(useCase: useCase, loadAllPages: false, fetchRequest: request)
+                .first()
+                .eraseToAnyPublisher()
+        }
     }
 
     private func fetchEntitiesFromCache<T: NSManagedObject>(
@@ -137,10 +161,13 @@ public class Store2<U: UseCase> {
         loadAllPages: Bool,
         fetchRequest: NSFetchRequest<T>
     ) -> AnyPublisher<[T], Error> {
-         useCase.fetchWithFuture()
+        useCase.fetchWithFuture()
+            .print()
             .handleEvents(receiveOutput: { [weak self] urlResponse in
                 if let urlResponse {
                     self?.next = self?.useCase.getNext(from: urlResponse)
+                } else {
+                    self?.next = nil
                 }
             })
             .flatMap { _ in self.fetchAllPagesIfNeeded(loadAllPages, fetchRequest: fetchRequest) }
@@ -155,13 +182,13 @@ public class Store2<U: UseCase> {
         unowned let unownedSelf = self
 
         if loadAllPages {
-            return self.getNextPage()
+            return getNextPage()
                 .setFailureType(to: Error.self)
                 .flatMap { nextPageUseCase -> AnyPublisher<Void, Error> in
                     if let nextPageUseCase {
                         return unownedSelf.fetchEntitiesFromAPI(
                             useCase: nextPageUseCase,
-                            loadAllPages: true,
+                            loadAllPages: loadAllPages,
                             fetchRequest: fetchRequest
                         )
                         .map { _ in () }
@@ -189,6 +216,7 @@ public class Store2<U: UseCase> {
                 )
             ).eraseToAnyPublisher()
         } else {
+            next = nil
             return Just(nil).eraseToAnyPublisher()
         }
     }
