@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-struct ToastView: View {
+struct SnackBarView: View {
     public let text: String
 
     @Environment(\.colorScheme) private var colorScheme
@@ -49,13 +49,13 @@ struct ToastView: View {
 
 #if DEBUG
 
-struct ToastView_Previews: PreviewProvider {
+struct SnackBarView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack(alignment: .bottom) {
             Color.backgroundLightest
             VStack(spacing: 0) {
-                ToastView(text: "File deleted.")
-                ToastView(text:
+                SnackBarView(text: "File deleted.")
+                SnackBarView(text:
                                 """
                                 Really long text to check what happens when it spans to \
                                 multiple lines. Really long text to check what \

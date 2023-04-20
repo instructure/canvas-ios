@@ -297,8 +297,8 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         CoreHostingController(WebSitePreviewView())
     },
 
-    "/dev-menu/toast": { _, _, _ in
-        CoreHostingController(ToastTestView())
+    "/dev-menu/snackbar": { _, _, _ in
+        CoreHostingController(SnackBarTestView())
     },
 
     "/profile": { _, _, _ in

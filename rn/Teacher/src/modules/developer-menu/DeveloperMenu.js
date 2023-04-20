@@ -172,8 +172,8 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
     this.props.navigator.show('/dev-menu/pandas')
   }
 
-  viewToastTest = () => {
-    this.props.navigator.show('/dev-menu/toast', { modal: true, modalPresentationStyle: 'fullscreen', embedInNavigationController: true })
+  viewSnackBarTest = () => {
+    this.props.navigator.show('/dev-menu/snackbar', { modal: true, modalPresentationStyle: 'fullscreen', embedInNavigationController: true })
   }
 
   viewWebSitePreview = async () => {
@@ -241,7 +241,7 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
             <RowSeparator />
             <Row title='Panda Gallery' disclosureIndicator onPress={this.viewPandaGallery} />
             <RowSeparator />
-            <Row title='Toast Test' disclosureIndicator onPress={this.viewToastTest} />
+            <Row title='SnackBar Test' disclosureIndicator onPress={this.viewSnackBarTest} />
             <RowSeparator />
             <Row title='View Push Notifications' disclosureIndicator onPress={this.viewPushNotifications} />
             <RowSeparator />

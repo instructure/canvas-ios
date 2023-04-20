@@ -18,23 +18,23 @@
 
 import SwiftUI
 
-struct ToastViewModifier: ViewModifier {
-    @ObservedObject var viewModel: ToastViewModel
+struct SnackBarViewModifier: ViewModifier {
+    @ObservedObject var viewModel: SnackBarViewModel
 
     func body(content: Content) -> some View {
         content.overlay(alignment: .bottom) {
             ZStack(alignment: .bottom) {
-                if let toast = viewModel.visibleToast {
-                    ToastView(text: toast)
+                if let snack = viewModel.visibleSnack {
+                    SnackBarView(text: snack)
                         .transition(.move(edge: .bottom).combined(with: .opacity))
                         .onDisappear {
-                            viewModel.toastDidDisappear()
+                            viewModel.snackDidDisappear()
                         }
                 }
             }
             // iOS 15 disappear animation didn't play without this frame modifier
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-            .animation(.easeInOut(duration: ToastViewModel.AnimationTime), value: viewModel.visibleToast)
+            .animation(.easeInOut(duration: SnackBarViewModel.AnimationTime), value: viewModel.visibleSnack)
             .allowsHitTesting(false)
             .accessibilityHidden(true)
         }
@@ -42,7 +42,7 @@ struct ToastViewModifier: ViewModifier {
 }
 
 public extension View {
-    func toast(viewModel: ToastViewModel) -> some View {
-        modifier(ToastViewModifier(viewModel: viewModel))
+    func snackBar(viewModel: SnackBarViewModel) -> some View {
+        modifier(SnackBarViewModifier(viewModel: viewModel))
     }
 }

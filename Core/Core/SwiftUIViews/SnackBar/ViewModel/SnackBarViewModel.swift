@@ -19,52 +19,52 @@
 import Combine
 import SwiftUI
 
-public class ToastViewModel: ObservableObject {
+public class SnackBarViewModel: ObservableObject {
     public static let AnimationTime: CGFloat = 0.25
     public static let OnScreenTime: CGFloat = 2
 
     // MARK: - Outputs
-    @Published public private(set) var visibleToast: String?
+    @Published public private(set) var visibleSnack: String?
 
     // MARK: - Private State
-    /** Even when `visibleToast` is nil the UI still needs some time to finish the disappear animation. This variable tracks if the animation has finished or not. */
-    private var isToastOnScreen = false
+    /** Even when `visibleSnack` is nil the UI still needs some time to finish the disappear animation. This variable tracks if the animation has finished or not. */
+    private var isSnackOnScreen = false
     private var stack: [String] = []
 
     // MARK: - Inputs
 
-    public func showToast(_ toast: String) {
-        stack.append(toast)
-        showNextToast()
+    public func showSnack(_ snack: String) {
+        stack.append(snack)
+        showNextSnack()
     }
 
-    public func toastDidDisappear() {
-        isToastOnScreen = false
-        visibleToast = nil
-        showNextToast()
+    public func snackDidDisappear() {
+        isSnackOnScreen = false
+        visibleSnack = nil
+        showNextSnack()
     }
 
     // MARK: - Private Methods
 
-    private func showNextToast() {
-        if stack.isEmpty || isToastOnScreen {
+    private func showNextSnack() {
+        if stack.isEmpty || isSnackOnScreen {
             return
         }
 
-        let toast = stack.remove(at: 0)
-        visibleToast = toast
-        isToastOnScreen = true
+        let snack = stack.remove(at: 0)
+        visibleSnack = snack
+        isSnackOnScreen = true
 
-        UIAccessibility.announce(toast)
+        UIAccessibility.announce(snack)
 
         DispatchQueue.main.asyncAfter(deadline: .now() + Self.OnScreenTime + Self.AnimationTime) {
-            self.visibleToast = nil
+            self.visibleSnack = nil
         }
     }
 }
 
-extension ToastViewModel: Equatable {
-    public static func == (lhs: ToastViewModel, rhs: ToastViewModel) -> Bool {
-        lhs.visibleToast == rhs.visibleToast
+extension SnackBarViewModel: Equatable {
+    public static func == (lhs: SnackBarViewModel, rhs: SnackBarViewModel) -> Bool {
+        lhs.visibleSnack == rhs.visibleSnack
     }
 }

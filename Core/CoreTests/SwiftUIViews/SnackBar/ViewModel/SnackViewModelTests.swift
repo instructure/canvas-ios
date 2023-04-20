@@ -20,39 +20,39 @@
 import TestsFoundation
 import XCTest
 
-class ToastViewModelTests: XCTestCase {
+class SnackViewModelTests: XCTestCase {
 
-    func testToastPresentation() {
+    func testSnackPresentation() {
         // MARK: - GIVEN
-        let testee = ToastViewModel()
-        XCTAssertNil(testee.visibleToast)
+        let testee = SnackBarViewModel()
+        XCTAssertNil(testee.visibleSnack)
 
         // MARK: - WHEN
-        testee.showToast("test1")
-        testee.showToast("test2")
-        testee.showToast("test3")
+        testee.showSnack("test1")
+        testee.showSnack("test2")
+        testee.showSnack("test3")
 
         // MARK: - THEN
-        waitUntil(shouldFail: true) { testee.visibleToast == "test1" }
-        waitUntil(shouldFail: true) { testee.visibleToast == nil }
-        testee.toastDidDisappear()
-        waitUntil(shouldFail: true) { testee.visibleToast == "test2" }
-        waitUntil(shouldFail: true) { testee.visibleToast == nil }
-        testee.toastDidDisappear()
-        waitUntil(shouldFail: true) { testee.visibleToast == "test3" }
-        waitUntil(shouldFail: true) { testee.visibleToast == nil }
-        testee.toastDidDisappear()
-        waitUntil(shouldFail: true) { testee.visibleToast == nil }
+        waitUntil(shouldFail: true) { testee.visibleSnack == "test1" }
+        waitUntil(shouldFail: true) { testee.visibleSnack == nil }
+        testee.snackDidDisappear()
+        waitUntil(shouldFail: true) { testee.visibleSnack == "test2" }
+        waitUntil(shouldFail: true) { testee.visibleSnack == nil }
+        testee.snackDidDisappear()
+        waitUntil(shouldFail: true) { testee.visibleSnack == "test3" }
+        waitUntil(shouldFail: true) { testee.visibleSnack == nil }
+        testee.snackDidDisappear()
+        waitUntil(shouldFail: true) { testee.visibleSnack == nil }
     }
 
     func testEquals() {
         // MARK: - GIVEN
-        let testee1 = ToastViewModel()
-        let testee2 = ToastViewModel()
+        let testee1 = SnackBarViewModel()
+        let testee2 = SnackBarViewModel()
 
         // MARK: - WHEN
-        testee1.showToast("test")
-        testee2.showToast("test")
+        testee1.showSnack("test")
+        testee2.showSnack("test")
 
         // MARK: - THEN
         XCTAssertEqual(testee1, testee2)
@@ -60,12 +60,12 @@ class ToastViewModelTests: XCTestCase {
 
     func testNotEquals() {
         // MARK: - GIVEN
-        let testee1 = ToastViewModel()
-        let testee2 = ToastViewModel()
+        let testee1 = SnackBarViewModel()
+        let testee2 = SnackBarViewModel()
 
         // MARK: - WHEN
-        testee1.showToast("test")
-        testee2.showToast("not_test")
+        testee1.showSnack("test")
+        testee2.showSnack("not_test")
 
         // MARK: - THEN
         XCTAssertNotEqual(testee1, testee2)

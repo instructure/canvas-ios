@@ -18,8 +18,8 @@
 
 import SwiftUI
 
-public struct ToastTestView: View {
-    @StateObject private var viewModel = ToastViewModel()
+public struct SnackBarTestView: View {
+    @StateObject private var viewModel = SnackBarViewModel()
 
     public init() {}
 
@@ -27,33 +27,33 @@ public struct ToastTestView: View {
         HStack(spacing: 0) {
             Spacer()
             Button {
-                viewModel.showToast("Lorem ipsum")
+                viewModel.showSnack("Lorem ipsum")
             } label: {
-                Text(verbatim: "Short Toast")
+                Text(verbatim: "Short Snack")
             }
             Spacer()
             Button {
-                viewModel.showToast("""
+                viewModel.showSnack("""
                                     Lorem ipsum dolor sit Lamet, consectetur adipiscing elit. \
                                     Etiam tincidunt rhoncus rutrum. Donec tempus vulputate posuere. \
                                     Aenean blandit nunc vitae tempus sodales. In vehicula venenatis tempus.
                                     """
                 )
             } label: {
-                Text(verbatim: "Long Toast")
+                Text(verbatim: "Long Snack")
             }
             Spacer()
         }
         .frame(maxHeight: .infinity)
-        .toast(viewModel: viewModel)
+        .snackBar(viewModel: viewModel)
     }
 }
 
 #if DEBUG
 
-struct ToastTestView_Previews: PreviewProvider {
+struct SnackBarTestView_Previews: PreviewProvider {
     static var previews: some View {
-        ToastTestView()
+        SnackBarTestView()
     }
 }
 
