@@ -34,7 +34,7 @@ struct SnackBarViewModifier: ViewModifier {
             }
             // iOS 15 disappear animation didn't play without this frame modifier
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-            .animation(.easeInOut(duration: SnackBarViewModel.AnimationTime), value: viewModel.visibleSnack)
+            .animation(.easeInOut(duration: viewModel.animationTime), value: viewModel.visibleSnack)
             .allowsHitTesting(false)
             .accessibilityHidden(true)
         }

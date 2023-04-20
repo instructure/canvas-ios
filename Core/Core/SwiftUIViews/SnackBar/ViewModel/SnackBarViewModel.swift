@@ -20,16 +20,16 @@ import Combine
 import SwiftUI
 
 public class SnackBarViewModel: ObservableObject {
-    public static let AnimationTime: CGFloat = 0.25
-    public static let OnScreenTime: CGFloat = 2
 
     // MARK: - Outputs
+    public let animationTime: CGFloat = 0.25
     @Published public private(set) var visibleSnack: String?
 
     // MARK: - Private State
     /** Even when `visibleSnack` is nil the UI still needs some time to finish the disappear animation. This variable tracks if the animation has finished or not. */
     private var isSnackOnScreen = false
     private var stack: [String] = []
+    private let onScreenTime: CGFloat = 2
 
     // MARK: - Inputs
 
@@ -57,7 +57,7 @@ public class SnackBarViewModel: ObservableObject {
 
         UIAccessibility.announce(snack)
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + Self.OnScreenTime + Self.AnimationTime) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + onScreenTime + animationTime) {
             self.visibleSnack = nil
         }
     }
