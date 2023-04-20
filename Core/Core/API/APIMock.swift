@@ -17,9 +17,8 @@
 //
 
 #if DEBUG
-import Foundation
 
-// swiftlint:disable force_try
+import Foundation
 
 extension API {
     private static var isMocked = false
@@ -77,6 +76,7 @@ extension API {
         _ request: Request,
         dataHandler: @escaping (URLRequest) -> (Request.Response?, URLResponse?, Error?)
     ) -> APIMock {
+        // swiftlint:disable:next force_try
         let req = try! request.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: loginSession?.actAsUserID)
         let mock = APIMock { req in
             let (value, response, error) = dataHandler(req)
@@ -91,6 +91,7 @@ extension API {
         withData request: Request,
         dataHandler: @escaping (URLRequest) -> (Data?, URLResponse?, Error?)
     ) -> APIMock {
+        // swiftlint:disable:next force_try
         let request = try! request.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: nil)
         let mock = APIMock(handler: dataHandler)
         API.mocks[request.key] = mock
@@ -104,6 +105,7 @@ extension API {
         response: URLResponse? = nil,
         error: Error? = nil
     ) -> APIMock {
+        // swiftlint:disable:next force_try
         let request = try! request.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: nil)
         let mock = APIMock { _ in (data, response, error) }
         API.mocks[request.key] = mock
@@ -112,6 +114,7 @@ extension API {
 
     @discardableResult
     func mock(url: URL, data: Data? = nil, response: URLResponse? = nil, error: Error? = nil) -> APIMock {
+        // swiftlint:disable:next force_try
         let request = try! url.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: nil)
         let mock = APIMock { _ in (data, response, error) }
         API.mocks[request.key] = mock
