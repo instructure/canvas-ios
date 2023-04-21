@@ -177,9 +177,11 @@ public extension Element {
     @discardableResult
     func waitToExist(_ timeout: TimeInterval = 10, shouldFail: Bool = true, file: StaticString = #file, line: UInt = #line) -> Element {
         let exists = rawElement.waitForExistence(timeout: timeout)
+        
         if !exists, shouldFail {
             XCTFail("Element \(self) still doesn't exist", file: file, line: line)
         }
+        
         return self
     }
 
