@@ -89,7 +89,7 @@ public class ReactiveStore<U: UseCase> {
         request.predicate = scope.predicate
         request.sortDescriptors = scope.order
 
-        let entitiesPublisher: AnyPublisher<[U.Model], Error>!
+        let entitiesPublisher: AnyPublisher<[U.Model], Error>
 
         if offlineService.isOfflineModeEnabled() {
             entitiesPublisher = fetchEntitiesFromDatabase(fetchRequest: request)
@@ -198,7 +198,7 @@ public class ReactiveStore<U: UseCase> {
                 if let nextPageUseCase {
                     return unownedSelf.fetchEntitiesFromAPI(
                         useCase: nextPageUseCase,
-                        loadAllPages: loadAllPages,
+                        loadAllPages: true,
                         fetchRequest: fetchRequest
                     )
                     .map { _ in () }
