@@ -16,8 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
-import CombineExt
 import Foundation
 
 public class AboutViewModel: ObservableObject {
@@ -31,35 +29,7 @@ public class AboutViewModel: ObservableObject {
     public let title = NSLocalizedString("About", comment: "")
     public let entries: [AboutInfoEntry]
 
-    private var subscriptions = Set<AnyCancellable>()
-
     public init(entries: [AboutInfoEntry] = DefaultEntries) {
         self.entries = entries
-
-        let observerStore = ReactiveStore(useCase: GetCourseListCourses(enrollmentState: .active))
-        observerStore.observeEntities(forceFetch: true, loadAllPages: true)
-            .sink { entities in
-                print("👋 observeEntities: ", entities)
-            }
-            .store(in: &subscriptions)
-
-        let isLoading = PassthroughRelay<Bool>()
-
-        isLoading
-            .sink(receiveValue: { val in
-                print("💎 isLoading: ", val)
-            })
-            .store(in: &subscriptions)
-
-        let fetchOnceStore = ReactiveStore(useCase: GetCourseListCourses(enrollmentState: .invited_or_pending))
-        fetchOnceStore.getEntities()
-            .bindProgress(isLoading)
-            .sink(
-                receiveCompletion: { _ in },
-                receiveValue: { entities in
-                    print("🈯️ getEntities: ", entities)
-                }
-            )
-            .store(in: &subscriptions)
     }
 }
