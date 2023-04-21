@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 @testable import Core
 import CoreData
 import Foundation
@@ -407,6 +408,38 @@ class ReactiveStoreTests: CoreTestCase {
         subscription.cancel()
     }
 
+    // MARK: - Subscription cancellation
+
+    func testSubscriptionCancellation() {
+        let store = createStore(useCase: TestUseCase(courses: [.make(id: "1")]))
+        let interactor = TestInteractor(store: store)
+        let expectation1 = expectation(description: "Publisher sends value")
+        let expectation2 = expectation(description: "Publisher wont send value")
+        expectation2.isInverted = true
+        var expectationCount = 0
+
+        let subscription = interactor.state
+            .dropFirst()
+            .sink(receiveValue: { _ in
+                if expectationCount == 0 {
+                    expectation1.fulfill()
+                    expectationCount += 1
+                } else {
+                    expectation2.fulfill()
+                }
+            })
+
+        wait(for: [expectation1], timeout: 0.1)
+        subscription.cancel()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            Course.save(.make(id: "2"), in: self.databaseClient)
+        }
+
+        wait(for: [expectation2], timeout: 0.3)
+        subscription.cancel()
+    }
+
     private func createStore<U: UseCase>(useCase: U) -> ReactiveStore<U> {
         ReactiveStore(
             env: environment,
@@ -424,6 +457,28 @@ class ReactiveStoreTests: CoreTestCase {
 }
 
 extension ReactiveStoreTests {
+    struct TestInteractor {
+        // MARK: - Output
+
+        public let state = CurrentValueSubject<ReactiveStore<TestUseCase>.State, Never>(.loading)
+
+        // MARK: - Depenencies
+
+        private let store: ReactiveStore<TestUseCase>
+
+        // MARK: - Private properties
+
+        private var subscriptions = Set<AnyCancellable>()
+
+        init(store: ReactiveStore<TestUseCase>) {
+            self.store = store
+
+            self.store.observeEntities()
+                .subscribe(state)
+                .store(in: &subscriptions)
+        }
+    }
+
     struct TestUseCase: UseCase {
         typealias Model = Course
 
