@@ -221,7 +221,6 @@ extension DocViewerViewController: PDFViewControllerDelegate, AnnotationStateMan
     public func pdfViewController(_ pdfController: PDFViewController, shouldShow controller: UIViewController, options: [String: Any]? = nil, animated: Bool) -> Bool {
         return !(controller is StampViewController)
     }
-    // swiftlint:enable function_parameter_count
 }
 
 extension DocViewerViewController: UIGestureRecognizerDelegate {
