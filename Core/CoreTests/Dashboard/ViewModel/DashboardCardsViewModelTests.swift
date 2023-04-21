@@ -23,19 +23,20 @@ import TestsFoundation
 class DashboardCardsViewModelTests: CoreTestCase {
 
     func testFetchesDashboardCards() {
-        api.mock(GetCourses(enrollmentState: nil), value: [
+        api.mock(GetDashboardCourses(), value: [
             .make(id: 1),
             .make(id: 2),
         ])
-        api.mock(GetDashboardCards(), value: [
+        api.mock(GetDashboardCards(showOnlyTeacherEnrollment: false), value: [
             .make(id: 1, shortName: "card 1"),
             .make(id: 2, shortName: "card 2"),
         ])
 
-        let testee = DashboardCardsViewModel(showOnlyTeacherEnrollment: false)
+        let interactor = DashboardCourseCardListInteractorLive(showOnlyTeacherEnrollment: false)
+        let testee = DashboardCourseCardListViewModel(interactor)
 
         let uiRefreshExpectation = expectation(description: "ui refresh received")
-        uiRefreshExpectation.expectedFulfillmentCount = 2 // initial loading state, data state
+        uiRefreshExpectation.expectedFulfillmentCount = 3 // initial loading state, actual loading state, data state
         let refreshCallbackExpectation = expectation(description: "refresh callback called")
         let subscription = testee.$state.sink { _ in uiRefreshExpectation.fulfill() }
         testee.refresh { refreshCallbackExpectation.fulfill() }
@@ -43,19 +44,20 @@ class DashboardCardsViewModelTests: CoreTestCase {
 
         wait(for: [uiRefreshExpectation, refreshCallbackExpectation], timeout: 0.1)
 
-        guard case .data(let cards) = testee.state else { XCTFail("No data in view model"); return }
-
-        XCTAssertEqual(cards.count, 2)
-        XCTAssertEqual(cards[0].id, "1")
-        XCTAssertEqual(cards[0].shortName, "card 1")
-        XCTAssertEqual(cards[1].id, "2")
-        XCTAssertEqual(cards[1].shortName, "card 2")
+        guard case .data = testee.state else { XCTFail("No data in view model"); return }
+        let courseCardList = testee.courseCardList
+        XCTAssertEqual(courseCardList.count, 2)
+        XCTAssertEqual(courseCardList[0].id, "1")
+        XCTAssertEqual(courseCardList[0].shortName, "card 1")
+        XCTAssertEqual(courseCardList[1].id, "2")
+        XCTAssertEqual(courseCardList[1].shortName, "card 2")
 
         subscription.cancel()
     }
 
     func testLayoutSelectionFlagOnEmptyCourses() {
-        let testee = DashboardCardsViewModel(showOnlyTeacherEnrollment: false)
+        let interactor = DashboardCourseCardListInteractorLive(showOnlyTeacherEnrollment: false)
+        let testee = DashboardCourseCardListViewModel(interactor)
         XCTAssertFalse(testee.shouldShowSettingsButton)
 
         testee.refresh()
@@ -67,10 +69,11 @@ class DashboardCardsViewModelTests: CoreTestCase {
     }
 
     func testLayoutSelectionFlagWhenCoursesAvailable() {
-        api.mock(GetCourses(enrollmentState: nil), value: [.make(id: 1)])
+        api.mock(GetDashboardCourses(), value: [.make(id: 1)])
         api.mock(GetDashboardCards(), value: [.make(id: 1, shortName: "card 1")])
 
-        let testee = DashboardCardsViewModel(showOnlyTeacherEnrollment: false)
+        let interactor = DashboardCourseCardListInteractorLive(showOnlyTeacherEnrollment: false)
+        let testee = DashboardCourseCardListViewModel(interactor)
         XCTAssertFalse(testee.shouldShowSettingsButton)
 
         testee.refresh()
