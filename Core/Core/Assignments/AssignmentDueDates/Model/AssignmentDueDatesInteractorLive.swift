@@ -40,7 +40,13 @@ public class AssignmentDueDatesInteractorLive: AssignmentDueDatesInteractor {
         assignmentStore.allObjects
             .map {
                 if let dates = $0.first?.allDates {
-                    return Array(dates)
+                    return dates.sorted(by: { lhs, rhs in
+                        switch (lhs.dueAt, rhs.dueAt) {
+                        case let(ld?, rd?): return ld < rd
+                        case (nil, _): return false
+                        case (_?, nil): return true
+                        }
+                    })
                 } else {
                     return []
                 }

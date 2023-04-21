@@ -23,13 +23,36 @@ public struct AssignmentDueDateItemViewModel: Identifiable, Equatable {
     public let title: String
     public let assignee: String
     public let from: String
+    public let fromEmptyAccessibility: String?
     public let until: String
+    public let untilEmptyAccessibility: String?
 
     public init(item: AssignmentDate) {
         self.id = item.id
-        self.title = item.dueAt?.dateTimeString ?? NSLocalizedString("No Due Date", comment: "")
+
+        if let dueAt = item.dueAt {
+            let format = NSLocalizedString("Due %@", bundle: .core, comment: "i.e. Due <Jan 10, 2020 at 9:00 PM>")
+            self.title = String.localizedStringWithFormat(format, dueAt.relativeDateTimeString)
+        } else {
+            self.title = NSLocalizedString("No Due Date", bundle: .core, comment: "")
+        }
+
         self.assignee = item.title ?? NSLocalizedString("Everyone", comment: "")
-        self.from = item.unlockAt?.dateTimeString ?? "--"
-        self.until = item.lockAt?.dateTimeString ?? "--"
+
+        if let unlockAt = item.unlockAt?.relativeDateTimeString {
+            self.from = unlockAt
+            self.fromEmptyAccessibility = nil
+        } else {
+            self.from = "--"
+            self.fromEmptyAccessibility = NSLocalizedString("No available from date set.", bundle: .core, comment: "")
+        }
+
+        if let lockAt = item.lockAt?.relativeDateTimeString {
+            self.until = lockAt
+            self.untilEmptyAccessibility = nil
+        } else {
+            self.until = "--"
+            self.untilEmptyAccessibility = NSLocalizedString("No available until date set.", bundle: .core, comment: "")
+        }
     }
 }

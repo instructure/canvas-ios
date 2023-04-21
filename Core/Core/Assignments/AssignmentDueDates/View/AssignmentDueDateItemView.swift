@@ -32,15 +32,27 @@ struct AssignmentDueDateItemView: View {
                 .padding(16)
             Section(
                 label: Text("For"),
-                content: Text(model.assignee)
+                content: { Text(model.assignee) }
             )
             Section(
                 label: Text("Available From"),
-                content: Text(model.from)
-                )
+                content: {
+                    if let fromEmptyAccessibility = model.fromEmptyAccessibility {
+                        Text(model.from).accessibilityLabel(fromEmptyAccessibility)
+                    } else {
+                        Text(model.from)
+                    }
+                }
+            )
             Section(
                 label: Text("Available Until"),
-                content: Text(model.until)
+                content: {
+                    if let untilEmptyAccessibility = model.untilEmptyAccessibility {
+                        Text(model.until).accessibilityLabel(untilEmptyAccessibility)
+                    } else {
+                        Text(model.until)
+                    }
+                }
             )
         }
     }
@@ -49,14 +61,15 @@ struct AssignmentDueDateItemView: View {
         let content: Content
         let label: Label
 
-        init(label: Label, content: Content) {
-            self.content = content
+        init(label: Label, @ViewBuilder content: () -> Content) {
+            self.content = content()
             self.label = label
         }
+
         var body: some View {
             VStack(alignment: .leading, spacing: 0) {
                 label
-                    .font(.medium16).foregroundColor(.textDark)
+                    .font(.semibold16).foregroundColor(.textDark)
                     .padding(.bottom, 4)
                 content
             }
