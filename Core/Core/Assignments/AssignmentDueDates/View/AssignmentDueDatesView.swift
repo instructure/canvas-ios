@@ -27,10 +27,20 @@ public struct AssignmentDueDatesView: View {
 
     public var body: some View {
         ScrollView {
-            VStack(spacing: 0) {
-                ForEach(model.dueDates) { dueDate in
-                    AssignmentDueDateItemView(model: dueDate)
+            switch model.state {
+            case .loading:
+                ProgressView()
+                    .progressViewStyle(.indeterminateCircle())
+            case .data:
+                VStack(spacing: 0) {
+                    ForEach(model.dueDates) { dueDate in
+                        AssignmentDueDateItemView(model: dueDate)
+                    }
                 }
+            case .empty, .error:
+                Text("Something went wrong", bundle: .core)
+                    .font(.regular16).foregroundColor(.textDanger)
+                    .multilineTextAlignment(.center)
             }
         }
         .background(Color.backgroundLightest)
@@ -46,7 +56,6 @@ struct AssignmentDueDateView_Previews: PreviewProvider {
 
     static var previews: some View {
         let dueDates = [AssignmentDate.save(.make(), assignmentID: "1", in: context)]
-
         AssignmentDueDatesAssembly.makePreview(dueDates: dueDates)
             .previewLayout(.sizeThatFits)
     }
