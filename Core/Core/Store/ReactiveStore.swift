@@ -22,8 +22,8 @@ import CoreData
 import Foundation
 
 public class ReactiveStore<U: UseCase> {
-    public enum Store2State: Equatable {
-        public static func == (lhs: ReactiveStore<U>.Store2State, rhs: ReactiveStore<U>.Store2State) -> Bool {
+    public enum State: Equatable {
+        public static func == (lhs: ReactiveStore<U>.State, rhs: ReactiveStore<U>.State) -> Bool {
             switch (lhs, rhs) {
             case (.loading, .loading): return true
             case let (.error(lError), .error(rError)):
@@ -47,7 +47,7 @@ public class ReactiveStore<U: UseCase> {
     private var next: GetNextRequest<U.Response>?
 
     private let forceRefreshRelay = PassthroughRelay<Void>()
-    private let stateRelay = CurrentValueRelay<Store2State>(.loading)
+    private let stateRelay = CurrentValueRelay<State>(.loading)
 
     private var cancellable: AnyCancellable?
     private var subscriptions = Set<AnyCancellable>()
@@ -80,7 +80,7 @@ public class ReactiveStore<U: UseCase> {
             .eraseToAnyPublisher()
     }
 
-    public func observeEntities(forceFetch: Bool = false, loadAllPages: Bool = false) -> AnyPublisher<Store2State, Never> {
+    public func observeEntities(forceFetch: Bool = false, loadAllPages: Bool = false) -> AnyPublisher<State, Never> {
         cancellable?.cancel()
         cancellable = nil
 

@@ -279,7 +279,7 @@ class ReactiveStoreTests: CoreTestCase {
         let useCase = TestUseCase(courses: [.make(id: "1")])
         let store = createStore(useCase: useCase)
 
-        var states = [ReactiveStore<TestUseCase>.Store2State]()
+        var states = [ReactiveStore<TestUseCase>.State]()
         let subscription = store.observeEntities(forceFetch: false)
             .sink { state in
                 expectation.fulfill()
@@ -349,7 +349,7 @@ class ReactiveStoreTests: CoreTestCase {
         let useCase = TestUseCase(courses: [.make(id: "1")])
         let store = createStore(useCase: useCase)
 
-        var states = [ReactiveStore<TestUseCase>.Store2State]()
+        var states = [ReactiveStore<TestUseCase>.State]()
         let subscription = store.observeEntities(forceFetch: false)
             .sink { state in
                 expectation.fulfill()
