@@ -161,8 +161,9 @@ public class ReactiveStore<U: UseCase> {
         loadAllPages: Bool,
         fetchRequest: NSFetchRequest<T>
     ) -> AnyPublisher<[T], Error> {
-        useCase.fetchWithFuture()
-            .print()
+        unowned let unownedSelf = self
+
+        return useCase.fetchWithFuture()
             .handleEvents(receiveOutput: { [weak self] urlResponse in
                 if let urlResponse {
                     self?.next = self?.useCase.getNext(from: urlResponse)
@@ -170,8 +171,8 @@ public class ReactiveStore<U: UseCase> {
                     self?.next = nil
                 }
             })
-            .flatMap { _ in self.fetchAllPagesIfNeeded(loadAllPages, fetchRequest: fetchRequest) }
-            .flatMap { _ in self.fetchEntitiesFromDatabase(fetchRequest: fetchRequest) }
+            .flatMap { _ in unownedSelf.fetchAllPagesIfNeeded(loadAllPages, fetchRequest: fetchRequest) }
+            .flatMap { _ in unownedSelf.fetchEntitiesFromDatabase(fetchRequest: fetchRequest) }
             .eraseToAnyPublisher()
     }
 
@@ -181,30 +182,32 @@ public class ReactiveStore<U: UseCase> {
     ) -> AnyPublisher<Void, Error> {
         unowned let unownedSelf = self
 
-        if loadAllPages {
-            return getNextPage()
-                .setFailureType(to: Error.self)
-                .flatMap { nextPageUseCase -> AnyPublisher<Void, Error> in
-                    if let nextPageUseCase {
-                        return unownedSelf.fetchEntitiesFromAPI(
-                            useCase: nextPageUseCase,
-                            loadAllPages: loadAllPages,
-                            fetchRequest: fetchRequest
-                        )
-                        .map { _ in () }
-                        .eraseToAnyPublisher()
-                    } else {
-                        return Just(())
-                            .setFailureType(to: Error.self)
-                            .eraseToAnyPublisher()
-                    }
-                }
-                .eraseToAnyPublisher()
-        } else {
-            return Just(())
+        let voidPublisher: () -> AnyPublisher<Void, Error> = {
+            Just(())
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         }
+
+        guard loadAllPages else {
+            return voidPublisher()
+        }
+
+        return getNextPage()
+            .setFailureType(to: Error.self)
+            .flatMap { nextPageUseCase -> AnyPublisher<Void, Error> in
+                if let nextPageUseCase {
+                    return unownedSelf.fetchEntitiesFromAPI(
+                        useCase: nextPageUseCase,
+                        loadAllPages: loadAllPages,
+                        fetchRequest: fetchRequest
+                    )
+                    .map { _ in () }
+                    .eraseToAnyPublisher()
+                } else {
+                    return voidPublisher()
+                }
+            }
+            .eraseToAnyPublisher()
     }
 
     private func getNextPage() -> AnyPublisher<GetNextUseCase<U>?, Never> {
