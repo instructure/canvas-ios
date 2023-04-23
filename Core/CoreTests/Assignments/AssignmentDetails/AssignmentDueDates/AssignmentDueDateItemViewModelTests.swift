@@ -39,7 +39,7 @@ class AssignmentDueDateItemViewModelTests: CoreTestCase {
         let item = AssignmentDate.save(apiAssignmentDate, assignmentID: "1", in: databaseClient)
         let testee = AssignmentDueDateItemViewModel(item: item)
 
-        XCTAssertEqual(testee.title, "Due Dec 25, 2022 at 3:24 PM")
+        XCTAssertEqual(testee.title, "Due \(Date(fromISOString: "2022-12-25T14:24:37Z")!.dateTimeString)")
     }
 
     func testFromUntilDates() {
@@ -51,8 +51,8 @@ class AssignmentDueDateItemViewModelTests: CoreTestCase {
         let item = AssignmentDate.save(apiAssignmentDate, assignmentID: "1", in: databaseClient)
         let testee = AssignmentDueDateItemViewModel(item: item)
 
-        XCTAssertEqual(testee.from, "Dec 6, 2022 at 3:24 PM")
-        XCTAssertEqual(testee.until, "Dec 25, 2022 at 3:24 PM")
+        XCTAssertEqual(testee.from, Date(fromISOString: "2022-12-06T14:24:37Z")?.dateTimeString)
+        XCTAssertEqual(testee.until, Date(fromISOString: "2022-12-25T14:24:37Z")?.dateTimeString)
         XCTAssertNil(testee.fromEmptyAccessibility)
         XCTAssertNil(testee.untilEmptyAccessibility)
     }
