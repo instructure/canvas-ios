@@ -22,10 +22,10 @@ public struct AssignmentDueDateItemViewModel: Identifiable, Equatable {
     public let id: String
     public let title: String
     public let assignee: String
-    public let from: String
-    public let fromEmptyAccessibility: String?
-    public let until: String
-    public let untilEmptyAccessibility: String?
+    public private(set) var from: String = "--"
+    public private(set) var fromEmptyAccessibility: String? = nil
+    public private(set) var until: String = "--"
+    public private(set) var untilEmptyAccessibility: String? = nil
 
     public init(item: AssignmentDate) {
         self.id = item.id
@@ -41,17 +41,13 @@ public struct AssignmentDueDateItemViewModel: Identifiable, Equatable {
 
         if let unlockAt = item.unlockAt?.dateTimeString {
             self.from = unlockAt
-            self.fromEmptyAccessibility = nil
         } else {
-            self.from = "--"
             self.fromEmptyAccessibility = NSLocalizedString("No available from date set.", bundle: .core, comment: "")
         }
 
         if let lockAt = item.lockAt?.dateTimeString {
             self.until = lockAt
-            self.untilEmptyAccessibility = nil
         } else {
-            self.until = "--"
             self.untilEmptyAccessibility = NSLocalizedString("No available until date set.", bundle: .core, comment: "")
         }
     }

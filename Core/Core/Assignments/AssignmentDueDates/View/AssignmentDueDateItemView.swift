@@ -31,11 +31,11 @@ struct AssignmentDueDateItemView: View {
                 .font(.heavy24).foregroundColor(.textDarkest)
                 .padding(16)
             Section(
-                label: Text("For"),
+                label: Text("For", bundle: .core),
                 content: { Text(model.assignee) }
             )
             Section(
-                label: Text("Available From"),
+                label: Text("Available From", bundle: .core),
                 content: {
                     if let fromEmptyAccessibility = model.fromEmptyAccessibility {
                         Text(model.from).accessibilityLabel(fromEmptyAccessibility)
@@ -45,7 +45,7 @@ struct AssignmentDueDateItemView: View {
                 }
             )
             Section(
-                label: Text("Available Until"),
+                label: Text("Available Until", bundle: .core),
                 content: {
                     if let untilEmptyAccessibility = model.untilEmptyAccessibility {
                         Text(model.until).accessibilityLabel(untilEmptyAccessibility)
@@ -74,6 +74,7 @@ struct AssignmentDueDateItemView: View {
                 content
             }
             .padding(16)
+            .accessibilityElement(children: .combine)
             Divider().padding(.horizontal, 16)
         }
     }
