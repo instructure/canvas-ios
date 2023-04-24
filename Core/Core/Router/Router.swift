@@ -159,7 +159,7 @@ open class Router {
     open func route(to url: URLComponents, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = DefaultRouteOptions) {
         let url = cleanURL(url)
 
-        if url.isExternalWebsite, let url = url.url {
+        if url.isExternalWebsite, !url.originIsNotification, let url = url.url {
             Analytics.shared.logScreenView(route: "/external_url")
             AppEnvironment.shared.loginDelegate?.openExternalURL(url)
             return
