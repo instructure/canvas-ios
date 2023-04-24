@@ -105,6 +105,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/dev-menu/experimental-features', null, store)
   registerScreen('/dev-menu/pandas', null, store)
   registerScreen('/dev-menu/website-preview', null, store)
+  registerScreen('/dev-menu/snackbar', null, store)
   registerScreen('/logs')
   registerScreen('/act-as-user')
   registerScreen('/act-as-user/:userID')

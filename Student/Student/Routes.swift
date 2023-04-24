@@ -357,6 +357,10 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         CoreHostingController(WebSitePreviewView())
     },
 
+    "/dev-menu/snackbar": { _, _, _ in
+        CoreHostingController(SnackBarTestView())
+    },
+
     "/logs": { _, _, _ in
         return LogEventListViewController.create()
     },
