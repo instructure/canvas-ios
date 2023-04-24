@@ -274,12 +274,8 @@ open class CoreUITestCase: XCTestCase {
         }
 
         // Test retries can work with last logged in instance
-        if LoginStart.lastLoginButton.exists() {
-            LoginStart.lastLoginButton.tap()
-        } else {
-            LoginStart.findSchoolButton.tap()
-            LoginFindSchool.searchField.typeText("\(user.host)\r")
-        }
+        LoginStart.findSchoolButton.tap()
+        LoginFindSchool.searchField.typeText("\(user.host)\r")
 
         LoginWeb.emailField.waitToExist(60)
         LoginWeb.emailField.typeText(user.username)

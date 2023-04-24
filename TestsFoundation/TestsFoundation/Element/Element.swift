@@ -60,7 +60,7 @@ public extension Element {
     }
 
     func exists(file: StaticString = #file, line: UInt = #line) -> Bool {
-        snapshot(file: file, line: line) != nil
+        rawElement.exists
     }
     var exists: Bool { exists() }
 
