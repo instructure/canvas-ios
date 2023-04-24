@@ -23,9 +23,9 @@ public struct AssignmentDueDateItemViewModel: Identifiable, Equatable {
     public let title: String
     public let assignee: String
     public private(set) var from: String = "--"
-    public private(set) var fromEmptyAccessibility: String? = nil
+    public private(set) var fromEmptyAccessibility: String?
     public private(set) var until: String = "--"
-    public private(set) var untilEmptyAccessibility: String? = nil
+    public private(set) var untilEmptyAccessibility: String?
 
     public init(item: AssignmentDate) {
         self.id = item.id
