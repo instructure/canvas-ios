@@ -445,10 +445,15 @@ extension FileDetailsViewController: PDFViewControllerDelegate {
             builder.overrideClass(AnnotationToolbar.self, with: AnnotationToolbar.self)
         })
         controller.annotationToolbarController?.toolbar.toolbarPosition = .left
+
         let appearance = UIToolbarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = navigationController?.navigationBar.barTintColor
         controller.annotationToolbarController?.toolbar.standardAppearance = appearance
+
+        let annotationToolbarProxy = AnnotationToolbar.appearance()
+        annotationToolbarProxy.tintColor = navigationController?.navigationBar.tintColor
+
         controller.delegate = self
         embed(controller, in: contentView)
         addPDFAnnotationChangeNotifications()
