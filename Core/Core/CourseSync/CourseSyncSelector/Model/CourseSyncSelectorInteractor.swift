@@ -72,10 +72,12 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         case .course(let courseIndex):
             entries[courseIndex].isSelected = isSelected
         case .tab(let courseIndex, let tabIndex):
-            entries[courseIndex].tabs[tabIndex].isSelected = isSelected
+            entries[courseIndex].selectTab(index: tabIndex, isSelected: isSelected)
         case .file(let courseIndex, let fileIndex):
-            entries[courseIndex].files[fileIndex].isSelected = isSelected
+            entries[courseIndex].selectFile(index: fileIndex, isSelected: isSelected)
         }
+
+        courseSyncEntries.accept(entries)
     }
 
     private func getTabs(courseId: String) -> AnyPublisher<[CourseSyncEntry.Tab], Error> {
@@ -91,7 +93,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
                 CourseSyncEntry.Tab(
                     id: $0.id,
                     name: $0.label,
-                    type: $0.type
+                    type: $0.name
                 )
             }
         }
@@ -195,7 +197,7 @@ struct CourseSyncEntry {
     struct Tab {
         let id: String
         let name: String
-        let type: TabType
+        let type: TabName
         var isSelected: Bool = true
     }
 
@@ -224,5 +226,28 @@ struct CourseSyncEntry {
     }
 
     var isCollapsed: Bool = true
-    var isSelected: Bool = true
+    var isSelected: Bool = true {
+        didSet {
+            tabs.indices.forEach { tabs[$0].isSelected = isSelected }
+            files.indices.forEach { files[$0].isSelected = isSelected }
+        }
+    }
+
+    mutating func selectTab(index: Int, isSelected: Bool) {
+        tabs[index].isSelected = isSelected
+
+        guard tabs[index].type == .files else {
+            return
+        }
+
+        files.indices.forEach { files[$0].isSelected = isSelected }
+    }
+
+    mutating func selectFile(index: Int, isSelected: Bool) {
+        files[index].isSelected = isSelected
+        guard let fileTabIndex = tabs.firstIndex(where: { $0.type == TabName.files } ) else {
+            return
+        }
+        tabs[fileTabIndex].isSelected = files.count == selectedFilesCount
+    }
 }
