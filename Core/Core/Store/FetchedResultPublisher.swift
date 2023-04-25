@@ -49,7 +49,7 @@ public final class FetchedResultsPublisher<T: NSManagedObject>: NSObject, NSFetc
             do {
                 try self.frc.performFetch()
             } catch {
-                subscriber.send(completion: .failure(NSError(domain: "Core-Data Read Error", code: 0)))
+                subscriber.send(completion: .failure(NSError.instructureError("Error while reading from Core Data")))
             }
 
             self.sendNextElement()
