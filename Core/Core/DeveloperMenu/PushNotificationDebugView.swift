@@ -30,7 +30,7 @@ public struct PushNotificationDebugView: View {
     public init() {
         let array = UserDefaults.standard.array(forKey: "PushNotificationsStorageKey") ?? []
         notifications = array.compactMap { element in
-            if let data = try? JSONSerialization.data(withJSONObject: element, options: .prettyPrinted) {
+            if let data = try? JSONSerialization.data(withJSONObject: element, options: [.prettyPrinted, .withoutEscapingSlashes]) {
                 return String(data: data, encoding: String.Encoding.utf8)
             } else { return nil }
         }
