@@ -42,13 +42,6 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
         XCTAssertFalse(testee.isSelected)
     }
 
-    func testFileCourseTabMapping() {
-        let data = CourseSyncEntry.Tab(id: "1", name: "Test", type: .files)
-        let testee = data.makeViewModelItem()
-
-        XCTAssertTrue(testee.isIndented)
-    }
-
     func testCourseMapping() {
         var data = CourseSyncEntry(name: "test", id: "testID", tabs: [], files: [], isSelected: true)
         var testee = data.makeViewModelItem()

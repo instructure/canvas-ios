@@ -19,39 +19,16 @@
 import SwiftUI
 
 struct CourseSyncSelectorView: View {
-    let items: [CourseSyncSelectorViewModel.Item] = [
-        .cell(.init(
-            isSelected: false,
-            backgroundColor: .backgroundLightest,
-            title: "Item 1",
-            subtitle: "Subtitle for Item 1",
-            trailingIcon: .none,
-            isIndented: false
-        )),
-        .separator(isLight: true, isIndented: true),
-        .cell(.init(
-            isSelected: true,
-            backgroundColor: .backgroundLightest,
-            title: "Item 2",
-            subtitle: nil,
-            trailingIcon: .opened,
-            isIndented: false
-        )),
-        .separator(isLight: false, isIndented: false),
-        .cell(.init(
-            isSelected: false,
-            backgroundColor: .backgroundLightest,
-            title: "Item 3",
-            subtitle: "Subtitle for Item 3",
-            trailingIcon: .closed,
-            isIndented: true
-        )),
-    ]
+    private let viewModel: CourseSyncSelectorViewModel
+
+    init(viewModel: CourseSyncSelectorViewModel) {
+        self.viewModel = viewModel
+    }
 
     var body: some View {
         ScrollView {
             LazyVStack(spacing: 0) {
-                ForEach(items, id: \.self) { item in
+                ForEach(viewModel.items, id: \.self) { item in
                     switch item {
                     case .separator(let isLight, let isIndented):
                         SeparatorView(isLight: isLight, isIndented: isIndented)
@@ -110,6 +87,6 @@ struct SeparatorView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        CourseSyncSelectorView()
+        CourseSyncSelectorAssembly.makePreview()
     }
 }

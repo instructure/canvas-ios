@@ -87,7 +87,7 @@ extension CourseSyncEntry.Tab {
               title: name,
               subtitle: nil,
               trailingIcon: .none,
-              isIndented: type == .files)
+              isIndented: false)
     }
 }
 
