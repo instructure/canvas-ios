@@ -282,7 +282,9 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return CoreHostingController(ContextCardView(model: viewModel))
     },
 
-    "/dev-menu": nil,
+    "/dev-menu": { _, _, _ in
+        CoreHostingController(DeveloperMenuView())
+    },
 
     "/dev-menu/experimental-features": { _, _, _ in
         let vc = ExperimentalFeaturesViewController()
