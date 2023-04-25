@@ -86,7 +86,10 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
         return CoreHostingController(AssignmentEditorView(courseID: courseID, assignmentID: assignmentID))
     },
-    "/courses/:courseID/assignments/:assignmentID/due_dates": nil,
+    "/courses/:courseID/assignments/:assignmentID/due_dates": { _, params, _ in
+        guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
+        return AssignmentDueDatesAssembly.makeViewController(env: AppEnvironment.shared, courseID: courseID, assignmentID: assignmentID)
+    },
     "/courses/:courseID/assignments/:assignmentID/assignee-picker": nil,
     "/courses/:courseID/assignments/:assignmentID/assignee-search": nil,
 
