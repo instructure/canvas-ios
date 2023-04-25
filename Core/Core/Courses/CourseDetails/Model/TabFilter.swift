@@ -19,6 +19,13 @@
 extension Array where Element == Tab {
     private var mobileSupportedTabs: [TabName] { [.assignments, .quizzes, .discussions, .announcements, .people, .pages, .files, .modules, .syllabus] }
 
+    private var offlineSupportedTabs: [TabName] { [.assignments, .pages, .files] }
+
+    func offlineSupportedTabs(isStudent: Bool = true) -> [Tab] {
+        filteredTabsForCourseHome(isStudent: isStudent)
+            .filter { offlineSupportedTabs.contains($0.name) }
+    }
+
     func filteredTabsForCourseHome(isStudent: Bool) -> [Tab] {
         var tabs = self
 
