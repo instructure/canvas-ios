@@ -490,6 +490,7 @@
 		57A309612412F8410626D177 /* APIGradingPeriodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FD10ABDCFF5A22C7A8FBD5 /* APIGradingPeriodTests.swift */; };
 		57B914DC6567723EF463392F /* GetAssignmentGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C3825F380B668C050A1846C /* GetAssignmentGroups.swift */; };
 		57C5622CD8A7DE56E6C1D2A0 /* CoursePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9661018997B64B09EC673EB /* CoursePickerView.swift */; };
+		57EE8E0FC88FBB5764BD6852 /* CourseSyncSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A565BCA1C1F724E147F556 /* CourseSyncSelectorView.swift */; };
 		57FB87F2993B1876875B8965 /* GetQuizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29590684F0970EF3194ACF31 /* GetQuizTests.swift */; };
 		58695D761306C1B942F7DA8D /* FileProgressListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EF114D2A9D68AB793A9090 /* FileProgressListViewModelTests.swift */; };
 		58A4B525130E7937ADE78BEA /* DashboardInvitationAPIItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08EC4E28D23650C61C8D2A7 /* DashboardInvitationAPIItemTests.swift */; };
@@ -743,6 +744,7 @@
 		8197434610847D74DF0F4955 /* UISegmentedControlExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928DDC91B8AA6CDDB5CCF70C /* UISegmentedControlExtensions.swift */; };
 		81C59374785FBB870C8D03BE /* GetQuizSubmissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499410DFE2D8947CA9CB3019 /* GetQuizSubmissionTests.swift */; };
 		82369D84C18C81A912A19D74 /* ConferenceDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7E3BE9351797078B54769 /* ConferenceDetailsViewControllerTests.swift */; };
+		82897188E25232A5647107CB /* CourseSyncSelectorViewModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E25F3BA93FD66FEB9B520 /* CourseSyncSelectorViewModelItem.swift */; };
 		82920759E3E3D77B22121985 /* InboxMessageListItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3A73CC3E9DAD91ECCEF662 /* InboxMessageListItemTests.swift */; };
 		82979ADFC2A5F3C13423A4AA /* ViewModelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026306C5D0B6912F2B1FC0C1 /* ViewModelState.swift */; };
 		82D430256E6355B06FEDC024 /* RoleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E853CACABF36E865C5682822 /* RoleTests.swift */; };
@@ -964,6 +966,7 @@
 		AE06126258077EF80ED21F72 /* URLExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B76B4DD653A6A34CBC866D6 /* URLExtensionsTests.swift */; };
 		AE084E7023DFD9701C92B3E6 /* AppStoreReviewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352C359FEF9F433F0479815 /* AppStoreReviewTests.swift */; };
 		AE514CC6351E7E013F78EBE9 /* InputStreamExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6824A8A2E78E81DF9A72C1A /* InputStreamExtensions.swift */; };
+		AE610074A3FDDABB4B062765 /* CourseSyncSelectorViewModelItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86034D6CEA7385B7CA534E30 /* CourseSyncSelectorViewModelItemTests.swift */; };
 		AE90BED2403E2B86EFAEA071 /* SideMenuDeveloperOptionsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3085C9F63876B28B5558502D /* SideMenuDeveloperOptionsSection.swift */; };
 		AE93F2D0240A9FE37E13A227 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E0EEADB98E70E20B496571 /* View.swift */; };
 		AE95631D7EF473925DF619E2 /* UIScrollViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD087EC1EF18210983AD307 /* UIScrollViewExtensionsTests.swift */; };
@@ -1094,6 +1097,7 @@
 		C4194A5C41933B17FB0DF695 /* PairWithObserverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617AE70312B1FC5CC341AD98 /* PairWithObserverViewController.swift */; };
 		C41C54EEDFCCA7A563CBB705 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E249DD6423E938E1DE581C9 /* Core.framework */; };
 		C4B7303D48105DF4CDE2F7CD /* ContextColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D35E39902E002CAE151F8E /* ContextColorTests.swift */; };
+		C4B8DC5C5BF90632B794F46F /* CourseSyncSelectorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62284448F06E5517B5E4864 /* CourseSyncSelectorViewModel.swift */; };
 		C4D4BA3CAA18EF578EC37BC1 /* LogEventListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC13FB9E2590FD01A29016 /* LogEventListPresenter.swift */; };
 		C5691F7595579E11558DD2C0 /* ContextModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCEED9901EC76B323C4FD07 /* ContextModelTests.swift */; };
 		C59C53721B8ACBE4AE98C9DF /* K5ScheduleEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F411DE242FFF39CB742D37F /* K5ScheduleEntryView.swift */; };
@@ -2391,6 +2395,7 @@
 		85A9BF018A7BDF4720178D9B /* ScriptTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptTests.swift; sourceTree = "<group>"; };
 		85D0E3FC18C36A8077C654DD /* ComposeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ComposeViewController.storyboard; sourceTree = "<group>"; };
 		85E2DB6511139FD56FAE6EE3 /* Script.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
+		86034D6CEA7385B7CA534E30 /* CourseSyncSelectorViewModelItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncSelectorViewModelItemTests.swift; sourceTree = "<group>"; };
 		8634CDF6D6C6D8A081E13FDB /* APISubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISubmission.swift; sourceTree = "<group>"; };
 		86419C4C5A5EA6607893DCD9 /* Permissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permissions.swift; sourceTree = "<group>"; };
 		868E98D68BF6DAF00974AF67 /* FileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTests.swift; sourceTree = "<group>"; };
@@ -2504,6 +2509,7 @@
 		983A36C59A25DA6BC8B0D893 /* UIAccessibilityAnnouncement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAccessibilityAnnouncement.swift; sourceTree = "<group>"; };
 		9869EC73E66B97B137AF1CD5 /* APIPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPage.swift; sourceTree = "<group>"; };
 		9897C00B391C037AC47F356F /* DragInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragInfo.swift; sourceTree = "<group>"; };
+		98A565BCA1C1F724E147F556 /* CourseSyncSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncSelectorView.swift; sourceTree = "<group>"; };
 		98BD35189413844C0324337D /* instructure.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = instructure.pdf; sourceTree = "<group>"; };
 		98D35E39902E002CAE151F8E /* ContextColorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextColorTests.swift; sourceTree = "<group>"; };
 		98D4396357A7873CBAFE4B2E /* SubmissionBreakdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionBreakdown.swift; sourceTree = "<group>"; };
@@ -2584,12 +2590,14 @@
 		A4D92FCB619653A9DEFBE765 /* LogEventListPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogEventListPresenterTests.swift; sourceTree = "<group>"; };
 		A4EE905F8704D81DC37F88CA /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A508EB535365B3A1355EB1FC /* StudentViewCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentViewCellViewModelTests.swift; sourceTree = "<group>"; };
+		A51E25F3BA93FD66FEB9B520 /* CourseSyncSelectorViewModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncSelectorViewModelItem.swift; sourceTree = "<group>"; };
 		A521299CB8FC225619DE6BB0 /* UITableViewHeaderFooterViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewHeaderFooterViewExtensions.swift; sourceTree = "<group>"; };
 		A54E2246CD24105513606843 /* Avatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Avatar.swift; sourceTree = "<group>"; };
 		A56C8EAEDD96E8716CB5A484 /* FileUploadProgressObserversCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadProgressObserversCacheTests.swift; sourceTree = "<group>"; };
 		A571497F76E9694BCC7A70D8 /* DynamicLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLabelTests.swift; sourceTree = "<group>"; };
 		A59435E04AD83E555BDE51AE /* NSManagedObjectContextExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContextExtensions.swift; sourceTree = "<group>"; };
 		A61580548942CC239D28BAC5 /* PeopleListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListViewControllerTests.swift; sourceTree = "<group>"; };
+		A62284448F06E5517B5E4864 /* CourseSyncSelectorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncSelectorViewModel.swift; sourceTree = "<group>"; };
 		A6451F63978AB7E2201F31D3 /* FileUploadItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadItem.swift; sourceTree = "<group>"; };
 		A69CC23F2DAF6A3C47E4BFD4 /* FileUploadObservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadObservation.swift; sourceTree = "<group>"; };
 		A707DD40DDF1442B02C8EA0C /* BackgroundActivityTerminationHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundActivityTerminationHandlerTests.swift; sourceTree = "<group>"; };
@@ -4010,6 +4018,15 @@
 			path = Schedule;
 			sourceTree = "<group>";
 		};
+		30258763F59B0614E1C884C5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A62284448F06E5517B5E4864 /* CourseSyncSelectorViewModel.swift */,
+				A51E25F3BA93FD66FEB9B520 /* CourseSyncSelectorViewModelItem.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		307CCE13F7FF65A76B9782EA /* Pages */ = {
 			isa = PBXGroup;
 			children = (
@@ -4273,6 +4290,14 @@
 			path = FilePicker;
 			sourceTree = "<group>";
 		};
+		3975910C2908822B8AEE93A0 /* CourseSyncSelector */ = {
+			isa = PBXGroup;
+			children = (
+				CBFBCAFD5A6FE7F70F485F99 /* ViewModel */,
+			);
+			path = CourseSyncSelector;
+			sourceTree = "<group>";
+		};
 		3AA31B06D32F12EC2B0D7517 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -4377,6 +4402,14 @@
 				C0CC82562D352809583B9955 /* MockURLSession.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		41D2077C22A27D1809910419 /* CourseSync */ = {
+			isa = PBXGroup;
+			children = (
+				3975910C2908822B8AEE93A0 /* CourseSyncSelector */,
+			);
+			path = CourseSync;
 			sourceTree = "<group>";
 		};
 		433ACEDEFAF12BA60446D049 /* Syllabus */ = {
@@ -5007,6 +5040,14 @@
 			path = K5;
 			sourceTree = "<group>";
 		};
+		64CEC7D0CDEE61D3AF0691EF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				98A565BCA1C1F724E147F556 /* CourseSyncSelectorView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		64E9A58D8106974494BD82D7 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
@@ -5171,6 +5212,8 @@
 			isa = PBXGroup;
 			children = (
 				8006F2D526D336BE2712C94C /* Model */,
+				64CEC7D0CDEE61D3AF0691EF /* View */,
+				30258763F59B0614E1C884C5 /* ViewModel */,
 			);
 			path = CourseSyncSelector;
 			sourceTree = "<group>";
@@ -5907,6 +5950,7 @@
 				9F82E4CB462C3A4758B23F38 /* Conversations */,
 				44E83894C6EAB67C408AA393 /* CoreWebView */,
 				8CFF0F55ADD55AE6DE79BBFC /* Courses */,
+				41D2077C22A27D1809910419 /* CourseSync */,
 				AFDFAAE6CA1C14BFD9E3B6FF /* Dashboard */,
 				13E4A7740B237260CB22660B /* Discussions */,
 				34818CF6601149221C644312 /* DocViewer */,
@@ -6836,6 +6880,14 @@
 			isa = PBXGroup;
 			children = (
 				87FF805211B1C8CCA1B4182E /* QuizPreviewViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CBFBCAFD5A6FE7F70F485F99 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				86034D6CEA7385B7CA534E30 /* CourseSyncSelectorViewModelItemTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -8202,6 +8254,7 @@
 				8CCBC000ED57E3B30185A885 /* CoursePickerViewModelTests.swift in Sources */,
 				736AE1BECC79C6AF052D56A4 /* CourseSectionTests.swift in Sources */,
 				DFD3AAD755B3F0286737535B /* CourseSettingsViewModelTests.swift in Sources */,
+				AE610074A3FDDABB4B062765 /* CourseSyncSelectorViewModelItemTests.swift in Sources */,
 				03984B4702E776F6414CA2B7 /* CourseTests.swift in Sources */,
 				0DBFDC6FE048F46BECE4E7BC /* CreateConversationTests.swift in Sources */,
 				5233197D4D23D21ABD6A7FE9 /* CreateTextCommentTests.swift in Sources */,
@@ -8779,6 +8832,9 @@
 				C9139B41E63986BD683531F8 /* CourseSettingsView.swift in Sources */,
 				A8A8A93DE637ABB16758B5E2 /* CourseSettingsViewModel.swift in Sources */,
 				1FEE2D0F80E2D1737428C43D /* CourseSyncSelectorInteractor.swift in Sources */,
+				57EE8E0FC88FBB5764BD6852 /* CourseSyncSelectorView.swift in Sources */,
+				C4B8DC5C5BF90632B794F46F /* CourseSyncSelectorViewModel.swift in Sources */,
+				82897188E25232A5647107CB /* CourseSyncSelectorViewModelItem.swift in Sources */,
 				BBF7387BD0DC0EE94DDE8190 /* CreateConversation.swift in Sources */,
 				AA83EE551264437D8544C621 /* CreatePlannerNote.swift in Sources */,
 				2954539C4875336BDCF4DC2A /* CreateTextComment.swift in Sources */,
