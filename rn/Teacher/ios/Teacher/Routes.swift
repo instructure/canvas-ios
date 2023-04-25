@@ -301,6 +301,14 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         CoreHostingController(SnackBarTestView())
     },
 
+    "/logs": { _, _, _ in
+        return LogEventListViewController.create()
+    },
+
+    "/push-notifications": { _, _, _ in
+        CoreHostingController(PushNotificationDebugView())
+    },
+
     "/profile": { _, _, _ in
         return CoreHostingController(SideMenuView(.teacher), customization: SideMenuTransitioningDelegate.applyTransitionSettings)
     },

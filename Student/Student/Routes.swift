@@ -339,7 +339,9 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     "/courses/:courseID/users/:userID": contextCard,
     "/groups/:groupID/users/:userID": groupContextCard,
 
-    "/dev-menu": nil,
+    "/dev-menu": { _, _, _ in
+        CoreHostingController(DeveloperMenuView())
+    },
 
     "/dev-menu/experimental-features": { _, _, _ in
         let vc = ExperimentalFeaturesViewController()
@@ -363,6 +365,10 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     "/logs": { _, _, _ in
         return LogEventListViewController.create()
+    },
+
+    "/push-notifications": { _, _, _ in
+        CoreHostingController(PushNotificationDebugView())
     },
 
     "/profile": { _, _, _ in
