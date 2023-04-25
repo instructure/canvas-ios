@@ -20,13 +20,13 @@ import Combine
 import CombineExt
 import Foundation
 
-protocol CourseSyncInteractor {
+protocol CourseSyncSelectorInteractor {
     func getCourseSyncEntries() -> AnyPublisher<[CourseSyncEntry], Error>
     func observeSelectedCount() -> AnyPublisher<Int, Never>
     func setSelected(selection: CourseEntrySelection, isSelected: Bool)
 }
 
-final class CourseSyncInteractorLive: CourseSyncInteractor {
+final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     private let courseListStore = ReactiveStore(
         useCase: GetCourseListCourses(enrollmentState: .active)
     )
@@ -39,7 +39,7 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
             .flatMap { course in
                 Publishers.Zip(
                     self.getTabs(courseId: course.courseId),
-                    self.getRootFolderItems(courseId: course.courseId)
+                    self.getAllFiles(courseId: course.courseId)
                 )
                 .map {
                     CourseSyncEntry(
@@ -98,7 +98,7 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
         .eraseToAnyPublisher()
     }
 
-    private func getRootFolderItems(courseId: String) -> AnyPublisher<[CourseSyncEntry.File], Error> {
+    private func getAllFiles(courseId: String) -> AnyPublisher<[CourseSyncEntry.File], Error> {
         ReactiveStore(
             useCase: GetFolderByPath(
                 context: .course(courseId)
@@ -108,7 +108,7 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
         .flatMap {
             Publishers.Sequence(sequence: $0)
                 .setFailureType(to: Error.self)
-                .flatMap { self.getAllFiles(folderID: $0.id, initialArray: []) }
+                .flatMap { self.getFiles(folderID: $0.id, initialArray: []) }
         }
         .map {
             $0.map {
@@ -122,10 +122,10 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
         .eraseToAnyPublisher()
     }
 
-    private func getAllFiles(folderID: String, initialArray: [FolderItem]) -> AnyPublisher<[FolderItem], Error> {
+    private func getFiles(folderID: String, initialArray: [FolderItem]) -> AnyPublisher<[FolderItem], Error> {
         var result = initialArray
 
-        return getFolderItems(folderID: folderID)
+        return getFilesAndFolderIDs(folderID: folderID)
             .flatMap { files, folderIDs in
                 result.append(contentsOf: files)
 
@@ -137,7 +137,7 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
                 return Publishers.Sequence(sequence: folderIDs)
                     .setFailureType(to: Error.self)
                     .flatMap {
-                        self.getAllFiles(folderID: $0, initialArray: result)
+                        self.getFiles(folderID: $0, initialArray: result)
                             .handleEvents(
                                 receiveOutput: {
                                     result.append(contentsOf: $0)
@@ -151,7 +151,7 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
             .eraseToAnyPublisher()
     }
 
-    private func getFolderItems(folderID: String) -> AnyPublisher<([FolderItem], [String]), Error> {
+    private func getFilesAndFolderIDs(folderID: String) -> AnyPublisher<([FolderItem], [String]), Error> {
         return ReactiveStore(
             useCase: GetFolderItems(
                 folderID: folderID
