@@ -198,6 +198,7 @@ struct CourseSyncEntry {
         let id: String
         let name: String
         let type: TabName
+        var isCollapsed: Bool = true
         var isSelected: Bool = true
     }
 
