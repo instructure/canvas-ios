@@ -16,8 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#if DEBUG
-
 import SwiftUI
 import UserNotifications
 
@@ -47,5 +45,3 @@ public struct PushNotificationDebugView: View {
         .navigationTitle("Push Notifications")
     }
 }
-
-#endif
