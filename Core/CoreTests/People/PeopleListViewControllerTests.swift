@@ -18,7 +18,6 @@
 
 import XCTest
 @testable import Core
-@testable import TestsFoundation
 
 class PeopleListViewControllerTests: CoreTestCase {
     let course1 = Context(.course, id: "1")
