@@ -21,10 +21,41 @@ import XCTest
 
 class CourseSyncSelectorViewModelTests: XCTestCase {
 
-    // MARK: - Entity Mappings
+    // MARK: - Course
+
+    func testCourseMapping() {
+        var data = CourseSyncEntry(name: "test", id: "testID", tabs: [], files: [])
+        var testee = data.makeViewModelItem()
+
+        XCTAssertTrue(testee.isSelected)
+        XCTAssertEqual(testee.backgroundColor, .backgroundLight)
+        XCTAssertEqual(testee.title, "test")
+        XCTAssertNil(testee.subtitle)
+        XCTAssertFalse(testee.isIndented)
+
+        data.isCollapsed = true
+        testee = data.makeViewModelItem()
+        XCTAssertEqual(testee.trailingIcon, .closed)
+
+        data.isCollapsed = false
+        testee = data.makeViewModelItem()
+        XCTAssertEqual(testee.trailingIcon, .opened)
+    }
+
+    func testCourseCollapsion() {
+        var course = CourseSyncEntry(name: "test", id: "testID", tabs: [.init(id: "0", name: "Assignments", type: .assignments)], files: [])
+
+        course.isCollapsed = true
+        XCTAssertEqual([course].makeViewModelItems().count, 1)
+
+        course.isCollapsed = false
+        XCTAssertEqual([course].makeViewModelItems().count, 2)
+    }
+
+    // MARK: - Course Tabs
 
     func testCourseTabMapping() {
-        var data = CourseSyncEntry.Tab(id: "1", name: "Test", type: .assignments, isSelected: true)
+        var data = CourseSyncEntry.Tab(id: "1", name: "Test", type: .assignments)
         var testee = data.makeViewModelItem()
 
         XCTAssertEqual(testee.backgroundColor, .backgroundLightest)
@@ -42,24 +73,33 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
         XCTAssertFalse(testee.isSelected)
     }
 
-    func testCourseMapping() {
-        var data = CourseSyncEntry(name: "test", id: "testID", tabs: [], files: [], isSelected: true)
-        var testee = data.makeViewModelItem()
-
-        XCTAssertTrue(testee.isSelected)
-        XCTAssertEqual(testee.backgroundColor, .backgroundLight)
-        XCTAssertEqual(testee.title, "test")
-        XCTAssertNil(testee.subtitle)
-        XCTAssertFalse(testee.isIndented)
+    func testFilesTabMapping() {
+        var data = CourseSyncEntry.Tab(id: "1", name: "Files", type: .files)
 
         data.isCollapsed = true
-        testee = data.makeViewModelItem()
+        var testee = data.makeViewModelItem()
         XCTAssertEqual(testee.trailingIcon, .closed)
 
         data.isCollapsed = false
         testee = data.makeViewModelItem()
         XCTAssertEqual(testee.trailingIcon, .opened)
     }
+
+    func testFilesTabCollapsion() {
+        let file = CourseSyncEntry.File(id: "0", name: "test.txt", url: nil)
+        var filesTab = CourseSyncEntry.Tab(id: "0", name: "Files", type: .files)
+
+        filesTab.isCollapsed = true
+        var course = CourseSyncEntry(name: "test", id: "testID", tabs: [filesTab], files: [file], isCollapsed: false)
+        XCTAssertEqual([course].makeViewModelItems().count, 2)
+
+        filesTab.isCollapsed = false
+        course = CourseSyncEntry(name: "test", id: "testID", tabs: [filesTab], files: [file], isCollapsed: false)
+        course.isCollapsed = false
+        XCTAssertEqual([course].makeViewModelItems().count, 3)
+    }
+
+    // MARK: - Files
 
     func testFileItemMapping() {
         var data = CourseSyncEntry.File(id: "1", name: "testFile", url: nil)
@@ -78,42 +118,5 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
         data.isSelected = false
         testee = data.makeViewModelItem()
         XCTAssertFalse(testee.isSelected)
-    }
-
-    // MARK: - Separators
-
-    func testClosedCourseSeparators() {
-        let data: [CourseSyncEntry] = [
-            .init(name: "Black Hole", id: "0", tabs: [], files: []),
-            .init(name: "Cosmology", id: "1", tabs: [], files: []),
-        ]
-        let testee = data.makeViewModelItems()
-        XCTAssertEqual(testee[0], .separator(isLight: true, isIndented: false))
-        // Index 1 is a course
-        XCTAssertEqual(testee[2], .separator(isLight: true, isIndented: false))
-        // Index 3 is a course
-        XCTAssertEqual(testee[4], .separator(isLight: true, isIndented: false))
-    }
-
-    func testCourseTabsSeparators() {
-        var data: [CourseSyncEntry] = [
-            .init(name: "Black Hole",
-                  id: "0",
-                  tabs: [
-                    .init(id: "0", name: "Assignments", type: .assignments),
-                    .init(id: "1", name: "People", type: .people),
-                  ],
-                  files: []),
-        ]
-        data[0].isCollapsed = false
-
-        let testee = data.makeViewModelItems()
-        XCTAssertEqual(testee[0], .separator(isLight: true, isIndented: false))
-        // Index 1 is a course
-        XCTAssertEqual(testee[2], .separator(isLight: true, isIndented: false))
-        // Index 3 is Assignments tab
-        XCTAssertEqual(testee[4], .separator(isLight: true, isIndented: false))
-        // Index 5 is People tab
-        XCTAssertEqual(testee[6], .separator(isLight: true, isIndented: false))
     }
 }

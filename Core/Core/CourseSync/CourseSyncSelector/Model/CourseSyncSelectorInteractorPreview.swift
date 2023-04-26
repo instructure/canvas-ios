@@ -30,15 +30,15 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
                     .init(id: "1", name: "Discussion", type: .assignments),
                     .init(id: "2", name: "Grades", type: .assignments),
                     .init(id: "3", name: "People", type: .assignments),
-                    .init(id: "4", name: "Files", type: .files),
+                    .init(id: "4", name: "Files", type: .files, isCollapsed: false),
                     .init(id: "5", name: "Syllabus", type: .assignments),
                   ],
                   files: [
                     .init(id: "0", name: "Creative Machines and Innovative Instrumentation.mov", url: nil),
                     .init(id: "0", name: "Intro Energy, Space and Time.mov", url: nil),
-                  ])
+                  ],
+                  isCollapsed: false),
         ]
-        mockData[0].isCollapsed = false
     }
 
     func getCourseSyncEntries() -> AnyPublisher<[CourseSyncEntry], Error> {

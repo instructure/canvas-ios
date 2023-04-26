@@ -29,12 +29,7 @@ struct CourseSyncSelectorView: View {
         ScrollView {
             LazyVStack(spacing: 0) {
                 ForEach(viewModel.items, id: \.self) { item in
-                    switch item {
-                    case .separator(let isLight, let isIndented):
-                        SeparatorView(isLight: isLight, isIndented: isIndented)
-                    case .cell(let cell):
-                        CellView(cell: cell)
-                    }
+                    CellView(item: item)
                 }
             }
         }
@@ -42,21 +37,21 @@ struct CourseSyncSelectorView: View {
 }
 
 struct CellView: View {
-    let cell: CourseSyncSelectorViewModel.Item.Cell
+    let item: CourseSyncSelectorViewModel.Item
 
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(cell.title)
-                    .fontWeight(cell.isSelected ? .bold : .regular)
-                if let subtitle = cell.subtitle {
+                Text(item.title)
+                    .fontWeight(item.isSelected ? .bold : .regular)
+                if let subtitle = item.subtitle {
                     Text(subtitle)
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                 }
             }
             Spacer()
-            switch cell.trailingIcon {
+            switch item.trailingIcon {
             case .none:
                 SwiftUI.EmptyView()
             case .opened:
@@ -68,8 +63,8 @@ struct CellView: View {
             }
         }
         .padding()
-        .background(cell.backgroundColor)
-        .padding(.leading, cell.isIndented ? 16 : 0)
+        .background(item.backgroundColor)
+        .padding(.leading, item.isIndented ? 16 : 0)
     }
 }
 
