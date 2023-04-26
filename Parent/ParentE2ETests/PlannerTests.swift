@@ -21,7 +21,7 @@ import TestsFoundation
 
 class PlannerTests: CoreUITestCase {
     let calendar = Calendar.current
-    let y = 2020
+    let y = 2023
     let m = 3
     lazy var reference = DateComponents(calendar: .current, year: y, month: m, day: 1).date!
 
