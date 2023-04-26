@@ -19,29 +19,14 @@
 import Foundation
 import TestsFoundation
 
-struct PeopleListCell {
-    let index: Int
-    let idPrefix = "people-list-cell-row-"
-    lazy var cell: Element = {
-        return app.find(id: "\(idPrefix)\(index)")
-    }()
-
-    lazy var name: String = {
-        return app.find(id: "\(idPrefix)\(index).name-label").label()
-    }()
-
-    lazy var role: String = {
-        return app.find(id: "\(idPrefix)\(index).role-label").label()
-    }()
-}
-
 class DSPeopleE2ETests: E2ETestCase {
     // Follow-up of MBL-15555
     func testPeopleListRoleE2E() {
+        let studentIndex = 1
         let users = seeder.createUsers(2)
         let course = seeder.createCourse()
         let teacher = users[0]
-        let student = users[1]
+        let student = users[studentIndex]
         seeder.enrollTeacher(teacher, in: course)
         seeder.enrollStudent(student, in: course)
 
@@ -49,14 +34,13 @@ class DSPeopleE2ETests: E2ETestCase {
         Dashboard.courseCard(id: course.id).tap()
         CourseNavigation.people.tap()
 
-        var testStudent = PeopleListCell(index: 1)
-        testStudent.cell.waitToExist()
+        PeopleListCell.cell(index: studentIndex).waitToExist()
 
-        XCTAssertEqual(testStudent.name, student.name)
-        XCTAssertEqual(testStudent.role, "Student")
-        testStudent.cell.tap()
+        XCTAssertEqual(PeopleListCell.name(index: studentIndex), student.name)
+        XCTAssertEqual(PeopleListCell.role(index: studentIndex), "Student")
+        PeopleListCell.cell(index: studentIndex).tap()
         NavBar.backButton.tap()
-        testStudent.cell.waitToExist()
-        XCTAssertEqual(testStudent.role, "Student")
+        PeopleListCell.cell(index: studentIndex).waitToExist()
+        XCTAssertEqual(PeopleListCell.role(index: studentIndex), "Student")
     }
 }
