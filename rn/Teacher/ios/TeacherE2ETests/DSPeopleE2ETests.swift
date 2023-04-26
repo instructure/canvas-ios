@@ -21,16 +21,17 @@ import TestsFoundation
 
 struct PeopleListCell {
     let index: Int
+    let idPrefix = "people-list-cell-row-"
     lazy var cell: Element = {
-        return app.find(id: "people-list-cell-row-\(index)")
+        return app.find(id: "\(idPrefix)\(index)")
     }()
 
     lazy var name: String = {
-        return app.find(id: "people-list-cell-row-\(index).name-label").label()
+        return app.find(id: "\(idPrefix)\(index).name-label").label()
     }()
 
     lazy var role: String = {
-        return app.find(id: "people-list-cell-row-\(index).role-label").label()
+        return app.find(id: "\(idPrefix)\(index).role-label").label()
     }()
 }
 
