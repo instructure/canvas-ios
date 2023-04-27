@@ -16,13 +16,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+#if DEBUG
+
 import Combine
+import CombineExt
 
 class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
-    private var mockData: [CourseSyncEntry]
+    private let mockData: CurrentValueRelay<[CourseSyncEntry]>
 
     init() {
-        mockData = [
+        mockData = CurrentValueRelay<[CourseSyncEntry]>([
             .init(name: "Black Hole",
                   id: "0",
                   tabs: [
@@ -38,14 +41,13 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
                     .init(id: "0", name: "Intro Energy, Space and Time.mov", url: nil),
                   ],
                   isCollapsed: false),
-        ]
+        ])
     }
 
     func getCourseSyncEntries() -> AnyPublisher<[CourseSyncEntry], Error> {
-        Future<[CourseSyncEntry], Error> { [mockData] promise in
-            promise(.success(mockData))
-        }.eraseToAnyPublisher()
-
+        mockData
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
 
     func observeSelectedCount() -> AnyPublisher<Int, Never> {
@@ -55,6 +57,19 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
     }
 
     func setSelected(selection: CourseEntrySelection, isSelected: Bool) {
+        var entries = mockData.value
 
+        switch selection {
+        case let .course(courseIndex):
+            entries[courseIndex].isSelected = isSelected
+        case let .tab(courseIndex, tabIndex):
+            entries[courseIndex].selectTab(index: tabIndex, isSelected: isSelected)
+        case let .file(courseIndex, fileIndex):
+            entries[courseIndex].selectFile(index: fileIndex, isSelected: isSelected)
+        }
+
+        mockData.accept(entries)
     }
 }
+
+#endif
