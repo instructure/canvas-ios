@@ -227,14 +227,12 @@ public class ReactiveStore<U: UseCase> {
         sectionNameKeyPath: String? = nil,
         cacheName: String? = nil
     ) -> AnyPublisher<[T], Error> {
-        unowned let unownedSelf = self
-
-        return AnyPublisher<[T], Error>.create { subscriber in
+        AnyPublisher<[T], Error>.create { subscriber in
 
             let observer = FetchedResultsPublisher(
                 subscriber: subscriber,
                 fetchRequest: fetchRequest,
-                managedObjectContext: unownedSelf.context,
+                managedObjectContext: self.context,
                 sectionNameKeyPath: sectionNameKeyPath,
                 cacheName: cacheName
             )

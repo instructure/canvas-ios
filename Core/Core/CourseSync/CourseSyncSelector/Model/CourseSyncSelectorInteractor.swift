@@ -54,7 +54,14 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
             .replaceEmpty(with: [])
             .handleEvents(
                 receiveOutput: { self.courseSyncEntries.send($0) },
-                receiveCompletion: { completion in self.courseSyncEntries.send(completion: completion) }
+                receiveCompletion: { completion in
+                    switch completion {
+                    case .failure(let error):
+                        self.courseSyncEntries.send(completion: .failure(error))
+                    default:
+                        break
+                    }
+                }
             )
             .flatMap { _ in self.courseSyncEntries.eraseToAnyPublisher() }
             .eraseToAnyPublisher()
@@ -210,7 +217,7 @@ struct CourseSyncEntry {
         let id: String
         let name: String
         let type: TabName
-        var isCollapsed: Bool = true
+        var isCollapsed: Bool = false
         var isSelected: Bool = true
     }
 
@@ -238,7 +245,7 @@ struct CourseSyncEntry {
         }
     }
 
-    var isCollapsed: Bool = true
+    var isCollapsed: Bool = false
     var isSelected: Bool = true
 
     mutating func selectCourse(isSelected: Bool) {
