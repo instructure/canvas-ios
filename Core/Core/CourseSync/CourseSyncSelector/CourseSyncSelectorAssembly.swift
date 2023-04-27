@@ -20,6 +20,13 @@ import Foundation
 
 public enum CourseSyncSelectorAssembly {
 
+    public static func makeViewController() -> UIViewController {
+        let interactor = CourseSyncSelectorInteractorLive()
+        let viewModel = CourseSyncSelectorViewModel(interactor: interactor)
+        let view = CourseSyncSelectorView(viewModel: viewModel)
+        return CoreHostingController(view)
+    }
+
 #if DEBUG
 
     static func makePreview() -> CourseSyncSelectorView {

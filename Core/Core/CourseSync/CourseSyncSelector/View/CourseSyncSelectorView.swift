@@ -19,11 +19,7 @@
 import SwiftUI
 
 struct CourseSyncSelectorView: View {
-    @StateObject private var viewModel: CourseSyncSelectorViewModel
-
-    init(viewModel: CourseSyncSelectorViewModel) {
-        self._viewModel = StateObject(wrappedValue: viewModel)
-    }
+    @StateObject var viewModel: CourseSyncSelectorViewModel
 
     var body: some View {
         ScrollView {

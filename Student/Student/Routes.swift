@@ -365,6 +365,10 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return LogEventListViewController.create()
     },
 
+    "/offline/settings": { _, _, _ in
+        CourseSyncSelectorAssembly.makeViewController()
+    },
+
     "/profile": { _, _, _ in
         return CoreHostingController(SideMenuView(.student), customization: SideMenuTransitioningDelegate.applyTransitionSettings)
     },

@@ -71,7 +71,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         }
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
         .navigationBarGlobal()
-        .navigationBarItems(leading: menuButton, trailing: settingsButton)
+        .navigationBarItems(leading: menuButton, trailing: rightNavBarButtons)
         .onAppear {
             refresh(force: false) {
                 let env = AppEnvironment.shared
@@ -130,6 +130,28 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         .frame(width: 44, height: 44).padding(.leading, -6)
         .identifier("Dashboard.profileButton")
         .accessibility(label: Text("Profile Menu", bundle: .core))
+    }
+
+    @ViewBuilder
+    private var rightNavBarButtons: some View {
+        HStack(spacing: 0) {
+            offlineConfigButton
+            settingsButton
+        }
+    }
+
+    @ViewBuilder
+    private var offlineConfigButton: some View {
+        if courseCardListViewModel.shouldShowSettingsButton, ExperimentalFeature.offlineMode.isEnabled, env.app == .student {
+            Button {
+                env.router.route(to: "/offline/settings", from: controller, options: .modal(embedInNav: true, addDoneButton: true))
+            } label: {
+                Image.cloudLockLine
+                    .foregroundColor(Color(Brand.shared.navTextColor))
+            }
+            .frame(width: 44, height: 44).padding(.trailing, -6)
+            .accessibilityLabel(Text("Offline settings", bundle: .core))
+        }
     }
 
     @ViewBuilder
