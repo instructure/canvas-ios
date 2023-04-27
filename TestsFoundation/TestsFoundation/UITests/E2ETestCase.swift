@@ -31,11 +31,13 @@ open class E2ETestCase: CoreUITestCase {
         super.setUp()
     }
 
-    open func logInDSUser(_ dsUser: DSUser) {
+    open func findSchool(_ dsUser: DSUser) {
         LoginStart.findSchoolButton.tap()
         LoginFindSchool.searchField.pasteText("\(user.host)")
         LoginFindSchool.searchField.typeText("\r")
+    }
 
+    open func loginAfterSchoolFound(_ dsUser: DSUser) {
         LoginWeb.emailField.waitToExist(60)
         LoginWeb.emailField.pasteText(dsUser.login_id)
         LoginWeb.passwordField.tap().pasteText("password")
@@ -44,6 +46,16 @@ open class E2ETestCase: CoreUITestCase {
         homeScreen.waitToExist(20)
         user.session = currentSession()
         setAppThemeToSystem()
+    }
+
+    open func logInDSUser(_ dsUser: DSUser) {
+        findSchool(dsUser)
+        loginAfterSchoolFound(dsUser)
+    }
+
+    open func logOut() {
+        Dashboard.profileButton.tap()
+        Profile.logOutButton.tap()
     }
 
     // Workaround to handle app theme prompt
