@@ -30,7 +30,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     private let courseListStore = ReactiveStore(
         useCase: GetCourseListCourses(enrollmentState: .active)
     )
-    private let courseSyncEntries = CurrentValueRelay<[CourseSyncEntry]>(.init())
+    private let courseSyncEntries = CurrentValueSubject<[CourseSyncEntry], Error>(.init())
     private var subscriptions = Set<AnyCancellable>()
 
     func getCourseSyncEntries() -> AnyPublisher<[CourseSyncEntry], Error> {
@@ -51,17 +51,24 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
                 }
             }
             .collect()
-            .handleEvents(receiveOutput: { self.courseSyncEntries.accept($0) })
+            .replaceEmpty(with: [])
+            .handleEvents(
+                receiveOutput: { self.courseSyncEntries.send($0) },
+                receiveCompletion: { completion in self.courseSyncEntries.send(completion: completion )}
+            )
+            .flatMap { _ in self.courseSyncEntries.eraseToAnyPublisher() }
             .eraseToAnyPublisher()
     }
 
     func observeSelectedCount() -> AnyPublisher<Int, Never> {
         courseSyncEntries
+            .replaceError(with: [])
             .map {
                 $0.reduce(0) { partialResult, entry in
                     partialResult + (entry.selectedFilesCount + entry.selectedTabsCount)
                 }
             }
+            .replaceEmpty(with: 0)
             .eraseToAnyPublisher()
     }
 
@@ -77,7 +84,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
             entries[courseIndex].selectFile(index: fileIndex, isSelected: isSelected)
         }
 
-        courseSyncEntries.accept(entries)
+        courseSyncEntries.send(entries)
     }
 
     private func getTabs(courseId: String) -> AnyPublisher<[CourseSyncEntry.Tab], Error> {
@@ -121,6 +128,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
                 )
             }
         }
+        .replaceEmpty(with: [])
         .eraseToAnyPublisher()
     }
 
