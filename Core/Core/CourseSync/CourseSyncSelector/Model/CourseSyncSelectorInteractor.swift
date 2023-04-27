@@ -54,7 +54,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
             .replaceEmpty(with: [])
             .handleEvents(
                 receiveOutput: { self.courseSyncEntries.send($0) },
-                receiveCompletion: { completion in self.courseSyncEntries.send(completion: completion )}
+                receiveCompletion: { completion in self.courseSyncEntries.send(completion: completion) }
             )
             .flatMap { _ in self.courseSyncEntries.eraseToAnyPublisher() }
             .eraseToAnyPublisher()
@@ -76,11 +76,11 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         var entries = courseSyncEntries.value
 
         switch selection {
-        case .course(let courseIndex):
+        case let .course(courseIndex):
             entries[courseIndex].isSelected = isSelected
-        case .tab(let courseIndex, let tabIndex):
+        case let .tab(courseIndex, tabIndex):
             entries[courseIndex].selectTab(index: tabIndex, isSelected: isSelected)
-        case .file(let courseIndex, let fileIndex):
+        case let .file(courseIndex, fileIndex):
             entries[courseIndex].selectFile(index: fileIndex, isSelected: isSelected)
         }
 
@@ -108,7 +108,9 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     }
 
     private func getAllFiles(courseId: String) -> AnyPublisher<[CourseSyncEntry.File], Error> {
-        ReactiveStore(
+        unowned let unownedSelf = self
+
+        return ReactiveStore(
             useCase: GetFolderByPath(
                 context: .course(courseId)
             )
@@ -117,7 +119,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         .flatMap {
             Publishers.Sequence(sequence: $0)
                 .setFailureType(to: Error.self)
-                .flatMap { self.getFiles(folderID: $0.id, initialArray: []) }
+                .flatMap { unownedSelf.getFiles(folderID: $0.id, initialArray: []) }
         }
         .map {
             $0.map {
@@ -133,6 +135,8 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     }
 
     private func getFiles(folderID: String, initialArray: [FolderItem]) -> AnyPublisher<[FolderItem], Error> {
+        unowned let unownedSelf = self
+
         var result = initialArray
 
         return getFilesAndFolderIDs(folderID: folderID)
@@ -147,16 +151,16 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
                 return Publishers.Sequence(sequence: folderIDs)
                     .setFailureType(to: Error.self)
                     .flatMap {
-                        self.getFiles(folderID: $0, initialArray: result)
-                            .handleEvents(
-                                receiveOutput: {
-                                    result.append(contentsOf: $0)
-                                }
-                            )
+                        unownedSelf.getFiles(
+                            folderID: $0,
+                            initialArray: result
+                        )
+                        .handleEvents(receiveOutput: { result = $0 })
                     }
                     .collect()
                     .eraseToAnyPublisher()
             }
+            .first()
             .map { _ in result }
             .eraseToAnyPublisher()
     }
@@ -235,15 +239,17 @@ struct CourseSyncEntry {
     }
 
     var isCollapsed: Bool = true
-    var isSelected: Bool = true {
-        didSet {
-            tabs.indices.forEach { tabs[$0].isSelected = isSelected }
-            files.indices.forEach { files[$0].isSelected = isSelected }
-        }
+    var isSelected: Bool = true
+
+    mutating func selectCourse(isSelected: Bool) {
+        tabs.indices.forEach { tabs[$0].isSelected = isSelected }
+        files.indices.forEach { files[$0].isSelected = isSelected }
     }
 
     mutating func selectTab(index: Int, isSelected: Bool) {
         tabs[index].isSelected = isSelected
+
+        self.isSelected = selectedTabsCount > 0
 
         guard tabs[index].type == .files else {
             return
@@ -254,9 +260,9 @@ struct CourseSyncEntry {
 
     mutating func selectFile(index: Int, isSelected: Bool) {
         files[index].isSelected = isSelected
-        guard let fileTabIndex = tabs.firstIndex(where: { $0.type == TabName.files } ) else {
+        guard let fileTabIndex = tabs.firstIndex(where: { $0.type == TabName.files }) else {
             return
         }
-        tabs[fileTabIndex].isSelected = files.count == selectedFilesCount
+        selectTab(index: fileTabIndex, isSelected: selectedFilesCount > 0)
     }
 }

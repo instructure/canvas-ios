@@ -131,8 +131,6 @@ public class GetFolderItems: UseCase {
         var items: [APIFolderItem] = []
         var response: URLResponse?
         var error: Error?
-        var filesIsDone = false
-        var foldersIsDone = false
 
         let group = DispatchGroup()
 
@@ -141,7 +139,6 @@ public class GetFolderItems: UseCase {
             files?.forEach { items.append(APIFolderItem.file($0)) }
             response = response ?? r
             error = error ?? e
-            filesIsDone = true
             group.leave()
         }
 
@@ -150,7 +147,6 @@ public class GetFolderItems: UseCase {
             folders?.forEach { items.append(APIFolderItem.folder($0)) }
             response = response ?? r
             error = error ?? e
-            foldersIsDone = true
             group.leave()
         }
 

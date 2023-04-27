@@ -235,7 +235,8 @@ public class ReactiveStore<U: UseCase> {
                 subscriber: subscriber,
                 fetchRequest: fetchRequest,
                 managedObjectContext: unownedSelf.context,
-                sectionNameKeyPath: sectionNameKeyPath, cacheName: cacheName
+                sectionNameKeyPath: sectionNameKeyPath,
+                cacheName: cacheName
             )
 
             return AnyCancellable {
