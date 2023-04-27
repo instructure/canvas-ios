@@ -195,7 +195,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     }
 }
 
-enum CourseEntrySelection {
+enum CourseEntrySelection: Equatable {
     typealias CourseIndex = Int
     typealias TabIndex = Int
     typealias FileIndex = Int

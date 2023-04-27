@@ -19,7 +19,7 @@
 import SwiftUI
 
 extension CourseSyncSelectorViewModel {
-    struct Item: Equatable, Hashable {
+    struct Item: Hashable {
         enum TrailingIcon {
             case none
             case opened
@@ -32,6 +32,26 @@ extension CourseSyncSelectorViewModel {
         let subtitle: String?
         let trailingIcon: TrailingIcon
         let isIndented: Bool
+
+        var selectionToggled: (() -> Void)!
+
+        static func == (lhs: CourseSyncSelectorViewModel.Item, rhs: CourseSyncSelectorViewModel.Item) -> Bool {
+            lhs.isSelected == rhs.isSelected &&
+            lhs.backgroundColor == rhs.backgroundColor &&
+            lhs.title == rhs.title &&
+            lhs.subtitle == rhs.subtitle &&
+            lhs.trailingIcon == rhs.trailingIcon &&
+            lhs.isIndented == rhs.isIndented
+        }
+
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(isSelected)
+            hasher.combine(backgroundColor)
+            hasher.combine(title)
+            hasher.combine(subtitle)
+            hasher.combine(trailingIcon)
+            hasher.combine(isIndented)
+        }
     }
 }
 
@@ -39,20 +59,34 @@ extension CourseSyncSelectorViewModel {
 
 extension Array where Element == CourseSyncEntry {
 
-    func makeViewModelItems() -> [CourseSyncSelectorViewModel.Item] {
+    func makeViewModelItems(interactor: CourseSyncSelectorInteractor) -> [CourseSyncSelectorViewModel.Item] {
         var items: [CourseSyncSelectorViewModel.Item] = []
 
-        for course in self {
-            items.append(course.makeViewModelItem())
+        for (courseIndex, course) in enumerated() {
+            var courseItem = course.makeViewModelItem()
+            courseItem.selectionToggled = {
+                interactor.setSelected(selection: .course(courseIndex), isSelected: !courseItem.isSelected)
+            }
+            items.append(courseItem)
 
-            if !course.isCollapsed {
-                for courseTab in course.tabs {
-                    items.append(courseTab.makeViewModelItem())
+            if course.isCollapsed {
+                continue
+            }
 
-                    if courseTab.type == .files, !courseTab.isCollapsed {
-                        for file in course.files {
-                            items.append(file.makeViewModelItem())
+            for (tabIndex, tab) in course.tabs.enumerated() {
+                var tabItem = tab.makeViewModelItem()
+                tabItem.selectionToggled = {
+                    interactor.setSelected(selection: .tab(courseIndex, tabIndex), isSelected: !tabItem.isSelected)
+                }
+                items.append(tabItem)
+
+                if tab.type == .files, !tab.isCollapsed {
+                    for (fileIndex, file) in course.files.enumerated() {
+                        var fileItem = file.makeViewModelItem()
+                        fileItem.selectionToggled = {
+                            interactor.setSelected(selection: .file(courseIndex, fileIndex), isSelected: !fileItem.isSelected)
                         }
+                        items.append(fileItem)
                     }
                 }
             }

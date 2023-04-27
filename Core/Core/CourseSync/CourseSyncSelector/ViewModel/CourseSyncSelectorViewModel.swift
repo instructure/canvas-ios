@@ -22,12 +22,14 @@ import SwiftUI
 class CourseSyncSelectorViewModel: ObservableObject {
     @Published public private(set) var items: [Item] = []
 
-    private var subscriptions = Set<AnyCancellable>()
+    private let interactor: CourseSyncSelectorInteractor
 
     init(interactor: CourseSyncSelectorInteractor) {
+        self.interactor = interactor
+
         interactor
             .getCourseSyncEntries()
-            .map { $0.makeViewModelItems() }
+            .map { $0.makeViewModelItems(interactor: interactor) }
             .replaceError(with: [])
             .assign(to: &$items)
     }

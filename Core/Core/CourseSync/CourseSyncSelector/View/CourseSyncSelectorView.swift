@@ -19,10 +19,10 @@
 import SwiftUI
 
 struct CourseSyncSelectorView: View {
-    private let viewModel: CourseSyncSelectorViewModel
+    @StateObject private var viewModel: CourseSyncSelectorViewModel
 
     init(viewModel: CourseSyncSelectorViewModel) {
-        self.viewModel = viewModel
+        self._viewModel = StateObject(wrappedValue: viewModel)
     }
 
     var body: some View {
@@ -41,6 +41,11 @@ struct CellView: View {
 
     var body: some View {
         HStack {
+            Button {
+                item.selectionToggled()
+            } label: {
+                item.isSelected ? Image.emptySolid : Image.emptyLine
+            }
             VStack(alignment: .leading) {
                 Text(item.title)
                     .fontWeight(item.isSelected ? .bold : .regular)

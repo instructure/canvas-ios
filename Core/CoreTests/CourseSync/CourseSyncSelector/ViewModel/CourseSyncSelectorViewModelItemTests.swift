@@ -16,10 +16,34 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 @testable import Core
 import XCTest
 
-class CourseSyncSelectorViewModelTests: XCTestCase {
+class CourseSyncSelectorViewModelItemTests: XCTestCase {
+    private var mockInteractor: MockCourseSyncSelectorInteractor!
+
+    override func setUp() {
+        super.setUp()
+        mockInteractor = MockCourseSyncSelectorInteractor()
+    }
+
+    func testHashEquals() {
+        let testee1 = CourseSyncSelectorViewModel.Item(isSelected: true,
+                                                       backgroundColor: .white,
+                                                       title: "testTitle",
+                                                       subtitle: "subTitle",
+                                                       trailingIcon: .closed,
+                                                       isIndented: true)
+        let testee2 = CourseSyncSelectorViewModel.Item(isSelected: true,
+                                                       backgroundColor: .white,
+                                                       title: "testTitle",
+                                                       subtitle: "subTitle",
+                                                       trailingIcon: .closed,
+                                                       isIndented: true)
+        XCTAssertEqual(testee1, testee2)
+        XCTAssertEqual(testee1.hashValue, testee2.hashValue)
+    }
 
     // MARK: - Course
 
@@ -46,10 +70,10 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
         var course = CourseSyncEntry(name: "test", id: "testID", tabs: [.init(id: "0", name: "Assignments", type: .assignments)], files: [])
 
         course.isCollapsed = true
-        XCTAssertEqual([course].makeViewModelItems().count, 1)
+        XCTAssertEqual([course].makeViewModelItems(interactor: mockInteractor).count, 1)
 
         course.isCollapsed = false
-        XCTAssertEqual([course].makeViewModelItems().count, 2)
+        XCTAssertEqual([course].makeViewModelItems(interactor: mockInteractor).count, 2)
     }
 
     // MARK: - Course Tabs
@@ -91,12 +115,12 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
 
         filesTab.isCollapsed = true
         var course = CourseSyncEntry(name: "test", id: "testID", tabs: [filesTab], files: [file], isCollapsed: false)
-        XCTAssertEqual([course].makeViewModelItems().count, 2)
+        XCTAssertEqual([course].makeViewModelItems(interactor: mockInteractor).count, 2)
 
         filesTab.isCollapsed = false
         course = CourseSyncEntry(name: "test", id: "testID", tabs: [filesTab], files: [file], isCollapsed: false)
         course.isCollapsed = false
-        XCTAssertEqual([course].makeViewModelItems().count, 3)
+        XCTAssertEqual([course].makeViewModelItems(interactor: mockInteractor).count, 3)
     }
 
     // MARK: - Files
@@ -118,5 +142,51 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
         data.isSelected = false
         testee = data.makeViewModelItem()
         XCTAssertFalse(testee.isSelected)
+    }
+
+    // MARK: - Selection
+
+    func testSelectionForwardedToInteractor() {
+        var data = CourseSyncEntry(name: "test",
+                                   id: "testID",
+                                   tabs: [
+                                    .init(id: "0", name: "Assignments", type: .assignments, isCollapsed: false, isSelected: false),
+                                    .init(id: "0", name: "Files", type: .files, isCollapsed: false, isSelected: false),
+                                   ],
+                                   files: [
+                                    .init(id: "0", name: "test.txt", url: nil, isSelected: false),
+                                    .init(id: "1", name: "test1.txt", url: nil, isSelected: false),
+                                   ],
+                                   isCollapsed: false,
+                                   isSelected: false)
+        let testee = [data].makeViewModelItems(interactor: mockInteractor)
+        testee[0].selectionToggled()
+        XCTAssertEqual(mockInteractor.lastSelected?.selection, CourseEntrySelection.course(0))
+        XCTAssertEqual(mockInteractor.lastSelected?.isSelected, true)
+        testee[2].selectionToggled()
+        XCTAssertEqual(mockInteractor.lastSelected?.selection, CourseEntrySelection.tab(0, 1))
+        XCTAssertEqual(mockInteractor.lastSelected?.isSelected, true)
+        testee[3].selectionToggled()
+        XCTAssertEqual(mockInteractor.lastSelected?.selection, CourseEntrySelection.file(0, 0))
+        XCTAssertEqual(mockInteractor.lastSelected?.isSelected, true)
+    }
+}
+
+private class MockCourseSyncSelectorInteractor: CourseSyncSelectorInteractor {
+    private(set) var lastSelected: (selection: Core.CourseEntrySelection, isSelected: Bool)?
+
+    func getCourseSyncEntries() -> AnyPublisher<[Core.CourseSyncEntry], Error> {
+        Just<[Core.CourseSyncEntry]>([])
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+
+    func observeSelectedCount() -> AnyPublisher<Int, Never> {
+        Just<Int>(0)
+            .eraseToAnyPublisher()
+    }
+
+    func setSelected(selection: Core.CourseEntrySelection, isSelected: Bool) {
+        lastSelected = (selection: selection, isSelected: isSelected)
     }
 }
