@@ -144,7 +144,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
     private var offlineConfigButton: some View {
         if courseCardListViewModel.shouldShowSettingsButton, ExperimentalFeature.offlineMode.isEnabled, env.app == .student {
             Button {
-                env.router.route(to: "/offline/settings", from: controller, options: .modal(embedInNav: true, addDoneButton: true))
+                env.router.route(to: "/offline/settings", from: controller, options: .modal(isDismissable: false, embedInNav: true))
             } label: {
                 Image.cloudLockLine
                     .foregroundColor(Color(Brand.shared.navTextColor))

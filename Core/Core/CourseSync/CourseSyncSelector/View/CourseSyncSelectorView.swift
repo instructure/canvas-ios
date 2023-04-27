@@ -19,16 +19,60 @@
 import SwiftUI
 
 struct CourseSyncSelectorView: View {
+    @Environment(\.appEnvironment) var env
+    @Environment(\.viewController) var viewController
     @StateObject var viewModel: CourseSyncSelectorViewModel
 
     var body: some View {
-        ScrollView {
-            LazyVStack(spacing: 0) {
-                ForEach(viewModel.items, id: \.self) { item in
-                    CellView(item: item)
+        VStack(spacing: 0) {
+            ScrollView {
+                LazyVStack(spacing: 0) {
+                    ForEach(viewModel.items, id: \.self) { item in
+                        CellView(item: item)
+                    }
                 }
             }
+            syncButton
         }
+        .navigationBarTitleView(navBarTitleView)
+        .navigationBarItems(trailing: cancelButton)
+        .navigationBarStyle(.modal)
+    }
+
+    private var navBarTitleView: some View {
+        VStack(spacing: 0) {
+            Text("Offline Content", bundle: .core)
+                .font(.semibold16)
+                .foregroundColor(.textDarkest)
+            Text("All Courses", bundle: .core)
+                .font(.regular12)
+                .foregroundColor(.textDark)
+        }
+    }
+
+    private var cancelButton: some View {
+        Button {
+            env.router.dismiss(viewController)
+        } label: {
+            Text("Cancel", bundle: .core)
+                .font(.regular16)
+                .foregroundColor(.textDarkest)
+        }
+    }
+
+    private var syncButton: some View {
+        Button {
+            env.router.dismiss(viewController)
+        } label: {
+            Text("Sync", bundle: .core)
+                .padding(.vertical, 14)
+                .frame(maxWidth: .infinity)
+                .font(.regular16, lineHeight: .fit)
+                .foregroundColor(.textLightest)
+                .background(Color(Brand.shared.primary))
+                .opacity(viewModel.syncButtonDisabled ? 0.42 : 1)
+        }
+        .disabled(viewModel.syncButtonDisabled)
     }
 }
 

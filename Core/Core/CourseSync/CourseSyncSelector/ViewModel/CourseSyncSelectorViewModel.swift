@@ -21,6 +21,7 @@ import SwiftUI
 
 class CourseSyncSelectorViewModel: ObservableObject {
     @Published public private(set) var items: [Item] = []
+    @Published public private(set) var syncButtonDisabled = true
 
     private let interactor: CourseSyncSelectorInteractor
 
@@ -32,5 +33,10 @@ class CourseSyncSelectorViewModel: ObservableObject {
             .map { $0.makeViewModelItems(interactor: interactor) }
             .replaceError(with: [])
             .assign(to: &$items)
+
+        interactor
+            .observeSelectedCount()
+            .map { $0 == 0 }
+            .assign(to: &$syncButtonDisabled)
     }
 }
