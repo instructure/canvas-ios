@@ -244,6 +244,7 @@ struct CourseSyncEntry {
     mutating func selectCourse(isSelected: Bool) {
         tabs.indices.forEach { tabs[$0].isSelected = isSelected }
         files.indices.forEach { files[$0].isSelected = isSelected }
+        self.isSelected = isSelected
     }
 
     mutating func selectTab(index: Int, isSelected: Bool) {
@@ -263,6 +264,7 @@ struct CourseSyncEntry {
         guard let fileTabIndex = tabs.firstIndex(where: { $0.type == TabName.files }) else {
             return
         }
-        selectTab(index: fileTabIndex, isSelected: selectedFilesCount > 0)
+        tabs[fileTabIndex].isSelected = selectedFilesCount > 0
+        self.isSelected = selectedTabsCount > 0
     }
 }

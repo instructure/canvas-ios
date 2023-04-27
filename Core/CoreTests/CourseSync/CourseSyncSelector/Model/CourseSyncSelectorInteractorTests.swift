@@ -144,7 +144,27 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         subscription.cancel()
     }
 
-    func testCourseSelection() {}
+    func testCourseSelection() {
+        var entry = CourseSyncEntry(
+            name: "1",
+            id: "1",
+            tabs: [
+                CourseSyncEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
+                CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files),
+            ],
+            files: []
+        )
+        XCTAssertEqual(entry.isSelected, true)
+        XCTAssertEqual(entry.selectedTabsCount, 2)
+
+        entry.selectCourse(isSelected: false)
+        XCTAssertEqual(entry.isSelected, false)
+        XCTAssertEqual(entry.selectedTabsCount, 0)
+
+        entry.selectCourse(isSelected: true)
+        XCTAssertEqual(entry.isSelected, true)
+        XCTAssertEqual(entry.selectedTabsCount, 2)
+    }
 
     func testTabSelection() {
         var entry = CourseSyncEntry(
@@ -171,7 +191,31 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(entry.selectedTabsCount, 2)
     }
 
-    func testFileSelection() {}
+    func testFileSelection() {
+        var entry = CourseSyncEntry(
+            name: "1",
+            id: "1",
+            tabs: [
+                CourseSyncEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
+                CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files),
+            ],
+            files: [
+                CourseSyncEntry.File(id: "file1", name: "file1", url: nil),
+                CourseSyncEntry.File(id: "file2", name: "file2", url: nil),
+            ]
+        )
+        XCTAssertEqual(entry.isSelected, true)
+        XCTAssertEqual(entry.selectedTabsCount, 2)
+
+        entry.selectFile(index: 0, isSelected: false)
+        XCTAssertEqual(entry.selectedTabsCount, 2)
+        XCTAssertEqual(entry.selectedFilesCount, 1)
+
+        entry.selectFile(index: 1, isSelected: false)
+        XCTAssertEqual(entry.isSelected, true)
+        XCTAssertEqual(entry.selectedTabsCount, 1)
+        XCTAssertEqual(entry.selectedFilesCount, 0)
+    }
 
     private func mockCourseList(
         context: Context = .course("1"),
