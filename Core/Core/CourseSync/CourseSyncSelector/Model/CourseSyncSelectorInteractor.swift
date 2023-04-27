@@ -77,7 +77,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
 
         switch selection {
         case let .course(courseIndex):
-            entries[courseIndex].isSelected = isSelected
+            entries[courseIndex].selectCourse(isSelected: isSelected)
         case let .tab(courseIndex, tabIndex):
             entries[courseIndex].selectTab(index: tabIndex, isSelected: isSelected)
         case let .file(courseIndex, fileIndex):
