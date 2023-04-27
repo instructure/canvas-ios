@@ -36,6 +36,10 @@ extension DataSeeder {
         self.enrollUsers(students, in: course, type: .StudentEnrollment, state: state)
     }
 
+    public func enrollParent(_ parent: DSUser, in course: DSCourse, state: EnrollmentState = .active) {
+        self.enrollUsers([parent], in: course, type: .ObserverEnrollment, state: state)
+    }
+
     public func enrollUsers(_ users: [DSUser], in course: DSCourse, type: DSEnrollmentType, state: EnrollmentState = .active) {
         for user in users {
             let requestedEnrollment = EnrollRequest.RequestedEnrollment(enrollment_state: state, user_id: user.id, type: type)
