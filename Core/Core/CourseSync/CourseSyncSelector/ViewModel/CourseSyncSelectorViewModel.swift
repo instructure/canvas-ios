@@ -32,12 +32,13 @@ class CourseSyncSelectorViewModel: ObservableObject {
             .getCourseSyncEntries()
             .map { $0.makeViewModelItems(interactor: interactor) }
             .replaceError(with: [])
-            .receive(on: RunLoop.main)
+            .receive(on: DispatchQueue.main)
             .assign(to: &$items)
 
         interactor
             .observeSelectedCount()
             .map { $0 == 0 }
+            .receive(on: DispatchQueue.main)
             .assign(to: &$syncButtonDisabled)
     }
 }

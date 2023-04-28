@@ -21,11 +21,6 @@ extension Array where Element == Tab {
 
     private var offlineSupportedTabs: [TabName] { [.assignments, .pages, .files] }
 
-    func offlineSupportedTabs(isStudent: Bool = true) -> [Tab] {
-        filteredTabsForCourseHome(isStudent: isStudent)
-            .filter { offlineSupportedTabs.contains($0.name) }
-    }
-
     func filteredTabsForCourseHome(isStudent: Bool) -> [Tab] {
         var tabs = self
 
@@ -43,5 +38,10 @@ extension Array where Element == Tab {
         tabs.sort(by: { $0.position < $1.position })
 
         return tabs
+    }
+
+    func offlineSupportedTabs(isStudent: Bool = true) -> [Tab] {
+        filteredTabsForCourseHome(isStudent: isStudent)
+            .filter { offlineSupportedTabs.contains($0.name) }
     }
 }

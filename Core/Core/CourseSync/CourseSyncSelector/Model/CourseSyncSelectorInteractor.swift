@@ -38,18 +38,9 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         courseListStore.getEntities()
             .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
             .flatMap { course in
-                Publishers.Zip(
-                    self.getTabs(courseId: course.courseId),
-                    self.getAllFiles(courseId: course.courseId)
-                )
-                .map {
-                    CourseSyncEntry(
-                        name: course.name,
-                        id: course.courseId,
-                        tabs: $0.0,
-                        files: $0.1
-                    )
-                }
+                self.getTabs(courseId: course.courseId)
+                    .flatMap { self.getAllFilesIfFilesTabIsEnabled(course: course, tabs: $0) }
+                    .eraseToAnyPublisher()
             }
             .collect()
             .replaceEmpty(with: [])
@@ -57,7 +48,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
                 receiveOutput: { self.courseSyncEntries.send($0) },
                 receiveCompletion: { completion in
                     switch completion {
-                    case .failure(let error):
+                    case let .failure(error):
                         self.courseSyncEntries.send(completion: .failure(error))
                     default:
                         break
@@ -123,6 +114,35 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         .eraseToAnyPublisher()
     }
 
+    private func getAllFilesIfFilesTabIsEnabled(
+        course: CourseListItem,
+        tabs: [CourseSyncEntry.Tab]
+    ) -> AnyPublisher<CourseSyncEntry, Error> {
+        if tabs.isFilesTabEnabled() {
+            return getAllFiles(courseId: course.courseId)
+                .map { files in
+                    CourseSyncEntry(
+                        name: course.name,
+                        id: course.courseId,
+                        tabs: tabs,
+                        files: files
+                    )
+                }
+                .eraseToAnyPublisher()
+        } else {
+            return Just(
+                CourseSyncEntry(
+                    name: course.name,
+                    id: course.courseId,
+                    tabs: tabs,
+                    files: []
+                )
+            )
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+        }
+    }
+
     private func getAllFiles(courseId: String) -> AnyPublisher<[CourseSyncEntry.File], Error> {
         unowned let unownedSelf = self
 
@@ -134,6 +154,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         .getEntities()
         .flatMap {
             Publishers.Sequence(sequence: $0)
+                .filter { !$0.lockedForUser && !$0.hiddenForUser }
                 .setFailureType(to: Error.self)
                 .flatMap { unownedSelf.getFiles(folderID: $0.id, initialArray: []) }
         }
@@ -182,7 +203,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     }
 
     private func getFilesAndFolderIDs(folderID: String) -> AnyPublisher<([FolderItem], [String]), Error> {
-        return ReactiveStore(
+        ReactiveStore(
             useCase: GetFolderItems(
                 folderID: folderID
             )
@@ -199,10 +220,18 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
             }
         }
         .map {
-            let files = $0.filter { $0.file != nil }
+            let files = $0
+                .filter {
+                    if let file = $0.file {
+                        return !file.lockedForUser && !file.hiddenForUser
+                    } else {
+                        return false
+                    }
+                }
             let folderIDs = $0
                 .filter { $0.folder != nil }
                 .compactMap { $0.folder }
+                .filter { !$0.lockedForUser && !$0.hiddenForUser }
                 .map { $0.id }
 
             return (files, folderIDs)
@@ -262,7 +291,7 @@ struct CourseSyncEntry {
         tabs.indices.forEach { tabs[$0].isSelected = isSelected }
         files.indices.forEach { files[$0].isSelected = isSelected }
         self.isSelected = isSelected
-        self.isEverythingSelected = isSelected
+        isEverythingSelected = isSelected
     }
 
     mutating func selectTab(index: Int, isSelected: Bool) {
@@ -286,5 +315,13 @@ struct CourseSyncEntry {
         }
         tabs[fileTabIndex].isSelected = selectedFilesCount > 0
         self.isSelected = selectedTabsCount > 0
+    }
+}
+
+extension Array where Element == CourseSyncEntry.Tab {
+    func isFilesTabEnabled() -> Bool {
+        contains { tab in
+            tab.type == .files
+        }
     }
 }
