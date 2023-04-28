@@ -1299,6 +1299,7 @@
 		EB0A47D9DAD2660F1610772C /* UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4B6227B0695B8AF5705A7D /* UUID.swift */; };
 		EB3198E16A54D1AE41F95D1F /* FutureExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AA8E0E22FB4F74DDA3D2E3 /* FutureExtensionsTests.swift */; };
 		EB350800E1C457365D892996 /* PersistencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11D563F7AEEC0B245A40297 /* PersistencyTests.swift */; };
+		EB61467329E6E35A00A96312 /* ListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB61467229E6E35A00A96312 /* ListCellView.swift */; };
 		EB7F360478C5BE6855B5521E /* BackgroundVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1128F659FDFC561F8338DA7 /* BackgroundVideoPlayer.swift */; };
 		EBAAFB629D40407D19E21893 /* GetK5HomeroomDueItemCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E6E39B7A47F1AB771F1692 /* GetK5HomeroomDueItemCount.swift */; };
 		EBB3DE9F0B60D0645433411B /* PlannerListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49CB7A526F65072C97C9AB15 /* PlannerListViewController.storyboard */; };
@@ -2960,6 +2961,7 @@
 		EA383B82377A796427C47AB1 /* DiscussionHTMLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionHTMLTests.swift; sourceTree = "<group>"; };
 		EADB0EC7A95CD6A02F814942 /* ListBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListBackgroundView.swift; sourceTree = "<group>"; };
 		EB1F17518E5A0ED0FB823AA0 /* APIUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUser.swift; sourceTree = "<group>"; };
+		EB61467229E6E35A00A96312 /* ListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellView.swift; sourceTree = "<group>"; };
 		EC595D08955BB7E1F839C7DA /* SkipJSInjectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipJSInjectionTests.swift; sourceTree = "<group>"; };
 		EC5A6601A3A0744DEDCFBCC2 /* DeterminateCircleProgressViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeterminateCircleProgressViewStyle.swift; sourceTree = "<group>"; };
 		EC5C9034978914DE69CD05A6 /* FileSubmissionAssemblyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionAssemblyTests.swift; sourceTree = "<group>"; };
@@ -6885,6 +6887,7 @@
 				5865E456E3A9AB65C5D99F2C /* SearchBar.swift */,
 				31FA57BE8C96F27B6DF96068 /* WebSession.swift */,
 				59EA0D1168903B97B0E5EB58 /* WebView.swift */,
+				EB61467229E6E35A00A96312 /* ListCellView.swift */,
 			);
 			path = SwiftUIViews;
 			sourceTree = "<group>";
@@ -8858,6 +8861,7 @@
 				C4194A5C41933B17FB0DF695 /* PairWithObserverViewController.swift in Sources */,
 				CFA8398A890008FC131E5659 /* PairWithStudentQRCodeTutorialViewController.swift in Sources */,
 				1FFE94B66F49D426BD3D07C3 /* PandaGallery.swift in Sources */,
+				EB61467329E6E35A00A96312 /* ListCellView.swift in Sources */,
 				B25A171B20CED00260F4D2EF /* PandaScene.swift in Sources */,
 				146EF08C20FDF9F9165AFF2B /* PeopleListViewController.swift in Sources */,
 				67C1915051D5477180638719 /* PeoplePanda.swift in Sources */,
