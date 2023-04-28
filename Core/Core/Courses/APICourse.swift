@@ -74,6 +74,7 @@ public struct APICourse: Codable, Equatable {
     let image_download_url: String? // include[]=course_image, api sometimes returns an empty string instead of nil so don't use URL
     var is_favorite: Bool? // include[]=favorites
     let sections: [SectionRef]? // include[]=sections
+    let tabs: [APITab]? // include[]=tabs
 
     public var context: Context { Context(.course, id: id.rawValue) }
 
@@ -157,7 +158,8 @@ extension APICourse {
         banner_image_download_url: String? = nil,
         image_download_url: String? = nil,
         is_favorite: Bool? = nil,
-        sections: [SectionRef]? = nil
+        sections: [SectionRef]? = nil,
+        tabs: [APITab]? = nil
     ) -> APICourse {
         return APICourse(
             id: id,
@@ -181,7 +183,8 @@ extension APICourse {
             banner_image_download_url: banner_image_download_url,
             image_download_url: image_download_url,
             is_favorite: is_favorite,
-            sections: sections
+            sections: sections,
+            tabs: tabs
         )
     }
 }
@@ -300,6 +303,7 @@ public struct GetCourseRequest: APIRequestable {
         case term
         case totalScores = "total_scores"
         case observedUsers = "observed_users"
+        case tabs = "tabs"
     }
 
     let courseID: String

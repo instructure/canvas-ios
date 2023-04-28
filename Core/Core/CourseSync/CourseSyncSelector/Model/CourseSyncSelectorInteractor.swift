@@ -29,7 +29,7 @@ protocol CourseSyncSelectorInteractor {
 
 final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     private let courseListStore = ReactiveStore(
-        useCase: GetCourseListCourses(enrollmentState: .active)
+        useCase: GetCourseSyncListCourses()
     )
     private let courseSyncEntries = CurrentValueSubject<[CourseSyncEntry], Error>(.init())
     private var subscriptions = Set<AnyCancellable>()
@@ -37,11 +37,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     func getCourseSyncEntries() -> AnyPublisher<[CourseSyncEntry], Error> {
         courseListStore.getEntities()
             .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
-            .flatMap { course in
-                self.getTabs(courseId: course.courseId)
-                    .flatMap { self.getAllFilesIfFilesTabIsEnabled(course: course, tabs: $0) }
-                    .eraseToAnyPublisher()
-            }
+            .flatMap { self.getAllFilesIfFilesTabIsEnabled(course: $0) }
             .collect()
             .replaceEmpty(with: [])
             .handleEvents(
@@ -115,16 +111,23 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     }
 
     private func getAllFilesIfFilesTabIsEnabled(
-        course: CourseListItem,
-        tabs: [CourseSyncEntry.Tab]
+        course: CourseSyncListItem
     ) -> AnyPublisher<CourseSyncEntry, Error> {
+        let tabs = Array(course.tabs).offlineSupportedTabs()
+        let mappedTabs = tabs.map {
+            CourseSyncEntry.Tab(
+                id: "\(course.courseId)-\($0.id)",
+                name: $0.label,
+                type: $0.name
+            )
+        }
         if tabs.isFilesTabEnabled() {
             return getAllFiles(courseId: course.courseId)
                 .map { files in
                     CourseSyncEntry(
                         name: course.name,
                         id: course.courseId,
-                        tabs: tabs,
+                        tabs: mappedTabs,
                         files: files
                     )
                 }
@@ -134,7 +137,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
                 CourseSyncEntry(
                     name: course.name,
                     id: course.courseId,
-                    tabs: tabs,
+                    tabs: mappedTabs,
                     files: []
                 )
             )
@@ -315,13 +318,5 @@ struct CourseSyncEntry {
         }
         tabs[fileTabIndex].isSelected = selectedFilesCount > 0
         self.isSelected = selectedTabsCount > 0
-    }
-}
-
-extension Array where Element == CourseSyncEntry.Tab {
-    func isFilesTabEnabled() -> Bool {
-        contains { tab in
-            tab.type == .files
-        }
     }
 }

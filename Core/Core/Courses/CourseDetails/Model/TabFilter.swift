@@ -44,4 +44,8 @@ extension Array where Element == Tab {
         filteredTabsForCourseHome(isStudent: isStudent)
             .filter { offlineSupportedTabs.contains($0.name) }
     }
+
+    func isFilesTabEnabled() -> Bool {
+        contains { $0.name == .files }
+    }
 }
