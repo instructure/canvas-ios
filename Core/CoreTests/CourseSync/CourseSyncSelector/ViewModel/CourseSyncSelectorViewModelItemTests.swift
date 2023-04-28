@@ -186,6 +186,10 @@ private class MockCourseSyncSelectorInteractor: CourseSyncSelectorInteractor {
             .eraseToAnyPublisher()
     }
 
+    func observeIsEverythingSelected() -> AnyPublisher<Bool, Never> {
+        Just(false).eraseToAnyPublisher()
+    }
+
     func setSelected(selection: Core.CourseEntrySelection, isSelected: Bool) {
         lastSelected = (selection: selection, isSelected: isSelected)
     }

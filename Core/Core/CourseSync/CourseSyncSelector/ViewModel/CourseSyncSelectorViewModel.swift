@@ -32,6 +32,7 @@ class CourseSyncSelectorViewModel: ObservableObject {
             .getCourseSyncEntries()
             .map { $0.makeViewModelItems(interactor: interactor) }
             .replaceError(with: [])
+            .receive(on: RunLoop.main)
             .assign(to: &$items)
 
         interactor

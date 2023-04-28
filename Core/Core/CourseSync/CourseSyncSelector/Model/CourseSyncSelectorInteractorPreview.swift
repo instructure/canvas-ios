@@ -56,6 +56,14 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
         }.eraseToAnyPublisher()
     }
 
+    func observeIsEverythingSelected() -> AnyPublisher<Bool, Never> {
+        mockData
+            .replaceError(with: [])
+            .map { $0.allSatisfy { $0.isEverythingSelected } }
+            .replaceEmpty(with: true)
+            .eraseToAnyPublisher()
+    }
+
     func setSelected(selection: CourseEntrySelection, isSelected: Bool) {
         var entries = mockData.value
 

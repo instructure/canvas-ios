@@ -23,6 +23,7 @@ import Foundation
 protocol CourseSyncSelectorInteractor {
     func getCourseSyncEntries() -> AnyPublisher<[CourseSyncEntry], Error>
     func observeSelectedCount() -> AnyPublisher<Int, Never>
+    func observeIsEverythingSelected() -> AnyPublisher<Bool, Never>
     func setSelected(selection: CourseEntrySelection, isSelected: Bool)
 }
 
@@ -76,6 +77,14 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
                 }
             }
             .replaceEmpty(with: 0)
+            .eraseToAnyPublisher()
+    }
+
+    func observeIsEverythingSelected() -> AnyPublisher<Bool, Never> {
+        courseSyncEntries
+            .replaceError(with: [])
+            .map { $0.allSatisfy { $0.isEverythingSelected } }
+            .replaceEmpty(with: true)
             .eraseToAnyPublisher()
     }
 
@@ -247,27 +256,31 @@ struct CourseSyncEntry {
 
     var isCollapsed: Bool = false
     var isSelected: Bool = true
+    var isEverythingSelected: Bool = true
 
     mutating func selectCourse(isSelected: Bool) {
         tabs.indices.forEach { tabs[$0].isSelected = isSelected }
         files.indices.forEach { files[$0].isSelected = isSelected }
         self.isSelected = isSelected
+        self.isEverythingSelected = isSelected
     }
 
     mutating func selectTab(index: Int, isSelected: Bool) {
         tabs[index].isSelected = isSelected
 
-        self.isSelected = selectedTabsCount > 0
-
-        guard tabs[index].type == .files else {
-            return
+        if tabs[index].type == .files {
+            files.indices.forEach { files[$0].isSelected = isSelected }
         }
 
-        files.indices.forEach { files[$0].isSelected = isSelected }
+        isEverythingSelected = (selectedTabsCount == tabs.count) && (selectedFilesCount == files.count)
+        self.isSelected = selectedTabsCount > 0
     }
 
     mutating func selectFile(index: Int, isSelected: Bool) {
         files[index].isSelected = isSelected
+
+        isEverythingSelected = (selectedTabsCount == tabs.count) && (selectedFilesCount == files.count)
+
         guard let fileTabIndex = tabs.firstIndex(where: { $0.type == TabName.files }) else {
             return
         }

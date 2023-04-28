@@ -45,33 +45,33 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
 
     /*
      func testTabList() {
-         let testee = CourseSyncSelectorInteractorLive()
-         let expectation = expectation(description: "Publisher sends value")
+     let testee = CourseSyncSelectorInteractorLive()
+     let expectation = expectation(description: "Publisher sends value")
 
-         mockCourseList(tabList: [
-             .make(id: "assignments", label: "Assignments", hidden: false),
-             .make(id: "pages", label: "Pages", hidden: false),
-             .make(id: "files", label: "Files", hidden: false),
-             .make(id: "quizzes", label: "Quizzes", hidden: false),
-         ])
+     mockCourseList(tabList: [
+     .make(id: "assignments", label: "Assignments", hidden: false),
+     .make(id: "pages", label: "Pages", hidden: false),
+     .make(id: "files", label: "Files", hidden: false),
+     .make(id: "quizzes", label: "Quizzes", hidden: false),
+     ])
 
-         var entries = [CourseSyncEntry]()
-         let subscription = testee.getCourseSyncEntries()
-             .sink(
-                 receiveCompletion: { _ in },
-                 receiveValue: {
-                     entries = $0
-                     expectation.fulfill()
-                 }
-             )
+     var entries = [CourseSyncEntry]()
+     let subscription = testee.getCourseSyncEntries()
+     .sink(
+     receiveCompletion: { _ in },
+     receiveValue: {
+     entries = $0
+     expectation.fulfill()
+     }
+     )
 
-         waitForExpectations(timeout: 0.1)
-         XCTAssertEqual(entries.count, 1)
-         XCTAssertEqual(entries[0].tabs.count, 3)
-         XCTAssertFalse(entries[0].tabs.contains(where: { tab in
-             tab.name == "quizzes"
-         }))
-         subscription.cancel()
+     waitForExpectations(timeout: 0.1)
+     XCTAssertEqual(entries.count, 1)
+     XCTAssertEqual(entries[0].tabs.count, 3)
+     XCTAssertFalse(entries[0].tabs.contains(where: { tab in
+     tab.name == "quizzes"
+     }))
+     subscription.cancel()
      }
      */
 
@@ -215,6 +215,40 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(entry.isSelected, true)
         XCTAssertEqual(entry.selectedTabsCount, 1)
         XCTAssertEqual(entry.selectedFilesCount, 0)
+    }
+
+    func testEverythingSelected() {
+        var entry = CourseSyncEntry(
+            name: "1",
+            id: "1",
+            tabs: [
+                CourseSyncEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
+                CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files),
+            ],
+            files: [
+                CourseSyncEntry.File(id: "file1", name: "file1", url: nil),
+                CourseSyncEntry.File(id: "file2", name: "file2", url: nil),
+            ]
+        )
+        XCTAssertEqual(entry.isEverythingSelected, true)
+
+        entry.selectTab(index: 0, isSelected: false)
+        XCTAssertEqual(entry.isEverythingSelected, false)
+
+        entry.selectTab(index: 0, isSelected: true)
+        XCTAssertEqual(entry.isEverythingSelected, true)
+
+        entry.selectTab(index: 1, isSelected: false)
+        XCTAssertEqual(entry.isEverythingSelected, false)
+
+        entry.selectTab(index: 1, isSelected: true)
+        XCTAssertEqual(entry.isEverythingSelected, true)
+
+        entry.selectFile(index: 0, isSelected: false)
+        XCTAssertEqual(entry.isEverythingSelected, false)
+
+        entry.selectFile(index: 0, isSelected: true)
+        XCTAssertEqual(entry.isEverythingSelected, true)
     }
 
     private func mockCourseList(
