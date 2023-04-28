@@ -35,7 +35,7 @@ struct CourseSyncSelectorView: View {
             syncButton
         }
         .navigationBarTitleView(navBarTitleView)
-        .navigationBarItems(trailing: cancelButton)
+        .navigationBarItems(leading: leftNavBarButton, trailing: cancelButton)
         .navigationBarStyle(.modal)
     }
 
@@ -73,6 +73,16 @@ struct CourseSyncSelectorView: View {
                 .opacity(viewModel.syncButtonDisabled ? 0.42 : 1)
         }
         .disabled(viewModel.syncButtonDisabled)
+    }
+
+    private var leftNavBarButton: some View {
+        Button {
+            viewModel.leftNavBarButtonPressed.accept()
+        } label: {
+            Text(viewModel.leftNavBarTitle)
+                .font(.regular16)
+                .foregroundColor(.textDarkest)
+        }
     }
 }
 

@@ -25,6 +25,7 @@ protocol CourseSyncSelectorInteractor {
     func observeSelectedCount() -> AnyPublisher<Int, Never>
     func observeIsEverythingSelected() -> AnyPublisher<Bool, Never>
     func setSelected(selection: CourseEntrySelection, isSelected: Bool)
+    func toggleAllCoursesSelection(isSelected: Bool)
 }
 
 final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
@@ -88,6 +89,13 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         }
 
         courseSyncEntries.send(entries)
+    }
+
+    func toggleAllCoursesSelection(isSelected: Bool) {
+        courseSyncEntries.value
+            .indices
+            .map { CourseEntrySelection.course($0) }
+            .forEach { setSelected(selection: $0, isSelected: isSelected) }
     }
 
     private func getTabs(courseId: String) -> AnyPublisher<[CourseSyncEntry.Tab], Error> {

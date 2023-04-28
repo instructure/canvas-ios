@@ -78,6 +78,8 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
 
         mockData.accept(entries)
     }
+
+    func toggleAllCoursesSelection(isSelected: Bool) {}
 }
 
 #endif

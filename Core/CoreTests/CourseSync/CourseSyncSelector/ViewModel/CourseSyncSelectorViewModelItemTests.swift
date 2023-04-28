@@ -198,4 +198,6 @@ private class MockCourseSyncSelectorInteractor: CourseSyncSelectorInteractor {
     func setSelected(selection: Core.CourseEntrySelection, isSelected: Bool) {
         lastSelected = (selection: selection, isSelected: isSelected)
     }
+
+    func toggleAllCoursesSelection(isSelected: Bool) {}
 }

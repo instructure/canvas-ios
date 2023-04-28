@@ -17,13 +17,18 @@
 //
 
 import Combine
+import CombineExt
 import SwiftUI
 
 class CourseSyncSelectorViewModel: ObservableObject {
     @Published public private(set) var items: [Item] = []
     @Published public private(set) var syncButtonDisabled = true
+    @Published public private(set) var leftNavBarTitle = ""
+
+    public let leftNavBarButtonPressed = PassthroughRelay<Void>()
 
     private let interactor: CourseSyncSelectorInteractor
+    private var subscriptions = Set<AnyCancellable>()
 
     init(interactor: CourseSyncSelectorInteractor) {
         self.interactor = interactor
@@ -40,5 +45,17 @@ class CourseSyncSelectorViewModel: ObservableObject {
             .map { $0 == 0 }
             .receive(on: DispatchQueue.main)
             .assign(to: &$syncButtonDisabled)
+
+        interactor
+            .observeIsEverythingSelected()
+            .map { $0 ? NSLocalizedString("Deselect All", comment: "")
+                      : NSLocalizedString("Select All", comment: "") }
+            .assign(to: &$leftNavBarTitle)
+
+        leftNavBarButtonPressed
+            .flatMap { interactor.observeIsEverythingSelected().first() }
+            .toggle()
+            .sink { interactor.toggleAllCoursesSelection(isSelected: $0) }
+            .store(in: &subscriptions)
     }
 }
