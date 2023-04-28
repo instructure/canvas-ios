@@ -21,9 +21,17 @@ import CombineExt
 import SwiftUI
 
 class CourseSyncSelectorViewModel: ObservableObject {
+    enum State {
+        case loading
+        case data
+        case error
+    }
+
+    @Published public private(set) var state = State.loading
     @Published public private(set) var items: [Item] = []
     @Published public private(set) var syncButtonDisabled = true
     @Published public private(set) var leftNavBarTitle = ""
+    @Published public private(set) var leftNavBarButtonVisible = false
     @Published public private(set) var selectedItemCount = ""
 
     public let leftNavBarButtonPressed = PassthroughRelay<Void>()
@@ -37,14 +45,21 @@ class CourseSyncSelectorViewModel: ObservableObject {
         interactor
             .getCourseSyncEntries()
             .map { $0.makeViewModelItems(interactor: interactor) }
-            .replaceError(with: [])
             .receive(on: DispatchQueue.main)
+            .handleEvents(receiveOutput: { [weak self] _ in
+                self?.state = .data
+                self?.leftNavBarButtonVisible = true
+            }, receiveCompletion: { [weak self] result in
+                if case .failure = result {
+                    self?.state = .error
+                }
+            })
+            .replaceError(with: [])
             .assign(to: &$items)
 
         interactor
             .observeSelectedCount()
             .map { $0 == 0 }
-            .receive(on: DispatchQueue.main)
             .assign(to: &$syncButtonDisabled)
 
         interactor

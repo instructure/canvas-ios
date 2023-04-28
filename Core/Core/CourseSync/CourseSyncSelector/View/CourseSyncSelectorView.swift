@@ -24,26 +24,41 @@ struct CourseSyncSelectorView: View {
     @StateObject var viewModel: CourseSyncSelectorViewModel
 
     var body: some View {
-        VStack(spacing: 0) {
-            Text(viewModel.selectedItemCount)
-                .foregroundColor(.textDarkest)
-                .font(.semibold16, lineHeight: .fit)
-                .padding(.horizontal, 16)
-                .padding(.top, 24)
-                .padding(.bottom, 28)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            ScrollView {
-                LazyVStack(spacing: 0) {
-                    ForEach(viewModel.items) { item in
-                        CellView(item: item)
-                    }
-                }
-            }
-            syncButton
-        }
+        content
         .navigationBarTitleView(navBarTitleView)
         .navigationBarItems(leading: leftNavBarButton, trailing: cancelButton)
         .navigationBarStyle(.modal)
+    }
+
+    @ViewBuilder
+    private var content: some View {
+        switch viewModel.state {
+        case .error:
+            InteractivePanda(scene: NoResultsPanda(),
+                             title: Text("Something went wrong", bundle: .core),
+                             subtitle: Text("There was an unexpected error.", bundle: .core))
+        case .loading:
+            ProgressView()
+                .progressViewStyle(.indeterminateCircle())
+        case .data:
+            VStack(spacing: 0) {
+                Text(viewModel.selectedItemCount)
+                    .foregroundColor(.textDarkest)
+                    .font(.semibold16, lineHeight: .fit)
+                    .padding(.horizontal, 16)
+                    .padding(.top, 24)
+                    .padding(.bottom, 28)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                ScrollView {
+                    LazyVStack(spacing: 0) {
+                        ForEach(viewModel.items) { item in
+                            CellView(item: item)
+                        }
+                    }
+                }
+                syncButton
+            }
+        }
     }
 
     private var navBarTitleView: some View {
@@ -82,13 +97,16 @@ struct CourseSyncSelectorView: View {
         .disabled(viewModel.syncButtonDisabled)
     }
 
+    @ViewBuilder
     private var leftNavBarButton: some View {
-        Button {
-            viewModel.leftNavBarButtonPressed.accept()
-        } label: {
-            Text(viewModel.leftNavBarTitle)
-                .font(.regular16)
-                .foregroundColor(.textDarkest)
+        if viewModel.leftNavBarButtonVisible {
+            Button {
+                viewModel.leftNavBarButtonPressed.accept()
+            } label: {
+                Text(viewModel.leftNavBarTitle)
+                    .font(.regular16)
+                    .foregroundColor(.textDarkest)
+            }
         }
     }
 }
