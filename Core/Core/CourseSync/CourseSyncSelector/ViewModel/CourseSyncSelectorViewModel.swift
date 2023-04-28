@@ -24,6 +24,7 @@ class CourseSyncSelectorViewModel: ObservableObject {
     @Published public private(set) var items: [Item] = []
     @Published public private(set) var syncButtonDisabled = true
     @Published public private(set) var leftNavBarTitle = ""
+    @Published public private(set) var selectedItemCount = ""
 
     public let leftNavBarButtonPressed = PassthroughRelay<Void>()
 
@@ -45,6 +46,14 @@ class CourseSyncSelectorViewModel: ObservableObject {
             .map { $0 == 0 }
             .receive(on: DispatchQueue.main)
             .assign(to: &$syncButtonDisabled)
+
+        interactor
+            .observeSelectedCount()
+            .map {
+                let format = NSLocalizedString("%d Selected", bundle: .core, comment: "3 Selected")
+                return String.localizedStringWithFormat(format, $0)
+            }
+            .assign(to: &$selectedItemCount)
 
         interactor
             .observeIsEverythingSelected()

@@ -52,7 +52,7 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
 
     func observeSelectedCount() -> AnyPublisher<Int, Never> {
         Future<Int, Never> { promise in
-            promise(.success(0))
+            promise(.success(3))
         }.eraseToAnyPublisher()
     }
 

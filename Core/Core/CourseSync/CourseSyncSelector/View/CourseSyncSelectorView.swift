@@ -25,6 +25,13 @@ struct CourseSyncSelectorView: View {
 
     var body: some View {
         VStack(spacing: 0) {
+            Text(viewModel.selectedItemCount)
+                .foregroundColor(.textDarkest)
+                .font(.semibold16, lineHeight: .fit)
+                .padding(.horizontal, 16)
+                .padding(.top, 24)
+                .padding(.bottom, 28)
+                .frame(maxWidth: .infinity, alignment: .leading)
             ScrollView {
                 LazyVStack(spacing: 0) {
                     ForEach(viewModel.items) { item in
