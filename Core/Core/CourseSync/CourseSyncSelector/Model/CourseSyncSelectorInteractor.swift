@@ -114,7 +114,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         .map {
             $0.map {
                 CourseSyncEntry.Tab(
-                    id: $0.id,
+                    id: "\(courseId)-\($0.id)",
                     name: $0.label,
                     type: $0.name
                 )

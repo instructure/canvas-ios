@@ -19,13 +19,15 @@
 import SwiftUI
 
 extension CourseSyncSelectorViewModel {
-    struct Item: Hashable {
+    struct Item: Hashable, Identifiable {
         enum TrailingIcon {
             case none
             case opened
             case closed
         }
 
+        /** The SwiftUI view ID. */
+        let id: String
         let isSelected: Bool
         let backgroundColor: Color
         let title: String
@@ -36,6 +38,7 @@ extension CourseSyncSelectorViewModel {
         var selectionToggled: (() -> Void)!
 
         static func == (lhs: CourseSyncSelectorViewModel.Item, rhs: CourseSyncSelectorViewModel.Item) -> Bool {
+            lhs.id == rhs.id &&
             lhs.isSelected == rhs.isSelected &&
             lhs.backgroundColor == rhs.backgroundColor &&
             lhs.title == rhs.title &&
@@ -45,6 +48,7 @@ extension CourseSyncSelectorViewModel {
         }
 
         func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
             hasher.combine(isSelected)
             hasher.combine(backgroundColor)
             hasher.combine(title)
@@ -99,7 +103,8 @@ extension Array where Element == CourseSyncEntry {
 extension CourseSyncEntry {
 
     func makeViewModelItem() -> CourseSyncSelectorViewModel.Item {
-        .init(isSelected: isSelected,
+        .init(id: "course-\(id)",
+              isSelected: isSelected,
               backgroundColor: .backgroundLight,
               title: name,
               subtitle: nil,
@@ -117,7 +122,8 @@ extension CourseSyncEntry.Tab {
             trailingIcon = isCollapsed ? .closed : .opened
         }
 
-        return .init(isSelected: isSelected,
+        return .init(id: "courseTab-\(id)",
+                     isSelected: isSelected,
                      backgroundColor: .backgroundLightest,
                      title: name,
                      subtitle: nil,
@@ -129,7 +135,8 @@ extension CourseSyncEntry.Tab {
 extension CourseSyncEntry.File {
 
     func makeViewModelItem() -> CourseSyncSelectorViewModel.Item {
-        .init(isSelected: isSelected,
+        .init(id: "file-\(id)",
+              isSelected: isSelected,
               backgroundColor: .backgroundLightest,
               title: name,
               subtitle: nil,

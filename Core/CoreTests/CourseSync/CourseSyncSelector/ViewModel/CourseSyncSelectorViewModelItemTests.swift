@@ -29,13 +29,15 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
     }
 
     func testHashEquals() {
-        let testee1 = CourseSyncSelectorViewModel.Item(isSelected: true,
+        let testee1 = CourseSyncSelectorViewModel.Item(id: "",
+                                                       isSelected: true,
                                                        backgroundColor: .white,
                                                        title: "testTitle",
                                                        subtitle: "subTitle",
                                                        trailingIcon: .closed,
                                                        isIndented: true)
-        let testee2 = CourseSyncSelectorViewModel.Item(isSelected: true,
+        let testee2 = CourseSyncSelectorViewModel.Item(id: "",
+                                                       isSelected: true,
                                                        backgroundColor: .white,
                                                        title: "testTitle",
                                                        subtitle: "subTitle",
@@ -51,6 +53,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
         var data = CourseSyncEntry(name: "test", id: "testID", tabs: [], files: [])
         var testee = data.makeViewModelItem()
 
+        XCTAssertEqual(testee.id, "course-testID")
         XCTAssertTrue(testee.isSelected)
         XCTAssertEqual(testee.backgroundColor, .backgroundLight)
         XCTAssertEqual(testee.title, "test")
@@ -82,6 +85,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
         var data = CourseSyncEntry.Tab(id: "1", name: "Test", type: .assignments)
         var testee = data.makeViewModelItem()
 
+        XCTAssertEqual(testee.id, "courseTab-1")
         XCTAssertEqual(testee.backgroundColor, .backgroundLightest)
         XCTAssertEqual(testee.title, "Test")
         XCTAssertEqual(testee.subtitle, nil)
@@ -129,6 +133,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
         var data = CourseSyncEntry.File(id: "1", name: "testFile", url: nil)
         var testee = data.makeViewModelItem()
 
+        XCTAssertEqual(testee.id, "file-1")
         XCTAssertEqual(testee.backgroundColor, .backgroundLightest)
         XCTAssertEqual(testee.title, "testFile")
         XCTAssertEqual(testee.subtitle, nil)
@@ -147,7 +152,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
     // MARK: - Selection
 
     func testSelectionForwardedToInteractor() {
-        var data = CourseSyncEntry(name: "test",
+        let data = CourseSyncEntry(name: "test",
                                    id: "testID",
                                    tabs: [
                                     .init(id: "0", name: "Assignments", type: .assignments, isCollapsed: false, isSelected: false),

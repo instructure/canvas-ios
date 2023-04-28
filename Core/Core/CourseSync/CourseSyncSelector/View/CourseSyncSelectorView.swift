@@ -27,7 +27,7 @@ struct CourseSyncSelectorView: View {
         VStack(spacing: 0) {
             ScrollView {
                 LazyVStack(spacing: 0) {
-                    ForEach(viewModel.items, id: \.self) { item in
+                    ForEach(viewModel.items) { item in
                         CellView(item: item)
                     }
                 }
