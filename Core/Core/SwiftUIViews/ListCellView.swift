@@ -32,7 +32,7 @@ struct ListCellView: View {
     @State var isSelected: Bool = false
     @State var isOpen: Bool = false
 
-    var backgroundColor: Color {
+    private var backgroundColor: Color {
         switch cellStyle {
         case .mainAccordionHeader:
             return .backgroundLight
@@ -40,26 +40,42 @@ struct ListCellView: View {
             return .backgroundLightest
         }
     }
-    @ViewBuilder
-    var iconImage: some View {
-        HStack {
-            if isSelected {
-                Image("completeSolid", bundle: .core).foregroundColor(.textInfo)
-            } else {
-                Image("emptyLine", bundle: .core).foregroundColor(.textDarkest)
-            }
-        }.frame(width: 32, height: 32)
-            .padding(.leading, 24)
-            .padding(.trailing, 20)
+
+    private var cellHeight: CGFloat {
+        switch cellStyle {
+        case .mainAccordionHeader:
+            return 72.0
+        default:
+            return 54.0
+        }
     }
 
     @ViewBuilder
-    var accessoryIcon: some View {
+    private var iconImage: some View {
+        HStack {
+            if isSelected {
+                Image("completeSolid", bundle: .core)
+                    .size(20)
+                    .foregroundColor(.textInfo)
+            } else {
+                Image("emptyLine", bundle: .core)
+                    .size(20)
+                    .foregroundColor(.textDarkest)
+            }
+        }.frame(width: 32, height: 32)
+            .padding(.leading, 22)
+            .padding(.trailing, 22)
+    }
+
+    @ViewBuilder
+    private var accessoryIcon: some View {
         HStack {
             switch cellStyle {
             case .mainAccordionHeader, .listAccordionHeader:
-                Image("arrowOpenRightLine", bundle: .core)
-                    .rotationEffect(isOpen ? .degrees(90) : .degrees(0))
+                Image("arrowOpenDownLine", bundle: .core)
+                    .size(16)
+                    .foregroundColor(.textDarkest)
+                    .rotationEffect(isOpen ? .degrees(-180) : .degrees(0))
             case .listItem:
                 Image("")
             }
@@ -67,20 +83,39 @@ struct ListCellView: View {
         .padding(16)
     }
 
-    var titleFont: Font {
+    private var titleFont: Font {
         switch cellStyle {
-        case .mainAccordionHeader:
-            return .semibold18
-        case .listAccordionHeader, .listItem:
+        default:
             return .semibold16
         }
     }
 
-    var subtitleFont: Font {
+    @ViewBuilder
+    private var titleText: some View {
+        Text(title)
+            .lineLimit(2)
+            .fixedSize(horizontal: false, vertical: true)
+            .multilineTextAlignment(.leading)
+            .foregroundColor(.textDarkest)
+            .font(titleFont)
+            .padding(.top, 12)
+            .padding(.bottom, subtitle == nil ? 16 : 0)
+    }
+
+    private var subtitleFont: Font {
         switch cellStyle {
         default:
             return .regular14
         }
+    }
+
+    @ViewBuilder
+    private var subTitleText: some View {
+        Text(subtitle ?? "")
+            .lineLimit(1)
+            .foregroundColor(.textDark)
+            .font(subtitleFont)
+            .padding(.bottom, 14)
     }
 
     var body: some View {
@@ -95,6 +130,8 @@ struct ListCellView: View {
         } label: {
             ZStack {
                 backgroundColor
+                    .fixedSize(horizontal: false, vertical: false)
+                    .frame(minHeight: cellHeight)
                 HStack(spacing: 0) {
                     iconImage
                         .onTapGesture {
@@ -103,20 +140,9 @@ struct ListCellView: View {
                             }
                         }
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(title)
-                            .lineLimit(2)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .multilineTextAlignment(.leading)
-                            .foregroundColor(.textDarkest)
-                            .font(titleFont)
-                            .padding(.top, 12)
-                            .padding(.bottom, subtitle == nil ? 14 : 0)
-                        if let subtitle = subtitle {
-                            Text(subtitle)
-                                .lineLimit(1)
-                                .foregroundColor(.textDark)
-                                .font(subtitleFont)
-                                .padding(.bottom, 14)
+                        titleText
+                        if subtitle != nil {
+                            subTitleText
                         }
                     }
                     Spacer()
@@ -124,6 +150,7 @@ struct ListCellView: View {
                 }
             }
             .fixedSize(horizontal: false, vertical: true)
+            .frame(minHeight: cellHeight)
         }
     }
 }
