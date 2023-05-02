@@ -51,6 +51,10 @@ struct CourseSyncSelectorEntry {
         }
     }
 
+    var selectionCount: Int {
+        (selectedFilesCount + selectedTabsCount) - (selectedFilesCount > 0 ? 1 : 0)
+    }
+
     var isCollapsed: Bool = false
     var isSelected: Bool = true
     var isEverythingSelected: Bool = true

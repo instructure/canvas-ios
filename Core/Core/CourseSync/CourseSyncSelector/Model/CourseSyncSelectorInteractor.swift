@@ -62,7 +62,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
             .replaceError(with: [])
             .map {
                 $0.reduce(0) { partialResult, entry in
-                    partialResult + (entry.selectedFilesCount + entry.selectedTabsCount)
+                    partialResult + entry.selectionCount
                 }
             }
             .replaceEmpty(with: 0)

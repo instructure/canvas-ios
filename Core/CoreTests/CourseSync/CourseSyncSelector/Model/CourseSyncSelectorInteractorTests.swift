@@ -94,7 +94,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
 
         mockRootFolders(folders: [rootFolder])
         mockFolderItems(for: "0", folders: [folder1], files: [rootFolderFile])
-        mockFolderItems(for: "1", folders: [], files: [folder1File, folder2File])
+        mockFolderItems(for: "1", folders: [], files: [folder1File, folder2File, folder3File])
         mockCourseList(
             courseList: [.make(id: "1", tabs: [.make(id: "files", label: "Files")])]
         )
@@ -285,6 +285,37 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
 
         entry.selectFile(index: 0, isSelected: true)
         XCTAssertEqual(entry.isEverythingSelected, true)
+    }
+
+    func testSelectionCount() {
+        var entry = CourseSyncSelectorEntry(
+            name: "1",
+            id: "1",
+            tabs: [
+                CourseSyncSelectorEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
+                CourseSyncSelectorEntry.Tab(id: "tab2", name: "tab2", type: .files),
+            ],
+            files: [
+                CourseSyncSelectorEntry.File(id: "file1", name: "file1", url: nil),
+                CourseSyncSelectorEntry.File(id: "file2", name: "file2", url: nil),
+            ]
+        )
+
+        XCTAssertEqual(entry.selectionCount, 3)
+
+        entry.selectTab(index: 1, isSelected: false)
+        XCTAssertEqual(entry.selectionCount, 1)
+
+        entry.selectTab(index: 1, isSelected: true)
+        entry.selectFile(index: 0, isSelected: false)
+        XCTAssertEqual(entry.selectionCount, 2)
+
+        entry.selectFile(index: 1, isSelected: false)
+        XCTAssertEqual(entry.selectionCount, 1)
+
+        entry.selectFile(index: 0, isSelected: true)
+        entry.selectFile(index: 1, isSelected: true)
+        XCTAssertEqual(entry.selectionCount, 3)
     }
 
     private func mockCourseList(
