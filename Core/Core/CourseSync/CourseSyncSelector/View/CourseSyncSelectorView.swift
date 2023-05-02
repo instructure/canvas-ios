@@ -42,6 +42,9 @@ struct CourseSyncSelectorView: View {
                 .progressViewStyle(.indeterminateCircle())
         case .data:
             VStack(spacing: 0) {
+                CourseSyncDiskSpaceInfoView()
+                    .padding(.horizontal, 16)
+                    .padding(.top, 16)
                 Text(viewModel.selectedItemCount)
                     .foregroundColor(.textDarkest)
                     .font(.semibold16, lineHeight: .fit)
