@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,23 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
-import CombineExt
+import Foundation
+import TestsFoundation
 
-public extension Publisher {
-    func sink() -> AnyCancellable {
-        sink { _ in } receiveValue: { _ in }
-    }
+class DSLoginE2ETests: E2ETestCase {
+    // Follow-up of MBL-14653
+    func testLoginWithLastUser() {
+        let users = seeder.createUsers(1)
+        let course = seeder.createCourse()
+        let teacher = users[0]
+        seeder.enrollTeacher(teacher, in: course)
 
-    func bindProgress(_ isLoading: PassthroughRelay<Bool>) -> AnyPublisher<Self.Output, Self.Failure> {
-        return handleEvents(
-            receiveSubscription: { _ in
-                isLoading.accept(true)
-            },
-            receiveCompletion: { _ in
-                isLoading.accept(false)
-            }
-        )
-        .eraseToAnyPublisher()
+        logInDSUser(teacher)
+
+        logOut()
+
+        let lastLoginBtn = LoginStart.lastLoginButton.waitToExist()
+        XCTAssertEqual(lastLoginBtn.label(), user.host)
+
+        lastLoginBtn.tap()
+        loginAfterSchoolFound(teacher)
     }
 }

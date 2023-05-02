@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,23 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
-import CombineExt
+import Foundation
 
-public extension Publisher {
-    func sink() -> AnyCancellable {
-        sink { _ in } receiveValue: { _ in }
+public enum PeopleListCell: String, ElementWrapper {
+    case idPrefix = "people-list-cell-row-"
+    case nameLabel = "name-label"
+    case roleLabel = "role-label"
+
+    public static func cell(index: Int) -> Element {
+        app.find(id: "\(PeopleListCell.idPrefix.rawValue)\(index)")
     }
 
-    func bindProgress(_ isLoading: PassthroughRelay<Bool>) -> AnyPublisher<Self.Output, Self.Failure> {
-        return handleEvents(
-            receiveSubscription: { _ in
-                isLoading.accept(true)
-            },
-            receiveCompletion: { _ in
-                isLoading.accept(false)
-            }
-        )
-        .eraseToAnyPublisher()
+    public static func name(index: Int) -> String {
+        app.find(id: "\(PeopleListCell.idPrefix.rawValue)\(index).\(PeopleListCell.nameLabel.rawValue)").label()
+    }
+
+    public static func role(index: Int) -> String {
+        app.find(id: "\(PeopleListCell.idPrefix.rawValue)\(index).\(PeopleListCell.roleLabel.rawValue)").label()
     }
 }

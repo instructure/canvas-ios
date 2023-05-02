@@ -18,6 +18,7 @@
 
 import Foundation
 import CoreData
+import Combine
 
 public protocol UseCase {
     associatedtype Model: NSManagedObject = NSManagedObject
@@ -92,6 +93,37 @@ extension UseCase {
                         callback?(response, urlResponse, error)
                     } catch {
                         callback?(response, urlResponse, error)
+                    }
+                }
+            }
+        }
+    }
+
+    public func hasCacheExpired(environment: AppEnvironment = .shared) -> Future<Bool, Never> {
+        Future<Bool, Never> { promise in
+            environment.database.performWriteTask { context in
+                promise(.success(self.hasExpired(in: context)))
+            }
+        }
+    }
+
+    public func fetchWithFuture(environment: AppEnvironment = .shared) -> Future<URLResponse?, Error> {
+        Future<URLResponse?, Error> { promise in
+            self.makeRequest(environment: environment) { response, urlResponse, error in
+                if let error = error {
+                    promise(.failure(error))
+                } else {
+                    let database = environment.database
+                    database.performWriteTask { context in
+                        do {
+                            self.reset(context: context)
+                            self.write(response: response, urlResponse: urlResponse, to: context)
+                            self.updateTTL(in: context)
+                            try context.save()
+                            promise(.success(urlResponse))
+                        } catch let dbError {
+                            promise(.failure(dbError))
+                        }
                     }
                 }
             }
