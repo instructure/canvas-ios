@@ -90,8 +90,6 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
         return AssignmentDueDatesAssembly.makeViewController(env: AppEnvironment.shared, courseID: courseID, assignmentID: assignmentID)
     },
-    "/courses/:courseID/assignments/:assignmentID/assignee-picker": nil,
-    "/courses/:courseID/assignments/:assignmentID/assignee-search": nil,
 
     "/courses/:courseID/assignments/:assignmentID/post_policy": { _, params, _ in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
@@ -282,7 +280,9 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return CoreHostingController(ContextCardView(model: viewModel))
     },
 
-    "/dev-menu": nil,
+    "/dev-menu": { _, _, _ in
+        CoreHostingController(DeveloperMenuView())
+    },
 
     "/dev-menu/experimental-features": { _, _, _ in
         let vc = ExperimentalFeaturesViewController()
@@ -302,6 +302,14 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     "/dev-menu/snackbar": { _, _, _ in
         CoreHostingController(SnackBarTestView())
+    },
+
+    "/logs": { _, _, _ in
+        return LogEventListViewController.create()
+    },
+
+    "/push-notifications": { _, _, _ in
+        CoreHostingController(PushNotificationDebugView())
     },
 
     "/profile": { _, _, _ in
