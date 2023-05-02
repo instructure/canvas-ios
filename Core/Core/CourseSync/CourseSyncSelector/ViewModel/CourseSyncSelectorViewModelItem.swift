@@ -92,14 +92,16 @@ extension Array where Element == CourseSyncEntry {
                 }
                 items.append(tabItem)
 
-                if tab.type == .files, !tab.isCollapsed {
-                    for (fileIndex, file) in course.files.enumerated() {
-                        var fileItem = file.makeViewModelItem()
-                        fileItem.selectionDidToggle = {
-                            interactor.setSelected(selection: .file(courseIndex, fileIndex), isSelected: !fileItem.isSelected)
-                        }
-                        items.append(fileItem)
+                guard tab.type == .files, !tab.isCollapsed else {
+                    continue
+                }
+
+                for (fileIndex, file) in course.files.enumerated() {
+                    var fileItem = file.makeViewModelItem()
+                    fileItem.selectionDidToggle = {
+                        interactor.setSelected(selection: .file(courseIndex, fileIndex), isSelected: !fileItem.isSelected)
                     }
+                    items.append(fileItem)
                 }
             }
         }
