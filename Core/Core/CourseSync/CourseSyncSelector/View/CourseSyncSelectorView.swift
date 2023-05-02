@@ -62,6 +62,8 @@ struct CourseSyncSelectorView: View {
                 }
                 syncButton
             }
+            .confirmationAlert(isPresented: $viewModel.isShowingConfirmationDialog,
+                               presenting: viewModel.confirmDialog)
         }
     }
 
@@ -88,7 +90,7 @@ struct CourseSyncSelectorView: View {
 
     private var syncButton: some View {
         Button {
-            viewModel.syncButtonPressed.accept(viewController)
+            viewModel.syncButtonDidTap.accept(viewController)
         } label: {
             Text("Sync", bundle: .core)
                 .padding(.vertical, 14)
@@ -105,7 +107,7 @@ struct CourseSyncSelectorView: View {
     private var leftNavBarButton: some View {
         if viewModel.leftNavBarButtonVisible {
             Button {
-                viewModel.leftNavBarButtonPressed.accept()
+                viewModel.leftNavBarButtonDidTap.accept()
             } label: {
                 Text(viewModel.leftNavBarTitle)
                     .font(.regular16)

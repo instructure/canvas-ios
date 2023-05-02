@@ -33,9 +33,15 @@ class CourseSyncSelectorViewModel: ObservableObject {
     @Published public private(set) var leftNavBarTitle = ""
     @Published public private(set) var leftNavBarButtonVisible = false
     @Published public private(set) var selectedItemCount = ""
+    @Published public var isShowingConfirmationDialog = false
+    @Published public private(set) var confirmDialog = ConfirmationAlertViewModel(title: NSLocalizedString("Sync Offline Content?", comment: ""),
+                                                                                  message: "", // Updated when selected item count changes
+                                                                                  cancelButtonTitle: NSLocalizedString("Cancel", comment: ""),
+                                                                                  confirmButtonTitle: NSLocalizedString("Sync", comment: ""),
+                                                                                  isDestructive: false)
 
-    public let syncButtonPressed = PassthroughRelay<WeakViewController>()
-    public let leftNavBarButtonPressed = PassthroughRelay<Void>()
+    public let syncButtonDidTap = PassthroughRelay<WeakViewController>()
+    public let leftNavBarButtonDidTap = PassthroughRelay<Void>()
 
     private let interactor: CourseSyncSelectorInteractor
     private var subscriptions = Set<AnyCancellable>()
@@ -72,18 +78,36 @@ class CourseSyncSelectorViewModel: ObservableObject {
             .assign(to: &$selectedItemCount)
 
         interactor
+            .observeSelectedCount()
+            .map { [unowned self] itemCount in
+                let format = NSLocalizedString("There are %d items selected for offline availability. The selected content will be downloaded to the device.", bundle: .core, comment: "")
+                let message = String.localizedStringWithFormat(format, itemCount)
+
+                var confirmDialog = confirmDialog
+                confirmDialog.message = message
+                return confirmDialog
+            }
+            .assign(to: &$confirmDialog)
+
+        interactor
             .observeIsEverythingSelected()
             .map { $0 ? NSLocalizedString("Deselect All", comment: "")
                       : NSLocalizedString("Select All", comment: "") }
             .assign(to: &$leftNavBarTitle)
 
-        leftNavBarButtonPressed
+        leftNavBarButtonDidTap
             .flatMap { interactor.observeIsEverythingSelected().first() }
             .toggle()
             .sink { interactor.toggleAllCoursesSelection(isSelected: $0) }
             .store(in: &subscriptions)
 
-        syncButtonPressed
+        syncButtonDidTap
+            .handleEvents(receiveOutput: { [unowned self] _ in
+                isShowingConfirmationDialog = true
+            })
+            .flatMap { [unowned self] view in
+                confirmDialog.confirmDidTap.map { view }
+            }
             .flatMap { view in
                 interactor.getSelectedCourseEntries()
                     .handleEvents(receiveOutput: { _ in

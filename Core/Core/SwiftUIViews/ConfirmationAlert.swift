@@ -21,7 +21,7 @@ import SwiftUI
 
 public struct ConfirmationAlertViewModel {
     public let title: String
-    public let message: Text
+    public var message: String
     public let cancelButtonTitle: String
     public let confirmButtonTitle: String
     public let confirmButtonRole: ButtonRole?
@@ -34,7 +34,7 @@ public struct ConfirmationAlertViewModel {
                 confirmButtonTitle: String,
                 isDestructive: Bool = false) {
         self.title = title
-        self.message = Text(message)
+        self.message = message
         self.cancelButtonTitle = cancelButtonTitle
         self.confirmButtonTitle = confirmButtonTitle
         self.confirmButtonRole = isDestructive ? .destructive : nil
@@ -62,7 +62,7 @@ public extension View {
                        role: viewModel.confirmButtonRole,
                        action: viewModel.confirmDidTap.send)
             }, message: {
-                viewModel.message
+                Text(viewModel.message)
             })
     }
 }
