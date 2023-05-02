@@ -34,15 +34,13 @@ public extension Element {
         return !app.windows.element(boundBy: 0).frame.contains(frame(file: file, line: line))
     }
 
-    func tapUntil(file: StaticString = #file, line: UInt = #line, message: String? = nil, test: () -> Bool) {
-        tap(file: file, line: line)
-        sleep(1)
-        for _ in 0..<5 where exists(file: file, line: line) {
+    func tapUntil(retries: Int = 5, file: StaticString = #file, line: UInt = #line, message: String? = nil, test: () -> Bool) {
+        for _ in 0..<retries where exists(file: file, line: line) {
+            tap(file: file, line: line)
+            sleep(1)
             if test() {
                 return
             }
-            tap(file: file, line: line)
-            sleep(1)
         }
         waitUntil(file: file, line: line, predicate: test)
     }

@@ -48,8 +48,10 @@ open class E2ETestCase: CoreUITestCase {
         setAppThemeToSystem()
     }
 
-    open func logInDSUser(_ dsUser: DSUser) {
-        findSchool(dsUser)
+    open func logInDSUser(_ dsUser: DSUser, lastLogin: Bool = true) {
+        let lastLoginButton = LoginStart.lastLoginButton.waitToExist(shouldFail: false)
+        if lastLogin && lastLoginButton.exists && lastLoginButton.label() == user.host {
+            lastLoginButton.tap() } else { findSchool(dsUser) }
         loginAfterSchoolFound(dsUser)
     }
 
