@@ -885,6 +885,7 @@
 		9E24F0BBEBB3C4D6E111DC60 /* file_annotation_from_ios.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 311C9AAA622E1D5E76313C90 /* file_annotation_from_ios.pdf */; };
 		9E7228EA21AF21BDF88A8B14 /* UINavigationBarExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8E308275EA28CB285CA3F7 /* UINavigationBarExtensionsTests.swift */; };
 		9E77508D79D20C53836FBF51 /* GradeFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F178FA8256417FC5BF59B8 /* GradeFormatterTests.swift */; };
+		9E77941649547FCFBC9A3E9F /* ListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3708E1DF51B11B7378514 /* ListCellView.swift */; };
 		9E9FE87DF2279B6F88F1EEFF /* NSPersistentStoreExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ABC68A7725FDFC09EDC581 /* NSPersistentStoreExtensions.swift */; };
 		9ECE13826E7438D8E0058AA9 /* DashboardInvitationAPIItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5623704022B7AD3305378865 /* DashboardInvitationAPIItem.swift */; };
 		9EDD0D750F30FCFB05B16AFC /* HorizontalPagerProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB01AA02EF974D78BBA2345 /* HorizontalPagerProxy.swift */; };
@@ -3080,6 +3081,7 @@
 		F48DE98C91B4774F4C5E404D /* APIObserverAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIObserverAlert.swift; sourceTree = "<group>"; };
 		F4BB7031E1B4AF7482126585 /* ConversationDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationDetailCell.swift; sourceTree = "<group>"; };
 		F4D17488D0C4506B625E207A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F4D3708E1DF51B11B7378514 /* ListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCellView.swift; sourceTree = "<group>"; };
 		F4DE68B70EF1C6409DDDCF7F /* zh-HK */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-HK"; path = "zh-HK.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		F4E5AEAED2D39CA04B540B4F /* StringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
 		F55C8713C2B0D598859635BB /* AttachmentSubmissionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentSubmissionService.swift; sourceTree = "<group>"; };
@@ -7277,6 +7279,7 @@
 				32AEA1E017CEF3AE523E158B /* EmptyPanda.swift */,
 				5713B03BE07999452D03B373 /* FlowStack.swift */,
 				DA715426C4DB3FC6604D3DB8 /* JustifiedGrid.swift */,
+				F4D3708E1DF51B11B7378514 /* ListCellView.swift */,
 				0C045FFC7C7D5659187E841A /* ListSectionHeader.swift */,
 				62797B42CE3DEE245E46D3F0 /* ListWithoutVerticalScrollIndicator.swift */,
 				B3A642FF70ADA1FFC682BC4C /* LottieView.swift */,
@@ -9202,6 +9205,7 @@
 				2C816556B2C4F5E434209258 /* LatePolicyStatus.swift in Sources */,
 				E87A7C0E9FAFD740DDCCB0A1 /* LatestAnnouncement.swift in Sources */,
 				F2D1B01C8F6575B77D892AC4 /* ListBackgroundView.swift in Sources */,
+				9E77941649547FCFBC9A3E9F /* ListCellView.swift in Sources */,
 				4AA02CE6C230BABC4266FE4D /* ListErrorView.swift in Sources */,
 				F72854E2BF0FADEE0859310E /* ListFormatter.swift in Sources */,
 				8B208F931F969AE797E94EAD /* ListSectionHeader.swift in Sources */,
