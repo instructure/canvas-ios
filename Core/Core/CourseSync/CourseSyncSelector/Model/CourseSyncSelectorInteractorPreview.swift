@@ -29,16 +29,16 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
             .init(name: "Black Hole",
                   id: "0",
                   tabs: [
-                    .init(id: "0", name: "Assignments", type: .assignments),
-                    .init(id: "1", name: "Discussion", type: .assignments),
-                    .init(id: "2", name: "Grades", type: .assignments),
-                    .init(id: "3", name: "People", type: .assignments),
-                    .init(id: "4", name: "Files", type: .files, isCollapsed: false),
-                    .init(id: "5", name: "Syllabus", type: .assignments),
+                      .init(id: "0", name: "Assignments", type: .assignments),
+                      .init(id: "1", name: "Discussion", type: .assignments),
+                      .init(id: "2", name: "Grades", type: .assignments),
+                      .init(id: "3", name: "People", type: .assignments),
+                      .init(id: "4", name: "Files", type: .files, isCollapsed: false),
+                      .init(id: "5", name: "Syllabus", type: .assignments),
                   ],
                   files: [
-                    .init(id: "0", name: "Creative Machines and Innovative Instrumentation.mov", url: nil),
-                    .init(id: "0", name: "Intro Energy, Space and Time.mov", url: nil),
+                      .init(id: "0", name: "Creative Machines and Innovative Instrumentation.mov", url: nil),
+                      .init(id: "0", name: "Intro Energy, Space and Time.mov", url: nil),
                   ],
                   isCollapsed: false),
         ])
@@ -79,8 +79,14 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
         mockData.accept(entries)
     }
 
-    func toggleAllCoursesSelection(isSelected: Bool) {}
-    func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool) {}
+    func toggleAllCoursesSelection(isSelected _: Bool) {}
+    func setCollapsed(selection _: CourseEntrySelection, isCollapsed _: Bool) {}
+
+    func getSelectedCourseEntries() -> AnyPublisher<[CourseSyncSelectorEntry], Never> {
+        mockData
+            .replaceEmpty(with: [])
+            .eraseToAnyPublisher()
+    }
 }
 
 #endif

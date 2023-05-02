@@ -34,6 +34,7 @@ class CourseSyncSelectorViewModel: ObservableObject {
     @Published public private(set) var leftNavBarButtonVisible = false
     @Published public private(set) var selectedItemCount = ""
 
+    public let syncButtonPressed = PassthroughRelay<WeakViewController>()
     public let leftNavBarButtonPressed = PassthroughRelay<Void>()
 
     private let interactor: CourseSyncSelectorInteractor
@@ -80,6 +81,17 @@ class CourseSyncSelectorViewModel: ObservableObject {
             .flatMap { interactor.observeIsEverythingSelected().first() }
             .toggle()
             .sink { interactor.toggleAllCoursesSelection(isSelected: $0) }
+            .store(in: &subscriptions)
+
+        syncButtonPressed
+            .flatMap { view in
+                interactor.getSelectedCourseEntries()
+                    .handleEvents(receiveOutput: { _ in
+                        // TODO: Start download, go to dashboard
+                        AppEnvironment.shared.router.dismiss(view)
+                    })
+            }
+            .sink()
             .store(in: &subscriptions)
     }
 }

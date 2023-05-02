@@ -88,7 +88,7 @@ struct CourseSyncSelectorView: View {
 
     private var syncButton: some View {
         Button {
-            env.router.dismiss(viewController)
+            viewModel.syncButtonPressed.accept(viewController)
         } label: {
             Text("Sync", bundle: .core)
                 .padding(.vertical, 14)

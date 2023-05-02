@@ -27,6 +27,7 @@ protocol CourseSyncSelectorInteractor {
     func setSelected(selection: CourseEntrySelection, isSelected: Bool)
     func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool)
     func toggleAllCoursesSelection(isSelected: Bool)
+    func getSelectedCourseEntries() -> AnyPublisher<[CourseSyncSelectorEntry], Never>
 }
 
 final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
@@ -264,6 +265,14 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
             return (files, folderIDs)
         }
         .eraseToAnyPublisher()
+    }
+
+    func getSelectedCourseEntries() -> AnyPublisher<[CourseSyncSelectorEntry], Never> {
+        courseSyncEntries
+            .map { $0.filter { $0.selectionCount > 0 } }
+            .replaceError(with: [])
+            .first()
+            .eraseToAnyPublisher()
     }
 }
 
