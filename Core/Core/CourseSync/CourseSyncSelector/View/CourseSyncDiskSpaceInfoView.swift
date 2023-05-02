@@ -25,6 +25,12 @@ struct CourseSyncDiskSpaceInfoView: View {
     private let backgroundDarkest = UIColor {
         $0.isLightInterface ? .licorice : .white
     }
+    private var remainingDiskSpaceColor: UIColor {
+        UIColor {
+            let alpha = $0.isLightInterface ? 0.24 : 0.36
+            return Brand.shared.primary.withAlphaComponent(alpha)
+        }
+    }
 
     var body: some View {
         VStack(spacing: 0) {
@@ -60,8 +66,7 @@ struct CourseSyncDiskSpaceInfoView: View {
                     .foregroundColor(Color(Brand.shared.primary))
                     .frame(width: viewModel.chart.1 * geometry.size.width)
                 Rectangle()
-                    .foregroundColor(Color(Brand.shared.primary))
-                    .opacity(0.24)
+                    .foregroundColor(Color(remainingDiskSpaceColor))
                     .frame(width: viewModel.chart.2 * geometry.size.width)
             }
         }
@@ -75,7 +80,7 @@ struct CourseSyncDiskSpaceInfoView: View {
             Spacer(minLength: 0)
             legendItem(label: Text(viewModel.appName), color: Brand.shared.primary)
             Spacer(minLength: 0)
-            legendItem(label: Text("Remaining", bundle: .core), color: Brand.shared.primary.withAlphaComponent(0.24))
+            legendItem(label: Text("Remaining", bundle: .core), color: remainingDiskSpaceColor)
         }
     }
 
@@ -95,7 +100,7 @@ struct CourseSyncDiskSpaceInfoView: View {
 
 struct CourseSyncDiskSpaceInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        CourseSyncDiskSpaceInfoView(viewModel: .init(interactor: DiskSpaceInteractorPreview()))
+        CourseSyncDiskSpaceInfoView(viewModel: .init(interactor: DiskSpaceInteractorPreview(), app: .student))
     }
 }
 

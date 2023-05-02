@@ -20,22 +20,22 @@ import Foundation
 
 public enum CourseSyncSelectorAssembly {
 
-    public static func makeViewController() -> UIViewController {
+    public static func makeViewController(env: AppEnvironment) -> UIViewController {
         let interactor = CourseSyncSelectorInteractorLive()
         let diskSpaceInteractor = DiskSpaceInteractorLive()
         let viewModel = CourseSyncSelectorViewModel(interactor: interactor)
-        let diskSpaceViewModel = CourseSyncDiskSpaceInfoViewModel(interactor: diskSpaceInteractor)
+        let diskSpaceViewModel = CourseSyncDiskSpaceInfoViewModel(interactor: diskSpaceInteractor, app: env.app ?? .student)
         let view = CourseSyncSelectorView(viewModel: viewModel, diskSpaceViewModel: diskSpaceViewModel)
         return CoreHostingController(view)
     }
 
 #if DEBUG
 
-    static func makePreview() -> CourseSyncSelectorView {
+    static func makePreview(env: AppEnvironment) -> CourseSyncSelectorView {
         let interactor = CourseSyncSelectorInteractorPreview()
         let diskSpaceInteractor = DiskSpaceInteractorPreview()
         let viewModel = CourseSyncSelectorViewModel(interactor: interactor)
-        let diskSpaceViewModel = CourseSyncDiskSpaceInfoViewModel(interactor: diskSpaceInteractor)
+        let diskSpaceViewModel = CourseSyncDiskSpaceInfoViewModel(interactor: diskSpaceInteractor, app: env.app ?? .student)
         return CourseSyncSelectorView(viewModel: viewModel, diskSpaceViewModel: diskSpaceViewModel)
     }
 

@@ -366,7 +366,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     },
 
     "/offline/settings": { _, _, _ in
-        CourseSyncSelectorAssembly.makeViewController()
+        CourseSyncSelectorAssembly.makeViewController(env: .shared)
     },
 
     "/profile": { _, _, _ in
