@@ -19,40 +19,64 @@
 import SwiftUI
 
 struct CourseSyncDiskSpaceInfoView: View {
+    let viewModel: CourseSyncDiskSpaceInfoViewModel
+
+    // TODO: Use real backgroundDarkest color when palette is updated.
+    private let backgroundDarkest = UIColor {
+        $0.isLightInterface ? .licorice : .white
+    }
+
     var body: some View {
         VStack(spacing: 0) {
-            HStack(spacing: 0) {
-                Text("Storage", bundle: .core)
-                    .foregroundColor(.textDarkest)
-                    .font(.semibold16, lineHeight: .fit)
-                Spacer(minLength: 0)
-                Text("42 GB of 64 GB Used", bundle: .core)
-                    .foregroundColor(.textDark)
-                    .font(.regular14, lineHeight: .fit)
-            }
-            HStack(spacing: 1) {
-                Rectangle()
-                    .foregroundColor(.backgroundDarkest)
-                Rectangle()
-                    .foregroundColor(Color(Brand.shared.primary))
-                Rectangle()
-                    .foregroundColor(Color(Brand.shared.primary))
-                    .opacity(0.24)
-            }
-            .frame(height: 12)
-            .cornerRadius(2)
-            .padding(.top, 16)
-            HStack(spacing: 0) {
-                legendItem(label: Text("Other Apps", bundle: .core), color: .backgroundDarkest)
-                Spacer(minLength: 0)
-                legendItem(label: Text("Canvas Student", bundle: .core), color: Brand.shared.primary)
-                Spacer(minLength: 0)
-                legendItem(label: Text("Remaining", bundle: .core), color: Brand.shared.primary)
-            }
-            .padding(.top, 8)
+            title
+            Spacer().frame(height: 16)
+            chart
+            Spacer().frame(height: 8)
+            legend
         }
         .padding(16)
         .background(RoundedRectangle(cornerSize: CGSize(width: 6, height: 6)).stroke(Color.borderDark, lineWidth: 1 / UIScreen.main.scale))
+    }
+
+    private var title: some View {
+        HStack(spacing: 0) {
+            Text("Storage", bundle: .core)
+                .foregroundColor(.textDarkest)
+                .font(.semibold16, lineHeight: .fit)
+            Spacer(minLength: 0)
+            Text(viewModel.diskUsage)
+                .foregroundColor(.textDark)
+                .font(.regular14, lineHeight: .fit)
+        }
+    }
+
+    private var chart: some View {
+        GeometryReader { geometry in
+            HStack(spacing: 1) {
+                Rectangle()
+                    .foregroundColor(Color(backgroundDarkest))
+                    .frame(width: viewModel.chart.0 * geometry.size.width)
+                Rectangle()
+                    .foregroundColor(Color(Brand.shared.primary))
+                    .frame(width: viewModel.chart.1 * geometry.size.width)
+                Rectangle()
+                    .foregroundColor(Color(Brand.shared.primary))
+                    .opacity(0.24)
+                    .frame(width: viewModel.chart.2 * geometry.size.width)
+            }
+        }
+        .frame(height: 12)
+        .cornerRadius(2)
+    }
+
+    private var legend: some View {
+        HStack(spacing: 0) {
+            legendItem(label: Text("Other Apps", bundle: .core), color: backgroundDarkest)
+            Spacer(minLength: 0)
+            legendItem(label: Text(viewModel.appName), color: Brand.shared.primary)
+            Spacer(minLength: 0)
+            legendItem(label: Text("Remaining", bundle: .core), color: Brand.shared.primary.withAlphaComponent(0.24))
+        }
     }
 
     private func legendItem(label: Text, color: UIColor) -> some View {
@@ -71,7 +95,7 @@ struct CourseSyncDiskSpaceInfoView: View {
 
 struct CourseSyncDiskSpaceInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        CourseSyncDiskSpaceInfoView()
+        CourseSyncDiskSpaceInfoView(viewModel: .init(interactor: DiskSpaceInteractorPreview()))
     }
 }
 

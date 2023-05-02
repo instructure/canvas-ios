@@ -22,8 +22,10 @@ public enum CourseSyncSelectorAssembly {
 
     public static func makeViewController() -> UIViewController {
         let interactor = CourseSyncSelectorInteractorLive()
+        let diskSpaceInteractor = DiskSpaceInteractorLive()
         let viewModel = CourseSyncSelectorViewModel(interactor: interactor)
-        let view = CourseSyncSelectorView(viewModel: viewModel)
+        let diskSpaceViewModel = CourseSyncDiskSpaceInfoViewModel(interactor: diskSpaceInteractor)
+        let view = CourseSyncSelectorView(viewModel: viewModel, diskSpaceViewModel: diskSpaceViewModel)
         return CoreHostingController(view)
     }
 
@@ -31,8 +33,10 @@ public enum CourseSyncSelectorAssembly {
 
     static func makePreview() -> CourseSyncSelectorView {
         let interactor = CourseSyncSelectorInteractorPreview()
+        let diskSpaceInteractor = DiskSpaceInteractorPreview()
         let viewModel = CourseSyncSelectorViewModel(interactor: interactor)
-        return CourseSyncSelectorView(viewModel: viewModel)
+        let diskSpaceViewModel = CourseSyncDiskSpaceInfoViewModel(interactor: diskSpaceInteractor)
+        return CourseSyncSelectorView(viewModel: viewModel, diskSpaceViewModel: diskSpaceViewModel)
     }
 
 #endif

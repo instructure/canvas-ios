@@ -22,6 +22,7 @@ struct CourseSyncSelectorView: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var viewController
     @StateObject var viewModel: CourseSyncSelectorViewModel
+    @StateObject var diskSpaceViewModel: CourseSyncDiskSpaceInfoViewModel
 
     var body: some View {
         content
@@ -42,7 +43,7 @@ struct CourseSyncSelectorView: View {
                 .progressViewStyle(.indeterminateCircle())
         case .data:
             VStack(spacing: 0) {
-                CourseSyncDiskSpaceInfoView()
+                CourseSyncDiskSpaceInfoView(viewModel: diskSpaceViewModel)
                     .padding(.horizontal, 16)
                     .padding(.top, 16)
                 Text(viewModel.selectedItemCount)

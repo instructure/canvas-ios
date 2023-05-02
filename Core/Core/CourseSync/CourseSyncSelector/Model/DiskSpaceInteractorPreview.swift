@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,22 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+#if DEBUG
+
 import Foundation
 
-extension Int {
-    static let humanReadableFormatter: ByteCountFormatter = {
-        let f = ByteCountFormatter()
-        f.countStyle = .file
-        return f
-    }()
-
-    public var humanReadableFileSize: String {
-        return Int.humanReadableFormatter.string(fromByteCount: Int64(self))
+class DiskSpaceInteractorPreview: DiskSpaceInteractor {
+    func getDiskSpace() -> DiskSpace {
+        let total = Double(64_000_000_000)
+        return DiskSpace(total: Int64(total),
+                         available: Int64(0.5 * total),
+                         app: Int64(0.25 * total),
+                         otherApps: Int64(0.25 * total))
     }
 }
 
-extension Int64 {
-    public var humanReadableFileSize: String {
-        Int.humanReadableFormatter.string(fromByteCount: self)
-    }
-}
+#endif
