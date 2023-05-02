@@ -82,7 +82,7 @@
 		7DCA321A25423CDF00458651 /* SpeedGraderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCA321925423CDF00458651 /* SpeedGraderViewController.swift */; };
 		7DE062A625126E4D00DB49D4 /* SpeedGraderViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE062A525126E4D00DB49D4 /* SpeedGraderViewControllerTests.swift */; };
 		840CABA038B02116B1BDA3E0 /* Pods_defaults_TeacherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */; };
-		8BEBB64A29FA689000364C4C /* DSLoginE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBB64929FA689000364C4C /* DSLoginE2ETests.swift */; };
+		8B175C3D29F6BE8F007B6CFF /* DSPeopleE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B175C3C29F6BE8F007B6CFF /* DSPeopleE2ETests.swift */; };
 		8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D063D27A1B3640208ABF74D4 /* libz.tbd */; };
 		B15CA26D221DDEB40014FB02 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; };
 		B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA26E221DDF230014FB02 /* TeacherTestCase.swift */; };
@@ -556,7 +556,7 @@
 		7DCA321925423CDF00458651 /* SpeedGraderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderViewController.swift; sourceTree = "<group>"; };
 		7DE062A525126E4D00DB49D4 /* SpeedGraderViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderViewControllerTests.swift; sourceTree = "<group>"; };
 		862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_TeacherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8BEBB64929FA689000364C4C /* DSLoginE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSLoginE2ETests.swift; sourceTree = "<group>"; };
+		8B175C3C29F6BE8F007B6CFF /* DSPeopleE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSPeopleE2ETests.swift; sourceTree = "<group>"; };
 		9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.release.xcconfig"; sourceTree = "<group>"; };
 		B15CA25D221DDB820014FB02 /* TeacherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B15CA261221DDB820014FB02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1102,7 +1102,7 @@
 				C91B216A26CA4E28006EE156 /* MessagesE2ETest.swift */,
 				C914BC0E26AFE0BC009A5607 /* QuizzesE2ETests.swift */,
 				C935D42526DE073B00C940F7 /* NewQuizzesE2ETests.swift */,
-				8BEBB64929FA689000364C4C /* DSLoginE2ETests.swift */,
+				8B175C3C29F6BE8F007B6CFF /* DSPeopleE2ETests.swift */,
 			);
 			path = TeacherE2ETests;
 			sourceTree = "<group>";
@@ -1945,6 +1945,7 @@
 				C946A8C026661C2E004BCA4D /* DashboardE2ETests.swift in Sources */,
 				E8F4B66424EEC912003FBAFD /* ContextCardE2ETests.swift in Sources */,
 				C9A1834B265CEBC800B35D52 /* PagesE2ETest.swift in Sources */,
+				8B175C3D29F6BE8F007B6CFF /* DSPeopleE2ETests.swift in Sources */,
 				C909F7C327B25AC500CB89DE /* DSDashboardTest.swift in Sources */,
 				C92796F126772C5B00582AC5 /* SyllabusE2ETests.swift in Sources */,
 				C91B216B26CA4E28006EE156 /* MessagesE2ETest.swift in Sources */,
@@ -1957,7 +1958,6 @@
 				C914BC0F26AFE0BC009A5607 /* QuizzesE2ETests.swift in Sources */,
 				C9A3C02F268C4CBB00DAE8E1 /* GradesE2ETests.swift in Sources */,
 				C9A3C03C2694198A00DAE8E1 /* SubmissionsE2ETests.swift in Sources */,
-				8BEBB64A29FA689000364C4C /* DSLoginE2ETests.swift in Sources */,
 				C9BCCA1927F33E4A003E9CB0 /* DSTodosE2ETests.swift in Sources */,
 				C92796EC2671E6B400582AC5 /* AssignmentsE2ETests.swift in Sources */,
 				C909F7D527C383D800CB89DE /* DSSubmissionsE2ETests.swift in Sources */,
