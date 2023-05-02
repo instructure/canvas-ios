@@ -27,7 +27,7 @@ class DSLoginE2ETests: E2ETestCase {
         let student = users[0]
         seeder.enrollTeacher(student, in: course)
 
-        logInDSUser(student)
+        logInDSUser(student, lastLogin: false)
 
         logOut()
 
