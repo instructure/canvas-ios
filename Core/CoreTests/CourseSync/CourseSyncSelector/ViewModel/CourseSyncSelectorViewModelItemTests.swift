@@ -28,6 +28,8 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
         mockInteractor = MockCourseSyncSelectorInteractor()
     }
 
+    // MARK: - Properties
+
     func testHashEquals() {
         let testee1 = CourseSyncSelectorViewModel.Item(id: "",
                                                        isSelected: true,
@@ -45,6 +47,17 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
                                                        isIndented: true)
         XCTAssertEqual(testee1, testee2)
         XCTAssertEqual(testee1.hashValue, testee2.hashValue)
+    }
+
+    func testIsCollapsed() {
+        let testee = CourseSyncSelectorViewModel.Item(id: "",
+                                                      isSelected: true,
+                                                      backgroundColor: .white,
+                                                      title: "",
+                                                      subtitle: "",
+                                                      trailingIcon: .closed,
+                                                      isIndented: true)
+        XCTAssertTrue(testee.isCollapsed)
     }
 
     // MARK: - Course
@@ -175,10 +188,45 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
         XCTAssertEqual(mockInteractor.lastSelected?.selection, CourseEntrySelection.file(0, 0))
         XCTAssertEqual(mockInteractor.lastSelected?.isSelected, true)
     }
+
+    // MARK: - Collapsing
+
+    func testCourseCollapseEventForwardedToInteractor() {
+        let data = CourseSyncEntry(name: "test",
+                                   id: "testID",
+                                   tabs: [
+                                    .init(id: "0", name: "Assignments", type: .assignments, isCollapsed: false, isSelected: false),
+                                   ],
+                                   files: [],
+                                   isCollapsed: false,
+                                   isSelected: false)
+        let testee = [data].makeViewModelItems(interactor: mockInteractor)
+        testee[0].collapseToggled()
+        XCTAssertEqual(mockInteractor.lastCollapsed?.selection, CourseEntrySelection.course(0))
+        XCTAssertEqual(mockInteractor.lastCollapsed?.isCollapsed, true)
+    }
+
+    func testTabCollapseEventForwardedToInteractor() {
+        let data = CourseSyncEntry(name: "test",
+                                   id: "testID",
+                                   tabs: [
+                                    .init(id: "0", name: "Files", type: .files, isCollapsed: false, isSelected: false),
+                                   ],
+                                   files: [
+                                    .init(id: "0", name: "test.txt", url: nil, isSelected: false),
+                                   ],
+                                   isCollapsed: false,
+                                   isSelected: false)
+        let testee = [data].makeViewModelItems(interactor: mockInteractor)
+        testee[1].collapseToggled()
+        XCTAssertEqual(mockInteractor.lastCollapsed?.selection, CourseEntrySelection.tab(0, 0))
+        XCTAssertEqual(mockInteractor.lastCollapsed?.isCollapsed, true)
+    }
 }
 
 private class MockCourseSyncSelectorInteractor: CourseSyncSelectorInteractor {
     private(set) var lastSelected: (selection: Core.CourseEntrySelection, isSelected: Bool)?
+    private(set) var lastCollapsed: (selection: Core.CourseEntrySelection, isCollapsed: Bool)?
 
     func getCourseSyncEntries() -> AnyPublisher<[Core.CourseSyncEntry], Error> {
         Just<[Core.CourseSyncEntry]>([])
@@ -197,6 +245,10 @@ private class MockCourseSyncSelectorInteractor: CourseSyncSelectorInteractor {
 
     func setSelected(selection: Core.CourseEntrySelection, isSelected: Bool) {
         lastSelected = (selection: selection, isSelected: isSelected)
+    }
+
+    func setCollapsed(selection: Core.CourseEntrySelection, isCollapsed: Bool) {
+        lastCollapsed = (selection: selection, isCollapsed: isCollapsed)
     }
 
     func toggleAllCoursesSelection(isSelected: Bool) {}
