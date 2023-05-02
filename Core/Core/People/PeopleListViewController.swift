@@ -230,6 +230,7 @@ extension PeopleListViewController: UITableViewDataSource, UITableViewDelegate {
             return LoadingCell(style: .default, reuseIdentifier: nil)
         }
         let cell = tableView.dequeue(PeopleListCell.self, for: indexPath)
+        cell.accessibilityIdentifier = "people-list-cell-row-\(indexPath.row)"
         cell.update(user: users[indexPath.row], color: color)
         return cell
     }
@@ -262,6 +263,7 @@ class PeopleListCell: UITableViewCell {
         avatarView.url = user?.avatarURL
         let nameText = user.flatMap { User.displayName($0.name, pronouns: $0.pronouns) }
         nameLabel.setText(nameText, style: .textCellTitle)
+        nameLabel.accessibilityIdentifier = "\(self.accessibilityIdentifier ?? "").name-label"
         let courseEnrollments = user?.enrollments.filter {
             if let canvasContextID = $0.canvasContextID, let context = Context(canvasContextID: canvasContextID), context.contextType == .course {
                 return context.id == user?.courseID
@@ -271,6 +273,7 @@ class PeopleListCell: UITableViewCell {
         var roles = courseEnrollments?.compactMap { $0.formattedRole } ?? []
         roles = Set(roles).sorted()
         rolesLabel.setText(ListFormatter.localizedString(from: roles), style: .textCellSupportingText)
+        rolesLabel.accessibilityIdentifier = "\(self.accessibilityIdentifier ?? "").role-label"
         rolesLabel.isHidden = roles.isEmpty
     }
 }
