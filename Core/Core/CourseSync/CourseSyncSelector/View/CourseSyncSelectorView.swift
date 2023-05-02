@@ -62,7 +62,7 @@ struct CourseSyncSelectorView: View {
     }
 
     private var navBarTitleView: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: 1) {
             Text("Offline Content", bundle: .core)
                 .font(.semibold16)
                 .foregroundColor(.textDarkest)
@@ -135,16 +135,23 @@ struct CellView: View {
             case .none:
                 SwiftUI.EmptyView()
             case .opened:
-                Image(systemName: "chevron.up")
-                    .foregroundColor(.blue)
+                collapseButton(Image(systemName: "chevron.up"))
             case .closed:
-                Image(systemName: "chevron.down")
-                    .foregroundColor(.blue)
+                collapseButton(Image(systemName: "chevron.down"))
             }
         }
         .padding()
         .background(item.backgroundColor)
         .padding(.leading, item.isIndented ? 16 : 0)
+    }
+
+    @ViewBuilder
+    private func collapseButton(_ image: Image) -> some View {
+        Button {
+            item.collapseToggled()
+        } label: {
+            image
+        }
     }
 }
 

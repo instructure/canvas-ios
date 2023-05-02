@@ -80,6 +80,7 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
     }
 
     func toggleAllCoursesSelection(isSelected: Bool) {}
+    func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool) {}
 }
 
 #endif

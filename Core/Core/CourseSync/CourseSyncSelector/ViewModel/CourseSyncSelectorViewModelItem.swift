@@ -34,8 +34,10 @@ extension CourseSyncSelectorViewModel {
         let subtitle: String?
         let trailingIcon: TrailingIcon
         let isIndented: Bool
+        var isCollapsed: Bool { trailingIcon == .closed }
 
         var selectionToggled: (() -> Void)!
+        var collapseToggled: (() -> Void)!
 
         static func == (lhs: CourseSyncSelectorViewModel.Item, rhs: CourseSyncSelectorViewModel.Item) -> Bool {
             lhs.id == rhs.id &&
@@ -71,6 +73,9 @@ extension Array where Element == CourseSyncEntry {
             courseItem.selectionToggled = {
                 interactor.setSelected(selection: .course(courseIndex), isSelected: !courseItem.isSelected)
             }
+            courseItem.collapseToggled = {
+                interactor.setCollapsed(selection: .course(courseIndex), isCollapsed: !courseItem.isCollapsed)
+            }
             items.append(courseItem)
 
             if course.isCollapsed {
@@ -81,6 +86,9 @@ extension Array where Element == CourseSyncEntry {
                 var tabItem = tab.makeViewModelItem()
                 tabItem.selectionToggled = {
                     interactor.setSelected(selection: .tab(courseIndex, tabIndex), isSelected: !tabItem.isSelected)
+                }
+                tabItem.collapseToggled = {
+                    interactor.setCollapsed(selection: .tab(courseIndex, tabIndex), isCollapsed: !tabItem.isCollapsed)
                 }
                 items.append(tabItem)
 

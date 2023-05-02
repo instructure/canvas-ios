@@ -25,6 +25,7 @@ protocol CourseSyncSelectorInteractor {
     func observeSelectedCount() -> AnyPublisher<Int, Never>
     func observeIsEverythingSelected() -> AnyPublisher<Bool, Never>
     func setSelected(selection: CourseEntrySelection, isSelected: Bool)
+    func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool)
     func toggleAllCoursesSelection(isSelected: Bool)
 }
 
@@ -86,6 +87,21 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
             entries[courseIndex].selectTab(index: tabIndex, isSelected: isSelected)
         case let .file(courseIndex, fileIndex):
             entries[courseIndex].selectFile(index: fileIndex, isSelected: isSelected)
+        }
+
+        courseSyncEntries.send(entries)
+    }
+
+    func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool) {
+        var entries = courseSyncEntries.value
+
+        switch selection {
+        case let .course(courseIndex):
+            entries[courseIndex].isCollapsed = isCollapsed
+        case let .tab(courseIndex, tabIndex):
+            entries[courseIndex].tabs[tabIndex].isCollapsed = isCollapsed
+        case .file:
+            break
         }
 
         courseSyncEntries.send(entries)
