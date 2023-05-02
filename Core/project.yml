@@ -13,6 +13,9 @@ settings:
   CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
   platform: iOS
 packages:
+  CombineExt:
+    url: https://github.com/CombineCommunity/CombineExt.git
+    exactVersion: 1.8.1
   Lottie:
     url: https://github.com/airbnb/lottie-ios.git
     exactVersion: 3.5.0
@@ -29,6 +32,7 @@ targets:
     sources:
       - path: Core
     dependencies:
+      - package: CombineExt
       - package: Lottie
       - package: PSPDFKit
     preBuildScripts:
