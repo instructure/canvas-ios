@@ -18,7 +18,7 @@
 
 import CoreData
 
-public final class CourseSyncListItem: NSManagedObject {
+public final class CourseSyncSelectorCourse: NSManagedObject {
     @NSManaged public var courseId: String
     @NSManaged public var courseCode: String
     @NSManaged public var name: String
@@ -27,9 +27,9 @@ public final class CourseSyncListItem: NSManagedObject {
     @discardableResult
     public static func save(_ apiEntity: APICourse,
                             app _: AppEnvironment.App? = AppEnvironment.shared.app,
-                            in context: NSManagedObjectContext) -> CourseSyncListItem {
-        let dbEntity: CourseSyncListItem = context.first(
-            where: #keyPath(CourseSyncListItem.courseId),
+                            in context: NSManagedObjectContext) -> CourseSyncSelectorCourse {
+        let dbEntity: CourseSyncSelectorCourse = context.first(
+            where: #keyPath(CourseSyncSelectorCourse.courseId),
             equals: apiEntity.id.value
         ) ?? context.insert()
 

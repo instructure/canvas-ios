@@ -21,7 +21,7 @@ import CombineExt
 import Foundation
 
 protocol CourseSyncSelectorInteractor {
-    func getCourseSyncEntries() -> AnyPublisher<[CourseSyncEntry], Error>
+    func getCourseSyncEntries() -> AnyPublisher<[CourseSyncSelectorEntry], Error>
     func observeSelectedCount() -> AnyPublisher<Int, Never>
     func observeIsEverythingSelected() -> AnyPublisher<Bool, Never>
     func setSelected(selection: CourseEntrySelection, isSelected: Bool)
@@ -31,12 +31,12 @@ protocol CourseSyncSelectorInteractor {
 
 final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     private let courseListStore = ReactiveStore(
-        useCase: GetCourseSyncListCourses()
+        useCase: GetCourseSyncSelectorCourses()
     )
-    private let courseSyncEntries = CurrentValueSubject<[CourseSyncEntry], Error>(.init())
+    private let courseSyncEntries = CurrentValueSubject<[CourseSyncSelectorEntry], Error>(.init())
     private var subscriptions = Set<AnyCancellable>()
 
-    func getCourseSyncEntries() -> AnyPublisher<[CourseSyncEntry], Error> {
+    func getCourseSyncEntries() -> AnyPublisher<[CourseSyncSelectorEntry], Error> {
         courseListStore.getEntities()
             .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
             .flatMap { self.getAllFilesIfFilesTabIsEnabled(course: $0) }
@@ -114,7 +114,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
             .forEach { setSelected(selection: $0, isSelected: isSelected) }
     }
 
-    private func getTabs(courseId: String) -> AnyPublisher<[CourseSyncEntry.Tab], Error> {
+    private func getTabs(courseId: String) -> AnyPublisher<[CourseSyncSelectorEntry.Tab], Error> {
         ReactiveStore(
             useCase: GetContextTabs(
                 context: Context.course(courseId)
@@ -124,7 +124,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         .map { $0.offlineSupportedTabs() }
         .map {
             $0.map {
-                CourseSyncEntry.Tab(
+                CourseSyncSelectorEntry.Tab(
                     id: "\(courseId)-\($0.id)",
                     name: $0.label,
                     type: $0.name
@@ -135,11 +135,11 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     }
 
     private func getAllFilesIfFilesTabIsEnabled(
-        course: CourseSyncListItem
-    ) -> AnyPublisher<CourseSyncEntry, Error> {
+        course: CourseSyncSelectorCourse
+    ) -> AnyPublisher<CourseSyncSelectorEntry, Error> {
         let tabs = Array(course.tabs).offlineSupportedTabs()
         let mappedTabs = tabs.map {
-            CourseSyncEntry.Tab(
+            CourseSyncSelectorEntry.Tab(
                 id: "\(course.courseId)-\($0.id)",
                 name: $0.label,
                 type: $0.name
@@ -148,7 +148,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         if tabs.isFilesTabEnabled() {
             return getAllFiles(courseId: course.courseId)
                 .map { files in
-                    CourseSyncEntry(
+                    CourseSyncSelectorEntry(
                         name: course.name,
                         id: course.courseId,
                         tabs: mappedTabs,
@@ -158,7 +158,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
                 .eraseToAnyPublisher()
         } else {
             return Just(
-                CourseSyncEntry(
+                CourseSyncSelectorEntry(
                     name: course.name,
                     id: course.courseId,
                     tabs: mappedTabs,
@@ -170,7 +170,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         }
     }
 
-    private func getAllFiles(courseId: String) -> AnyPublisher<[CourseSyncEntry.File], Error> {
+    private func getAllFiles(courseId: String) -> AnyPublisher<[CourseSyncSelectorEntry.File], Error> {
         unowned let unownedSelf = self
 
         return ReactiveStore(
@@ -187,7 +187,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         }
         .map {
             $0.map {
-                CourseSyncEntry.File(
+                CourseSyncSelectorEntry.File(
                     id: $0.file?.id ?? Foundation.UUID().uuidString,
                     name: $0.file?.displayName ?? "Unknown file",
                     url: $0.file?.url
@@ -275,72 +275,4 @@ enum CourseEntrySelection: Equatable {
     case course(CourseIndex)
     case tab(CourseIndex, TabIndex)
     case file(CourseIndex, FileIndex)
-}
-
-struct CourseSyncEntry {
-    struct Tab {
-        let id: String
-        let name: String
-        let type: TabName
-        var isCollapsed: Bool = false
-        var isSelected: Bool = true
-    }
-
-    struct File {
-        let id: String
-        let name: String
-        let url: URL?
-        var isSelected: Bool = true
-    }
-
-    let name: String
-    let id: String
-
-    var tabs: [Self.Tab]
-    var selectedTabsCount: Int {
-        tabs.reduce(0) { partialResult, tab in
-            partialResult + (tab.isSelected ? 1 : 0)
-        }
-    }
-
-    var files: [Self.File]
-    var selectedFilesCount: Int {
-        files.reduce(0) { partialResult, file in
-            partialResult + (file.isSelected ? 1 : 0)
-        }
-    }
-
-    var isCollapsed: Bool = false
-    var isSelected: Bool = true
-    var isEverythingSelected: Bool = true
-
-    mutating func selectCourse(isSelected: Bool) {
-        tabs.indices.forEach { tabs[$0].isSelected = isSelected }
-        files.indices.forEach { files[$0].isSelected = isSelected }
-        self.isSelected = isSelected
-        isEverythingSelected = isSelected
-    }
-
-    mutating func selectTab(index: Int, isSelected: Bool) {
-        tabs[index].isSelected = isSelected
-
-        if tabs[index].type == .files {
-            files.indices.forEach { files[$0].isSelected = isSelected }
-        }
-
-        isEverythingSelected = (selectedTabsCount == tabs.count) && (selectedFilesCount == files.count)
-        self.isSelected = selectedTabsCount > 0
-    }
-
-    mutating func selectFile(index: Int, isSelected: Bool) {
-        files[index].isSelected = isSelected
-
-        isEverythingSelected = (selectedTabsCount == tabs.count) && (selectedFilesCount == files.count)
-
-        guard let fileTabIndex = tabs.firstIndex(where: { $0.type == TabName.files }) else {
-            return
-        }
-        tabs[fileTabIndex].isSelected = selectedFilesCount > 0
-        self.isSelected = selectedTabsCount > 0
-    }
 }

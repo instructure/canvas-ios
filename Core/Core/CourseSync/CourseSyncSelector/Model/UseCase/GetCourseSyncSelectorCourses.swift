@@ -18,10 +18,10 @@
 
 import CoreData
 
-public class GetCourseSyncListCourses: CollectionUseCase {
-    public typealias Model = CourseSyncListItem
+public class GetCourseSyncSelectorCourses: CollectionUseCase {
+    public typealias Model = CourseSyncSelectorCourse
 
-    public var cacheKey: String? { "courseSyncListItem" }
+    public var cacheKey: String? { "courseSyncSelectorCourse" }
     public let request: GetCurrentUserCoursesRequest
     public let scope = Scope.all
 
@@ -36,7 +36,7 @@ public class GetCourseSyncListCourses: CollectionUseCase {
     public func write(response: [APICourse]?, urlResponse _: URLResponse?, to client: NSManagedObjectContext) {
         guard let response else { return }
         response.forEach {
-            CourseSyncListItem.save($0, in: client)
+            CourseSyncSelectorCourse.save($0, in: client)
         }
     }
 }

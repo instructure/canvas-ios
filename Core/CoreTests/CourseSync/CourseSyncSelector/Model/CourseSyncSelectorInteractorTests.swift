@@ -28,7 +28,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
 
         mockCourseList()
 
-        var entries = [CourseSyncEntry]()
+        var entries = [CourseSyncSelectorEntry]()
         let subscription = testee.getCourseSyncEntries()
             .sink(
                 receiveCompletion: { _ in },
@@ -43,37 +43,42 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         subscription.cancel()
     }
 
-    /*
-     func testTabList() {
-     let testee = CourseSyncSelectorInteractorLive()
-     let expectation = expectation(description: "Publisher sends value")
+    func testTabList() {
+        let testee = CourseSyncSelectorInteractorLive()
+        let expectation = expectation(description: "Publisher sends value")
 
-     mockCourseList(tabList: [
-     .make(id: "assignments", label: "Assignments", hidden: false),
-     .make(id: "pages", label: "Pages", hidden: false),
-     .make(id: "files", label: "Files", hidden: false),
-     .make(id: "quizzes", label: "Quizzes", hidden: false),
-     ])
+        mockCourseList(
+            courseList: [
+                .make(
+                    id: "1",
+                    tabs: [
+                        .make(id: "assignments", label: "Assignments"),
+                        .make(id: "files", label: "Files"),
+                        .make(id: "pages", label: "Pages"),
+                        .make(id: "quizzes", label: "Quizzes"),
+                    ]
+                ),
+            ]
+        )
 
-     var entries = [CourseSyncEntry]()
-     let subscription = testee.getCourseSyncEntries()
-     .sink(
-     receiveCompletion: { _ in },
-     receiveValue: {
-     entries = $0
-     expectation.fulfill()
-     }
-     )
+        var entries = [CourseSyncSelectorEntry]()
+        let subscription = testee.getCourseSyncEntries()
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: {
+                    entries = $0
+                    expectation.fulfill()
+                }
+            )
 
-     waitForExpectations(timeout: 0.1)
-     XCTAssertEqual(entries.count, 1)
-     XCTAssertEqual(entries[0].tabs.count, 3)
-     XCTAssertFalse(entries[0].tabs.contains(where: { tab in
-     tab.name == "quizzes"
-     }))
-     subscription.cancel()
-     }
-     */
+        waitForExpectations(timeout: 0.1)
+        XCTAssertEqual(entries.count, 1)
+        XCTAssertEqual(entries[0].tabs.count, 3)
+        XCTAssertFalse(entries[0].tabs.contains(where: { tab in
+            tab.name == "quizzes"
+        }))
+        subscription.cancel()
+    }
 
     func testFileList() {
         let testee = CourseSyncSelectorInteractorLive()
@@ -84,13 +89,16 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
 
         let folder1 = APIFolder.make(id: 1, parent_folder_id: 0)
         let folder1File = APIFile.make(id: 1, folder_id: 1, display_name: "folder-1-file")
+        let folder2File = APIFile.make(id: 2, folder_id: 1, display_name: "folder-1-file-locked", locked_for_user: true)
+        let folder3File = APIFile.make(id: 2, folder_id: 1, display_name: "folder-1-file-hidden", hidden_for_user: true)
 
         mockRootFolders(folders: [rootFolder])
         mockFolderItems(for: "0", folders: [folder1], files: [rootFolderFile])
-        mockFolderItems(for: "1", folders: [], files: [folder1File])
-        mockCourseList()
-
-        var entries = [CourseSyncEntry]()
+        mockFolderItems(for: "1", folders: [], files: [folder1File, folder2File])
+        mockCourseList(
+            courseList: [.make(id: "1", tabs: [.make(id: "files", label: "Files")])]
+        )
+        var entries = [CourseSyncSelectorEntry]()
         let subscription = testee.getCourseSyncEntries()
             .sink(
                 receiveCompletion: { _ in },
@@ -108,12 +116,40 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         subscription.cancel()
     }
 
+    func testFileListWhenFilesPageIsUnavailable() {
+        let testee = CourseSyncSelectorInteractorLive()
+        let expectation = expectation(description: "Publisher sends value")
+
+        let rootFolder = APIFolder.make(context_type: "Course", context_id: 1, files_count: 1, id: 0)
+        let rootFolderFile = APIFile.make(id: 0, folder_id: 0, display_name: "root-file-1")
+
+        mockRootFolders(folders: [rootFolder])
+        mockFolderItems(for: "0", folders: [], files: [rootFolderFile])
+        mockCourseList()
+
+        var entries = [CourseSyncSelectorEntry]()
+        let subscription = testee.getCourseSyncEntries()
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: {
+                    entries = $0
+                    expectation.fulfill()
+                }
+            )
+
+        waitForExpectations(timeout: 0.1)
+        XCTAssertEqual(entries.count, 1)
+        XCTAssertEqual(entries[0].tabs.count, 0)
+        XCTAssertEqual(entries[0].files.count, 0)
+        subscription.cancel()
+    }
+
     func testDefaultSelection() {
         let testee = CourseSyncSelectorInteractorLive()
         let expectation = expectation(description: "Publisher sends value")
 
         mockCourseList(
-            tabList: [.make(id: "assignments", label: "Assignments", hidden: false)]
+            courseList: [.make(id: "1", tabs: [.make(id: "files", label: "Files")])]
         )
         let rootFolder = APIFolder.make(context_type: "Course", context_id: 1, files_count: 1, id: 0)
         let rootFolderFile = APIFile.make(id: 0, folder_id: 0, display_name: "root-file-1")
@@ -125,7 +161,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         mockFolderItems(for: "0", folders: [folder1], files: [rootFolderFile])
         mockFolderItems(for: "1", folders: [], files: [folder1File])
 
-        var entries = [CourseSyncEntry]()
+        var entries = [CourseSyncSelectorEntry]()
         let subscription = testee.getCourseSyncEntries()
             .sink(
                 receiveCompletion: { _ in },
@@ -145,12 +181,12 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
     }
 
     func testCourseSelection() {
-        var entry = CourseSyncEntry(
+        var entry = CourseSyncSelectorEntry(
             name: "1",
             id: "1",
             tabs: [
-                CourseSyncEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
-                CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files),
+                CourseSyncSelectorEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
+                CourseSyncSelectorEntry.Tab(id: "tab2", name: "tab2", type: .files),
             ],
             files: []
         )
@@ -167,12 +203,12 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
     }
 
     func testTabSelection() {
-        var entry = CourseSyncEntry(
+        var entry = CourseSyncSelectorEntry(
             name: "1",
             id: "1",
             tabs: [
-                CourseSyncEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
-                CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files),
+                CourseSyncSelectorEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
+                CourseSyncSelectorEntry.Tab(id: "tab2", name: "tab2", type: .files),
             ],
             files: []
         )
@@ -192,16 +228,16 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
     }
 
     func testFileSelection() {
-        var entry = CourseSyncEntry(
+        var entry = CourseSyncSelectorEntry(
             name: "1",
             id: "1",
             tabs: [
-                CourseSyncEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
-                CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files),
+                CourseSyncSelectorEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
+                CourseSyncSelectorEntry.Tab(id: "tab2", name: "tab2", type: .files),
             ],
             files: [
-                CourseSyncEntry.File(id: "file1", name: "file1", url: nil),
-                CourseSyncEntry.File(id: "file2", name: "file2", url: nil),
+                CourseSyncSelectorEntry.File(id: "file1", name: "file1", url: nil),
+                CourseSyncSelectorEntry.File(id: "file2", name: "file2", url: nil),
             ]
         )
         XCTAssertEqual(entry.isSelected, true)
@@ -218,16 +254,16 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
     }
 
     func testEverythingSelected() {
-        var entry = CourseSyncEntry(
+        var entry = CourseSyncSelectorEntry(
             name: "1",
             id: "1",
             tabs: [
-                CourseSyncEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
-                CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files),
+                CourseSyncSelectorEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
+                CourseSyncSelectorEntry.Tab(id: "tab2", name: "tab2", type: .files),
             ],
             files: [
-                CourseSyncEntry.File(id: "file1", name: "file1", url: nil),
-                CourseSyncEntry.File(id: "file2", name: "file2", url: nil),
+                CourseSyncSelectorEntry.File(id: "file1", name: "file1", url: nil),
+                CourseSyncSelectorEntry.File(id: "file2", name: "file2", url: nil),
             ]
         )
         XCTAssertEqual(entry.isEverythingSelected, true)
@@ -252,15 +288,11 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
     }
 
     private func mockCourseList(
-        context: Context = .course("1"),
-        courseList: [APICourse] = [.make(id: "1")],
-        tabList: [APITab] = []
+        context _: Context = .course("1"),
+        courseList: [APICourse] = [.make(id: "1")]
     ) {
-        let courseListUseCase = GetCourseListCourses(enrollmentState: .active)
+        let courseListUseCase = GetCourseSyncSelectorCourses()
         api.mock(courseListUseCase, value: courseList)
-
-        let tabListUseCase = GetContextTabs(context: context)
-        api.mock(tabListUseCase, value: tabList)
     }
 
     private func mockRootFolders(courseID: String = "1", folders: [APIFolder]) {

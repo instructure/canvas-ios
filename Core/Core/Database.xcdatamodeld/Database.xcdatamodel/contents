@@ -268,7 +268,7 @@
         <attribute name="syllabusCourseSummary" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="usageRightsRequired" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
-    <entity name="CourseSyncListItem" representedClassName="Core.CourseSyncListItem" syncable="YES">
+    <entity name="CourseSyncSelectorCourse" representedClassName="Core.CourseSyncSelectorCourse" syncable="YES">
         <attribute name="courseCode" attributeType="String"/>
         <attribute name="courseId" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
@@ -974,7 +974,7 @@
         <attribute name="typeRaw" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="URI"/>
         <attribute name="visibilityRaw" attributeType="String"/>
-        <relationship name="course" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CourseSyncListItem" inverseName="tabs" inverseEntity="CourseSyncListItem"/>
+        <relationship name="course" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CourseSyncSelectorCourse" inverseName="tabs" inverseEntity="CourseSyncSelectorCourse"/>
     </entity>
     <entity name="Todo" representedClassName="Core.Todo" syncable="YES">
         <attribute name="contextRaw" attributeType="String"/>

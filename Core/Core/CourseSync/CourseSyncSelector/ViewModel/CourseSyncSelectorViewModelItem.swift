@@ -63,7 +63,7 @@ extension CourseSyncSelectorViewModel {
 
 // MARK: - Mapping From Model Objects
 
-extension Array where Element == CourseSyncEntry {
+extension Array where Element == CourseSyncSelectorEntry {
 
     func makeViewModelItems(interactor: CourseSyncSelectorInteractor) -> [CourseSyncSelectorViewModel.Item] {
         var items: [CourseSyncSelectorViewModel.Item] = []
@@ -110,7 +110,7 @@ extension Array where Element == CourseSyncEntry {
     }
 }
 
-extension CourseSyncEntry {
+extension CourseSyncSelectorEntry {
 
     func makeViewModelItem() -> CourseSyncSelectorViewModel.Item {
         .init(id: "course-\(id)",
@@ -123,7 +123,7 @@ extension CourseSyncEntry {
     }
 }
 
-extension CourseSyncEntry.Tab {
+extension CourseSyncSelectorEntry.Tab {
 
     func makeViewModelItem() -> CourseSyncSelectorViewModel.Item {
         var trailingIcon = CourseSyncSelectorViewModel.Item.TrailingIcon.none
@@ -142,7 +142,7 @@ extension CourseSyncEntry.Tab {
     }
 }
 
-extension CourseSyncEntry.File {
+extension CourseSyncSelectorEntry.File {
 
     func makeViewModelItem() -> CourseSyncSelectorViewModel.Item {
         .init(id: "file-\(id)",
