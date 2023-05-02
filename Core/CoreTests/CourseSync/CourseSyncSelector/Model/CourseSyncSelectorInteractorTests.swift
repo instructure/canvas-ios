@@ -172,11 +172,13 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
             )
 
         waitForExpectations(timeout: 0.1)
-        XCTAssertTrue(entries[0].isSelected)
+        XCTAssertFalse(entries[0].isSelected)
+        XCTAssertTrue(entries[0].isCollapsed)
         XCTAssertEqual(entries[0].tabs.count, 1)
         XCTAssertEqual(entries[0].files.count, 2)
-        XCTAssertEqual(entries[0].selectedTabsCount, entries[0].tabs.count)
-        XCTAssertEqual(entries[0].selectedFilesCount, entries[0].files.count)
+        XCTAssertEqual(entries[0].selectedTabsCount, 0)
+        XCTAssertEqual(entries[0].selectedFilesCount, 0)
+        XCTAssertTrue(entries[0].isCollapsed)
         subscription.cancel()
     }
 
@@ -190,16 +192,16 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
             ],
             files: []
         )
-        XCTAssertEqual(entry.isSelected, true)
-        XCTAssertEqual(entry.selectedTabsCount, 2)
-
-        entry.selectCourse(isSelected: false)
         XCTAssertEqual(entry.isSelected, false)
         XCTAssertEqual(entry.selectedTabsCount, 0)
 
         entry.selectCourse(isSelected: true)
         XCTAssertEqual(entry.isSelected, true)
         XCTAssertEqual(entry.selectedTabsCount, 2)
+
+        entry.selectCourse(isSelected: false)
+        XCTAssertEqual(entry.isSelected, false)
+        XCTAssertEqual(entry.selectedTabsCount, 0)
     }
 
     func testTabSelection() {
@@ -212,16 +214,16 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
             ],
             files: []
         )
-        XCTAssertEqual(entry.isSelected, true)
-        XCTAssertEqual(entry.selectedTabsCount, 2)
+        XCTAssertEqual(entry.isSelected, false)
+        XCTAssertEqual(entry.selectedTabsCount, 0)
 
-        entry.selectTab(index: 0, isSelected: false)
+        entry.selectTab(index: 0, isSelected: true)
         XCTAssertEqual(entry.isSelected, true)
         XCTAssertEqual(entry.selectedTabsCount, 1)
 
         entry.selectTab(index: 1, isSelected: false)
-        XCTAssertEqual(entry.isSelected, false)
-        XCTAssertEqual(entry.selectedTabsCount, 0)
+        XCTAssertEqual(entry.isSelected, true)
+        XCTAssertEqual(entry.selectedTabsCount, 1)
 
         entry.selectCourse(isSelected: true)
         XCTAssertEqual(entry.selectedTabsCount, 2)
@@ -240,17 +242,17 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
                 CourseSyncSelectorEntry.File(id: "file2", name: "file2", url: nil),
             ]
         )
-        XCTAssertEqual(entry.isSelected, true)
-        XCTAssertEqual(entry.selectedTabsCount, 2)
+        XCTAssertEqual(entry.isSelected, false)
+        XCTAssertEqual(entry.selectedTabsCount, 0)
 
-        entry.selectFile(index: 0, isSelected: false)
-        XCTAssertEqual(entry.selectedTabsCount, 2)
+        entry.selectFile(index: 0, isSelected: true)
+        XCTAssertEqual(entry.selectedTabsCount, 1)
         XCTAssertEqual(entry.selectedFilesCount, 1)
 
         entry.selectFile(index: 1, isSelected: false)
         XCTAssertEqual(entry.isSelected, true)
         XCTAssertEqual(entry.selectedTabsCount, 1)
-        XCTAssertEqual(entry.selectedFilesCount, 0)
+        XCTAssertEqual(entry.selectedFilesCount, 1)
     }
 
     func testEverythingSelected() {
@@ -266,13 +268,10 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
                 CourseSyncSelectorEntry.File(id: "file2", name: "file2", url: nil),
             ]
         )
-        XCTAssertEqual(entry.isEverythingSelected, true)
-
-        entry.selectTab(index: 0, isSelected: false)
         XCTAssertEqual(entry.isEverythingSelected, false)
 
         entry.selectTab(index: 0, isSelected: true)
-        XCTAssertEqual(entry.isEverythingSelected, true)
+        XCTAssertEqual(entry.isEverythingSelected, false)
 
         entry.selectTab(index: 1, isSelected: false)
         XCTAssertEqual(entry.isEverythingSelected, false)
@@ -301,13 +300,10 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
             ]
         )
 
-        XCTAssertEqual(entry.selectionCount, 3)
-
-        entry.selectTab(index: 1, isSelected: false)
-        XCTAssertEqual(entry.selectionCount, 1)
+        XCTAssertEqual(entry.selectionCount, 0)
 
         entry.selectTab(index: 1, isSelected: true)
-        entry.selectFile(index: 0, isSelected: false)
+        entry.selectFile(index: 0, isSelected: true)
         XCTAssertEqual(entry.selectionCount, 2)
 
         entry.selectFile(index: 1, isSelected: false)
@@ -315,7 +311,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
 
         entry.selectFile(index: 0, isSelected: true)
         entry.selectFile(index: 1, isSelected: true)
-        XCTAssertEqual(entry.selectionCount, 3)
+        XCTAssertEqual(entry.selectionCount, 2)
     }
 
     private func mockCourseList(

@@ -23,15 +23,15 @@ struct CourseSyncSelectorEntry {
         let id: String
         let name: String
         let type: TabName
-        var isCollapsed: Bool = false
-        var isSelected: Bool = true
+        var isCollapsed: Bool = true
+        var isSelected: Bool = false
     }
 
     struct File {
         let id: String
         let name: String
         let url: URL?
-        var isSelected: Bool = true
+        var isSelected: Bool = false
     }
 
     let name: String
@@ -55,9 +55,9 @@ struct CourseSyncSelectorEntry {
         (selectedFilesCount + selectedTabsCount) - (selectedFilesCount > 0 ? 1 : 0)
     }
 
-    var isCollapsed: Bool = false
-    var isSelected: Bool = true
-    var isEverythingSelected: Bool = true
+    var isCollapsed: Bool = true
+    var isSelected: Bool = false
+    var isEverythingSelected: Bool = false
 
     mutating func selectCourse(isSelected: Bool) {
         tabs.indices.forEach { tabs[$0].isSelected = isSelected }
