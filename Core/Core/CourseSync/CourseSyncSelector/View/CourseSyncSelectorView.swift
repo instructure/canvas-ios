@@ -117,7 +117,7 @@ struct CellView: View {
     var body: some View {
         HStack {
             Button {
-                item.selectionToggled()
+                item.selectionDidToggle?()
             } label: {
                 item.isSelected ? Image.emptySolid : Image.emptyLine
             }
@@ -148,7 +148,7 @@ struct CellView: View {
     @ViewBuilder
     private func collapseButton(_ image: Image) -> some View {
         Button {
-            item.collapseToggled()
+            item.collapseDidToggle?()
         } label: {
             image
         }

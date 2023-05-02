@@ -178,13 +178,13 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
                                    isCollapsed: false,
                                    isSelected: false)
         let testee = [data].makeViewModelItems(interactor: mockInteractor)
-        testee[0].selectionToggled()
+        testee[0].selectionDidToggle?()
         XCTAssertEqual(mockInteractor.lastSelected?.selection, CourseEntrySelection.course(0))
         XCTAssertEqual(mockInteractor.lastSelected?.isSelected, true)
-        testee[2].selectionToggled()
+        testee[2].selectionDidToggle?()
         XCTAssertEqual(mockInteractor.lastSelected?.selection, CourseEntrySelection.tab(0, 1))
         XCTAssertEqual(mockInteractor.lastSelected?.isSelected, true)
-        testee[3].selectionToggled()
+        testee[3].selectionDidToggle?()
         XCTAssertEqual(mockInteractor.lastSelected?.selection, CourseEntrySelection.file(0, 0))
         XCTAssertEqual(mockInteractor.lastSelected?.isSelected, true)
     }
@@ -201,7 +201,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
                                    isCollapsed: false,
                                    isSelected: false)
         let testee = [data].makeViewModelItems(interactor: mockInteractor)
-        testee[0].collapseToggled()
+        testee[0].collapseDidToggle?()
         XCTAssertEqual(mockInteractor.lastCollapsed?.selection, CourseEntrySelection.course(0))
         XCTAssertEqual(mockInteractor.lastCollapsed?.isCollapsed, true)
     }
@@ -218,7 +218,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
                                    isCollapsed: false,
                                    isSelected: false)
         let testee = [data].makeViewModelItems(interactor: mockInteractor)
-        testee[1].collapseToggled()
+        testee[1].collapseDidToggle?()
         XCTAssertEqual(mockInteractor.lastCollapsed?.selection, CourseEntrySelection.tab(0, 0))
         XCTAssertEqual(mockInteractor.lastCollapsed?.isCollapsed, true)
     }

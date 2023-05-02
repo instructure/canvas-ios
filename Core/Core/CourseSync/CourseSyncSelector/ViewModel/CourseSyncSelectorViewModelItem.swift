@@ -36,8 +36,8 @@ extension CourseSyncSelectorViewModel {
         let isIndented: Bool
         var isCollapsed: Bool { trailingIcon == .closed }
 
-        var selectionToggled: (() -> Void)!
-        var collapseToggled: (() -> Void)!
+        fileprivate(set) var selectionDidToggle: (() -> Void)?
+        fileprivate(set) var collapseDidToggle: (() -> Void)?
 
         static func == (lhs: CourseSyncSelectorViewModel.Item, rhs: CourseSyncSelectorViewModel.Item) -> Bool {
             lhs.id == rhs.id &&
@@ -70,10 +70,10 @@ extension Array where Element == CourseSyncEntry {
 
         for (courseIndex, course) in enumerated() {
             var courseItem = course.makeViewModelItem()
-            courseItem.selectionToggled = {
+            courseItem.selectionDidToggle = {
                 interactor.setSelected(selection: .course(courseIndex), isSelected: !courseItem.isSelected)
             }
-            courseItem.collapseToggled = {
+            courseItem.collapseDidToggle = {
                 interactor.setCollapsed(selection: .course(courseIndex), isCollapsed: !courseItem.isCollapsed)
             }
             items.append(courseItem)
@@ -84,10 +84,10 @@ extension Array where Element == CourseSyncEntry {
 
             for (tabIndex, tab) in course.tabs.enumerated() {
                 var tabItem = tab.makeViewModelItem()
-                tabItem.selectionToggled = {
+                tabItem.selectionDidToggle = {
                     interactor.setSelected(selection: .tab(courseIndex, tabIndex), isSelected: !tabItem.isSelected)
                 }
-                tabItem.collapseToggled = {
+                tabItem.collapseDidToggle = {
                     interactor.setCollapsed(selection: .tab(courseIndex, tabIndex), isCollapsed: !tabItem.isCollapsed)
                 }
                 items.append(tabItem)
@@ -95,7 +95,7 @@ extension Array where Element == CourseSyncEntry {
                 if tab.type == .files, !tab.isCollapsed {
                     for (fileIndex, file) in course.files.enumerated() {
                         var fileItem = file.makeViewModelItem()
-                        fileItem.selectionToggled = {
+                        fileItem.selectionDidToggle = {
                             interactor.setSelected(selection: .file(courseIndex, fileIndex), isSelected: !fileItem.isSelected)
                         }
                         items.append(fileItem)
