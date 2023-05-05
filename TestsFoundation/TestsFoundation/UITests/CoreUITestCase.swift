@@ -314,6 +314,17 @@ open class CoreUITestCase: XCTestCase {
             .press(forDuration: 0.05, thenDragTo: window.relativeCoordinate(x: x, y: 1.0))
     }
 
+    open func pullToRefreshUntil(retry: Int = 5, x: CGFloat = 0.5, condition: () -> Bool) {
+        for _ in 0..<retry {
+            pullToRefresh(x: x)
+            sleep(1)
+            if condition() {
+                return
+            }
+        }
+        XCTFail("Condition is still not true after \(retry) pullToRefresh")
+    }
+
     open func handleAlert(withTexts texts: [String]? = nil, byPressingButton button: String) {
         let alert = app.find(type: .alert).waitToExist()
         if let texts = texts {
