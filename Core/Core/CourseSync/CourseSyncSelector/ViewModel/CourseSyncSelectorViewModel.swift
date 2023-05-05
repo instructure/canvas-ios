@@ -49,16 +49,18 @@ class CourseSyncSelectorViewModel: ObservableObject {
     init(interactor: CourseSyncSelectorInteractor) {
         self.interactor = interactor
 
+        unowned let unownedSelf = self
+
         interactor
             .getCourseSyncEntries()
             .map { $0.makeViewModelItems(interactor: interactor) }
             .receive(on: DispatchQueue.main)
-            .handleEvents(receiveOutput: { [weak self] _ in
-                self?.state = .data
-                self?.leftNavBarButtonVisible = true
-            }, receiveCompletion: { [weak self] result in
+            .handleEvents(receiveOutput: { _ in
+                unownedSelf.state = .data
+                unownedSelf.leftNavBarButtonVisible = true
+            }, receiveCompletion: { result in
                 if case .failure = result {
-                    self?.state = .error
+                    unownedSelf.state = .error
                 }
             })
             .replaceError(with: [])
@@ -79,13 +81,11 @@ class CourseSyncSelectorViewModel: ObservableObject {
 
         interactor
             .observeSelectedCount()
-            .map { [unowned self] itemCount in
+            .map { itemCount in
                 let format = NSLocalizedString("There are %d items selected for offline availability. The selected content will be downloaded to the device.", bundle: .core, comment: "")
                 let message = String.localizedStringWithFormat(format, itemCount)
-
-                var confirmDialog = confirmDialog
-                confirmDialog.message = message
-                return confirmDialog
+                unownedSelf.confirmDialog.message = message
+                return unownedSelf.confirmDialog
             }
             .assign(to: &$confirmDialog)
 
@@ -102,11 +102,11 @@ class CourseSyncSelectorViewModel: ObservableObject {
             .store(in: &subscriptions)
 
         syncButtonDidTap
-            .handleEvents(receiveOutput: { [unowned self] _ in
-                isShowingConfirmationDialog = true
+            .handleEvents(receiveOutput: { _ in
+                unownedSelf.isShowingConfirmationDialog = true
             })
-            .flatMap { [unowned self] view in
-                confirmDialog.confirmDidTap.map { view }
+            .flatMap { view in
+                unownedSelf.confirmDialog.userConfirmation().map { view }
             }
             .flatMap { view in
                 interactor.getSelectedCourseEntries()
