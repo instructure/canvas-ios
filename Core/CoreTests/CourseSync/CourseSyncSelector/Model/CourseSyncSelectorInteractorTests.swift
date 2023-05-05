@@ -314,6 +314,45 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(entry.selectionCount, 2)
     }
 
+    func testSelectedEntries() {
+        let testee = CourseSyncSelectorInteractorLive()
+        let expectation = expectation(description: "Publisher sends value")
+        expectation.expectedFulfillmentCount = 2
+
+        mockCourseList(
+            courseList: [.make(id: "1", tabs: [.make(id: "files", label: "Files")])]
+        )
+
+        let rootFolder = APIFolder.make(context_type: "Course", context_id: 1, files_count: 1, id: 0)
+        let rootFolderFile = APIFile.make(id: 0, folder_id: 0, display_name: "root-file-1")
+
+        mockRootFolders(folders: [rootFolder])
+        mockFolderItems(for: "0", folders: [], files: [rootFolderFile])
+
+        var entries = [CourseSyncSelectorEntry]()
+        let subscription1 = testee.getCourseSyncEntries()
+            .first()
+            .handleEvents(receiveOutput: { _ in
+                testee.setSelected(selection: .file(0, 0), isSelected: true)
+                expectation.fulfill()
+            })
+            .flatMap { _ in testee.getSelectedCourseEntries() }
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: {
+                    entries = $0
+                    expectation.fulfill()
+                }
+            )
+
+        waitForExpectations(timeout: 0.1)
+
+        XCTAssertEqual(entries.count, 1)
+        XCTAssertEqual(entries[0].selectedTabsCount, 1)
+        XCTAssertEqual(entries[0].selectedFilesCount, 1)
+        subscription1.cancel()
+    }
+
     private func mockCourseList(
         context _: Context = .course("1"),
         courseList: [APICourse] = [.make(id: "1")]

@@ -28,7 +28,7 @@ class ConfirmationAlertTests: XCTestCase {
                                                 cancelButtonTitle: "testCancel",
                                                 confirmButtonTitle: "testConfirm")
         XCTAssertEqual(testee.title, "testTitle")
-        XCTAssertEqual(testee.message, Text(verbatim: "testMessage"))
+        XCTAssertEqual(testee.message, "testMessage")
         XCTAssertEqual(testee.cancelButtonTitle, "testCancel")
         XCTAssertEqual(testee.confirmButtonTitle, "testConfirm")
     }

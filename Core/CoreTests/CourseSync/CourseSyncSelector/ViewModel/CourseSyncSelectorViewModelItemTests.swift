@@ -252,4 +252,10 @@ private class MockCourseSyncSelectorInteractor: CourseSyncSelectorInteractor {
     }
 
     func toggleAllCoursesSelection(isSelected: Bool) {}
+
+    func getSelectedCourseEntries() -> AnyPublisher<[Core.CourseSyncSelectorEntry], Never> {
+        Just<[Core.CourseSyncSelectorEntry]>([])
+            .setFailureType(to: Never.self)
+            .eraseToAnyPublisher()
+    }
 }

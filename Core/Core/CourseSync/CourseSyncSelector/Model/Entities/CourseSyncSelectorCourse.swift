@@ -39,7 +39,7 @@ public final class CourseSyncSelectorCourse: NSManagedObject {
 
         if let apiTabs = apiEntity.tabs {
             let tabs: [Tab] = apiTabs.map { apiTab in
-                let tab = Tab(context: context)
+                let tab: Tab = context.insert()
                 tab.save(apiTab, in: context, context: .course(dbEntity.courseId))
                 return tab
             }
