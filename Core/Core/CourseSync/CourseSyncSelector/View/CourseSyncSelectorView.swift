@@ -63,7 +63,7 @@ struct CourseSyncSelectorView: View {
                 syncButton
             }
             .confirmationAlert(isPresented: $viewModel.isShowingConfirmationDialog,
-                               presenting: viewModel.confirmDialog)
+                               presenting: viewModel.confirmAlert)
         }
     }
 

@@ -36,11 +36,11 @@ class CourseSyncSelectorViewModel: ObservableObject {
     @Published public private(set) var leftNavBarButtonVisible = false
     @Published public private(set) var selectedItemCount = ""
     @Published public var isShowingConfirmationDialog = false
-    @Published public private(set) var confirmDialog = ConfirmationAlertViewModel(title: NSLocalizedString("Sync Offline Content?", comment: ""),
-                                                                                  message: "", // Updated when selected item count changes
-                                                                                  cancelButtonTitle: NSLocalizedString("Cancel", comment: ""),
-                                                                                  confirmButtonTitle: NSLocalizedString("Sync", comment: ""),
-                                                                                  isDestructive: false)
+    public let confirmAlert = ConfirmationAlertViewModel(title: NSLocalizedString("Sync Offline Content?", comment: ""),
+                                                         message: "", // Updated when selected item count changes
+                                                         cancelButtonTitle: NSLocalizedString("Cancel", comment: ""),
+                                                         confirmButtonTitle: NSLocalizedString("Sync", comment: ""),
+                                                         isDestructive: false)
 
     // MARK: - Input
 
@@ -62,7 +62,7 @@ class CourseSyncSelectorViewModel: ObservableObject {
         updateSelectAllButtonTitle(interactor)
 
         handleLeftNavBarTap(interactor)
-        handleSyncButtonTap(interactor)
+        handleSyncButtonTap(interactor, confirmAlert: confirmAlert)
     }
 
     private func updateSyncButtonState(_ interactor: CourseSyncSelectorInteractor) {
@@ -93,13 +93,12 @@ class CourseSyncSelectorViewModel: ObservableObject {
     private func updateConfirmationDialogMessage(_ interactor: CourseSyncSelectorInteractor) {
         interactor
             .observeSelectedCount()
-            .map { [unowned self] itemCount in
+            .map { itemCount in
                 let format = NSLocalizedString("There are %d items selected for offline availability. The selected content will be downloaded to the device.", bundle: .core, comment: "")
-                let message = String.localizedStringWithFormat(format, itemCount)
-                confirmDialog.message = message
-                return confirmDialog
+                return String.localizedStringWithFormat(format, itemCount)
             }
-            .assign(to: &$confirmDialog)
+            .assign(to: \.message, on: confirmAlert, ownership: .weak)
+            .store(in: &subscriptions)
     }
 
     private func handleLeftNavBarTap(_ interactor: CourseSyncSelectorInteractor) {
@@ -110,13 +109,14 @@ class CourseSyncSelectorViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private func handleSyncButtonTap(_ interactor: CourseSyncSelectorInteractor) {
+    private func handleSyncButtonTap(_ interactor: CourseSyncSelectorInteractor,
+                                     confirmAlert: ConfirmationAlertViewModel) {
         syncButtonDidTap
             .handleEvents(receiveOutput: { [unowned self] _ in
                 isShowingConfirmationDialog = true
             })
-            .flatMap { [unowned self] view in
-                confirmDialog.userConfirmation().map { view }
+            .flatMap { view in
+                confirmAlert.userConfirmation().map { view }
             }
             .flatMap { view in
                 interactor.getSelectedCourseEntries()
