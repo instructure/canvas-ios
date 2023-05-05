@@ -27,6 +27,8 @@ class CourseSyncSelectorViewModel: ObservableObject {
         case error
     }
 
+    // MARK: - Output
+
     @Published public private(set) var state = State.loading
     @Published public private(set) var items: [Item] = []
     @Published public private(set) var syncButtonDisabled = true
@@ -40,8 +42,12 @@ class CourseSyncSelectorViewModel: ObservableObject {
                                                                                   confirmButtonTitle: NSLocalizedString("Sync", comment: ""),
                                                                                   isDestructive: false)
 
+    // MARK: - Input
+
     public let syncButtonDidTap = PassthroughRelay<WeakViewController>()
     public let leftNavBarButtonDidTap = PassthroughRelay<Void>()
+
+    // MARK: - Private
 
     private let interactor: CourseSyncSelectorInteractor
     private var subscriptions = Set<AnyCancellable>()
@@ -49,28 +55,24 @@ class CourseSyncSelectorViewModel: ObservableObject {
     init(interactor: CourseSyncSelectorInteractor) {
         self.interactor = interactor
 
-        unowned let unownedSelf = self
+        updateState(interactor)
+        updateSyncButtonState(interactor)
+        updateSelectedItemCountText(interactor)
+        updateConfirmationDialogMessage(interactor)
+        updateSelectAllButtonTitle(interactor)
 
-        interactor
-            .getCourseSyncEntries()
-            .map { $0.makeViewModelItems(interactor: interactor) }
-            .receive(on: DispatchQueue.main)
-            .handleEvents(receiveOutput: { _ in
-                unownedSelf.state = .data
-                unownedSelf.leftNavBarButtonVisible = true
-            }, receiveCompletion: { result in
-                if case .failure = result {
-                    unownedSelf.state = .error
-                }
-            })
-            .replaceError(with: [])
-            .assign(to: &$items)
+        handleLeftNavBarTap(interactor)
+        handleSyncButtonTap(interactor)
+    }
 
+    private func updateSyncButtonState(_ interactor: CourseSyncSelectorInteractor) {
         interactor
             .observeSelectedCount()
             .map { $0 == 0 }
             .assign(to: &$syncButtonDisabled)
+    }
 
+    private func updateSelectedItemCountText(_ interactor: CourseSyncSelectorInteractor) {
         interactor
             .observeSelectedCount()
             .map {
@@ -78,35 +80,43 @@ class CourseSyncSelectorViewModel: ObservableObject {
                 return String.localizedStringWithFormat(format, $0)
             }
             .assign(to: &$selectedItemCount)
+    }
 
-        interactor
-            .observeSelectedCount()
-            .map { itemCount in
-                let format = NSLocalizedString("There are %d items selected for offline availability. The selected content will be downloaded to the device.", bundle: .core, comment: "")
-                let message = String.localizedStringWithFormat(format, itemCount)
-                unownedSelf.confirmDialog.message = message
-                return unownedSelf.confirmDialog
-            }
-            .assign(to: &$confirmDialog)
-
+    private func updateSelectAllButtonTitle(_ interactor: CourseSyncSelectorInteractor) {
         interactor
             .observeIsEverythingSelected()
             .map { $0 ? NSLocalizedString("Deselect All", comment: "")
                       : NSLocalizedString("Select All", comment: "") }
             .assign(to: &$leftNavBarTitle)
+    }
 
+    private func updateConfirmationDialogMessage(_ interactor: CourseSyncSelectorInteractor) {
+        interactor
+            .observeSelectedCount()
+            .map { [unowned self] itemCount in
+                let format = NSLocalizedString("There are %d items selected for offline availability. The selected content will be downloaded to the device.", bundle: .core, comment: "")
+                let message = String.localizedStringWithFormat(format, itemCount)
+                confirmDialog.message = message
+                return confirmDialog
+            }
+            .assign(to: &$confirmDialog)
+    }
+
+    private func handleLeftNavBarTap(_ interactor: CourseSyncSelectorInteractor) {
         leftNavBarButtonDidTap
             .flatMap { interactor.observeIsEverythingSelected().first() }
             .toggle()
             .sink { interactor.toggleAllCoursesSelection(isSelected: $0) }
             .store(in: &subscriptions)
+    }
 
+    private func handleSyncButtonTap(_ interactor: CourseSyncSelectorInteractor) {
         syncButtonDidTap
-            .handleEvents(receiveOutput: { _ in
-                unownedSelf.isShowingConfirmationDialog = true
+            .handleEvents(receiveOutput: { [unowned self] _ in
+                isShowingConfirmationDialog = true
             })
-            .flatMap { view in
-                unownedSelf.confirmDialog.userConfirmation().map { view }
+            .flatMap { [unowned self] view in
+                confirmDialog.userConfirmation().map { view }
             }
             .flatMap { view in
                 interactor.getSelectedCourseEntries()
@@ -117,5 +127,22 @@ class CourseSyncSelectorViewModel: ObservableObject {
             }
             .sink()
             .store(in: &subscriptions)
+    }
+
+    private func updateState(_ interactor: CourseSyncSelectorInteractor) {
+        interactor
+            .getCourseSyncEntries()
+            .map { $0.makeViewModelItems(interactor: interactor) }
+            .receive(on: DispatchQueue.main)
+            .handleEvents(receiveOutput: { [unowned self] _ in
+                state = .data
+                leftNavBarButtonVisible = true
+            }, receiveCompletion: { [unowned self] result in
+                if case .failure = result {
+                    state = .error
+                }
+            })
+            .replaceError(with: [])
+            .assign(to: &$items)
     }
 }
