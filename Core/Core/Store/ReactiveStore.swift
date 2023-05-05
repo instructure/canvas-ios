@@ -56,7 +56,7 @@ public class ReactiveStore<U: UseCase> {
 
     public init(
         env: AppEnvironment = .shared,
-        offlineService: OfflineService = OfflineServiceLive(),
+        offlineService: OfflineService = OfflineServiceLive.shared,
         context: NSManagedObjectContext = AppEnvironment.shared.database.viewContext,
         useCase: U
     ) {
