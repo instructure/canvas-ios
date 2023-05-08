@@ -101,6 +101,9 @@
 "A title is required" = "ต้องระบุชื่อ";
 
 /* No comment provided by engineer. */
+"About" = "เกี่ยวกับ";
+
+/* No comment provided by engineer. */
 "Accept" = "ยอมรับ";
 
 /* No comment provided by engineer. */
@@ -242,6 +245,9 @@
 "Anyone" = "ทุกคน";
 
 /* No comment provided by engineer. */
+"App" = "แอพ";
+
+/* No comment provided by engineer. */
 "Appearance" = "ลักษณะภายนอก";
 
 /* No comment provided by engineer. */
@@ -377,10 +383,16 @@
 "Available from" = "ใช้ได้จาก";
 
 /* No comment provided by engineer. */
+"Available From" = "ใช้ได้จาก";
+
+/* No comment provided by engineer. */
 "Available From:" = "ใช้ได้จาก:";
 
 /* No comment provided by engineer. */
 "Available until" = "ใช้ได้จนถึง";
+
+/* No comment provided by engineer. */
+"Available Until" = "ใช้ได้จนถึง";
 
 /* No comment provided by engineer. */
 "Available Until:" = "ใช้ได้จนถึง:";
@@ -552,6 +564,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "การประชุม";
+
+/* No comment provided by engineer. */
+"Connected via %@" = "เชื่อมต่อผ่าน %@";
 
 /* No comment provided by engineer. */
 "Contact your school to create an account." = "ติดต่อสถานศึกษาของคุณเพื่อจัดทำบัญชีผู้ใช้";
@@ -770,7 +785,13 @@
 "Details" = "รายละเอียด";
 
 /* No comment provided by engineer. */
+"DEVELOPER" = "ผู้พัฒนา";
+
+/* No comment provided by engineer. */
 "Developer menu" = "เมนูสำหรับผู้พัฒนา";
+
+/* No comment provided by engineer. */
+"Disconnected" = "ตัดการเชื่อมต่ออยู่";
 
 /* No comment provided by engineer. */
 "discussion" = "การพูดคุย";
@@ -827,6 +848,9 @@
 "Due Date" = "วันครบกำหนด";
 
 /* No comment provided by engineer. */
+"Due Dates" = "วันครบกำหนด";
+
+/* No comment provided by engineer. */
 "Due Dates, Double tap for details." = "วันครบกำหนด กดสองครั้งเพื่อดูรายละเอียด";
 
 /* No comment provided by engineer. */
@@ -879,6 +903,9 @@
 
 /* No comment provided by engineer. */
 "Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue." = "คุณเป็นผู้ใช้ใหม่หรือนโยบายการใช้งานที่ยอมรับได้ที่คุณตอบรับไว้ล่าสุดมีการเปลี่ยนแปลง กรุณาตอบรับนโยบายการใช้งานที่ยอมรับได้ก่อนดำเนินการต่อ";
+
+/* No comment provided by engineer. */
+"Email" = "อีเมล";
 
 /* No comment provided by engineer. */
 "Email address" = "อีเมลแอดเดรส";
@@ -980,6 +1007,9 @@
 "File Details" = "รายละเอียดไฟล์";
 
 /* No comment provided by engineer. */
+"File No Longer Exists" = "ไฟล์ไม่มีอยู่อีกต่อไป";
+
+/* No comment provided by engineer. */
 "File Upload" = "การอัพโหลดไฟล์";
 
 /* No comment provided by engineer. */
@@ -1032,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Folder Name" = "ชื่อโฟลเดอร์";
+
+/* No comment provided by engineer. */
+"For" = "สำหรับ";
 
 /* No comment provided by engineer. */
 "for %@" = "สำหรับ %@";
@@ -1395,6 +1428,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "ข้อผิดพลาดในการล็อกอิน";
+
+/* No comment provided by engineer. */
+"Login ID" = "ID ล็อกอิน";
 
 /* No comment provided by engineer. */
 "Low: %@" = "Low: %@";
@@ -1883,6 +1919,9 @@
 "Quiz Details" = "รายละเอียดแบบทดสอบ";
 
 /* No comment provided by engineer. */
+"Quiz Preview" = "แสดงตัวอย่างแบบทดสอบ";
+
+/* No comment provided by engineer. */
 "Quiz Score to Keep" = "คะแนนแบบทดสอบที่จะเก็บ";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2165,9 @@
 "Show Course Summary" = "แสดงสรุปบทเรียน";
 
 /* No comment provided by engineer. */
+"Show dialog" = "แสดงกล่องโต้ตอบ";
+
+/* No comment provided by engineer. */
 "Show Grades" = "แสดงเกรด";
 
 /* No comment provided by engineer. */
@@ -2351,6 +2393,9 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "แอพจะต้องรีสตาร์ทเพื่อใช้ค่าภาษาใหม่ กรุณาเปิดแอพขึ้นใหม่";
 
 /* No comment provided by engineer. */
+"The file has been deleted by the author." = "ไฟล์นี้ถูกลบโดยผู้จัดทำ";
+
+/* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "กระบวนการจัดส่งถูกยกเลิกโดยระบบปฏิบัติการ";
 
 /* No comment provided by engineer. */
@@ -2501,6 +2546,9 @@
 "Ungraded Survey" = "แบบสำรวจที่ไม่ได้ลงเกรด";
 
 /* No comment provided by engineer. */
+"Unknown" = "ไม่ทราบ";
+
+/* No comment provided by engineer. */
 "Unknown Error" = "ข้อผิดพลาดที่ไม่รู้จัก";
 
 /* No comment provided by engineer. */
@@ -2600,6 +2648,9 @@
 "Users must post before seeing replies" = "ผู้ใช้จะต้องโพสต์ก่อนดูการตอบกลับ";
 
 /* No comment provided by engineer. */
+"Version" = "เวอร์ชั่น";
+
+/* No comment provided by engineer. */
 "Video" = "วิดีโอ";
 
 /* No comment provided by engineer. */
@@ -2634,6 +2685,9 @@
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "เราไม่พบบทเรียนลักษณะนี้";
+
+/* No comment provided by engineer. */
+"We couldn't load the quiz preview.\nPlease try again later." = "เราไม่สามารถโหลดตัวอย่างแบบทดสอบ\nกรุณาลองใหม่อีกครั้งในภายหลัง";
 
 /* No comment provided by engineer. */
 "We couldn’t find any files like that." = "เราไม่พบไฟล์ลักษณะนี้";

@@ -29,6 +29,9 @@
 "All submissions" = "Öll skil";
 
 /* No comment provided by engineer. */
+"All Submissions" = "Öll skil";
+
+/* No comment provided by engineer. */
 "Attendance" = "Mæting";
 
 /* No comment provided by engineer. */
@@ -131,6 +134,9 @@
 "Filter by" = "Sía eftir";
 
 /* No comment provided by engineer. */
+"Filter submissions" = "Sía skil";
+
+/* No comment provided by engineer. */
 "Final Grade" = "Lokaeinkunn:";
 
 /* No comment provided by engineer. */
@@ -206,6 +212,9 @@
 "Not Graded" = "Ekki metið";
 
 /* No comment provided by engineer. */
+"Not Submitted" = "Ekki lagt fram";
+
+/* No comment provided by engineer. */
 "OK" = "Í lagi";
 
 /* No comment provided by engineer. */
@@ -240,6 +249,9 @@
 
 /* No comment provided by engineer. */
 "Post to..." = "Birta á…";
+
+/* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "Æfingarpróf og kannanir eru ekki með upplýsingaskjá.";
 
 /* No comment provided by engineer. */
 "Present" = "Mætt(ur)";
@@ -291,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Submissions" = "Skil";
+
+/* No comment provided by engineer. */
+"Submitted" = "Skilað";
 
 /* No comment provided by engineer. */
 "Test Student" = "Prófa nemanda";

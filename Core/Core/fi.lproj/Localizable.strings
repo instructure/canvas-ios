@@ -101,6 +101,9 @@
 "A title is required" = "Otsikko on pakollinen";
 
 /* No comment provided by engineer. */
+"About" = "Tietoja";
+
+/* No comment provided by engineer. */
 "Accept" = "Hyväksy";
 
 /* No comment provided by engineer. */
@@ -242,6 +245,9 @@
 "Anyone" = "Kuka tahansa";
 
 /* No comment provided by engineer. */
+"App" = "Sovellus";
+
+/* No comment provided by engineer. */
 "Appearance" = "Ulkoasu";
 
 /* No comment provided by engineer. */
@@ -377,10 +383,16 @@
 "Available from" = "Saatavissa alkaen";
 
 /* No comment provided by engineer. */
+"Available From" = "Saatavissa alkaen";
+
+/* No comment provided by engineer. */
 "Available From:" = "Saatavissa alkaen:";
 
 /* No comment provided by engineer. */
 "Available until" = "Saatavissa tähän asti";
+
+/* No comment provided by engineer. */
+"Available Until" = "Saatavissa tähän päivämäärään saakka";
 
 /* No comment provided by engineer. */
 "Available Until:" = "Saatavissa asti:";
@@ -552,6 +564,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "Konferenssit";
+
+/* No comment provided by engineer. */
+"Connected via %@" = "Yhdistetty %@";
 
 /* No comment provided by engineer. */
 "Contact your school to create an account." = "Ota yhteyttä kouluusi luodaksesi tili.";
@@ -770,7 +785,13 @@
 "Details" = "Lisätiedot";
 
 /* No comment provided by engineer. */
+"DEVELOPER" = "KEHITTÄJÄ";
+
+/* No comment provided by engineer. */
 "Developer menu" = "Sovelluskehittäjän valikko";
+
+/* No comment provided by engineer. */
+"Disconnected" = "Ei kytketty";
 
 /* No comment provided by engineer. */
 "discussion" = "keskustelu";
@@ -827,6 +848,9 @@
 "Due Date" = "Määräpäivä";
 
 /* No comment provided by engineer. */
+"Due Dates" = "Määräpäivät";
+
+/* No comment provided by engineer. */
 "Due Dates, Double tap for details." = "Määräajat, näet tiedot kaksoisnapauttamalla.";
 
 /* No comment provided by engineer. */
@@ -879,6 +903,9 @@
 
 /* No comment provided by engineer. */
 "Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue." = "Olet joko uusi käyttäjä tai hyväksyttävää käyttöä koskeva käytäntö on muuttunut sen jälkeen, kun viimeksi hyväksyit sen. Hyväksy hyväksyttävää käyttöä koskeva käytäntö ennen kuin jatkat.";
+
+/* No comment provided by engineer. */
+"Email" = "Sähköposti";
 
 /* No comment provided by engineer. */
 "Email address" = "Sähköpostiosoite";
@@ -980,6 +1007,9 @@
 "File Details" = "Tiedoston tiedot";
 
 /* No comment provided by engineer. */
+"File No Longer Exists" = "Ei enää ole olemassa.";
+
+/* No comment provided by engineer. */
 "File Upload" = "Tiedoston lataus";
 
 /* No comment provided by engineer. */
@@ -1032,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Folder Name" = "Kansion nimi";
+
+/* No comment provided by engineer. */
+"For" = "-";
 
 /* No comment provided by engineer. */
 "for %@" = "- %@";
@@ -1395,6 +1428,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Kirjautumisvirhe";
+
+/* No comment provided by engineer. */
+"Login ID" = "Käyttäjätunnus";
 
 /* No comment provided by engineer. */
 "Low: %@" = "Matala: %@";
@@ -1883,6 +1919,9 @@
 "Quiz Details" = "Tietovisan tiedot";
 
 /* No comment provided by engineer. */
+"Quiz Preview" = "Tietovisan esikatselu";
+
+/* No comment provided by engineer. */
 "Quiz Score to Keep" = "Säilytettävä testin pistemäärä";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2165,9 @@
 "Show Course Summary" = "Näytä kurssin yhteenveto";
 
 /* No comment provided by engineer. */
+"Show dialog" = "Näytä valintaruutu";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Näytä arvosanat";
 
 /* No comment provided by engineer. */
@@ -2351,6 +2393,9 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Sovellus täytyy käynnistää uudelleen, jotta uusia kieliasetuksia voidaan käyttää. Käynnistä sovellus uudelleen.";
 
 /* No comment provided by engineer. */
+"The file has been deleted by the author." = "Tekijä on poistanut tiedoston.";
+
+/* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Käyttöjärjestelmä keskeytti tehtävänpalautuksen.";
 
 /* No comment provided by engineer. */
@@ -2501,6 +2546,9 @@
 "Ungraded Survey" = "Arvioimaton kysely";
 
 /* No comment provided by engineer. */
+"Unknown" = "Tuntematon";
+
+/* No comment provided by engineer. */
 "Unknown Error" = "Tuntematon virhe";
 
 /* No comment provided by engineer. */
@@ -2600,6 +2648,9 @@
 "Users must post before seeing replies" = "Käyttäjien täytyy lähettää viesti ennen kuin he voivat nähdä vastauksia";
 
 /* No comment provided by engineer. */
+"Version" = "Versio";
+
+/* No comment provided by engineer. */
 "Video" = "Video";
 
 /* No comment provided by engineer. */
@@ -2634,6 +2685,9 @@
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "Emme löytäneet mitään sellaisia kursseja.";
+
+/* No comment provided by engineer. */
+"We couldn't load the quiz preview.\nPlease try again later." = "Testin esikatselun lataus ei onnistunut.\nYritä myöhemmin uudelleen.";
 
 /* No comment provided by engineer. */
 "We couldn’t find any files like that." = "Emme löytäneet sellaisia tiedostoja.";

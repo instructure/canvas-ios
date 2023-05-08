@@ -29,6 +29,9 @@
 "All submissions" = "所有提交项";
 
 /* No comment provided by engineer. */
+"All Submissions" = "所有提交项";
+
+/* No comment provided by engineer. */
 "Attendance" = "出勤";
 
 /* No comment provided by engineer. */
@@ -131,6 +134,9 @@
 "Filter by" = "筛选条件";
 
 /* No comment provided by engineer. */
+"Filter submissions" = "筛选提交项";
+
+/* No comment provided by engineer. */
 "Final Grade" = "最终评分";
 
 /* No comment provided by engineer. */
@@ -206,6 +212,9 @@
 "Not Graded" = "未评分";
 
 /* No comment provided by engineer. */
+"Not Submitted" = "未提交";
+
+/* No comment provided by engineer. */
 "OK" = "确定";
 
 /* No comment provided by engineer. */
@@ -240,6 +249,9 @@
 
 /* No comment provided by engineer. */
 "Post to..." = "发布到...";
+
+/* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "练习测验和调查没有详情视图。";
 
 /* No comment provided by engineer. */
 "Present" = "出席";
@@ -291,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Submissions" = "提交项";
+
+/* No comment provided by engineer. */
+"Submitted" = "已提交";
 
 /* No comment provided by engineer. */
 "Test Student" = "测验学生";

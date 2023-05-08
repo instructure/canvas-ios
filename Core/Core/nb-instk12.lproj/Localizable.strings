@@ -101,6 +101,9 @@
 "A title is required" = "Tittel er påkrevd";
 
 /* No comment provided by engineer. */
+"About" = "Om";
+
+/* No comment provided by engineer. */
 "Accept" = "Godta";
 
 /* No comment provided by engineer. */
@@ -242,6 +245,9 @@
 "Anyone" = "Hvem som helst";
 
 /* No comment provided by engineer. */
+"App" = "App";
+
+/* No comment provided by engineer. */
 "Appearance" = "Utseende";
 
 /* No comment provided by engineer. */
@@ -377,10 +383,16 @@
 "Available from" = "Tilgjengelig fra";
 
 /* No comment provided by engineer. */
+"Available From" = "Tilgjengelig fra";
+
+/* No comment provided by engineer. */
 "Available From:" = "Tilgjengelig fra:";
 
 /* No comment provided by engineer. */
 "Available until" = "Tilgjengelig til";
+
+/* No comment provided by engineer. */
+"Available Until" = "Tilgjengelig frem til";
 
 /* No comment provided by engineer. */
 "Available Until:" = "Tilgjengelig til:";
@@ -552,6 +564,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "Videomøter";
+
+/* No comment provided by engineer. */
+"Connected via %@" = "Koblet til via %@";
 
 /* No comment provided by engineer. */
 "Contact your school to create an account." = "Kontakt skolen din for å opprette en konto.";
@@ -770,7 +785,13 @@
 "Details" = "Detaljer";
 
 /* No comment provided by engineer. */
+"DEVELOPER" = "UTVIKLER";
+
+/* No comment provided by engineer. */
 "Developer menu" = "Utviklermeny";
+
+/* No comment provided by engineer. */
+"Disconnected" = "Koblet fra";
 
 /* No comment provided by engineer. */
 "discussion" = "diskusjon";
@@ -827,6 +848,9 @@
 "Due Date" = "Forfallsdato";
 
 /* No comment provided by engineer. */
+"Due Dates" = "Forfallsdatoer";
+
+/* No comment provided by engineer. */
 "Due Dates, Double tap for details." = "Forfallsdatoer, dobbeltklikk for detaljer.";
 
 /* No comment provided by engineer. */
@@ -879,6 +903,9 @@
 
 /* No comment provided by engineer. */
 "Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue." = "Enten du er ny bruker eller retningslinjer for akseptabel bruk er endret siden sist du godkjente dem. Du må godta retningslinjer for akseptabel bruk før du fortsetter.";
+
+/* No comment provided by engineer. */
+"Email" = "E-post";
 
 /* No comment provided by engineer. */
 "Email address" = "E-postadresse";
@@ -980,6 +1007,9 @@
 "File Details" = "Fildetaljer";
 
 /* No comment provided by engineer. */
+"File No Longer Exists" = "Filen eksisterer ikke lenger";
+
+/* No comment provided by engineer. */
 "File Upload" = "Filopplasting";
 
 /* No comment provided by engineer. */
@@ -1032,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Folder Name" = "Mappe Navn";
+
+/* No comment provided by engineer. */
+"For" = "For";
 
 /* No comment provided by engineer. */
 "for %@" = "for %@";
@@ -1395,6 +1428,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Innloggingsfeil";
+
+/* No comment provided by engineer. */
+"Login ID" = "Innloggings-ID";
 
 /* No comment provided by engineer. */
 "Low: %@" = "Lav: %@";
@@ -1883,6 +1919,9 @@
 "Quiz Details" = "Quizdetaljer";
 
 /* No comment provided by engineer. */
+"Quiz Preview" = "Forhåndsvisning av quiz";
+
+/* No comment provided by engineer. */
 "Quiz Score to Keep" = "Quizpoengsum å beholde";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2165,9 @@
 "Show Course Summary" = "Vis fagsammendrag";
 
 /* No comment provided by engineer. */
+"Show dialog" = "Vis dialog";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Vis vurderinger";
 
 /* No comment provided by engineer. */
@@ -2351,6 +2393,9 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Appen må åpnes på nytt for å ta i bruk de nye språkinnstillingene. Vennligst gjeninnfør appen.";
 
 /* No comment provided by engineer. */
+"The file has been deleted by the author." = "Denne filen ble slettet av forfatteren.";
+
+/* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Innleveringsprosessen ble avsluttet av operativsystemet.";
 
 /* No comment provided by engineer. */
@@ -2501,6 +2546,9 @@
 "Ungraded Survey" = "Ikke vurdert undersøkelse";
 
 /* No comment provided by engineer. */
+"Unknown" = "Ukjent";
+
+/* No comment provided by engineer. */
 "Unknown Error" = "Ukjent feil";
 
 /* No comment provided by engineer. */
@@ -2600,6 +2648,9 @@
 "Users must post before seeing replies" = "Brukere må publisere før de kan se svar";
 
 /* No comment provided by engineer. */
+"Version" = "Versjon";
+
+/* No comment provided by engineer. */
 "Video" = "Video";
 
 /* No comment provided by engineer. */
@@ -2634,6 +2685,9 @@
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "Vi kunne ikke finne noen slike fag.";
+
+/* No comment provided by engineer. */
+"We couldn't load the quiz preview.\nPlease try again later." = "Vi kunne ikke laste inn forhåndsvisning av quiz.\nPrøv igjen senere.";
 
 /* No comment provided by engineer. */
 "We couldn’t find any files like that." = "Vi fant ingen slike filer.";
