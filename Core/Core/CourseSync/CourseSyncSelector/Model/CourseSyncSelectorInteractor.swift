@@ -269,7 +269,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
 
     func getSelectedCourseEntries() -> AnyPublisher<[CourseSyncSelectorEntry], Never> {
         courseSyncEntries
-            .map { $0.filter { $0.selectionCount > 0 } }
+            .map { $0.filter { $0.isSelected } }
             .replaceError(with: [])
             .first()
             .eraseToAnyPublisher()

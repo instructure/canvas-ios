@@ -23,7 +23,7 @@ public class GetCourseSyncSelectorCourses: CollectionUseCase {
 
     public var cacheKey: String? { "courseSyncSelectorCourse" }
     public let request: GetCurrentUserCoursesRequest
-    public let scope = Scope.all
+    public let scope: Scope = .all(orderBy: #keyPath(CourseSyncSelectorCourse.courseId))
 
     public init() {
         request = GetCurrentUserCoursesRequest(

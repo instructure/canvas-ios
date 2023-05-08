@@ -320,7 +320,10 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         expectation.expectedFulfillmentCount = 2
 
         mockCourseList(
-            courseList: [.make(id: "1", tabs: [.make(id: "files", label: "Files")])]
+            courseList: [
+                .make(id: "1", tabs: [.make(id: "files", label: "Files")]),
+                .make(id: "2", tabs: []),
+            ]
         )
 
         let rootFolder = APIFolder.make(context_type: "Course", context_id: 1, files_count: 1, id: 0)
@@ -333,7 +336,8 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         let subscription1 = testee.getCourseSyncEntries()
             .first()
             .handleEvents(receiveOutput: { _ in
-                testee.setSelected(selection: .file(0, 0), isSelected: true)
+                testee.setSelected(selection: .course(0), isSelected: true)
+                testee.setSelected(selection: .file(1, 0), isSelected: true)
                 expectation.fulfill()
             })
             .flatMap { _ in testee.getSelectedCourseEntries() }
@@ -347,9 +351,13 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
 
         waitForExpectations(timeout: 0.1)
 
-        XCTAssertEqual(entries.count, 1)
-        XCTAssertEqual(entries[0].selectedTabsCount, 1)
-        XCTAssertEqual(entries[0].selectedFilesCount, 1)
+        XCTAssertEqual(entries.count, 2)
+        XCTAssertEqual(entries[0].isSelected, true)
+        XCTAssertEqual(entries[0].selectedTabsCount, 0)
+        XCTAssertEqual(entries[0].selectedFilesCount, 0)
+        XCTAssertEqual(entries[1].isSelected, true)
+        XCTAssertEqual(entries[1].selectedTabsCount, 1)
+        XCTAssertEqual(entries[1].selectedFilesCount, 1)
         subscription1.cancel()
     }
 
