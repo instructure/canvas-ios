@@ -29,6 +29,9 @@
 "All submissions" = "Alle inleveringen";
 
 /* No comment provided by engineer. */
+"All Submissions" = "Alle inzendingen";
+
+/* No comment provided by engineer. */
 "Attendance" = "Aanwezigheid";
 
 /* No comment provided by engineer. */
@@ -131,6 +134,9 @@
 "Filter by" = "Filteren op";
 
 /* No comment provided by engineer. */
+"Filter submissions" = "Inzendingen filteren";
+
+/* No comment provided by engineer. */
 "Final Grade" = "Eindcijfer";
 
 /* No comment provided by engineer. */
@@ -206,6 +212,9 @@
 "Not Graded" = "Niet beoordeeld";
 
 /* No comment provided by engineer. */
+"Not Submitted" = "Niet ingediend";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -240,6 +249,9 @@
 
 /* No comment provided by engineer. */
 "Post to..." = "Posten in...";
+
+/* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "Practicumtoetsen en enquêtes hebben geen detailweergaven.";
 
 /* No comment provided by engineer. */
 "Present" = "Aanwezig";
@@ -291,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Submissions" = "Inleveringen";
+
+/* No comment provided by engineer. */
+"Submitted" = "Ingeleverd";
 
 /* No comment provided by engineer. */
 "Test Student" = "Cursist toetsen";

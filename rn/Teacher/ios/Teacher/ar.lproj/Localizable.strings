@@ -29,6 +29,9 @@
 "All submissions" = "جميع الإرسالات";
 
 /* No comment provided by engineer. */
+"All Submissions" = "كل الإرسالات";
+
+/* No comment provided by engineer. */
 "Attendance" = "الحضور";
 
 /* No comment provided by engineer. */
@@ -131,6 +134,9 @@
 "Filter by" = "التصفية حسب";
 
 /* No comment provided by engineer. */
+"Filter submissions" = "تصفية الإرسالات";
+
+/* No comment provided by engineer. */
 "Final Grade" = "الدرجة النهائية";
 
 /* No comment provided by engineer. */
@@ -206,6 +212,9 @@
 "Not Graded" = "لم يتم التقييم";
 
 /* No comment provided by engineer. */
+"Not Submitted" = "لم يتم الإرسال";
+
+/* No comment provided by engineer. */
 "OK" = "موافق";
 
 /* No comment provided by engineer. */
@@ -240,6 +249,9 @@
 
 /* No comment provided by engineer. */
 "Post to..." = "نشر على...";
+
+/* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "اختبارات التدريب والاستبيانات لا تحتوي على طرق عرض تفصيلية.";
 
 /* No comment provided by engineer. */
 "Present" = "موجود";
@@ -291,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Submissions" = "الإرسالات";
+
+/* No comment provided by engineer. */
+"Submitted" = "تم الإرسال";
 
 /* No comment provided by engineer. */
 "Test Student" = "اختبار الطالب";

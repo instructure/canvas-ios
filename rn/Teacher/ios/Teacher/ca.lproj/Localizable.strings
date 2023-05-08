@@ -29,6 +29,9 @@
 "All submissions" = "Totes les entregues";
 
 /* No comment provided by engineer. */
+"All Submissions" = "Totes les entregues";
+
+/* No comment provided by engineer. */
 "Attendance" = "Assistència";
 
 /* No comment provided by engineer. */
@@ -131,6 +134,9 @@
 "Filter by" = "Filtra per";
 
 /* No comment provided by engineer. */
+"Filter submissions" = "Filtra les entregues";
+
+/* No comment provided by engineer. */
 "Final Grade" = "Nota final";
 
 /* No comment provided by engineer. */
@@ -206,6 +212,9 @@
 "Not Graded" = "Sense nota";
 
 /* No comment provided by engineer. */
+"Not Submitted" = "No s’ha entregat";
+
+/* No comment provided by engineer. */
 "OK" = "D'acord";
 
 /* No comment provided by engineer. */
@@ -240,6 +249,9 @@
 
 /* No comment provided by engineer. */
 "Post to..." = "Publica a…";
+
+/* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "Les proves i els estudis sobre pràctiques no tenen cap vista detallada.";
 
 /* No comment provided by engineer. */
 "Present" = "Present";
@@ -291,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Submissions" = "Entregues";
+
+/* No comment provided by engineer. */
+"Submitted" = "S’ha entregat";
 
 /* No comment provided by engineer. */
 "Test Student" = "Prova l'estudiant";

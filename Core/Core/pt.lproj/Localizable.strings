@@ -101,6 +101,9 @@
 "A title is required" = "É necessário um título";
 
 /* No comment provided by engineer. */
+"About" = "Sobre";
+
+/* No comment provided by engineer. */
 "Accept" = "Aceitar";
 
 /* No comment provided by engineer. */
@@ -242,6 +245,9 @@
 "Anyone" = "Qualquer pessoa";
 
 /* No comment provided by engineer. */
+"App" = "Aplicação";
+
+/* No comment provided by engineer. */
 "Appearance" = "Aparência";
 
 /* No comment provided by engineer. */
@@ -377,10 +383,16 @@
 "Available from" = "Disponível de";
 
 /* No comment provided by engineer. */
+"Available From" = "Disponível de";
+
+/* No comment provided by engineer. */
 "Available From:" = "Disponível de:";
 
 /* No comment provided by engineer. */
 "Available until" = "Disponível até";
+
+/* No comment provided by engineer. */
+"Available Until" = "Disponível até";
 
 /* No comment provided by engineer. */
 "Available Until:" = "Disponível até:";
@@ -552,6 +564,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "Conferências";
+
+/* No comment provided by engineer. */
+"Connected via %@" = "Ligado via %@";
 
 /* No comment provided by engineer. */
 "Contact your school to create an account." = "Contacte a sua escola para criar uma conta.";
@@ -770,7 +785,13 @@
 "Details" = "Detalhes";
 
 /* No comment provided by engineer. */
+"DEVELOPER" = "DESENVOLVEDOR";
+
+/* No comment provided by engineer. */
 "Developer menu" = "Menu do desenvolvedor";
+
+/* No comment provided by engineer. */
+"Disconnected" = "Desconectado";
 
 /* No comment provided by engineer. */
 "discussion" = "discussão";
@@ -827,6 +848,9 @@
 "Due Date" = "Data limite";
 
 /* No comment provided by engineer. */
+"Due Dates" = "Datas de limite";
+
+/* No comment provided by engineer. */
 "Due Dates, Double tap for details." = "Datas limite, toque duas vezes para obter detalhes.";
 
 /* No comment provided by engineer. */
@@ -879,6 +903,9 @@
 
 /* No comment provided by engineer. */
 "Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue." = "Ou é um novo utilizador ou a Política de Utilização Aceitável mudou desde a última vez que concordou com ela. Por favor, aceite a Política de Utilização Aceitável antes de continuar.";
+
+/* No comment provided by engineer. */
+"Email" = "E-mail";
 
 /* No comment provided by engineer. */
 "Email address" = "Endereço de email";
@@ -980,6 +1007,9 @@
 "File Details" = "Detalhes do ficheiro";
 
 /* No comment provided by engineer. */
+"File No Longer Exists" = "Ficheiro Já Não Existe";
+
+/* No comment provided by engineer. */
 "File Upload" = "Carregar de arquivos";
 
 /* No comment provided by engineer. */
@@ -1032,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Folder Name" = "Nome da pasta";
+
+/* No comment provided by engineer. */
+"For" = "Para";
 
 /* No comment provided by engineer. */
 "for %@" = "para %@";
@@ -1395,6 +1428,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Erro de Login";
+
+/* No comment provided by engineer. */
+"Login ID" = "ID de login";
 
 /* No comment provided by engineer. */
 "Low: %@" = "Baixa: %@";
@@ -1883,6 +1919,9 @@
 "Quiz Details" = "Detalhes do teste";
 
 /* No comment provided by engineer. */
+"Quiz Preview" = "Visualização do teste";
+
+/* No comment provided by engineer. */
 "Quiz Score to Keep" = "Pontuação do teste para manter";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2165,9 @@
 "Show Course Summary" = "Mostrar Resumo da Disciplina";
 
 /* No comment provided by engineer. */
+"Show dialog" = "Mostrar diálogo";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Mostrar Classificações";
 
 /* No comment provided by engineer. */
@@ -2351,6 +2393,9 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "A aplicação precisa reiniciar para usar as novas configurações de idioma. Por favor, reinicie a aplicação.";
 
 /* No comment provided by engineer. */
+"The file has been deleted by the author." = "O ficheiro foi apagado pelo autor.";
+
+/* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "O processo de envio foi encerrado pelo sistema operativo.";
 
 /* No comment provided by engineer. */
@@ -2501,6 +2546,9 @@
 "Ungraded Survey" = "Questionário sem avaliação";
 
 /* No comment provided by engineer. */
+"Unknown" = "Desconhecido";
+
+/* No comment provided by engineer. */
 "Unknown Error" = "Erro Desconhecido";
 
 /* No comment provided by engineer. */
@@ -2600,6 +2648,9 @@
 "Users must post before seeing replies" = "Os utilizadores têm de publicar mensagens antes de poderem ver as respostas";
 
 /* No comment provided by engineer. */
+"Version" = "Versão";
+
+/* No comment provided by engineer. */
 "Video" = "Vídeo";
 
 /* No comment provided by engineer. */
@@ -2634,6 +2685,9 @@
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "Não conseguimos encontrar nenhuma disciplina assim.";
+
+/* No comment provided by engineer. */
+"We couldn't load the quiz preview.\nPlease try again later." = "Não foi possível carregar a pré-visualização do teste.\nÉ favor, tentar novamente mais tarde.";
 
 /* No comment provided by engineer. */
 "We couldn’t find any files like that." = "Não conseguimos encontrar nenhum ficheiro assim.";

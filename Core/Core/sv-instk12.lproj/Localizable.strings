@@ -101,6 +101,9 @@
 "A title is required" = "En titel krävs";
 
 /* No comment provided by engineer. */
+"About" = "Om";
+
+/* No comment provided by engineer. */
 "Accept" = "Acceptera";
 
 /* No comment provided by engineer. */
@@ -242,6 +245,9 @@
 "Anyone" = "Vem som helst";
 
 /* No comment provided by engineer. */
+"App" = "App";
+
+/* No comment provided by engineer. */
 "Appearance" = "Utseende";
 
 /* No comment provided by engineer. */
@@ -377,10 +383,16 @@
 "Available from" = "Tillgänglig från";
 
 /* No comment provided by engineer. */
+"Available From" = "Tillgänglig från";
+
+/* No comment provided by engineer. */
 "Available From:" = "Tillgänglig från och med:";
 
 /* No comment provided by engineer. */
 "Available until" = "Tillgänglig till";
+
+/* No comment provided by engineer. */
+"Available Until" = "Tillgänglig till";
 
 /* No comment provided by engineer. */
 "Available Until:" = "Tillgänglig tills:";
@@ -552,6 +564,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "Konferenser";
+
+/* No comment provided by engineer. */
+"Connected via %@" = "Ansluten via %@";
 
 /* No comment provided by engineer. */
 "Contact your school to create an account." = "Kontakta din skola för att skapa ett konto.";
@@ -770,7 +785,13 @@
 "Details" = "Detaljer";
 
 /* No comment provided by engineer. */
+"DEVELOPER" = "UTVECKLARE";
+
+/* No comment provided by engineer. */
 "Developer menu" = "Utvecklarmeny";
+
+/* No comment provided by engineer. */
+"Disconnected" = "Frånkopplad";
 
 /* No comment provided by engineer. */
 "discussion" = "diskussion";
@@ -827,6 +848,9 @@
 "Due Date" = "Inlämningsdatum";
 
 /* No comment provided by engineer. */
+"Due Dates" = "Inlämningsdatum";
+
+/* No comment provided by engineer. */
 "Due Dates, Double tap for details." = "Inlämningsdatum, dubbelklicka för detaljer.";
 
 /* No comment provided by engineer. */
@@ -879,6 +903,9 @@
 
 /* No comment provided by engineer. */
 "Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue." = "Antingen är du en ny användare eller så har policyn för godkänd användning ändrats sedan du senast godkände den. Godkänn policyn för godkänd användning innan du fortsätter.";
+
+/* No comment provided by engineer. */
+"Email" = "E-post";
 
 /* No comment provided by engineer. */
 "Email address" = "E-postadress";
@@ -980,6 +1007,9 @@
 "File Details" = "Filinformation";
 
 /* No comment provided by engineer. */
+"File No Longer Exists" = "Filen finns inte längre";
+
+/* No comment provided by engineer. */
 "File Upload" = "Filuppladdning";
 
 /* No comment provided by engineer. */
@@ -1032,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Folder Name" = "Mappens namn";
+
+/* No comment provided by engineer. */
+"For" = "För";
 
 /* No comment provided by engineer. */
 "for %@" = "för %@";
@@ -1395,6 +1428,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Inloggningsfel";
+
+/* No comment provided by engineer. */
+"Login ID" = "Inloggnings-ID";
 
 /* No comment provided by engineer. */
 "Low: %@" = "Låg: %@";
@@ -1883,6 +1919,9 @@
 "Quiz Details" = "Quizdetaljer";
 
 /* No comment provided by engineer. */
+"Quiz Preview" = "Förhandsvisning av quiz";
+
+/* No comment provided by engineer. */
 "Quiz Score to Keep" = "Quizresultat att behålla";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2165,9 @@
 "Show Course Summary" = "Visa kurssammanfattning";
 
 /* No comment provided by engineer. */
+"Show dialog" = "Visa dialogruta";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Visa omdömen";
 
 /* No comment provided by engineer. */
@@ -2351,6 +2393,9 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Appen måste startas om för att börja använda de nya språkinställningarna. Starta om appen.";
 
 /* No comment provided by engineer. */
+"The file has been deleted by the author." = "Filen har raderats av författaren.";
+
+/* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Inlämningsprocessen avbröts av operativsystemet.";
 
 /* No comment provided by engineer. */
@@ -2501,6 +2546,9 @@
 "Ungraded Survey" = "Icke-bedömd enkät";
 
 /* No comment provided by engineer. */
+"Unknown" = "Okänd";
+
+/* No comment provided by engineer. */
 "Unknown Error" = "Okänt fel";
 
 /* No comment provided by engineer. */
@@ -2600,6 +2648,9 @@
 "Users must post before seeing replies" = "Användare måste skriva ett inlägg innan de kan se andras inlägg";
 
 /* No comment provided by engineer. */
+"Version" = "Version";
+
+/* No comment provided by engineer. */
 "Video" = "Video";
 
 /* No comment provided by engineer. */
@@ -2634,6 +2685,9 @@
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "Vi hittade inte några sådana kurser.";
+
+/* No comment provided by engineer. */
+"We couldn't load the quiz preview.\nPlease try again later." = "Det gick inte att läsa in förhandsvisningen av quizet.\nFörsök igen senare.";
 
 /* No comment provided by engineer. */
 "We couldn’t find any files like that." = "Vi hittade inte några sådana filer.";

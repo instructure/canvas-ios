@@ -101,6 +101,9 @@
 "A title is required" = "タイトルは必須です";
 
 /* No comment provided by engineer. */
+"About" = "情報";
+
+/* No comment provided by engineer. */
 "Accept" = "受諾";
 
 /* No comment provided by engineer. */
@@ -242,6 +245,9 @@
 "Anyone" = "全員";
 
 /* No comment provided by engineer. */
+"App" = "アプリ";
+
+/* No comment provided by engineer. */
 "Appearance" = "外観";
 
 /* No comment provided by engineer. */
@@ -377,10 +383,16 @@
 "Available from" = "次から使用可能";
 
 /* No comment provided by engineer. */
+"Available From" = "から利用可能";
+
+/* No comment provided by engineer. */
 "Available From:" = "利用可能となる日：";
 
 /* No comment provided by engineer. */
 "Available until" = "次の日付まで利用可能";
+
+/* No comment provided by engineer. */
+"Available Until" = "まで利用可能";
 
 /* No comment provided by engineer. */
 "Available Until:" = "最終利用可能日：";
@@ -552,6 +564,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "会議";
+
+/* No comment provided by engineer. */
+"Connected via %@" = "（）を介して接続されています。%@";
 
 /* No comment provided by engineer. */
 "Contact your school to create an account." = "アカウントを作成するには、スクールに連絡してください。";
@@ -770,7 +785,13 @@
 "Details" = "詳細";
 
 /* No comment provided by engineer. */
+"DEVELOPER" = "デベロッパー";
+
+/* No comment provided by engineer. */
 "Developer menu" = "開発者用メニュー";
+
+/* No comment provided by engineer. */
+"Disconnected" = "接続解除";
 
 /* No comment provided by engineer. */
 "discussion" = "ディスカッション";
@@ -827,6 +848,9 @@
 "Due Date" = "期日";
 
 /* No comment provided by engineer. */
+"Due Dates" = "期日";
+
+/* No comment provided by engineer. */
 "Due Dates, Double tap for details." = "期限、詳細をダブルタップしてください。";
 
 /* No comment provided by engineer. */
@@ -879,6 +903,9 @@
 
 /* No comment provided by engineer. */
 "Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue." = "あなたが新しいユーザーであるか、最後に同意して以降、許容される使用ポリシーが変更されています。続行する前に許可される使用ポリシーに同意してください。";
+
+/* No comment provided by engineer. */
+"Email" = "E メール";
 
 /* No comment provided by engineer. */
 "Email address" = "メールアドレス";
@@ -980,6 +1007,9 @@
 "File Details" = "ファイル詳細";
 
 /* No comment provided by engineer. */
+"File No Longer Exists" = "ファイルはもう存在しません";
+
+/* No comment provided by engineer. */
 "File Upload" = "ファイルのアップロード";
 
 /* No comment provided by engineer. */
@@ -1032,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Folder Name" = "フォルダ名";
+
+/* No comment provided by engineer. */
+"For" = "対象";
 
 /* No comment provided by engineer. */
 "for %@" = "ための%@";
@@ -1395,6 +1428,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "ログインエラー";
+
+/* No comment provided by engineer. */
+"Login ID" = "ログイン ID";
 
 /* No comment provided by engineer. */
 "Low: %@" = "低：%@";
@@ -1883,6 +1919,9 @@
 "Quiz Details" = "小テストの詳細情報";
 
 /* No comment provided by engineer. */
+"Quiz Preview" = "小テストプレビュー";
+
+/* No comment provided by engineer. */
 "Quiz Score to Keep" = "保持する小テスト スコア";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2165,9 @@
 "Show Course Summary" = "コースサマリーを表示";
 
 /* No comment provided by engineer. */
+"Show dialog" = "ダイアログを表示";
+
+/* No comment provided by engineer. */
 "Show Grades" = "評定を表示";
 
 /* No comment provided by engineer. */
@@ -2351,6 +2393,9 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "新しい言語設定を使用するには、アプリの再起動が必要です。アプリを再起動してください。";
 
 /* No comment provided by engineer. */
+"The file has been deleted by the author." = "このファイルは作者によって削除されました。";
+
+/* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "OSにより提出プロセスが中止されました。";
 
 /* No comment provided by engineer. */
@@ -2501,6 +2546,9 @@
 "Ungraded Survey" = "未採点のサーベイ";
 
 /* No comment provided by engineer. */
+"Unknown" = "不明";
+
+/* No comment provided by engineer. */
 "Unknown Error" = "未知のエラー";
 
 /* No comment provided by engineer. */
@@ -2600,6 +2648,9 @@
 "Users must post before seeing replies" = "ユーザは返信を表示する前に投稿しなければなりません";
 
 /* No comment provided by engineer. */
+"Version" = "バージョン";
+
+/* No comment provided by engineer. */
 "Video" = "ビデオ";
 
 /* No comment provided by engineer. */
@@ -2634,6 +2685,9 @@
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "そのようなコースは見つかりませんでした。";
+
+/* No comment provided by engineer. */
+"We couldn't load the quiz preview.\nPlease try again later." = "小テストプレビューを読み込むことができませんでした。\n後ほどもう一度やり直してください。";
 
 /* No comment provided by engineer. */
 "We couldn’t find any files like that." = "そのようなファイルは見つかりませんでした。";

@@ -29,6 +29,9 @@
 "All submissions" = "Pob cyflwyniad";
 
 /* No comment provided by engineer. */
+"All Submissions" = "Pob Cyflwyniad";
+
+/* No comment provided by engineer. */
 "Attendance" = "Presenoldeb";
 
 /* No comment provided by engineer. */
@@ -131,6 +134,9 @@
 "Filter by" = "Hidlo yn ôl";
 
 /* No comment provided by engineer. */
+"Filter submissions" = "Hidlo cyflwyniadau";
+
+/* No comment provided by engineer. */
 "Final Grade" = "Gradd Derfynol";
 
 /* No comment provided by engineer. */
@@ -206,6 +212,9 @@
 "Not Graded" = "Heb eu graddio";
 
 /* No comment provided by engineer. */
+"Not Submitted" = "Heb Gyflwyno";
+
+/* No comment provided by engineer. */
 "OK" = "Iawn";
 
 /* No comment provided by engineer. */
@@ -240,6 +249,9 @@
 
 /* No comment provided by engineer. */
 "Post to..." = "Postio i...";
+
+/* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "Nid oes gan gwisiau ac arolygon weddau manwl.";
 
 /* No comment provided by engineer. */
 "Present" = "Presennol";
@@ -291,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Submissions" = "Cyflwyniadau";
+
+/* No comment provided by engineer. */
+"Submitted" = "Wedi Cyflwyno";
 
 /* No comment provided by engineer. */
 "Test Student" = "Myfyriwr Prawf";
