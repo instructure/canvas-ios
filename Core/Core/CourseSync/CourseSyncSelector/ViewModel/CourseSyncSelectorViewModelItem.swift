@@ -20,43 +20,32 @@ import SwiftUI
 
 extension CourseSyncSelectorViewModel {
     struct Item: Hashable, Identifiable {
-        enum TrailingIcon {
-            case none
-            case opened
-            case closed
-        }
 
         /** The SwiftUI view ID. */
         let id: String
-        let isSelected: Bool
-        let backgroundColor: Color
         let title: String
         let subtitle: String?
-        let trailingIcon: TrailingIcon
-        let isIndented: Bool
-        var isCollapsed: Bool { trailingIcon == .closed }
+        let isSelected: Bool
+        var isCollapsed: Bool?
+        let cellStyle: ListCellView.ListCellStyle
 
         fileprivate(set) var selectionDidToggle: (() -> Void)?
         fileprivate(set) var collapseDidToggle: (() -> Void)?
 
         static func == (lhs: CourseSyncSelectorViewModel.Item, rhs: CourseSyncSelectorViewModel.Item) -> Bool {
             lhs.id == rhs.id &&
-            lhs.isSelected == rhs.isSelected &&
-            lhs.backgroundColor == rhs.backgroundColor &&
             lhs.title == rhs.title &&
             lhs.subtitle == rhs.subtitle &&
-            lhs.trailingIcon == rhs.trailingIcon &&
-            lhs.isIndented == rhs.isIndented
+            lhs.isSelected == rhs.isSelected &&
+            lhs.isCollapsed == rhs.isCollapsed
         }
 
         func hash(into hasher: inout Hasher) {
             hasher.combine(id)
-            hasher.combine(isSelected)
-            hasher.combine(backgroundColor)
             hasher.combine(title)
             hasher.combine(subtitle)
-            hasher.combine(trailingIcon)
-            hasher.combine(isIndented)
+            hasher.combine(isSelected)
+            hasher.combine(isCollapsed)
         }
     }
 }
@@ -74,7 +63,7 @@ extension Array where Element == CourseSyncSelectorEntry {
                 interactor.setSelected(selection: .course(courseIndex), isSelected: !courseItem.isSelected)
             }
             courseItem.collapseDidToggle = {
-                interactor.setCollapsed(selection: .course(courseIndex), isCollapsed: !courseItem.isCollapsed)
+                interactor.setCollapsed(selection: .course(courseIndex), isCollapsed: !(courseItem.isCollapsed ?? false))
             }
             items.append(courseItem)
 
@@ -88,7 +77,7 @@ extension Array where Element == CourseSyncSelectorEntry {
                     interactor.setSelected(selection: .tab(courseIndex, tabIndex), isSelected: !tabItem.isSelected)
                 }
                 tabItem.collapseDidToggle = {
-                    interactor.setCollapsed(selection: .tab(courseIndex, tabIndex), isCollapsed: !tabItem.isCollapsed)
+                    interactor.setCollapsed(selection: .tab(courseIndex, tabIndex), isCollapsed: !(tabItem.isCollapsed ?? false))
                 }
                 items.append(tabItem)
 
@@ -114,31 +103,23 @@ extension CourseSyncSelectorEntry {
 
     func makeViewModelItem() -> CourseSyncSelectorViewModel.Item {
         .init(id: "course-\(id)",
-              isSelected: isSelected,
-              backgroundColor: .backgroundLight,
               title: name,
               subtitle: nil,
-              trailingIcon: isCollapsed ? .closed : .opened,
-              isIndented: false)
+              isSelected: isSelected,
+              isCollapsed: isCollapsed,
+              cellStyle: .mainAccordionHeader)
     }
 }
 
 extension CourseSyncSelectorEntry.Tab {
 
     func makeViewModelItem() -> CourseSyncSelectorViewModel.Item {
-        var trailingIcon = CourseSyncSelectorViewModel.Item.TrailingIcon.none
-
-        if type == .files {
-            trailingIcon = isCollapsed ? .closed : .opened
-        }
-
-        return .init(id: "courseTab-\(id)",
-                     isSelected: isSelected,
-                     backgroundColor: .backgroundLightest,
-                     title: name,
-                     subtitle: nil,
-                     trailingIcon: trailingIcon,
-                     isIndented: false)
+        .init(id: "courseTab-\(id)",
+              title: name,
+              subtitle: nil,
+              isSelected: isSelected,
+              isCollapsed: type == .files ? isCollapsed : nil,
+              cellStyle: .listAccordionHeader)
     }
 }
 
@@ -146,11 +127,9 @@ extension CourseSyncSelectorEntry.File {
 
     func makeViewModelItem() -> CourseSyncSelectorViewModel.Item {
         .init(id: "file-\(id)",
-              isSelected: isSelected,
-              backgroundColor: .backgroundLightest,
               title: name,
               subtitle: nil,
-              trailingIcon: .none,
-              isIndented: true)
+              isSelected: isSelected,
+              cellStyle: .listItem)
     }
 }

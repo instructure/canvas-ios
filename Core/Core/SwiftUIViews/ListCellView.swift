@@ -26,14 +26,10 @@ struct ListCellView: View {
         case listItem
     }
 
-    let cellStyle: ListCellStyle
-    let title: String
-    let subtitle: String?
-    @State var isSelected: Bool = false
-    @State var isOpen: Bool = false
+    var item: CourseSyncSelectorViewModel.Item
 
     private var backgroundColor: Color {
-        switch cellStyle {
+        switch item.cellStyle {
         case .mainAccordionHeader:
             return .backgroundLight
         default:
@@ -42,7 +38,7 @@ struct ListCellView: View {
     }
 
     private var cellHeight: CGFloat {
-        switch cellStyle {
+        switch item.cellStyle {
         case .mainAccordionHeader:
             return 72.0
         default:
@@ -53,7 +49,7 @@ struct ListCellView: View {
     @ViewBuilder
     private var iconImage: some View {
         HStack {
-            if isSelected {
+            if item.isSelected {
                 Image("completeSolid", bundle: .core)
                     .size(20)
                     .foregroundColor(.textInfo)
@@ -63,28 +59,32 @@ struct ListCellView: View {
                     .foregroundColor(.textDarkest)
             }
         }.frame(width: 32, height: 32)
-            .padding(.leading, 22)
-            .padding(.trailing, 22)
+            .padding(.leading, 24)
+            .padding(.trailing, 20)
     }
 
     @ViewBuilder
     private var accessoryIcon: some View {
         HStack {
-            switch cellStyle {
+            switch item.cellStyle {
             case .mainAccordionHeader, .listAccordionHeader:
-                Image("arrowOpenDownLine", bundle: .core)
-                    .size(16)
-                    .foregroundColor(.textDarkest)
-                    .rotationEffect(isOpen ? .degrees(-180) : .degrees(0))
+                if let isCollapsed = item.isCollapsed {
+                    Image("arrowOpenDownLine", bundle: .core)
+                        .size(16)
+                        .foregroundColor(.textDarkest)
+                        .rotationEffect(isCollapsed ? .degrees(-180) : .degrees(0))
+                } else {
+                    SwiftUI.EmptyView()
+                }
             case .listItem:
-                Image("")
+                SwiftUI.EmptyView()
             }
         }
         .padding(16)
     }
 
     private var titleFont: Font {
-        switch cellStyle {
+        switch item.cellStyle {
         default:
             return .semibold16
         }
@@ -92,18 +92,18 @@ struct ListCellView: View {
 
     @ViewBuilder
     private var titleText: some View {
-        Text(title)
+        Text(item.title)
             .lineLimit(2)
             .fixedSize(horizontal: false, vertical: true)
             .multilineTextAlignment(.leading)
             .foregroundColor(.textDarkest)
             .font(titleFont)
             .padding(.top, 12)
-            .padding(.bottom, subtitle == nil ? 16 : 0)
+            .padding(.bottom, item.subtitle == nil ? 16 : 0)
     }
 
     private var subtitleFont: Font {
-        switch cellStyle {
+        switch item.cellStyle {
         default:
             return .regular14
         }
@@ -111,7 +111,7 @@ struct ListCellView: View {
 
     @ViewBuilder
     private var subTitleText: some View {
-        Text(subtitle ?? "")
+        Text(item.subtitle ?? "")
             .lineLimit(1)
             .foregroundColor(.textDark)
             .font(subtitleFont)
@@ -121,11 +121,11 @@ struct ListCellView: View {
     var body: some View {
         Button {
             withAnimation {
-                if cellStyle == .listItem {
-                    isSelected.toggle()
+                if item.cellStyle == .listItem || item.isCollapsed == nil {
+                    item.selectionDidToggle?()
                     return
                 }
-                isOpen.toggle()
+                item.collapseDidToggle?()
             }
         } label: {
             ZStack {
@@ -136,12 +136,12 @@ struct ListCellView: View {
                     iconImage
                         .onTapGesture {
                             withAnimation {
-                                isSelected.toggle()
+                                item.selectionDidToggle?()
                             }
-                        }
+                    }
                     VStack(alignment: .leading, spacing: 2) {
                         titleText
-                        if subtitle != nil {
+                        if item.subtitle != nil {
                             subTitleText
                         }
                     }
@@ -152,21 +152,5 @@ struct ListCellView: View {
             .fixedSize(horizontal: false, vertical: true)
             .frame(minHeight: cellHeight)
         }
-    }
-}
-
-struct ListCellView_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack(spacing: 0) {
-            ListCellView(cellStyle: .mainAccordionHeader, title: "Top Secret.pdf", subtitle: "1MB")
-            Divider()
-            ListCellView(cellStyle: .listAccordionHeader, title: "Submission.mp3", subtitle: "4GB")
-            Divider()
-            ListCellView(cellStyle: .listItem, title: "Creative Machines and Innovative Instrumentation.mov", subtitle: "4 GB")
-            Divider()
-            ListCellView(cellStyle: .listItem, title: "Something", subtitle: nil)
-            Divider()
-        }
-        Spacer()
     }
 }

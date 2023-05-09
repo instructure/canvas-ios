@@ -53,12 +53,16 @@ struct CourseSyncSelectorView: View {
                     .padding(.top, 24)
                     .padding(.bottom, 28)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                Divider()
                 ScrollView {
                     LazyVStack(spacing: 0) {
                         ForEach(viewModel.items) { item in
-                            CellView(item: item)
+                            VStack(spacing: 0) {
+                                ListCellView(item: item)
+                                Divider().padding(.leading, item.cellStyle == .listItem ? 74 : 0)
+                            }.padding(.leading, item.cellStyle == .listItem ? 24 : 0)
                         }
-                    }
+                    }.animation(.default, value: viewModel.items)
                 }
                 syncButton
             }
@@ -113,50 +117,6 @@ struct CourseSyncSelectorView: View {
                     .font(.regular16)
                     .foregroundColor(.textDarkest)
             }
-        }
-    }
-}
-
-struct CellView: View {
-    let item: CourseSyncSelectorViewModel.Item
-
-    var body: some View {
-        HStack {
-            Button {
-                item.selectionDidToggle?()
-            } label: {
-                item.isSelected ? Image.emptySolid : Image.emptyLine
-            }
-            VStack(alignment: .leading) {
-                Text(item.title)
-                    .fontWeight(item.isSelected ? .bold : .regular)
-                if let subtitle = item.subtitle {
-                    Text(subtitle)
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                }
-            }
-            Spacer()
-            switch item.trailingIcon {
-            case .none:
-                SwiftUI.EmptyView()
-            case .opened:
-                collapseButton(Image(systemName: "chevron.up"))
-            case .closed:
-                collapseButton(Image(systemName: "chevron.down"))
-            }
-        }
-        .padding()
-        .background(item.backgroundColor)
-        .padding(.leading, item.isIndented ? 16 : 0)
-    }
-
-    @ViewBuilder
-    private func collapseButton(_ image: Image) -> some View {
-        Button {
-            item.collapseDidToggle?()
-        } label: {
-            image
         }
     }
 }
