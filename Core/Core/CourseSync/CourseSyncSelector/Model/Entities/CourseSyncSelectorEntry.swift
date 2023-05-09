@@ -19,12 +19,17 @@
 import Foundation
 
 struct CourseSyncSelectorEntry {
+    enum State {
+        case loading, error, downloaded
+    }
+
     struct Tab {
         let id: String
         let name: String
         let type: TabName
         var isCollapsed: Bool = true
         var isSelected: Bool = false
+        var state: State = .loading
     }
 
     struct File {
@@ -32,6 +37,7 @@ struct CourseSyncSelectorEntry {
         let name: String
         let url: URL?
         var isSelected: Bool = false
+        var state: State = .loading
     }
 
     let name: String
@@ -58,6 +64,7 @@ struct CourseSyncSelectorEntry {
     var isCollapsed: Bool = true
     var isSelected: Bool = false
     var isEverythingSelected: Bool = false
+    var state: State = .loading
 
     mutating func selectCourse(isSelected: Bool) {
         tabs.indices.forEach { tabs[$0].isSelected = isSelected }
@@ -88,4 +95,16 @@ struct CourseSyncSelectorEntry {
         tabs[fileTabIndex].isSelected = selectedFilesCount > 0
         self.isSelected = selectedTabsCount > 0
     }
+
+    mutating func updateCourseState(state: State) {
+        self.state = state
+    }
+
+    mutating func updateTabState(index: Int, state: State) {
+        tabs[index].state = state
+    }
+
+    mutating func updateFileState(index: Int, state: State) {
+        files[index].state = state
+    }    
 }
