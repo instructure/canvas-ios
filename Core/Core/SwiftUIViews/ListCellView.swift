@@ -26,10 +26,16 @@ struct ListCellView: View {
         case listItem
     }
 
-    var item: CourseSyncSelectorViewModel.Item
+    let cellStyle: ListCellStyle
+    let title: String
+    let subtitle: String?
+    let isSelected: Bool
+    let isCollapsed: Bool?
+    let selectionDidToggle: (() -> Void)?
+    let collapseDidToggle: (() -> Void)?
 
     private var backgroundColor: Color {
-        switch item.cellStyle {
+        switch cellStyle {
         case .mainAccordionHeader:
             return .backgroundLight
         default:
@@ -38,7 +44,7 @@ struct ListCellView: View {
     }
 
     private var cellHeight: CGFloat {
-        switch item.cellStyle {
+        switch cellStyle {
         case .mainAccordionHeader:
             return 72.0
         default:
@@ -49,7 +55,7 @@ struct ListCellView: View {
     @ViewBuilder
     private var iconImage: some View {
         HStack {
-            if item.isSelected {
+            if isSelected {
                 Image("completeSolid", bundle: .core)
                     .size(20)
                     .foregroundColor(.textInfo)
@@ -66,9 +72,9 @@ struct ListCellView: View {
     @ViewBuilder
     private var accessoryIcon: some View {
         HStack {
-            switch item.cellStyle {
+            switch cellStyle {
             case .mainAccordionHeader, .listAccordionHeader:
-                if let isCollapsed = item.isCollapsed {
+                if let isCollapsed = isCollapsed {
                     Image("arrowOpenDownLine", bundle: .core)
                         .size(16)
                         .foregroundColor(.textDarkest)
@@ -84,7 +90,7 @@ struct ListCellView: View {
     }
 
     private var titleFont: Font {
-        switch item.cellStyle {
+        switch cellStyle {
         default:
             return .semibold16
         }
@@ -92,18 +98,18 @@ struct ListCellView: View {
 
     @ViewBuilder
     private var titleText: some View {
-        Text(item.title)
+        Text(title)
             .lineLimit(2)
             .fixedSize(horizontal: false, vertical: true)
             .multilineTextAlignment(.leading)
             .foregroundColor(.textDarkest)
             .font(titleFont)
             .padding(.top, 12)
-            .padding(.bottom, item.subtitle == nil ? 16 : 0)
+            .padding(.bottom, subtitle == nil ? 16 : 0)
     }
 
     private var subtitleFont: Font {
-        switch item.cellStyle {
+        switch cellStyle {
         default:
             return .regular14
         }
@@ -111,7 +117,7 @@ struct ListCellView: View {
 
     @ViewBuilder
     private var subTitleText: some View {
-        Text(item.subtitle ?? "")
+        Text(subtitle ?? "")
             .lineLimit(1)
             .foregroundColor(.textDark)
             .font(subtitleFont)
@@ -121,11 +127,11 @@ struct ListCellView: View {
     var body: some View {
         Button {
             withAnimation {
-                if item.cellStyle == .listItem || item.isCollapsed == nil {
-                    item.selectionDidToggle?()
+                if cellStyle == .listItem || isCollapsed == nil {
+                    selectionDidToggle?()
                     return
                 }
-                item.collapseDidToggle?()
+                collapseDidToggle?()
             }
         } label: {
             ZStack {
@@ -136,12 +142,12 @@ struct ListCellView: View {
                     iconImage
                         .onTapGesture {
                             withAnimation {
-                                item.selectionDidToggle?()
+                                selectionDidToggle?()
                             }
                     }
                     VStack(alignment: .leading, spacing: 2) {
                         titleText
-                        if item.subtitle != nil {
+                        if subtitle != nil {
                             subTitleText
                         }
                     }

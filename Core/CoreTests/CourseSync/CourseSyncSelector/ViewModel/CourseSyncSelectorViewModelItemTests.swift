@@ -32,32 +32,27 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
 
     func testHashEquals() {
         let testee1 = CourseSyncSelectorViewModel.Item(id: "",
-                                                       isSelected: true,
-                                                       backgroundColor: .white,
                                                        title: "testTitle",
                                                        subtitle: "subTitle",
-                                                       trailingIcon: .closed,
-                                                       isIndented: true)
+                                                       isSelected: true,
+                                                       cellStyle: .listItem)
         let testee2 = CourseSyncSelectorViewModel.Item(id: "",
-                                                       isSelected: true,
-                                                       backgroundColor: .white,
                                                        title: "testTitle",
                                                        subtitle: "subTitle",
-                                                       trailingIcon: .closed,
-                                                       isIndented: true)
+                                                       isSelected: true,
+                                                       cellStyle: .listItem)
         XCTAssertEqual(testee1, testee2)
         XCTAssertEqual(testee1.hashValue, testee2.hashValue)
     }
 
     func testIsCollapsed() {
         let testee = CourseSyncSelectorViewModel.Item(id: "",
-                                                      isSelected: true,
-                                                      backgroundColor: .white,
                                                       title: "",
                                                       subtitle: "",
-                                                      trailingIcon: .closed,
-                                                      isIndented: true)
-        XCTAssertTrue(testee.isCollapsed)
+                                                      isSelected: true,
+                                                      isCollapsed: true,
+                                                      cellStyle: .listAccordionHeader)
+        XCTAssertEqual(testee.isCollapsed, true)
     }
 
     // MARK: - Course
@@ -67,19 +62,17 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
         var testee = data.makeViewModelItem()
 
         XCTAssertEqual(testee.id, "course-testID")
-        XCTAssertTrue(testee.isSelected)
-        XCTAssertEqual(testee.backgroundColor, .backgroundLight)
         XCTAssertEqual(testee.title, "test")
         XCTAssertNil(testee.subtitle)
-        XCTAssertFalse(testee.isIndented)
+        XCTAssertTrue(testee.cellStyle == .mainAccordionHeader)
 
         data.isCollapsed = true
         testee = data.makeViewModelItem()
-        XCTAssertEqual(testee.trailingIcon, .closed)
+        XCTAssertEqual(testee.isCollapsed, true)
 
         data.isCollapsed = false
         testee = data.makeViewModelItem()
-        XCTAssertEqual(testee.trailingIcon, .opened)
+        XCTAssertEqual(testee.isCollapsed, false)
     }
 
     func testCourseCollapsion() {
@@ -99,11 +92,10 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
         var testee = data.makeViewModelItem()
 
         XCTAssertEqual(testee.id, "courseTab-1")
-        XCTAssertEqual(testee.backgroundColor, .backgroundLightest)
         XCTAssertEqual(testee.title, "Test")
         XCTAssertEqual(testee.subtitle, nil)
-        XCTAssertEqual(testee.trailingIcon, .none)
-        XCTAssertFalse(testee.isIndented)
+        XCTAssertEqual(testee.isCollapsed, nil)
+        XCTAssertTrue(testee.cellStyle == .listAccordionHeader)
 
         data.isSelected = true
         testee = data.makeViewModelItem()
@@ -119,11 +111,11 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
 
         data.isCollapsed = true
         var testee = data.makeViewModelItem()
-        XCTAssertEqual(testee.trailingIcon, .closed)
+        XCTAssertEqual(testee.isCollapsed, true)
 
         data.isCollapsed = false
         testee = data.makeViewModelItem()
-        XCTAssertEqual(testee.trailingIcon, .opened)
+        XCTAssertEqual(testee.isCollapsed, false)
     }
 
     func testFilesTabCollapsion() {
@@ -147,11 +139,10 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
         var testee = data.makeViewModelItem()
 
         XCTAssertEqual(testee.id, "file-1")
-        XCTAssertEqual(testee.backgroundColor, .backgroundLightest)
         XCTAssertEqual(testee.title, "testFile")
         XCTAssertEqual(testee.subtitle, nil)
-        XCTAssertEqual(testee.trailingIcon, .none)
-        XCTAssertTrue(testee.isIndented)
+        XCTAssertEqual(testee.isCollapsed, nil)
+        XCTAssertTrue(testee.cellStyle == .listItem)
 
         data.isSelected = true
         testee = data.makeViewModelItem()
