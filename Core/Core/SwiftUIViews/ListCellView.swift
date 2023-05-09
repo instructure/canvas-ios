@@ -78,7 +78,7 @@ struct ListCellView: View {
                     Image("arrowOpenDownLine", bundle: .core)
                         .size(16)
                         .foregroundColor(.textDarkest)
-                        .rotationEffect(isCollapsed ? .degrees(-180) : .degrees(0))
+                        .rotationEffect(isCollapsed ? .degrees(0) : .degrees(-180))
                 } else {
                     SwiftUI.EmptyView()
                 }
