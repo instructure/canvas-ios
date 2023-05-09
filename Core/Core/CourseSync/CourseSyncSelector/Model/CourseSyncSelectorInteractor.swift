@@ -37,6 +37,8 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     private let courseSyncEntries = CurrentValueSubject<[CourseSyncSelectorEntry], Error>(.init())
     private var subscriptions = Set<AnyCancellable>()
 
+    // MARK: - Public Interface
+
     func getCourseSyncEntries() -> AnyPublisher<[CourseSyncSelectorEntry], Error> {
         courseListStore.getEntities()
             .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
@@ -114,6 +116,16 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
             .map { CourseEntrySelection.course($0) }
             .forEach { setSelected(selection: $0, isSelected: isSelected) }
     }
+
+    func getSelectedCourseEntries() -> AnyPublisher<[CourseSyncSelectorEntry], Never> {
+        courseSyncEntries
+            .map { $0.filter { $0.isSelected } }
+            .replaceError(with: [])
+            .first()
+            .eraseToAnyPublisher()
+    }
+
+    // MARK: - Private Methods
 
     private func getTabs(courseId: String) -> AnyPublisher<[CourseSyncSelectorEntry.Tab], Error> {
         ReactiveStore(
@@ -265,14 +277,6 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
             return (files, folderIDs)
         }
         .eraseToAnyPublisher()
-    }
-
-    func getSelectedCourseEntries() -> AnyPublisher<[CourseSyncSelectorEntry], Never> {
-        courseSyncEntries
-            .map { $0.filter { $0.isSelected } }
-            .replaceError(with: [])
-            .first()
-            .eraseToAnyPublisher()
     }
 }
 
