@@ -39,7 +39,16 @@ public final class CourseSyncSelectorCourse: NSManagedObject {
 
         if let apiTabs = apiEntity.tabs {
             let tabs: [Tab] = apiTabs.map { apiTab in
-                let tab: Tab = context.insert()
+                let urlPredicate = NSPredicate(
+                    format: "%K == %@", #keyPath(Tab.htmlURL),
+                    apiTab.html_url as CVarArg
+                )
+                let contextPredicate = NSPredicate(
+                    format: "%K == %@", #keyPath(Tab.contextRaw),
+                    Context.course(dbEntity.courseId).canvasContextID as CVarArg
+                )
+                let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [urlPredicate, contextPredicate])
+                let tab: Tab = context.fetch(predicate).first ?? context.insert()
                 tab.save(apiTab, in: context, context: .course(dbEntity.courseId))
                 return tab
             }
