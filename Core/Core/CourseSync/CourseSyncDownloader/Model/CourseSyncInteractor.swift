@@ -19,16 +19,16 @@
 import Combine
 import Foundation
 
-protocol CourseSyncDownloader {
+protocol CourseSyncInteractor {
     func downloadContent(for entries: [CourseSyncSelectorEntry]) -> AnyPublisher<[CourseSyncSelectorEntry], Error>
 }
 
-final class CourseSyncDownloaderLive: CourseSyncDownloader {
-    private let pagesDownloader: CourseSyncPagesDownloader
+final class CourseSyncInteractorLive: CourseSyncInteractor {
+    private let pagesInteractor: CourseSyncPagesInteractor
     private var courseSyncEntries = CurrentValueSubject<[CourseSyncSelectorEntry], Error>.init([])
 
-    init(pagesDownloader: CourseSyncPagesDownloader = CourseSyncPagesDownloaderLive()) {
-        self.pagesDownloader = pagesDownloader
+    init(pagesDownloader: CourseSyncPagesInteractor = CourseSyncPagesInteractorLive()) {
+        self.pagesInteractor = pagesDownloader
     }
 
     func downloadContent(for entries: [CourseSyncSelectorEntry]) -> AnyPublisher<[CourseSyncSelectorEntry], Error> {
@@ -64,7 +64,7 @@ final class CourseSyncDownloaderLive: CourseSyncDownloader {
         if let pagesTab = entry.tabs.first(where: { $0.type == .pages }),
            pagesTab.isSelected,
            let pagesTabIndex = entry.tabs.firstIndex(where: { $0.type == .pages }) {
-            return pagesDownloader.getPages(for: entry)
+            return pagesInteractor.getPages(for: entry)
                 .updateErrorState {
                     self.setState(
                         selection: .tab(index, pagesTabIndex),

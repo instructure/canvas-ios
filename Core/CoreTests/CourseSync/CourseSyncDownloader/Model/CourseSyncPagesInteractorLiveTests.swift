@@ -23,7 +23,7 @@ import XCTest
 
 class CourseSyncDownloaderInteractorLiveTests: CoreTestCase {
     func testFrontAndRegularPages() {
-        let testee = CourseSyncPagesDownloaderLive()
+        let testee = CourseSyncPagesInteractorLive()
         let expectation = expectation(description: "Publisher sends value")
 
         let getFrontPageUseCase = GetFrontPage(context: .course("1"))
@@ -68,7 +68,7 @@ class CourseSyncDownloaderInteractorLiveTests: CoreTestCase {
     }
 
     func testRegularPagesWithoutFrontPage() {
-        let testee = CourseSyncPagesDownloaderLive()
+        let testee = CourseSyncPagesInteractorLive()
         let expectation = expectation(description: "Publisher sends value")
 
         let getFrontPageUseCase = GetFrontPage(context: .course("1"))
@@ -106,7 +106,7 @@ class CourseSyncDownloaderInteractorLiveTests: CoreTestCase {
     }
 
     func testErrorHandling() {
-        let testee = CourseSyncPagesDownloaderLive()
+        let testee = CourseSyncPagesInteractorLive()
         let expectation = expectation(description: "Publisher sends value")
 
         let getFrontPageUseCase = GetFrontPage(context: .course("1"))

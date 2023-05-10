@@ -19,11 +19,11 @@
 import Combine
 import Foundation
 
-protocol CourseSyncPagesDownloader {
+protocol CourseSyncPagesInteractor {
     func getPages(for entry: CourseSyncSelectorEntry) -> AnyPublisher<Void, Error>
 }
 
-final class CourseSyncPagesDownloaderLive: CourseSyncPagesDownloader {
+final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor {
     func getPages(for entry: CourseSyncSelectorEntry) -> AnyPublisher<Void, Error> {
         Publishers.Zip(
             ReactiveStore(
