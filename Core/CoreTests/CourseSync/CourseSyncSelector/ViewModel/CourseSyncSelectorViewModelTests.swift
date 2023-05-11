@@ -134,7 +134,7 @@ class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
         selectedCountSubject.eraseToAnyPublisher()
     }
 
-    func setSelected(selection: Core.CourseEntrySelection, isSelected: Bool) {}
+    func setSelected(selection: Core.CourseEntrySelection, selectionState: ListCellView.SelectionState) {}
     func setCollapsed(selection: Core.CourseEntrySelection, isCollapsed: Bool) {}
 
     var toggleAllCoursesSelectionParam: Bool?

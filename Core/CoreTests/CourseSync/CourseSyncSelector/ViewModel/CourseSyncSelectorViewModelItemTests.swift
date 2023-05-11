@@ -34,12 +34,12 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
         let testee1 = CourseSyncSelectorViewModel.Item(id: "",
                                                        title: "testTitle",
                                                        subtitle: "subTitle",
-                                                       isSelected: true,
+                                                       selectionState: .selected,
                                                        cellStyle: .listItem)
         let testee2 = CourseSyncSelectorViewModel.Item(id: "",
                                                        title: "testTitle",
                                                        subtitle: "subTitle",
-                                                       isSelected: true,
+                                                       selectionState: .selected,
                                                        cellStyle: .listItem)
         XCTAssertEqual(testee1, testee2)
         XCTAssertEqual(testee1.hashValue, testee2.hashValue)
@@ -49,7 +49,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
         let testee = CourseSyncSelectorViewModel.Item(id: "",
                                                       title: "",
                                                       subtitle: "",
-                                                      isSelected: true,
+                                                      selectionState: .selected,
                                                       isCollapsed: true,
                                                       cellStyle: .listAccordionHeader)
         XCTAssertEqual(testee.isCollapsed, true)
@@ -97,13 +97,13 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
         XCTAssertEqual(testee.isCollapsed, nil)
         XCTAssertTrue(testee.cellStyle == .listAccordionHeader)
 
-        data.isSelected = true
+        data.selectionState = .selected
         testee = data.makeViewModelItem()
-        XCTAssertTrue(testee.isSelected)
+        XCTAssertTrue(testee.selectionState == .selected)
 
-        data.isSelected = false
+        data.selectionState = .deselected
         testee = data.makeViewModelItem()
-        XCTAssertFalse(testee.isSelected)
+        XCTAssertFalse(testee.selectionState == .selected)
     }
 
     func testFilesTabMapping() {
@@ -144,30 +144,30 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
         XCTAssertEqual(testee.isCollapsed, nil)
         XCTAssertTrue(testee.cellStyle == .listItem)
 
-        data.isSelected = true
+        data.selectionState = .selected
         testee = data.makeViewModelItem()
-        XCTAssertTrue(testee.isSelected)
+        XCTAssertTrue(testee.selectionState == .selected)
 
-        data.isSelected = false
+        data.selectionState = .deselected
         testee = data.makeViewModelItem()
-        XCTAssertFalse(testee.isSelected)
+        XCTAssertFalse(testee.selectionState == .selected)
     }
 
     // MARK: - Selection
 
     func testSelectionForwardedToInteractor() {
         let data = CourseSyncSelectorEntry(name: "test",
-                                   id: "testID",
-                                   tabs: [
-                                    .init(id: "0", name: "Assignments", type: .assignments, isCollapsed: false, isSelected: false),
-                                    .init(id: "0", name: "Files", type: .files, isCollapsed: false, isSelected: false),
-                                   ],
-                                   files: [
-                                    .init(id: "0", name: "test.txt", url: nil, isSelected: false),
-                                    .init(id: "1", name: "test1.txt", url: nil, isSelected: false),
-                                   ],
-                                   isCollapsed: false,
-                                   isSelected: false)
+                                           id: "testID",
+                                           tabs: [
+                                            .init(id: "0", name: "Assignments", type: .assignments, isCollapsed: false, selectionState: .deselected),
+                                            .init(id: "0", name: "Files", type: .files, isCollapsed: false, selectionState: .deselected),
+                                           ],
+                                           files: [
+                                            .init(id: "0", name: "test.txt", url: nil, selectionState: .deselected),
+                                            .init(id: "1", name: "test1.txt", url: nil, selectionState: .deselected),
+                                           ],
+                                           isCollapsed: false,
+                                           selectionState: .deselected)
         let testee = [data].makeViewModelItems(interactor: mockInteractor)
         testee[0].selectionDidToggle?()
         XCTAssertEqual(mockInteractor.lastSelected?.selection, CourseEntrySelection.course(0))
@@ -184,13 +184,13 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
 
     func testCourseCollapseEventForwardedToInteractor() {
         let data = CourseSyncSelectorEntry(name: "test",
-                                   id: "testID",
-                                   tabs: [
-                                    .init(id: "0", name: "Assignments", type: .assignments, isCollapsed: false, isSelected: false),
-                                   ],
-                                   files: [],
-                                   isCollapsed: false,
-                                   isSelected: false)
+                                           id: "testID",
+                                           tabs: [
+                                            .init(id: "0", name: "Assignments", type: .assignments, isCollapsed: false, selectionState: .deselected),
+                                           ],
+                                           files: [],
+                                           isCollapsed: false,
+                                           selectionState: .deselected)
         let testee = [data].makeViewModelItems(interactor: mockInteractor)
         testee[0].collapseDidToggle?()
         XCTAssertEqual(mockInteractor.lastCollapsed?.selection, CourseEntrySelection.course(0))
@@ -199,15 +199,15 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
 
     func testTabCollapseEventForwardedToInteractor() {
         let data = CourseSyncSelectorEntry(name: "test",
-                                   id: "testID",
-                                   tabs: [
-                                    .init(id: "0", name: "Files", type: .files, isCollapsed: false, isSelected: false),
-                                   ],
-                                   files: [
-                                    .init(id: "0", name: "test.txt", url: nil, isSelected: false),
-                                   ],
-                                   isCollapsed: false,
-                                   isSelected: false)
+                                           id: "testID",
+                                           tabs: [
+                                            .init(id: "0", name: "Files", type: .files, isCollapsed: false, selectionState: .deselected),
+                                           ],
+                                           files: [
+                                            .init(id: "0", name: "test.txt", url: nil, selectionState: .deselected),
+                                           ],
+                                           isCollapsed: false,
+                                           selectionState: .deselected)
         let testee = [data].makeViewModelItems(interactor: mockInteractor)
         testee[1].collapseDidToggle?()
         XCTAssertEqual(mockInteractor.lastCollapsed?.selection, CourseEntrySelection.tab(0, 0))
@@ -234,8 +234,8 @@ private class MockCourseSyncSelectorInteractor: CourseSyncSelectorInteractor {
         Just(false).eraseToAnyPublisher()
     }
 
-    func setSelected(selection: Core.CourseEntrySelection, isSelected: Bool) {
-        lastSelected = (selection: selection, isSelected: isSelected)
+    func setSelected(selection: Core.CourseEntrySelection, selectionState: ListCellView.SelectionState) {
+        lastSelected = (selection: selection, isSelected: selectionState == .selected ? true : false)
     }
 
     func setCollapsed(selection: Core.CourseEntrySelection, isCollapsed: Bool) {

@@ -64,16 +64,16 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
             .eraseToAnyPublisher()
     }
 
-    func setSelected(selection: CourseEntrySelection, isSelected: Bool) {
+    func setSelected(selection: CourseEntrySelection, selectionState: ListCellView.SelectionState) {
         var entries = mockData.value
 
         switch selection {
         case let .course(courseIndex):
-            entries[courseIndex].selectCourse(isSelected: isSelected)
+            entries[courseIndex].selectCourse(selectionState: selectionState)
         case let .tab(courseIndex, tabIndex):
-            entries[courseIndex].selectTab(index: tabIndex, isSelected: isSelected)
+            entries[courseIndex].selectTab(index: tabIndex, selectionState: selectionState)
         case let .file(courseIndex, fileIndex):
-            entries[courseIndex].selectFile(index: fileIndex, isSelected: isSelected)
+            entries[courseIndex].selectFile(index: fileIndex, selectionState: selectionState)
         }
 
         mockData.accept(entries)

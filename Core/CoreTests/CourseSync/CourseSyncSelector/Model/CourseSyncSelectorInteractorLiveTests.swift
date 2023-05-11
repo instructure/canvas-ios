@@ -172,7 +172,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
             )
 
         waitForExpectations(timeout: 0.1)
-        XCTAssertFalse(entries[0].isSelected)
+        XCTAssertFalse(entries[0].selectionState == .selected)
         XCTAssertTrue(entries[0].isCollapsed)
         XCTAssertEqual(entries[0].tabs.count, 1)
         XCTAssertEqual(entries[0].files.count, 2)
@@ -204,8 +204,8 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         let subscription1 = testee.getCourseSyncEntries()
             .first()
             .handleEvents(receiveOutput: { _ in
-                testee.setSelected(selection: .course(0), isSelected: true)
-                testee.setSelected(selection: .file(1, 0), isSelected: true)
+                testee.setSelected(selection: .course(0), selectionState: .selected)
+                testee.setSelected(selection: .file(1, 0), selectionState: .selected)
                 expectation.fulfill()
             })
             .flatMap { _ in testee.getSelectedCourseEntries() }
@@ -220,10 +220,10 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         waitForExpectations(timeout: 0.1)
 
         XCTAssertEqual(entries.count, 2)
-        XCTAssertEqual(entries[0].isSelected, true)
+        XCTAssertEqual(entries[0].selectionState, .selected)
         XCTAssertEqual(entries[0].selectedTabsCount, 0)
         XCTAssertEqual(entries[0].selectedFilesCount, 0)
-        XCTAssertEqual(entries[1].isSelected, true)
+        XCTAssertEqual(entries[1].selectionState, .partiallySelected)
         XCTAssertEqual(entries[1].selectedTabsCount, 1)
         XCTAssertEqual(entries[1].selectedFilesCount, 1)
         subscription1.cancel()
