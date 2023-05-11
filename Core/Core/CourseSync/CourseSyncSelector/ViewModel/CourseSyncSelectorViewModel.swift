@@ -34,7 +34,6 @@ class CourseSyncSelectorViewModel: ObservableObject {
     @Published public private(set) var syncButtonDisabled = true
     @Published public private(set) var leftNavBarTitle = ""
     @Published public private(set) var leftNavBarButtonVisible = false
-    @Published public private(set) var selectedItemCount = ""
     @Published public var isShowingConfirmationDialog = false
     public let confirmAlert = ConfirmationAlertViewModel(title: NSLocalizedString("Sync Offline Content?", comment: ""),
                                                          message: "", // Updated when selected item count changes
@@ -57,7 +56,6 @@ class CourseSyncSelectorViewModel: ObservableObject {
 
         updateState(interactor)
         updateSyncButtonState(interactor)
-        updateSelectedItemCountText(interactor)
         updateConfirmationDialogMessage(interactor)
         updateSelectAllButtonTitle(interactor)
 
@@ -70,16 +68,6 @@ class CourseSyncSelectorViewModel: ObservableObject {
             .observeSelectedCount()
             .map { $0 == 0 }
             .assign(to: &$syncButtonDisabled)
-    }
-
-    private func updateSelectedItemCountText(_ interactor: CourseSyncSelectorInteractor) {
-        interactor
-            .observeSelectedCount()
-            .map {
-                let format = NSLocalizedString("%d Selected", bundle: .core, comment: "3 Selected")
-                return String.localizedStringWithFormat(format, $0)
-            }
-            .assign(to: &$selectedItemCount)
     }
 
     private func updateSelectAllButtonTitle(_ interactor: CourseSyncSelectorInteractor) {

@@ -172,6 +172,8 @@ struct ListCellView: View {
     }
 }
 
+#if DEBUG
+
 struct ListCellView_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: 0) {
@@ -211,3 +213,5 @@ struct ListCellView_Previews: PreviewProvider {
         Spacer()
     }
 }
+
+#endif

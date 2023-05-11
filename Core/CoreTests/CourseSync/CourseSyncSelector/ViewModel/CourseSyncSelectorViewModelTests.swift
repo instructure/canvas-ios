@@ -54,14 +54,6 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
         XCTAssertFalse(testee.syncButtonDisabled)
     }
 
-    func testUpdateSelectedItemCountText() {
-        mockInteractor.selectedCountSubject.send(0)
-        XCTAssertEqual(testee.selectedItemCount, "0 Selected")
-
-        mockInteractor.selectedCountSubject.send(3)
-        XCTAssertEqual(testee.selectedItemCount, "3 Selected")
-    }
-
     func testUpdateSelectAllButtonTitle() {
         mockInteractor.isEverythingSelectedSubject.send(true)
         XCTAssertEqual(testee.leftNavBarTitle, "Deselect All")
