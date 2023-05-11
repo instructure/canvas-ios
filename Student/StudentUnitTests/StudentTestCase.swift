@@ -42,7 +42,7 @@ class StudentTestCase: XCTestCase {
     override func setUp() {
         super.setUp()
         API.resetMocks()
-        LoginSession.useTestKeychain()
+        LoginSession.clearAll()
         queue = OperationQueue()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
         env = TestEnvironment()
