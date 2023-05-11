@@ -44,20 +44,13 @@ class CourseSyncPagesInteractorLiveTests: CoreTestCase {
         )
         api.mock(getPagesUseCase, value: [page])
 
-        let subscription = testee.getPages(
-            for: .init(
-                name: "1",
-                id: "1",
-                tabs: [],
-                files: []
+        let subscription = testee.getContent(courseId: "1")
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: {
+                    expectation.fulfill()
+                }
             )
-        )
-        .sink(
-            receiveCompletion: { _ in },
-            receiveValue: {
-                expectation.fulfill()
-            }
-        )
 
         waitForExpectations(timeout: 0.1)
         let pageList: [Page] = databaseClient.fetch(nil, sortDescriptors: nil)
@@ -83,20 +76,13 @@ class CourseSyncPagesInteractorLiveTests: CoreTestCase {
         )
         api.mock(getPagesUseCase, value: [page])
 
-        let subscription = testee.getPages(
-            for: .init(
-                name: "1",
-                id: "1",
-                tabs: [],
-                files: []
+        let subscription = testee.getContent(courseId: "1")
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: {
+                    expectation.fulfill()
+                }
             )
-        )
-        .sink(
-            receiveCompletion: { _ in },
-            receiveValue: {
-                expectation.fulfill()
-            }
-        )
 
         waitForExpectations(timeout: 0.1)
         let pageList: [Page] = databaseClient.fetch(nil, sortDescriptors: nil)
@@ -115,25 +101,18 @@ class CourseSyncPagesInteractorLiveTests: CoreTestCase {
         let getPagesUseCase = GetPages(context: .course("1"))
         api.mock(getPagesUseCase, error: NSError.instructureError("Page not found"))
 
-        let subscription = testee.getPages(
-            for: .init(
-                name: "1",
-                id: "1",
-                tabs: [],
-                files: []
+        let subscription = testee.getContent(courseId: "1")
+            .sink(
+                receiveCompletion: { completion in
+                    switch completion {
+                    case .failure:
+                        expectation.fulfill()
+                    default:
+                        break
+                    }
+                },
+                receiveValue: { _ in }
             )
-        )
-        .sink(
-            receiveCompletion: { completion in
-                switch completion {
-                case .failure:
-                    expectation.fulfill()
-                default:
-                    break
-                }
-            },
-            receiveValue: { _ in }
-        )
 
         waitForExpectations(timeout: 0.1)
         let pageList: [Page] = databaseClient.fetch(nil, sortDescriptors: nil)
