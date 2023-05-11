@@ -41,7 +41,11 @@ struct CourseSyncDiskSpaceInfoView: View {
             legend
         }
         .padding(16)
-        .background(RoundedRectangle(cornerSize: CGSize(width: 6, height: 6)).stroke(Color.borderDark, lineWidth: 1 / UIScreen.main.scale))
+        .background(RoundedRectangle(cornerRadius: 6)
+            .fill(Color.backgroundLightest)
+            .overlay(RoundedRectangle(cornerRadius: 6)
+                .stroke(Color.borderDark, lineWidth: 1 / UIScreen.main.scale))
+        )
     }
 
     private var title: some View {

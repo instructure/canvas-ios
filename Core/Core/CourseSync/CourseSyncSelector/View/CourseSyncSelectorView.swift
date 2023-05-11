@@ -61,11 +61,11 @@ struct CourseSyncSelectorView: View {
                             }.padding(.leading, item.cellStyle == .listItem ? 24 : 0)
                         }
                     }
-                    .background(Color.backgroundLightest)
                     .animation(.default, value: viewModel.items)
                 }
                 syncButton
             }
+            .background(Color.backgroundLightest)
             .confirmationAlert(isPresented: $viewModel.isShowingConfirmationDialog,
                                presenting: viewModel.confirmAlert)
         }
