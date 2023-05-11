@@ -32,9 +32,9 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
     private let contentInteractors: [CourseSyncContentInteractor]
     private var courseSyncEntries = CurrentValueSubject<[CourseSyncSelectorEntry], Error>.init([])
 
-    init(pagesDownloader: CourseSyncPagesInteractor = CourseSyncPagesInteractorLive()) {
+    init(pagesInteractor: CourseSyncPagesInteractor = CourseSyncPagesInteractorLive()) {
         contentInteractors = [
-            pagesDownloader
+            pagesInteractor
         ]
     }
 
