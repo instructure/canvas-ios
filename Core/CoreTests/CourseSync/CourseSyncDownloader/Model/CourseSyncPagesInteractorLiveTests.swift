@@ -21,7 +21,7 @@ import Foundation
 import TestsFoundation
 import XCTest
 
-class CourseSyncDownloaderInteractorLiveTests: CoreTestCase {
+class CourseSyncPagesInteractorLiveTests: CoreTestCase {
     func testFrontAndRegularPages() {
         let testee = CourseSyncPagesInteractorLive()
         let expectation = expectation(description: "Publisher sends value")
