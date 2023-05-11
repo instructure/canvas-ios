@@ -39,22 +39,24 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
     }
 
     func downloadContent(for entries: [CourseSyncSelectorEntry]) -> AnyPublisher<[CourseSyncSelectorEntry], Error> {
+        unowned let unownedSelf = self
+
         courseSyncEntries.send(entries)
 
         return Publishers.Sequence(sequence: entries.enumerated())
             .flatMap { index, entry in
                 Publishers.Zip(
-                    self.downloadTabContent(for: entry, index: index, tabName: .assignments),
-                    self.downloadTabContent(for: entry, index: index, tabName: .pages)
+                    unownedSelf.downloadTabContent(for: entry, index: index, tabName: .assignments),
+                    unownedSelf.downloadTabContent(for: entry, index: index, tabName: .pages)
                 )
                 .updateErrorState {
-                    self.setState(
+                    unownedSelf.setState(
                         selection: .course(index),
                         state: .error
                     )
                 }
                 .updateDownloadedState {
-                    self.setState(
+                    unownedSelf.setState(
                         selection: .course(index),
                         state: .downloaded
                     )
@@ -62,25 +64,26 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
                 .eraseToAnyPublisher()
             }
             .collect()
-            .flatMap { _ in self.courseSyncEntries }
-            .print()
+            .flatMap { _ in unownedSelf.courseSyncEntries }
             .eraseToAnyPublisher()
     }
 
     private func downloadTabContent(for entry: CourseSyncSelectorEntry, index: Int, tabName: TabName) -> AnyPublisher<Void, Error> {
+        unowned let unownedSelf = self
+
         if let tab = entry.tabs.first(where: { $0.type == tabName }),
            tab.selectionState == .selected,
            let tabIndex = entry.tabs.firstIndex(where: { $0.type == tabName }),
            let interactor = contentInteractors.first(where: { $0.associatedTabType == tabName }) {
             return interactor.getContent(courseId: entry.id)
                 .updateErrorState {
-                    self.setState(
+                    unownedSelf.setState(
                         selection: .tab(index, tabIndex),
                         state: .error
                     )
                 }
                 .updateDownloadedState {
-                    self.setState(
+                    unownedSelf.setState(
                         selection: .tab(index, tabIndex),
                         state: .downloaded
                     )
