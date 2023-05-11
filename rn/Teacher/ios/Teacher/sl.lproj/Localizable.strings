@@ -29,6 +29,9 @@
 "All submissions" = "Vse oddaje";
 
 /* No comment provided by engineer. */
+"All Submissions" = "Vse oddaje";
+
+/* No comment provided by engineer. */
 "Attendance" = "Prisotnost";
 
 /* No comment provided by engineer. */
@@ -131,6 +134,9 @@
 "Filter by" = "Filtriraj glede na";
 
 /* No comment provided by engineer. */
+"Filter submissions" = "Filtriraj oddaje";
+
+/* No comment provided by engineer. */
 "Final Grade" = "Končna ocena";
 
 /* No comment provided by engineer. */
@@ -206,6 +212,9 @@
 "Not Graded" = "Ni ocenjeno";
 
 /* No comment provided by engineer. */
+"Not Submitted" = "Ni oddano.";
+
+/* No comment provided by engineer. */
 "OK" = "V redu";
 
 /* No comment provided by engineer. */
@@ -240,6 +249,9 @@
 
 /* No comment provided by engineer. */
 "Post to..." = "Objavi v ...";
+
+/* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "Kvizi in ankete za vajo nimajo podrobnih ogledov.";
 
 /* No comment provided by engineer. */
 "Present" = "Trenutno";
@@ -291,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Submissions" = "Oddaje";
+
+/* No comment provided by engineer. */
+"Submitted" = "Poslano";
 
 /* No comment provided by engineer. */
 "Test Student" = "Testni študent";

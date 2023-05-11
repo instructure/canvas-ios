@@ -22,14 +22,8 @@ import Compose from '../modules/inbox/Compose'
 import AddressBook from '../modules/address-book/AddressBook'
 import CourseSelect from '../modules/inbox/CourseSelect'
 import ConversationDetails from '../modules/inbox/detail/ConversationDetails'
-import DeveloperMenu from '../modules/developer-menu/DeveloperMenu'
-import AssigneePicker from '../modules/assignee-picker/AssigneePicker'
-import AssigneeSearch from '../modules/assignee-picker/AssigneeSearch'
 import AttachmentView from '../common/components/AttachmentView'
 import Attachments from '../modules/attachments/Attachments'
-import PushNotifications from '../modules/developer-menu/PushNotifications'
-import RatingRequest from '../modules/developer-menu/RatingRequest'
-import PageViewEvents from '../modules/developer-menu/PageViewEvents'
 
 import { Store } from 'redux'
 import { registerScreen } from './'
@@ -43,14 +37,13 @@ export function registerScreens (store: Store): void {
   registerScreen('/conversations/course-select', CourseSelect, store)
   registerScreen('/conversations/:conversationID', ConversationDetails, store, { deepLink: true })
   registerScreen('/address-book', AddressBook, store)
-
   registerScreen('/attachment', AttachmentView, store)
   registerScreen('/attachments', Attachments, store)
-  registerScreen('/dev-menu', DeveloperMenu, store)
-  registerScreen('/rating-request', RatingRequest, store)
-  registerScreen('/push-notifications', PushNotifications, store)
-  registerScreen('/page-view-events', PageViewEvents, store)
 
+  registerScreen('/dev-menu', null, store)
+  registerScreen('/rating-request', null, store)
+  registerScreen('/push-notifications', null, store)
+  registerScreen('/page-view-events', null, store)
   registerScreen('/courses', null, store, { canBecomeMaster: true, deepLink: true })
   registerScreen('/courses/:courseID/placeholder', null, store)
   registerScreen('/courses/:courseID', null, store, { canBecomeMaster: true, deepLink: true })
@@ -109,9 +102,8 @@ export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/syllabus', null, store, { deepLink: true })
 
   if (isTeacher()) {
-    registerScreen('/courses/:courseID/assignments/:assignmentID/assignee-picker', AssigneePicker, store)
-    registerScreen('/courses/:courseID/assignments/:assignmentID/assignee-search', AssigneeSearch, store)
-
+    registerScreen('/courses/:courseID/assignments/:assignmentID/assignee-picker', null, store)
+    registerScreen('/courses/:courseID/assignments/:assignmentID/assignee-search', null, store)
     registerScreen('/courses/:courseID/assignments/:assignmentID/submissions', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/assignments/:assignmentID', null, store, { deepLink: true })
     registerScreen('/courses/:courseID/assignments/:assignmentID/edit', null, store)

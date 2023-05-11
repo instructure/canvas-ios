@@ -29,6 +29,9 @@
 "All submissions" = "Alle Abgaben";
 
 /* No comment provided by engineer. */
+"All Submissions" = "Alle Abgaben";
+
+/* No comment provided by engineer. */
 "Attendance" = "Anwesenheit";
 
 /* No comment provided by engineer. */
@@ -131,6 +134,9 @@
 "Filter by" = "Filtern nach";
 
 /* No comment provided by engineer. */
+"Filter submissions" = "Abgaben filtern";
+
+/* No comment provided by engineer. */
 "Final Grade" = "Gesamtnote";
 
 /* No comment provided by engineer. */
@@ -206,6 +212,9 @@
 "Not Graded" = "Unbenotet";
 
 /* No comment provided by engineer. */
+"Not Submitted" = "Nicht abgegeben";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -240,6 +249,9 @@
 
 /* No comment provided by engineer. */
 "Post to..." = "Posten an ...";
+
+/* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "Übungsquizze und Umfragen haben keine Detailansichten.";
 
 /* No comment provided by engineer. */
 "Present" = "Vorhanden";
@@ -291,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Submissions" = "Abgaben";
+
+/* No comment provided by engineer. */
+"Submitted" = "Abgegeben";
 
 /* No comment provided by engineer. */
 "Test Student" = "Teststudierende*r";

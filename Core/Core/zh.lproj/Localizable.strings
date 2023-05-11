@@ -101,6 +101,9 @@
 "A title is required" = "标题必填";
 
 /* No comment provided by engineer. */
+"About" = "关于";
+
+/* No comment provided by engineer. */
 "Accept" = "接受";
 
 /* No comment provided by engineer. */
@@ -242,6 +245,9 @@
 "Anyone" = "任何人";
 
 /* No comment provided by engineer. */
+"App" = "应用程序";
+
+/* No comment provided by engineer. */
 "Appearance" = "外观";
 
 /* No comment provided by engineer. */
@@ -377,10 +383,16 @@
 "Available from" = "开始时间";
 
 /* No comment provided by engineer. */
+"Available From" = "开始日期";
+
+/* No comment provided by engineer. */
 "Available From:" = "起始可用日期：";
 
 /* No comment provided by engineer. */
 "Available until" = "可供使用的截止日期";
+
+/* No comment provided by engineer. */
+"Available Until" = "截止时间";
 
 /* No comment provided by engineer. */
 "Available Until:" = "截止可用日期：";
@@ -552,6 +564,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "会议";
+
+/* No comment provided by engineer. */
+"Connected via %@" = "连接方式%@";
 
 /* No comment provided by engineer. */
 "Contact your school to create an account." = "联系您的学校以创建帐户。";
@@ -770,7 +785,13 @@
 "Details" = "详情";
 
 /* No comment provided by engineer. */
+"DEVELOPER" = "开发人员";
+
+/* No comment provided by engineer. */
 "Developer menu" = "开发人员菜单";
+
+/* No comment provided by engineer. */
+"Disconnected" = "已断开连接";
 
 /* No comment provided by engineer. */
 "discussion" = "讨论";
@@ -827,6 +848,9 @@
 "Due Date" = "截止日期";
 
 /* No comment provided by engineer. */
+"Due Dates" = "截止日期";
+
+/* No comment provided by engineer. */
 "Due Dates, Double tap for details." = "截止日期，双击可显示详情。";
 
 /* No comment provided by engineer. */
@@ -879,6 +903,9 @@
 
 /* No comment provided by engineer. */
 "Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue." = "您是新用户，或者自您上次同意可接受的使用政策后，该政策已更改。请同意“可接受的使用政策”后再继续。";
+
+/* No comment provided by engineer. */
+"Email" = "电子邮件";
 
 /* No comment provided by engineer. */
 "Email address" = "电子邮件地址";
@@ -980,6 +1007,9 @@
 "File Details" = "文件详细信息";
 
 /* No comment provided by engineer. */
+"File No Longer Exists" = "文件已不存在";
+
+/* No comment provided by engineer. */
 "File Upload" = "文件上传";
 
 /* No comment provided by engineer. */
@@ -1032,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Folder Name" = "文件夹名称";
+
+/* No comment provided by engineer. */
+"For" = "用于";
 
 /* No comment provided by engineer. */
 "for %@" = "事由%@";
@@ -1395,6 +1428,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "登录错误";
+
+/* No comment provided by engineer. */
+"Login ID" = "登录 ID";
 
 /* No comment provided by engineer. */
 "Low: %@" = "低：%@";
@@ -1883,6 +1919,9 @@
 "Quiz Details" = "测验详情";
 
 /* No comment provided by engineer. */
+"Quiz Preview" = "测验预览";
+
+/* No comment provided by engineer. */
 "Quiz Score to Keep" = "要保留的测验分数";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2165,9 @@
 "Show Course Summary" = "显示课程摘要";
 
 /* No comment provided by engineer. */
+"Show dialog" = "显示对话框";
+
+/* No comment provided by engineer. */
 "Show Grades" = "显示评分";
 
 /* No comment provided by engineer. */
@@ -2351,6 +2393,9 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "需重启应用程序才能使用新语言设置。请重启该应用程序。";
 
 /* No comment provided by engineer. */
+"The file has been deleted by the author." = "该文件已被作者删除。";
+
+/* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "提交过程已经被操作系统终止。";
 
 /* No comment provided by engineer. */
@@ -2501,6 +2546,9 @@
 "Ungraded Survey" = "非评分调查";
 
 /* No comment provided by engineer. */
+"Unknown" = "未知";
+
+/* No comment provided by engineer. */
 "Unknown Error" = "未知错误";
 
 /* No comment provided by engineer. */
@@ -2600,6 +2648,9 @@
 "Users must post before seeing replies" = "用户必须先发布本人信息才能阅读他人回复";
 
 /* No comment provided by engineer. */
+"Version" = "版本";
+
+/* No comment provided by engineer. */
 "Video" = "视频";
 
 /* No comment provided by engineer. */
@@ -2634,6 +2685,9 @@
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "找不到任何类似的课程。";
+
+/* No comment provided by engineer. */
+"We couldn't load the quiz preview.\nPlease try again later." = "无法加载测验预览。\n请稍后再试。";
 
 /* No comment provided by engineer. */
 "We couldn’t find any files like that." = "无法找到任何类似的文件。";

@@ -29,6 +29,9 @@
 "All submissions" = "Все отправки";
 
 /* No comment provided by engineer. */
+"All Submissions" = "Все отправки";
+
+/* No comment provided by engineer. */
 "Attendance" = "Посещаемость";
 
 /* No comment provided by engineer. */
@@ -131,6 +134,9 @@
 "Filter by" = "Фильтровать по";
 
 /* No comment provided by engineer. */
+"Filter submissions" = "Фильтр отправок";
+
+/* No comment provided by engineer. */
 "Final Grade" = "Итоговая оценка";
 
 /* No comment provided by engineer. */
@@ -206,6 +212,9 @@
 "Not Graded" = "Оценка не выставлена";
 
 /* No comment provided by engineer. */
+"Not Submitted" = "Не отправлено";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -240,6 +249,9 @@
 
 /* No comment provided by engineer. */
 "Post to..." = "Опубликовать в...";
+
+/* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "Практические тесты и опросы не имеют подробного представления.";
 
 /* No comment provided by engineer. */
 "Present" = "Настоящий";
@@ -291,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Submissions" = "Отправки";
+
+/* No comment provided by engineer. */
+"Submitted" = "Отправлено";
 
 /* No comment provided by engineer. */
 "Test Student" = "Тестовый студент";

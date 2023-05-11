@@ -29,6 +29,9 @@
 "All submissions" = "Alla inlämningar";
 
 /* No comment provided by engineer. */
+"All Submissions" = "Alla inlämningar";
+
+/* No comment provided by engineer. */
 "Attendance" = "Närvaro";
 
 /* No comment provided by engineer. */
@@ -131,6 +134,9 @@
 "Filter by" = "Filtrera efter";
 
 /* No comment provided by engineer. */
+"Filter submissions" = "Filtrera inlämningar";
+
+/* No comment provided by engineer. */
 "Final Grade" = "Totalt bedömning";
 
 /* No comment provided by engineer. */
@@ -206,6 +212,9 @@
 "Not Graded" = "Inte bedömd";
 
 /* No comment provided by engineer. */
+"Not Submitted" = "Inte inlämnad";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -240,6 +249,9 @@
 
 /* No comment provided by engineer. */
 "Post to..." = "Publicera till...";
+
+/* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "Övningsquiz och enkäter har inte informationsvyer.";
 
 /* No comment provided by engineer. */
 "Present" = "Närvarande";
@@ -291,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Submissions" = "Inlämningar";
+
+/* No comment provided by engineer. */
+"Submitted" = "Inskickad";
 
 /* No comment provided by engineer. */
 "Test Student" = "Testelev";
