@@ -25,7 +25,7 @@ extension CourseSyncSelectorViewModel {
         let id: String
         let title: String
         let subtitle: String?
-        let isSelected: Bool
+        let selectionState: ListCellView.SelectionState
         var isCollapsed: Bool?
         let cellStyle: ListCellView.ListCellStyle
 
@@ -36,7 +36,7 @@ extension CourseSyncSelectorViewModel {
             lhs.id == rhs.id &&
             lhs.title == rhs.title &&
             lhs.subtitle == rhs.subtitle &&
-            lhs.isSelected == rhs.isSelected &&
+            lhs.selectionState == rhs.selectionState &&
             lhs.isCollapsed == rhs.isCollapsed
         }
 
@@ -44,7 +44,7 @@ extension CourseSyncSelectorViewModel {
             hasher.combine(id)
             hasher.combine(title)
             hasher.combine(subtitle)
-            hasher.combine(isSelected)
+            hasher.combine(selectionState)
             hasher.combine(isCollapsed)
         }
     }
@@ -60,7 +60,8 @@ extension Array where Element == CourseSyncSelectorEntry {
         for (courseIndex, course) in enumerated() {
             var courseItem = course.makeViewModelItem()
             courseItem.selectionDidToggle = {
-                interactor.setSelected(selection: .course(courseIndex), isSelected: !courseItem.isSelected)
+                let selectionState: ListCellView.SelectionState = courseItem.selectionState == .selected || courseItem.selectionState == .partiallySelected ? .deselected : .selected
+                interactor.setSelected(selection: .course(courseIndex), selectionState: selectionState)
             }
             courseItem.collapseDidToggle = {
                 interactor.setCollapsed(selection: .course(courseIndex), isCollapsed: !(courseItem.isCollapsed ?? false))
@@ -74,7 +75,8 @@ extension Array where Element == CourseSyncSelectorEntry {
             for (tabIndex, tab) in course.tabs.enumerated() {
                 var tabItem = tab.makeViewModelItem()
                 tabItem.selectionDidToggle = {
-                    interactor.setSelected(selection: .tab(courseIndex, tabIndex), isSelected: !tabItem.isSelected)
+                    let selectionState: ListCellView.SelectionState = tabItem.selectionState == .selected || tabItem.selectionState == .partiallySelected ? .deselected : .selected
+                    interactor.setSelected(selection: .tab(courseIndex, tabIndex), selectionState: selectionState)
                 }
                 tabItem.collapseDidToggle = {
                     interactor.setCollapsed(selection: .tab(courseIndex, tabIndex), isCollapsed: !(tabItem.isCollapsed ?? false))
@@ -88,7 +90,7 @@ extension Array where Element == CourseSyncSelectorEntry {
                 for (fileIndex, file) in course.files.enumerated() {
                     var fileItem = file.makeViewModelItem()
                     fileItem.selectionDidToggle = {
-                        interactor.setSelected(selection: .file(courseIndex, fileIndex), isSelected: !fileItem.isSelected)
+                        interactor.setSelected(selection: .file(courseIndex, fileIndex), selectionState: fileItem.selectionState == .selected ? .deselected : .selected)
                     }
                     items.append(fileItem)
                 }
@@ -105,7 +107,7 @@ extension CourseSyncSelectorEntry {
         .init(id: "course-\(id)",
               title: name,
               subtitle: nil,
-              isSelected: isSelected,
+              selectionState: selectionState,
               isCollapsed: isCollapsed,
               cellStyle: .mainAccordionHeader)
     }
@@ -117,7 +119,7 @@ extension CourseSyncSelectorEntry.Tab {
         .init(id: "courseTab-\(id)",
               title: name,
               subtitle: nil,
-              isSelected: isSelected,
+              selectionState: selectionState,
               isCollapsed: type == .files ? isCollapsed : nil,
               cellStyle: .listAccordionHeader)
     }
@@ -129,7 +131,7 @@ extension CourseSyncSelectorEntry.File {
         .init(id: "file-\(id)",
               title: name,
               subtitle: nil,
-              isSelected: isSelected,
+              selectionState: selectionState,
               cellStyle: .listItem)
     }
 }

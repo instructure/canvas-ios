@@ -24,7 +24,7 @@ protocol CourseSyncSelectorInteractor {
     func getCourseSyncEntries() -> AnyPublisher<[CourseSyncSelectorEntry], Error>
     func observeSelectedCount() -> AnyPublisher<Int, Never>
     func observeIsEverythingSelected() -> AnyPublisher<Bool, Never>
-    func setSelected(selection: CourseEntrySelection, isSelected: Bool)
+    func setSelected(selection: CourseEntrySelection, selectionState: ListCellView.SelectionState)
     func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool)
     func toggleAllCoursesSelection(isSelected: Bool)
     func getSelectedCourseEntries() -> AnyPublisher<[CourseSyncSelectorEntry], Never>
@@ -80,16 +80,16 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
             .eraseToAnyPublisher()
     }
 
-    func setSelected(selection: CourseEntrySelection, isSelected: Bool) {
+    func setSelected(selection: CourseEntrySelection, selectionState: ListCellView.SelectionState) {
         var entries = courseSyncEntries.value
 
         switch selection {
         case let .course(courseIndex):
-            entries[courseIndex].selectCourse(isSelected: isSelected)
+            entries[courseIndex].selectCourse(selectionState: selectionState)
         case let .tab(courseIndex, tabIndex):
-            entries[courseIndex].selectTab(index: tabIndex, isSelected: isSelected)
+            entries[courseIndex].selectTab(index: tabIndex, selectionState: selectionState)
         case let .file(courseIndex, fileIndex):
-            entries[courseIndex].selectFile(index: fileIndex, isSelected: isSelected)
+            entries[courseIndex].selectFile(index: fileIndex, selectionState: selectionState)
         }
 
         courseSyncEntries.send(entries)
@@ -114,12 +114,12 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         courseSyncEntries.value
             .indices
             .map { CourseEntrySelection.course($0) }
-            .forEach { setSelected(selection: $0, isSelected: isSelected) }
+            .forEach { setSelected(selection: $0, selectionState: isSelected ? .selected : .deselected) }
     }
 
     func getSelectedCourseEntries() -> AnyPublisher<[CourseSyncSelectorEntry], Never> {
         courseSyncEntries
-            .map { $0.filter { $0.isSelected } }
+            .map { $0.filter { $0.selectionState == .selected || $0.selectionState == .partiallySelected } }
             .replaceError(with: [])
             .first()
             .eraseToAnyPublisher()

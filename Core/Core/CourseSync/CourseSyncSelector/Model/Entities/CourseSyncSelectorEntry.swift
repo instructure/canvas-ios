@@ -28,16 +28,16 @@ struct CourseSyncSelectorEntry {
         let name: String
         let type: TabName
         var isCollapsed: Bool = true
-        var isSelected: Bool = false
         var state: State = .loading
+        var selectionState: ListCellView.SelectionState = .deselected
     }
 
     struct File {
         let id: String
         let name: String
         let url: URL?
-        var isSelected: Bool = false
         var state: State = .loading
+        var selectionState: ListCellView.SelectionState = .deselected
     }
 
     let name: String
@@ -46,14 +46,14 @@ struct CourseSyncSelectorEntry {
     var tabs: [Self.Tab]
     var selectedTabsCount: Int {
         tabs.reduce(0) { partialResult, tab in
-            partialResult + (tab.isSelected ? 1 : 0)
+            partialResult + (tab.selectionState == .selected || tab.selectionState == .partiallySelected ? 1 : 0)
         }
     }
 
     var files: [Self.File]
     var selectedFilesCount: Int {
         files.reduce(0) { partialResult, file in
-            partialResult + (file.isSelected ? 1 : 0)
+            partialResult + (file.selectionState == .selected ? 1 : 0)
         }
     }
 
@@ -62,38 +62,38 @@ struct CourseSyncSelectorEntry {
     }
 
     var isCollapsed: Bool = true
-    var isSelected: Bool = false
+    var selectionState: ListCellView.SelectionState = .deselected
     var isEverythingSelected: Bool = false
     var state: State = .loading
 
-    mutating func selectCourse(isSelected: Bool) {
-        tabs.indices.forEach { tabs[$0].isSelected = isSelected }
-        files.indices.forEach { files[$0].isSelected = isSelected }
-        self.isSelected = isSelected
-        isEverythingSelected = isSelected
+    mutating func selectCourse(selectionState: ListCellView.SelectionState) {
+        tabs.indices.forEach { tabs[$0].selectionState = selectionState }
+        files.indices.forEach { files[$0].selectionState = selectionState }
+        self.selectionState = selectionState
+        isEverythingSelected = selectionState == .selected ? true : false
     }
 
-    mutating func selectTab(index: Int, isSelected: Bool) {
-        tabs[index].isSelected = isSelected
+    mutating func selectTab(index: Int, selectionState: ListCellView.SelectionState) {
+        tabs[index].selectionState = selectionState
 
         if tabs[index].type == .files {
-            files.indices.forEach { files[$0].isSelected = isSelected }
+            files.indices.forEach { files[$0].selectionState = selectionState }
         }
 
         isEverythingSelected = (selectedTabsCount == tabs.count) && (selectedFilesCount == files.count)
-        self.isSelected = selectedTabsCount > 0
+        self.selectionState = selectedTabsCount > 0 ? .partiallySelected : .deselected
     }
 
-    mutating func selectFile(index: Int, isSelected: Bool) {
-        files[index].isSelected = isSelected
+    mutating func selectFile(index: Int, selectionState: ListCellView.SelectionState) {
+        files[index].selectionState = selectionState == .selected ? .selected : .deselected
 
         isEverythingSelected = (selectedTabsCount == tabs.count) && (selectedFilesCount == files.count)
 
         guard let fileTabIndex = tabs.firstIndex(where: { $0.type == TabName.files }) else {
             return
         }
-        tabs[fileTabIndex].isSelected = selectedFilesCount > 0
-        self.isSelected = selectedTabsCount > 0
+        tabs[fileTabIndex].selectionState = selectedFilesCount > 0 ? .partiallySelected : .deselected
+        self.selectionState = selectedTabsCount > 0 ? .partiallySelected : .deselected
     }
 
     mutating func updateCourseState(state: State) {

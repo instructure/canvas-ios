@@ -61,14 +61,16 @@ struct CourseSyncSelectorView: View {
                                 ListCellView(cellStyle: item.cellStyle,
                                              title: item.title,
                                              subtitle: item.subtitle,
-                                             isSelected: item.isSelected,
+                                             selectionState: item.selectionState,
                                              isCollapsed: item.isCollapsed,
                                              selectionDidToggle: item.selectionDidToggle,
                                              collapseDidToggle: item.collapseDidToggle)
                                 Divider().padding(.leading, item.cellStyle == .listItem ? 74 : 0)
                             }.padding(.leading, item.cellStyle == .listItem ? 24 : 0)
                         }
-                    }.animation(.default, value: viewModel.items)
+                    }
+                    .background(Color.backgroundLightest)
+                    .animation(.default, value: viewModel.items)
                 }
                 syncButton
             }

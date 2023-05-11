@@ -26,10 +26,16 @@ struct ListCellView: View {
         case listItem
     }
 
+    enum SelectionState {
+        case deselected
+        case selected
+        case partiallySelected
+    }
+
     let cellStyle: ListCellStyle
     let title: String
     let subtitle: String?
-    let isSelected: Bool
+    let selectionState: SelectionState
     let isCollapsed: Bool?
     let selectionDidToggle: (() -> Void)?
     let collapseDidToggle: (() -> Void)?
@@ -55,14 +61,19 @@ struct ListCellView: View {
     @ViewBuilder
     private var iconImage: some View {
         HStack {
-            if isSelected {
-                Image("completeSolid", bundle: .core)
-                    .size(20)
-                    .foregroundColor(.textInfo)
-            } else {
+            switch selectionState {
+            case .deselected:
                 Image("emptyLine", bundle: .core)
                     .size(20)
                     .foregroundColor(.textDarkest)
+            case .selected:
+                Image("completeSolid", bundle: .core)
+                    .size(20)
+                    .foregroundColor(.textInfo)
+            case .partiallySelected:
+                Image("partialSolid", bundle: .core)
+                    .size(20)
+                    .foregroundColor(.textInfo)
             }
         }.frame(width: 32, height: 32)
             .padding(.leading, 24)
@@ -158,5 +169,45 @@ struct ListCellView: View {
             .fixedSize(horizontal: false, vertical: true)
             .frame(minHeight: cellHeight)
         }
+    }
+}
+
+struct ListCellView_Previews: PreviewProvider {
+    static var previews: some View {
+        VStack(spacing: 0) {
+            ListCellView(cellStyle: .mainAccordionHeader,
+                         title: "Top Secret.pdf",
+                         subtitle: "1MB",
+                         selectionState: .selected,
+                         isCollapsed: false,
+                         selectionDidToggle: nil,
+                         collapseDidToggle: nil)
+            Divider()
+            ListCellView(cellStyle: .listAccordionHeader,
+                         title: "Something",
+                         subtitle: nil,
+                         selectionState: .deselected,
+                         isCollapsed: nil,
+                         selectionDidToggle: nil,
+                         collapseDidToggle: nil)
+            Divider()
+            ListCellView(cellStyle: .listAccordionHeader,
+                         title: "Files",
+                         subtitle: nil,
+                         selectionState: .deselected,
+                         isCollapsed: false,
+                         selectionDidToggle: nil,
+                         collapseDidToggle: nil)
+            Divider()
+            ListCellView(cellStyle: .listItem,
+                         title: "Creative Machines and Innovative Instrumentation.mov",
+                         subtitle: "4 GB",
+                         selectionState: .selected,
+                         isCollapsed: false,
+                         selectionDidToggle: nil,
+                         collapseDidToggle: nil)
+            Divider()
+        }
+        Spacer()
     }
 }
