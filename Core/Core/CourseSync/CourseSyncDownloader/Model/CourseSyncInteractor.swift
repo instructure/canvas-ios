@@ -23,12 +23,19 @@ protocol CourseSyncInteractor {
     func downloadContent(for entries: [CourseSyncSelectorEntry]) -> AnyPublisher<[CourseSyncSelectorEntry], Error>
 }
 
+protocol CourseSyncContentInteractor {
+    var associatedTabType: TabName { get }
+    func getContent(courseId: String) -> AnyPublisher<Void, Error>
+}
+
 final class CourseSyncInteractorLive: CourseSyncInteractor {
-    private let pagesInteractor: CourseSyncPagesInteractor
+    private let contentInteractors: [CourseSyncContentInteractor]
     private var courseSyncEntries = CurrentValueSubject<[CourseSyncSelectorEntry], Error>.init([])
 
     init(pagesDownloader: CourseSyncPagesInteractor = CourseSyncPagesInteractorLive()) {
-        self.pagesInteractor = pagesDownloader
+        contentInteractors = [
+            pagesDownloader
+        ]
     }
 
     func downloadContent(for entries: [CourseSyncSelectorEntry]) -> AnyPublisher<[CourseSyncSelectorEntry], Error> {
@@ -37,8 +44,8 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
         return Publishers.Sequence(sequence: entries.enumerated())
             .flatMap { index, entry in
                 Publishers.Zip(
-                    self.downloadPages(for: entry, index: index),
-                    self.downloadAssignments(for: entry, index: index)
+                    self.downloadTabContent(for: entry, index: index, tabName: .assignments),
+                    self.downloadTabContent(for: entry, index: index, tabName: .pages)
                 )
                 .updateErrorState {
                     self.setState(
@@ -51,7 +58,7 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
                         selection: .course(index),
                         state: .downloaded
                     )
-                }            
+                }
                 .eraseToAnyPublisher()
             }
             .collect()
@@ -60,20 +67,21 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
             .eraseToAnyPublisher()
     }
 
-    func downloadPages(for entry: CourseSyncSelectorEntry, index: Int) -> AnyPublisher<Void, Error> {
-        if let pagesTab = entry.tabs.first(where: { $0.type == .pages }),
-           pagesTab.isSelected,
-           let pagesTabIndex = entry.tabs.firstIndex(where: { $0.type == .pages }) {
-            return pagesInteractor.getPages(for: entry)
+    private func downloadTabContent(for entry: CourseSyncSelectorEntry, index: Int, tabName: TabName) -> AnyPublisher<Void, Error> {
+        if let tab = entry.tabs.first(where: { $0.type == tabName }),
+           tab.selectionState == .selected,
+           let tabIndex = entry.tabs.firstIndex(where: { $0.type == tabName }),
+           let interactor = contentInteractors.first(where: { $0.associatedTabType == tabName }) {
+            return interactor.getContent(courseId: entry.id)
                 .updateErrorState {
                     self.setState(
-                        selection: .tab(index, pagesTabIndex),
+                        selection: .tab(index, tabIndex),
                         state: .error
                     )
                 }
                 .updateDownloadedState {
                     self.setState(
-                        selection: .tab(index, pagesTabIndex),
+                        selection: .tab(index, tabIndex),
                         state: .downloaded
                     )
                 }
@@ -83,12 +91,6 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         }
-    }
-
-    func downloadAssignments(for _: CourseSyncSelectorEntry, index _: Int) -> AnyPublisher<Void, Error> {
-        Just(())
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
     }
 
     private func setState(selection: CourseEntrySelection, state: CourseSyncSelectorEntry.State) {

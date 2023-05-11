@@ -19,22 +19,23 @@
 import Combine
 import Foundation
 
-protocol CourseSyncPagesInteractor {
-    func getPages(for entry: CourseSyncSelectorEntry) -> AnyPublisher<Void, Error>
+protocol CourseSyncPagesInteractor: CourseSyncContentInteractor {}
+extension CourseSyncPagesInteractor {
+    var associatedTabType: TabName { .pages }
 }
 
-final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor {
-    func getPages(for entry: CourseSyncSelectorEntry) -> AnyPublisher<Void, Error> {
+final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor, CourseSyncContentInteractor {
+    func getContent(courseId: String) -> AnyPublisher<Void, Error> {
         Publishers.Zip(
             ReactiveStore(
                 useCase: GetFrontPage(
-                    context: .course(entry.id)
+                    context: .course(courseId)
                 )
             )
             .getEntities(),
             ReactiveStore(
                 useCase: GetPages(
-                    context: .course(entry.id)
+                    context: .course(courseId)
                 )
             )
             .getEntities()
