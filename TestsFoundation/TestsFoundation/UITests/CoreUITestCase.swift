@@ -95,7 +95,7 @@ open class CoreUITestCase: XCTestCase {
     public var doLoginAfterSetup: Bool = true
     open override func setUp() {
         super.setUp()
-        LoginSession.useTestKeychain()
+        LoginSession.clearAll()
         continueAfterFailure = false
         if CoreUITestCase.needsLaunch || app.state != .runningForeground || isRetry {
             CoreUITestCase.needsLaunch = false
