@@ -101,6 +101,9 @@
 "A title is required" = "Rhaid rhoi teitl";
 
 /* No comment provided by engineer. */
+"About" = "Ynghylch";
+
+/* No comment provided by engineer. */
 "Accept" = "Derbyn";
 
 /* No comment provided by engineer. */
@@ -242,6 +245,9 @@
 "Anyone" = "Unrhyw un";
 
 /* No comment provided by engineer. */
+"App" = "Ap";
+
+/* No comment provided by engineer. */
 "Appearance" = "Ymddangdosiad";
 
 /* No comment provided by engineer. */
@@ -377,10 +383,16 @@
 "Available from" = "Ar gael o";
 
 /* No comment provided by engineer. */
+"Available From" = "Ar gael o";
+
+/* No comment provided by engineer. */
 "Available From:" = "Ar gael o:";
 
 /* No comment provided by engineer. */
 "Available until" = "Ar gael tan";
+
+/* No comment provided by engineer. */
+"Available Until" = "Ar gael tan";
 
 /* No comment provided by engineer. */
 "Available Until:" = "Ar gael Tan:";
@@ -552,6 +564,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "Cynadleddau";
+
+/* No comment provided by engineer. */
+"Connected via %@" = "Wedi cysylltu drwy %@";
 
 /* No comment provided by engineer. */
 "Contact your school to create an account." = "Cysylltwch â’ch ysgol i greu cyfrif.";
@@ -770,7 +785,13 @@
 "Details" = "Manylion";
 
 /* No comment provided by engineer. */
+"DEVELOPER" = "DATBLYGWR";
+
+/* No comment provided by engineer. */
 "Developer menu" = "Dewislen datblygwr";
+
+/* No comment provided by engineer. */
+"Disconnected" = "Wedi datgysylltu";
 
 /* No comment provided by engineer. */
 "discussion" = "trafodaeth";
@@ -827,6 +848,9 @@
 "Due Date" = "Dyddiad Erbyn";
 
 /* No comment provided by engineer. */
+"Due Dates" = "Dyddiadau Erbyn";
+
+/* No comment provided by engineer. */
 "Due Dates, Double tap for details." = "Dyddiadau Erbyn, Tapiwch ddwywaith i gael y manylion.";
 
 /* No comment provided by engineer. */
@@ -879,6 +903,9 @@
 
 /* No comment provided by engineer. */
 "Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue." = "Naill ai rydych chi’n ddefnyddiwr newydd, neu mae’r Polisi Defnydd Derbyniol wedi newid ers i chi gytuno i’r Polisi ddiwethaf. Mae angen i chi gytuno i’r Polisi Defnydd Derbyniol cyn bwrw ymlaen.";
+
+/* No comment provided by engineer. */
+"Email" = "E-bost";
 
 /* No comment provided by engineer. */
 "Email address" = "Cyfeiriad e-bost";
@@ -980,6 +1007,9 @@
 "File Details" = "Manylion y Ffeil";
 
 /* No comment provided by engineer. */
+"File No Longer Exists" = "Dydy’r ffeil ddim yn bodoli mwyach.";
+
+/* No comment provided by engineer. */
 "File Upload" = "Llwytho Ffeil i Fyny";
 
 /* No comment provided by engineer. */
@@ -1032,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Folder Name" = "Enw ffolder";
+
+/* No comment provided by engineer. */
+"For" = "Ar gyfer";
 
 /* No comment provided by engineer. */
 "for %@" = "ar gyfer %@";
@@ -1395,6 +1428,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Gwall Mewngofnodi";
+
+/* No comment provided by engineer. */
+"Login ID" = "ID Mewngofnodi";
 
 /* No comment provided by engineer. */
 "Low: %@" = "Isel: %@";
@@ -1883,6 +1919,9 @@
 "Quiz Details" = "Manylion Cwis";
 
 /* No comment provided by engineer. */
+"Quiz Preview" = "Rhagolwg o'r Cwis";
+
+/* No comment provided by engineer. */
 "Quiz Score to Keep" = "Sgôr cwis i’w chadw";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2165,9 @@
 "Show Course Summary" = "Dangos Crynodeb Cwrs";
 
 /* No comment provided by engineer. */
+"Show dialog" = "Dangos deialog";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Dangos Graddau";
 
 /* No comment provided by engineer. */
@@ -2351,6 +2393,9 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Er mwyn defnyddio’r gosodiadau iaith newydd mae angen ailddechrau’r ap. Ail-lansiwch yr ap.";
 
 /* No comment provided by engineer. */
+"The file has been deleted by the author." = "Mae'r ffeil wedi’i dileu gan yr awdur.";
+
+/* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Cafodd y broses gyflwyno ei therfynu gan y system weithredu.";
 
 /* No comment provided by engineer. */
@@ -2501,6 +2546,9 @@
 "Ungraded Survey" = "Arolwg heb ei Raddio";
 
 /* No comment provided by engineer. */
+"Unknown" = "Dieithr";
+
+/* No comment provided by engineer. */
 "Unknown Error" = "Gwall Anhysbys";
 
 /* No comment provided by engineer. */
@@ -2600,6 +2648,9 @@
 "Users must post before seeing replies" = "Mae’n rhaid i ddefnyddwyr gyflwyno postiadau cyn gweld atebion";
 
 /* No comment provided by engineer. */
+"Version" = "Fersiwn";
+
+/* No comment provided by engineer. */
 "Video" = "Fideo";
 
 /* No comment provided by engineer. */
@@ -2634,6 +2685,9 @@
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "Doedd dim modd dod o hyd i unrhyw gyrsiau fel yna.";
+
+/* No comment provided by engineer. */
+"We couldn't load the quiz preview.\nPlease try again later." = "Doedd dim modd i ni lwytho’r rhagolwg o'r cwis.\nRhowch gynnig arall arni rywbryd eto.";
 
 /* No comment provided by engineer. */
 "We couldn’t find any files like that." = "Doedd dim modd dod o hyd i ffeiliau fel yna.";

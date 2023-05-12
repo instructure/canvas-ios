@@ -29,6 +29,9 @@
 "All submissions" = "ผลงานจัดส่งทั้งหมด";
 
 /* No comment provided by engineer. */
+"All Submissions" = "ผลงานจัดส่งทั้งหมด";
+
+/* No comment provided by engineer. */
 "Attendance" = "การเข้าร่วม";
 
 /* No comment provided by engineer. */
@@ -131,6 +134,9 @@
 "Filter by" = "กรองจาก";
 
 /* No comment provided by engineer. */
+"Filter submissions" = "กรองผลงานจัดส่ง";
+
+/* No comment provided by engineer. */
 "Final Grade" = "เกรดสรุป";
 
 /* No comment provided by engineer. */
@@ -206,6 +212,9 @@
 "Not Graded" = "ไม่ได้ลงเกรด";
 
 /* No comment provided by engineer. */
+"Not Submitted" = "ไม่ได้จัดส่ง";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -240,6 +249,9 @@
 
 /* No comment provided by engineer. */
 "Post to..." = "โพสต์ไฟยัง...";
+
+/* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "แบบทดสอบและแบบสอบถามฝึกหัดไม่มีมุมมองอย่างละเอียด";
 
 /* No comment provided by engineer. */
 "Present" = "มา";
@@ -291,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Submissions" = "ผลงานจัดส่ง";
+
+/* No comment provided by engineer. */
+"Submitted" = "จัดส่งแล้ว";
 
 /* No comment provided by engineer. */
 "Test Student" = "ทดสอบผู้เรียน";

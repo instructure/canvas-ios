@@ -101,6 +101,9 @@
 "A title is required" = "標題為必填";
 
 /* No comment provided by engineer. */
+"About" = "關於";
+
+/* No comment provided by engineer. */
 "Accept" = "接受";
 
 /* No comment provided by engineer. */
@@ -242,6 +245,9 @@
 "Anyone" = "任何人";
 
 /* No comment provided by engineer. */
+"App" = "應用程式";
+
+/* No comment provided by engineer. */
 "Appearance" = "外觀";
 
 /* No comment provided by engineer. */
@@ -377,10 +383,16 @@
 "Available from" = "可用起始日期";
 
 /* No comment provided by engineer. */
+"Available From" = "可用起始日期";
+
+/* No comment provided by engineer. */
 "Available From:" = "可用起始日期：";
 
 /* No comment provided by engineer. */
 "Available until" = "可用截止時間：";
+
+/* No comment provided by engineer. */
+"Available Until" = "可用截止時間";
 
 /* No comment provided by engineer. */
 "Available Until:" = "可用截止時間：";
@@ -552,6 +564,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "會議";
+
+/* No comment provided by engineer. */
+"Connected via %@" = "連線方式%@";
 
 /* No comment provided by engineer. */
 "Contact your school to create an account." = "請聯絡您的所屬學校以創建帳戶。";
@@ -770,7 +785,13 @@
 "Details" = "詳細資料";
 
 /* No comment provided by engineer. */
+"DEVELOPER" = "開發人員";
+
+/* No comment provided by engineer. */
 "Developer menu" = "開發人員選單";
+
+/* No comment provided by engineer. */
+"Disconnected" = "中斷連線";
 
 /* No comment provided by engineer. */
 "discussion" = "討論區";
@@ -827,6 +848,9 @@
 "Due Date" = "截止日期";
 
 /* No comment provided by engineer. */
+"Due Dates" = "截止日期";
+
+/* No comment provided by engineer. */
 "Due Dates, Double tap for details." = "截止日期，雙擊以顯示詳情。";
 
 /* No comment provided by engineer. */
@@ -879,6 +903,9 @@
 
 /* No comment provided by engineer. */
 "Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue." = "無論您是新的使用者，或是自上次同意以來，「可接受使用政策」都已經變更。請在您繼續使用前同意「可接受使用政策」。";
+
+/* No comment provided by engineer. */
+"Email" = "電郵";
 
 /* No comment provided by engineer. */
 "Email address" = "電郵地址";
@@ -980,6 +1007,9 @@
 "File Details" = "檔案詳情";
 
 /* No comment provided by engineer. */
+"File No Longer Exists" = "檔案不再存在";
+
+/* No comment provided by engineer. */
 "File Upload" = "檔案上傳";
 
 /* No comment provided by engineer. */
@@ -1032,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Folder Name" = "資料夾名稱";
+
+/* No comment provided by engineer. */
+"For" = "對象：";
 
 /* No comment provided by engineer. */
 "for %@" = "對象： %@";
@@ -1395,6 +1428,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "登入錯誤";
+
+/* No comment provided by engineer. */
+"Login ID" = "登入 ID";
 
 /* No comment provided by engineer. */
 "Low: %@" = "低：%@";
@@ -1883,6 +1919,9 @@
 "Quiz Details" = "測驗詳細資料";
 
 /* No comment provided by engineer. */
+"Quiz Preview" = "測驗預覽";
+
+/* No comment provided by engineer. */
 "Quiz Score to Keep" = "要保留的測驗分數";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2165,9 @@
 "Show Course Summary" = "顯示課程摘要";
 
 /* No comment provided by engineer. */
+"Show dialog" = "顯示對話";
+
+/* No comment provided by engineer. */
 "Show Grades" = "顯示成績";
 
 /* No comment provided by engineer. */
@@ -2351,6 +2393,9 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "若要使用新的語言設定，需要重新啟動應用程式。請重新啟動應用程式。";
 
 /* No comment provided by engineer. */
+"The file has been deleted by the author." = "作者已刪除該檔案。";
+
+/* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "提交程序由作業系統終止。";
 
 /* No comment provided by engineer. */
@@ -2501,6 +2546,9 @@
 "Ungraded Survey" = "未評分的調查";
 
 /* No comment provided by engineer. */
+"Unknown" = "未知";
+
+/* No comment provided by engineer. */
 "Unknown Error" = "未知問題";
 
 /* No comment provided by engineer. */
@@ -2600,6 +2648,9 @@
 "Users must post before seeing replies" = "使用者必須公佈，然後才能看到回覆";
 
 /* No comment provided by engineer. */
+"Version" = "版本";
+
+/* No comment provided by engineer. */
 "Video" = "視訊";
 
 /* No comment provided by engineer. */
@@ -2634,6 +2685,9 @@
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "我們找不到像那樣的課程。";
+
+/* No comment provided by engineer. */
+"We couldn't load the quiz preview.\nPlease try again later." = "我們無法載入測驗預覽。\n請稍後重試。";
 
 /* No comment provided by engineer. */
 "We couldn’t find any files like that." = "我們找不到像那樣的檔案。";

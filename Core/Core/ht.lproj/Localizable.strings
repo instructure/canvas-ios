@@ -101,6 +101,9 @@
 "A title is required" = "Yon tit obligatwa";
 
 /* No comment provided by engineer. */
+"About" = "Apwopo";
+
+/* No comment provided by engineer. */
 "Accept" = "Aksepte";
 
 /* No comment provided by engineer. */
@@ -242,6 +245,9 @@
 "Anyone" = "Nenpòt";
 
 /* No comment provided by engineer. */
+"App" = "App";
+
+/* No comment provided by engineer. */
 "Appearance" = "Aparans";
 
 /* No comment provided by engineer. */
@@ -377,10 +383,16 @@
 "Available from" = "Disponib depi";
 
 /* No comment provided by engineer. */
+"Available From" = "Disponib Depi";
+
+/* No comment provided by engineer. */
 "Available From:" = "Disponib Depi:";
 
 /* No comment provided by engineer. */
 "Available until" = "Disponib jiska";
+
+/* No comment provided by engineer. */
+"Available Until" = "Disponib Jiska";
 
 /* No comment provided by engineer. */
 "Available Until:" = "Disponib Jiska:";
@@ -552,6 +564,9 @@
 
 /* No comment provided by engineer. */
 "Conferences" = "Konferans";
+
+/* No comment provided by engineer. */
+"Connected via %@" = "Konekte atravè %@";
 
 /* No comment provided by engineer. */
 "Contact your school to create an account." = "Kontakte lekòl ou a pou w ka kreye yon kont.";
@@ -770,7 +785,13 @@
 "Details" = "Detay";
 
 /* No comment provided by engineer. */
+"DEVELOPER" = "DEVELOPÈ";
+
+/* No comment provided by engineer. */
 "Developer menu" = "Meni devlopè";
+
+/* No comment provided by engineer. */
+"Disconnected" = "Dekonekte";
 
 /* No comment provided by engineer. */
 "discussion" = "diskisyon";
@@ -827,6 +848,9 @@
 "Due Date" = "Delè";
 
 /* No comment provided by engineer. */
+"Due Dates" = "Delè";
+
+/* No comment provided by engineer. */
 "Due Dates, Double tap for details." = "Delè, Tape de fwa pou ka wè detay yo.";
 
 /* No comment provided by engineer. */
@@ -879,6 +903,9 @@
 
 /* No comment provided by engineer. */
 "Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue." = "Swa ou se yon nouvo itilizatè, swa Politik Itilizasyon Akseptab la chanje depi dènye fwa ou te aksepte li a. Aksepte politik Itilizasyon Akseptab la anvan w kontinye.";
+
+/* No comment provided by engineer. */
+"Email" = "Imèl";
 
 /* No comment provided by engineer. */
 "Email address" = "Adrès imèl";
@@ -980,6 +1007,9 @@
 "File Details" = "Detay Fichye";
 
 /* No comment provided by engineer. */
+"File No Longer Exists" = "Fichye Pa Egziste Ankò";
+
+/* No comment provided by engineer. */
 "File Upload" = "Transfè Fichye";
 
 /* No comment provided by engineer. */
@@ -1032,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "Folder Name" = "Non Dosye";
+
+/* No comment provided by engineer. */
+"For" = "Pou";
 
 /* No comment provided by engineer. */
 "for %@" = "pou %@";
@@ -1395,6 +1428,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Erè Koneksyon";
+
+/* No comment provided by engineer. */
+"Login ID" = "ID Koneksyon";
 
 /* No comment provided by engineer. */
 "Low: %@" = "Ba: %@";
@@ -1883,6 +1919,9 @@
 "Quiz Details" = "Detay Quiz";
 
 /* No comment provided by engineer. */
+"Quiz Preview" = "Apèsi Quiz";
+
+/* No comment provided by engineer. */
 "Quiz Score to Keep" = "Nòt Quiz pou Kenbe";
 
 /* No comment provided by engineer. */
@@ -2126,6 +2165,9 @@
 "Show Course Summary" = "Afiche Rezime Kou";
 
 /* No comment provided by engineer. */
+"Show dialog" = "Afiche dyalòg";
+
+/* No comment provided by engineer. */
 "Show Grades" = "Afiche Klas";
 
 /* No comment provided by engineer. */
@@ -2351,6 +2393,9 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Aplikasyon an dwe redemare pou l ka itilize nouvo paramèt lang lan. Re lanse aplikasyon an.";
 
 /* No comment provided by engineer. */
+"The file has been deleted by the author." = "Otè a te elimine fichye sa a.";
+
+/* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Sistèm eksplwatasyon an te entèwonp pwosesis soumisyon an.";
 
 /* No comment provided by engineer. */
@@ -2501,6 +2546,9 @@
 "Ungraded Survey" = "Ankèt san Klase";
 
 /* No comment provided by engineer. */
+"Unknown" = "Enkoni";
+
+/* No comment provided by engineer. */
 "Unknown Error" = "Erè Enkoni";
 
 /* No comment provided by engineer. */
@@ -2600,6 +2648,9 @@
 "Users must post before seeing replies" = "Itilizatè yo dwe poste anvan yo wè repons yo";
 
 /* No comment provided by engineer. */
+"Version" = "Vèsyon";
+
+/* No comment provided by engineer. */
 "Video" = "Videyo";
 
 /* No comment provided by engineer. */
@@ -2634,6 +2685,9 @@
 
 /* No comment provided by engineer. */
 "We couldn't find any courses like that." = "Nou pa jwenn okenn kou konsa.";
+
+/* No comment provided by engineer. */
+"We couldn't load the quiz preview.\nPlease try again later." = "Nou pa t ka chaje apèsi quiz la.\nTanpri eseye ankò.";
 
 /* No comment provided by engineer. */
 "We couldn’t find any files like that." = "Nou paka jwenn okenn fichye konsa.";

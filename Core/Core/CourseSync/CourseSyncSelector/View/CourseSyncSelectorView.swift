@@ -44,15 +44,7 @@ struct CourseSyncSelectorView: View {
         case .data:
             VStack(spacing: 0) {
                 CourseSyncDiskSpaceInfoView(viewModel: diskSpaceViewModel)
-                    .padding(.horizontal, 16)
-                    .padding(.top, 16)
-                Text(viewModel.selectedItemCount)
-                    .foregroundColor(.textDarkest)
-                    .font(.semibold16, lineHeight: .fit)
-                    .padding(.horizontal, 16)
-                    .padding(.top, 24)
-                    .padding(.bottom, 28)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(16)
                 Divider()
                 ScrollView {
                     LazyVStack(spacing: 0) {
@@ -69,11 +61,11 @@ struct CourseSyncSelectorView: View {
                             }.padding(.leading, item.cellStyle == .listItem ? 24 : 0)
                         }
                     }
-                    .background(Color.backgroundLightest)
                     .animation(.default, value: viewModel.items)
                 }
                 syncButton
             }
+            .background(Color.backgroundLightest)
             .confirmationAlert(isPresented: $viewModel.isShowingConfirmationDialog,
                                presenting: viewModel.confirmAlert)
         }

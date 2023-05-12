@@ -28,6 +28,7 @@
 		025EA9A96E5BED2588152AEB /* AboutViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63874B22907E4203CE202A6 /* AboutViewModelTests.swift */; };
 		02F669F394104B220EA5EA5B /* ConversationCoursesActionSheetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995704AB4B7CA8FBBBF42F14 /* ConversationCoursesActionSheetTests.swift */; };
 		0330C433F303DB3168B62983 /* FilePickerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C264E6B0B973420F0CCCC0 /* FilePickerViewControllerTests.swift */; };
+		0393BC45876DE51EAFAC5906 /* DeveloperMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA7FEB562C43B275145ACC5 /* DeveloperMenuView.swift */; };
 		03984B4702E776F6414CA2B7 /* CourseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12AC654821F7177126C4248 /* CourseTests.swift */; };
 		040FF2547BD72BFD23957B17 /* PublisherExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6506F65A72D957C95E8E75AF /* PublisherExtensions.swift */; };
 		041EBBB2B68CA271C7B32A55 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428C87C9B22A498638AABB58 /* DateExtensions.swift */; };
@@ -569,6 +570,7 @@
 		634FC8042859AE82C632075B /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6EBA2448D0A3C082CF64F5 /* SideMenuView.swift */; };
 		63E5A84EA60AED03CDD8D583 /* GetAccountHelpLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB13FE3661707D5C320E59ED /* GetAccountHelpLinks.swift */; };
 		63FE1FF3BEC2B9766646A358 /* ListWithoutVerticalScrollIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62797B42CE3DEE245E46D3F0 /* ListWithoutVerticalScrollIndicator.swift */; };
+		640D2CAAFFFF66FC72F09327 /* PushNotificationDebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F4702D0B9BE0FC1016F4A0 /* PushNotificationDebugView.swift */; };
 		6413C661F4325434B45424ED /* GetInboxMessageList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995B8309AD2B97144006ED89 /* GetInboxMessageList.swift */; };
 		6458A12D3683BA1C26B4515A /* CoreHostingControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BADDDD1F71C3C860E1A3AD5 /* CoreHostingControllerTests.swift */; };
 		646012996F16FDE9E7A41C03 /* EmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA98A219C0118BC1617B8616 /* EmptyView.xib */; };
@@ -1646,6 +1648,7 @@
 		139367B56D422A8EC72D1BB3 /* LoginManualOAuthViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManualOAuthViewControllerTests.swift; sourceTree = "<group>"; };
 		139598163BDC614785A3B1E3 /* SubmissionViewableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionViewableTests.swift; sourceTree = "<group>"; };
 		13BD338D1F8F950877136F98 /* DiscussionListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionListViewController.swift; sourceTree = "<group>"; };
+		13F4702D0B9BE0FC1016F4A0 /* PushNotificationDebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationDebugView.swift; sourceTree = "<group>"; };
 		13F9B896E9F79547C673C456 /* APIErrorReportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorReportTests.swift; sourceTree = "<group>"; };
 		13FCF13DF2AC3D5312FA82A4 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		140D097EF0F5E423219BF36C /* FontExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtensions.swift; sourceTree = "<group>"; };
@@ -2755,6 +2758,7 @@
 		BBCEED9901EC76B323C4FD07 /* ContextModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextModelTests.swift; sourceTree = "<group>"; };
 		BC723AE20B4803407C7DD59C /* SubmissionSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionSummary.swift; sourceTree = "<group>"; };
 		BCA0B7F94BC1FF027758F784 /* DocViewerAnnotationUploaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationUploaderTests.swift; sourceTree = "<group>"; };
+		BCA7FEB562C43B275145ACC5 /* DeveloperMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperMenuView.swift; sourceTree = "<group>"; };
 		BCD534BC72D742AD70E6D712 /* MasteryPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasteryPath.swift; sourceTree = "<group>"; };
 		BCF69620D01166929CF75D45 /* QuizDetailViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDetailViewModelProtocol.swift; sourceTree = "<group>"; };
 		BD016DDC9E7807CB2AD213AA /* LockStatusViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockStatusViewable.swift; sourceTree = "<group>"; };
@@ -4874,9 +4878,11 @@
 		5A1EDD4FAC707FF58D1175EE /* DeveloperMenu */ = {
 			isa = PBXGroup;
 			children = (
+				BCA7FEB562C43B275145ACC5 /* DeveloperMenuView.swift */,
 				1ABEE939C0B67F0025AAFBDC /* DeveloperMenuViewController.storyboard */,
 				F1D13F31C6A0DC4363C33803 /* DeveloperMenuViewController.swift */,
 				020400C9828BC9CE42AC6D7F /* ExperimentalFeaturesViewController.swift */,
+				13F4702D0B9BE0FC1016F4A0 /* PushNotificationDebugView.swift */,
 			);
 			path = DeveloperMenu;
 			sourceTree = "<group>";
@@ -8999,6 +9005,7 @@
 				5FFA92A516A914963E3630C9 /* DefaultWKWebViewConfiguration.swift in Sources */,
 				B22210181A8D63607CDB39A9 /* DeterminateBarProgressViewStyle.swift in Sources */,
 				354482A755DA87DECDF9B43A /* DeterminateCircleProgressViewStyle.swift in Sources */,
+				0393BC45876DE51EAFAC5906 /* DeveloperMenuView.swift in Sources */,
 				BC3E36D494FD1698B9D78E0C /* DeveloperMenuViewController.swift in Sources */,
 				C170486F584D7C8D6E6E8959 /* DisableZoom.swift in Sources */,
 				E40B31C3BC76201692962638 /* DisclosureIndicator.swift in Sources */,
@@ -9397,6 +9404,7 @@
 				D749D4A37CA01514416C263E /* PublishedIconView.swift in Sources */,
 				040FF2547BD72BFD23957B17 /* PublisherExtensions.swift in Sources */,
 				4554EE88500CE1094230EF28 /* PullToRefresh.swift in Sources */,
+				640D2CAAFFFF66FC72F09327 /* PushNotificationDebugView.swift in Sources */,
 				5A980325FEE33A7AD5AA00F6 /* PushNotificationError.swift in Sources */,
 				67DE33BB8FB5CD264956C712 /* Quiz.swift in Sources */,
 				20FA5E9929B314BE8A0D1F4B /* QuizAttribute.swift in Sources */,

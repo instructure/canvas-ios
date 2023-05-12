@@ -29,6 +29,9 @@
 "All submissions" = "Alle afleveringer";
 
 /* No comment provided by engineer. */
+"All Submissions" = "Alle afleveringer";
+
+/* No comment provided by engineer. */
 "Attendance" = "Tilstedeværelse";
 
 /* No comment provided by engineer. */
@@ -131,6 +134,9 @@
 "Filter by" = "Filtrere efter";
 
 /* No comment provided by engineer. */
+"Filter submissions" = "Filtrer afleveringer";
+
+/* No comment provided by engineer. */
 "Final Grade" = "Endelig vurdering";
 
 /* No comment provided by engineer. */
@@ -206,6 +212,9 @@
 "Not Graded" = "Ikke bedømt";
 
 /* No comment provided by engineer. */
+"Not Submitted" = "Ikke indsendt";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -240,6 +249,9 @@
 
 /* No comment provided by engineer. */
 "Post to..." = "Slå op på ...";
+
+/* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "Øvelsesquiz og -undersøgelser har ikke detaljerede visninger.";
 
 /* No comment provided by engineer. */
 "Present" = "Til stede";
@@ -291,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Submissions" = "Afleveringer";
+
+/* No comment provided by engineer. */
+"Submitted" = "Afleveret";
 
 /* No comment provided by engineer. */
 "Test Student" = "Prøveelev";

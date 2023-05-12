@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,25 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import UIKit
+import Foundation
 
-public class ListBackgroundView: UIView {
-    var insetObservation: NSKeyValueObservation?
+public enum PeopleListCell: String, ElementWrapper {
+    case idPrefix = "people-list-cell-row-"
+    case nameLabel = "name-label"
+    case roleLabel = "role-label"
 
-    public override func awakeFromNib() {
-        insetObservation = (superview as? UITableView)?.observe(\.contentInset, options: .new) { [weak self] _, _ in
-            self?.setNeedsLayout()
-        }
+    public static func cell(index: Int) -> Element {
+        app.find(id: "\(PeopleListCell.idPrefix.rawValue)\(index)")
     }
 
-    public override func layoutSubviews() {
-        guard let tableView = superview as? UITableView else { return }
-        if subviews.allSatisfy({ $0.isHidden }) {
-            frame.size.height = 0
-        } else {
-            frame.size.height = tableView.frame.height - tableView.adjustedContentInset.top - frame.minY
-        }
+    public static func name(index: Int) -> String {
+        app.find(id: "\(PeopleListCell.idPrefix.rawValue)\(index).\(PeopleListCell.nameLabel.rawValue)").label()
+    }
 
-        super.layoutSubviews()
+    public static func role(index: Int) -> String {
+        app.find(id: "\(PeopleListCell.idPrefix.rawValue)\(index).\(PeopleListCell.roleLabel.rawValue)").label()
     }
 }

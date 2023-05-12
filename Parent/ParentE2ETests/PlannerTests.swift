@@ -21,7 +21,7 @@ import TestsFoundation
 
 class PlannerTests: CoreUITestCase {
     let calendar = Calendar.current
-    let y = 2020
+    let y = 2023
     let m = 3
     lazy var reference = DateComponents(calendar: .current, year: y, month: m, day: 1).date!
 
@@ -140,24 +140,23 @@ class PlannerTests: CoreUITestCase {
         XCTAssertEqual(assignments().label(), "Assignments")
         XCTAssertEqual(assignments().isSelected, true)
         assignments().tap()
-        sleep(2)
+        assignments().waitToExist()
         XCTAssertEqual(assignments().isSelected, false)
         NavBar.backButton(label: "Done").tap()
         PlannerList.event(id: "assignment_23334").waitToVanish()
         PlannerCalendar.dayButton(year: y, month: m, day: 4).tap()
         PlannerCalendar.dayButton(year: y, month: m, day: 3).tap()
-        sleep(2)
+        PlannerCalendar.dayButton(year: y, month: m, day: 3).waitToExist()
         XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 3).label(), "March 3, \(y), 3 events")
 
         PlannerCalendar.filterButton.tap()
         XCTAssertEqual(assignments().isSelected, false)
         assignments().tap()
-        sleep(2)
+        assignments().waitToExist()
         XCTAssertEqual(assignments().isSelected, true)
         NavBar.backButton(label: "Done").tap()
         PlannerCalendar.dayButton(year: y, month: m, day: 4).tap()
         PlannerCalendar.dayButton(year: y, month: m, day: 3).tap()
-        sleep(2)
         PlannerList.event(id: "assignment_23334").waitToExist()
         XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 3).label(), "March 3, \(y), 1 event")
 
