@@ -45,7 +45,7 @@ public final class CourseSyncSelectorCourse: NSManagedObject {
                 )
                 let contextPredicate = NSPredicate(
                     format: "%K == %@", #keyPath(Tab.contextRaw),
-                    Context.course(dbEntity.courseId).canvasContextID as CVarArg
+                    Context.course(dbEntity.courseId).canvasContextID
                 )
                 let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [urlPredicate, contextPredicate])
                 let tab: Tab = context.fetch(predicate).first ?? context.insert()

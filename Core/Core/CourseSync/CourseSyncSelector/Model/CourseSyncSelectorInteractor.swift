@@ -199,13 +199,15 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
                 .flatMap { unownedSelf.getFiles(folderID: $0.id, initialArray: []) }
         }
         .map {
-            $0.map {
-                CourseSyncSelectorEntry.File(
-                    id: $0.file?.id ?? Foundation.UUID().uuidString,
-                    name: $0.file?.displayName ?? "Unknown file",
-                    url: $0.file?.url
-                )
-            }
+            $0
+                .compactMap { $0.file }
+                .map {
+                    CourseSyncSelectorEntry.File(
+                        id: $0.id ?? Foundation.UUID().uuidString,
+                        name: $0.displayName ?? NSLocalizedString("Unknown file", comment: ""),
+                        url: $0.url
+                    )
+                }
         }
         .replaceEmpty(with: [])
         .eraseToAnyPublisher()
@@ -249,7 +251,6 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
             )
         )
         .getEntities()
-        .retry(3)
         .tryCatch { error -> AnyPublisher<[FolderItem], Error> in
             if case .unauthorized = error as? Core.APIError {
                 return Just([])
