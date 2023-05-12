@@ -367,6 +367,10 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return LogEventListViewController.create()
     },
 
+    "/offline/settings": { _, _, _ in
+        CourseSyncSelectorAssembly.makeViewController(env: .shared)
+    },
+
     "/push-notifications": { _, _, _ in
         CoreHostingController(PushNotificationDebugView())
     },

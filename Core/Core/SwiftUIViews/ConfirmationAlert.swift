@@ -19,14 +19,14 @@
 import Combine
 import SwiftUI
 
-public struct ConfirmationAlertViewModel {
+public class ConfirmationAlertViewModel {
     public let title: String
-    public let message: Text
+    public var message: String
     public let cancelButtonTitle: String
     public let confirmButtonTitle: String
     public let confirmButtonRole: ButtonRole?
-    public let confirmDidTap = PassthroughSubject<Void, Never>()
-    public let cancelDidTap = PassthroughSubject<Void, Never>()
+
+    private var subscribers: [PassthroughSubject<Void, Never>] = []
 
     public init(title: String,
                 message: String,
@@ -34,10 +34,33 @@ public struct ConfirmationAlertViewModel {
                 confirmButtonTitle: String,
                 isDestructive: Bool = false) {
         self.title = title
-        self.message = Text(message)
+        self.message = message
         self.cancelButtonTitle = cancelButtonTitle
         self.confirmButtonTitle = confirmButtonTitle
         self.confirmButtonRole = isDestructive ? .destructive : nil
+    }
+
+    /**
+     - returns: A Publisher that finishes when either of the confirmation dialog's button is pressed.
+     If the user confirmed the action the publisher will send a value before completing.
+     */
+    public func userConfirmation() -> AnyPublisher<Void, Never> {
+        let subject = PassthroughSubject<Void, Never>()
+        subscribers.append(subject)
+        return subject.eraseToAnyPublisher()
+    }
+
+    fileprivate func notifyCompletion(isConfirmed: Bool) {
+        for subscriber in subscribers {
+
+            if isConfirmed {
+                subscriber.send()
+            }
+
+            subscriber.send(completion: .finished)
+        }
+
+        subscribers.removeAll()
     }
 }
 
@@ -57,12 +80,12 @@ public extension View {
             actions: {
                 Button(viewModel.cancelButtonTitle,
                        role: .cancel,
-                       action: viewModel.cancelDidTap.send)
+                       action: { viewModel.notifyCompletion(isConfirmed: false) })
                 Button(viewModel.confirmButtonTitle,
                        role: viewModel.confirmButtonRole,
-                       action: viewModel.confirmDidTap.send)
+                       action: { viewModel.notifyCompletion(isConfirmed: true) })
             }, message: {
-                viewModel.message
+                Text(viewModel.message)
             })
     }
 }
@@ -79,16 +102,18 @@ struct ConfirmationAlertPreview: PreviewProvider {
                                                        cancelButtonTitle: "Not Now",
                                                        confirmButtonTitle: "I Confirm",
                                                        isDestructive: true)
+        let showDidTap = PassthroughSubject<Void, Never>()
 
         public init() {
-            confirmDialog.confirmDidTap
+            unowned let unownedSelf = self
+            showDidTap
+                .handleEvents(receiveOutput: {
+                    unownedSelf.statusText = ""
+                    unownedSelf.isShowingConfirmationDialog = true
+                })
+                .flatMap { unownedSelf.confirmDialog.userConfirmation() }
                 .map { "Confirmed!" }
                 .assign(to: &$statusText)
-        }
-
-        func showDidTap() {
-            statusText = ""
-            isShowingConfirmationDialog = true
         }
     }
 
@@ -101,7 +126,7 @@ struct ConfirmationAlertPreview: PreviewProvider {
                     Text(viewModel.statusText).frame(height: 20)
                     Spacer()
                     Button {
-                        viewModel.showDidTap()
+                        viewModel.showDidTap.send()
                     } label: {
                         Text("Show dialog")
                     }

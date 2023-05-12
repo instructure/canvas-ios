@@ -117,7 +117,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
 
     public init(
         env: AppEnvironment,
-        offlineService: OfflineService = OfflineServiceLive(),
+        offlineService: OfflineService = OfflineServiceLive.shared,
         context: NSManagedObjectContext,
         useCase: U,
         eventHandler: @escaping EventHandler
