@@ -71,7 +71,9 @@ public struct InboxView: View {
     private var messagesList: some View {
         ForEach(model.messages) { message in
             VStack(spacing: 0) {
-                InboxMessageView(model: message)
+                InboxMessageView(model: message, cellDidTap: { messageID in
+                    model.messageDidTap.send((messageID: messageID, controller: controller))
+                })
                 Color.borderMedium
                     .frame(height: 0.5)
                     .overlay(Color.backgroundLightest.frame(width: 64), alignment: .leading)
