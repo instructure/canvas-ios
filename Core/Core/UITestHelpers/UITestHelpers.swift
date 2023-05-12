@@ -115,7 +115,6 @@ public class UITestHelpers {
         self.appDelegate = appDelegate
         self.window = appDelegate.window as? ActAsUserWindow
 
-        Keychain.app = Keychain(serviceName: "com.instructure.shared-credentials.tests")
         CacheManager.clear()
         UserDefaults.standard.set(true, forKey: "IS_UI_TEST")
         if let portName = ProcessInfo.processInfo.environment["APP_IPC_PORT_NAME"] {

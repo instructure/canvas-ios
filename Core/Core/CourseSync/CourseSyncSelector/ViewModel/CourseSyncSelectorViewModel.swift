@@ -48,19 +48,28 @@ class CourseSyncSelectorViewModel: ObservableObject {
 
     // MARK: - Private
 
-    private let interactor: CourseSyncSelectorInteractor
+    private let selectorInteractor: CourseSyncSelectorInteractor
+    private let syncInteractor: CourseSyncInteractor
     private var subscriptions = Set<AnyCancellable>()
 
-    init(interactor: CourseSyncSelectorInteractor) {
-        self.interactor = interactor
+    init(
+        selectorInteractor: CourseSyncSelectorInteractor,
+        syncInteractor: CourseSyncInteractor
+    ) {
+        self.selectorInteractor = selectorInteractor
+        self.syncInteractor = syncInteractor
 
-        updateState(interactor)
-        updateSyncButtonState(interactor)
-        updateConfirmationDialogMessage(interactor)
-        updateSelectAllButtonTitle(interactor)
+        updateState(selectorInteractor)
+        updateSyncButtonState(selectorInteractor)
+        updateConfirmationDialogMessage(selectorInteractor)
+        updateSelectAllButtonTitle(selectorInteractor)
 
-        handleLeftNavBarTap(interactor)
-        handleSyncButtonTap(interactor, confirmAlert: confirmAlert)
+        handleLeftNavBarTap(selectorInteractor)
+        handleSyncButtonTap(
+            selectorInteractor: selectorInteractor,
+            syncInteractor: syncInteractor,
+            confirmAlert: confirmAlert
+        )
     }
 
     private func updateSyncButtonState(_ interactor: CourseSyncSelectorInteractor) {
@@ -74,7 +83,8 @@ class CourseSyncSelectorViewModel: ObservableObject {
         interactor
             .observeIsEverythingSelected()
             .map { $0 ? NSLocalizedString("Deselect All", comment: "")
-                      : NSLocalizedString("Select All", comment: "") }
+                : NSLocalizedString("Select All", comment: "")
+            }
             .assign(to: &$leftNavBarTitle)
     }
 
@@ -97,8 +107,11 @@ class CourseSyncSelectorViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private func handleSyncButtonTap(_ interactor: CourseSyncSelectorInteractor,
-                                     confirmAlert: ConfirmationAlertViewModel) {
+    private func handleSyncButtonTap(
+        selectorInteractor: CourseSyncSelectorInteractor,
+        syncInteractor: CourseSyncInteractor,
+        confirmAlert: ConfirmationAlertViewModel
+    ) {
         syncButtonDidTap
             .handleEvents(receiveOutput: { [unowned self] _ in
                 isShowingConfirmationDialog = true
@@ -106,10 +119,13 @@ class CourseSyncSelectorViewModel: ObservableObject {
             .flatMap { view in
                 confirmAlert.userConfirmation().map { view }
             }
-            .flatMap { view in
-                interactor.getSelectedCourseEntries()
+            .flatMap { [weak self] view in
+                self?.state = .loading
+                return selectorInteractor.getSelectedCourseEntries()
+                    .flatMap { syncInteractor.downloadContent(for: $0) }
                     .handleEvents(receiveOutput: { _ in
                         // TODO: Start download, go to dashboard
+                        self?.state = .data
                         AppEnvironment.shared.router.dismiss(view)
                     })
             }

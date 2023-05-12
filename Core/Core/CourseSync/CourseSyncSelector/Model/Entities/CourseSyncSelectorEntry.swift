@@ -106,5 +106,5 @@ struct CourseSyncSelectorEntry {
 
     mutating func updateFileState(index: Int, state: State) {
         files[index].state = state
-    }    
+    }
 }
