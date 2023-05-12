@@ -50,9 +50,4 @@ extension LoginSession {
             clientSecret: clientSecret
         )
     }
-
-    public static func useTestKeychain() {
-        Keychain.app = Keychain(serviceName: "com.instructure.shared-credentials.tests")
-        clearAll()
-    }
 }

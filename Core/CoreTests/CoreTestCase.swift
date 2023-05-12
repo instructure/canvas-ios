@@ -54,7 +54,7 @@ class CoreTestCase: XCTestCase {
     override func setUp() {
         super.setUp()
         API.resetMocks()
-        LoginSession.useTestKeychain()
+        LoginSession.clearAll()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
         router = environment.router as? TestRouter
         logger = environment.logger as? TestLogger

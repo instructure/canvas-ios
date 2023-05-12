@@ -170,4 +170,23 @@ class GradeCircleViewTests: XCTestCase {
         XCTAssertFalse(view.displayGrade.isHidden)
         XCTAssertEqual(view.displayGrade.text, "Excused")
     }
+
+    func testItRendersScoreWhenNoPointsIsPossible() {
+        let a = Assignment.make(from: .make(grading_type: .points,
+                                            points_possible: nil,
+                                            submission: .make(grade: "77",
+                                                              score: 77,
+                                                              workflow_state: .graded)
+        ))
+        view.update(a)
+        XCTAssertFalse(view.isHidden)
+        XCTAssertFalse(view.circlePoints.isHidden)
+        XCTAssertEqual(view.circlePoints.text, "77")
+        XCTAssertFalse(view.circleLabel.isHidden)
+        XCTAssertTrue(view.circleComplete.isHidden)
+        XCTAssertEqual(view.gradeCircle?.progress, 1)
+        XCTAssertEqual(view.gradeCircle?.accessibilityLabel, "77.0 Points")
+        XCTAssertTrue(view.displayGrade.isHidden)
+        XCTAssertEqual(view.displayGrade.text, "77")
+    }
 }

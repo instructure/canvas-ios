@@ -60,7 +60,7 @@ public class API {
 
                 // If the request is rejected due to the rate limit being exhausted we retry and hope that the quota is restored in the meantime
                 if response?.exceededLimit(responseData: data) == true {
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
                         self?.makeRequest(requestable, callback: callback)
                     }
                     return
