@@ -52,10 +52,10 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
                 .make(
                     id: "1",
                     tabs: [
-                        .make(id: "assignments", label: "Assignments"),
-                        .make(id: "files", label: "Files"),
-                        .make(id: "pages", label: "Pages"),
-                        .make(id: "quizzes", label: "Quizzes"),
+                        .make(id: "assignments", html_url: URL(string: "/assignments")!, label: "Assignments"),
+                        .make(id: "files", html_url: URL(string: "/files")!, label: "Files"),
+                        .make(id: "pages", html_url: URL(string: "/pages")!, label: "Pages"),
+                        .make(id: "quizzes", html_url: URL(string: "/quizzes")!, label: "Quizzes"),
                     ]
                 ),
             ]

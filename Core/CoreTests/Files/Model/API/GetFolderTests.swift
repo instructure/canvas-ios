@@ -64,6 +64,7 @@ class GetFolderTests: CoreTestCase {
         api.mock(GetFilesRequest(context: Context(.folder, id: "1")), value: [ .make() ])
         api.mock(GetFoldersRequest(context: Context(.folder, id: "1")), value: [ .make(id: 2, parent_folder_id: 1) ])
         useCase.fetch()
+        drainMainQueue()
         let items: [FolderItem] = databaseClient.fetch(scope: useCase.scope)
         XCTAssertEqual(items.first?.name, "File")
         XCTAssertEqual(items.last?.name, "my files")
