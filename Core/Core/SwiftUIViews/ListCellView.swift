@@ -63,15 +63,15 @@ struct ListCellView: View {
         HStack {
             switch selectionState {
             case .deselected:
-                Image("emptyLine", bundle: .core)
+                Image.emptyLine
                     .size(20)
                     .foregroundColor(.textDarkest)
             case .selected:
-                Image("completeSolid", bundle: .core)
+                Image.completeSolid
                     .size(20)
                     .foregroundColor(.textInfo)
             case .partiallySelected:
-                Image("partialSolid", bundle: .core)
+                Image.partialSolid
                     .size(20)
                     .foregroundColor(.textInfo)
             }
@@ -86,12 +86,10 @@ struct ListCellView: View {
             switch cellStyle {
             case .mainAccordionHeader, .listAccordionHeader:
                 if let isCollapsed = isCollapsed {
-                    Image("arrowOpenDownLine", bundle: .core)
+                    Image.arrowOpenDownLine
                         .size(16)
                         .foregroundColor(.textDarkest)
                         .rotationEffect(isCollapsed ? .degrees(0) : .degrees(-180))
-                } else {
-                    SwiftUI.EmptyView()
                 }
             case .listItem:
                 SwiftUI.EmptyView()
