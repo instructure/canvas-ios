@@ -47,10 +47,10 @@ public enum CourseListAssembly {
         let pastDBCourse = CourseListItem.save(pastAPICourse, enrollmentState: .completed, in: environment.database.viewContext)
         let futureDBCourse = CourseListItem.save(futureAPICourse, enrollmentState: .invited_or_pending, in: environment.database.viewContext)
 
-        let interactor = CourseListInteractorPreview(past: [pastDBCourse],
+        let selectorInteractor = CourseListInteractorPreview(past: [pastDBCourse],
                                                      current: [currentDBCourse],
                                                      future: [futureDBCourse])
-        let viewModel = CourseListViewModel(interactor)
+        let viewModel = CourseListViewModel(selectorInteractor)
         let view = CourseListView(viewModel: viewModel)
         return view
     }
