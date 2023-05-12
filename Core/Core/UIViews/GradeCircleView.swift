@@ -99,11 +99,15 @@ public class GradeCircleView: UIView {
         circleComplete.isHidden = !isPassFail
 
         // Update grade circle
-        if let score = submission.score, let pointsPossible = assignment.pointsPossible {
+        if let score = submission.score {
             circlePoints.text = NumberFormatter.localizedString(from: NSNumber(value: score), number: .decimal)
-            gradeCircle.progress = CGFloat(score / pointsPossible)
 
-            gradeCircle.accessibilityLabel = assignment.scoreOutOfPointsPossibleText
+            if let pointsPossible = assignment.pointsPossible {
+                gradeCircle.progress = CGFloat(score / pointsPossible)
+                gradeCircle.accessibilityLabel = assignment.scoreOutOfPointsPossibleText
+            } else {
+                gradeCircle.accessibilityLabel = "\(score) \(assignment.pointsText ?? "")"
+            }
         }
 
         circleLabel.text = assignment.pointsText
