@@ -40,6 +40,26 @@ struct ListCellView: View {
     let selectionDidToggle: (() -> Void)?
     let collapseDidToggle: (() -> Void)?
 
+    let progress: Float?
+
+    internal init(cellStyle: ListCellView.ListCellStyle,
+                  title: String,
+                  subtitle: String? = nil,
+                  selectionState: ListCellView.SelectionState = .deselected,
+                  isCollapsed: Bool? = nil,
+                  selectionDidToggle: (() -> Void)? = nil,
+                  collapseDidToggle: (() -> Void)? = nil,
+                  progress: Float? = nil) {
+        self.cellStyle = cellStyle
+        self.title = title
+        self.subtitle = subtitle
+        self.selectionState = selectionState
+        self.isCollapsed = isCollapsed
+        self.selectionDidToggle = selectionDidToggle
+        self.collapseDidToggle = collapseDidToggle
+        self.progress = progress
+    }
+
     private var backgroundColor: Color {
         switch cellStyle {
         case .mainAccordionHeader:
@@ -60,24 +80,26 @@ struct ListCellView: View {
 
     @ViewBuilder
     private var iconImage: some View {
-        HStack {
-            switch selectionState {
-            case .deselected:
-                Image.emptyLine
-                    .size(20)
-                    .foregroundColor(.textDarkest)
-            case .selected:
-                Image.completeSolid
-                    .size(20)
-                    .foregroundColor(.textInfo)
-            case .partiallySelected:
-                Image.partialSolid
-                    .size(20)
-                    .foregroundColor(.textInfo)
-            }
-        }.frame(width: 32, height: 32)
-            .padding(.leading, 24)
-            .padding(.trailing, 20)
+        if progress == nil {
+            HStack {
+                switch selectionState {
+                case .deselected:
+                    Image.emptyLine
+                        .size(20)
+                        .foregroundColor(.textDarkest)
+                case .selected:
+                    Image.completeSolid
+                        .size(20)
+                        .foregroundColor(.textInfo)
+                case .partiallySelected:
+                    Image.partialSolid
+                        .size(20)
+                        .foregroundColor(.textInfo)
+                }
+            }.frame(width: 32, height: 32)
+                .padding(.leading, 24)
+                .padding(.trailing, 4)
+        }
     }
 
     @ViewBuilder
@@ -93,6 +115,19 @@ struct ListCellView: View {
                 }
             case .listItem:
                 SwiftUI.EmptyView()
+            }
+            if let progress = progress {
+                if progress < 1 {
+                    ProgressView(value: progress)
+                        .progressViewStyle(.determinateCircle(size: 20,
+                                                              lineWidth: 2,
+                                                              color: .backgroundInfo))
+                        .padding(.leading, 12)
+                } else {
+                    Image("checkLine", bundle: .core)
+                        .size(24)
+                        .foregroundColor(.textDarkest)
+                }
             }
         }
         .padding(16)
@@ -159,7 +194,7 @@ struct ListCellView: View {
                         if subtitle != nil {
                             subTitleText
                         }
-                    }
+                    }.padding(.leading, 16)
                     Spacer()
                     accessoryIcon
                 }
@@ -179,36 +214,50 @@ struct ListCellView_Previews: PreviewProvider {
                          title: "Top Secret.pdf",
                          subtitle: "1MB",
                          selectionState: .selected,
-                         isCollapsed: false,
-                         selectionDidToggle: nil,
-                         collapseDidToggle: nil)
+                         isCollapsed: false)
             Divider()
             ListCellView(cellStyle: .listAccordionHeader,
                          title: "Something",
                          subtitle: nil,
-                         selectionState: .deselected,
-                         isCollapsed: nil,
-                         selectionDidToggle: nil,
-                         collapseDidToggle: nil)
+                         selectionState: .deselected)
             Divider()
             ListCellView(cellStyle: .listAccordionHeader,
                          title: "Files",
                          subtitle: nil,
                          selectionState: .deselected,
-                         isCollapsed: false,
-                         selectionDidToggle: nil,
-                         collapseDidToggle: nil)
+                         isCollapsed: false)
             Divider()
             ListCellView(cellStyle: .listItem,
                          title: "Creative Machines and Innovative Instrumentation.mov",
                          subtitle: "4 GB",
                          selectionState: .selected,
-                         isCollapsed: false,
-                         selectionDidToggle: nil,
-                         collapseDidToggle: nil)
+                         isCollapsed: false)
             Divider()
+            Spacer()
         }
-        Spacer()
+        VStack(spacing: 0) {
+            Divider()
+            ListCellView(cellStyle: .mainAccordionHeader,
+                         title: "Top Secret.pdf",
+                         subtitle: "1MB",
+                         isCollapsed: false,
+                         progress: 0.15)
+            Divider()
+            ListCellView(cellStyle: .listAccordionHeader,
+                         title: "Files",
+                         subtitle: "1.13 GB",
+                         isCollapsed: false,
+                         progress: 0.5)
+            Divider()
+            ListCellView(cellStyle: .listItem,
+                         title: "Creative Machines and Innovative Instrumentation.mov",
+                         subtitle: "4 GB",
+                         isCollapsed: false,
+                         progress: 1)
+            Divider()
+            Spacer()
+        }
+
     }
 }
 
