@@ -19,11 +19,9 @@
 import Combine
 
 final class CourseSyncPagesInteractorPreview: CourseSyncPagesInteractor, CourseSyncContentInteractor {
-    func getContent(courseId: String) -> AnyPublisher<Void, Error> {
+    func getContent(courseId _: String) -> AnyPublisher<Void, Error> {
         Just(())
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
-
-
 }

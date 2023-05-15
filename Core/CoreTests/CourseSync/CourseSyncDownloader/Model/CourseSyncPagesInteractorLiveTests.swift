@@ -53,7 +53,10 @@ class CourseSyncPagesInteractorLiveTests: CoreTestCase {
             )
 
         waitForExpectations(timeout: 0.1)
-        let pageList: [Page] = databaseClient.fetch(nil, sortDescriptors: nil)
+        let pageList: [Page] = databaseClient.fetch(
+            nil,
+            sortDescriptors: [NSSortDescriptor(key: #keyPath(Page.id), ascending: true)]
+        )
         XCTAssertEqual(pageList.count, 2)
         XCTAssertEqual(pageList[0].id, "1")
         XCTAssertEqual(pageList[1].id, "2")

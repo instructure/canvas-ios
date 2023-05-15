@@ -35,8 +35,8 @@ public enum QuizSubmissionListAssembly {
     public static func makePreview(env: AppEnvironment,
                                    submissions: [QuizSubmissionListItem])
     -> QuizSubmissionListView {
-        let selectorInteractor = QuizSubmissionListInteractorPreview(env: env, submissions: submissions)
-        let viewModel = QuizSubmissionListViewModel(router: env.router, filterValue: .all, selectorInteractor: selectorInteractor)
+        let interactor = QuizSubmissionListInteractorPreview(env: env, submissions: submissions)
+        let viewModel = QuizSubmissionListViewModel(router: env.router, filterValue: .all, interactor: interactor)
         return QuizSubmissionListView(model: viewModel)
     }
 
