@@ -57,7 +57,9 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     "/conversations/:conversationID": { url, params, userInfo in
         if ExperimentalFeature.nativeStudentInbox.isEnabled {
             guard let conversationID = params["conversationID"] else { return nil }
-            return ConversationDetailViewController.create(conversationID: conversationID)
+            // parent VC:
+            //return ConversationDetailViewController.create(conversationID: conversationID)
+            return MessageDetailsAssembly.makeViewController(env: AppEnvironment.shared, conversationID: conversationID)
         } else {
             return HelmViewController(moduleName: "/conversations/:conversationID/", url: url, params: params, userInfo: userInfo)
         }
