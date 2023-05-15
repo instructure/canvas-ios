@@ -43,9 +43,6 @@ class Persistency {
     fileprivate static let defaultDispatchQueueLabel = "com.instructure.pageEvent.persistanceQueue"
     fileprivate var queuedEvents = [PageViewEvent]()
     fileprivate static var persistencyStorageFileURL: URL?
-    var queueCount: Int {
-        return queuedEvents.count
-    }
 
     init(dispatchQueue: DispatchQueue = DispatchQueue(label: defaultDispatchQueueLabel, attributes: .concurrent)) {
         self.dispatchQueue = dispatchQueue
@@ -94,16 +91,31 @@ class Persistency {
 
     // MARK: - Queue Ops
 
-    func batchOfEvents(_ count: Int) -> [PageViewEvent]? {
-        if (count - 1) >= queueCount { return nil }
-        return queueCount > 0 ? Array(queuedEvents[0...count-1]) : []
+    func batchOfEvents(_ count: Int, userID: String) -> [PageViewEvent]? {
+        let userQueue = queue(for: userID)
+        if (count - 1) >= userQueue.count { return nil }
+        return userQueue.count > 0 ? Array(userQueue[0...count-1]) : []
     }
 
-    func dequeue(_ count: Int = 1, handler: EmptyHandler? = nil) {
-        if queuedEvents.count >= count {
-            queuedEvents.removeFirst(count)
+    func dequeue(_ count: Int = 1, userID: String, handler: EmptyHandler? = nil) {
+        let userQueue = queue(for: userID)
+
+        if userQueue.count >= count {
+            for event in userQueue {
+                queuedEvents.removeAll { $0.guid == event.guid }
+            }
             saveToFile(handler)
         } else { handler?() }
+    }
+
+    func queueCount(for userID: String) -> Int {
+        queuedEvents.reduce(into: 0) { partialResult, event in
+            partialResult += (event.userID == userID ? 1 : 0)
+        }
+    }
+
+    private func queue(for userID: String) -> [PageViewEvent] {
+        queuedEvents.filter { $0.userID == userID }
     }
 }
 
