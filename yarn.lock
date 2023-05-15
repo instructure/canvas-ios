@@ -832,7 +832,7 @@ d@1, d@^1.0.1:
     es5-ext "^0.10.50"
     type "^1.0.1"
 
-danger@^11.2.4:
+danger@^11.2.6:
   version "11.2.6"
   resolved "https://registry.yarnpkg.com/danger/-/danger-11.2.6.tgz#0c7bffb9aa2daf3eb841ee2d6fba37bd4866d23a"
   integrity sha512-EEeuDmUcxPGJ166q7Zzz1WEiV+e0qbPopaX4sXxds8U5doGMdw/8oOUOVye7JiHIBuss3KvQWt4YHZeD3jSCfw==
