@@ -122,6 +122,7 @@ struct ListCellView: View {
                         .progressViewStyle(.determinateCircle(size: 20,
                                                               lineWidth: 2,
                                                               color: .backgroundInfo))
+                        .accessibilityHidden(true)
                         .padding(.leading, 12)
                 } else {
                     Image("checkLine", bundle: .core)
@@ -183,11 +184,12 @@ struct ListCellView: View {
                     .fixedSize(horizontal: false, vertical: false)
                     .frame(minHeight: cellHeight)
                 HStack(spacing: 0) {
-                    iconImage
-                        .onTapGesture {
-                            withAnimation {
-                                selectionDidToggle?()
-                            }
+                    Button {
+                        withAnimation {
+                            selectionDidToggle?()
+                        }
+                    } label: {
+                        iconImage.accessibilityHidden(true)
                     }
                     VStack(alignment: .leading, spacing: 2) {
                         titleText
@@ -196,12 +198,69 @@ struct ListCellView: View {
                         }
                     }.padding(.leading, 16)
                     Spacer()
-                    accessoryIcon
+                    accessoryIcon.accessibilityHidden(true)
                 }
             }
             .fixedSize(horizontal: false, vertical: true)
             .frame(minHeight: cellHeight)
+        }.accessibilityElement(children: .combine)
+            .accessibilityAction(named: accessibilitySelectionText) {
+                selectionDidToggle?()
+            }.if(isCollapsed != nil) { view in
+                view.accessibilityAction(named: accessibilityAccordionHeaderText) {
+                    collapseDidToggle?()
+                }
+        }.accessibility(label: accessibilityText)
+    }
+
+    private var accessibilitySelectionText: Text {
+        switch selectionState {
+        case .deselected:
+            return Text("Select item", bundle: .core)
+        case .selected, .partiallySelected:
+            return Text("Deselect item", bundle: .core)
         }
+    }
+
+    private var accessibilityAccordionHeaderText: Text {
+        if isCollapsed == true {
+            return Text("Open section", bundle: .core)
+        }
+        return Text("Close section", bundle: .core)
+    }
+
+    private var accessibilityText: Text {
+        let titleText = Text(title + (subtitle ?? "") + ",")
+        var selectionText: Text
+        switch selectionState {
+        case .deselected:
+            selectionText = Text("Deselected,", bundle: .core)
+        case .selected:
+            selectionText = Text("Selected,", bundle: .core)
+        case .partiallySelected:
+            selectionText = Text("Partially selected,", bundle: .core)
+        }
+        var collapseText: Text
+        switch isCollapsed {
+        case true:
+            collapseText = Text("Closed section", bundle: .core)
+        case false:
+            collapseText = Text("Open section", bundle: .core)
+        default:
+            collapseText = Text("")
+        }
+        var progressText: Text
+        if let progress = progress {
+            if progress == 1 {
+                progressText = Text("Download complete", bundle: .core)
+            } else {
+                progressText = Text("Downloading", bundle: .core)
+            }
+        } else {
+            progressText = Text("")
+        }
+
+        return titleText + selectionText + collapseText + progressText
     }
 }
 
