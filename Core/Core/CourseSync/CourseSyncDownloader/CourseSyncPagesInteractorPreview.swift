@@ -18,6 +18,8 @@
 
 import Combine
 
+#if DEBUG
+
 final class CourseSyncPagesInteractorPreview: CourseSyncPagesInteractor, CourseSyncContentInteractor {
     func getContent(courseId _: String) -> AnyPublisher<Void, Error> {
         Just(())
@@ -25,3 +27,5 @@ final class CourseSyncPagesInteractorPreview: CourseSyncPagesInteractor, CourseS
             .eraseToAnyPublisher()
     }
 }
+
+#endif
