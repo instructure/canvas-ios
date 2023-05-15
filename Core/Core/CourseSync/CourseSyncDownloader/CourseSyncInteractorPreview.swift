@@ -18,6 +18,8 @@
 
 import Combine
 
+#if DEBUG
+
 final class CourseSyncInteractorPreview: CourseSyncInteractor {
     func downloadContent(for entries: [CourseSyncSelectorEntry]) -> AnyPublisher<[CourseSyncSelectorEntry], Error> {
         Just([])
@@ -25,3 +27,5 @@ final class CourseSyncInteractorPreview: CourseSyncInteractor {
             .eraseToAnyPublisher()
     }
 }
+
+#endif
