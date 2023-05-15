@@ -48,7 +48,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         courseCardListViewModel = DashboardCourseCardListAssembly.makeDashboardCourseCardListViewModel(showOnlyTeacherEnrollment: showOnlyTeacherEnrollment)
         self.shouldShowGroupList = shouldShowGroupList
         let env = AppEnvironment.shared
-        layoutViewModel = DashboardLayoutViewModel(interactor: DashboardSettingsInteractorLive(environment: env, defaults: env.userDefaults!))
+        layoutViewModel = DashboardLayoutViewModel(interactor: DashboardSettingsInteractorLive(environment: env, defaults: env.userDefaults))
         colors = env.subscribe(GetCustomColors())
         groups = env.subscribe(GetDashboardGroups())
         notifications = env.subscribe(GetAccountNotifications())

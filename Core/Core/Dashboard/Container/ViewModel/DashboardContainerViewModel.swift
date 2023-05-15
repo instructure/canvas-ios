@@ -34,7 +34,7 @@ public class DashboardContainerViewModel: ObservableObject {
     public init(environment: AppEnvironment) {
         settingsButtonTapped
             .map {
-                let interactor = DashboardSettingsInteractorLive(environment: environment, defaults: environment.userDefaults!)
+                let interactor = DashboardSettingsInteractorLive(environment: environment, defaults: environment.userDefaults)
                 let viewModel = DashboardSettingsViewModel(interactor: interactor)
                 let dashboard = CoreHostingController(DashboardSettingsView(viewModel: viewModel))
                 dashboard.addDoneButton(side: .left)
