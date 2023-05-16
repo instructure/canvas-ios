@@ -21,18 +21,30 @@ import Combine
 public class MessageDetailsInteractorLive: MessageDetailsInteractor {
     // MARK: - Outputs
     public var state = CurrentValueSubject<StoreState, Never>(.loading)
-   // public var submissions = CurrentValueSubject<[QuizSubmissionListItem], Never>([])
+    public var messages = CurrentValueSubject<[ConversationMessage], Never>([])
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
-//    private let usersStore: Store<GetQuizSubmissionUsers>
+    private let conversationStore: Store<GetConversation>
 
     public init(env: AppEnvironment, conversationID: String) {
-//        self.usersStore = env.subscribe(GetQuizSubmissionUsers(courseID: courseID))
+        self.conversationStore = env.subscribe(GetConversation(id: conversationID))
 
-       // submissionsStore.exhaust()
+        conversationStore
+            .statePublisher
+            .subscribe(state)
+            .store(in: &subscriptions)
+
+        conversationStore
+            .allObjects
+            .map {
+                $0.first?.messages ?? []
+            }
+            .subscribe(messages)
+            .store(in: &subscriptions)
+
+        conversationStore.refresh()
     }
-
 
     // MARK: - Inputs
     public func refresh() -> Future<Void, Never> {

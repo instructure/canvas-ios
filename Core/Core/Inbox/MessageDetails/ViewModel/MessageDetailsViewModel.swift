@@ -21,7 +21,7 @@ import Combine
 class MessageDetailsViewModel: ObservableObject {
     // MARK: - Outputs
     @Published public private(set) var state: StoreState = .loading
-   // @Published public private(set) var submissions: [QuizSubmissionListItemViewModel] = []
+    @Published public private(set) var messages: [MessageViewModel] = []
     public let title = NSLocalizedString("Message Details", comment: "")
 
     // MARK: - Inputs
@@ -34,7 +34,19 @@ class MessageDetailsViewModel: ObservableObject {
     public init(router: Router, interactor: MessageDetailsInteractor) {
         self.interactor = interactor
 
-          //  setupOutputBindings()
+        setupOutputBindings()
            // setupInputBindings(router: router)
     }
+
+    private func setupOutputBindings() {
+            interactor.state
+                .assign(to: &$state)
+            interactor.messages
+                .map { messages in
+                    messages.map {
+                        MessageViewModel(item: $0)
+                    }
+                }
+                .assign(to: &$messages)
+        }
 }

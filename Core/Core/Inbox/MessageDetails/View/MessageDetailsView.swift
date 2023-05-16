@@ -26,8 +26,61 @@ struct MessageDetailsView: View {
         self.model = model
     }
 
-    var body: some View {
-        Text("Message List is here")
+    public var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            if model.state == .loading {
+                loadingIndicator
+            } else {
+                GeometryReader { geometry in
+                    List {
+                        switch model.state {
+                        case .data:
+                            messageList
+                        case .empty, .error:
+                            Text("There was an error loading the message. Pull to refresh to try again.")
+                        case .loading:
+                            SwiftUI.EmptyView()
+                        }
+                    }
+                    .refreshable {
+                        await withCheckedContinuation { continuation in
+                            model.refreshDidTrigger.send {
+                                continuation.resume()
+                            }
+                        }
+                    }
+                    .listStyle(PlainListStyle())
+                    .animation(.default, value: model.messages)
+                }
+            }
+        }
+        .background(Color.backgroundLightest)
+        .navigationTitle(model.title)
+       // .navigationBarItems(trailing: messageUsersButton)
+    }
+
+    private var loadingIndicator: some View {
+        ProgressView()
+            .progressViewStyle(.indeterminateCircle())
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .accentColor(Color(Brand.shared.primary))
+            .listRowInsets(EdgeInsets())
+            .listRowSeparator(.hidden)
+    }
+
+    private var messageList: some View {
+        ForEach(model.messages) { message in
+            VStack(spacing: 0) {
+                //QuizSubmissionListItemView(model: submission, cellDidTap: { model.submissionDidTap() })
+                Text(message.body)
+                Color.borderMedium
+                    .frame(height: 0.5)
+                    .overlay(Color.backgroundLightest.frame(width: 64), alignment: .leading)
+            }
+            .listRowInsets(EdgeInsets())
+            .listRowSeparator(.hidden)
+            .listRowBackground(SwiftUI.EmptyView())
+        }
     }
 }
 

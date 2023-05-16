@@ -16,13 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
+import SwiftUI
 
-public protocol MessageDetailsInteractor {
-    // MARK: - Outputs
-    var state: CurrentValueSubject<StoreState, Never> { get }
-    var messages: CurrentValueSubject<[ConversationMessage], Never> { get }
+public struct MessageViewModel: Identifiable, Equatable {
+    public let id: String
+    public let body: String
 
-    // MARK: - Inputs
-    func refresh() -> Future<Void, Never>
+    public init(item: ConversationMessage) {
+        self.id = item.id
+        self.body = item.body
+    }
 }
