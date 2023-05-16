@@ -36,6 +36,8 @@ struct CourseSyncProgressInfoView: View {
     }
 }
 
+#if DEBUG
+
 struct CourseSyncProgressInfoView_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: 0) {
@@ -46,3 +48,5 @@ struct CourseSyncProgressInfoView_Previews: PreviewProvider {
         }
     }
 }
+
+#endif
