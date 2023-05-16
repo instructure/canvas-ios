@@ -82,7 +82,8 @@ class CourseSyncSelectorViewModel: ObservableObject {
     private func updateSelectAllButtonTitle(_ interactor: CourseSyncSelectorInteractor) {
         interactor
             .observeIsEverythingSelected()
-            .map { $0 ? NSLocalizedString("Deselect All", comment: "")
+            .map { $0
+                ? NSLocalizedString("Deselect All", comment: "")
                 : NSLocalizedString("Select All", comment: "")
             }
             .assign(to: &$leftNavBarTitle)
@@ -123,7 +124,7 @@ class CourseSyncSelectorViewModel: ObservableObject {
                 self?.state = .loading
                 return selectorInteractor.getSelectedCourseEntries()
                     .flatMap { syncInteractor.downloadContent(for: $0) }
-                    .handleEvents(receiveOutput: { _ in
+                    .handleEvents(receiveCompletion: { _ in
                         // TODO: Start download, go to dashboard
                         self?.state = .data
                         AppEnvironment.shared.router.dismiss(view)

@@ -31,10 +31,15 @@ protocol CourseSyncContentInteractor {
 final class CourseSyncInteractorLive: CourseSyncInteractor {
     private let contentInteractors: [CourseSyncContentInteractor]
     private var courseSyncEntries = CurrentValueSubject<[CourseSyncSelectorEntry], Error>.init([])
+    private var subscription: AnyCancellable?
 
-    init(pagesInteractor: CourseSyncPagesInteractor = CourseSyncPagesInteractorLive()) {
+    init(
+        pagesInteractor: CourseSyncPagesInteractor = CourseSyncPagesInteractorLive(),
+        assignmentsInteractor: CourseSyncAssignmentsInteractor = CourseSyncAssignmentsInteractorLive()
+    ) {
         contentInteractors = [
-            pagesInteractor
+            pagesInteractor,
+            assignmentsInteractor,
         ]
     }
 
@@ -43,7 +48,7 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
 
         courseSyncEntries.send(entries)
 
-        return Publishers.Sequence(sequence: entries.enumerated())
+        subscription = Publishers.Sequence(sequence: entries.enumerated())
             .flatMap { index, entry in
                 Publishers.Zip(
                     unownedSelf.downloadTabContent(for: entry, index: index, tabName: .assignments),
@@ -64,8 +69,12 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
                 .eraseToAnyPublisher()
             }
             .collect()
-            .flatMap { _ in unownedSelf.courseSyncEntries }
-            .eraseToAnyPublisher()
+            .handleEvents(receiveOutput: { _ in
+                unownedSelf.courseSyncEntries.send(completion: .finished)
+            })
+            .sink()
+
+        return courseSyncEntries.eraseToAnyPublisher()
     }
 
     private func downloadTabContent(for entry: CourseSyncSelectorEntry, index: Int, tabName: TabName) -> AnyPublisher<Void, Error> {
