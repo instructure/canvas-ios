@@ -682,7 +682,9 @@ open class CoreUITestCase: XCTestCase {
         XCTAssert(useMocks, "Mocks not allowed for E2E tests!")
         let key = request.key
         if httpMocks[key] != nil {
-            print("💫 \(key) overwriting mock")
+            print("💫 mock overwritten \(key)")
+        } else {
+            print("✅ mock added \(key)")
         }
         httpMocks[key] = response
     }
