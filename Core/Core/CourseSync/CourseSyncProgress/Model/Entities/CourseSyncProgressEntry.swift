@@ -18,29 +18,30 @@
 
 import Foundation
 
-struct SyncProgress {
-    let total: Int64
-    let progress: Int64
-}
+struct CourseSyncProgressEntry {
 
-protocol CourseSyncProgressInfoInteractor {
-    func getSyncProgress() -> SyncProgress
-}
-
-final class CourseSyncProgressInfoInteractorLive: CourseSyncProgressInfoInteractor {
-    func getSyncProgress() -> SyncProgress {
-        let total = getTotalSize()
-        let progress = getProgressSize()
-        return SyncProgress(total: total, progress: progress)
+    struct Tab {
+        let id: String
+        let name: String
+        let type: TabName
+        var isCollapsed: Bool = true
+        var progress: Float?
     }
 
-    private func getTotalSize() -> Int64 {
-        // TODO: logic
-        return 1
+    struct File {
+        let id: String
+        let name: String
+        let url: URL?
+        var progress: Float?
     }
 
-    private func getProgressSize() -> Int64 {
-        // TODO: logic
-        return 1
-    }
+    let name: String
+    let id: String
+
+    var tabs: [Self.Tab]
+    var files: [Self.File]
+
+    var isCollapsed: Bool = true
+    var progress: Float?
 }
+

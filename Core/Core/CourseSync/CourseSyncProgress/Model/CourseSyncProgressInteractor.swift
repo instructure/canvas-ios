@@ -16,31 +16,26 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
+import CombineExt
 import Foundation
 
-struct SyncProgress {
-    let total: Int64
-    let progress: Int64
+protocol CourseSyncProgressInteractor {
+    func getCourseSyncProgressEntries() -> AnyPublisher<[CourseSyncProgressEntry], Error>
+    func setProgress(selection: CourseEntrySelection, progress: Float?)
+    func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool)
 }
 
-protocol CourseSyncProgressInfoInteractor {
-    func getSyncProgress() -> SyncProgress
-}
-
-final class CourseSyncProgressInfoInteractorLive: CourseSyncProgressInfoInteractor {
-    func getSyncProgress() -> SyncProgress {
-        let total = getTotalSize()
-        let progress = getProgressSize()
-        return SyncProgress(total: total, progress: progress)
+final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
+    func getCourseSyncProgressEntries() -> AnyPublisher<[CourseSyncProgressEntry], Error> {
+        return Just([])
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
 
-    private func getTotalSize() -> Int64 {
-        // TODO: logic
-        return 1
+    func setProgress(selection: CourseEntrySelection, progress: Float?) {
     }
 
-    private func getProgressSize() -> Int64 {
-        // TODO: logic
-        return 1
+    func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool) {
     }
 }

@@ -18,16 +18,15 @@
 
 import SwiftUI
 
-struct CourseSyncSelectorView: View {
+struct CourseSyncProgressView: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var viewController
-    @StateObject var viewModel: CourseSyncSelectorViewModel
-    @StateObject var diskSpaceViewModel: CourseSyncDiskSpaceInfoViewModel
+    @StateObject var viewModel: CourseSyncProgressViewModel
+    @StateObject var courseSyncProgressInfoViewModel: CourseSyncProgressInfoViewModel
 
     var body: some View {
         content
         .navigationBarTitleView(navBarTitleView)
-        .navigationBarItems(leading: leftNavBarButton, trailing: cancelButton)
         .navigationBarStyle(.modal)
     }
 
@@ -43,7 +42,7 @@ struct CourseSyncSelectorView: View {
                 .progressViewStyle(.indeterminateCircle())
         case .data:
             VStack(spacing: 0) {
-                CourseSyncDiskSpaceInfoView(viewModel: diskSpaceViewModel)
+                CourseSyncProgressInfoView(viewModel: courseSyncProgressInfoViewModel)
                     .padding(16)
                 Divider()
                 ScrollView {
@@ -53,21 +52,16 @@ struct CourseSyncSelectorView: View {
                                 ListCellView(cellStyle: item.cellStyle,
                                              title: item.title,
                                              subtitle: item.subtitle,
-                                             selectionState: item.selectionState,
                                              isCollapsed: item.isCollapsed,
-                                             selectionDidToggle: item.selectionDidToggle,
-                                             collapseDidToggle: item.collapseDidToggle)
+                                             collapseDidToggle: item.collapseDidToggle,
+                                             progress: item.progress)
                                 Divider().padding(.leading, item.cellStyle == .listItem ? 74 : 0)
                             }.padding(.leading, item.cellStyle == .listItem ? 24 : 0)
                         }
                     }
-                    .animation(.default, value: viewModel.items)
-                }
-                syncButton
+                }.animation(.default, value: viewModel.items)
             }
             .background(Color.backgroundLightest)
-            .confirmationAlert(isPresented: $viewModel.isShowingConfirmationDialog,
-                               presenting: viewModel.confirmAlert)
         }
     }
 
@@ -91,53 +85,13 @@ struct CourseSyncSelectorView: View {
                 .foregroundColor(.textDarkest)
         }
     }
-
-    private var syncButton: some View {
-        Button {
-            viewModel.syncButtonDidTap.accept(viewController)
-        } label: {
-            Text("Sync", bundle: .core)
-                .padding(.vertical, 14)
-                .frame(maxWidth: .infinity)
-                .font(.regular16, lineHeight: .fit)
-                .foregroundColor(.textLightest)
-                .background(Color(Brand.shared.primary))
-                .opacity(viewModel.syncButtonDisabled ? 0.42 : 1)
-        }
-        .disabled(viewModel.syncButtonDisabled)
-    }
-
-    @ViewBuilder
-    private var leftNavBarButton: some View {
-        if viewModel.leftNavBarButtonVisible {
-            Button {
-                viewModel.leftNavBarButtonDidTap.accept()
-            } label: {
-                Text(viewModel.leftNavBarTitle)
-                    .font(.regular16)
-                    .foregroundColor(.textDarkest)
-            }
-        }
-    }
-}
-
-struct SeparatorView: View {
-    let isLight: Bool
-    let isIndented: Bool
-
-    var body: some View {
-        Rectangle()
-            .fill(isLight ? Color.borderMedium : Color.borderDark)
-            .frame(height: 1)
-            .padding(.leading, isIndented ? 16 : 0)
-    }
 }
 
 #if DEBUG
 
-struct CourseSyncSelectorView_Previews: PreviewProvider {
+struct CourseSyncProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        CourseSyncSelectorAssembly.makePreview(env: AppEnvironment.shared)
+        CourseSyncProgressAssembly.makePreview(env: AppEnvironment.shared)
     }
 }
 

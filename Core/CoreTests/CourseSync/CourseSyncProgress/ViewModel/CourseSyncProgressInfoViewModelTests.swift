@@ -16,31 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+@testable import Core
+import XCTest
 
-struct SyncProgress {
-    let total: Int64
-    let progress: Int64
+class CourseSyncProgressInfoViewModelTests: XCTestCase {
+
+    func testConvertsInteractorData() {
+        let testee = CourseSyncProgressInfoViewModel(interactor: MockCourseSyncProgressInfoInteractor())
+        XCTAssertEqual(testee.progress, "Downloading 500 MB of 1 GB")
+        XCTAssertEqual(testee.progressPercentage, 0.5)
+    }
 }
 
-protocol CourseSyncProgressInfoInteractor {
-    func getSyncProgress() -> SyncProgress
-}
+private class MockCourseSyncProgressInfoInteractor: CourseSyncProgressInfoInteractor {
 
-final class CourseSyncProgressInfoInteractorLive: CourseSyncProgressInfoInteractor {
     func getSyncProgress() -> SyncProgress {
-        let total = getTotalSize()
-        let progress = getProgressSize()
+        let total = Int64(1000_000_000)
+        let progress = Int64(500_000_000)
         return SyncProgress(total: total, progress: progress)
-    }
-
-    private func getTotalSize() -> Int64 {
-        // TODO: logic
-        return 1
-    }
-
-    private func getProgressSize() -> Int64 {
-        // TODO: logic
-        return 1
     }
 }

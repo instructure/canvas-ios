@@ -231,30 +231,32 @@ struct ListCellView: View {
 
     private var accessibilityText: Text {
         let titleText = Text(title + (subtitle ?? "") + ",")
-        var selectionText: Text
-        switch selectionState {
-        case .deselected:
-            selectionText = Text("Deselected,", bundle: .core)
-        case .selected:
-            selectionText = Text("Selected,", bundle: .core)
-        case .partiallySelected:
-            selectionText = Text("Partially selected,", bundle: .core)
+        var selectionText: Text = Text("")
+        if progress == nil {
+            switch selectionState {
+            case .deselected:
+                selectionText = Text("Deselected,", bundle: .core)
+            case .selected:
+                selectionText = Text("Selected,", bundle: .core)
+            case .partiallySelected:
+                selectionText = Text("Partially selected,", bundle: .core)
+            }
         }
         var collapseText: Text
         switch isCollapsed {
         case true:
-            collapseText = Text("Closed section", bundle: .core)
+            collapseText = Text("Closed section,", bundle: .core)
         case false:
-            collapseText = Text("Open section", bundle: .core)
+            collapseText = Text("Open section,", bundle: .core)
         default:
             collapseText = Text("")
         }
         var progressText: Text
         if let progress = progress {
             if progress == 1 {
-                progressText = Text("Download complete", bundle: .core)
+                progressText = Text("Download complete,", bundle: .core)
             } else {
-                progressText = Text("Downloading", bundle: .core)
+                progressText = Text("Downloading,", bundle: .core)
             }
         } else {
             progressText = Text("")

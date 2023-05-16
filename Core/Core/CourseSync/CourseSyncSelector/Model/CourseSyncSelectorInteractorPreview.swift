@@ -38,7 +38,7 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
                   ],
                   files: [
                       .init(id: "0", name: "Creative Machines and Innovative Instrumentation.mov", url: nil),
-                      .init(id: "0", name: "Intro Energy, Space and Time.mov", url: nil),
+                      .init(id: "1", name: "Intro Energy, Space and Time.mov", url: nil),
                   ],
                   isCollapsed: false),
         ])
