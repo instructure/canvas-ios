@@ -44,4 +44,3 @@ struct CourseSyncProgressEntry {
     var isCollapsed: Bool = true
     var progress: Float?
 }
-

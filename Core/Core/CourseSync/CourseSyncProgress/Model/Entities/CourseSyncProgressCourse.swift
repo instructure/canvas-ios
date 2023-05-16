@@ -59,4 +59,3 @@ public final class CourseSyncProgressCourse: NSManagedObject {
         return dbEntity
     }
 }
-

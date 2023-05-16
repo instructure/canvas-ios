@@ -58,4 +58,3 @@ class CourseSyncProgressViewModel: ObservableObject {
             .assign(to: &$items)
     }
 }
-

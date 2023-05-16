@@ -79,13 +79,12 @@ extension Array where Element == CourseSyncProgressEntry {
                     continue
                 }
 
-                for (_, file) in course.files.enumerated() {
-                    var fileItem = file.makeViewModelItem()
+                for file in course.files {
+                    let fileItem = file.makeViewModelItem()
                     items.append(fileItem)
                 }
             }
         }
-
         return items
     }
 }
@@ -124,4 +123,3 @@ extension CourseSyncProgressEntry.File {
               cellStyle: .listItem)
     }
 }
-
