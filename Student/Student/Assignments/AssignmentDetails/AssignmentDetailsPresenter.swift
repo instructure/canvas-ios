@@ -104,6 +104,7 @@ class AssignmentDetailsPresenter {
         }
     }
     private var fileCleanupPending = true
+    private var submissionFinishedNotification: NSObjectProtocol?
 
     init(view: AssignmentDetailsViewProtocol, courseID: String, assignmentID: String, fragment: String? = nil) {
         self.view = view
@@ -113,6 +114,17 @@ class AssignmentDetailsPresenter {
         self.submissionButtonPresenter = SubmissionButtonPresenter(view: view, assignmentID: assignmentID)
         if let session = env.currentSession {
             self.userID = session.userID
+        }
+        subscribeToSuccessfulSubmissionNotification(assignmentID: assignmentID)
+    }
+
+    private func subscribeToSuccessfulSubmissionNotification(assignmentID: String) {
+        submissionFinishedNotification = NotificationCenter.default.addObserver(forName: UploadManager.AssignmentSubmittedNotification,
+                                                                                object: nil,
+                                                                                queue: OperationQueue.main) { [weak self] notification in
+            if notification.userInfo?["assignmentID"] as? String == assignmentID {
+                self?.onlineUploadState = .completed
+            }
         }
     }
 
@@ -160,6 +172,8 @@ class AssignmentDetailsPresenter {
         } else if onlineUpload.allSatisfy({ $0.isUploaded }) {
             // A file uploaded to the file server doesn't mean it's also submitted to the assignment so we check both
             if let submission = assignment?.submission, submission.status == .submitted {
+                // This state is not always reached because the file is deleted after a successful upload.
+                // We listen to the successful upload notification to work around this.
                 onlineUploadState = .completed
             } else {
                 onlineUploadState = .uploading
