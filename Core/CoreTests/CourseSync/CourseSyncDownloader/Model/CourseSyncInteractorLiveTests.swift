@@ -36,10 +36,10 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                 id: "1",
                 tabs: [
                     .init(id: "1", name: "Assignments", type: .assignments),
-                    .init(id: "2", name: "Pages", type: .pages)
+                    .init(id: "2", name: "Pages", type: .pages),
                 ],
                 files: []
-            )
+            ),
         ]
     }
 
@@ -61,7 +61,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         expectation.expectedFulfillmentCount = 4
         let subscription = testee.downloadContent(for: entries)
             .sink(
-                receiveCompletion: { _ in},
+                receiveCompletion: { _ in },
                 receiveValue: { val in
                     self.entries = val
                     expectation.fulfill()
@@ -98,7 +98,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         expectation.expectedFulfillmentCount = 3
         let subscription = testee.downloadContent(for: entries)
             .sink(
-                receiveCompletion: { _ in},
+                receiveCompletion: { _ in },
                 receiveValue: { val in
                     self.entries = val
                     expectation.fulfill()
@@ -130,7 +130,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         expectation.expectedFulfillmentCount = 3
         let subscription = testee.downloadContent(for: entries)
             .sink(
-                receiveCompletion: { _ in},
+                receiveCompletion: { _ in },
                 receiveValue: { val in
                     self.entries = val
                     expectation.fulfill()
