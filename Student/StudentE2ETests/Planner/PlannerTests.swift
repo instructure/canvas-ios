@@ -27,7 +27,7 @@ class PlannerTests: CoreUITestCase {
 
     override func setUp() {
         super.setUp()
-        let courseExists = Dashboard.courseCard(id: "263").waitToExist()
+        Dashboard.courseCard(id: "263").waitToExist()
         TabBar.calendarTab.tap()
         navigateToReference()
     }

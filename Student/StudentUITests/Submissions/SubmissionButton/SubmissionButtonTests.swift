@@ -42,6 +42,7 @@ class SubmissionButtonTests: CoreUITestCase {
         app.find(labelContaining: "Photo, ").tapUntil { TestsFoundation.FilePicker.submitButton.isVisible }
         TestsFoundation.FilePicker.submitButton.tap()
         TestsFoundation.FilePicker.submitButton.waitToVanish()
+        XCTAssertFalse(TestsFoundation.FilePicker.submitButton.isVisible)
     }
 
     func testExternalTool() {
