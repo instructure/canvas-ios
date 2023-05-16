@@ -21,6 +21,7 @@ import XCTest
 
 class PersistencyTests: XCTestCase {
 
+    let userID = "321"
     let date = Date(fromISOString: "2019-06-25T06:00:00Z")!
     var dispatchQueue: DispatchQueue!
     var p: Persistency!
@@ -29,12 +30,14 @@ class PersistencyTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        AppEnvironment.shared.currentSession = .init(baseURL: URL(string: "/")!, userID: userID, userName: "")
         waitExpectation = XCTestExpectation(description: "expectation")
         persistenceTestFileName = "pageViewTests-\(Foundation.UUID().uuidString).dat"
         Persistency.persistencyFileName = persistenceTestFileName
         dispatchQueue = DispatchQueue(label: "test-pageviewevents-queue", attributes: .concurrent)
         p = Persistency(dispatchQueue: dispatchQueue)
-        p.dequeue(p.queueCount, handler: nil)
+        p.dequeue(p.queueCount(for: userID), userID: userID, handler: nil)
+        p.dequeue(p.queueCount(for: "another"), userID: "another", handler: nil)
         Clock.mockNow(date)
     }
 
@@ -45,33 +48,35 @@ class PersistencyTests: XCTestCase {
     }
 
     func testAddToQueue() {
-
         dispatchQueue.async {
-            self.p.dequeue(self.p.queueCount, handler: nil)
+            self.p.dequeue(self.p.queueCount(for: self.userID), userID: self.userID, handler: nil)
 
-            XCTAssertEqual(self.p.queueCount, 0)
+            XCTAssertEqual(self.p.queueCount(for: self.userID), 0)
 
-            let e = PageViewEvent(eventName: "test", attributes: [:], userID: "1", timestamp: self.date, eventDuration: 0.05)
+            let e = PageViewEvent(eventName: "test", attributes: [:], userID: "321", timestamp: self.date, eventDuration: 0.05)
+            let e2 = PageViewEvent(eventName: "test", attributes: [:], userID: "another", timestamp: self.date, eventDuration: 0.05)
             self.p.addToQueue(e)
+            self.p.addToQueue(e2)
 
             self.dispatchQueue.async {
                 self.waitExpectation.fulfill()
             }
         }
         self.wait(for: [self.waitExpectation], timeout: 5)
-        XCTAssertEqual(self.p.queueCount, 1)
+        XCTAssertEqual(self.p.queueCount(for: userID), 1)
     }
 
     func testBatchOfEvents() {
-
         dispatchQueue.async {
-            self.p.dequeue(self.p.queueCount, handler: nil)
-            let a = PageViewEvent(eventName: "a", attributes: [:], userID: "1", timestamp: self.date, eventDuration: 0.05)
-            let b = PageViewEvent(eventName: "b", attributes: [:], userID: "1", timestamp: self.date, eventDuration: 0.05)
-            let c = PageViewEvent(eventName: "c", attributes: [:], userID: "1", timestamp: self.date, eventDuration: 0.05)
+            self.p.dequeue(self.p.queueCount(for: self.userID), userID: self.userID, handler: nil)
+            let a = PageViewEvent(eventName: "a", attributes: [:], userID: "321", timestamp: self.date, eventDuration: 0.05)
+            let b = PageViewEvent(eventName: "b", attributes: [:], userID: "321", timestamp: self.date, eventDuration: 0.05)
+            let c = PageViewEvent(eventName: "c", attributes: [:], userID: "321", timestamp: self.date, eventDuration: 0.05)
+            let d = PageViewEvent(eventName: "d", attributes: [:], userID: "another", timestamp: self.date, eventDuration: 0.05)
             self.p.addToQueue(a)
             self.p.addToQueue(b)
             self.p.addToQueue(c)
+            self.p.addToQueue(d)
 
             self.dispatchQueue.async {
                 self.waitExpectation.fulfill()
@@ -79,12 +84,12 @@ class PersistencyTests: XCTestCase {
         }
         wait(for: [waitExpectation], timeout: 5)
 
-        XCTAssertEqual(p.queueCount, 3)
+        XCTAssertEqual(p.queueCount(for: userID), 3)
 
-        let batch1 = p.batchOfEvents(4)
+        let batch1 = p.batchOfEvents(4, userID: userID)
         XCTAssertNil(batch1, "batch1 count: \(String(describing: batch1?.count))")
 
-        let batch2 = p.batchOfEvents(3)
+        let batch2 = p.batchOfEvents(3, userID: userID)
         XCTAssertEqual(batch2?.count, 3)
     }
 }
