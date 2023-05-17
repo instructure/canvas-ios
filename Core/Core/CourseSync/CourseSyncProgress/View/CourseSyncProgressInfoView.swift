@@ -30,7 +30,7 @@ struct CourseSyncProgressInfoView: View {
                 .padding(.top, 24)
             ProgressView(value: viewModel.progressPercentage)
                 .tint(.backgroundInfo)
-                .foregroundColor(.red)
+                .background(Color.backgroundInfo.opacity(0.24))
                 .padding(.bottom, 32)
         }.padding(.horizontal, 16)
     }
