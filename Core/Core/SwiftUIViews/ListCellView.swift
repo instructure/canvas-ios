@@ -104,7 +104,7 @@ struct ListCellView: View {
 
     @ViewBuilder
     private var accessoryIcon: some View {
-        HStack {
+        HStack(spacing: 0) {
             switch cellStyle {
             case .mainAccordionHeader, .listAccordionHeader:
                 if let isCollapsed = isCollapsed {
