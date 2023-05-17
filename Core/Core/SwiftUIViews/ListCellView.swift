@@ -109,7 +109,7 @@ struct ListCellView: View {
             case .mainAccordionHeader, .listAccordionHeader:
                 if let isCollapsed = isCollapsed {
                     Image.arrowOpenDownLine
-                        .size(16)
+                        .size(24)
                         .foregroundColor(.textDarkest)
                         .rotationEffect(isCollapsed ? .degrees(0) : .degrees(-180))
                 }
@@ -123,11 +123,13 @@ struct ListCellView: View {
                                                               lineWidth: 2,
                                                               color: .backgroundInfo))
                         .accessibilityHidden(true)
-                        .padding(.leading, 12)
+                        .padding(.leading, 30)
                 } else {
                     Image("checkLine", bundle: .core)
                         .size(24)
                         .foregroundColor(.textDarkest)
+                        .accessibilityHidden(true)
+                        .padding(.leading, 30)
                 }
             }
         }
