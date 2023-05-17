@@ -128,7 +128,13 @@ struct DashboardCourseCardView: View {
         .identifier("DashboardCourseCell.\(courseCard.id).optionsButton")
         .confirmationDialog("", isPresented: $isShowingKebabDialog) {
             Button {
-                env.router.route(to: "/offline/settings",
+                var route = "/offline/sync_picker"
+
+                if let courseID = courseCard.course?.id {
+                    route.append("/\(courseID)")
+                }
+
+                env.router.route(to: route,
                                  from: controller,
                                  options: .modal(isDismissable: false, embedInNav: true))
             } label: {

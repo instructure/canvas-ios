@@ -164,7 +164,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         .accessibilityLabel(Text("Dashboard Options", bundle: .core))
         .confirmationDialog("", isPresented: $isShowingKebabDialog) {
             Button {
-                env.router.route(to: "/offline/settings", from: controller, options: .modal(isDismissable: false, embedInNav: true))
+                env.router.route(to: "/offline/sync_picker", from: controller, options: .modal(isDismissable: false, embedInNav: true))
             } label: {
                 Text("Manage Offline Content", bundle: .core)
             }
