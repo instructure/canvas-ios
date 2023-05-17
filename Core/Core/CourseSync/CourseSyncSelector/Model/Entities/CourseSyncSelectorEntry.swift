@@ -19,11 +19,16 @@
 import Foundation
 
 struct CourseSyncSelectorEntry {
+    enum State {
+        case loading, error, downloaded
+    }
+
     struct Tab {
         let id: String
         let name: String
         let type: TabName
         var isCollapsed: Bool = true
+        var state: State = .loading
         var selectionState: ListCellView.SelectionState = .deselected
     }
 
@@ -31,6 +36,7 @@ struct CourseSyncSelectorEntry {
         let id: String
         let name: String
         let url: URL?
+        var state: State = .loading
         var selectionState: ListCellView.SelectionState = .deselected
     }
 
@@ -58,6 +64,7 @@ struct CourseSyncSelectorEntry {
     var isCollapsed: Bool = true
     var selectionState: ListCellView.SelectionState = .deselected
     var isEverythingSelected: Bool = false
+    var state: State = .loading
 
     mutating func selectCourse(selectionState: ListCellView.SelectionState) {
         tabs.indices.forEach { tabs[$0].selectionState = selectionState }
@@ -87,5 +94,17 @@ struct CourseSyncSelectorEntry {
         }
         tabs[fileTabIndex].selectionState = selectedFilesCount > 0 ? .partiallySelected : .deselected
         self.selectionState = selectedTabsCount > 0 ? .partiallySelected : .deselected
+    }
+
+    mutating func updateCourseState(state: State) {
+        self.state = state
+    }
+
+    mutating func updateTabState(index: Int, state: State) {
+        tabs[index].state = state
+    }
+
+    mutating func updateFileState(index: Int, state: State) {
+        files[index].state = state
     }
 }

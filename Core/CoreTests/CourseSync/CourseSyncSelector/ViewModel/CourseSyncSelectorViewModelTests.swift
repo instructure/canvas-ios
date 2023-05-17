@@ -18,17 +18,22 @@
 
 import Combine
 @testable import Core
-import XCTest
 import TestsFoundation
+import XCTest
 
 class CourseSyncSelectorViewModelTests: XCTestCase {
     var testee: CourseSyncSelectorViewModel!
-    var mockInteractor: CourseSyncSelectorInteractorMock!
+    var mockSelectorInteractor: CourseSyncSelectorInteractorMock!
+    var mockSyncInteractor: CourseSyncInteractorMock!
 
     override func setUp() {
         super.setUp()
-        mockInteractor = CourseSyncSelectorInteractorMock()
-        testee = CourseSyncSelectorViewModel(interactor: mockInteractor)
+        mockSelectorInteractor = CourseSyncSelectorInteractorMock()
+        mockSyncInteractor = CourseSyncInteractorMock()
+        testee = CourseSyncSelectorViewModel(
+            selectorInteractor: mockSelectorInteractor,
+            syncInteractor: mockSyncInteractor
+        )
     }
 
     func testInitialState() {
@@ -47,34 +52,34 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
     }
 
     func testUpdateSyncButtonState() {
-        mockInteractor.selectedCountSubject.send(0)
+        mockSelectorInteractor.selectedCountSubject.send(0)
         XCTAssertTrue(testee.syncButtonDisabled)
 
-        mockInteractor.selectedCountSubject.send(5)
+        mockSelectorInteractor.selectedCountSubject.send(5)
         XCTAssertFalse(testee.syncButtonDisabled)
     }
 
     func testUpdateSelectAllButtonTitle() {
-        mockInteractor.isEverythingSelectedSubject.send(true)
+        mockSelectorInteractor.isEverythingSelectedSubject.send(true)
         XCTAssertEqual(testee.leftNavBarTitle, "Deselect All")
 
-        mockInteractor.isEverythingSelectedSubject.send(false)
+        mockSelectorInteractor.isEverythingSelectedSubject.send(false)
         XCTAssertEqual(testee.leftNavBarTitle, "Select All")
     }
 
     func testUpdateConfirmationDialogMessage() {
-        mockInteractor.selectedCountSubject.send(3)
+        mockSelectorInteractor.selectedCountSubject.send(3)
         XCTAssertEqual(testee.confirmAlert.message, "There are 3 items selected for offline availability. The selected content will be downloaded to the device.")
     }
 
     func testLeftNavBarTap() {
         testee.leftNavBarButtonDidTap.accept()
-        mockInteractor.isEverythingSelectedSubject.send(true)
-        XCTAssertEqual(mockInteractor.toggleAllCoursesSelectionParam, false)
+        mockSelectorInteractor.isEverythingSelectedSubject.send(true)
+        XCTAssertEqual(mockSelectorInteractor.toggleAllCoursesSelectionParam, false)
 
         testee.leftNavBarButtonDidTap.accept()
-        mockInteractor.isEverythingSelectedSubject.send(false)
-        XCTAssertEqual(mockInteractor.toggleAllCoursesSelectionParam, true)
+        mockSelectorInteractor.isEverythingSelectedSubject.send(false)
+        XCTAssertEqual(mockSelectorInteractor.toggleAllCoursesSelectionParam, true)
     }
 
     func testSyncButtonTap() {
@@ -83,7 +88,7 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
     }
 
     func testUpdateStateFails() {
-        mockInteractor.courseSyncEntriesSubject.send(completion: .failure(NSError.instructureError("Failed")))
+        mockSelectorInteractor.courseSyncEntriesSubject.send(completion: .failure(NSError.instructureError("Failed")))
         waitUntil(shouldFail: true) {
             testee.state == .error
         }
@@ -94,7 +99,7 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
                                                id: "test",
                                                tabs: [],
                                                files: [])
-        mockInteractor.courseSyncEntriesSubject.send([mockItem])
+        mockSelectorInteractor.courseSyncEntriesSubject.send([mockItem])
         waitUntil(shouldFail: true) {
             testee.state == .data
         }
@@ -105,7 +110,6 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
 }
 
 class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
-
     let courseSyncEntriesSubject = PassthroughSubject<[CourseSyncSelectorEntry], Error>()
     func getCourseSyncEntries() -> AnyPublisher<[Core.CourseSyncSelectorEntry], Error> {
         courseSyncEntriesSubject.eraseToAnyPublisher()
@@ -126,11 +130,19 @@ class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
         selectedCountSubject.eraseToAnyPublisher()
     }
 
-    func setSelected(selection: Core.CourseEntrySelection, selectionState: ListCellView.SelectionState) {}
-    func setCollapsed(selection: Core.CourseEntrySelection, isCollapsed: Bool) {}
+    func setSelected(selection _: Core.CourseEntrySelection, selectionState _: ListCellView.SelectionState) {}
+    func setCollapsed(selection _: Core.CourseEntrySelection, isCollapsed _: Bool) {}
 
     var toggleAllCoursesSelectionParam: Bool?
     func toggleAllCoursesSelection(isSelected: Bool) {
         toggleAllCoursesSelectionParam = isSelected
+    }
+}
+
+class CourseSyncInteractorMock: CourseSyncInteractor {
+    let courseSyncEntriesSubject = PassthroughSubject<[CourseSyncSelectorEntry], Error>()
+
+    func downloadContent(for _: [Core.CourseSyncSelectorEntry]) -> AnyPublisher<[Core.CourseSyncSelectorEntry], Error> {
+        courseSyncEntriesSubject.eraseToAnyPublisher()
     }
 }
