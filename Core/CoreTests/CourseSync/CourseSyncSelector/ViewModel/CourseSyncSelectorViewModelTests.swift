@@ -110,6 +110,10 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
 }
 
 class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
+
+    required init(courseID: String? = nil) {
+    }
+
     let courseSyncEntriesSubject = PassthroughSubject<[CourseSyncSelectorEntry], Error>()
     func getCourseSyncEntries() -> AnyPublisher<[Core.CourseSyncSelectorEntry], Error> {
         courseSyncEntriesSubject.eraseToAnyPublisher()

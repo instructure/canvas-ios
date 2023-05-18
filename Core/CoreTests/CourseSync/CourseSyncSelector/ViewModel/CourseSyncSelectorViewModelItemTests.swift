@@ -219,6 +219,9 @@ private class MockCourseSyncSelectorInteractor: CourseSyncSelectorInteractor {
     private(set) var lastSelected: (selection: Core.CourseEntrySelection, isSelected: Bool)?
     private(set) var lastCollapsed: (selection: Core.CourseEntrySelection, isCollapsed: Bool)?
 
+    required init(courseID: String? = nil) {
+    }
+
     func getCourseSyncEntries() -> AnyPublisher<[Core.CourseSyncSelectorEntry], Error> {
         Just<[Core.CourseSyncSelectorEntry]>([])
             .setFailureType(to: Error.self)

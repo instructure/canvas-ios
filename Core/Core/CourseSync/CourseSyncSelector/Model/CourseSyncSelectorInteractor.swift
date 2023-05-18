@@ -21,6 +21,7 @@ import CombineExt
 import Foundation
 
 protocol CourseSyncSelectorInteractor {
+    init(courseID: String?)
     func getCourseSyncEntries() -> AnyPublisher<[CourseSyncSelectorEntry], Error>
     func observeSelectedCount() -> AnyPublisher<Int, Never>
     func observeIsEverythingSelected() -> AnyPublisher<Bool, Never>
@@ -36,6 +37,9 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     )
     private let courseSyncEntries = CurrentValueSubject<[CourseSyncSelectorEntry], Error>(.init())
     private var subscriptions = Set<AnyCancellable>()
+
+    init(courseID: String? = nil) {
+    }
 
     // MARK: - Public Interface
 
