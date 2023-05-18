@@ -43,6 +43,31 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         subscription.cancel()
     }
 
+    func testCourseListWithCourseFilter() {
+        let testee = CourseSyncSelectorInteractorLive(courseID: "2")
+        let expectation = expectation(description: "Publisher sends value")
+
+        mockCourseList(courseList: [
+            .make(id: "1"),
+            .make(id: "2"),
+        ])
+
+        var entries = [CourseSyncSelectorEntry]()
+        let subscription = testee.getCourseSyncEntries()
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: {
+                    entries = $0
+                    expectation.fulfill()
+                }
+            )
+
+        waitForExpectations(timeout: 0.1)
+        XCTAssertEqual(entries.count, 1)
+        XCTAssertEqual(entries.first?.id, "2")
+        subscription.cancel()
+    }
+
     func testTabList() {
         let testee = CourseSyncSelectorInteractorLive()
         let expectation = expectation(description: "Publisher sends value")

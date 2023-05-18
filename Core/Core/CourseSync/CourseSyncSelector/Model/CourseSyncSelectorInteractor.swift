@@ -37,14 +37,17 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     )
     private let courseSyncEntries = CurrentValueSubject<[CourseSyncSelectorEntry], Error>(.init())
     private var subscriptions = Set<AnyCancellable>()
+    private let courseID: String?
 
     init(courseID: String? = nil) {
+        self.courseID = courseID
     }
 
     // MARK: - Public Interface
 
     func getCourseSyncEntries() -> AnyPublisher<[CourseSyncSelectorEntry], Error> {
         courseListStore.getEntities()
+            .filterToCourseID(courseID)
             .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
             .flatMap { self.getAllFilesIfFilesTabIsEnabled(course: $0) }
             .collect()
@@ -293,4 +296,20 @@ enum CourseEntrySelection: Equatable {
     case course(CourseIndex)
     case tab(CourseIndex, TabIndex)
     case file(CourseIndex, FileIndex)
+}
+
+private extension AnyPublisher<[CourseSyncSelectorCourse], Error> {
+
+    func filterToCourseID(_ courseID: String?) -> AnyPublisher<[CourseSyncSelectorCourse], Error> {
+        map { [courseID] courses in
+            guard let courseID else {
+                return courses
+            }
+
+            return courses.filter {
+                $0.courseId == courseID
+            }
+        }
+        .eraseToAnyPublisher()
+    }
 }
