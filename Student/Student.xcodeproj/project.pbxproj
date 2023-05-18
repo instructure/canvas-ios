@@ -128,6 +128,7 @@
 		7DE1162522F8AB5C005BFE98 /* StudentTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F3822F8A096000AACCE /* StudentTestCase.swift */; };
 		8ABA6F49719D8D39536DC39D /* Pods_needs_pspdfkit_StudentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C806B61E5A681BC20FC41E9 /* Pods_needs_pspdfkit_StudentUITests.framework */; };
 		8B19F65B2A137E33007AA43F /* DSAssignmentsE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B19F65A2A137E33007AA43F /* DSAssignmentsE2ETests.swift */; };
+		8B19F66A2A16197D007AA43F /* ActAsUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B19F6692A16197D007AA43F /* ActAsUser.swift */; };
 		8BEBB64C29FA741900364C4C /* DSLoginE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBB64B29FA741900364C4C /* DSLoginE2ETests.swift */; };
 		9734351523866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9734351423866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift */; };
 		9767F2A32383C741006633CA /* ActivityStreamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9767F2A12383C741006633CA /* ActivityStreamViewController.swift */; };
@@ -656,6 +657,7 @@
 		7DE1160722F8AAB1005BFE98 /* StudentUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StudentUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		873A063BCDC8884CD0C89EAD /* Pods-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-CanvasTests/Pods-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
 		8B19F65A2A137E33007AA43F /* DSAssignmentsE2ETests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DSAssignmentsE2ETests.swift; path = StudentE2ETests/Assignments/DSAssignmentsE2ETests.swift; sourceTree = SOURCE_ROOT; };
+		8B19F6692A16197D007AA43F /* ActAsUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActAsUser.swift; sourceTree = "<group>"; };
 		8BEBB64B29FA741900364C4C /* DSLoginE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSLoginE2ETests.swift; sourceTree = "<group>"; };
 		9734351423866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStreamViewControllerTests.swift; sourceTree = "<group>"; };
 		9767F2A12383C741006633CA /* ActivityStreamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityStreamViewController.swift; sourceTree = "<group>"; };
@@ -1870,6 +1872,7 @@
 		E809365B24C21CB700D15E9A /* ActAsUser */ = {
 			isa = PBXGroup;
 			children = (
+				8B19F6692A16197D007AA43F /* ActAsUser.swift */,
 				E809365A24C21CB700D15E9A /* ActAsUserE2ETests.swift */,
 			);
 			path = ActAsUser;
@@ -2942,6 +2945,7 @@
 				E80936E724C24CDD00D15E9A /* DiscussionDetailsE2ETests.swift in Sources */,
 				E80936E124C24CBE00D15E9A /* ActAsUserE2ETests.swift in Sources */,
 				8BEBB64C29FA741900364C4C /* DSLoginE2ETests.swift in Sources */,
+				8B19F66A2A16197D007AA43F /* ActAsUser.swift in Sources */,
 				C99425E2284096300078A3BD /* GradeTotalsE2ETests.swift in Sources */,
 				E80936E224C24CDD00D15E9A /* AnnouncementE2ETests.swift in Sources */,
 				E80936E624C24CDD00D15E9A /* DeepLinkE2ETests.swift in Sources */,

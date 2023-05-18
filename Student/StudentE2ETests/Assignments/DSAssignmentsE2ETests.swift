@@ -22,8 +22,6 @@ import Core
 
 class DSAssignmentsE2ETests: E2ETestCase {
     func testSubmitAssignmentWithShareExtension() {
-        let defaultTimeout = TimeInterval(10)
-
         // Create users, course
         let users = seeder.createUsers(1)
         let course = seeder.createCourse()
