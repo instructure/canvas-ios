@@ -141,6 +141,10 @@ class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
     func toggleAllCoursesSelection(isSelected: Bool) {
         toggleAllCoursesSelectionParam = isSelected
     }
+
+    func observeCourseName() -> AnyPublisher<String, Never> {
+        Just("").eraseToAnyPublisher()
+    }
 }
 
 class CourseSyncInteractorMock: CourseSyncInteractor {

@@ -252,4 +252,8 @@ private class MockCourseSyncSelectorInteractor: CourseSyncSelectorInteractor {
             .setFailureType(to: Never.self)
             .eraseToAnyPublisher()
     }
+
+    func observeCourseName() -> AnyPublisher<String, Never> {
+        Just("").eraseToAnyPublisher()
+    }
 }
