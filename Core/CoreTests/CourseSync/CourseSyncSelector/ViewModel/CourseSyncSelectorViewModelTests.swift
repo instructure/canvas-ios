@@ -107,6 +107,10 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
         XCTAssertEqual(testee.items[0].id, "course-test")
         XCTAssertTrue(testee.leftNavBarButtonVisible)
     }
+
+    func testUpdatesNavBarSubtitle() {
+        XCTAssertEqual(testee.navBarSubtitle, "Test Name")
+    }
 }
 
 class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
@@ -143,7 +147,7 @@ class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
     }
 
     func observeCourseName() -> AnyPublisher<String, Never> {
-        Just("").eraseToAnyPublisher()
+        Just("Test Name").eraseToAnyPublisher()
     }
 }
 
