@@ -37,8 +37,8 @@ struct CourseSyncSelectorView: View {
         switch viewModel.state {
         case .error:
             InteractivePanda(scene: NoResultsPanda(),
-                             title: Text("Something went wrong", bundle: .core),
-                             subtitle: Text("There was an unexpected error.", bundle: .core))
+                             title: Text(viewModel.labels.error.title),
+                             subtitle: Text(viewModel.labels.error.message))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         case .loading:
             ProgressView()
@@ -85,8 +85,8 @@ struct CourseSyncSelectorView: View {
 
     private func emptyList(geometry: GeometryProxy) -> some View {
         InteractivePanda(scene: SpacePanda(),
-                         title: Text("No Courses", bundle: .core),
-                         subtitle: Text("Your courses will be listed here, and then you can make them available for offline usage.", bundle: .core))
+                         title: Text(viewModel.labels.noCourses.title),
+                         subtitle: Text(viewModel.labels.noCourses.message))
 
         .padding(16)
         .frame(maxWidth: .infinity, minHeight: geometry.size.height)

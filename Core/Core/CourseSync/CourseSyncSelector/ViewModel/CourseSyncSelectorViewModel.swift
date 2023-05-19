@@ -41,6 +41,16 @@ class CourseSyncSelectorViewModel: ObservableObject {
                                                          cancelButtonTitle: NSLocalizedString("Cancel", comment: ""),
                                                          confirmButtonTitle: NSLocalizedString("Sync", comment: ""),
                                                          isDestructive: false)
+    public let labels = (
+        noCourses: (
+            title: NSLocalizedString("No Courses", comment: ""),
+            message: NSLocalizedString("Your courses will be listed here, and then you can make them available for offline usage.", comment: "")
+        ),
+        error: (
+            title: NSLocalizedString("Something went wrong", comment: ""),
+            message: NSLocalizedString("There was an unexpected error.", comment: "")
+        )
+    )
 
     // MARK: - Input
 
