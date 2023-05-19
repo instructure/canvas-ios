@@ -88,7 +88,7 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
             .eraseToAnyPublisher()
     }
 
-    func observeCourseName() -> AnyPublisher<String, Never> {
+    func getCourseName() -> AnyPublisher<String, Never> {
         Just("").eraseToAnyPublisher()
     }
 }

@@ -267,7 +267,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         )
 
         let expectation = expectation(description: "Publisher sends value")
-        testee.observeCourseName()
+        testee.getCourseName()
             .sink { courseName in
                 XCTAssertEqual(courseName, "All Courses")
                 expectation.fulfill()
@@ -294,18 +294,18 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         )
 
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.observeCourseName()
-            .dropFirst()
+        testee.getCourseName()
             .sink { courseName in
                 XCTAssertEqual(courseName, "course 2")
                 expectation.fulfill()
             }
+            .store(in: &subscriptions)
         testee.getCourseSyncEntries()
             .sink()
             .store(in: &subscriptions)
 
         waitForExpectations(timeout: 0.1)
-        subscription.cancel()
+        subscriptions.removeAll()
     }
 
     private func mockCourseList(

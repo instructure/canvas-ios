@@ -76,7 +76,7 @@ class CourseSyncSelectorViewModel: ObservableObject {
 
     private func updateNavBarSubtitle(_ interactor: CourseSyncSelectorInteractor) {
         interactor
-            .observeCourseName()
+            .getCourseName()
             .assign(to: &$navBarSubtitle)
     }
 

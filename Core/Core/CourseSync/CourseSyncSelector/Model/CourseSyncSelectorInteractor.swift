@@ -29,7 +29,7 @@ protocol CourseSyncSelectorInteractor {
     func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool)
     func toggleAllCoursesSelection(isSelected: Bool)
     func getSelectedCourseEntries() -> AnyPublisher<[CourseSyncSelectorEntry], Never>
-    func observeCourseName() -> AnyPublisher<String, Never>
+    func getCourseName() -> AnyPublisher<String, Never>
 }
 
 final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
@@ -133,12 +133,13 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
             .eraseToAnyPublisher()
     }
 
-    func observeCourseName() -> AnyPublisher<String, Never> {
+    func getCourseName() -> AnyPublisher<String, Never> {
         guard let courseID else {
             return Just(NSLocalizedString("All Courses", comment: "")).eraseToAnyPublisher()
         }
 
         return courseSyncEntries
+            .first { !$0.isEmpty }
             .map { syncEntries in
                 syncEntries.first { $0.id == courseID }?.name
             }

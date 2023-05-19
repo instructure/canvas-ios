@@ -146,7 +146,7 @@ class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
         toggleAllCoursesSelectionParam = isSelected
     }
 
-    func observeCourseName() -> AnyPublisher<String, Never> {
+    func getCourseName() -> AnyPublisher<String, Never> {
         Just("Test Name").eraseToAnyPublisher()
     }
 }
