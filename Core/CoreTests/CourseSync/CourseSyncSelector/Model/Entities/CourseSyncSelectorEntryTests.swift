@@ -77,8 +77,8 @@ class CourseSyncSelectorEntryTests: XCTestCase {
                 CourseSyncSelectorEntry.Tab(id: "tab2", name: "tab2", type: .files),
             ],
             files: [
-                CourseSyncSelectorEntry.File(id: "file1", name: "file1", url: nil),
-                CourseSyncSelectorEntry.File(id: "file2", name: "file2", url: nil),
+                CourseSyncSelectorEntry.File.make(id: "file1", name: "file1"),
+                CourseSyncSelectorEntry.File.make(id: "file2", name: "file2"),
             ]
         )
         XCTAssertEqual(entry.selectionState, .deselected)
@@ -103,8 +103,8 @@ class CourseSyncSelectorEntryTests: XCTestCase {
                 CourseSyncSelectorEntry.Tab(id: "tab2", name: "tab2", type: .files),
             ],
             files: [
-                CourseSyncSelectorEntry.File(id: "file1", name: "file1", url: nil),
-                CourseSyncSelectorEntry.File(id: "file2", name: "file2", url: nil),
+                CourseSyncSelectorEntry.File.make(id: "file1", name: "file1"),
+                CourseSyncSelectorEntry.File.make(id: "file2", name: "file2"),
             ]
         )
         XCTAssertEqual(entry.isEverythingSelected, false)
@@ -134,8 +134,8 @@ class CourseSyncSelectorEntryTests: XCTestCase {
                 CourseSyncSelectorEntry.Tab(id: "tab2", name: "tab2", type: .files),
             ],
             files: [
-                CourseSyncSelectorEntry.File(id: "file1", name: "file1", url: nil),
-                CourseSyncSelectorEntry.File(id: "file2", name: "file2", url: nil),
+                CourseSyncSelectorEntry.File.make(id: "file1", name: "file1"),
+                CourseSyncSelectorEntry.File.make(id: "file2", name: "file2"),
             ]
         )
 

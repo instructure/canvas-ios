@@ -124,6 +124,7 @@ class CourseSyncSelectorViewModel: ObservableObject {
                 self?.state = .loading
                 return selectorInteractor.getSelectedCourseEntries()
                     .flatMap { syncInteractor.downloadContent(for: $0) }
+                    .receive(on: DispatchQueue.main)
                     .handleEvents(receiveCompletion: { _ in
                         // TODO: Start download, go to dashboard
                         self?.state = .data
