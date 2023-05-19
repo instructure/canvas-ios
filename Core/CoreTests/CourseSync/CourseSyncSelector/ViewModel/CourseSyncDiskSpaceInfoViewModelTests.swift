@@ -22,21 +22,40 @@ import XCTest
 class CourseSyncDiskSpaceInfoViewModelTests: XCTestCase {
 
     func testConvertsInteractorData() {
-        let testee = CourseSyncDiskSpaceInfoViewModel(interactor: MockDiskSpaceInteractor(), app: .parent)
-        XCTAssertEqual(testee.diskUsage, "512 bytes of 1 KB Used")
-        XCTAssertEqual(testee.chart.0, 0.25)
-        XCTAssertEqual(testee.chart.1, 0.25)
-        XCTAssertEqual(testee.chart.2, 0.5)
+        let diskSpace = DiskSpace(total: 1024,
+                                  available: 640,
+                                  app: 256,
+                                  otherApps: 128)
+        let testee = CourseSyncDiskSpaceInfoViewModel(interactor: MockDiskSpaceInteractor(diskSpace: diskSpace),
+                                                      app: .parent)
+        XCTAssertEqual(testee.diskUsage, "384 bytes of 1 KB Used")
+        XCTAssertEqual(testee.chart.other, 0.125)
+        XCTAssertEqual(testee.chart.app, 0.25)
+        XCTAssertEqual(testee.chart.free, 0.625)
         XCTAssertEqual(testee.appName, "Canvas Parent")
+    }
+
+    func testReserves1PercentChartForAppData() {
+        let diskSpace = DiskSpace(total: 1024,
+                                  available: 512,
+                                  app: 0,
+                                  otherApps: 512)
+        let testee = CourseSyncDiskSpaceInfoViewModel(interactor: MockDiskSpaceInteractor(diskSpace: diskSpace),
+                                                      app: .parent)
+        XCTAssertEqual(testee.chart.other, 0.5)
+        XCTAssertEqual(testee.chart.app, 0.01)
+        XCTAssertEqual(testee.chart.free, 0.49)
     }
 }
 
 private class MockDiskSpaceInteractor: DiskSpaceInteractor {
+    private var diskSpace: DiskSpace
+
+    init(diskSpace: DiskSpace) {
+        self.diskSpace = diskSpace
+    }
 
     func getDiskSpace() -> DiskSpace {
-        DiskSpace(total: 1024,
-                  available: 512,
-                  app: 256,
-                  otherApps: 256)
+        diskSpace
     }
 }

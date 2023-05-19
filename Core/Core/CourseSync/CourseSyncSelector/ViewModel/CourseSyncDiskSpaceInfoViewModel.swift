@@ -20,7 +20,7 @@ import Foundation
 
 class CourseSyncDiskSpaceInfoViewModel: ObservableObject {
     @Published private(set) var diskUsage: String
-    @Published private(set) var chart: (CGFloat, CGFloat, CGFloat)
+    @Published private(set) var chart: (other: CGFloat, app: CGFloat, free: CGFloat)
     public let appName: String
 
     init(interactor: DiskSpaceInteractor, app: AppEnvironment.App) {
@@ -28,8 +28,8 @@ class CourseSyncDiskSpaceInfoViewModel: ObservableObject {
         let format = NSLocalizedString("%@ of %@ Used", bundle: .core, comment: "42 GB of 64 GB Used")
         diskUsage = String.localizedStringWithFormat(format, diskSpace.used.humanReadableFileSize, diskSpace.total.humanReadableFileSize)
 
+        let appDiskSpace: CGFloat = max(0.01, Double(diskSpace.app) / Double(diskSpace.total))
         let otherDiskSpace: CGFloat = Double(diskSpace.otherApps) / Double(diskSpace.total)
-        let appDiskSpace: CGFloat = Double(diskSpace.app) / Double(diskSpace.total)
         chart = (otherDiskSpace,
                  appDiskSpace,
                  1 - (otherDiskSpace + appDiskSpace))
