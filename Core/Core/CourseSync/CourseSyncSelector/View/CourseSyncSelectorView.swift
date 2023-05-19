@@ -49,28 +49,47 @@ struct CourseSyncSelectorView: View {
                 CourseSyncDiskSpaceInfoView(viewModel: diskSpaceViewModel)
                     .padding(16)
                 Divider()
-                ScrollView {
-                    LazyVStack(spacing: 0) {
-                        ForEach(viewModel.items) { item in
-                            VStack(spacing: 0) {
-                                ListCellView(cellStyle: item.cellStyle,
-                                             title: item.title,
-                                             subtitle: item.subtitle,
-                                             selectionState: item.selectionState,
-                                             isCollapsed: item.isCollapsed,
-                                             selectionDidToggle: item.selectionDidToggle,
-                                             collapseDidToggle: item.collapseDidToggle)
-                                Divider().padding(.leading, item.cellStyle == .listItem ? 74 : 0)
-                            }.padding(.leading, item.cellStyle == .listItem ? 24 : 0)
+                GeometryReader { geometry in
+                    ScrollView {
+                        if viewModel.items.isEmpty {
+                            emptyList(geometry: geometry)
+                        } else {
+                            listCells
                         }
                     }
-                    .animation(.default, value: viewModel.items)
                 }
                 syncButton
             }
             .confirmationAlert(isPresented: $viewModel.isShowingConfirmationDialog,
                                presenting: viewModel.confirmAlert)
         }
+    }
+
+    private var listCells: some View {
+        LazyVStack(spacing: 0) {
+            ForEach(viewModel.items) { item in
+                VStack(spacing: 0) {
+                    ListCellView(cellStyle: item.cellStyle,
+                                 title: item.title,
+                                 subtitle: item.subtitle,
+                                 selectionState: item.selectionState,
+                                 isCollapsed: item.isCollapsed,
+                                 selectionDidToggle: item.selectionDidToggle,
+                                 collapseDidToggle: item.collapseDidToggle)
+                    Divider().padding(.leading, item.cellStyle == .listItem ? 74 : 0)
+                }.padding(.leading, item.cellStyle == .listItem ? 24 : 0)
+            }
+        }
+        .animation(.default, value: viewModel.items)
+    }
+
+    private func emptyList(geometry: GeometryProxy) -> some View {
+        InteractivePanda(scene: SpacePanda(),
+                         title: Text("No Courses", bundle: .core),
+                         subtitle: Text("Your courses will be listed here, and then you can make them available for offline usage.", bundle: .core))
+
+        .padding(16)
+        .frame(maxWidth: .infinity, minHeight: geometry.size.height)
     }
 
     private var navBarTitleView: some View {
@@ -139,7 +158,12 @@ struct SeparatorView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        CourseSyncSelectorAssembly.makePreview(env: AppEnvironment.shared)
+        CourseSyncSelectorAssembly
+            .makePreview(env: AppEnvironment.shared, isEmpty: false)
+            .previewDisplayName("Data")
+        CourseSyncSelectorAssembly
+            .makePreview(env: AppEnvironment.shared, isEmpty: true)
+            .previewDisplayName("Empty List")
     }
 }
 

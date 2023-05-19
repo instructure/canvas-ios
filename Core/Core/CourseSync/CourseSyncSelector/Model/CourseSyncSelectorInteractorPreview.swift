@@ -44,6 +44,10 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
         ])
     }
 
+    func mockEmptyState() {
+        mockData.accept([])
+    }
+
     func getCourseSyncEntries() -> AnyPublisher<[CourseSyncSelectorEntry], Error> {
         mockData
             .setFailureType(to: Error.self)
