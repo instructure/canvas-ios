@@ -42,8 +42,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                     .init(id: "3", name: "Files", type: .files),
                 ],
                 files: [
-                    .make(id: "1", name: "1", url: URL(string: "1.jpg")!),
-                    .make(id: "2", name: "2", url: URL(string: "2.jpg")!),
+                    .make(id: "1", displayName: "1", url: URL(string: "1.jpg")!),
+                    .make(id: "2", displayName: "2", url: URL(string: "2.jpg")!),
                 ]
             ),
         ]
