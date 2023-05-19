@@ -26,6 +26,7 @@ struct CourseSyncSelectorView: View {
 
     var body: some View {
         content
+        .background(Color.backgroundLightest)
         .navigationBarTitleView(navBarTitleView)
         .navigationBarItems(leading: leftNavBarButton, trailing: cancelButton)
         .navigationBarStyle(.modal)
@@ -38,9 +39,11 @@ struct CourseSyncSelectorView: View {
             InteractivePanda(scene: NoResultsPanda(),
                              title: Text("Something went wrong", bundle: .core),
                              subtitle: Text("There was an unexpected error.", bundle: .core))
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         case .loading:
             ProgressView()
                 .progressViewStyle(.indeterminateCircle())
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
         case .data:
             VStack(spacing: 0) {
                 CourseSyncDiskSpaceInfoView(viewModel: diskSpaceViewModel)
@@ -65,7 +68,6 @@ struct CourseSyncSelectorView: View {
                 }
                 syncButton
             }
-            .background(Color.backgroundLightest)
             .confirmationAlert(isPresented: $viewModel.isShowingConfirmationDialog,
                                presenting: viewModel.confirmAlert)
         }
