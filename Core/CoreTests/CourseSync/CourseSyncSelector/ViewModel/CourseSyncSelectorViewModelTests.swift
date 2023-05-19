@@ -107,9 +107,17 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
         XCTAssertEqual(testee.items[0].id, "course-test")
         XCTAssertTrue(testee.leftNavBarButtonVisible)
     }
+
+    func testUpdatesNavBarSubtitle() {
+        XCTAssertEqual(testee.navBarSubtitle, "Test Name")
+    }
 }
 
 class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
+
+    required init(courseID: String? = nil) {
+    }
+
     let courseSyncEntriesSubject = PassthroughSubject<[CourseSyncSelectorEntry], Error>()
     func getCourseSyncEntries() -> AnyPublisher<[Core.CourseSyncSelectorEntry], Error> {
         courseSyncEntriesSubject.eraseToAnyPublisher()
@@ -136,6 +144,10 @@ class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
     var toggleAllCoursesSelectionParam: Bool?
     func toggleAllCoursesSelection(isSelected: Bool) {
         toggleAllCoursesSelectionParam = isSelected
+    }
+
+    func getCourseName() -> AnyPublisher<String, Never> {
+        Just("Test Name").eraseToAnyPublisher()
     }
 }
 
