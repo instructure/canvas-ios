@@ -38,7 +38,7 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
 
     func testInitialState() {
         XCTAssertEqual(testee.state, .loading)
-        XCTAssertEqual(testee.items, [])
+        XCTAssertEqual(testee.cells, [])
         XCTAssertTrue(testee.syncButtonDisabled)
         XCTAssertFalse(testee.leftNavBarButtonVisible)
         XCTAssertFalse(testee.isShowingConfirmationDialog)
@@ -103,9 +103,14 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
         waitUntil(shouldFail: true) {
             testee.state == .data
         }
-        XCTAssertEqual(testee.items.count, 1)
-        XCTAssertEqual(testee.items[0].id, "course-test")
+        XCTAssertEqual(testee.cells.count, 1)
         XCTAssertTrue(testee.leftNavBarButtonVisible)
+
+        guard case .item(let item) = testee.cells[0] else {
+            return XCTFail()
+        }
+
+        XCTAssertEqual(item.id, "course-test")
     }
 
     func testUpdatesNavBarSubtitle() {

@@ -51,7 +51,7 @@ struct CourseSyncSelectorView: View {
                 Divider()
                 GeometryReader { geometry in
                     ScrollView {
-                        if viewModel.items.isEmpty {
+                        if viewModel.cells.isEmpty {
                             emptyList(geometry: geometry)
                         } else {
                             listCells
@@ -67,20 +67,33 @@ struct CourseSyncSelectorView: View {
 
     private var listCells: some View {
         LazyVStack(spacing: 0) {
-            ForEach(viewModel.items) { item in
+            ForEach(viewModel.cells) { cell in
+                let isListItem: Bool = {
+                    if case .item(let item) = cell, item.cellStyle == .listItem {
+                        return true
+                    } else {
+                        return false
+                    }
+                }()
+
                 VStack(spacing: 0) {
-                    ListCellView(cellStyle: item.cellStyle,
-                                 title: item.title,
-                                 subtitle: item.subtitle,
-                                 selectionState: item.selectionState,
-                                 isCollapsed: item.isCollapsed,
-                                 selectionDidToggle: item.selectionDidToggle,
-                                 collapseDidToggle: item.collapseDidToggle)
-                    Divider().padding(.leading, item.cellStyle == .listItem ? 74 : 0)
-                }.padding(.leading, item.cellStyle == .listItem ? 24 : 0)
+                    switch cell {
+                    case .item(let item):
+                        ListCellView(cellStyle: item.cellStyle,
+                                     title: item.title,
+                                     subtitle: item.subtitle,
+                                     selectionState: item.selectionState,
+                                     isCollapsed: item.isCollapsed,
+                                     selectionDidToggle: item.selectionDidToggle,
+                                     collapseDidToggle: item.collapseDidToggle)
+                    case .empty:
+                        emptyCourse
+                    }
+                    Divider().padding(.leading, isListItem ? 74 : 0)
+                }.padding(.leading, isListItem ? 24 : 0)
             }
         }
-        .animation(.default, value: viewModel.items)
+        .animation(.default, value: viewModel.cells)
     }
 
     private func emptyList(geometry: GeometryProxy) -> some View {
@@ -90,6 +103,15 @@ struct CourseSyncSelectorView: View {
 
         .padding(16)
         .frame(maxWidth: .infinity, minHeight: geometry.size.height)
+    }
+
+    private var emptyCourse: some View {
+        InteractivePanda(scene: SpacePanda(),
+                         title: Text(viewModel.labels.noItems.title),
+                         subtitle: Text(viewModel.labels.noItems.message))
+        .allowsHitTesting(false)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 32)
     }
 
     private var navBarTitleView: some View {

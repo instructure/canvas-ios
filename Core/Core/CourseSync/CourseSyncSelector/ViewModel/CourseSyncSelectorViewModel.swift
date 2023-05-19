@@ -30,7 +30,7 @@ class CourseSyncSelectorViewModel: ObservableObject {
     // MARK: - Output
 
     @Published public private(set) var state = State.loading
-    @Published public private(set) var items: [Item] = []
+    @Published public private(set) var cells: [Cell] = []
     @Published public private(set) var navBarSubtitle = ""
     @Published public private(set) var syncButtonDisabled = true
     @Published public private(set) var leftNavBarTitle = ""
@@ -45,6 +45,10 @@ class CourseSyncSelectorViewModel: ObservableObject {
         noCourses: (
             title: NSLocalizedString("No Courses", comment: ""),
             message: NSLocalizedString("Your courses will be listed here, and then you can make them available for offline usage.", comment: "")
+        ),
+        noItems: (
+            title: NSLocalizedString("No Course Content", comment: ""),
+            message: NSLocalizedString("The course content will be listed here, and then you can make them available for offline usage.", comment: "")
         ),
         error: (
             title: NSLocalizedString("Something went wrong", comment: ""),
@@ -166,6 +170,6 @@ class CourseSyncSelectorViewModel: ObservableObject {
                 }
             })
             .replaceError(with: [])
-            .assign(to: &$items)
+            .assign(to: &$cells)
     }
 }
