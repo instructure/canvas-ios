@@ -46,6 +46,16 @@ class CourseSyncDiskSpaceInfoViewModelTests: XCTestCase {
         XCTAssertEqual(testee.chart.app, 0.01)
         XCTAssertEqual(testee.chart.free, 0.49)
     }
+
+    func testA11yLabel() {
+        let diskSpace = DiskSpace(total: 1024,
+                                  available: 640,
+                                  app: 256,
+                                  otherApps: 128)
+        let testee = CourseSyncDiskSpaceInfoViewModel(interactor: MockDiskSpaceInteractor(diskSpace: diskSpace),
+                                                      app: .parent)
+        XCTAssertEqual(testee.a11yLabel, "Storage Info,384 bytes of 1 KB Used,Other Apps 12.5%,Canvas Parent 25.0%,Remaining 62.5%")
+    }
 }
 
 private class MockDiskSpaceInteractor: DiskSpaceInteractor {

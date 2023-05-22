@@ -22,18 +22,32 @@ class CourseSyncDiskSpaceInfoViewModel: ObservableObject {
     @Published private(set) var diskUsage: String
     @Published private(set) var chart: (other: CGFloat, app: CGFloat, free: CGFloat)
     public let appName: String
+    public let a11yLabel: String
 
     init(interactor: DiskSpaceInteractor, app: AppEnvironment.App) {
         let diskSpace = interactor.getDiskSpace()
         let format = NSLocalizedString("%@ of %@ Used", bundle: .core, comment: "42 GB of 64 GB Used")
-        diskUsage = String.localizedStringWithFormat(format, diskSpace.used.humanReadableFileSize, diskSpace.total.humanReadableFileSize)
+        let diskUsage = String.localizedStringWithFormat(format,
+                                                         diskSpace.used.humanReadableFileSize,
+                                                         diskSpace.total.humanReadableFileSize)
+        self.diskUsage = diskUsage
 
         let appDiskSpace: CGFloat = max(0.01, Double(diskSpace.app) / Double(diskSpace.total))
         let otherDiskSpace: CGFloat = Double(diskSpace.otherApps) / Double(diskSpace.total)
-        chart = (otherDiskSpace,
-                 appDiskSpace,
-                 1 - (otherDiskSpace + appDiskSpace))
+        let chart = (other: otherDiskSpace,
+                     app: appDiskSpace,
+                     free: 1 - (otherDiskSpace + appDiskSpace))
+        self.chart = chart
 
-        appName = "Canvas \(app.rawValue.capitalized)"
+        let appName = "Canvas \(app.rawValue.capitalized)"
+        self.appName = appName
+
+        a11yLabel = [
+            NSLocalizedString("Storage Info", comment: ""),
+            diskUsage,
+            NSLocalizedString("Other Apps", comment: "") + String(format: " %.1f%%", 100 * chart.other),
+            appName + String(format: " %.1f%%", 100 * chart.app),
+            NSLocalizedString("Remaining", comment: "") + String(format: " %.1f%%", 100 * chart.free),
+        ].joined(separator: ",")
     }
 }

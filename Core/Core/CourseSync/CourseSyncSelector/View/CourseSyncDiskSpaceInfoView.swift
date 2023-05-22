@@ -46,6 +46,8 @@ struct CourseSyncDiskSpaceInfoView: View {
             .overlay(RoundedRectangle(cornerRadius: 6)
                 .stroke(Color.borderDark, lineWidth: 1 / UIScreen.main.scale))
         )
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(viewModel.a11yLabel)
     }
 
     private var title: some View {
