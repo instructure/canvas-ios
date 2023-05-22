@@ -25,14 +25,17 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
     var testee: CourseSyncSelectorViewModel!
     var mockSelectorInteractor: CourseSyncSelectorInteractorMock!
     var mockSyncInteractor: CourseSyncInteractorMock!
+    var router: TestRouter!
 
     override func setUp() {
         super.setUp()
         mockSelectorInteractor = CourseSyncSelectorInteractorMock()
         mockSyncInteractor = CourseSyncInteractorMock()
+        router = TestRouter()
         testee = CourseSyncSelectorViewModel(
             selectorInteractor: mockSelectorInteractor,
-            syncInteractor: mockSyncInteractor
+            syncInteractor: mockSyncInteractor,
+            router: router
         )
     }
 
@@ -115,6 +118,13 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
 
     func testUpdatesNavBarSubtitle() {
         XCTAssertEqual(testee.navBarSubtitle, "Test Name")
+    }
+
+    func testCancelTap() {
+        let controller = UIViewController()
+        let weakController = WeakViewController(controller)
+        testee.cancelButtonDidTap.accept(weakController)
+        XCTAssertEqual(router.dismissed, controller)
     }
 }
 

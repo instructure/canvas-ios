@@ -26,7 +26,8 @@ public enum CourseSyncSelectorAssembly {
         let diskSpaceInteractor = DiskSpaceInteractorLive()
         let viewModel = CourseSyncSelectorViewModel(
             selectorInteractor: selectorInteractor,
-            syncInteractor: syncInteractor
+            syncInteractor: syncInteractor,
+            router: env.router
         )
         let diskSpaceViewModel = CourseSyncDiskSpaceInfoViewModel(interactor: diskSpaceInteractor, app: env.app ?? .student)
         let view = CourseSyncSelectorView(viewModel: viewModel, diskSpaceViewModel: diskSpaceViewModel)
@@ -46,7 +47,8 @@ public enum CourseSyncSelectorAssembly {
         let diskSpaceInteractor = DiskSpaceInteractorPreview()
         let viewModel = CourseSyncSelectorViewModel(
             selectorInteractor: selectorInteractor,
-            syncInteractor: syncInteractor
+            syncInteractor: syncInteractor,
+            router: env.router
         )
         let diskSpaceViewModel = CourseSyncDiskSpaceInfoViewModel(interactor: diskSpaceInteractor, app: env.app ?? .student)
         return CourseSyncSelectorView(viewModel: viewModel, diskSpaceViewModel: diskSpaceViewModel)

@@ -19,7 +19,6 @@
 import SwiftUI
 
 struct CourseSyncSelectorView: View {
-    @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var viewController
     @StateObject var viewModel: CourseSyncSelectorViewModel
     @StateObject var diskSpaceViewModel: CourseSyncDiskSpaceInfoViewModel
@@ -127,7 +126,7 @@ struct CourseSyncSelectorView: View {
 
     private var cancelButton: some View {
         Button {
-            env.router.dismiss(viewController)
+            viewModel.cancelButtonDidTap.accept(viewController)
         } label: {
             Text("Cancel", bundle: .core)
                 .font(.regular16)

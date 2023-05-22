@@ -59,6 +59,7 @@ class CourseSyncSelectorViewModel: ObservableObject {
     // MARK: - Input
 
     public let syncButtonDidTap = PassthroughRelay<WeakViewController>()
+    public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
     public let leftNavBarButtonDidTap = PassthroughRelay<Void>()
 
     // MARK: - Private
@@ -66,13 +67,16 @@ class CourseSyncSelectorViewModel: ObservableObject {
     private let selectorInteractor: CourseSyncSelectorInteractor
     private let syncInteractor: CourseSyncInteractor
     private var subscriptions = Set<AnyCancellable>()
+    private let router: Router
 
     init(
         selectorInteractor: CourseSyncSelectorInteractor,
-        syncInteractor: CourseSyncInteractor
+        syncInteractor: CourseSyncInteractor,
+        router: Router
     ) {
         self.selectorInteractor = selectorInteractor
         self.syncInteractor = syncInteractor
+        self.router = router
 
         updateState(selectorInteractor)
         updateSyncButtonState(selectorInteractor)
@@ -80,12 +84,21 @@ class CourseSyncSelectorViewModel: ObservableObject {
         updateSelectAllButtonTitle(selectorInteractor)
         updateNavBarSubtitle(selectorInteractor)
 
+        handleCancelButtonTap(selectorInteractor)
         handleLeftNavBarTap(selectorInteractor)
         handleSyncButtonTap(
             selectorInteractor: selectorInteractor,
             syncInteractor: syncInteractor,
             confirmAlert: confirmAlert
         )
+    }
+
+    private func handleCancelButtonTap(_ interactor: CourseSyncSelectorInteractor) {
+        cancelButtonDidTap
+            .sink { [unowned router] viewController in
+                router.dismiss(viewController)
+            }
+            .store(in: &subscriptions)
     }
 
     private func updateNavBarSubtitle(_ interactor: CourseSyncSelectorInteractor) {
