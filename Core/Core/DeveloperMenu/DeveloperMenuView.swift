@@ -19,8 +19,11 @@
 import SwiftUI
 
 public struct DeveloperMenuView: View {
+    @Environment(\.appEnvironment) var env
     @Environment(\.appEnvironment.router) var router
     @Environment(\.viewController) var controller
+
+    @StateObject private var snackBarViewModel = SnackBarViewModel()
 
     private var items: [DeveloperMenuItem] { [
         DeveloperMenuItem("View Experimental Features") {
@@ -40,6 +43,14 @@ public struct DeveloperMenuView: View {
         },
         DeveloperMenuItem("View Logs") {
             router.route(to: "/logs", from: controller)
+        },
+        DeveloperMenuItem("Copy HeapID to Clipboard") {
+            UIPasteboard.general.string = env.heapID
+            snackBarViewModel.showSnack("HeapID copied to clipboard.\n\(env.heapID ?? "N/A")")
+        },
+        DeveloperMenuItem("Copy Access Token to Clipboard") {
+            UIPasteboard.general.string = env.currentSession?.accessToken
+            snackBarViewModel.showSnack("Access Token copied to clipboard.\n\(env.currentSession?.accessToken ?? "N/A")")
         },
     ] }
 
@@ -70,6 +81,7 @@ public struct DeveloperMenuView: View {
                 Text("Done", bundle: .core).fontWeight(.regular)
             })
         })
+        .snackBar(viewModel: snackBarViewModel)
     }
 
     private struct DeveloperMenuItem: Identifiable {
