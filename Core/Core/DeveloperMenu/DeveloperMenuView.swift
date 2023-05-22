@@ -25,34 +25,7 @@ public struct DeveloperMenuView: View {
 
     @StateObject private var snackBarViewModel = SnackBarViewModel()
 
-    private var items: [DeveloperMenuItem] { [
-        DeveloperMenuItem("View Experimental Features") {
-            router.route(to: "/dev-menu/experimental-features", from: controller)
-        },
-        DeveloperMenuItem("Website Preview") {
-            router.route(to: "/dev-menu/website-preview", from: controller, options: .modal(.fullScreen, embedInNav: true, addDoneButton: true))
-        },
-        DeveloperMenuItem("Panda Gallery") {
-            router.route(to: "/dev-menu/pandas", from: controller)
-        },
-        DeveloperMenuItem("SnackBar Test") {
-            router.route(to: "/dev-menu/snackbar", from: controller, options: .modal(.fullScreen, embedInNav: true, addDoneButton: true))
-        },
-        DeveloperMenuItem("View Push Notifications") {
-            router.route(to: "/push-notifications", from: controller)
-        },
-        DeveloperMenuItem("View Logs") {
-            router.route(to: "/logs", from: controller)
-        },
-        DeveloperMenuItem("Copy HeapID to Clipboard") {
-            UIPasteboard.general.string = env.heapID
-            snackBarViewModel.showSnack("HeapID copied to clipboard.\n\(env.heapID ?? "N/A")")
-        },
-        DeveloperMenuItem("Copy Access Token to Clipboard") {
-            UIPasteboard.general.string = env.currentSession?.accessToken
-            snackBarViewModel.showSnack("Access Token copied to clipboard.\n\(env.currentSession?.accessToken ?? "N/A")")
-        },
-    ] }
+    @State private var items: [DeveloperMenuItem] = []
 
     public init() {}
 
@@ -82,6 +55,50 @@ public struct DeveloperMenuView: View {
             })
         })
         .snackBar(viewModel: snackBarViewModel)
+        .onAppear {
+            setupItems()
+        }
+    }
+
+    private func setupItems() {
+        unowned let router = router
+        unowned let controller = controller
+        unowned let env = env
+        unowned let snackBarViewModel = snackBarViewModel
+
+        items.append(contentsOf: [
+            DeveloperMenuItem("View Experimental Features") {
+                router.route(to: "/dev-menu/experimental-features", from: controller)
+            },
+            DeveloperMenuItem("Website Preview") {
+                router.route(to: "/dev-menu/website-preview", from: controller, options: .modal(.fullScreen, embedInNav: true, addDoneButton: true))
+            },
+            DeveloperMenuItem("Panda Gallery") {
+                router.route(to: "/dev-menu/pandas", from: controller)
+            },
+            DeveloperMenuItem("SnackBar Test") {
+                router.route(to: "/dev-menu/snackbar", from: controller, options: .modal(.fullScreen, embedInNav: true, addDoneButton: true))
+            },
+            DeveloperMenuItem("View Push Notifications") {
+                router.route(to: "/push-notifications", from: controller)
+            },
+            DeveloperMenuItem("View Logs") {
+                router.route(to: "/logs", from: controller)
+            },
+            DeveloperMenuItem("HeapID: \(env.heapID ?? "N/A")\n---\nTap to Copy") {
+                UIPasteboard.general.string = env.heapID
+                snackBarViewModel.showSnack("HeapID copied to clipboard.\n\(env.heapID ?? "N/A")")
+            },
+        ])
+
+        #if DEBUG
+        items.append(
+            DeveloperMenuItem("Access Token: \(env.currentSession?.accessToken ?? "N/A")\n---\nTap to Copy") {
+                UIPasteboard.general.string = env.currentSession?.accessToken
+                snackBarViewModel.showSnack("Access Token copied to clipboard.\n\(env.currentSession?.accessToken ?? "N/A")")
+            }
+        )
+        #endif
     }
 
     private struct DeveloperMenuItem: Identifiable {
@@ -90,7 +107,7 @@ public struct DeveloperMenuView: View {
         public let action: () -> Void
 
         public init(_ title: String, action: @escaping () -> Void) {
-            self.id = title
+            id = title
             self.title = title
             self.action = action
         }
