@@ -174,6 +174,9 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
 
     func embedPage(_ page: UIViewController, at: Int) {
         addChild(page)
+        guard at <= scrollView.subviews.count else {
+            return
+        }
         scrollView.insertSubview(page.view, at: at)
         page.view.tag = 1
         page.didMove(toParent: self)
