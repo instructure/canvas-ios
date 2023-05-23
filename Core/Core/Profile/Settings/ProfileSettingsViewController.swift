@@ -114,8 +114,13 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
             }
         }).sorted(by: { $0.title < $1.title })
 
-        sections = [
-            preferencesSection,
+        var sections: [Section] = [preferencesSection]
+
+        if ExperimentalFeature.offlineMode.isEnabled, env.app == .student {
+            sections.append(offlineSettingSection)
+        }
+
+        sections.append(
             Section(NSLocalizedString("Legal", bundle: .core, comment: ""), rows: [
                 Row(NSLocalizedString("Privacy Policy", bundle: .core, comment: "")) { [weak self] in
                     guard let self = self else { return }
@@ -129,16 +134,26 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                     guard let self = self else { return }
                     self.env.router.route(to: "https://github.com/instructure/canvas-ios", from: self)
                 },
-            ]),
-        ]
+            ])
+        )
+        self.sections = sections
+
         if !channels.pending && !profile.pending && termsOfServiceRequest == nil {
             tableView.refreshControl?.endRefreshing()
         }
         tableView.reloadData()
     }
 
+    private var offlineSettingSection: Section {
+        Section(NSLocalizedString("Offline Content", comment: ""), rows: [
+            Row(NSLocalizedString("Synchronization", comment: ""),
+                detail: NSLocalizedString("Daily Auto", comment: "")) {
+            },
+        ])
+    }
+
     private var preferencesSection: Section {
-        return Section(NSLocalizedString("Preferences", bundle: .core, comment: ""), rows: preferencesRows)
+        Section(NSLocalizedString("Preferences", bundle: .core, comment: ""), rows: preferencesRows)
     }
 
     private var preferencesRows: [Any] {
