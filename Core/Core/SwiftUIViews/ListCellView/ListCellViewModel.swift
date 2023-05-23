@@ -85,20 +85,20 @@ class ListCellViewModel: ObservableObject {
         }
     }
 
-    var accessibilitySelectionText: Text {
+    var accessibilitySelectionText: String {
         switch selectionState {
         case .deselected:
-            return Text("Select item", bundle: .core)
+            return NSLocalizedString("Select item", bundle: .core, comment: "")
         case .selected, .partiallySelected:
-            return Text("Deselect item", bundle: .core)
+            return NSLocalizedString("Deselect item", bundle: .core, comment: "")
         }
     }
 
-    var accessibilityAccordionHeaderText: Text {
+    var accessibilityAccordionHeaderText: String {
         if isCollapsed == true {
-            return Text("Open section", bundle: .core)
+            return NSLocalizedString("Open section", bundle: .core, comment: "")
         }
-        return Text("Close section", bundle: .core)
+        return NSLocalizedString("Close section", bundle: .core, comment: "")
     }
 
     var accessibilityText: String {
@@ -110,29 +110,29 @@ class ListCellViewModel: ObservableObject {
         if selectionDidToggle != nil {
             switch selectionState {
             case .deselected:
-                selectionText = String(localized: "Deselected", bundle: .core)
+                selectionText = NSLocalizedString("Deselected", bundle: .core, comment: "")
             case .selected:
-                selectionText = String(localized: "Selected", bundle: .core)
+                selectionText = NSLocalizedString("Selected", bundle: .core, comment: "")
             case .partiallySelected:
-                selectionText = String(localized: "Partially selected", bundle: .core)
+                selectionText = NSLocalizedString("Partially selected", bundle: .core, comment: "")
             }
         }
         var collapseText = ""
         if let isCollapsed = isCollapsed {
             switch isCollapsed {
             case true:
-                collapseText = String(localized: "Closed section", bundle: .core)
+                collapseText = NSLocalizedString("Closed section", bundle: .core, comment: "")
             case false:
-                collapseText = String(localized: "Open section", bundle: .core)
+                collapseText = NSLocalizedString("Open section", bundle: .core, comment: "")
             }
         }
 
         var progressText = ""
         if let progress = progress, error == nil {
             if progress == 1 {
-                progressText = String(localized: "Download complete", bundle: .core)
+                progressText = NSLocalizedString("Download complete", bundle: .core, comment: "")
             } else {
-                progressText = String(localized: "Downloading", bundle: .core)
+                progressText = NSLocalizedString("Downloading", bundle: .core, comment: "")
             }
         }
 
