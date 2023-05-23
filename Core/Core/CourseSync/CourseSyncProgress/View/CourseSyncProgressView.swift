@@ -54,7 +54,9 @@ struct CourseSyncProgressView: View {
                                              subtitle: item.subtitle,
                                              isCollapsed: item.isCollapsed,
                                              collapseDidToggle: item.collapseDidToggle,
-                                             progress: item.progress)
+                                             removeItemPressed: item.removeItemPressed,
+                                             progress: item.progress,
+                                             error: item.error)
                                 Divider().padding(.leading, item.cellStyle == .listItem ? item.progress != nil ? 16 : 74 : 0)
                             }.padding(.leading, item.cellStyle == .listItem ? 24 : 0)
                         }

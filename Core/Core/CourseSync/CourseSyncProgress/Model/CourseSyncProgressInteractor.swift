@@ -20,13 +20,41 @@ import Combine
 import CombineExt
 import Foundation
 
+struct SyncProgress {
+    let total: Int64
+    let progress: Int64
+}
+
 protocol CourseSyncProgressInteractor {
+    func getSyncProgress() -> SyncProgress
     func getCourseSyncProgressEntries() -> AnyPublisher<[CourseSyncProgressEntry], Error>
     func setProgress(selection: CourseEntrySelection, progress: Float?)
     func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool)
+    func remove(selection: CourseEntrySelection)
 }
 
 final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
+
+    // MARK: - Progress info view
+
+    func getSyncProgress() -> SyncProgress {
+        let total = getTotalSize()
+        let progress = getProgressSize()
+        return SyncProgress(total: total, progress: progress)
+    }
+
+    private func getTotalSize() -> Int64 {
+        // TODO: logic
+        return 1
+    }
+
+    private func getProgressSize() -> Int64 {
+        // TODO: logic
+        return 1
+    }
+
+    // MARK: - Progress item view
+
     func getCourseSyncProgressEntries() -> AnyPublisher<[CourseSyncProgressEntry], Error> {
         return Just([])
             .setFailureType(to: Error.self)
@@ -37,5 +65,8 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
     }
 
     func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool) {
+    }
+
+    func remove(selection: CourseEntrySelection) {
     }
 }

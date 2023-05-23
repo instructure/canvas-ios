@@ -22,7 +22,7 @@ class CourseSyncProgressInfoViewModel: ObservableObject {
     @Published private(set) var progress: String
     @Published private(set) var progressPercentage: Float
 
-    init(interactor: CourseSyncProgressInfoInteractor) {
+    init(interactor: CourseSyncProgressInteractor) {
         let syncProgress = interactor.getSyncProgress()
         let format = NSLocalizedString("Downloading %@ of %@", bundle: .core, comment: "Downloading 42 GB of 64 GB")
         progress = String.localizedStringWithFormat(format, syncProgress.progress.humanReadableFileSize, syncProgress.total.humanReadableFileSize)

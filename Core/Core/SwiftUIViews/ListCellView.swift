@@ -35,10 +35,12 @@ struct ListCellView: View {
     let cellStyle: ListCellStyle
     let title: String
     let subtitle: String?
+    let error: String?
     let selectionState: SelectionState
     let isCollapsed: Bool?
     let selectionDidToggle: (() -> Void)?
     let collapseDidToggle: (() -> Void)?
+    let removeItemPressed: (() -> Void)?
 
     let progress: Float?
 
@@ -49,7 +51,9 @@ struct ListCellView: View {
                   isCollapsed: Bool? = nil,
                   selectionDidToggle: (() -> Void)? = nil,
                   collapseDidToggle: (() -> Void)? = nil,
-                  progress: Float? = nil) {
+                  removeItemPressed: (() -> Void)? = nil,
+                  progress: Float? = nil,
+                  error: String? = nil) {
         self.cellStyle = cellStyle
         self.title = title
         self.subtitle = subtitle
@@ -57,7 +61,9 @@ struct ListCellView: View {
         self.isCollapsed = isCollapsed
         self.selectionDidToggle = selectionDidToggle
         self.collapseDidToggle = collapseDidToggle
+        self.removeItemPressed = removeItemPressed
         self.progress = progress
+        self.error = error
     }
 
     private var backgroundColor: Color {
@@ -80,7 +86,7 @@ struct ListCellView: View {
 
     @ViewBuilder
     private var iconImage: some View {
-        if progress == nil {
+        if selectionDidToggle != nil {
             HStack {
                 switch selectionState {
                 case .deselected:
@@ -116,7 +122,18 @@ struct ListCellView: View {
             case .listItem:
                 SwiftUI.EmptyView()
             }
-            if let progress = progress {
+            if error != nil {
+                Button {
+                    removeItemPressed?()
+                } label: {
+                    Image("xLine", bundle: .core)
+                        .size(24)
+                        .foregroundColor(.textDarkest)
+                        .accessibilityHidden(true)
+                        .padding(.leading, 30)
+                }
+
+            } else if let progress = progress {
                 if progress < 1 {
                     ProgressView(value: progress)
                         .progressViewStyle(.determinateCircle(size: 20,
@@ -168,6 +185,15 @@ struct ListCellView: View {
             .lineLimit(1)
             .foregroundColor(.textDark)
             .font(subtitleFont)
+            .padding(.bottom, error != nil ? 2 : 14)
+    }
+
+    @ViewBuilder
+    private var errorText: some View {
+        Text(error ?? "")
+            .lineLimit(1)
+            .foregroundColor(.textDanger)
+            .font(.regular14)
             .padding(.bottom, 14)
     }
 
@@ -198,6 +224,9 @@ struct ListCellView: View {
                         if subtitle != nil {
                             subTitleText
                         }
+                        if error != nil {
+                            errorText
+                        }
                     }.padding(.leading, 16)
                     Spacer()
                     accessoryIcon.accessibilityHidden(true)
@@ -205,14 +234,22 @@ struct ListCellView: View {
             }
             .fixedSize(horizontal: false, vertical: true)
             .frame(minHeight: cellHeight)
-        }.accessibilityElement(children: .combine)
-            .accessibilityAction(named: accessibilitySelectionText) {
-                selectionDidToggle?()
-            }.if(isCollapsed != nil) { view in
-                view.accessibilityAction(named: accessibilityAccordionHeaderText) {
-                    collapseDidToggle?()
-                }
-        }.accessibility(label: accessibilityText)
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityAction(named: accessibilitySelectionText) {
+            selectionDidToggle?()
+        }
+        .if(isCollapsed != nil) { view in
+            view.accessibilityAction(named: accessibilityAccordionHeaderText) {
+                collapseDidToggle?()
+            }
+        }
+        .if(error != nil) { view in
+            view.accessibilityAction(named: Text("Remove item", bundle: .core)) {
+                removeItemPressed?()
+            }
+        }
+        .accessibility(label: accessibilityText)
     }
 
     private var accessibilitySelectionText: Text {
@@ -232,9 +269,12 @@ struct ListCellView: View {
     }
 
     private var accessibilityText: Text {
-        let titleText = Text(title + (subtitle ?? "") + ",")
+        var titleText = Text(title + (subtitle ?? "") + ",")
+        if let error = error {
+            titleText.append(error + ",")
+        }
         var selectionText: Text = Text("")
-        if progress == nil {
+        if selectionDidToggle != nil {
             switch selectionState {
             case .deselected:
                 selectionText = Text("Deselected,", bundle: .core)
@@ -254,7 +294,7 @@ struct ListCellView: View {
             collapseText = Text("")
         }
         var progressText: Text
-        if let progress = progress {
+        if let progress = progress, error == nil {
             if progress == 1 {
                 progressText = Text("Download complete,", bundle: .core)
             } else {
@@ -277,24 +317,28 @@ struct ListCellView_Previews: PreviewProvider {
                          title: "Top Secret.pdf",
                          subtitle: "1MB",
                          selectionState: .selected,
-                         isCollapsed: false)
+                         isCollapsed: false,
+                         selectionDidToggle: {})
             Divider()
             ListCellView(cellStyle: .listAccordionHeader,
                          title: "Something",
                          subtitle: nil,
-                         selectionState: .deselected)
+                         selectionState: .deselected,
+                         selectionDidToggle: {})
             Divider()
             ListCellView(cellStyle: .listAccordionHeader,
                          title: "Files",
                          subtitle: nil,
                          selectionState: .deselected,
-                         isCollapsed: false)
+                         isCollapsed: false,
+                         selectionDidToggle: {})
             Divider()
             ListCellView(cellStyle: .listItem,
-                         title: "Creative Machines and Innovative Instrumentation.mov",
+                         title: "Creative Machines and InnovativeInstrument ation.mov",
                          subtitle: "4 GB",
                          selectionState: .selected,
-                         isCollapsed: false)
+                         isCollapsed: false,
+                         selectionDidToggle: {})
             Divider()
             Spacer()
         }
@@ -316,7 +360,8 @@ struct ListCellView_Previews: PreviewProvider {
                          title: "Creative Machines and Innovative Instrumentation.mov",
                          subtitle: "4 GB",
                          isCollapsed: false,
-                         progress: 1)
+                         progress: 1,
+                         error: "Sync Failed")
             Divider()
             Spacer()
         }

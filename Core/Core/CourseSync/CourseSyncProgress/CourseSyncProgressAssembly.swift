@@ -22,10 +22,9 @@ public enum CourseSyncProgressAssembly {
 
     public static func makeViewController(env: AppEnvironment) -> UIViewController {
         let interactor = CourseSyncProgressInteractorLive()
-        let courseSyncProgressInfoInteractor = CourseSyncProgressInfoInteractorLive()
         let viewModel = CourseSyncProgressViewModel(interactor: interactor)
-        let courseSyncProgressInfoViewModel = CourseSyncProgressInfoViewModel(interactor: courseSyncProgressInfoInteractor)
-        let view = CourseSyncProgressView(viewModel: viewModel, courseSyncProgressInfoViewModel: courseSyncProgressInfoViewModel)
+        let infoViewModel = CourseSyncProgressInfoViewModel(interactor: interactor)
+        let view = CourseSyncProgressView(viewModel: viewModel, courseSyncProgressInfoViewModel: infoViewModel)
         return CoreHostingController(view)
     }
 
@@ -33,10 +32,9 @@ public enum CourseSyncProgressAssembly {
 
     static func makePreview(env: AppEnvironment) -> CourseSyncProgressView {
         let interactor = CourseSyncProgressInteractorPreview()
-        let courseSyncProgressInfoInteractor = CourseSyncProgressInfoInteractorPreview()
         let viewModel = CourseSyncProgressViewModel(interactor: interactor)
-        let courseSyncProgressInfoViewModel = CourseSyncProgressInfoViewModel(interactor: courseSyncProgressInfoInteractor)
-        return CourseSyncProgressView(viewModel: viewModel, courseSyncProgressInfoViewModel: courseSyncProgressInfoViewModel)
+        let infoViewModel = CourseSyncProgressInfoViewModel(interactor: interactor)
+        return CourseSyncProgressView(viewModel: viewModel, courseSyncProgressInfoViewModel: infoViewModel)
     }
 
 #endif

@@ -26,13 +26,14 @@ struct CourseSyncProgressEntry {
         let type: TabName
         var isCollapsed: Bool = true
         var progress: Float?
+        var error: String?
     }
 
     struct File {
         let id: String
         let name: String
-        let url: URL?
         var progress: Float?
+        var error: String?
     }
 
     let name: String
@@ -43,4 +44,5 @@ struct CourseSyncProgressEntry {
 
     var isCollapsed: Bool = true
     var progress: Float?
+    var error: String?
 }

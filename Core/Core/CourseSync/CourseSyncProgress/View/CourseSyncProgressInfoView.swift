@@ -42,7 +42,7 @@ struct CourseSyncProgressInfoView_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: 0) {
             Divider()
-            CourseSyncProgressInfoView(viewModel: .init(interactor: CourseSyncProgressInfoInteractorPreview()))
+            CourseSyncProgressInfoView(viewModel: .init(interactor: CourseSyncProgressInteractorPreview()))
             Divider()
             Spacer()
         }

@@ -29,8 +29,8 @@ extension CourseSyncProgressViewModel {
         var isCollapsed: Bool?
         let cellStyle: ListCellView.ListCellStyle
 
-        fileprivate(set) var selectionDidToggle: (() -> Void)?
         fileprivate(set) var collapseDidToggle: (() -> Void)?
+        fileprivate(set) var removeItemPressed: (() -> Void)?
 
         static func == (lhs: CourseSyncProgressViewModel.Item, rhs: CourseSyncProgressViewModel.Item) -> Bool {
             lhs.id == rhs.id &&
