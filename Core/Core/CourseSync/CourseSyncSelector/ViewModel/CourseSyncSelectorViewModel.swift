@@ -31,6 +31,7 @@ class CourseSyncSelectorViewModel: ObservableObject {
 
     @Published public private(set) var state = State.loading
     @Published public private(set) var items: [Item] = []
+    @Published public private(set) var navBarSubtitle = ""
     @Published public private(set) var syncButtonDisabled = true
     @Published public private(set) var leftNavBarTitle = ""
     @Published public private(set) var leftNavBarButtonVisible = false
@@ -63,6 +64,7 @@ class CourseSyncSelectorViewModel: ObservableObject {
         updateSyncButtonState(selectorInteractor)
         updateConfirmationDialogMessage(selectorInteractor)
         updateSelectAllButtonTitle(selectorInteractor)
+        updateNavBarSubtitle(selectorInteractor)
 
         handleLeftNavBarTap(selectorInteractor)
         handleSyncButtonTap(
@@ -70,6 +72,12 @@ class CourseSyncSelectorViewModel: ObservableObject {
             syncInteractor: syncInteractor,
             confirmAlert: confirmAlert
         )
+    }
+
+    private func updateNavBarSubtitle(_ interactor: CourseSyncSelectorInteractor) {
+        interactor
+            .getCourseName()
+            .assign(to: &$navBarSubtitle)
     }
 
     private func updateSyncButtonState(_ interactor: CourseSyncSelectorInteractor) {

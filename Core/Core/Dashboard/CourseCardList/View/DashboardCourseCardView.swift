@@ -27,6 +27,8 @@ struct DashboardCourseCardView: View {
     /** Wide layout puts the course image to the left of the cell while the course name and code will be next to it on the right. */
     let isWideLayout: Bool
 
+    @State private var isShowingKebabDialog = false
+
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
@@ -90,7 +92,7 @@ struct DashboardCourseCardView: View {
                 .clipped()
                 // Fix big course image consuming tap events.
                 .contentShape(Path(CGRect(x: 0, y: 0, width: width, height: height)))
-            customizeButton
+            optionsKebabButton
                 .offset(x: width - 44, y: 0)
         }
     }
@@ -110,23 +112,51 @@ struct DashboardCourseCardView: View {
         .padding(.horizontal, 10).padding(.top, 8)
     }
 
-    private var customizeButton: some View {
+    @ViewBuilder
+    private var optionsKebabButton: some View {
         Button {
-            guard let course = courseCard.course else { return }
-            env.router.show(
-                CoreHostingController(CustomizeCourseView(course: course, hideColorOverlay: hideColorOverlay)),
-                from: controller,
-                options: .modal(.formSheet, isDismissable: false, embedInNav: true),
-                analyticsRoute: "/dashboard/customize_course"
-            )
+            if ExperimentalFeature.offlineMode.isEnabled, env.app == .student {
+                isShowingKebabDialog.toggle()
+            } else {
+                openDashboardCardCustomizeSheet()
+            }
         } label: {
-            Image.moreSolid.foregroundColor(Color(contextColor))
-                .background(Circle().fill(Color.backgroundLightest).frame(width: 28, height: 28)
-                )
-                .frame(width: 44, height: 44)
+            kebabIcon
         }
-        .accessibility(label: Text("Open \(courseCard.shortName) user preferences", bundle: .core))
+        .frame(width: 44, height: 44).padding(.trailing, -6)
+        .accessibilityLabel(Text("Course Card Options", bundle: .core))
         .identifier("DashboardCourseCell.\(courseCard.id).optionsButton")
+        .confirmationDialog("", isPresented: $isShowingKebabDialog) {
+            Button {
+                var route = "/offline/sync_picker"
+
+                if let courseID = courseCard.course?.id {
+                    route.append("/\(courseID)")
+                }
+
+                env.router.route(to: route,
+                                 from: controller,
+                                 options: .modal(isDismissable: false, embedInNav: true))
+            } label: {
+                Text("Manage Offline Content", bundle: .core)
+            }
+            Button {
+                openDashboardCardCustomizeSheet()
+            } label: {
+                Text("Customize Course", bundle: .core)
+            }
+        }
+    }
+
+    private var kebabIcon: some View {
+        Image.moreSolid
+            .foregroundColor(Color(contextColor))
+            .background(
+                Circle()
+                    .fill(Color.backgroundLightest)
+                    .frame(width: 28, height: 28)
+            )
+            .frame(width: 44, height: 44)
     }
 
     @ViewBuilder
@@ -144,6 +174,16 @@ struct DashboardCourseCardView: View {
             .background(RoundedRectangle(cornerRadius: 10).fill(Color.backgroundLightest))
             .frame(maxWidth: 120, alignment: .leading)
         }
+    }
+
+    private func openDashboardCardCustomizeSheet() {
+        guard let course = courseCard.course else { return }
+        env.router.show(
+            CoreHostingController(CustomizeCourseView(course: course, hideColorOverlay: hideColorOverlay)),
+            from: controller,
+            options: .modal(.formSheet, isDismissable: false, embedInNav: true),
+            analyticsRoute: "/dashboard/customize_course"
+        )
     }
 }
 

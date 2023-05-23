@@ -21,6 +21,7 @@ import CombineExt
 import Foundation
 
 protocol CourseSyncSelectorInteractor {
+    init(courseID: String?)
     func getCourseSyncEntries() -> AnyPublisher<[CourseSyncSelectorEntry], Error>
     func observeSelectedCount() -> AnyPublisher<Int, Never>
     func observeIsEverythingSelected() -> AnyPublisher<Bool, Never>
@@ -28,6 +29,7 @@ protocol CourseSyncSelectorInteractor {
     func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool)
     func toggleAllCoursesSelection(isSelected: Bool)
     func getSelectedCourseEntries() -> AnyPublisher<[CourseSyncSelectorEntry], Never>
+    func getCourseName() -> AnyPublisher<String, Never>
 }
 
 final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
@@ -36,11 +38,17 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     )
     private let courseSyncEntries = CurrentValueSubject<[CourseSyncSelectorEntry], Error>(.init())
     private var subscriptions = Set<AnyCancellable>()
+    private let courseID: String?
+
+    init(courseID: String? = nil) {
+        self.courseID = courseID
+    }
 
     // MARK: - Public Interface
 
     func getCourseSyncEntries() -> AnyPublisher<[CourseSyncSelectorEntry], Error> {
         courseListStore.getEntities()
+            .filterToCourseID(courseID)
             .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
             .flatMap { self.getAllFilesIfFilesTabIsEnabled(course: $0) }
             .collect()
@@ -122,6 +130,21 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
             .map { $0.filter { $0.selectionState == .selected || $0.selectionState == .partiallySelected } }
             .replaceError(with: [])
             .first()
+            .eraseToAnyPublisher()
+    }
+
+    func getCourseName() -> AnyPublisher<String, Never> {
+        guard let courseID else {
+            return Just(NSLocalizedString("All Courses", comment: "")).eraseToAnyPublisher()
+        }
+
+        return courseSyncEntries
+            .first { !$0.isEmpty }
+            .map { syncEntries in
+                syncEntries.first { $0.id == courseID }?.name
+            }
+            .replaceNil(with: "")
+            .replaceError(with: "")
             .eraseToAnyPublisher()
     }
 
@@ -289,4 +312,20 @@ enum CourseEntrySelection: Equatable {
     case course(CourseIndex)
     case tab(CourseIndex, TabIndex)
     case file(CourseIndex, FileIndex)
+}
+
+private extension AnyPublisher<[CourseSyncSelectorCourse], Error> {
+
+    func filterToCourseID(_ courseID: String?) -> AnyPublisher<[CourseSyncSelectorCourse], Error> {
+        map { [courseID] courses in
+            guard let courseID else {
+                return courses
+            }
+
+            return courses.filter {
+                $0.courseId == courseID
+            }
+        }
+        .eraseToAnyPublisher()
+    }
 }

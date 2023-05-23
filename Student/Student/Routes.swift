@@ -367,8 +367,11 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return LogEventListViewController.create()
     },
 
-    "/offline/settings": { _, _, _ in
+    "/offline/sync_picker": { _, _, _ in
         CourseSyncSelectorAssembly.makeViewController(env: .shared)
+    },
+    "/offline/sync_picker/:courseID": { _, params, _ in
+        CourseSyncSelectorAssembly.makeViewController(env: .shared, courseID: params["courseID"])
     },
 
     "/push-notifications": { _, _, _ in

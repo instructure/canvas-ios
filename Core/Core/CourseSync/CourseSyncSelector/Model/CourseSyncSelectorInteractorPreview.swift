@@ -24,7 +24,7 @@ import CombineExt
 class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
     private let mockData: CurrentValueRelay<[CourseSyncSelectorEntry]>
 
-    init() {
+    required init(courseID: String? = nil) {
         mockData = CurrentValueRelay<[CourseSyncSelectorEntry]>([
             .init(name: "Black Hole",
                   id: "0",
@@ -86,6 +86,10 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
         mockData
             .replaceEmpty(with: [])
             .eraseToAnyPublisher()
+    }
+
+    func getCourseName() -> AnyPublisher<String, Never> {
+        Just("").eraseToAnyPublisher()
     }
 }
 

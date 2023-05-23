@@ -1736,9 +1736,6 @@
 "Open" = "開く";
 
 /* No comment provided by engineer. */
-"Open %@ user preferences" = "%@ ユーザー設定を開く";
-
-/* No comment provided by engineer. */
 "Open application" = "アプリケーションを開く";
 
 /* No comment provided by engineer. */

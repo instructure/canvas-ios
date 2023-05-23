@@ -76,7 +76,7 @@ struct CourseSyncSelectorView: View {
             Text("Offline Content", bundle: .core)
                 .font(.semibold16)
                 .foregroundColor(.textDarkest)
-            Text("All Courses", bundle: .core)
+            Text(viewModel.navBarSubtitle)
                 .font(.regular12)
                 .foregroundColor(.textDark)
         }

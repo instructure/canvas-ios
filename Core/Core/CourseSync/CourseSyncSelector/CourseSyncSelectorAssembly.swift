@@ -20,8 +20,8 @@ import Foundation
 
 public enum CourseSyncSelectorAssembly {
 
-    public static func makeViewController(env: AppEnvironment) -> UIViewController {
-        let selectorInteractor = CourseSyncSelectorInteractorLive()
+    public static func makeViewController(env: AppEnvironment, courseID: String? = nil) -> UIViewController {
+        let selectorInteractor = CourseSyncSelectorInteractorLive(courseID: courseID)
         let syncInteractor = CourseSyncInteractorLive()
         let diskSpaceInteractor = DiskSpaceInteractorLive()
         let viewModel = CourseSyncSelectorViewModel(
