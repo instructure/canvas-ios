@@ -28,6 +28,7 @@ extension CourseSyncProgressViewModel {
         let progress: Float?
         var isCollapsed: Bool?
         let cellStyle: ListCellView.ListCellStyle
+        let error: String?
 
         fileprivate(set) var collapseDidToggle: (() -> Void)?
         fileprivate(set) var removeItemPressed: (() -> Void)?
@@ -37,7 +38,8 @@ extension CourseSyncProgressViewModel {
             lhs.title == rhs.title &&
             lhs.subtitle == rhs.subtitle &&
             lhs.progress == rhs.progress &&
-            lhs.isCollapsed == rhs.isCollapsed
+            lhs.isCollapsed == rhs.isCollapsed &&
+            lhs.error == rhs.error
         }
 
         func hash(into hasher: inout Hasher) {
@@ -46,6 +48,7 @@ extension CourseSyncProgressViewModel {
             hasher.combine(subtitle)
             hasher.combine(progress)
             hasher.combine(isCollapsed)
+            hasher.combine(error)
         }
     }
 }
@@ -97,7 +100,8 @@ extension CourseSyncProgressEntry {
               subtitle: nil,
               progress: progress,
               isCollapsed: isCollapsed,
-              cellStyle: .mainAccordionHeader)
+              cellStyle: .mainAccordionHeader,
+              error: error)
     }
 }
 
@@ -109,7 +113,8 @@ extension CourseSyncProgressEntry.Tab {
               subtitle: nil,
               progress: progress,
               isCollapsed: type == .files ? isCollapsed : nil,
-              cellStyle: .listAccordionHeader)
+              cellStyle: .listAccordionHeader,
+              error: error)
     }
 }
 
@@ -120,6 +125,7 @@ extension CourseSyncProgressEntry.File {
               title: name,
               subtitle: nil,
               progress: progress,
-              cellStyle: .listItem)
+              cellStyle: .listItem,
+              error: error)
     }
 }

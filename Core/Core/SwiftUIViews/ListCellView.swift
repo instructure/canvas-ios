@@ -126,7 +126,7 @@ struct ListCellView: View {
                 Button {
                     removeItemPressed?()
                 } label: {
-                    Image("xLine", bundle: .core)
+                    Image.xLine
                         .size(24)
                         .foregroundColor(.textDarkest)
                         .accessibilityHidden(true)
@@ -142,7 +142,7 @@ struct ListCellView: View {
                         .accessibilityHidden(true)
                         .padding(.leading, 30)
                 } else {
-                    Image("checkLine", bundle: .core)
+                    Image.checkLine
                         .size(24)
                         .foregroundColor(.textDarkest)
                         .accessibilityHidden(true)
