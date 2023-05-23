@@ -147,7 +147,9 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     private var offlineSettingSection: Section {
         Section(NSLocalizedString("Offline Content", comment: ""), rows: [
             Row(NSLocalizedString("Synchronization", comment: ""),
-                detail: NSLocalizedString("Daily Auto", comment: "")) {
+                detail: NSLocalizedString("Daily Auto", comment: "")) { [weak self] in
+                    guard let self = self else { return }
+                    self.env.router.route(to: "/offline/settings", from: self)
             },
         ])
     }

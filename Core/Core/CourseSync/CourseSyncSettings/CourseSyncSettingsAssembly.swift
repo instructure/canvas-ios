@@ -20,6 +20,10 @@ import SwiftUI
 
 public enum CourseSyncSettingsAssembly {
 
+    public static func makeViewController(env: AppEnvironment) -> UIViewController {
+        return CoreHostingController(CourseSyncSettingsView())
+    }
+
 #if DEBUG
 
     static func makePreview() -> some View {
