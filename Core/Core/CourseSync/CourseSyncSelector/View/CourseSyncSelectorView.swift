@@ -50,13 +50,13 @@ struct CourseSyncSelectorView: View {
                     LazyVStack(spacing: 0) {
                         ForEach(viewModel.items) { item in
                             VStack(spacing: 0) {
-                                ListCellView(cellStyle: item.cellStyle,
-                                             title: item.title,
-                                             subtitle: item.subtitle,
-                                             selectionState: item.selectionState,
-                                             isCollapsed: item.isCollapsed,
-                                             selectionDidToggle: item.selectionDidToggle,
-                                             collapseDidToggle: item.collapseDidToggle)
+                                ListCellView(ListCellViewModel(cellStyle: item.cellStyle,
+                                                               title: item.title,
+                                                               subtitle: item.subtitle,
+                                                               selectionState: item.selectionState,
+                                                               isCollapsed: item.isCollapsed,
+                                                               selectionDidToggle: item.selectionDidToggle,
+                                                               collapseDidToggle: item.collapseDidToggle))
                                 Divider().padding(.leading, item.cellStyle == .listItem ? 74 : 0)
                             }.padding(.leading, item.cellStyle == .listItem ? 24 : 0)
                         }

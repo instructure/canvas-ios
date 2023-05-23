@@ -30,16 +30,6 @@ public extension Text {
         configure(&attributedString)
         self.init(attributedString)
     }
-
-    @discardableResult
-    mutating func append(_ string: String) -> Text {
-        self + Text(string)
-    }
-
-    @discardableResult
-    mutating func append(_ text: Text) -> Text {
-        self + text
-    }
 }
 
 public extension Image {

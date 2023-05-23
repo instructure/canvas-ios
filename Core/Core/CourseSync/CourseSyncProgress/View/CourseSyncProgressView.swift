@@ -49,14 +49,14 @@ struct CourseSyncProgressView: View {
                     LazyVStack(spacing: 0) {
                         ForEach(viewModel.items) { item in
                             VStack(spacing: 0) {
-                                ListCellView(cellStyle: item.cellStyle,
-                                             title: item.title,
-                                             subtitle: item.subtitle,
-                                             isCollapsed: item.isCollapsed,
-                                             collapseDidToggle: item.collapseDidToggle,
-                                             removeItemPressed: item.removeItemPressed,
-                                             progress: item.progress,
-                                             error: item.error)
+                                ListCellView(ListCellViewModel(cellStyle: item.cellStyle,
+                                                          title: item.title,
+                                                          subtitle: item.subtitle,
+                                                          isCollapsed: item.isCollapsed,
+                                                          collapseDidToggle: item.collapseDidToggle,
+                                                          removeItemPressed: item.removeItemPressed,
+                                                          progress: item.progress,
+                                                          error: item.error))
                                 Divider().padding(.leading, item.cellStyle == .listItem ? item.progress != nil ? 16 : 74 : 0)
                             }.padding(.leading, item.cellStyle == .listItem ? 24 : 0)
                         }
