@@ -266,9 +266,10 @@ extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCre
 
         /// This must be called to set `localURL` before initiating download, otherwise there
         /// will be a threading issue with trying to access core data from a different thread.
-        localURL = prepareLocaleURL(
+        localURL = prepareLocalURL(
             fileName: filePathComponent,
-            mimeClass: mimeClass
+            mimeClass: mimeClass,
+            location: URL.Directories.temporary
         )
 
         if let path = localURL?.path, FileManager.default.fileExists(atPath: path) { return downloadComplete() }
@@ -383,27 +384,6 @@ extension FileDetailsViewController: UIScrollViewDelegate {
 
     public func scrollViewDidChangeAdjustedContentInset(_ scrollView: UIScrollView) {
         scrollViewDidZoom(scrollView)
-    }
-}
-
-protocol LocalFileURLCreator {
-    func prepareLocaleURL(
-        fileName: String,
-        mimeClass: String
-    ) -> URL
-}
-
-extension LocalFileURLCreator {
-    func prepareLocaleURL(
-        fileName: String,
-        mimeClass: String
-    ) -> URL {
-        if mimeClass == "pdf" {
-            let docsURL = URL.Directories.documents.appendingPathComponent(fileName)
-            if FileManager.default.fileExists(atPath: docsURL.path) { return docsURL }
-        }
-
-        return URL.Directories.temporary.appendingPathComponent(fileName)
     }
 }
 

@@ -58,13 +58,14 @@ struct CourseSyncSelectorEntry {
             partialResult + (file.selectionState == .selected ? 1 : 0)
         }
     }
+
     var fileLoadingProgress: Float {
         let totalProgress = files
             .filter { $0.selectionState == .selected }
             .reduce(0 as Float) { partialResult, file in
                 switch file.state {
                 case .downloaded: return partialResult + 1
-                case .loading(let progress): return partialResult + (progress ?? 0)
+                case let .loading(progress): return partialResult + (progress ?? 0)
                 case .error: return partialResult + 0
                 }
             }
@@ -123,6 +124,8 @@ struct CourseSyncSelectorEntry {
     }
 }
 
+#if DEBUG
+
 extension CourseSyncSelectorEntry.File {
     static func make(
         id: String,
@@ -144,3 +147,5 @@ extension CourseSyncSelectorEntry.File {
         )
     }
 }
+
+#endif

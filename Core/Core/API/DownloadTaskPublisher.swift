@@ -26,6 +26,7 @@ struct DownloadTaskParameters {
 }
 
 struct DownloadTaskPublisher: Publisher {
+    /// Output is a Float value between 0 and 1 indicating the download progress.
     public typealias Output = Float
     public typealias Failure = Error
 
@@ -93,7 +94,7 @@ final class DownloadTaskSubscription<SubscriberType: Subscriber>: NSObject,
     }
 
     func urlSession(
-        _: URLSession,
+        _ session: URLSession,
         downloadTask _: URLSessionDownloadTask,
         didFinishDownloadingTo location: URL
     ) {
@@ -119,6 +120,8 @@ final class DownloadTaskSubscription<SubscriberType: Subscriber>: NSObject,
             ))
         }
 
+        downloadTask = nil
+        session.finishTasksAndInvalidate()
         _ = subscriber?.receive(completion: .finished)
     }
 

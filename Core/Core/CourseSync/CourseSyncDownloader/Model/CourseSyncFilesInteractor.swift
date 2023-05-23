@@ -47,14 +47,22 @@ final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, LocalFileU
         mimeClass: String
     ) -> AnyPublisher<Float, Error> {
         guard let sessionID = env.currentSession?.uniqueID else {
-            return Empty()
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
+            return Fail(error:
+                NSError.instructureError(
+                    NSLocalizedString(
+                        "There was an unexpected error. Please try again.",
+                        bundle: .core,
+                        comment: ""
+                    )
+                )
+            )
+            .eraseToAnyPublisher()
         }
 
-        let localURL = prepareLocaleURL(
+        let localURL = prepareLocalURL(
             fileName: "\(sessionID)/\(fileID)/\(fileName)",
-            mimeClass: mimeClass
+            mimeClass: mimeClass,
+            location: URL.Directories.offline
         )
 
         if fileManager.fileExists(atPath: localURL.path) {

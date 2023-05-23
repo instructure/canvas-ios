@@ -224,7 +224,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
         let tempUrl = URL.Directories.temporary.appendingPathComponent(fileName)
         mock(APIFile.make(filename: "File.pdf", contentType: "application/pdf", mime_class: "pdf"))
         controller.view.layoutIfNeeded()
-        let result = controller.prepareLocaleURL(fileName: fileName, mimeClass: "pdf")
+        let result = controller.prepareLocalURL(fileName: fileName, mimeClass: "pdf", location: URL.Directories.temporary)
         XCTAssertEqual(result, tempUrl)
     }
 
@@ -233,7 +233,7 @@ class FileDetailsViewControllerTests: CoreTestCase {
         let docsUrl = URL.Directories.documents.appendingPathComponent(fileName)
         mock(APIFile.make(filename: "File.pdf", contentType: "application/pdf", mime_class: "pdf"), isExistingPDFFileWithAnnotations: true)
         controller.view.layoutIfNeeded()
-        let result = controller.prepareLocaleURL(fileName: fileName, mimeClass: "pdf")
+        let result = controller.prepareLocalURL(fileName: fileName, mimeClass: "pdf", location: URL.Directories.temporary)
         XCTAssertEqual(result, docsUrl)
     }
 
