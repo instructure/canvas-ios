@@ -115,7 +115,6 @@ extension UIViewController {
     }
 
     public func unembed() {
-        guard self.parent != nil else { return }
         willMove(toParent: nil)
         removeFromParent()
         view.removeFromSuperview()
