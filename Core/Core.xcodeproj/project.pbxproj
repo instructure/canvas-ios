@@ -1155,6 +1155,7 @@
 		CA5D1B4FF43103705D699684 /* MessageListStateUpdaterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7974F57A03B60BCBD760C11 /* MessageListStateUpdaterTests.swift */; };
 		CAAC9A9AF9B89626706FC438 /* SubmissionViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FBB09F6A03C350C253E854 /* SubmissionViewable.swift */; };
 		CB14438810F2150548ECE6FE /* RichContentEditor.css in Resources */ = {isa = PBXBuildFile; fileRef = 64E991404F001C96A1D64C3D /* RichContentEditor.css */; };
+		CB1EB108529BA41CFF696413 /* CourseSyncSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7794E6426F19A13235E47784 /* CourseSyncSettingsView.swift */; };
 		CB41AAE9EAB54263ABCE8AFF /* ExperimentalFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = D353A6609F8E219A19862AE0 /* ExperimentalFeature.swift */; };
 		CB8CB3387D169A81FB958DE8 /* FileUploadProgressObserversCacheTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56C8EAEDD96E8716CB5A484 /* FileUploadProgressObserversCacheTests.swift */; };
 		CBA023A716C8BA46A0B75FAC /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8BFB4485D98F655F81BEC4BD /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -1423,6 +1424,7 @@
 		F91D31FCE0CC584EC7F3E5CA /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E249DD6423E938E1DE581C9 /* Core.framework */; };
 		F92F494FDFAF7C0F1D52A895 /* APIExternalTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A7B033982BB92DBD3C20C9 /* APIExternalTool.swift */; };
 		F94846AD1AB1A12958FE1E60 /* SnackBarTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162B2E11052578DA57B96B30 /* SnackBarTestView.swift */; };
+		F9C3781C3858712CD1E3011A /* CourseSyncSettingsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D808B77D2C73B9EDCD7891 /* CourseSyncSettingsAssembly.swift */; };
 		F9D5DFE156877B1886704D68 /* NotificationCategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B1B23CFF23F829CBF56F02 /* NotificationCategoryTests.swift */; };
 		F9E186146208714AB08B4738 /* APIFileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4672C91BF341D7447537FCB /* APIFileTests.swift */; };
 		F9FF1676B13CD71E3F8BD70E /* ConferenceCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA84551389E2A5B69CF25D62 /* ConferenceCard.swift */; };
@@ -2330,6 +2332,7 @@
 		771445DB24E18888A3A6AFDA /* UserAgentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAgentTests.swift; sourceTree = "<group>"; };
 		775FA270908C6D93252CA678 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		7779F98348241FEA8F87C4D4 /* CourseInvitationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseInvitationCard.swift; sourceTree = "<group>"; };
+		7794E6426F19A13235E47784 /* CourseSyncSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncSettingsView.swift; sourceTree = "<group>"; };
 		77A9903C16B49D8DD437FDAB /* WrongAppViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WrongAppViewController.storyboard; sourceTree = "<group>"; };
 		77BB4861F6D63A7999F2B4A8 /* BundleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensions.swift; sourceTree = "<group>"; };
 		77E4B3EAC7BF7E563600C759 /* ProfileImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImagePicker.swift; sourceTree = "<group>"; };
@@ -2538,6 +2541,7 @@
 		960934068A837029C47E4E4D /* SubtitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		9619C56CCA704EF04CCE1771 /* APIExternalToolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIExternalToolTests.swift; sourceTree = "<group>"; };
 		96D1D9C6DFD50053CBBD4D88 /* NotificationCategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCategoriesViewController.swift; sourceTree = "<group>"; };
+		96D808B77D2C73B9EDCD7891 /* CourseSyncSettingsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncSettingsAssembly.swift; sourceTree = "<group>"; };
 		970A42A0C962B3F39D133FEF /* FileProgressItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProgressItemViewModel.swift; sourceTree = "<group>"; };
 		972FD90722B1C2E476D08896 /* GetEnvironmentFeatureFlagsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEnvironmentFeatureFlagsRequest.swift; sourceTree = "<group>"; };
 		97A76EAE6FA8CEC33151A887 /* HelpLinkRouteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLinkRouteTests.swift; sourceTree = "<group>"; };
@@ -3613,6 +3617,7 @@
 			children = (
 				7025089DE3AE62397718E454 /* CourseSyncDownloader */,
 				711C324569AF5B71ED5D8C01 /* CourseSyncSelector */,
+				DE0DA9A8F3109551ABBEA707 /* CourseSyncSettings */,
 			);
 			path = CourseSync;
 			sourceTree = "<group>";
@@ -7324,6 +7329,15 @@
 			path = UIKitSwiftUIBridging;
 			sourceTree = "<group>";
 		};
+		DE0DA9A8F3109551ABBEA707 /* CourseSyncSettings */ = {
+			isa = PBXGroup;
+			children = (
+				E2A625DC1B79BAD54E341729 /* View */,
+				96D808B77D2C73B9EDCD7891 /* CourseSyncSettingsAssembly.swift */,
+			);
+			path = CourseSyncSettings;
+			sourceTree = "<group>";
+		};
 		DF9F7A986404DC5590623EA6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -7344,6 +7358,14 @@
 				886BAEE04736A54ECA573A63 /* CoreDatePickerTests.swift */,
 			);
 			path = SwiftUIViews;
+			sourceTree = "<group>";
+		};
+		E2A625DC1B79BAD54E341729 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7794E6426F19A13235E47784 /* CourseSyncSettingsView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		E2C61B43B5FC17EF7944E305 /* SwiftUIViews */ = {
@@ -8989,6 +9011,8 @@
 				57EE8E0FC88FBB5764BD6852 /* CourseSyncSelectorView.swift in Sources */,
 				C4B8DC5C5BF90632B794F46F /* CourseSyncSelectorViewModel.swift in Sources */,
 				82897188E25232A5647107CB /* CourseSyncSelectorViewModelItem.swift in Sources */,
+				F9C3781C3858712CD1E3011A /* CourseSyncSettingsAssembly.swift in Sources */,
+				CB1EB108529BA41CFF696413 /* CourseSyncSettingsView.swift in Sources */,
 				BBF7387BD0DC0EE94DDE8190 /* CreateConversation.swift in Sources */,
 				AA83EE551264437D8544C621 /* CreatePlannerNote.swift in Sources */,
 				2954539C4875336BDCF4DC2A /* CreateTextComment.swift in Sources */,
