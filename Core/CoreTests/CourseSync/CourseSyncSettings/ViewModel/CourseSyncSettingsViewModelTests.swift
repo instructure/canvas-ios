@@ -32,4 +32,14 @@ class CourseSyncSettingsViewModelTests: XCTestCase {
         XCTAssertEqual(navigation.children.count, 2)
         XCTAssertTrue(navigation.children.last is ItemPickerViewController)
     }
+
+    func testTogglesAllSettingsVisibility() {
+        let testee = CourseSyncSettingsViewModel()
+
+        testee.isAutoContentSyncEnabled.accept(true)
+        XCTAssertTrue(testee.isAllSettingsVisible)
+
+        testee.isAutoContentSyncEnabled.accept(false)
+        XCTAssertFalse(testee.isAllSettingsVisible)
+    }
 }

@@ -22,6 +22,10 @@ import Foundation
 
 class CourseSyncSettingsViewModel: ObservableObject {
 
+    // MARK: - Output
+    public let isAutoContentSyncEnabled = CurrentValueRelay(false)
+    @Published public var isAllSettingsVisible = false
+
     // MARK: - Input
     public let syncFrequencyDidTap = PassthroughRelay<WeakViewController>()
 
@@ -30,6 +34,7 @@ class CourseSyncSettingsViewModel: ObservableObject {
 
     public init() {
         handleSyncFrequencyTap()
+        handleAllSettingsVisibilityChange()
     }
 
     private func handleSyncFrequencyTap() {
@@ -52,5 +57,10 @@ class CourseSyncSettingsViewModel: ObservableObject {
                 $0.source.value.show($0.picker, sender: self)
             }
             .store(in: &subscriptions)
+    }
+
+    private func handleAllSettingsVisibilityChange() {
+        isAutoContentSyncEnabled
+            .assign(to: &$isAllSettingsVisible)
     }
 }
