@@ -19,6 +19,12 @@
 import SwiftUI
 
 struct CourseSyncSettingsView: View {
+    @ObservedObject private var viewModel: CourseSyncSettingsViewModel
+    @Environment(\.viewController) private var viewController
+
+    init(viewModel: CourseSyncSettingsViewModel) {
+        self.viewModel = viewModel
+    }
 
     var body: some View {
         ScrollView {
@@ -28,6 +34,7 @@ struct CourseSyncSettingsView: View {
             }
             .padding(.horizontal, 16)
         }
+        .background(Color.backgroundLightest)
         .navigationTitle(Text("Synchronization", bundle: .core))
     }
 
@@ -35,7 +42,7 @@ struct CourseSyncSettingsView: View {
     private var autoSyncToggle: some View {
         toggle(text: Text("Auto Content Sync", bundle: .core),
                isOn: .constant(true))
-        Divider().padding(.horizontal, -16)
+        divider
         description("""
         Enabling the Auto Content Sync will take care of downloading the selected content based on the below \
         settings. The content synchronization will happen even if the application is not running. If the setting is \
@@ -47,7 +54,7 @@ struct CourseSyncSettingsView: View {
     private var otherSettings: some View {
         Divider().padding(.horizontal, -16)
         Button {
-
+            viewModel.syncFrequencyDidTap.accept(viewController)
         } label: {
             HStack(spacing: 0) {
                 Text("Sync Frequency", bundle: .core)
@@ -63,12 +70,12 @@ struct CourseSyncSettingsView: View {
                 InstDisclosureIndicator()
             }
         }
-        Divider().padding(.horizontal, -16)
+        divider
         description("Specify the recurrence of the content synchronization. The system will download the selected content based on the frequency specified here.")
-        Divider().padding(.horizontal, -16)
+        divider
         toggle(text: Text("Sync Content Over Wi-Fi Only", bundle: .core),
                isOn: .constant(true))
-        Divider().padding(.horizontal, -16)
+        divider
         description("""
                     If this setting is enabled the content synchronization will only happen if the device connects \
                     to a Wi-Fi network, otherwise it will be postponed until a Wi-Fi network is available.
@@ -91,6 +98,10 @@ struct CourseSyncSettingsView: View {
         }
         .toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
         .padding(.vertical, 12)
+    }
+
+    private var divider: some View {
+        Divider().padding(.horizontal, -16)
     }
 }
 

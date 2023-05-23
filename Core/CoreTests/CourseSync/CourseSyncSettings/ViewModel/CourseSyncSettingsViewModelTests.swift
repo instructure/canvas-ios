@@ -16,22 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+@testable import Core
+import XCTest
 
-public enum CourseSyncSettingsAssembly {
+class CourseSyncSettingsViewModelTests: XCTestCase {
 
-    public static func makeViewController(env: AppEnvironment) -> UIViewController {
-        let viewModel = CourseSyncSettingsViewModel()
-        return CoreHostingController(CourseSyncSettingsView(viewModel: viewModel))
+    func testPresentsSyncFrequencyPicker() {
+        let testee = CourseSyncSettingsViewModel()
+        let presenter = UIViewController()
+        let navigation = UINavigationController(rootViewController: presenter)
+
+        testee.syncFrequencyDidTap.accept(WeakViewController(presenter))
+
+        drainMainQueue()
+        XCTAssertEqual(navigation.children.count, 2)
+        XCTAssertTrue(navigation.children.last is ItemPickerViewController)
     }
-
-#if DEBUG
-
-    static func makePreview() -> some View {
-        let viewModel = CourseSyncSettingsViewModel()
-        return CourseSyncSettingsView(viewModel: viewModel)
-    }
-
-#endif
-
 }
