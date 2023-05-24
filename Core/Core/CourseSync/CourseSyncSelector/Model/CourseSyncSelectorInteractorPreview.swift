@@ -38,10 +38,15 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
                   ],
                   files: [
                       .make(id: "0", displayName: "Creative Machines and Innovative Instrumentation.mov"),
-                      .make(id: "0", displayName: "Intro Energy, Space and Time.mov"),
+                      .make(id: "1", displayName: "Intro Energy, Space and Time.mov"),
                   ],
                   isCollapsed: false),
+            .init(name: "Empty Course", id: "1", tabs: [], files: []),
         ])
+    }
+
+    func mockEmptyState() {
+        mockData.accept([])
     }
 
     func getCourseSyncEntries() -> AnyPublisher<[CourseSyncSelectorEntry], Error> {
