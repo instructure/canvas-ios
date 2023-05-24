@@ -126,8 +126,12 @@ struct CourseSyncSettingsView: View {
     }
 }
 
+#if DEBUG
+
 struct CourseSyncSettingsView_Previews: PreviewProvider {
     static var previews: some View {
         CourseSyncSettingsAssembly.makePreview()
     }
 }
+
+#endif
