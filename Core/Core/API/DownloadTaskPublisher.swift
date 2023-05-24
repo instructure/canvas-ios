@@ -100,6 +100,11 @@ final class DownloadTaskSubscription<SubscriberType: Subscriber>: NSObject,
     ) {
         let localURL = parameters.localURL
 
+        defer {
+            downloadTask = nil
+            session.finishTasksAndInvalidate()
+        }
+
         do {
             try FileManager.default.createDirectory(
                 at: localURL.deletingLastPathComponent(),
@@ -118,10 +123,9 @@ final class DownloadTaskSubscription<SubscriberType: Subscriber>: NSObject,
                     )
                 )
             ))
+            return
         }
 
-        downloadTask = nil
-        session.finishTasksAndInvalidate()
         _ = subscriber?.receive(completion: .finished)
     }
 
