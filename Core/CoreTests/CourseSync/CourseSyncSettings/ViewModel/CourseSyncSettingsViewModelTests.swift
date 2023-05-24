@@ -42,4 +42,12 @@ class CourseSyncSettingsViewModelTests: XCTestCase {
         testee.isAutoContentSyncEnabled.accept(false)
         XCTAssertFalse(testee.isAllSettingsVisible)
     }
+
+    func testAlertWhenWifiSyncTurnedOff() {
+        let testee = CourseSyncSettingsViewModel()
+        XCTAssertFalse(testee.isShowingConfirmationDialog)
+
+        testee.isWifiOnlySyncEnabled.accept(false)
+        XCTAssertTrue(testee.isShowingConfirmationDialog)
+    }
 }

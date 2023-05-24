@@ -24,7 +24,19 @@ class CourseSyncSettingsViewModel: ObservableObject {
 
     // MARK: - Output
     public let isAutoContentSyncEnabled = CurrentValueRelay(false)
+    public let isWifiOnlySyncEnabled = CurrentValueRelay(true)
     @Published public var isAllSettingsVisible = false
+    @Published public var isShowingConfirmationDialog = false
+    public let confirmAlert = ConfirmationAlertViewModel(
+        title: NSLocalizedString("Turn Off Content Sync Over Wi-fi Only?", comment: ""),
+        message: NSLocalizedString(
+           """
+           If this setting is enabled the content synchronization will only happen if the device \
+           connects to a Wi-Fi network, otherwise it will be postponed until a Wi-Fi network is available.
+           """, comment: ""),
+        cancelButtonTitle: NSLocalizedString("Cancel", comment: ""),
+        confirmButtonTitle: NSLocalizedString("Turn Off", comment: ""),
+        isDestructive: false)
 
     // MARK: - Input
     public let syncFrequencyDidTap = PassthroughRelay<WeakViewController>()
@@ -35,6 +47,36 @@ class CourseSyncSettingsViewModel: ObservableObject {
     public init() {
         handleSyncFrequencyTap()
         handleAllSettingsVisibilityChange()
+        showConfirmationDialogWhenWifiSyncTurnedOff()
+    }
+
+    private func showConfirmationDialogWhenWifiSyncTurnedOff() {
+        isWifiOnlySyncEnabled
+            .dropFirst()
+            .filter { !$0 }
+            .map { _ in true }
+            .handleEvents(receiveOutput: { [unowned self] _ in
+                turnOnWifiOnlySyncWhenUserCancelsConfirmation()
+            })
+            .assign(to: &$isShowingConfirmationDialog)
+    }
+
+    private func turnOnWifiOnlySyncWhenUserCancelsConfirmation() {
+        var declined = true
+
+        confirmAlert
+            .userConfirmation()
+            .sink { [unowned self] completion in
+                guard case .finished = completion, declined else {
+                    return
+                }
+
+                isWifiOnlySyncEnabled.accept(true)
+            } receiveValue: {
+                declined = false
+            }
+            .store(in: &subscriptions)
+
     }
 
     private func handleSyncFrequencyTap() {
@@ -47,7 +89,7 @@ class CourseSyncSettingsViewModel: ObservableObject {
             .map { sourceController in
                 let picker = ItemPickerViewController.create(title: NSLocalizedString("Sync Frequency", comment: ""),
                                                              sections: [pickerItems],
-                                                             selected: IndexPath(row: 0, section: 0)) { indexPath in
+                                                             selected: IndexPath(row: 0, section: 0)) { _ in
                     // Update selection
                 }
 

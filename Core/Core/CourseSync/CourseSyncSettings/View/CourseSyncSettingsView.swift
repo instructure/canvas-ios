@@ -44,6 +44,8 @@ struct CourseSyncSettingsView: View {
         }
         .background(Color.backgroundLightest)
         .navigationTitle(Text("Synchronization", bundle: .core))
+        .confirmationAlert(isPresented: $viewModel.isShowingConfirmationDialog,
+                           presenting: viewModel.confirmAlert)
     }
 
     @ViewBuilder
@@ -57,15 +59,22 @@ struct CourseSyncSettingsView: View {
         toggle(text: Text("Auto Content Sync", bundle: .core),
                isOn: binding)
         Divider()
-        description("""
-        Enabling the Auto Content Sync will take care of downloading the selected content based on the below \
-        settings. The content synchronization will happen even if the application is not running. If the setting is \
-        switched off then no synchronization will happen. The already downloaded content will not be deleted.
-        """)
+        description(Text(
+            """
+            Enabling the Auto Content Sync will take care of downloading the selected content based on the below \
+            settings. The content synchronization will happen even if the application is not running. If the setting is \
+            switched off then no synchronization will happen. The already downloaded content will not be deleted.
+            """, bundle: .core))
     }
 
     @ViewBuilder
     private var otherSettings: some View {
+        let wifiOnlyBinding = Binding {
+            viewModel.isWifiOnlySyncEnabled.value
+        } set: { newValue in
+            viewModel.isWifiOnlySyncEnabled.accept(newValue)
+        }
+
         VStack(spacing: 0) {
             Divider().padding(.horizontal, -16)
             Button {
@@ -87,20 +96,22 @@ struct CourseSyncSettingsView: View {
                 .padding(.horizontal, 16)
             }
             Divider()
-            description("Specify the recurrence of the content synchronization. The system will download the selected content based on the frequency specified here.")
+            description(Text("Specify the recurrence of the content synchronization. The system will download the selected content based on the frequency specified here.", bundle: .core))
             Divider()
             toggle(text: Text("Sync Content Over Wi-Fi Only", bundle: .core),
-                   isOn: .constant(true))
+                   isOn: wifiOnlyBinding)
+            .animation(.default, value: viewModel.isWifiOnlySyncEnabled.value)
             Divider()
-            description("""
-                    If this setting is enabled the content synchronization will only happen if the device connects \
-                    to a Wi-Fi network, otherwise it will be postponed until a Wi-Fi network is available.
-                    """)
+            description(Text(
+            """
+            If this setting is enabled the content synchronization will only happen if the device connects \
+            to a Wi-Fi network, otherwise it will be postponed until a Wi-Fi network is available.
+            """, bundle: .core))
         }
     }
 
-    private func description(_ text: String) -> some View {
-        Text(text)
+    private func description(_ text: Text) -> some View {
+        text
             .padding(.top, 12)
             .padding(.bottom, 32)
             .padding(.horizontal, 16)
