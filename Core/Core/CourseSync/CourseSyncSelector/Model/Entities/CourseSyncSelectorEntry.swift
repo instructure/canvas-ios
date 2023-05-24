@@ -19,8 +19,8 @@
 import Foundation
 
 struct CourseSyncSelectorEntry {
-    enum State {
-        case loading, error, downloaded
+    enum State: Equatable {
+        case loading(Float?), error, downloaded
     }
 
     struct Tab {
@@ -28,15 +28,17 @@ struct CourseSyncSelectorEntry {
         let name: String
         let type: TabName
         var isCollapsed: Bool = true
-        var state: State = .loading
+        var state: State = .loading(nil)
         var selectionState: ListCellView.SelectionState = .deselected
     }
 
     struct File {
         let id: String
-        let name: String
-        let url: URL?
-        var state: State = .loading
+        let displayName: String
+        let fileName: String
+        let url: URL
+        let mimeClass: String
+        var state: State = .loading(nil)
         var selectionState: ListCellView.SelectionState = .deselected
     }
 
@@ -57,6 +59,19 @@ struct CourseSyncSelectorEntry {
         }
     }
 
+    var fileLoadingProgress: Float {
+        let totalProgress = files
+            .filter { $0.selectionState == .selected }
+            .reduce(0 as Float) { partialResult, file in
+                switch file.state {
+                case .downloaded: return partialResult + 1
+                case let .loading(progress): return partialResult + (progress ?? 0)
+                case .error: return partialResult + 0
+                }
+            }
+        return totalProgress / Float(selectedFilesCount)
+    }
+
     var selectionCount: Int {
         (selectedFilesCount + selectedTabsCount) - (selectedFilesCount > 0 ? 1 : 0)
     }
@@ -64,7 +79,7 @@ struct CourseSyncSelectorEntry {
     var isCollapsed: Bool = true
     var selectionState: ListCellView.SelectionState = .deselected
     var isEverythingSelected: Bool = false
-    var state: State = .loading
+    var state: State = .loading(nil)
 
     mutating func selectCourse(selectionState: ListCellView.SelectionState) {
         tabs.indices.forEach { tabs[$0].selectionState = selectionState }
@@ -108,3 +123,29 @@ struct CourseSyncSelectorEntry {
         files[index].state = state
     }
 }
+
+#if DEBUG
+
+extension CourseSyncSelectorEntry.File {
+    static func make(
+        id: String,
+        displayName: String,
+        fileName: String = "File",
+        url: URL = URL(string: "1")!,
+        mimeClass: String = "jpg",
+        state: CourseSyncSelectorEntry.State = .loading(nil),
+        selectionState: ListCellView.SelectionState = .deselected
+    ) -> CourseSyncSelectorEntry.File {
+        .init(
+            id: id,
+            displayName: displayName,
+            fileName: fileName,
+            url: url,
+            mimeClass: mimeClass,
+            state: state,
+            selectionState: selectionState
+        )
+    }
+}
+
+#endif

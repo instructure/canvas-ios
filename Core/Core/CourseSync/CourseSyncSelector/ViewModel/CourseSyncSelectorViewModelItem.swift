@@ -129,7 +129,7 @@ extension CourseSyncSelectorEntry.File {
 
     func makeViewModelItem() -> CourseSyncSelectorViewModel.Item {
         .init(id: "file-\(id)",
-              title: name,
+              title: displayName,
               subtitle: nil,
               selectionState: selectionState,
               cellStyle: .listItem)

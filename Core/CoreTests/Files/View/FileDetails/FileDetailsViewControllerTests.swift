@@ -220,18 +220,20 @@ class FileDetailsViewControllerTests: CoreTestCase {
     }
 
     func testPrepLocalURL() {
-        let tempUrl = URL.Directories.temporary.appendingPathComponent("\(currentSession.uniqueID)/1/File.pdf")
+        let fileName = "\(currentSession.uniqueID)/1/File.pdf"
+        let tempUrl = URL.Directories.temporary.appendingPathComponent(fileName)
         mock(APIFile.make(filename: "File.pdf", contentType: "application/pdf", mime_class: "pdf"))
         controller.view.layoutIfNeeded()
-        let result = controller.prepLocalURL()
+        let result = controller.prepareLocalURL(fileName: fileName, mimeClass: "pdf", location: URL.Directories.temporary)
         XCTAssertEqual(result, tempUrl)
     }
 
     func testPrepLocalURLWithExistingPDFFile() {
-        let docsUrl = URL.Directories.documents.appendingPathComponent("\(currentSession.uniqueID)/1/File.pdf")
+        let fileName = "\(currentSession.uniqueID)/1/File.pdf"
+        let docsUrl = URL.Directories.documents.appendingPathComponent(fileName)
         mock(APIFile.make(filename: "File.pdf", contentType: "application/pdf", mime_class: "pdf"), isExistingPDFFileWithAnnotations: true)
         controller.view.layoutIfNeeded()
-        let result = controller.prepLocalURL()
+        let result = controller.prepareLocalURL(fileName: fileName, mimeClass: "pdf", location: URL.Directories.temporary)
         XCTAssertEqual(result, docsUrl)
     }
 

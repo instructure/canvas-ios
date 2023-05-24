@@ -119,7 +119,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
     }
 
     func testFilesTabCollapsion() {
-        let file = CourseSyncSelectorEntry.File(id: "0", name: "test.txt", url: nil)
+        let file = CourseSyncSelectorEntry.File.make(id: "0", displayName: "test.txt")
         var filesTab = CourseSyncSelectorEntry.Tab(id: "0", name: "Files", type: .files)
 
         filesTab.isCollapsed = true
@@ -135,7 +135,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
     // MARK: - Files
 
     func testFileItemMapping() {
-        var data = CourseSyncSelectorEntry.File(id: "1", name: "testFile", url: nil)
+        var data = CourseSyncSelectorEntry.File.make(id: "1", displayName: "testFile")
         var testee = data.makeViewModelItem()
 
         XCTAssertEqual(testee.id, "file-1")
@@ -163,8 +163,8 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
                                             .init(id: "0", name: "Files", type: .files, isCollapsed: false, selectionState: .deselected),
                                            ],
                                            files: [
-                                            .init(id: "0", name: "test.txt", url: nil, selectionState: .deselected),
-                                            .init(id: "1", name: "test1.txt", url: nil, selectionState: .deselected),
+                                            .make(id: "0", displayName: "test.txt", selectionState: .deselected),
+                                            .make(id: "1", displayName: "test1.txt", selectionState: .deselected),
                                            ],
                                            isCollapsed: false,
                                            selectionState: .deselected)
@@ -204,7 +204,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
                                             .init(id: "0", name: "Files", type: .files, isCollapsed: false, selectionState: .deselected),
                                            ],
                                            files: [
-                                            .init(id: "0", name: "test.txt", url: nil, selectionState: .deselected),
+                                            .make(id: "0", displayName: "test.txt", selectionState: .deselected),
                                            ],
                                            isCollapsed: false,
                                            selectionState: .deselected)
