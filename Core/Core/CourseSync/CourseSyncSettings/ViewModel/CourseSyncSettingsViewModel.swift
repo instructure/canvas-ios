@@ -37,6 +37,20 @@ class CourseSyncSettingsViewModel: ObservableObject {
         cancelButtonTitle: NSLocalizedString("Cancel", comment: ""),
         confirmButtonTitle: NSLocalizedString("Turn Off", comment: ""),
         isDestructive: false)
+    public let labels = (
+        autoContentSync: NSLocalizedString(
+            """
+            Enabling the Auto Content Sync will take care of downloading the selected content based on the below \
+            settings. The content synchronization will happen even if the application is not running. If the setting is \
+            switched off then no synchronization will happen. The already downloaded content will not be deleted.
+            """, comment: ""),
+        syncFrequency: NSLocalizedString("Specify the recurrence of the content synchronization. The system will download the selected content based on the frequency specified here.", comment: ""),
+        wifiOnlySync: NSLocalizedString(
+            """
+            If this setting is enabled the content synchronization will only happen if the device connects \
+            to a Wi-Fi network, otherwise it will be postponed until a Wi-Fi network is available.
+            """, comment: "")
+    )
 
     // MARK: - Input
     public let syncFrequencyDidTap = PassthroughRelay<WeakViewController>()
@@ -62,6 +76,7 @@ class CourseSyncSettingsViewModel: ObservableObject {
     }
 
     private func turnOnWifiOnlySyncWhenUserCancelsConfirmation() {
+        let hapticGenerator = UIImpactFeedbackGenerator(style: .light)
         var declined = true
 
         confirmAlert
@@ -72,6 +87,7 @@ class CourseSyncSettingsViewModel: ObservableObject {
                 }
 
                 isWifiOnlySyncEnabled.accept(true)
+                hapticGenerator.impactOccurred()
             } receiveValue: {
                 declined = false
             }
@@ -91,6 +107,7 @@ class CourseSyncSettingsViewModel: ObservableObject {
                                                              sections: [pickerItems],
                                                              selected: IndexPath(row: 0, section: 0)) { _ in
                     // Update selection
+                    sourceController.value.navigationController?.popViewController(animated: true)
                 }
 
                 return (picker: picker, source: sourceController)

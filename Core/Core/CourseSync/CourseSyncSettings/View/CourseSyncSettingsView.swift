@@ -58,13 +58,9 @@ struct CourseSyncSettingsView: View {
 
         toggle(text: Text("Auto Content Sync", bundle: .core),
                isOn: binding)
+        .accessibilityHint(viewModel.labels.autoContentSync)
         Divider()
-        description(Text(
-            """
-            Enabling the Auto Content Sync will take care of downloading the selected content based on the below \
-            settings. The content synchronization will happen even if the application is not running. If the setting is \
-            switched off then no synchronization will happen. The already downloaded content will not be deleted.
-            """, bundle: .core))
+        description(viewModel.labels.autoContentSync)
     }
 
     @ViewBuilder
@@ -94,29 +90,28 @@ struct CourseSyncSettingsView: View {
                     InstDisclosureIndicator()
                 }
                 .padding(.horizontal, 16)
+                .accessibilityHint(viewModel.labels.syncFrequency)
             }
             Divider()
-            description(Text("Specify the recurrence of the content synchronization. The system will download the selected content based on the frequency specified here.", bundle: .core))
+            description(viewModel.labels.syncFrequency)
             Divider()
             toggle(text: Text("Sync Content Over Wi-Fi Only", bundle: .core),
                    isOn: wifiOnlyBinding)
+            .accessibilityHint(viewModel.labels.wifiOnlySync)
             .animation(.default, value: viewModel.isWifiOnlySyncEnabled.value)
             Divider()
-            description(Text(
-            """
-            If this setting is enabled the content synchronization will only happen if the device connects \
-            to a Wi-Fi network, otherwise it will be postponed until a Wi-Fi network is available.
-            """, bundle: .core))
+            description(viewModel.labels.wifiOnlySync)
         }
     }
 
-    private func description(_ text: Text) -> some View {
-        text
+    private func description(_ text: String) -> some View {
+        Text(text)
             .padding(.top, 12)
             .padding(.bottom, 32)
             .padding(.horizontal, 16)
             .foregroundColor(.textDark)
             .font(.regular14, lineHeight: .fit)
+            .accessibilityHidden(true)
     }
 
     private func toggle(text: Text, isOn: Binding<Bool>) -> some View {
