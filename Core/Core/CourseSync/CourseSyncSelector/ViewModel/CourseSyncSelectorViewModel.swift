@@ -30,7 +30,7 @@ class CourseSyncSelectorViewModel: ObservableObject {
     // MARK: - Output
 
     @Published public private(set) var state = State.loading
-    @Published public private(set) var items: [Item] = []
+    @Published public private(set) var cells: [Cell] = []
     @Published public private(set) var navBarSubtitle = ""
     @Published public private(set) var syncButtonDisabled = true
     @Published public private(set) var leftNavBarTitle = ""
@@ -41,10 +41,25 @@ class CourseSyncSelectorViewModel: ObservableObject {
                                                          cancelButtonTitle: NSLocalizedString("Cancel", comment: ""),
                                                          confirmButtonTitle: NSLocalizedString("Sync", comment: ""),
                                                          isDestructive: false)
+    public let labels = (
+        noCourses: (
+            title: NSLocalizedString("No Courses", comment: ""),
+            message: NSLocalizedString("Your courses will be listed here, and then you can make them available for offline usage.", comment: "")
+        ),
+        noItems: (
+            title: NSLocalizedString("No Course Content", comment: ""),
+            message: NSLocalizedString("The course content will be listed here, and then you can make them available for offline usage.", comment: "")
+        ),
+        error: (
+            title: NSLocalizedString("Something went wrong", comment: ""),
+            message: NSLocalizedString("There was an unexpected error.", comment: "")
+        )
+    )
 
     // MARK: - Input
 
     public let syncButtonDidTap = PassthroughRelay<WeakViewController>()
+    public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
     public let leftNavBarButtonDidTap = PassthroughRelay<Void>()
 
     // MARK: - Private
@@ -52,13 +67,16 @@ class CourseSyncSelectorViewModel: ObservableObject {
     private let selectorInteractor: CourseSyncSelectorInteractor
     private let syncInteractor: CourseSyncInteractor
     private var subscriptions = Set<AnyCancellable>()
+    private let router: Router
 
     init(
         selectorInteractor: CourseSyncSelectorInteractor,
-        syncInteractor: CourseSyncInteractor
+        syncInteractor: CourseSyncInteractor,
+        router: Router
     ) {
         self.selectorInteractor = selectorInteractor
         self.syncInteractor = syncInteractor
+        self.router = router
 
         updateState(selectorInteractor)
         updateSyncButtonState(selectorInteractor)
@@ -66,12 +84,21 @@ class CourseSyncSelectorViewModel: ObservableObject {
         updateSelectAllButtonTitle(selectorInteractor)
         updateNavBarSubtitle(selectorInteractor)
 
+        handleCancelButtonTap(selectorInteractor)
         handleLeftNavBarTap(selectorInteractor)
         handleSyncButtonTap(
             selectorInteractor: selectorInteractor,
             syncInteractor: syncInteractor,
             confirmAlert: confirmAlert
         )
+    }
+
+    private func handleCancelButtonTap(_ interactor: CourseSyncSelectorInteractor) {
+        cancelButtonDidTap
+            .sink { [unowned router] viewController in
+                router.dismiss(viewController)
+            }
+            .store(in: &subscriptions)
     }
 
     private func updateNavBarSubtitle(_ interactor: CourseSyncSelectorInteractor) {
@@ -132,6 +159,7 @@ class CourseSyncSelectorViewModel: ObservableObject {
                 self?.state = .loading
                 return selectorInteractor.getSelectedCourseEntries()
                     .flatMap { syncInteractor.downloadContent(for: $0) }
+                    .receive(on: DispatchQueue.main)
                     .handleEvents(receiveCompletion: { _ in
                         // TODO: Start download, go to dashboard
                         self?.state = .data
@@ -156,6 +184,6 @@ class CourseSyncSelectorViewModel: ObservableObject {
                 }
             })
             .replaceError(with: [])
-            .assign(to: &$items)
+            .assign(to: &$cells)
     }
 }
