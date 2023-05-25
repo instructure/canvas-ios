@@ -63,8 +63,25 @@ class CourseSyncSettingsViewModel: ObservableObject {
         self.interactor = interactor
         handleSyncFrequencyTap()
         handleAllSettingsVisibilityChange()
-        showConfirmationDialogWhenWifiSyncTurnedOff()
         updateSyncFrequencyLabel()
+        readInitialSwitchStatesFromInteractor()
+        forwardSwitchStateChangesToInteractor()
+        showConfirmationDialogWhenWifiSyncTurnedOff()
+    }
+
+    private func readInitialSwitchStatesFromInteractor() {
+        isAutoContentSyncEnabled.accept(interactor.isAutoSyncEnabled.value)
+        isWifiOnlySyncEnabled.accept(interactor.isWifiOnlySyncEnabled.value)
+    }
+
+    private func forwardSwitchStateChangesToInteractor() {
+        isAutoContentSyncEnabled
+            .subscribe(interactor.isAutoSyncEnabled)
+            .store(in: &subscriptions)
+
+        isWifiOnlySyncEnabled
+            .subscribe(interactor.isWifiOnlySyncEnabled)
+            .store(in: &subscriptions)
     }
 
     private func updateSyncFrequencyLabel() {
