@@ -22,7 +22,7 @@ import XCTest
 class CourseSyncSettingsViewModelTests: XCTestCase {
 
     func testPresentsSyncFrequencyPicker() {
-        let testee = CourseSyncSettingsViewModel()
+        let testee = CourseSyncSettingsViewModel(interactor: makeInteractor())
         let presenter = UIViewController()
         let navigation = UINavigationController(rootViewController: presenter)
 
@@ -34,7 +34,7 @@ class CourseSyncSettingsViewModelTests: XCTestCase {
     }
 
     func testTogglesAllSettingsVisibility() {
-        let testee = CourseSyncSettingsViewModel()
+        let testee = CourseSyncSettingsViewModel(interactor: makeInteractor())
 
         testee.isAutoContentSyncEnabled.accept(true)
         XCTAssertTrue(testee.isAllSettingsVisible)
@@ -44,10 +44,15 @@ class CourseSyncSettingsViewModelTests: XCTestCase {
     }
 
     func testAlertWhenWifiSyncTurnedOff() {
-        let testee = CourseSyncSettingsViewModel()
+        let testee = CourseSyncSettingsViewModel(interactor: makeInteractor())
         XCTAssertFalse(testee.isShowingConfirmationDialog)
 
         testee.isWifiOnlySyncEnabled.accept(false)
         XCTAssertTrue(testee.isShowingConfirmationDialog)
+    }
+
+    private func makeInteractor() -> CourseSyncSettingsInteractor {
+        let session = SessionDefaults(sessionID: "test")
+        return CourseSyncSettingsInteractor(storage: session)
     }
 }

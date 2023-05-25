@@ -20,7 +20,7 @@ import Combine
 import CombineExt
 
 class CourseSyncSettingsInteractor {
-    enum SyncFrequency: Int {
+    enum SyncFrequency: Int, CaseIterable {
         case daily
         case weekly
 
@@ -29,6 +29,11 @@ class CourseSyncSettingsInteractor {
             case .daily: return NSLocalizedString("Daily", comment: "")
             case .weekly: return NSLocalizedString("Weekly", comment: "")
             }
+        }
+
+        static var itemPickerData: [ItemPickerSection] {
+            let pickerRows = allCases.map { ItemPickerItem(title: $0.stringValue) }
+            return [ItemPickerSection(items: pickerRows)]
         }
     }
 

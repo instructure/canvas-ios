@@ -32,6 +32,26 @@ class CourseSyncSettingsInteractorTests: XCTestCase {
         XCTAssertEqual(CourseSyncSettingsInteractor.SyncFrequency.daily.stringValue, "Daily")
     }
 
+    func testSyncFrequenciesToItemPickerData() {
+        let testee = CourseSyncSettingsInteractor.SyncFrequency.itemPickerData
+        XCTAssertEqual(testee.count, 1)
+
+        guard let section = testee.first else {
+            return XCTFail()
+        }
+
+        XCTAssertNil(section.title)
+        XCTAssertEqual(section.items.count, 2)
+        XCTAssertEqual(section.items[0].title, "Daily")
+        XCTAssertEqual(section.items[0].accessibilityIdentifier, nil)
+        XCTAssertEqual(section.items[0].image, nil)
+        XCTAssertEqual(section.items[0].subtitle, nil)
+        XCTAssertEqual(section.items[1].title, "Weekly")
+        XCTAssertEqual(section.items[1].accessibilityIdentifier, nil)
+        XCTAssertEqual(section.items[1].image, nil)
+        XCTAssertEqual(section.items[1].subtitle, nil)
+    }
+
     func testDefaultValues() {
         let testee = CourseSyncSettingsInteractor(storage: defaults)
         XCTAssertFalse(testee.isAutoSyncEnabled.value)

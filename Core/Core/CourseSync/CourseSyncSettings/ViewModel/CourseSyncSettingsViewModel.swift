@@ -55,9 +55,11 @@ class CourseSyncSettingsViewModel: ObservableObject {
     public let syncFrequencyDidTap = PassthroughRelay<WeakViewController>()
 
     // MARK: - Private
+    private let interactor: CourseSyncSettingsInteractor
     private var subscriptions = Set<AnyCancellable>()
 
-    public init() {
+    public init(interactor: CourseSyncSettingsInteractor) {
+        self.interactor = interactor
         handleSyncFrequencyTap()
         handleAllSettingsVisibilityChange()
         showConfirmationDialogWhenWifiSyncTurnedOff()
@@ -95,18 +97,20 @@ class CourseSyncSettingsViewModel: ObservableObject {
     }
 
     private func handleSyncFrequencyTap() {
-        let pickerItems = ItemPickerSection(items: [
-            .init(title: NSLocalizedString("Daily", comment: "")),
-            .init(title: NSLocalizedString("Weekly", comment: "")),
-        ])
-
         syncFrequencyDidTap
-            .map { sourceController in
-                let picker = ItemPickerViewController.create(title: NSLocalizedString("Sync Frequency", comment: ""),
-                                                             sections: [pickerItems],
-                                                             selected: IndexPath(row: 0, section: 0)) { _ in
-                    // Update selection
-                    sourceController.value.navigationController?.popViewController(animated: true)
+            .map { [interactor] sourceController in
+                let selection = IndexPath(row: interactor.syncFrequency.value.rawValue, section: 0)
+                let picker = ItemPickerViewController
+                    .create(title: NSLocalizedString("Sync Frequency", comment: ""),
+                            sections: CourseSyncSettingsInteractor.SyncFrequency.itemPickerData,
+                            selected: selection) { newValue in
+                    defer {
+                        sourceController.value.navigationController?.popViewController(animated: true)
+                    }
+                    guard let newFrequency = CourseSyncSettingsInteractor.SyncFrequency(rawValue: newValue.row) else {
+                        return
+                    }
+                    interactor.syncFrequency.accept(newFrequency)
                 }
 
                 return (picker: picker, source: sourceController)

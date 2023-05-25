@@ -20,15 +20,18 @@ import SwiftUI
 
 public enum CourseSyncSettingsAssembly {
 
-    public static func makeViewController(env: AppEnvironment) -> UIViewController {
-        let viewModel = CourseSyncSettingsViewModel()
+    public static func makeViewController(sessionDefaults: SessionDefaults) -> UIViewController {
+        let interactor = CourseSyncSettingsInteractor(storage: sessionDefaults)
+        let viewModel = CourseSyncSettingsViewModel(interactor: interactor)
         return CoreHostingController(CourseSyncSettingsView(viewModel: viewModel))
     }
 
 #if DEBUG
 
     static func makePreview() -> some View {
-        let viewModel = CourseSyncSettingsViewModel()
+        let sessionDefaults = SessionDefaults(sessionID: "preview")
+        let interactor = CourseSyncSettingsInteractor(storage: sessionDefaults)
+        let viewModel = CourseSyncSettingsViewModel(interactor: interactor)
         return CourseSyncSettingsView(viewModel: viewModel)
     }
 

@@ -374,7 +374,10 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         CourseSyncSelectorAssembly.makeViewController(env: .shared, courseID: params["courseID"])
     },
     "/offline/settings": { _, _, _ in
-        CourseSyncSettingsAssembly.makeViewController(env: .shared)
+        guard let sessionDefaults = AppEnvironment.shared.userDefaults else {
+            return nil
+        }
+        return CourseSyncSettingsAssembly.makeViewController(sessionDefaults: sessionDefaults)
     },
 
     "/push-notifications": { _, _, _ in
