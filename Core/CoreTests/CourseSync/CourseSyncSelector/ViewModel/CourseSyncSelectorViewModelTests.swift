@@ -98,7 +98,7 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
     }
 
     func testUpdateStateSucceeds() {
-        let mockItem = CourseSyncSelectorEntry(name: "",
+        let mockItem = CourseSyncEntry(name: "",
                                                id: "test",
                                                tabs: [],
                                                files: [])
@@ -133,8 +133,8 @@ class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
     required init(courseID: String? = nil) {
     }
 
-    let courseSyncEntriesSubject = PassthroughSubject<[CourseSyncSelectorEntry], Error>()
-    func getCourseSyncEntries() -> AnyPublisher<[Core.CourseSyncSelectorEntry], Error> {
+    let courseSyncEntriesSubject = PassthroughSubject<[CourseSyncEntry], Error>()
+    func getCourseSyncEntries() -> AnyPublisher<[Core.CourseSyncEntry], Error> {
         courseSyncEntriesSubject.eraseToAnyPublisher()
     }
 
@@ -143,8 +143,8 @@ class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
         isEverythingSelectedSubject.eraseToAnyPublisher()
     }
 
-    let getSelectedCourseEntriesSubject = PassthroughSubject<[Core.CourseSyncSelectorEntry], Never>()
-    func getSelectedCourseEntries() -> AnyPublisher<[Core.CourseSyncSelectorEntry], Never> {
+    let getSelectedCourseEntriesSubject = PassthroughSubject<[Core.CourseSyncEntry], Never>()
+    func getSelectedCourseEntries() -> AnyPublisher<[Core.CourseSyncEntry], Never> {
         getSelectedCourseEntriesSubject.eraseToAnyPublisher()
     }
 
@@ -167,9 +167,9 @@ class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
 }
 
 class CourseSyncInteractorMock: CourseSyncInteractor {
-    let courseSyncEntriesSubject = PassthroughSubject<[CourseSyncSelectorEntry], Error>()
+    let courseSyncEntriesSubject = PassthroughSubject<[CourseSyncEntry], Error>()
 
-    func downloadContent(for _: [Core.CourseSyncSelectorEntry]) -> AnyPublisher<[Core.CourseSyncSelectorEntry], Error> {
+    func downloadContent(for _: [Core.CourseSyncEntry]) -> AnyPublisher<[Core.CourseSyncEntry], Error> {
         courseSyncEntriesSubject.eraseToAnyPublisher()
     }
 }

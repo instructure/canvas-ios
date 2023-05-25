@@ -27,7 +27,7 @@ struct SyncProgress {
 
 protocol CourseSyncProgressInteractor {
     func getSyncProgress() -> SyncProgress
-    func getCourseSyncProgressEntries() -> AnyPublisher<[CourseSyncProgressEntry], Error>
+    func getCourseSyncProgressEntries() -> AnyPublisher<[CourseSyncEntry], Error>
     func setProgress(selection: CourseEntrySelection, progress: Float?)
     func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool)
     func remove(selection: CourseEntrySelection)
@@ -55,7 +55,7 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
 
     // MARK: - Progress item view
 
-    func getCourseSyncProgressEntries() -> AnyPublisher<[CourseSyncProgressEntry], Error> {
+    func getCourseSyncProgressEntries() -> AnyPublisher<[CourseSyncEntry], Error> {
         return Just([])
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()

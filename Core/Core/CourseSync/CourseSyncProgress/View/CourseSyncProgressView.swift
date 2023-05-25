@@ -48,17 +48,7 @@ struct CourseSyncProgressView: View {
                 ScrollView {
                     LazyVStack(spacing: 0) {
                         ForEach(viewModel.items) { item in
-                            VStack(spacing: 0) {
-                                ListCellView(ListCellViewModel(cellStyle: item.cellStyle,
-                                                          title: item.title,
-                                                          subtitle: item.subtitle,
-                                                          isCollapsed: item.isCollapsed,
-                                                          collapseDidToggle: item.collapseDidToggle,
-                                                          removeItemPressed: item.removeItemPressed,
-                                                          progress: item.progress,
-                                                          error: item.error))
-                                Divider().padding(.leading, item.cellStyle == .listItem ? item.progress != nil ? 16 : 74 : 0)
-                            }.padding(.leading, item.cellStyle == .listItem ? 24 : 0)
+                            listCell(for: item)
                         }
                     }
                 }.animation(.default, value: viewModel.items)
@@ -86,6 +76,42 @@ struct CourseSyncProgressView: View {
                 .font(.regular16)
                 .foregroundColor(.textDarkest)
         }
+    }
+
+    @ViewBuilder
+    private func listCell(for item: CourseSyncProgressViewModel.Item) -> some View {
+        VStack(spacing: 0) {
+            switch item.state {
+            case .loading(let progress):
+                ListCellView(ListCellViewModel(cellStyle: item.cellStyle,
+                                               title: item.title,
+                                               subtitle: item.subtitle,
+                                               isCollapsed: item.isCollapsed,
+                                               collapseDidToggle: item.collapseDidToggle,
+                                               removeItemPressed: item.removeItemPressed,
+                                               progress: progress,
+                                               error: nil))
+            case .downloaded:
+                ListCellView(ListCellViewModel(cellStyle: item.cellStyle,
+                                               title: item.title,
+                                               subtitle: item.subtitle,
+                                               isCollapsed: item.isCollapsed,
+                                               collapseDidToggle: item.collapseDidToggle,
+                                               removeItemPressed: item.removeItemPressed,
+                                               progress: 1,
+                                               error: nil))
+            case .error:
+                ListCellView(ListCellViewModel(cellStyle: item.cellStyle,
+                                               title: item.title,
+                                               subtitle: item.subtitle,
+                                               isCollapsed: item.isCollapsed,
+                                               collapseDidToggle: item.collapseDidToggle,
+                                               removeItemPressed: item.removeItemPressed,
+                                               progress: nil,
+                                               error: NSLocalizedString("Sync Failed", bundle: .core, comment: "")))
+            }
+            Divider().padding(.leading, item.cellStyle == .listItem ? 16 : 0)
+        }.padding(.leading, item.cellStyle == .listItem ? 24 : 0)
     }
 }
 

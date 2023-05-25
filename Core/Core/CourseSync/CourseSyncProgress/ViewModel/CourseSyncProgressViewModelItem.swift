@@ -25,10 +25,9 @@ extension CourseSyncProgressViewModel {
         let id: String
         let title: String
         let subtitle: String?
-        let progress: Float?
         var isCollapsed: Bool?
         let cellStyle: ListCellView.ListCellStyle
-        let error: String?
+        let state: CourseSyncEntry.State
 
         fileprivate(set) var collapseDidToggle: (() -> Void)?
         fileprivate(set) var removeItemPressed: (() -> Void)?
@@ -37,31 +36,29 @@ extension CourseSyncProgressViewModel {
             lhs.id == rhs.id &&
             lhs.title == rhs.title &&
             lhs.subtitle == rhs.subtitle &&
-            lhs.progress == rhs.progress &&
             lhs.isCollapsed == rhs.isCollapsed &&
-            lhs.error == rhs.error
+            lhs.state == rhs.state
         }
 
         func hash(into hasher: inout Hasher) {
             hasher.combine(id)
             hasher.combine(title)
             hasher.combine(subtitle)
-            hasher.combine(progress)
             hasher.combine(isCollapsed)
-            hasher.combine(error)
+            hasher.combine(state)
         }
     }
 }
 
 // MARK: - Mapping From Model Objects
 
-extension Array where Element == CourseSyncProgressEntry {
+extension Array where Element == CourseSyncEntry {
 
     func makeViewModelItems(interactor: CourseSyncProgressInteractor) -> [CourseSyncProgressViewModel.Item] {
         var items: [CourseSyncProgressViewModel.Item] = []
 
         for (courseIndex, course) in enumerated() {
-            var courseItem = course.makeViewModelItem()
+            var courseItem = course.makeSyncProgressViewModelItem()
             courseItem.collapseDidToggle = {
                 interactor.setCollapsed(selection: .course(courseIndex), isCollapsed: !(courseItem.isCollapsed ?? false))
             }
@@ -72,7 +69,7 @@ extension Array where Element == CourseSyncProgressEntry {
             }
 
             for (tabIndex, tab) in course.tabs.enumerated() {
-                var tabItem = tab.makeViewModelItem()
+                var tabItem = tab.makeSyncProgressViewModelItem()
                 tabItem.collapseDidToggle = {
                     interactor.setCollapsed(selection: .tab(courseIndex, tabIndex), isCollapsed: !(tabItem.isCollapsed ?? false))
                 }
@@ -83,7 +80,7 @@ extension Array where Element == CourseSyncProgressEntry {
                 }
 
                 for file in course.files {
-                    let fileItem = file.makeViewModelItem()
+                    let fileItem = file.makeSyncProgressViewModelItem()
                     items.append(fileItem)
                 }
             }
@@ -92,40 +89,37 @@ extension Array where Element == CourseSyncProgressEntry {
     }
 }
 
-extension CourseSyncProgressEntry {
+extension CourseSyncEntry {
 
-    func makeViewModelItem() -> CourseSyncProgressViewModel.Item {
+    func makeSyncProgressViewModelItem() -> CourseSyncProgressViewModel.Item {
         .init(id: "course-\(id)",
               title: name,
               subtitle: nil,
-              progress: progress,
               isCollapsed: isCollapsed,
               cellStyle: .mainAccordionHeader,
-              error: error)
+              state: state)
     }
 }
 
-extension CourseSyncProgressEntry.Tab {
+extension CourseSyncEntry.Tab {
 
-    func makeViewModelItem() -> CourseSyncProgressViewModel.Item {
+    func makeSyncProgressViewModelItem() -> CourseSyncProgressViewModel.Item {
         .init(id: "courseTab-\(id)",
               title: name,
               subtitle: nil,
-              progress: progress,
               isCollapsed: type == .files ? isCollapsed : nil,
               cellStyle: .listAccordionHeader,
-              error: error)
+              state: state)
     }
 }
 
-extension CourseSyncProgressEntry.File {
+extension CourseSyncEntry.File {
 
-    func makeViewModelItem() -> CourseSyncProgressViewModel.Item {
+    func makeSyncProgressViewModelItem() -> CourseSyncProgressViewModel.Item {
         .init(id: "file-\(id)",
-              title: name,
+              title: displayName,
               subtitle: nil,
-              progress: progress,
               cellStyle: .listItem,
-              error: error)
+              state: state)
     }
 }

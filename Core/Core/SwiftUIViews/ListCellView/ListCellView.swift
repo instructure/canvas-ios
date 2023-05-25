@@ -230,8 +230,8 @@ struct ListCellView_Previews: PreviewProvider {
                                            subtitle: "4 GB",
                                            selectionState: .selected,
                                            isCollapsed: false,
-                                           selectionDidToggle: {}))
-            Divider()
+                                           selectionDidToggle: {})).padding(.leading, 20)
+            Divider().padding(.leading, 20)
             Spacer()
         }
         VStack(spacing: 0) {
@@ -253,8 +253,8 @@ struct ListCellView_Previews: PreviewProvider {
                                            subtitle: "4 GB",
                                            isCollapsed: false,
                                            progress: 1,
-                                           error: "Sync Failed")).padding(20)
-            Divider().padding(20)
+                                           error: "Sync Failed")).padding(.leading, 40)
+            Divider().padding(.leading, 56)
             Spacer()
         }
     }

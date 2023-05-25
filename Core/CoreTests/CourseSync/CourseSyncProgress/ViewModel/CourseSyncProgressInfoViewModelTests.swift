@@ -38,8 +38,8 @@ private class MockCourseSyncProgressInteractor: CourseSyncProgressInteractor {
         return SyncProgress(total: total, progress: progress)
     }
 
-    func getCourseSyncProgressEntries() -> AnyPublisher<[Core.CourseSyncProgressEntry], Error> {
-        Just<[Core.CourseSyncProgressEntry]>([])
+    func getCourseSyncProgressEntries() -> AnyPublisher<[Core.CourseSyncEntry], Error> {
+        Just<[Core.CourseSyncEntry]>([])
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }

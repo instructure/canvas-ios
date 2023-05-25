@@ -22,10 +22,10 @@ import Combine
 import CombineExt
 
 class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
-    private let mockData: CurrentValueRelay<[CourseSyncSelectorEntry]>
+    private let mockData: CurrentValueRelay<[CourseSyncEntry]>
 
     required init(courseID: String? = nil) {
-        mockData = CurrentValueRelay<[CourseSyncSelectorEntry]>([
+        mockData = CurrentValueRelay<[CourseSyncEntry]>([
             .init(name: "Black Hole",
                   id: "0",
                   tabs: [
@@ -49,7 +49,7 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
         mockData.accept([])
     }
 
-    func getCourseSyncEntries() -> AnyPublisher<[CourseSyncSelectorEntry], Error> {
+    func getCourseSyncEntries() -> AnyPublisher<[CourseSyncEntry], Error> {
         mockData
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
@@ -87,7 +87,7 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
     func toggleAllCoursesSelection(isSelected _: Bool) {}
     func setCollapsed(selection _: CourseEntrySelection, isCollapsed _: Bool) {}
 
-    func getSelectedCourseEntries() -> AnyPublisher<[CourseSyncSelectorEntry], Never> {
+    func getSelectedCourseEntries() -> AnyPublisher<[CourseSyncEntry], Never> {
         mockData
             .replaceEmpty(with: [])
             .eraseToAnyPublisher()

@@ -23,30 +23,30 @@ import CombineExt
 
 class CourseSyncProgressInteractorPreview: CourseSyncProgressInteractor {
 
-    private let mockData: CurrentValueRelay<[CourseSyncProgressEntry]>
+    private let mockData: CurrentValueRelay<[CourseSyncEntry]>
 
     init() {
-        mockData = CurrentValueRelay<[CourseSyncProgressEntry]>([
+        mockData = CurrentValueRelay<[CourseSyncEntry]>([
             .init(name: "Black Hole",
                   id: "0",
                   tabs: [
-                      .init(id: "0", name: "Assignments", type: .assignments, progress: 1),
-                      .init(id: "1", name: "Discussion", type: .assignments, progress: 0),
-                      .init(id: "2", name: "Grades", type: .assignments, progress: 0.5),
-                      .init(id: "3", name: "People", type: .assignments, progress: 0.75),
-                      .init(id: "4", name: "Files", type: .files, isCollapsed: false, progress: 1),
-                      .init(id: "5", name: "Syllabus", type: .assignments, progress: 0.5),
+                    .init(id: "0", name: "Assignments", type: .assignments, state: .loading(1)),
+                      .init(id: "1", name: "Discussion", type: .assignments, state: .loading(0)),
+                    .init(id: "2", name: "Grades", type: .assignments, state: .loading(0.5)),
+                    .init(id: "3", name: "People", type: .assignments, state: .loading(0.75)),
+                      .init(id: "4", name: "Files", type: .files, isCollapsed: false, state: .loading(1)),
+                    .init(id: "5", name: "Syllabus", type: .assignments, state: .loading(0.5)),
                   ],
                   files: [
-                      .init(id: "0", name: "Creative Machines and Innovative Instrumentation.mov", progress: 1),
-                      .init(id: "1", name: "Intro Energy, Space and Time.mov", progress: nil, error: "Sync failed"),
+                      .make(id: "0", displayName: "Creative Machines and Innovative Instrumentation.mov", state: .loading(1)),
+                      .make(id: "1", displayName: "Intro Energy, Space and Time.mov", state: .error),
                   ],
                   isCollapsed: false,
-                  progress: 0.78),
+                  state: .loading(0.78)),
         ])
     }
 
-    func getCourseSyncProgressEntries() -> AnyPublisher<[CourseSyncProgressEntry], Error> {
+    func getCourseSyncProgressEntries() -> AnyPublisher<[CourseSyncEntry], Error> {
         mockData
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()

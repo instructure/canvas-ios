@@ -20,7 +20,7 @@ import Combine
 import Foundation
 
 protocol CourseSyncInteractor {
-    func downloadContent(for entries: [CourseSyncSelectorEntry]) -> AnyPublisher<[CourseSyncSelectorEntry], Error>
+    func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Error>
 }
 
 protocol CourseSyncContentInteractor {
@@ -31,7 +31,7 @@ protocol CourseSyncContentInteractor {
 final class CourseSyncInteractorLive: CourseSyncInteractor {
     private let contentInteractors: [CourseSyncContentInteractor]
     private let filesInteractor: CourseSyncFilesInteractor
-    private var courseSyncEntries = CurrentValueSubject<[CourseSyncSelectorEntry], Error>.init([])
+    private var courseSyncEntries = CurrentValueSubject<[CourseSyncEntry], Error>.init([])
     private var subscription: AnyCancellable?
 
     init(
@@ -46,7 +46,7 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
         self.filesInteractor = filesInteractor
     }
 
-    func downloadContent(for entries: [CourseSyncSelectorEntry]) -> AnyPublisher<[CourseSyncSelectorEntry], Error> {
+    func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Error> {
         unowned let unownedSelf = self
 
         courseSyncEntries.send(entries)
@@ -87,7 +87,7 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
     }
 
     private func downloadFiles(
-        for entry: CourseSyncSelectorEntry,
+        for entry: CourseSyncEntry,
         courseIndex: Int
     ) -> AnyPublisher<Void, Error> {
         guard
@@ -152,7 +152,7 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
             .eraseToAnyPublisher()
     }
 
-    private func downloadTabContent(for entry: CourseSyncSelectorEntry, index: Int, tabName: TabName) -> AnyPublisher<Void, Error> {
+    private func downloadTabContent(for entry: CourseSyncEntry, index: Int, tabName: TabName) -> AnyPublisher<Void, Error> {
         unowned let unownedSelf = self
 
         if let tabIndex = entry.tabs.firstIndex(where: { $0.type == tabName }),
@@ -179,7 +179,7 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
         }
     }
 
-    private func setState(selection: CourseEntrySelection, state: CourseSyncSelectorEntry.State) {
+    private func setState(selection: CourseEntrySelection, state: CourseSyncEntry.State) {
         var entries = courseSyncEntries.value
 
         switch selection {
