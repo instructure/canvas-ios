@@ -51,6 +51,17 @@ class CourseSyncSettingsViewModelTests: XCTestCase {
         XCTAssertTrue(testee.isShowingConfirmationDialog)
     }
 
+    func testUpdatesSyncFrequencyLabel() {
+        let interactor = makeInteractor()
+        let testee = CourseSyncSettingsViewModel(interactor: interactor)
+
+        interactor.syncFrequency.accept(.weekly)
+        XCTAssertEqual(testee.syncFrequencyLabel, "Weekly")
+
+        interactor.syncFrequency.accept(.daily)
+        XCTAssertEqual(testee.syncFrequencyLabel, "Daily")
+    }
+
     private func makeInteractor() -> CourseSyncSettingsInteractor {
         let session = SessionDefaults(sessionID: "test")
         return CourseSyncSettingsInteractor(storage: session)

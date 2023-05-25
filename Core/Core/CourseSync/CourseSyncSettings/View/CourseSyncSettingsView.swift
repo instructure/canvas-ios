@@ -83,7 +83,7 @@ struct CourseSyncSettingsView: View {
                         .padding(.top, 14)
                         .padding(.bottom, 17)
                     Spacer(minLength: 0)
-                    Text("Daily", bundle: .core)
+                    Text(viewModel.syncFrequencyLabel)
                         .foregroundColor(.textDark)
                         .font(.regular14)
                         .padding(.trailing, 15)

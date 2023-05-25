@@ -27,6 +27,7 @@ class CourseSyncSettingsViewModel: ObservableObject {
     public let isWifiOnlySyncEnabled = CurrentValueRelay(true)
     @Published public var isAllSettingsVisible = false
     @Published public var isShowingConfirmationDialog = false
+    @Published public var syncFrequencyLabel = ""
     public let confirmAlert = ConfirmationAlertViewModel(
         title: NSLocalizedString("Turn Off Wi-Fi Only Sync?", comment: ""),
         message: NSLocalizedString(
@@ -63,6 +64,14 @@ class CourseSyncSettingsViewModel: ObservableObject {
         handleSyncFrequencyTap()
         handleAllSettingsVisibilityChange()
         showConfirmationDialogWhenWifiSyncTurnedOff()
+        updateSyncFrequencyLabel()
+    }
+
+    private func updateSyncFrequencyLabel() {
+        interactor
+            .syncFrequency
+            .map { $0.stringValue }
+            .assign(to: &$syncFrequencyLabel)
     }
 
     private func showConfirmationDialogWhenWifiSyncTurnedOff() {
