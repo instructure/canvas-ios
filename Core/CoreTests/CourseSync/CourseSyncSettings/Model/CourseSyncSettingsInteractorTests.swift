@@ -60,4 +60,24 @@ class CourseSyncSettingsInteractorTests: XCTestCase {
         XCTAssertFalse(testee.isWifiOnlySyncEnabled.value)
         XCTAssertEqual(testee.syncFrequency.value, .weekly)
     }
+
+    func testManualSyncLabel() {
+        let testee = CourseSyncSettingsInteractor(storage: defaults)
+        testee.isAutoSyncEnabled.accept(false)
+        XCTAssertEqual(testee.offlineSyncSettingsLabel, "Manual")
+    }
+
+    func testDailySyncLabel() {
+        let testee = CourseSyncSettingsInteractor(storage: defaults)
+        testee.isAutoSyncEnabled.accept(true)
+        testee.syncFrequency.accept(.daily)
+        XCTAssertEqual(testee.offlineSyncSettingsLabel, "Daily Auto")
+    }
+
+    func testWeeklySyncLabel() {
+        let testee = CourseSyncSettingsInteractor(storage: defaults)
+        testee.isAutoSyncEnabled.accept(true)
+        testee.syncFrequency.accept(.weekly)
+        XCTAssertEqual(testee.offlineSyncSettingsLabel, "Weekly Auto")
+    }
 }

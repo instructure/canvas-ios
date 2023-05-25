@@ -23,6 +23,15 @@ class CourseSyncSettingsInteractor {
     public let isAutoSyncEnabled = CurrentValueRelay<Bool>(false)
     public let isWifiOnlySyncEnabled = CurrentValueRelay<Bool>(true)
     public let syncFrequency = CurrentValueRelay<CourseSyncFrequency>(.daily)
+    public var offlineSyncSettingsLabel: String {
+        guard isAutoSyncEnabled.value else {
+            return NSLocalizedString("Manual", comment: "")
+        }
+
+        let format = NSLocalizedString("%@ Auto",
+                                       comment: "Weekly Auto / Daily Auto Synchronization Frequency")
+        return String.localizedStringWithFormat(format, syncFrequency.value.stringValue)
+    }
 
     private var storage: SessionDefaults
     private var subscriptions = Set<AnyCancellable>()
