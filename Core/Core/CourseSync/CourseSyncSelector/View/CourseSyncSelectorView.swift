@@ -19,13 +19,13 @@
 import SwiftUI
 
 struct CourseSyncSelectorView: View {
-    @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var viewController
     @StateObject var viewModel: CourseSyncSelectorViewModel
     @StateObject var diskSpaceViewModel: CourseSyncDiskSpaceInfoViewModel
 
     var body: some View {
         content
+        .background(Color.backgroundLightest)
         .navigationBarTitleView(navBarTitleView)
         .navigationBarItems(leading: leftNavBarButton, trailing: cancelButton)
         .navigationBarStyle(.modal)
@@ -36,39 +36,81 @@ struct CourseSyncSelectorView: View {
         switch viewModel.state {
         case .error:
             InteractivePanda(scene: NoResultsPanda(),
-                             title: Text("Something went wrong", bundle: .core),
-                             subtitle: Text("There was an unexpected error.", bundle: .core))
+                             title: Text(viewModel.labels.error.title),
+                             subtitle: Text(viewModel.labels.error.message))
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         case .loading:
             ProgressView()
                 .progressViewStyle(.indeterminateCircle())
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
         case .data:
             VStack(spacing: 0) {
                 CourseSyncDiskSpaceInfoView(viewModel: diskSpaceViewModel)
                     .padding(16)
                 Divider()
-                ScrollView {
-                    LazyVStack(spacing: 0) {
-                        ForEach(viewModel.items) { item in
-                            VStack(spacing: 0) {
-                                ListCellView(ListCellViewModel(cellStyle: item.cellStyle,
-                                                               title: item.title,
-                                                               subtitle: item.subtitle,
-                                                               selectionState: item.selectionState,
-                                                               isCollapsed: item.isCollapsed,
-                                                               selectionDidToggle: item.selectionDidToggle,
-                                                               collapseDidToggle: item.collapseDidToggle))
-                                Divider().padding(.leading, item.cellStyle == .listItem ? 74 : 0)
-                            }.padding(.leading, item.cellStyle == .listItem ? 24 : 0)
+                GeometryReader { geometry in
+                    ScrollView {
+                        if viewModel.cells.isEmpty {
+                            emptyList(geometry: geometry)
+                        } else {
+                            listCells
                         }
                     }
-                    .animation(.default, value: viewModel.items)
                 }
                 syncButton
             }
-            .background(Color.backgroundLightest)
             .confirmationAlert(isPresented: $viewModel.isShowingConfirmationDialog,
                                presenting: viewModel.confirmAlert)
         }
+    }
+
+    private var listCells: some View {
+        LazyVStack(spacing: 0) {
+            ForEach(viewModel.cells) { cell in
+                let isListItem: Bool = {
+                    if case .item(let item) = cell, item.cellStyle == .listItem {
+                        return true
+                    } else {
+                        return false
+                    }
+                }()
+
+                VStack(spacing: 0) {
+                    switch cell {
+                    case .item(let item):
+                        ListCellView(ListCellViewModel(cellStyle: item.cellStyle,
+                                                       title: item.title,
+                                                       subtitle: item.subtitle,
+                                                       selectionState: item.selectionState,
+                                                       isCollapsed: item.isCollapsed,
+                                                       selectionDidToggle: item.selectionDidToggle,
+                                                       collapseDidToggle: item.collapseDidToggle))
+                    case .empty:
+                        emptyCourse
+                    }
+                    Divider().padding(.leading, isListItem ? 74 : 0)
+                }.padding(.leading, isListItem ? 24 : 0)
+            }
+        }
+        .animation(.default, value: viewModel.cells)
+    }
+
+    private func emptyList(geometry: GeometryProxy) -> some View {
+        InteractivePanda(scene: SpacePanda(),
+                         title: Text(viewModel.labels.noCourses.title),
+                         subtitle: Text(viewModel.labels.noCourses.message))
+
+        .padding(16)
+        .frame(maxWidth: .infinity, minHeight: geometry.size.height)
+    }
+
+    private var emptyCourse: some View {
+        InteractivePanda(scene: SpacePanda(),
+                         title: Text(viewModel.labels.noItems.title),
+                         subtitle: Text(viewModel.labels.noItems.message))
+        .allowsHitTesting(false)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 32)
     }
 
     private var navBarTitleView: some View {
@@ -84,7 +126,7 @@ struct CourseSyncSelectorView: View {
 
     private var cancelButton: some View {
         Button {
-            env.router.dismiss(viewController)
+            viewModel.cancelButtonDidTap.accept(viewController)
         } label: {
             Text("Cancel", bundle: .core)
                 .font(.regular16)
@@ -137,7 +179,12 @@ struct SeparatorView: View {
 
 struct CourseSyncSelectorView_Previews: PreviewProvider {
     static var previews: some View {
-        CourseSyncSelectorAssembly.makePreview(env: AppEnvironment.shared)
+        CourseSyncSelectorAssembly
+            .makePreview(env: AppEnvironment.shared, isEmpty: false)
+            .previewDisplayName("Data")
+        CourseSyncSelectorAssembly
+            .makePreview(env: AppEnvironment.shared, isEmpty: true)
+            .previewDisplayName("Empty List")
     }
 }
 

@@ -59,6 +59,10 @@ public extension URL {
         public static func sharedContainers(_ identifier: String) -> URL? {
             FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: identifier)
         }
+
+        public static var offline: URL {
+            documents.appendingPathComponent("Offline")
+        }
     }
 
     func lookupFileSize() -> Int {

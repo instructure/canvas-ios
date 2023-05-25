@@ -37,11 +37,16 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
                       .init(id: "5", name: "Syllabus", type: .assignments),
                   ],
                   files: [
-                      .init(id: "0", name: "Creative Machines and Innovative Instrumentation.mov", url: nil),
-                      .init(id: "1", name: "Intro Energy, Space and Time.mov", url: nil),
+                      .make(id: "0", displayName: "Creative Machines and Innovative Instrumentation.mov"),
+                      .make(id: "1", displayName: "Intro Energy, Space and Time.mov"),
                   ],
                   isCollapsed: false),
+            .init(name: "Empty Course", id: "1", tabs: [], files: []),
         ])
+    }
+
+    func mockEmptyState() {
+        mockData.accept([])
     }
 
     func getCourseSyncEntries() -> AnyPublisher<[CourseSyncSelectorEntry], Error> {
