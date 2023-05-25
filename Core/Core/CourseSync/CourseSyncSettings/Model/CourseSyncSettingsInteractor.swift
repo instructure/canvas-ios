@@ -20,26 +20,9 @@ import Combine
 import CombineExt
 
 class CourseSyncSettingsInteractor {
-    enum SyncFrequency: Int, CaseIterable {
-        case daily
-        case weekly
-
-        var stringValue: String {
-            switch self {
-            case .daily: return NSLocalizedString("Daily", comment: "")
-            case .weekly: return NSLocalizedString("Weekly", comment: "")
-            }
-        }
-
-        static var itemPickerData: [ItemPickerSection] {
-            let pickerRows = allCases.map { ItemPickerItem(title: $0.stringValue) }
-            return [ItemPickerSection(items: pickerRows)]
-        }
-    }
-
     public let isAutoSyncEnabled = CurrentValueRelay<Bool>(false)
     public let isWifiOnlySyncEnabled = CurrentValueRelay<Bool>(true)
-    public let syncFrequency = CurrentValueRelay<SyncFrequency>(.daily)
+    public let syncFrequency = CurrentValueRelay<CourseSyncFrequency>(.daily)
 
     private var storage: SessionDefaults
     private var subscriptions = Set<AnyCancellable>()
@@ -60,7 +43,7 @@ class CourseSyncSettingsInteractor {
         }
 
         if let storedSyncFrequencyRaw = storage.offlineSyncFrequency,
-           let storedSyncFrequency = SyncFrequency(rawValue: storedSyncFrequencyRaw) {
+           let storedSyncFrequency = CourseSyncFrequency(rawValue: storedSyncFrequencyRaw) {
             syncFrequency.accept(storedSyncFrequency)
         }
     }

@@ -102,12 +102,12 @@ class CourseSyncSettingsViewModel: ObservableObject {
                 let selection = IndexPath(row: interactor.syncFrequency.value.rawValue, section: 0)
                 let picker = ItemPickerViewController
                     .create(title: NSLocalizedString("Sync Frequency", comment: ""),
-                            sections: CourseSyncSettingsInteractor.SyncFrequency.itemPickerData,
+                            sections: CourseSyncFrequency.itemPickerData,
                             selected: selection) { newValue in
                     defer {
                         sourceController.value.navigationController?.popViewController(animated: true)
                     }
-                    guard let newFrequency = CourseSyncSettingsInteractor.SyncFrequency(rawValue: newValue.row) else {
+                    guard let newFrequency = CourseSyncFrequency(rawValue: newValue.row) else {
                         return
                     }
                     interactor.syncFrequency.accept(newFrequency)
