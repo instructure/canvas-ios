@@ -28,11 +28,10 @@ class CourseSyncSettingsViewModel: ObservableObject {
     @Published public var isAllSettingsVisible = false
     @Published public var isShowingConfirmationDialog = false
     public let confirmAlert = ConfirmationAlertViewModel(
-        title: NSLocalizedString("Turn Off Content Sync Over Wi-fi Only?", comment: ""),
+        title: NSLocalizedString("Turn Off Wi-Fi Only Sync?", comment: ""),
         message: NSLocalizedString(
            """
-           If this setting is enabled the content synchronization will only happen if the device \
-           connects to a Wi-Fi network, otherwise it will be postponed until a Wi-Fi network is available.
+           Content sync might use cellular data which may result in extra fees from your data provider.
            """, comment: ""),
         cancelButtonTitle: NSLocalizedString("Cancel", comment: ""),
         confirmButtonTitle: NSLocalizedString("Turn Off", comment: ""),
