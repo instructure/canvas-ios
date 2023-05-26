@@ -31,6 +31,7 @@ class CourseSyncProgressViewModelTests: XCTestCase {
         super.setUp()
         mockProgressInteractor = MockCourseSyncProgressInteractor()
         mockSyncInteractor = CourseSyncInteractorMock()
+        router = TestRouter()
         testee = CourseSyncProgressViewModel(interactor: mockProgressInteractor, router: router)
     }
 
@@ -39,10 +40,49 @@ class CourseSyncProgressViewModelTests: XCTestCase {
         XCTAssertEqual(testee.cells, [])
     }
 
+    func testCancelTap() {
+        let controller = UIViewController()
+        let weakController = WeakViewController(controller)
+        testee.cancelButtonDidTap.accept(weakController)
+        XCTAssertEqual(router.dismissed, controller)
+    }
+
     func testDismissTap() {
         let controller = UIViewController()
         let weakController = WeakViewController(controller)
         testee.dismissButtonDidTap.accept(weakController)
         XCTAssertEqual(router.dismissed, controller)
+    }
+
+    func testRetryTap() {
+        let controller = UIViewController()
+        let weakController = WeakViewController(controller)
+        testee.retryButtonDidTap.accept(weakController)
+        XCTAssertEqual(router.dismissed, controller)
+    }
+
+    func testUpdateStateFails() {
+        mockProgressInteractor.courseSyncEntriesSubject.send(completion: .failure(NSError.instructureError("Failed")))
+        waitUntil(shouldFail: true) {
+            testee.state == .error
+        }
+    }
+
+    func testUpdateStateSucceeds() {
+        let mockItem = CourseSyncEntry(name: "",
+                                               id: "test",
+                                               tabs: [],
+                                               files: [])
+        mockProgressInteractor.courseSyncEntriesSubject.send([mockItem])
+        waitUntil(shouldFail: true) {
+            testee.state == .data
+        }
+        XCTAssertEqual(testee.cells.count, 1)
+
+        guard case .item(let item) = testee.cells.first else {
+            return XCTFail()
+        }
+
+        XCTAssertEqual(item.id, "course-test")
     }
 }

@@ -78,7 +78,7 @@ class CourseSyncProgressViewModel: ObservableObject {
     }
 
     private func handleDismissButtonTap(_ interactor: CourseSyncProgressInteractor) {
-        cancelButtonDidTap
+        dismissButtonDidTap
             .sink { [unowned router] viewController in
                 router.dismiss(viewController)
             }

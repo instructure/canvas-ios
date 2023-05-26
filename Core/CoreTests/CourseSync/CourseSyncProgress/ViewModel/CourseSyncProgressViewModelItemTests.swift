@@ -228,10 +228,12 @@ class CourseSyncProgressViewModelItemTests: XCTestCase {
 
 class MockCourseSyncProgressInteractor: CourseSyncProgressInteractor {
 
+    let courseSyncEntriesSubject = PassthroughSubject<[CourseSyncEntry], Error>()
+
     func getSyncProgress() -> Core.SyncProgress {
-            let total = Int64(1000_000_000)
-            let progress = Int64(500_000_000)
-            return SyncProgress(total: total, progress: progress)
+        let total = Int64(1000_000_000)
+        let progress = Int64(500_000_000)
+        return SyncProgress(total: total, progress: progress)
     }
 
     func setProgress(selection: Core.CourseEntrySelection, progress: Float?) {
@@ -253,9 +255,7 @@ class MockCourseSyncProgressInteractor: CourseSyncProgressInteractor {
     }
 
     func getCourseSyncProgressEntries() -> AnyPublisher<[Core.CourseSyncEntry], Error> {
-        Just<[Core.CourseSyncEntry]>([])
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+        courseSyncEntriesSubject.eraseToAnyPublisher()
     }
 
     func setCollapsed(selection: Core.CourseEntrySelection, isCollapsed: Bool) {
