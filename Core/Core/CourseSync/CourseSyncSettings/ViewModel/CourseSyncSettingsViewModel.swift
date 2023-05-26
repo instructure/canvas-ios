@@ -131,7 +131,11 @@ class CourseSyncSettingsViewModel: ObservableObject {
                             sections: CourseSyncFrequency.itemPickerData,
                             selected: selection) { newValue in
                     defer {
-                        sourceController.value.navigationController?.popViewController(animated: true)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
+                            if sourceController.value.navigationController?.topViewController is ItemPickerViewController {
+                                sourceController.value.navigationController?.popViewController(animated: true)
+                            }
+                        }
                     }
                     guard let newFrequency = CourseSyncFrequency(rawValue: newValue.row) else {
                         return
