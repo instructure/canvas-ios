@@ -75,6 +75,13 @@ public class ModuleItemSequenceViewController: UIViewController {
         store.refresh(force: true)
     }
 
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if let viewController = currentViewController() {
+            observations = syncNavigationBar(with: viewController)
+        }
+    }
+
     func update(embed: Bool) {
         if store.requested, store.pending {
             spinnerView.isHidden = false

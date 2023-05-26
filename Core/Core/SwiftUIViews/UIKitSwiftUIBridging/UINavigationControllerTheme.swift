@@ -56,6 +56,17 @@ struct TitleSubtitleModifier: ViewModifier {
     }
 }
 
+struct RightBarButtonItemModifier: ViewModifier {
+    let barButtonItems: () -> [UIBarButtonItemWithCompletion]
+
+    @Environment(\.viewController) var controller
+
+    func body(content: Content) -> some View {
+        controller.value.navigationItem.setRightBarButtonItems(barButtonItems(), animated: false)
+        return content.overlay(Color?.none) // needs something modified to actually run
+    }
+}
+
 struct GlobalNavigationBarModifier: ViewModifier {
     @Environment(\.viewController) var controller
 
@@ -88,8 +99,26 @@ extension View {
         modifier(GlobalNavigationBarModifier())
     }
 
+    public func rightBarButtonItems(_ barButtonItems: @escaping () -> [UIBarButtonItemWithCompletion]) -> some View {
+        modifier(RightBarButtonItemModifier(barButtonItems: barButtonItems))
+    }
+
     /** Make the next view controller in the navigation stack to display a standard < Back button. */
     public func navigationBarGenericBackButton() -> some View {
         modifier(NavBarBackButtonModifier())
+    }
+}
+
+public class UIBarButtonItemWithCompletion: UIBarButtonItem {
+    private var actionHandler: (() -> Void)?
+
+    convenience init(title: String?, style: UIBarButtonItem.Style = .done, actionHandler: (() -> Void)?) {
+        self.init(title: title, style: style, target: nil, action: #selector(buttonDidTap))
+        self.target = self
+        self.actionHandler = actionHandler
+    }
+
+    @objc func buttonDidTap(sender: UIBarButtonItem) {
+        actionHandler?()
     }
 }

@@ -42,17 +42,20 @@ public struct AssignmentDetailsView: View {
             .background(Color.backgroundLightest)
             .navigationBarStyle(.color(course.first?.color))
             .navigationTitle(NSLocalizedString("Assignment Details", comment: ""), subtitle: course.first?.name)
-            .navBarItems(trailing: {
-                Button(action: { env.router.route(
-                    to: "courses/\(courseID)/assignments/\(assignmentID)/edit",
-                    from: controller,
-                    options: .modal(isDismissable: false, embedInNav: true)
-                ) }, label: {
-                    Text("Edit", bundle: .core)
-                        .fontWeight(.regular)
-                        .foregroundColor(.textLightest)
-                })
-            })
+            .rightBarButtonItems {
+                [
+                    UIBarButtonItemWithCompletion(
+                        title: NSLocalizedString("Edit", comment: ""),
+                        actionHandler: {
+                            env.router.route(
+                                to: "courses/\(courseID)/assignments/\(assignmentID)/edit",
+                                from: controller,
+                                options: .modal(isDismissable: false, embedInNav: true)
+                            )
+                        }
+                    ),
+                ]
+            }
             .onAppear {
                 assignment.refresh()
                 course.refresh()
