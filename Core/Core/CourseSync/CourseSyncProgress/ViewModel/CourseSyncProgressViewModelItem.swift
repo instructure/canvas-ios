@@ -19,6 +19,19 @@
 import SwiftUI
 
 extension CourseSyncProgressViewModel {
+
+    enum Cell: Hashable, Identifiable {
+        case empty(viewId: String)
+        case item(Item)
+
+        var id: String {
+            switch self {
+            case .empty(let viewId): return viewId
+            case .item(let item): return item.id
+            }
+        }
+    }
+
     struct Item: Hashable, Identifiable {
 
         /** The SwiftUI view ID. */
@@ -54,17 +67,22 @@ extension CourseSyncProgressViewModel {
 
 extension Array where Element == CourseSyncEntry {
 
-    func makeViewModelItems(interactor: CourseSyncProgressInteractor) -> [CourseSyncProgressViewModel.Item] {
-        var items: [CourseSyncProgressViewModel.Item] = []
+    func makeSyncProgressViewModelItems(interactor: CourseSyncProgressInteractor) -> [CourseSyncProgressViewModel.Cell] {
+        var cells: [CourseSyncProgressViewModel.Cell] = []
 
         for (courseIndex, course) in enumerated() {
             var courseItem = course.makeSyncProgressViewModelItem()
             courseItem.collapseDidToggle = {
                 interactor.setCollapsed(selection: .course(courseIndex), isCollapsed: !(courseItem.isCollapsed ?? false))
             }
-            items.append(courseItem)
+            cells.append(.item(courseItem))
 
             if course.isCollapsed {
+                continue
+            }
+
+            if course.tabs.isEmpty {
+                cells.append(.empty(viewId: "course-\(course.id)-empty"))
                 continue
             }
 
@@ -73,19 +91,19 @@ extension Array where Element == CourseSyncEntry {
                 tabItem.collapseDidToggle = {
                     interactor.setCollapsed(selection: .tab(courseIndex, tabIndex), isCollapsed: !(tabItem.isCollapsed ?? false))
                 }
-                items.append(tabItem)
+                cells.append(.item(tabItem))
 
                 guard tab.type == .files, !tab.isCollapsed else {
                     continue
                 }
 
                 for file in course.files {
-                    let fileItem = file.makeSyncProgressViewModelItem()
-                    items.append(fileItem)
+                    var fileItem = file.makeSyncProgressViewModelItem()
+                    cells.append(.item(fileItem))
                 }
             }
         }
-        return items
+        return cells
     }
 }
 

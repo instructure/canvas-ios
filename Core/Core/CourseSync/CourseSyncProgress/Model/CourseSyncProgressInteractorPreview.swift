@@ -56,6 +56,10 @@ class CourseSyncProgressInteractorPreview: CourseSyncProgressInteractor {
 
     func setCollapsed(selection _: CourseEntrySelection, isCollapsed _: Bool) {}
 
+    func cancelSync() {}
+
+    func retrySync() {}
+
     func remove(selection: CourseEntrySelection) {}
 
     func getSyncProgress() -> SyncProgress {

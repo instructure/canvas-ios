@@ -30,6 +30,8 @@ protocol CourseSyncProgressInteractor {
     func getCourseSyncProgressEntries() -> AnyPublisher<[CourseSyncEntry], Error>
     func setProgress(selection: CourseEntrySelection, progress: Float?)
     func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool)
+    func cancelSync()
+    func retrySync()
     func remove(selection: CourseEntrySelection)
 }
 
@@ -65,6 +67,12 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
     }
 
     func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool) {
+    }
+
+    func cancelSync() {
+    }
+
+    func retrySync() {
     }
 
     func remove(selection: CourseEntrySelection) {

@@ -20,7 +20,7 @@ import SwiftUI
 
 struct CourseSyncProgressInfoView: View {
 
-    let viewModel: CourseSyncProgressInfoViewModel
+    @ObservedObject var viewModel: CourseSyncProgressInfoViewModel
 
     var body: some View {
         VStack(spacing: 8) {

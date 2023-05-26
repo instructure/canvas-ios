@@ -29,27 +29,3 @@ class CourseSyncProgressInfoViewModelTests: XCTestCase {
         XCTAssertEqual(testee.progressPercentage, 0.5)
     }
 }
-
-private class MockCourseSyncProgressInteractor: CourseSyncProgressInteractor {
-
-    func getSyncProgress() -> SyncProgress {
-        let total = Int64(1000_000_000)
-        let progress = Int64(500_000_000)
-        return SyncProgress(total: total, progress: progress)
-    }
-
-    func getCourseSyncProgressEntries() -> AnyPublisher<[Core.CourseSyncEntry], Error> {
-        Just<[Core.CourseSyncEntry]>([])
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
-    }
-
-    func setProgress(selection: Core.CourseEntrySelection, progress: Float?) {
-    }
-
-    func setCollapsed(selection: Core.CourseEntrySelection, isCollapsed: Bool) {
-    }
-
-    func remove(selection: Core.CourseEntrySelection) {
-    }
-}

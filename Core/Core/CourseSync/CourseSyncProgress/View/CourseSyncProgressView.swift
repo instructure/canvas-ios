@@ -27,7 +27,18 @@ struct CourseSyncProgressView: View {
     var body: some View {
         content
         .navigationBarTitleView(navBarTitleView)
+        .navigationBarItems(leading: cancelButton, trailing: trailingBarItem)
         .navigationBarStyle(.modal)
+    }
+
+    @ViewBuilder
+    private var trailingBarItem: some View {
+        switch viewModel.state {
+        case .error:
+            retryButton
+        default:
+            dismissButton
+        }
     }
 
     @ViewBuilder
@@ -47,14 +58,28 @@ struct CourseSyncProgressView: View {
                 Divider()
                 ScrollView {
                     LazyVStack(spacing: 0) {
-                        ForEach(viewModel.items) { item in
-                            listCell(for: item)
+                        ForEach(viewModel.cells) { cell in
+                            switch cell {
+                            case .item(let item):
+                                listCell(for: item)
+                            case .empty:
+                                emptyCourse
+                            }
                         }
                     }
-                }.animation(.default, value: viewModel.items)
+                }.animation(.default, value: viewModel.cells)
             }
             .background(Color.backgroundLightest)
         }
+    }
+
+    private var emptyCourse: some View {
+        InteractivePanda(scene: SpacePanda(),
+                         title: Text(viewModel.labels.noItems.title),
+                         subtitle: Text(viewModel.labels.noItems.message))
+        .allowsHitTesting(false)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 32)
     }
 
     private var navBarTitleView: some View {
@@ -70,9 +95,29 @@ struct CourseSyncProgressView: View {
 
     private var cancelButton: some View {
         Button {
-            env.router.dismiss(viewController)
+            viewModel.cancelButtonDidTap.accept(viewController)
         } label: {
             Text("Cancel", bundle: .core)
+                .font(.regular16)
+                .foregroundColor(.textDarkest)
+        }
+    }
+
+    private var dismissButton: some View {
+        Button {
+            viewModel.dismissButtonDidTap.accept(viewController)
+        } label: {
+            Text("Dismiss", bundle: .core)
+                .font(.regular16)
+                .foregroundColor(.textDarkest)
+        }
+    }
+
+    private var retryButton: some View {
+        Button {
+            viewModel.retryButtonDidTap.accept(viewController)
+        } label: {
+            Text("Retry", bundle: .core)
                 .font(.regular16)
                 .foregroundColor(.textDarkest)
         }

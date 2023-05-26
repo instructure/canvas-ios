@@ -30,22 +30,74 @@ class CourseSyncProgressViewModel: ObservableObject {
     // MARK: - Output
 
     @Published public private(set) var state = State.loading
-    @Published public private(set) var items: [Item] = []
+    @Published public private(set) var cells: [Cell] = []
+
+    public let labels = (
+        noCourses: (
+            title: NSLocalizedString("No Courses", comment: ""),
+            message: NSLocalizedString("Your courses will be listed here, and then you can make them available for offline usage.", comment: "")
+        ),
+        noItems: (
+            title: NSLocalizedString("No Course Content", comment: ""),
+            message: NSLocalizedString("The course content will be listed here, and then you can make them available for offline usage.", comment: "")
+        ),
+        error: (
+            title: NSLocalizedString("Something went wrong", comment: ""),
+            message: NSLocalizedString("There was an unexpected error.", comment: "")
+        )
+    )
+
+    // MARK: - Input
+
+    public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
+    public let dismissButtonDidTap = PassthroughRelay<WeakViewController>()
+    public let retryButtonDidTap = PassthroughRelay<WeakViewController>()
 
     // MARK: - Private
 
     private let interactor: CourseSyncProgressInteractor
     private var subscriptions = Set<AnyCancellable>()
+    private let router: Router
 
-    init(interactor: CourseSyncProgressInteractor) {
+    init(interactor: CourseSyncProgressInteractor, router: Router) {
         self.interactor = interactor
+        self.router = router
         updateState(interactor)
+        handleCancelButtonTap(interactor)
+        handleDismissButtonTap(interactor)
+        handleRetryButtonTap(interactor)
+    }
+
+    private func handleCancelButtonTap(_ interactor: CourseSyncProgressInteractor) {
+        cancelButtonDidTap
+            .sink { [unowned router] viewController in
+                interactor.cancelSync()
+                router.dismiss(viewController)
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func handleDismissButtonTap(_ interactor: CourseSyncProgressInteractor) {
+        cancelButtonDidTap
+            .sink { [unowned router] viewController in
+                router.dismiss(viewController)
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func handleRetryButtonTap(_ interactor: CourseSyncProgressInteractor) {
+        retryButtonDidTap
+            .sink { [unowned router] viewController in
+                interactor.retrySync()
+                router.dismiss(viewController)
+            }
+            .store(in: &subscriptions)
     }
 
     private func updateState(_ interactor: CourseSyncProgressInteractor) {
         interactor
             .getCourseSyncProgressEntries()
-            .map { $0.makeViewModelItems(interactor: interactor) }
+            .map { $0.makeSyncProgressViewModelItems(interactor: interactor) }
             .receive(on: DispatchQueue.main)
             .handleEvents(receiveOutput: { [unowned self] _ in
                 state = .data
@@ -55,6 +107,6 @@ class CourseSyncProgressViewModel: ObservableObject {
                 }
             })
             .replaceError(with: [])
-            .assign(to: &$items)
+            .assign(to: &$cells)
     }
 }
