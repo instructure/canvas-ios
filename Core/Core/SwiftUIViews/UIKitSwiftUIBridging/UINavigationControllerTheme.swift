@@ -108,17 +108,3 @@ extension View {
         modifier(NavBarBackButtonModifier())
     }
 }
-
-public class UIBarButtonItemWithCompletion: UIBarButtonItem {
-    private var actionHandler: (() -> Void)?
-
-    convenience init(title: String?, style: UIBarButtonItem.Style = .done, actionHandler: (() -> Void)?) {
-        self.init(title: title, style: style, target: nil, action: #selector(buttonDidTap))
-        self.target = self
-        self.actionHandler = actionHandler
-    }
-
-    @objc func buttonDidTap(sender: UIBarButtonItem) {
-        actionHandler?()
-    }
-}

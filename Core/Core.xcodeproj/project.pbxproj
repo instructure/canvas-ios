@@ -1067,6 +1067,7 @@
 		BBDCA3A2A9A80224BD013ECC /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AF2E58DF84B10504193AB0 /* APITests.swift */; };
 		BBE9E03123EC91E51BDA305A /* ConversationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009AABA1AA8F119BF160E836 /* ConversationMessage.swift */; };
 		BBF7387BD0DC0EE94DDE8190 /* CreateConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0F133A570E1F40CDB61809 /* CreateConversation.swift */; };
+		BC2FE3904B6D791A6022E4CB /* UIBarButtonItemWithCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EE96B40326624ECA494F2 /* UIBarButtonItemWithCompletion.swift */; };
 		BC305225F8FDAF17CC0EBF25 /* DynamicButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC7B0A9E26BCA8C1798279F /* DynamicButtonTests.swift */; };
 		BC3E36D494FD1698B9D78E0C /* DeveloperMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D13F31C6A0DC4363C33803 /* DeveloperMenuViewController.swift */; };
 		BC65960DD0F9059C4DD0BA01 /* AvoidKeyboardArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444EDDA908341096835C7377 /* AvoidKeyboardArea.swift */; };
@@ -1754,6 +1755,7 @@
 		2194957EFF9E998B69DFE2FD /* DashboardInvitationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInvitationName.swift; sourceTree = "<group>"; };
 		21A5A9C5558FF8DF33640292 /* SyllabusTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusTabViewController.swift; sourceTree = "<group>"; };
 		220A50FD6183C7CE131FDEF3 /* ActAsUserViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ActAsUserViewController.storyboard; sourceTree = "<group>"; };
+		221EE96B40326624ECA494F2 /* UIBarButtonItemWithCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBarButtonItemWithCompletion.swift; sourceTree = "<group>"; };
 		22444C739EB409FB15A1D779 /* FileSubmissionsStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionsStatus.swift; sourceTree = "<group>"; };
 		2293571697EF4591D028ACC0 /* MockMDMManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMDMManager.swift; sourceTree = "<group>"; };
 		22BD0168BE0B5688354EB62D /* ExternalTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalTool.swift; sourceTree = "<group>"; };
@@ -4999,6 +5001,7 @@
 				04A8ECBC001884D68F55F688 /* TitleSubtitleView.swift */,
 				5E69C515DED4F944708608A7 /* TitleSubtitleView.xib */,
 				E2A89356489C22A54AB572AB /* TokenLabelView.swift */,
+				221EE96B40326624ECA494F2 /* UIBarButtonItemWithCompletion.swift */,
 			);
 			path = UIViews;
 			sourceTree = "<group>";
@@ -9547,6 +9550,7 @@
 				1D0CB50857AB33A8383D8B1A /* UIAccessibilityAnnouncement.swift in Sources */,
 				E5F13083096134000E076326 /* UIApplicationDelegateExtensions.swift in Sources */,
 				DD0C03FABD678BF8F8E80503 /* UIBarButtonItemExtensions.swift in Sources */,
+				BC2FE3904B6D791A6022E4CB /* UIBarButtonItemWithCompletion.swift in Sources */,
 				D5B09447909F1949C73CF1AC /* UIButtonExtensions.swift in Sources */,
 				AA950DF12FCFD8F7098C615C /* UICollectionViewExtensions.swift in Sources */,
 				65860D8782E1C164C177845C /* UIColorExtensions.swift in Sources */,
