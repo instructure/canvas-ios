@@ -29,14 +29,14 @@ public enum MessageDetailsAssembly {
     }
 
 #if DEBUG
-/*
+
     public static func makePreview(env: AppEnvironment,
-                                   submissions: [QuizSubmissionListItem])
-    -> QuizSubmissionListView {
-        let interactor = QuizSubmissionListInteractorPreview(env: env, submissions: submissions)
-        let viewModel = QuizSubmissionListViewModel(router: env.router, filterValue: .all, interactor: interactor)
-        return QuizSubmissionListView(model: viewModel)
+                                   messages: [ConversationMessage])
+    -> MessageDetailsView {
+        let interactor = MessageDetailsInteractorPreview(env: env, messages: messages)
+        let viewModel = MessageDetailsViewModel(router: env.router, interactor: interactor)
+        return MessageDetailsView(model: viewModel)
     }
-*/
+
 #endif
 }

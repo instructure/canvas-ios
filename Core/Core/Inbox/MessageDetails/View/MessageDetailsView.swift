@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-struct MessageDetailsView: View {
+public struct MessageDetailsView: View {
     @ObservedObject private var model: MessageDetailsViewModel
     @Environment(\.viewController) private var controller
 
@@ -31,32 +31,30 @@ struct MessageDetailsView: View {
             if model.state == .loading {
                 loadingIndicator
             } else {
-                GeometryReader { geometry in
-                    List {
-                        switch model.state {
-                        case .data:
-                            messageList
-                        case .empty, .error:
-                            Text("There was an error loading the message. Pull to refresh to try again.")
-                        case .loading:
-                            SwiftUI.EmptyView()
-                        }
+                List {
+                    switch model.state {
+                    case .data:
+                        detailsView
+                    case .empty, .error:
+                        Text("There was an error loading the message. Pull to refresh to try again.")
+                    case .loading:
+                        SwiftUI.EmptyView()
                     }
-                    .refreshable {
-                        await withCheckedContinuation { continuation in
-                            model.refreshDidTrigger.send {
-                                continuation.resume()
-                            }
-                        }
-                    }
-                    .listStyle(PlainListStyle())
-                    .animation(.default, value: model.messages)
                 }
+                .refreshable {
+                    await withCheckedContinuation { continuation in
+                        model.refreshDidTrigger.send {
+                            continuation.resume()
+                        }
+                    }
+                }
+                .listStyle(PlainListStyle())
+                .animation(.default, value: model.messages)
             }
         }
         .background(Color.backgroundLightest)
         .navigationTitle(model.title)
-       // .navigationBarItems(trailing: messageUsersButton)
+        // .navigationBarItems(trailing: messageUsersButton)
     }
 
     private var loadingIndicator: some View {
@@ -68,6 +66,34 @@ struct MessageDetailsView: View {
             .listRowSeparator(.hidden)
     }
 
+    private var detailsView: some View {
+        VStack(spacing: 16) {
+            headerView
+            Color.borderMedium
+                .frame(height: 0.5)
+            messageList
+        }
+    }
+
+    private var headerView: some View {
+        HStack {
+            Text(model.title)
+                .font(.semibold22)
+            Spacer()
+            starButton
+        }
+    }
+
+    private var starButton: some View {
+        //TODO logic
+        Image
+            .starLine
+            .size(30)
+            .foregroundColor(.textDark)
+            .padding(.leading, 6)
+            .accessibilityHidden(true)
+    }
+
     private var messageList: some View {
         ForEach(model.messages) { message in
             VStack(spacing: 0) {
@@ -75,7 +101,6 @@ struct MessageDetailsView: View {
                 Text(message.body)
                 Color.borderMedium
                     .frame(height: 0.5)
-                    .overlay(Color.backgroundLightest.frame(width: 64), alignment: .leading)
             }
             .listRowInsets(EdgeInsets())
             .listRowSeparator(.hidden)
@@ -85,12 +110,15 @@ struct MessageDetailsView: View {
 }
 
 #if DEBUG
-/*
+
 struct MessageDetailsView_Previews: PreviewProvider {
+    static let env = PreviewEnvironment()
+    static let context = env.globalDatabase.viewContext
+
     static var previews: some View {
-        MessageDetailsView()
+        let body = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+        MessageDetailsAssembly.makePreview(env: env, messages: .make(count: 5, body: body,  in: context))
     }
 }
-*/
 
 #endif

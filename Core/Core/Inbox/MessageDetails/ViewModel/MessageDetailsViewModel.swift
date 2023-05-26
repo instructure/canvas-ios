@@ -22,6 +22,7 @@ class MessageDetailsViewModel: ObservableObject {
     // MARK: - Outputs
     @Published public private(set) var state: StoreState = .loading
     @Published public private(set) var messages: [MessageViewModel] = []
+    //TODO: real title
     public let title = NSLocalizedString("Message Details", comment: "")
 
     // MARK: - Inputs

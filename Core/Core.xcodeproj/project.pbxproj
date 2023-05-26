@@ -1099,6 +1099,7 @@
 		C406485DE3B48D2D910E34F8 /* AudioRecorderViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83A896AE378A6A1813117F78 /* AudioRecorderViewController.storyboard */; };
 		C4194A5C41933B17FB0DF695 /* PairWithObserverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617AE70312B1FC5CC341AD98 /* PairWithObserverViewController.swift */; };
 		C41C54EEDFCCA7A563CBB705 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E249DD6423E938E1DE581C9 /* Core.framework */; };
+		C48DFBBE8FB7ED8B7E2ADB64 /* MessageDetailsInteractorPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E798CDC768701609DCA7651 /* MessageDetailsInteractorPreview.swift */; };
 		C4B7303D48105DF4CDE2F7CD /* ContextColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D35E39902E002CAE151F8E /* ContextColorTests.swift */; };
 		C4D4BA3CAA18EF578EC37BC1 /* LogEventListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC13FB9E2590FD01A29016 /* LogEventListPresenter.swift */; };
 		C5691F7595579E11558DD2C0 /* ContextModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBCEED9901EC76B323C4FD07 /* ContextModelTests.swift */; };
@@ -2241,6 +2242,7 @@
 		6E5C21D5D62685DDDB5E5B10 /* APINotificationPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APINotificationPreferences.swift; sourceTree = "<group>"; };
 		6E6CB3450750735DA3EE36AE /* TopBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarItemView.swift; sourceTree = "<group>"; };
 		6E723604B2E372EEC1CF6547 /* CoreTester.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoreTester.entitlements; sourceTree = "<group>"; };
+		6E798CDC768701609DCA7651 /* MessageDetailsInteractorPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailsInteractorPreview.swift; sourceTree = "<group>"; };
 		6E9B361985FD0F05D7C61646 /* ContextCardGradesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextCardGradesView.swift; sourceTree = "<group>"; };
 		6EC38E89E0E732498859023F /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ms; path = ms.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		6F0C6A481F3EFC1B4F0777CB /* ModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTests.swift; sourceTree = "<group>"; };
@@ -4123,6 +4125,7 @@
 			isa = PBXGroup;
 			children = (
 				5A0A89ABAC1D2916D7BB79B5 /* MessageDetailsInteractor.swift */,
+				6E798CDC768701609DCA7651 /* MessageDetailsInteractorPreview.swift */,
 				C11FCB88AFB1B140BF0FB8EC /* MessageDetailsInteratorLive.swift */,
 			);
 			path = Model;
@@ -9165,6 +9168,7 @@
 				3EDA5B25F3C4D653C7DBC1FA /* MenuItems.swift in Sources */,
 				3A0B9839964F7E677E552D29 /* MessageDetailsAssembly.swift in Sources */,
 				09E228B1E41591D37E1D6737 /* MessageDetailsInteractor.swift in Sources */,
+				C48DFBBE8FB7ED8B7E2ADB64 /* MessageDetailsInteractorPreview.swift in Sources */,
 				0F2793DCC1F46D1064D32110 /* MessageDetailsInteratorLive.swift in Sources */,
 				C279743193C05180C58BE62C /* MessageDetailsView.swift in Sources */,
 				F4309E3EF6059DF76CD3D1B6 /* MessageDetailsViewModel.swift in Sources */,
