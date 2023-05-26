@@ -224,11 +224,14 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         .map {
             $0
                 .compactMap { $0.file }
+                .filter { $0.url != nil && $0.mimeClass != nil }
                 .map {
                     CourseSyncSelectorEntry.File(
                         id: $0.id ?? Foundation.UUID().uuidString,
-                        name: $0.displayName ?? NSLocalizedString("Unknown file", comment: ""),
-                        url: $0.url
+                        displayName: $0.displayName ?? NSLocalizedString("Unknown file", comment: ""),
+                        fileName: $0.filename,
+                        url: $0.url!,
+                        mimeClass: $0.mimeClass!
                     )
                 }
         }

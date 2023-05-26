@@ -19,6 +19,18 @@
 import SwiftUI
 
 extension CourseSyncSelectorViewModel {
+    enum Cell: Hashable, Identifiable {
+        case empty(viewId: String)
+        case item(Item)
+
+        var id: String {
+            switch self {
+            case .empty(let viewId): return viewId
+            case .item(let item): return item.id
+            }
+        }
+    }
+
     struct Item: Hashable, Identifiable {
 
         /** The SwiftUI view ID. */
@@ -54,8 +66,8 @@ extension CourseSyncSelectorViewModel {
 
 extension Array where Element == CourseSyncSelectorEntry {
 
-    func makeViewModelItems(interactor: CourseSyncSelectorInteractor) -> [CourseSyncSelectorViewModel.Item] {
-        var items: [CourseSyncSelectorViewModel.Item] = []
+    func makeViewModelItems(interactor: CourseSyncSelectorInteractor) -> [CourseSyncSelectorViewModel.Cell] {
+        var cells: [CourseSyncSelectorViewModel.Cell] = []
 
         for (courseIndex, course) in enumerated() {
             var courseItem = course.makeViewModelItem()
@@ -66,9 +78,14 @@ extension Array where Element == CourseSyncSelectorEntry {
             courseItem.collapseDidToggle = {
                 interactor.setCollapsed(selection: .course(courseIndex), isCollapsed: !(courseItem.isCollapsed ?? false))
             }
-            items.append(courseItem)
+            cells.append(.item(courseItem))
 
             if course.isCollapsed {
+                continue
+            }
+
+            if course.tabs.isEmpty {
+                cells.append(.empty(viewId: "course-\(course.id)-empty"))
                 continue
             }
 
@@ -81,7 +98,7 @@ extension Array where Element == CourseSyncSelectorEntry {
                 tabItem.collapseDidToggle = {
                     interactor.setCollapsed(selection: .tab(courseIndex, tabIndex), isCollapsed: !(tabItem.isCollapsed ?? false))
                 }
-                items.append(tabItem)
+                cells.append(.item(tabItem))
 
                 guard tab.type == .files, !tab.isCollapsed else {
                     continue
@@ -92,12 +109,12 @@ extension Array where Element == CourseSyncSelectorEntry {
                     fileItem.selectionDidToggle = {
                         interactor.setSelected(selection: .file(courseIndex, fileIndex), selectionState: fileItem.selectionState == .selected ? .deselected : .selected)
                     }
-                    items.append(fileItem)
+                    cells.append(.item(fileItem))
                 }
             }
         }
 
-        return items
+        return cells
     }
 }
 
@@ -129,7 +146,7 @@ extension CourseSyncSelectorEntry.File {
 
     func makeViewModelItem() -> CourseSyncSelectorViewModel.Item {
         .init(id: "file-\(id)",
-              title: name,
+              title: displayName,
               subtitle: nil,
               selectionState: selectionState,
               cellStyle: .listItem)

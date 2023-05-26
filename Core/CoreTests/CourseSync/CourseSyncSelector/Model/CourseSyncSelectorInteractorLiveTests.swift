@@ -137,8 +137,8 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         waitForExpectations(timeout: 0.1)
         XCTAssertEqual(entries.count, 1)
         XCTAssertEqual(entries[0].files.count, 2)
-        XCTAssertEqual(entries[0].files[0].name, "root-file-1")
-        XCTAssertEqual(entries[0].files[1].name, "folder-1-file")
+        XCTAssertEqual(entries[0].files[0].displayName, "root-file-1")
+        XCTAssertEqual(entries[0].files[1].displayName, "folder-1-file")
         subscription.cancel()
     }
 
