@@ -19,67 +19,74 @@
 import Combine
 import CombineExt
 
-class CourseSyncSettingsInteractor {
-    public let isAutoSyncEnabled = CurrentValueRelay<Bool>(false)
-    public let isWifiOnlySyncEnabled = CurrentValueRelay<Bool>(true)
-    public let syncFrequency = CurrentValueRelay<CourseSyncFrequency>(.daily)
-    public var offlineSyncSettingsLabel: String {
-        guard isAutoSyncEnabled.value else {
+protocol CourseSyncSettingsInteractor {
+    func getOfflineSyncSettingsLabel() -> String
+    func getStoredPreferences() -> AnyPublisher<CourseSyncSettings, Never>
+
+    func setAutoSyncEnabled(_ isEnabled: Bool) -> AnyPublisher<Bool, Never>
+    func setWifiOnlySyncEnabled(_ isEnabled: Bool) -> AnyPublisher<Bool, Never>
+    func setSyncFrequency(_ syncFrequency: CourseSyncFrequency) -> AnyPublisher<CourseSyncFrequency, Never>
+}
+
+class CourseSyncSettingsInteractorLive: CourseSyncSettingsInteractor {
+    private var storage: SessionDefaults
+
+    public init(storage: SessionDefaults) {
+        self.storage = storage
+    }
+
+    public func getOfflineSyncSettingsLabel() -> String {
+        let settings = storedSettings
+
+        guard settings.isAutoSyncEnabled else {
             return NSLocalizedString("Manual", comment: "")
         }
 
         let format = NSLocalizedString("%@ Auto",
                                        comment: "Weekly Auto / Daily Auto Synchronization Frequency")
-        return String.localizedStringWithFormat(format, syncFrequency.value.stringValue)
+        return String.localizedStringWithFormat(format, settings.syncFrequency.stringValue)
     }
 
-    private var storage: SessionDefaults
-    private var subscriptions = Set<AnyCancellable>()
-
-    init(storage: SessionDefaults) {
-        self.storage = storage
-        readValuesFromStorage()
-        writePropertiesToStorageOnChange()
+    public func getStoredPreferences() -> AnyPublisher<CourseSyncSettings, Never> {
+        Just(storedSettings).eraseToAnyPublisher()
     }
 
-    private func readValuesFromStorage() {
-        if let storedAutoSync = storage.isOfflineAutoSyncEnabled {
-            isAutoSyncEnabled.accept(storedAutoSync)
+    public func setAutoSyncEnabled(_ isEnabled: Bool) -> AnyPublisher<Bool, Never> {
+        Future { [unowned self] promise in
+            storage.isOfflineAutoSyncEnabled = isEnabled
+            promise(.success(isEnabled))
         }
-
-        if let storedWifiSync = storage.isOfflineWifiOnlySyncEnabled {
-            isWifiOnlySyncEnabled.accept(storedWifiSync)
-        }
-
-        if let storedSyncFrequencyRaw = storage.offlineSyncFrequency,
-           let storedSyncFrequency = CourseSyncFrequency(rawValue: storedSyncFrequencyRaw) {
-            syncFrequency.accept(storedSyncFrequency)
-        }
+        .eraseToAnyPublisher()
     }
 
-    private func writePropertiesToStorageOnChange() {
-        unowned let unownedSelf = self
+    public func setWifiOnlySyncEnabled(_ isEnabled: Bool) -> AnyPublisher<Bool, Never> {
+        Future { [unowned self] promise in
+            storage.isOfflineWifiOnlySyncEnabled = isEnabled
+            promise(.success(isEnabled))
+        }
+        .eraseToAnyPublisher()
+    }
 
-        isAutoSyncEnabled
-            .dropFirst()
-            .sink { newValue in
-                unownedSelf.storage.isOfflineAutoSyncEnabled = newValue
-            }
-            .store(in: &subscriptions)
+    public func setSyncFrequency(_ syncFrequency: CourseSyncFrequency) -> AnyPublisher<CourseSyncFrequency, Never> {
+        Future { [unowned self] promise in
+            storage.offlineSyncFrequency = syncFrequency.rawValue
+            promise(.success(syncFrequency))
+        }
+        .eraseToAnyPublisher()
+    }
 
-        isWifiOnlySyncEnabled
-            .dropFirst()
-            .sink { newValue in
-                unownedSelf.storage.isOfflineWifiOnlySyncEnabled = newValue
+    private var storedSettings: CourseSyncSettings {
+        let syncFrequency: CourseSyncFrequency? = {
+            guard let storedSyncFrequencyRaw = storage.offlineSyncFrequency,
+                  let storedSyncFrequency = CourseSyncFrequency(rawValue: storedSyncFrequencyRaw)
+            else {
+                return nil
             }
-            .store(in: &subscriptions)
 
-        syncFrequency
-            .dropFirst()
-            .map { $0.rawValue }
-            .sink { newValue in
-                unownedSelf.storage.offlineSyncFrequency = newValue
-            }
-            .store(in: &subscriptions)
+            return storedSyncFrequency
+        }()
+        return CourseSyncSettings(isAutoSyncEnabled: storage.isOfflineAutoSyncEnabled ?? false,
+                                  isWifiOnlySyncEnabled: storage.isOfflineWifiOnlySyncEnabled ?? true,
+                                  syncFrequency: syncFrequency ?? .daily)
     }
 }

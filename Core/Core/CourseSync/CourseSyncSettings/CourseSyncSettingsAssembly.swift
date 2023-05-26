@@ -21,7 +21,7 @@ import SwiftUI
 public enum CourseSyncSettingsAssembly {
 
     public static func makeViewController(sessionDefaults: SessionDefaults) -> UIViewController {
-        let interactor = CourseSyncSettingsInteractor(storage: sessionDefaults)
+        let interactor = CourseSyncSettingsInteractorLive(storage: sessionDefaults)
         let viewModel = CourseSyncSettingsViewModel(interactor: interactor)
         return CoreHostingController(CourseSyncSettingsView(viewModel: viewModel))
     }
@@ -30,7 +30,7 @@ public enum CourseSyncSettingsAssembly {
 
     static func makePreview() -> some View {
         let sessionDefaults = SessionDefaults(sessionID: "preview")
-        let interactor = CourseSyncSettingsInteractor(storage: sessionDefaults)
+        let interactor = CourseSyncSettingsInteractorLive(storage: sessionDefaults)
         let viewModel = CourseSyncSettingsViewModel(interactor: interactor)
         return CourseSyncSettingsView(viewModel: viewModel)
     }

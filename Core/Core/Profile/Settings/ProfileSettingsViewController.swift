@@ -150,7 +150,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                 return ""
             }
 
-            return CourseSyncSettingsInteractor(storage: defaults).offlineSyncSettingsLabel
+            return CourseSyncSettingsInteractorLive(storage: defaults).getOfflineSyncSettingsLabel()
         }()
         return Section(NSLocalizedString("Offline Content", comment: ""), rows: [
                 Row(NSLocalizedString("Synchronization", comment: ""),

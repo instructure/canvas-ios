@@ -63,32 +63,36 @@ class CourseSyncSettingsViewModel: ObservableObject {
         self.interactor = interactor
         handleSyncFrequencyTap()
         handleAllSettingsVisibilityChange()
-        updateSyncFrequencyLabel()
-        readInitialSwitchStatesFromInteractor()
+        readInitialStateFromInteractor()
         forwardSwitchStateChangesToInteractor()
         showConfirmationDialogWhenWifiSyncTurnedOff()
     }
 
-    private func readInitialSwitchStatesFromInteractor() {
-        isAutoContentSyncEnabled.accept(interactor.isAutoSyncEnabled.value)
-        isWifiOnlySyncEnabled.accept(interactor.isWifiOnlySyncEnabled.value)
+    private func readInitialStateFromInteractor() {
+        interactor
+            .getStoredPreferences()
+            .sink { [unowned self] settings in
+                isAutoContentSyncEnabled.accept(settings.isAutoSyncEnabled)
+                isWifiOnlySyncEnabled.accept(settings.isWifiOnlySyncEnabled)
+                syncFrequencyLabel = settings.syncFrequency.stringValue
+            }
+            .store(in: &subscriptions)
     }
 
     private func forwardSwitchStateChangesToInteractor() {
         isAutoContentSyncEnabled
-            .subscribe(interactor.isAutoSyncEnabled)
+            .flatMap { [interactor] isEnabled in
+                interactor.setAutoSyncEnabled(isEnabled)
+            }
+            .sink()
             .store(in: &subscriptions)
 
         isWifiOnlySyncEnabled
-            .subscribe(interactor.isWifiOnlySyncEnabled)
+            .flatMap { [interactor] isEnabled in
+                interactor.setWifiOnlySyncEnabled(isEnabled)
+            }
+            .sink()
             .store(in: &subscriptions)
-    }
-
-    private func updateSyncFrequencyLabel() {
-        interactor
-            .syncFrequency
-            .map { $0.stringValue }
-            .assign(to: &$syncFrequencyLabel)
     }
 
     private func showConfirmationDialogWhenWifiSyncTurnedOff() {
@@ -123,36 +127,59 @@ class CourseSyncSettingsViewModel: ObservableObject {
     }
 
     private func handleSyncFrequencyTap() {
-        syncFrequencyDidTap
-            .map { [interactor] sourceController in
-                let selection = IndexPath(row: interactor.syncFrequency.value.rawValue, section: 0)
-                let picker = ItemPickerViewController
-                    .create(title: NSLocalizedString("Sync Frequency", comment: ""),
-                            sections: CourseSyncFrequency.itemPickerData,
-                            selected: selection) { newValue in
-                    defer {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
-                            if sourceController.value.navigationController?.topViewController is ItemPickerViewController {
-                                sourceController.value.navigationController?.popViewController(animated: true)
-                            }
-                        }
-                    }
-                    guard let newFrequency = CourseSyncFrequency(rawValue: newValue.row) else {
-                        return
-                    }
-                    interactor.syncFrequency.accept(newFrequency)
-                }
+        let interactor = self.interactor
 
-                return (picker: picker, source: sourceController)
+        syncFrequencyDidTap
+            .flatMap { sourceController in
+                interactor
+                    .getStoredPreferences()
+                    .map {(
+                        previousSelection: $0.syncFrequency.rawValue,
+                        sourceController: sourceController
+                    )}
             }
-            .sink {
-                $0.source.value.show($0.picker, sender: self)
+            .flatMap { (previousSelection, sourceController) in
+                Self.getNewFrequencyFromUser(previousSelection: previousSelection,
+                                             sourceController: sourceController.value)
             }
-            .store(in: &subscriptions)
+            .flatMap { newFrequency in
+                interactor.setSyncFrequency(newFrequency)
+            }
+            .map { $0.stringValue }
+            .assign(to: &$syncFrequencyLabel)
     }
 
     private func handleAllSettingsVisibilityChange() {
         isAutoContentSyncEnabled
             .assign(to: &$isAllSettingsVisible)
+    }
+
+    private static func getNewFrequencyFromUser(previousSelection: Int,
+                                                sourceController: UIViewController)
+    -> AnyPublisher<CourseSyncFrequency, Never> {
+        Future<CourseSyncFrequency, Never> { promise in
+            let selection = IndexPath(row: previousSelection, section: 0)
+            let handleNewSelection: (IndexPath) -> Void = { newSelection in
+                defer {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
+                        if sourceController.navigationController?.topViewController is ItemPickerViewController {
+                            sourceController.navigationController?.popViewController(animated: true)
+                        }
+                    }
+                }
+                guard let newFrequency = CourseSyncFrequency(rawValue: newSelection.row) else {
+                    return
+                }
+
+                promise(.success(newFrequency))
+            }
+            let picker = ItemPickerViewController
+                .create(title: NSLocalizedString("Sync Frequency", comment: ""),
+                        sections: CourseSyncFrequency.itemPickerData,
+                        selected: selection,
+                        didSelect: handleNewSelection)
+            sourceController.show(picker, sender: sourceController)
+        }
+        .eraseToAnyPublisher()
     }
 }
