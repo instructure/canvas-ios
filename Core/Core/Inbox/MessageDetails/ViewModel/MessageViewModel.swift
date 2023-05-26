@@ -21,9 +21,14 @@ import SwiftUI
 public struct MessageViewModel: Identifiable, Equatable {
     public let id: String
     public let body: String
+    public let date: String
+    public let author: String
+    public let avatarURL: URL? = nil
 
     public init(item: ConversationMessage) {
         self.id = item.id
         self.body = item.body
+        self.date = item.createdAt?.relativeDateTimeString ?? ""
+        self.author = "John Doe"
     }
 }
