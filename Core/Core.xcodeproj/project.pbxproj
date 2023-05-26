@@ -1068,6 +1068,7 @@
 		BBE9E03123EC91E51BDA305A /* ConversationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009AABA1AA8F119BF160E836 /* ConversationMessage.swift */; };
 		BBF7387BD0DC0EE94DDE8190 /* CreateConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0F133A570E1F40CDB61809 /* CreateConversation.swift */; };
 		BC15AF79D482FDB0D0984A99 /* CourseSyncInteractorPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427E591353CFBC9891AF9D6A /* CourseSyncInteractorPreview.swift */; };
+		BC2FE3904B6D791A6022E4CB /* UIBarButtonItemWithCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221EE96B40326624ECA494F2 /* UIBarButtonItemWithCompletion.swift */; };
 		BC305225F8FDAF17CC0EBF25 /* DynamicButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC7B0A9E26BCA8C1798279F /* DynamicButtonTests.swift */; };
 		BC3E36D494FD1698B9D78E0C /* DeveloperMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D13F31C6A0DC4363C33803 /* DeveloperMenuViewController.swift */; };
 		BC65960DD0F9059C4DD0BA01 /* AvoidKeyboardArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444EDDA908341096835C7377 /* AvoidKeyboardArea.swift */; };
