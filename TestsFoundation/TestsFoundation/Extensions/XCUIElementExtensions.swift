@@ -47,4 +47,14 @@ public extension XCUIElement {
     func find(id: String, label: String, type: XCUIElement.ElementType = .any) -> Element {
         return descendants(matching: type).matching(id: id).matching(label: label).firstElement
     }
+
+    // MARK: - Alerts
+
+    func findAlertButton(label: String) -> Element {
+        descendants(matching: .alert).descendants(matching: .button).matching(label: label).firstElement
+    }
+
+    func findAlertStaticText(label: String) -> Element {
+        descendants(matching: .alert).descendants(matching: .staticText).matching(label: label).firstElement
+    }
 }

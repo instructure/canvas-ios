@@ -19,27 +19,41 @@
 import XCTest
 import TestsFoundation
 
-class ActAsUserE2ETests: CoreUITestCase {
+class ActAsUserTests: CoreUITestCase {
+    // TODO: Make it use DataSeeder
     override var user: UITestUser? { return .readAdmin1 }
 
     func testActAsUser() {
         Profile.open()
         XCTAssertEqual(Profile.userNameLabel.label(), "Admin One")
-        Profile.actAsUserButton.tap()
-        ActAsUser.userIDField.typeText("613").swipeUp()
-        XCTAssertEqual(ActAsUser.domainField.value(), "https://\(user!.host)")
-        ActAsUser.actAsUserButton.tap()
+        XCTAssertTrue(Profile.actAsUserButton.waitToExist().isVisible)
 
+        Profile.actAsUserButton.tap()
+        XCTAssertTrue(ActAsUser.userIDField.waitToExist().isVisible)
+        XCTAssertTrue(ActAsUser.domainField.waitToExist().isVisible)
+
+        ActAsUser.userIDField.typeText("613").swipeUp()
+        if ActAsUser.domainField.value() != "https://\(user!.host)" {
+            ActAsUser.domainField.cutText()
+            ActAsUser.domainField.typeText("https://\(user!.host)").swipeUp()
+        }
+        XCTAssertTrue(ActAsUser.actAsUserButton.waitToExist().isVisible)
+
+        ActAsUser.actAsUserButton.tap()
         Profile.open()
         XCTAssertEqual(Profile.userNameLabel.label(), "Student One")
+
         Profile.close()
+        XCTAssertTrue(ActAsUser.endActAsUserButton.waitToExist().isVisible)
 
         ActAsUser.endActAsUserButton.tap()
-        app.alerts.buttons["OK"].tap()
+        ActAsUser.okAlertButton.tap()
         ActAsUser.endActAsUserButton.waitToVanish()
+        XCTAssertFalse(ActAsUser.endActAsUserButton.isVisible)
 
         Profile.open()
         XCTAssertEqual(Profile.userNameLabel.label(), "Admin One")
+
         Profile.close()
     }
 }
