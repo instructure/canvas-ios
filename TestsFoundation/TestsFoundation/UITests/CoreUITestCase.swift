@@ -277,8 +277,7 @@ open class CoreUITestCase: XCTestCase {
         LoginStart.findSchoolButton.waitToExist()
         if LoginStart.lastLoginButton.exists && LoginStart.lastLoginButton.label() == user.host {
             LoginStart.lastLoginButton.tap()
-        }
-        else {
+        } else {
             LoginStart.findSchoolButton.tap()
             LoginFindSchool.searchField.typeText("\(user.host)\r")
         }
