@@ -161,6 +161,7 @@ class RoutesTests: XCTestCase {
     func testOfflineScreenRoutes() {
         XCTAssert(router.match("/offline/sync_picker/132") is CoreHostingController<CourseSyncSelectorView>)
         XCTAssert(router.match("/offline/sync_picker") is CoreHostingController<CourseSyncSelectorView>)
+        XCTAssert(router.match("/offline/settings") is CoreHostingController<CourseSyncSettingsView>)
     }
 
     // MARK: - K5 / non-K5 course detail route logic tests
