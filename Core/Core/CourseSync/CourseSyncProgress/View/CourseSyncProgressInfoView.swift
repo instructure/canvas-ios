@@ -23,15 +23,26 @@ struct CourseSyncProgressInfoView: View {
     @ObservedObject var viewModel: CourseSyncProgressInfoViewModel
 
     var body: some View {
-        VStack(spacing: 8) {
-            Text(viewModel.progress)
-                .font(.regular14)
-                .foregroundColor(.textDarkest)
-                .padding(.top, 24)
-            ProgressView(value: viewModel.progressPercentage)
-                .tint(.backgroundInfo)
-                .background(Color.backgroundInfo.opacity(0.24))
-                .padding(.bottom, 32)
+        VStack(spacing: viewModel.syncFailure ? 4 : 8) {
+            if viewModel.syncFailure {
+                Text(viewModel.syncFailureTitle)
+                    .font(.semibold16)
+                    .foregroundColor(.textDarkest)
+                    .padding(.top, 24)
+                Text(viewModel.syncFailureSubtitle)
+                    .font(.regular14)
+                    .foregroundColor(.textDarkest)
+                    .padding(.top, 24)
+            } else {
+                Text(viewModel.progress)
+                    .font(.regular14)
+                    .foregroundColor(.textDarkest)
+                    .padding(.top, 24)
+                ProgressView(value: viewModel.progressPercentage)
+                    .tint(.backgroundInfo)
+                    .background(Color.backgroundInfo.opacity(0.24))
+                    .padding(.bottom, 32)
+            }
         }.padding(.horizontal, 16)
     }
 }

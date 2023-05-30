@@ -83,35 +83,34 @@ struct ListCellView: View {
 
     @ViewBuilder
     private var progressAccessoryView: some View {
-            if viewModel.error != nil {
-                Button {
-                    viewModel.removeItemPressed?()
-                } label: {
-                    Image.xLine
-                        .size(24)
-                        .foregroundColor(.textDarkest)
-                        .accessibilityHidden(true)
-                        .padding(.leading, 30)
-                }
-
-            } else if let progress = viewModel.progress {
-                if progress < 1 {
-                    ProgressView(value: progress)
-                        .progressViewStyle(.determinateCircle(size: 20,
-                                                              lineWidth: 2,
-                                                              color: .backgroundInfo))
-                        .accessibilityHidden(true)
-                        .padding(.leading, 30)
-                } else {
-                    Image.checkLine
-                        .size(24)
-                        .foregroundColor(.textDarkest)
-                        .accessibilityHidden(true)
-                        .padding(.leading, 30)
-                }
-            } else {
-                SwiftUI.EmptyView()
+        if viewModel.error != nil {
+            Button {
+                viewModel.removeItemPressed?()
+            } label: {
+                Image.xLine
+                    .size(24)
+                    .foregroundColor(.textDarkest)
+                    .accessibilityHidden(true)
+                    .padding(.leading, 30)
             }
+
+        } else if let progress = viewModel.progress {
+            if progress < 1 {
+                ProgressView(value: progress)
+                    .progressViewStyle(.determinateCircle(size: 20,
+                                                          lineWidth: 2,
+                                                          color: .backgroundInfo))
+                    .accessibilityHidden(true)
+                    .padding(2)
+                    .padding(.leading, 30)
+            } else {
+                Image.checkLine
+                    .size(24)
+                    .foregroundColor(.textDarkest)
+                    .accessibilityHidden(true)
+                    .padding(.leading, 30)
+            }
+        }
     }
 
     @ViewBuilder
@@ -122,8 +121,6 @@ struct ListCellView: View {
             .multilineTextAlignment(.leading)
             .foregroundColor(.textDarkest)
             .font(viewModel.titleFont)
-            .padding(.top, 12)
-            .padding(.bottom, viewModel.subtitle == nil ? 16 : 0)
     }
 
     @ViewBuilder
@@ -132,7 +129,6 @@ struct ListCellView: View {
             .lineLimit(1)
             .foregroundColor(.textDark)
             .font(viewModel.subtitleFont)
-            .padding(.bottom, viewModel.error != nil ? 2 : 14)
     }
 
     @ViewBuilder
@@ -141,7 +137,6 @@ struct ListCellView: View {
             .lineLimit(1)
             .foregroundColor(.textDanger)
             .font(.regular14)
-            .padding(.bottom, 14)
     }
 
     var body: some View {
@@ -174,7 +169,7 @@ struct ListCellView: View {
                         if viewModel.error != nil {
                             errorText
                         }
-                    }.padding(.leading, 16)
+                    }.padding(.leading, 16).padding(.top, 12).padding(.bottom, 14)
                     Spacer()
                     accessoryIcon.accessibilityHidden(true)
                 }
@@ -226,7 +221,7 @@ struct ListCellView_Previews: PreviewProvider {
                                            selectionDidToggle: {}))
             Divider()
             ListCellView(ListCellViewModel(cellStyle: .listItem,
-                                           title: "Creative Machines and InnovativeInstrument ation.mov",
+                                           title: "Creative Machines and Innovative Instrumentation.mov",
                                            subtitle: "4 GB",
                                            selectionState: .selected,
                                            isCollapsed: false,
@@ -238,9 +233,10 @@ struct ListCellView_Previews: PreviewProvider {
             Divider()
             ListCellView(ListCellViewModel(cellStyle: .mainAccordionHeader,
                                            title: "Top Secret.pdf",
-                                           subtitle: "1MB",
+                                           subtitle: nil,
                                            isCollapsed: false,
-                                           progress: 0.15))
+                                           progress: 0.15,
+                                           error: "No good"))
             Divider()
             ListCellView(ListCellViewModel(cellStyle: .listAccordionHeader,
                                            title: "Files",

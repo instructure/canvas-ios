@@ -21,11 +21,17 @@ import Foundation
 class CourseSyncProgressInfoViewModel: ObservableObject {
     @Published private(set) var progress: String
     @Published private(set) var progressPercentage: Float
+    @Published private(set) var syncFailure: Bool = false
+    @Published private(set) var syncFailureTitle: String
+    @Published private(set) var syncFailureSubtitle: String
 
     init(interactor: CourseSyncProgressInteractor) {
         let syncProgress = interactor.getSyncProgress()
         let format = NSLocalizedString("Downloading %@ of %@", bundle: .core, comment: "Downloading 42 GB of 64 GB")
         progress = String.localizedStringWithFormat(format, syncProgress.progress.humanReadableFileSize, syncProgress.total.humanReadableFileSize)
+        syncFailure = syncProgress.failure
+        syncFailureTitle = NSLocalizedString("Offline Content Sync Failed", bundle: .core, comment: "")
+        syncFailureSubtitle = NSLocalizedString("One or more files failed to sync. Check your internet connection and retry to submit.", bundle: .core, comment: "")
         guard syncProgress.total != 0 else { progressPercentage = 0; return }
         progressPercentage = Float(syncProgress.progress) / Float(syncProgress.total)
     }

@@ -98,7 +98,7 @@ extension Array where Element == CourseSyncEntry {
                 }
 
                 for file in course.files {
-                    var fileItem = file.makeSyncProgressViewModelItem()
+                    let fileItem = file.makeSyncProgressViewModelItem()
                     cells.append(.item(fileItem))
                 }
             }

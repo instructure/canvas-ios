@@ -23,6 +23,7 @@ import Foundation
 struct SyncProgress {
     let total: Int64
     let progress: Int64
+    let failure: Bool
 }
 
 protocol CourseSyncProgressInteractor {
@@ -42,7 +43,8 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
     func getSyncProgress() -> SyncProgress {
         let total = getTotalSize()
         let progress = getProgressSize()
-        return SyncProgress(total: total, progress: progress)
+        let failure = checkFailure()
+        return SyncProgress(total: total, progress: progress, failure: failure)
     }
 
     private func getTotalSize() -> Int64 {
@@ -53,6 +55,11 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
     private func getProgressSize() -> Int64 {
         // TODO: logic
         return 1
+    }
+
+    private func checkFailure() -> Bool {
+        // TODO: logic
+        return false
     }
 
     // MARK: - Progress item view

@@ -65,7 +65,7 @@ class CourseSyncProgressViewModel: ObservableObject {
         updateState(interactor)
         handleCancelButtonTap(interactor)
         handleDismissButtonTap(interactor)
-        handleRetryButtonTap(interactor)
+        handleRetryButtonTap(interactor, router: router)
     }
 
     private func handleCancelButtonTap(_ interactor: CourseSyncProgressInteractor) {
@@ -85,9 +85,9 @@ class CourseSyncProgressViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private func handleRetryButtonTap(_ interactor: CourseSyncProgressInteractor) {
+    private func handleRetryButtonTap(_ interactor: CourseSyncProgressInteractor, router: Router) {
         retryButtonDidTap
-            .sink { [unowned router] viewController in
+            .sink { viewController in
                 interactor.retrySync()
                 router.dismiss(viewController)
             }

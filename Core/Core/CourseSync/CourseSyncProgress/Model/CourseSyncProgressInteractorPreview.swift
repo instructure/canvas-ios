@@ -31,15 +31,15 @@ class CourseSyncProgressInteractorPreview: CourseSyncProgressInteractor {
                   id: "0",
                   tabs: [
                     .init(id: "0", name: "Assignments", type: .assignments, state: .loading(1)),
-                      .init(id: "1", name: "Discussion", type: .assignments, state: .loading(0)),
+                    .init(id: "1", name: "Discussion", type: .assignments, state: .loading(0)),
                     .init(id: "2", name: "Grades", type: .assignments, state: .loading(0.5)),
                     .init(id: "3", name: "People", type: .assignments, state: .loading(0.75)),
-                      .init(id: "4", name: "Files", type: .files, isCollapsed: false, state: .loading(1)),
+                    .init(id: "4", name: "Files", type: .files, isCollapsed: false, state: .loading(1)),
                     .init(id: "5", name: "Syllabus", type: .assignments, state: .loading(0.5)),
                   ],
                   files: [
-                      .make(id: "0", displayName: "Creative Machines and Innovative Instrumentation.mov", state: .loading(1)),
-                      .make(id: "1", displayName: "Intro Energy, Space and Time.mov", state: .error),
+                    .make(id: "0", displayName: "Creative Machines and Innovative Instrumentation.mov", state: .loading(1)),
+                    .make(id: "1", displayName: "Intro Energy, Space and Time.mov", state: .error),
                   ],
                   isCollapsed: false,
                   state: .loading(0.78)),
@@ -65,7 +65,8 @@ class CourseSyncProgressInteractorPreview: CourseSyncProgressInteractor {
     func getSyncProgress() -> SyncProgress {
         let total = Double(64_000_000_000)
         return SyncProgress(total: Int64(total),
-                            progress: Int64(0.456 * total))
+                            progress: Int64(0.456 * total),
+                            failure: false)
     }
 }
 

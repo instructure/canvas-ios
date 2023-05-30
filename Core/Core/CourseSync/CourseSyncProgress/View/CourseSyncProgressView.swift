@@ -164,7 +164,7 @@ struct CourseSyncProgressView: View {
 
 struct CourseSyncProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        CourseSyncProgressAssembly.makePreview(env: AppEnvironment.shared)
+        CourseSyncProgressAssembly.makePreview(router: AppEnvironment.shared.router)
     }
 }
 
