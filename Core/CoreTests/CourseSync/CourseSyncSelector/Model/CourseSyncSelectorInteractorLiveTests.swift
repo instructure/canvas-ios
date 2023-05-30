@@ -17,6 +17,7 @@
 //
 
 @testable import Core
+import Combine
 import Foundation
 import TestsFoundation
 import XCTest
@@ -40,6 +41,31 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
 
         waitForExpectations(timeout: 0.1)
         XCTAssertEqual(entries.count, 1)
+        subscription.cancel()
+    }
+
+    func testCourseListWithCourseFilter() {
+        let testee = CourseSyncSelectorInteractorLive(courseID: "2")
+        let expectation = expectation(description: "Publisher sends value")
+
+        mockCourseList(courseList: [
+            .make(id: "1"),
+            .make(id: "2"),
+        ])
+
+        var entries = [CourseSyncSelectorEntry]()
+        let subscription = testee.getCourseSyncEntries()
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: {
+                    entries = $0
+                    expectation.fulfill()
+                }
+            )
+
+        waitForExpectations(timeout: 0.1)
+        XCTAssertEqual(entries.count, 1)
+        XCTAssertEqual(entries.first?.id, "2")
         subscription.cancel()
     }
 
@@ -111,8 +137,8 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         waitForExpectations(timeout: 0.1)
         XCTAssertEqual(entries.count, 1)
         XCTAssertEqual(entries[0].files.count, 2)
-        XCTAssertEqual(entries[0].files[0].name, "root-file-1")
-        XCTAssertEqual(entries[0].files[1].name, "folder-1-file")
+        XCTAssertEqual(entries[0].files[0].displayName, "root-file-1")
+        XCTAssertEqual(entries[0].files[1].displayName, "folder-1-file")
         subscription.cancel()
     }
 
@@ -227,6 +253,59 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(entries[1].selectedTabsCount, 1)
         XCTAssertEqual(entries[1].selectedFilesCount, 1)
         subscription1.cancel()
+    }
+
+    func testCourseNameWithoutCourseFilter() {
+        let testee = CourseSyncSelectorInteractorLive()
+        var subscriptions = Set<AnyCancellable>()
+
+        mockCourseList(
+            courseList: [
+                .make(id: "1", name: "course 1"),
+                .make(id: "2", name: "course 2"),
+            ]
+        )
+
+        let expectation = expectation(description: "Publisher sends value")
+        testee.getCourseName()
+            .sink { courseName in
+                XCTAssertEqual(courseName, "All Courses")
+                expectation.fulfill()
+            }
+            .store(in: &subscriptions)
+
+        testee.getCourseSyncEntries()
+            .sink()
+            .store(in: &subscriptions)
+
+        waitForExpectations(timeout: 0.1)
+        subscriptions.removeAll()
+    }
+
+    func testCourseNameWithCourseFilter() {
+        let testee = CourseSyncSelectorInteractorLive(courseID: "2")
+        var subscriptions = Set<AnyCancellable>()
+
+        mockCourseList(
+            courseList: [
+                .make(id: "1", name: "course 1"),
+                .make(id: "2", name: "course 2"),
+            ]
+        )
+
+        let expectation = expectation(description: "Publisher sends value")
+        testee.getCourseName()
+            .sink { courseName in
+                XCTAssertEqual(courseName, "course 2")
+                expectation.fulfill()
+            }
+            .store(in: &subscriptions)
+        testee.getCourseSyncEntries()
+            .sink()
+            .store(in: &subscriptions)
+
+        waitForExpectations(timeout: 0.1)
+        subscriptions.removeAll()
     }
 
     private func mockCourseList(

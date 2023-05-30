@@ -46,6 +46,8 @@ struct CourseSyncDiskSpaceInfoView: View {
             .overlay(RoundedRectangle(cornerRadius: 6)
                 .stroke(Color.borderDark, lineWidth: 1 / UIScreen.main.scale))
         )
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(viewModel.a11yLabel)
     }
 
     private var title: some View {
@@ -62,16 +64,18 @@ struct CourseSyncDiskSpaceInfoView: View {
 
     private var chart: some View {
         GeometryReader { geometry in
-            HStack(spacing: 1) {
+            let spacing: CGFloat = 1
+            let width = geometry.size.width - 2 * spacing
+            HStack(spacing: spacing) {
                 Rectangle()
                     .foregroundColor(Color(backgroundDarkest))
-                    .frame(width: viewModel.chart.0 * geometry.size.width)
+                    .frame(width: viewModel.chart.other * width)
                 Rectangle()
                     .foregroundColor(Color(Brand.shared.primary))
-                    .frame(width: viewModel.chart.1 * geometry.size.width)
+                    .frame(width: viewModel.chart.app * width)
                 Rectangle()
                     .foregroundColor(Color(remainingDiskSpaceColor))
-                    .frame(width: viewModel.chart.2 * geometry.size.width)
+                    .frame(width: viewModel.chart.free * width)
             }
         }
         .frame(height: 12)

@@ -25,20 +25,23 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
     var testee: CourseSyncSelectorViewModel!
     var mockSelectorInteractor: CourseSyncSelectorInteractorMock!
     var mockSyncInteractor: CourseSyncInteractorMock!
+    var router: TestRouter!
 
     override func setUp() {
         super.setUp()
         mockSelectorInteractor = CourseSyncSelectorInteractorMock()
         mockSyncInteractor = CourseSyncInteractorMock()
+        router = TestRouter()
         testee = CourseSyncSelectorViewModel(
             selectorInteractor: mockSelectorInteractor,
-            syncInteractor: mockSyncInteractor
+            syncInteractor: mockSyncInteractor,
+            router: router
         )
     }
 
     func testInitialState() {
         XCTAssertEqual(testee.state, .loading)
-        XCTAssertEqual(testee.items, [])
+        XCTAssertEqual(testee.cells, [])
         XCTAssertTrue(testee.syncButtonDisabled)
         XCTAssertFalse(testee.leftNavBarButtonVisible)
         XCTAssertFalse(testee.isShowingConfirmationDialog)
@@ -103,13 +106,33 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
         waitUntil(shouldFail: true) {
             testee.state == .data
         }
-        XCTAssertEqual(testee.items.count, 1)
-        XCTAssertEqual(testee.items[0].id, "course-test")
+        XCTAssertEqual(testee.cells.count, 1)
         XCTAssertTrue(testee.leftNavBarButtonVisible)
+
+        guard case .item(let item) = testee.cells[0] else {
+            return XCTFail()
+        }
+
+        XCTAssertEqual(item.id, "course-test")
+    }
+
+    func testUpdatesNavBarSubtitle() {
+        XCTAssertEqual(testee.navBarSubtitle, "Test Name")
+    }
+
+    func testCancelTap() {
+        let controller = UIViewController()
+        let weakController = WeakViewController(controller)
+        testee.cancelButtonDidTap.accept(weakController)
+        XCTAssertEqual(router.dismissed, controller)
     }
 }
 
 class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
+
+    required init(courseID: String? = nil) {
+    }
+
     let courseSyncEntriesSubject = PassthroughSubject<[CourseSyncSelectorEntry], Error>()
     func getCourseSyncEntries() -> AnyPublisher<[Core.CourseSyncSelectorEntry], Error> {
         courseSyncEntriesSubject.eraseToAnyPublisher()
@@ -136,6 +159,10 @@ class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
     var toggleAllCoursesSelectionParam: Bool?
     func toggleAllCoursesSelection(isSelected: Bool) {
         toggleAllCoursesSelectionParam = isSelected
+    }
+
+    func getCourseName() -> AnyPublisher<String, Never> {
+        Just("Test Name").eraseToAnyPublisher()
     }
 }
 

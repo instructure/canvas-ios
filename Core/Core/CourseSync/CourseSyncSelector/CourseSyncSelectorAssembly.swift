@@ -20,13 +20,14 @@ import Foundation
 
 public enum CourseSyncSelectorAssembly {
 
-    public static func makeViewController(env: AppEnvironment) -> UIViewController {
-        let selectorInteractor = CourseSyncSelectorInteractorLive()
+    public static func makeViewController(env: AppEnvironment, courseID: String? = nil) -> UIViewController {
+        let selectorInteractor = CourseSyncSelectorInteractorLive(courseID: courseID)
         let syncInteractor = CourseSyncInteractorLive()
         let diskSpaceInteractor = DiskSpaceInteractorLive()
         let viewModel = CourseSyncSelectorViewModel(
             selectorInteractor: selectorInteractor,
-            syncInteractor: syncInteractor
+            syncInteractor: syncInteractor,
+            router: env.router
         )
         let diskSpaceViewModel = CourseSyncDiskSpaceInfoViewModel(interactor: diskSpaceInteractor, app: env.app ?? .student)
         let view = CourseSyncSelectorView(viewModel: viewModel, diskSpaceViewModel: diskSpaceViewModel)
@@ -35,13 +36,19 @@ public enum CourseSyncSelectorAssembly {
 
 #if DEBUG
 
-    static func makePreview(env: AppEnvironment) -> CourseSyncSelectorView {
+    static func makePreview(env: AppEnvironment, isEmpty: Bool) -> CourseSyncSelectorView {
         let selectorInteractor = CourseSyncSelectorInteractorPreview()
+
+        if isEmpty {
+            selectorInteractor.mockEmptyState()
+        }
+
         let syncInteractor = CourseSyncInteractorPreview()
         let diskSpaceInteractor = DiskSpaceInteractorPreview()
         let viewModel = CourseSyncSelectorViewModel(
             selectorInteractor: selectorInteractor,
-            syncInteractor: syncInteractor
+            syncInteractor: syncInteractor,
+            router: env.router
         )
         let diskSpaceViewModel = CourseSyncDiskSpaceInfoViewModel(interactor: diskSpaceInteractor, app: env.app ?? .student)
         return CourseSyncSelectorView(viewModel: viewModel, diskSpaceViewModel: diskSpaceViewModel)
