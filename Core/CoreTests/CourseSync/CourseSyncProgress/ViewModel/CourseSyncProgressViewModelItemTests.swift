@@ -233,7 +233,7 @@ class MockCourseSyncProgressInteractor: CourseSyncProgressInteractor {
     func getSyncProgress() -> Core.SyncProgress {
         let total = Int64(1000_000_000)
         let progress = Int64(500_000_000)
-        return SyncProgress(total: total, progress: progress)
+        return SyncProgress(total: total, progress: progress, failure: false)
     }
 
     func setProgress(selection: Core.CourseEntrySelection, progress: Float?) {
