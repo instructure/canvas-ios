@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -60,6 +60,7 @@
 		4DFA05671709AE84764833FB /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E67E6FD3405134C21322616 /* AudioRecorder.swift */; };
 		4EC7BDF80A9E65AA6FBDFACA /* CreateDSGradingStandardsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3335FA75783B9536A76AF6D2 /* CreateDSGradingStandardsRequest.swift */; };
 		4F86073554A4692C591CF8D2 /* CreateDSAccountNotificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EB01A67D620697DB09B6F61 /* CreateDSAccountNotificationRequest.swift */; };
+		509F3D8EDAAAF7425C36BE80 /* CombineTestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218651481971AB40D5D80C79 /* CombineTestExtensions.swift */; };
 		50D6E0EBB695D9F1C20CD0CC /* DiscussionList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A319A91D6CA69A42A2ABA115 /* DiscussionList.swift */; };
 		514A398F69F9B43A8B00002A /* AssignmentGroupsFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79C1E82474C47AE7E263140 /* AssignmentGroupsFixture.swift */; };
 		51C27FD09F96240298874293 /* K5NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC432A86A8FFFE3100E2FD1 /* K5NavigationBar.swift */; };
@@ -187,6 +188,20 @@
 			remoteGlobalIDString = 4E249DD6423E938E1DE581C9;
 			remoteInfo = Core;
 		};
+		CF5460A22A272E9D00179727 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19FB565ABEC6EA3620720E25 /* Core */;
+			proxyType = 2;
+			remoteGlobalIDString = 8F6731E780A5363E04E3620A;
+			remoteInfo = CoreTester;
+		};
+		CF5460A42A272E9D00179727 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19FB565ABEC6EA3620720E25 /* Core */;
+			proxyType = 2;
+			remoteGlobalIDString = DC35484E0C7EE977582AF3AE;
+			remoteInfo = CoreTests;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -217,6 +232,7 @@
 		19FB565ABEC6EA3620720E25 /* Core */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Core; path = ../Core/Core.xcodeproj; sourceTree = "<group>"; };
 		1C4754EE049207214440E82C /* K5CourseCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5CourseCard.swift; sourceTree = "<group>"; };
 		1C5A4B21062D29A3ABFF82B1 /* CourseSectionFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSectionFixture.swift; sourceTree = "<group>"; };
+		218651481971AB40D5D80C79 /* CombineTestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineTestExtensions.swift; sourceTree = "<group>"; };
 		22001AFA7EE4571DC4913E36 /* TextSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextSubmission.swift; sourceTree = "<group>"; };
 		233DF034B90E6CB94E45AB67 /* DataSeeder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSeeder.swift; sourceTree = "<group>"; };
 		234C525F478ED716FA9FF1FC /* TestEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestEnvironment.swift; sourceTree = "<group>"; };
@@ -637,6 +653,7 @@
 			isa = PBXGroup;
 			children = (
 				47BBBB47D5854C1CBC756C78 /* ThirdPartyApp */,
+				218651481971AB40D5D80C79 /* CombineTestExtensions.swift */,
 				234C525F478ED716FA9FF1FC /* TestEnvironment.swift */,
 			);
 			path = Helpers;
@@ -740,6 +757,8 @@
 			isa = PBXGroup;
 			children = (
 				59FDA90639A28B677F0E6B7A /* Core.framework */,
+				CF5460A32A272E9D00179727 /* CoreTester.app */,
+				CF5460A52A272E9D00179727 /* CoreTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1152,6 +1171,20 @@
 			remoteRef = C62A32602F4B1A165BCFE80A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		CF5460A32A272E9D00179727 /* CoreTester.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = CoreTester.app;
+			remoteRef = CF5460A22A272E9D00179727 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CF5460A52A272E9D00179727 /* CoreTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CoreTests.xctest;
+			remoteRef = CF5460A42A272E9D00179727 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -1191,6 +1224,7 @@
 				5B66CA6BC155230774454DB2 /* Attachments.swift in Sources */,
 				4DFA05671709AE84764833FB /* AudioRecorder.swift in Sources */,
 				54923FEE77B2BB32BBCC2504 /* CalendarEventFixture.swift in Sources */,
+				509F3D8EDAAAF7425C36BE80 /* CombineTestExtensions.swift in Sources */,
 				5D760DD0639FCD95BA6290AB /* CommunicationChannelFixture.swift in Sources */,
 				BE02DF1EE7014F718A8A3D14 /* Compose.swift in Sources */,
 				802DAE6AF27A3FC904CA7D07 /* ComposeReply.swift in Sources */,
