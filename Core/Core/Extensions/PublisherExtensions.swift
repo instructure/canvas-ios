@@ -24,8 +24,8 @@ public extension Publisher {
         sink { _ in } receiveValue: { _ in }
     }
 
-    func bindProgress(_ isLoading: PassthroughRelay<Bool>) -> AnyPublisher<Self.Output, Self.Failure> {
-        return handleEvents(
+    func bindProgress(_ isLoading: PassthroughRelay<Bool>) -> AnyPublisher<Output, Failure> {
+        handleEvents(
             receiveSubscription: { _ in
                 isLoading.accept(true)
             },
