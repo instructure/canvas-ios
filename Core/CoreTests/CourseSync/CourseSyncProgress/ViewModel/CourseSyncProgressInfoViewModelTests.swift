@@ -16,16 +16,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+@testable import Core
+import XCTest
 import Combine
+import CombineExt
 
-#if DEBUG
+class CourseSyncProgressInfoViewModelTests: XCTestCase {
 
-final class CourseSyncInteractorPreview: CourseSyncInteractor {
-    func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Error> {
-        Just([])
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+    func testConvertsInteractorData() {
+        let testee = CourseSyncProgressInfoViewModel(interactor: MockCourseSyncProgressInteractor())
+        XCTAssertEqual(testee.progress, "Downloading 500 MB of 1 GB")
+        XCTAssertEqual(testee.progressPercentage, 0.5)
     }
 }
-
-#endif

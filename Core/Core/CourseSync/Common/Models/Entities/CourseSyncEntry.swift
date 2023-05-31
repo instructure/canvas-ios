@@ -18,8 +18,8 @@
 
 import Foundation
 
-struct CourseSyncSelectorEntry {
-    enum State: Equatable {
+struct CourseSyncEntry {
+    enum State: Equatable, Hashable {
         case loading(Float?), error, downloaded
     }
 
@@ -126,16 +126,16 @@ struct CourseSyncSelectorEntry {
 
 #if DEBUG
 
-extension CourseSyncSelectorEntry.File {
+extension CourseSyncEntry.File {
     static func make(
         id: String,
         displayName: String,
         fileName: String = "File",
         url: URL = URL(string: "1")!,
         mimeClass: String = "jpg",
-        state: CourseSyncSelectorEntry.State = .loading(nil),
+        state: CourseSyncEntry.State = .loading(nil),
         selectionState: ListCellView.SelectionState = .deselected
-    ) -> CourseSyncSelectorEntry.File {
+    ) -> CourseSyncEntry.File {
         .init(
             id: id,
             displayName: displayName,

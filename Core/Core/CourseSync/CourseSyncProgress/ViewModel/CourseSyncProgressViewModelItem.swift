@@ -18,7 +18,8 @@
 
 import SwiftUI
 
-extension CourseSyncSelectorViewModel {
+extension CourseSyncProgressViewModel {
+
     enum Cell: Hashable, Identifiable {
         case empty(viewId: String)
         case item(Item)
@@ -37,27 +38,27 @@ extension CourseSyncSelectorViewModel {
         let id: String
         let title: String
         let subtitle: String?
-        let selectionState: ListCellView.SelectionState
         var isCollapsed: Bool?
         let cellStyle: ListCellView.ListCellStyle
+        let state: CourseSyncEntry.State
 
-        fileprivate(set) var selectionDidToggle: (() -> Void)?
         fileprivate(set) var collapseDidToggle: (() -> Void)?
+        fileprivate(set) var removeItemPressed: (() -> Void)?
 
-        static func == (lhs: CourseSyncSelectorViewModel.Item, rhs: CourseSyncSelectorViewModel.Item) -> Bool {
+        static func == (lhs: CourseSyncProgressViewModel.Item, rhs: CourseSyncProgressViewModel.Item) -> Bool {
             lhs.id == rhs.id &&
             lhs.title == rhs.title &&
             lhs.subtitle == rhs.subtitle &&
-            lhs.selectionState == rhs.selectionState &&
-            lhs.isCollapsed == rhs.isCollapsed
+            lhs.isCollapsed == rhs.isCollapsed &&
+            lhs.state == rhs.state
         }
 
         func hash(into hasher: inout Hasher) {
             hasher.combine(id)
             hasher.combine(title)
             hasher.combine(subtitle)
-            hasher.combine(selectionState)
             hasher.combine(isCollapsed)
+            hasher.combine(state)
         }
     }
 }
@@ -66,15 +67,11 @@ extension CourseSyncSelectorViewModel {
 
 extension Array where Element == CourseSyncEntry {
 
-    func makeViewModelItems(interactor: CourseSyncSelectorInteractor) -> [CourseSyncSelectorViewModel.Cell] {
-        var cells: [CourseSyncSelectorViewModel.Cell] = []
+    func makeSyncProgressViewModelItems(interactor: CourseSyncProgressInteractor) -> [CourseSyncProgressViewModel.Cell] {
+        var cells: [CourseSyncProgressViewModel.Cell] = []
 
         for (courseIndex, course) in enumerated() {
-            var courseItem = course.makeViewModelItem()
-            courseItem.selectionDidToggle = {
-                let selectionState: ListCellView.SelectionState = courseItem.selectionState == .selected || courseItem.selectionState == .partiallySelected ? .deselected : .selected
-                interactor.setSelected(selection: .course(courseIndex), selectionState: selectionState)
-            }
+            var courseItem = course.makeSyncProgressViewModelItem()
             courseItem.collapseDidToggle = {
                 interactor.setCollapsed(selection: .course(courseIndex), isCollapsed: !(courseItem.isCollapsed ?? false))
             }
@@ -90,11 +87,7 @@ extension Array where Element == CourseSyncEntry {
             }
 
             for (tabIndex, tab) in course.tabs.enumerated() {
-                var tabItem = tab.makeViewModelItem()
-                tabItem.selectionDidToggle = {
-                    let selectionState: ListCellView.SelectionState = tabItem.selectionState == .selected || tabItem.selectionState == .partiallySelected ? .deselected : .selected
-                    interactor.setSelected(selection: .tab(courseIndex, tabIndex), selectionState: selectionState)
-                }
+                var tabItem = tab.makeSyncProgressViewModelItem()
                 tabItem.collapseDidToggle = {
                     interactor.setCollapsed(selection: .tab(courseIndex, tabIndex), isCollapsed: !(tabItem.isCollapsed ?? false))
                 }
@@ -104,51 +97,47 @@ extension Array where Element == CourseSyncEntry {
                     continue
                 }
 
-                for (fileIndex, file) in course.files.enumerated() {
-                    var fileItem = file.makeViewModelItem()
-                    fileItem.selectionDidToggle = {
-                        interactor.setSelected(selection: .file(courseIndex, fileIndex), selectionState: fileItem.selectionState == .selected ? .deselected : .selected)
-                    }
+                for file in course.files {
+                    let fileItem = file.makeSyncProgressViewModelItem()
                     cells.append(.item(fileItem))
                 }
             }
         }
-
         return cells
     }
 }
 
 extension CourseSyncEntry {
 
-    func makeViewModelItem() -> CourseSyncSelectorViewModel.Item {
+    func makeSyncProgressViewModelItem() -> CourseSyncProgressViewModel.Item {
         .init(id: "course-\(id)",
               title: name,
               subtitle: nil,
-              selectionState: selectionState,
               isCollapsed: isCollapsed,
-              cellStyle: .mainAccordionHeader)
+              cellStyle: .mainAccordionHeader,
+              state: state)
     }
 }
 
 extension CourseSyncEntry.Tab {
 
-    func makeViewModelItem() -> CourseSyncSelectorViewModel.Item {
+    func makeSyncProgressViewModelItem() -> CourseSyncProgressViewModel.Item {
         .init(id: "courseTab-\(id)",
               title: name,
               subtitle: nil,
-              selectionState: selectionState,
               isCollapsed: type == .files ? isCollapsed : nil,
-              cellStyle: .listAccordionHeader)
+              cellStyle: .listAccordionHeader,
+              state: state)
     }
 }
 
 extension CourseSyncEntry.File {
 
-    func makeViewModelItem() -> CourseSyncSelectorViewModel.Item {
+    func makeSyncProgressViewModelItem() -> CourseSyncProgressViewModel.Item {
         .init(id: "file-\(id)",
               title: displayName,
               subtitle: nil,
-              selectionState: selectionState,
-              cellStyle: .listItem)
+              cellStyle: .listItem,
+              state: state)
     }
 }
