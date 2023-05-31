@@ -23,15 +23,18 @@ struct DeterminateCircleProgressViewStyle: ProgressViewStyle {
 
     private let size: CGFloat
     private let lineWidth: CGFloat
+    private let color: Color
 
     // MARK: - Init
 
     init(
         size: CGFloat,
-        lineWidth: CGFloat
+        lineWidth: CGFloat,
+        color: Color = .accentColor
     ) {
         self.size = size
         self.lineWidth = lineWidth
+        self.color = color
     }
 
     func makeBody(configuration: Configuration) -> some View {
@@ -39,14 +42,14 @@ struct DeterminateCircleProgressViewStyle: ProgressViewStyle {
         return ZStack {
             Circle()
                 .stroke(
-                    Color.accentColor,
+                    color,
                     lineWidth: lineWidth
                 )
                 .opacity(0.2)
             Circle()
                 .trim(from: 0, to: progress)
                 .stroke(
-                    Color.accentColor,
+                    color,
                     style: StrokeStyle(lineWidth: lineWidth, lineCap: .round, lineJoin: .round)
                 )
                 .rotationEffect(.degrees(-90))
@@ -59,11 +62,13 @@ struct DeterminateCircleProgressViewStyle: ProgressViewStyle {
 extension ProgressViewStyle where Self == DeterminateCircleProgressViewStyle {
     static func determinateCircle(
         size: CGFloat = 32,
-        lineWidth: CGFloat = 3
+        lineWidth: CGFloat = 3,
+        color: Color = .accentColor
     ) -> DeterminateCircleProgressViewStyle {
         DeterminateCircleProgressViewStyle(
             size: size,
-            lineWidth: lineWidth
+            lineWidth: lineWidth,
+            color: color
         )
     }
 }

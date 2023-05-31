@@ -58,7 +58,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
     // MARK: - Course
 
     func testCourseMapping() {
-        var data = CourseSyncSelectorEntry(name: "test", id: "testID", tabs: [], files: [])
+        var data = CourseSyncEntry(name: "test", id: "testID", tabs: [], files: [])
         var testee = data.makeViewModelItem()
 
         XCTAssertEqual(testee.id, "course-testID")
@@ -76,7 +76,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
     }
 
     func testCourseCollapsion() {
-        var course = CourseSyncSelectorEntry(name: "test", id: "testID", tabs: [.init(id: "0", name: "Assignments", type: .assignments)], files: [])
+        var course = CourseSyncEntry(name: "test", id: "testID", tabs: [.init(id: "0", name: "Assignments", type: .assignments)], files: [])
 
         course.isCollapsed = true
         XCTAssertEqual([course].makeViewModelItems(interactor: mockInteractor).count, 1)
@@ -86,7 +86,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
     }
 
     func testExpandedEmptyCourse() {
-        var course = CourseSyncSelectorEntry(name: "test", id: "testID", tabs: [], files: [])
+        var course = CourseSyncEntry(name: "test", id: "testID", tabs: [], files: [])
         course.isCollapsed = false
 
         let testee = [course].makeViewModelItems(interactor: mockInteractor)
@@ -106,7 +106,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
     // MARK: - Course Tabs
 
     func testCourseTabMapping() {
-        var data = CourseSyncSelectorEntry.Tab(id: "1", name: "Test", type: .assignments)
+        var data = CourseSyncEntry.Tab(id: "1", name: "Test", type: .assignments)
         var testee = data.makeViewModelItem()
 
         XCTAssertEqual(testee.id, "courseTab-1")
@@ -125,7 +125,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
     }
 
     func testFilesTabMapping() {
-        var data = CourseSyncSelectorEntry.Tab(id: "1", name: "Files", type: .files)
+        var data = CourseSyncEntry.Tab(id: "1", name: "Files", type: .files)
 
         data.isCollapsed = true
         var testee = data.makeViewModelItem()
@@ -137,15 +137,15 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
     }
 
     func testFilesTabCollapsion() {
-        let file = CourseSyncSelectorEntry.File.make(id: "0", displayName: "test.txt")
-        var filesTab = CourseSyncSelectorEntry.Tab(id: "0", name: "Files", type: .files)
+        let file = CourseSyncEntry.File.make(id: "0", displayName: "test.txt")
+        var filesTab = CourseSyncEntry.Tab(id: "0", name: "Files", type: .files)
 
         filesTab.isCollapsed = true
-        var course = CourseSyncSelectorEntry(name: "test", id: "testID", tabs: [filesTab], files: [file], isCollapsed: false)
+        var course = CourseSyncEntry(name: "test", id: "testID", tabs: [filesTab], files: [file], isCollapsed: false)
         XCTAssertEqual([course].makeViewModelItems(interactor: mockInteractor).count, 2)
 
         filesTab.isCollapsed = false
-        course = CourseSyncSelectorEntry(name: "test", id: "testID", tabs: [filesTab], files: [file], isCollapsed: false)
+        course = CourseSyncEntry(name: "test", id: "testID", tabs: [filesTab], files: [file], isCollapsed: false)
         course.isCollapsed = false
         XCTAssertEqual([course].makeViewModelItems(interactor: mockInteractor).count, 3)
     }
@@ -153,7 +153,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
     // MARK: - Files
 
     func testFileItemMapping() {
-        var data = CourseSyncSelectorEntry.File.make(id: "1", displayName: "testFile")
+        var data = CourseSyncEntry.File.make(id: "1", displayName: "testFile")
         var testee = data.makeViewModelItem()
 
         XCTAssertEqual(testee.id, "file-1")
@@ -174,7 +174,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
     // MARK: - Selection
 
     func testSelectionForwardedToInteractor() {
-        let data = CourseSyncSelectorEntry(name: "test",
+        let data = CourseSyncEntry(name: "test",
                                            id: "testID",
                                            tabs: [
                                             .init(id: "0", name: "Assignments", type: .assignments, isCollapsed: false, selectionState: .deselected),
@@ -209,7 +209,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
     // MARK: - Collapsing
 
     func testCourseCollapseEventForwardedToInteractor() {
-        let data = CourseSyncSelectorEntry(name: "test",
+        let data = CourseSyncEntry(name: "test",
                                            id: "testID",
                                            tabs: [
                                             .init(id: "0", name: "Assignments", type: .assignments, isCollapsed: false, selectionState: .deselected),
@@ -229,7 +229,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
     }
 
     func testTabCollapseEventForwardedToInteractor() {
-        let data = CourseSyncSelectorEntry(name: "test",
+        let data = CourseSyncEntry(name: "test",
                                            id: "testID",
                                            tabs: [
                                             .init(id: "0", name: "Files", type: .files, isCollapsed: false, selectionState: .deselected),
@@ -258,8 +258,8 @@ private class MockCourseSyncSelectorInteractor: CourseSyncSelectorInteractor {
     required init(courseID: String? = nil) {
     }
 
-    func getCourseSyncEntries() -> AnyPublisher<[Core.CourseSyncSelectorEntry], Error> {
-        Just<[Core.CourseSyncSelectorEntry]>([])
+    func getCourseSyncEntries() -> AnyPublisher<[Core.CourseSyncEntry], Error> {
+        Just<[Core.CourseSyncEntry]>([])
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
@@ -283,8 +283,8 @@ private class MockCourseSyncSelectorInteractor: CourseSyncSelectorInteractor {
 
     func toggleAllCoursesSelection(isSelected: Bool) {}
 
-    func getSelectedCourseEntries() -> AnyPublisher<[Core.CourseSyncSelectorEntry], Never> {
-        Just<[Core.CourseSyncSelectorEntry]>([])
+    func getSelectedCourseEntries() -> AnyPublisher<[Core.CourseSyncEntry], Never> {
+        Just<[Core.CourseSyncEntry]>([])
             .setFailureType(to: Never.self)
             .eraseToAnyPublisher()
     }

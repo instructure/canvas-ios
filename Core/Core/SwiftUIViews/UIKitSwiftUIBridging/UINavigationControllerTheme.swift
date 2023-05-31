@@ -56,6 +56,17 @@ struct TitleSubtitleModifier: ViewModifier {
     }
 }
 
+struct RightBarButtonItemModifier: ViewModifier {
+    let barButtonItems: () -> [UIBarButtonItemWithCompletion]
+
+    @Environment(\.viewController) var controller
+
+    func body(content: Content) -> some View {
+        controller.value.navigationItem.setRightBarButtonItems(barButtonItems(), animated: false)
+        return content.overlay(Color?.none) // needs something modified to actually run
+    }
+}
+
 struct GlobalNavigationBarModifier: ViewModifier {
     @Environment(\.viewController) var controller
 
@@ -86,6 +97,12 @@ extension View {
 
     public func navigationBarGlobal() -> some View {
         modifier(GlobalNavigationBarModifier())
+    }
+
+    /// Adds a list of `UIBarButtonItem` to the SwiftUI view's hosting controller. Use this modifier when you want to avoid passing SwiftUI ToolbarItems between UIViewControllers.
+    /// Otherwise, use the `SwiftUI.View.navBarItems` function.
+    public func rightBarButtonItems(_ barButtonItems: @escaping () -> [UIBarButtonItemWithCompletion]) -> some View {
+        modifier(RightBarButtonItemModifier(barButtonItems: barButtonItems))
     }
 
     /** Make the next view controller in the navigation stack to display a standard < Back button. */

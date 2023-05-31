@@ -26,14 +26,14 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
     private var assignmentsInteractor: CourseSyncAssignmentsInteractorMock!
     private var pagesInteractor: CourseSyncPagesInteractorMock!
     private var filesInteractor: CourseSyncFilesInteractorMock!
-    private var entries: [CourseSyncSelectorEntry]!
+    private var entries: [CourseSyncEntry]!
 
     override func setUp() {
         assignmentsInteractor = CourseSyncAssignmentsInteractorMock()
         pagesInteractor = CourseSyncPagesInteractorMock()
         filesInteractor = CourseSyncFilesInteractorMock()
         entries = [
-            CourseSyncSelectorEntry(
+            CourseSyncEntry(
                 name: "1",
                 id: "1",
                 tabs: [

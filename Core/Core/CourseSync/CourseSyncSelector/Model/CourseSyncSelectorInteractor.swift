@@ -22,13 +22,13 @@ import Foundation
 
 protocol CourseSyncSelectorInteractor {
     init(courseID: String?)
-    func getCourseSyncEntries() -> AnyPublisher<[CourseSyncSelectorEntry], Error>
+    func getCourseSyncEntries() -> AnyPublisher<[CourseSyncEntry], Error>
     func observeSelectedCount() -> AnyPublisher<Int, Never>
     func observeIsEverythingSelected() -> AnyPublisher<Bool, Never>
     func setSelected(selection: CourseEntrySelection, selectionState: ListCellView.SelectionState)
     func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool)
     func toggleAllCoursesSelection(isSelected: Bool)
-    func getSelectedCourseEntries() -> AnyPublisher<[CourseSyncSelectorEntry], Never>
+    func getSelectedCourseEntries() -> AnyPublisher<[CourseSyncEntry], Never>
     func getCourseName() -> AnyPublisher<String, Never>
 }
 
@@ -36,7 +36,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     private let courseListStore = ReactiveStore(
         useCase: GetCourseSyncSelectorCourses()
     )
-    private let courseSyncEntries = CurrentValueSubject<[CourseSyncSelectorEntry], Error>(.init())
+    private let courseSyncEntries = CurrentValueSubject<[CourseSyncEntry], Error>(.init())
     private var subscriptions = Set<AnyCancellable>()
     private let courseID: String?
 
@@ -46,7 +46,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
 
     // MARK: - Public Interface
 
-    func getCourseSyncEntries() -> AnyPublisher<[CourseSyncSelectorEntry], Error> {
+    func getCourseSyncEntries() -> AnyPublisher<[CourseSyncEntry], Error> {
         courseListStore.getEntities()
             .filterToCourseID(courseID)
             .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
@@ -125,7 +125,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
             .forEach { setSelected(selection: $0, selectionState: isSelected ? .selected : .deselected) }
     }
 
-    func getSelectedCourseEntries() -> AnyPublisher<[CourseSyncSelectorEntry], Never> {
+    func getSelectedCourseEntries() -> AnyPublisher<[CourseSyncEntry], Never> {
         courseSyncEntries
             .map { $0.filter { $0.selectionState == .selected || $0.selectionState == .partiallySelected } }
             .replaceError(with: [])
@@ -150,7 +150,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
 
     // MARK: - Private Methods
 
-    private func getTabs(courseId: String) -> AnyPublisher<[CourseSyncSelectorEntry.Tab], Error> {
+    private func getTabs(courseId: String) -> AnyPublisher<[CourseSyncEntry.Tab], Error> {
         ReactiveStore(
             useCase: GetContextTabs(
                 context: Context.course(courseId)
@@ -160,7 +160,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         .map { $0.offlineSupportedTabs() }
         .map {
             $0.map {
-                CourseSyncSelectorEntry.Tab(
+                CourseSyncEntry.Tab(
                     id: "\(courseId)-\($0.id)",
                     name: $0.label,
                     type: $0.name
@@ -172,10 +172,10 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
 
     private func getAllFilesIfFilesTabIsEnabled(
         course: CourseSyncSelectorCourse
-    ) -> AnyPublisher<CourseSyncSelectorEntry, Error> {
+    ) -> AnyPublisher<CourseSyncEntry, Error> {
         let tabs = Array(course.tabs).offlineSupportedTabs()
         let mappedTabs = tabs.map {
-            CourseSyncSelectorEntry.Tab(
+            CourseSyncEntry.Tab(
                 id: "\(course.courseId)-\($0.id)",
                 name: $0.label,
                 type: $0.name
@@ -184,7 +184,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         if tabs.isFilesTabEnabled() {
             return getAllFiles(courseId: course.courseId)
                 .map { files in
-                    CourseSyncSelectorEntry(
+                    CourseSyncEntry(
                         name: course.name,
                         id: course.courseId,
                         tabs: mappedTabs,
@@ -194,7 +194,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
                 .eraseToAnyPublisher()
         } else {
             return Just(
-                CourseSyncSelectorEntry(
+                CourseSyncEntry(
                     name: course.name,
                     id: course.courseId,
                     tabs: mappedTabs,
@@ -206,7 +206,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         }
     }
 
-    private func getAllFiles(courseId: String) -> AnyPublisher<[CourseSyncSelectorEntry.File], Error> {
+    private func getAllFiles(courseId: String) -> AnyPublisher<[CourseSyncEntry.File], Error> {
         unowned let unownedSelf = self
 
         return ReactiveStore(
@@ -226,7 +226,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
                 .compactMap { $0.file }
                 .filter { $0.url != nil && $0.mimeClass != nil }
                 .map {
-                    CourseSyncSelectorEntry.File(
+                    CourseSyncEntry.File(
                         id: $0.id ?? Foundation.UUID().uuidString,
                         displayName: $0.displayName ?? NSLocalizedString("Unknown file", comment: ""),
                         fileName: $0.filename,

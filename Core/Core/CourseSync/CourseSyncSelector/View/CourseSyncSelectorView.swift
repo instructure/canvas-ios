@@ -78,13 +78,13 @@ struct CourseSyncSelectorView: View {
                 VStack(spacing: 0) {
                     switch cell {
                     case .item(let item):
-                        ListCellView(cellStyle: item.cellStyle,
-                                     title: item.title,
-                                     subtitle: item.subtitle,
-                                     selectionState: item.selectionState,
-                                     isCollapsed: item.isCollapsed,
-                                     selectionDidToggle: item.selectionDidToggle,
-                                     collapseDidToggle: item.collapseDidToggle)
+                        ListCellView(ListCellViewModel(cellStyle: item.cellStyle,
+                                                       title: item.title,
+                                                       subtitle: item.subtitle,
+                                                       selectionState: item.selectionState,
+                                                       isCollapsed: item.isCollapsed,
+                                                       selectionDidToggle: item.selectionDidToggle,
+                                                       collapseDidToggle: item.collapseDidToggle))
                     case .empty:
                         emptyCourse
                     }
@@ -177,7 +177,7 @@ struct SeparatorView: View {
 
 #if DEBUG
 
-struct ContentView_Previews: PreviewProvider {
+struct CourseSyncSelectorView_Previews: PreviewProvider {
     static var previews: some View {
         CourseSyncSelectorAssembly
             .makePreview(env: AppEnvironment.shared, isEmpty: false)

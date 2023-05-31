@@ -29,7 +29,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
 
         mockCourseList()
 
-        var entries = [CourseSyncSelectorEntry]()
+        var entries = [CourseSyncEntry]()
         let subscription = testee.getCourseSyncEntries()
             .sink(
                 receiveCompletion: { _ in },
@@ -53,7 +53,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
             .make(id: "2"),
         ])
 
-        var entries = [CourseSyncSelectorEntry]()
+        var entries = [CourseSyncEntry]()
         let subscription = testee.getCourseSyncEntries()
             .sink(
                 receiveCompletion: { _ in },
@@ -87,7 +87,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
             ]
         )
 
-        var entries = [CourseSyncSelectorEntry]()
+        var entries = [CourseSyncEntry]()
         let subscription = testee.getCourseSyncEntries()
             .sink(
                 receiveCompletion: { _ in },
@@ -124,7 +124,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         mockCourseList(
             courseList: [.make(id: "1", tabs: [.make(id: "files", label: "Files")])]
         )
-        var entries = [CourseSyncSelectorEntry]()
+        var entries = [CourseSyncEntry]()
         let subscription = testee.getCourseSyncEntries()
             .sink(
                 receiveCompletion: { _ in },
@@ -153,7 +153,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         mockFolderItems(for: "0", folders: [], files: [rootFolderFile])
         mockCourseList()
 
-        var entries = [CourseSyncSelectorEntry]()
+        var entries = [CourseSyncEntry]()
         let subscription = testee.getCourseSyncEntries()
             .sink(
                 receiveCompletion: { _ in },
@@ -187,7 +187,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         mockFolderItems(for: "0", folders: [folder1], files: [rootFolderFile])
         mockFolderItems(for: "1", folders: [], files: [folder1File])
 
-        var entries = [CourseSyncSelectorEntry]()
+        var entries = [CourseSyncEntry]()
         let subscription = testee.getCourseSyncEntries()
             .sink(
                 receiveCompletion: { _ in },
@@ -226,7 +226,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         mockRootFolders(folders: [rootFolder])
         mockFolderItems(for: "0", folders: [], files: [rootFolderFile])
 
-        var entries = [CourseSyncSelectorEntry]()
+        var entries = [CourseSyncEntry]()
         let subscription1 = testee.getCourseSyncEntries()
             .first()
             .handleEvents(receiveOutput: { _ in

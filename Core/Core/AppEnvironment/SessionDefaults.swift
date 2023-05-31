@@ -134,6 +134,21 @@ public struct SessionDefaults {
         set { self["collapsedModules"] = newValue }
     }
 
+    public var isOfflineAutoSyncEnabled: Bool? {
+        get { self["isOfflineAutoSyncEnabled"] as? Bool }
+        set { self["isOfflineAutoSyncEnabled"] = newValue }
+    }
+
+    public var offlineSyncFrequency: Int? {
+        get { self["offlineSyncFrequency"] as? Int }
+        set { self["offlineSyncFrequency"] = newValue }
+    }
+
+    public var isOfflineWifiOnlySyncEnabled: Bool? {
+        get { self["isOfflineWifiOnlySyncEnabled"] as? Bool }
+        set { self["isOfflineWifiOnlySyncEnabled"] = newValue }
+    }
+
     public mutating func reset() {
         sessionDefaults = nil
     }
