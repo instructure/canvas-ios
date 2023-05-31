@@ -16,25 +16,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+enum CourseSyncFrequency: Int, CaseIterable {
+    case daily
+    case weekly
 
-public enum CourseSyncSettingsAssembly {
-
-    public static func makeViewController(sessionDefaults: SessionDefaults) -> UIViewController {
-        let interactor = CourseSyncSettingsInteractorLive(storage: sessionDefaults)
-        let viewModel = CourseSyncSettingsViewModel(interactor: interactor)
-        return CoreHostingController(CourseSyncSettingsView(viewModel: viewModel))
+    var stringValue: String {
+        switch self {
+        case .daily: return NSLocalizedString("Daily", comment: "")
+        case .weekly: return NSLocalizedString("Weekly", comment: "")
+        }
     }
 
-#if DEBUG
-
-    static func makePreview() -> some View {
-        let sessionDefaults = SessionDefaults(sessionID: "preview")
-        let interactor = CourseSyncSettingsInteractorLive(storage: sessionDefaults)
-        let viewModel = CourseSyncSettingsViewModel(interactor: interactor)
-        return CourseSyncSettingsView(viewModel: viewModel)
+    static var itemPickerData: [ItemPickerSection] {
+        let pickerRows = allCases.map { ItemPickerItem(title: $0.stringValue) }
+        return [ItemPickerSection(items: pickerRows)]
     }
-
-#endif
-
 }
