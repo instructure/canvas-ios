@@ -106,6 +106,7 @@ struct CourseSyncSettingsView: View {
 
     private func description(_ text: String) -> some View {
         Text(text)
+            .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.top, 12)
             .padding(.bottom, 32)
             .padding(.horizontal, 16)
