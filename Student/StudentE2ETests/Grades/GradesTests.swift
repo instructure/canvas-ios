@@ -27,30 +27,23 @@ class GradesTests: E2ETestCase {
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
 
-        let assignment1 = seeder.createAssignment(courseId: course.id, assignementBody: .init(name: "Assignment1", description: "This is a description for Assignment1", published: true, points_possible: 10))
-
-        let assignment2 = seeder.createAssignment(courseId: course.id, assignementBody: .init(name: "Assignment2", description: "This is a description for Assignment2", published: true, points_possible: 100))
+        let pointsPossible = [Float(10), Float(100)]
+        let assignments = GradesHelper.createAssignments(course: course, count: 2, points_possible: pointsPossible)
 
         logInDSUser(student)
 
         // MARK: Create submissions for both
-        GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: [assignment1, assignment2])
+        GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
 
         // MARK: Navigate to an assignment detail and check if grade updates
-        var courseCard = Dashboard.courseCard(id: course.id).waitToExist()
-        XCTAssertTrue(courseCard.isVisible)
+        GradesHelper.navigateToAssignments(course: course)
 
-        courseCard.tap()
-        let assignmentsButton = CourseNavigation.assignments.waitToExist()
-        XCTAssertTrue(assignmentsButton.isVisible)
-
-        assignmentsButton.tap()
-        let assignmentOne = AssignmentsList.assignment(id: assignment1.id).waitToExist()
+        let assignmentOne = AssignmentsList.assignment(id: assignments[0].id).waitToExist()
         XCTAssertTrue(assignmentOne.isVisible)
         assignmentOne.tap()
 
-        seeder.postGrade(courseId: course.id, assignmentId: assignment1.id, userId: student.id, requestBody: .init(posted_grade: "5"))
-        seeder.postGrade(courseId: course.id, assignmentId: assignment2.id, userId: student.id, requestBody: .init(posted_grade: "100"))
+        let grades = ["5", "100"]
+        GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
 
         pullToRefresh()
         let assignmentGrade = AssignmentDetails.pointsOutOf(actualScore: "5", maxScore: "10").waitToExist()
@@ -58,196 +51,138 @@ class GradesTests: E2ETestCase {
 
         // MARK: Navigate to Grades Page and check there too
         TabBar.dashboardTab.tap()
-        courseCard = Dashboard.courseCard(id: course.id).waitToExist()
-        XCTAssertTrue(courseCard.isVisible)
+        GradesHelper.navigateToGrades(course: course)
 
-        courseCard.tap()
-        let gradesButton = CourseNavigation.grades.waitToExist()
-        XCTAssertTrue(gradesButton.isVisible)
-
-        gradesButton.tap()
         XCTAssertTrue(app.find(label: "Total Grade").waitToExist().exists)
-        XCTAssertTrue(GradeList.cell(assignmentID: assignment1.id).waitToExist(5).exists())
-        XCTAssertTrue(GradeList.cell(assignmentID: assignment2.id).waitToExist(5).exists())
-        XCTAssertTrue(GradeList.gradeOutOf(assignmentID: assignment1.id, actualPoints: "5", maxPoints: "10").waitToExist(5).exists())
-        XCTAssertTrue(GradeList.gradeOutOf(assignmentID: assignment2.id, actualPoints: "100", maxPoints: "100").waitToExist(5).exists())
+        XCTAssertTrue(GradeList.cell(assignmentID: assignments[0].id).waitToExist(5).exists())
+        XCTAssertTrue(GradeList.cell(assignmentID: assignments[1].id).waitToExist(5).exists())
+        XCTAssertTrue(GradeList.gradeOutOf(assignmentID: assignments[0].id, actualPoints: "5", maxPoints: "10").waitToExist(5).exists())
+        XCTAssertTrue(GradeList.gradeOutOf(assignmentID: assignments[1].id, actualPoints: "100", maxPoints: "100").waitToExist(5).exists())
         XCTAssertTrue(GradeList.totalGrade(totalGrade: "95.45%").exists())
     }
 
     func testLetterGrades() {
+        // MARK: Seed the usual stuff with 3 letter grade assignments
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
 
-        let assignmentName = "Letter Grade Assignment"
-        let assignmentDescription = "This is a description for Assignment"
-        let assignment = seeder.createAssignment(courseId: course.id, assignementBody:
-                .init(name: assignmentName, description: assignmentDescription, published: true, points_possible: 100, grading_type: .letter_grade))
-
-        let assignmentName1 = "Another Letter Grade Assignment"
-        let assignment1 = seeder.createAssignment(courseId: course.id, assignementBody:
-                .init(name: assignmentName1, description: assignmentDescription, published: true, points_possible: 100, grading_type: .letter_grade))
-
-        let assignmentName2 = "Graded with Letter Assignment"
-        let assignment2 = seeder.createAssignment(courseId: course.id, assignementBody:
-                .init(name: assignmentName2, description: assignmentDescription, published: true, points_possible: 100, grading_type: .letter_grade))
+        let assignments = GradesHelper.createAssignments(course: course, count: 3, grading_type: .letter_grade)
 
         logInDSUser(student)
 
-        seeder.createSubmission(courseId: course.id, assignmentId: assignment.id, requestBody:
-            .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
+        // MARK: Create submissions for all
+        GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
 
-        seeder.createSubmission(courseId: course.id, assignmentId: assignment1.id, requestBody:
-            .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
+        // MARK: Navigate to assignments
+        GradesHelper.navigateToAssignments(course: course)
 
-        seeder.createSubmission(courseId: course.id, assignmentId: assignment2.id, requestBody:
-            .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
-
-        Dashboard.courseCard(id: course.id).waitToExist(15)
-        Dashboard.courseCard(id: course.id).tap()
-        CourseNavigation.assignments.waitToExist()
-        CourseNavigation.assignments.tap()
         pullToRefresh()
-        AssignmentsList.assignment(id: assignment.id).waitToExist(5)
-        AssignmentsList.assignment(id: assignment.id).tap()
+        let firstAssignment = AssignmentsList.assignment(id: assignments[0].id).waitToExist()
+        XCTAssertTrue(firstAssignment.isVisible)
 
-        seeder.postGrade(courseId: course.id, assignmentId: assignment.id, userId: student.id, requestBody:
-                .init(posted_grade: "1"))
-        seeder.postGrade(courseId: course.id, assignmentId: assignment1.id, userId: student.id, requestBody:
-                .init(posted_grade: "100"))
-        seeder.postGrade(courseId: course.id, assignmentId: assignment2.id, userId: student.id, requestBody:
-                .init(posted_grade: "B-"))
+        // MARK: Grade assignments and check if grades are updated on the UI
+        let grades = ["1", "100", "B-"]
+        GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
         pullToRefresh()
 
-        XCTAssertEqual(AssignmentDetails.gradeCircle.label(), "Scored 1 out of 100 points possible")
+        firstAssignment.tap()
+        XCTAssertEqual(AssignmentDetails.gradeCircle.label(), "Scored \(grades[0]) out of 100 points possible")
         XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label(), "F")
 
         NavBar.backButton.tap()
-        AssignmentsList.assignment(id: assignment1.id).waitToExist()
-        AssignmentsList.assignment(id: assignment1.id).tap()
-        XCTAssertEqual(AssignmentDetails.gradeCircle.label(), "Scored 100 out of 100 points possible")
+        AssignmentsList.assignment(id: assignments[1].id).waitToExist()
+        AssignmentsList.assignment(id: assignments[1].id).tap()
+        XCTAssertEqual(AssignmentDetails.gradeCircle.label(), "Scored \(grades[1]) out of 100 points possible")
         XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label(), "A")
 
         NavBar.backButton.tap()
-        AssignmentsList.assignment(id: assignment2.id).waitToExist()
-        AssignmentsList.assignment(id: assignment2.id).tap()
+        AssignmentsList.assignment(id: assignments[2].id).waitToExist()
+        AssignmentsList.assignment(id: assignments[2].id).tap()
         XCTAssertEqual(AssignmentDetails.gradeCircle.label(), "Scored 83 out of 100 points possible")
         XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label(), "B-")
     }
 
     func testPercentageGrades() {
+        // MARK: Seed the usual stuff with 2 percentage grade assignments
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
 
-        let assignmentName = "Percentage Grade Assignment"
-        let assignmentDescription = "This is a description for Assignment"
-        let assignment = seeder.createAssignment(courseId: course.id, assignementBody:
-                .init(name: assignmentName, description: assignmentDescription, published: true, points_possible: 100, grading_type: .percent))
-
-        let assignmentName1 = "Another Percentage Grade Assignment"
-        let assignment1 = seeder.createAssignment(courseId: course.id, assignementBody:
-                .init(name: assignmentName1, description: assignmentDescription, published: true, points_possible: 100, grading_type: .percent))
+        let assignments = GradesHelper.createAssignments(course: course, count: 2, grading_type: .percent)
 
         logInDSUser(student)
 
-        seeder.createSubmission(courseId: course.id, assignmentId: assignment.id, requestBody:
-            .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
+        // MARK: Create submissions for both
+        GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
 
-        seeder.createSubmission(courseId: course.id, assignmentId: assignment1.id, requestBody:
-            .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
+        // MARK: Navigate to assignments
+        GradesHelper.navigateToAssignments(course: course)
 
-        Dashboard.courseCard(id: course.id).waitToExist(15)
-        Dashboard.courseCard(id: course.id).tap()
-        CourseNavigation.assignments.tap()
-        AssignmentsList.assignment(id: assignment.id).waitToExist()
-        AssignmentsList.assignment(id: assignment.id).tap()
-
-        seeder.postGrade(courseId: course.id, assignmentId: assignment.id, userId: student.id, requestBody:
-                .init(posted_grade: "1"))
-        seeder.postGrade(courseId: course.id, assignmentId: assignment1.id, userId: student.id, requestBody:
-                .init(posted_grade: "100"))
+        // MARK: Grade both assignments and check if grades are updated on the UI
+        let grades = ["1", "100"]
+        GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
         pullToRefresh()
 
-        XCTAssertEqual(AssignmentDetails.gradeCircle.label(), "Scored 1 out of 100 points possible")
-        XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label(), "1%")
+        let firstAssignment = AssignmentsList.assignment(id: assignments[0].id).waitToExist()
+        XCTAssertTrue(firstAssignment.isVisible)
+        firstAssignment.tap()
+        XCTAssertEqual(AssignmentDetails.gradeCircle.label(), "Scored \(grades[0]) out of 100 points possible")
+        XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label(), "\(grades[0])%")
 
         NavBar.backButton.tap()
-        AssignmentsList.assignment(id: assignment1.id).waitToExist()
-        AssignmentsList.assignment(id: assignment1.id).tap()
-        XCTAssertEqual(AssignmentDetails.gradeCircle.label(), "Scored 100 out of 100 points possible")
-        XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label(), "100%")
+        let secondAssignment = AssignmentsList.assignment(id: assignments[1].id).waitToExist()
+        XCTAssertTrue(secondAssignment.isVisible)
+        secondAssignment.tap()
+        XCTAssertEqual(AssignmentDetails.gradeCircle.label(), "Scored \(grades[1]) out of 100 points possible")
+        XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label(), "\(grades[1])%")
     }
 
     func testPassFailGrade() {
+        // MARK: Seed the usual stuff with 4 pass-fail grade assignments
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
 
-        let assignmentName = "PassFail Grade Assignment"
-        let assignmentDescription = "This is a description for Assignment"
-        let assignment = seeder.createAssignment(courseId: course.id, assignementBody:
-                .init(name: assignmentName, description: assignmentDescription, published: true, points_possible: 100, grading_type: .pass_fail))
-
-        let assignmentName1 = "Another PassFail Grade Assignment"
-        let assignment1 = seeder.createAssignment(courseId: course.id, assignementBody:
-                .init(name: assignmentName1, description: assignmentDescription, published: true, points_possible: 100, grading_type: .pass_fail))
-
-        let assignmentName2 = "Incomplete Grade Assignment"
-        let assignment2 = seeder.createAssignment(courseId: course.id, assignementBody:
-                .init(name: assignmentName2, description: assignmentDescription, published: true, points_possible: 100, grading_type: .pass_fail))
-
-        let assignmentName3 = "Fail Grade Assignment"
-        let assignment3 = seeder.createAssignment(courseId: course.id, assignementBody:
-                .init(name: assignmentName3, description: assignmentDescription, published: true, points_possible: 100, grading_type: .pass_fail))
+        let assignments = GradesHelper.createAssignments(course: course, count: 4, grading_type: .pass_fail)
 
         logInDSUser(student)
 
-        seeder.createSubmission(courseId: course.id, assignmentId: assignment.id, requestBody:
-            .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
+        // MARK: Create submissions for both
+        GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
 
-        seeder.createSubmission(courseId: course.id, assignmentId: assignment1.id, requestBody:
-            .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
+        // MARK: Navigate to assignments
+        GradesHelper.navigateToAssignments(course: course)
 
-        seeder.createSubmission(courseId: course.id, assignmentId: assignment3.id, requestBody:
-            .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
+        // MARK: Grade assignments and check if grades are updated on the UI
+        let grades = ["pass", "100", "fail", "fail"]
+        GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
 
-        Dashboard.courseCard(id: course.id).waitToExist(15)
-        Dashboard.courseCard(id: course.id).tap()
-        CourseNavigation.assignments.waitToExist()
-        CourseNavigation.assignments.tap()
-
-        seeder.postGrade(courseId: course.id, assignmentId: assignment.id, userId: student.id, requestBody:
-                .init(posted_grade: "pass"))
-        seeder.postGrade(courseId: course.id, assignmentId: assignment1.id, userId: student.id, requestBody:
-                .init(posted_grade: "100"))
-        seeder.postGrade(courseId: course.id, assignmentId: assignment2.id, userId: student.id, requestBody:
-                .init(posted_grade: "fail"))
-        seeder.postGrade(courseId: course.id, assignmentId: assignment3.id, userId: student.id, requestBody:
-                .init(posted_grade: "fail"))
         pullToRefresh()
-
-        AssignmentsList.assignment(id: assignment.id).waitToExist()
-        AssignmentsList.assignment(id: assignment.id).tap()
-
+        let firstAssignment = AssignmentsList.assignment(id: assignments[0].id).waitToExist()
+        XCTAssertTrue(firstAssignment.isVisible)
+        firstAssignment.tap()
         XCTAssertEqual(AssignmentDetails.gradeCircle.label(), "Scored 100 out of 100 points possible")
         XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label(), "Complete")
 
         NavBar.backButton.tap()
-        AssignmentsList.assignment(id: assignment1.id).waitToExist()
-        AssignmentsList.assignment(id: assignment1.id).tap()
+        let secondAssignment = AssignmentsList.assignment(id: assignments[1].id).waitToExist()
+        XCTAssertTrue(secondAssignment.isVisible)
+        secondAssignment.tap()
         XCTAssertEqual(AssignmentDetails.gradeCircle.label(), "Scored 100 out of 100 points possible")
         XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label(), "Complete")
 
         NavBar.backButton.tap()
-        AssignmentsList.assignment(id: assignment2.id).waitToExist()
-        AssignmentsList.assignment(id: assignment2.id).tap()
+        let thirdAssignment = AssignmentsList.assignment(id: assignments[2].id).waitToExist()
+        XCTAssertTrue(thirdAssignment.isVisible)
+        thirdAssignment.tap()
         XCTAssertEqual(AssignmentDetails.gradeCircle.label(), "Scored 0 out of 100 points possible")
         XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label(), "Incomplete")
 
         NavBar.backButton.tap()
-        AssignmentsList.assignment(id: assignment2.id).waitToExist()
-        AssignmentsList.assignment(id: assignment2.id).tap()
+        let fourthAssignment = AssignmentsList.assignment(id: assignments[3].id).waitToExist()
+        XCTAssertTrue(fourthAssignment.isVisible)
+        fourthAssignment.tap()
         XCTAssertEqual(AssignmentDetails.gradeCircle.label(), "Scored 0 out of 100 points possible")
         XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label(), "Incomplete")
     }

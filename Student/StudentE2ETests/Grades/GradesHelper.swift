@@ -18,6 +18,7 @@
 
 import Foundation
 import TestsFoundation
+import Core
 
 public class GradesHelper: BaseHelper {
     public static func checkForTotalGrade(totalGrade: String) {
@@ -31,5 +32,45 @@ public class GradesHelper: BaseHelper {
             seeder.createSubmission(courseId: course.id, assignmentId: assignment.id, requestBody:
                 .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
         }
+    }
+
+    public static func createAssignments(course: DSCourse, count: Int, points_possible: [Float]? = nil, grading_type: GradingType? = nil) -> [DSAssignment] {
+        var assignments = [DSAssignment]()
+        for i in 0..<count {
+            assignments.append(
+                seeder.createAssignment(
+                    courseId: course.id,
+                    assignementBody: .init(
+                        name: "\(grading_type?.rawValue ?? "Sample") Assignment \(i)",
+                        description: "This is a description for Assignment \(i)",
+                        published: true,
+                        points_possible: points_possible?[i] ?? 100,
+                        grading_type: grading_type)))
+        }
+        return assignments
+    }
+
+    public static func gradeAssignments(grades: [String], course: DSCourse, assignments: [DSAssignment], user: DSUser) {
+        for i in 0..<assignments.count {
+            seeder.postGrade(
+                courseId: course.id,
+                assignmentId: assignments[i].id,
+                userId: user.id,
+                requestBody: .init(posted_grade: grades[i]))
+        }
+    }
+
+    public static func navigateToAssignments(course: DSCourse) {
+        let courseCard = Dashboard.courseCard(id: course.id).waitToExist()
+        courseCard.tap()
+        let assignmentsButton = CourseNavigation.assignments.waitToExist()
+        assignmentsButton.tap()
+    }
+
+    public static func navigateToGrades(course: DSCourse) {
+        let courseCard = Dashboard.courseCard(id: course.id).waitToExist()
+        courseCard.tap()
+        let gradesButton = CourseNavigation.grades.waitToExist()
+        gradesButton.tap()
     }
 }
