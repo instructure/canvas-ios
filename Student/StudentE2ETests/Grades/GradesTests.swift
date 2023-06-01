@@ -21,7 +21,7 @@ import TestsFoundation
 import XCTest
 
 class GradesTests: E2ETestCase {
-    func testGradesE2E() {
+    func testGrades() {
         // MARK: Seed the usual stuff with 2 assignments
         let student = seeder.createUser()
         let course = seeder.createCourse()
@@ -138,7 +138,7 @@ class GradesTests: E2ETestCase {
         XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label(), "\(grades[1])%")
     }
 
-    func testPassFailGrade() {
+    func testPassFailGrades() {
         // MARK: Seed the usual stuff with 4 pass-fail grade assignments
         let student = seeder.createUser()
         let course = seeder.createCourse()

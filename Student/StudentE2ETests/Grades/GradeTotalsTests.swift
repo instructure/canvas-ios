@@ -18,95 +18,49 @@
 
 import Core
 import TestsFoundation
+import XCTest
 
-class GradesTotalsTests: E2ETestCase {
+class GradeTotalsTests: E2ETestCase {
     func testGradeTotals() {
+        // MARK: Seed the usual stuff
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
 
-        // Create some assignments with different grading type
-        let assignmentName = "Assignment"
-        let assignmentDescription = "This is a description for Assignment"
-        let assignment = seeder.createAssignment(courseId: course.id, assignementBody: .init(name: assignmentName, description: assignmentDescription, published: true, points_possible: 100))
-
-        let assignment1Name = "Assignment 1"
-        let assignment1 = seeder.createAssignment(courseId: course.id, assignementBody: .init(name: assignment1Name, description: assignmentDescription, published: true, points_possible: 100))
-
-        let assignment2Name = "PassFail Grade Assignment"
-        let assignment2 = seeder.createAssignment(courseId: course.id, assignementBody:
-                .init(name: assignment2Name, description: assignmentDescription, published: true, points_possible: 100, grading_type: .pass_fail))
-
-        let assignmentName3 = "Another PassFail Grade Assignment"
-        let assignment3 = seeder.createAssignment(courseId: course.id, assignementBody:
-                .init(name: assignmentName3, description: assignmentDescription, published: true, points_possible: 100, grading_type: .pass_fail))
-
-        let assignmentName4 = "Another Percentage Grade Assignment"
-        let assignment4 = seeder.createAssignment(courseId: course.id, assignementBody:
-                .init(name: assignmentName4, description: assignmentDescription, published: true, points_possible: 100, grading_type: .percent))
-
-        let assignmentName5 = "Another Letter Grade Assignment"
-        let assignment5 = seeder.createAssignment(courseId: course.id, assignementBody:
-                .init(name: assignmentName5, description: assignmentDescription, published: true, points_possible: 100, grading_type: .letter_grade))
-
-        let assignmentName6 = "Another Letter Grade Assignment"
-        let assignment6 = seeder.createAssignment(courseId: course.id, assignementBody:
-                .init(name: assignmentName6, description: assignmentDescription, published: true, points_possible: 100, grading_type: .letter_grade))
+        // MARK: Create different grade type assigments
+        let assignments = GradesHelper.createAssignments(course: course, count: 2)
+        let pfg_assignments = GradesHelper.createAssignments(course: course, count: 2, grading_type: .pass_fail)
+        let pg_assignments = GradesHelper.createAssignments(course: course, count: 2, grading_type: .percent)
+        let lg_assignments = GradesHelper.createAssignments(course: course, count: 2, grading_type: .letter_grade)
 
         logInDSUser(student)
 
-        // Create submissions for all
-        seeder.createSubmission(courseId: course.id, assignmentId: assignment.id, requestBody:
-            .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
+        // MARK: Create submissions for all
+        GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
+        GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: pfg_assignments)
+        GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: pg_assignments)
+        GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: lg_assignments)
 
-        seeder.createSubmission(courseId: course.id, assignmentId: assignment1.id, requestBody:
-            .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
+        // MARK: See if total grades is N/A
+        GradesHelper.navigateToGrades(course: course)
+        XCTAssertTrue(app.find(label: "Total Grade").waitToExist().isVisible)
+        XCTAssertTrue(GradeList.totalGrade(totalGrade: "N/A").waitToExist().isVisible)
 
-        seeder.createSubmission(courseId: course.id, assignmentId: assignment2.id, requestBody:
-            .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
+        // MARK: Check if total is updating accordingly
+        let grades = ["100", "25"]
+        let pfg_grades = ["fail", "pass"]
+        let pg_grades = ["30%", "90%"]
+        let lg_grades = ["A", "E"]
+        GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
+        XCTAssertTrue(GradesHelper.checkForTotalGrade(totalGrade: "62.5%"))
 
-        seeder.createSubmission(courseId: course.id, assignmentId: assignment3.id, requestBody:
-            .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
+        GradesHelper.gradeAssignments(grades: pfg_grades, course: course, assignments: pfg_assignments, user: student)
+        XCTAssertTrue(GradesHelper.checkForTotalGrade(totalGrade: "56.25%"))
 
-        seeder.createSubmission(courseId: course.id, assignmentId: assignment4.id, requestBody:
-            .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
+        GradesHelper.gradeAssignments(grades: pg_grades, course: course, assignments: pg_assignments, user: student)
+        XCTAssertTrue(GradesHelper.checkForTotalGrade(totalGrade: "57.5%"))
 
-        seeder.createSubmission(courseId: course.id, assignmentId: assignment5.id, requestBody:
-            .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
-
-        seeder.createSubmission(courseId: course.id, assignmentId: assignment6.id, requestBody:
-            .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
-
-        // See if total grades is N/A
-        Dashboard.courseCard(id: course.id).waitToExist()
-        Dashboard.courseCard(id: course.id).tap()
-
-        CourseNavigation.grades.waitToExist(5)
-        sleep(1)
-        CourseNavigation.grades.tap()
-        app.find(label: "Total Grade").waitToExist()
-        GradeList.totalGrade(totalGrade: "N/A").waitToExist()
-
-        // Check if total is updating accordingly
-        seeder.postGrade(courseId: course.id, assignmentId: assignment.id, userId: student.id, requestBody: .init(posted_grade: "100"))
-        GradesHelper.checkForTotalGrade(totalGrade: "100%")
-
-        seeder.postGrade(courseId: course.id, assignmentId: assignment1.id, userId: student.id, requestBody: .init(posted_grade: "0"))
-        GradesHelper.checkForTotalGrade(totalGrade: "50%")
-
-        seeder.postGrade(courseId: course.id, assignmentId: assignment2.id, userId: student.id, requestBody: .init(posted_grade: "fail"))
-        GradesHelper.checkForTotalGrade(totalGrade: "33.33%")
-
-        seeder.postGrade(courseId: course.id, assignmentId: assignment3.id, userId: student.id, requestBody: .init(posted_grade: "pass"))
-        GradesHelper.checkForTotalGrade(totalGrade: "50%")
-
-        seeder.postGrade(courseId: course.id, assignmentId: assignment4.id, userId: student.id, requestBody: .init(posted_grade: "75%"))
-        GradesHelper.checkForTotalGrade(totalGrade: "55%")
-
-        seeder.postGrade(courseId: course.id, assignmentId: assignment5.id, userId: student.id, requestBody: .init(posted_grade: "A"))
-        GradesHelper.checkForTotalGrade(totalGrade: "62.5%")
-
-        seeder.postGrade(courseId: course.id, assignmentId: assignment6.id, userId: student.id, requestBody: .init(posted_grade: "0"))
-        GradesHelper.checkForTotalGrade(totalGrade: "53.57%")
+        GradesHelper.gradeAssignments(grades: lg_grades, course: course, assignments: lg_assignments, user: student)
+        XCTAssertTrue(GradesHelper.checkForTotalGrade(totalGrade: "63.57%"))
     }
 }

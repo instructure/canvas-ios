@@ -21,10 +21,9 @@ import TestsFoundation
 import Core
 
 public class GradesHelper: BaseHelper {
-    public static func checkForTotalGrade(totalGrade: String) {
-        sleep(3)
+    public static func checkForTotalGrade(totalGrade: String) -> Bool {
         pullToRefresh()
-        GradeList.totalGrade(totalGrade: totalGrade).waitToExist(3)
+        return GradeList.totalGrade(totalGrade: totalGrade).waitToExist(5).isVisible
     }
 
     public static func createSubmissionsForAssignments(course: DSCourse, student: DSUser, assignments: [DSAssignment]) {
@@ -41,7 +40,7 @@ public class GradesHelper: BaseHelper {
                 seeder.createAssignment(
                     courseId: course.id,
                     assignementBody: .init(
-                        name: "\(grading_type?.rawValue ?? "Sample") Assignment \(i)",
+                        name: "\(grading_type?.rawValue.capitalized ?? "Sample") Assignment \(i)",
                         description: "This is a description for Assignment \(i)",
                         published: true,
                         points_possible: points_possible?[i] ?? 100,
