@@ -17,46 +17,35 @@
 //
 
 import TestsFoundation
+import XCTest
 
 class GradingStandardsTests: E2ETestCase {
     func testGradingStandards() {
-        // Seed the usual stuff with 2 assignments
+        // MARK: Seed the usual stuff and a grading scheme
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
         let gradingScheme = seeder.postGradingStandards(courseId: course.id, requestBody: .init())
         seeder.updateCourseWithGradingScheme(courseId: course.id, gradingStandardId: Int(gradingScheme.id)!)
 
-        let assignmentName = "Assignment"
-        let assignmentDescription = "This is a description for Assignment"
-        let assignment = seeder.createAssignment(courseId: course.id, assignementBody: .init(name: assignmentName, description: assignmentDescription, published: true, points_possible: 100))
-
-        let assignment1Name = "Assignment 1"
-        let assignment1 = seeder.createAssignment(courseId: course.id, assignementBody: .init(name: assignment1Name, description: assignmentDescription, published: true, points_possible: 100))
+        // MARK: Create 2 assignments
+        let assignments = GradesHelper.createAssignments(course: course, count: 2)
 
         logInDSUser(student)
 
-        // Create submissions for all
-        seeder.createSubmission(courseId: course.id, assignmentId: assignment.id, requestBody:
-            .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
+        // MARK: Create submissions for both
+        GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
 
-        seeder.createSubmission(courseId: course.id, assignmentId: assignment1.id, requestBody:
-            .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
+        // MARK: Navigate to grades
+        GradesHelper.navigateToGrades(course: course)
+        XCTAssertTrue(app.find(label: "Total Grade").waitToExist().isVisible)
+        XCTAssertTrue(GradeList.totalGrade(totalGrade: "N/A (F)").waitToExist().isVisible)
 
-        Dashboard.courseCard(id: course.id).waitToExist()
-        Dashboard.courseCard(id: course.id).tap()
+        // MARK: Check if total is updating accordingly
+        GradesHelper.gradeAssignments(grades: ["100"], course: course, assignments: [assignments[0]], user: student)
+        XCTAssertTrue(GradesHelper.checkForTotalGrade(totalGrade: "100% (A)"))
 
-        CourseNavigation.grades.waitToExist(5)
-        sleep(1)
-        CourseNavigation.grades.tap()
-        app.find(label: "Total Grade").waitToExist()
-        GradeList.totalGrade(totalGrade: "N/A (F)").waitToExist()
-
-        // Check if total is updating accordingly
-        seeder.postGrade(courseId: course.id, assignmentId: assignment.id, userId: student.id, requestBody: .init(posted_grade: "100"))
-        GradesHelper.checkForTotalGrade(totalGrade: "100% (A)")
-
-        seeder.postGrade(courseId: course.id, assignmentId: assignment1.id, userId: student.id, requestBody: .init(posted_grade: "0"))
-        GradesHelper.checkForTotalGrade(totalGrade: "50% (F)")
+        GradesHelper.gradeAssignments(grades: ["0"], course: course, assignments: [assignments[1]], user: student)
+        XCTAssertTrue(GradesHelper.checkForTotalGrade(totalGrade: "50% (F)"))
     }
 }
