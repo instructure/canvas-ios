@@ -18,59 +18,63 @@
 
 import Core
 import TestsFoundation
+import XCTest
 
-class DSGradesE2ETests: E2ETestCase {
+class GradesTests: E2ETestCase {
     func testGradesE2E() {
-        // Seed the usual stuff with 2 assignments
+        // MARK: Seed the usual stuff with 2 assignments
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
 
-        let assignmentName = "Assignment"
-        let assignmentDescription = "This is a description for Assignment"
-        let assignment = seeder.createAssignment(courseId: course.id, assignementBody: .init(name: assignmentName, description: assignmentDescription, published: true, points_possible: 10))
+        let assignment1 = seeder.createAssignment(courseId: course.id, assignementBody: .init(name: "Assignment1", description: "This is a description for Assignment1", published: true, points_possible: 10))
 
-        let assignment1Name = "Assignment 1"
-        let assignment1Description = "This is a description for Assignment 1"
-        let assignment1 = seeder.createAssignment(courseId: course.id, assignementBody: .init(name: assignment1Name, description: assignment1Description, published: true, points_possible: 100))
+        let assignment2 = seeder.createAssignment(courseId: course.id, assignementBody: .init(name: "Assignment2", description: "This is a description for Assignment2", published: true, points_possible: 100))
 
         logInDSUser(student)
 
-        // Create submissions for both
-        seeder.createSubmission(courseId: course.id, assignmentId: assignment.id, requestBody:
-            .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
+        // MARK: Create submissions for both
+        GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: [assignment1, assignment2])
 
-        seeder.createSubmission(courseId: course.id, assignmentId: assignment1.id, requestBody:
-            .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
+        // MARK: Navigate to an assignment detail and check if grade updates
+        var courseCard = Dashboard.courseCard(id: course.id).waitToExist()
+        XCTAssertTrue(courseCard.isVisible)
 
-        // Navigate to an assignment detail and check if grade updates
-        Dashboard.courseCard(id: course.id).waitToExist()
-        Dashboard.courseCard(id: course.id).tap()
-        CourseNavigation.assignments.waitToExist()
-        CourseNavigation.assignments.tap()
-        AssignmentsList.assignment(id: assignment.id).tap()
+        courseCard.tap()
+        let assignmentsButton = CourseNavigation.assignments.waitToExist()
+        XCTAssertTrue(assignmentsButton.isVisible)
 
-        seeder.postGrade(courseId: course.id, assignmentId: assignment.id, userId: student.id, requestBody: .init(posted_grade: "5"))
-        seeder.postGrade(courseId: course.id, assignmentId: assignment1.id, userId: student.id, requestBody: .init(posted_grade: "100"))
+        assignmentsButton.tap()
+        let assignmentOne = AssignmentsList.assignment(id: assignment1.id).waitToExist()
+        XCTAssertTrue(assignmentOne.isVisible)
+        assignmentOne.tap()
+
+        seeder.postGrade(courseId: course.id, assignmentId: assignment1.id, userId: student.id, requestBody: .init(posted_grade: "5"))
+        seeder.postGrade(courseId: course.id, assignmentId: assignment2.id, userId: student.id, requestBody: .init(posted_grade: "100"))
 
         pullToRefresh()
-        AssignmentDetails.pointsOutOf(actualScore: "5", maxScore: "10").waitToExist()
+        let assignmentGrade = AssignmentDetails.pointsOutOf(actualScore: "5", maxScore: "10").waitToExist()
+        XCTAssertTrue(assignmentGrade.isVisible)
 
-        // Navigate to Grades Page and check there too
+        // MARK: Navigate to Grades Page and check there too
         TabBar.dashboardTab.tap()
-        Dashboard.courseCard(id: course.id).waitToExist()
-        Dashboard.courseCard(id: course.id).tap()
-        CourseNavigation.grades.waitToExist()
-        CourseNavigation.grades.tap()
-        app.find(label: "Total Grade").waitToExist()
-        XCTAssertTrue(GradeList.cell(assignmentID: assignment.id).waitToExist(5).exists())
+        courseCard = Dashboard.courseCard(id: course.id).waitToExist()
+        XCTAssertTrue(courseCard.isVisible)
+
+        courseCard.tap()
+        let gradesButton = CourseNavigation.grades.waitToExist()
+        XCTAssertTrue(gradesButton.isVisible)
+
+        gradesButton.tap()
+        XCTAssertTrue(app.find(label: "Total Grade").waitToExist().exists)
         XCTAssertTrue(GradeList.cell(assignmentID: assignment1.id).waitToExist(5).exists())
-        XCTAssertTrue(GradeList.gradeOutOf(actualPoints: "5", maxPoints: "10").waitToExist(5).exists())
-        XCTAssertTrue(GradeList.gradeOutOf(actualPoints: "100", maxPoints: "100").waitToExist(5).exists())
-        XCTAssertTrue(GradeList.gradeOutOf(actualPoints: "100", maxPoints: "100").waitToExist(5).exists())
+        XCTAssertTrue(GradeList.cell(assignmentID: assignment2.id).waitToExist(5).exists())
+        XCTAssertTrue(GradeList.gradeOutOf(assignmentID: assignment1.id, actualPoints: "5", maxPoints: "10").waitToExist(5).exists())
+        XCTAssertTrue(GradeList.gradeOutOf(assignmentID: assignment2.id, actualPoints: "100", maxPoints: "100").waitToExist(5).exists())
+        XCTAssertTrue(GradeList.totalGrade(totalGrade: "95.45%").exists())
     }
 
-    func testLetterGradesE2E() {
+    func testLetterGrades() {
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
@@ -131,7 +135,7 @@ class DSGradesE2ETests: E2ETestCase {
         XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label(), "B-")
     }
 
-    func testPercentageGradesE2E() {
+    func testPercentageGrades() {
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
@@ -175,7 +179,7 @@ class DSGradesE2ETests: E2ETestCase {
         XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label(), "100%")
     }
 
-    func testPassFailGradeE2E() {
+    func testPassFailGrade() {
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)

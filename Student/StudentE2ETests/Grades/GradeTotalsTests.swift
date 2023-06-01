@@ -19,8 +19,8 @@
 import Core
 import TestsFoundation
 
-class GradesTotalsE2ETests: E2ETestCase {
-    func testGradeTotalsE2E() {
+class GradesTotalsTests: E2ETestCase {
+    func testGradeTotals() {
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
@@ -89,30 +89,24 @@ class GradesTotalsE2ETests: E2ETestCase {
 
         // Check if total is updating accordingly
         seeder.postGrade(courseId: course.id, assignmentId: assignment.id, userId: student.id, requestBody: .init(posted_grade: "100"))
-        checkForTotalGrade(totalGrade: "100%")
+        GradesHelper.checkForTotalGrade(totalGrade: "100%")
 
         seeder.postGrade(courseId: course.id, assignmentId: assignment1.id, userId: student.id, requestBody: .init(posted_grade: "0"))
-        checkForTotalGrade(totalGrade: "50%")
+        GradesHelper.checkForTotalGrade(totalGrade: "50%")
 
         seeder.postGrade(courseId: course.id, assignmentId: assignment2.id, userId: student.id, requestBody: .init(posted_grade: "fail"))
-        checkForTotalGrade(totalGrade: "33.33%")
+        GradesHelper.checkForTotalGrade(totalGrade: "33.33%")
 
         seeder.postGrade(courseId: course.id, assignmentId: assignment3.id, userId: student.id, requestBody: .init(posted_grade: "pass"))
-        checkForTotalGrade(totalGrade: "50%")
+        GradesHelper.checkForTotalGrade(totalGrade: "50%")
 
         seeder.postGrade(courseId: course.id, assignmentId: assignment4.id, userId: student.id, requestBody: .init(posted_grade: "75%"))
-        checkForTotalGrade(totalGrade: "55%")
+        GradesHelper.checkForTotalGrade(totalGrade: "55%")
 
         seeder.postGrade(courseId: course.id, assignmentId: assignment5.id, userId: student.id, requestBody: .init(posted_grade: "A"))
-        checkForTotalGrade(totalGrade: "62.5%")
+        GradesHelper.checkForTotalGrade(totalGrade: "62.5%")
 
         seeder.postGrade(courseId: course.id, assignmentId: assignment6.id, userId: student.id, requestBody: .init(posted_grade: "0"))
-        checkForTotalGrade(totalGrade: "53.57%")
-    }
-
-    private func checkForTotalGrade(totalGrade: String) {
-        sleep(3)
-        pullToRefresh()
-        GradeList.totalGrade(totalGrade: totalGrade).waitToExist(3)
+        GradesHelper.checkForTotalGrade(totalGrade: "53.57%")
     }
 }

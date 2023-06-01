@@ -105,6 +105,8 @@
 		87A60DC5A14FC040D54A58D7 /* DiscussionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1256FA2356B3F8F1106185 /* DiscussionEditor.swift */; };
 		8917C1628DAFDC52287BF98D /* ModuleItemFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B59FD3B1D002FA5E94E1C6 /* ModuleItemFixture.swift */; };
 		8AAB7EC58190ABB57E0F40AD /* MiniCanvasServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A98E1BAD9BED63BDEAD29 /* MiniCanvasServer.swift */; };
+		8BB5ED562A28E0AA009D63DA /* BaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5ED552A28E0AA009D63DA /* BaseHelper.swift */; };
+		8BF8B4772A28D87A001DF4C3 /* Grades.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF8B4762A28D87A001DF4C3 /* Grades.swift */; };
 		8CEEA54DE127851FF426490F /* CreateDSDiscussionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D6E99369534DE2260DD4EB /* CreateDSDiscussionRequest.swift */; };
 		8EAB580E1AA52D9C4E437F8A /* MiniCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B308A9BF6AC21A73D983D275 /* MiniCourse.swift */; };
 		907104367E913A7551F3EDB0 /* DSAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E51C15B690992D8EA3619D /* DSAssignment.swift */; };
@@ -290,6 +292,8 @@
 		853FF26543B7A1A331156E77 /* MiniCanvasEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniCanvasEndpoints.swift; sourceTree = "<group>"; };
 		87C6F005E7C5D08F6F4C3498 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		894A96909063F1975F58D1A2 /* ConferenceDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceDetails.swift; sourceTree = "<group>"; };
+		8BB5ED552A28E0AA009D63DA /* BaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHelper.swift; sourceTree = "<group>"; };
+		8BF8B4762A28D87A001DF4C3 /* Grades.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grades.swift; sourceTree = "<group>"; };
 		8E046239E00E2F114C950D3A /* ModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFixture.swift; sourceTree = "<group>"; };
 		8E52A6F60DF961A9FB652399 /* DSSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSubmission.swift; sourceTree = "<group>"; };
 		8EB01A67D620697DB09B6F61 /* CreateDSAccountNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSAccountNotificationRequest.swift; sourceTree = "<group>"; };
@@ -655,6 +659,7 @@
 				47BBBB47D5854C1CBC756C78 /* ThirdPartyApp */,
 				218651481971AB40D5D80C79 /* CombineTestExtensions.swift */,
 				234C525F478ED716FA9FF1FC /* TestEnvironment.swift */,
+				8BB5ED552A28E0AA009D63DA /* BaseHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1013,6 +1018,7 @@
 			isa = PBXGroup;
 			children = (
 				1381E9351C1E7E287449ABAE /* Assignments.swift */,
+				8BF8B4762A28D87A001DF4C3 /* Grades.swift */,
 			);
 			path = Assignments;
 			sourceTree = "<group>";
@@ -1216,6 +1222,7 @@
 			files = (
 				D27066B2CD18C554768B3831 /* AccountNotifications.swift in Sources */,
 				0FC29617D122A316EE3E4A49 /* ActAsUser.swift in Sources */,
+				8BB5ED562A28E0AA009D63DA /* BaseHelper.swift in Sources */,
 				D54C5D9A97191A5442EE0893 /* ActivityFixture.swift in Sources */,
 				FB2AA89EC3B26CDBBA81BE5C /* Announcements.swift in Sources */,
 				F2610136FC5488415F288BF6 /* AssignmentFixture.swift in Sources */,
@@ -1294,6 +1301,7 @@
 				BA7D5FC7CD946A1BA1425CD4 /* FilePicker.swift in Sources */,
 				D2224694AC33EBC4810E0CDD /* FileUploadTargetFixture.swift in Sources */,
 				1D4A01CB676468A90CF777A3 /* GradingPeriodFixture.swift in Sources */,
+				8BF8B4772A28D87A001DF4C3 /* Grades.swift in Sources */,
 				5ED5C3A68E82A55A45209810 /* GroupFixture.swift in Sources */,
 				725E9BF8E41C6A616B1AA541 /* HttpResponseExtensions.swift in Sources */,
 				56AFDFA048B2990EA3DFC919 /* Inbox.swift in Sources */,

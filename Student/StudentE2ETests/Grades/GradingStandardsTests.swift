@@ -18,8 +18,8 @@
 
 import TestsFoundation
 
-class DSGradingStandardsE2ETests: E2ETestCase {
-    func testGradingStandardsE2E() {
+class GradingStandardsTests: E2ETestCase {
+    func testGradingStandards() {
         // Seed the usual stuff with 2 assignments
         let student = seeder.createUser()
         let course = seeder.createCourse()
@@ -54,15 +54,9 @@ class DSGradingStandardsE2ETests: E2ETestCase {
 
         // Check if total is updating accordingly
         seeder.postGrade(courseId: course.id, assignmentId: assignment.id, userId: student.id, requestBody: .init(posted_grade: "100"))
-        checkForTotalGrade(totalGrade: "100% (A)")
+        GradesHelper.checkForTotalGrade(totalGrade: "100% (A)")
 
         seeder.postGrade(courseId: course.id, assignmentId: assignment1.id, userId: student.id, requestBody: .init(posted_grade: "0"))
-        checkForTotalGrade(totalGrade: "50% (F)")
-    }
-
-    private func checkForTotalGrade(totalGrade: String) {
-        sleep(3)
-        pullToRefresh()
-        GradeList.totalGrade(totalGrade: totalGrade).waitToExist(3)
+        GradesHelper.checkForTotalGrade(totalGrade: "50% (F)")
     }
 }
