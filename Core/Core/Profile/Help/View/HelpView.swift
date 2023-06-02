@@ -28,8 +28,10 @@ struct HelpView: View, ScreenViewTrackable {
                     HelpItemView(model: $0, tapAction: tapAction)
                     Divider()
                 }
-            }.padding(.bottom)
+            }
+            .padding(.bottom)
         }
+        .accessibilityIdentifier("helpItems")
     }
 
     private var helpLinks: [HelpLink]

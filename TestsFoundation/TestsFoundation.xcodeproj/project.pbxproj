@@ -105,6 +105,7 @@
 		87A60DC5A14FC040D54A58D7 /* DiscussionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1256FA2356B3F8F1106185 /* DiscussionEditor.swift */; };
 		8917C1628DAFDC52287BF98D /* ModuleItemFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B59FD3B1D002FA5E94E1C6 /* ModuleItemFixture.swift */; };
 		8AAB7EC58190ABB57E0F40AD /* MiniCanvasServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A98E1BAD9BED63BDEAD29 /* MiniCanvasServer.swift */; };
+		8BB5ED602A29F6F4009D63DA /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5ED5F2A29F6F4009D63DA /* Help.swift */; };
 		8CEEA54DE127851FF426490F /* CreateDSDiscussionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D6E99369534DE2260DD4EB /* CreateDSDiscussionRequest.swift */; };
 		8EAB580E1AA52D9C4E437F8A /* MiniCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B308A9BF6AC21A73D983D275 /* MiniCourse.swift */; };
 		907104367E913A7551F3EDB0 /* DSAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E51C15B690992D8EA3619D /* DSAssignment.swift */; };
@@ -290,6 +291,7 @@
 		853FF26543B7A1A331156E77 /* MiniCanvasEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniCanvasEndpoints.swift; sourceTree = "<group>"; };
 		87C6F005E7C5D08F6F4C3498 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		894A96909063F1975F58D1A2 /* ConferenceDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceDetails.swift; sourceTree = "<group>"; };
+		8BB5ED5F2A29F6F4009D63DA /* Help.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Help.swift; sourceTree = "<group>"; };
 		8E046239E00E2F114C950D3A /* ModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFixture.swift; sourceTree = "<group>"; };
 		8E52A6F60DF961A9FB652399 /* DSSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSubmission.swift; sourceTree = "<group>"; };
 		8EB01A67D620697DB09B6F61 /* CreateDSAccountNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSAccountNotificationRequest.swift; sourceTree = "<group>"; };
@@ -687,6 +689,7 @@
 		5F341065F80F5BDB7D69CC5D /* CoreUIElements */ = {
 			isa = PBXGroup;
 			children = (
+				8BB5ED5C2A29F6E7009D63DA /* Help */,
 				CC5824BF56A1E66C7953E531 /* Announcements */,
 				D70CCFE39949F714E91C61E1 /* Assignments */,
 				11F286E796AA9943F1E9EDB2 /* Attachments */,
@@ -841,6 +844,14 @@
 				22001AFA7EE4571DC4913E36 /* TextSubmission.swift */,
 			);
 			path = Submissions;
+			sourceTree = "<group>";
+		};
+		8BB5ED5C2A29F6E7009D63DA /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				8BB5ED5F2A29F6F4009D63DA /* Help.swift */,
+			);
+			path = Help;
 			sourceTree = "<group>";
 		};
 		9A7561DA742A2C1B232DFA62 /* Tabs */ = {
@@ -1305,6 +1316,7 @@
 				00B1643F0F393F17658278DA /* K5Schedule.swift in Sources */,
 				DC911A2167CFB16C6A61670F /* K5UITestCase.swift in Sources */,
 				80B8FDF8E9845B91049CFE77 /* KeychainEntryFixture.swift in Sources */,
+				8BB5ED602A29F6F4009D63DA /* Help.swift in Sources */,
 				AF29FE0D364A45B1492CAF55 /* LogEventFixture.swift in Sources */,
 				DAA0F9E459E84EE09295A953 /* LoggingHttpServer.swift in Sources */,
 				068EB0883DA69EF24B6044C7 /* LoginFindSchool.swift in Sources */,
