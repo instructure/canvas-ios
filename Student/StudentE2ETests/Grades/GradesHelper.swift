@@ -22,6 +22,7 @@ import Core
 
 public class GradesHelper: BaseHelper {
     public static func checkForTotalGrade(totalGrade: String) -> Bool {
+        sleep(3) // No idea why this is needed but it doesn't work without this
         pullToRefresh()
         return GradeList.totalGrade(totalGrade: totalGrade).waitToExist().isVisible
     }
