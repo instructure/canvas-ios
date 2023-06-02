@@ -23,7 +23,7 @@ import Core
 public class GradesHelper: BaseHelper {
     public static func checkForTotalGrade(totalGrade: String) -> Bool {
         pullToRefresh()
-        return GradeList.totalGrade(totalGrade: totalGrade).waitToExist(5).isVisible
+        return GradeList.totalGrade(totalGrade: totalGrade).waitToExist().isVisible
     }
 
     public static func createSubmissionsForAssignments(course: DSCourse, student: DSUser, assignments: [DSAssignment]) {
