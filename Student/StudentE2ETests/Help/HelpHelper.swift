@@ -17,26 +17,32 @@
 //
 
 import Foundation
+import TestsFoundation
 import XCTest
 
-public enum Help {
-    public static var searchTheCanvasGuides: Element {
-        return app.find(id: "helpItems").rawElement.findAll(type: .button)[0]
+public class HelpHelper: BaseHelper {
+    public static let safariApp = XCUIApplication(bundleIdentifier: "com.apple.mobilesafari")
+
+    public static func navigateToHelpPage() {
+        Dashboard.profileButton.tap()
+        let helpButton = Profile.helpButton.waitToExist()
+        helpButton.tap()
     }
 
-    public static var askYourInstructor: Element {
-        return app.find(id: "helpItems").rawElement.findAll(type: .button)[1]
+    public static var browserURL: String {
+        safariApp.activate()
+        safariApp.find(id: "TabBarItemTitle").tap()
+        let url = safariApp.find(id: "URL").waitToExist().value()
+        return url!
     }
 
-    public static var reportAProblem: Element {
-        return app.find(id: "helpItems").rawElement.findAll(type: .button)[2]
+    public static func closeSafariAndActivateApp() {
+        safariApp.terminate()
+        app.activate()
     }
 
-    public static var submitAFeatureIdea: Element {
-        return app.find(id: "helpItems").rawElement.findAll(type: .button)[3]
-    }
-
-    public static var covid19: Element {
-        return app.find(id: "helpItems").rawElement.findAll(type: .button)[4]
+    public static func returnToHelpPage() {
+        closeSafariAndActivateApp()
+        navigateToHelpPage()
     }
 }

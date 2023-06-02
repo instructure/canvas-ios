@@ -17,26 +17,12 @@
 //
 
 import Foundation
-import XCTest
 
-public enum Help {
-    public static var searchTheCanvasGuides: Element {
-        return app.find(id: "helpItems").rawElement.findAll(type: .button)[0]
-    }
-
-    public static var askYourInstructor: Element {
-        return app.find(id: "helpItems").rawElement.findAll(type: .button)[1]
-    }
-
-    public static var reportAProblem: Element {
-        return app.find(id: "helpItems").rawElement.findAll(type: .button)[2]
-    }
-
-    public static var submitAFeatureIdea: Element {
-        return app.find(id: "helpItems").rawElement.findAll(type: .button)[3]
-    }
-
-    public static var covid19: Element {
-        return app.find(id: "helpItems").rawElement.findAll(type: .button)[4]
+open class BaseHelper {
+    public static let seeder = DataSeeder()
+    public static func pullToRefresh() {
+        let window = app.find(type: .window)
+        window.relativeCoordinate(x: 0.5, y: 0.2)
+            .press(forDuration: 0.05, thenDragTo: window.relativeCoordinate(x: 0.5, y: 1.0))
     }
 }
