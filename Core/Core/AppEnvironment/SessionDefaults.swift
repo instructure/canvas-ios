@@ -134,6 +134,8 @@ public struct SessionDefaults {
         set { self["collapsedModules"] = newValue }
     }
 
+    // MARK: - Offline Settings
+
     public var isOfflineAutoSyncEnabled: Bool? {
         get { self["isOfflineAutoSyncEnabled"] as? Bool }
         set { self["isOfflineAutoSyncEnabled"] = newValue }
@@ -148,6 +150,18 @@ public struct SessionDefaults {
         get { self["isOfflineWifiOnlySyncEnabled"] as? Bool }
         set { self["isOfflineWifiOnlySyncEnabled"] = newValue }
     }
+
+    public var offlineSyncSelections: [CourseSyncItemSelection] {
+        get {
+            let rawData: [String] = self["offlineSyncSelections"] as? [String] ?? []
+            return rawData.compactMap { CourseSyncItemSelection($0) }
+        }
+        set {
+            self["offlineSyncSelections"] = newValue.map { $0.toString }
+        }
+    }
+
+    // MARK: Offline Settings -
 
     public mutating func reset() {
         sessionDefaults = nil
