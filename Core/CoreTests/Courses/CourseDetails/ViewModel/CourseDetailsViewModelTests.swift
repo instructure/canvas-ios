@@ -21,6 +21,46 @@ import XCTest
 
 class CourseDetailsViewModelTests: CoreTestCase {
 
+    func testTabCells() {
+        AppEnvironment.shared.app = .teacher
+        api.mock(GetContextPermissions(context: .course("1"), permissions: [.useStudentView]),
+                 value: .make(use_student_view: true))
+        api.mock(GetCourse(courseID: "1"),
+                 value: .make(default_view: .syllabus))
+        api.mock(GetContextTabs(context: .course("1")),
+                 value: [
+                    .make(id: ID("context_external_tool_2"),
+                          html_url: URL(string: "/2")!,
+                          label: "attendance",
+                          type: .external),
+                 ])
+        let toolsRequest = api.mock(GetCourseNavigationToolsRequest(courseContextsCodes: ["course_1"]),
+                                    value: [
+                                        .init(id: "2",
+                                              context_name: "course_1",
+                                              context_id: "course_1",
+                                              course_navigation: nil,
+                                              name: "attendance",
+                                              url: URL(string: "rollcall.instructure.com")!),
+                                    ])
+        toolsRequest.suspend()
+
+        let testee = CourseDetailsViewModel(context: .course("1"))
+        testee.viewDidAppear()
+        toolsRequest.resume()
+
+        guard case .data(let cellViewModels) = testee.state else {
+            return XCTFail("Unexpected state")
+        }
+
+        guard cellViewModels.count == 2 else {
+            return XCTFail("Invalid cell count \(cellViewModels.count)")
+        }
+
+        XCTAssertEqual(cellViewModels[0].label, "attendance")
+        XCTAssertEqual(cellViewModels[1].label, "Student View")
+    }
+
     func testTeacherProperties() {
         api.mock(GetCourse(courseID: "1"), value: .make(default_view: .syllabus))
         api.mock(GetContextTabs(context: .course("1")), value: [.make()])
@@ -44,6 +84,7 @@ class CourseDetailsViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.courseName, "Course One")
         XCTAssertEqual(testee.navigationBarTitle, "C1")
         XCTAssertEqual(testee.settingsRoute, URL(string: "courses/1/settings")!)
+        XCTAssertEqual(testee.courseID, "1")
     }
 
     func testStudentProperties() {
@@ -70,5 +111,6 @@ class CourseDetailsViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.courseName, "Course One")
         XCTAssertEqual(testee.navigationBarTitle, "C1")
         XCTAssertEqual(testee.settingsRoute, URL(string: "courses/1/settings")!)
+        XCTAssertEqual(testee.courseID, "1")
     }
 }
