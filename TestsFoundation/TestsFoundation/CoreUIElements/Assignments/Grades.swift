@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,23 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
-import CombineExt
+import Foundation
 
-public extension Publisher {
-    func sink() -> AnyCancellable {
-        sink { _ in } receiveValue: { _ in }
+public enum GradeList {
+    public static var title: Element {
+        return app.find(label: "Grades")
     }
 
-    func bindProgress(_ isLoading: PassthroughRelay<Bool>) -> AnyPublisher<Output, Failure> {
-        handleEvents(
-            receiveSubscription: { _ in
-                isLoading.accept(true)
-            },
-            receiveCompletion: { _ in
-                isLoading.accept(false)
-            }
-        )
-        .eraseToAnyPublisher()
+    public static func cell(assignmentID: String) -> Element {
+        return app.find(id: "GradeListCell.\(assignmentID)")
+    }
+
+    public static func gradeOutOf(assignmentID: String, actualPoints: String, maxPoints: String) -> Element {
+        let assignment = app.find(id: "GradeListCell.\(assignmentID)")
+        return assignment.rawElement.find(label: "Grade, \(actualPoints) out of \(maxPoints)")
+    }
+
+    public static func totalGrade(totalGrade: String) -> Element {
+        app.find(id: "CourseTotalGrade", label: totalGrade)
     }
 }

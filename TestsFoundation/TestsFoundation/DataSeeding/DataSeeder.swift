@@ -20,7 +20,7 @@ import Core
 
 public class DataSeeder {
     public struct Retry {
-        public static let standard = Retry(count: 10, gracePeriod: 2)
+        public static let standard = Retry(count: 10, gracePeriod: 6)
 
         /** The number of times the request to be retried in case of a failure. The total API call count will be 1 + `count`. */
         public let count: Int
