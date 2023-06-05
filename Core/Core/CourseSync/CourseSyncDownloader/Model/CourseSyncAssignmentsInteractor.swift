@@ -51,7 +51,6 @@ final class CourseSyncAssignmentsInteractorLive: CourseSyncAssignmentsInteractor
             )
         )
         .getEntities()
-        .print()
         .map { _ in () }
         .eraseToAnyPublisher()
     }

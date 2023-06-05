@@ -78,7 +78,7 @@ class CourseSyncAssignmentsInteractorLiveTests: CoreTestCase {
         subscription.cancel()
     }
 
-    func testErrorHandling() {
+    func testAssignmentErrorHandling() {
         let testee = CourseSyncAssignmentsInteractorLive()
         let expectation = expectation(description: "Publisher sends value")
 
@@ -100,6 +100,52 @@ class CourseSyncAssignmentsInteractorLiveTests: CoreTestCase {
         waitForExpectations(timeout: 0.1)
         let assignmentList: [Assignment] = databaseClient.fetch(nil, sortDescriptors: nil)
         XCTAssertEqual(assignmentList.count, 0)
+        subscription.cancel()
+    }
+
+    func testSubmissionCommentErrorHandling() {
+        let testee = CourseSyncAssignmentsInteractorLive()
+        let expectation = expectation(description: "Publisher sends value")
+
+        api.mock(
+            GetAssignmentsByGroup(courseID: "1"),
+            value: [
+                APIAssignmentGroup.make(
+                    assignments: [
+                        .make(),
+                    ]
+                ),
+            ]
+        )
+
+        api.mock(
+            GetSubmissionComments(
+                context: .course("1"),
+                assignmentID: "1",
+                userID: "1"
+            ),
+            error: NSError.instructureError("Submission comment not found")
+        )
+
+        let subscription = testee.getContent(courseId: "1")
+            .sink(
+                receiveCompletion: { completion in
+                    switch completion {
+                    case .failure:
+                        expectation.fulfill()
+                    default:
+                        break
+                    }
+                },
+                receiveValue: { _ in }
+            )
+
+        waitForExpectations(timeout: 0.1)
+        let submissionCommentList: [SubmissionComment] = databaseClient.fetch(
+            nil,
+            sortDescriptors: [NSSortDescriptor(key: #keyPath(SubmissionComment.id), ascending: true)]
+        )
+        XCTAssertEqual(submissionCommentList.count, 0)
         subscription.cancel()
     }
 }
