@@ -130,7 +130,13 @@ public class DocViewerViewController: UIViewController {
     }
 
     func loadFallback() {
-        if let error = session.error { showError(error) }
+        if let error = session.error, !OfflineServiceLive.shared.isOfflineModeEnabled() {
+            showError(error)
+        } else {
+            loadingView.isHidden = true
+            return
+        }
+        
         if let url = session.localURL {
             return load(document: Document(url: url))
         }
