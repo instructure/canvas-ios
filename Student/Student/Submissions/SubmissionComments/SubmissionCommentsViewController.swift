@@ -280,7 +280,7 @@ extension SubmissionCommentsViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         addCommentButton.isEnabled = !(textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
         addCommentButton.alpha = addCommentButton.isEnabled ? 1 : 0.5
-        textView.adjustHeight(to: 5, heightConstraints: addCommentTextViewHeightConstraint)
+        textView.adjustHeight(to: 10, heightConstraints: addCommentTextViewHeightConstraint)
     }
 }
 
