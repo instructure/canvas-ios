@@ -48,6 +48,10 @@ public extension XCUIElement {
         return descendants(matching: type).matching(id: id).matching(label: label).firstElement
     }
 
+    func findAll(type: XCUIElement.ElementType) -> [Element] {
+        XCUIElementQueryWrapper(descendants(matching: type)).allElements
+    }
+
     // MARK: - Alerts
 
     func findAlertButton(label: String) -> Element {
