@@ -23,7 +23,7 @@ public enum MessageDetailsAssembly {
     public static func makeViewController(env: AppEnvironment,
                                           conversationID: String) -> UIViewController {
         let interactor = MessageDetailsInteractorLive(env: env, conversationID: conversationID)
-        let viewModel = MessageDetailsViewModel(router: env.router, interactor: interactor)
+        let viewModel = MessageDetailsViewModel(router: env.router, interactor: interactor, myID: env.currentSession?.userID ?? "")
         let view = MessageDetailsView(model: viewModel)
         return CoreHostingController(view)
     }
@@ -31,10 +31,11 @@ public enum MessageDetailsAssembly {
 #if DEBUG
 
     public static func makePreview(env: AppEnvironment,
+                                   subject: String,
                                    messages: [ConversationMessage])
     -> MessageDetailsView {
-        let interactor = MessageDetailsInteractorPreview(env: env, messages: messages)
-        let viewModel = MessageDetailsViewModel(router: env.router, interactor: interactor)
+        let interactor = MessageDetailsInteractorPreview(env: env, subject: subject, messages: messages)
+        let viewModel = MessageDetailsViewModel(router: env.router, interactor: interactor, myID: env.currentSession?.userID ?? "")
         return MessageDetailsView(model: viewModel)
     }
 

@@ -21,14 +21,21 @@ import SwiftUI
 public struct MessageViewModel: Identifiable, Equatable {
     public let id: String
     public let body: String
-    public let date: String
     public let author: String
-    public let avatarURL: URL? = nil
+    public let date: String
+    public let avatarName: String
+    public let avatarURL: URL?
 
-    public init(item: ConversationMessage) {
+    public init(item: ConversationMessage, myID: String, userMap: [String: ConversationParticipant]) {
         self.id = item.id
         self.body = item.body
+
+        let from = userMap[ item.authorID ]?.displayName ?? ""
+        let to = item.localizedAudience(myID: myID, userMap: userMap)
+        self.author = from + to
+
         self.date = item.createdAt?.relativeDateTimeString ?? ""
-        self.author = "John Doe"
+        self.avatarURL = userMap[ item.authorID ]?.avatarURL
+        self.avatarName = userMap[ item.authorID ]?.name ?? ""
     }
 }

@@ -155,6 +155,7 @@
 		1D0CB50857AB33A8383D8B1A /* UIAccessibilityAnnouncement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983A36C59A25DA6BC8B0D893 /* UIAccessibilityAnnouncement.swift */; };
 		1D344AEC5D67E877F08DF4AF /* LTICellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD5CB74AF6C0270C8EA07DD /* LTICellViewModelTests.swift */; };
 		1D4DA602C9988CA3AD267438 /* APIMediaComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89020C473995D7B373DCD72 /* APIMediaComment.swift */; };
+		1DA7838ABCC742B34C50BE51 /* AttachmentCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C477729952E581F5369448 /* AttachmentCardsView.swift */; };
 		1E095B5D5806A24B1835FE89 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = A007DD63057A6DCBD13EE725 /* README.md */; };
 		1E2B9C33303702EAEF172EC6 /* InputStreamExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B42C7DC5DD365A0EC5293DF /* InputStreamExtensionsTests.swift */; };
 		1E316CCAA77E8FF04FE7E83C /* TopBarSelectionShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBA61A24C07738AF6A0906F /* TopBarSelectionShape.swift */; };
@@ -1537,6 +1538,7 @@
 		048D69C7DD4F103ED4D1F485 /* DocViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewer.swift; sourceTree = "<group>"; };
 		0493EEBEC95B5CA3C1E1274C /* sv-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "sv-instk12"; path = "sv-instk12.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
 		04A8ECBC001884D68F55F688 /* TitleSubtitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSubtitleView.swift; sourceTree = "<group>"; };
+		04C477729952E581F5369448 /* AttachmentCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCardsView.swift; sourceTree = "<group>"; };
 		04DE952006D3854D357DA90E /* GradeListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = GradeListViewController.storyboard; sourceTree = "<group>"; };
 		04EB1250961C1FBD368B931E /* APICommentLibraryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICommentLibraryTests.swift; sourceTree = "<group>"; };
 		051B66BBEE92D1CA70B2A427 /* RichContentEditorViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichContentEditorViewControllerTests.swift; sourceTree = "<group>"; };
@@ -6796,6 +6798,7 @@
 				32FD2608F4F6A1E168194398 /* Model */,
 				DE04021B3B34A90DF64AD499 /* View */,
 				8EE86E9F1DD513BEBF0D6D1B /* ViewModel */,
+				04C477729952E581F5369448 /* AttachmentCardsView.swift */,
 				A636EC448C789BE602EB0940 /* MessageDetailsAssembly.swift */,
 			);
 			path = MessageDetails;
@@ -8708,6 +8711,7 @@
 				84E36F9F49D586FE3AE5C623 /* AssignmentPickerView.swift in Sources */,
 				56805DEEED8B40C8F494F0E2 /* AssignmentPickerViewModel.swift in Sources */,
 				5412A78EDD0BD3C74FC843D1 /* AssignmentSubmissionBreakdownViewModel.swift in Sources */,
+				1DA7838ABCC742B34C50BE51 /* AttachmentCardsView.swift in Sources */,
 				EC346508D864BEE69FFE5D18 /* AttachmentCardsViewController.swift in Sources */,
 				78E5EFB9BD62AD095CDF3C2F /* AttachmentCopyService.swift in Sources */,
 				45551D7A191AD42C576C3F11 /* AttachmentPreviewView.swift in Sources */,

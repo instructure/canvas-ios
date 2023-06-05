@@ -77,7 +77,7 @@ public struct MessageDetailsView: View {
 
     private var headerView: some View {
         HStack {
-            Text(model.title)
+            Text(model.subject)
                 .font(.semibold22)
             Spacer()
             starButton
@@ -120,7 +120,7 @@ struct MessageDetailsView_Previews: PreviewProvider {
         Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
         when an unknown printer took a galley of type and scrambled it to make a type specimen book.
         """
-        MessageDetailsAssembly.makePreview(env: env, messages: .make(count: 5, body: body,  in: context))
+        MessageDetailsAssembly.makePreview(env: env, subject: "Message Title", messages: .make(count: 5, body: body, in: context))
     }
 }
 

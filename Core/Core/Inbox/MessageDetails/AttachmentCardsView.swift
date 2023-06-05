@@ -16,15 +16,4 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
-
-public protocol MessageDetailsInteractor {
-    // MARK: - Outputs
-    var state: CurrentValueSubject<StoreState, Never> { get }
-    var subject: CurrentValueSubject<String, Never> { get }
-    var messages: CurrentValueSubject<[ConversationMessage], Never> { get }
-    var userMap: [String: ConversationParticipant] { get }
-
-    // MARK: - Inputs
-    func refresh() -> Future<Void, Never>
-}
+import Foundation

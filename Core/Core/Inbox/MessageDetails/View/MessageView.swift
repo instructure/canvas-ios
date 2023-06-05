@@ -39,22 +39,47 @@ public struct MessageView: View {
 
     private var headerView: some View {
         HStack {
-            //avatar
-            VStack {
+            Avatar(name: model.avatarName, url: model.avatarURL)
+                .frame(width: 36, height: 36)
+                .padding(.top, 5)
+            VStack(alignment: .leading) {
                 Text(model.author)
+                    .font(.regular16)
                 Text(model.date)
+                    .font(.regular14)
             }
-            //reply
-            //kebab
+            Button(action: reply, label: {
+                Image
+                    .replyLine
+                    .size(15)
+                    .foregroundColor(.textDark)
+                    .padding(.leading, 6)
+                    .accessibilityHidden(true)
+
+            })
+            Button(action: more, label: {
+                Image
+                    .moreLine
+                    .size(15)
+                    .foregroundColor(.textDark)
+                    .padding(.leading, 6)
+                    .accessibilityHidden(true)
+
+            })
         }
     }
 
     private var bodyView: some View {
         Text(model.body)
+            .font(.regular16)
         //Attachments
     }
 
     private func reply() {
+
+    }
+
+    private func more() {
 
     }
 }

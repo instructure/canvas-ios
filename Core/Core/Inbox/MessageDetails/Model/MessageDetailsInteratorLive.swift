@@ -21,7 +21,9 @@ import Combine
 public class MessageDetailsInteractorLive: MessageDetailsInteractor {
     // MARK: - Outputs
     public var state = CurrentValueSubject<StoreState, Never>(.loading)
+    public var subject = CurrentValueSubject<String, Never>("")
     public var messages = CurrentValueSubject<[ConversationMessage], Never>([])
+    public var userMap: [String: ConversationParticipant] = [:]
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
@@ -38,7 +40,16 @@ public class MessageDetailsInteractorLive: MessageDetailsInteractor {
         conversationStore
             .allObjects
             .map {
-                $0.first?.messages ?? []
+                $0.first?.subject ?? ""
+            }
+            .subscribe(subject)
+            .store(in: &subscriptions)
+
+        conversationStore
+            .allObjects
+            .map {
+                $0.first?.participants.forEach { self.userMap[ $0.id ] = $0 }
+                return $0.first?.messages ?? []
             }
             .subscribe(messages)
             .store(in: &subscriptions)
@@ -48,11 +59,6 @@ public class MessageDetailsInteractorLive: MessageDetailsInteractor {
 
     // MARK: - Inputs
     public func refresh() -> Future<Void, Never> {
-       // usersStore.exhaust(force: true)
-        Future<Void, Never> { promise in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                promise(.success(()))
-            }
-        }
+        conversationStore.refreshWithFuture(force: true)
     }
 }

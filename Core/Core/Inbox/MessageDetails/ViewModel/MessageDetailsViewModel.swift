@@ -22,7 +22,7 @@ class MessageDetailsViewModel: ObservableObject {
     // MARK: - Outputs
     @Published public private(set) var state: StoreState = .loading
     @Published public private(set) var messages: [MessageViewModel] = []
-    //TODO: real title
+    @Published public private(set) var subject: String = ""
     public let title = NSLocalizedString("Message Details", comment: "")
 
     // MARK: - Inputs
@@ -31,23 +31,27 @@ class MessageDetailsViewModel: ObservableObject {
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: MessageDetailsInteractor
+    private let myID: String
 
-    public init(router: Router, interactor: MessageDetailsInteractor) {
+    public init(router: Router, interactor: MessageDetailsInteractor, myID: String) {
         self.interactor = interactor
+        self.myID = myID
 
         setupOutputBindings()
-           // setupInputBindings(router: router)
+        // setupInputBindings(router: router)
     }
 
     private func setupOutputBindings() {
-            interactor.state
+        interactor.state
                 .assign(to: &$state)
-            interactor.messages
-                .map { messages in
-                    messages.map {
-                        MessageViewModel(item: $0)
-                    }
+        interactor.subject
+            .assign(to: &$subject)
+        interactor.messages
+            .map { messages in
+                messages.map {
+                    MessageViewModel(item: $0, myID: self.myID, userMap: self.interactor.userMap)
                 }
-                .assign(to: &$messages)
-        }
+            }
+            .assign(to: &$messages)
+    }
 }

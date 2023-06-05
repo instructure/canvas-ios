@@ -24,10 +24,14 @@ public class MessageDetailsInteractorPreview: MessageDetailsInteractor {
 
     // MARK: - Outputs
     public var state = CurrentValueSubject<StoreState, Never>(.loading)
+    public var subject = CurrentValueSubject<String, Never>("")
     public var messages = CurrentValueSubject<[ConversationMessage], Never>([])
+    public var userMap: [String: ConversationParticipant] = [:]
 
-    public init(env: AppEnvironment, messages: [ConversationMessage] = []) {
+    public init(env: AppEnvironment, subject: String, messages: [ConversationMessage] = []) {
+        self.subject = CurrentValueSubject<String, Never>(subject)
         self.messages = CurrentValueSubject<[ConversationMessage], Never>(messages)
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
             if messages.isEmpty {
                 state.send(.empty)
