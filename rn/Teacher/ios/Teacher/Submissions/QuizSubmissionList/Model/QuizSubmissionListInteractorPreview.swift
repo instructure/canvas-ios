@@ -22,11 +22,12 @@ import Combine
 import Core
 
 public class QuizSubmissionListInteractorPreview: QuizSubmissionListInteractor {
-
     // MARK: - Outputs
     public var state = CurrentValueSubject<StoreState, Never>(.loading)
     public var submissions = CurrentValueSubject<[QuizSubmissionListItem], Never>([])
     public var quizTitle = CurrentValueSubject<String, Never>("Title")
+    public let courseID: String = ""
+    public let quizID: String = ""
 
     public init(env: AppEnvironment, submissions: [QuizSubmissionListItem] = []) {
         self.submissions = CurrentValueSubject<[QuizSubmissionListItem], Never>(submissions)
