@@ -136,7 +136,7 @@ public class DocViewerViewController: UIViewController {
             loadingView.isHidden = true
             return
         }
-        
+
         if let url = session.localURL {
             return load(document: Document(url: url))
         }
