@@ -16,8 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-
 public enum AssignmentDetails: String, ElementWrapper {
     case allowedExtensions
     case attemptsView
@@ -59,24 +57,6 @@ public enum AssignmentDetails: String, ElementWrapper {
 public enum AssignmentsList {
     public static func assignment(id: String) -> Element {
         return app.find(id: "assignment-list.assignment-list-row.cell-\(id)")
-    }
-}
-
-public enum GradeList {
-    public static var title: Element {
-        return app.find(label: "Grades")
-    }
-
-    public static func cell(assignmentID: String) -> Element {
-        return app.find(id: "GradeListCell.\(assignmentID)")
-    }
-
-    public static func gradeOutOf(actualPoints: String, maxPoints: String) -> Element {
-        app.find(label: "Grade, \(actualPoints) out of \(maxPoints)")
-    }
-
-    public static func totalGrade(totalGrade: String) -> Element {
-        app.find(id: "CourseTotalGrade", label: totalGrade)
     }
 }
 
