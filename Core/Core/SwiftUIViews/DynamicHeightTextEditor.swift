@@ -53,12 +53,19 @@ public struct DynamicHeightTextEditor: View {
                         key: ViewSizeKey.self,
                         value: $0.frame(in: .local).size.height
                     )
-                })
+                }).hidden()
             TextEditor(text: $text)
                 .foregroundColor(.textDarkest)
+                .background(Color.clear)
+                .iOS16HideListScrollContentBackground()
                 .frame(height: textEditorHeight)
                 .overlay(placeholderView, alignment: .leading)
                 .offset(y: -2)
+                .onAppear {
+                   UITextView.appearance().backgroundColor = .clear
+                 }.onDisappear {
+                   UITextView.appearance().backgroundColor = nil
+                 }
         }
         .onChange(of: text, perform: { newValue in
             textToMeasureHeight = newValue.isEmpty ? "Placeholder" : newValue

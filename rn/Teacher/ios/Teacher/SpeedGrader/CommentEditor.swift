@@ -30,7 +30,7 @@ struct CommentEditor: View {
         HStack(alignment: .bottom) {
             DynamicHeightTextEditor(text: $text, placeholder: NSLocalizedString("Comment", bundle: .core, comment: ""))
                 .font(.regular16)
-                .lineLimit(3)
+                .lineLimit(5)
                 .accessibility(label: Text("Comment"))
                 .identifier("SubmissionComments.commentTextView")
             Button(action: {

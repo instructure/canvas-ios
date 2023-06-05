@@ -426,9 +426,12 @@
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DjR-oA-G8w">
                                         <rect key="frame" x="40" y="4" width="319" height="43"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3wp-xK-HJQ">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3wp-xK-HJQ">
                                                 <rect key="frame" x="12" y="3" width="266" height="40"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="SubmissionComments.commentTextView"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="iuz-Bm-PNt"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <connections>
@@ -460,7 +463,6 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="uGc-Rr-ieQ" firstAttribute="leading" secondItem="3wp-xK-HJQ" secondAttribute="trailing" constant="4" id="0Iz-DT-rhP"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="43" id="NC2-jr-fE4"/>
                                             <constraint firstItem="3wp-xK-HJQ" firstAttribute="top" secondItem="DjR-oA-G8w" secondAttribute="top" constant="3" id="NO7-l5-LaT"/>
                                             <constraint firstAttribute="bottom" secondItem="3wp-xK-HJQ" secondAttribute="bottom" id="SDb-vJ-ba3"/>
                                             <constraint firstItem="3wp-xK-HJQ" firstAttribute="leading" secondItem="DjR-oA-G8w" secondAttribute="leading" constant="12" id="exB-6M-zjV"/>
@@ -525,6 +527,7 @@
                         <outlet property="addCommentBorderView" destination="DjR-oA-G8w" id="rPk-Pa-8P4"/>
                         <outlet property="addCommentButton" destination="uGc-Rr-ieQ" id="ZMO-A6-RwV"/>
                         <outlet property="addCommentTextView" destination="3wp-xK-HJQ" id="bMw-4T-MvF"/>
+                        <outlet property="addCommentTextViewHeightConstraint" destination="iuz-Bm-PNt" id="rxd-KB-Xyo"/>
                         <outlet property="addCommentView" destination="SAr-z8-Qsj" id="CRp-Kv-sDB"/>
                         <outlet property="addMediaButton" destination="djV-o5-Xt6" id="bHF-6D-e2E"/>
                         <outlet property="addMediaHeight" destination="2PL-IE-MvI" id="47L-8j-BJq"/>
