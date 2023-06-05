@@ -44,6 +44,7 @@ public class DocViewerViewController: UIViewController {
     private var dragGestureViewModel: AnnotationDragGestureViewModel?
     private var subscriptions = Set<AnyCancellable>()
     private var annotationContextMenuModel: DocViewerAnnotationContextMenuModel?
+    private var offlineService: OfflineService?
 
     public internal(set) static var hasPSPDFKitLicense = false
 
@@ -53,7 +54,13 @@ public class DocViewerViewController: UIViewController {
         hasPSPDFKitLicense = true
     }
 
-    public static func create(filename: String, previewURL: URL?, fallbackURL: URL, navigationItem: UINavigationItem? = nil) -> DocViewerViewController {
+    public static func create(
+        filename: String,
+        previewURL: URL?,
+        fallbackURL: URL,
+        navigationItem: UINavigationItem? = nil,
+        offlineService: OfflineService = OfflineServiceLive.shared
+    ) -> DocViewerViewController {
         stylePSPDFKit()
 
         let controller = loadFromStoryboard()
@@ -62,6 +69,7 @@ public class DocViewerViewController: UIViewController {
         controller.previewURL = previewURL
         controller.fallbackURL = fallbackURL
         controller.parentNavigationItem = navigationItem
+        controller.offlineService = offlineService
         return controller
     }
 
@@ -130,11 +138,14 @@ public class DocViewerViewController: UIViewController {
     }
 
     func loadFallback() {
-        if let error = session.error, !OfflineServiceLive.shared.isOfflineModeEnabled() {
-            showError(error)
-        } else {
-            loadingView.isHidden = true
-            return
+        if let error = session.error {
+            // If offline mode is enabled we don't want to show API errors
+            if (offlineService?.isOfflineModeEnabled() ?? false) {
+                loadingView.isHidden = true
+                return
+            } else {
+                showError(error)
+            }
         }
 
         if let url = session.localURL {
