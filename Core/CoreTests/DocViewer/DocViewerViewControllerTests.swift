@@ -47,13 +47,6 @@ class DocViewerViewControllerTests: CoreTestCase {
             loading = downloadURL
         }
     }
-    lazy var session: MockSession = {
-        let session = MockSession { [weak self] in
-            self?.controller.sessionIsReady()
-        }
-        session.metadata = .make() // to ensure metadata allows annotations
-        return session
-    }()
 
     class MockOfflineServiceDisabled: OfflineService {
         func isOfflineModeEnabled() -> Bool { false }
@@ -62,6 +55,14 @@ class DocViewerViewControllerTests: CoreTestCase {
     class MockOfflineServiceEnabled: OfflineService {
         func isOfflineModeEnabled() -> Bool { true }
     }
+
+    lazy var session: MockSession = {
+        let session = MockSession { [weak self] in
+            self?.controller.sessionIsReady()
+        }
+        session.metadata = .make() // to ensure metadata allows annotations
+        return session
+    }()
 
     func testOriginalSession() {
         let controller = DocViewerViewController.create(

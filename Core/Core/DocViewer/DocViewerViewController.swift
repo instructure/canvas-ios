@@ -44,7 +44,7 @@ public class DocViewerViewController: UIViewController {
     private var dragGestureViewModel: AnnotationDragGestureViewModel?
     private var subscriptions = Set<AnyCancellable>()
     private var annotationContextMenuModel: DocViewerAnnotationContextMenuModel?
-    private var offlineService: OfflineService?
+    private var offlineService: OfflineService!
 
     public internal(set) static var hasPSPDFKitLicense = false
 
@@ -140,7 +140,7 @@ public class DocViewerViewController: UIViewController {
     func loadFallback() {
         if let error = session.error {
             // If offline mode is enabled we don't want to show API errors
-            if (offlineService?.isOfflineModeEnabled() ?? false) {
+            if offlineService.isOfflineModeEnabled() {
                 loadingView.isHidden = true
                 return
             } else {
