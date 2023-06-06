@@ -50,4 +50,24 @@ public struct CourseSyncItemSelection: Equatable {
         self.id = id
         self.selectionType = selectionType
     }
+
+    func toCourseEntrySelection(from syncEntries: [CourseSyncEntry]) -> CourseEntrySelection? {
+        switch selectionType {
+        case .course:
+            guard let index = syncEntries.firstIndex(where: { $0.id == id }) else { return nil }
+            return .course(index)
+        case .file:
+            for (courseIndex, course) in syncEntries.enumerated() {
+                guard let fileIndex = course.files.firstIndex(where: { $0.id == id }) else { continue }
+                return .file(courseIndex, fileIndex)
+            }
+            return nil
+        case .tab:
+            for (courseIndex, course) in syncEntries.enumerated() {
+                guard let tabIndex = course.tabs.firstIndex(where: { $0.id == id }) else { continue }
+                return .tab(courseIndex, tabIndex)
+            }
+            return nil
+        }
+    }
 }
