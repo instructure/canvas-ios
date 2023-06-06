@@ -150,7 +150,7 @@ public struct SessionDefaults {
     public var offlineSyncSelections: [CourseSyncItemSelection] {
         get {
             let rawData: [String] = self["offlineSyncSelections"] as? [String] ?? []
-            return rawData.compactMap { CourseSyncItemSelection($0) }
+            return rawData.compactMap { CourseSyncItemSelection(encodedValue: $0) }
         }
         set {
             self["offlineSyncSelections"] = newValue.map { $0.encodedValue }

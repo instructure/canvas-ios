@@ -18,6 +18,9 @@
 
 import Foundation
 
+/**
+ This entity is saved to the user's defaults and represents a single item selection in the offline sync selection screen.
+ */
 public struct CourseSyncItemSelection: Equatable {
     public enum SelectionType: String, Equatable {
         case course
@@ -34,8 +37,8 @@ public struct CourseSyncItemSelection: Equatable {
         self.selectionType = selectionType
     }
 
-    public init?(_ string: String) {
-        let components = string.split(separator: "_").map { String($0) }
+    public init?(encodedValue: String) {
+        let components = encodedValue.split(separator: "_").map { String($0) }
 
         guard components.count == 2,
               let selectionType = SelectionType(rawValue: components[0])
