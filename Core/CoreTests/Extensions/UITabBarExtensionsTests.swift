@@ -48,6 +48,6 @@ class UITabBarExtensionsTests: XCTestCase {
             primary: "#ffffff"
         ), baseURL: URL(string: "https://canvas.instructure.com")!)
         tabBar.useGlobalNavStyle(brand: shiny)
-        XCTAssertEqual(tabBar.standardAppearance.stackedLayoutAppearance.selected.iconColor?.hexString, shiny.navTextColor.hexString)
+        XCTAssertEqual(tabBar.standardAppearance.stackedLayoutAppearance.selected.iconColor?.hexString, shiny.primary.darkenToEnsureContrast(against: .backgroundLightest).hexString)
     }
 }

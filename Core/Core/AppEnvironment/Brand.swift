@@ -68,8 +68,7 @@ public struct Brand: Equatable {
         UIColor.getColor(dark: primaryDark, light: primaryLight)
     }
     public var tabBarHighlightColor: UIColor {
-        let hasEnoughContrast = self.primary.contrast(against: .backgroundLightest) >= 3
-        return hasEnoughContrast ? self.primary : self.navTextColor
+        primary.darkenToEnsureContrast(against: .backgroundLightest)
     }
 
     private var buttonPrimaryBackgroundDark: UIColor = .black
