@@ -27,10 +27,7 @@ public struct CourseSyncItemSelection: Equatable {
 
     public let id: String
     public let selectionType: SelectionType
-
-    public var toString: String {
-        "\(selectionType.rawValue)_\(id)"
-    }
+    public var encodedValue: String { "\(selectionType.rawValue)_\(id)" }
 
     public init(id: String, selectionType: SelectionType) {
         self.id = id

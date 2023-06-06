@@ -157,7 +157,7 @@ public struct SessionDefaults {
             return rawData.compactMap { CourseSyncItemSelection($0) }
         }
         set {
-            self["offlineSyncSelections"] = newValue.map { $0.toString }
+            self["offlineSyncSelections"] = newValue.map { $0.encodedValue }
         }
     }
 
