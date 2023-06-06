@@ -53,9 +53,9 @@ class SessionDefaultsTests: XCTestCase {
     }
 
     func testCourseSyncItemPersistency() {
-        let item1 = CourseSyncItemSelection(id: "1", selectionType: .tab)
-        let item2 = CourseSyncItemSelection(id: "2", selectionType: .course)
-        let item3 = CourseSyncItemSelection(id: "3", selectionType: .file)
+        let item1 = "courses/1/tabs/1"
+        let item2 = "courses/2"
+        let item3 = "courses/1/files/1"
         defaults.offlineSyncSelections = [item1, item2, item3]
 
         let testee = defaults.offlineSyncSelections

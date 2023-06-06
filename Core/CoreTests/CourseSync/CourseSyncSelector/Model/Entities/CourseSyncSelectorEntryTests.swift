@@ -21,6 +21,23 @@ import XCTest
 
 class CourseSyncEntryTests: XCTestCase {
 
+    func testCourseId() {
+        let testee = CourseSyncEntry(name: "",
+                                     id: "courses/3",
+                                     tabs: [],
+                                     files: [])
+        XCTAssertEqual(testee.courseId, "3")
+    }
+
+    func testFileId() {
+        let testee = CourseSyncEntry.File(id: "courses/3/files/2",
+                                          displayName: "",
+                                          fileName: "",
+                                          url: URL(string: "/")!,
+                                          mimeClass: "")
+        XCTAssertEqual(testee.fileId, "2")
+    }
+
     func testCourseSelection() {
         var entry = CourseSyncEntry(
             name: "1",

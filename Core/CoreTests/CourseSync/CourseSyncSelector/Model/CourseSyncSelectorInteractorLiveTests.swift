@@ -65,7 +65,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
 
         waitForExpectations(timeout: 0.1)
         XCTAssertEqual(entries.count, 1)
-        XCTAssertEqual(entries.first?.id, "2")
+        XCTAssertEqual(entries.first?.id, "courses/2")
         subscription.cancel()
     }
 
@@ -313,7 +313,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
     func testAppliesPreviousSelection() {
         // MARK: - GIVEN
         var session = SessionDefaults(sessionID: "oldSession")
-        session.offlineSyncSelections = [.init(id: "2", selectionType: .course)]
+        session.offlineSyncSelections = ["courses/2"]
 
         mockCourseList(courseList: [
             .make(id: "1", tabs: []),
@@ -332,7 +332,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
             .first()
 
         // MARK: - THEN
-        XCTAssertSingleOutputEquals(selectedItemID, "2")
+        XCTAssertSingleOutputEquals(selectedItemID, "courses/2")
         session.reset()
     }
 
@@ -353,7 +353,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         testee.setSelected(selection: .course(1), selectionState: .selected)
 
         // MARK: - THEN
-        XCTAssertEqual(session.offlineSyncSelections, [.init(id: "2", selectionType: .course)])
+        XCTAssertEqual(session.offlineSyncSelections, ["courses/2"])
         session.reset()
     }
 

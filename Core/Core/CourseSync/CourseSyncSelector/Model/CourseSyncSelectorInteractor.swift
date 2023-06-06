@@ -150,7 +150,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         return courseSyncEntries
             .first { !$0.isEmpty }
             .map { syncEntries in
-                syncEntries.first { $0.id == courseID }?.name
+                syncEntries.first { $0.id == "courses/\(courseID)" }?.name
             }
             .replaceNil(with: "")
             .replaceError(with: "")
@@ -175,7 +175,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         let tabs = Array(course.tabs).offlineSupportedTabs()
         let mappedTabs = tabs.map {
             CourseSyncEntry.Tab(
-                id: "\(course.courseId)-\($0.id)",
+                id: "courses/\(course.courseId)/tabs/\($0.id)",
                 name: $0.label,
                 type: $0.name
             )
@@ -185,7 +185,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
                 .map { files in
                     CourseSyncEntry(
                         name: course.name,
-                        id: course.courseId,
+                        id: "courses/\(course.courseId)",
                         tabs: mappedTabs,
                         files: files
                     )
@@ -195,7 +195,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
             return Just(
                 CourseSyncEntry(
                     name: course.name,
-                    id: course.courseId,
+                    id: "courses/\(course.courseId)",
                     tabs: mappedTabs,
                     files: []
                 )
@@ -226,7 +226,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
                 .filter { $0.url != nil && $0.mimeClass != nil }
                 .map {
                     CourseSyncEntry.File(
-                        id: $0.id ?? Foundation.UUID().uuidString,
+                        id: "courses/\(courseId)/files/\($0.id ?? Foundation.UUID().uuidString)",
                         displayName: $0.displayName ?? NSLocalizedString("Unknown file", comment: ""),
                         fileName: $0.filename,
                         url: $0.url!,

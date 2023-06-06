@@ -121,7 +121,7 @@ extension Array where Element == CourseSyncEntry {
 extension CourseSyncEntry {
 
     func makeViewModelItem() -> CourseSyncSelectorViewModel.Item {
-        .init(id: "course-\(id)",
+        .init(id: id,
               title: name,
               subtitle: nil,
               selectionState: selectionState,
@@ -133,7 +133,7 @@ extension CourseSyncEntry {
 extension CourseSyncEntry.Tab {
 
     func makeViewModelItem() -> CourseSyncSelectorViewModel.Item {
-        .init(id: "courseTab-\(id)",
+        .init(id: id,
               title: name,
               subtitle: nil,
               selectionState: selectionState,
@@ -145,7 +145,7 @@ extension CourseSyncEntry.Tab {
 extension CourseSyncEntry.File {
 
     func makeViewModelItem() -> CourseSyncSelectorViewModel.Item {
-        .init(id: "file-\(id)",
+        .init(id: id,
               title: displayName,
               subtitle: nil,
               selectionState: selectionState,
