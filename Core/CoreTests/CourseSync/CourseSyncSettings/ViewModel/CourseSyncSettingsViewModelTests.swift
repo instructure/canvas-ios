@@ -104,7 +104,6 @@ class CourseSyncSettingsViewModelTests: XCTestCase {
     }
 
     private func makeInteractor() -> CourseSyncSettingsInteractor {
-        let session = SessionDefaults(sessionID: "test")
-        return CourseSyncSettingsInteractorLive(storage: session)
+        return CourseSyncSettingsInteractorLive(storage: .fallback)
     }
 }

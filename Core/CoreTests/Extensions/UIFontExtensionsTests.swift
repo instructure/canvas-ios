@@ -36,7 +36,7 @@ class UIFontExtensionsTests: XCTestCase {
     func testScaledK5Font() {
         ExperimentalFeature.K5Dashboard.isEnabled = true
         let environment = AppEnvironment.shared
-        environment.userDefaults = SessionDefaults(sessionID: "123")
+        environment.userDefaults = .fallback
         environment.userDefaults?.isElementaryViewEnabled = true
         environment.k5.userDidLogin(isK5Account: true)
 

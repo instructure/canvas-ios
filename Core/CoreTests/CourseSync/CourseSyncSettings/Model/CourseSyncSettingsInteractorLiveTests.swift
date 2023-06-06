@@ -21,7 +21,7 @@ import TestsFoundation
 import XCTest
 
 class CourseSyncSettingsInteractorLiveTests: XCTestCase {
-    private var defaults = SessionDefaults(sessionID: "test")
+    private var defaults = SessionDefaults.fallback
 
     override func setUp() {
         super.setUp()

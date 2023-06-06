@@ -20,7 +20,7 @@
 import XCTest
 
 class DashboardSettingsInteractorLiveTests: CoreTestCase {
-    private var defaults = SessionDefaults(sessionID: "")
+    private var defaults = SessionDefaults.fallback
 
     // MARK: - Initial Values
 

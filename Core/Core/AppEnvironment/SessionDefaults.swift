@@ -19,15 +19,11 @@
 import Foundation
 
 public struct SessionDefaults {
-    private var userDefaults: UserDefaults {
-        return UserDefaults(suiteName: Bundle.main.appGroupID()) ?? .standard
-    }
-
-    private var sessionDefaults: [String: Any]? {
-        get { return userDefaults.dictionary(forKey: sessionID) }
-        set { userDefaults.set(newValue, forKey: sessionID) }
-    }
-
+    /**
+     This is a shared session storage with an empty string as `sessionID`.
+     Can be used for testing/preview/fallback purposes.
+     */
+    public static let fallback = SessionDefaults(sessionID: "")
     public let sessionID: String
 
     /** This property is used by the file share extension to automatically select the course of the last viewed file in the app. The use-case is that the user views the assignment's file in the app, saves it to iOS Photos app, annotates it there and shares it back to the assignment. */
@@ -178,5 +174,14 @@ public struct SessionDefaults {
             }
             sessionDefaults = defaults
         }
+    }
+
+    private var userDefaults: UserDefaults {
+        return UserDefaults(suiteName: Bundle.main.appGroupID()) ?? .standard
+    }
+
+    private var sessionDefaults: [String: Any]? {
+        get { return userDefaults.dictionary(forKey: sessionID) }
+        set { userDefaults.set(newValue, forKey: sessionID) }
     }
 }
