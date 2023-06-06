@@ -169,26 +169,6 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         }.eraseToAnyPublisher()
     }
 
-    private func getTabs(courseId: String) -> AnyPublisher<[CourseSyncEntry.Tab], Error> {
-        ReactiveStore(
-            useCase: GetContextTabs(
-                context: Context.course(courseId)
-            )
-        )
-        .getEntities()
-        .map { $0.offlineSupportedTabs() }
-        .map {
-            $0.map {
-                CourseSyncEntry.Tab(
-                    id: "\(courseId)-\($0.id)",
-                    name: $0.label,
-                    type: $0.name
-                )
-            }
-        }
-        .eraseToAnyPublisher()
-    }
-
     private func getAllFilesIfFilesTabIsEnabled(
         course: CourseSyncSelectorCourse
     ) -> AnyPublisher<CourseSyncEntry, Error> {
