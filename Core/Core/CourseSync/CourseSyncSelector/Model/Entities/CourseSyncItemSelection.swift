@@ -51,6 +51,33 @@ public struct CourseSyncItemSelection: Equatable {
         self.selectionType = selectionType
     }
 
+    init?(courseSyncEntry: CourseSyncEntry) {
+        guard courseSyncEntry.selectionState == .selected else {
+            return nil
+        }
+
+        self.id = courseSyncEntry.id
+        self.selectionType = .course
+    }
+
+    init?(courseSyncEntryTab: CourseSyncEntry.Tab) {
+        guard courseSyncEntryTab.selectionState == .selected else {
+            return nil
+        }
+
+        self.id = courseSyncEntryTab.id
+        self.selectionType = .tab
+    }
+
+    init?(courseSyncEntryFile: CourseSyncEntry.File) {
+        guard courseSyncEntryFile.selectionState == .selected else {
+            return nil
+        }
+
+        self.id = courseSyncEntryFile.id
+        self.selectionType = .file
+    }
+
     func toCourseEntrySelection(from syncEntries: [CourseSyncEntry]) -> CourseEntrySelection? {
         switch selectionType {
         case .course:
@@ -68,6 +95,31 @@ public struct CourseSyncItemSelection: Equatable {
                 return .tab(courseIndex, tabIndex)
             }
             return nil
+        }
+    }
+
+    static func make(from syncEntries: [CourseSyncEntry]) -> [CourseSyncItemSelection] {
+        syncEntries.reduce(into: []) { partialResult, syncEntry in
+            if let courseSelection = CourseSyncItemSelection(courseSyncEntry: syncEntry) {
+                partialResult.append(courseSelection)
+                // If the whole course is selected then we don't need to map tabs or files
+                return
+            }
+
+            partialResult.append(contentsOf: syncEntry.tabs.compactMap {
+                CourseSyncItemSelection(courseSyncEntryTab: $0)
+            })
+
+            let isFilesTabSelected = syncEntry.tabs.contains(where: { $0.type == .files && $0.selectionState == .selected })
+
+            if isFilesTabSelected {
+                // If files tab is selected we don't need to map individial files
+                return
+            }
+
+            partialResult.append(contentsOf: syncEntry.files.compactMap {
+                CourseSyncItemSelection(courseSyncEntryFile: $0)
+            })
         }
     }
 }

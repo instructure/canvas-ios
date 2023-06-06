@@ -43,7 +43,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     private let courseSyncEntries = CurrentValueSubject<[CourseSyncEntry], Error>(.init())
     private var subscriptions = Set<AnyCancellable>()
     private let courseID: String?
-    private let sessionDefaults: SessionDefaults
+    private var sessionDefaults: SessionDefaults
 
     init(courseID: String? = nil, sessionDefaults: SessionDefaults) {
         self.courseID = courseID
@@ -106,6 +106,8 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         case let .file(courseIndex, fileIndex):
             entries[courseIndex].selectFile(index: fileIndex, selectionState: selectionState)
         }
+
+        sessionDefaults.offlineSyncSelections = CourseSyncItemSelection.make(from: entries)
 
         courseSyncEntries.send(entries)
     }

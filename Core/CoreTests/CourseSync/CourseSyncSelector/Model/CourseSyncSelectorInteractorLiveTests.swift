@@ -308,6 +308,8 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         subscriptions.removeAll()
     }
 
+    // MARK: - Selection Persistency
+
     func testAppliesPreviousSelection() {
         // MARK: - GIVEN
         var session = SessionDefaults(sessionID: "oldSession")
@@ -331,6 +333,27 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
 
         // MARK: - THEN
         XCTAssertSingleOutputEquals(selectedItemID, "2")
+        session.reset()
+    }
+
+    func testSavesSelectionState() {
+        // MARK: - GIVEN
+        var session = SessionDefaults(sessionID: "emptySession")
+        XCTAssertTrue(session.offlineSyncSelections.isEmpty)
+
+        mockCourseList(courseList: [
+            .make(id: "1", tabs: []),
+            .make(id: "2", tabs: []),
+        ])
+
+        let testee = CourseSyncSelectorInteractorLive(sessionDefaults: session)
+        XCTAssertFinish(testee.getCourseSyncEntries().first())
+
+        // MARK: - WHEN
+        testee.setSelected(selection: .course(1), selectionState: .selected)
+
+        // MARK: - THEN
+        XCTAssertEqual(session.offlineSyncSelections, [.init(id: "2", selectionType: .course)])
         session.reset()
     }
 
