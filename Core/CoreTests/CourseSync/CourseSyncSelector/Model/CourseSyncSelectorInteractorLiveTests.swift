@@ -24,7 +24,7 @@ import XCTest
 
 class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
     func testCourseList() {
-        let testee = CourseSyncSelectorInteractorLive()
+        let testee = CourseSyncSelectorInteractorLive(sessionDefaults: .fallback)
         let expectation = expectation(description: "Publisher sends value")
 
         mockCourseList()
@@ -45,7 +45,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
     }
 
     func testCourseListWithCourseFilter() {
-        let testee = CourseSyncSelectorInteractorLive(courseID: "2")
+        let testee = CourseSyncSelectorInteractorLive(courseID: "2", sessionDefaults: .fallback)
         let expectation = expectation(description: "Publisher sends value")
 
         mockCourseList(courseList: [
@@ -70,7 +70,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
     }
 
     func testTabList() {
-        let testee = CourseSyncSelectorInteractorLive()
+        let testee = CourseSyncSelectorInteractorLive(sessionDefaults: .fallback)
         let expectation = expectation(description: "Publisher sends value")
 
         mockCourseList(
@@ -107,7 +107,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
     }
 
     func testFileList() {
-        let testee = CourseSyncSelectorInteractorLive()
+        let testee = CourseSyncSelectorInteractorLive(sessionDefaults: .fallback)
         let expectation = expectation(description: "Publisher sends value")
 
         let rootFolder = APIFolder.make(context_type: "Course", context_id: 1, files_count: 1, id: 0)
@@ -143,7 +143,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
     }
 
     func testFileListWhenFilesPageIsUnavailable() {
-        let testee = CourseSyncSelectorInteractorLive()
+        let testee = CourseSyncSelectorInteractorLive(sessionDefaults: .fallback)
         let expectation = expectation(description: "Publisher sends value")
 
         let rootFolder = APIFolder.make(context_type: "Course", context_id: 1, files_count: 1, id: 0)
@@ -171,7 +171,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
     }
 
     func testDefaultSelection() {
-        let testee = CourseSyncSelectorInteractorLive()
+        let testee = CourseSyncSelectorInteractorLive(sessionDefaults: .fallback)
         let expectation = expectation(description: "Publisher sends value")
 
         mockCourseList(
@@ -209,7 +209,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
     }
 
     func testSelectedEntries() {
-        let testee = CourseSyncSelectorInteractorLive()
+        let testee = CourseSyncSelectorInteractorLive(sessionDefaults: .fallback)
         let expectation = expectation(description: "Publisher sends value")
         expectation.expectedFulfillmentCount = 2
 
@@ -256,7 +256,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
     }
 
     func testCourseNameWithoutCourseFilter() {
-        let testee = CourseSyncSelectorInteractorLive()
+        let testee = CourseSyncSelectorInteractorLive(sessionDefaults: .fallback)
         var subscriptions = Set<AnyCancellable>()
 
         mockCourseList(
@@ -283,7 +283,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
     }
 
     func testCourseNameWithCourseFilter() {
-        let testee = CourseSyncSelectorInteractorLive(courseID: "2")
+        let testee = CourseSyncSelectorInteractorLive(courseID: "2", sessionDefaults: .fallback)
         var subscriptions = Set<AnyCancellable>()
 
         mockCourseList(
@@ -308,10 +308,35 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         subscriptions.removeAll()
     }
 
-    private func mockCourseList(
-        context _: Context = .course("1"),
-        courseList: [APICourse] = [.make(id: "1")]
-    ) {
+    func testAppliesPreviousSelection() {
+        // MARK: - GIVEN
+        var session = SessionDefaults(sessionID: "oldSession")
+        session.offlineSyncSelections = [.init(id: "2", selectionType: .course)]
+
+        mockCourseList(courseList: [
+            .make(id: "1", tabs: []),
+            .make(id: "2", tabs: []),
+        ])
+
+        let testee = CourseSyncSelectorInteractorLive(sessionDefaults: session)
+
+        // MARK: - WHEN
+        let selectedItemID = testee
+            .getCourseSyncEntries()
+            .map { entries in
+                entries.filter { $0.selectionState == .selected }
+            }
+            .compactMap { $0.first?.id }
+            .first()
+
+        // MARK: - THEN
+        XCTAssertSingleOutputEquals(selectedItemID, "2")
+        session.reset()
+    }
+
+    // MARK: - Helpers
+
+    private func mockCourseList(courseList: [APICourse] = [.make(id: "1")]) {
         let courseListUseCase = GetCourseSyncSelectorCourses()
         api.mock(courseListUseCase, value: courseList)
     }

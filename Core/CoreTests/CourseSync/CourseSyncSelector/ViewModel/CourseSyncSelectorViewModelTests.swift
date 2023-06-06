@@ -29,7 +29,7 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        mockSelectorInteractor = CourseSyncSelectorInteractorMock()
+        mockSelectorInteractor = CourseSyncSelectorInteractorMock(sessionDefaults: .fallback)
         mockSyncInteractor = CourseSyncInteractorMock()
         router = TestRouter()
         testee = CourseSyncSelectorViewModel(
@@ -130,7 +130,7 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
 
 class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
 
-    required init(courseID: String? = nil) {
+    required init(courseID: String? = nil, sessionDefaults: SessionDefaults) {
     }
 
     let courseSyncEntriesSubject = PassthroughSubject<[CourseSyncEntry], Error>()

@@ -21,7 +21,11 @@ import CombineExt
 import Foundation
 
 protocol CourseSyncSelectorInteractor {
-    init(courseID: String?)
+    /**
+     - parameters:
+        - sessionDefaults: The storage from where the selection states are read and written to.
+     */
+    init(courseID: String?, sessionDefaults: SessionDefaults)
     func getCourseSyncEntries() -> AnyPublisher<[CourseSyncEntry], Error>
     func observeSelectedCount() -> AnyPublisher<Int, Never>
     func observeIsEverythingSelected() -> AnyPublisher<Bool, Never>
@@ -39,9 +43,11 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     private let courseSyncEntries = CurrentValueSubject<[CourseSyncEntry], Error>(.init())
     private var subscriptions = Set<AnyCancellable>()
     private let courseID: String?
+    private let sessionDefaults: SessionDefaults
 
-    init(courseID: String? = nil) {
+    init(courseID: String? = nil, sessionDefaults: SessionDefaults) {
         self.courseID = courseID
+        self.sessionDefaults = sessionDefaults
     }
 
     // MARK: - Public Interface
@@ -64,6 +70,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
                     }
                 }
             )
+            .flatMap { self.applySelectionsFromPreviousSession($0) }
             .flatMap { _ in self.courseSyncEntries.eraseToAnyPublisher() }
             .eraseToAnyPublisher()
     }
@@ -149,6 +156,16 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     }
 
     // MARK: - Private Methods
+
+    private func applySelectionsFromPreviousSession(_ entries: [CourseSyncEntry])
+    -> AnyPublisher<[CourseSyncEntry], Never> {
+        Future<[CourseSyncEntry], Never> { [sessionDefaults, weak self] promise in
+            sessionDefaults.offlineSyncSelections
+                .compactMap { $0.toCourseEntrySelection(from: entries) }
+                .forEach { self?.setSelected(selection: $0, selectionState: .selected) }
+            promise(.success(entries))
+        }.eraseToAnyPublisher()
+    }
 
     private func getTabs(courseId: String) -> AnyPublisher<[CourseSyncEntry.Tab], Error> {
         ReactiveStore(

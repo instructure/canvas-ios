@@ -25,7 +25,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        mockInteractor = MockCourseSyncSelectorInteractor()
+        mockInteractor = MockCourseSyncSelectorInteractor(sessionDefaults: .fallback)
     }
 
     // MARK: - Properties
@@ -255,7 +255,7 @@ private class MockCourseSyncSelectorInteractor: CourseSyncSelectorInteractor {
     private(set) var lastSelected: (selection: Core.CourseEntrySelection, isSelected: Bool)?
     private(set) var lastCollapsed: (selection: Core.CourseEntrySelection, isCollapsed: Bool)?
 
-    required init(courseID: String? = nil) {
+    required init(courseID: String? = nil, sessionDefaults: SessionDefaults) {
     }
 
     func getCourseSyncEntries() -> AnyPublisher<[Core.CourseSyncEntry], Error> {
