@@ -35,6 +35,7 @@ public struct MessageDetailsView: View {
                     switch model.state {
                     case .data:
                         detailsView
+                            .listRowBackground(SwiftUI.EmptyView())
                     case .empty, .error:
                         Text("There was an error loading the message. Pull to refresh to try again.")
                     case .loading:
@@ -54,7 +55,7 @@ public struct MessageDetailsView: View {
         }
         .background(Color.backgroundLightest)
         .navigationTitle(model.title)
-        // .navigationBarItems(trailing: messageUsersButton)
+        .navigationBarItems(trailing: moreButton)
     }
 
     private var loadingIndicator: some View {
@@ -82,6 +83,18 @@ public struct MessageDetailsView: View {
             Spacer()
             starButton
         }
+    }
+
+    private var moreButton: some View {
+        Button(action: {
+            
+        }, label: {
+            Image
+                .moreLine
+                .foregroundColor(Color(Brand.shared.navTextColor))
+        })
+        .identifier("MessageDetails.profileButton")
+        .accessibility(label: Text("More options", bundle: .core))
     }
 
     private var starButton: some View {

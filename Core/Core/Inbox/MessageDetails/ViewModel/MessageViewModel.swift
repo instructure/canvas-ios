@@ -25,6 +25,9 @@ public struct MessageViewModel: Identifiable, Equatable {
     public let date: String
     public let avatarName: String
     public let avatarURL: URL?
+    public let attachments: [File]
+    public let mediaComment: MediaComment?
+    public let showAttachments: Bool
 
     public init(item: ConversationMessage, myID: String, userMap: [String: ConversationParticipant]) {
         self.id = item.id
@@ -37,5 +40,9 @@ public struct MessageViewModel: Identifiable, Equatable {
         self.date = item.createdAt?.relativeDateTimeString ?? ""
         self.avatarURL = userMap[ item.authorID ]?.avatarURL
         self.avatarName = userMap[ item.authorID ]?.name ?? ""
+
+        self.attachments = item.attachments
+        self.mediaComment = item.mediaComment
+        self.showAttachments = !attachments.isEmpty || mediaComment != nil
     }
 }

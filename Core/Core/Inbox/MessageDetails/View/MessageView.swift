@@ -26,27 +26,29 @@ public struct MessageView: View {
     }
 
     public var body: some View {
-        VStack {
+        VStack(alignment: .leading, spacing: 16) {
             headerView
             bodyView
             Button(action: reply, label: {
                 Text("Reply")
-                    .font(.medium16)
+                    .font(.regular16)
                     .foregroundColor(Color(Brand.shared.linkColor))
             })
         }
     }
 
     private var headerView: some View {
-        HStack {
-            Avatar(name: model.avatarName, url: model.avatarURL)
-                .frame(width: 36, height: 36)
-                .padding(.top, 5)
+        HStack(alignment: .top, spacing: 8) {
+            Avatar(name: model.avatarName, url: model.avatarURL, size: 36)
             VStack(alignment: .leading) {
                 Text(model.author)
                     .font(.regular16)
+                    .foregroundColor(.textDarkest)
+                    .lineLimit(1)
+
                 Text(model.date)
-                    .font(.regular14)
+                    .foregroundColor(.textDark)
+                    .font(.regular12)
             }
             Button(action: reply, label: {
                 Image
@@ -70,9 +72,14 @@ public struct MessageView: View {
     }
 
     private var bodyView: some View {
-        Text(model.body)
-            .font(.regular16)
-        //Attachments
+        VStack(alignment: .leading, spacing: 16) {
+            Text(model.body)
+                .font(.regular16)
+            if model.showAttachments {
+                AttachmentCardsView(attachments: model.attachments, mediaComment: model.mediaComment)
+                    .frame(height: 104)
+            }
+        }
     }
 
     private func reply() {

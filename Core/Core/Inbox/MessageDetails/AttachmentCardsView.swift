@@ -16,4 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import SwiftUI
+
+public struct AttachmentCardsView: UIViewControllerRepresentable {
+    public let attachments: [File]
+    public let mediaComment: MediaComment?
+
+    public init(attachments: [File], mediaComment: MediaComment?) {
+        self.attachments = attachments
+        self.mediaComment = mediaComment
+    }
+
+    public func makeUIViewController(context: Self.Context) -> AttachmentCardsViewController {
+        AttachmentCardsViewController.create()
+    }
+
+    public func updateUIViewController(_ uiViewController: AttachmentCardsViewController, context: Self.Context) {
+        uiViewController.updateAttachments(attachments, mediaComment: mediaComment)
+    }
+}
