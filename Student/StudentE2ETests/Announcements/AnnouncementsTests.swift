@@ -104,6 +104,8 @@ class AnnouncementsTests: E2ETestCase {
     }
 }
 
+// MARK: Tests without DataSeeder (to be upgraded: MBL-16825)
+
 class OldAnnouncementE2ETests: CoreUITestCase {
     func testPreviewAnnouncementAttachment() {
         Dashboard.courseCard(id: "262").tapUntil {

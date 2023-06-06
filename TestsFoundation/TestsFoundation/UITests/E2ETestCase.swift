@@ -34,7 +34,7 @@ open class E2ETestCase: CoreUITestCase {
     open func findSchool(_ dsUser: DSUser) {
         LoginStart.findSchoolButton.tap()
         LoginFindSchool.searchField.pasteText("\(user.host)")
-        LoginFindSchool.searchField.typeText("\r")
+        LoginFindSchool.keyboardGoButton.tap()
     }
 
     open func loginAfterSchoolFound(_ dsUser: DSUser, password: String = "password") {

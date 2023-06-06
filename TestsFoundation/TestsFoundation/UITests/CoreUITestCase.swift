@@ -279,7 +279,8 @@ open class CoreUITestCase: XCTestCase {
             LoginStart.lastLoginButton.tap()
         } else {
             LoginStart.findSchoolButton.tap()
-            LoginFindSchool.searchField.typeText("\(user.host)\r")
+            LoginFindSchool.searchField.typeText("\(user.host)")
+            LoginFindSchool.keyboardGoButton.tap()
         }
         LoginWeb.emailField.waitToExist(60)
         LoginWeb.emailField.typeText(user.username)

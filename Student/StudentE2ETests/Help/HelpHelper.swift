@@ -31,6 +31,7 @@ public class HelpHelper: BaseHelper {
 
     public static var browserURL: String {
         safariApp.activate()
+        safariApp.find(id: "ReloadButton").waitToExist()
         safariApp.find(id: "TabBarItemTitle").tap()
         let url = safariApp.find(id: "URL").waitToExist().value()
         return url!
