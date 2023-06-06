@@ -27,7 +27,28 @@ extension CourseSyncAssignmentsInteractor {
 final class CourseSyncAssignmentsInteractorLive: CourseSyncAssignmentsInteractor, CourseSyncContentInteractor {
     func getContent(courseId: String) -> AnyPublisher<Void, Error> {
         ReactiveStore(
-            useCase: GetAssignmentGroups(courseID: courseId)
+            useCase: GetAssignmentsByGroup(courseID: courseId)
+        )
+        .getEntities()
+        .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
+        .filter { $0.submission != nil }
+        .flatMap { Self.getSubmissionComments(courseID: courseId, assignmentID: $0.id, userID: $0.submission!.userID) }
+        .collect()
+        .map { _ in () }
+        .eraseToAnyPublisher()
+    }
+
+    private static func getSubmissionComments(
+        courseID: String,
+        assignmentID: String,
+        userID: String
+    ) -> AnyPublisher<Void, Error> {
+        ReactiveStore(
+            useCase: GetSubmissionComments(
+                context: .course(courseID),
+                assignmentID: assignmentID,
+                userID: userID
+            )
         )
         .getEntities()
         .map { _ in () }

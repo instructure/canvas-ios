@@ -26,7 +26,31 @@ class CourseSyncAssignmentsInteractorLiveTests: CoreTestCase {
         let testee = CourseSyncAssignmentsInteractorLive()
         let expectation = expectation(description: "Publisher sends value")
 
-        api.mock(GetAssignmentGroups(courseID: "1"), value: [.make(assignments: [.make()])])
+        api.mock(
+            GetAssignmentsByGroup(courseID: "1"),
+            value: [
+                APIAssignmentGroup.make(
+                    assignments: [
+                        .make(),
+                    ]
+                ),
+            ]
+        )
+        api.mock(
+            GetSubmissionComments(
+                context: .course("1"),
+                assignmentID: "1",
+                userID: "1"
+            ),
+            value: APISubmission.make(
+                assignment_id: "1",
+                id: "1",
+                submission_comments: [
+                    .make(id: "1", comment: "First comment"),
+                    .make(id: "2", comment: "Second comment"),
+                ]
+            )
+        )
 
         let subscription = testee.getContent(courseId: "1")
             .sink(
@@ -40,10 +64,21 @@ class CourseSyncAssignmentsInteractorLiveTests: CoreTestCase {
         let assignmentList: [Assignment] = databaseClient.fetch(nil, sortDescriptors: nil)
         XCTAssertEqual(assignmentList.count, 1)
         XCTAssertEqual(assignmentList[0].id, "1")
+
+        let submissionList: [Submission] = databaseClient.fetch(nil, sortDescriptors: nil)
+        XCTAssertEqual(submissionList.count, 1)
+
+        let submissionCommentList: [SubmissionComment] = databaseClient.fetch(
+            nil,
+            sortDescriptors: [NSSortDescriptor(key: #keyPath(SubmissionComment.id), ascending: true)]
+        )
+        XCTAssertEqual(submissionCommentList.count, 2)
+        XCTAssertEqual(submissionCommentList[0].comment, "First comment")
+        XCTAssertEqual(submissionCommentList[1].comment, "Second comment")
         subscription.cancel()
     }
 
-    func testErrorHandling() {
+    func testAssignmentErrorHandling() {
         let testee = CourseSyncAssignmentsInteractorLive()
         let expectation = expectation(description: "Publisher sends value")
 
@@ -65,6 +100,52 @@ class CourseSyncAssignmentsInteractorLiveTests: CoreTestCase {
         waitForExpectations(timeout: 0.1)
         let assignmentList: [Assignment] = databaseClient.fetch(nil, sortDescriptors: nil)
         XCTAssertEqual(assignmentList.count, 0)
+        subscription.cancel()
+    }
+
+    func testSubmissionCommentErrorHandling() {
+        let testee = CourseSyncAssignmentsInteractorLive()
+        let expectation = expectation(description: "Publisher sends value")
+
+        api.mock(
+            GetAssignmentsByGroup(courseID: "1"),
+            value: [
+                APIAssignmentGroup.make(
+                    assignments: [
+                        .make(),
+                    ]
+                ),
+            ]
+        )
+
+        api.mock(
+            GetSubmissionComments(
+                context: .course("1"),
+                assignmentID: "1",
+                userID: "1"
+            ),
+            error: NSError.instructureError("Submission comment not found")
+        )
+
+        let subscription = testee.getContent(courseId: "1")
+            .sink(
+                receiveCompletion: { completion in
+                    switch completion {
+                    case .failure:
+                        expectation.fulfill()
+                    default:
+                        break
+                    }
+                },
+                receiveValue: { _ in }
+            )
+
+        waitForExpectations(timeout: 0.1)
+        let submissionCommentList: [SubmissionComment] = databaseClient.fetch(
+            nil,
+            sortDescriptors: [NSSortDescriptor(key: #keyPath(SubmissionComment.id), ascending: true)]
+        )
+        XCTAssertEqual(submissionCommentList.count, 0)
         subscription.cancel()
     }
 }
