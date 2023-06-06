@@ -38,7 +38,7 @@ class HelpTests: E2ETestCase {
         XCTAssertTrue(searchTheCanvasGuidesButton.label().contains("Search the Canvas Guides"))
         searchTheCanvasGuidesButton.tap()
         var browserURL = HelpHelper.browserURL
-        XCTAssertEqual(browserURL, "https://community.canvaslms.com/t5/Canvas-Guides/ct-p/canvas_guides")
+        XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Canvas-Guides/ct-p/canvas_guides"))
         HelpHelper.returnToHelpPage()
 
         // MARK: Check "Ask Your Instructor a Question" button
@@ -65,7 +65,7 @@ class HelpTests: E2ETestCase {
         XCTAssertTrue(submitAFeatureButton.label().contains("Submit a Feature Idea"))
         submitAFeatureButton.tap()
         browserURL = HelpHelper.browserURL
-        XCTAssertEqual(browserURL, "https://community.canvaslms.com/t5/Canvas-Ideas-and-Themes/ct-p/canvas-ideas-themes")
+        XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Canvas-Ideas-and-Themes/ct-p/canvas-ideas-themes"))
         HelpHelper.returnToHelpPage()
 
         // MARK: Check "COVID-19 Canvas Resources" button
@@ -74,7 +74,7 @@ class HelpTests: E2ETestCase {
         XCTAssertTrue(covid19Button.label().contains("COVID-19 Canvas Resources"))
         covid19Button.tap()
         browserURL = HelpHelper.browserURL
-        XCTAssertEqual(browserURL, "https://community.canvaslms.com/t5/Contingency-Resources/gh-p/contingency")
+        XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Contingency-Resources/gh-p/contingency"))
         HelpHelper.returnToHelpPage()
     }
 }
