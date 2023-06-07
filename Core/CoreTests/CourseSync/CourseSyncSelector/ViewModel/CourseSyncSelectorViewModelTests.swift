@@ -113,7 +113,7 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
             return XCTFail()
         }
 
-        XCTAssertEqual(item.id, "course-test")
+        XCTAssertEqual(item.id, "test")
     }
 
     func testUpdatesNavBarSubtitle() {
