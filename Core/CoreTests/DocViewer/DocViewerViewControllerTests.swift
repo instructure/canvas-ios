@@ -26,7 +26,8 @@ class DocViewerViewControllerTests: CoreTestCase {
         let controller = DocViewerViewController.create(
             filename: "instructure.pdf",
             previewURL: url, fallbackURL: url,
-            navigationItem: navigationItem
+            navigationItem: navigationItem,
+            offlineService: MockOfflineServiceDisabled()
         )
         controller.session = session
         controller.isAnnotatable = true
@@ -46,6 +47,15 @@ class DocViewerViewControllerTests: CoreTestCase {
             loading = downloadURL
         }
     }
+
+    class MockOfflineServiceDisabled: OfflineService {
+        func isOfflineModeEnabled() -> Bool { false }
+    }
+
+    class MockOfflineServiceEnabled: OfflineService {
+        func isOfflineModeEnabled() -> Bool { true }
+    }
+
     lazy var session: MockSession = {
         let session = MockSession { [weak self] in
             self?.controller.sessionIsReady()
@@ -108,6 +118,24 @@ class DocViewerViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         XCTAssertNil(controller.pdf.document)
         XCTAssertEqual(controller.fallbackUsed, true)
+    }
+
+    func testLoadFallbackWhenOfflineModeIsEnabled() {
+        controller = DocViewerViewController.create(
+            filename: "instructure.pdf",
+            previewURL: url, fallbackURL: url,
+            navigationItem: navigationItem,
+            offlineService: MockOfflineServiceEnabled()
+        )
+        controller.session = session
+        controller.isAnnotatable = true
+
+        session.error = APIDocViewerError.noData
+        controller.view.layoutIfNeeded()
+        XCTAssertNil(router.presented)
+        XCTAssertEqual(controller.fallbackUsed, false)
+        XCTAssertEqual(controller.loadingView.isHidden, true)
+        XCTAssertEqual(navigationItem.rightBarButtonItems, nil)
     }
 
     func testAnnotationContextMenuForFileAnnotations() {

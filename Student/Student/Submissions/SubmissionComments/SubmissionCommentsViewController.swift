@@ -25,6 +25,7 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var addCommentBorderView: UIView!
     @IBOutlet weak var addCommentButton: UIButton!
     @IBOutlet weak var addCommentTextView: UITextView!
+    @IBOutlet weak var addCommentTextViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var addCommentView: UIView!
     @IBOutlet weak var addMediaButton: UIButton!
     @IBOutlet weak var addMediaHeight: NSLayoutConstraint!
@@ -279,6 +280,7 @@ extension SubmissionCommentsViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         addCommentButton.isEnabled = !(textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
         addCommentButton.alpha = addCommentButton.isEnabled ? 1 : 0.5
+        textView.adjustHeight(to: 10, heightConstraints: addCommentTextViewHeightConstraint)
     }
 }
 

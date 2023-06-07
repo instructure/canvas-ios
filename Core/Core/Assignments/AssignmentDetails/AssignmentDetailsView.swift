@@ -19,7 +19,7 @@
 import SwiftUI
 
 /// Currently only suitable for Teacher app
-public struct AssignmentDetailsView: View {
+public struct AssignmentDetailsView: View, ScreenViewTrackable {
     let assignmentID: String
     let courseID: String
 
@@ -29,12 +29,19 @@ public struct AssignmentDetailsView: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
+    public let screenViewTrackingParameters: ScreenViewTrackingParameters
+
     public init(courseID: String, assignmentID: String) {
         self.assignmentID = assignmentID
         self.courseID = courseID
 
         assignment = AppEnvironment.shared.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID))
         course = AppEnvironment.shared.subscribe(GetCourse(courseID: courseID))
+
+        screenViewTrackingParameters = ScreenViewTrackingParameters(
+            eventName: "/courses/\(courseID)/assignments/\(assignmentID)"
+        )
+
     }
 
     public var body: some View {

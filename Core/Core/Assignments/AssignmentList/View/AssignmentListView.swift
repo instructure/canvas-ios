@@ -28,7 +28,7 @@ public struct AssignmentListView: View, ScreenViewTrackable {
     public init(viewModel: AssignmentListViewModel) {
         self.viewModel = viewModel
         screenViewTrackingParameters = ScreenViewTrackingParameters(
-            eventName: "/courses/\(viewModel.courseID))/assignments"
+            eventName: "/courses/\(viewModel.courseID)/assignments"
         )
     }
 

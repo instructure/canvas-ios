@@ -18,9 +18,10 @@
 
 import SwiftUI
 
-public struct AssignmentEditorView: View {
+public struct AssignmentEditorView: View, ScreenViewTrackable {
     let courseID: String
     let assignmentID: String
+    public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
@@ -45,6 +46,9 @@ public struct AssignmentEditorView: View {
     public init(courseID: String, assignmentID: String) {
         self.courseID = courseID
         self.assignmentID = assignmentID
+        screenViewTrackingParameters = ScreenViewTrackingParameters(
+            eventName: "/courses/\(courseID)/assignments/\(assignmentID)/edit"
+        )
     }
 
     public var body: some View {
