@@ -42,6 +42,7 @@ struct NotificationCard: View {
                         HStack { Spacer() }
                         Text(notification.subject)
                             .font(.semibold16).foregroundColor(.textDarkest).multilineTextAlignment(.leading)
+                            .accessibilityIdentifier("AccountNotification.\(notification.id).title")
                         if !isExpanded {
                             Text("Tap to view announcement", bundle: .core)
                                 .font(.regular14).foregroundColor(.textDark)
@@ -66,6 +67,7 @@ struct NotificationCard: View {
                         }
                         .frameToFit()
                         .accessibility(hidden: !isExpanded)
+                        .identifier("AccountNotification.\(notification.id).body")
                         .frame(maxHeight: isExpanded ? nil : 0, alignment: .top)
                         .clipped()
                         .padding(.trailing, 1)

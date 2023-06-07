@@ -134,6 +134,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         // Can't put in storyboard because that breaks cookie sharing
         // & discussion view is cached without verifiers on images
         webViewPlaceholder.addSubview(webView)
+        webView.accessibilityIdentifier = "DiscussionDetails.body"
         webView.pinWithThemeSwitchButton(inside: webViewPlaceholder)
         webView.heightAnchor.constraint(equalToConstant: 100).isActive = true
 
