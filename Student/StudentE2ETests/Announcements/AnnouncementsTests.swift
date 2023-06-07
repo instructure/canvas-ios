@@ -24,7 +24,7 @@ class AnnouncementsTests: E2ETestCase {
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
         let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
+        _ = seeder.enrollStudent(student, in: course)
 
         // MARK: Create some announcements and get the user logged in
         let announcements = AnnouncementsHelper.createAnnouncements(course: course, count: 3)
@@ -50,14 +50,14 @@ class AnnouncementsTests: E2ETestCase {
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
         let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
+        _ = seeder.enrollStudent(student, in: course)
 
         // MARK: Create an announcement and get the user logged in
         let announcement = AnnouncementsHelper.createAnnouncements(course: course)[0]
         logInDSUser(student)
 
         // MARK: Navigate to Announcement page and check the title and message of the announcement
-        AnnouncementsHelper.navigateToAnnouncementsPage(course: course, pull_to_refresh: true)
+        AnnouncementsHelper.navigateToAnnouncementsPage(course: course, shouldPullToRefresh: true)
 
         let firstAnnouncement = AnnouncementList.cell(index: 0).waitToExist()
         XCTAssertTrue(firstAnnouncement.isVisible)
@@ -77,7 +77,7 @@ class AnnouncementsTests: E2ETestCase {
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
         let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
+        _ = seeder.enrollStudent(student, in: course)
 
         // MARK: Post an account notification and get the user logged in
         let globalAnnouncement = AnnouncementsHelper.postAccountNotification()
