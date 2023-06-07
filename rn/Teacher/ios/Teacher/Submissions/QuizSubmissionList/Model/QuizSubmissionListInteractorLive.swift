@@ -24,6 +24,8 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
     public var state = CurrentValueSubject<StoreState, Never>(.loading)
     public var submissions = CurrentValueSubject<[QuizSubmissionListItem], Never>([])
     public var quizTitle = CurrentValueSubject<String, Never>("")
+    public let courseID: String
+    public let quizID: String
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
@@ -43,6 +45,9 @@ public class QuizSubmissionListInteractorLive: QuizSubmissionListInteractor {
         self.submissionsStore = env.subscribe(GetAllQuizSubmissions(courseID: courseID, quizID: quizID))
         self.quizStore = env.subscribe(GetQuiz(courseID: courseID, quizID: quizID))
         self.courseStore = env.subscribe(GetCourse(courseID: courseID))
+
+        self.courseID = courseID
+        self.quizID = quizID
 
         Publishers
             .CombineLatest(usersStore.allObjects, submissionsStore.allObjects)

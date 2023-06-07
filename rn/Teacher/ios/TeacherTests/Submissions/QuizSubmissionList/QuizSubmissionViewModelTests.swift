@@ -83,6 +83,8 @@ private class QuizSubmissionListInteractorMock: QuizSubmissionListInteractor {
     var state = CurrentValueSubject<StoreState, Never>(.data)
     var submissions = CurrentValueSubject<[QuizSubmissionListItem], Never>([])
     var quizTitle = CurrentValueSubject<String, Never>("QuizTitle")
+    var courseID: String = ""
+    var quizID: String = ""
 
     private(set) var createMessageUserInfoCalled = false
     private(set) var refreshCalled = false
