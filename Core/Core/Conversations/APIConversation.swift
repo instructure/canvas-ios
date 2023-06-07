@@ -258,6 +258,27 @@ public struct PutConversationRequest: APIRequestable {
     }
 }
 
+public struct StarConversationRequest: APIRequestable {
+    public typealias Response = APIConversation
+    public struct Body: Encodable, Equatable {
+        let conversation: ConversationContainer
+    }
+
+    let id: String
+    let starred: Bool
+    public var path: String { "conversations/\(id)" }
+    public let method = APIMethod.put
+
+    struct ConversationContainer: Encodable, Equatable {
+        let id: String
+        let starred: Bool
+    }
+
+    public var body: Body? {
+        return Body(conversation: ConversationContainer(id: id, starred: starred))
+    }
+}
+
 public struct PostAddMessageRequest: APIRequestable {
     public typealias Response = APIConversation
     public struct Body: Encodable {

@@ -35,7 +35,7 @@ public struct MessageViewModel: Identifiable, Equatable {
 
         let from = userMap[ item.authorID ]?.displayName ?? ""
         let to = item.localizedAudience(myID: myID, userMap: userMap)
-        self.author = from + to
+        self.author = from + " " + to
 
         self.date = item.createdAt?.relativeDateTimeString ?? ""
         self.avatarURL = userMap[ item.authorID ]?.avatarURL

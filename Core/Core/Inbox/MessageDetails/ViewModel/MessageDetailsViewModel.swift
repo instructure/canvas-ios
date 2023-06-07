@@ -23,10 +23,13 @@ class MessageDetailsViewModel: ObservableObject {
     @Published public private(set) var state: StoreState = .loading
     @Published public private(set) var messages: [MessageViewModel] = []
     @Published public private(set) var subject: String = ""
+    @Published public private(set) var starred: Bool = false
+
     public let title = NSLocalizedString("Message Details", comment: "")
 
     // MARK: - Inputs
     public let refreshDidTrigger = PassthroughSubject<() -> Void, Never>()
+    public let starDidTap = PassthroughSubject<Void, Never>()
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
@@ -38,13 +41,16 @@ class MessageDetailsViewModel: ObservableObject {
         self.myID = myID
 
         setupOutputBindings()
-        // setupInputBindings(router: router)
+        setupInputBindings(router: router)
     }
 
     private func setupOutputBindings() {
         interactor.state
                 .assign(to: &$state)
         interactor.subject
+            .map { subject in
+                subject.isEmpty ? NSLocalizedString("No Subject", comment: "") : subject
+            }
             .assign(to: &$subject)
         interactor.messages
             .map { messages in
@@ -53,5 +59,26 @@ class MessageDetailsViewModel: ObservableObject {
                 }
             }
             .assign(to: &$messages)
+        interactor.starred
+            .assign(to: &$starred)
+    }
+
+    private func setupInputBindings(router: Router) {
+        let interactor = self.interactor
+        refreshDidTrigger
+            .delay(for: .seconds(1), scheduler: RunLoop.main)
+            .flatMap { refreshCompletion in
+                interactor
+                    .refresh()
+                    .receive(on: DispatchQueue.main)
+                    .handleEvents(receiveOutput: { refreshCompletion() })
+            }
+            .sink()
+            .store(in: &subscriptions)
+        starDidTap
+            .map { _ in
+                interactor.updateStarred(starred: !self.starred) }
+            .sink()
+            .store(in: &subscriptions)
     }
 }

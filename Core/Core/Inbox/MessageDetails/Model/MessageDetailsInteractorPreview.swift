@@ -26,6 +26,7 @@ public class MessageDetailsInteractorPreview: MessageDetailsInteractor {
     public var state = CurrentValueSubject<StoreState, Never>(.loading)
     public var subject = CurrentValueSubject<String, Never>("")
     public var messages = CurrentValueSubject<[ConversationMessage], Never>([])
+    public var starred = CurrentValueSubject<Bool, Never>(true)
     public var userMap: [String: ConversationParticipant] = [:]
 
     public init(env: AppEnvironment, subject: String, messages: [ConversationMessage] = []) {
@@ -44,6 +45,15 @@ public class MessageDetailsInteractorPreview: MessageDetailsInteractor {
     public func refresh() -> Future<Void, Never> {
         Future<Void, Never> { promise in
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                promise(.success(()))
+            }
+        }
+    }
+
+    public func updateStarred(starred: Bool) -> Future<Void, Never> {
+        Future<Void, Never> { promise in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.starred.send(!starred)
                 promise(.success(()))
             }
         }

@@ -87,7 +87,7 @@ public struct MessageDetailsView: View {
 
     private var moreButton: some View {
         Button(action: {
-            
+
         }, label: {
             Image
                 .moreLine
@@ -98,13 +98,17 @@ public struct MessageDetailsView: View {
     }
 
     private var starButton: some View {
-        //TODO logic
-        Image
-            .starLine
-            .size(30)
-            .foregroundColor(.textDark)
-            .padding(.leading, 6)
-            .accessibilityHidden(true)
+        Button(action: {
+            model.starDidTap.send()
+        }, label: {
+            let star = model.starred ? Image.starSolid : Image.starLine
+            star
+                .size(30)
+                .foregroundColor(.textDark)
+                .padding(.leading, 6)
+                .accessibilityHidden(true)
+        })
+
     }
 
     private var messageList: some View {

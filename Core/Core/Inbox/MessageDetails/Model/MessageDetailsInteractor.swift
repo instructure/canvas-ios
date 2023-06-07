@@ -23,8 +23,10 @@ public protocol MessageDetailsInteractor {
     var state: CurrentValueSubject<StoreState, Never> { get }
     var subject: CurrentValueSubject<String, Never> { get }
     var messages: CurrentValueSubject<[ConversationMessage], Never> { get }
+    var starred: CurrentValueSubject<Bool, Never> { get }
     var userMap: [String: ConversationParticipant] { get }
 
     // MARK: - Inputs
     func refresh() -> Future<Void, Never>
+    func updateStarred(starred: Bool) -> Future<Void, Never>
 }

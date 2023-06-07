@@ -23,13 +23,18 @@ public class MessageDetailsInteractorLive: MessageDetailsInteractor {
     public var state = CurrentValueSubject<StoreState, Never>(.loading)
     public var subject = CurrentValueSubject<String, Never>("")
     public var messages = CurrentValueSubject<[ConversationMessage], Never>([])
+    public var starred = CurrentValueSubject<Bool, Never>(false)
     public var userMap: [String: ConversationParticipant] = [:]
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
+    private let env: AppEnvironment
+    private let conversationID: String
     private let conversationStore: Store<GetConversation>
 
     public init(env: AppEnvironment, conversationID: String) {
+        self.env = env
+        self.conversationID = conversationID
         self.conversationStore = env.subscribe(GetConversation(id: conversationID))
 
         conversationStore
@@ -54,11 +59,33 @@ public class MessageDetailsInteractorLive: MessageDetailsInteractor {
             .subscribe(messages)
             .store(in: &subscriptions)
 
+        conversationStore
+            .allObjects
+            .map {
+                $0.first?.starred ?? false
+            }
+            .subscribe(starred)
+            .store(in: &subscriptions)
+
         conversationStore.refresh()
     }
 
     // MARK: - Inputs
     public func refresh() -> Future<Void, Never> {
         conversationStore.refreshWithFuture(force: true)
+    }
+
+    public func updateStarred(starred: Bool) -> Future<Void, Never> {
+        Future { [weak self] promise in
+            guard let self else {
+                return promise(.success(()))
+            }
+            let request = StarConversationRequest(id: self.conversationID, starred: starred)
+            self.env.api.makeRequest(request, callback: { _, _, _ in
+                self.conversationStore.refresh(force: true) { _ in
+                    return promise(.success(()))
+                }
+            })
+        }
     }
 }
