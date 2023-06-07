@@ -70,9 +70,9 @@ class CourseSyncProgressViewModelTests: XCTestCase {
 
     func testUpdateStateSucceeds() {
         let mockItem = CourseSyncEntry(name: "",
-                                               id: "test",
-                                               tabs: [],
-                                               files: [])
+                                       id: "test",
+                                       tabs: [],
+                                       files: [])
         mockProgressInteractor.courseSyncEntriesSubject.send([mockItem])
         waitUntil(shouldFail: true) {
             testee.state == .data
@@ -83,6 +83,6 @@ class CourseSyncProgressViewModelTests: XCTestCase {
             return XCTFail()
         }
 
-        XCTAssertEqual(item.id, "course-test")
+        XCTAssertEqual(item.id, "test")
     }
 }
