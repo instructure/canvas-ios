@@ -18,31 +18,40 @@
 
 import TestsFoundation
 
-class DSDashboardE2ETests: E2ETestCase {
+class DashboardTests: E2ETestCase {
     func testDashboard() {
         let users = seeder.createUsers(1)
         let course1 = seeder.createCourse()
         let student = users[0]
 
-        // Check for empty dashboard
+        // MARK: Check for empty dashboard
         logInDSUser(student)
-        app.find(label: "No Courses").waitToExist()
+        let noCoursesLabel = app.find(label: "No Courses").waitToExist()
+        XCTAssertTrue(noCoursesLabel.isVisible)
 
-        // Check for course1
-        seeder.enrollStudent(student, in: course1)
+        // MARK: Check for course1
+        _ = seeder.enrollStudent(student, in: course1)
         pullToRefresh()
-        Dashboard.courseCard(id: course1.id).waitToExist()
+        let courseCard1 = Dashboard.courseCard(id: course1.id).waitToExist()
+        XCTAssertTrue(courseCard1.isVisible)
 
-        // Check for course2
+        // MARK: Check for course2
         let course2 = seeder.createCourse()
-        seeder.enrollStudent(student, in: course2)
+        _ = seeder.enrollStudent(student, in: course2)
         pullToRefresh()
-        Dashboard.courseCard(id: course2.id).waitToExist()
+        let courseCard2 = Dashboard.courseCard(id: course2.id).waitToExist()
+        XCTAssertTrue(courseCard1.isVisible)
 
-        // Select a favorite course and check for dashboard updating
-        Dashboard.editButton.tap()
+        // MARK: Select a favorite course and check for dashboard updating
+        let dashboardEditButton = Dashboard.editButton.waitToExist()
+        XCTAssertTrue(dashboardEditButton.isVisible)
+
+        dashboardEditButton.tap()
         DashboardEdit.toggleFavorite(id: course2.id)
-        NavBar.backButton.tap()
+        let navBarBackButton = NavBar.backButton.waitToExist()
+        XCTAssertTrue(navBarBackButton.isVisible)
+
+        navBarBackButton.tap()
         pullToRefresh()
         XCTAssertTrue(Dashboard.courseCard(id: course2.id).exists())
         XCTAssertFalse(Dashboard.courseCard(id: course1.id).exists())
@@ -50,15 +59,25 @@ class DSDashboardE2ETests: E2ETestCase {
 
     func testAnnouncementBelowInvite() {
         let student = seeder.createUser()
-        let course1 = seeder.createCourse()
+        let course = seeder.createCourse()
 
-        // Check for empty dashboard
+        // MARK: Check for empty dashboard
         logInDSUser(student)
         app.find(label: "No Courses").waitToExist()
 
-        CourseInvitation.acceptButton(id: "998").waitToExist()
-        AccountNotifications.toggleButton(id: "2").waitToExist()
-        XCTAssertLessThan(CourseInvitation.acceptButton(id: "998").frame().maxY, AccountNotifications.toggleButton(id: "2").frame().minY)
+        // MARK: Create an enrollment and an announcement
+        let enrollment = seeder.enrollStudent(student, in: course, state: .invited)
+        let announcement = AnnouncementsHelper.postAccountNotification()
+        BaseHelper.pullToRefresh()
+
+        // MARK: Check visibility and order of the enrollment and the announcement
+        let courseAcceptButton = CourseInvitation.acceptButton(id: enrollment.id).waitToExist()
+        XCTAssertTrue(courseAcceptButton.isVisible)
+
+        let notificationToggleButton = AccountNotifications.toggleButton(id: announcement.id).waitToExist()
+        XCTAssertTrue(notificationToggleButton.isVisible)
+
+        XCTAssertLessThan(courseAcceptButton.frame().maxY, notificationToggleButton.frame().minY)
     }
 
     func testNavigateToDashboard() throws {

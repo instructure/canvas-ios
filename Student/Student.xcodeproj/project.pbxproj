@@ -152,7 +152,7 @@
 		C935D41E26DD1BDE00C940F7 /* NewQuizzesE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C935D41D26DD1BDE00C940F7 /* NewQuizzesE2ETests.swift */; };
 		C935D43026E0EAE700C940F7 /* K5ScheduleE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C935D42F26E0EAE700C940F7 /* K5ScheduleE2ETests.swift */; };
 		C935D43D26E5F5AF00C940F7 /* K5GradesE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C935D43C26E5F5AF00C940F7 /* K5GradesE2ETests.swift */; };
-		C95E967127C62DCC00DAAB4A /* DSDashboardE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95E967027C62DCC00DAAB4A /* DSDashboardE2ETests.swift */; };
+		C95E967127C62DCC00DAAB4A /* DashboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C95E967027C62DCC00DAAB4A /* DashboardTests.swift */; };
 		C99425E2284096300078A3BD /* GradeTotalsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99425E1284096300078A3BD /* GradeTotalsTests.swift */; };
 		C99425EB2847821D0078A3BD /* GradingStandardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99425EA2847821D0078A3BD /* GradingStandardsTests.swift */; };
 		C9A3C04D26A03B9900DAE8E1 /* K5StudentE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3C04C26A03B9900DAE8E1 /* K5StudentE2ETests.swift */; };
@@ -745,7 +745,7 @@
 		C935D41D26DD1BDE00C940F7 /* NewQuizzesE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewQuizzesE2ETests.swift; sourceTree = "<group>"; };
 		C935D42F26E0EAE700C940F7 /* K5ScheduleE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleE2ETests.swift; sourceTree = "<group>"; };
 		C935D43C26E5F5AF00C940F7 /* K5GradesE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradesE2ETests.swift; sourceTree = "<group>"; };
-		C95E967027C62DCC00DAAB4A /* DSDashboardE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSDashboardE2ETests.swift; sourceTree = "<group>"; };
+		C95E967027C62DCC00DAAB4A /* DashboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTests.swift; sourceTree = "<group>"; };
 		C99425E1284096300078A3BD /* GradeTotalsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeTotalsTests.swift; sourceTree = "<group>"; };
 		C99425EA2847821D0078A3BD /* GradingStandardsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradingStandardsTests.swift; sourceTree = "<group>"; };
 		C9A3C04C26A03B9900DAE8E1 /* K5StudentE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5StudentE2ETests.swift; sourceTree = "<group>"; };
@@ -1896,7 +1896,7 @@
 			isa = PBXGroup;
 			children = (
 				E8DB184E24C7883B0042D6D7 /* DashboardE2ETests.swift */,
-				C95E967027C62DCC00DAAB4A /* DSDashboardE2ETests.swift */,
+				C95E967027C62DCC00DAAB4A /* DashboardTests.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -2946,7 +2946,7 @@
 				8BB5ED962A2E111B009D63DA /* AnnouncementsHelper.swift in Sources */,
 				E8C6F4D823D626220086B865 /* LoginStartE2ETests.swift in Sources */,
 				E80936E924C24CDD00D15E9A /* LoginE2ETests.swift in Sources */,
-				C95E967127C62DCC00DAAB4A /* DSDashboardE2ETests.swift in Sources */,
+				C95E967127C62DCC00DAAB4A /* DashboardTests.swift in Sources */,
 				E80936E424C24CDD00D15E9A /* CourseGroupE2ETests.swift in Sources */,
 				C9BCCA1027D73F0F003E9CB0 /* GradesTests.swift in Sources */,
 				E8C6F4E223D626220086B865 /* PeopleE2ETests.swift in Sources */,
