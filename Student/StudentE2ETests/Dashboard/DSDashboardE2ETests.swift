@@ -47,4 +47,68 @@ class DSDashboardE2ETests: E2ETestCase {
         XCTAssertTrue(Dashboard.courseCard(id: course2.id).exists())
         XCTAssertFalse(Dashboard.courseCard(id: course1.id).exists())
     }
+
+    func testAnnouncementBelowInvite() {
+        let student = seeder.createUser()
+        let course1 = seeder.createCourse()
+
+        // Check for empty dashboard
+        logInDSUser(student)
+        app.find(label: "No Courses").waitToExist()
+
+        CourseInvitation.acceptButton(id: "998").waitToExist()
+        AccountNotifications.toggleButton(id: "2").waitToExist()
+        XCTAssertLessThan(CourseInvitation.acceptButton(id: "998").frame().maxY, AccountNotifications.toggleButton(id: "2").frame().minY)
+    }
+
+    func testNavigateToDashboard() throws {
+        try XCTSkipIf(true, "passes locally but fails on bitrise")
+        Dashboard.courseCard(id: "263").waitToExist()
+        Dashboard.courseCard(id: "263").tap()
+
+        CourseNavigation.pages.tap()
+        PageList.frontPage.tap()
+
+        TabBar.dashboardTab.tap()
+        Dashboard.coursesLabel.waitToExist()
+        Dashboard.courseCard(id: "263").waitToExist()
+    }
+
+    func testCourseCardInfo() {
+        Dashboard.courseCard(id: "263").waitToExist()
+        XCTAssertEqual(Dashboard.courseCard(id: "263").label(), "Assignments assignments")
+    }
+
+    func testSeeAllButtonDisplaysCorrectCourses() throws {
+        try XCTSkipIf(true, "passes locally but fails on bitrise")
+        Dashboard.editButton.tap()
+
+        // expired course and others should be listed
+        Dashboard.courseCard(id: "303").waitToExist()
+        Dashboard.courseCard(id: "247").waitToExist()
+        Dashboard.courseCard(id: "262").waitToExist()
+        Dashboard.courseCard(id: "263").waitToExist()
+
+        // Invite Only should not be listed
+        Dashboard.courseCard(id: "338").waitToVanish()
+    }
+
+    func testCourseCardGrades() {
+        Dashboard.dashboardSettings().waitToExist(10).tap()
+        Dashboard.dashboardSettingsShowGradeToggle().waitToExist(10)
+        if !Dashboard.dashboardSettingsShowGradeToggle().isSelected {
+            Dashboard.dashboardSettingsShowGradeToggle().tap()
+        }
+        app.find(label: "Done").tap()
+        pullToRefresh()
+        Dashboard.courseCard(id: "263").waitToExist(5)
+        XCTAssertEqual(Dashboard.courseCard(id: "263").label(), "Assignments assignments 72.73%")
+
+        Dashboard.dashboardSettings().waitToExist(5).tap()
+        Dashboard.dashboardSettingsShowGradeToggle().waitToExist(5).tap()
+        app.find(label: "Done").tap()
+        Dashboard.courseCard(id: "263").waitToExist(5)
+
+        XCTAssertEqual(Dashboard.courseCard(id: "263").label().trimmingCharacters(in: .whitespacesAndNewlines), "Assignments assignments")
+    }
 }
