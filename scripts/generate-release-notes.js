@@ -178,6 +178,17 @@ function getJiras (commit) {
   }
 
   let jiras = refs[1].replace(/\([^()]*\)/g, '').split(',').map(a => a.trim()).filter(a => a !== 'none')
+    
+  // Check if any jira ticket number contains only numbers. If yes
+  // we assume that it's missing the "MBL-" prefix and we prefix it with that.
+  jiras = jiras.map(jira => {
+    const containsOnlyNumbers = /^\d+$/.test(jira)
+    if (containsOnlyNumbers) {
+      return 'MBL-' + jira
+    }
+    return jira
+  })
+
   return jiras
 }
 
