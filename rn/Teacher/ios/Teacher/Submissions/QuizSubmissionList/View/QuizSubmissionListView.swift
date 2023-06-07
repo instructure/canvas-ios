@@ -27,7 +27,7 @@ public struct QuizSubmissionListView: View, ScreenViewTrackable {
     init(model: QuizSubmissionListViewModel) {
         self.model = model
         screenViewTrackingParameters = ScreenViewTrackingParameters(
-            eventName: "/courses/\(model.courseID))/quizzes/\(model.quizID)/submissions"
+            eventName: "/courses/\(model.courseID)/quizzes/\(model.quizID)/submissions"
         )
     }
 
