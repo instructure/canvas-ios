@@ -107,7 +107,16 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
             entries[courseIndex].selectFile(index: fileIndex, selectionState: selectionState)
         }
 
-        sessionDefaults.offlineSyncSelections = CourseSyncItemSelection.make(from: entries)
+        if let courseID {
+            // If we only show one course then we should keep other course selections intact
+            var oldSelections = sessionDefaults.offlineSyncSelections
+            oldSelections.removeAll { $0.hasPrefix("courses/\(courseID)") }
+            let newSelections = CourseSyncItemSelection.make(from: entries)
+            sessionDefaults.offlineSyncSelections = oldSelections + newSelections
+        } else {
+            // If all courses are visible then it's safe to overwrite all course selections
+            sessionDefaults.offlineSyncSelections = CourseSyncItemSelection.make(from: entries)
+        }
 
         courseSyncEntries.send(entries)
     }
