@@ -20,6 +20,7 @@ import TestsFoundation
 
 class DashboardTests: E2ETestCase {
     func testDashboard() {
+        // MARK: Seed the usual stuff
         let users = seeder.createUsers(1)
         let course1 = seeder.createCourse()
         let student = users[0]
@@ -58,6 +59,7 @@ class DashboardTests: E2ETestCase {
     }
 
     func testAnnouncementBelowInvite() {
+        // MARK: Seed the usual stuff
         let student = seeder.createUser()
         let course = seeder.createCourse()
 
@@ -80,36 +82,86 @@ class DashboardTests: E2ETestCase {
         XCTAssertLessThan(courseAcceptButton.frame().maxY, notificationToggleButton.frame().minY)
     }
 
-    func testNavigateToDashboard() throws {
-        try XCTSkipIf(true, "passes locally but fails on bitrise")
-        Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
+    func testNavigateToDashboard() {
+        // MARK: Seed the usual stuff and a front page for the course
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        _ = seeder.enrollStudent(student, in: course)
+        DashboardHelper.createFrontPageForCourse(course: course)
 
+        // MARK: Get the user logged in and navigate to the course
+        logInDSUser(student)
+        var courseCard = Dashboard.courseCard(id: course.id).waitToExist()
+        XCTAssertTrue(courseCard.isVisible)
+        courseCard.tap()
+
+        // MARK: Navigate to pages of course and open front page
         CourseNavigation.pages.tap()
         PageList.frontPage.tap()
 
+        // MARK: Tap dashboard tab and check visibility of course card and label
         TabBar.dashboardTab.tap()
-        Dashboard.coursesLabel.waitToExist()
-        Dashboard.courseCard(id: "263").waitToExist()
+        let coursesLabel = Dashboard.coursesLabel.waitToExist()
+        courseCard = Dashboard.courseCard(id: course.id).waitToExist()
+        XCTAssertTrue(coursesLabel.isVisible)
+        XCTAssertTrue(courseCard.isVisible)
     }
 
     func testCourseCardInfo() {
-        Dashboard.courseCard(id: "263").waitToExist()
-        XCTAssertEqual(Dashboard.courseCard(id: "263").label(), "Assignments assignments")
+        // MARK: Seed the usual stuff
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        _ = seeder.enrollStudent(student, in: course)
+
+        // MARK: Get the user logged in and check visibility and label of course
+        logInDSUser(student)
+        let courseCard = Dashboard.courseCard(id: course.id).waitToExist()
+        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertTrue(courseCard.label().contains(course.name))
     }
 
-    func testSeeAllButtonDisplaysCorrectCourses() throws {
-        try XCTSkipIf(true, "passes locally but fails on bitrise")
+    func testSeeAllButtonDisplaysCorrectCourses() {
+        // MARK: Seed the usual stuff
+        let student = seeder.createUser()
+        let courses = DashboardHelper.createCourses(number: 7)
+        _ = seeder.enrollStudent(student, in: courses[0], state: .active)
+        _ = seeder.enrollStudent(student, in: courses[1], state: .invited)
+        _ = seeder.enrollStudent(student, in: courses[2], state: .completed)
+        _ = seeder.enrollStudent(student, in: courses[3], state: .creation_pending)
+        _ = seeder.enrollStudent(student, in: courses[4], state: .deleted)
+        _ = seeder.enrollStudent(student, in: courses[5], state: .inactive)
+        _ = seeder.enrollStudent(student, in: courses[6], state: .rejected)
+
+        // MARK: Get the user logged in and check visibility and label of courses
+        logInDSUser(student)
+        var courseCard1 = Dashboard.courseCard(id: courses[0].id).waitToExist()
+        XCTAssertTrue(courseCard1.isVisible)
+        XCTAssertTrue(courseCard1.label().contains(courses[0].name))
+        var courseCard2 = Dashboard.courseCard(id: courses[1].id).waitToExist()
+        XCTAssertTrue(courseCard2.isVisible)
+        XCTAssertTrue(courseCard2.label().contains(courses[1].name))
+
+        // MARK: Tap edit button
         Dashboard.editButton.tap()
 
-        // expired course and others should be listed
-        Dashboard.courseCard(id: "303").waitToExist()
-        Dashboard.courseCard(id: "247").waitToExist()
-        Dashboard.courseCard(id: "262").waitToExist()
-        Dashboard.courseCard(id: "263").waitToExist()
+        // MARK: Completed, Active, Invited courses should be listed
+        courseCard1 = Dashboard.courseCard(id: courses[0].id).waitToExist()
+        XCTAssertTrue(courseCard1.isVisible)
+        XCTAssertTrue(courseCard1.label().contains(courses[0].name))
+        courseCard2 = Dashboard.courseCard(id: courses[1].id).waitToExist()
+        XCTAssertTrue(courseCard2.isVisible)
+        XCTAssertTrue(courseCard2.label().contains(courses[1].name))
+        let courseCard3 = Dashboard.courseCard(id: courses[2].id).waitToExist()
+        XCTAssertTrue(courseCard3.isVisible)
+        XCTAssertTrue(courseCard3.label().contains(courses[2].name))
 
-        // Invite Only should not be listed
-        Dashboard.courseCard(id: "338").waitToVanish()
+        // MARK: Creation Pending, Deleted, Inactive, Rejected should not be listed
+        let courseCard4 = Dashboard.courseCard(id: courses[4].id).waitToVanish()
+        XCTAssertFalse(courseCard4.isVisible)
+        let courseCard5 = Dashboard.courseCard(id: courses[5].id).waitToVanish()
+        XCTAssertFalse(courseCard5.isVisible)
+        let courseCard6 = Dashboard.courseCard(id: courses[6].id).waitToVanish()
+        XCTAssertFalse(courseCard6.isVisible)
     }
 
     func testCourseCardGrades() {

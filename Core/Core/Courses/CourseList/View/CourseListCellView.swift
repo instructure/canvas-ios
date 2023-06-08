@@ -79,9 +79,9 @@ struct CourseListCell: View {
             } }
             .accessibilityElement(children: .ignore)
             .accessibility(label: accessibilityLabel)
+            .accessibilityIdentifier("DashboardCourseCell.\(course.courseId)")
             .disabled(!course.isCourseDetailsAvailable)
         }
-        .accessibility(identifier: "DashboardCourseCell.\(course.courseId)")
     }
 
     var accessibilityLabel: Text {
