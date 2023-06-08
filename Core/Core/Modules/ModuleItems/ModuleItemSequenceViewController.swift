@@ -77,6 +77,11 @@ public class ModuleItemSequenceViewController: UIViewController {
 
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
+        guard let previousTraitCollection = previousTraitCollection,
+              (traitCollection.horizontalSizeClass != previousTraitCollection.horizontalSizeClass ||
+              traitCollection.verticalSizeClass != previousTraitCollection.verticalSizeClass) else {
+            return
+        }
         if let viewController = currentViewController() {
             observations = syncNavigationBar(with: viewController)
         }
