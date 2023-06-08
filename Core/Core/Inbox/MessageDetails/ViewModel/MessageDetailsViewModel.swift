@@ -34,14 +34,53 @@ class MessageDetailsViewModel: ObservableObject {
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: MessageDetailsInteractor
+    private let router: Router
     private let myID: String
 
     public init(router: Router, interactor: MessageDetailsInteractor, myID: String) {
         self.interactor = interactor
+        self.router = router
         self.myID = myID
 
         setupOutputBindings()
         setupInputBindings(router: router)
+    }
+
+    public func moreTapped(viewController: WeakViewController) {
+        let sheet = BottomSheetPickerViewController.create()
+        sheet.addAction(
+            image: .replyLine,
+            title: NSLocalizedString("Reply", bundle: .core, comment: ""),
+            accessibilityIdentifier: "MessageDetails.reply"
+        ) {}
+        sheet.addAction(
+            image: .replyAllLine,
+            title: NSLocalizedString("Reply All", bundle: .core, comment: ""),
+            accessibilityIdentifier: "MessageDetails.replyAll"
+        ) {}
+
+        sheet.addAction(
+            image: .forwardLine,
+            title: NSLocalizedString("Forward", bundle: .core, comment: ""),
+            accessibilityIdentifier: "MessageDetails.markAllRead"
+        ) {}
+
+        sheet.addAction(
+            image: .archiveLine,
+            title: NSLocalizedString("Archive", bundle: .core, comment: ""),
+            accessibilityIdentifier: "MessageDetails.archive"
+        ) {}
+
+        sheet.addAction(
+            image: .trashLine,
+            title: NSLocalizedString("Delete", bundle: .core, comment: ""),
+            accessibilityIdentifier: "MessageDetails.delete"
+        ) {}
+        router.show(sheet, from: viewController, options: .modal())
+    }
+
+    public func replyTapped(viewController: WeakViewController) {
+        print("Reply Tapped!")
     }
 
     private func setupOutputBindings() {

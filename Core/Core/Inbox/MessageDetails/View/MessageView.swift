@@ -20,20 +20,29 @@ import SwiftUI
 
 public struct MessageView: View {
     private var model: MessageViewModel
+    private var replyDidTap: () -> Void
+    private var moreDidTap: () -> Void
 
-    public init(model: MessageViewModel) {
+    public init(model: MessageViewModel,
+                replyDidTap: @escaping () -> Void,
+                moreDidTap: @escaping () -> Void ) {
         self.model = model
+        self.replyDidTap = replyDidTap
+        self.moreDidTap = moreDidTap
     }
 
     public var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             headerView
             bodyView
-            Button(action: reply, label: {
+            Button {
+                replyDidTap()
+            } label: {
                 Text("Reply")
                     .font(.regular16)
                     .foregroundColor(Color(Brand.shared.linkColor))
-            })
+            }
+            .buttonStyle(BorderlessButtonStyle())
         }
     }
 
@@ -50,24 +59,30 @@ public struct MessageView: View {
                     .foregroundColor(.textDark)
                     .font(.regular12)
             }
-            Button(action: reply, label: {
+
+            Button {
+                replyDidTap()
+            } label: {
                 Image
                     .replyLine
                     .size(15)
                     .foregroundColor(.textDark)
                     .padding(.leading, 6)
                     .accessibilityHidden(true)
+            }
+            .buttonStyle(BorderlessButtonStyle())
 
-            })
-            Button(action: more, label: {
+            Button {
+                moreDidTap()
+            } label: {
                 Image
                     .moreLine
                     .size(15)
                     .foregroundColor(.textDark)
                     .padding(.leading, 6)
                     .accessibilityHidden(true)
-
-            })
+            }
+            .buttonStyle(BorderlessButtonStyle())
         }
     }
 
@@ -80,13 +95,5 @@ public struct MessageView: View {
                     .frame(height: 104)
             }
         }
-    }
-
-    private func reply() {
-
-    }
-
-    private func more() {
-
     }
 }

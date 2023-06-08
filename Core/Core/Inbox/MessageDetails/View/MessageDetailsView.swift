@@ -87,14 +87,15 @@ public struct MessageDetailsView: View {
 
     private var moreButton: some View {
         Button(action: {
-
+            model.moreTapped(viewController: controller)
         }, label: {
             Image
                 .moreLine
                 .foregroundColor(Color(Brand.shared.navTextColor))
         })
-        .identifier("MessageDetails.profileButton")
+        .identifier("MessageDetails.moreButton")
         .accessibility(label: Text("More options", bundle: .core))
+        .buttonStyle(BorderlessButtonStyle())
     }
 
     private var starButton: some View {
@@ -108,13 +109,15 @@ public struct MessageDetailsView: View {
                 .padding(.leading, 6)
                 .accessibilityHidden(true)
         })
-
+        .buttonStyle(BorderlessButtonStyle())
     }
 
     private var messageList: some View {
         ForEach(model.messages) { message in
             VStack(spacing: 0) {
-                MessageView(model: message)
+                MessageView(model: message,
+                            replyDidTap: { model.replyTapped(viewController: controller) },
+                            moreDidTap: { model.moreTapped(viewController: controller) })
                 Color.borderMedium
                     .frame(height: 0.5)
             }
