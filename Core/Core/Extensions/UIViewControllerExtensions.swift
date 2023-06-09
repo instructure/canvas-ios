@@ -139,7 +139,7 @@ extension UIViewController {
         let right = navigationItem.rightBarButtonItems ?? []
         let left = navigationItem.leftBarButtonItems ?? []
         let leftItemsSupplementBackButton = navigationItem.leftItemsSupplementBackButton
-        navigationItem.rightBarButtonItems = (viewController.navigationItem.rightBarButtonItems ?? []) + right
+        navigationItem.rightBarButtonItems = (right + (viewController.navigationItem.rightBarButtonItems ?? [])).removeDuplicates()
         navigationItem.leftBarButtonItems = (viewController.navigationItem.leftBarButtonItems ?? []) + left
         navigationItem.leftItemsSupplementBackButton = viewController.navigationItem.leftItemsSupplementBackButton || leftItemsSupplementBackButton
 
