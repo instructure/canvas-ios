@@ -21,6 +21,10 @@ import TestsFoundation
 import XCTest
 
 public class DashboardHelper: BaseHelper {
+    public static var dashboardSettings: Element { app.find(id: "Dashboard.settingsButton", type: .other) }
+    public static var dashboardSettingsShowGradeToggle: Element { app.find(id: "DashboardSettings.showGradesToggle", type: .switch) }
+    public static var doneButton: Element { app.find(id: "screen.dismiss", type: .button) }
+
     public static func createFrontPageForCourse(course: DSCourse) {
         let pageBody = CreateDSPageRequest.RequestDSPage(title: "Dashboard Test Page", body: "Dashboard Test Page Body", front_page: true, published: true)
         _ = seeder.createPage(courseId: course.id, requestBody: pageBody)

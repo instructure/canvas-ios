@@ -31,17 +31,17 @@ class DashboardTests: E2ETestCase {
         XCTAssertTrue(noCoursesLabel.isVisible)
 
         // MARK: Check for course1
-        _ = seeder.enrollStudent(student, in: course1)
+        seeder.enrollStudent(student, in: course1)
         pullToRefresh()
         let courseCard1 = Dashboard.courseCard(id: course1.id).waitToExist()
         XCTAssertTrue(courseCard1.isVisible)
 
         // MARK: Check for course2
         let course2 = seeder.createCourse()
-        _ = seeder.enrollStudent(student, in: course2)
+        seeder.enrollStudent(student, in: course2)
         pullToRefresh()
         let courseCard2 = Dashboard.courseCard(id: course2.id).waitToExist()
-        XCTAssertTrue(courseCard1.isVisible)
+        XCTAssertTrue(courseCard2.isVisible)
 
         // MARK: Select a favorite course and check for dashboard updating
         let dashboardEditButton = Dashboard.editButton.waitToExist()
@@ -86,7 +86,7 @@ class DashboardTests: E2ETestCase {
         // MARK: Seed the usual stuff and a front page for the course
         let student = seeder.createUser()
         let course = seeder.createCourse()
-        _ = seeder.enrollStudent(student, in: course)
+        seeder.enrollStudent(student, in: course)
         DashboardHelper.createFrontPageForCourse(course: course)
 
         // MARK: Get the user logged in and navigate to the course
@@ -111,7 +111,7 @@ class DashboardTests: E2ETestCase {
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
         let course = seeder.createCourse()
-        _ = seeder.enrollStudent(student, in: course)
+        seeder.enrollStudent(student, in: course)
 
         // MARK: Get the user logged in and check visibility and label of course
         logInDSUser(student)
@@ -120,17 +120,17 @@ class DashboardTests: E2ETestCase {
         XCTAssertTrue(courseCard.label().contains(course.name))
     }
 
-    func testSeeAllButtonDisplaysCorrectCourses() {
-        // MARK: Seed the usual stuff
+    func testDashboardEditButtonDisplaysCorrectCourses() {
+        // MARK: Seed the usual stuff with 7 courses and student enrolled in them with all 7 different states
         let student = seeder.createUser()
         let courses = DashboardHelper.createCourses(number: 7)
-        _ = seeder.enrollStudent(student, in: courses[0], state: .active)
-        _ = seeder.enrollStudent(student, in: courses[1], state: .invited)
-        _ = seeder.enrollStudent(student, in: courses[2], state: .completed)
-        _ = seeder.enrollStudent(student, in: courses[3], state: .creation_pending)
-        _ = seeder.enrollStudent(student, in: courses[4], state: .deleted)
-        _ = seeder.enrollStudent(student, in: courses[5], state: .inactive)
-        _ = seeder.enrollStudent(student, in: courses[6], state: .rejected)
+        seeder.enrollStudent(student, in: courses[0], state: .active)
+        seeder.enrollStudent(student, in: courses[1], state: .invited)
+        seeder.enrollStudent(student, in: courses[2], state: .completed)
+        seeder.enrollStudent(student, in: courses[3], state: .creation_pending)
+        seeder.enrollStudent(student, in: courses[4], state: .deleted)
+        seeder.enrollStudent(student, in: courses[5], state: .inactive)
+        seeder.enrollStudent(student, in: courses[6], state: .rejected)
 
         // MARK: Get the user logged in and check visibility and label of courses
         logInDSUser(student)
@@ -165,21 +165,62 @@ class DashboardTests: E2ETestCase {
     }
 
     func testCourseCardGrades() {
-        Dashboard.dashboardSettings().waitToExist(10).tap()
-        Dashboard.dashboardSettingsShowGradeToggle().waitToExist(10)
-        if !Dashboard.dashboardSettingsShowGradeToggle().isSelected {
-            Dashboard.dashboardSettingsShowGradeToggle().tap()
+        // MARK: Seed the usual stuff with a graded assignment
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+        let assignment = GradesHelper.createAssignments(course: course, count: 1)
+        GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignment)
+        GradesHelper.gradeAssignments(grades: ["100"], course: course, assignments: assignment, user: student)
+
+        // MARK: Get the user logged in and check visibility of course
+        logInDSUser(student)
+        var courseCard = Dashboard.courseCard(id: course.id).waitToExist()
+        XCTAssertTrue(courseCard.isVisible)
+
+        // MARK: Check visibility of Dashboard Settings button
+        var dashboardSettingsButton = DashboardHelper.dashboardSettings.waitToExist()
+        XCTAssertTrue(dashboardSettingsButton.isVisible)
+
+        // MARK: Tap Dashboard Settings button then check visibility of Show Grade toggle
+        dashboardSettingsButton.tap()
+        var showGradeToggle = DashboardHelper.dashboardSettingsShowGradeToggle.waitToExist()
+        XCTAssertTrue(showGradeToggle.isVisible)
+
+        // MARK: Tap Show Grade toggle if it's not selected already
+        if !showGradeToggle.isSelected {
+            showGradeToggle.tap()
         }
-        app.find(label: "Done").tap()
+
+        // MARK: Tap Done button then check visibility of course again
+        var doneButton = DashboardHelper.doneButton.waitToExist()
+        XCTAssertTrue(doneButton.isVisible)
+
+        doneButton.tap()
         pullToRefresh()
-        Dashboard.courseCard(id: "263").waitToExist(5)
-        XCTAssertEqual(Dashboard.courseCard(id: "263").label(), "Assignments assignments 72.73%")
+        courseCard = Dashboard.courseCard(id: course.id).waitToExist()
+        XCTAssertTrue(courseCard.isVisible)
 
-        Dashboard.dashboardSettings().waitToExist(5).tap()
-        Dashboard.dashboardSettingsShowGradeToggle().waitToExist(5).tap()
-        app.find(label: "Done").tap()
-        Dashboard.courseCard(id: "263").waitToExist(5)
+        // MARK: Check grade on Course Card label
+        let courseCardLabel = courseCard.label()
+        XCTAssertGreaterThan(courseCardLabel.count, 4)
+        XCTAssertEqual(courseCardLabel.suffix(4), "100%")
 
-        XCTAssertEqual(Dashboard.courseCard(id: "263").label().trimmingCharacters(in: .whitespacesAndNewlines), "Assignments assignments")
+        // MARK: Unselect Show Grades toggle then check Course Card label again
+        dashboardSettingsButton = DashboardHelper.dashboardSettings.waitToExist()
+        XCTAssertTrue(dashboardSettingsButton.isVisible)
+
+        dashboardSettingsButton.tap()
+        showGradeToggle = DashboardHelper.dashboardSettingsShowGradeToggle.waitToExist()
+        XCTAssertTrue(showGradeToggle.isVisible)
+
+        showGradeToggle.tap()
+        doneButton = DashboardHelper.doneButton.waitToExist()
+        XCTAssertTrue(doneButton.isVisible)
+
+        doneButton.tap()
+        courseCard = Dashboard.courseCard(id: course.id).waitToExist()
+        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertTrue(courseCard.label().contains(course.name))
     }
 }

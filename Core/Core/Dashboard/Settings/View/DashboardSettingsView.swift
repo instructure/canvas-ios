@@ -50,6 +50,7 @@ public struct DashboardSettingsView: View {
                     toggle(text: Text("Show Grades", bundle: .core),
                            isOn: $viewModel.showGrades,
                            a11yID: "DashboardSettings.Switch.Grades")
+                    .accessibilityIdentifier("DashboardSettings.showGradesToggle")
                     separator
                 }
                 if viewModel.isColorOverlaySwitchVisible {
