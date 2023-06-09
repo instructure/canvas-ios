@@ -239,7 +239,8 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
                         displayName: $0.displayName ?? NSLocalizedString("Unknown file", comment: ""),
                         fileName: $0.filename,
                         url: $0.url!,
-                        mimeClass: $0.mimeClass!
+                        mimeClass: $0.mimeClass!,
+                        bytesToDownload: $0.size
                     )
                 }
         }
@@ -315,7 +316,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     }
 }
 
-enum CourseEntrySelection: Equatable {
+enum CourseEntrySelection: Codable, Equatable {
     typealias CourseIndex = Int
     typealias TabIndex = Int
     typealias FileIndex = Int

@@ -459,6 +459,7 @@
 		4E129EFE7209B6553657B866 /* lato_semibolditalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7215A3F143DF073A4DACEC67 /* lato_semibolditalic.ttf */; };
 		4E1C6ED2B0A5835B316FBD9F /* DashboardSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C820F6D12A579DCE9F1A92 /* DashboardSettingsViewModel.swift */; };
 		4E39E04C028229AC103A2DFE /* InboxMessageScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9B84F7AFA4C7AAA3B0E1B /* InboxMessageScope.swift */; };
+		4E4CB14E3B1F22ACB7099FB1 /* CourseSyncFileProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287DBF5453EC78B82C8B3BF0 /* CourseSyncFileProgress.swift */; };
 		4E6C33E2AE511E907E745B23 /* APIPlannable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC67072606D463D1C6486C4 /* APIPlannable.swift */; };
 		4EABFC8CA64AA17F8064C3DF /* lato_semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82CAAE0608A70D398549A21E /* lato_semibold.ttf */; };
 		4EC7DFB630005CC441F89342 /* QuizPreviewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FF805211B1C8CCA1B4182E /* QuizPreviewViewModelTests.swift */; };
@@ -940,6 +941,7 @@
 		A3B1248108BDC07C7AB49742 /* ExternalURLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE17829D0376D9BC8CF07EFE /* ExternalURLViewController.swift */; };
 		A3B685BB8589EA79A001CFEC /* FileUploadTargetRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48B593C9C1F106CF5EA7CB /* FileUploadTargetRequester.swift */; };
 		A40977BAAAEA83EC24CF5D5F /* UIColorExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E976A0DF72FDEBB510B418 /* UIColorExtensionsTests.swift */; };
+		A40BC639A866AB2F52EEBBB6 /* CourseSyncProgressObserverInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE2EDCD3F01C59947673986 /* CourseSyncProgressObserverInteractor.swift */; };
 		A4217BAEEDFEBA7A3094D7EF /* UITabBarExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C503B72F49F65EB90B008E3 /* UITabBarExtensionsTests.swift */; };
 		A42E7DE1617481BBE421B176 /* PreviewStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FB54B48A238C19A44CCEFA /* PreviewStoreTests.swift */; };
 		A456900820BD76297E767930 /* DiscussionSectionsPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200AE5C740389001BF41E341 /* DiscussionSectionsPicker.swift */; };
@@ -1229,6 +1231,7 @@
 		D4BDF1EE353A18DF24F5E7E3 /* CourseSyncItemSelectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2696D625006609C12EF424F /* CourseSyncItemSelectionTests.swift */; };
 		D4CA35BA9FC9018B4A46065F /* AnnotationDragGestureDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3003A9825A81AD1868398D5 /* AnnotationDragGestureDelegateTests.swift */; };
 		D4D31354957AF4E8D7AEF9D5 /* EditComposeRecipientsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F90110AF4BEBB028266CE8 /* EditComposeRecipientsViewControllerTests.swift */; };
+		D4E677A959B87D8754DCFAD5 /* CourseSyncProgressWriterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF64908355DCB2E5163268B8 /* CourseSyncProgressWriterInteractor.swift */; };
 		D55AEA12B5F46ED0C58FA60B /* ReactiveStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDD1E1B04BCE0A3513A061A /* ReactiveStore.swift */; };
 		D564E55758CBC42949597792 /* SequenceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFEA48AAE5CE8E016DF0A346 /* SequenceExtensions.swift */; };
 		D58DDFCC9153AC88958B3522 /* Core.h in Headers */ = {isa = PBXBuildFile; fileRef = 2AA4C89101730D71B5E70293 /* Core.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1405,6 +1408,7 @@
 		F0BCF68264B90D755AA60C86 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFDDCDE125847BCBAA2951 /* UIViewControllerExtensions.swift */; };
 		F0E5AB021D9AD4B1C9664957 /* MDMManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A75410BE6AB2B6583B0832 /* MDMManager.swift */; };
 		F0ED911AB7EC7DF038B6F5F9 /* UINavigationControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3823EC0DB3577A0A296F75 /* UINavigationControllerTheme.swift */; };
+		F115A76273AF4C59D94C9850 /* CourseSyncEntryProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26C5DEDE140B115DC9A4CC0 /* CourseSyncEntryProgress.swift */; };
 		F1967A6C0D99FD27E15EDD33 /* GetPlannerCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471925BC53039C98DC2BEE51 /* GetPlannerCourses.swift */; };
 		F1A5761E82C62D3A026C13EB /* DiscussionHTMLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA383B82377A796427C47AB1 /* DiscussionHTMLTests.swift */; };
 		F231310AB410ED67D77D29DB /* K5HomeroomMySubjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B7CC90C6242C9F99F59670 /* K5HomeroomMySubjectsView.swift */; };
@@ -1759,6 +1763,7 @@
 		1CA84BCF6F7158A5599C70F5 /* GetGlobalNavExternalToolsPlacements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetGlobalNavExternalToolsPlacements.swift; sourceTree = "<group>"; };
 		1CA85BD5F98188F0B02970D9 /* UIScrollViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtensions.swift; sourceTree = "<group>"; };
 		1CE185592F73E6B146559A86 /* AnalyticsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsTests.swift; sourceTree = "<group>"; };
+		1CE2EDCD3F01C59947673986 /* CourseSyncProgressObserverInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncProgressObserverInteractor.swift; sourceTree = "<group>"; };
 		1D0920367FB90AE9D60CE342 /* SubmissionBreakdownViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionBreakdownViewModelProtocol.swift; sourceTree = "<group>"; };
 		1D0ECADC111E1FE15C9D9B93 /* BottomSheetPickerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetPickerViewControllerTests.swift; sourceTree = "<group>"; };
 		1D1C358198524118FD6E36DC /* DividerViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerViewTests.swift; sourceTree = "<group>"; };
@@ -1826,6 +1831,7 @@
 		283FD1E3FABC64568EF817A5 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		28546C710BBAC69F915807FE /* PagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagesViewController.swift; sourceTree = "<group>"; };
 		286DCDFA3AF6571CF813A201 /* CustomizeCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeCourseView.swift; sourceTree = "<group>"; };
+		287DBF5453EC78B82C8B3BF0 /* CourseSyncFileProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncFileProgress.swift; sourceTree = "<group>"; };
 		28B842B168FCDE59E85F02F8 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		28F6A7D7490A3EF76B8248B5 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		291D11D1AD4CCB7DC634A56C /* GetContextUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextUsers.swift; sourceTree = "<group>"; };
@@ -2731,6 +2737,7 @@
 		AEEF028266741629EAFE921A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF5251EA27C5E9428BE54E6D /* LTITools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTITools.swift; sourceTree = "<group>"; };
 		AF62474862BFE3BDB075424A /* QuizListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizListViewControllerTests.swift; sourceTree = "<group>"; };
+		AF64908355DCB2E5163268B8 /* CourseSyncProgressWriterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncProgressWriterInteractor.swift; sourceTree = "<group>"; };
 		AF6596192203618E94B33B47 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AFBC5C713B2F768ED448FD74 /* FileListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FileListViewController.storyboard; sourceTree = "<group>"; };
 		AFD483C88B9790DF9AC6824B /* K5ResourcesHomeroomInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesHomeroomInfoViewModel.swift; sourceTree = "<group>"; };
@@ -3065,6 +3072,7 @@
 		E24F0FC90F914A12E2A8A8FB /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		E25D8616D2EB4DC92B0D7FFF /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		E265B340CF82CFFFB35287D6 /* UTI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTI.swift; sourceTree = "<group>"; };
+		E26C5DEDE140B115DC9A4CC0 /* CourseSyncEntryProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncEntryProgress.swift; sourceTree = "<group>"; };
 		E2737DE69B6A159F761D6549 /* APIModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModuleTests.swift; sourceTree = "<group>"; };
 		E27851DF22919A0A983564D4 /* DashboardSettingsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSettingsViewTests.swift; sourceTree = "<group>"; };
 		E27E8719AA2EEE717B34A967 /* es-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-ES"; path = "es-ES.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -4538,6 +4546,8 @@
 			isa = PBXGroup;
 			children = (
 				63E65267ECA879C91DEFBFFF /* CourseSyncEntry.swift */,
+				E26C5DEDE140B115DC9A4CC0 /* CourseSyncEntryProgress.swift */,
+				287DBF5453EC78B82C8B3BF0 /* CourseSyncFileProgress.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -5257,6 +5267,7 @@
 			children = (
 				499CBF9DC32D019D4986E84A /* CourseSyncProgressInteractor.swift */,
 				E2E90B99799B0973C0B04936 /* CourseSyncProgressInteractorPreview.swift */,
+				1CE2EDCD3F01C59947673986 /* CourseSyncProgressObserverInteractor.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6165,6 +6176,7 @@
 				8AC257DD7E6E7B7812BBE5B8 /* CourseSyncInteractor.swift */,
 				427E591353CFBC9891AF9D6A /* CourseSyncInteractorPreview.swift */,
 				47EE04A23D00DC43F14599F0 /* CourseSyncPagesInteractor.swift */,
+				AF64908355DCB2E5163268B8 /* CourseSyncProgressWriterInteractor.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -9211,6 +9223,8 @@
 				8845403752E1C349262CEDC6 /* CourseSyncDiskSpaceInfoView.swift in Sources */,
 				09047E641010FD12632BFD87 /* CourseSyncDiskSpaceInfoViewModel.swift in Sources */,
 				707013B6AB1A9714828B5B7A /* CourseSyncEntry.swift in Sources */,
+				F115A76273AF4C59D94C9850 /* CourseSyncEntryProgress.swift in Sources */,
+				4E4CB14E3B1F22ACB7099FB1 /* CourseSyncFileProgress.swift in Sources */,
 				C7EC7CF3EE4E5218B48CC0D6 /* CourseSyncFilesInteractor.swift in Sources */,
 				5F5C9FFE1C34DA339C4969B5 /* CourseSyncFrequency.swift in Sources */,
 				FB56546AE20484C238756BD1 /* CourseSyncInteractor.swift in Sources */,
@@ -9222,9 +9236,11 @@
 				41BFAF868D4FF58CC10BE8BF /* CourseSyncProgressInfoViewModel.swift in Sources */,
 				14BA0DAD65E4EF346FF185C8 /* CourseSyncProgressInteractor.swift in Sources */,
 				596E336419B977C7182FE859 /* CourseSyncProgressInteractorPreview.swift in Sources */,
+				A40BC639A866AB2F52EEBBB6 /* CourseSyncProgressObserverInteractor.swift in Sources */,
 				8B419AA25CFE97B4BF096A6A /* CourseSyncProgressView.swift in Sources */,
 				AEF944379896E2E8037A0A99 /* CourseSyncProgressViewModel.swift in Sources */,
 				76F6A8085A03DB5D06EEAAFE /* CourseSyncProgressViewModelItem.swift in Sources */,
+				D4E677A959B87D8754DCFAD5 /* CourseSyncProgressWriterInteractor.swift in Sources */,
 				0BFBB8676CB0F2D7179DB60B /* CourseSyncSelectorAssembly.swift in Sources */,
 				E608963014010BD9A20D9014 /* CourseSyncSelectorCourse.swift in Sources */,
 				1FEE2D0F80E2D1737428C43D /* CourseSyncSelectorInteractor.swift in Sources */,
