@@ -30,7 +30,7 @@ public extension API {
                 if let response {
                     promise(.success(response))
                 } else {
-                    promise(.failure(error ?? NSError.instructureError("No response nor error received.")))
+                    promise(.failure(error ?? NSError.instructureError("No response or error received.")))
                 }
             }
         }.eraseToAnyPublisher()
@@ -44,7 +44,7 @@ public extension API {
                 if let response {
                     promise(.success(response))
                 } else {
-                    promise(.failure(error ?? NSError.instructureError("No response nor error received.")))
+                    promise(.failure(error ?? NSError.instructureError("No response or error received.")))
                 }
             }
         }.eraseToAnyPublisher()
