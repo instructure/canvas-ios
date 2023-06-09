@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CoreData
 import Foundation
 
 protocol CourseSyncProgressObserverInteractor {
@@ -25,9 +26,16 @@ protocol CourseSyncProgressObserverInteractor {
 }
 
 final class CourseSyncProgressObserverInteractorLive: CourseSyncProgressObserverInteractor {
+    private let context: NSManagedObjectContext
+
+    public init(context: NSManagedObjectContext = AppEnvironment.shared.database.viewContext) {
+        self.context = context
+    }
+
     func observeFileProgress() -> AnyPublisher<ReactiveStore<LocalUseCase<CourseSyncFileProgress>>.State, Never> {
         let useCase = LocalUseCase<CourseSyncFileProgress>(scope: Scope.all)
         return ReactiveStore(
+            context: context,
             useCase: useCase
         )
         .observeEntities()
@@ -37,6 +45,7 @@ final class CourseSyncProgressObserverInteractorLive: CourseSyncProgressObserver
     func observeEntryProgress() -> AnyPublisher<ReactiveStore<LocalUseCase<CourseSyncEntryProgress>>.State, Never> {
         let useCase = LocalUseCase<CourseSyncEntryProgress>(scope: Scope.all)
         return ReactiveStore(
+            context: context,
             useCase: useCase
         )
         .observeEntities()

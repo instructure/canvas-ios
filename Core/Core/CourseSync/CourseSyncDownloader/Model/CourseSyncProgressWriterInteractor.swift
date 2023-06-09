@@ -39,7 +39,7 @@ final class CourseSyncProgressWriterInteractorLive: CourseSyncProgressWriterInte
             let progress: CourseSyncFileProgress = context.fetch(scope: .all).first ?? context.insert()
             progress.bytesDownloaded = bytesDownloaded
             progress.bytesToDownload = bytesToDownloaded
-            try? context.saveAndNotify()
+            try? context.save()
         }
     }
 
@@ -55,7 +55,7 @@ final class CourseSyncProgressWriterInteractorLive: CourseSyncProgressWriterInte
             entryProgress.id = id
             entryProgress.selection = selection
             entryProgress.state = state
-            try? context.saveAndNotify()
+            try? context.save()
         }
     }
 }
