@@ -42,13 +42,12 @@ public struct MessageView: View {
                     .font(.regular16)
                     .foregroundColor(Color(Brand.shared.linkColor))
             }
-            .buttonStyle(BorderlessButtonStyle())
         }
     }
 
     private var headerView: some View {
-        HStack(alignment: .top, spacing: 8) {
-            Avatar(name: model.avatarName, url: model.avatarURL, size: 36)
+        HStack(alignment: .top, spacing: 4) {
+            Avatar(name: model.avatarName, url: model.avatarURL, size: 36, isAccessible: false)
             VStack(alignment: .leading) {
                 Text(model.author)
                     .font(.regular16)
@@ -59,7 +58,7 @@ public struct MessageView: View {
                     .foregroundColor(.textDark)
                     .font(.regular12)
             }
-
+            Spacer()
             Button {
                 replyDidTap()
             } label: {
@@ -70,8 +69,6 @@ public struct MessageView: View {
                     .padding(.leading, 6)
                     .accessibilityHidden(true)
             }
-            .buttonStyle(BorderlessButtonStyle())
-
             Button {
                 moreDidTap()
             } label: {
@@ -82,7 +79,6 @@ public struct MessageView: View {
                     .padding(.leading, 6)
                     .accessibilityHidden(true)
             }
-            .buttonStyle(BorderlessButtonStyle())
         }
     }
 

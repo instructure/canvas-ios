@@ -27,30 +27,21 @@ public struct MessageDetailsView: View {
     }
 
     public var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            if model.state == .loading {
+        ScrollView {
+            switch model.state {
+            case .loading:
                 loadingIndicator
-            } else {
-                List {
-                    switch model.state {
-                    case .data:
-                        detailsView
-                            .listRowBackground(SwiftUI.EmptyView())
-                    case .empty, .error:
-                        Text("There was an error loading the message. Pull to refresh to try again.")
-                    case .loading:
-                        SwiftUI.EmptyView()
-                    }
+            case .data:
+                detailsView
+            case .empty, .error:
+                Text("There was an error loading the message. Pull to refresh to try again.")
+            }
+        }
+        .refreshable {
+            await withCheckedContinuation { continuation in
+                model.refreshDidTrigger.send {
+                    continuation.resume()
                 }
-                .refreshable {
-                    await withCheckedContinuation { continuation in
-                        model.refreshDidTrigger.send {
-                            continuation.resume()
-                        }
-                    }
-                }
-                .listStyle(PlainListStyle())
-                .animation(.default, value: model.messages)
             }
         }
         .background(Color.backgroundLightest)
@@ -68,10 +59,10 @@ public struct MessageDetailsView: View {
     }
 
     private var detailsView: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 0) {
             headerView
-            Color.borderMedium
-                .frame(height: 0.5)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 24)
             messageList
         }
     }
@@ -95,7 +86,6 @@ public struct MessageDetailsView: View {
         })
         .identifier("MessageDetails.moreButton")
         .accessibility(label: Text("More options", bundle: .core))
-        .buttonStyle(BorderlessButtonStyle())
     }
 
     private var starButton: some View {
@@ -109,21 +99,19 @@ public struct MessageDetailsView: View {
                 .padding(.leading, 6)
                 .accessibilityHidden(true)
         })
-        .buttonStyle(BorderlessButtonStyle())
     }
 
     private var messageList: some View {
         ForEach(model.messages) { message in
             VStack(spacing: 0) {
+                Color.borderMedium
+                    .frame(height: 0.5)
                 MessageView(model: message,
                             replyDidTap: { model.replyTapped(viewController: controller) },
                             moreDidTap: { model.moreTapped(viewController: controller) })
-                Color.borderMedium
-                    .frame(height: 0.5)
+                .padding(16)
+
             }
-            .listRowInsets(EdgeInsets())
-            .listRowSeparator(.hidden)
-            .listRowBackground(SwiftUI.EmptyView())
         }
     }
 }

@@ -79,9 +79,7 @@ class MessageDetailsViewModel: ObservableObject {
         router.show(sheet, from: viewController, options: .modal())
     }
 
-    public func replyTapped(viewController: WeakViewController) {
-        print("Reply Tapped!")
-    }
+    public func replyTapped(viewController: WeakViewController) {}
 
     private func setupOutputBindings() {
         interactor.state
