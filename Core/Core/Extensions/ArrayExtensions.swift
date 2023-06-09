@@ -27,3 +27,11 @@ public extension Array {
         append(element)
     }
 }
+
+extension Array where Element: UIBarButtonItem {
+    func removeDuplicates() -> [Element] {
+        return reduce([]) { result, element in
+            result.contains { $0.action == element.action } ? result : result + [element]
+        }
+    }
+}

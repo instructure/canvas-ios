@@ -77,9 +77,6 @@ public class ModuleItemSequenceViewController: UIViewController {
 
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        guard UIDevice.current.userInterfaceIdiom == .pad else {
-            return
-        }
         if let viewController = currentViewController() {
             observations = syncNavigationBar(with: viewController)
         }
