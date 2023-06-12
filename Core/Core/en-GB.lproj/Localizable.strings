@@ -31,6 +31,9 @@
 /* No comment provided by engineer. */
 "%@ missing" = "%@ missing";
 
+/* 42 GB of 64 GB Used */
+"%@ of %@ Used" = "%1$@ of %2$@ Used";
+
 /* No comment provided by engineer. */
 "%@ pts" = "%@ pts";
 
@@ -614,6 +617,9 @@
 "Could not save notification preference" = "Could not save notification preference";
 
 /* No comment provided by engineer. */
+"Couldn't save the file." = "Couldn't save the file.";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "Course (optional)";
 
 /* No comment provided by engineer. */
@@ -627,6 +633,9 @@
 
 /* No comment provided by engineer. */
 "Course announcements" = "Course announcements";
+
+/* No comment provided by engineer. */
+"Course Card Options" = "Course Card Options";
 
 /* No comment provided by engineer. */
 "Course Content" = "Course content";
@@ -716,6 +725,9 @@
 "Dashboard" = "Dashboard";
 
 /* No comment provided by engineer. */
+"Dashboard Options" = "Dashboard options";
+
+/* No comment provided by engineer. */
 "Dashboard settings" = "Dashboard settings";
 
 /* No comment provided by engineer. */
@@ -774,6 +786,9 @@
 
 /* No comment provided by engineer. */
 "Description" = "Description";
+
+/* No comment provided by engineer. */
+"Deselect All" = "Un-select All";
 
 /* No comment provided by engineer. */
 "Designer" = "Designer";
@@ -1445,6 +1460,9 @@
 "Make sure you enable camera permissions in Settings" = "Make sure you enable camera permissions in Settings";
 
 /* No comment provided by engineer. */
+"Manage Offline Content" = "Manage Offline Content";
+
+/* No comment provided by engineer. */
 "Manage Students" = "Manage Students";
 
 /* No comment provided by engineer. */
@@ -1595,6 +1613,9 @@
 "No Content" = "No Content";
 
 /* No comment provided by engineer. */
+"No Course Content" = "No Course Content";
+
+/* No comment provided by engineer. */
 "No Courses" = "No courses";
 
 /* No comment provided by engineer. */
@@ -1703,6 +1724,9 @@
 "Observers" = "Observers";
 
 /* No comment provided by engineer. */
+"Offline Content" = "Offline Content";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -1761,6 +1785,9 @@
 
 /* No comment provided by engineer. */
 "Ordered List" = "Ordered list";
+
+/* No comment provided by engineer. */
+"Other Apps" = "Other Apps";
 
 /* 5 out of 10 */
 "out of" = "out of";
@@ -1955,6 +1982,9 @@
 "Refreshing" = "Refreshing";
 
 /* No comment provided by engineer. */
+"Remaining" = "Remaining";
+
+/* No comment provided by engineer. */
 "Remove" = "Remove";
 
 /* No comment provided by engineer. */
@@ -2091,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Select a Path";
+
+/* No comment provided by engineer. */
+"Select All" = "Select all";
 
 /* No comment provided by engineer. */
 "Select assignment" = "Select assignment";
@@ -2234,6 +2267,12 @@
 "Stop recording" = "Stop recording";
 
 /* No comment provided by engineer. */
+"Storage" = "Storage";
+
+/* No comment provided by engineer. */
+"Storage Info" = "Storage Info";
+
+/* No comment provided by engineer. */
 "Student" = "Student";
 
 /* No comment provided by engineer. */
@@ -2324,6 +2363,12 @@
 "Syllabus content" = "Syllabus content";
 
 /* No comment provided by engineer. */
+"Sync" = "Sync";
+
+/* No comment provided by engineer. */
+"Sync Offline Content?" = "Sync Offline Content?";
+
+/* No comment provided by engineer. */
 "System settings" = "System settings";
 
 /* No comment provided by engineer. */
@@ -2390,10 +2435,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "The app needs to restart to use the new language settings. Please relaunch the app.";
 
 /* No comment provided by engineer. */
+"The course content will be listed here, and then you can make them available for offline usage." = "The course content will be listed here, and then you can make them available for offline usage.";
+
+/* No comment provided by engineer. */
 "The file has been deleted by the author." = "The file has been deleted by the author.";
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "The submission process was terminated by the operating system.";
+
+/* No comment provided by engineer. */
+"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "There are %d items selected for offline availability. The selected content will be downloaded to the device.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "There are no active assignments in this course.";
@@ -2457,6 +2508,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "There was an error with act as user. Please try again later.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error." = "There was an unexpected error.";
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "There was an unexpected error. Please try again.";
@@ -2547,6 +2601,9 @@
 
 /* No comment provided by engineer. */
 "Unknown Error" = "Unknown error";
+
+/* No comment provided by engineer. */
+"Unknown file" = "Unknown file";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Unlimited";
@@ -2769,6 +2826,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Your child's courses might not be published yet.";
+
+/* No comment provided by engineer. */
+"Your courses will be listed here, and then you can make them available for offline usage." = "Your courses will be listed here, and then you can make them available for offline usage.";
 
 /* No comment provided by engineer. */
 "Your device is out of storage space. Please free up space and try again." = "Your device is out of storage space. Please free up space and try again.";

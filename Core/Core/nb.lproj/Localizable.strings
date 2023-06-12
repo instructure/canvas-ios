@@ -31,6 +31,9 @@
 /* No comment provided by engineer. */
 "%@ missing" = "%@ mangler";
 
+/* 42 GB of 64 GB Used */
+"%@ of %@ Used" = "%1$@ av %2$@ brukte";
+
 /* No comment provided by engineer. */
 "%@ pts" = "%@ poeng";
 
@@ -614,6 +617,9 @@
 "Could not save notification preference" = "Kan ikke lagre foretrukne varslinger";
 
 /* No comment provided by engineer. */
+"Couldn't save the file." = "Kunne ikke lagre filen.";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "Emne (valgfritt)";
 
 /* No comment provided by engineer. */
@@ -627,6 +633,9 @@
 
 /* No comment provided by engineer. */
 "Course announcements" = "Kunngjøringer for emne";
+
+/* No comment provided by engineer. */
+"Course Card Options" = "Alternativer for kurskort";
 
 /* No comment provided by engineer. */
 "Course Content" = "Emneinnhold";
@@ -716,6 +725,9 @@
 "Dashboard" = "Dashbord";
 
 /* No comment provided by engineer. */
+"Dashboard Options" = "Alternativer for dashbord";
+
+/* No comment provided by engineer. */
 "Dashboard settings" = "Dashbord-innstillinger";
 
 /* No comment provided by engineer. */
@@ -774,6 +786,9 @@
 
 /* No comment provided by engineer. */
 "Description" = "Beskrivelse";
+
+/* No comment provided by engineer. */
+"Deselect All" = "Fjern all merking";
 
 /* No comment provided by engineer. */
 "Designer" = "Designer";
@@ -1445,6 +1460,9 @@
 "Make sure you enable camera permissions in Settings" = "Påse at du aktiverer kamerarettigheter i Innstillinger";
 
 /* No comment provided by engineer. */
+"Manage Offline Content" = "Administrer frakoblet emneinnhold";
+
+/* No comment provided by engineer. */
 "Manage Students" = "Administrer studenter";
 
 /* No comment provided by engineer. */
@@ -1595,6 +1613,9 @@
 "No Content" = "Uten innhold";
 
 /* No comment provided by engineer. */
+"No Course Content" = "Intet emneinnhold";
+
+/* No comment provided by engineer. */
 "No Courses" = "Ingen emner";
 
 /* No comment provided by engineer. */
@@ -1703,6 +1724,9 @@
 "Observers" = "Observatører";
 
 /* No comment provided by engineer. */
+"Offline Content" = "Frakoblet emneinnhold";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -1761,6 +1785,9 @@
 
 /* No comment provided by engineer. */
 "Ordered List" = "Sortert liste";
+
+/* No comment provided by engineer. */
+"Other Apps" = "Andre apper";
 
 /* 5 out of 10 */
 "out of" = "ut av";
@@ -1955,6 +1982,9 @@
 "Refreshing" = "Oppdaterer";
 
 /* No comment provided by engineer. */
+"Remaining" = "Resterende";
+
+/* No comment provided by engineer. */
 "Remove" = "Fjern";
 
 /* No comment provided by engineer. */
@@ -2091,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Velg en sti";
+
+/* No comment provided by engineer. */
+"Select All" = "Velg alle";
 
 /* No comment provided by engineer. */
 "Select assignment" = "Velg oppgave";
@@ -2234,6 +2267,12 @@
 "Stop recording" = "Stopp opptak";
 
 /* No comment provided by engineer. */
+"Storage" = "Lagring";
+
+/* No comment provided by engineer. */
+"Storage Info" = "Lagringsinfo";
+
+/* No comment provided by engineer. */
 "Student" = "Student";
 
 /* No comment provided by engineer. */
@@ -2324,6 +2363,12 @@
 "Syllabus content" = "Innhold emneoversikt";
 
 /* No comment provided by engineer. */
+"Sync" = "Synkroniser";
+
+/* No comment provided by engineer. */
+"Sync Offline Content?" = "Synkronisere frakoblet innhold?";
+
+/* No comment provided by engineer. */
 "System settings" = "Systeminnstillinger";
 
 /* No comment provided by engineer. */
@@ -2390,10 +2435,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Appen må åpnes på nytt for å ta i bruk de nye språkinnstillingene. Vennligst gjeninnfør appen.";
 
 /* No comment provided by engineer. */
+"The course content will be listed here, and then you can make them available for offline usage." = "Emneinnholdet vises her, og du kan deretter gjøre det tilgjengelig for frakoblet bruk.";
+
+/* No comment provided by engineer. */
 "The file has been deleted by the author." = "Denne filen ble slettet av forfatteren.";
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Innleveringsprosessen ble avsluttet av operativsystemet.";
+
+/* No comment provided by engineer. */
+"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Det er %d elementer valgt for å være tilgjengelig frakoblet. Det valgte innholdet vil bli lastet ned på enheten.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Det er ingen aktive oppgaver i dette emnet.";
@@ -2457,6 +2508,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Det var feil med opptre som bruker. Prøv igjen senere.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error." = "Det oppsto en uventet feil.";
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "Det oppsto en uventet feil. Prøv på nytt.";
@@ -2547,6 +2601,9 @@
 
 /* No comment provided by engineer. */
 "Unknown Error" = "Ukjent feil";
+
+/* No comment provided by engineer. */
+"Unknown file" = "Ukjent fil";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Ubegrenset";
@@ -2769,6 +2826,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Dine underordnede emner er kanskje upublisert enda.";
+
+/* No comment provided by engineer. */
+"Your courses will be listed here, and then you can make them available for offline usage." = "Emnene dine vil vises her, og du kan deretter gjøre det tilgjengelig for frakoblet bruk.";
 
 /* No comment provided by engineer. */
 "Your device is out of storage space. Please free up space and try again." = "Enheten din har gått tom for lagringsplass. Frigjør plass og prøv igjen.";

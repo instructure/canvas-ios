@@ -31,6 +31,9 @@
 /* No comment provided by engineer. */
 "%@ missing" = "%@ vantar";
 
+/* 42 GB of 64 GB Used */
+"%@ of %@ Used" = "%1$@ af %2$@ notuðum";
+
 /* No comment provided by engineer. */
 "%@ pts" = "%@ punktar";
 
@@ -614,6 +617,9 @@
 "Could not save notification preference" = "Ekki var hægt að vista kjörstillingum tilkynninga";
 
 /* No comment provided by engineer. */
+"Couldn't save the file." = "Ekki tókst að vista skrána.";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "Námskeið (valfrjálst)";
 
 /* No comment provided by engineer. */
@@ -627,6 +633,9 @@
 
 /* No comment provided by engineer. */
 "Course announcements" = "Námskeiðs tilkynningar";
+
+/* No comment provided by engineer. */
+"Course Card Options" = "Valmöguleikar fyrir námskeiðskort";
 
 /* No comment provided by engineer. */
 "Course Content" = "Námskeiðsefni";
@@ -716,6 +725,9 @@
 "Dashboard" = "Skjáborð";
 
 /* No comment provided by engineer. */
+"Dashboard Options" = "Valkostir skjáborðs";
+
+/* No comment provided by engineer. */
 "Dashboard settings" = "Stillingar Skjáborðs";
 
 /* No comment provided by engineer. */
@@ -774,6 +786,9 @@
 
 /* No comment provided by engineer. */
 "Description" = "Lýsing";
+
+/* No comment provided by engineer. */
+"Deselect All" = "Afvelja allt";
 
 /* No comment provided by engineer. */
 "Designer" = "Hönnuður";
@@ -1445,6 +1460,9 @@
 "Make sure you enable camera permissions in Settings" = "Passaðu að virkja leyfi fyrir myndavél í stillingum";
 
 /* No comment provided by engineer. */
+"Manage Offline Content" = "Stjórna efni án nettengingar";
+
+/* No comment provided by engineer. */
 "Manage Students" = "Stjórna nemendum";
 
 /* No comment provided by engineer. */
@@ -1595,6 +1613,9 @@
 "No Content" = "Ekkert efni";
 
 /* No comment provided by engineer. */
+"No Course Content" = "Ekkert námskeiðsefni";
+
+/* No comment provided by engineer. */
 "No Courses" = "Engin námskeið";
 
 /* No comment provided by engineer. */
@@ -1703,6 +1724,9 @@
 "Observers" = "Skoðendur";
 
 /* No comment provided by engineer. */
+"Offline Content" = "Efni án nettengingar";
+
+/* No comment provided by engineer. */
 "OK" = "Í lagi";
 
 /* No comment provided by engineer. */
@@ -1761,6 +1785,9 @@
 
 /* No comment provided by engineer. */
 "Ordered List" = "Raðaður listi";
+
+/* No comment provided by engineer. */
+"Other Apps" = "Önnur smáforrit";
 
 /* 5 out of 10 */
 "out of" = "af";
@@ -1955,6 +1982,9 @@
 "Refreshing" = "Enduglæðir";
 
 /* No comment provided by engineer. */
+"Remaining" = "Eftir";
+
+/* No comment provided by engineer. */
 "Remove" = "Fjarlægja";
 
 /* No comment provided by engineer. */
@@ -2091,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Veldu leið";
+
+/* No comment provided by engineer. */
+"Select All" = "Velja allt";
 
 /* No comment provided by engineer. */
 "Select assignment" = "Veldu verkefni";
@@ -2234,6 +2267,12 @@
 "Stop recording" = "Stoppa upptöku";
 
 /* No comment provided by engineer. */
+"Storage" = "Geymsla";
+
+/* No comment provided by engineer. */
+"Storage Info" = "Geymsluupplýsingar";
+
+/* No comment provided by engineer. */
 "Student" = "Nemandi";
 
 /* No comment provided by engineer. */
@@ -2324,6 +2363,12 @@
 "Syllabus content" = "Innihald kennsluáætlunar";
 
 /* No comment provided by engineer. */
+"Sync" = "Samhæfa";
+
+/* No comment provided by engineer. */
+"Sync Offline Content?" = "Samhæfa efni án nettengingar?";
+
+/* No comment provided by engineer. */
 "System settings" = "Kerfisstillingar";
 
 /* No comment provided by engineer. */
@@ -2390,10 +2435,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Appið þarf að endurræsa til að nota nýju tungumálastillinguna. Endurræstu appið.";
 
 /* No comment provided by engineer. */
+"The course content will be listed here, and then you can make them available for offline usage." = "Efni námskeiðsins verður skráð hér og síðan er hægt að gera það aðgengilegt til notkunar án nettengingar.";
+
+/* No comment provided by engineer. */
 "The file has been deleted by the author." = "Skránni hefur verið eitt af höfundi.";
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Skilaferlinu var hætt af stýrikerfinu.";
+
+/* No comment provided by engineer. */
+"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Það eru %d atriði sem eru valin fyrir tiltækileika án nettengingar. Valið efni verður hlaðið niður í tækið.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Það eru engin virk verkefni í þessu námskeiði.";
@@ -2457,6 +2508,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Villa kom upp við bregðast við sem notandi. Vinsamlegast reyndu aftur seinna.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error." = "Upp kom óvænt villa.";
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "Upp kom óvænt villa. Vinsamlegast reynið aftur.";
@@ -2547,6 +2601,9 @@
 
 /* No comment provided by engineer. */
 "Unknown Error" = "Óþekkt villa";
+
+/* No comment provided by engineer. */
+"Unknown file" = "Óþekkt skrá";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Ótakmarkað";
@@ -2769,6 +2826,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Námskeið barnsins þíns eru ef til vill ekki birt enn.";
+
+/* No comment provided by engineer. */
+"Your courses will be listed here, and then you can make them available for offline usage." = "Námskeiðin þín verða skráð hér og síðan geturðu gert þau aðgengileg til notkunar án nettengingar.";
 
 /* No comment provided by engineer. */
 "Your device is out of storage space. Please free up space and try again." = "Tækið þitt er búið með geymslupláss. Losaðu pláss og reyndu aftur.";
