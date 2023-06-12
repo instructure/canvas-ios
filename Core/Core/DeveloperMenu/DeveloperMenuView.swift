@@ -87,6 +87,13 @@ public struct DeveloperMenuView: View {
                 .deletingLastPathComponent()
                 .absoluteString
         }()
+        let sharedDirectory: String? = {
+            guard let appGroup = Bundle.main.appGroupID() else { return nil }
+            return URL
+                .Directories
+                .sharedContainers(appGroup)?
+                .absoluteString
+        }()
 
         items.append(contentsOf: [
             DeveloperMenuItem("View Experimental Features") {
@@ -116,6 +123,14 @@ public struct DeveloperMenuView: View {
                 snackBarViewModel.showSnack("App Directory copied to clipboard.")
             },
         ])
+
+        if let sharedDirectory {
+            items.append(DeveloperMenuItem("Shared Container Directory\n\(sharedDirectory)",
+                                           icon: .toClipboard) {
+                UIPasteboard.general.string = sharedDirectory
+                snackBarViewModel.showSnack("Shared Container Directory copied to clipboard.")
+            })
+        }
 
         #if DEBUG
         items.append(
