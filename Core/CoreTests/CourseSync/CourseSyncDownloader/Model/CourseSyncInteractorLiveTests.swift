@@ -254,7 +254,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         subscription.cancel()
     }
 
-    func testFilesLoadingStateProgressSaving() {
+    func testFilesDownloadedBytes() {
         let testee = CourseSyncInteractorLive(
             pagesInteractor: pagesInteractor,
             assignmentsInteractor: assignmentsInteractor,
