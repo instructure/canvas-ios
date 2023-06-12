@@ -24,27 +24,39 @@ public struct DeveloperMenuView: View {
     @Environment(\.viewController) var controller
 
     @StateObject private var snackBarViewModel = SnackBarViewModel()
-
     @State private var items: [DeveloperMenuItem] = []
 
     public init() {}
 
     public var body: some View {
-        List {
-            ForEach(items, id: \.id) { item in
-                Button {
-                    item.action()
-                } label: {
-                    HStack {
-                        Text(item.title)
-                        Spacer()
-                        InstDisclosureIndicator()
+        ScrollView {
+            VStack(spacing: 0) {
+                ForEach(items) { item in
+                    Button {
+                        item.action()
+                    } label: {
+                        HStack(spacing: 0) {
+                            Text(item.title)
+                                .font(.semibold16)
+                                .foregroundColor(.textDarkest)
+                            Spacer(minLength: 8)
+
+                            switch item.icon {
+                            case .disclosure:
+                                InstDisclosureIndicator()
+                            case .toClipboard:
+                                Image(systemName: "doc.on.clipboard")
+                                    .frame(width: 20, height: 20)
+                            }
+                        }
+                        .padding(16)
+                        .contentShape(Rectangle())
                     }
+                    .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
+                    Divider()
                 }
-                .buttonStyle(.plain)
             }
         }
-        .listStyle(.plain)
         .background(Color.backgroundLightest)
         .navigationTitle("🛠 Developer Menu")
         .navBarItems(trailing: {
@@ -61,10 +73,20 @@ public struct DeveloperMenuView: View {
     }
 
     private func setupItems() {
+        guard items.isEmpty else { return }
         unowned let router = router
         unowned let controller = controller
         unowned let env = env
         unowned let snackBarViewModel = snackBarViewModel
+        let appDir: String = {
+            FileManager
+                .default
+                .urls(for: .documentDirectory,
+                      in: .userDomainMask)
+                .first!
+                .deletingLastPathComponent()
+                .absoluteString
+        }()
 
         items.append(contentsOf: [
             DeveloperMenuItem("View Experimental Features") {
@@ -85,30 +107,40 @@ public struct DeveloperMenuView: View {
             DeveloperMenuItem("View Logs") {
                 router.route(to: "/logs", from: controller)
             },
-            DeveloperMenuItem("HeapID: \(env.heapID ?? "N/A")\n---\nTap to Copy") {
+            DeveloperMenuItem("HeapID\n\(env.heapID ?? "N/A")", icon: .toClipboard) {
                 UIPasteboard.general.string = env.heapID
-                snackBarViewModel.showSnack("HeapID copied to clipboard.\n\(env.heapID ?? "N/A")")
+                snackBarViewModel.showSnack("HeapID copied to clipboard.")
+            },
+            DeveloperMenuItem("App Directory\n\(appDir)", icon: .toClipboard) {
+                UIPasteboard.general.string = appDir
+                snackBarViewModel.showSnack("App Directory copied to clipboard.")
             },
         ])
 
         #if DEBUG
         items.append(
-            DeveloperMenuItem("Access Token: \(env.currentSession?.accessToken ?? "N/A")\n---\nTap to Copy") {
+            DeveloperMenuItem("Access Token\n\(env.currentSession?.accessToken ?? "N/A")", icon: .toClipboard) {
                 UIPasteboard.general.string = env.currentSession?.accessToken
-                snackBarViewModel.showSnack("Access Token copied to clipboard.\n\(env.currentSession?.accessToken ?? "N/A")")
+                snackBarViewModel.showSnack("Access Token copied to clipboard.")
             }
         )
         #endif
     }
 
     private struct DeveloperMenuItem: Identifiable {
+        public enum Icon {
+            case disclosure
+            case toClipboard
+        }
         public let id: String
         public let title: String
+        public let icon: Icon
         public let action: () -> Void
 
-        public init(_ title: String, action: @escaping () -> Void) {
+        public init(_ title: String, icon: Icon = .disclosure, action: @escaping () -> Void) {
             id = title
             self.title = title
+            self.icon = icon
             self.action = action
         }
     }
