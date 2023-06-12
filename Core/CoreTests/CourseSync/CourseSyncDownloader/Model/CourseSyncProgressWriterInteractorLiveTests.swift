@@ -34,7 +34,7 @@ class CourseSyncProgressWriterInteractorLiveTests: CoreTestCase {
                     .make(id: "file-1", displayName: "file-1", bytesToDownload: 1000),
                     .make(id: "file-2", displayName: "file-2", bytesToDownload: 1000),
                 ]
-            )
+            ),
         ]
     }
 
@@ -153,5 +153,4 @@ class CourseSyncProgressWriterInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(progressList[2].selection, .file(0, 0))
         XCTAssertEqual(progressList[2].state, .loading(nil))
     }
-
 }

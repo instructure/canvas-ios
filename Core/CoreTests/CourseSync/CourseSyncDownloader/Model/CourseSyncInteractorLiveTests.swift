@@ -39,16 +39,16 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
 
         entries = [
             CourseSyncEntry(
-                name: "1",
-                id: "1",
+                name: "entry-1",
+                id: "entry-1",
                 tabs: [
-                    .init(id: "1", name: "Assignments", type: .assignments),
-                    .init(id: "2", name: "Pages", type: .pages),
-                    .init(id: "3", name: "Files", type: .files),
+                    .init(id: "tab-assignments", name: "Assignments", type: .assignments),
+                    .init(id: "tab-pages", name: "Pages", type: .pages),
+                    .init(id: "tab-files", name: "Files", type: .files),
                 ],
                 files: [
-                    .make(id: "1", displayName: "1", url: URL(string: "1.jpg")!),
-                    .make(id: "2", displayName: "2", url: URL(string: "2.jpg")!),
+                    .make(id: "file-1", displayName: "1", url: URL(string: "1.jpg")!, bytesToDownload: 1000),
+                    .make(id: "file-2", displayName: "2", url: URL(string: "2.jpg")!, bytesToDownload: 1000),
                 ]
             ),
         ]
@@ -115,14 +115,13 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
     }
 
     func testDownloadStateProgressSaving() {
-        ExperimentalFeature.offlineMode.isEnabled = true
-
         let syncInteractor = CourseSyncInteractorLive(
             pagesInteractor: pagesInteractor,
             assignmentsInteractor: assignmentsInteractor,
             filesInteractor: filesInteractor,
             progressWriterInteractor: progressWriterInteractor
         )
+        entries[0].selectionState = .partiallySelected
         entries[0].tabs[0].selectionState = .selected
         entries[0].tabs[1].selectionState = .selected
         entries[0].tabs[2].selectionState = .selected
@@ -130,15 +129,15 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         entries[0].files[1].selectionState = .selected
 
         var progressList = [CourseSyncEntryProgress]()
-        let expectation1 = expectation(description: "ObserveEntryProgress publisher Publisher sends value")
-        expectation1.expectedFulfillmentCount = 2
+        let expectation1 = expectation(description: "ObserveEntryProgress publisher sends value")
+        expectation1.expectedFulfillmentCount = 11
 
         let subscription1 = progressObserverInteractor.observeEntryProgress()
             .sink(
                 receiveValue: { val in
                     if case let .data(list) = val {
+                        progressList = list.sorted()
                         expectation1.fulfill()
-                        progressList = list
                     }
                 }
             )
@@ -154,27 +153,62 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                 }
             )
 
+        drainMainQueue()
+        XCTAssertEqual(progressList[0].selection, .course(0))
         XCTAssertEqual(progressList[0].state, .loading(nil))
+        XCTAssertEqual(progressList[1].selection, .tab(0, 0))
         XCTAssertEqual(progressList[1].state, .loading(nil))
+        XCTAssertEqual(progressList[2].selection, .tab(0, 1))
         XCTAssertEqual(progressList[2].state, .loading(nil))
+        XCTAssertEqual(progressList[3].selection, .tab(0, 2))
+        XCTAssertEqual(progressList[3].state, .loading(nil))
+        XCTAssertEqual(progressList[4].selection, .file(0, 0))
+        XCTAssertEqual(progressList[4].state, .loading(nil))
+        XCTAssertEqual(progressList[5].selection, .file(0, 1))
+        XCTAssertEqual(progressList[5].state, .loading(nil))
 
         assignmentsInteractor.publisher.send(())
-        XCTAssertEqual(progressList[0].state, .downloaded)
-        XCTAssertEqual(progressList[1].state, .loading(nil))
+        // Course
+        XCTAssertEqual(progressList[0].state, .loading(nil))
+        // Assignments Tab
+        XCTAssertEqual(progressList[1].state, .downloaded)
+        // Pages Tab
         XCTAssertEqual(progressList[2].state, .loading(nil))
+        // Files Tab
+        XCTAssertEqual(progressList[3].state, .loading(nil))
+        // Files #1
+        XCTAssertEqual(progressList[4].state, .loading(nil))
+        // Files #2
+        XCTAssertEqual(progressList[5].state, .loading(nil))
 
         pagesInteractor.publisher.send(())
-        XCTAssertEqual(entries[0].state, .loading(nil))
-        XCTAssertEqual(entries[0].tabs[0].state, .downloaded)
-        XCTAssertEqual(entries[0].tabs[1].state, .downloaded)
-        XCTAssertEqual(entries[0].tabs[2].state, .loading(nil))
+        // Course
+        XCTAssertEqual(progressList[0].state, .loading(nil))
+        // Assignments Tab
+        XCTAssertEqual(progressList[1].state, .downloaded)
+        // Pages Tab
+        XCTAssertEqual(progressList[2].state, .downloaded)
+        // Files Tab
+        XCTAssertEqual(progressList[3].state, .loading(nil))
+        // Files #1
+        XCTAssertEqual(progressList[4].state, .loading(nil))
+        // Files #2
+        XCTAssertEqual(progressList[5].state, .loading(nil))
 
         filesInteractor.publisher.send(1)
         filesInteractor.publisher.send(completion: .finished)
-        XCTAssertEqual(entries[0].state, .downloaded)
-        XCTAssertEqual(entries[0].tabs[0].state, .downloaded)
-        XCTAssertEqual(entries[0].tabs[1].state, .downloaded)
-        XCTAssertEqual(entries[0].tabs[2].state, .downloaded)
+        // Course
+        XCTAssertEqual(progressList[0].state, .downloaded)
+        // Assignments Tab
+        XCTAssertEqual(progressList[1].state, .downloaded)
+        // Pages Tab
+        XCTAssertEqual(progressList[2].state, .downloaded)
+        // Files Tab
+        XCTAssertEqual(progressList[3].state, .downloaded)
+        // Files #1
+        XCTAssertEqual(progressList[4].state, .downloaded)
+        // Files #2
+        XCTAssertEqual(progressList[5].state, .downloaded)
 
         waitForExpectations(timeout: 2)
         subscription1.cancel()
@@ -215,6 +249,47 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(entries[0].tabs[2].state, .downloaded)
         XCTAssertEqual(entries[0].files[0].state, .downloaded)
         XCTAssertEqual(entries[0].files[1].state, .downloaded)
+
+        waitForExpectations(timeout: 2)
+        subscription.cancel()
+    }
+
+    func testFilesLoadingStateProgressSaving() {
+        let testee = CourseSyncInteractorLive(
+            pagesInteractor: pagesInteractor,
+            assignmentsInteractor: assignmentsInteractor,
+            filesInteractor: filesInteractor
+        )
+        entries[0].selectionState = .partiallySelected
+        entries[0].tabs[2].selectionState = .selected
+        entries[0].files[0].selectionState = .selected
+        entries[0].files[1].selectionState = .selected
+
+        let expectation = expectation(description: "DownloadContent publisher sends value")
+        expectation.expectedFulfillmentCount = 9
+        let subscription = testee.downloadContent(for: entries)
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { val in
+                    self.entries = val
+                    expectation.fulfill()
+                }
+            )
+
+        drainMainQueue()
+        XCTAssertEqual(entries.totalSelectedSize, 2000)
+        XCTAssertEqual(entries.totalDownloadedSize, 0)
+        XCTAssertEqual(entries[0].files[0].bytesToDownload, 1000)
+        XCTAssertEqual(entries[0].files[1].bytesToDownload, 1000)
+
+        filesInteractor.publisher.send(0.1)
+        XCTAssertEqual(entries[0].files[0].bytesDownloaded, 100)
+        XCTAssertEqual(entries.totalDownloadedSize, 200)
+
+        filesInteractor.publisher.send(completion: .finished)
+        XCTAssertEqual(entries[0].files[0].bytesDownloaded, 1000)
+        XCTAssertEqual(entries[0].files[1].bytesDownloaded, 1000)
+        XCTAssertEqual(entries.totalDownloadedSize, 2000)
 
         waitForExpectations(timeout: 2)
         subscription.cancel()

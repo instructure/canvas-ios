@@ -56,17 +56,16 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
 
         subscription = Publishers.Sequence(sequence: entries.enumerated())
             .flatMap { index, entry in
-                Publishers.Zip3(
+                unownedSelf.setState(
+                    selection: .course(index),
+                    state: .loading(nil)
+                )
+
+                return Publishers.Zip3(
                     unownedSelf.downloadTabContent(for: entry, index: index, tabName: .assignments),
                     unownedSelf.downloadTabContent(for: entry, index: index, tabName: .pages),
                     unownedSelf.downloadFiles(for: entry, courseIndex: index)
                 )
-                .updateLoadingState {
-                    unownedSelf.setState(
-                        selection: .course(index),
-                        state: .loading(nil)
-                    )
-                }
                 .updateErrorState {
                     unownedSelf.setState(
                         selection: .course(index),
@@ -114,9 +113,18 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
 
         let files = entry.files.filter { $0.selectionState == .selected }
 
+        unownedSelf.setState(
+            selection: .tab(courseIndex, tabIndex),
+            state: .loading(nil)
+        )
+
         return Publishers.Sequence(sequence: files.enumerated())
             .flatMap { fileIndex, element in
-                unownedSelf.filesInteractor.getFile(
+                unownedSelf.setState(
+                    selection: .file(courseIndex, fileIndex), state: .loading(nil)
+                )
+
+                return unownedSelf.filesInteractor.getFile(
                     url: element.url,
                     fileID: element.fileId,
                     fileName: element.fileName,
@@ -133,15 +141,6 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
                 }
                 .eraseToAnyPublisher()
                 .handleEvents(
-                    receiveSubscription: { _ in
-                        unownedSelf.setState(
-                            selection: .file(courseIndex, fileIndex), state: .loading(nil)
-                        )
-                        unownedSelf.setState(
-                            selection: .tab(courseIndex, tabIndex),
-                            state: .loading(nil)
-                        )
-                    },
                     receiveOutput: { progress in
                         unownedSelf.setState(
                             selection: .file(courseIndex, fileIndex), state: .loading(progress)

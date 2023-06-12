@@ -20,7 +20,7 @@ import CoreData
 import Foundation
 
 // swiftlint:disable force_try
-final class CourseSyncEntryProgress: NSManagedObject {
+final class CourseSyncEntryProgress: NSManagedObject, Comparable {
     @NSManaged public var id: String
     @NSManaged public var selectionData: Data
     @NSManaged public var stateData: Data
@@ -41,6 +41,10 @@ final class CourseSyncEntryProgress: NSManagedObject {
         set {
             stateData = try! JSONEncoder().encode(newValue)
         }
+    }
+
+    static func < (lhs: CourseSyncEntryProgress, rhs: CourseSyncEntryProgress) -> Bool {
+        lhs.selection < rhs.selection
     }
 }
 // swiftlint:enable force_try
