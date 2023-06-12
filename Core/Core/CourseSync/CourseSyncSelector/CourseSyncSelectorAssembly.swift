@@ -21,7 +21,8 @@ import Foundation
 public enum CourseSyncSelectorAssembly {
 
     public static func makeViewController(env: AppEnvironment, courseID: String? = nil) -> UIViewController {
-        let selectorInteractor = CourseSyncSelectorInteractorLive(courseID: courseID)
+        let selectorInteractor = CourseSyncSelectorInteractorLive(courseID: courseID,
+                                                                  sessionDefaults: env.userDefaults ?? .fallback)
         let syncInteractor = CourseSyncInteractorLive()
         let diskSpaceInteractor = DiskSpaceInteractorLive()
         let viewModel = CourseSyncSelectorViewModel(
@@ -37,7 +38,7 @@ public enum CourseSyncSelectorAssembly {
 #if DEBUG
 
     static func makePreview(env: AppEnvironment, isEmpty: Bool) -> CourseSyncSelectorView {
-        let selectorInteractor = CourseSyncSelectorInteractorPreview()
+        let selectorInteractor = CourseSyncSelectorInteractorPreview(sessionDefaults: .fallback)
 
         if isEmpty {
             selectorInteractor.mockEmptyState()

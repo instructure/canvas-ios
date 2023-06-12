@@ -110,7 +110,7 @@ extension Array where Element == CourseSyncEntry {
 extension CourseSyncEntry {
 
     func makeSyncProgressViewModelItem() -> CourseSyncProgressViewModel.Item {
-        .init(id: "course-\(id)",
+        .init(id: id,
               title: name,
               subtitle: nil,
               isCollapsed: isCollapsed,
@@ -122,7 +122,7 @@ extension CourseSyncEntry {
 extension CourseSyncEntry.Tab {
 
     func makeSyncProgressViewModelItem() -> CourseSyncProgressViewModel.Item {
-        .init(id: "courseTab-\(id)",
+        .init(id: id,
               title: name,
               subtitle: nil,
               isCollapsed: type == .files ? isCollapsed : nil,
@@ -134,7 +134,7 @@ extension CourseSyncEntry.Tab {
 extension CourseSyncEntry.File {
 
     func makeSyncProgressViewModelItem() -> CourseSyncProgressViewModel.Item {
-        .init(id: "file-\(id)",
+        .init(id: id,
               title: displayName,
               subtitle: nil,
               cellStyle: .listItem,

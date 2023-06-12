@@ -35,7 +35,7 @@ public class DashboardSettingsInteractorLive: DashboardSettingsInteractor {
     private var userSettings: Store<GetUserSettings>!
 
     public init(environment: AppEnvironment, defaults: SessionDefaults?) {
-        let defaults = defaults ?? SessionDefaults(sessionID: "")
+        let defaults = defaults ?? .fallback
         let storedLayout: DashboardLayout = defaults.isDashboardLayoutGrid ? .grid : .list
         self.defaults = defaults
         self.layout = CurrentValueSubject<DashboardLayout, Never>(storedLayout)

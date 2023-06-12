@@ -29,8 +29,7 @@ public enum CourseSyncSettingsAssembly {
 #if DEBUG
 
     static func makePreview() -> some View {
-        let sessionDefaults = SessionDefaults(sessionID: "preview")
-        let interactor = CourseSyncSettingsInteractorLive(storage: sessionDefaults)
+        let interactor = CourseSyncSettingsInteractorLive(storage: .fallback)
         let viewModel = CourseSyncSettingsViewModel(interactor: interactor)
         return CourseSyncSettingsView(viewModel: viewModel)
     }

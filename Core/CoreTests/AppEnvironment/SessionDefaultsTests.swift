@@ -51,4 +51,15 @@ class SessionDefaultsTests: XCTestCase {
         defaults.reset()
         XCTAssertFalse(defaults.isDashboardLayoutGrid)
     }
+
+    func testCourseSyncItemPersistency() {
+        let item1 = "courses/1/tabs/1"
+        let item2 = "courses/2"
+        let item3 = "courses/1/files/1"
+        defaults.offlineSyncSelections = [item1, item2, item3]
+
+        let testee = defaults.offlineSyncSelections
+
+        XCTAssertEqual(testee, [item1, item2, item3])
+    }
 }

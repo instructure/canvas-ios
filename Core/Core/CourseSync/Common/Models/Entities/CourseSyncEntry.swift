@@ -33,7 +33,11 @@ struct CourseSyncEntry {
     }
 
     struct File {
+        /**
+         The unique identifier of the sync entry in a form of "courses/:courseId/files/:fileId". Doesn't correspond to the file ID on API. Use the `fileId` property if you need the API id.
+         */
         let id: String
+        var fileId: String { String(id.split(separator: "/").last ?? "") }
         let displayName: String
         let fileName: String
         let url: URL
@@ -43,7 +47,11 @@ struct CourseSyncEntry {
     }
 
     let name: String
+    /**
+     The unique identifier of the sync entry in a form of "courses/:courseId". Doesn't correspond to the course ID on API. Use the `courseId` property if you need the API id.
+     */
     let id: String
+    var courseId: String { String(id.split(separator: "/").last ?? "") }
 
     var tabs: [Self.Tab]
     var selectedTabsCount: Int {

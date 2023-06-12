@@ -24,7 +24,7 @@ import CombineExt
 class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
     private let mockData: CurrentValueRelay<[CourseSyncEntry]>
 
-    required init(courseID: String? = nil) {
+    required init(courseID: String? = nil, sessionDefaults: SessionDefaults) {
         mockData = CurrentValueRelay<[CourseSyncEntry]>([
             .init(name: "Black Hole",
                   id: "0",

@@ -25,7 +25,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        mockInteractor = MockCourseSyncSelectorInteractor()
+        mockInteractor = MockCourseSyncSelectorInteractor(sessionDefaults: .fallback)
     }
 
     // MARK: - Properties
@@ -61,7 +61,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
         var data = CourseSyncEntry(name: "test", id: "testID", tabs: [], files: [])
         var testee = data.makeViewModelItem()
 
-        XCTAssertEqual(testee.id, "course-testID")
+        XCTAssertEqual(testee.id, "testID")
         XCTAssertEqual(testee.title, "test")
         XCTAssertNil(testee.subtitle)
         XCTAssertTrue(testee.cellStyle == .mainAccordionHeader)
@@ -99,7 +99,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
             return XCTFail()
         }
 
-        XCTAssertEqual(item.id, "course-testID")
+        XCTAssertEqual(item.id, "testID")
         XCTAssertEqual(emptyViewId, "course-testID-empty")
     }
 
@@ -109,7 +109,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
         var data = CourseSyncEntry.Tab(id: "1", name: "Test", type: .assignments)
         var testee = data.makeViewModelItem()
 
-        XCTAssertEqual(testee.id, "courseTab-1")
+        XCTAssertEqual(testee.id, "1")
         XCTAssertEqual(testee.title, "Test")
         XCTAssertEqual(testee.subtitle, nil)
         XCTAssertEqual(testee.isCollapsed, nil)
@@ -156,7 +156,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
         var data = CourseSyncEntry.File.make(id: "1", displayName: "testFile")
         var testee = data.makeViewModelItem()
 
-        XCTAssertEqual(testee.id, "file-1")
+        XCTAssertEqual(testee.id, "1")
         XCTAssertEqual(testee.title, "testFile")
         XCTAssertEqual(testee.subtitle, nil)
         XCTAssertEqual(testee.isCollapsed, nil)
@@ -255,7 +255,7 @@ private class MockCourseSyncSelectorInteractor: CourseSyncSelectorInteractor {
     private(set) var lastSelected: (selection: Core.CourseEntrySelection, isSelected: Bool)?
     private(set) var lastCollapsed: (selection: Core.CourseEntrySelection, isCollapsed: Bool)?
 
-    required init(courseID: String? = nil) {
+    required init(courseID: String? = nil, sessionDefaults: SessionDefaults) {
     }
 
     func getCourseSyncEntries() -> AnyPublisher<[Core.CourseSyncEntry], Error> {
