@@ -40,6 +40,7 @@ struct CourseListCell: View {
             }
                 .buttonStyle(PlainButtonStyle())
                 .accessibility(label: pending ? Text("Updating", bundle: .core) : Text("favorite", bundle: .core))
+                .accessibilityIdentifier("DashboardCourseCell.\(course.courseId).favoriteButton")
                 .accessibility(addTraits: (course.isFavorite && !pending) ? .isSelected : [])
                 .hidden(!course.isFavoriteButtonVisible)
 
