@@ -20,10 +20,16 @@ import Combine
 import CoreData
 
 extension NSPersistentContainer {
+
+    // MARK: - Public Static Interface
+
     public static let shared = create(appGroup: Bundle.main.appGroupID())
 
-    public static func create(appGroup: String? = Bundle.main.appGroupID(), session: LoginSession? = nil) -> NSPersistentContainer {
-        let model = NSManagedObjectModel(contentsOf: Bundle.core.url(forResource: "Database", withExtension: "momd")!)!
+    public static func create(appGroup: String? = Bundle.main.appGroupID(),
+                              session: LoginSession? = nil)
+    -> NSPersistentContainer {
+        let modelFileURL = Bundle.core.url(forResource: "Database", withExtension: "momd")!
+        let model = NSManagedObjectModel(contentsOf: modelFileURL)!
         FileUploadTargetTransformer.register()
         let container = NSPersistentContainer(name: "Database", managedObjectModel: model)
 
@@ -41,33 +47,6 @@ extension NSPersistentContainer {
         return container
     }
 
-    private static func destroyAndReCreatePersistentStore(in container: NSPersistentContainer) {
-        container.destroy() // ignore migration conflicts
-        container.loadPersistentStores { _, error in
-            guard error == nil else {
-                destroyAndCreateInMemoryStore(in: container)
-                return
-            }
-            container.setUp()
-        }
-    }
-
-    private static func destroyAndCreateInMemoryStore(in container: NSPersistentContainer) {
-        container.destroy() // ignore migration conflicts
-        container.persistentStoreDescriptions = [NSPersistentStoreDescription(url: URL(fileURLWithPath: "/dev/null"))]
-        container.loadPersistentStores { _, error in
-            if let error = error {
-                fatalError(error.localizedDescription)
-            }
-            container.setUp()
-        }
-    }
-
-    func setUp() {
-        viewContext.automaticallyMergesChangesFromParent = true
-        viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
-    }
-
     public static func databaseURL(for appGroup: String?, session: LoginSession?) -> URL? {
         let folder = URL.Directories.caches(appGroup: appGroup)
         var fileName = "Database.sqlite"
@@ -76,6 +55,8 @@ extension NSPersistentContainer {
         }
         return folder.appendingPathComponent(fileName)
     }
+
+    // MARK: - Public Instance Methods
 
     public func clearAllRecords() throws {
         try persistentStoreCoordinator.managedObjectModel.entities.forEach { (entity) in
@@ -92,7 +73,9 @@ extension NSPersistentContainer {
         do {
             for description in persistentStoreDescriptions {
                 if let url = description.url {
-                    try persistentStoreCoordinator.destroyPersistentStore(at: url, ofType: description.type, options: nil)
+                    try persistentStoreCoordinator.destroyPersistentStore(at: url,
+                                                                          ofType: description.type,
+                                                                          options: nil)
                 }
             }
         } catch {
@@ -113,7 +96,38 @@ extension NSPersistentContainer {
         context.perform { block(context) }
     }
 
-    var writeContext: NSManagedObjectContext? {
+    // MARK: - Private Methods
+
+    private static func destroyAndReCreatePersistentStore(in container: NSPersistentContainer) {
+        container.destroy() // ignore migration conflicts
+        container.loadPersistentStores { _, error in
+            guard error == nil else {
+                destroyAndCreateInMemoryStore(in: container)
+                return
+            }
+            container.setUp()
+        }
+    }
+
+    private static func destroyAndCreateInMemoryStore(in container: NSPersistentContainer) {
+        container.destroy() // ignore migration conflicts
+        container.persistentStoreDescriptions = [
+            NSPersistentStoreDescription(url: URL(fileURLWithPath: "/dev/null"))
+        ]
+        container.loadPersistentStores { _, error in
+            if let error = error {
+                fatalError(error.localizedDescription)
+            }
+            container.setUp()
+        }
+    }
+
+    private func setUp() {
+        viewContext.automaticallyMergesChangesFromParent = true
+        viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+    }
+
+    private var writeContext: NSManagedObjectContext? {
         get { objc_getAssociatedObject(self, &writeContextKey) as? NSManagedObjectContext }
         set { objc_setAssociatedObject(self, &writeContextKey, newValue, .OBJC_ASSOCIATION_RETAIN) }
     }
