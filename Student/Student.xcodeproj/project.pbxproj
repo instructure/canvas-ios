@@ -131,6 +131,8 @@
 		8BB5ED932A2E0F0B009D63DA /* HelpHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5ED922A2E0F0B009D63DA /* HelpHelper.swift */; };
 		8BB5ED942A2E0F0B009D63DA /* HelpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5ED912A2E0F0B009D63DA /* HelpTests.swift */; };
 		8BB5ED962A2E111B009D63DA /* AnnouncementsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5ED952A2E111B009D63DA /* AnnouncementsHelper.swift */; };
+		8BB5EDC32A374A79009D63DA /* DashboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5EDC22A374A79009D63DA /* DashboardHelper.swift */; };
+		8BB5EDC52A374BCC009D63DA /* PagesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5EDC42A374BCC009D63DA /* PagesHelper.swift */; };
 		8BEBB64C29FA741900364C4C /* DSLoginE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBB64B29FA741900364C4C /* DSLoginE2ETests.swift */; };
 		8BF8B4752A289F5C001DF4C3 /* GradesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF8B4742A289F5C001DF4C3 /* GradesHelper.swift */; };
 		9734351523866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9734351423866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift */; };
@@ -662,6 +664,8 @@
 		8BB5ED912A2E0F0B009D63DA /* HelpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpTests.swift; sourceTree = "<group>"; };
 		8BB5ED922A2E0F0B009D63DA /* HelpHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpHelper.swift; sourceTree = "<group>"; };
 		8BB5ED952A2E111B009D63DA /* AnnouncementsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementsHelper.swift; sourceTree = "<group>"; };
+		8BB5EDC22A374A79009D63DA /* DashboardHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardHelper.swift; sourceTree = "<group>"; };
+		8BB5EDC42A374BCC009D63DA /* PagesHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagesHelper.swift; sourceTree = "<group>"; };
 		8BEBB64B29FA741900364C4C /* DSLoginE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSLoginE2ETests.swift; sourceTree = "<group>"; };
 		8BF8B4742A289F5C001DF4C3 /* GradesHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesHelper.swift; sourceTree = "<group>"; };
 		9734351423866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStreamViewControllerTests.swift; sourceTree = "<group>"; };
@@ -1880,6 +1884,7 @@
 			isa = PBXGroup;
 			children = (
 				E809365624C21CB700D15E9A /* PageE2ETests.swift */,
+				8BB5EDC42A374BCC009D63DA /* PagesHelper.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -1897,6 +1902,7 @@
 			children = (
 				E8DB184E24C7883B0042D6D7 /* DashboardE2ETests.swift */,
 				C95E967027C62DCC00DAAB4A /* DSDashboardE2ETests.swift */,
+				8BB5EDC22A374A79009D63DA /* DashboardHelper.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -2945,6 +2951,7 @@
 				C935D41E26DD1BDE00C940F7 /* NewQuizzesE2ETests.swift in Sources */,
 				8BB5ED962A2E111B009D63DA /* AnnouncementsHelper.swift in Sources */,
 				E8C6F4D823D626220086B865 /* LoginStartE2ETests.swift in Sources */,
+				8BB5EDC52A374BCC009D63DA /* PagesHelper.swift in Sources */,
 				E80936E924C24CDD00D15E9A /* LoginE2ETests.swift in Sources */,
 				C95E967127C62DCC00DAAB4A /* DSDashboardE2ETests.swift in Sources */,
 				E80936E424C24CDD00D15E9A /* CourseGroupE2ETests.swift in Sources */,
@@ -2953,6 +2960,7 @@
 				8B19F65B2A137E33007AA43F /* DSAssignmentsE2ETests.swift in Sources */,
 				E8DB184F24C7883B0042D6D7 /* DashboardE2ETests.swift in Sources */,
 				C9A3C04D26A03B9900DAE8E1 /* K5StudentE2ETests.swift in Sources */,
+				8BB5EDC32A374A79009D63DA /* DashboardHelper.swift in Sources */,
 				E8C6F4E423D626220086B865 /* QuizzesE2ETests.swift in Sources */,
 				E841D8C423D6648300685A63 /* AssignmentsE2ETests.swift in Sources */,
 				C935D43D26E5F5AF00C940F7 /* K5GradesE2ETests.swift in Sources */,

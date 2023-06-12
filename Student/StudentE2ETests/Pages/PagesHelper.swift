@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,12 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-extension DataSeeder {
+import Foundation
+import TestsFoundation
+import XCTest
 
-    @discardableResult
-    public func createPage(courseId: String, requestBody: CreateDSPageRequest.RequestDSPage) -> DSPage {
-        let requestedBody = CreateDSPageRequest.Body(wiki_page: requestBody)
-        let request = CreateDSPageRequest(body: requestedBody, courseId: courseId)
-        return try! makeRequest(request)
+public class PagesHelper: BaseHelper {
+    public static func navigateToPages(course: DSCourse) {
+        let courseCard = Dashboard.courseCard(id: course.id).waitToExist()
+        courseCard.tap()
+        let pagesButton = CourseNavigation.pages.waitToExist()
+        pagesButton.tap()
+    }
+
+    public static func navigateToFrontPage(course: DSCourse) {
+        navigateToPages(course: course)
+        let frontPage = PageList.frontPage.waitToExist()
+        frontPage.tap()
     }
 }
