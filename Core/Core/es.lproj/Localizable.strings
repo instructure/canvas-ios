@@ -31,6 +31,9 @@
 /* No comment provided by engineer. */
 "%@ missing" = "%@ faltante";
 
+/* 42 GB of 64 GB Used */
+"%@ of %@ Used" = "%1$@ de %2$@ utilizado";
+
 /* No comment provided by engineer. */
 "%@ pts" = "%@ pts";
 
@@ -614,6 +617,9 @@
 "Could not save notification preference" = "No se pudieron guardar las preferencias de notificaciones";
 
 /* No comment provided by engineer. */
+"Couldn't save the file." = "No se pudo guardar el archivo.";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "Curso (opcional)";
 
 /* No comment provided by engineer. */
@@ -627,6 +633,9 @@
 
 /* No comment provided by engineer. */
 "Course announcements" = "Anuncios del curso";
+
+/* No comment provided by engineer. */
+"Course Card Options" = "Opciones de tarjetas de curso";
 
 /* No comment provided by engineer. */
 "Course Content" = "Contenido del curso";
@@ -716,6 +725,9 @@
 "Dashboard" = "Tablero";
 
 /* No comment provided by engineer. */
+"Dashboard Options" = "Opciones del Tablero";
+
+/* No comment provided by engineer. */
 "Dashboard settings" = "Configuración del tablero";
 
 /* No comment provided by engineer. */
@@ -774,6 +786,9 @@
 
 /* No comment provided by engineer. */
 "Description" = "Descripción";
+
+/* No comment provided by engineer. */
+"Deselect All" = "Desmarcar todo";
 
 /* No comment provided by engineer. */
 "Designer" = "Diseñador";
@@ -1445,6 +1460,9 @@
 "Make sure you enable camera permissions in Settings" = "Asegúrese de habilitar los permisos de cámara en las Configuraciones";
 
 /* No comment provided by engineer. */
+"Manage Offline Content" = "Administrar contenido sin conexión";
+
+/* No comment provided by engineer. */
 "Manage Students" = "Administrar estudiantes";
 
 /* No comment provided by engineer. */
@@ -1595,6 +1613,9 @@
 "No Content" = "Sin contenido";
 
 /* No comment provided by engineer. */
+"No Course Content" = "Sin contenido del curso";
+
+/* No comment provided by engineer. */
 "No Courses" = "Sin cursos";
 
 /* No comment provided by engineer. */
@@ -1703,6 +1724,9 @@
 "Observers" = "Observadores";
 
 /* No comment provided by engineer. */
+"Offline Content" = "Contenido sin conexión";
+
+/* No comment provided by engineer. */
 "OK" = "Aceptar";
 
 /* No comment provided by engineer. */
@@ -1761,6 +1785,9 @@
 
 /* No comment provided by engineer. */
 "Ordered List" = "Listado ordenado";
+
+/* No comment provided by engineer. */
+"Other Apps" = "Otras aplicaciones";
 
 /* 5 out of 10 */
 "out of" = "de";
@@ -1955,6 +1982,9 @@
 "Refreshing" = "Volviendo a cargar";
 
 /* No comment provided by engineer. */
+"Remaining" = "Restante";
+
+/* No comment provided by engineer. */
 "Remove" = "Eliminar";
 
 /* No comment provided by engineer. */
@@ -2091,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Seleccionar una ruta de acceso";
+
+/* No comment provided by engineer. */
+"Select All" = "Seleccionar todo";
 
 /* No comment provided by engineer. */
 "Select assignment" = "Seleccionar tarea";
@@ -2234,6 +2267,12 @@
 "Stop recording" = "Detener la grabación";
 
 /* No comment provided by engineer. */
+"Storage" = "Almacenamiento";
+
+/* No comment provided by engineer. */
+"Storage Info" = "Información de almacenamiento";
+
+/* No comment provided by engineer. */
 "Student" = "Estudiante";
 
 /* No comment provided by engineer. */
@@ -2324,6 +2363,12 @@
 "Syllabus content" = "Contenido del programa del curso";
 
 /* No comment provided by engineer. */
+"Sync" = "Sincronización";
+
+/* No comment provided by engineer. */
+"Sync Offline Content?" = "¿Quiere sincronizar contenido sin conexión?";
+
+/* No comment provided by engineer. */
 "System settings" = "Configuraciones del sistema";
 
 /* No comment provided by engineer. */
@@ -2390,10 +2435,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "La aplicación debe reiniciarse para aplicar la nueva configuración de idioma. Vuelva a ejecutar la aplicación.";
 
 /* No comment provided by engineer. */
+"The course content will be listed here, and then you can make them available for offline usage." = "El contenido del curso se mostrará aquí y luego podrá ponerlo a disposición para su uso sin conexión.";
+
+/* No comment provided by engineer. */
 "The file has been deleted by the author." = "El autor ha eliminado el archivo.";
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "El proceso de entrega fue terminado por el sistema operativo.";
+
+/* No comment provided by engineer. */
+"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Hay %d ítems seleccionados para disponibilidad sin conexión. El contenido seleccionado se descargará en el dispositivo.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "No hay tareas activas en este curso.";
@@ -2457,6 +2508,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Ocurrió un error al actuar como usuario. Inténtelo de nuevo más tarde.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error." = "Se produjo un error inesperado.";
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "Se produjo un error inesperado. Inténtelo de nuevo.";
@@ -2547,6 +2601,9 @@
 
 /* No comment provided by engineer. */
 "Unknown Error" = "Error desconocido";
+
+/* No comment provided by engineer. */
+"Unknown file" = "Archivo desconocido";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Ilimitados";
@@ -2769,6 +2826,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Es posible que los cursos de su hijo aún no estén publicados.";
+
+/* No comment provided by engineer. */
+"Your courses will be listed here, and then you can make them available for offline usage." = "Sus cursos se mostrarán aquí y luego podrá ponerlos a disposición para su uso sin conexión.";
 
 /* No comment provided by engineer. */
 "Your device is out of storage space. Please free up space and try again." = "Su dispositivo no tiene más espacio de almacenamiento. Libere espacio y vuelva a intentarlo.";

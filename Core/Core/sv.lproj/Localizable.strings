@@ -31,6 +31,9 @@
 /* No comment provided by engineer. */
 "%@ missing" = "%@ saknad";
 
+/* 42 GB of 64 GB Used */
+"%@ of %@ Used" = "%1$@ av %2$@ Använda";
+
 /* No comment provided by engineer. */
 "%@ pts" = "%@ poäng";
 
@@ -614,6 +617,9 @@
 "Could not save notification preference" = "Det gick inte att spara aviseringsinställning";
 
 /* No comment provided by engineer. */
+"Couldn't save the file." = "Det gick inte att spara filen.";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "Kurs (valfri)";
 
 /* No comment provided by engineer. */
@@ -627,6 +633,9 @@
 
 /* No comment provided by engineer. */
 "Course announcements" = "Anslag";
+
+/* No comment provided by engineer. */
+"Course Card Options" = "Kurskortsalternativ";
 
 /* No comment provided by engineer. */
 "Course Content" = "Kursinnehåll";
@@ -716,6 +725,9 @@
 "Dashboard" = "Översikt";
 
 /* No comment provided by engineer. */
+"Dashboard Options" = "Översiktsalternativ";
+
+/* No comment provided by engineer. */
 "Dashboard settings" = "Inställningar för översikt";
 
 /* No comment provided by engineer. */
@@ -774,6 +786,9 @@
 
 /* No comment provided by engineer. */
 "Description" = "Beskrivning";
+
+/* No comment provided by engineer. */
+"Deselect All" = "Avmarkera alla";
 
 /* No comment provided by engineer. */
 "Designer" = "Designer";
@@ -1445,6 +1460,9 @@
 "Make sure you enable camera permissions in Settings" = "Se till att aktivera kamerabehörigheter i inställningarna";
 
 /* No comment provided by engineer. */
+"Manage Offline Content" = "Hantera offlineinnehåll";
+
+/* No comment provided by engineer. */
 "Manage Students" = "Hantera studenter";
 
 /* No comment provided by engineer. */
@@ -1595,6 +1613,9 @@
 "No Content" = "Inget innehåll";
 
 /* No comment provided by engineer. */
+"No Course Content" = "Inget kursinnehåll";
+
+/* No comment provided by engineer. */
 "No Courses" = "Inga kurser";
 
 /* No comment provided by engineer. */
@@ -1703,6 +1724,9 @@
 "Observers" = "Observatörer";
 
 /* No comment provided by engineer. */
+"Offline Content" = "Offlineinnehåll";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -1761,6 +1785,9 @@
 
 /* No comment provided by engineer. */
 "Ordered List" = "Ordnad lista";
+
+/* No comment provided by engineer. */
+"Other Apps" = "Andra appar";
 
 /* 5 out of 10 */
 "out of" = "av";
@@ -1955,6 +1982,9 @@
 "Refreshing" = "Uppdaterar";
 
 /* No comment provided by engineer. */
+"Remaining" = "Återstående";
+
+/* No comment provided by engineer. */
 "Remove" = "Ta bort";
 
 /* No comment provided by engineer. */
@@ -2091,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Välj en sökväg";
+
+/* No comment provided by engineer. */
+"Select All" = "Välj alla";
 
 /* No comment provided by engineer. */
 "Select assignment" = "Välj uppgift";
@@ -2234,6 +2267,12 @@
 "Stop recording" = "Stoppa inspelning";
 
 /* No comment provided by engineer. */
+"Storage" = "Lagring";
+
+/* No comment provided by engineer. */
+"Storage Info" = "Information om lagring";
+
+/* No comment provided by engineer. */
 "Student" = "Student";
 
 /* No comment provided by engineer. */
@@ -2324,6 +2363,12 @@
 "Syllabus content" = "Kursöversiktens innehåll";
 
 /* No comment provided by engineer. */
+"Sync" = "Synkronisera";
+
+/* No comment provided by engineer. */
+"Sync Offline Content?" = "Synkronisera offlineinnehåll?";
+
+/* No comment provided by engineer. */
 "System settings" = "Systeminställningar";
 
 /* No comment provided by engineer. */
@@ -2390,10 +2435,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Du måste starta om appen för att använda de nya språkinställningarna. Starta om appen.";
 
 /* No comment provided by engineer. */
+"The course content will be listed here, and then you can make them available for offline usage." = "Kursinnehållet kommer att listas här, och sedan kan du göra dem tillgängliga för offlineanvändning.";
+
+/* No comment provided by engineer. */
 "The file has been deleted by the author." = "Filen har raderats av författaren.";
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Inlämningsprocessen avbröts av operativsystemet.";
+
+/* No comment provided by engineer. */
+"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Det finns %d objekt valda för offlinetillgänglighet. Det valda innehållet kommer att laddas ner till enheten.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Det finns inga aktiva uppgifter i den här kursen.";
@@ -2457,6 +2508,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Ett fel uppstod med funktionen Agera som användare. Försök igen senare.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error." = "Det uppstod ett oväntat fel.";
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "Ett oväntat fel uppstod. Försök igen.";
@@ -2547,6 +2601,9 @@
 
 /* No comment provided by engineer. */
 "Unknown Error" = "Okänt fel";
+
+/* No comment provided by engineer. */
+"Unknown file" = "Okänd fil";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Obegränsad";
@@ -2769,6 +2826,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Ditt barns kurs kanske inte publicerats än.";
+
+/* No comment provided by engineer. */
+"Your courses will be listed here, and then you can make them available for offline usage." = "Dina kurser kommer att listas här, och sedan kan du göra dem tillgängliga för offlineanvändning.";
 
 /* No comment provided by engineer. */
 "Your device is out of storage space. Please free up space and try again." = "Din enhet har slut på lagringsutrymme. Vänligen frigör utrymme och testa igen.";

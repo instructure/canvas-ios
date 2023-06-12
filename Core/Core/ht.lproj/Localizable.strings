@@ -31,6 +31,9 @@
 /* No comment provided by engineer. */
 "%@ missing" = "%@ manke";
 
+/* 42 GB of 64 GB Used */
+"%@ of %@ Used" = "%1$@ sou %2$@ Itilize";
+
 /* No comment provided by engineer. */
 "%@ pts" = "%@ pwen";
 
@@ -614,6 +617,9 @@
 "Could not save notification preference" = "Pa t kapab anrejistre preferans notifikasyon";
 
 /* No comment provided by engineer. */
+"Couldn't save the file." = "Pat ka sovgade fichye a.";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "Kou (opsyonèl)";
 
 /* No comment provided by engineer. */
@@ -627,6 +633,9 @@
 
 /* No comment provided by engineer. */
 "Course announcements" = "Anons kou";
+
+/* No comment provided by engineer. */
+"Course Card Options" = "Opsyon Kat Kou";
 
 /* No comment provided by engineer. */
 "Course Content" = "Kontni Kou";
@@ -716,6 +725,9 @@
 "Dashboard" = "Tablo";
 
 /* No comment provided by engineer. */
+"Dashboard Options" = "Opsyon Tablo de bò";
+
+/* No comment provided by engineer. */
 "Dashboard settings" = "Paramèt tablodbò";
 
 /* No comment provided by engineer. */
@@ -774,6 +786,9 @@
 
 /* No comment provided by engineer. */
 "Description" = "Deskripsyon";
+
+/* No comment provided by engineer. */
+"Deselect All" = "Deseleksyone Tout";
 
 /* No comment provided by engineer. */
 "Designer" = "Kreyatè";
@@ -1445,6 +1460,9 @@
 "Make sure you enable camera permissions in Settings" = "Asire w ou aktive pèmisyon kamera a nan Paramèt.";
 
 /* No comment provided by engineer. */
+"Manage Offline Content" = "Jere Kontni San Koneksyon";
+
+/* No comment provided by engineer. */
 "Manage Students" = "Jere Elèv";
 
 /* No comment provided by engineer. */
@@ -1595,6 +1613,9 @@
 "No Content" = "Pa gen Kontni";
 
 /* No comment provided by engineer. */
+"No Course Content" = "Pa gen Kontni Kou";
+
+/* No comment provided by engineer. */
 "No Courses" = "Pa gen Kou";
 
 /* No comment provided by engineer. */
@@ -1703,6 +1724,9 @@
 "Observers" = "Obsèvatè";
 
 /* No comment provided by engineer. */
+"Offline Content" = "Kontni San Koneksyon";
+
+/* No comment provided by engineer. */
 "OK" = "DAKO";
 
 /* No comment provided by engineer. */
@@ -1761,6 +1785,9 @@
 
 /* No comment provided by engineer. */
 "Ordered List" = "Lis Kòmande";
+
+/* No comment provided by engineer. */
+"Other Apps" = "Lòt Aplikasyon";
 
 /* 5 out of 10 */
 "out of" = "sou";
@@ -1955,6 +1982,9 @@
 "Refreshing" = "Rafrechi";
 
 /* No comment provided by engineer. */
+"Remaining" = "Rete";
+
+/* No comment provided by engineer. */
 "Remove" = "Elimine";
 
 /* No comment provided by engineer. */
@@ -2091,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Seleksyone yon Wout";
+
+/* No comment provided by engineer. */
+"Select All" = "Seleksyone Tout";
 
 /* No comment provided by engineer. */
 "Select assignment" = "Seleksyone devwa";
@@ -2234,6 +2267,12 @@
 "Stop recording" = "Kanpe anrejistreman";
 
 /* No comment provided by engineer. */
+"Storage" = "Estokaj";
+
+/* No comment provided by engineer. */
+"Storage Info" = "Enfo Estokaj";
+
+/* No comment provided by engineer. */
 "Student" = "Elèv";
 
 /* No comment provided by engineer. */
@@ -2324,6 +2363,12 @@
 "Syllabus content" = "Kontni pwogram";
 
 /* No comment provided by engineer. */
+"Sync" = "Sync";
+
+/* No comment provided by engineer. */
+"Sync Offline Content?" = "Senkwonize Kontni San Koneksyon?";
+
+/* No comment provided by engineer. */
 "System settings" = "Paramèt sistèm";
 
 /* No comment provided by engineer. */
@@ -2390,10 +2435,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Aplikasyon an dwe redemare pou l ka itilize nouvo paramèt lang lan. Re lanse aplikasyon an.";
 
 /* No comment provided by engineer. */
+"The course content will be listed here, and then you can make them available for offline usage." = "Kontni kou a ap afiche isit la, apre sa ou ka mete yo disponib pou itilize san koneksyon.";
+
+/* No comment provided by engineer. */
 "The file has been deleted by the author." = "Otè a te elimine fichye sa a.";
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Sistèm eksplwatasyon an te entèwonp pwosesis soumisyon an.";
+
+/* No comment provided by engineer. */
+"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Gen %d atik ki seleksyone pou disponibilite san koneksyon. Kontni seleksyone a ap telechaje sou aparèy la.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Pa gen devwa aktif nan kou sa a.";
@@ -2457,6 +2508,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Te gen yon erè nan Aji tankou Itilizatè. Tanpri eseye ankò.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error." = "Te gen yon erè sanzatann.";
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "Yon erè fèt sanzatann. Tanpri eseye ankò.";
@@ -2547,6 +2601,9 @@
 
 /* No comment provided by engineer. */
 "Unknown Error" = "Erè Enkoni";
+
+/* No comment provided by engineer. */
+"Unknown file" = "Fichye enkoni";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Ilimite";
@@ -2769,6 +2826,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Kou pitit ou a gendwa poko pibliye.";
+
+/* No comment provided by engineer. */
+"Your courses will be listed here, and then you can make them available for offline usage." = "Kou ou yo ap afiche isit la, apre sa ou ka mete yo disponib pou itilize san koneksyon.";
 
 /* No comment provided by engineer. */
 "Your device is out of storage space. Please free up space and try again." = "Pa gen espas estojak sou aparèy ou a ankò. Tanpri libere kèk espas epi eseye ankò.";
