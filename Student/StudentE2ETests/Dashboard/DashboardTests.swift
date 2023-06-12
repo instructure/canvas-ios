@@ -197,7 +197,6 @@ class DashboardTests: E2ETestCase {
         XCTAssertTrue(doneButton.isVisible)
 
         doneButton.tap()
-        pullToRefresh()
         courseCard = Dashboard.courseCard(id: course.id).waitToExist()
         XCTAssertTrue(courseCard.isVisible)
 
