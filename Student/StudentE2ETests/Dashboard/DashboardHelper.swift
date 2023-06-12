@@ -25,6 +25,7 @@ public class DashboardHelper: BaseHelper {
     public static var dashboardSettingsShowGradeToggle: Element { app.find(id: "DashboardSettings.showGradesToggle", type: .switch) }
     public static var doneButton: Element { app.find(id: "screen.dismiss", type: .button) }
 
+    @discardableResult
     public static func createFrontPageForCourse(course: DSCourse) -> DSPage {
         let pageBody = CreateDSPageRequest.RequestDSPage(title: "Dashboard Test Page", body: "Dashboard Test Page Body", front_page: true, published: true)
         return seeder.createPage(courseId: course.id, requestBody: pageBody)

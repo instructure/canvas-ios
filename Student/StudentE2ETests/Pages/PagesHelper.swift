@@ -33,4 +33,11 @@ public class PagesHelper: BaseHelper {
         let frontPage = PageList.frontPage.waitToExist()
         frontPage.tap()
     }
+
+    @discardableResult
+    public static func createDeepLinkFrontPage(course: DSCourse) -> DSPage {
+        let body = "THIS SHOULD BE A DEEP LINK"
+        let pageBody = CreateDSPageRequest.RequestDSPage(title: "Deep Link Test Page", body: body, front_page: true, published: true)
+        return seeder.createPage(courseId: course.id, requestBody: pageBody)
+    }
 }

@@ -51,7 +51,9 @@ class PageE2ETests: E2ETestCase {
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
-        let frontPage = DashboardHelper.createFrontPageForCourse(course: course)
+        PagesHelper.createDeepLinkFrontPage(course: course)
+
+        logInDSUser(student)
 
         // MARK: Navigate to the front page of the course
         PagesHelper.navigateToFrontPage(course: course)
