@@ -57,6 +57,7 @@ class CourseSyncProgressWriterInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(progressList.count, 1)
         XCTAssertEqual(progressList[0].bytesToDownload, 2000)
         XCTAssertEqual(progressList[0].bytesDownloaded, 2000)
+        XCTAssertEqual(progressList[0].progress, 1)
     }
 
     func testPartiallyDownloadedFileProgress() {
@@ -72,6 +73,7 @@ class CourseSyncProgressWriterInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(progressList.count, 1)
         XCTAssertEqual(progressList[0].bytesToDownload, 2000)
         XCTAssertEqual(progressList[0].bytesDownloaded, 1000)
+        XCTAssertEqual(progressList[0].progress, 0.5)
     }
 
     func testFailedDownloadFileProgress() {
@@ -87,6 +89,7 @@ class CourseSyncProgressWriterInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(progressList.count, 1)
         XCTAssertEqual(progressList[0].bytesToDownload, 2000)
         XCTAssertEqual(progressList[0].bytesDownloaded, 500)
+        XCTAssertEqual(progressList[0].progress, 0.25)
     }
 
     func testCourseSelectionEntryProgress() {
