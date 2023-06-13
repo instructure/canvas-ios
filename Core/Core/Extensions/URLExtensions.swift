@@ -41,7 +41,7 @@ public extension URL {
 
         public static func caches(appGroup: String?) -> URL {
             var folder = caches
-            if let appGroup = appGroup, let group = sharedContainers(appGroup) {
+            if let appGroup = appGroup, let group = sharedContainer(appGroup) {
                 folder = group.appendingPathComponent("caches", isDirectory: true)
                 try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true, attributes: nil)
             }
@@ -56,7 +56,7 @@ public extension URL {
             FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
         }
 
-        public static func sharedContainers(_ identifier: String) -> URL? {
+        public static func sharedContainer(_ identifier: String) -> URL? {
             FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: identifier)
         }
 

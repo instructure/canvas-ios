@@ -53,7 +53,7 @@ class URLExtensionsTests: XCTestCase {
     }
 
     func testAppGroupCachesDirectory() {
-        let expected = URL.Directories.sharedContainers("group.instructure.shared")!.appendingPathComponent("caches", isDirectory: true)
+        let expected = URL.Directories.sharedContainer("group.instructure.shared")!.appendingPathComponent("caches", isDirectory: true)
         let url = URL.Directories.caches(appGroup: "group.instructure.shared")
         XCTAssertEqual(url, expected)
         var isDir: ObjCBool = false
