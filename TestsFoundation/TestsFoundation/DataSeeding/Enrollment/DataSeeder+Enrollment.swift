@@ -20,35 +20,51 @@ import Core
 
 extension DataSeeder {
 
-    public func enrollTeacher(_ teacher: DSUser, in course: DSCourse, state: EnrollmentState = .active) {
-        self.enrollUsers([teacher], in: course, type: .TeacherEnrollment, state: state)
+    @discardableResult
+    public func enrollTeacher(_ teacher: DSUser, in course: DSCourse, state: EnrollmentState = .active) -> DSEnrollment {
+        self.enrollUser(teacher, in: course, type: .TeacherEnrollment, state: state)
     }
 
-    public func enrollTeachers(_ teachers: [DSUser], in course: DSCourse, state: EnrollmentState = .active) {
+    @discardableResult
+    public func enrollTeachers(_ teachers: [DSUser], in course: DSCourse, state: EnrollmentState = .active) -> [DSEnrollment] {
         self.enrollUsers(teachers, in: course, type: .TeacherEnrollment, state: state)
     }
 
-    public func enrollStudent(_ student: DSUser, in course: DSCourse, state: EnrollmentState = .active) {
-        self.enrollUsers([student], in: course, type: .StudentEnrollment, state: state)
+    @discardableResult
+    public func enrollStudent(_ student: DSUser, in course: DSCourse, state: EnrollmentState = .active) -> DSEnrollment {
+        self.enrollUser(student, in: course, type: .StudentEnrollment, state: state)
     }
 
-    public func enrollStudents(_ students: [DSUser], in course: DSCourse, state: EnrollmentState = .active) {
+    @discardableResult
+    public func enrollStudents(_ students: [DSUser], in course: DSCourse, state: EnrollmentState = .active) -> [DSEnrollment] {
         self.enrollUsers(students, in: course, type: .StudentEnrollment, state: state)
     }
 
-    public func enrollParent(_ parent: DSUser, in course: DSCourse, state: EnrollmentState = .active) {
-        self.enrollUsers([parent], in: course, type: .ObserverEnrollment, state: state)
+    @discardableResult
+    public func enrollParent(_ parent: DSUser, in course: DSCourse, state: EnrollmentState = .active) -> DSEnrollment {
+        self.enrollUser(parent, in: course, type: .ObserverEnrollment, state: state)
     }
 
-    public func enrollDesigner(_ designer: DSUser, in course: DSCourse, state: EnrollmentState = .active) {
-        self.enrollUsers([designer], in: course, type: .DesignerEnrollment, state: state)
+    @discardableResult
+    public func enrollDesigner(_ designer: DSUser, in course: DSCourse, state: EnrollmentState = .active) -> DSEnrollment {
+        self.enrollUser(designer, in: course, type: .DesignerEnrollment, state: state)
     }
 
-    public func enrollUsers(_ users: [DSUser], in course: DSCourse, type: DSEnrollmentType, state: EnrollmentState = .active) {
+    @discardableResult
+    public func enrollUser(_ user: DSUser, in course: DSCourse, type: DSEnrollmentType, state: EnrollmentState = .active) -> DSEnrollment {
+        let requestedEnrollment = EnrollRequest.RequestedEnrollment(enrollment_state: state, user_id: user.id, type: type)
+        let request = EnrollRequest(courseID: course.id, body: requestedEnrollment)
+        return try! makeRequest(request)
+    }
+
+    @discardableResult
+    public func enrollUsers(_ users: [DSUser], in course: DSCourse, type: DSEnrollmentType, state: EnrollmentState = .active) -> [DSEnrollment] {
+        var enrollments = [DSEnrollment]()
         for user in users {
             let requestedEnrollment = EnrollRequest.RequestedEnrollment(enrollment_state: state, user_id: user.id, type: type)
             let request = EnrollRequest(courseID: course.id, body: requestedEnrollment)
-            try! makeRequest(request)
+            enrollments.append(try! makeRequest(request))
         }
+        return enrollments
     }
 }

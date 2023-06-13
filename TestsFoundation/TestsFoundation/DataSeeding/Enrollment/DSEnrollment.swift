@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,12 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-extension DataSeeder {
-
-    @discardableResult
-    public func createPage(courseId: String, requestBody: CreateDSPageRequest.RequestDSPage) -> DSPage {
-        let requestedBody = CreateDSPageRequest.Body(wiki_page: requestBody)
-        let request = CreateDSPageRequest(body: requestedBody, courseId: courseId)
-        return try! makeRequest(request)
-    }
+public struct DSEnrollment: Codable {
+    public let id: String
+    public let course_id: String
 }

@@ -40,9 +40,9 @@ public class AnnouncementsHelper: BaseHelper {
         app.find(id: "AccountNotification.\(announcement.id).body").rawElement.find(type: .staticText)
     }
 
-    public static func navigateToAnnouncementsPage(course: DSCourse, pull_to_refresh: Bool = false) {
+    public static func navigateToAnnouncementsPage(course: DSCourse, shouldPullToRefresh: Bool = false) {
         Dashboard.courseCard(id: course.id).tap()
-        if pull_to_refresh {
+        if shouldPullToRefresh {
             pullToRefresh()
         }
         CourseNavigation.announcements.tap()

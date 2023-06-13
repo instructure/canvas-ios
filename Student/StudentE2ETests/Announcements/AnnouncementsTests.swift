@@ -57,7 +57,7 @@ class AnnouncementsTests: E2ETestCase {
         logInDSUser(student)
 
         // MARK: Navigate to Announcement page and check the title and message of the announcement
-        AnnouncementsHelper.navigateToAnnouncementsPage(course: course, pull_to_refresh: true)
+        AnnouncementsHelper.navigateToAnnouncementsPage(course: course, shouldPullToRefresh: true)
 
         let firstAnnouncement = AnnouncementList.cell(index: 0).waitToExist()
         XCTAssertTrue(firstAnnouncement.isVisible)
