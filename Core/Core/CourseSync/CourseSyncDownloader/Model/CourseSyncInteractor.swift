@@ -202,6 +202,7 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
         }
     }
 
+    /// Updates entry state in memory and writes it to Core Data. In addition it also writes file progress to Core Data. 
     private func setState(selection: CourseEntrySelection, state: CourseSyncEntry.State) {
         var entries = courseSyncEntries.value
 
