@@ -20,7 +20,7 @@ import XCTest
 import TestsFoundation
 
 class PagesTests: E2ETestCase {
-    func testFrontPageLoadByDefault() {
+    func testFrontPageLoadsByDefault() {
         // MARK: Seed the usual stuff and a front page for the course
         let student = seeder.createUser()
         let course = seeder.createCourse()
