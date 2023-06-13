@@ -34,10 +34,19 @@ public class PagesHelper: BaseHelper {
         frontPage.tap()
     }
 
+    public static func createLinkToAssignment(course: DSCourse, assignment: DSAssignment) -> String {
+        let link = "<p><a title=\"\(assignment.name)\" href=\"https://\(user.host)/courses/\(course.id)/assignments/\(assignment.id)?wrap=1\">\(assignment.name)</a></p>"
+        return link
+    }
+
+    public static func createLinkToDiscussion(course: DSCourse, discussion: DSDiscussionTopic) -> String {
+        let link = "<p><a title=\"\(discussion.title)\" href=\"https://\(user.host)/courses/\(course.id)/discussion_topics/\(discussion.id)?wrap=1\">\(discussion.title)</a></p>"
+        return link
+    }
+
     @discardableResult
-    public static func createDeepLinkFrontPage(course: DSCourse) -> DSPage {
-        let body = "THIS SHOULD BE A DEEP LINK"
-        let pageBody = CreateDSPageRequest.RequestDSPage(title: "Deep Link Test Page", body: body, front_page: true, published: true)
+    public static func createDeepLinkFrontPage(course: DSCourse, body: String) -> DSPage {
+        let pageBody = CreateDSPageRequest.RequestDSPage(title: "Deep Link Front Page", body: body, front_page: true, published: true)
         return seeder.createPage(courseId: course.id, requestBody: pageBody)
     }
 }

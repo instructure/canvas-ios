@@ -47,31 +47,55 @@ class PageE2ETests: E2ETestCase {
     }
 
     func testDeepLinks() {
-        // MARK: Seed the usual stuff and a front page for the course
+        // MARK: Seed the usual stuff and a front page containing some deep links
         let student = seeder.createUser()
         let course = seeder.createCourse()
+        let assignmentName = "Deep Link Assignment"
+        let assignment = AssignmentsHelper.createAssignment(course: course, name: assignmentName)
+        let assignmentLink = PagesHelper.createLinkToAssignment(course: course, assignment: assignment)
+
+        let discussionTitle = "Deep Link Discussion"
+        let discussion = DiscussionsHelper.createDiscussion(course: course, title: discussionTitle)
+        let discussionLink = PagesHelper.createLinkToDiscussion(course: course, discussion: discussion)
+
+        let announcementTitle = "Deep Link Announcement"
+        let announcement = DiscussionsHelper.createDiscussion(course: course, title: announcementTitle, isAnnouncement: true)
+        let announcementLink = PagesHelper.createLinkToDiscussion(course: course, discussion: announcement)
+
+        let body = "\(assignmentLink)\n\(discussionLink)\n\(announcementLink)"
+        PagesHelper.createDeepLinkFrontPage(course: course, body: body)
+
+        // MARK: Enroll student in the course and get the user logged in
         seeder.enrollStudent(student, in: course)
-        PagesHelper.createDeepLinkFrontPage(course: course)
 
         logInDSUser(student)
 
         // MARK: Navigate to the front page of the course
         PagesHelper.navigateToFrontPage(course: course)
 
-        // MARK: Check deep link to group-announcements
-        app.find(labelContaining: "group-announcements").tap()
-        app.find(labelContaining: "It looks like announcements haven’t been created in this space yet.").waitToExist()
+        // MARK: Check deep link to the assignment
+        let assignmentDeepLink = app.find(labelContaining: assignment.name).waitToExist()
+        XCTAssertTrue(assignmentDeepLink.isVisible)
+        assignmentDeepLink.tap()
+        let assignmentDetailsNavBar = AssignmentsHelper.assignmentDetailsNavBar(course: course).waitToExist()
+        XCTAssertTrue(assignmentDetailsNavBar.isVisible)
 
-        // MARK: Check deep link to group-home
-        app.find(labelContaining: "group-home").tap()
-        app.find(labelContaining: "Home").waitToExist()
+        PagesHelper.backButton.tap()
 
-        // MARK: Check deep link to public course
-        app.find(labelContaining: "public-course-page").tap()
-        app.find(labelContaining: "This is a public course").waitToExist()
+        // MARK: Check deep link to the discussion
+        let discussionDeepLink = app.find(labelContaining: discussion.title).waitToExist()
+        XCTAssertTrue(discussionDeepLink.isVisible)
+        discussionDeepLink.tap()
+        let discussionDetailsNavBar = DiscussionsHelper.discussionDetailsNavBar(course: course).waitToExist()
+        XCTAssertTrue(discussionDetailsNavBar.isVisible)
 
-        // MARK: Check deep link to discussion
-        app.find(labelContaining: "discussion").tap()
-        app.find(labelContaining: "A discussion").waitToExist()
+        PagesHelper.backButton.tap()
+
+        // MARK: Check deep link to the announcement
+        let announcementDeepLink = app.find(labelContaining: announcement.title).waitToExist()
+        XCTAssertTrue(announcementDeepLink.isVisible)
+        announcementDeepLink.tap()
+        let announcementDetailsNavBar = AnnouncementsHelper.announcementDetailsNavBar(course: course).waitToExist()
+        XCTAssertTrue(announcementDetailsNavBar.isVisible)
     }
 }

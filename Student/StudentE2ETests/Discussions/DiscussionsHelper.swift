@@ -17,14 +17,23 @@
 //
 
 import Foundation
+import Core
+import TestsFoundation
+import XCTest
 
-open class BaseHelper {
-    public static let seeder = DataSeeder()
-    public static var user: UITestUser {.dataSeedAdmin}
-    public static var backButton: Element { app.find(label: "Back", type: .button) }
-    public static func pullToRefresh() {
-        let window = app.find(type: .window)
-        window.relativeCoordinate(x: 0.5, y: 0.2)
-            .press(forDuration: 0.05, thenDragTo: window.relativeCoordinate(x: 0.5, y: 1.0))
+public class DiscussionsHelper: BaseHelper {
+    public static func discussionDetailsNavBar(course: DSCourse) -> Element {
+        app.find(id: "Discussion Details, \(course.name)")
+    }
+
+    @discardableResult
+    public static func createDiscussion(
+        course: DSCourse,
+        title: String = "Sample Discussion",
+        message: String = "Message of ",
+        isAnnouncement: Bool = false,
+        published: Bool = true) -> DSDiscussionTopic {
+        let discussionBody = CreateDSDiscussionRequest.RequestDSDiscussion(title: title, message: message, is_announcement: isAnnouncement, published: published)
+            return seeder.createDiscussion(courseId: course.id, requestBody: discussionBody)
     }
 }
