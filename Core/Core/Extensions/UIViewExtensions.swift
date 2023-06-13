@@ -126,4 +126,17 @@ extension UIView {
             pin(inside: superview, leading: nil, trailing: nil, top: 0, bottom: 0)
         }
     }
+
+    public func disableIfOnline() {
+        self.alpha = 0.5
+        self.gestureRecognizers?.removeAll()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showOfflineAlert))
+        self.addGestureRecognizer(tapGesture)
+        self.isUserInteractionEnabled = true
+    }
+
+    @objc private func showOfflineAlert() {
+        // TODO: show alert
+        print("do some alerts yo")
+    }
 }
