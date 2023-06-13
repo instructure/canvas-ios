@@ -21,7 +21,11 @@ import CombineExt
 import Foundation
 
 protocol CourseSyncSelectorInteractor {
-    init(courseID: String?)
+    /**
+     - parameters:
+        - sessionDefaults: The storage from where the selection states are read and written to.
+     */
+    init(courseID: String?, sessionDefaults: SessionDefaults)
     func getCourseSyncEntries() -> AnyPublisher<[CourseSyncEntry], Error>
     func observeSelectedCount() -> AnyPublisher<Int, Never>
     func observeIsEverythingSelected() -> AnyPublisher<Bool, Never>
@@ -39,9 +43,11 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     private let courseSyncEntries = CurrentValueSubject<[CourseSyncEntry], Error>(.init())
     private var subscriptions = Set<AnyCancellable>()
     private let courseID: String?
+    private var sessionDefaults: SessionDefaults
 
-    init(courseID: String? = nil) {
+    init(courseID: String? = nil, sessionDefaults: SessionDefaults) {
         self.courseID = courseID
+        self.sessionDefaults = sessionDefaults
     }
 
     // MARK: - Public Interface
@@ -64,6 +70,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
                     }
                 }
             )
+            .flatMap { self.applySelectionsFromPreviousSession($0) }
             .flatMap { _ in self.courseSyncEntries.eraseToAnyPublisher() }
             .eraseToAnyPublisher()
     }
@@ -98,6 +105,17 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
             entries[courseIndex].selectTab(index: tabIndex, selectionState: selectionState)
         case let .file(courseIndex, fileIndex):
             entries[courseIndex].selectFile(index: fileIndex, selectionState: selectionState)
+        }
+
+        if let courseID {
+            // If we only show one course then we should keep other course selections intact
+            var oldSelections = sessionDefaults.offlineSyncSelections
+            oldSelections.removeAll { $0.hasPrefix("courses/\(courseID)") }
+            let newSelections = CourseSyncItemSelection.make(from: entries)
+            sessionDefaults.offlineSyncSelections = oldSelections + newSelections
+        } else {
+            // If all courses are visible then it's safe to overwrite all course selections
+            sessionDefaults.offlineSyncSelections = CourseSyncItemSelection.make(from: entries)
         }
 
         courseSyncEntries.send(entries)
@@ -141,7 +159,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         return courseSyncEntries
             .first { !$0.isEmpty }
             .map { syncEntries in
-                syncEntries.first { $0.id == courseID }?.name
+                syncEntries.first { $0.id == "courses/\(courseID)" }?.name
             }
             .replaceNil(with: "")
             .replaceError(with: "")
@@ -150,24 +168,14 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
 
     // MARK: - Private Methods
 
-    private func getTabs(courseId: String) -> AnyPublisher<[CourseSyncEntry.Tab], Error> {
-        ReactiveStore(
-            useCase: GetContextTabs(
-                context: Context.course(courseId)
-            )
-        )
-        .getEntities()
-        .map { $0.offlineSupportedTabs() }
-        .map {
-            $0.map {
-                CourseSyncEntry.Tab(
-                    id: "\(courseId)-\($0.id)",
-                    name: $0.label,
-                    type: $0.name
-                )
-            }
-        }
-        .eraseToAnyPublisher()
+    private func applySelectionsFromPreviousSession(_ entries: [CourseSyncEntry])
+    -> AnyPublisher<[CourseSyncEntry], Never> {
+        Future<[CourseSyncEntry], Never> { [sessionDefaults, weak self] promise in
+            sessionDefaults.offlineSyncSelections
+                .compactMap { $0.toCourseEntrySelection(from: entries) }
+                .forEach { self?.setSelected(selection: $0, selectionState: .selected) }
+            promise(.success(entries))
+        }.eraseToAnyPublisher()
     }
 
     private func getAllFilesIfFilesTabIsEnabled(
@@ -176,7 +184,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         let tabs = Array(course.tabs).offlineSupportedTabs()
         let mappedTabs = tabs.map {
             CourseSyncEntry.Tab(
-                id: "\(course.courseId)-\($0.id)",
+                id: "courses/\(course.courseId)/tabs/\($0.id)",
                 name: $0.label,
                 type: $0.name
             )
@@ -186,7 +194,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
                 .map { files in
                     CourseSyncEntry(
                         name: course.name,
-                        id: course.courseId,
+                        id: "courses/\(course.courseId)",
                         tabs: mappedTabs,
                         files: files
                     )
@@ -196,7 +204,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
             return Just(
                 CourseSyncEntry(
                     name: course.name,
-                    id: course.courseId,
+                    id: "courses/\(course.courseId)",
                     tabs: mappedTabs,
                     files: []
                 )
@@ -227,7 +235,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
                 .filter { $0.url != nil && $0.mimeClass != nil }
                 .map {
                     CourseSyncEntry.File(
-                        id: $0.id ?? Foundation.UUID().uuidString,
+                        id: "courses/\(courseId)/files/\($0.id ?? Foundation.UUID().uuidString)",
                         displayName: $0.displayName ?? NSLocalizedString("Unknown file", comment: ""),
                         fileName: $0.filename,
                         url: $0.url!,

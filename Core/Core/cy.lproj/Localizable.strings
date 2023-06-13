@@ -31,6 +31,9 @@
 /* No comment provided by engineer. */
 "%@ missing" = "%@ ar goll";
 
+/* 42 GB of 64 GB Used */
+"%@ of %@ Used" = "%1$@ o %2$@ wedi’i ddefnyddio";
+
 /* No comment provided by engineer. */
 "%@ pts" = "%@ pwynt";
 
@@ -614,6 +617,9 @@
 "Could not save notification preference" = "Doedd dim modd cadw'r flaenoriaeth hysbysiadau";
 
 /* No comment provided by engineer. */
+"Couldn't save the file." = "Doedd dim modd cadw’r ffeil.";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "Cwrs (dewisol)";
 
 /* No comment provided by engineer. */
@@ -627,6 +633,9 @@
 
 /* No comment provided by engineer. */
 "Course announcements" = "Cyhoeddiadau cwrs";
+
+/* No comment provided by engineer. */
+"Course Card Options" = "Opsiynau Cerdyn Cwrs";
 
 /* No comment provided by engineer. */
 "Course Content" = "Cynnwys cwrs";
@@ -716,6 +725,9 @@
 "Dashboard" = "Dangosfwrdd";
 
 /* No comment provided by engineer. */
+"Dashboard Options" = "Opsiynau Dangosfwrdd";
+
+/* No comment provided by engineer. */
 "Dashboard settings" = "Gosodiadau dangosfwrdd";
 
 /* No comment provided by engineer. */
@@ -774,6 +786,9 @@
 
 /* No comment provided by engineer. */
 "Description" = "Disgrifiad";
+
+/* No comment provided by engineer. */
+"Deselect All" = "Dad-ddewis y Cyfan";
 
 /* No comment provided by engineer. */
 "Designer" = "Dylunydd";
@@ -1445,6 +1460,9 @@
 "Make sure you enable camera permissions in Settings" = "Gwnewch yn siŵr eich bod chi’n galluogi hawliau camera yn y Gosodiadau";
 
 /* No comment provided by engineer. */
+"Manage Offline Content" = "Rheoli Cynnwys All-lein";
+
+/* No comment provided by engineer. */
 "Manage Students" = "Rheoli Myfyrwyr";
 
 /* No comment provided by engineer. */
@@ -1595,6 +1613,9 @@
 "No Content" = "Dim Cynnwys";
 
 /* No comment provided by engineer. */
+"No Course Content" = "Dim Cynnwys Cwrs";
+
+/* No comment provided by engineer. */
 "No Courses" = "Dim Cyrsiau";
 
 /* No comment provided by engineer. */
@@ -1703,6 +1724,9 @@
 "Observers" = "Arsyllwyr";
 
 /* No comment provided by engineer. */
+"Offline Content" = "Cynnwys All-lein";
+
+/* No comment provided by engineer. */
 "OK" = "Iawn";
 
 /* No comment provided by engineer. */
@@ -1761,6 +1785,9 @@
 
 /* No comment provided by engineer. */
 "Ordered List" = "Rhestr mewn Trefn";
+
+/* No comment provided by engineer. */
+"Other Apps" = "Apiau Eraill";
 
 /* 5 out of 10 */
 "out of" = "allan o";
@@ -1955,6 +1982,9 @@
 "Refreshing" = "Wrthi’n adnewyddu";
 
 /* No comment provided by engineer. */
+"Remaining" = "Yn Weddill";
+
+/* No comment provided by engineer. */
 "Remove" = "Tynnu";
 
 /* No comment provided by engineer. */
@@ -2091,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Dewis Llwybr";
+
+/* No comment provided by engineer. */
+"Select All" = "Dewis y cyfan";
 
 /* No comment provided by engineer. */
 "Select assignment" = "Dewis aseiniad";
@@ -2234,6 +2267,12 @@
 "Stop recording" = "Stopio'r recordiad";
 
 /* No comment provided by engineer. */
+"Storage" = "Storio";
+
+/* No comment provided by engineer. */
+"Storage Info" = "Gwybodaeth Storio";
+
+/* No comment provided by engineer. */
 "Student" = "Myfyriwr";
 
 /* No comment provided by engineer. */
@@ -2324,6 +2363,12 @@
 "Syllabus content" = "Cynnwys maes llafur";
 
 /* No comment provided by engineer. */
+"Sync" = "Cysoni";
+
+/* No comment provided by engineer. */
+"Sync Offline Content?" = "Cysoni Cynnwys All-lein?";
+
+/* No comment provided by engineer. */
 "System settings" = "Gosodiadau system";
 
 /* No comment provided by engineer. */
@@ -2390,10 +2435,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Er mwyn defnyddio’r gosodiadau iaith newydd mae angen ailddechrau’r ap. Ail-lansiwch yr ap.";
 
 /* No comment provided by engineer. */
+"The course content will be listed here, and then you can make them available for offline usage." = "Bydd cynnwys y cwrs yn cael ei restru yma, ac yna gallwch chi ei gwneud ar gael i'w defnyddio all-lein.";
+
+/* No comment provided by engineer. */
 "The file has been deleted by the author." = "Mae'r ffeil wedi’i dileu gan yr awdur.";
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Cafodd y broses gyflwyno ei therfynu gan y system weithredu.";
+
+/* No comment provided by engineer. */
+"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Mae %d eitem wedi’u dewis i fod ar gael all-lein. Bydd y cynnwys sydd wedi’i ddewis yn cael ei lwytho i lawr i’r ddyfais.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Does dim aseiniadau gweithredol yn y cwrs hwn.";
@@ -2457,6 +2508,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Gwall â'r nodwedd Gweithredu fel Defnyddiwr. Rhowch gynnig arall arni rywbryd eto.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error." = "Gwall annisgwyl.";
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "Gwall annisgwyl. Rhowch gynnig arall arni.";
@@ -2547,6 +2601,9 @@
 
 /* No comment provided by engineer. */
 "Unknown Error" = "Gwall Anhysbys";
+
+/* No comment provided by engineer. */
+"Unknown file" = "Ffeil ddieithr";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Diderfyn";
@@ -2769,6 +2826,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Efallai nad yw cyrsiau eich plentyn wedi cael eu cyhoeddi eto.";
+
+/* No comment provided by engineer. */
+"Your courses will be listed here, and then you can make them available for offline usage." = "Bydd eich cyrsiau’n cael eu rhestru yma, ac yna gallwch chi ei gwneud ar gael i'w defnyddio all-lein.";
 
 /* No comment provided by engineer. */
 "Your device is out of storage space. Please free up space and try again." = "Does dim lle storio ar ôl yn eich dyfais. Ewch ati i ryddhau rhywfaint o le a rhoi cynnig arall arni.";

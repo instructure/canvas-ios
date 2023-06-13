@@ -31,6 +31,9 @@
 /* No comment provided by engineer. */
 "%@ missing" = "%@ bị thiếu";
 
+/* 42 GB of 64 GB Used */
+"%@ of %@ Used" = "%1$@ của %2$@ Đã Sử Dụng";
+
 /* No comment provided by engineer. */
 "%@ pts" = "%@ điểm thành phần";
 
@@ -614,6 +617,9 @@
 "Could not save notification preference" = "Không thể lưu cài đặt ưu tiên thông báo";
 
 /* No comment provided by engineer. */
+"Couldn't save the file." = "Không thể lưu tập tin.";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "Khóa Học (không bắt buộc)";
 
 /* No comment provided by engineer. */
@@ -627,6 +633,9 @@
 
 /* No comment provided by engineer. */
 "Course announcements" = "Thông báo chung khóa học";
+
+/* No comment provided by engineer. */
+"Course Card Options" = "Tùy Chọn Thẻ Khóa Học";
 
 /* No comment provided by engineer. */
 "Course Content" = "Nội Dung Khóa Học";
@@ -716,6 +725,9 @@
 "Dashboard" = "Bảng Điều Khiển";
 
 /* No comment provided by engineer. */
+"Dashboard Options" = "Tùy Chọn Bảng Điều Khiển";
+
+/* No comment provided by engineer. */
 "Dashboard settings" = "Cài đặt bảng điều khiển";
 
 /* No comment provided by engineer. */
@@ -774,6 +786,9 @@
 
 /* No comment provided by engineer. */
 "Description" = "Mô Tả";
+
+/* No comment provided by engineer. */
+"Deselect All" = "Bỏ Chọn Tất Cả";
 
 /* No comment provided by engineer. */
 "Designer" = "Người Thiết Kế";
@@ -1445,6 +1460,9 @@
 "Make sure you enable camera permissions in Settings" = "Hãy bảo đảm bạn đã bật cho phép camera trong Cài Đặt";
 
 /* No comment provided by engineer. */
+"Manage Offline Content" = "Quản Lý Nội Dung Ngoại Tuyến";
+
+/* No comment provided by engineer. */
 "Manage Students" = "Quản Lý Sinh Viên";
 
 /* No comment provided by engineer. */
@@ -1595,6 +1613,9 @@
 "No Content" = "Không Có Nội Dung";
 
 /* No comment provided by engineer. */
+"No Course Content" = "Không Có Nội Dung Khóa Học";
+
+/* No comment provided by engineer. */
 "No Courses" = "Không Có Khóa Học";
 
 /* No comment provided by engineer. */
@@ -1703,6 +1724,9 @@
 "Observers" = "Người Quan Sát";
 
 /* No comment provided by engineer. */
+"Offline Content" = "Nội Dung Ngoại Tuyến";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -1761,6 +1785,9 @@
 
 /* No comment provided by engineer. */
 "Ordered List" = "Danh Sách Theo Thứ Tự";
+
+/* No comment provided by engineer. */
+"Other Apps" = "Các Ứng Dụng Khác";
 
 /* 5 out of 10 */
 "out of" = "trên tổng số";
@@ -1955,6 +1982,9 @@
 "Refreshing" = "Đang Làm Mới";
 
 /* No comment provided by engineer. */
+"Remaining" = "Còn lại";
+
+/* No comment provided by engineer. */
 "Remove" = "Gỡ";
 
 /* No comment provided by engineer. */
@@ -2091,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Chọn Đường Dẫn";
+
+/* No comment provided by engineer. */
+"Select All" = "Chọn Tất Cả";
 
 /* No comment provided by engineer. */
 "Select assignment" = "Chọn bài tập";
@@ -2234,6 +2267,12 @@
 "Stop recording" = "Dừng ghi";
 
 /* No comment provided by engineer. */
+"Storage" = "Lưu Trữ";
+
+/* No comment provided by engineer. */
+"Storage Info" = "Thông Tin Lưu Trữ";
+
+/* No comment provided by engineer. */
 "Student" = "Sinh Viên";
 
 /* No comment provided by engineer. */
@@ -2324,6 +2363,12 @@
 "Syllabus content" = "Nội dung chương trình học";
 
 /* No comment provided by engineer. */
+"Sync" = "Đồng Bộ Hóa";
+
+/* No comment provided by engineer. */
+"Sync Offline Content?" = "Đồng Bộ Hóa Nội Dung Ngoại Tuyến?";
+
+/* No comment provided by engineer. */
 "System settings" = "Cài đặt hệ thống";
 
 /* No comment provided by engineer. */
@@ -2390,10 +2435,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Ứng dụng cần được khởi động lại để sử dụng cài đặt ngôn ngữ mới. Vui lòng khởi chạy lại ứng dụng.";
 
 /* No comment provided by engineer. */
+"The course content will be listed here, and then you can make them available for offline usage." = "Nội dung khóa học sẽ được liệt kê ở đây, và sau đó bạn có thể xử lý để sử dụng ngoại tuyến.";
+
+/* No comment provided by engineer. */
 "The file has been deleted by the author." = "Tập tin đã bị tác giả xóa.";
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Quá trình nộp bị hệ điều hành chấm dứt.";
+
+/* No comment provided by engineer. */
+"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Có %d mục được chọn để có thể sử dụng ngoại tuyến. Nội dung được chọn sẽ được tải về thiết bị.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Không có bài tập đang hoạt động nào trong khóa học này.";
@@ -2457,6 +2508,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Đã xảy ra lỗi khi Đóng Vai Trò Người Dùng. Vui lòng thử lại sau.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error." = "Đã xảy ra lỗi không lường trước.";
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "Đã xảy ra lỗi không lường trước. Vui lòng thử lại.";
@@ -2547,6 +2601,9 @@
 
 /* No comment provided by engineer. */
 "Unknown Error" = "Lỗi Không Xác Định";
+
+/* No comment provided by engineer. */
+"Unknown file" = "Tập tin không xác định";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Không Giới Hạn";
@@ -2769,6 +2826,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Khóa học của con em của bạn có thể chưa được công bố.";
+
+/* No comment provided by engineer. */
+"Your courses will be listed here, and then you can make them available for offline usage." = "Khóa học của bạn sẽ được liệt kê ở đây, và sau đó bạn có thể xử lý để sử dụng ngoại tuyến.";
 
 /* No comment provided by engineer. */
 "Your device is out of storage space. Please free up space and try again." = "Thiết bị của bạn đã hết dung lượng lưu trữ trống. Vui lòng giải phóng dung lượng trống rồi thử lại.";

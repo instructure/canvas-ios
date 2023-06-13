@@ -16,24 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
-
-public enum CourseSyncSettingsAssembly {
-
-    public static func makeViewController(sessionDefaults: SessionDefaults) -> UIViewController {
-        let interactor = CourseSyncSettingsInteractorLive(storage: sessionDefaults)
-        let viewModel = CourseSyncSettingsViewModel(interactor: interactor)
-        return CoreHostingController(CourseSyncSettingsView(viewModel: viewModel))
-    }
-
-#if DEBUG
-
-    static func makePreview() -> some View {
-        let interactor = CourseSyncSettingsInteractorLive(storage: .fallback)
-        let viewModel = CourseSyncSettingsViewModel(interactor: interactor)
-        return CourseSyncSettingsView(viewModel: viewModel)
-    }
-
-#endif
-
+public struct DSEnrollment: Codable {
+    public let id: String
+    public let course_id: String
 }

@@ -109,7 +109,7 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
             .flatMap { fileIndex, element in
                 unownedSelf.filesInteractor.getFile(
                     url: element.url,
-                    fileID: element.id,
+                    fileID: element.fileId,
                     fileName: element.fileName,
                     mimeClass: element.mimeClass
                 )
@@ -158,7 +158,7 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
         if let tabIndex = entry.tabs.firstIndex(where: { $0.type == tabName }),
            entry.tabs[tabIndex].selectionState == .selected,
            let interactor = contentInteractors.first(where: { $0.associatedTabType == tabName }) {
-            return interactor.getContent(courseId: entry.id)
+            return interactor.getContent(courseId: entry.courseId)
                 .updateErrorState {
                     unownedSelf.setState(
                         selection: .tab(index, tabIndex),

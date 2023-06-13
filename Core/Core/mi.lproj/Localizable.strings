@@ -31,6 +31,9 @@
 /* No comment provided by engineer. */
 "%@ missing" = "%@ ngaro";
 
+/* 42 GB of 64 GB Used */
+"%@ of %@ Used" = "%1$@ o %2$@ whakamahia";
+
 /* No comment provided by engineer. */
 "%@ pts" = "%@ ngā koinga";
 
@@ -614,6 +617,9 @@
 "Could not save notification preference" = "Kāore i taea te tiaki manakohanga whakamōhiotanga";
 
 /* No comment provided by engineer. */
+"Couldn't save the file." = "Kaore e taea te tiaki i te konae.";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "Akoranga (kāre herea)";
 
 /* No comment provided by engineer. */
@@ -627,6 +633,9 @@
 
 /* No comment provided by engineer. */
 "Course announcements" = "Kōrerorero akoranga";
+
+/* No comment provided by engineer. */
+"Course Card Options" = "Kōwhiringa Mahere Akoranga";
 
 /* No comment provided by engineer. */
 "Course Content" = "Ihirangi akoranga";
@@ -716,6 +725,9 @@
 "Dashboard" = "Papatohu";
 
 /* No comment provided by engineer. */
+"Dashboard Options" = "Kōwhiringa Papatohu";
+
+/* No comment provided by engineer. */
 "Dashboard settings" = "Tautuhinga Papatohu";
 
 /* No comment provided by engineer. */
@@ -774,6 +786,9 @@
 
 /* No comment provided by engineer. */
 "Description" = "Whakāhuatanga";
+
+/* No comment provided by engineer. */
+"Deselect All" = "Whakakorehia te katoa";
 
 /* No comment provided by engineer. */
 "Designer" = "Kaitātai";
@@ -1445,6 +1460,9 @@
 "Make sure you enable camera permissions in Settings" = "Me tautoko kua whakahohetia e koe kāmera whakāe i roto i Tautuhinga";
 
 /* No comment provided by engineer. */
+"Manage Offline Content" = "Whakahaere ihirangi tuimotu";
+
+/* No comment provided by engineer. */
 "Manage Students" = "Whakahaere ngā ākonga";
 
 /* No comment provided by engineer. */
@@ -1595,6 +1613,9 @@
 "No Content" = "Kaore Ihirangi";
 
 /* No comment provided by engineer. */
+"No Course Content" = "Karekau he ihirangi akoranga";
+
+/* No comment provided by engineer. */
 "No Courses" = "Kāore he Akoranga";
 
 /* No comment provided by engineer. */
@@ -1703,6 +1724,9 @@
 "Observers" = "Kaitirotiro";
 
 /* No comment provided by engineer. */
+"Offline Content" = "Ihirangi tuimotu";
+
+/* No comment provided by engineer. */
 "OK" = "Ae";
 
 /* No comment provided by engineer. */
@@ -1761,6 +1785,9 @@
 
 /* No comment provided by engineer. */
 "Ordered List" = "Rārangi whakahau";
+
+/* No comment provided by engineer. */
+"Other Apps" = "Ētahi atu Taupānga";
 
 /* 5 out of 10 */
 "out of" = "i waho i te";
@@ -1955,6 +1982,9 @@
 "Refreshing" = "Tāmata ana";
 
 /* No comment provided by engineer. */
+"Remaining" = "E toe ana";
+
+/* No comment provided by engineer. */
 "Remove" = "Tango";
 
 /* No comment provided by engineer. */
@@ -2091,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Tīpako he Huarahi";
+
+/* No comment provided by engineer. */
+"Select All" = "Tīpako katoa";
 
 /* No comment provided by engineer. */
 "Select assignment" = "Tīpako whakataunga";
@@ -2234,6 +2267,12 @@
 "Stop recording" = "Mutu tāhopu";
 
 /* No comment provided by engineer. */
+"Storage" = "Rokiroki";
+
+/* No comment provided by engineer. */
+"Storage Info" = "Nga korero rokiroki";
+
+/* No comment provided by engineer. */
 "Student" = "Ākonga";
 
 /* No comment provided by engineer. */
@@ -2324,6 +2363,12 @@
 "Syllabus content" = "Marautanga Ihirangi";
 
 /* No comment provided by engineer. */
+"Sync" = "Tukutahi";
+
+/* No comment provided by engineer. */
+"Sync Offline Content?" = "Tukutahi ihirangi tuimotu?";
+
+/* No comment provided by engineer. */
 "System settings" = "Pūnaha tautuhinga";
 
 /* No comment provided by engineer. */
@@ -2390,10 +2435,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Me tīmata te taupānga anō ki te whakamahi i ngā tautuhinga reo hou. Tēna koa tuku anō i te taupānga.";
 
 /* No comment provided by engineer. */
+"The course content will be listed here, and then you can make them available for offline usage." = "Kua whakarārangitia te ihirangi akoranga ki konei katahi ka taea e koe te waatea mo te whakamahi tuimotu.";
+
+/* No comment provided by engineer. */
 "The file has been deleted by the author." = "Kua mukua te kōnae e te kaituhi.";
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "I whakamutua te tukanga tuku e te punaha whakahaere.";
+
+/* No comment provided by engineer. */
+"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "He %d nga mea kua tohua mo te waatea tuimotu. Putanga kua tohua ki te whakatutuki i nga whakaritenga.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Karekau he whakataunga e ora ana i roto i tēnei akoranga.";
@@ -2457,6 +2508,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "He hapa ki te Mahi hei Kaiwhakamahi Tēnā koa ngana anō i muri mai.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error." = "He hapa ohorere i puta";
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "He hapa ohorere i puta Tēnā tarai anō.";
@@ -2547,6 +2601,9 @@
 
 /* No comment provided by engineer. */
 "Unknown Error" = "Kaore i mōhiotia te hapa";
+
+/* No comment provided by engineer. */
+"Unknown file" = "Kōnae kaore tē mōhiotia";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Kaore he mutunga";
@@ -2769,6 +2826,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Kaore e pānuitia ngā akoranga a tō tamaiti i tēnei wā.";
+
+/* No comment provided by engineer. */
+"Your courses will be listed here, and then you can make them available for offline usage." = "Ka whakarārangihia ō akoranga ki reira ka taea e koe te whakawātea mō te whakamahi tuimotu.";
 
 /* No comment provided by engineer. */
 "Your device is out of storage space. Please free up space and try again." = "Kua pau te wahi rokiroki a tō taputapu. Tēnā koa whakawātea he wāhi ka ngana anō.";

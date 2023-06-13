@@ -31,6 +31,9 @@
 /* No comment provided by engineer. */
 "%@ missing" = "%@ отсутствует";
 
+/* 42 GB of 64 GB Used */
+"%@ of %@ Used" = "%1$@ из %2$@ использовано";
+
 /* No comment provided by engineer. */
 "%@ pts" = "%@ баллы";
 
@@ -614,6 +617,9 @@
 "Could not save notification preference" = "Не удалось сохранить параметр уведомления";
 
 /* No comment provided by engineer. */
+"Couldn't save the file." = "Не удалось сохранить файл.";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "Курс (не обязательно)";
 
 /* No comment provided by engineer. */
@@ -627,6 +633,9 @@
 
 /* No comment provided by engineer. */
 "Course announcements" = "Объявления курса";
+
+/* No comment provided by engineer. */
+"Course Card Options" = "Варианты карт курсов";
 
 /* No comment provided by engineer. */
 "Course Content" = "Содержание курса";
@@ -716,6 +725,9 @@
 "Dashboard" = "Информационная панель";
 
 /* No comment provided by engineer. */
+"Dashboard Options" = "Опции инструментальной панели";
+
+/* No comment provided by engineer. */
 "Dashboard settings" = "Настройки панели управления";
 
 /* No comment provided by engineer. */
@@ -774,6 +786,9 @@
 
 /* No comment provided by engineer. */
 "Description" = "Описание";
+
+/* No comment provided by engineer. */
+"Deselect All" = "Отменить выбор для всех";
 
 /* No comment provided by engineer. */
 "Designer" = "Дизайнер";
@@ -1445,6 +1460,9 @@
 "Make sure you enable camera permissions in Settings" = "Убедитесь в том, что вы включили разрешения камеры в \"Настройках\"";
 
 /* No comment provided by engineer. */
+"Manage Offline Content" = "Управление офлайн-контентом";
+
+/* No comment provided by engineer. */
 "Manage Students" = "Управление студентами";
 
 /* No comment provided by engineer. */
@@ -1595,6 +1613,9 @@
 "No Content" = "Нет контента";
 
 /* No comment provided by engineer. */
+"No Course Content" = "Нет контента курса";
+
+/* No comment provided by engineer. */
 "No Courses" = "Курсы отсутствуют";
 
 /* No comment provided by engineer. */
@@ -1703,6 +1724,9 @@
 "Observers" = "Наблюдатели";
 
 /* No comment provided by engineer. */
+"Offline Content" = "Оффлайн-контент";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -1761,6 +1785,9 @@
 
 /* No comment provided by engineer. */
 "Ordered List" = "Упорядоченный список";
+
+/* No comment provided by engineer. */
+"Other Apps" = "Другие приложения";
 
 /* 5 out of 10 */
 "out of" = "из";
@@ -1955,6 +1982,9 @@
 "Refreshing" = "Обновление";
 
 /* No comment provided by engineer. */
+"Remaining" = "Остается";
+
+/* No comment provided by engineer. */
 "Remove" = "Удалить";
 
 /* No comment provided by engineer. */
@@ -2091,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Выбрать путь";
+
+/* No comment provided by engineer. */
+"Select All" = "Выбрать все";
 
 /* No comment provided by engineer. */
 "Select assignment" = "Выбрать задание";
@@ -2234,6 +2267,12 @@
 "Stop recording" = "Остановить запись";
 
 /* No comment provided by engineer. */
+"Storage" = "Хранилище";
+
+/* No comment provided by engineer. */
+"Storage Info" = "Информация о хранилище";
+
+/* No comment provided by engineer. */
 "Student" = "Студент";
 
 /* No comment provided by engineer. */
@@ -2324,6 +2363,12 @@
 "Syllabus content" = "Содержание курса";
 
 /* No comment provided by engineer. */
+"Sync" = "Синхронизировать";
+
+/* No comment provided by engineer. */
+"Sync Offline Content?" = "Синхронизировать офлайн-контент?";
+
+/* No comment provided by engineer. */
 "System settings" = "Системные настройки";
 
 /* No comment provided by engineer. */
@@ -2390,10 +2435,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Необходимо перезапустить приложение для использования новых языковых настроек. Перезапустите приложение.";
 
 /* No comment provided by engineer. */
+"The course content will be listed here, and then you can make them available for offline usage." = "Содержание курсов будет перечислено здесь, а затем вы сможете сделать их доступными для использования в режиме офлайн.";
+
+/* No comment provided by engineer. */
 "The file has been deleted by the author." = "Файл был удален автором.";
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Процесс отправки был прерван операционной системой.";
+
+/* No comment provided by engineer. */
+"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Имеется %d выбранных позиций, которые будут доступны в режиме офлайн. Выбранный контент будет загружен на устройство.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "В этом курсе нет активных заданий.";
@@ -2457,6 +2508,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Возникла ошибка использования функции «Действовать как пользователь». Попробуйте еще раз позже.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error." = "Возникла непредвиденная ошибка.";
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "Произошла непредвиденная ошибка. Попробуйте еще раз.";
@@ -2547,6 +2601,9 @@
 
 /* No comment provided by engineer. */
 "Unknown Error" = "Неизвестная ошибка";
+
+/* No comment provided by engineer. */
+"Unknown file" = "Неизвестный файл";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Неограниченно";
@@ -2769,6 +2826,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Курсы вашего ребенка пока еще не могут быть опубликованы.";
+
+/* No comment provided by engineer. */
+"Your courses will be listed here, and then you can make them available for offline usage." = "Ваши курсы будут перечислены здесь, а затем вы сможете сделать их доступными для использования в режиме офлайн.";
 
 /* No comment provided by engineer. */
 "Your device is out of storage space. Please free up space and try again." = "На вашем устройстве закончилась свободная память. Освободите память и попробуйте снова.";
