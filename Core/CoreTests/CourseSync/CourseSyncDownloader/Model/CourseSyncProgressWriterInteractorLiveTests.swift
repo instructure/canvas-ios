@@ -40,8 +40,8 @@ class CourseSyncProgressWriterInteractorLiveTests: CoreTestCase {
     }
 
     override func tearDown() {
-        super.tearDown()
         entries = nil
+        super.tearDown()
     }
 
     func testDownloadedFileProgress() {

@@ -22,24 +22,24 @@ import Foundation
 // swiftlint:disable force_try
 final class CourseSyncEntryProgress: NSManagedObject, Comparable {
     @NSManaged public var id: String
-    @NSManaged public var selectionData: Data
-    @NSManaged public var stateData: Data
+    @NSManaged public var selectionRaw: Data
+    @NSManaged public var stateRaw: Data
 
     var selection: CourseEntrySelection {
         get {
-            try! JSONDecoder().decode(CourseEntrySelection.self, from: selectionData)
+            try! JSONDecoder().decode(CourseEntrySelection.self, from: selectionRaw)
         }
         set {
-            selectionData = try! JSONEncoder().encode(newValue)
+            selectionRaw = try! JSONEncoder().encode(newValue)
         }
     }
 
     var state: CourseSyncEntry.State {
         get {
-            try! JSONDecoder().decode(CourseSyncEntry.State.self, from: stateData)
+            try! JSONDecoder().decode(CourseSyncEntry.State.self, from: stateRaw)
         }
         set {
-            stateData = try! JSONEncoder().encode(newValue)
+            stateRaw = try! JSONEncoder().encode(newValue)
         }
     }
 

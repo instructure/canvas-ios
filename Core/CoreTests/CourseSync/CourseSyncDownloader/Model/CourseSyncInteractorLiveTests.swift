@@ -61,6 +61,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         progressWriterInteractor = nil
         progressObserverInteractor = nil
         entries = []
+        super.tearDown()
     }
 
     func testDownloadState() {

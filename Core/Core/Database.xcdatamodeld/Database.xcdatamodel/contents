@@ -270,8 +270,8 @@
     </entity>
     <entity name="CourseSyncEntryProgress" representedClassName="Core.CourseSyncEntryProgress" syncable="YES">
         <attribute name="id" attributeType="String"/>
-        <attribute name="selectionData" attributeType="Binary"/>
-        <attribute name="stateData" attributeType="Binary"/>
+        <attribute name="selectionRaw" attributeType="Binary"/>
+        <attribute name="stateRaw" attributeType="Binary"/>
     </entity>
     <entity name="CourseSyncFileProgress" representedClassName="Core.CourseSyncFileProgress" syncable="YES">
         <attribute name="bytesDownloaded" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
