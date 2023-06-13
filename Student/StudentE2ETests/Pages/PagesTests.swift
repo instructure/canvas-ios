@@ -27,7 +27,9 @@ class PagesTests: E2ETestCase {
         seeder.enrollStudent(student, in: course)
         let frontPage = DashboardHelper.createFrontPageForCourse(course: course)
 
-        // MARK: Check course card
+        // MARK: Get the user logged in and check the course card
+        logInDSUser(student)
+
         let courseCard = Dashboard.courseCard(id: course.id).waitToExist()
         XCTAssertTrue(courseCard.isVisible)
         courseCard.tap()
