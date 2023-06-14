@@ -211,6 +211,7 @@
 		23D84C6D16A9C342BC6974C7 /* QuizListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6EF16BAD60332D4C5D28CC5 /* QuizListViewController.swift */; };
 		23F1D04D3D119912B467CE7E /* AssignmentAssigneeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729E97A807A98834ED225918 /* AssignmentAssigneeList.swift */; };
 		240D4C47E9667E45DE783E96 /* InboxMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A95D857F3904617A72173B /* InboxMessageView.swift */; };
+		2439654E0276FEACFB693030 /* RichContentEditorFileUploadContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D2404DAD82241C3DBF9C8B /* RichContentEditorFileUploadContextTests.swift */; };
 		2455859ED40B1F74E4A75301 /* K5HomeroomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A79D4D221B7A3F93B0976DE /* K5HomeroomViewModel.swift */; };
 		245AB24A2DC42AE01BFAAB5E /* StoreStateCombine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38956117E9EC3DE1683B19B7 /* StoreStateCombine.swift */; };
 		245C9DB44886418467A2A5AE /* FileUploadTargetRequesterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEB50CAF7EBB10B51D6062D /* FileUploadTargetRequesterTests.swift */; };
@@ -1210,6 +1211,7 @@
 		D109D22A1D5A294166528EB1 /* ModuleItemDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15E13D146F040A7DB7964CB8 /* ModuleItemDetailsViewController.storyboard */; };
 		D152C586A3E7451E7CFAA2A1 /* SearchRecipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AE5436C5E394FAA5062ACE7 /* SearchRecipient.swift */; };
 		D193734A66A8111232FFF871 /* MasteryPathViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7F2005AC8D2E533BC3C7A7 /* MasteryPathViewControllerTests.swift */; };
+		D1D8E01EB529C1506D357049 /* RichContentEditorFileUploadContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9943C004FBFBBBF1B14D65 /* RichContentEditorFileUploadContext.swift */; };
 		D1E6DE6370518F27FA7697E5 /* FileUploadItemMimeClassTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DE0A57634AC896BDC512AA /* FileUploadItemMimeClassTests.swift */; };
 		D2279FED117D812CB0A99035 /* GetPlannablesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBB4CF4F44F4BB879D694FB /* GetPlannablesTests.swift */; };
 		D2406A330303999225A2100F /* LTIToolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFA0222E5FA9B12E3EDA0F7 /* LTIToolsTests.swift */; };
@@ -1739,6 +1741,7 @@
 		1A7CC4829ACDE419C6B19F47 /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
 		1A911057143F6C525BA3C5AC /* K5ResourcesApplicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesApplicationViewModel.swift; sourceTree = "<group>"; };
 		1A94EFE9C2E449038D3F673F /* lato_bolditalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_bolditalic.ttf; sourceTree = "<group>"; };
+		1A9943C004FBFBBBF1B14D65 /* RichContentEditorFileUploadContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichContentEditorFileUploadContext.swift; sourceTree = "<group>"; };
 		1AB080AC1303FBA3B9B77633 /* FileSubmissionErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionErrors.swift; sourceTree = "<group>"; };
 		1ABEE939C0B67F0025AAFBDC /* DeveloperMenuViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DeveloperMenuViewController.storyboard; sourceTree = "<group>"; };
 		1AD5FA5A8F50C42ECF8A0FC3 /* en-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CA"; path = "en-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -3002,6 +3005,7 @@
 		D9A4AE194639B875B24AA1B5 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		D9A95D857F3904617A72173B /* InboxMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageView.swift; sourceTree = "<group>"; };
 		D9C9D56BE47353CCA226EEB5 /* QuizSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmission.swift; sourceTree = "<group>"; };
+		D9D2404DAD82241C3DBF9C8B /* RichContentEditorFileUploadContextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichContentEditorFileUploadContextTests.swift; sourceTree = "<group>"; };
 		D9E7E9A48DA0928791BB51E9 /* PairWithStudentQRCodeTutorialViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PairWithStudentQRCodeTutorialViewController.storyboard; sourceTree = "<group>"; };
 		D9F845410E6E6ACED5F789AD /* QuizPreviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizPreviewViewModel.swift; sourceTree = "<group>"; };
 		DA0F133A570E1F40CDB61809 /* CreateConversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateConversation.swift; sourceTree = "<group>"; };
@@ -3341,6 +3345,7 @@
 		01AC5166B8C7F12BA9DCBB93 /* RichContentEditor */ = {
 			isa = PBXGroup;
 			children = (
+				94E6E03A4A513B6402ED104C /* Model */,
 				051B66BBEE92D1CA70B2A427 /* RichContentEditorViewControllerTests.swift */,
 			);
 			path = RichContentEditor;
@@ -4477,6 +4482,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		3BDA3163649387CB5C3ACE56 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1A9943C004FBFBBBF1B14D65 /* RichContentEditorFileUploadContext.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		3CCBA8BE8D6137ECCA8BF47E /* Quizzes */ = {
 			isa = PBXGroup;
 			children = (
@@ -4641,6 +4654,7 @@
 		4514D62DB85771B622259882 /* RichContentEditor */ = {
 			isa = PBXGroup;
 			children = (
+				3BDA3163649387CB5C3ACE56 /* Model */,
 				64E991404F001C96A1D64C3D /* RichContentEditor.css */,
 				7CD06BD85946FE58878B9134 /* RichContentEditor.js */,
 				C74853D7E3A4FAF817AD060D /* RichContentEditor.swift */,
@@ -6136,6 +6150,14 @@
 				D9A4AE194639B875B24AA1B5 /* UserProfile.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		94E6E03A4A513B6402ED104C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D9D2404DAD82241C3DBF9C8B /* RichContentEditorFileUploadContextTests.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		95581980FD05E5B08BF93998 /* Groups */ = {
@@ -8898,6 +8920,7 @@
 				39F5AA922CE54EE63B4C36B8 /* QuizTests.swift in Sources */,
 				0FA5588258533E5EB134522F /* QuizTypeTests.swift in Sources */,
 				531598D6C96B136E0944C1DB /* ReactiveStoreTests.swift in Sources */,
+				2439654E0276FEACFB693030 /* RichContentEditorFileUploadContextTests.swift in Sources */,
 				4476D8F5D2F12C52F3785DE3 /* RichContentEditorViewControllerTests.swift in Sources */,
 				82D430256E6355B06FEDC024 /* RoleTests.swift in Sources */,
 				95ADB0781255C02BAAAD22F3 /* RouteHandlerTests.swift in Sources */,
@@ -9704,6 +9727,7 @@
 				4ACE4398C5E4A35363563C2B /* RefreshableScrollView.swift in Sources */,
 				9486F242AA2B1E16F9766D0F /* RemoteImage.swift in Sources */,
 				BB4203A9042EAF729CC13DB6 /* RichContentEditor.swift in Sources */,
+				D1D8E01EB529C1506D357049 /* RichContentEditorFileUploadContext.swift in Sources */,
 				A52DD3FE31F0D22A7653EA69 /* RichContentEditorViewController.swift in Sources */,
 				0EC6263BFC83A9648A51D045 /* RichContentToolbarView.swift in Sources */,
 				C10D257EE23C770A766DDE10 /* RightDetailTableViewCell.swift in Sources */,

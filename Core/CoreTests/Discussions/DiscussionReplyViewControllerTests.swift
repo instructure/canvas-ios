@@ -156,22 +156,4 @@ class DiscussionReplyViewControllerTests: CoreTestCase {
         api.mock(UpdateDiscussionReply(context: context, topicID: "1", entryID: "1", message: ""), value: .make())
         _ = controller.sendButton.target?.perform(controller.sendButton.action)
     }
-
-    func testFileUploadContextWhenLocalUserUploadsToContextOnDifferentShard() {
-        let result = FileUploadContext.makeRCEFileUploadTargetContext(userID: "123",
-                                                                      contextID: "70530000000002499")
-        XCTAssertEqual(result, .context(.user("7053~123")))
-    }
-
-    func testFileUploadContextWhenExternalUserUploadsToLocalContext() {
-        let result = FileUploadContext.makeRCEFileUploadTargetContext(userID: "7053~123",
-                                                                      contextID: "2499")
-        XCTAssertEqual(result, .context(.user("7053~123")))
-    }
-
-    func testFileUploadContextWhenLocalUserUploadsToLocalContext() {
-        let result = FileUploadContext.makeRCEFileUploadTargetContext(userID: "123",
-                                                                      contextID: "2499")
-        XCTAssertEqual(result, .context(.user("123")))
-    }
 }

@@ -76,7 +76,13 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
     var context = Context.currentUser
     var editEntryID: String?
     var editHTML: String?
-    lazy var editor = RichContentEditorViewController.create(context: context, uploadTo: env.app == .teacher ? .context(context) : .myFiles)
+    lazy var editor = RichContentEditorViewController.create(context: context,
+                                                             uploadTo: fileUploadContext)
+    private var fileUploadContext: FileUploadContext {
+        .makeForRCEUploads(app: env.app,
+                           context: context,
+                           session: env.currentSession)
+    }
     let env = AppEnvironment.shared
     lazy var filePicker = FilePicker(delegate: self)
     var isExpanded = false
@@ -349,20 +355,5 @@ extension DiscussionReplyViewController: CoreWebViewLinkDelegate {
             env.router.route(to: url, from: self)
         }
         return true
-    }
-}
-
-extension FileUploadContext {
-
-    static func makeRCEFileUploadTargetContext(userID: String, contextID: String) -> FileUploadContext {
-        if userID.hasShardID {
-            return .context(.user(userID))
-        }
-
-        if let shardID = contextID.shardID {
-            return .context(.user("\(shardID)~\(userID)"))
-        }
-
-        return .context(.user(userID))
     }
 }
