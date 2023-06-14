@@ -130,6 +130,7 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
                     fileName: element.fileName,
                     mimeClass: element.mimeClass
                 )
+                .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
                 .tryCatch { error -> AnyPublisher<Float, Error> in
                     unownedSelf.setState(
                         selection: .file(courseIndex, fileIndex), state: .error
@@ -176,6 +177,7 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
            entry.tabs[tabIndex].selectionState == .selected,
            let interactor = contentInteractors.first(where: { $0.associatedTabType == tabName }) {
             return interactor.getContent(courseId: entry.courseId)
+                .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
                 .updateLoadingState {
                     unownedSelf.setState(
                         selection: .tab(index, tabIndex),
