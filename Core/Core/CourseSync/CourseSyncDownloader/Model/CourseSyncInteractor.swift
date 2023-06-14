@@ -177,7 +177,6 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
            entry.tabs[tabIndex].selectionState == .selected,
            let interactor = contentInteractors.first(where: { $0.associatedTabType == tabName }) {
             return interactor.getContent(courseId: entry.courseId)
-                .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
                 .updateLoadingState {
                     unownedSelf.setState(
                         selection: .tab(index, tabIndex),
