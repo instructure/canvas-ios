@@ -13,6 +13,9 @@ settings:
   CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
   platform: iOS
 packages:
+  CombineSchedulers:
+    url: https://github.com/pointfreeco/combine-schedulers
+    exactVersion: 0.10.0
   CombineExt:
     url: https://github.com/CombineCommunity/CombineExt.git
     exactVersion: 1.8.1
@@ -32,6 +35,7 @@ targets:
     sources:
       - path: Core
     dependencies:
+      - package: CombineSchedulers
       - package: CombineExt
       - package: Lottie
       - package: PSPDFKit

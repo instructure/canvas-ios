@@ -21,6 +21,7 @@ import Combine
 import Foundation
 import TestsFoundation
 import XCTest
+import CombineSchedulers
 
 class CourseSyncInteractorLiveTests: CoreTestCase {
     private var assignmentsInteractor: CourseSyncAssignmentsInteractorMock!
@@ -68,7 +69,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         let testee = CourseSyncInteractorLive(
             pagesInteractor: pagesInteractor,
             assignmentsInteractor: assignmentsInteractor,
-            filesInteractor: filesInteractor
+            filesInteractor: filesInteractor,
+            scheduler: .immediate
         )
         entries[0].tabs[0].selectionState = .selected
         entries[0].tabs[1].selectionState = .selected
@@ -76,14 +78,11 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         entries[0].files[0].selectionState = .selected
         entries[0].files[1].selectionState = .selected
 
-        let expectation = expectation(description: "Publisher sends value")
-        expectation.expectedFulfillmentCount = 11
         let subscription = testee.downloadContent(for: entries)
             .sink(
                 receiveCompletion: { _ in },
                 receiveValue: { val in
                     self.entries = val
-                    expectation.fulfill()
                 }
             )
 
@@ -111,7 +110,6 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(entries[0].tabs[1].state, .downloaded)
         XCTAssertEqual(entries[0].tabs[2].state, .downloaded)
 
-        waitForExpectations(timeout: 2)
         subscription.cancel()
     }
 

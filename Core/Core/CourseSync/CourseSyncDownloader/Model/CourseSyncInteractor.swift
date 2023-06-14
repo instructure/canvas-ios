@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineSchedulers
 import Foundation
 
 protocol CourseSyncInteractor {
@@ -32,6 +33,8 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
     private let contentInteractors: [CourseSyncContentInteractor]
     private let filesInteractor: CourseSyncFilesInteractor
     private let progressWriterInteractor: CourseSyncProgressWriterInteractor
+    private let scheduler: AnySchedulerOf<DispatchQueue>
+
     private var courseSyncEntries = CurrentValueSubject<[CourseSyncEntry], Error>.init([])
     private var subscription: AnyCancellable?
 
@@ -39,7 +42,8 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
         pagesInteractor: CourseSyncPagesInteractor = CourseSyncPagesInteractorLive(),
         assignmentsInteractor: CourseSyncAssignmentsInteractor = CourseSyncAssignmentsInteractorLive(),
         filesInteractor: CourseSyncFilesInteractor = CourseSyncFilesInteractorLive(),
-        progressWriterInteractor: CourseSyncProgressWriterInteractor = CourseSyncProgressWriterInteractorLive()
+        progressWriterInteractor: CourseSyncProgressWriterInteractor = CourseSyncProgressWriterInteractorLive(),
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         contentInteractors = [
             pagesInteractor,
@@ -47,6 +51,7 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
         ]
         self.filesInteractor = filesInteractor
         self.progressWriterInteractor = progressWriterInteractor
+        self.scheduler = scheduler
     }
 
     func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Error> {
@@ -130,7 +135,7 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
                     fileName: element.fileName,
                     mimeClass: element.mimeClass
                 )
-                .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
+                .debounce(for: .milliseconds(300), scheduler: unownedSelf.scheduler)
                 .tryCatch { error -> AnyPublisher<Float, Error> in
                     unownedSelf.setState(
                         selection: .file(courseIndex, fileIndex), state: .error
@@ -203,7 +208,7 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
         }
     }
 
-    /// Updates entry state in memory and writes it to Core Data. In addition it also writes file progress to Core Data. 
+    /// Updates entry state in memory and writes it to Core Data. In addition it also writes file progress to Core Data.
     private func setState(selection: CourseEntrySelection, state: CourseSyncEntry.State) {
         var entries = courseSyncEntries.value
 

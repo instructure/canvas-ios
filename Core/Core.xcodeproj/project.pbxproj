@@ -67,6 +67,7 @@
 		0A45603F6F2CEBD69714CCFF /* FileProgressListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C970B37ADC570C2C8FDB19D7 /* FileProgressListView.swift */; };
 		0A6A47BC9AD88562F9A00A31 /* HelmNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4AC59B0D17F0033EC46B83 /* HelmNavigationController.swift */; };
 		0AAD29E63277623625A68432 /* CourseSyncProgressViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EE3742920BE5C74E1D7CEB /* CourseSyncProgressViewModelTests.swift */; };
+		0AC02ED0AAB62CEEF21FAACA /* PSPDFKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8C5ECF283C56CEE5DC624958 /* PSPDFKit */; };
 		0AC8AD3BB7D95FCA7335CE85 /* AudioRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37369CDC96915F12146E5A37 /* AudioRecorderViewController.swift */; };
 		0ACA739F3CBCE1FE7FAF66A4 /* CourseSyncSelectorEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD38BCA699C5556356C1577 /* CourseSyncSelectorEntryTests.swift */; };
 		0AD1AE07DE9E063E01E6DDAD /* SnackViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6428D7DA9B65511C0A8AA8B3 /* SnackViewModelTests.swift */; };
@@ -225,7 +226,7 @@
 		254F8A8EF5997CA5810F28E2 /* PlannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8335194CDD5425D926338D35 /* PlannerViewController.swift */; };
 		255BF48BA055D23DFA45A590 /* APITodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6ACBAA0632D5497CCA446 /* APITodo.swift */; };
 		2565F93EFB37EE8CC61DB5D8 /* TestImage.gif in Resources */ = {isa = PBXBuildFile; fileRef = EC9641F9774363C187731F30 /* TestImage.gif */; };
-		25C534647B7B805047B8E0C3 /* PSPDFKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8C5ECF283C56CEE5DC624958 /* PSPDFKit */; };
+		25C534647B7B805047B8E0C3 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = D784E9A4895EC777BDAD4BAD /* Lottie */; };
 		25D6A8697712674FAA8EE58D /* APILoginWebTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44EE4C069DF25E79260A103D /* APILoginWebTests.swift */; };
 		25EF72292D79DFC08C6C9EE0 /* DashboardCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3266E61FED720A365B68B5C /* DashboardCard.swift */; };
 		2637D10A128A8D2D8A7A03EC /* AccessIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD769C905289CC8683AC7CF7 /* AccessIconView.swift */; };
@@ -475,7 +476,7 @@
 		50AA135B825E1E649EEEE7C6 /* Int64ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C80F1235D275D1ADDFD1C5 /* Int64ExtensionsTests.swift */; };
 		5197C59BB41BCF6A23649A38 /* CalendarDaysViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F6AA2D9C5C50EDA97418D3 /* CalendarDaysViewControllerTests.swift */; };
 		51A784AC0519ACB00C35C71E /* UITableViewHeaderFooterViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A521299CB8FC225619DE6BB0 /* UITableViewHeaderFooterViewExtensions.swift */; };
-		51B1D4ED7ECB508C4A97445F /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = D784E9A4895EC777BDAD4BAD /* Lottie */; };
+		51B1D4ED7ECB508C4A97445F /* CombineExt in Frameworks */ = {isa = PBXBuildFile; productRef = 2373F3530A3FD2B901730D89 /* CombineExt */; };
 		51BEA832F8822E352623B7FC /* NSNumberExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794C5B64CF00CB01C38DF5BF /* NSNumberExtensions.swift */; };
 		51D39B8127C23F13019E782F /* K5Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602DB18DF6007995BC8BC8B2 /* K5Preview.swift */; };
 		5233197D4D23D21ABD6A7FE9 /* CreateTextCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF63DE1D9F43C3F5556A81BC /* CreateTextCommentTests.swift */; };
@@ -1346,7 +1347,7 @@
 		E63D5323E02038FC38F74E8A /* APIConferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA885AC87C38842D28FDD8D9 /* APIConferenceTests.swift */; };
 		E6848F9D7260549B3D63BB37 /* CourseSyncSettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8A8A7483EE2E7C996F2B87 /* CourseSyncSettingsInteractor.swift */; };
 		E690FC2B19CFBA73F95C41AB /* TabBarBadgeCountsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E2CA4E53BA7572C4872E1 /* TabBarBadgeCountsTests.swift */; };
-		E7494D59CF3A2D7FFFEE3DA2 /* CombineExt in Frameworks */ = {isa = PBXBuildFile; productRef = 2373F3530A3FD2B901730D89 /* CombineExt */; };
+		E7494D59CF3A2D7FFFEE3DA2 /* CombineSchedulers in Frameworks */ = {isa = PBXBuildFile; productRef = B0C68AEA835B4F8582A30B43 /* CombineSchedulers */; };
 		E74BE2D05AEBAADF52D6B011 /* BackgroundVideoPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B1B8263B67CA3AF6D3C766 /* BackgroundVideoPlayerTests.swift */; };
 		E79E1E35FA3569B806B7444D /* GetLatestAnnouncementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A473768849DF321B31226 /* GetLatestAnnouncementsTests.swift */; };
 		E7F99A7909E161467069D79D /* APIListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BF01404113FB190130FEF2 /* APIListTests.swift */; };
@@ -3263,9 +3264,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7494D59CF3A2D7FFFEE3DA2 /* CombineExt in Frameworks */,
-				51B1D4ED7ECB508C4A97445F /* Lottie in Frameworks */,
-				25C534647B7B805047B8E0C3 /* PSPDFKit in Frameworks */,
+				E7494D59CF3A2D7FFFEE3DA2 /* CombineSchedulers in Frameworks */,
+				51B1D4ED7ECB508C4A97445F /* CombineExt in Frameworks */,
+				25C534647B7B805047B8E0C3 /* Lottie in Frameworks */,
+				0AC02ED0AAB62CEEF21FAACA /* PSPDFKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -8236,6 +8238,7 @@
 			);
 			name = Core;
 			packageProductDependencies = (
+				B0C68AEA835B4F8582A30B43 /* CombineSchedulers */,
 				2373F3530A3FD2B901730D89 /* CombineExt */,
 				D784E9A4895EC777BDAD4BAD /* Lottie */,
 				8C5ECF283C56CEE5DC624958 /* PSPDFKit */,
@@ -8316,6 +8319,7 @@
 			mainGroup = 62824534F75515F48E8114A7;
 			packageReferences = (
 				FCD1D04FD946BB6C6C264E50 /* XCRemoteSwiftPackageReference "CombineExt" */,
+				0123E127313854C775556360 /* XCRemoteSwiftPackageReference "combine-schedulers" */,
 				120AFC94F64412AA3A0FC3A7 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				C0C21C0C6F0179DCECB057F3 /* XCRemoteSwiftPackageReference "PSPDFKit-SP" */,
 			);
@@ -10457,6 +10461,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		0123E127313854C775556360 /* XCRemoteSwiftPackageReference "combine-schedulers" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/combine-schedulers";
+			requirement = {
+				kind = exactVersion;
+				version = 0.10.0;
+			};
+		};
 		120AFC94F64412AA3A0FC3A7 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
@@ -10493,6 +10505,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C0C21C0C6F0179DCECB057F3 /* XCRemoteSwiftPackageReference "PSPDFKit-SP" */;
 			productName = PSPDFKit;
+		};
+		B0C68AEA835B4F8582A30B43 /* CombineSchedulers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0123E127313854C775556360 /* XCRemoteSwiftPackageReference "combine-schedulers" */;
+			productName = CombineSchedulers;
 		};
 		D784E9A4895EC777BDAD4BAD /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
