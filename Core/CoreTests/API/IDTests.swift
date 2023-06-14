@@ -98,6 +98,12 @@ class IDTests: XCTestCase {
         XCTAssertNil("1340206".shardID)
     }
 
+    func testHasShardID() {
+        XCTAssertTrue("70530000000002499".hasShardID)
+        XCTAssertTrue("7053~1340206".hasShardID)
+        XCTAssertFalse("1340206".hasShardID)
+    }
+
     func testLocalID() {
         XCTAssertEqual("70530000000002499".localID, "2499")
         XCTAssertEqual("7053~1340206".localID, "1340206")

@@ -100,6 +100,10 @@ extension ID: ExpressibleByIntegerLiteral {
 
 public extension String {
 
+    var hasShardID: Bool {
+        shardID != nil
+    }
+
     var shardID: String? {
         if let tildeIndex = firstIndex(of: "~") {
             return String(prefix(upTo: tildeIndex))
