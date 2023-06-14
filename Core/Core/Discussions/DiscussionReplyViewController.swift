@@ -351,3 +351,18 @@ extension DiscussionReplyViewController: CoreWebViewLinkDelegate {
         return true
     }
 }
+
+extension FileUploadContext {
+
+    static func makeRCEFileUploadTargetContext(userID: String, contextID: String) -> FileUploadContext {
+        if userID.hasShardID {
+            return .context(.user(userID))
+        }
+
+        if let shardID = contextID.shardID {
+            return .context(.user("\(shardID)~\(userID)"))
+        }
+
+        return .context(.user(userID))
+    }
+}
