@@ -107,9 +107,9 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(entries[0].tabs[2].state, .loading(nil))
 
         filesInteractor.publisher.send(1)
-        testScheduler.advance(by: .seconds(1))
+        testScheduler.run()
         filesInteractor.publisher.send(completion: .finished)
-        testScheduler.advance(by: .seconds(1))
+        testScheduler.run()
         XCTAssertEqual(entries[0].state, .downloaded)
         XCTAssertEqual(entries[0].tabs[0].state, .downloaded)
         XCTAssertEqual(entries[0].tabs[1].state, .downloaded)
@@ -194,9 +194,9 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(progressList[5].state, .loading(nil))
 
         filesInteractor.publisher.send(1)
-        testScheduler.advance(by: .seconds(1))
+        testScheduler.run()
         filesInteractor.publisher.send(completion: .finished)
-        testScheduler.advance(by: .seconds(1))
+        testScheduler.run()
         // Course
         XCTAssertEqual(progressList[0].state, .downloaded)
         // Assignments Tab
@@ -237,14 +237,14 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(entries[0].tabs[2].state, .loading(nil))
 
         filesInteractor.publisher.send(0.1)
-        testScheduler.advance(by: .seconds(1))
+        testScheduler.run()
         XCTAssertEqual(entries[0].state, .loading(nil))
         XCTAssertEqual(entries[0].tabs[2].state, .loading(0.1))
         XCTAssertEqual(entries[0].files[0].state, .loading(0.1))
         XCTAssertEqual(entries[0].files[1].state, .loading(0.1))
 
         filesInteractor.publisher.send(completion: .finished)
-        testScheduler.advance(by: .seconds(1))
+        testScheduler.run()
         XCTAssertEqual(entries[0].tabs[2].state, .downloaded)
         XCTAssertEqual(entries[0].files[0].state, .downloaded)
         XCTAssertEqual(entries[0].files[1].state, .downloaded)
@@ -278,12 +278,12 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(entries[0].files[1].bytesToDownload, 1000)
 
         filesInteractor.publisher.send(0.1)
-        testScheduler.advance(by: .seconds(1))
+        testScheduler.run()
         XCTAssertEqual(entries[0].files[0].bytesDownloaded, 100)
         XCTAssertEqual(entries.totalDownloadedSize, 200)
 
         filesInteractor.publisher.send(completion: .finished)
-        testScheduler.advance(by: .seconds(1))
+        testScheduler.run()
         XCTAssertEqual(entries[0].files[0].bytesDownloaded, 1000)
         XCTAssertEqual(entries[0].files[1].bytesDownloaded, 1000)
         XCTAssertEqual(entries.totalDownloadedSize, 2000)
@@ -313,14 +313,14 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(entries[0].tabs[2].state, .loading(nil))
 
         filesInteractor.publisher.send(0.1)
-        testScheduler.advance(by: .seconds(1))
+        testScheduler.run()
         XCTAssertEqual(entries[0].state, .loading(nil))
         XCTAssertEqual(entries[0].tabs[2].state, .loading(0.1))
         XCTAssertEqual(entries[0].files[0].state, .loading(0.1))
         XCTAssertEqual(entries[0].files[1].state, .loading(nil))
 
         filesInteractor.publisher.send(completion: .finished)
-        testScheduler.advance(by: .seconds(1))
+        testScheduler.run()
         XCTAssertEqual(entries[0].tabs[2].state, .downloaded)
         XCTAssertEqual(entries[0].files[0].state, .downloaded)
         XCTAssertEqual(entries[0].files[1].state, .loading(nil))
