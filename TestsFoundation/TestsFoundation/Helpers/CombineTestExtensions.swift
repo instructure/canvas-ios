@@ -61,8 +61,10 @@ public extension XCTestCase {
 
         let subscription = publisher
             .sink { completion in
-                if case .finished = completion {
-                    finishExpectation.fulfill()
+                finishExpectation.fulfill()
+
+                if case .failure(let error) = completion {
+                    XCTFail("Unexpected failure while waiting on finish event: \(error)")
                 }
             } receiveValue: { _ in
             }
