@@ -74,8 +74,8 @@ public extension XCTestCase {
     }
 
     func XCTAssertFailure<Output, Failure>(_ publisher: any Publisher<Output, Failure>,
-                                        assertOnOutput: Bool = true,
-                                        timeout: TimeInterval = 0.1)
+                                           assertOnOutput: Bool = true,
+                                           timeout: TimeInterval = 0.1)
     where Failure: Error {
         let finishExpectation = expectation(description: "Publisher failed")
         finishExpectation.expectedFulfillmentCount = 1
