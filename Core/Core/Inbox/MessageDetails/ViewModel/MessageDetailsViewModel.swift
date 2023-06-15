@@ -21,8 +21,8 @@ import Combine
 class MessageDetailsViewModel: ObservableObject {
     // MARK: - Outputs
     @Published public private(set) var state: StoreState = .loading
-    @Published public private(set) var messages: [MessageViewModel] = []
     @Published public private(set) var subject: String = ""
+    @Published public private(set) var messages: [MessageViewModel] = []
     @Published public private(set) var starred: Bool = false
 
     public let title = NSLocalizedString("Message Details", comment: "")

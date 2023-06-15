@@ -908,6 +908,7 @@
 		A300F100D0020B1B99D9E892 /* AnnouncementListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FF1A2A320D8A7D01139C8F /* AnnouncementListViewControllerTests.swift */; };
 		A30F48C7A94454938D326441 /* GetLatestAnnouncements.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72AC71BCB2539A033B2EFD6 /* GetLatestAnnouncements.swift */; };
 		A33B296635F9D69C5771EB9C /* GetModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF4F8DD4CF24F46E78EFBCD /* GetModuleItem.swift */; };
+		A352A8DCE7424D749356BE6B /* MessageDetailsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446E92798928AB72C50C2AC8 /* MessageDetailsViewModelTests.swift */; };
 		A3B1248108BDC07C7AB49742 /* ExternalURLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE17829D0376D9BC8CF07EFE /* ExternalURLViewController.swift */; };
 		A3B685BB8589EA79A001CFEC /* FileUploadTargetRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48B593C9C1F106CF5EA7CB /* FileUploadTargetRequester.swift */; };
 		A40977BAAAEA83EC24CF5D5F /* UIColorExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E976A0DF72FDEBB510B418 /* UIColorExtensionsTests.swift */; };
@@ -1363,6 +1364,7 @@
 		F0ED911AB7EC7DF038B6F5F9 /* UINavigationControllerTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED3823EC0DB3577A0A296F75 /* UINavigationControllerTheme.swift */; };
 		F1967A6C0D99FD27E15EDD33 /* GetPlannerCourses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471925BC53039C98DC2BEE51 /* GetPlannerCourses.swift */; };
 		F1A5761E82C62D3A026C13EB /* DiscussionHTMLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA383B82377A796427C47AB1 /* DiscussionHTMLTests.swift */; };
+		F1DF39627B5C9F790B8B5AFA /* MessageDetailsInteractorLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA02B8559A8B2DB5078D3BB /* MessageDetailsInteractorLiveTests.swift */; };
 		F231310AB410ED67D77D29DB /* K5HomeroomMySubjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9B7CC90C6242C9F99F59670 /* K5HomeroomMySubjectsView.swift */; };
 		F27C4A7BEA8CA1D34FF9CEDE /* DocViewerSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1583BF66D061DC99A448F76 /* DocViewerSessionTests.swift */; };
 		F2A84CC5C7618F6FDE595587 /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0654F8E73E24CF21BFD4A29 /* AboutViewModel.swift */; };
@@ -1964,6 +1966,7 @@
 		4457A60E9CC1B6CFB0ECD4B6 /* TypeSafeCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSafeCodable.swift; sourceTree = "<group>"; };
 		4463D4DFE87D5EE293B79B50 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		44640E74D6D5DA91B7580F0D /* PageDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PageDetailsViewController.storyboard; sourceTree = "<group>"; };
+		446E92798928AB72C50C2AC8 /* MessageDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailsViewModelTests.swift; sourceTree = "<group>"; };
 		44CAD1D8ED5C5D3615BC68A5 /* UseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseTests.swift; sourceTree = "<group>"; };
 		44E031F94526DB584D8236B2 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		44EE4C069DF25E79260A103D /* APILoginWebTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APILoginWebTests.swift; sourceTree = "<group>"; };
@@ -2746,6 +2749,7 @@
 		BE21E5F1D76A89B06B9F79C4 /* CacheManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManagerTests.swift; sourceTree = "<group>"; };
 		BE27AEC3B07FCAA395D327BB /* SyllabusSummaryItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SyllabusSummaryItemCell.xib; sourceTree = "<group>"; };
 		BE5E8F1A0F3373CAF76F1B94 /* ConversationMessageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationMessageTests.swift; sourceTree = "<group>"; };
+		BEA02B8559A8B2DB5078D3BB /* MessageDetailsInteractorLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailsInteractorLiveTests.swift; sourceTree = "<group>"; };
 		BEF28B8A6E768E31C560C31B /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		BF0AEE0D31834D46560E619C /* balsamiq_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = balsamiq_regular.ttf; sourceTree = "<group>"; };
 		BF65B96375AF2CFF24684F9A /* InstIconExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstIconExtensionsTests.swift; sourceTree = "<group>"; };
@@ -3558,6 +3562,15 @@
 			path = QuizSubmissionList;
 			sourceTree = "<group>";
 		};
+		11DBA6BF31CAA9F45A2037C5 /* MessageDetails */ = {
+			isa = PBXGroup;
+			children = (
+				BEA02B8559A8B2DB5078D3BB /* MessageDetailsInteractorLiveTests.swift */,
+				446E92798928AB72C50C2AC8 /* MessageDetailsViewModelTests.swift */,
+			);
+			path = MessageDetails;
+			sourceTree = "<group>";
+		};
 		12BB118DE8F1D84A956D9291 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -3996,6 +4009,7 @@
 		2F99C1102518F74471883328 /* Inbox */ = {
 			isa = PBXGroup;
 			children = (
+				11DBA6BF31CAA9F45A2037C5 /* MessageDetails */,
 				6CC4EAEBA4D4A408ABB0AB6C /* Model */,
 				CDB5F7D1405E4134E18B711A /* ViewModel */,
 			);
@@ -8446,6 +8460,8 @@
 				D193734A66A8111232FFF871 /* MasteryPathViewControllerTests.swift in Sources */,
 				48F9EF3B3CFA891084D226AF /* MediaCommentTests.swift in Sources */,
 				2037D2EA1723DDC99CD2098B /* MenuItemsTests.swift in Sources */,
+				F1DF39627B5C9F790B8B5AFA /* MessageDetailsInteractorLiveTests.swift in Sources */,
+				A352A8DCE7424D749356BE6B /* MessageDetailsViewModelTests.swift in Sources */,
 				CA5D1B4FF43103705D699684 /* MessageListStateUpdaterTests.swift in Sources */,
 				0F135BC82678085E16914FAC /* MockAnalyticsHandler.swift in Sources */,
 				8DBA90847FED25A4BDE14F64 /* MockCoreWebViewLinkDelegate.swift in Sources */,
