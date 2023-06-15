@@ -144,7 +144,7 @@ public class InboxViewModel: ObservableObject {
             .store(in: &subscriptions)
         messageDidTap
             .sink { [weak router] (messageID, controller) in
-                router?.route(to: "/conversations/\(messageID)", from: controller)
+                router?.route(to: "/conversations/\(messageID)", from: controller, options: .detail)
             }
             .store(in: &subscriptions)
     }

@@ -92,12 +92,17 @@ public struct MessageDetailsView: View {
         Button(action: {
             model.starDidTap.send()
         }, label: {
-            let star = model.starred ? Image.starSolid : Image.starLine
-            star
+            var star = Image.starLine
+            var a11yLabel = NSLocalizedString("Un-starred", bundle: .core, comment: "")
+            if model.starred {
+                star = Image.starSolid
+                a11yLabel = NSLocalizedString("Starred", bundle: .core, comment: "")
+            }
+            return star
                 .size(30)
                 .foregroundColor(.textDark)
                 .padding(.leading, 6)
-                .accessibilityHidden(true)
+                .accessibilityLabel(a11yLabel)
         })
     }
 
