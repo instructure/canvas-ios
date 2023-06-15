@@ -197,9 +197,14 @@ public class PageViewEventController: NSObject {
 // MARK: - RN Logger methods
 extension PageViewEventController {
     @objc open func allEvents() -> String {
-        let count = persistency.queueCount
-        let events = persistency.batchOfEvents(count)
         let defaultReturnValue = "[]"
+        guard let userID = AppEnvironment.shared.currentSession?.userID else {
+            return defaultReturnValue
+        }
+
+        let count = persistency.queueCount(for: userID)
+        let events = persistency.batchOfEvents(count, userID: userID)
+
         guard let encodedData = try? JSONEncoder().encode(events) else {
             return defaultReturnValue
         }
@@ -208,7 +213,12 @@ extension PageViewEventController {
 
     // MARK: - Dev menu
     @objc open func clearAllEvents(handler: (() -> Void)?) {
-        persistency.dequeue(persistency.queueCount) {
+        guard let userID = AppEnvironment.shared.currentSession?.userID else {
+            handler?()
+            return
+        }
+
+        persistency.dequeue(persistency.queueCount(for: userID), userID: userID) {
             handler?()
         }
     }

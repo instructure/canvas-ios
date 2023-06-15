@@ -19,15 +19,11 @@
 import Foundation
 
 public struct SessionDefaults {
-    private var userDefaults: UserDefaults {
-        return UserDefaults(suiteName: Bundle.main.appGroupID()) ?? .standard
-    }
-
-    private var sessionDefaults: [String: Any]? {
-        get { return userDefaults.dictionary(forKey: sessionID) }
-        set { userDefaults.set(newValue, forKey: sessionID) }
-    }
-
+    /**
+     This is a shared session storage with an empty string as `sessionID`.
+     Can be used for testing/preview/fallback purposes.
+     */
+    public static let fallback = SessionDefaults(sessionID: "")
     public let sessionID: String
 
     /** This property is used by the file share extension to automatically select the course of the last viewed file in the app. The use-case is that the user views the assignment's file in the app, saves it to iOS Photos app, annotates it there and shares it back to the assignment. */
@@ -134,6 +130,34 @@ public struct SessionDefaults {
         set { self["collapsedModules"] = newValue }
     }
 
+    // MARK: - Offline Settings
+
+    public var isOfflineAutoSyncEnabled: Bool? {
+        get { self["isOfflineAutoSyncEnabled"] as? Bool }
+        set { self["isOfflineAutoSyncEnabled"] = newValue }
+    }
+
+    public var offlineSyncFrequency: Int? {
+        get { self["offlineSyncFrequency"] as? Int }
+        set { self["offlineSyncFrequency"] = newValue }
+    }
+
+    public var isOfflineWifiOnlySyncEnabled: Bool? {
+        get { self["isOfflineWifiOnlySyncEnabled"] as? Bool }
+        set { self["isOfflineWifiOnlySyncEnabled"] = newValue }
+    }
+
+    public var offlineSyncSelections: [CourseSyncItemSelection] {
+        get {
+            self["offlineSyncSelections"] as? [String] ?? []
+        }
+        set {
+            self["offlineSyncSelections"] = newValue
+        }
+    }
+
+    // MARK: Offline Settings -
+
     public mutating func reset() {
         sessionDefaults = nil
     }
@@ -149,5 +173,14 @@ public struct SessionDefaults {
             }
             sessionDefaults = defaults
         }
+    }
+
+    private var userDefaults: UserDefaults {
+        return UserDefaults(suiteName: Bundle.main.appGroupID()) ?? .standard
+    }
+
+    private var sessionDefaults: [String: Any]? {
+        get { return userDefaults.dictionary(forKey: sessionID) }
+        set { userDefaults.set(newValue, forKey: sessionID) }
     }
 }

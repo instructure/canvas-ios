@@ -31,6 +31,9 @@
 /* No comment provided by engineer. */
 "%@ missing" = "%@ mangler";
 
+/* 42 GB of 64 GB Used */
+"%@ of %@ Used" = "%1$@ af %2$@ brugt";
+
 /* No comment provided by engineer. */
 "%@ pts" = "%@ point";
 
@@ -614,6 +617,9 @@
 "Could not save notification preference" = "Kunne ikke gemme meddelelsesindstilling";
 
 /* No comment provided by engineer. */
+"Couldn't save the file." = "Kunne ikke gemme filen.";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "Fag (valgfrit)";
 
 /* No comment provided by engineer. */
@@ -627,6 +633,9 @@
 
 /* No comment provided by engineer. */
 "Course announcements" = "Kursusbekendtgørelser";
+
+/* No comment provided by engineer. */
+"Course Card Options" = "Fagkort – muligheder";
 
 /* No comment provided by engineer. */
 "Course Content" = "Fagindhold";
@@ -716,6 +725,9 @@
 "Dashboard" = "Oversigt";
 
 /* No comment provided by engineer. */
+"Dashboard Options" = "Forsideindstillinger";
+
+/* No comment provided by engineer. */
 "Dashboard settings" = "Oversigt-indstillinger";
 
 /* No comment provided by engineer. */
@@ -774,6 +786,9 @@
 
 /* No comment provided by engineer. */
 "Description" = "Beskrivelse";
+
+/* No comment provided by engineer. */
+"Deselect All" = "Fravælg alle";
 
 /* No comment provided by engineer. */
 "Designer" = "Designer";
@@ -1445,6 +1460,9 @@
 "Make sure you enable camera permissions in Settings" = "Sørg for, at du aktiverer kameratilladelser i Indstillinger";
 
 /* No comment provided by engineer. */
+"Manage Offline Content" = "Administrer offline indhold";
+
+/* No comment provided by engineer. */
 "Manage Students" = "Administrer studerende";
 
 /* No comment provided by engineer. */
@@ -1595,6 +1613,9 @@
 "No Content" = "Intet indhold";
 
 /* No comment provided by engineer. */
+"No Course Content" = "Intet fagindhold";
+
+/* No comment provided by engineer. */
 "No Courses" = "Ingen kurser";
 
 /* No comment provided by engineer. */
@@ -1703,6 +1724,9 @@
 "Observers" = "Observatører";
 
 /* No comment provided by engineer. */
+"Offline Content" = "Offline indhold";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -1736,9 +1760,6 @@
 "Open" = "Åben";
 
 /* No comment provided by engineer. */
-"Open %@ user preferences" = "Åbn brugerpræferencer for %@";
-
-/* No comment provided by engineer. */
 "Open application" = "Åbn applikation";
 
 /* No comment provided by engineer. */
@@ -1764,6 +1785,9 @@
 
 /* No comment provided by engineer. */
 "Ordered List" = "Ordnet liste";
+
+/* No comment provided by engineer. */
+"Other Apps" = "Andre apps";
 
 /* 5 out of 10 */
 "out of" = "ud af";
@@ -1958,6 +1982,9 @@
 "Refreshing" = "Opdaterer";
 
 /* No comment provided by engineer. */
+"Remaining" = "Tilbage";
+
+/* No comment provided by engineer. */
 "Remove" = "Fjern";
 
 /* No comment provided by engineer. */
@@ -2094,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Vælg en sti";
+
+/* No comment provided by engineer. */
+"Select All" = "Vælg alle";
 
 /* No comment provided by engineer. */
 "Select assignment" = "Vælg opgave";
@@ -2237,6 +2267,12 @@
 "Stop recording" = "Stop optagelsen";
 
 /* No comment provided by engineer. */
+"Storage" = "Opbevaring";
+
+/* No comment provided by engineer. */
+"Storage Info" = "Opbevaringsoplysninger";
+
+/* No comment provided by engineer. */
 "Student" = "Studerende";
 
 /* No comment provided by engineer. */
@@ -2327,6 +2363,12 @@
 "Syllabus content" = "Læseplanens indhold";
 
 /* No comment provided by engineer. */
+"Sync" = "Synkroniser";
+
+/* No comment provided by engineer. */
+"Sync Offline Content?" = "Vil du synkronisere offline indhold?";
+
+/* No comment provided by engineer. */
 "System settings" = "Systemindstillinger";
 
 /* No comment provided by engineer. */
@@ -2393,10 +2435,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Appen skal genstarte for at bruge de nye sprogindstillinger. Genstart venligst appen.";
 
 /* No comment provided by engineer. */
+"The course content will be listed here, and then you can make them available for offline usage." = "Fagindholdet vil blive vist her, og derefter kan du gøre det tilgængeligt til offline brug.";
+
+/* No comment provided by engineer. */
 "The file has been deleted by the author." = "Filen er blevet slettet af forfatteren.";
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Indsendelsesprocessen blev afsluttet af operativsystemet.";
+
+/* No comment provided by engineer. */
+"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Der er %d elementer valgt til offline tilgængelighed. Det valgte indhold vil blive downloadet til enheden.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Der er ingen aktive opgaver for dette fag";
@@ -2460,6 +2508,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Der opstod en fejl ved at fungere som bruger. Prøv igen senere.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error." = "Der opstod en uventet fejl.";
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "Der opstod en uventet fejl. Prøv igen.";
@@ -2550,6 +2601,9 @@
 
 /* No comment provided by engineer. */
 "Unknown Error" = "Ukendt fejl";
+
+/* No comment provided by engineer. */
+"Unknown file" = "Ukendt fil";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Ubegrænset";
@@ -2772,6 +2826,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Dit barns fag er måske ikke offentliggjort endnu.";
+
+/* No comment provided by engineer. */
+"Your courses will be listed here, and then you can make them available for offline usage." = "Dine fag vil blive vist her, og derefter kan du gøre dem tilgængelige til offline brug.";
 
 /* No comment provided by engineer. */
 "Your device is out of storage space. Please free up space and try again." = "Din enhed har ikke mere lagerplads. Frigør plads og prøv igen.";

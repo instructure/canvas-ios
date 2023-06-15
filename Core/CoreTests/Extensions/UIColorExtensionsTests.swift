@@ -71,21 +71,21 @@ class UIColorExtensionsTests: XCTestCase {
     }
 
     func testCustomColorInUnspecifiedTheme() {
-        var sessionDefaults = SessionDefaults(sessionID: "testSession")
+        var sessionDefaults = SessionDefaults.fallback
         sessionDefaults.interfaceStyle = .unspecified
         AppEnvironment.shared.userDefaults = sessionDefaults
         XCTAssertEqual(UIColor.backgroundLightest.hexString, "#ffffff")
     }
 
     func testCustomColorInLightTheme() {
-        var sessionDefaults = SessionDefaults(sessionID: "testSession")
+        var sessionDefaults = SessionDefaults.fallback
         sessionDefaults.interfaceStyle = .light
         AppEnvironment.shared.userDefaults = sessionDefaults
         XCTAssertEqual(UIColor.backgroundLightest.hexString, "#ffffff")
     }
 
     func testCustomColorInDarkTheme() {
-        var sessionDefaults = SessionDefaults(sessionID: "testSession")
+        var sessionDefaults = SessionDefaults.fallback
         sessionDefaults.interfaceStyle = .dark
         AppEnvironment.shared.userDefaults = sessionDefaults
         XCTAssertEqual(UIColor.backgroundLightest.hexString, "#121212")

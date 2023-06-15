@@ -30,22 +30,22 @@ public class DashboardSettingsInteractorLive: DashboardSettingsInteractor {
     public let isColorOverlaySwitchVisible: Bool
 
     // MARK: - Private
-    private let environment: AppEnvironment
     private var defaults: SessionDefaults
     private var subscriptions = Set<AnyCancellable>()
-    private lazy var userSettings = environment.subscribe(GetUserSettings(userID: "self")) { [weak self] in
-        self?.updateColorOverlay()
-    }
+    private var userSettings: Store<GetUserSettings>!
 
-    public init(environment: AppEnvironment, defaults: SessionDefaults) {
+    public init(environment: AppEnvironment, defaults: SessionDefaults?) {
+        let defaults = defaults ?? .fallback
         let storedLayout: DashboardLayout = defaults.isDashboardLayoutGrid ? .grid : .list
-        self.environment = environment
         self.defaults = defaults
         self.layout = CurrentValueSubject<DashboardLayout, Never>(storedLayout)
         self.showGrades = CurrentValueSubject<Bool, Never>(defaults.showGradesOnDashboard ?? false)
         self.colorOverlay = CurrentValueSubject<Bool, Never>(true)
         self.isGradesSwitchVisible = (environment.app == .student)
         self.isColorOverlaySwitchVisible = (environment.app == .student || environment.app == .teacher)
+        self.userSettings = environment.subscribe(GetUserSettings(userID: "self")) { [weak self] in
+            self?.updateColorOverlay()
+        }
         userSettings.refresh()
 
         saveLayoutToDefaultsOnChange()

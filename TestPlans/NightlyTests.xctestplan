@@ -61,7 +61,7 @@
     {
       "target" : {
         "containerPath" : "container:..\/Core\/Core.xcodeproj",
-        "identifier" : "2C964836211E2F1A002C3255",
+        "identifier" : "73B1A2AD90A7970B7DB39CDC",
         "name" : "CoreTests"
       }
     },
@@ -86,7 +86,6 @@
         "IPadAssignmentsTest",
         "InboxTests\/testCanMessageAttachment()",
         "SpringBoardTests",
-        "SubmissionButtonTests\/testOnlineUpload()",
         "UserFilesTests\/testAddFileAudio()",
         "UserFilesTests\/testAddFileFiles()"
       ],

@@ -31,6 +31,9 @@
 /* No comment provided by engineer. */
 "%@ missing" = "%@ no presentat";
 
+/* 42 GB of 64 GB Used */
+"%@ of %@ Used" = "%1$@ de %2$@ utilitzats";
+
 /* No comment provided by engineer. */
 "%@ pts" = "%@ punts";
 
@@ -614,6 +617,9 @@
 "Could not save notification preference" = "No s'ha pogut desar la preferència de notificació";
 
 /* No comment provided by engineer. */
+"Couldn't save the file." = "No s’ha pogut desar el fitxer.";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "Assignatura (opcional)";
 
 /* No comment provided by engineer. */
@@ -627,6 +633,9 @@
 
 /* No comment provided by engineer. */
 "Course announcements" = "Anuncis de l'assignatura";
+
+/* No comment provided by engineer. */
+"Course Card Options" = "Opcions de la targeta de l’assignatura";
 
 /* No comment provided by engineer. */
 "Course Content" = "Contingut de l'assignatura";
@@ -716,6 +725,9 @@
 "Dashboard" = "Panell de control";
 
 /* No comment provided by engineer. */
+"Dashboard Options" = "Opcions del panell de control";
+
+/* No comment provided by engineer. */
 "Dashboard settings" = "Configuració del Panell de control";
 
 /* No comment provided by engineer. */
@@ -774,6 +786,9 @@
 
 /* No comment provided by engineer. */
 "Description" = "Descripció";
+
+/* No comment provided by engineer. */
+"Deselect All" = "Anul·la la selecció de tot";
 
 /* No comment provided by engineer. */
 "Designer" = "Dissenyador";
@@ -1445,6 +1460,9 @@
 "Make sure you enable camera permissions in Settings" = "Assegureu-vos que habiliteu els permisos de la càmera a la Configuració";
 
 /* No comment provided by engineer. */
+"Manage Offline Content" = "Gestioneu el contingut sense connexió";
+
+/* No comment provided by engineer. */
 "Manage Students" = "Administra els estudiants";
 
 /* No comment provided by engineer. */
@@ -1595,6 +1613,9 @@
 "No Content" = "Sense contingut";
 
 /* No comment provided by engineer. */
+"No Course Content" = "No hi ha cap contingut de l’assignatura";
+
+/* No comment provided by engineer. */
 "No Courses" = "No hi ha cap assignatura";
 
 /* No comment provided by engineer. */
@@ -1703,6 +1724,9 @@
 "Observers" = "Observadors";
 
 /* No comment provided by engineer. */
+"Offline Content" = "Contingut sense connexió";
+
+/* No comment provided by engineer. */
 "OK" = "D'acord";
 
 /* No comment provided by engineer. */
@@ -1736,9 +1760,6 @@
 "Open" = "Obre";
 
 /* No comment provided by engineer. */
-"Open %@ user preferences" = "Obre les preferències d'usuari per a %@";
-
-/* No comment provided by engineer. */
 "Open application" = "Obre l’aplicació";
 
 /* No comment provided by engineer. */
@@ -1764,6 +1785,9 @@
 
 /* No comment provided by engineer. */
 "Ordered List" = "Llista ordenada";
+
+/* No comment provided by engineer. */
+"Other Apps" = "Altres aplicacions";
 
 /* 5 out of 10 */
 "out of" = "de";
@@ -1958,6 +1982,9 @@
 "Refreshing" = "S'estan actualitzant";
 
 /* No comment provided by engineer. */
+"Remaining" = "Restant";
+
+/* No comment provided by engineer. */
 "Remove" = "Suprimeix";
 
 /* No comment provided by engineer. */
@@ -2094,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Selecciona un camí d'accés";
+
+/* No comment provided by engineer. */
+"Select All" = "Selecciona-ho tot";
 
 /* No comment provided by engineer. */
 "Select assignment" = "Selecciona una activitat";
@@ -2237,6 +2267,12 @@
 "Stop recording" = "Deixa d'enregistrar";
 
 /* No comment provided by engineer. */
+"Storage" = "Emmagatzematge";
+
+/* No comment provided by engineer. */
+"Storage Info" = "Informació sobre l’emmagatzematge";
+
+/* No comment provided by engineer. */
 "Student" = "Estudiant";
 
 /* No comment provided by engineer. */
@@ -2327,6 +2363,12 @@
 "Syllabus content" = "Contingut del temari";
 
 /* No comment provided by engineer. */
+"Sync" = "Sincronitza";
+
+/* No comment provided by engineer. */
+"Sync Offline Content?" = "Voleu sincronitzar el contingut sense connexió?";
+
+/* No comment provided by engineer. */
 "System settings" = "Configuració del sistema";
 
 /* No comment provided by engineer. */
@@ -2393,10 +2435,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Per utilitzar la configuració d'idioma nova, cal reiniciar l'aplicació. Torneu a iniciar l'aplicació.";
 
 /* No comment provided by engineer. */
+"The course content will be listed here, and then you can make them available for offline usage." = "El contingut de l’assignatura s’enumerarà aquí; posteriorment, podeu fer que estigui disponible per utilitzar-se sense connexió.";
+
+/* No comment provided by engineer. */
 "The file has been deleted by the author." = "L'autor ha suprimit el fitxer.";
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "El sistema operatiu ha finalitzat el procés d'entrega.";
+
+/* No comment provided by engineer. */
+"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "S’han seleccionat %d elements perquè estiguin disponibles sense connexió. El contingut seleccionat es baixarà al dispositiu.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "No hi ha cap activitat activa en aquesta assignatura.";
@@ -2460,6 +2508,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "S'ha produït un error amb \"Actua com a usuari\". Torneu a provar-ho més endavant.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error." = "S’ha produït un error inesperat.";
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "S'ha produït un error inesperat. Torneu-ho a provar.";
@@ -2550,6 +2601,9 @@
 
 /* No comment provided by engineer. */
 "Unknown Error" = "Error desconegut";
+
+/* No comment provided by engineer. */
+"Unknown file" = "Fitxer desconegut";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Il·limitat";
@@ -2772,6 +2826,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "És possible que encara no s'hagin publicat les assignatures del vostre fill.";
+
+/* No comment provided by engineer. */
+"Your courses will be listed here, and then you can make them available for offline usage." = "Les vostres assignatures s’enumeraran aquí; posteriorment, podeu fer que estiguin disponibles per utilitzar-se sense connexió.";
 
 /* No comment provided by engineer. */
 "Your device is out of storage space. Please free up space and try again." = "El dispositiu s'ha quedat sense espai d'emmagatzematge. Allibereu espai i torneu a provar-ho.";

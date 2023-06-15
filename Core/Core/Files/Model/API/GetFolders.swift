@@ -131,23 +131,27 @@ public class GetFolderItems: UseCase {
         var items: [APIFolderItem] = []
         var response: URLResponse?
         var error: Error?
-        var filesIsDone = false
-        var foldersIsDone = false
 
+        let group = DispatchGroup()
+
+        group.enter()
         environment.api.exhaust(GetFilesRequest(context: context)) { files, r, e in
             files?.forEach { items.append(APIFolderItem.file($0)) }
             response = response ?? r
             error = error ?? e
-            filesIsDone = true
-            if foldersIsDone { completionHandler(items, response, error) }
+            group.leave()
         }
 
+        group.enter()
         environment.api.exhaust(GetFoldersRequest(context: context)) { folders, r, e in
             folders?.forEach { items.append(APIFolderItem.folder($0)) }
             response = response ?? r
             error = error ?? e
-            foldersIsDone = true
-            if filesIsDone { completionHandler(items, response, error) }
+            group.leave()
+        }
+
+        group.notify(queue: DispatchQueue.main) {
+            completionHandler(items, response, error)
         }
     }
 

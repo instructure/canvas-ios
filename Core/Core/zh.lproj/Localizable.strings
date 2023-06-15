@@ -31,6 +31,9 @@
 /* No comment provided by engineer. */
 "%@ missing" = "%@缺失";
 
+/* 42 GB of 64 GB Used */
+"%@ of %@ Used" = "%1$@已使用 %2$@";
+
 /* No comment provided by engineer. */
 "%@ pts" = "%@得分";
 
@@ -614,6 +617,9 @@
 "Could not save notification preference" = "无法保存通知首选项";
 
 /* No comment provided by engineer. */
+"Couldn't save the file." = "无法保存此文件。";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "课程（可选）";
 
 /* No comment provided by engineer. */
@@ -627,6 +633,9 @@
 
 /* No comment provided by engineer. */
 "Course announcements" = "课程通告";
+
+/* No comment provided by engineer. */
+"Course Card Options" = "课程卡选项";
 
 /* No comment provided by engineer. */
 "Course Content" = "课程内容";
@@ -716,6 +725,9 @@
 "Dashboard" = "控制面板";
 
 /* No comment provided by engineer. */
+"Dashboard Options" = "仪表板选项";
+
+/* No comment provided by engineer. */
 "Dashboard settings" = "控制面板设置";
 
 /* No comment provided by engineer. */
@@ -774,6 +786,9 @@
 
 /* No comment provided by engineer. */
 "Description" = "说明";
+
+/* No comment provided by engineer. */
+"Deselect All" = "取消全选";
 
 /* No comment provided by engineer. */
 "Designer" = "设计者";
@@ -1445,6 +1460,9 @@
 "Make sure you enable camera permissions in Settings" = "请务必在设置中启用摄像头权限";
 
 /* No comment provided by engineer. */
+"Manage Offline Content" = "管理离线内容";
+
+/* No comment provided by engineer. */
 "Manage Students" = "管理学生";
 
 /* No comment provided by engineer. */
@@ -1595,6 +1613,9 @@
 "No Content" = "无内容";
 
 /* No comment provided by engineer. */
+"No Course Content" = "无课程内容";
+
+/* No comment provided by engineer. */
 "No Courses" = "没有课程";
 
 /* No comment provided by engineer. */
@@ -1703,6 +1724,9 @@
 "Observers" = "观察员";
 
 /* No comment provided by engineer. */
+"Offline Content" = "离线内容";
+
+/* No comment provided by engineer. */
 "OK" = "确定";
 
 /* No comment provided by engineer. */
@@ -1736,9 +1760,6 @@
 "Open" = "打开";
 
 /* No comment provided by engineer. */
-"Open %@ user preferences" = "打开%@用户首选项";
-
-/* No comment provided by engineer. */
 "Open application" = "打开申请";
 
 /* No comment provided by engineer. */
@@ -1764,6 +1785,9 @@
 
 /* No comment provided by engineer. */
 "Ordered List" = "有序列表";
+
+/* No comment provided by engineer. */
+"Other Apps" = "其他应用程序";
 
 /* 5 out of 10 */
 "out of" = "共";
@@ -1958,6 +1982,9 @@
 "Refreshing" = "正在刷新";
 
 /* No comment provided by engineer. */
+"Remaining" = "剩余";
+
+/* No comment provided by engineer. */
 "Remove" = "移除";
 
 /* No comment provided by engineer. */
@@ -2094,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "选择路径";
+
+/* No comment provided by engineer. */
+"Select All" = "全选";
 
 /* No comment provided by engineer. */
 "Select assignment" = "选择作业";
@@ -2237,6 +2267,12 @@
 "Stop recording" = "停止录制";
 
 /* No comment provided by engineer. */
+"Storage" = "存储空间";
+
+/* No comment provided by engineer. */
+"Storage Info" = "存储空间信息";
+
+/* No comment provided by engineer. */
 "Student" = "学生";
 
 /* No comment provided by engineer. */
@@ -2327,6 +2363,12 @@
 "Syllabus content" = "教学大纲内容";
 
 /* No comment provided by engineer. */
+"Sync" = "同步";
+
+/* No comment provided by engineer. */
+"Sync Offline Content?" = "同步离线内容？";
+
+/* No comment provided by engineer. */
 "System settings" = "系统设置";
 
 /* No comment provided by engineer. */
@@ -2393,10 +2435,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "需重启应用程序才能使用新语言设置。请重启该应用程序。";
 
 /* No comment provided by engineer. */
+"The course content will be listed here, and then you can make them available for offline usage." = "此处将列出课程内容，然后您可以使内容离线可用。";
+
+/* No comment provided by engineer. */
 "The file has been deleted by the author." = "该文件已被作者删除。";
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "提交过程已经被操作系统终止。";
+
+/* No comment provided by engineer. */
+"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "已选择 %d 个项目离线可用。所选内容将下载到设备。";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "此课程中没有有效的作业。";
@@ -2460,6 +2508,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "临时代理用户出错。请稍后再试。";
+
+/* No comment provided by engineer. */
+"There was an unexpected error." = "出现意外错误。";
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "出现意外错误。请重试。";
@@ -2550,6 +2601,9 @@
 
 /* No comment provided by engineer. */
 "Unknown Error" = "未知错误";
+
+/* No comment provided by engineer. */
+"Unknown file" = "未知文件";
 
 /* No comment provided by engineer. */
 "Unlimited" = "无限制";
@@ -2772,6 +2826,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "您孩子的课程可能尚未发布。";
+
+/* No comment provided by engineer. */
+"Your courses will be listed here, and then you can make them available for offline usage." = "此处将列出您的课程，然后您可以使内容离线可用。";
 
 /* No comment provided by engineer. */
 "Your device is out of storage space. Please free up space and try again." = "您的设备的存储空间不足。请释放空间，然后重试。";

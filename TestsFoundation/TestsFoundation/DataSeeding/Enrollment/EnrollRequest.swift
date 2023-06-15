@@ -28,7 +28,7 @@ public enum DSEnrollmentType: String, Encodable {
 
 // https://canvas.instructure.com/doc/api/enrollments.html#method.enrollments_api.create
 struct EnrollRequest: APIRequestable {
-    public typealias Response = APINoContent
+    public typealias Response = DSEnrollment
 
     public let method = APIMethod.post
     public let path: String

@@ -46,7 +46,7 @@ class FileListViewControllerTests: CoreTestCase {
     func testLayout() {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-
+        drainMainQueue()
         XCTAssertEqual(controller.titleSubtitleView.title, "Folder A")
         XCTAssertEqual(controller.titleSubtitleView.subtitle, "")
 
@@ -123,6 +123,8 @@ class FileListViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.searchBar.text, "")
         XCTAssertEqual(controller.tableView.contentOffset.y, controller.searchBar.frame.height)
 
+        drainMainQueue()
+
         index = IndexPath(row: 1, section: 2)
         cell = controller.tableView.cellForRow(at: index) as? FileListCell
         XCTAssertEqual(cell?.nameLabel.text, "Picture")
@@ -146,6 +148,7 @@ class FileListViewControllerTests: CoreTestCase {
         ])
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
+        drainMainQueue()
 
         XCTAssertEqual(controller.titleSubtitleView.title, "Files")
         XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
@@ -165,6 +168,7 @@ class FileListViewControllerTests: CoreTestCase {
         ])
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
+        drainMainQueue()
 
         XCTAssertEqual(controller.titleSubtitleView.title, "Files")
         XCTAssertEqual(controller.titleSubtitleView.subtitle, "Group One")
@@ -179,6 +183,7 @@ class FileListViewControllerTests: CoreTestCase {
     func testRenamedAndDeleted() {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
+        drainMainQueue()
 
         XCTAssertEqual(controller.titleSubtitleView.title, "Folder A")
 
@@ -203,6 +208,7 @@ class FileListViewControllerTests: CoreTestCase {
     func testAddFolder() {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
+        drainMainQueue()
 
         XCTAssertEqual(controller.navigationItem.rightBarButtonItems?.contains(controller.addButton), true)
         _ = controller.addButton.target?.perform(controller.addButton.action)
@@ -267,6 +273,7 @@ class FileListViewControllerTests: CoreTestCase {
     func testDeleteFile() {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
+        drainMainQueue()
 
         let indexPath = IndexPath(row: 1, section: 2)
         let swipes = controller.tableView(controller.tableView, trailingSwipeActionsConfigurationForRowAt: indexPath)?.actions
@@ -312,9 +319,9 @@ class FileListViewControllerTests: CoreTestCase {
             .make(full_name: "my files/Folder A/B", id: "3", name: "B", parent_folder_id: "2"),
             .make(files_count: 0, full_name: "my files/Folder A/EmptyFolder", id: "4", name: "EmptyFolder", parent_folder_id: "2"),
         ])
-
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
+        drainMainQueue()
 
         var indexPath = IndexPath(row: 0, section: 2)
         var swipes = controller.tableView(controller.tableView, trailingSwipeActionsConfigurationForRowAt: indexPath)?.actions

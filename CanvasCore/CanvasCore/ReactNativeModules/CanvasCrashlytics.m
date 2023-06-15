@@ -36,7 +36,7 @@ RCT_EXPORT_MODULE();
         assert(NO);
     }];
 
-    RCTSetLogThreshold(RCTLogLevelInfo);
+    RCTSetLogThreshold(RCTLogLevelFatal);
     RCTSetLogFunction(^(RCTLogLevel level, RCTLogSource source, NSString *fileName, NSNumber *lineNumber, NSString *message) {
 
         NSString *log = RCTFormatLog([NSDate date], level, fileName, lineNumber, message);

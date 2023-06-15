@@ -20,6 +20,7 @@ import XCTest
 @testable import Core
 
 class PageViewEventRequestManagerTests: CoreTestCase {
+    let userID = "321"
     let date = Date(fromISOString: "2019-06-25T06:00:00Z")!
     var dispatchQueue: DispatchQueue!
     var p: Persistency!
@@ -30,12 +31,13 @@ class PageViewEventRequestManagerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
+        environment.currentSession = .make(userID: userID)
         expectation = XCTestExpectation(description: "expectation")
         deletePageViewPersistenceTestFile(persistenceTestFileName)
         Persistency.persistencyFileName = persistenceTestFileName
         dispatchQueue = DispatchQueue(label: "test-pageviewevents-requestmanager-queue", attributes: .concurrent)
         p = Persistency(dispatchQueue: dispatchQueue)
-        p.dequeue(p.queueCount, handler: nil)
+        p.dequeue(p.queueCount(for: userID), userID: userID, handler: nil)
         Clock.mockNow(date)
 
         requestManager = PageViewEventRequestManager(persistence: p, env: environment)
@@ -59,21 +61,21 @@ class PageViewEventRequestManagerTests: CoreTestCase {
         api.mock(tokenReq, value: tokenResponse, response: nil, error: nil)
 
         //  events
-        let a = PageViewEvent(eventName: "a", attributes: [:], userID: "1", timestamp: date, eventDuration: 0.05)
-        let b = PageViewEvent(eventName: "b", attributes: [:], userID: "1", timestamp: date, eventDuration: 0.05)
+        let a = PageViewEvent(eventName: "a", attributes: [:], userID: "321", timestamp: date, eventDuration: 0.05)
+        let b = PageViewEvent(eventName: "b", attributes: [:], userID: "321", timestamp: date, eventDuration: 0.05)
         let addEvents = XCTestExpectation(description: "events added")
         addEvents.expectedFulfillmentCount = 2
         p.addToQueue(a, completionHandler: addEvents.fulfill)
         p.addToQueue(b, completionHandler: addEvents.fulfill)
         wait(for: [addEvents], timeout: 5)
 
-        let pandataEvents = p.batchOfEvents(2)?.map { $0.apiEvent(tokenResponse) } ?? []
+        let pandataEvents = p.batchOfEvents(2, userID: userID)?.map { $0.apiEvent(tokenResponse) } ?? []
 
         // mock the send events req
         api.mock(PostPandataEventsRequest(token: tokenResponse, events: pandataEvents), data: "\"ok\"".data(using: .utf8))
 
         drainMainQueue()
-        XCTAssertEqual(p.queueCount, 2)
+        XCTAssertEqual(p.queueCount(for: userID), 2)
 
         requestManager.sendEvents { (error) in
             XCTAssertNil(error)
@@ -82,7 +84,7 @@ class PageViewEventRequestManagerTests: CoreTestCase {
 
         wait(for: [expectation], timeout: 5)
 
-        XCTAssertEqual(p.queueCount, 0)
+        XCTAssertEqual(p.queueCount(for: userID), 0)
         XCTAssertEqual(["start", "end"], backgroundHelper.tasks["fetch pandata token"])
         XCTAssertEqual(["start", "end"], backgroundHelper.tasks["send pageview events"])
     }

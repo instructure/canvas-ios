@@ -46,21 +46,43 @@ class AnnouncementsProvider: CommonWidgetProvider<AnnouncementsEntry> {
 
     private func fetchAnnouncements(courseContextCodes: [String]) {
         env.api.makeRequest(GetAllAnnouncementsRequest(contextCodes: courseContextCodes)) { [weak self] announcements, _, _ in
-            guard let self = self, let announcements = announcements else { return }
-
-            let announcementItems: [AnnouncementItem] = announcements.compactMap { announcement in
-                guard let course = (self.courses?.first { $0.canvasContextID == announcement.context_code }) else { return nil }
-                let image = self.getImage(url: announcement.author?.avatar_image_url?.rawValue)
-                return AnnouncementItem(discussionTopic: announcement, course: course, avatarImage: image)
+            guard let self, let announcements else { return }
+            // This is a synchronous call but since we're on a background thread it's safe
+            let avatars = self.downloadAuthorAvatars(for: announcements)
+            performUIUpdate {
+                self.handleAnnouncementsResponse(announcements: announcements, avatarsByURLs: avatars)
             }
-
-            let announcementsEntry = AnnouncementsEntry(announcementItems: announcementItems)
-            self.updateWidget(model: announcementsEntry)
         }
     }
 
-    private func getImage(url: URL?) -> UIImage? {
-        guard let url = url, let data = try? Data(contentsOf: url) else {
+    private func handleAnnouncementsResponse(announcements: [APIDiscussionTopic], avatarsByURLs: [URL: UIImage]) {
+        let announcementItems: [AnnouncementItem] = announcements.compactMap { announcement in
+            guard let course = (courses?.first { $0.canvasContextID == announcement.context_code }) else { return nil }
+            let image: UIImage? = {
+                guard let url = announcement.author?.avatar_image_url?.rawValue else { return nil }
+                return avatarsByURLs[url]
+            }()
+            return AnnouncementItem(discussionTopic: announcement, course: course, avatarImage: image)
+        }
+
+        let announcementsEntry = AnnouncementsEntry(announcementItems: announcementItems)
+        updateWidget(model: announcementsEntry)
+    }
+
+    private func downloadAuthorAvatars(for announcements: [APIDiscussionTopic]) -> [URL: UIImage] {
+        var result: [URL: UIImage] = [:]
+
+        for announcement in announcements {
+            guard let url = announcement.author?.avatar_image_url?.rawValue,
+                  let image = getImage(url: url) else { continue }
+            result[url] = image
+        }
+
+        return result
+    }
+
+    private func getImage(url: URL) -> UIImage? {
+        guard let data = try? Data(contentsOf: url) else {
             return nil
         }
         return UIImage(data: data)

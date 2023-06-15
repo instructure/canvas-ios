@@ -70,6 +70,6 @@ public struct DashboardEdit {
     }
 
     public static func toggleFavorite(id: String) {
-        app.find(id: "DashboardCourseCell.\(id)", label: "favorite").tap()
+        app.find(id: "DashboardCourseCell.\(id).favoriteButton", type: .button).tap()
     }
 }

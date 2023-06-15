@@ -23,6 +23,9 @@ public protocol OfflineService {
 }
 
 public final class OfflineServiceLive: OfflineService {
+    /// Use a shared instance in cases where you need immediate result from `NetworkAvailabilityService`. Otherwise initiate a unique instance.
+    public static let shared = OfflineServiceLive()
+
     // MARK: - Dependencies
 
     private let availabilityService: NetworkAvailabilityService

@@ -33,15 +33,16 @@ public struct QuizDetailsView<ViewModel: QuizDetailsViewModelProtocol>: View {
             .background(Color.backgroundLightest)
             .navigationBarStyle(.color(viewModel.courseColor))
             .navigationTitle(viewModel.title, subtitle: viewModel.subtitle)
-            .navBarItems(trailing: {
-                Button(action: {
-                    viewModel.editTapped(router: env.router, viewController: controller)
-                }, label: {
-                    Text("Edit", bundle: .core)
-                        .fontWeight(.regular)
-                        .foregroundColor(.textLightest)
-                })
-            })
+            .rightBarButtonItems {
+                [
+                    UIBarButtonItemWithCompletion(
+                        title: NSLocalizedString("Edit", comment: ""),
+                        actionHandler: {
+                            viewModel.editTapped(router: env.router, viewController: controller)
+                        }
+                    ),
+                ]
+            }
             .onAppear {
                 viewModel.viewDidAppear()
             }

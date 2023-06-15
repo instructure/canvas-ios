@@ -98,4 +98,15 @@ extension UITextView: NSTextStorageDelegate {
             placeholderLabel.isHidden = !text.isEmpty
         }
     }
+
+    public func adjustHeight(to desiredNumberOfLines: Int, heightConstraints: NSLayoutConstraint) {
+        let lineHeight = font!.lineHeight + 5
+        let numberOfLines = Int(contentSize.height / lineHeight)
+        let padding: CGFloat = 10
+        if numberOfLines <= desiredNumberOfLines {
+            heightConstraints.constant = CGFloat(numberOfLines) * lineHeight + padding
+        } else {
+            heightConstraints.constant = CGFloat(desiredNumberOfLines) * lineHeight + padding
+        }
+    }
 }

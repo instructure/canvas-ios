@@ -259,7 +259,7 @@ class APIMock {
         if mock.data != nil || mock.http != nil || mock.error != nil {
             print("💌 \(task.request.key)")
         } else {
-            print("⚠️ \(task.request.key) mock not found")
+            print("⚠️ mocked response not set for \(task.request.key)")
         }
         guard !mock.noCallback, task.state == .running else { return }
 

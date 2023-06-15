@@ -34,13 +34,13 @@ open class E2ETestCase: CoreUITestCase {
     open func findSchool(_ dsUser: DSUser) {
         LoginStart.findSchoolButton.tap()
         LoginFindSchool.searchField.pasteText("\(user.host)")
-        LoginFindSchool.searchField.typeText("\r")
+        LoginFindSchool.keyboardGoButton.tap()
     }
 
-    open func loginAfterSchoolFound(_ dsUser: DSUser) {
+    open func loginAfterSchoolFound(_ dsUser: DSUser, password: String = "password") {
         LoginWeb.emailField.waitToExist(60)
         LoginWeb.emailField.pasteText(dsUser.login_id)
-        LoginWeb.passwordField.tap().pasteText("password")
+        LoginWeb.passwordField.tap().pasteText(password)
         LoginWeb.logInButton.tap()
 
         homeScreen.waitToExist(20)
@@ -48,11 +48,11 @@ open class E2ETestCase: CoreUITestCase {
         setAppThemeToSystem()
     }
 
-    open func logInDSUser(_ dsUser: DSUser, lastLogin: Bool = true) {
-        let lastLoginButton = LoginStart.lastLoginButton.waitToExist(shouldFail: false)
-        if lastLogin && lastLoginButton.exists && lastLoginButton.label() == user.host {
-            lastLoginButton.tap() } else { findSchool(dsUser) }
-        loginAfterSchoolFound(dsUser)
+    open func logInDSUser(_ dsUser: DSUser, lastLogin: Bool = true, password: String = "password") {
+        LoginStart.findSchoolButton.waitToExist()
+        if lastLogin && LoginStart.lastLoginButton.exists && LoginStart.lastLoginButton.label() == user.host {
+            LoginStart.lastLoginButton.tap() } else { findSchool(dsUser) }
+        loginAfterSchoolFound(dsUser, password: password)
     }
 
     open func logOut() {

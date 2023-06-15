@@ -17,6 +17,7 @@
 //
 
 import AVKit
+import Combine
 import PSPDFKit
 import PSPDFKitUI
 import QuickLook
@@ -57,6 +58,8 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     lazy var files = env.subscribe(GetFile(context: context, fileID: fileID)) { [weak self] in
         self?.update()
     }
+    private var accessReportInteractor: FileAccessReportInteractor?
+    private var subscriptions = Set<AnyCancellable>()
 
     public static func create(context: Context?, fileID: String, originURL: URLComponents? = nil, assignmentID: String? = nil) -> FileDetailsViewController {
         let controller = loadFromStoryboard()
@@ -64,6 +67,13 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         controller.context = context
         controller.fileID = fileID
         controller.originURL = originURL
+
+        if let context {
+            controller.accessReportInteractor = FileAccessReportInteractor(context: context,
+                                                                           fileID: fileID,
+                                                                           api: controller.env.api)
+        }
+
         return controller
     }
 
@@ -104,6 +114,11 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
 
         view.layoutIfNeeded()
         files.refresh()
+
+        accessReportInteractor?
+            .reportFileAccess()
+            .sink()
+            .store(in: &subscriptions)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -255,23 +270,23 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
 
 // MARK: - URLSessionDownloadDelegate
 
-extension FileDetailsViewController: URLSessionDownloadDelegate {
-    /// This must be called to set `localURL` before initiating download, otherwise there
-    /// will be a threading issue with trying to access core data from a different thread.
-    func prepLocalURL() -> URL? {
-        guard let filePathComponent = filePathComponent else { return nil }
-
-        if files.first?.mimeClass == "pdf" {
-            //  check docs directory first if they have already added/modified annotations on an existing pdf
-            let docsURL = URL.Directories.documents.appendingPathComponent(filePathComponent)
-            if FileManager.default.fileExists(atPath: docsURL.path) { return docsURL }
+extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCreator {
+    func downloadFile(at url: URL) {
+        guard
+            let filePathComponent = filePathComponent,
+            let mimeClass = files.first?.mimeClass
+        else {
+            return
         }
 
-        return URL.Directories.temporary.appendingPathComponent(filePathComponent)
-    }
+        /// This must be called to set `localURL` before initiating download, otherwise there
+        /// will be a threading issue with trying to access core data from a different thread.
+        localURL = prepareLocalURL(
+            fileName: filePathComponent,
+            mimeClass: mimeClass,
+            location: URL.Directories.temporary
+        )
 
-    func downloadFile(at url: URL) {
-        localURL = prepLocalURL()
         if let path = localURL?.path, FileManager.default.fileExists(atPath: path) { return downloadComplete() }
         downloadTask = API(urlSession: URLSession(configuration: .ephemeral, delegate: self, delegateQueue: nil)).makeDownloadRequest(url)
         downloadTask?.resume()

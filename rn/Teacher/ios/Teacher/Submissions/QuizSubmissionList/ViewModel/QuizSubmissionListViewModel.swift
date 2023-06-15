@@ -27,6 +27,9 @@ class QuizSubmissionListViewModel: ObservableObject {
     @Published public var isShowingFilterSelector = false
     @Published public var subTitle: String = ""
     @Published public var showError: Bool = false
+    @Published public var courseID: String = ""
+    @Published public var quizID: String = ""
+
     public let title = NSLocalizedString("Submissions", comment: "")
     public let filters = QuizSubmissionListFilter.allCases
 
@@ -42,6 +45,9 @@ class QuizSubmissionListViewModel: ObservableObject {
     public init(router: Router, filterValue: QuizSubmissionListFilter, interactor: QuizSubmissionListInteractor) {
         self.interactor = interactor
         self.filter = filterValue
+        self.courseID = interactor.courseID
+        self.quizID = interactor.quizID
+
         filterDidChange = CurrentValueSubject<QuizSubmissionListFilter, Never>(filterValue)
 
         setupOutputBindings()

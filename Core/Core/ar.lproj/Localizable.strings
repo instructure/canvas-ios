@@ -31,6 +31,9 @@
 /* No comment provided by engineer. */
 "%@ missing" = "%@ مفقود";
 
+/* 42 GB of 64 GB Used */
+"%@ of %@ Used" = "%1$@ %2$@ مستخدم";
+
 /* No comment provided by engineer. */
 "%@ pts" = "%@ النقاط";
 
@@ -614,6 +617,9 @@
 "Could not save notification preference" = "تعذر حفظ تفضيل الإخطار";
 
 /* No comment provided by engineer. */
+"Couldn't save the file." = "تعذر حفظ الملف.";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "المساق (اختياري)";
 
 /* No comment provided by engineer. */
@@ -627,6 +633,9 @@
 
 /* No comment provided by engineer. */
 "Course announcements" = "إعلانات المساق";
+
+/* No comment provided by engineer. */
+"Course Card Options" = "خيارات بطاقة المساق";
 
 /* No comment provided by engineer. */
 "Course Content" = "محتوى المساق";
@@ -716,6 +725,9 @@
 "Dashboard" = "لوحة المعلومات";
 
 /* No comment provided by engineer. */
+"Dashboard Options" = "خيارات لوحة المعلومات";
+
+/* No comment provided by engineer. */
 "Dashboard settings" = "إعدادات لوحة المعلومات";
 
 /* No comment provided by engineer. */
@@ -774,6 +786,9 @@
 
 /* No comment provided by engineer. */
 "Description" = "الوصف";
+
+/* No comment provided by engineer. */
+"Deselect All" = "إلغاء تحديد الكل";
 
 /* No comment provided by engineer. */
 "Designer" = "المصمم";
@@ -1445,6 +1460,9 @@
 "Make sure you enable camera permissions in Settings" = "تأكد من تمكين أذونات الكاميرا في الإعدادات";
 
 /* No comment provided by engineer. */
+"Manage Offline Content" = "إدارة المحتوى دون اتصال";
+
+/* No comment provided by engineer. */
 "Manage Students" = "إدارة الطلاب";
 
 /* No comment provided by engineer. */
@@ -1595,6 +1613,9 @@
 "No Content" = "لا يوجد محتوى";
 
 /* No comment provided by engineer. */
+"No Course Content" = "لا يوجد محتوى مساق";
+
+/* No comment provided by engineer. */
 "No Courses" = "لا يوجد أي مساق";
 
 /* No comment provided by engineer. */
@@ -1703,6 +1724,9 @@
 "Observers" = "المراقبون";
 
 /* No comment provided by engineer. */
+"Offline Content" = "المحتوى دون اتصال";
+
+/* No comment provided by engineer. */
 "OK" = "موافق";
 
 /* No comment provided by engineer. */
@@ -1736,9 +1760,6 @@
 "Open" = "مفتوح";
 
 /* No comment provided by engineer. */
-"Open %@ user preferences" = "فتح تفضيلات مستخدم %@";
-
-/* No comment provided by engineer. */
 "Open application" = "فتح تطبيق";
 
 /* No comment provided by engineer. */
@@ -1764,6 +1785,9 @@
 
 /* No comment provided by engineer. */
 "Ordered List" = "قائمة مرتبة";
+
+/* No comment provided by engineer. */
+"Other Apps" = "تطبيقات أخرى";
 
 /* 5 out of 10 */
 "out of" = "من إجمالي";
@@ -1958,6 +1982,9 @@
 "Refreshing" = "جارٍ التحديث";
 
 /* No comment provided by engineer. */
+"Remaining" = "المتبقي";
+
+/* No comment provided by engineer. */
 "Remove" = "إزالة";
 
 /* No comment provided by engineer. */
@@ -2094,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "حدد مساراً";
+
+/* No comment provided by engineer. */
+"Select All" = "تحديد الكل";
 
 /* No comment provided by engineer. */
 "Select assignment" = "حدد مهمة";
@@ -2237,6 +2267,12 @@
 "Stop recording" = "إيقاف التسجيل";
 
 /* No comment provided by engineer. */
+"Storage" = "سعة التخزين";
+
+/* No comment provided by engineer. */
+"Storage Info" = "معلومات سعة التخزين";
+
+/* No comment provided by engineer. */
 "Student" = "الطالب";
 
 /* No comment provided by engineer. */
@@ -2327,6 +2363,12 @@
 "Syllabus content" = "محتوى المخطط الدراسي";
 
 /* No comment provided by engineer. */
+"Sync" = "مزامنة";
+
+/* No comment provided by engineer. */
+"Sync Offline Content?" = "هل تريد مزامنة المحتوى دون اتصال؟";
+
+/* No comment provided by engineer. */
 "System settings" = "إعدادات النظام";
 
 /* No comment provided by engineer. */
@@ -2393,10 +2435,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "يحتاج التطبيق لإعادة التشغيل لاستخدام إعدادات اللغة الجديدة. يرجى إعادة تشغيل التطبيق.";
 
 /* No comment provided by engineer. */
+"The course content will be listed here, and then you can make them available for offline usage." = "سيتم إدراج محتوى المساق هنا، ثم يمكنك إتاحته للاستخدام دون اتصال.";
+
+/* No comment provided by engineer. */
 "The file has been deleted by the author." = "تم حذف الملف بواسطة المؤلف.";
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "تم إيقاف عملية الإرسال بواسطة نظام التشغيل.";
+
+/* No comment provided by engineer. */
+"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "توجد %d من العناصر محددة للإتاحة دون اتصال. سيتم تنزيل المحتوى المحدد للجهاز.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "لا توجد أي مهام نشطة في هذا المساق.";
@@ -2460,6 +2508,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "حدث خطأ ما في التصرف كمستخدم. الرجاء إعادة المحاولة لاحقًا.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error." = "حدث خطأ غير متوقع.";
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "حدث خطأ غير متوقع. يرجى إعادة المحاولة.";
@@ -2550,6 +2601,9 @@
 
 /* No comment provided by engineer. */
 "Unknown Error" = "خطأ غير معروف";
+
+/* No comment provided by engineer. */
+"Unknown file" = "ملف غير معروف";
 
 /* No comment provided by engineer. */
 "Unlimited" = "غير محدود";
@@ -2772,6 +2826,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "ربما لم يتم نشر مساقات الطالب بعد.";
+
+/* No comment provided by engineer. */
+"Your courses will be listed here, and then you can make them available for offline usage." = "سيتم إدراج مساقاتك هنا، ثم يمكنك إتاحته للاستخدام دون اتصال.";
 
 /* No comment provided by engineer. */
 "Your device is out of storage space. Please free up space and try again." = "لا توجد سعة تخزينية على جهازك. الرجاء تحرير مساحة ثم إعادة المحاولة.";

@@ -23,4 +23,8 @@ public enum ActAsUser: String, ElementWrapper {
     case actAsUserButton, domainField, userIDField
     // ActAsUserWindow
     case endActAsUserButton
+
+    public static var okAlertButton: Element {
+        return app.findAlertButton(label: "OK")
+    }
 }

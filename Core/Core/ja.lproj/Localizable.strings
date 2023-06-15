@@ -31,6 +31,9 @@
 /* No comment provided by engineer. */
 "%@ missing" = "%@欠如";
 
+/* 42 GB of 64 GB Used */
+"%@ of %@ Used" = "%1$@%2$@使用";
+
 /* No comment provided by engineer. */
 "%@ pts" = "%@ポイント";
 
@@ -614,6 +617,9 @@
 "Could not save notification preference" = "通知設定を保存できませんでした";
 
 /* No comment provided by engineer. */
+"Couldn't save the file." = "ファイルを保存できませんでした";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "コース（オプション）";
 
 /* No comment provided by engineer. */
@@ -627,6 +633,9 @@
 
 /* No comment provided by engineer. */
 "Course announcements" = "コースのアナウンスメント";
+
+/* No comment provided by engineer. */
+"Course Card Options" = "コースカードのオプション";
 
 /* No comment provided by engineer. */
 "Course Content" = "コース内容";
@@ -716,6 +725,9 @@
 "Dashboard" = "ダッシュボード";
 
 /* No comment provided by engineer. */
+"Dashboard Options" = "ダッシュボードオプション";
+
+/* No comment provided by engineer. */
 "Dashboard settings" = "ダッシュボードの設定";
 
 /* No comment provided by engineer. */
@@ -774,6 +786,9 @@
 
 /* No comment provided by engineer. */
 "Description" = "説明";
+
+/* No comment provided by engineer. */
+"Deselect All" = "すべての選択を取り消し";
 
 /* No comment provided by engineer. */
 "Designer" = "設計者";
@@ -1445,6 +1460,9 @@
 "Make sure you enable camera permissions in Settings" = "設定でカメラ許可を有効にするようにしてください";
 
 /* No comment provided by engineer. */
+"Manage Offline Content" = "オフラインコンテンツを管理する";
+
+/* No comment provided by engineer. */
 "Manage Students" = "受講者を管理";
 
 /* No comment provided by engineer. */
@@ -1595,6 +1613,9 @@
 "No Content" = "コンテンツなし";
 
 /* No comment provided by engineer. */
+"No Course Content" = "コースコンテンツなし";
+
+/* No comment provided by engineer. */
 "No Courses" = "コースはありません";
 
 /* No comment provided by engineer. */
@@ -1703,6 +1724,9 @@
 "Observers" = "オブザーバー";
 
 /* No comment provided by engineer. */
+"Offline Content" = "オフラインコンテンツ";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -1736,9 +1760,6 @@
 "Open" = "開く";
 
 /* No comment provided by engineer. */
-"Open %@ user preferences" = "%@ ユーザー設定を開く";
-
-/* No comment provided by engineer. */
 "Open application" = "アプリケーションを開く";
 
 /* No comment provided by engineer. */
@@ -1764,6 +1785,9 @@
 
 /* No comment provided by engineer. */
 "Ordered List" = "順序リスト";
+
+/* No comment provided by engineer. */
+"Other Apps" = "その他アプリ";
 
 /* 5 out of 10 */
 "out of" = "中";
@@ -1958,6 +1982,9 @@
 "Refreshing" = "更新中";
 
 /* No comment provided by engineer. */
+"Remaining" = "残り";
+
+/* No comment provided by engineer. */
 "Remove" = "削除";
 
 /* No comment provided by engineer. */
@@ -2094,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "パスを選択する";
+
+/* No comment provided by engineer. */
+"Select All" = "すべて選択";
 
 /* No comment provided by engineer. */
 "Select assignment" = "課題を選択する";
@@ -2237,6 +2267,12 @@
 "Stop recording" = "録画停止";
 
 /* No comment provided by engineer. */
+"Storage" = "保管";
+
+/* No comment provided by engineer. */
+"Storage Info" = "保管情報";
+
+/* No comment provided by engineer. */
 "Student" = "受講者";
 
 /* No comment provided by engineer. */
@@ -2327,6 +2363,12 @@
 "Syllabus content" = "シラバスの内容";
 
 /* No comment provided by engineer. */
+"Sync" = "同期化";
+
+/* No comment provided by engineer. */
+"Sync Offline Content?" = "オフラインのコンテンツを同期化する";
+
+/* No comment provided by engineer. */
 "System settings" = "システム設定";
 
 /* No comment provided by engineer. */
@@ -2393,10 +2435,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "新しい言語設定を使用するには、アプリの再起動が必要です。アプリを再起動してください。";
 
 /* No comment provided by engineer. */
+"The course content will be listed here, and then you can make them available for offline usage." = "コースコンテンツはここに表示され、オフラインで利用できるようになります。";
+
+/* No comment provided by engineer. */
 "The file has been deleted by the author." = "このファイルは作者によって削除されました。";
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "OSにより提出プロセスが中止されました。";
+
+/* No comment provided by engineer. */
+"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "オフラインで利用できるように選択された項目が%dあります。選択されたコンテンツは端末にダウンロードされます。";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "このグループには、アクティブな課題はありません。";
@@ -2460,6 +2508,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "ユーザーとして行動する際にエラーが発生しました。後ほどもういちど試してください。";
+
+/* No comment provided by engineer. */
+"There was an unexpected error." = "予期しないエラーがありました。";
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "予期しないエラーが発生しました。もう一度やり直してください。";
@@ -2550,6 +2601,9 @@
 
 /* No comment provided by engineer. */
 "Unknown Error" = "未知のエラー";
+
+/* No comment provided by engineer. */
+"Unknown file" = "不明なファイル";
 
 /* No comment provided by engineer. */
 "Unlimited" = "無制限";
@@ -2772,6 +2826,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "お子様のコースはまだ公開されていない可能性があります。";
+
+/* No comment provided by engineer. */
+"Your courses will be listed here, and then you can make them available for offline usage." = "コースがここに表示され、オフラインで利用できるようにすることができます。";
 
 /* No comment provided by engineer. */
 "Your device is out of storage space. Please free up space and try again." = "デバイスのストレージスペースが不足しています。スペースを作ってもう一度お試しください。";

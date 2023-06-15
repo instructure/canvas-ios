@@ -260,6 +260,7 @@ extension StudentAppDelegate: Core.AnalyticsHandler {
         options.disableTracking = !isSendUsageMetricsEnabled
         Heap.initialize(heapID, with: options)
         Heap.setTrackingEnabled(isSendUsageMetricsEnabled)
+        environment.heapID = Heap.userId()
     }
 
     private func disableTracking() {

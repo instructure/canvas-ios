@@ -60,7 +60,7 @@ public class API {
 
                 // If the request is rejected due to the rate limit being exhausted we retry and hope that the quota is restored in the meantime
                 if response?.exceededLimit(responseData: data) == true {
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
                         self?.makeRequest(requestable, callback: callback)
                     }
                     return
@@ -94,8 +94,16 @@ public class API {
     }
 
     @discardableResult
-    public func makeDownloadRequest(_ url: URL, callback: ((URL?, URLResponse?, Error?) -> Void)? = nil) -> APITask? {
-        let request = URLRequest(url: url)
+    public func makeDownloadRequest(_ url: URL,
+                                    method: APIMethod? = nil,
+                                    callback: ((URL?, URLResponse?, Error?) -> Void)? = nil)
+    -> APITask? {
+        var request = URLRequest(url: url)
+
+        if let method {
+            request.httpMethod = method.rawValue.uppercased()
+        }
+
         let task: APITask
         #if DEBUG
         if API.shouldMock(request) {

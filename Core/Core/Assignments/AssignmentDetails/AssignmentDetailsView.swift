@@ -19,7 +19,7 @@
 import SwiftUI
 
 /// Currently only suitable for Teacher app
-public struct AssignmentDetailsView: View {
+public struct AssignmentDetailsView: View, ScreenViewTrackable {
     let assignmentID: String
     let courseID: String
 
@@ -29,12 +29,19 @@ public struct AssignmentDetailsView: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
+    public let screenViewTrackingParameters: ScreenViewTrackingParameters
+
     public init(courseID: String, assignmentID: String) {
         self.assignmentID = assignmentID
         self.courseID = courseID
 
         assignment = AppEnvironment.shared.subscribe(GetAssignment(courseID: courseID, assignmentID: assignmentID))
         course = AppEnvironment.shared.subscribe(GetCourse(courseID: courseID))
+
+        screenViewTrackingParameters = ScreenViewTrackingParameters(
+            eventName: "/courses/\(courseID)/assignments/\(assignmentID)"
+        )
+
     }
 
     public var body: some View {
@@ -42,17 +49,20 @@ public struct AssignmentDetailsView: View {
             .background(Color.backgroundLightest)
             .navigationBarStyle(.color(course.first?.color))
             .navigationTitle(NSLocalizedString("Assignment Details", comment: ""), subtitle: course.first?.name)
-            .navBarItems(trailing: {
-                Button(action: { env.router.route(
-                    to: "courses/\(courseID)/assignments/\(assignmentID)/edit",
-                    from: controller,
-                    options: .modal(isDismissable: false, embedInNav: true)
-                ) }, label: {
-                    Text("Edit", bundle: .core)
-                        .fontWeight(.regular)
-                        .foregroundColor(.textLightest)
-                })
-            })
+            .rightBarButtonItems {
+                [
+                    UIBarButtonItemWithCompletion(
+                        title: NSLocalizedString("Edit", comment: ""),
+                        actionHandler: {
+                            env.router.route(
+                                to: "courses/\(courseID)/assignments/\(assignmentID)/edit",
+                                from: controller,
+                                options: .modal(isDismissable: false, embedInNav: true)
+                            )
+                        }
+                    ),
+                ]
+            }
             .onAppear {
                 assignment.refresh()
                 course.refresh()

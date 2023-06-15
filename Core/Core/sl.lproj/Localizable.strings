@@ -31,6 +31,9 @@
 /* No comment provided by engineer. */
 "%@ missing" = "%@ manjkajoče";
 
+/* 42 GB of 64 GB Used */
+"%@ of %@ Used" = "%1$@ od %2$@ uporabljenih";
+
 /* No comment provided by engineer. */
 "%@ pts" = "%@ točk";
 
@@ -614,6 +617,9 @@
 "Could not save notification preference" = "Nastavitev sporočil ni bilo mogoče shraniti";
 
 /* No comment provided by engineer. */
+"Couldn't save the file." = "Datoteke ni bilo mogoče shraniti.";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "Predmet (izbirni)";
 
 /* No comment provided by engineer. */
@@ -627,6 +633,9 @@
 
 /* No comment provided by engineer. */
 "Course announcements" = "Obvestila o predmetu";
+
+/* No comment provided by engineer. */
+"Course Card Options" = "Možnosti kartice predmeta";
 
 /* No comment provided by engineer. */
 "Course Content" = "Vsebina predmeta";
@@ -716,6 +725,9 @@
 "Dashboard" = "Preglednica";
 
 /* No comment provided by engineer. */
+"Dashboard Options" = "Možnosti preglednice";
+
+/* No comment provided by engineer. */
 "Dashboard settings" = "Nastavitve preglednice";
 
 /* No comment provided by engineer. */
@@ -774,6 +786,9 @@
 
 /* No comment provided by engineer. */
 "Description" = "Opis";
+
+/* No comment provided by engineer. */
+"Deselect All" = "Razveljavi izbor vseh";
 
 /* No comment provided by engineer. */
 "Designer" = "Snovalec";
@@ -1445,6 +1460,9 @@
 "Make sure you enable camera permissions in Settings" = "V možnosti »Nastavitve« omogočite dovoljenja za kamero.";
 
 /* No comment provided by engineer. */
+"Manage Offline Content" = "Upravljajte vsebino brez povezave";
+
+/* No comment provided by engineer. */
 "Manage Students" = "Uredi študente";
 
 /* No comment provided by engineer. */
@@ -1595,6 +1613,9 @@
 "No Content" = "Ni vsebine.";
 
 /* No comment provided by engineer. */
+"No Course Content" = "Ni vsebine predmeta";
+
+/* No comment provided by engineer. */
 "No Courses" = "Ni predmetov";
 
 /* No comment provided by engineer. */
@@ -1703,6 +1724,9 @@
 "Observers" = "Skriti bralci";
 
 /* No comment provided by engineer. */
+"Offline Content" = "Vsebina brez povezave";
+
+/* No comment provided by engineer. */
 "OK" = "V redu";
 
 /* No comment provided by engineer. */
@@ -1736,9 +1760,6 @@
 "Open" = "Odpri";
 
 /* No comment provided by engineer. */
-"Open %@ user preferences" = "Odpri prednostne nastavitve uporabnika %@.";
-
-/* No comment provided by engineer. */
 "Open application" = "Odpri aplikacijo";
 
 /* No comment provided by engineer. */
@@ -1764,6 +1785,9 @@
 
 /* No comment provided by engineer. */
 "Ordered List" = "Razvrščeni seznam";
+
+/* No comment provided by engineer. */
+"Other Apps" = "Druge aplikacije";
 
 /* 5 out of 10 */
 "out of" = "od";
@@ -1958,6 +1982,9 @@
 "Refreshing" = "Osvežujem";
 
 /* No comment provided by engineer. */
+"Remaining" = "Preostalo";
+
+/* No comment provided by engineer. */
 "Remove" = "Odstrani";
 
 /* No comment provided by engineer. */
@@ -2094,6 +2121,9 @@
 
 /* No comment provided by engineer. */
 "Select a Path" = "Izberite pot";
+
+/* No comment provided by engineer. */
+"Select All" = "Izberi vse";
 
 /* No comment provided by engineer. */
 "Select assignment" = "Izberite nalogo";
@@ -2237,6 +2267,12 @@
 "Stop recording" = "Zaustavi snemanje";
 
 /* No comment provided by engineer. */
+"Storage" = "Shramba";
+
+/* No comment provided by engineer. */
+"Storage Info" = "Informacije o shrambi";
+
+/* No comment provided by engineer. */
 "Student" = "Študent";
 
 /* No comment provided by engineer. */
@@ -2327,6 +2363,12 @@
 "Syllabus content" = "Vsebina učnega načrta predmeta";
 
 /* No comment provided by engineer. */
+"Sync" = "Sinhronizacija";
+
+/* No comment provided by engineer. */
+"Sync Offline Content?" = "Želite sinhronizirati vsebino brez povezave?";
+
+/* No comment provided by engineer. */
 "System settings" = "Sistemske nastavitve";
 
 /* No comment provided by engineer. */
@@ -2393,10 +2435,16 @@
 "The app needs to restart to use the new language settings. Please relaunch the app." = "Aplikacija se mora znova zagnati, da lahko uporabi nove jezikovne nastavitve. Ponovno zaženite aplikacijo.";
 
 /* No comment provided by engineer. */
+"The course content will be listed here, and then you can make them available for offline usage." = "Vsebina predmeta bo navedena tukaj, nato pa lahko zanjo omogočite uporabo brez povezave.";
+
+/* No comment provided by engineer. */
 "The file has been deleted by the author." = "Datoteko je izbrisal avtor.";
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Postopek oddaje je prekinil operacijski sistem.";
+
+/* No comment provided by engineer. */
+"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Obstaja(ta/jo) %d elementov(-a/i), izbrani(-a/-ih) za uporabo brez povezave. Izbrana vsebina bo prenesena na napravo.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Pri tem predmetu ni aktivnih nalog.";
@@ -2460,6 +2508,9 @@
 
 /* No comment provided by engineer. */
 "There was an error with Act as User. Please try again later." = "Prišlo je do napake pri prevzemanju vloge uporabnika. Poskusite znova pozneje.";
+
+/* No comment provided by engineer. */
+"There was an unexpected error." = "Prišlo je do nepričakovane napake.";
 
 /* No comment provided by engineer. */
 "There was an unexpected error. Please try again." = "Prišlo je do nepričakovane napake. Poskusite znova pozneje.";
@@ -2550,6 +2601,9 @@
 
 /* No comment provided by engineer. */
 "Unknown Error" = "Neznana napaka";
+
+/* No comment provided by engineer. */
+"Unknown file" = "Neznana datoteka";
 
 /* No comment provided by engineer. */
 "Unlimited" = "Neomejeno";
@@ -2772,6 +2826,9 @@
 
 /* No comment provided by engineer. */
 "Your child's courses might not be published yet." = "Predmeti vašega otroka morda še niso objavljeni.";
+
+/* No comment provided by engineer. */
+"Your courses will be listed here, and then you can make them available for offline usage." = "Vaši predmeti bodo navedeni tukaj, nato pa lahko zanje omogočite uporabo brez povezave.";
 
 /* No comment provided by engineer. */
 "Your device is out of storage space. Please free up space and try again." = "V napravi je zmanjkalo prostora na disku. Počistite prostor na disku in poskusite znova.";

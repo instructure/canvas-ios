@@ -37,6 +37,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
 
     public var screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/")
 
+    @State private var isShowingKebabDialog = false
     @State var showGrade = AppEnvironment.shared.userDefaults?.showGradesOnDashboard == true
 
     private var activeGroups: [Group] { groups.all.filter { $0.isActive } }
@@ -48,7 +49,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         courseCardListViewModel = DashboardCourseCardListAssembly.makeDashboardCourseCardListViewModel(showOnlyTeacherEnrollment: showOnlyTeacherEnrollment)
         self.shouldShowGroupList = shouldShowGroupList
         let env = AppEnvironment.shared
-        layoutViewModel = DashboardLayoutViewModel(interactor: DashboardSettingsInteractorLive(environment: env, defaults: env.userDefaults!))
+        layoutViewModel = DashboardLayoutViewModel(interactor: DashboardSettingsInteractorLive(environment: env, defaults: env.userDefaults))
         colors = env.subscribe(GetCustomColors())
         groups = env.subscribe(GetDashboardGroups())
         notifications = env.subscribe(GetAccountNotifications())
@@ -71,7 +72,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         }
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
         .navigationBarGlobal()
-        .navigationBarItems(leading: menuButton, trailing: settingsButton)
+        .navigationBarItems(leading: profileMenuButton, trailing: rightNavBarButtons)
         .onAppear {
             refresh(force: false) {
                 let env = AppEnvironment.shared
@@ -120,10 +121,12 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         )
     }
 
-    private var menuButton: some View {
-        Button(action: {
+    // MARK: - Nav Bar Buttons
+
+    private var profileMenuButton: some View {
+        Button {
             env.router.route(to: "/profile", from: controller, options: .modal())
-        }) {
+        } label: {
             Image.hamburgerSolid
                 .foregroundColor(Color(Brand.shared.navTextColor))
         }
@@ -133,23 +136,69 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
     }
 
     @ViewBuilder
-    private var settingsButton: some View {
+    private var rightNavBarButtons: some View {
         if courseCardListViewModel.shouldShowSettingsButton {
+            if ExperimentalFeature.offlineMode.isEnabled, env.app == .student {
+                optionsKebabButton
+            } else {
+                dashboardSettingsButton
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var optionsKebabButton: some View {
+        Button {
+            // Dismiss dashboard settings popover
+            guard controller.value.presentedViewController == nil else {
+                controller.value.presentedViewController?.dismiss(animated: true)
+                return
+            }
+
+            isShowingKebabDialog.toggle()
+        } label: {
+            Image.moreSolid
+                .foregroundColor(Color(Brand.shared.navTextColor))
+        }
+        .frame(width: 44, height: 44).padding(.trailing, -6)
+        .accessibilityLabel(Text("Dashboard Options", bundle: .core))
+        .confirmationDialog("", isPresented: $isShowingKebabDialog) {
+            Button {
+                env.router.route(to: "/offline/sync_picker", from: controller, options: .modal(isDismissable: false, embedInNav: true))
+            } label: {
+                Text("Manage Offline Content", bundle: .core)
+            }
             Button {
                 guard controller.value.presentedViewController == nil else {
                     controller.value.presentedViewController?.dismiss(animated: true)
                     return
                 }
-
                 viewModel.settingsButtonTapped.send()
             } label: {
-                Image.settingsLine
-                    .foregroundColor(Color(Brand.shared.navTextColor))
+                Text("Edit Dashboard", bundle: .core)
             }
-            .frame(width: 44, height: 44).padding(.trailing, -6)
-            .accessibilityLabel(Text("Dashboard settings", bundle: .core))
         }
     }
+
+    @ViewBuilder
+    private var dashboardSettingsButton: some View {
+        Button {
+            guard controller.value.presentedViewController == nil else {
+                controller.value.presentedViewController?.dismiss(animated: true)
+                return
+            }
+
+            viewModel.settingsButtonTapped.send()
+        } label: {
+            Image.settingsLine
+                .foregroundColor(Color(Brand.shared.navTextColor))
+        }
+        .frame(width: 44, height: 44).padding(.trailing, -6)
+        .accessibilityLabel(Text("Dashboard settings", bundle: .core))
+        .accessibilityIdentifier("Dashboard.settingsButton")
+    }
+
+    // MARK: Nav Bar Buttons -
 
     @ViewBuilder func fileUploadNotificationCards() -> some View {
         ForEach(fileUploadNotificationCardViewModel.items) { viewModel in

@@ -158,6 +158,12 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/groups/2/announcements/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
     }
 
+    func testOfflineScreenRoutes() {
+        XCTAssert(router.match("/offline/sync_picker/132") is CoreHostingController<CourseSyncSelectorView>)
+        XCTAssert(router.match("/offline/sync_picker") is CoreHostingController<CourseSyncSelectorView>)
+        XCTAssert(router.match("/offline/settings") is CoreHostingController<CourseSyncSettingsView>)
+    }
+
     // MARK: - K5 / non-K5 course detail route logic tests
 
     func testK5SubjectViewRoute() {

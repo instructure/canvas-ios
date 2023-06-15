@@ -19,12 +19,16 @@
 import SwiftUI
 import Core
 
-public struct QuizSubmissionListView: View {
+public struct QuizSubmissionListView: View, ScreenViewTrackable {
     @ObservedObject private var model: QuizSubmissionListViewModel
     @Environment(\.viewController) private var controller
+    public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     init(model: QuizSubmissionListViewModel) {
         self.model = model
+        screenViewTrackingParameters = ScreenViewTrackingParameters(
+            eventName: "/courses/\(model.courseID)/quizzes/\(model.quizID)/submissions"
+        )
     }
 
     public var body: some View {

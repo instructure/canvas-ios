@@ -30,6 +30,7 @@ struct HelpView: View, ScreenViewTrackable {
                 }
             }.padding(.bottom)
         }
+        .accessibilityIdentifier("helpItems")
     }
 
     private var helpLinks: [HelpLink]

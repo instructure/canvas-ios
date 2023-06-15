@@ -56,7 +56,7 @@ public class ReactiveStore<U: UseCase> {
 
     public init(
         env: AppEnvironment = .shared,
-        offlineService: OfflineService = OfflineServiceLive(),
+        offlineService: OfflineService = OfflineServiceLive.shared,
         context: NSManagedObjectContext = AppEnvironment.shared.database.viewContext,
         useCase: U
     ) {
@@ -129,7 +129,7 @@ public class ReactiveStore<U: UseCase> {
                 .first()
                 .eraseToAnyPublisher()
         } else {
-            return fetchEntitiesFromAPI(useCase: useCase, loadAllPages: false, fetchRequest: request)
+            return fetchEntitiesFromAPI(useCase: useCase, loadAllPages: true, fetchRequest: request)
                 .first()
                 .eraseToAnyPublisher()
         }
@@ -161,9 +161,7 @@ public class ReactiveStore<U: UseCase> {
         loadAllPages: Bool,
         fetchRequest: NSFetchRequest<T>
     ) -> AnyPublisher<[T], Error> {
-        unowned let unownedSelf = self
-
-        return useCase.fetchWithFuture()
+        useCase.fetchWithFuture()
             .handleEvents(receiveOutput: { [weak self] urlResponse in
                 if let urlResponse {
                     self?.next = self?.useCase.getNext(from: urlResponse)
@@ -171,8 +169,8 @@ public class ReactiveStore<U: UseCase> {
                     self?.next = nil
                 }
             })
-            .flatMap { _ in unownedSelf.fetchAllPagesIfNeeded(loadAllPages, fetchRequest: fetchRequest) }
-            .flatMap { _ in unownedSelf.fetchEntitiesFromDatabase(fetchRequest: fetchRequest) }
+            .flatMap { _ in self.fetchAllPagesIfNeeded(loadAllPages, fetchRequest: fetchRequest) }
+            .flatMap { _ in self.fetchEntitiesFromDatabase(fetchRequest: fetchRequest) }
             .eraseToAnyPublisher()
     }
 
@@ -229,15 +227,14 @@ public class ReactiveStore<U: UseCase> {
         sectionNameKeyPath: String? = nil,
         cacheName: String? = nil
     ) -> AnyPublisher<[T], Error> {
-        unowned let unownedSelf = self
-
-        return AnyPublisher<[T], Error>.create { subscriber in
+        AnyPublisher<[T], Error>.create { subscriber in
 
             let observer = FetchedResultsPublisher(
                 subscriber: subscriber,
                 fetchRequest: fetchRequest,
-                managedObjectContext: unownedSelf.context,
-                sectionNameKeyPath: sectionNameKeyPath, cacheName: cacheName
+                managedObjectContext: self.context,
+                sectionNameKeyPath: sectionNameKeyPath,
+                cacheName: cacheName
             )
 
             return AnyCancellable {
