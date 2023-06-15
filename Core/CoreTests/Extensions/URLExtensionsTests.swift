@@ -140,4 +140,10 @@ class URLExtensionsTests: XCTestCase {
         ]
         XCTAssertEqual(urls.pathExtensions, Set(["txt", "jpeg", "png"]))
     }
+
+    func testAPIBaseURL() {
+        let url = URL(string: "https://test.instructure.com/courses/123?param=1")!
+        let testee = url.apiBaseURL
+        XCTAssertEqual(testee, URL(string: "https://test.instructure.com")!)
+    }
 }
