@@ -18,26 +18,21 @@
 
 import SwiftUI
 
-struct OfflineViewModifier: ViewModifier {
-    let offlineService = OfflineServiceLive.shared
+public struct PrimaryButton<Label> : View where Label : View {
+    
+    let action: () -> Void
+    let label: Label
 
-    func body(content: Content) -> some View {
-        content
-            .opacity(offlineService.isOfflineModeEnabled() ? 0.5 : 1.0)
-            .onTapGesture {
-                if offlineService.isOfflineModeEnabled() {
-                    showAlert()
-                }
-            }
+    public init(action: @escaping () -> Void, @ViewBuilder label: @escaping () -> Label) {
+        self.action = action
+        self.label = label()
     }
-
-    private func showAlert() {
-        // TODO: alert
-    }
-}
-
-extension View {
-    func disableIfOffline() -> some View {
-        self.modifier(OfflineViewModifier())
+    
+    public var body: some View {
+        Button {
+            print("show alert")
+        } label: {
+            label
+        }.opacity(0.5)
     }
 }
