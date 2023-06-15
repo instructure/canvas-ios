@@ -21,26 +21,57 @@ import XCTest
 
 class RCEFileUploadContextTests: XCTestCase {
 
-    func testFileUploadContextForTeacherApp() {
+    func testForTeacherApp() {
         let result = FileUploadContext.makeForRCEUploads(app: .teacher,
                                                          context: .course("123"),
                                                          session: nil)
         XCTAssertEqual(result, .context(.course("123")))
     }
 
-    func testFileUploadContextWhenUserIDNotAvailable() {
+    func testUserIDNotAvailable() {
         let result = FileUploadContext.makeForRCEUploads(app: .student,
                                                          context: .course("123"),
                                                          session: nil)
         XCTAssertEqual(result, .myFiles)
     }
 
-    func testFileUploadContext() {
+    func testUserIDWithShardTokenWithShard() {
         let result = FileUploadContext.makeForRCEUploads(app: .student,
                                                          context: .course("321"),
-                                                         session: .init(baseURL: URL(string: "/")!,
+                                                         session: .init(accessToken: "7053~asd",
+                                                                        baseURL: URL(string: "/")!,
                                                                         userID: "7053~123",
                                                                         userName: ""))
         XCTAssertEqual(result, .context(.user("7053~123")))
+    }
+
+    func testUserIDWithoutShardTokenWithShard() {
+        let result = FileUploadContext.makeForRCEUploads(app: .student,
+                                                         context: .course("321"),
+                                                         session: .init(accessToken: "7053~asd",
+                                                                        baseURL: URL(string: "/")!,
+                                                                        userID: "123",
+                                                                        userName: ""))
+        XCTAssertEqual(result, .context(.user("7053~123")))
+    }
+
+    func testUserIDWithShardTokenWithoutShard() {
+        let result = FileUploadContext.makeForRCEUploads(app: .student,
+                                                         context: .course("321"),
+                                                         session: .init(accessToken: "asd",
+                                                                        baseURL: URL(string: "/")!,
+                                                                        userID: "7053~123",
+                                                                        userName: ""))
+        XCTAssertEqual(result, .context(.user("7053~123")))
+    }
+
+    func testUserIDWithoutShardTokenWithoutShard() {
+        let result = FileUploadContext.makeForRCEUploads(app: .student,
+                                                         context: .course("321"),
+                                                         session: .init(accessToken: "asd",
+                                                                        baseURL: URL(string: "/")!,
+                                                                        userID: "123",
+                                                                        userName: ""))
+        XCTAssertEqual(result, .context(.user("123")))
     }
 }

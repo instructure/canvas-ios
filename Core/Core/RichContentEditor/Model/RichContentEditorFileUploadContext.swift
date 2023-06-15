@@ -23,12 +23,22 @@ extension FileUploadContext {
                                   session: LoginSession?) -> FileUploadContext {
         if app == .teacher {
             return .context(context)
-        } else {
-            if let userId = session?.userID {
-                return .context(.user(userId))
-            } else {
-                return .myFiles
-            }
         }
+
+        guard let userId = session?.userID else {
+            return .myFiles
+        }
+
+        let shardID: String = {
+            if userId.hasShardID {
+                return ""
+            }
+            if let sessionShard = session?.accessToken?.shardID {
+                return "\(sessionShard)~"
+            }
+            return ""
+        }()
+
+        return .context(.user("\(shardID)\(userId)"))
     }
 }
