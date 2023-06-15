@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineSchedulers
 import Foundation
 
 protocol CourseSyncInteractor {
@@ -31,19 +32,26 @@ protocol CourseSyncContentInteractor {
 final class CourseSyncInteractorLive: CourseSyncInteractor {
     private let contentInteractors: [CourseSyncContentInteractor]
     private let filesInteractor: CourseSyncFilesInteractor
+    private let progressWriterInteractor: CourseSyncProgressWriterInteractor
+    private let scheduler: AnySchedulerOf<DispatchQueue>
+
     private var courseSyncEntries = CurrentValueSubject<[CourseSyncEntry], Error>.init([])
     private var subscription: AnyCancellable?
 
     init(
         pagesInteractor: CourseSyncPagesInteractor = CourseSyncPagesInteractorLive(),
         assignmentsInteractor: CourseSyncAssignmentsInteractor = CourseSyncAssignmentsInteractorLive(),
-        filesInteractor: CourseSyncFilesInteractor = CourseSyncFilesInteractorLive()
+        filesInteractor: CourseSyncFilesInteractor = CourseSyncFilesInteractorLive(),
+        progressWriterInteractor: CourseSyncProgressWriterInteractor = CourseSyncProgressWriterInteractorLive(),
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         contentInteractors = [
             pagesInteractor,
             assignmentsInteractor,
         ]
         self.filesInteractor = filesInteractor
+        self.progressWriterInteractor = progressWriterInteractor
+        self.scheduler = scheduler
     }
 
     func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Error> {
@@ -53,7 +61,12 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
 
         subscription = Publishers.Sequence(sequence: entries.enumerated())
             .flatMap { index, entry in
-                Publishers.Zip3(
+                unownedSelf.setState(
+                    selection: .course(index),
+                    state: .loading(nil)
+                )
+
+                return Publishers.Zip3(
                     unownedSelf.downloadTabContent(for: entry, index: index, tabName: .assignments),
                     unownedSelf.downloadTabContent(for: entry, index: index, tabName: .pages),
                     unownedSelf.downloadFiles(for: entry, courseIndex: index)
@@ -105,14 +118,24 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
 
         let files = entry.files.filter { $0.selectionState == .selected }
 
+        unownedSelf.setState(
+            selection: .tab(courseIndex, tabIndex),
+            state: .loading(nil)
+        )
+
         return Publishers.Sequence(sequence: files.enumerated())
             .flatMap { fileIndex, element in
-                unownedSelf.filesInteractor.getFile(
+                unownedSelf.setState(
+                    selection: .file(courseIndex, fileIndex), state: .loading(nil)
+                )
+
+                return unownedSelf.filesInteractor.getFile(
                     url: element.url,
                     fileID: element.fileId,
                     fileName: element.fileName,
                     mimeClass: element.mimeClass
                 )
+                .debounce(for: .milliseconds(300), scheduler: unownedSelf.scheduler)
                 .tryCatch { error -> AnyPublisher<Float, Error> in
                     unownedSelf.setState(
                         selection: .file(courseIndex, fileIndex), state: .error
@@ -130,7 +153,7 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
                         )
                         unownedSelf.setState(
                             selection: .tab(courseIndex, tabIndex),
-                            state: .loading(unownedSelf.courseSyncEntries.value[courseIndex].fileLoadingProgress)
+                            state: .loading(unownedSelf.courseSyncEntries.value[courseIndex].progress)
                         )
                     },
                     receiveCompletion: { _ in
@@ -159,6 +182,12 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
            entry.tabs[tabIndex].selectionState == .selected,
            let interactor = contentInteractors.first(where: { $0.associatedTabType == tabName }) {
             return interactor.getContent(courseId: entry.courseId)
+                .updateLoadingState {
+                    unownedSelf.setState(
+                        selection: .tab(index, tabIndex),
+                        state: .loading(nil)
+                    )
+                }
                 .updateErrorState {
                     unownedSelf.setState(
                         selection: .tab(index, tabIndex),
@@ -179,23 +208,37 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
         }
     }
 
+    /// Updates entry state in memory and writes it to Core Data. In addition it also writes file progress to Core Data.
     private func setState(selection: CourseEntrySelection, state: CourseSyncEntry.State) {
         var entries = courseSyncEntries.value
 
         switch selection {
         case let .course(courseIndex):
             entries[courseIndex].updateCourseState(state: state)
+            progressWriterInteractor.saveEntryProgress(id: entries[courseIndex].id, selection: selection, state: state)
         case let .tab(courseIndex, tabIndex):
             entries[courseIndex].updateTabState(index: tabIndex, state: state)
+            progressWriterInteractor.saveEntryProgress(id: entries[courseIndex].tabs[tabIndex].id, selection: selection, state: state)
         case let .file(courseIndex, fileIndex):
             entries[courseIndex].updateFileState(index: fileIndex, state: state)
+            progressWriterInteractor.saveEntryProgress(id: entries[courseIndex].files[fileIndex].id, selection: selection, state: state)
         }
 
+        progressWriterInteractor.saveFileProgress(entries: entries)
         courseSyncEntries.send(entries)
     }
 }
 
 private extension Publisher {
+    func updateLoadingState(_ stateUpdate: @escaping () -> Void) -> AnyPublisher<Self.Output, Self.Failure> {
+        handleEvents(
+            receiveSubscription: { _ in
+                stateUpdate()
+            }
+        )
+        .eraseToAnyPublisher()
+    }
+
     func updateErrorState(_ stateUpdate: @escaping () -> Void) -> AnyPublisher<Self.Output, Error> {
         return tryCatch { error -> AnyPublisher<Self.Output, Error> in
             stateUpdate()

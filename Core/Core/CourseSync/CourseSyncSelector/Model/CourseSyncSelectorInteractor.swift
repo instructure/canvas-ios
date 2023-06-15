@@ -169,7 +169,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     // MARK: - Private Methods
 
     private func applySelectionsFromPreviousSession(_ entries: [CourseSyncEntry])
-    -> AnyPublisher<[CourseSyncEntry], Never> {
+        -> AnyPublisher<[CourseSyncEntry], Never> {
         Future<[CourseSyncEntry], Never> { [sessionDefaults, weak self] promise in
             sessionDefaults.offlineSyncSelections
                 .compactMap { $0.toCourseEntrySelection(from: entries) }
@@ -239,7 +239,8 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
                         displayName: $0.displayName ?? NSLocalizedString("Unknown file", comment: ""),
                         fileName: $0.filename,
                         url: $0.url!,
-                        mimeClass: $0.mimeClass!
+                        mimeClass: $0.mimeClass!,
+                        bytesToDownload: $0.size
                     )
                 }
         }
@@ -315,7 +316,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     }
 }
 
-enum CourseEntrySelection: Equatable {
+enum CourseEntrySelection: Codable, Equatable, Comparable {
     typealias CourseIndex = Int
     typealias TabIndex = Int
     typealias FileIndex = Int
@@ -323,10 +324,30 @@ enum CourseEntrySelection: Equatable {
     case course(CourseIndex)
     case tab(CourseIndex, TabIndex)
     case file(CourseIndex, FileIndex)
+
+    private var sortPriority: Int {
+        switch self {
+        case .course: return 0
+        case .tab: return 1
+        case .file: return 2
+        }
+    }
+
+    static func < (lhs: CourseEntrySelection, rhs: CourseEntrySelection) -> Bool {
+        switch (lhs, rhs) {
+        case let (.course(lhsCourseIndex), .course(rhsCourseIndex)):
+            return lhsCourseIndex <= rhsCourseIndex
+        case (let .file(lhsCourseIndex, lhsFileIndex), let .file(rhsCourseIndex, rhsFileIndex)):
+            return lhsCourseIndex <= rhsCourseIndex && lhsFileIndex <= rhsFileIndex
+        case (let .tab(lhsCourseIndex, lhsTabIndex), let .tab(rhsCourseIndex, rhsTabIndex)):
+            return lhsCourseIndex <= rhsCourseIndex && lhsTabIndex <= rhsTabIndex
+        default:
+            return lhs.sortPriority < rhs.sortPriority
+        }
+    }
 }
 
 private extension AnyPublisher<[CourseSyncSelectorCourse], Error> {
-
     func filterToCourseID(_ courseID: String?) -> AnyPublisher<[CourseSyncSelectorCourse], Error> {
         map { [courseID] courses in
             guard let courseID else {
