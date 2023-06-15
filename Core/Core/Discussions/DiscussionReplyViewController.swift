@@ -19,6 +19,8 @@
 import Foundation
 import QuickLook
 import UIKit
+import Combine
+import CombineExt
 
 public class DiscussionReplyViewController: ScreenViewTrackableViewController, ErrorViewController, RichContentEditorDelegate {
     lazy var contentHeight = webView.heightAnchor.constraint(equalToConstant: 0)
@@ -112,6 +114,7 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
     lazy var topic = env.subscribe(GetDiscussionTopic(context: context, topicID: topicID)) { [weak self] in
         self?.update()
     }
+    private var subscriptions = Set<AnyCancellable>()
 
     public static func create(context: Context, topicID: String, replyToEntryID: String? = nil, editEntryID: String? = nil) -> DiscussionReplyViewController {
         let controller = loadFromStoryboard()
@@ -170,6 +173,15 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
         }
         replyToEntry?.refresh()
         topic.refresh()
+
+        if context.id.hasShardID {
+            ContextBaseURLInteractor(api: env.api)
+                .getBaseURL(context: context)
+                .map { $0 as URL? }
+                .replaceError(with: nil)
+                .assign(to: \.fileUploadBaseURL, on: editor, ownership: .weak)
+                .store(in: &subscriptions)
+        }
     }
 
     public override func viewWillAppear(_ animated: Bool) {

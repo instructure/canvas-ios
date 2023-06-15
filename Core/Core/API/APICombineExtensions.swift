@@ -30,12 +30,14 @@ public extension API {
                 if let response {
                     promise(.success((body: response,
                                       urlResponse: urlResponse as? HTTPURLResponse)))
+                } else if let error {
+                    promise(.failure(error))
                 } else if Request.Response.self is APINoContent.Type {
                     // swiftlint:disable:next force_cast
                     promise(.success((body: APINoContent() as! Request.Response,
                                       urlResponse: urlResponse as? HTTPURLResponse)))
                 } else {
-                    promise(.failure(error ?? NSError.instructureError("No response or error received.")))
+                    promise(.failure(NSError.instructureError("No response or error received.")))
                 }
             }
         }.eraseToAnyPublisher()
