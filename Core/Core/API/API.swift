@@ -94,8 +94,16 @@ public class API {
     }
 
     @discardableResult
-    public func makeDownloadRequest(_ url: URL, callback: ((URL?, URLResponse?, Error?) -> Void)? = nil) -> APITask? {
-        let request = URLRequest(url: url)
+    public func makeDownloadRequest(_ url: URL,
+                                    method: APIMethod? = nil,
+                                    callback: ((URL?, URLResponse?, Error?) -> Void)? = nil)
+    -> APITask? {
+        var request = URLRequest(url: url)
+
+        if let method {
+            request.httpMethod = method.rawValue.uppercased()
+        }
+
         let task: APITask
         #if DEBUG
         if API.shouldMock(request) {

@@ -161,6 +161,7 @@ public class MiniCanvasServer {
             case .get: methodRoute = server.GET
             case .post: methodRoute = server.POST
             case .put: methodRoute = server.PUT
+            case .head: methodRoute = server.HEAD
             }
             methodRoute[routeTemplate] = { [weak self] httpRequest in
                 guard let self = self else { return .internalServerError }

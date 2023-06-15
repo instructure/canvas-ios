@@ -17,6 +17,7 @@
 //
 
 import AVKit
+import Combine
 import PSPDFKit
 import PSPDFKitUI
 import QuickLook
@@ -57,6 +58,8 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     lazy var files = env.subscribe(GetFile(context: context, fileID: fileID)) { [weak self] in
         self?.update()
     }
+    private var accessReportInteractor: FileAccessReportInteractor?
+    private var subscriptions = Set<AnyCancellable>()
 
     public static func create(context: Context?, fileID: String, originURL: URLComponents? = nil, assignmentID: String? = nil) -> FileDetailsViewController {
         let controller = loadFromStoryboard()
@@ -64,6 +67,13 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         controller.context = context
         controller.fileID = fileID
         controller.originURL = originURL
+
+        if let context {
+            controller.accessReportInteractor = FileAccessReportInteractor(context: context,
+                                                                           fileID: fileID,
+                                                                           api: controller.env.api)
+        }
+
         return controller
     }
 
@@ -104,6 +114,11 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
 
         view.layoutIfNeeded()
         files.refresh()
+
+        accessReportInteractor?
+            .reportFileAccess()
+            .sink()
+            .store(in: &subscriptions)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
