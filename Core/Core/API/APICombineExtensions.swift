@@ -23,12 +23,17 @@ public extension API {
     func makeRequest<Request: APIRequestable>(
         _ requestable: Request,
         refreshToken: Bool = true
-    ) -> AnyPublisher<Request.Response, Error> {
+    ) -> AnyPublisher<(body: Request.Response, urlResponse: HTTPURLResponse?), Error> {
         Future { promise in
             self.makeRequest(requestable,
-                             refreshToken: refreshToken) { response, _, error in
+                             refreshToken: refreshToken) { response, urlResponse, error in
                 if let response {
-                    promise(.success(response))
+                    promise(.success((body: response,
+                                      urlResponse: urlResponse as? HTTPURLResponse)))
+                } else if Request.Response.self is APINoContent.Type {
+                    // swiftlint:disable:next force_cast
+                    promise(.success((body: APINoContent() as! Request.Response,
+                                      urlResponse: urlResponse as? HTTPURLResponse)))
                 } else {
                     promise(.failure(error ?? NSError.instructureError("No response or error received.")))
                 }
