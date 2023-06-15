@@ -156,6 +156,7 @@ class LoginFindSchoolViewController: UIViewController {
 
     private func toggleNextButtonVisibility() {
         if let host = searchField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !host.isEmpty {
+            nextButton.accessibilityIdentifier = "nextButton"
             navigationItem.rightBarButtonItem = nextButton
         } else {
             navigationItem.rightBarButtonItem = nil

@@ -22,6 +22,9 @@ import TestsFoundation
 import XCTest
 
 public class AssignmentsHelper: BaseHelper {
+    public static var getTomorrowsDateString: String { Date().addDays(1).ISO8601Format() }
+    public static var getYesterdaysDateString: String { Date().addDays(-1).ISO8601Format() }
+    
     public static var assignmentDetailsName: Element { app.find(id: "AssignmentDetails.name") }
     public static var assignmentDetailsPoints: Element { app.find(id: "AssignmentDetails.points") }
     public static var assignmentDetailsStatus: Element { app.find(id: "AssignmentDetails.status") }
@@ -57,9 +60,10 @@ public class AssignmentsHelper: BaseHelper {
         description: String = "Description of ",
         published: Bool = true,
         submissionTypes: [SubmissionType] = [.online_text_entry],
-        pointsPossible: Float? = nil) -> DSAssignment {
+        pointsPossible: Float? = nil,
+        dueDate: String? = nil) -> DSAssignment {
         let assignmentBody = CreateDSAssignmentRequest.RequestDSAssignment(
-            name: name, description: description + name, published: published, submission_types: submissionTypes, points_possible: pointsPossible)
+            name: name, description: description + name, published: published, submission_types: submissionTypes, points_possible: pointsPossible, due_at: dueDate)
         return seeder.createAssignment(courseId: course.id, assignementBody: assignmentBody)
     }
 

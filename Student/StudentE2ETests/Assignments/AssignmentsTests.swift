@@ -161,4 +161,39 @@ class AssignmentsTests: E2ETestCase {
         XCTAssertTrue(assignmentDetailsSubmitAssignmentButton.isVisible)
         XCTAssertEqual(assignmentDetailsSubmitAssignmentButton.label(), "Resubmit Assignment")
     }
+
+    func testAssignmentDueDate() {
+        // MARK: Seed the usual stuff
+        let users = seeder.createUsers(1)
+        let course = seeder.createCourse()
+        let student = users[0]
+        seeder.enrollStudent(student, in: course)
+
+        // MARK: Create 2 assignments (1 due yesterday and 1 due tomorrow)
+        let yesterdaysDate = AssignmentsHelper.getYesterdaysDateString
+        let yesterdaysAssignment = AssignmentsHelper.createAssignment(
+            course: course, name: "Yesterdays Assignment", dueDate: yesterdaysDate)
+
+        let tomorrowsDate = AssignmentsHelper.getTomorrowsDateString
+        let tomorrowsAssignment = AssignmentsHelper.createAssignment(
+            course: course, name: "Tomorrows Assignment", dueDate: tomorrowsDate)
+
+        // MARK: Get the user logged in
+        logInDSUser(student)
+
+        // MARK: Navigate to Assignments
+        AssignmentsHelper.navigateToAssignments(course: course)
+        let assignmentsNavBar = AssignmentsHelper.assignmentsNavBar(course: course).waitToExist()
+        XCTAssertTrue(assignmentsNavBar.isVisible)
+
+        // MARK: Check Yesterdays Assignment due date
+        let yesterdaysAssignmentButton = AssignmentsHelper.assignmentButton(assignment: yesterdaysAssignment).waitToExist()
+        XCTAssertTrue(yesterdaysAssignmentButton.isVisible)
+        XCTAssertTrue(yesterdaysAssignmentButton.label().contains("Due Yesterday"))
+
+        // MARK: Check Tomorrows Assignment due date
+        let tomorrowsAssignmentButton = AssignmentsHelper.assignmentButton(assignment: tomorrowsAssignment).waitToExist()
+        XCTAssertTrue(tomorrowsAssignmentButton.isVisible)
+        XCTAssertTrue(tomorrowsAssignmentButton.label().contains("Due Tomorrow"))
+    }
 }
