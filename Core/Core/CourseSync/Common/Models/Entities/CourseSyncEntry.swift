@@ -19,7 +19,7 @@
 import Foundation
 
 struct CourseSyncEntry {
-    enum State: Equatable, Hashable {
+    enum State: Codable, Equatable, Hashable {
         case loading(Float?), error, downloaded
     }
 
@@ -44,6 +44,23 @@ struct CourseSyncEntry {
         let mimeClass: String
         var state: State = .loading(nil)
         var selectionState: ListCellView.SelectionState = .deselected
+
+        /// Filesize in bytes, received from the API.
+        let bytesToDownload: Int
+
+        /// Downloaded bytes, progress is persisted to Core Data.
+        var bytesDownloaded: Int {
+            switch state {
+            case .downloaded: return bytesToDownload
+            case let .loading(progress):
+                if let progress {
+                    return Int(Float(bytesToDownload) * progress)
+                } else {
+                    return 0
+                }
+            case .error: return 0
+            }
+        }
     }
 
     let name: String
@@ -67,7 +84,44 @@ struct CourseSyncEntry {
         }
     }
 
-    var fileLoadingProgress: Float {
+    var selectionCount: Int {
+        (selectedFilesCount + selectedTabsCount) - (selectedFilesCount > 0 ? 1 : 0)
+    }
+
+    var isCollapsed: Bool = true
+    var selectionState: ListCellView.SelectionState = .deselected
+    var isEverythingSelected: Bool = false
+
+    var state: State = .loading(nil)
+
+    /// Total size of course file in bytes.
+    var totalSize: Int {
+        files
+            .reduce(0) { partialResult, file in
+                partialResult + file.bytesToDownload
+            }
+    }
+
+    /// Total size of selected course files in bytes.
+    var totalSelectedSize: Int {
+        files
+            .filter { $0.selectionState == .selected }
+            .reduce(0) { partialResult, file in
+                partialResult + file.bytesToDownload
+            }
+    }
+
+    /// Total size of selected and downloaded files in bytes.
+    var totalDownloadedSize: Int {
+        files
+            .filter { $0.selectionState == .selected }
+            .reduce(0) { partialResult, file in
+                partialResult + file.bytesDownloaded
+            }
+    }
+
+    /// Total progress of selected file downloads, ranging from 0 to 1.
+    var progress: Float {
         let totalProgress = files
             .filter { $0.selectionState == .selected }
             .reduce(0 as Float) { partialResult, file in
@@ -79,15 +133,6 @@ struct CourseSyncEntry {
             }
         return totalProgress / Float(selectedFilesCount)
     }
-
-    var selectionCount: Int {
-        (selectedFilesCount + selectedTabsCount) - (selectedFilesCount > 0 ? 1 : 0)
-    }
-
-    var isCollapsed: Bool = true
-    var selectionState: ListCellView.SelectionState = .deselected
-    var isEverythingSelected: Bool = false
-    var state: State = .loading(nil)
 
     mutating func selectCourse(selectionState: ListCellView.SelectionState) {
         tabs.indices.forEach { tabs[$0].selectionState = selectionState }
@@ -132,6 +177,24 @@ struct CourseSyncEntry {
     }
 }
 
+extension Array where Element == CourseSyncEntry {
+    var totalSelectedSize: Int {
+        reduce(0) { partialResult, entry in
+            partialResult + entry.totalSelectedSize
+        }
+    }
+
+    var totalDownloadedSize: Int {
+        reduce(0) { partialResult, entry in
+            partialResult + entry.totalDownloadedSize
+        }
+    }
+
+    var progress: Float {
+        Float(totalDownloadedSize) / Float(totalSelectedSize)
+    }
+}
+
 #if DEBUG
 
 extension CourseSyncEntry.File {
@@ -141,6 +204,7 @@ extension CourseSyncEntry.File {
         fileName: String = "File",
         url: URL = URL(string: "1")!,
         mimeClass: String = "jpg",
+        bytesToDownload: Int = 0,
         state: CourseSyncEntry.State = .loading(nil),
         selectionState: ListCellView.SelectionState = .deselected
     ) -> CourseSyncEntry.File {
@@ -151,7 +215,8 @@ extension CourseSyncEntry.File {
             url: url,
             mimeClass: mimeClass,
             state: state,
-            selectionState: selectionState
+            selectionState: selectionState,
+            bytesToDownload: bytesToDownload
         )
     }
 }
