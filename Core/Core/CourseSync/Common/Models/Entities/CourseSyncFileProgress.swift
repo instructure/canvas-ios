@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,20 +17,13 @@
 //
 
 import Foundation
+import CoreData
 
-public enum LoginFindSchool: String, ElementWrapper {
-    case searchField
+public final class CourseSyncFileProgress: NSManagedObject {
+    @NSManaged public var bytesToDownload: Int
+    @NSManaged public var bytesDownloaded: Int
 
-    public static var keyboardGoButton: Element { app.find(type: .keyboard).rawElement.find(id: "Go") }
-    public static var nextButton: Element { app.find(id: "nextButton", type: .button) }
-}
-
-public enum LoginFindAccountResult {
-    public static var emptyCell: Element {
-        return app.find(id: "LoginFindAccountResult.emptyCell")
-    }
-
-    public static func item(host: String) -> Element {
-        return app.find(id: "LoginFindAccountResult.\(host)")
+    var progress: Float {
+        Float(bytesDownloaded) / Float(bytesToDownload)
     }
 }
