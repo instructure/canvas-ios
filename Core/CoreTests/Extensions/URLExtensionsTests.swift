@@ -54,7 +54,7 @@ class URLExtensionsTests: XCTestCase {
     }
 
     func testAppGroupCachesDirectory() {
-        let expected = URL.Directories.sharedContainer("group.instructure.shared")!.appendingPathComponent("caches", isDirectory: true)
+        let expected = URL.Directories.sharedContainer(appGroup: "group.instructure.shared")!.appendingPathComponent("caches", isDirectory: true)
         let url = URL.Directories.caches(appGroup: "group.instructure.shared")
         XCTAssertEqual(url, expected)
         var isDir: ObjCBool = false
@@ -151,7 +151,7 @@ class DatabaseURLTests: XCTestCase {
 
     /// Student app uses the app group's shared folder to share files between the app and the widgets/file share extension
     func testURLWithAppGroupWithSession() {
-        let testee = URL.Directories.databaseURL(for: appGroup,
+        let testee = URL.Directories.databaseURL(appGroup: appGroup,
                                                  session: loginSession)
         XCTAssertTrue(match(testee,
                             regex: #"\/Shared\/AppGroup\/[A-F0-9-]+\/Documents\/Offline\/test.instructure.com-testUserID\/Database\.sqlite$"#),
@@ -160,7 +160,7 @@ class DatabaseURLTests: XCTestCase {
 
     /// Teacher and Parent apps
     func testURLWithoutAppGroupWithSession() {
-        let testee = URL.Directories.databaseURL(for: nil,
+        let testee = URL.Directories.databaseURL(appGroup: nil,
                                                  session: loginSession)
         XCTAssertTrue(match(testee,
                             regex: #"\/Data\/Application\/[A-F0-9-]+\/Documents\/Offline\/test.instructure.com-testUserID\/Database\.sqlite$"#),
@@ -168,7 +168,7 @@ class DatabaseURLTests: XCTestCase {
     }
 
     func testURLWithAppGroupWithoutSession() {
-        let testee = URL.Directories.databaseURL(for: appGroup,
+        let testee = URL.Directories.databaseURL(appGroup: appGroup,
                                                  session: nil)
         XCTAssertTrue(match(testee,
                             regex: #"\/Data\/Application\/[A-F0-9-]+\/Library\/Caches\/Database\.sqlite$"#),
@@ -176,7 +176,7 @@ class DatabaseURLTests: XCTestCase {
     }
 
     func testURLWithoutAppGroupWithoutSession() {
-        let testee = URL.Directories.databaseURL(for: nil,
+        let testee = URL.Directories.databaseURL(appGroup: nil,
                                                  session: nil)
         XCTAssertTrue(match(testee,
                             regex: #"\/Data\/Application\/[A-F0-9-]+\/Library\/Caches\/Database\.sqlite$"#),

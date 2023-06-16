@@ -33,7 +33,7 @@ extension NSPersistentContainer {
         FileUploadTargetTransformer.register()
         let container = NSPersistentContainer(name: "Database", managedObjectModel: model)
 
-        let url = URL.Directories.databaseURL(for: appGroup, session: session)
+        let url = URL.Directories.databaseURL(appGroup: appGroup, session: session)
         container.persistentStoreDescriptions = [
             NSPersistentStoreDescription(url: url)
         ]

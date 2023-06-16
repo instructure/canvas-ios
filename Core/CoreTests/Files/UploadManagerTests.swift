@@ -67,7 +67,7 @@ class UploadManagerTests: CoreTestCase {
         UUID.mock("shared")
         let expected = URL
             .Directories
-            .sharedContainer("group.com.instructure.icanvas")?
+            .sharedContainer(appGroup: "group.com.instructure.icanvas")?
             .appendingPathComponent("uploads/shared/")
             .appendingPathComponent(url.lastPathComponent)
         let manager = UploadManager(identifier: "test", sharedContainerIdentifier: "group.com.instructure.icanvas")
