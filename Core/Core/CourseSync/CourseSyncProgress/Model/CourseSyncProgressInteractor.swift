@@ -31,6 +31,7 @@ protocol CourseSyncProgressInteractor {
 final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
     private let fileFolderInteractor: CourseSyncFileFolderInteractor
     private let progressObserverInteractor: CourseSyncProgressObserverInteractor
+    private let sessionDefaults: SessionDefaults
 
     private let courseListStore = ReactiveStore(
         useCase: GetCourseSyncSelectorCourses()
@@ -39,12 +40,15 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Progress info view
+
     init(
         fileFolderInteractor: CourseSyncFileFolderInteractor = CourseSyncFileFolderInteractorLive(),
-        progressObserverInteractor: CourseSyncProgressObserverInteractor = CourseSyncProgressObserverInteractorLive()
+        progressObserverInteractor: CourseSyncProgressObserverInteractor = CourseSyncProgressObserverInteractorLive(),
+        sessionDefaults: SessionDefaults = AppEnvironment.shared.userDefaults ?? .fallback
     ) {
         self.fileFolderInteractor = fileFolderInteractor
         self.progressObserverInteractor = progressObserverInteractor
+        self.sessionDefaults = sessionDefaults
     }
 
     func getFileProgress() -> AnyPublisher<ReactiveStore<LocalUseCase<CourseSyncFileProgress>>.State, Never> {
@@ -55,6 +59,7 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         unowned let unownedSelf = self
 
         return courseListStore.getEntitiesFromDatabase()
+            .filterToSelectedCourses(ids: sessionDefaults.offlineSyncSelections)
             .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
             .flatMap { unownedSelf.fileFolderInteractor.getAllFiles(course: $0) }
             .collect()
@@ -81,7 +86,7 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         progressObserverInteractor.observeEntryProgress()
             .flatMap { state -> AnyPublisher<[CourseSyncEntryProgress], Never> in
                 switch state {
-                case .data(let progressList):
+                case let .data(progressList):
                     guard progressList.count > 0 else {
                         return Empty(completeImmediately: false).eraseToAnyPublisher()
                     }
@@ -128,9 +133,20 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         courseSyncEntries.send(entries)
     }
 
-    func cancelSync() {
-    }
+    func cancelSync() {}
 
-    func retrySync() {
+    func retrySync() {}
+}
+
+private extension AnyPublisher<[CourseSyncSelectorCourse], Error> {
+    func filterToSelectedCourses(ids: [String]) -> AnyPublisher<[CourseSyncSelectorCourse], Error> {
+        map {
+            $0.filter { entry in
+                ids.contains(
+                    "courses/\(entry.courseId)"
+                )
+            }
+        }
+        .eraseToAnyPublisher()
     }
 }

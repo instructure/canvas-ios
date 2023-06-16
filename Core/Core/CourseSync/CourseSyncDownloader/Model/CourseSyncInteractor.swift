@@ -105,6 +105,39 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         .eraseToAnyPublisher()
     }
 
+    private func downloadTabContent(for entry: CourseSyncEntry, tabName: TabName) -> AnyPublisher<Void, Error> {
+        unowned let unownedSelf = self
+
+        if let tabIndex = entry.tabs.firstIndex(where: { $0.type == tabName }),
+           entry.tabs[tabIndex].selectionState == .selected,
+           let interactor = contentInteractors.first(where: { $0.associatedTabType == tabName }) {
+            return interactor.getContent(courseId: entry.courseId)
+                .updateLoadingState {
+                    unownedSelf.setState(
+                        selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                        state: .loading(nil)
+                    )
+                }
+                .updateErrorState {
+                    unownedSelf.setState(
+                        selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                        state: .error
+                    )
+                }
+                .updateDownloadedState {
+                    unownedSelf.setState(
+                        selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                        state: .downloaded
+                    )
+                }
+                .eraseToAnyPublisher()
+        } else {
+            return Just(())
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+    }
+
     private func downloadFiles(for entry: CourseSyncEntry) -> AnyPublisher<Void, Error> {
         guard
             let tabIndex = entry.tabs.firstIndex(where: { $0.type == .files }),
@@ -177,39 +210,6 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             )
             .map { _ in () }
             .eraseToAnyPublisher()
-    }
-
-    private func downloadTabContent(for entry: CourseSyncEntry, tabName: TabName) -> AnyPublisher<Void, Error> {
-        unowned let unownedSelf = self
-
-        if let tabIndex = entry.tabs.firstIndex(where: { $0.type == tabName }),
-           entry.tabs[tabIndex].selectionState == .selected,
-           let interactor = contentInteractors.first(where: { $0.associatedTabType == tabName }) {
-            return interactor.getContent(courseId: entry.courseId)
-                .updateLoadingState {
-                    unownedSelf.setState(
-                        selection: .tab(entry.id, entry.tabs[tabIndex].id),
-                        state: .loading(nil)
-                    )
-                }
-                .updateErrorState {
-                    unownedSelf.setState(
-                        selection: .tab(entry.id, entry.tabs[tabIndex].id),
-                        state: .error
-                    )
-                }
-                .updateDownloadedState {
-                    unownedSelf.setState(
-                        selection: .tab(entry.id, entry.tabs[tabIndex].id),
-                        state: .downloaded
-                    )
-                }
-                .eraseToAnyPublisher()
-        } else {
-            return Just(())
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
-        }
     }
 
     /// Updates entry state in memory and writes it to Core Data. In addition it also writes file progress to Core Data.
