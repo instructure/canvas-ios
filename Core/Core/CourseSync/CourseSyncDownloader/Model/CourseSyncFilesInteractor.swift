@@ -60,7 +60,7 @@ final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, LocalFileU
         }
 
         let localURL = prepareLocalURL(
-            fileName: "\(sessionID)/\(fileID)/\(fileName)",
+            fileName: "\(sessionID)/Files/\(fileID)/\(fileName)",
             mimeClass: mimeClass,
             location: URL.Directories.offline
         )
