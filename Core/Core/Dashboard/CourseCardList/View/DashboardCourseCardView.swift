@@ -26,6 +26,7 @@ struct DashboardCourseCardView: View {
     let contextColor: UIColor
     /** Wide layout puts the course image to the left of the cell while the course name and code will be next to it on the right. */
     let isWideLayout: Bool
+    let availableOffline: Bool
 
     @State private var isShowingKebabDialog = false
 
@@ -39,7 +40,7 @@ struct DashboardCourseCardView: View {
 
     var body: some View {
         ZStack(alignment: .topLeading) {
-            Button {
+            PrimaryButton(availableOffline: availableOffline) {
                 env.router.route(to: "/courses/\(courseCard.id)?contextColor=\(contextColor.hexString.dropFirst())", from: controller)
             } label: {
                 if isWideLayout {
@@ -213,7 +214,8 @@ struct CourseCard_Previews: PreviewProvider {
                        showGrade: true,
                        width: 200,
                        contextColor: .electric,
-                       isWideLayout: false)
+                       isWideLayout: false,
+                       availableOffline: true)
             .frame(width: 200, height: 160)
             .environment(\.horizontalSizeClass, .compact)
 
@@ -223,7 +225,8 @@ struct CourseCard_Previews: PreviewProvider {
                        showGrade: true,
                        width: 400,
                        contextColor: .electric,
-                       isWideLayout: false)
+                       isWideLayout: false,
+                       availableOffline: true)
             .frame(width: 400, height: 160)
             .environment(\.horizontalSizeClass, .compact)
 
@@ -233,7 +236,8 @@ struct CourseCard_Previews: PreviewProvider {
                        showGrade: true,
                        width: 900,
                        contextColor: .electric,
-                       isWideLayout: true)
+                       isWideLayout: true,
+                       availableOffline: true)
             .frame(width: 900, height: 100)
             .environment(\.horizontalSizeClass, .regular)
         }

@@ -263,7 +263,9 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                     showGrade: showGrade,
                     width: layoutInfo.cardWidth,
                     contextColor: card.color,
-                    isWideLayout: layoutInfo.isWideLayout
+                    isWideLayout: layoutInfo.isWideLayout,
+                    // TODO: handle availibility
+                    availableOffline: false
                 )
                 .frame(minHeight: layoutInfo.cardMinHeight)
             }
@@ -291,7 +293,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                 .accessibility(identifier: "dashboard.courses.heading-lbl")
                 .accessibility(addTraits: .isHeader)
             Spacer()
-            Button(action: showAllCourses) {
+            PrimaryButton(action: showAllCourses) {
                 Text("Edit Dashboard", bundle: .core)
                     .font(.semibold16).foregroundColor(Color(Brand.shared.linkColor))
             }.identifier("Dashboard.editButton")

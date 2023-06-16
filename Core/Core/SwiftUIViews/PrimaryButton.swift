@@ -18,21 +18,35 @@
 
 import SwiftUI
 
-public struct PrimaryButton<Label> : View where Label : View {
-    
+public struct PrimaryButton<Label>: View where Label: View {
+
     let action: () -> Void
     let label: Label
+    @State private var shouldShowAlert = false
+    private let offlineService = OfflineServiceLive.shared
+    private let availableOffline: Bool
 
-    public init(action: @escaping () -> Void, @ViewBuilder label: @escaping () -> Label) {
+    public init(availableOffline: Bool = false, action: @escaping () -> Void, @ViewBuilder label: @escaping () -> Label) {
+        self.availableOffline = availableOffline
         self.action = action
         self.label = label()
     }
-    
+
     public var body: some View {
         Button {
-            print("show alert")
+            if !availableOffline, offlineService.isOfflineModeEnabled() {
+                shouldShowAlert = true
+            } else {
+                action()
+            }
         } label: {
             label
-        }.opacity(0.5)
+        }
+        .opacity(0.5)
+        .alert(isPresented: $shouldShowAlert) {
+            Alert(title: Text("Offline mode", bundle: .core),
+                  message: Text("This item is not available offline.", bundle: .core),
+                  dismissButton: .default(Text("OK", bundle: .core)))
+        }
     }
 }
