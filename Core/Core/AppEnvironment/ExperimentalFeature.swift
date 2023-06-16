@@ -38,6 +38,9 @@ public enum ExperimentalFeature: String, CaseIterable, Codable {
             if self == .K5Dashboard, UserDefaults.standard.object(forKey: userDefaultsKey) == nil {
                 return true
             }
+            if self == .offlineMode {
+                return true
+            }
             return UserDefaults.standard.bool(forKey: userDefaultsKey)
         }
         nonmutating set { UserDefaults.standard.set(newValue, forKey: userDefaultsKey) }

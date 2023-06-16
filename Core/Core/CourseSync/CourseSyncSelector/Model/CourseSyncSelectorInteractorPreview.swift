@@ -77,12 +77,12 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
         var entries = mockData.value
 
         switch selection {
-        case let .course(courseIndex):
-            entries[courseIndex].selectCourse(selectionState: selectionState)
-        case let .tab(courseIndex, tabIndex):
-            entries[courseIndex].selectTab(index: tabIndex, selectionState: selectionState)
-        case let .file(courseIndex, fileIndex):
-            entries[courseIndex].selectFile(index: fileIndex, selectionState: selectionState)
+        case let .course(courseID):
+            entries[id: courseID]?.selectCourse(selectionState: selectionState)
+        case let .tab(courseID, tabID):
+            entries[id: courseID]?.selectTab(id: tabID, selectionState: selectionState)
+        case let .file(courseID, fileID):
+            entries[id: courseID]?.selectFile(id: fileID, selectionState: selectionState)
         }
 
         mockData.accept(entries)

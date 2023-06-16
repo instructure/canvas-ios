@@ -105,12 +105,12 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         var entries = courseSyncEntries.value
 
         switch selection {
-        case let .course(courseIndex):
-            entries[courseIndex].selectCourse(selectionState: selectionState)
-        case let .tab(courseIndex, tabIndex):
-            entries[courseIndex].selectTab(index: tabIndex, selectionState: selectionState)
-        case let .file(courseIndex, fileIndex):
-            entries[courseIndex].selectFile(index: fileIndex, selectionState: selectionState)
+        case let .course(courseID):
+            entries[id: courseID]?.selectCourse(selectionState: selectionState)
+        case let .tab(courseID, tabID):
+            entries[id: courseID]?.selectTab(id: tabID, selectionState: selectionState)
+        case let .file(courseID, fileID):
+            entries[id: courseID]?.selectFile(id: fileID, selectionState: selectionState)
         }
 
         if let courseID {
@@ -131,10 +131,10 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         var entries = courseSyncEntries.value
 
         switch selection {
-        case let .course(courseIndex):
-            entries[courseIndex].isCollapsed = isCollapsed
-        case let .tab(courseIndex, tabIndex):
-            entries[courseIndex].tabs[tabIndex].isCollapsed = isCollapsed
+        case let .course(courseID):
+            entries[id: courseID]?.isCollapsed = isCollapsed
+        case let .tab(courseID, tabID):
+            entries[id: courseID]?.tabs[id: tabID]?.isCollapsed = isCollapsed
         case .file:
             break
         }
@@ -143,8 +143,11 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     }
 
     func toggleAllCoursesSelection(isSelected: Bool) {
+        unowned let unownedSelf = self
+
         courseSyncEntries.value
             .indices
+            .map { unownedSelf.courseSyncEntries.value[$0].id }
             .map { CourseEntrySelection.course($0) }
             .forEach { setSelected(selection: $0, selectionState: isSelected ? .selected : .deselected) }
     }
@@ -182,37 +185,6 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
                 .forEach { self?.setSelected(selection: $0, selectionState: .selected) }
             promise(.success(entries))
         }.eraseToAnyPublisher()
-    }
-}
-
-public enum CourseEntrySelection: Codable, Equatable, Comparable {
-    public typealias CourseIndex = Int
-    public typealias TabIndex = Int
-    public typealias FileIndex = Int
-
-    case course(CourseIndex)
-    case tab(CourseIndex, TabIndex)
-    case file(CourseIndex, FileIndex)
-
-    private var sortPriority: Int {
-        switch self {
-        case .course: return 0
-        case .tab: return 1
-        case .file: return 2
-        }
-    }
-
-    public static func < (lhs: CourseEntrySelection, rhs: CourseEntrySelection) -> Bool {
-        switch (lhs, rhs) {
-        case let (.course(lhsCourseIndex), .course(rhsCourseIndex)):
-            return lhsCourseIndex <= rhsCourseIndex
-        case (let .file(lhsCourseIndex, lhsFileIndex), let .file(rhsCourseIndex, rhsFileIndex)):
-            return lhsCourseIndex <= rhsCourseIndex && lhsFileIndex <= rhsFileIndex
-        case (let .tab(lhsCourseIndex, lhsTabIndex), let .tab(rhsCourseIndex, rhsTabIndex)):
-            return lhsCourseIndex <= rhsCourseIndex && lhsTabIndex <= rhsTabIndex
-        default:
-            return lhs.sortPriority < rhs.sortPriority
-        }
     }
 }
 

@@ -70,10 +70,10 @@ extension Array where Element == CourseSyncEntry {
     func makeSyncProgressViewModelItems(interactor: CourseSyncProgressInteractor) -> [CourseSyncProgressViewModel.Cell] {
         var cells: [CourseSyncProgressViewModel.Cell] = []
 
-        for (courseIndex, course) in enumerated() {
+        for course in self {
             var courseItem = course.makeSyncProgressViewModelItem()
             courseItem.collapseDidToggle = {
-                interactor.setCollapsed(selection: .course(courseIndex), isCollapsed: !(courseItem.isCollapsed ?? false))
+                interactor.setCollapsed(selection: .course(course.id), isCollapsed: !(courseItem.isCollapsed ?? false))
             }
             cells.append(.item(courseItem))
 
@@ -86,10 +86,10 @@ extension Array where Element == CourseSyncEntry {
                 continue
             }
 
-            for (tabIndex, tab) in course.tabs.enumerated() {
+            for tab in course.tabs {
                 var tabItem = tab.makeSyncProgressViewModelItem()
                 tabItem.collapseDidToggle = {
-                    interactor.setCollapsed(selection: .tab(courseIndex, tabIndex), isCollapsed: !(tabItem.isCollapsed ?? false))
+                    interactor.setCollapsed(selection: .tab(course.id, tab.id), isCollapsed: !(tabItem.isCollapsed ?? false))
                 }
 
                 guard tab.type == .files else {

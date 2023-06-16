@@ -102,24 +102,12 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         var entries = courseSyncEntries.value
 
         switch selection {
-        case let .course(courseIndex):
-            guard entries.count - 1 >= courseIndex else {
-                return
-            }
-            entries[courseIndex].updateCourseState(state: state)
-        case let .tab(courseIndex, tabIndex):
-            guard entries.count - 1 >= courseIndex else {
-                return
-            }
-            entries[courseIndex].updateTabState(index: tabIndex, state: state)
-        case let .file(courseIndex, fileIndex):
-            guard entries.count - 1 >= courseIndex else {
-                return
-            }
-            if state == .error {
-                print("found it")
-            }
-            entries[courseIndex].updateFileState(index: fileIndex, state: state)
+        case let .course(courseID):
+            entries[id: courseID]?.updateCourseState(state: state)
+        case let .tab(courseID, tabID):
+            entries[id: courseID]?.updateTabState(id: tabID, state: state)
+        case let .file(courseID, fileID):
+            entries[id: courseID]?.updateFileState(id: fileID, state: state)
         }
 
         courseSyncEntries.send(entries)
@@ -129,10 +117,10 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         var entries = courseSyncEntries.value
 
         switch selection {
-        case let .course(courseIndex):
-            entries[courseIndex].isCollapsed = isCollapsed
-        case let .tab(courseIndex, tabIndex):
-            entries[courseIndex].tabs[tabIndex].isCollapsed = isCollapsed
+        case let .course(courseID):
+            entries[id: courseID]?.isCollapsed = isCollapsed
+        case let .tab(courseID, tabID):
+            entries[id: courseID]?.tabs[id: tabID]?.isCollapsed = isCollapsed
         case .file:
             break
         }
