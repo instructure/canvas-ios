@@ -48,6 +48,7 @@ public extension URL {
             return folder
         }
 
+        /// The `Documents` directory in the application's private folder.
         public static var documents: URL {
             FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         }
@@ -65,6 +66,7 @@ public extension URL {
             documents.appendingPathComponent("Offline")
         }
 
+        /// Returns the full url with the file name to where the database should be saved.
         public static func databaseURL(appGroup: String?, session: LoginSession?) -> URL {
             guard let session else {
                 return URL.Directories.caches
