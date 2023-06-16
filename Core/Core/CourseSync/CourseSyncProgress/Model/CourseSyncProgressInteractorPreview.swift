@@ -52,21 +52,14 @@ class CourseSyncProgressInteractorPreview: CourseSyncProgressInteractor {
             .eraseToAnyPublisher()
     }
 
-    func setProgress(selection: CourseEntrySelection, progress: Float?) {}
-
     func setCollapsed(selection _: CourseEntrySelection, isCollapsed _: Bool) {}
 
     func cancelSync() {}
 
     func retrySync() {}
 
-    func remove(selection: CourseEntrySelection) {}
-
-    func getSyncProgress() -> SyncProgress {
-        let total = Double(64_000_000_000)
-        return SyncProgress(total: Int64(total),
-                            progress: Int64(0.456 * total),
-                            failure: false)
+    func getFileProgress() -> AnyPublisher<ReactiveStore<LocalUseCase<CourseSyncFileProgress>>.State, Never> {
+        Empty(completeImmediately: false).eraseToAnyPublisher()
     }
 }
 

@@ -37,7 +37,7 @@ extension CourseSyncProgressViewModel {
         /** The SwiftUI view ID. */
         let id: String
         let title: String
-        let subtitle: String?
+        var subtitle: String?
         var isCollapsed: Bool?
         let cellStyle: ListCellView.ListCellStyle
         let state: CourseSyncEntry.State
@@ -91,9 +91,16 @@ extension Array where Element == CourseSyncEntry {
                 tabItem.collapseDidToggle = {
                     interactor.setCollapsed(selection: .tab(courseIndex, tabIndex), isCollapsed: !(tabItem.isCollapsed ?? false))
                 }
+
+                guard tab.type == .files else {
+                    cells.append(.item(tabItem))
+                    continue
+                }
+
+                tabItem.subtitle = course.totalSizeFormattedString
                 cells.append(.item(tabItem))
 
-                guard tab.type == .files, !tab.isCollapsed else {
+                guard !tab.isCollapsed else {
                     continue
                 }
 
@@ -112,7 +119,7 @@ extension CourseSyncEntry {
     func makeSyncProgressViewModelItem() -> CourseSyncProgressViewModel.Item {
         .init(id: id,
               title: name,
-              subtitle: nil,
+              subtitle: totalSizeFormattedString,
               isCollapsed: isCollapsed,
               cellStyle: .mainAccordionHeader,
               state: state)
@@ -136,7 +143,7 @@ extension CourseSyncEntry.File {
     func makeSyncProgressViewModelItem() -> CourseSyncProgressViewModel.Item {
         .init(id: id,
               title: displayName,
-              subtitle: nil,
+              subtitle: bytesToDownload.humanReadableFileSize,
               cellStyle: .listItem,
               state: state)
     }

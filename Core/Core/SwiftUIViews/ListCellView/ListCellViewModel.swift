@@ -23,13 +23,12 @@ class ListCellViewModel: ObservableObject {
     let cellStyle: ListCellView.ListCellStyle
     let title: String
     let subtitle: String?
-    let error: String?
     let selectionState: ListCellView.SelectionState
     let isCollapsed: Bool?
     let selectionDidToggle: (() -> Void)?
     let collapseDidToggle: (() -> Void)?
     let removeItemPressed: (() -> Void)?
-    let progress: Float?
+    let state: ListCellView.State
 
     init(cellStyle: ListCellView.ListCellStyle,
          title: String,
@@ -40,7 +39,7 @@ class ListCellViewModel: ObservableObject {
          collapseDidToggle: (() -> Void)? = nil,
          removeItemPressed: (() -> Void)? = nil,
          progress: Float? = nil,
-         error: String? = nil) {
+         state: ListCellView.State) {
         self.cellStyle = cellStyle
         self.title = title
         self.subtitle = subtitle
@@ -49,8 +48,7 @@ class ListCellViewModel: ObservableObject {
         self.selectionDidToggle = selectionDidToggle
         self.collapseDidToggle = collapseDidToggle
         self.removeItemPressed = removeItemPressed
-        self.progress = progress
-        self.error = error
+        self.state = state
     }
 
     var backgroundColor: Color {
@@ -103,9 +101,9 @@ class ListCellViewModel: ObservableObject {
 
     var accessibilityText: String {
         var titleText = title + (subtitle ?? "")
-        if let error = error {
-            titleText.append("," + error)
-        }
+//        if let error = error {
+//            titleText.append("," + error)
+//        }
         var selectionText = ""
         if selectionDidToggle != nil {
             switch selectionState {
@@ -128,13 +126,13 @@ class ListCellViewModel: ObservableObject {
         }
 
         var progressText = ""
-        if let progress = progress, error == nil {
-            if progress == 1 {
-                progressText = NSLocalizedString("Download complete", bundle: .core, comment: "")
-            } else {
-                progressText = NSLocalizedString("Downloading", bundle: .core, comment: "")
-            }
-        }
+//        if let progress = progress, error == nil {
+//            if progress == 1 {
+//                progressText = NSLocalizedString("Download complete", bundle: .core, comment: "")
+//            } else {
+//                progressText = NSLocalizedString("Downloading", bundle: .core, comment: "")
+//            }
+//        }
 
         return titleText + "," + selectionText + "," + collapseText + "," + progressText + ","
     }

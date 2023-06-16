@@ -20,68 +20,129 @@ import Combine
 import CombineExt
 import Foundation
 
-struct SyncProgress {
-    let total: Int64
-    let progress: Int64
-    let failure: Bool
-}
-
 protocol CourseSyncProgressInteractor {
-    func getSyncProgress() -> SyncProgress
+    func getFileProgress() -> AnyPublisher<ReactiveStore<LocalUseCase<CourseSyncFileProgress>>.State, Never>
     func getCourseSyncProgressEntries() -> AnyPublisher<[CourseSyncEntry], Error>
-    func setProgress(selection: CourseEntrySelection, progress: Float?)
     func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool)
     func cancelSync()
     func retrySync()
-    func remove(selection: CourseEntrySelection)
 }
 
 final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
+    private let fileFolderInteractor: CourseSyncFileFolderInteractor
+    private let progressObserverInteractor: CourseSyncProgressObserverInteractor
+
+    private let courseListStore = ReactiveStore(
+        useCase: GetCourseSyncSelectorCourses()
+    )
+    private let courseSyncEntries = CurrentValueSubject<[CourseSyncEntry], Error>(.init())
+    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Progress info view
-
-    func getSyncProgress() -> SyncProgress {
-        let total = getTotalSize()
-        let progress = getProgressSize()
-        let failure = checkFailure()
-        return SyncProgress(total: total, progress: progress, failure: failure)
+    init(
+        fileFolderInteractor: CourseSyncFileFolderInteractor = CourseSyncFileFolderInteractorLive(),
+        progressObserverInteractor: CourseSyncProgressObserverInteractor = CourseSyncProgressObserverInteractorLive()
+    ) {
+        self.fileFolderInteractor = fileFolderInteractor
+        self.progressObserverInteractor = progressObserverInteractor
     }
 
-    private func getTotalSize() -> Int64 {
-        // TODO: logic
-        return 1
+    func getFileProgress() -> AnyPublisher<ReactiveStore<LocalUseCase<CourseSyncFileProgress>>.State, Never> {
+        progressObserverInteractor.observeFileProgress()
     }
-
-    private func getProgressSize() -> Int64 {
-        // TODO: logic
-        return 1
-    }
-
-    private func checkFailure() -> Bool {
-        // TODO: logic
-        return false
-    }
-
-    // MARK: - Progress item view
 
     func getCourseSyncProgressEntries() -> AnyPublisher<[CourseSyncEntry], Error> {
-        return Just([])
-            .setFailureType(to: Error.self)
+        unowned let unownedSelf = self
+
+        return courseListStore.getEntitiesFromDatabase()
+            .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
+            .flatMap { unownedSelf.fileFolderInteractor.getAllFiles(course: $0) }
+            .collect()
+            .replaceEmpty(with: [])
+            .handleEvents(
+                receiveOutput: {
+                    unownedSelf.courseSyncEntries.send($0)
+                    unownedSelf.observeEntryProgress()
+                },
+                receiveCompletion: { completion in
+                    switch completion {
+                    case let .failure(error):
+                        unownedSelf.courseSyncEntries.send(completion: .failure(error))
+                    default:
+                        break
+                    }
+                }
+            )
+            .flatMap { _ in unownedSelf.courseSyncEntries.eraseToAnyPublisher() }
             .eraseToAnyPublisher()
     }
 
-    func setProgress(selection: CourseEntrySelection, progress: Float?) {
+    private func observeEntryProgress() {
+        progressObserverInteractor.observeEntryProgress()
+            .flatMap { state -> AnyPublisher<[CourseSyncEntryProgress], Never> in
+                switch state {
+                case .data(let progressList):
+                    guard progressList.count > 0 else {
+                        return Empty(completeImmediately: false).eraseToAnyPublisher()
+                    }
+                    return Just(progressList).eraseToAnyPublisher()
+                default:
+                    return Empty(completeImmediately: false).eraseToAnyPublisher()
+                }
+            }
+            .sink { [weak self] progressList in
+                progressList.forEach {
+                    self?.setState(id: $0.id, selection: $0.selection, state: $0.state)
+                }
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func setState(id: String, selection: CourseEntrySelection, state: CourseSyncEntry.State) {
+        var entries = courseSyncEntries.value
+
+        switch selection {
+        case let .course(courseIndex):
+            guard entries.count - 1 >= courseIndex else {
+                return
+            }
+            entries[courseIndex].updateCourseState(state: state)
+        case let .tab(courseIndex, tabIndex):
+            guard entries.count - 1 >= courseIndex else {
+                return
+            }
+            entries[courseIndex].updateTabState(index: tabIndex, state: state)
+        case let .file(courseIndex, fileIndex):
+            guard entries.count - 1 >= courseIndex else {
+                return
+            }
+            if state == .error {
+                print("found it")
+            }
+            entries[courseIndex].updateFileState(index: fileIndex, state: state)
+        }
+
+        courseSyncEntries.send(entries)
     }
 
     func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool) {
+        var entries = courseSyncEntries.value
+
+        switch selection {
+        case let .course(courseIndex):
+            entries[courseIndex].isCollapsed = isCollapsed
+        case let .tab(courseIndex, tabIndex):
+            entries[courseIndex].tabs[tabIndex].isCollapsed = isCollapsed
+        case .file:
+            break
+        }
+
+        courseSyncEntries.send(entries)
     }
 
     func cancelSync() {
     }
 
     func retrySync() {
-    }
-
-    func remove(selection: CourseEntrySelection) {
     }
 }

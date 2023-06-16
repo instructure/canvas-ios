@@ -36,7 +36,7 @@ extension CourseSyncSelectorViewModel {
         /** The SwiftUI view ID. */
         let id: String
         let title: String
-        let subtitle: String?
+        var subtitle: String?
         let selectionState: ListCellView.SelectionState
         var isCollapsed: Bool?
         let cellStyle: ListCellView.ListCellStyle
@@ -98,9 +98,16 @@ extension Array where Element == CourseSyncEntry {
                 tabItem.collapseDidToggle = {
                     interactor.setCollapsed(selection: .tab(courseIndex, tabIndex), isCollapsed: !(tabItem.isCollapsed ?? false))
                 }
+
+                guard tab.type == .files else {
+                    cells.append(.item(tabItem))
+                    continue
+                }
+
+                tabItem.subtitle = course.totalSizeFormattedString
                 cells.append(.item(tabItem))
 
-                guard tab.type == .files, !tab.isCollapsed else {
+                guard !tab.isCollapsed else {
                     continue
                 }
 
@@ -119,11 +126,10 @@ extension Array where Element == CourseSyncEntry {
 }
 
 extension CourseSyncEntry {
-
     func makeViewModelItem() -> CourseSyncSelectorViewModel.Item {
         .init(id: id,
               title: name,
-              subtitle: nil,
+              subtitle: totalSizeFormattedString,
               selectionState: selectionState,
               isCollapsed: isCollapsed,
               cellStyle: .mainAccordionHeader)
@@ -147,7 +153,7 @@ extension CourseSyncEntry.File {
     func makeViewModelItem() -> CourseSyncSelectorViewModel.Item {
         .init(id: id,
               title: displayName,
-              subtitle: nil,
+              subtitle: bytesToDownload.humanReadableFileSize,
               selectionState: selectionState,
               cellStyle: .listItem)
     }

@@ -17,14 +17,12 @@
 //
 
 import Foundation
-import CoreData
 
-public final class CourseSyncFileProgress: NSManagedObject {
-    @NSManaged public var bytesToDownload: Int
-    @NSManaged public var bytesDownloaded: Int
-    @NSManaged public var error: String?
+class DeleteCourseSyncFileProgressUseCase: DeleteLocalUseCase<CourseSyncFileProgress> {
+    typealias Model = CourseSyncFileProgress
 
-    var progress: Float {
-        Float(bytesDownloaded) / Float(bytesToDownload)
+    override init(scope: Scope = .all) {
+        super.init(scope: scope)
+        self.scope = scope
     }
 }

@@ -16,22 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import CoreData
 import Foundation
 
-protocol CourseSyncProgressWriterInteractor {
-    func saveFileProgress(entries: [CourseSyncEntry])
+public protocol CourseSyncProgressWriterInteractor {
+    func saveFileProgress(entries: [CourseSyncEntry], error: String?)
+    func cleanUpPreviousFileProgress(entries: [CourseSyncEntry])
     func saveEntryProgress(id: String, selection: CourseEntrySelection, state: CourseSyncEntry.State)
 }
 
-final class CourseSyncProgressWriterInteractorLive: CourseSyncProgressWriterInteractor {
+public final class CourseSyncProgressWriterInteractorLive: CourseSyncProgressWriterInteractor {
     private let context: NSManagedObjectContext
 
     public init(context: NSManagedObjectContext = AppEnvironment.shared.database.viewContext) {
         self.context = context
     }
 
-    func saveFileProgress(entries: [CourseSyncEntry]) {
+    public func saveFileProgress(entries: [CourseSyncEntry], error: String?) {
         let bytesDownloaded = entries.totalDownloadedSize
         let bytesToDownloaded = entries.totalSelectedSize
 
@@ -39,11 +41,16 @@ final class CourseSyncProgressWriterInteractorLive: CourseSyncProgressWriterInte
             let progress: CourseSyncFileProgress = context.fetch(scope: .all).first ?? context.insert()
             progress.bytesDownloaded = bytesDownloaded
             progress.bytesToDownload = bytesToDownloaded
+            progress.error = error
             try? context.save()
         }
     }
 
-    func saveEntryProgress(id: String, selection: CourseEntrySelection, state: CourseSyncEntry.State) {
+    public func cleanUpPreviousFileProgress(entries: [CourseSyncEntry]) {
+        saveFileProgress(entries: entries, error: nil)
+    }
+
+    public func saveEntryProgress(id: String, selection: CourseEntrySelection, state: CourseSyncEntry.State) {
         context.performAndWait {
             let entryProgress: CourseSyncEntryProgress = context.fetch(
                 scope: .where(
@@ -52,6 +59,7 @@ final class CourseSyncProgressWriterInteractorLive: CourseSyncProgressWriterInte
                     sortDescriptors: []
                 )
             ).first ?? context.insert()
+
             entryProgress.id = id
             entryProgress.selection = selection
             entryProgress.state = state

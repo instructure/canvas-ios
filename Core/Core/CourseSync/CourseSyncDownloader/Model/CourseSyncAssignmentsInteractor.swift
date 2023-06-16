@@ -19,13 +19,15 @@
 import Combine
 import Foundation
 
-protocol CourseSyncAssignmentsInteractor: CourseSyncContentInteractor {}
-extension CourseSyncAssignmentsInteractor {
+public protocol CourseSyncAssignmentsInteractor: CourseSyncContentInteractor {}
+public extension CourseSyncAssignmentsInteractor {
     var associatedTabType: TabName { .assignments }
 }
 
-final class CourseSyncAssignmentsInteractorLive: CourseSyncAssignmentsInteractor, CourseSyncContentInteractor {
-    func getContent(courseId: String) -> AnyPublisher<Void, Error> {
+public final class CourseSyncAssignmentsInteractorLive: CourseSyncAssignmentsInteractor, CourseSyncContentInteractor {
+    public init() {}
+    
+    public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
         ReactiveStore(
             useCase: GetAssignmentsByGroup(courseID: courseId)
         )

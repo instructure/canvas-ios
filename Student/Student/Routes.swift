@@ -373,6 +373,9 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     "/offline/sync_picker/:courseID": { _, params, _ in
         CourseSyncSelectorAssembly.makeViewController(env: .shared, courseID: params["courseID"])
     },
+    "/offline/progress": { _, _, _ in
+        CourseSyncProgressAssembly.makeViewController(env: .shared)
+    },
     "/offline/settings": { _, _, _ in
         guard let sessionDefaults = AppEnvironment.shared.userDefaults else {
             return nil

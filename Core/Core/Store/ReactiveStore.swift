@@ -135,6 +135,23 @@ public class ReactiveStore<U: UseCase> {
         }
     }
 
+    public func getEntitiesFromDatabase() -> AnyPublisher<[U.Model], Error> {
+        let scope = useCase.scope
+        let request = NSFetchRequest<U.Model>(entityName: String(describing: U.Model.self))
+        request.predicate = scope.predicate
+        request.sortDescriptors = scope.order
+
+        return fetchEntitiesFromDatabase(fetchRequest: request)
+            .first()
+            .eraseToAnyPublisher()
+    }
+
+    public func deleteEntitiesFromDatabase() -> AnyPublisher<Void, Error> {
+        useCase.fetchWithFuture()
+            .map { _ in () }
+            .eraseToAnyPublisher()
+    }
+
     private func fetchEntitiesFromCache<T: NSManagedObject>(
         fetchRequest: NSFetchRequest<T>
     ) -> AnyPublisher<[T], Error> {

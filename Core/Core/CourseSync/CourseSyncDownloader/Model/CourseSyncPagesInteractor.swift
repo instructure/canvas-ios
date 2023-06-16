@@ -19,13 +19,15 @@
 import Combine
 import Foundation
 
-protocol CourseSyncPagesInteractor: CourseSyncContentInteractor {}
-extension CourseSyncPagesInteractor {
+public protocol CourseSyncPagesInteractor: CourseSyncContentInteractor {}
+public extension CourseSyncPagesInteractor {
     var associatedTabType: TabName { .pages }
 }
 
-final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor, CourseSyncContentInteractor {
-    func getContent(courseId: String) -> AnyPublisher<Void, Error> {
+public final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor, CourseSyncContentInteractor {
+    public init() {}
+
+    public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
         Publishers.Zip(
             ReactiveStore(
                 useCase: GetFrontPage(

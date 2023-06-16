@@ -84,7 +84,8 @@ struct CourseSyncSelectorView: View {
                                                        selectionState: item.selectionState,
                                                        isCollapsed: item.isCollapsed,
                                                        selectionDidToggle: item.selectionDidToggle,
-                                                       collapseDidToggle: item.collapseDidToggle))
+                                                       collapseDidToggle: item.collapseDidToggle,
+                                                       state: .idle))
                     case .empty:
                         emptyCourse
                     }

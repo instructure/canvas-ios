@@ -22,9 +22,11 @@ import Combine
 import CombineExt
 
 class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
-    private let mockData: CurrentValueRelay<[CourseSyncEntry]>
-
-    required init(courseID: String? = nil, sessionDefaults: SessionDefaults) {
+    required init(
+        courseID: String? = nil,
+        fileFolderInteractor: CourseSyncFileFolderInteractor = CourseSyncFileFolderInteractorLive(),
+        sessionDefaults: SessionDefaults
+    ) {
         mockData = CurrentValueRelay<[CourseSyncEntry]>([
             .init(name: "Black Hole",
                   id: "0",
@@ -44,6 +46,8 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
             .init(name: "Empty Course", id: "1", tabs: [], files: []),
         ])
     }
+
+    private let mockData: CurrentValueRelay<[CourseSyncEntry]>
 
     func mockEmptyState() {
         mockData.accept([])

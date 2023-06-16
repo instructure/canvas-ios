@@ -25,7 +25,7 @@ protocol CourseSyncSelectorInteractor {
      - parameters:
         - sessionDefaults: The storage from where the selection states are read and written to.
      */
-    init(courseID: String?, sessionDefaults: SessionDefaults)
+    init(courseID: String?, fileFolderInteractor: CourseSyncFileFolderInteractor, sessionDefaults: SessionDefaults)
     func getCourseSyncEntries() -> AnyPublisher<[CourseSyncEntry], Error>
     func observeSelectedCount() -> AnyPublisher<Int, Never>
     func observeIsEverythingSelected() -> AnyPublisher<Bool, Never>
@@ -43,10 +43,16 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     private let courseSyncEntries = CurrentValueSubject<[CourseSyncEntry], Error>(.init())
     private var subscriptions = Set<AnyCancellable>()
     private let courseID: String?
+    private let fileFolderInteractor: CourseSyncFileFolderInteractor
     private var sessionDefaults: SessionDefaults
 
-    init(courseID: String? = nil, sessionDefaults: SessionDefaults) {
+    init(
+        courseID: String? = nil,
+        fileFolderInteractor: CourseSyncFileFolderInteractor = CourseSyncFileFolderInteractorLive(),
+        sessionDefaults: SessionDefaults
+    ) {
         self.courseID = courseID
+        self.fileFolderInteractor = fileFolderInteractor
         self.sessionDefaults = sessionDefaults
     }
 
@@ -56,7 +62,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         courseListStore.getEntities()
             .filterToCourseID(courseID)
             .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
-            .flatMap { self.getAllFilesIfFilesTabIsEnabled(course: $0) }
+            .flatMap { self.fileFolderInteractor.getAllFiles(course: $0) }
             .collect()
             .replaceEmpty(with: [])
             .handleEvents(
@@ -177,149 +183,12 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
             promise(.success(entries))
         }.eraseToAnyPublisher()
     }
-
-    private func getAllFilesIfFilesTabIsEnabled(
-        course: CourseSyncSelectorCourse
-    ) -> AnyPublisher<CourseSyncEntry, Error> {
-        let tabs = Array(course.tabs).offlineSupportedTabs()
-        let mappedTabs = tabs.map {
-            CourseSyncEntry.Tab(
-                id: "courses/\(course.courseId)/tabs/\($0.id)",
-                name: $0.label,
-                type: $0.name
-            )
-        }
-        if tabs.isFilesTabEnabled() {
-            return getAllFiles(courseId: course.courseId)
-                .map { files in
-                    CourseSyncEntry(
-                        name: course.name,
-                        id: "courses/\(course.courseId)",
-                        tabs: mappedTabs,
-                        files: files
-                    )
-                }
-                .eraseToAnyPublisher()
-        } else {
-            return Just(
-                CourseSyncEntry(
-                    name: course.name,
-                    id: "courses/\(course.courseId)",
-                    tabs: mappedTabs,
-                    files: []
-                )
-            )
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
-        }
-    }
-
-    private func getAllFiles(courseId: String) -> AnyPublisher<[CourseSyncEntry.File], Error> {
-        unowned let unownedSelf = self
-
-        return ReactiveStore(
-            useCase: GetFolderByPath(
-                context: .course(courseId)
-            )
-        )
-        .getEntities()
-        .flatMap {
-            Publishers.Sequence(sequence: $0)
-                .filter { !$0.lockedForUser && !$0.hiddenForUser }
-                .setFailureType(to: Error.self)
-                .flatMap { unownedSelf.getFiles(folderID: $0.id, initialArray: []) }
-        }
-        .map {
-            $0
-                .compactMap { $0.file }
-                .filter { $0.url != nil && $0.mimeClass != nil }
-                .map {
-                    CourseSyncEntry.File(
-                        id: "courses/\(courseId)/files/\($0.id ?? Foundation.UUID().uuidString)",
-                        displayName: $0.displayName ?? NSLocalizedString("Unknown file", comment: ""),
-                        fileName: $0.filename,
-                        url: $0.url!,
-                        mimeClass: $0.mimeClass!,
-                        bytesToDownload: $0.size
-                    )
-                }
-        }
-        .replaceEmpty(with: [])
-        .eraseToAnyPublisher()
-    }
-
-    private func getFiles(folderID: String, initialArray: [FolderItem]) -> AnyPublisher<[FolderItem], Error> {
-        unowned let unownedSelf = self
-
-        var result = initialArray
-
-        return getFilesAndFolderIDs(folderID: folderID)
-            .flatMap { files, folderIDs in
-                result.append(contentsOf: files)
-
-                guard folderIDs.count > 0 else {
-                    return Just([result])
-                        .setFailureType(to: Error.self)
-                        .eraseToAnyPublisher()
-                }
-                return Publishers.Sequence(sequence: folderIDs)
-                    .setFailureType(to: Error.self)
-                    .flatMap {
-                        unownedSelf.getFiles(
-                            folderID: $0,
-                            initialArray: result
-                        )
-                        .handleEvents(receiveOutput: { result = $0 })
-                    }
-                    .collect()
-                    .eraseToAnyPublisher()
-            }
-            .first()
-            .map { _ in result }
-            .eraseToAnyPublisher()
-    }
-
-    private func getFilesAndFolderIDs(folderID: String) -> AnyPublisher<([FolderItem], [String]), Error> {
-        ReactiveStore(
-            useCase: GetFolderItems(
-                folderID: folderID
-            )
-        )
-        .getEntities()
-        .tryCatch { error -> AnyPublisher<[FolderItem], Error> in
-            if case .unauthorized = error as? Core.APIError {
-                return Just([])
-                    .setFailureType(to: Error.self)
-                    .eraseToAnyPublisher()
-            } else {
-                throw error
-            }
-        }
-        .map {
-            let files = $0
-                .filter {
-                    if let file = $0.file {
-                        return !file.lockedForUser && !file.hiddenForUser
-                    } else {
-                        return false
-                    }
-                }
-            let folderIDs = $0
-                .filter { $0.folder != nil }
-                .compactMap { $0.folder }
-                .filter { !$0.lockedForUser && !$0.hiddenForUser }
-                .map { $0.id }
-
-            return (files, folderIDs)
-        }
-        .eraseToAnyPublisher()
-    }
 }
 
-enum CourseEntrySelection: Codable, Equatable, Comparable {
-    typealias CourseIndex = Int
-    typealias TabIndex = Int
-    typealias FileIndex = Int
+public enum CourseEntrySelection: Codable, Equatable, Comparable {
+    public typealias CourseIndex = Int
+    public typealias TabIndex = Int
+    public typealias FileIndex = Int
 
     case course(CourseIndex)
     case tab(CourseIndex, TabIndex)
@@ -333,7 +202,7 @@ enum CourseEntrySelection: Codable, Equatable, Comparable {
         }
     }
 
-    static func < (lhs: CourseEntrySelection, rhs: CourseEntrySelection) -> Bool {
+    public static func < (lhs: CourseEntrySelection, rhs: CourseEntrySelection) -> Bool {
         switch (lhs, rhs) {
         case let (.course(lhsCourseIndex), .course(rhsCourseIndex)):
             return lhsCourseIndex <= rhsCourseIndex

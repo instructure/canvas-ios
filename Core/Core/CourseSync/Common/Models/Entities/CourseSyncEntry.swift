@@ -18,12 +18,12 @@
 
 import Foundation
 
-struct CourseSyncEntry {
-    enum State: Codable, Equatable, Hashable {
+public struct CourseSyncEntry {
+    public enum State: Codable, Equatable, Hashable {
         case loading(Float?), error, downloaded
     }
 
-    struct Tab {
+    public struct Tab {
         let id: String
         let name: String
         let type: TabName
@@ -32,7 +32,7 @@ struct CourseSyncEntry {
         var selectionState: ListCellView.SelectionState = .deselected
     }
 
-    struct File {
+    public struct File {
         /**
          The unique identifier of the sync entry in a form of "courses/:courseId/files/:fileId". Doesn't correspond to the file ID on API. Use the `fileId` property if you need the API id.
          */
@@ -102,6 +102,11 @@ struct CourseSyncEntry {
             }
     }
 
+    /// When the total file size is greater than 0, display e.g 4 GB, otherwise return nil
+    var totalSizeFormattedString: String? {
+        totalSize > 0 ? totalSize.humanReadableFileSize : nil
+    }
+
     /// Total size of selected course files in bytes.
     var totalSelectedSize: Int {
         files
@@ -142,6 +147,7 @@ struct CourseSyncEntry {
     }
 
     mutating func selectTab(index: Int, selectionState: ListCellView.SelectionState) {
+        guard tabs.count - 1 >= index else { return }
         tabs[index].selectionState = selectionState
 
         if tabs[index].type == .files {
@@ -153,6 +159,7 @@ struct CourseSyncEntry {
     }
 
     mutating func selectFile(index: Int, selectionState: ListCellView.SelectionState) {
+        guard files.count - 1 >= index else { return }
         files[index].selectionState = selectionState == .selected ? .selected : .deselected
 
         isEverythingSelected = (selectedTabsCount == tabs.count) && (selectedFilesCount == files.count)
@@ -169,15 +176,17 @@ struct CourseSyncEntry {
     }
 
     mutating func updateTabState(index: Int, state: State) {
+        guard tabs.count - 1 >= index else { return }
         tabs[index].state = state
     }
 
     mutating func updateFileState(index: Int, state: State) {
+        guard files.count - 1 >= index else { return }
         files[index].state = state
     }
 }
 
-extension Array where Element == CourseSyncEntry {
+public extension Array where Element == CourseSyncEntry {
     var totalSelectedSize: Int {
         reduce(0) { partialResult, entry in
             partialResult + entry.totalSelectedSize
@@ -192,6 +201,10 @@ extension Array where Element == CourseSyncEntry {
 
     var progress: Float {
         Float(totalDownloadedSize) / Float(totalSelectedSize)
+    }
+
+    func itemWithID(id: String) -> CourseSyncEntry? {
+        first(where: { $0.id == id })
     }
 }
 

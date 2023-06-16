@@ -19,7 +19,6 @@
 import SwiftUI
 
 struct ListCellView: View {
-
     enum ListCellStyle {
         case mainAccordionHeader
         case listAccordionHeader
@@ -30,6 +29,13 @@ struct ListCellView: View {
         case deselected
         case selected
         case partiallySelected
+    }
+
+    enum State {
+        case idle
+        case loading(Float?)
+        case downloaded
+        case error(String?)
     }
 
     @ObservedObject var viewModel: ListCellViewModel
@@ -83,28 +89,47 @@ struct ListCellView: View {
 
     @ViewBuilder
     private var progressAccessoryView: some View {
-        if viewModel.error != nil {
+        switch viewModel.state {
+        case .idle:
+            SwiftUI.EmptyView()
+        case let .loading(progress):
+            if let progress {
+                ProgressView(value: progress)
+                    .progressViewStyle(
+                        .determinateCircle(
+                            size: 20,
+                            lineWidth: 2,
+                            color: .backgroundInfo
+                        )
+                    )
+                    .accessibilityHidden(true)
+                    .padding(2)
+                    .padding(.leading, 30)
+
+            } else {
+                ProgressView(value: progress)
+                    .progressViewStyle(
+                        .indeterminateCircle(
+                            size: 20,
+                            lineWidth: 2,
+                            color: .backgroundInfo
+                        )
+                    )
+                    .accessibilityHidden(true)
+                    .padding(2)
+                    .padding(.leading, 30)
+            }
+        case .downloaded:
+            Image.checkLine
+                .size(24)
+                .foregroundColor(.textDarkest)
+                .accessibilityHidden(true)
+                .padding(.leading, 30)
+        case .error:
             Button {
                 viewModel.removeItemPressed?()
             } label: {
                 Image.xLine
-                    .size(24)
-                    .foregroundColor(.textDarkest)
-                    .accessibilityHidden(true)
-                    .padding(.leading, 30)
-            }
-
-        } else if let progress = viewModel.progress {
-            if progress < 1 {
-                ProgressView(value: progress)
-                    .progressViewStyle(.determinateCircle(size: 20,
-                                                          lineWidth: 2,
-                                                          color: .backgroundInfo))
-                    .accessibilityHidden(true)
-                    .padding(2)
-                    .padding(.leading, 30)
-            } else {
-                Image.checkLine
                     .size(24)
                     .foregroundColor(.textDarkest)
                     .accessibilityHidden(true)
@@ -133,10 +158,12 @@ struct ListCellView: View {
 
     @ViewBuilder
     private var errorText: some View {
-        Text(viewModel.error ?? "")
-            .lineLimit(1)
-            .foregroundColor(.textDanger)
-            .font(.regular14)
+        if case .error(let error) = viewModel.state {
+            Text(error ?? "")
+                .lineLimit(1)
+                .foregroundColor(.textDanger)
+                .font(.regular14)
+        }
     }
 
     var body: some View {
@@ -166,9 +193,7 @@ struct ListCellView: View {
                         if viewModel.subtitle != nil {
                             subTitleText
                         }
-                        if viewModel.error != nil {
-                            errorText
-                        }
+                        errorText
                     }.padding(.leading, 16).padding(.top, 12).padding(.bottom, 14)
                     Spacer()
                     accessoryIcon.accessibilityHidden(true)
@@ -186,11 +211,11 @@ struct ListCellView: View {
                 viewModel.collapseDidToggle?()
             }
         }
-        .if(viewModel.error != nil) { view in
-            view.accessibilityAction(named: Text("Remove item", bundle: .core)) {
-                viewModel.removeItemPressed?()
-            }
-        }
+//        .if(viewModel.error != nil) { view in
+//            view.accessibilityAction(named: Text("Remove item", bundle: .core)) {
+//                viewModel.removeItemPressed?()
+//            }
+//        }
         .accessibility(label: Text(viewModel.accessibilityText))
     }
 }
@@ -205,27 +230,32 @@ struct ListCellView_Previews: PreviewProvider {
                                            subtitle: "1MB",
                                            selectionState: .selected,
                                            isCollapsed: false,
-                                           selectionDidToggle: {}))
+                                           selectionDidToggle: {},
+                                           state: .loading(nil)))
             Divider()
             ListCellView(ListCellViewModel(cellStyle: .listAccordionHeader,
                                            title: "Something",
                                            subtitle: nil,
                                            selectionState: .deselected,
-                                           selectionDidToggle: {}))
+                                           selectionDidToggle: {},
+                                           state: .loading(0.2)))
             Divider()
             ListCellView(ListCellViewModel(cellStyle: .listAccordionHeader,
                                            title: "Files",
                                            subtitle: nil,
                                            selectionState: .deselected,
                                            isCollapsed: false,
-                                           selectionDidToggle: {}))
+                                           selectionDidToggle: {},
+                                           state: .downloaded))
             Divider()
             ListCellView(ListCellViewModel(cellStyle: .listItem,
                                            title: "Creative Machines and Innovative Instrumentation.mov",
                                            subtitle: "4 GB",
                                            selectionState: .selected,
                                            isCollapsed: false,
-                                           selectionDidToggle: {})).padding(.leading, 20)
+                                           selectionDidToggle: {},
+                                           state: .error(nil)
+                                          )).padding(.leading, 20)
             Divider().padding(.leading, 20)
             Spacer()
         }
@@ -235,21 +265,19 @@ struct ListCellView_Previews: PreviewProvider {
                                            title: "Top Secret.pdf",
                                            subtitle: nil,
                                            isCollapsed: false,
-                                           progress: 0.15,
-                                           error: "No good"))
+                                           state: .downloaded))
             Divider()
             ListCellView(ListCellViewModel(cellStyle: .listAccordionHeader,
                                            title: "Files",
                                            subtitle: "1.13 GB",
                                            isCollapsed: false,
-                                           progress: 0.5))
+                                           state: .loading(0.5)))
             Divider()
             ListCellView(ListCellViewModel(cellStyle: .listItem,
                                            title: "Creative Machines and Innovative Instrumentation.mov",
                                            subtitle: "4 GB",
                                            isCollapsed: false,
-                                           progress: 1,
-                                           error: "Sync Failed")).padding(.leading, 40)
+                                           state: .error("Sync Failed"))).padding(.leading, 40)
             Divider().padding(.leading, 56)
             Spacer()
         }

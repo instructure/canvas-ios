@@ -19,7 +19,7 @@
 import Combine
 import Foundation
 
-protocol CourseSyncFilesInteractor {
+public protocol CourseSyncFilesInteractor {
     func getFile(
         url: URL,
         fileID: String,
@@ -28,7 +28,7 @@ protocol CourseSyncFilesInteractor {
     ) -> AnyPublisher<Float, Error>
 }
 
-final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, LocalFileURLCreator {
+public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, LocalFileURLCreator {
     private let env: AppEnvironment
     private let fileManager: FileManager
 
@@ -40,7 +40,7 @@ final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, LocalFileU
         self.fileManager = fileManager
     }
 
-    func getFile(
+    public func getFile(
         url: URL,
         fileID: String,
         fileName: String,
