@@ -24,7 +24,7 @@ import XCTest
 public class AssignmentsHelper: BaseHelper {
     public static var getTomorrowsDateString: String { Date().addDays(1).ISO8601Format() }
     public static var getYesterdaysDateString: String { Date().addDays(-1).ISO8601Format() }
-    
+
     public static var assignmentDetailsName: Element { app.find(id: "AssignmentDetails.name") }
     public static var assignmentDetailsPoints: Element { app.find(id: "AssignmentDetails.points") }
     public static var assignmentDetailsStatus: Element { app.find(id: "AssignmentDetails.status") }
