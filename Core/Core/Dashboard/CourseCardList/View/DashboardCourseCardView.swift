@@ -26,7 +26,7 @@ struct DashboardCourseCardView: View {
     let contextColor: UIColor
     /** Wide layout puts the course image to the left of the cell while the course name and code will be next to it on the right. */
     let isWideLayout: Bool
-    let availableOffline: Bool
+    let isAvailableOffline: Bool
 
     @State private var isShowingKebabDialog = false
 
@@ -40,7 +40,7 @@ struct DashboardCourseCardView: View {
 
     var body: some View {
         ZStack(alignment: .topLeading) {
-            PrimaryButton(availableOffline: availableOffline) {
+            PrimaryButton(isAvailableOffline: isAvailableOffline) {
                 env.router.route(to: "/courses/\(courseCard.id)?contextColor=\(contextColor.hexString.dropFirst())", from: controller)
             } label: {
                 if isWideLayout {
@@ -215,7 +215,7 @@ struct CourseCard_Previews: PreviewProvider {
                        width: 200,
                        contextColor: .electric,
                        isWideLayout: false,
-                       availableOffline: true)
+                       isAvailableOffline: true)
             .frame(width: 200, height: 160)
             .environment(\.horizontalSizeClass, .compact)
 
@@ -226,7 +226,7 @@ struct CourseCard_Previews: PreviewProvider {
                        width: 400,
                        contextColor: .electric,
                        isWideLayout: false,
-                       availableOffline: true)
+                       isAvailableOffline: true)
             .frame(width: 400, height: 160)
             .environment(\.horizontalSizeClass, .compact)
 
@@ -237,7 +237,7 @@ struct CourseCard_Previews: PreviewProvider {
                        width: 900,
                        contextColor: .electric,
                        isWideLayout: true,
-                       availableOffline: true)
+                       isAvailableOffline: true)
             .frame(width: 900, height: 100)
             .environment(\.horizontalSizeClass, .regular)
         }

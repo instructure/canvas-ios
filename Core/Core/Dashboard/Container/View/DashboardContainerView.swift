@@ -264,8 +264,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                     width: layoutInfo.cardWidth,
                     contextColor: card.color,
                     isWideLayout: layoutInfo.isWideLayout,
-                    // TODO: handle availibility
-                    availableOffline: false
+                    isAvailableOffline: card.isAvailableOffline
                 )
                 .frame(minHeight: layoutInfo.cardMinHeight)
             }

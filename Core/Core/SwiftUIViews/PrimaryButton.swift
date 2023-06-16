@@ -24,17 +24,18 @@ public struct PrimaryButton<Label>: View where Label: View {
     let label: Label
     @State private var shouldShowAlert = false
     private let offlineService = OfflineServiceLive.shared
-    private let availableOffline: Bool
+    private let isAvailableOffline: Bool
 
-    public init(availableOffline: Bool = false, action: @escaping () -> Void, @ViewBuilder label: @escaping () -> Label) {
-        self.availableOffline = availableOffline
+    public init(isAvailableOffline: Bool = false, action: @escaping () -> Void, @ViewBuilder label: @escaping () -> Label) {
+        self.isAvailableOffline = isAvailableOffline
         self.action = action
         self.label = label()
     }
 
     public var body: some View {
+        let unavailable = !isAvailableOffline && offlineService.isOfflineModeEnabled()
         Button {
-            if !availableOffline, offlineService.isOfflineModeEnabled() {
+            if unavailable {
                 shouldShowAlert = true
             } else {
                 action()
@@ -42,7 +43,7 @@ public struct PrimaryButton<Label>: View where Label: View {
         } label: {
             label
         }
-        .opacity(0.5)
+        .opacity(unavailable ? 0.5 : 1.0)
         .alert(isPresented: $shouldShowAlert) {
             Alert(title: Text("Offline mode", bundle: .core),
                   message: Text("This item is not available offline.", bundle: .core),
