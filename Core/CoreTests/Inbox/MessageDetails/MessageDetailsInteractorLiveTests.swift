@@ -49,12 +49,12 @@ class MessageDetailsInteractorLiveTests: CoreTestCase {
     func testRefresh() {
         let getConversationRequest = GetConversationRequest(id: conversationID, include: [.participant_avatars])
         api.mock(getConversationRequest, value: nil, response: nil, error: NSError.instructureError("Failed"))
-        performRefresh()
+        XCTAssertFinish(testee.refresh())
         waitForState(.error)
 
         mockConversation()
 
-        performRefresh()
+        XCTAssertFinish(testee.refresh())
         waitForState(.data)
 
         XCTAssertEqual(testee.state.value, .data)
@@ -86,15 +86,6 @@ class MessageDetailsInteractorLiveTests: CoreTestCase {
         let conversation = APIConversation.make(id: "1", subject: "Subject", starred: true, messages: [message])
         let getConversationRequest = GetConversationRequest(id: conversationID, include: [.participant_avatars])
         api.mock(getConversationRequest, value: conversation)
-    }
-
-    private func performRefresh() {
-        let refreshed = expectation(description: "Expected state reached")
-        testee
-            .refresh()
-            .sink { refreshed.fulfill() }
-            .store(in: &subscriptions)
-        wait(for: [refreshed], timeout: 1)
     }
 
     private func waitForState(_ state: StoreState) {

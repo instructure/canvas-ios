@@ -38,7 +38,7 @@ public struct MessageView: View {
             Button {
                 replyDidTap()
             } label: {
-                Text("Reply")
+                Text("Reply", bundle: .core)
                     .font(.regular16)
                     .foregroundColor(Color(Brand.shared.linkColor))
             }

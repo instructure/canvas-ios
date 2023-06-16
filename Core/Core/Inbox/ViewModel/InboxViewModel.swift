@@ -138,13 +138,13 @@ public class InboxViewModel: ObservableObject {
 
     private func subscribeToTapEvents(router: Router) {
         menuDidTap
-            .sink { [weak router] source in
-                router?.route(to: "/profile", from: source, options: .modal())
+            .sink { [router] source in
+                router.route(to: "/profile", from: source, options: .modal())
             }
             .store(in: &subscriptions)
         messageDidTap
-            .sink { [weak router] (messageID, controller) in
-                router?.route(to: "/conversations/\(messageID)", from: controller, options: .detail)
+            .sink { [router] (messageID, controller) in
+                router.route(to: "/conversations/\(messageID)", from: controller, options: .detail)
             }
             .store(in: &subscriptions)
     }

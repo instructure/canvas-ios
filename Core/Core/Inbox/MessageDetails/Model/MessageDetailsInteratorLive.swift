@@ -45,7 +45,7 @@ public class MessageDetailsInteractorLive: MessageDetailsInteractor {
         conversationStore
             .allObjects
             .map {
-                $0.first?.subject ?? ""
+                $0.first?.subject ?? NSLocalizedString("No Subject", comment: "")
             }
             .subscribe(subject)
             .store(in: &subscriptions)
@@ -61,9 +61,7 @@ public class MessageDetailsInteractorLive: MessageDetailsInteractor {
 
         conversationStore
             .allObjects
-            .map {
-                $0.first?.starred ?? false
-            }
+            .compactMap { $0.first?.starred }
             .subscribe(starred)
             .store(in: &subscriptions)
 

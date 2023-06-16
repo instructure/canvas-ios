@@ -260,14 +260,14 @@ public struct PutConversationRequest: APIRequestable {
 
 public struct StarConversationRequest: APIRequestable {
     public typealias Response = APIConversation
-    public struct Body: Encodable, Equatable {
-        let conversation: ConversationContainer
-    }
-
     let id: String
     let starred: Bool
     public var path: String { "conversations/\(id)" }
     public let method = APIMethod.put
+
+    public struct Body: Encodable, Equatable {
+        let conversation: ConversationContainer
+    }
 
     struct ConversationContainer: Encodable, Equatable {
         let id: String
@@ -275,7 +275,7 @@ public struct StarConversationRequest: APIRequestable {
     }
 
     public var body: Body? {
-        return Body(conversation: ConversationContainer(id: id, starred: starred))
+        Body(conversation: ConversationContainer(id: id, starred: starred))
     }
 }
 

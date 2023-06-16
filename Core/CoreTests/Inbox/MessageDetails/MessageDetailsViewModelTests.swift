@@ -52,7 +52,7 @@ class MessageDetailsViewModelTests: CoreTestCase {
     func testStarredTap() {
         XCTAssertFalse(testee.starred)
 
-        testee.starDidTap.send()
+        testee.starDidTap.send(true)
 
         XCTAssertEqual(mockInteractor.receivedStarred, true)
     }

@@ -29,7 +29,7 @@ class MessageDetailsViewModel: ObservableObject {
 
     // MARK: - Inputs
     public let refreshDidTrigger = PassthroughSubject<() -> Void, Never>()
-    public let starDidTap = PassthroughSubject<Void, Never>()
+    public let starDidTap = PassthroughSubject<Bool, Never>()
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
@@ -85,9 +85,6 @@ class MessageDetailsViewModel: ObservableObject {
         interactor.state
                 .assign(to: &$state)
         interactor.subject
-            .map { subject in
-                subject.isEmpty ? NSLocalizedString("No Subject", comment: "") : subject
-            }
             .assign(to: &$subject)
         interactor.messages
             .map { messages in
@@ -113,8 +110,8 @@ class MessageDetailsViewModel: ObservableObject {
             .sink()
             .store(in: &subscriptions)
         starDidTap
-            .map { _ in
-                interactor.updateStarred(starred: !self.starred) }
+            .map { starred in
+                interactor.updateStarred(starred: starred) }
             .sink()
             .store(in: &subscriptions)
     }

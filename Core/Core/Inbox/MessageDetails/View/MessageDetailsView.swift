@@ -34,7 +34,7 @@ public struct MessageDetailsView: View {
             case .data:
                 detailsView
             case .empty, .error:
-                Text("There was an error loading the message. Pull to refresh to try again.")
+                Text("There was an error loading the message. Pull to refresh to try again.", bundle: .core)
             }
         }
         .refreshable {
@@ -90,7 +90,7 @@ public struct MessageDetailsView: View {
 
     private var starButton: some View {
         Button(action: {
-            model.starDidTap.send()
+            model.starDidTap.send(!model.starred)
         }, label: {
             var star = Image.starLine
             var a11yLabel = NSLocalizedString("Un-starred", bundle: .core, comment: "")
