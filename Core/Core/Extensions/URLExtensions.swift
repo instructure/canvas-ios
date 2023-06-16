@@ -63,6 +63,26 @@ public extension URL {
         public static var offline: URL {
             documents.appendingPathComponent("Offline")
         }
+
+        public static func databaseURL(for appGroup: String?, session: LoginSession?) -> URL {
+            guard let session else {
+                return URL.Directories.caches
+                    .appendingPathComponent("Database.sqlite", isDirectory: false)
+            }
+
+            let documents: URL = {
+                if let appGroup, let container = URL.Directories.sharedContainer(appGroup) {
+                    return container.appendingPathComponent("Documents", isDirectory: true)
+                } else {
+                    return URL.Directories.documents
+                }
+            }()
+
+            return documents
+                    .appendingPathComponent("Offline", isDirectory: true)
+                    .appendingPathComponent(session.uniqueID, isDirectory: true)
+                    .appendingPathComponent("Database.sqlite", isDirectory: false)
+        }
     }
 
     func lookupFileSize() -> Int {

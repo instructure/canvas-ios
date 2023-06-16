@@ -33,9 +33,10 @@ extension NSPersistentContainer {
         FileUploadTargetTransformer.register()
         let container = NSPersistentContainer(name: "Database", managedObjectModel: model)
 
-        if let url = databaseURL(for: appGroup, session: session) {
-            container.persistentStoreDescriptions = [ NSPersistentStoreDescription(url: url) ]
-        }
+        let url = URL.Directories.databaseURL(for: appGroup, session: session)
+        container.persistentStoreDescriptions = [
+            NSPersistentStoreDescription(url: url)
+        ]
 
         container.loadPersistentStores { _, error in
             guard error == nil else {
@@ -45,15 +46,6 @@ extension NSPersistentContainer {
             container.setUp()
         }
         return container
-    }
-
-    public static func databaseURL(for appGroup: String?, session: LoginSession?) -> URL? {
-        let folder = URL.Directories.caches(appGroup: appGroup)
-        var fileName = "Database.sqlite"
-        if let host = session?.baseURL.host, let userID = session?.userID {
-            fileName = "Database-\(host)-\(userID).sqlite"
-        }
-        return folder.appendingPathComponent(fileName)
     }
 
     // MARK: - Public Instance Methods
