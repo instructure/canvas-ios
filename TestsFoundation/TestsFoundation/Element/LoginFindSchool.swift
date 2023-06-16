@@ -21,9 +21,8 @@ import Foundation
 public enum LoginFindSchool: String, ElementWrapper {
     case searchField
 
-    public static var keyboardGoButton: Element {
-        app.find(type: .keyboard).rawElement.find(id: "Go")
-    }
+    public static var keyboardGoButton: Element { app.find(type: .keyboard).rawElement.find(id: "Go") }
+    public static var nextButton: Element { app.find(id: "nextButton", type: .button) }
 }
 
 public enum LoginFindAccountResult {

@@ -381,7 +381,7 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </imageView>
                                                                 </subviews>
-                                                                <accessibility key="accessibilityConfiguration" identifier="AssingmentDetails.submissionsButton">
+                                                                <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.submissionsButton">
                                                                     <accessibilityTraits key="traits" button="YES"/>
                                                                 </accessibility>
                                                                 <gestureRecognizers/>
@@ -596,6 +596,7 @@
                                     </view>
                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q3R-vd-zmQ">
                                         <rect key="frame" x="0.0" y="1449" width="375" height="100"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.description"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" placeholder="YES" id="rno-a9-Zp1"/>
                                         </constraints>
