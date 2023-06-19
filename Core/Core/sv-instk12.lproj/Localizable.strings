@@ -22,6 +22,9 @@
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
 
+/* Weekly Auto / Daily Auto Synchronization Frequency */
+"%@ Auto" = "%@ Automatisk";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Genomsnittsbetyg";
 
@@ -374,6 +377,9 @@
 "Authentication failed. Most likely the user denied the request for access." = "Autentiseringen misslyckades. Sannolikt avslog användaren åtkomstbegäran.";
 
 /* No comment provided by engineer. */
+"Auto Content Sync" = "Automatisk innehållssynkronisering";
+
+/* No comment provided by engineer. */
 "Availability" = "Tillgänglighet";
 
 /* No comment provided by engineer. */
@@ -521,10 +527,16 @@
 "Close App" = "Stäng appen";
 
 /* No comment provided by engineer. */
+"Close section" = "Stäng sektion";
+
+/* No comment provided by engineer. */
 "Closed" = "Stängda";
 
 /* No comment provided by engineer. */
 "Closed for Comments" = "Stängt för kommentarer";
+
+/* No comment provided by engineer. */
+"Closed section" = "Stängd sektion";
 
 /* No comment provided by engineer. */
 "Collapse" = "Stäng";
@@ -579,6 +591,9 @@
 
 /* No comment provided by engineer. */
 "Content Link Error" = "Fel på innehållslänk";
+
+/* No comment provided by engineer. */
+"Content sync might use cellular data which may result in extra fees from your data provider." = "Innehållssynkronisering kan använda celldata som kan medföra extraavgifter från din dataleverantör.";
 
 /* No comment provided by engineer. */
 "Contribute" = "Bidra";
@@ -791,6 +806,12 @@
 "Deselect All" = "Avmarkera alla";
 
 /* No comment provided by engineer. */
+"Deselect item" = "Avmarkera objekt";
+
+/* No comment provided by engineer. */
+"Deselected" = "Avmarkerat";
+
+/* No comment provided by engineer. */
 "Designer" = "Designer";
 
 /* No comment provided by engineer. */
@@ -852,6 +873,15 @@
 
 /* No comment provided by engineer. */
 "Done" = "Klar";
+
+/* No comment provided by engineer. */
+"Download complete" = "Nedladdning slutförd";
+
+/* No comment provided by engineer. */
+"Downloading" = "Laddar ned";
+
+/* Downloading 42 GB of 64 GB */
+"Downloading %@ of %@" = "Laddar ned %1$@ av %2$@";
 
 /* No comment provided by engineer. */
 "Due" = "Inlämningsdatum";
@@ -933,6 +963,9 @@
 
 /* No comment provided by engineer. */
 "Enable Push Notifications" = "Aktivera push-aviseringar";
+
+/* No comment provided by engineer. */
+"Enabling the Auto Content Sync will take care of downloading the selected content based on the below settings. The content synchronization will happen even if the application is not running. If the setting is switched off then no synchronization will happen. The already downloaded content will not be deleted." = "Om automatisk innehållssynkronisering aktiveras laddas det valda innehållet ned baserat på nedanstående inställningar. Innehållssynkroniseringen sker även om programmet inte körs. Om inställningen är avstängd sker ingen synkronisering. Innehåll som redan laddats ned raderas inte.";
 
 /* No comment provided by engineer. */
 "End Act as User" = "Sluta agera som användaren";
@@ -1223,6 +1256,9 @@
 "I obtained permission" = "Jag fick behörighet";
 
 /* No comment provided by engineer. */
+"If this setting is enabled the content synchronization will only happen if the device connects to a Wi-Fi network, otherwise it will be postponed until a Wi-Fi network is available." = "Om den här inställningen aktiveras sker innehållssynkroniseringen endast om enheten ansluter till ett Wi-Fi-nätverk, i annat fall skjuts den upp tills ett Wi-Fi-nätverk är tillgängligt.";
+
+/* No comment provided by engineer. */
 "Image" = "Bild";
 
 /* No comment provided by engineer. */
@@ -1464,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Manage Students" = "Hantera elever";
+
+/* No comment provided by engineer. */
+"Manual" = "Manuell";
 
 /* No comment provided by engineer. */
 "Manual OAuth Login" = "Manuell OAuth-inloggning";
@@ -1727,6 +1766,9 @@
 "Offline Content" = "Offlineinnehåll";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Failed" = "Innehållssynkronisering offline misslyckades";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -1737,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "En av dina inlämningar laddas upp fortfarande. Om du loggar ut kan den avbrytas.\nVill du logga ut?";
+
+/* No comment provided by engineer. */
+"One or more files failed to sync. Check your internet connection and retry to submit." = "En eller fler filer synkroniserades inte. Kontrollera din internetanslutning och försök lämna in igen.";
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "En eller fler filer laddades inte upp. Kontrollera din internetanslutning och försök lämna in igen.";
@@ -1767,6 +1812,9 @@
 
 /* No comment provided by engineer. */
 "Open item details" = "Öppna objektinformation";
+
+/* No comment provided by engineer. */
+"Open section" = "Öppna sektionen";
 
 /* No comment provided by engineer. */
 "Opens in Canvas Student" = "Öppnas i Canvas Elev";
@@ -1818,6 +1866,9 @@
 
 /* No comment provided by engineer. */
 "Pairing Code: " = "Parkopplingskod: ";
+
+/* No comment provided by engineer. */
+"Partially selected" = "Delvis vald";
 
 /* No comment provided by engineer. */
 "Pass" = "Godkänd";
@@ -2012,6 +2063,9 @@
 "Remove From List?" = "Ta bort från listan?";
 
 /* No comment provided by engineer. */
+"Remove item" = "Ta bort objekt";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Tog bort %1$@";
 
 /* No comment provided by engineer. */
@@ -2144,6 +2198,9 @@
 "Select Impact" = "Välj påverkan";
 
 /* No comment provided by engineer. */
+"Select item" = "Välj objekt";
+
+/* No comment provided by engineer. */
 "Select One" = "Välj en";
 
 /* No comment provided by engineer. */
@@ -2244,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Sortera efter antal ”gilla”";
+
+/* No comment provided by engineer. */
+"Specify the recurrence of the content synchronization. The system will download the selected content based on the frequency specified here." = "Ange hur ofta innehållssynkroniseringen ska ske. Systemet kommer att ladda ned det valda innehållet baserat på den frekvens du anger här.";
 
 /* No comment provided by engineer. */
 "Staff Contact Info" = "Kontaktuppgifter för personal";
@@ -2366,7 +2426,19 @@
 "Sync" = "Synkronisera";
 
 /* No comment provided by engineer. */
+"Sync Content Over Wi-Fi Only" = "Synkronisera endast innehåll över Wi-Fi";
+
+/* No comment provided by engineer. */
+"Sync Failed" = "Synkroniseringen misslyckades";
+
+/* No comment provided by engineer. */
+"Sync Frequency" = "Synkroniseringsfrekvens";
+
+/* No comment provided by engineer. */
 "Sync Offline Content?" = "Synkronisera offlineinnehåll?";
+
+/* No comment provided by engineer. */
+"Synchronization" = "Synkronisering";
 
 /* No comment provided by engineer. */
 "System settings" = "Systeminställningar";
@@ -2586,6 +2658,12 @@
 
 /* No comment provided by engineer. */
 "Total time" = "Total tid";
+
+/* No comment provided by engineer. */
+"Turn Off" = "Stäng av";
+
+/* No comment provided by engineer. */
+"Turn Off Wi-Fi Only Sync?" = "Stänga av Synkronisering endast via Wi-Fi?";
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Twitter-aviseringar";

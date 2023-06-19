@@ -22,6 +22,9 @@
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
 
+/* Weekly Auto / Daily Auto Synchronization Frequency */
+"%@ Auto" = "%@ Auto";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
@@ -374,6 +377,9 @@
 "Authentication failed. Most likely the user denied the request for access." = "Authentication failed. Most likely the user denied the request for access.";
 
 /* No comment provided by engineer. */
+"Auto Content Sync" = "Auto Content Sync";
+
+/* No comment provided by engineer. */
 "Availability" = "Availability";
 
 /* No comment provided by engineer. */
@@ -521,10 +527,16 @@
 "Close App" = "Close App";
 
 /* No comment provided by engineer. */
+"Close section" = "Close section";
+
+/* No comment provided by engineer. */
 "Closed" = "Closed";
 
 /* No comment provided by engineer. */
 "Closed for Comments" = "Closed for Comments";
+
+/* No comment provided by engineer. */
+"Closed section" = "Closed section";
 
 /* No comment provided by engineer. */
 "Collapse" = "Collapse";
@@ -579,6 +591,9 @@
 
 /* No comment provided by engineer. */
 "Content Link Error" = "Content Link Error";
+
+/* No comment provided by engineer. */
+"Content sync might use cellular data which may result in extra fees from your data provider." = "Content sync might use cellular data which may result in extra fees from your data provider.";
 
 /* No comment provided by engineer. */
 "Contribute" = "Contribute";
@@ -791,6 +806,12 @@
 "Deselect All" = "Deselect All";
 
 /* No comment provided by engineer. */
+"Deselect item" = "Deselect item";
+
+/* No comment provided by engineer. */
+"Deselected" = "Deselected";
+
+/* No comment provided by engineer. */
 "Designer" = "Designer";
 
 /* No comment provided by engineer. */
@@ -852,6 +873,15 @@
 
 /* No comment provided by engineer. */
 "Done" = "Done";
+
+/* No comment provided by engineer. */
+"Download complete" = "Download complete";
+
+/* No comment provided by engineer. */
+"Downloading" = "Downloading";
+
+/* Downloading 42 GB of 64 GB */
+"Downloading %@ of %@" = "Downloading %1$@ of %2$@";
 
 /* No comment provided by engineer. */
 "Due" = "Due";
@@ -933,6 +963,9 @@
 
 /* No comment provided by engineer. */
 "Enable Push Notifications" = "Enable Push Notifications";
+
+/* No comment provided by engineer. */
+"Enabling the Auto Content Sync will take care of downloading the selected content based on the below settings. The content synchronization will happen even if the application is not running. If the setting is switched off then no synchronization will happen. The already downloaded content will not be deleted." = "Enabling the Auto Content Sync will take care of downloading the selected content based on the below settings. The content synchronization will happen even if the application is not running. If the setting is switched off then no synchronization will happen. The already downloaded content will not be deleted.";
 
 /* No comment provided by engineer. */
 "End Act as User" = "End Act as User";
@@ -1223,6 +1256,9 @@
 "I obtained permission" = "I obtained permission";
 
 /* No comment provided by engineer. */
+"If this setting is enabled the content synchronization will only happen if the device connects to a Wi-Fi network, otherwise it will be postponed until a Wi-Fi network is available." = "If this setting is enabled the content synchronization will only happen if the device connects to a Wi-Fi network, otherwise it will be postponed until a Wi-Fi network is available.";
+
+/* No comment provided by engineer. */
 "Image" = "Image";
 
 /* No comment provided by engineer. */
@@ -1464,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Manage Students" = "Manage Students";
+
+/* No comment provided by engineer. */
+"Manual" = "Manual";
 
 /* No comment provided by engineer. */
 "Manual OAuth Login" = "Manual OAuth Login";
@@ -1727,6 +1766,9 @@
 "Offline Content" = "Offline Content";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Failed" = "Offline Content Sync Failed";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -1737,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?";
+
+/* No comment provided by engineer. */
+"One or more files failed to sync. Check your internet connection and retry to submit." = "One or more files failed to sync. Check your internet connection and retry to submit.";
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "One or more files failed to upload. Check your internet connection and retry to submit.";
@@ -1767,6 +1812,9 @@
 
 /* No comment provided by engineer. */
 "Open item details" = "Open item details";
+
+/* No comment provided by engineer. */
+"Open section" = "Open section";
 
 /* No comment provided by engineer. */
 "Opens in Canvas Student" = "Opens in Canvas Student";
@@ -1818,6 +1866,9 @@
 
 /* No comment provided by engineer. */
 "Pairing Code: " = "Pairing Code: ";
+
+/* No comment provided by engineer. */
+"Partially selected" = "Partially selected";
 
 /* No comment provided by engineer. */
 "Pass" = "Pass";
@@ -2012,6 +2063,9 @@
 "Remove From List?" = "Remove From List?";
 
 /* No comment provided by engineer. */
+"Remove item" = "Remove item";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Removed %1$@";
 
 /* No comment provided by engineer. */
@@ -2144,6 +2198,9 @@
 "Select Impact" = "Select Impact";
 
 /* No comment provided by engineer. */
+"Select item" = "Select item";
+
+/* No comment provided by engineer. */
 "Select One" = "Select One";
 
 /* No comment provided by engineer. */
@@ -2244,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Sort by likes";
+
+/* No comment provided by engineer. */
+"Specify the recurrence of the content synchronization. The system will download the selected content based on the frequency specified here." = "Specify the recurrence of the content synchronization. The system will download the selected content based on the frequency specified here.";
 
 /* No comment provided by engineer. */
 "Staff Contact Info" = "Staff Contact Info";
@@ -2366,7 +2426,19 @@
 "Sync" = "Sync";
 
 /* No comment provided by engineer. */
+"Sync Content Over Wi-Fi Only" = "Sync Content Over Wi-Fi Only";
+
+/* No comment provided by engineer. */
+"Sync Failed" = "Sync Failed";
+
+/* No comment provided by engineer. */
+"Sync Frequency" = "Sync Frequency";
+
+/* No comment provided by engineer. */
 "Sync Offline Content?" = "Sync Offline Content?";
+
+/* No comment provided by engineer. */
+"Synchronization" = "Synchronization";
 
 /* No comment provided by engineer. */
 "System settings" = "System settings";
@@ -2586,6 +2658,12 @@
 
 /* No comment provided by engineer. */
 "Total time" = "Total time";
+
+/* No comment provided by engineer. */
+"Turn Off" = "Turn Off";
+
+/* No comment provided by engineer. */
+"Turn Off Wi-Fi Only Sync?" = "Turn Off Wi-Fi Only Sync?";
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Twitter Notifications";

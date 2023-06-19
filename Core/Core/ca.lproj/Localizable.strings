@@ -22,6 +22,9 @@
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
 
+/* Weekly Auto / Daily Auto Synchronization Frequency */
+"%@ Auto" = "%@ Automàtic";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
@@ -374,6 +377,9 @@
 "Authentication failed. Most likely the user denied the request for access." = "No s'ha pogut dur a terme l'autenticació. El més probable és que l'usuari hagi denegat la sol·licitud d'accés.";
 
 /* No comment provided by engineer. */
+"Auto Content Sync" = "Sincronització automàtica del contingut";
+
+/* No comment provided by engineer. */
 "Availability" = "Disponibilitat";
 
 /* No comment provided by engineer. */
@@ -521,10 +527,16 @@
 "Close App" = "Tanca l'aplicació";
 
 /* No comment provided by engineer. */
+"Close section" = "Tanca la secció";
+
+/* No comment provided by engineer. */
 "Closed" = "Tancat";
 
 /* No comment provided by engineer. */
 "Closed for Comments" = "Tancat per als comentaris";
+
+/* No comment provided by engineer. */
+"Closed section" = "Secció tancada";
 
 /* No comment provided by engineer. */
 "Collapse" = "Contrau";
@@ -579,6 +591,9 @@
 
 /* No comment provided by engineer. */
 "Content Link Error" = "Error d'enllaç de contingut";
+
+/* No comment provided by engineer. */
+"Content sync might use cellular data which may result in extra fees from your data provider." = "És possible que per sincronitzar el contingut es facin servir dades mòbils, per la qual cosa el vostre proveïdor de dades podria aplicar-vos càrrecs extres.";
 
 /* No comment provided by engineer. */
 "Contribute" = "Contribueix";
@@ -791,6 +806,12 @@
 "Deselect All" = "Anul·la la selecció de tot";
 
 /* No comment provided by engineer. */
+"Deselect item" = "Anul·la la selecció de l’element";
+
+/* No comment provided by engineer. */
+"Deselected" = "S’ha anul·lat la selecció";
+
+/* No comment provided by engineer. */
 "Designer" = "Dissenyador";
 
 /* No comment provided by engineer. */
@@ -852,6 +873,15 @@
 
 /* No comment provided by engineer. */
 "Done" = "Fet";
+
+/* No comment provided by engineer. */
+"Download complete" = "S’ha completat la baixada";
+
+/* No comment provided by engineer. */
+"Downloading" = "S'està baixant";
+
+/* Downloading 42 GB of 64 GB */
+"Downloading %@ of %@" = "S'està baixant %1$@ de %2$@";
 
 /* No comment provided by engineer. */
 "Due" = "Data de lliurament";
@@ -935,6 +965,9 @@
 "Enable Push Notifications" = "Activa les notificacions d'inserció";
 
 /* No comment provided by engineer. */
+"Enabling the Auto Content Sync will take care of downloading the selected content based on the below settings. The content synchronization will happen even if the application is not running. If the setting is switched off then no synchronization will happen. The already downloaded content will not be deleted." = "En activar la sincronització automàtica del contingut es baixarà el contingut seleccionat segons les opcions de configuració indicades a continuació. Se sincronitzarà el contingut encara que l’aplicació no s’estigui executant. Si el paràmetre està desactivat no es durà a terme la sincronització. No se suprimirà el contingut que ja s’hagi baixat.";
+
+/* No comment provided by engineer. */
 "End Act as User" = "Deixa d'actuar com a usuari";
 
 /* No comment provided by engineer. */
@@ -956,7 +989,7 @@
 "Everyone else" = "Tots els altres";
 
 /* No comment provided by engineer. */
-"Excused" = "Excusat";
+"Excused" = "Justificat";
 
 /* No comment provided by engineer. */
 "Expand" = "Desplega";
@@ -1223,6 +1256,9 @@
 "I obtained permission" = "He obtingut permís";
 
 /* No comment provided by engineer. */
+"If this setting is enabled the content synchronization will only happen if the device connects to a Wi-Fi network, otherwise it will be postponed until a Wi-Fi network is available." = "Si aquest paràmetre està activat, només se sincronitzarà el contingut si el dispositiu es connecta a una xarxa Wi-Fi; en cas contrari, l’acció es posposarà fins que hi hagi una xarxa Wi-Fi disponible.";
+
+/* No comment provided by engineer. */
 "Image" = "Imatge";
 
 /* No comment provided by engineer. */
@@ -1328,7 +1364,7 @@
 "Last post %@" = "Darrera publicació %@";
 
 /* No comment provided by engineer. */
-"Late" = "Tardà";
+"Late" = "Endarrerit";
 
 /* No comment provided by engineer. */
 "Late Grading" = "Nota endarrerida";
@@ -1464,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Manage Students" = "Administra els estudiants";
+
+/* No comment provided by engineer. */
+"Manual" = "Manual";
 
 /* No comment provided by engineer. */
 "Manual OAuth Login" = "Inici de sessió amb autenticació manual";
@@ -1727,6 +1766,9 @@
 "Offline Content" = "Contingut sense connexió";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Failed" = "No s’ha pogut sincronitzar el contingut sense connexió";
+
+/* No comment provided by engineer. */
 "OK" = "D'acord";
 
 /* No comment provided by engineer. */
@@ -1737,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "Una de les entregues encara s’està carregant. En tancar la sessió pot ser que s’interrompi.\nSegur que voleu tancar la sessió?";
+
+/* No comment provided by engineer. */
+"One or more files failed to sync. Check your internet connection and retry to submit." = "No s'han pogut sincronitzar un o més fitxers. Reviseu la connexió a Internet i torneu a provar de fer l'entrega.";
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "No s'han pogut penjar un o més fitxers. Reviseu la connexió a Internet i torneu a provar de fer l'entrega.";
@@ -1767,6 +1812,9 @@
 
 /* No comment provided by engineer. */
 "Open item details" = "Obre els detalls de l'element";
+
+/* No comment provided by engineer. */
+"Open section" = "Obre la secció";
 
 /* No comment provided by engineer. */
 "Opens in Canvas Student" = "S'obre al Canvas Student";
@@ -1818,6 +1866,9 @@
 
 /* No comment provided by engineer. */
 "Pairing Code: " = "Codi d'emparellament: ";
+
+/* No comment provided by engineer. */
+"Partially selected" = "S’ha seleccionat parcialment";
 
 /* No comment provided by engineer. */
 "Pass" = "Aprovat";
@@ -2012,6 +2063,9 @@
 "Remove From List?" = "Voleu suprimir-lo de la llista?";
 
 /* No comment provided by engineer. */
+"Remove item" = "Suprimeix l'element";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Eliminat el %1$@";
 
 /* No comment provided by engineer. */
@@ -2144,6 +2198,9 @@
 "Select Impact" = "Selecciona l’impacte";
 
 /* No comment provided by engineer. */
+"Select item" = "Selecciona l’element";
+
+/* No comment provided by engineer. */
 "Select One" = "Selecciona'n un";
 
 /* No comment provided by engineer. */
@@ -2244,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Ordena per número de M'agrada";
+
+/* No comment provided by engineer. */
+"Specify the recurrence of the content synchronization. The system will download the selected content based on the frequency specified here." = "Especifiqueu la recurrència de la sincronització del contingut. El sistema baixarà el contingut seleccionat segons la freqüència especificada en aquest apartat.";
 
 /* No comment provided by engineer. */
 "Staff Contact Info" = "Informació de contacte del personal";
@@ -2366,7 +2426,19 @@
 "Sync" = "Sincronitza";
 
 /* No comment provided by engineer. */
+"Sync Content Over Wi-Fi Only" = "Sincronitzeu el contingut només a través de Wi-Fi";
+
+/* No comment provided by engineer. */
+"Sync Failed" = "No s’ha pogut dur a terme la sincronització";
+
+/* No comment provided by engineer. */
+"Sync Frequency" = "Freqüència de sincronització";
+
+/* No comment provided by engineer. */
 "Sync Offline Content?" = "Voleu sincronitzar el contingut sense connexió?";
+
+/* No comment provided by engineer. */
+"Synchronization" = "Sincronització";
 
 /* No comment provided by engineer. */
 "System settings" = "Configuració del sistema";
@@ -2586,6 +2658,12 @@
 
 /* No comment provided by engineer. */
 "Total time" = "Temps en total";
+
+/* No comment provided by engineer. */
+"Turn Off" = "Desactiva";
+
+/* No comment provided by engineer. */
+"Turn Off Wi-Fi Only Sync?" = "Voleu desactivar la sincronització només a través de Wi-Fi?";
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Notificacions de Twitter";

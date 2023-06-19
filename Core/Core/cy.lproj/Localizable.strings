@@ -22,6 +22,9 @@
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
 
+/* Weekly Auto / Daily Auto Synchronization Frequency */
+"%@ Auto" = "%@ Awtomatig";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
@@ -374,6 +377,9 @@
 "Authentication failed. Most likely the user denied the request for access." = "Wedi methu dilysu. Mae’n bur debyg bod y defnyddiwr wedi gwrthod y cais am fynediad.";
 
 /* No comment provided by engineer. */
+"Auto Content Sync" = "Cysoni Cynnwys Awtomatig";
+
+/* No comment provided by engineer. */
 "Availability" = "Argaeledd";
 
 /* No comment provided by engineer. */
@@ -521,10 +527,16 @@
 "Close App" = "Cau’r Ap";
 
 /* No comment provided by engineer. */
+"Close section" = "Cau adran";
+
+/* No comment provided by engineer. */
 "Closed" = "Wedi cau";
 
 /* No comment provided by engineer. */
 "Closed for Comments" = "Wedi Cau ar gyfer Sylwadau";
+
+/* No comment provided by engineer. */
+"Closed section" = "Adran wedi cau";
 
 /* No comment provided by engineer. */
 "Collapse" = "Crebachu";
@@ -579,6 +591,9 @@
 
 /* No comment provided by engineer. */
 "Content Link Error" = "Gwall Dolen Gynnwys";
+
+/* No comment provided by engineer. */
+"Content sync might use cellular data which may result in extra fees from your data provider." = "Efallai y bydd cysoni data yn defnyddio data symudol a all arwain at ffioedd ychwanegol gan eich darparwr data.";
 
 /* No comment provided by engineer. */
 "Contribute" = "Cyfrannu";
@@ -791,6 +806,12 @@
 "Deselect All" = "Dad-ddewis y Cyfan";
 
 /* No comment provided by engineer. */
+"Deselect item" = "Dad-ddewis eitem";
+
+/* No comment provided by engineer. */
+"Deselected" = "Wedi dad-ddewis";
+
+/* No comment provided by engineer. */
 "Designer" = "Dylunydd";
 
 /* No comment provided by engineer. */
@@ -852,6 +873,15 @@
 
 /* No comment provided by engineer. */
 "Done" = "Wedi gorffen";
+
+/* No comment provided by engineer. */
+"Download complete" = "Wedi gorffen llwytho i lawr";
+
+/* No comment provided by engineer. */
+"Downloading" = "Llwytho i lawr";
+
+/* Downloading 42 GB of 64 GB */
+"Downloading %@ of %@" = "Wrthi’n llwytho i lawr %1$@ o %2$@";
 
 /* No comment provided by engineer. */
 "Due" = "Erbyn";
@@ -933,6 +963,9 @@
 
 /* No comment provided by engineer. */
 "Enable Push Notifications" = "Galluogi Hysbysiadau Marchnata";
+
+/* No comment provided by engineer. */
+"Enabling the Auto Content Sync will take care of downloading the selected content based on the below settings. The content synchronization will happen even if the application is not running. If the setting is switched off then no synchronization will happen. The already downloaded content will not be deleted." = "Bydd galluogi Cysoni Cynnwys Awtomatig yn gofalu am lwytho’r cynnwys sydd wedi’i ddewis i lawr yn seiliedig ar y gosodiadau isod. Bydd cysoni cynnwys yn digwydd hyd yn oed os nad yw’r rhaglen yn rhedeg. Os yw’r gosodiadau wedi’i ddiffodd ni fydd cysoni’n digwydd. Ni fydd cynnwys sydd eisoes wedi’i lwytho i lawr yn cael ei ddileu.";
 
 /* No comment provided by engineer. */
 "End Act as User" = "Gorffen Gweithredu fel Defnyddiwr";
@@ -1223,6 +1256,9 @@
 "I obtained permission" = "Cefais ganiatâd";
 
 /* No comment provided by engineer. */
+"If this setting is enabled the content synchronization will only happen if the device connects to a Wi-Fi network, otherwise it will be postponed until a Wi-Fi network is available." = "Os ydy’r gosodiad hwn wedi’i alluogi dim ond pan fydd y ddyfais wedi’i chysylltu i rwydwaith Wi-Fi y bydd cysoni cynnwys yn digwydd, fel arall bydd yn cael ei ohirio nes bod rhwydwaith Wi-Fi ar gael.";
+
+/* No comment provided by engineer. */
 "Image" = "Delwedd";
 
 /* No comment provided by engineer. */
@@ -1464,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Manage Students" = "Rheoli Myfyrwyr";
+
+/* No comment provided by engineer. */
+"Manual" = "Llawlyfr";
 
 /* No comment provided by engineer. */
 "Manual OAuth Login" = "OAuth Login sydd ddim yn awtomatig";
@@ -1727,6 +1766,9 @@
 "Offline Content" = "Cynnwys All-lein";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Failed" = "Cysoni Cynnwys All-lein wedi Methu";
+
+/* No comment provided by engineer. */
 "OK" = "Iawn";
 
 /* No comment provided by engineer. */
@@ -1737,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "Mae un o’ch cyflwyniadau yn dal i gael ei lwytho i fyny. Gallai allgofnodi darfu ar hyn.\nYdych chi’n siŵr eich bod am allgofnodi?";
+
+/* No comment provided by engineer. */
+"One or more files failed to sync. Check your internet connection and retry to submit." = "Wedi methu cysoni un neu ragor o ffeiliau. Gwiriwch eich cysylltiad rhyngrwyd a rhoi cynnig arall ar gyflwyno.";
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "Wedi methu llwytho un neu ragor o ffeiliau i fyny. Gwiriwch eich cysylltiad rhyngrwyd a rhoi cynnig arall ar gyflwyno.";
@@ -1767,6 +1812,9 @@
 
 /* No comment provided by engineer. */
 "Open item details" = "Agor manylion eitem";
+
+/* No comment provided by engineer. */
+"Open section" = "Agor adran";
 
 /* No comment provided by engineer. */
 "Opens in Canvas Student" = "Yn agor yn Canvas Student";
@@ -1818,6 +1866,9 @@
 
 /* No comment provided by engineer. */
 "Pairing Code: " = "Cod Paru: ";
+
+/* No comment provided by engineer. */
+"Partially selected" = "Wedi’i ddewis yn rhannol";
 
 /* No comment provided by engineer. */
 "Pass" = "Pasio";
@@ -2012,6 +2063,9 @@
 "Remove From List?" = "Tynnu o'r Rhestr?";
 
 /* No comment provided by engineer. */
+"Remove item" = "Tynnu eitem";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Wedi tynnu %1$@";
 
 /* No comment provided by engineer. */
@@ -2144,6 +2198,9 @@
 "Select Impact" = "Dewiswch Effaith";
 
 /* No comment provided by engineer. */
+"Select item" = "Dewis eitem";
+
+/* No comment provided by engineer. */
 "Select One" = "Dewiswch Un";
 
 /* No comment provided by engineer. */
@@ -2244,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Trefnu yn ôl y nifer sydd wedi’i hoffi";
+
+/* No comment provided by engineer. */
+"Specify the recurrence of the content synchronization. The system will download the selected content based on the frequency specified here." = "Nodi dychweliad cysoni cynnwys. Bydd y system yn llwytho'r cynnwys sydd wedi’i ddewis i lawn yn seiliedig ar yr amlder sydd wedi’i nodi yma.";
 
 /* No comment provided by engineer. */
 "Staff Contact Info" = "Manylion Cyswllt Staff";
@@ -2366,7 +2426,19 @@
 "Sync" = "Cysoni";
 
 /* No comment provided by engineer. */
+"Sync Content Over Wi-Fi Only" = "Cysoni Cynnwys dros Wi-Fi yn unig";
+
+/* No comment provided by engineer. */
+"Sync Failed" = "Wedi methu cysoni";
+
+/* No comment provided by engineer. */
+"Sync Frequency" = "Amlder Cysoni";
+
+/* No comment provided by engineer. */
 "Sync Offline Content?" = "Cysoni Cynnwys All-lein?";
+
+/* No comment provided by engineer. */
+"Synchronization" = "Cysoni";
 
 /* No comment provided by engineer. */
 "System settings" = "Gosodiadau system";
@@ -2586,6 +2658,12 @@
 
 /* No comment provided by engineer. */
 "Total time" = "Cyfanswm amser";
+
+/* No comment provided by engineer. */
+"Turn Off" = "Diffodd";
+
+/* No comment provided by engineer. */
+"Turn Off Wi-Fi Only Sync?" = "Diffodd Cysoni Wi-Fi yn unig";
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Hysbysiadau Twitter";

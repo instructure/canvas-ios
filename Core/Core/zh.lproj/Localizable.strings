@@ -22,6 +22,9 @@
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@%2$@";
 
+/* Weekly Auto / Daily Auto Synchronization Frequency */
+"%@ Auto" = "%@自动";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@GPA";
 
@@ -374,6 +377,9 @@
 "Authentication failed. Most likely the user denied the request for access." = "身份验证失败。最有可能的原因是用户拒绝了访问请求。";
 
 /* No comment provided by engineer. */
+"Auto Content Sync" = "自动同步内容";
+
+/* No comment provided by engineer. */
 "Availability" = "可用性";
 
 /* No comment provided by engineer. */
@@ -521,10 +527,16 @@
 "Close App" = "关闭应用程序";
 
 /* No comment provided by engineer. */
+"Close section" = "关闭班次";
+
+/* No comment provided by engineer. */
 "Closed" = "已关闭";
 
 /* No comment provided by engineer. */
 "Closed for Comments" = "关闭评论";
+
+/* No comment provided by engineer. */
+"Closed section" = "已关闭班次";
 
 /* No comment provided by engineer. */
 "Collapse" = "折叠";
@@ -579,6 +591,9 @@
 
 /* No comment provided by engineer. */
 "Content Link Error" = "内容链接错误";
+
+/* No comment provided by engineer. */
+"Content sync might use cellular data which may result in extra fees from your data provider." = "内容同步可以使用蜂窝数据，可能会在数据流量提供商那里产生额外资费。";
 
 /* No comment provided by engineer. */
 "Contribute" = "投寄";
@@ -791,6 +806,12 @@
 "Deselect All" = "取消全选";
 
 /* No comment provided by engineer. */
+"Deselect item" = "取消选中项目";
+
+/* No comment provided by engineer. */
+"Deselected" = "取消选中";
+
+/* No comment provided by engineer. */
 "Designer" = "设计者";
 
 /* No comment provided by engineer. */
@@ -852,6 +873,15 @@
 
 /* No comment provided by engineer. */
 "Done" = "完成";
+
+/* No comment provided by engineer. */
+"Download complete" = "下载完成";
+
+/* No comment provided by engineer. */
+"Downloading" = "正在下载";
+
+/* Downloading 42 GB of 64 GB */
+"Downloading %@ of %@" = "下载进度%1$@/%2$@";
 
 /* No comment provided by engineer. */
 "Due" = "截止";
@@ -933,6 +963,9 @@
 
 /* No comment provided by engineer. */
 "Enable Push Notifications" = "启用推送通知";
+
+/* No comment provided by engineer. */
+"Enabling the Auto Content Sync will take care of downloading the selected content based on the below settings. The content synchronization will happen even if the application is not running. If the setting is switched off then no synchronization will happen. The already downloaded content will not be deleted." = "如果启用“自动同步内容”，将根据以下设置下载所选内容。即使应用程序没有运行，内容也会同步。如果关闭该设置，将不会同步。已下载的内容不会被删除。";
 
 /* No comment provided by engineer. */
 "End Act as User" = "结束担当用户";
@@ -1223,6 +1256,9 @@
 "I obtained permission" = "我已获得权限";
 
 /* No comment provided by engineer. */
+"If this setting is enabled the content synchronization will only happen if the device connects to a Wi-Fi network, otherwise it will be postponed until a Wi-Fi network is available." = "如果启用该设置，将只在设备连接无线网络的情况下同步内容，否则将推迟到连接无线网络后再同步。";
+
+/* No comment provided by engineer. */
 "Image" = "图片";
 
 /* No comment provided by engineer. */
@@ -1464,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Manage Students" = "管理学生";
+
+/* No comment provided by engineer. */
+"Manual" = "手动";
 
 /* No comment provided by engineer. */
 "Manual OAuth Login" = "手动 OAuth 登录";
@@ -1727,6 +1766,9 @@
 "Offline Content" = "离线内容";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Failed" = "离线同步内容失败";
+
+/* No comment provided by engineer. */
 "OK" = "确定";
 
 /* No comment provided by engineer. */
@@ -1737,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "您的其中一个提交项仍在上传。如果登出，可能会中断上传。\n是否确定要登出？";
+
+/* No comment provided by engineer. */
+"One or more files failed to sync. Check your internet connection and retry to submit." = "一个或多个文件未能同步。请检查网络连接，并再次尝试提交。";
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "一份或多个文件上传失败。请检查网络连接，并再次尝试提交。";
@@ -1767,6 +1812,9 @@
 
 /* No comment provided by engineer. */
 "Open item details" = "打开项目详情";
+
+/* No comment provided by engineer. */
+"Open section" = "打开班次";
 
 /* No comment provided by engineer. */
 "Opens in Canvas Student" = "在 Canvas 学生版中打开";
@@ -1818,6 +1866,9 @@
 
 /* No comment provided by engineer. */
 "Pairing Code: " = "配对码：";
+
+/* No comment provided by engineer. */
+"Partially selected" = "部分选中";
 
 /* No comment provided by engineer. */
 "Pass" = "通过";
@@ -2012,6 +2063,9 @@
 "Remove From List?" = "是否从列表中删除？";
 
 /* No comment provided by engineer. */
+"Remove item" = "移除项目";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "已删除%1$@";
 
 /* No comment provided by engineer. */
@@ -2144,6 +2198,9 @@
 "Select Impact" = "选择影响";
 
 /* No comment provided by engineer. */
+"Select item" = "选中项目";
+
+/* No comment provided by engineer. */
 "Select One" = "选择一个";
 
 /* No comment provided by engineer. */
@@ -2244,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Sort by likes" = "按赞数排序";
+
+/* No comment provided by engineer. */
+"Specify the recurrence of the content synchronization. The system will download the selected content based on the frequency specified here." = "指定内容同步的周期。系统将根据此处指定的周期下载所选内容。";
 
 /* No comment provided by engineer. */
 "Staff Contact Info" = "员工联系信息";
@@ -2366,7 +2426,19 @@
 "Sync" = "同步";
 
 /* No comment provided by engineer. */
+"Sync Content Over Wi-Fi Only" = "仅通过无线网络同步内容";
+
+/* No comment provided by engineer. */
+"Sync Failed" = "同步失败";
+
+/* No comment provided by engineer. */
+"Sync Frequency" = "同步周期";
+
+/* No comment provided by engineer. */
 "Sync Offline Content?" = "同步离线内容？";
+
+/* No comment provided by engineer. */
+"Synchronization" = "同步";
 
 /* No comment provided by engineer. */
 "System settings" = "系统设置";
@@ -2586,6 +2658,12 @@
 
 /* No comment provided by engineer. */
 "Total time" = "总时间";
+
+/* No comment provided by engineer. */
+"Turn Off" = "关闭";
+
+/* No comment provided by engineer. */
+"Turn Off Wi-Fi Only Sync?" = "是否关闭“仅通过无线网络同步”？";
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Twitter通知";

@@ -22,6 +22,9 @@
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@%2$@";
 
+/* Weekly Auto / Daily Auto Synchronization Frequency */
+"%@ Auto" = "%@自動";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@GPA";
 
@@ -374,6 +377,9 @@
 "Authentication failed. Most likely the user denied the request for access." = "驗證失敗。很可能是使用者拒絕了存取請求。";
 
 /* No comment provided by engineer. */
+"Auto Content Sync" = "自動內容同步";
+
+/* No comment provided by engineer. */
 "Availability" = "可用期";
 
 /* No comment provided by engineer. */
@@ -521,10 +527,16 @@
 "Close App" = "關閉應用程式";
 
 /* No comment provided by engineer. */
+"Close section" = "關閉分班";
+
+/* No comment provided by engineer. */
 "Closed" = "已關閉";
 
 /* No comment provided by engineer. */
 "Closed for Comments" = "已關閉以徵求評論";
+
+/* No comment provided by engineer. */
+"Closed section" = "已關閉分班";
 
 /* No comment provided by engineer. */
 "Collapse" = "收起";
@@ -579,6 +591,9 @@
 
 /* No comment provided by engineer. */
 "Content Link Error" = "內容連結錯誤";
+
+/* No comment provided by engineer. */
+"Content sync might use cellular data which may result in extra fees from your data provider." = "內容同步可使用行動數據，可能産生來自數據提供商的額外費用。";
 
 /* No comment provided by engineer. */
 "Contribute" = "參與";
@@ -791,6 +806,12 @@
 "Deselect All" = "取消全選";
 
 /* No comment provided by engineer. */
+"Deselect item" = "取消選取項目";
+
+/* No comment provided by engineer. */
+"Deselected" = "已取消選取";
+
+/* No comment provided by engineer. */
 "Designer" = "設計師";
 
 /* No comment provided by engineer. */
@@ -852,6 +873,15 @@
 
 /* No comment provided by engineer. */
 "Done" = "已完成";
+
+/* No comment provided by engineer. */
+"Download complete" = "完成下載";
+
+/* No comment provided by engineer. */
+"Downloading" = "正在下載";
+
+/* Downloading 42 GB of 64 GB */
+"Downloading %@ of %@" = "下載 %1$@%2$@";
 
 /* No comment provided by engineer. */
 "Due" = "截止";
@@ -933,6 +963,9 @@
 
 /* No comment provided by engineer. */
 "Enable Push Notifications" = "啟用推送通知";
+
+/* No comment provided by engineer. */
+"Enabling the Auto Content Sync will take care of downloading the selected content based on the below settings. The content synchronization will happen even if the application is not running. If the setting is switched off then no synchronization will happen. The already downloaded content will not be deleted." = "啟用「自動內容同步」將根據以下設定注意下載所選取的內容。內容同步將會進行，即使應用程式並未正在執行中。如果關閉設定，則將不會進行同步。已經下載的內容也將不會刪除。";
 
 /* No comment provided by engineer. */
 "End Act as User" = "結束作為使用者";
@@ -1223,6 +1256,9 @@
 "I obtained permission" = "我已經獲得了權限";
 
 /* No comment provided by engineer. */
+"If this setting is enabled the content synchronization will only happen if the device connects to a Wi-Fi network, otherwise it will be postponed until a Wi-Fi network is available." = "如果啟用此設定，內容同步僅會在裝置連線至 Wi-Fi 網路時進行，否則將會延期至 Wi-Fi 網路可用為止。 ";
+
+/* No comment provided by engineer. */
 "Image" = "圖像";
 
 /* No comment provided by engineer. */
@@ -1464,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Manage Students" = "管理學生";
+
+/* No comment provided by engineer. */
+"Manual" = "手動";
 
 /* No comment provided by engineer. */
 "Manual OAuth Login" = "手動 OAuth 登入";
@@ -1727,6 +1766,9 @@
 "Offline Content" = "離線內容";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Failed" = "離線內容同步失敗";
+
+/* No comment provided by engineer. */
 "OK" = "確定";
 
 /* No comment provided by engineer. */
@@ -1737,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "您的其中一個提交項目仍在上傳中。登出可能會中斷上傳。\n是否確定登出？";
+
+/* No comment provided by engineer. */
+"One or more files failed to sync. Check your internet connection and retry to submit." = "無法同步一個或多個檔案。檢查您的網際網路連線並重試提交。";
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "上傳一個或多個檔案失敗。檢查您的網際網路連線並重試提交。";
@@ -1767,6 +1812,9 @@
 
 /* No comment provided by engineer. */
 "Open item details" = "開啟項目詳細資料";
+
+/* No comment provided by engineer. */
+"Open section" = "開啟分班";
 
 /* No comment provided by engineer. */
 "Opens in Canvas Student" = "在 Canvas Student 中開啟";
@@ -1818,6 +1866,9 @@
 
 /* No comment provided by engineer. */
 "Pairing Code: " = "配對代碼：";
+
+/* No comment provided by engineer. */
+"Partially selected" = "已選取部分";
 
 /* No comment provided by engineer. */
 "Pass" = "合格";
@@ -2012,6 +2063,9 @@
 "Remove From List?" = "從清單中移除？";
 
 /* No comment provided by engineer. */
+"Remove item" = "移除項目";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "已移除%1$@";
 
 /* No comment provided by engineer. */
@@ -2144,6 +2198,9 @@
 "Select Impact" = "選擇影響的種類";
 
 /* No comment provided by engineer. */
+"Select item" = "選取項目";
+
+/* No comment provided by engineer. */
 "Select One" = "選擇一個";
 
 /* No comment provided by engineer. */
@@ -2244,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Sort by likes" = "按點讚分類";
+
+/* No comment provided by engineer. */
+"Specify the recurrence of the content synchronization. The system will download the selected content based on the frequency specified here." = "指定內容同步的重複進行。系統將根據此處指定的頻率下載所選取的內容。";
 
 /* No comment provided by engineer. */
 "Staff Contact Info" = "員工聯絡資料";
@@ -2366,7 +2426,19 @@
 "Sync" = "同步";
 
 /* No comment provided by engineer. */
+"Sync Content Over Wi-Fi Only" = "僅透過 Wi-Fi 同步內容";
+
+/* No comment provided by engineer. */
+"Sync Failed" = "同步失敗";
+
+/* No comment provided by engineer. */
+"Sync Frequency" = "同步頻率";
+
+/* No comment provided by engineer. */
 "Sync Offline Content?" = "同步離線內容？";
+
+/* No comment provided by engineer. */
+"Synchronization" = "同步化";
 
 /* No comment provided by engineer. */
 "System settings" = "系統設定";
@@ -2586,6 +2658,12 @@
 
 /* No comment provided by engineer. */
 "Total time" = "總時間";
+
+/* No comment provided by engineer. */
+"Turn Off" = "關閉";
+
+/* No comment provided by engineer. */
+"Turn Off Wi-Fi Only Sync?" = "關閉僅使用 Wi-Fi 同步？";
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Twitter 通知";
