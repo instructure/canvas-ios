@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Combine
 
 public struct CourseSyncCleanupInteractor {
     private let applicationOfflineFolder: URL
@@ -30,8 +30,10 @@ public struct CourseSyncCleanupInteractor {
             .offline
             .appendingPathComponent(sessionId, isDirectory: true)
 
-        if let appGroup, let sharedContainer = URL.Directories.sharedContainer(appGroup: appGroup) {
+        if let appGroup,
+           let sharedContainer = URL.Directories.sharedContainer(appGroup: appGroup) {
             sharedOfflineFolder = sharedContainer
+                .appendingPathComponent("Documents", isDirectory: true)
                 .appendingPathComponent("Offline", isDirectory: true)
                 .appendingPathComponent(sessionId, isDirectory: true)
         } else {
@@ -39,12 +41,17 @@ public struct CourseSyncCleanupInteractor {
         }
     }
 
-    /// Deletes offline folders with all files inside them.
-    public func clean() {
-        try? FileManager.default.removeItem(at: applicationOfflineFolder)
+    /// Deletes offline folders with all files inside them on a background thread.
+    public func clean() -> AnyPublisher<Void, Never> {
+        Just(())
+            .receive(on: DispatchQueue.global())
+            .handleEvents(receiveOutput: {
+                try? FileManager.default.removeItem(at: applicationOfflineFolder)
 
-        if let sharedOfflineFolder {
-            try? FileManager.default.removeItem(at: sharedOfflineFolder)
-        }
+                if let sharedOfflineFolder {
+                    try? FileManager.default.removeItem(at: sharedOfflineFolder)
+                }
+            })
+            .eraseToAnyPublisher()
     }
 }

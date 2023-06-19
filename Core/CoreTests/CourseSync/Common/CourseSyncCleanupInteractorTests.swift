@@ -37,10 +37,10 @@ class CourseSyncCleanupInteractorTests: XCTestCase {
 
         // MARK: - WHEN
         let testee = CourseSyncCleanupInteractor(appGroup: "group.com.instructure.icanvas", session: mockSession)
-        testee.clean()
+        XCTAssertFinish(testee.clean())
 
         // MARK: - THEN
-        XCTAssertFalse(FileManager.default.fileExists(atPath: dbURL.absoluteString))
+        XCTAssertFalse(FileManager.default.fileExists(atPath: dbURL.path))
         XCTAssertTrue(FileManager.default.fileExists(atPath: anotherDbURL.path))
     }
 
@@ -60,10 +60,10 @@ class CourseSyncCleanupInteractorTests: XCTestCase {
 
         // MARK: - WHEN
         let testee = CourseSyncCleanupInteractor(appGroup: nil, session: mockSession)
-        testee.clean()
+        XCTAssertFinish(testee.clean())
 
         // MARK: - THEN
-        XCTAssertFalse(FileManager.default.fileExists(atPath: dbURL.absoluteString))
+        XCTAssertFalse(FileManager.default.fileExists(atPath: dbURL.path))
         XCTAssertTrue(FileManager.default.fileExists(atPath: anotherDbURL.path))
     }
 
