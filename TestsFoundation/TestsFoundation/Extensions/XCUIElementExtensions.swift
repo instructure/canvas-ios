@@ -52,6 +52,10 @@ public extension XCUIElement {
         XCUIElementQueryWrapper(descendants(matching: type)).allElements
     }
 
+    func findAll(labelContaining: String, type: XCUIElement.ElementType = .any) -> [Element] {
+        XCUIElementQueryWrapper(descendants(matching: type).matching(labelContaining: labelContaining)).allElements
+    }
+
     // MARK: - Alerts
 
     func findAlertButton(label: String) -> Element {

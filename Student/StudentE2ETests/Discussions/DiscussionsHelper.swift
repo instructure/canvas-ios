@@ -57,8 +57,8 @@ public class DiscussionsHelper: BaseHelper {
     public static var discussionDetailsRepliesSection: Element {
         app.find(id: "DiscussionDetails.body").rawElement.find(label: "Replies", type: .other)
     }
-    public static var discussionDetailsFirstReplyLabel: Element {
-        app.find(id: "DiscussionDetails.body").rawElement.findAll(type: .other)[6].rawElement.find(type: .staticText)
+    public static func discussionDetailsReplyToThreadButton(threadIndex: Int) -> Element {
+        app.find(id: "DiscussionDetails.body").rawElement.findAll(labelContaining: "Reply", type: .link)[threadIndex]
     }
 
     // Reply screen

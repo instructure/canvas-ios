@@ -135,8 +135,82 @@ class DiscussionsTests: E2ETestCase {
         let discussionDetailsRepliesSection = DiscussionsHelper.discussionDetailsRepliesSection.waitToExist()
         XCTAssertTrue(discussionDetailsRepliesSection.isVisible)
 
-        let discussionDetailsFirstReplyLabel = DiscussionsHelper.discussionDetailsFirstReplyLabel.waitToExist()
+        let discussionDetailsFirstReplyLabel = app.find(label: replyText)
         XCTAssertTrue(discussionDetailsFirstReplyLabel.isVisible)
-        XCTAssertEqual(discussionDetailsFirstReplyLabel.label(), replyText)
+
+        // MARK: Reply to thread
+        let discussionDetailsReplyToThreadButton = DiscussionsHelper.discussionDetailsReplyToThreadButton(threadIndex: 1).waitToExist()
+        let threadReplyText = "Test replying to thread"
+        XCTAssertTrue(discussionDetailsReplyToThreadButton.isVisible)
+        XCTAssertEqual(discussionDetailsReplyToThreadButton.label(), "Reply to thread")
+        discussionDetailsReplyToThreadButton.tap()
+
+        // MARK: Check visibility and label of the thread reply
+        let replyWasSuccessful = DiscussionsHelper.replyToDiscussion(replyText: threadReplyText)
+        XCTAssertTrue(replyWasSuccessful)
+
+        let discussionDetailsThreadReplyLabel = app.find(label: threadReplyText).waitToExist()
+        XCTAssertTrue(discussionDetailsThreadReplyLabel.isVisible)
+    }
+
+    func testAssignmentDiscussion() {
+        // MARK: Seed the usual stuff with an assignment discussion
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+
+        let assignmentDiscussion = DiscussionsHelper.createDiscussion(course: course, isAssignment: true)
+
+        // MARK: Get the user logged in
+        logInDSUser(student)
+
+        // MARK: Navigate to Assignments to check visibility of the assignment discussion there
+        AssignmentsHelper.navigateToAssignments(course: course)
+        let assignmentButton = AssignmentsHelper.assignmentButton(assignment: assignmentDiscussion.assignment).waitToExist()
+        XCTAssertTrue(assignmentButton.isVisible)
+        AssignmentsHelper.backButton.tap()
+        AssignmentsHelper.backButton.tap()
+
+        // MARK: Navigate to Grades to check visibility and submission of the assignment discussion
+        GradesHelper.navigateToGrades(course: course)
+        var gradesAssignmentButton = GradesHelper.gradesAssignmentButton(assignment: assignmentDiscussion.assignment).waitToExist()
+        XCTAssertTrue(gradesAssignmentButton.isVisible)
+
+        var gradesAssignmentSubmittedLabel = GradesHelper.gradesAssignmentSubmittedLabel(assignment: assignmentDiscussion.assignment).waitToExist()
+        XCTAssertTrue(gradesAssignmentSubmittedLabel.isVisible)
+        XCTAssertEqual(gradesAssignmentSubmittedLabel.label(), "Not Submitted")
+        AssignmentsHelper.backButton.tap()
+        AssignmentsHelper.backButton.tap()
+
+        // MARK: Navigate to Discussions and send a reply
+        DiscussionsHelper.navigateToDiscussions(course: course)
+        let discussionButton = DiscussionsHelper.discussionButton(discussion: assignmentDiscussion).waitToExist()
+        XCTAssertTrue(discussionButton.isVisible)
+        discussionButton.tap()
+        let discussionDetailsNavBar = DiscussionsHelper.discussionDetailsNavBar(course: course).waitToExist()
+        XCTAssertTrue(discussionDetailsNavBar.isVisible)
+
+        DiscussionsHelper.replyToDiscussion()
+        DiscussionsHelper.pullToRefresh()
+
+        // MARK: Check visibility of the reply
+        let discussionDetailsRepliesSection = DiscussionsHelper.discussionDetailsRepliesSection.waitToExist()
+        XCTAssertTrue(discussionDetailsRepliesSection.isVisible)
+        AssignmentsHelper.backButton.tap()
+
+        let discussionDataLabelReplies = DiscussionsHelper.discussionDataLabel(discussion: assignmentDiscussion, label: .replies).waitToExist()
+        XCTAssertEqual(discussionDataLabelReplies.label(), "1 Reply")
+        AssignmentsHelper.backButton.tap()
+        AssignmentsHelper.backButton.tap()
+
+        // MARK: Navigate to Grades and check for updates regarding submission
+        GradesHelper.navigateToGrades(course: course)
+        GradesHelper.pullToRefresh()
+        gradesAssignmentButton = GradesHelper.gradesAssignmentButton(assignment: assignmentDiscussion.assignment).waitToExist()
+        XCTAssertTrue(gradesAssignmentButton.isVisible)
+
+        gradesAssignmentSubmittedLabel = GradesHelper.gradesAssignmentSubmittedLabel(assignment: assignmentDiscussion.assignment).waitToExist()
+        XCTAssertTrue(gradesAssignmentSubmittedLabel.isVisible)
+        XCTAssertEqual(gradesAssignmentSubmittedLabel.label(), "Submitted")
     }
 }
