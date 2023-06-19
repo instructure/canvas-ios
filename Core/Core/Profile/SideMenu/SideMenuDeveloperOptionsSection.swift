@@ -56,19 +56,10 @@ extension SideMenuDeveloperOptionsSection {
     final class SideDeveloperOptionsViewModel: ObservableObject {
         @Published var networkAvailabilityStatus: NetworkAvailabilityStatus = .disconnected
 
-        private let networkAvailabilityService = NetworkAvailabilityServiceLive()
-        private var subscriptions = Set<AnyCancellable>()
+        private let networkAvailabilityService = NetworkAvailabilityObservableModel()
 
         init() {
-            unowned let unownedSelf = self
-
-            networkAvailabilityService.startMonitoring()
-
-            networkAvailabilityService
-                .startObservingStatus()
-                .receive(on: DispatchQueue.main)
-                .sink { unownedSelf.networkAvailabilityStatus = $0 }
-                .store(in: &subscriptions)
+            networkAvailabilityService.$networkAvailabilityStatus.assign(to: &$networkAvailabilityStatus)
         }
     }
 }

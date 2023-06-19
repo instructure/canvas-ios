@@ -88,3 +88,22 @@ public final class NetworkAvailabilityServiceLive: NetworkAvailabilityService {
         statusSubject
     }
 }
+
+class NetworkAvailabilityObservableModel: ObservableObject {
+    @Published var networkAvailabilityStatus: NetworkAvailabilityStatus = .disconnected
+
+    private let networkAvailabilityService = NetworkAvailabilityServiceLive()
+    private var subscriptions = Set<AnyCancellable>()
+
+    init() {
+        unowned let unownedSelf = self
+
+        networkAvailabilityService.startMonitoring()
+
+        networkAvailabilityService
+            .startObservingStatus()
+            .receive(on: DispatchQueue.main)
+            .sink { unownedSelf.networkAvailabilityStatus = $0 }
+            .store(in: &subscriptions)
+    }
+}

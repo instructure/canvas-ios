@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Combine
 
 public protocol OfflineService {
     func isOfflineModeEnabled() -> Bool
@@ -45,5 +45,25 @@ public final class OfflineServiceLive: OfflineService {
 
     private func isNetworkOffline() -> Bool {
         !availabilityService.status.isConnected
+    }
+}
+
+class OfflineServiceModel: ObservableObject {
+    @Published var isOffline: Bool = false
+
+    private let networkAvailabilityService = NetworkAvailabilityServiceLive()
+    private var subscriptions = Set<AnyCancellable>()
+
+    init(offlineService: OfflineServiceLive) {
+        unowned let unownedSelf = self
+        networkAvailabilityService.startMonitoring()
+    
+        networkAvailabilityService
+            .startObservingStatus()
+            .receive(on: DispatchQueue.main)
+            .sink {
+                unownedSelf.isOffline = $0 == .disconnected && offlineService.isOfflineModeEnabled()
+            }
+            .store(in: &subscriptions)
     }
 }
