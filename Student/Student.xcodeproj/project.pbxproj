@@ -207,12 +207,10 @@
 		E80936E124C24CBE00D15E9A /* ActAsUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809365A24C21CB700D15E9A /* ActAsUserTests.swift */; };
 		E80936E324C24CDD00D15E9A /* CourseFileE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809365E24C21CB700D15E9A /* CourseFileE2ETests.swift */; };
 		E80936E424C24CDD00D15E9A /* CourseGroupE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809364B24C21CB600D15E9A /* CourseGroupE2ETests.swift */; };
-		E80936E724C24CDD00D15E9A /* DiscussionDetailsE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809364E24C21CB600D15E9A /* DiscussionDetailsE2ETests.swift */; };
 		E80936E824C24CDD00D15E9A /* InboxE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809365224C21CB600D15E9A /* InboxE2ETests.swift */; };
 		E80936E924C24CDD00D15E9A /* LoginE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809364924C21CB500D15E9A /* LoginE2ETests.swift */; };
 		E80936EA24C24CDD00D15E9A /* PagesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809365624C21CB700D15E9A /* PagesTests.swift */; };
 		E80936EB24C24CDD00D15E9A /* ProfileE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809365424C21CB600D15E9A /* ProfileE2ETests.swift */; };
-		E80936F024C2514600D15E9A /* DiscussionListE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809364D24C21CB600D15E9A /* DiscussionListE2ETests.swift */; };
 		E89B3003244F3F42007CF19B /* ConferencesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89B3002244F3EC0007CF19B /* ConferencesUITests.swift */; };
 		E8C6F4D823D626220086B865 /* LoginStartE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCF0F4722F8A0A0000AACCE /* LoginStartE2ETests.swift */; };
 		E8C6F4E223D626220086B865 /* PeopleE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA860D230497AC00E4FD76 /* PeopleE2ETests.swift */; };
@@ -803,8 +801,6 @@
 		E809364624C21C2400D15E9A /* SpringBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringBoardTests.swift; sourceTree = "<group>"; };
 		E809364924C21CB500D15E9A /* LoginE2ETests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginE2ETests.swift; sourceTree = "<group>"; };
 		E809364B24C21CB600D15E9A /* CourseGroupE2ETests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseGroupE2ETests.swift; sourceTree = "<group>"; };
-		E809364D24C21CB600D15E9A /* DiscussionListE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionListE2ETests.swift; sourceTree = "<group>"; };
-		E809364E24C21CB600D15E9A /* DiscussionDetailsE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionDetailsE2ETests.swift; sourceTree = "<group>"; };
 		E809365224C21CB600D15E9A /* InboxE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxE2ETests.swift; sourceTree = "<group>"; };
 		E809365424C21CB600D15E9A /* ProfileE2ETests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileE2ETests.swift; sourceTree = "<group>"; };
 		E809365624C21CB700D15E9A /* PagesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagesTests.swift; sourceTree = "<group>"; };
@@ -1845,8 +1841,6 @@
 		E809364F24C21CB600D15E9A /* Discussions */ = {
 			isa = PBXGroup;
 			children = (
-				E809364D24C21CB600D15E9A /* DiscussionListE2ETests.swift */,
-				E809364E24C21CB600D15E9A /* DiscussionDetailsE2ETests.swift */,
 				C9299FEB2817CCF2003A47C2 /* DiscussionsTest.swift */,
 				8B05AB812A38946900A9C714 /* DiscussionsHelper.swift */,
 			);
@@ -2952,7 +2946,6 @@
 				E8C6F4E423D626220086B865 /* QuizzesE2ETests.swift in Sources */,
 				C935D43D26E5F5AF00C940F7 /* K5GradesE2ETests.swift in Sources */,
 				CF00480B25E62D0300321C8B /* GroupContextCardE2ETests.swift in Sources */,
-				E80936E724C24CDD00D15E9A /* DiscussionDetailsE2ETests.swift in Sources */,
 				8B05AB8C2A38AEBA00A9C714 /* DashboardTests.swift in Sources */,
 				E80936E124C24CBE00D15E9A /* ActAsUserTests.swift in Sources */,
 				8BEBB64C29FA741900364C4C /* DSLoginE2ETests.swift in Sources */,
@@ -2971,7 +2964,6 @@
 				E80936EB24C24CDD00D15E9A /* ProfileE2ETests.swift in Sources */,
 				E80936E324C24CDD00D15E9A /* CourseFileE2ETests.swift in Sources */,
 				C99425EB2847821D0078A3BD /* GradingStandardsTests.swift in Sources */,
-				E80936F024C2514600D15E9A /* DiscussionListE2ETests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
