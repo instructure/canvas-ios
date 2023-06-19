@@ -22,6 +22,9 @@
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
 
+/* Weekly Auto / Daily Auto Synchronization Frequency */
+"%@ Auto" = "%@ تلقائي";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ المعدل التراكمي";
 
@@ -374,6 +377,9 @@
 "Authentication failed. Most likely the user denied the request for access." = "فشلت المصادقة. رفض المستخدم على الأغلب طلب الوصول.";
 
 /* No comment provided by engineer. */
+"Auto Content Sync" = "مزامنة المحتوى التلقائية";
+
+/* No comment provided by engineer. */
 "Availability" = "الإتاحة";
 
 /* No comment provided by engineer. */
@@ -521,10 +527,16 @@
 "Close App" = "إغلاق التطبيق";
 
 /* No comment provided by engineer. */
+"Close section" = "إغلاق القسم";
+
+/* No comment provided by engineer. */
 "Closed" = "مغلق";
 
 /* No comment provided by engineer. */
 "Closed for Comments" = "مغلق للتعليقات";
+
+/* No comment provided by engineer. */
+"Closed section" = "القسم المغلق";
 
 /* No comment provided by engineer. */
 "Collapse" = "طي";
@@ -579,6 +591,9 @@
 
 /* No comment provided by engineer. */
 "Content Link Error" = "خطأ في ارتباط المحتوى";
+
+/* No comment provided by engineer. */
+"Content sync might use cellular data which may result in extra fees from your data provider." = "ربما تستخدم مزامنة المحتوى بيانات شبكة الجوّال التي قد تتسبب في رسوم إضافية من موفر البيانات.";
 
 /* No comment provided by engineer. */
 "Contribute" = "مساهمة";
@@ -791,6 +806,12 @@
 "Deselect All" = "إلغاء تحديد الكل";
 
 /* No comment provided by engineer. */
+"Deselect item" = "إلغاء تحديد العنصر";
+
+/* No comment provided by engineer. */
+"Deselected" = "تم إلغاء التحديد";
+
+/* No comment provided by engineer. */
 "Designer" = "المصمم";
 
 /* No comment provided by engineer. */
@@ -852,6 +873,15 @@
 
 /* No comment provided by engineer. */
 "Done" = "تم";
+
+/* No comment provided by engineer. */
+"Download complete" = "اكتمل التنزيل";
+
+/* No comment provided by engineer. */
+"Downloading" = "جارٍ التنزيل";
+
+/* Downloading 42 GB of 64 GB */
+"Downloading %@ of %@" = "جارٍ تنزيل %1$@ من %2$@";
 
 /* No comment provided by engineer. */
 "Due" = "الاستحقاق";
@@ -933,6 +963,9 @@
 
 /* No comment provided by engineer. */
 "Enable Push Notifications" = "تمكين الإعلامات الفورية";
+
+/* No comment provided by engineer. */
+"Enabling the Auto Content Sync will take care of downloading the selected content based on the below settings. The content synchronization will happen even if the application is not running. If the setting is switched off then no synchronization will happen. The already downloaded content will not be deleted." = "سيؤدي تمكين مزامنة المحتوى التلقائية إلى تنزيل المحتوى المحدد بناءً على الإعدادات أدناه. ستحدث مزامنة المحتوى حتى لو لم يكن يعمل التطبيق. إذا تم إيقاف تشغيل الإعداد، فلن تحدث المزامنة. لن يتم حذف المحتوى الذي تم تنزيله بالفعل.";
 
 /* No comment provided by engineer. */
 "End Act as User" = "إنهاء التصرف كمستخدم";
@@ -1223,6 +1256,9 @@
 "I obtained permission" = "حاصل على إذن";
 
 /* No comment provided by engineer. */
+"If this setting is enabled the content synchronization will only happen if the device connects to a Wi-Fi network, otherwise it will be postponed until a Wi-Fi network is available." = "إذا تم تمكين هذا الإعداد، فلن تتم مزامنة المحتوى إلا إذا اتصل الجهاز بشبكة Wi-Fi، وإلا إذا تم تأجيل المزامنة حتى تتوفر شبكة Wi-Fi.";
+
+/* No comment provided by engineer. */
 "Image" = "صورة";
 
 /* No comment provided by engineer. */
@@ -1464,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Manage Students" = "إدارة الطلاب";
+
+/* No comment provided by engineer. */
+"Manual" = "يدوي";
 
 /* No comment provided by engineer. */
 "Manual OAuth Login" = "تسجيل دخول OAuth يدوي ";
@@ -1727,6 +1766,9 @@
 "Offline Content" = "المحتوى دون اتصال";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Failed" = "تعذرت مزامنة المحتوى دون اتصال";
+
+/* No comment provided by engineer. */
 "OK" = "موافق";
 
 /* No comment provided by engineer. */
@@ -1737,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = ". قد يؤدي تسجيل الخروج إلى إيقافه. هل تريد بالتأكيد تسجيل الخروج؟\nأحد إرسالاتك ما زالت قيد التحمي";
+
+/* No comment provided by engineer. */
+"One or more files failed to sync. Check your internet connection and retry to submit." = "تعذرت مزامنة ملف واحد أو أكثر. تحقق من اتصالك بالإنترنت وأعد محاولة الإرسال.";
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "تعذر تحميل ملف أو أكثر. تحقق من اتصالك بالإنترنت وأعد محاولة الإرسال.";
@@ -1767,6 +1812,9 @@
 
 /* No comment provided by engineer. */
 "Open item details" = "فتح تفاصيل العنصر";
+
+/* No comment provided by engineer. */
+"Open section" = "فتح القسم";
 
 /* No comment provided by engineer. */
 "Opens in Canvas Student" = "يفتح في Canvas Student";
@@ -1818,6 +1866,9 @@
 
 /* No comment provided by engineer. */
 "Pairing Code: " = "رمز الإقران:  ";
+
+/* No comment provided by engineer. */
+"Partially selected" = "تم التحديد بشكل جزئي";
 
 /* No comment provided by engineer. */
 "Pass" = "نجاح";
@@ -2012,6 +2063,9 @@
 "Remove From List?" = "هل تريد الإزالة من القائمة؟";
 
 /* No comment provided by engineer. */
+"Remove item" = "إزالة عنصر";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "تمت الإزالة %1$@";
 
 /* No comment provided by engineer. */
@@ -2144,6 +2198,9 @@
 "Select Impact" = "تحديد التأثير";
 
 /* No comment provided by engineer. */
+"Select item" = "تحديد عنصر";
+
+/* No comment provided by engineer. */
 "Select One" = "حدد واحدًا";
 
 /* No comment provided by engineer. */
@@ -2244,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Sort by likes" = "الترتيب حسب الإعجابات";
+
+/* No comment provided by engineer. */
+"Specify the recurrence of the content synchronization. The system will download the selected content based on the frequency specified here." = "حدد تكرار مزامنة المحتوى. سيقوم النظام بتنزيل المحتوى المحدد بناءً على التكرار المحدد هنا.";
 
 /* No comment provided by engineer. */
 "Staff Contact Info" = "معلومات الاتصال الخاصة بالعاملين";
@@ -2366,7 +2426,19 @@
 "Sync" = "مزامنة";
 
 /* No comment provided by engineer. */
+"Sync Content Over Wi-Fi Only" = "مزامنة المحتوى عبر شبكة Wi-Fi فقط";
+
+/* No comment provided by engineer. */
+"Sync Failed" = "تعذرت المزامنة";
+
+/* No comment provided by engineer. */
+"Sync Frequency" = "تكرار المزامنة";
+
+/* No comment provided by engineer. */
 "Sync Offline Content?" = "هل تريد مزامنة المحتوى دون اتصال؟";
+
+/* No comment provided by engineer. */
+"Synchronization" = "المزامنة";
 
 /* No comment provided by engineer. */
 "System settings" = "إعدادات النظام";
@@ -2586,6 +2658,12 @@
 
 /* No comment provided by engineer. */
 "Total time" = "الوقت الإجمالي";
+
+/* No comment provided by engineer. */
+"Turn Off" = "إيقاف التشغيل";
+
+/* No comment provided by engineer. */
+"Turn Off Wi-Fi Only Sync?" = "هل تريد إيقاف تشغيل مزامنة Wi-Fi فقط؟";
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "إعلامات Twitter";

@@ -22,6 +22,9 @@
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
 
+/* Weekly Auto / Daily Auto Synchronization Frequency */
+"%@ Auto" = "%@ Samodejno";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Lestvica GPA";
 
@@ -374,6 +377,9 @@
 "Authentication failed. Most likely the user denied the request for access." = "Overitev ni uspela. Najverjetneje je uporabnik zavrnil zahtevo za dostop.";
 
 /* No comment provided by engineer. */
+"Auto Content Sync" = "Samodejna sinhronizacija vsebine";
+
+/* No comment provided by engineer. */
 "Availability" = "Razpoložljivost";
 
 /* No comment provided by engineer. */
@@ -521,10 +527,16 @@
 "Close App" = "Zapri aplikacijo";
 
 /* No comment provided by engineer. */
+"Close section" = "Zapri sekcijo";
+
+/* No comment provided by engineer. */
 "Closed" = "Zaprto";
 
 /* No comment provided by engineer. */
 "Closed for Comments" = "Zaprto za komentarje";
+
+/* No comment provided by engineer. */
+"Closed section" = "Zaprta sekcija";
 
 /* No comment provided by engineer. */
 "Collapse" = "Strni";
@@ -579,6 +591,9 @@
 
 /* No comment provided by engineer. */
 "Content Link Error" = "Napake pri referencah";
+
+/* No comment provided by engineer. */
+"Content sync might use cellular data which may result in extra fees from your data provider." = "Sinhronizacija vsebine lahko uporablja mobilne podatke, kar lahko povzroči dodatne stroške pri ponudniku podatknega prenosa.";
 
 /* No comment provided by engineer. */
 "Contribute" = "Prispevaj";
@@ -791,6 +806,12 @@
 "Deselect All" = "Razveljavi izbor vseh";
 
 /* No comment provided by engineer. */
+"Deselect item" = "Prekliči izbiro elementa";
+
+/* No comment provided by engineer. */
+"Deselected" = "Izbor je preklican";
+
+/* No comment provided by engineer. */
 "Designer" = "Snovalec";
 
 /* No comment provided by engineer. */
@@ -852,6 +873,15 @@
 
 /* No comment provided by engineer. */
 "Done" = "Dokončano";
+
+/* No comment provided by engineer. */
+"Download complete" = "Prenos je končan";
+
+/* No comment provided by engineer. */
+"Downloading" = "Prenos";
+
+/* Downloading 42 GB of 64 GB */
+"Downloading %@ of %@" = "Prenos %1$@ od %2$@";
 
 /* No comment provided by engineer. */
 "Due" = "Roki";
@@ -933,6 +963,9 @@
 
 /* No comment provided by engineer. */
 "Enable Push Notifications" = "Omogoči poslana obvestila";
+
+/* No comment provided by engineer. */
+"Enabling the Auto Content Sync will take care of downloading the selected content based on the below settings. The content synchronization will happen even if the application is not running. If the setting is switched off then no synchronization will happen. The already downloaded content will not be deleted." = "Če omogočite samodejno sinhronizacijo vsebine, boste omogočili prenos izbrane vsebine na podlagi spodnjih nastavitev. Sinhronizacija vsebine bo izvedena tudi, če aplikacija ni zagnana. Če je nastavitev izklopljena, sinhronizacija ne bo izvedena. Že prenesena vsebina ne bo odstranjena.";
 
 /* No comment provided by engineer. */
 "End Act as User" = "Opustite vlogo uporabnika";
@@ -1223,6 +1256,9 @@
 "I obtained permission" = "Pridobil(a) sem dovoljenje.";
 
 /* No comment provided by engineer. */
+"If this setting is enabled the content synchronization will only happen if the device connects to a Wi-Fi network, otherwise it will be postponed until a Wi-Fi network is available." = "Če je ta nastavitev omogočena, se bo sinhronizacija vsebine zgodila le, če se naprava poveže z omrežjem Wi-Fi, sicer bo odložena, dokler omrežje Wi-Fi ne bo na voljo.";
+
+/* No comment provided by engineer. */
 "Image" = "Slika";
 
 /* No comment provided by engineer. */
@@ -1464,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Manage Students" = "Uredi študente";
+
+/* No comment provided by engineer. */
+"Manual" = "Ročno";
 
 /* No comment provided by engineer. */
 "Manual OAuth Login" = "Ročna prijava OAuth";
@@ -1727,6 +1766,9 @@
 "Offline Content" = "Vsebina brez povezave";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Failed" = "Sinhronizacija vsebine brez povezave ni uspela";
+
+/* No comment provided by engineer. */
 "OK" = "V redu";
 
 /* No comment provided by engineer. */
@@ -1737,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "Ena vaših oddaj se še nalaga. Odjava bi lahko ta postopek prekinila.\nAli ste prepričani, da se želite odjaviti?";
+
+/* No comment provided by engineer. */
+"One or more files failed to sync. Check your internet connection and retry to submit." = "Sinhronizacija ene ali več datotek ni uspela. Preverite internetno povezavo in poskusite poslati znova.";
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "Nalaganje ene ali več datotek ni uspelo. Preverite internetno povezavo in poskusite poslati znova.";
@@ -1767,6 +1812,9 @@
 
 /* No comment provided by engineer. */
 "Open item details" = "Odpri podrobnosti o elementu";
+
+/* No comment provided by engineer. */
+"Open section" = "Odpri sekcijo";
 
 /* No comment provided by engineer. */
 "Opens in Canvas Student" = "Odpiranje v Canvas Student";
@@ -1818,6 +1866,9 @@
 
 /* No comment provided by engineer. */
 "Pairing Code: " = "Koda za seznanjanje: ";
+
+/* No comment provided by engineer. */
+"Partially selected" = "Delno izbrano";
 
 /* No comment provided by engineer. */
 "Pass" = "Opravljeno";
@@ -2012,6 +2063,9 @@
 "Remove From List?" = "Želite to odstraniti s seznama?";
 
 /* No comment provided by engineer. */
+"Remove item" = "Odstrani element";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Odstranjeno %1$@";
 
 /* No comment provided by engineer. */
@@ -2144,6 +2198,9 @@
 "Select Impact" = "Izberi vpliv";
 
 /* No comment provided by engineer. */
+"Select item" = "Izberi element";
+
+/* No comment provided by engineer. */
 "Select One" = "Izberi eno";
 
 /* No comment provided by engineer. */
@@ -2244,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Razvrsti po všečkih";
+
+/* No comment provided by engineer. */
+"Specify the recurrence of the content synchronization. The system will download the selected content based on the frequency specified here." = "Določite ponavljanje sinhronizacije vsebine. Sistem bo prenesel izbrano vsebino glede na tukaj določeno pogostost.";
 
 /* No comment provided by engineer. */
 "Staff Contact Info" = "Kontaktni podatki osebja";
@@ -2366,7 +2426,19 @@
 "Sync" = "Sinhronizacija";
 
 /* No comment provided by engineer. */
+"Sync Content Over Wi-Fi Only" = "Sinhroniziraj vsebino samo prek Wi-Fi";
+
+/* No comment provided by engineer. */
+"Sync Failed" = "Sinhronizacija ni uspela";
+
+/* No comment provided by engineer. */
+"Sync Frequency" = "Pogostost sinhronizacije";
+
+/* No comment provided by engineer. */
 "Sync Offline Content?" = "Želite sinhronizirati vsebino brez povezave?";
+
+/* No comment provided by engineer. */
+"Synchronization" = "Sinhronizacija";
 
 /* No comment provided by engineer. */
 "System settings" = "Sistemske nastavitve";
@@ -2586,6 +2658,12 @@
 
 /* No comment provided by engineer. */
 "Total time" = "Skupni čas";
+
+/* No comment provided by engineer. */
+"Turn Off" = "Izklop";
+
+/* No comment provided by engineer. */
+"Turn Off Wi-Fi Only Sync?" = "Želite izklopiti sinhronizacijo samo prek Wi-Fi?";
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Sporočila v platformi Twitter";

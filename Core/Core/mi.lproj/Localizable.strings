@@ -22,6 +22,9 @@
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
 
+/* Weekly Auto / Daily Auto Synchronization Frequency */
+"%@ Auto" = "%@ Aunoa";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
@@ -374,6 +377,9 @@
 "Authentication failed. Most likely the user denied the request for access." = "I rahua te motuhēhēnga. Ko te nuinga kaore i whakāetia e te kaiwhakamahi te tono mo te uru.";
 
 /* No comment provided by engineer. */
+"Auto Content Sync" = "Tukutahi Ihirangi Aunoa";
+
+/* No comment provided by engineer. */
 "Availability" = "wātea";
 
 /* No comment provided by engineer. */
@@ -521,10 +527,16 @@
 "Close App" = "Kati Taupānga";
 
 /* No comment provided by engineer. */
+"Close section" = "Katia te waahanga";
+
+/* No comment provided by engineer. */
 "Closed" = "katia";
 
 /* No comment provided by engineer. */
 "Closed for Comments" = "Kua kati mo ngā kōrero";
+
+/* No comment provided by engineer. */
+"Closed section" = "Te waahanga kati";
 
 /* No comment provided by engineer. */
 "Collapse" = "Hinga";
@@ -579,6 +591,9 @@
 
 /* No comment provided by engineer. */
 "Content Link Error" = "Ihirangi Hono Hapa";
+
+/* No comment provided by engineer. */
+"Content sync might use cellular data which may result in extra fees from your data provider." = "Ka whakamahia pea e te tukutahi ihirangi nga raraunga waea ka puta he utu taapiri mai i to kaiwhakarato raraunga.";
 
 /* No comment provided by engineer. */
 "Contribute" = "whai wāhi";
@@ -791,6 +806,12 @@
 "Deselect All" = "Whakakorehia te katoa";
 
 /* No comment provided by engineer. */
+"Deselect item" = "Whakawetohia te tūemi";
+
+/* No comment provided by engineer. */
+"Deselected" = "Kua whakakorehia";
+
+/* No comment provided by engineer. */
 "Designer" = "Kaitātai";
 
 /* No comment provided by engineer. */
@@ -852,6 +873,15 @@
 
 /* No comment provided by engineer. */
 "Done" = "Kua mahia";
+
+/* No comment provided by engineer. */
+"Download complete" = "Kua oti te tango";
+
+/* No comment provided by engineer. */
+"Downloading" = "Tikiake ana";
+
+/* Downloading 42 GB of 64 GB */
+"Downloading %@ of %@" = "Kei te tikiake %1$@ o %2$@";
 
 /* No comment provided by engineer. */
 "Due" = "E tika ana";
@@ -933,6 +963,9 @@
 
 /* No comment provided by engineer. */
 "Enable Push Notifications" = "Whakahohea Whakamōhiotanga Pana";
+
+/* No comment provided by engineer. */
+"Enabling the Auto Content Sync will take care of downloading the selected content based on the below settings. The content synchronization will happen even if the application is not running. If the setting is switched off then no synchronization will happen. The already downloaded content will not be deleted." = "Ina whakahohea te waahanga Tukutahi Ihirangi Aunoa, ko nga ihirangi kua tikiakehia ka whakawhirinaki ki nga tautuhinga kua whakarārangihia i raro nei. Ahakoa kaore i tuwhera te tono, ka mau tonu te tukutahitanga ihirangi. Karekau he tukutahitanga mena kua weto te tautuhinga. Ko nga mea kua oti te tango ake ka kore e tangohia.";
 
 /* No comment provided by engineer. */
 "End Act as User" = "Whakamutu mahi hei Kaiwhakamahi";
@@ -1223,6 +1256,9 @@
 "I obtained permission" = "I whiwhi whakaae ahau";
 
 /* No comment provided by engineer. */
+"If this setting is enabled the content synchronization will only happen if the device connects to a Wi-Fi network, otherwise it will be postponed until a Wi-Fi network is available." = "Ko te tukutahitanga ihirangi ka mahi mena ka hono te taputapu ki te whatunga Wi-Fi mena ka whakahohea tenei tautuhinga; ki te kore, ka whakaroa kia watea mai he whatunga Wi-Fi.";
+
+/* No comment provided by engineer. */
 "Image" = "Āhua";
 
 /* No comment provided by engineer. */
@@ -1464,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Manage Students" = "Whakahaere ngā ākonga";
+
+/* No comment provided by engineer. */
+"Manual" = "Ā-ringa";
 
 /* No comment provided by engineer. */
 "Manual OAuth Login" = "Mahi ā ringa OAuth Takiuru";
@@ -1727,6 +1766,9 @@
 "Offline Content" = "Ihirangi tuimotu";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Failed" = "I Rahua te Tukutahi Ihirangi Tuimotu";
+
+/* No comment provided by engineer. */
 "OK" = "Ae";
 
 /* No comment provided by engineer. */
@@ -1737,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "Ko tētahi o tō tāpaetanga kei te tikiake tonu tia. Takiuru ki waho ka whakararutia pea.\nKei te tino hiahia koe ki te takiuru atu?";
+
+/* No comment provided by engineer. */
+"One or more files failed to sync. Check your internet connection and retry to submit." = "Kotahi neke atu ranei nga konae i rahua ki te tukutahi. Tirohia to hononga ipurangi ka ngana ano ki te tuku.";
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "Kotahi me te nui atu o ngā kōnae i hapa te tukuake. Āta titro ki to hono ipurangi ka ngana anō ki te tuku.";
@@ -1767,6 +1812,9 @@
 
 /* No comment provided by engineer. */
 "Open item details" = "Huaki ngā taipitopito tūemi";
+
+/* No comment provided by engineer. */
+"Open section" = "Tuwhera te waahanga";
 
 /* No comment provided by engineer. */
 "Opens in Canvas Student" = "Huaki ai i roto i Canvas Ākonga";
@@ -1818,6 +1866,9 @@
 
 /* No comment provided by engineer. */
 "Pairing Code: " = "Waihere Hono ";
+
+/* No comment provided by engineer. */
+"Partially selected" = "Kua tohua he waahanga";
 
 /* No comment provided by engineer. */
 "Pass" = "Pāhi";
@@ -2012,6 +2063,9 @@
 "Remove From List?" = "Tango Mai I te Rarangi?";
 
 /* No comment provided by engineer. */
+"Remove item" = "Tango tūemi";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Kua tangohia %1$@";
 
 /* No comment provided by engineer. */
@@ -2144,6 +2198,9 @@
 "Select Impact" = "Tīpako Pānga";
 
 /* No comment provided by engineer. */
+"Select item" = "Tīpakohia te tūemi";
+
+/* No comment provided by engineer. */
 "Select One" = "Tīpakohia";
 
 /* No comment provided by engineer. */
@@ -2244,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Kōmaka mā te momo";
+
+/* No comment provided by engineer. */
+"Specify the recurrence of the content synchronization. The system will download the selected content based on the frequency specified here." = "Tohua te maha o nga wa ka puta te tukutahitanga ihirangi. I runga i tenei auau, ka tangohia e te punaha nga korero kua tohua.";
 
 /* No comment provided by engineer. */
 "Staff Contact Info" = "Kaimahi Whakapā Pūrongo";
@@ -2366,7 +2426,19 @@
 "Sync" = "Tukutahi";
 
 /* No comment provided by engineer. */
+"Sync Content Over Wi-Fi Only" = "Tukutahi Ihirangi Ki runga Wi-Fi Anake";
+
+/* No comment provided by engineer. */
+"Sync Failed" = "I Rahua te Tukutahi";
+
+/* No comment provided by engineer. */
+"Sync Frequency" = "Auautanga Tukutahi";
+
+/* No comment provided by engineer. */
 "Sync Offline Content?" = "Tukutahi ihirangi tuimotu?";
+
+/* No comment provided by engineer. */
+"Synchronization" = "Tukutahi";
 
 /* No comment provided by engineer. */
 "System settings" = "Pūnaha tautuhinga";
@@ -2586,6 +2658,12 @@
 
 /* No comment provided by engineer. */
 "Total time" = "Te wā katoa";
+
+/* No comment provided by engineer. */
+"Turn Off" = "Whakaweto";
+
+/* No comment provided by engineer. */
+"Turn Off Wi-Fi Only Sync?" = "Whakaweto Wi-Fi Tukutahi Anake?";
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "NgāTwitter whakamōhiotanga";

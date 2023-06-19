@@ -22,6 +22,9 @@
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
 
+/* Weekly Auto / Daily Auto Synchronization Frequency */
+"%@ Auto" = "%@ Авто";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Балл GPA";
 
@@ -374,6 +377,9 @@
 "Authentication failed. Most likely the user denied the request for access." = "Сбой авторизации. Скорее всего, пользователь отклонил запрос на доступ.";
 
 /* No comment provided by engineer. */
+"Auto Content Sync" = "Автоматическая синхронизация контента";
+
+/* No comment provided by engineer. */
 "Availability" = "Доступность";
 
 /* No comment provided by engineer. */
@@ -521,10 +527,16 @@
 "Close App" = "Закрыть приложение";
 
 /* No comment provided by engineer. */
+"Close section" = "Закрыть раздел";
+
+/* No comment provided by engineer. */
 "Closed" = "Закрыто";
 
 /* No comment provided by engineer. */
 "Closed for Comments" = "Закрыто для комментариев";
+
+/* No comment provided by engineer. */
+"Closed section" = "Закрытый раздел";
 
 /* No comment provided by engineer. */
 "Collapse" = "Свернуть";
@@ -579,6 +591,9 @@
 
 /* No comment provided by engineer. */
 "Content Link Error" = "Ошибка ссылки на содержимое";
+
+/* No comment provided by engineer. */
+"Content sync might use cellular data which may result in extra fees from your data provider." = "Синхронизация содержимого может использовать данные сотовой связи, что может привести к дополнительным расходам со стороны вашего поставщика данных.";
 
 /* No comment provided by engineer. */
 "Contribute" = "Предоставить";
@@ -791,6 +806,12 @@
 "Deselect All" = "Отменить выбор для всех";
 
 /* No comment provided by engineer. */
+"Deselect item" = "Отменить выбор позиции";
+
+/* No comment provided by engineer. */
+"Deselected" = "Выбор отменен";
+
+/* No comment provided by engineer. */
 "Designer" = "Дизайнер";
 
 /* No comment provided by engineer. */
@@ -852,6 +873,15 @@
 
 /* No comment provided by engineer. */
 "Done" = "Готово";
+
+/* No comment provided by engineer. */
+"Download complete" = "Скачивание завершено";
+
+/* No comment provided by engineer. */
+"Downloading" = "Скачивание";
+
+/* Downloading 42 GB of 64 GB */
+"Downloading %@ of %@" = "Скачивание %1$@ из %2$@";
 
 /* No comment provided by engineer. */
 "Due" = "Срок";
@@ -933,6 +963,9 @@
 
 /* No comment provided by engineer. */
 "Enable Push Notifications" = "Включить push-уведомления";
+
+/* No comment provided by engineer. */
+"Enabling the Auto Content Sync will take care of downloading the selected content based on the below settings. The content synchronization will happen even if the application is not running. If the setting is switched off then no synchronization will happen. The already downloaded content will not be deleted." = "При включении функции автоматической синхронизации содержимого будет выполнена загрузка выбранного содержимого на основе приведенных ниже настроек. Синхронизация содержимого будет происходить, даже если приложение не запущено. Если этот параметр выключен, синхронизация не будет выполняться. Уже загруженное содержимое не будет удаляться.";
 
 /* No comment provided by engineer. */
 "End Act as User" = "Завершить функцию «Действовать как пользователь»";
@@ -1223,6 +1256,9 @@
 "I obtained permission" = "Я получил(-а) разрешение";
 
 /* No comment provided by engineer. */
+"If this setting is enabled the content synchronization will only happen if the device connects to a Wi-Fi network, otherwise it will be postponed until a Wi-Fi network is available." = "Если этот параметр включен, синхронизация содержимого будет происходить только при подключении устройства к сети Wi-Fi. В противном случае она будет отложена до появления доступной сети Wi-Fi.";
+
+/* No comment provided by engineer. */
 "Image" = "Изображение";
 
 /* No comment provided by engineer. */
@@ -1464,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Manage Students" = "Управление студентами";
+
+/* No comment provided by engineer. */
+"Manual" = "Ручное";
 
 /* No comment provided by engineer. */
 "Manual OAuth Login" = "Ручной вход в OAuth";
@@ -1727,6 +1766,9 @@
 "Offline Content" = "Оффлайн-контент";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Failed" = "Сбой синхронизации автономного содержимого";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -1737,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "Один из отправляемых ресурсов еще выгружается. При выходе выгрузка может быть прервана.\nВы уверены, что вы хотите выйти?";
+
+/* No comment provided by engineer. */
+"One or more files failed to sync. Check your internet connection and retry to submit." = "Не удалось синхронизировать один или более файлов. Проверьте подключение к Интернету и повторите отправку.";
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "Не удалось загрузить один или несколько файлов. Проверьте подключение к Интернету и повторите отправку.";
@@ -1767,6 +1812,9 @@
 
 /* No comment provided by engineer. */
 "Open item details" = "Открыть подробную информацию об элементе";
+
+/* No comment provided by engineer. */
+"Open section" = "Открыть раздел";
 
 /* No comment provided by engineer. */
 "Opens in Canvas Student" = "Открыть в Canvas Student";
@@ -1818,6 +1866,9 @@
 
 /* No comment provided by engineer. */
 "Pairing Code: " = "Код сопряжения: ";
+
+/* No comment provided by engineer. */
+"Partially selected" = "Частично выбрано";
 
 /* No comment provided by engineer. */
 "Pass" = "Прохождение";
@@ -2012,6 +2063,9 @@
 "Remove From List?" = "Удалить из списка?";
 
 /* No comment provided by engineer. */
+"Remove item" = "Удалить элемент";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Удалено %1$@";
 
 /* No comment provided by engineer. */
@@ -2144,6 +2198,9 @@
 "Select Impact" = "Выберите влияние";
 
 /* No comment provided by engineer. */
+"Select item" = "Выбрать элемент";
+
+/* No comment provided by engineer. */
 "Select One" = "Выберите один";
 
 /* No comment provided by engineer. */
@@ -2244,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Сортировать по лайкам";
+
+/* No comment provided by engineer. */
+"Specify the recurrence of the content synchronization. The system will download the selected content based on the frequency specified here." = "Укажите периодичность синхронизации содержимого. Система будет скачивать выбранное содержимое в соответствии с указанной здесь периодичностью.";
 
 /* No comment provided by engineer. */
 "Staff Contact Info" = "Контактная информация персонала";
@@ -2366,7 +2426,19 @@
 "Sync" = "Синхронизировать";
 
 /* No comment provided by engineer. */
+"Sync Content Over Wi-Fi Only" = "Синхронизация содержимого только по Wi-Fi";
+
+/* No comment provided by engineer. */
+"Sync Failed" = "Синхронизация не выполнена";
+
+/* No comment provided by engineer. */
+"Sync Frequency" = "Синхронизация частоты";
+
+/* No comment provided by engineer. */
 "Sync Offline Content?" = "Синхронизировать офлайн-контент?";
+
+/* No comment provided by engineer. */
+"Synchronization" = "Синхронизация";
 
 /* No comment provided by engineer. */
 "System settings" = "Системные настройки";
@@ -2586,6 +2658,12 @@
 
 /* No comment provided by engineer. */
 "Total time" = "Общее время";
+
+/* No comment provided by engineer. */
+"Turn Off" = "Отключить";
+
+/* No comment provided by engineer. */
+"Turn Off Wi-Fi Only Sync?" = "Отключить синхронизацию только по Wi-Fi?";
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Уведомления Twitter";

@@ -22,6 +22,9 @@
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
 
+/* Weekly Auto / Daily Auto Synchronization Frequency */
+"%@ Auto" = "%@ Auto";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
@@ -374,6 +377,9 @@
 "Authentication failed. Most likely the user denied the request for access." = "Godkendelse mislykkedes Brugeren har sandsynligvis nægtet adgang.";
 
 /* No comment provided by engineer. */
+"Auto Content Sync" = "Automatisk indholdssynkronisering";
+
+/* No comment provided by engineer. */
 "Availability" = "Tilgængelighed";
 
 /* No comment provided by engineer. */
@@ -521,10 +527,16 @@
 "Close App" = "Luk app";
 
 /* No comment provided by engineer. */
+"Close section" = "Luk sektion";
+
+/* No comment provided by engineer. */
 "Closed" = "Lukket";
 
 /* No comment provided by engineer. */
 "Closed for Comments" = "Lukket for kommentarer";
+
+/* No comment provided by engineer. */
+"Closed section" = "Lukket sektion";
 
 /* No comment provided by engineer. */
 "Collapse" = "Skjul";
@@ -579,6 +591,9 @@
 
 /* No comment provided by engineer. */
 "Content Link Error" = "Indholdslinkfejl";
+
+/* No comment provided by engineer. */
+"Content sync might use cellular data which may result in extra fees from your data provider." = "Indholdssynkronisering kan bruge mobildata, hvilket kan resultere i ekstra gebyrer fra din dataudbyder.";
 
 /* No comment provided by engineer. */
 "Contribute" = "Bidrag";
@@ -791,6 +806,12 @@
 "Deselect All" = "Fravælg alle";
 
 /* No comment provided by engineer. */
+"Deselect item" = "Fravælg element";
+
+/* No comment provided by engineer. */
+"Deselected" = "Fravalgt";
+
+/* No comment provided by engineer. */
 "Designer" = "Designer";
 
 /* No comment provided by engineer. */
@@ -852,6 +873,15 @@
 
 /* No comment provided by engineer. */
 "Done" = "Udført";
+
+/* No comment provided by engineer. */
+"Download complete" = "Download fuldført";
+
+/* No comment provided by engineer. */
+"Downloading" = "Downloader";
+
+/* Downloading 42 GB of 64 GB */
+"Downloading %@ of %@" = "Downloader %1$@ af %2$@";
 
 /* No comment provided by engineer. */
 "Due" = "Forfalder";
@@ -933,6 +963,9 @@
 
 /* No comment provided by engineer. */
 "Enable Push Notifications" = "Aktiver push-meddelelser";
+
+/* No comment provided by engineer. */
+"Enabling the Auto Content Sync will take care of downloading the selected content based on the below settings. The content synchronization will happen even if the application is not running. If the setting is switched off then no synchronization will happen. The already downloaded content will not be deleted." = "Aktivering af automatisk indholdssynkronisering sørger for at downloade det valgte indhold baseret på nedenstående indstillinger. Indholdssynkroniseringen gennemføres, selvom applikationen ikke kører. Hvis indstillingen er deaktiveret, sker der ingen synkronisering. Det allerede downloadede indhold vil ikke blive slettet.";
 
 /* No comment provided by engineer. */
 "End Act as User" = "Afslut \\'funger som bruger\\'";
@@ -1223,6 +1256,9 @@
 "I obtained permission" = "Jeg fik tilladelse";
 
 /* No comment provided by engineer. */
+"If this setting is enabled the content synchronization will only happen if the device connects to a Wi-Fi network, otherwise it will be postponed until a Wi-Fi network is available." = "Hvis denne indstilling er aktiveret, vil indholdssynkroniseringen kun gennemføres, hvis enheden opretter forbindelse til et wi-fi-netværk, ellers vil det blive udskudt, indtil et wi-fi-netværk er tilgængeligt.";
+
+/* No comment provided by engineer. */
 "Image" = "Billede";
 
 /* No comment provided by engineer. */
@@ -1464,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Manage Students" = "Administrer elever";
+
+/* No comment provided by engineer. */
+"Manual" = "Manuel";
 
 /* No comment provided by engineer. */
 "Manual OAuth Login" = "Manuel OAuth-login";
@@ -1727,6 +1766,9 @@
 "Offline Content" = "Offline indhold";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Failed" = "Synkronisering af offlineindhold mislykkedes";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -1737,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "En af dine afleveringer uploades stadig. Hvis du logger ud, kan processen blive afbrudt.\nEr du sikker på, du vil logge af?";
+
+/* No comment provided by engineer. */
+"One or more files failed to sync. Check your internet connection and retry to submit." = "En eller flere filer kunne ikke synkronisere. Kontroller din internetforbindelse, og prøv igen for at aflevere.";
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "En eller flere filer kunne ikke uploades. Kontroller din internetforbindelse, og prøv igen for at aflevere.";
@@ -1767,6 +1812,9 @@
 
 /* No comment provided by engineer. */
 "Open item details" = "Åbn elementoplysninger";
+
+/* No comment provided by engineer. */
+"Open section" = "Åbn sektionen";
 
 /* No comment provided by engineer. */
 "Opens in Canvas Student" = "Åbner i Canvas for elever";
@@ -1818,6 +1866,9 @@
 
 /* No comment provided by engineer. */
 "Pairing Code: " = "Parringskode: ";
+
+/* No comment provided by engineer. */
+"Partially selected" = "Delvist valgt";
 
 /* No comment provided by engineer. */
 "Pass" = "Bestået";
@@ -2012,6 +2063,9 @@
 "Remove From List?" = "Fjern fra liste?";
 
 /* No comment provided by engineer. */
+"Remove item" = "Fjern element";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Fjernet %1$@";
 
 /* No comment provided by engineer. */
@@ -2144,6 +2198,9 @@
 "Select Impact" = "Vælg virkning";
 
 /* No comment provided by engineer. */
+"Select item" = "Vælg element";
+
+/* No comment provided by engineer. */
 "Select One" = "Vælg en";
 
 /* No comment provided by engineer. */
@@ -2244,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Sorter efter 'synes godt om'";
+
+/* No comment provided by engineer. */
+"Specify the recurrence of the content synchronization. The system will download the selected content based on the frequency specified here." = "Angiv gentagelsen af indholdssynkroniseringen. Systemet vil downloade det valgte indhold baseret på den frekvens, der angives her.";
 
 /* No comment provided by engineer. */
 "Staff Contact Info" = "Kontaktoplysninger for personale";
@@ -2366,7 +2426,19 @@
 "Sync" = "Synkroniser";
 
 /* No comment provided by engineer. */
+"Sync Content Over Wi-Fi Only" = "Synkroniser kun indhold via wi-fi";
+
+/* No comment provided by engineer. */
+"Sync Failed" = "Synkronisering mislykkedes";
+
+/* No comment provided by engineer. */
+"Sync Frequency" = "Synkroniseringsfrekvens";
+
+/* No comment provided by engineer. */
 "Sync Offline Content?" = "Vil du synkronisere offline indhold?";
+
+/* No comment provided by engineer. */
+"Synchronization" = "Synkronisering";
 
 /* No comment provided by engineer. */
 "System settings" = "Systemindstillinger";
@@ -2586,6 +2658,12 @@
 
 /* No comment provided by engineer. */
 "Total time" = "Samlet tid";
+
+/* No comment provided by engineer. */
+"Turn Off" = "Sluk";
+
+/* No comment provided by engineer. */
+"Turn Off Wi-Fi Only Sync?" = "Slå \"Kun wi-fi-synkronisering\" fra?";
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Twitter-meddelelser";
