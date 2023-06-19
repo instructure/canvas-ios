@@ -20,7 +20,7 @@ import AVKit
 import Foundation
 import UIKit
 
-class AttachmentCardsViewController: UIViewController {
+public class AttachmentCardsViewController: UIViewController {
     let stackView = HorizontalScrollingStackview()
 
     var attachments: [File] = []
@@ -32,7 +32,7 @@ class AttachmentCardsViewController: UIViewController {
         return AttachmentCardsViewController()
     }
 
-    override func loadView() {
+    override public func loadView() {
         view = stackView
         stackView.scrollView.showsHorizontalScrollIndicator = false
         stackView.spacing = 12

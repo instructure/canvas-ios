@@ -93,4 +93,19 @@ class APIConversationTests: CoreTestCase {
         XCTAssertEqual(request.method, .post)
         XCTAssertEqual(request.body, body)
     }
+
+    func testStarConversationRequest() {
+        let body = StarConversationRequest.Body(
+            conversation:
+                StarConversationRequest.ConversationContainer(
+                id: "1",
+                starred: true
+            )
+        )
+
+        let request = StarConversationRequest(id: "1", starred: true)
+        XCTAssertEqual(request.path, "conversations/1")
+        XCTAssertEqual(request.body, body)
+        XCTAssertEqual(request.method, .put)
+    }
 }
