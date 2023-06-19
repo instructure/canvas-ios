@@ -25,7 +25,7 @@ class MessageDetailsViewModel: ObservableObject {
     @Published public private(set) var messages: [MessageViewModel] = []
     @Published public private(set) var starred: Bool = false
 
-    public let title = NSLocalizedString("Message Details", comment: "")
+    public let title = NSLocalizedString("Message Details", bundle: .core, comment: "")
 
     // MARK: - Inputs
     public let refreshDidTrigger = PassthroughSubject<() -> Void, Never>()

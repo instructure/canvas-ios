@@ -41,6 +41,7 @@ public class InboxViewModel: ObservableObject {
     // MARK: - Inputs
     public let refreshDidTrigger = PassthroughSubject<() -> Void, Never>()
     public let menuDidTap = PassthroughSubject<WeakViewController, Never>()
+    public let newMessageDidTap = PassthroughSubject<WeakViewController, Never>()
     public let messageDidTap = PassthroughSubject<(messageID: String, controller: WeakViewController), Never>()
     public let scopeDidChange = CurrentValueSubject<InboxMessageScope, Never>(DefaultScope)
     public let courseDidChange = CurrentValueSubject<InboxCourse?, Never>(nil)
@@ -140,6 +141,11 @@ public class InboxViewModel: ObservableObject {
         menuDidTap
             .sink { [router] source in
                 router.route(to: "/profile", from: source, options: .modal())
+            }
+            .store(in: &subscriptions)
+        newMessageDidTap
+            .sink { [router] source in
+                router.route(to: "/conversations/compose", from: source, options: .modal())
             }
             .store(in: &subscriptions)
         messageDidTap
