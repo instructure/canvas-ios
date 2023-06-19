@@ -20,7 +20,7 @@ import Foundation
 
 public struct CourseSyncEntry {
     public enum State: Codable, Equatable, Hashable {
-        case loading(Float?), error, downloaded
+        case idle, loading(Float?), error, downloaded
     }
 
     let name: String
@@ -92,6 +92,7 @@ public struct CourseSyncEntry {
             .filter { $0.selectionState == .selected }
             .reduce(0 as Float) { partialResult, file in
                 switch file.state {
+                case .idle: return 0
                 case .downloaded: return partialResult + 1
                 case let .loading(progress): return partialResult + (progress ?? 0)
                 case .error: return partialResult + 0

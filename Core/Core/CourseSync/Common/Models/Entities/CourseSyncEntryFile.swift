@@ -38,6 +38,7 @@ public extension CourseSyncEntry {
         /// Downloaded bytes, progress is persisted to Core Data.
         var bytesDownloaded: Int {
             switch state {
+            case .idle: return 0
             case .downloaded: return bytesToDownload
             case let .loading(progress):
                 if let progress {

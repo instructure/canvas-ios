@@ -36,6 +36,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     private var courseSyncEntries = CurrentValueSubject<[CourseSyncEntry], Error>.init([])
+    private let fileErrorMessage = NSLocalizedString("File download failed.", comment: "")
     private var subscription: AnyCancellable?
 
     public init(
@@ -68,6 +69,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                     unownedSelf.courseSyncEntries.send(completion: .finished)
                 },
                 receiveCompletion: { _ in
+                    unownedSelf.setIdleStateForUnfinishedEntries()
                     unownedSelf.courseSyncEntries.send(completion: .finished)
                 }
             )
@@ -193,10 +195,17 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                         )
 
                     },
-                    receiveCompletion: { _ in
-                        unownedSelf.setState(
-                            selection: .file(entry.id, entry.files[fileIndex].id), state: .downloaded
-                        )
+                    receiveCompletion: { completion in
+                        switch completion {
+                        case .finished:
+                            unownedSelf.setState(
+                                selection: .file(entry.id, entry.files[fileIndex].id), state: .downloaded
+                            )
+                        case .failure:
+                            unownedSelf.setState(
+                                selection: .file(entry.id, entry.files[fileIndex].id), state: .error
+                            )
+                        }
                     }
                 )
             }
@@ -210,6 +219,30 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             )
             .map { _ in () }
             .eraseToAnyPublisher()
+    }
+
+    /// When a download fails, we need to update the state of every other item that were still loading at the time when the error occured.
+    private func setIdleStateForUnfinishedEntries() {
+        unowned let unownedSelf = self
+
+        courseSyncEntries.value.forEach { entry in
+            if case .loading = entry.state {
+                unownedSelf.setState(selection: .course(entry.id), state: .idle)
+            }
+
+            entry.tabs.forEach { tab in
+                if case .loading = tab.state {
+                    unownedSelf.setState(selection: .tab(entry.id, tab.id), state: .idle)
+                }
+            }
+            entry.files.forEach { file in
+                if case .loading = file.state {
+                    unownedSelf.setState(selection: .file(entry.id, file.id), state: .idle)
+                }
+            }
+        }
+
+        progressWriterInteractor.saveFileProgress(entries: courseSyncEntries.value, error: fileErrorMessage)
     }
 
     /// Updates entry state in memory and writes it to Core Data. In addition it also writes file progress to Core Data.
@@ -231,7 +264,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         var errorMessage: String?
 
         if case .error = state {
-            errorMessage = NSLocalizedString("File download failed.", comment: "")
+            errorMessage = fileErrorMessage
         }
 
         progressWriterInteractor.saveFileProgress(entries: entries, error: errorMessage)

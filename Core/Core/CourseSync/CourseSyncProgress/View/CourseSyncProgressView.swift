@@ -128,6 +128,14 @@ struct CourseSyncProgressView: View {
     private func listCell(for item: CourseSyncProgressViewModel.Item) -> some View {
         VStack(spacing: 0) {
             switch item.state {
+            case .idle:
+                ListCellView(ListCellViewModel(cellStyle: item.cellStyle,
+                                               title: item.title,
+                                               subtitle: item.subtitle,
+                                               isCollapsed: item.isCollapsed,
+                                               collapseDidToggle: item.collapseDidToggle,
+                                               removeItemPressed: item.removeItemPressed,
+                                               state: .idle))
             case let .loading(progress):
                 ListCellView(ListCellViewModel(cellStyle: item.cellStyle,
                                                title: item.title,
