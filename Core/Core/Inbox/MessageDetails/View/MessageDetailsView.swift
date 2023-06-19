@@ -27,7 +27,7 @@ public struct MessageDetailsView: View {
     }
 
     public var body: some View {
-        ScrollView {
+        RefreshableScrollView {
             switch model.state {
             case .loading:
                 loadingIndicator
@@ -37,11 +37,9 @@ public struct MessageDetailsView: View {
                 Text("There was an error loading the message. Pull to refresh to try again.", bundle: .core)
             }
         }
-        .refreshable {
-            await withCheckedContinuation { continuation in
-                model.refreshDidTrigger.send {
-                    continuation.resume()
-                }
+        refreshAction: { onComplete in
+            model.refreshDidTrigger.send {
+                onComplete()
             }
         }
         .background(Color.backgroundLightest)
