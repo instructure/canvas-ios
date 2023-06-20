@@ -47,6 +47,8 @@ class AnnouncementsTests: E2ETestCase {
     }
 
     func testAnnouncementsTitleAndMessage() {
+        typealias DetailsHelper = AnnouncementsHelper.Details
+
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
         let course = seeder.createCourse()
@@ -64,11 +66,11 @@ class AnnouncementsTests: E2ETestCase {
         XCTAssertTrue(firstAnnouncement.label().contains(announcement.title))
 
         firstAnnouncement.tap()
-        let announcementTitle = AnnouncementsHelper.announcementDetailsTitle.waitToExist()
+        let announcementTitle = DetailsHelper.title.waitToExist()
         XCTAssertTrue(announcementTitle.isVisible)
         XCTAssertEqual(announcementTitle.label(), announcement.title)
 
-        let announcementMessage = AnnouncementsHelper.announcementDetailsMessage.waitToExist()
+        let announcementMessage = DetailsHelper.message.waitToExist()
         XCTAssertTrue(announcementMessage.isVisible)
         XCTAssertEqual(announcementMessage.label(), announcement.message)
     }

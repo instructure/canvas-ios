@@ -27,13 +27,15 @@ enum AnnouncementList {
 }
 
 public class AnnouncementsHelper: BaseHelper {
-    public static var announcementDetailsTitle: Element { app.find(id: "DiscussionDetails.title") }
-    public static var announcementDetailsMessage: Element {
-        app.find(id: "DiscussionDetails.body").rawElement.findAll(type: .staticText)[1]
-    }
+    struct Details {
+        public static var title: Element { app.find(id: "DiscussionDetails.title") }
+        public static var message: Element {
+            app.find(id: "DiscussionDetails.body").rawElement.findAll(type: .staticText)[1]
+        }
 
-    public static func announcementDetailsNavBar(course: DSCourse) -> Element {
-        app.find(id: "Announcement Details, \(course.name)")
+        public static func navBar(course: DSCourse) -> Element {
+            app.find(id: "Announcement Details, \(course.name)")
+        }
     }
 
     public static func notificationTitle(announcement: DSAccountNotification) -> Element {

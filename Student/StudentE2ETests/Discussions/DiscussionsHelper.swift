@@ -22,8 +22,7 @@ import TestsFoundation
 import XCTest
 
 public class DiscussionsHelper: BaseHelper {
-    // MARK: Discussion UI elements and functions
-    public static var discussionsNewButton: Element { app.find(id: "DiscussionList.newButton") }
+    public static var newButton: Element { app.find(id: "DiscussionList.newButton") }
     public static var noDiscussionsPandaImage: Element { app.find(id: "PandaNoDiscussions") }
 
     public static func discussionButton(discussion: DSDiscussionTopic) -> Element {
@@ -38,39 +37,40 @@ public class DiscussionsHelper: BaseHelper {
         app.find(id: "Discussions, \(course.name)")
     }
 
-    // MARK: Discussion Detail UI elements and functions
-    // Detail screen
-    public static func discussionDetailsNavBar(course: DSCourse) -> Element {
-        app.find(id: "Discussion Details, \(course.name)")
-    }
-    public static var discussionDetailsOptionsButton: Element { app.find(id: "DiscussionDetails.options") }
-    public static var discussionDetailsTitleLabel: Element { app.find(id: "DiscussionDetails.title") }
-    public static var discussionDetailsLastPostLabel: Element {
-        app.find(id: "DiscussionDetails.body").rawElement.find(type: .staticText)
-    }
-    public static var discussionDetailsMessageLabel: Element {
-        app.find(id: "DiscussionDetails.body").rawElement.findAll(type: .staticText)[1]
-    }
-    public static var discussionDetailsReplyButton: Element {
-        app.find(id: "DiscussionDetails.body").rawElement.findAll(type: .link)[1]
-    }
-    public static var discussionDetailsRepliesSection: Element {
-        app.find(id: "DiscussionDetails.body").rawElement.find(label: "Replies", type: .other)
-    }
-    public static func discussionDetailsReplyToThreadButton(threadIndex: Int) -> Element {
-        app.find(id: "DiscussionDetails.body").rawElement.findAll(labelContaining: "Reply", type: .link)[threadIndex]
-    }
+    struct Details {
+        public static func navBar(course: DSCourse) -> Element {
+            app.find(id: "Discussion Details, \(course.name)")
+        }
+        public static var optionsButton: Element { app.find(id: "DiscussionDetails.options") }
+        public static var titleLabel: Element { app.find(id: "DiscussionDetails.title") }
+        public static var lastPostLabel: Element {
+            app.find(id: "DiscussionDetails.body").rawElement.find(type: .staticText)
+        }
+        public static var messageLabel: Element {
+            app.find(id: "DiscussionDetails.body").rawElement.findAll(type: .staticText)[1]
+        }
+        public static var replyButton: Element {
+            app.find(id: "DiscussionDetails.body").rawElement.findAll(type: .link)[1]
+        }
+        public static var repliesSection: Element {
+            app.find(id: "DiscussionDetails.body").rawElement.find(label: "Replies", type: .other)
+        }
+        public static func replyToThreadButton(threadIndex: Int) -> Element {
+            app.find(id: "DiscussionDetails.body").rawElement.findAll(labelContaining: "Reply", type: .link)[threadIndex]
+        }
 
-    // Reply screen
-    public static var discussionDetailsReplyNavBar: Element { app.find(id: "Reply") }
-    public static var discussionDetailsReplyEditorTextField: Element {
-        app.find(id: "RichContentEditor.webView").rawElement.find(type: .textView)
-    }
-    public static var discussionDetailsReplyEditorSendButton: Element {
-        app.find(id: "DiscussionEditReply.sendButton")
-    }
-    public static var discussionDetailsReplyEditorAttachmentButton: Element {
-        app.find(id: "DiscussionEditReply.attachmentButton")
+        struct Reply {
+            public static var navBar: Element { app.find(id: "Reply") }
+            public static var textField: Element {
+                app.find(id: "RichContentEditor.webView").rawElement.find(type: .textView)
+            }
+            public static var sendButton: Element {
+                app.find(id: "DiscussionEditReply.sendButton")
+            }
+            public static var attachmentButton: Element {
+                app.find(id: "DiscussionEditReply.attachmentButton")
+            }
+        }
     }
 
     // MARK: Other functions
@@ -98,12 +98,12 @@ public class DiscussionsHelper: BaseHelper {
 
     @discardableResult
     public static func replyToDiscussion(replyText: String = "Test replying to discussion") -> Bool {
-        DiscussionsHelper.discussionDetailsReplyButton.tap()
-        let discussionDetailsReplyEditorTextField = DiscussionsHelper.discussionDetailsReplyEditorTextField.waitToExist()
-        discussionDetailsReplyEditorTextField.pasteText(replyText)
-        discussionDetailsReplyEditorSendButton.tap()
-        let discussionDetailsRepliesSection = DiscussionsHelper.discussionDetailsRepliesSection.waitToExist()
-        return discussionDetailsRepliesSection.isVisible
+        Details.replyButton.tap()
+        let textEntry = Details.Reply.editorTextField.waitToExist()
+        textEntry.pasteText(replyText)
+        Details.Reply.sendButton.tap()
+        let repliesSection = Details.repliesSection.waitToExist()
+        return repliesSection.isVisible
     }
 }
 
