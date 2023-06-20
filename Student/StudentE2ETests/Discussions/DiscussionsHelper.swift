@@ -99,7 +99,7 @@ public class DiscussionsHelper: BaseHelper {
     @discardableResult
     public static func replyToDiscussion(replyText: String = "Test replying to discussion") -> Bool {
         Details.replyButton.tap()
-        let textEntry = Details.Reply.editorTextField.waitToExist()
+        let textEntry = Details.Reply.textField.waitToExist()
         textEntry.pasteText(replyText)
         Details.Reply.sendButton.tap()
         let repliesSection = Details.repliesSection.waitToExist()
