@@ -22,6 +22,8 @@ import Core
 
 class AssignmentsTests: E2ETestCase {
     func testSubmitAssignmentWithShareExtension() {
+        typealias Helper = AssignmentsHelper
+
         // MARK: Seed the usual stuff
         let users = seeder.createUsers(1)
         let course = seeder.createCourse()
@@ -29,18 +31,19 @@ class AssignmentsTests: E2ETestCase {
         seeder.enrollStudent(student, in: course)
 
         // MARK: Create assignment for testing share extension
-        let assignment = AssignmentsHelper.createAssignmentForShareExtension(course: course)
+        let assignment = Helper.createAssignmentForShareExtension(course: course)
 
         // MARK: Get the user logged in
         logInDSUser(student)
 
         // MARK: Share a photo using Canvas app share extension
-        let shareSuccessful = AssignmentsHelper.sharePhotoUsingCanvasSE(course: course, assignment: assignment)
+        let shareSuccessful = Helper.sharePhotoUsingCanvasSE(course: course, assignment: assignment)
         XCTAssertTrue(shareSuccessful)
     }
 
     func testViewAssignmentAndDetails() {
-        typealias DetailsHelper = AssignmentsHelper.Details
+        typealias Helper = AssignmentsHelper
+        typealias DetailsHelper = Helper.Details
 
         // MARK: Seed the usual stuff
         let users = seeder.createUsers(1)
@@ -49,17 +52,17 @@ class AssignmentsTests: E2ETestCase {
         seeder.enrollStudent(student, in: course)
 
         // MARK: Create an assignment
-        let assignment = AssignmentsHelper.createAssignment(course: course, submissionTypes: [.online_text_entry])
+        let assignment = Helper.createAssignment(course: course, submissionTypes: [.online_text_entry])
 
         // MARK: Get the user logged in
         logInDSUser(student)
 
         // MARK: Navigate to Assignments and check visibility
-        AssignmentsHelper.navigateToAssignments(course: course)
-        let navBar = AssignmentsHelper.navBar(course: course).waitToExist()
+        Helper.navigateToAssignments(course: course)
+        let navBar = Helper.navBar(course: course).waitToExist()
         XCTAssertTrue(navBar.isVisible)
 
-        let assignmentButton = AssignmentsHelper.assignmentButton(assignment: assignment).waitToExist()
+        let assignmentButton = Helper.assignmentButton(assignment: assignment).waitToExist()
         XCTAssertTrue(assignmentButton.isVisible)
         XCTAssertTrue(assignmentButton.label().contains(assignment.name))
 
@@ -104,8 +107,9 @@ class AssignmentsTests: E2ETestCase {
     }
 
     func testSubmitAssignment() {
-        typealias DetailsHelper = AssignmentsHelper.Details
-        typealias SubmissionHelper = AssignmentsHelper.Submission
+        typealias Helper = AssignmentsHelper
+        typealias DetailsHelper = Helper.Details
+        typealias SubmissionHelper = Helper.Submission
 
         // MARK: Seed the usual stuff
         let users = seeder.createUsers(1)
@@ -114,17 +118,17 @@ class AssignmentsTests: E2ETestCase {
         seeder.enrollStudent(student, in: course)
 
         // MARK: Create an assignment
-        let assignment = AssignmentsHelper.createAssignment(course: course, submissionTypes: [.online_text_entry])
+        let assignment = Helper.createAssignment(course: course, submissionTypes: [.online_text_entry])
 
         // MARK: Get the user logged in
         logInDSUser(student)
 
         // MARK: Navigate to Assignments and tap the assignment
-        AssignmentsHelper.navigateToAssignments(course: course)
-        let navBar = AssignmentsHelper.navBar(course: course).waitToExist()
+        Helper.navigateToAssignments(course: course)
+        let navBar = Helper.navBar(course: course).waitToExist()
         XCTAssertTrue(navBar.isVisible)
 
-        let assignmentButton = AssignmentsHelper.assignmentButton(assignment: assignment).waitToExist()
+        let assignmentButton = Helper.assignmentButton(assignment: assignment).waitToExist()
         XCTAssertTrue(assignmentButton.isVisible)
         assignmentButton.tap()
 
@@ -168,6 +172,8 @@ class AssignmentsTests: E2ETestCase {
     }
 
     func testAssignmentDueDate() {
+        typealias Helper = AssignmentsHelper
+
         // MARK: Seed the usual stuff
         let users = seeder.createUsers(1)
         let course = seeder.createCourse()
@@ -175,29 +181,29 @@ class AssignmentsTests: E2ETestCase {
         seeder.enrollStudent(student, in: course)
 
         // MARK: Create 2 assignments (1 due yesterday and 1 due tomorrow)
-        let yesterdaysDate = AssignmentsHelper.getYesterdaysDateString
-        let yesterdaysAssignment = AssignmentsHelper.createAssignment(
+        let yesterdaysDate = Helper.getYesterdaysDateString
+        let yesterdaysAssignment = Helper.createAssignment(
             course: course, name: "Yesterdays Assignment", dueDate: yesterdaysDate)
 
-        let tomorrowsDate = AssignmentsHelper.getTomorrowsDateString
-        let tomorrowsAssignment = AssignmentsHelper.createAssignment(
+        let tomorrowsDate = Helper.getTomorrowsDateString
+        let tomorrowsAssignment = Helper.createAssignment(
             course: course, name: "Tomorrows Assignment", dueDate: tomorrowsDate)
 
         // MARK: Get the user logged in
         logInDSUser(student)
 
         // MARK: Navigate to Assignments
-        AssignmentsHelper.navigateToAssignments(course: course)
-        let navBar = AssignmentsHelper.navBar(course: course).waitToExist()
+        Helper.navigateToAssignments(course: course)
+        let navBar = Helper.navBar(course: course).waitToExist()
         XCTAssertTrue(navBar.isVisible)
 
         // MARK: Check Yesterdays Assignment due date
-        let yesterdaysAssignmentButton = AssignmentsHelper.assignmentButton(assignment: yesterdaysAssignment).waitToExist()
+        let yesterdaysAssignmentButton = Helper.assignmentButton(assignment: yesterdaysAssignment).waitToExist()
         XCTAssertTrue(yesterdaysAssignmentButton.isVisible)
         XCTAssertTrue(yesterdaysAssignmentButton.label().contains("Due Yesterday"))
 
         // MARK: Check Tomorrows Assignment due date
-        let tomorrowsAssignmentButton = AssignmentsHelper.assignmentButton(assignment: tomorrowsAssignment).waitToExist()
+        let tomorrowsAssignmentButton = Helper.assignmentButton(assignment: tomorrowsAssignment).waitToExist()
         XCTAssertTrue(tomorrowsAssignmentButton.isVisible)
         XCTAssertTrue(tomorrowsAssignmentButton.label().contains("Due Tomorrow"))
     }

@@ -21,13 +21,15 @@ import XCTest
 
 class AnnouncementsTests: E2ETestCase {
     func testAnnouncementsMatchWebOrder() {
+        typealias Helper = AnnouncementsHelper
+
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
 
         // MARK: Create some announcements and get the user logged in
-        let announcements = AnnouncementsHelper.createAnnouncements(course: course, count: 3)
+        let announcements = Helper.createAnnouncements(course: course, count: 3)
         logInDSUser(student)
 
         // MARK: Navigate to Announcement page and check the order of the announcements
@@ -47,7 +49,8 @@ class AnnouncementsTests: E2ETestCase {
     }
 
     func testAnnouncementsTitleAndMessage() {
-        typealias DetailsHelper = AnnouncementsHelper.Details
+        typealias Helper = AnnouncementsHelper
+        typealias DetailsHelper = Helper.Details
 
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
@@ -55,11 +58,11 @@ class AnnouncementsTests: E2ETestCase {
         seeder.enrollStudent(student, in: course)
 
         // MARK: Create an announcement and get the user logged in
-        let announcement = AnnouncementsHelper.createAnnouncements(course: course)[0]
+        let announcement = Helper.createAnnouncements(course: course)[0]
         logInDSUser(student)
 
         // MARK: Navigate to Announcement page and check the title and message of the announcement
-        AnnouncementsHelper.navigateToAnnouncementsPage(course: course, shouldPullToRefresh: true)
+        Helper.navigateToAnnouncementsPage(course: course, shouldPullToRefresh: true)
 
         let firstAnnouncement = AnnouncementList.cell(index: 0).waitToExist()
         XCTAssertTrue(firstAnnouncement.isVisible)
@@ -76,19 +79,21 @@ class AnnouncementsTests: E2ETestCase {
     }
 
     func testAnnouncementToggle() {
+        typealias Helper = AnnouncementsHelper
+
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
 
         // MARK: Post an account notification and get the user logged in
-        let globalAnnouncement = AnnouncementsHelper.postAccountNotification()
+        let globalAnnouncement = Helper.postAccountNotification()
         logInDSUser(student)
 
         // MARK: Check visibility of the course and the announcement notification title
         let courseCard = Dashboard.courseCard(id: course.id).waitToExist()
         XCTAssertTrue(courseCard.isVisible)
-        let annountementTitle = AnnouncementsHelper.notificationTitle(announcement: globalAnnouncement).waitToExist()
+        let annountementTitle = Helper.notificationTitle(announcement: globalAnnouncement).waitToExist()
         XCTAssertTrue(annountementTitle.isVisible)
 
         // MARK: Check visibility toggle and dismiss button of the announcement notificaiton
@@ -103,7 +108,7 @@ class AnnouncementsTests: E2ETestCase {
         XCTAssertTrue(dismissButton.isVisible)
 
         // MARK: Check the message of the announcement
-        let announcementMessage = AnnouncementsHelper.notificationMessage(announcement: globalAnnouncement).waitToExist()
+        let announcementMessage = Helper.notificationMessage(announcement: globalAnnouncement).waitToExist()
         XCTAssertTrue(announcementMessage.isVisible)
         XCTAssertEqual(announcementMessage.label(), globalAnnouncement.message)
 
