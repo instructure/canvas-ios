@@ -242,8 +242,8 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         let subscription1 = testee.getCourseSyncEntries()
             .first()
             .handleEvents(receiveOutput: { _ in
-                testee.setSelected(selection: .course(0), selectionState: .selected)
-                testee.setSelected(selection: .file(1, 0), selectionState: .selected)
+                testee.setSelected(selection: .course("0"), selectionState: .selected)
+                testee.setSelected(selection: .file("1", "0"), selectionState: .selected)
                 expectation.fulfill()
             })
             .flatMap { _ in testee.getSelectedCourseEntries() }
@@ -359,7 +359,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         XCTAssertFinish(testee.getCourseSyncEntries().first())
 
         // MARK: - WHEN
-        testee.setSelected(selection: .course(1), selectionState: .selected)
+        testee.setSelected(selection: .course("courses/2"), selectionState: .selected)
 
         // MARK: - THEN
         XCTAssertEqual(defaults.offlineSyncSelections, ["courses/2"])
@@ -378,7 +378,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         XCTAssertFinish(testee.getCourseSyncEntries().first())
 
         // MARK: - WHEN
-        testee.setSelected(selection: .course(0), selectionState: .selected)
+        testee.setSelected(selection: .course("courses/1"), selectionState: .selected)
 
         // MARK: - THEN
         XCTAssertEqual(defaults.offlineSyncSelections, ["courses/2", "courses/1"])

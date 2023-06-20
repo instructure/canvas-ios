@@ -25,11 +25,16 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
     var testee: CourseSyncSelectorViewModel!
     var mockSelectorInteractor: CourseSyncSelectorInteractorMock!
     var mockSyncInteractor: CourseSyncInteractorMock!
+    var mockFileFolderInteractor: CourseSyncFileFolderInteractorMock!
     var router: TestRouter!
 
     override func setUp() {
         super.setUp()
-        mockSelectorInteractor = CourseSyncSelectorInteractorMock(sessionDefaults: .fallback)
+        mockFileFolderInteractor = CourseSyncFileFolderInteractorMock()
+        mockSelectorInteractor = CourseSyncSelectorInteractorMock(
+            fileFolderInteractor: mockFileFolderInteractor,
+            sessionDefaults: .fallback
+        )
         mockSyncInteractor = CourseSyncInteractorMock()
         router = TestRouter()
         testee = CourseSyncSelectorViewModel(
@@ -129,9 +134,11 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
 }
 
 class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
-
-    required init(courseID: String? = nil, sessionDefaults: SessionDefaults) {
-    }
+    required init(
+        courseID: String? = nil,
+        fileFolderInteractor: CourseSyncFileFolderInteractor,
+        sessionDefaults: SessionDefaults
+    ) {}
 
     let courseSyncEntriesSubject = PassthroughSubject<[CourseSyncEntry], Error>()
     func getCourseSyncEntries() -> AnyPublisher<[Core.CourseSyncEntry], Error> {
@@ -171,5 +178,13 @@ class CourseSyncInteractorMock: CourseSyncInteractor {
 
     func downloadContent(for _: [Core.CourseSyncEntry]) -> AnyPublisher<[Core.CourseSyncEntry], Error> {
         courseSyncEntriesSubject.eraseToAnyPublisher()
+    }
+}
+
+class CourseSyncFileFolderInteractorMock: CourseSyncFileFolderInteractor {
+    func getAllFiles(course: Core.CourseSyncSelectorCourse) -> AnyPublisher<Core.CourseSyncEntry, Error> {
+        Just(CourseSyncEntry.init(name: "0", id: "0", tabs: [], files: []))
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
 }

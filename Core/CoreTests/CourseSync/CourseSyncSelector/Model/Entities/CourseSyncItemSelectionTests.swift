@@ -48,13 +48,13 @@ class CourseSyncItemSelectionTests: XCTestCase {
         ]
 
         let courseSelection = "2"
-        XCTAssertEqual(courseSelection.toCourseEntrySelection(from: syncEntries), .course(1))
+        XCTAssertEqual(courseSelection.toCourseEntrySelection(from: syncEntries), .course("2"))
 
         let tabSelection = "4"
-        XCTAssertEqual(tabSelection.toCourseEntrySelection(from: syncEntries), .tab(1, 1))
+        XCTAssertEqual(tabSelection.toCourseEntrySelection(from: syncEntries), .tab("2", "4"))
 
         let fileSelection = "6"
-        XCTAssertEqual(fileSelection.toCourseEntrySelection(from: syncEntries), .file(1, 1))
+        XCTAssertEqual(fileSelection.toCourseEntrySelection(from: syncEntries), .file("2", "6"))
     }
 
     // MARK: - Mapping From An Array Of Course Sync Entities
@@ -84,7 +84,7 @@ class CourseSyncItemSelectionTests: XCTestCase {
                                               url: URL(string: "/")!, mimeClass: "", selectionState: .selected, bytesToDownload: 0),
                                      ],
                                      selectionState: .partiallySelected)
-        XCTAssertEqual(CourseSyncItemSelection.make(from: [course]), ["2"])
+        XCTAssertEqual(CourseSyncItemSelection.make(from: [course]), ["1"])
     }
 
     func testMapsSelectedTabs() {
@@ -96,7 +96,7 @@ class CourseSyncItemSelectionTests: XCTestCase {
                                      ],
                                      files: [],
                                      selectionState: .partiallySelected)
-        XCTAssertEqual(CourseSyncItemSelection.make(from: [course]), ["2"])
+        XCTAssertEqual(CourseSyncItemSelection.make(from: [course]), ["1"])
     }
 
     func testMapsSelectedFiles() {
@@ -112,6 +112,6 @@ class CourseSyncItemSelectionTests: XCTestCase {
                                               url: URL(string: "/")!, mimeClass: "", selectionState: .selected, bytesToDownload: 0),
                                      ],
                                      selectionState: .partiallySelected)
-        XCTAssertEqual(CourseSyncItemSelection.make(from: [course]), ["4"])
+        XCTAssertEqual(CourseSyncItemSelection.make(from: [course]), ["1"])
     }
 }

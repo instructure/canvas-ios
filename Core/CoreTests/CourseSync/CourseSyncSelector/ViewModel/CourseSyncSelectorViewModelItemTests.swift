@@ -22,10 +22,15 @@ import XCTest
 
 class CourseSyncSelectorViewModelItemTests: XCTestCase {
     private var mockInteractor: MockCourseSyncSelectorInteractor!
+    private var mockFileFolderInteractor: CourseSyncFileFolderInteractorMock!
 
     override func setUp() {
         super.setUp()
-        mockInteractor = MockCourseSyncSelectorInteractor(sessionDefaults: .fallback)
+        mockFileFolderInteractor = CourseSyncFileFolderInteractorMock()
+        mockInteractor = MockCourseSyncSelectorInteractor(
+            fileFolderInteractor: mockFileFolderInteractor,
+            sessionDefaults: .fallback
+        )
     }
 
     // MARK: - Properties
@@ -196,13 +201,13 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
         }
 
         item0.selectionDidToggle?()
-        XCTAssertEqual(mockInteractor.lastSelected?.selection, CourseEntrySelection.course(0))
+        XCTAssertEqual(mockInteractor.lastSelected?.selection, CourseEntrySelection.course("0"))
         XCTAssertEqual(mockInteractor.lastSelected?.isSelected, true)
         item2.selectionDidToggle?()
-        XCTAssertEqual(mockInteractor.lastSelected?.selection, CourseEntrySelection.tab(0, 1))
+        XCTAssertEqual(mockInteractor.lastSelected?.selection, CourseEntrySelection.tab("0", "1"))
         XCTAssertEqual(mockInteractor.lastSelected?.isSelected, true)
         item3.selectionDidToggle?()
-        XCTAssertEqual(mockInteractor.lastSelected?.selection, CourseEntrySelection.file(0, 0))
+        XCTAssertEqual(mockInteractor.lastSelected?.selection, CourseEntrySelection.file("0", "0"))
         XCTAssertEqual(mockInteractor.lastSelected?.isSelected, true)
     }
 
@@ -224,7 +229,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
         }
 
         item.collapseDidToggle?()
-        XCTAssertEqual(mockInteractor.lastCollapsed?.selection, CourseEntrySelection.course(0))
+        XCTAssertEqual(mockInteractor.lastCollapsed?.selection, CourseEntrySelection.course("0"))
         XCTAssertEqual(mockInteractor.lastCollapsed?.isCollapsed, true)
     }
 
@@ -246,7 +251,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
         }
 
         item.collapseDidToggle?()
-        XCTAssertEqual(mockInteractor.lastCollapsed?.selection, CourseEntrySelection.tab(0, 0))
+        XCTAssertEqual(mockInteractor.lastCollapsed?.selection, CourseEntrySelection.tab("0", "0"))
         XCTAssertEqual(mockInteractor.lastCollapsed?.isCollapsed, true)
     }
 }
@@ -255,8 +260,11 @@ private class MockCourseSyncSelectorInteractor: CourseSyncSelectorInteractor {
     private(set) var lastSelected: (selection: Core.CourseEntrySelection, isSelected: Bool)?
     private(set) var lastCollapsed: (selection: Core.CourseEntrySelection, isCollapsed: Bool)?
 
-    required init(courseID: String? = nil, sessionDefaults: SessionDefaults) {
-    }
+    required init(
+        courseID: String? = nil,
+        fileFolderInteractor: CourseSyncFileFolderInteractor,
+        sessionDefaults: SessionDefaults
+    ) {}
 
     func getCourseSyncEntries() -> AnyPublisher<[Core.CourseSyncEntry], Error> {
         Just<[Core.CourseSyncEntry]>([])

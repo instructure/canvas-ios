@@ -33,7 +33,7 @@ public final class CourseSyncProgressWriterInteractorLive: CourseSyncProgressWri
         self.context = context
     }
 
-    public func saveFileProgress(entries: [CourseSyncEntry], error: String?) {
+    public func saveFileProgress(entries: [CourseSyncEntry], error: String? = nil) {
         let bytesDownloaded = entries.totalDownloadedSize
         let bytesToDownloaded = entries.totalSelectedSize
 

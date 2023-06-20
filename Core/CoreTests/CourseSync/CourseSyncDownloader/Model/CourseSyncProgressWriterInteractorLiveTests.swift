@@ -94,67 +94,67 @@ class CourseSyncProgressWriterInteractorLiveTests: CoreTestCase {
 
     func testCourseSelectionEntryProgress() {
         let testee = CourseSyncProgressWriterInteractorLive(context: databaseClient)
-        testee.saveEntryProgress(id: "1", selection: .course(0), state: .downloaded)
-        testee.saveEntryProgress(id: "2", selection: .course(0), state: .error)
-        testee.saveEntryProgress(id: "3", selection: .course(0), state: .loading(nil))
+        testee.saveEntryProgress(id: "1", selection: .course("0"), state: .downloaded)
+        testee.saveEntryProgress(id: "2", selection: .course("0"), state: .error)
+        testee.saveEntryProgress(id: "3", selection: .course("0"), state: .loading(nil))
 
         let progressList: [CourseSyncEntryProgress] = databaseClient.fetch(scope: .all)
         XCTAssertEqual(progressList.count, 3)
 
         XCTAssertEqual(progressList[0].id, "1")
-        XCTAssertEqual(progressList[0].selection, .course(0))
+        XCTAssertEqual(progressList[0].selection, .course("0"))
         XCTAssertEqual(progressList[0].state, .downloaded)
 
         XCTAssertEqual(progressList[1].id, "2")
-        XCTAssertEqual(progressList[1].selection, .course(0))
+        XCTAssertEqual(progressList[1].selection, .course("0"))
         XCTAssertEqual(progressList[1].state, .error)
 
         XCTAssertEqual(progressList[2].id, "3")
-        XCTAssertEqual(progressList[2].selection, .course(0))
+        XCTAssertEqual(progressList[2].selection, .course("0"))
         XCTAssertEqual(progressList[2].state, .loading(nil))
     }
 
     func testTabSelectionEntryProgress() {
         let testee = CourseSyncProgressWriterInteractorLive(context: databaseClient)
-        testee.saveEntryProgress(id: "1", selection: .tab(0, 0), state: .downloaded)
-        testee.saveEntryProgress(id: "2", selection: .tab(0, 0), state: .error)
-        testee.saveEntryProgress(id: "3", selection: .tab(0, 0), state: .loading(nil))
+        testee.saveEntryProgress(id: "1", selection: .tab("0", "0"), state: .downloaded)
+        testee.saveEntryProgress(id: "2", selection: .tab("0", "0"), state: .error)
+        testee.saveEntryProgress(id: "3", selection: .tab("0", "0"), state: .loading(nil))
 
         let progressList: [CourseSyncEntryProgress] = databaseClient.fetch(scope: .all)
         XCTAssertEqual(progressList.count, 3)
 
         XCTAssertEqual(progressList[0].id, "1")
-        XCTAssertEqual(progressList[0].selection, .tab(0, 0))
+        XCTAssertEqual(progressList[0].selection, .tab("0", "0"))
         XCTAssertEqual(progressList[0].state, .downloaded)
 
         XCTAssertEqual(progressList[1].id, "2")
-        XCTAssertEqual(progressList[1].selection, .tab(0, 0))
+        XCTAssertEqual(progressList[1].selection, .tab("0", "0"))
         XCTAssertEqual(progressList[1].state, .error)
 
         XCTAssertEqual(progressList[2].id, "3")
-        XCTAssertEqual(progressList[2].selection, .tab(0, 0))
+        XCTAssertEqual(progressList[2].selection, .tab("0", "0"))
         XCTAssertEqual(progressList[2].state, .loading(nil))
     }
 
     func testFileSelectionEntryProgress() {
         let testee = CourseSyncProgressWriterInteractorLive(context: databaseClient)
-        testee.saveEntryProgress(id: "1", selection: .file(0, 0), state: .downloaded)
-        testee.saveEntryProgress(id: "2", selection: .file(0, 0), state: .error)
-        testee.saveEntryProgress(id: "3", selection: .file(0, 0), state: .loading(nil))
+        testee.saveEntryProgress(id: "1", selection: .file("0", "0"), state: .downloaded)
+        testee.saveEntryProgress(id: "2", selection: .file("0", "0"), state: .error)
+        testee.saveEntryProgress(id: "3", selection: .file("0", "0"), state: .loading(nil))
 
         let progressList: [CourseSyncEntryProgress] = databaseClient.fetch(scope: .all)
         XCTAssertEqual(progressList.count, 3)
 
         XCTAssertEqual(progressList[0].id, "1")
-        XCTAssertEqual(progressList[0].selection, .file(0, 0))
+        XCTAssertEqual(progressList[0].selection, .file("0", "0"))
         XCTAssertEqual(progressList[0].state, .downloaded)
 
         XCTAssertEqual(progressList[1].id, "2")
-        XCTAssertEqual(progressList[1].selection, .file(0, 0))
+        XCTAssertEqual(progressList[1].selection, .file("0", "0"))
         XCTAssertEqual(progressList[1].state, .error)
 
         XCTAssertEqual(progressList[2].id, "3")
-        XCTAssertEqual(progressList[2].selection, .file(0, 0))
+        XCTAssertEqual(progressList[2].selection, .file("0", "0"))
         XCTAssertEqual(progressList[2].state, .loading(nil))
     }
 }

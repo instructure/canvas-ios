@@ -152,17 +152,17 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             )
 
         drainMainQueue()
-        XCTAssertEqual(progressList[0].selection, .course(0))
+        XCTAssertEqual(progressList[0].selection, .course("entry-1"))
         XCTAssertEqual(progressList[0].state, .loading(nil))
-        XCTAssertEqual(progressList[1].selection, .tab(0, 0))
+        XCTAssertEqual(progressList[1].selection, .tab("entry-1", "tab-assignments"))
         XCTAssertEqual(progressList[1].state, .loading(nil))
-        XCTAssertEqual(progressList[2].selection, .tab(0, 1))
+        XCTAssertEqual(progressList[2].selection, .tab("entry-1", "tab-files"))
         XCTAssertEqual(progressList[2].state, .loading(nil))
-        XCTAssertEqual(progressList[3].selection, .tab(0, 2))
+        XCTAssertEqual(progressList[3].selection, .tab("entry-1", "tab-pages"))
         XCTAssertEqual(progressList[3].state, .loading(nil))
-        XCTAssertEqual(progressList[4].selection, .file(0, 0))
+        XCTAssertEqual(progressList[4].selection, .file("entry-1", "file-1"))
         XCTAssertEqual(progressList[4].state, .loading(nil))
-        XCTAssertEqual(progressList[5].selection, .file(0, 1))
+        XCTAssertEqual(progressList[5].selection, .file("entry-1", "file-2"))
         XCTAssertEqual(progressList[5].state, .loading(nil))
 
         assignmentsInteractor.publisher.send(())
@@ -184,10 +184,10 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(progressList[0].state, .loading(nil))
         // Assignments Tab
         XCTAssertEqual(progressList[1].state, .downloaded)
-        // Pages Tab
-        XCTAssertEqual(progressList[2].state, .downloaded)
         // Files Tab
-        XCTAssertEqual(progressList[3].state, .loading(nil))
+        XCTAssertEqual(progressList[2].state, .loading(nil))
+        // Pages Tab
+        XCTAssertEqual(progressList[3].state, .downloaded)
         // Files #1
         XCTAssertEqual(progressList[4].state, .loading(nil))
         // Files #2
@@ -338,7 +338,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         entries[0].tabs[0].selectionState = .selected
 
         let expectation = expectation(description: "Publisher sends value")
-        expectation.expectedFulfillmentCount = 3
+        expectation.expectedFulfillmentCount = 6
         let subscription = testee.downloadContent(for: entries)
             .sink(
                 receiveCompletion: { _ in },

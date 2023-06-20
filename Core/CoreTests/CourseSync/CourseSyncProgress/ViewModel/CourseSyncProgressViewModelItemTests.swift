@@ -170,7 +170,7 @@ class CourseSyncProgressViewModelItemTests: XCTestCase {
 
         XCTAssertEqual(testee.id, "1")
         XCTAssertEqual(testee.title, "testFile")
-        XCTAssertEqual(testee.subtitle, nil)
+        XCTAssertEqual(testee.subtitle, "Zero KB")
         XCTAssertEqual(testee.isCollapsed, nil)
         XCTAssertTrue(testee.cellStyle == .listItem)
 
@@ -199,7 +199,7 @@ class CourseSyncProgressViewModelItemTests: XCTestCase {
         }
 
         item.collapseDidToggle?()
-        XCTAssertEqual(mockInteractor.lastCollapsed?.selection, CourseEntrySelection.course(0))
+        XCTAssertEqual(mockInteractor.lastCollapsed?.selection, CourseEntrySelection.course("testID"))
         XCTAssertEqual(mockInteractor.lastCollapsed?.isCollapsed, true)
     }
 
@@ -221,19 +221,16 @@ class CourseSyncProgressViewModelItemTests: XCTestCase {
         }
 
         item.collapseDidToggle?()
-        XCTAssertEqual(mockInteractor.lastCollapsed?.selection, CourseEntrySelection.tab(0, 0))
+        XCTAssertEqual(mockInteractor.lastCollapsed?.selection, CourseEntrySelection.tab("testID", "0"))
         XCTAssertEqual(mockInteractor.lastCollapsed?.isCollapsed, true)
     }
 }
 
 class MockCourseSyncProgressInteractor: CourseSyncProgressInteractor {
-
     let courseSyncEntriesSubject = PassthroughSubject<[CourseSyncEntry], Error>()
 
-    func getSyncProgress() -> Core.SyncProgress {
-        let total = Int64(1000_000_000)
-        let progress = Int64(500_000_000)
-        return SyncProgress(total: total, progress: progress, failure: false)
+    func getFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never> {
+        Empty().eraseToAnyPublisher()
     }
 
     func setProgress(selection: Core.CourseEntrySelection, progress: Float?) {
