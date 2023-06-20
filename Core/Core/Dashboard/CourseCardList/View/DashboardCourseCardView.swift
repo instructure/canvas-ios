@@ -233,14 +233,14 @@ struct CourseCard_Previews: PreviewProvider {
             DashboardCourseCardView(courseCard: courseCard,
                        hideColorOverlay: false,
                        showGrade: true,
-                       width: 300,
+                       width: 900,
                        contextColor: .electric,
-                       isWideLayout: false,
+                       isWideLayout: true,
                        isAvailableOffline: true)
-            .frame(width: 300, height: 100)
-            .environment(\.horizontalSizeClass, .compact)
+            .frame(width: 900, height: 100)
+            .environment(\.horizontalSizeClass, .regular)
         }
-        .padding(100)
+        .padding()
         .previewLayout(.sizeThatFits)
     }
 }
