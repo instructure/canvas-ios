@@ -19,6 +19,7 @@
 import XCTest
 import PSPDFKit
 import PSPDFKitUI
+import Combine
 @testable import Core
 
 class DocViewerViewControllerTests: CoreTestCase {
@@ -49,10 +50,26 @@ class DocViewerViewControllerTests: CoreTestCase {
     }
 
     class MockOfflineServiceDisabled: OfflineModeInteractor {
+        func observeIsOfflineMode() -> AnyPublisher<Bool, Never> {
+            Just(false).eraseToAnyPublisher()
+        }
+
+        func observeNetworkStatus() -> AnyPublisher<Core.NetworkAvailabilityStatus, Never> {
+            Just(.connected(.wifi)).eraseToAnyPublisher()
+        }
+
         func isOfflineModeEnabled() -> Bool { false }
     }
 
     class MockOfflineServiceEnabled: OfflineModeInteractor {
+        func observeIsOfflineMode() -> AnyPublisher<Bool, Never> {
+            Just(true).eraseToAnyPublisher()
+        }
+
+        func observeNetworkStatus() -> AnyPublisher<Core.NetworkAvailabilityStatus, Never> {
+            Just(.disconnected).eraseToAnyPublisher()
+        }
+
         func isOfflineModeEnabled() -> Bool { true }
     }
 
