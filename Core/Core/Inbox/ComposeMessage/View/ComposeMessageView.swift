@@ -27,10 +27,96 @@ public struct ComposeMessageView: View {
     }
 
     public var body: some View {
-        VStack {
-            Text("New message here")
+        VStack(spacing: 0) {
+            separator
+            toView
+            separator
+            subjectView
+            separator
+            bodyView
         }
         .background(Color.backgroundLightest)
         .navigationTitle(model.title)
+        .navBarItems(leading: cancelButton, trailing: sendButton)
+    }
+
+    private var separator: some View {
+        Color.borderMedium
+            .frame(height: 0.5)
+    }
+
+    private var cancelButton: some View {
+        Button {
+            // model.cancelButtonDidTap.accept(viewController)
+        } label: {
+            Text("Cancel", bundle: .core)
+                .font(.regular16)
+                .foregroundColor(.textDarkest)
+        }
+    }
+
+    private var sendButton: some View {
+        Button(action: {
+            // model.dismissButtonDidTap.accept(viewController)
+        }, label: {
+            Image.send
+                .foregroundColor(Color(Brand.shared.navTextColor))
+        })
+        .accessibility(label: Text("Send", bundle: .core))
+    }
+
+    private var addRecipientButton: some View {
+        Button(action: {
+            // model.dismissButtonDidTap.accept(viewController)
+        }, label: {
+            Image.addLine
+                .foregroundColor(Color.textDarkest)
+        })
+        .accessibility(label: Text("Add recipient", bundle: .core))
+    }
+
+    private var sendIndividualButton: some View {
+
+        Button(action: {
+            // model.dismissButtonDidTap.accept(viewController)
+        }, label: {
+            Image.addLine
+                .foregroundColor(Color.textDarkest)
+        })
+        .accessibility(label: Text("Add recipient", bundle: .core))
+    }
+
+    private var toView: some View {
+        HStack {
+            Text("To")
+                .font(.medium16)
+                .foregroundColor(.textDark)
+            Spacer()
+            addRecipientButton
+        }
+    }
+
+    private var subjectView: some View {
+        HStack {
+            Text("Subject")
+                .font(.medium16)
+                .foregroundColor(.textDark)
+            Spacer()
+        }
+    }
+
+    private var individualView: some View {
+        Toggle(isOn: $model.sendIndividual, label: {
+            Text("Send individual message to each recipient")
+                .font(.medium16)
+                .foregroundColor(.textDark)
+        })
+    }
+
+    private var bodyView: some View {
+        CustomTextField(placeholder: Text("Compose message", bundle: .core),
+                        text: $model.bodyText,
+                        identifier: "composeMessage.body",
+                        accessibilityLabel: Text("Message Body", bundle: .core))
     }
 }

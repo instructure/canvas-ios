@@ -21,6 +21,8 @@ import Combine
 class ComposeMessageViewModel: ObservableObject {
     // MARK: - Outputs
     @Published public private(set) var state: StoreState = .loading
+    @Published public var sendIndividual: Bool = false
+    @Published public var bodyText: String = ""
 
     public let title = NSLocalizedString("New Message", bundle: .core, comment: "")
 
