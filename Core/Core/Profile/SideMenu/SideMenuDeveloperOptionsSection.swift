@@ -56,10 +56,11 @@ extension SideMenuDeveloperOptionsSection {
     final class SideDeveloperOptionsViewModel: ObservableObject {
         @Published var networkAvailabilityStatus: NetworkAvailabilityStatus = .disconnected
 
-        private let networkAvailabilityService = NetworkAvailabilityObservableModel()
-
-        init() {
-            networkAvailabilityService.$networkAvailabilityStatus.assign(to: &$networkAvailabilityStatus)
+        private let networkAvailabilityViewModel: NetworkAvailabilityViewModel
+        
+        init(networkAvailabilityViewModel: NetworkAvailabilityViewModel = NetworkAvailabilityViewModel(networkAvailabilityService: NetworkAvailabilityServiceLive())) {
+            self.networkAvailabilityViewModel = networkAvailabilityViewModel
+            networkAvailabilityViewModel.$networkAvailabilityStatus.assign(to: &$networkAvailabilityStatus)
         }
     }
 }

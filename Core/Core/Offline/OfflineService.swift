@@ -47,22 +47,3 @@ public final class OfflineServiceLive: OfflineService {
         !availabilityService.status.isConnected
     }
 }
-
-class OfflineServiceModel: ObservableObject {
-    @Published var isOffline: Bool = false
-
-    private let networkAvailabilityService = NetworkAvailabilityServiceLive()
-    private var subscriptions = Set<AnyCancellable>()
-
-    init(offlineService: OfflineServiceLive) {
-        unowned let unownedSelf = self
-        networkAvailabilityService.startMonitoring()
-        networkAvailabilityService
-            .startObservingStatus()
-            .receive(on: DispatchQueue.main)
-            .sink {
-                unownedSelf.isOffline = $0 == .disconnected && offlineService.isOfflineModeEnabled()
-            }
-            .store(in: &subscriptions)
-    }
-}

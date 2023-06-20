@@ -1385,6 +1385,8 @@
 		EBAAFB629D40407D19E21893 /* GetK5HomeroomDueItemCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E6E39B7A47F1AB771F1692 /* GetK5HomeroomDueItemCount.swift */; };
 		EBB3DE9F0B60D0645433411B /* PlannerListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49CB7A526F65072C97C9AB15 /* PlannerListViewController.storyboard */; };
 		EBDA7E91903AA086D89A0DB5 /* MockDocViewerAnnotationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A75E7CC181E2FAD26F5DC8 /* MockDocViewerAnnotationProvider.swift */; };
+		EBDDBC562A41C11300279E5E /* OfflineServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDDBC552A41C11300279E5E /* OfflineServiceViewModel.swift */; };
+		EBDDBC592A41C65000279E5E /* NetworkAvaiabilityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDDBC582A41C65000279E5E /* NetworkAvaiabilityViewModel.swift */; };
 		EBF814E21B4B4C7235011C32 /* ExternalToolLaunchPlacementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF124391D89F52030538C05 /* ExternalToolLaunchPlacementTests.swift */; };
 		EC346508D864BEE69FFE5D18 /* AttachmentCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F5F27F63B217122A32EB8B /* AttachmentCardsViewController.swift */; };
 		EC4C14931BA4DC5E6C45D699 /* DocViewerAnnotationDeleteResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D54360A6C683647935BB31 /* DocViewerAnnotationDeleteResponseHandler.swift */; };
@@ -3140,6 +3142,8 @@
 		EB1D8EA92A3201A200C871B3 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		EB1F17518E5A0ED0FB823AA0 /* APIUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUser.swift; sourceTree = "<group>"; };
 		EB8191627EAE7C128D6CA3A5 /* DashboardCourseCardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCourseCardListViewModel.swift; sourceTree = "<group>"; };
+		EBDDBC552A41C11300279E5E /* OfflineServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineServiceViewModel.swift; sourceTree = "<group>"; };
+		EBDDBC582A41C65000279E5E /* NetworkAvaiabilityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAvaiabilityViewModel.swift; sourceTree = "<group>"; };
 		EC595D08955BB7E1F839C7DA /* SkipJSInjectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipJSInjectionTests.swift; sourceTree = "<group>"; };
 		EC5A6601A3A0744DEDCFBCC2 /* DeterminateCircleProgressViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeterminateCircleProgressViewStyle.swift; sourceTree = "<group>"; };
 		EC5C9034978914DE69CD05A6 /* FileSubmissionAssemblyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionAssemblyTests.swift; sourceTree = "<group>"; };
@@ -5786,6 +5790,7 @@
 		828AE3D15B43595B00C6D436 /* Offline */ = {
 			isa = PBXGroup;
 			children = (
+				EBDDBC542A41C0F400279E5E /* ViewModel */,
 				A7C81F2417FC03CC54BDDA54 /* OfflineService.swift */,
 			);
 			path = Offline;
@@ -5812,6 +5817,7 @@
 		8418B1360F4D720B0F67277E /* NetworkAvailability */ = {
 			isa = PBXGroup;
 			children = (
+				EBDDBC572A41C63B00279E5E /* ViewModel */,
 				DD6BD50F8339637063BABBD3 /* NetworkAvailabilityService.swift */,
 				825CEB299C5A202E71D59AD6 /* NetworkAvailabilityStatus.swift */,
 				8D72B11A59DE2E24EAD393D1 /* NWPathMonitorWrapper.swift */,
@@ -7768,6 +7774,22 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		EBDDBC542A41C0F400279E5E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EBDDBC552A41C11300279E5E /* OfflineServiceViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		EBDDBC572A41C63B00279E5E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EBDDBC582A41C65000279E5E /* NetworkAvaiabilityViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		EBF588F4536045D34D38BD02 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -9176,6 +9198,7 @@
 				1CC61E3817A7FBADF5288AB5 /* Brand.swift in Sources */,
 				0C5177CB965D53E3CE545031 /* BundleExtensions.swift in Sources */,
 				C3A2098297616AEE8CBC55CA /* CGFloatExtensions.swift in Sources */,
+				EBDDBC562A41C11300279E5E /* OfflineServiceViewModel.swift in Sources */,
 				E3B56207EB13EB0C58615656 /* CacheManager.swift in Sources */,
 				2087D8AB89343D4CE2ED6EE7 /* CalendarDayIconView.swift in Sources */,
 				024704F565C61DECF256418E /* CalendarDaysViewController.swift in Sources */,
@@ -9266,6 +9289,7 @@
 				BC15AF79D482FDB0D0984A99 /* CourseSyncInteractorPreview.swift in Sources */,
 				D3F2C000008898A8049AFEF7 /* CourseSyncItemSelection.swift in Sources */,
 				993C351BF3C293409D77C1D0 /* CourseSyncPagesInteractor.swift in Sources */,
+				EBDDBC592A41C65000279E5E /* NetworkAvaiabilityViewModel.swift in Sources */,
 				59DE22DC65F969B9AAEB2721 /* CourseSyncProgressAssembly.swift in Sources */,
 				ECCFFB637A701934877CDF78 /* CourseSyncProgressInfoView.swift in Sources */,
 				41BFAF868D4FF58CC10BE8BF /* CourseSyncProgressInfoViewModel.swift in Sources */,

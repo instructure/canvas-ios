@@ -23,7 +23,7 @@ public struct PrimaryButton<Label>: View where Label: View {
     let action: () -> Void
     let label: Label
     @State private var shouldShowAlert = false
-    @ObservedObject var offlineServiceModel = OfflineServiceModel(offlineService: OfflineServiceLive.shared)
+    @StateObject private var offlineServiceModel = OfflineServiceViewModel(offlineService: OfflineServiceLive.shared)
     private let isAvailableOffline: Bool
 
     public init(isAvailableOffline: Bool = false, action: @escaping () -> Void, @ViewBuilder label: @escaping () -> Label) {
