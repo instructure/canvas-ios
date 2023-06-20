@@ -19,21 +19,19 @@
 public struct DSModuleItem: Codable {
     public let id: String
     public let module_id: String
-    public let position: Int
     public let title: String
-    public let indent: Int
     public let type: String
     public let content_id: String
     public let published: Bool
 }
 
-public enum DSModuleItemType: String {
-    case File
-    case Page
-    case Discussion
-    case Assignment
-    case Quiz
-    case SubHeader
-    case ExternalUrl
-    case ExternalTool
+public enum DSModuleItemType: String, Encodable {
+    case file = "File"
+    case page = "Page"
+    case discussion = "Discussion"
+    case assignment = "Assignment"
+    case quiz = "Quiz"
+    case subHeader = "SubHeader"
+    case externalUrl = "ExternalUrl"
+    case externalTool = "ExternalTool"
 }

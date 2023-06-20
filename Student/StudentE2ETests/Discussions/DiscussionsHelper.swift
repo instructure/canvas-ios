@@ -33,7 +33,7 @@ public class DiscussionsHelper: BaseHelper {
         message: String = "Message of ",
         isAnnouncement: Bool = false,
         published: Bool = true) -> DSDiscussionTopic {
-        let discussionBody = CreateDSDiscussionRequest.RequestDSDiscussion(title: title, message: message, is_announcement: isAnnouncement, published: published)
+        let discussionBody = CreateDSDiscussionRequest.RequestedDSDiscussion(title: title, message: message, is_announcement: isAnnouncement, published: published)
             return seeder.createDiscussion(courseId: course.id, requestBody: discussionBody)
     }
 }

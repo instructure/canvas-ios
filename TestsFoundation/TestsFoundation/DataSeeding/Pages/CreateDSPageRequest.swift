@@ -33,7 +33,7 @@ public struct CreateDSPageRequest: APIRequestable {
 }
 
 extension CreateDSPageRequest {
-    public struct RequestDSPage: Encodable {
+    public struct RequestedDSPage: Encodable {
         let title: String
         let body: String?
         let published: Bool
@@ -48,6 +48,6 @@ extension CreateDSPageRequest {
     }
 
     public struct Body: Encodable {
-        let wiki_page: RequestDSPage
+        let wiki_page: RequestedDSPage
     }
 }

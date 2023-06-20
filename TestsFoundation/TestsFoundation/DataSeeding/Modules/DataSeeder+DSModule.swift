@@ -18,15 +18,15 @@
 
 extension DataSeeder {
 
-    public func createModule(courseId: String, name: String = "DataSeed iOS Module \(Int(Date().timeIntervalSince1970))") -> DSModule {
-        let requestedBody = CreateDSModuleRequest.Body(module: .init(name: name))
+    public func createModule(courseId: String, moduleBody: CreateDSModuleRequest.RequestedDSModule) -> DSModule {
+        let requestedBody = CreateDSModuleRequest.Body(module: moduleBody)
         let request = CreateDSModuleRequest(body: requestedBody, courseId: courseId)
         return try! makeRequest(request)
     }
 
-    public func updateModuleWithPublished(courseId: String, published: Bool) -> DSModule {
+    public func updateModuleWithPublished(courseId: String, moduleId: String, published: Bool) -> DSModule {
         let requestedBody = UpdateDSModuleRequest.Body(module: .init(published: published))
-        let request = UpdateDSModuleRequest(body: requestedBody, courseId: courseId)
+        let request = UpdateDSModuleRequest(body: requestedBody, courseId: courseId, moduleId: moduleId)
         return try! makeRequest(request)
     }
 }

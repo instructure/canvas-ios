@@ -62,7 +62,7 @@ public class AssignmentsHelper: BaseHelper {
         submissionTypes: [SubmissionType] = [.online_text_entry],
         pointsPossible: Float? = nil,
         dueDate: String? = nil) -> DSAssignment {
-        let assignmentBody = CreateDSAssignmentRequest.RequestDSAssignment(
+        let assignmentBody = CreateDSAssignmentRequest.RequestedDSAssignment(
             name: name, description: description + name, published: published, submission_types: submissionTypes, points_possible: pointsPossible, due_at: dueDate)
         return seeder.createAssignment(courseId: course.id, assignementBody: assignmentBody)
     }

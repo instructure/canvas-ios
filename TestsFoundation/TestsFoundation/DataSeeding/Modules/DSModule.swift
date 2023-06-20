@@ -18,13 +18,6 @@
 
 public struct DSModule: Codable {
     public let id: String
-    public let workflow_state: String
-    public let position: Int
     public let name: String
-    public let unlock_at: String
-    public let require_sequential_progress: Bool
-    public let prerequisite_module_ids: [String]
-    public let items_count: Int
-    public let state: String
     public let published: Bool
 }

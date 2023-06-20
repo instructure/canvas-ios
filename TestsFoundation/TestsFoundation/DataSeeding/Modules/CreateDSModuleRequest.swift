@@ -19,30 +19,29 @@
 import Core
 
 // https://canvas.instructure.com/doc/api/modules.html#method.context_modules_api.create
-struct CreateDSModuleRequest: APIRequestable {
+public struct CreateDSModuleRequest: APIRequestable {
     public typealias Response = DSModule
 
     public let method = APIMethod.post
     public var path: String
     public let body: Body?
 
-    public init(body: Body, accountId: String = "self", courseId: String) {
+    public init(body: Body, courseId: String) {
         self.body = body
-        self.path = "accounts/\(accountId)/courses/\(courseId)/modules"
+        self.path = "courses/\(courseId)/modules"
     }
 }
 
 extension CreateDSModuleRequest {
     public struct RequestedDSModule: Encodable {
         let name: String
+
+        public init(name: String = "Module Name") {
+            self.name = name
+        }
     }
 
     public struct Body: Encodable {
         let module: RequestedDSModule
-        let offer = true // makes the module published after creation
-
-        public init(module: RequestedDSModule) {
-            self.module = module
-        }
     }
 }

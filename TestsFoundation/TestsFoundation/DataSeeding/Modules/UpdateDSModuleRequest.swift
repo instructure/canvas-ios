@@ -18,16 +18,16 @@
 
 import Core
 
-struct UpdateDSModuleRequest: APIRequestable {
+public struct UpdateDSModuleRequest: APIRequestable {
     public typealias Response = DSModule
 
     public let method = APIMethod.put
     public var path: String
     public let body: Body?
 
-    public init(body: Body, courseId: String) {
+    public init(body: Body, courseId: String, moduleId: String) {
         self.body = body
-        self.path = "courses/\(courseId)/modules"
+        self.path = "courses/\(courseId)/modules/\(moduleId)"
     }
 }
 
@@ -37,9 +37,5 @@ extension UpdateDSModuleRequest {
     }
     public struct Body: Encodable {
         let module: UpdatedDSModule
-
-        public init(module: UpdatedDSModule) {
-            self.module = module
-        }
     }
 }

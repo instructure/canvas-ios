@@ -18,16 +18,16 @@
 
 import Core
 
-struct UpdateDSModuleItemRequest: APIRequestable {
-    public typealias Response = DSModule
+public struct UpdateDSModuleItemRequest: APIRequestable {
+    public typealias Response = DSModuleItem
 
     public let method = APIMethod.put
     public var path: String
     public let body: Body?
 
-    public init(body: Body, courseId: String, moduleId: String, moduleItemId: String) {
+    public init(body: Body, courseId: String, moduleId: String, itemId: String) {
         self.body = body
-        self.path = "courses/\(courseId)/modules/\(moduleId)/items/\(moduleItemId)"
+        self.path = "courses/\(courseId)/modules/\(moduleId)/items/\(itemId)"
     }
 }
 
