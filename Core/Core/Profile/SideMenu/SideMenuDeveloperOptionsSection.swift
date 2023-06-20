@@ -57,7 +57,7 @@ extension SideMenuDeveloperOptionsSection {
         @Published var networkAvailabilityStatus: NetworkAvailabilityStatus = .disconnected
 
         private let networkAvailabilityViewModel: NetworkAvailabilityViewModel
-        
+
         init(networkAvailabilityViewModel: NetworkAvailabilityViewModel = NetworkAvailabilityViewModel(networkAvailabilityService: NetworkAvailabilityServiceLive())) {
             self.networkAvailabilityViewModel = networkAvailabilityViewModel
             networkAvailabilityViewModel.$networkAvailabilityStatus.assign(to: &$networkAvailabilityStatus)
