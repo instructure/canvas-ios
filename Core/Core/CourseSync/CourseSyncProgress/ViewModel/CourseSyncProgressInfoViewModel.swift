@@ -42,7 +42,8 @@ class CourseSyncProgressInfoViewModel: ObservableObject {
 
         unowned let unownedSelf = self
 
-        interactor.getFileProgress()
+        interactor.observeFileProgress()
+            .print()
             .sink { state in
                 switch state {
                 case .data(let progressList):

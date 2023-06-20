@@ -72,14 +72,14 @@ class CourseSyncSettingsViewModelTests: XCTestCase {
         let testee = CourseSyncSettingsViewModel(interactor: interactor)
 
         testee.isAutoContentSyncEnabled.accept(false)
-        XCTAssertSingleOutputEquals(interactor.getStoredPreferences().map { $0.isAutoSyncEnabled }, false)
+        XCTAssertCompletableSingleOutputEquals(interactor.getStoredPreferences().map { $0.isAutoSyncEnabled }, false)
         testee.isAutoContentSyncEnabled.accept(true)
-        XCTAssertSingleOutputEquals(interactor.getStoredPreferences().map { $0.isAutoSyncEnabled }, true)
+        XCTAssertCompletableSingleOutputEquals(interactor.getStoredPreferences().map { $0.isAutoSyncEnabled }, true)
 
         testee.isWifiOnlySyncEnabled.accept(false)
-        XCTAssertSingleOutputEquals(interactor.getStoredPreferences().map { $0.isWifiOnlySyncEnabled }, false)
+        XCTAssertCompletableSingleOutputEquals(interactor.getStoredPreferences().map { $0.isWifiOnlySyncEnabled }, false)
         testee.isWifiOnlySyncEnabled.accept(true)
-        XCTAssertSingleOutputEquals(interactor.getStoredPreferences().map { $0.isWifiOnlySyncEnabled }, true)
+        XCTAssertCompletableSingleOutputEquals(interactor.getStoredPreferences().map { $0.isWifiOnlySyncEnabled }, true)
     }
 
     func testReadsSwitchValuesFromInteractor() {

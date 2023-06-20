@@ -16,16 +16,73 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-@testable import Core
-import XCTest
 import Combine
 import CombineExt
+@testable import Core
+import XCTest
 
-class CourseSyncProgressInfoViewModelTests: XCTestCase {
+class CourseSyncProgressInfoViewModelTests: CoreTestCase {
+    private var courseSyncProgressInteractorMock: MockCourseSyncProgressInteractor!
 
-    func testConvertsInteractorData() {
-        let testee = CourseSyncProgressInfoViewModel(interactor: MockCourseSyncProgressInteractor())
-        XCTAssertEqual(testee.progress, "Downloading 500 MB of 1 GB")
-        XCTAssertEqual(testee.progressPercentage, 0.5)
+    override func setUp() {
+        courseSyncProgressInteractorMock = MockCourseSyncProgressInteractor()
+        super.setUp()
+    }
+
+    override func tearDown() {
+        courseSyncProgressInteractorMock = nil
+        super.tearDown()
+    }
+
+    func testProgressDetails() {
+        // GIVEN
+        let testee = CourseSyncProgressInfoViewModel(interactor: courseSyncProgressInteractorMock)
+        let fileProgress = CourseSyncFileProgress.save(
+            bytesToDownload: 1000,
+            bytesDownloaded: 500,
+            error: nil,
+            in: databaseClient
+        )
+
+        // WHEN
+        courseSyncProgressInteractorMock.courseSyncFileProgressSubject.send(.data([fileProgress]))
+
+        // THEN
+        XCTAssertSingleOutputEquals(
+            testee.$progress,
+            "Downloading 500 bytes of 1 KB"
+        )
+        XCTAssertSingleOutputEquals(
+            testee.$progressPercentage,
+            0.5
+        )
+    }
+
+    func testErrorDetails() {
+        // GIVEN
+        let testee = CourseSyncProgressInfoViewModel(interactor: courseSyncProgressInteractorMock)
+        let fileProgress = CourseSyncFileProgress.save(
+            bytesToDownload: 1000,
+            bytesDownloaded: 0,
+            error: "Download failed.",
+            in: databaseClient
+        )
+
+        // WHEN
+        courseSyncProgressInteractorMock.courseSyncFileProgressSubject.send(.data([fileProgress]))
+
+        // THEN
+        XCTAssertSingleOutputEquals(
+            testee.$syncFailure,
+            true
+        )
+        XCTAssertSingleOutputEquals(
+            testee.$syncFailureTitle,
+            "Offline Content Sync Failed"
+        )
+        XCTAssertSingleOutputEquals(
+            testee.$syncFailureSubtitle,
+            "One or more files failed to sync. Check your internet connection and retry to submit."
+        )
     }
 }

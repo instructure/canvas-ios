@@ -338,7 +338,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         entries[0].tabs[0].selectionState = .selected
 
         let expectation = expectation(description: "Publisher sends value")
-        expectation.expectedFulfillmentCount = 6
+        expectation.expectedFulfillmentCount = 7
         let subscription = testee.downloadContent(for: entries)
             .sink(
                 receiveCompletion: { _ in },

@@ -344,7 +344,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
             .first()
 
         // MARK: - THEN
-        XCTAssertSingleOutputEquals(selectedItemID, "courses/2")
+        XCTAssertCompletableSingleOutputEquals(selectedItemID, "courses/2")
         session.reset()
     }
 

@@ -28,3 +28,20 @@ public final class CourseSyncFileProgress: NSManagedObject {
         Float(bytesDownloaded) / Float(bytesToDownload)
     }
 }
+
+public extension CourseSyncFileProgress {
+    @discardableResult
+    static func save(
+        bytesToDownload: Int,
+        bytesDownloaded: Int,
+        error: String?,
+        in context: NSManagedObjectContext
+    ) -> CourseSyncFileProgress {
+        let model: CourseSyncFileProgress = context.first(scope: .all) ?? context.insert()
+        model.bytesToDownload = bytesToDownload
+        model.bytesDownloaded = bytesDownloaded
+        model.error = error
+
+        return model
+    }
+}

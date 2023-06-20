@@ -46,7 +46,7 @@ class CourseSyncProgressInteractorPreview: CourseSyncProgressInteractor {
         ])
     }
 
-    func getCourseSyncProgressEntries() -> AnyPublisher<[CourseSyncEntry], Error> {
+    func observeEntries() -> AnyPublisher<[CourseSyncEntry], Error> {
         mockData
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
@@ -58,7 +58,7 @@ class CourseSyncProgressInteractorPreview: CourseSyncProgressInteractor {
 
     func retrySync() {}
 
-    func getFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never> {
+    func observeFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never> {
         Empty(completeImmediately: false).eraseToAnyPublisher()
     }
 }

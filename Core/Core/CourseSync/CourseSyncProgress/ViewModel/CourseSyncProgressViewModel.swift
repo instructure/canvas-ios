@@ -96,7 +96,7 @@ class CourseSyncProgressViewModel: ObservableObject {
 
     private func updateState(_ interactor: CourseSyncProgressInteractor) {
         interactor
-            .getCourseSyncProgressEntries()
+            .observeEntries()
             .map { $0.makeSyncProgressViewModelItems(interactor: interactor) }
             .receive(on: DispatchQueue.main)
             .handleEvents(receiveOutput: { [unowned self] progressList in

@@ -228,9 +228,10 @@ class CourseSyncProgressViewModelItemTests: XCTestCase {
 
 class MockCourseSyncProgressInteractor: CourseSyncProgressInteractor {
     let courseSyncEntriesSubject = PassthroughSubject<[CourseSyncEntry], Error>()
+    let courseSyncFileProgressSubject = PassthroughSubject<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never>()
 
-    func getFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never> {
-        Empty().eraseToAnyPublisher()
+    func observeFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never> {
+        courseSyncFileProgressSubject.eraseToAnyPublisher()
     }
 
     func setProgress(selection: Core.CourseEntrySelection, progress: Float?) {
@@ -251,7 +252,7 @@ class MockCourseSyncProgressInteractor: CourseSyncProgressInteractor {
     required init(courseID: String? = nil) {
     }
 
-    func getCourseSyncProgressEntries() -> AnyPublisher<[Core.CourseSyncEntry], Error> {
+    func observeEntries() -> AnyPublisher<[Core.CourseSyncEntry], Error> {
         courseSyncEntriesSubject.eraseToAnyPublisher()
     }
 

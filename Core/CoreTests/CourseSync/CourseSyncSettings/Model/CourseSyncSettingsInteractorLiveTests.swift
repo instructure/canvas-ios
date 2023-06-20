@@ -30,7 +30,7 @@ class CourseSyncSettingsInteractorLiveTests: XCTestCase {
 
     func testDefaultValuesOnEmptyStorage() {
         let testee = CourseSyncSettingsInteractorLive(storage: defaults)
-        XCTAssertSingleOutputEquals(testee.getStoredPreferences(), .init(isAutoSyncEnabled: false,
+        XCTAssertCompletableSingleOutputEquals(testee.getStoredPreferences(), .init(isAutoSyncEnabled: false,
                                                                       isWifiOnlySyncEnabled: true,
                                                                       syncFrequency: .daily))
     }
@@ -57,7 +57,7 @@ class CourseSyncSettingsInteractorLiveTests: XCTestCase {
         defaults.offlineSyncFrequency = CourseSyncFrequency.weekly.rawValue
 
         let testee = CourseSyncSettingsInteractorLive(storage: defaults)
-        XCTAssertSingleOutputEquals(testee.getStoredPreferences(), .init(isAutoSyncEnabled: true,
+        XCTAssertCompletableSingleOutputEquals(testee.getStoredPreferences(), .init(isAutoSyncEnabled: true,
                                                                          isWifiOnlySyncEnabled: false,
                                                                          syncFrequency: .weekly))
     }
