@@ -39,8 +39,8 @@ extension CreateDSModuleItemRequest {
         let content_id: String
 
         public init(title: String = "Module Item Name",
-                    type: DSModuleItemType = .Assignment,
-                    content_id: String = "1") {
+                    type: DSModuleItemType,
+                    content_id: String) {
             self.title = title
             self.type = type
             self.content_id = content_id
