@@ -39,25 +39,24 @@ struct DashboardCourseCardView: View {
     }
 
     var body: some View {
-        ZStack(alignment: .topLeading) {
-            PrimaryButton(isAvailableOffline: isAvailableOffline) {
-                env.router.route(to: "/courses/\(courseCard.id)?contextColor=\(contextColor.hexString.dropFirst())", from: controller)
-            } label: {
+        PrimaryButton(isAvailableOffline: isAvailableOffline) {
+            env.router.route(to: "/courses/\(courseCard.id)?contextColor=\(contextColor.hexString.dropFirst())", from: controller)
+        } label: {
+            ZStack(alignment: .topLeading) {
                 if isWideLayout {
                     regularHorizontalLayout
                 } else {
                     compactHorizontalLayout
                 }
+                gradePill
+                    .accessibility(hidden: true) // handled in the button label
+                    .offset(x: 8, y: 8)
+                    .zIndex(1)
             }
-            .buttonStyle(ScaleButtonStyle(scale: 1))
-            .accessibility(label: Text(verbatim: "\(courseCard.shortName) \(courseCard.courseCode) \(a11yGrade)".trimmingCharacters(in: .whitespacesAndNewlines)))
-            .identifier("DashboardCourseCell.\(courseCard.id)")
-
-            gradePill
-                .accessibility(hidden: true) // handled in the button label
-                .offset(x: 8, y: 8)
-                .zIndex(1)
         }
+        .buttonStyle(ScaleButtonStyle(scale: 1))
+        .accessibility(label: Text(verbatim: "\(courseCard.shortName) \(courseCard.courseCode) \(a11yGrade)".trimmingCharacters(in: .whitespacesAndNewlines)))
+        .identifier("DashboardCourseCell.\(courseCard.id)")
     }
 
     private var regularHorizontalLayout: some View {
@@ -234,14 +233,14 @@ struct CourseCard_Previews: PreviewProvider {
             DashboardCourseCardView(courseCard: courseCard,
                        hideColorOverlay: false,
                        showGrade: true,
-                       width: 900,
+                       width: 300,
                        contextColor: .electric,
-                       isWideLayout: true,
+                       isWideLayout: false,
                        isAvailableOffline: true)
-            .frame(width: 900, height: 100)
-            .environment(\.horizontalSizeClass, .regular)
+            .frame(width: 300, height: 100)
+            .environment(\.horizontalSizeClass, .compact)
         }
-        .padding()
+        .padding(100)
         .previewLayout(.sizeThatFits)
     }
 }

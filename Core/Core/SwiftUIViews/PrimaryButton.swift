@@ -43,7 +43,7 @@ public struct PrimaryButton<Label>: View where Label: View {
         } label: {
             label
         }
-        .opacity(unavailable ? 0.5 : 1.0)
+        .opacity(unavailable ? 0.3 : 1.0)
         .alert(isPresented: $shouldShowAlert) {
             Alert(title: Text("Offline mode", bundle: .core),
                   message: Text("This item is not available offline.", bundle: .core),
