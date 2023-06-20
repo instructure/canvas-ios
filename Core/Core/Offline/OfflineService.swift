@@ -57,7 +57,6 @@ class OfflineServiceModel: ObservableObject {
     init(offlineService: OfflineServiceLive) {
         unowned let unownedSelf = self
         networkAvailabilityService.startMonitoring()
-    
         networkAvailabilityService
             .startObservingStatus()
             .receive(on: DispatchQueue.main)
