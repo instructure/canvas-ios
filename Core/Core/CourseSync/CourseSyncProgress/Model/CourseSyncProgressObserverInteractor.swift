@@ -21,8 +21,8 @@ import CoreData
 import Foundation
 
 protocol CourseSyncProgressObserverInteractor {
-    func observeFileProgress() -> AnyPublisher<ReactiveStore<LocalUseCase<CourseSyncFileProgress>>.State, Never>
-    func observeEntryProgress() -> AnyPublisher<ReactiveStore<LocalUseCase<CourseSyncEntryProgress>>.State, Never>
+    func observeFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never>
+    func observeEntryProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncEntryProgressUseCase>.State, Never>
 }
 
 final class CourseSyncProgressObserverInteractorLive: CourseSyncProgressObserverInteractor {
@@ -32,21 +32,19 @@ final class CourseSyncProgressObserverInteractorLive: CourseSyncProgressObserver
         self.context = context
     }
 
-    func observeFileProgress() -> AnyPublisher<ReactiveStore<LocalUseCase<CourseSyncFileProgress>>.State, Never> {
-        let useCase = LocalUseCase<CourseSyncFileProgress>(scope: Scope.all)
-        return ReactiveStore(
+    func observeFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never> {
+        ReactiveStore(
             context: context,
-            useCase: useCase
+            useCase: GetCourseSyncFileProgressUseCase(scope: .all)
         )
         .observeEntities()
         .eraseToAnyPublisher()
     }
 
-    func observeEntryProgress() -> AnyPublisher<ReactiveStore<LocalUseCase<CourseSyncEntryProgress>>.State, Never> {
-        let useCase = LocalUseCase<CourseSyncEntryProgress>(scope: Scope.all)
-        return ReactiveStore(
+    func observeEntryProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncEntryProgressUseCase>.State, Never> {
+        ReactiveStore(
             context: context,
-            useCase: useCase
+            useCase: GetCourseSyncEntryProgressUseCase(scope: .all)
         )
         .observeEntities()
         .eraseToAnyPublisher()

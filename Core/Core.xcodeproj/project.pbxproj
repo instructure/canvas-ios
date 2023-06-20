@@ -1048,6 +1048,8 @@
 		B47D227A0865E330DA75FE00 /* DiscussionEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E395BCD6AB59AC2045342498 /* DiscussionEntryTests.swift */; };
 		B489A81D6037AD16A513F2BB /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CC82562D352809583B9955 /* MockURLSession.swift */; };
 		B4A9F8F38D3E9471376494D2 /* UIImageViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E7F1F3185A5D719A85B955 /* UIImageViewExtensionsTests.swift */; };
+		B4C20A092A418C8D00AE45E4 /* GetCourseSyncFileProgressUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C20A082A418C8D00AE45E4 /* GetCourseSyncFileProgressUseCase.swift */; };
+		B4C20A0B2A418E3E00AE45E4 /* GetCourseSyncEntryProgressUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C20A0A2A418E3E00AE45E4 /* GetCourseSyncEntryProgressUseCase.swift */; };
 		B4DF4C098A48DF5D8D497B95 /* CommentListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1F0DD981A30F2F8DEF4E68D /* CommentListViewController.storyboard */; };
 		B4FE033171D1FCD00FD1D462 /* FileUploadNotificationCardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F96E0F2753D6B4E37E45CF /* FileUploadNotificationCardListViewModel.swift */; };
 		B51884AD83FC462A08BF6B7D /* GoogleCloudAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC0DE3267FE05FE686605D8 /* GoogleCloudAssignmentViewController.swift */; };
@@ -2798,6 +2800,8 @@
 		B408E358BA052F9B08697E7E /* Hidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hidden.swift; sourceTree = "<group>"; };
 		B41834EC25231F96969E274E /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Main.strings; sourceTree = "<group>"; };
 		B455F8753438D40CC45D5A87 /* QuizDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDetailsViewModelTests.swift; sourceTree = "<group>"; };
+		B4C20A082A418C8D00AE45E4 /* GetCourseSyncFileProgressUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourseSyncFileProgressUseCase.swift; sourceTree = "<group>"; };
+		B4C20A0A2A418E3E00AE45E4 /* GetCourseSyncEntryProgressUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourseSyncEntryProgressUseCase.swift; sourceTree = "<group>"; };
 		B4F936DF23DC61D04F89DFE0 /* APILatePolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APILatePolicyTests.swift; sourceTree = "<group>"; };
 		B52803DBEDEDD92FF68782A9 /* K5GradesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradesViewModelTests.swift; sourceTree = "<group>"; };
 		B5606C2158AEEDA3F5D8C94A /* APIConference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConference.swift; sourceTree = "<group>"; };
@@ -4673,6 +4677,8 @@
 			isa = PBXGroup;
 			children = (
 				C5C2044C1E0550603A0BC30D /* DeleteCourseSyncFileProgressUseCase.swift */,
+				B4C20A082A418C8D00AE45E4 /* GetCourseSyncFileProgressUseCase.swift */,
+				B4C20A0A2A418E3E00AE45E4 /* GetCourseSyncEntryProgressUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -9075,6 +9081,7 @@
 				BA812AAEDDC344B2F1273FF4 /* APICommentLibraryRequest.swift in Sources */,
 				01351849B78C73C6498BE565 /* APICommentLibraryResponse.swift in Sources */,
 				67F09DAB70222118FE7460E3 /* APICommunicationChannel.swift in Sources */,
+				B4C20A0B2A418E3E00AE45E4 /* GetCourseSyncEntryProgressUseCase.swift in Sources */,
 				FD06BDB347DB8EBB8D08350E /* APIConference.swift in Sources */,
 				F5516080A55ECBBB64CE30B0 /* APIConversation.swift in Sources */,
 				7D86702098C4B249C5273B45 /* APICourse.swift in Sources */,
@@ -9532,6 +9539,7 @@
 				D4BD3B0D9B06347A0503843F /* GradeCircleView.swift in Sources */,
 				2155E98477216EC3DBF40984 /* GradeFormatter.swift in Sources */,
 				D9B1ECD0B9711A99A5821135 /* GradeListViewController.swift in Sources */,
+				B4C20A092A418C8D00AE45E4 /* GetCourseSyncFileProgressUseCase.swift in Sources */,
 				9F819F5F90C2D442E8294AA1 /* GradeStatisticGraphView.swift in Sources */,
 				4FFF8E7BDCAC32E9BA856537 /* GradeSubmission.swift in Sources */,
 				9814AFC02B6DDDC5B9898B18 /* GradeViewable.swift in Sources */,

@@ -21,7 +21,7 @@ import CombineExt
 import Foundation
 
 protocol CourseSyncProgressInteractor {
-    func getFileProgress() -> AnyPublisher<ReactiveStore<LocalUseCase<CourseSyncFileProgress>>.State, Never>
+    func getFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never>
     func getCourseSyncProgressEntries() -> AnyPublisher<[CourseSyncEntry], Error>
     func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool)
     func cancelSync()
@@ -51,7 +51,7 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         self.sessionDefaults = sessionDefaults
     }
 
-    func getFileProgress() -> AnyPublisher<ReactiveStore<LocalUseCase<CourseSyncFileProgress>>.State, Never> {
+    func getFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never> {
         progressObserverInteractor.observeFileProgress()
     }
 
