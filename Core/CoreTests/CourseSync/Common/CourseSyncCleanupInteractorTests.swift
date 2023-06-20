@@ -48,13 +48,13 @@ class CourseSyncCleanupInteractorTests: XCTestCase {
         // MARK: - GIVEN
         // MARK: This should be deleted
         let mockSession = LoginSession.make(baseURL: URL(string: "https://test.instructure.com")!, userID: "testUserID")
-        let dbURL = URL.Directories.offline.appendingPathComponent("\(mockSession.uniqueID)/Files/fileFolder/image.jpg")
+        let dbURL = URL.Directories.documents.appendingPathComponent("\(mockSession.uniqueID)/Offline/Files/fileFolder/image.jpg")
         try write("test", to: dbURL)
         XCTAssertTrue(FileManager.default.fileExists(atPath: dbURL.path))
 
         // MARK: This user's files should be left intact
         let anotherMockSession = LoginSession.make(baseURL: URL(string: "https://test.instructure.com")!, userID: "testUserID2")
-        let anotherDbURL = URL.Directories.offline.appendingPathComponent("\(anotherMockSession.uniqueID)/Files/fileFolder/image.jpg")
+        let anotherDbURL = URL.Directories.documents.appendingPathComponent("\(anotherMockSession.uniqueID)/Offline/Files/fileFolder/image.jpg")
         try write("test", to: anotherDbURL)
         XCTAssertTrue(FileManager.default.fileExists(atPath: anotherDbURL.path))
 

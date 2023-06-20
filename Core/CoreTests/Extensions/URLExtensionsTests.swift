@@ -154,7 +154,7 @@ class DatabaseURLTests: XCTestCase {
         let testee = URL.Directories.databaseURL(appGroup: appGroup,
                                                  session: loginSession)
         XCTAssertTrue(match(testee,
-                            regex: #"\/Shared\/AppGroup\/[A-F0-9-]+\/Documents\/Offline\/test.instructure.com-testUserID\/Database\.sqlite$"#),
+                            regex: #"\/Shared\/AppGroup\/[A-F0-9-]+\/Documents\/test.instructure.com-testUserID\/Offline\/Database\.sqlite$"#),
                       testee.absoluteString)
     }
 
@@ -163,7 +163,7 @@ class DatabaseURLTests: XCTestCase {
         let testee = URL.Directories.databaseURL(appGroup: nil,
                                                  session: loginSession)
         XCTAssertTrue(match(testee,
-                            regex: #"\/Data\/Application\/[A-F0-9-]+\/Documents\/Offline\/test.instructure.com-testUserID\/Database\.sqlite$"#),
+                            regex: #"\/Data\/Application\/[A-F0-9-]+\/Documents\/test.instructure.com-testUserID\/Offline\/Database\.sqlite$"#),
                       testee.absoluteString)
     }
 

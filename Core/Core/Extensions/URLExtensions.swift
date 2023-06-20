@@ -61,11 +61,6 @@ public extension URL {
             FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: identifier)
         }
 
-        /// The `Offline` directory inside the app's `Documents` folder.
-        public static var offline: URL {
-            documents.appendingPathComponent("Offline")
-        }
-
         /// Returns the full url with the file name to where the database should be saved.
         public static func databaseURL(appGroup: String?, session: LoginSession?) -> URL {
             guard let session else {
@@ -82,8 +77,8 @@ public extension URL {
             }()
 
             return documents
-                    .appendingPathComponent("Offline", isDirectory: true)
                     .appendingPathComponent(session.uniqueID, isDirectory: true)
+                    .appendingPathComponent("Offline", isDirectory: true)
                     .appendingPathComponent("Database.sqlite", isDirectory: false)
         }
     }

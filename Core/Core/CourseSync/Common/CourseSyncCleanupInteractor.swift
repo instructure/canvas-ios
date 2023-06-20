@@ -27,15 +27,16 @@ public struct CourseSyncCleanupInteractor {
 
         applicationOfflineFolder = URL
             .Directories
-            .offline
+            .documents
             .appendingPathComponent(sessionId, isDirectory: true)
+            .appendingPathComponent("Offline", isDirectory: true)
 
         if let appGroup,
            let sharedContainer = URL.Directories.sharedContainer(appGroup: appGroup) {
             sharedOfflineFolder = sharedContainer
                 .appendingPathComponent("Documents", isDirectory: true)
-                .appendingPathComponent("Offline", isDirectory: true)
                 .appendingPathComponent(sessionId, isDirectory: true)
+                .appendingPathComponent("Offline", isDirectory: true)
         } else {
             sharedOfflineFolder = nil
         }
