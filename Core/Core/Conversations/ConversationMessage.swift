@@ -87,3 +87,33 @@ extension ConversationMessage {
         return String.localizedStringWithFormat(template, user ?? "")
     }
 }
+
+#if DEBUG
+
+public extension ConversationMessage {
+    static func make(id: String = "0",
+                     authorID: String = "0",
+                     body: String = "",
+                     in context: NSManagedObjectContext)
+    -> ConversationMessage {
+        let mockObject: ConversationMessage = context.insert()
+        mockObject.id = id
+        mockObject.authorID = authorID
+        mockObject.body = body
+        return mockObject
+    }
+}
+
+public extension Array where Element == ConversationMessage {
+
+    static func make(count: Int,
+                     body: String = "",
+                     in context: NSManagedObjectContext)
+    -> [ConversationMessage] {
+        (0..<count).reduce(into: [], { partialResult, index in
+            partialResult.append(.make(id: "\(index)", body: body, in: context))
+        })
+    }
+}
+
+#endif

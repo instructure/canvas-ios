@@ -22,6 +22,9 @@
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
 
+/* Weekly Auto / Daily Auto Synchronization Frequency */
+"%@ Auto" = "%@ Auto";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ Moyenne cumulative";
 
@@ -374,6 +377,9 @@
 "Authentication failed. Most likely the user denied the request for access." = "Échec de l'authentification L’utilisateur a probablement refusé la demande d'accès.";
 
 /* No comment provided by engineer. */
+"Auto Content Sync" = "Synchronisation auto du contenu";
+
+/* No comment provided by engineer. */
 "Availability" = "Disponibilité";
 
 /* No comment provided by engineer. */
@@ -521,10 +527,16 @@
 "Close App" = "Fermer l’application";
 
 /* No comment provided by engineer. */
+"Close section" = "Fermer la section";
+
+/* No comment provided by engineer. */
 "Closed" = "Fermé";
 
 /* No comment provided by engineer. */
 "Closed for Comments" = "Commentaires fermés";
+
+/* No comment provided by engineer. */
+"Closed section" = "Section fermée";
 
 /* No comment provided by engineer. */
 "Collapse" = "Réduire";
@@ -579,6 +591,9 @@
 
 /* No comment provided by engineer. */
 "Content Link Error" = "Erreur de lien de contenu";
+
+/* No comment provided by engineer. */
+"Content sync might use cellular data which may result in extra fees from your data provider." = "La synchronisation du contenu est susceptible d'utiliser des données mobiles, ce qui peut entraîner une surfacturation par votre opérateur.";
 
 /* No comment provided by engineer. */
 "Contribute" = "Contribue";
@@ -791,6 +806,12 @@
 "Deselect All" = "Tout désélectionner";
 
 /* No comment provided by engineer. */
+"Deselect item" = "Désélectionner l’élément";
+
+/* No comment provided by engineer. */
+"Deselected" = "Désélectionné";
+
+/* No comment provided by engineer. */
 "Designer" = "Concepteur";
 
 /* No comment provided by engineer. */
@@ -852,6 +873,15 @@
 
 /* No comment provided by engineer. */
 "Done" = "Terminé";
+
+/* No comment provided by engineer. */
+"Download complete" = "Téléchargement terminé";
+
+/* No comment provided by engineer. */
+"Downloading" = "Téléchargement";
+
+/* Downloading 42 GB of 64 GB */
+"Downloading %@ of %@" = "Téléchargement %1$@ sur %2$@";
 
 /* No comment provided by engineer. */
 "Due" = "À rendre le";
@@ -933,6 +963,9 @@
 
 /* No comment provided by engineer. */
 "Enable Push Notifications" = "Activer les notifications Push";
+
+/* No comment provided by engineer. */
+"Enabling the Auto Content Sync will take care of downloading the selected content based on the below settings. The content synchronization will happen even if the application is not running. If the setting is switched off then no synchronization will happen. The already downloaded content will not be deleted." = "L'activation de la synchronisation auto du contenu gérera automatiquement le téléchargement du contenu sélectionné en fonction des paramètres ci-dessous. La synchronisation du contenu aura lieu même si l’application n’est pas en cours d’exécution. Si le paramètre est désactivé, aucune synchronisation n’aura lieu. Le contenu déjà téléchargé ne sera pas supprimé.";
 
 /* No comment provided by engineer. */
 "End Act as User" = "Terminer Agir en tant qu'utilisateur";
@@ -1223,6 +1256,9 @@
 "I obtained permission" = "J'ai obtenu une autorisation";
 
 /* No comment provided by engineer. */
+"If this setting is enabled the content synchronization will only happen if the device connects to a Wi-Fi network, otherwise it will be postponed until a Wi-Fi network is available." = "Si ce paramètre est activé, la synchronisation du contenu n'aura lieu que si l’appareil est connecté à un réseau Wi-Fi. Dans le cas contraire, elle sera repoussée jusqu'à ce qu'un réseau Wi-Fi soit disponible.";
+
+/* No comment provided by engineer. */
 "Image" = "Image";
 
 /* No comment provided by engineer. */
@@ -1464,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Manage Students" = "Gérer les élèves";
+
+/* No comment provided by engineer. */
+"Manual" = "Mode manuel";
 
 /* No comment provided by engineer. */
 "Manual OAuth Login" = "Connexion manuelle OAuth";
@@ -1727,6 +1766,9 @@
 "Offline Content" = "Contenu hors ligne";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Failed" = "Échec de la synchronisation du contenu hors ligne";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -1737,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "L'une de vos soumissions est en cours de téléchargement. Se déconnecter peut l'interrompre.\nVoulez-vous vraiment vous déconnecter ?";
+
+/* No comment provided by engineer. */
+"One or more files failed to sync. Check your internet connection and retry to submit." = "Un ou plusieurs fichiers n’ont pas pu être synchronisés. Vérifiez l’état de votre connexion internet, puis réessayez.";
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "L’envoi d'un ou plusieurs fichiers a échoué. Vérifiez l’état de votre connexion internet, puis réessayez.";
@@ -1767,6 +1812,9 @@
 
 /* No comment provided by engineer. */
 "Open item details" = "Ouvrir les détails de l’élément";
+
+/* No comment provided by engineer. */
+"Open section" = "Ouvrir la section";
 
 /* No comment provided by engineer. */
 "Opens in Canvas Student" = "S’ouvre dans Canvas Student";
@@ -1818,6 +1866,9 @@
 
 /* No comment provided by engineer. */
 "Pairing Code: " = "Code de jumelage : ";
+
+/* No comment provided by engineer. */
+"Partially selected" = "Sélectionné partiellement";
 
 /* No comment provided by engineer. */
 "Pass" = "Réussite";
@@ -2012,6 +2063,9 @@
 "Remove From List?" = "Retirer de la liste ?";
 
 /* No comment provided by engineer. */
+"Remove item" = "Supprimer un élément";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Supprimé %1$@";
 
 /* No comment provided by engineer. */
@@ -2144,6 +2198,9 @@
 "Select Impact" = "Choisir l'impact";
 
 /* No comment provided by engineer. */
+"Select item" = "Sélectionner un élément";
+
+/* No comment provided by engineer. */
 "Select One" = "Sélectionner un élément";
 
 /* No comment provided by engineer. */
@@ -2244,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Classer par nombre de rétroactions de type « J'aime »";
+
+/* No comment provided by engineer. */
+"Specify the recurrence of the content synchronization. The system will download the selected content based on the frequency specified here." = "Indiquez la fréquence de la synchronisation du contenu. Le système téléchargera le contenu sélectionné selon la fréquence indiquée ici.";
 
 /* No comment provided by engineer. */
 "Staff Contact Info" = "Coordonnées du personnel";
@@ -2366,7 +2426,19 @@
 "Sync" = "Synchro";
 
 /* No comment provided by engineer. */
+"Sync Content Over Wi-Fi Only" = "Synchronisation du contenu en Wi-Fi seulement";
+
+/* No comment provided by engineer. */
+"Sync Failed" = "Échec de la synchronisation";
+
+/* No comment provided by engineer. */
+"Sync Frequency" = "Fréquence de la synchronisation";
+
+/* No comment provided by engineer. */
 "Sync Offline Content?" = "Synchroniser le contenu hors ligne ?";
+
+/* No comment provided by engineer. */
+"Synchronization" = "Synchronisation";
 
 /* No comment provided by engineer. */
 "System settings" = "Paramètres système";
@@ -2586,6 +2658,12 @@
 
 /* No comment provided by engineer. */
 "Total time" = "Durée totale";
+
+/* No comment provided by engineer. */
+"Turn Off" = "Désactiver";
+
+/* No comment provided by engineer. */
+"Turn Off Wi-Fi Only Sync?" = "Désactiver le mode synchronisation par Wi-Fi uniquement ?";
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Notifications Twitter";

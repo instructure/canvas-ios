@@ -22,6 +22,9 @@
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
 
+/* Weekly Auto / Daily Auto Synchronization Frequency */
+"%@ Auto" = "%@ Automatisch";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
@@ -374,6 +377,9 @@
 "Authentication failed. Most likely the user denied the request for access." = "Verificatie mislukt. Hoogstwaarschijnlijk heeft de gebruiker de aanvraag voor toegang geweigerd.";
 
 /* No comment provided by engineer. */
+"Auto Content Sync" = "Automatisch synchroniseren van content";
+
+/* No comment provided by engineer. */
 "Availability" = "Beschikbaarheid";
 
 /* No comment provided by engineer. */
@@ -521,10 +527,16 @@
 "Close App" = "App sluiten";
 
 /* No comment provided by engineer. */
+"Close section" = "Sectie sluiten";
+
+/* No comment provided by engineer. */
 "Closed" = "Gesloten";
 
 /* No comment provided by engineer. */
 "Closed for Comments" = "Gesloten voor opmerkingen";
+
+/* No comment provided by engineer. */
+"Closed section" = "Sectie gesloten";
 
 /* No comment provided by engineer. */
 "Collapse" = "Samenvouwen";
@@ -579,6 +591,9 @@
 
 /* No comment provided by engineer. */
 "Content Link Error" = "Fout met inhoudslink";
+
+/* No comment provided by engineer. */
+"Content sync might use cellular data which may result in extra fees from your data provider." = "Contentsynchronisatie kan gebruikmaken van smartphonegegevens wat kan leiden tot extra kosten van je dataprovider.";
 
 /* No comment provided by engineer. */
 "Contribute" = "Bijdragen";
@@ -791,6 +806,12 @@
 "Deselect All" = "Selectie van alle items opheffen";
 
 /* No comment provided by engineer. */
+"Deselect item" = "Item deselecteren";
+
+/* No comment provided by engineer. */
+"Deselected" = "Gedeselecteerd";
+
+/* No comment provided by engineer. */
 "Designer" = "Ontwerper";
 
 /* No comment provided by engineer. */
@@ -852,6 +873,15 @@
 
 /* No comment provided by engineer. */
 "Done" = "Gereed";
+
+/* No comment provided by engineer. */
+"Download complete" = "Downloaden voltooid";
+
+/* No comment provided by engineer. */
+"Downloading" = "Downloaden...";
+
+/* Downloading 42 GB of 64 GB */
+"Downloading %@ of %@" = "%1$@ downloaden van %2$@";
 
 /* No comment provided by engineer. */
 "Due" = "Inleverdatum";
@@ -933,6 +963,9 @@
 
 /* No comment provided by engineer. */
 "Enable Push Notifications" = "Push berichtgevingen inschakelen";
+
+/* No comment provided by engineer. */
+"Enabling the Auto Content Sync will take care of downloading the selected content based on the below settings. The content synchronization will happen even if the application is not running. If the setting is switched off then no synchronization will happen. The already downloaded content will not be deleted." = "Door Automatisch synchroniseren van content in te schakelen wordt de geselecteerde content gedownload op basis van de onderstaande instellingen. De contentsynchronisatie vindt ook plaats als de applicatie niet wordt uitgevoerd. Als de instelling wordt uitgeschakeld, wordt er geen synchronisatie uitgevoerd. De reeds gedownloade content wordt niet verwijderd.";
 
 /* No comment provided by engineer. */
 "End Act as User" = "Stop met optreden als gebruiker";
@@ -1223,6 +1256,9 @@
 "I obtained permission" = "Ik heb toestemming verkregen";
 
 /* No comment provided by engineer. */
+"If this setting is enabled the content synchronization will only happen if the device connects to a Wi-Fi network, otherwise it will be postponed until a Wi-Fi network is available." = "Als deze instelling wordt ingeschakeld, vindt contentsynchronisatie alleen plaats als het apparaat verbonden is met een wifi-netwerk, anders wordt de synchronisatie uitgesteld totdat er een wifi-netwerk beschikbaar is.";
+
+/* No comment provided by engineer. */
 "Image" = "Afbeelding";
 
 /* No comment provided by engineer. */
@@ -1464,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Manage Students" = "Cursisten beheren";
+
+/* No comment provided by engineer. */
+"Manual" = "Handmatig";
 
 /* No comment provided by engineer. */
 "Manual OAuth Login" = "Handmatige OAuth Login";
@@ -1727,6 +1766,9 @@
 "Offline Content" = "Offline inhoud";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Failed" = "Offline contentsynchronisatie mislukt";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -1737,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "Een van je inleveringen wordt nog steeds geüpload. Bij uitloggen kan dit worden onderbroken.\nWeet je zeker dat je wilt uitloggen?";
+
+/* No comment provided by engineer. */
+"One or more files failed to sync. Check your internet connection and retry to submit." = "Een of meer bestanden kunnen niet worden gesynchroniseerd. Controleer je internetverbinding en probeer opnieuw in te leveren.";
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "Er kunnen een of meer bestanden niet worden geüpload. Controleer je internetverbinding en probeer opnieuw in te leveren.";
@@ -1767,6 +1812,9 @@
 
 /* No comment provided by engineer. */
 "Open item details" = "Itemdetails openen";
+
+/* No comment provided by engineer. */
+"Open section" = "Sectie openen";
 
 /* No comment provided by engineer. */
 "Opens in Canvas Student" = "Opent in Canvas Student";
@@ -1818,6 +1866,9 @@
 
 /* No comment provided by engineer. */
 "Pairing Code: " = "Koppelingscode: ";
+
+/* No comment provided by engineer. */
+"Partially selected" = "Gedeeltelijk geselecteerd";
 
 /* No comment provided by engineer. */
 "Pass" = "Geslaagd";
@@ -2012,6 +2063,9 @@
 "Remove From List?" = "Uit lijst verwijderen?";
 
 /* No comment provided by engineer. */
+"Remove item" = "Item verwijderen";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Verwijderd %1$@";
 
 /* No comment provided by engineer. */
@@ -2144,6 +2198,9 @@
 "Select Impact" = "Impact selecteren";
 
 /* No comment provided by engineer. */
+"Select item" = "Item selecteren";
+
+/* No comment provided by engineer. */
 "Select One" = "Eén selecteren";
 
 /* No comment provided by engineer. */
@@ -2244,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Op likes sorteren";
+
+/* No comment provided by engineer. */
+"Specify the recurrence of the content synchronization. The system will download the selected content based on the frequency specified here." = "Geef de herhalingsfactor van de contentsynchronisatie op. Het systeem downloadt de geselecteerde content op basis van de hier opgegeven frequentie.";
 
 /* No comment provided by engineer. */
 "Staff Contact Info" = "Contactgegevens van medewerkers";
@@ -2366,7 +2426,19 @@
 "Sync" = "Synchroniseren";
 
 /* No comment provided by engineer. */
+"Sync Content Over Wi-Fi Only" = "Content alleen synchroniseren via wifi";
+
+/* No comment provided by engineer. */
+"Sync Failed" = "Synchronisatie mislukt.";
+
+/* No comment provided by engineer. */
+"Sync Frequency" = "Synchronisatiefrequentie";
+
+/* No comment provided by engineer. */
 "Sync Offline Content?" = "Offline inhoud synchroniseren?";
+
+/* No comment provided by engineer. */
+"Synchronization" = "Synchronisatie";
 
 /* No comment provided by engineer. */
 "System settings" = "Systeeminstellingen";
@@ -2586,6 +2658,12 @@
 
 /* No comment provided by engineer. */
 "Total time" = "Totale tijd";
+
+/* No comment provided by engineer. */
+"Turn Off" = "Uitschakelen";
+
+/* No comment provided by engineer. */
+"Turn Off Wi-Fi Only Sync?" = "Synchronisatie via alleen wifi uitschakelen?";
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Twitter-meldingen";

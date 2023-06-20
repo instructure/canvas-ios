@@ -22,6 +22,9 @@
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
 
+/* Weekly Auto / Daily Auto Synchronization Frequency */
+"%@ Auto" = "%@ Automaattinen";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
@@ -374,6 +377,9 @@
 "Authentication failed. Most likely the user denied the request for access." = "Todennus epäonnistui. Mitä todennäköisimmin käyttäjä kielsi käyttöoikeuspyynnön.";
 
 /* No comment provided by engineer. */
+"Auto Content Sync" = "Automaattinen sisällön synkronisointi";
+
+/* No comment provided by engineer. */
 "Availability" = "Saatavuus:";
 
 /* No comment provided by engineer. */
@@ -521,10 +527,16 @@
 "Close App" = "Sulje sovellus";
 
 /* No comment provided by engineer. */
+"Close section" = "Sulje osio";
+
+/* No comment provided by engineer. */
 "Closed" = "Suljettu";
 
 /* No comment provided by engineer. */
 "Closed for Comments" = "Suljettu kommenteilta";
+
+/* No comment provided by engineer. */
+"Closed section" = "Suljettu osio";
 
 /* No comment provided by engineer. */
 "Collapse" = "Kutista";
@@ -579,6 +591,9 @@
 
 /* No comment provided by engineer. */
 "Content Link Error" = "Sisällön linkin virhe";
+
+/* No comment provided by engineer. */
+"Content sync might use cellular data which may result in extra fees from your data provider." = "Sisällön synkronisoinnissa saatetaan käyttää mobiilidataa, mistä saattaa aiheutua ylimääräisiä kustannuksia tietopalvelujesi tarjoajalta.";
 
 /* No comment provided by engineer. */
 "Contribute" = "Anna lausunto";
@@ -791,6 +806,12 @@
 "Deselect All" = "Poista kaikkien valinta";
 
 /* No comment provided by engineer. */
+"Deselect item" = "Poista kohteen valinta";
+
+/* No comment provided by engineer. */
+"Deselected" = "Kohteen valinta poistettu";
+
+/* No comment provided by engineer. */
 "Designer" = "Suunnittelija";
 
 /* No comment provided by engineer. */
@@ -852,6 +873,15 @@
 
 /* No comment provided by engineer. */
 "Done" = "Valmis";
+
+/* No comment provided by engineer. */
+"Download complete" = "Lataus valmis";
+
+/* No comment provided by engineer. */
+"Downloading" = "Ladataan";
+
+/* Downloading 42 GB of 64 GB */
+"Downloading %@ of %@" = "Ladataan %1$@ / %2$@";
 
 /* No comment provided by engineer. */
 "Due" = "Määräpäivä";
@@ -933,6 +963,9 @@
 
 /* No comment provided by engineer. */
 "Enable Push Notifications" = "Ota Push-ilmoitukset käyttöön";
+
+/* No comment provided by engineer. */
+"Enabling the Auto Content Sync will take care of downloading the selected content based on the below settings. The content synchronization will happen even if the application is not running. If the setting is switched off then no synchronization will happen. The already downloaded content will not be deleted." = "Automaattisen sisällön synkronisoinnin ottamisellal käyttöön huolehditaan valitun sisällön latauksesta alla olevien asetusten perusteella.  Sisällön synkronisointi tapahtuu myös silloin, kun sovellus ei ole käynnissä jos asetukset on kytketty pois päältä, synkronisointia ei tapahdu. Jo ladattua sisältöä ei poisteta.";
 
 /* No comment provided by engineer. */
 "End Act as User" = "Päätä toimi käyttäjänä";
@@ -1223,6 +1256,9 @@
 "I obtained permission" = "Hankin käyttöoikeuden";
 
 /* No comment provided by engineer. */
+"If this setting is enabled the content synchronization will only happen if the device connects to a Wi-Fi network, otherwise it will be postponed until a Wi-Fi network is available." = "Jos tämä asetus on käytössä, sisällön synkronisointi tapahtuu, jos laite on yhteydessä Wifi-verkkoon. Muussa tapauksessa tätä lykätään, kun Wifi-verkko on käytössä.";
+
+/* No comment provided by engineer. */
 "Image" = "Kuva";
 
 /* No comment provided by engineer. */
@@ -1464,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Manage Students" = "Hallitse opiskelijoita";
+
+/* No comment provided by engineer. */
+"Manual" = "Manuaalinen";
 
 /* No comment provided by engineer. */
 "Manual OAuth Login" = "Manuaalinen OAuth-sisäänkirjautuminen";
@@ -1727,6 +1766,9 @@
 "Offline Content" = "Verkon ulkopuolinen sisältö";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Failed" = "Verkon ulkopuolisen sisällön synkronisointi epäonnistui.";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -1737,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "Yhtä lähetyksistä ladataan. Jos kirjaudut ulos, tämä saattaa häiriytyä.\nHaluatko varmasti kirjautua ulos?";
+
+/* No comment provided by engineer. */
+"One or more files failed to sync. Check your internet connection and retry to submit." = "Yhden tai useamman tiedoston synkronisointi ei onnistunut. Tarkista Internet-yhteytesi ja yritä lähettää uudelleen.";
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "Yksi tai useampi tiedosto ei latautunut. Tarkista Internet-yhteytesi ja yritä lähettää uudelleen.";
@@ -1767,6 +1812,9 @@
 
 /* No comment provided by engineer. */
 "Open item details" = "Avaa kohteen tiedot";
+
+/* No comment provided by engineer. */
+"Open section" = "Avaa osio";
 
 /* No comment provided by engineer. */
 "Opens in Canvas Student" = "Avautuu Canvas Studentissa";
@@ -1818,6 +1866,9 @@
 
 /* No comment provided by engineer. */
 "Pairing Code: " = "Parinmuodostuskoodi: ";
+
+/* No comment provided by engineer. */
+"Partially selected" = "Osittain valittu";
 
 /* No comment provided by engineer. */
 "Pass" = "Hyväksytty";
@@ -2012,6 +2063,9 @@
 "Remove From List?" = "Poistetaanko luettelosta?";
 
 /* No comment provided by engineer. */
+"Remove item" = "Poista kohde";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Poistettu %1$@";
 
 /* No comment provided by engineer. */
@@ -2144,6 +2198,9 @@
 "Select Impact" = "Valitse vaikutus";
 
 /* No comment provided by engineer. */
+"Select item" = "Valitse kohde";
+
+/* No comment provided by engineer. */
 "Select One" = "Valitse yksi";
 
 /* No comment provided by engineer. */
@@ -2244,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Lajittele tykkäysten perusteella";
+
+/* No comment provided by engineer. */
+"Specify the recurrence of the content synchronization. The system will download the selected content based on the frequency specified here." = "Määritä sisällön synkronisoinnin toistuminen. Järjestelmä lataa valitun sisällön täällä määritetyn taajuuden perusteella.";
 
 /* No comment provided by engineer. */
 "Staff Contact Info" = "Henkilökunnan yhteistiedot";
@@ -2366,7 +2426,19 @@
 "Sync" = "Synkronointi";
 
 /* No comment provided by engineer. */
+"Sync Content Over Wi-Fi Only" = "Synkronisoi sisältö vain Wifin kautta";
+
+/* No comment provided by engineer. */
+"Sync Failed" = "Synkronointi ei onnistunut";
+
+/* No comment provided by engineer. */
+"Sync Frequency" = "Synkronoinnin tiheys";
+
+/* No comment provided by engineer. */
 "Sync Offline Content?" = "Synkronoidaanko verkon ulkopuolinen sisältö";
+
+/* No comment provided by engineer. */
+"Synchronization" = "Synkronointi";
 
 /* No comment provided by engineer. */
 "System settings" = "Järjestelmäasetukset";
@@ -2586,6 +2658,12 @@
 
 /* No comment provided by engineer. */
 "Total time" = "Aika yhteensä";
+
+/* No comment provided by engineer. */
+"Turn Off" = "Sammuta";
+
+/* No comment provided by engineer. */
+"Turn Off Wi-Fi Only Sync?" = "Kytketäänkö Synkronointi vain Wifin kautta -ominaisuus pois päältä?";
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Twitter-ilmoitukset";

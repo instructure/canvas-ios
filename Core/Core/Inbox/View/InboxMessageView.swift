@@ -20,14 +20,16 @@ import SwiftUI
 
 public struct InboxMessageView: View {
     private var model: InboxMessageListItemViewModel
+    private var cellDidTap: (String) -> Void
 
-    public init(model: InboxMessageListItemViewModel) {
+    public init(model: InboxMessageListItemViewModel, cellDidTap: @escaping (String) -> Void) {
         self.model = model
+        self.cellDidTap = cellDidTap
     }
 
     public var body: some View {
         Button {
-
+            cellDidTap(model.id)
         } label: {
             cellContent
         }
@@ -137,11 +139,11 @@ struct InboxMessageView_Previews: PreviewProvider {
     static let context = env.globalDatabase.viewContext
 
     static var previews: some View {
-        InboxMessageView(model: .init(message: .make(in: context)))
+        InboxMessageView(model: .init(message: .make(in: context)), cellDidTap: {_ in })
             .previewLayout(.sizeThatFits)
 
         InboxMessageView(model: .init(message: .make(participantName: "Bob Hunter, Tray B, Joe M, Alice Swanson, Marty + 3",
-                                      in: context)))
+                                                     in: context)), cellDidTap: {_ in })
             .previewLayout(.sizeThatFits)
     }
 }

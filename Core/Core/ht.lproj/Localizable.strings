@@ -22,6 +22,9 @@
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
 
+/* Weekly Auto / Daily Auto Synchronization Frequency */
+"%@ Auto" = "%@ Oto";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
@@ -374,6 +377,9 @@
 "Authentication failed. Most likely the user denied the request for access." = "Otantifikasyon echwe. Li pwobab pou itilizatè a refize demann aksè a.";
 
 /* No comment provided by engineer. */
+"Auto Content Sync" = "Senkwonizasyon Kontni Otomatik";
+
+/* No comment provided by engineer. */
 "Availability" = "Disponibilite";
 
 /* No comment provided by engineer. */
@@ -521,10 +527,16 @@
 "Close App" = "Fèmen App";
 
 /* No comment provided by engineer. */
+"Close section" = "Fèmen seksyon";
+
+/* No comment provided by engineer. */
 "Closed" = "Fèmen";
 
 /* No comment provided by engineer. */
 "Closed for Comments" = "Fèmen pou Kòmantè";
+
+/* No comment provided by engineer. */
+"Closed section" = "Seksyon fèmen";
 
 /* No comment provided by engineer. */
 "Collapse" = "Redwi";
@@ -579,6 +591,9 @@
 
 /* No comment provided by engineer. */
 "Content Link Error" = "Erè Lyen Kontni";
+
+/* No comment provided by engineer. */
+"Content sync might use cellular data which may result in extra fees from your data provider." = "Senkwonizasyon kontni an ka itilize done selilè ki ka lakoz konpayi founisè done w la touche anplis.";
 
 /* No comment provided by engineer. */
 "Contribute" = "Kontribye";
@@ -791,6 +806,12 @@
 "Deselect All" = "Deseleksyone Tout";
 
 /* No comment provided by engineer. */
+"Deselect item" = "Deseleksyone atik";
+
+/* No comment provided by engineer. */
+"Deselected" = "Deseleksyone";
+
+/* No comment provided by engineer. */
 "Designer" = "Kreyatè";
 
 /* No comment provided by engineer. */
@@ -852,6 +873,15 @@
 
 /* No comment provided by engineer. */
 "Done" = "Fini";
+
+/* No comment provided by engineer. */
+"Download complete" = "Telechajman fini";
+
+/* No comment provided by engineer. */
+"Downloading" = "Telechajman";
+
+/* Downloading 42 GB of 64 GB */
+"Downloading %@ of %@" = "Telechajman %1$@ sou %2$@";
 
 /* No comment provided by engineer. */
 "Due" = "Delè";
@@ -933,6 +963,9 @@
 
 /* No comment provided by engineer. */
 "Enable Push Notifications" = "Aktive Notifikasyon Push";
+
+/* No comment provided by engineer. */
+"Enabling the Auto Content Sync will take care of downloading the selected content based on the below settings. The content synchronization will happen even if the application is not running. If the setting is switched off then no synchronization will happen. The already downloaded content will not be deleted." = "Aktivasyon senkwonizasyon Kontni Otomatik la ap gen pou telechaje kontni ki seleksyone a an fonksyon de paramèt ki anba yo. Senkwonizasyon kontni an ap fèt menm si aplikasyon an pa ekzekite. Si reglaj la dezaktive, pa gen senkwonizasyon k ap fèt. Kontni ki deja telechaje a pa p efase.";
 
 /* No comment provided by engineer. */
 "End Act as User" = "Fini Aksyon kòm yon Itilizatè";
@@ -1223,6 +1256,9 @@
 "I obtained permission" = "Mwen gen pèmisyon";
 
 /* No comment provided by engineer. */
+"If this setting is enabled the content synchronization will only happen if the device connects to a Wi-Fi network, otherwise it will be postponed until a Wi-Fi network is available." = "SI reglaj la aktive, senkwonizasyon kontni an ap fèt sèlman si aparèy la konekte sou yon rezo wifi, sinon, l ap ranvwaye pou lè gen yon koneksyon sou wifi ki disponib.";
+
+/* No comment provided by engineer. */
 "Image" = "Imaj";
 
 /* No comment provided by engineer. */
@@ -1464,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Manage Students" = "Jere Elèv";
+
+/* No comment provided by engineer. */
+"Manual" = "Manyèl";
 
 /* No comment provided by engineer. */
 "Manual OAuth Login" = "Koneksyon OAuth Manyèl";
@@ -1727,6 +1766,9 @@
 "Offline Content" = "Kontni San Koneksyon";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Failed" = "Senkwonizasyon Kontni san Koneksyon an Echwe";
+
+/* No comment provided by engineer. */
 "OK" = "DAKO";
 
 /* No comment provided by engineer. */
@@ -1737,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "Gen yonn nan soumisyon w yo ki toujou ap transfere. Si w dekonekte sa ka entewonp pwosesis la.\nOu kwè vrèman ou vle dekonekte?";
+
+/* No comment provided by engineer. */
+"One or more files failed to sync. Check your internet connection and retry to submit." = "Gen yonn oswa plizyè fichye ki pa rive senkwonize. Verifye koneksyon entènèt ou a epi eseye re voye yo ankò";
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "Gen yonn oswa plizyè fichye pa rive transfere. Verifye koneksyon entènèt ou a epi eseye re voye yo ankò";
@@ -1767,6 +1812,9 @@
 
 /* No comment provided by engineer. */
 "Open item details" = "Ouvri detay eleman";
+
+/* No comment provided by engineer. */
+"Open section" = "Ouvri seksyon";
 
 /* No comment provided by engineer. */
 "Opens in Canvas Student" = "Ouvri nan Canvas Student";
@@ -1818,6 +1866,9 @@
 
 /* No comment provided by engineer. */
 "Pairing Code: " = "Kòd Kouplaj: ";
+
+/* No comment provided by engineer. */
+"Partially selected" = "Seleksyone pasyèlman";
 
 /* No comment provided by engineer. */
 "Pass" = "Pase";
@@ -2012,6 +2063,9 @@
 "Remove From List?" = "Elimine nan LIs?";
 
 /* No comment provided by engineer. */
+"Remove item" = "Elimine atik";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Elimine %1$@";
 
 /* No comment provided by engineer. */
@@ -2144,6 +2198,9 @@
 "Select Impact" = "Seleksyone Enpak";
 
 /* No comment provided by engineer. */
+"Select item" = "Seleksyone atik";
+
+/* No comment provided by engineer. */
 "Select One" = "Seleksyone Yonn";
 
 /* No comment provided by engineer. */
@@ -2244,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Klase pa Jèm";
+
+/* No comment provided by engineer. */
+"Specify the recurrence of the content synchronization. The system will download the selected content based on the frequency specified here." = "Presize peryòd repetisyon senkwonizasyon kontni an. Sistèm  nan ap telechaje kontni ki seleksyone a selon frekans ou mansyone la a.";
 
 /* No comment provided by engineer. */
 "Staff Contact Info" = "Kontakte Anplwaye";
@@ -2366,7 +2426,19 @@
 "Sync" = "Sync";
 
 /* No comment provided by engineer. */
+"Sync Content Over Wi-Fi Only" = "Senkwonize Kontni sou WIFI Sèlman";
+
+/* No comment provided by engineer. */
+"Sync Failed" = "Senkwonizasyon Echwe";
+
+/* No comment provided by engineer. */
+"Sync Frequency" = "Frekans Senkwonizasyon";
+
+/* No comment provided by engineer. */
 "Sync Offline Content?" = "Senkwonize Kontni San Koneksyon?";
+
+/* No comment provided by engineer. */
+"Synchronization" = "Senkwonizasyon";
 
 /* No comment provided by engineer. */
 "System settings" = "Paramèt sistèm";
@@ -2586,6 +2658,12 @@
 
 /* No comment provided by engineer. */
 "Total time" = "Tan total";
+
+/* No comment provided by engineer. */
+"Turn Off" = "Dezaktive";
+
+/* No comment provided by engineer. */
+"Turn Off Wi-Fi Only Sync?" = "Dezaktive Senkwonizasyon sou WIFI Sèlman?";
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Notifikasyon Twitter";

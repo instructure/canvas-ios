@@ -64,6 +64,16 @@ class InboxViewModelTests: CoreTestCase {
         XCTAssertEqual(router.calls.last?.2, .modal())
     }
 
+    func testMessageTapRoute() {
+        let sourceView = UIViewController()
+
+        testee.messageDidTap.send((messageID: "1", controller: WeakViewController(sourceView)))
+
+        wait(for: [router.routeExpectation], timeout: 1)
+        XCTAssertEqual(router.calls.last?.0, URLComponents(string: "/conversations/1"))
+        XCTAssertEqual(router.calls.last?.1, sourceView)
+    }
+
     func testScopeChangeForwardedToInteractor() {
         XCTAssertEqual(mockInteractor.receivedScope, testee.scope)
 

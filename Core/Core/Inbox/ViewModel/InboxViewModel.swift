@@ -41,6 +41,7 @@ public class InboxViewModel: ObservableObject {
     // MARK: - Inputs
     public let refreshDidTrigger = PassthroughSubject<() -> Void, Never>()
     public let menuDidTap = PassthroughSubject<WeakViewController, Never>()
+    public let messageDidTap = PassthroughSubject<(messageID: String, controller: WeakViewController), Never>()
     public let scopeDidChange = CurrentValueSubject<InboxMessageScope, Never>(DefaultScope)
     public let courseDidChange = CurrentValueSubject<InboxCourse?, Never>(nil)
     public let updateState = PassthroughSubject<(messageId: String, state: ConversationWorkflowState), Never>()
@@ -57,7 +58,7 @@ public class InboxViewModel: ObservableObject {
         bindInputsToDataSource()
         bindDataSourceOutputsToSelf()
         bindUserActionsToOutputs()
-        subscribeToMenuTapEvents(router: router)
+        subscribeToTapEvents(router: router)
     }
 
     private func bindUserActionsToOutputs() {
@@ -135,10 +136,15 @@ public class InboxViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private func subscribeToMenuTapEvents(router: Router) {
+    private func subscribeToTapEvents(router: Router) {
         menuDidTap
-            .sink { [weak router] source in
-                router?.route(to: "/profile", from: source, options: .modal())
+            .sink { [router] source in
+                router.route(to: "/profile", from: source, options: .modal())
+            }
+            .store(in: &subscriptions)
+        messageDidTap
+            .sink { [router] (messageID, controller) in
+                router.route(to: "/conversations/\(messageID)", from: controller, options: .detail)
             }
             .store(in: &subscriptions)
     }

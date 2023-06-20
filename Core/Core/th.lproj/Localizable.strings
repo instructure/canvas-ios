@@ -22,6 +22,9 @@
 /* No comment provided by engineer. */
 "%@ %@" = "%1$@ %2$@";
 
+/* Weekly Auto / Daily Auto Synchronization Frequency */
+"%@ Auto" = "%@ อัตโนมัติ";
+
 /* No comment provided by engineer. */
 "%@ GPA" = "%@ GPA";
 
@@ -374,6 +377,9 @@
 "Authentication failed. Most likely the user denied the request for access." = "การตรวจรับรองล้มเหลว ผู้ใช้มักถูกปฏิเสธการใช้งาน";
 
 /* No comment provided by engineer. */
+"Auto Content Sync" = "ซิงค์เนื้อหาอัตโนมัติ";
+
+/* No comment provided by engineer. */
 "Availability" = "ความพร้อม";
 
 /* No comment provided by engineer. */
@@ -521,10 +527,16 @@
 "Close App" = "ปิดแอพ";
 
 /* No comment provided by engineer. */
+"Close section" = "ปิดกลุ่มย่อย";
+
+/* No comment provided by engineer. */
 "Closed" = "ปิดแล้ว";
 
 /* No comment provided by engineer. */
 "Closed for Comments" = "ปิดสำหรับแสดงความเห็น";
+
+/* No comment provided by engineer. */
+"Closed section" = "กลุ่มย่อยที่ปิดแล้ว";
 
 /* No comment provided by engineer. */
 "Collapse" = "ย่อ";
@@ -579,6 +591,9 @@
 
 /* No comment provided by engineer. */
 "Content Link Error" = "ข้อผิดพลาดในการเชื่อมโยงเนื้อหา";
+
+/* No comment provided by engineer. */
+"Content sync might use cellular data which may result in extra fees from your data provider." = "การซิงค์เนื้อหาอาจใช้เครือข่ายข้อมูลมือถือที่ทำให้มีค่าใช้จ่ายเพิ่มเติมจากผู้ให้บริการของคุณ";
 
 /* No comment provided by engineer. */
 "Contribute" = "เข้าร่วม";
@@ -791,6 +806,12 @@
 "Deselect All" = "ยกเลิกการเลือกทั้งหมด";
 
 /* No comment provided by engineer. */
+"Deselect item" = "ยกเลิกการเลือกรายการ";
+
+/* No comment provided by engineer. */
+"Deselected" = "ยกเลิกการเลือกรายการแล้ว";
+
+/* No comment provided by engineer. */
 "Designer" = "ผู้ออกแบบ";
 
 /* No comment provided by engineer. */
@@ -852,6 +873,15 @@
 
 /* No comment provided by engineer. */
 "Done" = "เสร็จสิ้น";
+
+/* No comment provided by engineer. */
+"Download complete" = "ดาวน์โหลดเสร็จสิ้น";
+
+/* No comment provided by engineer. */
+"Downloading" = "ดาวน์โหลด";
+
+/* Downloading 42 GB of 64 GB */
+"Downloading %@ of %@" = "กำลังดาวน์โหลด %1$@ จาก %2$@";
 
 /* No comment provided by engineer. */
 "Due" = "ครบกำหนด";
@@ -933,6 +963,9 @@
 
 /* No comment provided by engineer. */
 "Enable Push Notifications" = "เปิดใช้การแจ้งเตือนแบบพุช";
+
+/* No comment provided by engineer. */
+"Enabling the Auto Content Sync will take care of downloading the selected content based on the below settings. The content synchronization will happen even if the application is not running. If the setting is switched off then no synchronization will happen. The already downloaded content will not be deleted." = "การเปิดใช้การซิงค์เนื้อหาอัตโนมัติ (Auto Content Sync) จะเป็นการจัดการการดาวน์โหลดเนื้อหาที่เลือกตามค่าปรับตั้งต่อไปนี้ การซิงค์เนื้อหาจะเกิดขึ้นแม้ว่าแอพพลิเคชั่นจะไม่เปิดทำงานอยู่ หากมีการปิดค่านี้ จะไม่มีการซิงค์ข้อมูลเกิดขึ้น เนื้อหาที่ดาวน์โหลดแล้วจะไม่ถูกลบทิ้ง";
 
 /* No comment provided by engineer. */
 "End Act as User" = "สิ้นสุดดำเนินการในฐานะผู้ใช้";
@@ -1223,6 +1256,9 @@
 "I obtained permission" = "ฉันได้รับสิทธิ์อนุญาตแล้ว";
 
 /* No comment provided by engineer. */
+"If this setting is enabled the content synchronization will only happen if the device connects to a Wi-Fi network, otherwise it will be postponed until a Wi-Fi network is available." = "หากเปิดใช้งานค่านี้ไว้ การซิงค์เนื้อหาจะเกิดขึ้นก็ต่อเมื่ออุปกรณ์เชื่อมต่อกับเครือข่าย Wi-Fi ไม่เช่นนั้นจะถูกเลื่อนกำหนดจนกว่าเครือข่าย Wi-Fi จะพร้อมใช้งาน";
+
+/* No comment provided by engineer. */
 "Image" = "ภาพ";
 
 /* No comment provided by engineer. */
@@ -1464,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Manage Students" = "จัดการผู้เรียน";
+
+/* No comment provided by engineer. */
+"Manual" = "แมนวล";
 
 /* No comment provided by engineer. */
 "Manual OAuth Login" = "การล็อกอิน OAuth ด้วยตัวเอง";
@@ -1727,6 +1766,9 @@
 "Offline Content" = "เนื้อหาออฟไลน์";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Failed" = "ซิงค์เนื้อหาออฟไลน์ล้มเหลว";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -1737,6 +1779,9 @@
 
 /* No comment provided by engineer. */
 "One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "ผลงานจัดส่งบางส่วนของคุณยังอัพโหลดอยู่ การล็อกเอาท์อาจส่งผลกระทบต่อการทำงาน\nแน่ใจว่าต้องการล็อกเอาท์หรือไม่";
+
+/* No comment provided by engineer. */
+"One or more files failed to sync. Check your internet connection and retry to submit." = "ไฟล์บางส่วนไม่สามารถซิงค์ได้ ตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณแล้วลองส่งใหม่อีกครั้ง";
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "ไฟล์บางส่วนไม่สามารถอัพโหลดได้ ตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณแล้วลองส่งใหม่อีกครั้ง";
@@ -1767,6 +1812,9 @@
 
 /* No comment provided by engineer. */
 "Open item details" = "เปิดรายละเอียดรายการ";
+
+/* No comment provided by engineer. */
+"Open section" = "เปิดกลุ่มย่อย";
 
 /* No comment provided by engineer. */
 "Opens in Canvas Student" = "เปิดในผู้เรียนของ Canvas";
@@ -1818,6 +1866,9 @@
 
 /* No comment provided by engineer. */
 "Pairing Code: " = "รหัสเข้าคู่: ";
+
+/* No comment provided by engineer. */
+"Partially selected" = "เลือกบางส่วน";
 
 /* No comment provided by engineer. */
 "Pass" = "ผ่าน";
@@ -2012,6 +2063,9 @@
 "Remove From List?" = "ลบจากรายการหรือไม่";
 
 /* No comment provided by engineer. */
+"Remove item" = "ลบรายการ";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "ลบแล้ว %1$@";
 
 /* No comment provided by engineer. */
@@ -2144,6 +2198,9 @@
 "Select Impact" = "เลือกผลกระทบ";
 
 /* No comment provided by engineer. */
+"Select item" = "เลือกรายการ";
+
+/* No comment provided by engineer. */
 "Select One" = "เลือกหนึ่งรายการ";
 
 /* No comment provided by engineer. */
@@ -2244,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Sort by likes" = "เรียงจากไลค์";
+
+/* No comment provided by engineer. */
+"Specify the recurrence of the content synchronization. The system will download the selected content based on the frequency specified here." = "ระบุการซิงค์เนื้อหาซ้ำ ระบบจะดาวนโหลดเนื้อหาที่เลือกตามความถี่ที่ระบุไว้นี้";
 
 /* No comment provided by engineer. */
 "Staff Contact Info" = "ข้อมูลติดต่อบุคลากร";
@@ -2366,7 +2426,19 @@
 "Sync" = "ซิงค์";
 
 /* No comment provided by engineer. */
+"Sync Content Over Wi-Fi Only" = "ซิงค์เนื้อหาผ่าน Wi-Fi เท่านั้น";
+
+/* No comment provided by engineer. */
+"Sync Failed" = "ซิงค์ล้มเหลว";
+
+/* No comment provided by engineer. */
+"Sync Frequency" = "ความถี่ในการซิงค์";
+
+/* No comment provided by engineer. */
 "Sync Offline Content?" = "ซิงค์ข้อมูลออฟไลน์หรือไม่";
+
+/* No comment provided by engineer. */
+"Synchronization" = "การซิงค์ข้อมูล";
 
 /* No comment provided by engineer. */
 "System settings" = "ค่าปรับตั้งระบบ";
@@ -2586,6 +2658,12 @@
 
 /* No comment provided by engineer. */
 "Total time" = "เวลารวม";
+
+/* No comment provided by engineer. */
+"Turn Off" = "ปิด";
+
+/* No comment provided by engineer. */
+"Turn Off Wi-Fi Only Sync?" = "ปิดการซิงค์ผ่าน Wi-Fi อย่างเดียวหรือไม่";
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "การแจ้งข้อมูลจาก Twitter";

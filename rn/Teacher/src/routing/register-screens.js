@@ -24,6 +24,7 @@ import CourseSelect from '../modules/inbox/CourseSelect'
 import ConversationDetails from '../modules/inbox/detail/ConversationDetails'
 import AttachmentView from '../common/components/AttachmentView'
 import Attachments from '../modules/attachments/Attachments'
+import ExperimentalFeature from '../common/ExperimentalFeature'
 
 import { Store } from 'redux'
 import { registerScreen } from './'
@@ -35,7 +36,7 @@ export function registerScreens (store: Store): void {
   registerScreen('/conversations/compose', Compose, store)
   registerScreen('/conversations/:conversationID/add_message', Compose, store)
   registerScreen('/conversations/course-select', CourseSelect, store)
-  registerScreen('/conversations/:conversationID', ConversationDetails, store, { deepLink: true })
+  registerScreen('/conversations/:conversationID', ExperimentalFeature.nativeStudentInbox.isEnabled ? null : ConversationDetails, store, { deepLink: true })
   registerScreen('/address-book', AddressBook, store)
   registerScreen('/attachment', AttachmentView, store)
   registerScreen('/attachments', Attachments, store)
