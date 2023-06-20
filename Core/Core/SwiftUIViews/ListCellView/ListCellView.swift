@@ -36,6 +36,13 @@ struct ListCellView: View {
         case loading(Float?)
         case downloaded
         case error(String?)
+
+        var isError: Bool {
+            switch self {
+            case .error: return true
+            default: return false
+            }
+        }
     }
 
     @ObservedObject var viewModel: ListCellViewModel
@@ -211,11 +218,11 @@ struct ListCellView: View {
                 viewModel.collapseDidToggle?()
             }
         }
-//        .if(viewModel.error != nil) { view in
-//            view.accessibilityAction(named: Text("Remove item", bundle: .core)) {
-//                viewModel.removeItemPressed?()
-//            }
-//        }
+        .if(viewModel.state.isError) { view in
+            view.accessibilityAction(named: Text("Remove item", bundle: .core)) {
+                viewModel.removeItemPressed?()
+            }
+        }
         .accessibility(label: Text(viewModel.accessibilityText))
     }
 }
