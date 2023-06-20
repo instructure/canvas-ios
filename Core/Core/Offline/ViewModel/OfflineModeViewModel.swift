@@ -18,17 +18,10 @@
 
 import Combine
 
-class NetworkAvailabilityViewModel: ObservableObject {
-    @Published var networkAvailabilityStatus: NetworkAvailabilityStatus = .disconnected
+class OfflineModeViewModel: ObservableObject {
+    @Published var isOffline: Bool = false
 
-    private let networkAvailabilityService: NetworkAvailabilityService
-
-    init(networkAvailabilityService: NetworkAvailabilityService) {
-        self.networkAvailabilityService = networkAvailabilityService
-        networkAvailabilityService.startMonitoring()
-        networkAvailabilityService
-            .startObservingStatus()
-            .receive(on: DispatchQueue.main)
-            .assign(to: &$networkAvailabilityStatus)
+    init(interactor: OfflineModeInteractor) {
+        interactor.observeIsOfflineMode().assign(to: &$isOffline)
     }
 }

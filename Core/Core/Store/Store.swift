@@ -111,13 +111,13 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
     private let allObjectsSubject = CurrentValueSubject<[U.Model], Never>([])
     private let stateSubject = CurrentValueSubject<StoreState, Never>(.loading)
     private let hasNextPageSubject = CurrentValueSubject<Bool, Never>(false)
-    private let offlineService: OfflineService
+    private let offlineService: OfflineModeInteractor
 
     // MARK: -
 
     public init(
         env: AppEnvironment,
-        offlineService: OfflineService = OfflineServiceLive.shared,
+        offlineService: OfflineModeInteractor = OfflineModeInteractorLive.shared,
         context: NSManagedObjectContext,
         useCase: U,
         eventHandler: @escaping EventHandler

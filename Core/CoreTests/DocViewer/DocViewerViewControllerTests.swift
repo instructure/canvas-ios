@@ -48,11 +48,11 @@ class DocViewerViewControllerTests: CoreTestCase {
         }
     }
 
-    class MockOfflineServiceDisabled: OfflineService {
+    class MockOfflineServiceDisabled: OfflineModeInteractor {
         func isOfflineModeEnabled() -> Bool { false }
     }
 
-    class MockOfflineServiceEnabled: OfflineService {
+    class MockOfflineServiceEnabled: OfflineModeInteractor {
         func isOfflineModeEnabled() -> Bool { true }
     }
 

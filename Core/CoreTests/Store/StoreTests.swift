@@ -203,10 +203,10 @@ class StoreTests: CoreTestCase {
         ) {}
     }
 
-    private func createOfflineService() -> OfflineService {
+    private func createOfflineService() -> OfflineModeInteractor {
         let monitor = NWPathMonitorWrapper(start: { _ in () }, cancel: {})
         let availabilityService = NetworkAvailabilityServiceLive(monitor: monitor)
-        return OfflineServiceLive(availabilityService: availabilityService)
+        return OfflineModeInteractorLive(availabilityService: availabilityService)
     }
 
     // MARK: - Reactive Properties Tests -

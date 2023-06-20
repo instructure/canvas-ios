@@ -18,13 +18,15 @@
 
 import Combine
 
-public protocol OfflineService {
+public protocol OfflineModeInteractor {
     func isOfflineModeEnabled() -> Bool
+    func observeIsOfflineMode() -> AnyPublisher<Bool, Never>
+    func observeNetworkStatus() -> AnyPublisher<NetworkAvailabilityStatus, Never>
 }
 
-public final class OfflineServiceLive: OfflineService {
+public final class OfflineModeInteractorLive: OfflineModeInteractor {
     /// Use a shared instance in cases where you need immediate result from `NetworkAvailabilityService`. Otherwise initiate a unique instance.
-    public static let shared = OfflineServiceLive()
+    public static let shared = OfflineModeInteractorLive()
 
     // MARK: - Dependencies
 
@@ -37,6 +39,23 @@ public final class OfflineServiceLive: OfflineService {
 
     public func isOfflineModeEnabled() -> Bool {
         isFeatureFlagEnabled() && isNetworkOffline()
+    }
+
+    public func observeIsOfflineMode() -> AnyPublisher<Bool, Never> {
+        unowned let unownedSelf = self
+        return availabilityService
+            .startObservingStatus()
+            .receive(on: DispatchQueue.main)
+            .map { _ in unownedSelf.isOfflineModeEnabled() }
+            .eraseToAnyPublisher()
+    }
+
+    public func observeNetworkStatus() -> AnyPublisher<NetworkAvailabilityStatus, Never> {
+        return availabilityService
+            .startObservingStatus()
+            .receive(on: DispatchQueue.main)
+            .map { $0 }
+            .eraseToAnyPublisher()
     }
 
     private func isFeatureFlagEnabled() -> Bool {

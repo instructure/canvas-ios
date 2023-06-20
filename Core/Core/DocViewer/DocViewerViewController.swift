@@ -44,7 +44,7 @@ public class DocViewerViewController: UIViewController {
     private var dragGestureViewModel: AnnotationDragGestureViewModel?
     private var subscriptions = Set<AnyCancellable>()
     private var annotationContextMenuModel: DocViewerAnnotationContextMenuModel?
-    private var offlineService: OfflineService!
+    private var offlineService: OfflineModeInteractor!
 
     public internal(set) static var hasPSPDFKitLicense = false
 
@@ -59,7 +59,7 @@ public class DocViewerViewController: UIViewController {
         previewURL: URL?,
         fallbackURL: URL,
         navigationItem: UINavigationItem? = nil,
-        offlineService: OfflineService = OfflineServiceLive.shared
+        offlineService: OfflineModeInteractor = OfflineModeInteractorLive.shared
     ) -> DocViewerViewController {
         stylePSPDFKit()
 
