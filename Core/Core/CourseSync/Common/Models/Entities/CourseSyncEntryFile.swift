@@ -19,7 +19,7 @@
 import Foundation
 
 public extension CourseSyncEntry {
-    struct File {
+    struct File: Equatable {
         /**
          The unique identifier of the sync entry in a form of "courses/:courseId/files/:fileId". Doesn't correspond to the file ID on API. Use the `fileId` property if you need the API id.
          */

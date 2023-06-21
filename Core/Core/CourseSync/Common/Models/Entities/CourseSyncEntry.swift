@@ -18,7 +18,7 @@
 
 import Foundation
 
-public struct CourseSyncEntry {
+public struct CourseSyncEntry: Equatable {
     public enum State: Codable, Equatable, Hashable {
         case idle, loading(Float?), error, downloaded
     }

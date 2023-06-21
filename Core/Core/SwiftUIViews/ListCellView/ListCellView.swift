@@ -25,7 +25,7 @@ struct ListCellView: View {
         case listItem
     }
 
-    enum SelectionState {
+    enum SelectionState: Equatable {
         case deselected
         case selected
         case partiallySelected

@@ -19,7 +19,7 @@
 import Foundation
 
 public extension CourseSyncEntry {
-    struct Tab {
+    struct Tab: Equatable {
         let id: String
         let name: String
         let type: TabName
