@@ -26,7 +26,7 @@ struct GroupCard: View {
     @Environment(\.viewController) var controller
 
     var body: some View {
-        Button(action: {
+        PrimaryButton(isAvailableOffline: false, action: {
             env.router.route(to: "/groups/\(group.id)", from: controller)
         }, label: {
             HStack(spacing: 0) {
