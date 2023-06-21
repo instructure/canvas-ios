@@ -26,7 +26,7 @@ public extension CourseSyncAssignmentsInteractor {
 
 public final class CourseSyncAssignmentsInteractorLive: CourseSyncAssignmentsInteractor, CourseSyncContentInteractor {
     public init() {}
-    
+
     public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
         ReactiveStore(
             useCase: GetAssignmentsByGroup(courseID: courseId)

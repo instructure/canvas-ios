@@ -62,7 +62,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         courseListStore.getEntities()
             .filterToCourseID(courseID)
             .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
-            .flatMap { self.fileFolderInteractor.getAllFiles(course: $0).print() }
+            .flatMap { self.fileFolderInteractor.getAllFiles(course: $0) }
             .collect()
             .replaceEmpty(with: [])
             .handleEvents(

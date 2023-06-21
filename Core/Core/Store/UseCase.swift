@@ -257,7 +257,7 @@ public class DeleteLocalUseCase<T>: UseCase where T: NSManagedObject {
     public func makeRequest(environment _: AppEnvironment, completionHandler: @escaping (Int?, URLResponse?, Error?) -> Void) {
         completionHandler(1, nil, nil)
     }
-    
+
     public func write(response _: Response?, urlResponse _: URLResponse?, to client: NSManagedObjectContext) {
         client.delete(client.fetch(scope: scope) as [Model])
     }
