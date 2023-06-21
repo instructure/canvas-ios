@@ -77,7 +77,7 @@ public class AttachmentCopyService {
                 callback(.failure(error ?? NSError.internalError()))
                 return
             }
-            guard let appGroup = Bundle.main.appGroupID(), let container = URL.Directories.sharedContainers(appGroup) else {
+            guard let appGroup = Bundle.main.appGroupID(), let container = URL.Directories.sharedContainer(appGroup: appGroup) else {
                 callback(.failure(NSError.internalError()))
                 return
             }
