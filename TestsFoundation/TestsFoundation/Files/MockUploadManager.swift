@@ -50,7 +50,7 @@ public class MockUploadManager: UploadManager {
         callback?()
     }
 
-    open override func upload(file: File, to uploadContext: FileUploadContext, folderPath: String? = nil, callback: (() -> Void)? = nil) {
+    open override func upload(file: File, to uploadContext: FileUploadContext, folderPath: String? = nil, baseURL: URL? = nil, callback: (() -> Void)? = nil) {
         uploadWasCalled = true
         callback?()
     }

@@ -110,4 +110,16 @@ public extension URL {
     var withCanonicalQueryParams: URL? {
         return URLComponents(url: self, resolvingAgainstBaseURL: false)?.withCanonicalQueryParams.url
     }
+
+    /**
+     Returns the base url from this url that can be passed to an API instance.
+
+     Example: https://test.instructure.com/courses/123?param=1 -> https://test.instructure.com
+     */
+    var apiBaseURL: URL? {
+        var components = URLComponents()
+        components.host = host
+        components.scheme = scheme
+        return components.url
+    }
 }
