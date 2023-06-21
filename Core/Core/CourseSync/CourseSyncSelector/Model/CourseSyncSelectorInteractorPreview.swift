@@ -24,7 +24,7 @@ import CombineExt
 class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
     required init(
         courseID: String? = nil,
-        fileFolderInteractor: CourseSyncFileFolderInteractor = CourseSyncFileFolderInteractorLive(),
+        entryComposerInteractor: CourseSyncEntryComposerInteractor = CourseSyncEntryComposerInteractorLive(),
         sessionDefaults: SessionDefaults
     ) {
         mockData = CurrentValueRelay<[CourseSyncEntry]>([

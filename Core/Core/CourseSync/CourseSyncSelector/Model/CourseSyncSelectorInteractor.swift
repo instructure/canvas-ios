@@ -25,7 +25,7 @@ protocol CourseSyncSelectorInteractor {
      - parameters:
         - sessionDefaults: The storage from where the selection states are read and written to.
      */
-    init(courseID: String?, fileFolderInteractor: CourseSyncFileFolderInteractor, sessionDefaults: SessionDefaults)
+    init(courseID: String?, entryComposerInteractor: CourseSyncEntryComposerInteractor, sessionDefaults: SessionDefaults)
     func getCourseSyncEntries() -> AnyPublisher<[CourseSyncEntry], Error>
     func observeSelectedCount() -> AnyPublisher<Int, Never>
     func observeIsEverythingSelected() -> AnyPublisher<Bool, Never>
@@ -43,16 +43,16 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     private let courseSyncEntries = CurrentValueSubject<[CourseSyncEntry], Error>(.init())
     private var subscriptions = Set<AnyCancellable>()
     private let courseID: String?
-    private let fileFolderInteractor: CourseSyncFileFolderInteractor
+    private let entryComposerInteractor: CourseSyncEntryComposerInteractor
     private var sessionDefaults: SessionDefaults
 
     init(
         courseID: String? = nil,
-        fileFolderInteractor: CourseSyncFileFolderInteractor = CourseSyncFileFolderInteractorLive(),
+        entryComposerInteractor: CourseSyncEntryComposerInteractor = CourseSyncEntryComposerInteractorLive(),
         sessionDefaults: SessionDefaults
     ) {
         self.courseID = courseID
-        self.fileFolderInteractor = fileFolderInteractor
+        self.entryComposerInteractor = entryComposerInteractor
         self.sessionDefaults = sessionDefaults
     }
 
@@ -62,7 +62,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         courseListStore.getEntities()
             .filterToCourseID(courseID)
             .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
-            .flatMap { self.fileFolderInteractor.getAllFiles(course: $0) }
+            .flatMap { self.entryComposerInteractor.composeEntry(from: $0) }
             .collect()
             .replaceEmpty(with: [])
             .handleEvents(

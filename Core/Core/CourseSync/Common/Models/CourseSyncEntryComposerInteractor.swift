@@ -19,15 +19,16 @@
 import Foundation
 import Combine
 
-public protocol CourseSyncFileFolderInteractor {
-    func getAllFiles(
-        course: CourseSyncSelectorCourse
+public protocol CourseSyncEntryComposerInteractor {
+    /// Downloads all the available files for a course, and transforms `CourseSyncSelectorCourse` to `CourseSyncEntry`.
+    func composeEntry(
+        from course: CourseSyncSelectorCourse
     ) -> AnyPublisher<CourseSyncEntry, Error>
 }
 
-public final class CourseSyncFileFolderInteractorLive: CourseSyncFileFolderInteractor {
-    public func getAllFiles(
-        course: CourseSyncSelectorCourse
+public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryComposerInteractor {
+    public func composeEntry(
+        from course: CourseSyncSelectorCourse
     ) -> AnyPublisher<CourseSyncEntry, Error> {
         let tabs = Array(course.tabs).offlineSupportedTabs()
         let mappedTabs = tabs.map {
@@ -62,6 +63,7 @@ public final class CourseSyncFileFolderInteractorLive: CourseSyncFileFolderInter
         }
     }
 
+    /// Recursively looks up every file and folder under the specifid `courseId` and returns a list of `CourseSyncEntry.File`. 
     private func getFoldersAndFiles(courseId: String) -> AnyPublisher<[CourseSyncEntry.File], Error> {
         unowned let unownedSelf = self
 

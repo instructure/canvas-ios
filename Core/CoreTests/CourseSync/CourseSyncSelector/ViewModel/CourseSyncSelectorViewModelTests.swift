@@ -25,14 +25,14 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
     var testee: CourseSyncSelectorViewModel!
     var mockSelectorInteractor: CourseSyncSelectorInteractorMock!
     var mockSyncInteractor: CourseSyncInteractorMock!
-    var mockFileFolderInteractor: CourseSyncFileFolderInteractorMock!
+    var mockEntryComposerInteractor: CourseSyncEntryComposerInteractorMock!
     var router: TestRouter!
 
     override func setUp() {
         super.setUp()
-        mockFileFolderInteractor = CourseSyncFileFolderInteractorMock()
+        mockEntryComposerInteractor = CourseSyncEntryComposerInteractorMock()
         mockSelectorInteractor = CourseSyncSelectorInteractorMock(
-            fileFolderInteractor: mockFileFolderInteractor,
+            entryComposerInteractor: mockEntryComposerInteractor,
             sessionDefaults: .fallback
         )
         mockSyncInteractor = CourseSyncInteractorMock()
@@ -136,7 +136,7 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
 class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
     required init(
         courseID: String? = nil,
-        fileFolderInteractor: CourseSyncFileFolderInteractor,
+        entryComposerInteractor: CourseSyncEntryComposerInteractor,
         sessionDefaults: SessionDefaults
     ) {}
 
@@ -181,8 +181,8 @@ class CourseSyncInteractorMock: CourseSyncInteractor {
     }
 }
 
-class CourseSyncFileFolderInteractorMock: CourseSyncFileFolderInteractor {
-    func getAllFiles(course: Core.CourseSyncSelectorCourse) -> AnyPublisher<Core.CourseSyncEntry, Error> {
+class CourseSyncEntryComposerInteractorMock: CourseSyncEntryComposerInteractor {
+    func composeEntry(from course: Core.CourseSyncSelectorCourse) -> AnyPublisher<Core.CourseSyncEntry, Error> {
         Just(CourseSyncEntry.init(name: "0", id: "0", tabs: [], files: []))
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()

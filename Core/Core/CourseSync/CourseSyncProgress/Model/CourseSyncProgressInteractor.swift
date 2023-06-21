@@ -29,7 +29,7 @@ protocol CourseSyncProgressInteractor {
 }
 
 final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
-    private let fileFolderInteractor: CourseSyncFileFolderInteractor
+    private let entryComposerInteractor: CourseSyncEntryComposerInteractor
     private let progressObserverInteractor: CourseSyncProgressObserverInteractor
     private let sessionDefaults: SessionDefaults
 
@@ -42,11 +42,11 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
     // MARK: - Progress info view
 
     init(
-        fileFolderInteractor: CourseSyncFileFolderInteractor = CourseSyncFileFolderInteractorLive(),
+        entryComposerInteractor: CourseSyncEntryComposerInteractor = CourseSyncEntryComposerInteractorLive(),
         progressObserverInteractor: CourseSyncProgressObserverInteractor = CourseSyncProgressObserverInteractorLive(),
         sessionDefaults: SessionDefaults = AppEnvironment.shared.userDefaults ?? .fallback
     ) {
-        self.fileFolderInteractor = fileFolderInteractor
+        self.entryComposerInteractor = entryComposerInteractor
         self.progressObserverInteractor = progressObserverInteractor
         self.sessionDefaults = sessionDefaults
     }
@@ -60,7 +60,7 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
 
         return courseListStore.getEntitiesFromDatabase()
             .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
-            .flatMap { unownedSelf.fileFolderInteractor.getAllFiles(course: $0) }
+            .flatMap { unownedSelf.entryComposerInteractor.composeEntry(from: $0) }
             .collect()
             .replaceEmpty(with: [])
             .map { unownedSelf.applySelectionsFromPreviousSession($0) }

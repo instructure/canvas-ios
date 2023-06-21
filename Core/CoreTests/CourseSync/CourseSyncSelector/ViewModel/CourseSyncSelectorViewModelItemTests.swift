@@ -22,13 +22,13 @@ import XCTest
 
 class CourseSyncSelectorViewModelItemTests: XCTestCase {
     private var mockInteractor: MockCourseSyncSelectorInteractor!
-    private var mockFileFolderInteractor: CourseSyncFileFolderInteractorMock!
+    private var mockEntryComposerInteractor: CourseSyncEntryComposerInteractorMock!
 
     override func setUp() {
         super.setUp()
-        mockFileFolderInteractor = CourseSyncFileFolderInteractorMock()
+        mockEntryComposerInteractor = CourseSyncEntryComposerInteractorMock()
         mockInteractor = MockCourseSyncSelectorInteractor(
-            fileFolderInteractor: mockFileFolderInteractor,
+            entryComposerInteractor: mockEntryComposerInteractor,
             sessionDefaults: .fallback
         )
     }
@@ -262,7 +262,7 @@ private class MockCourseSyncSelectorInteractor: CourseSyncSelectorInteractor {
 
     required init(
         courseID: String? = nil,
-        fileFolderInteractor: CourseSyncFileFolderInteractor,
+        entryComposerInteractor: CourseSyncEntryComposerInteractor,
         sessionDefaults: SessionDefaults
     ) {}
 
