@@ -18,10 +18,10 @@
 
 import Combine
 
-class OfflineModeViewModel: ObservableObject {
+public class OfflineModeViewModel: ObservableObject {
     @Published var isOffline: Bool = false
 
-    init(interactor: OfflineModeInteractor) {
+    public init(interactor: OfflineModeInteractor) {
         interactor.observeIsOfflineMode().assign(to: &$isOffline)
     }
 }
