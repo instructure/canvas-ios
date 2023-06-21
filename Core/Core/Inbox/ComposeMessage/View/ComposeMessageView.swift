@@ -29,6 +29,8 @@ public struct ComposeMessageView: View {
     public var body: some View {
         VStack(spacing: 0) {
             Divider()
+            courseView
+            Divider()
             toView
             Divider()
             subjectView
@@ -49,7 +51,7 @@ public struct ComposeMessageView: View {
 
     private var cancelButton: some View {
         Button {
-            // model.cancelButtonDidTap.accept(viewController)
+            model.cancelButtonDidTap.accept(controller)
         } label: {
             Text("Cancel", bundle: .core)
                 .font(.regular16)
@@ -59,7 +61,7 @@ public struct ComposeMessageView: View {
 
     private var sendButton: some View {
         Button(action: {
-            // model.dismissButtonDidTap.accept(viewController)
+            model.sendButtonDidTap.accept(controller)
         }, label: {
             Image.send
                 .frame(width: 20, height: 20)
@@ -69,7 +71,7 @@ public struct ComposeMessageView: View {
 
     private var addRecipientButton: some View {
         Button(action: {
-            // model.dismissButtonDidTap.accept(viewController)
+            model.addRecipientButtonDidTap.accept(controller)
         }, label: {
             Image.addLine
                 .foregroundColor(Color.textDarkest)
@@ -77,13 +79,17 @@ public struct ComposeMessageView: View {
         .accessibility(label: Text("Add recipient", bundle: .core))
     }
 
-    private var sendIndividualButton: some View {
-
+    private var courseView: some View {
         Button(action: {
-            // model.dismissButtonDidTap.accept(viewController)
+            model.courseSelectButtonDidTap.accept(controller)
         }, label: {
-            Image.addLine
-                .foregroundColor(Color.textDarkest)
+            HStack {
+                Text("Select Course")
+                    .font(.medium16)
+                    .foregroundColor(.textDark)
+                Spacer()
+                DisclosureIndicator().padding(.trailing, 16)
+            }
         })
         .accessibility(label: Text("Add recipient", bundle: .core))
     }

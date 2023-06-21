@@ -18,12 +18,13 @@
 
 import Foundation
 
-public enum ComposeMessageAssembly {
+public enum CourseSelectorAssembly {
 
-    public static func makeNewMessageViewController(env: AppEnvironment = .shared) -> UIViewController {
-        let interactor = ComposeMessageInteractorLive(env: env)
-        let viewModel = ComposeMessageViewModel(router: env.router, interactor: interactor)
-        let view = ComposeMessageView(model: viewModel)
+    public static func makeCourseSelectorViewController() -> UIViewController {
+        let env = AppEnvironment.shared
+        let interactor = CourseSelectorInteractorLive(env: env)
+        let viewModel = CourseSelectorViewModel(router: env.router, interactor: interactor)
+        let view = CourseSelectorView(model: viewModel)
         return CoreHostingController(view)
     }
 }

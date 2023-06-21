@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineExt
 
 class ComposeMessageViewModel: ObservableObject {
     // MARK: - Outputs
@@ -28,7 +29,11 @@ class ComposeMessageViewModel: ObservableObject {
     public let title = NSLocalizedString("New Message", bundle: .core, comment: "")
 
     // MARK: - Inputs
-    public let sendDidTap = PassthroughSubject<Void, Never>()
+    public let sendButtonDidTap = PassthroughRelay<WeakViewController>()
+    public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
+    public let courseSelectButtonDidTap = PassthroughRelay<WeakViewController>()
+    public let addRecipientButtonDidTap = PassthroughRelay<WeakViewController>()
+    public let selectedContext = CurrentValueRelay<String?>(nil)
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
@@ -40,6 +45,21 @@ class ComposeMessageViewModel: ObservableObject {
         self.router = router
 
         // setupOutputBindings()
-        // setupInputBindings(router: router)
+        setupInputBindings(router: router)
+    }
+
+    private func setupInputBindings(router: Router) {
+        let interactor = self.interactor
+        cancelButtonDidTap
+            .sink { [router] viewController in
+                router.dismiss(viewController)
+            }
+            .store(in: &subscriptions)
+        courseSelectButtonDidTap
+            .sink { [router] viewController in
+                let courseSelectorView = CourseSelectorAssembly.makeCourseSelectorViewController()
+                router.show(courseSelectorView, from: viewController)
+            }
+            .store(in: &subscriptions)
     }
 }
