@@ -45,7 +45,7 @@ extension CourseSyncItemSelection {
 
     static func make(from syncEntries: [CourseSyncEntry]) -> [CourseSyncItemSelection] {
         syncEntries.reduce(into: []) { partialResult, syncEntry in
-            if syncEntry.selectionState == .selected || syncEntry.selectionState == .partiallySelected {
+            if syncEntry.selectionState == .selected {
                 partialResult.append(syncEntry.id)
                 // If the whole course is selected then we don't need to map tabs or files
                 return

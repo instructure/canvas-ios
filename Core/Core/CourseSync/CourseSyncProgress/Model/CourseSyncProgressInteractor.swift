@@ -59,11 +59,12 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         unowned let unownedSelf = self
 
         return courseListStore.getEntitiesFromDatabase()
-            .filterToSelectedCourses(ids: sessionDefaults.offlineSyncSelections)
             .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
             .flatMap { unownedSelf.fileFolderInteractor.getAllFiles(course: $0) }
             .collect()
             .replaceEmpty(with: [])
+            .map { unownedSelf.applySelectionsFromPreviousSession($0) }
+            .map { unownedSelf.filterToSelectedCourses($0) }
             .handleEvents(
                 receiveOutput: {
                     unownedSelf.courseSyncEntries.send($0)
@@ -103,6 +104,55 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
             .store(in: &subscriptions)
     }
 
+    // MARK: - Private Methods
+
+    private func applySelectionsFromPreviousSession(
+        _ entries: [CourseSyncEntry]
+    ) -> [CourseSyncEntry] {
+        var entriesCpy = entries
+        let selections = sessionDefaults.offlineSyncSelections
+            .compactMap { $0.toCourseEntrySelection(from: entries) }
+
+        for selection in selections {
+            let entriesWithSelection = setSelected(entries: entriesCpy, selection: selection, selectionState: .selected)
+            entriesCpy = entriesWithSelection
+        }
+
+        return entriesCpy
+    }
+
+    /// Removes any tab and file that is not selected. 
+    private func filterToSelectedCourses(
+        _ entries: [CourseSyncEntry]
+    ) -> [CourseSyncEntry] {
+        entries
+            .filter { $0.selectionState == .selected || $0.selectionState == .partiallySelected }
+            .map { filteredEntries in
+                var entriesCpy = filteredEntries
+                entriesCpy.tabs.removeAll { $0.selectionState == .deselected }
+                entriesCpy.files.removeAll { $0.selectionState == .deselected }
+                return entriesCpy
+            }
+    }
+
+    private func setSelected(
+        entries: [CourseSyncEntry],
+        selection: CourseEntrySelection,
+        selectionState: ListCellView.SelectionState
+    ) -> [CourseSyncEntry] {
+        var entriesCpy = entries
+
+        switch selection {
+        case let .course(courseID):
+            entriesCpy[id: courseID]?.selectCourse(selectionState: selectionState)
+        case let .tab(courseID, tabID):
+            entriesCpy[id: courseID]?.selectTab(id: tabID, selectionState: selectionState)
+        case let .file(courseID, fileID):
+            entriesCpy[id: courseID]?.selectFile(id: fileID, selectionState: selectionState)
+        }
+        return entriesCpy
+    }
+
     private func setState(id: String, selection: CourseEntrySelection, state: CourseSyncEntry.State) {
         var entries = courseSyncEntries.value
 
@@ -136,17 +186,4 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
     func cancelSync() {}
 
     func retrySync() {}
-}
-
-private extension AnyPublisher<[CourseSyncSelectorCourse], Error> {
-    func filterToSelectedCourses(ids: [String]) -> AnyPublisher<[CourseSyncSelectorCourse], Error> {
-        map {
-            $0.filter { entry in
-                ids.contains(
-                    "courses/\(entry.courseId)"
-                )
-            }
-        }
-        .eraseToAnyPublisher()
-    }
 }
