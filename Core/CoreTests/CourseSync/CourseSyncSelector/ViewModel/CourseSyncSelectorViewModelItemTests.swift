@@ -163,7 +163,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
 
         XCTAssertEqual(testee.id, "1")
         XCTAssertEqual(testee.title, "testFile")
-        XCTAssertEqual(testee.subtitle, nil)
+        XCTAssertEqual(testee.subtitle, "Zero KB")
         XCTAssertEqual(testee.isCollapsed, nil)
         XCTAssertTrue(testee.cellStyle == .listItem)
 
@@ -201,13 +201,13 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
         }
 
         item0.selectionDidToggle?()
-        XCTAssertEqual(mockInteractor.lastSelected?.selection, CourseEntrySelection.course("0"))
+        XCTAssertEqual(mockInteractor.lastSelected?.selection, CourseEntrySelection.course("testID"))
         XCTAssertEqual(mockInteractor.lastSelected?.isSelected, true)
         item2.selectionDidToggle?()
-        XCTAssertEqual(mockInteractor.lastSelected?.selection, CourseEntrySelection.tab("0", "1"))
+        XCTAssertEqual(mockInteractor.lastSelected?.selection, CourseEntrySelection.tab("testID", "0"))
         XCTAssertEqual(mockInteractor.lastSelected?.isSelected, true)
         item3.selectionDidToggle?()
-        XCTAssertEqual(mockInteractor.lastSelected?.selection, CourseEntrySelection.file("0", "0"))
+        XCTAssertEqual(mockInteractor.lastSelected?.selection, CourseEntrySelection.file("testID", "0"))
         XCTAssertEqual(mockInteractor.lastSelected?.isSelected, true)
     }
 
@@ -229,7 +229,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
         }
 
         item.collapseDidToggle?()
-        XCTAssertEqual(mockInteractor.lastCollapsed?.selection, CourseEntrySelection.course("0"))
+        XCTAssertEqual(mockInteractor.lastCollapsed?.selection, CourseEntrySelection.course("testID"))
         XCTAssertEqual(mockInteractor.lastCollapsed?.isCollapsed, true)
     }
 
@@ -251,7 +251,7 @@ class CourseSyncSelectorViewModelItemTests: XCTestCase {
         }
 
         item.collapseDidToggle?()
-        XCTAssertEqual(mockInteractor.lastCollapsed?.selection, CourseEntrySelection.tab("0", "0"))
+        XCTAssertEqual(mockInteractor.lastCollapsed?.selection, CourseEntrySelection.tab("testID", "0"))
         XCTAssertEqual(mockInteractor.lastCollapsed?.isCollapsed, true)
     }
 }
