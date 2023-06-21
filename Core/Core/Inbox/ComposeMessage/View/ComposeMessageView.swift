@@ -28,15 +28,17 @@ public struct ComposeMessageView: View {
 
     public var body: some View {
         VStack(spacing: 0) {
-            separator
+            Divider()
             toView
-            separator
+            Divider()
             subjectView
-            separator
+            Divider()
+            individualView
+            Divider()
             bodyView
         }
         .background(Color.backgroundLightest)
-        .navigationTitle(model.title)
+        .navigationBarTitle(model.title, displayMode: .inline)
         .navBarItems(leading: cancelButton, trailing: sendButton)
     }
 
@@ -60,7 +62,7 @@ public struct ComposeMessageView: View {
             // model.dismissButtonDidTap.accept(viewController)
         }, label: {
             Image.send
-                .foregroundColor(Color(Brand.shared.navTextColor))
+                .frame(width: 20, height: 20)
         })
         .accessibility(label: Text("Send", bundle: .core))
     }
@@ -97,12 +99,11 @@ public struct ComposeMessageView: View {
     }
 
     private var subjectView: some View {
-        HStack {
-            Text("Subject")
-                .font(.medium16)
-                .foregroundColor(.textDark)
-            Spacer()
-        }
+        TextFieldRow(
+            label: Text("Subject", bundle: .core),
+            placeholder: "",
+            text: $model.subject
+        )
     }
 
     private var individualView: some View {
@@ -118,5 +119,6 @@ public struct ComposeMessageView: View {
                         text: $model.bodyText,
                         identifier: "composeMessage.body",
                         accessibilityLabel: Text("Message Body", bundle: .core))
+        .frame(maxHeight: .infinity)
     }
 }

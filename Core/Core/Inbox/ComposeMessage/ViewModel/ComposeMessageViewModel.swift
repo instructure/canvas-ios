@@ -23,6 +23,7 @@ class ComposeMessageViewModel: ObservableObject {
     @Published public private(set) var state: StoreState = .loading
     @Published public var sendIndividual: Bool = false
     @Published public var bodyText: String = ""
+    @Published public var subject: String = ""
 
     public let title = NSLocalizedString("New Message", bundle: .core, comment: "")
 

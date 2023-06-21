@@ -145,7 +145,7 @@ public class InboxViewModel: ObservableObject {
             .store(in: &subscriptions)
         newMessageDidTap
             .sink { [router] source in
-                router.route(to: "/conversations/compose", from: source, options: .modal())
+                router.route(to: "/conversations/compose", from: source, options: .modal(isDismissable: false, embedInNav: true))
             }
             .store(in: &subscriptions)
         messageDidTap
