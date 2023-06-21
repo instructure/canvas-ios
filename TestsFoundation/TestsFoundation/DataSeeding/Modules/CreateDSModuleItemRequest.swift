@@ -36,18 +36,21 @@ extension CreateDSModuleItemRequest {
     public struct RequestedDSModuleItem: Encodable {
         let title: String
         let type: String
-        let content_id: String
+        let content_id: String?
+        let page_url: String?
 
         public init(title: String,
                     type: DSModuleItemType,
-                    content_id: String) {
+                    content_id: String? = nil,
+                    page_url: String? = nil) {
             self.title = title
             self.type = type.rawValue
             self.content_id = content_id
+            self.page_url = page_url
         }
     }
 
     public struct Body: Encodable {
-        let moduleItem: RequestedDSModuleItem
+        let module_item: RequestedDSModuleItem
     }
 }

@@ -21,7 +21,7 @@ public struct DSModuleItem: Codable {
     public let module_id: String
     public let title: String
     public let type: String
-    public let content_id: String
+    public let content_id: String?
     public let published: Bool
 }
 

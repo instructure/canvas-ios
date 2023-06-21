@@ -36,10 +36,6 @@ extension UpdateDSModuleItemRequest {
         let published: Bool
     }
     public struct Body: Encodable {
-        let moduleItem: UpdatedDSModuleItem
-
-        public init(moduleItem: UpdatedDSModuleItem) {
-            self.moduleItem = moduleItem
-        }
+        let module_item: UpdatedDSModuleItem
     }
 }

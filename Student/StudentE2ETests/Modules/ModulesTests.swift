@@ -21,16 +21,18 @@ import TestsFoundation
 import Core
 
 class ModulesTests: E2ETestCase {
-    func testModules() {
+    func testModuleItems() {
         // MARK: Seed the usual stuff
         let users = seeder.createUsers(1)
         let course = seeder.createCourse()
         let student = users[0]
         seeder.enrollStudent(student, in: course)
 
-        // MARK: Create module
+        // MARK: Create module with assignment, discussion, page items
         let module = ModulesHelper.createModule(course: course, name: "Test Module")
         let moduleAssignment = ModulesHelper.createModuleAssignment(course: course, module: module, title: "Test Module Assignment")
+        let moduleDiscussion = ModulesHelper.createModuleDiscussion(course: course, module: module, title: "Test Module Discussion")
+        let modulePage = ModulesHelper.createModulePage(course: course, module: module, title: "Test Module Page")
 
         // MARK: Get the user logged in
         logInDSUser(student)
@@ -38,8 +40,31 @@ class ModulesTests: E2ETestCase {
         // MARK: Navigate to Modules
         ModulesHelper.navigateToModules(course: course)
         let moduleNameLabel = ModulesHelper.moduleLabel(moduleIndex: 0).waitToExist()
-        let moduleItemButton = ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 0).waitToExist()
         XCTAssertTrue(moduleNameLabel.isVisible)
-        XCTAssertTrue(moduleItemButton.isVisible)
+        XCTAssertTrue(moduleNameLabel.label().contains(module.name))
+
+        // MARK: Check assignment module item
+        let assignmentItem = ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 0).waitToExist()
+        let assignmentTitle = ModulesHelper.getModuleItemNameLabel(moduleIndex: 0, itemIndex: 0).waitToExist()
+        let assignmentPoints = ModulesHelper.getModuleItemDueLabel(moduleIndex: 0, itemIndex: 0).waitToExist()
+        XCTAssertTrue(assignmentItem.isVisible)
+        XCTAssertTrue(assignmentTitle.isVisible)
+        XCTAssertEqual(assignmentTitle.label(), moduleAssignment.title)
+        XCTAssertTrue(assignmentPoints.isVisible)
+        XCTAssertEqual(assignmentPoints.label(), "0 pts")
+
+        // MARK: Check discussion module item
+        let discussionItem = ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 1).waitToExist()
+        let discussionTitle = ModulesHelper.getModuleItemNameLabel(moduleIndex: 0, itemIndex: 1).waitToExist()
+        XCTAssertTrue(discussionItem.isVisible)
+        XCTAssertTrue(discussionTitle.isVisible)
+        XCTAssertEqual(discussionTitle.label(), moduleDiscussion.title)
+
+        // MARK: Check page module item
+        let pageItem = ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 2).waitToExist()
+        let pageTitle = ModulesHelper.getModuleItemNameLabel(moduleIndex: 0, itemIndex: 2).waitToExist()
+        XCTAssertTrue(pageItem.isVisible)
+        XCTAssertTrue(pageTitle.isVisible)
+        XCTAssertEqual(pageTitle.label(), modulePage.title)
     }
 }

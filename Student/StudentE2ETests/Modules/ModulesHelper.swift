@@ -22,12 +22,24 @@ import TestsFoundation
 import XCTest
 
 public class ModulesHelper: BaseHelper {
+    public static func navBar(course: DSCourse) -> Element {
+        app.find(id: "Modules, \(course.id)")
+    }
+
     public static func moduleLabel(moduleIndex: Int) -> Element {
-        app.find(id: "ModuleList.\(moduleIndex)")
+        app.find(id: "ModuleList.\(moduleIndex)", type: .button)
     }
 
     public static func moduleItem(moduleIndex: Int, itemIndex: Int) -> Element {
-        app.find(id: "ModuleList.\(moduleIndex).\(itemIndex)")
+        app.find(id: "ModuleList.\(moduleIndex).\(itemIndex)", type: .cell)
+    }
+
+    public static func getModuleItemDueLabel(moduleIndex: Int, itemIndex: Int) -> Element {
+        app.find(id: "ModuleList.\(moduleIndex).\(itemIndex).dueLabel")
+    }
+
+    public static func getModuleItemNameLabel(moduleIndex: Int, itemIndex: Int) -> Element {
+        app.find(id: "ModuleList.\(moduleIndex).\(itemIndex).nameLabel")
     }
 
     @discardableResult
@@ -42,8 +54,30 @@ public class ModulesHelper: BaseHelper {
 
     @discardableResult
     public static func createModuleAssignment(course: DSCourse, module: DSModule, title: String = "Module Assignment", published: Bool = true) -> DSModuleItem {
-        let assignment = AssignmentsHelper.createAssignment(course: course, name: title)
+        let assignment = AssignmentsHelper.createAssignment(course: course, name: title, published: published)
         let moduleItemBody = CreateDSModuleItemRequest.RequestedDSModuleItem(title: title, type: .assignment, content_id: assignment.id)
+        var moduleItem = seeder.createModuleItem(courseId: course.id, moduleId: module.id, moduleItemBody: moduleItemBody)
+        if published {
+            moduleItem = seeder.updateModuleItemWithPublished(courseId: course.id, moduleId: module.id, itemId: moduleItem.id, published: published)
+        }
+        return moduleItem
+    }
+
+    @discardableResult
+    public static func createModuleDiscussion(course: DSCourse, module: DSModule, title: String = "Module Discussion", published: Bool = true) -> DSModuleItem {
+        let discussion = DiscussionsHelper.createDiscussion(course: course, title: title, published: published)
+        let moduleItemBody = CreateDSModuleItemRequest.RequestedDSModuleItem(title: title, type: .discussion, content_id: discussion.id)
+        var moduleItem = seeder.createModuleItem(courseId: course.id, moduleId: module.id, moduleItemBody: moduleItemBody)
+        if published {
+            moduleItem = seeder.updateModuleItemWithPublished(courseId: course.id, moduleId: module.id, itemId: moduleItem.id, published: published)
+        }
+        return moduleItem
+    }
+
+    @discardableResult
+    public static func createModulePage(course: DSCourse, module: DSModule, title: String = "Module Page", body: String = "Body of Module Page", published: Bool = true) -> DSModuleItem {
+        let page = PagesHelper.createPage(course: course, title: title, body: body, frontPage: true)
+        let moduleItemBody = CreateDSModuleItemRequest.RequestedDSModuleItem(title: title, type: .page, page_url: page.url)
         var moduleItem = seeder.createModuleItem(courseId: course.id, moduleId: module.id, moduleItemBody: moduleItemBody)
         if published {
             moduleItem = seeder.updateModuleItemWithPublished(courseId: course.id, moduleId: module.id, itemId: moduleItem.id, published: published)
