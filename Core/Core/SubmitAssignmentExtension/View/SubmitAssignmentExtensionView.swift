@@ -51,7 +51,7 @@ public struct SubmitAssignmentExtensionView: View {
             .foregroundColor(.textDarkest)
             .font(.regular16)
             .navigationBarGlobal()
-            .navigationTitle(title)
+            .navigationTitleStyled(title)
             .navigationBarTitleDisplayMode(.inline)
             .navBarItems(trailing: cancelButton)
     }
@@ -70,7 +70,7 @@ public struct SubmitAssignmentExtensionView: View {
             .padding(.horizontal, 20)
         }
         .navigationBarGlobal()
-        .navigationTitle(title)
+        .navigationTitleStyled(title)
         .navigationBarTitleDisplayMode(.inline)
         .navBarItems(leading: cancelButton, trailing: submitButton)
         .onDisappear {

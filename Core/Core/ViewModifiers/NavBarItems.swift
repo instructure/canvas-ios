@@ -25,7 +25,7 @@ extension View {
     }
 
     public func navBarItems<T>(trailing: () -> T) -> some View where T: View {
-        self.toolbar {
+        toolbar {
             ToolbarItem(placement: .navigationBarTrailing, content: trailing)
         }
     }
@@ -35,9 +35,19 @@ extension View {
     }
 
     public func navBarItems<L, T>(leading: () -> L, trailing: () -> T) -> some View where L: View, T: View {
-        self.toolbar {
+        toolbar {
             ToolbarItem(placement: .navigationBarLeading, content: leading)
             ToolbarItem(placement: .navigationBarTrailing, content: trailing)
+        }
+    }
+
+    /**
+     The built-in `.navigationTitle(Text)` modifier ignores all font and color modifiers on the text
+     so we use this `toolbar` based solution to have the title styled.
+     */
+    public func navigationTitleStyled<T>(_ title: T) -> some View where T: View {
+        toolbar {
+            ToolbarItem(placement: .principal, content: { title })
         }
     }
 }
