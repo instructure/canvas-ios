@@ -22,7 +22,7 @@ import Foundation
 
 public protocol CourseSyncProgressWriterInteractor {
     func saveFileProgress(entries: [CourseSyncEntry], error: String?)
-    func cleanUpPreviousFileProgress(entries: [CourseSyncEntry])
+    func cleanUpPreviousFileProgress()
     func saveEntryProgress(id: String, selection: CourseEntrySelection, state: CourseSyncEntry.State)
 }
 
@@ -46,8 +46,11 @@ public final class CourseSyncProgressWriterInteractorLive: CourseSyncProgressWri
         }
     }
 
-    public func cleanUpPreviousFileProgress(entries: [CourseSyncEntry]) {
-        saveFileProgress(entries: entries, error: nil)
+    public func cleanUpPreviousFileProgress() {
+        context.performAndWait {
+            context.delete(context.fetch(scope: .all) as [CourseSyncFileProgress])
+            try? context.save()
+        }
     }
 
     public func saveEntryProgress(id: String, selection: CourseEntrySelection, state: CourseSyncEntry.State) {

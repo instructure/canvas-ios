@@ -59,7 +59,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         unowned let unownedSelf = self
 
         courseSyncEntries.send(entries)
-        progressWriterInteractor.cleanUpPreviousFileProgress(entries: entries)
+        progressWriterInteractor.cleanUpPreviousFileProgress()
 
         subscription = Publishers.Sequence(sequence: entries)
             .flatMap { unownedSelf.downloadCourseDetails($0) }
