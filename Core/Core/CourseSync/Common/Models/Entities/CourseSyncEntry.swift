@@ -55,8 +55,24 @@ public struct CourseSyncEntry: Equatable {
 
     var state: State = .loading(nil)
 
-    /// Total size of course file in bytes.
+    /// Total combined size of files and tabs in bytes.
     var totalSize: Int {
+        let filesSize = files
+            .reduce(0) { partialResult, file in
+                partialResult + file.bytesToDownload
+            }
+
+        let tabsSize = tabs
+            .filter { $0.type != TabName.files }
+            .reduce(0) { partialResult, tab in
+                partialResult + tab.bytesToDownload
+            }
+
+        return filesSize + tabsSize
+    }
+
+    /// Total size of course files in bytes.
+    var totalFileSize: Int {
         files
             .reduce(0) { partialResult, file in
                 partialResult + file.bytesToDownload
@@ -68,27 +84,45 @@ public struct CourseSyncEntry: Equatable {
         totalSize > 0 ? totalSize.humanReadableFileSize : nil
     }
 
-    /// Total size of selected course files in bytes.
+    /// Total combined size of selected files and tabs in bytes.
     var totalSelectedSize: Int {
-        files
+        let filesSize = files
             .filter { $0.selectionState == .selected }
             .reduce(0) { partialResult, file in
                 partialResult + file.bytesToDownload
             }
+
+        let tabsSize = tabs
+            .filter { $0.type != TabName.files }
+            .filter { $0.selectionState == .selected }
+            .reduce(0) { partialResult, tab in
+                partialResult + tab.bytesToDownload
+            }
+
+        return filesSize + tabsSize
     }
 
-    /// Total size of selected and downloaded files in bytes.
+    /// Total combined size of selected and downloaded files and tabs  in bytes.
     var totalDownloadedSize: Int {
-        files
+        let filesSize = files
             .filter { $0.selectionState == .selected }
             .reduce(0) { partialResult, file in
                 partialResult + file.bytesDownloaded
             }
+
+        let tabsSize = tabs
+            .filter { $0.type != TabName.files }
+            .filter { $0.selectionState == .selected }
+            .reduce(0) { partialResult, tab in
+                partialResult + tab.bytesDownloaded
+            }
+
+        return filesSize + tabsSize
     }
 
-    /// Total progress of selected file downloads, ranging from 0 to 1.
+    /// Total combined progress of selected file and tabs downloads, ranging from 0 to 1.
     var progress: Float {
-        let totalProgress = files
+        let totalFilesProgress = files
             .filter { $0.selectionState == .selected }
             .reduce(0 as Float) { partialResult, file in
                 switch file.state {
@@ -98,7 +132,24 @@ public struct CourseSyncEntry: Equatable {
                 case .error: return partialResult + 0
                 }
             }
-        return totalProgress / Float(selectedFilesCount)
+
+        let totalTabsProgress = tabs
+            .filter { $0.type != TabName.files }
+            .filter { $0.selectionState == .selected }
+            .reduce(0 as Float) { partialResult, tab in
+                switch tab.state {
+                case .idle: return 0
+                case .downloaded: return partialResult + 1
+                case .loading: return partialResult + 0
+                case .error: return partialResult + 0
+                }
+            }
+
+        let selectedTabs = tabs
+            .filter { $0.type != TabName.files }
+            .filter { $0.selectionState == .selected }
+
+        return (totalFilesProgress + totalTabsProgress) / (Float(selectedFilesCount) + Float(selectedTabs.count))
     }
 
     mutating func selectCourse(selectionState: ListCellView.SelectionState) {

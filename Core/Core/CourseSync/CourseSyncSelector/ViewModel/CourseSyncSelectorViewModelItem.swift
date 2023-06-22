@@ -100,11 +100,12 @@ extension Array where Element == CourseSyncEntry {
                 }
 
                 guard tab.type == .files else {
+                    tabItem.subtitle = tab.bytesToDownload.humanReadableFileSize
                     cells.append(.item(tabItem))
                     continue
                 }
 
-                tabItem.subtitle = course.totalSizeFormattedString
+                tabItem.subtitle = course.totalFileSize.humanReadableFileSize
                 cells.append(.item(tabItem))
 
                 guard !tab.isCollapsed else {

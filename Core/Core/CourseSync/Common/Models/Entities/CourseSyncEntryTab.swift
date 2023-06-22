@@ -20,11 +20,24 @@ import Foundation
 
 public extension CourseSyncEntry {
     struct Tab: Equatable {
+        public static let estimatedSize = 100_000
+
         let id: String
         let name: String
         let type: TabName
         var isCollapsed: Bool = true
         var state: State = .loading(nil)
         var selectionState: ListCellView.SelectionState = .deselected
+
+        let bytesToDownload: Int = estimatedSize
+
+        var bytesDownloaded: Int {
+            switch state {
+            case .idle: return 0
+            case .downloaded: return bytesToDownload
+            case .loading: return 0
+            case .error: return 0
+            }
+        }
     }
 }

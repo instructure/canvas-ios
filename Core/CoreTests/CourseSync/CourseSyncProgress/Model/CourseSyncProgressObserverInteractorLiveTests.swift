@@ -209,70 +209,43 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
         subscription.cancel()
     }
 
-    func testObserveCombinedProgress() {
-        // MARK: - GIVEN
-        // This should be ignored from calculation
-        let courseEntry: CourseSyncEntryProgress = databaseClient.insert()
-        courseEntry.id = "0"
-        courseEntry.selection = .course(0)
-        courseEntry.state = .downloaded
-
-        // This should be ignored from calculation
-        let fileEntry: CourseSyncEntryProgress = databaseClient.insert()
-        fileEntry.id = "1"
-        fileEntry.selection = .file(0, 0)
-        fileEntry.state = .downloaded
-
-        // This should be estimated to be 100_000 bytes downloaded
-        let courseTabEntry: CourseSyncEntryProgress = databaseClient.insert()
-        courseTabEntry.id = "2"
-        courseTabEntry.selection = .tab(0, 0)
-        courseTabEntry.state = .downloaded
-
-        let fileProgress: CourseSyncFileProgress = databaseClient.insert()
-        fileProgress.bytesToDownload = 100_000
-        fileProgress.bytesDownloaded = 0
-
+    func testCombinedFileProgressObserver() {
         let testee = CourseSyncProgressObserverInteractorLive(context: databaseClient)
+        let helper = CourseSyncProgressWriterInteractorLive(context: databaseClient)
 
-        // MARK: - WHEN
-        let observation = testee
-            .observeCombinedProgress()
-            .dropFirst() // First is 0 before CoreData is read
-            .first()
+        entries = [
+            .init(
+                name: "course-name",
+                id: "course-id",
+                tabs: [
+                    .init(id: "tab-assignments", name: "Assignments", type: .assignments, state: .loading(0.5), selectionState: .selected),
+                    .init(id: "tab-files", name: "Files", type: .files, state: .loading(0.5), selectionState: .selected),
+                ],
+                files: [
+                    .make(id: "file-id", displayName: "file-display-name", bytesToDownload: 100_000, state: .loading(0.5), selectionState: .selected)
+                ]
+            ),
+        ]
 
-        // MARK: - THEN
-        XCTAssertSingleOutputEquals(observation, 0.5)
-    }
+        helper.saveFileProgress(entries: entries)
 
-    func testNonFileEntryProgressesConvertedToBytes() {
-        // MARK: - GIVEN
-        // This should be ignored from calculation
-        let courseEntry: CourseSyncEntryProgress = databaseClient.insert()
-        courseEntry.selection = .course(0)
+        let expectation = expectation(description: "Publisher sends value")
+        let subscription = testee.observeFileProgress()
+            .dropFirst()
+            .sink { state in
+                if case let .data(list) = state {
+                    print(list[0].bytesDownloaded)
+                    print(list[0].bytesToDownload)
+                    print(list[0].progress)
 
-        // This should be ignored from calculation
-        let fileEntry: CourseSyncEntryProgress = databaseClient.insert()
-        fileEntry.selection = .file(0, 0)
+                    XCTAssertEqual(list[0].bytesToDownload, 200_000)
+                    XCTAssertEqual(list[0].bytesDownloaded, 50000)
+                    XCTAssertEqual(list[0].progress, 0.25)
+                    expectation.fulfill()
+                }
+            }
 
-        let courseTabEntry: CourseSyncEntryProgress = databaseClient.insert()
-        courseTabEntry.selection = .tab(0, 0)
-        courseTabEntry.state = .downloaded
-
-        let courseTabEntry2: CourseSyncEntryProgress = databaseClient.insert()
-        courseTabEntry2.selection = .tab(0, 1)
-        courseTabEntry2.state = .loading(nil)
-
-        // MARK: - WHEN
-        let result = [
-            courseEntry,
-            fileEntry,
-            courseTabEntry,
-            courseTabEntry2,
-        ].downloadSizes
-
-        // MARK: - THEN
-        XCTAssertEqual(result.toDownload, 200_000) // 2 tabs to download
-        XCTAssertEqual(result.downloaded, 100_000) // 1 downloaded
+        waitForExpectations(timeout: 0.1)
+        subscription.cancel()
     }
 }

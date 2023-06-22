@@ -579,6 +579,7 @@
 		5FFA92A516A914963E3630C9 /* DefaultWKWebViewConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EA455A5F926487F4F9E0A7 /* DefaultWKWebViewConfiguration.swift */; };
 		6024AB348B8B8441BCE09561 /* APIPairingCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83673905C00DAEA9A4662D4E /* APIPairingCode.swift */; };
 		6027DD23B6C95FF53CABF201 /* ClosedRangeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9193DA17C6897AC20A0F645 /* ClosedRangeExtensions.swift */; };
+		605C7AC5EA892225418D26F5 /* CourseSyncEntry+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8DD2FEF9B803CDE5C93C8A /* CourseSyncEntry+Array.swift */; };
 		606E7AEEA62C454FC625769A /* CourseSyncCleanupInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B51203DE2F1EBC486443DB1 /* CourseSyncCleanupInteractorTests.swift */; };
 		6085A3181F1CC953CD49F089 /* CoreWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6867DC55F4DCD434F3B01EA6 /* CoreWebViewController.swift */; };
 		60B0BE335DB5CECB27196380 /* DiscussionDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508C001CC1C32D0106C2E5E2 /* DiscussionDetailsViewControllerTests.swift */; };
