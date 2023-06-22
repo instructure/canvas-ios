@@ -34,11 +34,11 @@ public class ModulesHelper: BaseHelper {
         app.find(id: "ModuleList.\(moduleIndex).\(itemIndex)", type: .cell)
     }
 
-    public static func getModuleItemDueLabel(moduleIndex: Int, itemIndex: Int) -> Element {
+    public static func moduleItemDueLabel(moduleIndex: Int, itemIndex: Int) -> Element {
         app.find(id: "ModuleList.\(moduleIndex).\(itemIndex).dueLabel")
     }
 
-    public static func getModuleItemNameLabel(moduleIndex: Int, itemIndex: Int) -> Element {
+    public static func moduleItemNameLabel(moduleIndex: Int, itemIndex: Int) -> Element {
         app.find(id: "ModuleList.\(moduleIndex).\(itemIndex).nameLabel")
     }
 
@@ -53,7 +53,10 @@ public class ModulesHelper: BaseHelper {
     }
 
     @discardableResult
-    public static func createModuleAssignment(course: DSCourse, module: DSModule, title: String = "Module Assignment", published: Bool = true) -> DSModuleItem {
+    public static func createModuleAssignment(course: DSCourse,
+                                              module: DSModule,
+                                              title: String = "Module Assignment",
+                                              published: Bool = true) -> DSModuleItem {
         let assignment = AssignmentsHelper.createAssignment(course: course, name: title, published: published)
         let moduleItemBody = CreateDSModuleItemRequest.RequestedDSModuleItem(title: title, type: .assignment, content_id: assignment.id)
         var moduleItem = seeder.createModuleItem(courseId: course.id, moduleId: module.id, moduleItemBody: moduleItemBody)
@@ -64,7 +67,10 @@ public class ModulesHelper: BaseHelper {
     }
 
     @discardableResult
-    public static func createModuleDiscussion(course: DSCourse, module: DSModule, title: String = "Module Discussion", published: Bool = true) -> DSModuleItem {
+    public static func createModuleDiscussion(course: DSCourse,
+                                              module: DSModule,
+                                              title: String = "Module Discussion",
+                                              published: Bool = true) -> DSModuleItem {
         let discussion = DiscussionsHelper.createDiscussion(course: course, title: title, published: published)
         let moduleItemBody = CreateDSModuleItemRequest.RequestedDSModuleItem(title: title, type: .discussion, content_id: discussion.id)
         var moduleItem = seeder.createModuleItem(courseId: course.id, moduleId: module.id, moduleItemBody: moduleItemBody)
@@ -75,9 +81,30 @@ public class ModulesHelper: BaseHelper {
     }
 
     @discardableResult
-    public static func createModulePage(course: DSCourse, module: DSModule, title: String = "Module Page", body: String = "Body of Module Page", published: Bool = true) -> DSModuleItem {
+    public static func createModulePage(course: DSCourse,
+                                        module: DSModule,
+                                        title: String = "Module Page",
+                                        body: String = "Body of Module Page",
+                                        published: Bool = true) -> DSModuleItem {
         let page = PagesHelper.createPage(course: course, title: title, body: body, frontPage: true)
         let moduleItemBody = CreateDSModuleItemRequest.RequestedDSModuleItem(title: title, type: .page, page_url: page.url)
+        var moduleItem = seeder.createModuleItem(courseId: course.id, moduleId: module.id, moduleItemBody: moduleItemBody)
+        if published {
+            moduleItem = seeder.updateModuleItemWithPublished(courseId: course.id, moduleId: module.id, itemId: moduleItem.id, published: published)
+        }
+        return moduleItem
+    }
+
+    @discardableResult
+    public static func createModuleQuiz(course: DSCourse,
+                                        module: DSModule,
+                                        title: String = "Module Quiz",
+                                        description: String = "Description of ",
+                                        published: Bool = true) -> DSModuleItem {
+        let quiz = QuizzesHelper.createQuiz(course: course, title: title, description: description + title, published: published)
+        QuizzesHelper.createTestQuizQuestion(course: course, quiz: quiz)
+
+        let moduleItemBody = CreateDSModuleItemRequest.RequestedDSModuleItem(title: title, type: .quiz, content_id: quiz.id)
         var moduleItem = seeder.createModuleItem(courseId: course.id, moduleId: module.id, moduleItemBody: moduleItemBody)
         if published {
             moduleItem = seeder.updateModuleItemWithPublished(courseId: course.id, moduleId: module.id, itemId: moduleItem.id, published: published)

@@ -116,6 +116,12 @@
 		8B05ABA92A41DC7400A9C714 /* CreateDSModuleItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B05ABA82A41DC7400A9C714 /* CreateDSModuleItemRequest.swift */; };
 		8B05ABAB2A41DC8600A9C714 /* DataSeeder+DSModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B05ABAA2A41DC8600A9C714 /* DataSeeder+DSModuleItem.swift */; };
 		8B05ABAD2A41E18200A9C714 /* UpdateDSModuleItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B05ABAC2A41E18200A9C714 /* UpdateDSModuleItemRequest.swift */; };
+		8B0D25422A44389B00D7EDCA /* CreateDSQuizRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0D25412A44389B00D7EDCA /* CreateDSQuizRequest.swift */; };
+		8B0D25442A4438CF00D7EDCA /* DataSeeder+DSQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0D25432A4438CF00D7EDCA /* DataSeeder+DSQuiz.swift */; };
+		8B0D25462A4438E700D7EDCA /* DSQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0D25452A4438E700D7EDCA /* DSQuiz.swift */; };
+		8B0D254A2A445D4700D7EDCA /* CreateDSQuizQuestionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0D25492A445D4700D7EDCA /* CreateDSQuizQuestionRequest.swift */; };
+		8B0D254C2A445D5F00D7EDCA /* DataSeeder+DSQuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0D254B2A445D5F00D7EDCA /* DataSeeder+DSQuizQuestion.swift */; };
+		8B0D254E2A445D7800D7EDCA /* DSQuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0D254D2A445D7800D7EDCA /* DSQuizQuestion.swift */; };
 		8CEEA54DE127851FF426490F /* CreateDSDiscussionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D6E99369534DE2260DD4EB /* CreateDSDiscussionRequest.swift */; };
 		8EAB580E1AA52D9C4E437F8A /* MiniCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B308A9BF6AC21A73D983D275 /* MiniCourse.swift */; };
 		907104367E913A7551F3EDB0 /* DSAssignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E51C15B690992D8EA3619D /* DSAssignment.swift */; };
@@ -311,6 +317,12 @@
 		8B05ABA82A41DC7400A9C714 /* CreateDSModuleItemRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSModuleItemRequest.swift; sourceTree = "<group>"; };
 		8B05ABAA2A41DC8600A9C714 /* DataSeeder+DSModuleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSModuleItem.swift"; sourceTree = "<group>"; };
 		8B05ABAC2A41E18200A9C714 /* UpdateDSModuleItemRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDSModuleItemRequest.swift; sourceTree = "<group>"; };
+		8B0D25412A44389B00D7EDCA /* CreateDSQuizRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSQuizRequest.swift; sourceTree = "<group>"; };
+		8B0D25432A4438CF00D7EDCA /* DataSeeder+DSQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSQuiz.swift"; sourceTree = "<group>"; };
+		8B0D25452A4438E700D7EDCA /* DSQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSQuiz.swift; sourceTree = "<group>"; };
+		8B0D25492A445D4700D7EDCA /* CreateDSQuizQuestionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSQuizQuestionRequest.swift; sourceTree = "<group>"; };
+		8B0D254B2A445D5F00D7EDCA /* DataSeeder+DSQuizQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSQuizQuestion.swift"; sourceTree = "<group>"; };
+		8B0D254D2A445D7800D7EDCA /* DSQuizQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSQuizQuestion.swift; sourceTree = "<group>"; };
 		8E046239E00E2F114C950D3A /* ModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFixture.swift; sourceTree = "<group>"; };
 		8E52A6F60DF961A9FB652399 /* DSSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSubmission.swift; sourceTree = "<group>"; };
 		8EB01A67D620697DB09B6F61 /* CreateDSAccountNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSAccountNotificationRequest.swift; sourceTree = "<group>"; };
@@ -455,6 +467,7 @@
 		039CF14263C4180E857200CA /* DataSeeding */ = {
 			isa = PBXGroup;
 			children = (
+				8B0D253E2A44387600D7EDCA /* Quizzes */,
 				8B05AB9B2A41BEAB00A9C714 /* Modules */,
 				BB6B6C485316F1CF22E406E2 /* AccountNotifications */,
 				C116E77902A4568988D60E21 /* Assignment */,
@@ -894,6 +907,19 @@
 			path = Modules;
 			sourceTree = "<group>";
 		};
+		8B0D253E2A44387600D7EDCA /* Quizzes */ = {
+			isa = PBXGroup;
+			children = (
+				8B0D25412A44389B00D7EDCA /* CreateDSQuizRequest.swift */,
+				8B0D25432A4438CF00D7EDCA /* DataSeeder+DSQuiz.swift */,
+				8B0D25452A4438E700D7EDCA /* DSQuiz.swift */,
+				8B0D25492A445D4700D7EDCA /* CreateDSQuizQuestionRequest.swift */,
+				8B0D254B2A445D5F00D7EDCA /* DataSeeder+DSQuizQuestion.swift */,
+				8B0D254D2A445D7800D7EDCA /* DSQuizQuestion.swift */,
+			);
+			path = Quizzes;
+			sourceTree = "<group>";
+		};
 		9A7561DA742A2C1B232DFA62 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
@@ -1280,6 +1306,7 @@
 				509F3D8EDAAAF7425C36BE80 /* CombineTestExtensions.swift in Sources */,
 				8B05ABA32A41BF1A00A9C714 /* DSModule.swift in Sources */,
 				5D760DD0639FCD95BA6290AB /* CommunicationChannelFixture.swift in Sources */,
+				8B0D25462A4438E700D7EDCA /* DSQuiz.swift in Sources */,
 				BE02DF1EE7014F718A8A3D14 /* Compose.swift in Sources */,
 				802DAE6AF27A3FC904CA7D07 /* ComposeReply.swift in Sources */,
 				1C06FD3D2600EF54254C8307 /* ConferenceDetails.swift in Sources */,
@@ -1294,6 +1321,7 @@
 				34D52A8BFDE50E183045A17E /* CourseNavigation.swift in Sources */,
 				8B05ABAD2A41E18200A9C714 /* UpdateDSModuleItemRequest.swift in Sources */,
 				F348F002D95D60AD95F66F1E /* CourseSectionFixture.swift in Sources */,
+				8B0D254C2A445D5F00D7EDCA /* DataSeeder+DSQuizQuestion.swift in Sources */,
 				AD4A9C06AC6DF9A67104C7E0 /* Courses.swift in Sources */,
 				4F86073554A4692C591CF8D2 /* CreateDSAccountNotificationRequest.swift in Sources */,
 				0793478FD5197EFFFD73BEB1 /* CreateDSAssignmentRequest.swift in Sources */,
@@ -1332,6 +1360,7 @@
 				E3E7DFEEA6151C9F1BADF9F6 /* DiscussionEditReply.swift in Sources */,
 				87A60DC5A14FC040D54A58D7 /* DiscussionEditor.swift in Sources */,
 				CB3E304F604F0F5356207D04 /* DiscussionFixture.swift in Sources */,
+				8B0D254A2A445D4700D7EDCA /* CreateDSQuizQuestionRequest.swift in Sources */,
 				50D6E0EBB695D9F1C20CD0CC /* DiscussionList.swift in Sources */,
 				258D2D5DF28E9EBAFF974F9C /* E2ETestCase.swift in Sources */,
 				5D9C2ED1E5C2AD00DF8E2A15 /* Element.swift in Sources */,
@@ -1401,6 +1430,7 @@
 				746E19BE7256EE3EBB329F8C /* Quiz.swift in Sources */,
 				63EA3D8B2EF8758AF7CCC428 /* QuizFixture.swift in Sources */,
 				296349D676FB1E9868D868BF /* RichContentEditor.swift in Sources */,
+				8B0D25442A4438CF00D7EDCA /* DataSeeder+DSQuiz.swift in Sources */,
 				8B05ABA12A41BF0D00A9C714 /* DataSeeder+DSModule.swift in Sources */,
 				9F9E2F0461277C96B9236471 /* RichContentToolbar.swift in Sources */,
 				40EE68261004632A33226A77 /* RubricFixture.swift in Sources */,
@@ -1423,6 +1453,7 @@
 				CC01812D641270D86F504DDD /* TestLogger.swift in Sources */,
 				7947D9C97954FDD89B9FF680 /* TestLoginDelegate.swift in Sources */,
 				6D5BA2C2E22F7582E6F82F7D /* TestPersistence.swift in Sources */,
+				8B0D25422A44389B00D7EDCA /* CreateDSQuizRequest.swift in Sources */,
 				0D6EACF326CFCFD6317CBEEA /* TestRouter.swift in Sources */,
 				5B2E9009851FA5FE895D2773 /* TestTreeExtensions.swift in Sources */,
 				B9CD1D2B19123A273844CE88 /* TextSubmission.swift in Sources */,
@@ -1434,6 +1465,7 @@
 				8B05ABA92A41DC7400A9C714 /* CreateDSModuleItemRequest.swift in Sources */,
 				14D09D53B76DADF1DF12514F /* UserFixture.swift in Sources */,
 				65963C7FD4563C4599328811 /* UserSettingsFixture.swift in Sources */,
+				8B0D254E2A445D7800D7EDCA /* DSQuizQuestion.swift in Sources */,
 				917CA66BA492B8AE9D91167C /* XCTestCaseExtensions.swift in Sources */,
 				7077E1B203541E0CB6132807 /* XCUIApplicationExtensions.swift in Sources */,
 				0B1F6B15EAA422D1EDEF8F63 /* XCUIElementExtensions.swift in Sources */,
