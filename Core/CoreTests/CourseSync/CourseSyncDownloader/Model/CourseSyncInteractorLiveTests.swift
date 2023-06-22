@@ -337,14 +337,11 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         )
         entries[0].tabs[0].selectionState = .selected
 
-        let expectation = expectation(description: "Publisher sends value")
-        expectation.expectedFulfillmentCount = 7
         let subscription = testee.downloadContent(for: entries)
             .sink(
                 receiveCompletion: { _ in },
                 receiveValue: { val in
                     self.entries = val
-                    expectation.fulfill()
                 }
             )
 
@@ -354,8 +351,9 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         assignmentsInteractor.publisher.send(completion: .failure(NSError.instructureError("Assignment error")))
         XCTAssertEqual(entries[0].state, .error)
         XCTAssertEqual(entries[0].tabs[0].state, .error)
+        XCTAssertEqual(entries[0].files[0].state, .idle)
+        XCTAssertEqual(entries[0].files[1].state, .idle)
 
-        waitForExpectations(timeout: 2)
         subscription.cancel()
     }
 
@@ -382,6 +380,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         pagesInteractor.publisher.send(completion: .failure(NSError.instructureError("Pages error")))
         XCTAssertEqual(entries[0].state, .error)
         XCTAssertEqual(entries[0].tabs[1].state, .error)
+        XCTAssertEqual(entries[0].files[0].state, .idle)
+        XCTAssertEqual(entries[0].files[1].state, .idle)
 
         subscription.cancel()
     }
@@ -408,7 +408,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(entries[0].state, .loading(nil))
         XCTAssertEqual(entries[0].tabs[2].state, .loading(nil))
 
-        filesInteractor.publisher.send(completion: .failure(NSError.instructureError("Pages error")))
+        filesInteractor.publisher.send(completion: .failure(NSError.instructureError("Files error")))
         XCTAssertEqual(entries[0].state, .error)
         XCTAssertEqual(entries[0].tabs[2].state, .error)
 
