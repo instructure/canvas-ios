@@ -22,7 +22,6 @@ public struct PrimaryButton<Label>: View where Label: View {
 
     let action: () -> Void
     let label: Label
-    @State private var shouldShowAlert = false
     @ObservedObject private var offlineServiceModel: OfflineModeViewModel
     private let isAvailableOffline: Bool
 
@@ -39,7 +38,7 @@ public struct PrimaryButton<Label>: View where Label: View {
         let unavailable = !isAvailableOffline && offlineServiceModel.isOffline
         Button {
             if unavailable {
-                shouldShowAlert = true
+                showAlert()
             } else {
                 action()
             }
@@ -47,10 +46,17 @@ public struct PrimaryButton<Label>: View where Label: View {
             label
         }
         .opacity(unavailable ? 0.3 : 1.0)
-        .alert(isPresented: $shouldShowAlert) {
-            Alert(title: Text("Offline mode", bundle: .core),
-                  message: Text("This item is not available offline.", bundle: .core),
-                  dismissButton: .default(Text("OK", bundle: .core)))
+    }
+
+    private func showAlert() {
+        let title = NSLocalizedString("Offline mode", comment: "")
+        let message = NSLocalizedString("This item is not available offline.", comment: "")
+        let action = NSLocalizedString("OK", comment: "")
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: action, style: .default))
+
+        if let top = AppEnvironment.shared.topViewController {
+            AppEnvironment.shared.router.show(alert, from: top, options: .modal())
         }
     }
 }
