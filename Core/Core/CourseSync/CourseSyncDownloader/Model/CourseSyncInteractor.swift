@@ -68,8 +68,10 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                 receiveOutput: { _ in
                     unownedSelf.courseSyncEntries.send(completion: .finished)
                 },
-                receiveCompletion: { _ in
-                    unownedSelf.setIdleStateForUnfinishedEntries()
+                receiveCompletion: { completion in
+                    if case .failure = completion {
+                        unownedSelf.setIdleStateForUnfinishedEntries()
+                    }
                     unownedSelf.courseSyncEntries.send(completion: .finished)
                 }
             )

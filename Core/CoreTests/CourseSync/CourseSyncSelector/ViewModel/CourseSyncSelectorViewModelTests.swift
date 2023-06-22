@@ -182,9 +182,9 @@ class CourseSyncInteractorMock: CourseSyncInteractor {
 }
 
 class CourseSyncEntryComposerInteractorMock: CourseSyncEntryComposerInteractor {
+    let courseSyncEntrySubject = PassthroughSubject<CourseSyncEntry, Error>()
+
     func composeEntry(from course: Core.CourseSyncSelectorCourse) -> AnyPublisher<Core.CourseSyncEntry, Error> {
-        Just(CourseSyncEntry.init(name: "0", id: "0", tabs: [], files: []))
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+        courseSyncEntrySubject.eraseToAnyPublisher()
     }
 }

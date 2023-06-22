@@ -46,5 +46,24 @@ final class CourseSyncEntryProgress: NSManagedObject, Comparable {
     static func < (lhs: CourseSyncEntryProgress, rhs: CourseSyncEntryProgress) -> Bool {
         lhs.selection < rhs.selection
     }
+
+    @discardableResult
+    public static func save(
+        id: String,
+        selection: CourseEntrySelection,
+        state: CourseSyncEntry.State,
+        in context: NSManagedObjectContext
+    ) -> CourseSyncEntryProgress {
+        let dbEntity: CourseSyncEntryProgress = context.first(
+            where: #keyPath(CourseSyncEntryProgress.id),
+            equals: id
+        ) ?? context.insert()
+
+        dbEntity.id = id
+        dbEntity.selection = selection
+        dbEntity.state = state
+
+        return dbEntity
+    }
 }
 // swiftlint:enable force_try
