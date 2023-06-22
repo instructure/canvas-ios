@@ -209,6 +209,29 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
         subscription.cancel()
     }
 
+    func testFileProgressCleanUp() {
+        let testee = CourseSyncProgressObserverInteractorLive(context: databaseClient)
+        let helper = CourseSyncProgressWriterInteractorLive(context: databaseClient)
+
+        entries[0].files[0].selectionState = .selected
+        entries[0].files[1].selectionState = .selected
+        entries[0].files[0].state = .downloaded
+        entries[0].files[1].state = .downloaded
+        helper.saveFileProgress(entries: entries)
+
+        let previousProgressList: [CourseSyncFileProgress] = databaseClient.fetch(scope: .all)
+        XCTAssertEqual(previousProgressList.count, 1)
+        XCTAssertEqual(previousProgressList[0].progress, 1)
+
+        entries[0].files[0].state = .downloaded
+        entries[0].files[1].state = .loading(0.5)
+        helper.saveFileProgress(entries: entries)
+
+        let currentProgressList: [CourseSyncFileProgress] = databaseClient.fetch(scope: .all)
+        XCTAssertEqual(currentProgressList.count, 1)
+        XCTAssertEqual(currentProgressList[0].progress, 0.75)
+    }
+
     func testCombinedFileProgressObserver() {
         let testee = CourseSyncProgressObserverInteractorLive(context: databaseClient)
         let helper = CourseSyncProgressWriterInteractorLive(context: databaseClient)
