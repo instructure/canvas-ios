@@ -63,7 +63,7 @@ public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryCompose
         }
     }
 
-    /// Recursively looks up every file and folder under the specifid `courseId` and returns a list of `CourseSyncEntry.File`. 
+    /// Recursively looks up every file and folder under the specified `courseId` and returns a list of `CourseSyncEntry.File`. 
     private func getFoldersAndFiles(courseId: String) -> AnyPublisher<[CourseSyncEntry.File], Error> {
         unowned let unownedSelf = self
 
