@@ -86,25 +86,6 @@ struct NavBarBackButtonModifier: ViewModifier {
     }
 }
 
-struct NavigationBarTitleViewModifier<Title: View>: ViewModifier {
-    @Environment(\.viewController) var controller
-    let titleHost: UIViewController
-
-    init(titleView: Title) {
-        self.titleHost = CoreHostingController(titleView)
-    }
-
-    func body(content: Content) -> some View {
-        if let navController = controller.value.navigationController {
-            if titleHost.parent == nil {
-                navController.addChild(titleHost)
-            }
-            controller.value.navigationItem.titleView = titleHost.view
-        }
-        return content.overlay(Color?.none) // needs something modified to actually run
-    }
-}
-
 extension View {
     public func navigationBarStyle(_ style: UINavigationBar.Style) -> some View {
         modifier(NavigationBarStyleModifier(style: style))
@@ -112,11 +93,6 @@ extension View {
 
     public func navigationTitle(_ title: String, subtitle: String?) -> some View {
         modifier(TitleSubtitleModifier(title: title, subtitle: subtitle))
-    }
-
-    /// Only applicable to UIViewController based navigations.
-    public func navigationTitle<Title: View>(_ view: Title) -> some View {
-        modifier(NavigationBarTitleViewModifier(titleView: view))
     }
 
     public func navigationBarGlobal() -> some View {

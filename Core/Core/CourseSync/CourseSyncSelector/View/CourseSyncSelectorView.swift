@@ -26,7 +26,7 @@ struct CourseSyncSelectorView: View {
     var body: some View {
         content
         .background(Color.backgroundLightest)
-        .navigationTitle(navBarTitleView)
+        .navigationTitleStyled(navBarTitleView)
         .navigationBarItems(leading: leftNavBarButton, trailing: cancelButton)
         .navigationBarStyle(.modal)
     }
