@@ -32,17 +32,28 @@ public struct CreateDSQuizRequest: APIRequestable {
     }
 }
 
+public struct GetDSQuizRequest: APIRequestable {
+    public typealias Response = DSQuiz
+
+    public let method = APIMethod.get
+    public var path: String
+
+    public init(courseId: String, quizId: String) {
+        self.path = "courses/\(courseId)/quizzes/\(quizId)"
+    }
+}
+
 extension CreateDSQuizRequest {
     public struct RequestedDSQuiz: Encodable {
         let title: String
         let description: String?
-        let quiz_type: String?
+        let quiz_type: String
         let published: Bool?
 
-        public init(title: String = "Quiz Title", description: String? = nil, quiz_type: String? = nil, published: Bool? = true) {
+        public init(title: String = "Quiz Title", description: String? = nil, quiz_type: DSQuizType, published: Bool? = true) {
             self.title = title
             self.description = description
-            self.quiz_type = quiz_type
+            self.quiz_type = quiz_type.rawValue
             self.published = published
         }
     }

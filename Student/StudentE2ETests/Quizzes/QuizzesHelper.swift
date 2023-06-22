@@ -23,8 +23,8 @@ import XCTest
 
 public class QuizzesHelper: BaseHelper {
     @discardableResult
-    public static func createQuiz(course: DSCourse, title: String, description: String, published: Bool = true) -> DSQuiz {
-        let quizBody = CreateDSQuizRequest.RequestedDSQuiz(title: title, description: description, published: published)
+    public static func createQuiz(course: DSCourse, title: String, description: String, quiz_type: DSQuizType, published: Bool = true) -> DSQuiz {
+        let quizBody = CreateDSQuizRequest.RequestedDSQuiz(title: title, description: description, quiz_type: quiz_type, published: published)
         return seeder.createQuiz(courseId: course.id, quizBody: quizBody)
     }
 

@@ -22,4 +22,12 @@ public struct DSQuiz: Codable {
     public let quiz_type: String
     public let description: String
     public let published: Bool
+    public let question_count: Int
+}
+
+public enum DSQuizType: String {
+    case practiceQuiz = "practice_quiz"
+    case assignment = "assignment"
+    case gradedSurvey = "graded_survey"
+    case survey = "survey"
 }

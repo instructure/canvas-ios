@@ -23,4 +23,9 @@ extension DataSeeder {
         let request = CreateDSQuizRequest(body: requestedBody, courseId: courseId)
         return try! makeRequest(request)
     }
+
+    public func getQuiz(courseId: String, quizId: String) -> DSQuiz {
+        let request = GetDSQuizRequest(courseId: courseId, quizId: quizId)
+        return try! makeRequest(request)
+    }
 }
