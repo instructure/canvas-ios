@@ -146,6 +146,128 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
         subscription.cancel()
     }
 
+    func testDownloadedEntryProgress() {
+        // GIVEN
+        let testee = CourseSyncProgressInteractorLive(
+            entryComposerInteractor: entryComposerInteractorMock,
+            progressObserverInteractor: progressObserverInteractorMock,
+            sessionDefaults: sesssionDefaults
+        )
+
+        createAndSaveCourseSyncSelectorCourse()
+        sesssionDefaults.offlineSyncSelections = ["courses/course-id-1"]
+
+        // WHEN
+        var entries = [CourseSyncEntry]()
+        let expectation = expectation(description: "Publisher sends value")
+        expectation.expectedFulfillmentCount = 5
+        let subscription = testee.observeEntries()
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { newList in
+                    entries = newList
+                    expectation.fulfill()
+                }
+            )
+        drainMainQueue()
+        mockEntryComposeCourse()
+
+        // THEN
+        XCTAssertEqual(entries.count, 1)
+        XCTAssertEqual(entries[0].state, .loading(nil))
+        XCTAssertEqual(entries[0].tabs[0].state, .loading(nil))
+        XCTAssertEqual(entries[0].tabs[1].state, .loading(nil))
+        XCTAssertEqual(entries[0].files[0].state, .loading(nil))
+
+        progressObserverInteractorMock.entryProgressSubject.send(.data([
+            CourseSyncEntryProgress.save(
+                id: "courses/course-id-1",
+                selection: .file("courses/course-id-1", "courses/course-id-1/files/file-1"),
+                state: .loading(0.4),
+                in: databaseClient
+            ),
+        ]))
+        XCTAssertEqual(entries[0].files[0].state, .loading(0.4))
+
+        progressObserverInteractorMock.entryProgressSubject.send(.data([
+            CourseSyncEntryProgress.save(
+                id: "courses/course-id-1",
+                selection: .file("courses/course-id-1", "courses/course-id-1/files/file-1"),
+                state: .downloaded,
+                in: databaseClient
+            ),
+        ]))
+        XCTAssertEqual(entries[0].files[0].state, .downloaded)
+
+        progressObserverInteractorMock.entryProgressSubject.send(.data([
+            CourseSyncEntryProgress.save(
+                id: "courses/course-id-1",
+                selection: .tab("courses/course-id-1", "courses/course-id-1/tabs/files"),
+                state: .downloaded,
+                in: databaseClient
+            ),
+        ]))
+        XCTAssertEqual(entries[0].tabs[0].state, .downloaded)
+
+        progressObserverInteractorMock.entryProgressSubject.send(.data([
+            CourseSyncEntryProgress.save(
+                id: "courses/course-id-1",
+                selection: .course("courses/course-id-1"),
+                state: .downloaded,
+                in: databaseClient
+            ),
+        ]))
+        XCTAssertEqual(entries[0].state, .downloaded)
+
+        waitForExpectations(timeout: 0.1)
+        subscription.cancel()
+    }
+
+    func testFailedEntryProgress() {
+        // GIVEN
+        let testee = CourseSyncProgressInteractorLive(
+            entryComposerInteractor: entryComposerInteractorMock,
+            progressObserverInteractor: progressObserverInteractorMock,
+            sessionDefaults: sesssionDefaults
+        )
+
+        createAndSaveCourseSyncSelectorCourse()
+        sesssionDefaults.offlineSyncSelections = ["courses/course-id-1"]
+
+        // WHEN
+        var entries = [CourseSyncEntry]()
+        let expectation = expectation(description: "Publisher sends value")
+        expectation.expectedFulfillmentCount = 2
+        let subscription = testee.observeEntries()
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { newList in
+                    entries = newList
+                    expectation.fulfill()
+                }
+            )
+        drainMainQueue()
+        mockEntryComposeCourse()
+
+        // THEN
+        XCTAssertEqual(entries.count, 1)
+        XCTAssertEqual(entries[0].state, .loading(nil))
+        XCTAssertEqual(entries[0].tabs[1].state, .loading(nil))
+
+        progressObserverInteractorMock.entryProgressSubject.send(.data([
+            CourseSyncEntryProgress.save(
+                id: "courses/course-id-1",
+                selection: .tab("courses/course-id-1", "courses/course-id-1/tabs/assignments"),
+                state: .error,
+                in: databaseClient
+            ),
+        ]))
+        XCTAssertEqual(entries[0].tabs[1].state, .error)
+
+        waitForExpectations(timeout: 0.1)
+        subscription.cancel()
+    }
+
     private func createAndSaveCourseSyncSelectorCourse() {
         CourseSyncSelectorCourse.save(
             .make(
