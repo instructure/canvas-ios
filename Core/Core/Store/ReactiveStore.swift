@@ -160,12 +160,6 @@ public class ReactiveStore<U: UseCase> {
             .eraseToAnyPublisher()
     }
 
-    public func deleteEntitiesFromDatabase() -> AnyPublisher<Void, Error> {
-        useCase.fetchWithFuture()
-            .map { _ in () }
-            .eraseToAnyPublisher()
-    }
-
     private func fetchEntitiesFromCache<T: NSManagedObject>(
         fetchRequest: NSFetchRequest<T>
     ) -> AnyPublisher<[T], Error> {
