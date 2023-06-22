@@ -37,6 +37,20 @@ public class ReactiveStore<U: UseCase> {
         }
 
         case loading, error(Error), data([U.Model])
+
+        /// If the enum's case is `.data` then extracts and returns all models.
+        public var allItems: [U.Model]? {
+            if case .data(let data) = self {
+                return data
+            } else {
+                return nil
+            }
+        }
+
+        /// If the enum's case is `.data` then extracts and returns the first item.
+        public var firstItem: U.Model? {
+            allItems?.first
+        }
     }
 
     private let env: AppEnvironment

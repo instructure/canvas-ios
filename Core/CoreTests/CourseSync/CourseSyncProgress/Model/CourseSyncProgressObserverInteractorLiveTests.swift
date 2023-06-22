@@ -208,4 +208,71 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
         waitForExpectations(timeout: 0.1)
         subscription.cancel()
     }
+
+    func testObserveCombinedProgress() {
+        // MARK: - GIVEN
+        // This should be ignored from calculation
+        let courseEntry: CourseSyncEntryProgress = databaseClient.insert()
+        courseEntry.id = "0"
+        courseEntry.selection = .course(0)
+        courseEntry.state = .downloaded
+
+        // This should be ignored from calculation
+        let fileEntry: CourseSyncEntryProgress = databaseClient.insert()
+        fileEntry.id = "1"
+        fileEntry.selection = .file(0, 0)
+        fileEntry.state = .downloaded
+
+        // This should be estimated to be 100_000 bytes downloaded
+        let courseTabEntry: CourseSyncEntryProgress = databaseClient.insert()
+        courseTabEntry.id = "2"
+        courseTabEntry.selection = .tab(0, 0)
+        courseTabEntry.state = .downloaded
+
+        let fileProgress: CourseSyncFileProgress = databaseClient.insert()
+        fileProgress.bytesToDownload = 100_000
+        fileProgress.bytesDownloaded = 0
+
+        let testee = CourseSyncProgressObserverInteractorLive(context: databaseClient)
+
+        // MARK: - WHEN
+        let observation = testee
+            .observeCombinedProgress()
+            .dropFirst() // First is 0 before CoreData is read
+            .first()
+
+        // MARK: - THEN
+        XCTAssertSingleOutputEquals(observation, 0.5)
+    }
+
+    func testNonFileEntryProgressesConvertedToBytes() {
+        // MARK: - GIVEN
+        // This should be ignored from calculation
+        let courseEntry: CourseSyncEntryProgress = databaseClient.insert()
+        courseEntry.selection = .course(0)
+
+        // This should be ignored from calculation
+        let fileEntry: CourseSyncEntryProgress = databaseClient.insert()
+        fileEntry.selection = .file(0, 0)
+
+        let courseTabEntry: CourseSyncEntryProgress = databaseClient.insert()
+        courseTabEntry.selection = .tab(0, 0)
+        courseTabEntry.state = .downloaded
+
+        let courseTabEntry2: CourseSyncEntryProgress = databaseClient.insert()
+        courseTabEntry2.selection = .tab(0, 1)
+        courseTabEntry2.state = .loading(nil)
+
+        // MARK: - WHEN
+        let result = [
+            courseEntry,
+            fileEntry,
+            courseTabEntry,
+            courseTabEntry2,
+        ].downloadSizes
+
+        // MARK: - THEN
+        XCTAssertEqual(result.toDownload, 200_000) // 2 tabs to download
+        XCTAssertEqual(result.downloaded, 100_000) // 1 downloaded
+    }
 }

@@ -63,7 +63,7 @@ public class CacheManager {
     }
 
     public static func clearAppGroup(_ id: String?) {
-        guard let id = id, let folder = URL.Directories.sharedContainers(id) else { return }
+        guard let id = id, let folder = URL.Directories.sharedContainer(appGroup: id) else { return }
         clearDirectory(folder)
     }
 

@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import Combine
 import CoreData
 import SwiftUI
 import WidgetKit
@@ -48,6 +49,7 @@ open class AppEnvironment {
     public weak var loginDelegate: LoginDelegate?
     public weak var window: UIWindow?
     open var isTest: Bool { false }
+    private var subscriptions = Set<AnyCancellable>()
 
     public init() {
         self.database = globalDatabase
@@ -75,6 +77,14 @@ open class AppEnvironment {
         userDefaults = nil
         Logger.shared.database = database
         refreshWidgets()
+        deleteUserData(session: session)
+    }
+
+    private func deleteUserData(session: LoginSession) {
+        CourseSyncCleanupInteractor(session: session)
+            .clean()
+            .sink()
+            .store(in: &subscriptions)
     }
 
     public static var shared = AppEnvironment()
