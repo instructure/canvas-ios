@@ -31,7 +31,9 @@ public class QuizzesHelper: BaseHelper {
     @discardableResult
     public static func createQuizQuestion(course: DSCourse, quiz: DSQuiz, name: String, type: DSQuestionType, text: String, answers: [DSAnswer]) -> DSQuizQuestion {
         let quizQuestionBody = CreateDSQuizQuestionRequest.RequestedDSQuizQuestion(question_text: text, question_type: type, answers: answers)
-        return seeder.createQuizQuestion(courseId: course.id, quizId: quiz.id, quizQuestionBody: quizQuestionBody)
+        let result = seeder.createQuizQuestion(courseId: course.id, quizId: quiz.id, quizQuestionBody: quizQuestionBody)
+        seeder.updateQuiz(courseId: course.id, quizId: quiz.id)
+        return result
     }
 
     @discardableResult
@@ -41,10 +43,10 @@ public class QuizzesHelper: BaseHelper {
         let text = "What is the meaning of life?"
 
         var answers = [DSAnswer]()
-        answers.append(DSAnswer(answer_text: "1", answer_weight: 0))
-        answers.append(DSAnswer(answer_text: "2", answer_weight: 0))
-        answers.append(DSAnswer(answer_text: "3", answer_weight: 0))
-        answers.append(DSAnswer(answer_text: "42", answer_weight: 100))
+        answers.append(DSAnswer(answer_text: "1", answer_weight: 0, answer_precision: 10))
+        answers.append(DSAnswer(answer_text: "2", answer_weight: 0, answer_precision: 10))
+        answers.append(DSAnswer(answer_text: "3", answer_weight: 0, answer_precision: 10))
+        answers.append(DSAnswer(answer_text: "42", answer_weight: 100, answer_precision: 10))
 
         return createQuizQuestion(course: course, quiz: quiz, name: name, type: type, text: text, answers: answers)
     }

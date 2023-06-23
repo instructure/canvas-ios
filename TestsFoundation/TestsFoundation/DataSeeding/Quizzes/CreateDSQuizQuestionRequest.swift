@@ -44,8 +44,8 @@ extension CreateDSQuizQuestionRequest {
         public init(question_name: String = "Question name",
                     question_text: String,
                     question_type: DSQuestionType,
-                    position: Int = 1,
-                    points_possible: Int = 10,
+                    position: Int = 0,
+                    points_possible: Int = 1,
                     answers: [DSAnswer]) {
             self.question_name = question_name
             self.question_text = question_text

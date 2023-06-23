@@ -16,21 +16,4 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct DSQuiz: Codable {
-    public let id: String
-    public let title: String
-    public let quiz_type: String
-    public let description: String
-    public let published: Bool
-    public let question_count: Int
-    public let assignment_group_id: String?
-    public let assignment_id: String?
-    public let assessment_question_id: String?
-}
-
-public enum DSQuizType: String {
-    case practiceQuiz = "practice_quiz"
-    case assignment = "assignment"
-    case gradedSurvey = "graded_survey"
-    case survey = "survey"
-}
+import Foundation
