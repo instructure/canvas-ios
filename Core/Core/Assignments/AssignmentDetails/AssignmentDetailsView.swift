@@ -30,6 +30,8 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
     @Environment(\.viewController) var controller
 
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
+    private var isTeacherEnrollment: Bool = false
+    private var isLocked: Bool = false
 
     public init(courseID: String, assignmentID: String) {
         self.assignmentID = assignmentID
@@ -41,7 +43,8 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
         screenViewTrackingParameters = ScreenViewTrackingParameters(
             eventName: "/courses/\(courseID)/assignments/\(assignmentID)"
         )
-
+        isTeacherEnrollment = course.first?.enrollments?.contains(where: { $0.isTeacher || $0.isTA }) == true
+        isLocked = assignment.first?.lockedForUser ?? false
     }
 
     public var body: some View {
@@ -49,19 +52,21 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
             .background(Color.backgroundLightest)
             .navigationBarStyle(.color(course.first?.color))
             .navigationTitle(NSLocalizedString("Assignment Details", comment: ""), subtitle: course.first?.name)
-            .rightBarButtonItems {
-                [
-                    UIBarButtonItemWithCompletion(
-                        title: NSLocalizedString("Edit", comment: ""),
-                        actionHandler: {
-                            env.router.route(
-                                to: "courses/\(courseID)/assignments/\(assignmentID)/edit",
-                                from: controller,
-                                options: .modal(isDismissable: false, embedInNav: true)
-                            )
-                        }
-                    ),
-                ]
+            .if(isTeacherEnrollment) { states in
+                states.rightBarButtonItems {
+                    [
+                        UIBarButtonItemWithCompletion(
+                            title: NSLocalizedString("Edit", comment: ""),
+                            actionHandler: {
+                                env.router.route(
+                                    to: "courses/\(courseID)/assignments/\(assignmentID)/edit",
+                                    from: controller,
+                                    options: .modal(isDismissable: false, embedInNav: true)
+                                )
+                            }
+                        ),
+                    ]
+                }
             }
             .onAppear {
                 assignment.refresh()
@@ -145,7 +150,7 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
 
         Divider().padding(.horizontal, 16)
 
-        if course.first?.enrollments?.contains(where: { $0.isTeacher || $0.isTA }) == true {
+        if isTeacherEnrollment {
             let viewModel = AssignmentSubmissionBreakdownViewModel(courseID: courseID, assignmentID: assignmentID, submissionTypes: assignment.submissionTypes)
             SubmissionBreakdown(viewModel: viewModel)
             Divider().padding(.horizontal, 16)
@@ -185,6 +190,7 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
                 .background(Color(Brand.shared.buttonPrimaryBackground))
                 .cornerRadius(4)
                 .padding(EdgeInsets(top: 0, leading: 16, bottom: 16, trailing: 16))
+                .disableWithOpacity(isLocked)
         }
     }
 
