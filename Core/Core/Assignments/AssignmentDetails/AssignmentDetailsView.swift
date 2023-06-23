@@ -143,7 +143,7 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
                 types
                 Spacer()
                 DisclosureIndicator().padding(.trailing, 16)
-            } })
+            } }).disableWithOpacity(isLocked)
         } else {
             types
         }
