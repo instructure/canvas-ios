@@ -32,7 +32,8 @@ public extension Array where Element == CourseSyncEntry {
     }
 
     var progress: Float {
-        Float(totalDownloadedSize) / Float(totalSelectedSize)
+        guard totalSelectedSize > 0 else { return 0 }
+        return Float(totalDownloadedSize) / Float(totalSelectedSize)
     }
 
     subscript(id id: String) -> CourseSyncEntry? {

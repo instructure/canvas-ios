@@ -48,6 +48,7 @@ public final class CourseSyncProgressWriterInteractorLive: CourseSyncProgressWri
 
     public func cleanUpPreviousFileProgress() {
         context.performAndWait {
+            context.delete(context.fetch(scope: .all) as [CourseSyncEntryProgress])
             context.delete(context.fetch(scope: .all) as [CourseSyncFileProgress])
             try? context.save()
         }

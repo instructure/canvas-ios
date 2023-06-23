@@ -166,7 +166,7 @@ struct ListCellView: View {
     @ViewBuilder
     private var errorText: some View {
         if case .error(let error) = viewModel.state {
-            Text(error ?? "")
+            Text(error ?? NSLocalizedString("Unknown Error", comment: ""))
                 .lineLimit(1)
                 .foregroundColor(.textDanger)
                 .font(.regular14)

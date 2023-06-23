@@ -149,7 +149,9 @@ public struct CourseSyncEntry: Equatable {
             .filter { $0.type != TabName.files }
             .filter { $0.selectionState == .selected }
 
-        return (totalFilesProgress + totalTabsProgress) / (Float(selectedFilesCount) + Float(selectedTabs.count))
+        let selectedCount = (Float(selectedFilesCount) + Float(selectedTabs.count))
+        guard selectedCount > 0 else { return 0 }
+        return (totalFilesProgress + totalTabsProgress) / selectedCount
     }
 
     mutating func selectCourse(selectionState: ListCellView.SelectionState) {

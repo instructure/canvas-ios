@@ -257,10 +257,6 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
             .dropFirst()
             .sink { state in
                 if case let .data(list) = state {
-                    print(list[0].bytesDownloaded)
-                    print(list[0].bytesToDownload)
-                    print(list[0].progress)
-
                     XCTAssertEqual(list[0].bytesToDownload, 200_000)
                     XCTAssertEqual(list[0].bytesDownloaded, 50000)
                     XCTAssertEqual(list[0].progress, 0.25)

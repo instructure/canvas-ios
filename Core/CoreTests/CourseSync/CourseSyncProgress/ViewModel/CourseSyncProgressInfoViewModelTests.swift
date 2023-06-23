@@ -30,8 +30,8 @@ class CourseSyncProgressInfoViewModelTests: CoreTestCase {
     }
 
     override func tearDown() {
-        courseSyncProgressInteractorMock = nil
         super.tearDown()
+        courseSyncProgressInteractorMock = nil
     }
 
     func testProgressDetails() {
