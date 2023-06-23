@@ -46,7 +46,6 @@ public class QuizzesHelper: BaseHelper {
         answers.append(DSAnswer(answer_text: "3", answer_weight: 0))
         answers.append(DSAnswer(answer_text: "42", answer_weight: 100))
 
-        let quizQuestionBody = CreateDSQuizQuestionRequest.RequestedDSQuizQuestion(question_name: name, question_text: text, question_type: type, answers: answers)
-        return seeder.createQuizQuestion(courseId: course.id, quizId: quiz.id, quizQuestionBody: quizQuestionBody)
+        return createQuizQuestion(course: course, quiz: quiz, name: name, type: type, text: text, answers: answers)
     }
 }

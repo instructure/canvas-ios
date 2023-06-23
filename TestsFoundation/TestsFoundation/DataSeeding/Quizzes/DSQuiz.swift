@@ -23,6 +23,7 @@ public struct DSQuiz: Codable {
     public let description: String
     public let published: Bool
     public let question_count: Int
+    public let assignment_group_id: String
 }
 
 public enum DSQuizType: String {

@@ -22,16 +22,17 @@ public struct DSQuizQuestion: Codable {
     public let question_name: String
     public let question_type: String
     public let question_text: String
+    public let points_possible: Int
     public let answers: [DSAnswer]
 }
 
 public struct DSAnswer: Codable {
     // Request object
-    public let id: String?
     public let answer_text: String?
     public let answer_weight: Int?
 
     // Returned object
+    public let id: String?
     public let text: String?
     public let weight: Int?
 
