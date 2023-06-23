@@ -22,6 +22,7 @@ import CombineExt
 class ComposeMessageViewModel: ObservableObject {
     // MARK: - Outputs
     @Published public private(set) var state: StoreState = .loading
+    @Published public private(set) var courses: [InboxCourse] = []
     @Published public var sendIndividual: Bool = false
     @Published public var bodyText: String = ""
     @Published public var subject: String = ""
@@ -31,9 +32,8 @@ class ComposeMessageViewModel: ObservableObject {
     // MARK: - Inputs
     public let sendButtonDidTap = PassthroughRelay<WeakViewController>()
     public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
-    public let courseSelectButtonDidTap = PassthroughRelay<WeakViewController>()
     public let addRecipientButtonDidTap = PassthroughRelay<WeakViewController>()
-    public let selectedContext = CurrentValueRelay<String?>(nil)
+    public var selectedCourse: InboxCourse?
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
@@ -44,8 +44,35 @@ class ComposeMessageViewModel: ObservableObject {
         self.interactor = interactor
         self.router = router
 
-        // setupOutputBindings()
+        setupOutputBindings()
         setupInputBindings(router: router)
+    }
+
+    public func courseSelectButtonDidTap(viewController: WeakViewController) {
+        let options = courses
+        var selected: IndexPath?
+        if let selectedCourse = selectedCourse {
+            selected = options.firstIndex(of: selectedCourse).flatMap {
+                IndexPath(row: $0, section: 0)
+            }
+        }
+        let sections = [ ItemPickerSection(items: options.map {
+            ItemPickerItem(title: $0.name)
+        }), ]
+
+        router.show(ItemPickerViewController.create(
+            title: NSLocalizedString("Select Course", comment: ""),
+            sections: sections,
+            selected: selected,
+            didSelect: { self.selectedCourse = options[$0.row] }
+        ), from: viewController)
+    }
+
+    private func setupOutputBindings() {
+        interactor.state
+                .assign(to: &$state)
+        interactor.courses
+            .assign(to: &$courses)
     }
 
     private func setupInputBindings(router: Router) {
@@ -53,12 +80,6 @@ class ComposeMessageViewModel: ObservableObject {
         cancelButtonDidTap
             .sink { [router] viewController in
                 router.dismiss(viewController)
-            }
-            .store(in: &subscriptions)
-        courseSelectButtonDidTap
-            .sink { [router] viewController in
-                let courseSelectorView = CourseSelectorAssembly.makeCourseSelectorViewController()
-                router.show(courseSelectorView, from: viewController)
             }
             .store(in: &subscriptions)
     }

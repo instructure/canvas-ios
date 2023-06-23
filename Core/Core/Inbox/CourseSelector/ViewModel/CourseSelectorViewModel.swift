@@ -22,7 +22,7 @@ import CombineExt
 class CourseSelectorViewModel: ObservableObject {
     // MARK: - Outputs
     @Published public private(set) var state: StoreState = .loading
-    @Published public private(set) var courses: [Course] = []
+    @Published public private(set) var courses: [InboxCourse] = []
 
     public let title = NSLocalizedString("Select a Course", bundle: .core, comment: "")
 
@@ -39,8 +39,14 @@ class CourseSelectorViewModel: ObservableObject {
     public init(router: Router, interactor: CourseSelectorInteractor) {
         self.interactor = interactor
         self.router = router
-
-        // setupOutputBindings()
+        setupOutputBindings()
         // setupInputBindings(router: router)
+    }
+
+    private func setupOutputBindings() {
+        interactor.state
+                .assign(to: &$state)
+        interactor.courses
+            .assign(to: &$courses)
     }
 }

@@ -21,30 +21,26 @@ import Combine
 public class CourseSelectorInteractorLive: CourseSelectorInteractor {
     // MARK: - Outputs
     public var state = CurrentValueSubject<StoreState, Never>(.loading)
-    public var courses = CurrentValueSubject<[Course], Never>([])
+    public var courses = CurrentValueSubject<[InboxCourse], Never>([])
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
     private let env: AppEnvironment
-    private let enrollmentsStore: Store<GetConversationCourses>
+    private let courseListStore: Store<GetInboxCourseList>
 
     public init(env: AppEnvironment) {
         self.env = env
-        self.enrollmentsStore = env.subscribe(GetConversationCourses())
+        self.courseListStore = env.subscribe(GetInboxCourseList())
 
-        enrollmentsStore
+        courseListStore
             .statePublisher
             .subscribe(state)
             .store(in: &subscriptions)
 
-        /* conversationStore
+        courseListStore
             .allObjects
-            .map {
-                $0.first?.subject ?? NSLocalizedString("No Subject", comment: "")
-            }
-            .subscribe(subject)
+            .subscribe(courses)
             .store(in: &subscriptions)
-*/
-        enrollmentsStore.refresh()
+        courseListStore.exhaust()
     }
 }

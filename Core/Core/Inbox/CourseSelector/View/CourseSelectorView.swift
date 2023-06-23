@@ -51,18 +51,18 @@ public struct CourseSelectorView: View {
     }
 
     private var courses: some View {
-        Text("Courses")
-        /*
-        ForEach(model.messages) { message in
+        ForEach(model.courses, id: \.courseId) { course in
             VStack(spacing: 0) {
                 Color.borderMedium
                     .frame(height: 0.5)
-                MessageView(model: message,
-                            replyDidTap: { model.replyTapped(viewController: controller) },
-                            moreDidTap: { model.moreTapped(viewController: controller) })
+                Button(action: {
+
+                }, label: {
+                    Text(course.name)
+                })
                 .padding(16)
 
             }
-        }*/
+        }
     }
 }

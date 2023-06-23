@@ -21,5 +21,5 @@ import Combine
 public protocol CourseSelectorInteractor {
     // MARK: - Outputs
     var state: CurrentValueSubject<StoreState, Never> { get }
-    var courses: CurrentValueSubject<[Course], Never> { get }
+    var courses: CurrentValueSubject<[InboxCourse], Never> { get }
 }

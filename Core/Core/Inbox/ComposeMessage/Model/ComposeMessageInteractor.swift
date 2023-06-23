@@ -21,6 +21,7 @@ import Combine
 public protocol ComposeMessageInteractor {
     // MARK: - Outputs
     var state: CurrentValueSubject<StoreState, Never> { get }
+    var courses: CurrentValueSubject<[InboxCourse], Never> { get }
 
     // MARK: - Inputs
     func send() -> Future<Void, Never>

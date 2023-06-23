@@ -81,7 +81,7 @@ public struct ComposeMessageView: View {
 
     private var courseView: some View {
         Button(action: {
-            model.courseSelectButtonDidTap.accept(controller)
+            model.courseSelectButtonDidTap(viewController: controller)
         }, label: {
             HStack {
                 Text("Select Course")
