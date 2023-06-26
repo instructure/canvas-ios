@@ -197,13 +197,13 @@ class StoreTests: CoreTestCase {
     private func createStore<U: UseCase>(useCase: U) -> Store<U> {
         Store(
             env: environment,
-            offlineService: createOfflineService(),
+            offlineModeInteractor: createOfflineModeInteractor(),
             context: environment.database.viewContext,
             useCase: useCase
         ) {}
     }
 
-    private func createOfflineService() -> OfflineModeInteractor {
+    private func createOfflineModeInteractor() -> OfflineModeInteractor {
         let monitor = NWPathMonitorWrapper(start: { _ in () }, cancel: {})
         let availabilityService = NetworkAvailabilityServiceLive(monitor: monitor)
         return OfflineModeInteractorLive(availabilityService: availabilityService)

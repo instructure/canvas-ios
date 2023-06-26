@@ -111,19 +111,19 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
     private let allObjectsSubject = CurrentValueSubject<[U.Model], Never>([])
     private let stateSubject = CurrentValueSubject<StoreState, Never>(.loading)
     private let hasNextPageSubject = CurrentValueSubject<Bool, Never>(false)
-    private let offlineService: OfflineModeInteractor
+    private let offlineModeInteractor: OfflineModeInteractor
 
     // MARK: -
 
     public init(
         env: AppEnvironment,
-        offlineService: OfflineModeInteractor = OfflineModeInteractorLive.shared,
+        offlineModeInteractor: OfflineModeInteractor = OfflineModeInteractorLive.shared,
         context: NSManagedObjectContext,
         useCase: U,
         eventHandler: @escaping EventHandler
     ) {
         self.env = env
-        self.offlineService = offlineService
+        self.offlineModeInteractor = offlineModeInteractor
         self.useCase = useCase
         let scope = useCase.scope
         let request = NSFetchRequest<U.Model>(entityName: String(describing: U.Model.self))
@@ -293,7 +293,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
         pending = true
         notify()
 
-        if offlineService.isOfflineModeEnabled() {
+        if offlineModeInteractor.isOfflineModeEnabled() {
             pending = false
             error = nil
             publishState()

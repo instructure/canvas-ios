@@ -28,7 +28,7 @@ class DocViewerViewControllerTests: CoreTestCase {
             filename: "instructure.pdf",
             previewURL: url, fallbackURL: url,
             navigationItem: navigationItem,
-            offlineService: MockOfflineServiceDisabled()
+            offlineModeInteractor: MockOfflineModeInteractorDisabled()
         )
         controller.session = session
         controller.isAnnotatable = true
@@ -49,7 +49,7 @@ class DocViewerViewControllerTests: CoreTestCase {
         }
     }
 
-    class MockOfflineServiceDisabled: OfflineModeInteractor {
+    class MockOfflineModeInteractorDisabled: OfflineModeInteractor {
         func observeIsOfflineMode() -> AnyPublisher<Bool, Never> {
             Just(false).eraseToAnyPublisher()
         }
@@ -61,7 +61,7 @@ class DocViewerViewControllerTests: CoreTestCase {
         func isOfflineModeEnabled() -> Bool { false }
     }
 
-    class MockOfflineServiceEnabled: OfflineModeInteractor {
+    class MockOfflineModeInteractorEnabled: OfflineModeInteractor {
         func observeIsOfflineMode() -> AnyPublisher<Bool, Never> {
             Just(true).eraseToAnyPublisher()
         }
@@ -142,7 +142,7 @@ class DocViewerViewControllerTests: CoreTestCase {
             filename: "instructure.pdf",
             previewURL: url, fallbackURL: url,
             navigationItem: navigationItem,
-            offlineService: MockOfflineServiceEnabled()
+            offlineModeInteractor: MockOfflineModeInteractorEnabled()
         )
         controller.session = session
         controller.isAnnotatable = true

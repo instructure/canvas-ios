@@ -22,30 +22,27 @@ public struct PrimaryButton<Label>: View where Label: View {
 
     let action: () -> Void
     let label: Label
-    @ObservedObject private var offlineServiceModel: OfflineModeViewModel
-    private let isAvailableOffline: Bool
+    @Binding var isAvailable: Bool
 
-    public init(viewModel: OfflineModeViewModel = OfflineModeViewModel(interactor: OfflineModeInteractorLive.shared),
+    public init(isAvailable: Binding<Bool> = .constant(true),
                 isAvailableOffline: Bool = false,
                 action: @escaping () -> Void, @ViewBuilder label: @escaping () -> Label) {
-        self.offlineServiceModel = viewModel
-        self.isAvailableOffline = isAvailableOffline
         self.action = action
         self.label = label()
+        _isAvailable = isAvailable
     }
 
     public var body: some View {
-        let unavailable = !isAvailableOffline && offlineServiceModel.isOffline
         Button {
-            if unavailable {
-                showAlert()
-            } else {
+            if isAvailable {
                 action()
+            } else {
+                showAlert()
             }
         } label: {
             label
         }
-        .opacity(unavailable ? 0.3 : 1.0)
+        .opacity(isAvailable ? 1.0 : 0.3)
     }
 
     private func showAlert() {

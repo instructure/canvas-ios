@@ -26,8 +26,7 @@ struct DashboardCourseCardView: View {
     let contextColor: UIColor
     /** Wide layout puts the course image to the left of the cell while the course name and code will be next to it on the right. */
     let isWideLayout: Bool
-    let isAvailableOffline: Bool
-
+    @Binding var isAvailable: Bool
     @State private var isShowingKebabDialog = false
 
     @Environment(\.appEnvironment) var env
@@ -39,7 +38,7 @@ struct DashboardCourseCardView: View {
     }
 
     var body: some View {
-        PrimaryButton(isAvailableOffline: isAvailableOffline) {
+        PrimaryButton(isAvailable: $isAvailable) {
             env.router.route(to: "/courses/\(courseCard.id)?contextColor=\(contextColor.hexString.dropFirst())", from: controller)
         } label: {
             ZStack(alignment: .topLeading) {
@@ -114,7 +113,7 @@ struct DashboardCourseCardView: View {
 
     @ViewBuilder
     private var optionsKebabButton: some View {
-        Button {
+        PrimaryButton(isAvailable: $isAvailable) {
             if ExperimentalFeature.offlineMode.isEnabled, env.app == .student {
                 isShowingKebabDialog.toggle()
             } else {
@@ -214,7 +213,7 @@ struct CourseCard_Previews: PreviewProvider {
                        width: 200,
                        contextColor: .electric,
                        isWideLayout: false,
-                       isAvailableOffline: true)
+                                    isAvailable: .constant(true))
             .frame(width: 200, height: 160)
             .environment(\.horizontalSizeClass, .compact)
 
@@ -225,7 +224,7 @@ struct CourseCard_Previews: PreviewProvider {
                        width: 400,
                        contextColor: .electric,
                        isWideLayout: false,
-                       isAvailableOffline: true)
+                       isAvailable: .constant(true))
             .frame(width: 400, height: 160)
             .environment(\.horizontalSizeClass, .compact)
 
@@ -236,7 +235,7 @@ struct CourseCard_Previews: PreviewProvider {
                        width: 900,
                        contextColor: .electric,
                        isWideLayout: true,
-                       isAvailableOffline: true)
+                       isAvailable: .constant(true))
             .frame(width: 900, height: 100)
             .environment(\.horizontalSizeClass, .regular)
         }
