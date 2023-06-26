@@ -31,9 +31,7 @@ public class QuizzesHelper: BaseHelper {
     @discardableResult
     public static func createQuizQuestion(course: DSCourse, quiz: DSQuiz, name: String, type: DSQuestionType, text: String, answers: [DSAnswer]) -> DSQuizQuestion {
         let quizQuestionBody = CreateDSQuizQuestionRequest.RequestedDSQuizQuestion(question_text: text, question_type: type, answers: answers)
-        let result = seeder.createQuizQuestion(courseId: course.id, quizId: quiz.id, quizQuestionBody: quizQuestionBody)
-        seeder.updateQuiz(courseId: course.id, quizId: quiz.id)
-        return result
+        return seeder.createQuizQuestion(courseId: course.id, quizId: quiz.id, quizQuestionBody: quizQuestionBody)
     }
 
     @discardableResult

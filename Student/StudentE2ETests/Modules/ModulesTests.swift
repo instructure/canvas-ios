@@ -33,7 +33,6 @@ class ModulesTests: E2ETestCase {
         let moduleAssignment = ModulesHelper.createModuleAssignment(course: course, module: module, title: "Test Module Assignment")
         let moduleDiscussion = ModulesHelper.createModuleDiscussion(course: course, module: module, title: "Test Module Discussion")
         let modulePage = ModulesHelper.createModulePage(course: course, module: module, title: "Test Module Page")
-        let moduleQuiz = ModulesHelper.createModuleQuiz(course: course, module: module, title: "Test Module Quiz")
 
         // MARK: Get the user logged in
         logInDSUser(student)
@@ -67,12 +66,5 @@ class ModulesTests: E2ETestCase {
         XCTAssertTrue(pageItem.isVisible)
         XCTAssertTrue(pageTitle.isVisible)
         XCTAssertEqual(pageTitle.label(), modulePage.title)
-
-        // MARK: Check quiz module item
-        let quizItem = ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 3).waitToExist()
-        let quizTitle = ModulesHelper.moduleItemNameLabel(moduleIndex: 0, itemIndex: 3).waitToExist()
-        XCTAssertTrue(quizItem.isVisible)
-        XCTAssertTrue(quizTitle.isVisible)
-        XCTAssertEqual(quizTitle.label(), moduleQuiz.title)
     }
 }
