@@ -203,9 +203,7 @@ class DashboardTests: E2ETestCase {
         XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Check grade on Course Card label
-        let courseCardLabel = courseCard.label()
-        XCTAssertGreaterThan(courseCardLabel.count, 4)
-        XCTAssertEqual(courseCardLabel.suffix(4), "100%")
+        XCTAssertTrue(courseCard.waitToContainLabel(label: "100%"))
 
         // MARK: Unselect Show Grades toggle then check Course Card label again
         dashboardSettingsButton = DashboardHelper.dashboardSettings.waitToExist()

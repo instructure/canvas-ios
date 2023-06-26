@@ -193,6 +193,18 @@ public extension Element {
         return self
     }
 
+    @discardableResult
+    func waitToContainLabel(label: String, timeout: TimeInterval = 15, gracePeriod: UInt32 = 1) -> Bool {
+        let deadline = Date().addingTimeInterval(timeout)
+        while Date() < deadline {
+            if self.label().contains(label) {
+                return true
+            }
+            sleep(gracePeriod)
+        }
+        return false
+    }
+
     func snapshot(file: StaticString = #file, line: UInt = #line) -> XCUIElementSnapshot? {
         queryWrapper.snapshot(file: file, line: line)
     }
