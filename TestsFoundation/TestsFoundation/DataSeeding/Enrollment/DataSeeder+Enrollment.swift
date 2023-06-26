@@ -67,4 +67,10 @@ extension DataSeeder {
         }
         return enrollments
     }
+
+    @discardableResult
+    public func deleteEnrollment(_ enrollment: DSEnrollment, in course: DSCourse) -> DSEnrollment {
+        let request = DeleteEnrollmentRequest(courseID: course.id, enrollmentId: enrollment.id)
+        return try! makeRequest(request)
+    }
 }
