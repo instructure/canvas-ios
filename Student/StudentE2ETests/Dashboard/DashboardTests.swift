@@ -203,7 +203,7 @@ class DashboardTests: E2ETestCase {
         courseCard = Dashboard.courseCard(id: course.id).waitToExist()
         let courseCardLabel = courseCard.label()
         XCTAssertGreaterThan(courseCardLabel.count, 4)
-        XCTAssertEqual(courseCardLabel.suffix(4), "100%")
+        XCTAssertEqual(courseCardLabel.suffix(4), "100%", "COURSE CARD LABEL: \(courseCardLabel)")
 
         // MARK: Check grade on Course Card label
         XCTAssertTrue(courseCard.waitToContainLabel(label: "100%"))
