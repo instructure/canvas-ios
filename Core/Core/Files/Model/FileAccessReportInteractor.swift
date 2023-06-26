@@ -39,7 +39,7 @@ public class FileAccessReportInteractor {
 
         return api
             .makeRequest(webSessionRequest)
-            .map { $0.makeReportURL() }
+            .map { $0.body.makeReportURL() }
             .flatMap { api.makeRequest($0, method: .head) }
             .map { _ in () }
             .eraseToAnyPublisher()

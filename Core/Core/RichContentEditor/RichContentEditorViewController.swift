@@ -54,6 +54,8 @@ public class RichContentEditorViewController: UIViewController {
     }
 
     lazy var featureFlags = env.subscribe(GetEnabledFeatureFlags(context: context)) {}
+    /// The base url to be used for API access during file upload.
+    public var fileUploadBaseURL: URL?
 
     public static func create(context: Context, uploadTo uploadContext: FileUploadContext) -> RichContentEditorViewController {
         let controller = RichContentEditorViewController()
@@ -336,7 +338,7 @@ extension RichContentEditorViewController: UIImagePickerControllerDelegate, UINa
                 let datauri = CoreWebView.jsString("data:image/png;base64,\(base64)")
                 webView.evaluateJavaScript("editor.insertImagePlaceholder(\(string), \(datauri))")
             }
-            uploadManager.upload(file: file, to: uploadContext)
+            uploadManager.upload(file: file, to: uploadContext, baseURL: fileUploadBaseURL)
         } catch {
             updateFile(file, error: error)
         }

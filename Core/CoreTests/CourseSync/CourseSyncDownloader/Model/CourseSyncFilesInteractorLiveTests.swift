@@ -35,13 +35,6 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
         expectation.expectedFulfillmentCount = 5
 
         let url = URL(string: "1.jpg")!
-
-        let localURL = testee.prepareLocalURL(
-            fileName: "\(environment.currentSession?.uniqueID ?? "")/fileID/fileName",
-            mimeClass: "mimeClass",
-            location: URL.Directories.offline
-        )
-
         let mock = api.mock(url: url)
         mock.suspend()
 
