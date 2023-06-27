@@ -191,9 +191,7 @@ class DashboardTests: E2ETestCase {
         XCTAssertEqual(showGradeToggle.value(), "0")
 
         // MARK: Tap Show Grade toggle and check value again
-        showGradeToggle.tapUntil {
-            showGradeToggle.value() == "1"
-        }
+        showGradeToggle.forceTap()
         XCTAssertEqual(showGradeToggle.value(), "1")
 
         // MARK: Tap Done button then check visibility of course again
