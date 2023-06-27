@@ -184,18 +184,15 @@ class DashboardTests: E2ETestCase {
         var dashboardSettingsButton = DashboardHelper.dashboardSettings.waitToExist()
         XCTAssertTrue(dashboardSettingsButton.isVisible)
 
-        // MARK: Tap Dashboard Settings button then check visibility of Show Grade toggle
+        // MARK: Tap Dashboard Settings button then check visibility and value of Show Grade toggle
         dashboardSettingsButton.tap()
         var showGradeToggle = DashboardHelper.dashboardSettingsShowGradeToggle.waitToExist()
         XCTAssertTrue(showGradeToggle.isVisible)
+        XCTAssertEqual(showGradeToggle.value(), "0")
 
-        // MARK: Tap Show Grade toggle if it's not selected already
-        if showGradeToggle.value() == "0" {
-            showGradeToggle.tap()
-        }
-
-        showGradeToggle.waitForValue(value: "1")
-        XCTAssertEqual(showGradeToggle.value(), "1")
+        // MARK: Tap Show Grade toggle and check value again
+        showGradeToggle.tap()
+        XCTAssertTrue(showGradeToggle.waitForValue(value: "1"))
 
         // MARK: Tap Done button then check visibility of course again
         var doneButton = DashboardHelper.doneButton.waitToExist()
