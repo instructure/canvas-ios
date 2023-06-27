@@ -20,7 +20,7 @@ import Combine
 import CombineExt
 import Foundation
 
-protocol CourseSyncSelectorInteractor {
+protocol CourseSyncSelectorInteractor: AnyObject {
     /**
      - parameters:
         - sessionDefaults: The storage from where the selection states are read and written to.
@@ -65,6 +65,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
             .flatMap { self.entryComposerInteractor.composeEntry(from: $0) }
             .collect()
             .replaceEmpty(with: [])
+            .receive(on: DispatchQueue.main)
             .handleEvents(
                 receiveOutput: { self.courseSyncEntries.send($0) },
                 receiveCompletion: { completion in

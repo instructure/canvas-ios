@@ -20,7 +20,7 @@ import Combine
 import CombineExt
 import Foundation
 
-protocol CourseSyncProgressInteractor {
+protocol CourseSyncProgressInteractor: AnyObject {
     func observeFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never>
     func observeEntries() -> AnyPublisher<[CourseSyncEntry], Error>
     func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool)

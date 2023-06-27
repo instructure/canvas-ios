@@ -27,26 +27,33 @@ protocol CourseSyncProgressObserverInteractor {
 
 final class CourseSyncProgressObserverInteractorLive: CourseSyncProgressObserverInteractor {
     private let context: NSManagedObjectContext
+    private lazy var fileProgressUseCase = ReactiveStore(
+        context: context,
+        useCase: GetCourseSyncFileProgressUseCase(scope: .all)
+    )
+    private lazy var entryProgressUseCase = ReactiveStore(
+        context: context,
+        useCase: GetCourseSyncEntryProgressUseCase(scope: .all)
+    )
 
     public init(context: NSManagedObjectContext = AppEnvironment.shared.database.viewContext) {
         self.context = context
     }
 
+    deinit {
+        fileProgressUseCase.cancel()
+        entryProgressUseCase.cancel()
+    }
+
     func observeFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never> {
-        ReactiveStore(
-            context: context,
-            useCase: GetCourseSyncFileProgressUseCase(scope: .all)
-        )
-        .observeEntities()
-        .eraseToAnyPublisher()
+        fileProgressUseCase
+            .observeEntities()
+            .eraseToAnyPublisher()
     }
 
     func observeEntryProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncEntryProgressUseCase>.State, Never> {
-        ReactiveStore(
-            context: context,
-            useCase: GetCourseSyncEntryProgressUseCase(scope: .all)
-        )
-        .observeEntities()
-        .eraseToAnyPublisher()
+        entryProgressUseCase
+            .observeEntities()
+            .eraseToAnyPublisher()
     }
 }

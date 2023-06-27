@@ -40,7 +40,7 @@ public class ReactiveStore<U: UseCase> {
 
         /// If the enum's case is `.data` then extracts and returns all models.
         public var allItems: [U.Model]? {
-            if case .data(let data) = self {
+            if case let .data(data) = self {
                 return data
             } else {
                 return nil
@@ -87,6 +87,11 @@ public class ReactiveStore<U: UseCase> {
             .store(in: &subscriptions)
     }
 
+    public func cancel() {
+        cancellable?.cancel()
+        cancellable = nil
+    }
+
     public func forceFetchEntities() -> AnyPublisher<Void, Never> {
         forceRefreshRelay.accept(())
         return Empty(completeImmediately: false)
@@ -94,6 +99,7 @@ public class ReactiveStore<U: UseCase> {
             .eraseToAnyPublisher()
     }
 
+    /// Calling this function will keep the instance in memory until `cancel()` is called. The recommended approach is calling `cancel()` from the interactor's deinit function.
     public func observeEntities(forceFetch: Bool = false, loadAllPages: Bool = false) -> AnyPublisher<State, Never> {
         cancellable?.cancel()
         cancellable = nil
@@ -186,7 +192,9 @@ public class ReactiveStore<U: UseCase> {
         loadAllPages: Bool,
         fetchRequest: NSFetchRequest<T>
     ) -> AnyPublisher<[T], Error> {
-        useCase.fetchWithFuture()
+        unowned let unownedSelf = self
+
+        return useCase.fetchWithFuture()
             .handleEvents(receiveOutput: { [weak self] urlResponse in
                 if let urlResponse {
                     self?.next = self?.useCase.getNext(from: urlResponse)
@@ -249,22 +257,13 @@ public class ReactiveStore<U: UseCase> {
 
     private func fetchEntitiesFromDatabase<T: NSManagedObject>(
         fetchRequest: NSFetchRequest<T>,
-        sectionNameKeyPath: String? = nil,
-        cacheName: String? = nil
+        sectionNameKeyPath _: String? = nil,
+        cacheName _: String? = nil
     ) -> AnyPublisher<[T], Error> {
-        AnyPublisher<[T], Error>.create { subscriber in
-
-            let observer = FetchedResultsPublisher(
-                subscriber: subscriber,
-                fetchRequest: fetchRequest,
-                managedObjectContext: self.context,
-                sectionNameKeyPath: sectionNameKeyPath,
-                cacheName: cacheName
-            )
-
-            return AnyCancellable {
-                observer.cancel()
-            }
-        }
+        FetchedResultsPublisher(
+            request: fetchRequest,
+            context: context
+        )
+        .eraseToAnyPublisher()
     }
 }

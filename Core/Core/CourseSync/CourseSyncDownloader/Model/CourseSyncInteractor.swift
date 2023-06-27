@@ -56,23 +56,23 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     }
 
     public func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Error> {
+        subscription?.cancel()
+        subscription = nil
+
         unowned let unownedSelf = self
 
         courseSyncEntries.send(entries)
+
         progressWriterInteractor.cleanUpPreviousFileProgress()
 
         subscription = Publishers.Sequence(sequence: entries)
             .flatMap { unownedSelf.downloadCourseDetails($0) }
             .collect()
             .handleEvents(
-                receiveOutput: { _ in
-                    unownedSelf.courseSyncEntries.send(completion: .finished)
-                },
                 receiveCompletion: { completion in
                     if case .failure = completion {
                         unownedSelf.setIdleStateForUnfinishedEntries()
                     }
-                    unownedSelf.courseSyncEntries.send(completion: .finished)
                 }
             )
             .sink()
