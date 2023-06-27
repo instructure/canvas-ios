@@ -186,10 +186,10 @@ public extension Element {
     }
 
     @discardableResult
-    func waitUntilSelected(timeout: TimeInterval = 15, gracePeriod: UInt32 = 1) -> Bool {
+    func waitForValue(value: String, timeout: TimeInterval = 15, gracePeriod: UInt32 = 1) -> Bool {
         let deadline = Date().addingTimeInterval(timeout)
         while Date() < deadline {
-            if self.isSelected {
+            if self.value() == value {
                 return true
             }
             sleep(gracePeriod)
