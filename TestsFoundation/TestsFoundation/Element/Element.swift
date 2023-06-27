@@ -104,10 +104,6 @@ public extension Element {
         return self
     }
 
-    func forceTap(file: StaticString = #file, line: UInt = #line) {
-        rawElement.coordinate(withNormalizedOffset: CGVector(dx:0.5, dy:0.5)).tap()
-    }
-
     @discardableResult
     func tapAt(_ point: CGPoint, file: StaticString = #file, line: UInt = #line) -> Element {
         waitToExist(file: file, line: line)

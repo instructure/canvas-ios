@@ -97,11 +97,15 @@ public class DiscussionsHelper: BaseHelper {
     }
 
     @discardableResult
-    public static func replyToDiscussion(replyText: String = "Test replying to discussion") -> Bool {
+    public static func replyToDiscussion(replyText: String = "Test replying to discussion", shouldPullToRefresh: Bool = false) -> Bool {
         Details.replyButton.tap()
         let textEntry = Details.Reply.textField.waitToExist()
         textEntry.pasteText(replyText)
         Details.Reply.sendButton.tap()
+        sleep(3)
+        if shouldPullToRefresh {
+            pullToRefresh()
+        }
         let repliesSection = Details.repliesSection.waitToExist()
         return repliesSection.isVisible
     }
