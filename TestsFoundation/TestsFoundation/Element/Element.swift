@@ -186,6 +186,18 @@ public extension Element {
     }
 
     @discardableResult
+    func waitUntilSelected(timeout: TimeInterval = 15, gracePeriod: UInt32 = 1) -> Bool {
+        let deadline = Date().addingTimeInterval(timeout)
+        while Date() < deadline {
+            if self.isSelected {
+                return true
+            }
+            sleep(gracePeriod)
+        }
+        return false
+    }
+
+    @discardableResult
     func waitToVanish(_ timeout: TimeInterval = 15, file: StaticString = #file, line: UInt = #line) -> Element {
         waitUntil(timeout, file: file, line: line, failureMessage: "Element \(id) still exists") {
             !exists(file: file, line: line)

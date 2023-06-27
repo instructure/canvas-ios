@@ -194,19 +194,22 @@ class DashboardTests: E2ETestCase {
             showGradeToggle.tap()
         }
 
+        showGradeToggle.waitUntilSelected()
+        XCTAssertTrue(showGradeToggle.isSelected)
+
         // MARK: Tap Done button then check visibility of course again
         var doneButton = DashboardHelper.doneButton.waitToExist()
         XCTAssertTrue(doneButton.isVisible)
 
         doneButton.tap()
         DashboardHelper.pullToRefresh()
+
+
+        // MARK: Check grade on Course Card label
         courseCard = Dashboard.courseCard(id: course.id).waitToExist()
         let courseCardLabel = courseCard.label()
         XCTAssertGreaterThan(courseCardLabel.count, 4)
-        XCTAssertEqual(courseCardLabel.suffix(4), "100%", "COURSE CARD LABEL: \(courseCardLabel)")
-
-        // MARK: Check grade on Course Card label
-        XCTAssertTrue(courseCard.waitToContainLabel(label: "100%"))
+        XCTAssertEqual(courseCardLabel.suffix(4), "100%")
 
         // MARK: Unselect Show Grades toggle then check Course Card label again
         dashboardSettingsButton = DashboardHelper.dashboardSettings.waitToExist()
