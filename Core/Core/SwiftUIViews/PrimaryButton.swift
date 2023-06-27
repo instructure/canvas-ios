@@ -25,11 +25,10 @@ public struct PrimaryButton<Label>: View where Label: View {
     @Binding var isAvailable: Bool
 
     public init(isAvailable: Binding<Bool> = .constant(true),
-                isAvailableOffline: Bool = false,
                 action: @escaping () -> Void, @ViewBuilder label: @escaping () -> Label) {
+        _isAvailable = isAvailable
         self.action = action
         self.label = label()
-        _isAvailable = isAvailable
     }
 
     public var body: some View {
