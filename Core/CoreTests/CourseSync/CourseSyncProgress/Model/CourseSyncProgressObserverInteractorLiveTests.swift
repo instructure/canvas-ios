@@ -55,7 +55,7 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
         helper.saveFileProgress(entries: entries, error: nil)
 
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.observeFileProgress()
+        let subscription = testee.observeCombinedFileProgress()
             .sink { state in
                 if case let .data(list) = state, let progress = list.first {
                     XCTAssertEqual(progress.bytesToDownload, 2000)
@@ -79,7 +79,7 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
         helper.saveFileProgress(entries: entries)
 
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.observeFileProgress()
+        let subscription = testee.observeCombinedFileProgress()
             .sink { state in
                 if case let .data(list) = state, let progress = list.first {
                     XCTAssertEqual(progress.bytesToDownload, 2000)
@@ -103,7 +103,7 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
         helper.saveFileProgress(entries: entries)
 
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.observeFileProgress()
+        let subscription = testee.observeCombinedFileProgress()
             .sink { state in
                 if case let .data(list) = state, let progress = list.first {
                     XCTAssertEqual(progress.bytesToDownload, 2000)
@@ -253,7 +253,7 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
         helper.saveFileProgress(entries: entries)
 
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.observeFileProgress()
+        let subscription = testee.observeCombinedFileProgress()
             .dropFirst()
             .sink { state in
                 if case let .data(list) = state {

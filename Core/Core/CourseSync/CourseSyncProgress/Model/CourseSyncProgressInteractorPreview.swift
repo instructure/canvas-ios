@@ -58,7 +58,7 @@ class CourseSyncProgressInteractorPreview: CourseSyncProgressInteractor {
 
     func retrySync() {}
 
-    func observeFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never> {
+    func observeCombinedFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never> {
         Empty(completeImmediately: false).eraseToAnyPublisher()
     }
 }

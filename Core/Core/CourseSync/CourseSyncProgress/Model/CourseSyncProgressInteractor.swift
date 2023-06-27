@@ -52,7 +52,7 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
     }
 
     func observeFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never> {
-        progressObserverInteractor.observeFileProgress()
+        progressObserverInteractor.observeCombinedFileProgress()
     }
 
     func observeEntries() -> AnyPublisher<[CourseSyncEntry], Error> {

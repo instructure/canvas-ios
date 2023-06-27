@@ -311,7 +311,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
 class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserverInteractor {
     let entryProgressSubject = PassthroughSubject<ReactiveStore<Core.GetCourseSyncEntryProgressUseCase>.State, Never>()
 
-    func observeFileProgress() -> AnyPublisher<Core.ReactiveStore<Core.GetCourseSyncFileProgressUseCase>.State, Never> {
+    func observeCombinedFileProgress() -> AnyPublisher<Core.ReactiveStore<Core.GetCourseSyncFileProgressUseCase>.State, Never> {
         Just(ReactiveStore<GetCourseSyncFileProgressUseCase>.State.data([]))
             .eraseToAnyPublisher()
     }

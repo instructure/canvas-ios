@@ -21,7 +21,7 @@ import CoreData
 import Foundation
 
 protocol CourseSyncProgressObserverInteractor {
-    func observeFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never>
+    func observeCombinedFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never>
     func observeEntryProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncEntryProgressUseCase>.State, Never>
 }
 
@@ -45,7 +45,7 @@ final class CourseSyncProgressObserverInteractorLive: CourseSyncProgressObserver
         entryProgressUseCase.cancel()
     }
 
-    func observeFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never> {
+    func observeCombinedFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never> {
         fileProgressUseCase
             .observeEntities()
             .eraseToAnyPublisher()
