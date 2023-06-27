@@ -79,7 +79,7 @@ class PagesTests: E2ETestCase {
         let assignmentDeepLink = app.find(labelContaining: assignment.name).waitToExist()
         XCTAssertTrue(assignmentDeepLink.isVisible)
         assignmentDeepLink.tap()
-        let assignmentDetailsNavBar = AssignmentsHelper.assignmentDetailsNavBar(course: course).waitToExist()
+        let assignmentDetailsNavBar = AssignmentsHelper.Details.navBar(course: course).waitToExist()
         XCTAssertTrue(assignmentDetailsNavBar.isVisible)
 
         PagesHelper.backButton.tap()
@@ -88,7 +88,7 @@ class PagesTests: E2ETestCase {
         let discussionDeepLink = app.find(labelContaining: discussion.title).waitToExist()
         XCTAssertTrue(discussionDeepLink.isVisible)
         discussionDeepLink.tap()
-        let discussionDetailsNavBar = DiscussionsHelper.discussionDetailsNavBar(course: course).waitToExist()
+        let discussionDetailsNavBar = DiscussionsHelper.Details.navBar(course: course).waitToExist()
         XCTAssertTrue(discussionDetailsNavBar.isVisible)
 
         PagesHelper.backButton.tap()
@@ -97,7 +97,7 @@ class PagesTests: E2ETestCase {
         let announcementDeepLink = app.find(labelContaining: announcement.title).waitToExist()
         XCTAssertTrue(announcementDeepLink.isVisible)
         announcementDeepLink.tap()
-        let announcementDetailsNavBar = AnnouncementsHelper.announcementDetailsNavBar(course: course).waitToExist()
+        let announcementDetailsNavBar = AnnouncementsHelper.Details.navBar(course: course).waitToExist()
         XCTAssertTrue(announcementDetailsNavBar.isVisible)
     }
 }

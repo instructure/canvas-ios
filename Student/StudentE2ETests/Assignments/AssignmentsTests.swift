@@ -22,6 +22,8 @@ import Core
 
 class AssignmentsTests: E2ETestCase {
     func testSubmitAssignmentWithShareExtension() {
+        typealias Helper = AssignmentsHelper
+
         // MARK: Seed the usual stuff
         let users = seeder.createUsers(1)
         let course = seeder.createCourse()
@@ -29,17 +31,20 @@ class AssignmentsTests: E2ETestCase {
         seeder.enrollStudent(student, in: course)
 
         // MARK: Create assignment for testing share extension
-        let assignment = AssignmentsHelper.createAssignmentForShareExtension(course: course)
+        let assignment = Helper.createAssignmentForShareExtension(course: course)
 
         // MARK: Get the user logged in
         logInDSUser(student)
 
         // MARK: Share a photo using Canvas app share extension
-        let shareSuccessful = AssignmentsHelper.sharePhotoUsingCanvasSE(course: course, assignment: assignment)
+        let shareSuccessful = Helper.sharePhotoUsingCanvasSE(course: course, assignment: assignment)
         XCTAssertTrue(shareSuccessful)
     }
 
     func testViewAssignmentAndDetails() {
+        typealias Helper = AssignmentsHelper
+        typealias DetailsHelper = Helper.Details
+
         // MARK: Seed the usual stuff
         let users = seeder.createUsers(1)
         let course = seeder.createCourse()
@@ -47,61 +52,65 @@ class AssignmentsTests: E2ETestCase {
         seeder.enrollStudent(student, in: course)
 
         // MARK: Create an assignment
-        let assignment = AssignmentsHelper.createAssignment(course: course, submissionTypes: [.online_text_entry])
+        let assignment = Helper.createAssignment(course: course, submissionTypes: [.online_text_entry])
 
         // MARK: Get the user logged in
         logInDSUser(student)
 
         // MARK: Navigate to Assignments and check visibility
-        AssignmentsHelper.navigateToAssignments(course: course)
-        let assignmentsNavBar = AssignmentsHelper.assignmentsNavBar(course: course).waitToExist()
-        XCTAssertTrue(assignmentsNavBar.isVisible)
+        Helper.navigateToAssignments(course: course)
+        let navBar = Helper.navBar(course: course).waitToExist()
+        XCTAssertTrue(navBar.isVisible)
 
-        let assignmentButton = AssignmentsHelper.assignmentButton(assignment: assignment).waitToExist()
+        let assignmentButton = Helper.assignmentButton(assignment: assignment).waitToExist()
         XCTAssertTrue(assignmentButton.isVisible)
         XCTAssertTrue(assignmentButton.label().contains(assignment.name))
 
         // MARK: Tap on the assignment and check details
         assignmentButton.tap()
-        let assignmentDetailsNavBar = AssignmentsHelper.assignmentDetailsNavBar(course: course).waitToExist()
-        XCTAssertTrue(assignmentDetailsNavBar.isVisible)
+        let detailsNavBar = DetailsHelper.navBar(course: course).waitToExist()
+        XCTAssertTrue(detailsNavBar.isVisible)
 
-        let assignmentDetailsName = AssignmentsHelper.assignmentDetailsName.waitToExist()
-        XCTAssertTrue(assignmentDetailsName.isVisible)
-        XCTAssertEqual(assignmentDetailsName.label(), assignment.name)
+        let nameLabel = DetailsHelper.name.waitToExist()
+        XCTAssertTrue(nameLabel.isVisible)
+        XCTAssertEqual(nameLabel.label(), assignment.name)
 
-        let assignmentDetailsPoints = AssignmentsHelper.assignmentDetailsPoints.waitToExist()
-        XCTAssertTrue(assignmentDetailsPoints.isVisible)
-        XCTAssertEqual(assignmentDetailsPoints.label(), "0 pts")
+        let pointsLabel = DetailsHelper.points.waitToExist()
+        XCTAssertTrue(pointsLabel.isVisible)
+        XCTAssertEqual(pointsLabel.label(), "0 pts")
 
-        let assignmentDetailsStatus = AssignmentsHelper.assignmentDetailsStatus.waitToExist()
-        XCTAssertTrue(assignmentDetailsStatus.isVisible)
-        XCTAssertEqual(assignmentDetailsStatus.label(), "Not Submitted")
+        let statusLabel = DetailsHelper.status.waitToExist()
+        XCTAssertTrue(statusLabel.isVisible)
+        XCTAssertEqual(statusLabel.label(), "Not Submitted")
 
-        let assignmentDetailsDue = AssignmentsHelper.assignmentDetailsDue.waitToExist()
-        XCTAssertTrue(assignmentDetailsDue.isVisible)
-        XCTAssertEqual(assignmentDetailsDue.label(), "No Due Date")
+        let dueLabel = DetailsHelper.due.waitToExist()
+        XCTAssertTrue(dueLabel.isVisible)
+        XCTAssertEqual(dueLabel.label(), "No Due Date")
 
-        let assignmentDetailsSubmissionTypes = AssignmentsHelper.assignmentDetailsSubmissionTypes.waitToExist()
-        XCTAssertTrue(assignmentDetailsSubmissionTypes.isVisible)
-        XCTAssertEqual(assignmentDetailsSubmissionTypes.label(), "Text Entry")
+        let submissionTypesLabel = DetailsHelper.submissionTypes.waitToExist()
+        XCTAssertTrue(submissionTypesLabel.isVisible)
+        XCTAssertEqual(submissionTypesLabel.label(), "Text Entry")
 
-        let assignmentDetailsSubmissionsButton = AssignmentsHelper.assignmentDetailsSubmissionsButton.waitToExist()
-        XCTAssertTrue(assignmentDetailsSubmissionsButton.isVisible)
+        let submissionsButton = DetailsHelper.submissionsButton.waitToExist()
+        XCTAssertTrue(submissionsButton.isVisible)
 
-        let assignmentDetailsSubmissionsButtonLabel = AssignmentsHelper.assignmentDetailsSubmissionsButtonLabel.waitToExist()
-        XCTAssertTrue(assignmentDetailsSubmissionsButtonLabel.isVisible)
-        XCTAssertEqual(assignmentDetailsSubmissionsButtonLabel.label(), "Submission & Rubric")
+        let submissionsButtonLabel = DetailsHelper.submissionsButtonLabel.waitToExist()
+        XCTAssertTrue(submissionsButtonLabel.isVisible)
+        XCTAssertEqual(submissionsButtonLabel.label(), "Submission & Rubric")
 
-        let assignmentDetailsDescription = AssignmentsHelper.assignmentDetailsDescription.waitToExist()
-        XCTAssertTrue(assignmentDetailsDescription.isVisible)
-        XCTAssertEqual(assignmentDetailsDescription.label(), assignment.description)
+        let descriptionLabel = DetailsHelper.description.waitToExist()
+        XCTAssertTrue(descriptionLabel.isVisible)
+        XCTAssertEqual(descriptionLabel.label(), assignment.description)
 
-        let assignmentDetailsSubmitAssignmentButton = AssignmentsHelper.assignmentDetailsSubmitAssignmentButton.waitToExist()
-        XCTAssertTrue(assignmentDetailsSubmitAssignmentButton.isVisible)
+        let submitAssignmentButton = DetailsHelper.submitAssignmentButton.waitToExist()
+        XCTAssertTrue(submitAssignmentButton.isVisible)
     }
 
     func testSubmitAssignment() {
+        typealias Helper = AssignmentsHelper
+        typealias DetailsHelper = Helper.Details
+        typealias SubmissionHelper = Helper.Submission
+
         // MARK: Seed the usual stuff
         let users = seeder.createUsers(1)
         let course = seeder.createCourse()
@@ -109,60 +118,62 @@ class AssignmentsTests: E2ETestCase {
         seeder.enrollStudent(student, in: course)
 
         // MARK: Create an assignment
-        let assignment = AssignmentsHelper.createAssignment(course: course, submissionTypes: [.online_text_entry])
+        let assignment = Helper.createAssignment(course: course, submissionTypes: [.online_text_entry])
 
         // MARK: Get the user logged in
         logInDSUser(student)
 
         // MARK: Navigate to Assignments and tap the assignment
-        AssignmentsHelper.navigateToAssignments(course: course)
-        let assignmentsNavBar = AssignmentsHelper.assignmentsNavBar(course: course).waitToExist()
-        XCTAssertTrue(assignmentsNavBar.isVisible)
+        Helper.navigateToAssignments(course: course)
+        let navBar = Helper.navBar(course: course).waitToExist()
+        XCTAssertTrue(navBar.isVisible)
 
-        let assignmentButton = AssignmentsHelper.assignmentButton(assignment: assignment).waitToExist()
+        let assignmentButton = Helper.assignmentButton(assignment: assignment).waitToExist()
         XCTAssertTrue(assignmentButton.isVisible)
         assignmentButton.tap()
 
-        var assignmentDetailsSubmitAssignmentButton = AssignmentsHelper.assignmentDetailsSubmitAssignmentButton.waitToExist()
-        XCTAssertTrue(assignmentDetailsSubmitAssignmentButton.isVisible)
-        assignmentDetailsSubmitAssignmentButton.tap()
+        var submitAssignmentButton = DetailsHelper.submitAssignmentButton.waitToExist()
+        XCTAssertTrue(submitAssignmentButton.isVisible)
+        submitAssignmentButton.tap()
 
         // MARK: Check visibility of elements on submission edit screen
-        let assignmentSubmissionTextEntryNavBar = AssignmentsHelper.assignmentSubmissionTextEntryNavBar.waitToExist()
-        XCTAssertTrue(assignmentSubmissionTextEntryNavBar.isVisible)
+        let submissionNavBar = SubmissionHelper.navBar.waitToExist()
+        XCTAssertTrue(submissionNavBar.isVisible)
 
-        let assignmentSubmissionCancelButton = AssignmentsHelper.assignmentSubmissionCancelButton.waitToExist()
-        XCTAssertTrue(assignmentSubmissionCancelButton.isVisible)
-        XCTAssertEqual(assignmentSubmissionCancelButton.label(), "Cancel")
+        let submissionCancelButton = SubmissionHelper.cancelButton.waitToExist()
+        XCTAssertTrue(submissionCancelButton.isVisible)
+        XCTAssertEqual(submissionCancelButton.label(), "Cancel")
 
-        var assignmentSubmissionSubmitButton = AssignmentsHelper.assignmentSubmissionSubmitButton.waitToExist()
-        XCTAssertTrue(assignmentSubmissionSubmitButton.isVisible)
-        XCTAssertFalse(assignmentSubmissionSubmitButton.isEnabled)
-        XCTAssertEqual(assignmentSubmissionSubmitButton.label(), "Submit")
+        var submissionSubmitButton = SubmissionHelper.submitButton.waitToExist()
+        XCTAssertTrue(submissionSubmitButton.isVisible)
+        XCTAssertFalse(submissionSubmitButton.isEnabled)
+        XCTAssertEqual(submissionSubmitButton.label(), "Submit")
 
-        let assignmentSubmissionEditor = AssignmentsHelper.assignmentSubmissionEditor.waitToExist()
-        XCTAssertTrue(assignmentSubmissionEditor.isVisible)
+        let textField = SubmissionHelper.textField.waitToExist()
+        XCTAssertTrue(textField.isVisible)
 
         // MARK: Write some text and submit the assignment
         let testText = "SubmitAssignment test"
-        assignmentSubmissionEditor.pasteText(testText)
+        textField.pasteText(testText)
 
-        assignmentSubmissionSubmitButton = AssignmentsHelper.assignmentSubmissionSubmitButton.waitToExist()
-        XCTAssertTrue(assignmentSubmissionSubmitButton.isEnabled)
+        submissionSubmitButton = SubmissionHelper.submitButton.waitToExist()
+        XCTAssertTrue(submissionSubmitButton.isEnabled)
 
-        assignmentSubmissionSubmitButton.tap()
+        submissionSubmitButton.tap()
 
         // MARK: Check if submission was successful
-        let assignmentDetailsSuccessfulSubmission = AssignmentsHelper.assignmentDetailsSuccessfulSubmission.waitToExist()
-        XCTAssertTrue(assignmentDetailsSuccessfulSubmission.isVisible)
-        XCTAssertEqual(assignmentDetailsSuccessfulSubmission.label(), "Successfully submitted!")
+        let successfulSubmissionLabel = DetailsHelper.successfulSubmissionLabel.waitToExist()
+        XCTAssertTrue(successfulSubmissionLabel.isVisible)
+        XCTAssertEqual(successfulSubmissionLabel.label(), "Successfully submitted!")
 
-        assignmentDetailsSubmitAssignmentButton = AssignmentsHelper.assignmentDetailsSubmitAssignmentButton.waitToExist()
-        XCTAssertTrue(assignmentDetailsSubmitAssignmentButton.isVisible)
-        XCTAssertEqual(assignmentDetailsSubmitAssignmentButton.label(), "Resubmit Assignment")
+        submitAssignmentButton = DetailsHelper.submitAssignmentButton.waitToExist()
+        XCTAssertTrue(submitAssignmentButton.isVisible)
+        XCTAssertEqual(submitAssignmentButton.label(), "Resubmit Assignment")
     }
 
     func testAssignmentDueDate() {
+        typealias Helper = AssignmentsHelper
+
         // MARK: Seed the usual stuff
         let users = seeder.createUsers(1)
         let course = seeder.createCourse()
@@ -170,29 +181,29 @@ class AssignmentsTests: E2ETestCase {
         seeder.enrollStudent(student, in: course)
 
         // MARK: Create 2 assignments (1 due yesterday and 1 due tomorrow)
-        let yesterdaysDate = AssignmentsHelper.getYesterdaysDateString
-        let yesterdaysAssignment = AssignmentsHelper.createAssignment(
+        let yesterdaysDate = Helper.getYesterdaysDateString
+        let yesterdaysAssignment = Helper.createAssignment(
             course: course, name: "Yesterdays Assignment", dueDate: yesterdaysDate)
 
-        let tomorrowsDate = AssignmentsHelper.getTomorrowsDateString
-        let tomorrowsAssignment = AssignmentsHelper.createAssignment(
+        let tomorrowsDate = Helper.getTomorrowsDateString
+        let tomorrowsAssignment = Helper.createAssignment(
             course: course, name: "Tomorrows Assignment", dueDate: tomorrowsDate)
 
         // MARK: Get the user logged in
         logInDSUser(student)
 
         // MARK: Navigate to Assignments
-        AssignmentsHelper.navigateToAssignments(course: course)
-        let assignmentsNavBar = AssignmentsHelper.assignmentsNavBar(course: course).waitToExist()
-        XCTAssertTrue(assignmentsNavBar.isVisible)
+        Helper.navigateToAssignments(course: course)
+        let navBar = Helper.navBar(course: course).waitToExist()
+        XCTAssertTrue(navBar.isVisible)
 
         // MARK: Check Yesterdays Assignment due date
-        let yesterdaysAssignmentButton = AssignmentsHelper.assignmentButton(assignment: yesterdaysAssignment).waitToExist()
+        let yesterdaysAssignmentButton = Helper.assignmentButton(assignment: yesterdaysAssignment).waitToExist()
         XCTAssertTrue(yesterdaysAssignmentButton.isVisible)
         XCTAssertTrue(yesterdaysAssignmentButton.label().contains("Due Yesterday"))
 
         // MARK: Check Tomorrows Assignment due date
-        let tomorrowsAssignmentButton = AssignmentsHelper.assignmentButton(assignment: tomorrowsAssignment).waitToExist()
+        let tomorrowsAssignmentButton = Helper.assignmentButton(assignment: tomorrowsAssignment).waitToExist()
         XCTAssertTrue(tomorrowsAssignmentButton.isVisible)
         XCTAssertTrue(tomorrowsAssignmentButton.label().contains("Due Tomorrow"))
     }

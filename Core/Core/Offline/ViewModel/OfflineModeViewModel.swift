@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,12 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct DSDiscussionTopic: Codable {
-    public let id: String
-    public let title: String
-    public let message: String
-    public let published: Bool
-    public let discussion_subentry_count: Int
-    public let unread_count: Int
-    public let assignment: DSAssignment
+import Combine
+
+public class OfflineModeViewModel: ObservableObject {
+    @Published var isOffline: Bool
+
+    public init(interactor: OfflineModeInteractor) {
+        isOffline = interactor.isOfflineModeEnabled()
+        interactor.observeIsOfflineMode().assign(to: &$isOffline)
+    }
 }
