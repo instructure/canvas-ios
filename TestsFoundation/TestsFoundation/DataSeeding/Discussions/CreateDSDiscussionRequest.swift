@@ -38,12 +38,14 @@ extension CreateDSDiscussionRequest {
         let message: String
         let is_announcement: Bool
         let published: Bool
+        let assignment: CreateDSAssignmentRequest.RequestDSAssignment?
 
-        public init(title: String, message: String, is_announcement: Bool = false, published: Bool = true) {
+        public init(title: String, message: String, is_announcement: Bool = false, published: Bool = true, assignment: CreateDSAssignmentRequest.RequestDSAssignment? = nil) {
             self.title = title
             self.message = message
             self.is_announcement = is_announcement
             self.published = published
+            self.assignment = assignment
         }
     }
 }

@@ -25,32 +25,35 @@ public class AssignmentsHelper: BaseHelper {
     public static var getTomorrowsDateString: String { Date().addDays(1).ISO8601Format() }
     public static var getYesterdaysDateString: String { Date().addDays(-1).ISO8601Format() }
 
-    public static var assignmentDetailsName: Element { app.find(id: "AssignmentDetails.name") }
-    public static var assignmentDetailsPoints: Element { app.find(id: "AssignmentDetails.points") }
-    public static var assignmentDetailsStatus: Element { app.find(id: "AssignmentDetails.status") }
-    public static var assignmentDetailsDue: Element { app.find(id: "AssignmentDetails.due") }
-    public static var assignmentDetailsSubmissionTypes: Element { app.find(id: "AssignmentDetails.submissionTypes") }
-    public static var assignmentDetailsSubmissionsButton: Element { app.find(id: "AssignmentDetails.submissionsButton") }
-    public static var assignmentDetailsSubmissionsButtonLabel: Element { app.find(id: "AssignmentDetails.submissionsButton").rawElement.find(type: .staticText) }
-    public static var assignmentDetailsDescription: Element { app.find(id: "AssignmentDetails.description").rawElement.find(type: .staticText) }
-    public static var assignmentDetailsSubmitAssignmentButton: Element { app.find(id: "AssignmentDetails.submitAssignmentButton") }
-
-    public static var assignmentSubmissionTextEntryNavBar: Element { app.find(id: "Text Entry") }
-    public static var assignmentSubmissionCancelButton: Element { app.find(id: "screen.dismiss") }
-    public static var assignmentSubmissionSubmitButton: Element { app.find(id: "TextSubmission.submitButton") }
-    public static var assignmentSubmissionEditor: Element { app.find(id: "RichContentEditor.webView").rawElement.find(type: .textView) }
-    public static var assignmentDetailsSuccessfulSubmission: Element { app.find(id: "AssignmentDetails.submittedText") }
-
-    public static func assignmentsNavBar(course: DSCourse) -> Element {
+    public static func navBar(course: DSCourse) -> Element {
         app.find(id: "Assignments, \(course.name)")
     }
-
     public static func assignmentButton(assignment: DSAssignment) -> Element {
         app.find(id: "assignment-list.assignment-list-row.cell-\(assignment.id)")
     }
 
-    public static func assignmentDetailsNavBar(course: DSCourse) -> Element {
-        app.find(id: "Assignment Details, \(course.name)")
+    struct Details {
+        public static var name: Element { app.find(id: "AssignmentDetails.name") }
+        public static var points: Element { app.find(id: "AssignmentDetails.points") }
+        public static var status: Element { app.find(id: "AssignmentDetails.status") }
+        public static var due: Element { app.find(id: "AssignmentDetails.due") }
+        public static var submissionTypes: Element { app.find(id: "AssignmentDetails.submissionTypes") }
+        public static var submissionsButton: Element { app.find(id: "AssignmentDetails.submissionsButton") }
+        public static var submissionsButtonLabel: Element { app.find(id: "AssignmentDetails.submissionsButton").rawElement.find(type: .staticText) }
+        public static var description: Element { app.find(id: "AssignmentDetails.description").rawElement.find(type: .staticText) }
+        public static var submitAssignmentButton: Element { app.find(id: "AssignmentDetails.submitAssignmentButton") }
+        public static var successfulSubmissionLabel: Element { app.find(id: "AssignmentDetails.submittedText") }
+
+        public static func navBar(course: DSCourse) -> Element {
+            app.find(id: "Assignment Details, \(course.name)")
+        }
+    }
+
+    struct Submission {
+        public static var navBar: Element { app.find(id: "Text Entry") }
+        public static var cancelButton: Element { app.find(id: "screen.dismiss") }
+        public static var submitButton: Element { app.find(id: "TextSubmission.submitButton") }
+        public static var textField: Element { app.find(id: "RichContentEditor.webView").rawElement.find(type: .textView) }
     }
 
     @discardableResult

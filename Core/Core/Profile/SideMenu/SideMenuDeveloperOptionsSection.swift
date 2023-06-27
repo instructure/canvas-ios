@@ -21,7 +21,7 @@ import Foundation
 import SwiftUI
 
 struct SideMenuDeveloperOptionsSection: View {
-    @ObservedObject private var viewModel = SideDeveloperOptionsViewModel()
+    @ObservedObject private var viewModel = SideDeveloperOptionsViewModel(interactor: OfflineModeInteractorLive.shared)
     @State var onDeveloperMenuTap: () -> Void
 
     var body: some View {
@@ -56,19 +56,8 @@ extension SideMenuDeveloperOptionsSection {
     final class SideDeveloperOptionsViewModel: ObservableObject {
         @Published var networkAvailabilityStatus: NetworkAvailabilityStatus = .disconnected
 
-        private let networkAvailabilityService = NetworkAvailabilityServiceLive()
-        private var subscriptions = Set<AnyCancellable>()
-
-        init() {
-            unowned let unownedSelf = self
-
-            networkAvailabilityService.startMonitoring()
-
-            networkAvailabilityService
-                .startObservingStatus()
-                .receive(on: DispatchQueue.main)
-                .sink { unownedSelf.networkAvailabilityStatus = $0 }
-                .store(in: &subscriptions)
+        init(interactor: OfflineModeInteractor) {
+            interactor.observeNetworkStatus().assign(to: &$networkAvailabilityStatus)
         }
     }
 }

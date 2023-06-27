@@ -21,12 +21,13 @@ import SwiftUI
 struct GroupCard: View {
     @ObservedObject var group: Group
     let course: Course?
+    @Binding var isAvailable: Bool
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
 
     var body: some View {
-        Button(action: {
+        PrimaryButton(isAvailable: $isAvailable, action: {
             env.router.route(to: "/groups/\(group.id)", from: controller)
         }, label: {
             HStack(spacing: 0) {
