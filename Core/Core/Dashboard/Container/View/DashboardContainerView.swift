@@ -29,6 +29,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
     @ObservedObject var invitationsViewModel = DashboardInvitationsViewModel()
     @ObservedObject var layoutViewModel: DashboardLayoutViewModel
     @ObservedObject var fileUploadNotificationCardViewModel = FileUploadNotificationCardListViewModel()
+    @ObservedObject private var offlineModeViewModel: OfflineModeViewModel
 
     @Environment(\.scenePhase) var scenePhase
     @Environment(\.appEnvironment) var env
@@ -45,7 +46,9 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
     private let shouldShowGroupList: Bool
     private let verticalSpacing: CGFloat = 16
 
-    public init(shouldShowGroupList: Bool, showOnlyTeacherEnrollment: Bool) {
+    public init(shouldShowGroupList: Bool,
+                showOnlyTeacherEnrollment: Bool,
+                offlineViewModel: OfflineModeViewModel = OfflineModeViewModel(interactor: OfflineModeInteractorLive.shared)) {
         courseCardListViewModel = DashboardCourseCardListAssembly.makeDashboardCourseCardListViewModel(showOnlyTeacherEnrollment: showOnlyTeacherEnrollment)
         self.shouldShowGroupList = shouldShowGroupList
         let env = AppEnvironment.shared
@@ -55,6 +58,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         notifications = env.subscribe(GetAccountNotifications())
         settings = env.subscribe(GetUserSettings(userID: "self"))
         _viewModel = StateObject(wrappedValue: DashboardContainerViewModel(environment: env))
+        self.offlineModeViewModel = offlineViewModel
     }
 
     public var body: some View {
@@ -257,13 +261,18 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                 columnCount: layoutInfo.columns
             ) { cardIndex in
                 let card = courseCardList[cardIndex]
+                var availabilityBinding = Binding<Bool>(
+                    get: { !offlineModeViewModel.isOffline || (card.isAvailableOffline && offlineModeViewModel.isOffline) },
+                    set: { _ in }
+                )
                 DashboardCourseCardView(
                     courseCard: card,
                     hideColorOverlay: hideColorOverlay,
                     showGrade: showGrade,
                     width: layoutInfo.cardWidth,
                     contextColor: card.color,
-                    isWideLayout: layoutInfo.isWideLayout
+                    isWideLayout: layoutInfo.isWideLayout,
+                    isAvailable: availabilityBinding
                 )
                 .frame(minHeight: layoutInfo.cardMinHeight)
             }
@@ -291,7 +300,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                 .accessibility(identifier: "dashboard.courses.heading-lbl")
                 .accessibility(addTraits: .isHeader)
             Spacer()
-            Button(action: showAllCourses) {
+            PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline, action: showAllCourses) {
                 Text("Edit Dashboard", bundle: .core)
                     .font(.semibold16).foregroundColor(Color(Brand.shared.linkColor))
             }.identifier("Dashboard.editButton")
@@ -312,7 +321,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                 .padding(.top, verticalSpacing).padding(.bottom, verticalSpacing / 2)) {
                 let filteredGroups = activeGroups
                 ForEach(filteredGroups, id: \.id) { group in
-                    GroupCard(group: group, course: group.course)
+                    GroupCard(group: group, course: group.course, isAvailable: !$offlineModeViewModel.isOffline)
                         .padding(.bottom, filteredGroups.last != group ? verticalSpacing : 0)
                 }
             }

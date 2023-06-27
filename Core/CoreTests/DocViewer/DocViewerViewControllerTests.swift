@@ -19,6 +19,7 @@
 import XCTest
 import PSPDFKit
 import PSPDFKitUI
+import Combine
 @testable import Core
 
 class DocViewerViewControllerTests: CoreTestCase {
@@ -27,7 +28,7 @@ class DocViewerViewControllerTests: CoreTestCase {
             filename: "instructure.pdf",
             previewURL: url, fallbackURL: url,
             navigationItem: navigationItem,
-            offlineService: MockOfflineServiceDisabled()
+            offlineModeInteractor: MockOfflineModeInteractorDisabled()
         )
         controller.session = session
         controller.isAnnotatable = true
@@ -48,11 +49,27 @@ class DocViewerViewControllerTests: CoreTestCase {
         }
     }
 
-    class MockOfflineServiceDisabled: OfflineService {
+    class MockOfflineModeInteractorDisabled: OfflineModeInteractor {
+        func observeIsOfflineMode() -> AnyPublisher<Bool, Never> {
+            Just(false).eraseToAnyPublisher()
+        }
+
+        func observeNetworkStatus() -> AnyPublisher<Core.NetworkAvailabilityStatus, Never> {
+            Just(.connected(.wifi)).eraseToAnyPublisher()
+        }
+
         func isOfflineModeEnabled() -> Bool { false }
     }
 
-    class MockOfflineServiceEnabled: OfflineService {
+    class MockOfflineModeInteractorEnabled: OfflineModeInteractor {
+        func observeIsOfflineMode() -> AnyPublisher<Bool, Never> {
+            Just(true).eraseToAnyPublisher()
+        }
+
+        func observeNetworkStatus() -> AnyPublisher<Core.NetworkAvailabilityStatus, Never> {
+            Just(.disconnected).eraseToAnyPublisher()
+        }
+
         func isOfflineModeEnabled() -> Bool { true }
     }
 
@@ -125,7 +142,7 @@ class DocViewerViewControllerTests: CoreTestCase {
             filename: "instructure.pdf",
             previewURL: url, fallbackURL: url,
             navigationItem: navigationItem,
-            offlineService: MockOfflineServiceEnabled()
+            offlineModeInteractor: MockOfflineModeInteractorEnabled()
         )
         controller.session = session
         controller.isAnnotatable = true

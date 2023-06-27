@@ -26,7 +26,7 @@ struct DashboardCourseCardView: View {
     let contextColor: UIColor
     /** Wide layout puts the course image to the left of the cell while the course name and code will be next to it on the right. */
     let isWideLayout: Bool
-
+    @Binding var isAvailable: Bool
     @State private var isShowingKebabDialog = false
 
     @Environment(\.appEnvironment) var env
@@ -38,25 +38,24 @@ struct DashboardCourseCardView: View {
     }
 
     var body: some View {
-        ZStack(alignment: .topLeading) {
-            Button {
-                env.router.route(to: "/courses/\(courseCard.id)?contextColor=\(contextColor.hexString.dropFirst())", from: controller)
-            } label: {
+        PrimaryButton(isAvailable: $isAvailable) {
+            env.router.route(to: "/courses/\(courseCard.id)?contextColor=\(contextColor.hexString.dropFirst())", from: controller)
+        } label: {
+            ZStack(alignment: .topLeading) {
                 if isWideLayout {
                     regularHorizontalLayout
                 } else {
                     compactHorizontalLayout
                 }
+                gradePill
+                    .accessibility(hidden: true) // handled in the button label
+                    .offset(x: 8, y: 8)
+                    .zIndex(1)
             }
-            .buttonStyle(ScaleButtonStyle(scale: 1))
-            .accessibility(label: Text(verbatim: "\(courseCard.shortName) \(courseCard.courseCode) \(a11yGrade)".trimmingCharacters(in: .whitespacesAndNewlines)))
-            .identifier("DashboardCourseCell.\(courseCard.id)")
-
-            gradePill
-                .accessibility(hidden: true) // handled in the button label
-                .offset(x: 8, y: 8)
-                .zIndex(1)
         }
+        .buttonStyle(ScaleButtonStyle(scale: 1))
+        .accessibility(label: Text(verbatim: "\(courseCard.shortName) \(courseCard.courseCode) \(a11yGrade)".trimmingCharacters(in: .whitespacesAndNewlines)))
+        .identifier("DashboardCourseCell.\(courseCard.id)")
     }
 
     private var regularHorizontalLayout: some View {
@@ -114,7 +113,7 @@ struct DashboardCourseCardView: View {
 
     @ViewBuilder
     private var optionsKebabButton: some View {
-        Button {
+        PrimaryButton(isAvailable: $isAvailable) {
             if ExperimentalFeature.offlineMode.isEnabled, env.app == .student {
                 isShowingKebabDialog.toggle()
             } else {
@@ -140,7 +139,7 @@ struct DashboardCourseCardView: View {
             } label: {
                 Text("Manage Offline Content", bundle: .core)
             }
-            Button {
+            PrimaryButton {
                 openDashboardCardCustomizeSheet()
             } label: {
                 Text("Customize Course", bundle: .core)
@@ -213,7 +212,8 @@ struct CourseCard_Previews: PreviewProvider {
                        showGrade: true,
                        width: 200,
                        contextColor: .electric,
-                       isWideLayout: false)
+                       isWideLayout: false,
+                                    isAvailable: .constant(true))
             .frame(width: 200, height: 160)
             .environment(\.horizontalSizeClass, .compact)
 
@@ -223,7 +223,8 @@ struct CourseCard_Previews: PreviewProvider {
                        showGrade: true,
                        width: 400,
                        contextColor: .electric,
-                       isWideLayout: false)
+                       isWideLayout: false,
+                       isAvailable: .constant(true))
             .frame(width: 400, height: 160)
             .environment(\.horizontalSizeClass, .compact)
 
@@ -233,7 +234,8 @@ struct CourseCard_Previews: PreviewProvider {
                        showGrade: true,
                        width: 900,
                        contextColor: .electric,
-                       isWideLayout: true)
+                       isWideLayout: true,
+                       isAvailable: .constant(true))
             .frame(width: 900, height: 100)
             .environment(\.horizontalSizeClass, .regular)
         }
