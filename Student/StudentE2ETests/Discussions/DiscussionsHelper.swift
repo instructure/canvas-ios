@@ -83,9 +83,9 @@ public class DiscussionsHelper: BaseHelper {
         published: Bool = true,
         isAssignment: Bool = false,
         dueDate: String? = nil) -> DSDiscussionTopic {
-        let discussionAssignment = CreateDSAssignmentRequest.RequestDSAssignment(
+        let discussionAssignment = CreateDSAssignmentRequest.RequestedDSAssignment(
             name: title, description: message + title, published: published, submission_types: [.online_text_entry], due_at: dueDate)
-        let discussionBody = CreateDSDiscussionRequest.RequestDSDiscussion(
+        let discussionBody = CreateDSDiscussionRequest.RequestedDSDiscussion(
             title: title, message: message + title, is_announcement: isAnnouncement,
             published: published, assignment: discussionAssignment)
         return seeder.createDiscussion(courseId: course.id, requestBody: discussionBody)
