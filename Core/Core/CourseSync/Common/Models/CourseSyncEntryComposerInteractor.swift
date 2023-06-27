@@ -16,19 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 public protocol CourseSyncEntryComposerInteractor {
     /// Downloads all the available files for a course, and transforms `CourseSyncSelectorCourse` to `CourseSyncEntry`.
     func composeEntry(
-        from course: CourseSyncSelectorCourse
+        from course: CourseSyncSelectorCourse,
+        useCache: Bool
     ) -> AnyPublisher<CourseSyncEntry, Error>
 }
 
 public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryComposerInteractor {
     public func composeEntry(
-        from course: CourseSyncSelectorCourse
+        from course: CourseSyncSelectorCourse,
+        useCache: Bool
     ) -> AnyPublisher<CourseSyncEntry, Error> {
         let tabs = Array(course.tabs).offlineSupportedTabs()
         let mappedTabs = tabs.map {
@@ -39,7 +41,7 @@ public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryCompose
             )
         }
         if tabs.isFilesTabEnabled() {
-            return getFoldersAndFiles(courseId: course.courseId)
+            return getFoldersAndFiles(courseId: course.courseId, useCache: useCache)
                 .map { files in
                     CourseSyncEntry(
                         name: course.name,
@@ -63,47 +65,56 @@ public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryCompose
         }
     }
 
-    /// Recursively looks up every file and folder under the specified `courseId` and returns a list of `CourseSyncEntry.File`. 
-    private func getFoldersAndFiles(courseId: String) -> AnyPublisher<[CourseSyncEntry.File], Error> {
+    /// Recursively looks up every file and folder under the specified `courseId` and returns a list of `CourseSyncEntry.File`.
+    private func getFoldersAndFiles(
+        courseId: String,
+        useCache: Bool
+    ) -> AnyPublisher<[CourseSyncEntry.File], Error> {
         unowned let unownedSelf = self
 
-        return ReactiveStore(
+        let store = ReactiveStore(
             useCase: GetFolderByPath(
                 context: .course(courseId)
             )
         )
-        .getEntities()
-        .flatMap {
-            Publishers.Sequence(sequence: $0)
-                .filter { !$0.lockedForUser && !$0.hiddenForUser }
-                .setFailureType(to: Error.self)
-                .flatMap { unownedSelf.getFiles(folderID: $0.id, initialArray: []) }
-        }
-        .map {
-            $0
-                .compactMap { $0.file }
-                .filter { $0.url != nil && $0.mimeClass != nil }
-                .map {
-                    CourseSyncEntry.File(
-                        id: "courses/\(courseId)/files/\($0.id ?? Foundation.UUID().uuidString)",
-                        displayName: $0.displayName ?? NSLocalizedString("Unknown file", comment: ""),
-                        fileName: $0.filename,
-                        url: $0.url!,
-                        mimeClass: $0.mimeClass!,
-                        bytesToDownload: $0.size
-                    )
-                }
-        }
-        .replaceEmpty(with: [])
-        .eraseToAnyPublisher()
+        let publisher = useCache ? store.getEntitiesFromDatabase() : store.getEntities()
+
+        return publisher
+            .flatMap {
+                Publishers.Sequence(sequence: $0)
+                    .filter { !$0.lockedForUser && !$0.hiddenForUser }
+                    .setFailureType(to: Error.self)
+                    .flatMap { unownedSelf.getFiles(folderID: $0.id, initialArray: [], useCache: useCache) }
+            }
+            .map {
+                $0
+                    .compactMap { $0.file }
+                    .filter { $0.url != nil && $0.mimeClass != nil }
+                    .map {
+                        CourseSyncEntry.File(
+                            id: "courses/\(courseId)/files/\($0.id ?? Foundation.UUID().uuidString)",
+                            displayName: $0.displayName ?? NSLocalizedString("Unknown file", comment: ""),
+                            fileName: $0.filename,
+                            url: $0.url!,
+                            mimeClass: $0.mimeClass!,
+                            bytesToDownload: $0.size
+                        )
+                    }
+            }
+            .replaceEmpty(with: [])
+            .eraseToAnyPublisher()
     }
 
-    private func getFiles(folderID: String, initialArray: [FolderItem]) -> AnyPublisher<[FolderItem], Error> {
+    private func getFiles(
+        folderID: String,
+        initialArray: [FolderItem],
+        useCache: Bool
+    ) -> AnyPublisher<[FolderItem], Error> {
         unowned let unownedSelf = self
 
         var result = initialArray
 
-        return getFolderItems(folderID: folderID)
+        return getFolderItems(folderID: folderID, useCache: useCache)
             .flatMap { files, folderIDs in
                 result.append(contentsOf: files)
 
@@ -117,7 +128,8 @@ public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryCompose
                     .flatMap {
                         unownedSelf.getFiles(
                             folderID: $0,
-                            initialArray: result
+                            initialArray: result,
+                            useCache: useCache
                         )
                         .handleEvents(receiveOutput: { result = $0 })
                     }
@@ -129,13 +141,15 @@ public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryCompose
             .eraseToAnyPublisher()
     }
 
-    private func getFolderItems(folderID: String) -> AnyPublisher<([FolderItem], [String]), Error> {
-        ReactiveStore(
+    private func getFolderItems(folderID: String, useCache: Bool) -> AnyPublisher<([FolderItem], [String]), Error> {
+        let store = ReactiveStore(
             useCase: GetFolderItems(
                 folderID: folderID
             )
         )
-        .getEntities()
+        let publisher = useCache ? store.getEntitiesFromDatabase() : store.getEntities()
+
+        return publisher
         .tryCatch { error -> AnyPublisher<[FolderItem], Error> in
             if case .unauthorized = error as? Core.APIError {
                 return Just([])

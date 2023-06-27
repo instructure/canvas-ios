@@ -62,7 +62,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         courseListStore.getEntities()
             .filterToCourseID(courseID)
             .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
-            .flatMap { self.entryComposerInteractor.composeEntry(from: $0) }
+            .flatMap { self.entryComposerInteractor.composeEntry(from: $0, useCache: false) }
             .collect()
             .replaceEmpty(with: [])
             .receive(on: DispatchQueue.main)

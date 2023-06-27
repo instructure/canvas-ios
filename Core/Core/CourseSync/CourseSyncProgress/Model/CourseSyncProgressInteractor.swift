@@ -60,7 +60,7 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
 
         return courseListStore.getEntitiesFromDatabase()
             .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
-            .flatMap { unownedSelf.entryComposerInteractor.composeEntry(from: $0) }
+            .flatMap { unownedSelf.entryComposerInteractor.composeEntry(from: $0, useCache: true) }
             .collect()
             .replaceEmpty(with: [])
             .map { unownedSelf.applySelectionsFromPreviousSession($0) }
