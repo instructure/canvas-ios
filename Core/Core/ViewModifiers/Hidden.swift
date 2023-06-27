@@ -30,7 +30,7 @@ extension View {
     }
 
     @ViewBuilder
-    public func  disableWithOpacity(_ isDisabled: Bool, disabledOpacity: Double = 0.3) -> some View {
+    public func disableWithOpacity(_ isDisabled: Bool, disabledOpacity: Double = 0.3) -> some View {
         self
             .disabled(isDisabled)
             .opacity(isDisabled ? disabledOpacity : 1.0)
