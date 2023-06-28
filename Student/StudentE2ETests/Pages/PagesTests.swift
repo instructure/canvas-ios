@@ -53,7 +53,7 @@ class PagesTests: E2ETestCase {
         let student = try seeder.createUser()
         let course = try seeder.createCourse()
         let assignmentName = "Deep Link Assignment"
-        let assignment = AssignmentsHelper.createAssignment(course: course, name: assignmentName)
+        let assignment = try AssignmentsHelper.createAssignment(course: course, name: assignmentName)
         let assignmentLink = PagesHelper.createLinkToAssignment(course: course, assignment: assignment)
 
         let discussionTitle = "Deep Link Discussion"

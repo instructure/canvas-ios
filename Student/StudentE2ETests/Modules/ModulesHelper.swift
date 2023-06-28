@@ -101,8 +101,8 @@ public class ModulesHelper: BaseHelper {
                                         title: String = "Module Quiz",
                                         description: String = "Description of ",
                                         published: Bool = true) throws -> DSModuleItem {
-        let quiz = QuizzesHelper.createQuiz(course: course, title: title, description: description + title, quiz_type: .assignment, published: published)
-        let quizQuestion = QuizzesHelper.createTestQuizQuestion(course: course, quiz: quiz)
+        let quiz = try QuizzesHelper.createQuiz(course: course, title: title, description: description + title, quiz_type: .assignment, published: published)
+        let quizQuestion = try QuizzesHelper.createTestQuizQuestion(course: course, quiz: quiz)
 
         let moduleItemBody = CreateDSModuleItemRequest.RequestedDSModuleItem(title: title, type: .quiz, content_id: quiz.id)
         var moduleItem = try seeder.createModuleItem(courseId: course.id, moduleId: module.id, moduleItemBody: moduleItemBody)
