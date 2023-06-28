@@ -20,7 +20,7 @@ import XCTest
 import TestsFoundation
 
 class K5GradesE2ETests: K5UITestCase {
-    func testK5GradesE2E() {
+    func testK5GradesE2E() throws {
         setUpK5()
 
         K5CourseCard.courseCard(id: "21025").waitToExist()

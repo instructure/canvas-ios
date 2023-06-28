@@ -24,12 +24,12 @@ import XCTest
 class LoginStartE2ETests: CoreUITestCase {
     override var user: UITestUser? { nil }
 
-    func testHiddenElements() {
+    func testHiddenElements() throws {
         XCTAssertFalse(LoginStart.whatsNewLabel.isVisible)
         XCTAssertFalse(LoginStart.whatsNewLink.isVisible)
     }
 
-    func testFindSchool() {
+    func testFindSchool() throws {
         XCTAssertTrue(LoginStart.findSchoolButton.isEnabled)
         LoginStart.findSchoolButton.tap()
 

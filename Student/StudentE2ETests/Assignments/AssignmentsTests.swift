@@ -21,7 +21,7 @@ import TestsFoundation
 import Core
 
 class AssignmentsTests: E2ETestCase {
-    func testSubmitAssignmentWithShareExtension() {
+    func testSubmitAssignmentWithShareExtension() throws {
         typealias Helper = AssignmentsHelper
 
         // MARK: Seed the usual stuff
@@ -41,7 +41,7 @@ class AssignmentsTests: E2ETestCase {
         XCTAssertTrue(shareSuccessful)
     }
 
-    func testViewAssignmentAndDetails() {
+    func testViewAssignmentAndDetails() throws {
         typealias Helper = AssignmentsHelper
         typealias DetailsHelper = Helper.Details
 
@@ -106,7 +106,7 @@ class AssignmentsTests: E2ETestCase {
         XCTAssertTrue(submitAssignmentButton.isVisible)
     }
 
-    func testSubmitAssignment() {
+    func testSubmitAssignment() throws {
         typealias Helper = AssignmentsHelper
         typealias DetailsHelper = Helper.Details
         typealias SubmissionHelper = Helper.Submission
@@ -171,7 +171,7 @@ class AssignmentsTests: E2ETestCase {
         XCTAssertEqual(submitAssignmentButton.label(), "Resubmit Assignment")
     }
 
-    func testAssignmentDueDate() {
+    func testAssignmentDueDate() throws {
         typealias Helper = AssignmentsHelper
 
         // MARK: Seed the usual stuff

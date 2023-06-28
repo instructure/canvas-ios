@@ -21,7 +21,7 @@ import TestsFoundation
 @testable import Core
 
 class ModulesE2ETests: CoreUITestCase {
-    func testLaunchIntoAssignmentsAndNavigateModuleItems() {
+    func testLaunchIntoAssignmentsAndNavigateModuleItems() throws {
         Dashboard.courseCard(id: "263").tap()
 
         CourseNavigation.modules.tap()
@@ -40,7 +40,7 @@ class ModulesE2ETests: CoreUITestCase {
         ModuleList.item(section: 0, row: 0).waitToExist()
     }
 
-    func testLockedModulesDisplayCorrectly() {
+    func testLockedModulesDisplayCorrectly() throws {
         Dashboard.courseCard(id: "263").tap()
         CourseNavigation.modules.tap()
 
@@ -50,7 +50,7 @@ class ModulesE2ETests: CoreUITestCase {
                        "file, run.jpg")
     }
 
-    func testLaunchIntoDiscussionModuleItem() {
+    func testLaunchIntoDiscussionModuleItem() throws {
         Dashboard.courseCard(id: "263").tap()
 
         CourseNavigation.modules.tap()
@@ -61,7 +61,7 @@ class ModulesE2ETests: CoreUITestCase {
         // XCTAssertEqual(NavBar.title.label(), "Discussion Details")
     }
 
-    func testLaunchIntoPageModuleItem() {
+    func testLaunchIntoPageModuleItem() throws {
         Dashboard.courseCard(id: "263").tap()
 
         CourseNavigation.modules.tap()
@@ -71,7 +71,7 @@ class ModulesE2ETests: CoreUITestCase {
         app.find(labelContaining: "This is a page for testing modules").waitToExist()
     }
 
-    func xtestLaunchIntoQuizModuleItem() {
+    func xtestLaunchIntoQuizModuleItem() throws {
         Dashboard.courseCard(id: "263").tap()
 
         CourseNavigation.modules.tap()
@@ -81,7 +81,7 @@ class ModulesE2ETests: CoreUITestCase {
         QuizDetails.takeButton.waitToExist()
     }
 
-    func testLaunchIntoFileModuleItem() {
+    func testLaunchIntoFileModuleItem() throws {
         Dashboard.courseCard(id: "263").tap()
 
         CourseNavigation.modules.tap()
@@ -91,7 +91,7 @@ class ModulesE2ETests: CoreUITestCase {
         app.find(type: .image).waitToExist()
     }
 
-    func testLaunchIntoExternalURLModuleItem() {
+    func testLaunchIntoExternalURLModuleItem() throws {
         Dashboard.courseCard(id: "263").tap()
 
         CourseNavigation.modules.tap()
@@ -101,7 +101,7 @@ class ModulesE2ETests: CoreUITestCase {
         ExternalURL.openInButton.waitToExist()
     }
 
-    func testLaunchIntoExternalToolModuleItem() {
+    func testLaunchIntoExternalToolModuleItem() throws {
         Dashboard.courseCard(id: "263").tap()
 
         CourseNavigation.modules.tap()

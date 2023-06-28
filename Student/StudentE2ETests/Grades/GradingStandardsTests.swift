@@ -20,7 +20,7 @@ import TestsFoundation
 import XCTest
 
 class GradingStandardsTests: E2ETestCase {
-    func testGradingStandards() {
+    func testGradingStandards() throws {
         // MARK: Seed the usual stuff and a grading scheme
         let student = seeder.createUser()
         let course = seeder.createCourse()

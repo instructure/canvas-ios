@@ -21,7 +21,7 @@ import TestsFoundation
 import XCTest
 
 class GradeTotalsTests: E2ETestCase {
-    func testGradeTotals() {
+    func testGradeTotals() throws {
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
         let course = seeder.createCourse()

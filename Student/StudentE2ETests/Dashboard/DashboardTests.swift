@@ -19,7 +19,7 @@
 import TestsFoundation
 
 class DashboardTests: E2ETestCase {
-    func testDashboard() {
+    func testDashboard() throws {
         // MARK: Seed the usual stuff
         let users = seeder.createUsers(1)
         let course1 = seeder.createCourse()
@@ -58,7 +58,7 @@ class DashboardTests: E2ETestCase {
         XCTAssertFalse(Dashboard.courseCard(id: course1.id).exists())
     }
 
-    func testAnnouncementBelowInvite() {
+    func testAnnouncementBelowInvite() throws {
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
         let course = seeder.createCourse()
@@ -82,7 +82,7 @@ class DashboardTests: E2ETestCase {
         XCTAssertLessThan(courseAcceptButton.frame().maxY, notificationToggleButton.frame().minY)
     }
 
-    func testNavigateToDashboard() {
+    func testNavigateToDashboard() throws {
         // MARK: Seed the usual stuff and a front page for the course
         let student = seeder.createUser()
         let course = seeder.createCourse()
@@ -107,7 +107,7 @@ class DashboardTests: E2ETestCase {
         XCTAssertTrue(courseCard.isVisible)
     }
 
-    func testCourseCardInfo() {
+    func testCourseCardInfo() throws {
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
         let course = seeder.createCourse()
@@ -120,7 +120,7 @@ class DashboardTests: E2ETestCase {
         XCTAssertTrue(courseCard.label().contains(course.name))
     }
 
-    func testDashboardEditButtonDisplaysCorrectCourses() {
+    func testDashboardEditButtonDisplaysCorrectCourses() throws {
         // MARK: Seed the usual stuff with 7 courses and student enrolled in them with all 7 different states
         let student = seeder.createUser()
         let courses = DashboardHelper.createCourses(number: 7)

@@ -20,7 +20,7 @@ import XCTest
 import TestsFoundation
 
 class PeopleTests: E2ETestCase {
-    func testPeopleListAndContextCard() {
+    func testPeopleListAndContextCard() throws {
         // MARK: Seed the usual stuff with some additional people
         let users = seeder.createUsers(5)
         let course = seeder.createCourse()
@@ -98,7 +98,7 @@ class PeopleTests: E2ETestCase {
         XCTAssertEqual(sectionLabel.label(), "Section: \(course.name)")
     }
 
-    func testPeopleListUpdatesAfterEnrollmentOfPersonIsDeleted() {
+    func testPeopleListUpdatesAfterEnrollmentOfPersonIsDeleted() throws {
         // MARK: Seed the usual stuff with some additional people
         let users = seeder.createUsers(2)
         let course = seeder.createCourse()

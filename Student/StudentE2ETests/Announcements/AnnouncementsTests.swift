@@ -20,7 +20,7 @@ import TestsFoundation
 import XCTest
 
 class AnnouncementsTests: E2ETestCase {
-    func testAnnouncementsMatchWebOrder() {
+    func testAnnouncementsMatchWebOrder() throws {
         typealias Helper = AnnouncementsHelper
 
         // MARK: Seed the usual stuff
@@ -48,7 +48,7 @@ class AnnouncementsTests: E2ETestCase {
         XCTAssertTrue(thirdAnnouncement.label().contains(announcements[0].title))
     }
 
-    func testAnnouncementsTitleAndMessage() {
+    func testAnnouncementsTitleAndMessage() throws {
         typealias Helper = AnnouncementsHelper
         typealias DetailsHelper = Helper.Details
 
@@ -78,7 +78,7 @@ class AnnouncementsTests: E2ETestCase {
         XCTAssertEqual(announcementMessage.label(), announcement.message)
     }
 
-    func testAnnouncementToggle() {
+    func testAnnouncementToggle() throws {
         typealias Helper = AnnouncementsHelper
 
         // MARK: Seed the usual stuff
@@ -122,7 +122,7 @@ class AnnouncementsTests: E2ETestCase {
 // MARK: Tests without DataSeeder (to be upgraded: MBL-16825)
 
 class OldAnnouncementE2ETests: CoreUITestCase {
-    func testPreviewAnnouncementAttachment() {
+    func testPreviewAnnouncementAttachment() throws {
         Dashboard.courseCard(id: "262").tapUntil {
             CourseNavigation.announcements.exists
         }

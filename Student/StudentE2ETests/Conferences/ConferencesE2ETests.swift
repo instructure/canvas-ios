@@ -33,7 +33,7 @@ class ConferencesE2ETests: CoreUITestCase {
         CourseNavigation.conferences.tap()
     }
 
-    func testConferenceList() {
+    func testConferenceList() throws {
         let concludedHeader = ConferencesList.header(forSection: 1)
         XCTAssertEqual(concludedHeader.label(), "Concluded Conferences")
 
@@ -48,7 +48,7 @@ class ConferencesE2ETests: CoreUITestCase {
         XCTAssert(concluded.status.label().contains("Concluded Apr 17"))
     }
 
-    func testInProgressConferenceDetails() {
+    func testInProgressConferenceDetails() throws {
         inProgress.title.tap()
 
         ConferenceDetails.join.waitToExist()

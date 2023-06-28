@@ -20,7 +20,7 @@ import XCTest
 import TestsFoundation
 
 class PagesTests: E2ETestCase {
-    func testFrontPageLoadsByDefault() {
+    func testFrontPageLoadsByDefault() throws {
         // MARK: Seed the usual stuff and a front page for the course
         let student = seeder.createUser()
         let course = seeder.createCourse()
@@ -48,7 +48,7 @@ class PagesTests: E2ETestCase {
         app.find(labelContaining: frontPage.title).waitToExist()
     }
 
-    func testDeepLinks() {
+    func testDeepLinks() throws {
         // MARK: Seed the usual stuff and a front page containing some deep links
         let student = seeder.createUser()
         let course = seeder.createCourse()
