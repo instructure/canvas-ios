@@ -22,6 +22,6 @@ extension DataSeeder {
     public func createPage(courseId: String, requestBody: CreateDSPageRequest.RequestedDSPage) throws -> DSPage {
         let requestedBody = CreateDSPageRequest.Body(wiki_page: requestBody)
         let request = CreateDSPageRequest(body: requestedBody, courseId: courseId)
-        return try! makeRequest(request)
+        return try makeRequest(request)
     }
 }

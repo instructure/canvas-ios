@@ -21,6 +21,6 @@ extension DataSeeder {
                                      requestBody: CreateDSGradingStandardsRequest.RequestedDSGradingStandards?
     ) throws -> DSGradingStandard {
         let request = CreateDSGradingStandardsRequest(body: requestBody, courseId: courseId)
-        return try! makeRequest(request)
+        return try makeRequest(request)
     }
 }

@@ -45,13 +45,13 @@ public class PagesHelper: BaseHelper {
     }
 
     @discardableResult
-    public static func createPage(course: DSCourse, title: String, body: String, frontPage: Bool = false, published: Bool = true) -> DSPage {
+    public static func createPage(course: DSCourse, title: String, body: String, frontPage: Bool = false, published: Bool = true) throws -> DSPage {
         let pageBody = CreateDSPageRequest.RequestedDSPage(title: title, body: body, front_page: frontPage, published: published)
-        return try! seeder.createPage(courseId: course.id, requestBody: pageBody)
+        return try seeder.createPage(courseId: course.id, requestBody: pageBody)
     }
 
     @discardableResult
-    public static func createDeepLinkFrontPage(course: DSCourse, body: String) -> DSPage {
-        return createPage(course: course, title: "Deep Link Front Page", body: body, frontPage: true, published: true)
+    public static func createDeepLinkFrontPage(course: DSCourse, body: String) throws -> DSPage {
+        return try createPage(course: course, title: "Deep Link Front Page", body: body, frontPage: true, published: true)
     }
 }

@@ -25,13 +25,13 @@ class AssignmentsTests: E2ETestCase {
         typealias Helper = AssignmentsHelper
 
         // MARK: Seed the usual stuff
-        let users = try! seeder.createUsers(1)
-        let course = try! seeder.createCourse()
+        let users = try seeder.createUsers(1)
+        let course = try seeder.createCourse()
         let student = users[0]
-        try! seeder.enrollStudent(student, in: course)
+        try seeder.enrollStudent(student, in: course)
 
         // MARK: Create assignment for testing share extension
-        let assignment = Helper.createAssignmentForShareExtension(course: course)
+        let assignment = try Helper.createAssignmentForShareExtension(course: course)
 
         // MARK: Get the user logged in
         logInDSUser(student)
@@ -46,13 +46,13 @@ class AssignmentsTests: E2ETestCase {
         typealias DetailsHelper = Helper.Details
 
         // MARK: Seed the usual stuff
-        let users = try! seeder.createUsers(1)
-        let course = try! seeder.createCourse()
+        let users = try seeder.createUsers(1)
+        let course = try seeder.createCourse()
         let student = users[0]
-        try! seeder.enrollStudent(student, in: course)
+        try seeder.enrollStudent(student, in: course)
 
         // MARK: Create an assignment
-        let assignment = Helper.createAssignment(course: course, submissionTypes: [.online_text_entry])
+        let assignment = try Helper.createAssignment(course: course, submissionTypes: [.online_text_entry])
 
         // MARK: Get the user logged in
         logInDSUser(student)
@@ -112,13 +112,13 @@ class AssignmentsTests: E2ETestCase {
         typealias SubmissionHelper = Helper.Submission
 
         // MARK: Seed the usual stuff
-        let users = try! seeder.createUsers(1)
-        let course = try! seeder.createCourse()
+        let users = try seeder.createUsers(1)
+        let course = try seeder.createCourse()
         let student = users[0]
-        try! seeder.enrollStudent(student, in: course)
+        try seeder.enrollStudent(student, in: course)
 
         // MARK: Create an assignment
-        let assignment = Helper.createAssignment(course: course, submissionTypes: [.online_text_entry])
+        let assignment = try Helper.createAssignment(course: course, submissionTypes: [.online_text_entry])
 
         // MARK: Get the user logged in
         logInDSUser(student)
@@ -175,18 +175,18 @@ class AssignmentsTests: E2ETestCase {
         typealias Helper = AssignmentsHelper
 
         // MARK: Seed the usual stuff
-        let users = try! seeder.createUsers(1)
-        let course = try! seeder.createCourse()
+        let users = try seeder.createUsers(1)
+        let course = try seeder.createCourse()
         let student = users[0]
-        try! seeder.enrollStudent(student, in: course)
+        try seeder.enrollStudent(student, in: course)
 
         // MARK: Create 2 assignments (1 due yesterday and 1 due tomorrow)
         let yesterdaysDate = Helper.getYesterdaysDateString
-        let yesterdaysAssignment = Helper.createAssignment(
+        let yesterdaysAssignment = try Helper.createAssignment(
             course: course, name: "Yesterdays Assignment", dueDate: yesterdaysDate)
 
         let tomorrowsDate = Helper.getTomorrowsDateString
-        let tomorrowsAssignment = Helper.createAssignment(
+        let tomorrowsAssignment = try Helper.createAssignment(
             course: course, name: "Tomorrows Assignment", dueDate: tomorrowsDate)
 
         // MARK: Get the user logged in

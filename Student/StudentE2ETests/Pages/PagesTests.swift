@@ -22,10 +22,10 @@ import TestsFoundation
 class PagesTests: E2ETestCase {
     func testFrontPageLoadsByDefault() throws {
         // MARK: Seed the usual stuff and a front page for the course
-        let student = try! seeder.createUser()
-        let course = try! seeder.createCourse()
-        try! seeder.enrollStudent(student, in: course)
-        let frontPage = DashboardHelper.createFrontPageForCourse(course: course)
+        let student = try seeder.createUser()
+        let course = try seeder.createCourse()
+        try seeder.enrollStudent(student, in: course)
+        let frontPage = try DashboardHelper.createFrontPageForCourse(course: course)
 
         // MARK: Get the user logged in and check the course card
         logInDSUser(student)
@@ -50,25 +50,25 @@ class PagesTests: E2ETestCase {
 
     func testDeepLinks() throws {
         // MARK: Seed the usual stuff and a front page containing some deep links
-        let student = try! seeder.createUser()
-        let course = try! seeder.createCourse()
+        let student = try seeder.createUser()
+        let course = try seeder.createCourse()
         let assignmentName = "Deep Link Assignment"
         let assignment = AssignmentsHelper.createAssignment(course: course, name: assignmentName)
         let assignmentLink = PagesHelper.createLinkToAssignment(course: course, assignment: assignment)
 
         let discussionTitle = "Deep Link Discussion"
-        let discussion = DiscussionsHelper.createDiscussion(course: course, title: discussionTitle)
+        let discussion = try DiscussionsHelper.createDiscussion(course: course, title: discussionTitle)
         let discussionLink = PagesHelper.createLinkToDiscussion(course: course, discussion: discussion)
 
         let announcementTitle = "Deep Link Announcement"
-        let announcement = DiscussionsHelper.createDiscussion(course: course, title: announcementTitle, isAnnouncement: true)
+        let announcement = try DiscussionsHelper.createDiscussion(course: course, title: announcementTitle, isAnnouncement: true)
         let announcementLink = PagesHelper.createLinkToDiscussion(course: course, discussion: announcement)
 
         let body = "\(assignmentLink)\n\(discussionLink)\n\(announcementLink)"
-        PagesHelper.createDeepLinkFrontPage(course: course, body: body)
+        try PagesHelper.createDeepLinkFrontPage(course: course, body: body)
 
         // MARK: Enroll student in the course and get the user logged in
-        try! seeder.enrollStudent(student, in: course)
+        try seeder.enrollStudent(student, in: course)
 
         logInDSUser(student)
 

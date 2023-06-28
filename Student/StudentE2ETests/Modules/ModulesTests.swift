@@ -23,16 +23,16 @@ import Core
 class ModulesTests: E2ETestCase {
     func testModuleItems() throws {
         // MARK: Seed the usual stuff
-        let users = try! seeder.createUsers(1)
-        let course = try! seeder.createCourse()
+        let users = try seeder.createUsers(1)
+        let course = try seeder.createCourse()
         let student = users[0]
-        try! seeder.enrollStudent(student, in: course)
+        try seeder.enrollStudent(student, in: course)
 
         // MARK: Create module with assignment, discussion, page, quiz items
-        let module = ModulesHelper.createModule(course: course, name: "Test Module")
-        let moduleAssignment = ModulesHelper.createModuleAssignment(course: course, module: module, title: "Test Module Assignment")
-        let moduleDiscussion = ModulesHelper.createModuleDiscussion(course: course, module: module, title: "Test Module Discussion")
-        let modulePage = ModulesHelper.createModulePage(course: course, module: module, title: "Test Module Page")
+        let module = try ModulesHelper.createModule(course: course, name: "Test Module")
+        let moduleAssignment = try ModulesHelper.createModuleAssignment(course: course, module: module, title: "Test Module Assignment")
+        let moduleDiscussion = try ModulesHelper.createModuleDiscussion(course: course, module: module, title: "Test Module Discussion")
+        let modulePage = try ModulesHelper.createModulePage(course: course, module: module, title: "Test Module Page")
 
         // MARK: Get the user logged in
         logInDSUser(student)

@@ -23,6 +23,6 @@ extension DataSeeder {
                                    quizQuestionBody: CreateDSQuizQuestionRequest.RequestedDSQuizQuestion) throws -> DSQuizQuestion {
         let requestedBody = CreateDSQuizQuestionRequest.Body(question: quizQuestionBody)
         let request = CreateDSQuizQuestionRequest(body: requestedBody, courseId: courseId, quizId: quizId)
-        return try! makeRequest(request)
+        return try makeRequest(request)
     }
 }

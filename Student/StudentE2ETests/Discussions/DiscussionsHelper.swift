@@ -82,13 +82,13 @@ public class DiscussionsHelper: BaseHelper {
         isAnnouncement: Bool = false,
         published: Bool = true,
         isAssignment: Bool = false,
-        dueDate: String? = nil) -> DSDiscussionTopic {
+        dueDate: String? = nil) throws -> DSDiscussionTopic {
         let discussionAssignment = CreateDSAssignmentRequest.RequestedDSAssignment(
             name: title, description: message + title, published: published, submission_types: [.online_text_entry], due_at: dueDate)
         let discussionBody = CreateDSDiscussionRequest.RequestedDSDiscussion(
             title: title, message: message + title, is_announcement: isAnnouncement,
             published: published, assignment: discussionAssignment)
-        return try! seeder.createDiscussion(courseId: course.id, requestBody: discussionBody)
+        return try seeder.createDiscussion(courseId: course.id, requestBody: discussionBody)
     }
 
     public static func navigateToDiscussions(course: DSCourse) {
