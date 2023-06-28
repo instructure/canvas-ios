@@ -20,7 +20,7 @@ extension DataSeeder {
 
     public func createQuizQuestion(courseId: String,
                                    quizId: String,
-                                   quizQuestionBody: CreateDSQuizQuestionRequest.RequestedDSQuizQuestion) -> DSQuizQuestion {
+                                   quizQuestionBody: CreateDSQuizQuestionRequest.RequestedDSQuizQuestion) throws -> DSQuizQuestion {
         let requestedBody = CreateDSQuizQuestionRequest.Body(question: quizQuestionBody)
         let request = CreateDSQuizQuestionRequest(body: requestedBody, courseId: courseId, quizId: quizId)
         return try! makeRequest(request)

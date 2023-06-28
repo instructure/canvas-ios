@@ -17,7 +17,7 @@
 //
 
 extension DataSeeder {
-    public func postAccountNotifications(requestBody: CreateDSAccountNotificationRequest.RequestedDSAccountNotification) -> DSAccountNotification {
+    public func postAccountNotifications(requestBody: CreateDSAccountNotificationRequest.RequestedDSAccountNotification) throws -> DSAccountNotification {
         let requestedBody = CreateDSAccountNotificationRequest.Body(account_notification: requestBody)
         let request = CreateDSAccountNotificationRequest(body: requestedBody)
         return try! makeRequest(request)
