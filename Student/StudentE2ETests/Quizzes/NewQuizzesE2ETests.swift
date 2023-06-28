@@ -20,7 +20,7 @@ import XCTest
 import TestsFoundation
 
 class NewQuizzesE2ETests: CoreUITestCase {
-    func testNewQuizzesE2E() {
+    func testNewQuizzesE2E() throws {
         Dashboard.courseCard(id: "399").waitToExist()
         Dashboard.courseCard(id: "399").tap()
         CourseNavigation.quizzes.waitToExist()

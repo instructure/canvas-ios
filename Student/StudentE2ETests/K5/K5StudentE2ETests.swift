@@ -22,7 +22,7 @@ import TestsFoundation
 
 class K5StudentE2ETests: K5UITestCase {
 
-    func testStudentK5() {
+    func testStudentK5() throws {
         setUpK5()
 
         K5CourseCard.courseCard(id: "21025").waitToExist()

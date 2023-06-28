@@ -21,7 +21,7 @@ import TestsFoundation
 import Core
 
 class ModulesTests: E2ETestCase {
-    func testModuleItems() {
+    func testModuleItems() throws {
         // MARK: Seed the usual stuff
         let users = seeder.createUsers(1)
         let course = seeder.createCourse()

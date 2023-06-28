@@ -51,7 +51,7 @@ class PlannerTests: CoreUITestCase {
         PlannerCalendar.dayButton(for: reference).tap()
     }
 
-    func testPlanner() {
+    func testPlanner() throws {
         PlannerList.event(id: "2233").waitToExist()
         XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 1).label(), "March 1, \(y), 2 events")
 
@@ -84,7 +84,7 @@ class PlannerTests: CoreUITestCase {
         XCTAssertEqual(PlannerCalendar.dayButton(year: y, month: m, day: 5).label(), "March 5, \(y), 0 events")
     }
 
-    func testSwipes() {
+    func testSwipes() throws {
         PlannerCalendar.dayButton(year: y, month: m, day: 1).swipeLeft()
         PlannerCalendar.monthButton.tap() // collapse
         PlannerCalendar.dayButton(year: y, month: m, day: 15).waitToVanish()
@@ -129,7 +129,7 @@ class PlannerTests: CoreUITestCase {
         PlannerCalendar.dayButton(year: y, month: m, day: 15).waitToExist()
     }
 
-    func testCalendarFilter() {
+    func testCalendarFilter() throws {
         PlannerCalendar.dayButton(year: y, month: m, day: 3).tap()
         PlannerCalendar.monthButton.tap() // collapse
         PlannerCalendar.filterButton.tap()

@@ -27,19 +27,19 @@ class ProfileE2ETests: CoreUITestCase {
         super.setUp()
     }
 
-    func testProfileDisplaysUsername() {
+    func testProfileDisplaysUsername() throws {
         Profile.open()
         XCTAssertEqual(Profile.userNameLabel.label(), "Student One")
     }
 
-    func testProfileChangesUser() {
+    func testProfileChangesUser() throws {
         Profile.open()
         Profile.changeUserButton.tap()
         let entry = user!.session!
         LoginStartSession.cell(host: entry.baseURL.host!, userID: entry.userID).waitToExist()
     }
 
-    func xtestProfileLogsOut() {
+    func xtestProfileLogsOut() throws {
         Profile.open()
         Profile.logOutButton.tap()
         LoginStart.findSchoolButton.waitToExist()
@@ -47,7 +47,7 @@ class ProfileE2ETests: CoreUITestCase {
         XCTAssertFalse(LoginStartSession.cell(host: entry.baseURL.host!, userID: entry.userID).exists)
     }
 
-    func testPreviewUserFile() {
+    func testPreviewUserFile() throws {
         Profile.open()
         Profile.filesButton.tap()
 
@@ -55,7 +55,7 @@ class ProfileE2ETests: CoreUITestCase {
         FileDetails.imageView.waitToExist()
     }
 
-    func xtestProfileLandingPage() {
+    func xtestProfileLandingPage() throws {
         guard let entry = user?.session else {
             return XCTFail("Couldn't get keychain entry")
         }

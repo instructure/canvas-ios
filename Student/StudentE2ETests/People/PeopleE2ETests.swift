@@ -32,7 +32,7 @@ enum PersonContextCard {
 }
 
 class PeopleE2ETests: CoreUITestCase {
-    func testCourseUsersAndUserContextCardDisplay() {
+    func testCourseUsersAndUserContextCardDisplay() throws {
         // Dashboard
         Dashboard.courseCard(id: "262").tapUntil {
             CourseNavigation.people.exists()

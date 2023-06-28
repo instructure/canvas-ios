@@ -21,7 +21,7 @@ import TestsFoundation
 import XCTest
 
 class HelpTests: E2ETestCase {
-    func testHelpPage() {
+    func testHelpPage() throws {
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
         let course = seeder.createCourse()

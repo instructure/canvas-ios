@@ -21,7 +21,7 @@ import TestsFoundation
 import XCTest
 
 class GradesTests: E2ETestCase {
-    func testGrades() {
+    func testGrades() throws {
         // MARK: Seed the usual stuff with 2 assignments
         let student = seeder.createUser()
         let course = seeder.createCourse()
@@ -61,7 +61,7 @@ class GradesTests: E2ETestCase {
         XCTAssertTrue(GradeList.totalGrade(totalGrade: "95.45%").exists())
     }
 
-    func testLetterGrades() {
+    func testLetterGrades() throws {
         // MARK: Seed the usual stuff with 3 letter grade assignments
         let student = seeder.createUser()
         let course = seeder.createCourse()
@@ -103,7 +103,7 @@ class GradesTests: E2ETestCase {
         XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label(), "B-")
     }
 
-    func testPercentageGrades() {
+    func testPercentageGrades() throws {
         // MARK: Seed the usual stuff with 2 percentage grade assignments
         let student = seeder.createUser()
         let course = seeder.createCourse()
@@ -138,7 +138,7 @@ class GradesTests: E2ETestCase {
         XCTAssertEqual(AssignmentDetails.gradeDisplayGrade.label(), "\(grades[1])%")
     }
 
-    func testPassFailGrades() {
+    func testPassFailGrades() throws {
         // MARK: Seed the usual stuff with 4 pass-fail grade assignments
         let student = seeder.createUser()
         let course = seeder.createCourse()

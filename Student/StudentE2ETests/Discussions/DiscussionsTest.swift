@@ -19,7 +19,7 @@
 import TestsFoundation
 
 class DiscussionsTests: E2ETestCase {
-    func testDiscussionLabels() {
+    func testDiscussionLabels() throws {
         typealias Helper = DiscussionsHelper
 
         // MARK: Seed the usual stuff with a discussion
@@ -50,7 +50,7 @@ class DiscussionsTests: E2ETestCase {
         XCTAssertEqual(discussionUnreadLabel.label(), "\(discussion.unread_count) Unread")
     }
 
-    func testDiscussionDetails() {
+    func testDiscussionDetails() throws {
         typealias Helper = DiscussionsHelper
         typealias DetailsHelper = Helper.Details
 
@@ -91,7 +91,7 @@ class DiscussionsTests: E2ETestCase {
         XCTAssertTrue(detailsReplyButton.isVisible)
     }
 
-    func testReplyToDiscussion() {
+    func testReplyToDiscussion() throws {
         typealias Helper = DiscussionsHelper
         typealias DetailsHelper = Helper.Details
         typealias ReplyHelper = Helper.Details.Reply
@@ -163,7 +163,7 @@ class DiscussionsTests: E2ETestCase {
         XCTAssertTrue(threadReplyLabel.isVisible)
     }
 
-    func testAssignmentDiscussion() {
+    func testAssignmentDiscussion() throws {
         typealias Helper = DiscussionsHelper
         typealias DetailsHelper = Helper.Details
 

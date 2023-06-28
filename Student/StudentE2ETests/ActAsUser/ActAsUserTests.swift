@@ -23,7 +23,7 @@ class ActAsUserTests: CoreUITestCase {
     // TODO: Make it use DataSeeder
     override var user: UITestUser? { return .readAdmin1 }
 
-    func testActAsUser() {
+    func testActAsUser() throws {
         Profile.open()
         XCTAssertEqual(Profile.userNameLabel.label(), "Admin One")
         XCTAssertTrue(Profile.actAsUserButton.waitToExist().isVisible)
