@@ -22,12 +22,12 @@ import TestsFoundation
 class PeopleTests: E2ETestCase {
     func testPeopleListAndContextCard() throws {
         // MARK: Seed the usual stuff with some additional people
-        let users = seeder.createUsers(5)
-        let course = seeder.createCourse()
+        let users = try! seeder.createUsers(5)
+        let course = try! seeder.createCourse()
         let students = [users[0], users[1], users[2]]
         let teachers = [users[3], users[4]]
-        seeder.enrollStudents(students, in: course)
-        seeder.enrollTeachers(teachers, in: course)
+        try! seeder.enrollStudents(students, in: course)
+        try! seeder.enrollTeachers(teachers, in: course)
 
         // MARK: Get the user logged in
         logInDSUser(students[0])
@@ -100,10 +100,10 @@ class PeopleTests: E2ETestCase {
 
     func testPeopleListUpdatesAfterEnrollmentOfPersonIsDeleted() throws {
         // MARK: Seed the usual stuff with some additional people
-        let users = seeder.createUsers(2)
-        let course = seeder.createCourse()
+        let users = try! seeder.createUsers(2)
+        let course = try! seeder.createCourse()
         let students = [users[0], users[1]]
-        let enrollments = seeder.enrollStudents(students, in: course)
+        let enrollments = try! seeder.enrollStudents(students, in: course)
 
         // MARK: Get the user logged in
         logInDSUser(students[0])
@@ -131,7 +131,7 @@ class PeopleTests: E2ETestCase {
         XCTAssertEqual(person2NameLabel.label(), students[1].name)
 
         // MARK: Delete enrollment of the other student and check if People List gets updated
-        seeder.deleteEnrollment(enrollments[1], in: course)
+        try! seeder.deleteEnrollment(enrollments[1], in: course)
         PeopleHelper.pullToRefresh()
         person2 = PeopleHelper.peopleCell(index: 1).waitToVanish()
         XCTAssertFalse(person2.isVisible)

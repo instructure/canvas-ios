@@ -88,7 +88,7 @@ public class DiscussionsHelper: BaseHelper {
         let discussionBody = CreateDSDiscussionRequest.RequestDSDiscussion(
             title: title, message: message + title, is_announcement: isAnnouncement,
             published: published, assignment: discussionAssignment)
-        return seeder.createDiscussion(courseId: course.id, requestBody: discussionBody)
+        return try! seeder.createDiscussion(courseId: course.id, requestBody: discussionBody)
     }
 
     public static func navigateToDiscussions(course: DSCourse) {
