@@ -37,7 +37,7 @@ class DashboardTests: E2ETestCase {
         XCTAssertTrue(courseCard1.isVisible)
 
         // MARK: Check for course2
-        let course2 = seeder.createCourse()
+        let course2 = try! seeder.createCourse()
         try! seeder.enrollStudent(student, in: course2)
         pullToRefresh()
         let courseCard2 = Dashboard.courseCard(id: course2.id).waitToExist()
