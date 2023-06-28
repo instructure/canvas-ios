@@ -101,9 +101,9 @@ class ListCellViewModel: ObservableObject {
 
     var accessibilityText: String {
         var titleText = title + (subtitle ?? "")
-//        if let error = error {
-//            titleText.append("," + error)
-//        }
+        if case .error(let error) = state, let error = error {
+            titleText.append("," + error)
+        }
         var selectionText = ""
         if selectionDidToggle != nil {
             switch selectionState {
@@ -126,14 +126,13 @@ class ListCellViewModel: ObservableObject {
         }
 
         var progressText = ""
-//        if let progress = progress, error == nil {
-//            if progress == 1 {
-//                progressText = NSLocalizedString("Download complete", bundle: .core, comment: "")
-//            } else {
-//                progressText = NSLocalizedString("Downloading", bundle: .core, comment: "")
-//            }
-//        }
-
+        if case let .loading(progress) = state, let progress = progress, !state.isError {
+            if progress == 1 {
+                progressText = NSLocalizedString("Download complete", bundle: .core, comment: "")
+            } else {
+                progressText = NSLocalizedString("Downloading", bundle: .core, comment: "")
+            }
+        }
         return titleText + "," + selectionText + "," + collapseText + "," + progressText + ","
     }
 
