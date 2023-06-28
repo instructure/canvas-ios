@@ -24,7 +24,7 @@ extension DataSeeder {
         var users: [DSUser] = []
 
         for _ in 0..<count {
-            try! users.append(createUser())
+            users.append(try! createUser())
         }
 
         return users
