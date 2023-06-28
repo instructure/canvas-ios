@@ -32,7 +32,7 @@ class PlannerTests: CoreUITestCase {
         navigateToReference()
     }
 
-    func navigateToReference() throws {
+    func navigateToReference() {
         if !PlannerCalendar.monthButton.isSelected {
             PlannerCalendar.monthButton.tap()
         }
