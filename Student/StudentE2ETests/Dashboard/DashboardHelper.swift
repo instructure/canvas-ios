@@ -26,16 +26,16 @@ public class DashboardHelper: BaseHelper {
     public static var doneButton: Element { app.find(id: "screen.dismiss", type: .button) }
 
     @discardableResult
-    public static func createFrontPageForCourse(course: DSCourse) -> DSPage {
+    public static func createFrontPageForCourse(course: DSCourse) throws -> DSPage {
         let pageBody = CreateDSPageRequest.RequestDSPage(title: "Dashboard Test Page", body: "Dashboard Test Page Body", front_page: true, published: true)
-        return try! seeder.createPage(courseId: course.id, requestBody: pageBody)
+        return try seeder.createPage(courseId: course.id, requestBody: pageBody)
     }
 
-    public static func createCourses(number: Int) -> [DSCourse] {
+    public static func createCourses(number: Int) throws -> [DSCourse] {
         var courses = [DSCourse]()
         for i in 0..<number {
             let courseName = "Course \(i + 1) DataSeed iOS \(Int(Date().timeIntervalSince1970))"
-            courses.append(try! seeder.createCourse(name: courseName))
+            courses.append(try seeder.createCourse(name: courseName))
         }
         return courses
     }

@@ -23,11 +23,11 @@ class DiscussionsTests: E2ETestCase {
         typealias Helper = DiscussionsHelper
 
         // MARK: Seed the usual stuff with a discussion
-        let student = try! seeder.createUser()
-        let course = try! seeder.createCourse()
-        try! seeder.enrollStudent(student, in: course)
+        let student = try seeder.createUser()
+        let course = try seeder.createCourse()
+        try seeder.enrollStudent(student, in: course)
 
-        let discussion = Helper.createDiscussion(course: course)
+        let discussion = try Helper.createDiscussion(course: course)
 
         // MARK: Get the user logged in
         logInDSUser(student)
@@ -55,11 +55,11 @@ class DiscussionsTests: E2ETestCase {
         typealias DetailsHelper = Helper.Details
 
         // MARK: Seed the usual stuff with a discussion
-        let student = try! seeder.createUser()
-        let course = try! seeder.createCourse()
-        try! seeder.enrollStudent(student, in: course)
+        let student = try seeder.createUser()
+        let course = try seeder.createCourse()
+        try seeder.enrollStudent(student, in: course)
 
-        let discussion = Helper.createDiscussion(course: course)
+        let discussion = try Helper.createDiscussion(course: course)
 
         // MARK: Get the user logged in
         logInDSUser(student)
@@ -97,11 +97,11 @@ class DiscussionsTests: E2ETestCase {
         typealias ReplyHelper = Helper.Details.Reply
 
         // MARK: Seed the usual stuff and a discussion
-        let student = try! seeder.createUser()
-        let course = try! seeder.createCourse()
-        try! seeder.enrollStudent(student, in: course)
+        let student = try seeder.createUser()
+        let course = try seeder.createCourse()
+        try seeder.enrollStudent(student, in: course)
 
-        let discussion = Helper.createDiscussion(course: course)
+        let discussion = try Helper.createDiscussion(course: course)
 
         // MARK: Get the user logged in
         logInDSUser(student)
@@ -168,11 +168,11 @@ class DiscussionsTests: E2ETestCase {
         typealias DetailsHelper = Helper.Details
 
         // MARK: Seed the usual stuff with an assignment discussion
-        let student = try! seeder.createUser()
-        let course = try! seeder.createCourse()
-        try! seeder.enrollStudent(student, in: course)
+        let student = try seeder.createUser()
+        let course = try seeder.createCourse()
+        try seeder.enrollStudent(student, in: course)
 
-        let assignmentDiscussion = Helper.createDiscussion(course: course, isAssignment: true)
+        let assignmentDiscussion = try Helper.createDiscussion(course: course, isAssignment: true)
 
         // MARK: Get the user logged in
         logInDSUser(student)

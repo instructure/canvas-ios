@@ -21,8 +21,8 @@ import TestsFoundation
 class DashboardTests: E2ETestCase {
     func testDashboard() throws {
         // MARK: Seed the usual stuff
-        let users = try! seeder.createUsers(1)
-        let course1 = try! seeder.createCourse()
+        let users = try seeder.createUsers(1)
+        let course1 = try seeder.createCourse()
         let student = users[0]
 
         // MARK: Check for empty dashboard
@@ -31,14 +31,14 @@ class DashboardTests: E2ETestCase {
         XCTAssertTrue(noCoursesLabel.isVisible)
 
         // MARK: Check for course1
-        try! seeder.enrollStudent(student, in: course1)
+        try seeder.enrollStudent(student, in: course1)
         pullToRefresh()
         let courseCard1 = Dashboard.courseCard(id: course1.id).waitToExist()
         XCTAssertTrue(courseCard1.isVisible)
 
         // MARK: Check for course2
-        let course2 = try! seeder.createCourse()
-        try! seeder.enrollStudent(student, in: course2)
+        let course2 = try seeder.createCourse()
+        try seeder.enrollStudent(student, in: course2)
         pullToRefresh()
         let courseCard2 = Dashboard.courseCard(id: course2.id).waitToExist()
         XCTAssertTrue(courseCard2.isVisible)
@@ -60,16 +60,16 @@ class DashboardTests: E2ETestCase {
 
     func testAnnouncementBelowInvite() throws {
         // MARK: Seed the usual stuff
-        let student = try! seeder.createUser()
-        let course = try! seeder.createCourse()
+        let student = try seeder.createUser()
+        let course = try seeder.createCourse()
 
         // MARK: Check for empty dashboard
         logInDSUser(student)
         app.find(label: "No Courses").waitToExist()
 
         // MARK: Create an enrollment and an announcement
-        let enrollment = try! seeder.enrollStudent(student, in: course, state: .invited)
-        let announcement = AnnouncementsHelper.postAccountNotification()
+        let enrollment = try seeder.enrollStudent(student, in: course, state: .invited)
+        let announcement = try AnnouncementsHelper.postAccountNotification()
         BaseHelper.pullToRefresh()
 
         // MARK: Check visibility and order of the enrollment and the announcement
@@ -84,10 +84,10 @@ class DashboardTests: E2ETestCase {
 
     func testNavigateToDashboard() throws {
         // MARK: Seed the usual stuff and a front page for the course
-        let student = try! seeder.createUser()
-        let course = try! seeder.createCourse()
-        try! seeder.enrollStudent(student, in: course)
-        DashboardHelper.createFrontPageForCourse(course: course)
+        let student = try seeder.createUser()
+        let course = try seeder.createCourse()
+        try seeder.enrollStudent(student, in: course)
+        try DashboardHelper.createFrontPageForCourse(course: course)
 
         // MARK: Get the user logged in and navigate to the course
         logInDSUser(student)
@@ -109,9 +109,9 @@ class DashboardTests: E2ETestCase {
 
     func testCourseCardInfo() throws {
         // MARK: Seed the usual stuff
-        let student = try! seeder.createUser()
-        let course = try! seeder.createCourse()
-        try! seeder.enrollStudent(student, in: course)
+        let student = try seeder.createUser()
+        let course = try seeder.createCourse()
+        try seeder.enrollStudent(student, in: course)
 
         // MARK: Get the user logged in and check visibility and label of course
         logInDSUser(student)
@@ -122,15 +122,15 @@ class DashboardTests: E2ETestCase {
 
     func testDashboardEditButtonDisplaysCorrectCourses() throws {
         // MARK: Seed the usual stuff with 7 courses and student enrolled in them with all 7 different states
-        let student = try! seeder.createUser()
-        let courses = DashboardHelper.createCourses(number: 7)
-        try! seeder.enrollStudent(student, in: courses[0], state: .active)
-        try! seeder.enrollStudent(student, in: courses[1], state: .invited)
-        try! seeder.enrollStudent(student, in: courses[2], state: .completed)
-        try! seeder.enrollStudent(student, in: courses[3], state: .creation_pending)
-        try! seeder.enrollStudent(student, in: courses[4], state: .deleted)
-        try! seeder.enrollStudent(student, in: courses[5], state: .inactive)
-        try! seeder.enrollStudent(student, in: courses[6], state: .rejected)
+        let student = try seeder.createUser()
+        let courses = try DashboardHelper.createCourses(number: 7)
+        try seeder.enrollStudent(student, in: courses[0], state: .active)
+        try seeder.enrollStudent(student, in: courses[1], state: .invited)
+        try seeder.enrollStudent(student, in: courses[2], state: .completed)
+        try seeder.enrollStudent(student, in: courses[3], state: .creation_pending)
+        try seeder.enrollStudent(student, in: courses[4], state: .deleted)
+        try seeder.enrollStudent(student, in: courses[5], state: .inactive)
+        try seeder.enrollStudent(student, in: courses[6], state: .rejected)
 
         // MARK: Get the user logged in and check visibility and label of courses
         logInDSUser(student)
@@ -170,12 +170,12 @@ class DashboardTests: E2ETestCase {
         try XCTSkipIf(true, "Works locally but fails on CI")
 
         // MARK: Seed the usual stuff with a graded assignment
-        let student = try! seeder.createUser()
-        let course = try! seeder.createCourse()
-        try! seeder.enrollStudent(student, in: course)
-        let assignment = GradesHelper.createAssignments(course: course, count: 1)
-        GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignment)
-        GradesHelper.gradeAssignments(grades: ["100"], course: course, assignments: assignment, user: student)
+        let student = try seeder.createUser()
+        let course = try seeder.createCourse()
+        try seeder.enrollStudent(student, in: course)
+        let assignment = try GradesHelper.createAssignments(course: course, count: 1)
+        try GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignment)
+        try GradesHelper.gradeAssignments(grades: ["100"], course: course, assignments: assignment, user: student)
 
         // MARK: Get the user logged in and check visibility of course
         logInDSUser(student)

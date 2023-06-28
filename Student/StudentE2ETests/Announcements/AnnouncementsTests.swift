@@ -24,12 +24,12 @@ class AnnouncementsTests: E2ETestCase {
         typealias Helper = AnnouncementsHelper
 
         // MARK: Seed the usual stuff
-        let student = try! seeder.createUser()
-        let course = try! seeder.createCourse()
-        try! seeder.enrollStudent(student, in: course)
+        let student = try seeder.createUser()
+        let course = try seeder.createCourse()
+        try seeder.enrollStudent(student, in: course)
 
         // MARK: Create some announcements and get the user logged in
-        let announcements = Helper.createAnnouncements(course: course, count: 3)
+        let announcements = try Helper.createAnnouncements(course: course, count: 3)
         logInDSUser(student)
 
         // MARK: Navigate to Announcement page and check the order of the announcements
@@ -53,12 +53,12 @@ class AnnouncementsTests: E2ETestCase {
         typealias DetailsHelper = Helper.Details
 
         // MARK: Seed the usual stuff
-        let student = try! seeder.createUser()
-        let course = try! seeder.createCourse()
-        try! seeder.enrollStudent(student, in: course)
+        let student = try seeder.createUser()
+        let course = try seeder.createCourse()
+        try seeder.enrollStudent(student, in: course)
 
         // MARK: Create an announcement and get the user logged in
-        let announcement = Helper.createAnnouncements(course: course)[0]
+        let announcement = try Helper.createAnnouncements(course: course)[0]
         logInDSUser(student)
 
         // MARK: Navigate to Announcement page and check the title and message of the announcement
@@ -82,12 +82,12 @@ class AnnouncementsTests: E2ETestCase {
         typealias Helper = AnnouncementsHelper
 
         // MARK: Seed the usual stuff
-        let student = try! seeder.createUser()
-        let course = try! seeder.createCourse()
-        try! seeder.enrollStudent(student, in: course)
+        let student = try seeder.createUser()
+        let course = try seeder.createCourse()
+        try seeder.enrollStudent(student, in: course)
 
         // MARK: Post an account notification and get the user logged in
-        let globalAnnouncement = Helper.postAccountNotification()
+        let globalAnnouncement = try Helper.postAccountNotification()
         logInDSUser(student)
 
         // MARK: Check visibility of the course and the announcement notification title

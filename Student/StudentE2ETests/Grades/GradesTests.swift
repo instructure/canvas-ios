@@ -23,17 +23,17 @@ import XCTest
 class GradesTests: E2ETestCase {
     func testGrades() throws {
         // MARK: Seed the usual stuff with 2 assignments
-        let student = try! seeder.createUser()
-        let course = try! seeder.createCourse()
-        try! seeder.enrollStudent(student, in: course)
+        let student = try seeder.createUser()
+        let course = try seeder.createCourse()
+        try seeder.enrollStudent(student, in: course)
 
         let pointsPossible = [Float(10), Float(100)]
-        let assignments = GradesHelper.createAssignments(course: course, count: 2, points_possible: pointsPossible)
+        let assignments = try GradesHelper.createAssignments(course: course, count: 2, points_possible: pointsPossible)
 
         logInDSUser(student)
 
         // MARK: Create submissions for both
-        GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
+        try GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
 
         // MARK: Navigate to an assignment detail and check if grade updates
         GradesHelper.navigateToAssignments(course: course)
@@ -43,7 +43,7 @@ class GradesTests: E2ETestCase {
         assignmentOne.tap()
 
         let grades = ["5", "100"]
-        GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
+        try GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
 
         pullToRefresh()
         let assignmentGrade = AssignmentDetails.pointsOutOf(actualScore: "5", maxScore: "10").waitToExist()
@@ -63,16 +63,16 @@ class GradesTests: E2ETestCase {
 
     func testLetterGrades() throws {
         // MARK: Seed the usual stuff with 3 letter grade assignments
-        let student = try! seeder.createUser()
-        let course = try! seeder.createCourse()
-        try! seeder.enrollStudent(student, in: course)
+        let student = try seeder.createUser()
+        let course = try seeder.createCourse()
+        try seeder.enrollStudent(student, in: course)
 
-        let assignments = GradesHelper.createAssignments(course: course, count: 3, grading_type: .letter_grade)
+        let assignments = try GradesHelper.createAssignments(course: course, count: 3, grading_type: .letter_grade)
 
         logInDSUser(student)
 
         // MARK: Create submissions for all
-        GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
+        try GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
 
         // MARK: Navigate to assignments
         GradesHelper.navigateToAssignments(course: course)
@@ -83,7 +83,7 @@ class GradesTests: E2ETestCase {
 
         // MARK: Grade assignments and check if grades are updated on the UI
         let grades = ["1", "100", "B-"]
-        GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
+        try GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
         pullToRefresh()
 
         firstAssignment.tap()
@@ -105,23 +105,23 @@ class GradesTests: E2ETestCase {
 
     func testPercentageGrades() throws {
         // MARK: Seed the usual stuff with 2 percentage grade assignments
-        let student = try! seeder.createUser()
-        let course = try! seeder.createCourse()
-        try! seeder.enrollStudent(student, in: course)
+        let student = try seeder.createUser()
+        let course = try seeder.createCourse()
+        try seeder.enrollStudent(student, in: course)
 
-        let assignments = GradesHelper.createAssignments(course: course, count: 2, grading_type: .percent)
+        let assignments = try GradesHelper.createAssignments(course: course, count: 2, grading_type: .percent)
 
         logInDSUser(student)
 
         // MARK: Create submissions for both
-        GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
+        try GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
 
         // MARK: Navigate to assignments
         GradesHelper.navigateToAssignments(course: course)
 
         // MARK: Grade both assignments and check if grades are updated on the UI
         let grades = ["1", "100"]
-        GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
+        try GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
         pullToRefresh()
 
         let firstAssignment = AssignmentsList.assignment(id: assignments[0].id).waitToExist()
@@ -140,23 +140,23 @@ class GradesTests: E2ETestCase {
 
     func testPassFailGrades() throws {
         // MARK: Seed the usual stuff with 4 pass-fail grade assignments
-        let student = try! seeder.createUser()
-        let course = try! seeder.createCourse()
-        try! seeder.enrollStudent(student, in: course)
+        let student = try seeder.createUser()
+        let course = try seeder.createCourse()
+        try seeder.enrollStudent(student, in: course)
 
-        let assignments = GradesHelper.createAssignments(course: course, count: 4, grading_type: .pass_fail)
+        let assignments = try GradesHelper.createAssignments(course: course, count: 4, grading_type: .pass_fail)
 
         logInDSUser(student)
 
         // MARK: Create submissions for both
-        GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
+        try GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
 
         // MARK: Navigate to assignments
         GradesHelper.navigateToAssignments(course: course)
 
         // MARK: Grade assignments and check if grades are updated on the UI
         let grades = ["pass", "100", "fail", "fail"]
-        GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
+        try GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
 
         pullToRefresh()
         let firstAssignment = AssignmentsList.assignment(id: assignments[0].id).waitToExist()

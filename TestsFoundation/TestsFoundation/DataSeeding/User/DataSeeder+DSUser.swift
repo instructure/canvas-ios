@@ -24,7 +24,7 @@ extension DataSeeder {
         var users: [DSUser] = []
 
         for _ in 0..<count {
-            users.append(try! createUser())
+            users.append(try createUser())
         }
 
         return users
@@ -34,6 +34,6 @@ extension DataSeeder {
         let requestedUser = CreateDSUserRequest.Body.User(name: name)
         let requestedPseudonym = CreateDSUserRequest.Body.Pseudonym(password: password)
         let request = CreateDSUserRequest(body: CreateDSUserRequest.Body(user: requestedUser, pseudonym: requestedPseudonym))
-        return try! makeRequest(request)
+        return try makeRequest(request)
     }
 }
