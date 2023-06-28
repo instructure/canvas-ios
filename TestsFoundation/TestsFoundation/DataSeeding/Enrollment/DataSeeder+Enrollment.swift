@@ -22,32 +22,32 @@ extension DataSeeder {
 
     @discardableResult
     public func enrollTeacher(_ teacher: DSUser, in course: DSCourse, state: EnrollmentState = .active) throws -> DSEnrollment {
-        self.enrollUser(teacher, in: course, type: .TeacherEnrollment, state: state)
+        try! self.enrollUser(teacher, in: course, type: .TeacherEnrollment, state: state)
     }
 
     @discardableResult
     public func enrollTeachers(_ teachers: [DSUser], in course: DSCourse, state: EnrollmentState = .active) throws -> [DSEnrollment] {
-        self.enrollUsers(teachers, in: course, type: .TeacherEnrollment, state: state)
+        try! self.enrollUsers(teachers, in: course, type: .TeacherEnrollment, state: state)
     }
 
     @discardableResult
     public func enrollStudent(_ student: DSUser, in course: DSCourse, state: EnrollmentState = .active) throws -> DSEnrollment {
-        self.enrollUser(student, in: course, type: .StudentEnrollment, state: state)
+        try! self.enrollUser(student, in: course, type: .StudentEnrollment, state: state)
     }
 
     @discardableResult
     public func enrollStudents(_ students: [DSUser], in course: DSCourse, state: EnrollmentState = .active) throws -> [DSEnrollment] {
-        self.enrollUsers(students, in: course, type: .StudentEnrollment, state: state)
+        try! self.enrollUsers(students, in: course, type: .StudentEnrollment, state: state)
     }
 
     @discardableResult
     public func enrollParent(_ parent: DSUser, in course: DSCourse, state: EnrollmentState = .active) throws -> DSEnrollment {
-        self.enrollUser(parent, in: course, type: .ObserverEnrollment, state: state)
+        try! self.enrollUser(parent, in: course, type: .ObserverEnrollment, state: state)
     }
 
     @discardableResult
     public func enrollDesigner(_ designer: DSUser, in course: DSCourse, state: EnrollmentState = .active) throws -> DSEnrollment {
-        self.enrollUser(designer, in: course, type: .DesignerEnrollment, state: state)
+        try! self.enrollUser(designer, in: course, type: .DesignerEnrollment, state: state)
     }
 
     @discardableResult
