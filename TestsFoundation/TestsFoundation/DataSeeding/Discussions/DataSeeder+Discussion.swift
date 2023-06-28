@@ -19,7 +19,7 @@
 extension DataSeeder {
 
     @discardableResult
-    public func createDiscussion(courseId: String, requestBody: CreateDSDiscussionRequest.RequestDSDiscussion) -> DSDiscussionTopic {
+    public func createDiscussion(courseId: String, requestBody: CreateDSDiscussionRequest.RequestDSDiscussion) throws -> DSDiscussionTopic {
         let request = CreateDSDiscussionRequest(courseID: courseId, body: requestBody)
         return try! makeRequest(request)
     }

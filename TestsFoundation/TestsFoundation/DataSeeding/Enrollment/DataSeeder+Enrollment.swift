@@ -21,44 +21,44 @@ import Core
 extension DataSeeder {
 
     @discardableResult
-    public func enrollTeacher(_ teacher: DSUser, in course: DSCourse, state: EnrollmentState = .active) -> DSEnrollment {
+    public func enrollTeacher(_ teacher: DSUser, in course: DSCourse, state: EnrollmentState = .active) throws -> DSEnrollment {
         self.enrollUser(teacher, in: course, type: .TeacherEnrollment, state: state)
     }
 
     @discardableResult
-    public func enrollTeachers(_ teachers: [DSUser], in course: DSCourse, state: EnrollmentState = .active) -> [DSEnrollment] {
+    public func enrollTeachers(_ teachers: [DSUser], in course: DSCourse, state: EnrollmentState = .active) throws -> [DSEnrollment] {
         self.enrollUsers(teachers, in: course, type: .TeacherEnrollment, state: state)
     }
 
     @discardableResult
-    public func enrollStudent(_ student: DSUser, in course: DSCourse, state: EnrollmentState = .active) -> DSEnrollment {
+    public func enrollStudent(_ student: DSUser, in course: DSCourse, state: EnrollmentState = .active) throws -> DSEnrollment {
         self.enrollUser(student, in: course, type: .StudentEnrollment, state: state)
     }
 
     @discardableResult
-    public func enrollStudents(_ students: [DSUser], in course: DSCourse, state: EnrollmentState = .active) -> [DSEnrollment] {
+    public func enrollStudents(_ students: [DSUser], in course: DSCourse, state: EnrollmentState = .active) throws -> [DSEnrollment] {
         self.enrollUsers(students, in: course, type: .StudentEnrollment, state: state)
     }
 
     @discardableResult
-    public func enrollParent(_ parent: DSUser, in course: DSCourse, state: EnrollmentState = .active) -> DSEnrollment {
+    public func enrollParent(_ parent: DSUser, in course: DSCourse, state: EnrollmentState = .active) throws -> DSEnrollment {
         self.enrollUser(parent, in: course, type: .ObserverEnrollment, state: state)
     }
 
     @discardableResult
-    public func enrollDesigner(_ designer: DSUser, in course: DSCourse, state: EnrollmentState = .active) -> DSEnrollment {
+    public func enrollDesigner(_ designer: DSUser, in course: DSCourse, state: EnrollmentState = .active) throws -> DSEnrollment {
         self.enrollUser(designer, in: course, type: .DesignerEnrollment, state: state)
     }
 
     @discardableResult
-    public func enrollUser(_ user: DSUser, in course: DSCourse, type: DSEnrollmentType, state: EnrollmentState = .active) -> DSEnrollment {
+    public func enrollUser(_ user: DSUser, in course: DSCourse, type: DSEnrollmentType, state: EnrollmentState = .active) throws -> DSEnrollment {
         let requestedEnrollment = EnrollRequest.RequestedEnrollment(enrollment_state: state, user_id: user.id, type: type)
         let request = EnrollRequest(courseID: course.id, body: requestedEnrollment)
         return try! makeRequest(request)
     }
 
     @discardableResult
-    public func enrollUsers(_ users: [DSUser], in course: DSCourse, type: DSEnrollmentType, state: EnrollmentState = .active) -> [DSEnrollment] {
+    public func enrollUsers(_ users: [DSUser], in course: DSCourse, type: DSEnrollmentType, state: EnrollmentState = .active) throws -> [DSEnrollment] {
         var enrollments = [DSEnrollment]()
         for user in users {
             let requestedEnrollment = EnrollRequest.RequestedEnrollment(enrollment_state: state, user_id: user.id, type: type)
@@ -69,7 +69,7 @@ extension DataSeeder {
     }
 
     @discardableResult
-    public func deleteEnrollment(_ enrollment: DSEnrollment, in course: DSCourse) -> DSEnrollment {
+    public func deleteEnrollment(_ enrollment: DSEnrollment, in course: DSCourse) throws -> DSEnrollment {
         let request = DeleteEnrollmentRequest(courseID: course.id, enrollmentId: enrollment.id)
         return try! makeRequest(request)
     }

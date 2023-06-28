@@ -19,7 +19,7 @@
 extension DataSeeder {
 
     @discardableResult
-    public func createPage(courseId: String, requestBody: CreateDSPageRequest.RequestDSPage) -> DSPage {
+    public func createPage(courseId: String, requestBody: CreateDSPageRequest.RequestDSPage) throws -> DSPage {
         let requestedBody = CreateDSPageRequest.Body(wiki_page: requestBody)
         let request = CreateDSPageRequest(body: requestedBody, courseId: courseId)
         return try! makeRequest(request)
