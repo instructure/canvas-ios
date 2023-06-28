@@ -67,7 +67,7 @@ public class AssignmentsHelper: BaseHelper {
         dueDate: String? = nil) -> DSAssignment {
         let assignmentBody = CreateDSAssignmentRequest.RequestedDSAssignment(
             name: name, description: description + name, published: published, submission_types: submissionTypes, points_possible: pointsPossible, due_at: dueDate)
-        return seeder.createAssignment(courseId: course.id, assignementBody: assignmentBody)
+        return try! seeder.createAssignment(courseId: course.id, assignementBody: assignmentBody)
     }
 
     @discardableResult

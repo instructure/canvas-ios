@@ -23,10 +23,10 @@ import Core
 class ModulesTests: E2ETestCase {
     func testModuleItems() throws {
         // MARK: Seed the usual stuff
-        let users = seeder.createUsers(1)
-        let course = seeder.createCourse()
+        let users = try! seeder.createUsers(1)
+        let course = try! seeder.createCourse()
         let student = users[0]
-        seeder.enrollStudent(student, in: course)
+        try! seeder.enrollStudent(student, in: course)
 
         // MARK: Create module with assignment, discussion, page, quiz items
         let module = ModulesHelper.createModule(course: course, name: "Test Module")

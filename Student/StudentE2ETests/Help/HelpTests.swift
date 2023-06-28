@@ -23,9 +23,9 @@ import XCTest
 class HelpTests: E2ETestCase {
     func testHelpPage() throws {
         // MARK: Seed the usual stuff
-        let student = seeder.createUser()
-        let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
+        let student = try! seeder.createUser()
+        let course = try! seeder.createCourse()
+        try! seeder.enrollStudent(student, in: course)
 
         logInDSUser(student)
 

@@ -25,10 +25,10 @@ class AssignmentsTests: E2ETestCase {
         typealias Helper = AssignmentsHelper
 
         // MARK: Seed the usual stuff
-        let users = seeder.createUsers(1)
-        let course = seeder.createCourse()
+        let users = try! seeder.createUsers(1)
+        let course = try! seeder.createCourse()
         let student = users[0]
-        seeder.enrollStudent(student, in: course)
+        try! seeder.enrollStudent(student, in: course)
 
         // MARK: Create assignment for testing share extension
         let assignment = Helper.createAssignmentForShareExtension(course: course)
@@ -46,10 +46,10 @@ class AssignmentsTests: E2ETestCase {
         typealias DetailsHelper = Helper.Details
 
         // MARK: Seed the usual stuff
-        let users = seeder.createUsers(1)
-        let course = seeder.createCourse()
+        let users = try! seeder.createUsers(1)
+        let course = try! seeder.createCourse()
         let student = users[0]
-        seeder.enrollStudent(student, in: course)
+        try! seeder.enrollStudent(student, in: course)
 
         // MARK: Create an assignment
         let assignment = Helper.createAssignment(course: course, submissionTypes: [.online_text_entry])
@@ -112,10 +112,10 @@ class AssignmentsTests: E2ETestCase {
         typealias SubmissionHelper = Helper.Submission
 
         // MARK: Seed the usual stuff
-        let users = seeder.createUsers(1)
-        let course = seeder.createCourse()
+        let users = try! seeder.createUsers(1)
+        let course = try! seeder.createCourse()
         let student = users[0]
-        seeder.enrollStudent(student, in: course)
+        try! seeder.enrollStudent(student, in: course)
 
         // MARK: Create an assignment
         let assignment = Helper.createAssignment(course: course, submissionTypes: [.online_text_entry])
@@ -175,10 +175,10 @@ class AssignmentsTests: E2ETestCase {
         typealias Helper = AssignmentsHelper
 
         // MARK: Seed the usual stuff
-        let users = seeder.createUsers(1)
-        let course = seeder.createCourse()
+        let users = try! seeder.createUsers(1)
+        let course = try! seeder.createCourse()
         let student = users[0]
-        seeder.enrollStudent(student, in: course)
+        try! seeder.enrollStudent(student, in: course)
 
         // MARK: Create 2 assignments (1 due yesterday and 1 due tomorrow)
         let yesterdaysDate = Helper.getYesterdaysDateString

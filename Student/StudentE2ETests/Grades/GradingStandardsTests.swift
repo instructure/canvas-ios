@@ -22,11 +22,11 @@ import XCTest
 class GradingStandardsTests: E2ETestCase {
     func testGradingStandards() throws {
         // MARK: Seed the usual stuff and a grading scheme
-        let student = seeder.createUser()
-        let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
-        let gradingScheme = seeder.postGradingStandards(courseId: course.id, requestBody: .init())
-        seeder.updateCourseWithGradingScheme(courseId: course.id, gradingStandardId: Int(gradingScheme.id)!)
+        let student = try! seeder.createUser()
+        let course = try! seeder.createCourse()
+        try! seeder.enrollStudent(student, in: course)
+        let gradingScheme = try! seeder.postGradingStandards(courseId: course.id, requestBody: .init())
+        try! seeder.updateCourseWithGradingScheme(courseId: course.id, gradingStandardId: Int(gradingScheme.id)!)
 
         // MARK: Create 2 assignments
         let assignments = GradesHelper.createAssignments(course: course, count: 2)

@@ -59,7 +59,7 @@ public class AnnouncementsHelper: BaseHelper {
         for i in 1...count {
             let announcementTitle = titles?[i] ?? "Announcement Title \(i)"
             let announcementMessage = messages?[i] ?? "This is the message of Announcement \(i)"
-            announcements.append(seeder.createDiscussion(courseId: course.id, requestBody: .init(title: announcementTitle, message: announcementMessage, is_announcement: true, published: true)))
+            announcements.append(try! seeder.createDiscussion(courseId: course.id, requestBody: .init(title: announcementTitle, message: announcementMessage, is_announcement: true, published: true)))
         }
         return announcements
     }
@@ -71,7 +71,7 @@ public class AnnouncementsHelper: BaseHelper {
         let globalAnnouncementStartAt = dateFormatter.string(from: Date().addMinutes(-1))
         let globalAnnouncementEndAt = dateFormatter.string(from: Date().addMinutes(3))
 
-        return seeder.postAccountNotifications(requestBody:
+        return try! seeder.postAccountNotifications(requestBody:
                 .init(subject: globalAnnouncementSubject, message: globalAnnouncementMessage,
                       start_at: globalAnnouncementStartAt, end_at: globalAnnouncementEndAt)
         )

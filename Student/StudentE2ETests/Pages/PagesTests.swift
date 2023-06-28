@@ -22,9 +22,9 @@ import TestsFoundation
 class PagesTests: E2ETestCase {
     func testFrontPageLoadsByDefault() throws {
         // MARK: Seed the usual stuff and a front page for the course
-        let student = seeder.createUser()
-        let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
+        let student = try! seeder.createUser()
+        let course = try! seeder.createCourse()
+        try! seeder.enrollStudent(student, in: course)
         let frontPage = DashboardHelper.createFrontPageForCourse(course: course)
 
         // MARK: Get the user logged in and check the course card
@@ -50,8 +50,8 @@ class PagesTests: E2ETestCase {
 
     func testDeepLinks() throws {
         // MARK: Seed the usual stuff and a front page containing some deep links
-        let student = seeder.createUser()
-        let course = seeder.createCourse()
+        let student = try! seeder.createUser()
+        let course = try! seeder.createCourse()
         let assignmentName = "Deep Link Assignment"
         let assignment = AssignmentsHelper.createAssignment(course: course, name: assignmentName)
         let assignmentLink = PagesHelper.createLinkToAssignment(course: course, assignment: assignment)
@@ -68,7 +68,7 @@ class PagesTests: E2ETestCase {
         PagesHelper.createDeepLinkFrontPage(course: course, body: body)
 
         // MARK: Enroll student in the course and get the user logged in
-        seeder.enrollStudent(student, in: course)
+        try! seeder.enrollStudent(student, in: course)
 
         logInDSUser(student)
 

@@ -37,7 +37,7 @@ public class GradesHelper: BaseHelper {
 
     public static func createSubmissionsForAssignments(course: DSCourse, student: DSUser, assignments: [DSAssignment]) {
         for assignment in assignments {
-            seeder.createSubmission(courseId: course.id, assignmentId: assignment.id, requestBody:
+            try! seeder.createSubmission(courseId: course.id, assignmentId: assignment.id, requestBody:
                 .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
         }
     }
@@ -46,7 +46,7 @@ public class GradesHelper: BaseHelper {
         var assignments = [DSAssignment]()
         for i in 0..<count {
             assignments.append(
-                seeder.createAssignment(
+                try! seeder.createAssignment(
                     courseId: course.id,
                     assignementBody: .init(
                         name: "\(grading_type?.rawValue.capitalized ?? "Sample") Assignment \(i)",
@@ -60,7 +60,7 @@ public class GradesHelper: BaseHelper {
 
     public static func gradeAssignments(grades: [String], course: DSCourse, assignments: [DSAssignment], user: DSUser) {
         for i in 0..<assignments.count {
-            seeder.postGrade(
+            try! seeder.postGrade(
                 courseId: course.id,
                 assignmentId: assignments[i].id,
                 userId: user.id,

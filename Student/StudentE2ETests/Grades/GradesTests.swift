@@ -23,9 +23,9 @@ import XCTest
 class GradesTests: E2ETestCase {
     func testGrades() throws {
         // MARK: Seed the usual stuff with 2 assignments
-        let student = seeder.createUser()
-        let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
+        let student = try! seeder.createUser()
+        let course = try! seeder.createCourse()
+        try! seeder.enrollStudent(student, in: course)
 
         let pointsPossible = [Float(10), Float(100)]
         let assignments = GradesHelper.createAssignments(course: course, count: 2, points_possible: pointsPossible)
@@ -63,9 +63,9 @@ class GradesTests: E2ETestCase {
 
     func testLetterGrades() throws {
         // MARK: Seed the usual stuff with 3 letter grade assignments
-        let student = seeder.createUser()
-        let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
+        let student = try! seeder.createUser()
+        let course = try! seeder.createCourse()
+        try! seeder.enrollStudent(student, in: course)
 
         let assignments = GradesHelper.createAssignments(course: course, count: 3, grading_type: .letter_grade)
 
@@ -105,9 +105,9 @@ class GradesTests: E2ETestCase {
 
     func testPercentageGrades() throws {
         // MARK: Seed the usual stuff with 2 percentage grade assignments
-        let student = seeder.createUser()
-        let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
+        let student = try! seeder.createUser()
+        let course = try! seeder.createCourse()
+        try! seeder.enrollStudent(student, in: course)
 
         let assignments = GradesHelper.createAssignments(course: course, count: 2, grading_type: .percent)
 
@@ -140,9 +140,9 @@ class GradesTests: E2ETestCase {
 
     func testPassFailGrades() throws {
         // MARK: Seed the usual stuff with 4 pass-fail grade assignments
-        let student = seeder.createUser()
-        let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
+        let student = try! seeder.createUser()
+        let course = try! seeder.createCourse()
+        try! seeder.enrollStudent(student, in: course)
 
         let assignments = GradesHelper.createAssignments(course: course, count: 4, grading_type: .pass_fail)
 

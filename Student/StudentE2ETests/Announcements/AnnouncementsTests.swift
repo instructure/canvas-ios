@@ -24,9 +24,9 @@ class AnnouncementsTests: E2ETestCase {
         typealias Helper = AnnouncementsHelper
 
         // MARK: Seed the usual stuff
-        let student = seeder.createUser()
-        let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
+        let student = try! seeder.createUser()
+        let course = try! seeder.createCourse()
+        try! seeder.enrollStudent(student, in: course)
 
         // MARK: Create some announcements and get the user logged in
         let announcements = Helper.createAnnouncements(course: course, count: 3)
@@ -53,9 +53,9 @@ class AnnouncementsTests: E2ETestCase {
         typealias DetailsHelper = Helper.Details
 
         // MARK: Seed the usual stuff
-        let student = seeder.createUser()
-        let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
+        let student = try! seeder.createUser()
+        let course = try! seeder.createCourse()
+        try! seeder.enrollStudent(student, in: course)
 
         // MARK: Create an announcement and get the user logged in
         let announcement = Helper.createAnnouncements(course: course)[0]
@@ -82,9 +82,9 @@ class AnnouncementsTests: E2ETestCase {
         typealias Helper = AnnouncementsHelper
 
         // MARK: Seed the usual stuff
-        let student = seeder.createUser()
-        let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
+        let student = try! seeder.createUser()
+        let course = try! seeder.createCourse()
+        try! seeder.enrollStudent(student, in: course)
 
         // MARK: Post an account notification and get the user logged in
         let globalAnnouncement = Helper.postAccountNotification()

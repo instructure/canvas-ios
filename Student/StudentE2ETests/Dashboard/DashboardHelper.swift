@@ -28,14 +28,14 @@ public class DashboardHelper: BaseHelper {
     @discardableResult
     public static func createFrontPageForCourse(course: DSCourse) -> DSPage {
         let pageBody = CreateDSPageRequest.RequestedDSPage(title: "Dashboard Test Page", body: "Dashboard Test Page Body", front_page: true, published: true)
-        return seeder.createPage(courseId: course.id, requestBody: pageBody)
+        return try! seeder.createPage(courseId: course.id, requestBody: pageBody)
     }
 
     public static func createCourses(number: Int) -> [DSCourse] {
         var courses = [DSCourse]()
         for i in 0..<number {
             let courseName = "Course \(i + 1) DataSeed iOS \(Int(Date().timeIntervalSince1970))"
-            courses.append(seeder.createCourse(name: courseName))
+            courses.append(try! seeder.createCourse(name: courseName))
         }
         return courses
     }

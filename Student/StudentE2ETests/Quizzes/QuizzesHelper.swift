@@ -25,13 +25,13 @@ public class QuizzesHelper: BaseHelper {
     @discardableResult
     public static func createQuiz(course: DSCourse, title: String, description: String, quiz_type: DSQuizType, published: Bool = true) -> DSQuiz {
         let quizBody = CreateDSQuizRequest.RequestedDSQuiz(title: title, description: description, quiz_type: quiz_type, published: published)
-        return seeder.createQuiz(courseId: course.id, quizBody: quizBody)
+        return try! seeder.createQuiz(courseId: course.id, quizBody: quizBody)
     }
 
     @discardableResult
     public static func createQuizQuestion(course: DSCourse, quiz: DSQuiz, name: String, type: DSQuestionType, text: String, answers: [DSAnswer]) -> DSQuizQuestion {
         let quizQuestionBody = CreateDSQuizQuestionRequest.RequestedDSQuizQuestion(question_text: text, question_type: type, answers: answers)
-        return seeder.createQuizQuestion(courseId: course.id, quizId: quiz.id, quizQuestionBody: quizQuestionBody)
+        return try! seeder.createQuizQuestion(courseId: course.id, quizId: quiz.id, quizQuestionBody: quizQuestionBody)
     }
 
     @discardableResult
