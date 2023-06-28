@@ -89,14 +89,33 @@ final class FetchedResultsSubscription
         )
         controller?.delegate = self
 
-        do {
-            try controller?.performFetch()
-            if let fetchedObjects = controller?.fetchedObjects {
-                _ = subscriber.receive(fetchedObjects)
+        context.perform { [weak self] in
+            guard let self = self else { return }
+            self.controller?.delegate = self
+
+            do {
+                try self.controller?.performFetch()
+            } catch {
+                subscriber.receive(completion: .failure(NSError.instructureError("Error while reading from Core Data")))
             }
-        } catch {
-            subscriber.receive(completion: .failure(error))
+
+            self.sendElement()
         }
+    }
+
+    private func sendElement() {
+        controller?.managedObjectContext.perform { [weak self] in
+            guard let self = self, let subscriber = self.subscriber else { return }
+            let entities = self.controller?.fetchedObjects ?? []
+            _ = subscriber.receive(entities)
+        }
+    }
+
+    // MARK: - NSFetchedResultsControllerDelegate
+
+    func controllerDidChangeContent(
+        _: NSFetchedResultsController<NSFetchRequestResult>) {
+        sendElement()
     }
 
     // MARK: - Cancellable
@@ -106,18 +125,5 @@ final class FetchedResultsSubscription
         controller = nil
         request = nil
         context = nil
-    }
-
-    // MARK: - NSFetchedResultsControllerDelegate
-
-    func controllerDidChangeContent(
-        _ controller: NSFetchedResultsController<NSFetchRequestResult>
-    ) {
-        guard let subscriber = subscriber,
-              controller == self.controller else { return }
-
-        if let fetchedObjects = self.controller?.fetchedObjects {
-            _ = subscriber.receive(fetchedObjects)
-        }
     }
 }

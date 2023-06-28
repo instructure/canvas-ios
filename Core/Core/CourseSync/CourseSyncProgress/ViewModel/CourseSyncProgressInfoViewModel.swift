@@ -18,6 +18,7 @@
 
 import Foundation
 import Combine
+import CombineSchedulers
 
 class CourseSyncProgressInfoViewModel: ObservableObject {
     @Published private(set) var progress: String = "" // Downloading 42 GB of 64 GB
@@ -28,7 +29,10 @@ class CourseSyncProgressInfoViewModel: ObservableObject {
 
     private var subscriptions = Set<AnyCancellable>()
 
-    init(interactor: CourseSyncProgressInteractor) {
+    init(
+        interactor: CourseSyncProgressInteractor,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
+    ) {
         syncFailureTitle = NSLocalizedString(
             "Offline Content Sync Failed",
             bundle: .core,
@@ -42,8 +46,8 @@ class CourseSyncProgressInfoViewModel: ObservableObject {
 
         unowned let unownedSelf = self
 
-        interactor.observeFileProgress()
-            .receive(on: DispatchQueue.main)
+        interactor.observeCombinedFileProgress()
+            .receive(on: scheduler)
             .sink { state in
                 switch state {
                 case .data(let progressList):

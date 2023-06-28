@@ -53,7 +53,7 @@ class CourseSyncEntryComposerInteractorLiveTests: CoreTestCase {
         mockFolderItems(for: "0", folders: [], files: [rootFolderFile])
 
         XCTAssertSingleOutputEquals(
-            testee.composeEntry(from: course),
+            testee.composeEntry(from: course, useCache: false),
             CourseSyncEntry(
                 name: "course-name-1",
                 id: "courses/course-id-1",
@@ -89,7 +89,7 @@ class CourseSyncEntryComposerInteractorLiveTests: CoreTestCase {
         mockFolderItems(for: "0", folders: [], files: [rootFolderFile])
 
         XCTAssertSingleOutputEquals(
-            testee.composeEntry(from: course),
+            testee.composeEntry(from: course, useCache: false),
             CourseSyncEntry(
                 name: "course-name-1",
                 id: "courses/course-id-1",

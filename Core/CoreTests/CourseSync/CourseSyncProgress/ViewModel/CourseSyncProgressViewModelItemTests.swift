@@ -230,7 +230,7 @@ class MockCourseSyncProgressInteractor: CourseSyncProgressInteractor {
     let courseSyncEntriesSubject = PassthroughSubject<[CourseSyncEntry], Error>()
     let courseSyncFileProgressSubject = PassthroughSubject<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never>()
 
-    func observeFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never> {
+    func observeCombinedFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never> {
         courseSyncFileProgressSubject.eraseToAnyPublisher()
     }
 

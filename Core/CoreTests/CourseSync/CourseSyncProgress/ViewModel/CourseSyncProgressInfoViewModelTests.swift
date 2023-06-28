@@ -36,7 +36,10 @@ class CourseSyncProgressInfoViewModelTests: CoreTestCase {
 
     func testProgressDetails() {
         // GIVEN
-        let testee = CourseSyncProgressInfoViewModel(interactor: courseSyncProgressInteractorMock)
+        let testee = CourseSyncProgressInfoViewModel(
+            interactor: courseSyncProgressInteractorMock,
+            scheduler: .immediate
+        )
         let fileProgress = CourseSyncFileProgress.save(
             bytesToDownload: 1000,
             bytesDownloaded: 500,
@@ -60,7 +63,10 @@ class CourseSyncProgressInfoViewModelTests: CoreTestCase {
 
     func testErrorDetails() {
         // GIVEN
-        let testee = CourseSyncProgressInfoViewModel(interactor: courseSyncProgressInteractorMock)
+        let testee = CourseSyncProgressInfoViewModel(
+            interactor: courseSyncProgressInteractorMock,
+            scheduler: .immediate
+        )
         let fileProgress = CourseSyncFileProgress.save(
             bytesToDownload: 1000,
             bytesDownloaded: 0,
