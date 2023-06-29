@@ -32,14 +32,14 @@ class LoginE2ETests: CoreUITestCase {
         super.setUp()
     }
 
-    func testFindSchool() throws {
+    func testFindSchool() {
         XCTAssertEqual(LoginStart.findSchoolButton.label(), "Find my school")
         LoginStart.findSchoolButton.tap()
         LoginFindSchool.searchField.typeText("iOS Auto")
         LoginFindAccountResult.item(host: "iosauto.instructure.com").waitToExist()
     }
 
-    func testCanvasLoginToDashboard() throws {
+    func testCanvasLoginToDashboard() {
         logInUser(.readStudent1)
 
         Dashboard.coursesLabel.waitToExist()
@@ -48,7 +48,7 @@ class LoginE2ETests: CoreUITestCase {
     }
 
     // TODO: Get new LDAP account
-    func xtestLDAPLoginToDashboard() throws {
+    func xtestLDAPLoginToDashboard() {
         let user = UITestUser.ldapUser
         LoginStart.findSchoolButton.tap()
         LoginFindSchool.searchField.typeText("\(user.host)\r")
@@ -83,7 +83,7 @@ class LoginE2ETests: CoreUITestCase {
         TabBar.dashboardTab.waitToExist()
     }
 
-    func testMultipleUsers() throws {
+    func testMultipleUsers() {
         logInUser(.readStudent1)
         let entry1 = UITestUser.readStudent1.session!
 
@@ -101,7 +101,7 @@ class LoginE2ETests: CoreUITestCase {
         XCTAssert(LoginStartSession.cell(host: entry2.baseURL.host!, userID: entry2.userID).exists)
     }
 
-    func testSessionMaintainedAfterTermination() throws {
+    func testSessionMaintainedAfterTermination() {
         logInUser(.readStudent1)
 
         Dashboard.coursesLabel.waitToExist()
@@ -113,7 +113,7 @@ class LoginE2ETests: CoreUITestCase {
         TabBar.dashboardTab.waitToExist()
     }
 
-    func testMDMLogin() throws {
+    func testMDMLogin() {
         let user = UITestUser.readStudent1
         launch { app in
             app.launchArguments.append(contentsOf: [
@@ -132,7 +132,7 @@ class LoginE2ETests: CoreUITestCase {
         launch()
     }
 
-    func testMDMHost() throws {
+    func testMDMHost() {
         let user = UITestUser.readStudent1
         launch { app in
             app.launchArguments.append(contentsOf: [
@@ -161,7 +161,7 @@ class LoginE2ETests: CoreUITestCase {
         launch()
     }
 
-    func testVanityDomain() throws {
+    func testVanityDomain() {
         logInUser(.vanityDomainUser)
 
         Dashboard.coursesLabel.waitToExist()

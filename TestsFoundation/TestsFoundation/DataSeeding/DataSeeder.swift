@@ -42,7 +42,7 @@ public class DataSeeder {
     }
 
     @discardableResult
-    public func makeRequest<Request: APIRequestable>(_ requestable: Request, retry: Retry? = nil) throws -> Request.Response {
+    public func makeRequest<Request: APIRequestable>(_ requestable: Request, retry: Retry? = nil) -> Request.Response {
         let requestCount: Int =  {
             guard let retry = retry else {
                 return 1
@@ -69,7 +69,8 @@ public class DataSeeder {
             }
         }
 
-        throw result?.error ?? NSError.instructureError("API call failed")
+        XCTFail(result?.error?.localizedDescription ?? "API call failed")
+        return APINoContent() as! Request.Response
     }
 
     private func request<Request: APIRequestable>(_ requestable: Request) -> (entity: Request.Response?, urlResponse: URLResponse?, error: Error?) {

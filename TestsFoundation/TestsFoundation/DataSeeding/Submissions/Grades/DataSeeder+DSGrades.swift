@@ -18,9 +18,9 @@
 
 extension DataSeeder {
 
-    public func postGrade(courseId: String, assignmentId: String, userId: String, requestBody: CreateDSGradesRequest.RequestDSGrades) throws {
+    public func postGrade(courseId: String, assignmentId: String, userId: String, requestBody: CreateDSGradesRequest.RequestDSGrades) {
         let requestedBody = CreateDSGradesRequest.Body(submission: requestBody)
         let request = CreateDSGradesRequest(body: requestedBody, courseId: courseId, assignmentId: assignmentId, userId: userId)
-        try makeRequest(request)
+        makeRequest(request)
     }
 }

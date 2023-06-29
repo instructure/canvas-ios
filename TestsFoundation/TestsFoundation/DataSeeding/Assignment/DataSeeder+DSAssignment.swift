@@ -18,9 +18,9 @@
 
 extension DataSeeder {
 
-    public func createAssignment(courseId: String, assignementBody: CreateDSAssignmentRequest.RequestDSAssignment) throws -> DSAssignment {
+    public func createAssignment(courseId: String, assignementBody: CreateDSAssignmentRequest.RequestDSAssignment) -> DSAssignment {
         let requestedBody = CreateDSAssignmentRequest.Body(assignment: assignementBody)
         let request = CreateDSAssignmentRequest(body: requestedBody, courseId: courseId)
-        return try makeRequest(request)
+        return makeRequest(request)
     }
 }

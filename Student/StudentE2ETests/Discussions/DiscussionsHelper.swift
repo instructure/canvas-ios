@@ -75,20 +75,19 @@ public class DiscussionsHelper: BaseHelper {
 
     // MARK: Other functions
     @discardableResult
-    public static func createDiscussion(
-        course: DSCourse,
-        title: String = "Sample Discussion",
-        message: String = "Message of ",
-        isAnnouncement: Bool = false,
-        published: Bool = true,
-        isAssignment: Bool = false,
-        dueDate: String? = nil) throws -> DSDiscussionTopic {
-        let discussionAssignment = CreateDSAssignmentRequest.RequestDSAssignment(
-            name: title, description: message + title, published: published, submission_types: [.online_text_entry], due_at: dueDate)
+    public static func createDiscussion(course: DSCourse,
+                                        title: String = "Sample Discussion",
+                                        message: String = "Message of ",
+                                        isAnnouncement: Bool = false,
+                                        published: Bool = true,
+                                        isAssignment: Bool = false,
+                                        dueDate: String? = nil) -> DSDiscussionTopic {
+        let discussionAssignment = isAssignment ? CreateDSAssignmentRequest.RequestDSAssignment(
+            name: title, description: message + title, published: published, submission_types: [.online_text_entry], due_at: dueDate) : nil
         let discussionBody = CreateDSDiscussionRequest.RequestDSDiscussion(
             title: title, message: message + title, is_announcement: isAnnouncement,
             published: published, assignment: discussionAssignment)
-        return try seeder.createDiscussion(courseId: course.id, requestBody: discussionBody)
+        return seeder.createDiscussion(courseId: course.id, requestBody: discussionBody)
     }
 
     public static func navigateToDiscussions(course: DSCourse) {

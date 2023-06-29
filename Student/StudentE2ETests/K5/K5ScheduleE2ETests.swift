@@ -21,7 +21,7 @@ import TestsFoundation
 @testable import Core
 
 class K5ScheduleE2ETests: K5UITestCase {
-    func testK5Schedule() throws {
+    func testK5Schedule() {
         setUpK5()
 
         K5CourseCard.courseCard(id: "21025").waitToExist()

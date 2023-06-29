@@ -19,7 +19,7 @@
 import TestsFoundation
 
 class InboxE2ETests: CoreUITestCase {
-    func testCannotMessageEntireClassWhenDisabled() throws {
+    func testCannotMessageEntireClassWhenDisabled() {
         TabBar.inboxTab.tap()
         Inbox.newMessageButton.tapUntil {
             NewMessage.selectCourseButton.exists
@@ -37,7 +37,7 @@ class InboxE2ETests: CoreUITestCase {
         XCTAssertFalse(MessageRecipientsSelection.messageAllStudents(courseID: "263").isVisible)
     }
 
-    func testCannotMessageIndividialsWhenDisabled() throws {
+    func testCannotMessageIndividialsWhenDisabled() {
         TabBar.inboxTab.tap()
         Inbox.newMessageButton.tapUntil {
             NewMessage.selectCourseButton.exists
@@ -55,7 +55,7 @@ class InboxE2ETests: CoreUITestCase {
         XCTAssertFalse(MessageRecipientsSelection.student(studentID: "651").exists)
     }
 
-    func testCanFilterMessagesAndShowsUnread() throws {
+    func testCanFilterMessagesAndShowsUnread() {
         XCTAssert(TabBar.inboxTab.value() == "2 items")
         TabBar.inboxTab.tap()
 

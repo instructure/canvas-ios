@@ -20,7 +20,7 @@ import XCTest
 import TestsFoundation
 
 class CourseGroupE2ETests: CoreUITestCase {
-    func testGroupCardDisplaysAndShowsDetails() throws {
+    func testGroupCardDisplaysAndShowsDetails() {
         Dashboard.groupCard(id: "35").waitToExist()
         app.find(labelContaining: "Group One").waitToExist()
         app.find(labelContaining: "DEFAULT TERM").waitToExist()

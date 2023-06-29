@@ -20,21 +20,21 @@ import TestsFoundation
 import XCTest
 
 class GradingStandardsTests: E2ETestCase {
-    func testGradingStandards() throws {
+    func testGradingStandards() {
         // MARK: Seed the usual stuff and a grading scheme
-        let student = try seeder.createUser()
-        let course = try seeder.createCourse()
-        try seeder.enrollStudent(student, in: course)
-        let gradingScheme = try seeder.postGradingStandards(courseId: course.id, requestBody: .init())
-        try seeder.updateCourseWithGradingScheme(courseId: course.id, gradingStandardId: Int(gradingScheme.id)!)
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+        let gradingScheme = seeder.postGradingStandards(courseId: course.id, requestBody: .init())
+        seeder.updateCourseWithGradingScheme(courseId: course.id, gradingStandardId: Int(gradingScheme.id)!)
 
         // MARK: Create 2 assignments
-        let assignments = try GradesHelper.createAssignments(course: course, count: 2)
+        let assignments = GradesHelper.createAssignments(course: course, count: 2)
 
         logInDSUser(student)
 
         // MARK: Create submissions for both
-        try GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
+        GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
 
         // MARK: Navigate to grades
         GradesHelper.navigateToGrades(course: course)
@@ -42,10 +42,10 @@ class GradingStandardsTests: E2ETestCase {
         XCTAssertTrue(GradeList.totalGrade(totalGrade: "N/A (F)").waitToExist().isVisible)
 
         // MARK: Check if total is updating accordingly
-        try GradesHelper.gradeAssignments(grades: ["100"], course: course, assignments: [assignments[0]], user: student)
+        GradesHelper.gradeAssignments(grades: ["100"], course: course, assignments: [assignments[0]], user: student)
         XCTAssertTrue(GradesHelper.checkForTotalGrade(totalGrade: "100% (A)"))
 
-        try GradesHelper.gradeAssignments(grades: ["0"], course: course, assignments: [assignments[1]], user: student)
+        GradesHelper.gradeAssignments(grades: ["0"], course: course, assignments: [assignments[1]], user: student)
         XCTAssertTrue(GradesHelper.checkForTotalGrade(totalGrade: "50% (F)"))
     }
 }

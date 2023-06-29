@@ -45,8 +45,8 @@ public class PagesHelper: BaseHelper {
     }
 
     @discardableResult
-    public static func createDeepLinkFrontPage(course: DSCourse, body: String) throws -> DSPage {
+    public static func createDeepLinkFrontPage(course: DSCourse, body: String) -> DSPage {
         let pageBody = CreateDSPageRequest.RequestDSPage(title: "Deep Link Front Page", body: body, front_page: true, published: true)
-        return try seeder.createPage(courseId: course.id, requestBody: pageBody)
+        return seeder.createPage(courseId: course.id, requestBody: pageBody)
     }
 }

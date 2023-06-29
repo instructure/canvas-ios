@@ -20,16 +20,16 @@ import TestsFoundation
 import XCTest
 
 class AnnouncementsTests: E2ETestCase {
-    func testAnnouncementsMatchWebOrder() throws {
+    func testAnnouncementsMatchWebOrder() {
         typealias Helper = AnnouncementsHelper
 
         // MARK: Seed the usual stuff
-        let student = try seeder.createUser()
-        let course = try seeder.createCourse()
-        try seeder.enrollStudent(student, in: course)
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
 
         // MARK: Create some announcements and get the user logged in
-        let announcements = try Helper.createAnnouncements(course: course, count: 3)
+        let announcements = Helper.createAnnouncements(course: course, count: 3)
         logInDSUser(student)
 
         // MARK: Navigate to Announcement page and check the order of the announcements
@@ -48,17 +48,17 @@ class AnnouncementsTests: E2ETestCase {
         XCTAssertTrue(thirdAnnouncement.label().contains(announcements[0].title))
     }
 
-    func testAnnouncementsTitleAndMessage() throws {
+    func testAnnouncementsTitleAndMessage() {
         typealias Helper = AnnouncementsHelper
         typealias DetailsHelper = Helper.Details
 
         // MARK: Seed the usual stuff
-        let student = try seeder.createUser()
-        let course = try seeder.createCourse()
-        try seeder.enrollStudent(student, in: course)
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
 
         // MARK: Create an announcement and get the user logged in
-        let announcement = try Helper.createAnnouncements(course: course)[0]
+        let announcement = Helper.createAnnouncements(course: course)[0]
         logInDSUser(student)
 
         // MARK: Navigate to Announcement page and check the title and message of the announcement
@@ -78,16 +78,16 @@ class AnnouncementsTests: E2ETestCase {
         XCTAssertEqual(announcementMessage.label(), announcement.message)
     }
 
-    func testAnnouncementToggle() throws {
+    func testAnnouncementToggle() {
         typealias Helper = AnnouncementsHelper
 
         // MARK: Seed the usual stuff
-        let student = try seeder.createUser()
-        let course = try seeder.createCourse()
-        try seeder.enrollStudent(student, in: course)
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
 
         // MARK: Post an account notification and get the user logged in
-        let globalAnnouncement = try Helper.postAccountNotification()
+        let globalAnnouncement = Helper.postAccountNotification()
         logInDSUser(student)
 
         // MARK: Check visibility of the course and the announcement notification title
@@ -122,7 +122,7 @@ class AnnouncementsTests: E2ETestCase {
 // MARK: Tests without DataSeeder (to be upgraded: MBL-16825)
 
 class OldAnnouncementE2ETests: CoreUITestCase {
-    func testPreviewAnnouncementAttachment() throws {
+    func testPreviewAnnouncementAttachment() {
         Dashboard.courseCard(id: "262").tapUntil {
             CourseNavigation.announcements.exists
         }

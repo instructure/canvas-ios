@@ -21,11 +21,11 @@ import TestsFoundation
 
 class DSLoginE2ETests: E2ETestCase {
     // Follow-up of MBL-14653
-    func testLoginWithLastUser() throws {
-        let users = try seeder.createUsers(1)
-        let course = try seeder.createCourse()
+    func testLoginWithLastUser() {
+        let users = seeder.createUsers(1)
+        let course = seeder.createCourse()
         let student = users[0]
-        try seeder.enrollTeacher(student, in: course)
+        seeder.enrollTeacher(student, in: course)
 
         logInDSUser(student, lastLogin: false)
 
