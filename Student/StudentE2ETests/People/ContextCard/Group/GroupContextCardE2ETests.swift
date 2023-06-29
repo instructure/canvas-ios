@@ -25,7 +25,7 @@ enum ContextCard: String, ElementWrapper {
 
 class GroupContextCardE2ETests: CoreUITestCase {
 
-    func testContextCardDisplays() throws {
+    func testContextCardDisplays() {
         app.swipeUp()
         Dashboard.groupCard(id: "35").tap()
         app.find(labelContaining: "People").tap()

@@ -19,15 +19,15 @@
 import TestsFoundation
 
 class DiscussionsTests: E2ETestCase {
-    func testDiscussionLabels() throws {
+    func testDiscussionLabels() {
         typealias Helper = DiscussionsHelper
 
         // MARK: Seed the usual stuff with a discussion
-        let student = try seeder.createUser()
-        let course = try seeder.createCourse()
-        try seeder.enrollStudent(student, in: course)
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
 
-        let discussion = try Helper.createDiscussion(course: course)
+        let discussion = Helper.createDiscussion(course: course)
 
         // MARK: Get the user logged in
         logInDSUser(student)
@@ -50,16 +50,16 @@ class DiscussionsTests: E2ETestCase {
         XCTAssertEqual(discussionUnreadLabel.label(), "\(discussion.unread_count) Unread")
     }
 
-    func testDiscussionDetails() throws {
+    func testDiscussionDetails() {
         typealias Helper = DiscussionsHelper
         typealias DetailsHelper = Helper.Details
 
         // MARK: Seed the usual stuff with a discussion
-        let student = try seeder.createUser()
-        let course = try seeder.createCourse()
-        try seeder.enrollStudent(student, in: course)
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
 
-        let discussion = try Helper.createDiscussion(course: course)
+        let discussion = Helper.createDiscussion(course: course)
 
         // MARK: Get the user logged in
         logInDSUser(student)
@@ -91,17 +91,17 @@ class DiscussionsTests: E2ETestCase {
         XCTAssertTrue(detailsReplyButton.isVisible)
     }
 
-    func testReplyToDiscussion() throws {
+    func testReplyToDiscussion() {
         typealias Helper = DiscussionsHelper
         typealias DetailsHelper = Helper.Details
         typealias ReplyHelper = Helper.Details.Reply
 
         // MARK: Seed the usual stuff and a discussion
-        let student = try seeder.createUser()
-        let course = try seeder.createCourse()
-        try seeder.enrollStudent(student, in: course)
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
 
-        let discussion = try Helper.createDiscussion(course: course)
+        let discussion = Helper.createDiscussion(course: course)
 
         // MARK: Get the user logged in
         logInDSUser(student)
@@ -163,23 +163,23 @@ class DiscussionsTests: E2ETestCase {
         XCTAssertTrue(threadReplyLabel.isVisible)
     }
 
-    func testAssignmentDiscussion() throws {
+    func testAssignmentDiscussion() {
         typealias Helper = DiscussionsHelper
         typealias DetailsHelper = Helper.Details
 
         // MARK: Seed the usual stuff with an assignment discussion
-        let student = try seeder.createUser()
-        let course = try seeder.createCourse()
-        try seeder.enrollStudent(student, in: course)
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
 
-        let assignmentDiscussion = try Helper.createDiscussion(course: course, isAssignment: true)
+        let assignmentDiscussion = Helper.createDiscussion(course: course, isAssignment: true)
 
         // MARK: Get the user logged in
         logInDSUser(student)
 
         // MARK: Navigate to Assignments to check visibility of the assignment discussion there
         AssignmentsHelper.navigateToAssignments(course: course)
-        let assignmentButton = AssignmentsHelper.assignmentButton(assignment: assignmentDiscussion.assignment).waitToExist()
+        let assignmentButton = AssignmentsHelper.assignmentButton(assignment: assignmentDiscussion.assignment!).waitToExist()
         XCTAssertTrue(assignmentButton.isVisible)
 
         AssignmentsHelper.backButton.tap()
@@ -187,10 +187,10 @@ class DiscussionsTests: E2ETestCase {
 
         // MARK: Navigate to Grades to check visibility and submission of the assignment discussion
         GradesHelper.navigateToGrades(course: course)
-        var gradesAssignmentButton = GradesHelper.gradesAssignmentButton(assignment: assignmentDiscussion.assignment).waitToExist()
+        var gradesAssignmentButton = GradesHelper.gradesAssignmentButton(assignment: assignmentDiscussion.assignment!).waitToExist()
         XCTAssertTrue(gradesAssignmentButton.isVisible)
 
-        var gradesAssignmentSubmittedLabel = GradesHelper.gradesAssignmentSubmittedLabel(assignment: assignmentDiscussion.assignment).waitToExist()
+        var gradesAssignmentSubmittedLabel = GradesHelper.gradesAssignmentSubmittedLabel(assignment: assignmentDiscussion.assignment!).waitToExist()
         XCTAssertTrue(gradesAssignmentSubmittedLabel.isVisible)
         XCTAssertEqual(gradesAssignmentSubmittedLabel.label(), "Not Submitted")
 
@@ -222,10 +222,10 @@ class DiscussionsTests: E2ETestCase {
         // MARK: Navigate to Grades and check for updates regarding submission
         GradesHelper.navigateToGrades(course: course)
         GradesHelper.pullToRefresh()
-        gradesAssignmentButton = GradesHelper.gradesAssignmentButton(assignment: assignmentDiscussion.assignment).waitToExist()
+        gradesAssignmentButton = GradesHelper.gradesAssignmentButton(assignment: assignmentDiscussion.assignment!).waitToExist()
         XCTAssertTrue(gradesAssignmentButton.isVisible)
 
-        gradesAssignmentSubmittedLabel = GradesHelper.gradesAssignmentSubmittedLabel(assignment: assignmentDiscussion.assignment).waitToExist()
+        gradesAssignmentSubmittedLabel = GradesHelper.gradesAssignmentSubmittedLabel(assignment: assignmentDiscussion.assignment!).waitToExist()
         XCTAssertTrue(gradesAssignmentSubmittedLabel.isVisible)
         XCTAssertEqual(gradesAssignmentSubmittedLabel.label(), "Submitted")
     }

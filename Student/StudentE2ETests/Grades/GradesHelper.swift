@@ -35,18 +35,18 @@ public class GradesHelper: BaseHelper {
         return GradeList.totalGrade(totalGrade: totalGrade).waitToExist().isVisible
     }
 
-    public static func createSubmissionsForAssignments(course: DSCourse, student: DSUser, assignments: [DSAssignment]) throws {
+    public static func createSubmissionsForAssignments(course: DSCourse, student: DSUser, assignments: [DSAssignment]) {
         for assignment in assignments {
-            try seeder.createSubmission(courseId: course.id, assignmentId: assignment.id, requestBody:
+            seeder.createSubmission(courseId: course.id, assignmentId: assignment.id, requestBody:
                 .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
         }
     }
 
-    public static func createAssignments(course: DSCourse, count: Int, points_possible: [Float]? = nil, grading_type: GradingType? = nil) throws -> [DSAssignment] {
+    public static func createAssignments(course: DSCourse, count: Int, points_possible: [Float]? = nil, grading_type: GradingType? = nil) -> [DSAssignment] {
         var assignments = [DSAssignment]()
         for i in 0..<count {
             assignments.append(
-                try seeder.createAssignment(
+                seeder.createAssignment(
                     courseId: course.id,
                     assignementBody: .init(
                         name: "\(grading_type?.rawValue.capitalized ?? "Sample") Assignment \(i)",
@@ -58,9 +58,9 @@ public class GradesHelper: BaseHelper {
         return assignments
     }
 
-    public static func gradeAssignments(grades: [String], course: DSCourse, assignments: [DSAssignment], user: DSUser) throws {
+    public static func gradeAssignments(grades: [String], course: DSCourse, assignments: [DSAssignment], user: DSUser) {
         for i in 0..<assignments.count {
-            try seeder.postGrade(
+            seeder.postGrade(
                 courseId: course.id,
                 assignmentId: assignments[i].id,
                 userId: user.id,

@@ -20,7 +20,7 @@ import XCTest
 import TestsFoundation
 
 class CourseFileE2ETests: CoreUITestCase {
-    func testPreviewCourseFile() throws {
+    func testPreviewCourseFile() {
         Dashboard.courseCard(id: "263").tap()
 
         CourseNavigation.files.tap()
@@ -32,7 +32,7 @@ class CourseFileE2ETests: CoreUITestCase {
         app.find(type: .image).waitToExist()
     }
 
-    func testLinkToPreviewOpensFile() throws {
+    func testLinkToPreviewOpensFile() {
         Dashboard.courseCard(id: "263").waitToExist()
         Dashboard.courseCard(id: "263").tap()
 

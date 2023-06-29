@@ -21,17 +21,17 @@ import TestsFoundation
 import Core
 
 class AssignmentsTests: E2ETestCase {
-    func testSubmitAssignmentWithShareExtension() throws {
+    func testSubmitAssignmentWithShareExtension() {
         typealias Helper = AssignmentsHelper
 
         // MARK: Seed the usual stuff
-        let users = try seeder.createUsers(1)
-        let course = try seeder.createCourse()
+        let users = seeder.createUsers(1)
+        let course = seeder.createCourse()
         let student = users[0]
-        try seeder.enrollStudent(student, in: course)
+        seeder.enrollStudent(student, in: course)
 
         // MARK: Create assignment for testing share extension
-        let assignment = try Helper.createAssignmentForShareExtension(course: course)
+        let assignment = Helper.createAssignmentForShareExtension(course: course)
 
         // MARK: Get the user logged in
         logInDSUser(student)
@@ -41,18 +41,18 @@ class AssignmentsTests: E2ETestCase {
         XCTAssertTrue(shareSuccessful)
     }
 
-    func testViewAssignmentAndDetails() throws {
+    func testViewAssignmentAndDetails() {
         typealias Helper = AssignmentsHelper
         typealias DetailsHelper = Helper.Details
 
         // MARK: Seed the usual stuff
-        let users = try seeder.createUsers(1)
-        let course = try seeder.createCourse()
+        let users = seeder.createUsers(1)
+        let course = seeder.createCourse()
         let student = users[0]
-        try seeder.enrollStudent(student, in: course)
+        seeder.enrollStudent(student, in: course)
 
         // MARK: Create an assignment
-        let assignment = try Helper.createAssignment(course: course, submissionTypes: [.online_text_entry])
+        let assignment = Helper.createAssignment(course: course, submissionTypes: [.online_text_entry])
 
         // MARK: Get the user logged in
         logInDSUser(student)
@@ -106,19 +106,19 @@ class AssignmentsTests: E2ETestCase {
         XCTAssertTrue(submitAssignmentButton.isVisible)
     }
 
-    func testSubmitAssignment() throws {
+    func testSubmitAssignment() {
         typealias Helper = AssignmentsHelper
         typealias DetailsHelper = Helper.Details
         typealias SubmissionHelper = Helper.Submission
 
         // MARK: Seed the usual stuff
-        let users = try seeder.createUsers(1)
-        let course = try seeder.createCourse()
+        let users = seeder.createUsers(1)
+        let course = seeder.createCourse()
         let student = users[0]
-        try seeder.enrollStudent(student, in: course)
+        seeder.enrollStudent(student, in: course)
 
         // MARK: Create an assignment
-        let assignment = try Helper.createAssignment(course: course, submissionTypes: [.online_text_entry])
+        let assignment = Helper.createAssignment(course: course, submissionTypes: [.online_text_entry])
 
         // MARK: Get the user logged in
         logInDSUser(student)
@@ -171,22 +171,22 @@ class AssignmentsTests: E2ETestCase {
         XCTAssertEqual(submitAssignmentButton.label(), "Resubmit Assignment")
     }
 
-    func testAssignmentDueDate() throws {
+    func testAssignmentDueDate() {
         typealias Helper = AssignmentsHelper
 
         // MARK: Seed the usual stuff
-        let users = try seeder.createUsers(1)
-        let course = try seeder.createCourse()
+        let users = seeder.createUsers(1)
+        let course = seeder.createCourse()
         let student = users[0]
-        try seeder.enrollStudent(student, in: course)
+        seeder.enrollStudent(student, in: course)
 
         // MARK: Create 2 assignments (1 due yesterday and 1 due tomorrow)
         let yesterdaysDate = Helper.getYesterdaysDateString
-        let yesterdaysAssignment = try Helper.createAssignment(
+        let yesterdaysAssignment = Helper.createAssignment(
             course: course, name: "Yesterdays Assignment", dueDate: yesterdaysDate)
 
         let tomorrowsDate = Helper.getTomorrowsDateString
-        let tomorrowsAssignment = try Helper.createAssignment(
+        let tomorrowsAssignment = Helper.createAssignment(
             course: course, name: "Tomorrows Assignment", dueDate: tomorrowsDate)
 
         // MARK: Get the user logged in

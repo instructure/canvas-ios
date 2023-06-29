@@ -18,14 +18,14 @@
 
 extension DataSeeder {
 
-    public func createQuiz(courseId: String, quizBody: CreateDSQuizRequest.RequestedDSQuiz) throws -> DSQuiz {
+    public func createQuiz(courseId: String, quizBody: CreateDSQuizRequest.RequestedDSQuiz) -> DSQuiz {
         let requestedBody = CreateDSQuizRequest.Body(quiz: quizBody)
         let request = CreateDSQuizRequest(body: requestedBody, courseId: courseId)
-        return try makeRequest(request)
+        return makeRequest(request)
     }
 
-    public func getQuiz(courseId: String, quizId: String) throws -> DSQuiz {
+    public func getQuiz(courseId: String, quizId: String) -> DSQuiz {
         let request = GetDSQuizRequest(courseId: courseId, quizId: quizId)
-        return try makeRequest(request)
+        return makeRequest(request)
     }
 }

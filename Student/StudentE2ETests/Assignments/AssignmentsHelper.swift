@@ -64,18 +64,18 @@ public class AssignmentsHelper: BaseHelper {
         published: Bool = true,
         submissionTypes: [SubmissionType] = [.online_text_entry],
         pointsPossible: Float? = nil,
-        dueDate: String? = nil) throws -> DSAssignment {
+        dueDate: String? = nil) -> DSAssignment {
         let assignmentBody = CreateDSAssignmentRequest.RequestedDSAssignment(
             name: name, description: description + name, published: published, submission_types: submissionTypes, points_possible: pointsPossible, due_at: dueDate)
-        return try seeder.createAssignment(courseId: course.id, assignementBody: assignmentBody)
+        return seeder.createAssignment(courseId: course.id, assignementBody: assignmentBody)
     }
 
     @discardableResult
-    public static func createAssignmentForShareExtension(course: DSCourse) throws -> DSAssignment {
+    public static func createAssignmentForShareExtension(course: DSCourse) -> DSAssignment {
         let assignmentName = "Share Extension Test"
         let assignmentDescription = "This assignment is for testing Share Extension."
         let submissionTypes = [SubmissionType.external_tool, SubmissionType.media_recording, SubmissionType.online_upload, SubmissionType.online_url]
-        let assignment = try createAssignment(
+        let assignment = createAssignment(
             course: course, name: assignmentName, description: assignmentDescription,
             published: true, submissionTypes: submissionTypes, pointsPossible: 10)
         return assignment

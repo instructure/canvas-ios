@@ -19,8 +19,8 @@
 extension DataSeeder {
     public func postGradingStandards(courseId: String,
                                      requestBody: CreateDSGradingStandardsRequest.RequestedDSGradingStandards?
-    ) throws -> DSGradingStandard {
+    ) -> DSGradingStandard {
         let request = CreateDSGradingStandardsRequest(body: requestBody, courseId: courseId)
-        return try makeRequest(request)
+        return makeRequest(request)
     }
 }

@@ -21,49 +21,49 @@ import Core
 extension DataSeeder {
 
     @discardableResult
-    public func enrollTeacher(_ teacher: DSUser, in course: DSCourse, state: EnrollmentState = .active) throws -> DSEnrollment {
-        try self.enrollUser(teacher, in: course, type: .TeacherEnrollment, state: state)
+    public func enrollTeacher(_ teacher: DSUser, in course: DSCourse, state: EnrollmentState = .active) -> DSEnrollment {
+        self.enrollUser(teacher, in: course, type: .TeacherEnrollment, state: state)
     }
 
     @discardableResult
-    public func enrollTeachers(_ teachers: [DSUser], in course: DSCourse, state: EnrollmentState = .active) throws -> [DSEnrollment] {
-        try self.enrollUsers(teachers, in: course, type: .TeacherEnrollment, state: state)
+    public func enrollTeachers(_ teachers: [DSUser], in course: DSCourse, state: EnrollmentState = .active) -> [DSEnrollment] {
+        self.enrollUsers(teachers, in: course, type: .TeacherEnrollment, state: state)
     }
 
     @discardableResult
-    public func enrollStudent(_ student: DSUser, in course: DSCourse, state: EnrollmentState = .active) throws -> DSEnrollment {
-        try self.enrollUser(student, in: course, type: .StudentEnrollment, state: state)
+    public func enrollStudent(_ student: DSUser, in course: DSCourse, state: EnrollmentState = .active) -> DSEnrollment {
+        self.enrollUser(student, in: course, type: .StudentEnrollment, state: state)
     }
 
     @discardableResult
-    public func enrollStudents(_ students: [DSUser], in course: DSCourse, state: EnrollmentState = .active) throws -> [DSEnrollment] {
-        try self.enrollUsers(students, in: course, type: .StudentEnrollment, state: state)
+    public func enrollStudents(_ students: [DSUser], in course: DSCourse, state: EnrollmentState = .active) -> [DSEnrollment] {
+        self.enrollUsers(students, in: course, type: .StudentEnrollment, state: state)
     }
 
     @discardableResult
-    public func enrollParent(_ parent: DSUser, in course: DSCourse, state: EnrollmentState = .active) throws -> DSEnrollment {
-        try self.enrollUser(parent, in: course, type: .ObserverEnrollment, state: state)
+    public func enrollParent(_ parent: DSUser, in course: DSCourse, state: EnrollmentState = .active) -> DSEnrollment {
+        self.enrollUser(parent, in: course, type: .ObserverEnrollment, state: state)
     }
 
     @discardableResult
-    public func enrollDesigner(_ designer: DSUser, in course: DSCourse, state: EnrollmentState = .active) throws -> DSEnrollment {
-        try self.enrollUser(designer, in: course, type: .DesignerEnrollment, state: state)
+    public func enrollDesigner(_ designer: DSUser, in course: DSCourse, state: EnrollmentState = .active) -> DSEnrollment {
+        self.enrollUser(designer, in: course, type: .DesignerEnrollment, state: state)
     }
 
     @discardableResult
-    public func enrollUser(_ user: DSUser, in course: DSCourse, type: DSEnrollmentType, state: EnrollmentState = .active) throws -> DSEnrollment {
+    public func enrollUser(_ user: DSUser, in course: DSCourse, type: DSEnrollmentType, state: EnrollmentState = .active) -> DSEnrollment {
         let requestedEnrollment = EnrollRequest.RequestedEnrollment(enrollment_state: state, user_id: user.id, type: type)
         let request = EnrollRequest(courseID: course.id, body: requestedEnrollment)
-        return try makeRequest(request)
+        return makeRequest(request)
     }
 
     @discardableResult
-    public func enrollUsers(_ users: [DSUser], in course: DSCourse, type: DSEnrollmentType, state: EnrollmentState = .active) throws -> [DSEnrollment] {
+    public func enrollUsers(_ users: [DSUser], in course: DSCourse, type: DSEnrollmentType, state: EnrollmentState = .active) -> [DSEnrollment] {
         var enrollments = [DSEnrollment]()
         for user in users {
             let requestedEnrollment = EnrollRequest.RequestedEnrollment(enrollment_state: state, user_id: user.id, type: type)
             let request = EnrollRequest(courseID: course.id, body: requestedEnrollment)
-            enrollments.append(try makeRequest(request))
+            enrollments.append(makeRequest(request))
         }
         return enrollments
     }

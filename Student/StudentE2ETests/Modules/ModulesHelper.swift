@@ -43,11 +43,11 @@ public class ModulesHelper: BaseHelper {
     }
 
     @discardableResult
-    public static func createModule(course: DSCourse, name: String, published: Bool = true) throws -> DSModule {
+    public static func createModule(course: DSCourse, name: String, published: Bool = true) -> DSModule {
         let moduleBody = CreateDSModuleRequest.RequestedDSModule(name: name)
-        var module = try seeder.createModule(courseId: course.id, moduleBody: moduleBody)
+        var module = seeder.createModule(courseId: course.id, moduleBody: moduleBody)
         if published {
-            module = try seeder.updateModuleWithPublished(courseId: course.id, moduleId: module.id, published: true)
+            module = seeder.updateModuleWithPublished(courseId: course.id, moduleId: module.id, published: true)
         }
         return module
     }
@@ -56,12 +56,12 @@ public class ModulesHelper: BaseHelper {
     public static func createModuleAssignment(course: DSCourse,
                                               module: DSModule,
                                               title: String = "Module Assignment",
-                                              published: Bool = true) throws -> DSModuleItem {
-        let assignment = try AssignmentsHelper.createAssignment(course: course, name: title, published: published)
+                                              published: Bool = true) -> DSModuleItem {
+        let assignment = AssignmentsHelper.createAssignment(course: course, name: title, published: published)
         let moduleItemBody = CreateDSModuleItemRequest.RequestedDSModuleItem(title: title, type: .assignment, content_id: assignment.id)
-        var moduleItem = try seeder.createModuleItem(courseId: course.id, moduleId: module.id, moduleItemBody: moduleItemBody)
+        var moduleItem = seeder.createModuleItem(courseId: course.id, moduleId: module.id, moduleItemBody: moduleItemBody)
         if published {
-            moduleItem = try seeder.updateModuleItemWithPublished(courseId: course.id, moduleId: module.id, itemId: moduleItem.id, published: published)
+            moduleItem = seeder.updateModuleItemWithPublished(courseId: course.id, moduleId: module.id, itemId: moduleItem.id, published: published)
         }
         return moduleItem
     }
@@ -70,12 +70,12 @@ public class ModulesHelper: BaseHelper {
     public static func createModuleDiscussion(course: DSCourse,
                                               module: DSModule,
                                               title: String = "Module Discussion",
-                                              published: Bool = true) throws -> DSModuleItem {
-        let discussion = try DiscussionsHelper.createDiscussion(course: course, title: title, published: published)
+                                              published: Bool = true) -> DSModuleItem {
+        let discussion = DiscussionsHelper.createDiscussion(course: course, title: title, published: published)
         let moduleItemBody = CreateDSModuleItemRequest.RequestedDSModuleItem(title: title, type: .discussion, content_id: discussion.id)
-        var moduleItem = try seeder.createModuleItem(courseId: course.id, moduleId: module.id, moduleItemBody: moduleItemBody)
+        var moduleItem = seeder.createModuleItem(courseId: course.id, moduleId: module.id, moduleItemBody: moduleItemBody)
         if published {
-            moduleItem = try seeder.updateModuleItemWithPublished(courseId: course.id, moduleId: module.id, itemId: moduleItem.id, published: published)
+            moduleItem = seeder.updateModuleItemWithPublished(courseId: course.id, moduleId: module.id, itemId: moduleItem.id, published: published)
         }
         return moduleItem
     }
@@ -85,12 +85,12 @@ public class ModulesHelper: BaseHelper {
                                         module: DSModule,
                                         title: String = "Module Page",
                                         body: String = "Body of Module Page",
-                                        published: Bool = true) throws -> DSModuleItem {
-        let page = try PagesHelper.createPage(course: course, title: title, body: body, frontPage: true)
+                                        published: Bool = true) -> DSModuleItem {
+        let page = PagesHelper.createPage(course: course, title: title, body: body, frontPage: true)
         let moduleItemBody = CreateDSModuleItemRequest.RequestedDSModuleItem(title: title, type: .page, page_url: page.url)
-        var moduleItem = try seeder.createModuleItem(courseId: course.id, moduleId: module.id, moduleItemBody: moduleItemBody)
+        var moduleItem = seeder.createModuleItem(courseId: course.id, moduleId: module.id, moduleItemBody: moduleItemBody)
         if published {
-            moduleItem = try seeder.updateModuleItemWithPublished(courseId: course.id, moduleId: module.id, itemId: moduleItem.id, published: published)
+            moduleItem = seeder.updateModuleItemWithPublished(courseId: course.id, moduleId: module.id, itemId: moduleItem.id, published: published)
         }
         return moduleItem
     }
@@ -100,14 +100,14 @@ public class ModulesHelper: BaseHelper {
                                         module: DSModule,
                                         title: String = "Module Quiz",
                                         description: String = "Description of ",
-                                        published: Bool = true) throws -> DSModuleItem {
-        let quiz = try QuizzesHelper.createQuiz(course: course, title: title, description: description + title, quiz_type: .assignment, published: published)
-        let quizQuestion = try QuizzesHelper.createTestQuizQuestion(course: course, quiz: quiz)
+                                        published: Bool = true) -> DSModuleItem {
+        let quiz = QuizzesHelper.createQuiz(course: course, title: title, description: description + title, quiz_type: .assignment, published: published)
+        let quizQuestion = QuizzesHelper.createTestQuizQuestion(course: course, quiz: quiz)
 
         let moduleItemBody = CreateDSModuleItemRequest.RequestedDSModuleItem(title: title, type: .quiz, content_id: quiz.id)
-        var moduleItem = try seeder.createModuleItem(courseId: course.id, moduleId: module.id, moduleItemBody: moduleItemBody)
+        var moduleItem = seeder.createModuleItem(courseId: course.id, moduleId: module.id, moduleItemBody: moduleItemBody)
         if published {
-            moduleItem = try seeder.updateModuleItemWithPublished(courseId: course.id, moduleId: module.id, itemId: moduleItem.id, published: published)
+            moduleItem = seeder.updateModuleItemWithPublished(courseId: course.id, moduleId: module.id, itemId: moduleItem.id, published: published)
         }
         return moduleItem
     }

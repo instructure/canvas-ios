@@ -54,24 +54,24 @@ public class AnnouncementsHelper: BaseHelper {
         CourseNavigation.announcements.tap()
     }
 
-    public static func createAnnouncements(course: DSCourse, count: Int = 1, titles: [String]? = nil, messages: [String]? = nil) throws -> [DSDiscussionTopic] {
+    public static func createAnnouncements(course: DSCourse, count: Int = 1, titles: [String]? = nil, messages: [String]? = nil) -> [DSDiscussionTopic] {
         var announcements = [DSDiscussionTopic]()
         for i in 1...count {
             let announcementTitle = titles?[i] ?? "Announcement Title \(i)"
             let announcementMessage = messages?[i] ?? "This is the message of Announcement \(i)"
-            announcements.append(try seeder.createDiscussion(courseId: course.id, requestBody: .init(title: announcementTitle, message: announcementMessage, is_announcement: true, published: true)))
+            announcements.append(seeder.createDiscussion(courseId: course.id, requestBody: .init(title: announcementTitle, message: announcementMessage, is_announcement: true, published: true)))
         }
         return announcements
     }
 
-    public static func postAccountNotification(subject: String? = nil, message: String? = nil) throws -> DSAccountNotification {
+    public static func postAccountNotification(subject: String? = nil, message: String? = nil) -> DSAccountNotification {
         let dateFormatter = ISO8601DateFormatter()
         let globalAnnouncementSubject = subject ?? "This is a GA"
         let globalAnnouncementMessage = message ?? "This will disappear in 4 minutes"
         let globalAnnouncementStartAt = dateFormatter.string(from: Date().addMinutes(-1))
         let globalAnnouncementEndAt = dateFormatter.string(from: Date().addMinutes(3))
 
-        return try seeder.postAccountNotifications(requestBody:
+        return seeder.postAccountNotifications(requestBody:
                 .init(subject: globalAnnouncementSubject, message: globalAnnouncementMessage,
                       start_at: globalAnnouncementStartAt, end_at: globalAnnouncementEndAt)
         )
