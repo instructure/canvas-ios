@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -15,30 +15,21 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
-
-import XCTest
 import TestsFoundation
 
-class CourseFileE2ETests: CoreUITestCase {
-    func testPreviewCourseFile() {
-        Dashboard.courseCard(id: "263").tap()
+public class CourseDetailsHelper: BaseHelper {
+    public static var titleLabel: Element { app.find(id: "course-details.title-lbl") }
+    public static var subtitleLabel: Element { app.find(id: "course-details.subtitle-lbl") }
+    public static func cell(type: CellType) -> Element { app.find(id: "courses-details.\(type.rawValue)-cell") }
 
-        CourseNavigation.files.tap()
-
-        FileList.file(index: 0).tap()
-
-        // need be on the next page before checking for image
-        sleep(3)
-        app.find(type: .image).waitToExist()
-    }
-
-    func testLinkToPreviewOpensFile() {
-        Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
-
-        CourseNavigation.pages.tap()
-        PageList.page(index: 1).tap()
-        app.links.firstElement.tap()
-        app.find(type: .image).waitToExist()
+    public enum CellType: String {
+        case home = "home"
+        case discussions = "discussions"
+        case grades = "grades"
+        case people = "people"
+        case syllabus = "syllabus"
+        case bigBlueButton = "conferences"
+        case collaborations = "collaborations"
+        case googleDrive = "context_external_tool_1038049"
     }
 }
