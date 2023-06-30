@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,36 +18,39 @@
 
 import Core
 
-// https://canvas.instructure.com/doc/api/pages.html#method.wiki_pages_api.create
-public struct CreateDSPageRequest: APIRequestable {
-    public typealias Response = DSPage
+// https://canvas.instructure.com/doc/api/modules.html#method.context_module_items_api.create
+public struct CreateDSModuleItemRequest: APIRequestable {
+    public typealias Response = DSModuleItem
 
     public let method = APIMethod.post
     public var path: String
     public let body: Body?
 
-    public init(body: Body, courseId: String) {
+    public init(body: Body, courseId: String, moduleId: String) {
         self.body = body
-        self.path = "courses/\(courseId)/pages"
+        self.path = "courses/\(courseId)/modules/\(moduleId)/items"
     }
 }
 
-extension CreateDSPageRequest {
-    public struct RequestedDSPage: Encodable {
+extension CreateDSModuleItemRequest {
+    public struct RequestedDSModuleItem: Encodable {
         let title: String
-        let body: String?
-        let published: Bool
-        let front_page: Bool
+        let type: String
+        let content_id: String?
+        let page_url: String?
 
-        public init(title: String = "Page Title", body: String? = nil, front_page: Bool = false, published: Bool = false) {
+        public init(title: String,
+                    type: DSModuleItemType,
+                    content_id: String? = nil,
+                    page_url: String? = nil) {
             self.title = title
-            self.body = body
-            self.published = published
-            self.front_page = front_page
+            self.type = type.rawValue
+            self.content_id = content_id
+            self.page_url = page_url
         }
     }
 
     public struct Body: Encodable {
-        let wiki_page: RequestedDSPage
+        let module_item: RequestedDSModuleItem
     }
 }

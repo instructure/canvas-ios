@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,11 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-extension DataSeeder {
+public struct DSQuiz: Codable {
+    public let id: String
+    public let title: String
+    public let quiz_type: String
+    public let description: String
+    public let published: Bool
+    public let question_count: Int
+    public let assignment_group_id: String?
+    public let assignment_id: String?
+    public let assessment_question_id: String?
+}
 
-    public func postGrade(courseId: String, assignmentId: String, userId: String, requestBody: CreateDSGradesRequest.RequestedDSGrades) {
-        let requestedBody = CreateDSGradesRequest.Body(submission: requestBody)
-        let request = CreateDSGradesRequest(body: requestedBody, courseId: courseId, assignmentId: assignmentId, userId: userId)
-        makeRequest(request)
-    }
+public enum DSQuizType: String {
+    case practiceQuiz = "practice_quiz"
+    case assignment = "assignment"
+    case gradedSurvey = "graded_survey"
+    case survey = "survey"
 }

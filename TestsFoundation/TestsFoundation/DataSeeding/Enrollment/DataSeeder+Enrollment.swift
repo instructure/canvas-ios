@@ -54,7 +54,7 @@ extension DataSeeder {
     public func enrollUser(_ user: DSUser, in course: DSCourse, type: DSEnrollmentType, state: EnrollmentState = .active) -> DSEnrollment {
         let requestedEnrollment = EnrollRequest.RequestedEnrollment(enrollment_state: state, user_id: user.id, type: type)
         let request = EnrollRequest(courseID: course.id, body: requestedEnrollment)
-        return try! makeRequest(request)
+        return makeRequest(request)
     }
 
     @discardableResult
@@ -63,7 +63,7 @@ extension DataSeeder {
         for user in users {
             let requestedEnrollment = EnrollRequest.RequestedEnrollment(enrollment_state: state, user_id: user.id, type: type)
             let request = EnrollRequest(courseID: course.id, body: requestedEnrollment)
-            enrollments.append(try! makeRequest(request))
+            enrollments.append(makeRequest(request))
         }
         return enrollments
     }

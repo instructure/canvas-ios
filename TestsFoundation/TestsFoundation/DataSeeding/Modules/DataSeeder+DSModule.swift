@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,9 +18,15 @@
 
 extension DataSeeder {
 
-    public func postGrade(courseId: String, assignmentId: String, userId: String, requestBody: CreateDSGradesRequest.RequestedDSGrades) {
-        let requestedBody = CreateDSGradesRequest.Body(submission: requestBody)
-        let request = CreateDSGradesRequest(body: requestedBody, courseId: courseId, assignmentId: assignmentId, userId: userId)
-        makeRequest(request)
+    public func createModule(courseId: String, moduleBody: CreateDSModuleRequest.RequestedDSModule) -> DSModule {
+        let requestedBody = CreateDSModuleRequest.Body(module: moduleBody)
+        let request = CreateDSModuleRequest(body: requestedBody, courseId: courseId)
+        return makeRequest(request)
+    }
+
+    public func updateModuleWithPublished(courseId: String, moduleId: String, published: Bool) -> DSModule {
+        let requestedBody = UpdateDSModuleRequest.Body(module: .init(published: published))
+        let request = UpdateDSModuleRequest(body: requestedBody, courseId: courseId, moduleId: moduleId)
+        return makeRequest(request)
     }
 }

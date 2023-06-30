@@ -21,6 +21,6 @@ extension DataSeeder {
     public func changeCourseTabs(courseId: String, tabId: String, tabsBody: CreateDSTabsRequest.RequestedTabs) {
         let requestBody = CreateDSTabsRequest.Body(requestedTab: tabsBody)
         let request = CreateDSTabsRequest(courseID: courseId, tabId: tabId, body: requestBody)
-        try! makeRequest(request)
+        makeRequest(request)
     }
 }

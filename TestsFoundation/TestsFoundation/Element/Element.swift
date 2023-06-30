@@ -186,11 +186,35 @@ public extension Element {
     }
 
     @discardableResult
+    func waitForValue(value: String, timeout: TimeInterval = 15, gracePeriod: UInt32 = 1) -> Bool {
+        let deadline = Date().addingTimeInterval(timeout)
+        while Date() < deadline {
+            if self.value() == value {
+                return true
+            }
+            sleep(gracePeriod)
+        }
+        return false
+    }
+
+    @discardableResult
     func waitToVanish(_ timeout: TimeInterval = 15, file: StaticString = #file, line: UInt = #line) -> Element {
         waitUntil(timeout, file: file, line: line, failureMessage: "Element \(id) still exists") {
             !exists(file: file, line: line)
         }
         return self
+    }
+
+    @discardableResult
+    func waitToContainLabel(label: String, timeout: TimeInterval = 15, gracePeriod: UInt32 = 1) -> Bool {
+        let deadline = Date().addingTimeInterval(timeout)
+        while Date() < deadline {
+            if self.label().contains(label) {
+                return true
+            }
+            sleep(gracePeriod)
+        }
+        return false
     }
 
     func snapshot(file: StaticString = #file, line: UInt = #line) -> XCUIElementSnapshot? {
