@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,11 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-extension DataSeeder {
+public struct DSModuleItem: Codable {
+    public let id: String
+    public let module_id: String
+    public let title: String
+    public let type: String
+    public let content_id: String?
+    public let published: Bool
+}
 
-    public func postGrade(courseId: String, assignmentId: String, userId: String, requestBody: CreateDSGradesRequest.RequestedDSGrades) {
-        let requestedBody = CreateDSGradesRequest.Body(submission: requestBody)
-        let request = CreateDSGradesRequest(body: requestedBody, courseId: courseId, assignmentId: assignmentId, userId: userId)
-        makeRequest(request)
-    }
+public enum DSModuleItemType: String, Encodable {
+    case file = "File"
+    case page = "Page"
+    case discussion = "Discussion"
+    case assignment = "Assignment"
+    case quiz = "Quiz"
+    case subHeader = "SubHeader"
+    case externalUrl = "ExternalUrl"
+    case externalTool = "ExternalTool"
 }

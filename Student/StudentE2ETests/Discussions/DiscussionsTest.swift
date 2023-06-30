@@ -206,8 +206,7 @@ class DiscussionsTests: E2ETestCase {
         let detailsNavBar = DetailsHelper.navBar(course: course).waitToExist()
         XCTAssertTrue(detailsNavBar.isVisible)
 
-        Helper.replyToDiscussion()
-        Helper.pullToRefresh()
+        Helper.replyToDiscussion(shouldPullToRefresh: true)
 
         // MARK: Check visibility of the reply
         let repliesSection = DetailsHelper.repliesSection.waitToExist()

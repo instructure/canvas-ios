@@ -65,6 +65,7 @@ class LoginE2ETests: CoreUITestCase {
 
     func testSAMLLoginToDashboard() throws {
         try XCTSkipIf(true, "Flaky")
+
         setAnimationsEnabled(true)
         defer { setAnimationsEnabled(false) }
         let user = UITestUser.saml

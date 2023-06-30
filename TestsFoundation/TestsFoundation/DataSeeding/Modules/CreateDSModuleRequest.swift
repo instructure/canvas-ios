@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,30 +18,30 @@
 
 import Core
 
-// https://canvas.instructure.com/doc/api/submissions.html#method.submissions_api.update
-public struct CreateDSGradesRequest: APIRequestable {
-    public typealias Response = APINoContent
+// https://canvas.instructure.com/doc/api/modules.html#method.context_modules_api.create
+public struct CreateDSModuleRequest: APIRequestable {
+    public typealias Response = DSModule
 
-    public let method = APIMethod.put
+    public let method = APIMethod.post
     public var path: String
     public let body: Body?
 
-    public init(body: Body, courseId: String, assignmentId: String, userId: String) {
+    public init(body: Body, courseId: String) {
         self.body = body
-        self.path = "courses/\(courseId)/assignments/\(assignmentId)/submissions/\(userId)"
+        self.path = "courses/\(courseId)/modules"
     }
 }
 
-extension CreateDSGradesRequest {
-    public struct RequestedDSGrades: Encodable {
-        let posted_grade: String
+extension CreateDSModuleRequest {
+    public struct RequestedDSModule: Encodable {
+        let name: String
 
-        public init(posted_grade: String) {
-            self.posted_grade = posted_grade
+        public init(name: String = "Module Name") {
+            self.name = name
         }
     }
 
     public struct Body: Encodable {
-        let submission: RequestedDSGrades
+        let module: RequestedDSModule
     }
 }

@@ -78,6 +78,9 @@ class ModuleItemCell: UITableViewCell {
                     : NSLocalizedString("unpublished", bundle: .core, comment: ""),
             ].compactMap { $0 }.joined(separator: ", ")
         }
+
         accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row)"
+        nameLabel.accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row).nameLabel"
+        dueLabel.accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row).dueLabel"
     }
 }

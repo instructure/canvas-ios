@@ -33,7 +33,7 @@ public struct CreateDSAccountNotificationRequest: APIRequestable {
 }
 
 extension CreateDSAccountNotificationRequest {
-    public struct RequestDSAccountNotification: Encodable {
+    public struct RequestedDSAccountNotification: Encodable {
         let subject: String
         let message: String
         let start_at: String
@@ -48,6 +48,6 @@ extension CreateDSAccountNotificationRequest {
     }
 
     public struct Body: Encodable {
-        public let account_notification: RequestDSAccountNotification
+        public let account_notification: RequestedDSAccountNotification
     }
 }

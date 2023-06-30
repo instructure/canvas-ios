@@ -82,9 +82,10 @@ public class DiscussionsHelper: BaseHelper {
                                         published: Bool = true,
                                         isAssignment: Bool = false,
                                         dueDate: String? = nil) -> DSDiscussionTopic {
-        let discussionAssignment = isAssignment ? CreateDSAssignmentRequest.RequestDSAssignment(
+        var discussionAssignment = isAssignment ? CreateDSAssignmentRequest.RequestedDSAssignment(
             name: title, description: message + title, published: published, submission_types: [.online_text_entry], due_at: dueDate) : nil
-        let discussionBody = CreateDSDiscussionRequest.RequestDSDiscussion(
+
+        let discussionBody = CreateDSDiscussionRequest.RequestedDSDiscussion(
             title: title, message: message + title, is_announcement: isAnnouncement,
             published: published, assignment: discussionAssignment)
         return seeder.createDiscussion(courseId: course.id, requestBody: discussionBody)
@@ -96,11 +97,15 @@ public class DiscussionsHelper: BaseHelper {
     }
 
     @discardableResult
-    public static func replyToDiscussion(replyText: String = "Test replying to discussion") -> Bool {
+    public static func replyToDiscussion(replyText: String = "Test replying to discussion", shouldPullToRefresh: Bool = false) -> Bool {
         Details.replyButton.tap()
         let textEntry = Details.Reply.textField.waitToExist()
         textEntry.pasteText(replyText)
         Details.Reply.sendButton.tap()
+        sleep(3)
+        if shouldPullToRefresh {
+            pullToRefresh()
+        }
         let repliesSection = Details.repliesSection.waitToExist()
         return repliesSection.isVisible
     }
