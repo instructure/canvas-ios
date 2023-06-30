@@ -59,8 +59,11 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
     public init(courseID: String, quizID: String) {
         self.quizID = quizID
         self.courseID = courseID
-        fetchQuiz()
-        fetchAssignmentGroups()
+
+        weak var weakSelf = self
+        fetchAssignmentGroups {
+            weakSelf?.fetchQuiz()
+        }
     }
 
     func fetchQuiz() {
@@ -97,15 +100,17 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
         }
     }
 
-    func fetchAssignmentGroups() {
+    func fetchAssignmentGroups(completion: @escaping () -> Void) {
         let useCase = GetAssignmentGroups(courseID: courseID)
         useCase.fetch(force: true) { [weak self] _, _, fetchError in
             guard let self = self else { return }
             if fetchError != nil {
+                completion()
                 self.state = .error(fetchError?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: ""))
                 return
             }
             self.assignmentGroups = self.env.database.viewContext.fetch(scope: useCase.scope)
+            completion()
         }
     }
 
