@@ -25,6 +25,8 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
 
     @ObservedObject var assignment: Store<GetAssignment>
     @ObservedObject var course: Store<GetCourse>
+    @State private var isTeacherEnrollment: Bool = false
+    @State private var isLocked: Bool = true
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
@@ -41,7 +43,6 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
         screenViewTrackingParameters = ScreenViewTrackingParameters(
             eventName: "/courses/\(courseID)/assignments/\(assignmentID)"
         )
-
     }
 
     public var body: some View {
@@ -49,23 +50,10 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
             .background(Color.backgroundLightest)
             .navigationBarStyle(.color(course.first?.color))
             .navigationTitle(NSLocalizedString("Assignment Details", comment: ""), subtitle: course.first?.name)
-            .rightBarButtonItems {
-                [
-                    UIBarButtonItemWithCompletion(
-                        title: NSLocalizedString("Edit", comment: ""),
-                        actionHandler: {
-                            env.router.route(
-                                to: "courses/\(courseID)/assignments/\(assignmentID)/edit",
-                                from: controller,
-                                options: .modal(isDismissable: false, embedInNav: true)
-                            )
-                        }
-                    ),
-                ]
-            }
+            .navigationBarItems(trailing: isTeacherEnrollment ? editButton : nil)
             .onAppear {
-                assignment.refresh()
-                course.refresh()
+                refreshAssignments()
+                refreshCourses()
             }
     }
 
@@ -138,14 +126,14 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
                 types
                 Spacer()
                 DisclosureIndicator().padding(.trailing, 16)
-            } })
+            } }).disableWithOpacity(isLocked)
         } else {
             types
         }
 
         Divider().padding(.horizontal, 16)
 
-        if course.first?.enrollments?.contains(where: { $0.isTeacher || $0.isTA }) == true {
+        if isTeacherEnrollment {
             let viewModel = AssignmentSubmissionBreakdownViewModel(courseID: courseID, assignmentID: assignmentID, submissionTypes: assignment.submissionTypes)
             SubmissionBreakdown(viewModel: viewModel)
             Divider().padding(.horizontal, 16)
@@ -185,6 +173,7 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
                 .background(Color(Brand.shared.buttonPrimaryBackground))
                 .cornerRadius(4)
                 .padding(EdgeInsets(top: 0, leading: 16, bottom: 16, trailing: 16))
+                .disableWithOpacity(isLocked)
         }
     }
 
@@ -210,6 +199,43 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
                 content
             }
                 .padding(16)
+        }
+    }
+
+    private func rightButtonItems() -> [UIBarButtonItemWithCompletion] {
+        guard isTeacherEnrollment else { return [] }
+        return [
+            UIBarButtonItemWithCompletion(title: NSLocalizedString("Edit", comment: ""), actionHandler: {
+                env.router.route(to: "courses/\(courseID)/assignments/\(assignmentID)/edit",
+                                 from: controller,
+                                 options: .modal(isDismissable: false, embedInNav: true))
+            }),
+        ]
+    }
+
+    @ViewBuilder
+    private var editButton: some View {
+        Button {
+            env.router.route(to: "courses/\(courseID)/assignments/\(assignmentID)/edit",
+                             from: controller,
+                             options: .modal(isDismissable: false, embedInNav: true))
+        } label: {
+            Text("Edit", bundle: .core)
+                .font(.regular17)
+                .foregroundColor(.textLightest)
+        }
+        .accessibility(label: Text("Edit Assignment", bundle: .core))
+    }
+
+    private func refreshAssignments() {
+        assignment.refresh { _ in
+            isLocked = assignment.first?.lockedForUser ?? false
+        }
+    }
+
+    private func refreshCourses() {
+        course.refresh { _ in
+            isTeacherEnrollment = course.first?.enrollments?.contains(where: { ($0.isTeacher  || $0.isTA) && $0.state == .active }) == true
         }
     }
 
