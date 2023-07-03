@@ -27,7 +27,7 @@ public class DashboardHelper: BaseHelper {
 
     @discardableResult
     public static func createFrontPageForCourse(course: DSCourse) -> DSPage {
-        let pageBody = CreateDSPageRequest.RequestDSPage(title: "Dashboard Test Page", body: "Dashboard Test Page Body", front_page: true, published: true)
+        let pageBody = CreateDSPageRequest.RequestedDSPage(title: "Dashboard Test Page", body: "Dashboard Test Page Body", front_page: true, published: true)
         return seeder.createPage(courseId: course.id, requestBody: pageBody)
     }
 

@@ -446,16 +446,16 @@ class ReactiveStoreTests: CoreTestCase {
     private func createStore<U: UseCase>(useCase: U) -> ReactiveStore<U> {
         ReactiveStore(
             env: environment,
-            offlineService: createOfflineService(),
+            offlineModeInteractor: createOfflineModeInteractor(),
             context: environment.database.viewContext,
             useCase: useCase
         )
     }
 
-    private func createOfflineService() -> OfflineService {
+    private func createOfflineModeInteractor() -> OfflineModeInteractor {
         let monitor = NWPathMonitorWrapper(start: { _ in () }, cancel: {})
         let availabilityService = NetworkAvailabilityServiceLive(monitor: monitor)
-        return OfflineServiceLive(availabilityService: availabilityService)
+        return OfflineModeInteractorLive(availabilityService: availabilityService)
     }
 }
 

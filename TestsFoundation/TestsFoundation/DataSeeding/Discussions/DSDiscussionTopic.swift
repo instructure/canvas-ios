@@ -21,4 +21,7 @@ public struct DSDiscussionTopic: Codable {
     public let title: String
     public let message: String
     public let published: Bool
+    public let discussion_subentry_count: Int
+    public let unread_count: Int
+    public let assignment: DSAssignment?
 }

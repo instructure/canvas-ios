@@ -23,16 +23,16 @@ public class CreateDSGradingStandardsRequest: APIRequestable {
 
     public let method = APIMethod.post
     public let path: String
-    public let body: RequestDSGradingStandards?
+    public let body: RequestedDSGradingStandards?
 
-    public init(body: RequestDSGradingStandards? = RequestDSGradingStandards(), courseId: String) {
+    public init(body: RequestedDSGradingStandards? = RequestedDSGradingStandards(), courseId: String) {
         self.body = body
         self.path = "courses/\(courseId)/grading_standards"
     }
 }
 
 extension CreateDSGradingStandardsRequest {
-    public struct RequestDSGradingStandards: Encodable {
+    public struct RequestedDSGradingStandards: Encodable {
         public let title: String
         public let grading_scheme_entry: [GradeEntry]
         public static let StandardGradingScheme: [GradeEntry] = [

@@ -39,7 +39,7 @@ const fire      = { normal: '#FC5E13', high: '#E36327' }
 const licorice  = { normal: '#2D3B45', high: '#2D3B45' }
 const oxford    = { normal: '#394B58', high: '#394B58' }
 const ash       = { normal: '#556572', high: '#556572' }
-const tiara     = { normal: '#C7CDD1', high: '#5565721' }
+const tiara     = { normal: '#C7CDD1', high: '#556572' }
 const porcelain = { normal: '#F5F5F5', high: '#FFFFFF' }
 const white     = { normal: '#FFFFFF', high: '#FFFFFF' }
 

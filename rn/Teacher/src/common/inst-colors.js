@@ -29,7 +29,7 @@ const instColors = {
   backgroundInfo: [ '#008EE2', '#1283C4', '#008EE2', '#1283C4' ],
   backgroundLight: [ '#F5F5F5', '#FFFFFF', '#1D1E1F', '#1D1E1F' ],
   backgroundLightest: [ '#FFFFFF', '#FFFFFF', '#121212', '#121212' ],
-  backgroundMedium: [ '#C7CDD1', '#5565721', '#242426', '#242426' ],
+  backgroundMedium: [ '#C7CDD1', '#556572', '#242426', '#242426' ],
   backgroundSuccess: [ '#00AC18', '#1A8E56', '#00AC18', '#1A8E56' ],
   backgroundWarning: [ '#FC5E13', '#E36327', '#FC5E13', '#E36327' ],
   barney: [ '#BF32A4', '#C74BAF', '#BF32A4', '#C74BAF' ],
@@ -40,7 +40,7 @@ const instColors = {
   borderInfo: [ '#008EE2', '#1283C4', '#008EE2', '#1283C4' ],
   borderLight: [ '#F5F5F5', '#FFFFFF', '#6B7780', '#6B7780' ],
   borderLightest: [ '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF' ],
-  borderMedium: [ '#C7CDD1', '#5565721', '#394B58', '#394B58' ],
+  borderMedium: [ '#C7CDD1', '#556572', '#394B58', '#394B58' ],
   borderSuccess: [ '#00AC18', '#1A8E56', '#00AC18', '#1A8E56' ],
   borderWarning: [ '#FC5E13', '#E36327', '#FC5E13', '#E36327' ],
   crimson: [ '#EE0612', '#E73A4E', '#EE0612', '#E73A4E' ],
@@ -60,7 +60,7 @@ const instColors = {
   textLightest: [ '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF' ],
   textSuccess: [ '#00AC18', '#1A8E56', '#00AC18', '#1A8E56' ],
   textWarning: [ '#FC5E13', '#E36327', '#FC5E13', '#E36327' ],
-  tiara: [ '#C7CDD1', '#5565721', '#C7CDD1', '#5565721' ],
+  tiara: [ '#C7CDD1', '#556572', '#C7CDD1', '#556572' ],
   white: [ '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF' ],
 }
 
