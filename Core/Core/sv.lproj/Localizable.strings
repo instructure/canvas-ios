@@ -608,6 +608,9 @@
 "Conversation Message" = "Meddelande i Inkorgen";
 
 /* No comment provided by engineer. */
+"Conversation options" = "Konversationsalternativ";
+
+/* No comment provided by engineer. */
 "conversation_recipients_to" = "conversation_recipients_to";
 
 /* No comment provided by engineer. */
@@ -1127,6 +1130,9 @@
 "Format not supported" = "Formatet stöds inte";
 
 /* No comment provided by engineer. */
+"Forward" = "Vidarebefordra";
+
+/* No comment provided by engineer. */
 "Front Page" = "Framsida";
 
 /* No comment provided by engineer. */
@@ -1559,6 +1565,9 @@
 "Message" = "Meddelande";
 
 /* No comment provided by engineer. */
+"Message Details" = "Meddelandedetaljer";
+
+/* No comment provided by engineer. */
 "Message from %@, %@, on %@, %@" = "Meddelande från %1$@, %2$@, %3$@, %4$@";
 
 /* No comment provided by engineer. */
@@ -1569,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "Moduler";
+
+/* No comment provided by engineer. */
+"More options" = "Fler alternativ";
 
 /* No comment provided by engineer. */
 "Move Annotation" = "Flytta notering";
@@ -2576,6 +2588,9 @@
 "There was an error loading quizzes. Pull to refresh to try again." = "Det gick inte att läsa in quiz. Dra för att uppdatera och försöka igen.";
 
 /* No comment provided by engineer. */
+"There was an error loading the message. Pull to refresh to try again." = "Ett fel inträffade vid inläsning av meddelandet. Dra för att uppdatera och försöka igen.";
+
+/* No comment provided by engineer. */
 "There was an error while communicating with the server" = "Ett fel uppstod under kommunikation med servern";
 
 /* No comment provided by engineer. */
@@ -2667,6 +2682,9 @@
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Twitter-aviseringar";
+
+/* No comment provided by engineer. */
+"Un-starred" = "Ej stjärnmärkta";
 
 /* No comment provided by engineer. */
 "Undo" = "Ångra";

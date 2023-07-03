@@ -608,6 +608,9 @@
 "Conversation Message" = "Keskustelun viesti";
 
 /* No comment provided by engineer. */
+"Conversation options" = "Keskustelun vaihtoehdot";
+
+/* No comment provided by engineer. */
 "conversation_recipients_to" = "conversation_recipients_to";
 
 /* No comment provided by engineer. */
@@ -1127,6 +1130,9 @@
 "Format not supported" = "Muotoa ei tueta";
 
 /* No comment provided by engineer. */
+"Forward" = "Välitä eteenpäin";
+
+/* No comment provided by engineer. */
 "Front Page" = "Etusivu";
 
 /* No comment provided by engineer. */
@@ -1559,6 +1565,9 @@
 "Message" = "Viesti";
 
 /* No comment provided by engineer. */
+"Message Details" = "Viestin tiedot";
+
+/* No comment provided by engineer. */
 "Message from %@, %@, on %@, %@" = "Viesti kohteesta %1$@, %2$@, %3$@, %4$@";
 
 /* No comment provided by engineer. */
@@ -1569,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "Moduulit";
+
+/* No comment provided by engineer. */
+"More options" = "Lisäasetukset";
 
 /* No comment provided by engineer. */
 "Move Annotation" = "Siirrä merkintä";
@@ -2576,6 +2588,9 @@
 "There was an error loading quizzes. Pull to refresh to try again." = "Kyselyiden latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
 
 /* No comment provided by engineer. */
+"There was an error loading the message. Pull to refresh to try again." = "Viestin lataamisessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
+
+/* No comment provided by engineer. */
 "There was an error while communicating with the server" = "Ilmeni virhe kommunikoitaessa palvelimen kanssa";
 
 /* No comment provided by engineer. */
@@ -2667,6 +2682,9 @@
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Twitter-ilmoitukset";
+
+/* No comment provided by engineer. */
+"Un-starred" = "Ei merkitty tähdellä";
 
 /* No comment provided by engineer. */
 "Undo" = "Peruuta";
