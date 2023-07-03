@@ -36,8 +36,9 @@ final class CourseSyncProgressObserverInteractorLive: CourseSyncProgressObserver
         useCase: GetCourseSyncEntryProgressUseCase(scope: .all)
     )
 
-    public init(context: NSManagedObjectContext = AppEnvironment.shared.database.viewContext) {
-        self.context = context
+    public init(container: NSPersistentContainer = AppEnvironment.shared.database) {
+        context = container.newBackgroundContext()
+        context.automaticallyMergesChangesFromParent = true
     }
 
     deinit {

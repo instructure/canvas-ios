@@ -19,6 +19,7 @@
 import Combine
 import CombineExt
 import Foundation
+import CoreData
 
 protocol CourseSyncProgressInteractor: AnyObject {
     func observeCombinedFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never>
@@ -33,7 +34,9 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
     private let progressObserverInteractor: CourseSyncProgressObserverInteractor
     private let sessionDefaults: SessionDefaults
 
-    private let courseListStore = ReactiveStore(
+    private let context: NSManagedObjectContext
+    private lazy var courseListStore = ReactiveStore(
+        context: context,
         useCase: GetCourseSyncSelectorCourses()
     )
     private let courseSyncEntries = CurrentValueSubject<[CourseSyncEntry], Error>(.init())
@@ -44,11 +47,14 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
     init(
         entryComposerInteractor: CourseSyncEntryComposerInteractor = CourseSyncEntryComposerInteractorLive(),
         progressObserverInteractor: CourseSyncProgressObserverInteractor = CourseSyncProgressObserverInteractorLive(),
-        sessionDefaults: SessionDefaults = AppEnvironment.shared.userDefaults ?? .fallback
+        sessionDefaults: SessionDefaults = AppEnvironment.shared.userDefaults ?? .fallback,
+        container: NSPersistentContainer = AppEnvironment.shared.database
     ) {
         self.entryComposerInteractor = entryComposerInteractor
         self.progressObserverInteractor = progressObserverInteractor
         self.sessionDefaults = sessionDefaults
+        context = container.newBackgroundContext()
+        context.automaticallyMergesChangesFromParent = true
     }
 
     func observeCombinedFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never> {
