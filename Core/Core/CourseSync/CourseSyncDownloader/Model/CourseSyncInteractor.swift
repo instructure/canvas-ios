@@ -67,7 +67,8 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         progressWriterInteractor.cleanUpPreviousFileProgress()
 
         subscription = Publishers.Sequence(sequence: entries)
-            .flatMap { unownedSelf.downloadCourseDetails($0) }
+            .buffer(size: .max, prefetch: .byRequest, whenFull: .dropOldest)
+            .flatMap(maxPublishers: .max(3)) { unownedSelf.downloadCourseDetails($0) }
             .collect()
             .handleEvents(
                 receiveCompletion: { completion in
@@ -164,8 +165,12 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             state: .loading(nil)
         )
 
-        return Publishers.Sequence(sequence: files.enumerated())
-            .flatMap { fileIndex, element in
+        return files.map(Just.init)
+            .flatMapBatches(of: 6)
+            .flatMap { Publishers.Sequence(sequence: $0) }
+            .flatMap { element in
+                let fileIndex = files.firstIndex(of: element)!
+
                 unownedSelf.setState(
                     selection: .file(entry.id, files[fileIndex].id), state: .loading(nil)
                 )
