@@ -21,6 +21,7 @@ import TestsFoundation
 import XCTest
 
 public class DashboardHelper: BaseHelper {
+    public static func courseCard(course: DSCourse) -> Element { app.find(id: "DashboardCourseCell.\(course.id)") }
     public static var dashboardSettings: Element { app.find(id: "Dashboard.settingsButton", type: .other) }
     public static var dashboardSettingsShowGradeToggle: Element { app.find(id: "DashboardSettings.showGradesToggle", type: .switch) }
     public static var doneButton: Element { app.find(id: "screen.dismiss", type: .button) }
