@@ -72,7 +72,7 @@ public class DataSeeder {
         XCTFail(result?.error?.localizedDescription ?? "API call failed")
 
         // Next line never runs because the above one fails the test
-        return APINoContent() as! Request.Response
+        return 0 as! Request.Response
     }
 
     private func request<Request: APIRequestable>(_ requestable: Request) -> (entity: Request.Response?, urlResponse: URLResponse?, error: Error?) {
