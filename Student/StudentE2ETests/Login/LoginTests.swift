@@ -165,7 +165,7 @@ class LoginTests: E2ETestCase {
         XCTAssertEqual(backToLoginButton.label(), "Back to Login")
     }
 
-    func testLoginWithoutEmailAndPassword() {
+    func testLoginWithoutUsernameAndPassword() {
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
         let course = seeder.createCourse()
@@ -228,5 +228,47 @@ class LoginTests: E2ETestCase {
 
         courseCard = DashboardHelper.courseCard(course: course).waitToExist()
         XCTAssertTrue(courseCard.isVisible)
+    }
+
+    func testWrongUsernameAndPassword() {
+        // MARK: Seed the usual stuff
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+
+        // MARK: Start login process
+        findSchool()
+        let navBar = LoginHelper.Login.navBar.waitToExist()
+        XCTAssertTrue(navBar.isVisible)
+
+        let emailInput = LoginHelper.Login.emailField.waitToExist()
+        XCTAssertTrue(emailInput.isVisible)
+
+        let passwordInput = LoginHelper.Login.passwordField.waitToExist()
+        XCTAssertTrue(passwordInput.isVisible)
+
+        let loginButton = LoginHelper.Login.loginButton.waitToExist()
+        XCTAssertTrue(loginButton.isVisible)
+
+        // MARK: Wrong username and password
+        emailInput.tap().pasteText("wrong email")
+        passwordInput.tap().pasteText("wrong password")
+
+        loginButton.tap()
+
+        var invalidUsernameOrPasswordLabel = LoginHelper.Start.invalidUsernameOrPasswordLabel.waitToExist()
+        XCTAssertTrue(invalidUsernameOrPasswordLabel.isVisible)
+
+        // MARK: Correct username with wrong password
+        emailInput.tap().pasteText(student.login_id)
+        passwordInput.tap().pasteText("wrong password")
+        loginButton.tap()
+
+        invalidUsernameOrPasswordLabel = LoginHelper.Start.invalidUsernameOrPasswordLabel.waitToExist()
+        XCTAssertTrue(invalidUsernameOrPasswordLabel.isVisible)
+
+        // MARK: Check that the user didn't get logged in
+        let courseCard = DashboardHelper.courseCard(course: course).waitToVanish()
+        XCTAssertFalse(courseCard.isVisible)
     }
 }

@@ -32,6 +32,9 @@ public class LoginHelper: BaseHelper {
         public static func previousLoginCell(dsUser: DSUser) -> Element {
             app.find(id: "LoginStartSession.\(user.host).\(dsUser.id)")
         }
+        public static var invalidUsernameOrPasswordLabel: Element {
+            app.find(labelContaining: "Invalid username or password", type: .staticText)
+        }
     }
 
     struct FindSchool {
