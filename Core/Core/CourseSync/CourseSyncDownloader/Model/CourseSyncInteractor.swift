@@ -19,6 +19,7 @@
 import Combine
 import CombineSchedulers
 import Foundation
+import CombineExt
 
 public protocol CourseSyncInteractor {
     func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Error>
@@ -166,7 +167,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         return Publishers.Sequence(sequence: files.enumerated())
             .flatMap { fileIndex, element in
                 unownedSelf.setState(
-                    selection: .file(entry.id, entry.files[fileIndex].id), state: .loading(nil)
+                    selection: .file(entry.id, files[fileIndex].id), state: .loading(nil)
                 )
 
                 return unownedSelf.filesInteractor.getFile(
@@ -178,7 +179,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                 .debounce(for: .milliseconds(300), scheduler: unownedSelf.scheduler)
                 .tryCatch { error -> AnyPublisher<Float, Error> in
                     unownedSelf.setState(
-                        selection: .file(entry.id, entry.files[fileIndex].id), state: .error
+                        selection: .file(entry.id, files[fileIndex].id), state: .error
                     )
                     unownedSelf.setState(
                         selection: .tab(entry.id, entry.tabs[tabIndex].id), state: .error
@@ -189,7 +190,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                 .handleEvents(
                     receiveOutput: { progress in
                         unownedSelf.setState(
-                            selection: .file(entry.id, entry.files[fileIndex].id), state: .loading(progress)
+                            selection: .file(entry.id, files[fileIndex].id), state: .loading(progress)
                         )
                         unownedSelf.setState(
                             selection: .tab(entry.id, entry.tabs[tabIndex].id),
@@ -201,11 +202,11 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                         switch completion {
                         case .finished:
                             unownedSelf.setState(
-                                selection: .file(entry.id, entry.files[fileIndex].id), state: .downloaded
+                                selection: .file(entry.id, files[fileIndex].id), state: .downloaded
                             )
                         case .failure:
                             unownedSelf.setState(
-                                selection: .file(entry.id, entry.files[fileIndex].id), state: .error
+                                selection: .file(entry.id, files[fileIndex].id), state: .error
                             )
                         }
                     }
