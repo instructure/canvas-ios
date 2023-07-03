@@ -28,6 +28,10 @@ public class LoginHelper: BaseHelper {
         public static var findSchoolButton: Element { app.find(id: "LoginStart.findSchoolButton") }
         public static var qrCodeButton: Element { app.find(id: "LoginStart.qrCodeButton") }
         public static var canvasNetworkButton: Element { app.find(id: "LoginStart.canvasNetworkButton") }
+
+        public static func previousLoginCell(dsUser: DSUser) -> Element {
+            app.find(id: "LoginStartSession.\(user.host).\(dsUser.id)")
+        }
     }
 
     struct FindSchool {

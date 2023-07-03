@@ -70,6 +70,8 @@ public class DataSeeder {
         }
 
         XCTFail(result?.error?.localizedDescription ?? "API call failed")
+
+        // Next line never runs because the above one fails the test
         return APINoContent() as! Request.Response
     }
 

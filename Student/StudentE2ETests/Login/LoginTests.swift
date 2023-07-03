@@ -194,4 +194,39 @@ class LoginTests: E2ETestCase {
         noPasswordLabel.waitToExist()
         XCTAssertTrue(noPasswordLabel.isVisible)
     }
+
+    func testLoginMultipleUsers() {
+        // MARK: Seed the usual stuff
+        let student1 = seeder.createUser()
+        let student2 = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudents([student1, student2], in: course)
+
+        // MARK: Get the first user logged in
+        logInDSUser(student1)
+
+        var courseCard = DashboardHelper.courseCard(course: course).waitToExist()
+        XCTAssertTrue(courseCard.isVisible)
+
+        // MARK: Change user
+        let profileButton = DashboardHelper.profileButton.waitToExist()
+        XCTAssertTrue(profileButton.isVisible)
+
+        profileButton.tap()
+
+        let changeUserButton = ProfileHelper.changeUserButton.waitToExist()
+        XCTAssertTrue(changeUserButton.isVisible)
+
+        changeUserButton.tap()
+
+        // MARK: Check visibility of "Previous Login" cell
+        let previousLoginCell = LoginHelper.Start.previousLoginCell(dsUser: student1).waitToExist()
+        XCTAssertTrue(previousLoginCell.isVisible)
+
+        // MARK: Get the second user logged in
+        logInDSUser(student2)
+
+        courseCard = DashboardHelper.courseCard(course: course).waitToExist()
+        XCTAssertTrue(courseCard.isVisible)
+    }
 }
