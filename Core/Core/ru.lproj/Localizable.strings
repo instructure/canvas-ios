@@ -608,6 +608,9 @@
 "Conversation Message" = "Сообщение обсуждения";
 
 /* No comment provided by engineer. */
+"Conversation options" = "Опции дискуссии";
+
+/* No comment provided by engineer. */
 "conversation_recipients_to" = "conversation_recipients_to";
 
 /* No comment provided by engineer. */
@@ -1127,6 +1130,9 @@
 "Format not supported" = "Формат не поддерживается";
 
 /* No comment provided by engineer. */
+"Forward" = "Переслать";
+
+/* No comment provided by engineer. */
 "Front Page" = "Первая страница";
 
 /* No comment provided by engineer. */
@@ -1559,6 +1565,9 @@
 "Message" = "Сообщение";
 
 /* No comment provided by engineer. */
+"Message Details" = "Данные сообщения";
+
+/* No comment provided by engineer. */
 "Message from %@, %@, on %@, %@" = "Сообщение от %1$@, %2$@, %3$@, %4$@";
 
 /* No comment provided by engineer. */
@@ -1569,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "Модули";
+
+/* No comment provided by engineer. */
+"More options" = "Дополнительные опции";
 
 /* No comment provided by engineer. */
 "Move Annotation" = "Переместить аннотацию";
@@ -2576,6 +2588,9 @@
 "There was an error loading quizzes. Pull to refresh to try again." = "Произошла ошибка при загрузке тестов. Потяните для обновления, чтобы попробовать еще раз.";
 
 /* No comment provided by engineer. */
+"There was an error loading the message. Pull to refresh to try again." = "Произошла ошибка при скачивании сообщения. Потяните для обновления, чтобы попробовать еще раз.";
+
+/* No comment provided by engineer. */
 "There was an error while communicating with the server" = "При обмене данными с сервером произошла ошибка";
 
 /* No comment provided by engineer. */
@@ -2667,6 +2682,9 @@
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Уведомления Twitter";
+
+/* No comment provided by engineer. */
+"Un-starred" = "Звездочка убрана";
 
 /* No comment provided by engineer. */
 "Undo" = "Отменить";

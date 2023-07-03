@@ -608,6 +608,9 @@
 "Conversation Message" = "Neges Sgwrs";
 
 /* No comment provided by engineer. */
+"Conversation options" = "Opsiynau trafodaethau";
+
+/* No comment provided by engineer. */
 "conversation_recipients_to" = "conversation_recipients_to";
 
 /* No comment provided by engineer. */
@@ -1127,6 +1130,9 @@
 "Format not supported" = "Does dim modd delio â'r fformat";
 
 /* No comment provided by engineer. */
+"Forward" = "Ymlaen";
+
+/* No comment provided by engineer. */
 "Front Page" = "Tudalen Flaen";
 
 /* No comment provided by engineer. */
@@ -1559,6 +1565,9 @@
 "Message" = "Neges";
 
 /* No comment provided by engineer. */
+"Message Details" = "Manylion y Neges";
+
+/* No comment provided by engineer. */
 "Message from %@, %@, on %@, %@" = "Neges gan %1$@, %2$@, ar %3$@, %4$@";
 
 /* No comment provided by engineer. */
@@ -1569,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "Modiwlau";
+
+/* No comment provided by engineer. */
+"More options" = "Mwy o opsiynau";
 
 /* No comment provided by engineer. */
 "Move Annotation" = "Symud Anodiad";
@@ -2576,6 +2588,9 @@
 "There was an error loading quizzes. Pull to refresh to try again." = "Gwall wrth lwytho cwisiau. Tynnwch i adnewyddu a rhoi cynnig arall arni.";
 
 /* No comment provided by engineer. */
+"There was an error loading the message. Pull to refresh to try again." = "Gwall wrth lwytho'r neges. Tynnwch i adnewyddu a rhoi cynnig arall arni.";
+
+/* No comment provided by engineer. */
 "There was an error while communicating with the server" = "Gwall wrth gyfathrebu â'r gweinydd";
 
 /* No comment provided by engineer. */
@@ -2667,6 +2682,9 @@
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Hysbysiadau Twitter";
+
+/* No comment provided by engineer. */
+"Un-starred" = "Heb seren";
 
 /* No comment provided by engineer. */
 "Undo" = "Dad-wneud";

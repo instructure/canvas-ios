@@ -608,6 +608,9 @@
 "Conversation Message" = "Missatge de conversa";
 
 /* No comment provided by engineer. */
+"Conversation options" = "Opcions de conversa";
+
+/* No comment provided by engineer. */
 "conversation_recipients_to" = "conversation_recipients_to";
 
 /* No comment provided by engineer. */
@@ -1127,6 +1130,9 @@
 "Format not supported" = "Format no admès";
 
 /* No comment provided by engineer. */
+"Forward" = "Reenvia";
+
+/* No comment provided by engineer. */
 "Front Page" = "Pàgina frontal";
 
 /* No comment provided by engineer. */
@@ -1559,6 +1565,9 @@
 "Message" = "Missatge";
 
 /* No comment provided by engineer. */
+"Message Details" = "Detalls del missatge";
+
+/* No comment provided by engineer. */
 "Message from %@, %@, on %@, %@" = "Missatge de %1$@, %2$@, el %3$@, %4$@";
 
 /* No comment provided by engineer. */
@@ -1569,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "Continguts";
+
+/* No comment provided by engineer. */
+"More options" = "Més opcions";
 
 /* No comment provided by engineer. */
 "Move Annotation" = "Desplaça l’anotació";
@@ -2576,6 +2588,9 @@
 "There was an error loading quizzes. Pull to refresh to try again." = "S'ha produït un error en carregar les proves. Estireu per actualitzar per tornar-ho a provar.";
 
 /* No comment provided by engineer. */
+"There was an error loading the message. Pull to refresh to try again." = "S’ha produït un error en carregar el missatge. Estireu per actualitzar per tornar-ho a provar.";
+
+/* No comment provided by engineer. */
 "There was an error while communicating with the server" = "S'ha produït un error en comunicar-se amb el servidor";
 
 /* No comment provided by engineer. */
@@ -2667,6 +2682,9 @@
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Notificacions de Twitter";
+
+/* No comment provided by engineer. */
+"Un-starred" = "Sense marca d'estrella";
 
 /* No comment provided by engineer. */
 "Undo" = "Desfés";

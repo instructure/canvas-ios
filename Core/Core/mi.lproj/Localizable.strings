@@ -608,6 +608,9 @@
 "Conversation Message" = "Karere Kōrerorero";
 
 /* No comment provided by engineer. */
+"Conversation options" = "Ngā kōwhiringa kōrero";
+
+/* No comment provided by engineer. */
 "conversation_recipients_to" = "conversation_recipients_to";
 
 /* No comment provided by engineer. */
@@ -1127,6 +1130,9 @@
 "Format not supported" = "Hōputu kaore e tautokotia";
 
 /* No comment provided by engineer. */
+"Forward" = "Whakamua";
+
+/* No comment provided by engineer. */
 "Front Page" = "Whārangi mua";
 
 /* No comment provided by engineer. */
@@ -1559,6 +1565,9 @@
 "Message" = "Karere";
 
 /* No comment provided by engineer. */
+"Message Details" = "Ngā taipitopito karere";
+
+/* No comment provided by engineer. */
 "Message from %@, %@, on %@, %@" = "Karere mai %1$@, %2$@, i runga %3$@, %4$@";
 
 /* No comment provided by engineer. */
@@ -1569,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "Kōwae";
+
+/* No comment provided by engineer. */
+"More options" = "Kōwhiringa atu";
 
 /* No comment provided by engineer. */
 "Move Annotation" = "Nuku Tohutohu";
@@ -2576,6 +2588,9 @@
 "There was an error loading quizzes. Pull to refresh to try again." = "He hapa i te wā e uta ana ngā quizzes. Kumea ki te whakahou ki te ngana anō.";
 
 /* No comment provided by engineer. */
+"There was an error loading the message. Pull to refresh to try again." = "He hapa i te utaina o te korerorero. Kumea ki te whakahou ki te ngana anō.";
+
+/* No comment provided by engineer. */
 "There was an error while communicating with the server" = "He hapa i te wā e kōrero ana ki te tūmau.";
 
 /* No comment provided by engineer. */
@@ -2667,6 +2682,9 @@
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "NgāTwitter whakamōhiotanga";
+
+/* No comment provided by engineer. */
+"Un-starred" = "Kaore i whetūngia";
 
 /* No comment provided by engineer. */
 "Undo" = "Wete";

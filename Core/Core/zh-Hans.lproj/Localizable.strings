@@ -608,6 +608,9 @@
 "Conversation Message" = "会话消息";
 
 /* No comment provided by engineer. */
+"Conversation options" = "对话选项";
+
+/* No comment provided by engineer. */
 "conversation_recipients_to" = "conversation_recipients_to";
 
 /* No comment provided by engineer. */
@@ -1127,6 +1130,9 @@
 "Format not supported" = "格式不支持";
 
 /* No comment provided by engineer. */
+"Forward" = "转发";
+
+/* No comment provided by engineer. */
 "Front Page" = "首页";
 
 /* No comment provided by engineer. */
@@ -1559,6 +1565,9 @@
 "Message" = "消息";
 
 /* No comment provided by engineer. */
+"Message Details" = "消息详细信息";
+
+/* No comment provided by engineer. */
 "Message from %@, %@, on %@, %@" = "消息来自 %1$@，%2$@，位于 %3$@，%4$@";
 
 /* No comment provided by engineer. */
@@ -1569,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "单元";
+
+/* No comment provided by engineer. */
+"More options" = "更多选项";
 
 /* No comment provided by engineer. */
 "Move Annotation" = "移动注释";
@@ -2576,6 +2588,9 @@
 "There was an error loading quizzes. Pull to refresh to try again." = "加载测验时发生错误。下拉刷新以重试。";
 
 /* No comment provided by engineer. */
+"There was an error loading the message. Pull to refresh to try again." = "加载消息时出错。下拉刷新以重试。";
+
+/* No comment provided by engineer. */
 "There was an error while communicating with the server" = "与服务器通信时发生错误";
 
 /* No comment provided by engineer. */
@@ -2667,6 +2682,9 @@
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Twitter通知";
+
+/* No comment provided by engineer. */
+"Un-starred" = "未标记星号";
 
 /* No comment provided by engineer. */
 "Undo" = "后退";
