@@ -608,6 +608,9 @@
 "Conversation Message" = "رسالة المحادثة";
 
 /* No comment provided by engineer. */
+"Conversation options" = "خيارات المحادثة";
+
+/* No comment provided by engineer. */
 "conversation_recipients_to" = "conversation_recipients_to";
 
 /* No comment provided by engineer. */
@@ -1127,6 +1130,9 @@
 "Format not supported" = "التنسيق غير مدعوم";
 
 /* No comment provided by engineer. */
+"Forward" = "إعادة توجيه";
+
+/* No comment provided by engineer. */
 "Front Page" = "الصفحة الأمامية";
 
 /* No comment provided by engineer. */
@@ -1559,6 +1565,9 @@
 "Message" = "الرسالة";
 
 /* No comment provided by engineer. */
+"Message Details" = "تفاصيل الرسالة";
+
+/* No comment provided by engineer. */
 "Message from %@, %@, on %@, %@" = "رسالة من %1$@، %2$@، في %3$@، %4$@";
 
 /* No comment provided by engineer. */
@@ -1569,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "الوحدات النمطية";
+
+/* No comment provided by engineer. */
+"More options" = "المزيد من الخيارات";
 
 /* No comment provided by engineer. */
 "Move Annotation" = "نقل التعليق التوضيحي";
@@ -2576,6 +2588,9 @@
 "There was an error loading quizzes. Pull to refresh to try again." = "حدث خطأ أثناء تحميل الاختبارات الموجزة. اسحب للتحديث لإعادة المحاولة.";
 
 /* No comment provided by engineer. */
+"There was an error loading the message. Pull to refresh to try again." = "حدث خطأ أثناء تحميل الرسالة. اسحب للتحديث لإعادة المحاولة.";
+
+/* No comment provided by engineer. */
 "There was an error while communicating with the server" = "حدث خطأ أثناء الاتصال بالخادم";
 
 /* No comment provided by engineer. */
@@ -2667,6 +2682,9 @@
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "إعلامات Twitter";
+
+/* No comment provided by engineer. */
+"Un-starred" = "تمت إزالة علامة النجمة";
 
 /* No comment provided by engineer. */
 "Undo" = "تراجع";

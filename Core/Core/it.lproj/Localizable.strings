@@ -608,6 +608,9 @@
 "Conversation Message" = "Messaggio conversazione";
 
 /* No comment provided by engineer. */
+"Conversation options" = "Opzioni conversazione";
+
+/* No comment provided by engineer. */
 "conversation_recipients_to" = "conversation_recipients_to";
 
 /* No comment provided by engineer. */
@@ -1127,6 +1130,9 @@
 "Format not supported" = "Formato non supportato";
 
 /* No comment provided by engineer. */
+"Forward" = "Inoltra";
+
+/* No comment provided by engineer. */
 "Front Page" = "Pagina iniziale";
 
 /* No comment provided by engineer. */
@@ -1559,6 +1565,9 @@
 "Message" = "Messaggio";
 
 /* No comment provided by engineer. */
+"Message Details" = "Dettagli messaggio";
+
+/* No comment provided by engineer. */
 "Message from %@, %@, on %@, %@" = "Messaggio da %1$@, %2$@, del %3$@, %4$@";
 
 /* No comment provided by engineer. */
@@ -1569,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "Moduli";
+
+/* No comment provided by engineer. */
+"More options" = "Altre opzioni";
 
 /* No comment provided by engineer. */
 "Move Annotation" = "Sposta annotazione";
@@ -2576,6 +2588,9 @@
 "There was an error loading quizzes. Pull to refresh to try again." = "Si è verificato un errore durante il caricamento dei quiz. Trascinare verso il basso per aggiornare e riprovare.";
 
 /* No comment provided by engineer. */
+"There was an error loading the message. Pull to refresh to try again." = "Si è verificato un errore di caricamento messaggio. Trascinare verso il basso per aggiornare e riprovare.";
+
+/* No comment provided by engineer. */
 "There was an error while communicating with the server" = "Si è verificato un errore durante la comunicazione con il server";
 
 /* No comment provided by engineer. */
@@ -2667,6 +2682,9 @@
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Notifiche Twitter";
+
+/* No comment provided by engineer. */
+"Un-starred" = "Non aggiunti a speciali";
 
 /* No comment provided by engineer. */
 "Undo" = "Annulla";
