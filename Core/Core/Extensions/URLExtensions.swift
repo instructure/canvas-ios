@@ -41,13 +41,14 @@ public extension URL {
 
         public static func caches(appGroup: String?) -> URL {
             var folder = caches
-            if let appGroup = appGroup, let group = sharedContainers(appGroup) {
+            if let appGroup = appGroup, let group = sharedContainer(appGroup: appGroup) {
                 folder = group.appendingPathComponent("caches", isDirectory: true)
                 try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true, attributes: nil)
             }
             return folder
         }
 
+        /// The `Documents` directory in the application's private folder.
         public static var documents: URL {
             FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         }
@@ -56,12 +57,29 @@ public extension URL {
             FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
         }
 
-        public static func sharedContainers(_ identifier: String) -> URL? {
+        public static func sharedContainer(appGroup identifier: String) -> URL? {
             FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: identifier)
         }
 
-        public static var offline: URL {
-            documents.appendingPathComponent("Offline")
+        /// Returns the full url with the file name to where the database should be saved.
+        public static func databaseURL(appGroup: String?, session: LoginSession?) -> URL {
+            guard let session else {
+                return URL.Directories.caches
+                    .appendingPathComponent("Database.sqlite", isDirectory: false)
+            }
+
+            let documents: URL = {
+                if let appGroup, let container = URL.Directories.sharedContainer(appGroup: appGroup) {
+                    return container.appendingPathComponent("Documents", isDirectory: true)
+                } else {
+                    return URL.Directories.documents
+                }
+            }()
+
+            return documents
+                    .appendingPathComponent(session.uniqueID, isDirectory: true)
+                    .appendingPathComponent("Offline", isDirectory: true)
+                    .appendingPathComponent("Database.sqlite", isDirectory: false)
         }
     }
 
@@ -109,5 +127,17 @@ public extension URL {
 
     var withCanonicalQueryParams: URL? {
         return URLComponents(url: self, resolvingAgainstBaseURL: false)?.withCanonicalQueryParams.url
+    }
+
+    /**
+     Returns the base url from this url that can be passed to an API instance.
+
+     Example: https://test.instructure.com/courses/123?param=1 -> https://test.instructure.com
+     */
+    var apiBaseURL: URL? {
+        var components = URLComponents()
+        components.host = host
+        components.scheme = scheme
+        return components.url
     }
 }

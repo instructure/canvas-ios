@@ -91,7 +91,7 @@ public struct DeveloperMenuView: View {
             guard let appGroup = Bundle.main.appGroupID() else { return nil }
             return URL
                 .Directories
-                .sharedContainers(appGroup)?
+                .sharedContainer(appGroup: appGroup)?
                 .absoluteString
         }()
 

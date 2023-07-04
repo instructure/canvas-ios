@@ -24,26 +24,28 @@ public struct CreateDSDiscussionRequest: APIRequestable {
 
     public let method = APIMethod.post
     public let path: String
-    public let body: RequestDSDiscussion?
+    public let body: RequestedDSDiscussion?
 
-    public init(courseID: String, body: RequestDSDiscussion) {
+    public init(courseID: String, body: RequestedDSDiscussion) {
         self.path = "courses/\(courseID)/discussion_topics"
         self.body = body
     }
 }
 
 extension CreateDSDiscussionRequest {
-    public struct RequestDSDiscussion: Encodable {
+    public struct RequestedDSDiscussion: Encodable {
         let title: String
         let message: String
         let is_announcement: Bool
         let published: Bool
+        let assignment: CreateDSAssignmentRequest.RequestedDSAssignment?
 
-        public init(title: String, message: String, is_announcement: Bool = false, published: Bool = true) {
+        public init(title: String, message: String, is_announcement: Bool = false, published: Bool = true, assignment: CreateDSAssignmentRequest.RequestedDSAssignment? = nil) {
             self.title = title
             self.message = message
             self.is_announcement = is_announcement
             self.published = published
+            self.assignment = assignment
         }
     }
 }

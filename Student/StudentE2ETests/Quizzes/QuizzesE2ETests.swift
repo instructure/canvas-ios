@@ -22,7 +22,7 @@ import XCTest
 
 class QuizzesE2ETests: CoreUITestCase {
 
-    func testQuizQuestionsOpenInWebView() throws {
+    func testQuizQuestionsOpenInWebView() {
         Dashboard.courseCard(id: "263").tap()
         CourseNavigation.quizzes.tap()
 
@@ -33,7 +33,7 @@ class QuizzesE2ETests: CoreUITestCase {
         app.find(label: "This quiz is for testing web view question types.").waitToExist()
     }
 
-    func testQuizzesShowEmptyState() throws {
+    func testQuizzesShowEmptyState() {
         Dashboard.courseCard(id: "262").tap()
         CourseNavigation.announcements.waitToExist()
         CourseNavigation.quizzes.waitToVanish()

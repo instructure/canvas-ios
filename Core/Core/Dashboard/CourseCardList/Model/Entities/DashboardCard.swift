@@ -53,6 +53,15 @@ public final class DashboardCard: NSManagedObject {
         }
     }
 
+    public var isAvailableOffline: Bool {
+        guard let selections = AppEnvironment.shared.userDefaults?.offlineSyncSelections else { return true }
+        var isAvailable = false
+        selections.forEach { selection in
+            if selection == "courses/\(id)" { isAvailable = true }
+        }
+        return isAvailable
+    }
+
     @discardableResult
     public static func save(_ item: APIDashboardCard, position: Int, in context: NSManagedObjectContext) -> Self {
         let model: Self = context.first(where: #keyPath(DashboardCard.id), equals: item.id.value) ?? context.insert()

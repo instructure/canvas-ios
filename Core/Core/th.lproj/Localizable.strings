@@ -608,6 +608,9 @@
 "Conversation Message" = "ข้อความการพูดคุย";
 
 /* No comment provided by engineer. */
+"Conversation options" = "ตัวเลือกการพูดคุย";
+
+/* No comment provided by engineer. */
 "conversation_recipients_to" = "conversation_recipients_to";
 
 /* No comment provided by engineer. */
@@ -1127,6 +1130,9 @@
 "Format not supported" = "ฟอร์แมตไม่รองรับ";
 
 /* No comment provided by engineer. */
+"Forward" = "ส่งต่อ";
+
+/* No comment provided by engineer. */
 "Front Page" = "หน้าแรก";
 
 /* No comment provided by engineer. */
@@ -1559,6 +1565,9 @@
 "Message" = "ข้อความ";
 
 /* No comment provided by engineer. */
+"Message Details" = "รายละเอียดข้อความ";
+
+/* No comment provided by engineer. */
 "Message from %@, %@, on %@, %@" = "ข้อความจาก %1$@, %2$@, จาก %3$@, %4$@";
 
 /* No comment provided by engineer. */
@@ -1569,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "หน่วยการเรียน";
+
+/* No comment provided by engineer. */
+"More options" = "ตัวเลือกเพิ่มเติม";
 
 /* No comment provided by engineer. */
 "Move Annotation" = "หมายเหตุกำกับการเคลื่อนย้าย";
@@ -2576,6 +2588,9 @@
 "There was an error loading quizzes. Pull to refresh to try again." = "มีข้อผิดพลาดในการโหลดแบบทดสอบ ดึงเพื่อรีเฟรชเพื่อลองใหม่อีกครั้ง";
 
 /* No comment provided by engineer. */
+"There was an error loading the message. Pull to refresh to try again." = "มีข้อผิดพลาดในการโหลดข้อความ ดึงเพื่อรีเฟรชเพื่อลองใหม่อีกครั้ง";
+
+/* No comment provided by engineer. */
 "There was an error while communicating with the server" = "มีข้อผิดพลาดในขณะสื่อสารกับเซิร์ฟเวอร์";
 
 /* No comment provided by engineer. */
@@ -2667,6 +2682,9 @@
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "การแจ้งข้อมูลจาก Twitter";
+
+/* No comment provided by engineer. */
+"Un-starred" = "ลบดาวแล้ว";
 
 /* No comment provided by engineer. */
 "Undo" = "เลิกทำ";

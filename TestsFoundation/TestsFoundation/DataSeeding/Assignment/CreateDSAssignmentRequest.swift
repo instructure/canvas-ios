@@ -33,7 +33,7 @@ public struct CreateDSAssignmentRequest: APIRequestable {
 }
 
 extension CreateDSAssignmentRequest {
-    public struct RequestDSAssignment: Encodable {
+    public struct RequestedDSAssignment: Encodable {
         let name: String
         let description: String?
         let published: Bool
@@ -60,6 +60,6 @@ extension CreateDSAssignmentRequest {
     }
 
     public struct Body: Encodable {
-        let assignment: RequestDSAssignment
+        let assignment: RequestedDSAssignment
     }
 }

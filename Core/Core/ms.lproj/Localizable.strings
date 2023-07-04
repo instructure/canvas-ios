@@ -608,6 +608,9 @@
 "Conversation Message" = "Mesej Perbualan";
 
 /* No comment provided by engineer. */
+"Conversation options" = "Pilihan perbualan";
+
+/* No comment provided by engineer. */
 "conversation_recipients_to" = "conversation_recipients_to";
 
 /* No comment provided by engineer. */
@@ -1127,6 +1130,9 @@
 "Format not supported" = "Format tidak disokong";
 
 /* No comment provided by engineer. */
+"Forward" = "Majukan";
+
+/* No comment provided by engineer. */
 "Front Page" = "Halaman Depan";
 
 /* No comment provided by engineer. */
@@ -1559,6 +1565,9 @@
 "Message" = "Mesej";
 
 /* No comment provided by engineer. */
+"Message Details" = "Butiran Mesej";
+
+/* No comment provided by engineer. */
 "Message from %@, %@, on %@, %@" = "Mesej daripada %1$@, %2$@, pada %3$@, %4$@";
 
 /* No comment provided by engineer. */
@@ -1569,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "Modul";
+
+/* No comment provided by engineer. */
+"More options" = "Lebih banyak pilihan";
 
 /* No comment provided by engineer. */
 "Move Annotation" = "Alih Anotasi";
@@ -2576,6 +2588,9 @@
 "There was an error loading quizzes. Pull to refresh to try again." = "Terdapat ralat untuk memuatkan kuiz. Tarik untuk segar semula untuk mencuba lagi.";
 
 /* No comment provided by engineer. */
+"There was an error loading the message. Pull to refresh to try again." = "Terdapat ralat memuatkan mesej ini. Tarik untuk segar semula untuk mencuba lagi.";
+
+/* No comment provided by engineer. */
 "There was an error while communicating with the server" = "Terdapat ralat semasa berkomunikasi dengan pelayan";
 
 /* No comment provided by engineer. */
@@ -2667,6 +2682,9 @@
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Pemberitahuan Twitter";
+
+/* No comment provided by engineer. */
+"Un-starred" = "dinyahbintangkan";
 
 /* No comment provided by engineer. */
 "Undo" = "Buat asal";

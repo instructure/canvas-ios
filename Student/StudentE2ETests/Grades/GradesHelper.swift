@@ -21,6 +21,14 @@ import TestsFoundation
 import Core
 
 public class GradesHelper: BaseHelper {
+    public static func gradesAssignmentButton(assignment: DSAssignment) -> Element {
+        app.find(id: "GradeListCell.\(assignment.id)")
+    }
+
+    public static func gradesAssignmentSubmittedLabel(assignment: DSAssignment) -> Element {
+        gradesAssignmentButton(assignment: assignment).rawElement.findAll(type: .staticText)[2]
+    }
+
     public static func checkForTotalGrade(totalGrade: String) -> Bool {
         sleep(3) // No idea why this is needed but it doesn't work without this
         pullToRefresh()

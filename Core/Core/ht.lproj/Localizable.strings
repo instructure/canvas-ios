@@ -608,6 +608,9 @@
 "Conversation Message" = "Mesaj Konvèsasyon";
 
 /* No comment provided by engineer. */
+"Conversation options" = "Opsyon konvèsasyon";
+
+/* No comment provided by engineer. */
 "conversation_recipients_to" = "conversation_recipients_to";
 
 /* No comment provided by engineer. */
@@ -1127,6 +1130,9 @@
 "Format not supported" = "Fòma pa sipòte";
 
 /* No comment provided by engineer. */
+"Forward" = "Fè swiv";
+
+/* No comment provided by engineer. */
 "Front Page" = "Premye Paj";
 
 /* No comment provided by engineer. */
@@ -1559,6 +1565,9 @@
 "Message" = "Mesaj";
 
 /* No comment provided by engineer. */
+"Message Details" = "Detay Mesaj";
+
+/* No comment provided by engineer. */
 "Message from %@, %@, on %@, %@" = "Mesaj de %1$@, %2$@, nan dat %3$@, %4$@";
 
 /* No comment provided by engineer. */
@@ -1569,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "Modil";
+
+/* No comment provided by engineer. */
+"More options" = "Plis opsyon";
 
 /* No comment provided by engineer. */
 "Move Annotation" = "Deplase Anotasyon";
@@ -2576,6 +2588,9 @@
 "There was an error loading quizzes. Pull to refresh to try again." = "Te gen yon erè nan chajman quiz yo. Rale pou aktyalize pou ka eseye ankò.";
 
 /* No comment provided by engineer. */
+"There was an error loading the message. Pull to refresh to try again." = "Te gen yon erè nan chajman mesaj la. Rale pou aktyalize pou ka eseye ankò.";
+
+/* No comment provided by engineer. */
 "There was an error while communicating with the server" = "Te gen yon erè pandan kominikasyon ak sèvè a";
 
 /* No comment provided by engineer. */
@@ -2667,6 +2682,9 @@
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Notifikasyon Twitter";
+
+/* No comment provided by engineer. */
+"Un-starred" = "Demake";
 
 /* No comment provided by engineer. */
 "Undo" = "Defèt";

@@ -125,7 +125,15 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         }
     }
 
-    open func upload(file: File, to uploadContext: FileUploadContext, folderPath: String? = nil, callback: (() -> Void)? = nil) {
+    /**
+     - parameters:
+        - baseURL: If we upload to a context that is on a different domain we should use that domain instead of the one the user is logged in to. This property overrides the baseURL used in the shared API instance.
+     */
+    open func upload(file: File,
+                     to uploadContext: FileUploadContext,
+                     folderPath: String? = nil,
+                     baseURL: URL? = nil,
+                     callback: (() -> Void)? = nil) {
         Logger.shared.log()
         let objectID = file.objectID
         context.performAndWait {
@@ -143,7 +151,13 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
                 file.bytesSent = 0
                 try context.save()
                 Analytics.shared.logEvent("submit_fileupload_info", parameters: ["size": file.size])
-                requestFileUpload(fileURL: url, uploadContext: uploadContext, fileSize: file.size, fileObjectID: objectID, folderPath: folderPath, callback: callback)
+                requestFileUpload(fileURL: url,
+                                  uploadContext: uploadContext,
+                                  fileSize: file.size,
+                                  fileObjectID: objectID,
+                                  folderPath: folderPath,
+                                  baseURL: baseURL,
+                                  callback: callback)
             } catch {
                 complete(file: file, error: error)
                 callback?()
@@ -151,10 +165,26 @@ open class UploadManager: NSObject, URLSessionDelegate, URLSessionTaskDelegate, 
         }
     }
 
-    private func requestFileUpload(fileURL url: URL, uploadContext: FileUploadContext, fileSize: Int, fileObjectID: NSManagedObjectID, folderPath: String? = nil, callback: (() -> Void)? = nil) {
+    private func requestFileUpload(fileURL url: URL,
+                                   uploadContext: FileUploadContext,
+                                   fileSize: Int,
+                                   fileObjectID: NSManagedObjectID,
+                                   folderPath: String? = nil,
+                                   baseURL: URL? = nil,
+                                   callback: (() -> Void)? = nil) {
         let body = PostFileUploadTargetRequest.Body(name: url.lastPathComponent, on_duplicate: .rename, parent_folder_path: folderPath, size: fileSize)
         let request = PostFileUploadTargetRequest(context: uploadContext, body: body)
-        environment.api.makeRequest(request) { response, _, error in
+
+        let api: API = {
+            if let baseURL {
+                return API(environment.currentSession,
+                           baseURL: baseURL)
+            } else {
+                return environment.api
+            }
+        }()
+
+        api.makeRequest(request) { response, _, error in
             self.context.performAndWait {
                 defer { callback?() }
                 guard let file = try? self.context.existingObject(with: fileObjectID) as? File else {
