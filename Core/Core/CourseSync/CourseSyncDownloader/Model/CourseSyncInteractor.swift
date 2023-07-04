@@ -165,10 +165,10 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             state: .loading(nil)
         )
 
-        return files.map(Just.init)
-            .flatMapBatches(of: 6)
-            .flatMap { Publishers.Sequence(sequence: $0) }
-            .flatMap { element in
+        return files.publisher
+            .eraseToAnyPublisher()
+            .buffer(size: .max, prefetch: .byRequest, whenFull: .dropOldest)
+            .flatMap(maxPublishers: .max(6)) { element in
                 let fileIndex = files.firstIndex(of: element)!
 
                 unownedSelf.setState(
@@ -181,7 +181,6 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                     fileName: element.fileName,
                     mimeClass: element.mimeClass
                 )
-                .debounce(for: .milliseconds(300), scheduler: unownedSelf.scheduler)
                 .tryCatch { error -> AnyPublisher<Float, Error> in
                     unownedSelf.setState(
                         selection: .file(entry.id, files[fileIndex].id), state: .error
