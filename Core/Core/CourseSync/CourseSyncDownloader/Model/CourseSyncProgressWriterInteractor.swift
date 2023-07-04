@@ -29,8 +29,9 @@ public protocol CourseSyncProgressWriterInteractor {
 public final class CourseSyncProgressWriterInteractorLive: CourseSyncProgressWriterInteractor {
     private let context: NSManagedObjectContext
 
-    public init(context: NSManagedObjectContext = AppEnvironment.shared.database.viewContext) {
-        self.context = context
+    public init(container: NSPersistentContainer = AppEnvironment.shared.database) {
+        context = container.newBackgroundContext()
+        context.automaticallyMergesChangesFromParent = true
     }
 
     public func saveFileProgress(entries: [CourseSyncEntry], error: String? = nil) {
