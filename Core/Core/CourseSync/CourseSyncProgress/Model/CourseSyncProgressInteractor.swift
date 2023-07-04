@@ -18,8 +18,9 @@
 
 import Combine
 import CombineExt
-import Foundation
+import CombineSchedulers
 import CoreData
+import Foundation
 
 protocol CourseSyncProgressInteractor: AnyObject {
     func observeCombinedFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never>
@@ -33,6 +34,7 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
     private let entryComposerInteractor: CourseSyncEntryComposerInteractor
     private let progressObserverInteractor: CourseSyncProgressObserverInteractor
     private let sessionDefaults: SessionDefaults
+    private let scheduler: AnySchedulerOf<DispatchQueue>
 
     private let context: NSManagedObjectContext
     private lazy var courseListStore = ReactiveStore(
@@ -48,17 +50,24 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         entryComposerInteractor: CourseSyncEntryComposerInteractor = CourseSyncEntryComposerInteractorLive(),
         progressObserverInteractor: CourseSyncProgressObserverInteractor = CourseSyncProgressObserverInteractorLive(),
         sessionDefaults: SessionDefaults = AppEnvironment.shared.userDefaults ?? .fallback,
-        container: NSPersistentContainer = AppEnvironment.shared.database
+        container: NSPersistentContainer = AppEnvironment.shared.database,
+        scheduler: AnySchedulerOf<DispatchQueue> = DispatchQueue(
+            label: "com.instructure.icanvas.core.course-sync-progress"
+        ).eraseToAnyScheduler()
     ) {
         self.entryComposerInteractor = entryComposerInteractor
         self.progressObserverInteractor = progressObserverInteractor
         self.sessionDefaults = sessionDefaults
+        self.scheduler = scheduler
         context = container.newBackgroundContext()
         context.automaticallyMergesChangesFromParent = true
     }
 
     func observeCombinedFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never> {
-        progressObserverInteractor.observeCombinedFileProgress()
+        progressObserverInteractor
+            .observeCombinedFileProgress()
+            .receive(on: scheduler)
+            .eraseToAnyPublisher()
     }
 
     func observeEntries() -> AnyPublisher<[CourseSyncEntry], Error> {
@@ -91,7 +100,8 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
 
     private func observeEntryProgress() {
         progressObserverInteractor.observeEntryProgress()
-            .throttle(for: .milliseconds(300), scheduler: DispatchQueue.main, latest: true)
+            .receive(on: scheduler)
+            .throttle(for: .milliseconds(300), scheduler: scheduler, latest: true)
             .flatMap { state -> AnyPublisher<[CourseSyncEntryProgress], Never> in
                 switch state {
                 case let .data(progressList):
@@ -128,7 +138,7 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         return entriesCpy
     }
 
-    /// Removes any tab and file that is not selected. 
+    /// Removes any tab and file that is not selected.
     private func filterToSelectedCourses(
         _ entries: [CourseSyncEntry]
     ) -> [CourseSyncEntry] {

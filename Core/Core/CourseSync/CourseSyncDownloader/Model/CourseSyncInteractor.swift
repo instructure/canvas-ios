@@ -35,8 +35,17 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     private let filesInteractor: CourseSyncFilesInteractor
     private let progressWriterInteractor: CourseSyncProgressWriterInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
-
+    private let backgroundScheduler: AnySchedulerOf<DispatchQueue>
     private var courseSyncEntries = CurrentValueSubject<[CourseSyncEntry], Error>.init([])
+    private var safeCourseSyncEntriesValue: [CourseSyncEntry] {
+        backgroundQueue.sync {
+            courseSyncEntries.value
+        }
+    }
+    private let backgroundQueue = DispatchQueue(
+        label: "com.instructure.icanvas.core.course-sync-utility",
+        attributes: .concurrent
+    )
     private let fileErrorMessage = NSLocalizedString("File download failed.", comment: "")
     private var subscription: AnyCancellable?
 
@@ -45,7 +54,10 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         assignmentsInteractor: CourseSyncAssignmentsInteractor = CourseSyncAssignmentsInteractorLive(),
         filesInteractor: CourseSyncFilesInteractor = CourseSyncFilesInteractorLive(),
         progressWriterInteractor: CourseSyncProgressWriterInteractor = CourseSyncProgressWriterInteractorLive(),
-        scheduler: AnySchedulerOf<DispatchQueue> = .main
+        scheduler: AnySchedulerOf<DispatchQueue> = .main,
+        backgroundScheduler: AnySchedulerOf<DispatchQueue> = DispatchQueue(
+            label: "com.instructure.icanvas.core.course-sync-download"
+        ).eraseToAnyScheduler()
     ) {
         contentInteractors = [
             pagesInteractor,
@@ -54,6 +66,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         self.filesInteractor = filesInteractor
         self.progressWriterInteractor = progressWriterInteractor
         self.scheduler = scheduler
+        self.backgroundScheduler = backgroundScheduler
     }
 
     public func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Error> {
@@ -62,12 +75,15 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
 
         unowned let unownedSelf = self
 
-        courseSyncEntries.send(entries)
+        backgroundQueue.sync(flags: .barrier) {
+            courseSyncEntries.send(entries)
+        }
 
         progressWriterInteractor.cleanUpPreviousFileProgress()
 
         subscription = Publishers.Sequence(sequence: entries)
             .buffer(size: .max, prefetch: .byRequest, whenFull: .dropOldest)
+            .receive(on: backgroundScheduler)
             .flatMap(maxPublishers: .max(3)) { unownedSelf.downloadCourseDetails($0) }
             .collect()
             .handleEvents(
@@ -95,6 +111,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             downloadTabContent(for: entry, tabName: .pages),
             downloadFiles(for: entry)
         )
+        .receive(on: backgroundScheduler)
         .updateErrorState {
             unownedSelf.setState(
                 selection: .course(entry.id),
@@ -118,6 +135,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
            entry.tabs[tabIndex].selectionState == .selected,
            let interactor = contentInteractors.first(where: { $0.associatedTabType == tabName }) {
             return interactor.getContent(courseId: entry.courseId)
+                .receive(on: backgroundScheduler)
                 .updateLoadingState {
                     unownedSelf.setState(
                         selection: .tab(entry.id, entry.tabs[tabIndex].id),
@@ -168,6 +186,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         return files.publisher
             .eraseToAnyPublisher()
             .buffer(size: .max, prefetch: .byRequest, whenFull: .dropOldest)
+            .receive(on: backgroundScheduler)
             .flatMap(maxPublishers: .max(6)) { element in
                 let fileIndex = files.firstIndex(of: element)!
 
@@ -181,7 +200,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                     fileName: element.fileName,
                     mimeClass: element.mimeClass
                 )
-                .throttle(for: .milliseconds(300), scheduler: DispatchQueue.main, latest: true)
+                .throttle(for: .milliseconds(300), scheduler: unownedSelf.backgroundScheduler, latest: true)
                 .tryCatch { error -> AnyPublisher<Float, Error> in
                     unownedSelf.setState(
                         selection: .file(entry.id, files[fileIndex].id), state: .error
@@ -199,7 +218,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                         )
                         unownedSelf.setState(
                             selection: .tab(entry.id, entry.tabs[tabIndex].id),
-                            state: .loading(unownedSelf.courseSyncEntries.value[id: entry.id]?.progress)
+                            state: .loading(unownedSelf.safeCourseSyncEntriesValue[id: entry.id]?.progress)
                         )
 
                     },
@@ -232,8 +251,9 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     /// When a download fails, we need to update the state of every other item that were still loading at the time when the error occured.
     private func setIdleStateForUnfinishedEntries() {
         unowned let unownedSelf = self
+        let entries = safeCourseSyncEntriesValue
 
-        courseSyncEntries.value.forEach { entry in
+        entries.forEach { entry in
             if case .loading = entry.state {
                 unownedSelf.setState(selection: .course(entry.id), state: .idle)
             }
@@ -250,12 +270,15 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             }
         }
 
-        progressWriterInteractor.saveFileProgress(entries: courseSyncEntries.value, error: fileErrorMessage)
+        progressWriterInteractor.saveFileProgress(entries: entries, error: fileErrorMessage)
+        backgroundQueue.sync(flags: .barrier) {
+            courseSyncEntries.send(entries)
+        }
     }
 
     /// Updates entry state in memory and writes it to Core Data. In addition it also writes file progress to Core Data.
     private func setState(selection: CourseEntrySelection, state: CourseSyncEntry.State) {
-        var entries = courseSyncEntries.value
+        var entries = safeCourseSyncEntriesValue
 
         switch selection {
         case let .course(courseID):
@@ -276,7 +299,9 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         }
 
         progressWriterInteractor.saveFileProgress(entries: entries, error: errorMessage)
-        courseSyncEntries.send(entries)
+        backgroundQueue.sync(flags: .barrier) {
+            courseSyncEntries.send(entries)
+        }
     }
 }
 
