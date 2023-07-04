@@ -25,10 +25,14 @@ public class CourseDetailsHelper: BaseHelper {
 
     public enum CellType: String {
         case home = "home"
+        case announcements = "announcements"
+        case assignments = "assignments"
         case discussions = "discussions"
         case grades = "grades"
         case people = "people"
+        case pages = "pages"
         case syllabus = "syllabus"
+        case modules = "modules"
         case bigBlueButton = "conferences"
         case collaborations = "collaborations"
         case googleDrive = "context_external_tool_1038049"

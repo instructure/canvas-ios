@@ -43,7 +43,7 @@ public class ModulesHelper: BaseHelper {
     }
 
     @discardableResult
-    public static func createModule(course: DSCourse, name: String, published: Bool = true) -> DSModule {
+    public static func createModule(course: DSCourse, name: String = "Sample Module", published: Bool = true) -> DSModule {
         let moduleBody = CreateDSModuleRequest.RequestedDSModule(name: name)
         var module = seeder.createModule(courseId: course.id, moduleBody: moduleBody)
         if published {

@@ -20,10 +20,15 @@ import TestsFoundation
 
 class CourseDetailsTests: E2ETestCase {
     func testCourseDetails() {
-        // MARK: Seed the usual stuff
-        let users = seeder.createUsers(1)
+        // MARK: Seed the usual stuff with additional contents
+        let student = seeder.createUser()
         let course = seeder.createCourse()
-        let student = users[0]
+        let module = ModulesHelper.createModule(course: course)
+        AssignmentsHelper.createAssignment(course: course)
+        AnnouncementsHelper.createAnnouncements(course: course)
+        DiscussionsHelper.createDiscussion(course: course)
+        PagesHelper.createPage(course: course)
+        ModulesHelper.createModulePage(course: course, module: module)
         seeder.enrollStudent(student, in: course)
 
         // MARK: Get the user logged in and navigate to the course
@@ -33,8 +38,22 @@ class CourseDetailsTests: E2ETestCase {
         courseCard.tap()
 
         // MARK: Check course details
+        let titleLabel = CourseDetailsHelper.titleLabel.waitToExist()
+        XCTAssertTrue(titleLabel.exists)
+        XCTAssertEqual(titleLabel.label(), course.name)
+
+        let subtitleLabel = CourseDetailsHelper.subtitleLabel.waitToExist()
+        XCTAssertTrue(subtitleLabel.exists)
+        XCTAssertEqual(subtitleLabel.label(), "Default Term")
+
         let homeButton = CourseDetailsHelper.cell(type: .home).waitToExist()
         XCTAssertTrue(homeButton.isVisible)
+
+        let announcementsButton = CourseDetailsHelper.cell(type: .announcements).waitToExist()
+        XCTAssertTrue(announcementsButton.isVisible)
+
+        let assignmentsButton = CourseDetailsHelper.cell(type: .assignments).waitToExist()
+        XCTAssertTrue(assignmentsButton.isVisible)
 
         let discussionsButton = CourseDetailsHelper.cell(type: .discussions).waitToExist()
         XCTAssertTrue(discussionsButton.isVisible)
@@ -45,8 +64,14 @@ class CourseDetailsTests: E2ETestCase {
         let peopleButton = CourseDetailsHelper.cell(type: .people).waitToExist()
         XCTAssertTrue(peopleButton.isVisible)
 
+        let pagesButton = CourseDetailsHelper.cell(type: .pages).waitToExist()
+        XCTAssertTrue(pagesButton.isVisible)
+
         let syllabusButton = CourseDetailsHelper.cell(type: .syllabus).waitToExist()
         XCTAssertTrue(syllabusButton.isVisible)
+
+        let modulesButton = CourseDetailsHelper.cell(type: .modules).waitToExist()
+        XCTAssertTrue(modulesButton.isVisible)
 
         let bigBlueButtonButton = CourseDetailsHelper.cell(type: .bigBlueButton).waitToExist()
         XCTAssertTrue(bigBlueButtonButton.isVisible)
