@@ -91,6 +91,7 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
 
     private func observeEntryProgress() {
         progressObserverInteractor.observeEntryProgress()
+            .throttle(for: .milliseconds(300), scheduler: DispatchQueue.main, latest: true)
             .flatMap { state -> AnyPublisher<[CourseSyncEntryProgress], Never> in
                 switch state {
                 case let .data(progressList):

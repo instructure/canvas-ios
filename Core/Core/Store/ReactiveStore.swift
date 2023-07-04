@@ -119,19 +119,21 @@ public class ReactiveStore<U: UseCase> {
                 fetchEntitiesFromCache(fetchRequest: request)
         }
 
+        unowned let unownedSelf = self
+
         cancellable = entitiesPublisher
             .handleEvents(receiveSubscription: { _ in
-                self.stateRelay.accept(.loading)
+                unownedSelf.stateRelay.accept(.loading)
             })
             .catch {
-                self.stateRelay.accept(.error($0))
+                unownedSelf.stateRelay.accept(.error($0))
                 return Empty<[U.Model], Never>(completeImmediately: false)
                     .setFailureType(to: Never.self)
                     .eraseToAnyPublisher()
             }
             .sink(
                 receiveValue: { value in
-                    self.stateRelay.accept(.data(value))
+                    unownedSelf.stateRelay.accept(.data(value))
                 }
             )
 

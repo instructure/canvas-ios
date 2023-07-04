@@ -181,6 +181,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                     fileName: element.fileName,
                     mimeClass: element.mimeClass
                 )
+                .throttle(for: .milliseconds(300), scheduler: DispatchQueue.main, latest: true)
                 .tryCatch { error -> AnyPublisher<Float, Error> in
                     unownedSelf.setState(
                         selection: .file(entry.id, files[fileIndex].id), state: .error
