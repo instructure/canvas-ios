@@ -114,6 +114,9 @@
 		87A60DC5A14FC040D54A58D7 /* DiscussionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1256FA2356B3F8F1106185 /* DiscussionEditor.swift */; };
 		8917C1628DAFDC52287BF98D /* ModuleItemFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B59FD3B1D002FA5E94E1C6 /* ModuleItemFixture.swift */; };
 		8AAB7EC58190ABB57E0F40AD /* MiniCanvasServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A98E1BAD9BED63BDEAD29 /* MiniCanvasServer.swift */; };
+		8B70DB1F2A542EB6007D3ED4 /* CreateDSConversationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DB1E2A542EB6007D3ED4 /* CreateDSConversationRequest.swift */; };
+		8B70DB212A542FD6007D3ED4 /* DSConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DB202A542FD6007D3ED4 /* DSConversation.swift */; };
+		8B70DB232A543081007D3ED4 /* DataSeeder+Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DB222A543081007D3ED4 /* DataSeeder+Conversation.swift */; };
 		8C02370D294ADC5E03166916 /* CreateDSQuizQuestionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFA2EB914E415CCFACDB /* CreateDSQuizQuestionRequest.swift */; };
 		8CE7A795708CBCF4AF7A2674 /* DSModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69E1EBE6B486730AE73F45 /* DSModuleItem.swift */; };
 		8CEEA54DE127851FF426490F /* CreateDSDiscussionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D6E99369534DE2260DD4EB /* CreateDSDiscussionRequest.swift */; };
@@ -319,6 +322,9 @@
 		853FF26543B7A1A331156E77 /* MiniCanvasEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniCanvasEndpoints.swift; sourceTree = "<group>"; };
 		87C6F005E7C5D08F6F4C3498 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		894A96909063F1975F58D1A2 /* ConferenceDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceDetails.swift; sourceTree = "<group>"; };
+		8B70DB1E2A542EB6007D3ED4 /* CreateDSConversationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSConversationRequest.swift; sourceTree = "<group>"; };
+		8B70DB202A542FD6007D3ED4 /* DSConversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSConversation.swift; sourceTree = "<group>"; };
+		8B70DB222A543081007D3ED4 /* DataSeeder+Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+Conversation.swift"; sourceTree = "<group>"; };
 		8E046239E00E2F114C950D3A /* ModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFixture.swift; sourceTree = "<group>"; };
 		8E52A6F60DF961A9FB652399 /* DSSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSubmission.swift; sourceTree = "<group>"; };
 		8EB01A67D620697DB09B6F61 /* CreateDSAccountNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSAccountNotificationRequest.swift; sourceTree = "<group>"; };
@@ -469,6 +475,7 @@
 		039CF14263C4180E857200CA /* DataSeeding */ = {
 			isa = PBXGroup;
 			children = (
+				8B70DB1B2A542E83007D3ED4 /* Conversation */,
 				BB6B6C485316F1CF22E406E2 /* AccountNotifications */,
 				C116E77902A4568988D60E21 /* Assignment */,
 				E9C31C8EF04AEA0B22366489 /* Course */,
@@ -909,6 +916,16 @@
 			path = Submissions;
 			sourceTree = "<group>";
 		};
+		8B70DB1B2A542E83007D3ED4 /* Conversation */ = {
+			isa = PBXGroup;
+			children = (
+				8B70DB1E2A542EB6007D3ED4 /* CreateDSConversationRequest.swift */,
+				8B70DB222A543081007D3ED4 /* DataSeeder+Conversation.swift */,
+				8B70DB202A542FD6007D3ED4 /* DSConversation.swift */,
+			);
+			path = Conversation;
+			sourceTree = "<group>";
+		};
 		9A7561DA742A2C1B232DFA62 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
@@ -1303,6 +1320,7 @@
 				514A398F69F9B43A8B00002A /* AssignmentGroupsFixture.swift in Sources */,
 				53C656FE0E827AE9C1CD9F82 /* Assignments.swift in Sources */,
 				5B66CA6BC155230774454DB2 /* Attachments.swift in Sources */,
+				8B70DB232A543081007D3ED4 /* DataSeeder+Conversation.swift in Sources */,
 				4DFA05671709AE84764833FB /* AudioRecorder.swift in Sources */,
 				2B1D0A68906A45E0D9F9F4D8 /* BaseHelper.swift in Sources */,
 				54923FEE77B2BB32BBCC2504 /* CalendarEventFixture.swift in Sources */,
@@ -1319,6 +1337,7 @@
 				41506C341DAAAD0B4A5ADF18 /* ConversationList.swift in Sources */,
 				552DF6C0381499EAD5EA0D16 /* CoreUITestCase.swift in Sources */,
 				B51F704B105B606DBB15C5D2 /* CourseFixture.swift in Sources */,
+				8B70DB212A542FD6007D3ED4 /* DSConversation.swift in Sources */,
 				34D52A8BFDE50E183045A17E /* CourseNavigation.swift in Sources */,
 				F348F002D95D60AD95F66F1E /* CourseSectionFixture.swift in Sources */,
 				AD4A9C06AC6DF9A67104C7E0 /* Courses.swift in Sources */,
@@ -1468,6 +1487,7 @@
 				163EB8832D00080EE676CCBD /* UpdateDSModuleItemRequest.swift in Sources */,
 				E343D5ABC7ADB65D09ADE6F2 /* UpdateDSModuleRequest.swift in Sources */,
 				17631520A7E57E378E8CB14E /* UpdateDSQuizRequest.swift in Sources */,
+				8B70DB1F2A542EB6007D3ED4 /* CreateDSConversationRequest.swift in Sources */,
 				14D09D53B76DADF1DF12514F /* UserFixture.swift in Sources */,
 				65963C7FD4563C4599328811 /* UserSettingsFixture.swift in Sources */,
 				917CA66BA492B8AE9D91167C /* XCTestCaseExtensions.swift in Sources */,
