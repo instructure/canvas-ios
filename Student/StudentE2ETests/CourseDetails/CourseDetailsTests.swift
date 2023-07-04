@@ -65,16 +65,16 @@ class CourseDetailsTests: E2ETestCase {
         XCTAssertTrue(peopleButton.isVisible)
 
         let pagesButton = CourseDetailsHelper.cell(type: .pages).waitToExist()
-        XCTAssertTrue(pagesButton.isVisible)
+        XCTAssertTrue(pagesButton.swipeUntilVisible(direction: .up))
 
         let syllabusButton = CourseDetailsHelper.cell(type: .syllabus).waitToExist()
-        XCTAssertTrue(syllabusButton.isVisible)
+        XCTAssertTrue(syllabusButton.swipeUntilVisible(direction: .up))
 
         let modulesButton = CourseDetailsHelper.cell(type: .modules).waitToExist()
-        XCTAssertTrue(modulesButton.isVisible)
+        XCTAssertTrue(modulesButton.swipeUntilVisible(direction: .up))
 
         let bigBlueButtonButton = CourseDetailsHelper.cell(type: .bigBlueButton).waitToExist()
-        XCTAssertTrue(bigBlueButtonButton.isVisible)
+        XCTAssertTrue(bigBlueButtonButton.swipeUntilVisible(direction: .up))
 
         let collaborationsButton = CourseDetailsHelper.cell(type: .collaborations).waitToExist()
         XCTAssertTrue(collaborationsButton.swipeUntilVisible(direction: .up))
