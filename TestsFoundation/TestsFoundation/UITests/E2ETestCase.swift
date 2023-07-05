@@ -31,10 +31,15 @@ open class E2ETestCase: CoreUITestCase {
         super.setUp()
     }
 
-    open func findSchool(_ dsUser: DSUser) {
-        LoginStart.findSchoolButton.tap()
-        LoginFindSchool.searchField.pasteText("\(user.host)")
-        LoginFindSchool.nextButton.tap()
+    open func findSchool(lastLogin: Bool = false) {
+        let findSchoolButton = LoginStart.findSchoolButton.waitToExist()
+        if lastLogin && LoginStart.lastLoginButton.exists && LoginStart.lastLoginButton.label() == user.host {
+            LoginStart.lastLoginButton.tap()
+        } else {
+            LoginStart.findSchoolButton.tap()
+            LoginFindSchool.searchField.pasteText("\(user.host)")
+            LoginFindSchool.nextButton.tap()
+        }
     }
 
     open func loginAfterSchoolFound(_ dsUser: DSUser, password: String = "password") {
@@ -49,9 +54,7 @@ open class E2ETestCase: CoreUITestCase {
     }
 
     open func logInDSUser(_ dsUser: DSUser, lastLogin: Bool = true, password: String = "password") {
-        LoginStart.findSchoolButton.waitToExist()
-        if lastLogin && LoginStart.lastLoginButton.exists && LoginStart.lastLoginButton.label() == user.host {
-            LoginStart.lastLoginButton.tap() } else { findSchool(dsUser) }
+        findSchool(lastLogin: lastLogin)
         loginAfterSchoolFound(dsUser, password: password)
     }
 
