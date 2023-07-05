@@ -160,12 +160,12 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         var entriesCpy = entries
 
         switch selection {
-        case let .course(courseID):
-            entriesCpy[id: courseID]?.selectCourse(selectionState: selectionState)
-        case let .tab(courseID, tabID):
-            entriesCpy[id: courseID]?.selectTab(id: tabID, selectionState: selectionState)
-        case let .file(courseID, fileID):
-            entriesCpy[id: courseID]?.selectFile(id: fileID, selectionState: selectionState)
+        case let .course(entryID):
+            entriesCpy[id: entryID]?.selectCourse(selectionState: selectionState)
+        case let .tab(entryID, tabID):
+            entriesCpy[id: entryID]?.selectTab(id: tabID, selectionState: selectionState)
+        case let .file(entryID, fileID):
+            entriesCpy[id: entryID]?.selectFile(id: fileID, selectionState: selectionState)
         }
         return entriesCpy
     }
@@ -174,12 +174,12 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         var entries = courseSyncEntries.value
 
         switch selection {
-        case let .course(courseID):
-            entries[id: courseID]?.updateCourseState(state: state)
-        case let .tab(courseID, tabID):
-            entries[id: courseID]?.updateTabState(id: tabID, state: state)
-        case let .file(courseID, fileID):
-            entries[id: courseID]?.updateFileState(id: fileID, state: state)
+        case let .course(entryID):
+            entries[id: entryID]?.updateCourseState(state: state)
+        case let .tab(entryID, tabID):
+            entries[id: entryID]?.updateTabState(id: tabID, state: state)
+        case let .file(entryID, fileID):
+            entries[id: entryID]?.updateFileState(id: fileID, state: state)
         }
 
         courseSyncEntries.send(entries)
@@ -189,10 +189,10 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         var entries = courseSyncEntries.value
 
         switch selection {
-        case let .course(courseID):
-            entries[id: courseID]?.isCollapsed = isCollapsed
-        case let .tab(courseID, tabID):
-            entries[id: courseID]?.tabs[id: tabID]?.isCollapsed = isCollapsed
+        case let .course(entryID):
+            entries[id: entryID]?.isCollapsed = isCollapsed
+        case let .tab(entryID, tabID):
+            entries[id: entryID]?.tabs[id: tabID]?.isCollapsed = isCollapsed
         case .file:
             break
         }

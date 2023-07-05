@@ -45,7 +45,7 @@ class CourseSyncProgressWriterInteractorLiveTests: CoreTestCase {
     }
 
     func testDownloadedFileProgress() {
-        let testee = CourseSyncProgressWriterInteractorLive(context: databaseClient)
+        let testee = CourseSyncProgressWriterInteractorLive(container: database)
 
         entries[0].files[0].selectionState = .selected
         entries[0].files[1].selectionState = .selected
@@ -61,7 +61,7 @@ class CourseSyncProgressWriterInteractorLiveTests: CoreTestCase {
     }
 
     func testPartiallyDownloadedFileProgress() {
-        let testee = CourseSyncProgressWriterInteractorLive(context: databaseClient)
+        let testee = CourseSyncProgressWriterInteractorLive(container: database)
 
         entries[0].files[0].selectionState = .selected
         entries[0].files[1].selectionState = .selected
@@ -77,7 +77,7 @@ class CourseSyncProgressWriterInteractorLiveTests: CoreTestCase {
     }
 
     func testFailedDownloadFileProgress() {
-        let testee = CourseSyncProgressWriterInteractorLive(context: databaseClient)
+        let testee = CourseSyncProgressWriterInteractorLive(container: database)
 
         entries[0].files[0].selectionState = .selected
         entries[0].files[1].selectionState = .selected
@@ -93,7 +93,7 @@ class CourseSyncProgressWriterInteractorLiveTests: CoreTestCase {
     }
 
     func testCourseSelectionEntryProgress() {
-        let testee = CourseSyncProgressWriterInteractorLive(context: databaseClient)
+        let testee = CourseSyncProgressWriterInteractorLive(container: database)
         testee.saveEntryProgress(id: "1", selection: .course("0"), state: .downloaded)
         testee.saveEntryProgress(id: "2", selection: .course("0"), state: .error)
         testee.saveEntryProgress(id: "3", selection: .course("0"), state: .loading(nil))
@@ -115,7 +115,7 @@ class CourseSyncProgressWriterInteractorLiveTests: CoreTestCase {
     }
 
     func testTabSelectionEntryProgress() {
-        let testee = CourseSyncProgressWriterInteractorLive(context: databaseClient)
+        let testee = CourseSyncProgressWriterInteractorLive(container: database)
         testee.saveEntryProgress(id: "1", selection: .tab("0", "0"), state: .downloaded)
         testee.saveEntryProgress(id: "2", selection: .tab("0", "0"), state: .error)
         testee.saveEntryProgress(id: "3", selection: .tab("0", "0"), state: .loading(nil))
@@ -137,7 +137,7 @@ class CourseSyncProgressWriterInteractorLiveTests: CoreTestCase {
     }
 
     func testFileSelectionEntryProgress() {
-        let testee = CourseSyncProgressWriterInteractorLive(context: databaseClient)
+        let testee = CourseSyncProgressWriterInteractorLive(container: database)
         testee.saveEntryProgress(id: "1", selection: .file("0", "0"), state: .downloaded)
         testee.saveEntryProgress(id: "2", selection: .file("0", "0"), state: .error)
         testee.saveEntryProgress(id: "3", selection: .file("0", "0"), state: .loading(nil))

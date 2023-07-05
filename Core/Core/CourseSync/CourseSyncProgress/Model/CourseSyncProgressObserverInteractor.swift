@@ -33,7 +33,12 @@ final class CourseSyncProgressObserverInteractorLive: CourseSyncProgressObserver
     )
     private lazy var entryProgressUseCase = ReactiveStore(
         context: context,
-        useCase: GetCourseSyncEntryProgressUseCase(scope: .all)
+        useCase: GetCourseSyncEntryProgressUseCase(
+            scope: .all(
+                orderBy: #keyPath(CourseSyncEntryProgress.id),
+                ascending: true
+            )
+        )
     )
 
     public init(container: NSPersistentContainer = AppEnvironment.shared.database) {

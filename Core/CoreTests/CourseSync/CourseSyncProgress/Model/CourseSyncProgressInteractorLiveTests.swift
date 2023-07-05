@@ -151,7 +151,8 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
         let testee = CourseSyncProgressInteractorLive(
             entryComposerInteractor: entryComposerInteractorMock,
             progressObserverInteractor: progressObserverInteractorMock,
-            sessionDefaults: sesssionDefaults
+            sessionDefaults: sesssionDefaults,
+            scheduler: .immediate
         )
 
         createAndSaveCourseSyncSelectorCourse()
@@ -159,14 +160,11 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
 
         // WHEN
         var entries = [CourseSyncEntry]()
-        let expectation = expectation(description: "Publisher sends value")
-        expectation.expectedFulfillmentCount = 5
         let subscription = testee.observeEntries()
             .sink(
                 receiveCompletion: { _ in },
                 receiveValue: { newList in
                     entries = newList
-                    expectation.fulfill()
                 }
             )
         drainMainQueue()
@@ -218,8 +216,6 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
             ),
         ]))
         XCTAssertEqual(entries[0].state, .downloaded)
-
-        waitForExpectations(timeout: 0.1)
         subscription.cancel()
     }
 
@@ -228,7 +224,8 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
         let testee = CourseSyncProgressInteractorLive(
             entryComposerInteractor: entryComposerInteractorMock,
             progressObserverInteractor: progressObserverInteractorMock,
-            sessionDefaults: sesssionDefaults
+            sessionDefaults: sesssionDefaults,
+            scheduler: .immediate
         )
 
         createAndSaveCourseSyncSelectorCourse()
@@ -236,14 +233,11 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
 
         // WHEN
         var entries = [CourseSyncEntry]()
-        let expectation = expectation(description: "Publisher sends value")
-        expectation.expectedFulfillmentCount = 2
         let subscription = testee.observeEntries()
             .sink(
                 receiveCompletion: { _ in },
                 receiveValue: { newList in
                     entries = newList
-                    expectation.fulfill()
                 }
             )
         drainMainQueue()
@@ -263,8 +257,6 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
             ),
         ]))
         XCTAssertEqual(entries[0].tabs[1].state, .error)
-
-        waitForExpectations(timeout: 0.1)
         subscription.cancel()
     }
 

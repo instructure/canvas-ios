@@ -106,12 +106,12 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         var entries = courseSyncEntries.value
 
         switch selection {
-        case let .course(courseID):
-            entries[id: courseID]?.selectCourse(selectionState: selectionState)
-        case let .tab(courseID, tabID):
-            entries[id: courseID]?.selectTab(id: tabID, selectionState: selectionState)
-        case let .file(courseID, fileID):
-            entries[id: courseID]?.selectFile(id: fileID, selectionState: selectionState)
+        case let .course(entryID):
+            entries[id: entryID]?.selectCourse(selectionState: selectionState)
+        case let .tab(entryID, tabID):
+            entries[id: entryID]?.selectTab(id: tabID, selectionState: selectionState)
+        case let .file(entryID, fileID):
+            entries[id: entryID]?.selectFile(id: fileID, selectionState: selectionState)
         }
 
         if let courseID {
@@ -132,10 +132,10 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         var entries = courseSyncEntries.value
 
         switch selection {
-        case let .course(courseID):
-            entries[id: courseID]?.isCollapsed = isCollapsed
-        case let .tab(courseID, tabID):
-            entries[id: courseID]?.tabs[id: tabID]?.isCollapsed = isCollapsed
+        case let .course(entryID):
+            entries[id: entryID]?.isCollapsed = isCollapsed
+        case let .tab(entryID, tabID):
+            entries[id: entryID]?.tabs[id: tabID]?.isCollapsed = isCollapsed
         case .file:
             break
         }

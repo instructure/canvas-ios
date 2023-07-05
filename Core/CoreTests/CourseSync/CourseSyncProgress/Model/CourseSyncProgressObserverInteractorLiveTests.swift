@@ -20,6 +20,7 @@
 import Foundation
 import TestsFoundation
 import XCTest
+import CoreData
 
 class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
     var entries: [CourseSyncEntry]!
@@ -45,8 +46,8 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
     }
 
     func testDownloadedFileProgressObserver() {
-        let testee = CourseSyncProgressObserverInteractorLive(context: databaseClient)
-        let helper = CourseSyncProgressWriterInteractorLive(context: databaseClient)
+        let testee = CourseSyncProgressObserverInteractorLive(container: database)
+        let helper = CourseSyncProgressWriterInteractorLive(container: database)
 
         entries[0].files[0].selectionState = .selected
         entries[0].files[1].selectionState = .selected
@@ -69,8 +70,8 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
     }
 
     func testPartiallyDownloadedFileProgressObserver() {
-        let testee = CourseSyncProgressObserverInteractorLive(context: databaseClient)
-        let helper = CourseSyncProgressWriterInteractorLive(context: databaseClient)
+        let testee = CourseSyncProgressObserverInteractorLive(container: database)
+        let helper = CourseSyncProgressWriterInteractorLive(container: database)
 
         entries[0].files[0].selectionState = .selected
         entries[0].files[1].selectionState = .selected
@@ -93,8 +94,8 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
     }
 
     func testFailedDownloadFileProgressObserver() {
-        let testee = CourseSyncProgressObserverInteractorLive(context: databaseClient)
-        let helper = CourseSyncProgressWriterInteractorLive(context: databaseClient)
+        let testee = CourseSyncProgressObserverInteractorLive(container: database)
+        let helper = CourseSyncProgressWriterInteractorLive(container: database)
 
         entries[0].files[0].selectionState = .selected
         entries[0].files[1].selectionState = .selected
@@ -117,8 +118,8 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
     }
 
     func testCourseSelectionEntryProgressObserver() {
-        let testee = CourseSyncProgressObserverInteractorLive(context: databaseClient)
-        let helper = CourseSyncProgressWriterInteractorLive(context: databaseClient)
+        let testee = CourseSyncProgressObserverInteractorLive(container: database)
+        let helper = CourseSyncProgressWriterInteractorLive(container: database)
 
         helper.saveEntryProgress(id: "1", selection: .course("0"), state: .downloaded)
         helper.saveEntryProgress(id: "2", selection: .course("0"), state: .error)
@@ -148,8 +149,8 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
     }
 
     func testTabSelectionEntryProgressObserver() {
-        let testee = CourseSyncProgressObserverInteractorLive(context: databaseClient)
-        let helper = CourseSyncProgressWriterInteractorLive(context: databaseClient)
+        let testee = CourseSyncProgressObserverInteractorLive(container: database)
+        let helper = CourseSyncProgressWriterInteractorLive(container: database)
 
         helper.saveEntryProgress(id: "1", selection: .tab("0", "0"), state: .downloaded)
         helper.saveEntryProgress(id: "2", selection: .tab("0", "0"), state: .error)
@@ -179,8 +180,8 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
     }
 
     func testFileSelectionEntryProgressObserver() {
-        let testee = CourseSyncProgressObserverInteractorLive(context: databaseClient)
-        let helper = CourseSyncProgressWriterInteractorLive(context: databaseClient)
+        let testee = CourseSyncProgressObserverInteractorLive(container: database)
+        let helper = CourseSyncProgressWriterInteractorLive(container: database)
 
         helper.saveEntryProgress(id: "1", selection: .file("0", "0"), state: .downloaded)
         helper.saveEntryProgress(id: "2", selection: .file("0", "0"), state: .error)
@@ -210,8 +211,8 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
     }
 
     func testFileProgressCleanUp() {
-        let testee = CourseSyncProgressObserverInteractorLive(context: databaseClient)
-        let helper = CourseSyncProgressWriterInteractorLive(context: databaseClient)
+        let testee = CourseSyncProgressObserverInteractorLive(container: database)
+        let helper = CourseSyncProgressWriterInteractorLive(container: database)
 
         entries[0].files[0].selectionState = .selected
         entries[0].files[1].selectionState = .selected
@@ -233,8 +234,8 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
     }
 
     func testCombinedFileProgressObserver() {
-        let testee = CourseSyncProgressObserverInteractorLive(context: databaseClient)
-        let helper = CourseSyncProgressWriterInteractorLive(context: databaseClient)
+        let testee = CourseSyncProgressObserverInteractorLive(container: database)
+        let helper = CourseSyncProgressWriterInteractorLive(container: database)
 
         entries = [
             .init(

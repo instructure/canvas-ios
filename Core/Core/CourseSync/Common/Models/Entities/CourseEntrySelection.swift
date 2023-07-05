@@ -19,13 +19,13 @@
 import Foundation
 
 public enum CourseEntrySelection: Codable, Equatable, Comparable {
-    public typealias CourseID = String
+    public typealias EntryID = String
     public typealias TabID = String
     public typealias FileID = String
 
-    case course(CourseID)
-    case tab(CourseID, TabID)
-    case file(CourseID, FileID)
+    case course(EntryID)
+    case tab(EntryID, TabID)
+    case file(EntryID, FileID)
 
     private var sortPriority: Int {
         switch self {
@@ -37,8 +37,8 @@ public enum CourseEntrySelection: Codable, Equatable, Comparable {
 
     public static func < (lhs: CourseEntrySelection, rhs: CourseEntrySelection) -> Bool {
         switch (lhs, rhs) {
-        case let (.course(lhsCourseID), .course(rhsCourseID)):
-            return lhsCourseID <= rhsCourseID
+        case let (.course(lhsEntryID), .course(rhsEntryID)):
+            return lhsEntryID <= rhsEntryID
         case (let .file(lhsCourseID, lhsFileID), let .file(rhsCourseID, rhsFileID)):
             return lhsCourseID <= rhsCourseID && lhsFileID <= rhsFileID
         case (let .tab(lhsCourseID, lhsTabID), let .tab(rhsCourseID, rhsTabID)):
