@@ -74,11 +74,11 @@ extension Array where Element == CourseSyncEntry {
         for course in self {
             var courseItem = course.makeViewModelItem()
             courseItem.selectionDidToggle = {
-                let selectionState: ListCellView.SelectionState = courseItem.selectionState == .selected || courseItem.selectionState == .partiallySelected ? .deselected : .selected
+                let selectionState: ListCellView.SelectionState = course.selectionState == .selected || course.selectionState == .partiallySelected ? .deselected : .selected
                 interactor?.setSelected(selection: .course(course.id), selectionState: selectionState)
             }
             courseItem.collapseDidToggle = {
-                interactor?.setCollapsed(selection: .course(course.id), isCollapsed: !(courseItem.isCollapsed ?? false))
+                interactor?.setCollapsed(selection: .course(course.id), isCollapsed: !(course.isCollapsed))
             }
             cells.append(.item(courseItem))
 
@@ -94,11 +94,11 @@ extension Array where Element == CourseSyncEntry {
             for tab in course.tabs {
                 var tabItem = tab.makeViewModelItem()
                 tabItem.selectionDidToggle = {
-                    let selectionState: ListCellView.SelectionState = tabItem.selectionState == .selected || tabItem.selectionState == .partiallySelected ? .deselected : .selected
+                    let selectionState: ListCellView.SelectionState = tab.selectionState == .selected || tab.selectionState == .partiallySelected ? .deselected : .selected
                     interactor?.setSelected(selection: .tab(course.id, tab.id), selectionState: selectionState)
                 }
                 tabItem.collapseDidToggle = {
-                    interactor?.setCollapsed(selection: .tab(course.id, tab.id), isCollapsed: !(tabItem.isCollapsed ?? false))
+                    interactor?.setCollapsed(selection: .tab(course.id, tab.id), isCollapsed: !(tab.isCollapsed))
                 }
 
                 guard tab.type == .files else {
@@ -117,7 +117,7 @@ extension Array where Element == CourseSyncEntry {
                 for file in course.files {
                     var fileItem = file.makeViewModelItem()
                     fileItem.selectionDidToggle = {
-                        interactor?.setSelected(selection: .file(course.id, file.id), selectionState: fileItem.selectionState == .selected ? .deselected : .selected)
+                        interactor?.setSelected(selection: .file(course.id, file.id), selectionState: file.selectionState == .selected ? .deselected : .selected)
                     }
                     cells.append(.item(fileItem))
                 }

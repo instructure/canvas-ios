@@ -75,7 +75,10 @@ extension Array where Element == CourseSyncEntry {
         for course in self {
             var courseItem = course.makeSyncProgressViewModelItem()
             courseItem.collapseDidToggle = {
-                interactor?.setCollapsed(selection: .course(course.id), isCollapsed: !(courseItem.isCollapsed ?? false))
+                interactor?.setCollapsed(
+                    selection: .course(course.id),
+                    isCollapsed: !(course.isCollapsed)
+                )
             }
             cells.append(.item(courseItem))
 
@@ -91,7 +94,10 @@ extension Array where Element == CourseSyncEntry {
             for tab in course.tabs {
                 var tabItem = tab.makeSyncProgressViewModelItem()
                 tabItem.collapseDidToggle = {
-                    interactor?.setCollapsed(selection: .tab(course.id, tab.id), isCollapsed: !(tabItem.isCollapsed ?? false))
+                    interactor?.setCollapsed(
+                        selection: .tab(course.id, tab.id),
+                        isCollapsed: !(tab.isCollapsed)
+                    )
                 }
 
                 guard tab.type == .files else {
