@@ -72,10 +72,13 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
         self?.updateUploads()
     }
 
-    public static func create(context: Context, path: String? = nil) -> FileListViewController {
+    private var offlineInteractor: OfflineModeInteractor?
+
+    public static func create(context: Context, path: String? = nil, offlineInteractor: OfflineModeInteractor = OfflineModeInteractorLive.shared) -> FileListViewController {
         let controller = loadFromStoryboard()
         controller.context = context
         controller.path = path ?? ""
+        controller.offlineInteractor = offlineInteractor
         return controller
     }
 
@@ -391,6 +394,7 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let isOffline = offlineInteractor?.isOfflineModeEnabled() ?? false
         if indexPath.section == 0 {
             let cell: FileListUploadCell = tableView.dequeue(for: indexPath)
             cell.update(uploads[indexPath.row])
@@ -401,9 +405,9 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
         cell.accessibilityIdentifier = "FileList.\(indexPath.row)"
         cell.backgroundColor = .backgroundLightest
         if indexPath.section == 1 {
-            cell.update(result: results[indexPath.row])
+            cell.update(result: results[indexPath.row], isOffline: isOffline)
         } else {
-            cell.update(item: items?[indexPath.row], color: color)
+            cell.update(item: items?[indexPath.row], color: color, isOffline: isOffline)
         }
         return cell
     }
@@ -483,7 +487,7 @@ class FileListCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var sizeLabel: UILabel!
 
-    func update(item: FolderItem?, color: UIColor?) {
+    func update(item: FolderItem?, color: UIColor?, isOffline: Bool) {
         backgroundColor = .backgroundLightest
         selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         nameLabel.setText(item?.name, style: .textCellTitle)
@@ -499,7 +503,7 @@ class FileListCell: UITableViewCell {
             return
         }
         let file = item?.file
-        if let url = file?.thumbnailURL, let c = file?.createdAt, Clock.now.timeIntervalSince(c) > 3600 {
+        if !isOffline, let url = file?.thumbnailURL, let c = file?.createdAt, Clock.now.timeIntervalSince(c) > 3600 {
             iconView.load(url: url)
         } else {
             iconView.icon = file?.icon
@@ -509,9 +513,9 @@ class FileListCell: UITableViewCell {
         updateAccessibilityLabel()
     }
 
-    func update(result: APIFile?) {
+    func update(result: APIFile?, isOffline: Bool) {
         nameLabel.setText(result?.display_name, style: .textCellTitle)
-        if let url = result?.thumbnail_url?.rawValue, let c = result?.created_at, Clock.now.timeIntervalSince(c) > 3600 {
+        if !isOffline, let url = result?.thumbnail_url?.rawValue, let c = result?.created_at, Clock.now.timeIntervalSince(c) > 3600 {
             iconView.load(url: url)
         } else {
             iconView.icon = File.icon(mimeClass: result?.mime_class, contentType: result?.contentType)

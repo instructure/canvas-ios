@@ -31,13 +31,16 @@ protocol CourseSyncFilesInteractor {
 final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, LocalFileURLCreator {
     private let env: AppEnvironment
     private let fileManager: FileManager
+    private let offlineModeInteractor: OfflineModeInteractor
 
     public init(
         env: AppEnvironment = .shared,
-        fileManager: FileManager = .default
+        fileManager: FileManager = .default,
+        offlineModeInteractor: OfflineModeInteractor = OfflineModeInteractorLive.shared
     ) {
         self.env = env
         self.fileManager = fileManager
+        self.offlineModeInteractor = offlineModeInteractor
     }
 
     func getFile(
@@ -60,7 +63,7 @@ final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, LocalFileU
         }
 
         let localURL = prepareLocalURL(
-            fileName: "\(sessionID)/Offline/Files/\(fileID)/\(fileName)",
+            fileName: offlineModeInteractor.filePath(sessionID: sessionID, fileID: fileID, fileName: fileName),
             mimeClass: mimeClass,
             location: URL.Directories.documents
         )

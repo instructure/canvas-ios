@@ -22,6 +22,7 @@ public protocol OfflineModeInteractor {
     func isOfflineModeEnabled() -> Bool
     func observeIsOfflineMode() -> AnyPublisher<Bool, Never>
     func observeNetworkStatus() -> AnyPublisher<NetworkAvailabilityStatus, Never>
+    func filePath(sessionID: String, fileID: String, fileName: String) -> String
 }
 
 public final class OfflineModeInteractorLive: OfflineModeInteractor {
@@ -56,6 +57,10 @@ public final class OfflineModeInteractorLive: OfflineModeInteractor {
             .receive(on: DispatchQueue.main)
             .map { $0 }
             .eraseToAnyPublisher()
+    }
+
+    public func filePath(sessionID: String, fileID: String, fileName: String) -> String {
+        "\(sessionID)/Offline/Files/\(fileID)/\(fileName)"
     }
 
     private func isFeatureFlagEnabled() -> Bool {
