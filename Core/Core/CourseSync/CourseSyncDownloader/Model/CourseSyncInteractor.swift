@@ -42,12 +42,14 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
         pagesInteractor: CourseSyncPagesInteractor = CourseSyncPagesInteractorLive(),
         assignmentsInteractor: CourseSyncAssignmentsInteractor = CourseSyncAssignmentsInteractorLive(),
         filesInteractor: CourseSyncFilesInteractor = CourseSyncFilesInteractorLive(),
+        gradesInteractor: CourseSyncGradesInteractor = CourseSyncGradesInteractorLive(userId: AppEnvironment.shared.currentSession?.userID ?? "self"),
         progressWriterInteractor: CourseSyncProgressWriterInteractor = CourseSyncProgressWriterInteractorLive(),
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         contentInteractors = [
             pagesInteractor,
             assignmentsInteractor,
+            gradesInteractor,
         ]
         self.filesInteractor = filesInteractor
         self.progressWriterInteractor = progressWriterInteractor
@@ -66,9 +68,10 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
                     state: .loading(nil)
                 )
 
-                return Publishers.Zip3(
+                return Publishers.Zip4(
                     unownedSelf.downloadTabContent(for: entry, index: index, tabName: .assignments),
                     unownedSelf.downloadTabContent(for: entry, index: index, tabName: .pages),
+                    unownedSelf.downloadTabContent(for: entry, index: index, tabName: .grades),
                     unownedSelf.downloadFiles(for: entry, courseIndex: index)
                 )
                 .updateErrorState {

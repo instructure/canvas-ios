@@ -132,6 +132,11 @@ public class ReactiveStore<U: UseCase> {
         return stateRelay.eraseToAnyPublisher()
     }
 
+    /**
+     This method returns entities for the UseCase from CoreData if the application is in offline mode.
+     In online mode entities are always fetched from the API by downloading all pages. The result is then cached
+     to the database and emitted by the publisher this method returns. After this the publisher finishes.
+     */
     public func getEntities() -> AnyPublisher<[U.Model], Error> {
         let scope = useCase.scope
         let request = NSFetchRequest<U.Model>(entityName: String(describing: U.Model.self))

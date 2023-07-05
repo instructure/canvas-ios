@@ -22,6 +22,17 @@ public protocol ColorDelegate: AnyObject {
     var iconColor: UIColor? { get }
 }
 
+extension Course {
+
+    func enrollmentForGrades(userId: String?) -> Enrollment? {
+        enrollments?.first {
+            $0.state == .active &&
+            $0.userID == userId &&
+            $0.type.lowercased().contains("student")
+        }
+    }
+}
+
 public class GradeListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
@@ -42,11 +53,7 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
     public weak var colorDelegate: ColorDelegate?
     var courseID = ""
     var courseEnrollment: Enrollment? {
-        return courses.first?.enrollments?.first {
-            $0.state == .active &&
-            $0.userID == userID &&
-            $0.type.lowercased().contains("student")
-        }
+        courses.first?.enrollmentForGrades(userId: userID)
     }
     var gradeEnrollment: Enrollment? {
         return enrollments.first {
@@ -203,9 +210,13 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
         assignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: gradingPeriodID, gradedOnly: true)) { [weak self] in
             self?.update()
         }
-        // Delete assignment groups immediately, to see a spinner again
-        assignments.useCase.reset(context: env.database.viewContext)
-        try? env.database.viewContext.save()
+
+        if !OfflineModeInteractorLive.shared.isOfflineModeEnabled() {
+            // Delete assignment groups immediately, to see a spinner again
+            assignments.useCase.reset(context: env.database.viewContext)
+            try? env.database.viewContext.save()
+        }
+
         assignments.refresh(force: true)
         enrollments.refresh(force: true)
     }
