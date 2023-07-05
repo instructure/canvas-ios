@@ -608,6 +608,9 @@
 "Conversation Message" = "Gespreksbericht";
 
 /* No comment provided by engineer. */
+"Conversation options" = "Conversatie-opties";
+
+/* No comment provided by engineer. */
 "conversation_recipients_to" = "conversation_recipients_to";
 
 /* No comment provided by engineer. */
@@ -1127,6 +1130,9 @@
 "Format not supported" = "Indeling niet ondersteund";
 
 /* No comment provided by engineer. */
+"Forward" = "Doorsturen";
+
+/* No comment provided by engineer. */
 "Front Page" = "Voorpagina";
 
 /* No comment provided by engineer. */
@@ -1559,6 +1565,9 @@
 "Message" = "Bericht";
 
 /* No comment provided by engineer. */
+"Message Details" = "Berichtdetails";
+
+/* No comment provided by engineer. */
 "Message from %@, %@, on %@, %@" = "Bericht van %1$@, %2$@, op %3$@, %4$@";
 
 /* No comment provided by engineer. */
@@ -1569,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "Modules";
+
+/* No comment provided by engineer. */
+"More options" = "Meer opties";
 
 /* No comment provided by engineer. */
 "Move Annotation" = "Aantekening verplaatsen";
@@ -2576,6 +2588,9 @@
 "There was an error loading quizzes. Pull to refresh to try again." = "Er is een fout opgetreden bij het laden van toetsen. Ophalen om te vernieuwen en het nogmaals te proberen.";
 
 /* No comment provided by engineer. */
+"There was an error loading the message. Pull to refresh to try again." = "Er is een fout opgetreden bij het laden van het bericht. Ophalen om te vernieuwen en het nogmaals te proberen.";
+
+/* No comment provided by engineer. */
 "There was an error while communicating with the server" = "Er was een fout bij het communiceren met de server";
 
 /* No comment provided by engineer. */
@@ -2667,6 +2682,9 @@
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Twitter-meldingen";
+
+/* No comment provided by engineer. */
+"Un-starred" = "Zonder ster";
 
 /* No comment provided by engineer. */
 "Undo" = "Ongedaan maken";

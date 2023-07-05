@@ -608,6 +608,9 @@
 "Conversation Message" = "Sporočilo o pogovoru";
 
 /* No comment provided by engineer. */
+"Conversation options" = "Možnosti pogovora";
+
+/* No comment provided by engineer. */
 "conversation_recipients_to" = "conversation_recipients_to";
 
 /* No comment provided by engineer. */
@@ -1127,6 +1130,9 @@
 "Format not supported" = "Oblika zapisa ni podprta";
 
 /* No comment provided by engineer. */
+"Forward" = "Naprej";
+
+/* No comment provided by engineer. */
 "Front Page" = "Prva stran";
 
 /* No comment provided by engineer. */
@@ -1559,6 +1565,9 @@
 "Message" = "Sporočilo";
 
 /* No comment provided by engineer. */
+"Message Details" = "Podrobnosti o sporočilu";
+
+/* No comment provided by engineer. */
 "Message from %@, %@, on %@, %@" = "Sporočilo od %1$@, %2$@, dne %3$@, %4$@";
 
 /* No comment provided by engineer. */
@@ -1569,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "Moduli";
+
+/* No comment provided by engineer. */
+"More options" = "Dodatne možnosti";
 
 /* No comment provided by engineer. */
 "Move Annotation" = "Premakni opombo";
@@ -2576,6 +2588,9 @@
 "There was an error loading quizzes. Pull to refresh to try again." = "Pri nalaganju kvizov je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
 
 /* No comment provided by engineer. */
+"There was an error loading the message. Pull to refresh to try again." = "Prišlo je do napake pri nalaganju sporočila. Povlecite za osvežitev, da poskusite znova.";
+
+/* No comment provided by engineer. */
 "There was an error while communicating with the server" = "Med komunikacijo s strežnikom je prišlo do napake";
 
 /* No comment provided by engineer. */
@@ -2667,6 +2682,9 @@
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Sporočila v platformi Twitter";
+
+/* No comment provided by engineer. */
+"Un-starred" = "Brez zvezdice";
 
 /* No comment provided by engineer. */
 "Undo" = "Razveljavi";

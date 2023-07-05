@@ -608,6 +608,9 @@
 "Conversation Message" = "会話メッセージ";
 
 /* No comment provided by engineer. */
+"Conversation options" = "会話のオプション";
+
+/* No comment provided by engineer. */
 "conversation_recipients_to" = "conversation_recipients_to";
 
 /* No comment provided by engineer. */
@@ -1127,6 +1130,9 @@
 "Format not supported" = "サポートされていないフォーマット";
 
 /* No comment provided by engineer. */
+"Forward" = "転送";
+
+/* No comment provided by engineer. */
 "Front Page" = "フロントページ";
 
 /* No comment provided by engineer. */
@@ -1559,6 +1565,9 @@
 "Message" = "メッセージ";
 
 /* No comment provided by engineer. */
+"Message Details" = "メッセージの詳細";
+
+/* No comment provided by engineer. */
 "Message from %@, %@, on %@, %@" = "%1$@からの%2$@、%3$@日のメッセージ、%4$@";
 
 /* No comment provided by engineer. */
@@ -1569,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "モジュール";
+
+/* No comment provided by engineer. */
+"More options" = "その他のオプション";
 
 /* No comment provided by engineer. */
 "Move Annotation" = "昼食を移動";
@@ -2576,6 +2588,9 @@
 "There was an error loading quizzes. Pull to refresh to try again." = "小テストの読み込み中にエラーが発生しました。プルして更新し、再試行してください。";
 
 /* No comment provided by engineer. */
+"There was an error loading the message. Pull to refresh to try again." = "メッセージの読み込み中にエラーが発生しました。プルして更新し、再試行してください。";
+
+/* No comment provided by engineer. */
 "There was an error while communicating with the server" = "サーバーとの通信中にエラーが発生しました";
 
 /* No comment provided by engineer. */
@@ -2667,6 +2682,9 @@
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Twitter 通知";
+
+/* No comment provided by engineer. */
+"Un-starred" = "スターなし";
 
 /* No comment provided by engineer. */
 "Undo" = "アンドゥーする";
