@@ -179,7 +179,7 @@ class DiscussionsTests: E2ETestCase {
 
         // MARK: Navigate to Assignments to check visibility of the assignment discussion there
         AssignmentsHelper.navigateToAssignments(course: course)
-        let assignmentButton = AssignmentsHelper.assignmentButton(assignment: assignmentDiscussion.assignment).waitToExist()
+        let assignmentButton = AssignmentsHelper.assignmentButton(assignment: assignmentDiscussion.assignment!).waitToExist()
         XCTAssertTrue(assignmentButton.isVisible)
 
         AssignmentsHelper.backButton.tap()
@@ -187,10 +187,10 @@ class DiscussionsTests: E2ETestCase {
 
         // MARK: Navigate to Grades to check visibility and submission of the assignment discussion
         GradesHelper.navigateToGrades(course: course)
-        var gradesAssignmentButton = GradesHelper.gradesAssignmentButton(assignment: assignmentDiscussion.assignment).waitToExist()
+        var gradesAssignmentButton = GradesHelper.gradesAssignmentButton(assignment: assignmentDiscussion.assignment!).waitToExist()
         XCTAssertTrue(gradesAssignmentButton.isVisible)
 
-        var gradesAssignmentSubmittedLabel = GradesHelper.gradesAssignmentSubmittedLabel(assignment: assignmentDiscussion.assignment).waitToExist()
+        var gradesAssignmentSubmittedLabel = GradesHelper.gradesAssignmentSubmittedLabel(assignment: assignmentDiscussion.assignment!).waitToExist()
         XCTAssertTrue(gradesAssignmentSubmittedLabel.isVisible)
         XCTAssertEqual(gradesAssignmentSubmittedLabel.label(), "Not Submitted")
 
@@ -206,8 +206,7 @@ class DiscussionsTests: E2ETestCase {
         let detailsNavBar = DetailsHelper.navBar(course: course).waitToExist()
         XCTAssertTrue(detailsNavBar.isVisible)
 
-        Helper.replyToDiscussion()
-        Helper.pullToRefresh()
+        Helper.replyToDiscussion(shouldPullToRefresh: true)
 
         // MARK: Check visibility of the reply
         let repliesSection = DetailsHelper.repliesSection.waitToExist()
@@ -223,10 +222,10 @@ class DiscussionsTests: E2ETestCase {
         // MARK: Navigate to Grades and check for updates regarding submission
         GradesHelper.navigateToGrades(course: course)
         GradesHelper.pullToRefresh()
-        gradesAssignmentButton = GradesHelper.gradesAssignmentButton(assignment: assignmentDiscussion.assignment).waitToExist()
+        gradesAssignmentButton = GradesHelper.gradesAssignmentButton(assignment: assignmentDiscussion.assignment!).waitToExist()
         XCTAssertTrue(gradesAssignmentButton.isVisible)
 
-        gradesAssignmentSubmittedLabel = GradesHelper.gradesAssignmentSubmittedLabel(assignment: assignmentDiscussion.assignment).waitToExist()
+        gradesAssignmentSubmittedLabel = GradesHelper.gradesAssignmentSubmittedLabel(assignment: assignmentDiscussion.assignment!).waitToExist()
         XCTAssertTrue(gradesAssignmentSubmittedLabel.isVisible)
         XCTAssertEqual(gradesAssignmentSubmittedLabel.label(), "Submitted")
     }

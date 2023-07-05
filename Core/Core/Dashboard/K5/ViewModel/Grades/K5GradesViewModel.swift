@@ -126,12 +126,6 @@ extension K5GradesViewModel: Refreshable {
 }
 
 public struct K5GradingPeriod: Hashable {
-
     let periodID: String?
     let title: String?
-
-    init(periodID: String?, title: String?) {
-        self.periodID = periodID
-        self.title = title
-    }
 }

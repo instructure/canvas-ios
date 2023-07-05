@@ -608,6 +608,9 @@
 "Conversation Message" = "Samtalemeldinger";
 
 /* No comment provided by engineer. */
+"Conversation options" = "Alternativer for samtale";
+
+/* No comment provided by engineer. */
 "conversation_recipients_to" = "conversation_recipients_to";
 
 /* No comment provided by engineer. */
@@ -1127,6 +1130,9 @@
 "Format not supported" = "Støtter ikke formatet";
 
 /* No comment provided by engineer. */
+"Forward" = "Videresend";
+
+/* No comment provided by engineer. */
 "Front Page" = "Forside";
 
 /* No comment provided by engineer. */
@@ -1559,6 +1565,9 @@
 "Message" = "Melding";
 
 /* No comment provided by engineer. */
+"Message Details" = "Meldingsinformasjon";
+
+/* No comment provided by engineer. */
 "Message from %@, %@, on %@, %@" = "Melding fra %1$@, %2$@, den %3$@, %4$@";
 
 /* No comment provided by engineer. */
@@ -1569,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "Moduler";
+
+/* No comment provided by engineer. */
+"More options" = "Flere alternativer";
 
 /* No comment provided by engineer. */
 "Move Annotation" = "Flytt merknad";
@@ -2576,6 +2588,9 @@
 "There was an error loading quizzes. Pull to refresh to try again." = "Det oppsto en feil under lasting av quizer. Dra for å oppdatere og prøve på nytt.";
 
 /* No comment provided by engineer. */
+"There was an error loading the message. Pull to refresh to try again." = "Det oppsto en feil under henting av meldingen. Dra for å oppdatere og prøve på nytt.";
+
+/* No comment provided by engineer. */
 "There was an error while communicating with the server" = "Det oppsto en feil under serverkommunikasjonen";
 
 /* No comment provided by engineer. */
@@ -2667,6 +2682,9 @@
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Varslinger for Twitter";
+
+/* No comment provided by engineer. */
+"Un-starred" = "Stjernemerket fjernet";
 
 /* No comment provided by engineer. */
 "Undo" = "Angre";

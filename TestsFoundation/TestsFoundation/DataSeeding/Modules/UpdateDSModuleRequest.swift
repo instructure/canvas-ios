@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2021-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,25 +16,26 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-import TestsFoundation
+import Core
 
-enum ContextCard: String, ElementWrapper {
-    case userNameLabel, groupLabel
+public struct UpdateDSModuleRequest: APIRequestable {
+    public typealias Response = DSModule
+
+    public let method = APIMethod.put
+    public var path: String
+    public let body: Body?
+
+    public init(body: Body, courseId: String, moduleId: String) {
+        self.body = body
+        self.path = "courses/\(courseId)/modules/\(moduleId)"
+    }
 }
 
-class GroupContextCardE2ETests: CoreUITestCase {
-
-    func testContextCardDisplays() {
-        app.swipeUp()
-        Dashboard.groupCard(id: "35").tap()
-        app.find(labelContaining: "People").tap()
-
-        CoursePeople.person(name: "Student One").waitToExist()
-        CoursePeople.person(name: "Student Two").waitToExist()
-
-        CoursePeople.person(name: "Student Two").tap()
-        XCTAssertEqual(ContextCard.userNameLabel.label(), "Student Two")
-        XCTAssertEqual(ContextCard.groupLabel.label(), "Group One")
+extension UpdateDSModuleRequest {
+    public struct UpdatedDSModule: Encodable {
+        let published: Bool
+    }
+    public struct Body: Encodable {
+        let module: UpdatedDSModule
     }
 }

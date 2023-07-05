@@ -21,12 +21,12 @@ extension DataSeeder {
     public func createCourse(name: String = "DataSeed iOS \(Int(Date().timeIntervalSince1970))") -> DSCourse {
         let requestedBody = CreateDSCourseRequest.Body(course: .init(name: name))
         let request = CreateDSCourseRequest(body: requestedBody)
-        return try! makeRequest(request)
+        return makeRequest(request)
     }
 
     public func updateCourseWithGradingScheme(courseId: String, gradingStandardId: Int) {
         let requestedBody = UpdateDSCourseRequest.Body(course: .init(grading_standard_id: gradingStandardId))
         let request = UpdateDSCourseRequest(body: requestedBody, courseId: courseId)
-        try! makeRequest(request)
+        makeRequest(request)
     }
 }
