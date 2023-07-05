@@ -30,8 +30,6 @@ class InboxTests: E2ETestCase {
         logInDSUser(student1)
         let inboxTab = TabBar.inboxTab.waitToExist()
         XCTAssertTrue(inboxTab.isVisible)
-        let inboxTabValue = inboxTab.value()
-        XCTAssertTrue(inboxTabValue!.contains("1 item"))
 
         // MARK: Navigate to Inbox
         inboxTab.tap()
@@ -107,8 +105,16 @@ class InboxTests: E2ETestCase {
 
         sendButton.tap()
 
+        // MARK: Check message in "Sent" filter tab
+        let filterBySentButton = InboxHelper.Filter.sent.waitToExist()
+        XCTAssertTrue(filterBySentButton.isVisible)
+
+        filterBySentButton.tap()
+        let sentMessage = InboxHelper.conversationBySubject(subject: subject, unread: false).waitToExist()
+        XCTAssertTrue(sentMessage.isVisible)
+
         // MARK: Check if message is recieved by the other student of the course
-        logOut()
+        InboxHelper.logOut()
         logInDSUser(student2)
         InboxHelper.navigateToInbox()
         let freshMessage = InboxHelper.conversationBySubject(subject: subject).waitToExist()

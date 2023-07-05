@@ -23,22 +23,20 @@ import XCTest
 
 public class InboxHelper: BaseHelper {
     public static var navBar: Element { app.find(id: "CanvasCore.HelmView") }
+    public static var profileButton: Element { app.find(id: "Inbox.profileButton") }
     public static var newMessageButton: Element { app.find(id: "inbox.new-message") }
 
     public static func conversation(conversation: DSConversation) -> Element {
         app.find(id: "inbox.conversation-\(conversation.id)")
     }
 
-    public static func conversationBySubject(subject: String) -> Element {
+    public static func conversationBySubject(subject: String, unread: Bool = true) -> Element {
         let date = Date()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "LLLL"
-        let month = dateFormatter.string(from: date)
-        dateFormatter.dateFormat = "yyyy"
-        let year = dateFormatter.string(from: date)
-        dateFormatter.dateFormat = "d"
-        let day = dateFormatter.string(from: date)
-        return app.find(label: "\(month) \(day), \(year), \(subject)")
+        dateFormatter.dateFormat = "LLLL d, yyyy"
+        let formattedDate = dateFormatter.string(from: date)
+        let toFind = "\(formattedDate), \(subject)"
+        return app.find(label: unread ? toFind + ", Unread" : toFind)
     }
 
     struct Filter {
@@ -58,7 +56,7 @@ public class InboxHelper: BaseHelper {
         public static func message(conversation: DSConversation) -> Element {
             app.find(id: "inbox.conversation-message-\(conversation.id)")
         }
-        
+
         public static func messageOptions(conversation: DSConversation) -> Element {
             app.find(id: "inbox.conversation-message.kabob-\(conversation.id)")
         }
@@ -80,12 +78,28 @@ public class InboxHelper: BaseHelper {
         }
 
         public static func recipientSelectionItem(course: DSCourse) -> Element {
-            app.find(id: "branch_course_\(course)")
+            app.find(id: "branch_course_\(course.id)")
         }
     }
 
     public static func navigateToInbox() {
         TabBar.inboxTab.tap()
+    }
+
+    public static func logOut() {
+        profileButton.tap()
+        Profile.logOutButton.tap()
+    }
+
+    public static func sendMessage(course: DSCourse, student: DSUser, subject: String?, message: String?) {
+        newMessageButton.tap()
+        Composer.courseSelectButton.tap()
+        Composer.courseSelectionItem(course: course).tap()
+        Composer.addRecipientButton.tap()
+        Composer.recipientSelectionItem(course: course).tap()
+        Composer.subjectInput.tap().pasteText(subject ?? "Sample Subject of \(student.name)")
+        Composer.messageInput.tap().pasteText(message ?? "Sample Message of \(student.name)")
+        Composer.sendButton.tap()
     }
 
     @discardableResult
