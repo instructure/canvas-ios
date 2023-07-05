@@ -64,7 +64,7 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
         eventName: "/courses/\(courseID)/grades"
     )
 
-    lazy var assignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: gradingPeriodID, gradedOnly: true)) { [weak self] in
+    lazy var assignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: nil, gradedOnly: true)) { [weak self] in
         self?.update()
     }
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
@@ -77,7 +77,7 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
     lazy var enrollments = env.subscribe(GetEnrollments(
         context: .course(courseID),
         userID: userID,
-        gradingPeriodID: gradingPeriodID,
+        gradingPeriodID: nil,
         types: [ "StudentEnrollment" ],
         states: [ .active ]
     )) { [weak self] in
