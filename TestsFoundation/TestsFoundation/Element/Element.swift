@@ -81,13 +81,20 @@ public extension Element {
         waitToExist(15, file: file, line: line)
         return rawElement.frame
     }
+
     func label(file: StaticString = #file, line: UInt = #line) -> String {
         waitToExist(15, file: file, line: line)
         return rawElement.label
     }
+
     func value(file: StaticString = #file, line: UInt = #line) -> String? {
         waitToExist(15, file: file, line: line)
         return rawElement.value as? String
+    }
+
+    func placeholderValue(file: StaticString = #file, line: UInt = #line) -> String? {
+        waitToExist(15, file: file, line: line)
+        return rawElement.placeholderValue
     }
 
     @discardableResult

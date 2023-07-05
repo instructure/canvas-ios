@@ -18,23 +18,8 @@
 
 import Foundation
 import TestsFoundation
+import XCTest
 
-class DSLoginE2ETests: E2ETestCase {
-    // Follow-up of MBL-14653
-    func testLoginWithLastUser() {
-        let users = seeder.createUsers(1)
-        let course = seeder.createCourse()
-        let student = users[0]
-        seeder.enrollTeacher(student, in: course)
-
-        logInDSUser(student, lastLogin: false)
-
-        logOut()
-
-        let lastLoginBtn = LoginStart.lastLoginButton.waitToExist()
-        XCTAssertEqual(lastLoginBtn.label(), user.host)
-
-        lastLoginBtn.tap()
-        loginAfterSchoolFound(student)
-    }
+public class ProfileHelper: BaseHelper {
+    public static var changeUserButton: Element { app.find(id: "Profile.changeUserButton") }
 }
