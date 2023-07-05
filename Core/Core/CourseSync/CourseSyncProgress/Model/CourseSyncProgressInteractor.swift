@@ -31,16 +31,44 @@ protocol CourseSyncProgressInteractor: AnyObject {
 }
 
 final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
+    private struct EntryProgress {
+        let id: String
+        var selection: CourseEntrySelection
+        var state: CourseSyncEntry.State
+
+        init(from entity: CourseSyncEntryProgress) {
+            id = entity.id
+            selection = entity.selection
+            state = entity.state
+        }
+
+        mutating func update(with entity: CourseSyncEntryProgress) {
+            selection = entity.selection
+            state = entity.state
+        }
+    }
+
     private let entryComposerInteractor: CourseSyncEntryComposerInteractor
     private let progressObserverInteractor: CourseSyncProgressObserverInteractor
     private let sessionDefaults: SessionDefaults
     private let scheduler: AnySchedulerOf<DispatchQueue>
-
     private let context: NSManagedObjectContext
+
     private lazy var courseListStore = ReactiveStore(
         context: context,
         useCase: GetCourseSyncSelectorCourses()
     )
+    private let backgroundQueue = DispatchQueue(
+        label: "com.instructure.icanvas.core.course-sync-progress-utility",
+        attributes: .concurrent
+    )
+    private var safeCourseSyncEntriesValue: [CourseSyncEntry] {
+        backgroundQueue.sync {
+            courseSyncEntries.value
+        }
+    }
+
+    private var isUpdateInProgress = false
     private let courseSyncEntries = CurrentValueSubject<[CourseSyncEntry], Error>(.init())
     private var subscriptions = Set<AnyCancellable>()
 
@@ -113,10 +141,10 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
                     return Empty(completeImmediately: false).eraseToAnyPublisher()
                 }
             }
+            .map { $0.map { EntryProgress(from: $0) } }
             .sink { [weak self] progressList in
-                progressList.forEach {
-                    self?.setState(id: $0.id, selection: $0.selection, state: $0.state)
-                }
+                self?.isUpdateInProgress = false
+                self?.setState(newList: progressList)
             }
             .store(in: &subscriptions)
     }
@@ -170,34 +198,43 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         return entriesCpy
     }
 
-    private func setState(id: String, selection: CourseEntrySelection, state: CourseSyncEntry.State) {
-        var entries = courseSyncEntries.value
+    private func setState(newList: [EntryProgress]) {
+        guard !isUpdateInProgress else { return }
+        isUpdateInProgress = true
 
-        switch selection {
-        case let .course(entryID):
-            entries[id: entryID]?.updateCourseState(state: state)
-        case let .tab(entryID, tabID):
-            entries[id: entryID]?.updateTabState(id: tabID, state: state)
-        case let .file(entryID, fileID):
-            entries[id: entryID]?.updateFileState(id: fileID, state: state)
+        var entries = safeCourseSyncEntriesValue
+
+        for progress in newList {
+            guard isUpdateInProgress else { return }
+            switch progress.selection {
+            case let .course(entryID):
+                entries[id: entryID]?.updateCourseState(state: progress.state)
+            case let .tab(entryID, tabID):
+                entries[id: entryID]?.updateTabState(id: tabID, state: progress.state)
+            case let .file(entryID, fileID):
+//                entries[id: entryID]?.updateFileState(id: fileID, state: progress.state)
+                entries[0].files[0].state = .downloaded
+            }
         }
 
-        courseSyncEntries.send(entries)
+        backgroundQueue.sync(flags: .barrier) {
+            courseSyncEntries.send(entries)
+        }
     }
 
     func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool) {
-        var entries = courseSyncEntries.value
-
         switch selection {
         case let .course(entryID):
-            entries[id: entryID]?.isCollapsed = isCollapsed
+            backgroundQueue.sync(flags: .barrier) {
+                courseSyncEntries.value[id: entryID]?.isCollapsed = isCollapsed
+            }
         case let .tab(entryID, tabID):
-            entries[id: entryID]?.tabs[id: tabID]?.isCollapsed = isCollapsed
+            backgroundQueue.sync(flags: .barrier) {
+                courseSyncEntries.value[id: entryID]?.tabs[id: tabID]?.isCollapsed = isCollapsed
+            }
         case .file:
             break
         }
-
-        courseSyncEntries.send(entries)
     }
 
     func cancelSync() {}
