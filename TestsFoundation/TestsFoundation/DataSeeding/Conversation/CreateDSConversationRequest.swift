@@ -39,26 +39,17 @@ extension CreateDSConversationRequest {
         let body: String
         let context_code: String
         let group_conversation: Bool
-        let scope: String?
 
         public init(recipients: [String],
                     subject: String,
                     body: String,
                     context_code: String,
-                    group_conversation: Bool = false,
-                    scope: ConversationScope = .unread) {
+                    group_conversation: Bool = false) {
             self.recipients = recipients
             self.subject = subject
             self.body = body
             self.context_code = "course_\(context_code)"
             self.group_conversation = group_conversation
-            self.scope = scope.rawValue
         }
     }
-}
-
-public enum ConversationScope: String {
-    case unread
-    case starred
-    case archived
 }

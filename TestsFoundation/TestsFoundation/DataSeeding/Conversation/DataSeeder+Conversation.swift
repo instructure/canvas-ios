@@ -22,4 +22,22 @@ extension DataSeeder {
         let request = CreateDSConversationRequest(body: requestBody)
         return makeRequest(request)[0]
     }
+
+    @discardableResult
+    public func updateConversation(conversationId: String, event: DSEvent) -> DSProgress {
+        let requestedBody = UpdateDSConversationRequest.Body(conversation_ids: [conversationId], event: event)
+        let request = UpdateDSConversationRequest(body: requestedBody)
+        return makeRequest(request)
+    }
+
+    public func editConversation(conversationId: String, workflowState: DSWorkFlowState, scope: DSScope) -> DSConversation {
+        let requestedBody = EditDSConversationRequest.Body(conversation: .init(workflow_state: workflowState), scope: scope)
+        let reqest = EditDSConversationRequest(body: requestedBody, conversationId: conversationId)
+        return makeRequest(reqest)
+    }
+
+    @discardableResult
+    public func getProgress(progressId: String) -> DSProgress {
+        return makeRequest(GetDSProgressRequest(progressId: progressId))
+    }
 }

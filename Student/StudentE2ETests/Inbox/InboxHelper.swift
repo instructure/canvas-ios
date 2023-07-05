@@ -52,6 +52,7 @@ public class InboxHelper: BaseHelper {
         public static var navBar: Element { app.find(id: "Message Details") }
         public static var optionsButton: Element { app.find(id: "inbox.detail.options.button") }
         public static var replyButton: Element { app.find(id: "inbox.conversation-message-row.reply-button") }
+        public static var starButton: Element { app.find(id: "inbox.detail.not-starred") }
 
         public static func message(conversation: DSConversation) -> Element {
             app.find(id: "inbox.conversation-message-\(conversation.id)")
@@ -104,19 +105,40 @@ public class InboxHelper: BaseHelper {
 
     @discardableResult
     public static func createConversation(course: DSCourse,
-                                          subject: String = "Message",
+                                          subject: String = "Sample Message",
                                           body: String = "This is the body of the",
                                           recipients: [String]? = nil,
-                                          scope: ConversationScope? = nil) -> DSConversation {
+                                          archived: Bool = false) -> DSConversation {
         let finalRecipients = recipients ?? ["course_\(course.id)"]
-        let finalSubject = "\(scope?.rawValue.capitalized ?? "The") \(subject)"
-        let finalBody = "This is the body of \(finalSubject)"
         let requestBody = CreateDSConversationRequest.RequestedDSConversation(recipients: finalRecipients,
-                                                                              subject: finalSubject,
-                                                                              body: finalBody,
+                                                                              subject: subject,
+                                                                              body: "\(body) \(subject)",
                                                                               context_code: course.id,
-                                                                              group_conversation: true,
-                                                                              scope: scope ?? .unread)
-        return seeder.createConversation(requestBody: requestBody)
+                                                                              group_conversation: true)
+        let result = seeder.createConversation(requestBody: requestBody)
+        if archived {
+            var progress = markConversationAsArchived(conversation: result)
+            let deadline = Date().addingTimeInterval(120)
+            while Date() < deadline {
+                if progress.completion == 100 {
+                    break
+                }
+                sleep(3)
+                progress = seeder.getProgress(progressId: progress.id)
+            }
+        }
+        return result
+    }
+
+    @discardableResult
+    public static func markConversationAsArchived(conversation: DSConversation) -> DSProgress {
+        return seeder.updateConversation(conversationId: conversation.id, event: .markAsArchived)
+    }
+
+    @discardableResult
+    public static func editConversation(conversation: DSConversation,
+                                        workflowState: DSWorkFlowState,
+                                        scope: DSScope) -> DSConversation {
+        return seeder.editConversation(conversationId: conversation.id, workflowState: workflowState, scope: scope)
     }
 }
