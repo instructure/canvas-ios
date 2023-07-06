@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -24,6 +24,7 @@
 		1262342A0DDB2D111A04EA5C /* DataSeeder+DSGrades.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06069BF81EF75ADAD665ED65 /* DataSeeder+DSGrades.swift */; };
 		1347832830A632CFB069F4BB /* URLResponseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068F49BCAB12A9357B4C260A /* URLResponseExtensions.swift */; };
 		13539C166F6C499BBC88E25C /* Modules.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C41C78B38D7F72B10AA50F9 /* Modules.swift */; };
+		139E4E89AEE0DC48B69561AC /* DSProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8818EB2EB6BDCF26B5666D /* DSProgress.swift */; };
 		141F18F5B019F810F6AEBC44 /* ExternalURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC00DFAA492AA7ACC51AB3A9 /* ExternalURL.swift */; };
 		14D09D53B76DADF1DF12514F /* UserFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ED1E4BCBF2A2E3A7A2AC36 /* UserFixture.swift */; };
 		163EB8832D00080EE676CCBD /* UpdateDSModuleItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 732414F5A48ADF38CED92C5F /* UpdateDSModuleItemRequest.swift */; };
@@ -46,11 +47,13 @@
 		258D2D5DF28E9EBAFF974F9C /* E2ETestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089CFAA9D22AB16547CB5C2C /* E2ETestCase.swift */; };
 		26BBEB8AE1503D01089D75FF /* TTLFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1BB8E64B1CFF8974ECBB31 /* TTLFixture.swift */; };
 		27EAEAE6BF1026A54929A3BB /* EmptyPanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF228592950DA720634E8193 /* EmptyPanda.swift */; };
+		28FFD061984BE1FE8B88732E /* EditDSConversationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F0BD39E7B8518737ED2103 /* EditDSConversationRequest.swift */; };
 		296349D676FB1E9868D868BF /* RichContentEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA94D80FED5C04082C2004C /* RichContentEditor.swift */; };
 		29C0BB4FE112AEDA68383D14 /* SubmissionCommentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351CF5968EC873CD1961F1D6 /* SubmissionCommentFixture.swift */; };
 		2B1D0A68906A45E0D9F9F4D8 /* BaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89F21CB0826337C08AC625D /* BaseHelper.swift */; };
 		2C36C035542146853DC5BA05 /* DataSeeder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 233DF034B90E6CB94E45AB67 /* DataSeeder.swift */; };
 		2C5BB31417D17837E1967A93 /* DataSeeder+DSUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F33C4DD360C44A1B0C15A45 /* DataSeeder+DSUser.swift */; };
+		3145672A1B17CD9639390B43 /* UpdateDSConversationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69AFBF32C82C30B19EFBB208 /* UpdateDSConversationRequest.swift */; };
 		3473CCA85DC34B470AB1A3B9 /* PageFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85D9D63A008E4D13C9A8D35 /* PageFixture.swift */; };
 		34D52A8BFDE50E183045A17E /* CourseNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDD35AF0386C227340FB2742 /* CourseNavigation.swift */; };
 		365EFAD2ABB62CBA24574AFA /* ModuleFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E046239E00E2F114C950D3A /* ModuleFixture.swift */; };
@@ -61,6 +64,7 @@
 		41506C341DAAAD0B4A5ADF18 /* ConversationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5074DEA11842F187535C0037 /* ConversationList.swift */; };
 		441F35C3FD19AF873D6486A4 /* K5Grades.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921EA9B4EE533BB4A5320464 /* K5Grades.swift */; };
 		4547635E73E1759BF8C2BFDE /* Help.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC6465F7D94DCCA314DA478 /* Help.swift */; };
+		4AF772C9B1DEBEE7F021DAFB /* CreateDSConversationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B050EEB3D38C566C634FF60 /* CreateDSConversationRequest.swift */; };
 		4D6500A45ABE9AC9419FEEF9 /* CreateDSUserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D86B8106C5392332BC55C2 /* CreateDSUserRequest.swift */; };
 		4DFA05671709AE84764833FB /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E67E6FD3405134C21322616 /* AudioRecorder.swift */; };
 		4EC7BDF80A9E65AA6FBDFACA /* CreateDSGradingStandardsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3335FA75783B9536A76AF6D2 /* CreateDSGradingStandardsRequest.swift */; };
@@ -96,6 +100,7 @@
 		714095469EADAA3DEDEC6E47 /* FeatureFlagFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5709B63051E7D8939DC797A /* FeatureFlagFixture.swift */; };
 		725E9BF8E41C6A616B1AA541 /* HttpResponseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803BEEDFF2CC9A00A7364A32 /* HttpResponseExtensions.swift */; };
 		7404229B37645B502B7E1FF3 /* DataSeeder+Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B8881C45FDC70FA63D05F8 /* DataSeeder+Tabs.swift */; };
+		744382FAA2331D154401110D /* DSConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606D0BEA44D2E8B1C2CFDB0F /* DSConversation.swift */; };
 		746E19BE7256EE3EBB329F8C /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBEC327316BCFE5609CB627 /* Quiz.swift */; };
 		752630E6F9BE727848F3B4D4 /* DSCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F4DB85C49C47721883E34F /* DSCourse.swift */; };
 		7613C07276BDDA1288C6CEB6 /* DSAccountNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F4D908CECF5FB651E0BCCF /* DSAccountNotification.swift */; };
@@ -114,12 +119,6 @@
 		87A60DC5A14FC040D54A58D7 /* DiscussionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1256FA2356B3F8F1106185 /* DiscussionEditor.swift */; };
 		8917C1628DAFDC52287BF98D /* ModuleItemFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B59FD3B1D002FA5E94E1C6 /* ModuleItemFixture.swift */; };
 		8AAB7EC58190ABB57E0F40AD /* MiniCanvasServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A98E1BAD9BED63BDEAD29 /* MiniCanvasServer.swift */; };
-		8B70DB1F2A542EB6007D3ED4 /* CreateDSConversationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DB1E2A542EB6007D3ED4 /* CreateDSConversationRequest.swift */; };
-		8B70DB212A542FD6007D3ED4 /* DSConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DB202A542FD6007D3ED4 /* DSConversation.swift */; };
-		8B70DB232A543081007D3ED4 /* DataSeeder+Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DB222A543081007D3ED4 /* DataSeeder+Conversation.swift */; };
-		8B70DBB22A55A6C7007D3ED4 /* UpdateDSConversationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBB12A55A6C7007D3ED4 /* UpdateDSConversationRequest.swift */; };
-		8B70DBB62A55B357007D3ED4 /* DSProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBB52A55B357007D3ED4 /* DSProgress.swift */; };
-		8B70DBB82A55C38A007D3ED4 /* EditDSConversationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBB72A55C38A007D3ED4 /* EditDSConversationRequest.swift */; };
 		8C02370D294ADC5E03166916 /* CreateDSQuizQuestionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFA2EB914E415CCFACDB /* CreateDSQuizQuestionRequest.swift */; };
 		8CE7A795708CBCF4AF7A2674 /* DSModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69E1EBE6B486730AE73F45 /* DSModuleItem.swift */; };
 		8CEEA54DE127851FF426490F /* CreateDSDiscussionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D6E99369534DE2260DD4EB /* CreateDSDiscussionRequest.swift */; };
@@ -187,6 +186,7 @@
 		F0C0C0C26ED553D327017F63 /* SubmissionFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E635C9C8B745268C729823 /* SubmissionFixture.swift */; };
 		F2610136FC5488415F288BF6 /* AssignmentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B912636BD610FDCFDABDA13 /* AssignmentFixture.swift */; };
 		F348F002D95D60AD95F66F1E /* CourseSectionFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5A4B21062D29A3ABFF82B1 /* CourseSectionFixture.swift */; };
+		F453D4519C4C96300A0BFC10 /* DataSeeder+Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDE859C3FB158D2DCDBF056 /* DataSeeder+Conversation.swift */; };
 		F4592B86BDD93ABE2B4F7C0D /* URLAuthenticationChallengeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD74C4F7118E2FF96582F196 /* URLAuthenticationChallengeExtensions.swift */; };
 		F5B478B2353311462EE3EA17 /* CreateDSModuleRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CFBA3C03E2F6CAD23DF9E40 /* CreateDSModuleRequest.swift */; };
 		F6832EA1BD4F9CC52F89987A /* Grades.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ECFDCDDF6B062B0BEC467C6 /* Grades.swift */; };
@@ -199,20 +199,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5B917D982A52AB1B009AAC86 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 19FB565ABEC6EA3620720E25 /* Core */;
-			proxyType = 2;
-			remoteGlobalIDString = 8F6731E780A5363E04E3620A;
-			remoteInfo = CoreTester;
-		};
-		5B917D9A2A52AB1B009AAC86 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 19FB565ABEC6EA3620720E25 /* Core */;
-			proxyType = 2;
-			remoteGlobalIDString = DC35484E0C7EE977582AF3AE;
-			remoteInfo = CoreTests;
-		};
 		ADD0BD039DBE20C141DFDF5E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 19FB565ABEC6EA3620720E25 /* Core */;
@@ -244,6 +230,7 @@
 		0C41C78B38D7F72B10AA50F9 /* Modules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modules.swift; sourceTree = "<group>"; };
 		0CB7D74CA523521273D8B4A3 /* ActivityFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFixture.swift; sourceTree = "<group>"; };
 		0D1BC90CEB2A03E8FEB4313D /* TestsFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TestsFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0FDE859C3FB158D2DCDBF056 /* DataSeeder+Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+Conversation.swift"; sourceTree = "<group>"; };
 		1003BD3F5B9B3A122B275F51 /* DataSeeder+DSGradingStandards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSGradingStandards.swift"; sourceTree = "<group>"; };
 		100BC611711750A955A7FD9A /* DataSeeder+DSAssignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSAssignment.swift"; sourceTree = "<group>"; };
 		110826A155DE2259B7546C05 /* DiscussionFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionFixture.swift; sourceTree = "<group>"; };
@@ -305,11 +292,15 @@
 		5AC73560EF4ADD33F178787E /* FileUploadTargetFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadTargetFixture.swift; sourceTree = "<group>"; };
 		5D2E233390F6F43020E31217 /* DataSeeder+DSQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSQuiz.swift"; sourceTree = "<group>"; };
 		5DA94D80FED5C04082C2004C /* RichContentEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichContentEditor.swift; sourceTree = "<group>"; };
+		606D0BEA44D2E8B1C2CFDB0F /* DSConversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSConversation.swift; sourceTree = "<group>"; };
 		60D509E8B444311138DEB0D0 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		60ECACB19D1C2CE215241714 /* CourseFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseFixture.swift; sourceTree = "<group>"; };
 		6136B2E876575F0909432198 /* FileList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileList.swift; sourceTree = "<group>"; };
+		63F0BD39E7B8518737ED2103 /* EditDSConversationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDSConversationRequest.swift; sourceTree = "<group>"; };
 		666C5206F3D84AAC04FB6810 /* SearchRecipientFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecipientFixture.swift; sourceTree = "<group>"; };
 		68B8881C45FDC70FA63D05F8 /* DataSeeder+Tabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+Tabs.swift"; sourceTree = "<group>"; };
+		69AFBF32C82C30B19EFBB208 /* UpdateDSConversationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDSConversationRequest.swift; sourceTree = "<group>"; };
+		6B050EEB3D38C566C634FF60 /* CreateDSConversationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSConversationRequest.swift; sourceTree = "<group>"; };
 		6F69E1EBE6B486730AE73F45 /* DSModuleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSModuleItem.swift; sourceTree = "<group>"; };
 		732414F5A48ADF38CED92C5F /* UpdateDSModuleItemRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDSModuleItemRequest.swift; sourceTree = "<group>"; };
 		7696666C5B013125861D6568 /* DataSeeder+DSCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSCourse.swift"; sourceTree = "<group>"; };
@@ -325,12 +316,6 @@
 		853FF26543B7A1A331156E77 /* MiniCanvasEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniCanvasEndpoints.swift; sourceTree = "<group>"; };
 		87C6F005E7C5D08F6F4C3498 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		894A96909063F1975F58D1A2 /* ConferenceDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceDetails.swift; sourceTree = "<group>"; };
-		8B70DB1E2A542EB6007D3ED4 /* CreateDSConversationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSConversationRequest.swift; sourceTree = "<group>"; };
-		8B70DB202A542FD6007D3ED4 /* DSConversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSConversation.swift; sourceTree = "<group>"; };
-		8B70DB222A543081007D3ED4 /* DataSeeder+Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+Conversation.swift"; sourceTree = "<group>"; };
-		8B70DBB12A55A6C7007D3ED4 /* UpdateDSConversationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDSConversationRequest.swift; sourceTree = "<group>"; };
-		8B70DBB52A55B357007D3ED4 /* DSProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSProgress.swift; sourceTree = "<group>"; };
-		8B70DBB72A55C38A007D3ED4 /* EditDSConversationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDSConversationRequest.swift; sourceTree = "<group>"; };
 		8E046239E00E2F114C950D3A /* ModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFixture.swift; sourceTree = "<group>"; };
 		8E52A6F60DF961A9FB652399 /* DSSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSubmission.swift; sourceTree = "<group>"; };
 		8EB01A67D620697DB09B6F61 /* CreateDSAccountNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSAccountNotificationRequest.swift; sourceTree = "<group>"; };
@@ -418,6 +403,7 @@
 		F7FC060E41ED9753D6852CDF /* MockUploadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUploadManager.swift; sourceTree = "<group>"; };
 		F8913216F07538826E09B4D2 /* RubricFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricFixture.swift; sourceTree = "<group>"; };
 		FB1256FA2356B3F8F1106185 /* DiscussionEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEditor.swift; sourceTree = "<group>"; };
+		FC8818EB2EB6BDCF26B5666D /* DSProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSProgress.swift; sourceTree = "<group>"; };
 		FDDE761FC87592203DC32D14 /* ConferenceFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceFixture.swift; sourceTree = "<group>"; };
 		FF23850042CD551D7DF85779 /* DSUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSUser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -481,9 +467,9 @@
 		039CF14263C4180E857200CA /* DataSeeding */ = {
 			isa = PBXGroup;
 			children = (
-				8B70DB1B2A542E83007D3ED4 /* Conversation */,
 				BB6B6C485316F1CF22E406E2 /* AccountNotifications */,
 				C116E77902A4568988D60E21 /* Assignment */,
+				BC58BBA71BF334AF82610EBB /* Conversation */,
 				E9C31C8EF04AEA0B22366489 /* Course */,
 				FD2FCFA68B05719BC3BF225C /* Discussions */,
 				6542FDDA4EA81ABCE5CE340A /* Enrollment */,
@@ -828,8 +814,6 @@
 			isa = PBXGroup;
 			children = (
 				59FDA90639A28B677F0E6B7A /* Core.framework */,
-				5B917D992A52AB1B009AAC86 /* CoreTester.app */,
-				5B917D9B2A52AB1B009AAC86 /* CoreTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -920,19 +904,6 @@
 				22001AFA7EE4571DC4913E36 /* TextSubmission.swift */,
 			);
 			path = Submissions;
-			sourceTree = "<group>";
-		};
-		8B70DB1B2A542E83007D3ED4 /* Conversation */ = {
-			isa = PBXGroup;
-			children = (
-				8B70DB1E2A542EB6007D3ED4 /* CreateDSConversationRequest.swift */,
-				8B70DB222A543081007D3ED4 /* DataSeeder+Conversation.swift */,
-				8B70DB202A542FD6007D3ED4 /* DSConversation.swift */,
-				8B70DBB12A55A6C7007D3ED4 /* UpdateDSConversationRequest.swift */,
-				8B70DBB52A55B357007D3ED4 /* DSProgress.swift */,
-				8B70DBB72A55C38A007D3ED4 /* EditDSConversationRequest.swift */,
-			);
-			path = Conversation;
 			sourceTree = "<group>";
 		};
 		9A7561DA742A2C1B232DFA62 /* Tabs */ = {
@@ -1035,6 +1006,19 @@
 				C4F4D908CECF5FB651E0BCCF /* DSAccountNotification.swift */,
 			);
 			path = AccountNotifications;
+			sourceTree = "<group>";
+		};
+		BC58BBA71BF334AF82610EBB /* Conversation */ = {
+			isa = PBXGroup;
+			children = (
+				6B050EEB3D38C566C634FF60 /* CreateDSConversationRequest.swift */,
+				0FDE859C3FB158D2DCDBF056 /* DataSeeder+Conversation.swift */,
+				606D0BEA44D2E8B1C2CFDB0F /* DSConversation.swift */,
+				FC8818EB2EB6BDCF26B5666D /* DSProgress.swift */,
+				63F0BD39E7B8518737ED2103 /* EditDSConversationRequest.swift */,
+				69AFBF32C82C30B19EFBB208 /* UpdateDSConversationRequest.swift */,
+			);
+			path = Conversation;
 			sourceTree = "<group>";
 		};
 		BD54737A5A429DFDC15C6362 /* Extensions */ = {
@@ -1278,20 +1262,6 @@
 			remoteRef = C62A32602F4B1A165BCFE80A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		5B917D992A52AB1B009AAC86 /* CoreTester.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = CoreTester.app;
-			remoteRef = 5B917D982A52AB1B009AAC86 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		5B917D9B2A52AB1B009AAC86 /* CoreTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = CoreTests.xctest;
-			remoteRef = 5B917D9A2A52AB1B009AAC86 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -1329,7 +1299,6 @@
 				514A398F69F9B43A8B00002A /* AssignmentGroupsFixture.swift in Sources */,
 				53C656FE0E827AE9C1CD9F82 /* Assignments.swift in Sources */,
 				5B66CA6BC155230774454DB2 /* Attachments.swift in Sources */,
-				8B70DB232A543081007D3ED4 /* DataSeeder+Conversation.swift in Sources */,
 				4DFA05671709AE84764833FB /* AudioRecorder.swift in Sources */,
 				2B1D0A68906A45E0D9F9F4D8 /* BaseHelper.swift in Sources */,
 				54923FEE77B2BB32BBCC2504 /* CalendarEventFixture.swift in Sources */,
@@ -1343,16 +1312,15 @@
 				FA9954E150F63661C57C4DB0 /* ContextColorFixture.swift in Sources */,
 				ED8ABA24B3E386175BEFD76E /* ConversationDetail.swift in Sources */,
 				1CDED784002866FD6FF16FAE /* ConversationFixture.swift in Sources */,
-				8B70DBB22A55A6C7007D3ED4 /* UpdateDSConversationRequest.swift in Sources */,
 				41506C341DAAAD0B4A5ADF18 /* ConversationList.swift in Sources */,
 				552DF6C0381499EAD5EA0D16 /* CoreUITestCase.swift in Sources */,
 				B51F704B105B606DBB15C5D2 /* CourseFixture.swift in Sources */,
-				8B70DB212A542FD6007D3ED4 /* DSConversation.swift in Sources */,
 				34D52A8BFDE50E183045A17E /* CourseNavigation.swift in Sources */,
 				F348F002D95D60AD95F66F1E /* CourseSectionFixture.swift in Sources */,
 				AD4A9C06AC6DF9A67104C7E0 /* Courses.swift in Sources */,
 				4F86073554A4692C591CF8D2 /* CreateDSAccountNotificationRequest.swift in Sources */,
 				0793478FD5197EFFFD73BEB1 /* CreateDSAssignmentRequest.swift in Sources */,
+				4AF772C9B1DEBEE7F021DAFB /* CreateDSConversationRequest.swift in Sources */,
 				1715B688AD0D030B01827E03 /* CreateDSCourseRequest.swift in Sources */,
 				8CEEA54DE127851FF426490F /* CreateDSDiscussionRequest.swift in Sources */,
 				9654B26FD1E6FA167D2CE1D5 /* CreateDSGradesRequest.swift in Sources */,
@@ -1365,9 +1333,9 @@
 				E6069C48343F3A89A0AACF06 /* CreateDSSubmissionRequest.swift in Sources */,
 				B852ECB96C333DE5FE25DFB4 /* CreateDSTabsRequest.swift in Sources */,
 				4D6500A45ABE9AC9419FEEF9 /* CreateDSUserRequest.swift in Sources */,
-				8B70DBB82A55C38A007D3ED4 /* EditDSConversationRequest.swift in Sources */,
 				7613C07276BDDA1288C6CEB6 /* DSAccountNotification.swift in Sources */,
 				907104367E913A7551F3EDB0 /* DSAssignment.swift in Sources */,
+				744382FAA2331D154401110D /* DSConversation.swift in Sources */,
 				752630E6F9BE727848F3B4D4 /* DSCourse.swift in Sources */,
 				F9A877032D17175B313A0445 /* DSDiscussionTopic.swift in Sources */,
 				58CC0F6D2EED853B9A1BA60D /* DSEnrollment.swift in Sources */,
@@ -1375,12 +1343,14 @@
 				7BF42650B257FCD153FDBBC7 /* DSModule.swift in Sources */,
 				8CE7A795708CBCF4AF7A2674 /* DSModuleItem.swift in Sources */,
 				120B07891919D2C19EA4A08F /* DSPage.swift in Sources */,
+				139E4E89AEE0DC48B69561AC /* DSProgress.swift in Sources */,
 				22313487606BC82FDD572AFF /* DSQuiz.swift in Sources */,
 				66487329B62A458AF4620DE4 /* DSQuizQuestion.swift in Sources */,
 				7B92F083A00EDC4C1DB7CFD4 /* DSSubmission.swift in Sources */,
 				EE0131667C22EB6DFEE6BE74 /* DSUser.swift in Sources */,
 				A2B2BDC7741F485A3E102A22 /* Dashboard.swift in Sources */,
 				05CD80C7842E89D42927418D /* DataSeeder+AccountNotification.swift in Sources */,
+				F453D4519C4C96300A0BFC10 /* DataSeeder+Conversation.swift in Sources */,
 				C7537D8A9003F2B0F5E87CA3 /* DataSeeder+DSAssignment.swift in Sources */,
 				3E59D93402725FA9B4F7F863 /* DataSeeder+DSCourse.swift in Sources */,
 				1262342A0DDB2D111A04EA5C /* DataSeeder+DSGrades.swift in Sources */,
@@ -1403,6 +1373,7 @@
 				CB3E304F604F0F5356207D04 /* DiscussionFixture.swift in Sources */,
 				50D6E0EBB695D9F1C20CD0CC /* DiscussionList.swift in Sources */,
 				258D2D5DF28E9EBAFF974F9C /* E2ETestCase.swift in Sources */,
+				28FFD061984BE1FE8B88732E /* EditDSConversationRequest.swift in Sources */,
 				5D9C2ED1E5C2AD00DF8E2A15 /* Element.swift in Sources */,
 				D1E2CA1B4284432EB4BFADBE /* ElementWrapper.swift in Sources */,
 				27EAEAE6BF1026A54929A3BB /* EmptyPanda.swift in Sources */,
@@ -1441,7 +1412,6 @@
 				DD987EDC47A00AFE9EBBCC55 /* MiniAssignment.swift in Sources */,
 				91233B0A98BF885B4E721032 /* MiniCanvasEndpoints.swift in Sources */,
 				8AAB7EC58190ABB57E0F40AD /* MiniCanvasServer.swift in Sources */,
-				8B70DBB62A55B357007D3ED4 /* DSProgress.swift in Sources */,
 				113B16010F4632F524284678 /* MiniCanvasState.swift in Sources */,
 				FBCBC5F2006F22BE66184CB7 /* MiniCanvasUITestCase.swift in Sources */,
 				8EAB580E1AA52D9C4E437F8A /* MiniCourse.swift in Sources */,
@@ -1495,11 +1465,11 @@
 				017A5FC75C9358F125DA8E78 /* UITestUser.swift in Sources */,
 				F4592B86BDD93ABE2B4F7C0D /* URLAuthenticationChallengeExtensions.swift in Sources */,
 				1347832830A632CFB069F4BB /* URLResponseExtensions.swift in Sources */,
+				3145672A1B17CD9639390B43 /* UpdateDSConversationRequest.swift in Sources */,
 				19524210201B32C73ECA7C7B /* UpdateDSCourseRequest.swift in Sources */,
 				163EB8832D00080EE676CCBD /* UpdateDSModuleItemRequest.swift in Sources */,
 				E343D5ABC7ADB65D09ADE6F2 /* UpdateDSModuleRequest.swift in Sources */,
 				17631520A7E57E378E8CB14E /* UpdateDSQuizRequest.swift in Sources */,
-				8B70DB1F2A542EB6007D3ED4 /* CreateDSConversationRequest.swift in Sources */,
 				14D09D53B76DADF1DF12514F /* UserFixture.swift in Sources */,
 				65963C7FD4563C4599328811 /* UserSettingsFixture.swift in Sources */,
 				917CA66BA492B8AE9D91167C /* XCTestCaseExtensions.swift in Sources */,
