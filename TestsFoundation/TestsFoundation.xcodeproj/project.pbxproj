@@ -114,6 +114,12 @@
 		87A60DC5A14FC040D54A58D7 /* DiscussionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1256FA2356B3F8F1106185 /* DiscussionEditor.swift */; };
 		8917C1628DAFDC52287BF98D /* ModuleItemFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B59FD3B1D002FA5E94E1C6 /* ModuleItemFixture.swift */; };
 		8AAB7EC58190ABB57E0F40AD /* MiniCanvasServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A98E1BAD9BED63BDEAD29 /* MiniCanvasServer.swift */; };
+		8B70DBBE2A56DD24007D3ED4 /* CreateDSNewQuizRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBBD2A56DD24007D3ED4 /* CreateDSNewQuizRequest.swift */; };
+		8B70DBC02A56DD30007D3ED4 /* DSNewQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBBF2A56DD30007D3ED4 /* DSNewQuiz.swift */; };
+		8B70DBC22A56DD43007D3ED4 /* DataSeeder+DSNewQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBC12A56DD43007D3ED4 /* DataSeeder+DSNewQuiz.swift */; };
+		8B70DBC42A56DF7A007D3ED4 /* CreateDSNewQuizItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBC32A56DF7A007D3ED4 /* CreateDSNewQuizItemRequest.swift */; };
+		8B70DBC62A56DF8D007D3ED4 /* DataSeeder+DSNewQuizItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBC52A56DF8D007D3ED4 /* DataSeeder+DSNewQuizItem.swift */; };
+		8B70DBC82A56DF98007D3ED4 /* DSNewQuizItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBC72A56DF98007D3ED4 /* DSNewQuizItem.swift */; };
 		8C02370D294ADC5E03166916 /* CreateDSQuizQuestionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFA2EB914E415CCFACDB /* CreateDSQuizQuestionRequest.swift */; };
 		8CE7A795708CBCF4AF7A2674 /* DSModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69E1EBE6B486730AE73F45 /* DSModuleItem.swift */; };
 		8CEEA54DE127851FF426490F /* CreateDSDiscussionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D6E99369534DE2260DD4EB /* CreateDSDiscussionRequest.swift */; };
@@ -319,6 +325,12 @@
 		853FF26543B7A1A331156E77 /* MiniCanvasEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniCanvasEndpoints.swift; sourceTree = "<group>"; };
 		87C6F005E7C5D08F6F4C3498 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		894A96909063F1975F58D1A2 /* ConferenceDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceDetails.swift; sourceTree = "<group>"; };
+		8B70DBBD2A56DD24007D3ED4 /* CreateDSNewQuizRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSNewQuizRequest.swift; sourceTree = "<group>"; };
+		8B70DBBF2A56DD30007D3ED4 /* DSNewQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSNewQuiz.swift; sourceTree = "<group>"; };
+		8B70DBC12A56DD43007D3ED4 /* DataSeeder+DSNewQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSNewQuiz.swift"; sourceTree = "<group>"; };
+		8B70DBC32A56DF7A007D3ED4 /* CreateDSNewQuizItemRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSNewQuizItemRequest.swift; sourceTree = "<group>"; };
+		8B70DBC52A56DF8D007D3ED4 /* DataSeeder+DSNewQuizItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSNewQuizItem.swift"; sourceTree = "<group>"; };
+		8B70DBC72A56DF98007D3ED4 /* DSNewQuizItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSNewQuizItem.swift; sourceTree = "<group>"; };
 		8E046239E00E2F114C950D3A /* ModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFixture.swift; sourceTree = "<group>"; };
 		8E52A6F60DF961A9FB652399 /* DSSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSubmission.swift; sourceTree = "<group>"; };
 		8EB01A67D620697DB09B6F61 /* CreateDSAccountNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSAccountNotificationRequest.swift; sourceTree = "<group>"; };
@@ -469,6 +481,7 @@
 		039CF14263C4180E857200CA /* DataSeeding */ = {
 			isa = PBXGroup;
 			children = (
+				8B70DBBA2A56DD04007D3ED4 /* NewQuizzes */,
 				BB6B6C485316F1CF22E406E2 /* AccountNotifications */,
 				C116E77902A4568988D60E21 /* Assignment */,
 				E9C31C8EF04AEA0B22366489 /* Course */,
@@ -909,6 +922,19 @@
 			path = Submissions;
 			sourceTree = "<group>";
 		};
+		8B70DBBA2A56DD04007D3ED4 /* NewQuizzes */ = {
+			isa = PBXGroup;
+			children = (
+				8B70DBBD2A56DD24007D3ED4 /* CreateDSNewQuizRequest.swift */,
+				8B70DBC12A56DD43007D3ED4 /* DataSeeder+DSNewQuiz.swift */,
+				8B70DBBF2A56DD30007D3ED4 /* DSNewQuiz.swift */,
+				8B70DBC32A56DF7A007D3ED4 /* CreateDSNewQuizItemRequest.swift */,
+				8B70DBC52A56DF8D007D3ED4 /* DataSeeder+DSNewQuizItem.swift */,
+				8B70DBC72A56DF98007D3ED4 /* DSNewQuizItem.swift */,
+			);
+			path = NewQuizzes;
+			sourceTree = "<group>";
+		};
 		9A7561DA742A2C1B232DFA62 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
@@ -1296,15 +1322,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				D27066B2CD18C554768B3831 /* AccountNotifications.swift in Sources */,
+				8B70DBC82A56DF98007D3ED4 /* DSNewQuizItem.swift in Sources */,
 				0FC29617D122A316EE3E4A49 /* ActAsUser.swift in Sources */,
 				D54C5D9A97191A5442EE0893 /* ActivityFixture.swift in Sources */,
 				FB2AA89EC3B26CDBBA81BE5C /* Announcements.swift in Sources */,
 				F2610136FC5488415F288BF6 /* AssignmentFixture.swift in Sources */,
 				514A398F69F9B43A8B00002A /* AssignmentGroupsFixture.swift in Sources */,
 				53C656FE0E827AE9C1CD9F82 /* Assignments.swift in Sources */,
+				8B70DBC62A56DF8D007D3ED4 /* DataSeeder+DSNewQuizItem.swift in Sources */,
 				5B66CA6BC155230774454DB2 /* Attachments.swift in Sources */,
+				8B70DBC22A56DD43007D3ED4 /* DataSeeder+DSNewQuiz.swift in Sources */,
 				4DFA05671709AE84764833FB /* AudioRecorder.swift in Sources */,
 				2B1D0A68906A45E0D9F9F4D8 /* BaseHelper.swift in Sources */,
+				8B70DBBE2A56DD24007D3ED4 /* CreateDSNewQuizRequest.swift in Sources */,
 				54923FEE77B2BB32BBCC2504 /* CalendarEventFixture.swift in Sources */,
 				509F3D8EDAAAF7425C36BE80 /* CombineTestExtensions.swift in Sources */,
 				5D760DD0639FCD95BA6290AB /* CommunicationChannelFixture.swift in Sources */,
@@ -1352,6 +1382,7 @@
 				A2B2BDC7741F485A3E102A22 /* Dashboard.swift in Sources */,
 				05CD80C7842E89D42927418D /* DataSeeder+AccountNotification.swift in Sources */,
 				C7537D8A9003F2B0F5E87CA3 /* DataSeeder+DSAssignment.swift in Sources */,
+				8B70DBC42A56DF7A007D3ED4 /* CreateDSNewQuizItemRequest.swift in Sources */,
 				3E59D93402725FA9B4F7F863 /* DataSeeder+DSCourse.swift in Sources */,
 				1262342A0DDB2D111A04EA5C /* DataSeeder+DSGrades.swift in Sources */,
 				DF6574E0981A8B23E7E05DC5 /* DataSeeder+DSGradingStandards.swift in Sources */,
@@ -1360,6 +1391,7 @@
 				66763804BE506F3E75E07C73 /* DataSeeder+DSPage.swift in Sources */,
 				EE5667413AE1D36643986207 /* DataSeeder+DSQuiz.swift in Sources */,
 				A0BC38309F88C41B8E1A0BDA /* DataSeeder+DSQuizQuestion.swift in Sources */,
+				8B70DBC02A56DD30007D3ED4 /* DSNewQuiz.swift in Sources */,
 				1AF03DE89E66FAB387BB5A98 /* DataSeeder+DSSubmission.swift in Sources */,
 				2C5BB31417D17837E1967A93 /* DataSeeder+DSUser.swift in Sources */,
 				D035CD7361AA9A3F98AE2FC2 /* DataSeeder+Discussion.swift in Sources */,

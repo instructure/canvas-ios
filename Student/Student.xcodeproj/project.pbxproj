@@ -137,6 +137,8 @@
 		8B70DAFF2A52B603007D3ED4 /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DAFE2A52B603007D3ED4 /* LoginTests.swift */; };
 		8B70DB012A52BABB007D3ED4 /* LoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DB002A52BABB007D3ED4 /* LoginHelper.swift */; };
 		8B70DB0F2A52EA69007D3ED4 /* ProfileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DB0E2A52EA69007D3ED4 /* ProfileHelper.swift */; };
+		8B70DBCB2A570745007D3ED4 /* NewQuizzesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBCA2A570745007D3ED4 /* NewQuizzesHelper.swift */; };
+		8B70DBCD2A570B16007D3ED4 /* NewQuizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBCC2A570B16007D3ED4 /* NewQuizTests.swift */; };
 		8B95EEC82A4EE33900ADCDB4 /* PeopleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B95EEC62A4EE33900ADCDB4 /* PeopleHelper.swift */; };
 		8B95EEC92A4EE33900ADCDB4 /* PeopleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B95EEC72A4EE33900ADCDB4 /* PeopleTests.swift */; };
 		8BB5ED932A2E0F0B009D63DA /* HelpHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5ED922A2E0F0B009D63DA /* HelpHelper.swift */; };
@@ -668,6 +670,8 @@
 		8B70DAFE2A52B603007D3ED4 /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
 		8B70DB002A52BABB007D3ED4 /* LoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
 		8B70DB0E2A52EA69007D3ED4 /* ProfileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHelper.swift; sourceTree = "<group>"; };
+		8B70DBCA2A570745007D3ED4 /* NewQuizzesHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewQuizzesHelper.swift; sourceTree = "<group>"; };
+		8B70DBCC2A570B16007D3ED4 /* NewQuizTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewQuizTests.swift; sourceTree = "<group>"; };
 		8B95EEC62A4EE33900ADCDB4 /* PeopleHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleHelper.swift; sourceTree = "<group>"; };
 		8B95EEC72A4EE33900ADCDB4 /* PeopleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTests.swift; sourceTree = "<group>"; };
 		8BB5ED912A2E0F0B009D63DA /* HelpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpTests.swift; sourceTree = "<group>"; };
@@ -1487,6 +1491,7 @@
 		7DCF0F7622F8A0A0000AACCE /* StudentE2ETests */ = {
 			isa = PBXGroup;
 			children = (
+				8B70DBC92A570730007D3ED4 /* NewQuizzes */,
 				8BB5ED882A2DE435009D63DA /* Help */,
 				8BE0C3602A28990700034CC6 /* ActAsUser */,
 				C9BCCA0E27D73EFC003E9CB0 /* Grades */,
@@ -1509,6 +1514,15 @@
 				7DCF0F5E22F8A0A0000AACCE /* Info.plist */,
 			);
 			path = StudentE2ETests;
+			sourceTree = "<group>";
+		};
+		8B70DBC92A570730007D3ED4 /* NewQuizzes */ = {
+			isa = PBXGroup;
+			children = (
+				8B70DBCA2A570745007D3ED4 /* NewQuizzesHelper.swift */,
+				8B70DBCC2A570B16007D3ED4 /* NewQuizTests.swift */,
+			);
+			path = NewQuizzes;
 			sourceTree = "<group>";
 		};
 		8BB5ED882A2DE435009D63DA /* Help */ = {
@@ -2929,6 +2943,7 @@
 				C9BCCA1027D73F0F003E9CB0 /* GradesTests.swift in Sources */,
 				8B70DAFF2A52B603007D3ED4 /* LoginTests.swift in Sources */,
 				8B05ABB72A42043300A9C714 /* ModulesTests.swift in Sources */,
+				8B70DBCB2A570745007D3ED4 /* NewQuizzesHelper.swift in Sources */,
 				8B19F65B2A137E33007AA43F /* AssignmentsTests.swift in Sources */,
 				C9A3C04D26A03B9900DAE8E1 /* K5StudentE2ETests.swift in Sources */,
 				8B0D25482A443CE800D7EDCA /* QuizzesHelper.swift in Sources */,
@@ -2936,6 +2951,7 @@
 				E8C6F4E423D626220086B865 /* QuizzesE2ETests.swift in Sources */,
 				C935D43D26E5F5AF00C940F7 /* K5GradesE2ETests.swift in Sources */,
 				8B05AB8C2A38AEBA00A9C714 /* DashboardTests.swift in Sources */,
+				8B70DBCD2A570B16007D3ED4 /* NewQuizTests.swift in Sources */,
 				E80936E124C24CBE00D15E9A /* ActAsUserTests.swift in Sources */,
 				C99425E2284096300078A3BD /* GradeTotalsTests.swift in Sources */,
 				8B70DB012A52BABB007D3ED4 /* LoginHelper.swift in Sources */,
