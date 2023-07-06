@@ -21,12 +21,12 @@ import Foundation
 
 final class CourseSyncEntryProgress: NSManagedObject, Comparable {
     @NSManaged public var id: String
-    @NSManaged public var selectionRaw: Int
-    @NSManaged public var stateRaw: Int
-    @NSManaged public var entryID: String
-    @NSManaged public var tabID: String?
-    @NSManaged public var fileID: String?
-    @NSManaged public var progress: NSNumber?
+    @NSManaged private(set) var selectionRaw: Int
+    @NSManaged private(set) var stateRaw: Int
+    @NSManaged private(set) var entryID: String
+    @NSManaged private(set) var tabID: String?
+    @NSManaged private(set) var fileID: String?
+    @NSManaged private(set) var progress: NSNumber?
 
     var selection: CourseEntrySelection {
         get {

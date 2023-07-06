@@ -211,7 +211,6 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
     }
 
     func testFileProgressCleanUp() {
-        let testee = CourseSyncProgressObserverInteractorLive(container: database)
         let helper = CourseSyncProgressWriterInteractorLive(container: database)
 
         entries[0].files[0].selectionState = .selected
