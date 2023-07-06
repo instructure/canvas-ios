@@ -30,13 +30,18 @@ public class InboxHelper: BaseHelper {
         app.find(id: "inbox.conversation-\(conversation.id)")
     }
 
-    public static func conversationBySubject(subject: String, unread: Bool = true) -> Element {
+    public static func addDateToSubject(subject: String, unread: Bool = false) -> String {
         let date = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "LLLL d, yyyy"
         let formattedDate = dateFormatter.string(from: date)
-        let toFind = "\(formattedDate), \(subject)"
-        return app.find(label: unread ? toFind + ", Unread" : toFind)
+        let result = "\(formattedDate), \(subject)"
+        return unread ? result + ", Unread" : result
+    }
+
+    public static func conversationBySubject(subject: String, unread: Bool = true) -> Element {
+        let toFind = addDateToSubject(subject: subject, unread: unread)
+        return app.find(label: toFind)
     }
 
     struct Filter {
@@ -53,13 +58,27 @@ public class InboxHelper: BaseHelper {
         public static var optionsButton: Element { app.find(id: "inbox.detail.options.button") }
         public static var replyButton: Element { app.find(id: "inbox.conversation-message-row.reply-button") }
         public static var starButton: Element { app.find(id: "inbox.detail.not-starred") }
+        public static var unStarButton: Element { app.find(id: "inbox.detail.starred") }
+        public static func subjectLabel(conversation: DSConversation) -> Element { app.find(label: conversation.subject) }
 
         public static func message(conversation: DSConversation) -> Element {
-            app.find(id: "inbox.conversation-message-\(conversation.id)")
+            app.find(id: "inbox.conversation-message-\(conversation.messages[0].id)")
+        }
+
+        public static func bodyOfMessage(conversation: DSConversation) -> Element {
+            app.find(label: conversation.last_authored_message)
         }
 
         public static func messageOptions(conversation: DSConversation) -> Element {
-            app.find(id: "inbox.conversation-message.kabob-\(conversation.id)")
+            app.find(id: "conversation-message.kabob-\(conversation.messages[0].id)")
+        }
+
+        struct Options {
+            public static var replyButton: Element { app.find(label: "Reply", type: .button) }
+            public static var replyAllButton: Element { app.find(label: "Reply All", type: .button) }
+            public static var forwardButton: Element { app.find(label: "Forward", type: .button) }
+            public static var deleteButton: Element { app.find(label: "Delete", type: .button) }
+            public static var cancelButton: Element { app.find(label: "Cancel", type: .button) }
         }
     }
 

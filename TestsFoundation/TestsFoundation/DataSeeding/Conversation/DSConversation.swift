@@ -21,6 +21,8 @@ public struct DSConversation: Codable {
     public let subject: String
     public let last_message: String?
     public let message_count: Int
+    public let last_authored_message: String
+    public let messages: [Message]
     public let participants: [Participant]
     public let context_code: String
 }
@@ -28,4 +30,10 @@ public struct DSConversation: Codable {
 public struct Participant: Codable {
     public let id: String
     public let name: String
+}
+
+public struct Message: Codable {
+    public let id: String
+    public let author_id: String
+    public let body: String
 }
