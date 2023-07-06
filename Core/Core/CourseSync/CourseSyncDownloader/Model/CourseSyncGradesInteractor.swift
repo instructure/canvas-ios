@@ -39,16 +39,27 @@ class CourseSyncGradesInteractorLive: CourseSyncGradesInteractor {
                 Self.fetchGradingPeriods(courseId: courseId),
                 Self.fetchCourseAndGetGradingPeriodID(courseId: courseId, userId: userId)
                     .flatMap { gradingPeriodID in
-                        Self.fetchEnrollments(courseId: courseId, userId: userId, gradingPeriodID: gradingPeriodID)
-                            .flatMap { Self.fetchAssignments(courseId: courseId, gradingPeriodID: gradingPeriodID) }
+                        Publishers.Zip(
+                            Self.fetchEnrollments(courseId: courseId, userId: userId, gradingPeriodID: gradingPeriodID),
+                            Self.fetchAssignments(courseId: courseId, gradingPeriodID: gradingPeriodID)
+                        )
                     }
             )
             .mapToVoid()
             .eraseToAnyPublisher()
     }
 
+    // MARK: - Private Methods
+
     private static func fetchCourseColors() -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: GetCustomColors())
+            .getEntities()
+            .mapToVoid()
+            .eraseToAnyPublisher()
+    }
+
+    private static func fetchGradingPeriods(courseId: String) -> AnyPublisher<Void, Error> {
+        ReactiveStore(useCase: GetGradingPeriods(courseID: courseId))
             .getEntities()
             .mapToVoid()
             .eraseToAnyPublisher()
@@ -78,13 +89,6 @@ class CourseSyncGradesInteractorLive: CourseSyncGradesInteractor {
                                             gradingPeriodID: gradingPeriodID,
                                             gradedOnly: true)
         return ReactiveStore(useCase: useCase)
-            .getEntities()
-            .mapToVoid()
-            .eraseToAnyPublisher()
-    }
-
-    private static func fetchGradingPeriods(courseId: String) -> AnyPublisher<Void, Error> {
-        ReactiveStore(useCase: GetGradingPeriods(courseID: courseId))
             .getEntities()
             .mapToVoid()
             .eraseToAnyPublisher()
