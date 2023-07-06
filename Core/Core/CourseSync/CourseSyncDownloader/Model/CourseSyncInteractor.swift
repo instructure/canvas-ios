@@ -42,12 +42,14 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
         pagesInteractor: CourseSyncPagesInteractor = CourseSyncPagesInteractorLive(),
         assignmentsInteractor: CourseSyncAssignmentsInteractor = CourseSyncAssignmentsInteractorLive(),
         filesInteractor: CourseSyncFilesInteractor = CourseSyncFilesInteractorLive(),
+        peopleInteractor: CourseSyncPeopleInteractor = CourseSyncPeopleInteractorLive(),
         progressWriterInteractor: CourseSyncProgressWriterInteractor = CourseSyncProgressWriterInteractorLive(),
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         contentInteractors = [
             pagesInteractor,
             assignmentsInteractor,
+            peopleInteractor,
         ]
         self.filesInteractor = filesInteractor
         self.progressWriterInteractor = progressWriterInteractor
@@ -65,12 +67,16 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
                     selection: .course(index),
                     state: .loading(nil)
                 )
-
-                return Publishers.Zip3(
+                let firstZipped = Publishers.Zip(
                     unownedSelf.downloadTabContent(for: entry, index: index, tabName: .assignments),
-                    unownedSelf.downloadTabContent(for: entry, index: index, tabName: .pages),
-                    unownedSelf.downloadFiles(for: entry, courseIndex: index)
+                    unownedSelf.downloadTabContent(for: entry, index: index, tabName: .pages)
                 )
+                let secondZipped = Publishers.Zip(
+                    unownedSelf.downloadFiles(for: entry, courseIndex: index),
+                    unownedSelf.downloadTabContent(for: entry, index: index, tabName: .people)
+                )
+
+                return Publishers.Zip(firstZipped, secondZipped)
                 .updateErrorState {
                     unownedSelf.setState(
                         selection: .course(index),
