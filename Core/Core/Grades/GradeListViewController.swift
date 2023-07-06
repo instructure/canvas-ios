@@ -142,6 +142,17 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
         navigationController?.navigationBar.useContextColor(color)
     }
 
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        // Without this there was some weird empty space at the end of the tableview
+        // that went away after rotation or when we moved away from the screen and returned
+        if OfflineModeInteractorLive.shared.isOfflineModeEnabled() {
+            view.setNeedsLayout()
+            tableView.reloadData()
+        }
+    }
+
     @objc func refresh() {
         assignments.refresh(force: true) { [weak self] _ in
             self?.refreshControl.endRefreshing()
@@ -212,6 +223,7 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
             self?.update()
         }
 
+        // In offline mode we don't want to delete anything from CoreData
         if !OfflineModeInteractorLive.shared.isOfflineModeEnabled() {
             // Delete assignment groups immediately, to see a spinner again
             assignments.useCase.reset(context: env.database.viewContext)
