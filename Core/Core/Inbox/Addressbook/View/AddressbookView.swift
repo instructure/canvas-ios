@@ -18,11 +18,11 @@
 
 import SwiftUI
 
-public struct CourseSelectorView: View {
-    @ObservedObject private var model: CourseSelectorViewModel
+public struct AddressbookView: View {
+    @ObservedObject private var model: AddressbookViewModel
     @Environment(\.viewController) private var controller
 
-    init(model: CourseSelectorViewModel) {
+    init(model: AddressbookViewModel) {
         self.model = model
     }
 
@@ -34,7 +34,7 @@ public struct CourseSelectorView: View {
             case .data:
                 courses
             case .empty, .error:
-                Text("There was an error loading courses.", bundle: .core)
+                Text("There was an error loading recipients.", bundle: .core)
             }
         }
         .background(Color.backgroundLightest)
@@ -51,17 +51,16 @@ public struct CourseSelectorView: View {
     }
 
     private var courses: some View {
-        ForEach(model.courses, id: \.courseId) { course in
+        ForEach(model.recipients, id: \.id) { recipient in
             VStack(spacing: 0) {
                 Color.borderMedium
                     .frame(height: 0.5)
                 Button(action: {
 
                 }, label: {
-                    Text(course.name)
+                    Text(recipient.fullName)
                 })
                 .padding(16)
-
             }
         }
     }

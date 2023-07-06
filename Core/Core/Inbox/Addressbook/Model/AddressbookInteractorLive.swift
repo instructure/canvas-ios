@@ -17,40 +17,32 @@
 //
 
 import Combine
-import CombineExt
 
-public class ComposeMessageInteractorLive: ComposeMessageInteractor {
+public class AddressbookInteractorLive: AddressbookInteractor {
     // MARK: - Outputs
     public var state = CurrentValueSubject<StoreState, Never>(.loading)
-    public var courses = CurrentValueSubject<[InboxCourse], Never>([])
+    public var recipients = CurrentValueSubject<[SearchRecipient], Never>([])
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
     private let env: AppEnvironment
-    private let courseListStore: Store<GetInboxCourseList>
-    private let selectedContext = CurrentValueRelay<Context?>(nil)
+    private let courseID: String
+    private let recipientStore: Store<GetSearchRecipients>
 
-    public init(env: AppEnvironment) {
+    public init(env: AppEnvironment, courseID: String) {
         self.env = env
-        self.courseListStore = env.subscribe(GetInboxCourseList())
+        self.courseID = courseID
+        self.recipientStore = env.subscribe(GetSearchRecipients(context: .course(courseID)))
 
-        courseListStore
+        recipientStore
             .statePublisher
             .subscribe(state)
             .store(in: &subscriptions)
 
-        courseListStore
+        recipientStore
             .allObjects
-            .subscribe(courses)
+            .subscribe(recipients)
             .store(in: &subscriptions)
-        courseListStore.exhaust()
-    }
-
-    public func send() -> Future<Void, Never> {
-        Future<Void, Never> { promise in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                promise(.success(()))
-            }
-        }
+        recipientStore.exhaust()
     }
 }

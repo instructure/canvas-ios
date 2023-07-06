@@ -68,6 +68,12 @@ class ComposeMessageViewModel: ObservableObject {
         ), from: viewController)
     }
 
+    public func addRecipientButtonDidTap(viewController: WeakViewController) {
+        guard let courseID = selectedCourse?.courseId else { return }
+        let addressbook = AddressBookAssembly.makeAddressbookViewController(courseID: courseID)
+        router.show(addressbook, from: viewController)
+    }
+
     private func setupOutputBindings() {
         interactor.state
                 .assign(to: &$state)
@@ -76,7 +82,6 @@ class ComposeMessageViewModel: ObservableObject {
     }
 
     private func setupInputBindings(router: Router) {
-        let interactor = self.interactor
         cancelButtonDidTap
             .sink { [router] viewController in
                 router.dismiss(viewController)

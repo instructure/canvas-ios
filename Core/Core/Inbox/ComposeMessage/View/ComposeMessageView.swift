@@ -71,7 +71,7 @@ public struct ComposeMessageView: View {
 
     private var addRecipientButton: some View {
         Button(action: {
-            model.addRecipientButtonDidTap.accept(controller)
+            model.addRecipientButtonDidTap(viewController: controller)
         }, label: {
             Image.addLine
                 .foregroundColor(Color.textDarkest)

@@ -17,30 +17,33 @@
 //
 
 import Combine
+import CombineExt
 
-public class CourseSelectorInteractorLive: CourseSelectorInteractor {
+class AddressbookViewModel: ObservableObject {
     // MARK: - Outputs
-    public var state = CurrentValueSubject<StoreState, Never>(.loading)
-    public var courses = CurrentValueSubject<[InboxCourse], Never>([])
+    @Published public private(set) var state: StoreState = .loading
+    @Published public private(set) var recipients: [SearchRecipient] = []
+
+    public let title = NSLocalizedString("Select Recipients", bundle: .core, comment: "")
+
+    // MARK: - Inputs
+    public let selectedRecipient = CurrentValueRelay<String?>(nil)
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
-    private let env: AppEnvironment
-    private let courseListStore: Store<GetInboxCourseList>
+    private let interactor: AddressbookInteractor
+    private let router: Router
 
-    public init(env: AppEnvironment) {
-        self.env = env
-        self.courseListStore = env.subscribe(GetInboxCourseList())
+    public init(router: Router, interactor: AddressbookInteractor) {
+        self.interactor = interactor
+        self.router = router
+        setupOutputBindings()
+    }
 
-        courseListStore
-            .statePublisher
-            .subscribe(state)
-            .store(in: &subscriptions)
-
-        courseListStore
-            .allObjects
-            .subscribe(courses)
-            .store(in: &subscriptions)
-        courseListStore.exhaust()
+    private func setupOutputBindings() {
+        interactor.state
+                .assign(to: &$state)
+        interactor.recipients
+            .assign(to: &$recipients)
     }
 }

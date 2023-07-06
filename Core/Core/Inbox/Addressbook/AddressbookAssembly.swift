@@ -16,10 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
+import Foundation
 
-public protocol CourseSelectorInteractor {
-    // MARK: - Outputs
-    var state: CurrentValueSubject<StoreState, Never> { get }
-    var courses: CurrentValueSubject<[InboxCourse], Never> { get }
+public enum AddressBookAssembly {
+
+    public static func makeAddressbookViewController(env: AppEnvironment = .shared, courseID: String) -> UIViewController {
+        let interactor = AddressbookInteractorLive(env: env, courseID: courseID)
+        let viewModel = AddressbookViewModel(router: env.router, interactor: interactor)
+        let view = AddressbookView(model: viewModel)
+        return CoreHostingController(view)
+    }
 }
