@@ -205,6 +205,28 @@ public extension Element {
     }
 
     @discardableResult
+    func swipeUntilVisible(direction: SwipeDirection = .up, timeout: TimeInterval = 15, gracePeriod: UInt32 = 1) -> Bool {
+        let deadline = Date().addingTimeInterval(timeout)
+        while Date() < deadline {
+            if self.isVisible {
+                return true
+            }
+            switch direction {
+            case .down:
+                app.swipeDown()
+            case .up:
+                app.swipeUp()
+            case .left:
+                app.swipeLeft()
+            case .right:
+                app.swipeRight()
+            }
+            sleep(gracePeriod)
+        }
+        return false
+    }
+
+    @discardableResult
     func waitToVanish(_ timeout: TimeInterval = 15, file: StaticString = #file, line: UInt = #line) -> Element {
         waitUntil(timeout, file: file, line: line, failureMessage: "Element \(id) still exists") {
             !exists(file: file, line: line)
@@ -363,4 +385,11 @@ public extension XCUIElement {
             coordinate.tap()
         }
     }
+}
+
+public enum SwipeDirection {
+    case up
+    case down
+    case left
+    case right
 }

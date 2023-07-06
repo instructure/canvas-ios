@@ -43,7 +43,7 @@ public class ModulesHelper: BaseHelper {
     }
 
     @discardableResult
-    public static func createModule(course: DSCourse, name: String, published: Bool = true) -> DSModule {
+    public static func createModule(course: DSCourse, name: String = "Sample Module", published: Bool = true) -> DSModule {
         let moduleBody = CreateDSModuleRequest.RequestedDSModule(name: name)
         var module = seeder.createModule(courseId: course.id, moduleBody: moduleBody)
         if published {
@@ -102,7 +102,7 @@ public class ModulesHelper: BaseHelper {
                                         description: String = "Description of ",
                                         published: Bool = true) -> DSModuleItem {
         let quiz = QuizzesHelper.createQuiz(course: course, title: title, description: description + title, quiz_type: .assignment, published: published)
-        let quizQuestion = QuizzesHelper.createTestQuizQuestion(course: course, quiz: quiz)
+        QuizzesHelper.createTestQuizQuestion(course: course, quiz: quiz)
 
         let moduleItemBody = CreateDSModuleItemRequest.RequestedDSModuleItem(title: title, type: .quiz, content_id: quiz.id)
         var moduleItem = seeder.createModuleItem(courseId: course.id, moduleId: module.id, moduleItemBody: moduleItemBody)
