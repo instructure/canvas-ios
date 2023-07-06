@@ -112,6 +112,7 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
         errorView.messageLabel.text = NSLocalizedString("There was an error loading grades. Pull to refresh to try again.", bundle: .core, comment: "")
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         filterButton.setTitle(NSLocalizedString("Filter", bundle: .core, comment: ""), for: .normal)
+        filterButton.makeUnavailableInOfflineMode()
 
         gradingPeriodView.isHidden = true
 
