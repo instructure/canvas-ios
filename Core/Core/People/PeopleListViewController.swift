@@ -56,10 +56,15 @@ public class PeopleListViewController: ScreenViewTrackableViewController, Colore
         self?.update()
     }
     private weak var accessibilityFocusAfterReload: UIView?
+    private var offlineModelInteractor: OfflineModeInteractor?
+    private var isOffline: Bool {
+        offlineModelInteractor?.isOfflineModeEnabled() ?? false
+    }
 
-    public static func create(context: Context) -> PeopleListViewController {
+    public static func create(context: Context, offlineModeInteractor: OfflineModeInteractor = OfflineModeInteractorLive.shared) -> PeopleListViewController {
         let controller = loadFromStoryboard()
         controller.context = context
+        controller.offlineModelInteractor = offlineModeInteractor
         return controller
     }
 
@@ -231,7 +236,7 @@ extension PeopleListViewController: UITableViewDataSource, UITableViewDelegate {
         }
         let cell = tableView.dequeue(PeopleListCell.self, for: indexPath)
         cell.accessibilityIdentifier = "people-list-cell-row-\(indexPath.row)"
-        cell.update(user: users[indexPath.row], color: color)
+        cell.update(user: users[indexPath.row], color: color, isOffline: isOffline)
         return cell
     }
 
@@ -256,11 +261,11 @@ class PeopleListCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var rolesLabel: UILabel!
 
-    func update(user: User?, color: UIColor?) {
+    func update(user: User?, color: UIColor?, isOffline: Bool) {
         backgroundColor = .backgroundLightest
         selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         avatarView.name = user?.name ?? ""
-        avatarView.url = user?.avatarURL
+        avatarView.url = isOffline ? nil : user?.avatarURL
         let nameText = user.flatMap { User.displayName($0.name, pronouns: $0.pronouns) }
         nameLabel.setText(nameText, style: .textCellTitle)
         nameLabel.accessibilityIdentifier = "\(self.accessibilityIdentifier ?? "").name-label"
