@@ -18,7 +18,7 @@
 
 import Foundation
 
-public enum CourseEntrySelection: Codable, Equatable, Comparable {
+public enum CourseEntrySelection: Codable, Equatable, Comparable, Hashable {
     public typealias EntryID = String
     public typealias TabID = String
     public typealias FileID = String

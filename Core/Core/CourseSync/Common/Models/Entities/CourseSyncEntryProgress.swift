@@ -19,27 +19,69 @@
 import CoreData
 import Foundation
 
-// swiftlint:disable force_try
 final class CourseSyncEntryProgress: NSManagedObject, Comparable {
     @NSManaged public var id: String
-    @NSManaged public var selectionRaw: Data
-    @NSManaged public var stateRaw: Data
+    @NSManaged public var selectionRaw: Int
+    @NSManaged public var stateRaw: Int
+    @NSManaged public var entryID: String
+    @NSManaged public var tabID: String?
+    @NSManaged public var fileID: String?
+    @NSManaged public var progress: NSNumber?
 
     var selection: CourseEntrySelection {
         get {
-            try! JSONDecoder().decode(CourseEntrySelection.self, from: selectionRaw)
+            switch selectionRaw {
+            case 0: return .course(entryID)
+            case 1: return .tab(entryID, tabID!)
+            case 2: return .file(entryID, fileID!)
+            default:
+                fatalError("CourseSyncEntryProgress.CourseEntrySelection incorrect data.")
+            }
         }
         set {
-            selectionRaw = try! JSONEncoder().encode(newValue)
+            switch newValue {
+            case let .course(entryID):
+                self.entryID = entryID
+                selectionRaw = 0
+            case let .tab(entryID, tabID):
+                self.entryID = entryID
+                self.tabID = tabID
+                selectionRaw = 1
+            case let .file(entryID, fileID):
+                self.entryID = entryID
+                self.fileID = fileID
+                selectionRaw = 2
+            }
         }
     }
 
     var state: CourseSyncEntry.State {
         get {
-            try! JSONDecoder().decode(CourseSyncEntry.State.self, from: stateRaw)
+            switch stateRaw {
+            case 0: return .idle
+            case 1: return .loading(progress?.floatValue)
+            case 2: return .error
+            case 3: return .downloaded
+            default:
+                fatalError("CourseSyncEntryProgress.State incorrect data.")
+            }
         }
         set {
-            stateRaw = try! JSONEncoder().encode(newValue)
+            switch newValue {
+            case .idle:
+                stateRaw = 0
+            case let .loading(progress):
+                stateRaw = 1
+                if let progress {
+                    self.progress = NSNumber(value: progress)
+                } else {
+                    self.progress = nil
+                }
+            case .error:
+                stateRaw = 2
+            case .downloaded:
+                stateRaw = 3
+            }
         }
     }
 
@@ -66,4 +108,3 @@ final class CourseSyncEntryProgress: NSManagedObject, Comparable {
         return dbEntity
     }
 }
-// swiftlint:enable force_try

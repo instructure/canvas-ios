@@ -269,9 +269,13 @@
         <attribute name="usageRightsRequired" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
     <entity name="CourseSyncEntryProgress" representedClassName="Core.CourseSyncEntryProgress" syncable="YES">
+        <attribute name="entryID" attributeType="String"/>
+        <attribute name="fileID" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
-        <attribute name="selectionRaw" attributeType="Binary"/>
-        <attribute name="stateRaw" attributeType="Binary"/>
+        <attribute name="progress" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="selectionRaw" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="stateRaw" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="tabID" optional="YES" attributeType="String"/>
     </entity>
     <entity name="CourseSyncFileProgress" representedClassName="Core.CourseSyncFileProgress" syncable="YES">
         <attribute name="bytesDownloaded" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>

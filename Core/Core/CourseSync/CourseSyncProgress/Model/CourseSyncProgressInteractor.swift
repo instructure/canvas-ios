@@ -31,7 +31,7 @@ protocol CourseSyncProgressInteractor: AnyObject {
 }
 
 final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
-    private struct EntryProgress {
+    private struct EntryProgress: Hashable {
         let id: String
         var selection: CourseEntrySelection
         var state: CourseSyncEntry.State
@@ -68,7 +68,6 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         }
     }
 
-    private var isUpdateInProgress = false
     private let courseSyncEntries = CurrentValueSubject<[CourseSyncEntry], Error>(.init())
     private var subscriptions = Set<AnyCancellable>()
 
@@ -142,8 +141,11 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
                 }
             }
             .map { $0.map { EntryProgress(from: $0) } }
+            .map { Set($0) }
+            .scan((Set([]), Set([]))) { ($0.1, $1) } // Access previous and current published element
+            .map { $1.subtracting($0) } // Substract previous elements from current
+            .map { Array($0) }
             .sink { [weak self] progressList in
-                self?.isUpdateInProgress = false
                 self?.setState(newList: progressList)
             }
             .store(in: &subscriptions)
@@ -199,21 +201,16 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
     }
 
     private func setState(newList: [EntryProgress]) {
-        guard !isUpdateInProgress else { return }
-        isUpdateInProgress = true
-
         var entries = safeCourseSyncEntriesValue
 
         for progress in newList {
-            guard isUpdateInProgress else { return }
             switch progress.selection {
             case let .course(entryID):
                 entries[id: entryID]?.updateCourseState(state: progress.state)
             case let .tab(entryID, tabID):
                 entries[id: entryID]?.updateTabState(id: tabID, state: progress.state)
             case let .file(entryID, fileID):
-//                entries[id: entryID]?.updateFileState(id: fileID, state: progress.state)
-                entries[0].files[0].state = .downloaded
+                entries[id: entryID]?.updateFileState(id: fileID, state: progress.state)
             }
         }
 

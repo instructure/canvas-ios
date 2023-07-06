@@ -20,6 +20,12 @@ import Foundation
 
 public struct CourseSyncEntry: Equatable {
     public enum State: Codable, Equatable, Hashable {
+        // CourseSyncEntryProgress relies on this order when it saves its' data.
+        // Core Data Raw values:
+        // idle = 0
+        // loading = 1
+        // error = 2
+        // downloaded 3
         case idle, loading(Float?), error, downloaded
     }
 
@@ -191,11 +197,15 @@ public struct CourseSyncEntry: Equatable {
     }
 
     mutating func updateTabState(id: String, state: State) {
-        tabs[id: id]?.state = state
+        if let index = tabs.firstIndex(where: { $0.id == id }) {
+            tabs[index].state = state
+        }
     }
 
     mutating func updateFileState(id: String, state: State) {
-        files[id: id]?.state = state
+        if let index = files.firstIndex(where: { $0.id == id }) {
+            files[index].state = state
+        }
     }
 }
 
