@@ -178,7 +178,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(entries[0].files[0].state, .loading(nil))
 
         progressObserverInteractorMock.entryProgressSubject.send(.data([
-            CourseSyncEntryProgress.save(
+            CourseSyncStateProgress.save(
                 id: "courses/course-id-1",
                 selection: .file("courses/course-id-1", "courses/course-id-1/files/file-1"),
                 state: .loading(0.4),
@@ -188,7 +188,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(entries[0].files[0].state, .loading(0.4))
 
         progressObserverInteractorMock.entryProgressSubject.send(.data([
-            CourseSyncEntryProgress.save(
+            CourseSyncStateProgress.save(
                 id: "courses/course-id-1",
                 selection: .file("courses/course-id-1", "courses/course-id-1/files/file-1"),
                 state: .downloaded,
@@ -198,7 +198,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(entries[0].files[0].state, .downloaded)
 
         progressObserverInteractorMock.entryProgressSubject.send(.data([
-            CourseSyncEntryProgress.save(
+            CourseSyncStateProgress.save(
                 id: "courses/course-id-1",
                 selection: .tab("courses/course-id-1", "courses/course-id-1/tabs/files"),
                 state: .downloaded,
@@ -208,7 +208,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(entries[0].tabs[0].state, .downloaded)
 
         progressObserverInteractorMock.entryProgressSubject.send(.data([
-            CourseSyncEntryProgress.save(
+            CourseSyncStateProgress.save(
                 id: "courses/course-id-1",
                 selection: .course("courses/course-id-1"),
                 state: .downloaded,
@@ -249,7 +249,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(entries[0].tabs[1].state, .loading(nil))
 
         progressObserverInteractorMock.entryProgressSubject.send(.data([
-            CourseSyncEntryProgress.save(
+            CourseSyncStateProgress.save(
                 id: "courses/course-id-1",
                 selection: .tab("courses/course-id-1", "courses/course-id-1/tabs/assignments"),
                 state: .error,
@@ -301,14 +301,14 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
 }
 
 class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserverInteractor {
-    let entryProgressSubject = PassthroughSubject<ReactiveStore<Core.GetCourseSyncEntryProgressUseCase>.State, Never>()
+    let entryProgressSubject = PassthroughSubject<ReactiveStore<Core.GetCourseSyncStateProgressUseCase>.State, Never>()
 
-    func observeCombinedFileProgress() -> AnyPublisher<Core.ReactiveStore<Core.GetCourseSyncFileProgressUseCase>.State, Never> {
-        Just(ReactiveStore<GetCourseSyncFileProgressUseCase>.State.data([]))
+    func observeDownloadProgress() -> AnyPublisher<Core.ReactiveStore<Core.GetCourseSyncDownloadProgressUseCase>.State, Never> {
+        Just(ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State.data([]))
             .eraseToAnyPublisher()
     }
 
-    func observeEntryProgress() -> AnyPublisher<Core.ReactiveStore<Core.GetCourseSyncEntryProgressUseCase>.State, Never> {
+    func observeStateProgress() -> AnyPublisher<Core.ReactiveStore<Core.GetCourseSyncStateProgressUseCase>.State, Never> {
         entryProgressSubject.eraseToAnyPublisher()
     }
 }

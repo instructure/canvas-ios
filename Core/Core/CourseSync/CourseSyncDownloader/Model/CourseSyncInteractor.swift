@@ -76,7 +76,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             courseSyncEntries.send(entries)
         }
 
-        progressWriterInteractor.cleanUpPreviousFileProgress()
+        progressWriterInteractor.cleanUpPreviousDownloadProgress()
 
         subscription = Publishers.Sequence(sequence: entries)
             .buffer(size: .max, prefetch: .byRequest, whenFull: .dropOldest)
@@ -252,7 +252,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         entries.forEach { entry in
             if case .loading = entry.state {
                 entries[id: entry.id]?.updateCourseState(state: .idle)
-                progressWriterInteractor.saveEntryProgress(
+                progressWriterInteractor.saveStateProgress(
                     id: entry.id,
                     selection: .course(entry.id),
                     state: .idle
@@ -262,7 +262,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             entry.tabs.forEach { tab in
                 if case .loading = tab.state {
                     entries[id: entry.id]?.updateTabState(id: tab.id, state: .idle)
-                    progressWriterInteractor.saveEntryProgress(
+                    progressWriterInteractor.saveStateProgress(
                         id: tab.id,
                         selection: .tab(entry.id, tab.id),
                         state: .idle
@@ -272,7 +272,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             entry.files.forEach { file in
                 if case .loading = file.state {
                     entries[id: entry.id]?.updateFileState(id: file.id, state: .idle)
-                    progressWriterInteractor.saveEntryProgress(
+                    progressWriterInteractor.saveStateProgress(
                         id: file.id,
                         selection: .file(entry.id, file.id),
                         state: .idle
@@ -281,7 +281,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             }
         }
 
-        progressWriterInteractor.saveFileProgress(entries: entries, error: fileErrorMessage)
+        progressWriterInteractor.saveDownloadProgress(entries: entries, error: fileErrorMessage)
         backgroundQueue.sync(flags: .barrier) {
             courseSyncEntries.send(entries)
         }
@@ -294,13 +294,13 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         switch selection {
         case let .course(entryID):
             entries[id: entryID]?.updateCourseState(state: state)
-            progressWriterInteractor.saveEntryProgress(id: entryID, selection: selection, state: state)
+            progressWriterInteractor.saveStateProgress(id: entryID, selection: selection, state: state)
         case let .tab(entryID, tabID):
             entries[id: entryID]?.updateTabState(id: tabID, state: state)
-            progressWriterInteractor.saveEntryProgress(id: tabID, selection: selection, state: state)
+            progressWriterInteractor.saveStateProgress(id: tabID, selection: selection, state: state)
         case let .file(entryID, fileID):
             entries[id: entryID]?.updateFileState(id: fileID, state: state)
-            progressWriterInteractor.saveEntryProgress(id: fileID, selection: selection, state: state)
+            progressWriterInteractor.saveStateProgress(id: fileID, selection: selection, state: state)
         }
 
         var errorMessage: String?
@@ -309,7 +309,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             errorMessage = fileErrorMessage
         }
 
-        progressWriterInteractor.saveFileProgress(entries: entries, error: errorMessage)
+        progressWriterInteractor.saveDownloadProgress(entries: entries, error: errorMessage)
         backgroundQueue.sync(flags: .barrier) {
             courseSyncEntries.send(entries)
         }

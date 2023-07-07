@@ -21,20 +21,20 @@ import XCTest
 
 class CourseSyncEntryProgressTests: CoreTestCase {
     func testCourseSelectionMapping() {
-        let progress: CourseSyncEntryProgress = databaseClient.insert()
+        let progress: CourseSyncStateProgress = databaseClient.insert()
         progress.selection = .course("course-1")
 
-        let testee: CourseSyncEntryProgress = databaseClient.fetch().first!
+        let testee: CourseSyncStateProgress = databaseClient.fetch().first!
         XCTAssertEqual(testee.entryID, "course-1")
         XCTAssertEqual(testee.selection, .course("course-1"))
         XCTAssertEqual(testee.selectionRaw, 0)
     }
 
     func testTabSelectionMapping() {
-        let progress: CourseSyncEntryProgress = databaseClient.insert()
+        let progress: CourseSyncStateProgress = databaseClient.insert()
         progress.selection = .tab("course-1", "tab-1")
 
-        let testee: CourseSyncEntryProgress = databaseClient.fetch().first!
+        let testee: CourseSyncStateProgress = databaseClient.fetch().first!
         XCTAssertEqual(testee.entryID, "course-1")
         XCTAssertEqual(testee.tabID, "tab-1")
         XCTAssertEqual(testee.selection, .tab("course-1", "tab-1"))
@@ -42,10 +42,10 @@ class CourseSyncEntryProgressTests: CoreTestCase {
     }
 
     func testFileSelectionMapping() {
-        let progress: CourseSyncEntryProgress = databaseClient.insert()
+        let progress: CourseSyncStateProgress = databaseClient.insert()
         progress.selection = .file("course-1", "file-1")
 
-        let testee: CourseSyncEntryProgress = databaseClient.fetch().first!
+        let testee: CourseSyncStateProgress = databaseClient.fetch().first!
         XCTAssertEqual(testee.entryID, "course-1")
         XCTAssertEqual(testee.fileID, "file-1")
         XCTAssertEqual(testee.selection, .file("course-1", "file-1"))
@@ -53,48 +53,48 @@ class CourseSyncEntryProgressTests: CoreTestCase {
     }
 
     func testIdleStateMapping() {
-        let progress: CourseSyncEntryProgress = databaseClient.insert()
+        let progress: CourseSyncStateProgress = databaseClient.insert()
         progress.state = .idle
 
-        let testee: CourseSyncEntryProgress = databaseClient.fetch().first!
+        let testee: CourseSyncStateProgress = databaseClient.fetch().first!
         XCTAssertEqual(testee.state, .idle)
         XCTAssertEqual(testee.stateRaw, 0)
     }
 
     func testNilProgressLoadingStateMapping() {
-        let progress: CourseSyncEntryProgress = databaseClient.insert()
+        let progress: CourseSyncStateProgress = databaseClient.insert()
         progress.state = .loading(nil)
 
-        let testee: CourseSyncEntryProgress = databaseClient.fetch().first!
+        let testee: CourseSyncStateProgress = databaseClient.fetch().first!
         XCTAssertEqual(testee.state, .loading(nil))
         XCTAssertEqual(testee.stateRaw, 1)
         XCTAssertEqual(testee.progress, nil)
     }
 
     func testNotNilProgressLoadingStateMapping() {
-        let progress: CourseSyncEntryProgress = databaseClient.insert()
+        let progress: CourseSyncStateProgress = databaseClient.insert()
         progress.state = .loading(0.75)
 
-        let testee: CourseSyncEntryProgress = databaseClient.fetch().first!
+        let testee: CourseSyncStateProgress = databaseClient.fetch().first!
         XCTAssertEqual(testee.state, .loading(0.75))
         XCTAssertEqual(testee.stateRaw, 1)
         XCTAssertEqual(testee.progress, 0.75)
     }
 
     func testErrorStateMapping() {
-        let progress: CourseSyncEntryProgress = databaseClient.insert()
+        let progress: CourseSyncStateProgress = databaseClient.insert()
         progress.state = .error
 
-        let testee: CourseSyncEntryProgress = databaseClient.fetch().first!
+        let testee: CourseSyncStateProgress = databaseClient.fetch().first!
         XCTAssertEqual(testee.state, .error)
         XCTAssertEqual(testee.stateRaw, 2)
     }
 
     func testDownloadedStateMapping() {
-        let progress: CourseSyncEntryProgress = databaseClient.insert()
+        let progress: CourseSyncStateProgress = databaseClient.insert()
         progress.state = .downloaded
 
-        let testee: CourseSyncEntryProgress = databaseClient.fetch().first!
+        let testee: CourseSyncStateProgress = databaseClient.fetch().first!
         XCTAssertEqual(testee.state, .downloaded)
         XCTAssertEqual(testee.stateRaw, 3)
     }

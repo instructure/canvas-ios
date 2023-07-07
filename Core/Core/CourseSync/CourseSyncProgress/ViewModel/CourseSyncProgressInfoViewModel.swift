@@ -46,7 +46,7 @@ class CourseSyncProgressInfoViewModel: ObservableObject {
 
         unowned let unownedSelf = self
 
-        interactor.observeCombinedFileProgress()
+        interactor.observeDownloadProgress()
             .receive(on: scheduler)
             .sink { state in
                 switch state {

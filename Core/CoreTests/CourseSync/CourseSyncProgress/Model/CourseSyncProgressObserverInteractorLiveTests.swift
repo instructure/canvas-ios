@@ -53,10 +53,10 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
         entries[0].files[1].selectionState = .selected
         entries[0].files[0].state = .downloaded
         entries[0].files[1].state = .downloaded
-        helper.saveFileProgress(entries: entries, error: nil)
+        helper.saveDownloadProgress(entries: entries, error: nil)
 
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.observeCombinedFileProgress()
+        let subscription = testee.observeDownloadProgress()
             .sink { state in
                 if case let .data(list) = state, let progress = list.first {
                     XCTAssertEqual(progress.bytesToDownload, 2000)
@@ -77,10 +77,10 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
         entries[0].files[1].selectionState = .selected
         entries[0].files[0].state = .loading(0.5)
         entries[0].files[1].state = .loading(0.5)
-        helper.saveFileProgress(entries: entries)
+        helper.saveDownloadProgress(entries: entries)
 
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.observeCombinedFileProgress()
+        let subscription = testee.observeDownloadProgress()
             .sink { state in
                 if case let .data(list) = state, let progress = list.first {
                     XCTAssertEqual(progress.bytesToDownload, 2000)
@@ -101,10 +101,10 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
         entries[0].files[1].selectionState = .selected
         entries[0].files[0].state = .error
         entries[0].files[1].state = .loading(0.5)
-        helper.saveFileProgress(entries: entries)
+        helper.saveDownloadProgress(entries: entries)
 
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.observeCombinedFileProgress()
+        let subscription = testee.observeDownloadProgress()
             .sink { state in
                 if case let .data(list) = state, let progress = list.first {
                     XCTAssertEqual(progress.bytesToDownload, 2000)
@@ -121,12 +121,12 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
         let testee = CourseSyncProgressObserverInteractorLive(container: database)
         let helper = CourseSyncProgressWriterInteractorLive(container: database)
 
-        helper.saveEntryProgress(id: "1", selection: .course("0"), state: .downloaded)
-        helper.saveEntryProgress(id: "2", selection: .course("0"), state: .error)
-        helper.saveEntryProgress(id: "3", selection: .course("0"), state: .loading(nil))
+        helper.saveStateProgress(id: "1", selection: .course("0"), state: .downloaded)
+        helper.saveStateProgress(id: "2", selection: .course("0"), state: .error)
+        helper.saveStateProgress(id: "3", selection: .course("0"), state: .loading(nil))
 
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.observeEntryProgress()
+        let subscription = testee.observeStateProgress()
             .sink { state in
                 if case let .data(list) = state {
                     XCTAssertEqual(list[0].id, "1")
@@ -152,12 +152,12 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
         let testee = CourseSyncProgressObserverInteractorLive(container: database)
         let helper = CourseSyncProgressWriterInteractorLive(container: database)
 
-        helper.saveEntryProgress(id: "1", selection: .tab("0", "0"), state: .downloaded)
-        helper.saveEntryProgress(id: "2", selection: .tab("0", "0"), state: .error)
-        helper.saveEntryProgress(id: "3", selection: .tab("0", "0"), state: .loading(nil))
+        helper.saveStateProgress(id: "1", selection: .tab("0", "0"), state: .downloaded)
+        helper.saveStateProgress(id: "2", selection: .tab("0", "0"), state: .error)
+        helper.saveStateProgress(id: "3", selection: .tab("0", "0"), state: .loading(nil))
 
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.observeEntryProgress()
+        let subscription = testee.observeStateProgress()
             .sink { state in
                 if case let .data(list) = state {
                     XCTAssertEqual(list[0].id, "1")
@@ -183,12 +183,12 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
         let testee = CourseSyncProgressObserverInteractorLive(container: database)
         let helper = CourseSyncProgressWriterInteractorLive(container: database)
 
-        helper.saveEntryProgress(id: "1", selection: .file("0", "0"), state: .downloaded)
-        helper.saveEntryProgress(id: "2", selection: .file("0", "0"), state: .error)
-        helper.saveEntryProgress(id: "3", selection: .file("0", "0"), state: .loading(nil))
+        helper.saveStateProgress(id: "1", selection: .file("0", "0"), state: .downloaded)
+        helper.saveStateProgress(id: "2", selection: .file("0", "0"), state: .error)
+        helper.saveStateProgress(id: "3", selection: .file("0", "0"), state: .loading(nil))
 
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.observeEntryProgress()
+        let subscription = testee.observeStateProgress()
             .sink { state in
                 if case let .data(list) = state {
                     XCTAssertEqual(list[0].id, "1")
@@ -217,17 +217,17 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
         entries[0].files[1].selectionState = .selected
         entries[0].files[0].state = .downloaded
         entries[0].files[1].state = .downloaded
-        helper.saveFileProgress(entries: entries)
+        helper.saveDownloadProgress(entries: entries)
 
-        let previousProgressList: [CourseSyncFileProgress] = databaseClient.fetch(scope: .all)
+        let previousProgressList: [CourseSyncDownloadProgress] = databaseClient.fetch(scope: .all)
         XCTAssertEqual(previousProgressList.count, 1)
         XCTAssertEqual(previousProgressList[0].progress, 1)
 
         entries[0].files[0].state = .downloaded
         entries[0].files[1].state = .loading(0.5)
-        helper.saveFileProgress(entries: entries)
+        helper.saveDownloadProgress(entries: entries)
 
-        let currentProgressList: [CourseSyncFileProgress] = databaseClient.fetch(scope: .all)
+        let currentProgressList: [CourseSyncDownloadProgress] = databaseClient.fetch(scope: .all)
         XCTAssertEqual(currentProgressList.count, 1)
         XCTAssertEqual(currentProgressList[0].progress, 0.75)
     }
@@ -250,10 +250,10 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
             ),
         ]
 
-        helper.saveFileProgress(entries: entries)
+        helper.saveDownloadProgress(entries: entries)
 
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.observeCombinedFileProgress()
+        let subscription = testee.observeDownloadProgress()
             .dropFirst()
             .sink { state in
                 if case let .data(list) = state {

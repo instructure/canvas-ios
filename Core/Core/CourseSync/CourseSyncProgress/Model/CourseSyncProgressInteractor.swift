@@ -23,7 +23,7 @@ import CoreData
 import Foundation
 
 protocol CourseSyncProgressInteractor: AnyObject {
-    func observeCombinedFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never>
+    func observeDownloadProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never>
     func observeEntries() -> AnyPublisher<[CourseSyncEntry], Error>
     func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool)
     func cancelSync()
@@ -31,18 +31,18 @@ protocol CourseSyncProgressInteractor: AnyObject {
 }
 
 final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
-    private struct EntryProgress: Hashable {
+    private struct StateProgress: Hashable {
         let id: String
         var selection: CourseEntrySelection
         var state: CourseSyncEntry.State
 
-        init(from entity: CourseSyncEntryProgress) {
+        init(from entity: CourseSyncStateProgress) {
             id = entity.id
             selection = entity.selection
             state = entity.state
         }
 
-        mutating func update(with entity: CourseSyncEntryProgress) {
+        mutating func update(with entity: CourseSyncStateProgress) {
             selection = entity.selection
             state = entity.state
         }
@@ -90,9 +90,9 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         context.automaticallyMergesChangesFromParent = true
     }
 
-    func observeCombinedFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never> {
+    func observeDownloadProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never> {
         progressObserverInteractor
-            .observeCombinedFileProgress()
+            .observeDownloadProgress()
             .receive(on: scheduler)
             .eraseToAnyPublisher()
     }
@@ -126,10 +126,10 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
     }
 
     private func observeEntryProgress() {
-        progressObserverInteractor.observeEntryProgress()
+        progressObserverInteractor.observeStateProgress()
             .receive(on: scheduler)
             .throttle(for: .milliseconds(300), scheduler: scheduler, latest: true)
-            .flatMap { state -> AnyPublisher<[CourseSyncEntryProgress], Never> in
+            .flatMap { state -> AnyPublisher<[CourseSyncStateProgress], Never> in
                 switch state {
                 case let .data(progressList):
                     guard progressList.count > 0 else {
@@ -140,7 +140,7 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
                     return Empty(completeImmediately: false).eraseToAnyPublisher()
                 }
             }
-            .map { $0.map { EntryProgress(from: $0) } }
+            .map { $0.map { StateProgress(from: $0) } }
             .map { Set($0) }
             .scan((Set([]), Set([]))) { ($0.1, $1) } // Access previous and current published element
             .map { $1.subtracting($0) } // Substract previous elements from current
@@ -200,7 +200,7 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         return entriesCpy
     }
 
-    private func setState(newList: [EntryProgress]) {
+    private func setState(newList: [StateProgress]) {
         var entries = safeCourseSyncEntriesValue
 
         for progress in newList {

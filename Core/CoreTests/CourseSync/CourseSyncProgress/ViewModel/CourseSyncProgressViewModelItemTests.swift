@@ -228,9 +228,9 @@ class CourseSyncProgressViewModelItemTests: XCTestCase {
 
 class MockCourseSyncProgressInteractor: CourseSyncProgressInteractor {
     let courseSyncEntriesSubject = PassthroughSubject<[CourseSyncEntry], Error>()
-    let courseSyncFileProgressSubject = PassthroughSubject<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never>()
+    let courseSyncFileProgressSubject = PassthroughSubject<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never>()
 
-    func observeCombinedFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never> {
+    func observeDownloadProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never> {
         courseSyncFileProgressSubject.eraseToAnyPublisher()
     }
 

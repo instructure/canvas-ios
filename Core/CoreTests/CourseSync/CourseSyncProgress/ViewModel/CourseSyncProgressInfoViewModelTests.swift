@@ -40,7 +40,7 @@ class CourseSyncProgressInfoViewModelTests: CoreTestCase {
             interactor: courseSyncProgressInteractorMock,
             scheduler: .immediate
         )
-        let fileProgress = CourseSyncFileProgress.save(
+        let fileProgress = CourseSyncDownloadProgress.save(
             bytesToDownload: 1000,
             bytesDownloaded: 500,
             error: nil,
@@ -67,7 +67,7 @@ class CourseSyncProgressInfoViewModelTests: CoreTestCase {
             interactor: courseSyncProgressInteractorMock,
             scheduler: .immediate
         )
-        let fileProgress = CourseSyncFileProgress.save(
+        let fileProgress = CourseSyncDownloadProgress.save(
             bytesToDownload: 1000,
             bytesDownloaded: 0,
             error: "Download failed.",

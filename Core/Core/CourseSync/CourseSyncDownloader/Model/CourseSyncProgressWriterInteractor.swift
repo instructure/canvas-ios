@@ -21,9 +21,9 @@ import CoreData
 import Foundation
 
 public protocol CourseSyncProgressWriterInteractor {
-    func saveFileProgress(entries: [CourseSyncEntry], error: String?)
-    func cleanUpPreviousFileProgress()
-    func saveEntryProgress(id: String, selection: CourseEntrySelection, state: CourseSyncEntry.State)
+    func saveDownloadProgress(entries: [CourseSyncEntry], error: String?)
+    func cleanUpPreviousDownloadProgress()
+    func saveStateProgress(id: String, selection: CourseEntrySelection, state: CourseSyncEntry.State)
 }
 
 public final class CourseSyncProgressWriterInteractorLive: CourseSyncProgressWriterInteractor {
@@ -34,12 +34,12 @@ public final class CourseSyncProgressWriterInteractorLive: CourseSyncProgressWri
         context.automaticallyMergesChangesFromParent = true
     }
 
-    public func saveFileProgress(entries: [CourseSyncEntry], error: String? = nil) {
+    public func saveDownloadProgress(entries: [CourseSyncEntry], error: String? = nil) {
         let bytesDownloaded = entries.totalDownloadedSize
         let bytesToDownloaded = entries.totalSelectedSize
 
         context.performAndWait {
-            let progress: CourseSyncFileProgress = context.fetch(scope: .all).first ?? context.insert()
+            let progress: CourseSyncDownloadProgress = context.fetch(scope: .all).first ?? context.insert()
             progress.bytesDownloaded = bytesDownloaded
             progress.bytesToDownload = bytesToDownloaded
             progress.error = error
@@ -47,27 +47,27 @@ public final class CourseSyncProgressWriterInteractorLive: CourseSyncProgressWri
         }
     }
 
-    public func cleanUpPreviousFileProgress() {
+    public func cleanUpPreviousDownloadProgress() {
         context.performAndWait {
-            context.delete(context.fetch(scope: .all) as [CourseSyncEntryProgress])
-            context.delete(context.fetch(scope: .all) as [CourseSyncFileProgress])
+            context.delete(context.fetch(scope: .all) as [CourseSyncStateProgress])
+            context.delete(context.fetch(scope: .all) as [CourseSyncDownloadProgress])
             try? context.save()
         }
     }
 
-    public func saveEntryProgress(id: String, selection: CourseEntrySelection, state: CourseSyncEntry.State) {
+    public func saveStateProgress(id: String, selection: CourseEntrySelection, state: CourseSyncEntry.State) {
         context.performAndWait {
-            let entryProgress: CourseSyncEntryProgress = context.fetch(
+            let progress: CourseSyncStateProgress = context.fetch(
                 scope: .where(
-                    #keyPath(CourseSyncEntryProgress.id),
+                    #keyPath(CourseSyncStateProgress.id),
                     equals: id,
                     sortDescriptors: []
                 )
             ).first ?? context.insert()
 
-            entryProgress.id = id
-            entryProgress.selection = selection
-            entryProgress.state = state
+            progress.id = id
+            progress.selection = selection
+            progress.state = state
             try? context.save()
         }
     }

@@ -21,21 +21,21 @@ import CoreData
 import Foundation
 
 protocol CourseSyncProgressObserverInteractor {
-    func observeCombinedFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never>
-    func observeEntryProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncEntryProgressUseCase>.State, Never>
+    func observeDownloadProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never>
+    func observeStateProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncStateProgressUseCase>.State, Never>
 }
 
 final class CourseSyncProgressObserverInteractorLive: CourseSyncProgressObserverInteractor {
     private let context: NSManagedObjectContext
     private lazy var fileProgressUseCase = ReactiveStore(
         context: context,
-        useCase: GetCourseSyncFileProgressUseCase(scope: .all)
+        useCase: GetCourseSyncDownloadProgressUseCase(scope: .all)
     )
     private lazy var entryProgressUseCase = ReactiveStore(
         context: context,
-        useCase: GetCourseSyncEntryProgressUseCase(
+        useCase: GetCourseSyncStateProgressUseCase(
             scope: .all(
-                orderBy: #keyPath(CourseSyncEntryProgress.id),
+                orderBy: #keyPath(CourseSyncStateProgress.id),
                 ascending: true
             )
         )
@@ -51,13 +51,13 @@ final class CourseSyncProgressObserverInteractorLive: CourseSyncProgressObserver
         entryProgressUseCase.cancel()
     }
 
-    func observeCombinedFileProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncFileProgressUseCase>.State, Never> {
+    func observeDownloadProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never> {
         fileProgressUseCase
             .observeEntities()
             .eraseToAnyPublisher()
     }
 
-    func observeEntryProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncEntryProgressUseCase>.State, Never> {
+    func observeStateProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncStateProgressUseCase>.State, Never> {
         entryProgressUseCase
             .observeEntities()
             .eraseToAnyPublisher()

@@ -19,7 +19,7 @@
 import CoreData
 import Foundation
 
-final class CourseSyncEntryProgress: NSManagedObject, Comparable {
+final class CourseSyncStateProgress: NSManagedObject, Comparable {
     @NSManaged public var id: String
     @NSManaged private(set) var selectionRaw: Int
     @NSManaged private(set) var stateRaw: Int
@@ -85,7 +85,7 @@ final class CourseSyncEntryProgress: NSManagedObject, Comparable {
         }
     }
 
-    static func < (lhs: CourseSyncEntryProgress, rhs: CourseSyncEntryProgress) -> Bool {
+    static func < (lhs: CourseSyncStateProgress, rhs: CourseSyncStateProgress) -> Bool {
         lhs.selection < rhs.selection
     }
 
@@ -95,9 +95,9 @@ final class CourseSyncEntryProgress: NSManagedObject, Comparable {
         selection: CourseEntrySelection,
         state: CourseSyncEntry.State,
         in context: NSManagedObjectContext
-    ) -> CourseSyncEntryProgress {
-        let dbEntity: CourseSyncEntryProgress = context.first(
-            where: #keyPath(CourseSyncEntryProgress.id),
+    ) -> CourseSyncStateProgress {
+        let dbEntity: CourseSyncStateProgress = context.first(
+            where: #keyPath(CourseSyncStateProgress.id),
             equals: id
         ) ?? context.insert()
 
