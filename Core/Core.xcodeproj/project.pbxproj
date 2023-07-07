@@ -1060,6 +1060,8 @@
 		B3FF7D03970647DC1F58F01D /* DocViewerCommentReplyAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24584786ED27B4BE4081312F /* DocViewerCommentReplyAnnotation.swift */; };
 		B4492D7C2C49652AE55BACBF /* TabViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0605D77DA10FD00F9F9FA5 /* TabViewable.swift */; };
 		B44BA5BF4459811FC52D1E04 /* FileSubmissionSubmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591C92D040AC7D41D9A0C8D8 /* FileSubmissionSubmitter.swift */; };
+		B47766362A580D8D0044A59F /* CourseSyncEntryProgressTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47766352A580D8D0044A59F /* CourseSyncEntryProgressTests.swift */; };
+		B47766382A5817F60044A59F /* CourseEntrySelectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47766372A5817F60044A59F /* CourseEntrySelectionTests.swift */; };
 		B47D227A0865E330DA75FE00 /* DiscussionEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E395BCD6AB59AC2045342498 /* DiscussionEntryTests.swift */; };
 		B489A81D6037AD16A513F2BB /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CC82562D352809583B9955 /* MockURLSession.swift */; };
 		B4A9F8F38D3E9471376494D2 /* UIImageViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E7F1F3185A5D719A85B955 /* UIImageViewExtensionsTests.swift */; };
@@ -2836,6 +2838,8 @@
 		B408E358BA052F9B08697E7E /* Hidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hidden.swift; sourceTree = "<group>"; };
 		B41834EC25231F96969E274E /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Main.strings; sourceTree = "<group>"; };
 		B455F8753438D40CC45D5A87 /* QuizDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDetailsViewModelTests.swift; sourceTree = "<group>"; };
+		B47766352A580D8D0044A59F /* CourseSyncEntryProgressTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncEntryProgressTests.swift; sourceTree = "<group>"; };
+		B47766372A5817F60044A59F /* CourseEntrySelectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseEntrySelectionTests.swift; sourceTree = "<group>"; };
 		B4F936DF23DC61D04F89DFE0 /* APILatePolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APILatePolicyTests.swift; sourceTree = "<group>"; };
 		B52803DBEDEDD92FF68782A9 /* K5GradesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradesViewModelTests.swift; sourceTree = "<group>"; };
 		B54819C7CC40C9F86C5B5F69 /* CourseSyncCleanupInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncCleanupInteractor.swift; sourceTree = "<group>"; };
@@ -7095,6 +7099,8 @@
 			isa = PBXGroup;
 			children = (
 				0B51203DE2F1EBC486443DB1 /* CourseSyncCleanupInteractorTests.swift */,
+				B47766352A580D8D0044A59F /* CourseSyncEntryProgressTests.swift */,
+				B47766372A5817F60044A59F /* CourseEntrySelectionTests.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -8735,6 +8741,7 @@
 				852389104457A63EA6E08739 /* APITabTests.swift in Sources */,
 				BBDCA3A2A9A80224BD013ECC /* APITests.swift in Sources */,
 				DE0F9D1E4A381309F77324DA /* APITodoTests.swift in Sources */,
+				B47766382A5817F60044A59F /* CourseEntrySelectionTests.swift in Sources */,
 				C5D02F406D9226F45285018C /* APIURLTests.swift in Sources */,
 				9939F80E18B1B82B9A304D8F /* APIUserRequestableTests.swift in Sources */,
 				BE5E0D6C957CFD38D0155952 /* APIUserTests.swift in Sources */,
@@ -8895,6 +8902,7 @@
 				125FA4CF4E0DC3FCC0B36655 /* ExperimentalFeatureTests.swift in Sources */,
 				EBF814E21B4B4C7235011C32 /* ExternalToolLaunchPlacementTests.swift in Sources */,
 				5F1FF7526EBEFBC1D72A290D /* FeatureFlagTests.swift in Sources */,
+				B47766362A580D8D0044A59F /* CourseSyncEntryProgressTests.swift in Sources */,
 				FB46A272C3795F7077B17240 /* FileAccessReportInteractorTests.swift in Sources */,
 				2DBB02721B5E1BE802C35C71 /* FileDetailsViewControllerTests.swift in Sources */,
 				E45B7F6C6EB9DC52905BDB47 /* FileEditorViewTests.swift in Sources */,
