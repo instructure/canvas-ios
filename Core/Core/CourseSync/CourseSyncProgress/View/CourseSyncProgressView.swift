@@ -26,7 +26,7 @@ struct CourseSyncProgressView: View {
 
     var body: some View {
         content
-        .navigationBarTitleView(navBarTitleView)
+        .navigationTitleStyled(navBarTitleView)
         .navigationBarItems(leading: cancelButton, trailing: trailingBarItem)
         .navigationBarStyle(.modal)
     }
