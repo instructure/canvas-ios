@@ -808,6 +808,7 @@
 		85B2053577C59C6DDECD0D8E /* FilePickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C57A99E23AA37127B23EE41 /* FilePickerTests.swift */; };
 		862546271FFB6C7E6F6563E8 /* LoggerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E107AE8148A79BA4653BBE83 /* LoggerExtensions.swift */; };
 		865EE3DD688BF572B835E9A7 /* CommunicationChannelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025E343B90388BAD2A027023 /* CommunicationChannelTests.swift */; };
+		86C1EEB9ADDEDF2BF865829F /* NotSupportedInOfflineAlertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD5F68A6F040D9FE98E0A1 /* NotSupportedInOfflineAlertTests.swift */; };
 		86F31CCE29F59313CB0EDE9B /* DocViewerAnnotationStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B86D5A28FBCF70DE68011B /* DocViewerAnnotationStateManager.swift */; };
 		870CF58A765808AE65275890 /* CourseDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0769DE5616D7B9C4C930E048 /* CourseDetailsView.swift */; };
 		8725830661E4CFB1DB7A5B06 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3899997AA91BF2FFF59F10 /* Logger.swift */; };
@@ -2023,6 +2024,7 @@
 		3E7EA40D8FAD71D6F0DE3E39 /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		3E957D065AF0E3D1295B9F40 /* K5ResourcesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesView.swift; sourceTree = "<group>"; };
 		3EBB4CF4F44F4BB879D694FB /* GetPlannablesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlannablesTests.swift; sourceTree = "<group>"; };
+		3EBD5F68A6F040D9FE98E0A1 /* NotSupportedInOfflineAlertTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotSupportedInOfflineAlertTests.swift; sourceTree = "<group>"; };
 		3F17E6B539F8C10C818C5E0C /* NSManagedObjectContextExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContextExtensionsTests.swift; sourceTree = "<group>"; };
 		3F3217DEF207BEF7647DAAED /* UIViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensionsTests.swift; sourceTree = "<group>"; };
 		3F375A28532B85EA27797917 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = fr; path = fr.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
@@ -3839,6 +3841,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		19A1E69CFC2A77F0C16AE5EE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3EBD5F68A6F040D9FE98E0A1 /* NotSupportedInOfflineAlertTests.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		19CD1263396ED2F33ECCC0E8 /* TopBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -5290,6 +5300,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		5E684E2634773641669957C3 /* Offline */ = {
+			isa = PBXGroup;
+			children = (
+				19A1E69CFC2A77F0C16AE5EE /* View */,
+			);
+			path = Offline;
+			sourceTree = "<group>";
+		};
 		5ECBBEB150F6C26BD7F12293 /* AudioVideo */ = {
 			isa = PBXGroup;
 			children = (
@@ -6398,6 +6416,7 @@
 				7567A38E7A5C6EEA245AAAF3 /* NetworkAvailability */,
 				7D1D679100129BB4012A5B8F /* Notifications */,
 				8499A2C40CE33911FCCADD91 /* ObserverAlerts */,
+				5E684E2634773641669957C3 /* Offline */,
 				307CCE13F7FF65A76B9782EA /* Pages */,
 				FF71CC063C6F3018BB47EA49 /* PageViewAnalytics */,
 				319809CD32F62E6B9764D988 /* People */,
@@ -9057,6 +9076,7 @@
 				B64ED146BFFCCCAB1EB6A581 /* NSManagedObjectContextExtensionsTests.swift in Sources */,
 				33D5E481293AB9990B3824FA /* NSPredicateExtensionsTests.swift in Sources */,
 				E2CBE5AD13D708B4C321109F /* NetworkAvailabilityServiceTests.swift in Sources */,
+				86C1EEB9ADDEDF2BF865829F /* NotSupportedInOfflineAlertTests.swift in Sources */,
 				F9D5DFE156877B1886704D68 /* NotificationCategoryTests.swift in Sources */,
 				77E758F887C9D6348B394BD0 /* NotificationCenterExtensionsTests.swift in Sources */,
 				35A7651A1B0B7D648339F4B9 /* NotificationManagerTests.swift in Sources */,
