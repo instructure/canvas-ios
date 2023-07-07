@@ -26,7 +26,7 @@ struct CourseSyncProgressView: View {
 
     var body: some View {
         content
-        .navigationBarTitleView(navBarTitleView)
+        .navigationTitleStyled(navBarTitleView)
         .navigationBarItems(leading: cancelButton, trailing: trailingBarItem)
         .navigationBarStyle(.modal)
     }
@@ -60,16 +60,17 @@ struct CourseSyncProgressView: View {
                     LazyVStack(spacing: 0) {
                         ForEach(viewModel.cells) { cell in
                             switch cell {
-                            case .item(let item):
+                            case let .item(item):
                                 listCell(for: item)
                             case .empty:
                                 emptyCourse
                             }
                         }
                     }
-                }.animation(.default, value: viewModel.cells)
+                }
+                .animation(.default, value: viewModel.cells)
+                .background(Color.backgroundLightest)
             }
-            .background(Color.backgroundLightest)
         }
     }
 
@@ -77,9 +78,9 @@ struct CourseSyncProgressView: View {
         InteractivePanda(scene: SpacePanda(),
                          title: Text(viewModel.labels.noItems.title),
                          subtitle: Text(viewModel.labels.noItems.message))
-        .allowsHitTesting(false)
-        .padding(.horizontal, 16)
-        .padding(.vertical, 32)
+            .allowsHitTesting(false)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 32)
     }
 
     private var navBarTitleView: some View {
@@ -127,15 +128,22 @@ struct CourseSyncProgressView: View {
     private func listCell(for item: CourseSyncProgressViewModel.Item) -> some View {
         VStack(spacing: 0) {
             switch item.state {
-            case .loading(let progress):
+            case .idle:
                 ListCellView(ListCellViewModel(cellStyle: item.cellStyle,
                                                title: item.title,
                                                subtitle: item.subtitle,
                                                isCollapsed: item.isCollapsed,
                                                collapseDidToggle: item.collapseDidToggle,
                                                removeItemPressed: item.removeItemPressed,
-                                               progress: progress,
-                                               error: nil))
+                                               state: .idle))
+            case let .loading(progress):
+                ListCellView(ListCellViewModel(cellStyle: item.cellStyle,
+                                               title: item.title,
+                                               subtitle: item.subtitle,
+                                               isCollapsed: item.isCollapsed,
+                                               collapseDidToggle: item.collapseDidToggle,
+                                               removeItemPressed: item.removeItemPressed,
+                                               state: .loading(progress)))
             case .downloaded:
                 ListCellView(ListCellViewModel(cellStyle: item.cellStyle,
                                                title: item.title,
@@ -143,8 +151,7 @@ struct CourseSyncProgressView: View {
                                                isCollapsed: item.isCollapsed,
                                                collapseDidToggle: item.collapseDidToggle,
                                                removeItemPressed: item.removeItemPressed,
-                                               progress: 1,
-                                               error: nil))
+                                               state: .downloaded))
             case .error:
                 ListCellView(ListCellViewModel(cellStyle: item.cellStyle,
                                                title: item.title,
@@ -152,8 +159,7 @@ struct CourseSyncProgressView: View {
                                                isCollapsed: item.isCollapsed,
                                                collapseDidToggle: item.collapseDidToggle,
                                                removeItemPressed: item.removeItemPressed,
-                                               progress: nil,
-                                               error: NSLocalizedString("Sync Failed", bundle: .core, comment: "")))
+                                               state: .error(NSLocalizedString("Sync Failed", bundle: .core, comment: ""))))
             }
             Divider().padding(.leading, item.cellStyle == .listItem ? 16 : 0)
         }.padding(.leading, item.cellStyle == .listItem ? 24 : 0)

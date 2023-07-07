@@ -21,110 +21,45 @@ import CoreData
 import Foundation
 
 protocol CourseSyncProgressObserverInteractor {
-    func observeFileProgress() -> AnyPublisher<ReactiveStore<LocalUseCase<CourseSyncFileProgress>>.State, Never>
-    func observeEntryProgress() -> AnyPublisher<ReactiveStore<LocalUseCase<CourseSyncEntryProgress>>.State, Never>
-    /// Combines file + entry progresses. Range is `0...1`.
-    func observeCombinedProgress() -> AnyPublisher<Float, Never>
+    func observeDownloadProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never>
+    func observeStateProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncStateProgressUseCase>.State, Never>
 }
 
 final class CourseSyncProgressObserverInteractorLive: CourseSyncProgressObserverInteractor {
     private let context: NSManagedObjectContext
-
-    public init(context: NSManagedObjectContext = AppEnvironment.shared.database.viewContext) {
-        self.context = context
-    }
-
-    func observeFileProgress() -> AnyPublisher<ReactiveStore<LocalUseCase<CourseSyncFileProgress>>.State, Never> {
-        let useCase = LocalUseCase<CourseSyncFileProgress>(scope: Scope.all)
-        return ReactiveStore(
-            context: context,
-            useCase: useCase
+    private lazy var fileProgressUseCase = ReactiveStore(
+        context: context,
+        useCase: GetCourseSyncDownloadProgressUseCase(scope: .all)
+    )
+    private lazy var entryProgressUseCase = ReactiveStore(
+        context: context,
+        useCase: GetCourseSyncStateProgressUseCase(
+            scope: .all(
+                orderBy: #keyPath(CourseSyncStateProgress.id),
+                ascending: true
+            )
         )
-        .observeEntities()
-        .eraseToAnyPublisher()
+    )
+
+    public init(container: NSPersistentContainer = AppEnvironment.shared.database) {
+        context = container.newBackgroundContext()
+        context.automaticallyMergesChangesFromParent = true
     }
 
-    func observeEntryProgress() -> AnyPublisher<ReactiveStore<LocalUseCase<CourseSyncEntryProgress>>.State, Never> {
-        let useCase = LocalUseCase<CourseSyncEntryProgress>(scope: Scope.all)
-        return ReactiveStore(
-            context: context,
-            useCase: useCase
-        )
-        .observeEntities()
-        .eraseToAnyPublisher()
+    deinit {
+        fileProgressUseCase.cancel()
+        entryProgressUseCase.cancel()
     }
 
-    func observeCombinedProgress() -> AnyPublisher<Float, Never> {
-        let fileProgress = observeFileProgress()
-            .map {
-                if let progress = $0.firstItem {
-                    return (toDownload: progress.bytesToDownload,
-                            downloaded: progress.bytesDownloaded)
-                } else {
-                    return (toDownload: 0,
-                            downloaded: 0)
-                }
-            }
-        let entryProgress = observeEntryProgress()
-            .map { $0.allItems?.downloadSizes ?? (toDownload: 0, downloaded: 0) }
-
-        return Publishers
-            .CombineLatest(fileProgress, entryProgress)
-            .map { fileProgress, entryProgress in
-                let totalToDownload = fileProgress.toDownload + entryProgress.toDownload
-                let totalDownloaded = fileProgress.downloaded + entryProgress.downloaded
-                if totalToDownload > 0 {
-                    return Float(totalDownloaded) / Float(totalToDownload)
-                } else {
-                    return 0
-                }
-            }
-            .removeDuplicates()
+    func observeDownloadProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never> {
+        fileProgressUseCase
+            .observeEntities()
             .eraseToAnyPublisher()
     }
-}
 
-extension Array where Element == CourseSyncEntryProgress {
-
-    var downloadSizes: (toDownload: Int, downloaded: Int) {
-        let estimatedEntrySize = 100_000
-        return self
-            .removeCourseEntries()
-            .removeFileEntries()
-            .reduce(into: (toDownload: 0, downloaded: 0)) { partialResult, entry in
-                partialResult.toDownload += estimatedEntrySize
-
-                switch entry.state {
-                case .downloaded, .error:
-                    partialResult.downloaded += estimatedEntrySize
-                default: break
-                }
-            }
-    }
-
-    /// Course entries on their own are not syncable entries (only their tabs) and can be ignored
-    private func removeCourseEntries() -> Self {
-        var result = self
-        result.removeAll { entry in
-            if case .course = entry.selection {
-                return true
-            } else {
-                return false
-            }
-        }
-        return result
-    }
-
-    /// File progresses are tracked separately so we don't need to calculate with them here.
-    private func removeFileEntries() -> Self {
-        var result = self
-        result.removeAll { entry in
-            if case .file = entry.selection {
-                return true
-            } else {
-                return false
-            }
-        }
-        return result
+    func observeStateProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncStateProgressUseCase>.State, Never> {
+        entryProgressUseCase
+            .observeEntities()
+            .eraseToAnyPublisher()
     }
 }

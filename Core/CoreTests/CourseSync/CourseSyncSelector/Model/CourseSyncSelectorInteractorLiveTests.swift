@@ -242,8 +242,8 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         let subscription1 = testee.getCourseSyncEntries()
             .first()
             .handleEvents(receiveOutput: { _ in
-                testee.setSelected(selection: .course(0), selectionState: .selected)
-                testee.setSelected(selection: .file(1, 0), selectionState: .selected)
+                testee.setSelected(selection: .course("courses/1"), selectionState: .selected)
+                testee.setSelected(selection: .file("1", "root-file-1"), selectionState: .selected)
                 expectation.fulfill()
             })
             .flatMap { _ in testee.getSelectedCourseEntries() }
@@ -257,13 +257,10 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
 
         waitForExpectations(timeout: 0.1)
 
-        XCTAssertEqual(entries.count, 2)
+        XCTAssertEqual(entries.count, 1)
         XCTAssertEqual(entries[0].selectionState, .selected)
-        XCTAssertEqual(entries[0].selectedTabsCount, 0)
-        XCTAssertEqual(entries[0].selectedFilesCount, 0)
-        XCTAssertEqual(entries[1].selectionState, .partiallySelected)
-        XCTAssertEqual(entries[1].selectedTabsCount, 1)
-        XCTAssertEqual(entries[1].selectedFilesCount, 1)
+        XCTAssertEqual(entries[0].selectedTabsCount, 1)
+        XCTAssertEqual(entries[0].selectedFilesCount, 1)
         subscription1.cancel()
     }
 
@@ -344,7 +341,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
             .first()
 
         // MARK: - THEN
-        XCTAssertSingleOutputEquals(selectedItemID, "courses/2")
+        XCTAssertCompletableSingleOutputEquals(selectedItemID, "courses/2")
         session.reset()
     }
 
@@ -359,7 +356,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         XCTAssertFinish(testee.getCourseSyncEntries().first())
 
         // MARK: - WHEN
-        testee.setSelected(selection: .course(1), selectionState: .selected)
+        testee.setSelected(selection: .course("courses/2"), selectionState: .selected)
 
         // MARK: - THEN
         XCTAssertEqual(defaults.offlineSyncSelections, ["courses/2"])
@@ -378,7 +375,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         XCTAssertFinish(testee.getCourseSyncEntries().first())
 
         // MARK: - WHEN
-        testee.setSelected(selection: .course(0), selectionState: .selected)
+        testee.setSelected(selection: .course("courses/1"), selectionState: .selected)
 
         // MARK: - THEN
         XCTAssertEqual(defaults.offlineSyncSelections, ["courses/2", "courses/1"])

@@ -26,7 +26,7 @@ struct CourseSyncSelectorView: View {
     var body: some View {
         content
         .background(Color.backgroundLightest)
-        .navigationBarTitleView(navBarTitleView)
+        .navigationTitleStyled(navBarTitleView)
         .navigationBarItems(leading: leftNavBarButton, trailing: cancelButton)
         .navigationBarStyle(.modal)
     }
@@ -84,7 +84,8 @@ struct CourseSyncSelectorView: View {
                                                        selectionState: item.selectionState,
                                                        isCollapsed: item.isCollapsed,
                                                        selectionDidToggle: item.selectionDidToggle,
-                                                       collapseDidToggle: item.collapseDidToggle))
+                                                       collapseDidToggle: item.collapseDidToggle,
+                                                       state: .idle))
                     case .empty:
                         emptyCourse
                     }

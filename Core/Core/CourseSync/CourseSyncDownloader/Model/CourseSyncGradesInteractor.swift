@@ -18,19 +18,19 @@
 
 import Combine
 
-protocol CourseSyncGradesInteractor: CourseSyncContentInteractor {}
+public protocol CourseSyncGradesInteractor: CourseSyncContentInteractor {}
 
-class CourseSyncGradesInteractorLive: CourseSyncGradesInteractor {
+public class CourseSyncGradesInteractorLive: CourseSyncGradesInteractor {
     private typealias CurrentGradingPeriodID = String
-    var associatedTabType: TabName { .grades }
+    public var associatedTabType: TabName { .grades }
 
     private let userId: String
 
-    init(userId: String) {
+    public init(userId: String) {
         self.userId = userId
     }
 
-    func getContent(courseId: String) -> AnyPublisher<Void, Error> {
+    public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
         let userId = self.userId
 
         return Publishers

@@ -46,13 +46,11 @@ class CourseSyncProgressInteractorPreview: CourseSyncProgressInteractor {
         ])
     }
 
-    func getCourseSyncProgressEntries() -> AnyPublisher<[CourseSyncEntry], Error> {
+    func observeEntries() -> AnyPublisher<[CourseSyncEntry], Error> {
         mockData
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
-
-    func setProgress(selection: CourseEntrySelection, progress: Float?) {}
 
     func setCollapsed(selection _: CourseEntrySelection, isCollapsed _: Bool) {}
 
@@ -60,13 +58,8 @@ class CourseSyncProgressInteractorPreview: CourseSyncProgressInteractor {
 
     func retrySync() {}
 
-    func remove(selection: CourseEntrySelection) {}
-
-    func getSyncProgress() -> SyncProgress {
-        let total = Double(64_000_000_000)
-        return SyncProgress(total: Int64(total),
-                            progress: Int64(0.456 * total),
-                            failure: false)
+    func observeDownloadProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never> {
+        Empty(completeImmediately: false).eraseToAnyPublisher()
     }
 }
 
