@@ -22,6 +22,7 @@ open class BaseHelper {
     public static let seeder = DataSeeder()
     public static var user: UITestUser {.dataSeedAdmin}
     public static var backButton: Element { app.find(label: "Back", type: .button) }
+    public static var nextButton: Element { app.find(id: "nextButton", type: .button) }
     public static func pullToRefresh() {
         let window = app.find(type: .window)
         window.relativeCoordinate(x: 0.5, y: 0.2)

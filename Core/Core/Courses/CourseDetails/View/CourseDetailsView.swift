@@ -107,6 +107,7 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
         }
         .buttonStyle(ContextButton(contextColor: viewModel.courseColor, isHighlighted: selectionViewModel.selectedIndex == 0))
         .accessibility(addTraits: selectionViewModel.selectedIndex == 0 ? .isSelected : [])
+        .accessibilityIdentifier("courses-details.home-cell")
     }
 
     @ViewBuilder

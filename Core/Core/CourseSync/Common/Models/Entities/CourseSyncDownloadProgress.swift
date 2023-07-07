@@ -19,11 +19,29 @@
 import Foundation
 import CoreData
 
-public final class CourseSyncFileProgress: NSManagedObject {
+public final class CourseSyncDownloadProgress: NSManagedObject {
     @NSManaged public var bytesToDownload: Int
     @NSManaged public var bytesDownloaded: Int
+    @NSManaged public var error: String?
 
     var progress: Float {
         Float(bytesDownloaded) / Float(bytesToDownload)
+    }
+}
+
+public extension CourseSyncDownloadProgress {
+    @discardableResult
+    static func save(
+        bytesToDownload: Int,
+        bytesDownloaded: Int,
+        error: String?,
+        in context: NSManagedObjectContext
+    ) -> CourseSyncDownloadProgress {
+        let model: CourseSyncDownloadProgress = context.first(scope: .all) ?? context.insert()
+        model.bytesToDownload = bytesToDownload
+        model.bytesDownloaded = bytesDownloaded
+        model.error = error
+
+        return model
     }
 }

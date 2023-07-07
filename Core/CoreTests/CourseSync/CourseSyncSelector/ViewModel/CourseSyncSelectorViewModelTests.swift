@@ -25,11 +25,16 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
     var testee: CourseSyncSelectorViewModel!
     var mockSelectorInteractor: CourseSyncSelectorInteractorMock!
     var mockSyncInteractor: CourseSyncInteractorMock!
+    var mockEntryComposerInteractor: CourseSyncEntryComposerInteractorMock!
     var router: TestRouter!
 
     override func setUp() {
         super.setUp()
-        mockSelectorInteractor = CourseSyncSelectorInteractorMock(sessionDefaults: .fallback)
+        mockEntryComposerInteractor = CourseSyncEntryComposerInteractorMock()
+        mockSelectorInteractor = CourseSyncSelectorInteractorMock(
+            entryComposerInteractor: mockEntryComposerInteractor,
+            sessionDefaults: .fallback
+        )
         mockSyncInteractor = CourseSyncInteractorMock()
         router = TestRouter()
         testee = CourseSyncSelectorViewModel(
@@ -129,9 +134,11 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
 }
 
 class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
-
-    required init(courseID: String? = nil, sessionDefaults: SessionDefaults) {
-    }
+    required init(
+        courseID: String? = nil,
+        entryComposerInteractor: CourseSyncEntryComposerInteractor,
+        sessionDefaults: SessionDefaults
+    ) {}
 
     let courseSyncEntriesSubject = PassthroughSubject<[CourseSyncEntry], Error>()
     func getCourseSyncEntries() -> AnyPublisher<[Core.CourseSyncEntry], Error> {
@@ -171,5 +178,13 @@ class CourseSyncInteractorMock: CourseSyncInteractor {
 
     func downloadContent(for _: [Core.CourseSyncEntry]) -> AnyPublisher<[Core.CourseSyncEntry], Error> {
         courseSyncEntriesSubject.eraseToAnyPublisher()
+    }
+}
+
+class CourseSyncEntryComposerInteractorMock: CourseSyncEntryComposerInteractor {
+    let courseSyncEntrySubject = PassthroughSubject<CourseSyncEntry, Error>()
+
+    func composeEntry(from course: Core.CourseSyncSelectorCourse, useCache: Bool) -> AnyPublisher<Core.CourseSyncEntry, Error> {
+        courseSyncEntrySubject.eraseToAnyPublisher()
     }
 }
