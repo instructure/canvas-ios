@@ -16,45 +16,58 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import CoreData
 import Foundation
 
-protocol CourseSyncProgressWriterInteractor {
-    func saveFileProgress(entries: [CourseSyncEntry])
-    func saveEntryProgress(id: String, selection: CourseEntrySelection, state: CourseSyncEntry.State)
+public protocol CourseSyncProgressWriterInteractor {
+    func saveDownloadProgress(entries: [CourseSyncEntry], error: String?)
+    func cleanUpPreviousDownloadProgress()
+    func saveStateProgress(id: String, selection: CourseEntrySelection, state: CourseSyncEntry.State)
 }
 
-final class CourseSyncProgressWriterInteractorLive: CourseSyncProgressWriterInteractor {
+public final class CourseSyncProgressWriterInteractorLive: CourseSyncProgressWriterInteractor {
     private let context: NSManagedObjectContext
 
-    public init(context: NSManagedObjectContext = AppEnvironment.shared.database.viewContext) {
-        self.context = context
+    public init(container: NSPersistentContainer = AppEnvironment.shared.database) {
+        context = container.newBackgroundContext()
+        context.automaticallyMergesChangesFromParent = true
     }
 
-    func saveFileProgress(entries: [CourseSyncEntry]) {
+    public func saveDownloadProgress(entries: [CourseSyncEntry], error: String? = nil) {
         let bytesDownloaded = entries.totalDownloadedSize
         let bytesToDownloaded = entries.totalSelectedSize
 
         context.performAndWait {
-            let progress: CourseSyncFileProgress = context.fetch(scope: .all).first ?? context.insert()
+            let progress: CourseSyncDownloadProgress = context.fetch(scope: .all).first ?? context.insert()
             progress.bytesDownloaded = bytesDownloaded
             progress.bytesToDownload = bytesToDownloaded
+            progress.error = error
             try? context.save()
         }
     }
 
-    func saveEntryProgress(id: String, selection: CourseEntrySelection, state: CourseSyncEntry.State) {
+    public func cleanUpPreviousDownloadProgress() {
         context.performAndWait {
-            let entryProgress: CourseSyncEntryProgress = context.fetch(
+            context.delete(context.fetch(scope: .all) as [CourseSyncStateProgress])
+            context.delete(context.fetch(scope: .all) as [CourseSyncDownloadProgress])
+            try? context.save()
+        }
+    }
+
+    public func saveStateProgress(id: String, selection: CourseEntrySelection, state: CourseSyncEntry.State) {
+        context.performAndWait {
+            let progress: CourseSyncStateProgress = context.fetch(
                 scope: .where(
-                    #keyPath(CourseSyncEntryProgress.id),
+                    #keyPath(CourseSyncStateProgress.id),
                     equals: id,
                     sortDescriptors: []
                 )
             ).first ?? context.insert()
-            entryProgress.id = id
-            entryProgress.selection = selection
-            entryProgress.state = state
+
+            progress.id = id
+            progress.selection = selection
+            progress.state = state
             try? context.save()
         }
     }

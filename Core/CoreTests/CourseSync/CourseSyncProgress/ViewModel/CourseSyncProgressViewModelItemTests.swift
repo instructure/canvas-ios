@@ -170,7 +170,7 @@ class CourseSyncProgressViewModelItemTests: XCTestCase {
 
         XCTAssertEqual(testee.id, "1")
         XCTAssertEqual(testee.title, "testFile")
-        XCTAssertEqual(testee.subtitle, nil)
+        XCTAssertEqual(testee.subtitle, "Zero KB")
         XCTAssertEqual(testee.isCollapsed, nil)
         XCTAssertTrue(testee.cellStyle == .listItem)
 
@@ -199,7 +199,7 @@ class CourseSyncProgressViewModelItemTests: XCTestCase {
         }
 
         item.collapseDidToggle?()
-        XCTAssertEqual(mockInteractor.lastCollapsed?.selection, CourseEntrySelection.course(0))
+        XCTAssertEqual(mockInteractor.lastCollapsed?.selection, CourseEntrySelection.course("testID"))
         XCTAssertEqual(mockInteractor.lastCollapsed?.isCollapsed, true)
     }
 
@@ -221,19 +221,17 @@ class CourseSyncProgressViewModelItemTests: XCTestCase {
         }
 
         item.collapseDidToggle?()
-        XCTAssertEqual(mockInteractor.lastCollapsed?.selection, CourseEntrySelection.tab(0, 0))
+        XCTAssertEqual(mockInteractor.lastCollapsed?.selection, CourseEntrySelection.tab("testID", "0"))
         XCTAssertEqual(mockInteractor.lastCollapsed?.isCollapsed, true)
     }
 }
 
 class MockCourseSyncProgressInteractor: CourseSyncProgressInteractor {
-
     let courseSyncEntriesSubject = PassthroughSubject<[CourseSyncEntry], Error>()
+    let courseSyncFileProgressSubject = PassthroughSubject<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never>()
 
-    func getSyncProgress() -> Core.SyncProgress {
-        let total = Int64(1000_000_000)
-        let progress = Int64(500_000_000)
-        return SyncProgress(total: total, progress: progress, failure: false)
+    func observeDownloadProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never> {
+        courseSyncFileProgressSubject.eraseToAnyPublisher()
     }
 
     func setProgress(selection: Core.CourseEntrySelection, progress: Float?) {
@@ -254,7 +252,7 @@ class MockCourseSyncProgressInteractor: CourseSyncProgressInteractor {
     required init(courseID: String? = nil) {
     }
 
-    func getCourseSyncProgressEntries() -> AnyPublisher<[Core.CourseSyncEntry], Error> {
+    func observeEntries() -> AnyPublisher<[Core.CourseSyncEntry], Error> {
         courseSyncEntriesSubject.eraseToAnyPublisher()
     }
 

@@ -150,7 +150,7 @@ class ReactiveStoreTests: CoreTestCase {
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee
             .observeEntities()
-            .dropFirst()
+            .dropFirst(2) // drop .loading and initialy .data[]
             .sink { state in
                 switch state {
                 case let .data(courses):
@@ -162,6 +162,7 @@ class ReactiveStoreTests: CoreTestCase {
                 XCTAssertTrue(Thread.isMainThread)
             }
 
+        drainMainQueue()
         Course.save(.make(id: "3rdpartyinsert"), in: databaseClient)
 
         waitForExpectations(timeout: 1)
@@ -213,6 +214,7 @@ class ReactiveStoreTests: CoreTestCase {
 
         let expectation2 = expectation(description: "Publisher sends value")
         let subscription2 = store.observeEntities(forceFetch: false)
+            .dropFirst() // Drop previously saved data
             .sink { state in
                 if case let .data(courses) = state {
                     XCTAssertEqual(courses.count, 0)
@@ -256,6 +258,7 @@ class ReactiveStoreTests: CoreTestCase {
 
         let expectation2 = XCTestExpectation(description: "Publisher sends value")
         let subscription2 = store.observeEntities(forceFetch: true, loadAllPages: true)
+            .dropFirst()
             .sink { state in
                 if case let .data(courses) = state {
                     XCTAssertEqual(courses.count, 2)
