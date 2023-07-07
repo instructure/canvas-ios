@@ -139,6 +139,7 @@
 		8B70DB0F2A52EA69007D3ED4 /* ProfileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DB0E2A52EA69007D3ED4 /* ProfileHelper.swift */; };
 		8B70DBCB2A570745007D3ED4 /* NewQuizzesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBCA2A570745007D3ED4 /* NewQuizzesHelper.swift */; };
 		8B70DBCD2A570B16007D3ED4 /* NewQuizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBCC2A570B16007D3ED4 /* NewQuizTests.swift */; };
+		8B70DBE02A581D7C007D3ED4 /* QuizzesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBDF2A581D7C007D3ED4 /* QuizzesTests.swift */; };
 		8B95EEC82A4EE33900ADCDB4 /* PeopleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B95EEC62A4EE33900ADCDB4 /* PeopleHelper.swift */; };
 		8B95EEC92A4EE33900ADCDB4 /* PeopleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B95EEC72A4EE33900ADCDB4 /* PeopleTests.swift */; };
 		8BB5ED932A2E0F0B009D63DA /* HelpHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5ED922A2E0F0B009D63DA /* HelpHelper.swift */; };
@@ -672,6 +673,7 @@
 		8B70DB0E2A52EA69007D3ED4 /* ProfileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHelper.swift; sourceTree = "<group>"; };
 		8B70DBCA2A570745007D3ED4 /* NewQuizzesHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewQuizzesHelper.swift; sourceTree = "<group>"; };
 		8B70DBCC2A570B16007D3ED4 /* NewQuizTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewQuizTests.swift; sourceTree = "<group>"; };
+		8B70DBDF2A581D7C007D3ED4 /* QuizzesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzesTests.swift; sourceTree = "<group>"; };
 		8B95EEC62A4EE33900ADCDB4 /* PeopleHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleHelper.swift; sourceTree = "<group>"; };
 		8B95EEC72A4EE33900ADCDB4 /* PeopleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTests.swift; sourceTree = "<group>"; };
 		8BB5ED912A2E0F0B009D63DA /* HelpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpTests.swift; sourceTree = "<group>"; };
@@ -2002,6 +2004,7 @@
 				E8EA86122304980000E4FD76 /* QuizzesE2ETests.swift */,
 				C935D41D26DD1BDE00C940F7 /* NewQuizzesE2ETests.swift */,
 				8B0D25472A443CE800D7EDCA /* QuizzesHelper.swift */,
+				8B70DBDF2A581D7C007D3ED4 /* QuizzesTests.swift */,
 			);
 			path = Quizzes;
 			sourceTree = "<group>";
@@ -2942,6 +2945,7 @@
 				E80936E424C24CDD00D15E9A /* CourseGroupE2ETests.swift in Sources */,
 				C9BCCA1027D73F0F003E9CB0 /* GradesTests.swift in Sources */,
 				8B70DAFF2A52B603007D3ED4 /* LoginTests.swift in Sources */,
+				8B70DBE02A581D7C007D3ED4 /* QuizzesTests.swift in Sources */,
 				8B05ABB72A42043300A9C714 /* ModulesTests.swift in Sources */,
 				8B70DBCB2A570745007D3ED4 /* NewQuizzesHelper.swift in Sources */,
 				8B19F65B2A137E33007AA43F /* AssignmentsTests.swift in Sources */,
