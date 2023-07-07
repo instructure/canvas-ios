@@ -69,4 +69,16 @@ class CourseEntrySelectionTests: XCTestCase {
         XCTAssertEqual(array[0], testee1)
         XCTAssertEqual(array[1], testee2)
     }
+
+    func testSelectionOrdering() {
+        let testee1: CourseEntrySelection = .course("0")
+        let testee2: CourseEntrySelection = .tab("0", "0")
+        let testee3: CourseEntrySelection = .file("0", "0")
+
+        let array = [testee1, testee2, testee3].sorted()
+
+        XCTAssertEqual(array[0], testee1)
+        XCTAssertEqual(array[1], testee2)
+        XCTAssertEqual(array[2], testee3)
+    }
 }
