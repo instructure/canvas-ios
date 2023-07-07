@@ -173,6 +173,11 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                 Text("Manage Offline Content", bundle: .core)
             }
             Button {
+                env.router.route(to: "/offline/progress", from: controller, options: .modal(isDismissable: false, embedInNav: true))
+            } label: {
+                Text("Offline Content Downloads")
+            }
+            Button {
                 guard controller.value.presentedViewController == nil else {
                     controller.value.presentedViewController?.dismiss(animated: true)
                     return
