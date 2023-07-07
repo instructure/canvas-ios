@@ -60,19 +60,16 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     }
     private var accessReportInteractor: FileAccessReportInteractor?
     private var subscriptions = Set<AnyCancellable>()
-    private var offlineInteractor: OfflineModeInteractor?
-    private var isOffline: Bool {
-        offlineInteractor?.isOfflineModeEnabled() ?? false
-    }
+    private var offlineFileInteractor: OfflineFileInteractor?
 
     public static func create(context: Context?, fileID: String, originURL: URLComponents? = nil, assignmentID: String? = nil,
-                              offlineInteractor: OfflineModeInteractor = OfflineModeInteractorLive.shared) -> FileDetailsViewController {
+                              offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive.shared) -> FileDetailsViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
         controller.context = context
         controller.fileID = fileID
         controller.originURL = originURL
-        controller.offlineInteractor = offlineInteractor
+        controller.offlineFileInteractor = offlineFileInteractor
 
         if let context {
             controller.accessReportInteractor = FileAccessReportInteractor(context: context,
@@ -270,8 +267,8 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
 
     var filePathComponent: String? {
         guard let sessionID = env.currentSession?.uniqueID, let name = files.first?.filename else { return nil }
-        if isOffline {
-            return offlineInteractor?.filePath(sessionID: sessionID, fileID: fileID, fileName: name)
+        if offlineFileInteractor?.isOffline == true {
+            return offlineFileInteractor?.filePath(sessionID: sessionID, fileID: fileID, fileName: name)
         }
         return "\(sessionID)/\(fileID)/\(name)"
     }
@@ -288,7 +285,7 @@ extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCre
             return
         }
 
-        let location = isOffline ? URL.Directories.documents : URL.Directories.temporary
+        let location = offlineFileInteractor?.isOffline == true ? URL.Directories.documents : URL.Directories.temporary
         /// This must be called to set `localURL` before initiating download, otherwise there
         /// will be a threading issue with trying to access core data from a different thread.
         localURL = prepareLocalURL(

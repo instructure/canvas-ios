@@ -1396,6 +1396,7 @@
 		EB1D8EAA2A3201A200C871B3 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1D8EA92A3201A200C871B3 /* PrimaryButton.swift */; };
 		EB3198E16A54D1AE41F95D1F /* FutureExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36AA8E0E22FB4F74DDA3D2E3 /* FutureExtensionsTests.swift */; };
 		EB350800E1C457365D892996 /* PersistencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11D563F7AEEC0B245A40297 /* PersistencyTests.swift */; };
+		EB5681CA2A5826F5000EA57B /* OfflineFileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB5681C92A5826F5000EA57B /* OfflineFileInteractor.swift */; };
 		EB7F360478C5BE6855B5521E /* BackgroundVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1128F659FDFC561F8338DA7 /* BackgroundVideoPlayer.swift */; };
 		EBA66320570D9F74560707FC /* CourseSyncProgressWriterInteractorLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1790FD259B8D157DE25443 /* CourseSyncProgressWriterInteractorLiveTests.swift */; };
 		EBAAFB629D40407D19E21893 /* GetK5HomeroomDueItemCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E6E39B7A47F1AB771F1692 /* GetK5HomeroomDueItemCount.swift */; };
@@ -3177,6 +3178,7 @@
 		EADB0EC7A95CD6A02F814942 /* ListBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListBackgroundView.swift; sourceTree = "<group>"; };
 		EB1D8EA92A3201A200C871B3 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		EB1F17518E5A0ED0FB823AA0 /* APIUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUser.swift; sourceTree = "<group>"; };
+		EB5681C92A5826F5000EA57B /* OfflineFileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineFileInteractor.swift; sourceTree = "<group>"; };
 		EB8191627EAE7C128D6CA3A5 /* DashboardCourseCardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCourseCardListViewModel.swift; sourceTree = "<group>"; };
 		EBC41B952A49C89800C49504 /* BoolExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoolExtensions.swift; sourceTree = "<group>"; };
 		EBDDBC552A41C11300279E5E /* OfflineModeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineModeViewModel.swift; sourceTree = "<group>"; };
@@ -5864,6 +5866,7 @@
 			children = (
 				EBDDBC542A41C0F400279E5E /* ViewModel */,
 				A7C81F2417FC03CC54BDDA54 /* OfflineModeInteractor.swift */,
+				EB5681C92A5826F5000EA57B /* OfflineFileInteractor.swift */,
 			);
 			path = Offline;
 			sourceTree = "<group>";
@@ -9971,6 +9974,7 @@
 				BE4EEF28DD05562FA1C28E17 /* SyllabusEditorView.swift in Sources */,
 				17B6C93222B3989B89A0E033 /* SyllabusSummaryViewController.swift in Sources */,
 				B086E0A96EBE43D6F0055AEB /* SyllabusTabViewController.swift in Sources */,
+				EB5681CA2A5826F5000EA57B /* OfflineFileInteractor.swift in Sources */,
 				2508B452474541FCAD329E6F /* SyllabusViewController.swift in Sources */,
 				774AAC93274DE0CF3C873BD6 /* TTL.swift in Sources */,
 				373F8638195B949B681ECDC2 /* Tab.swift in Sources */,
