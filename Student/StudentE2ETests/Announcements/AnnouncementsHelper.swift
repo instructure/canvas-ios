@@ -54,11 +54,12 @@ public class AnnouncementsHelper: BaseHelper {
         CourseNavigation.announcements.tap()
     }
 
+    @discardableResult
     public static func createAnnouncements(course: DSCourse, count: Int = 1, titles: [String]? = nil, messages: [String]? = nil) -> [DSDiscussionTopic] {
         var announcements = [DSDiscussionTopic]()
         for i in 1...count {
-            let announcementTitle = titles?[i] ?? "Announcement Title \(i)"
-            let announcementMessage = messages?[i] ?? "This is the message of Announcement \(i)"
+            let announcementTitle = titles?[i] ?? "Sample Announcement \(i)"
+            let announcementMessage = messages?[i] ?? "This is the message of Sample Announcement \(i)"
             announcements.append(seeder.createDiscussion(courseId: course.id, requestBody: .init(title: announcementTitle, message: announcementMessage, is_announcement: true, published: true)))
         }
         return announcements

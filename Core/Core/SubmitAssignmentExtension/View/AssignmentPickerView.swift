@@ -28,7 +28,8 @@ public struct AssignmentPickerView: View {
 
     public var body: some View {
         content
-            .navigationBarTitleView(Text("Select Assignment", bundle: .core).font(.semibold17).foregroundColor(.textDarkest), displayMode: .inline)
+            .navigationTitleStyled(Text("Select Assignment", bundle: .core).font(.semibold17).foregroundColor(.textDarkest))
+            .navigationBarTitleDisplayMode(.inline)
             .onReceive(viewModel.dismissViewDidTrigger) {
                 presentationMode.wrappedValue.dismiss()
             }

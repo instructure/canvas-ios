@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,29 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
+import Foundation
 import TestsFoundation
+import XCTest
 
-class CourseFileE2ETests: CoreUITestCase {
-    func testPreviewCourseFile() {
-        Dashboard.courseCard(id: "263").tap()
-
-        CourseNavigation.files.tap()
-
-        FileList.file(index: 0).tap()
-
-        // need be on the next page before checking for image
-        sleep(3)
-        app.find(type: .image).waitToExist()
-    }
-
-    func testLinkToPreviewOpensFile() {
-        Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
-
-        CourseNavigation.pages.tap()
-        PageList.page(index: 1).tap()
-        app.links.firstElement.tap()
-        app.find(type: .image).waitToExist()
-    }
+public class ProfileHelper: BaseHelper {
+    public static var changeUserButton: Element { app.find(id: "Profile.changeUserButton") }
 }

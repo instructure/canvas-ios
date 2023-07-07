@@ -81,13 +81,20 @@ public extension Element {
         waitToExist(15, file: file, line: line)
         return rawElement.frame
     }
+
     func label(file: StaticString = #file, line: UInt = #line) -> String {
         waitToExist(15, file: file, line: line)
         return rawElement.label
     }
+
     func value(file: StaticString = #file, line: UInt = #line) -> String? {
         waitToExist(15, file: file, line: line)
         return rawElement.value as? String
+    }
+
+    func placeholderValue(file: StaticString = #file, line: UInt = #line) -> String? {
+        waitToExist(15, file: file, line: line)
+        return rawElement.placeholderValue
     }
 
     @discardableResult
@@ -191,6 +198,28 @@ public extension Element {
         while Date() < deadline {
             if self.value() == value {
                 return true
+            }
+            sleep(gracePeriod)
+        }
+        return false
+    }
+
+    @discardableResult
+    func swipeUntilVisible(direction: SwipeDirection = .up, timeout: TimeInterval = 15, gracePeriod: UInt32 = 1) -> Bool {
+        let deadline = Date().addingTimeInterval(timeout)
+        while Date() < deadline {
+            if self.isVisible {
+                return true
+            }
+            switch direction {
+            case .down:
+                app.swipeDown()
+            case .up:
+                app.swipeUp()
+            case .left:
+                app.swipeLeft()
+            case .right:
+                app.swipeRight()
             }
             sleep(gracePeriod)
         }
@@ -356,4 +385,11 @@ public extension XCUIElement {
             coordinate.tap()
         }
     }
+}
+
+public enum SwipeDirection {
+    case up
+    case down
+    case left
+    case right
 }
