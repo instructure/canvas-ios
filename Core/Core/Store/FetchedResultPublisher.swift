@@ -20,11 +20,7 @@ import Combine
 import CombineExt
 import CoreData
 
-public final class FetchedResultsPublisher
-<ResultType>:
-    Publisher
-    where
-    ResultType: NSFetchRequestResult {
+public final class FetchedResultsPublisher<ResultType>: Publisher where ResultType: NSFetchRequestResult {
     public init(
         request: NSFetchRequest<ResultType>,
         context: NSManagedObjectContext
