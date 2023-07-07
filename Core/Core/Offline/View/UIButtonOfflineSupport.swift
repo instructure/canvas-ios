@@ -29,9 +29,9 @@ extension UIButton {
             .removeDuplicates()
             .sink { offlineMode in
                 if offlineMode {
-                    uSelf.makeUnavailable()
+                    uSelf.setUnavailableState()
                 } else {
-                    uSelf.makeAvailable()
+                    uSelf.setAvailableState()
                 }
             }
         objc_setAssociatedObject(self, &AssociatedObjectKeys.OfflineStateObservation, observation, .OBJC_ASSOCIATION_RETAIN)
@@ -44,7 +44,7 @@ extension UIButton {
         static var TapGestureRecognizer = "TapGestureRecognizer"
     }
 
-    private func makeUnavailable() {
+    private func setUnavailableState() {
         UIView.animate(withDuration: 0.3) {
             self.alpha = 0.3
         }
@@ -60,7 +60,7 @@ extension UIButton {
         objc_setAssociatedObject(self, &AssociatedObjectKeys.TapGestureRecognizer, tapRecognizer, .OBJC_ASSOCIATION_RETAIN)
     }
 
-    private func makeAvailable() {
+    private func setAvailableState() {
         UIView.animate(withDuration: 0.3) {
             self.alpha = 1.0
         }
