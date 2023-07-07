@@ -32,7 +32,7 @@ public struct AddressbookView: View {
             case .loading:
                 loadingIndicator
             case .data:
-                courses
+                peopleView
             case .empty, .error:
                 Text("There was an error loading recipients.", bundle: .core)
             }
@@ -46,22 +46,32 @@ public struct AddressbookView: View {
             .progressViewStyle(.indeterminateCircle())
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .accentColor(Color(Brand.shared.primary))
-            .listRowInsets(EdgeInsets())
-            .listRowSeparator(.hidden)
     }
 
-    private var courses: some View {
+    private var peopleView: some View {
         ForEach(model.recipients, id: \.id) { recipient in
             VStack(spacing: 0) {
                 Color.borderMedium
                     .frame(height: 0.5)
                 Button(action: {
-
+                    model.recipientDidTap.send((userID: recipient.id, controller: controller))
                 }, label: {
-                    Text(recipient.fullName)
+                    peopleRowView(recipient)
                 })
                 .padding(16)
             }
+        }
+    }
+
+    @ViewBuilder
+    private func peopleRowView(_ recipient: SearchRecipient) -> some View {
+        HStack(alignment: .center, spacing: 16) {
+            Avatar(name: recipient.name, url: recipient.avatarURL, size: 36, isAccessible: false)
+            Text(recipient.displayName ?? recipient.name)
+                    .font(.regular16)
+                    .foregroundColor(.textDarkest)
+                    .lineLimit(1)
+            Spacer()
         }
     }
 }

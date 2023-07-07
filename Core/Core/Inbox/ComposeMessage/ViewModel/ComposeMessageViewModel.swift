@@ -23,6 +23,8 @@ class ComposeMessageViewModel: ObservableObject {
     // MARK: - Outputs
     @Published public private(set) var state: StoreState = .loading
     @Published public private(set) var courses: [InboxCourse] = []
+    @Published public private(set) var recipients: [String] = []
+
     @Published public var sendIndividual: Bool = false
     @Published public var bodyText: String = ""
     @Published public var subject: String = ""
@@ -33,6 +35,7 @@ class ComposeMessageViewModel: ObservableObject {
     public let sendButtonDidTap = PassthroughRelay<WeakViewController>()
     public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
     public let addRecipientButtonDidTap = PassthroughRelay<WeakViewController>()
+    public let selectedRecipient = CurrentValueRelay<String?>(nil)
     public var selectedCourse: InboxCourse?
 
     // MARK: - Private
@@ -70,7 +73,7 @@ class ComposeMessageViewModel: ObservableObject {
 
     public func addRecipientButtonDidTap(viewController: WeakViewController) {
         guard let courseID = selectedCourse?.courseId else { return }
-        let addressbook = AddressBookAssembly.makeAddressbookViewController(courseID: courseID)
+        let addressbook = AddressBookAssembly.makeAddressbookViewController(courseID: courseID, recipientDidSelect: selectedRecipient)
         router.show(addressbook, from: viewController)
     }
 
@@ -79,6 +82,12 @@ class ComposeMessageViewModel: ObservableObject {
                 .assign(to: &$state)
         interactor.courses
             .assign(to: &$courses)
+        selectedRecipient
+            .compactMap { $0 }
+            .sink { [weak self] in
+                self?.recipients.append($0)
+            }
+            .store(in: &subscriptions)
     }
 
     private func setupInputBindings(router: Router) {

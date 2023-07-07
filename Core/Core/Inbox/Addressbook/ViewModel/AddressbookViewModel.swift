@@ -27,17 +27,17 @@ class AddressbookViewModel: ObservableObject {
     public let title = NSLocalizedString("Select Recipients", bundle: .core, comment: "")
 
     // MARK: - Inputs
-    public let selectedRecipient = CurrentValueRelay<String?>(nil)
+    public let recipientDidTap = PassthroughSubject<(userID: String, controller: WeakViewController), Never>()
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: AddressbookInteractor
-    private let router: Router
 
-    public init(router: Router, interactor: AddressbookInteractor) {
+    public init(router: Router, interactor: AddressbookInteractor, recipientDidSelect: CurrentValueRelay<String?>) {
         self.interactor = interactor
-        self.router = router
+
         setupOutputBindings()
+        setupInputBindings(router: router, recipientDidSelect: recipientDidSelect)
     }
 
     private func setupOutputBindings() {
@@ -45,5 +45,14 @@ class AddressbookViewModel: ObservableObject {
                 .assign(to: &$state)
         interactor.recipients
             .assign(to: &$recipients)
+    }
+
+    private func setupInputBindings(router: Router, recipientDidSelect: CurrentValueRelay<String?>) {
+        recipientDidTap
+            .sink { [router] (userID, viewController) in
+                recipientDidSelect.accept(userID)
+                router.pop(from: viewController)
+            }
+            .store(in: &subscriptions)
     }
 }

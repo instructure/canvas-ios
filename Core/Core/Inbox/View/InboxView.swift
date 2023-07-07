@@ -173,7 +173,7 @@ public struct InboxView: View {
         Button {
             model.newMessageDidTap.send(controller)
         } label: {
-            Image.addLine
+            Image.addSolid
                 .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
         }
         .frame(width: 44, height: 44).padding(.trailing, -6)
