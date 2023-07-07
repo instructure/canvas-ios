@@ -67,6 +67,7 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
     var gradingPeriodID: String?
     var gradingPeriodLoaded = false
     var userID: String?
+    var offlineModeInteractor: OfflineModeInteractor?
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
         eventName: "/courses/\(courseID)/grades"
     )
@@ -94,11 +95,16 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
         self?.update()
     }
 
-    public static func create(courseID: String, userID: String? = nil, colorDelegate: ColorDelegate? = nil) -> GradeListViewController {
+    public static func create(courseID: String,
+                              userID: String? = nil,
+                              colorDelegate: ColorDelegate? = nil,
+                              offlineModeInteractor: OfflineModeInteractor = OfflineModeInteractorLive.shared)
+    -> GradeListViewController {
         let controller = loadFromStoryboard()
         controller.colorDelegate = colorDelegate
         controller.courseID = courseID
         controller.userID = userID ?? controller.env.currentSession?.userID
+        controller.offlineModeInteractor = offlineModeInteractor
         return controller
     }
 
@@ -147,7 +153,7 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
 
         // Without this there was some weird empty space at the end of the tableview
         // that went away after rotation or when we moved away from the screen and returned
-        if OfflineModeInteractorLive.shared.isOfflineModeEnabled() {
+        if offlineModeInteractor?.isOfflineModeEnabled() == true {
             view.setNeedsLayout()
             tableView.reloadData()
         }
@@ -224,7 +230,7 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
         }
 
         // In offline mode we don't want to delete anything from CoreData
-        if !OfflineModeInteractorLive.shared.isOfflineModeEnabled() {
+        if offlineModeInteractor?.isOfflineModeEnabled() == false {
             // Delete assignment groups immediately, to see a spinner again
             assignments.useCase.reset(context: env.database.viewContext)
             try? env.database.viewContext.save()
