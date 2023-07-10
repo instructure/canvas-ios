@@ -115,4 +115,20 @@ public extension XCTestCase {
         wait(for: [finishExpectation], timeout: timeout)
         subscription.cancel()
     }
+
+    func XCTAssertNoOutput<Output, Failure>(_ publisher: any Publisher<Output, Failure>,
+                                            timeout: TimeInterval = 0.1)
+    where Failure: Error {
+        let noValueExpectation = expectation(description: "Publisher sent no value.")
+        noValueExpectation.isInverted = true
+
+        let subscription = publisher
+            .sink { _ in
+            } receiveValue: { _ in
+                noValueExpectation.fulfill()
+            }
+
+        wait(for: [noValueExpectation], timeout: timeout)
+        subscription.cancel()
+    }
 }
