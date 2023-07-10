@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,29 +16,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-import TestsFoundation
+extension DataSeeder {
 
-class CourseFileE2ETests: CoreUITestCase {
-    func testPreviewCourseFile() {
-        Dashboard.courseCard(id: "263").tap()
-
-        CourseNavigation.files.tap()
-
-        FileList.file(index: 0).tap()
-
-        // need be on the next page before checking for image
-        sleep(3)
-        app.find(type: .image).waitToExist()
+    public func createModule(courseId: String, moduleBody: CreateDSModuleRequest.RequestedDSModule) -> DSModule {
+        let requestedBody = CreateDSModuleRequest.Body(module: moduleBody)
+        let request = CreateDSModuleRequest(body: requestedBody, courseId: courseId)
+        return makeRequest(request)
     }
 
-    func testLinkToPreviewOpensFile() {
-        Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
-
-        CourseNavigation.pages.tap()
-        PageList.page(index: 1).tap()
-        app.links.firstElement.tap()
-        app.find(type: .image).waitToExist()
+    public func updateModuleWithPublished(courseId: String, moduleId: String, published: Bool) -> DSModule {
+        let requestedBody = UpdateDSModuleRequest.Body(module: .init(published: published))
+        let request = UpdateDSModuleRequest(body: requestedBody, courseId: courseId, moduleId: moduleId)
+        return makeRequest(request)
     }
 }

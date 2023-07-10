@@ -17,9 +17,11 @@
 //
 
 public struct DSPage: Codable {
+    public let page_id: String
     public let title: String
     public let body: String
     public let editing_roles: String
     public let published: Bool
     public let front_page: Bool
+    public let url: String
 }

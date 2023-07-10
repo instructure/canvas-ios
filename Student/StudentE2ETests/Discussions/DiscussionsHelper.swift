@@ -75,17 +75,17 @@ public class DiscussionsHelper: BaseHelper {
 
     // MARK: Other functions
     @discardableResult
-    public static func createDiscussion(
-        course: DSCourse,
-        title: String = "Sample Discussion",
-        message: String = "Message of ",
-        isAnnouncement: Bool = false,
-        published: Bool = true,
-        isAssignment: Bool = false,
-        dueDate: String? = nil) -> DSDiscussionTopic {
-        let discussionAssignment = CreateDSAssignmentRequest.RequestDSAssignment(
-            name: title, description: message + title, published: published, submission_types: [.online_text_entry], due_at: dueDate)
-        let discussionBody = CreateDSDiscussionRequest.RequestDSDiscussion(
+    public static func createDiscussion(course: DSCourse,
+                                        title: String = "Sample Discussion",
+                                        message: String = "Message of ",
+                                        isAnnouncement: Bool = false,
+                                        published: Bool = true,
+                                        isAssignment: Bool = false,
+                                        dueDate: String? = nil) -> DSDiscussionTopic {
+        let discussionAssignment = isAssignment ? CreateDSAssignmentRequest.RequestedDSAssignment(
+            name: title, description: message + title, published: published, submission_types: [.online_text_entry], due_at: dueDate) : nil
+
+        let discussionBody = CreateDSDiscussionRequest.RequestedDSDiscussion(
             title: title, message: message + title, is_announcement: isAnnouncement,
             published: published, assignment: discussionAssignment)
         return seeder.createDiscussion(courseId: course.id, requestBody: discussionBody)
@@ -97,11 +97,15 @@ public class DiscussionsHelper: BaseHelper {
     }
 
     @discardableResult
-    public static func replyToDiscussion(replyText: String = "Test replying to discussion") -> Bool {
+    public static func replyToDiscussion(replyText: String = "Test replying to discussion", shouldPullToRefresh: Bool = false) -> Bool {
         Details.replyButton.tap()
         let textEntry = Details.Reply.textField.waitToExist()
         textEntry.pasteText(replyText)
         Details.Reply.sendButton.tap()
+        sleep(3)
+        if shouldPullToRefresh {
+            pullToRefresh()
+        }
         let repliesSection = Details.repliesSection.waitToExist()
         return repliesSection.isVisible
     }

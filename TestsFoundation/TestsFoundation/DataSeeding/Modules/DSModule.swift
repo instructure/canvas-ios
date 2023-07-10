@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2018-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,23 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-@testable import Core
-import TestsFoundation
-import XCTest
-
-class LoginStartE2ETests: CoreUITestCase {
-    override var user: UITestUser? { nil }
-
-    func testHiddenElements() {
-        XCTAssertFalse(LoginStart.whatsNewLabel.isVisible)
-        XCTAssertFalse(LoginStart.whatsNewLink.isVisible)
-    }
-
-    func testFindSchool() {
-        XCTAssertTrue(LoginStart.findSchoolButton.isEnabled)
-        LoginStart.findSchoolButton.tap()
-
-        LoginFindSchool.searchField.waitToExist()
-    }
+public struct DSModule: Codable {
+    public let id: String
+    public let name: String
+    public let published: Bool
 }

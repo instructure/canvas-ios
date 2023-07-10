@@ -26,17 +26,17 @@ public typealias CourseSyncItemSelection = String
 extension CourseSyncItemSelection {
 
     func toCourseEntrySelection(from syncEntries: [CourseSyncEntry]) -> CourseEntrySelection? {
-        for (courseIndex, course) in syncEntries.enumerated() {
+        for course in syncEntries {
             if course.id == self {
-                return .course(courseIndex)
+                return .course(course.id)
             }
 
-            if let tabIndex = course.tabs.firstIndex(where: { $0.id == self }) {
-                return .tab(courseIndex, tabIndex)
+            if let tab = course.tabs.first(where: { $0.id == self }) {
+                return .tab(course.id, tab.id)
             }
 
-            if let fileIndex = course.files.firstIndex(where: { $0.id == self }) {
-                return .file(courseIndex, fileIndex)
+            if let file = course.files.first(where: { $0.id == self }) {
+                return .file(course.id, file.id)
             }
         }
 

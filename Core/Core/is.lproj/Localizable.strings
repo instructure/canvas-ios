@@ -608,6 +608,9 @@
 "Conversation Message" = "Samræðuskilaboð";
 
 /* No comment provided by engineer. */
+"Conversation options" = "Valkostir samræðu";
+
+/* No comment provided by engineer. */
 "conversation_recipients_to" = "conversation_recipients_to";
 
 /* No comment provided by engineer. */
@@ -1127,6 +1130,9 @@
 "Format not supported" = "Snið ekki stutt";
 
 /* No comment provided by engineer. */
+"Forward" = "Áfram";
+
+/* No comment provided by engineer. */
 "Front Page" = "Forsíða";
 
 /* No comment provided by engineer. */
@@ -1559,6 +1565,9 @@
 "Message" = "Skilaboð";
 
 /* No comment provided by engineer. */
+"Message Details" = "Upplýsingar skilaboða";
+
+/* No comment provided by engineer. */
 "Message from %@, %@, on %@, %@" = "Skilaboð frá %1$@, %2$@, þann %3$@, %4$@";
 
 /* No comment provided by engineer. */
@@ -1569,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "Námsefni";
+
+/* No comment provided by engineer. */
+"More options" = "Fleiri valkostir";
 
 /* No comment provided by engineer. */
 "Move Annotation" = "Færa athugasemdir";
@@ -2576,6 +2588,9 @@
 "There was an error loading quizzes. Pull to refresh to try again." = "Villa kom upp við að hlaða prófum. Dragðu til að endurglæða til að reyna aftur.";
 
 /* No comment provided by engineer. */
+"There was an error loading the message. Pull to refresh to try again." = "Villa við að hlaða skilaboðunum. Dragðu til að endurglæða til að reyna aftur.";
+
+/* No comment provided by engineer. */
 "There was an error while communicating with the server" = "Villa kom upp við samskipti við þjóninn";
 
 /* No comment provided by engineer. */
@@ -2667,6 +2682,9 @@
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Twittertilkynningar";
+
+/* No comment provided by engineer. */
+"Un-starred" = "Stjörnumerki tekið af";
 
 /* No comment provided by engineer. */
 "Undo" = "Hætta við";

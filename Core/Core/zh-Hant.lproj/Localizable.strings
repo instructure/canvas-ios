@@ -608,6 +608,9 @@
 "Conversation Message" = "交談訊息";
 
 /* No comment provided by engineer. */
+"Conversation options" = "交談選項";
+
+/* No comment provided by engineer. */
 "conversation_recipients_to" = "conversation_recipients_to";
 
 /* No comment provided by engineer. */
@@ -1127,6 +1130,9 @@
 "Format not supported" = "不支援的格式";
 
 /* No comment provided by engineer. */
+"Forward" = "轉寄";
+
+/* No comment provided by engineer. */
 "Front Page" = "首頁";
 
 /* No comment provided by engineer. */
@@ -1559,6 +1565,9 @@
 "Message" = "訊息";
 
 /* No comment provided by engineer. */
+"Message Details" = "訊息詳細資料";
+
+/* No comment provided by engineer. */
 "Message from %@, %@, on %@, %@" = "訊息來自 %1$@，%2$@，在 %3$@, %4$@";
 
 /* No comment provided by engineer. */
@@ -1569,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "單元";
+
+/* No comment provided by engineer. */
+"More options" = "更多選項";
 
 /* No comment provided by engineer. */
 "Move Annotation" = "移動註釋";
@@ -2576,6 +2588,9 @@
 "There was an error loading quizzes. Pull to refresh to try again." = "載入測驗時發生錯誤。提取以進行重新整理以再試一次。";
 
 /* No comment provided by engineer. */
+"There was an error loading the message. Pull to refresh to try again." = "載入訊息時發生錯誤。提取以進行重新整理以再試一次。";
+
+/* No comment provided by engineer. */
 "There was an error while communicating with the server" = "在與伺服器通訊時出現問題";
 
 /* No comment provided by engineer. */
@@ -2667,6 +2682,9 @@
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Twitter 通知";
+
+/* No comment provided by engineer. */
+"Un-starred" = "移除星號";
 
 /* No comment provided by engineer. */
 "Undo" = "撤銷";

@@ -16,14 +16,32 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import CoreData
+import Core
 
-public final class CourseSyncFileProgress: NSManagedObject {
-    @NSManaged public var bytesToDownload: Int
-    @NSManaged public var bytesDownloaded: Int
+// https://canvas.instructure.com/doc/api/modules.html#method.context_modules_api.create
+public struct CreateDSModuleRequest: APIRequestable {
+    public typealias Response = DSModule
 
-    var progress: Float {
-        Float(bytesDownloaded) / Float(bytesToDownload)
+    public let method = APIMethod.post
+    public var path: String
+    public let body: Body?
+
+    public init(body: Body, courseId: String) {
+        self.body = body
+        self.path = "courses/\(courseId)/modules"
+    }
+}
+
+extension CreateDSModuleRequest {
+    public struct RequestedDSModule: Encodable {
+        let name: String
+
+        public init(name: String = "Module Name") {
+            self.name = name
+        }
+    }
+
+    public struct Body: Encodable {
+        let module: RequestedDSModule
     }
 }

@@ -21,13 +21,15 @@ import TestsFoundation
 import XCTest
 
 public class DashboardHelper: BaseHelper {
+    public static func courseCard(course: DSCourse) -> Element { app.find(id: "DashboardCourseCell.\(course.id)") }
     public static var dashboardSettings: Element { app.find(id: "Dashboard.settingsButton", type: .other) }
+    public static var profileButton: Element { app.find(id: "Dashboard.profileButton") }
     public static var dashboardSettingsShowGradeToggle: Element { app.find(id: "DashboardSettings.showGradesToggle", type: .switch) }
     public static var doneButton: Element { app.find(id: "screen.dismiss", type: .button) }
 
     @discardableResult
     public static func createFrontPageForCourse(course: DSCourse) -> DSPage {
-        let pageBody = CreateDSPageRequest.RequestDSPage(title: "Dashboard Test Page", body: "Dashboard Test Page Body", front_page: true, published: true)
+        let pageBody = CreateDSPageRequest.RequestedDSPage(title: "Dashboard Test Page", body: "Dashboard Test Page Body", front_page: true, published: true)
         return seeder.createPage(courseId: course.id, requestBody: pageBody)
     }
 

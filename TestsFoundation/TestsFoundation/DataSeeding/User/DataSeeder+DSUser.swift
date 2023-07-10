@@ -34,6 +34,8 @@ extension DataSeeder {
         let requestedUser = CreateDSUserRequest.Body.User(name: name)
         let requestedPseudonym = CreateDSUserRequest.Body.Pseudonym(password: password)
         let request = CreateDSUserRequest(body: CreateDSUserRequest.Body(user: requestedUser, pseudonym: requestedPseudonym))
-        return try! makeRequest(request)
+        var result = makeRequest(request)
+        result.password = password
+        return result
     }
 }

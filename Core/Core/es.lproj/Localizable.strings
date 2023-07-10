@@ -608,6 +608,9 @@
 "Conversation Message" = "Mensaje de la conversación";
 
 /* No comment provided by engineer. */
+"Conversation options" = "Opciones de conversación";
+
+/* No comment provided by engineer. */
 "conversation_recipients_to" = "conversation_recipients_to";
 
 /* No comment provided by engineer. */
@@ -1127,6 +1130,9 @@
 "Format not supported" = "Formato no admitido";
 
 /* No comment provided by engineer. */
+"Forward" = "Reenviar";
+
+/* No comment provided by engineer. */
 "Front Page" = "Página de inicio";
 
 /* No comment provided by engineer. */
@@ -1559,6 +1565,9 @@
 "Message" = "Mensaje";
 
 /* No comment provided by engineer. */
+"Message Details" = "Detalles del mensaje";
+
+/* No comment provided by engineer. */
 "Message from %@, %@, on %@, %@" = "Mensaje de %1$@, %2$@, el %3$@, %4$@";
 
 /* No comment provided by engineer. */
@@ -1569,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "Módulos";
+
+/* No comment provided by engineer. */
+"More options" = "Más opciones";
 
 /* No comment provided by engineer. */
 "Move Annotation" = "Mover anotación";
@@ -2576,6 +2588,9 @@
 "There was an error loading quizzes. Pull to refresh to try again." = "Hubo un error al cargar los exámenes. Pulse actualizar para volver a intentarlo.";
 
 /* No comment provided by engineer. */
+"There was an error loading the message. Pull to refresh to try again." = "Hubo un error al cargar el mensaje. Pulse actualizar para volver a intentarlo.";
+
+/* No comment provided by engineer. */
 "There was an error while communicating with the server" = "Ocurrió un error al comunicarse con el servidor";
 
 /* No comment provided by engineer. */
@@ -2667,6 +2682,9 @@
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Notificaciones de Twitter";
+
+/* No comment provided by engineer. */
+"Un-starred" = "Sin calificación mediante estrellas";
 
 /* No comment provided by engineer. */
 "Undo" = "Deshacer";

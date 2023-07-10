@@ -608,6 +608,9 @@
 "Conversation Message" = "Conversation Message";
 
 /* No comment provided by engineer. */
+"Conversation options" = "Conversation options";
+
+/* No comment provided by engineer. */
 "conversation_recipients_to" = "conversation_recipients_to";
 
 /* No comment provided by engineer. */
@@ -1127,6 +1130,9 @@
 "Format not supported" = "Format not supported";
 
 /* No comment provided by engineer. */
+"Forward" = "Forward";
+
+/* No comment provided by engineer. */
 "Front Page" = "Front Page";
 
 /* No comment provided by engineer. */
@@ -1559,6 +1565,9 @@
 "Message" = "Message";
 
 /* No comment provided by engineer. */
+"Message Details" = "Message Details";
+
+/* No comment provided by engineer. */
 "Message from %@, %@, on %@, %@" = "Message from %1$@, %2$@, on %3$@, %4$@";
 
 /* No comment provided by engineer. */
@@ -1569,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "Modules";
+
+/* No comment provided by engineer. */
+"More options" = "More options";
 
 /* No comment provided by engineer. */
 "Move Annotation" = "Move Annotation";
@@ -2576,6 +2588,9 @@
 "There was an error loading quizzes. Pull to refresh to try again." = "There was an error loading quizzes. Pull to refresh to try again.";
 
 /* No comment provided by engineer. */
+"There was an error loading the message. Pull to refresh to try again." = "There was an error loading the message. Pull to refresh to try again.";
+
+/* No comment provided by engineer. */
 "There was an error while communicating with the server" = "There was an error while communicating with the server";
 
 /* No comment provided by engineer. */
@@ -2667,6 +2682,9 @@
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Twitter Notifications";
+
+/* No comment provided by engineer. */
+"Un-starred" = "Un-starred";
 
 /* No comment provided by engineer. */
 "Undo" = "Undo";

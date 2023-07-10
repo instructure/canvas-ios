@@ -608,6 +608,9 @@
 "Conversation Message" = "Diskussionsbesked";
 
 /* No comment provided by engineer. */
+"Conversation options" = "Samtaleindstillinger";
+
+/* No comment provided by engineer. */
 "conversation_recipients_to" = "conversation_recipients_to";
 
 /* No comment provided by engineer. */
@@ -1127,6 +1130,9 @@
 "Format not supported" = "Format understøttes ikke";
 
 /* No comment provided by engineer. */
+"Forward" = "Fremad";
+
+/* No comment provided by engineer. */
 "Front Page" = "Forside";
 
 /* No comment provided by engineer. */
@@ -1559,6 +1565,9 @@
 "Message" = "Besked";
 
 /* No comment provided by engineer. */
+"Message Details" = "Beskeddetaljer";
+
+/* No comment provided by engineer. */
 "Message from %@, %@, on %@, %@" = "Besked fra %1$@, %2$@, den %3$@, %4$@";
 
 /* No comment provided by engineer. */
@@ -1569,6 +1578,9 @@
 
 /* No comment provided by engineer. */
 "Modules" = "Moduler";
+
+/* No comment provided by engineer. */
+"More options" = "Flere indstillinger:";
 
 /* No comment provided by engineer. */
 "Move Annotation" = "Flyt anmærkning";
@@ -2576,6 +2588,9 @@
 "There was an error loading quizzes. Pull to refresh to try again." = "Der opstod en fejl under indlæsning af test. Træk for at opdatere for at prøve igen.";
 
 /* No comment provided by engineer. */
+"There was an error loading the message. Pull to refresh to try again." = "Der opstod en fejl under indlæsning af beskeden. Træk for at opdatere for at prøve igen.";
+
+/* No comment provided by engineer. */
 "There was an error while communicating with the server" = "Der opstod en fejl, mens der blev kommunikeret med serveren";
 
 /* No comment provided by engineer. */
@@ -2667,6 +2682,9 @@
 
 /* Description for Twitter communication channel */
 "Twitter Notifications" = "Twitter-meddelelser";
+
+/* No comment provided by engineer. */
+"Un-starred" = "Uden stjerne";
 
 /* No comment provided by engineer. */
 "Undo" = "Fortryd";
