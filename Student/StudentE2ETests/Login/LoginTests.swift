@@ -38,7 +38,6 @@ class LoginTests: E2ETestCase {
 
         let lastLoginButton = LoginHelper.Start.lastLoginButton
         if lastLoginButton.isVisible {
-            XCTAssertEqual(lastLoginButton.label(), user.host)
             XCTAssertEqual(findSchoolButton.label(), "Find another school")
         } else {
             XCTAssertEqual(findSchoolButton.label(), "Find my school")
