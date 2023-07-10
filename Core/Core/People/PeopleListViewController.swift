@@ -57,9 +57,6 @@ public class PeopleListViewController: ScreenViewTrackableViewController, Colore
     }
     private weak var accessibilityFocusAfterReload: UIView?
     private var offlineModelInteractor: OfflineModeInteractor?
-    private var isOffline: Bool {
-        offlineModelInteractor?.isOfflineModeEnabled() ?? false
-    }
 
     public static func create(context: Context, offlineModeInteractor: OfflineModeInteractor = OfflineModeInteractorLive.shared) -> PeopleListViewController {
         let controller = loadFromStoryboard()
@@ -236,7 +233,7 @@ extension PeopleListViewController: UITableViewDataSource, UITableViewDelegate {
         }
         let cell = tableView.dequeue(PeopleListCell.self, for: indexPath)
         cell.accessibilityIdentifier = "people-list-cell-row-\(indexPath.row)"
-        cell.update(user: users[indexPath.row], color: color, isOffline: isOffline)
+        cell.update(user: users[indexPath.row], color: color, isOffline: offlineModelInteractor?.isOfflineModeEnabled() == true)
         return cell
     }
 
