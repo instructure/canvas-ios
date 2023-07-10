@@ -52,6 +52,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         pagesInteractor: CourseSyncPagesInteractor = CourseSyncPagesInteractorLive(),
         assignmentsInteractor: CourseSyncAssignmentsInteractor = CourseSyncAssignmentsInteractorLive(),
         filesInteractor: CourseSyncFilesInteractor = CourseSyncFilesInteractorLive(),
+        syllabusInteractor: CourseSyncSyllabusInteractor = CourseSyncSyllabusInteractorLive(),
         progressWriterInteractor: CourseSyncProgressWriterInteractor = CourseSyncProgressWriterInteractorLive(),
         scheduler: AnySchedulerOf<DispatchQueue> = DispatchQueue(
             label: "com.instructure.icanvas.core.course-sync-download"
@@ -60,6 +61,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         contentInteractors = [
             pagesInteractor,
             assignmentsInteractor,
+            syllabusInteractor,
         ]
         self.filesInteractor = filesInteractor
         self.progressWriterInteractor = progressWriterInteractor
@@ -103,11 +105,13 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             state: .loading(nil)
         )
 
-        return Publishers.Zip3(
+        return [
             downloadTabContent(for: entry, tabName: .assignments),
             downloadTabContent(for: entry, tabName: .pages),
-            downloadFiles(for: entry)
-        )
+            downloadTabContent(for: entry, tabName: .syllabus),
+            downloadFiles(for: entry),
+        ]
+        .zip()
         .receive(on: scheduler)
         .updateErrorState {
             unownedSelf.setState(
