@@ -25,8 +25,6 @@ public protocol OfflineFileInteractor {
 
 public final class OfflineFileInteractorLive: OfflineFileInteractor {
 
-    public static let shared = OfflineFileInteractorLive()
-
     // MARK: - Dependencies
 
     private let offlineModeInteractor: OfflineModeInteractor

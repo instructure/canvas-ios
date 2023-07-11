@@ -63,7 +63,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     private var offlineFileInteractor: OfflineFileInteractor?
 
     public static func create(context: Context?, fileID: String, originURL: URLComponents? = nil, assignmentID: String? = nil,
-                              offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive.shared) -> FileDetailsViewController {
+                              offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()) -> FileDetailsViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
         controller.context = context
@@ -238,6 +238,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     }
 
     @IBAction func share(_ sender: UIBarButtonItem) {
+        guard offlineFileInteractor?.isOffline == false else { return UIAlertController.showItemNotAvailableInOfflineAlert() }
         guard let url = localURL else { return }
         let pdf = children.first { $0 is PDFViewController } as? PDFViewController
         try? pdf?.document?.save()

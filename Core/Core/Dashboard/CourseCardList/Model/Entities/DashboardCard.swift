@@ -57,7 +57,7 @@ public final class DashboardCard: NSManagedObject {
         guard let selections = AppEnvironment.shared.userDefaults?.offlineSyncSelections else { return true }
         var isAvailable = false
         selections.forEach { selection in
-            if selection == "courses/\(id)" { isAvailable = true }
+            if selection.contains("courses/\(id)") { isAvailable = true }
         }
         return isAvailable
     }

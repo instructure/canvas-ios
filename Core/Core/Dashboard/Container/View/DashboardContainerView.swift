@@ -266,7 +266,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                 columnCount: layoutInfo.columns
             ) { cardIndex in
                 let card = courseCardList[cardIndex]
-                var availabilityBinding = Binding<Bool>(
+                let availabilityBinding = Binding<Bool>(
                     get: { !offlineModeViewModel.isOffline || (card.isAvailableOffline && offlineModeViewModel.isOffline) },
                     set: { _ in }
                 )

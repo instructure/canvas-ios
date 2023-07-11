@@ -19,9 +19,9 @@
 import Foundation
 import UIKit
 
-extension UITableViewCell {
+public extension UITableViewCell {
     @IBInspectable
-    public var fullDivider: Bool {
+    var fullDivider: Bool {
         get {
             return separatorInset == .zero
         }
@@ -32,5 +32,10 @@ extension UITableViewCell {
                 layoutMargins = UIEdgeInsets.zero
             }
         }
+    }
+
+    func setCellState(isAvailable: Bool, isUserInteractionEnabled: Bool = false) {
+        self.contentView.alpha = isAvailable ? 1 : 0.3
+        self.isUserInteractionEnabled = isUserInteractionEnabled
     }
 }

@@ -223,6 +223,11 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
 
 extension FileListViewController: UISearchBarDelegate {
     public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        if offlineInteractor?.isOfflineModeEnabled() == true {
+            UIAlertController.showItemNotAvailableInOfflineAlert {
+                self.searchBarCancelButtonClicked(searchBar)
+            }
+        }
         searchBar.setShowsCancelButton(true, animated: true)
     }
 
@@ -405,10 +410,15 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
         cell.accessibilityIdentifier = "FileList.\(indexPath.row)"
         cell.backgroundColor = .backgroundLightest
         if indexPath.section == 1 {
-            cell.update(result: results[indexPath.row], isOffline: isOffline)
+            let result: APIFile? = results[indexPath.row]
+            let isAvailable = isItemAvailableOffline(fileID: result?.id.value)
+            cell.update(result: result, isOffline: isOffline, isAvailable: isAvailable)
         } else {
-            cell.update(item: items?[indexPath.row], color: color, isOffline: isOffline)
+            let item: FolderItem? = items?[indexPath.row]
+            let isAvailable = isItemAvailableOffline(fileID: item?.id)
+            cell.update(item: item, color: color, isOffline: isOffline, isAvailable: isAvailable)
         }
+
         return cell
     }
 
@@ -417,9 +427,9 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
             filePicker.showOptions(for: file, from: self)
         } else if indexPath.section == 1 {
             let id = results[indexPath.row].id.value
-            env.router.route(to: "/\(context.pathComponent)/files/\(id)", from: self, options: .detail)
+            routeIfAvailable(fileID: id, indexPath: indexPath)
         } else if let id = items?[indexPath.row]?.file?.id {
-            env.router.route(to: "/\(context.pathComponent)/files/\(id)", from: self, options: .detail)
+            routeIfAvailable(fileID: id, indexPath: indexPath)
         } else if let path = items?[indexPath.row]?.folder?.path.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
             env.router.route(to: "/\(context.pathComponent)/files/folder/\(path)", from: self, options: .push)
         }
@@ -457,6 +467,28 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
         configuration.performsFirstActionWithFullSwipe = false
         return configuration
     }
+
+    private func isItemAvailableOffline(fileID: String?) -> Bool {
+        guard offlineInteractor?.isOfflineModeEnabled() == true else { return true }
+        guard let selections = AppEnvironment.shared.userDefaults?.offlineSyncSelections,
+              let fileID = fileID?.replacingOccurrences(of: "file-", with: "") else { return true }
+        if fileID.contains("folder") { return true }
+        var isAvailable = false
+        selections.forEach { selection in
+            print(selection)
+            if selection.contains("files/\(fileID)") { isAvailable = true }
+        }
+        return isAvailable
+    }
+
+    private func routeIfAvailable(fileID: String, indexPath: IndexPath) {
+        guard isItemAvailableOffline(fileID: fileID) else {
+            UIAlertController.showItemNotAvailableInOfflineAlert()
+            tableView.deselectRow(at: indexPath, animated: true)
+            return
+        }
+        env.router.route(to: "/\(context.pathComponent)/files/\(fileID)", from: self, options: .detail)
+    }
 }
 
 class FileListUploadCell: UITableViewCell {
@@ -487,7 +519,11 @@ class FileListCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var sizeLabel: UILabel!
 
-    func update(item: FolderItem?, color: UIColor?, isOffline: Bool) {
+    private var fileID: String?
+
+    func update(item: FolderItem?, color: UIColor?, isOffline: Bool, isAvailable: Bool) {
+        fileID = item?.id
+        setCellState(isAvailable: isAvailable, isUserInteractionEnabled: true)
         backgroundColor = .backgroundLightest
         selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         nameLabel.setText(item?.name, style: .textCellTitle)
@@ -513,7 +549,9 @@ class FileListCell: UITableViewCell {
         updateAccessibilityLabel()
     }
 
-    func update(result: APIFile?, isOffline: Bool) {
+    func update(result: APIFile?, isOffline: Bool, isAvailable: Bool) {
+        fileID = result?.id.value
+        setCellState(isAvailable: isAvailable, isUserInteractionEnabled: true)
         nameLabel.setText(result?.display_name, style: .textCellTitle)
         if !isOffline, let url = result?.thumbnail_url?.rawValue, let c = result?.created_at, Clock.now.timeIntervalSince(c) > 3600 {
             iconView.load(url: url)

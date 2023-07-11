@@ -36,7 +36,7 @@ public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, Loc
     public init(
         env: AppEnvironment = .shared,
         fileManager: FileManager = .default,
-        offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive.shared
+        offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()
     ) {
         self.env = env
         self.fileManager = fileManager
