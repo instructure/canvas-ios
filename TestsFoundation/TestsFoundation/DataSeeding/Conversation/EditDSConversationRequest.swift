@@ -18,25 +18,47 @@
 
 import Core
 
-public struct UpdateDSModuleRequest: APIRequestable {
-    public typealias Response = DSModule
+public struct EditDSConversationRequest: APIRequestable {
+    public typealias Response = DSConversation
 
     public let method = APIMethod.put
-    public var path: String
+    public let path: String
     public let body: Body?
 
-    public init(body: Body, courseId: String, moduleId: String) {
+    public init(body: Body, conversationId: String) {
         self.body = body
-        self.path = "courses/\(courseId)/modules/\(moduleId)"
+        self.path = "conversations/\(conversationId)"
     }
 }
 
-extension UpdateDSModuleRequest {
-    public struct UpdatedDSModule: Encodable {
-        let published: Bool
+extension EditDSConversationRequest {
+    public struct Conversation: Encodable {
+        let workflow_state: String
+
+        public init(workflow_state: DSWorkFlowState) {
+            self.workflow_state = workflow_state.rawValue
+        }
     }
 
     public struct Body: Encodable {
-        let module: UpdatedDSModule
+        let conversation: Conversation
+        let scope: String
+
+        public init(conversation: Conversation, scope: DSScope) {
+            self.conversation = conversation
+            self.scope = scope.rawValue
+        }
     }
+}
+
+public enum DSWorkFlowState: String {
+    case read
+    case unread
+    case archived
+}
+
+public enum DSScope: String {
+    case unread
+    case starred
+    case archived
 }

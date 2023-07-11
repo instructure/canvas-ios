@@ -16,27 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-
-public struct UpdateDSModuleRequest: APIRequestable {
-    public typealias Response = DSModule
-
-    public let method = APIMethod.put
-    public var path: String
-    public let body: Body?
-
-    public init(body: Body, courseId: String, moduleId: String) {
-        self.body = body
-        self.path = "courses/\(courseId)/modules/\(moduleId)"
-    }
+public struct DSConversation: Codable {
+    public let id: String
+    public let subject: String
+    public let last_message: String?
+    public let message_count: Int
+    public let last_authored_message: String
+    public let messages: [Message]
+    public let participants: [Participant]
+    public let context_code: String
 }
 
-extension UpdateDSModuleRequest {
-    public struct UpdatedDSModule: Encodable {
-        let published: Bool
-    }
+public struct Participant: Codable {
+    public let id: String
+    public let name: String
+}
 
-    public struct Body: Encodable {
-        let module: UpdatedDSModule
-    }
+public struct Message: Codable {
+    public let id: String
+    public let author_id: String
+    public let body: String
 }
