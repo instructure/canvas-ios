@@ -411,11 +411,11 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
         cell.backgroundColor = .backgroundLightest
         if indexPath.section == 1 {
             let result: APIFile? = results[indexPath.row]
-            let isAvailable = offlineFileInteractor?.isItemAvailableOffline(fileID: result?.id.value) == true
+            let isAvailable = offlineFileInteractor?.isItemAvailableOffline(courseID: course?.first?.id, fileID: result?.id.value) == true
             cell.update(result: result, isOffline: isOffline, isAvailable: isAvailable)
         } else {
             let item: FolderItem? = items?[indexPath.row]
-            let isAvailable = offlineFileInteractor?.isItemAvailableOffline(fileID: item?.id) == true
+            let isAvailable = offlineFileInteractor?.isItemAvailableOffline(courseID: course?.first?.id, fileID: item?.id) == true
             cell.update(item: item, color: color, isOffline: isOffline, isAvailable: isAvailable)
         }
 
@@ -469,7 +469,7 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     private func routeIfAvailable(fileID: String, indexPath: IndexPath) {
-        guard offlineFileInteractor?.isItemAvailableOffline(fileID: fileID) == true else {
+        guard offlineFileInteractor?.isItemAvailableOffline(courseID: course?.first?.id, fileID: fileID) == true else {
             UIAlertController.showItemNotAvailableInOfflineAlert()
             tableView.deselectRow(at: indexPath, animated: true)
             return

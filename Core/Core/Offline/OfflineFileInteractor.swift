@@ -20,7 +20,7 @@ import Combine
 
 public protocol OfflineFileInteractor {
     func filePath(sessionID: String, fileID: String, fileName: String) -> String
-    func isItemAvailableOffline(fileID: String?) -> Bool
+    func isItemAvailableOffline(courseID: String?, fileID: String?) -> Bool
     var isOffline: Bool { get }
 }
 
@@ -38,12 +38,14 @@ public final class OfflineFileInteractorLive: OfflineFileInteractor {
         "\(sessionID)/Offline/Files/\(fileID)/\(fileName)"
     }
 
-    public func isItemAvailableOffline(fileID: String?) -> Bool {
+    public func isItemAvailableOffline(courseID: String?, fileID: String?) -> Bool {
         guard offlineModeInteractor.isOfflineModeEnabled() else { return true }
         guard let selections = AppEnvironment.shared.userDefaults?.offlineSyncSelections,
+              let courseID = courseID,
               let fileID = fileID?.replacingOccurrences(of: "file-", with: "") else { return true }
         if fileID.contains("folder") { return true }
-        return selections.contains { $0.contains("files/\(fileID)") }
+        let syncSelections = ["courses/\(courseID)", "courses/\(courseID)/tabs/files", "courses/\(courseID)/files/\(fileID)"]
+        return selections.contains(where: syncSelections.contains)
     }
 
     public var isOffline: Bool {
