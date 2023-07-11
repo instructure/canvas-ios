@@ -72,13 +72,13 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
         self?.updateUploads()
     }
 
-    private var offlineInteractor: OfflineModeInteractor?
+    private var offlineFileInteractor: OfflineFileInteractor?
 
-    public static func create(context: Context, path: String? = nil, offlineInteractor: OfflineModeInteractor = OfflineModeInteractorLive.shared) -> FileListViewController {
+    public static func create(context: Context, path: String? = nil, offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()) -> FileListViewController {
         let controller = loadFromStoryboard()
         controller.context = context
         controller.path = path ?? ""
-        controller.offlineInteractor = offlineInteractor
+        controller.offlineFileInteractor = offlineFileInteractor
         return controller
     }
 
@@ -223,7 +223,7 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
 
 extension FileListViewController: UISearchBarDelegate {
     public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        if offlineInteractor?.isOfflineModeEnabled() == true {
+        if offlineFileInteractor?.isOffline == true {
             UIAlertController.showItemNotAvailableInOfflineAlert {
                 self.searchBarCancelButtonClicked(searchBar)
             }
@@ -399,7 +399,7 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let isOffline = offlineInteractor?.isOfflineModeEnabled() ?? false
+        let isOffline = offlineFileInteractor?.isOffline == true
         if indexPath.section == 0 {
             let cell: FileListUploadCell = tableView.dequeue(for: indexPath)
             cell.update(uploads[indexPath.row])
@@ -411,11 +411,11 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
         cell.backgroundColor = .backgroundLightest
         if indexPath.section == 1 {
             let result: APIFile? = results[indexPath.row]
-            let isAvailable = isItemAvailableOffline(fileID: result?.id.value)
+            let isAvailable = offlineFileInteractor?.isItemAvailableOffline(fileID: result?.id.value) == true
             cell.update(result: result, isOffline: isOffline, isAvailable: isAvailable)
         } else {
             let item: FolderItem? = items?[indexPath.row]
-            let isAvailable = isItemAvailableOffline(fileID: item?.id)
+            let isAvailable = offlineFileInteractor?.isItemAvailableOffline(fileID: item?.id) == true
             cell.update(item: item, color: color, isOffline: isOffline, isAvailable: isAvailable)
         }
 
@@ -468,21 +468,8 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
         return configuration
     }
 
-    private func isItemAvailableOffline(fileID: String?) -> Bool {
-        guard offlineInteractor?.isOfflineModeEnabled() == true else { return true }
-        guard let selections = AppEnvironment.shared.userDefaults?.offlineSyncSelections,
-              let fileID = fileID?.replacingOccurrences(of: "file-", with: "") else { return true }
-        if fileID.contains("folder") { return true }
-        var isAvailable = false
-        selections.forEach { selection in
-            print(selection)
-            if selection.contains("files/\(fileID)") { isAvailable = true }
-        }
-        return isAvailable
-    }
-
     private func routeIfAvailable(fileID: String, indexPath: IndexPath) {
-        guard isItemAvailableOffline(fileID: fileID) else {
+        guard offlineFileInteractor?.isItemAvailableOffline(fileID: fileID) == true else {
             UIAlertController.showItemNotAvailableInOfflineAlert()
             tableView.deselectRow(at: indexPath, animated: true)
             return
