@@ -16,35 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import UIKit
 
-public struct PrimaryButton<Label>: View where Label: View {
+extension UIAlertController {
 
-    let action: () -> Void
-    let label: Label
-    @Binding var isAvailable: Bool
-
-    public init(isAvailable: Binding<Bool> = .constant(true),
-                action: @escaping () -> Void, @ViewBuilder label: @escaping () -> Label) {
-        _isAvailable = isAvailable
-        self.action = action
-        self.label = label()
-    }
-
-    public var body: some View {
-        Button {
-            if isAvailable {
-                action()
-            } else {
-                showAlert()
-            }
-        } label: {
-            label
-        }
-        .opacity(isAvailable ? 1.0 : 0.3)
-    }
-
-    private func showAlert() {
+    @objc
+    public static func showItemNotAvailableInOfflineAlert() {
         let title = NSLocalizedString("Offline mode", comment: "")
         let message = NSLocalizedString("This item is not available offline.", comment: "")
         let action = NSLocalizedString("OK", comment: "")

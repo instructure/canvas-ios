@@ -33,4 +33,5 @@ public enum TabName: String, Codable {
     case conferences
     case outcomes
     case custom
+    case grades
 }
