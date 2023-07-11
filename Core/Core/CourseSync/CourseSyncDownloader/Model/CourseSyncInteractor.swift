@@ -49,20 +49,12 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     private var subscription: AnyCancellable?
 
     public init(
-        pagesInteractor: CourseSyncPagesInteractor = CourseSyncPagesInteractorLive(),
-        assignmentsInteractor: CourseSyncAssignmentsInteractor = CourseSyncAssignmentsInteractorLive(),
-        filesInteractor: CourseSyncFilesInteractor = CourseSyncFilesInteractorLive(),
-        gradesInteractor: CourseSyncGradesInteractor = CourseSyncGradesInteractorLive(userId: AppEnvironment.shared.currentSession?.userID ?? "self"),
-        progressWriterInteractor: CourseSyncProgressWriterInteractor = CourseSyncProgressWriterInteractorLive(),
-        scheduler: AnySchedulerOf<DispatchQueue> = DispatchQueue(
-            label: "com.instructure.icanvas.core.course-sync-download"
-        ).eraseToAnyScheduler()
+        contentInteractors: [CourseSyncContentInteractor],
+        filesInteractor: CourseSyncFilesInteractor,
+        progressWriterInteractor: CourseSyncProgressWriterInteractor,
+        scheduler: AnySchedulerOf<DispatchQueue>
     ) {
-        contentInteractors = [
-            pagesInteractor,
-            assignmentsInteractor,
-            gradesInteractor,
-        ]
+        self.contentInteractors = contentInteractors
         self.filesInteractor = filesInteractor
         self.progressWriterInteractor = progressWriterInteractor
         self.scheduler = scheduler
@@ -105,12 +97,13 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             state: .loading(nil)
         )
 
-        return Publishers.Zip4(
+        return [
             downloadTabContent(for: entry, tabName: .assignments),
             downloadTabContent(for: entry, tabName: .pages),
             downloadTabContent(for: entry, tabName: .grades),
-            downloadFiles(for: entry)
-        )
+            downloadFiles(for: entry),
+        ]
+        .zip()
         .receive(on: scheduler)
         .updateErrorState {
             unownedSelf.setState(
