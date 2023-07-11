@@ -33,7 +33,7 @@ public class DashboardContainerViewModel: ObservableObject {
 
     public init(
         environment: AppEnvironment,
-        courseSyncInteractor: CourseSyncInteractor = CourseSyncInteractorLive()
+        courseSyncInteractor: CourseSyncInteractor = CourseSyncDownloaderAssembly.makeInteractor()
     ) {
         settingsButtonTapped
             .map {

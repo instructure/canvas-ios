@@ -300,7 +300,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
     }
 }
 
-class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserverInteractor {
+private class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserverInteractor {
     let entryProgressSubject = PassthroughSubject<ReactiveStore<Core.GetCourseSyncStateProgressUseCase>.State, Never>()
 
     func observeDownloadProgress() -> AnyPublisher<Core.ReactiveStore<Core.GetCourseSyncDownloadProgressUseCase>.State, Never> {
