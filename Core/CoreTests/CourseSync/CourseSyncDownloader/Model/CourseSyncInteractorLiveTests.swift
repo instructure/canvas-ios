@@ -71,9 +71,9 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
 
     func testDownloadState() {
         let testee = CourseSyncInteractorLive(
-            pagesInteractor: pagesInteractor,
-            assignmentsInteractor: assignmentsInteractor,
+            contentInteractors: [pagesInteractor, assignmentsInteractor],
             filesInteractor: filesInteractor,
+            progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
             scheduler: .immediate
         )
         entries[0].tabs[0].selectionState = .selected
@@ -220,9 +220,9 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
 
     func testFilesLoadingState() {
         let testee = CourseSyncInteractorLive(
-            pagesInteractor: pagesInteractor,
-            assignmentsInteractor: assignmentsInteractor,
+            contentInteractors: [pagesInteractor, assignmentsInteractor],
             filesInteractor: filesInteractor,
+            progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
             scheduler: .immediate
         )
         entries[0].tabs[2].selectionState = .selected
@@ -256,9 +256,9 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
 
     func testFilesDownloadedBytes() {
         let testee = CourseSyncInteractorLive(
-            pagesInteractor: pagesInteractor,
-            assignmentsInteractor: assignmentsInteractor,
+            contentInteractors: [pagesInteractor, assignmentsInteractor],
             filesInteractor: filesInteractor,
+            progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
             scheduler: .immediate
         )
         entries[0].selectionState = .partiallySelected
@@ -293,9 +293,9 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
 
     func testFilesPartialSelection() {
         let testee = CourseSyncInteractorLive(
-            pagesInteractor: pagesInteractor,
-            assignmentsInteractor: assignmentsInteractor,
+            contentInteractors: [pagesInteractor, assignmentsInteractor],
             filesInteractor: filesInteractor,
+            progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
             scheduler: .immediate
         )
         entries[0].tabs[2].selectionState = .partiallySelected
@@ -329,9 +329,9 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
 
     func testAssignmentErrorState() {
         let testee = CourseSyncInteractorLive(
-            pagesInteractor: pagesInteractor,
-            assignmentsInteractor: assignmentsInteractor,
+            contentInteractors: [pagesInteractor, assignmentsInteractor],
             filesInteractor: filesInteractor,
+            progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
             scheduler: .immediate
         )
         entries[0].tabs[0].selectionState = .selected
@@ -358,9 +358,9 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
 
     func testPagesErrorState() {
         let testee = CourseSyncInteractorLive(
-            pagesInteractor: pagesInteractor,
-            assignmentsInteractor: assignmentsInteractor,
+            contentInteractors: [pagesInteractor, assignmentsInteractor],
             filesInteractor: filesInteractor,
+            progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
             scheduler: .immediate
         )
         entries[0].tabs[1].selectionState = .selected
@@ -387,9 +387,9 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
 
     func testFilesErrorState() {
         let testee = CourseSyncInteractorLive(
-            pagesInteractor: pagesInteractor,
-            assignmentsInteractor: assignmentsInteractor,
+            contentInteractors: [pagesInteractor, assignmentsInteractor],
             filesInteractor: filesInteractor,
+            progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
             scheduler: .immediate
         )
         entries[0].tabs[2].selectionState = .selected
@@ -418,10 +418,13 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         let syllbusDownloadStarted = expectation(description: "Syllabus download started")
         let mockSyllabusInteractor = CourseSyncSyllabusInteractorMock(expectation: syllbusDownloadStarted)
         let testee = CourseSyncInteractorLive(
-            pagesInteractor: pagesInteractor,
-            assignmentsInteractor: assignmentsInteractor,
+            contentInteractors: [
+                pagesInteractor,
+                assignmentsInteractor,
+                mockSyllabusInteractor,
+            ],
             filesInteractor: filesInteractor,
-            syllabusInteractor: mockSyllabusInteractor,
+            progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
             scheduler: .immediate
         )
         entries[0].tabs[3].selectionState = .selected

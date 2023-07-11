@@ -49,20 +49,12 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     private var subscription: AnyCancellable?
 
     public init(
-        pagesInteractor: CourseSyncPagesInteractor = CourseSyncPagesInteractorLive(),
-        assignmentsInteractor: CourseSyncAssignmentsInteractor = CourseSyncAssignmentsInteractorLive(),
-        filesInteractor: CourseSyncFilesInteractor = CourseSyncFilesInteractorLive(),
-        syllabusInteractor: CourseSyncSyllabusInteractor = CourseSyncSyllabusInteractorLive(),
-        progressWriterInteractor: CourseSyncProgressWriterInteractor = CourseSyncProgressWriterInteractorLive(),
-        scheduler: AnySchedulerOf<DispatchQueue> = DispatchQueue(
-            label: "com.instructure.icanvas.core.course-sync-download"
-        ).eraseToAnyScheduler()
+        contentInteractors: [CourseSyncContentInteractor],
+        filesInteractor: CourseSyncFilesInteractor,
+        progressWriterInteractor: CourseSyncProgressWriterInteractor,
+        scheduler: AnySchedulerOf<DispatchQueue>
     ) {
-        contentInteractors = [
-            pagesInteractor,
-            assignmentsInteractor,
-            syllabusInteractor,
-        ]
+        self.contentInteractors = contentInteractors
         self.filesInteractor = filesInteractor
         self.progressWriterInteractor = progressWriterInteractor
         self.scheduler = scheduler
