@@ -59,25 +59,24 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
     public init(courseID: String, quizID: String) {
         self.quizID = quizID
         self.courseID = courseID
-
-        weak var weakSelf = self
-        fetchAssignmentGroups {
-            weakSelf?.fetchQuiz()
-        }
+        fetchQuiz()
+        fetchAssignmentGroups()
     }
 
     func fetchQuiz() {
         let useCase = GetQuiz(courseID: courseID, quizID: quizID)
-        useCase.fetch(force: true) { [weak self] _, _, fetchError in
-            guard let self = self else { return }
-            if fetchError != nil {
-                self.state = .error(fetchError?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: ""))
-                return
-            }
+        useCase.fetch(force: true) { _, _, fetchError in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                if fetchError != nil {
+                    self.state = .error(fetchError?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: ""))
+                    return
+                }
 
-            self.quiz = self.env.database.viewContext.fetch(scope: useCase.scope).first
-            self.assignmentID = self.quiz?.assignmentID
-            self.fetchAssignment()
+                self.quiz = self.env.database.viewContext.fetch(scope: useCase.scope).first
+                self.assignmentID = self.quiz?.assignmentID
+                self.fetchAssignment()
+            }
         }
     }
 
@@ -88,29 +87,31 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
         }
 
         let useCase = GetAssignment(courseID: courseID, assignmentID: assignmentID, include: GetAssignmentRequest.GetAssignmentInclude.allCases)
-        useCase.fetch(force: true) { [weak self] _, _, fetchError in
-            guard let self = self else { return }
-            if fetchError != nil {
-                self.state = .error(fetchError?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: ""))
-                return
-            }
+        useCase.fetch(force: true) { _, _, fetchError in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                if fetchError != nil {
+                    self.state = .error(fetchError?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: ""))
+                    return
+                }
 
-            self.assignment = self.env.database.viewContext.fetch(scope: useCase.scope).first
-            self.loadAttributes()
+                self.assignment = self.env.database.viewContext.fetch(scope: useCase.scope).first
+                self.loadAttributes()
+            }
         }
     }
 
-    func fetchAssignmentGroups(completion: @escaping () -> Void) {
+    func fetchAssignmentGroups() {
         let useCase = GetAssignmentGroups(courseID: courseID)
-        useCase.fetch(force: true) { [weak self] _, _, fetchError in
-            guard let self = self else { return }
-            if fetchError != nil {
-                completion()
-                self.state = .error(fetchError?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: ""))
-                return
+        useCase.fetch(force: true) { _, _, fetchError in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                if fetchError != nil {
+                    self.state = .error(fetchError?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: ""))
+                    return
+                }
+                self.assignmentGroups = self.env.database.viewContext.fetch(scope: useCase.scope)
             }
-            self.assignmentGroups = self.env.database.viewContext.fetch(scope: useCase.scope)
-            completion()
         }
     }
 
