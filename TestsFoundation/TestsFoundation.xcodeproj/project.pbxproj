@@ -120,6 +120,10 @@
 		8B70DBC42A56DF7A007D3ED4 /* CreateDSNewQuizItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBC32A56DF7A007D3ED4 /* CreateDSNewQuizItemRequest.swift */; };
 		8B70DBC62A56DF8D007D3ED4 /* DataSeeder+DSNewQuizItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBC52A56DF8D007D3ED4 /* DataSeeder+DSNewQuizItem.swift */; };
 		8B70DBC82A56DF98007D3ED4 /* DSNewQuizItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBC72A56DF98007D3ED4 /* DSNewQuizItem.swift */; };
+		8B70DC0D2A5D5C8C007D3ED4 /* SetDSFeatureFlagRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DC0C2A5D5C8C007D3ED4 /* SetDSFeatureFlagRequest.swift */; };
+		8B70DC0F2A5D5CA4007D3ED4 /* DataSeeder+DSFeatureFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DC0E2A5D5CA4007D3ED4 /* DataSeeder+DSFeatureFlag.swift */; };
+		8B70DC112A5D5CB6007D3ED4 /* DSFeatureFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DC102A5D5CB6007D3ED4 /* DSFeatureFlag.swift */; };
+		8B70DC132A5D5EF5007D3ED4 /* DSFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DC122A5D5EF5007D3ED4 /* DSFeature.swift */; };
 		8C02370D294ADC5E03166916 /* CreateDSQuizQuestionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFA2EB914E415CCFACDB /* CreateDSQuizQuestionRequest.swift */; };
 		8CE7A795708CBCF4AF7A2674 /* DSModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69E1EBE6B486730AE73F45 /* DSModuleItem.swift */; };
 		8CEEA54DE127851FF426490F /* CreateDSDiscussionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D6E99369534DE2260DD4EB /* CreateDSDiscussionRequest.swift */; };
@@ -331,6 +335,10 @@
 		8B70DBC32A56DF7A007D3ED4 /* CreateDSNewQuizItemRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSNewQuizItemRequest.swift; sourceTree = "<group>"; };
 		8B70DBC52A56DF8D007D3ED4 /* DataSeeder+DSNewQuizItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSNewQuizItem.swift"; sourceTree = "<group>"; };
 		8B70DBC72A56DF98007D3ED4 /* DSNewQuizItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSNewQuizItem.swift; sourceTree = "<group>"; };
+		8B70DC0C2A5D5C8C007D3ED4 /* SetDSFeatureFlagRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDSFeatureFlagRequest.swift; sourceTree = "<group>"; };
+		8B70DC0E2A5D5CA4007D3ED4 /* DataSeeder+DSFeatureFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSFeatureFlag.swift"; sourceTree = "<group>"; };
+		8B70DC102A5D5CB6007D3ED4 /* DSFeatureFlag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSFeatureFlag.swift; sourceTree = "<group>"; };
+		8B70DC122A5D5EF5007D3ED4 /* DSFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSFeature.swift; sourceTree = "<group>"; };
 		8E046239E00E2F114C950D3A /* ModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFixture.swift; sourceTree = "<group>"; };
 		8E52A6F60DF961A9FB652399 /* DSSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSubmission.swift; sourceTree = "<group>"; };
 		8EB01A67D620697DB09B6F61 /* CreateDSAccountNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSAccountNotificationRequest.swift; sourceTree = "<group>"; };
@@ -481,6 +489,7 @@
 		039CF14263C4180E857200CA /* DataSeeding */ = {
 			isa = PBXGroup;
 			children = (
+				8B70DC092A5D5C5A007D3ED4 /* FeatureFlags */,
 				8B70DBBA2A56DD04007D3ED4 /* NewQuizzes */,
 				BB6B6C485316F1CF22E406E2 /* AccountNotifications */,
 				C116E77902A4568988D60E21 /* Assignment */,
@@ -935,6 +944,17 @@
 			path = NewQuizzes;
 			sourceTree = "<group>";
 		};
+		8B70DC092A5D5C5A007D3ED4 /* FeatureFlags */ = {
+			isa = PBXGroup;
+			children = (
+				8B70DC0C2A5D5C8C007D3ED4 /* SetDSFeatureFlagRequest.swift */,
+				8B70DC0E2A5D5CA4007D3ED4 /* DataSeeder+DSFeatureFlag.swift */,
+				8B70DC102A5D5CB6007D3ED4 /* DSFeatureFlag.swift */,
+				8B70DC122A5D5EF5007D3ED4 /* DSFeature.swift */,
+			);
+			path = FeatureFlags;
+			sourceTree = "<group>";
+		};
 		9A7561DA742A2C1B232DFA62 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
@@ -1348,6 +1368,7 @@
 				1CDED784002866FD6FF16FAE /* ConversationFixture.swift in Sources */,
 				41506C341DAAAD0B4A5ADF18 /* ConversationList.swift in Sources */,
 				552DF6C0381499EAD5EA0D16 /* CoreUITestCase.swift in Sources */,
+				8B70DC112A5D5CB6007D3ED4 /* DSFeatureFlag.swift in Sources */,
 				B51F704B105B606DBB15C5D2 /* CourseFixture.swift in Sources */,
 				34D52A8BFDE50E183045A17E /* CourseNavigation.swift in Sources */,
 				F348F002D95D60AD95F66F1E /* CourseSectionFixture.swift in Sources */,
@@ -1387,6 +1408,7 @@
 				1262342A0DDB2D111A04EA5C /* DataSeeder+DSGrades.swift in Sources */,
 				DF6574E0981A8B23E7E05DC5 /* DataSeeder+DSGradingStandards.swift in Sources */,
 				7F087B1298EF1D6ABD5C37E7 /* DataSeeder+DSModule.swift in Sources */,
+				8B70DC0F2A5D5CA4007D3ED4 /* DataSeeder+DSFeatureFlag.swift in Sources */,
 				C67EA08A87AE4C8393A805B9 /* DataSeeder+DSModuleItem.swift in Sources */,
 				66763804BE506F3E75E07C73 /* DataSeeder+DSPage.swift in Sources */,
 				EE5667413AE1D36643986207 /* DataSeeder+DSQuiz.swift in Sources */,
@@ -1469,6 +1491,7 @@
 				1134D35CA83C4BAA22A0CE1A /* Profile.swift in Sources */,
 				746E19BE7256EE3EBB329F8C /* Quiz.swift in Sources */,
 				63EA3D8B2EF8758AF7CCC428 /* QuizFixture.swift in Sources */,
+				8B70DC132A5D5EF5007D3ED4 /* DSFeature.swift in Sources */,
 				296349D676FB1E9868D868BF /* RichContentEditor.swift in Sources */,
 				9F9E2F0461277C96B9236471 /* RichContentToolbar.swift in Sources */,
 				40EE68261004632A33226A77 /* RubricFixture.swift in Sources */,
@@ -1489,6 +1512,7 @@
 				CC01812D641270D86F504DDD /* TestLogger.swift in Sources */,
 				7947D9C97954FDD89B9FF680 /* TestLoginDelegate.swift in Sources */,
 				6D5BA2C2E22F7582E6F82F7D /* TestPersistence.swift in Sources */,
+				8B70DC0D2A5D5C8C007D3ED4 /* SetDSFeatureFlagRequest.swift in Sources */,
 				0D6EACF326CFCFD6317CBEEA /* TestRouter.swift in Sources */,
 				5B2E9009851FA5FE895D2773 /* TestTreeExtensions.swift in Sources */,
 				B9CD1D2B19123A273844CE88 /* TextSubmission.swift in Sources */,

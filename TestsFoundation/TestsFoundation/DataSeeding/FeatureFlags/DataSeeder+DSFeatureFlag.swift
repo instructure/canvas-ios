@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,8 +16,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct DSCourse: Codable {
-    public let id: String
-    public let name: String
-    public let account_id: String
+extension DataSeeder {
+
+    public func getFeatures(courseId: String, accountId: String? = nil) -> [DSFeature] {
+        let request = GetDSFeaturesRequest(courseId: courseId, accountID: accountId)
+        return makeRequest(request)
+    }
+
+    public func setFeatureFlag(courseId: String, feature: DSFeature, state: DSFeatureFlagState) -> DSFeatureFlag {
+        let requestBody = SetDSFeatureFlagRequest.Body.init(state: state)
+        let request = SetDSFeatureFlagRequest(body: requestBody, courseId: courseId, feature: feature)
+        return makeRequest(request)
+    }
 }

@@ -41,4 +41,21 @@ public class NewQuizzesHelper: BaseHelper {
             scoring_algorithm: .trueFalse)
         return seeder.createNewQuizItem(courseId: course.id, quizId: quiz.id, quizItemBody: quizItemBody)
     }
+
+    @discardableResult
+    public static func enableFeatureFlagForCourse(course: DSCourse,
+                                                  feature: DSFeature,
+                                                  state: DSFeatureFlagState = .on) -> DSFeatureFlag {
+        return seeder.setFeatureFlag(courseId: course.id, feature: feature, state: state)
+    }
+
+    @discardableResult
+    public static func listFeaturesForCourse(course: DSCourse) -> [DSFeature] {
+        return seeder.getFeatures(courseId: course.id)
+    }
+
+    @discardableResult
+    public static func listFeaturesForAccount(course: DSCourse) -> [DSFeature] {
+        return seeder.getFeatures(courseId: course.id, accountId: course.account_id)
+    }
 }

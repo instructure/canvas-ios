@@ -26,6 +26,10 @@ class NewQuizzesTests: E2ETestCase {
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
+
+        let availableFeaturesForCourse = NewQuizzesHelper.listFeaturesForCourse(course: course)
+        let availableFeaturesForAccount = NewQuizzesHelper.listFeaturesForAccount(course: course)
+
         let quiz = NewQuizzesHelper.createNewQuiz(course: course)
         print("NO WAY IT WORKS!")
 
