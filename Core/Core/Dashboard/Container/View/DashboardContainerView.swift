@@ -40,6 +40,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
 
     @State private var isShowingKebabDialog = false
     @State var showGrade = AppEnvironment.shared.userDefaults?.showGradesOnDashboard == true
+    @StateObject private var offlineSyncCardViewModel = DashboardOfflineSyncProgressCardAssembly.makeViewModel()
 
     private var activeGroups: [Group] { groups.all.filter { $0.isActive } }
     private var isGroupSectionActive: Bool { !activeGroups.isEmpty && shouldShowGroupList }
@@ -65,9 +66,11 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         GeometryReader { geometry in
             RefreshableScrollView {
                 VStack(spacing: 0) {
+                    DashboardOfflineSyncProgressCardView(viewModel: offlineSyncCardViewModel)
                     fileUploadNotificationCards()
                     list(CGSize(width: geometry.size.width - 32, height: geometry.size.height))
                 }
+                .animation(.default, value: offlineSyncCardViewModel.isVisible)
                 .padding(.horizontal, verticalSpacing)
             }
             refreshAction: { onComplete in
@@ -261,7 +264,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                 columnCount: layoutInfo.columns
             ) { cardIndex in
                 let card = courseCardList[cardIndex]
-                var availabilityBinding = Binding<Bool>(
+                let availabilityBinding = Binding<Bool>(
                     get: { !offlineModeViewModel.isOffline || (card.isAvailableOffline && offlineModeViewModel.isOffline) },
                     set: { _ in }
                 )

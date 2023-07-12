@@ -18,66 +18,33 @@
 
 import Foundation
 
-struct CourseSyncEntry {
-    enum State: Codable, Equatable, Hashable {
-        case loading(Float?), error, downloaded
-    }
-
-    struct Tab {
-        let id: String
-        let name: String
-        let type: TabName
-        var isCollapsed: Bool = true
-        var state: State = .loading(nil)
-        var selectionState: ListCellView.SelectionState = .deselected
-    }
-
-    struct File {
-        /**
-         The unique identifier of the sync entry in a form of "courses/:courseId/files/:fileId". Doesn't correspond to the file ID on API. Use the `fileId` property if you need the API id.
-         */
-        let id: String
-        var fileId: String { String(id.split(separator: "/").last ?? "") }
-        let displayName: String
-        let fileName: String
-        let url: URL
-        let mimeClass: String
-        var state: State = .loading(nil)
-        var selectionState: ListCellView.SelectionState = .deselected
-
-        /// Filesize in bytes, received from the API.
-        let bytesToDownload: Int
-
-        /// Downloaded bytes, progress is persisted to Core Data.
-        var bytesDownloaded: Int {
-            switch state {
-            case .downloaded: return bytesToDownload
-            case let .loading(progress):
-                if let progress {
-                    return Int(Float(bytesToDownload) * progress)
-                } else {
-                    return 0
-                }
-            case .error: return 0
-            }
-        }
+public struct CourseSyncEntry: Equatable {
+    public enum State: Codable, Equatable, Hashable {
+        // CourseSyncEntryProgress relies on this order when it saves its' data.
+        // Core Data Raw values:
+        // idle = 0
+        // loading = 1
+        // error = 2
+        // downloaded 3
+        case idle, loading(Float?), error, downloaded
     }
 
     let name: String
+
     /**
      The unique identifier of the sync entry in a form of "courses/:courseId". Doesn't correspond to the course ID on API. Use the `courseId` property if you need the API id.
      */
     let id: String
     var courseId: String { String(id.split(separator: "/").last ?? "") }
 
-    var tabs: [Self.Tab]
+    var tabs: [CourseSyncEntry.Tab]
     var selectedTabsCount: Int {
         tabs.reduce(0) { partialResult, tab in
             partialResult + (tab.selectionState == .selected || tab.selectionState == .partiallySelected ? 1 : 0)
         }
     }
 
-    var files: [Self.File]
+    var files: [CourseSyncEntry.File]
     var selectedFilesCount: Int {
         files.reduce(0) { partialResult, file in
             partialResult + (file.selectionState == .selected ? 1 : 0)
@@ -94,44 +61,103 @@ struct CourseSyncEntry {
 
     var state: State = .loading(nil)
 
-    /// Total size of course file in bytes.
+    /// Total combined size of files and tabs in bytes.
     var totalSize: Int {
+        let filesSize = files
+            .reduce(0) { partialResult, file in
+                partialResult + file.bytesToDownload
+            }
+
+        let tabsSize = tabs
+            .filter { $0.type != TabName.files }
+            .reduce(0) { partialResult, tab in
+                partialResult + tab.bytesToDownload
+            }
+
+        return filesSize + tabsSize
+    }
+
+    /// Total size of course files in bytes.
+    var totalFileSize: Int {
         files
             .reduce(0) { partialResult, file in
                 partialResult + file.bytesToDownload
             }
     }
 
-    /// Total size of selected course files in bytes.
+    /// When the total file size is greater than 0, display e.g 4 GB, otherwise return nil
+    var totalSizeFormattedString: String? {
+        totalSize > 0 ? totalSize.humanReadableFileSize : nil
+    }
+
+    /// Total combined size of selected files and tabs in bytes.
     var totalSelectedSize: Int {
-        files
+        let filesSize = files
             .filter { $0.selectionState == .selected }
             .reduce(0) { partialResult, file in
                 partialResult + file.bytesToDownload
             }
+
+        let tabsSize = tabs
+            .filter { $0.type != TabName.files }
+            .filter { $0.selectionState == .selected }
+            .reduce(0) { partialResult, tab in
+                partialResult + tab.bytesToDownload
+            }
+
+        return filesSize + tabsSize
     }
 
-    /// Total size of selected and downloaded files in bytes.
+    /// Total combined size of selected and downloaded files and tabs  in bytes.
     var totalDownloadedSize: Int {
-        files
+        let filesSize = files
             .filter { $0.selectionState == .selected }
             .reduce(0) { partialResult, file in
                 partialResult + file.bytesDownloaded
             }
+
+        let tabsSize = tabs
+            .filter { $0.type != TabName.files }
+            .filter { $0.selectionState == .selected }
+            .reduce(0) { partialResult, tab in
+                partialResult + tab.bytesDownloaded
+            }
+
+        return filesSize + tabsSize
     }
 
-    /// Total progress of selected file downloads, ranging from 0 to 1.
+    /// Total combined progress of selected file and tabs downloads, ranging from 0 to 1.
     var progress: Float {
-        let totalProgress = files
+        let totalFilesProgress = files
             .filter { $0.selectionState == .selected }
             .reduce(0 as Float) { partialResult, file in
                 switch file.state {
+                case .idle: return 0
                 case .downloaded: return partialResult + 1
                 case let .loading(progress): return partialResult + (progress ?? 0)
                 case .error: return partialResult + 0
                 }
             }
-        return totalProgress / Float(selectedFilesCount)
+
+        let totalTabsProgress = tabs
+            .filter { $0.type != TabName.files }
+            .filter { $0.selectionState == .selected }
+            .reduce(0 as Float) { partialResult, tab in
+                switch tab.state {
+                case .idle: return 0
+                case .downloaded: return partialResult + 1
+                case .loading: return partialResult + 0
+                case .error: return partialResult + 0
+                }
+            }
+
+        let selectedTabs = tabs
+            .filter { $0.type != TabName.files }
+            .filter { $0.selectionState == .selected }
+
+        let selectedCount = (Float(selectedFilesCount) + Float(selectedTabs.count))
+        guard selectedCount > 0 else { return 0 }
+        return (totalFilesProgress + totalTabsProgress) / selectedCount
     }
 
     mutating func selectCourse(selectionState: ListCellView.SelectionState) {
@@ -141,10 +167,10 @@ struct CourseSyncEntry {
         isEverythingSelected = selectionState == .selected ? true : false
     }
 
-    mutating func selectTab(index: Int, selectionState: ListCellView.SelectionState) {
-        tabs[index].selectionState = selectionState
+    mutating func selectTab(id: String, selectionState: ListCellView.SelectionState) {
+        tabs[id: id]?.selectionState = selectionState
 
-        if tabs[index].type == .files {
+        if tabs[id: id]?.type == .files {
             files.indices.forEach { files[$0].selectionState = selectionState }
         }
 
@@ -152,15 +178,17 @@ struct CourseSyncEntry {
         self.selectionState = selectedTabsCount > 0 ? .partiallySelected : .deselected
     }
 
-    mutating func selectFile(index: Int, selectionState: ListCellView.SelectionState) {
-        files[index].selectionState = selectionState == .selected ? .selected : .deselected
+    mutating func selectFile(id: String, selectionState: ListCellView.SelectionState) {
+        files[id: id]?.selectionState = selectionState == .selected ? .selected : .deselected
 
         isEverythingSelected = (selectedTabsCount == tabs.count) && (selectedFilesCount == files.count)
 
-        guard let fileTabIndex = tabs.firstIndex(where: { $0.type == TabName.files }) else {
+        guard var fileTab = tabs.first(where: { $0.type == TabName.files }) else {
             return
         }
-        tabs[fileTabIndex].selectionState = selectedFilesCount > 0 ? .partiallySelected : .deselected
+        fileTab.selectionState = selectedFilesCount > 0 ? .partiallySelected : .deselected
+        tabs[id: fileTab.id] = fileTab
+
         self.selectionState = selectedTabsCount > 0 ? .partiallySelected : .deselected
     }
 
@@ -168,30 +196,16 @@ struct CourseSyncEntry {
         self.state = state
     }
 
-    mutating func updateTabState(index: Int, state: State) {
-        tabs[index].state = state
-    }
-
-    mutating func updateFileState(index: Int, state: State) {
-        files[index].state = state
-    }
-}
-
-extension Array where Element == CourseSyncEntry {
-    var totalSelectedSize: Int {
-        reduce(0) { partialResult, entry in
-            partialResult + entry.totalSelectedSize
+    mutating func updateTabState(id: String, state: State) {
+        if let index = tabs.firstIndex(where: { $0.id == id }) {
+            tabs[index].state = state
         }
     }
 
-    var totalDownloadedSize: Int {
-        reduce(0) { partialResult, entry in
-            partialResult + entry.totalDownloadedSize
+    mutating func updateFileState(id: String, state: State) {
+        if let index = files.firstIndex(where: { $0.id == id }) {
+            files[index].state = state
         }
-    }
-
-    var progress: Float {
-        Float(totalDownloadedSize) / Float(totalSelectedSize)
     }
 }
 

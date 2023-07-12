@@ -36,23 +36,11 @@ public struct PrimaryButton<Label>: View where Label: View {
             if isAvailable {
                 action()
             } else {
-                showAlert()
+                UIAlertController.showItemNotAvailableInOfflineAlert()
             }
         } label: {
             label
         }
         .opacity(isAvailable ? 1.0 : 0.3)
-    }
-
-    private func showAlert() {
-        let title = NSLocalizedString("Offline mode", comment: "")
-        let message = NSLocalizedString("This item is not available offline.", comment: "")
-        let action = NSLocalizedString("OK", comment: "")
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: action, style: .default))
-
-        if let top = AppEnvironment.shared.topViewController {
-            AppEnvironment.shared.router.show(alert, from: top, options: .modal())
-        }
     }
 }

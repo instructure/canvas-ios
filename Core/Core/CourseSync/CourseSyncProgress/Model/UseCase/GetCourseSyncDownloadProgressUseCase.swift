@@ -17,13 +17,5 @@
 //
 
 import Foundation
-import CoreData
 
-public final class CourseSyncFileProgress: NSManagedObject {
-    @NSManaged public var bytesToDownload: Int
-    @NSManaged public var bytesDownloaded: Int
-
-    var progress: Float {
-        Float(bytesDownloaded) / Float(bytesToDownload)
-    }
-}
+class GetCourseSyncDownloadProgressUseCase: LocalUseCase<CourseSyncDownloadProgress> {}
