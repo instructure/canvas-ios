@@ -31,7 +31,10 @@ public class DashboardContainerViewModel: ObservableObject {
 
     private var subscriptions = Set<AnyCancellable>()
 
-    public init(environment: AppEnvironment) {
+    public init(
+        environment: AppEnvironment,
+        courseSyncInteractor: CourseSyncInteractor = CourseSyncDownloaderAssembly.makeInteractor()
+    ) {
         settingsButtonTapped
             .map {
                 let interactor = DashboardSettingsInteractorLive(environment: environment, defaults: environment.userDefaults)
@@ -41,6 +44,12 @@ public class DashboardContainerViewModel: ObservableObject {
                 return (HelmNavigationController(rootViewController: dashboard), viewModel.popoverSize)
             }
             .subscribe(showSettings)
+            .store(in: &subscriptions)
+
+        NotificationCenter.default.publisher(for: .OfflineSyncTriggered)
+            .compactMap { $0.object as? [CourseSyncEntry] }
+            .flatMap { courseSyncInteractor.downloadContent(for: $0 )}
+            .sink()
             .store(in: &subscriptions)
     }
 }

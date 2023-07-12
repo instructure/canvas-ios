@@ -20,54 +20,106 @@ import Combine
 import CombineExt
 import CoreData
 
-public final class FetchedResultsPublisher<T: NSManagedObject>: NSObject, NSFetchedResultsControllerDelegate {
-    typealias Subscriber = Publishers.Create<[T], Error>.Subscriber
+public final class FetchedResultsPublisher<ResultType>: Publisher where ResultType: NSFetchRequestResult {
+    public init(
+        request: NSFetchRequest<ResultType>,
+        context: NSManagedObjectContext
+    ) {
+        self.request = request
+        self.context = context
+    }
 
-    private let subscriber: Subscriber
-    private let frc: NSFetchedResultsController<T>
+    let request: NSFetchRequest<ResultType>
+    let context: NSManagedObjectContext
 
+    // MARK: - Publisher
+
+    public typealias Output = [ResultType]
+    public typealias Failure = Error
+
+    public func receive<S>(subscriber: S) where S: Subscriber, S.Failure == Failure, S.Input == Output {
+        subscriber.receive(subscription: FetchedResultsSubscription(
+            subscriber: subscriber,
+            request: request,
+            context: context
+        ))
+    }
+}
+
+final class FetchedResultsSubscription
+<SubscriberType, ResultType>:
+    NSObject, Subscription, NSFetchedResultsControllerDelegate
+    where
+    SubscriberType: Subscriber,
+    SubscriberType.Input == [ResultType],
+    SubscriberType.Failure == Error,
+    ResultType: NSFetchRequestResult {
     init(
-        subscriber: Subscriber,
-        fetchRequest: NSFetchRequest<T>,
-        managedObjectContext context: NSManagedObjectContext,
-        sectionNameKeyPath: String?,
-        cacheName: String?
+        subscriber: SubscriberType,
+        request: NSFetchRequest<ResultType>,
+        context: NSManagedObjectContext
     ) {
         self.subscriber = subscriber
+        self.request = request
+        self.context = context
+    }
 
-        frc = NSFetchedResultsController(
-            fetchRequest: fetchRequest,
+    private(set) var subscriber: SubscriberType?
+    private(set) var request: NSFetchRequest<ResultType>?
+    private(set) var context: NSManagedObjectContext?
+    private(set) var controller: NSFetchedResultsController<ResultType>?
+
+    // MARK: - Subscription
+
+    func request(_ demand: Subscribers.Demand) {
+        guard demand > 0,
+              let subscriber = subscriber,
+              let request = request,
+              let context = context else { return }
+
+        controller = NSFetchedResultsController(
+            fetchRequest: request,
             managedObjectContext: context,
-            sectionNameKeyPath: sectionNameKeyPath,
-            cacheName: cacheName
+            sectionNameKeyPath: nil,
+            cacheName: nil
         )
-        super.init()
+        controller?.delegate = self
 
-        context.perform {
-            self.frc.delegate = self
+        context.perform { [weak self] in
+            guard let self = self else { return }
+            self.controller?.delegate = self
 
             do {
-                try self.frc.performFetch()
+                try self.controller?.performFetch()
             } catch {
-                subscriber.send(completion: .failure(NSError.instructureError("Error while reading from Core Data")))
+                subscriber.receive(completion: .failure(NSError.instructureError("Error while reading from Core Data")))
             }
 
-            self.sendNextElement()
+            self.sendElement()
         }
     }
 
-    private func sendNextElement() {
-        frc.managedObjectContext.perform {
-            let entities = self.frc.fetchedObjects ?? []
-            self.subscriber.send(entities)
+    private func sendElement() {
+        controller?.managedObjectContext.perform { [weak self] in
+            guard let self = self, let subscriber = self.subscriber else { return }
+            let entities = self.controller?.fetchedObjects ?? []
+            _ = subscriber.receive(entities)
         }
     }
 
-    public func controllerDidChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
-        sendNextElement()
+    // MARK: - NSFetchedResultsControllerDelegate
+
+    func controllerDidChangeContent(
+        _: NSFetchedResultsController<NSFetchRequestResult>) {
+        sendElement()
     }
 
-    public func cancel() {
-        frc.delegate = nil
+    // MARK: - Cancellable
+
+    func cancel() {
+        subscriber = nil
+        controller = nil
+        request = nil
+        context = nil
     }
 }

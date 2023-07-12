@@ -19,7 +19,7 @@
 import Combine
 import Foundation
 
-protocol CourseSyncFilesInteractor {
+public protocol CourseSyncFilesInteractor {
     func getFile(
         url: URL,
         fileID: String,
@@ -28,19 +28,22 @@ protocol CourseSyncFilesInteractor {
     ) -> AnyPublisher<Float, Error>
 }
 
-final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, LocalFileURLCreator {
+public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, LocalFileURLCreator {
     private let env: AppEnvironment
     private let fileManager: FileManager
+    private let offlineFileInteractor: OfflineFileInteractor
 
     public init(
         env: AppEnvironment = .shared,
-        fileManager: FileManager = .default
+        fileManager: FileManager = .default,
+        offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()
     ) {
         self.env = env
         self.fileManager = fileManager
+        self.offlineFileInteractor = offlineFileInteractor
     }
 
-    func getFile(
+    public func getFile(
         url: URL,
         fileID: String,
         fileName: String,
@@ -60,7 +63,7 @@ final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, LocalFileU
         }
 
         let localURL = prepareLocalURL(
-            fileName: "\(sessionID)/Offline/Files/\(fileID)/\(fileName)",
+            fileName: offlineFileInteractor.filePath(sessionID: sessionID, fileID: fileID, fileName: fileName),
             mimeClass: mimeClass,
             location: URL.Directories.documents
         )

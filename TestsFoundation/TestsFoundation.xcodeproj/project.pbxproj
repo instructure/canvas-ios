@@ -114,6 +114,12 @@
 		87A60DC5A14FC040D54A58D7 /* DiscussionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1256FA2356B3F8F1106185 /* DiscussionEditor.swift */; };
 		8917C1628DAFDC52287BF98D /* ModuleItemFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B59FD3B1D002FA5E94E1C6 /* ModuleItemFixture.swift */; };
 		8AAB7EC58190ABB57E0F40AD /* MiniCanvasServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A98E1BAD9BED63BDEAD29 /* MiniCanvasServer.swift */; };
+		8B70DC012A5BF916007D3ED4 /* DSProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBF92A5BF916007D3ED4 /* DSProgress.swift */; };
+		8B70DC022A5BF916007D3ED4 /* EditDSConversationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBFA2A5BF916007D3ED4 /* EditDSConversationRequest.swift */; };
+		8B70DC032A5BF916007D3ED4 /* DSConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBFB2A5BF916007D3ED4 /* DSConversation.swift */; };
+		8B70DC042A5BF916007D3ED4 /* UpdateDSConversationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBFC2A5BF916007D3ED4 /* UpdateDSConversationRequest.swift */; };
+		8B70DC052A5BF916007D3ED4 /* DataSeeder+Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBFD2A5BF916007D3ED4 /* DataSeeder+Conversation.swift */; };
+		8B70DC062A5BF916007D3ED4 /* CreateDSConversationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBFE2A5BF916007D3ED4 /* CreateDSConversationRequest.swift */; };
 		8C02370D294ADC5E03166916 /* CreateDSQuizQuestionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFA2EB914E415CCFACDB /* CreateDSQuizQuestionRequest.swift */; };
 		8CE7A795708CBCF4AF7A2674 /* DSModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69E1EBE6B486730AE73F45 /* DSModuleItem.swift */; };
 		8CEEA54DE127851FF426490F /* CreateDSDiscussionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D6E99369534DE2260DD4EB /* CreateDSDiscussionRequest.swift */; };
@@ -193,20 +199,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5B917D982A52AB1B009AAC86 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 19FB565ABEC6EA3620720E25 /* Core */;
-			proxyType = 2;
-			remoteGlobalIDString = 8F6731E780A5363E04E3620A;
-			remoteInfo = CoreTester;
-		};
-		5B917D9A2A52AB1B009AAC86 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 19FB565ABEC6EA3620720E25 /* Core */;
-			proxyType = 2;
-			remoteGlobalIDString = DC35484E0C7EE977582AF3AE;
-			remoteInfo = CoreTests;
-		};
 		ADD0BD039DBE20C141DFDF5E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 19FB565ABEC6EA3620720E25 /* Core */;
@@ -220,6 +212,20 @@
 			proxyType = 2;
 			remoteGlobalIDString = 4E249DD6423E938E1DE581C9;
 			remoteInfo = Core;
+		};
+		CF541FFB2A581527001A79DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19FB565ABEC6EA3620720E25 /* Core */;
+			proxyType = 2;
+			remoteGlobalIDString = 8F6731E780A5363E04E3620A;
+			remoteInfo = CoreTester;
+		};
+		CF541FFD2A581527001A79DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19FB565ABEC6EA3620720E25 /* Core */;
+			proxyType = 2;
+			remoteGlobalIDString = DC35484E0C7EE977582AF3AE;
+			remoteInfo = CoreTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -319,6 +325,12 @@
 		853FF26543B7A1A331156E77 /* MiniCanvasEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniCanvasEndpoints.swift; sourceTree = "<group>"; };
 		87C6F005E7C5D08F6F4C3498 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		894A96909063F1975F58D1A2 /* ConferenceDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceDetails.swift; sourceTree = "<group>"; };
+		8B70DBF92A5BF916007D3ED4 /* DSProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSProgress.swift; sourceTree = "<group>"; };
+		8B70DBFA2A5BF916007D3ED4 /* EditDSConversationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDSConversationRequest.swift; sourceTree = "<group>"; };
+		8B70DBFB2A5BF916007D3ED4 /* DSConversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSConversation.swift; sourceTree = "<group>"; };
+		8B70DBFC2A5BF916007D3ED4 /* UpdateDSConversationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateDSConversationRequest.swift; sourceTree = "<group>"; };
+		8B70DBFD2A5BF916007D3ED4 /* DataSeeder+Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataSeeder+Conversation.swift"; sourceTree = "<group>"; };
+		8B70DBFE2A5BF916007D3ED4 /* CreateDSConversationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateDSConversationRequest.swift; sourceTree = "<group>"; };
 		8E046239E00E2F114C950D3A /* ModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFixture.swift; sourceTree = "<group>"; };
 		8E52A6F60DF961A9FB652399 /* DSSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSubmission.swift; sourceTree = "<group>"; };
 		8EB01A67D620697DB09B6F61 /* CreateDSAccountNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSAccountNotificationRequest.swift; sourceTree = "<group>"; };
@@ -469,6 +481,7 @@
 		039CF14263C4180E857200CA /* DataSeeding */ = {
 			isa = PBXGroup;
 			children = (
+				8B70DBF82A5BF916007D3ED4 /* Conversation */,
 				BB6B6C485316F1CF22E406E2 /* AccountNotifications */,
 				C116E77902A4568988D60E21 /* Assignment */,
 				E9C31C8EF04AEA0B22366489 /* Course */,
@@ -815,8 +828,8 @@
 			isa = PBXGroup;
 			children = (
 				59FDA90639A28B677F0E6B7A /* Core.framework */,
-				5B917D992A52AB1B009AAC86 /* CoreTester.app */,
-				5B917D9B2A52AB1B009AAC86 /* CoreTests.xctest */,
+				CF541FFC2A581527001A79DD /* CoreTester.app */,
+				CF541FFE2A581527001A79DD /* CoreTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -907,6 +920,19 @@
 				22001AFA7EE4571DC4913E36 /* TextSubmission.swift */,
 			);
 			path = Submissions;
+			sourceTree = "<group>";
+		};
+		8B70DBF82A5BF916007D3ED4 /* Conversation */ = {
+			isa = PBXGroup;
+			children = (
+				8B70DBF92A5BF916007D3ED4 /* DSProgress.swift */,
+				8B70DBFA2A5BF916007D3ED4 /* EditDSConversationRequest.swift */,
+				8B70DBFB2A5BF916007D3ED4 /* DSConversation.swift */,
+				8B70DBFC2A5BF916007D3ED4 /* UpdateDSConversationRequest.swift */,
+				8B70DBFD2A5BF916007D3ED4 /* DataSeeder+Conversation.swift */,
+				8B70DBFE2A5BF916007D3ED4 /* CreateDSConversationRequest.swift */,
+			);
+			path = Conversation;
 			sourceTree = "<group>";
 		};
 		9A7561DA742A2C1B232DFA62 /* Tabs */ = {
@@ -1252,18 +1278,18 @@
 			remoteRef = C62A32602F4B1A165BCFE80A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		5B917D992A52AB1B009AAC86 /* CoreTester.app */ = {
+		CF541FFC2A581527001A79DD /* CoreTester.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
 			path = CoreTester.app;
-			remoteRef = 5B917D982A52AB1B009AAC86 /* PBXContainerItemProxy */;
+			remoteRef = CF541FFB2A581527001A79DD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		5B917D9B2A52AB1B009AAC86 /* CoreTests.xctest */ = {
+		CF541FFE2A581527001A79DD /* CoreTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = CoreTests.xctest;
-			remoteRef = 5B917D9A2A52AB1B009AAC86 /* PBXContainerItemProxy */;
+			remoteRef = CF541FFD2A581527001A79DD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1301,6 +1327,7 @@
 				FB2AA89EC3B26CDBBA81BE5C /* Announcements.swift in Sources */,
 				F2610136FC5488415F288BF6 /* AssignmentFixture.swift in Sources */,
 				514A398F69F9B43A8B00002A /* AssignmentGroupsFixture.swift in Sources */,
+				8B70DC022A5BF916007D3ED4 /* EditDSConversationRequest.swift in Sources */,
 				53C656FE0E827AE9C1CD9F82 /* Assignments.swift in Sources */,
 				5B66CA6BC155230774454DB2 /* Attachments.swift in Sources */,
 				4DFA05671709AE84764833FB /* AudioRecorder.swift in Sources */,
@@ -1316,7 +1343,9 @@
 				FA9954E150F63661C57C4DB0 /* ContextColorFixture.swift in Sources */,
 				ED8ABA24B3E386175BEFD76E /* ConversationDetail.swift in Sources */,
 				1CDED784002866FD6FF16FAE /* ConversationFixture.swift in Sources */,
+				8B70DC042A5BF916007D3ED4 /* UpdateDSConversationRequest.swift in Sources */,
 				41506C341DAAAD0B4A5ADF18 /* ConversationList.swift in Sources */,
+				8B70DC052A5BF916007D3ED4 /* DataSeeder+Conversation.swift in Sources */,
 				552DF6C0381499EAD5EA0D16 /* CoreUITestCase.swift in Sources */,
 				B51F704B105B606DBB15C5D2 /* CourseFixture.swift in Sources */,
 				34D52A8BFDE50E183045A17E /* CourseNavigation.swift in Sources */,
@@ -1345,6 +1374,7 @@
 				7BF42650B257FCD153FDBBC7 /* DSModule.swift in Sources */,
 				8CE7A795708CBCF4AF7A2674 /* DSModuleItem.swift in Sources */,
 				120B07891919D2C19EA4A08F /* DSPage.swift in Sources */,
+				8B70DC032A5BF916007D3ED4 /* DSConversation.swift in Sources */,
 				22313487606BC82FDD572AFF /* DSQuiz.swift in Sources */,
 				66487329B62A458AF4620DE4 /* DSQuizQuestion.swift in Sources */,
 				7B92F083A00EDC4C1DB7CFD4 /* DSSubmission.swift in Sources */,
@@ -1362,6 +1392,7 @@
 				A0BC38309F88C41B8E1A0BDA /* DataSeeder+DSQuizQuestion.swift in Sources */,
 				1AF03DE89E66FAB387BB5A98 /* DataSeeder+DSSubmission.swift in Sources */,
 				2C5BB31417D17837E1967A93 /* DataSeeder+DSUser.swift in Sources */,
+				8B70DC012A5BF916007D3ED4 /* DSProgress.swift in Sources */,
 				D035CD7361AA9A3F98AE2FC2 /* DataSeeder+Discussion.swift in Sources */,
 				1C2A3D04B204AF85983B9E43 /* DataSeeder+Enrollment.swift in Sources */,
 				7404229B37645B502B7E1FF3 /* DataSeeder+Tabs.swift in Sources */,
@@ -1428,6 +1459,7 @@
 				9D8B9F439E6339153315D063 /* PageDetails.swift in Sources */,
 				78EC926E582BDB2803A1EC61 /* PageEditor.swift in Sources */,
 				3473CCA85DC34B470AB1A3B9 /* PageFixture.swift in Sources */,
+				8B70DC062A5BF916007D3ED4 /* CreateDSConversationRequest.swift in Sources */,
 				FBD789C8A83FFA5AB2DA13DE /* PageList.swift in Sources */,
 				B51CB2B250F1EBB4A018AAE6 /* People.swift in Sources */,
 				190A08FCD83B5FC3C089C939 /* PermissionsFixture.swift in Sources */,

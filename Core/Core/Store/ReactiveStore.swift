@@ -40,7 +40,7 @@ public class ReactiveStore<U: UseCase> {
 
         /// If the enum's case is `.data` then extracts and returns all models.
         public var allItems: [U.Model]? {
-            if case .data(let data) = self {
+            if case let .data(data) = self {
                 return data
             } else {
                 return nil
@@ -87,6 +87,11 @@ public class ReactiveStore<U: UseCase> {
             .store(in: &subscriptions)
     }
 
+    public func cancel() {
+        cancellable?.cancel()
+        cancellable = nil
+    }
+
     public func forceFetchEntities() -> AnyPublisher<Void, Never> {
         forceRefreshRelay.accept(())
         return Empty(completeImmediately: false)
@@ -94,6 +99,7 @@ public class ReactiveStore<U: UseCase> {
             .eraseToAnyPublisher()
     }
 
+    /// Calling this function will keep the instance in memory until `cancel()` is called. The recommended approach is calling `cancel()` from the interactor's deinit function.
     public func observeEntities(forceFetch: Bool = false, loadAllPages: Bool = false) -> AnyPublisher<State, Never> {
         cancellable?.cancel()
         cancellable = nil
@@ -113,25 +119,32 @@ public class ReactiveStore<U: UseCase> {
                 fetchEntitiesFromCache(fetchRequest: request)
         }
 
+        unowned let unownedSelf = self
+
         cancellable = entitiesPublisher
             .handleEvents(receiveSubscription: { _ in
-                self.stateRelay.accept(.loading)
+                unownedSelf.stateRelay.accept(.loading)
             })
             .catch {
-                self.stateRelay.accept(.error($0))
+                unownedSelf.stateRelay.accept(.error($0))
                 return Empty<[U.Model], Never>(completeImmediately: false)
                     .setFailureType(to: Never.self)
                     .eraseToAnyPublisher()
             }
             .sink(
                 receiveValue: { value in
-                    self.stateRelay.accept(.data(value))
+                    unownedSelf.stateRelay.accept(.data(value))
                 }
             )
 
         return stateRelay.eraseToAnyPublisher()
     }
 
+    /**
+     This method returns entities for the UseCase from CoreData if the application is in offline mode.
+     In online mode entities are always fetched from the API by downloading all pages. The result is then cached
+     to the database and emitted by the publisher this method returns. After this the publisher finishes.
+     */
     public func getEntities() -> AnyPublisher<[U.Model], Error> {
         let scope = useCase.scope
         let request = NSFetchRequest<U.Model>(entityName: String(describing: U.Model.self))
@@ -147,6 +160,17 @@ public class ReactiveStore<U: UseCase> {
                 .first()
                 .eraseToAnyPublisher()
         }
+    }
+
+    public func getEntitiesFromDatabase() -> AnyPublisher<[U.Model], Error> {
+        let scope = useCase.scope
+        let request = NSFetchRequest<U.Model>(entityName: String(describing: U.Model.self))
+        request.predicate = scope.predicate
+        request.sortDescriptors = scope.order
+
+        return fetchEntitiesFromDatabase(fetchRequest: request)
+            .first()
+            .eraseToAnyPublisher()
     }
 
     private func fetchEntitiesFromCache<T: NSManagedObject>(
@@ -175,7 +199,9 @@ public class ReactiveStore<U: UseCase> {
         loadAllPages: Bool,
         fetchRequest: NSFetchRequest<T>
     ) -> AnyPublisher<[T], Error> {
-        useCase.fetchWithFuture()
+        unowned let unownedSelf = self
+
+        return useCase.fetchWithFuture()
             .handleEvents(receiveOutput: { [weak self] urlResponse in
                 if let urlResponse {
                     self?.next = self?.useCase.getNext(from: urlResponse)
@@ -238,22 +264,13 @@ public class ReactiveStore<U: UseCase> {
 
     private func fetchEntitiesFromDatabase<T: NSManagedObject>(
         fetchRequest: NSFetchRequest<T>,
-        sectionNameKeyPath: String? = nil,
-        cacheName: String? = nil
+        sectionNameKeyPath _: String? = nil,
+        cacheName _: String? = nil
     ) -> AnyPublisher<[T], Error> {
-        AnyPublisher<[T], Error>.create { subscriber in
-
-            let observer = FetchedResultsPublisher(
-                subscriber: subscriber,
-                fetchRequest: fetchRequest,
-                managedObjectContext: self.context,
-                sectionNameKeyPath: sectionNameKeyPath,
-                cacheName: cacheName
-            )
-
-            return AnyCancellable {
-                observer.cancel()
-            }
-        }
+        FetchedResultsPublisher(
+            request: fetchRequest,
+            context: context
+        )
+        .eraseToAnyPublisher()
     }
 }

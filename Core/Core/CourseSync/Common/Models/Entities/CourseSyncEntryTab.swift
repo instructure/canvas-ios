@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,29 +16,28 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-import TestsFoundation
+import Foundation
 
-class CourseFileE2ETests: CoreUITestCase {
-    func testPreviewCourseFile() {
-        Dashboard.courseCard(id: "263").tap()
+public extension CourseSyncEntry {
+    struct Tab: Equatable {
+        public static let estimatedSize = 100_000
 
-        CourseNavigation.files.tap()
+        let id: String
+        let name: String
+        let type: TabName
+        var isCollapsed: Bool = true
+        var state: State = .loading(nil)
+        var selectionState: ListCellView.SelectionState = .deselected
 
-        FileList.file(index: 0).tap()
+        let bytesToDownload: Int = estimatedSize
 
-        // need be on the next page before checking for image
-        sleep(3)
-        app.find(type: .image).waitToExist()
-    }
-
-    func testLinkToPreviewOpensFile() {
-        Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
-
-        CourseNavigation.pages.tap()
-        PageList.page(index: 1).tap()
-        app.links.firstElement.tap()
-        app.find(type: .image).waitToExist()
+        var bytesDownloaded: Int {
+            switch state {
+            case .idle: return 0
+            case .downloaded: return bytesToDownload
+            case .loading: return 0
+            case .error: return 0
+            }
+        }
     }
 }

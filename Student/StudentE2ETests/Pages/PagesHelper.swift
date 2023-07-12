@@ -45,7 +45,11 @@ public class PagesHelper: BaseHelper {
     }
 
     @discardableResult
-    public static func createPage(course: DSCourse, title: String, body: String, frontPage: Bool = false, published: Bool = true) -> DSPage {
+    public static func createPage(course: DSCourse,
+                                  title: String = "Sample Page",
+                                  body: String = "This is the body of Sample Page",
+                                  frontPage: Bool = false,
+                                  published: Bool = true) -> DSPage {
         let pageBody = CreateDSPageRequest.RequestedDSPage(title: title, body: body, front_page: frontPage, published: published)
         return seeder.createPage(courseId: course.id, requestBody: pageBody)
     }
