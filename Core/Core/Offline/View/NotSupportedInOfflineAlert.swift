@@ -21,12 +21,15 @@ import UIKit
 extension UIAlertController {
 
     @objc
-    public static func showItemNotAvailableInOfflineAlert() {
+    public static func showItemNotAvailableInOfflineAlert(_ completion: (() -> Void)? = nil) {
         let title = NSLocalizedString("Offline mode", comment: "")
         let message = NSLocalizedString("This item is not available offline.", comment: "")
-        let action = NSLocalizedString("OK", comment: "")
+        let actionTitle = NSLocalizedString("OK", comment: "")
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: action, style: .default))
+        let action = UIAlertAction(title: actionTitle, style: .default) { _ in
+            completion?()
+        }
+        alert.addAction(action)
 
         if let top = AppEnvironment.shared.topViewController {
             AppEnvironment.shared.router.show(alert, from: top, options: .modal())

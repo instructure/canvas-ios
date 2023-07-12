@@ -40,11 +40,13 @@ struct SideMenuMainSection: View {
 
         return dashboard
     }
+    @ObservedObject private var offlineModeViewModel: OfflineModeViewModel
 
-    init(_ enrollment: HelpLinkEnrollment) {
+    init(_ enrollment: HelpLinkEnrollment, offlineModeViewModel: OfflineModeViewModel = OfflineModeViewModel(interactor: OfflineModeInteractorLive.shared)) {
         self.enrollment = enrollment
         let env = AppEnvironment.shared
         self.tools = env.subscribe(GetGlobalNavExternalPlacements())
+        self.offlineModeViewModel = offlineModeViewModel
     }
 
     var body: some View {
@@ -68,7 +70,7 @@ struct SideMenuMainSection: View {
                 }
                 .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
             } else {
-                Button {
+                PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline) {
                     route(to: "/users/self/files")
                 } label: {
                     SideMenuItem(id: "files", image: .folderLine, title: Text("Files", bundle: .core))

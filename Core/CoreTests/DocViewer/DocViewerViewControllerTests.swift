@@ -58,6 +58,10 @@ class DocViewerViewControllerTests: CoreTestCase {
             Just(.connected(.wifi)).eraseToAnyPublisher()
         }
 
+        func filePath(sessionID: String, fileID: String, fileName: String) -> String {
+            ""
+        }
+
         func isOfflineModeEnabled() -> Bool { false }
     }
 
@@ -68,6 +72,10 @@ class DocViewerViewControllerTests: CoreTestCase {
 
         func observeNetworkStatus() -> AnyPublisher<Core.NetworkAvailabilityStatus, Never> {
             Just(.disconnected).eraseToAnyPublisher()
+        }
+
+        func filePath(sessionID: String, fileID: String, fileName: String) -> String {
+            ""
         }
 
         func isOfflineModeEnabled() -> Bool { true }
