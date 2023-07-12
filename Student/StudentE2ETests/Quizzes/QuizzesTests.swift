@@ -20,18 +20,133 @@ import XCTest
 import TestsFoundation
 
 class QuizzesTests: E2ETestCase {
-    func testQuizzes() {
-        // MARK: Seed the usual stuff
+    typealias Helper = QuizzesHelper
+    typealias DetailsHelper = Helper.Details
+    typealias TakeQuizHelper = DetailsHelper.TakeQuiz
+
+    func testQuizListAndQuizDetails() {
+        // MARK: Seed the usual stuff with a Quiz containing 2 questions
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
-        let quiz = QuizzesHelper.createQuiz(course: course,
-                                            title: "Test Quiz",
-                                            description: "Description of Test Quiz",
-                                            quiz_type: .practiceQuiz)
-        QuizzesHelper.createTestQuizQuestion(course: course, quiz: quiz)
-        // MARK: Get the user logged in
+        let quiz = Helper.createTestQuizWith2Questions(course: course)
+
+        // MARK: Get the user logged in and navigate to Quizzes
         logInDSUser(student)
-        print("I don't want this")
+        Helper.navigateToQuizzes(course: course)
+
+        // MARK: Check Quiz labels
+        let navBar = Helper.navBar(course: course).waitToExist()
+        XCTAssertTrue(navBar.isVisible)
+
+        let quizCell = Helper.cell(index: 0).waitToExist()
+        XCTAssertTrue(quizCell.isVisible)
+
+        let titleLabel = Helper.titleLabel(cell: quizCell).waitToExist()
+        XCTAssertTrue(titleLabel.isVisible)
+        XCTAssertEqual(titleLabel.label(), quiz.title)
+
+        let dueDateLabel = Helper.dueDateLabel(cell: quizCell).waitToExist()
+        XCTAssertTrue(dueDateLabel.isVisible)
+        XCTAssertEqual(dueDateLabel.label(), "No Due Date")
+
+        let pointsLabel = Helper.pointsLabel(cell: quizCell).waitToExist()
+        XCTAssertTrue(pointsLabel.isVisible)
+        XCTAssertEqual(pointsLabel.label(), "\(Int(quiz.points_possible!)) pts")
+
+        let questionsLabel = Helper.questionsLabel(cell: quizCell).waitToExist()
+        XCTAssertTrue(questionsLabel.isVisible)
+        XCTAssertEqual(questionsLabel.label(), "\(quiz.question_count) Questions")
+
+        quizCell.tap()
+
+        // MARK: Check Quiz details
+        let detailsNavBar = DetailsHelper.navBar(course: course).waitToExist()
+        XCTAssertTrue(detailsNavBar.isVisible)
+
+        let detailsTitleLabel = DetailsHelper.nameLabel.waitToExist()
+        XCTAssertTrue(detailsTitleLabel.isVisible)
+        XCTAssertEqual(detailsTitleLabel.label(), quiz.title)
+
+        let detailsPointsLabel = DetailsHelper.pointsLabel.waitToExist()
+        XCTAssertTrue(detailsPointsLabel.isVisible)
+        XCTAssertEqual(detailsPointsLabel.label(), "\(Int(quiz.points_possible!)) pts")
+
+        let detailsStatusLabel = DetailsHelper.statusLabel.waitToExist()
+        XCTAssertTrue(detailsStatusLabel.isVisible)
+        XCTAssertEqual(detailsStatusLabel.label(), "Not Submitted")
+
+        let detailsDueDateLabel = DetailsHelper.dueLabel.waitToExist()
+        XCTAssertTrue(detailsDueDateLabel.isVisible)
+        XCTAssertEqual(detailsDueDateLabel.label(), "No Due Date")
+
+        let detailsQuestionsLabel = DetailsHelper.questionsLabel.waitToExist()
+        XCTAssertTrue(detailsQuestionsLabel.isVisible)
+        XCTAssertEqual(detailsQuestionsLabel.label(), String(quiz.question_count))
+
+        let detailsTimeLimitLabel = DetailsHelper.timeLimitLabel.waitToExist()
+        XCTAssertTrue(detailsTimeLimitLabel.isVisible)
+        XCTAssertEqual(detailsTimeLimitLabel.label(), "None")
+
+        let detailsAllowedAttemptsLabel = DetailsHelper.attemptsLabel.waitToExist()
+        XCTAssertTrue(detailsAllowedAttemptsLabel.isVisible)
+        XCTAssertEqual(detailsAllowedAttemptsLabel.label(), String(quiz.allowed_attempts!))
+
+        let detailsDescriptionLabel = DetailsHelper.descriptionLabel(quiz: quiz).waitToExist()
+        XCTAssertTrue(detailsDescriptionLabel.isVisible)
+
+        let detailsTakeQuizButton = DetailsHelper.takeQuizButton.waitToExist()
+        XCTAssertTrue(detailsTakeQuizButton.isVisible)
+    }
+
+    func testTakeQuiz() {
+        // MARK: Seed the usual stuff with a Quiz containing 2 questions
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+        Helper.createTestQuizWith2Questions(course: course)
+
+        // MARK: Get the user logged in and navigate to Quizzes
+        logInDSUser(student)
+        Helper.navigateToQuizzes(course: course)
+
+        // MARK: Open Quiz and tap "Take Quiz" button
+        let quizCell = Helper.cell(index: 0).waitToExist()
+        XCTAssertTrue(quizCell.isVisible)
+
+        quizCell.tap()
+        var detailsTakeQuizButton = DetailsHelper.takeQuizButton.waitToExist()
+        XCTAssertTrue(detailsTakeQuizButton.isVisible)
+
+        detailsTakeQuizButton.tap()
+
+        let takeQuizNavBar = TakeQuizHelper.navBar.waitToExist()
+        XCTAssertTrue(takeQuizNavBar.isVisible)
+
+        var takeQuizExitButton = TakeQuizHelper.exitButton.waitToExist()
+        XCTAssertTrue(takeQuizExitButton.isVisible)
+
+        let takeQuizTakeTheQuizButton = TakeQuizHelper.takeTheQuizButton.waitToExist()
+        XCTAssertTrue(takeQuizTakeTheQuizButton.isVisible)
+
+        takeQuizTakeTheQuizButton.tap()
+        TakeQuizHelper.answerFirstQuestion()
+        TakeQuizHelper.answerSecondQuestion()
+        let takeQuizSubmitQuizButton = TakeQuizHelper.submitQuizButton.waitToExist()
+        XCTAssertTrue(takeQuizSubmitQuizButton.swipeUntilVisible())
+        XCTAssertTrue(takeQuizSubmitQuizButton.isVisible)
+
+        takeQuizSubmitQuizButton.tap()
+        takeQuizExitButton = TakeQuizHelper.exitButton.waitToExist()
+        XCTAssertTrue(takeQuizExitButton.isVisible)
+
+        takeQuizExitButton.tap()
+        let detailsStatusLabel = DetailsHelper.statusLabel.waitToExist()
+        XCTAssertTrue(detailsStatusLabel.isVisible)
+        XCTAssertEqual(detailsStatusLabel.label().prefix(9), "Submitted")
+
+        detailsTakeQuizButton = DetailsHelper.takeQuizButton.waitToExist()
+        XCTAssertTrue(detailsTakeQuizButton.isVisible)
+        XCTAssertEqual(detailsTakeQuizButton.label(), "View Results")
     }
 }

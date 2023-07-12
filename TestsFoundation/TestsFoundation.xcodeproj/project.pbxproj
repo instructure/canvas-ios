@@ -126,6 +126,10 @@
 		8B70DC282A5EA9D6007D3ED4 /* CreateDSNewQuizRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DC202A5EA9D6007D3ED4 /* CreateDSNewQuizRequest.swift */; };
 		8B70DC292A5EA9D6007D3ED4 /* DataSeeder+DSNewQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DC212A5EA9D6007D3ED4 /* DataSeeder+DSNewQuiz.swift */; };
 		8B70DC2A2A5EA9D6007D3ED4 /* CreateDSNewQuizItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DC222A5EA9D6007D3ED4 /* CreateDSNewQuizItemRequest.swift */; };
+		8B70DC3B2A5EADC0007D3ED4 /* DataSeeder+DSFeatureFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DC372A5EADC0007D3ED4 /* DataSeeder+DSFeatureFlag.swift */; };
+		8B70DC3C2A5EADC0007D3ED4 /* DSFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DC382A5EADC0007D3ED4 /* DSFeature.swift */; };
+		8B70DC3D2A5EADC0007D3ED4 /* DSFeatureFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DC392A5EADC0007D3ED4 /* DSFeatureFlag.swift */; };
+		8B70DC3E2A5EADC0007D3ED4 /* SetDSFeatureFlagRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DC3A2A5EADC0007D3ED4 /* SetDSFeatureFlagRequest.swift */; };
 		8C02370D294ADC5E03166916 /* CreateDSQuizQuestionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFA2EB914E415CCFACDB /* CreateDSQuizQuestionRequest.swift */; };
 		8CE7A795708CBCF4AF7A2674 /* DSModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69E1EBE6B486730AE73F45 /* DSModuleItem.swift */; };
 		8CEEA54DE127851FF426490F /* CreateDSDiscussionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D6E99369534DE2260DD4EB /* CreateDSDiscussionRequest.swift */; };
@@ -343,6 +347,10 @@
 		8B70DC202A5EA9D6007D3ED4 /* CreateDSNewQuizRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateDSNewQuizRequest.swift; sourceTree = "<group>"; };
 		8B70DC212A5EA9D6007D3ED4 /* DataSeeder+DSNewQuiz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSNewQuiz.swift"; sourceTree = "<group>"; };
 		8B70DC222A5EA9D6007D3ED4 /* CreateDSNewQuizItemRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateDSNewQuizItemRequest.swift; sourceTree = "<group>"; };
+		8B70DC372A5EADC0007D3ED4 /* DataSeeder+DSFeatureFlag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSFeatureFlag.swift"; sourceTree = "<group>"; };
+		8B70DC382A5EADC0007D3ED4 /* DSFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSFeature.swift; sourceTree = "<group>"; };
+		8B70DC392A5EADC0007D3ED4 /* DSFeatureFlag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSFeatureFlag.swift; sourceTree = "<group>"; };
+		8B70DC3A2A5EADC0007D3ED4 /* SetDSFeatureFlagRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDSFeatureFlagRequest.swift; sourceTree = "<group>"; };
 		8E046239E00E2F114C950D3A /* ModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFixture.swift; sourceTree = "<group>"; };
 		8E52A6F60DF961A9FB652399 /* DSSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSubmission.swift; sourceTree = "<group>"; };
 		8EB01A67D620697DB09B6F61 /* CreateDSAccountNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSAccountNotificationRequest.swift; sourceTree = "<group>"; };
@@ -493,6 +501,7 @@
 		039CF14263C4180E857200CA /* DataSeeding */ = {
 			isa = PBXGroup;
 			children = (
+				8B70DC362A5EADC0007D3ED4 /* FeatureFlags */,
 				8B70DC1C2A5EA9D6007D3ED4 /* NewQuizzes */,
 				8B70DBF82A5BF916007D3ED4 /* Conversation */,
 				BB6B6C485316F1CF22E406E2 /* AccountNotifications */,
@@ -961,6 +970,17 @@
 			path = NewQuizzes;
 			sourceTree = "<group>";
 		};
+		8B70DC362A5EADC0007D3ED4 /* FeatureFlags */ = {
+			isa = PBXGroup;
+			children = (
+				8B70DC372A5EADC0007D3ED4 /* DataSeeder+DSFeatureFlag.swift */,
+				8B70DC382A5EADC0007D3ED4 /* DSFeature.swift */,
+				8B70DC392A5EADC0007D3ED4 /* DSFeatureFlag.swift */,
+				8B70DC3A2A5EADC0007D3ED4 /* SetDSFeatureFlagRequest.swift */,
+			);
+			path = FeatureFlags;
+			sourceTree = "<group>";
+		};
 		9A7561DA742A2C1B232DFA62 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
@@ -1366,6 +1386,7 @@
 				BE02DF1EE7014F718A8A3D14 /* Compose.swift in Sources */,
 				802DAE6AF27A3FC904CA7D07 /* ComposeReply.swift in Sources */,
 				1C06FD3D2600EF54254C8307 /* ConferenceDetails.swift in Sources */,
+				8B70DC3B2A5EADC0007D3ED4 /* DataSeeder+DSFeatureFlag.swift in Sources */,
 				E6F7ECD7C962156372F2EF30 /* ConferenceFixture.swift in Sources */,
 				0344DD076673A87EF943E598 /* ConferencesList.swift in Sources */,
 				FA9954E150F63661C57C4DB0 /* ContextColorFixture.swift in Sources */,
@@ -1379,6 +1400,7 @@
 				34D52A8BFDE50E183045A17E /* CourseNavigation.swift in Sources */,
 				F348F002D95D60AD95F66F1E /* CourseSectionFixture.swift in Sources */,
 				AD4A9C06AC6DF9A67104C7E0 /* Courses.swift in Sources */,
+				8B70DC3D2A5EADC0007D3ED4 /* DSFeatureFlag.swift in Sources */,
 				4F86073554A4692C591CF8D2 /* CreateDSAccountNotificationRequest.swift in Sources */,
 				0793478FD5197EFFFD73BEB1 /* CreateDSAssignmentRequest.swift in Sources */,
 				1715B688AD0D030B01827E03 /* CreateDSCourseRequest.swift in Sources */,
@@ -1449,6 +1471,7 @@
 				8B70DC292A5EA9D6007D3ED4 /* DataSeeder+DSNewQuiz.swift in Sources */,
 				BA7D5FC7CD946A1BA1425CD4 /* FilePicker.swift in Sources */,
 				D2224694AC33EBC4810E0CDD /* FileUploadTargetFixture.swift in Sources */,
+				8B70DC3C2A5EADC0007D3ED4 /* DSFeature.swift in Sources */,
 				F6832EA1BD4F9CC52F89987A /* Grades.swift in Sources */,
 				1D4A01CB676468A90CF777A3 /* GradingPeriodFixture.swift in Sources */,
 				5ED5C3A68E82A55A45209810 /* GroupFixture.swift in Sources */,
@@ -1486,6 +1509,7 @@
 				365EFAD2ABB62CBA24574AFA /* ModuleFixture.swift in Sources */,
 				8917C1628DAFDC52287BF98D /* ModuleItemFixture.swift in Sources */,
 				13539C166F6C499BBC88E25C /* Modules.swift in Sources */,
+				8B70DC3E2A5EADC0007D3ED4 /* SetDSFeatureFlagRequest.swift in Sources */,
 				377C3976AC227023366AFA0A /* NavBar.swift in Sources */,
 				9D8B9F439E6339153315D063 /* PageDetails.swift in Sources */,
 				78EC926E582BDB2803A1EC61 /* PageEditor.swift in Sources */,
