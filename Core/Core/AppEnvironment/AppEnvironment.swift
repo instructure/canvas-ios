@@ -110,13 +110,7 @@ open class AppEnvironment {
         if Thread.isMainThread {
             return locateTopViewController()
         } else {
-            var topController: UIViewController?
-
-            DispatchQueue.main.sync {
-                topController = locateTopViewController()
-            }
-
-            return topController
+            return DispatchQueue.main.sync { locateTopViewController() }
         }
     }
 
