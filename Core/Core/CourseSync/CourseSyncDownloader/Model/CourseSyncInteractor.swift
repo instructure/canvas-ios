@@ -102,6 +102,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             downloadTabContent(for: entry, tabName: .pages),
             downloadTabContent(for: entry, tabName: .grades),
             downloadTabContent(for: entry, tabName: .syllabus),
+            downloadTabContent(for: entry, tabName: .quizzes),
             downloadFiles(for: entry),
         ]
         .zip()
