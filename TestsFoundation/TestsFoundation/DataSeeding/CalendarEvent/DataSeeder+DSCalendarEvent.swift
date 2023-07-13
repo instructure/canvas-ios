@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,8 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct DSCourse: Codable {
-    public let id: String
-    public let name: String
-    public var syllabus_body: String?
+extension DataSeeder {
+    @discardableResult
+    public func createCalendarEvent(requestBody: CreateDSCalendarEventRequest.Body) -> DSCalendarEvent {
+        let request = CreateDSCalendarEventRequest(body: requestBody)
+        return makeRequest(request)
+    }
 }

@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,8 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct DSCourse: Codable {
+public struct DSCalendarEvent: Codable {
     public let id: String
-    public let name: String
-    public var syllabus_body: String?
+    public let title: String
+    public let start_at: String?
+    public let end_at: String?
+    public let description: String
+    public let context_code: String
 }

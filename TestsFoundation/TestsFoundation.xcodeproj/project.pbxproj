@@ -120,6 +120,9 @@
 		8B70DC042A5BF916007D3ED4 /* UpdateDSConversationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBFC2A5BF916007D3ED4 /* UpdateDSConversationRequest.swift */; };
 		8B70DC052A5BF916007D3ED4 /* DataSeeder+Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBFD2A5BF916007D3ED4 /* DataSeeder+Conversation.swift */; };
 		8B70DC062A5BF916007D3ED4 /* CreateDSConversationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBFE2A5BF916007D3ED4 /* CreateDSConversationRequest.swift */; };
+		8B9D05182A601AF1002E2447 /* CreateDSCalendarEventRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D05172A601AF1002E2447 /* CreateDSCalendarEventRequest.swift */; };
+		8B9D051A2A601C4C002E2447 /* DataSeeder+DSCalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D05192A601C4C002E2447 /* DataSeeder+DSCalendarEvent.swift */; };
+		8B9D051C2A601C57002E2447 /* DSCalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D051B2A601C57002E2447 /* DSCalendarEvent.swift */; };
 		8C02370D294ADC5E03166916 /* CreateDSQuizQuestionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFA2EB914E415CCFACDB /* CreateDSQuizQuestionRequest.swift */; };
 		8CE7A795708CBCF4AF7A2674 /* DSModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69E1EBE6B486730AE73F45 /* DSModuleItem.swift */; };
 		8CEEA54DE127851FF426490F /* CreateDSDiscussionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D6E99369534DE2260DD4EB /* CreateDSDiscussionRequest.swift */; };
@@ -331,6 +334,9 @@
 		8B70DBFC2A5BF916007D3ED4 /* UpdateDSConversationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateDSConversationRequest.swift; sourceTree = "<group>"; };
 		8B70DBFD2A5BF916007D3ED4 /* DataSeeder+Conversation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataSeeder+Conversation.swift"; sourceTree = "<group>"; };
 		8B70DBFE2A5BF916007D3ED4 /* CreateDSConversationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateDSConversationRequest.swift; sourceTree = "<group>"; };
+		8B9D05172A601AF1002E2447 /* CreateDSCalendarEventRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSCalendarEventRequest.swift; sourceTree = "<group>"; };
+		8B9D05192A601C4C002E2447 /* DataSeeder+DSCalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSCalendarEvent.swift"; sourceTree = "<group>"; };
+		8B9D051B2A601C57002E2447 /* DSCalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSCalendarEvent.swift; sourceTree = "<group>"; };
 		8E046239E00E2F114C950D3A /* ModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFixture.swift; sourceTree = "<group>"; };
 		8E52A6F60DF961A9FB652399 /* DSSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSubmission.swift; sourceTree = "<group>"; };
 		8EB01A67D620697DB09B6F61 /* CreateDSAccountNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSAccountNotificationRequest.swift; sourceTree = "<group>"; };
@@ -481,6 +487,7 @@
 		039CF14263C4180E857200CA /* DataSeeding */ = {
 			isa = PBXGroup;
 			children = (
+				8B9D05162A601ADB002E2447 /* CalendarEvent */,
 				8B70DBF82A5BF916007D3ED4 /* Conversation */,
 				BB6B6C485316F1CF22E406E2 /* AccountNotifications */,
 				C116E77902A4568988D60E21 /* Assignment */,
@@ -935,6 +942,16 @@
 			path = Conversation;
 			sourceTree = "<group>";
 		};
+		8B9D05162A601ADB002E2447 /* CalendarEvent */ = {
+			isa = PBXGroup;
+			children = (
+				8B9D05172A601AF1002E2447 /* CreateDSCalendarEventRequest.swift */,
+				8B9D05192A601C4C002E2447 /* DataSeeder+DSCalendarEvent.swift */,
+				8B9D051B2A601C57002E2447 /* DSCalendarEvent.swift */,
+			);
+			path = CalendarEvent;
+			sourceTree = "<group>";
+		};
 		9A7561DA742A2C1B232DFA62 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
@@ -1337,6 +1354,7 @@
 				5D760DD0639FCD95BA6290AB /* CommunicationChannelFixture.swift in Sources */,
 				BE02DF1EE7014F718A8A3D14 /* Compose.swift in Sources */,
 				802DAE6AF27A3FC904CA7D07 /* ComposeReply.swift in Sources */,
+				8B9D051A2A601C4C002E2447 /* DataSeeder+DSCalendarEvent.swift in Sources */,
 				1C06FD3D2600EF54254C8307 /* ConferenceDetails.swift in Sources */,
 				E6F7ECD7C962156372F2EF30 /* ConferenceFixture.swift in Sources */,
 				0344DD076673A87EF943E598 /* ConferencesList.swift in Sources */,
@@ -1470,10 +1488,12 @@
 				746E19BE7256EE3EBB329F8C /* Quiz.swift in Sources */,
 				63EA3D8B2EF8758AF7CCC428 /* QuizFixture.swift in Sources */,
 				296349D676FB1E9868D868BF /* RichContentEditor.swift in Sources */,
+				8B9D05182A601AF1002E2447 /* CreateDSCalendarEventRequest.swift in Sources */,
 				9F9E2F0461277C96B9236471 /* RichContentToolbar.swift in Sources */,
 				40EE68261004632A33226A77 /* RubricFixture.swift in Sources */,
 				C2630F1DC05AB47A6FE34DC1 /* ScreenViewTrackerMock.swift in Sources */,
 				694C0903383535038FC95B85 /* SearchRecipientFixture.swift in Sources */,
+				8B9D051C2A601C57002E2447 /* DSCalendarEvent.swift in Sources */,
 				A44038B7C18BF3836DB2225B /* SpeedGrader.swift in Sources */,
 				E50F168B98A1F3521B3EF4AF /* SpringBoard.swift in Sources */,
 				29C0BB4FE112AEDA68383D14 /* SubmissionCommentFixture.swift in Sources */,
