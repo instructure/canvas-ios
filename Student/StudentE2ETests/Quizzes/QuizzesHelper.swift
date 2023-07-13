@@ -22,6 +22,27 @@ import TestsFoundation
 import XCTest
 
 public class QuizzesHelper: BaseHelper {
+    // MARK: Test Data
+    struct TestData {
+        struct Question1 {
+            static let type = DSQuestionType.multipleChoiceQuestion
+            static let text = "What is the meaning of life?"
+            struct Answers {
+                static let correct = "42"
+                static let wrongs = ["11", "13", "17"]
+            }
+        }
+        struct Question2 {
+            static let type = DSQuestionType.multipleChoiceQuestion
+            static let text = "How many choices are there for this question?"
+            struct Answers {
+                static let correct = "4"
+                static let wrongs = ["19", "23", "29"]
+            }
+        }
+    }
+
+    // MARK: UI Elements
     struct Details {
         public static var nameLabel: Element { app.find(id: "AssignmentDetails.name") }
         public static var pointsLabel: Element { app.find(id: "AssignmentDetails.points") }
@@ -56,7 +77,7 @@ public class QuizzesHelper: BaseHelper {
             public static func answerFirstQuestion() {
                 // Correct answer to first question
                 exitButton.waitToExist()
-                let firstQuestionAnswer = app.find(label: "42", type: .staticText)
+                let firstQuestionAnswer = app.find(label: TestData.Question1.Answers.correct, type: .staticText)
                 firstQuestionAnswer.swipeUntilVisible()
                 firstQuestionAnswer.tap()
             }
@@ -64,7 +85,7 @@ public class QuizzesHelper: BaseHelper {
             public static func answerSecondQuestion() {
                 // Correct answer to second question
                 exitButton.waitToExist()
-                let secondQuestionAnswer = app.find(label: "SCOOTER!", type: .staticText)
+                let secondQuestionAnswer = app.find(label: TestData.Question1.Answers.correct, type: .staticText)
                 secondQuestionAnswer.swipeUntilVisible()
                 secondQuestionAnswer.tap()
             }
@@ -101,6 +122,7 @@ public class QuizzesHelper: BaseHelper {
         CourseDetailsHelper.cell(type: .quizzes).tap()
     }
 
+    // MARK: DataSeeding
     @discardableResult
     public static func createQuiz(course: DSCourse,
                                   title: String,
@@ -137,24 +159,31 @@ public class QuizzesHelper: BaseHelper {
     @discardableResult
     public static func createTestQuizQuestions(course: DSCourse, quiz: DSQuiz) -> [DSQuizQuestion] {
         var questions = [DSQuizQuestion]()
-        let type = DSQuestionType.multipleChoiceQuestion
-        let text1 = "What is the meaning of life?"
         var answers1 = [DSAnswer]()
-        answers1.append(DSAnswer(text: "1", weight: 0))
-        answers1.append(DSAnswer(text: "2", weight: 0))
-        answers1.append(DSAnswer(text: "3", weight: 0))
-        answers1.append(DSAnswer(text: "42", weight: 100))
+        answers1.append(DSAnswer(text: TestData.Question1.Answers.wrongs[0], weight: 0))
+        answers1.append(DSAnswer(text: TestData.Question1.Answers.wrongs[1], weight: 0))
+        answers1.append(DSAnswer(text: TestData.Question1.Answers.wrongs[2], weight: 0))
+        answers1.append(DSAnswer(text: TestData.Question1.Answers.correct, weight: 100))
 
-        questions.append(createQuizQuestion(course: course, quiz: quiz, type: type, text: text1, points_possible: 5.0, answers: answers1))
+        questions.append(createQuizQuestion(course: course,
+                                            quiz: quiz,
+                                            type: TestData.Question1.type,
+                                            text: TestData.Question1.text,
+                                            points_possible: 5.0,
+                                            answers: answers1))
 
-        let text2 = "How much is the fish?"
         var answers2 = [DSAnswer]()
-        answers2.append(DSAnswer(text: "1", weight: 0))
-        answers2.append(DSAnswer(text: "2", weight: 0))
-        answers2.append(DSAnswer(text: "3", weight: 0))
-        answers2.append(DSAnswer(text: "SCOOTER!", weight: 100))
+        answers2.append(DSAnswer(text: TestData.Question2.Answers.wrongs[0], weight: 0))
+        answers2.append(DSAnswer(text: TestData.Question2.Answers.wrongs[1], weight: 0))
+        answers2.append(DSAnswer(text: TestData.Question2.Answers.wrongs[2], weight: 0))
+        answers2.append(DSAnswer(text: TestData.Question2.Answers.correct, weight: 100))
 
-        questions.append(createQuizQuestion(course: course, quiz: quiz, type: type, text: text2, points_possible: 5.0, answers: answers2))
+        questions.append(createQuizQuestion(course: course,
+                                            quiz: quiz,
+                                            type: TestData.Question2.type,
+                                            text: TestData.Question2.text,
+                                            points_possible: 5.0,
+                                            answers: answers2))
 
         return questions
     }

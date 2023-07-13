@@ -120,6 +120,7 @@ class QuizzesTests: E2ETestCase {
 
         detailsTakeQuizButton.tap()
 
+        // MARK: Check "Take Quiz" screen, tick the correct answers, submit quiz
         let takeQuizNavBar = TakeQuizHelper.navBar.waitToExist()
         XCTAssertTrue(takeQuizNavBar.isVisible)
 

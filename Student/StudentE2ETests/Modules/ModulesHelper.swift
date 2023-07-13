@@ -61,7 +61,10 @@ public class ModulesHelper: BaseHelper {
         let moduleItemBody = CreateDSModuleItemRequest.RequestedDSModuleItem(title: title, type: .assignment, content_id: assignment.id)
         var moduleItem = seeder.createModuleItem(courseId: course.id, moduleId: module.id, moduleItemBody: moduleItemBody)
         if published {
-            moduleItem = seeder.updateModuleItemWithPublished(courseId: course.id, moduleId: module.id, itemId: moduleItem.id, published: published)
+            moduleItem = seeder.updateModuleItemWithPublished(courseId: course.id,
+                                                              moduleId: module.id,
+                                                              itemId: moduleItem.id,
+                                                              published: published)
         }
         return moduleItem
     }
@@ -75,7 +78,10 @@ public class ModulesHelper: BaseHelper {
         let moduleItemBody = CreateDSModuleItemRequest.RequestedDSModuleItem(title: title, type: .discussion, content_id: discussion.id)
         var moduleItem = seeder.createModuleItem(courseId: course.id, moduleId: module.id, moduleItemBody: moduleItemBody)
         if published {
-            moduleItem = seeder.updateModuleItemWithPublished(courseId: course.id, moduleId: module.id, itemId: moduleItem.id, published: published)
+            moduleItem = seeder.updateModuleItemWithPublished(courseId: course.id,
+                                                              moduleId: module.id,
+                                                              itemId: moduleItem.id,
+                                                              published: published)
         }
         return moduleItem
     }
@@ -90,7 +96,10 @@ public class ModulesHelper: BaseHelper {
         let moduleItemBody = CreateDSModuleItemRequest.RequestedDSModuleItem(title: title, type: .page, page_url: page.url)
         var moduleItem = seeder.createModuleItem(courseId: course.id, moduleId: module.id, moduleItemBody: moduleItemBody)
         if published {
-            moduleItem = seeder.updateModuleItemWithPublished(courseId: course.id, moduleId: module.id, itemId: moduleItem.id, published: published)
+            moduleItem = seeder.updateModuleItemWithPublished(courseId: course.id,
+                                                              moduleId: module.id,
+                                                              itemId: moduleItem.id,
+                                                              published: published)
         }
         return moduleItem
     }
@@ -101,13 +110,17 @@ public class ModulesHelper: BaseHelper {
                                         title: String = "Module Quiz",
                                         description: String = "Description of ",
                                         published: Bool = true) -> DSModuleItem {
-        let quiz = QuizzesHelper.createQuiz(course: course, title: title, description: description + title, quiz_type: .assignment, published: published)
+        var quiz = QuizzesHelper.createQuiz(course: course, title: title, description: description + title, quiz_type: .assignment, published: false)
         QuizzesHelper.createTestQuizQuestions(course: course, quiz: quiz)
+        quiz = QuizzesHelper.updateQuiz(course: course, quiz: quiz, published: published)
 
         let moduleItemBody = CreateDSModuleItemRequest.RequestedDSModuleItem(title: title, type: .quiz, content_id: quiz.id)
         var moduleItem = seeder.createModuleItem(courseId: course.id, moduleId: module.id, moduleItemBody: moduleItemBody)
         if published {
-            moduleItem = seeder.updateModuleItemWithPublished(courseId: course.id, moduleId: module.id, itemId: moduleItem.id, published: published)
+            moduleItem = seeder.updateModuleItemWithPublished(courseId: course.id,
+                                                              moduleId: module.id,
+                                                              itemId: moduleItem.id,
+                                                              published: published)
         }
         return moduleItem
     }

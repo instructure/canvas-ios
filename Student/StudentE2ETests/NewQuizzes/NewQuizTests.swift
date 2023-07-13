@@ -21,18 +21,15 @@ import TestsFoundation
 import XCTest
 
 class NewQuizzesTests: E2ETestCase {
-    func testNewQuiz() {
-        // MARK: Seed the usual stuff
+    func testNewQuiz() throws {
+        try XCTSkipIf(true, "New Quizzes is not configured in the course")
+        // MARK: Seed the usual stuff with a New Quiz
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
-
-        let availableFeaturesForCourse = NewQuizzesHelper.listFeaturesForCourse(course: course)
-        let availableFeaturesForAccount = NewQuizzesHelper.listFeaturesForAccount(course: course)
-
         let quiz = NewQuizzesHelper.createNewQuiz(course: course)
-        print("NO WAY IT WORKS!")
 
+        // MARK: Get the user logged in
         logInDSUser(student)
     }
 }
