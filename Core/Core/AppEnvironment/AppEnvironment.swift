@@ -99,11 +99,25 @@ open class AppEnvironment {
     }
 
     public var topViewController: UIViewController? {
-        var controller = window?.rootViewController
-        while controller?.presentedViewController != nil {
-            controller = controller?.presentedViewController
+        let locateTopViewController: () -> UIViewController? = {
+            var controller = self.window?.rootViewController
+            while controller?.presentedViewController != nil {
+                controller = controller?.presentedViewController
+            }
+            return controller
         }
-        return controller
+
+        if Thread.isMainThread {
+            return locateTopViewController()
+        } else {
+            var topController: UIViewController?
+
+            DispatchQueue.main.sync {
+                topController = locateTopViewController()
+            }
+
+            return topController
+        }
     }
 
     private var startupIsCompleted = false
