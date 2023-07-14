@@ -144,7 +144,7 @@ class QuizzesTests: E2ETestCase {
         takeQuizExitButton.tap()
         let detailsStatusLabel = DetailsHelper.statusLabel.waitToExist()
         XCTAssertTrue(detailsStatusLabel.isVisible)
-        XCTAssertEqual(detailsStatusLabel.label().prefix(9), "Submitted")
+        XCTAssertTrue(detailsStatusLabel.label().hasPrefix("Submitted"))
 
         detailsTakeQuizButton = DetailsHelper.takeQuizButton.waitToExist()
         XCTAssertTrue(detailsTakeQuizButton.isVisible)
