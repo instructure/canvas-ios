@@ -104,7 +104,7 @@ class QuizzesTests: E2ETestCase {
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
-        Helper.createTestQuizWith2Questions(course: course)
+        let quiz = Helper.createTestQuizWith2Questions(course: course)
 
         // MARK: Get the user logged in and navigate to Quizzes
         logInDSUser(student)

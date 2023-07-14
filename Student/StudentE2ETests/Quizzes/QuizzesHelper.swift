@@ -64,6 +64,7 @@ public class QuizzesHelper: BaseHelper {
         public static func descriptionLabel(quiz: DSQuiz) -> Element {
             return app.find(label: quiz.description, type: .staticText)
         }
+
         public static func navBar(course: DSCourse) -> Element {
             return app.find(id: "Quiz Details, \(course.name)")
         }
@@ -85,7 +86,7 @@ public class QuizzesHelper: BaseHelper {
             public static func answerSecondQuestion() {
                 // Correct answer to second question
                 exitButton.waitToExist()
-                let secondQuestionAnswer = app.find(label: TestData.Question1.Answers.correct, type: .staticText)
+                let secondQuestionAnswer = app.find(label: TestData.Question2.Answers.correct, type: .staticText)
                 secondQuestionAnswer.swipeUntilVisible()
                 secondQuestionAnswer.tap()
             }
