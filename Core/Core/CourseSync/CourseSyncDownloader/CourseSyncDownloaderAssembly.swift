@@ -26,6 +26,7 @@ public enum CourseSyncDownloaderAssembly {
             CourseSyncAssignmentsInteractorLive(),
             CourseSyncGradesInteractorLive(userId: AppEnvironment.shared.currentSession?.userID ?? "self"),
             CourseSyncSyllabusInteractorLive(),
+            CourseSyncConferencesInteractorLive(),
             CourseSyncAnnouncementsInteractorLive(),
         ]
         let scheduler = DispatchQueue(
