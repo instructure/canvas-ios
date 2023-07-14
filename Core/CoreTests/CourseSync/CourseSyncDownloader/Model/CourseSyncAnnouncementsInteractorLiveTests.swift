@@ -93,18 +93,3 @@ class CourseSyncAnnouncementsInteractorLiveTests: CoreTestCase {
                  value: [])
     }
 }
-
-class AlwaysOfflineModeInteractor: OfflineModeInteractor {
-
-    func isOfflineModeEnabled() -> Bool {
-        true
-    }
-
-    func observeIsOfflineMode() -> AnyPublisher<Bool, Never> {
-        Just(true).eraseToAnyPublisher()
-    }
-
-    func observeNetworkStatus() -> AnyPublisher<NetworkAvailabilityStatus, Never> {
-        Just(NetworkAvailabilityStatus.disconnected).eraseToAnyPublisher()
-    }
-}
