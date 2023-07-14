@@ -23,13 +23,20 @@ extension UIButton {
     // MARK: - Public Interface
 
     public func makeUnavailableInOfflineMode(_ interactor: OfflineModeInteractor = OfflineModeInteractorLive.shared) {
+
+        // This method is usually called in some setup method and it looks better if the button is instantly disabled
+        // rather then animating to its disabled state while the view controller is animating in.
+        if interactor.isOfflineModeEnabled() {
+            setUnavailableState(isAnimated: false)
+        }
+
         unowned let uSelf = self
         let observation = interactor
             .observeIsOfflineMode()
             .removeDuplicates()
             .sink { offlineMode in
                 if offlineMode {
-                    uSelf.setUnavailableState()
+                    uSelf.setUnavailableState(isAnimated: true)
                 } else {
                     uSelf.setAvailableState()
                 }
@@ -44,8 +51,8 @@ extension UIButton {
         static var TapGestureRecognizer = "TapGestureRecognizer"
     }
 
-    private func setUnavailableState() {
-        UIView.animate(withDuration: 0.3) {
+    private func setUnavailableState(isAnimated: Bool) {
+        UIView.animate(withDuration: isAnimated ? 0.3 : 0.0) {
             self.alpha = 0.3
         }
 
@@ -55,7 +62,7 @@ extension UIButton {
         }
 
         let tapRecognizer = UITapGestureRecognizer(target: UIAlertController.self,
-                                                   action: #selector(UIAlertController.showItemNotAvailableInOfflineAlert))
+                                                   action: #selector(UIAlertController.showItemNotAvailableInOfflineAlert(sender:)))
         addGestureRecognizer(tapRecognizer)
         objc_setAssociatedObject(self, &AssociatedObjectKeys.TapGestureRecognizer, tapRecognizer, .OBJC_ASSOCIATION_RETAIN)
     }

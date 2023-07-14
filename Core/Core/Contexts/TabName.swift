@@ -34,4 +34,13 @@ public enum TabName: String, Codable {
     case outcomes
     case custom
     case grades
+
+    public static let OfflineSyncableTabs: [TabName] = [
+        .assignments,
+        .pages,
+        .files,
+        .grades,
+        .syllabus,
+        .conferences,
+    ]
 }

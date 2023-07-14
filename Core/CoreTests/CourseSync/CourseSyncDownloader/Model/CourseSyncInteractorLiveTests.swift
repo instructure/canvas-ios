@@ -49,6 +49,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                     .init(id: "tab-pages", name: "Pages", type: .pages),
                     .init(id: "tab-files", name: "Files", type: .files),
                     .init(id: "tab-syllabus", name: "Syllabus", type: .syllabus),
+                    .init(id: "tab-conferences", name: "Conferences", type: .conferences),
                 ],
                 files: [
                     .make(id: "file-1", displayName: "1", url: URL(string: "1.jpg")!, bytesToDownload: 1000),
@@ -220,7 +221,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
 
     func testFilesLoadingState() {
         let testee = CourseSyncInteractorLive(
-            contentInteractors: [pagesInteractor, assignmentsInteractor],
+            contentInteractors: [],
             filesInteractor: filesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
             scheduler: .immediate
@@ -256,7 +257,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
 
     func testFilesDownloadedBytes() {
         let testee = CourseSyncInteractorLive(
-            contentInteractors: [pagesInteractor, assignmentsInteractor],
+            contentInteractors: [],
             filesInteractor: filesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
             scheduler: .immediate
@@ -293,7 +294,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
 
     func testFilesPartialSelection() {
         let testee = CourseSyncInteractorLive(
-            contentInteractors: [pagesInteractor, assignmentsInteractor],
+            contentInteractors: [],
             filesInteractor: filesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
             scheduler: .immediate
@@ -329,7 +330,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
 
     func testAssignmentErrorState() {
         let testee = CourseSyncInteractorLive(
-            contentInteractors: [pagesInteractor, assignmentsInteractor],
+            contentInteractors: [assignmentsInteractor],
             filesInteractor: filesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
             scheduler: .immediate
@@ -358,7 +359,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
 
     func testPagesErrorState() {
         let testee = CourseSyncInteractorLive(
-            contentInteractors: [pagesInteractor, assignmentsInteractor],
+            contentInteractors: [pagesInteractor],
             filesInteractor: filesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
             scheduler: .immediate
@@ -387,7 +388,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
 
     func testFilesErrorState() {
         let testee = CourseSyncInteractorLive(
-            contentInteractors: [pagesInteractor, assignmentsInteractor],
+            contentInteractors: [],
             filesInteractor: filesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
             scheduler: .immediate
@@ -418,11 +419,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         let syllbusDownloadStarted = expectation(description: "Syllabus download started")
         let mockSyllabusInteractor = CourseSyncSyllabusInteractorMock(expectation: syllbusDownloadStarted)
         let testee = CourseSyncInteractorLive(
-            contentInteractors: [
-                pagesInteractor,
-                assignmentsInteractor,
-                mockSyllabusInteractor,
-            ],
+            contentInteractors: [mockSyllabusInteractor],
             filesInteractor: filesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
             scheduler: .immediate
@@ -434,9 +431,43 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         wait(for: [syllbusDownloadStarted], timeout: 1)
         subscription.cancel()
     }
+
+    func testStartsConferencesDownload() {
+        let conferencesDownloadStarted = expectation(description: "Conferences download started")
+        let mockConferencesInteractor = CourseSyncConferencesInteractorMock(expectation: conferencesDownloadStarted)
+        let testee = CourseSyncInteractorLive(
+            contentInteractors: [mockConferencesInteractor],
+            filesInteractor: filesInteractor,
+            progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
+            scheduler: .immediate
+        )
+        entries[0].tabs[4].selectionState = .selected
+
+        let subscription = testee.downloadContent(for: entries).sink()
+
+        wait(for: [conferencesDownloadStarted], timeout: 1)
+        subscription.cancel()
+    }
 }
 
+// MARK: - Mocks
+
 private class CourseSyncSyllabusInteractorMock: CourseSyncSyllabusInteractor {
+    let expectation: XCTestExpectation
+
+    init(expectation: XCTestExpectation) {
+        self.expectation = expectation
+    }
+
+    func getContent(courseId _: String) -> AnyPublisher<Void, Error> {
+        expectation.fulfill()
+        return Just(())
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+}
+
+private class CourseSyncConferencesInteractorMock: CourseSyncConferencesInteractor {
     let expectation: XCTestExpectation
 
     init(expectation: XCTestExpectation) {
