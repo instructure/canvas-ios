@@ -49,4 +49,3 @@ extension CreateDSNewQuizRequest {
         let quiz: RequestedDSNewQuiz
     }
 }
-
