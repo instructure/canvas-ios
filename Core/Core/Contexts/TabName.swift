@@ -41,6 +41,7 @@ public enum TabName: String, Codable {
         .files,
         .grades,
         .syllabus,
-        .quizzes
+        .conferences,
+        .quizzes,
     ]
 }

@@ -78,6 +78,7 @@ public class ConferenceDetailsViewController: ScreenViewTrackableViewController,
 
         joinButton.setTitle(NSLocalizedString("Join", bundle: .core, comment: ""), for: .normal)
         joinButton.isHidden = true
+        joinButton.makeUnavailableInOfflineMode()
 
         recordingsHeadingLabel.text = NSLocalizedString("Recordings", bundle: .core, comment: "")
         recordingsView.isHidden = true
