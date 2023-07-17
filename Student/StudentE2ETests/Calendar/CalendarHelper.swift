@@ -16,4 +16,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import TestsFoundation
+
+public class CalendarHelper: BaseHelper {
+    @discardableResult
+    public static func createCalendarEvent(course: DSCourse,
+                                           title: String = "Sample Calendar Event",
+                                           description: String = "Be there or be square!") -> DSCalendarEvent {
+        let calendarEvent = CreateDSCalendarEventRequest.RequestedDSCalendarEvent(courseId: course.id,
+                                                                                  title: title,
+                                                                                  description: description)
+        let requestBody = CreateDSCalendarEventRequest.Body(calendar_event: calendarEvent)
+        return seeder.createCalendarEvent(requestBody: requestBody)
+    }
+}
