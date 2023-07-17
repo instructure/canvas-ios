@@ -27,7 +27,7 @@ class SyllabusTests: E2ETestCase {
 
         // MARK: Seed an assignment and a calendar event
         let assignment = AssignmentsHelper.createAssignment(course: course)
-        let calendarEvent = SyllabusHelper.createCalendarEvent(course: course)
+        let calendarEvent = CalendarHelper.createCalendarEvent(course: course)
 
         // MARK: Get the user logged in, navigate to Syllabus, check "Syllabus" tab
         logInDSUser(student)

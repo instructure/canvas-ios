@@ -60,15 +60,4 @@ public class SyllabusHelper: BaseHelper {
         result.syllabus_body = syllabusBody
         return result
     }
-
-    @discardableResult
-    public static func createCalendarEvent(course: DSCourse,
-                                           title: String = "Sample Calendar Event",
-                                           description: String = "Be there or be square!") -> DSCalendarEvent {
-        let calendarEvent = CreateDSCalendarEventRequest.RequestedDSCalendarEvent(courseId: course.id,
-                                                                                  title: title,
-                                                                                  description: description)
-        let requestBody = CreateDSCalendarEventRequest.Body(calendar_event: calendarEvent)
-        return seeder.createCalendarEvent(requestBody: requestBody)
-    }
 }
