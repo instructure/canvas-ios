@@ -312,7 +312,13 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         gradeSection?.isHidden = !showGradeSection
         submissionButtonSection?.isHidden = presenter.viewSubmissionButtonSectionIsHidden()
         showDescription(!presenter.descriptionIsHidden())
-        submitAssignmentButton.isHidden = presenter.submitAssignmentButtonIsHidden()
+
+        if assignment.submission?.type == .basic_lti_launch {
+            submitAssignmentButton.makeUnavailableInOfflineMode()
+        } else {
+            submitAssignmentButton.isHidden = presenter.submitAssignmentButtonIsHidden()
+
+        }
 
         lockedSubheaderWebView.loadHTMLString(presenter.lockExplanation)
         centerLockedIconContainerView()

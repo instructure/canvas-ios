@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineExt
 import Foundation
 
 public protocol CourseSyncQuizzesInteractor: CourseSyncContentInteractor {}
@@ -52,10 +53,11 @@ public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor,
         .getEntities()
         .flatMap {
             $0.publisher
+                .filter { $0.quizType != .quizzes_next }
                 .flatMap { Self.getQuiz(courseId: courseId, quizId: $0.id) }
                 .collect()
         }
-        .map { _ in () }
+        .mapToVoid()
         .eraseToAnyPublisher()
     }
 
@@ -64,7 +66,7 @@ public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor,
             useCase: GetQuiz(courseID: courseId, quizID: quizId)
         )
         .getEntities()
-        .map { _ in () }
+        .mapToVoid()
         .eraseToAnyPublisher()
     }
 }
