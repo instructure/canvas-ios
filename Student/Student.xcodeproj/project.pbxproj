@@ -143,6 +143,8 @@
 		8B70DBDA2A571893007D3ED4 /* InboxHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBD82A571893007D3ED4 /* InboxHelper.swift */; };
 		8B95EEC82A4EE33900ADCDB4 /* PeopleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B95EEC62A4EE33900ADCDB4 /* PeopleHelper.swift */; };
 		8B95EEC92A4EE33900ADCDB4 /* PeopleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B95EEC72A4EE33900ADCDB4 /* PeopleTests.swift */; };
+		8B9D052B2A653D36002E2447 /* CalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D052A2A653D36002E2447 /* CalendarTests.swift */; };
+		8B9D052D2A653D41002E2447 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D052C2A653D41002E2447 /* CalendarHelper.swift */; };
 		8BB5ED932A2E0F0B009D63DA /* HelpHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5ED922A2E0F0B009D63DA /* HelpHelper.swift */; };
 		8BB5ED942A2E0F0B009D63DA /* HelpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5ED912A2E0F0B009D63DA /* HelpTests.swift */; };
 		8BB5ED962A2E111B009D63DA /* AnnouncementsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5ED952A2E111B009D63DA /* AnnouncementsHelper.swift */; };
@@ -675,6 +677,8 @@
 		8B70DBD82A571893007D3ED4 /* InboxHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxHelper.swift; sourceTree = "<group>"; };
 		8B95EEC62A4EE33900ADCDB4 /* PeopleHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleHelper.swift; sourceTree = "<group>"; };
 		8B95EEC72A4EE33900ADCDB4 /* PeopleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTests.swift; sourceTree = "<group>"; };
+		8B9D052A2A653D36002E2447 /* CalendarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTests.swift; sourceTree = "<group>"; };
+		8B9D052C2A653D41002E2447 /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
 		8BB5ED912A2E0F0B009D63DA /* HelpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpTests.swift; sourceTree = "<group>"; };
 		8BB5ED922A2E0F0B009D63DA /* HelpHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpHelper.swift; sourceTree = "<group>"; };
 		8BB5ED952A2E111B009D63DA /* AnnouncementsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementsHelper.swift; sourceTree = "<group>"; };
@@ -1489,6 +1493,7 @@
 		7DCF0F7622F8A0A0000AACCE /* StudentE2ETests */ = {
 			isa = PBXGroup;
 			children = (
+				8B9D05292A653D25002E2447 /* Calendar */,
 				8B70DBA52A559BF6007D3ED4 /* CourseDetails */,
 				8BB5ED882A2DE435009D63DA /* Help */,
 				8BE0C3602A28990700034CC6 /* ActAsUser */,
@@ -1519,6 +1524,15 @@
 				8B70DBA72A559BF6007D3ED4 /* CourseDetailsHelper.swift */,
 			);
 			path = CourseDetails;
+			sourceTree = "<group>";
+		};
+		8B9D05292A653D25002E2447 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				8B9D052A2A653D36002E2447 /* CalendarTests.swift */,
+				8B9D052C2A653D41002E2447 /* CalendarHelper.swift */,
+			);
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 		8BB5ED882A2DE435009D63DA /* Help */ = {
@@ -2922,6 +2936,7 @@
 				8B05AB822A38946900A9C714 /* DiscussionsHelper.swift in Sources */,
 				C9BCCA1027D73F0F003E9CB0 /* GradesTests.swift in Sources */,
 				8B70DAFF2A52B603007D3ED4 /* LoginTests.swift in Sources */,
+				8B9D052D2A653D41002E2447 /* CalendarHelper.swift in Sources */,
 				8B05ABB72A42043300A9C714 /* ModulesTests.swift in Sources */,
 				8B19F65B2A137E33007AA43F /* AssignmentsTests.swift in Sources */,
 				C9A3C04D26A03B9900DAE8E1 /* K5StudentE2ETests.swift in Sources */,
@@ -2948,6 +2963,7 @@
 				5859544C501D5668C211D44C /* ConferencesE2ETests.swift in Sources */,
 				C935D43026E0EAE700C940F7 /* K5ScheduleE2ETests.swift in Sources */,
 				C9299FEC2817CCF2003A47C2 /* DiscussionsTest.swift in Sources */,
+				8B9D052B2A653D36002E2447 /* CalendarTests.swift in Sources */,
 				C9299FE528102A62003A47C2 /* AnnouncementsTests.swift in Sources */,
 				E80936EB24C24CDD00D15E9A /* ProfileE2ETests.swift in Sources */,
 				8B70DBA82A559BF6007D3ED4 /* CourseDetailsTests.swift in Sources */,
