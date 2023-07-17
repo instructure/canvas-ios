@@ -36,5 +36,6 @@ public class CourseDetailsHelper: BaseHelper {
         case bigBlueButton = "conferences"
         case collaborations = "collaborations"
         case googleDrive = "context_external_tool_1038049"
+        case quizzes = "quizzes"
     }
 }

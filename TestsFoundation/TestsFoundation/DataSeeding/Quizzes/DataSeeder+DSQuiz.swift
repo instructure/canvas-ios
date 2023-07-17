@@ -28,4 +28,10 @@ extension DataSeeder {
         let request = GetDSQuizRequest(courseId: courseId, quizId: quizId)
         return makeRequest(request)
     }
+
+    public func updateQuiz(courseId: String, quizId: String, published: Bool) -> DSQuiz {
+        let requestedBody = UpdateDSQuizRequest.Body(quiz: .init(published: published))
+        let request = UpdateDSQuizRequest(body: requestedBody, courseId: courseId, quizId: quizId)
+        return makeRequest(request)
+    }
 }

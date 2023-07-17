@@ -16,32 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+extension DataSeeder {
 
-// https://canvas.instructure.com/doc/api/quizzes.html#method.quizzes/quizzes_api.update
-public struct UpdateDSQuizRequest: APIRequestable {
-    public typealias Response = DSQuiz
-
-    public let method = APIMethod.put
-    public var path: String
-    public let body: Body?
-
-    public init(body: Body, courseId: String, quizId: String) {
-        self.body = body
-        self.path = "courses/\(courseId)/quizzes/\(quizId)"
-    }
-}
-
-extension UpdateDSQuizRequest {
-    public struct UpdatedDSQuiz: Encodable {
-        let published: Bool?
-
-        public init(published: Bool? = true) {
-            self.published = published
-        }
-    }
-
-    public struct Body: Encodable {
-        let quiz: UpdatedDSQuiz
+    public func createNewQuiz(courseId: String, quizBody: CreateDSNewQuizRequest.RequestedDSNewQuiz) -> DSNewQuiz {
+        let requestedBody = CreateDSNewQuizRequest.Body(course_id: courseId, quiz: quizBody)
+        let request = CreateDSNewQuizRequest(body: requestedBody, courseId: courseId)
+        return makeRequest(request)
     }
 }

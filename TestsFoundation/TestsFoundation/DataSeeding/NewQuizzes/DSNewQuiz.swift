@@ -16,32 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-
-// https://canvas.instructure.com/doc/api/quizzes.html#method.quizzes/quizzes_api.update
-public struct UpdateDSQuizRequest: APIRequestable {
-    public typealias Response = DSQuiz
-
-    public let method = APIMethod.put
-    public var path: String
-    public let body: Body?
-
-    public init(body: Body, courseId: String, quizId: String) {
-        self.body = body
-        self.path = "courses/\(courseId)/quizzes/\(quizId)"
-    }
-}
-
-extension UpdateDSQuizRequest {
-    public struct UpdatedDSQuiz: Encodable {
-        let published: Bool?
-
-        public init(published: Bool? = true) {
-            self.published = published
-        }
-    }
-
-    public struct Body: Encodable {
-        let quiz: UpdatedDSQuiz
-    }
+public struct DSNewQuiz: Codable {
+    public let id: String
+    public let title: String
+    public let instructions: String
+    public let points_possible: Int
+    public let published: Bool
+    public let grading_type: String
 }
