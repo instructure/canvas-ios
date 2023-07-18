@@ -19,6 +19,9 @@
 import TestsFoundation
 
 public class CalendarHelper: BaseHelper {
+    static var localTimeZoneAbbreviation: String { return TimeZone.current.abbreviation() ?? "" }
+    static var plusMinutes = localTimeZoneAbbreviation == "GMT+2" ? 120 : -360
+
     // MARK: UI Elements
     public static var navBar: Element { app.find(id: "Core.PlannerView") }
     public static var todayButton: Element { app.find(id: "PlannerCalendar.todayButton") }
@@ -35,7 +38,7 @@ public class CalendarHelper: BaseHelper {
     public static func formatDateForDayButton(event: DSCalendarEvent) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        let date = dateFormatter.date(from: event.start_at)!.addMinutes(120)
+        let date = dateFormatter.date(from: event.start_at)!.addMinutes(plusMinutes)
         dateFormatter.dateFormat = "yyyy-M-d"
         let formattedDate = dateFormatter.string(from: date)
         return formattedDate
@@ -44,7 +47,7 @@ public class CalendarHelper: BaseHelper {
     public static func formatDateForDateLabel(event: DSCalendarEvent) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        let date = dateFormatter.date(from: event.start_at)!.addMinutes(120)
+        let date = dateFormatter.date(from: event.start_at)!.addMinutes(plusMinutes)
         dateFormatter.dateFormat = "MMM dd, yyyy 'at' h:mm a"
         let formattedDate = dateFormatter.string(from: date)
         return formattedDate
@@ -91,7 +94,7 @@ public class CalendarHelper: BaseHelper {
         public static func formatDateForDateLabel(event: DSCalendarEvent) -> String {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-            let date = dateFormatter.date(from: event.start_at)!.addMinutes(120)
+            let date = dateFormatter.date(from: event.start_at)!.addMinutes(CalendarHelper.plusMinutes)
             dateFormatter.dateFormat = "MMM dd, yyyy, h:mm"
             let formattedDate = dateFormatter.string(from: date)
             return formattedDate
