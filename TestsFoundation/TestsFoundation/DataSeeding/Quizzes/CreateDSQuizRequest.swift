@@ -48,13 +48,13 @@ extension CreateDSQuizRequest {
         let title: String
         let description: String?
         let quiz_type: String
-        let points_possible: Int
+        let points_possible: Float
         let published: Bool?
 
         public init(title: String = "Quiz Title",
-                    description: String? = nil,
+                    description: String? = "Quiz Description",
                     quiz_type: DSQuizType,
-                    points_possible: Int = 10,
+                    points_possible: Float = 10,
                     published: Bool? = true) {
             self.title = title
             self.description = description

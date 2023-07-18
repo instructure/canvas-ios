@@ -20,7 +20,12 @@ import UIKit
 
 extension UIAlertController {
 
+    /// To be used with target:action pattern.
     @objc
+    public static func showItemNotAvailableInOfflineAlert(sender: Any?) {
+        showItemNotAvailableInOfflineAlert()
+    }
+
     public static func showItemNotAvailableInOfflineAlert(_ completion: (() -> Void)? = nil) {
         let title = NSLocalizedString("Offline mode", comment: "")
         let message = NSLocalizedString("This item is not available offline.", comment: "")

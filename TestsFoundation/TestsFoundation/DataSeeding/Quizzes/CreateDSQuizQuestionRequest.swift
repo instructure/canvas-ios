@@ -34,23 +34,17 @@ public struct CreateDSQuizQuestionRequest: APIRequestable {
 
 extension CreateDSQuizQuestionRequest {
     public struct RequestedDSQuizQuestion: Encodable {
-        let question_name: String
         let question_text: String
         let question_type: String
-        let position: Int
-        let points_possible: Int
+        let points_possible: Float
         let answers: [DSAnswer]
 
-        public init(question_name: String = "Question name",
-                    question_text: String,
+        public init(question_text: String,
                     question_type: DSQuestionType,
-                    position: Int = 0,
-                    points_possible: Int = 1,
+                    points_possible: Float = 5,
                     answers: [DSAnswer]) {
-            self.question_name = question_name
             self.question_text = question_text
             self.question_type = question_type.rawValue
-            self.position = position
             self.points_possible = points_possible
             self.answers = answers
         }

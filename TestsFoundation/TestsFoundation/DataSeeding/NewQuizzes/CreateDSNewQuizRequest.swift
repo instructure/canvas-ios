@@ -18,30 +18,34 @@
 
 import Core
 
-// https://canvas.instructure.com/doc/api/quizzes.html#method.quizzes/quizzes_api.update
-public struct UpdateDSQuizRequest: APIRequestable {
-    public typealias Response = DSQuiz
+// https://canvas.instructure.com/doc/api/quizzes.html#method.quizzes/quizzes_api.create
+public struct CreateDSNewQuizRequest: APIRequestable {
+    public typealias Response = DSNewQuiz
 
-    public let method = APIMethod.put
+    public let method = APIMethod.post
     public var path: String
     public let body: Body?
 
-    public init(body: Body, courseId: String, quizId: String) {
+    public init(body: Body, courseId: String) {
         self.body = body
-        self.path = "courses/\(courseId)/quizzes/\(quizId)"
+        self.path = "/api/quiz/v1/courses/\(courseId)/quizzes"
     }
 }
 
-extension UpdateDSQuizRequest {
-    public struct UpdatedDSQuiz: Encodable {
-        let published: Bool?
+extension CreateDSNewQuizRequest {
+    public struct RequestedDSNewQuiz: Encodable {
+        let title: String
+        let instructions: String
 
-        public init(published: Bool? = true) {
-            self.published = published
+        public init(title: String = "Quiz Title",
+                    instructions: String = "Quiz Instructions") {
+            self.title = title
+            self.instructions = instructions
         }
     }
 
     public struct Body: Encodable {
-        let quiz: UpdatedDSQuiz
+        let course_id: String
+        let quiz: RequestedDSNewQuiz
     }
 }
