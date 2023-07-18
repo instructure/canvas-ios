@@ -20,22 +20,24 @@ import TestsFoundation
 
 class CalendarTests: E2ETestCase {
     typealias Helper = CalendarHelper
+    typealias DetailsHelper = Helper.Details
 
     func testCalendarLayout() {
-        // MARK: Seed the usual stuff with some calendar events
+        // MARK: Seed the usual stuff with a calendar events
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
 
         let event = Helper.createCalendarEvent(course: course)
 
-        // MARK: Get the user logged in
+        // MARK: Get the user logged in, navigate to Calendar
         logInDSUser(student)
         let calendarTab = TabBar.calendarTab.waitToExist()
         XCTAssertTrue(calendarTab.isVisible)
 
         calendarTab.tap()
 
+        // MARK: Check elements of event list
         let navBar = Helper.navBar.waitToExist()
         XCTAssertTrue(navBar.isVisible)
 
@@ -45,7 +47,7 @@ class CalendarTests: E2ETestCase {
         let addNoteButton = Helper.addNoteButton.waitToExist()
         XCTAssertTrue(addNoteButton.isVisible)
 
-        let todayDateButton = Helper.dayButton(date: Helper.formatDateForDayButton(date: event.start_at!)).waitToExist()
+        let todayDateButton = Helper.dayButton(event: event).waitToExist()
         XCTAssertTrue(todayDateButton.isVisible)
         XCTAssertTrue(todayDateButton.isSelected)
 
@@ -58,9 +60,46 @@ class CalendarTests: E2ETestCase {
 
         let eventDateLabel = Helper.dateLabelOfEvent(eventCell: eventItem).waitToExist()
         XCTAssertTrue(eventDateLabel.isVisible)
+        XCTAssertEqual(eventDateLabel.label(), Helper.formatDateForDateLabel(event: event))
 
         let eventCourseLabel = Helper.courseLabelOfEvent(eventCell: eventItem).waitToExist()
         XCTAssertTrue(eventCourseLabel.isVisible)
         XCTAssertEqual(eventCourseLabel.label(), course.name)
+    }
+
+    func testCalendarEventDetails() {
+        // MARK: Seed the usual stuff with a calendar events
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+
+        let event = Helper.createCalendarEvent(course: course)
+
+        // MARK: Get the user logged in, navigate to Calendar
+        logInDSUser(student)
+        let calendarTab = TabBar.calendarTab.waitToExist()
+        XCTAssertTrue(calendarTab.isVisible)
+
+        calendarTab.tap()
+
+        // MARK: Tap on the event item and check the details
+        let eventItem = Helper.eventCell(event: event).waitToExist()
+        XCTAssertTrue(eventItem.isVisible)
+
+        eventItem.tap()
+        let titleLabel = DetailsHelper.titleLabel(event: event).waitToExist()
+        XCTAssertTrue(titleLabel.isVisible)
+
+        let dateLabel = DetailsHelper.dateLabel(event: event).waitToExist()
+        XCTAssertTrue(dateLabel.isVisible)
+
+        let locationNameLabel = DetailsHelper.locationNameLabel(event: event).waitToExist()
+        XCTAssertTrue(locationNameLabel.isVisible)
+
+        let locationAddressLabel = DetailsHelper.locationAddressLabel(event: event).waitToExist()
+        XCTAssertTrue(locationAddressLabel.isVisible)
+
+        let descriptionLabel = DetailsHelper.descriptionLabel(event: event).waitToExist()
+        XCTAssertTrue(descriptionLabel.isVisible)
     }
 }

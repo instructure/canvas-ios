@@ -27,16 +27,27 @@ public class CalendarHelper: BaseHelper {
     public static var monthButton: Element { app.find(id: "PlannerCalendar.monthButton") }
     public static var filterButton: Element { app.find(id: "PlannerCalendar.filterButton") }
 
-    public static func dayButton(date: String) -> Element {
-        // Date in "2023-7-16" format
-        return app.find(id: "PlannerCalendar.dayButton.\(date)")
+    public static func dayButton(event: DSCalendarEvent) -> Element {
+        let dateString = formatDateForDayButton(event: event)
+        return app.find(id: "PlannerCalendar.dayButton.\(dateString)")
     }
 
-    public static func formatDateForDayButton(date: String) -> String {
+    public static func formatDateForDayButton(event: DSCalendarEvent) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-M-dd"
-        let formattedDate = dateFormatter.date(from: date)!
-        return dateFormatter.string(from: formattedDate)
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        let date = dateFormatter.date(from: event.start_at)!.addMinutes(120)
+        dateFormatter.dateFormat = "yyyy-M-d"
+        let formattedDate = dateFormatter.string(from: date)
+        return formattedDate
+    }
+
+    public static func formatDateForDateLabel(event: DSCalendarEvent) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        let date = dateFormatter.date(from: event.start_at)!.addMinutes(120)
+        dateFormatter.dateFormat = "MMM dd, yyyy 'at' h:mm a"
+        let formattedDate = dateFormatter.string(from: date)
+        return formattedDate
     }
 
     public static func eventCell(event: DSCalendarEvent) -> Element {
@@ -53,6 +64,38 @@ public class CalendarHelper: BaseHelper {
 
     public static func courseLabelOfEvent(eventCell: Element) -> Element {
         return eventCell.rawElement.findAll(type: .staticText)[2]
+    }
+
+    struct Details {
+        public static func titleLabel(event: DSCalendarEvent) -> Element {
+            return app.find(label: event.title, type: .staticText)
+        }
+
+        public static func dateLabel(event: DSCalendarEvent) -> Element {
+            let dateString = formatDateForDateLabel(event: event)
+            return app.find(labelContaining: dateString)
+        }
+
+        public static func locationNameLabel(event: DSCalendarEvent) -> Element {
+            return app.find(label: event.location_name, type: .staticText)
+        }
+
+        public static func locationAddressLabel(event: DSCalendarEvent) -> Element {
+            return app.find(label: event.location_address, type: .staticText)
+        }
+
+        public static func descriptionLabel(event: DSCalendarEvent) -> Element {
+            return app.find(label: event.description, type: .staticText)
+        }
+
+        public static func formatDateForDateLabel(event: DSCalendarEvent) -> String {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+            let date = dateFormatter.date(from: event.start_at)!.addMinutes(120)
+            dateFormatter.dateFormat = "MMM dd, yyyy, h:mm"
+            let formattedDate = dateFormatter.string(from: date)
+            return formattedDate
+        }
     }
 
     // MARK: DataSeeding
@@ -98,8 +141,8 @@ public class CalendarHelper: BaseHelper {
     public static func createCalendarEvent(course: DSCourse,
                                            title: String = "Sample Calendar Event",
                                            description: String = "Be there or be square!",
-                                           startDate: String? = nil,
-                                           endDate: String? = nil,
+                                           startDate: String? = formatDate(),
+                                           endDate: String? = formatDate(addHours: 1),
                                            locationName: String = "Best Location",
                                            locationAddress: String = "Right there under that old chestnut tree",
                                            allDay: Bool? = nil,
