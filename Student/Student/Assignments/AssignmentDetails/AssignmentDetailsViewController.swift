@@ -313,7 +313,9 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         submissionButtonSection?.isHidden = presenter.viewSubmissionButtonSectionIsHidden()
         showDescription(!presenter.descriptionIsHidden())
 
-        if assignment.submission?.type == .basic_lti_launch {
+        if assignment.submissionTypes.contains(where: { type in
+            type == .basic_lti_launch || type == .external_tool
+        }) {
             submitAssignmentButton.makeUnavailableInOfflineMode()
         } else {
             submitAssignmentButton.isHidden = presenter.submitAssignmentButtonIsHidden()
