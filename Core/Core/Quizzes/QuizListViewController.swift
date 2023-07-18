@@ -164,11 +164,16 @@ class QuizListCell: UITableViewCell {
             iconImageView.state = nil
         }
         dateLabel.setText(quiz?.dueText, style: .textCellSupportingText)
+        dateLabel.accessibilityIdentifier = "dateLabel"
         titleLabel.setText(quiz?.title, style: .textCellTitle)
+        titleLabel.accessibilityIdentifier = "titleLabel"
         pointsLabel.setText(quiz?.pointsPossibleText, style: .textCellBottomLabel)
+        pointsLabel.accessibilityIdentifier = "pointsLabel"
         questionsLabel.setText(quiz?.nQuestionsText, style: .textCellBottomLabel)
+        questionsLabel.accessibilityIdentifier = "questionsLabel"
         if let statusText = quiz?.lockStatusText {
             statusLabel.setText(statusText, style: .textCellSupportingText)
+            statusLabel.accessibilityIdentifier = "statusLabel"
             statusLabel.isHidden = false
             statusDot.isHidden = false
         } else {

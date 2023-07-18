@@ -32,7 +32,7 @@ open class E2ETestCase: CoreUITestCase {
     }
 
     open func findSchool(lastLogin: Bool = false) {
-        let findSchoolButton = LoginStart.findSchoolButton.waitToExist()
+        LoginStart.findSchoolButton.waitToExist()
         if lastLogin && LoginStart.lastLoginButton.exists && LoginStart.lastLoginButton.label() == user.host {
             LoginStart.lastLoginButton.tap()
         } else {
