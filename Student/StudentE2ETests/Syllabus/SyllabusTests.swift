@@ -19,7 +19,7 @@
 import TestsFoundation
 
 class SyllabusTests: E2ETestCase {
-    func testSyllabus() {
+    func testSyllabusOfCourse() {
         // MARK: Seed the usual stuff with a course containing a syllabus
         let student = seeder.createUser()
         let course = SyllabusHelper.createCourseWithSyllabus()
