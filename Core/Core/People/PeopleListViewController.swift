@@ -169,6 +169,11 @@ public class PeopleListViewController: ScreenViewTrackableViewController, Colore
 
 extension PeopleListViewController: UISearchBarDelegate {
     public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        if offlineModelInteractor?.isOfflineModeEnabled() == true {
+            UIAlertController.showItemNotAvailableInOfflineAlert {
+                self.searchBarCancelButtonClicked(searchBar)
+            }
+        }
         searchBar.setShowsCancelButton(true, animated: true)
     }
 
@@ -214,6 +219,7 @@ extension PeopleListViewController: UITableViewDataSource, UITableViewDelegate {
             ? NSLocalizedString("Filter", bundle: .core, comment: "")
             : NSLocalizedString("Clear filter", bundle: .core, comment: ""), for: .normal)
         header.filterButton.setTitleColor(Brand.shared.linkColor, for: .normal)
+        header.filterButton.makeUnavailableInOfflineMode()
         accessibilityFocusAfterReload = (enrollmentType != nil ? header.filterButton : nil)
         return header
     }
