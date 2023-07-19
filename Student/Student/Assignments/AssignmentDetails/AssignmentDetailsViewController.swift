@@ -365,6 +365,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     }
 
     func showSubmitAssignmentButton(title: String?) {
+        view.bringSubviewToFront(submitAssignmentButton)
         submitAssignmentButton.setTitle(title, for: .normal)
 
         if title == nil {
