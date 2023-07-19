@@ -35,6 +35,7 @@ struct CreateDSCourseRequest: APIRequestable {
 extension CreateDSCourseRequest {
     public struct RequestedDSCourse: Encodable {
         let name: String
+        let time_zone: String = "Europe/Budapest"
     }
 
     public struct Body: Encodable {

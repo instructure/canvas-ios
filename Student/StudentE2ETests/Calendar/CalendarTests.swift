@@ -23,7 +23,7 @@ class CalendarTests: E2ETestCase {
     typealias DetailsHelper = Helper.Details
 
     func testCalendarLayout() {
-        // MARK: Seed the usual stuff with a calendar events
+        // MARK: Seed the usual stuff with a calendar event
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
@@ -68,7 +68,7 @@ class CalendarTests: E2ETestCase {
     }
 
     func testCalendarEventDetails() {
-        // MARK: Seed the usual stuff with a calendar events
+        // MARK: Seed the usual stuff with a calendar event
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
@@ -101,5 +101,69 @@ class CalendarTests: E2ETestCase {
 
         let descriptionLabel = DetailsHelper.descriptionLabel(event: event).waitToExist()
         XCTAssertTrue(descriptionLabel.isVisible)
+    }
+
+    func testNavigateToEvents() {
+        // MARK: Seed the usual stuff with some calendar events
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+
+        let events = Helper.createSampleCalendarEvents(
+            course: course,
+            eventTypes: [.todays, .tomorrows, .yesterdays, .nextYears])
+
+        // MARK: Get the user logged in, navigate to Calendar
+        logInDSUser(student)
+        let calendarTab = TabBar.calendarTab.waitToExist()
+        XCTAssertTrue(calendarTab.isVisible)
+
+        calendarTab.tap()
+
+        // MARK: Navigate to dates and check the events
+        let yesterdaysEventItem = Helper.navigateToEvent(event: events.yesterdays!)
+        XCTAssertTrue(yesterdaysEventItem.isVisible)
+
+        Helper.todayButton.tap()
+        let todaysEventItem = Helper.eventCell(event: events.todays!).waitToExist()
+        XCTAssertTrue(todaysEventItem.isVisible)
+
+        let tomorrowsEventItem = Helper.navigateToEvent(event: events.tomorrows!)
+        XCTAssertTrue(tomorrowsEventItem.isVisible)
+
+        let nextYearEventItem = Helper.navigateToEvent(event: events.nextYears!)
+        XCTAssertTrue(nextYearEventItem.isVisible)
+    }
+
+    func testRecurringEvent() {
+        // MARK: Seed the usual stuff with some calendar events
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+
+        let events = Helper.createSampleCalendarEvents(course: course, eventTypes: [.recurring])
+
+        // MARK: Get the user logged in, navigate to Calendar
+        logInDSUser(student)
+        let calendarTab = TabBar.calendarTab.waitToExist()
+        XCTAssertTrue(calendarTab.isVisible)
+
+        calendarTab.tap()
+
+        // MARK: Navigate to Recurring event and check recurrency
+        let recurringEventItem1 = Helper.navigateToEvent(event: events.recurring!)
+        let recurringEventTitle1 = Helper.titleLabelOfEvent(eventCell: recurringEventItem1).waitToExist()
+        XCTAssertTrue(recurringEventItem1.isVisible)
+        XCTAssertEqual(recurringEventTitle1.label(), events.recurring!.title)
+
+        let recurringEventItem2 = Helper.navigateToEvent(event: events.recurring!.duplicates![0].calendar_event)
+        let recurringEventTitle2 = Helper.titleLabelOfEvent(eventCell: recurringEventItem2).waitToExist()
+        XCTAssertTrue(recurringEventItem2.isVisible)
+        XCTAssertEqual(recurringEventTitle2.label(), events.recurring!.duplicates![0].calendar_event.title)
+
+        let recurringEventItem3 = Helper.navigateToEvent(event: events.recurring!.duplicates![1].calendar_event)
+        let recurringEventTitle3 = Helper.titleLabelOfEvent(eventCell: recurringEventItem3).waitToExist()
+        XCTAssertTrue(recurringEventItem3.isVisible)
+        XCTAssertEqual(recurringEventTitle3.label(), events.recurring!.duplicates![1].calendar_event.title)
     }
 }
