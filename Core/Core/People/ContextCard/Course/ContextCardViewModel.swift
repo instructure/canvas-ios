@@ -21,7 +21,8 @@ import SwiftUI
 
 public class ContextCardViewModel: ObservableObject {
     @Published public var pending = true
-    public lazy var user = env.subscribe(GetCourseSingleUser(context: context, userID: userID)) { [weak self] in self?.updateLoadingState() }
+    @Published public var offlineModeViewModel: OfflineModeViewModel
+    public lazy var user = env.subscribe(GetCourseContextUser(context: context, userID: userID)) { [weak self] in self?.updateLoadingState() }
     public lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in self?.updateLoadingState() }
     public lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in self?.updateLoadingState() }
     public lazy var sections = env.subscribe(GetCourseSections(courseID: courseID)) { [weak self] in self?.updateLoadingState() }
@@ -29,7 +30,6 @@ public class ContextCardViewModel: ObservableObject {
     public lazy var permissions = env.subscribe(GetContextPermissions(context: context, permissions: [ .sendMessages ])) { [weak self] in self?.updateLoadingState() }
     public lazy var gradingPeriods = env.subscribe(GetGradingPeriods(courseID: courseID)) { [weak self] in self?.gradingPeriodsDidUpdate() }
 
-    public var apiUser: APIUser?
     public let isViewingAnotherUser: Bool
     public let context: Context
     public let isSubmissionRowsVisible: Bool
@@ -41,11 +41,14 @@ public class ContextCardViewModel: ObservableObject {
     private var isFirstAppear = true
     private let courseID: String
     private let userID: String
-    private var userAPICallResponsePending = true
     private var enrollmentsAPICallResponsePending = true
     private var currentGradingPeriodID: String?
 
-    public init(courseID: String, userID: String, currentUserID: String, isSubmissionRowsVisible: Bool = true, isLastActivityVisible: Bool = true, isModal: Bool = false) {
+    private var subscriptions = Set<AnyCancellable>()
+
+    public init(courseID: String, userID: String, currentUserID: String,
+                isSubmissionRowsVisible: Bool = true, isLastActivityVisible: Bool = true, isModal: Bool = false,
+                offlineModeViewModel: OfflineModeViewModel = OfflineModeViewModel(interactor: OfflineModeInteractorLive.shared)) {
         self.courseID = courseID
         self.userID = userID
         self.context = Context.course(courseID)
@@ -53,16 +56,16 @@ public class ContextCardViewModel: ObservableObject {
         self.isSubmissionRowsVisible = isSubmissionRowsVisible
         self.isLastActivityVisible = isLastActivityVisible
         self.isModal = isModal
+        self.offlineModeViewModel = offlineModeViewModel
+
+        offlineModeViewModel.objectWillChange.sink { [weak self] _ in self?.objectWillChange.send() }
+            .store(in: &subscriptions)
     }
 
     public func viewAppeared() {
         guard isFirstAppear else { return }
         isFirstAppear = false
-        user.refresh(force: true) { [weak self] response in
-            self?.apiUser = response
-            self?.userAPICallResponsePending = false
-            self?.updateLoadingState()
-        }
+        user.refresh(force: true)
         course.refresh()
         colors.refresh()
         sections.refresh()
@@ -72,6 +75,18 @@ public class ContextCardViewModel: ObservableObject {
     }
 
     func gradingPeriodsDidUpdate() {
+        if offlineModeViewModel.isOffline {
+            let predicates = [
+                NSPredicate(format: "%K != nil", #keyPath(Enrollment.id)),
+                NSPredicate(key: #keyPath(Enrollment.stateRaw), equals: EnrollmentState.active.rawValue),
+                NSPredicate(key: #keyPath(Enrollment.userID), equals: userID),
+            ]
+            let scope = Scope(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: predicates), order: [])
+            let databaseContext = self.env.database.viewContext
+            enrollment = databaseContext.fetch(scope: scope).first
+            enrollmentsAPICallResponsePending = false
+            pending = false
+        }
         if gradingPeriods.pending == false && gradingPeriods.requested {
             currentGradingPeriodID = gradingPeriods.all.current?.id
             let request = GetEnrollmentsRequest(context: context, gradingPeriodID: currentGradingPeriodID, states: [ .active ])
@@ -123,8 +138,7 @@ public class ContextCardViewModel: ObservableObject {
             submissions.pending || !submissions.requested || submissions.hasNextPage ||
             permissions.pending ||
             gradingPeriods.pending ||
-            enrollmentsAPICallResponsePending ||
-            userAPICallResponsePending
+            enrollmentsAPICallResponsePending
         if newPending == true { return }
         pending = newPending
     }

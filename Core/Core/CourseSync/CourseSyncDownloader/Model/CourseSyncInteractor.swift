@@ -100,6 +100,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         return [
             downloadTabContent(for: entry, tabName: .assignments),
             downloadTabContent(for: entry, tabName: .pages),
+            downloadTabContent(for: entry, tabName: .people),
             downloadTabContent(for: entry, tabName: .grades),
             downloadTabContent(for: entry, tabName: .syllabus),
             downloadFiles(for: entry),

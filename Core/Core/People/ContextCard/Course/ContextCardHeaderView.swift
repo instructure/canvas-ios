@@ -19,7 +19,7 @@
 import SwiftUI
 
 struct ContextCardHeaderView: View {
-    let user: APIUser
+    let user: ContextUser
     let course: Course
     let sections: [CourseSection]
     let enrollment: Enrollment
@@ -27,7 +27,7 @@ struct ContextCardHeaderView: View {
 
     var body: some View {
         VStack(spacing: 10) {
-            Avatar(name: user.name, url: user.avatar_url?.rawValue, size: 80)
+            Avatar(name: user.name, url: user.avatarURL?.absoluteURL, size: 80)
                 .padding(20)
             Text(user.name)
                 .font(.bold20)
@@ -74,12 +74,13 @@ struct ContextCardHeaderView_Previews: PreviewProvider {
 
     static var previews: some View {
         let apiUser = APIUser.make()
+        let user = ContextUser.save(apiUser, in: context)
         let apiCourse = APICourse.make()
         let course = Course.save(apiCourse, in: context)
         let apiEnrollment = APIEnrollment.make(last_activity_at: Date())
         let enrollment = Enrollment(context: context)
         enrollment.update(fromApiModel: apiEnrollment, course: course, in: context)
-        return ContextCardHeaderView(user: apiUser, course: course, sections: [], enrollment: enrollment, showLastActivity: true).previewLayout(.sizeThatFits)
+        return ContextCardHeaderView(user: user, course: course, sections: [], enrollment: enrollment, showLastActivity: true).previewLayout(.sizeThatFits)
     }
 }
 #endif

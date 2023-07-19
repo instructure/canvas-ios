@@ -38,7 +38,8 @@ public struct ContextCardView: View {
 
     @ViewBuilder var emailButton: some View {
         if model.permissions.first?.sendMessages == true, model.isViewingAnotherUser {
-            Button(action: { model.openNewMessageComposer(controller: controller.value) }, label: {
+            PrimaryButton(isAvailable: !$model.offlineModeViewModel.isOffline,
+                          action: { model.openNewMessageComposer(controller: controller.value) }, label: {
                 let color = model.isModal ? Brand.shared.buttonPrimaryBackground : Brand.shared.buttonPrimaryText
                 Image.emailLine.foregroundColor(Color(color))
             })
@@ -53,9 +54,9 @@ public struct ContextCardView: View {
                 .progressViewStyle(.indeterminateCircle())
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         } else {
-            if let course = model.course.first, let apiUser = model.apiUser, let enrollment = model.enrollment {
+            if let course = model.course.first, let user = model.user.first, let enrollment = model.enrollment {
                 ScrollView {
-                    ContextCardHeaderView(user: apiUser, course: course, sections: model.sections.all, enrollment: enrollment, showLastActivity: model.isLastActivityVisible)
+                    ContextCardHeaderView(user: user, course: course, sections: model.sections.all, enrollment: enrollment, showLastActivity: model.isLastActivityVisible)
                     if enrollment.isStudent {
                         if let grades = enrollment.grades.first {
                             ContextCardGradesView(grades: grades, color: Color(course.color))
@@ -70,9 +71,9 @@ public struct ContextCardView: View {
                 }.onAppear {
                     UIAccessibility.post(notification: .screenChanged, argument: nil)
                 }
-            } else if let course = model.course.first, let apiUser = model.apiUser,
-                      let apiEnrollment = apiUser.enrollments?.first(where: { $0.course_id?.rawValue == course.id}),
-                      apiEnrollment.enrollment_state == EnrollmentState.invited {
+            } else if let course = model.course.first, let user = model.user.first,
+                      let enrollment = user.enrollments.first(where: { $0.course?.id == course.id}),
+                      enrollment.state == .invited {
                 EmptyPanda(.Sleeping, title: Text("Not enrolled"), message: Text("Invitation pending"))
             } else {
                 EmptyPanda(.Unsupported, title: Text("Something went wrong"), message: Text("There was an error while communicating with the server"))

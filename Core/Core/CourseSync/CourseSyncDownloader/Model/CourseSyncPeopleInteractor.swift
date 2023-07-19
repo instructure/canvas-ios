@@ -32,10 +32,10 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
         return [
             Self.fetchCourseColors(),
             Self.fetchCourse(context: context),
-            Self.fetchGroup(context: context),
+            Self.fetchSections(courseID: courseId),
             Self.fetchUsers(context: context)
                 .flatMap { users in
-                    Self.fetchCurrentGradingPeriodId(courseId: courseId)
+                    Self.fetchCurrentGradingPeriodId(courseID: courseId)
                         .flatMap {
                             Self.fetchUserData(context: context, users: users, currentGradingPeriodID: $0)
                     }
@@ -75,14 +75,15 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
     }
 
     private static func fetchSubmissionsForStudent(context: Context, userID: String) -> AnyPublisher<Void, Error> {
-            ReactiveStore(useCase: GetSubmissionsForStudent(context: context, studentID: userID))
+        guard userID == AppEnvironment.shared.currentSession?.userID else { return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher() }
+            return ReactiveStore(useCase: GetSubmissionsForStudent(context: context, studentID: userID))
                 .getEntities()
                 .mapToVoid()
                 .eraseToAnyPublisher()
         }
 
     private static func fetchSingleUser(context: Context, userID: String) -> AnyPublisher<Void, Error> {
-        ReactiveStore(useCase: GetCourseSingleUser(context: context, userID: userID))
+        ReactiveStore(useCase: GetCourseContextUser(context: context, userID: userID))
             .getEntities()
             .mapToVoid()
             .eraseToAnyPublisher()
@@ -101,15 +102,26 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
             .eraseToAnyPublisher()
     }
 
-    private static func fetchCurrentGradingPeriodId(courseId: String) -> AnyPublisher<String?, Error> {
-        ReactiveStore(useCase: GetGradingPeriods(courseID: courseId))
+    private static func fetchCurrentGradingPeriodId(courseID: String) -> AnyPublisher<String?, Error> {
+        ReactiveStore(useCase: GetGradingPeriods(courseID: courseID))
             .getEntities()
-            .map { $0.current?.id }
+            .map {
+                $0.current?.id
+            }
+            .eraseToAnyPublisher()
+    }
+
+    private static func fetchSections(courseID: String) -> AnyPublisher<Void, Error> {
+        ReactiveStore(useCase: GetCourseSections(courseID: courseID))
+            .getEntities()
+            .mapToVoid()
             .eraseToAnyPublisher()
     }
 
     private static func fetchEnrollments(context: Context, currentGradingPeriodID: String?, userID: String) -> AnyPublisher<Void, Error> {
         Future { promise in
+            let env = AppEnvironment.shared
+            guard context.id == env.currentSession?.userID else { return promise(.success(()))}
             let request = GetEnrollmentsRequest(context: context, gradingPeriodID: currentGradingPeriodID, states: [ .active ])
             AppEnvironment.shared.api.exhaust(request) { (enrollments, _, _) in performUIUpdate {
 
@@ -119,7 +131,7 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
                     $0.user_id.value == userID
                 }
                 if let apiEnrollment = apiEnrollment, let id = apiEnrollment.id?.value {
-                    let databaseContext = AppEnvironment.shared.database.viewContext
+                    let databaseContext = env.database.viewContext
                     let enrollment: Enrollment = databaseContext.first(where: #keyPath(Enrollment.id), equals: id) ?? databaseContext.insert()
                     enrollment.update(fromApiModel: apiEnrollment, course: nil, in: databaseContext)
                 }
