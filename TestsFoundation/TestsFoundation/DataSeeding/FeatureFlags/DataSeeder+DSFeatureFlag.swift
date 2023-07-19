@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2019-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,26 +16,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-@testable import TestsFoundation
-@testable import Core
+extension DataSeeder {
 
-class QuizzesE2ETests: CoreUITestCase {
-
-    func testQuizQuestionsOpenInWebView() {
-        Dashboard.courseCard(id: "263").tap()
-        CourseNavigation.quizzes.tap()
-
-        app.find(labelContaining: "Web Quiz").tap()
-        QuizDetails.takeButton.tapUntil {
-            app.find(label: "No due date").exists
-        }
-        app.find(label: "This quiz is for testing web view question types.").waitToExist()
+    public func getFeatures(courseId: String, accountId: String? = nil) -> [DSFeature] {
+        let request = GetDSFeaturesRequest(courseId: courseId, accountID: accountId)
+        return makeRequest(request)
     }
 
-    func testQuizzesShowEmptyState() {
-        Dashboard.courseCard(id: "262").tap()
-        CourseNavigation.announcements.waitToExist()
-        CourseNavigation.quizzes.waitToVanish()
+    public func setFeatureFlag(courseId: String, feature: DSFeature, state: DSFeatureFlagState) -> DSFeatureFlag {
+        let requestBody = SetDSFeatureFlagRequest.Body(state: state)
+        let request = SetDSFeatureFlagRequest(body: requestBody, courseId: courseId, feature: feature)
+        return makeRequest(request)
     }
 }

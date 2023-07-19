@@ -30,7 +30,7 @@ public class DataSeeder {
 
     private let api: API
 
-    public init() {
+    public init(api: API? = nil) {
         let loginSession: LoginSession = {
             let dataSeedUser = UITestUser.dataSeedAdmin
             return LoginSession(accessToken: dataSeedUser.password,
@@ -38,7 +38,7 @@ public class DataSeeder {
                                 userID: "",
                                 userName: "")
         }()
-        self.api = API(loginSession)
+        self.api = api ?? API(loginSession)
     }
 
     @discardableResult

@@ -97,64 +97,69 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             state: .loading(nil)
         )
 
-        return [
-            downloadTabContent(for: entry, tabName: .assignments),
-            downloadTabContent(for: entry, tabName: .pages),
-            downloadTabContent(for: entry, tabName: .people),
-            downloadTabContent(for: entry, tabName: .grades),
-            downloadTabContent(for: entry, tabName: .syllabus),
-            downloadFiles(for: entry),
-        ]
-        .zip()
-        .receive(on: scheduler)
-        .updateErrorState {
-            unownedSelf.setState(
-                selection: .course(entry.id),
-                state: .error
-            )
-        }
-        .updateDownloadedState {
-            unownedSelf.setState(
-                selection: .course(entry.id),
-                state: .downloaded
-            )
-        }
-        .map { _ in () }
-        .eraseToAnyPublisher()
+        var downloaders = TabName
+            .OfflineSyncableTabs
+            .filter { $0 != .files } // files are handled separately
+            .map { downloadTabContent(for: entry, tabName: $0) }
+        downloaders.append(downloadFiles(for: entry))
+
+        return downloaders
+            .zip()
+            .receive(on: scheduler)
+            .updateErrorState {
+                unownedSelf.setState(
+                    selection: .course(entry.id),
+                    state: .error
+                )
+            }
+            .updateDownloadedState {
+                unownedSelf.setState(
+                    selection: .course(entry.id),
+                    state: .downloaded
+                )
+            }
+            .map { _ in () }
+            .eraseToAnyPublisher()
     }
 
     private func downloadTabContent(for entry: CourseSyncEntry, tabName: TabName) -> AnyPublisher<Void, Error> {
         unowned let unownedSelf = self
 
-        if let tabIndex = entry.tabs.firstIndex(where: { $0.type == tabName }),
-           entry.tabs[tabIndex].selectionState == .selected,
-           let interactor = contentInteractors.first(where: { $0.associatedTabType == tabName }) {
-            return interactor.getContent(courseId: entry.courseId)
-                .receive(on: scheduler)
-                .updateLoadingState {
-                    unownedSelf.setState(
-                        selection: .tab(entry.id, entry.tabs[tabIndex].id),
-                        state: .loading(nil)
-                    )
-                }
-                .updateErrorState {
-                    unownedSelf.setState(
-                        selection: .tab(entry.id, entry.tabs[tabIndex].id),
-                        state: .error
-                    )
-                }
-                .updateDownloadedState {
-                    unownedSelf.setState(
-                        selection: .tab(entry.id, entry.tabs[tabIndex].id),
-                        state: .downloaded
-                    )
-                }
-                .eraseToAnyPublisher()
-        } else {
+        guard let tabIndex = entry.tabs.firstIndex(where: { $0.type == tabName }),
+              entry.tabs[tabIndex].selectionState == .selected else {
             return Just(())
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         }
+
+        guard let interactor = contentInteractors.first(where: { $0.associatedTabType == tabName }) else {
+            assertionFailure("No interactor found for selected tab: \(tabName)")
+            return Just(())
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+
+        return interactor.getContent(courseId: entry.courseId)
+            .receive(on: scheduler)
+            .updateLoadingState {
+                unownedSelf.setState(
+                    selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                    state: .loading(nil)
+                )
+            }
+            .updateErrorState {
+                unownedSelf.setState(
+                    selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                    state: .error
+                )
+            }
+            .updateDownloadedState {
+                unownedSelf.setState(
+                    selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                    state: .downloaded
+                )
+            }
+            .eraseToAnyPublisher()
     }
 
     private func downloadFiles(for entry: CourseSyncEntry) -> AnyPublisher<Void, Error> {
