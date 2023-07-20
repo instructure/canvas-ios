@@ -30,8 +30,4 @@ public struct DSCalendarEvent: Codable {
 
 public struct DSDuplicate: Codable {
     public let calendar_event: DSCalendarEvent
-    public let start_at: String?
-    public let end_at: String?
-    public let description: String
-    public let context_code: String
 }
