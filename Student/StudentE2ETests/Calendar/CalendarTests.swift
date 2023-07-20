@@ -187,13 +187,12 @@ class CalendarTests: E2ETestCase {
         calendarTab.tap()
 
         // MARK: Check events
-        let eventItem1 = Helper.eventCell(event: event1)
+        var eventItem1 = Helper.eventCell(event: event1).waitToExist()
+        var eventItem2 = Helper.eventCell(event: event2).waitToExist()
         XCTAssertTrue(eventItem1.isVisible)
-
-        let eventItem2 = Helper.eventCell(event: event2)
         XCTAssertTrue(eventItem2.isVisible)
 
-        // MARK: Filter calendar and check events again
+        // MARK: Check course filtering
         let filterButton = Helper.filterButton.waitToExist()
         XCTAssertTrue(filterButton.isVisible)
 
@@ -205,13 +204,48 @@ class CalendarTests: E2ETestCase {
         let doneButton = FilterHelper.doneButton.waitToExist()
         XCTAssertTrue(doneButton.isVisible)
 
-        let courseCell1 = FilterHelper.courseCell(course: course1)
+        let courseCell1 = FilterHelper.courseCell(course: course1).waitToExist()
         XCTAssertTrue(courseCell1.isVisible)
+        XCTAssertTrue(courseCell1.isSelected)
 
-        let courseCell2 = FilterHelper.courseCell(course: course2)
+        let courseCell2 = FilterHelper.courseCell(course: course2).waitToExist()
         XCTAssertTrue(courseCell2.isVisible)
+        XCTAssertTrue(courseCell2.isSelected)
 
-        courseCell1.tap()
+        // MARK: Change filter to first course
+        courseCell2.tap()
+        XCTAssertTrue(courseCell1.isSelected)
+        XCTAssertFalse(courseCell2.isSelected)
+
         doneButton.tap()
+        eventItem1 = Helper.eventCell(event: event1).waitToExist()
+        eventItem2 = Helper.eventCell(event: event2).waitToVanish()
+        XCTAssertTrue(eventItem1.isVisible)
+        XCTAssertFalse(eventItem2.isVisible)
+
+        // MARK: Change filter to second course
+        filterButton.tap()
+        courseCell1.tap()
+        courseCell2.tap()
+        XCTAssertFalse(courseCell1.isSelected)
+        XCTAssertTrue(courseCell2.isSelected)
+
+        doneButton.tap()
+        eventItem1 = Helper.eventCell(event: event1).waitToVanish()
+        eventItem2 = Helper.eventCell(event: event2).waitToExist()
+        XCTAssertFalse(eventItem1.isVisible)
+        XCTAssertTrue(eventItem2.isVisible)
+
+        // MARK: Change filter to no course selected
+        filterButton.tap()
+        courseCell2.tap()
+        XCTAssertFalse(courseCell1.isSelected)
+        XCTAssertFalse(courseCell2.isSelected)
+
+        doneButton.tap()
+        eventItem1 = Helper.eventCell(event: event1).waitToVanish()
+        eventItem2 = Helper.eventCell(event: event2).waitToVanish()
+        XCTAssertFalse(eventItem1.isVisible)
+        XCTAssertFalse(eventItem2.isVisible)
     }
 }
