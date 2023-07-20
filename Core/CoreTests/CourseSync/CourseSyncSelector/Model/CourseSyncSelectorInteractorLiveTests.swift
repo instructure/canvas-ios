@@ -111,10 +111,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
 
         waitForExpectations(timeout: 0.1)
         XCTAssertEqual(entries.count, 1)
-        XCTAssertEqual(entries[0].tabs.count, 3)
-        XCTAssertFalse(entries[0].tabs.contains(where: { tab in
-            tab.name == "quizzes"
-        }))
+        XCTAssertEqual(entries[0].tabs.count, 4)
         subscription.cancel()
     }
 

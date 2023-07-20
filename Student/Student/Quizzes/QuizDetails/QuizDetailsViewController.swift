@@ -162,6 +162,7 @@ class QuizDetailsViewController: ScreenViewTrackableViewController, ColoredNavVi
         let title = takeButtonTitle
         takeButton.setTitle(title, for: .normal)
         takeButton.isHidden = title == nil
+        takeButton.makeUnavailableInOfflineMode()
 
         if courses.requested && !courses.pending && quizzes.requested && !quizzes.pending && colors.requested && !colors.pending {
             UIAccessibility.post(notification: .screenChanged, argument: view)
