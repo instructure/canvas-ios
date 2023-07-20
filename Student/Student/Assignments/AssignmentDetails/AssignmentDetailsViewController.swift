@@ -312,7 +312,15 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         gradeSection?.isHidden = !showGradeSection
         submissionButtonSection?.isHidden = presenter.viewSubmissionButtonSectionIsHidden()
         showDescription(!presenter.descriptionIsHidden())
-        submitAssignmentButton.isHidden = presenter.submitAssignmentButtonIsHidden()
+
+        if assignment.submissionTypes.contains(where: { type in
+            type == .basic_lti_launch || type == .external_tool
+        }) {
+            submitAssignmentButton.makeUnavailableInOfflineMode()
+        } else {
+            submitAssignmentButton.isHidden = presenter.submitAssignmentButtonIsHidden()
+
+        }
 
         lockedSubheaderWebView.loadHTMLString(presenter.lockExplanation)
         centerLockedIconContainerView()
@@ -357,6 +365,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     }
 
     func showSubmitAssignmentButton(title: String?) {
+        view.bringSubviewToFront(submitAssignmentButton)
         submitAssignmentButton.setTitle(title, for: .normal)
 
         if title == nil {
