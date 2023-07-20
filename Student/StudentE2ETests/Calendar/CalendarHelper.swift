@@ -148,6 +148,15 @@ public class CalendarHelper: BaseHelper {
         }
     }
 
+    struct Filter {
+        public static var navBar: Element { app.find(id: "Calendars") }
+        public static var doneButton: Element { app.find(id: "screen.dismiss") }
+        public static func courseCell(course: DSCourse) -> Element {
+            return app.find(label: course.name, type: .cell)
+        }
+
+    }
+
     // MARK: DataSeeding
     public static func formatDate(addYears: Int = 0, addDays: Int = 0, addHours: Int = 0) -> String {
         let date = Date().addYears(addYears).addDays(addDays).addMinutes(addHours*60).addMinutes(-360)

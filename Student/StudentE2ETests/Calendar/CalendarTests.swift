@@ -21,6 +21,7 @@ import TestsFoundation
 class CalendarTests: E2ETestCase {
     typealias Helper = CalendarHelper
     typealias DetailsHelper = Helper.Details
+    typealias FilterHelper = Helper.Filter
 
     func testCalendarLayout() {
         // MARK: Seed the usual stuff with a calendar event
@@ -165,5 +166,52 @@ class CalendarTests: E2ETestCase {
         let recurringEventTitle3 = Helper.titleLabelOfEvent(eventCell: recurringEventItem3).waitToExist()
         XCTAssertTrue(recurringEventItem3.isVisible)
         XCTAssertEqual(recurringEventTitle3.label(), events.recurring!.duplicates![1].calendar_event.title)
+    }
+
+    func testCourseFilter() {
+        // MARK: Seed the usual stuff with 2 course and 2 separate calendar events
+        let student = seeder.createUser()
+        let course1 = seeder.createCourse()
+        let course2 = seeder.createCourse()
+        seeder.enrollStudent(student, in: course1)
+        seeder.enrollStudent(student, in: course2)
+
+        let event1 = Helper.createCalendarEvent(course: course1)
+        let event2 = Helper.createCalendarEvent(course: course2)
+
+        // MARK: Get the user logged in, navigate to Calendar
+        logInDSUser(student)
+        let calendarTab = TabBar.calendarTab.waitToExist()
+        XCTAssertTrue(calendarTab.isVisible)
+
+        calendarTab.tap()
+
+        // MARK: Check events
+        let eventItem1 = Helper.eventCell(event: event1)
+        XCTAssertTrue(eventItem1.isVisible)
+
+        let eventItem2 = Helper.eventCell(event: event2)
+        XCTAssertTrue(eventItem2.isVisible)
+
+        // MARK: Filter calendar and check events again
+        let filterButton = Helper.filterButton.waitToExist()
+        XCTAssertTrue(filterButton.isVisible)
+
+        filterButton.tap()
+
+        let filterNavBar = FilterHelper.navBar.waitToExist()
+        XCTAssertTrue(filterNavBar.isVisible)
+
+        let doneButton = FilterHelper.doneButton.waitToExist()
+        XCTAssertTrue(doneButton.isVisible)
+
+        let courseCell1 = FilterHelper.courseCell(course: course1)
+        XCTAssertTrue(courseCell1.isVisible)
+
+        let courseCell2 = FilterHelper.courseCell(course: course2)
+        XCTAssertTrue(courseCell2.isVisible)
+
+        courseCell1.tap()
+        doneButton.tap()
     }
 }
