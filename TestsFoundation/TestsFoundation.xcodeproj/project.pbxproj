@@ -130,9 +130,9 @@
 		8B70DC3C2A5EADC0007D3ED4 /* DSFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DC382A5EADC0007D3ED4 /* DSFeature.swift */; };
 		8B70DC3D2A5EADC0007D3ED4 /* DSFeatureFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DC392A5EADC0007D3ED4 /* DSFeatureFlag.swift */; };
 		8B70DC3E2A5EADC0007D3ED4 /* SetDSFeatureFlagRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DC3A2A5EADC0007D3ED4 /* SetDSFeatureFlagRequest.swift */; };
-		8B9D05792A692265002E2447 /* CreateDSCalendarEventRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D05742A692264002E2447 /* CreateDSCalendarEventRequest.swift */; };
-		8B9D057A2A692265002E2447 /* DataSeeder+DSCalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D05752A692264002E2447 /* DataSeeder+DSCalendarEvent.swift */; };
-		8B9D057B2A692265002E2447 /* DSCalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D05762A692264002E2447 /* DSCalendarEvent.swift */; };
+		8B9D05552A667D64002E2447 /* CreateDSCalendarEventRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D05502A667D64002E2447 /* CreateDSCalendarEventRequest.swift */; };
+		8B9D05562A667D64002E2447 /* DataSeeder+DSCalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D05512A667D64002E2447 /* DataSeeder+DSCalendarEvent.swift */; };
+		8B9D05572A667D64002E2447 /* DSCalendarEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D05522A667D64002E2447 /* DSCalendarEvent.swift */; };
 		8C02370D294ADC5E03166916 /* CreateDSQuizQuestionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFA2EB914E415CCFACDB /* CreateDSQuizQuestionRequest.swift */; };
 		8CE7A795708CBCF4AF7A2674 /* DSModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69E1EBE6B486730AE73F45 /* DSModuleItem.swift */; };
 		8CEEA54DE127851FF426490F /* CreateDSDiscussionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D6E99369534DE2260DD4EB /* CreateDSDiscussionRequest.swift */; };
@@ -354,9 +354,9 @@
 		8B70DC382A5EADC0007D3ED4 /* DSFeature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSFeature.swift; sourceTree = "<group>"; };
 		8B70DC392A5EADC0007D3ED4 /* DSFeatureFlag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSFeatureFlag.swift; sourceTree = "<group>"; };
 		8B70DC3A2A5EADC0007D3ED4 /* SetDSFeatureFlagRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetDSFeatureFlagRequest.swift; sourceTree = "<group>"; };
-		8B9D05742A692264002E2447 /* CreateDSCalendarEventRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateDSCalendarEventRequest.swift; sourceTree = "<group>"; };
-		8B9D05752A692264002E2447 /* DataSeeder+DSCalendarEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSCalendarEvent.swift"; sourceTree = "<group>"; };
-		8B9D05762A692264002E2447 /* DSCalendarEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSCalendarEvent.swift; sourceTree = "<group>"; };
+		8B9D05502A667D64002E2447 /* CreateDSCalendarEventRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateDSCalendarEventRequest.swift; sourceTree = "<group>"; };
+		8B9D05512A667D64002E2447 /* DataSeeder+DSCalendarEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSCalendarEvent.swift"; sourceTree = "<group>"; };
+		8B9D05522A667D64002E2447 /* DSCalendarEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DSCalendarEvent.swift; sourceTree = "<group>"; };
 		8E046239E00E2F114C950D3A /* ModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFixture.swift; sourceTree = "<group>"; };
 		8E52A6F60DF961A9FB652399 /* DSSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSubmission.swift; sourceTree = "<group>"; };
 		8EB01A67D620697DB09B6F61 /* CreateDSAccountNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSAccountNotificationRequest.swift; sourceTree = "<group>"; };
@@ -507,7 +507,7 @@
 		039CF14263C4180E857200CA /* DataSeeding */ = {
 			isa = PBXGroup;
 			children = (
-				8B9D05732A692264002E2447 /* CalendarEvent */,
+				8B9D054F2A667D64002E2447 /* CalendarEvent */,
 				8B70DC362A5EADC0007D3ED4 /* FeatureFlags */,
 				8B70DC1C2A5EA9D6007D3ED4 /* NewQuizzes */,
 				8B70DBF82A5BF916007D3ED4 /* Conversation */,
@@ -988,12 +988,12 @@
 			path = FeatureFlags;
 			sourceTree = "<group>";
 		};
-		8B9D05732A692264002E2447 /* CalendarEvent */ = {
+		8B9D054F2A667D64002E2447 /* CalendarEvent */ = {
 			isa = PBXGroup;
 			children = (
-				8B9D05742A692264002E2447 /* CreateDSCalendarEventRequest.swift */,
-				8B9D05752A692264002E2447 /* DataSeeder+DSCalendarEvent.swift */,
-				8B9D05762A692264002E2447 /* DSCalendarEvent.swift */,
+				8B9D05502A667D64002E2447 /* CreateDSCalendarEventRequest.swift */,
+				8B9D05512A667D64002E2447 /* DataSeeder+DSCalendarEvent.swift */,
+				8B9D05522A667D64002E2447 /* DSCalendarEvent.swift */,
 			);
 			path = CalendarEvent;
 			sourceTree = "<group>";
@@ -1435,7 +1435,7 @@
 				7613C07276BDDA1288C6CEB6 /* DSAccountNotification.swift in Sources */,
 				907104367E913A7551F3EDB0 /* DSAssignment.swift in Sources */,
 				752630E6F9BE727848F3B4D4 /* DSCourse.swift in Sources */,
-				8B9D057A2A692265002E2447 /* DataSeeder+DSCalendarEvent.swift in Sources */,
+				8B9D05562A667D64002E2447 /* DataSeeder+DSCalendarEvent.swift in Sources */,
 				F9A877032D17175B313A0445 /* DSDiscussionTopic.swift in Sources */,
 				58CC0F6D2EED853B9A1BA60D /* DSEnrollment.swift in Sources */,
 				D4FC47A7361ED2238E6FE92A /* DSGradingStandard.swift in Sources */,
@@ -1458,7 +1458,7 @@
 				C67EA08A87AE4C8393A805B9 /* DataSeeder+DSModuleItem.swift in Sources */,
 				66763804BE506F3E75E07C73 /* DataSeeder+DSPage.swift in Sources */,
 				EE5667413AE1D36643986207 /* DataSeeder+DSQuiz.swift in Sources */,
-				8B9D05792A692265002E2447 /* CreateDSCalendarEventRequest.swift in Sources */,
+				8B9D05552A667D64002E2447 /* CreateDSCalendarEventRequest.swift in Sources */,
 				A0BC38309F88C41B8E1A0BDA /* DataSeeder+DSQuizQuestion.swift in Sources */,
 				1AF03DE89E66FAB387BB5A98 /* DataSeeder+DSSubmission.swift in Sources */,
 				2C5BB31417D17837E1967A93 /* DataSeeder+DSUser.swift in Sources */,
@@ -1503,7 +1503,7 @@
 				441F35C3FD19AF873D6486A4 /* K5Grades.swift in Sources */,
 				51C27FD09F96240298874293 /* K5NavigationBar.swift in Sources */,
 				00B1643F0F393F17658278DA /* K5Schedule.swift in Sources */,
-				8B9D057B2A692265002E2447 /* DSCalendarEvent.swift in Sources */,
+				8B9D05572A667D64002E2447 /* DSCalendarEvent.swift in Sources */,
 				DC911A2167CFB16C6A61670F /* K5UITestCase.swift in Sources */,
 				80B8FDF8E9845B91049CFE77 /* KeychainEntryFixture.swift in Sources */,
 				AF29FE0D364A45B1492CAF55 /* LogEventFixture.swift in Sources */,
