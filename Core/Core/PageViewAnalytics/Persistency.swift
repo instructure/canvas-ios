@@ -42,6 +42,11 @@ class Persistency {
     fileprivate let dispatchQueue: DispatchQueue
     fileprivate static let defaultDispatchQueueLabel = "com.instructure.pageEvent.persistanceQueue"
     fileprivate var queuedEvents = [PageViewEvent]()
+    fileprivate var safeQueuedEvents: [PageViewEvent] {
+        dispatchQueue.sync {
+            queuedEvents
+        }
+    }
     fileprivate static var persistencyStorageFileURL: URL?
 
     init(dispatchQueue: DispatchQueue = DispatchQueue(label: defaultDispatchQueueLabel, attributes: .concurrent)) {
@@ -50,10 +55,10 @@ class Persistency {
     }
 
     func addToQueue(_ event: PageViewEvent, completionHandler: EmptyHandler? = nil) {
-        dispatchQueue.async(flags: .barrier) { [weak self] in
-            self?.queuedEvents.append(event)
-            self?.saveToFile(completionHandler)
+        dispatchQueue.sync(flags: .barrier) {
+            queuedEvents.append(event)
         }
+        saveToFile(completionHandler)
     }
 
     func storageFileURL() -> URL? {
@@ -62,29 +67,33 @@ class Persistency {
     }
 
     func saveToFile(_ handler: EmptyHandler? = nil) {
-        DispatchQueue.global(qos: .background).async { [weak self] in
-            if let weakself = self, let path = self?.storageFileURL()?.path {
-                self?.dispatchQueue.async(flags: .barrier) {
-                    do {
-                        let data = try PropertyListEncoder().encode(weakself.queuedEvents)
-                        let saveData = try NSKeyedArchiver.archivedData(withRootObject: data, requiringSecureCoding: false)
-                        try? saveData.write(to: URL(fileURLWithPath: path), options: [.atomic])
-                    } catch {
-                        print("Archive failed")
-                    }
-                    DispatchQueue.main.sync { handler?() }
-                }
-            }
+        guard let path = storageFileURL()?.path else {
+            return
+        }
+
+        do {
+            let data = try PropertyListEncoder().encode(safeQueuedEvents)
+            let saveData = try NSKeyedArchiver.archivedData(withRootObject: data, requiringSecureCoding: false)
+            try? saveData.write(to: URL(fileURLWithPath: path), options: [.atomic])
+        } catch {
+            print("Archive failed")
+        }
+
+        DispatchQueue.main.async {
+            handler?()
         }
     }
 
     func restoreQueuedEventsFromFile() {
-        dispatchQueue.async(flags: .barrier) { [weak self] in
-           guard let URL = self?.storageFileURL(),
-            let fileData = try? Data(contentsOf: URL),
-            let unArchivedData = (try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(fileData)) as? Data else { return }
-            if let eventsToRestore = try? PropertyListDecoder().decode([PageViewEvent].self, from: unArchivedData) {
-                self?.queuedEvents = eventsToRestore
+        guard let URL = storageFileURL(),
+              let fileData = try? Data(contentsOf: URL),
+              let unArchivedData = (try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSData.self, from: fileData)) as? Data
+        else {
+            return
+        }
+        if let eventsToRestore = try? PropertyListDecoder().decode([PageViewEvent].self, from: unArchivedData) {
+            dispatchQueue.sync(flags: .barrier) {
+                queuedEvents = eventsToRestore
             }
         }
     }
@@ -102,20 +111,22 @@ class Persistency {
 
         if userQueue.count >= count {
             for event in userQueue {
-                queuedEvents.removeAll { $0.guid == event.guid }
+                dispatchQueue.sync(flags: .barrier) {
+                    queuedEvents.removeAll { $0.guid == event.guid }
+                }
             }
             saveToFile(handler)
         } else { handler?() }
     }
 
     func queueCount(for userID: String) -> Int {
-        queuedEvents.reduce(into: 0) { partialResult, event in
+        safeQueuedEvents.reduce(into: 0) { partialResult, event in
             partialResult += (event.userID == userID ? 1 : 0)
         }
     }
 
     private func queue(for userID: String) -> [PageViewEvent] {
-        queuedEvents.filter { $0.userID == userID }
+        safeQueuedEvents.filter { $0.userID == userID }
     }
 }
 
