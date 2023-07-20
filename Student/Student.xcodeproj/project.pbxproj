@@ -141,10 +141,12 @@
 		8B70DBA92A559BF6007D3ED4 /* CourseDetailsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBA72A559BF6007D3ED4 /* CourseDetailsHelper.swift */; };
 		8B70DBD92A571893007D3ED4 /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBD72A571893007D3ED4 /* InboxTests.swift */; };
 		8B70DBDA2A571893007D3ED4 /* InboxHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBD82A571893007D3ED4 /* InboxHelper.swift */; };
+		8B70DC2E2A5EA9E9007D3ED4 /* NewQuizzesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DC2C2A5EA9E9007D3ED4 /* NewQuizzesHelper.swift */; };
+		8B70DC312A5EAC25007D3ED4 /* QuizzesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DC302A5EAC25007D3ED4 /* QuizzesTests.swift */; };
 		8B95EEC82A4EE33900ADCDB4 /* PeopleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B95EEC62A4EE33900ADCDB4 /* PeopleHelper.swift */; };
 		8B95EEC92A4EE33900ADCDB4 /* PeopleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B95EEC72A4EE33900ADCDB4 /* PeopleTests.swift */; };
-		8B9D052B2A653D36002E2447 /* CalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D052A2A653D36002E2447 /* CalendarTests.swift */; };
-		8B9D052D2A653D41002E2447 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D052C2A653D41002E2447 /* CalendarHelper.swift */; };
+		8B9D05712A692256002E2447 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D056F2A692256002E2447 /* CalendarHelper.swift */; };
+		8B9D05722A692256002E2447 /* CalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D05702A692256002E2447 /* CalendarTests.swift */; };
 		8BB5ED932A2E0F0B009D63DA /* HelpHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5ED922A2E0F0B009D63DA /* HelpHelper.swift */; };
 		8BB5ED942A2E0F0B009D63DA /* HelpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5ED912A2E0F0B009D63DA /* HelpTests.swift */; };
 		8BB5ED962A2E111B009D63DA /* AnnouncementsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5ED952A2E111B009D63DA /* AnnouncementsHelper.swift */; };
@@ -220,7 +222,6 @@
 		E80936EA24C24CDD00D15E9A /* PagesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809365624C21CB700D15E9A /* PagesTests.swift */; };
 		E80936EB24C24CDD00D15E9A /* ProfileE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E809365424C21CB600D15E9A /* ProfileE2ETests.swift */; };
 		E89B3003244F3F42007CF19B /* ConferencesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89B3002244F3EC0007CF19B /* ConferencesUITests.swift */; };
-		E8C6F4E423D626220086B865 /* QuizzesE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EA86122304980000E4FD76 /* QuizzesE2ETests.swift */; };
 		E8C6F4F923D626220086B865 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B1BB7A9022BADAC1006CA068 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E8C6F4FC23D626220086B865 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D864FFF22B2A432006B0127 /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E8C6F50423D626CC0086B865 /* ModulesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C6F50323D626CC0086B865 /* ModulesTests.swift */; };
@@ -675,10 +676,12 @@
 		8B70DBA72A559BF6007D3ED4 /* CourseDetailsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailsHelper.swift; sourceTree = "<group>"; };
 		8B70DBD72A571893007D3ED4 /* InboxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxTests.swift; sourceTree = "<group>"; };
 		8B70DBD82A571893007D3ED4 /* InboxHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxHelper.swift; sourceTree = "<group>"; };
+		8B70DC2C2A5EA9E9007D3ED4 /* NewQuizzesHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewQuizzesHelper.swift; sourceTree = "<group>"; };
+		8B70DC302A5EAC25007D3ED4 /* QuizzesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizzesTests.swift; sourceTree = "<group>"; };
 		8B95EEC62A4EE33900ADCDB4 /* PeopleHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleHelper.swift; sourceTree = "<group>"; };
 		8B95EEC72A4EE33900ADCDB4 /* PeopleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTests.swift; sourceTree = "<group>"; };
-		8B9D052A2A653D36002E2447 /* CalendarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTests.swift; sourceTree = "<group>"; };
-		8B9D052C2A653D41002E2447 /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
+		8B9D056F2A692256002E2447 /* CalendarHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
+		8B9D05702A692256002E2447 /* CalendarTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTests.swift; sourceTree = "<group>"; };
 		8BB5ED912A2E0F0B009D63DA /* HelpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpTests.swift; sourceTree = "<group>"; };
 		8BB5ED922A2E0F0B009D63DA /* HelpHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpHelper.swift; sourceTree = "<group>"; };
 		8BB5ED952A2E111B009D63DA /* AnnouncementsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementsHelper.swift; sourceTree = "<group>"; };
@@ -826,7 +829,6 @@
 		E8C6F51F23D62FA80086B865 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8C6F52823D638100086B865 /* LoginStartTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartTests.swift; sourceTree = "<group>"; };
 		E8EA860A2304974C00E4FD76 /* NotificationsListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsListTests.swift; sourceTree = "<group>"; };
-		E8EA86122304980000E4FD76 /* QuizzesE2ETests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizzesE2ETests.swift; sourceTree = "<group>"; };
 		EB3ECFC926375AF100289506 /* SideMenuUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuUITests.swift; sourceTree = "<group>"; };
 		EC9D739AAC5FF4C6AAF4F8A7 /* Pods_needs_pspdfkit_StudentE2ETests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_needs_pspdfkit_StudentE2ETests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A705E826B362C3490B4183 /* Pods-defaults-common_tests-CanvasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-common_tests-CanvasTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-common_tests-CanvasTests/Pods-defaults-common_tests-CanvasTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -1493,7 +1495,8 @@
 		7DCF0F7622F8A0A0000AACCE /* StudentE2ETests */ = {
 			isa = PBXGroup;
 			children = (
-				8B9D05292A653D25002E2447 /* Calendar */,
+				8B9D056E2A692256002E2447 /* Calendar */,
+				8B70DC2B2A5EA9E9007D3ED4 /* NewQuizzes */,
 				8B70DBA52A559BF6007D3ED4 /* CourseDetails */,
 				8BB5ED882A2DE435009D63DA /* Help */,
 				8BE0C3602A28990700034CC6 /* ActAsUser */,
@@ -1526,11 +1529,20 @@
 			path = CourseDetails;
 			sourceTree = "<group>";
 		};
-		8B9D05292A653D25002E2447 /* Calendar */ = {
+		8B70DC2B2A5EA9E9007D3ED4 /* NewQuizzes */ = {
 			isa = PBXGroup;
 			children = (
-				8B9D052A2A653D36002E2447 /* CalendarTests.swift */,
-				8B9D052C2A653D41002E2447 /* CalendarHelper.swift */,
+				8B70DC2C2A5EA9E9007D3ED4 /* NewQuizzesHelper.swift */,
+				C935D41D26DD1BDE00C940F7 /* NewQuizzesE2ETests.swift */,
+			);
+			path = NewQuizzes;
+			sourceTree = "<group>";
+		};
+		8B9D056E2A692256002E2447 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				8B9D056F2A692256002E2447 /* CalendarHelper.swift */,
+				8B9D05702A692256002E2447 /* CalendarTests.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -1994,8 +2006,7 @@
 		E8EA86112304980000E4FD76 /* Quizzes */ = {
 			isa = PBXGroup;
 			children = (
-				E8EA86122304980000E4FD76 /* QuizzesE2ETests.swift */,
-				C935D41D26DD1BDE00C940F7 /* NewQuizzesE2ETests.swift */,
+				8B70DC302A5EAC25007D3ED4 /* QuizzesTests.swift */,
 				8B0D25472A443CE800D7EDCA /* QuizzesHelper.swift */,
 			);
 			path = Quizzes;
@@ -2932,17 +2943,18 @@
 				7D57398924350CC7000073BE /* PlannerTests.swift in Sources */,
 				C935D41E26DD1BDE00C940F7 /* NewQuizzesE2ETests.swift in Sources */,
 				8BB5ED962A2E111B009D63DA /* AnnouncementsHelper.swift in Sources */,
+				8B9D05722A692256002E2447 /* CalendarTests.swift in Sources */,
 				8BB5EDC52A374BCC009D63DA /* PagesHelper.swift in Sources */,
 				8B05AB822A38946900A9C714 /* DiscussionsHelper.swift in Sources */,
 				C9BCCA1027D73F0F003E9CB0 /* GradesTests.swift in Sources */,
 				8B70DAFF2A52B603007D3ED4 /* LoginTests.swift in Sources */,
-				8B9D052D2A653D41002E2447 /* CalendarHelper.swift in Sources */,
+				8B9D05712A692256002E2447 /* CalendarHelper.swift in Sources */,
 				8B05ABB72A42043300A9C714 /* ModulesTests.swift in Sources */,
 				8B19F65B2A137E33007AA43F /* AssignmentsTests.swift in Sources */,
 				C9A3C04D26A03B9900DAE8E1 /* K5StudentE2ETests.swift in Sources */,
 				8B0D25482A443CE800D7EDCA /* QuizzesHelper.swift in Sources */,
+				8B70DC312A5EAC25007D3ED4 /* QuizzesTests.swift in Sources */,
 				8BB5EDC32A374A79009D63DA /* DashboardHelper.swift in Sources */,
-				E8C6F4E423D626220086B865 /* QuizzesE2ETests.swift in Sources */,
 				C935D43D26E5F5AF00C940F7 /* K5GradesE2ETests.swift in Sources */,
 				8B05AB8C2A38AEBA00A9C714 /* DashboardTests.swift in Sources */,
 				E80936E124C24CBE00D15E9A /* ActAsUserTests.swift in Sources */,
@@ -2954,6 +2966,7 @@
 				8BB5ED932A2E0F0B009D63DA /* HelpHelper.swift in Sources */,
 				8B05AB802A38889100A9C714 /* AssignmentsHelper.swift in Sources */,
 				8B70DBD92A571893007D3ED4 /* InboxTests.swift in Sources */,
+				8B70DC2E2A5EA9E9007D3ED4 /* NewQuizzesHelper.swift in Sources */,
 				8B70DB0F2A52EA69007D3ED4 /* ProfileHelper.swift in Sources */,
 				E80936EA24C24CDD00D15E9A /* PagesTests.swift in Sources */,
 				8B05ABB92A42049C00A9C714 /* ModulesHelper.swift in Sources */,
@@ -2963,7 +2976,6 @@
 				5859544C501D5668C211D44C /* ConferencesE2ETests.swift in Sources */,
 				C935D43026E0EAE700C940F7 /* K5ScheduleE2ETests.swift in Sources */,
 				C9299FEC2817CCF2003A47C2 /* DiscussionsTest.swift in Sources */,
-				8B9D052B2A653D36002E2447 /* CalendarTests.swift in Sources */,
 				C9299FE528102A62003A47C2 /* AnnouncementsTests.swift in Sources */,
 				E80936EB24C24CDD00D15E9A /* ProfileE2ETests.swift in Sources */,
 				8B70DBA82A559BF6007D3ED4 /* CourseDetailsTests.swift in Sources */,

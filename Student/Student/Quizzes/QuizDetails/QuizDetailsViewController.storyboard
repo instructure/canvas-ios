@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -111,6 +112,7 @@
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="No Due Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GD1-Qf-OW2" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="43.5" width="343" height="19.5"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="dueDateLabel"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -130,7 +132,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
-                                                <accessibility key="accessibilityConfiguration" identifier="AssingmentDetails.dueSection"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.dueSection"/>
                                                 <constraints>
                                                     <constraint firstItem="lH3-jJ-2VR" firstAttribute="leading" secondItem="and-BF-dKU" secondAttribute="leading" id="Bzl-SW-OKo"/>
                                                     <constraint firstAttribute="trailing" secondItem="lrK-Ai-R53" secondAttribute="trailing" id="EWz-bj-6Po"/>
@@ -148,7 +150,8 @@
                                                 <rect key="frame" x="0.0" y="162" width="343" height="134"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nyl-KK-hvW" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="16" width="343" height="26.5"/>
+                                                        <rect key="frame" x="0.0" y="16" width="343" height="23.5"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="settingsHeadingLabel"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                         <color key="textColor" red="0.54509803921568623" green="0.58823529411764708" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -158,7 +161,8 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Questions:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qG-1P-yhY" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="50.5" width="82" height="19.5"/>
+                                                        <rect key="frame" x="0.0" y="47.5" width="82" height="20.5"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="questionsLabel"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -168,7 +172,8 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9QA-cP-14V" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                        <rect key="frame" x="90" y="50.5" width="27" height="19.5"/>
+                                                        <rect key="frame" x="90" y="47.5" width="28.5" height="20.5"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="questionsValueLabel"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -178,7 +183,8 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Limit:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LgB-7v-teN" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="74" width="84" height="19.5"/>
+                                                        <rect key="frame" x="0.0" y="72" width="83.5" height="20.5"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="timeLimitLabel"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -188,7 +194,8 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="None" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DeH-vC-qRB" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                        <rect key="frame" x="92" y="74" width="39" height="19.5"/>
+                                                        <rect key="frame" x="91.5" y="72" width="41" height="20.5"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="timeLimitValueLabel"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -198,7 +205,8 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allowed Attempts:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OU5-yT-XTO" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="97.5" width="139" height="19.5"/>
+                                                        <rect key="frame" x="0.0" y="96.5" width="138.5" height="20.5"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="attemptsLabel"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -208,7 +216,8 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unlimited" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ns2-qE-sWB" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                        <rect key="frame" x="147" y="97.5" width="69" height="19.5"/>
+                                                        <rect key="frame" x="146.5" y="96.5" width="72.5" height="20.5"/>
+                                                        <accessibility key="accessibilityConfiguration" identifier="attemptsValueLabel"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -228,7 +237,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
-                                                <accessibility key="accessibilityConfiguration" identifier="AssingmentDetails.quizSection"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.quizSection"/>
                                                 <constraints>
                                                     <constraint firstItem="9QA-cP-14V" firstAttribute="leading" secondItem="1qG-1P-yhY" secondAttribute="trailing" constant="8" id="1Dk-3X-iGD"/>
                                                     <constraint firstItem="1qG-1P-yhY" firstAttribute="top" secondItem="Nyl-KK-hvW" secondAttribute="bottom" constant="8" id="1hq-7J-stV"/>
@@ -259,7 +268,7 @@
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Instructions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kmB-Zp-EWl" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="16" width="343" height="19.5"/>
-                                                        <accessibility key="accessibilityConfiguration" identifier="AssingmentDetails.descriptionHeading">
+                                                        <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.descriptionHeading">
                                                             <accessibilityTraits key="traits" staticText="YES" header="YES"/>
                                                         </accessibility>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
@@ -271,6 +280,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                 </subviews>
+                                                <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.quizInstructions"/>
                                                 <constraints>
                                                     <constraint firstItem="kmB-Zp-EWl" firstAttribute="leading" secondItem="yiG-QL-Fb8" secondAttribute="leading" id="EIj-y7-RPD"/>
                                                     <constraint firstItem="kmB-Zp-EWl" firstAttribute="top" secondItem="yiG-QL-Fb8" secondAttribute="top" constant="16" id="eFu-ni-9xz"/>
@@ -307,7 +317,7 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="WdY-Tc-OMt"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="FlR-tP-fyF"/>
                             </scrollView>
-                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nLr-FI-z7N" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
+                            <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nLr-FI-z7N" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="616" width="375" height="51"/>
                                 <color key="backgroundColor" red="0.0" green="0.55686274509803924" blue="0.88627450980392153" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <accessibility key="accessibilityConfiguration" identifier="QuizDetails.takeButton"/>
@@ -333,7 +343,8 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="YZl-wz-0Ts"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="YZl-wz-0Ts" firstAttribute="trailing" secondItem="mCo-gK-72i" secondAttribute="trailing" id="46K-8b-7AL"/>
                             <constraint firstItem="mCo-gK-72i" firstAttribute="top" secondItem="YZl-wz-0Ts" secondAttribute="top" id="95s-Gs-rGb"/>
@@ -345,7 +356,6 @@
                             <constraint firstItem="nLr-FI-z7N" firstAttribute="top" secondItem="mCo-gK-72i" secondAttribute="bottom" id="gV0-zQ-kU5"/>
                             <constraint firstItem="nLr-FI-z7N" firstAttribute="trailing" secondItem="YZl-wz-0Ts" secondAttribute="trailing" id="sTF-R7-TXF"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="YZl-wz-0Ts"/>
                     </view>
                     <connections>
                         <outlet property="attemptsLabel" destination="OU5-yT-XTO" id="oIx-lz-vmU"/>
@@ -373,4 +383,53 @@
             <point key="canvasLocation" x="22" y="112"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="1qG-1P-yhY">
+            <size key="intrinsicContentSize" width="82" height="20.5"/>
+        </designable>
+        <designable name="9QA-cP-14V">
+            <size key="intrinsicContentSize" width="28.5" height="20.5"/>
+        </designable>
+        <designable name="DeH-vC-qRB">
+            <size key="intrinsicContentSize" width="41" height="20.5"/>
+        </designable>
+        <designable name="GD1-Qf-OW2">
+            <size key="intrinsicContentSize" width="92.5" height="19.5"/>
+        </designable>
+        <designable name="LgB-7v-teN">
+            <size key="intrinsicContentSize" width="83.5" height="20.5"/>
+        </designable>
+        <designable name="Ns2-qE-sWB">
+            <size key="intrinsicContentSize" width="72.5" height="20.5"/>
+        </designable>
+        <designable name="Nyl-KK-hvW">
+            <size key="intrinsicContentSize" width="63.5" height="19.5"/>
+        </designable>
+        <designable name="OU5-yT-XTO">
+            <size key="intrinsicContentSize" width="138.5" height="20.5"/>
+        </designable>
+        <designable name="aU3-YC-HBN">
+            <size key="intrinsicContentSize" width="102.5" height="24"/>
+        </designable>
+        <designable name="kmB-Zp-EWl">
+            <size key="intrinsicContentSize" width="88.5" height="19.5"/>
+        </designable>
+        <designable name="lH3-jJ-2VR">
+            <size key="intrinsicContentSize" width="30.5" height="19.5"/>
+        </designable>
+        <designable name="nLr-FI-z7N">
+            <size key="intrinsicContentSize" width="74" height="32"/>
+        </designable>
+        <designable name="q9K-w2-Lzw">
+            <size key="intrinsicContentSize" width="105.5" height="19.5"/>
+        </designable>
+        <designable name="t5D-Ru-JIv">
+            <size key="intrinsicContentSize" width="55.5" height="19.5"/>
+        </designable>
+    </designables>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

@@ -26,6 +26,8 @@ public struct DSQuiz: Codable {
     public let assignment_group_id: String?
     public let assignment_id: String?
     public let assessment_question_id: String?
+    public let points_possible: Float?
+    public let allowed_attempts: Int?
 }
 
 public enum DSQuizType: String {

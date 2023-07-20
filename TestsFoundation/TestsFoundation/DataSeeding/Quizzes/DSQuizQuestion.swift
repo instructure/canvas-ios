@@ -27,23 +27,14 @@ public struct DSQuizQuestion: Codable {
 }
 
 public struct DSAnswer: Codable {
-    // Request object
-    public let answer_text: String?
-    public let answer_weight: Int?
-    public let answer_precision: Int?
-
-    // Returned object
     public let id: String?
     public let text: String?
     public let weight: Int?
 
-    public init(id: String? = nil, answer_text: String, answer_weight: Int, answer_precision: Int) {
+    public init(id: String? = nil, text: String, weight: Int) {
         self.id = id
-        self.answer_text = answer_text
-        self.answer_weight = answer_weight
-        self.answer_precision = answer_precision
-        self.text = nil
-        self.weight = nil
+        self.text = text
+        self.weight = weight
     }
 }
 

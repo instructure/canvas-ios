@@ -27,6 +27,7 @@ public enum CourseSyncDownloaderAssembly {
             CourseSyncGradesInteractorLive(userId: AppEnvironment.shared.currentSession?.userID ?? "self"),
             CourseSyncSyllabusInteractorLive(),
             CourseSyncConferencesInteractorLive(),
+            CourseSyncAnnouncementsInteractorLive(),
         ]
         let scheduler = DispatchQueue(
             label: "com.instructure.icanvas.core.course-sync-download"
