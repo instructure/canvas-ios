@@ -19,21 +19,19 @@
 import Foundation
 import CoreData
 
-public final class BookmarkItem: NSManagedObject, WriteableModel {
-    public typealias JSON = APIBookmark
-
+public final class BookmarkItem: NSManagedObject {
     @NSManaged public var id: String
-    @NSManaged public var name: String?
-    @NSManaged public var url: String?
+    @NSManaged public var name: String
+    @NSManaged public var url: String
     @NSManaged public var position: Int
 
-    @discardableResult
-    public static func save(_ item: APIBookmark, in context: NSManagedObjectContext) -> BookmarkItem {
+    public static func save(_ item: APIBookmark, in context: NSManagedObjectContext) {
+        guard let name = item.name, let url = item.url else { return }
+
         let model: BookmarkItem = context.first(where: #keyPath(BookmarkItem.id), equals: item.id.value) ?? context.insert()
         model.id = item.id.value
-        model.name = item.name
-        model.url = item.url
-        model.position = item.position ?? 0
-        return model
+        model.name = name
+        model.url = url
+        model.position = item.position ?? .max
     }
 }

@@ -39,8 +39,8 @@ public class BookmarksViewModel: ObservableObject {
     }
 
     private func bookmarksDidUpdate() {
-        let bookmarkCells = bookmarks.all.map { bookmarkModel in
-            BookmarkCellViewModel(name: bookmarkModel.name!, url: bookmarkModel.url!)
+        let bookmarkCells = bookmarks.all.map {
+            BookmarkCellViewModel(name: $0.name, url: $0.url)
         }
         if bookmarkCells.isEmpty {
             state = .empty
