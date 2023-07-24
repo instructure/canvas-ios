@@ -19,20 +19,25 @@
 import Foundation
 import CoreData
 
-public final class BookmarkModel: NSManagedObject, WriteableModel {
-    public typealias JSON = APIBookmark
+public struct GetBookmarks: CollectionUseCase {
+    public typealias Model = BookmarkItem
 
-    @NSManaged public var id: Int64
-    @NSManaged public var name: String?
-    @NSManaged public var url: String?
-    @NSManaged public var position: Int
+    public var cacheKey: String? { "get-user-self-bookmarks" }
+    public var request: GetBookmarksRequest { GetBookmarksRequest() }
+    public var scope: Scope {
+        Scope(predicate: .all,
+              order: [NSSortDescriptor(key: #keyPath(BookmarkItem.position), ascending: true)])
+    }
 
-    @discardableResult
-    public static func save(_ item: APIBookmark, in context: NSManagedObjectContext) -> BookmarkModel {
-        let model: BookmarkModel = context.first(where: #keyPath(BookmarkModel.id), equals: Int64(item.id.value)) ?? context.insert()
-        model.name = item.name
-        model.url = item.url
-        model.position = item.position ?? 0
-        return model
+    public init () {}
+
+    public func write(response: [APIBookmark]?,
+                      urlResponse: URLResponse?,
+                      to client: NSManagedObjectContext) {
+        guard let bookmarks = response else { return }
+
+        for item in bookmarks {
+            BookmarkItem.save(item, in: client)
+        }
     }
 }

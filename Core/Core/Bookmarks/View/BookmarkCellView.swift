@@ -19,7 +19,6 @@
 import SwiftUI
 
 struct BookmarkCellView: View {
-
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
 

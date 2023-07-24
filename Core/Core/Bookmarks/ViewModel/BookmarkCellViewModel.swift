@@ -18,15 +18,19 @@
 
 import Foundation
 
-public class BookmarkCellViewModel: Equatable {
-    public static func == (lhs: BookmarkCellViewModel, rhs: BookmarkCellViewModel) -> Bool {
-        lhs.url == rhs.url && lhs.name == rhs.name
-    }
-
+public class BookmarkCellViewModel {
     let name: String
     let url: String
 
     init(name: String, url: String) {
         self.name = name
         self.url = url
-    }}
+    }
+}
+
+extension BookmarkCellViewModel: Equatable {
+
+    public static func == (lhs: BookmarkCellViewModel, rhs: BookmarkCellViewModel) -> Bool {
+        lhs.url == rhs.url && lhs.name == rhs.name
+    }
+}

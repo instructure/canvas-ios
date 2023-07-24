@@ -36,7 +36,8 @@ public struct BookmarksView: View {
                 bookmarkList(bookmarks)
             }
         }
-        .navigationTitle("Bookmarks", subtitle: "")
+        .navigationTitle(NSLocalizedString("Bookmarks", comment: ""),
+                         subtitle: "")
         .onAppear { viewModel.viewDidAppear() }
     }
 
@@ -45,7 +46,9 @@ public struct BookmarksView: View {
         Divider()
         GeometryReader { geometry in
             List {
-                EmptyPanda(.NoEvents, title: Text("No Bookmarks", bundle: .core), message: Text("There are no bookmarks to display.", bundle: .core))
+                EmptyPanda(.NoEvents,
+                           title: Text("No Bookmarks", bundle: .core),
+                           message: Text("There are no bookmarks to display.", bundle: .core))
                     .listRowSeparator(.hidden)
                     .frame(maxWidth: .infinity)
                     .frame(height: geometry.size.height)
