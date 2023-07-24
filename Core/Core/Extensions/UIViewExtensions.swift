@@ -42,6 +42,32 @@ extension ViewLoader where Self: UIView {
 }
 
 extension UIView {
+    /** This property returns the View's ViewController if there's one. */
+    var viewController: UIViewController? {
+        findNextResponder(type: UIViewController.self, nextResponder: self)
+    }
+
+    func findNextResponder<T>(type: T.Type, nextResponder: UIResponder?) -> T? {
+        guard nextResponder != nil else {
+            return nil
+        }
+        guard let nextResponder = nextResponder as? T else {
+            return findNextResponder(type: type, nextResponder: nextResponder?.next)
+        }
+        return nextResponder
+    }
+
+    /** This method will update the receiver view's frame to fully keep it inside its parent view. */
+    public func restrictFrameInsideSuperview() {
+        guard let parentSize = superview?.frame.size else { return }
+        var newFrame = frame
+        newFrame.origin.x = max(0, newFrame.origin.x)
+        newFrame.origin.x = min(newFrame.origin.x, parentSize.width - newFrame.size.width)
+        newFrame.origin.y = max(0, newFrame.origin.y)
+        newFrame.origin.y = min(newFrame.origin.y, parentSize.height - newFrame.size.height)
+        frame = newFrame
+    }
+
     public func roundCorners(corners: UIRectCorner, radius: CGFloat) {
         let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         let mask = CAShapeLayer()

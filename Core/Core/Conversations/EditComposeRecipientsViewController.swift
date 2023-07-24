@@ -166,6 +166,9 @@ class RecipientCell: UITableViewCell {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        selectedView.roundCorners(corners: .allCorners, radius: selectedView.frame.size.width / 2)
+        selectedView.roundCorners(
+            corners: UIRectCorner.allCorners,
+            radius: selectedView.frame.size.width / 2
+        )
     }
 }

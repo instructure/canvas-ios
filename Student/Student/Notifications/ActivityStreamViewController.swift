@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-class ActivityStreamViewController: UIViewController, PageViewEventViewControllerLoggingProtocol {
+class ActivityStreamViewController: ScreenViewTrackableViewController {
 
     struct Info {
         let name: String?
@@ -55,6 +55,9 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
 
     var courseCache: [String: Info] = [:]
     var context: Context?
+    public let screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "/notifications", attributes: ["customPageViewPath": "/"]
+    )
 
     static func create(context: Context? = nil) -> ActivityStreamViewController {
         let vc = loadFromStoryboard()
@@ -75,16 +78,10 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        startTrackingTimeOnViewController()
         if navigationController?.navigationBar.backItem == nil {
             navigationItem.leftBarButtonItem = profileButton
             navigationController?.navigationBar.useGlobalNavStyle()
         }
-    }
-
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        stopTrackingTimeOnViewController(eventName: "/notifications", attributes: ["customPageViewPath": "/"])
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -94,30 +91,33 @@ class ActivityStreamViewController: UIViewController, PageViewEventViewControlle
 
     func setupTableView() {
         tableView.registerHeaderFooterView(SectionHeaderView.self)
-        let refresh = CircleRefreshControl()
-        refresh.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
-        tableView?.refreshControl = refresh
+        let refreshControl = CircleRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        tableView?.refreshControl = refreshControl
         tableView.separatorColor = .borderMedium
         tableView.backgroundColor = .backgroundLightest
     }
 
-    @objc func refresh(_ control: CircleRefreshControl) {
-        control.endRefreshing()
+    @objc func refresh() {
         refreshData(force: true)
-     }
+    }
+
+    private func isDataLoading() -> Bool {
+        activities.pending || courses.pending || colors.pending
+    }
 
     func refreshData(force: Bool = false) {
-        courses.exhaust(while: { _ in true })
+        guard !isDataLoading() else { return }
+        courses.exhaust { _ in true }
         activities.refresh(force: force)
         colors.refresh(force: force)
     }
 
     func update() {
-        if !activities.pending && activities.isEmpty {
-            emptyStateContainer.isHidden = false
-        } else {
-            tableView.reloadData()
-        }
+        guard !isDataLoading() else { return }
+        tableView.refreshControl?.endRefreshing()
+        tableView.reloadData()
+        emptyStateContainer.isHidden = !activities.isEmpty
     }
 
     func cacheCourses() {
@@ -164,14 +164,15 @@ class ActivityCell: UITableViewCell {
     @IBOutlet weak var courseCode: DynamicLabel!
 
     func update(_ activity: Activity, courseCache: [String: ActivityStreamViewController.Info] ) {
-        if activity.type == .conversation {
-            titleLabel.text = NSLocalizedString("New Message", comment: "")
+        backgroundColor = .backgroundLightest
+        if activity.type == ActivityType.conversation {
+            titleLabel.setText(NSLocalizedString("New Message", comment: ""), style: .textCellTitle)
         } else {
-            titleLabel.text = activity.title
+            titleLabel.setText(activity.title, style: .textCellTitle)
         }
 
         if activity.context?.contextType == .course || activity.type == .discussion, let id = activity.context?.id {
-            courseCode.text = courseCache[id]?.courseCode
+            courseCode.setText(courseCache[id]?.courseCode, style: .textCellTopLabel)
             courseCode.isHidden = false
         } else {
             courseCode.text = nil
@@ -179,7 +180,7 @@ class ActivityCell: UITableViewCell {
         }
 
         if let date = activity.updatedAt {
-            subTitleLabel.text = ActivityStreamViewController.dateFormatter.string(from: date)
+            subTitleLabel.setText(ActivityStreamViewController.dateFormatter.string(from: date), style: .textCellSupportingText)
         }
 
         icon.image = activity.icon

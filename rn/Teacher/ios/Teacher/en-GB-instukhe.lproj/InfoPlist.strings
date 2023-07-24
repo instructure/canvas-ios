@@ -1,5 +1,5 @@
 /* Bundle display name */
-"CFBundleDisplayName" = "Teacher";
+"CFBundleDisplayName" = "Canvas teacher";
 
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Attach photos and videos to submission comments.";

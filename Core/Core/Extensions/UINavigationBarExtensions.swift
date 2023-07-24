@@ -19,12 +19,14 @@
 import UIKit
 
 extension UINavigationBar {
-    public enum Style: Equatable { case modal, global, color(UIColor?) }
+    public enum Style: Equatable { case modal, modalLight, global, color(UIColor?) }
 
     func useStyle(_ style: Style) {
         switch style {
         case .modal:
             useModalStyle()
+        case .modalLight:
+            useModalStyle(isLightFont: true)
         case .global:
             useGlobalNavStyle()
         case .color(let color):
@@ -34,8 +36,8 @@ extension UINavigationBar {
 
     public func useContextColor(_ color: UIColor?, isTranslucent: Bool = false) {
         guard let color = color else { return }
-        let foreground = UIColor.white // always white, even in dark mode
-        let background = color.ensureContrast(against: foreground)
+        let foreground = UIColor.textLightest // always white, even in dark mode
+        let background = color.resolvedColor(with: .light).darkenToEnsureContrast(against: foreground)
         titleTextAttributes = [.foregroundColor: foreground]
         tintColor = foreground
         barTintColor = background
@@ -43,12 +45,11 @@ extension UINavigationBar {
         self.isTranslucent = isTranslucent
 
         applyAppearanceChanges(backgroundColor: background, foreGroundColor: foreground)
-        updateFontAppearance()
     }
 
     public func useGlobalNavStyle(brand: Brand = Brand.shared) {
         let background = brand.navBackground
-        let foreground = brand.navTextColor.ensureContrast(against: background)
+        let foreground = brand.navTextColor
         titleTextAttributes = [.foregroundColor: foreground]
         tintColor = foreground
         barTintColor = background
@@ -56,41 +57,40 @@ extension UINavigationBar {
         isTranslucent = false
 
         applyAppearanceChanges(backgroundColor: background, foreGroundColor: foreground)
-        updateFontAppearance()
     }
 
-    public func useModalStyle(brand: Brand = Brand.shared) {
-        let foreground = brand.linkColor.ensureContrast(against: .backgroundLightest)
+    public func useModalStyle(brand: Brand = Brand.shared, isLightFont: Bool = false) {
+        let foreground = brand.linkColor
         titleTextAttributes = [.foregroundColor: UIColor.textDarkest]
         tintColor = foreground
         barTintColor = .backgroundLightest
         barStyle = .default
         isTranslucent = false
 
-        applyAppearanceChanges(backgroundColor: .backgroundLightest, foreGroundColor: UIColor.textDarkest)
-        updateFontAppearance()
+        applyAppearanceChanges(backgroundColor: .backgroundLightest, foreGroundColor: UIColor.textDarkest, isLightFont: isLightFont)
     }
 
-    private func applyAppearanceChanges(backgroundColor: UIColor?, foreGroundColor: UIColor?) {
+    private func applyAppearanceChanges(backgroundColor: UIColor?, foreGroundColor: UIColor?, isLightFont: Bool = false) {
         let appearance = UINavigationBarAppearance()
-        if isTranslucent == true {
+
+        if isTranslucent {
             appearance.configureWithTransparentBackground()
         } else {
             appearance.configureWithDefaultBackground()
+
             if let backgroundColor = backgroundColor {
                 appearance.backgroundColor = backgroundColor
             }
         }
+
         if let foreGroundColor = foreGroundColor {
             appearance.titleTextAttributes = [.foregroundColor: foreGroundColor]
         }
+
+        appearance.titleTextAttributes[.font] = UIFont.scaledNamedFont(isLightFont ? .semibold16 : .bold17)
+        appearance.buttonAppearance.normal.titleTextAttributes[.font] = UIFont.scaledNamedFont(isLightFont ? .semibold16 : .regular17)
+
         standardAppearance = appearance
         scrollEdgeAppearance = standardAppearance
-    }
-
-    public func updateFontAppearance(useK5Fonts: Bool = AppEnvironment.shared.k5.isK5Enabled) {
-        if useK5Fonts {
-            titleTextAttributes?[NSAttributedString.Key.font] = UIFont.scaledNamedFont(.bold17)
-        }
     }
 }

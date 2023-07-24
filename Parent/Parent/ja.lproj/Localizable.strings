@@ -8,13 +8,13 @@
 "Add" = "追加";
 
 /* No comment provided by engineer. */
-"Add Student" = "受講生を追加";
+"Add Student" = "受講者を追加";
 
 /* No comment provided by engineer. */
-"Add students at the top or visit the global menu to masquerade as a student." = "最上部で受講生を追加する、またはグローバルメニューに移動して受講生としてマスカレードします。";
+"Add students at the top or visit the global menu to masquerade as a student." = "最上部で受講者を追加する、またはグローバルメニューに移動して受講者としてマスカレードします。";
 
 /* No comment provided by engineer. */
-"Add students at the top." = "上部に受講生を追加します。";
+"Add students at the top." = "上部に受講者を追加します。";
 
 /* No comment provided by engineer. */
 "Alert me when:" = "次の時にアラートしてください：";
@@ -35,7 +35,7 @@
 "Back" = "戻る";
 
 /* Calendar Tab */
-"Calendar" = "予定表";
+"Calendar" = "カレンダー";
 
 /* No comment provided by engineer. */
 "Cancel" = "キャンセル";
@@ -44,7 +44,7 @@
 "Compose Message" = "メッセージを作成";
 
 /* No comment provided by engineer. */
-"Compose message to teachers" = "教師へのメッセージを作文する";
+"Compose message to teachers" = "教員へのメッセージを作文する";
 
 /* No comment provided by engineer. */
 "Compose new message" = "新規メッセージを作成";
@@ -59,7 +59,7 @@
 "Courses" = "コース";
 
 /* No comment provided by engineer. */
-"Current student: %@. Tap to switch students" = "現在の受講生：%@. タップして受講生を切り替える";
+"Current student: %@. Tap to switch students" = "現在の受講者：%@. タップして受講者を切り替える";
 
 /* No comment provided by engineer. */
 "Date" = "日付";
@@ -89,7 +89,7 @@
 "Front Page" = "フロントページ";
 
 /* No comment provided by engineer. */
-"Grades" = "成績";
+"Grades" = "評定";
 
 /* No comment provided by engineer. */
 "Inbox" = "受信トレイ";
@@ -98,13 +98,13 @@
 "Inbox Zero" = "受信トレイゼロ";
 
 /* No comment provided by engineer. */
-"Input the student pairing code provided to you." = "提供されている受講生ペアリングコードを入力します。";
+"Input the student pairing code provided to you." = "提供されている受講者ペアリングコードを入力します。";
 
 /* No comment provided by engineer. */
 "Invalid Threshold" = "無効なしきい値";
 
 /* No comment provided by engineer. */
-"It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "受講生を追加しようとしているようです。ログイン後にこの受講生を追加してみてください";
+"It looks like you’re trying to add a student. Try adding this student after you’ve logged in" = "受講者を追加しようとしているようです。ログイン後にこの受講者を追加してみてください";
 
 /* No comment provided by engineer. */
 "Location" = "場所";
@@ -116,7 +116,7 @@
 "Login required" = "ログインが必要です";
 
 /* No comment provided by engineer. */
-"Manage Students" = "受講生を管理";
+"Manage Students" = "受講者を管理";
 
 /* No comment provided by engineer. */
 "n/a" = "該当せず";
@@ -134,10 +134,10 @@
 "No Due Date" = "締切日なし";
 
 /* No comment provided by engineer. */
-"No Grade" = "成績なし";
+"No Grade" = "評定なし";
 
 /* No comment provided by engineer. */
-"No Students" = "受講生なし";
+"No Students" = "受講者なし";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -172,9 +172,6 @@
 "Settings" = "設定";
 
 /* No comment provided by engineer. */
-"Settings. %@" = "設定。%@";
-
-/* No comment provided by engineer. */
 "Summary" = "概要";
 
 /* No comment provided by engineer. */
@@ -184,7 +181,7 @@
 "The linked item is no longer available." = "リンクされている項目は利用できなくなりました。";
 
 /* No comment provided by engineer. */
-"The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student." = "追加しようとしている受講生は、別のCanvas教育機関に所属しています。\nこの受講生を追加するには、その機関でサインインまたはアカウントを作成してください。";
+"The student you are trying to add is at a different Canvas institution.\nSign in or create an account with that institution to add this student." = "追加しようとしている受講者は、別のCanvas教育機関に所属しています。\nこの受講者を追加するには、その機関でサインインまたはアカウントを作成してください。";
 
 /* No comment provided by engineer. */
 "The value must a number between 0 and 100" = "値は0から100の間でなければなりません。";
@@ -196,13 +193,10 @@
 "There was an error loading courses. Pull to refresh to try again." = "コースのロード中にエラーが発生しました。プルして更新し、再試行してください。";
 
 /* No comment provided by engineer. */
-"There was an error loading students. Pull to refresh to try again." = "受講生の読み込み中にエラーが発生しました。プルして更新し、再試行してください。";
+"There was an error loading students. Pull to refresh to try again." = "受講者の読み込み中にエラーが発生しました。プルして更新し、再試行してください。";
 
 /* No comment provided by engineer. */
 "There's nothing to be notified of yet." = "まだ通知される事項がありません。";
-
-/* No comment provided by engineer. */
-"Trouble logging in" = "ログインできません";
 
 /* No comment provided by engineer. */
 "Unread" = "未読";

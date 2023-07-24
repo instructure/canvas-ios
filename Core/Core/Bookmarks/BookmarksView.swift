@@ -46,7 +46,7 @@ public struct BookmarksView: View {
         GeometryReader { geometry in
             List {
                 EmptyPanda(.NoEvents, title: Text("No Bookmarks", bundle: .core), message: Text("There are no bookmarks to display.", bundle: .core))
-                    .iOS15ListRowSeparator(.hidden)
+                    .listRowSeparator(.hidden)
                     .frame(maxWidth: .infinity)
                     .frame(height: geometry.size.height)
             }
@@ -58,7 +58,8 @@ public struct BookmarksView: View {
     private var loadingView: some View {
         Divider()
         Spacer()
-        CircleProgress()
+        ProgressView()
+            .progressViewStyle(.indeterminateCircle())
         Spacer()
     }
     

@@ -18,27 +18,24 @@
 
 import SwiftUI
 
-public struct K5HomeroomView: View {
+public struct K5HomeroomView: View, ScreenViewTrackable {
     @Environment(\.horizontalPadding) private var horizontalPadding
     @ObservedObject private var viewModel: K5HomeroomViewModel
+    public let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/courses")
 
     public init(viewModel: K5HomeroomViewModel) {
         self.viewModel = viewModel
     }
 
     public var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            CircleRefresh { endRefreshing in
-                viewModel.refresh(completion: endRefreshing)
-            }
-
+        RefreshableScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .leading, spacing: 0) {
                 conferences
                 invitations
                 accountAnnouncements
 
                 Text(viewModel.welcomeText)
-                    .foregroundColor(.licorice)
+                    .foregroundColor(.textDarkest)
                     .font(.bold34)
                     .padding(.top)
                 ForEach(viewModel.announcements) {
@@ -52,6 +49,8 @@ public struct K5HomeroomView: View {
                     .padding(.top, 23)
             }
             .padding(.horizontal, horizontalPadding)
+        } refreshAction: { endRefreshing in
+            viewModel.refresh(completion: endRefreshing)
         }
     }
 
@@ -63,8 +62,8 @@ public struct K5HomeroomView: View {
     }
 
     private var invitations: some View {
-        ForEach(viewModel.invitationsViewModel.invitations, id: \.id) { (id, course, enrollment) in
-            CourseInvitationCard(course: course, enrollment: enrollment, id: id)
+        ForEach(viewModel.invitationsViewModel.items) { invitation in
+            CourseInvitationCard(invitation: invitation)
                 .padding(.top, 16)
         }
     }
@@ -79,10 +78,10 @@ public struct K5HomeroomView: View {
 
 #if DEBUG
 
-struct K5HomeroomView_Previews: PreviewProvider {
-    static var previews: some View {
-        K5HomeroomView(viewModel: K5HomeroomViewModel()).previewLayout(.sizeThatFits)
+    struct K5HomeroomView_Previews: PreviewProvider {
+        static var previews: some View {
+            K5HomeroomView(viewModel: K5HomeroomViewModel()).previewLayout(.sizeThatFits)
+        }
     }
-}
 
 #endif

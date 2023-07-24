@@ -54,14 +54,19 @@ struct SideMenuHeaderView: View {
                     ])
                 }
                 .opacity(isUploadingImage ? 0.4 : 1)
-                .overlay(isUploadingImage ? CircleProgress().padding(.bottom, 12) : nil)
+                .overlay(isUploadingImage ?
+                    ProgressView()
+                        .progressViewStyle(.indeterminateCircle())
+                        .padding(.bottom, 12) :
+                    nil
+                )
             Text(userModel.name)
                 .font(.bold20)
                 .padding(.bottom, 2)
                 .identifier("Profile.userNameLabel")
             Text(userModel.email)
                 .font(.regular14)
-                .foregroundColor(.ash)
+                .foregroundColor(.textDark)
                 .minimumScaleFactor(0.2)
                 .identifier("Profile.userEmailLabel")
         }.padding(20).frame(height: 185)
@@ -115,7 +120,7 @@ extension SideMenuHeaderView {
     }
 
     final class UserModel: ObservableObject {
-        @Environment(\.appEnvironment) var env
+        private let env = AppEnvironment.shared
 
         lazy var profile = env.subscribe(GetUserProfile(userID: "self")) { [weak self] in
             self?.profileUpdated()

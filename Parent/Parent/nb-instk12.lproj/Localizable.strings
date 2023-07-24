@@ -172,9 +172,6 @@
 "Settings" = "Innstillinger";
 
 /* No comment provided by engineer. */
-"Settings. %@" = "Innstillinger. %@";
-
-/* No comment provided by engineer. */
 "Summary" = "Sammendrag";
 
 /* No comment provided by engineer. */
@@ -202,9 +199,6 @@
 "There's nothing to be notified of yet." = "Det er ingen bemerkninger ennå.";
 
 /* No comment provided by engineer. */
-"Trouble logging in" = "Problemer med innloggingen";
-
-/* No comment provided by engineer. */
 "Unread" = "Ulest";
 
 /* No comment provided by engineer. */
@@ -220,5 +214,5 @@
 "You’re all caught up" = "Du er oppdatert";
 
 /* No comment provided by engineer. */
-"Your child’s courses might not be published yet." = "Fagne til barnet ditt er kanskje upublisert ennå.";
+"Your child’s courses might not be published yet." = "Fagene til barnet ditt er kanskje upublisert ennå.";
 

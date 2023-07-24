@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -72,6 +72,7 @@
 		7DF398C924BE1736003FBA7F /* CalendarEventDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DF398C824BE1735003FBA7F /* CalendarEventDetailsViewController.storyboard */; };
 		7DF398CB24BE1752003FBA7F /* CalendarEventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF398CA24BE1752003FBA7F /* CalendarEventDetailsViewController.swift */; };
 		7DFDB43223A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFDB43123A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift */; };
+		8BEBB64E29FA750000364C4C /* DSLoginE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBB64D29FA750000364C4C /* DSLoginE2ETests.swift */; };
 		97043EDF23E8D4D400E52436 /* DashboardViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97043EDE23E8D4D400E52436 /* DashboardViewControllerTests.swift */; };
 		97523A8723C9375A0086D825 /* AssignmentDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97523A8623C9375A0086D825 /* AssignmentDetailsViewControllerTests.swift */; };
 		97F0817423C43E20002B9F68 /* CourseDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F0817323C43E20002B9F68 /* CourseDetailsViewControllerTests.swift */; };
@@ -82,6 +83,7 @@
 		B18F80E423463A060001A666 /* RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18F80E323463A060001A666 /* RoutesTests.swift */; };
 		B1AA55D0235785A200DFD184 /* StudentListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AA55CF235785A200DFD184 /* StudentListViewControllerTests.swift */; };
 		B1BAD29523FEEB40004ED99E /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BAD29423FEEB40004ED99E /* InboxTests.swift */; };
+		B49725D3290C06050067B91E /* Heap in Frameworks */ = {isa = PBXBuildFile; productRef = B49725D2290C06050067B91E /* Heap */; };
 		CFFE286A27B3B8A90029A408 /* CourseListCellGradesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFE286927B3B8A90029A408 /* CourseListCellGradesTests.swift */; };
 		DEC576CA6283206E676C040D /* Pods_needs_pspdfkit_ParentE2ETests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71ADE1FABAE4719F27DCCF9A /* Pods_needs_pspdfkit_ParentE2ETests.framework */; };
 		E80763E223E08F420085DAFB /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80763E123E08F420085DAFB /* InboxTests.swift */; };
@@ -245,6 +247,8 @@
 		5B2C64862689AC5E005B6639 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B317B72240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B317B73240B98DF009EE2F9 /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5B39892B293DD04F00813E62 /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5B39892C293DD04F00813E62 /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B3F70CD243083280088EF27 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B3F70CE243083280088EF27 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B3FCDB227B0FCC40051DAB9 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -332,6 +336,7 @@
 		7DF398CA24BE1752003FBA7F /* CalendarEventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventDetailsViewController.swift; sourceTree = "<group>"; };
 		7DFDB43123A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentConversationListViewControllerTests.swift; sourceTree = "<group>"; };
 		837B3D69221692A813A08E1E /* Pods-defaults-ParentUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-ParentUnitTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-ParentUnitTests/Pods-defaults-ParentUnitTests.release.xcconfig"; sourceTree = "<group>"; };
+		8BEBB64D29FA750000364C4C /* DSLoginE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSLoginE2ETests.swift; sourceTree = "<group>"; };
 		8DD07CB9DEEBA35A0324E7CC /* Pods_needs_pspdfkit_ParentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_needs_pspdfkit_ParentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90AFEB4A273EE752196BC769 /* Pods-Parent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parent.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Parent/Pods-Parent.debug.xcconfig"; sourceTree = "<group>"; };
 		90C9F9DE9C41E49B6739CC26 /* Pods_defaults_common_tests_ParentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_common_tests_ParentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -394,6 +399,7 @@
 				2C75AB9F1DDF62E600650856 /* CoreVideo.framework in Frameworks */,
 				2C75ABA11DDF62ED00650856 /* QuartzCore.framework in Frameworks */,
 				2C75ABA31DDF62F200650856 /* SystemConfiguration.framework in Frameworks */,
+				B49725D3290C06050067B91E /* Heap in Frameworks */,
 				6603B81D43D1722F21CA35E8 /* Pods_parent_defaults_Parent.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -780,6 +786,7 @@
 				E81B573823E1EEC5002A0C38 /* GradeListTests.swift */,
 				B1497D2324F03A0000B70B35 /* LoginTests.swift */,
 				7DC5F49124097C12000256E3 /* PlannerTests.swift */,
+				8BEBB64D29FA750000364C4C /* DSLoginE2ETests.swift */,
 			);
 			path = ParentE2ETests;
 			sourceTree = "<group>";
@@ -822,6 +829,7 @@
 			buildConfigurationList = 5E6441AF1C3EE2E0003D7397 /* Build configuration list for PBXNativeTarget "Parent" */;
 			buildPhases = (
 				932411A92D00F2805358D87F /* [CP] Check Pods Manifest.lock */,
+				B4DE2ACF28BCB25B000F8D4D /* SwiftLint */,
 				5E6441831C3EE2E0003D7397 /* Sources */,
 				5E6441841C3EE2E0003D7397 /* Frameworks */,
 				5E6441851C3EE2E0003D7397 /* Resources */,
@@ -833,6 +841,9 @@
 			dependencies = (
 			);
 			name = Parent;
+			packageProductDependencies = (
+				B49725D2290C06050067B91E /* Heap */,
+			);
 			productName = Parent;
 			productReference = 5E6441871C3EE2E0003D7397 /* Parent.app */;
 			productType = "com.apple.product-type.application";
@@ -971,8 +982,12 @@
 				"zh-Hant",
 				"es-ES",
 				vi,
+				ms,
 			);
 			mainGroup = 5E64417E1C3EE2E0003D7397;
+			packageReferences = (
+				B49725D1290C06050067B91E /* XCRemoteSwiftPackageReference "heap-ios-sdk" */,
+			);
 			productRefGroup = 5E6441881C3EE2E0003D7397 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1194,6 +1209,25 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-parent_defaults-Parent/Pods-parent_defaults-Parent-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B4DE2ACF28BCB25B000F8D4D /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PROJECT_DIR}/../scripts/swiftLint.sh\n";
+		};
 		F1120B67EFB5A74C98661753 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1301,6 +1335,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E81B573923E1EEC5002A0C38 /* GradeListTests.swift in Sources */,
+				8BEBB64E29FA750000364C4C /* DSLoginE2ETests.swift in Sources */,
 				E80763E223E08F420085DAFB /* InboxTests.swift in Sources */,
 				7DC5F49224097C12000256E3 /* PlannerTests.swift in Sources */,
 				B1497D2424F03A0000B70B35 /* LoginTests.swift in Sources */,
@@ -1379,6 +1414,7 @@
 				5BBA7025271D54120023C4A7 /* zh-Hant */,
 				5B5DADAC272FC96300D1F964 /* es-ES */,
 				5B3FCDB327B0FCC40051DAB9 /* vi */,
+				5B39892C293DD04F00813E62 /* ms */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1425,6 +1461,7 @@
 				5BBA7024271D54120023C4A7 /* zh-Hant */,
 				5B5DADAB272FC96300D1F964 /* es-ES */,
 				5B3FCDB227B0FCC40051DAB9 /* vi */,
+				5B39892B293DD04F00813E62 /* ms */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1481,7 +1518,11 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ParentUnitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ParentUnitTests;
@@ -1508,7 +1549,11 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ParentUnitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ParentUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1565,7 +1610,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1616,10 +1661,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1642,7 +1688,10 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Parent/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 0.0.1;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.parentapp;
@@ -1672,7 +1721,10 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Parent/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				MARKETING_VERSION = 0.0.1;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.parentapp;
@@ -1700,7 +1752,11 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ParentE2ETests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ParentE2ETests;
@@ -1727,7 +1783,11 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ParentE2ETests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ParentE2ETests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1750,7 +1810,11 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ParentUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ParentUITests;
@@ -1775,7 +1839,11 @@
 				DEVELOPMENT_TEAM = B6333T4PXQ;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = ParentUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.ParentUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1833,6 +1901,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B49725D1290C06050067B91E /* XCRemoteSwiftPackageReference "heap-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/heap/heap-ios-sdk.git";
+			requirement = {
+				kind = exactVersion;
+				version = 9.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B49725D2290C06050067B91E /* Heap */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B49725D1290C06050067B91E /* XCRemoteSwiftPackageReference "heap-ios-sdk" */;
+			productName = Heap;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5E64417F1C3EE2E0003D7397 /* Project object */;
 }

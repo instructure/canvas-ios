@@ -15,7 +15,7 @@
 			<key>one</key>
 			<string>%d Respuesta</string>
 			<key>other</key>
-			<string>%d respuestas</string>
+			<string>%d Respuestas</string>
 		</dict>
 	</dict>
 	<key>%d Unread</key>
@@ -61,9 +61,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d alumno</string>
+			<string>%d estudiante</string>
 			<key>other</key>
-			<string>%d alumnos</string>
+			<string>%d estudiantes</string>
 		</dict>
 	</dict>
 	<key>%g pts</key>
@@ -261,7 +261,7 @@
 	<key>g_out_of_g_points_possible</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Obtuvo una nota de %g de %#@points@ posibles</string>
+		<string>Obtuviste una nota de %g de %#@points@ posibles</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
@@ -320,6 +320,22 @@
 			<string>Ocultar %d ítem no presentado</string>
 			<key>other</key>
 			<string>Ocultar %d ítems no presentados</string>
+		</dict>
+	</dict>
+	<key>incompatible_files_for_assignment</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>El tipo de archivo %2$@ de tu entrega no es compatible con la actividad seleccionada.</string>
+			<key>other</key>
+			<string>Los tipos de archivo %2$@ de tu entrega no son compatibles con la actividad seleccionada.</string>
 		</dict>
 	</dict>
 	<key>late_penalty_g_pts</key>
@@ -383,7 +399,23 @@
 			<key>one</key>
 			<string>Mostrar %d ítem no presentado</string>
 			<key>other</key>
-			<string>Mostrar %d ítems no presentdos</string>
+			<string>Mostrar %d ítems no presentados</string>
+		</dict>
+	</dict>
+	<key>submission_failed_for_files</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Se ha cargado el archivo, pero la entrega para la actividad ha fallado.</string>
+			<key>other</key>
+			<string>Se han cargado los archivos, pero la entrega para la actividad ha fallado.</string>
 		</dict>
 	</dict>
 	<key>there_are_d_assignees_without_grades</key>
@@ -400,6 +432,22 @@
 			<string>Hay %d persona asignada sin nota.</string>
 			<key>other</key>
 			<string>Hay %d personas asignadas sin nota.</string>
+		</dict>
+	</dict>
+	<key>use_file_extension</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Utiliza la extensión del archivo %2$@.</string>
+			<key>other</key>
+			<string>Utiliza las extensiones del archivo %2$@.</string>
 		</dict>
 	</dict>
 </dict>

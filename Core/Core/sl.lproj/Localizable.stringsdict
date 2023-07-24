@@ -402,6 +402,26 @@
 			<string>Hide %d missing items</string>
 		</dict>
 	</dict>
+	<key>incompatible_files_for_assignment</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
+			<key>one</key>
+			<string>Vrsta datoteke %2$@ v vaši oddaji ni združljiva z izbrano nalogo.</string>
+			<key>other</key>
+			<string>Vrste datotek %2$@ v vaši oddaji niso združljive z izbrano nalogo.</string>
+			<key>two</key>
+			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
+		</dict>
+	</dict>
 	<key>late_penalty_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -482,6 +502,26 @@
 			<string>Show %d missing items</string>
 		</dict>
 	</dict>
+	<key>submission_failed_for_files</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
+			<key>one</key>
+			<string>Vaša datoteka je bila uspešno naložena, vendar oddaja naloge ni uspela.</string>
+			<key>other</key>
+			<string>Vaše datoteke so bile uspešno naložene, vendar oddaja naloge ni uspela.</string>
+			<key>two</key>
+			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
+		</dict>
+	</dict>
 	<key>there_are_d_assignees_without_grades</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -500,6 +540,26 @@
 			<string>Obstaja %d prevzemnikov brez ocen.</string>
 			<key>two</key>
 			<string></string>
+		</dict>
+	</dict>
+	<key>use_file_extension</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string>Please use %2$@ file extensions.</string>
+			<key>one</key>
+			<string>Uporabite končnico datoteke %2$@.</string>
+			<key>other</key>
+			<string>Uporabite končnice datotek %2$@.</string>
+			<key>two</key>
+			<string>Please use %2$@ file extensions.</string>
 		</dict>
 	</dict>
 </dict>

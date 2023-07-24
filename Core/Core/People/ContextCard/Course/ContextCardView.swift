@@ -28,6 +28,7 @@ public struct ContextCardView: View {
 
     public var body: some View {
         contextCard
+            .background(Color.backgroundLightest)
             .navigationBarItems(trailing: emailButton)
             .navigationTitle(model.user.first?.name ?? "", subtitle: model.course.first?.name ?? "")
             .onAppear {
@@ -38,7 +39,8 @@ public struct ContextCardView: View {
     @ViewBuilder var emailButton: some View {
         if model.permissions.first?.sendMessages == true, model.isViewingAnotherUser {
             Button(action: { model.openNewMessageComposer(controller: controller.value) }, label: {
-                Image.emailLine.foregroundColor(.textLightest)
+                let color = model.isModal ? Brand.shared.buttonPrimaryBackground : Brand.shared.buttonPrimaryText
+                Image.emailLine.foregroundColor(Color(color))
             })
             .accessibility(label: Text("Send message", bundle: .core))
             .identifier("ContextCard.emailContact")
@@ -47,7 +49,9 @@ public struct ContextCardView: View {
 
     @ViewBuilder var contextCard: some View {
         if model.pending {
-            CircleProgress()
+            ProgressView()
+                .progressViewStyle(.indeterminateCircle())
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
         } else {
             if let course = model.course.first, let apiUser = model.apiUser, let enrollment = model.enrollment {
                 ScrollView {

@@ -98,8 +98,16 @@ extension Enrollment {
         grades.first { $0.gradingPeriodID == currentGradingPeriodID }?.currentScore
     }
 
+    public func finalGrade(gradingPeriodID: String?) -> String? {
+        return grades.first { $0.gradingPeriodID == gradingPeriodID }?.finalGrade
+    }
+
     public func currentScore(gradingPeriodID: String?) -> Double? {
         return grades.first { $0.gradingPeriodID == gradingPeriodID }?.currentScore
+    }
+
+    public func currentGrade(gradingPeriodID: String?) -> String? {
+        grades.first { $0.gradingPeriodID == gradingPeriodID }?.currentGrade
     }
 
     public func formattedCurrentScore(gradingPeriodID: String?) -> String {
@@ -135,6 +143,8 @@ extension Enrollment {
             let grade = grades.first { $0.gradingPeriodID == gradingPeriodID } ?? client.insert()
             grade.currentGrade = apiGrades.current_grade
             grade.currentScore = apiGrades.current_score
+            grade.finalGrade = apiGrades.final_grade
+            grade.finalScore = apiGrades.final_score
             grade.unpostedCurrentGrade = apiGrades.unposted_current_grade
             grade.unpostedCurrentScore = apiGrades.unposted_current_score
             grade.overrideGrade = apiGrades.override_grade

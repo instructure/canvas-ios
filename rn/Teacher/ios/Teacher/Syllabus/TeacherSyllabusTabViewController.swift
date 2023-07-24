@@ -22,7 +22,19 @@ class TeacherSyllabusTabViewController: SyllabusTabViewController {
 
     var context: Context?
 
-    lazy var permissions = env.subscribe(GetContextPermissions(context: .course(courseID), permissions: [.manageContent])) { [weak self] in
+    override var screenViewTrackingParameters: ScreenViewTrackingParameters {
+        get {
+            _screenViewTrackingParameters
+        }
+        set {
+            _screenViewTrackingParameters = newValue
+        }
+    }
+    private lazy var _screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "\(context?.pathComponent ?? "")/syllabus/edit"
+    )
+
+    lazy var permissions = env.subscribe(GetContextPermissions(context: .course(courseID), permissions: [.manageContent, .manageCourseContentEdit])) { [weak self] in
         self?.updateNavBar()
     }
 
@@ -44,13 +56,13 @@ class TeacherSyllabusTabViewController: SyllabusTabViewController {
     }
 
     func updateNavBar() {
-        guard permissions.first?.manageContent == true else { return }
+        guard permissions.first?.manageContent == true || permissions.first?.manageCourseContentEdit == true else { return }
         editButton.accessibilityIdentifier = "Syllabus.editButton"
         navigationItem.rightBarButtonItem = editButton
     }
 
     @objc func edit() {
         env.router.route(
-            to: "\(context?.pathComponent ?? "")/syllabus/edit", from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+            to: "\(context?.pathComponent ?? "")/syllabus/edit", from: self, options: .modal(isDismissable: false, embedInNav: true))
     }
 }

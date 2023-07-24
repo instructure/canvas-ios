@@ -17,9 +17,8 @@
 //
 
 #if DEBUG
-import Foundation
 
-// swiftlint:disable force_try
+import Foundation
 
 extension API {
     private static var isMocked = false
@@ -77,6 +76,7 @@ extension API {
         _ request: Request,
         dataHandler: @escaping (URLRequest) -> (Request.Response?, URLResponse?, Error?)
     ) -> APIMock {
+        // swiftlint:disable:next force_try
         let req = try! request.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: loginSession?.actAsUserID)
         let mock = APIMock { req in
             let (value, response, error) = dataHandler(req)
@@ -91,6 +91,7 @@ extension API {
         withData request: Request,
         dataHandler: @escaping (URLRequest) -> (Data?, URLResponse?, Error?)
     ) -> APIMock {
+        // swiftlint:disable:next force_try
         let request = try! request.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: nil)
         let mock = APIMock(handler: dataHandler)
         API.mocks[request.key] = mock
@@ -104,6 +105,7 @@ extension API {
         response: URLResponse? = nil,
         error: Error? = nil
     ) -> APIMock {
+        // swiftlint:disable:next force_try
         let request = try! request.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: nil)
         let mock = APIMock { _ in (data, response, error) }
         API.mocks[request.key] = mock
@@ -112,6 +114,7 @@ extension API {
 
     @discardableResult
     func mock(url: URL, data: Data? = nil, response: URLResponse? = nil, error: Error? = nil) -> APIMock {
+        // swiftlint:disable:next force_try
         let request = try! url.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: nil)
         let mock = APIMock { _ in (data, response, error) }
         API.mocks[request.key] = mock
@@ -188,6 +191,9 @@ class APIMock {
         self.handler = handler
     }
 
+    /**
+     Suspends completing the API task until `resume()` is called. Good to test slow responses.
+     */
     func suspend() {
         isSuspended = true
     }
@@ -253,7 +259,7 @@ class APIMock {
         if mock.data != nil || mock.http != nil || mock.error != nil {
             print("💌 \(task.request.key)")
         } else {
-            print("⚠️ \(task.request.key) mock not found")
+            print("⚠️ mocked response not set for \(task.request.key)")
         }
         guard !mock.noCallback, task.state == .running else { return }
 

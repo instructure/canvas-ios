@@ -70,6 +70,12 @@ let router = Router(routes: [
         return CourseDetailsViewController.create(courseID: courseID, studentID: studentID)
     },
 
+    RouteHandler("/courses/:courseID/grades/:userID") { _, params, _ in
+        guard let courseID = params["courseID"] else { return nil }
+        guard let studentID = params["userID"] else { return nil }
+        return CourseDetailsViewController.create(courseID: courseID, studentID: studentID)
+    },
+
     RouteHandler("/:context/:contextID/calendar_events/:eventID") { _, params, _ in
         guard let eventID = params["eventID"], let studentID = currentStudentID else { return nil }
         return CalendarEventDetailsViewController.create(studentID: studentID, eventID: eventID)
@@ -138,6 +144,9 @@ let router = Router(routes: [
         return WrongAppViewController.create(delegate: loginDelegate)
     },
 
+    RouteHandler("/about") { _, _, _ in
+        AboutAssembly.makeAboutViewController()
+    },
 ])
 
 private func fileList(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {

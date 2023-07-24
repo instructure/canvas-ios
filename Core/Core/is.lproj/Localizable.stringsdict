@@ -322,6 +322,22 @@
 			<string>Fela %d hluti sem vantar</string>
 		</dict>
 	</dict>
+	<key>incompatible_files_for_assignment</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Skráargerðin %2$@ í skilunum þínum er ósamrýmanleg valda verkefninu.</string>
+			<key>other</key>
+			<string>Skráargerðirnar %2$@ í skilunum þínum eru ósamrýmanlegar valda verkefninu.</string>
+		</dict>
+	</dict>
 	<key>late_penalty_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -386,6 +402,22 @@
 			<string>Sýna %d hluti sem vantar</string>
 		</dict>
 	</dict>
+	<key>submission_failed_for_files</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Skrá þín hlóðst upp en skil á verkefninu mistókust.</string>
+			<key>other</key>
+			<string>Skrárnar þínar hlóðust upp en skil á verkefninu mistókust.</string>
+		</dict>
+	</dict>
 	<key>there_are_d_assignees_without_grades</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -400,6 +432,22 @@
 			<string>%d viðtakandi er án einkunnar.</string>
 			<key>other</key>
 			<string>%d viðtakendur eru án einkunna.</string>
+		</dict>
+	</dict>
+	<key>use_file_extension</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Notaðu %2$@ skráarendinguna.</string>
+			<key>other</key>
+			<string>Notaðu %2$@ skráarendingarnar.</string>
 		</dict>
 	</dict>
 </dict>

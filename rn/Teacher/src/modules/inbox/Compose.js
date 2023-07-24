@@ -321,7 +321,7 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
                 </View>
                 { Boolean(this.props.canAddRecipients) &&
                   <TouchableOpacity testID='compose.add-recipient' onPress={this._openAddressBook} style={{ height: 54, justifyContent: 'center' }} accessibilityTraits={['button']} accessibilityLabel={i18n('Add recipient')}>
-                    <Image source={Images.add} style={{ tintColor: colors.primaryButton }} />
+                    <Image source={Images.add} style={{ tintColor: colors.textDark }} />
                   </TouchableOpacity>
                 }
               </View>
@@ -370,6 +370,8 @@ export class Compose extends PureComponent<ComposeProps & OwnProps, ComposeState
   }
 }
 
+const k5Font = 'BalsamiqSans-Regular'
+const regularFont = 'Lato-Regular'
 const styles = createStyleSheet((colors, vars) => ({
   compose: {
     flex: 1,
@@ -379,15 +381,17 @@ const styles = createStyleSheet((colors, vars) => ({
     fontSize: 16,
     lineHeight: 19,
     color: colors.textDarkest,
+    fontFamily: vars.isK5Enabled ? k5Font : regularFont,
   },
   body: {
     fontSize: 16,
-    lineHeight: 19,
+    lineHeight: vars.isK5Enabled ? 19 : 24, // 24 is a manually calculated 'condensed' height for 16 point font
     color: colors.textDarkest,
     paddingTop: 10,
     paddingBottom: vars.padding / 2,
     paddingLeft: vars.padding,
     paddingRight: vars.padding,
+    fontFamily: vars.isK5Enabled ? k5Font : regularFont,
   },
   wrapper: {
     borderBottomColor: colors.borderMedium,

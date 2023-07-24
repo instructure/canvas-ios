@@ -44,6 +44,7 @@ public extension Bundle {
         return nil
     }
 
+    var appBundleIdentifier: String { bundleIdentifier ?? "com.instructure.app" }
     var isStudentApp: Bool { bundleIdentifier == Bundle.studentBundleID || isStudentTestsRunner }
     var isTeacherApp: Bool { bundleIdentifier == Bundle.teacherBundleID || isTeacherTestsRunner }
     var isParentApp: Bool { bundleIdentifier == Bundle.parentBundleID || isParentTestsRunner }
@@ -62,6 +63,28 @@ public extension Bundle {
         }
     }
     static var isExtension: Bool { Bundle.main.bundleURL.pathExtension == "appex" }
+
+    var pandataAppName: String {
+        switch bundleIdentifier {
+        case Bundle.studentBundleID:
+            return "Canvas Student for iOS"
+        case Bundle.teacherBundleID:
+            return "Canvas Teacher for iOS"
+        default:
+            return "Invalid App ID for iOS"
+        }
+    }
+
+    var pandataAppTag: String {
+        switch bundleIdentifier {
+        case Bundle.studentBundleID, Bundle.studentUITestsBundleID, Bundle.studentE2ETestsBundleID:
+            return "CANVAS_STUDENT_IOS"
+        case Bundle.teacherBundleID, Bundle.teacherUITestsBundleID, Bundle.teacherE2ETestsBundleID:
+            return "CANVAS_TEACHER_IOS"
+        default:
+            return "Invalid AppTag for iOS"
+        }
+    }
 }
 
 // The comment parameter is necessary for -exportLocalizations to find these

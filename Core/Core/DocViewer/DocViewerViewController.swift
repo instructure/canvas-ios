@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import UIKit
 import PSPDFKit
 import PSPDFKitUI
@@ -40,6 +41,10 @@ public class DocViewerViewController: UIViewController {
     lazy var session = DocViewerSession { [weak self] in
         performUIUpdate { self?.sessionIsReady() }
     }
+    private var dragGestureViewModel: AnnotationDragGestureViewModel?
+    private var subscriptions = Set<AnyCancellable>()
+    private var annotationContextMenuModel: DocViewerAnnotationContextMenuModel?
+    private var offlineModeInteractor: OfflineModeInteractor!
 
     public internal(set) static var hasPSPDFKitLicense = false
 
@@ -49,7 +54,13 @@ public class DocViewerViewController: UIViewController {
         hasPSPDFKitLicense = true
     }
 
-    public static func create(filename: String, previewURL: URL?, fallbackURL: URL, navigationItem: UINavigationItem? = nil) -> DocViewerViewController {
+    public static func create(
+        filename: String,
+        previewURL: URL?,
+        fallbackURL: URL,
+        navigationItem: UINavigationItem? = nil,
+        offlineModeInteractor: OfflineModeInteractor = OfflineModeInteractorLive.shared
+    ) -> DocViewerViewController {
         stylePSPDFKit()
 
         let controller = loadFromStoryboard()
@@ -58,6 +69,7 @@ public class DocViewerViewController: UIViewController {
         controller.previewURL = previewURL
         controller.fallbackURL = fallbackURL
         controller.parentNavigationItem = navigationItem
+        controller.offlineModeInteractor = offlineModeInteractor
         return controller
     }
 
@@ -65,6 +77,7 @@ public class DocViewerViewController: UIViewController {
         super.viewDidLoad()
 
         loadingView.color = nil
+        self.view.backgroundColor = .backgroundMedium
 
         embed(pdf, in: contentView)
         pdf.delegate = self
@@ -75,11 +88,17 @@ public class DocViewerViewController: UIViewController {
         syncAnnotationsButton.setTitleColor(.textDark, for: .disabled)
         annotationSaveStateChanges(saving: false)
 
-        let gestureRecognizer = UITapGestureRecognizer()
-        gestureRecognizer.addTarget(self, action: #selector(tapGestureRecognizerDidChangeState))
-        gestureRecognizer.delegate = self
-        pdf.interactions.allInteractions.require(toFail: gestureRecognizer)
-        pdf.view.addGestureRecognizer(gestureRecognizer)
+        let commentPinGestureRecognizer = UITapGestureRecognizer()
+        commentPinGestureRecognizer.addTarget(self, action: #selector(commentPinGestureRecognizerDidChangeState))
+        commentPinGestureRecognizer.delegate = self
+        pdf.interactions.allInteractions.require(toFail: commentPinGestureRecognizer)
+        pdf.view.addGestureRecognizer(commentPinGestureRecognizer)
+
+        let dragGestureRecognizer = UIPanGestureRecognizer()
+        pdf.view.addGestureRecognizer(dragGestureRecognizer)
+
+        let dragGestureViewModel = AnnotationDragGestureViewModel(pdf: pdf, gestureRecognizer: dragGestureRecognizer)
+        self.dragGestureViewModel = dragGestureViewModel
 
         if let url = URL(string: previewURL?.absoluteString ?? "", relativeTo: env.api.baseURL), let loginSession = env.currentSession {
             session.load(url: url, session: loginSession)
@@ -119,7 +138,16 @@ public class DocViewerViewController: UIViewController {
     }
 
     func loadFallback() {
-        if let error = session.error { showError(error) }
+        if let error = session.error {
+            // If offline mode is enabled we don't want to show API errors
+            if offlineModeInteractor.isOfflineModeEnabled() {
+                loadingView.isHidden = true
+                return
+            } else {
+                showError(error)
+            }
+        }
+
         if let url = session.localURL {
             return load(document: Document(url: url))
         }
@@ -151,9 +179,13 @@ public class DocViewerViewController: UIViewController {
 
             pdf.annotationStateManager.add(self)
             let annotationToolbar = DocViewerAnnotationToolbar(annotationStateManager: pdf.annotationStateManager)
-            annotationToolbar.supportedToolbarPositions = .inTopBar
-            annotationToolbar.isDragEnabled = false
-            annotationToolbar.showDoneButton = false
+            annotationToolbar.tintColor = Brand.shared.primary
+            annotationToolbar.isDragButtonSelected
+                .sink { [weak self] isDragEnabled in
+                    self?.dragGestureViewModel?.isEnabled = isDragEnabled
+                    self?.pdf.interactions.allInteractions.isEnabled = !isDragEnabled
+                }
+                .store(in: &subscriptions)
 
             contentView.addSubview(toolbarContainer)
             toolbarContainer.pin(inside: contentView)
@@ -163,6 +195,12 @@ public class DocViewerViewController: UIViewController {
 
             contentView.layoutIfNeeded()
         }
+
+        annotationContextMenuModel = DocViewerAnnotationContextMenuModel(isAnnotationEnabled: isAnnotatable,
+                                                                         metadata: metadata,
+                                                                         document: document,
+                                                                         annotationProvider: annotationProvider,
+                                                                         router: env.router)
 
         pdf.documentViewController?.scrollToSpread(at: 0, scrollPosition: .start, animated: false)
     }
@@ -182,49 +220,24 @@ public class DocViewerViewController: UIViewController {
 }
 
 extension DocViewerViewController: PDFViewControllerDelegate, AnnotationStateManagerDelegate {
-    // swiftlint:disable function_parameter_count
-    public func pdfViewController(
-        _ pdfController: PDFViewController,
-        shouldShow menuItems: [MenuItem],
-        atSuggestedTargetRect rect: CGRect,
-        forSelectedText selectedText: String,
-        in textRect: CGRect, on pageView: PDFPageView
-    ) -> [MenuItem] {
-        return menuItems.filter {
-            $0.identifier != TextMenu.annotationMenuHighlight.rawValue
-        }
-    }
 
-    public func pdfViewController(
-        _ pdfController: PDFViewController,
-        shouldShow menuItems: [MenuItem],
-        atSuggestedTargetRect rect: CGRect,
-        for annotations: [Annotation]?,
-        in annotationRect: CGRect,
-        on pageView: PDFPageView
-    ) -> [MenuItem] {
-        let commentTapHandler: DocViewerAnnotationContextMenuModel.CommentTapHandler = { [weak self] annotation, document, metadata in
-            let comments = self?.annotationProvider?.getReplies(to: annotation) ?? []
-            let view = CommentListViewController.create(comments: comments, inReplyTo: annotation, document: document, metadata: metadata)
-            self?.env.router.show(view, from: pdfController, options: .modal(embedInNav: true))
-        }
-        let deleteTapHandler: DocViewerAnnotationContextMenuModel.DeleteTapHandler = { annotation, document in
-            document.remove(annotations: [annotation], options: nil)
-        }
-        let model = DocViewerAnnotationContextMenuModel(env: env,
-                                                        isAnnotationEnabled: isAnnotatable,
-                                                        metadata: metadata,
-                                                        pageView: pageView,
-                                                        pdfController: pdfController,
-                                                        commentTapHandler: commentTapHandler,
-                                                        deleteTapHandler: deleteTapHandler)
-        return model.shouldShow(menuItems, for: annotations ?? [])
+    /** Menu for tapping on an annotation. */
+    public func pdfViewController(_ sender: PDFViewController,
+                                  menuForAnnotations annotations: [Annotation],
+                                  onPageView pageView: PDFPageView,
+                                  appearance: EditMenuAppearance,
+                                  suggestedMenu: UIMenu)
+    -> UIMenu {
+        annotationContextMenuModel?.menu(for: annotations,
+                                         pageView: pageView,
+                                         basedOn: suggestedMenu,
+                                         container: sender)
+        ?? suggestedMenu
     }
 
     public func pdfViewController(_ pdfController: PDFViewController, shouldShow controller: UIViewController, options: [String: Any]? = nil, animated: Bool) -> Bool {
         return !(controller is StampViewController)
     }
-    // swiftlint:enable function_parameter_count
 }
 
 extension DocViewerViewController: UIGestureRecognizerDelegate {
@@ -235,21 +248,21 @@ extension DocViewerViewController: UIGestureRecognizerDelegate {
             metadata?.annotations != nil
     }
 
-    @objc func tapGestureRecognizerDidChangeState(_ gestureRecognizer: UITapGestureRecognizer) {
+    @objc func commentPinGestureRecognizerDidChangeState(_ gestureRecognizer: UITapGestureRecognizer) {
         guard gestureRecognizer.state == .ended, let documentViewController = pdf.documentViewController else { return }
         let pageViewPoint = gestureRecognizer.location(in: gestureRecognizer.view)
         guard let pageView = documentViewController.visiblePageView(at: pageViewPoint) else { return }
         let viewPoint = gestureRecognizer.location(in: pageView)
-        performTap(pageView: pageView, at: viewPoint)
+        createCommentPinAnnotation(pageView: pageView, at: viewPoint)
     }
 
-    func performTap(pageView: PDFPageView, at viewPoint: CGPoint) {
+    func createCommentPinAnnotation(pageView: PDFPageView, at viewPoint: CGPoint) {
         let state = pdf.annotationStateManager
-        guard state.state == .stamp,
-            let document = pdf.document,
-            let metadata = metadata?.annotations else {
-                return
+
+        guard state.state == .stamp, let document = pdf.document, let metadata = metadata?.annotations else {
+            return
         }
+
         let pointAnnotation = DocViewerPointAnnotation()
         pointAnnotation.user = metadata.user_id
         pointAnnotation.userName = metadata.user_name
@@ -258,12 +271,11 @@ extension DocViewerViewController: UIGestureRecognizerDelegate {
         pointAnnotation.pageIndex = pageView.pageIndex
 
         pageView.center(pointAnnotation, aroundPDFPoint: pageView.convert(viewPoint, to: pageView.pdfCoordinateSpace))
-        document.add(annotations: [ pointAnnotation ], options: nil)
+        document.add(annotations: [pointAnnotation], options: nil)
 
         let view = CommentListViewController.create(comments: [], inReplyTo: pointAnnotation, document: document, metadata: metadata)
         env.router.show(view, from: pdf, options: .modal(embedInNav: true))
     }
-
 }
 
 extension DocViewerViewController: DocViewerAnnotationProviderDelegate {
@@ -274,7 +286,7 @@ extension DocViewerViewController: DocViewerAnnotationProviderDelegate {
     }
 
     @IBAction func syncAnnotations() {
-        annotationProvider?.syncAllAnnotations()
+        annotationProvider?.retryFailedRequest()
     }
 
     func annotationDidFailToSave(error: Error) { performUIUpdate {

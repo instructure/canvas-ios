@@ -41,7 +41,7 @@ public struct K5ResourcesApplicationView: View {
                 }
 
                 Text(model.name)
-                    .foregroundColor(.licorice)
+                    .foregroundColor(.textDarkest)
                     .font(.regular17)
                     .padding(.leading, 8)
                 Spacer()
@@ -51,7 +51,7 @@ public struct K5ResourcesApplicationView: View {
             .padding(.trailing, 18)
             .frame(height: 51)
             .background(RoundedRectangle(cornerRadius: 4).stroke(Color.borderDark, lineWidth: 1 / UIScreen.main.scale))
-            .background(Color.white)
+            .background(Color.backgroundLightest)
             .cornerRadius(4)
             .shadow(color: Color.black.opacity(0.15), radius: 1, x: 0, y: 2)
         })

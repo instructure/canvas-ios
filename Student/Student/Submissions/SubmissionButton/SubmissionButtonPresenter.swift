@@ -140,7 +140,7 @@ class SubmissionButtonPresenter: NSObject {
                 courseID: courseID,
                 assignmentID: assignment.id,
                 userID: userID
-            ), from: view, options: .modal(embedInNav: true))
+            ), from: view, options: .modal(isDismissable: false, embedInNav: true))
         case .online_quiz:
             Analytics.shared.logEvent("assignment_detail_quizlaunch")
             guard let quizID = assignment.quizID else { return }
@@ -287,7 +287,8 @@ extension SubmissionButtonPresenter: AudioRecorderDelegate, UIImagePickerControl
             do {
                 if let videoURL = info[.mediaURL] as? URL {
                     let destination = URL
-                        .temporaryDirectory
+                        .Directories
+                        .temporary
                         .appendingPathComponent("videos", isDirectory: true)
                         .appendingPathComponent(String(Clock.now.timeIntervalSince1970))
                         .appendingPathExtension(videoURL.pathExtension)
@@ -357,7 +358,7 @@ extension SubmissionButtonPresenter {
         let modallyPresentedViewWindow = viewController?.presentedViewController?.view.window
 
         guard let view = hostViewWindow ?? modallyPresentedViewWindow else { return }
-        let animation = AnimationView(name: "confetti")
+        let animation = LottieAnimationView(name: "confetti", bundle: .core)
         view.addSubview(animation)
         animation.pin(inside: view)
         animation.contentMode = .scaleAspectFill

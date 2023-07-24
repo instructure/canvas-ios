@@ -70,9 +70,13 @@ public struct APICourse: Codable, Equatable {
     // let blueprint: Bool?
     // let blueprint_restrictions: ?
     // let blueprint_restrictions_by_object_type: ?
+    let banner_image_download_url: String?
     let image_download_url: String? // include[]=course_image, api sometimes returns an empty string instead of nil so don't use URL
     var is_favorite: Bool? // include[]=favorites
     let sections: [SectionRef]? // include[]=sections
+    let tabs: [APITab]? // include[]=tabs
+
+    public var context: Context { Context(.course, id: id.rawValue) }
 
     // https://canvas.instructure.com/doc/api/courses.html#Term
     public struct Term: Codable, Equatable {
@@ -89,7 +93,6 @@ public struct APICourse: Codable, Equatable {
 
     public struct SectionRef: Codable, Equatable {
         let end_at: Date?
-        let enrollment_role: String
         let id: ID
         let name: String
         let start_at: Date?
@@ -102,8 +105,23 @@ public struct APICourseSettings: Codable {
     let syllabus_course_summary: Bool
 }
 
-public enum CourseDefaultView: String, Codable {
+public enum CourseDefaultView: String, Codable, CaseIterable {
     case assignments, feed, modules, syllabus, wiki
+
+    var string: String {
+        switch self {
+        case .assignments:
+            return NSLocalizedString("Assignments List", comment: "")
+        case .feed:
+            return NSLocalizedString("Course Activity Stream", comment: "")
+        case .modules:
+            return NSLocalizedString("Course Modules", comment: "")
+        case .syllabus:
+            return NSLocalizedString("Syllabus", comment: "")
+        case .wiki:
+            return NSLocalizedString("Pages Front Page", comment: "")
+        }
+    }
 }
 
 public enum CourseWorkflowState: String, Codable {
@@ -137,9 +155,11 @@ extension APICourse {
         hide_final_grades: Bool? = false,
         homeroom_course: Bool? = false,
         access_restricted_by_date: Bool? = nil,
+        banner_image_download_url: String? = nil,
         image_download_url: String? = nil,
         is_favorite: Bool? = nil,
-        sections: [SectionRef]? = nil
+        sections: [SectionRef]? = nil,
+        tabs: [APITab]? = nil
     ) -> APICourse {
         return APICourse(
             id: id,
@@ -152,16 +172,19 @@ extension APICourse {
             end_at: end_at,
             locale: locale,
             enrollments: enrollments,
-            grading_periods: grading_periods, default_view: default_view,
+            grading_periods: grading_periods,
+            default_view: default_view,
             syllabus_body: syllabus_body,
             term: term,
             permissions: permissions,
             hide_final_grades: hide_final_grades,
             homeroom_course: homeroom_course,
             access_restricted_by_date: access_restricted_by_date,
+            banner_image_download_url: banner_image_download_url,
             image_download_url: image_download_url,
             is_favorite: is_favorite,
-            sections: sections
+            sections: sections,
+            tabs: tabs
         )
     }
 }
@@ -212,6 +235,7 @@ public struct GetCoursesRequest: APIRequestable {
     }
 
     private enum Include: String, CaseIterable {
+        case banner_image
         case course_image
         case current_grading_period_scores
         case favorites
@@ -270,6 +294,7 @@ public struct GetCourseRequest: APIRequestable {
 
     public enum Include: String, CaseIterable {
         case courseImage = "course_image"
+        case courseBannerImage = "banner_image"
         case currentGradingPeriodScores = "current_grading_period_scores"
         case favorites
         case permissions
@@ -278,10 +303,12 @@ public struct GetCourseRequest: APIRequestable {
         case term
         case totalScores = "total_scores"
         case observedUsers = "observed_users"
+        case tabs = "tabs"
     }
 
     let courseID: String
     public static let defaultIncludes: [Include] = [
+        .courseBannerImage,
         .courseImage,
         .currentGradingPeriodScores,
         .favorites,

@@ -20,16 +20,7 @@ import UIKit
 import CoreData
 import Core
 
-/// Always uses the nav bar style to update status bar, even if hidden
-class DashboardNavigationController: UINavigationController {
-    override var childForStatusBarStyle: UIViewController? { nil }
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        self.navigationBar.tintColor.luminance > 0.5 ? .lightContent : .default
-    }
-}
-
-class DashboardViewController: UIViewController, ErrorViewController {
+class DashboardViewController: ScreenViewTrackableViewController, ErrorViewController {
     @IBOutlet weak var addStudentView: UIView!
     @IBOutlet weak var avatarView: AvatarView!
     @IBOutlet weak var studentListStack: UIStackView!
@@ -57,6 +48,7 @@ class DashboardViewController: UIViewController, ErrorViewController {
     let env = AppEnvironment.shared
     var hasStudents: Bool?
     var shownNotAParent = false
+    let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/")
 
     lazy var addStudentController = AddStudentController(presentingViewController: self, handler: { [weak self] error in
         if error == nil {
@@ -88,14 +80,20 @@ class DashboardViewController: UIViewController, ErrorViewController {
 
         tabsController.tabBar.useGlobalNavStyle()
         tabsController.tabBar.isTranslucent = false
+        tabsController.delegate = self
         embed(tabsController, in: tabsContainer)
 
         permissions.refresh(force: true)
         students.exhaust { [weak self] list in
             // workaround temporary students.isEmpty && !students.pending
-            self?.hasStudents = self?.hasStudents == true || !list.isEmpty
+            self?.hasStudents = self?.hasStudents == true || !(list?.isEmpty ?? true)
             self?.update()
             return true
+        }
+        NotificationCenter.default.addObserver(self, selector: #selector(checkForPolicyChanges), name: UIApplication.didBecomeActiveNotification, object: nil)
+        reportScreenView(for: 0, viewController: self)
+        if env.userDefaults?.interfaceStyle == nil {
+            env.userDefaults?.interfaceStyle = .light
         }
     }
 
@@ -103,13 +101,13 @@ class DashboardViewController: UIViewController, ErrorViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.useContextColor(currentColor)
         navigationController?.setNavigationBarHidden(true, animated: true)
-        env.pageViewLogger.startTrackingTimeOnViewController()
         updateBadge()
+        checkForPolicyChanges()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "/", attributes: [:])
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
     }
 
     @IBAction func showProfile() {
@@ -142,17 +140,12 @@ class DashboardViewController: UIViewController, ErrorViewController {
 
     func updateBadgeCount() {
         profileButton.addBadge(number: badgeCount, color: currentColor)
+        profileButton.accessibilityLabel = NSLocalizedString("Settings", comment: "")
         if badgeCount > 0 {
-            let unreadMessages = String.localizedStringWithFormat(
+            profileButton.accessibilityHint = String.localizedStringWithFormat(
                 NSLocalizedString("conversation_unread_messages", bundle: .core, comment: ""),
                 badgeCount
             )
-            profileButton.accessibilityLabel = String.localizedStringWithFormat(
-                NSLocalizedString("Settings. %@", comment: ""),
-                unreadMessages
-            )
-        } else {
-            profileButton.accessibilityLabel = NSLocalizedString("Settings", comment: "")
         }
     }
 
@@ -168,7 +161,7 @@ class DashboardViewController: UIViewController, ErrorViewController {
     }
 
     func updateHeader() {
-        headerView.backgroundColor = currentColor
+        headerView.backgroundColor = currentColor.darkenToEnsureContrast(against: .white)
         profileButton.addBadge(number: badgeCount, color: currentColor)
         addStudentView.isHidden = false // provides shadow even when avatar covers it
 
@@ -259,6 +252,29 @@ class DashboardViewController: UIViewController, ErrorViewController {
         alerts.loadViewIfNeeded() // Make sure it starts loading data for badge
 
         tabsController.viewControllers = [ courses, calendar, alerts ]
+    }
+
+    private func reportScreenView(for tabIndex: Int, viewController: UIViewController) {
+        let map = ["courses", "calendar", "alerts"]
+        let event = map[tabIndex]
+        Analytics.shared.logScreenView(route: "/tabs/" + event, viewController: viewController)
+    }
+
+    @objc private func checkForPolicyChanges() {
+        LoginUsePolicy.checkAcceptablePolicy(from: self, cancelled: {
+            AppEnvironment.shared.loginDelegate?.changeUser()
+        })
+    }
+}
+
+extension DashboardViewController: UITabBarControllerDelegate {
+
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if let index = tabBarController.viewControllers?.firstIndex(of: viewController), tabBarController.selectedViewController != viewController {
+            reportScreenView(for: index, viewController: viewController)
+        }
+
+        return true
     }
 }
 

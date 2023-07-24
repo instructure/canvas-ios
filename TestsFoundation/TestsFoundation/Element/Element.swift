@@ -34,10 +34,10 @@ public extension Element {
         return !app.windows.element(boundBy: 0).frame.contains(frame(file: file, line: line))
     }
 
-    func tapUntil(file: StaticString = #file, line: UInt = #line, message: String? = nil, test: () -> Bool) {
+    func tapUntil(retries: Int = 5, file: StaticString = #file, line: UInt = #line, message: String? = nil, test: () -> Bool) {
         tap(file: file, line: line)
         sleep(1)
-        for _ in 0..<5 where exists(file: file, line: line) {
+        for _ in 0..<retries where exists(file: file, line: line) {
             if test() {
                 return
             }
@@ -60,7 +60,7 @@ public extension Element {
     }
 
     func exists(file: StaticString = #file, line: UInt = #line) -> Bool {
-        snapshot(file: file, line: line) != nil
+        rawElement.exists
     }
     var exists: Bool { exists() }
 
@@ -81,13 +81,20 @@ public extension Element {
         waitToExist(15, file: file, line: line)
         return rawElement.frame
     }
+
     func label(file: StaticString = #file, line: UInt = #line) -> String {
         waitToExist(15, file: file, line: line)
         return rawElement.label
     }
+
     func value(file: StaticString = #file, line: UInt = #line) -> String? {
         waitToExist(15, file: file, line: line)
         return rawElement.value as? String
+    }
+
+    func placeholderValue(file: StaticString = #file, line: UInt = #line) -> String? {
+        waitToExist(15, file: file, line: line)
+        return rawElement.placeholderValue
     }
 
     @discardableResult
@@ -175,11 +182,48 @@ public extension Element {
     }
 
     @discardableResult
-    func waitToExist(_ timeout: TimeInterval = 10, file: StaticString = #file, line: UInt = #line) -> Element {
-        waitUntil(timeout, file: file, line: line, failureMessage: "Element \(self) still doesn't exist") {
-            exists(file: file, line: line)
+    func waitToExist(_ timeout: TimeInterval = 10, shouldFail: Bool = true, file: StaticString = #file, line: UInt = #line) -> Element {
+        let exists = rawElement.waitForExistence(timeout: timeout)
+
+        if !exists, shouldFail {
+            XCTFail("Element \(self) still doesn't exist", file: file, line: line)
         }
+
         return self
+    }
+
+    @discardableResult
+    func waitForValue(value: String, timeout: TimeInterval = 15, gracePeriod: UInt32 = 1) -> Bool {
+        let deadline = Date().addingTimeInterval(timeout)
+        while Date() < deadline {
+            if self.value() == value {
+                return true
+            }
+            sleep(gracePeriod)
+        }
+        return false
+    }
+
+    @discardableResult
+    func swipeUntilVisible(direction: SwipeDirection = .up, timeout: TimeInterval = 15, gracePeriod: UInt32 = 1) -> Bool {
+        let deadline = Date().addingTimeInterval(timeout)
+        while Date() < deadline {
+            if self.isVisible {
+                return true
+            }
+            switch direction {
+            case .down:
+                app.swipeDown()
+            case .up:
+                app.swipeUp()
+            case .left:
+                app.swipeLeft()
+            case .right:
+                app.swipeRight()
+            }
+            sleep(gracePeriod)
+        }
+        return false
     }
 
     @discardableResult
@@ -188,6 +232,18 @@ public extension Element {
             !exists(file: file, line: line)
         }
         return self
+    }
+
+    @discardableResult
+    func waitToContainLabel(label: String, timeout: TimeInterval = 15, gracePeriod: UInt32 = 1) -> Bool {
+        let deadline = Date().addingTimeInterval(timeout)
+        while Date() < deadline {
+            if self.label().contains(label) {
+                return true
+            }
+            sleep(gracePeriod)
+        }
+        return false
     }
 
     func snapshot(file: StaticString = #file, line: UInt = #line) -> XCUIElementSnapshot? {
@@ -228,12 +284,7 @@ public extension Element {
         guard let labels = orderedLabels(file: file, line: line) else {
             return false
         }
-        for i in labels.indices {
-            if labels.dropFirst(i).starts(with: subsequence) {
-                return true
-            }
-        }
-        return false
+        return labels.indices.contains { labels.dropFirst($0).starts(with: subsequence) }
     }
 
     subscript(_ index: Int) -> Element {
@@ -241,8 +292,12 @@ public extension Element {
     }
 }
 
+/**
+ This method blocks further test execution and runs the main runloop until the given predicate doesn't return true.
+ */
 public func waitUntil(
     _ timeout: TimeInterval = 10,
+    shouldFail: Bool = false,
     file: StaticString = #file,
     line: UInt = #line,
     failureMessage: @autoclosure () -> String = "waitUntil timed out",
@@ -251,7 +306,9 @@ public func waitUntil(
     let deadline = Date().addingTimeInterval(timeout)
     while !predicate() {
         if Date() > deadline {
-            XCTFail(failureMessage(), file: (file), line: line)
+            if shouldFail {
+                XCTFail(failureMessage(), file: (file), line: line)
+            }
             break
         }
         RunLoop.current.run(until: Date() + 0.1)
@@ -317,4 +374,22 @@ public struct XCUIElementQueryWrapper: Element {
         }
         return false
     }
+}
+
+public extension XCUIElement {
+    func forceTapElement() {
+        if isHittable {
+            tap()
+        } else {
+            let coordinate: XCUICoordinate = coordinate(withNormalizedOffset: CGVector())
+            coordinate.tap()
+        }
+    }
+}
+
+public enum SwipeDirection {
+    case up
+    case down
+    case left
+    case right
 }

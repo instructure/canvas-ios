@@ -59,6 +59,7 @@ exports[`anonymous grading doesnt show users names 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -77,6 +78,7 @@ exports[`anonymous grading doesnt show users names 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Array [
@@ -182,6 +184,7 @@ exports[`excused row renders correctly 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -200,6 +203,7 @@ exports[`excused row renders correctly 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Array [
@@ -223,6 +227,7 @@ exports[`excused row renders correctly 1`] = `
           Array [
             Object {
               "color": "#2D3B45",
+              "fontFamily": "Lato-Regular",
               "fontSize": 16,
             },
             Array [
@@ -327,6 +332,7 @@ exports[`late graded row renders correctly 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -345,6 +351,7 @@ exports[`late graded row renders correctly 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Array [
@@ -368,6 +375,7 @@ exports[`late graded row renders correctly 1`] = `
           Array [
             Object {
               "color": "#2D3B45",
+              "fontFamily": "Lato-Regular",
               "fontSize": 16,
             },
             Array [
@@ -472,6 +480,7 @@ exports[`missing ungraded row renders correctly 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -490,6 +499,7 @@ exports[`missing ungraded row renders correctly 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Array [
@@ -595,6 +605,7 @@ exports[`submitted not_graded row renders correctly 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -695,6 +706,7 @@ exports[`submitted ungraded row renders correctly 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -713,6 +725,7 @@ exports[`submitted ungraded row renders correctly 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Array [
@@ -736,6 +749,7 @@ exports[`submitted ungraded row renders correctly 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Array [
@@ -854,6 +868,7 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {
@@ -872,6 +887,7 @@ exports[`unsubmitted ungraded row renders correctly 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Array [

@@ -72,8 +72,10 @@ public class GetAssignmentsByGroup: APIUseCase {
     }
 
     public func write(response: [APIAssignmentGroup]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        // For teacher roles this API doesn't return any submissions
+        let updateSubmission = AppEnvironment.shared.app != .teacher && include.contains(.submission)
         response?.forEach { item in
-            AssignmentGroup.save(item, courseID: courseID, in: client, updateSubmission: include.contains(.submission), updateScoreStatistics: include.contains(.score_statistics))
+            AssignmentGroup.save(item, courseID: courseID, in: client, updateSubmission: updateSubmission, updateScoreStatistics: include.contains(.score_statistics))
         }
     }
 }

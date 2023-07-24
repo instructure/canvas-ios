@@ -322,6 +322,22 @@
 			<string>Masquer %d éléments manquants</string>
 		</dict>
 	</dict>
+	<key>incompatible_files_for_assignment</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Le type de fichier %2$@ de votre envoi est incompatible avec la tâche sélectionnée.</string>
+			<key>other</key>
+			<string>Les types de fichiers %2$@ de votre envoi sont incompatibles avec la tâche sélectionnée.</string>
+		</dict>
+	</dict>
 	<key>late_penalty_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -386,6 +402,22 @@
 			<string>Afficher %d éléments manquants</string>
 		</dict>
 	</dict>
+	<key>submission_failed_for_files</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Votre fichier a été téléversé avec succès, mais l’envoi de la tâche a échoué.</string>
+			<key>other</key>
+			<string>Vos fichiers ont été téléversés avec succès, mais l’envoi de la tâche a échoué.</string>
+		</dict>
+	</dict>
 	<key>there_are_d_assignees_without_grades</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -400,6 +432,22 @@
 			<string>Il y a %d assigné sans note.</string>
 			<key>other</key>
 			<string>Il y a %d assignés sans notes.</string>
+		</dict>
+	</dict>
+	<key>use_file_extension</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Veuillez utiliser l’extension de fichier %2$@.</string>
+			<key>other</key>
+			<string>Veuillez utiliser les extensions de fichier %2$@.</string>
 		</dict>
 	</dict>
 </dict>

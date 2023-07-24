@@ -61,7 +61,7 @@
     {
       "target" : {
         "containerPath" : "container:..\/Core\/Core.xcodeproj",
-        "identifier" : "2C964836211E2F1A002C3255",
+        "identifier" : "73B1A2AD90A7970B7DB39CDC",
         "name" : "CoreTests"
       }
     },
@@ -70,13 +70,6 @@
         "containerPath" : "container:Student.xcodeproj",
         "identifier" : "7DE1160622F8AAB1005BFE98",
         "name" : "StudentUnitTests"
-      }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Student.xcodeproj",
-        "identifier" : "B1CA092D22C4237C008AA352",
-        "name" : "SubmitAssignmentTests"
       }
     },
     {
@@ -93,7 +86,6 @@
         "IPadAssignmentsTest",
         "InboxTests\/testCanMessageAttachment()",
         "SpringBoardTests",
-        "SubmissionButtonTests\/testOnlineUpload()",
         "UserFilesTests\/testAddFileAudio()",
         "UserFilesTests\/testAddFileFiles()"
       ],

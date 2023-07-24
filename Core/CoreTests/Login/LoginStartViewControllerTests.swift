@@ -24,7 +24,6 @@ class LoginStartViewControllerTests: CoreTestCase {
     var loggedIn: LoginSession?
     var loggedOut: LoginSession?
     var opened: URL?
-    var hasOpenedSupportTicket = false
     var supportsCanvasNetwork = true
     var helpURL: URL?
     var whatsNewURL = URL(string: "whats-new")
@@ -111,7 +110,7 @@ class LoginStartViewControllerTests: CoreTestCase {
         XCTAssert(router.viewControllerCalls.last?.0 is LoginFindSchoolViewController)
 
         MDMManager.mockHost()
-        controller.findSchoolButton.sendActions(for: .primaryActionTriggered)
+        controller.lastLoginButton.sendActions(for: .primaryActionTriggered)
         XCTAssert(router.viewControllerCalls.last?.0 is LoginWebViewController)
         XCTAssertTrue(controller.authenticationMethodLabel.isHidden)
 
@@ -122,7 +121,7 @@ class LoginStartViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.authenticationMethodLabel.text, "Site Admin Login")
         controller.authMethodTapped(controller.view)
         XCTAssertEqual(controller.authenticationMethodLabel.text, "Manual OAuth Login")
-        controller.findSchoolButton.sendActions(for: .primaryActionTriggered)
+        controller.lastLoginButton.sendActions(for: .primaryActionTriggered)
         XCTAssert(router.viewControllerCalls.last?.0 is LoginManualOAuthViewController)
 
         controller.authMethodTapped(controller.view)
@@ -132,13 +131,10 @@ class LoginStartViewControllerTests: CoreTestCase {
     func testLinks() {
         MDMManager.mockHost()
         controller.view.layoutIfNeeded()
-        XCTAssertEqual(controller.findSchoolButton.title(for: .normal), "Log In")
+        XCTAssertEqual(controller.lastLoginButton.title(for: .normal), "Log In")
 
         controller.canvasNetworkButton.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual((router.viewControllerCalls.last?.0 as? LoginWebViewController)?.host, "learn.canvas.net")
-
-        controller.helpButton.sendActions(for: .primaryActionTriggered)
-        XCTAssertTrue(hasOpenedSupportTicket)
 
         controller.whatsNewLink.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual(opened, whatsNewURL)
@@ -219,10 +215,6 @@ class LoginStartViewControllerTests: CoreTestCase {
 extension LoginStartViewControllerTests: LoginDelegate {
     func openExternalURL(_ url: URL) {
         opened = url
-    }
-
-    func openSupportTicket() {
-        hasOpenedSupportTicket = true
     }
 
     func userDidLogin(session: LoginSession) {

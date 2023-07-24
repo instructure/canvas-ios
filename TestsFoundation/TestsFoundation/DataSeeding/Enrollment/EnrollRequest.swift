@@ -28,7 +28,7 @@ public enum DSEnrollmentType: String, Encodable {
 
 // https://canvas.instructure.com/doc/api/enrollments.html#method.enrollments_api.create
 struct EnrollRequest: APIRequestable {
-    public typealias Response = APINoContent
+    public typealias Response = DSEnrollment
 
     public let method = APIMethod.post
     public let path: String
@@ -50,4 +50,24 @@ extension EnrollRequest {
     public struct Body: Encodable {
         let enrollment: RequestedEnrollment
     }
+}
+
+struct DeleteEnrollmentRequest: APIRequestable {
+    public typealias Response = DSEnrollment
+
+    public let method = APIMethod.delete
+    public let path: String
+    public let task: EnrollmentDeletionTaskType?
+
+    public init(courseID: String, enrollmentId: String, task: EnrollmentDeletionTaskType? = .deleteEnrollment) {
+        self.path = "courses/\(courseID)/enrollments/\(enrollmentId)"
+        self.task = task
+    }
+}
+
+public enum EnrollmentDeletionTaskType: String {
+    case concludeEnrollment = "conclude"
+    case deleteEnrollment = "delete"
+    case inactivateEnrollment = "inactivate"
+    case deactivateEnrollment = "deactivate"
 }

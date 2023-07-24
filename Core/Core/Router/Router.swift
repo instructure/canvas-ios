@@ -25,7 +25,8 @@ public enum RouteOptions: Equatable {
         _ style: UIModalPresentationStyle? = nil,
         isDismissable: Bool = true,
         embedInNav: Bool = false,
-        addDoneButton: Bool = false
+        addDoneButton: Bool = false,
+        animated: Bool = true
     )
 
     public var isModal: Bool {
@@ -44,7 +45,7 @@ public enum RouteOptions: Equatable {
 
     public var embedInNav: Bool {
         switch self {
-        case .detail, .modal(_, _, embedInNav: true, _):
+        case .detail, .modal(_, _, embedInNav: true, _, _):
             return true
         default:
             return false
@@ -55,7 +56,7 @@ public enum RouteOptions: Equatable {
 #if DEBUG
 extension RouteOptions: Codable {
     enum CodingKeys: String, CodingKey {
-        case type, style, isDissmissable, embedInNav, addDoneButton
+        case type, style, isDissmissable, embedInNav, addDoneButton, animated
     }
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -69,7 +70,8 @@ extension RouteOptions: Codable {
                 container.decodeIfPresent(Int.self, forKey: .style).flatMap { UIModalPresentationStyle(rawValue: $0) },
                 isDismissable: container.decode(Bool.self, forKey: .isDissmissable),
                 embedInNav: container.decode(Bool.self, forKey: .embedInNav),
-                addDoneButton: container.decode(Bool.self, forKey: .addDoneButton)
+                addDoneButton: container.decode(Bool.self, forKey: .addDoneButton),
+                animated: container.decode(Bool.self, forKey: .animated)
             )
         }
     }
@@ -81,12 +83,13 @@ extension RouteOptions: Codable {
             try container.encode("push", forKey: .type)
         case .detail:
             try container.encode("push", forKey: .type)
-        case .modal(let style, let isDismissable, let embedInNav, let addDoneButton):
+        case .modal(let style, let isDismissable, let embedInNav, let addDoneButton, let animated):
             try container.encode("modal", forKey: .type)
             try container.encodeIfPresent(style?.rawValue, forKey: .style)
             try container.encode(isDismissable, forKey: .isDissmissable)
             try container.encode(embedInNav, forKey: .embedInNav)
             try container.encode(addDoneButton, forKey: .addDoneButton)
+            try container.encode(animated, forKey: .animated)
         }
     }
 }
@@ -97,6 +100,8 @@ open class Router {
     public typealias FallbackHandler = (URLComponents, [String: Any]?, UIViewController, RouteOptions) -> Void
     public static let DefaultRouteOptions: RouteOptions = .push
 
+    public var count: Int { handlers.count }
+
     private let handlers: [RouteHandler]
     private let fallback: FallbackHandler
 
@@ -105,16 +110,7 @@ open class Router {
         self.fallback = fallback
     }
 
-    public var count: Int {
-        return handlers.count
-    }
-
-    private func cleanURL(_ url: URLComponents) -> URLComponents {
-        // URLComponents does all the encoding we care about except we often have + meaning space in query
-        var url = url
-        url.percentEncodedQuery = url.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%20")
-        return url
-    }
+    // MARK: - Route Matching
 
     public func match(_ url: URL, userInfo: [String: Any]? = nil) -> UIViewController? {
         return match(.parse(url), userInfo: userInfo)
@@ -132,6 +128,28 @@ open class Router {
         return nil
     }
 
+    public func template(for url: URL) -> String? {
+        template(for: .parse(url))
+    }
+    public func template(for url: String) -> String? {
+        template(for: .parse(url))
+    }
+    public func template(for url: URLComponents) -> String? {
+        handler(for: url)?.template
+    }
+
+    public func isRegisteredRoute(_ url: URL) -> Bool {
+        isRegisteredRoute(.parse(url))
+    }
+    public func isRegisteredRoute(_ url: String) -> Bool {
+        isRegisteredRoute(.parse(url))
+    }
+    public func isRegisteredRoute(_ url: URLComponents) -> Bool {
+        handler(for: url) != nil
+    }
+
+    // MARK: - Routing
+
     public func route(to url: URL, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = DefaultRouteOptions) {
         return route(to: .parse(url), userInfo: userInfo, from: from, options: options)
     }
@@ -140,23 +158,45 @@ open class Router {
     }
     open func route(to url: URLComponents, userInfo: [String: Any]? = nil, from: UIViewController, options: RouteOptions = DefaultRouteOptions) {
         let url = cleanURL(url)
+
+        if url.isExternalWebsite, !url.originIsNotification, let url = url.url {
+            Analytics.shared.logScreenView(route: "/external_url")
+            AppEnvironment.shared.loginDelegate?.openExternalURL(url)
+            return
+        }
+
         #if DEBUG
         DeveloperMenuViewController.recordRouteInHistory(url.url?.absoluteString)
         #endif
-        Analytics.shared.logEvent("route", parameters: ["url": String(describing: url)])
+
         for route in handlers {
             if let params = route.match(url) {
+                var analyticsViewController: UIViewController?
+
                 if let view = route.factory(url, params, userInfo) {
-                    show(view, from: from, options: options)
+                    analyticsViewController = view
+                    show(view, from: from, options: options, analyticsRoute: nil)
                 }
+
+                Analytics.shared.logScreenView(route: route.template, viewController: analyticsViewController)
                 return // don't fall back if a matched route returns no view
             }
         }
         fallback(url, userInfo, from, options)
     }
 
-    open func show(_ view: UIViewController, from: UIViewController, options: RouteOptions = DefaultRouteOptions, completion: (() -> Void)? = nil) {
+    // MARK: - View Controller Presentation
+
+    /**
+     - parameters:
+        - analyticsRoute: The route to be reported as screen\_view analytics event. If nil, no route is reported but this is only for internal usage to avoid both the `route` and `show` functions reporting the same event.
+     */
+    open func show(_ view: UIViewController, from: UIViewController, options: RouteOptions = DefaultRouteOptions, analyticsRoute: String? = "/unknown", completion: (() -> Void)? = nil) {
         if view is UIAlertController { return from.present(view, animated: true, completion: completion) }
+
+        if let analyticsRoute = analyticsRoute {
+            Analytics.shared.logScreenView(route: analyticsRoute, viewController: view)
+        }
 
         if let displayModeButton = from.splitDisplayModeButtonItem,
             from.splitViewController?.isCollapsed == false,
@@ -168,11 +208,11 @@ open class Router {
 
         var nav: UINavigationController?
         if options.embedInNav {
-            nav = view as? UINavigationController ?? UINavigationController(rootViewController: view)
+            nav = view as? UINavigationController ?? HelmNavigationController(rootViewController: view)
         }
 
         switch options {
-        case let .modal(style, isDismissable, _, addDoneButton):
+        case let .modal(style, isDismissable, _, addDoneButton, animated):
             if addDoneButton {
                 view.addDoneButton(side: .left)
             }
@@ -183,7 +223,7 @@ open class Router {
             if !isDismissable {
                 (nav ?? view).isModalInPresentation = true
             }
-            from.present(nav ?? view, animated: true, completion: completion)
+            from.present(nav ?? view, animated: animated, completion: completion)
         case .detail:
             if from.splitViewController == nil || from.isInSplitViewDetail || from.splitViewController?.isCollapsed == true {
                 from.show(view, sender: nil)
@@ -215,7 +255,11 @@ open class Router {
         }
     }
 
+    // MARK: - External URL
+
     public static func open(url: URLComponents) {
+        Analytics.shared.logScreenView(route: "/external_url")
+
         var components = url
         // Canonicalize relative & schemes we know about.
         switch components.scheme {
@@ -241,5 +285,19 @@ open class Router {
                 AppEnvironment.shared.loginDelegate?.openExternalURL(response?.session_url ?? url)
             }
         }
+    }
+
+    // MARK: - Private Methods
+
+    private func cleanURL(_ url: URLComponents) -> URLComponents {
+        // URLComponents does all the encoding we care about except we often have + meaning space in query
+        var url = url
+        url.percentEncodedQuery = url.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%20")
+        return url
+    }
+
+    private func handler(for url: URLComponents) -> RouteHandler? {
+        let url = cleanURL(url)
+        return handlers.first { $0.match(url) != nil }
     }
 }

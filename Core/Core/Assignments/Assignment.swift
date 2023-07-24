@@ -57,6 +57,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var moderatedGrading: Bool
     @NSManaged public var name: String
     @NSManaged public var needsGradingCount: Int
+    @NSManaged public var onlyVisibleToOverrides: Bool
     @NSManaged public var overrides: Set<AssignmentOverride>
     @NSManaged public var pointsPossibleRaw: NSNumber?
     @NSManaged public var position: Int
@@ -174,6 +175,7 @@ extension Assignment {
         moderatedGrading = item.moderated_grading == true
         name = item.name
         needsGradingCount = item.needs_grading_count ?? 0
+        onlyVisibleToOverrides = item.only_visible_to_overrides ?? false
         pointsPossible = item.points_possible
         position = item.position ?? Int.max
         published = item.published != false
@@ -189,8 +191,7 @@ extension Assignment {
 
         if let topic = item.discussion_topic {
             discussionTopic = DiscussionTopic.save(topic, in: client)
-        } else if let topic = discussionTopic {
-            client.delete(topic)
+        } else if discussionTopic != nil {
             self.discussionTopic = nil
         }
 
@@ -365,6 +366,19 @@ public final class AssignmentDate: NSManagedObject {
     @discardableResult
     public static func save(_ item: APIAssignmentDate, assignmentID: String, in context: NSManagedObjectContext) -> AssignmentDate {
         let id = item.id?.value ?? "base-\(assignmentID)"
+        let model: AssignmentDate = context.first(where: #keyPath(AssignmentDate.id), equals: id) ?? context.insert()
+        model.id = id
+        model.base = item.base == true
+        model.title = item.title
+        model.dueAt = item.due_at
+        model.unlockAt = item.unlock_at
+        model.lockAt = item.lock_at
+        return model
+    }
+
+    @discardableResult
+    public static func save(_ item: APIAssignmentDate, quizID: String, in context: NSManagedObjectContext) -> AssignmentDate {
+        let id = item.id?.value ?? "base-quiz-\(quizID)"
         let model: AssignmentDate = context.first(where: #keyPath(AssignmentDate.id), equals: id) ?? context.insert()
         model.id = id
         model.base = item.base == true

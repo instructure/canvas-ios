@@ -322,6 +322,22 @@
 			<string>Piilota %d puuttuvaa kohdetta</string>
 		</dict>
 	</dict>
+	<key>incompatible_files_for_assignment</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>%2$@ tiedostotyyppi lähetyksessäsi ei ole yhteensopiva valitun tehtävän kanssa.</string>
+			<key>other</key>
+			<string>%2$@ tiedostotyypit lähetyksessäsi ovat sopimattomia valitun tehtävän kanssa.</string>
+		</dict>
+	</dict>
 	<key>late_penalty_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -386,6 +402,22 @@
 			<string>Näytä %d puuttuvaa kohdetta</string>
 		</dict>
 	</dict>
+	<key>submission_failed_for_files</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Tiedostosi lataus onnistui, mutta lähetys tehtävään epäonnistui.</string>
+			<key>other</key>
+			<string>Tiedostojesi lataus onnistui, mutta lähetys tehtävään epäonnistui.</string>
+		</dict>
+	</dict>
 	<key>there_are_d_assignees_without_grades</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -400,6 +432,22 @@
 			<string>Yhdeltä %d tehtävänsaajalta puuttuu arvosana.</string>
 			<key>other</key>
 			<string>%d tehtävänsaajalta puuttuu arvosana.</string>
+		</dict>
+	</dict>
+	<key>use_file_extension</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Käytä %2$@-tiedostotunnistetta.</string>
+			<key>other</key>
+			<string>Käytä %2$@-tiedostotunnisteita.</string>
 		</dict>
 	</dict>
 </dict>

@@ -16,11 +16,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import SwiftUI
 
 public struct SubmitAssignmentExtensionView: View {
+    private enum AccessibilityFocusArea: Hashable, Equatable {
+        case course, assignment
+    }
+
     @Environment(\.viewController) private var viewController
+    @Environment(\.appEnvironment) private var env
     @ObservedObject private var viewModel: SubmitAssignmentExtensionViewModel
+
+    @AccessibilityFocusState private var accessibilityFocus: AccessibilityFocusArea?
 
     public init(viewModel: SubmitAssignmentExtensionViewModel) {
         self.viewModel = viewModel
@@ -33,7 +41,9 @@ public struct SubmitAssignmentExtensionView: View {
             } else {
                 notLoggedInView
             }
-        }.navigationViewStyle(.stack)
+        }
+        .navigationViewStyle(.stack)
+        .onReceive(viewModel.showUploadStateView, perform: showFileProgressView)
     }
 
     private var notLoggedInView: some View {
@@ -41,8 +51,9 @@ public struct SubmitAssignmentExtensionView: View {
             .foregroundColor(.textDarkest)
             .font(.regular16)
             .navigationBarGlobal()
-            .navigationBarTitleView(titleView, displayMode: .inline)
-            .compatibleNavBarItems(trailing: { cancelButton })
+            .navigationTitleStyled(title)
+            .navigationBarTitleDisplayMode(.inline)
+            .navBarItems(trailing: cancelButton)
     }
 
     private var contentView: some View {
@@ -59,62 +70,54 @@ public struct SubmitAssignmentExtensionView: View {
             .padding(.horizontal, 20)
         }
         .navigationBarGlobal()
-        .navigationBarTitleView(titleView, displayMode: .inline)
-        .compatibleNavBarItems(
-            leading: { cancelButton },
-            trailing: { submitButton }
-        )
+        .navigationTitleStyled(title)
+        .navigationBarTitleDisplayMode(.inline)
+        .navBarItems(leading: cancelButton, trailing: submitButton)
+        .onDisappear {
+            accessibilityFocus = nil
+        }
     }
 
-    private var titleView: some View {
+    private var title: Text {
         Text("Canvas Student", bundle: .core).font(.semibold17).foregroundColor(.textDarkest)
     }
 
     @ViewBuilder
     private var commentBox: some View {
-        let placeholder = Text("Add comment (optional)", comment: "")
-                              .foregroundColor(.textDark)
-                              .font(.regular16)
+        TextEditor(text: $viewModel.comment)
+            .foregroundColor(.textDarkest)
+            .style(.body)
+            .frame(height: 100)
+            .padding(.vertical, 13) // TextEditor has a default 7 point padding so 20 - 7
+            .padding(.trailing, -20) // Offset parent's padding so our scrollbar will be in line with parent's scrollbar
+            .padding(.leading, -5) // Offset TextEditor's default padding so we'll be in line with the course and assignment picker cells
+            .overlay(placeholder, alignment: .topLeading)
+            .accessibilityLabel(NSLocalizedString("Add optional comment", comment: ""))
+            .toolbar { hideKeyboardButton }
+    }
 
-        if #available(iOSApplicationExtension 15.0, *) {
-            SwiftUI.TextEditor(text: $viewModel.comment)
-                .foregroundColor(.textDarkest)
+    @ViewBuilder
+    private var placeholder: some View {
+        if viewModel.comment.isEmpty {
+            Text("Add comment (optional)", comment: "")
+                .foregroundColor(.textDark)
                 .font(.regular16)
-                .frame(height: 100)
-                .padding(.vertical, 13) // TextEditor has a default 7 point padding so 20 - 7
-                .padding(.trailing, -20) // Offset parent's padding so our scrollbar will be in line with parent's scrollbar
-                .padding(.leading, -5) // Offset TextEditor's default padding so we'll be in line with the course and assignment picker cells
-                .overlay(alignment: .topLeading) {
-                    if viewModel.comment.isEmpty {
-                        placeholder
-                            .padding(.top, 21)
-                            .allowsHitTesting(false)
-                    }
-                }
-                .toolbar {
-                    ToolbarItem(placement: .keyboard) {
-                        HStack {
-                            Spacer()
-                            Button(action: {
-                                viewController.view.endEditing(true)
-                            }) {
-                                Text("Done", bundle: .core)
-                                    .font(.bold17)
-                            }
-                        }
-                    }
-                }
-        } else {
-            ZStack(alignment: .topLeading) {
-                if viewModel.comment.isEmpty {
-                    placeholder
-                        .padding(.top, 20)
-                }
+                .padding(.top, 21)
+                .allowsHitTesting(false)
+                .accessibilityHidden(true)
+        }
+    }
 
-                TextEditor(text: $viewModel.comment, maxHeight: 200)
-                    .foregroundColor(.textDarkest)
-                    .font(.regular16)
-                    .padding(.vertical, 20)
+    private var hideKeyboardButton: some ToolbarContent {
+        ToolbarItem(placement: .keyboard) {
+            HStack {
+                Spacer()
+                Button(action: {
+                    viewController.view.endEditing(true)
+                }) {
+                    Text("Done", bundle: .core)
+                        .font(.bold17)
+                }
             }
         }
     }
@@ -128,6 +131,13 @@ public struct SubmitAssignmentExtensionView: View {
                     .multilineTextAlignment(.leading)
                 Spacer()
                 InstDisclosureIndicator().padding(.leading, 10)
+            }
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityFocused($accessibilityFocus, equals: .course)
+        .onReceive(viewModel.coursePickerViewModel.dismissViewDidTrigger) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                accessibilityFocus = .course
             }
         }
         .frame(height: 54)
@@ -152,9 +162,16 @@ public struct SubmitAssignmentExtensionView: View {
                         InstDisclosureIndicator().padding(.leading, 10)
                     }
                         .frame(height: 54)
-                    divider
                 }
             }
+            .accessibilityElement(children: .combine)
+            .accessibilityFocused($accessibilityFocus, equals: .assignment)
+            .onReceive(viewModel.assignmentPickerViewModel.dismissViewDidTrigger) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    accessibilityFocus = .assignment
+                }
+            }
+            divider
         }
     }
 
@@ -169,7 +186,8 @@ public struct SubmitAssignmentExtensionView: View {
     @ViewBuilder
     private var submitButton: some View {
         if viewModel.isProcessingFiles {
-            CircleProgress(size: 20)
+            ProgressView()
+                .progressViewStyle(.indeterminateCircle(size: 20))
         } else {
             Button(action: viewModel.submitTapped) {
                 Text("Submit", bundle: .core)
@@ -187,8 +205,8 @@ public struct SubmitAssignmentExtensionView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     Spacer().frame(width: 20)
-                    ForEach(viewModel.previews, id: \.self) {
-                        AttachmentPreviewView(url: $0)
+                    ForEach(viewModel.previews) {
+                        AttachmentPreviewView(viewModel: $0)
                     }
                     Spacer().frame(width: 20)
                 }
@@ -197,6 +215,12 @@ public struct SubmitAssignmentExtensionView: View {
                 .padding(.horizontal, -20)
         }
         .padding(.top, 20)
+    }
+
+    private func showFileProgressView(_ viewModel: FileProgressListViewModel) {
+        let listView = FileProgressListView(viewModel: viewModel)
+        let listViewController = CoreHostingController(listView)
+        env.router.show(listViewController, from: viewController, options: .modal(isDismissable: false, embedInNav: true, addDoneButton: false), analyticsRoute: "/file_progress")
     }
 }
 

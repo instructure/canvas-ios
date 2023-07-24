@@ -18,7 +18,7 @@
 
 import Core
 
-//https://canvas.instructure.com/doc/api/pages.html#method.wiki_pages_api.create
+// https://canvas.instructure.com/doc/api/pages.html#method.wiki_pages_api.create
 public struct CreateDSPageRequest: APIRequestable {
     public typealias Response = DSPage
 
@@ -33,7 +33,7 @@ public struct CreateDSPageRequest: APIRequestable {
 }
 
 extension CreateDSPageRequest {
-    public struct RequestDSPage: Encodable {
+    public struct RequestedDSPage: Encodable {
         let title: String
         let body: String?
         let published: Bool
@@ -48,6 +48,6 @@ extension CreateDSPageRequest {
     }
 
     public struct Body: Encodable {
-        let wiki_page: RequestDSPage
+        let wiki_page: RequestedDSPage
     }
 }

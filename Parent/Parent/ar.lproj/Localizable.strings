@@ -172,9 +172,6 @@
 "Settings" = "إعدادات";
 
 /* No comment provided by engineer. */
-"Settings. %@" = "الإعداد %@";
-
-/* No comment provided by engineer. */
 "Summary" = "ملخص";
 
 /* No comment provided by engineer. */
@@ -200,9 +197,6 @@
 
 /* No comment provided by engineer. */
 "There's nothing to be notified of yet." = "لا يوجد شيء للإعلام عنه حتى الآن.";
-
-/* No comment provided by engineer. */
-"Trouble logging in" = "مشكلة تسجيل الدخول";
 
 /* No comment provided by engineer. */
 "Unread" = "غير مقروء";

@@ -30,7 +30,7 @@ export function getCourses (): ApiPromise<Course[]> {
   }
   const courses = paginate('courses', {
     params: {
-      include: [ 'course_image', 'current_grading_period_scores', 'grading_periods', 'favorites', 'needs_grading_count', 'observed_users', 'sections', 'syllabus_body', 'tabs', 'term', 'total_scores' ],
+      include: [ 'banner_image', 'course_image', 'concluded', 'current_grading_period_scores', 'grading_periods', 'favorites', 'needs_grading_count', 'observed_users', 'sections', 'syllabus_body', 'tabs', 'term', 'total_scores' ],
       state,
       per_page: 10,
     },

@@ -18,13 +18,14 @@
 
 import SwiftUI
 
-public class TopBarItemViewModel: ObservableObject {
+public class TopBarItemViewModel: ObservableObject, Identifiable {
     public var icon: Image?
     public var label: Text
-    public var id: String?
+    public let id: String
     @Published public var isSelected = false
 
-    public init(icon: Image, label: Text) {
+    public init(id: String, icon: Image?, label: Text) {
+        self.id = id
         self.icon = icon
         self.label = label
     }
@@ -33,5 +34,11 @@ public class TopBarItemViewModel: ObservableObject {
         self.label = Text(tab.label)
         self.id = tab.id
         self.icon = iconImage
+    }
+}
+
+extension TopBarItemViewModel: Equatable {
+    public static func == (lhs: TopBarItemViewModel, rhs: TopBarItemViewModel) -> Bool {
+        lhs.id == rhs.id
     }
 }

@@ -31,50 +31,23 @@ public enum StoreChange: Equatable {
     case deleteRow(IndexPath)
 }
 
-public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
+public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, ObservableObject {
     public typealias EventHandler = () -> Void
 
     public let env: AppEnvironment
-    private let frc: NSFetchedResultsController<U.Model>
-    public var changes = [StoreChange]()
+    public private(set) var changes = [StoreChange]()
     public let useCase: U
     public var eventHandler: EventHandler
 
-    public var count: Int {
-        return frc.sections?.first?.numberOfObjects ?? 0
-    }
+    public var numberOfSections: Int { frc.sections?.count ?? 0 }
+    public var sections: [NSFetchedResultsSectionInfo]? { frc.sections }
 
-    public var numberOfSections: Int {
-        return frc.sections?.count ?? 0
-    }
-
-    public var first: U.Model? {
-        return frc.fetchedObjects?.first
-    }
-
-    public var last: U.Model? {
-        return frc.fetchedObjects?.last
-    }
-
-    public var all: [U.Model] {
-        return frc.fetchedObjects ?? []
-    }
-
-    public var sections: [NSFetchedResultsSectionInfo]? {
-        return frc.sections
-    }
-
-    public var isEmpty: Bool {
-        return count == 0
-    }
-
+    public var count: Int { frc.sections?.first?.numberOfObjects ?? 0 }
+    public var all: [U.Model] { frc.fetchedObjects ?? [] }
+    public var first: U.Model? { frc.fetchedObjects?.first }
+    public var last: U.Model? { frc.fetchedObjects?.last }
+    public var isEmpty: Bool { count == 0 }
     public var hasNextPage: Bool { next != nil }
-
-    private var next: GetNextRequest<U.Response>?
-
-    public private(set) var pending: Bool = false
-    public private(set) var requested: Bool = false
-    public private(set) var error: Error?
 
     public var state: StoreState {
         error != nil ? .error :
@@ -83,26 +56,82 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
         .empty
     }
 
+    /**
+     `true` if the `refresh(force: false)` method will return data from the permanent store without any API calls.
+
+     Use this to decide if a loading screen should be shown or not. Objects from the permanent store are available very quickly
+     so no loading indicator is necessary, on the other hand if the store will fetch data from the API it could be a lenghty operation.
+     */
+    public var isCachedDataAvailable: Bool { !isCachedDataExpired }
+    /**
+     The opposite of `isCachedDataAvailable`.
+     */
+    public var isCachedDataExpired: Bool { useCase.hasExpired(in: frc.managedObjectContext) }
+
+    public private(set) var pending: Bool = false
+    public private(set) var requested: Bool = false
+    public private(set) var error: Error?
+
+    private var next: GetNextRequest<U.Response>? {
+        didSet {
+            hasNextPageSubject.send(next != nil)
+        }
+    }
+    private let frc: NSFetchedResultsController<U.Model>
+
+    // MARK: - ObservableObject
+
     // The default implementation of objectWillChange requires at least one
-    // @Published property
+    // @Published property, since we have none we create this publisher manually
     public var objectWillChange = ObservableObjectPublisher()
+
     private func willChange() {
         performUIUpdate { withAnimation {
             self.objectWillChange.send()
         } }
     }
 
-    public init(env: AppEnvironment, database: NSPersistentContainer? = nil, useCase: U, eventHandler: @escaping EventHandler) {
+    // MARK: - Reactive Property Extensions
+
+    /**
+     Publisher for all objects in this store. Changes are sent on the main thread with CoreData objects from the view context.
+     */
+    public private(set) lazy var allObjects: AnyPublisher<[U.Model], Never> = allObjectsSubject
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
+    /**
+     Returns `.loading` until `refresh()` is called. After refresh completes the published state can be either `.data`, `.empty` or `.error`.
+     */
+    public private(set) lazy var statePublisher: AnyPublisher<StoreState, Never> = stateSubject
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
+    public private(set) lazy var hasNextPagePublisher: AnyPublisher<Bool, Never> = hasNextPageSubject
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
+    private let allObjectsSubject = CurrentValueSubject<[U.Model], Never>([])
+    private let stateSubject = CurrentValueSubject<StoreState, Never>(.loading)
+    private let hasNextPageSubject = CurrentValueSubject<Bool, Never>(false)
+    private let offlineModeInteractor: OfflineModeInteractor
+
+    // MARK: -
+
+    public init(
+        env: AppEnvironment,
+        offlineModeInteractor: OfflineModeInteractor = OfflineModeInteractorLive.shared,
+        context: NSManagedObjectContext,
+        useCase: U,
+        eventHandler: @escaping EventHandler
+    ) {
         self.env = env
+        self.offlineModeInteractor = offlineModeInteractor
         self.useCase = useCase
-        let database = database ?? env.database
         let scope = useCase.scope
         let request = NSFetchRequest<U.Model>(entityName: String(describing: U.Model.self))
         request.predicate = scope.predicate
         request.sortDescriptors = scope.order
         let frc = NSFetchedResultsController<U.Model>(
             fetchRequest: request,
-            managedObjectContext: database.viewContext,
+            managedObjectContext: context,
             sectionNameKeyPath: scope.sectionNameKeyPath,
             cacheName: nil
         )
@@ -117,6 +146,11 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
         } catch {
             assertionFailure("Failed to performFetch \(error)")
         }
+        allObjectsSubject.send(all)
+    }
+
+    public convenience init(env: AppEnvironment, database: NSPersistentContainer? = nil, useCase: U, eventHandler: @escaping EventHandler) {
+        self.init(env: env, context: (database ?? env.database).viewContext, useCase: useCase, eventHandler: eventHandler)
     }
 
     /// Updates predicate & sortDescriptors, but not sectionNameKeyPath.
@@ -128,13 +162,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
         } catch {
             assertionFailure("Failed to performFetch \(error)")
         }
-    }
-
-    private func notify() {
-        performUIUpdate {
-            self.eventHandler()
-            self.changes = []
-        }
+        allObjectsSubject.send(all)
     }
 
     public subscript(indexPath: IndexPath) -> U.Model? {
@@ -162,24 +190,28 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     }
 
     @discardableResult
-    public func refresh(force: Bool = false, callback: ((U.Response?) -> Void)? = nil) -> Self {
+    public func refresh(force: Bool = false,
+                        callback: ((U.Response?) -> Void)? = nil)
+    -> Self {
         request(useCase, force: force, callback: callback)
         return self
     }
 
+    public func forceFetchObjects() throws {
+        try frc.performFetch()
+        notify()
+        allObjectsSubject.send(all)
+    }
+
     @discardableResult
-    public func exhaust(force: Bool = true, while condition: @escaping (U.Response) -> Bool = { _ in true }) -> Self {
+    public func exhaust(force: Bool = true,
+                        while condition: @escaping (U.Response?) -> Bool = { _ in true }
+    ) -> Self {
         refresh(force: force) { [weak self] response in
             if let response = response, condition(response) {
                 self?.exhaustNext(while: condition)
-            }
-        }
-    }
-
-    private func exhaustNext(while condition: @escaping (U.Response) -> Bool) {
-        getNextPage { [weak self] response in
-            if let response = response, condition(response) {
-                self?.exhaustNext(while: condition)
+            } else {
+                _ = condition(nil)
             }
         }
     }
@@ -196,24 +228,110 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
         request(useCase, force: true, callback: callback)
     }
 
+    /**
+     Dismisses the stored UseCase of the next page.
+     */
+    public func resetNextPage() {
+        next = nil
+    }
+
+    // MARK: - Reactive Functions
+
+    public func refreshWithFuture(force: Bool = false) -> Future<Void, Never> {
+        Future<Void, Never> { [weak self] promise in
+            guard let self = self else {
+                promise(.success(()))
+                return
+            }
+            self.request(self.useCase, force: force) { _ in
+                promise(.success(()))
+            }
+        }
+    }
+
+    public func exhaustWithFuture(
+        force: Bool = true,
+        while condition: @escaping (U.Response) -> Bool = { _ in true }
+    ) -> Future<Void, Never> {
+        Future<Void, Never> { [weak self] promise in
+            guard let self = self else {
+                promise(.success(()))
+                return
+            }
+            self.refresh(force: force) { [weak self] response in
+                if let response = response, condition(response) {
+                    self?.exhaustNext(while: condition) {
+                        promise(.success(()))
+                    }
+                }
+            }
+        }
+    }
+
+    // MARK: - Private Methods
+
+    private func notify() {
+        performUIUpdate {
+            self.eventHandler()
+            self.changes = []
+        }
+    }
+
+    private func exhaustNext(while condition: @escaping (U.Response) -> Bool, completion: (() -> Void)? = nil) {
+        getNextPage { [weak self] response in
+            if let response = response, condition(response) {
+                self?.exhaustNext(while: condition, completion: completion)
+            } else {
+                completion?()
+            }
+        }
+    }
+
     private func request<UC: UseCase>(_ useCase: UC, force: Bool, callback: ((UC.Response?) -> Void)? = nil) {
         willChange()
         requested = true
         pending = true
         notify()
-        useCase.fetch(environment: env, force: force) { [weak self] response, urlResponse, error in
-            self?.willChange()
-            self?.error = error
-            self?.pending = false
-            if let urlResponse = urlResponse {
-                self?.next = self?.useCase.getNext(from: urlResponse)
-            }
-            self?.notify()
+
+        if offlineModeInteractor.isOfflineModeEnabled() {
+            pending = false
+            error = nil
+            publishState()
+            notify()
             performUIUpdate {
-                callback?(response)
+                callback?(nil)
+            }
+        } else {
+            useCase.fetch(environment: env, force: force) { [weak self] response, urlResponse, error in
+                self?.willChange()
+                self?.error = error
+                self?.pending = false
+                if let urlResponse = urlResponse {
+                    self?.next = self?.useCase.getNext(from: urlResponse)
+                }
+                self?.notify()
+                self?.publishState()
+                performUIUpdate {
+                    callback?(response)
+                }
             }
         }
     }
+
+    private func publishState() {
+        guard requested, !pending else { return }
+        var state: StoreState = .data
+
+        if error != nil {
+            state = .error
+        } else if isEmpty {
+            state = .empty
+        }
+
+        stateSubject.send(state)
+    }
+
+    // MARK: - NSFetchedResultsControllerDelegate
 
     @objc
     public func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -253,7 +371,11 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate {
     @objc
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         notify()
+        allObjectsSubject.send(all)
+        publishState()
     }
+
+    // MARK: -
 }
 
 public struct FetchedResultsControllerGenerator<T: NSManagedObject>: IteratorProtocol {
@@ -278,7 +400,4 @@ extension Store: Sequence {
     public func makeIterator() -> FetchedResultsControllerGenerator<U.Model> {
         return FetchedResultsControllerGenerator<U.Model>(fetchedResultsController: frc)
     }
-}
-
-extension Store: ObservableObject {
 }

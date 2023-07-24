@@ -322,6 +322,22 @@
 			<string>Nascondi %d elementi mancanti</string>
 		</dict>
 	</dict>
+	<key>incompatible_files_for_assignment</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Il tipo di file %2$@ inviato è incompatibile con il compito selezionato.</string>
+			<key>other</key>
+			<string>I tipi di file %2$@ inviati sono incompatibili con il compito selezionato.</string>
+		</dict>
+	</dict>
 	<key>late_penalty_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -386,6 +402,22 @@
 			<string>Mostra %d elementi mancanti</string>
 		</dict>
 	</dict>
+	<key>submission_failed_for_files</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Il file è stato caricato correttamente, ma la consegna al compito non è riuscito.</string>
+			<key>other</key>
+			<string>I file sono stati caricati correttamente, ma la consegna al compito non è riuscita.</string>
+		</dict>
+	</dict>
 	<key>there_are_d_assignees_without_grades</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -400,6 +432,22 @@
 			<string>C’è %d assegnatario senza un voto.</string>
 			<key>other</key>
 			<string>Ci sono %d assegnatari senza voti.</string>
+		</dict>
+	</dict>
+	<key>use_file_extension</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Usare l'estensione file %2$@.</string>
+			<key>other</key>
+			<string>Usare le estensioni file %2$@.</string>
 		</dict>
 	</dict>
 </dict>

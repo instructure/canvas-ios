@@ -28,4 +28,11 @@ extension View {
             self
         }
     }
+
+    @ViewBuilder
+    public func disableWithOpacity(_ isDisabled: Bool, disabledOpacity: Double = 0.3) -> some View {
+        self
+            .disabled(isDisabled)
+            .opacity(isDisabled ? disabledOpacity : 1.0)
+    }
 }

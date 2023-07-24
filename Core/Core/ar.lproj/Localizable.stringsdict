@@ -482,6 +482,30 @@
 			<string>Hide %d missing items</string>
 		</dict>
 	</dict>
+	<key>incompatible_files_for_assignment</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
+			<key>many</key>
+			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
+			<key>one</key>
+			<string>نوع الملف %2$@ الموجود في إرسالك غير متوافق مع المهمة المحددة.</string>
+			<key>other</key>
+			<string>أنواع الملف %2$@ الموجودة في إرسالك غير متوافقة مع المهمة المحددة.</string>
+			<key>two</key>
+			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
+			<key>zero</key>
+			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
+		</dict>
+	</dict>
 	<key>late_penalty_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -578,6 +602,30 @@
 			<string>Show %d missing items</string>
 		</dict>
 	</dict>
+	<key>submission_failed_for_files</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
+			<key>many</key>
+			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
+			<key>one</key>
+			<string>تم تحميل ملفك بنجاح لكن الإرسال إلى المهمة فشل.</string>
+			<key>other</key>
+			<string>تم تحميل ملفاتك بنجاح لكن الإرسال إلى المهمة فشل.</string>
+			<key>two</key>
+			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
+			<key>zero</key>
+			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
+		</dict>
+	</dict>
 	<key>there_are_d_assignees_without_grades</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -600,6 +648,30 @@
 			<string></string>
 			<key>zero</key>
 			<string>There are %d assignees without grades.</string>
+		</dict>
+	</dict>
+	<key>use_file_extension</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string>Please use %2$@ file extensions.</string>
+			<key>many</key>
+			<string>Please use %2$@ file extensions.</string>
+			<key>one</key>
+			<string>يرجى استخدام ملحق الملف %2$@.</string>
+			<key>other</key>
+			<string>يرجى استخدام ملحقات الملف %2$@.</string>
+			<key>two</key>
+			<string>Please use %2$@ file extensions.</string>
+			<key>zero</key>
+			<string>Please use %2$@ file extensions.</string>
 		</dict>
 	</dict>
 </dict>

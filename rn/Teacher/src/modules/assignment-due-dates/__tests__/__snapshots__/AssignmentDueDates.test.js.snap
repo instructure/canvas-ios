@@ -3,15 +3,7 @@
 exports[`renders 1`] = `
 <Screen
   navBarStyle="context"
-  rightBarButtons={
-    Array [
-      Object {
-        "action": [Function],
-        "testID": "assignment-due-dates.edit-btn",
-        "title": "Edit",
-      },
-    ]
-  }
+  title="Due Dates"
 >
   <View
     style={
@@ -38,15 +30,7 @@ exports[`renders 1`] = `
 exports[`renders with overrides 1`] = `
 <Screen
   navBarStyle="context"
-  rightBarButtons={
-    Array [
-      Object {
-        "action": [Function],
-        "testID": "assignment-due-dates.edit-btn",
-        "title": "Edit",
-      },
-    ]
-  }
+  title="Due Dates"
 >
   <View
     style={
@@ -79,6 +63,7 @@ exports[`renders with overrides 1`] = `
               Array [
                 Object {
                   "color": "#2D3B45",
+                  "fontFamily": "Lato-Regular",
                   "fontSize": 24,
                   "fontWeight": "800",
                 },
@@ -96,6 +81,7 @@ exports[`renders with overrides 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -113,6 +99,7 @@ exports[`renders with overrides 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -141,6 +128,7 @@ exports[`renders with overrides 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -158,6 +146,7 @@ exports[`renders with overrides 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -186,6 +175,7 @@ exports[`renders with overrides 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {
@@ -203,6 +193,7 @@ exports[`renders with overrides 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {

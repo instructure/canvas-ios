@@ -98,10 +98,22 @@ public class K5GradesViewModel: ObservableObject {
 
 extension K5GradesViewModel: Refreshable {
 
+    @available(*, renamed: "refresh()")
     public func refresh(completion: @escaping () -> Void) {
+        Task {
+            await refresh()
+            completion()
+        }
+    }
+
+    public func refresh() async {
         forceRefresh = true
-        refreshCompletion = completion
-        reloadData()
+        return await withCheckedContinuation { continuation in
+            refreshCompletion = {
+                continuation.resume()
+            }
+            reloadData()
+        }
     }
 
     func reloadData() {
@@ -114,12 +126,6 @@ extension K5GradesViewModel: Refreshable {
 }
 
 public struct K5GradingPeriod: Hashable {
-
     let periodID: String?
     let title: String?
-
-    init(periodID: String?, title: String?) {
-        self.periodID = periodID
-        self.title = title
-    }
 }

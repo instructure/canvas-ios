@@ -32,19 +32,19 @@ public class CacheManager {
     }()
 
     public static func resetAppIfNecessary() {
-        guard UserDefaults.standard.bool(forKey: "reset_cache_on_next_launch") else {
+        let defaults = UserDefaults.standard
+
+        guard defaults.bool(forKey: "reset_cache_on_next_launch") else {
             return clearIfNeeded()
         }
 
-        for key in UserDefaults.standard.dictionaryRepresentation().keys {
-            if !UserDefaults.standard.objectIsForced(forKey: key) {
-                UserDefaults.standard.removeObject(forKey: key)
-            }
+        for key in defaults.dictionaryRepresentation().keys where !defaults.objectIsForced(forKey: key) {
+            defaults.removeObject(forKey: key)
         }
 
         clear()
         LoginSession.clearAll()
-        clearDirectory(.documentsDirectory) // Also clear documents, which we normally keep around
+        clearDirectory(URL.Directories.documents) // Also clear documents, which we normally keep around
     }
 
     public static func clearIfNeeded() {
@@ -63,21 +63,21 @@ public class CacheManager {
     }
 
     public static func clearAppGroup(_ id: String?) {
-        guard let id = id, let folder = URL.sharedContainer(id) else { return }
+        guard let id = id, let folder = URL.Directories.sharedContainer(appGroup: id) else { return }
         clearDirectory(folder)
     }
 
     public static func clearCaches() {
-        clearDirectory(.cachesDirectory(appGroup: nil))
-        clearDirectory(.cachesDirectory(appGroup: Bundle.main.appGroupID()))
+        clearDirectory(URL.Directories.caches(appGroup: nil))
+        clearDirectory(URL.Directories.caches(appGroup: Bundle.main.appGroupID()))
     }
 
     public static func clearLibrary() {
-        clearDirectory(.libraryDirectory)
+        clearDirectory(URL.Directories.library)
     }
 
     public static func clearRNAsyncStorage() {
-        let asyncStorage = URL.documentsDirectory.appendingPathComponent("RCTAsyncLocalStorage_V1")
+        let asyncStorage = URL.Directories.documents.appendingPathComponent("RCTAsyncLocalStorage_V1")
         let manifestURL = asyncStorage.appendingPathComponent("manifest.json")
         let json = (try? Data(contentsOf: manifestURL)).flatMap { try? JSONSerialization.jsonObject(with: $0) } as? [String: Any]
         clearDirectory(asyncStorage)

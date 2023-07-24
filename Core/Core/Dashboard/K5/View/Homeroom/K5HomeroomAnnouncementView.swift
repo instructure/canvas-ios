@@ -31,12 +31,12 @@ struct K5HomeroomAnnouncementView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(viewModel.courseName)
-                .foregroundColor(.ash)
+                .foregroundColor(.textDark)
                 .font(.regular13)
             Text(viewModel.title)
-                .foregroundColor(.licorice)
+                .foregroundColor(.textDarkest)
                 .font(.bold24)
-            WebView(html: viewModel.htmlContent)
+            WebView(html: viewModel.htmlContent, canToggleTheme: true)
                 .frameToFit()
                 // Offset default CSS padding in CoreWebView
                 .padding(.horizontal, -16)

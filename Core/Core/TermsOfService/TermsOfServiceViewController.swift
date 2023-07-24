@@ -24,7 +24,7 @@ public class TermsOfServiceViewController: UIViewController {
 
     public override func viewDidLoad() {
         title = NSLocalizedString("Terms of Use", bundle: .core, comment: "")
-
+        view.backgroundColor = .backgroundLightest
         view.addSubview(webView)
         webView.pin(inside: view)
 

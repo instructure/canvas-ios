@@ -15,12 +15,17 @@
     "\/SwiftUIViews\/",
     "\/ViewModifiers\/",
     "Student\/Canvas\/",
-    "Student\/GradesWidget\/",
     "UITestHelpers\/",
     "\/Teacher\/SpeedGrader\/",
     "SubmissionButtonPresenter.swift",
     "NSPersistentContainerExtensions.swift",
-    "K5Preview.swift"
+    "Core\/WebSitePreview\/",
+    "Core\/Typography\/",
+    "UIGestureRecognizerExtensions.swift",
+    "DocViewer\/ViewModel\/AnnotationDrag\/Gesture",
+    "Core\/Files\/FileUploadProgress\/View\/PreviewSupport\/",
+    ".*Assembly[.]swift",
+    ".*Preview[.]swift"
   ],
   "ignoreContent": [
     "makeUIViewController(context:",

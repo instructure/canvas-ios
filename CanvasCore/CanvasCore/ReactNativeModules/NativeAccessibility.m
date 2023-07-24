@@ -40,15 +40,24 @@ RCT_EXPORT_METHOD(refresh)
 }
 
 - (nullable UIView *)subviewWithIdentifier:(NSString *)identifier {
-  NSArray<UIWindow *> *windows = [[UIApplication sharedApplication] windows];
-  for (UIWindow *window in windows) {
-    UIView *view = [self subviewWithIdentifier:identifier inSuperview:window];
-    if (view) {
-      return view;
+
+    NSMutableArray<UIWindow *> *windows = [NSMutableArray new];
+    NSSet<UIScene *> *connectedScenes = [UIApplication.sharedApplication connectedScenes];
+    NSPredicate *foregroundActiveScenePredicate = [NSPredicate predicateWithFormat:@"activationState == %d", UISceneActivationStateForegroundActive];
+    NSSet<UIWindowScene *> *foregroundActiveWindowScenes = (NSSet<UIWindowScene *> *)[connectedScenes filteredSetUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        return [evaluatedObject isKindOfClass:UIWindowScene.class] && [foregroundActiveScenePredicate evaluateWithObject:evaluatedObject];
+    }]];
+    [foregroundActiveWindowScenes enumerateObjectsUsingBlock:^(UIWindowScene *windowScene, BOOL *stop) {
+        [windows addObjectsFromArray:windowScene.windows];
+    }];
+    for (UIWindow *window in windows) {
+        UIView *view = [self subviewWithIdentifier:identifier inSuperview:window];
+        if (view) {
+            return view;
+        }
     }
-  }
-  
-  return nil;
+
+    return nil;
 }
 
 - (nullable UIView *)subviewWithIdentifier:(NSString *)identifier inSuperview:(UIView *)superview {

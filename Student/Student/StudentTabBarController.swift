@@ -40,41 +40,50 @@ class StudentTabBarController: UITabBarController {
         selectedIndex = AppEnvironment.shared.userDefaults?.landingPath
             .flatMap { paths.firstIndex(of: $0) } ?? 0
         tabBar.useGlobalNavStyle()
+        NotificationCenter.default.addObserver(self, selector: #selector(checkForPolicyChanges), name: UIApplication.didBecomeActiveNotification, object: nil)
+        reportScreenView(for: selectedIndex, viewController: viewControllers![selectedIndex])
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        checkForPolicyChanges()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
     }
 
     func dashboardTab() -> UIViewController {
-        let split: HelmSplitViewController
+        let result: UIViewController
         let tabBarTitle: String
         let tabBarImage: UIImage
         let tabBarImageSelected: UIImage?
 
         if AppEnvironment.shared.k5.isK5Enabled {
-            let primary = HelmNavigationController(rootViewController: CoreHostingController(K5DashboardView()))
+            let dashboard = HelmNavigationController(rootViewController: CoreHostingController(K5DashboardView()))
             // This causes issues with hosted SwiftUI views. If appears at multiple places maybe worth disabling globally in HelmNavigationController.
-            primary.interactivePopGestureRecognizer?.isEnabled = false
-            let secondary = HelmNavigationController(rootViewController: EmptyViewController())
-            split = FullScreenPrimaryHelmSplitViewController(primary: primary, secondary: secondary)
+            dashboard.interactivePopGestureRecognizer?.isEnabled = false
+            result = dashboard
+
             tabBarTitle = NSLocalizedString("Homeroom", comment: "Homeroom tab title")
             tabBarImage =  .homeroomTab
             tabBarImageSelected = .homeroomTabActive
         } else {
-            split = HelmSplitViewController()
-            split.viewControllers = [
-                HelmNavigationController(rootViewController: CoreHostingController(DashboardCardView(shouldShowGroupList: true, showOnlyTeacherEnrollment: false))),
-                HelmNavigationController(rootViewController: EmptyViewController()),
-            ]
+            let dashboard = CoreHostingController(DashboardContainerView(shouldShowGroupList: true,
+                                                                    showOnlyTeacherEnrollment: false))
+            result = DashboardContainerViewController(rootViewController: dashboard) { HelmSplitViewController() }
+
             tabBarTitle = NSLocalizedString("Dashboard", comment: "dashboard page title")
             tabBarImage = .dashboardTab
             tabBarImageSelected = .dashboardTabActive
         }
 
-        split.masterNavigationController?.delegate = split
-        split.tabBarItem.title = tabBarTitle
-        split.tabBarItem.image = tabBarImage
-        split.tabBarItem.selectedImage = tabBarImageSelected
-        split.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
-        split.preferredDisplayMode = .allVisible
-        return split
+        result.tabBarItem.title = tabBarTitle
+        result.tabBarItem.image = tabBarImage
+        result.tabBarItem.selectedImage = tabBarImageSelected
+        result.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
+        return result
     }
 
     func calendarTab() -> UIViewController {
@@ -83,7 +92,7 @@ class StudentTabBarController: UITabBarController {
             HelmNavigationController(rootViewController: PlannerViewController.create()),
             HelmNavigationController(rootViewController: EmptyViewController()),
         ]
-        split.view.tintColor = Brand.shared.primary.ensureContrast(against: .backgroundLightest)
+        split.view.tintColor = Brand.shared.primary
         split.tabBarItem.title = NSLocalizedString("Calendar", comment: "Calendar page title")
         split.tabBarItem.image = .calendarTab
         split.tabBarItem.selectedImage = .calendarTabActive
@@ -121,25 +130,23 @@ class StudentTabBarController: UITabBarController {
     }
 
     func inboxTab() -> UIViewController {
-        let inboxVC: UIViewController
-        let inboxNav: UINavigationController
+        let inboxController: UIViewController
         let inboxSplit = HelmSplitViewController()
 
-        if ExperimentalFeature.nativeStudentInbox.isEnabled || ExperimentalFeature.nativeTeacherInbox.isEnabled {
-            inboxVC = CoreHostingController(InboxView())
-            inboxNav = UINavigationController(rootViewController: inboxVC)
+        if ExperimentalFeature.nativeStudentInbox.isEnabled {
+            inboxController = InboxAssembly.makeInboxViewController()
         } else {
-            inboxVC = HelmViewController(moduleName: "/conversations", props: [:])
-            inboxNav = HelmNavigationController(rootViewController: inboxVC)
+            let inboxVC = HelmViewController(moduleName: "/conversations", props: [:])
+            inboxVC.navigationItem.titleView = Core.Brand.shared.headerImageView()
+            let inboxNav = HelmNavigationController(rootViewController: inboxVC)
+            inboxNav.navigationBar.useGlobalNavStyle()
+            inboxController = inboxNav
         }
-
-        inboxNav.navigationBar.useGlobalNavStyle()
-        inboxVC.navigationItem.titleView = Core.Brand.shared.headerImageView()
 
         let empty = HelmNavigationController()
         empty.navigationBar.useGlobalNavStyle()
 
-        inboxSplit.viewControllers = [inboxNav, empty]
+        inboxSplit.viewControllers = [inboxController, empty]
         let title = NSLocalizedString("Inbox", comment: "Inbox tab title")
         inboxSplit.tabBarItem = UITabBarItem(title: title, image: .inboxTab, selectedImage: .inboxTabActive)
         inboxSplit.tabBarItem.accessibilityIdentifier = "TabBar.inboxTab"
@@ -148,17 +155,28 @@ class StudentTabBarController: UITabBarController {
 
         return inboxSplit
     }
+
+    private func reportScreenView(for tabIndex: Int, viewController: UIViewController) {
+        let map = [AppEnvironment.shared.k5.isK5Enabled ? "homeroom": "dashboard", "calendar", "todo", "notifications", "conversations"]
+        let event = map[tabIndex]
+        Analytics.shared.logScreenView(route: "/tabs/" + event, viewController: viewController)
+    }
+
+    @objc private func checkForPolicyChanges() {
+        LoginUsePolicy.checkAcceptablePolicy(from: self, cancelled: {
+            AppEnvironment.shared.loginDelegate?.changeUser()
+        })
+    }
 }
 
 extension StudentTabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         tabBarController.resetViewControllerIfSelected(viewController)
-        let map = ["dashboard_selected", "calendar_selected", "todo_list_selected", "notifications_selected", "inbox_selected"]
-        if let index = viewControllers?.firstIndex(of: viewController),
-            selectedViewController != viewController {
-            let event = map[index]
-            Analytics.shared.logEvent(event)
+
+        if let index = viewControllers?.firstIndex(of: viewController), selectedViewController != viewController {
+            reportScreenView(for: index, viewController: viewController)
         }
+
         return true
     }
 }

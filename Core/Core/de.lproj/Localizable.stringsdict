@@ -61,9 +61,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d Student</string>
+			<string>%d Studierende*r</string>
 			<key>other</key>
-			<string>%d Studenten</string>
+			<string>%d Studierende</string>
 		</dict>
 	</dict>
 	<key>%g pts</key>
@@ -322,6 +322,22 @@
 			<string>%d fehlende Elemente ausblenden</string>
 		</dict>
 	</dict>
+	<key>incompatible_files_for_assignment</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Der %2$@-Dateityp in Ihrer Abgabe ist mit der ausgewählten Aufgabe nicht kompatibel.</string>
+			<key>other</key>
+			<string>Die %2$@-Dateitypen in Ihrem Abgabe sind mit der ausgewählten Aufgabe nicht kompatibel.</string>
+		</dict>
+	</dict>
 	<key>late_penalty_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -386,6 +402,22 @@
 			<string>%d fehlende Elemente anzeigen</string>
 		</dict>
 	</dict>
+	<key>submission_failed_for_files</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Ihre Datei wurde erfolgreich hochgeladen, aber die Übermittlung der Aufgabe ist fehlgeschlagen.</string>
+			<key>other</key>
+			<string>Ihre Dateien wurden erfolgreich hochgeladen, aber die Übermittlung der Aufgabe ist fehlgeschlagen.</string>
+		</dict>
+	</dict>
 	<key>there_are_d_assignees_without_grades</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -400,6 +432,22 @@
 			<string>Es gibt %d Aufgabenempfänger ohne eine Note.</string>
 			<key>other</key>
 			<string>Es gibt %d Aufgabenempfänger ohne Noten.</string>
+		</dict>
+	</dict>
+	<key>use_file_extension</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Verwenden Sie die Dateierweiterung %2$@.</string>
+			<key>other</key>
+			<string>Verwenden Sie Dateierweiterungen %2$@.</string>
 		</dict>
 	</dict>
 </dict>

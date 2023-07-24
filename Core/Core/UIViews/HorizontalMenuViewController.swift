@@ -18,11 +18,11 @@
 
 import UIKit
 
-open class HorizontalMenuViewController: UIViewController {
+open class HorizontalMenuViewController: ScreenViewTrackerViewController {
 
     fileprivate static let defaultMenuHeight: CGFloat = 52
     var menu: UICollectionView?
-    var pages: UICollectionView?
+    public private(set) var pages: UICollectionView?
     var underlineView: UIView?
     var bottomBorder: UIView?
     var underlineWidthConstraint: NSLayoutConstraint?
@@ -115,7 +115,7 @@ open class HorizontalMenuViewController: UIViewController {
         menu.addConstraintsWithVFL("V:|[view]")
     }
 
-    func setupPages() {
+    open func setupPages() {
         assert(delegate != nil)
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal

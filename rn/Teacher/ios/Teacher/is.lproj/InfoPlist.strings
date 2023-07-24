@@ -1,5 +1,5 @@
 /* Bundle display name */
-"CFBundleDisplayName" = "Kennari";
+"CFBundleDisplayName" = "Canvas kennari";
 
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Festa myndir og myndbönd við athugasemdir við innsendingu.";

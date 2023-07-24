@@ -34,8 +34,8 @@ public class PageViewEventController: NSObject {
     var appCanLogEvents: () -> Bool = {
         let isNotExtension = !Bundle.isExtension
         let isNotTest = !ProcessInfo.isUITest
-        let isStudent = Bundle.main.isStudentApp
-        return isNotTest && isStudent && isNotExtension
+        let isStudentOrTeacher = Bundle.main.isStudentApp || Bundle.main.isTeacherApp
+        return isNotTest && isStudentOrTeacher && isNotExtension
     }
 
     private override init() {
@@ -55,13 +55,16 @@ public class PageViewEventController: NSObject {
 
     @objc func logPageView(_ eventNameOrPath: String, attributes: [String: String] = [:], eventDurationInSeconds: TimeInterval = 0) {
         if(!appCanLogEvents()) { return }
-        assert(requestManager.backgroundAppHelper != nil, "configure(backgroundAppHelper: AppBackgroundHelperProtocol) was not called")
-        guard let authSession = LoginSession.mostRecent else { return }
+        guard
+            requestManager.backgroundAppHelper != nil,
+            let authSession = LoginSession.mostRecent else {
+            return
+        }
 
         let userID = authSession.userID
         var mutableAttributes = attributes
         mutableAttributes["session_id"] = session.ID
-        mutableAttributes["app_name"] = "Canvas Student for iOS"
+        mutableAttributes["app_name"] = Bundle.main.pandataAppName
         mutableAttributes["user_id"] = userID
         mutableAttributes["agent"] = UserAgent.default.description
         if let realUserID = authSession.originalUserID {
@@ -194,9 +197,14 @@ public class PageViewEventController: NSObject {
 // MARK: - RN Logger methods
 extension PageViewEventController {
     @objc open func allEvents() -> String {
-        let count = persistency.queueCount
-        let events = persistency.batchOfEvents(count)
         let defaultReturnValue = "[]"
+        guard let userID = AppEnvironment.shared.currentSession?.userID else {
+            return defaultReturnValue
+        }
+
+        let count = persistency.queueCount(for: userID)
+        let events = persistency.batchOfEvents(count, userID: userID)
+
         guard let encodedData = try? JSONEncoder().encode(events) else {
             return defaultReturnValue
         }
@@ -205,7 +213,12 @@ extension PageViewEventController {
 
     // MARK: - Dev menu
     @objc open func clearAllEvents(handler: (() -> Void)?) {
-        persistency.dequeue(persistency.queueCount) {
+        guard let userID = AppEnvironment.shared.currentSession?.userID else {
+            handler?()
+            return
+        }
+
+        persistency.dequeue(persistency.queueCount(for: userID), userID: userID) {
             handler?()
         }
     }

@@ -322,6 +322,22 @@
 			<string>%d ontbrekende items verbergen</string>
 		</dict>
 	</dict>
+	<key>incompatible_files_for_assignment</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Het bestandstype %2$@ in je inlevering komt niet overeen met de geselecteerde opdracht.</string>
+			<key>other</key>
+			<string>De bestandstypen %2$@ in je inlevering komen niet overeen met de geselecteerde opdracht.</string>
+		</dict>
+	</dict>
 	<key>late_penalty_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -386,6 +402,22 @@
 			<string>%d ontbrekende items tonen</string>
 		</dict>
 	</dict>
+	<key>submission_failed_for_files</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Je bestand is geüpload maar de inlevering bij de opdracht is mislukt.</string>
+			<key>other</key>
+			<string>Je bestanden zijn geüpload maar de inlevering bij de opdracht is mislukt.</string>
+		</dict>
+	</dict>
 	<key>there_are_d_assignees_without_grades</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -400,6 +432,22 @@
 			<string>Er is %d ontvanger zonder cijfer.</string>
 			<key>other</key>
 			<string>Er zijn %d ontvangers zonder cijfer.</string>
+		</dict>
+	</dict>
+	<key>use_file_extension</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Gebruik de bestandsextensie %2$@.</string>
+			<key>other</key>
+			<string>Gebruik de bestandsextensies %2$@.</string>
 		</dict>
 	</dict>
 </dict>

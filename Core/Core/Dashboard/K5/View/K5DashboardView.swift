@@ -41,13 +41,20 @@ public struct K5DashboardView: View {
                 }
             }
         }
+        .onAppear {
+            let env = AppEnvironment.shared
+            if env.userDefaults?.interfaceStyle == nil && env.currentSession?.isFakeStudent == false {
+                controller.value.showThemeSelectorAlert()
+            }
+        }
+        .background(Color.backgroundLightest)
         .navigationBarGlobal()
         .navigationBarItems(
             leading: Button(action: {
                 viewModel.profileButtonPressed(router: env.router, viewController: controller)
             }, label: {
                 Image.hamburgerSolid
-                    .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
+                    .foregroundColor(Color(Brand.shared.navTextColor))
             })
                 .identifier("Dashboard.profileButton")
                 .accessibility(label: Text("Profile Menu", bundle: .core))

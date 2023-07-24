@@ -29,12 +29,14 @@ public struct DisclosureIndicator: View {
 }
 
 public struct InstDisclosureIndicator: View {
+    @ScaledMetric private var uiScale: CGFloat = 1
 
     public var body: some View {
         Image.arrowOpenRightSolid
             .resizable()
             .scaledToFit()
-            .frame(width: 16, height: 16)
-            .foregroundColor(.ash)
+            .frame(width: uiScale.iconScale * 16,
+                   height: uiScale.iconScale * 16)
+            .foregroundColor(.textDark)
     }
 }

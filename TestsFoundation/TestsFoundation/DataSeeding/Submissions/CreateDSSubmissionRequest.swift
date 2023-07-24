@@ -18,7 +18,7 @@
 
 import Core
 
-//https://canvas.instructure.com/doc/api/submissions.html#method.submissions.create
+// https://canvas.instructure.com/doc/api/submissions.html#method.submissions.create
 public struct CreateDSSubmissionRequest: APIRequestable {
     public typealias Response = DSSubmission
 
@@ -33,7 +33,7 @@ public struct CreateDSSubmissionRequest: APIRequestable {
 }
 
 extension CreateDSSubmissionRequest {
-    public struct RequestDSSubmission: Encodable {
+    public struct RequestedDSSubmission: Encodable {
         let submission_type: SubmissionType
         let body: String
         let user_id: String
@@ -46,6 +46,6 @@ extension CreateDSSubmissionRequest {
     }
 
     public struct Body: Encodable {
-        let submission: RequestDSSubmission
+        let submission: RequestedDSSubmission
     }
 }

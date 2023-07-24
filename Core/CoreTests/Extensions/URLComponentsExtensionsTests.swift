@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import XCTest
 
 class URLComponentsExtensionsTests: XCTestCase {
@@ -105,5 +106,36 @@ class URLComponentsExtensionsTests: XCTestCase {
 
         testee = URLComponents.parse("/courses/165/assignments/900")
         XCTAssertNil(testee.pageSize)
+    }
+
+    func testContextColor() {
+        let testee = URLComponents.parse("/empty?contextColor=001122")
+        XCTAssertEqual(testee.contextColor, UIColor(hexString: "#001122"))
+    }
+
+    func testExternalURLs() {
+        AppEnvironment.shared.currentSession = LoginSession(baseURL: URL(string: "https://canvas.com")!,
+                                                            userID: "",
+                                                            userName: "")
+        let relativeURL = URLComponents.parse("/courses")
+        XCTAssertFalse(relativeURL.isExternalWebsite)
+
+        let canvasHttpsURL = URLComponents.parse("https://canvas.com/courses")
+        XCTAssertFalse(canvasHttpsURL.isExternalWebsite)
+
+        let canvasHttpURL = URLComponents.parse("http://canvas.com/courses")
+        XCTAssertFalse(canvasHttpURL.isExternalWebsite)
+
+        let canvasFtpURL = URLComponents.parse("ftp://canvas.com/courses")
+        XCTAssertFalse(canvasFtpURL.isExternalWebsite)
+
+        let externalFtpURL = URLComponents.parse("ftp://example.com/courses")
+        XCTAssertFalse(externalFtpURL.isExternalWebsite)
+
+        let telURL = URLComponents.parse("tel://123456789")
+        XCTAssertFalse(telURL.isExternalWebsite)
+
+        let externalURL = URLComponents.parse("https://example.com/courses")
+        XCTAssertTrue(externalURL.isExternalWebsite)
     }
 }

@@ -18,8 +18,10 @@
 
 import UIKit
 
-public class ProfileSettingsViewController: UIViewController, PageViewEventViewControllerLoggingProtocol {
+public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     let env = AppEnvironment.shared
+    public let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/profile/settings")
+
     private var sections: [Section] = []
     private var onElementaryViewToggleChanged: (() -> Void)?
 
@@ -44,6 +46,8 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
     }
     private var termsOfServiceRequest: APITask?
 
+    private var channelTypeRows: [Row]?
+
     public static func create(onElementaryViewToggleChanged: (() -> Void)? = nil) -> ProfileSettingsViewController {
         let viewController = ProfileSettingsViewController()
         viewController.onElementaryViewToggleChanged = onElementaryViewToggleChanged
@@ -59,6 +63,7 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
 
         title = NSLocalizedString("Settings", bundle: .core, comment: "")
 
+        view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundGrouped
         tableView.dataSource = self
         tableView.delegate = self
@@ -76,12 +81,6 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
         super.viewWillAppear(animated)
         navigationController?.navigationBar.useModalStyle()
         refresh()
-        startTrackingTimeOnViewController()
-    }
-
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        stopTrackingTimeOnViewController(eventName: "/profile/settings")
     }
 
     @objc func refresh(sender: Any? = nil) {
@@ -98,7 +97,7 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
             channelTypes[channel.type]?.append(channel)
         }
 
-        let channelTypeRows = channelTypes.values.map({ channels -> Row in
+        channelTypeRows = channelTypes.values.map({ channels -> Row in
             Row(channels[0].type.name) { [weak self] in
                 guard let self = self else { return }
                 if channels.count == 1, let channel = channels.first {
@@ -115,31 +114,13 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
             }
         }).sorted(by: { $0.title < $1.title })
 
-        sections = [
-            Section(NSLocalizedString("Preferences", bundle: .core, comment: ""), rows: [
-                Row(NSLocalizedString("Landing Page", bundle: .core, comment: ""), detail: landingPage.name) { [weak self] in
-                    guard let self = self else { return }
-                    self.show(ItemPickerViewController.create(
-                        title: NSLocalizedString("Landing Page", bundle: .core, comment: ""),
-                        sections: [ ItemPickerSection(items: LandingPage.appCases.map { page in
-                            ItemPickerItem(title: page.name)
-                        }), ],
-                        selected: LandingPage.appCases.firstIndex(of: self.landingPage).flatMap {
-                            IndexPath(row: $0, section: 0)
-                        },
-                        delegate: self
-                    ), sender: self)
-                },
-            ]
-            + k5DashboardSwitch
-            + channelTypeRows
-            + pairWithObserverButton
-            + [Row(NSLocalizedString("Subscribe to Calendar Feed", bundle: .core, comment: ""), hasDisclosure: false) { [weak self] in
-                    guard let url = self?.profile.first?.calendarURL else { return }
-                    self?.env.loginDelegate?.openExternalURL(url)
-               },
-            ]),
+        var sections: [Section] = [preferencesSection]
 
+        if ExperimentalFeature.offlineMode.isEnabled, env.app == .student {
+            sections.append(offlineSettingSection)
+        }
+
+        sections.append(
             Section(NSLocalizedString("Legal", bundle: .core, comment: ""), rows: [
                 Row(NSLocalizedString("Privacy Policy", bundle: .core, comment: "")) { [weak self] in
                     guard let self = self else { return }
@@ -153,15 +134,105 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
                     guard let self = self else { return }
                     self.env.router.route(to: "https://github.com/instructure/canvas-ios", from: self)
                 },
-            ]),
-        ]
+            ])
+        )
+        self.sections = sections
+
         if !channels.pending && !profile.pending && termsOfServiceRequest == nil {
             tableView.refreshControl?.endRefreshing()
         }
         tableView.reloadData()
     }
 
-    private var pairWithObserverButton: [Any] {
+    private var offlineSettingSection: Section {
+        let detailLabel: String = {
+            guard let defaults = env.userDefaults else {
+                return ""
+            }
+
+            return CourseSyncSettingsInteractorLive(storage: defaults).getOfflineSyncSettingsLabel()
+        }()
+        return Section(NSLocalizedString("Offline Content", comment: ""), rows: [
+                Row(NSLocalizedString("Synchronization", comment: ""),
+                    detail: detailLabel) { [weak self] in
+                        guard let self = self else { return }
+                        self.env.router.route(to: "/offline/settings", from: self)
+                    },
+               ])
+    }
+
+    private var preferencesSection: Section {
+        Section(NSLocalizedString("Preferences", bundle: .core, comment: ""), rows: preferencesRows)
+    }
+
+    private var preferencesRows: [Any] {
+        var rows = [Any]()
+        rows.append(contentsOf: landingPageRow)
+        rows.append(contentsOf: interfaceStyleSettings)
+        rows.append(contentsOf: k5DashboardSwitch)
+        rows.append(contentsOf: channelTypeRows ?? [])
+        rows.append(contentsOf: pairWithObserverButton)
+
+        if AppEnvironment.shared.app == .student {
+            let row = Row(NSLocalizedString("Subscribe to Calendar Feed",
+                                            bundle: .core,
+                                            comment: ""),
+                          hasDisclosure: false) { [weak self] in
+                guard let url = self?.profile.first?.calendarURL else { return }
+                self?.env.loginDelegate?.openExternalURL(url)
+            }
+            rows.append(contentsOf: [row])
+        }
+
+        rows.append(contentsOf: aboutRow)
+
+        return rows
+    }
+
+    private var interfaceStyleSettings: [Row] {
+        let options = [
+            ItemPickerItem(title: NSLocalizedString("System Settings", bundle: .core, comment: "")),
+            ItemPickerItem(title: NSLocalizedString("Light Theme", bundle: .core, comment: "")),
+            ItemPickerItem(title: NSLocalizedString("Dark Theme", bundle: .core, comment: "")),
+        ]
+        let selectedStyleIndex = env.userDefaults?.interfaceStyle?.rawValue ?? 0
+
+        return [
+            Row(NSLocalizedString("Appearance", bundle: .core, comment: ""), detail: options[selectedStyleIndex].title) { [weak self] in
+                guard let self = self else { return }
+
+                let pickerVC = ItemPickerViewController.create(title: NSLocalizedString("Appearance", bundle: .core, comment: ""),
+                                                               sections: [ ItemPickerSection(items: options) ],
+                                                               selected: IndexPath(row: selectedStyleIndex, section: 0)) { indexPath in
+                    if let window = self.env.window, let style = UIUserInterfaceStyle(rawValue: indexPath.row) {
+                        window.updateInterfaceStyle(style)
+                        self.env.userDefaults?.interfaceStyle = style
+                    }
+                }
+                self.show(pickerVC, sender: self)
+            },
+        ]
+    }
+
+    private var landingPageRow: [Row] {
+        return [
+            Row(NSLocalizedString("Landing Page", bundle: .core, comment: ""), detail: landingPage.name) { [weak self] in
+                guard let self = self else { return }
+                self.show(ItemPickerViewController.create(
+                    title: NSLocalizedString("Landing Page", bundle: .core, comment: ""),
+                    sections: [ ItemPickerSection(items: LandingPage.appCases.map { page in
+                        ItemPickerItem(title: page.name)
+                    }), ],
+                    selected: LandingPage.appCases.firstIndex(of: self.landingPage).flatMap {
+                        IndexPath(row: $0, section: 0)
+                    },
+                    delegate: self
+                ), sender: self)
+            },
+        ]
+    }
+
+    private var pairWithObserverButton: [Row] {
         guard isPairingWithObserverAllowed else { return [] }
 
         return [
@@ -169,6 +240,15 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
                 guard let self = self else { return }
                 let vc = PairWithObserverViewController.create()
                 self.env.router.show(vc, from: self, options: .modal(.formSheet, isDismissable: true, embedInNav: true, addDoneButton: true))
+            },
+        ]
+    }
+
+    private var aboutRow: [Row] {
+        return [
+            Row(NSLocalizedString("About", comment: "")) { [weak self] in
+                guard let self else { return }
+                self.env.router.route(to: "/about", from: self)
             },
         ]
     }
@@ -184,6 +264,13 @@ public class ProfileSettingsViewController: UIViewController, PageViewEventViewC
     }
 
     private func refreshTermsOfService() {
+        if AppEnvironment.shared.app == .teacher {
+            if isPairingWithObserverAllowed {
+                isPairingWithObserverAllowed = false
+            }
+            return
+        }
+
         termsOfServiceRequest = env.api.makeRequest(GetAccountTermsOfServiceRequest()) { [weak self] response, _, _ in
             self?.termsOfServiceRequest = nil
             let isPairingAllowed: Bool
@@ -221,7 +308,7 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
 
         if let row = row as? Row {
             let cell: RightDetailTableViewCell = tableView.dequeue(for: indexPath)
-            cell.backgroundColor = .backgroundGroupedCell
+            cell.backgroundColor = .backgroundLightest
             cell.textLabel?.text = row.title
             cell.detailTextLabel?.text = row.detail
             cell.accessoryType = row.hasDisclosure ? .disclosureIndicator : .none
@@ -232,7 +319,7 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
             cell.onToggleChange = { toggle in
                 switchRow.value = toggle.isOn
             }
-            cell.backgroundColor = .backgroundGroupedCell
+            cell.backgroundColor = .backgroundLightest
             cell.textLabel?.text = switchRow.title
             return cell
         }

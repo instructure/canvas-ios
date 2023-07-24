@@ -25,8 +25,12 @@ public class SyllabusSummaryViewController: UITableViewController {
     public weak var colorDelegate: ColorDelegate?
     public var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
 
-    public lazy var assignments = env.subscribe(GetCalendarEvents(context: context, type: .assignment)) {}
-    public lazy var events = env.subscribe(GetCalendarEvents(context: context, type: .event)) {}
+    public lazy var assignments = env.subscribe(GetCalendarEvents(context: context, type: .assignment)) { [weak self] in
+        self?.update()
+    }
+    public lazy var events = env.subscribe(GetCalendarEvents(context: context, type: .event)) { [weak self] in
+        self?.update()
+    }
 
     lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.update()
@@ -37,7 +41,12 @@ public class SyllabusSummaryViewController: UITableViewController {
     }
 
     public lazy var summary: Store<LocalUseCase<CalendarEvent>> = {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(CalendarEvent.contextRaw), self.context.canvasContextID)
+        let contextPredicate = NSPredicate(format: "%K == %@", #keyPath(CalendarEvent.contextRaw), self.context.canvasContextID)
+        let notHiddenPredicate = NSPredicate(format: "%K == false", #keyPath(CalendarEvent.isHidden))
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            contextPredicate,
+            notHiddenPredicate,
+        ])
         let hasStartAt = NSSortDescriptor(key: #keyPath(CalendarEvent.hasStartAt), ascending: false)
         let startAt = NSSortDescriptor(key: #keyPath(CalendarEvent.startAt), ascending: true)
         let title = NSSortDescriptor(key: #keyPath(CalendarEvent.title), ascending: true, naturally: true)
@@ -58,6 +67,7 @@ public class SyllabusSummaryViewController: UITableViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundLightest
         tableView.separatorInset = .zero
         tableView.separatorColor = .borderMedium
@@ -96,11 +106,8 @@ public class SyllabusSummaryViewController: UITableViewController {
     override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(SyllabusSummaryItemCell.self, for: indexPath)
         let item = summary[indexPath.row]
-        cell.backgroundColor = .backgroundLightest
-        cell.itemNameLabel?.text = item?.title
-        cell.iconImageView?.image = item?.type == .assignment ? .assignmentLine : .calendarMonthLine
-        cell.iconImageView?.tintColor = colorDelegate?.iconColor ?? course.first?.color
-        cell.dateLabel?.text = item?.startAt.flatMap(formatDate(_:)) ?? NSLocalizedString("No Due Date", bundle: .core, comment: "")
+        let color = colorDelegate?.iconColor ?? course.first?.color
+        cell.update(item, indexPath: indexPath, color: color)
         return cell
     }
 
@@ -110,14 +117,9 @@ public class SyllabusSummaryViewController: UITableViewController {
             env.router.route(to: url, from: self)
         }
     }
-
-    func formatDate(_ date: Date) -> String? {
-        DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .short)
-    }
 }
 
 class SyllabusSummaryItemCell: UITableViewCell {
-
     @IBOutlet weak var dateLabel: DynamicLabel!
     @IBOutlet weak var itemNameLabel: DynamicLabel!
     @IBOutlet weak var stackView: UIStackView!
@@ -126,10 +128,30 @@ class SyllabusSummaryItemCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         loadFromXib()
+        setupCell()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadFromXib()
+        setupCell()
+    }
+
+    func setupCell() {
+        backgroundColor = .backgroundLightest
+    }
+
+    func update(_ item: CalendarEvent?, indexPath: IndexPath, color: UIColor?) {
+        backgroundColor = .backgroundLightest
+        itemNameLabel?.setText(item?.title, style: .textCellTitle)
+        iconImageView?.image = item?.type == .assignment ? .assignmentLine : .calendarMonthLine
+        iconImageView?.tintColor = color
+        dateLabel?.setText(item?.startAt.flatMap(formatDate(_:)) ?? NSLocalizedString("No Due Date", bundle: .core, comment: ""), style: .textCellSupportingText)
+        accessibilityIdentifier = "itemCell.\(item?.id ?? "")"
+        selectedBackgroundView = ContextCellBackgroundView.create(color: color)
+    }
+
+    func formatDate(_ date: Date) -> String? {
+        DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .short)
     }
 }

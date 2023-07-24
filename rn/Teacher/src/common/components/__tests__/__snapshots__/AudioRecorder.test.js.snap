@@ -44,6 +44,7 @@ exports[`AudioRecorder renders default state 1`] = `
           Array [
             Object {
               "color": "#2D3B45",
+              "fontFamily": "Lato-Regular",
               "fontSize": 16,
             },
             Object {
@@ -189,6 +190,7 @@ exports[`AudioRecorder renders recording state 1`] = `
           Array [
             Object {
               "color": "#2D3B45",
+              "fontFamily": "Lato-Regular",
               "fontSize": 16,
             },
             Object {
@@ -302,6 +304,7 @@ exports[`AudioRecorder renders reset state 1`] = `
           Array [
             Object {
               "color": "#2D3B45",
+              "fontFamily": "Lato-Regular",
               "fontSize": 16,
             },
             Object {
@@ -478,6 +481,7 @@ exports[`AudioRecorder renders stopped state 1`] = `
           Array [
             Object {
               "color": "#2D3B45",
+              "fontFamily": "Lato-Regular",
               "fontSize": 16,
             },
             Object {
@@ -566,6 +570,7 @@ exports[`AudioRecorder renders stopped state 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Object {

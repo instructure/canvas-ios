@@ -29,6 +29,9 @@
 "All submissions" = "Totes les entregues";
 
 /* No comment provided by engineer. */
+"All Submissions" = "Totes les entregues";
+
+/* No comment provided by engineer. */
 "Attendance" = "Assistència";
 
 /* No comment provided by engineer. */
@@ -53,10 +56,19 @@
 "Choose Files" = "Tria els fitxers";
 
 /* No comment provided by engineer. */
+"Close" = "Tanca";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "Tanca el calaix";
 
 /* No comment provided by engineer. */
 "Comment" = "Comentari";
+
+/* No comment provided by engineer. */
+"Comment Library" = "Biblioteca de comentaris";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "La biblioteca de comentaris no està disponible";
 
 /* No comment provided by engineer. */
 "Comments" = "Comentaris";
@@ -122,6 +134,9 @@
 "Filter by" = "Filtra per";
 
 /* No comment provided by engineer. */
+"Filter submissions" = "Filtra les entregues";
+
+/* No comment provided by engineer. */
 "Final Grade" = "Nota final";
 
 /* No comment provided by engineer. */
@@ -147,12 +162,6 @@
 
 /* No comment provided by engineer. */
 "Grades will be made visible to students with graded submissions" = "Tots els estudiants amb entregues qualificades podran veure les notes";
-
-/* number of grades hidden */
-"grades_currently_hidden" = "grades_currently_hidden";
-
-/* number of grades hidden */
-"grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
 "Group" = "Grup";
@@ -197,10 +206,19 @@
 "No Submissions" = "Cap entrega";
 
 /* No comment provided by engineer. */
+"No suggestions available" = "Sense suggeriments disponibles";
+
+/* No comment provided by engineer. */
 "Not Graded" = "Sense nota";
 
 /* No comment provided by engineer. */
+"Not Submitted" = "No s’ha entregat";
+
+/* No comment provided by engineer. */
 "OK" = "D'acord";
+
+/* No comment provided by engineer. */
+"Open comment library" = "Obre la biblioteca de comentaris";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Obre el calaix a pantalla completa";
@@ -231,6 +249,9 @@
 
 /* No comment provided by engineer. */
 "Post to..." = "Publica a…";
+
+/* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "Les proves i els estudis sobre pràctiques no tenen cap vista detallada.";
 
 /* No comment provided by engineer. */
 "Present" = "Present";
@@ -282,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Submissions" = "Entregues";
+
+/* No comment provided by engineer. */
+"Submitted" = "S’ha entregat";
 
 /* No comment provided by engineer. */
 "Test Student" = "Prova l'estudiant";

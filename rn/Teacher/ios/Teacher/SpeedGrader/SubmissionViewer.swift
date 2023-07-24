@@ -41,13 +41,20 @@ struct SubmissionViewer: View {
         switch submission.type {
         case .basic_lti_launch, .external_tool:
             WebSession(url: submission.previewUrl) { url in
-                WebView(url: url, customUserAgentName: UserAgent.safariLTI.description).onLink(openInSafari)
+                WebView(url: url,
+                        features: [
+                            .userAgent(UserAgent.safariLTI.description),
+                            .invertColorsInDarkMode,
+                        ]
+                )
+                .onLink(openInSafari)
             }
         case .discussion_topic:
             WebSession(url: submission.previewUrl) { url in
-                WebView(url: url)
-                    .onLink(handleLink)
-                    .onNavigationFinished(handleRefresh)
+                WebView(url: url,
+                        features: [.invertColorsInDarkMode])
+                .onLink(handleLink)
+                .onNavigationFinished(handleRefresh)
             }
         case .online_quiz:
             if assignment.anonymousSubmissions == true {
@@ -61,15 +68,16 @@ struct SubmissionViewer: View {
                 .multilineTextAlignment(.center)
             } else {
                 WebSession(url: submission.previewUrl) { url in
-                    WebView(url: url)
-                        .onLink(handleLink)
-                        .onNavigationFinished(handleRefresh)
+                    WebView(url: url,
+                            features: [.invertColorsInDarkMode])
+                    .onLink(handleLink)
+                    .onNavigationFinished(handleRefresh)
                 }
             }
         case .media_recording:
             VideoPlayer(url: submission.mediaComment?.url)
         case .online_text_entry:
-            WebView(html: submission.body).onLink(handleLink)
+            WebView(html: submission.body, canToggleTheme: true).onLink(handleLink)
         case .online_upload:
             let file = submission.attachments?.first { fileID == $0.id } ??
                 submission.attachments?.sorted(by: File.idCompare).first
@@ -101,7 +109,8 @@ struct SubmissionViewer: View {
                 .padding()
                 .frame(maxWidth: .infinity)
             case nil:
-                CircleProgress()
+                ProgressView()
+                    .progressViewStyle(.indeterminateCircle())
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                     .onAppear {
                         studentAnnotationViewModel.viewDidAppear()

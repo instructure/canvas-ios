@@ -16,9 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 @testable import Core
 import TestsFoundation
+import XCTest
 
 class CircleRefreshControlTests: CoreTestCase {
     let scrollView = MockScrollView(frame: CGRect(x: 0, y: 0, width: 300, height: 800))
@@ -28,68 +28,42 @@ class CircleRefreshControlTests: CoreTestCase {
     func testColor() {
         refreshControl.color = .orange
         XCTAssertEqual(refreshControl.color, .orange)
-        XCTAssertEqual(refreshControl.tintColor, .orange)
         XCTAssertEqual(refreshControl.progressView.color, .orange)
     }
 
     func testRefresh() {
-        XCTAssertNil(refreshControl.progressView.superview)
-        XCTAssertEqual(refreshControl.isRefreshing, false)
-
         scrollView.refreshControl = refreshControl
-        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .primaryActionTriggered)
-        XCTAssertEqual(refreshControl.progressView.superview, scrollView)
-        refreshControl.beginRefreshing()
-        XCTAssertEqual(refreshControl.isRefreshing, true)
-        XCTAssertEqual(refreshControl.progressView.alpha, 1)
-        XCTAssertEqual(scrollView.contentOffset.y, -64)
+        refreshControl.didMoveToSuperview()
 
-        refreshControl.endRefreshing()
-        XCTAssertEqual(refreshControl.isRefreshing, false)
         XCTAssertEqual(refreshControl.progressView.alpha, 0)
-        refreshControl.progressView.alpha = 0.5
-        refreshControl.endRefreshing()
-        XCTAssertEqual(refreshControl.progressView.alpha, 0.5)
-
-        scrollView.contentOffset.y = 0
-        scrollView.contentOffset.y = -16
-        XCTAssertEqual(refreshed, false)
         XCTAssertEqual(refreshControl.isRefreshing, false)
-        XCTAssertEqual(refreshControl.progressView.alpha, 0.5)
-        XCTAssertEqual(refreshControl.progressView.progress, 0.25)
+        XCTAssertEqual(refreshControl.isAnimating, false)
 
-        scrollView.contentOffset.y = -32
-        XCTAssertEqual(refreshed, false)
+        scrollView.contentOffset.y = -5
+        XCTAssertEqual(refreshControl.progressView.alpha, refreshControl.progressView.progress!, accuracy: 0.01)
         XCTAssertEqual(refreshControl.isRefreshing, false)
+        XCTAssertEqual(refreshControl.isAnimating, false)
+
+        scrollView.contentOffset.y = -100
+        refreshControl.beginRefreshing()
         XCTAssertEqual(refreshControl.progressView.alpha, 1)
-        XCTAssertEqual(refreshControl.progressView.progress, 0.5)
-
-        scrollView.contentOffset.y = -65
-        XCTAssertEqual(refreshed, true)
         XCTAssertEqual(refreshControl.isRefreshing, true)
-        XCTAssertEqual(refreshControl.progressView.alpha, 1)
-        XCTAssertEqual(refreshControl.progressView.progress, nil)
+        XCTAssertEqual(refreshControl.isAnimating, true)
 
         refreshControl.endRefreshing()
-        XCTAssertEqual(refreshControl.isRefreshing, false)
-        scrollView.contentOffset.y = -80
-        XCTAssertEqual(refreshControl.isRefreshing, false)
         scrollView.contentOffset.y = 0
-        scrollView.contentOffset.y = -80
-        XCTAssertEqual(refreshControl.isRefreshing, true)
-    }
 
-    func testParent() {
-        scrollView.refreshControl = refreshControl
-        let parent = UIView()
-        parent.addSubview(refreshControl)
-        XCTAssertNil(refreshControl.progressView.superview)
-        XCTAssertNil(refreshControl.offsetObservation)
-    }
+        RunLoop.main.run(until: Date().advanced(by: 2))
+        drainMainQueue()
 
-    func refresh(_ sender: CircleRefreshControl) {
-        XCTAssertEqual(sender, refreshControl)
-        refreshed = true
+        XCTAssertEqual(refreshControl.progressView.alpha, 0)
+        XCTAssertEqual(refreshControl.isRefreshing, false)
+        XCTAssertEqual(refreshControl.isAnimating, false)
+
+        scrollView.contentOffset.y = 32
+        XCTAssertEqual(refreshControl.progressView.alpha, 0)
+        XCTAssertEqual(refreshControl.isRefreshing, false)
+        XCTAssertEqual(refreshControl.isAnimating, false)
     }
 
     class MockScrollView: UIScrollView {

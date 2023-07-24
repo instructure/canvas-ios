@@ -32,7 +32,7 @@ public class K5HomeroomViewModel: ObservableObject {
     private let env = AppEnvironment.shared
     private var childViewModelChangeListener: AnyCancellable?
     // MARK: Data Sources
-    private lazy var cards = env.subscribe(GetDashboardCards()) { [weak self] in
+    private lazy var cards = env.subscribe(GetDashboardCards(showOnlyTeacherEnrollment: false)) { [weak self] in
         self?.dashboardCardsUpdated()
     }
     private lazy var profile = env.subscribe(GetUserProfile(userID: "self")) { [weak self] in
@@ -193,16 +193,28 @@ public class K5HomeroomViewModel: ObservableObject {
 
 extension K5HomeroomViewModel: Refreshable {
 
+    @available(*, renamed: "refresh()")
     public func refresh(completion: @escaping () -> Void) {
+        Task {
+            await refresh()
+            completion()
+        }
+    }
+
+    public func refresh() async {
         forceRefresh = true
-        refreshCompletion = completion
-        announcementsStore = nil
-        missingSubmissions = nil
-        dueItems = nil
-        cards.refresh(force: true)
-        profile.refresh(force: true)
-        accountAnnouncementsStore.exhaust(force: true)
-        conferencesViewModel.refresh(force: true)
-        invitationsViewModel.refresh(force: true)
+        return await withCheckedContinuation { continuation in
+            refreshCompletion = {
+                continuation.resume()
+            }
+            announcementsStore = nil
+            missingSubmissions = nil
+            dueItems = nil
+            cards.refresh(force: true)
+            profile.refresh(force: true)
+            accountAnnouncementsStore.exhaust(force: true)
+            conferencesViewModel.refresh(force: true)
+            invitationsViewModel.refresh()
+        }
     }
 }

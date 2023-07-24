@@ -26,17 +26,17 @@ public class K5SubjectViewModel: ObservableObject {
     @Published public private(set) var courseTitle: String?
     @Published public private(set) var courseColor: UIColor?
     @Published public private(set) var currentPageURL: URL?
+    @Published public private(set) var courseBannerImageUrl: URL?
     @Published public private(set) var courseImageUrl: URL?
-    public var reloadWebView: AnyPublisher<Void, Never> {
-        NotificationCenter.default.publisher(for: .moduleItemRequirementCompleted, object: nil)
-            .map { _ in () } // map received notification to Void
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
+    public var courseID: String {
+        course.first?.id ?? ""
     }
-    /** The webview configuration to be used. In case of masquerading we can't use the default configuration because it will contain cookies with the original user's permissions. */
-    public var config: WKWebViewConfiguration? { masqueradedSession.config }
+    public private(set) lazy var reloadWebView: AnyPublisher<Void, Never> = makeWebViewReloadTrigger()
 
-    @Environment(\.appEnvironment) private var env
+    /** The webview configuration to be used. In case of masquerading we can't use the default configuration because it will contain cookies with the original user's permissions. */
+    public var config: WKWebViewConfiguration { masqueradedSession.config }
+
+    private let env = AppEnvironment.shared
     private let context: Context
     private let selectedTabId: String?
     private lazy var tabs = env.subscribe(GetContextTabs(context: context)) { [weak self] in self?.tabsUpdated() }
@@ -68,8 +68,7 @@ public class K5SubjectViewModel: ObservableObject {
             tabItems.append(TopBarItemViewModel(tab: tab, iconImage: tabIconImage(for: tab.id)))
         }
         if !tabs.filter({$0.id.contains("context_external_tool_") && !($0.hidden ?? false) }).isEmpty {
-            let resurceTabItem = TopBarItemViewModel(icon: .k5resources, label: Text("Resources", bundle: .core))
-            resurceTabItem.id = "resources"
+            let resurceTabItem = TopBarItemViewModel(id: "resources", icon: .k5resources, label: Text("Resources", bundle: .core))
             tabItems.append(resurceTabItem)
         }
         topBarViewModel = TopBarViewModel(items: tabItems)
@@ -80,6 +79,9 @@ public class K5SubjectViewModel: ObservableObject {
         if let selectedTabId = selectedTabId, let selectedTabIndex = tabItems.firstIndex(where: { $0.id == selectedTabId }) {
             topBarViewModel?.selectedItemIndex = selectedTabIndex
         }
+
+        // After setting up the default tab so we won't report home view all the time
+        setupScreenViewLogging()
     }
 
     private func tabChanged() {
@@ -97,6 +99,7 @@ public class K5SubjectViewModel: ObservableObject {
         guard let course = course.first else { return }
         courseTitle = course.name
         courseColor = course.color
+        courseBannerImageUrl = course.bannerImageDownloadURL
         courseImageUrl = course.imageDownloadURL
     }
 
@@ -106,6 +109,38 @@ public class K5SubjectViewModel: ObservableObject {
         urlComposition?.queryItems = [URLQueryItem(name: "embed", value: "true")]
         urlComposition?.fragment = itemId
         return urlComposition?.url
+    }
+
+    private func setupScreenViewLogging() {
+        guard let topBarViewModel = topBarViewModel else { return }
+        topBarViewModel.selectedItemIndexPublisher
+            .removeDuplicates()
+            .compactMap { topBarViewModel.items[$0].id }
+            .sink { Analytics.shared.logScreenView(route: "/homeroom/subject/\($0)") }
+            .store(in: &subscriptions)
+    }
+
+    private func makeWebViewReloadTrigger() -> AnyPublisher<Void, Never> {
+        let moduleRequirementCompletedPublisher =
+            NotificationCenter.default
+                .publisher(for: .moduleItemRequirementCompleted)
+                .map { _ in () } // map received notification to Void
+        let appWillEnterForegroundWhileModulesSelectedPublisher =
+            NotificationCenter.default
+                .publisher(for: UIApplication.willEnterForegroundNotification)
+                .compactMap { [weak self] _ -> Void? in
+                    guard let topBarViewModel = self?.topBarViewModel,
+                          topBarViewModel.selectedItemId == "modules"
+                    else {
+                        return nil
+                    }
+
+                    return ()
+                }
+
+        return Publishers.Merge(moduleRequirementCompletedPublisher, appWillEnterForegroundWhileModulesSelectedPublisher)
+                    .receive(on: DispatchQueue.main)
+                    .eraseToAnyPublisher()
     }
 }
 

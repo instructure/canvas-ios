@@ -18,53 +18,93 @@
 
 import Foundation
 
-extension URL {
-    public static var temporaryDirectory: URL {
-        return URL(fileURLWithPath: NSTemporaryDirectory())
-    }
-
-    public static var cachesDirectory: URL {
-        return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
-    }
-
-    public static func cachesDirectory(appGroup: String?) -> URL {
-        var folder = URL.cachesDirectory
-        if let appGroup = appGroup, let group = sharedContainer(appGroup) {
-            folder = group.appendingPathComponent("caches", isDirectory: true)
-            try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true, attributes: nil)
+extension Sequence where Element == URL {
+    public var pathExtensions: Set<String> {
+        reduce(into: Set<String>()) {
+            if $1.pathExtension != "" {
+                $0.insert($1.pathExtension)
+            }
         }
-        return folder
+    }
+}
+
+public extension URL {
+    enum Directories {
+
+        public static var temporary: URL {
+            URL(fileURLWithPath: NSTemporaryDirectory())
+        }
+
+        public static var caches: URL {
+            FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+        }
+
+        public static func caches(appGroup: String?) -> URL {
+            var folder = caches
+            if let appGroup = appGroup, let group = sharedContainer(appGroup: appGroup) {
+                folder = group.appendingPathComponent("caches", isDirectory: true)
+                try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true, attributes: nil)
+            }
+            return folder
+        }
+
+        /// The `Documents` directory in the application's private folder.
+        public static var documents: URL {
+            FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        }
+
+        public static var library: URL {
+            FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
+        }
+
+        public static func sharedContainer(appGroup identifier: String) -> URL? {
+            FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: identifier)
+        }
+
+        /// Returns the full url with the file name to where the database should be saved.
+        public static func databaseURL(appGroup: String?, session: LoginSession?) -> URL {
+            guard let session else {
+                return URL.Directories.caches
+                    .appendingPathComponent("Database.sqlite", isDirectory: false)
+            }
+
+            let documents: URL = {
+                if let appGroup, let container = URL.Directories.sharedContainer(appGroup: appGroup) {
+                    return container.appendingPathComponent("Documents", isDirectory: true)
+                } else {
+                    return URL.Directories.documents
+                }
+            }()
+
+            return documents
+                    .appendingPathComponent(session.uniqueID, isDirectory: true)
+                    .appendingPathComponent("Offline", isDirectory: true)
+                    .appendingPathComponent("Database.sqlite", isDirectory: false)
+        }
     }
 
-    public static var documentsDirectory: URL {
-        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-    }
-
-    public static var libraryDirectory: URL {
-        return FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
-    }
-
-    public static func sharedContainer(_ identifier: String) -> URL? {
-        return FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: identifier)
-    }
-
-    public func lookupFileSize() -> Int {
+    func lookupFileSize() -> Int {
         guard self.isFileURL else { return 0 }
         let attributes = try? FileManager.default.attributesOfItem(atPath: path)
         return attributes?[FileAttributeKey.size] as? Int ?? 0
     }
 
-    public func appendingQueryItems(_ items: URLQueryItem...) -> URL {
+    func appendingQueryItems(_ items: URLQueryItem...) -> URL {
         var components = URLComponents.parse(self)
         components.queryItems = (components.queryItems ?? []) + items
         return components.url ?? self
     }
 
-    public func appendingOrigin(_ origin: String) -> URL {
+    func containsQueryItem(named key: String) -> Bool {
+        let components = URLComponents.parse(self)
+        return components.queryValue(for: key) != nil
+    }
+
+    func appendingOrigin(_ origin: String) -> URL {
         return appendingQueryItems(.init(name: "origin", value: origin))
     }
 
-    public func move(to destination: URL, override: Bool = true, copy: Bool = false) throws {
+    func move(to destination: URL, override: Bool = true, copy: Bool = false) throws {
         let manager = FileManager.default
         if destination.hasDirectoryPath {
             try manager.createDirectory(at: destination, withIntermediateDirectories: true, attributes: nil)
@@ -81,11 +121,23 @@ extension URL {
         }
     }
 
-    public func copy(to destination: URL, override: Bool = true) throws {
+    func copy(to destination: URL, override: Bool = true) throws {
         try move(to: destination, override: override, copy: true)
     }
 
-    public var withCanonicalQueryParams: URL? {
+    var withCanonicalQueryParams: URL? {
         return URLComponents(url: self, resolvingAgainstBaseURL: false)?.withCanonicalQueryParams.url
+    }
+
+    /**
+     Returns the base url from this url that can be passed to an API instance.
+
+     Example: https://test.instructure.com/courses/123?param=1 -> https://test.instructure.com
+     */
+    var apiBaseURL: URL? {
+        var components = URLComponents()
+        components.host = host
+        components.scheme = scheme
+        return components.url
     }
 }

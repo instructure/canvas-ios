@@ -189,7 +189,7 @@ describe('QuizDetails', () => {
     const tree = render(props).toJSON()
     const editButton: any = explore(tree).selectRightBarButton('quizzes.details.editButton')
     editButton.action()
-    expect(props.navigator.show).toHaveBeenCalledWith(`/courses/${props.courseID}/quizzes/${props.quizID}/edit`, { 'modal': true, 'modalPresentationStyle': 'formsheet' })
+    expect(props.navigator.show).toHaveBeenCalledWith(`/courses/${props.courseID}/quizzes/${props.quizID}/edit`, { 'modal': true, 'modalPresentationStyle': 'pagesheet' })
   })
 
   it('renders assignment group', () => {
@@ -414,7 +414,7 @@ describe('mapStateToProps', () => {
     })
   })
 
-  it('returns showSubmissionSummary as false when the user is a designer', () => {
+  it('returns showSubmissionSummary as true when the user is a designer', () => {
     const quiz = template.quiz({
       id: '1',
       assignment_group_id: null,
@@ -443,6 +443,6 @@ describe('mapStateToProps', () => {
 
     expect(
       mapStateToProps(state, { courseID: '1', quizID: '1' }).showSubmissionSummary
-    ).toEqual(false)
+    ).toEqual(true)
   })
 })

@@ -39,6 +39,12 @@ class AnalyticsTests: XCTestCase {
         XCTAssertEqual(loggedParameters?["bar"] as? String, "foo")
     }
 
+    func testLogError() {
+        Analytics.shared.logError("test_error", description: "this is a test error")
+        XCTAssertEqual(loggedEvent, "test_error")
+        XCTAssertEqual(loggedParameters as? [String: String], ["error": "this is a test error"])
+    }
+
     func testLogSession() {
         var session = LoginSession.make(expiresAt: nil)
         var defaults = SessionDefaults(sessionID: session.uniqueID)
@@ -56,6 +62,44 @@ class AnalyticsTests: XCTestCase {
         XCTAssertEqual(loggedEvent, "auth_expiring_token")
 
         defaults.reset()
+    }
+
+    func testScreenView() {
+        AppEnvironment.shared.app = .student
+        Analytics.shared.logScreenView(route: "/testRoute", viewController: ProfileSettingsViewController())
+        XCTAssertEqual(loggedEvent, "screen_view")
+        XCTAssertEqual(loggedParameters as? [String: String], [
+            "application": "student",
+            "screen_name": "/testRoute",
+            "screen_class": "ProfileSettingsViewController",
+        ])
+    }
+
+    func testAnalyticsClassName() {
+        let courseListView = CoreHostingController(PandaGallery())
+
+        XCTAssertEqual(Analytics.analyticsClassName(for: nil), "unknown")
+        XCTAssertEqual(Analytics.analyticsClassName(for: ProfileSettingsViewController()), "ProfileSettingsViewController")
+        XCTAssertEqual(Analytics.analyticsClassName(for: courseListView), "PandaGallery")
+        XCTAssertEqual(Analytics.analyticsClassName(for: UINavigationController(rootViewController: courseListView)), "PandaGallery")
+
+        let splitView = UISplitViewController()
+        splitView.viewControllers = [UINavigationController(rootViewController: courseListView)]
+        XCTAssertEqual(Analytics.analyticsClassName(for: splitView), "PandaGallery")
+    }
+
+    func testAnalyticsAppName() {
+        AppEnvironment.shared.app = nil
+        XCTAssertEqual(Analytics.analyticsAppName, "unknown")
+
+        AppEnvironment.shared.app = .parent
+        XCTAssertEqual(Analytics.analyticsAppName, "parent")
+
+        AppEnvironment.shared.app = .student
+        XCTAssertEqual(Analytics.analyticsAppName, "student")
+
+        AppEnvironment.shared.app = .teacher
+        XCTAssertEqual(Analytics.analyticsAppName, "teacher")
     }
 }
 

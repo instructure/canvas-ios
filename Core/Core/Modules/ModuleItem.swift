@@ -133,7 +133,10 @@ public class ModuleItem: NSManagedObject {
     }
 
     @discardableResult
-    public static func save(_ item: APIModuleItem, forCourse courseID: String, in context: NSManagedObjectContext) -> ModuleItem {
+    public static func save(_ item: APIModuleItem,
+                            forCourse courseID: String,
+                            updateMasteryPath: Bool = true,
+                            in context: NSManagedObjectContext) -> ModuleItem {
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(ModuleItem.courseID), equals: courseID),
             NSPredicate(key: #keyPath(ModuleItem.id), equals: item.id.value),
@@ -154,25 +157,29 @@ public class ModuleItem: NSManagedObject {
         model.lockExplanation = item.content_details?.lock_explanation
         model.completionRequirement = item.completion_requirement
         model.courseID = courseID
-        if let masteryPath = item.mastery_paths, masteryPath.selected_set_id == nil {
-            let path: ModuleItem = context.insert()
-            path.id = "\(item.id)-mastery-path"
-            path.courseID = courseID
-            path.moduleID = item.module_id.value
-            path.position = Double(item.position) + 0.5
-            path.title = item.mastery_paths?.locked == true
-                ? String.localizedStringWithFormat(NSLocalizedString("Locked until \"%@\" is graded", comment: ""), item.title)
-                : NSLocalizedString("Select a Path", comment: "")
-            path.indent = item.indent
-            path.type = item.content
-            path.masteryPath = MasteryPath.save(masteryPath, in: context)
-            model.masteryPathItem = path
-        } else {
-            if let masteryPathItem = model.masteryPathItem {
-                context.delete(masteryPathItem)
+
+        if updateMasteryPath {
+            if let masteryPath = item.mastery_paths, masteryPath.selected_set_id == nil {
+                let path: ModuleItem = context.insert()
+                path.id = "\(item.id)-mastery-path"
+                path.courseID = courseID
+                path.moduleID = item.module_id.value
+                path.position = Double(item.position) + 0.5
+                path.title = item.mastery_paths?.locked == true
+                    ? String.localizedStringWithFormat(NSLocalizedString("Locked until \"%@\" is graded", comment: ""), item.title)
+                    : NSLocalizedString("Select a Path", comment: "")
+                path.indent = item.indent
+                path.type = item.content
+                path.masteryPath = MasteryPath.save(masteryPath, in: context)
+                model.masteryPathItem = path
+            } else {
+                if let masteryPathItem = model.masteryPathItem {
+                    context.delete(masteryPathItem)
+                }
+                model.masteryPathItem = nil
             }
-            model.masteryPathItem = nil
         }
+
         return model
     }
 }

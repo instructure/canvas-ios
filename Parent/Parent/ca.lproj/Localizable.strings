@@ -172,9 +172,6 @@
 "Settings" = "Configuració";
 
 /* No comment provided by engineer. */
-"Settings. %@" = "Configuració. %@";
-
-/* No comment provided by engineer. */
 "Summary" = "Resum";
 
 /* No comment provided by engineer. */
@@ -200,9 +197,6 @@
 
 /* No comment provided by engineer. */
 "There's nothing to be notified of yet." = "Encara no hi ha res que s'hagi de notificar.";
-
-/* No comment provided by engineer. */
-"Trouble logging in" = "Hi ha problemes per iniciar la sessió";
 
 /* No comment provided by engineer. */
 "Unread" = "Sense llegir";

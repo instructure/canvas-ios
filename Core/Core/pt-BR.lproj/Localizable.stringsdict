@@ -322,6 +322,22 @@
 			<string>Ocultar %d itens ausentes</string>
 		</dict>
 	</dict>
+	<key>incompatible_files_for_assignment</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>O %2$@ tipo de arquivo em seu envio é incompatível com a tarefa selecionada.</string>
+			<key>other</key>
+			<string>Os %2$@ tipos de arquivo em seu envio são incompatíveis com a tarefa selecionada.</string>
+		</dict>
+	</dict>
 	<key>late_penalty_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -386,6 +402,22 @@
 			<string>Mostrar %d itens ausentes</string>
 		</dict>
 	</dict>
+	<key>submission_failed_for_files</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Seu arquivo foi carregado com sucesso, mas o envio para a tarefa falhou.</string>
+			<key>other</key>
+			<string>Seus arquivos foram carregados com sucesso, mas o envio para a tarefa falhou.</string>
+		</dict>
+	</dict>
 	<key>there_are_d_assignees_without_grades</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -400,6 +432,22 @@
 			<string>Há %d cessionário sem uma nota.</string>
 			<key>other</key>
 			<string>Há %d cessionários sem notas.</string>
+		</dict>
+	</dict>
+	<key>use_file_extension</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Por favor, use a extensão do arquivo %2$@.</string>
+			<key>other</key>
+			<string>Por favor, use as extensões do arquivo %2$@.</string>
 		</dict>
 	</dict>
 </dict>

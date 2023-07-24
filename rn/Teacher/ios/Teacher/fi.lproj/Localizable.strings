@@ -29,6 +29,9 @@
 "All submissions" = "Kaikki lähetykset";
 
 /* No comment provided by engineer. */
+"All Submissions" = "Kaikki tehtäväpalautukset";
+
+/* No comment provided by engineer. */
 "Attendance" = "Osallistuminen";
 
 /* No comment provided by engineer. */
@@ -53,10 +56,19 @@
 "Choose Files" = "Valitse tiedostot";
 
 /* No comment provided by engineer. */
+"Close" = "Sulje";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "Sulje vetolaatikko";
 
 /* No comment provided by engineer. */
 "Comment" = "Kommentti";
+
+/* No comment provided by engineer. */
+"Comment Library" = "Kommenttikirjasto";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "Kommenttikirjasto ei ole saatavissa";
 
 /* No comment provided by engineer. */
 "Comments" = "Kommentit";
@@ -122,6 +134,9 @@
 "Filter by" = "Suodatusperuste";
 
 /* No comment provided by engineer. */
+"Filter submissions" = "Suodattimen lähetykset";
+
+/* No comment provided by engineer. */
 "Final Grade" = "Lopullinen arvosana";
 
 /* No comment provided by engineer. */
@@ -147,12 +162,6 @@
 
 /* No comment provided by engineer. */
 "Grades will be made visible to students with graded submissions" = "Arvosanat tehdään näkyviksi opiskelijoille, joilla on arvosteltuja lähetyksiä.";
-
-/* number of grades hidden */
-"grades_currently_hidden" = "grades_currently_hidden";
-
-/* number of grades hidden */
-"grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
 "Group" = "Ryhmä";
@@ -197,10 +206,19 @@
 "No Submissions" = "Ei lähetyksiä";
 
 /* No comment provided by engineer. */
+"No suggestions available" = "Ei ehdotuksia saatavissa";
+
+/* No comment provided by engineer. */
 "Not Graded" = "Ei arvioida";
 
 /* No comment provided by engineer. */
+"Not Submitted" = "Ei lähetetty";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"Open comment library" = "Avaa kommenttikirjasto";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Avaa vetolaatikko koko näyttö";
@@ -231,6 +249,9 @@
 
 /* No comment provided by engineer. */
 "Post to..." = "Lähetä vastaanottajalle...";
+
+/* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "Harjoitteluvisaluissa ja -kyselyissä ei ole yksityiskohtaisia näkymiä.";
 
 /* No comment provided by engineer. */
 "Present" = "Nykyinen";
@@ -282,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Submissions" = "Tehtäväpalautukset";
+
+/* No comment provided by engineer. */
+"Submitted" = "Lähetetty";
 
 /* No comment provided by engineer. */
 "Test Student" = "Testaa opiskelijaa";

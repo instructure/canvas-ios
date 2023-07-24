@@ -37,12 +37,16 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     "/conversations/compose": nil,
     "/conversations/:conversationID": nil,
 
-    "/courses": { _, _, _ in CoreHostingController(CourseListView()) },
+    "/courses": { _, _, _ in CourseListAssembly.makeCourseListViewController() },
 
-    "/courses/:courseID": nil,
-    "/courses/:courseID/tabs": nil,
-    "/courses/:courseID/settings": nil,
-    "/courses/:courseID/user_preferences": nil,
+    "/courses/:courseID": courseDetails,
+    "/courses/:courseID/tabs": courseDetails,
+
+    "/courses/:courseID/settings": { url, _, _ in
+        guard let context = Context(path: url.path) else { return nil }
+        let viewModel = CourseSettingsViewModel(context: context)
+        return CoreHostingController(CourseSettingsView(viewModel: viewModel))
+    },
 
     "/:context/:contextID/announcements": { url, _, _ in
         guard let context = Context(path: url.path) else { return nil }
@@ -59,10 +63,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return CoreHostingController(DiscussionEditorView(context: context, topicID: topicID, isAnnouncement: true))
     },
 
-    "/:context/:contextID/announcements/:announcementID": { url, params, _ in
-        guard let context = Context(path: url.path), let topicID = params["announcementID"] else { return nil }
-        return DiscussionDetailsViewController.create(context: context, topicID: topicID, isAnnouncement: true)
-    },
+    "/:context/:contextID/announcements/:announcementID": discussionDetails,
 
     "/courses/:courseID/assignments": { url, _, _ in
         guard let context = Context(path: url.path) else { return nil }
@@ -85,9 +86,10 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
         return CoreHostingController(AssignmentEditorView(courseID: courseID, assignmentID: assignmentID))
     },
-    "/courses/:courseID/assignments/:assignmentID/due_dates": nil,
-    "/courses/:courseID/assignments/:assignmentID/assignee-picker": nil,
-    "/courses/:courseID/assignments/:assignmentID/assignee-search": nil,
+    "/courses/:courseID/assignments/:assignmentID/due_dates": { _, params, _ in
+        guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
+        return AssignmentDueDatesAssembly.makeViewController(env: AppEnvironment.shared, courseID: courseID, assignmentID: assignmentID)
+    },
 
     "/courses/:courseID/assignments/:assignmentID/post_policy": { _, params, _ in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
@@ -247,23 +249,40 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return QuizListViewController.create(courseID: courseID)
     },
 
-    "/courses/:courseID/quizzes/:quizID": nil,
-    "/courses/:courseID/quizzes/:quizID/preview": nil,
-    "/courses/:courseID/quizzes/:quizID/edit": nil,
-    "/courses/:courseID/quizzes/:quizID/submissions": nil,
-
+    "/courses/:courseID/quizzes/:quizID": { _, params, _ in
+        guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
+        let viewModel = QuizDetailsViewModel(courseID: courseID, quizID: quizID)
+        return CoreHostingController(QuizDetailsView(viewModel: viewModel))
+    },
+    "/courses/:courseID/quizzes/:quizID/preview": { _, params, _ in
+        guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
+        return QuizPreviewAssembly.makeQuizPreviewViewController(courseID: courseID, quizID: quizID)
+    },
+    "/courses/:courseID/quizzes/:quizID/edit": { _, params, _ in
+        guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
+        let viewModel = QuizEditorViewModel(courseID: courseID, quizID: quizID)
+        return CoreHostingController(QuizEditorView(viewModel: viewModel))
+    },
+    "/courses/:courseID/quizzes/:quizID/submissions": { url, params, _ in
+        guard let courseID = params["courseID"], let quizID = params["quizID"] else { return nil }
+        let filter = QuizSubmissionListFilter(rawValue: url.queryValue(for: "filter"))
+        return QuizSubmissionListAssembly.makeViewController(env: AppEnvironment.shared, courseID: courseID, quizID: quizID, filter: filter)
+    },
     "/courses/:courseID/users": { _, params, _ in
         guard let courseID = params["courseID"] else { return nil }
         return PeopleListViewController.create(context: .course(courseID))
     },
 
-    "/courses/:courseID/users/:userID": { _, params, _ in
+    "/courses/:courseID/users/:userID": { _, params, userInfo in
         guard let courseID = params["courseID"], let userID = params["userID"] else { return nil }
-        let viewModel = ContextCardViewModel(courseID: courseID, userID: userID, currentUserID: AppEnvironment.shared.currentSession?.userID ?? "")
+        let isModal = isModalPresentation(userInfo)
+        let viewModel = ContextCardViewModel(courseID: courseID, userID: userID, currentUserID: AppEnvironment.shared.currentSession?.userID ?? "", isModal: isModal)
         return CoreHostingController(ContextCardView(model: viewModel))
     },
 
-    "/dev-menu": nil,
+    "/dev-menu": { _, _, _ in
+        CoreHostingController(DeveloperMenuView())
+    },
 
     "/dev-menu/experimental-features": { _, _, _ in
         let vc = ExperimentalFeaturesViewController()
@@ -271,6 +290,26 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
             HelmManager.shared.reload()
         }
         return vc
+    },
+
+    "/dev-menu/pandas": { _, _, _ in
+        CoreHostingController(PandaGallery())
+    },
+
+    "/dev-menu/website-preview": { _, _, _ in
+        CoreHostingController(WebSitePreviewView())
+    },
+
+    "/dev-menu/snackbar": { _, _, _ in
+        CoreHostingController(SnackBarTestView())
+    },
+
+    "/logs": { _, _, _ in
+        return LogEventListViewController.create()
+    },
+
+    "/push-notifications": { _, _, _ in
+        CoreHostingController(PushNotificationDebugView())
     },
 
     "/profile": { _, _, _ in
@@ -293,11 +332,49 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         guard let loginDelegate = AppEnvironment.shared.loginDelegate else { return nil }
         return WrongAppViewController.create(delegate: loginDelegate)
     },
+
+    "/empty": { url, _, _ in
+        let emptyViewController = EmptyViewController()
+
+        if let contextColor = url.contextColor {
+            emptyViewController.navBarStyle = .color(contextColor)
+        }
+
+        return emptyViewController
+    },
+
+    "/about": { _, _, _ in
+        AboutAssembly.makeAboutViewController()
+    },
 ]))
 
 private func discussionDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
-    guard let context = Context(path: url.path), let topicID = params["discussionID"] else { return nil }
-    return DiscussionDetailsViewController.create(context: context, topicID: topicID)
+    guard let context = Context(path: url.path) else { return nil }
+
+    var webPageType: EmbeddedWebPageViewModelLive.EmbeddedWebPageType
+    if let discussionID = params["discussionID"] {
+        webPageType = .discussion(id: discussionID)
+    } else if let announcementID = params["announcementID"] {
+        webPageType = .announcement(id: announcementID)
+    } else {
+        return nil
+    }
+
+    if ExperimentalFeature.hybridDiscussionDetails.isEnabled,
+       EmbeddedWebPageViewModelLive.isRedesignEnabled(in: context) {
+        let viewModel = EmbeddedWebPageViewModelLive(
+            context: context,
+            webPageType: webPageType
+        )
+        return CoreHostingController(
+            EmbeddedWebPageView(
+                viewModel: viewModel,
+                isPullToRefreshEnabled: true
+            )
+        )
+    } else {
+        return DiscussionDetailsViewController.create(context: context, topicID: webPageType.assetID)
+    }
 }
 
 private func fileList(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
@@ -323,6 +400,25 @@ private func fileEditor(url: URLComponents, params: [String: String], userInfo: 
 private func syllabus(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
     guard let courseID = params["courseID"] else { return nil }
     return TeacherSyllabusTabViewController.create(context: Context(path: url.path), courseID: ID.expandTildeID(courseID))
+}
+
+private func courseDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+    guard let context = Context(path: url.path) else { return nil }
+    let viewModel = CourseDetailsViewModel(context: context)
+    let viewController = CoreHostingController(CourseDetailsView(viewModel: viewModel))
+
+    if let contextColor = url.contextColor {
+        viewController.navigationBarStyle = .color(contextColor)
+    }
+
+    return viewController
+}
+
+// MARK: - Helpers
+
+private func isModalPresentation(_ userInfo: [String: Any]?) -> Bool {
+    let navigatorOptions = userInfo?["navigatorOptions"] as? [String: Any]
+    return navigatorOptions?["modal"] as? Bool ?? false
 }
 
 // MARK: - HelmModules

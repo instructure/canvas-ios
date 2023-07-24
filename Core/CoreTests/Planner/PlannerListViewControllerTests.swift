@@ -74,7 +74,7 @@ class PlannerListViewControllerTests: CoreTestCase, PlannerListDelegate {
         let cell = controller.tableView.cellForRow(at: index0) as? PlannerListCell
         XCTAssertEqual(cell?.title.text, "assignment a")
         XCTAssertEqual(cell?.courseCode.text, "Assignment Grades")
-        XCTAssertEqual(cell?.courseCode.textColor, .red)
+        XCTAssertEqual(cell?.courseCode.textColor.hexString, UIColor.red.ensureContrast(against: .backgroundLightest).hexString)
         XCTAssertEqual(cell?.dueDate.text, DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .short) )
         XCTAssertEqual(cell?.points.text, "1 point")
         XCTAssertEqual(cell?.pointsDivider.isHidden, false)

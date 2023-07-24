@@ -59,8 +59,8 @@ struct AssignmentAssigneePicker: View {
                 trailing: Button(action: save, label: {
                     Text("Done", bundle: .core).bold()
                 })
-                    .disabled(isSpinning)
-                    .identifier("DiscussionEditor.doneButton")
+                .disabled(isSpinning)
+                .identifier("DiscussionEditor.doneButton")
             )
             .onAppear(perform: load)
     }
@@ -70,35 +70,7 @@ struct AssignmentAssigneePicker: View {
             if !selection.isEmpty { EditorSection {
                 ForEach(selection) { assignee in
                     if selection.first != assignee { Divider() }
-                    EditorRow {
-                        switch assignee {
-                        case .everyone:
-                            Avatar.Anonymous(isGroup: true)
-                                .padding(.trailing, 16).padding(.vertical, -4)
-                            selection.count <= 1 ? Text("Everyone", bundle: .core) : Text("Everyone else", bundle: .core)
-                        case .group(let id):
-                            let group = self.group(id)
-                            Avatar(name: group?.name, url: group?.avatarURL)
-                                .padding(.trailing, 16).padding(.vertical, -4)
-                            group.map { Text($0.name) }
-                        case .section(let id):
-                            let section = self.section(id)
-                            Avatar(name: section?.name, url: nil)
-                                .padding(.trailing, 16).padding(.vertical, -4)
-                            section.map { Text($0.name) }
-                        case .student(let id):
-                            let student = self.student(id)
-                            Avatar(name: student?.name, url: student?.avatarURL)
-                                .padding(.trailing, 16).padding(.vertical, -4)
-                            student.map { Text($0.displayName) }
-                        }
-                        Spacer()
-                        Button(action: { withAnimation(.default) {
-                            selection = selection.filter { $0 != assignee }
-                        } }, label: {
-                            Image.xLine.foregroundColor(.textDark)
-                        })
-                    }
+                    editorRow(assignee)
                 }
             } }
             EditorSection { ButtonRow(action: add, content: {
@@ -109,6 +81,42 @@ struct AssignmentAssigneePicker: View {
                 DisclosureIndicator()
             }) }
         } }
+    }
+
+    private func editorRow(_ assignee: Assignee) -> some View {
+        EditorRow {
+            switch assignee {
+            case .everyone:
+                Avatar.Anonymous(isGroup: true)
+                    .padding(.trailing, 16).padding(.vertical, -4)
+                if selection.count <= 1 {
+                    Text("Everyone", bundle: .core)
+                } else {
+                    Text("Everyone else", bundle: .core)
+                }
+            case .group(let id):
+                let group = self.group(id)
+                Avatar(name: group?.name, url: group?.avatarURL)
+                    .padding(.trailing, 16).padding(.vertical, -4)
+                group.map { Text($0.name) }
+            case .section(let id):
+                let section = self.section(id)
+                Avatar(name: section?.name, url: nil)
+                    .padding(.trailing, 16).padding(.vertical, -4)
+                section.map { Text($0.name) }
+            case .student(let id):
+                let student = self.student(id)
+                Avatar(name: student?.name, url: student?.avatarURL)
+                    .padding(.trailing, 16).padding(.vertical, -4)
+                student.map { Text($0.displayName) }
+            }
+            Spacer()
+            Button(action: { withAnimation(.default) {
+                selection = selection.filter { $0 != assignee }
+            } }, label: {
+                Image.xLine.foregroundColor(.textDark)
+            })
+        }
     }
 
     func load() {
@@ -132,7 +140,7 @@ struct AssignmentAssigneePicker: View {
         guard selection != Assignee.from(override) else {
             return env.router.pop(from: controller)
         }
-        overrides = overrides.flatMap { (item) -> [Override] in
+        overrides = overrides.flatMap { item -> [Override] in
             guard item == override else { return [item] }
             var replaceWith: [Override] = []
             var studentIDs: [String] = []
@@ -182,13 +190,13 @@ struct AssignmentAssigneePicker: View {
 
         static func from(_ override: Override) -> [Assignee] {
             if let id = override.groupID {
-                return [ .group(id) ]
+                return [.group(id)]
             } else if let id = override.sectionID {
-                return [ .section(id) ]
+                return [.section(id)]
             } else if let ids = override.studentIDs {
                 return ids.map { Assignee.student($0) }
             }
-            return [ .everyone ]
+            return [.everyone]
         }
     }
 }

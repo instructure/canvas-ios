@@ -35,10 +35,20 @@ struct CreateDSCourseRequest: APIRequestable {
 extension CreateDSCourseRequest {
     public struct RequestedDSCourse: Encodable {
         let name: String
+        let syllabus_body: String?
+
+        public init(name: String, syllabus_body: String? = nil) {
+            self.name = name
+            self.syllabus_body = syllabus_body
+        }
     }
 
     public struct Body: Encodable {
         let course: RequestedDSCourse
         let offer = true // makes the course published after creation
+
+        public init(course: RequestedDSCourse) {
+            self.course = course
+        }
     }
 }

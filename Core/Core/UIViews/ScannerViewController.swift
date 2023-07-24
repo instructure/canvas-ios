@@ -34,20 +34,22 @@ public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         view.backgroundColor = UIColor.black
         captureSession = AVCaptureSession()
 
-        guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
+        guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else {
+            return failed()
+        }
+
         let videoInput: AVCaptureDeviceInput
 
         do {
             videoInput = try AVCaptureDeviceInput(device: videoCaptureDevice)
         } catch {
-            return
+            return failed()
         }
 
         if (captureSession.canAddInput(videoInput)) {
             captureSession.addInput(videoInput)
         } else {
-            failed()
-            return
+            return failed()
         }
 
         let metadataOutput = AVCaptureMetadataOutput()
@@ -58,8 +60,7 @@ public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObj
             metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             metadataOutput.metadataObjectTypes = [.qr]
         } else {
-            failed()
-            return
+            return failed()
         }
 
         previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
@@ -117,14 +118,14 @@ public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObj
             cancelBottomConstraint,
         ])
 
-        captureSession.startRunning()
+        // startRunning is blocking until the camera wakes up so
+        // in order not to block the UI we start the session on a background thread
+        DispatchQueue.global().async { [weak self] in
+            self?.captureSession.startRunning()
+        }
     }
 
     func failed() {
-        if let code = ProcessInfo.processInfo.environment["QR_CODE"] {
-            found(code: code)
-            return
-        }
         let alert = UIAlertController(
             title: NSLocalizedString("Scanning not supported", bundle: .core, comment: ""),
             message: NSLocalizedString("Make sure you enable camera permissions in Settings", bundle: .core, comment: ""),
@@ -133,7 +134,7 @@ public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObj
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", bundle: .core, comment: ""), style: .default) { [weak self] _ in
             self?.dismiss(animated: true, completion: nil)
         })
-        performUIUpdate {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.present(alert, animated: true)
         }
         captureSession = nil
@@ -157,8 +158,9 @@ public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObj
 
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if UIImagePickerController.isSourceTypeAvailable(.camera) == false {
-            failed()
+
+        if ProcessInfo.isUITest, let code = ProcessInfo.processInfo.environment["QR_CODE"] {
+            found(code: code)
         }
     }
 
@@ -190,11 +192,21 @@ public class ScannerViewController: UIViewController, AVCaptureMetadataOutputObj
     }
 
     private func updateCameraPreviewOrientation() {
+
+        var orientation: UIDeviceOrientation
+        let supportedOrientations = Bundle.main.infoDictionary?["UISupportedInterfaceOrientations"] as? [String]
+        if supportedOrientations?.count == 1,
+            supportedOrientations?.first?.contains("UIInterfaceOrientationPortrait") != nil {
+            orientation = .portrait
+        } else {
+            orientation = UIDevice.current.orientation
+        }
+
         guard
             let previewLayer = previewLayer,
             let connection = previewLayer.connection,
             connection.isVideoOrientationSupported,
-            let videoOrientation = AVCaptureVideoOrientation(rawValue: UIDevice.current.orientation.rawValue)
+            let videoOrientation = AVCaptureVideoOrientation(rawValue: orientation.rawValue)
         else { return }
 
         previewLayer.frame = view.layer.bounds

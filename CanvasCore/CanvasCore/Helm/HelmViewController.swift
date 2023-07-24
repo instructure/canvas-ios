@@ -36,21 +36,21 @@ public class HelmNavigationItem: UINavigationItem {
             super.leftBarButtonItems = combinedLeftItems
         }
     }
-    
+
     public override init(title: String) {
         super.init(title: title)
     }
-    
+
     required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private var combinedLeftItems: [UIBarButtonItem]? {
         get {
             return reactLeftBarButtonItems + nativeLeftBarButtonItems
         }
     }
-    
+
     public override var leftBarButtonItem: UIBarButtonItem? {
         get {
             return super.leftBarButtonItems?.first
@@ -65,7 +65,7 @@ public class HelmNavigationItem: UINavigationItem {
             super.leftBarButtonItem = combinedLeftItems?.first
         }
     }
-    
+
     public override var leftBarButtonItems: [UIBarButtonItem]? {
         get {
             return super.leftBarButtonItems
@@ -77,8 +77,8 @@ public class HelmNavigationItem: UINavigationItem {
     }
 }
 
-public final class HelmViewController: UIViewController, HelmScreen, PageViewEventViewControllerLoggingProtocol {
-    
+public final class HelmViewController: ScreenViewTrackableViewController, HelmScreen {
+
     @objc public let moduleName: String
     @objc let screenInstanceID: String
     @objc public var props: Props
@@ -99,7 +99,7 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
             return _navigationItem
         }
     }
-    
+
     @objc private(set) public var isVisible: Bool = false
 
     @objc var screenConfigRendered: Bool = false {
@@ -112,13 +112,22 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
         }
     }
     @objc var onReadyToPresent: () -> Void = { }
-    
-    
+    public lazy var screenViewTrackingParameters: ScreenViewTrackingParameters = {
+        var attributes: [String: String] = [:]
+        for (key, value) in props {
+            attributes[key] = value as? String
+        }
+        if let customPageViewPath = screenConfig[PageViewEventController.Constants.customPageViewPath] as? String {
+            attributes[PageViewEventController.Constants.customPageViewPath] = customPageViewPath
+        }
+        return ScreenViewTrackingParameters(eventName: moduleName, attributes: attributes)
+    }()
+
     // MARK: - Initialization
-    
+
     @objc public init(moduleName: String, props: Props) {
         self.moduleName = moduleName
-        
+
         if let screenInstanceID = props["screenInstanceID"] as? String {
             self.screenInstanceID = screenInstanceID
             self.props = props
@@ -128,9 +137,9 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
             propsFRD["screenInstanceID"] = screenInstanceID
             self.props = propsFRD
         }
-        
+
         super.init(nibName: nil, bundle: nil)
-        
+
         HelmManager.shared.register(screen: self)
     }
 
@@ -158,18 +167,18 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
         props["location"] = location
         self.init(moduleName: moduleName, props: props)
     }
-    
+
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - View lifecycle
-    
+
     override public func loadView() {
         self.view = RCTRootView(bridge: HelmManager.shared.bridge, moduleName: moduleName, initialProperties: props)
         view.backgroundColor = .backgroundLightest
     }
-    
+
     // Do stuff that you'd usually do in viewDidLoad here, rather than there.
     // This is due to the way the Screen component works and it's flow with
     // setting the screenConfig and doing a prerender
@@ -178,33 +187,23 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
         if (_screenDidRender) { return }
         _screenDidRender = true
     }
-    
+
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         isVisible = true
         handleStyles()
-        startTrackingTimeOnViewController()
     }
 
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         handleStyles()
     }
-    
+
     public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         isVisible = false
-        
-        var attributes: [String: String] = [:]
-        for (key, value) in props {
-            attributes[key] = value as? String
-        }
-        if let customPageViewPath = screenConfig[PageViewEventController.Constants.customPageViewPath] as? String {
-            attributes[PageViewEventController.Constants.customPageViewPath] = customPageViewPath
-        }
-        stopTrackingTimeOnViewController(eventName: moduleName, attributes: attributes)
     }
-    
+
     public override func accessibilityPerformEscape() -> Bool {
         if let presenting = self.presentingViewController {
             presenting.dismiss(animated: true, completion: nil)
@@ -212,30 +211,30 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
         }
         return false
     }
-    
+
     // MARK: - Orientation
-    
+
     public override var shouldAutorotate: Bool {
         return super.shouldAutorotate
     }
-    
+
     public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if let cantRotate = screenConfig[PropKeys.noRotationInVerticallyCompact] as? Bool, cantRotate, (self.traitCollection.verticalSizeClass == .compact || self.traitCollection.horizontalSizeClass == .compact) {
             return .portrait
         }
-        
+
         return super.supportedInterfaceOrientations
     }
-    
+
     // MARK: - Styles
     @objc public func handleStyles() {
         if !screenConfig.config.isEmpty {
             switch screenConfig[PropKeys.navBarStyle] as? String {
             case "context":
-                if #available(iOS 14, *) {
-                    navigationController?.navigationBar.useContextColor(screenConfig.navBarColor, isTranslucent: screenConfig.navBarTransparent)
+                if #available(iOS 16, *) {
+                    navigationController?.navigationBar.useContextColor(nil, isTranslucent: screenConfig.navBarTransparent)
                 } else {
-                    navigationController?.navigationBar.useContextColor(screenConfig.navBarColor, isTranslucent: false)
+                    navigationController?.navigationBar.useContextColor(screenConfig.navBarColor, isTranslucent: screenConfig.navBarTransparent)
                 }
             case "global":
                 navigationController?.navigationBar.useGlobalNavStyle()
@@ -369,14 +368,14 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
                     continue
                 }
                 items.append(barButtonItem)
-                
+
                 if let action = buttonConfig["action"] as? NSString {
                     objc_setAssociatedObject(barButtonItem, &Associated.barButtonAction, action, .OBJC_ASSOCIATION_RETAIN)
                 }
-                
+
                 let disabled = buttonConfig["disabled"] as? Bool ?? false
                 barButtonItem.isEnabled = !disabled
-                
+
                 if let testID = buttonConfig["testID"] as? String {
                     barButtonItem.accessibilityIdentifier = testID
                 }
@@ -386,14 +385,14 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
             }
             return items
         }
-        
+
         let leftBarButtonsConfig = screenConfig[PropKeys.leftBarButtons] as? [[String: Any]] ?? []
         let leftBarButtonItems = barButtonItems(fromConfig: leftBarButtonsConfig)
         (navigationItem as? HelmNavigationItem)?.reactLeftBarButtonItems = leftBarButtonItems
-        
+
         let rightBarButtons = screenConfig[PropKeys.rightBarButtons] as? [[String: Any]] ?? []
         navigationItem.rightBarButtonItems = barButtonItems(fromConfig: rightBarButtons)
-        
+
         // show the dismiss button when view controller is shown modally
         let navigatorOptions = props[PropKeys.navigatorOptions] as? [String: Any]
         if screenConfig[PropKeys.dismissButtonTitle] != nil || (navigatorOptions?["modal"] as? Bool == true && screenConfig[PropKeys.showDismissButton] as? Bool == true) {
@@ -408,27 +407,27 @@ public final class HelmViewController: UIViewController, HelmScreen, PageViewEve
         if let backgroundColor = screenConfig[PropKeys.backgroundColor] {
             view.backgroundColor = RCTConvert.uiColor(backgroundColor)
         }
-        
+
         self.navigationController?.syncStyles()
     }
-    
+
     @objc func barButtonTapped(_ barButton: UIBarButtonItem) {
         if let action = objc_getAssociatedObject(barButton, &Associated.barButtonAction) as? NSString {
             HelmManager.shared.bridge.enqueueJSCall("RCTDeviceEventEmitter.emit", args: [action])
         }
     }
-    
+
     @objc func dismissTapped(_ barButton: UIBarButtonItem) {
         HelmManager.shared.dismiss(["animated": true])
     }
-    
+
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         if let onTraitCollectionChange = screenConfig["onTraitCollectionChange"] as? NSString {
             HelmManager.shared.bridge.enqueueJSCall("RCTDeviceEventEmitter.emit", args: [onTraitCollectionChange])
         }
     }
-    
+
     override public func willMove(toParent parent: UIViewController?) {
         // setting these values in viewWillAppear and/or viewWillDisappear don't animate
         // This is the only place where they animate reliably
@@ -467,11 +466,11 @@ extension UIViewController {
             navigationItem.leftBarButtonItem = button
         }
     }
-    
+
     @objc func dismissModalWithAnimation() {
         dismissModal(animated: true)
     }
-    
+
     @objc func dismissModal(animated: Bool) {
         dismiss(animated: animated, completion: nil)
     }

@@ -38,6 +38,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             Array [
               Object {
                 "color": "#556572",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 14,
                 "fontWeight": "600",
                 "marginBottom": 8,
@@ -84,6 +85,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
@@ -137,6 +139,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               Array [
                 Object {
                   "color": "#2D3B45",
+                  "fontFamily": "Lato-Regular",
                   "fontSize": 16,
                 },
                 Object {
@@ -160,6 +163,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {},
@@ -235,6 +239,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
@@ -261,6 +266,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {},
@@ -370,6 +376,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
@@ -396,6 +403,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {},
@@ -505,6 +513,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
@@ -531,6 +540,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {},
@@ -611,6 +621,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             Array [
               Object {
                 "color": "#556572",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 14,
                 "fontWeight": "600",
                 "marginBottom": 8,
@@ -657,6 +668,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
@@ -710,6 +722,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               Array [
                 Object {
                   "color": "#2D3B45",
+                  "fontFamily": "Lato-Regular",
                   "fontSize": 16,
                 },
                 Object {
@@ -733,6 +746,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {},
@@ -808,6 +822,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
@@ -834,6 +849,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {},
@@ -943,6 +959,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
@@ -969,6 +986,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {},
@@ -1078,6 +1096,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
@@ -1104,6 +1123,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {},
@@ -1184,6 +1204,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             Array [
               Object {
                 "color": "#556572",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 14,
                 "fontWeight": "600",
                 "marginBottom": 8,
@@ -1230,6 +1251,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
@@ -1283,6 +1305,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
               Array [
                 Object {
                   "color": "#2D3B45",
+                  "fontFamily": "Lato-Regular",
                   "fontSize": 16,
                 },
                 Object {
@@ -1306,6 +1329,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {},
@@ -1381,6 +1405,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
@@ -1407,6 +1432,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {},
@@ -1516,6 +1542,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
@@ -1542,6 +1569,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {},
@@ -1651,6 +1679,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
@@ -1677,6 +1706,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {},
@@ -1792,6 +1822,7 @@ exports[`snapshots! doing stuff with selecting assignees 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Array [
@@ -1860,6 +1891,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
             Array [
               Object {
                 "color": "#556572",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 14,
                 "fontWeight": "600",
                 "marginBottom": 8,
@@ -1911,6 +1943,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
               Array [
                 Object {
                   "color": "#2D3B45",
+                  "fontFamily": "Lato-Regular",
                   "fontSize": 16,
                 },
                 Object {
@@ -1934,6 +1967,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {},
@@ -2009,6 +2043,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
@@ -2035,6 +2070,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {},
@@ -2144,6 +2180,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
@@ -2170,6 +2207,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {},
@@ -2279,6 +2317,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
@@ -2305,6 +2344,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {},
@@ -2385,6 +2425,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
             Array [
               Object {
                 "color": "#556572",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 14,
                 "fontWeight": "600",
                 "marginBottom": 8,
@@ -2431,6 +2472,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
@@ -2484,6 +2526,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
               Array [
                 Object {
                   "color": "#2D3B45",
+                  "fontFamily": "Lato-Regular",
                   "fontSize": 16,
                 },
                 Object {
@@ -2507,6 +2550,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {},
@@ -2582,6 +2626,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
@@ -2608,6 +2653,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {},
@@ -2717,6 +2763,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
@@ -2743,6 +2790,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {},
@@ -2852,6 +2900,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
@@ -2878,6 +2927,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {},
@@ -2993,6 +3043,7 @@ exports[`snapshots! render with multiple due dates 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Array [
@@ -3061,6 +3112,7 @@ exports[`snapshots! render with single due date 1`] = `
             Array [
               Object {
                 "color": "#556572",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 14,
                 "fontWeight": "600",
                 "marginBottom": 8,
@@ -3112,6 +3164,7 @@ exports[`snapshots! render with single due date 1`] = `
               Array [
                 Object {
                   "color": "#2D3B45",
+                  "fontFamily": "Lato-Regular",
                   "fontSize": 16,
                 },
                 Object {
@@ -3135,6 +3188,7 @@ exports[`snapshots! render with single due date 1`] = `
                 Array [
                   Object {
                     "color": "#2D3B45",
+                    "fontFamily": "Lato-Regular",
                     "fontSize": 16,
                   },
                   Object {},
@@ -3210,6 +3264,7 @@ exports[`snapshots! render with single due date 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
@@ -3236,6 +3291,7 @@ exports[`snapshots! render with single due date 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {},
@@ -3345,6 +3401,7 @@ exports[`snapshots! render with single due date 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
@@ -3371,6 +3428,7 @@ exports[`snapshots! render with single due date 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {},
@@ -3480,6 +3538,7 @@ exports[`snapshots! render with single due date 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {
@@ -3506,6 +3565,7 @@ exports[`snapshots! render with single due date 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Object {},
@@ -3621,6 +3681,7 @@ exports[`snapshots! render with single due date 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Array [

@@ -149,7 +149,7 @@
 "1 month ago" = "1 month ago";
 
 /* Label indicating a submission need grading */
-"1 needs grading" = "1 needs grading";
+"1 needs grading" = "1 needs marking";
 
 /* time since creation */
 "1 year ago" = "1 year ago";
@@ -202,9 +202,6 @@
 
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
 "Add recipients" = "Add recipients";
-
-/* No comment provided by engineer. */
-"All" = "All";
 
 /* Button to select all members of a group */
 "All members" = "All members";
@@ -363,9 +360,6 @@
 
 /* Choose a video to send as a comment */
 "Choose Video" = "Choose Video";
-
-/* No comment provided by engineer. */
-"Clear filter" = "Clear filter";
 
 /* No comment provided by engineer. */
 "Close" = "Close";
@@ -635,12 +629,6 @@
 /* No comment provided by engineer. */
 "Files (%d)" = "Files (%d)";
 
-/* No comment provided by engineer. */
-"Filter" = "Filter";
-
-/* No comment provided by engineer. */
-"Filter by:" = "Filter by:";
-
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Finished downloading";
 
@@ -672,7 +660,7 @@
 "Grade %@" = "Mark %@";
 
 /* Launch the SpeedGrader app */
-"Grade in SpeedGrader" = "Grade in SpeedGrader";
+"Grade in SpeedGrader" = "Mark in SpeedGrader";
 
 /* No comment provided by engineer. */
 "Grade: %@" = "Mark: %@";
@@ -1654,5 +1642,5 @@
 "Your school's configuration does not allow the type of submission selected for this assignment" = "Your school's configuration does not allow the type of submission selected for this assignment.";
 
 /* No comment provided by engineer. */
-"Your submission is now waiting to be graded." = "Your submission is now waiting to be graded.";
+"Your submission is now waiting to be graded." = "Your submission is now waiting to be marked.";
 

@@ -29,3 +29,9 @@ extension Int {
         return Int.humanReadableFormatter.string(fromByteCount: Int64(self))
     }
 }
+
+extension Int64 {
+    public var humanReadableFileSize: String {
+        Int.humanReadableFormatter.string(fromByteCount: self)
+    }
+}

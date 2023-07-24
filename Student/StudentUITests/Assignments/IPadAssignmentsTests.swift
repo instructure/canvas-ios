@@ -23,8 +23,8 @@ import TestsFoundation
 class IPadAssignmentsTest: MiniCanvasUITestCase {
     func assertHas(assignment: APIAssignment) {
         let id = assignment.id.value
-        let expectedLabel = "\(assignment.name) \(assignment.due_at == nil ? "No Due Date" : "Due")"
-        XCTAssert(AssignmentsList.assignment(id: id).label().hasPrefix(expectedLabel))
+        let expectedLabel = "\(assignment.name), \(assignment.due_at == nil ? "No Due Date, 1 NEEDS GRADING" : "Due")"
+        XCTAssert(AssignmentsList.assignment(id: id).waitToExist().label().hasPrefix(expectedLabel))
     }
 
     func makeTextSubmission(score: Int? = nil, comments: [APISubmissionComment]? = nil) -> APISubmission {
@@ -92,13 +92,16 @@ class IPadAssignmentsTest: MiniCanvasUITestCase {
         firstCourse.add(assignment: letterGradeTextAssignment)
         firstCourse.add(assignment: percentFileAssignment)
 
-        Dashboard.courseCard(id: firstCourse.id).tap()
+        TabBar.inboxTab.tap()
+        TabBar.dashboardTab.tap()
+        Dashboard.courseCard(id: firstCourse.id).waitToExist().tap()
         CourseNavigation.assignments.tap()
         assertHas(assignment: pointsTextAssignment.api)
         assertHas(assignment: letterGradeTextAssignment.api)
         assertHas(assignment: percentFileAssignment.api)
 
         // Let's submit a text assignment
+        AssignmentsList.assignment(id: pointsTextAssignment.id).tap()
         XCTAssertEqual(AssignmentDetails.name.label(), "Points Text Assignment")
 
         XCTAssertFalse(AssignmentDetails.submittedText.isVisible)
@@ -119,6 +122,9 @@ class IPadAssignmentsTest: MiniCanvasUITestCase {
         XCTAssertEqual(AssignmentDetails.name.label(), "Letter Grade Text Assignment")
         XCTAssertEqual(AssignmentDetails.gradeCircle.label(), "Scored 16 out of 20 points possible")
 
+        // when the assignment is opened in the detail view it disappears from the list,
+        // so we refresh it to get it back... mocking issue?
+        pullToRefresh(x: 0.1)
         AssignmentsList.assignment(id: pointsTextAssignment.id).tap()
         AssignmentDetails.viewSubmissionButton.tap()
         app.find(label: "Comments").tap()

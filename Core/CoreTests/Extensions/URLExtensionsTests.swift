@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import XCTest
 
 class URLExtensionsTests: XCTestCase {
@@ -44,17 +45,17 @@ class URLExtensionsTests: XCTestCase {
     }
 
     func testTemporaryDirectory() {
-        XCTAssertEqual(URL.temporaryDirectory, URL(fileURLWithPath: NSTemporaryDirectory()))
+        XCTAssertEqual(URL.Directories.temporary, URL(fileURLWithPath: NSTemporaryDirectory()))
     }
 
     func testCachesDirectory() {
-        XCTAssertEqual(URL.cachesDirectory, fs.urls(for: .cachesDirectory, in: .userDomainMask)[0])
-        XCTAssertEqual(URL.cachesDirectory, URL.cachesDirectory(appGroup: nil))
+        XCTAssertEqual(URL.Directories.caches, fs.urls(for: .cachesDirectory, in: .userDomainMask)[0])
+        XCTAssertEqual(URL.Directories.caches, URL.Directories.caches(appGroup: nil))
     }
 
     func testAppGroupCachesDirectory() {
-        let expected = URL.sharedContainer("group.instructure.shared")!.appendingPathComponent("caches", isDirectory: true)
-        let url = URL.cachesDirectory(appGroup: "group.instructure.shared")
+        let expected = URL.Directories.sharedContainer(appGroup: "group.instructure.shared")!.appendingPathComponent("caches", isDirectory: true)
+        let url = URL.Directories.caches(appGroup: "group.instructure.shared")
         XCTAssertEqual(url, expected)
         var isDir: ObjCBool = false
         XCTAssertTrue(FileManager.default.fileExists(atPath: url.path, isDirectory: &isDir))
@@ -62,13 +63,13 @@ class URLExtensionsTests: XCTestCase {
     }
 
     func testDocumentsDirectory() {
-        XCTAssertEqual(URL.documentsDirectory, fs.urls(for: .documentDirectory, in: .userDomainMask)[0])
+        XCTAssertEqual(URL.Directories.documents, fs.urls(for: .documentDirectory, in: .userDomainMask)[0])
     }
 
     func testMove() throws {
-        let url = URL.temporaryDirectory.appendingPathComponent("original.txt")
+        let url = URL.Directories.temporary.appendingPathComponent("original.txt")
         try "data".write(to: url, atomically: true, encoding: .utf8)
-        let destination = URL.temporaryDirectory.appendingPathComponent("somewhere/over/the/rainbow/other.txt")
+        let destination = URL.Directories.temporary.appendingPathComponent("somewhere/over/the/rainbow/other.txt")
         try? fs.removeItem(at: destination)
         try url.move(to: destination)
         XCTAssertTrue(fs.fileExists(atPath: destination.path))
@@ -78,9 +79,9 @@ class URLExtensionsTests: XCTestCase {
     }
 
     func testMoveOverride() throws {
-        let existing = URL.temporaryDirectory.appendingPathComponent("file.txt")
+        let existing = URL.Directories.temporary.appendingPathComponent("file.txt")
         try "existing".write(to: existing, atomically: true, encoding: .utf8)
-        let new = URL.cachesDirectory.appendingPathComponent("file.txt") // same name will cause error w/o override: true
+        let new = URL.Directories.caches.appendingPathComponent("file.txt") // same name will cause error w/o override: true
         try "new".write(to: new, atomically: true, encoding: .utf8)
         XCTAssertThrowsError(try new.move(to: existing, override: false))
         XCTAssertNoThrow(try new.move(to: existing, override: true))
@@ -93,10 +94,10 @@ class URLExtensionsTests: XCTestCase {
     }
 
     func testMoveCopy() throws {
-        let source = URL.temporaryDirectory.appendingPathComponent("source.txt")
+        let source = URL.Directories.temporary.appendingPathComponent("source.txt")
         try? fs.removeItem(at: source)
         try "source".write(to: source, atomically: true, encoding: .utf8)
-        let destination = URL.temporaryDirectory.appendingPathComponent("destination.txt")
+        let destination = URL.Directories.temporary.appendingPathComponent("destination.txt")
         try source.move(to: destination, copy: true)
         XCTAssertTrue(fs.fileExists(atPath: source.path))
         XCTAssertTrue(fs.fileExists(atPath: destination.path))
@@ -107,10 +108,10 @@ class URLExtensionsTests: XCTestCase {
     }
 
     func testCopy() throws {
-        let source = URL.temporaryDirectory.appendingPathComponent("source.txt")
+        let source = URL.Directories.temporary.appendingPathComponent("source.txt")
         try? fs.removeItem(at: source)
         try "source".write(to: source, atomically: true, encoding: .utf8)
-        let destination = URL.temporaryDirectory.appendingPathComponent("destination.txt")
+        let destination = URL.Directories.temporary.appendingPathComponent("destination.txt")
         try source.copy(to: destination)
         XCTAssertTrue(fs.fileExists(atPath: source.path))
         XCTAssertTrue(fs.fileExists(atPath: destination.path))
@@ -118,5 +119,80 @@ class URLExtensionsTests: XCTestCase {
         XCTAssertEqual(text, "source")
         try fs.removeItem(at: source)
         try fs.removeItem(at: destination)
+    }
+
+    func testContainsQueryItem() {
+        var testee = URL(string: "/path/to/resource")!
+        XCTAssertFalse(testee.containsQueryItem(named: "embed"))
+
+        testee = URL(string: "/path/to/resource?embed=true")!
+        XCTAssertTrue(testee.containsQueryItem(named: "embed"))
+
+        testee = URL(string: "/path/to/resource?param=value&embed=true")!
+        XCTAssertTrue(testee.containsQueryItem(named: "embed"))
+    }
+
+    func testPathExtensions() {
+        let urls = [
+            URL(string: "/file")!,
+            URL(string: "/file.txt")!,
+            URL(string: "https://instructure.com/file.png")!,
+            URL(string: "/file.jpeg")!,
+        ]
+        XCTAssertEqual(urls.pathExtensions, Set(["txt", "jpeg", "png"]))
+    }
+
+    func testAPIBaseURL() {
+        let url = URL(string: "https://test.instructure.com/courses/123?param=1")!
+        let testee = url.apiBaseURL
+        XCTAssertEqual(testee, URL(string: "https://test.instructure.com")!)
+    }
+}
+
+class DatabaseURLTests: XCTestCase {
+    let appGroup = "group.com.instructure.icanvas"
+    let loginSession = LoginSession(baseURL: URL(string: "https://test.instructure.com")!,
+                                    userID: "testUserID",
+                                    userName: "")
+
+    /// Student app uses the app group's shared folder to share files between the app and the widgets/file share extension
+    func testURLWithAppGroupWithSession() {
+        let testee = URL.Directories.databaseURL(appGroup: appGroup,
+                                                 session: loginSession)
+        XCTAssertTrue(match(testee,
+                            regex: #"\/Shared\/AppGroup\/[A-F0-9-]+\/Documents\/test.instructure.com-testUserID\/Offline\/Database\.sqlite$"#),
+                      testee.absoluteString)
+    }
+
+    /// Teacher and Parent apps
+    func testURLWithoutAppGroupWithSession() {
+        let testee = URL.Directories.databaseURL(appGroup: nil,
+                                                 session: loginSession)
+        XCTAssertTrue(match(testee,
+                            regex: #"\/Data\/Application\/[A-F0-9-]+\/Documents\/test.instructure.com-testUserID\/Offline\/Database\.sqlite$"#),
+                      testee.absoluteString)
+    }
+
+    func testURLWithAppGroupWithoutSession() {
+        let testee = URL.Directories.databaseURL(appGroup: appGroup,
+                                                 session: nil)
+        XCTAssertTrue(match(testee,
+                            regex: #"\/Data\/Application\/[A-F0-9-]+\/Library\/Caches\/Database\.sqlite$"#),
+                      testee.absoluteString)
+    }
+
+    func testURLWithoutAppGroupWithoutSession() {
+        let testee = URL.Directories.databaseURL(appGroup: nil,
+                                                 session: nil)
+        XCTAssertTrue(match(testee,
+                            regex: #"\/Data\/Application\/[A-F0-9-]+\/Library\/Caches\/Database\.sqlite$"#),
+                      testee.absoluteString)
+    }
+
+    private func match(_ url: URL, regex pattern: String) -> Bool {
+        let string = url.absoluteString
+        let regexp = try! NSRegularExpression(pattern: pattern)
+        let range = NSRange(location: 0, length: string.utf16.count)
+        return regexp.firstMatch(in: string, range: range) != nil
     }
 }

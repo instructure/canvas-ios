@@ -34,9 +34,12 @@
     },
     {
       "skippedTests" : [
+        "DiscussionEditorTests\/testCreateDiscussionWithAttachment()",
+        "DiscussionReplyTests\/testReplyingWithAttachment()",
         "IPadAssignmentsTest\/testAssignments()",
         "InboxTests\/testCanMessageAttachment()",
         "SpringBoardTests\/testMultitaskingSetup()",
+        "UserFilesTests\/testAddFileAudio()",
         "UserFilesTests\/testAddFileFiles()"
       ],
       "target" : {

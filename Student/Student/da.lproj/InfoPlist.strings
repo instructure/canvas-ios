@@ -1,5 +1,5 @@
 /* Bundle display name */
-"CFBundleDisplayName" = "Studerende";
+"CFBundleDisplayName" = "Canvas-studerende";
 
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Vedhæft billeder og videoer til beskeder og diskussionsposter, eller indsend dem som opgaveafleveringer.";

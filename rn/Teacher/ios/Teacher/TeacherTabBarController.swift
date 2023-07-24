@@ -22,8 +22,11 @@ import Core
 import UserNotifications
 
 class TeacherTabBarController: UITabBarController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        delegate = self
 
         viewControllers = [coursesTab(), toDoTab(), inboxTab()]
         let paths = [ "/", "/to-do", "/conversations" ]
@@ -31,28 +34,33 @@ class TeacherTabBarController: UITabBarController {
             paths.firstIndex(of: $0)
         } ?? 0
         tabBar.useGlobalNavStyle()
+        NotificationCenter.default.addObserver(self, selector: #selector(checkForPolicyChanges), name: UIApplication.didBecomeActiveNotification, object: nil)
+        reportScreenView(for: selectedIndex, viewController: viewControllers![selectedIndex])
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        checkForPolicyChanges()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
     }
 
     func coursesTab() -> UIViewController {
-        let split = HelmSplitViewController()
-        split.viewControllers = [
-            HelmNavigationController(rootViewController: CoreHostingController(
-                DashboardCardView(
-                    shouldShowGroupList: false,
-                    showOnlyTeacherEnrollment: true))),
-            HelmNavigationController(rootViewController: EmptyViewController()),
-        ]
-        split.masterNavigationController?.delegate = split
-        split.tabBarItem.title = NSLocalizedString("Courses", comment: "")
-        split.tabBarItem.image = .coursesTab
-        split.tabBarItem.selectedImage = .coursesTabActive
-        split.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
-        split.preferredDisplayMode = .allVisible
-        return split
+        let cardView = CoreHostingController(DashboardContainerView(shouldShowGroupList: false,
+                                                               showOnlyTeacherEnrollment: true))
+        let dashboard = DashboardContainerViewController(rootViewController: cardView) { HelmSplitViewController() }
+        dashboard.tabBarItem.title = NSLocalizedString("Courses", comment: "")
+        dashboard.tabBarItem.image = .coursesTab
+        dashboard.tabBarItem.selectedImage = .coursesTabActive
+        dashboard.tabBarItem.accessibilityIdentifier = "TabBar.dashboardTab"
+        return dashboard
     }
 
     func toDoTab() -> UIViewController {
-        let todo = UINavigationController(rootViewController: TodoListViewController.create())
+        let todo = HelmNavigationController(rootViewController: TodoListViewController.create())
         todo.tabBarItem.title = NSLocalizedString("To Do", comment: "")
         todo.tabBarItem.image = .todoTab
         todo.tabBarItem.selectedImage = .todoTabActive
@@ -63,25 +71,23 @@ class TeacherTabBarController: UITabBarController {
     }
 
     func inboxTab() -> UIViewController {
-        let inboxVC: UIViewController
-        let inboxNav: UINavigationController
+        let inboxController: UIViewController
         let inboxSplit = HelmSplitViewController()
 
-        if ExperimentalFeature.nativeStudentInbox.isEnabled || ExperimentalFeature.nativeTeacherInbox.isEnabled {
-            inboxVC = CoreHostingController(InboxView())
-            inboxNav = UINavigationController(rootViewController: inboxVC)
+        if ExperimentalFeature.nativeTeacherInbox.isEnabled {
+            inboxController = InboxAssembly.makeInboxViewController()
         } else {
-            inboxVC = HelmViewController(moduleName: "/conversations", props: [:])
-            inboxNav = HelmNavigationController(rootViewController: inboxVC)
+            let inboxVC = HelmViewController(moduleName: "/conversations", props: [:])
+            inboxVC.navigationItem.titleView = Core.Brand.shared.headerImageView()
+            let inboxNav = HelmNavigationController(rootViewController: inboxVC)
+            inboxNav.navigationBar.useGlobalNavStyle()
+            inboxController = inboxNav
         }
-
-        inboxNav.navigationBar.useGlobalNavStyle()
-        inboxVC.navigationItem.titleView = Core.Brand.shared.headerImageView()
 
         let empty = HelmNavigationController()
         empty.navigationBar.useGlobalNavStyle()
 
-        inboxSplit.viewControllers = [inboxNav, empty]
+        inboxSplit.viewControllers = [inboxController, empty]
         let title = NSLocalizedString("Inbox", comment: "Inbox tab title")
         inboxSplit.tabBarItem = UITabBarItem(title: title, image: .inboxTab, selectedImage: .inboxTabActive)
         inboxSplit.tabBarItem.accessibilityIdentifier = "TabBar.inboxTab"
@@ -89,5 +95,28 @@ class TeacherTabBarController: UITabBarController {
         TabBarBadgeCounts.messageItem = inboxSplit.tabBarItem
 
         return inboxSplit
+    }
+
+    private func reportScreenView(for tabIndex: Int, viewController: UIViewController) {
+        let map = ["dashboard", "todo", "conversations"]
+        let event = map[tabIndex]
+        Analytics.shared.logScreenView(route: "/tabs/" + event, viewController: viewController)
+    }
+
+    @objc private func checkForPolicyChanges() {
+        LoginUsePolicy.checkAcceptablePolicy(from: self, cancelled: {
+            AppEnvironment.shared.loginDelegate?.changeUser()
+        })
+    }
+}
+
+extension TeacherTabBarController: UITabBarControllerDelegate {
+
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if let index = viewControllers?.firstIndex(of: viewController), selectedViewController != viewController {
+            reportScreenView(for: index, viewController: viewController)
+        }
+
+        return true
     }
 }

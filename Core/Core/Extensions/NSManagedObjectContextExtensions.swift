@@ -33,6 +33,10 @@ extension NSManagedObjectContext {
         return all(where: key, equals: value).first
     }
 
+    public func first<T>(scope: Scope) -> T? {
+        fetch(scope: scope).first
+    }
+
     public func all<T>(where key: String, equals value: CVarArg?) -> [T] {
         let predicate = NSPredicate(key: key, equals: value)
         return fetch(predicate)
@@ -88,5 +92,17 @@ extension NSManagedObjectContext {
             original.entity.attributesByName.keys.map { $0 }
         ))
         return copy
+    }
+
+    public func saveAndNotify() throws {
+        try save()
+        InterprocessNotificationCenter.shared.post(name: NSPersistentStore.InterProcessNotifications.didWriteLocally)
+    }
+
+    /** This method force fetches all objects ignoring any cached data on the context. */
+    public func forceRefreshAllObjects() {
+        stalenessInterval = 0
+        refreshAllObjects()
+        stalenessInterval = -1
     }
 }

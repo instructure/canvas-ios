@@ -57,7 +57,6 @@ class RoutesTests: XCTestCase {
 
         XCTAssert(router.match("/courses/2/announcements") is AnnouncementListViewController)
         XCTAssert(router.match("/courses/2/announcements/new") is CoreHostingController<DiscussionEditorView>)
-        XCTAssert(router.match("/courses/2/announcements/3") is DiscussionDetailsViewController)
         XCTAssert(router.match("/courses/2/announcements/3/edit") is CoreHostingController<DiscussionEditorView>)
 
         XCTAssert(router.match("/courses/2/discussions") is DiscussionListViewController)
@@ -87,17 +86,136 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/users/1/files/2?origin=globalAnnouncement") is FileDetailsViewController)
     }
 
-    func testRoutesWithK5Alternative() {
+    func testNativeDiscussionDetailsRoute() {
+        ExperimentalFeature.hybridDiscussionDetails.isEnabled = false
+        XCTAssert(router.match("/courses/2/discussions/3?origin=module_item_details") is DiscussionDetailsViewController)
+        XCTAssert(router.match("/courses/2/discussion_topics/3?origin=module_item_details") is DiscussionDetailsViewController)
+    }
+
+    func testHybridDiscussionDetailsRoute() {
+        ExperimentalFeature.hybridDiscussionDetails.isEnabled = true
+        let flag = FeatureFlag(context: AppEnvironment.shared.database.viewContext)
+        flag.name = "react_discussions_post"
+        flag.enabled = true
+        flag.context = .course("2")
+
+        XCTAssert(router.match("/courses/2/discussions/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
+        XCTAssert(router.match("/courses/2/discussion_topics/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
+    }
+
+    func testNativeGroupDiscussionDetailsRoute() {
+        ExperimentalFeature.hybridDiscussionDetails.isEnabled = false
+        XCTAssert(router.match("/groups/2/discussions/3?origin=module_item_details") is DiscussionDetailsViewController)
+        XCTAssert(router.match("/groups/2/discussion_topics/3?origin=module_item_details") is DiscussionDetailsViewController)
+    }
+
+    func testHybridGroupDiscussionDetailsRoute() {
+        ExperimentalFeature.hybridDiscussionDetails.isEnabled = true
+        let flag = FeatureFlag(context: AppEnvironment.shared.database.viewContext)
+        flag.name = "react_discussions_post"
+        flag.enabled = true
+        flag.context = .course("2")
+
+        let group = Group(context: AppEnvironment.shared.database.viewContext)
+        group.id = "2"
+        group.courseID = "2"
+
+        XCTAssert(router.match("/groups/2/discussions/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
+        XCTAssert(router.match("/groups/2/discussion_topics/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
+    }
+
+    func testNativeAnnouncementDiscussionDetailsRoute() {
+        ExperimentalFeature.hybridDiscussionDetails.isEnabled = false
+        XCTAssert(router.match("/courses/2/announcements/3?origin=module_item_details") is DiscussionDetailsViewController)
+    }
+
+    func testHybridAnnouncementDiscussionDetailsRoute() {
+        ExperimentalFeature.hybridDiscussionDetails.isEnabled = true
+        let flag = FeatureFlag(context: AppEnvironment.shared.database.viewContext)
+        flag.name = "react_discussions_post"
+        flag.enabled = true
+        flag.context = .course("2")
+
+        XCTAssert(router.match("/courses/2/announcements/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
+    }
+
+    func testNativeGroupAnnouncementDiscussionDetailsRoute() {
+        ExperimentalFeature.hybridDiscussionDetails.isEnabled = false
+        XCTAssert(router.match("/groups/2/announcements/3") is DiscussionDetailsViewController)
+    }
+
+    func testHybridGroupAnnouncementDiscussionDetailsRoute() {
+        ExperimentalFeature.hybridDiscussionDetails.isEnabled = true
+        let flag = FeatureFlag(context: AppEnvironment.shared.database.viewContext)
+        flag.name = "react_discussions_post"
+        flag.enabled = true
+        flag.context = .course("2")
+
+        let group = Group(context: AppEnvironment.shared.database.viewContext)
+        group.id = "2"
+        group.courseID = "2"
+
+        XCTAssert(router.match("/groups/2/announcements/3?origin=module_item_details") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
+    }
+
+    func testOfflineScreenRoutes() {
+        XCTAssert(router.match("/offline/sync_picker/132") is CoreHostingController<CourseSyncSelectorView>)
+        XCTAssert(router.match("/offline/sync_picker") is CoreHostingController<CourseSyncSelectorView>)
+        XCTAssert(router.match("/offline/settings") is CoreHostingController<CourseSyncSettingsView>)
+    }
+
+    // MARK: - K5 / non-K5 course detail route logic tests
+
+    func testK5SubjectViewRoute() {
+        // User and accounts are in K5 mode
         ExperimentalFeature.K5Dashboard.isEnabled = true
         let env = AppEnvironment.shared
         guard let session = env.currentSession else { XCTFail(); return }
         env.userDidLogin(session: session)
         env.k5.userDidLogin(isK5Account: true)
         env.userDefaults?.isElementaryViewEnabled = true
+
+        // Opened course is a K5 one
+        DashboardCard.save(.make(isK5Subject: true), position: 0, in: env.database.viewContext)
+
         XCTAssert(router.match("/courses/1") is CoreHostingController<K5SubjectView>)
+
+        // Non-K5 account login
         env.k5.userDidLogin(isK5Account: false)
-        XCTAssertEqual((router.match("/courses/1") as? HelmViewController)?.moduleName, "/courses/:courseID")
+        XCTAssert(router.match("/courses/1") is CoreHostingController<CourseDetailsView>)
     }
+
+    func testRegularCourseDetailsInK5Mode() {
+        // User and accounts are in K5 mode
+        ExperimentalFeature.K5Dashboard.isEnabled = true
+        let env = AppEnvironment.shared
+        guard let session = env.currentSession else { XCTFail(); return }
+        env.userDidLogin(session: session)
+        env.k5.userDidLogin(isK5Account: true)
+        env.userDefaults?.isElementaryViewEnabled = true
+
+        // Opened course is a non-K5 one
+        DashboardCard.save(.make(isK5Subject: false), position: 0, in: env.database.viewContext)
+
+        XCTAssert(router.match("/courses/1") is CoreHostingController<CourseDetailsView>)
+    }
+
+    func testMissingDashboardCardInfoWhenOpeningK5SubjectRoute() {
+        // User and accounts are in K5 mode
+        ExperimentalFeature.K5Dashboard.isEnabled = true
+        let env = AppEnvironment.shared
+        guard let session = env.currentSession else { XCTFail(); return }
+        env.userDidLogin(session: session)
+        env.k5.userDidLogin(isK5Account: true)
+        env.userDefaults?.isElementaryViewEnabled = true
+
+        // No cached data in CoreData
+        XCTAssertTrue(env.database.viewContext.registeredObjects.isEmpty)
+
+        XCTAssert(router.match("/courses/1") is CoreHostingController<K5SubjectView>)
+    }
+
+    // MARK: -
 
     func testModuleItems() {
         XCTAssert(router.match("/courses/1/assignments/syllabus") is SyllabusTabViewController)
@@ -134,23 +252,26 @@ class RoutesTests: XCTestCase {
 
     func testFallbackNonHTTP() {
         let expected = URL(string: "https://canvas.instructure.com/not-a-native-route")!
-        api.mock(GetWebSessionRequest(to: expected), value: .init(session_url: expected))
+        api.mock(GetWebSessionRequest(to: expected), value: .init(session_url: expected, requires_terms_acceptance: false))
         router.route(to: "canvas-courses://canvas.instructure.com/not-a-native-route", from: UIViewController())
         XCTAssertEqual(login.opened, expected)
     }
 
     func testFallbackRelative() {
         let expected = URL(string: "https://canvas.instructure.com/not-a-native-route")!
-        api.mock(GetWebSessionRequest(to: expected), value: .init(session_url: expected))
+        api.mock(GetWebSessionRequest(to: expected), value: .init(session_url: expected, requires_terms_acceptance: false))
         AppEnvironment.shared.currentSession = LoginSession.make(baseURL: URL(string: "https://canvas.instructure.com")!)
         router.route(to: "not-a-native-route", from: UIViewController())
         XCTAssertEqual(login.opened?.absoluteURL, expected)
     }
 
     func testFallbackAbsoluteHTTPs() {
+        AppEnvironment.shared.currentSession = LoginSession(baseURL: URL(string: "https://canvas.com")!,
+                                                            userID: "",
+                                                            userName: "")
         let expected = URL(string: "https://instructure.com")!
-        api.mock(GetWebSessionRequest(to: URL(string: "https://google.com")!), value: .init(session_url: expected))
-        router.route(to: "https://google.com", from: UIViewController())
+        api.mock(GetWebSessionRequest(to: URL(string: "https://canvas.com")!), value: .init(session_url: expected, requires_terms_acceptance: false))
+        router.route(to: "https://canvas.com", from: UIViewController())
         XCTAssertEqual(login.opened, expected)
     }
 
@@ -158,16 +279,19 @@ class RoutesTests: XCTestCase {
         let expected = URL(string: "https://canvas.instructure.com/not-a-native-route?token=abcdefg")!
         api.mock(
             GetWebSessionRequest(to: URL(string: "https://canvas.instructure.com/not-a-native-route")),
-            value: .init(session_url: expected)
+            value: .init(session_url: expected, requires_terms_acceptance: false)
         )
         router.route(to: "canvas-courses://canvas.instructure.com/not-a-native-route", from: UIViewController())
         XCTAssertEqual(login.opened, expected)
     }
 
     func testFallbackAuthenticatedError() {
-        let expected = URL(string: "https://google.com")!
+        AppEnvironment.shared.currentSession = LoginSession(baseURL: URL(string: "https://canvas.com")!,
+                                                            userID: "",
+                                                            userName: "")
+        let expected = URL(string: "https://canvas.com")!
         api.mock(GetWebSessionRequest(to: expected), error: NSError.internalError())
-        router.route(to: "https://google.com", from: UIViewController())
+        router.route(to: "https://canvas.com", from: UIViewController())
         XCTAssertEqual(login.opened, expected)
     }
 }

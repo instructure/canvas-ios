@@ -21,6 +21,7 @@ import Foundation
 import MobileCoreServices
 import UIKit
 import CryptoKit
+import UniformTypeIdentifiers
 
 public typealias RubricAssessments = [String: RubricAssessment]
 
@@ -127,6 +128,7 @@ extension Submission: WriteableModel {
     public typealias JSON = APISubmission
 
     @discardableResult
+    // swiftlint:disable:next function_body_length
     static public func save(_ item: APISubmission, in client: NSManagedObjectContext) -> Submission {
         let predicate = NSPredicate(
             format: "%K == %@ AND %K == %@ AND %K == %d",
@@ -427,12 +429,12 @@ extension Array where Element == SubmissionType {
     }
 
     public var allowedMediaTypes: [String] {
-        var types  = [kUTTypeMovie as String]
+        var types  = [UTType.movie.identifier]
 
         if contains(.media_recording) && !contains(.online_upload) {
-            types.append(kUTTypeAudio as String)
+            types.append(UTType.audio.identifier)
         } else {
-            types.append(kUTTypeImage as String)
+            types.append(UTType.image.identifier)
         }
         return types
     }

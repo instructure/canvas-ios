@@ -27,7 +27,7 @@ public class K5ResourcesViewModel: ObservableObject {
         return homeroomInfos.count > 1
     }
 
-    private lazy var courses = AppEnvironment.shared.subscribe(GetCourses(enrollmentState: nil)) { [weak self] in
+    private lazy var courses = AppEnvironment.shared.subscribe(GetCourses(enrollmentState: .active)) { [weak self] in
         self?.coursesRefreshed()
     }
     private var applicationsRequest: APITask?
@@ -109,9 +109,19 @@ public class K5ResourcesViewModel: ObservableObject {
 
 extension K5ResourcesViewModel: Refreshable {
 
+    @available(*, renamed: "refresh()")
     public func refresh(completion: @escaping () -> Void) {
-        courses.refresh(force: true) {_ in
+        Task {
+            await refresh()
             completion()
+        }
+    }
+
+    public func refresh() async {
+        return await withCheckedContinuation { continuation in
+            courses.refresh(force: true) {_ in
+                continuation.resume()
+            }
         }
     }
 }

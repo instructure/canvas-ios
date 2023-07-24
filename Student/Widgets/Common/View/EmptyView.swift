@@ -63,12 +63,9 @@ struct EmptyView_Previews: PreviewProvider {
         EmptyView(title: Text("Grades"), message: Text("Please log in via the application"))
             .previewContext(WidgetPreviewContext(family: .systemLarge))
             .previewDevice(PreviewDevice(.allCases[0]))
-
-        if #available(iOSApplicationExtension 15.0, *) {
-            EmptyView(title: Text("Grades"), message: Text("Please log in via the application"))
-                .previewContext(WidgetPreviewContext(family: .systemExtraLarge))
-                .previewDevice(PreviewDevice(.iPadPro_9_7))
-        }
+        EmptyView(title: Text("Grades"), message: Text("Please log in via the application"))
+            .previewContext(WidgetPreviewContext(family: .systemExtraLarge))
+            .previewDevice(PreviewDevice(.iPadPro_9_7))
     }
 }
 #endif

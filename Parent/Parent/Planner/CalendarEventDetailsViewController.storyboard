@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9f6-iO-8MH" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="16" width="343" height="24"/>
+                                        <rect key="frame" x="16" y="16" width="343" height="22"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -30,7 +31,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="b5W-h3-mp7">
-                                        <rect key="frame" x="16" y="56" width="343" height="586.5"/>
+                                        <rect key="frame" x="16" y="54" width="343" height="586.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jpa-SN-cPZ">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="80"/>
@@ -45,7 +46,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zls-e3-L4X" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="17" width="343" height="19.5"/>
+                                                        <rect key="frame" x="0.0" y="17" width="343" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                         <color key="textColor" red="0.5450980392" green="0.58823529409999997" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -55,7 +56,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jun 24, 2020, 11:00 AM – 1:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B4J-lf-cID" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="44.5" width="343" height="19.5"/>
+                                                        <rect key="frame" x="0.0" y="42" width="343" height="22"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                         <color key="textColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -91,7 +92,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remind Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D0f-pq-sEv" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="17" width="343" height="19.5"/>
+                                                        <rect key="frame" x="0.0" y="17" width="343" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                         <color key="textColor" red="0.5450980392" green="0.58823529409999997" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -101,7 +102,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Set a date and time to be notified of this event." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DtU-ow-onE" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="44.5" width="278" height="38.5"/>
+                                                        <rect key="frame" x="0.0" y="42" width="278" height="34"/>
                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                         <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -111,27 +112,21 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="d05-jm-OYr">
-                                                        <rect key="frame" x="294" y="44.5" width="51" height="31"/>
+                                                        <rect key="frame" x="294" y="42" width="51" height="31"/>
                                                         <connections>
                                                             <action selector="reminderSwitchChanged" destination="zib-wx-dtu" eventType="valueChanged" id="gYc-cY-Ika"/>
                                                         </connections>
                                                     </switch>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="AYt-Tt-0mJ">
-                                                        <rect key="frame" x="0.0" y="91" width="343" height="246"/>
+                                                        <rect key="frame" x="0.0" y="84" width="343" height="253"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8be-Mu-kDU">
-                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8be-Mu-kDU">
+                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="253"/>
                                                                 <state key="normal" title="Jul 15 at 4:04 PM"/>
                                                                 <connections>
                                                                     <action selector="reminderButtonTapped" destination="zib-wx-dtu" eventType="primaryActionTriggered" id="hzl-kN-061"/>
                                                                 </connections>
                                                             </button>
-                                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="vix-Cx-IzR">
-                                                                <rect key="frame" x="0.0" y="30" width="343" height="216"/>
-                                                                <connections>
-                                                                    <action selector="reminderDateChanged" destination="zib-wx-dtu" eventType="valueChanged" id="s8D-iD-nj8"/>
-                                                                </connections>
-                                                            </datePicker>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
@@ -166,7 +161,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2DQ-Vc-NYU" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="17" width="343" height="19.5"/>
+                                                        <rect key="frame" x="0.0" y="17" width="343" height="17"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                         <color key="textColor" red="0.5450980392" green="0.58823529409999997" blue="0.61960784310000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -176,10 +171,10 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="FCJ-HA-H0v">
-                                                        <rect key="frame" x="0.0" y="44.5" width="343" height="43"/>
+                                                        <rect key="frame" x="0.0" y="42" width="343" height="45.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Itj-Fc-KG8" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="19.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="343" height="24.5"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                                 <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -189,7 +184,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksf-5K-WoP" customClass="DynamicLabel" customModule="Parent" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="23.5" width="343" height="19.5"/>
+                                                                <rect key="frame" x="0.0" y="28.5" width="343" height="17"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                                                 <color key="textColor" red="0.1764705882" green="0.23137254900000001" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -250,7 +245,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BlL-Ph-RAo">
-                                        <rect key="frame" x="0.0" y="642.5" width="375" height="100"/>
+                                        <rect key="frame" x="0.0" y="640.5" width="375" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" placeholder="YES" id="AUZ-rN-iVN"/>
                                         </constraints>
@@ -274,14 +269,14 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="DvW-nF-CfK"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="H3m-y1-Xdg"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Hyo-rn-2A7" firstAttribute="leading" secondItem="H3m-y1-Xdg" secondAttribute="leading" id="46z-Sr-4rG"/>
                             <constraint firstItem="H3m-y1-Xdg" firstAttribute="trailing" secondItem="Hyo-rn-2A7" secondAttribute="trailing" id="4mm-9c-ZrJ"/>
                             <constraint firstItem="Hyo-rn-2A7" firstAttribute="top" secondItem="H3m-y1-Xdg" secondAttribute="top" id="RGk-1R-Ils"/>
                             <constraint firstItem="H3m-y1-Xdg" firstAttribute="bottom" secondItem="Hyo-rn-2A7" secondAttribute="bottom" id="vzs-mc-Gpg"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="H3m-y1-Xdg"/>
                     </view>
                     <connections>
                         <outlet property="dateHeadingLabel" destination="zls-e3-L4X" id="d3G-fO-JdL"/>
@@ -293,7 +288,6 @@
                         <outlet property="locationNameLabel" destination="Itj-Fc-KG8" id="NwR-HQ-Uxv"/>
                         <outlet property="locationView" destination="xKT-yy-N8k" id="aSt-Ib-tbu"/>
                         <outlet property="reminderDateButton" destination="8be-Mu-kDU" id="wjw-1X-dZz"/>
-                        <outlet property="reminderDatePicker" destination="vix-Cx-IzR" id="335-Kk-lZH"/>
                         <outlet property="reminderHeadingLabel" destination="D0f-pq-sEv" id="303-JJ-nL1"/>
                         <outlet property="reminderMessageLabel" destination="DtU-ow-onE" id="3zB-Xu-Htt"/>
                         <outlet property="reminderSwitch" destination="d05-jm-OYr" id="EtO-66-4za"/>
@@ -307,4 +301,38 @@
             <point key="canvasLocation" x="137.68115942028987" y="97.767857142857139"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="2DQ-Vc-NYU">
+            <size key="intrinsicContentSize" width="54.5" height="17"/>
+        </designable>
+        <designable name="9f6-iO-8MH">
+            <size key="intrinsicContentSize" width="87" height="22"/>
+        </designable>
+        <designable name="B4J-lf-cID">
+            <size key="intrinsicContentSize" width="213" height="17"/>
+        </designable>
+        <designable name="D0f-pq-sEv">
+            <size key="intrinsicContentSize" width="71.5" height="17"/>
+        </designable>
+        <designable name="DtU-ow-onE">
+            <size key="intrinsicContentSize" width="287.5" height="17"/>
+        </designable>
+        <designable name="Itj-Fc-KG8">
+            <size key="intrinsicContentSize" width="94" height="17"/>
+        </designable>
+        <designable name="QwO-iB-wFl">
+            <size key="intrinsicContentSize" width="73.5" height="17"/>
+        </designable>
+        <designable name="ksf-5K-WoP">
+            <size key="intrinsicContentSize" width="108.5" height="17"/>
+        </designable>
+        <designable name="zls-e3-L4X">
+            <size key="intrinsicContentSize" width="31" height="17"/>
+        </designable>
+    </designables>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

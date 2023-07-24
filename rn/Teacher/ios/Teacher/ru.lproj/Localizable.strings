@@ -29,6 +29,9 @@
 "All submissions" = "Все отправки";
 
 /* No comment provided by engineer. */
+"All Submissions" = "Все отправки";
+
+/* No comment provided by engineer. */
 "Attendance" = "Посещаемость";
 
 /* No comment provided by engineer. */
@@ -53,10 +56,19 @@
 "Choose Files" = "Выберите файлы";
 
 /* No comment provided by engineer. */
+"Close" = "Закрыть";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "Закрыть панель";
 
 /* No comment provided by engineer. */
 "Comment" = "Комментарий";
+
+/* No comment provided by engineer. */
+"Comment Library" = "Библиотека комментариев";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "Библиотека комментариев недоступна";
 
 /* No comment provided by engineer. */
 "Comments" = "Комментарии";
@@ -122,6 +134,9 @@
 "Filter by" = "Фильтровать по";
 
 /* No comment provided by engineer. */
+"Filter submissions" = "Фильтр отправок";
+
+/* No comment provided by engineer. */
 "Final Grade" = "Итоговая оценка";
 
 /* No comment provided by engineer. */
@@ -147,12 +162,6 @@
 
 /* No comment provided by engineer. */
 "Grades will be made visible to students with graded submissions" = "Оценки будут видны для учащихся с отправками, по которым выставлены оценки";
-
-/* number of grades hidden */
-"grades_currently_hidden" = "grades_currently_hidden";
-
-/* number of grades hidden */
-"grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
 "Group" = "Группа";
@@ -197,10 +206,19 @@
 "No Submissions" = "Нет отправок";
 
 /* No comment provided by engineer. */
+"No suggestions available" = "нет доступных предложений";
+
+/* No comment provided by engineer. */
 "Not Graded" = "Оценка не выставлена";
 
 /* No comment provided by engineer. */
+"Not Submitted" = "Не отправлено";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
+
+/* No comment provided by engineer. */
+"Open comment library" = "Открыть библиотеку комментариев";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Полноэкранный режим «Открыть панель»";
@@ -231,6 +249,9 @@
 
 /* No comment provided by engineer. */
 "Post to..." = "Опубликовать в...";
+
+/* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "Практические тесты и опросы не имеют подробного представления.";
 
 /* No comment provided by engineer. */
 "Present" = "Настоящий";
@@ -282,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Submissions" = "Отправки";
+
+/* No comment provided by engineer. */
+"Submitted" = "Отправлено";
 
 /* No comment provided by engineer. */
 "Test Student" = "Тестовый студент";

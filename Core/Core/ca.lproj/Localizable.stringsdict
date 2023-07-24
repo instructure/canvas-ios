@@ -322,6 +322,22 @@
 			<string>Amaga %d elements no presentats</string>
 		</dict>
 	</dict>
+	<key>incompatible_files_for_assignment</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>El tipus de fitxer %2$@ de l’entrega és incompatible amb l'activitat seleccionada.</string>
+			<key>other</key>
+			<string>Els tipus de fitxers %2$@ de l’entrega són incompatibles amb l'activitat seleccionada.</string>
+		</dict>
+	</dict>
 	<key>late_penalty_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -386,6 +402,22 @@
 			<string>Mostra %d elements no presentats</string>
 		</dict>
 	</dict>
+	<key>submission_failed_for_files</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>S’ha penjat correctament el fitxer, però no s’ha pogut fer l’entrega a l’activitat.</string>
+			<key>other</key>
+			<string>S’han penjat correctament els fitxers, però no s’ha pogut fer l’entrega a l’activitat.</string>
+		</dict>
+	</dict>
 	<key>there_are_d_assignees_without_grades</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -400,6 +432,22 @@
 			<string>Hi ha %d beneficiari sense nota.</string>
 			<key>other</key>
 			<string>Hi ha %d beneficiaris sense nota.</string>
+		</dict>
+	</dict>
+	<key>use_file_extension</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Feu servir %2$@ extensió de fitxer.</string>
+			<key>other</key>
+			<string>Feu servir %2$@ extensions de fitxer.</string>
 		</dict>
 	</dict>
 </dict>

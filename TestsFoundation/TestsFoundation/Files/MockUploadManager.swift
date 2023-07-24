@@ -26,6 +26,7 @@ public class MockUploadManager: UploadManager {
     public var uploadWasCalled = false
     public var addWasCalled = false
     public var cancelWasCalled = false
+    public var canceledBatchID: String?
 
    public init() {
         super.init(identifier: "mock")
@@ -35,7 +36,7 @@ public class MockUploadManager: UploadManager {
         return singleSharedTestDatabase
     }
 
-    public override func add(url: URL, batchID: String? = nil) throws -> File {
+    public override func add(url: URL, batchID: String) throws -> File {
         addWasCalled = true
         return try super.add(url: url, batchID: batchID)
     }
@@ -49,13 +50,14 @@ public class MockUploadManager: UploadManager {
         callback?()
     }
 
-    open override func upload(file: File, to uploadContext: FileUploadContext, folderPath: String? = nil, callback: (() -> Void)? = nil) {
+    open override func upload(file: File, to uploadContext: FileUploadContext, folderPath: String? = nil, baseURL: URL? = nil, callback: (() -> Void)? = nil) {
         uploadWasCalled = true
         callback?()
     }
 
     open override func cancel(batchID: String) {
         cancelWasCalled = true
+        canceledBatchID = batchID
     }
 
     open override func cancel(file: File) {

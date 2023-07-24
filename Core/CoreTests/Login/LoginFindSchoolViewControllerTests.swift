@@ -27,6 +27,11 @@ class LoginFindSchoolViewControllerTests: CoreTestCase {
 
     lazy var controller = LoginFindSchoolViewController.create(loginDelegate: self, method: .normalLogin)
 
+    override func tearDown() {
+        UserDefaults.standard.removeObject(forKey: "lastLoginAccount")
+        super.tearDown()
+    }
+
     func testResults() {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
@@ -66,6 +71,36 @@ class LoginFindSchoolViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.searchField.delegate?.textFieldShouldReturn?(controller.searchField), false)
         let shown = router.viewControllerCalls.first?.0 as? LoginManualOAuthViewController
         XCTAssertEqual(shown?.host, "test.instructure.com")
+    }
+
+    func testNextButtonHiddenByDefault() {
+        controller.view.layoutIfNeeded()
+        XCTAssertNil(controller.navigationItem.rightBarButtonItem)
+    }
+
+    func testNextButtonAppearsOnSearchFieldType() {
+        controller.view.layoutIfNeeded()
+        controller.searchField.text = "asd"
+        controller.textFieldDidChange(controller.searchField)
+        XCTAssertNotNil(controller.navigationItem.rightBarButtonItem)
+    }
+
+    func testNextButtonDisappearsOnEmptySearchField() {
+        controller.view.layoutIfNeeded()
+        controller.searchField.text = "asd"
+        controller.searchField.sendActions(for: .editingChanged)
+        controller.searchField.text = ""
+        controller.searchField.sendActions(for: .editingChanged)
+        XCTAssertNil(controller.navigationItem.rightBarButtonItem)
+    }
+
+    func testNextButtonShowsLoginScreen() {
+        controller.view.layoutIfNeeded()
+        controller.searchField.text = "asd"
+        controller.searchField.sendActions(for: .editingChanged)
+        controller.perform(controller.navigationItem.rightBarButtonItem!.action)
+        let shown = router.viewControllerCalls.first?.0 as? LoginWebViewController
+        XCTAssertEqual(shown?.host, "asd.instructure.com")
     }
 }
 

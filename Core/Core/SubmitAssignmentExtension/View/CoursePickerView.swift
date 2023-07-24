@@ -28,14 +28,16 @@ public struct CoursePickerView: View {
 
     public var body: some View {
         content
-            .navigationBarTitleView(Text("Select Course", bundle: .core).font(.semibold17).foregroundColor(.textDarkest), displayMode: .inline)
+            .navigationTitleStyled(Text("Select Course", bundle: .core).font(.semibold17).foregroundColor(.textDarkest))
+            .navigationBarTitleDisplayMode(.inline)
     }
 
     @ViewBuilder
     private var content: some View {
         switch viewModel.state {
         case .loading:
-            CircleProgress()
+            ProgressView()
+                .progressViewStyle(.indeterminateCircle())
         case .error(let message):
             error(message: message)
         case .data(let courses):
@@ -54,7 +56,7 @@ public struct CoursePickerView: View {
             VStack(spacing: 0) {
                 ForEach(courses) { course in
                     Button(action: {
-                        viewModel.selectedCourse = course
+                        viewModel.courseSelected(course)
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                             presentationMode.wrappedValue.dismiss()
                         }

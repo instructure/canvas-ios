@@ -168,6 +168,19 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
     this.props.navigator.show('/route-history')
   }
 
+  viewPandaGallery = () => {
+    this.props.navigator.show('/dev-menu/pandas')
+  }
+
+  viewSnackBarTest = () => {
+    this.props.navigator.show('/dev-menu/snackbar', { modal: true, modalPresentationStyle: 'fullscreen', embedInNavigationController: true })
+  }
+
+  viewWebSitePreview = async () => {
+    await this.props.navigator.dismiss()
+    this.props.navigator.show('/dev-menu/website-preview', { modal: true, modalPresentationStyle: 'fullscreen', embedInNavigationController: true })
+  }
+
   manageRatingRequest = () => {
     this.props.navigator.show('/rating-request')
   }
@@ -223,6 +236,12 @@ export default class DeveloperMenu extends Component<DeveloperMenuProps, any> {
           <View style={{ flex: 1, flexDirection: 'column' }}>
             <RowSeparator />
             <Row title='View Experimental Features' disclosureIndicator onPress={this.viewExperimentalFeatures} />
+            <RowSeparator />
+            <Row title='WebSite Preview' disclosureIndicator onPress={this.viewWebSitePreview} />
+            <RowSeparator />
+            <Row title='Panda Gallery' disclosureIndicator onPress={this.viewPandaGallery} />
+            <RowSeparator />
+            <Row title='SnackBar Test' disclosureIndicator onPress={this.viewSnackBarTest} />
             <RowSeparator />
             <Row title='View Push Notifications' disclosureIndicator onPress={this.viewPushNotifications} />
             <RowSeparator />

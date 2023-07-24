@@ -24,7 +24,6 @@ public extension Text {
     }
 }
 
-@available(iOS 15, *)
 public extension Text {
     init(_ string: String, configure: ((inout AttributedString) -> Void)) {
         var attributedString = AttributedString(string)
@@ -36,5 +35,17 @@ public extension Text {
 public extension Image {
     func size(_ size: CGFloat?) -> some View {
         resizable().scaledToFill().frame(width: size, height: size)
+    }
+}
+
+@available(iOS, deprecated: 16.0, message: "Use accessibilityActions(_:) for managing accessibility actions instead.")
+public extension View {
+    @ViewBuilder
+    func `if`<Content: View>(_ condition: Bool, content: (Self) -> Content) -> some View {
+        if condition {
+            content(self)
+        } else {
+            self
+        }
     }
 }

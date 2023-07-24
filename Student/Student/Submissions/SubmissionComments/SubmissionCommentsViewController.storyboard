@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="z6Z-9B-ukp">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="616"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="m8y-we-Jl9">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="24"/>
@@ -25,7 +25,7 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="myHeader" rowHeight="64" id="2G9-QC-KCR" userLabel="myHeader" customClass="SubmissionCommentHeaderCell" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="52" width="375" height="64"/>
+                                        <rect key="frame" x="0.0" y="74" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2G9-QC-KCR" id="651-00-ovF">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
@@ -42,7 +42,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Um-tb-BF2" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="218.5" y="28" width="88.5" height="17"/>
+                                                    <rect key="frame" x="223.5" y="28" width="83.5" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -52,7 +52,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="March 13 at 10:51 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brg-4l-HGS" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="183" y="45" width="124" height="14.5"/>
+                                                    <rect key="frame" x="187" y="45" width="120" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -91,14 +91,14 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="myComment" rowHeight="48" id="0Ne-yr-TaC" customClass="SubmissionCommentTextCell" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="116" width="375" height="48"/>
+                                        <rect key="frame" x="0.0" y="138" width="375" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0Ne-yr-TaC" id="3mt-Xn-QrW">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6at-Xx-e6I" customClass="IconView" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="241" y="-5" width="118" height="34"/>
+                                                    <rect key="frame" x="245.5" y="-5" width="113.5" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="jWm-AB-N4T"/>
                                                     </constraints>
@@ -108,7 +108,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="Comment Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQO-Zk-01K" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="253" y="12" width="94" height="9"/>
+                                                    <rect key="frame" x="257.5" y="12" width="89.5" height="9"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -142,7 +142,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="theirHeader" rowHeight="64" id="m2a-Fo-JCH" userLabel="theirHeader" customClass="SubmissionCommentHeaderCell" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="164" width="375" height="64"/>
+                                        <rect key="frame" x="0.0" y="186" width="375" height="64"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="m2a-Fo-JCH" id="H3o-fz-9OC">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
@@ -159,7 +159,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Thz-j3-Y3K" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="68" y="28" width="88.5" height="17"/>
+                                                    <rect key="frame" x="68" y="28" width="83.5" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -169,7 +169,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="March 13 at 10:51 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S2V-PQ-jCT" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="68" y="45" width="124" height="14.5"/>
+                                                    <rect key="frame" x="68" y="45" width="120" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -209,14 +209,14 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="theirComment" rowHeight="48" id="di6-ba-fsx" customClass="SubmissionCommentTextCell" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="228" width="375" height="48"/>
+                                        <rect key="frame" x="0.0" y="250" width="375" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="di6-ba-fsx" id="Fyz-QS-eeN">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="893-hG-e0V" customClass="IconView" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="-5" width="118" height="34"/>
+                                                    <rect key="frame" x="16" y="-5" width="113.5" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="6G6-Mn-eLP"/>
                                                     </constraints>
@@ -227,7 +227,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="Comment Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMn-Vx-0Ll" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="28" y="12" width="94" height="9"/>
+                                                    <rect key="frame" x="28" y="12" width="89.5" height="9"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -261,7 +261,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SubmissionCommentAudioCell" rowHeight="57" id="MSG-Gi-WrB" customClass="SubmissionCommentAudioCell" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="276" width="375" height="57"/>
+                                        <rect key="frame" x="0.0" y="298" width="375" height="57"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MSG-Gi-WrB" id="mEg-Wj-XA5">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="57"/>
@@ -286,7 +286,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SubmissionCommentVideoCell" rowHeight="190" id="nat-Ap-6Oh" customClass="SubmissionCommentVideoCell" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="333" width="375" height="190"/>
+                                        <rect key="frame" x="0.0" y="355" width="375" height="190"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nat-Ap-6Oh" id="Z1E-2H-LVT">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="190"/>
@@ -317,7 +317,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="SubmissionCommentAttemptCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SubmissionCommentAttemptCell" rowHeight="73" id="u2W-dv-awt" customClass="SubmissionCommentAttemptCell" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="523" width="375" height="73"/>
+                                        <rect key="frame" x="0.0" y="545" width="375" height="73"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u2W-dv-awt" id="hxE-7s-uYJ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="73"/>
@@ -357,7 +357,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have questions? Use this area to message your instructor about this assignment." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxN-b5-Dqx" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="13.5" y="140" width="316" height="33.5"/>
+                                        <rect key="frame" x="26" y="140" width="291.5" height="34"/>
                                         <viewLayoutGuide key="safeArea" id="pIe-X1-3Uk"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -396,7 +396,7 @@
                                 </variation>
                             </view>
                             <view opaque="NO" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="SAr-z8-Qsj">
-                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <rect key="frame" x="0.0" y="616" width="375" height="51"/>
                                 <subviews>
                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4l5-MU-1OT" customClass="DividerView" customModule="Student" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
@@ -408,7 +408,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="djV-o5-Xt6" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="4.5" width="40" height="40"/>
+                                        <rect key="frame" x="0.0" y="5.5" width="40" height="40"/>
                                         <accessibility key="accessibilityConfiguration" identifier="SubmissionComments.addMediaButton"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="DoK-DZ-BLQ"/>
@@ -424,45 +424,34 @@
                                         </connections>
                                     </button>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DjR-oA-G8w">
-                                        <rect key="frame" x="40" y="8" width="319" height="33"/>
+                                        <rect key="frame" x="40" y="4" width="319" height="43"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRu-wb-h9t" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                <rect key="frame" x="9" y="8" width="63" height="17"/>
-                                                <accessibility key="accessibilityConfiguration">
-                                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
-                                                    <bool key="isElement" value="NO"/>
-                                                </accessibility>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3wp-xK-HJQ">
-                                                <rect key="frame" x="4" y="0.0" width="283" height="33"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="3wp-xK-HJQ">
+                                                <rect key="frame" x="12" y="3" width="266" height="40"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="SubmissionComments.commentTextView"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" priority="700" constant="40" id="iuz-Bm-PNt"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="9pN-2b-voW" id="UnK-Xf-GAt"/>
                                                 </connections>
                                             </textView>
-                                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGc-Rr-ieQ" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
-                                                <rect key="frame" x="291" y="5" width="24" height="24"/>
+                                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="system" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGc-Rr-ieQ" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
+                                                <rect key="frame" x="282" y="7" width="30" height="30"/>
                                                 <accessibility key="accessibilityConfiguration" identifier="SubmissionComments.addCommentButton"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="24" id="W3o-XC-ES9"/>
-                                                    <constraint firstAttribute="height" constant="24" id="j3C-l6-NKb"/>
+                                                    <constraint firstAttribute="width" constant="30" id="W3o-XC-ES9"/>
+                                                    <constraint firstAttribute="height" constant="30" id="j3C-l6-NKb"/>
                                                 </constraints>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="1"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="buttonPrimaryBackground"/>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="buttonPrimaryText"/>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="iconName" value="miniArrowUpSolid"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="12"/>
+                                                        <integer key="value" value="15"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                                 </userDefinedRuntimeAttributes>
@@ -474,17 +463,16 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="uGc-Rr-ieQ" firstAttribute="leading" secondItem="3wp-xK-HJQ" secondAttribute="trailing" constant="4" id="0Iz-DT-rhP"/>
-                                            <constraint firstItem="3wp-xK-HJQ" firstAttribute="top" secondItem="DjR-oA-G8w" secondAttribute="top" id="NO7-l5-LaT"/>
+                                            <constraint firstItem="3wp-xK-HJQ" firstAttribute="top" secondItem="DjR-oA-G8w" secondAttribute="top" constant="3" id="NO7-l5-LaT"/>
                                             <constraint firstAttribute="bottom" secondItem="3wp-xK-HJQ" secondAttribute="bottom" id="SDb-vJ-ba3"/>
-                                            <constraint firstItem="WRu-wb-h9t" firstAttribute="top" secondItem="DjR-oA-G8w" secondAttribute="top" constant="8" id="VlP-Oj-y7j"/>
-                                            <constraint firstItem="WRu-wb-h9t" firstAttribute="leading" secondItem="DjR-oA-G8w" secondAttribute="leading" constant="9" id="cjm-Vw-bqT"/>
-                                            <constraint firstItem="3wp-xK-HJQ" firstAttribute="leading" secondItem="DjR-oA-G8w" secondAttribute="leading" constant="4" id="exB-6M-zjV"/>
-                                            <constraint firstAttribute="bottom" secondItem="uGc-Rr-ieQ" secondAttribute="bottom" constant="4" id="fXp-hw-eYd"/>
-                                            <constraint firstAttribute="trailing" secondItem="uGc-Rr-ieQ" secondAttribute="trailing" constant="4" id="uNy-B7-wCK"/>
+                                            <constraint firstItem="3wp-xK-HJQ" firstAttribute="leading" secondItem="DjR-oA-G8w" secondAttribute="leading" constant="12" id="exB-6M-zjV"/>
+                                            <constraint firstAttribute="bottom" secondItem="uGc-Rr-ieQ" secondAttribute="bottom" constant="6" id="fXp-hw-eYd"/>
+                                            <constraint firstItem="uGc-Rr-ieQ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="DjR-oA-G8w" secondAttribute="top" constant="6" id="g54-Xx-pm9"/>
+                                            <constraint firstAttribute="trailing" secondItem="uGc-Rr-ieQ" secondAttribute="trailing" constant="7" id="uNy-B7-wCK"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <real key="value" value="16.5"/>
+                                                <integer key="value" value="21"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
                                                 <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -495,7 +483,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gze-1W-XEa">
-                                        <rect key="frame" x="0.0" y="49" width="375" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="51" width="375" height="0.0"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" id="2PL-IE-MvI"/>
@@ -506,11 +494,11 @@
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="gze-1W-XEa" secondAttribute="bottom" id="5zb-w6-hFm"/>
                                     <constraint firstItem="DjR-oA-G8w" firstAttribute="leading" secondItem="djV-o5-Xt6" secondAttribute="trailing" id="Hig-ut-XtH"/>
-                                    <constraint firstAttribute="bottom" secondItem="DjR-oA-G8w" secondAttribute="bottom" priority="750" constant="8" id="L24-Qn-hwk"/>
+                                    <constraint firstAttribute="bottom" secondItem="DjR-oA-G8w" secondAttribute="bottom" priority="750" constant="4" id="L24-Qn-hwk"/>
                                     <constraint firstAttribute="trailing" secondItem="DjR-oA-G8w" secondAttribute="trailing" constant="16" id="P0B-2U-9pa"/>
                                     <constraint firstItem="4l5-MU-1OT" firstAttribute="top" secondItem="SAr-z8-Qsj" secondAttribute="top" id="RFf-D0-mv2"/>
                                     <constraint firstItem="gze-1W-XEa" firstAttribute="leading" secondItem="SAr-z8-Qsj" secondAttribute="leading" id="ayE-te-ffb"/>
-                                    <constraint firstItem="DjR-oA-G8w" firstAttribute="top" secondItem="SAr-z8-Qsj" secondAttribute="top" priority="750" constant="8" id="b2n-2Y-UfE"/>
+                                    <constraint firstItem="DjR-oA-G8w" firstAttribute="top" secondItem="SAr-z8-Qsj" secondAttribute="top" priority="750" constant="4" id="b2n-2Y-UfE"/>
                                     <constraint firstItem="djV-o5-Xt6" firstAttribute="leading" secondItem="SAr-z8-Qsj" secondAttribute="leading" id="dfi-A4-myE"/>
                                     <constraint firstItem="gze-1W-XEa" firstAttribute="top" relation="greaterThanOrEqual" secondItem="SAr-z8-Qsj" secondAttribute="top" id="l1p-xk-3Yk"/>
                                     <constraint firstItem="4l5-MU-1OT" firstAttribute="leading" secondItem="SAr-z8-Qsj" secondAttribute="leading" id="luo-05-3XB"/>
@@ -538,8 +526,8 @@
                     <connections>
                         <outlet property="addCommentBorderView" destination="DjR-oA-G8w" id="rPk-Pa-8P4"/>
                         <outlet property="addCommentButton" destination="uGc-Rr-ieQ" id="ZMO-A6-RwV"/>
-                        <outlet property="addCommentPlaceholder" destination="WRu-wb-h9t" id="X8w-cN-qrW"/>
                         <outlet property="addCommentTextView" destination="3wp-xK-HJQ" id="bMw-4T-MvF"/>
+                        <outlet property="addCommentTextViewHeightConstraint" destination="iuz-Bm-PNt" id="rxd-KB-Xyo"/>
                         <outlet property="addCommentView" destination="SAr-z8-Qsj" id="CRp-Kv-sDB"/>
                         <outlet property="addMediaButton" destination="djV-o5-Xt6" id="bHF-6D-e2E"/>
                         <outlet property="addMediaHeight" destination="2PL-IE-MvI" id="47L-8j-BJq"/>
@@ -561,7 +549,7 @@
             <size key="intrinsicContentSize" width="40" height="40"/>
         </designable>
         <designable name="5Um-tb-BF2">
-            <size key="intrinsicContentSize" width="88.5" height="17"/>
+            <size key="intrinsicContentSize" width="83.5" height="17"/>
         </designable>
         <designable name="6at-Xx-e6I">
             <size key="intrinsicContentSize" width="40" height="40"/>
@@ -570,25 +558,22 @@
             <size key="intrinsicContentSize" width="40" height="40"/>
         </designable>
         <designable name="S2V-PQ-jCT">
-            <size key="intrinsicContentSize" width="124" height="14.5"/>
+            <size key="intrinsicContentSize" width="120" height="14.5"/>
         </designable>
         <designable name="Thz-j3-Y3K">
-            <size key="intrinsicContentSize" width="88.5" height="17"/>
-        </designable>
-        <designable name="WRu-wb-h9t">
-            <size key="intrinsicContentSize" width="63" height="17"/>
+            <size key="intrinsicContentSize" width="83.5" height="17"/>
         </designable>
         <designable name="brg-4l-HGS">
-            <size key="intrinsicContentSize" width="124" height="14.5"/>
+            <size key="intrinsicContentSize" width="120" height="14.5"/>
         </designable>
         <designable name="djV-o5-Xt6">
             <size key="intrinsicContentSize" width="46" height="46"/>
         </designable>
         <designable name="eMn-Vx-0Ll">
-            <size key="intrinsicContentSize" width="94" height="17"/>
+            <size key="intrinsicContentSize" width="89.5" height="17"/>
         </designable>
         <designable name="jQO-Zk-01K">
-            <size key="intrinsicContentSize" width="94" height="17"/>
+            <size key="intrinsicContentSize" width="89.5" height="17"/>
         </designable>
         <designable name="kFW-ob-ndx">
             <size key="intrinsicContentSize" width="40" height="40"/>
@@ -597,7 +582,7 @@
             <size key="intrinsicContentSize" width="24" height="24"/>
         </designable>
         <designable name="vxN-b5-Dqx">
-            <size key="intrinsicContentSize" width="535" height="17"/>
+            <size key="intrinsicContentSize" width="497" height="17"/>
         </designable>
     </designables>
 </document>

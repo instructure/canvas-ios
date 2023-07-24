@@ -31,7 +31,7 @@ struct CustomTextField: View {
         ZStack(alignment: .leading) {
             if text.isEmpty {
                 placeholder
-                    .font(.regular16).foregroundColor(.ash)
+                    .font(.regular16).foregroundColor(.textDark)
                     .padding(.leading, padding)
                     .allowsHitTesting(false)
                     .accessibility(hidden: true)

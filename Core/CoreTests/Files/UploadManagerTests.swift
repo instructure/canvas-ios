@@ -24,8 +24,8 @@ import CoreData
 
 class UploadManagerTests: CoreTestCase {
     struct TestProcess: ProcessManager {
-        func performExpiringActivity(withReason reason: String, using block: @escaping (Bool) -> Void) {
-            block(false)
+        func performExpiringActivity(reason: String, completion: @escaping (Bool) -> Void) {
+            completion(false)
         }
     }
 
@@ -35,7 +35,7 @@ class UploadManagerTests: CoreTestCase {
         return UploadManager.shared.viewContext
     }
     lazy var url: URL = {
-        let url = URL.temporaryDirectory.appendingPathComponent("upload-manager.txt")
+        let url = URL.Directories.temporary.appendingPathComponent("upload-manager.txt")
         FileManager.default.createFile(atPath: url.path, contents: "hey".data(using: .utf8), attributes: nil)
         return url
     }()
@@ -56,20 +56,22 @@ class UploadManagerTests: CoreTestCase {
     func testUploadURLDefault() throws {
         UUID.mock("default")
         let expected = URL
-            .temporaryDirectory
+            .Directories
+            .temporary
             .appendingPathComponent("uploads/default/")
             .appendingPathComponent(url.lastPathComponent)
-        XCTAssertEqual(try manager.uploadURL(url), expected)
+        XCTAssertEqual(try manager.copyFileToSharedContainer(url), expected)
     }
 
     func testUploadURLSharedContainer() throws {
         UUID.mock("shared")
         let expected = URL
-            .sharedContainer("group.com.instructure.icanvas")?
+            .Directories
+            .sharedContainer(appGroup: "group.com.instructure.icanvas")?
             .appendingPathComponent("uploads/shared/")
             .appendingPathComponent(url.lastPathComponent)
         let manager = UploadManager(identifier: "test", sharedContainerIdentifier: "group.com.instructure.icanvas")
-        XCTAssertEqual(try manager.uploadURL(url), expected)
+        XCTAssertEqual(try manager.copyFileToSharedContainer(url), expected)
     }
 
     func testAddAndSubscribe() throws {
@@ -77,7 +79,7 @@ class UploadManagerTests: CoreTestCase {
         let store = manager.subscribe(batchID: "1") {
             expectation.fulfill()
         }
-        let url = URL.temporaryDirectory.appendingPathComponent("upload-manager-add-test.txt")
+        let url = URL.Directories.temporary.appendingPathComponent("upload-manager-add-test.txt")
         FileManager.default.createFile(atPath: url.path, contents: "hello".data(using: .utf8), attributes: nil)
         try manager.add(url: url, batchID: "1")
         wait(for: [expectation], timeout: 1)
@@ -117,7 +119,7 @@ class UploadManagerTests: CoreTestCase {
     func testUploadURL() throws {
         let mock = mockUpload(fileURL: url, target: mockTarget(name: url.lastPathComponent, size: 0, context: uploadContext))
         mock.suspend()
-        manager.upload(url: url, to: uploadContext)
+        manager.upload(url: url, batchID: "testBatchID", to: uploadContext)
         XCTAssertEqual(mock.queue.first?.state, .running)
     }
 
@@ -134,7 +136,7 @@ class UploadManagerTests: CoreTestCase {
 
     func testSessionTaskDidCompleteWithUpload() throws {
         LoginSession.add(currentSession)
-        let file = try manager.add(url: url)
+        let file = try manager.add(url: url, batchID: "testBatchID")
         file.taskID = "1"
         try context.save()
         XCTAssertTrue(file.isUploading)
@@ -152,9 +154,9 @@ class UploadManagerTests: CoreTestCase {
 
     func testSessionTaskDidCompleteSubmissionUpload() throws {
         let fileManager = FileManager.default
-        let oneURL = URL.temporaryDirectory.appendingPathComponent("oneURL.txt")
+        let oneURL = URL.Directories.temporary.appendingPathComponent("oneURL.txt")
         try "one".write(to: oneURL, atomically: false, encoding: .utf8)
-        let twoURL = URL.temporaryDirectory.appendingPathComponent("twoURL.txt")
+        let twoURL = URL.Directories.temporary.appendingPathComponent("twoURL.txt")
         try "two".write(to: twoURL, atomically: false, encoding: .utf8)
         XCTAssertTrue(fileManager.fileExists(atPath: oneURL.path))
         XCTAssertTrue(fileManager.fileExists(atPath: twoURL.path))
@@ -210,7 +212,7 @@ class UploadManagerTests: CoreTestCase {
     }
 
     func testFailedNotification() throws {
-        manager.sendFailedNotification()
+        manager.notificationManager.sendFailedNotification()
         let notification = notificationCenter.requests.last
         XCTAssertNotNil(notification)
         XCTAssertEqual(notification?.content.title, "Failed to send files!")
@@ -290,7 +292,7 @@ class UploadManagerTests: CoreTestCase {
 
         // Create a binary file to check if it gets deleted
         let fileManager = FileManager.default
-        let binaryURL = URL.temporaryDirectory.appendingPathComponent("binaryURL.txt")
+        let binaryURL = URL.Directories.temporary.appendingPathComponent("binaryURL.txt")
         XCTAssertNoThrow(try "one".write(to: binaryURL, atomically: false, encoding: .utf8))
         XCTAssertTrue(fileManager.fileExists(atPath: binaryURL.path))
 

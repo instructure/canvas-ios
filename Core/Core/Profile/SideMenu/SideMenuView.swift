@@ -18,9 +18,10 @@
 
 import SwiftUI
 
-public struct SideMenuView: View {
+public struct SideMenuView: View, ScreenViewTrackable {
     @Environment(\.appEnvironment) private var environment
     let enrollment: HelpLinkEnrollment
+    public let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/profile")
 
     public init(_ enrollment: HelpLinkEnrollment) {
         self.enrollment = enrollment
@@ -34,8 +35,8 @@ public struct SideMenuView: View {
                     Divider()
                     SideMenuMainSection(enrollment)
                     Divider()
-                    if enrollment != .observer, !environment.k5.isK5Enabled {
-                        SideMenuOptionsSection(enrollment: enrollment)
+                    if !environment.k5.isK5Enabled, enrollment == .observer {
+                        SideMenuOptionsSection()
                         Divider()
                     }
                     SideMenuBottomSection(enrollment)
@@ -52,6 +53,9 @@ public struct SideMenuView: View {
 struct SideMenuView_Previews: PreviewProvider {
     static var previews: some View {
         SideMenuView(.student)
+            .previewDisplayName("Student")
+        SideMenuView(.observer)
+            .previewDisplayName("Parent")
     }
 }
 

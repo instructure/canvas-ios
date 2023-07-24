@@ -17,32 +17,168 @@
 //
 
 @testable import Core
+import CoreData
 import XCTest
 
 class AttachmentSubmissionServiceTests: CoreTestCase {
+    private var fileURL: URL!
+    private var mockAssembly: MockFileSubmissionAssembly!
+
+    override func setUp() {
+        super.setUp()
+
+        let fileURL = URL.Directories.temporary.appendingPathComponent("loadFileURL.txt", isDirectory: false)
+        try! "test".write(to: fileURL, atomically: false, encoding: .utf8)
+        self.fileURL = fileURL
+        mockAssembly = MockFileSubmissionAssembly(testCase: self)
+    }
+
+    override func tearDown() {
+        try! FileManager.default.removeItem(at: fileURL)
+
+        super.tearDown()
+    }
 
     func testSubmit() {
-        let fileURL = URL.temporaryDirectory.appendingPathComponent("loadFileURL.txt", isDirectory: false)
-        try! "test".write(to: fileURL, atomically: false, encoding: .utf8)
+        // MARK: - GIVEN
+        let testee = AttachmentSubmissionService(submissionAssembly: mockAssembly)
 
-        let testUploadManager = UploadManager(identifier: "com.instructure.icanvas.SubmitAssignment.file-uploads", sharedContainerIdentifier: "group.instructure.shared")
+        // MARK: - WHEN
+        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", assignmentName: "testName", comment: "testComment")
 
-        let testee = AttachmentSubmissionService(uploadManager: testUploadManager)
-        var completionCalled = false
-        testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", comment: "testComment") {
-            completionCalled = true
-        }
-        RunLoop.main.run(until: Date() + 0.1)
+        // MARK: - THEN
+        XCTAssertEqual(mockAssembly.mockComposer.startedSubmissionID, submissionID)
+        XCTAssertEqual(mockAssembly.mockComposer.startedSubmission?.courseId, "testCourseID")
+        XCTAssertEqual(mockAssembly.mockComposer.startedSubmission?.assignmentId, "testAssignmentID")
+        XCTAssertEqual(mockAssembly.mockComposer.startedSubmission?.assignmentName, "testName")
+        XCTAssertEqual(mockAssembly.mockComposer.startedSubmission?.comment, "testComment")
+        XCTAssertEqual(mockAssembly.mockComposer.startedSubmission?.files, [fileURL])
+        XCTAssertEqual(mockAssembly.startedSubmission, submissionID)
+    }
 
-        XCTAssertTrue(completionCalled)
-        XCTAssertEqual(testUploadManager.viewContext.registeredObjects.count, 1) // One file added
+    func testReSubmitDeletesPreviousSubmission() {
+        // MARK: - GIVEN
+        let testee = AttachmentSubmissionService(submissionAssembly: mockAssembly)
 
-        guard let file = (testUploadManager.viewContext.fetch(scope: .all(orderBy: "batchID")) as [File]).first else {
-            XCTFail("File not saved")
-            return
-        }
+        // MARK: - WHEN
+        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", assignmentName: "testName", comment: "testComment")
+        let submissionID2 = testee.submit(urls: [fileURL], courseID: "testCourseID2", assignmentID: "testAssignmentID2", assignmentName: "testName2", comment: "testComment2")
 
-        XCTAssertEqual(file.batchID, "assignment-testAssignmentID")
-        XCTAssertEqual(file.filename, "loadFileURL.txt")
+        // MARK: - THEN
+        XCTAssertEqual(mockAssembly.mockComposer.deletedSubmission, submissionID)
+        XCTAssertEqual(mockAssembly.mockComposer.startedSubmissionID, submissionID2)
+        XCTAssertEqual(mockAssembly.mockComposer.startedSubmission?.courseId, "testCourseID2")
+        XCTAssertEqual(mockAssembly.mockComposer.startedSubmission?.assignmentId, "testAssignmentID2")
+        XCTAssertEqual(mockAssembly.mockComposer.startedSubmission?.assignmentName, "testName2")
+        XCTAssertEqual(mockAssembly.mockComposer.startedSubmission?.comment, "testComment2")
+        XCTAssertEqual(mockAssembly.mockComposer.startedSubmission?.files, [fileURL])
+        XCTAssertEqual(mockAssembly.startedSubmission, submissionID2)
+    }
+
+    func testCancel() {
+        // MARK: - GIVEN
+        let testee = AttachmentSubmissionService(submissionAssembly: mockAssembly)
+        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", assignmentName: "testName", comment: "testComment")
+
+        // MARK: - WHEN
+        testee.fileProgressViewModelCancel(FileProgressListViewModel(submissionID: submissionID, dismiss: {}))
+
+        // MARK: - THEN
+        XCTAssertEqual(mockAssembly.canceledSubmission, submissionID)
+    }
+
+    func testRetry() {
+        // MARK: - GIVEN
+        let testee = AttachmentSubmissionService(submissionAssembly: mockAssembly)
+        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", assignmentName: "testName", comment: "testComment")
+
+        // MARK: - WHEN
+        testee.fileProgressViewModelRetry(FileProgressListViewModel(submissionID: submissionID, dismiss: {}))
+
+        // MARK: - THEN
+        XCTAssertEqual(mockAssembly.startedSubmission, submissionID)
+    }
+
+    func testItemDeletion() {
+        // MARK: - GIVEN
+        let testee = AttachmentSubmissionService(submissionAssembly: mockAssembly)
+        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", assignmentName: "testName", comment: "testComment")
+        let itemID = NSManagedObjectID()
+
+        // MARK: - WHEN
+        testee.fileProgressViewModel(FileProgressListViewModel(submissionID: submissionID, dismiss: {}), delete: itemID)
+
+        // MARK: - THEN
+        XCTAssertEqual(mockAssembly.mockComposer.deletedItem, itemID)
+    }
+
+    func testSuccess() {
+        // MARK: - GIVEN
+        let testee = AttachmentSubmissionService(submissionAssembly: mockAssembly)
+        let submissionID = testee.submit(urls: [fileURL], courseID: "testCourseID", assignmentID: "testAssignmentID", assignmentName: "testName", comment: "testComment")
+
+        // MARK: - WHEN
+        testee.fileProgressViewModel(FileProgressListViewModel(submissionID: submissionID, dismiss: {}), didAcknowledgeSuccess: submissionID)
+
+        // MARK: - THEN
+        XCTAssertEqual(mockAssembly.doneSubmission, submissionID)
+    }
+}
+
+class MockFileSubmissionAssembly: FileSubmissionAssembly {
+    public override var composer: FileSubmissionComposer { mockComposer }
+    var canceledSubmission: NSManagedObjectID?
+    var startedSubmission: NSManagedObjectID?
+    var doneSubmission: NSManagedObjectID?
+    let mockComposer: MockFileSubmissionComposer
+
+    init(testCase: CoreTestCase) {
+        mockComposer = MockFileSubmissionComposer(context: testCase.databaseClient)
+        super.init(container: testCase.database, sessionID: "", sharedContainerID: "", api: testCase.api)
+    }
+
+    public override func cancel(submissionID: NSManagedObjectID) {
+        canceledSubmission = submissionID
+    }
+
+    public override func start(fileSubmissionID submissionID: NSManagedObjectID) {
+        startedSubmission = submissionID
+    }
+
+    public override func markSubmissionAsDone(submissionID: NSManagedObjectID) {
+        doneSubmission = submissionID
+    }
+}
+
+class MockFileSubmissionComposer: FileSubmissionComposer {
+    struct StartedSubmissionParams {
+        let courseId: String
+        let assignmentId: String
+        let assignmentName: String
+        let comment: String?
+        let files: [URL]
+    }
+    var deletedSubmission: NSManagedObjectID?
+    var deletedItem: NSManagedObjectID?
+    var startedSubmission: StartedSubmissionParams?
+    var startedSubmissionID: NSManagedObjectID?
+
+    public override func makeNewSubmission(courseId: String, assignmentId: String, assignmentName: String, comment: String?, files: [URL]) -> NSManagedObjectID {
+        startedSubmission = StartedSubmissionParams(courseId: courseId,
+                                                    assignmentId: assignmentId,
+                                                    assignmentName: assignmentName,
+                                                    comment: comment,
+                                                    files: files)
+        let startedSubmissionID = NSManagedObjectID()
+        self.startedSubmissionID = startedSubmissionID
+        return startedSubmissionID
+    }
+
+    public override func deleteItem(itemID: NSManagedObjectID) {
+        deletedItem = itemID
+    }
+
+    public override func deleteSubmission(submissionID: NSManagedObjectID) {
+        deletedSubmission = submissionID
     }
 }

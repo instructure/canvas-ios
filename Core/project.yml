@@ -1,0 +1,78 @@
+---
+name: Core
+options:
+  groupSortPosition: top
+  bundleIdPrefix: com.instructure.icanvas
+  deploymentTarget:
+    iOS: 15.0
+  createIntermediateGroups: true
+settings:
+  CODE_SIGN_STYLE: Automatic
+  DEVELOPMENT_TEAM: B6333T4PXQ
+  APPLICATION_EXTENSION_API_ONLY: true
+  CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
+  platform: iOS
+packages:
+  CombineSchedulers:
+    url: https://github.com/pointfreeco/combine-schedulers
+    exactVersion: 0.10.0
+  CombineExt:
+    url: https://github.com/CombineCommunity/CombineExt.git
+    exactVersion: 1.8.1
+  Lottie:
+    url: https://github.com/airbnb/lottie-ios.git
+    exactVersion: 3.5.0
+  PSPDFKit:
+    url: https://github.com/PSPDFKit/PSPDFKit-SP
+    exactVersion: 12.3.0
+projectReferences:
+  TestsFoundation:
+    path: ../TestsFoundation/TestsFoundation.xcodeproj
+targets:
+  Core:    
+    type: framework
+    platform: iOS
+    sources:
+      - path: Core
+    dependencies:
+      - package: CombineSchedulers
+      - package: CombineExt
+      - package: Lottie
+      - package: PSPDFKit
+    preBuildScripts:
+      - path: ../scripts/swiftLint.sh
+        name: SwiftLint
+        basedOnDependencyAnalysis: false
+  CoreTests:    
+    type: bundle.unit-test
+    platform: iOS
+    settings:
+      APPLICATION_EXTENSION_API_ONLY: false
+      ENABLE_TESTABILITY: true
+      TEST_HOST: $(BUILT_PRODUCTS_DIR)/CoreTester.app/CoreTester
+    sources:
+      - path: CoreTests
+    dependencies:
+      - target: Core
+      - target: TestsFoundation/TestsFoundation
+  CoreTester:
+    type: application
+    platform: iOS
+    transitivelyLinkDependencies: false
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.instructure.CoreTester
+      CODE_SIGN_ENTITLEMENTS: CoreTester/CoreTester.entitlements
+    sources:
+      - path: CoreTester
+    dependencies:
+      - target: Core
+schemes:
+  Core:
+    build:
+      targets:
+        Core: all
+    test:
+      targets: [CoreTests, CoreTester]
+      testPlans:
+        - path: ../TestPlans/CoreTests.xctestplan
+          defaultPlan: true

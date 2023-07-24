@@ -203,9 +203,6 @@
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
 "Add recipients" = "Empfänger hinzufügen";
 
-/* No comment provided by engineer. */
-"All" = "Alle";
-
 /* Button to select all members of a group */
 "All members" = "Alle Mitglieder";
 
@@ -335,7 +332,7 @@
 "Canvas quizzes support various assessment styles. Most of these styles are supported on mobile devices; however, some are not. If you attempt to take one of these unsupported quizzes on your phone, you might be unable to complete the entire quiz, leaving you at a disadvantage.\n\nUnsupported question types include questions containing Adobe Flash™ content, file uploads, and others.\n\nIf you believe that a quiz contains unsupported content, please take it on desktop or laptop computer. If you know that the quiz contains only supported content, feel free to take it on your mobile device." = "Canvas-Tests unterstützen verschiedene Bewertungsstile. Die meisten dieser Stile werden von Mobilgeräten unterstützt, einige jedoch nicht. Wenn Sie versuchen, einen dieser nicht unterstützten Tests auf Ihrem Handy zu machen, schaffen Sie es unter Umständen nicht, den Test zu beenden, und geraten so in Nachteil.\n\nZu den nicht unterstützten Fragearten gehören u. a. Fragen bezüglich Adobe Flash™-Content, Datei-Uploads und anderes.\n\nWenn Sie glauben, dass ein Test nicht unterstützten Inhalt enthält, laden Sie ihn bitte auf einen Desktop-PC oder Laptop. Wenn Sie sicher sind, dass der Test nur unterstützte Inhalte enthält, können Sie ihn gern auf Ihr Mobilgerät laden.";
 
 /* No comment provided by engineer. */
-"Change User" = "Benutzer wechseln";
+"Change User" = "Benutzer*in wechseln";
 
 /* No comment provided by engineer. */
 "Choose a name for the new folder" = "Einen Namen für den neuen Ordner wählen";
@@ -344,7 +341,7 @@
 "Choose a name for the new folder." = "Einen Namen für den neuen Ordner wählen.";
 
 /* No comment provided by engineer. */
-"Choose a submission type" = "Wählen Sie einen Einreichungstyp";
+"Choose a submission type" = "Wählen Sie eine Abgabeart";
 
 /* No comment provided by engineer. */
 "Choose File" = "Datei auswählen";
@@ -363,9 +360,6 @@
 
 /* Choose a video to send as a comment */
 "Choose Video" = "Video wählen";
-
-/* No comment provided by engineer. */
-"Clear filter" = "Filter löschen";
 
 /* No comment provided by engineer. */
 "Close" = "Schließen";
@@ -496,7 +490,7 @@
 "Dismiss" = "Verwerfen";
 
 /* Alert title asking if you want to masquerade */
-"Do you want to masquerade as this user?" = "Möchten Sie sich als dieser Benutzer verkleiden?";
+"Do you want to masquerade as this user?" = "Möchten Sie sich als diese/r Benutzer*in ausgeben?";
 
 /* The domain for the institution/school that the user is currently using */
 "Domain" = "Domäne";
@@ -634,12 +628,6 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Dateien (%d)";
-
-/* No comment provided by engineer. */
-"Filter" = "Filter";
-
-/* No comment provided by engineer. */
-"Filter by:" = "Filtern nach:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Download abgeschlossen";
@@ -978,7 +966,7 @@
 "Notifications" = "Benachrichtigungen";
 
 /* Short name for observer enrollment */
-"Observer" = "Beobachter";
+"Observer" = "Beobachter*in";
 
 /* No comment provided by engineer. */
 "Ok" = "OK";
@@ -1031,7 +1019,7 @@
 "out of %@ points" = "von %@ Punkten";
 
 /* Title for Outcomes tab */
-"Outcomes" = "Lernziele";
+"Outcomes" = "Lernergebnisse";
 
 /* No comment provided by engineer. */
 "Page" = "Seite";
@@ -1041,7 +1029,7 @@
 
 /* People list title
    Title for People view controller */
-"People" = "Personen";
+"People" = "Teilnehmer*innen";
 
 /* Name for a photo file, i.e. photo.png */
 "photo" = "Foto";
@@ -1250,10 +1238,10 @@
 "Stops recording a media comment" = "Stoppt das Aufzeichnen eines Medienkommentars";
 
 /* Short name for student enrollment */
-"Student" = "Student";
+"Student" = "Studierende*r";
 
 /* No comment provided by engineer. */
-"Student Annotation" = "Studentenanmerkung";
+"Student Annotation" = "Studierendenanmerkung";
 
 /* No comment provided by engineer. */
 "Studio" = "Studio";
@@ -1329,7 +1317,7 @@
 "Syllabus" = "Kursplan";
 
 /* Short name for TA enrollment */
-"TA" = "Lehrassistent";
+"TA" = "Lehrassistent*in";
 
 /* Take a picture to use in a comment. */
 "Take a Photo..." = "Ein Foto machen...";
@@ -1359,10 +1347,10 @@
 "TAs" = "Lehrassistenten";
 
 /* Short name for teacher enrollment */
-"Teacher" = "Lehrer";
+"Teacher" = "Lehrende*r";
 
 /* No comment provided by engineer. */
-"Teachers" = "Dozenten";
+"Teachers" = "Lehrende";
 
 /* No comment provided by engineer. */
 "Tell us what's wrong" = "Sagen Sie uns, was nicht stimmt";
@@ -1558,7 +1546,7 @@
 "Use" = "Verwenden";
 
 /* No comment provided by engineer. */
-"User ID" = "Benutzer-ID";
+"User ID" = "Benutzer*in-ID";
 
 /* Title for User Info section on the about page */
 "User Info" = "Benutzer-Info";
@@ -1633,7 +1621,7 @@
 "You do not have SpeedGrader for iPad. You can download it for free from the App Store." = "Sie verfügen nicht über SpeedGrader für das iPad. Sie können es kostenlos im App-Store herunterladen.";
 
 /* Masquerade error message */
-"You don't have permission to masquerade as this user or there is no user with that ID" = "Sie haben keine Berechtigung, sich als dieser Benutzer auszugeben oder zu dieser ID gibt es keinen Benutzer";
+"You don't have permission to masquerade as this user or there is no user with that ID" = "Sie haben keine Berechtigung, sich als diese/r Benutzer*in auszugeben oder zu dieser ID gibt es keinen Benutzer";
 
 /* No comment provided by engineer. */
 "You have an unsaved reply. Would you like to discard that reply?" = "Sie haben eine nicht ungespeicherte Antwort. Möchten Sie diese Antwort verwerfen?";

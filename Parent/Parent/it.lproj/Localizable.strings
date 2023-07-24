@@ -172,13 +172,10 @@
 "Settings" = "Impostazioni";
 
 /* No comment provided by engineer. */
-"Settings. %@" = "Impostazioni. %@";
-
-/* No comment provided by engineer. */
 "Summary" = "Riepilogo";
 
 /* No comment provided by engineer. */
-"Syllabus" = "Piano di studio";
+"Syllabus" = "Syllabus";
 
 /* No comment provided by engineer. */
 "The linked item is no longer available." = "L'elemento collegato non è più disponibile.";
@@ -200,9 +197,6 @@
 
 /* No comment provided by engineer. */
 "There's nothing to be notified of yet." = "Non c’è ancora nulla su cui ricevere delle notifiche.";
-
-/* No comment provided by engineer. */
-"Trouble logging in" = "Problemi durante l’accesso";
 
 /* No comment provided by engineer. */
 "Unread" = "Non letto";

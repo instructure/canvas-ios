@@ -35,7 +35,7 @@ public struct TopBarItemView: View {
                 viewModel.label
                     .font(.regular14)
             }
-            .accentColor(viewModel.isSelected ? Color(Brand.shared.primary) : .oxford)
+            .accentColor(viewModel.isSelected ? Color(Brand.shared.primary) : .textDark)
             .padding(.vertical, 14)
         }
         .accessibility(addTraits: viewModel.isSelected ? .isSelected : [])
@@ -46,7 +46,7 @@ public struct TopBarItemView: View {
 
 struct TopBarItemView_Previews: PreviewProvider {
     static var previews: some View {
-        TopBarItemView(viewModel: TopBarItemViewModel(icon: .k5homeroom, label: Text(verbatim: "Menu Item")), selectAction: {})
+        TopBarItemView(viewModel: TopBarItemViewModel(id: "1", icon: .k5homeroom, label: Text(verbatim: "Menu Item")), selectAction: {})
             .previewLayout(.sizeThatFits)
     }
 }

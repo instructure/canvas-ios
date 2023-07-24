@@ -36,21 +36,26 @@ public struct PageViewEvent: Codable {
         self.attributes = attributes
     }
 
-    func apiEvent(_ token: APIPandataEventsToken) -> APIPandataEvent {
-        return APIPandataEvent.pageView(timestamp: timestamp, properties: APIPandataEventProperties(
-            page_name: eventName,
-            url: attributes["url"],
-            interaction_seconds: eventDuration,
-            domain: attributes["domain"],
-            context_type: attributes["context_type"],
-            context_id: attributes["context_id"],
-            app_name: attributes["app_name"],
-            real_user_id: attributes["real_user_id"],
-            user_id: attributes["user_id"],
-            session_id: attributes["session_id"],
-            agent: attributes["agent"],
-            guid: guid,
-            customPageViewPath: attributes["customPageViewPath"]
-        ), signedProperties: token.props_token)
+    func apiEvent(_ token: APIPandataEventsToken, appTag: String = Bundle.main.pandataAppTag) -> APIPandataEvent {
+        return APIPandataEvent.pageView(
+            timestamp: timestamp,
+            appTag: appTag,
+            properties: APIPandataEventProperties(
+                page_name: eventName,
+                url: attributes["url"],
+                interaction_seconds: eventDuration,
+                domain: attributes["domain"],
+                context_type: attributes["context_type"],
+                context_id: attributes["context_id"],
+                app_name: attributes["app_name"],
+                real_user_id: attributes["real_user_id"],
+                user_id: attributes["user_id"],
+                session_id: attributes["session_id"],
+                agent: attributes["agent"],
+                guid: guid,
+                customPageViewPath: attributes["customPageViewPath"]
+            ),
+            signedProperties: token.props_token
+        )
     }
 }

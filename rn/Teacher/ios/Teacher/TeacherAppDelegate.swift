@@ -17,14 +17,15 @@
 //
 
 import AVKit
-import UIKit
-import UserNotifications
-import PSPDFKit
-import Firebase
 import CanvasCore
 import Core
+import Firebase
+import Heap
+import PSPDFKit
 import React
 import SafariServices
+import UIKit
+import UserNotifications
 
 @UIApplicationMain
 class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -38,7 +39,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         env.window = window
         return env
     }()
-
+    private var environmentFeatureFlags: Store<GetEnvironmentFeatureFlags>?
     private var isK5User = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -52,10 +53,11 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         setupDefaultErrorHandling()
         DocViewerViewController.setup(.teacherPSPDFKitLicense)
         prepareReactNative()
+        setupPageViewLogging()
         NotificationManager.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         UITableView.setupDefaultSectionHeaderTopPadding()
-
+        FontAppearance.update()
         TabBarBadgeCounts.application = UIApplication.shared
 
         if let session = LoginSession.mostRecent {
@@ -65,6 +67,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         } else {
             window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true, app: .teacher)
             window?.makeKeyAndVisible()
+            Analytics.shared.logScreenView(route: "/login", viewController: window?.rootViewController)
         }
 
         handleLaunchOptionsNotifications(launchOptions)
@@ -74,27 +77,38 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
 
     func setup(session: LoginSession, wasReload: Bool = false) {
         environment.userDidLogin(session: session)
-        CoreWebView.keepCookieAlive(for: environment)
-        if Locale.current.regionCode != "CA" {
-            let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
-            Firebase.Crashlytics.crashlytics().setUserID(crashlyticsUserId)
-        }
-        NotificationManager.shared.subscribeToPushChannel()
 
         let getProfile = GetUserProfileRequest(userID: "self")
-        environment.api.makeRequest(getProfile) { response, urlResponse, error in
-            guard response != nil, error == nil else {
+        environment.api.makeRequest(getProfile) { apiProfile, urlResponse, error in performUIUpdate {
+            PageViewEventController.instance.userDidChange()
+
+            guard let apiProfile = apiProfile, error == nil else {
                 if urlResponse?.isUnauthorized == true {
-                    DispatchQueue.main.async { self.userDidLogout(session: session) }
+                    self.userDidLogout(session: session)
+                    LoginViewModel().showLoginView(on: self.window!, loginDelegate: self, app: .teacher)
                 }
                 return
             }
-            self.isK5User = response?.k5_user == true
-            GetBrandVariables().fetch(environment: self.environment) { _, _, _ in
-                NativeLoginManager.login(as: session)
+
+            self.environmentFeatureFlags = self.environment.subscribe(GetEnvironmentFeatureFlags(context: Context.currentUser))
+            self.environmentFeatureFlags?.refresh(force: true) { _ in
+                guard let envFlags = self.environmentFeatureFlags, envFlags.error == nil else { return }
+                self.initializeTracking()
             }
-        }
-        Analytics.shared.logSession(session)
+
+            self.updateInterfaceStyle(for: self.window)
+            CoreWebView.keepCookieAlive(for: self.environment)
+            NotificationManager.shared.subscribeToPushChannel()
+
+            self.isK5User = apiProfile.k5_user == true
+            Analytics.shared.logSession(session)
+
+            LocalizationManager.localizeForApp(UIApplication.shared, locale: apiProfile.locale) {
+                GetBrandVariables().fetch(environment: self.environment) { _, _, _ in performUIUpdate {
+                    NativeLoginManager.login(as: session)
+                }}
+            }
+        }}
     }
 
     @objc func prepareReactNative() {
@@ -130,7 +144,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         willPresent notification: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
-        completionHandler([.alert, .sound])
+        completionHandler([.banner, .sound])
     }
 
     func userNotificationCenter(
@@ -167,6 +181,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         if (!uiTesting) {
             AppStoreReview.handleLaunch()
         }
+        updateInterfaceStyle(for: window)
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -194,16 +209,76 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
                     let value = remoteConfig.configValue(forKey: key).boolValue
                     feature.isEnabled = value
                     Firebase.Crashlytics.crashlytics().setCustomValue(value, forKey: feature.userDefaultsKey)
-                    Analytics.setUserProperty(value ? "YES" : "NO", forName: feature.rawValue)
                 }
             }
         }
     }
 }
 
+// MARK: PageView Logging
+extension TeacherAppDelegate {
+    func setupPageViewLogging() {
+        class BackgroundAppHelper: AppBackgroundHelperProtocol {
+
+            let queue = DispatchQueue(label: "com.instructure.icanvas.app-background-helper", attributes: .concurrent)
+            var tasks: [String: UIBackgroundTaskIdentifier] = [:]
+
+            func startBackgroundTask(taskName: String) {
+                queue.async(flags: .barrier) { [weak self] in
+                    self?.tasks[taskName] = UIApplication.shared.beginBackgroundTask(
+                        withName: taskName,
+                        expirationHandler: { [weak self] in
+                            self?.endBackgroundTask(taskName: taskName)
+                    })
+                }
+            }
+
+            func endBackgroundTask(taskName: String) {
+                queue.async(flags: .barrier) { [weak self] in
+                    if let task = self?.tasks[taskName] {
+                        self?.tasks[taskName] = .invalid
+                        UIApplication.shared.endBackgroundTask(task)
+                    }
+                }
+            }
+        }
+
+        let helper = BackgroundAppHelper()
+        PageViewEventController.instance.configure(backgroundAppHelper: helper)
+    }
+}
+
 extension TeacherAppDelegate: AnalyticsHandler {
     func handleEvent(_ name: String, parameters: [String: Any]?) {
-        Analytics.logEvent(name, parameters: parameters)
+        guard FirebaseOptions.defaultOptions()?.apiKey != nil else {
+            return
+        }
+
+        if let screenName = parameters?["screen_name"] as? String,
+           let screenClass = parameters?["screen_class"] as? String {
+            Firebase.Crashlytics.crashlytics().log("\(screenName) (\(screenClass))")
+        }
+    }
+
+    private func initializeTracking() {
+        guard
+            let environmentFeatureFlags,
+            !ProcessInfo.isUITest,
+            let heapID = Secret.heapID.string
+        else {
+            return
+        }
+
+        let isSendUsageMetricsEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
+        let options = HeapOptions()
+        options.disableTracking = !isSendUsageMetricsEnabled
+        Heap.initialize(heapID, with: options)
+        Heap.setTrackingEnabled(isSendUsageMetricsEnabled)
+        environment.heapID = Heap.userId()
+    }
+
+    private func disableTracking() {
+        Heap.setTrackingEnabled(false)
     }
 }
 
@@ -217,9 +292,8 @@ extension TeacherAppDelegate: RCTBridgeDelegate {
 extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     func changeUser() {
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
-        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
-            window.rootViewController = LoginNavigationController.create(loginDelegate: self, app: .teacher)
-        }, completion: nil)
+        disableTracking()
+        LoginViewModel().showLoginView(on: window, loginDelegate: self, app: .teacher)
     }
 
     func stopActing() {
@@ -243,16 +317,20 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         environment.router.show(safari, from: from, options: .modal())
     }
 
+    func openExternalURLinSafari(_ url: URL) {
+        UIApplication.shared.open(url)
+    }
+
     func userDidLogin(session: LoginSession) {
         LoginSession.add(session)
-        LocalizationManager.localizeForApp(UIApplication.shared, locale: session.locale) {
-            setup(session: session)
-        }
+        setup(session: session)
     }
 
     func userDidStopActing(as session: LoginSession) {
+        disableTracking()
         LoginSession.remove(session)
         guard environment.currentSession == session else { return }
+        PageViewEventController.instance.userDidChange()
         NotificationManager.shared.unsubscribeFromPushChannel()
         UIApplication.shared.applicationIconBadgeNumber = 0
         environment.userDidLogout(session: session)
@@ -260,6 +338,7 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     }
 
     func userDidLogout(session: LoginSession) {
+        disableTracking()
         let wasCurrent = environment.currentSession == session
         API(session).makeRequest(DeleteLoginOAuthRequest(), refreshToken: false) { _, _, _ in }
         userDidStopActing(as: session)
@@ -267,10 +346,23 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     }
 
     func actAsFakeStudent(withID fakeStudentID: String) {
+        actAsFakeStudent(with: fakeStudentID)
+    }
+
+    func actAsFakeStudent(with fakeStudentID: String, rootAccount: String? = nil) {
         guard let session = environment.currentSession else { return }
+
+        var baseUrl = session.baseURL
+        if let rootAccountHost = rootAccount {
+            var components = URLComponents()
+            components.scheme = "https"
+            components.host = rootAccountHost
+            baseUrl = components.url ?? baseUrl
+        }
+
         let entry = LoginSession(
             accessToken: session.accessToken,
-            baseURL: session.baseURL,
+            baseURL: baseUrl,
             expiresAt: session.expiresAt,
             lastUsedAt: Date(),
             locale: session.locale,
@@ -292,6 +384,14 @@ extension TeacherAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         }
         if let url = URL(string: deepLink) {
             UIApplication.shared.open(url)
+        }
+    }
+
+    func actAsStudentViewStudent(studentViewStudent: APIUser) {
+        if let url = URL(string: "canvas-student://"), UIApplication.shared.canOpenURL(url) {
+            actAsFakeStudent(with: studentViewStudent.id.rawValue, rootAccount: studentViewStudent.root_account)
+        } else if let url = URL(string: "https://itunes.apple.com/us/app/canvas-student/id480883488?ls=1&mt=8") {
+            openExternalURL(url)
         }
     }
 }
@@ -327,6 +427,7 @@ extension TeacherAppDelegate {
             let loginNav = LoginNavigationController.create(loginDelegate: self, app: .teacher)
             loginNav.login(host: host)
             window?.rootViewController = loginNav
+            Analytics.shared.logScreenView(route: "/login", viewController: window?.rootViewController)
         }
 
         let tabRoutes = [["/", "", "/courses", "/groups"], ["/to-do"], ["/conversations", "/inbox"]]

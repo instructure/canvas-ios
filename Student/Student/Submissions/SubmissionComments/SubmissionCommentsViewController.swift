@@ -19,12 +19,13 @@
 import UIKit
 import CoreServices
 import Core
+import UniformTypeIdentifiers
 
 class SubmissionCommentsViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var addCommentBorderView: UIView!
     @IBOutlet weak var addCommentButton: UIButton!
-    @IBOutlet weak var addCommentPlaceholder: UILabel!
     @IBOutlet weak var addCommentTextView: UITextView!
+    @IBOutlet weak var addCommentTextViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var addCommentView: UIView!
     @IBOutlet weak var addMediaButton: UIButton!
     @IBOutlet weak var addMediaHeight: NSLayoutConstraint!
@@ -64,7 +65,9 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
         addCommentBorderView.layer.borderWidth = 1 / UIScreen.main.scale
         addCommentButton.accessibilityLabel = NSLocalizedString("Send comment", bundle: .student, comment: "")
         addCommentTextView.accessibilityLabel = NSLocalizedString("Add a comment or reply to previous comments", bundle: .student, comment: "")
-        addCommentTextView.font = .scaledNamedFont(.regular14)
+        addCommentTextView.placeholder = NSLocalizedString("Comment", bundle: .student, comment: "")
+        addCommentTextView.placeholderColor = .textDark
+        addCommentTextView.font(.scaledNamedFont(.regular16), lineHeight: .body)
         addCommentTextView.adjustsFontForContentSizeCategory = true
         addCommentTextView.textColor = .textDarkest
         addCommentView.backgroundColor = .backgroundLight
@@ -119,7 +122,7 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
                     let picker = UIImagePickerController()
                     picker.allowsEditing = true
                     picker.delegate = self
-                    picker.mediaTypes = [ kUTTypeMovie as String ]
+                    picker.mediaTypes = [ UTType.movie.identifier ]
                     picker.sourceType = .camera
                     picker.cameraDevice = .front
                     self.present(picker, animated: true)
@@ -277,7 +280,7 @@ extension SubmissionCommentsViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         addCommentButton.isEnabled = !(textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
         addCommentButton.alpha = addCommentButton.isEnabled ? 1 : 0.5
-        addCommentPlaceholder.isHidden = !textView.text.isEmpty
+        textView.adjustHeight(to: 10, heightConstraints: addCommentTextViewHeightConstraint)
     }
 }
 

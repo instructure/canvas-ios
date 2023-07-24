@@ -32,12 +32,15 @@ public struct AssignmentGroupView: View {
                 let assignmentCellViewModel = AssignmentCellViewModel(assignment: assignment, courseColor: viewModel.courseColor)
                 VStack(spacing: 0) {
                     AssignmentCellView(viewModel: assignmentCellViewModel)
-                    Divider()
+
+                    if viewModel.assignments.last != assignment {
+                        Divider()
+                    }
                 }
             }
         }
         .listRowInsets(EdgeInsets())
-        .iOS15ListRowSeparator(.hidden)
+        .listRowSeparator(.hidden)
     }
 }
 
@@ -53,7 +56,6 @@ struct AssignmentGroupView_Previews: PreviewProvider {
             AssignmentGroupView(viewModel: AssignmentGroupViewModel(name: "Assignment Group 1", id: "1", assignments: [], courseColor: .red))
         }
         .listStyle(PlainListStyle())
-        .previewLayout(.sizeThatFits)
     }
 }
 

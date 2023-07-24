@@ -203,9 +203,6 @@
 /* Title when showing a list of users you might add to a message. 15 characters is about all we have room for here. */
 "Add recipients" = "Bæta viðtakandendum við";
 
-/* No comment provided by engineer. */
-"All" = "Allt";
-
 /* Button to select all members of a group */
 "All members" = "Allir meðlimir";
 
@@ -363,9 +360,6 @@
 
 /* Choose a video to send as a comment */
 "Choose Video" = "Veldu myndband";
-
-/* No comment provided by engineer. */
-"Clear filter" = "Hreinsa síu";
 
 /* No comment provided by engineer. */
 "Close" = "Loka";
@@ -634,12 +628,6 @@
 
 /* No comment provided by engineer. */
 "Files (%d)" = "Skrár (%d)";
-
-/* No comment provided by engineer. */
-"Filter" = "Sía";
-
-/* No comment provided by engineer. */
-"Filter by:" = "Sía eftir:";
 
 /* Shown when we finish downloading a file */
 "Finished downloading" = "Búið að sækja";

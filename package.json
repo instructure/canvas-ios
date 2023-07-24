@@ -22,7 +22,7 @@
     "aws-sdk": "^2.178.0",
     "chalk": "^2.4.1",
     "commander": "^2.19.0",
-    "danger": "^3.7.18",
+    "danger": "^11.2.6",
     "format-message": "^5.2.0",
     "format-message-parse": "^5.1.2",
     "format-message-print": "^5.1.2",

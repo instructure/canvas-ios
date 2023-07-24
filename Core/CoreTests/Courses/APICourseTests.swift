@@ -23,6 +23,7 @@ class APICourseTests: XCTestCase {
     func testGetCoursesRequest() {
         XCTAssertEqual(GetCoursesRequest().path, "courses")
         XCTAssertEqual(GetCoursesRequest().queryItems, [
+            URLQueryItem(name: "include[]", value: "banner_image"),
             URLQueryItem(name: "include[]", value: "course_image"),
             URLQueryItem(name: "include[]", value: "current_grading_period_scores"),
             URLQueryItem(name: "include[]", value: "favorites"),
@@ -38,6 +39,7 @@ class APICourseTests: XCTestCase {
             URLQueryItem(name: "enrollment_state", value: "active"),
         ])
         XCTAssertEqual(GetCoursesRequest(enrollmentState: .completed, state: [.available, .completed, .unpublished], perPage: 20).queryItems, [
+            URLQueryItem(name: "include[]", value: "banner_image"),
             URLQueryItem(name: "include[]", value: "course_image"),
             URLQueryItem(name: "include[]", value: "current_grading_period_scores"),
             URLQueryItem(name: "include[]", value: "favorites"),
@@ -64,6 +66,7 @@ class APICourseTests: XCTestCase {
     func testGetCourseRequest() {
         XCTAssertEqual(GetCourseRequest(courseID: "2").path, "courses/2")
         XCTAssertEqual(GetCourseRequest(courseID: "2").queryItems, [
+            URLQueryItem(name: "include[]", value: "banner_image"),
             URLQueryItem(name: "include[]", value: "course_image"),
             URLQueryItem(name: "include[]", value: "current_grading_period_scores"),
             URLQueryItem(name: "include[]", value: "favorites"),

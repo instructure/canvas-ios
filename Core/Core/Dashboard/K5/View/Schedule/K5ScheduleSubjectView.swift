@@ -111,13 +111,10 @@ public struct K5ScheduleSubjectView: View {
 
     @ViewBuilder
     private var subjectName: some View {
-        let text = Text(viewModel.subject.name).foregroundColor(viewModel.subject.color).multilineTextAlignment(.leading)
-
-        if #available(iOS 14, *) {
-            text.textCase(.uppercase)
-        } else {
-            text
-        }
+        Text(viewModel.subject.name)
+            .foregroundColor(viewModel.subject.color)
+            .multilineTextAlignment(.leading)
+            .textCase(.uppercase)
     }
 
     private var verticalSeparator: some View {

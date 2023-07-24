@@ -19,11 +19,13 @@
 import SwiftUI
 import WebKit
 
-public struct K5SubjectView: View {
+public struct K5SubjectView: View, ScreenViewTrackable {
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
 
     @ObservedObject private var viewModel: K5SubjectViewModel
+    public let screenViewTrackingParameters: ScreenViewTrackingParameters
+
     private var padding: CGFloat { UIDevice.current.userInterfaceIdiom == .pad ? 32 : 16 }
 
     public var body: some View {
@@ -32,11 +34,19 @@ public struct K5SubjectView: View {
                 TopBarView(viewModel: topBarViewModel, horizontalInset: padding, itemSpacing: padding)
                 Divider()
                 if UIDevice.current.userInterfaceIdiom == .pad {
-                    K5SubjectHeaderView(title: viewModel.courseTitle, imageUrl: viewModel.courseImageUrl, backgroundColor: Color(viewModel.courseColor ?? .clear)).padding(padding)
+                    K5SubjectHeaderView(title: viewModel.courseTitle,
+                                        imageUrl: viewModel.courseBannerImageUrl ?? viewModel.courseImageUrl,
+                                        backgroundColor: Color(viewModel.courseColor ?? .clear)).padding(padding)
                 }
                 if let currentPageURL = viewModel.currentPageURL {
-                    WebView(url: currentPageURL, customUserAgentName: nil, disableZoom: true, configuration: viewModel.config)
-                        .reload(on: viewModel.reloadWebView)
+                    WebView(url: currentPageURL,
+                            features: [
+                                .disableZoom,
+                                .pullToRefresh(color: viewModel.courseColor),
+                                .invertColorsInDarkMode,
+                            ],
+                            configuration: viewModel.config)
+                    .reload(on: viewModel.reloadWebView)
                 }
                 Divider()
             }
@@ -47,6 +57,7 @@ public struct K5SubjectView: View {
 
     public init(context: Context, selectedTabId: String? = nil) {
         self.viewModel = K5SubjectViewModel(context: context, selectedTabId: selectedTabId)
+        self.screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "\(context.pathComponent)")
         self.controller.value.navigationController?.navigationBar.tintColor = self.viewModel.courseColor
     }
 }

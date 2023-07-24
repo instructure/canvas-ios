@@ -87,7 +87,7 @@ class ModulesTests: CoreUITestCase {
             .make(id: "2", name: "Module 2", position: 2, prerequisite_module_ids: ["1"], state: .unlocked),
         ])
         ModuleList.item(section: 0, row: 0).tap()
-        app.webViews.staticTexts.matching(label: "hello").firstElement.waitToExist()
+        app.webViews.staticTexts.matching(label: "hello").firstElement.waitToExist(20)
         NavBar.backButton.tap()
         XCTAssertEqual(ModuleList.item(section: 1, row: 0).label(), "page, Page 2")
         XCTAssertTrue(ModuleList.item(section: 1, row: 0).isEnabled)

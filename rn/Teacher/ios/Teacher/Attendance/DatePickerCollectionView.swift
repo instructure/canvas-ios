@@ -27,7 +27,7 @@ class DatePickerDateCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        backgroundColor = .backgroundLightest
         highlightView.backgroundColor = .electric
         highlightView.layer.cornerRadius = 4.0
         highlightView.clipsToBounds = true

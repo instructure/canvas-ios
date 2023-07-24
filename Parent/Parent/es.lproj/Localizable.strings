@@ -172,9 +172,6 @@
 "Settings" = "Configuraciones";
 
 /* No comment provided by engineer. */
-"Settings. %@" = "Configuración. %@";
-
-/* No comment provided by engineer. */
 "Summary" = "Resumen";
 
 /* No comment provided by engineer. */
@@ -200,9 +197,6 @@
 
 /* No comment provided by engineer. */
 "There's nothing to be notified of yet." = "No hay nada por notificar aún.";
-
-/* No comment provided by engineer. */
-"Trouble logging in" = "Problemas para iniciar sesión";
 
 /* No comment provided by engineer. */
 "Unread" = "No leído";

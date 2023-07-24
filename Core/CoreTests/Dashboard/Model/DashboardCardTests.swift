@@ -28,13 +28,15 @@ class DashboardCardTests: CoreTestCase {
             assetString: "course_1",
             courseCode: "CRS1",
             id: "1",
+            isK5Subject: true,
             shortName: "Course One"
         ), ])
         useCase.fetch()
         let card: DashboardCard? = databaseClient.fetch(scope: useCase.scope).first
-        XCTAssertEqual(card?.color, .red)
+        XCTAssertEqual(card?.color.hexString, UIColor.red.ensureContrast(against: .backgroundLightest).hexString)
         XCTAssertEqual(card?.course?.id, "1")
         XCTAssertEqual(card?.shortName, "Course One")
+        XCTAssertEqual(card?.isK5Subject, true)
     }
 
     func testTeacherEnrollment() {
@@ -60,5 +62,25 @@ class DashboardCardTests: CoreTestCase {
         let course = Course.save(.make(), in: databaseClient)
         let card = DashboardCard.save(.make(), position: 0, in: databaseClient)
         XCTAssertEqual(card.course, course)
+    }
+
+    func testUseCaseDoesntDeleteUpdatedObjects() {
+        let card1 = DashboardCard.save(.make(id: "1", longName: "original name"), position: 0, in: databaseClient)
+        let card2 = DashboardCard.save(.make(id: "2"), position: 0, in: databaseClient)
+        try! databaseClient.save()
+        let useCase = GetDashboardCards()
+        api.mock(useCase, value: [
+            .make(id: "1", longName: "updated name"),
+        ])
+
+        XCTAssertFalse(card1.isFault)
+        XCTAssertEqual(card1.longName, "original name")
+        XCTAssertFalse(card2.isFault)
+
+        useCase.fetch()
+
+        XCTAssertFalse(card1.isFault)
+        XCTAssertEqual(card1.longName, "updated name")
+        XCTAssertTrue(card2.isFault)
     }
 }

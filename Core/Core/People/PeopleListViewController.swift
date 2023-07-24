@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class PeopleListViewController: UIViewController, ColoredNavViewProtocol {
+public class PeopleListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -39,6 +39,9 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
     }
     var keyboard: KeyboardTransitioning?
     var search: String?
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "\(context.pathComponent)/users"
+    )
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
@@ -72,16 +75,11 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
 
         searchBar.placeholder = NSLocalizedString("Search", bundle: .core, comment: "")
         searchBar.backgroundColor = .backgroundLightest
-
         tableView.backgroundColor = .backgroundLightest
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
         tableView.registerHeaderFooterView(FilterHeaderView.self, fromNib: false)
         tableView.separatorColor = .borderMedium
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
-            self.tableView.contentOffset.y = self.searchBar.frame.height
-        }
-
         colors.refresh()
         if context.contextType == .course {
             course.refresh()
@@ -109,12 +107,13 @@ public class PeopleListViewController: UIViewController, ColoredNavViewProtocol 
             tableView.deselectRow(at: selected, animated: true)
         }
         navigationController?.navigationBar.useContextColor(color)
-        env.pageViewLogger.startTrackingTimeOnViewController()
     }
 
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "\(context.pathComponent)/users", attributes: [:])
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        DispatchQueue.main.async {
+            self.tableView.contentOffset.y = self.searchBar.frame.height
+        }
     }
 
     func updateNavBar() {
@@ -231,7 +230,8 @@ extension PeopleListViewController: UITableViewDataSource, UITableViewDelegate {
             return LoadingCell(style: .default, reuseIdentifier: nil)
         }
         let cell = tableView.dequeue(PeopleListCell.self, for: indexPath)
-        cell.update(user: users[indexPath.row])
+        cell.accessibilityIdentifier = "people-list-cell-row-\(indexPath.row)"
+        cell.update(user: users[indexPath.row], color: color)
         return cell
     }
 
@@ -256,11 +256,14 @@ class PeopleListCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var rolesLabel: UILabel!
 
-    func update(user: User?) {
+    func update(user: User?, color: UIColor?) {
         backgroundColor = .backgroundLightest
+        selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         avatarView.name = user?.name ?? ""
         avatarView.url = user?.avatarURL
-        nameLabel.text = user.flatMap { User.displayName($0.name, pronouns: $0.pronouns) }
+        let nameText = user.flatMap { User.displayName($0.name, pronouns: $0.pronouns) }
+        nameLabel.setText(nameText, style: .textCellTitle)
+        nameLabel.accessibilityIdentifier = "\(self.accessibilityIdentifier ?? "").name-label"
         let courseEnrollments = user?.enrollments.filter {
             if let canvasContextID = $0.canvasContextID, let context = Context(canvasContextID: canvasContextID), context.contextType == .course {
                 return context.id == user?.courseID
@@ -269,7 +272,8 @@ class PeopleListCell: UITableViewCell {
         }
         var roles = courseEnrollments?.compactMap { $0.formattedRole } ?? []
         roles = Set(roles).sorted()
-        rolesLabel.text = ListFormatter.localizedString(from: roles)
+        rolesLabel.setText(ListFormatter.localizedString(from: roles), style: .textCellSupportingText)
+        rolesLabel.accessibilityIdentifier = "\(self.accessibilityIdentifier ?? "").role-label"
         rolesLabel.isHidden = roles.isEmpty
     }
 }

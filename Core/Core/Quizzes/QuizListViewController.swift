@@ -19,7 +19,7 @@
 import UIKit
 import CoreData
 
-public class QuizListViewController: UIViewController, ColoredNavViewProtocol {
+public class QuizListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -33,6 +33,9 @@ public class QuizListViewController: UIViewController, ColoredNavViewProtocol {
     var courseID = ""
     let env = AppEnvironment.shared
     var selectedFirstQuiz: Bool = false
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "courses/\(courseID)/quizzes"
+    )
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.update()
@@ -65,6 +68,8 @@ public class QuizListViewController: UIViewController, ColoredNavViewProtocol {
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .borderMedium
+        tableView.backgroundColor = .backgroundLightest
+        view.backgroundColor = .backgroundLightest
 
         colors.refresh()
         course.refresh()
@@ -74,13 +79,7 @@ public class QuizListViewController: UIViewController, ColoredNavViewProtocol {
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.selectRow(at: nil, animated: false, scrollPosition: .none)
-        env.pageViewLogger.startTrackingTimeOnViewController()
         navigationController?.navigationBar.useContextColor(color)
-    }
-
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "courses/\(courseID)/quizzes", attributes: [:])
     }
 
     @objc func refresh() {
@@ -129,7 +128,7 @@ extension QuizListViewController: UITableViewDataSource, UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: QuizListCell = tableView.dequeue(for: indexPath)
-        cell.update(quiz: quizzes[indexPath], isTeacher: course.first?.hasTeacherEnrollment == true)
+        cell.update(quiz: quizzes[indexPath], isTeacher: course.first?.hasTeacherEnrollment == true, color: color)
         cell.accessibilityIdentifier = "QuizListCell.\(indexPath.section).\(indexPath.row)"
         return cell
     }
@@ -144,23 +143,37 @@ class QuizListCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var iconImageView: AccessIconView!
     @IBOutlet weak var pointsLabel: UILabel!
+    @IBOutlet weak var pointsDot: UILabel!
     @IBOutlet weak var questionsLabel: UILabel!
     @IBOutlet weak var statusDot: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
 
-    func update(quiz: Quiz?, isTeacher: Bool) {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        statusDot.setText(statusDot.text, style: .textCellSupportingText)
+        pointsDot.setText(pointsDot.text, style: .textCellBottomLabel)
+    }
+
+    func update(quiz: Quiz?, isTeacher: Bool, color: UIColor?) {
+        backgroundColor = .backgroundLightest
+        selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         if isTeacher {
             iconImageView.published = quiz?.published == true
         } else {
             iconImageView.state = nil
         }
-        dateLabel.text = quiz?.dueText
-        titleLabel.text = quiz?.title
-        pointsLabel.text = quiz?.pointsPossibleText
-        questionsLabel.text = quiz?.nQuestionsText
+        dateLabel.setText(quiz?.dueText, style: .textCellSupportingText)
+        dateLabel.accessibilityIdentifier = "dateLabel"
+        titleLabel.setText(quiz?.title, style: .textCellTitle)
+        titleLabel.accessibilityIdentifier = "titleLabel"
+        pointsLabel.setText(quiz?.pointsPossibleText, style: .textCellBottomLabel)
+        pointsLabel.accessibilityIdentifier = "pointsLabel"
+        questionsLabel.setText(quiz?.nQuestionsText, style: .textCellBottomLabel)
+        questionsLabel.accessibilityIdentifier = "questionsLabel"
         if let statusText = quiz?.lockStatusText {
-            statusLabel.text = statusText
+            statusLabel.setText(statusText, style: .textCellSupportingText)
+            statusLabel.accessibilityIdentifier = "statusLabel"
             statusLabel.isHidden = false
             statusDot.isHidden = false
         } else {

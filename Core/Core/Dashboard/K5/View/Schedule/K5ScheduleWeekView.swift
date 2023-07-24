@@ -35,14 +35,15 @@ public struct K5ScheduleWeekView: View {
 
     public var body: some View {
         GeometryReader { geometry in
-            CompatibleScrollViewReader { scrollProxy in
+            ScrollViewReader { scrollProxy in
                 List {
                     let dayModels = viewModel.days
                     ForEach(dayModels) { dayModel in
                         let isLastDay = dayModels.last == dayModel
                         let isToday = viewModel.isTodayModel(dayModel)
                         dayCell(for: dayModel, isLastDay: isLastDay, isToday: isToday, geometry: geometry)
-                            .iOS15ListRowSeparator(.hidden)
+                            .listRowBackground(Color.backgroundLightest)
+                            .listRowSeparator(.hidden)
                     }
                 }
                 .listStyle(.plain)
@@ -81,7 +82,7 @@ public struct K5ScheduleWeekView: View {
         return section
     }
 
-    private func todayButton(scrollProxy: CompatibleScrollViewProxy) -> some View {
+    private func todayButton(scrollProxy: ScrollViewProxy) -> some View {
         Button(action: {
             withAnimation {
                 scrollProxy.scrollTo(viewModel.todayViewId, anchor: .top)
@@ -100,23 +101,15 @@ public struct K5ScheduleWeekView: View {
     @ViewBuilder
     private func header(for model: K5ScheduleDayViewModel, isToday: Bool, geometry: GeometryProxy) -> some View {
         let content = VStack(alignment: .leading) {
-            let weekday = Text(model.weekday).font(.bold24)
-            let date = Text(model.date).font(.bold17)
-
-            if #available(iOS 14, *) {
-                weekday.textCase(nil)
-                date.textCase(nil)
-            } else {
-                weekday
-                date
-            }
+            Text(model.weekday).font(.bold24).textCase(nil)
+            Text(model.date).font(.bold17).textCase(nil)
         }
-        .foregroundColor(.licorice)
+        .foregroundColor(.textDarkest)
         .padding(.top, 26)
         .padding(.leading, horizontalPadding)
 
         let background = Rectangle()
-            .fill(Color.white)
+            .fill(Color.backgroundLightest)
             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
             .frame(minHeight: 93)
         let header = background

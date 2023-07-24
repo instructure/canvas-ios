@@ -105,7 +105,14 @@ extension NotificationManager {
                 return self.createPushChannel(token: token, session: session, retriesLeft: retriesLeft - 1)
             }
             guard let channelID = channel?.id.value, error == nil else {
-                return AppEnvironment.shared.reportError(error)
+                // Hide error alert when "Users can edit their communication channels" setting is turned off
+                if let apiError = error as? APIError, case .unauthorized = apiError {
+                    return
+                } else if error.isPushNotConfigured {
+                    return
+                } else {
+                    return AppEnvironment.shared.reportError(error)
+                }
             }
             api.makeRequest(GetNotificationDefaultsFlagRequest()) { data, _, error in
                 guard data == nil || error != nil else { return } // already set up defaults

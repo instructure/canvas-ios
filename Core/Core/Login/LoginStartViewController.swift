@@ -21,8 +21,8 @@ import UIKit
 class LoginStartViewController: UIViewController {
     @IBOutlet weak var authenticationMethodLabel: UILabel!
     @IBOutlet weak var canvasNetworkButton: UIButton!
-    @IBOutlet weak var findSchoolButton: UIButton!
-    @IBOutlet weak var helpButton: UIButton!
+    @IBOutlet weak var findSchoolButton: DynamicButton!
+    @IBOutlet weak var lastLoginButton: UIButton!
     @IBOutlet weak var logoView: UIImageView!
     @IBOutlet weak var previousLoginsLabel: UILabel!
     @IBOutlet weak var previousLoginsTableView: UITableView!
@@ -37,6 +37,11 @@ class LoginStartViewController: UIViewController {
     @IBOutlet weak var animatableLogo: UIImageView!
     @IBOutlet weak var animatableLogoPosX: NSLayoutConstraint!
     @IBOutlet weak var animatableLogoPosY: NSLayoutConstraint!
+    @IBOutlet weak var loginTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var previousLoginsHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var qrLoginStackViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var buttonStackViewCenterYConstraint: NSLayoutConstraint!
+    private var originalButtonStackViewCenterYConstraint: NSLayoutConstraint!
 
     let env = AppEnvironment.shared
     weak var loginDelegate: LoginDelegate?
@@ -45,6 +50,15 @@ class LoginStartViewController: UIViewController {
     var sessions: [LoginSession] = []
     var shouldAnimateFromLaunchScreen = false
     var app: App = .student
+    var lastLoginAccount: APIAccountResult? {
+        didSet {
+            lastLoginButton.isHidden = lastLoginAccount == nil
+            guard let lastLoginAccount = lastLoginAccount else { return }
+            let buttonTitle = lastLoginAccount.name.isEmpty ? lastLoginAccount.domain : lastLoginAccount.name
+            lastLoginButton.setTitle(NSLocalizedString(buttonTitle, bundle: .core, comment: ""), for: .normal)
+            alternateFindSchoolButton()
+        }
+    }
 
     static func create(loginDelegate: LoginDelegate?, fromLaunch: Bool, app: App) -> LoginStartViewController {
         let controller = loadFromStoryboard()
@@ -62,12 +76,11 @@ class LoginStartViewController: UIViewController {
         if let findSchoolButtonTitle = loginDelegate?.findSchoolButtonTitle {
             findSchoolButton.setTitle(findSchoolButtonTitle, for: .normal)
         }
-        helpButton.accessibilityLabel = NSLocalizedString("Help", bundle: .core, comment: "")
-        helpButton.isHidden = !Bundle.main.isParentApp
         authenticationMethodLabel.isHidden = true
         logoView.tintColor = .currentLogoColor()
         animatableLogo.tintColor = logoView.tintColor
         previousLoginsView.isHidden = true
+        self.lastLoginAccount = nil
         previousLoginsLabel.text = NSLocalizedString("Previous Logins", bundle: .core, comment: "")
         whatsNewLabel.text = NSLocalizedString("We've made a few changes.", bundle: .core, comment: "")
         whatsNewLink.setTitle(NSLocalizedString("See what's new.", bundle: .core, comment: ""), for: .normal)
@@ -78,18 +91,48 @@ class LoginStartViewController: UIViewController {
             : "STUDENT"
         ), attributes: [.kern: 2])
         wordmarkLabel.textColor = .currentLogoColor()
-
+        let loginText = NSLocalizedString("Log In", bundle: .core, comment: "")
         if MDMManager.shared.host != nil {
-            findSchoolButton.setTitle(NSLocalizedString("Log In", bundle: .core, comment: ""), for: .normal)
+            findSchoolButton.isHidden = true
+            lastLoginButton.setTitle(loginText, for: .normal)
+            lastLoginButton.isHidden = false
+        } else if let data = UserDefaults.standard.data(forKey: "lastLoginAccount"),
+                    let savedAccount = try? APIJSONDecoder().decode(APIAccountResult.self, from: data) {
+            lastLoginAccount = savedAccount
         }
+
         mdmObservation = MDMManager.shared.observe(\.loginsRaw, changeHandler: { [weak self] _, _ in
             self?.update()
         })
 
         NotificationCenter.default.addObserver(self, selector: #selector(userDefaultsDidChange(_:)), name: UserDefaults.didChangeNotification, object: nil)
 
+        // iPhone SE (3rd gen) 
+        if UIScreen.main.bounds.height <= 667 {
+            qrLoginStackViewTopConstraint.constant = 16
+        }
+
+        // Store the original buttonStackViewCenterYConstraint so we can use it when the orientation changes
+        originalButtonStackViewCenterYConstraint = buttonStackViewCenterYConstraint
+        updateButtonStackViewLayout()
+
         update()
         refreshLogins()
+    }
+
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
+        updateButtonStackViewLayout()
+    }
+
+    // Center Buttons Vertically when orientation is landscape
+    private func updateButtonStackViewLayout() {
+        switch UIDevice.current.orientation {
+        case .landscapeLeft, .landscapeRight:
+            buttonStackViewCenterYConstraint = originalButtonStackViewCenterYConstraint
+            buttonStackViewCenterYConstraint.isActive = true
+        default:
+            buttonStackViewCenterYConstraint.isActive = false
+        }
     }
 
     func configureButtons() {
@@ -193,7 +236,14 @@ class LoginStartViewController: UIViewController {
     }
 
     @IBAction func findTapped(_ sender: UIButton) {
+        let controller: UIViewController = LoginFindSchoolViewController.create(loginDelegate: loginDelegate, method: method)
+        env.router.show(controller, from: self, analyticsRoute: "/login/find")
+    }
+
+    @IBAction func lastLoginTapped(_ sender: UIButton) {
         var controller: UIViewController = LoginFindSchoolViewController.create(loginDelegate: loginDelegate, method: method)
+        var analyticsRoute = "/login/find"
+
         if let host = MDMManager.shared.host {
             let provider = MDMManager.shared.authenticationProvider
             if method == .manualOAuthLogin {
@@ -202,6 +252,7 @@ class LoginStartViewController: UIViewController {
                     host: host,
                     loginDelegate: loginDelegate
                 )
+                analyticsRoute = "/login/manualoauth"
             } else {
                 controller = LoginWebViewController.create(
                     authenticationProvider: provider,
@@ -209,9 +260,19 @@ class LoginStartViewController: UIViewController {
                     loginDelegate: loginDelegate,
                     method: method
                 )
+                analyticsRoute = "/login/weblogin"
             }
+        } else if let host = lastLoginAccount?.domain {
+            controller = LoginWebViewController.create(
+                authenticationProvider: lastLoginAccount?.authentication_provider,
+                host: host,
+                loginDelegate: loginDelegate,
+                method: method
+            )
+            analyticsRoute = "/login/weblogin"
         }
-        env.router.show(controller, from: self)
+
+        env.router.show(controller, from: self, analyticsRoute: analyticsRoute)
     }
 
     @IBAction func scanQRCode(_ sender: UIButton) {
@@ -231,10 +292,6 @@ class LoginStartViewController: UIViewController {
         } else {
             showLoginQRCodeTutorial()
         }
-    }
-
-    @IBAction func helpTapped(_ sender: UIButton) {
-        loginDelegate?.openSupportTicket()
     }
 
     @IBAction func whatsNewTapped(_ sender: UIButton) {
@@ -272,13 +329,13 @@ class LoginStartViewController: UIViewController {
         Analytics.shared.logEvent("qr_code_login_clicked")
         let tutorial = LoginQRCodeTutorialViewController.create()
         tutorial.delegate = self
-        env.router.show(tutorial, from: self, options: .modal(embedInNav: true))
+        env.router.show(tutorial, from: self, options: .modal(embedInNav: true), analyticsRoute: "/login/qr/tutorial")
     }
 
     func launchQRScanner() {
         let scanner = ScannerViewController()
         scanner.delegate = self
-        self.env.router.show(scanner, from: self, options: .modal(.fullScreen))
+        self.env.router.show(scanner, from: self, options: .modal(.fullScreen), analyticsRoute: "/login/qr")
     }
 
     func logIn(withCode code: String) {
@@ -321,11 +378,36 @@ class LoginStartViewController: UIViewController {
             message: NSLocalizedString("Please generate another QR Code and try again.", bundle: .core, comment: "")
         )
     }
+
+    private func alternateFindSchoolButton() {
+        findSchoolButton.setTitle(NSLocalizedString("Find another school", bundle: .core, comment: ""), for: .normal)
+        findSchoolButton.backgroundColorName = "white"
+        findSchoolButton.textColorName = "oxford"
+        findSchoolButton.borderColorName = "oxford"
+    }
+
+    private func animatePreviousLoginsHeightChange(numberOfItems: Int) {
+        switch numberOfItems {
+        case 0:
+            previousLoginsHeightConstraint.constant = 0
+        case 1:
+            previousLoginsHeightConstraint.constant = 80
+        default:
+            previousLoginsHeightConstraint.constant = 140
+        }
+        view.setNeedsUpdateConstraints()
+
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
 }
 
 extension LoginStartViewController: UITableViewDataSource, UITableViewDelegate, LoginStartSessionDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sessions.count + MDMManager.shared.logins.count
+        let count = sessions.count + MDMManager.shared.logins.count
+        animatePreviousLoginsHeightChange(numberOfItems: count)
+        return count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

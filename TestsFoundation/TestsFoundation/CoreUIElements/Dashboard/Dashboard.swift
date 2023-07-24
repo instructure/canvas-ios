@@ -54,6 +54,14 @@ public enum Dashboard: String, ElementWrapper {
     public static func groupCard(id: String) -> Element {
         app.find(id: "group-row-\(id)")
     }
+
+    public static func dashboardSettings() -> Element {
+        app.find(label: "Dashboard settings")
+    }
+
+    public static func dashboardSettingsShowGradeToggle() -> Element {
+        app.find(label: "Show Grades", type: .switch)
+    }
 }
 
 public struct DashboardEdit {
@@ -62,6 +70,6 @@ public struct DashboardEdit {
     }
 
     public static func toggleFavorite(id: String) {
-        app.find(id: "DashboardCourseCell.\(id)", label: "favorite").tap()
+        app.find(id: "DashboardCourseCell.\(id).favoriteButton", type: .button).tap()
     }
 }

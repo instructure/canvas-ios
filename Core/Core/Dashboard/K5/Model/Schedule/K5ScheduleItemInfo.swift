@@ -96,7 +96,7 @@ public extension APIPlannable {
             if let courseID = course_id?.value, let color = courseInfoByCourseIDs[courseID]?.color {
                 return color
             } else {
-                return Color(Brand.shared.primary)
+                return Color(Brand.shared.primary.cgColor)
             }
         }()
         let route: URL? = {

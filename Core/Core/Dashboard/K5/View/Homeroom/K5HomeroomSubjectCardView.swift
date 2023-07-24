@@ -53,11 +53,8 @@ public struct K5HomeroomSubjectCardView: View {
                 infoLines
                 Spacer()
             }
-                .background(RoundedRectangle(cornerRadius: 4).stroke(Color(white: 0.89), lineWidth: 1 / UIScreen.main.scale))
-                .background(Color.white)
-                .cornerRadius(4)
-                .shadow(color: Color.black.opacity(0.2), radius: 1, x: 0, y: 1)
-
+            .background(RoundedRectangle(cornerRadius: 4).stroke(Color.borderMedium, lineWidth: 1 / UIScreen.main.scale))
+            .cornerRadius(4)
         })
         .buttonStyle(PlainButtonStyle())
         .frame(width: cardSize.width, height: cardSize.height)
@@ -74,7 +71,7 @@ public struct K5HomeroomSubjectCardView: View {
                 // Fix big course image consuming tap events.
                 .contentShape(Path(CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height)))
         }
-            .frame(width: imageSize.width, height: imageSize.height)
+        .frame(width: imageSize.width, height: imageSize.height)
     }
 
     private var infoLines: some View {
@@ -88,7 +85,7 @@ public struct K5HomeroomSubjectCardView: View {
                 }
             }
         }
-        .foregroundColor(.licorice)
+        .foregroundColor(.textDarkest)
         .padding(.horizontal, 8)
         .environment(\.font, Font.regular13)
         .environment(\.lineLimit, 2)
@@ -108,7 +105,7 @@ public struct K5HomeroomSubjectCardView: View {
                 +
                 Text(model.highlightedText)
                     .foregroundColor(Color(DocViewerAnnotationColor.red.color)))
-                    .padding(.top, 1)
+                .padding(.top, 1)
             }
         })
     }
@@ -126,11 +123,11 @@ struct K5HomeroomSubjectCardView_Previews: PreviewProvider {
         let longCourseName = "long course title to test what happens if there's not enough space for it"
         let models = [
             K5HomeroomSubjectCardViewModel(courseId: "1", imageURL: imageURL, name: "SOCIAL STUDIES", color: .electric, infoLines: [
-                                            .make(dueToday: 0, missing: 0, courseId: ""),
+                .make(dueToday: 0, missing: 0, courseId: ""),
             ]),
             K5HomeroomSubjectCardViewModel(courseId: "1", imageURL: imageURL, name: longCourseName, color: .electric, infoLines: [
-                                            .make(dueToday: 3, missing: 1, courseId: ""),
-                                            .make(from: announcement, courseId: "")!,
+                .make(dueToday: 3, missing: 1, courseId: ""),
+                .make(from: announcement, courseId: "")!,
             ]),
         ]
 

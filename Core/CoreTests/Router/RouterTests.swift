@@ -33,9 +33,7 @@ class RouterTests: CoreTestCase {
         var presented: UIViewController?
         override func present(_ vc: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
             presented = vc
-            if let completion = completion {
-                completion()
-            }
+            completion?()
         }
         var detail: UIViewController?
         override func showDetailViewController(_ vc: UIViewController, sender: Any?) {
@@ -279,11 +277,6 @@ class RouterTests: CoreTestCase {
         let url = URL(string: "https://canvas.instructure.com/somewhere#fragment?query=yo")!
         router.route(to: url, from: mockView)
         XCTAssertNotNil(mockView.shown)
-        XCTAssertEqual(analytics.events[0].name, "route")
-        XCTAssertEqual(
-            analytics.events[0].parameters!["url"] as! String,
-            "https://canvas.instructure.com/somewhere#fragment?query=yo"
-        )
     }
 
     func testRouteApiV1() {
@@ -381,7 +374,7 @@ class RouterTests: CoreTestCase {
 
     func testOpen() {
         var url = URL(string: "https://canvas.instructure.com/relative/url")!
-        api.mock(GetWebSessionRequest(to: url), value: .init(session_url: url))
+        api.mock(GetWebSessionRequest(to: url), value: .init(session_url: url, requires_terms_acceptance: false))
         Router.open(url: .parse("relative/url"))
         XCTAssertEqual(login.externalURL?.absoluteURL, url)
 
@@ -414,5 +407,119 @@ class RouterTests: CoreTestCase {
             Router.open(url: .parse("\(proto)://canvas.instructure.com/"))
             XCTAssertEqual(login.externalURL?.absoluteURL, url)
         }
+    }
+
+    func testAnalyticsReportOnRoute() {
+        let mockView = MockViewController()
+        let router = Router(routes: [
+            RouteHandler("/courses/:courseId/assignments") { _, _, _ in
+                return UIViewController()
+            },
+        ]) { _, _, _, _ in }
+        AppEnvironment.shared.app = .teacher
+        let analyticsHandler = MockAnalyticsHandler()
+        Analytics.shared.handler = analyticsHandler
+
+        router.route(to: URLComponents(string: "/courses/1234/assignments")!, from: mockView, options: .modal())
+
+        XCTAssertEqual(analyticsHandler.lastEventName, "screen_view")
+        XCTAssertEqual(analyticsHandler.lastEventParameters as? [String: String], [
+            "application": "teacher",
+            "screen_name": "/courses/:courseId/assignments",
+            "screen_class": "UIViewController",
+        ])
+    }
+
+    func testAnalyticsReportOnShow() {
+        let mockView = MockViewController()
+        let router = Router(routes: []) { _, _, _, _ in }
+        AppEnvironment.shared.app = .parent
+        let analyticsHandler = MockAnalyticsHandler()
+        Analytics.shared.handler = analyticsHandler
+
+        router.show(mockView, from: UIViewController(), analyticsRoute: "/courses/:courseId/assignments")
+
+        XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
+        XCTAssertEqual(analyticsHandler.lastEventName, "screen_view")
+        XCTAssertEqual(analyticsHandler.lastEventParameters as? [String: String], [
+            "application": "parent",
+            "screen_name": "/courses/:courseId/assignments",
+            "screen_class": "MockViewController",
+        ])
+    }
+
+    func testRouteTemplate() {
+        let testee = Router(routes: [
+            RouteHandler("/courses/:courseId/assignments") { _, _, _ in UIViewController() },
+        ])
+
+        XCTAssertEqual(testee.template(for: "/courses/1234/assignments"), "/courses/:courseId/assignments")
+        XCTAssertEqual(testee.template(for: URLComponents(string: "/courses/1234/assignments")!), "/courses/:courseId/assignments")
+        XCTAssertEqual(testee.template(for: URL(string: "/courses/1234/assignments")!), "/courses/:courseId/assignments")
+    }
+
+    func testIsRegisteredRoute() {
+        let testee = Router(routes: [
+            RouteHandler("/courses/:courseId/assignments") { _, _, _ in UIViewController() },
+        ])
+
+        XCTAssertEqual(testee.isRegisteredRoute("/courses/1234/assignments"), true)
+        XCTAssertEqual(testee.isRegisteredRoute("/courses/1234/assignments/4321"), false)
+        XCTAssertEqual(testee.isRegisteredRoute(URLComponents(string: "/courses/1234/assignments")!), true)
+        XCTAssertEqual(testee.isRegisteredRoute(URLComponents(string: "/courses/1234/assignments/4321")!), false)
+        XCTAssertEqual(testee.isRegisteredRoute(URL(string: "/courses/1234/assignments")!), true)
+        XCTAssertEqual(testee.isRegisteredRoute(URL(string: "/courses/1234/assignments/4321")!), false)
+    }
+
+    func testExternalURLsWithMatchingPathOfANativeRouteOpenedBySystem() {
+        AppEnvironment.shared.currentSession = LoginSession(baseURL: URL(string: "https://canvas.com")!,
+                                                            userID: "",
+                                                            userName: "")
+        let mockViewController = MockViewController()
+        let externalURL = URL(string: "https://example.com/courses")!
+        let testee = Router(routes: [
+            RouteHandler("/courses") { _, _, _ in UIViewController() },
+        ])
+
+        testee.route(to: externalURL, from: mockViewController)
+
+        XCTAssertEqual(login.externalURL?.absoluteURL, URL(string: "https://example.com/courses")!)
+        XCTAssertNil(mockViewController.shown)
+    }
+
+    func testExternalURLsFromPushOpenedNatively() {
+        AppEnvironment.shared.currentSession = LoginSession(baseURL: URL(string: "https://canvas.com")!,
+                                                            userID: "",
+                                                            userName: "")
+        let mockViewController = MockViewController()
+        var externalURLComponents = URLComponents(string: "https://example.com/courses")!
+        externalURLComponents.originIsNotification = true
+        let externalURL = externalURLComponents.url!
+        let testee = Router(routes: [
+            RouteHandler("/courses") { _, _, _ in UIViewController() },
+        ])
+
+        testee.route(to: externalURL, from: mockViewController)
+
+        XCTAssertNil(login.externalURL)
+        XCTAssertNotNil(mockViewController.shown)
+    }
+
+    func testExternalWebsitePopupReportedToAnalytics() {
+        let mockViewController = MockViewController()
+        let testee = Router(routes: []) { _, _, _, _ in }
+        let externalURL = URL(string: "https://example.com/courses")!
+        let analyticsHandler = MockAnalyticsHandler()
+        Analytics.shared.handler = analyticsHandler
+
+        testee.route(to: externalURL, from: mockViewController)
+
+        XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
+        XCTAssertEqual(analyticsHandler.lastEventName, "screen_view")
+        XCTAssertEqual(analyticsHandler.lastEventParameters as? [String: String], [
+            "application": "student",
+            "screen_name": "/external_url",
+            "screen_class": "unknown",
+        ])
     }
 }

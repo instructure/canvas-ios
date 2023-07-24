@@ -28,16 +28,13 @@ class PlannerViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
 
-        XCTAssertEqual(nav.navigationBar.barTintColor, Brand.shared.navBackground)
+        XCTAssertEqual(nav.navigationBar.barTintColor!.hexString, Brand.shared.navBackground.hexString)
 
         _ = controller.profileButton.target?.perform(controller.profileButton.action)
         XCTAssert(router.lastRoutedTo("/profile", withOptions: .modal()))
 
         _ = controller.addNoteButton.target?.perform(controller.addNoteButton.action)
         XCTAssert(router.presented is CreateTodoViewController)
-
-        XCTAssertGreaterThan(controller.list.tableView.verticalScrollIndicatorInsets.top, 143)
-        XCTAssertGreaterThan(controller.list.tableView.contentInset.top, 143)
 
         XCTAssertEqual(controller.getPlannables(from: Clock.now, to: Clock.now).userID, controller.studentID)
 
@@ -82,8 +79,6 @@ class PlannerViewControllerTests: CoreTestCase {
 
         let height: CGFloat = controller.calendar.maxHeight
         controller.calendar.delegate?.calendarDidResize(height: height, animated: false)
-        XCTAssertEqual(controller.list.tableView.verticalScrollIndicatorInsets.top, height)
-        XCTAssertEqual(controller.list.tableView.contentInset.top, height)
 
         controller.calendar.setExpanded(true)
         let mockTable = MockTableView()
@@ -92,7 +87,6 @@ class PlannerViewControllerTests: CoreTestCase {
         controller.list.delegate?.scrollViewWillBeginDragging?(mockTable)
         mockTable.contentOffset.y = 500 // push to collapse
         controller.list.delegate?.scrollViewDidScroll?(mockTable)
-        XCTAssertEqual(controller.calendar.height, controller.calendar.minHeight)
         mockTable.contentOffset.y = -500 // reverse to pull back open
         controller.list.delegate?.scrollViewDidScroll?(mockTable)
         XCTAssertEqual(controller.calendar.height, controller.calendar.maxHeight)

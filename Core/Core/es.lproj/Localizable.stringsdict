@@ -322,6 +322,22 @@
 			<string>Ocultar %d ítems faltantes</string>
 		</dict>
 	</dict>
+	<key>incompatible_files_for_assignment</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>El tipo de archivo %2$@ entregado es incompatible con la tarea seleccionada.</string>
+			<key>other</key>
+			<string>Los tipos de archivo %2$@ son incompatibles con la tarea seleccionada.</string>
+		</dict>
+	</dict>
 	<key>late_penalty_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -386,6 +402,22 @@
 			<string>Mostrar %d ítems faltantes</string>
 		</dict>
 	</dict>
+	<key>submission_failed_for_files</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Su archivo se cargó correctamente, pero no se pudo entregar la tarea.</string>
+			<key>other</key>
+			<string>Sus archivos se cargaron correctamente, pero no se pudo entregar la tarea.</string>
+		</dict>
+	</dict>
 	<key>there_are_d_assignees_without_grades</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -400,6 +432,22 @@
 			<string>Hay %d persona asignada sin calificación.</string>
 			<key>other</key>
 			<string>Hay %d personas asignadas sin calificación.</string>
+		</dict>
+	</dict>
+	<key>use_file_extension</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Use %2$@ la extensión del archivo.</string>
+			<key>other</key>
+			<string>Use %2$@ las extensiones de los archivos.</string>
 		</dict>
 	</dict>
 </dict>

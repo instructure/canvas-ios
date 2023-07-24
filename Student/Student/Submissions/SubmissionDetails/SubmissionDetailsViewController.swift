@@ -20,13 +20,21 @@ import Foundation
 import UIKit
 import Core
 
-class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewProtocol {
+class SubmissionDetailsViewController: ScreenViewTrackableViewController, SubmissionDetailsViewProtocol {
     var color: UIColor?
     var presenter: SubmissionDetailsPresenter?
     var titleSubtitleView = TitleSubtitleView.create()
     var contentViewController: UIViewController?
     var drawerContentViewController: UIViewController?
     var env: AppEnvironment?
+    public lazy var screenViewTrackingParameters: ScreenViewTrackingParameters = {
+        let courseID = presenter?.course.first?.id ?? ""
+        let assignmentID = presenter?.assignmentID ?? ""
+        let submissionID = presenter?.submissions.first?.id ?? ""
+        return ScreenViewTrackingParameters(
+            eventName: "/courses/\(courseID)/assignments/\(assignmentID)/submissions/\(submissionID)"
+        )
+    }()
 
     private lazy var setDrawerPositionOnce: () = {
         drawer?.setMiddle()
@@ -62,19 +70,12 @@ class SubmissionDetailsViewController: UIViewController, SubmissionDetailsViewPr
         picker?.backgroundColor = .backgroundLightest
         pickerButton?.setTitleColor(.textDark, for: .disabled)
 
+        pickerButtonArrow?.isHidden = true
+        pickerButtonDivider?.isHidden = true
+
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
 
         presenter?.viewIsReady()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        presenter?.viewDidAppear()
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        presenter?.viewDidDisappear()
     }
 
     override func viewDidLayoutSubviews() {
@@ -182,11 +183,22 @@ extension SubmissionDetailsViewController: UIPickerViewDataSource, UIPickerViewD
         return presenter?.pickerSubmissions.count ?? 0
     }
 
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        guard let submittedAt = presenter?.pickerSubmissions[row].submittedAt else {
-            return NSLocalizedString("No Submission Date", bundle: .student, comment: "")
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let text: String
+
+        if let submittedAt = presenter?.pickerSubmissions[row].submittedAt {
+            text = DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short)
+        } else {
+            text = NSLocalizedString("No Submission Date", bundle: .student, comment: "")
         }
-        return DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short)
+
+        let label = UILabel()
+        label.textColor = .textDarkest
+        label.text = text
+        label.font = .scaledNamedFont(.regular23)
+        label.textAlignment = .center
+
+        return label
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

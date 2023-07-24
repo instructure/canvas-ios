@@ -22,21 +22,54 @@ protocol TestTreeHolder: AnyObject {
     var testTree: TestTree? { get set }
 }
 
-public class CoreHostingController<Content: View>: UIHostingController<CoreHostingBaseView<Content>>, NavigationBarStyled, TestTreeHolder {
+public class CoreHostingController<Content: View>: UIHostingController<CoreHostingBaseView<Content>>,
+                                                   NavigationBarStyled,
+                                                   TestTreeHolder,
+                                                   DefaultViewProvider {
+    // MARK: - UIViewController Overrides
     public override var shouldAutorotate: Bool { shouldAutorotateValue ?? super.shouldAutorotate }
-    public override var supportedInterfaceOrientations: UIInterfaceOrientationMask { supportedInterfaceOrientationsValue ?? super.supportedInterfaceOrientations }
-    public var navigationBarStyle = UINavigationBar.Style.color(nil) // not applied until changed
-    var testTree: TestTree?
+    public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        supportedInterfaceOrientationsValue ?? super.supportedInterfaceOrientations
+    }
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
+        if let override = preferredStatusBarStyleOverride {
+            return override(self)
+        } else {
+            return super.preferredStatusBarStyle
+        }
+    }
 
+    // MARK: - Support Variables For Overrides
     /** The value to be returned by the `shouldAutorotate` property. Nil reverts to the default behaviour of the UIViewController regarding that property. */
     public var shouldAutorotateValue: Bool?
     /** The value to be returned by the `supportedInterfaceOrientations` property. Nil reverts to the default behaviour of the UIViewController regarding that property. */
     public var supportedInterfaceOrientationsValue: UIInterfaceOrientationMask?
+    /** This block can be used to add custom logic to decide what to return from the `preferredStatusBarStyle` property. */
+    public var preferredStatusBarStyleOverride: ((UIViewController) -> UIStatusBarStyle)?
+
+    // MARK: - Public Properties
+    public var navigationBarStyle = UINavigationBar.Style.color(nil) // not applied until changed
+    public var defaultViewRoute: String? {
+        didSet {
+            showDefaultDetailViewIfNeeded()
+        }
+    }
+
+    // MARK: - Private Variables
+    var testTree: TestTree?
+    private var screenViewTracker: ScreenViewTrackerLive?
+
     public init(_ rootView: Content, customization: ((UIViewController) -> Void)? = nil) {
         let ref = WeakViewController()
         super.init(rootView: CoreHostingBaseView(content: rootView, controller: ref))
         customization?(self)
         ref.setValue(self)
+
+        if let screenViewTrackable = rootView as? ScreenViewTrackable {
+            screenViewTracker = ScreenViewTrackerLive(
+                parameters: screenViewTrackable.screenViewTrackingParameters
+            )
+        }
     }
 
     @objc required dynamic init?(coder aDecoder: NSCoder) {
@@ -46,6 +79,12 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.useStyle(navigationBarStyle)
+        screenViewTracker?.startTrackingTimeOnViewController()
+    }
+
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        screenViewTracker?.stopTrackingTimeOnViewController()
     }
 }
 

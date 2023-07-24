@@ -26,12 +26,14 @@ extension FeatureFlag {
         context: Context = Context(.course, id: "1"),
         name: String = "feature_flag",
         enabled: Bool = true,
+        isEnvironmentFlag: Bool = false,
         in managedContext: NSManagedObjectContext = singleSharedTestDatabase.viewContext
     ) -> FeatureFlag {
         let model: FeatureFlag = managedContext.insert()
         model.context = context
         model.name = name
         model.enabled = enabled
+        model.isEnvironmentFlag = isEnvironmentFlag
         return model
     }
 }

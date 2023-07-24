@@ -19,6 +19,7 @@
 import SwiftUI
 
 struct SideMenuToggleItem: View {
+    @Environment(\.colorScheme) var colorScheme
     let id: String
     let image: Image
     let title: Text
@@ -26,31 +27,24 @@ struct SideMenuToggleItem: View {
     @Binding var isOn: Bool
 
     var body: some View {
-        let toggle = Toggle(isOn: $isOn, label: {
+        Toggle(isOn: $isOn, label: {
             HStack(spacing: 20) {
                 image
                 title
             }
         })
-        .animation(.default)
         .font(.regular16)
-        .foregroundColor(.licorice)
+        .foregroundColor(colorScheme == .dark ? .white : .licorice)
         .padding(20)
         .frame(height: 48)
         .contentShape(Rectangle())
         .accessibility(label: title)
         .identifier("Profile.\(id)Toggle")
-
-        if #available(iOS 14, *) {
-            toggle
-                .toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
-                .onChange(of: isOn) { _ in
-                    // Binding change doesn't generate haptic feedback so we manually trigger one
-                    let feedback = UIImpactFeedbackGenerator(style: .medium)
-                    feedback.impactOccurred()
-                }
-        } else {
-            toggle
+        .toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
+        .onChange(of: isOn) { _ in
+            // Binding change doesn't generate haptic feedback so we manually trigger one
+            let feedback = UIImpactFeedbackGenerator(style: .medium)
+            feedback.impactOccurred()
         }
     }
 }

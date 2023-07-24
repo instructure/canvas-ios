@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class ConferenceListViewController: UIViewController, ColoredNavViewProtocol {
+public class ConferenceListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -31,6 +31,9 @@ public class ConferenceListViewController: UIViewController, ColoredNavViewProto
     public var color: UIColor?
     var context = Context.currentUser
     let env = AppEnvironment.shared
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "\(context.pathComponent)/conferences"
+    )
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
@@ -139,7 +142,7 @@ extension ConferenceListViewController: UITableViewDataSource, UITableViewDelega
             return LoadingCell(style: .default, reuseIdentifier: nil)
         }
         let cell = tableView.dequeue(ConferenceListCell.self, for: indexPath)
-        cell.update(conferences[indexPath])
+        cell.update(conferences[indexPath], color: color)
         return cell
     }
 
@@ -155,18 +158,19 @@ class ConferenceListCell: UITableViewCell {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
 
-    func update(_ conference: Conference?) {
+    func update(_ conference: Conference?, color: UIColor?) {
         backgroundColor = .backgroundLightest
         iconView.icon = .conferences
         if Bundle.main.isTeacherApp {
             iconView.state = conference?.isConcluded == true ? .unpublished : .published
         }
-        titleLabel.text = conference?.title
+        titleLabel.setText(conference?.title, style: .textCellTitle)
         titleLabel.accessibilityIdentifier = (conference?.id).map { "ConferencesList.cell-\($0).title" }
-        statusLabel.text = conference?.statusText
+        statusLabel.setText(conference?.statusText, style: .textCellSupportingText)
         statusLabel.textColor = conference?.statusColor
         statusLabel.accessibilityIdentifier = (conference?.id).map { "ConferencesList.cell-\($0).status" }
-        detailsLabel.text = conference?.details
+        detailsLabel.setText(conference?.details, style: .textCellBottomLabel)
         detailsLabel.accessibilityIdentifier = (conference?.id).map { "ConferencesList.cell-\($0).details" }
+        selectedBackgroundView = ContextCellBackgroundView.create(color: color)
     }
 }

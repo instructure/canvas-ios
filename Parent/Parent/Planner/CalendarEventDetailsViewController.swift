@@ -20,6 +20,7 @@ import Foundation
 import UIKit
 import UserNotifications
 import Core
+import SwiftUI
 
 class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate {
     @IBOutlet weak var dateHeadingLabel: UILabel!
@@ -31,7 +32,6 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
     @IBOutlet weak var locationNameLabel: UILabel!
     @IBOutlet weak var locationView: UIView!
     @IBOutlet weak var reminderDateButton: UIButton!
-    @IBOutlet weak var reminderDatePicker: UIDatePicker!
     @IBOutlet weak var reminderHeadingLabel: UILabel!
     @IBOutlet weak var reminderMessageLabel: UILabel!
     @IBOutlet weak var reminderSwitch: UISwitch!
@@ -41,6 +41,9 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
     let webView = CoreWebView()
     let refreshControl = CircleRefreshControl()
     let titleSubtitleView = TitleSubtitleView.create()
+    var selectedDate: Date?
+    private var minDate = Clock.now
+    private var maxDate = Clock.now
 
     var color: UIColor?
     let env = AppEnvironment.shared
@@ -64,7 +67,7 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
         setupTitleViewInNavbar(title: NSLocalizedString("Event Details", comment: ""))
         updateNavBar(subtitle: nil, color: ColorScheme.observee(studentID).color)
         webViewContainer.addSubview(webView)
-        webView.pin(inside: webViewContainer)
+        webView.pinWithThemeSwitchButton(inside: webViewContainer)
         webView.autoresizesHeight = true
         webView.heightAnchor.constraint(equalToConstant: 0).isActive = true
         webView.linkDelegate = self
@@ -85,9 +88,9 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
         reminderSwitch.isEnabled = false
         reminderDateButton.isEnabled = false
         reminderDateButton.isHidden = true
-        reminderDatePicker.isHidden = true
-        reminderDatePicker.minimumDate = Clock.now.addMinutes(1)
-        reminderDatePicker.maximumDate = Clock.now.addYears(1)
+        reminderDateButton.setTitleColor(Brand.shared.primary, for: .normal)
+        minDate = Clock.now.addMinutes(1)
+        maxDate = Clock.now.addYears(1)
 
         events.refresh()
         NotificationManager.shared.getReminder(eventID) { [weak self] request in performUIUpdate {
@@ -96,10 +99,10 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
                 Calendar.current.date(from: $0.dateComponents)
             }
             if let date = date {
+                self.selectedDate = date
                 self.reminderSwitch.isOn = true
                 self.reminderDateButton.setTitle(date.dateTimeString, for: .normal)
                 self.reminderDateButton.isHidden = false
-                self.reminderDatePicker.date = date
             }
         } }
     }
@@ -147,10 +150,8 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
     @IBAction func reminderSwitchChanged() {
         guard let event = events.first else { return }
         if reminderSwitch.isOn {
-            let minDate = Clock.now.addMinutes(1)
-            let maxDate = Clock.now.addYears(1)
-            reminderDatePicker.minimumDate = minDate
-            reminderDatePicker.maximumDate = maxDate
+            minDate = Clock.now.addMinutes(1)
+            maxDate = Clock.now.addYears(1)
             let defaultDate = max(minDate, min(maxDate,
                 event.startAt?.addMinutes(-60) ?? Clock.now.addDays(7)
             ))
@@ -160,34 +161,34 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
                     return self.showPermissionError(.notifications)
                 }
                 self.reminderDateButton.setTitle(defaultDate.dateTimeString, for: .normal)
-                self.reminderDatePicker.date = defaultDate
+                self.selectedDate = defaultDate
                 UIView.animate(withDuration: 0.2) {
                     self.reminderDateButton.isHidden = false
-                    self.reminderDatePicker.isHidden = false
                 }
-                self.reminderDateChanged()
+                self.reminderDateChanged(selectedDate: self.selectedDate)
             } }
         } else {
             NotificationManager.shared.removeReminder(eventID)
             UIView.animate(withDuration: 0.2) {
                 self.reminderDateButton.isHidden = true
-                self.reminderDatePicker.isHidden = true
+                if self.presentedViewController is CoreHostingController<CoreDatePickerActionSheetCard> {
+                    self.presentedViewController?.dismiss(animated: true)
+                }
             }
         }
     }
 
     @IBAction func reminderButtonTapped() {
-        UIView.animate(withDuration: 0.2) {
-            self.reminderDatePicker.isHidden = !self.reminderDatePicker.isHidden
-        }
+        let dateBinding = Binding(get: { self.selectedDate },
+                                  set: { self.reminderDateChanged(selectedDate: $0) })
+        CoreDatePicker.showDatePicker(for: dateBinding, minDate: minDate, maxDate: maxDate, from: self)
     }
 
-    @IBAction func reminderDateChanged() {
-        guard let event = events.first else { return }
-        let date = reminderDatePicker.date
-        NotificationManager.shared.setReminder(for: event, at: date, studentID: studentID) { error in performUIUpdate {
+    @IBAction func reminderDateChanged(selectedDate: Date?) {
+        guard let selectedDate = selectedDate, let event = events.first else { return }
+        NotificationManager.shared.setReminder(for: event, at: selectedDate, studentID: studentID) { error in performUIUpdate {
             if error == nil {
-                self.reminderDateButton.setTitle(date.dateTimeString, for: .normal)
+                self.reminderDateButton.setTitle(selectedDate.dateTimeString, for: .normal)
             } else {
                 self.reminderSwitch.setOn(false, animated: true)
                 self.reminderSwitchChanged()

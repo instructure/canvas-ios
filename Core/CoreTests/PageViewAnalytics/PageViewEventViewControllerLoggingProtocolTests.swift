@@ -17,16 +17,18 @@
 //
 
 import XCTest
+import TestsFoundation
 @testable import Core
 
 class PageViewEventViewControllerLoggingProtocolTests: XCTestCase {
-
+    let userID = "321"
     var start: Date!
     var end: Date!
     var dispatchQueue: DispatchQueue!
     var p: Persistency!
     var persistenceTestFileName = "PageViewEventViewControllerLoggingProtocolTests.dat"
     var waitExpectation: XCTestExpectation!
+    var screenViewTracker: ScreenViewTracker!
     var tearDownWait: XCTestExpectation!
 
     override func setUp() {
@@ -42,7 +44,7 @@ class PageViewEventViewControllerLoggingProtocolTests: XCTestCase {
         Persistency.persistencyFileName = persistenceTestFileName
         dispatchQueue = DispatchQueue(label: "test-pageviewevents-queue", attributes: .concurrent)
         p = Persistency(dispatchQueue: dispatchQueue)
-        p.dequeue(p.queueCount, handler: nil)
+        p.dequeue(p.queueCount(for: userID), userID: userID, handler: nil)
 
         PageViewEventController.instance.persistency = p
         PageViewEventController.instance.configure(backgroundAppHelper: TestAppBackgroundHelper())
@@ -56,17 +58,20 @@ class PageViewEventViewControllerLoggingProtocolTests: XCTestCase {
 
     func testTracking() {
 
-        let entry = LoginSession.make()
+        let entry = LoginSession.make(userID: userID)
         LoginSession.add(entry)
 
+        screenViewTracker = ScreenViewTrackerLive(
+            parameters: ScreenViewTrackingParameters(eventName: "\(#function)")
+        )
         PageViewEventController.instance.appCanLogEvents = { return true }
 
-        XCTAssertEqual(p.queueCount, 0)
+        XCTAssertEqual(p.queueCount(for: userID), 0)
         //  when
         Clock.mockNow(start)
-        startTrackingTimeOnViewController()
+        screenViewTracker.startTrackingTimeOnViewController()
         Clock.mockNow(end)
-        stopTrackingTimeOnViewController(eventName: "\(#function)")
+        screenViewTracker.stopTrackingTimeOnViewController()
 
         dispatchQueue.async {
             self.waitExpectation.fulfill()
@@ -74,13 +79,11 @@ class PageViewEventViewControllerLoggingProtocolTests: XCTestCase {
 
         wait(for: [waitExpectation], timeout: 0.5)
         //  then
-        let events = p.batchOfEvents(1)
+        let events = p.batchOfEvents(1, userID: userID)
         XCTAssertEqual(events?.count, 1)
         XCTAssertEqual(events?.first?.eventName, "\(#function)")
     }
 }
-
-extension PageViewEventViewControllerLoggingProtocolTests: PageViewEventViewControllerLoggingProtocol {}
 
 class TestAppBackgroundHelper: AppBackgroundHelperProtocol {
     var tasks: [String: [String]] = [:]

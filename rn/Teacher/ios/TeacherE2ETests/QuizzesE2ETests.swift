@@ -28,6 +28,8 @@ class QuizzesE2ETests: CoreUITestCase {
         QuizDetails.previewQuiz.waitToExist()
         QuizDetails.previewQuiz.tap()
         app.find(label: "Quiz Preview").waitToExist()
+        app.find(label: "Preview").waitToExist()
+        app.find(label: "Preview").tap()
         app.find(label: "Quiz Instructions").waitToExist()
         app.find(label: "This is question A").waitToExist()
         XCTAssertTrue(app.find(labelContaining: "This is a preview of the published version of the quiz").exists())
@@ -37,7 +39,7 @@ class QuizzesE2ETests: CoreUITestCase {
         app.find(label: "Edit").tap()
         app.find(labelContaining: "Edit Quiz Details").waitToExist()
         XCTAssertTrue(app.find(labelContaining: "Shuffle Answers").exists())
-        app.find(id: "quizzes.edit.doneButton").tap()
+        app.find(label: "Done").tap()
         app.find(labelContaining: "Edit Quiz Details").waitToVanish()
     }
 }

@@ -54,7 +54,7 @@ class CoreTestCase: XCTestCase {
     override func setUp() {
         super.setUp()
         API.resetMocks()
-        LoginSession.useTestKeychain()
+        LoginSession.clearAll()
         TestsFoundation.singleSharedTestDatabase = resetSingleSharedTestDatabase()
         router = environment.router as? TestRouter
         logger = environment.logger as? TestLogger
@@ -103,7 +103,7 @@ class TestAnalyticsHandler: AnalyticsHandler {
 private let mainViewController = UIStoryboard(name: "Main", bundle: .main).instantiateInitialViewController()
 
 extension CoreTestCase {
-    open func hostSwiftUIController<V: View>(_ view: V) -> CoreHostingController<V> {
+    public func hostSwiftUIController<V: View>(_ view: V) -> CoreHostingController<V> {
         let controller = CoreHostingController(view)
         window.rootViewController = controller
         var count = 0
@@ -115,7 +115,7 @@ extension CoreTestCase {
         }
         return controller
     }
-    open func hostSwiftUI<V: View>(_ view: V) -> V {
+    public func hostSwiftUI<V: View>(_ view: V) -> V {
         return hostSwiftUIController(view).rootView.content
     }
 }

@@ -24,7 +24,6 @@ class SubmissionButtonTests: CoreUITestCase {
     lazy var course = mock(course: .make())
 
     func testOnlineUpload() {
-        // Disabled test, passes locally but fails on bitrise. To re-enable it, right click on the test symbol and select enabled or edit NightlyTests.xctestplan
         mockBaseRequests()
         let assignment = mock(assignment: .make(submission_types: [ .online_upload ]))
         let target = FileUploadTarget.make()
@@ -33,15 +32,18 @@ class SubmissionButtonTests: CoreUITestCase {
             body: .init(name: "", on_duplicate: .overwrite, parent_folder_id: nil, size: 0)
         ), value: target)
         mockData(PostFileUploadRequest(fileURL: URL(string: "data:text/plain,")!, target: target), value: .make())
-        mockData(CreateSubmissionRequest(context: .course("1"), assignmentID: "1", body: nil))
+        mockData(CreateSubmissionRequest(context: .course("1"), assignmentID: "1", body: nil), value: .make())
 
         logIn()
         show("/courses/\(course.id)/assignments/\(assignment.id)")
         AssignmentDetails.submitAssignmentButton.tap()
         TestsFoundation.FilePicker.libraryButton.tap()
-        app.find(labelContaining: "Photo, ").tapUntil { TestsFoundation.FilePicker.submitButton.isVisible }
+        let photo = app.find(labelContaining: "Photo, ")
+        photo.tap()
+        photo.waitToVanish()
         TestsFoundation.FilePicker.submitButton.tap()
         TestsFoundation.FilePicker.submitButton.waitToVanish()
+        XCTAssertFalse(TestsFoundation.FilePicker.submitButton.isVisible)
     }
 
     func testExternalTool() {
@@ -53,7 +55,8 @@ class SubmissionButtonTests: CoreUITestCase {
             url: nil,
             assignmentID: assignment.id.value,
             moduleItemID: nil,
-            launchType: .assessment
+            launchType: .assessment,
+            resourceLinkLookupUUID: nil
         ), value: .make(url: URL(string: "https://canvas.instructure.com")!))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)")
@@ -70,7 +73,8 @@ class SubmissionButtonTests: CoreUITestCase {
             url: nil,
             assignmentID: assignment.id.value,
             moduleItemID: nil,
-            launchType: .assessment
+            launchType: .assessment,
+            resourceLinkLookupUUID: nil
         ), value: .make(url: URL(string: "https://canvas.instructure.com")!))
 
         show("/courses/\(course.id)/assignments/\(assignment.id)")

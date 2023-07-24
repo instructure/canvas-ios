@@ -402,6 +402,26 @@
 			<string>Скрыть %d отсутствующие элементы</string>
 		</dict>
 	</dict>
+	<key>incompatible_files_for_assignment</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
+			<key>many</key>
+			<string>The %2$@ file types in your submission are incompatible with the selected assignment.</string>
+			<key>one</key>
+			<string>Тип файла %2$@ в вашей отправке несовместим с выбранным заданием.</string>
+			<key>other</key>
+			<string>Типы файлов %2$@ в вашей отправке несовместимы с выбранным заданием.</string>
+		</dict>
+	</dict>
 	<key>late_penalty_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -482,6 +502,26 @@
 			<string>Показать %d отсутствующие элементы</string>
 		</dict>
 	</dict>
+	<key>submission_failed_for_files</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
+			<key>many</key>
+			<string>Your files were successfully uploaded but the submission to the assignment failed.</string>
+			<key>one</key>
+			<string>Ваш файл был успешно загружен, но отправку по заданию выполнить не удалось.</string>
+			<key>other</key>
+			<string>Ваши файлы были успешно загружены, но отправку по заданию выполнить не удалось.</string>
+		</dict>
+	</dict>
 	<key>there_are_d_assignees_without_grades</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -500,6 +540,26 @@
 			<string>Это получатель %d без оценки.</string>
 			<key>other</key>
 			<string>Это получатели %d без оценок.</string>
+		</dict>
+	</dict>
+	<key>use_file_extension</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>few</key>
+			<string>Please use %2$@ file extensions.</string>
+			<key>many</key>
+			<string>Please use %2$@ file extensions.</string>
+			<key>one</key>
+			<string>Используйте расширение файла %2$@.</string>
+			<key>other</key>
+			<string>Используйте расширения файлов %2$@.</string>
 		</dict>
 	</dict>
 </dict>

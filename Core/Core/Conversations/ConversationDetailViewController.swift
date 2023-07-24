@@ -20,7 +20,7 @@ import Foundation
 
 public class ConversationDetailViewController: UIViewController {
 
-    @IBOutlet weak var replyButton: UIButton!
+    @IBOutlet weak var replyButton: FloatingButton!
     @IBOutlet weak var tableView: UITableView!
     var conversationID: String!
     let env = AppEnvironment.shared
@@ -41,6 +41,7 @@ public class ConversationDetailViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .backgroundLightest
         configureTableView()
     }
 
@@ -143,6 +144,6 @@ extension ConversationDetailViewController: UITableViewDataSource, UITableViewDe
             conversation: conversation,
             message: conversation.messages[indexPath.section],
             all: all
-        ), from: self, options: .modal(embedInNav: true))
+        ), from: self, options: .modal(isDismissable: false, embedInNav: true))
     }
 }

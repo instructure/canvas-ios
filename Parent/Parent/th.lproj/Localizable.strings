@@ -172,9 +172,6 @@
 "Settings" = "ค่าปรับตั้ง";
 
 /* No comment provided by engineer. */
-"Settings. %@" = "ค่าปรับตั้ง %@";
-
-/* No comment provided by engineer. */
 "Summary" = "สรุป";
 
 /* No comment provided by engineer. */
@@ -200,9 +197,6 @@
 
 /* No comment provided by engineer. */
 "There's nothing to be notified of yet." = "ไม่มีข้อมูลที่จะแจ้งในตอนนี้";
-
-/* No comment provided by engineer. */
-"Trouble logging in" = "มีปัญหาในการล็อกอิน";
 
 /* No comment provided by engineer. */
 "Unread" = "ไม่ได้อ่าน";

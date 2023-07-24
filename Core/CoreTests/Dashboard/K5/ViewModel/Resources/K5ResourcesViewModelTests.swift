@@ -29,7 +29,7 @@ class K5ResourcesViewModelTests: CoreTestCase {
             APICourse.make(id: "2", name: "Homeroom 2", syllabus_body: "<b>IMPORTANT</b><p>Read the previous note</p>", homeroom_course: true),
             APICourse.make(id: "3", name: "Math", homeroom_course: false),
         ]
-        api.mock(GetCourses(enrollmentState: nil), value: courses)
+        api.mock(GetCourses(enrollmentState: .active), value: courses)
     }
 
     func testHomeroomInfoFetch() {
@@ -52,7 +52,8 @@ class K5ResourcesViewModelTests: CoreTestCase {
                                          url: URL(string: "https://instructure.com")!,
                                          label: "Google Drive Label",
                                          icon_url: URL(string: "https://instructure.com/icon.png")!),
-                name: "Google Apps"),
+                name: "Google Apps",
+                url: nil),
             CourseNavigationTool(
                 id: "1",
                 context_name: "Math",
@@ -61,7 +62,8 @@ class K5ResourcesViewModelTests: CoreTestCase {
                                          url: URL(string: "https://instructure.com")!,
                                          label: "Google Drive Label",
                                          icon_url: URL(string: "https://instructure.com/icon.png")!),
-                name: "Google Apps"),
+                name: "Google Apps",
+                url: nil),
             CourseNavigationTool(
                 id: "2",
                 context_name: "Math",
@@ -70,7 +72,8 @@ class K5ResourcesViewModelTests: CoreTestCase {
                                          url: URL(string: "https://instructure2.com")!,
                                          label: "Google Drive 2 Label",
                                          icon_url: URL(string: "https://instructure.com/icon2.png")!),
-                name: "Google Apps 2"),
+                name: "Google Apps 2",
+                url: nil),
         ])
 
         let testee = K5ResourcesViewModel()

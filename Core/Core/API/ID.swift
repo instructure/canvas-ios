@@ -18,6 +18,8 @@
 
 import Foundation
 
+private let ShardFactor = Decimal(10_000_000_000_000)
+
 //  swiftlint:disable type_name
 public struct ID: Codable, Equatable, Hashable, CustomStringConvertible, RawRepresentable {
 //  swiftlint:enable type_name
@@ -70,8 +72,7 @@ public struct ID: Codable, Equatable, Hashable, CustomStringConvertible, RawRepr
     public static func expandTildeID(_ id: String) -> String {
         let parts: [String] = id.components(separatedBy: "~")
         if parts.count == 2, let shardID = Int64(parts[0]), let resourceID = Int64(parts[1]) {
-            let shardFactor: Int64 = 10_000_000_000_000
-            return (Decimal(shardID) * Decimal(shardFactor) + Decimal(resourceID)).description
+            return (Decimal(shardID) * ShardFactor + Decimal(resourceID)).description
         }
         return id
     }
@@ -95,4 +96,49 @@ extension ID: ExpressibleByIntegerLiteral {
     public init(integerLiteral value: Int) {
         self.value = String(value)
     }
+}
+
+public extension String {
+
+    var hasShardID: Bool {
+        shardID != nil
+    }
+
+    var shardID: String? {
+        if let tildeIndex = firstIndex(of: "~") {
+            return String(prefix(upTo: tildeIndex))
+        }
+
+        if let selfAsNumber = try? Decimal(self, format: .number),
+           selfAsNumber > ShardFactor,
+           let result = Self.Formatter.string(for: selfAsNumber / ShardFactor) {
+            return result
+        }
+
+        return nil
+    }
+
+    var localID: String {
+        if let tildeIndex = firstIndex(of: "~") {
+            return String(suffix(from: tildeIndex).dropFirst())
+        }
+
+        if let shardID,
+           let selfAsNumber = try? Decimal(self, format: .number),
+           selfAsNumber > ShardFactor,
+           let shardNumber = try? Decimal(shardID, format: .number) {
+            return (selfAsNumber - shardNumber * ShardFactor).description
+        }
+
+        return self
+    }
+
+    private static let Formatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.maximumFractionDigits = 0
+        formatter.minimumFractionDigits = 0
+        formatter.usesGroupingSeparator = false
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
 }

@@ -25,6 +25,8 @@ class LoginFindSchoolViewController: UIViewController {
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var searchField: UITextField!
 
+    private lazy var nextButton = UIBarButtonItem(title: NSLocalizedString("Next", comment: ""), style: .done, target: self, action: #selector(nextPressed))
+
     var accounts = [APIAccountResult]()
     var api: API = API()
     let env = AppEnvironment.shared
@@ -90,6 +92,11 @@ class LoginFindSchoolViewController: UIViewController {
         }
     }
 
+    @objc
+    private func nextPressed() {
+        parseInputAndShowLoginScreen()
+    }
+
     func search(query: String) {
         guard !query.isEmpty else {
             accounts = []
@@ -110,12 +117,15 @@ class LoginFindSchoolViewController: UIViewController {
     func showLoginForHost(_ host: String, authenticationProvider: String? = nil) {
         let provider = authenticationProvider ?? accounts.first(where: { $0.domain == host })?.authentication_provider
         let controller: UIViewController
+        var analyticsRoute = "/login/find"
+
         if method == .manualOAuthLogin {
             controller = LoginManualOAuthViewController.create(
                 authenticationProvider: provider,
                 host: host,
                 loginDelegate: loginDelegate
             )
+            analyticsRoute = "/login/manualoauth"
         } else {
             controller = LoginWebViewController.create(
                 authenticationProvider: provider,
@@ -123,25 +133,46 @@ class LoginFindSchoolViewController: UIViewController {
                 loginDelegate: loginDelegate,
                 method: method
             )
+            analyticsRoute = "/login/weblogin"
         }
-        env.router.show(controller, from: self)
+
+        env.router.show(controller, from: self, analyticsRoute: analyticsRoute)
+    }
+
+    private func parseInputAndShowLoginScreen() {
+        guard var host = searchField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !host.isEmpty else { return }
+        host = host.lowercased()
+        if !host.contains(".") {
+            host = "\(host).instructure.com"
+        }
+        searchField.resignFirstResponder()
+        if let account = accounts.first(where: { $0.domain == host }) {
+            env.lastLoginAccount = account
+        } else {
+            env.lastLoginAccount = APIAccountResult(name: "", domain: host, authentication_provider: nil)
+        }
+        showLoginForHost(host)
+    }
+
+    private func toggleNextButtonVisibility() {
+        if let host = searchField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !host.isEmpty {
+            nextButton.accessibilityIdentifier = "nextButton"
+            navigationItem.rightBarButtonItem = nextButton
+        } else {
+            navigationItem.rightBarButtonItem = nil
+        }
     }
 }
 
 extension LoginFindSchoolViewController: UITextFieldDelegate {
     @IBAction func textFieldDidChange(_ textField: UITextField) {
+        toggleNextButtonVisibility()
         guard let query = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
         search(query: query)
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        guard var host = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !host.isEmpty else { return false }
-        host = host.lowercased()
-        if !host.contains(".") {
-            host = "\(host).instructure.com"
-        }
-        textField.resignFirstResponder()
-        showLoginForHost(host)
+        parseInputAndShowLoginScreen()
         return false
     }
 }
@@ -173,6 +204,7 @@ extension LoginFindSchoolViewController: UITableViewDataSource, UITableViewDeleg
             loginDelegate?.openExternalURL(url)
         } else {
             let account = accounts[indexPath.row]
+            env.lastLoginAccount = account
             showLoginForHost(account.domain, authenticationProvider: account.authentication_provider)
         }
     }

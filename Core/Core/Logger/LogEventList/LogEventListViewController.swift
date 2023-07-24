@@ -89,6 +89,7 @@ extension LogEventListViewController: UITableViewDataSource, UITableViewDelegate
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeue(LoggableCell.self, for: indexPath)
+        cell.backgroundColor = .backgroundLightest
         cell.loggable = presenter?.events[indexPath]
         return cell
     }

@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class PageListViewController: UIViewController, ColoredNavViewProtocol {
+public class PageListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -34,6 +34,9 @@ public class PageListViewController: UIViewController, ColoredNavViewProtocol {
     var context = Context.currentUser
     let env = AppEnvironment.shared
     var selectedFirstPage: Bool = false
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "\(context.pathComponent)/pages"
+    )
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
@@ -73,6 +76,7 @@ public class PageListViewController: UIViewController, ColoredNavViewProtocol {
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
+        view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundLightest
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .borderMedium
@@ -94,12 +98,6 @@ public class PageListViewController: UIViewController, ColoredNavViewProtocol {
             tableView.deselectRow(at: selected, animated: true)
         }
         navigationController?.navigationBar.useContextColor(color)
-        env.pageViewLogger.startTrackingTimeOnViewController()
-    }
-
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "\(context.pathComponent)/pages", attributes: [:])
     }
 
     func updateNavBar() {
@@ -133,7 +131,7 @@ public class PageListViewController: UIViewController, ColoredNavViewProtocol {
     }
 
     @objc func createPage() {
-        env.router.route(to: "\(context.pathComponent)/pages/new", from: self, options: .modal(embedInNav: true))
+        env.router.route(to: "\(context.pathComponent)/pages/new", from: self, options: .modal(isDismissable: false, embedInNav: true))
     }
 
     @objc func refresh() {
@@ -185,7 +183,7 @@ extension PageListViewController: UITableViewDataSource, UITableViewDelegate {
             return LoadingCell(style: .default, reuseIdentifier: nil)
         }
         let cell: PageListCell = tableView.dequeue(for: indexPath)
-        cell.update(pages[indexPath.row], indexPath: indexPath)
+        cell.update(pages[indexPath.row], indexPath: indexPath, color: color)
         return cell
     }
 
@@ -218,6 +216,7 @@ class PageListFrontPageCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
 
     func update(_ page: Page?) {
+        backgroundColor = .backgroundLightest
         accessibilityIdentifier = "PageList.frontPage"
         headingLabel.text = NSLocalizedString("Front Page", bundle: .core, comment: "")
         headingLabel.accessibilityIdentifier = "PageList.frontPageHeading"
@@ -231,13 +230,16 @@ class PageListCell: UITableViewCell {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
 
-    func update(_ page: Page?, indexPath: IndexPath) {
+    func update(_ page: Page?, indexPath: IndexPath, color: UIColor?) {
+        backgroundColor = .backgroundLightest
         titleLabel.accessibilityIdentifier = "PageList.\(indexPath.row)"
+        selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         accessIconView.icon = UIImage.documentLine
         accessIconView.published = page?.published == true
-        dateLabel.text = page?.lastUpdated.map { // TODO: page?.lastUpdated?.dateTimeString
+        let dateText = page?.lastUpdated.map { // TODO: page?.lastUpdated?.dateTimeString
             DateFormatter.localizedString(from: $0, dateStyle: .medium, timeStyle: .short)
         }
-        titleLabel.text = page?.title
+        dateLabel.setText(dateText, style: .textCellSupportingText)
+        titleLabel.setText(page?.title, style: .textCellTitle)
     }
 }

@@ -60,7 +60,7 @@ public class API {
 
                 // If the request is rejected due to the rate limit being exhausted we retry and hope that the quota is restored in the meantime
                 if response?.exceededLimit(responseData: data) == true {
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
                         self?.makeRequest(requestable, callback: callback)
                     }
                     return
@@ -94,8 +94,16 @@ public class API {
     }
 
     @discardableResult
-    public func makeDownloadRequest(_ url: URL, callback: ((URL?, URLResponse?, Error?) -> Void)? = nil) -> APITask? {
-        let request = URLRequest(url: url)
+    public func makeDownloadRequest(_ url: URL,
+                                    method: APIMethod? = nil,
+                                    callback: ((URL?, URLResponse?, Error?) -> Void)? = nil)
+    -> APITask? {
+        var request = URLRequest(url: url)
+
+        if let method {
+            request.httpMethod = method.rawValue.uppercased()
+        }
+
         let task: APITask
         #if DEBUG
         if API.shouldMock(request) {
@@ -116,15 +124,24 @@ public class API {
     @discardableResult
     public func uploadTask<Request: APIRequestable>(_ requestable: Request) throws -> APITask {
         let request = try requestable.urlRequest(relativeTo: baseURL, accessToken: loginSession?.accessToken, actAsUserID: loginSession?.actAsUserID)
-        let url = URL.temporaryDirectory.appendingPathComponent(UUID.string)
+
         #if DEBUG
-        print("uploading", url, "to", request.url ?? "")
         if API.shouldMock(request) {
             return MockAPITask(self, request: request)
         }
         #endif
-        try request.httpBody?.write(to: url) // TODO: delete this file after upload completes
-        return urlSession.uploadTask(with: request, fromFile: url)
+
+        if requestable.isBodyFromURL, let form = requestable.form {
+            guard let boundary = request.boundary else {
+                throw NSError.instructureError("Failed to extract boundary from HTTP header.")
+            }
+            let bodyFileURL: URL = try form.encode(using: boundary) // TODO: delete this file after upload completes
+            return urlSession.uploadTask(with: request, fromFile: bodyFileURL)
+        } else {
+            let url = URL.Directories.temporary.appendingPathComponent(UUID.string)
+            try request.httpBody?.write(to: url) // TODO: delete this file after upload completes
+            return urlSession.uploadTask(with: request, fromFile: url)
+        }
     }
 
     func refreshToken() {
@@ -200,7 +217,7 @@ public extension URLSession {
     static var ephemeral: URLSession = {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.urlCache = nil
-        return URLSession(configuration: configuration)
+        return URLSession(configuration: configuration, delegate: FollowRedirect(), delegateQueue: nil)
     }()
     static var noFollowRedirect = URLSession(configuration: .ephemeral, delegate: NoFollowRedirect(), delegateQueue: nil)
 }
@@ -214,5 +231,19 @@ public class NoFollowRedirect: NSObject, URLSessionTaskDelegate {
         completionHandler: @escaping (URLRequest?) -> Void
     ) {
         completionHandler(nil)
+    }
+}
+
+public class FollowRedirect: NSObject, URLSessionTaskDelegate {
+    public func urlSession(_ session: URLSession,
+                           task: URLSessionTask,
+                           willPerformHTTPRedirection response: HTTPURLResponse,
+                           newRequest request: URLRequest,
+                           completionHandler: @escaping (URLRequest?) -> Void) {
+        var newRequest = request
+        if let authorizationHeader = task.originalRequest?.value(forHTTPHeaderField: HttpHeader.authorization), request.url?.host == AppEnvironment.shared.currentSession?.baseURL.host {
+            newRequest.addValue(authorizationHeader, forHTTPHeaderField: HttpHeader.authorization)
+        }
+        completionHandler(newRequest)
     }
 }

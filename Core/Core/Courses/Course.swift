@@ -23,6 +23,7 @@ final public class Course: NSManagedObject, WriteableModel {
     public typealias JSON = APICourse
 
     @NSManaged public var accessRestrictedByDate: Bool
+    @NSManaged public var bannerImageDownloadURL: URL?
     @NSManaged public var canCreateAnnouncement: Bool
     @NSManaged public var canCreateDiscussionTopic: Bool
     @NSManaged var contextColor: ContextColor?
@@ -38,12 +39,11 @@ final public class Course: NSManagedObject, WriteableModel {
     @NSManaged public var imageDownloadURL: URL?
     @NSManaged public var isCourseDeleted: Bool
     @NSManaged public var isFavorite: Bool
-    @NSManaged public var isFutureEnrollment: Bool
     @NSManaged public var isHomeroomCourse: Bool
+    /** Use with caution! This property doesn't take section dates or the actual enrollment's concluded state into account. */
     @NSManaged public var isPastEnrollment: Bool
     @NSManaged public var isPublished: Bool
     @NSManaged public var name: String?
-    @NSManaged var planner: Planner?
     @NSManaged public var sections: Set<CourseSection>
     @NSManaged public var syllabusBody: String?
     @NSManaged public var termName: String?
@@ -59,9 +59,9 @@ final public class Course: NSManagedObject, WriteableModel {
 
     public var color: UIColor {
         if AppEnvironment.shared.k5.isK5Enabled {
-            return UIColor(hexString: courseColor) ?? .oxford
+            return UIColor(hexString: courseColor)?.ensureContrast(against: .backgroundLightest) ?? .oxford
         } else {
-            return contextColor?.color ?? .ash
+            return contextColor?.color.ensureContrast(against: .backgroundLightest) ?? .ash
         }
     }
 
@@ -73,6 +73,7 @@ final public class Course: NSManagedObject, WriteableModel {
         model.isFavorite = item.is_favorite ?? false
         model.courseCode = item.course_code
         model.courseColor = item.course_color
+        model.bannerImageDownloadURL = URL(string: item.banner_image_download_url ?? "")
         model.imageDownloadURL = URL(string: item.image_download_url ?? "")
         model.syllabusBody = item.syllabus_body
         model.defaultViewRaw = item.default_view?.rawValue
@@ -97,10 +98,6 @@ final public class Course: NSManagedObject, WriteableModel {
             item.workflow_state == .completed ||
             (item.end_at ?? .distantFuture) < Clock.now ||
             (item.term?.end_at ?? .distantFuture) < Clock.now
-        )
-        model.isFutureEnrollment = !model.isPastEnrollment && (
-            (item.start_at ?? .distantPast) > Clock.now ||
-            (item.term?.start_at ?? .distantPast) > Clock.now
         )
         model.isHomeroomCourse = item.homeroom_course ?? false
         model.isPublished = item.workflow_state == .available || item.workflow_state == .completed
@@ -133,7 +130,7 @@ final public class Course: NSManagedObject, WriteableModel {
             dashboardCard.course = model
         }
 
-        if let group: Group = context.fetch(scope: .where(#keyPath(Group.courseID), equals: model.id)).first {
+        for group: Group in context.fetch(scope: .where(#keyPath(Group.courseID), equals: model.id)) {
             group.course = model
         }
 

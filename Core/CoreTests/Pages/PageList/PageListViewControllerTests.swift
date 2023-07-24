@@ -40,7 +40,7 @@ class PageListViewControllerTests: CoreTestCase {
         let nav = UINavigationController(rootViewController: controller)
         let split = UISplitViewController()
         split.viewControllers = [ nav ]
-        split.preferredDisplayMode = .allVisible
+        split.preferredDisplayMode = .oneBesideSecondary
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
         XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#000088")
@@ -109,7 +109,7 @@ class PageListViewControllerTests: CoreTestCase {
         let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#facade")
+        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, UIColor(hexString: "#facade")!.darkenToEnsureContrast(against: .white).hexString)
         XCTAssertEqual(controller.titleSubtitleView.title, "Pages")
         XCTAssertEqual(controller.titleSubtitleView.subtitle, "Group One")
         XCTAssertNotNil(controller.navigationItem.rightBarButtonItem)

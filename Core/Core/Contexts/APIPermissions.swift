@@ -64,6 +64,7 @@ public struct APIPermissions: Codable, Equatable {
     let manage_assignments: Bool?
     let manage_calendar: Bool?
     let manage_content: Bool?
+    let manage_course_content_edit: Bool?
     let manage_files: Bool?
     let manage_grades: Bool?
     let manage_groups: Bool?
@@ -86,6 +87,7 @@ public struct APIPermissions: Codable, Equatable {
     let select_final_grade: Bool?
     let send_messages: Bool?
     let send_messages_all: Bool?
+    let use_student_view: Bool?
     let view_all_grades: Bool?
     let view_audit_trail: Bool?
     let view_group_pages: Bool?
@@ -137,6 +139,7 @@ extension APIPermissions {
         manage_assignments: Bool? = nil,
         manage_calendar: Bool? = nil,
         manage_content: Bool? = nil,
+        manage_course_content_edit: Bool? = nil,
         manage_files: Bool? = nil,
         manage_grades: Bool? = nil,
         manage_groups: Bool? = nil,
@@ -159,6 +162,7 @@ extension APIPermissions {
         select_final_grade: Bool? = nil,
         send_messages: Bool? = nil,
         send_messages_all: Bool? = nil,
+        use_student_view: Bool? = nil,
         view_all_grades: Bool? = nil,
         view_audit_trail: Bool? = nil,
         view_group_pages: Bool? = nil,
@@ -207,6 +211,7 @@ extension APIPermissions {
             manage_assignments: manage_assignments,
             manage_calendar: manage_calendar,
             manage_content: manage_content,
+            manage_course_content_edit: manage_course_content_edit,
             manage_files: manage_files,
             manage_grades: manage_grades,
             manage_groups: manage_groups,
@@ -229,6 +234,7 @@ extension APIPermissions {
             select_final_grade: select_final_grade,
             send_messages: send_messages,
             send_messages_all: send_messages_all,
+            use_student_view: use_student_view,
             view_all_grades: view_all_grades,
             view_audit_trail: view_audit_trail,
             view_group_pages: view_group_pages,

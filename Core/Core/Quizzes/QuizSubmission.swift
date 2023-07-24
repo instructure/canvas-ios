@@ -28,6 +28,7 @@ public final class QuizSubmission: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var quiz: Quiz?
     @NSManaged public var quizID: String
+    @NSManaged public var scoreRaw: NSNumber?
     @NSManaged public var startedAt: Date?
     @NSManaged public var submissionID: String
     @NSManaged public var userID: String
@@ -37,6 +38,11 @@ public final class QuizSubmission: NSManagedObject {
     public var workflowState: QuizSubmissionWorkflowState {
         get { return QuizSubmissionWorkflowState(rawValue: workflowStateRaw) ?? .untaken }
         set { workflowStateRaw = newValue.rawValue }
+    }
+
+    public var score: Double? {
+        get { return scoreRaw?.doubleValue }
+        set { scoreRaw = NSNumber(value: newValue) }
     }
 
     @discardableResult
@@ -50,6 +56,7 @@ public final class QuizSubmission: NSManagedObject {
         model.finishedAt = item.finished_at
         model.id = item.id.value
         model.quizID = item.quiz_id.value
+        model.score = item.score
         model.startedAt = item.started_at
         model.submissionID = item.submission_id.value
         model.userID = item.user_id.value

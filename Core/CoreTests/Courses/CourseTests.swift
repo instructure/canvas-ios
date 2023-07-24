@@ -25,7 +25,7 @@ class CourseTests: CoreTestCase {
         ContextColor.make(canvasContextID: "course_1", color: .red)
         let a = Course.make(from: .make(id: "1"))
 
-        XCTAssertEqual(a.color, UIColor.red)
+        XCTAssertEqual(a.color.hexString, UIColor.red.ensureContrast(against: .backgroundLightest).hexString)
     }
 
     func testDefaultK5Color() {
@@ -43,7 +43,7 @@ class CourseTests: CoreTestCase {
         environment.k5.userDidLogin(isK5Account: true)
         ExperimentalFeature.K5Dashboard.isEnabled = true
 
-        XCTAssertEqual(a.color, UIColor(hexString: "#0DEAD0"))
+        XCTAssertEqual(a.color.hexString, UIColor(hexString: "#0DEAD0")!.ensureContrast(against: .backgroundLightest).hexString)
     }
 
     func testDefaultView() {
@@ -182,9 +182,12 @@ class CourseTests: CoreTestCase {
     }
 
     func testUpdatesRelatedGroupRelationship() {
-        let group = Group.save(.make(course_id: "course_1"), in: databaseClient)
-        XCTAssertNil(group.course)
+        let group1 = Group.save(.make(id: "1", course_id: "course_1"), in: databaseClient)
+        let group2 = Group.save(.make(id: "2", course_id: "course_1"), in: databaseClient)
+        XCTAssertNil(group1.course)
+        XCTAssertNil(group2.course)
         let course = Course.save(.make(id: "course_1"), in: databaseClient)
-        XCTAssertEqual(group.course, course)
+        XCTAssertEqual(group1.course, course)
+        XCTAssertEqual(group2.course, course)
     }
 }

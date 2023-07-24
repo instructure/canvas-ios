@@ -23,6 +23,8 @@ public class Tab: NSManagedObject {
     @NSManaged var contextRaw: String
     @NSManaged var hiddenRaw: NSNumber?
     @NSManaged public var htmlURL: URL?
+    @NSManaged public var fullURL: URL?
+    @NSManaged public var url: URL?
     @NSManaged public var id: String
     @NSManaged public var label: String
     @NSManaged public var position: Int
@@ -49,13 +51,20 @@ public class Tab: NSManagedObject {
         set { visibilityRaw = newValue.rawValue }
     }
 
+    public var name: TabName {
+        TabName(rawValue: id) ?? .custom
+    }
+
     func save(_ item: APITab, in client: NSManagedObjectContext, context: Context) {
         id = item.id.value
         htmlURL = item.html_url
+        fullURL = item.full_url
+        url = item.url
         label = item.label
         position = item.position
         self.context = context
         type = item.type
         visibility = TabVisibility(rawValue: item.visibility) ?? .none
+        hidden = item.hidden
     }
 }

@@ -44,14 +44,14 @@ open class SyllabusViewController: UIViewController, CoreWebViewLinkDelegate {
         webView.linkDelegate = self
 
         view.addSubview(webView)
-        webView.pin(inside: view)
-
+        webView.pinWithThemeSwitchButton(inside: view)
         courses.refresh()
     }
 
     func update() {
         if let html = courses.first?.syllabusBody, !html.isEmpty {
             webView.loadHTMLString(html)
+            webView.accessibilityIdentifier = "syllabusBody"
         }
     }
 

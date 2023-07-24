@@ -17,15 +17,15 @@
 //
 
 import SwiftUI
-import XCTest
+@testable import Core
+import TestsFoundation
 
-class SwiftUIExtensionsTests: XCTestCase {
+class SwiftUIExtensionsTests: CoreTestCase {
 
     func testFormattedNumberTextInitializer() {
         XCTAssertEqual(Text(0.12, number: .percent), Text(verbatim: "12%"))
     }
 
-    @available(iOS 15, *)
     func testAttributedtext() {
         let testColor = Color.red
         let testText = "test text"
@@ -35,5 +35,23 @@ class SwiftUIExtensionsTests: XCTestCase {
         }
         let attributedString = AttributedString(testText, attributes: attribute)
         XCTAssertEqual(testee, Text(attributedString))
+    }
+
+    func testIf() {
+        var controller = hostSwiftUIController(testIfView(state: true))
+        var tree = controller.testTree
+        XCTAssertEqual(tree?.find(id: "test")?.info as? String, "true")
+        controller = hostSwiftUIController(testIfView(state: false))
+        tree = controller.testTree
+        XCTAssertEqual(tree?.find(id: "test")?.info as? String, "false")
+    }
+
+    private struct testIfView: View {
+        @State var state: Bool
+        var body: some View {
+            Text("test").testID("test", info: "false").if(state) { text in
+                text.testID("test", info: "true")
+            }
+        }
     }
 }

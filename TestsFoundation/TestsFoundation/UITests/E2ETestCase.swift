@@ -31,22 +31,46 @@ open class E2ETestCase: CoreUITestCase {
         super.setUp()
     }
 
-    open func logInDSUser(_ dsUser: DSUser) {
-        if let entry = user.session {
-            return logInEntry(entry)
+    open func findSchool(lastLogin: Bool = false) {
+        LoginStart.findSchoolButton.waitToExist()
+        if lastLogin && LoginStart.lastLoginButton.exists && LoginStart.lastLoginButton.label() == user.host {
+            LoginStart.lastLoginButton.tap()
+        } else {
+            LoginStart.findSchoolButton.tap()
+            LoginFindSchool.searchField.pasteText("\(user.host)")
+            LoginFindSchool.nextButton.tap()
         }
+    }
 
-        // Assumes we are on the login start screen
-        LoginStart.findSchoolButton.tap()
-        LoginFindSchool.searchField.pasteText("\(user.host)")
-        LoginFindSchool.searchField.typeText("\r")
-
+    open func loginAfterSchoolFound(_ dsUser: DSUser, password: String = "password") {
         LoginWeb.emailField.waitToExist(60)
         LoginWeb.emailField.pasteText(dsUser.login_id)
-        LoginWeb.passwordField.tap().pasteText("password")
+        LoginWeb.passwordField.tap().pasteText(password)
         LoginWeb.logInButton.tap()
 
-        homeScreen.waitToExist()
+        homeScreen.waitToExist(20)
         user.session = currentSession()
+        setAppThemeToSystem()
+    }
+
+    open func logInDSUser(_ dsUser: DSUser, lastLogin: Bool = true, password: String = "password") {
+        findSchool(lastLogin: lastLogin)
+        loginAfterSchoolFound(dsUser, password: password)
+    }
+
+    open func logOut() {
+        Dashboard.profileButton.tap()
+        Profile.logOutButton.tap()
+    }
+
+    // Workaround to handle app theme prompt
+    open func setAppThemeToSystem() {
+        let canvasThemePromptTitle = app.find(label: "Canvas is now available in dark theme")
+        let systemSettingsButton = app.find(label: "System settings", type: .button)
+        if canvasThemePromptTitle.waitToExist(5, shouldFail: false).exists() {
+            systemSettingsButton.tapUntil {
+                !canvasThemePromptTitle.exists()
+            }
+        }
     }
 }

@@ -29,13 +29,14 @@ public class AssignmentListViewModel: ObservableObject {
     @Published public private(set) var courseColor: UIColor?
     @Published public private(set) var courseName: String?
     @Published public private(set) var shouldShowFilterButton = false
+    @Published public private(set) var defaultDetailViewRoute = "/empty"
     public var selectedGradingPeriod: GradingPeriod?
     public lazy private (set) var gradingPeriods = env.subscribe(GetGradingPeriods(courseID: courseID)) { [weak self] in
         self?.gradingPeriodsDidUpdate()
     }
 
-    @Environment(\.appEnvironment) private var env
-    private let courseID: String
+    private let env = AppEnvironment.shared
+    let courseID: String
     private lazy var apiAssignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID)) { [weak self] in
         self?.assignmentGroupsDidUpdate()
     }
@@ -81,7 +82,7 @@ public class AssignmentListViewModel: ObservableObject {
     }
 
     private func assignmentGroupsDidUpdate() {
-        if apiAssignments.requested, apiAssignments.pending { return }
+        if !apiAssignments.requested || apiAssignments.pending || apiAssignments.hasNextPage { return }
 
         var assignmentGroups: [AssignmentGroupViewModel] = []
 
@@ -98,6 +99,16 @@ public class AssignmentListViewModel: ObservableObject {
     private func courseDidUpdate() {
         courseColor = course.first?.color
         courseName = course.first?.name
+
+        defaultDetailViewRoute = {
+            var result = "/empty"
+
+            if let color = courseColor {
+                result.append("?contextColor=\(color.hexString.dropFirst())")
+            }
+
+            return result
+        }()
     }
 
     private func gradingPeriodsDidUpdate() {
@@ -108,12 +119,22 @@ public class AssignmentListViewModel: ObservableObject {
 
 extension AssignmentListViewModel: Refreshable {
 
+    @available(*, renamed: "refresh()")
     public func refresh(completion: @escaping () -> Void) {
-        apiAssignments.exhaust(force: true) { [weak self] _ in
-            if self?.apiAssignments.hasNextPage == false {
-                completion()
+        Task {
+            await refresh()
+            completion()
+        }
+    }
+
+    public func refresh() async {
+        return await withCheckedContinuation { continuation in
+            apiAssignments.exhaust(force: true) { [weak self] _ in
+                if self?.apiAssignments.hasNextPage == false {
+                    continuation.resume()
+                }
+                return true
             }
-            return true
         }
     }
 }

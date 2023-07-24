@@ -188,7 +188,7 @@ extension NotificationCategoriesViewController: UITableViewDataSource, UITableVi
         case .email:
             let cell: RightDetailTableViewCell = tableView.dequeue(for: indexPath)
             cell.accessibilityIdentifier = "NotificationCategories.\(row.category)Cell"
-            cell.backgroundColor = .backgroundGroupedCell
+            cell.backgroundColor = .backgroundLightest
             cell.textLabel?.text = categoryMap[row.category]?.1
             cell.detailTextLabel?.text = row.frequency.name
             cell.accessoryType = .disclosureIndicator
@@ -196,7 +196,7 @@ extension NotificationCategoriesViewController: UITableViewDataSource, UITableVi
         default:
             let cell: SwitchTableViewCell = tableView.dequeue(for: indexPath)
             cell.accessibilityIdentifier = "NotificationCategories.\(row.category)Toggle"
-            cell.backgroundColor = .backgroundGroupedCell
+            cell.backgroundColor = .backgroundLightest
             cell.textLabel?.text = categoryMap[row.category]?.1
             cell.toggle.isOn = row.frequency != .never
             cell.onToggleChange = { [weak self] toggle in

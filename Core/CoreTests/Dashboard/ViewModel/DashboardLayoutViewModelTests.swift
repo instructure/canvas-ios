@@ -21,105 +21,50 @@ import XCTest
 
 class DashboardLayoutViewModelTests: CoreTestCase {
 
-    func testInitialButtonStateForGridLayout() {
-        environment.userDefaults?.isDashboardLayoutGrid = true
-        let testee = DashboardLayoutViewModel()
-        XCTAssertEqual(testee.buttonImage, .dashboardLayoutList)
-        XCTAssertEqual(testee.buttonA11yLabel, NSLocalizedString("Change dashboard layout to list", comment: ""))
-    }
-
-    func testInitialButtonStateForListLayout() {
-        environment.userDefaults?.isDashboardLayoutGrid = false
-        let testee = DashboardLayoutViewModel()
-        XCTAssertEqual(testee.buttonImage, .dashboardLayoutGrid)
-        XCTAssertEqual(testee.buttonA11yLabel, NSLocalizedString("Change dashboard layout to grid", comment: ""))
-    }
-
-    func testToggleChangesButtonImage() {
-        let buttonChangeEvent = expectation(description: "UI update received")
-        buttonChangeEvent.expectedFulfillmentCount = 2 // initial state, change
-        var listButtonImageReceived = false
-        var gridButtonImageReceived = false
-        let testee = DashboardLayoutViewModel()
-        let subscription = testee.$buttonImage.sink { image in
-            buttonChangeEvent.fulfill()
-
-            if image == .dashboardLayoutList {
-                listButtonImageReceived = true
-            } else if image == .dashboardLayoutGrid {
-                gridButtonImageReceived = true
-            }
-        }
-
-        testee.toggle()
-        wait(for: [buttonChangeEvent], timeout: 0.1)
-        XCTAssertTrue(listButtonImageReceived)
-        XCTAssertTrue(gridButtonImageReceived)
-
-        subscription.cancel()
-    }
-
-    func testTogglePersistsState() {
-        let initialState = environment.userDefaults!.isDashboardLayoutGrid
-        let testee = DashboardLayoutViewModel()
-
-        testee.toggle()
-
-        let newState = environment.userDefaults!.isDashboardLayoutGrid
-        XCTAssertNotEqual(initialState, newState)
-    }
-
     func testGridLayoutCalculation() {
         environment.userDefaults?.isDashboardLayoutGrid = true
-        let testee = DashboardLayoutViewModel()
+        let testee = DashboardLayoutViewModel(interactor: DashboardSettingsInteractorPreview())
 
-        let smallLayout = testee.layoutInfo(for: 600)
+        let smallLayout = testee.layoutInfo(for: 600, horizontalSizeClass: .compact)
         XCTAssertEqual(smallLayout.columns, 2)
-        let largeLayout = testee.layoutInfo(for: 650)
+        let largeLayout = testee.layoutInfo(for: 650, horizontalSizeClass: .compact)
         XCTAssertEqual(largeLayout.columns, 4)
     }
 
     func testListLayoutCalculation() {
-        environment.userDefaults?.isDashboardLayoutGrid = false
-        let testee = DashboardLayoutViewModel()
+        let interactor = DashboardSettingsInteractorPreview()
+        interactor.layout.send(.list)
+        let testee = DashboardLayoutViewModel(interactor: interactor)
 
-        let smallLayout = testee.layoutInfo(for: 600)
+        let smallLayout = testee.layoutInfo(for: 600, horizontalSizeClass: .compact)
         XCTAssertEqual(smallLayout.columns, 1)
-        let largeLayout = testee.layoutInfo(for: 650)
+        let largeLayout = testee.layoutInfo(for: 650, horizontalSizeClass: .compact)
         XCTAssertEqual(largeLayout.columns, 1)
     }
 
-    func testAnalyticsReportforGridLayout() {
-        environment.userDefaults?.isDashboardLayoutGrid = true
-        _ = DashboardLayoutViewModel()
+    func testMinHeight() {
+        let interactor = DashboardSettingsInteractorPreview()
+        let testee = DashboardLayoutViewModel(interactor: interactor)
 
-        guard
-              analytics.events.count == 1,
-              let eventName = analytics.events.last?.name,
-              let params = analytics.events.last?.parameters
-        else {
-            XCTFail("Unexpected event or parameter count")
-            return
-        }
+        interactor.layout.send(.grid)
+        var layout = testee.layoutInfo(for: 0, horizontalSizeClass: .compact)
+        XCTAssertEqual(layout.cardMinHeight, 160)
 
-        XCTAssertEqual(eventName, "dashboard_layout")
-        XCTAssertEqual(params as? [String: String], ["type": "grid"])
+        interactor.layout.send(.list)
+        layout = testee.layoutInfo(for: 0, horizontalSizeClass: .regular)
+        XCTAssertEqual(layout.cardMinHeight, 100)
     }
 
-    func testAnalyticsReportforListLayout() {
-        environment.userDefaults?.isDashboardLayoutGrid = false
-        _ = DashboardLayoutViewModel()
+    func testIsWideLayout() {
+        let interactor = DashboardSettingsInteractorPreview()
+        let testee = DashboardLayoutViewModel(interactor: interactor)
 
-        guard
-              analytics.events.count == 1,
-              let eventName = analytics.events.last?.name,
-              let params = analytics.events.last?.parameters
-        else {
-            XCTFail("Unexpected event or parameter count")
-            return
-        }
+        interactor.layout.send(.grid)
+        var layout = testee.layoutInfo(for: 0, horizontalSizeClass: .regular)
+        XCTAssertFalse(layout.isWideLayout)
 
-        XCTAssertEqual(eventName, "dashboard_layout")
-        XCTAssertEqual(params as? [String: String], ["type": "list"])
+        interactor.layout.send(.list)
+        layout = testee.layoutInfo(for: 0, horizontalSizeClass: .regular)
+        XCTAssertTrue(layout.isWideLayout)
     }
 }

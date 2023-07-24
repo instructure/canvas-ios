@@ -38,6 +38,7 @@ exports[`renders circle toggle correctly 1`] = `
         Array [
           Object {
             "color": "#2D3B45",
+            "fontFamily": "Lato-Regular",
             "fontSize": 16,
           },
           Object {
@@ -97,6 +98,7 @@ exports[`renders circle toggle when on correctly 1`] = `
         Array [
           Object {
             "color": "#2D3B45",
+            "fontFamily": "Lato-Regular",
             "fontSize": 16,
           },
           Object {

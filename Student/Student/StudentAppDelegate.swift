@@ -17,12 +17,13 @@
 //
 
 import AVKit
-import UIKit
-import PSPDFKit
 import CanvasCore
-import UserNotifications
-import Firebase
 import Core
+import Firebase
+import Heap
+import PSPDFKit
+import UIKit
+import UserNotifications
 
 @UIApplicationMain
 class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDelegate {
@@ -36,8 +37,9 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         env.window = window
         return env
     }()
-
+    private var environmentFeatureFlags: Store<GetEnvironmentFeatureFlags>?
     private var shouldSetK5StudentView = false
+    private var backgroundFileSubmissionAssembly: FileSubmissionAssembly?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupFirebase()
@@ -56,6 +58,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         NotificationManager.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         UITableView.setupDefaultSectionHeaderTopPadding()
+        FontAppearance.update()
 
         if launchOptions?[.sourceApplication] as? String == Bundle.teacherBundleID,
            let url = launchOptions?[.url] as? URL,
@@ -73,43 +76,50 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         } else {
             window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true, app: .student)
             window?.makeKeyAndVisible()
+            Analytics.shared.logScreenView(route: "/login", viewController: window?.rootViewController)
         }
-
-        handleLaunchOptionsNotifications(launchOptions)
 
         return true
     }
 
     func setup(session: LoginSession) {
         environment.userDidLogin(session: session)
-        environment.userDefaults?.isK5StudentView = shouldSetK5StudentView
-        CoreWebView.keepCookieAlive(for: environment)
-        if Locale.current.regionCode != "CA" {
-            let crashlyticsUserId = "\(session.userID)@\(session.baseURL.host ?? session.baseURL.absoluteString)"
-            Firebase.Crashlytics.crashlytics().setUserID(crashlyticsUserId)
-        }
 
-        Analytics.setUserID(session.userID)
-        Analytics.setUserProperty(session.baseURL.absoluteString, forName: "base_url")
-        NotificationManager.shared.subscribeToPushChannel()
+        GetUserProfile().fetch(environment: environment, force: true) { apiProfile, urlResponse, _ in performUIUpdate {
+            PageViewEventController.instance.userDidChange()
 
-        GetUserProfile().fetch(environment: environment, force: true) { apiProfile, urlResponse, _ in
+            if urlResponse?.isUnauthorized == true, !session.isFakeStudent {
+                self.userDidLogout(session: session)
+                LoginViewModel().showLoginView(on: self.window!, loginDelegate: self, app: .student)
+                return
+            }
+
+            self.environment.userDefaults?.isK5StudentView = self.shouldSetK5StudentView
+            self.environmentFeatureFlags = self.environment.subscribe(GetEnvironmentFeatureFlags(context: Context.currentUser))
+            self.environmentFeatureFlags?.refresh(force: true) { _ in
+                guard let envFlags = self.environmentFeatureFlags, envFlags.error == nil else { return }
+                self.initializeTracking()
+            }
+
+            self.updateInterfaceStyle(for: self.window)
+            CoreWebView.keepCookieAlive(for: self.environment)
+            NotificationManager.shared.subscribeToPushChannel()
+
             let isK5StudentView = self.environment.userDefaults?.isK5StudentView ?? false
             if isK5StudentView {
                 ExperimentalFeature.K5Dashboard.isEnabled = true
                 self.environment.userDefaults?.isElementaryViewEnabled = true
             }
             self.environment.k5.userDidLogin(profile: apiProfile, isK5StudentView: isK5StudentView)
-            if urlResponse?.isUnauthorized == true, !session.isFakeStudent {
-                DispatchQueue.main.async { self.userDidLogout(session: session) }
+            Analytics.shared.logSession(session)
+
+            self.refreshNotificationTab()
+            LocalizationManager.localizeForApp(UIApplication.shared, locale: apiProfile?.locale ?? session.locale) {
+                GetBrandVariables().fetch(environment: self.environment) { _, _, _ in performUIUpdate {
+                    NativeLoginManager.login(as: session)
+                }}
             }
-            PageViewEventController.instance.userDidChange()
-            DispatchQueue.main.async { self.refreshNotificationTab() }
-            GetBrandVariables().fetch(environment: self.environment) { _, _, _ in
-                DispatchQueue.main.async { NativeLoginManager.login(as: session) }
-            }
-        }
-        Analytics.shared.logSession(session)
+        }}
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
@@ -130,6 +140,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     func applicationDidBecomeActive(_ application: UIApplication) {
         AppStoreReview.handleLaunch()
         CoreWebView.keepCookieAlive(for: environment)
+        updateInterfaceStyle(for: window)
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -148,13 +159,25 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
 
     func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
         Logger.shared.log()
-        let manager = UploadManager(identifier: identifier)
-        manager.completionHandler = {
-            DispatchQueue.main.async {
-                completionHandler()
+
+        if identifier == FileSubmissionAssembly.ShareExtensionSessionID {
+            let backgroundAssembly = FileSubmissionAssembly.makeShareExtensionAssembly()
+            backgroundAssembly.handleBackgroundUpload {
+                DispatchQueue.main.async { [weak self] in
+                    completionHandler()
+                    self?.backgroundFileSubmissionAssembly = nil
+                }
             }
+            backgroundFileSubmissionAssembly = backgroundAssembly
+        } else {
+            let manager = UploadManager(identifier: identifier)
+            manager.completionHandler = {
+                DispatchQueue.main.async {
+                    completionHandler()
+                }
+            }
+            manager.createSession()
         }
-        manager.createSession()
     }
 
     // similar methods exist in all other app delegates
@@ -171,7 +194,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
                     let value = remoteConfig.configValue(forKey: key).boolValue
                     feature.isEnabled = value
                     Firebase.Crashlytics.crashlytics().setCustomValue(value, forKey: feature.userDefaultsKey)
-                    Analytics.setUserProperty(value ? "YES" : "NO", forName: feature.rawValue)
                 }
             }
         }
@@ -193,7 +215,7 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
         willPresent notification: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
-        completionHandler([.alert, .sound])
+        completionHandler([.banner, .sound])
     }
 
     func userNotificationCenter(
@@ -210,25 +232,39 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
         }
         completionHandler()
     }
-
-    func handleLaunchOptionsNotifications(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
-        if
-            let notification = launchOptions?[.remoteNotification] as? [String: AnyObject],
-            let aps = notification["aps"] as? [String: AnyObject] {
-            PushNotifications.recordUserInfo(notification)
-            if let url = NotificationManager.routeURL(from: notification) {
-                openURL(url, userInfo: [
-                    "forceRefresh": true,
-                    "pushNotification": aps,
-                ])
-            }
-        }
-    }
 }
 
 extension StudentAppDelegate: Core.AnalyticsHandler {
     func handleEvent(_ name: String, parameters: [String: Any]?) {
-        Analytics.logEvent(name, parameters: parameters)
+        guard FirebaseOptions.defaultOptions()?.apiKey != nil else {
+            return
+        }
+
+        if let screenName = parameters?["screen_name"] as? String,
+           let screenClass = parameters?["screen_class"] as? String {
+            Firebase.Crashlytics.crashlytics().log("\(screenName) (\(screenClass))")
+        }
+    }
+
+    private func initializeTracking() {
+        guard
+            let environmentFeatureFlags,
+            !ProcessInfo.isUITest,
+            let heapID = Secret.heapID.string
+        else {
+            return
+        }
+
+        let isSendUsageMetricsEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
+        let options = HeapOptions()
+        options.disableTracking = !isSendUsageMetricsEnabled
+        Heap.initialize(heapID, with: options)
+        Heap.setTrackingEnabled(isSendUsageMetricsEnabled)
+        environment.heapID = Heap.userId()
+    }
+
+    private func disableTracking() {
+        Heap.setTrackingEnabled(false)
     }
 }
 
@@ -274,19 +310,30 @@ extension StudentAppDelegate {
 extension StudentAppDelegate {
     func setupPageViewLogging() {
         class BackgroundAppHelper: AppBackgroundHelperProtocol {
+
+            let queue = DispatchQueue(label: "com.instructure.icanvas.app-background-helper", attributes: .concurrent)
             var tasks: [String: UIBackgroundTaskIdentifier] = [:]
+
             func startBackgroundTask(taskName: String) {
-                tasks[taskName] = UIApplication.shared.beginBackgroundTask(withName: taskName) { [weak self] in
-                    self?.tasks[taskName] = .invalid
+                queue.async(flags: .barrier) { [weak self] in
+                    self?.tasks[taskName] = UIApplication.shared.beginBackgroundTask(
+                        withName: taskName,
+                        expirationHandler: { [weak self] in
+                            self?.endBackgroundTask(taskName: taskName)
+                    })
                 }
             }
 
             func endBackgroundTask(taskName: String) {
-                if let task = tasks[taskName] {
-                    UIApplication.shared.endBackgroundTask(task)
+                queue.async(flags: .barrier) { [weak self] in
+                    if let task = self?.tasks[taskName] {
+                        self?.tasks[taskName] = .invalid
+                        UIApplication.shared.endBackgroundTask(task)
+                    }
                 }
             }
         }
+
         let helper = BackgroundAppHelper()
         PageViewEventController.instance.configure(backgroundAppHelper: helper)
     }
@@ -299,6 +346,7 @@ extension StudentAppDelegate {
             let loginNav = LoginNavigationController.create(loginDelegate: self, app: .student)
             loginNav.login(host: host)
             window?.rootViewController = loginNav
+            Analytics.shared.logScreenView(route: "/login", viewController: window?.rootViewController)
         }
         // the student app doesn't have as predictable of a tab bar setup and for
         // several views, does not have a route configured for them so for now we
@@ -336,9 +384,8 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         shouldSetK5StudentView = false
         environment.k5.userDidLogout()
         guard let window = window, !(window.rootViewController is LoginNavigationController) else { return }
-        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
-            window.rootViewController = LoginNavigationController.create(loginDelegate: self, app: .student)
-        }, completion: nil)
+        disableTracking()
+        LoginViewModel().showLoginView(on: window, loginDelegate: self, app: .student)
     }
 
     func stopActing() {
@@ -354,17 +401,20 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     }
 
     func openExternalURL(_ url: URL) {
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        openExternalURLinSafari(url)
+    }
+
+    func openExternalURLinSafari(_ url: URL) {
+        UIApplication.shared.open(url)
     }
 
     func userDidLogin(session: LoginSession) {
         LoginSession.add(session)
-        LocalizationManager.localizeForApp(UIApplication.shared, locale: session.locale) {
-            setup(session: session)
-        }
+        setup(session: session)
     }
 
     func userDidStopActing(as session: LoginSession) {
+        disableTracking()
         LoginSession.remove(session)
         guard environment.currentSession == session else { return }
         PageViewEventController.instance.userDidChange()
@@ -372,10 +422,10 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         UIApplication.shared.applicationIconBadgeNumber = 0
         environment.userDidLogout(session: session)
         CoreWebView.stopCookieKeepAlive()
-        NativeLoginManager.shared().logout()
     }
 
     func userDidLogout(session: LoginSession) {
+        disableTracking()
         shouldSetK5StudentView = false
         let wasCurrent = environment.currentSession == session
         API(session).makeRequest(DeleteLoginOAuthRequest(), refreshToken: false) { _, _, _ in }

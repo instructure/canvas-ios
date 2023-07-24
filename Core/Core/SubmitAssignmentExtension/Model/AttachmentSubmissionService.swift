@@ -16,51 +16,51 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import CoreData
 
 public class AttachmentSubmissionService {
-    private let uploadManager: UploadManager
+    private let submissionAssembly: FileSubmissionAssembly
+    private var existingSubmissionID: NSManagedObjectID?
 
-    public init(uploadManager: UploadManager = UploadManager(identifier: "com.instructure.icanvas.SubmitAssignment.file-uploads", sharedContainerIdentifier: "group.instructure.shared")) {
-        self.uploadManager = uploadManager
+    public init(submissionAssembly: FileSubmissionAssembly) {
+        self.submissionAssembly = submissionAssembly
     }
 
-    public func submit(urls: [URL], courseID: String, assignmentID: String, comment: String?, callback: @escaping () -> Void) {
-        let uploadContext = FileUploadContext.submission(
-            courseID: courseID,
-            assignmentID: assignmentID,
-            comment: comment
-        )
-        let batchID = "assignment-\(assignmentID)"
-        uploadManager.cancel(batchID: batchID)
-        let semaphore = DispatchSemaphore(value: 0)
-        var error: Error?
-        ProcessInfo.processInfo.performExpiringActivity(withReason: "get upload targets") { expired in
-            if expired {
-                self.uploadManager.sendFailedNotification()
-                return
-            }
-            self.uploadManager.viewContext.perform {
-                do {
-                    var files: [File] = []
-                    for url in urls {
-                        let file = try self.uploadManager.add(url: url, batchID: batchID)
-                        files.append(file)
-                    }
-                    for file in files {
-                        self.uploadManager.upload(file: file, to: uploadContext) {
-                            semaphore.signal()
-                        }
-                    }
-                } catch let e {
-                    error = e
-                }
-            }
-            if error != nil {
-                self.uploadManager.sendFailedNotification()
-            }
-            semaphore.wait()
-            callback()
+    /**
+     - returns: The `FileSubmission` CoreData object for the newly created submission.
+     */
+    public func submit(urls: [URL], courseID: String, assignmentID: String, assignmentName: String, comment: String?) -> NSManagedObjectID {
+        if let existingSubmissionID = existingSubmissionID {
+            submissionAssembly.composer.deleteSubmission(submissionID: existingSubmissionID)
         }
+
+        let submissionID = submissionAssembly.composer.makeNewSubmission(courseId: courseID, assignmentId: assignmentID, assignmentName: assignmentName, comment: comment, files: urls)
+        existingSubmissionID = submissionID
+        submissionAssembly.start(fileSubmissionID: submissionID)
+        return submissionID
+    }
+}
+
+extension AttachmentSubmissionService: FileProgressListViewModelDelegate {
+
+    public func fileProgressViewModelCancel(_ viewModel: FileProgressListViewModel) {
+        if let existingSubmissionID = existingSubmissionID {
+            submissionAssembly.cancel(submissionID: existingSubmissionID)
+        }
+        existingSubmissionID = nil
+    }
+
+    public func fileProgressViewModelRetry(_ viewModel: FileProgressListViewModel) {
+        if let existingSubmissionID = existingSubmissionID {
+            submissionAssembly.start(fileSubmissionID: existingSubmissionID)
+        }
+    }
+
+    public func fileProgressViewModel(_ viewModel: FileProgressListViewModel, delete fileUploadItemID: NSManagedObjectID) {
+        submissionAssembly.composer.deleteItem(itemID: fileUploadItemID)
+    }
+
+    public func fileProgressViewModel(_ viewModel: FileProgressListViewModel, didAcknowledgeSuccess fileSubmissionID: NSManagedObjectID) {
+        submissionAssembly.markSubmissionAsDone(submissionID: fileSubmissionID)
     }
 }

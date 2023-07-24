@@ -22,7 +22,18 @@ public protocol ColorDelegate: AnyObject {
     var iconColor: UIColor? { get }
 }
 
-public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
+extension Course {
+
+    func enrollmentForGrades(userId: String?) -> Enrollment? {
+        enrollments?.first {
+            $0.state == .active &&
+            $0.userID == userId &&
+            $0.type.lowercased().contains("student")
+        }
+    }
+}
+
+public class GradeListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -42,11 +53,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
     public weak var colorDelegate: ColorDelegate?
     var courseID = ""
     var courseEnrollment: Enrollment? {
-        return courses.first?.enrollments?.first {
-            $0.state == .active &&
-            $0.userID == userID &&
-            $0.type.lowercased().contains("student")
-        }
+        courses.first?.enrollmentForGrades(userId: userID)
     }
     var gradeEnrollment: Enrollment? {
         return enrollments.first {
@@ -60,8 +67,12 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
     var gradingPeriodID: String?
     var gradingPeriodLoaded = false
     var userID: String?
+    var offlineModeInteractor: OfflineModeInteractor?
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "/courses/\(courseID)/grades"
+    )
 
-    lazy var assignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: gradingPeriodID, gradedOnly: true)) { [weak self] in
+    lazy var assignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: nil, gradedOnly: true)) { [weak self] in
         self?.update()
     }
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
@@ -74,7 +85,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
     lazy var enrollments = env.subscribe(GetEnrollments(
         context: .course(courseID),
         userID: userID,
-        gradingPeriodID: gradingPeriodID,
+        gradingPeriodID: nil,
         types: [ "StudentEnrollment" ],
         states: [ .active ]
     )) { [weak self] in
@@ -84,11 +95,16 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
         self?.update()
     }
 
-    public static func create(courseID: String, userID: String? = nil, colorDelegate: ColorDelegate? = nil) -> GradeListViewController {
+    public static func create(courseID: String,
+                              userID: String? = nil,
+                              colorDelegate: ColorDelegate? = nil,
+                              offlineModeInteractor: OfflineModeInteractor = OfflineModeInteractorLive.shared)
+    -> GradeListViewController {
         let controller = loadFromStoryboard()
         controller.colorDelegate = colorDelegate
         controller.courseID = courseID
         controller.userID = userID ?? controller.env.currentSession?.userID
+        controller.offlineModeInteractor = offlineModeInteractor
         return controller
     }
 
@@ -102,6 +118,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
         errorView.messageLabel.text = NSLocalizedString("There was an error loading grades. Pull to refresh to try again.", bundle: .core, comment: "")
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         filterButton.setTitle(NSLocalizedString("Filter", bundle: .core, comment: ""), for: .normal)
+        filterButton.makeUnavailableInOfflineMode()
 
         gradingPeriodView.isHidden = true
 
@@ -114,6 +131,7 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
         tableView.separatorColor = .borderMedium
 
         totalGradeHeadingLabel.text = NSLocalizedString("Total Grade", bundle: .core, comment: "")
+        totalGradeLabel.accessibilityIdentifier = "CourseTotalGrade"
 
         assignments.refresh()
         colors.refresh()
@@ -128,12 +146,17 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
             tableView.deselectRow(at: index, animated: animated)
         }
         navigationController?.navigationBar.useContextColor(color)
-        env.pageViewLogger.startTrackingTimeOnViewController()
     }
 
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "courses/\(courseID)/grades", attributes: [:])
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        // Without this there was some weird empty space at the end of the tableview
+        // that went away after rotation or when we moved away from the screen and returned
+        if offlineModeInteractor?.isOfflineModeEnabled() == true {
+            view.setNeedsLayout()
+            tableView.reloadData()
+        }
     }
 
     @objc func refresh() {
@@ -168,15 +191,19 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
             totalGradeLabel.text = NSLocalizedString("N/A", bundle: .core, comment: "")
         } else {
             var letterGrade: String?
-            if gradingPeriodID != nil, gradeEnrollment?.currentScore(gradingPeriodID: gradingPeriodID) != nil {
+            if let gradingPeriodID = gradingPeriodID {
                 totalGradeLabel.text = gradeEnrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
-                letterGrade = gradeEnrollment?.computedCurrentGrade
+                letterGrade = gradeEnrollment?.currentGrade(gradingPeriodID: gradingPeriodID) ?? gradeEnrollment?.finalGrade(gradingPeriodID: gradingPeriodID)
             } else {
-                totalGradeLabel.text = courseEnrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
-                letterGrade = courseEnrollment?.computedCurrentGrade
+                totalGradeLabel.text = courseEnrollment?.formattedCurrentScore(gradingPeriodID: nil)
+                if courseEnrollment?.multipleGradingPeriodsEnabled == true, courseEnrollment?.totalsForAllGradingPeriodsOption == false {
+                    letterGrade = nil
+                } else {
+                    letterGrade = courseEnrollment?.computedCurrentGrade ?? courseEnrollment?.computedFinalGrade
+                }
             }
-            if let scoreText = totalGradeLabel.text, let finalGrade = letterGrade {
-                totalGradeLabel.text = scoreText + " (\(finalGrade))"
+            if let scoreText = totalGradeLabel.text, let letterGrade = letterGrade {
+                totalGradeLabel.text = scoreText + " (\(letterGrade))"
             }
         }
 
@@ -201,9 +228,14 @@ public class GradeListViewController: UIViewController, ColoredNavViewProtocol {
         assignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: gradingPeriodID, gradedOnly: true)) { [weak self] in
             self?.update()
         }
-        // Delete assignment groups immediately, to see a spinner again
-        assignments.useCase.reset(context: env.database.viewContext)
-        try? env.database.viewContext.save()
+
+        // In offline mode we don't want to delete anything from CoreData
+        if offlineModeInteractor?.isOfflineModeEnabled() == false {
+            // Delete assignment groups immediately, to see a spinner again
+            assignments.useCase.reset(context: env.database.viewContext)
+            try? env.database.viewContext.save()
+        }
+
         assignments.refresh(force: true)
         enrollments.refresh(force: true)
     }
@@ -246,7 +278,7 @@ extension GradeListViewController: UITableViewDataSource, UITableViewDelegate {
         let assignment = assignments[indexPath]
         let cell: GradeListCell = tableView.dequeue(for: indexPath)
         cell.typeImage.image = gradeListCellIconDelegate?.iconImage(for: assignment) ?? assignment?.icon
-        cell.update(assignment, userID: userID)
+        cell.update(assignment, userID: userID, color: color)
         return cell
     }
 
@@ -269,21 +301,23 @@ public class GradeListCell: UITableViewCell {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var typeImage: UIImageView!
 
-    func update(_ assignment: Assignment?, userID: String?) {
+    func update(_ assignment: Assignment?, userID: String?, color: UIColor?) {
+        backgroundColor = .backgroundLightest
         let submission = assignment?.submissions?.first { $0.userID == userID }
         accessibilityIdentifier = "GradeListCell.\(assignment?.id ?? "")"
-        nameLabel.text = assignment?.name
+        nameLabel.setText(assignment?.name, style: .textCellTitle)
         gradeLabel.text = assignment.flatMap {
             GradeFormatter.string(from: $0, userID: userID, style: .medium)
         }
         gradeLabel.accessibilityLabel = assignment.flatMap { GradeFormatter.a11yString(from: $0, userID: userID, style: .medium) }.flatMap { NSLocalizedString("Grade", comment: "") + ", " + $0 }
-        dueLabel.text = assignment?.dueText
+        dueLabel.setText(assignment?.dueText, style: .textCellSupportingTextBold)
         let status = submission?.status ?? .notSubmitted
         if status != .missing, status != .late {
             statusLabel.isHidden = assignment?.isOnline != true
         }
-        statusLabel.text = status.text
+        statusLabel.setText(status.text, style: .textCellBottomLabel)
         statusLabel.textColor = status.color
+        selectedBackgroundView = ContextCellBackgroundView.create(color: color)
     }
 }
 

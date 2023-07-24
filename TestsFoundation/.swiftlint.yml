@@ -1,0 +1,6 @@
+parent_config: ../.swiftlint.yml
+
+disabled_rules:
+  - force_try
+  - force_cast
+  - xctfail_message

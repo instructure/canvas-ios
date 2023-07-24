@@ -22,6 +22,7 @@ import UIKit
 public class LoadingCell: UITableViewCell {
     override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = .backgroundLightest
         let indicator = CircleProgressView()
         indicator.color = .textDark
         indicator.translatesAutoresizingMaskIntoConstraints = false
@@ -32,7 +33,7 @@ public class LoadingCell: UITableViewCell {
             indicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             indicator.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
         ])
-        separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+        separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: CGFloat.greatestFiniteMagnitude)
     }
 
     required public init?(coder: NSCoder) {

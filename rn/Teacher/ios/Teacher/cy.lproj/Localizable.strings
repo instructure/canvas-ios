@@ -29,6 +29,9 @@
 "All submissions" = "Pob cyflwyniad";
 
 /* No comment provided by engineer. */
+"All Submissions" = "Pob Cyflwyniad";
+
+/* No comment provided by engineer. */
 "Attendance" = "Presenoldeb";
 
 /* No comment provided by engineer. */
@@ -53,10 +56,19 @@
 "Choose Files" = "Dewis Ffeiliau";
 
 /* No comment provided by engineer. */
+"Close" = "Cau";
+
+/* No comment provided by engineer. */
 "Close Drawer" = "Cau Drôr";
 
 /* No comment provided by engineer. */
 "Comment" = "Sylw";
+
+/* No comment provided by engineer. */
+"Comment Library" = "Llyfrgell Sylwadau";
+
+/* No comment provided by engineer. */
+"Comment library is not available" = "Dydy'r llyfrgell sylwadau ddim ar gael";
 
 /* No comment provided by engineer. */
 "Comments" = "Sylwadau";
@@ -122,6 +134,9 @@
 "Filter by" = "Hidlo yn ôl";
 
 /* No comment provided by engineer. */
+"Filter submissions" = "Hidlo cyflwyniadau";
+
+/* No comment provided by engineer. */
 "Final Grade" = "Gradd Derfynol";
 
 /* No comment provided by engineer. */
@@ -147,12 +162,6 @@
 
 /* No comment provided by engineer. */
 "Grades will be made visible to students with graded submissions" = "Bydd myfyrwyr â gwaith wedi’i raddio yn gallu gweld y graddau";
-
-/* number of grades hidden */
-"grades_currently_hidden" = "grades_currently_hidden";
-
-/* number of grades hidden */
-"grades_currently_posted" = "grades_currently_posted";
 
 /* No comment provided by engineer. */
 "Group" = "Grŵp";
@@ -197,10 +206,19 @@
 "No Submissions" = "Dim Cyflwyniadau";
 
 /* No comment provided by engineer. */
+"No suggestions available" = "Dim awgrymiadau ar gael";
+
+/* No comment provided by engineer. */
 "Not Graded" = "Heb eu graddio";
 
 /* No comment provided by engineer. */
+"Not Submitted" = "Heb Gyflwyno";
+
+/* No comment provided by engineer. */
 "OK" = "Iawn";
+
+/* No comment provided by engineer. */
+"Open comment library" = "Agor y llyfrgell sylwadau";
 
 /* No comment provided by engineer. */
 "Open Drawer full screen" = "Agor Drôr sgrin lawn";
@@ -231,6 +249,9 @@
 
 /* No comment provided by engineer. */
 "Post to..." = "Postio i...";
+
+/* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "Nid oes gan gwisiau ac arolygon weddau manwl.";
 
 /* No comment provided by engineer. */
 "Present" = "Presennol";
@@ -282,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Submissions" = "Cyflwyniadau";
+
+/* No comment provided by engineer. */
+"Submitted" = "Wedi Cyflwyno";
 
 /* No comment provided by engineer. */
 "Test Student" = "Myfyriwr Prawf";

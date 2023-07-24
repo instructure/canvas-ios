@@ -31,7 +31,7 @@ class SubmitAssignmentExtensionViewModelTests: CoreTestCase {
         super.setUp()
         isShareCompletebBlockExecuted = false
         testee = SubmitAssignmentExtensionViewModel(attachmentCopyService: AttachmentCopyService(extensionContext: nil),
-                                                    submissionService: AttachmentSubmissionService(),
+                                                    submissionService: AttachmentSubmissionService(submissionAssembly: .makeShareExtensionAssembly()),
                                                     shareCompleted: { [weak self] in self?.isShareCompletebBlockExecuted = true })
     }
 
@@ -56,7 +56,7 @@ class SubmitAssignmentExtensionViewModelTests: CoreTestCase {
         makeExpectation()
         uiRefreshExpectation.expectedFulfillmentCount = 2 // assignment selector title update and submit button state update
 
-        testee.assignmentPickerViewModel.selectedAssignment = .init(id: "1", name: "selected assignment")
+        testee.assignmentPickerViewModel.assignmentSelected(.init(id: "1", name: "selected assignment"))
         XCTAssertEqual(testee.selectAssignmentButtonTitle, Text(verbatim: "selected assignment"))
 
         wait(for: [uiRefreshExpectation], timeout: 0.1)
@@ -66,7 +66,7 @@ class SubmitAssignmentExtensionViewModelTests: CoreTestCase {
         makeExpectation()
         uiRefreshExpectation.expectedFulfillmentCount = 2 // assignment selector title update and submit button state update
 
-        testee.assignmentPickerViewModel.selectedAssignment = .init(id: "1", name: "selected assignment")
+        testee.assignmentPickerViewModel.assignmentSelected(.init(id: "1", name: "selected assignment"))
         XCTAssertFalse(testee.isSubmitButtonDisabled)
 
         wait(for: [uiRefreshExpectation], timeout: 0.1)
@@ -79,7 +79,7 @@ class SubmitAssignmentExtensionViewModelTests: CoreTestCase {
 
     func testCourseSwitchResetsSelectedAssignment() {
         testee.coursePickerViewModel.selectedCourse = .init(id: "random CourseID", name: "course")
-        testee.assignmentPickerViewModel.selectedAssignment = .init(id: "random AssignmentID", name: "assignment")
+        testee.assignmentPickerViewModel.assignmentSelected(.init(id: "random AssignmentID", name: "assignment"))
 
         testee.coursePickerViewModel.selectedCourse = .init(id: "random CourseID 2", name: "course 2")
         XCTAssertNil(testee.assignmentPickerViewModel.selectedAssignment)
@@ -89,6 +89,32 @@ class SubmitAssignmentExtensionViewModelTests: CoreTestCase {
     func testCancelTapInvokesShareCompletedBlock() {
         testee.cancelTapped()
         XCTAssertTrue(isShareCompletebBlockExecuted)
+    }
+
+    func testReportsCancelToAnalytics() {
+        let analyticsHandler = MockAnalyticsHandler()
+        Analytics.shared.handler = analyticsHandler
+        XCTAssertEqual(analyticsHandler.loggedEventCount, 0)
+
+        testee.cancelTapped()
+
+        XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
+        XCTAssertEqual(analyticsHandler.lastEventName, "share_cancelled")
+        XCTAssertNil(analyticsHandler.lastEventParameters)
+    }
+
+    func testReportsSubmitToAnalytics() {
+        testee.coursePickerViewModel.selectedCourse = .init(id: "", name: "")
+        testee.assignmentPickerViewModel.assignmentSelected(.init(id: "", name: ""))
+        let analyticsHandler = MockAnalyticsHandler()
+        Analytics.shared.handler = analyticsHandler
+        XCTAssertEqual(analyticsHandler.loggedEventCount, 0)
+
+        testee.submitTapped()
+
+        XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
+        XCTAssertEqual(analyticsHandler.lastEventName, "submit_tapped")
+        XCTAssertNil(analyticsHandler.lastEventParameters)
     }
 
     private func makeExpectation() {

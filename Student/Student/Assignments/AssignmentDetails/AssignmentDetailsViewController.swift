@@ -19,14 +19,14 @@
 import Core
 import UIKit
 
-class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewProtocol {
+class AssignmentDetailsViewController: ScreenViewTrackableViewController, AssignmentDetailsViewProtocol {
     @IBOutlet weak var nameLabel: UILabel?
     @IBOutlet weak var pointsLabel: UILabel?
     @IBOutlet weak var statusIconView: UIImageView?
     @IBOutlet weak var statusLabel: UILabel?
     @IBOutlet weak var gradeHeadingLabel: UILabel?
     @IBOutlet weak var descriptionHeadingLabel: UILabel?
-    @IBOutlet weak var descriptionView: CoreWebView?
+    @IBOutlet weak var descriptionView: UIView?
     @IBOutlet weak var scrollView: UIScrollView?
     @IBOutlet weak var loadingView: CircleProgressView!
     @IBOutlet weak var submissionButtonView: UIView?
@@ -82,10 +82,13 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     var courseID = ""
     let env = AppEnvironment.shared
     var fragment: String?
-
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "/courses/\(courseID)/assignments/\(assignmentID)"
+    )
     var refreshControl: CircleRefreshControl?
     let titleSubtitleView = TitleSubtitleView.create()
     var presenter: AssignmentDetailsPresenter?
+    private let webView = CoreWebView()
 
     static func create(courseID: String, assignmentID: String, fragment: String? = nil) -> AssignmentDetailsViewController {
         let controller = loadFromStoryboard()
@@ -109,7 +112,8 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         // Loading
         scrollView?.isHidden = true
         scrollView?.backgroundColor = .backgroundLightest
-        loadingView?.color = Brand.shared.primary.ensureContrast(against: .backgroundLightest)
+        loadingView.color = Brand.shared.primary
+        loadingView.startAnimating()
         let refreshControl = CircleRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         scrollView?.addSubview(refreshControl)
@@ -144,7 +148,12 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         lockedIconImageView.image = UIImage(named: Panda.Locked.name, in: .core, compatibleWith: nil)
 
         // Routing from description
-        descriptionView?.linkDelegate = self
+        webView.linkDelegate = self
+        webView.autoresizesHeight = true
+        webView.heightAnchor.constraint(equalToConstant: 0).isActive = true
+        webView.configuration.mediaTypesRequiringUserActionForPlayback = .all
+        descriptionView?.addSubview(webView)
+        webView.pinWithThemeSwitchButton(inside: descriptionView)
 
         let tapGradedView = UITapGestureRecognizer(target: self, action: #selector(didTapSubmission(_:)))
         gradedView?.addGestureRecognizer(tapGradedView)
@@ -159,13 +168,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        presenter?.viewDidAppear()
         AppStoreReview.handleNavigateToAssignment()
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        presenter?.viewDidDisappear()
     }
 
     deinit {
@@ -292,7 +295,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         descriptionHeadingLabel?.text = quiz == nil
             ? NSLocalizedString("Description", bundle: .student, comment: "")
             : NSLocalizedString("Instructions", bundle: .student, comment: "")
-        descriptionView?.loadHTMLString(presenter?.assignmentDescription() ?? "", baseURL: baseURL)
+        webView.loadHTMLString(presenter?.assignmentDescription() ?? "", baseURL: baseURL)
         updateGradeCell(assignment)
 
         guard let presenter = presenter else { return }
@@ -309,7 +312,15 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         gradeSection?.isHidden = !showGradeSection
         submissionButtonSection?.isHidden = presenter.viewSubmissionButtonSectionIsHidden()
         showDescription(!presenter.descriptionIsHidden())
-        submitAssignmentButton.isHidden = presenter.submitAssignmentButtonIsHidden()
+
+        if assignment.submissionTypes.contains(where: { type in
+            type == .basic_lti_launch || type == .external_tool
+        }) {
+            submitAssignmentButton.makeUnavailableInOfflineMode()
+        } else {
+            submitAssignmentButton.isHidden = presenter.submitAssignmentButtonIsHidden()
+
+        }
 
         lockedSubheaderWebView.loadHTMLString(presenter.lockExplanation)
         centerLockedIconContainerView()
@@ -317,7 +328,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
         updateQuizSettings(quiz)
 
         scrollView?.isHidden = false
-        loadingView.isHidden = true
+        loadingView.stopAnimating()
         refreshControl?.endRefreshing()
         UIAccessibility.post(notification: .screenChanged, argument: view)
     }
@@ -354,6 +365,7 @@ class AssignmentDetailsViewController: UIViewController, AssignmentDetailsViewPr
     }
 
     func showSubmitAssignmentButton(title: String?) {
+        view.bringSubviewToFront(submitAssignmentButton)
         submitAssignmentButton.setTitle(title, for: .normal)
 
         if title == nil {

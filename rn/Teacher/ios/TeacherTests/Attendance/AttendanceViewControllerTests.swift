@@ -62,8 +62,10 @@ class AttendanceViewControllerTests: TeacherTestCase {
     func testStatusDisplay() {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(controller.navigationController?.navigationBar.barTintColor, UIColor(hexString: "#008EE2"))
+        XCTAssertEqual(controller.navigationController?.navigationBar.barTintColor!.hexString, UIColor(hexString: "#008EE2")!.ensureContrast(against: .backgroundLightest).hexString)
         XCTAssertEqual(controller.view.backgroundColor, .backgroundLightest)
+        XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, true)
+        RunLoop.main.run(until: Date() + 1)
         XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, false)
 
         // Assert state from mock data
@@ -102,7 +104,10 @@ class AttendanceViewControllerTests: TeacherTestCase {
         controller.view.layoutIfNeeded()
         controller.session.state = .error(NSError.instructureError("doh"))
         XCTAssertEqual((router.presented as? UIAlertController)?.message, "doh")
-        XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, false)
+        XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, true)
+        waitUntil(shouldFail: true) {
+            controller.tableView.refreshControl?.isRefreshing == false
+        }
     }
 
     func testCourseError() {
@@ -110,7 +115,11 @@ class AttendanceViewControllerTests: TeacherTestCase {
         api.mock(GetCourseRequest(courseID: context.id), error: NSError.instructureError("oops"))
         controller.tableView.refreshControl?.sendActions(for: .valueChanged)
         XCTAssertEqual((router.presented as? UIAlertController)?.message, "oops")
-        XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, false)
+        XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, true)
+        RunLoop.main.run(until: Date() + 1)
+        waitUntil(shouldFail: true) {
+            controller.tableView.refreshControl?.isRefreshing == false
+        }
     }
 
     func testSectionsError() {
@@ -118,7 +127,10 @@ class AttendanceViewControllerTests: TeacherTestCase {
         api.mock(GetCourseSectionsRequest(courseID: context.id, perPage: 100), error: NSError.instructureError("ded"))
         controller.tableView.refreshControl?.sendActions(for: .valueChanged)
         XCTAssertEqual((router.presented as? UIAlertController)?.message, "ded")
-        XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, false)
+        XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, true)
+        waitUntil(shouldFail: true) {
+            controller.tableView.refreshControl?.isRefreshing == false
+        }
     }
 
     func testStatusesError() {
@@ -126,7 +138,10 @@ class AttendanceViewControllerTests: TeacherTestCase {
         api.mock(URLRequest(url: url), data: nil)
         controller.view.layoutIfNeeded()
         XCTAssertEqual((router.presented as? UIAlertController)?.message, "Error: No data returned from the rollcall api.")
-        XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, false)
+        XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, true)
+        waitUntil(shouldFail: true) {
+            controller.tableView.refreshControl?.isRefreshing == false
+        }
     }
 
     func testChangeDate() {

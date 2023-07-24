@@ -16,8 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Combine
 import CoreData
+import Foundation
 
 public protocol UseCase {
     associatedtype Model: NSManagedObject = NSManagedObject
@@ -34,35 +35,35 @@ public protocol UseCase {
     func getNext(from response: URLResponse) -> GetNextRequest<Response>?
 }
 
-extension UseCase {
-    public var scope: Scope {
+public extension UseCase {
+    var scope: Scope {
         return Scope.all(orderBy: "id")
     }
 
-    public var ttl: TimeInterval {
+    var ttl: TimeInterval {
         return 60 * 60 * 2 // 2 hours
     }
 
-    public func getNext(from response: URLResponse) -> GetNextRequest<Response>? {
+    func getNext(from _: URLResponse) -> GetNextRequest<Response>? {
         return nil
     }
 
-    public func reset(context: NSManagedObjectContext) {
+    func reset(context _: NSManagedObjectContext) {
         // no-op
     }
 
-    public func hasExpired(in client: NSManagedObjectContext) -> Bool {
+    func hasExpired(in client: NSManagedObjectContext) -> Bool {
         guard let cacheKey = cacheKey, !ProcessInfo.isUITest else { return true }
         var expired = true
         let predicate = NSPredicate(format: "%K == %@", #keyPath(TTL.key), cacheKey)
         if let cache: TTL = client.fetch(predicate).first,
-            let lastRefresh = cache.lastRefresh {
+           let lastRefresh = cache.lastRefresh {
             expired = lastRefresh + ttl < Clock.now
         }
         return expired
     }
 
-    public func updateTTL(in client: NSManagedObjectContext) {
+    func updateTTL(in client: NSManagedObjectContext) {
         guard let cacheKey = cacheKey else { return }
         let predicate = NSPredicate(format: "%K == %@", #keyPath(TTL.key), cacheKey)
         let cache: TTL = client.fetch(predicate).first ?? client.insert()
@@ -70,7 +71,7 @@ extension UseCase {
         cache.lastRefresh = Clock.now
     }
 
-    public func fetch(environment: AppEnvironment = .shared, force: Bool = false, _ callback: RequestCallback? = nil) {
+    func fetch(environment: AppEnvironment = .shared, force: Bool = false, _ callback: RequestCallback? = nil) {
         // Make sure we write to the database that initiated this request
         let database = environment.database
         database.performWriteTask { client in
@@ -97,6 +98,37 @@ extension UseCase {
             }
         }
     }
+
+    func hasCacheExpired(environment: AppEnvironment = .shared) -> Future<Bool, Never> {
+        Future<Bool, Never> { promise in
+            environment.database.performWriteTask { context in
+                promise(.success(self.hasExpired(in: context)))
+            }
+        }
+    }
+
+    func fetchWithFuture(environment: AppEnvironment = .shared) -> Future<URLResponse?, Error> {
+        Future<URLResponse?, Error> { promise in
+            self.makeRequest(environment: environment) { response, urlResponse, error in
+                if let error = error {
+                    promise(.failure(error))
+                } else {
+                    let database = environment.database
+                    database.performWriteTask { context in
+                        do {
+                            self.reset(context: context)
+                            self.write(response: response, urlResponse: urlResponse, to: context)
+                            self.updateTTL(in: context)
+                            try context.save()
+                            promise(.success(urlResponse))
+                        } catch let dbError {
+                            promise(.failure(dbError))
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 public protocol APIUseCase: UseCase {
@@ -104,28 +136,28 @@ public protocol APIUseCase: UseCase {
     var request: Request { get }
 }
 
-extension APIUseCase {
-    public func getNext(from response: URLResponse) -> GetNextRequest<Request.Response>? {
+public extension APIUseCase {
+    func getNext(from response: URLResponse) -> GetNextRequest<Request.Response>? {
         return request.getNext(from: response)
     }
 }
 
-extension APIUseCase where Response == Request.Response {
-    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
+public extension APIUseCase where Response == Request.Response {
+    func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
         environment.api.makeRequest(request, callback: completionHandler)
     }
 }
 
 public protocol CollectionUseCase: APIUseCase {}
-extension CollectionUseCase {
-    public func reset(context: NSManagedObjectContext) {
+public extension CollectionUseCase {
+    func reset(context: NSManagedObjectContext) {
         context.delete(context.fetch(scope: scope) as [Model])
     }
 }
 
 public protocol DeleteUseCase: APIUseCase {}
-extension DeleteUseCase {
-    public func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+public extension DeleteUseCase {
+    func write(response _: Response?, urlResponse _: URLResponse?, to client: NSManagedObjectContext) {
         client.delete(client.fetch(scope: scope) as [Model])
     }
 }
@@ -164,15 +196,15 @@ public protocol WriteableModel {
     static func save(_ items: [JSON], in context: NSManagedObjectContext) -> [Self]
 }
 
-extension WriteableModel {
+public extension WriteableModel {
     @discardableResult
-    public static func save(_ items: [JSON], in context: NSManagedObjectContext) -> [Self] {
+    static func save(_ items: [JSON], in context: NSManagedObjectContext) -> [Self] {
         return items.map { save($0, in: context) }
     }
 }
 
-extension UseCase where Model: WriteableModel, Model.JSON == Response {
-    public func write(response: Model.JSON?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+public extension UseCase where Model: WriteableModel, Model.JSON == Response {
+    func write(response: Model.JSON?, urlResponse _: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else {
             return
         }
@@ -180,8 +212,8 @@ extension UseCase where Model: WriteableModel, Model.JSON == Response {
     }
 }
 
-extension UseCase where Model: WriteableModel, Response: Collection, Model.JSON == Response.Element {
-    public func write(response: [Model.JSON]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+public extension UseCase where Model: WriteableModel, Response: Collection, Model.JSON == Response.Element {
+    func write(response: [Model.JSON]?, urlResponse _: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else {
             return
         }
@@ -189,7 +221,7 @@ extension UseCase where Model: WriteableModel, Response: Collection, Model.JSON 
     }
 }
 
-public struct LocalUseCase<T>: UseCase where T: NSManagedObject {
+public class LocalUseCase<T>: UseCase where T: NSManagedObject {
     public typealias Model = T
     // Response doesn't matter so this is just a Codable stub
     public typealias Response = Int
@@ -202,9 +234,31 @@ public struct LocalUseCase<T>: UseCase where T: NSManagedObject {
         self.scope = scope
     }
 
-    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping (Int?, URLResponse?, Error?) -> Void) {
+    public func makeRequest(environment _: AppEnvironment, completionHandler: @escaping (Int?, URLResponse?, Error?) -> Void) {
         completionHandler(1, nil, nil)
     }
 
-    public func write(response: Int?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {}
+    public func write(response _: Int?, urlResponse _: URLResponse?, to _: NSManagedObjectContext) {}
+}
+
+public class DeleteLocalUseCase<T>: UseCase where T: NSManagedObject {
+    public typealias Model = T
+    // Response doesn't matter so this is just a Codable stub
+    public typealias Response = Int
+
+    public var scope: Scope
+
+    public private(set) var cacheKey: String?
+
+    public init(scope: Scope) {
+        self.scope = scope
+    }
+
+    public func makeRequest(environment _: AppEnvironment, completionHandler: @escaping (Int?, URLResponse?, Error?) -> Void) {
+        completionHandler(1, nil, nil)
+    }
+
+    public func write(response _: Response?, urlResponse _: URLResponse?, to client: NSManagedObjectContext) {
+        client.delete(client.fetch(scope: scope) as [Model])
+    }
 }

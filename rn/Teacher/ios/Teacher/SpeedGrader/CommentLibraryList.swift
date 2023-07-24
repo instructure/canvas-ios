@@ -28,7 +28,9 @@ struct CommentLibraryList: View {
     var body: some View {
         switch viewModel.state {
         case .loading:
-            CircleProgress().frame(maxHeight: .infinity)
+            ProgressView()
+                .progressViewStyle(.indeterminateCircle())
+                .frame(maxHeight: .infinity)
         case .empty:
             emptyView
         case .data(let comments):
@@ -49,21 +51,12 @@ struct CommentLibraryList: View {
 
     @ViewBuilder
     private func commentList(_ comments: [LibraryComment]) -> some View {
-        if #available(iOS 15, *) {
-            List(comments) { libraryComment in
-                commentView(libraryComment)
-            }
-            .listStyle(.plain)
-            .iOS15Refreshable { completion in
-                viewModel.refresh(completion: completion)
-            }
-        } else {
-            ScrollView { VStack(alignment: .leading, spacing: 0) {
-                ForEach(comments) { libraryComment in
-                    commentView(libraryComment).padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-                    Divider().padding(.leading, 16)
-                }
-            }}
+        List(comments) { libraryComment in
+            commentView(libraryComment)
+        }
+        .listStyle(.plain)
+        .refreshable {
+            await viewModel.refresh()
         }
     }
 
@@ -83,12 +76,8 @@ struct CommentLibraryList: View {
 
     @ViewBuilder
     private func commentText(libraryComment: LibraryComment) -> some View {
-        if #available(iOS 15, *) {
-            let attributes = AttributeContainer([.font: UIFont.scaledNamedFont(.bold15)])
-            viewModel.attributedText(with: libraryComment.text, rangeString: $comment, attributes: attributes)
-        } else {
-            Text(libraryComment.text)
-        }
+        let attributes = AttributeContainer([.font: UIFont.scaledNamedFont(.bold15)])
+        viewModel.attributedText(with: libraryComment.text, rangeString: $comment, attributes: attributes)
     }
 
     func select(comment: String) {

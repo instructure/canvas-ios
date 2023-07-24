@@ -172,9 +172,6 @@
 "Settings" = "設定";
 
 /* No comment provided by engineer. */
-"Settings. %@" = "設定。%@";
-
-/* No comment provided by engineer. */
 "Summary" = "摘要";
 
 /* No comment provided by engineer. */
@@ -200,9 +197,6 @@
 
 /* No comment provided by engineer. */
 "There's nothing to be notified of yet." = "尚未有任何通知。";
-
-/* No comment provided by engineer. */
-"Trouble logging in" = "登入發生問題";
 
 /* No comment provided by engineer. */
 "Unread" = "未讀";

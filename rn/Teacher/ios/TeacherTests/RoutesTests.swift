@@ -62,15 +62,17 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/courses/2/announcements/3/edit") is CoreHostingController<DiscussionEditorView>)
         XCTAssert(router.match("/courses/2/discussions") is DiscussionListViewController)
         XCTAssert(router.match("/courses/2/discussion_topics") is DiscussionListViewController)
-        XCTAssert(router.match("/courses/2/discussions/3") is DiscussionDetailsViewController)
         XCTAssert(router.match("/courses/2/discussion_topics/new") is CoreHostingController<DiscussionEditorView>)
-        XCTAssert(router.match("/courses/2/discussion_topics/3") is DiscussionDetailsViewController)
         XCTAssert(router.match("/courses/2/discussion_topics/5/edit") is CoreHostingController<DiscussionEditorView>)
         XCTAssert(router.match("/courses/2/discussion_topics/3/reply") is DiscussionReplyViewController)
         XCTAssert(router.match("/courses/2/discussion_topics/3/entries/4/replies") is DiscussionReplyViewController)
         XCTAssert(router.match("/courses/1/assignments/1/submissions") is SubmissionListViewController)
         XCTAssert(router.match("/courses/1/assignments/1/submissions/1") is SpeedGraderViewController)
         XCTAssert(router.match("/courses/1/quizzes") is QuizListViewController)
+        XCTAssert(router.match("/courses/1/quizzes/2") is CoreHostingController<QuizDetailsView<QuizDetailsViewModel>>)
+        XCTAssert(router.match("/courses/1/quizzes/2/preview") is CoreHostingController<QuizPreviewView>)
+        XCTAssert(router.match("/courses/1/quizzes/2/edit") is CoreHostingController<QuizEditorView<QuizEditorViewModel>>)
+        XCTAssert(router.match("/courses/1/quizzes/2/submissions") is CoreHostingController<QuizSubmissionListView>)
         XCTAssert(router.match("/files") is FileListViewController)
         XCTAssert(router.match("/users/self/files") is FileListViewController)
         XCTAssert(router.match("/files/folder/f1") is FileListViewController)
@@ -99,5 +101,37 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match( "/courses/1/assignments/syllabus") is SyllabusTabViewController)
         XCTAssert(router.match( "/courses/1/syllabus") is SyllabusTabViewController)
         XCTAssert(router.match( "/courses/1/syllabus/edit") is CoreHostingController<SyllabusEditorView>)
+    }
+
+    func testNativeDiscussionDetailsRoute() {
+        ExperimentalFeature.hybridDiscussionDetails.isEnabled = false
+        XCTAssert(router.match("/courses/2/discussions/3") is DiscussionDetailsViewController)
+        XCTAssert(router.match("/courses/2/discussion_topics/3") is DiscussionDetailsViewController)
+    }
+
+    func testHybridDiscussionDetailsRoute() {
+        ExperimentalFeature.hybridDiscussionDetails.isEnabled = true
+        let flag = FeatureFlag(context: AppEnvironment.shared.database.viewContext)
+        flag.name = "react_discussions_post"
+        flag.enabled = true
+        flag.context = .course("2")
+
+        XCTAssert(router.match("/courses/2/discussions/3") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
+        XCTAssert(router.match("/courses/2/discussion_topics/3") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
+    }
+
+    func testNativeAnnouncementDiscussionDetailsRoute() {
+        ExperimentalFeature.hybridDiscussionDetails.isEnabled = false
+        XCTAssert(router.match("/courses/2/announcements/3") is DiscussionDetailsViewController)
+    }
+
+    func testHybridAnnouncementDiscussionDetailsRoute() {
+        ExperimentalFeature.hybridDiscussionDetails.isEnabled = true
+        let flag = FeatureFlag(context: AppEnvironment.shared.database.viewContext)
+        flag.name = "react_discussions_post"
+        flag.enabled = true
+        flag.context = .course("2")
+
+        XCTAssert(router.match("/courses/2/announcements/3") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
     }
 }

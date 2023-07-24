@@ -20,7 +20,7 @@ import Foundation
 import UIKit
 import Core
 
-class QuizDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate {
+class QuizDetailsViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol, CoreWebViewLinkDelegate {
     @IBOutlet weak var attemptsLabel: UILabel!
     @IBOutlet weak var attemptsValueLabel: UILabel!
     @IBOutlet weak var dueHeadingLabel: UILabel!
@@ -47,6 +47,9 @@ class QuizDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreW
     var courseID = ""
     let env = AppEnvironment.shared
     var quizID = ""
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "courses/\(courseID)/quizzes/\(quizID)"
+    )
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
@@ -67,6 +70,7 @@ class QuizDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreW
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .backgroundLightest
         setupTitleViewInNavbar(title: NSLocalizedString("Quiz Details", comment: ""))
 
         attemptsLabel.text = NSLocalizedString("Allowed Attempts:", comment: "")
@@ -77,7 +81,7 @@ class QuizDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreW
         timeLimitLabel.text = NSLocalizedString("Time Limit:", comment: "")
 
         instructionsContainer.addSubview(instructionsWebView)
-        instructionsWebView.pin(inside: instructionsContainer)
+        instructionsWebView.pinWithThemeSwitchButton(inside: instructionsContainer)
         instructionsWebView.heightAnchor.constraint(equalToConstant: 0).isActive = true
         instructionsWebView.autoresizesHeight = true
         instructionsWebView.scrollView.showsVerticalScrollIndicator = false
@@ -103,12 +107,6 @@ class QuizDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreW
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.useContextColor(color)
-        env.pageViewLogger.startTrackingTimeOnViewController()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "courses/\(courseID)/quizzes/\(quizID)", attributes: [:])
     }
 
     @objc func refresh() {
@@ -164,6 +162,7 @@ class QuizDetailsViewController: UIViewController, ColoredNavViewProtocol, CoreW
         let title = takeButtonTitle
         takeButton.setTitle(title, for: .normal)
         takeButton.isHidden = title == nil
+        takeButton.makeUnavailableInOfflineMode()
 
         if courses.requested && !courses.pending && quizzes.requested && !quizzes.pending && colors.requested && !colors.pending {
             UIAccessibility.post(notification: .screenChanged, argument: view)

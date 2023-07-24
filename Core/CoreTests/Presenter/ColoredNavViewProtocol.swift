@@ -39,13 +39,13 @@ class ColoredNavViewProtocolTests: XCTestCase, ColoredNavViewProtocol {
     }
 
     func testUpdateNavBar() {
-        let expectedColor: UIColor = .red
+        let expectedColor: UIColor = .red.darkenToEnsureContrast(against: .white)
         updateNavBar(subtitle: subtitle, color: expectedColor)
 
         XCTAssertEqual(color, expectedColor)
         XCTAssertEqual(titleSubtitleView.subtitle, subtitle)
-        XCTAssertEqual(navigationController?.navigationBar.barTintColor, expectedColor)
-        XCTAssertEqual(navigationController?.navigationBar.tintColor, .white)
+        XCTAssertEqual(navigationController?.navigationBar.barTintColor?.hexString, expectedColor.hexString)
+        XCTAssertEqual(navigationController?.navigationBar.tintColor.hexString, UIColor.white.hexString)
         XCTAssertEqual(navigationController?.navigationBar.barStyle, .black)
     }
 }

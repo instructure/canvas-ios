@@ -22,15 +22,19 @@ public enum LoginWeb: String, ElementWrapper {
     case webView
 
     public static var emailField: Element {
-        return app.find(type: .textField)
+        return app.find(id: "LoginWeb.webView").rawElement.find(type: .textField)
     }
 
     public static var passwordField: Element {
-        return app.find(type: .secureTextField)
+        return app.find(id: "LoginWeb.webView").rawElement.find(type: .secureTextField)
     }
 
     public static var logInButton: Element {
-        return app.find(label: "Log In")
+        return app.find(id: "LoginWeb.webView").rawElement.find(type: .button)
+    }
+
+    public static var createAccountLabel: Element {
+        app.webViews.staticTexts.matching(label: "Create Account").firstElement
     }
 
     public static var studentPairingCodeLabel: Element {

@@ -38,15 +38,18 @@ class PageViewEventRequestManager {
 
     func sendEvents(handler: @escaping ErrorHandler) {
         retrievePandataEndpointInfo { [weak self] token in
-            guard let self = self, let token = token else { return handler(nil) }
+            guard let self = self,
+                  let token = token,
+                  let userID = AppEnvironment.shared.currentSession?.userID
+            else { return handler(nil) }
 
-            let count = min(self.maxBatchCount, self.persistence.queueCount)
+            let count = min(self.maxBatchCount, self.persistence.queueCount(for: userID))
             guard count > 0 else { return handler(nil) }
 
             let taskName = "send pageview events"
             self.backgroundAppHelper?.startBackgroundTask(taskName: taskName)
 
-            let events = self.persistence.batchOfEvents(count)?.map { $0.apiEvent(token) } ?? []
+            let events = self.persistence.batchOfEvents(count, userID: userID)?.map { $0.apiEvent(token) } ?? []
 
             self.env.api.makeRequest(PostPandataEventsRequest(token: token, events: events)) { (response, _, error) in
                 guard response?.lowercased() == "\"ok\"", error == nil else {
@@ -54,7 +57,7 @@ class PageViewEventRequestManager {
                     self.backgroundAppHelper?.endBackgroundTask(taskName: taskName)
                     return
                 }
-                self.persistence.dequeue(count, handler: {
+                self.persistence.dequeue(count, userID: userID, handler: {
                     handler(nil)
                     self.backgroundAppHelper?.endBackgroundTask(taskName: taskName)
                 })

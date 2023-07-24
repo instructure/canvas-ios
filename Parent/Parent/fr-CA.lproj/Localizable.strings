@@ -172,9 +172,6 @@
 "Settings" = "Paramètres";
 
 /* No comment provided by engineer. */
-"Settings. %@" = "Paramètres. %@";
-
-/* No comment provided by engineer. */
 "Summary" = "Résumé";
 
 /* No comment provided by engineer. */
@@ -200,9 +197,6 @@
 
 /* No comment provided by engineer. */
 "There's nothing to be notified of yet." = "Il n'y a encore rien à signaler.";
-
-/* No comment provided by engineer. */
-"Trouble logging in" = "Problème à la connexion";
 
 /* No comment provided by engineer. */
 "Unread" = "Non lu";

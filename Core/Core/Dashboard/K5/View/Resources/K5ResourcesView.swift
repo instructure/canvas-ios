@@ -18,20 +18,17 @@
 
 import SwiftUI
 
-public struct K5ResourcesView: View {
+public struct K5ResourcesView: View, ScreenViewTrackable {
     @Environment(\.horizontalPadding) private var horizontalPadding
     @ObservedObject public var viewModel: K5ResourcesViewModel
+    public let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/resources")
 
     public init(viewModel: K5ResourcesViewModel) {
         self.viewModel = viewModel
     }
 
     public var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            CircleRefresh { endRefreshing in
-                viewModel.refresh(completion: endRefreshing)
-            }
-
+        RefreshableScrollView(showsIndicators: false) {
             VStack(alignment: .leading) {
                 if !viewModel.homeroomInfos.isEmpty {
                     importantInfo
@@ -46,6 +43,8 @@ public struct K5ResourcesView: View {
                 }
             }
             .padding(.vertical)
+        } refreshAction: { endRefreshing in
+            viewModel.refresh(completion: endRefreshing)
         }
         .padding(.horizontal, horizontalPadding)
         .onAppear {
@@ -56,7 +55,7 @@ public struct K5ResourcesView: View {
     private var importantInfo: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text("Important Info", bundle: .core)
-                .foregroundColor(.licorice)
+                .foregroundColor(.textDarkest)
                 .font(.bold20)
                 .padding(.bottom)
                 .accessibility(addTraits: .isHeader)
@@ -66,11 +65,11 @@ public struct K5ResourcesView: View {
                         Image.coursesLine
                             .accessibility(hidden: true)
                         Text(info.homeroomName)
-                            .foregroundColor(.licorice)
+                            .foregroundColor(.textDarkest)
                             .font(.bold17)
                     }
                 }
-                WebView(html: info.htmlContent)
+                WebView(html: info.htmlContent, canToggleTheme: true)
                     .frameToFit()
                     .padding(.horizontal, -16) // Removes padding in CSS
 
@@ -84,7 +83,7 @@ public struct K5ResourcesView: View {
     private var applications: some View {
         VStack(alignment: .leading, spacing: 9) {
             Text("Student Applications", bundle: .core)
-                .foregroundColor(.licorice)
+                .foregroundColor(.textDarkest)
                 .font(.bold20)
                 .padding(.bottom, 8)
                 .accessibility(addTraits: .isHeader)
@@ -98,7 +97,7 @@ public struct K5ResourcesView: View {
     private var contacts: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text("Staff Contact Info", bundle: .core)
-                .foregroundColor(.licorice)
+                .foregroundColor(.textDarkest)
                 .font(.bold20)
                 .padding(.bottom, 8)
                 .accessibility(addTraits: .isHeader)

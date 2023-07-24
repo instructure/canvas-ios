@@ -36,6 +36,7 @@ exports[`CourseSelect renders 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Array [
@@ -112,6 +113,7 @@ exports[`CourseSelect renders 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Array [
@@ -156,6 +158,7 @@ exports[`CourseSelect renders 1`] = `
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Array [
@@ -232,6 +235,7 @@ exports[`CourseSelect renders 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Array [
@@ -342,6 +346,7 @@ exports[`CourseSelect renders 1`] = `
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Array [
@@ -400,6 +405,7 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Array [
@@ -476,6 +482,7 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Array [
@@ -520,6 +527,7 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
             Array [
               Object {
                 "color": "#2D3B45",
+                "fontFamily": "Lato-Regular",
                 "fontSize": 16,
               },
               Array [
@@ -596,6 +604,7 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Array [
@@ -706,6 +715,7 @@ exports[`CourseSelect renders and then selects a course and then dismisses 1`] =
                   Array [
                     Object {
                       "color": "#2D3B45",
+                      "fontFamily": "Lato-Regular",
                       "fontSize": 16,
                     },
                     Array [

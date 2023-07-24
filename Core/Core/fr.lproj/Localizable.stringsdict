@@ -322,6 +322,22 @@
 			<string>Masquer %d éléments manquants</string>
 		</dict>
 	</dict>
+	<key>incompatible_files_for_assignment</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Le type de fichier %2$@ dans votre soumission est incompatible avec le travail sélectionné.</string>
+			<key>other</key>
+			<string>Les types de fichiers %2$@ dans votre soumission sont incompatibles avec le travail sélectionné.</string>
+		</dict>
+	</dict>
 	<key>late_penalty_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -386,6 +402,22 @@
 			<string>Afficher %d éléments manquants</string>
 		</dict>
 	</dict>
+	<key>submission_failed_for_files</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Votre fichier a été envoyé avec succès, mais la soumission du travail a échoué.</string>
+			<key>other</key>
+			<string>Vos fichiers ont été envoyés avec succès, mais la soumission du travail a échoué.</string>
+		</dict>
+	</dict>
 	<key>there_are_d_assignees_without_grades</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -400,6 +432,22 @@
 			<string>Il y a %d personne assignée sans note.</string>
 			<key>other</key>
 			<string>Il y a %d personnes assignées sans note.</string>
+		</dict>
+	</dict>
+	<key>use_file_extension</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Veuillez utiliser l’extension de fichier %2$@.</string>
+			<key>other</key>
+			<string>Veuillez utiliser les extensions de fichier %2$@.</string>
 		</dict>
 	</dict>
 </dict>

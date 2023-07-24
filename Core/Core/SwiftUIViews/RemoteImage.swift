@@ -40,7 +40,7 @@ public struct RemoteImage: View {
 
     public var body: some View {
         if let image = image?.image.images?[currentFrameIndex] ?? image?.image {
-            let isURLChanged = (url != loadedURL)
+            let isURLChanged = (url.pathComponents != loadedURL?.pathComponents)
 
             if isURLChanged {
                 emptyState.onAppear {
@@ -85,7 +85,7 @@ public struct RemoteImage: View {
             self.image = loaded
             self.loadedURL = localURL
             if let count = loaded.image.images?.count, count > 0 {
-                self.frameAnimationTimer = Timer.scheduledTimer(withTimeInterval: loaded.image.duration / Double(count), repeats: true) { _ in
+                let frameAnimationTimer = Timer(timeInterval: loaded.image.duration / Double(count), repeats: true) { _ in
                     self.currentFrameIndex = (self.currentFrameIndex + 1) % count
                     guard self.currentFrameIndex == 0 else { return }
                     self.animationRepeatedCount += 1
@@ -94,6 +94,8 @@ public struct RemoteImage: View {
                     self.frameAnimationTimer = nil
                     self.currentFrameIndex = count - 1 // stay on end frame
                 }
+                RunLoop.current.add(frameAnimationTimer, forMode: .common)
+                self.frameAnimationTimer = frameAnimationTimer
             }
         }
         loader?.load()

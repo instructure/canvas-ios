@@ -54,18 +54,19 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     "/conversations": nil,
     "/conversations/compose": nil,
-    "/conversations/:conversationID": nil,
-
-    "/courses": { _, _, _ in CoreHostingController(CourseListView()) },
-
-    "/courses/:courseID": { url, params, _ in
-        if AppEnvironment.shared.k5.isK5Enabled == true, let context = Context(path: url.path) {
-            return CoreHostingController(K5SubjectView(context: context, selectedTabId: url.fragment))
+    "/conversations/:conversationID": { url, params, userInfo in
+        if ExperimentalFeature.nativeStudentInbox.isEnabled {
+            guard let conversationID = params["conversationID"] else { return nil }
+            return MessageDetailsAssembly.makeViewController(env: AppEnvironment.shared, conversationID: conversationID)
         } else {
-            return HelmViewController(moduleName: "/courses/:courseID", url: url, params: params, userInfo: nil)
+            return HelmViewController(moduleName: "/conversations/:conversationID", url: url, params: params, userInfo: userInfo)
         }
     },
-    "/courses/:courseID/tabs": nil,
+
+    "/courses": { _, _, _ in CourseListAssembly.makeCourseListViewController() },
+
+    "/courses/:courseID": courseDetails,
+    "/courses/:courseID/tabs": courseDetails,
 
     "/groups/:groupID": { url, _, _ in
         guard let context = Context(path: url.path) else { return nil }
@@ -96,10 +97,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return CoreHostingController(DiscussionEditorView(context: context, topicID: topicID, isAnnouncement: true))
     },
 
-    "/:context/:contextID/announcements/:announcementID": { url, params, _ in
-        guard let context = Context(path: url.path), let announcementID = params["announcementID"] else { return nil }
-        return DiscussionDetailsViewController.create(context: context, topicID: announcementID, isAnnouncement: true)
-    },
+    "/:context/:contextID/announcements/:announcementID": discussionViewController,
 
     "/courses/:courseID/assignments": { url, _, _ in
         guard let context = Context(path: url.path) else { return nil }
@@ -348,9 +346,9 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     "/courses/:courseID/users/:userID": contextCard,
     "/groups/:groupID/users/:userID": groupContextCard,
 
-    "/courses/:courseID/user_preferences": nil,
-
-    "/dev-menu": nil,
+    "/dev-menu": { _, _, _ in
+        CoreHostingController(DeveloperMenuView())
+    },
 
     "/dev-menu/experimental-features": { _, _, _ in
         let vc = ExperimentalFeaturesViewController()
@@ -360,8 +358,40 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return vc
     },
 
+    "/dev-menu/pandas": { _, _, _ in
+        CoreHostingController(PandaGallery())
+    },
+
+    "/dev-menu/website-preview": { _, _, _ in
+        CoreHostingController(WebSitePreviewView())
+    },
+
+    "/dev-menu/snackbar": { _, _, _ in
+        CoreHostingController(SnackBarTestView())
+    },
+
     "/logs": { _, _, _ in
         return LogEventListViewController.create()
+    },
+
+    "/offline/sync_picker": { _, _, _ in
+        CourseSyncSelectorAssembly.makeViewController(env: .shared)
+    },
+    "/offline/sync_picker/:courseID": { _, params, _ in
+        CourseSyncSelectorAssembly.makeViewController(env: .shared, courseID: params["courseID"])
+    },
+    "/offline/progress": { _, _, _ in
+        CourseSyncProgressAssembly.makeViewController(env: .shared)
+    },
+    "/offline/settings": { _, _, _ in
+        guard let sessionDefaults = AppEnvironment.shared.userDefaults else {
+            return nil
+        }
+        return CourseSyncSettingsAssembly.makeViewController(sessionDefaults: sessionDefaults)
+    },
+
+    "/push-notifications": { _, _, _ in
+        CoreHostingController(PushNotificationDebugView())
     },
 
     "/profile": { _, _, _ in
@@ -382,11 +412,25 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return ErrorReportViewController.create(type: .feature)
     },
 
+    "/empty": { url, _, _ in
+        let emptyViewController = EmptyViewController()
+
+        if let contextColor = url.contextColor {
+            emptyViewController.navBarStyle = .color(contextColor)
+        }
+
+        return emptyViewController
+    },
+
     "/native-route/*route": nativeFactory,
     "/native-route-master/*route": nativeFactory,
     
     "/bookmarks": { _, _, _ in
         return CoreHostingController(BookmarksView(viewModel: BookmarksViewModel()))
+    },
+
+    "/about": { _, _, _ in
+        AboutAssembly.makeAboutViewController()
     },
 ]))
 
@@ -442,16 +486,41 @@ private func pageViewController(url: URLComponents, params: [String: String], us
 }
 
 private func discussionViewController(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
-    guard let context = Context(path: url.path), let discussionID = params["discussionID"] else { return nil }
+    guard let context = Context(path: url.path) else { return nil }
+
+    var webPageType: EmbeddedWebPageViewModelLive.EmbeddedWebPageType
+    if let discussionID = params["discussionID"] {
+        webPageType = .discussion(id: discussionID)
+    } else if let announcementID = params["announcementID"] {
+        webPageType = .announcement(id: announcementID)
+    } else {
+        return nil
+    }
+
     if context.contextType == .course, !url.originIsModuleItemDetails {
         return ModuleItemSequenceViewController.create(
             courseID: context.id,
             assetType: .discussion,
-            assetID: discussionID,
+            assetID: webPageType.assetID,
             url: url
         )
     }
-    return DiscussionDetailsViewController.create(context: context, topicID: discussionID)
+
+    if ExperimentalFeature.hybridDiscussionDetails.isEnabled,
+       EmbeddedWebPageViewModelLive.isRedesignEnabled(in: context) {
+        let viewModel = EmbeddedWebPageViewModelLive(
+            context: context,
+            webPageType: webPageType
+        )
+        return CoreHostingController(
+            EmbeddedWebPageView(
+                viewModel: viewModel,
+                isPullToRefreshEnabled: true
+            )
+        )
+    } else {
+        return DiscussionDetailsViewController.create(context: context, topicID: webPageType.assetID)
+    }
 }
 
 private func contextCard(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
@@ -467,4 +536,34 @@ private func groupContextCard(url: URLComponents, params: [String: String], user
     let currentUserID = AppEnvironment.shared.currentSession?.userID ?? ""
     let viewModel = GroupContextCardViewModel(groupID: groupID, userID: userID, currentUserID: currentUserID)
     return CoreHostingController(GroupContextCardView(model: viewModel))
+}
+
+private func courseDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
+    guard let context = Context(path: url.path) else { return nil }
+
+    let regularCourseDetails: () -> UIViewController = {
+        let viewModel = CourseDetailsViewModel(context: context)
+        let viewController = CoreHostingController(CourseDetailsView(viewModel: viewModel))
+
+        if let contextColor = url.contextColor {
+            viewController.navigationBarStyle = .color(contextColor)
+        }
+
+        return viewController
+    }
+    let k5SubjectView = {
+        CoreHostingController(K5SubjectView(context: context, selectedTabId: url.fragment))
+    }
+
+    guard AppEnvironment.shared.k5.isK5Enabled == true else {
+        return regularCourseDetails()
+    }
+
+    guard let courseID = params["courseID"],
+          let card = AppEnvironment.shared.subscribe(GetDashboardCards(showOnlyTeacherEnrollment: false)).all.first(where: { $0.id == courseID })
+    else {
+        return k5SubjectView()
+    }
+
+    return card.isK5Subject ? k5SubjectView() : regularCourseDetails()
 }

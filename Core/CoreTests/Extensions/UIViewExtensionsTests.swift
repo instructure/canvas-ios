@@ -89,4 +89,21 @@ class UIViewExtensionsTests: XCTestCase {
         XCTAssertEqual(a.constraints.first?.constant, 15)
         XCTAssertNil(a.addConstraintsWithVFL("V:|-(pad)-[view]", metrics: ["pad": 15]))
     }
+
+    func testRestrictFrame() {
+        let superview = UIView()
+        superview.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        let testee = UIView()
+        superview.addSubview(testee)
+
+        // top left corner is outside of superview
+        testee.frame = CGRect(x: -10, y: -10, width: 20, height: 20)
+        testee.restrictFrameInsideSuperview()
+        XCTAssertEqual(testee.frame, CGRect(x: 0, y: 0, width: 20, height: 20))
+
+        // bottom right corner is outside of superview
+        testee.frame = CGRect(x: 90, y: 90, width: 20, height: 20)
+        testee.restrictFrameInsideSuperview()
+        XCTAssertEqual(testee.frame, CGRect(x: 80, y: 80, width: 20, height: 20))
+    }
 }

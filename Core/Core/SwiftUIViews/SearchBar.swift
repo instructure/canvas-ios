@@ -33,6 +33,7 @@ public struct SearchBar: UIViewRepresentable {
     public func makeUIView(context: Self.Context) -> UISearchBar { UISearchBar() }
 
     public func updateUIView(_ uiView: UISearchBar, context: Self.Context) {
+        uiView.barTintColor = .backgroundLightest
         uiView.delegate = context.coordinator
         uiView.placeholder = placeholder
         uiView.text = text

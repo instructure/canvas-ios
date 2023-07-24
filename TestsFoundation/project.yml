@@ -1,0 +1,38 @@
+---
+name: TestsFoundation
+options:
+  groupSortPosition: top
+  bundleIdPrefix: com.instructure
+  deploymentTarget:
+    iOS: 15.0
+settings:
+  CODE_SIGN_STYLE: Automatic
+  DEVELOPMENT_TEAM: B6333T4PXQ
+  platform: iOS
+packages:
+  Swifter:
+    url: https://github.com/httpswift/swifter
+    version: 1.5.0
+projectReferences:
+  Core:
+    path: ../Core/Core.xcodeproj
+targets:
+  TestsFoundation:
+    sources:
+      - path: TestsFoundation
+        createIntermediateGroups: true
+    type: framework
+    platform: iOS
+    dependencies:
+      - sdk: XCTest.framework
+      - target: Core/Core
+      - package: Swifter
+    preBuildScripts:
+      - path: ../scripts/swiftLint.sh
+        name: SwiftLint
+        basedOnDependencyAnalysis: false
+schemes:
+  TestsFoundation:
+    build:
+      targets:
+        TestsFoundation: all

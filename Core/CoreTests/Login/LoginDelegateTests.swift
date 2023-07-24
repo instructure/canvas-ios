@@ -34,7 +34,6 @@ class LoginDelegateTests: XCTestCase {
         XCTAssertTrue(login.supportsCanvasNetwork)
         XCTAssertNotNil(login.helpURL)
         XCTAssertNil(login.whatsNewURL)
-        XCTAssertNoThrow(login.openSupportTicket())
         XCTAssertNoThrow(login.changeUser())
     }
 

@@ -19,7 +19,7 @@
 import Foundation
 import UIKit
 
-public class TodoListViewController: UIViewController, ErrorViewController, PageViewEventViewControllerLoggingProtocol {
+public class TodoListViewController: ScreenViewTrackableViewController, ErrorViewController {
     @IBOutlet weak var emptyDescLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -30,7 +30,10 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
     lazy var profileButton = UIBarButtonItem(image: .hamburgerSolid, style: .plain, target: self, action: #selector(openProfile))
 
     let env = AppEnvironment.shared
-
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "/to-do",
+        attributes: ["customPageViewPath": "/"]
+    )
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
        self?.update()
     }
@@ -80,12 +83,6 @@ public class TodoListViewController: UIViewController, ErrorViewController, Page
         navigationController?.navigationBar.useGlobalNavStyle()
         tableView.selectRow(at: nil, animated: false, scrollPosition: .none)
         refresh()
-        startTrackingTimeOnViewController()
-    }
-
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        stopTrackingTimeOnViewController(eventName: "/to-do", attributes: ["customPageViewPath": "/"])
     }
 
     func update() {
@@ -184,6 +181,7 @@ extension TodoListViewController: UITableViewDataSource, UITableViewDelegate {
 class TodoListCell: UITableViewCell {
     @IBOutlet weak var accessIconView: AccessIconView!
     @IBOutlet weak var contextLabel: UILabel!
+    @IBOutlet weak var needsGradingSpacer: UIView!
     @IBOutlet weak var needsGradingLabel: UILabel!
     @IBOutlet weak var needsGradingView: UIView!
     @IBOutlet weak var subtitleLabel: UILabel!
@@ -204,12 +202,14 @@ class TodoListCell: UITableViewCell {
         } else {
             accessIconView.published = todo?.assignment.published == true
         }
-        titleLabel.text = todo?.assignment.name
-        subtitleLabel.text = todo?.dueText
+        backgroundColor = .backgroundLightest
+        titleLabel.setText(todo?.assignment.name, style: .textCellTitle)
+        subtitleLabel.setText(todo?.dueText, style: .textCellSupportingText)
         tintColor = todo?.contextColor
         contextLabel.textColor = tintColor
-        contextLabel.text = todo?.contextName
+        contextLabel.setText(todo?.contextName, style: .textCellTopLabel)
         needsGradingView.isHidden = todo?.type != .grading
+        needsGradingSpacer.isHidden = needsGradingView.isHidden
         needsGradingLabel.text = todo?.needsGradingText
         accessibilityIdentifier = "to-do.list.\(todo?.assignment.htmlURL?.absoluteString ?? "unknown").row"
         accessibilityLabel = [accessIconView.accessibilityLabel, todo?.contextName, todo?.assignment.name, todo?.dueText, todo?.needsGradingText].compactMap { $0 }.joined(separator: ", ")

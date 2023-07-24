@@ -194,6 +194,8 @@ public extension UIImage {
     static var videoSolid: UIImage { UIImage(named: "videoSolid", in: .core, compatibleWith: nil)! }
     static var warningLine: UIImage { UIImage(named: "warningLine", in: .core, compatibleWith: nil)! }
     static var warningSolid: UIImage { UIImage(named: "warningSolid", in: .core, compatibleWith: nil)! }
+    static var warningBorderlessLine: UIImage { UIImage(named: "warningBorderlessLine", in: .core, compatibleWith: nil)! }
+    static var warningBorderlessSolid: UIImage { UIImage(named: "warningBorderlessSolid", in: .core, compatibleWith: nil)! }
     static var xLine: UIImage { UIImage(named: "xLine", in: .core, compatibleWith: nil)! }
     static var xSolid: UIImage { UIImage(named: "xSolid", in: .core, compatibleWith: nil)! }
 
@@ -204,6 +206,7 @@ public extension UIImage {
     static var addVideoCameraLine: UIImage { UIImage(named: "addVideoCameraLine", in: .core, compatibleWith: nil)! }
     static var alertsTab: UIImage { UIImage(named: "alertsTab", in: .core, compatibleWith: nil)! }
     static var alertsTabActive: UIImage { UIImage(named: "alertsTabActive", in: .core, compatibleWith: nil)! }
+    static var archiveLine: UIImage { UIImage(named: "archiveLine", in: .core, compatibleWith: nil)! }
     static var attendance: UIImage { UIImage(named: "attendance", in: .core, compatibleWith: nil)! }
     static var calendarEmptyLine: UIImage { UIImage(named: "calendarEmptyLine", in: .core, compatibleWith: nil)! }
     static var calendarEmptySolid: UIImage { UIImage(named: "calendarEmptySolid", in: .core, compatibleWith: nil)! }
@@ -223,6 +226,7 @@ public extension UIImage {
     static var dashboardTabActive: UIImage { UIImage(named: "dashboardTabActive", in: .core, compatibleWith: nil)! }
     static var dropdown: UIImage { UIImage(named: "dropdown", in: .core, compatibleWith: nil)! }
     static var filterCheckbox: UIImage { UIImage(named: "filterCheckbox", in: .core, compatibleWith: nil)! }
+    static var grab: UIImage { UIImage(named: "grab", in: .core, compatibleWith: nil)! }
     static var homeroomTab: UIImage { UIImage(named: "homeroomTab", in: .core, compatibleWith: nil)! }
     static var homeroomTabActive: UIImage { UIImage(named: "homeroomTabActive", in: .core, compatibleWith: nil)! }
     static var inboxTab: UIImage { UIImage(named: "inboxTab", in: .core, compatibleWith: nil)! }
@@ -234,9 +238,13 @@ public extension UIImage {
     static var k5resources: UIImage { UIImage(named: "k5resources", in: .core, compatibleWith: nil)! }
     static var k5schedule: UIImage { UIImage(named: "k5schedule", in: .core, compatibleWith: nil)! }
     static var logout: UIImage { UIImage(named: "logout", in: .core, compatibleWith: nil)! }
+    static var markReadLine: UIImage { UIImage(named: "markReadLine", in: .core, compatibleWith: nil)! }
+    static var partialSolid: UIImage { UIImage(named: "partialSolid", in: .core, compatibleWith: nil)! }
     static var qrCode: UIImage { UIImage(named: "qrCode", in: .core, compatibleWith: nil)! }
+    static var share: UIImage { UIImage(named: "share", in: .core, compatibleWith: nil)! }
     static var todoTab: UIImage { UIImage(named: "todoTab", in: .core, compatibleWith: nil)! }
     static var todoTabActive: UIImage { UIImage(named: "todoTabActive", in: .core, compatibleWith: nil)! }
+    static var unionLine: UIImage { UIImage(named: "unionLine", in: .core, compatibleWith: nil)! }
 }
 
 public extension Image {
@@ -412,6 +420,8 @@ public extension Image {
     static var videoSolid: Image { Image("videoSolid", bundle: .core) }
     static var warningLine: Image { Image("warningLine", bundle: .core) }
     static var warningSolid: Image { Image("warningSolid", bundle: .core) }
+    static var warningBorderlessLine: Image { Image("warningBorderlessLine", bundle: .core) }
+    static var warningBorderlessSolid: Image { Image("warningBorderlessSolid", bundle: .core) }
     static var xLine: Image { Image("xLine", bundle: .core) }
     static var xSolid: Image { Image("xSolid", bundle: .core) }
 
@@ -422,6 +432,7 @@ public extension Image {
     static var addVideoCameraLine: Image { Image("addVideoCameraLine", bundle: .core) }
     static var alertsTab: Image { Image("alertsTab", bundle: .core) }
     static var alertsTabActive: Image { Image("alertsTabActive", bundle: .core) }
+    static var archiveLine: Image { Image("archiveLine", bundle: .core) }
     static var attendance: Image { Image("attendance", bundle: .core) }
     static var calendarEmptyLine: Image { Image("calendarEmptyLine", bundle: .core) }
     static var calendarEmptySolid: Image { Image("calendarEmptySolid", bundle: .core) }
@@ -441,6 +452,7 @@ public extension Image {
     static var dashboardTabActive: Image { Image("dashboardTabActive", bundle: .core) }
     static var dropdown: Image { Image("dropdown", bundle: .core) }
     static var filterCheckbox: Image { Image("filterCheckbox", bundle: .core) }
+    static var grab: Image { Image("grab", bundle: .core) }
     static var homeroomTab: Image { Image("homeroomTab", bundle: .core) }
     static var homeroomTabActive: Image { Image("homeroomTabActive", bundle: .core) }
     static var inboxTab: Image { Image("inboxTab", bundle: .core) }
@@ -452,7 +464,11 @@ public extension Image {
     static var k5resources: Image { Image("k5resources", bundle: .core) }
     static var k5schedule: Image { Image("k5schedule", bundle: .core) }
     static var logout: Image { Image("logout", bundle: .core) }
+    static var markReadLine: Image { Image("markReadLine", bundle: .core) }
+    static var partialSolid: Image { Image("partialSolid", bundle: .core) }
     static var qrCode: Image { Image("qrCode", bundle: .core) }
+    static var share: Image { Image("share", bundle: .core) }
     static var todoTab: Image { Image("todoTab", bundle: .core) }
     static var todoTabActive: Image { Image("todoTabActive", bundle: .core) }
+    static var unionLine: Image { Image("unionLine", bundle: .core) }
 }

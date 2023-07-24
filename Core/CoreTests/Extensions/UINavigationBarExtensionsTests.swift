@@ -24,9 +24,9 @@ class UINavigationBarExtensionsTests: XCTestCase {
     func testUseContextColor() {
         let bar = UINavigationBar(frame: .zero)
         bar.useContextColor(.licorice)
-        XCTAssertEqual(bar.titleTextAttributes?[.foregroundColor] as? UIColor, .white)
-        XCTAssertEqual(bar.tintColor, .white)
-        XCTAssertEqual(bar.barTintColor, .licorice)
+        XCTAssertEqual((bar.titleTextAttributes?[.foregroundColor] as? UIColor)?.hexString, UIColor.white.hexString)
+        XCTAssertEqual(bar.tintColor.hexString, UIColor.white.hexString)
+        XCTAssertEqual(bar.barTintColor?.hexString, UIColor.licorice.hexString)
         XCTAssertEqual(bar.barStyle, .black)
         XCTAssertFalse(bar.isTranslucent)
     }
@@ -34,9 +34,9 @@ class UINavigationBarExtensionsTests: XCTestCase {
     func testUseGlobalNavStyle() {
         let bar = UINavigationBar(frame: .zero)
         bar.useGlobalNavStyle()
-        XCTAssertEqual(bar.titleTextAttributes?[.foregroundColor] as? UIColor, Brand.shared.navTextColor)
-        XCTAssertEqual(bar.tintColor, Brand.shared.navTextColor)
-        XCTAssertEqual(bar.barTintColor, Brand.shared.navBackground)
+        XCTAssertEqual((bar.titleTextAttributes?[.foregroundColor] as? UIColor)!.hexString, Brand.shared.navTextColor.hexString)
+        XCTAssertEqual(bar.tintColor.hexString, Brand.shared.navTextColor.hexString)
+        XCTAssertEqual(bar.barTintColor!.hexString, Brand.shared.navBackground.hexString)
         XCTAssertEqual(bar.barStyle, .black)
         XCTAssertFalse(bar.isTranslucent)
 
@@ -66,7 +66,7 @@ class UINavigationBarExtensionsTests: XCTestCase {
         let bar = UINavigationBar(frame: .zero)
         bar.useModalStyle()
         XCTAssertEqual(bar.titleTextAttributes?[.foregroundColor] as? UIColor, .textDarkest)
-        XCTAssertEqual(bar.tintColor, Brand.shared.linkColor)
+        XCTAssertEqual(bar.tintColor.hexString, Brand.shared.linkColor.hexString)
         XCTAssertEqual(bar.barTintColor, .backgroundLightest)
         XCTAssertEqual(bar.barStyle, .default)
         XCTAssertFalse(bar.isTranslucent)

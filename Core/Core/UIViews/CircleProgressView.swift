@@ -29,10 +29,11 @@ public class CircleProgressView: UIView {
     let rotateKey = "rotate"
 
     @IBInspectable
-    public var color: UIColor? = Brand.shared.primary.ensureContrast(against: .backgroundLightest) {
+    public var color: UIColor? = Brand.shared.primary {
         didSet { tintColorDidChange() }
     }
 
+    /** The value of this property must be in the range 0.0 to 1.0. */
     public var progress: CGFloat? {
         didSet { updateProgress() }
     }
@@ -84,6 +85,8 @@ public class CircleProgressView: UIView {
         fill.strokeEnd = 0.1
         layer.addSublayer(fill)
 
+        backgroundColor = .clear
+
         let ease = CAMediaTimingFunction(controlPoints: 0.25, 0.1, 0.25, 1.0)
 
         let strokeEnd = CAKeyframeAnimation(keyPath: #keyPath(CAShapeLayer.strokeEnd))
@@ -127,6 +130,19 @@ public class CircleProgressView: UIView {
 
     public override func didMoveToWindow() {
         super.didMoveToWindow()
-        updateProgress() // Make sure animations are re-added once visible
+    }
+
+    public func startAnimating() {
+        progress = nil
+    }
+
+    public func stopAnimating() {
+        clearAnimation()
+    }
+
+    private func clearAnimation() {
+        fill.removeAnimation(forKey: morphKey)
+        layer.removeAnimation(forKey: rotateKey)
+        fill.strokeEnd = 0
     }
 }

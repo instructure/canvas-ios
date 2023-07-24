@@ -19,7 +19,7 @@
 import UIKit
 import Core
 
-class SubmissionListViewController: UIViewController, ColoredNavViewProtocol {
+class SubmissionListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -38,7 +38,9 @@ class SubmissionListViewController: UIViewController, ColoredNavViewProtocol {
     let env = AppEnvironment.shared
     var context = Context.currentUser
     var filter: [GetSubmissions.Filter] = []
-
+    lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "/\(context.pathComponent)/assignments/\(assignmentID)/submissions"
+    )
     lazy var assignment = env.subscribe(GetAssignment(courseID: context.id, assignmentID: assignmentID)) { [weak self] in
         self?.updateNavBar()
         self?.update()
@@ -103,15 +105,6 @@ class SubmissionListViewController: UIViewController, ColoredNavViewProtocol {
         super.viewWillAppear(animated)
         tableView.selectRow(at: nil, animated: true, scrollPosition: .none)
         navigationController?.navigationBar.useContextColor(color)
-        env.pageViewLogger.startTrackingTimeOnViewController()
-    }
-
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        env.pageViewLogger.stopTrackingTimeOnViewController(
-            eventName: "\(context.pathComponent)/assignments/\(assignmentID)/submissions",
-            attributes: [:]
-        )
     }
 
     func updateNavBar() {

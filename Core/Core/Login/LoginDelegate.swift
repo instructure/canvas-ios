@@ -25,12 +25,13 @@ public protocol LoginDelegate: AnyObject {
     var findSchoolButtonTitle: String { get }
 
     func openExternalURL(_ url: URL)
-    func openSupportTicket()
+    func openExternalURLinSafari(_ url: URL)
     func userDidLogin(session: LoginSession)
     func userDidStartActing(as session: LoginSession)
     func userDidStopActing(as session: LoginSession)
     func userDidLogout(session: LoginSession)
     func changeUser()
+    func actAsStudentViewStudent(studentViewStudent: APIUser)
 }
 
 public extension LoginDelegate {
@@ -39,8 +40,8 @@ public extension LoginDelegate {
     var whatsNewURL: URL? { nil }
     var findSchoolButtonTitle: String { NSLocalizedString("Find my school", bundle: .core, comment: "") }
 
-    func openSupportTicket() {}
     func changeUser() {}
+    func openExternalURLinSafari(_ url: URL) {}
 
     func userDidStartActing(as session: LoginSession) {
         userDidLogin(session: session)
@@ -65,4 +66,6 @@ public extension LoginDelegate {
             userDidLogout(session: session)
         }
     }
+
+    func actAsStudentViewStudent(studentViewStudent: APIUser) {}
 }

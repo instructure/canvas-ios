@@ -30,7 +30,7 @@ class QuizWebViewControllerTests: StudentTestCase {
 
     override func setUp() {
         super.setUp()
-        api.mock(GetWebSessionRequest(to: to), value: .init(session_url: session_url))
+        api.mock(GetWebSessionRequest(to: to), value: .init(session_url: session_url, requires_terms_acceptance: false))
     }
 
     func testLayout() {

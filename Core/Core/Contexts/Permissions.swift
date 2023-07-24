@@ -69,6 +69,7 @@ public class Permissions: NSManagedObject {
     @NSManaged public var manageAssignments: Bool
     @NSManaged public var manageCalendar: Bool
     @NSManaged public var manageContent: Bool
+    @NSManaged public var manageCourseContentEdit: Bool
     @NSManaged public var manageFiles: Bool
     @NSManaged public var manageGrades: Bool
     @NSManaged public var manageGroups: Bool
@@ -91,6 +92,7 @@ public class Permissions: NSManagedObject {
     @NSManaged public var selectFinalGrade: Bool
     @NSManaged public var sendMessages: Bool
     @NSManaged public var sendMessagesAll: Bool
+    @NSManaged public var useStudentView: Bool
     @NSManaged public var viewAllGrades: Bool
     @NSManaged public var viewAuditTrail: Bool
     @NSManaged public var viewGroupPages: Bool
@@ -143,6 +145,7 @@ public class Permissions: NSManagedObject {
         model.manageAssignments = item.manage_assignments ?? model.manageAssignments
         model.manageCalendar = item.manage_calendar ?? model.manageCalendar
         model.manageContent = item.manage_content ?? model.manageContent
+        model.manageCourseContentEdit = item.manage_course_content_edit ?? model.manageCourseContentEdit
         model.manageFiles = item.manage_files ?? model.manageFiles
         model.manageGrades = item.manage_grades ?? model.manageGrades
         model.manageGroups = item.manage_groups ?? model.manageGroups
@@ -165,6 +168,7 @@ public class Permissions: NSManagedObject {
         model.selectFinalGrade = item.select_final_grade ?? model.selectFinalGrade
         model.sendMessages = item.send_messages ?? model.sendMessages
         model.sendMessagesAll = item.send_messages_all ?? model.sendMessagesAll
+        model.useStudentView = item.use_student_view ?? model.useStudentView
         model.viewAllGrades = item.view_all_grades ?? model.viewAllGrades
         model.viewAuditTrail = item.view_audit_trail ?? model.viewAuditTrail
         model.viewGroupPages = item.view_group_pages ?? model.viewGroupPages

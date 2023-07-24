@@ -322,6 +322,22 @@
 			<string>Dölj %d saknade objekt</string>
 		</dict>
 	</dict>
+	<key>incompatible_files_for_assignment</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Filtypen %2$@ i din inlämning är inkompatibel med den valda uppgiften.</string>
+			<key>other</key>
+			<string>Filtyperna %2$@ i din inlämning är inkompatibla med den valda uppgiften.</string>
+		</dict>
+	</dict>
 	<key>late_penalty_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -386,6 +402,22 @@
 			<string>Visa %d saknade objekt</string>
 		</dict>
 	</dict>
+	<key>submission_failed_for_files</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Din fil laddades upp men inlämningen misslyckades för din uppgift.</string>
+			<key>other</key>
+			<string>Dina filer laddades upp men inlämningen misslyckades för din uppgift.</string>
+		</dict>
+	</dict>
 	<key>there_are_d_assignees_without_grades</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
@@ -400,6 +432,22 @@
 			<string>Det finns en %d tilldelad person som saknar en omdöme.</string>
 			<key>other</key>
 			<string>Det finns  %d uppdragsgivare utan betyg.</string>
+		</dict>
+	</dict>
+	<key>use_file_extension</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>%#@filecount@</string>
+		<key>filecount</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>d</string>
+			<key>one</key>
+			<string>Använd filtillägget %2$@.</string>
+			<key>other</key>
+			<string>Använd filtilläggen %2$@.</string>
 		</dict>
 	</dict>
 </dict>

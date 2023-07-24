@@ -56,7 +56,7 @@ struct K5GradeCell: View {
                             Image.arrowOpenRightLine
                                 .resizable()
                                 .frame(width: 16, height: 16)
-                                .foregroundColor(.ash)
+                                .foregroundColor(.textDark)
                         }
                         if viewModel.grade == nil, viewModel.score == nil {
                             Text("Not Graded", bundle: .core).font(.regular17)

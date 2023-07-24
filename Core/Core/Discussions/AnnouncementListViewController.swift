@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class AnnouncementListViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
+public class AnnouncementListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol, ErrorViewController {
     lazy var addButton = UIBarButtonItem(image: .addSolid, style: .plain, target: self, action: #selector(add))
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
@@ -32,6 +32,8 @@ public class AnnouncementListViewController: UIViewController, ColoredNavViewPro
     public var color: UIColor?
     var context = Context.currentUser
     let env = AppEnvironment.shared
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "\(context.pathComponent)/announcements")
+
     var selectedFirstTopic: Bool = false
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
@@ -46,6 +48,8 @@ public class AnnouncementListViewController: UIViewController, ColoredNavViewPro
     lazy var topics = env.subscribe(GetAnnouncements(context: context)) { [weak self] in
         self?.update()
     }
+    /** This is required for the router to help decide if the hybrid discussion details or the native one should be launched. */
+    private lazy var featureFlags = env.subscribe(GetEnabledFeatureFlags(context: context))
 
     public static func create(context: Context) -> AnnouncementListViewController {
         let controller = loadFromStoryboard()
@@ -70,24 +74,29 @@ public class AnnouncementListViewController: UIViewController, ColoredNavViewPro
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .borderMedium
-
+        tableView.backgroundColor = .backgroundLightest
+        view.backgroundColor = .backgroundLightest
         colors.refresh()
         // We must force refresh because the GetCourses call deletes all existing Courses from the CoreData cache and since GetCourses response includes no permissions we lose that information.
         course?.refresh(force: true)
-        group?.refresh()
+        group?.refresh { [context, weak group, weak env] _ in
+            guard context.contextType == .group, let courseID = group?.first?.courseID else { return }
+            _ = env?.subscribe(GetEnabledFeatureFlags(context: Context.course(courseID))).refresh()
+        }
         topics.exhaust()
+        if context.contextType != .group {
+            featureFlags.refresh()
+        }
     }
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.selectRow(at: nil, animated: false, scrollPosition: .none)
-        env.pageViewLogger.startTrackingTimeOnViewController()
         navigationController?.navigationBar.useContextColor(color)
     }
 
     public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        env.pageViewLogger.stopTrackingTimeOnViewController(eventName: "\(context.pathComponent)/announcements", attributes: [:])
     }
 
     @objc func refresh() {
@@ -132,7 +141,7 @@ public class AnnouncementListViewController: UIViewController, ColoredNavViewPro
         env.router.route(
             to: "\(context.pathComponent)/announcements/new",
             from: self,
-            options: .modal(.formSheet, isDismissable: false, embedInNav: true)
+            options: .modal(isDismissable: false, embedInNav: true)
         )
     }
 
@@ -163,7 +172,7 @@ extension AnnouncementListViewController: UITableViewDataSource, UITableViewDele
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: AnnouncementListCell = tableView.dequeue(for: indexPath)
         cell.accessibilityIdentifier = "announcements.list.announcement.row-\(indexPath.row)"
-        cell.update(topic: topics[indexPath], isTeacher: course?.first?.hasTeacherEnrollment == true)
+        cell.update(topic: topics[indexPath], isTeacher: course?.first?.hasTeacherEnrollment == true, color: color)
         return cell
     }
 
@@ -193,25 +202,30 @@ class AnnouncementListCell: UITableViewCell {
     @IBOutlet weak var iconImageView: AccessIconView!
     @IBOutlet weak var titleLabel: UILabel!
 
-    func update(topic: DiscussionTopic?, isTeacher: Bool) {
+    func update(topic: DiscussionTopic?, isTeacher: Bool, color: UIColor?) {
         iconImageView.icon = .announcementLine
         if isTeacher {
             iconImageView.published = topic?.published == true
         } else {
             iconImageView.state = nil
         }
+        backgroundColor = .backgroundLightest
+        selectedBackgroundView = ContextCellBackgroundView.create(color: color)
 
-        titleLabel.text = topic?.title
+        titleLabel.setText(topic?.title, style: .textCellTitle)
+        let dateText: String?
 
         if let delayed = topic?.delayedPostAt, delayed > Clock.now {
             iconImageView.icon = .calendarClockLine
             iconImageView.state = nil
-            dateLabel.text = String.localizedStringWithFormat(NSLocalizedString("Delayed until %@", comment: ""), delayed.dateTimeString)
+            dateText = String.localizedStringWithFormat(NSLocalizedString("Delayed until %@", comment: ""), delayed.dateTimeString)
         } else if let replyAt = topic?.lastReplyAt {
-            dateLabel.text = String.localizedStringWithFormat(NSLocalizedString("Last post %@", comment: ""), replyAt.dateTimeString)
+            dateText = String.localizedStringWithFormat(NSLocalizedString("Last post %@", comment: ""), replyAt.dateTimeString)
         } else {
-            dateLabel.text = topic?.postedAt?.dateTimeString
+            dateText = topic?.postedAt?.dateTimeString
         }
+
+        dateLabel.setText(dateText, style: .textCellSupportingText)
 
         accessibilityLabel = "\(titleLabel.text ?? "") \(dateLabel.text ?? "")"
     }
