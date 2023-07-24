@@ -1781,6 +1781,9 @@
 "Offline Content Sync Failed" = "Error en la sincronización de contenido sin conexión";
 
 /* No comment provided by engineer. */
+"Offline mode" = "Desconectado";
+
+/* No comment provided by engineer. */
 "OK" = "Aceptar";
 
 /* No comment provided by engineer. */
@@ -2622,6 +2625,9 @@
 
 /* No comment provided by engineer. */
 "This is your personal color setting. Only you will see this color for the course." = "Esta es su configuración de color personal. Solo usted verá este color para el curso.";
+
+/* No comment provided by engineer. */
+"This item is not available offline." = "Este elemento no está disponible sin conexión.";
 
 /* No comment provided by engineer. */
 "This module is empty." = "Este módulo está vacío.";

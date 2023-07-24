@@ -1781,6 +1781,9 @@
 "Offline Content Sync Failed" = "Penyegerakan Kandungan Luar Talian Gagal";
 
 /* No comment provided by engineer. */
+"Offline mode" = "Mod luar talian";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -2622,6 +2625,9 @@
 
 /* No comment provided by engineer. */
 "This is your personal color setting. Only you will see this color for the course." = "Ini ialah tetapan warna peribadi anda. Hanya anda sahaja akan melihat warna ini untuk kursus ini.";
+
+/* No comment provided by engineer. */
+"This item is not available offline." = "Item ini tidak tersedia di luar talian.";
 
 /* No comment provided by engineer. */
 "This module is empty." = "Modul ini kosong.";

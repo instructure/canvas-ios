@@ -1781,6 +1781,9 @@
 "Offline Content Sync Failed" = "ซิงค์เนื้อหาออฟไลน์ล้มเหลว";
 
 /* No comment provided by engineer. */
+"Offline mode" = "โหมดออฟไลน์";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -2622,6 +2625,9 @@
 
 /* No comment provided by engineer. */
 "This is your personal color setting. Only you will see this color for the course." = "นี่เป็นค่าปรับตั้งสีส่วนตัวของคุณ เฉพาะคุณเท่านั้นที่จะเห็นสีนี้สำหรับบทเรียนนี้";
+
+/* No comment provided by engineer. */
+"This item is not available offline." = "รายการนี้ไม่สามารถใช้งานออฟไลน์";
 
 /* No comment provided by engineer. */
 "This module is empty." = "หน่วยการเรียนนี้ว่างเปล่า";
