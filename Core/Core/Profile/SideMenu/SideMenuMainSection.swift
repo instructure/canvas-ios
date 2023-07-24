@@ -78,9 +78,14 @@ struct SideMenuMainSection: View {
                 .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
 
                 if enrollment == .student {
-                    SideMenuItem(id: "bookmarks", image: .bookmarkLine, title: Text("Bookmarks", bundle: .core)).onTapGesture {
+                    Button {
                         route(to: "/bookmarks")
-                     }
+                    } label: {
+                        SideMenuItem(id: "bookmarks",
+                                     image: .bookmarkLine,
+                                     title: Text("Bookmarks", bundle: .core))
+                    }
+                    .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
                 }
 
                 ForEach(Array(tools), id: \.self) { tool in

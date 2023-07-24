@@ -29,23 +29,37 @@ struct BookmarkCellView: View {
     }
 
     public var body: some View {
-        Button(action: {
+        Button {
             env.router.route(to: bookmark.url, from: controller)
-        }, label: {
-            HStack(spacing: 12) {
-                Image("bookmarkLine", bundle: .core)
+        } label: {
+            HStack(spacing: 0) {
+                Image.bookmarkLine
+                    .padding(.leading, 22)
                 Text(bookmark.name)
+                    .font(.semibold16)
+                    .padding(.leading, 12)
+                Spacer(minLength: 12)
+                InstDisclosureIndicator()
+                    .padding(.trailing, 17)
             }
-            .padding(.vertical, 13)
-            .padding(.horizontal, 0)
-            .fixedSize(horizontal: false, vertical: true)
+            .frame(height: 52)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .foregroundColor(.textDarkest)
             .contentShape(Rectangle())
-        })
+        }
+        .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
     }
 }
 
+#if DEBUG
+
 struct BookmarkCellView_Previews: PreviewProvider {
     static var previews: some View {
-        BookmarkCellView(bookmark: BookmarkCellViewModel(name: "Test", url: "url"))
+        ZStack {
+            Color.backgroundLightest
+            BookmarkCellView(bookmark: BookmarkCellViewModel(name: "Test", url: "url"))
+        }
     }
 }
+
+#endif

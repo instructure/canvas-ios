@@ -27,11 +27,9 @@ public class BookmarksViewModel: ObservableObject {
 
     @Published public private(set) var state: ViewModelState<[BookmarkCellViewModel]> = .loading
 
-    public lazy private (set) var bookmarks = env.subscribe(GetBookmarks()) { [weak self] in
+    public lazy private (set) var bookmarks = AppEnvironment.shared.subscribe(GetBookmarks()) { [weak self] in
         self?.bookmarksDidUpdate()
     }
-
-    @Environment(\.appEnvironment) private var env
 
     public init() {}
 

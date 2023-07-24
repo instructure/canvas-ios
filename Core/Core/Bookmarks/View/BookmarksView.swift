@@ -36,8 +36,10 @@ public struct BookmarksView: View {
                 bookmarkList(bookmarks)
             }
         }
+        .background(Color.backgroundLightest)
         .navigationTitle(NSLocalizedString("Bookmarks", comment: ""),
                          subtitle: "")
+        .navigationBarStyle(.global)
         .onAppear { viewModel.viewDidAppear() }
     }
 
@@ -70,14 +72,20 @@ public struct BookmarksView: View {
         List {
             ForEach(bookmarks, id: \.url) { bookmark in
                 BookmarkCellView(bookmark: bookmark)
+                    .listRowInsets(EdgeInsets())
+                    .listRowBackground(SwiftUI.EmptyView())
             }
         }
         .listStyle(.plain)
     }
 }
 
+#if DEBUG
+
 struct BookmarksView_Previews: PreviewProvider {
     static var previews: some View {
         BookmarksView(viewModel: BookmarksViewModel(state: .empty))
     }
 }
+
+#endif
