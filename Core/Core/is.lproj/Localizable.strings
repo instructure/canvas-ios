@@ -1781,6 +1781,9 @@
 "Offline Content Sync Failed" = "Samstilling efnis án nettengingar mistókst";
 
 /* No comment provided by engineer. */
+"Offline mode" = "Utan nets hamur";
+
+/* No comment provided by engineer. */
 "OK" = "Í lagi";
 
 /* No comment provided by engineer. */
@@ -2622,6 +2625,9 @@
 
 /* No comment provided by engineer. */
 "This is your personal color setting. Only you will see this color for the course." = "Þetta er persónuleg litastilling þín. Aðeins þú sérð þessa litastillingu fyrir námskeiðið.";
+
+/* No comment provided by engineer. */
+"This item is not available offline." = "Þessi hlutur er ekki fáanlegur án nettengingar.";
 
 /* No comment provided by engineer. */
 "This module is empty." = "Þessi eining er tóm.";
