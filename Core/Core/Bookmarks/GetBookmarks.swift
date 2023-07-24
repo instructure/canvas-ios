@@ -35,7 +35,7 @@ public struct GetBookmarks: CollectionUseCase {
     public var scope: Scope {
         return Scope(predicate: .all, order: [NSSortDescriptor(key: #keyPath(BookmarkModel.position), ascending: true)])
     }
-    
+
     public func write(response: [APIBookmark]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let bookmarks = response else { return }
 

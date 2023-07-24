@@ -19,16 +19,16 @@
 import SwiftUI
 
 struct BookmarkCellView: View {
-    
+
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
-    
+
     private var bookmark: BookmarkCellViewModel
-    
+
     init(bookmark: BookmarkCellViewModel) {
         self.bookmark = bookmark
     }
-    
+
     public var body: some View {
         Button(action: {
             env.router.route(to: bookmark.url, from: controller)

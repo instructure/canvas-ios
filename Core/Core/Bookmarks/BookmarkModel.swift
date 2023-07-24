@@ -21,12 +21,13 @@ import CoreData
 
 public final class BookmarkModel: NSManagedObject, WriteableModel {
     public typealias JSON = APIBookmark
-    
+
     @NSManaged public var id: Int64
     @NSManaged public var name: String?
     @NSManaged public var url: String?
     @NSManaged public var position: Int
 
+    @discardableResult
     public static func save(_ item: APIBookmark, in context: NSManagedObjectContext) -> BookmarkModel {
         let model: BookmarkModel = context.first(where: #keyPath(BookmarkModel.id), equals: Int64(item.id.value)) ?? context.insert()
         model.name = item.name
@@ -35,4 +36,3 @@ public final class BookmarkModel: NSManagedObject, WriteableModel {
         return model
     }
 }
-

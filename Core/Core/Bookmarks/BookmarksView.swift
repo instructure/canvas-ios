@@ -20,11 +20,11 @@ import SwiftUI
 
 public struct BookmarksView: View {
     @ObservedObject private var viewModel: BookmarksViewModel
-    
+
     public init(viewModel: BookmarksViewModel) {
         self.viewModel = viewModel
     }
-    
+
     public var body: some View {
         VStack(spacing: 0) {
             switch viewModel.state {
@@ -39,7 +39,7 @@ public struct BookmarksView: View {
         .navigationTitle("Bookmarks", subtitle: "")
         .onAppear { viewModel.viewDidAppear() }
     }
-    
+
     @ViewBuilder
     private var emptyPanda: some View {
         Divider()
@@ -62,7 +62,7 @@ public struct BookmarksView: View {
             .progressViewStyle(.indeterminateCircle())
         Spacer()
     }
-    
+
     private func bookmarkList(_ bookmarks: [BookmarkCellViewModel]) -> some View {
         List {
             ForEach(bookmarks, id: \.url) { bookmark in

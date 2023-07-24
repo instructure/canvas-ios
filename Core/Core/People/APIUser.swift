@@ -482,7 +482,7 @@ public struct GetBookmarksRequest: APIRequestable {
     public typealias Response = [APIBookmark]
 
     public let path: String = "users/self/bookmarks"
-    
+
     public let query: [APIQueryItem] = [
         .perPage(100),
     ]

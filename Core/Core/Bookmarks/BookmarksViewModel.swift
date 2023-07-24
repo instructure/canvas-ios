@@ -24,22 +24,22 @@ public class BookmarksViewModel: ObservableObject {
         case empty
         case data(T)
     }
-    
+
     @Published public private(set) var state: ViewModelState<[BookmarkCellViewModel]> = .loading
-    
+
     public lazy private (set) var bookmarks = env.subscribe(GetBookmarks()) { [weak self] in
         self?.bookmarksDidUpdate()
     }
-    
+
     @Environment(\.appEnvironment) private var env
-    
+
     public init() {}
-    
+
     public func viewDidAppear() {
         state = .loading
         bookmarks.exhaust()
     }
-    
+
     private func bookmarksDidUpdate() {
         let bookmarkCells = bookmarks.all.map { bookmarkModel in
             BookmarkCellViewModel(name: bookmarkModel.name!, url: bookmarkModel.url!)
@@ -50,7 +50,7 @@ public class BookmarksViewModel: ObservableObject {
             state = .data(bookmarkCells)
         }
     }
-    
+
 #if DEBUG
 
     init(state: ViewModelState<[BookmarkCellViewModel]>) {
