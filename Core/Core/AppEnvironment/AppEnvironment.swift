@@ -114,6 +114,8 @@ open class AppEnvironment {
         }
     }
 
+    // MARK: - Startup Tasks
+
     private var startupIsCompleted = false
     private var startupTasks: [() -> Void] = []
 
@@ -128,6 +130,8 @@ open class AppEnvironment {
         for task in startupTasks { task() }
         startupTasks.removeAll()
     }
+
+    // MARK: Startup Tasks -
 
     public var errorHandler: ((Error, UIViewController?) -> Void)?
 

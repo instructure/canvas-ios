@@ -40,6 +40,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     private var environmentFeatureFlags: Store<GetEnvironmentFeatureFlags>?
     private var shouldSetK5StudentView = false
     private var backgroundFileSubmissionAssembly: FileSubmissionAssembly?
+    private lazy var shortcuts = BookmarksAssembly.makeShortcutsInteractor(environment: .shared)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupFirebase()
@@ -59,6 +60,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         UITableView.setupDefaultSectionHeaderTopPadding()
         FontAppearance.update()
+        shortcuts?.applicationDidLaunch(launchOptions)
 
         if launchOptions?[.sourceApplication] as? String == Bundle.teacherBundleID,
            let url = launchOptions?[.url] as? URL,
@@ -114,6 +116,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             Analytics.shared.logSession(session)
 
             self.refreshNotificationTab()
+            self.shortcuts?.userDidLogin(application: .shared)
             LocalizationManager.localizeForApp(UIApplication.shared, locale: apiProfile?.locale ?? session.locale) {
                 GetBrandVariables().fetch(environment: self.environment) { _, _, _ in performUIUpdate {
                     NativeLoginManager.login(as: session)
@@ -143,6 +146,10 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         updateInterfaceStyle(for: window)
     }
 
+    func applicationWillResignActive(_ application: UIApplication) {
+        shortcuts?.applicationWillResignActive(application)
+    }
+
     func applicationDidEnterBackground(_ application: UIApplication) {
         Logger.shared.log()
         CoreWebView.stopCookieKeepAlive()
@@ -155,6 +162,13 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         BackgroundVideoPlayer.shared.reconnect()
+    }
+
+    func application(_ application: UIApplication,
+                     performActionFor shortcutItem: UIApplicationShortcutItem,
+                     completionHandler: @escaping (Bool) -> Void) {
+        shortcuts?.applicationDidReceiveShortcut(shortcutItem)
+        completionHandler(true)
     }
 
     func application(_ application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: @escaping () -> Void) {
@@ -430,6 +444,7 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         let wasCurrent = environment.currentSession == session
         API(session).makeRequest(DeleteLoginOAuthRequest(), refreshToken: false) { _, _, _ in }
         userDidStopActing(as: session)
+        shortcuts?.userDidLogout(application: .shared)
         if wasCurrent { changeUser() }
     }
 
