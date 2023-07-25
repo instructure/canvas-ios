@@ -26,10 +26,13 @@ public final class BookmarkItem: NSManagedObject {
     @NSManaged public var position: Int
 
     public static func save(_ item: APIBookmark, in context: NSManagedObjectContext) {
-        guard let name = item.name, let url = item.url else { return }
+        guard let name = item.name,
+              let url = item.url,
+              let id = item.id?.value
+        else { return }
 
-        let model: BookmarkItem = context.first(where: #keyPath(BookmarkItem.id), equals: item.id.value) ?? context.insert()
-        model.id = item.id.value
+        let model: BookmarkItem = context.first(where: #keyPath(BookmarkItem.id), equals: id) ?? context.insert()
+        model.id = id
         model.name = name
         model.url = url
         model.position = item.position ?? .max

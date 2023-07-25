@@ -18,6 +18,10 @@
 
 public enum BookmarksAssembly {
 
+    public static func makeBookmarksInteractor(api: API) -> BookmarksInteractor {
+        BookmarksInteractorLive(api: api)
+    }
+
     public static func makeShortcutsInteractor(environment: AppEnvironment) -> ShortcutsInteractor? {
         guard environment.app == .student else { return nil }
         return ShortcutsInteractorLive(environment: environment)

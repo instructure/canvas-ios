@@ -976,6 +976,7 @@
 		A1FC7A2BD8C3AF4D66B39E7F /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4463D4DFE87D5EE293B79B50 /* NotificationView.swift */; };
 		A2351C00F607490F7A5C8D5C /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5A7350FE779F6C9DA53975 /* UITextView.swift */; };
 		A25FF03995388BAA37EAE485 /* FilePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AC40BB992959CA2A4BEA67 /* FilePickerCell.swift */; };
+		A29895166080D70CDCA9CED6 /* CreateBookmarkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813609BBE65AF07F1585E77A /* CreateBookmarkRequest.swift */; };
 		A2D9963BAFEEC230FA5AF9DE /* NetworkAvailabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6BD50F8339637063BABBD3 /* NetworkAvailabilityService.swift */; };
 		A2F5E6CEE21857A9E716F267 /* SequenceExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760F2D59727F83D56CA52774 /* SequenceExtensionsTests.swift */; };
 		A300F100D0020B1B99D9E892 /* AnnouncementListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FF1A2A320D8A7D01139C8F /* AnnouncementListViewControllerTests.swift */; };
@@ -1267,6 +1268,7 @@
 		CFDED43EFD2EFE248E2C0AD3 /* FileProgressListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7A16122D559CDD2F497160 /* FileProgressListViewModel.swift */; };
 		D01F1A0AB0AAF5643C03EFF1 /* ModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0C6A481F3EFC1B4F0777CB /* ModuleTests.swift */; };
 		D06B1B95D0FF65F7E7761F95 /* Hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = B408E358BA052F9B08697E7E /* Hidden.swift */; };
+		D0DB26328522056107C96319 /* BookmarksInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1677EA88995CE388D035430D /* BookmarksInteractor.swift */; };
 		D0F8A60B23C9F14E0F18F68E /* K5ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6985A169550DB5407617B325 /* K5ScheduleViewModel.swift */; };
 		D10513F287E54B3F5FCA98FA /* ScreenViewTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B363A638EAA04F62B468B732 /* ScreenViewTracker.swift */; };
 		D109D22A1D5A294166528EB1 /* ModuleItemDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15E13D146F040A7DB7964CB8 /* ModuleItemDetailsViewController.storyboard */; };
@@ -1785,6 +1787,7 @@
 		16076791BA0E504E93B85837 /* CourseEntrySelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseEntrySelection.swift; sourceTree = "<group>"; };
 		162B2E11052578DA57B96B30 /* SnackBarTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackBarTestView.swift; sourceTree = "<group>"; };
 		1650E0401631EE9D92315BEA /* ConversationCoursesActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCoursesActionSheet.swift; sourceTree = "<group>"; };
+		1677EA88995CE388D035430D /* BookmarksInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksInteractor.swift; sourceTree = "<group>"; };
 		16A75410BE6AB2B6583B0832 /* MDMManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDMManager.swift; sourceTree = "<group>"; };
 		16E8B1AE0C4198704BE3583F /* QuizDateSectionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDateSectionViewModelTests.swift; sourceTree = "<group>"; };
 		16EA45363F339860F82164CB /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
@@ -2549,6 +2552,7 @@
 		80D06DE3203CB3C4793FE4CD /* ModuleItemSequenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemSequenceViewController.swift; sourceTree = "<group>"; };
 		80EBE0CB9E7A86354735E332 /* es-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-ES"; path = "es-ES.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		8133B84109D3E4BEC42DF9B1 /* TermsOfServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceViewController.swift; sourceTree = "<group>"; };
+		813609BBE65AF07F1585E77A /* CreateBookmarkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBookmarkRequest.swift; sourceTree = "<group>"; };
 		8183091E229194EF9BE15BA2 /* GetSubmissionCommentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubmissionCommentsTests.swift; sourceTree = "<group>"; };
 		818D7827E4142B8C54C5D3CD /* APIPermissionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPermissionsTests.swift; sourceTree = "<group>"; };
 		818E4C909B8ED2748641A2B9 /* GetPagesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPagesTests.swift; sourceTree = "<group>"; };
@@ -3904,6 +3908,7 @@
 			children = (
 				33E64F8F0D74E677791C788C /* API */,
 				48D1BF3732697BB5234CDB6D /* Database */,
+				1677EA88995CE388D035430D /* BookmarksInteractor.swift */,
 				C9045DFAA095E34E80D7DDF2 /* ShortcutsInteractor.swift */,
 			);
 			path = Model;
@@ -4505,6 +4510,7 @@
 			isa = PBXGroup;
 			children = (
 				C462AC4447D5BBD0816AD16B /* APIBookmark.swift */,
+				813609BBE65AF07F1585E77A /* CreateBookmarkRequest.swift */,
 				D0BC42546BF979910064D7A0 /* GetBookmarksRequest.swift */,
 			);
 			path = API;
@@ -9589,6 +9595,7 @@
 				345ADA01197ECD1C8AD51AFD /* BookmarkCellViewModel.swift in Sources */,
 				0C3012E3E293D77502398374 /* BookmarkItem.swift in Sources */,
 				07B380FA901C1F479E110953 /* BookmarksAssembly.swift in Sources */,
+				D0DB26328522056107C96319 /* BookmarksInteractor.swift in Sources */,
 				CA478D46682493FD1EF04BF6 /* BookmarksView.swift in Sources */,
 				EAD48727D856B91A5614DB42 /* BookmarksViewModel.swift in Sources */,
 				ED840E241F82A2B843046D51 /* BoolExtensions.swift in Sources */,
@@ -9724,6 +9731,7 @@
 				94876078067796B619C890C8 /* CourseSyncSettingsViewModel.swift in Sources */,
 				FE7F69D6B59EE3C158D7183D /* CourseSyncStateProgress.swift in Sources */,
 				44F729ADD8670690D09E4281 /* CourseSyncSyllabusInteractor.swift in Sources */,
+				A29895166080D70CDCA9CED6 /* CreateBookmarkRequest.swift in Sources */,
 				BBF7387BD0DC0EE94DDE8190 /* CreateConversation.swift in Sources */,
 				AA83EE551264437D8544C621 /* CreatePlannerNote.swift in Sources */,
 				2954539C4875336BDCF4DC2A /* CreateTextComment.swift in Sources */,

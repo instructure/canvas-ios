@@ -50,7 +50,7 @@ public protocol ShortcutsInteractor {
     func userDidLogout(application: UIApplication)
 }
 
-public class ShortcutsInteractorLive: ShortcutsInteractor {
+class ShortcutsInteractorLive: ShortcutsInteractor {
     private let environment: AppEnvironment
     private var shortcutURL: URL?
 

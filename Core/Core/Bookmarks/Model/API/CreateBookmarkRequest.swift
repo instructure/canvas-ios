@@ -16,17 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-// https://canvas.instructure.com/doc/api/bookmarks.html#method.bookmarks/bookmarks.index
-public struct APIBookmark: Codable, Equatable {
-    public let id: ID?
-    public let name: String?
-    public let url: String?
-    public let position: Int?
+public struct CreateBookmarkRequest: APIRequestable {
+    public typealias Response = APIBookmark
 
-    public init(name: String, url: String) {
-        self.id = nil
-        self.name = name
-        self.url = url
-        self.position = nil
+    public let method: APIMethod = .post
+    public let path: String = "users/self/bookmarks"
+    public let body: APIBookmark?
+
+    public init(body: APIBookmark) {
+        self.body = body
     }
 }
