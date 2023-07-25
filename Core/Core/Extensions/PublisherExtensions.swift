@@ -35,4 +35,15 @@ public extension Publisher {
         )
         .eraseToAnyPublisher()
     }
+
+    func mapArray<T>(_ transform: @escaping (Output.Element) -> T)
+    -> AnyPublisher<[T], Failure>
+    where Output: Sequence {
+        map {
+            $0.map { element in
+                transform(element)
+            }
+        }
+        .eraseToAnyPublisher()
+    }
 }

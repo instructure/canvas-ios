@@ -78,4 +78,15 @@ class PublisherExtensionsTests: XCTestCase {
         waitForExpectations(timeout: 0.1)
         XCTAssertEqual(receivedProgress, false)
     }
+
+    func testMapArray() {
+        // MARK: - GIVEN
+        let publisher = Just([1, 2, 3])
+
+        // MARK: - WHEN
+        let mapped = publisher.mapArray { "\($0)" }
+
+        // MARK: - THEN
+        XCTAssertSingleOutputEquals(mapped, ["1", "2", "3"])
+    }
 }
