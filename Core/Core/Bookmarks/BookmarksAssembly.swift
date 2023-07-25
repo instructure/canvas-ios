@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import SwiftUI
+
 public enum BookmarksAssembly {
 
     public static func makeBookmarksInteractor(api: API) -> BookmarksInteractor {
@@ -31,5 +33,17 @@ public enum BookmarksAssembly {
         let viewModel = BookmarksViewModel()
         let view = BookmarksView(viewModel: viewModel)
         return CoreHostingController(view)
+    }
+
+    static func makeBookmarkButtonViewModel(bookmarkTitle: String, bookmarkRoute: String) -> BookmarkButtonViewModel {
+        let interactor = makeBookmarksInteractor(api: AppEnvironment.shared.api)
+        return BookmarkButtonViewModel(bookmarksInteractor: interactor,
+                                       title: bookmarkTitle,
+                                       route: bookmarkRoute)
+    }
+
+    public static func makeBookmarkButtonView(bookmarkTitle: String, bookmarkRoute: String) -> some View {
+        let viewModel = makeBookmarkButtonViewModel(bookmarkTitle: bookmarkTitle, bookmarkRoute: bookmarkRoute)
+        return BookmarkButtonView(viewModel: viewModel)
     }
 }

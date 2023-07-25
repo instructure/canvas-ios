@@ -772,6 +772,7 @@
 		7AC4DA8D3239480EA77E106F /* CourseDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6D6EE3CB13C7ECEDB246A4 /* CourseDetailsHeaderView.swift */; };
 		7AC4F5EF9B2D3EE4A9B13063 /* DragStartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C21DDFBE575C137EDAE1D1 /* DragStartViewModel.swift */; };
 		7B1080100DFF9C25D98234E6 /* PermissionName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0D6192536E3C4E59BE0249 /* PermissionName.swift */; };
+		7BBB0DDB47E1F9BE018C6B14 /* BookmarkButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC88804A83504A7CC3DBC1CE /* BookmarkButtonView.swift */; };
 		7BD54E08AFC826476C04B446 /* PageDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44640E74D6D5DA91B7580F0D /* PageDetailsViewController.storyboard */; };
 		7C0E6B1D97B98D4E692E9ED4 /* HelpLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F22F0503523D60FA197193 /* HelpLink.swift */; };
 		7C4C0238CA86358BFF179247 /* DefaultViewProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F132170D3BB81CDB820C2EFF /* DefaultViewProviderTests.swift */; };
@@ -1450,6 +1451,7 @@
 		EC75EE73F27CB61E7C45E240 /* LoginQRCodeTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F77B3DAC05B4FF5456DBBF89 /* LoginQRCodeTutorialViewController.swift */; };
 		EC8A8B4FA8A7B587E18C9FEA /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76937673DC8C4F81F538B0EA /* EmptyView.swift */; };
 		ECCFFB637A701934877CDF78 /* CourseSyncProgressInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6C4976314A6724E1075659 /* CourseSyncProgressInfoView.swift */; };
+		ECEE9849800AC94BDFDA6670 /* BookmarkButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC45F79549C73A53E4C9D0C /* BookmarkButtonViewModel.swift */; };
 		ED0B97D40DE4A1EB97B89615 /* ModuleItemSequenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D06DE3203CB3C4793FE4CD /* ModuleItemSequenceViewController.swift */; };
 		ED840E241F82A2B843046D51 /* BoolExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B937D29459081C1A86B3B58D /* BoolExtensions.swift */; };
 		ED8D874175C0D9456DDB4D90 /* GetModulesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680AA3B50BEFC749BDF78CD7 /* GetModulesTests.swift */; };
@@ -2426,6 +2428,7 @@
 		6F0C6A481F3EFC1B4F0777CB /* ModuleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleTests.swift; sourceTree = "<group>"; };
 		6F6012DE1B09168E3F4EEEF3 /* GetCalendarEventsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCalendarEventsTests.swift; sourceTree = "<group>"; };
 		6F9B657D65894EA4761A9D43 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/Main.strings; sourceTree = "<group>"; };
+		6FC45F79549C73A53E4C9D0C /* BookmarkButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkButtonViewModel.swift; sourceTree = "<group>"; };
 		6FC6FA42D7C4391ECBA3525C /* UITraitCollectionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITraitCollectionExtensions.swift; sourceTree = "<group>"; };
 		7025C4156CC99A1BF6E168DF /* LoginDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDelegate.swift; sourceTree = "<group>"; };
 		7071FE34A51DEF791622AEEA /* SplitViewModeObserverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewModeObserverTests.swift; sourceTree = "<group>"; };
@@ -3272,6 +3275,7 @@
 		EC5C9034978914DE69CD05A6 /* FileSubmissionAssemblyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionAssemblyTests.swift; sourceTree = "<group>"; };
 		EC6041A1279D7F4E60DF8A38 /* DiscussionTopicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionTopicTests.swift; sourceTree = "<group>"; };
 		EC6A40B05A66159F069CA28F /* UsageRights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageRights.swift; sourceTree = "<group>"; };
+		EC88804A83504A7CC3DBC1CE /* BookmarkButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkButtonView.swift; sourceTree = "<group>"; };
 		EC9641F9774363C187731F30 /* TestImage.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TestImage.gif; sourceTree = "<group>"; };
 		ECB510CD04DA984A90A18ADE /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		ECBF570E6933C72B8ED66B2D /* AppStoreReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreReview.swift; sourceTree = "<group>"; };
@@ -5666,6 +5670,7 @@
 		6D2AB3C131CF7D81C4C6BBDF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EC88804A83504A7CC3DBC1CE /* BookmarkButtonView.swift */,
 				6C3F11C1D4BC27A601A52D0B /* BookmarkCellView.swift */,
 				0B7D637FDEFA1124D7E5FEC6 /* BookmarksView.swift */,
 			);
@@ -7362,6 +7367,7 @@
 		BB7432AE399EA58D7FD80E9E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				6FC45F79549C73A53E4C9D0C /* BookmarkButtonViewModel.swift */,
 				0BD59DFCAE0B8965879D0ED4 /* BookmarkCellViewModel.swift */,
 				2668DC66CE7ED81E8B7F2A77 /* BookmarksViewModel.swift */,
 			);
@@ -9591,6 +9597,8 @@
 				4BEAA767231CDCF7BBD3EB9C /* BackgroundURLSessionProvider.swift in Sources */,
 				EB7F360478C5BE6855B5521E /* BackgroundVideoPlayer.swift in Sources */,
 				48B3A263A9467404BF5D6BC9 /* Badge.swift in Sources */,
+				7BBB0DDB47E1F9BE018C6B14 /* BookmarkButtonView.swift in Sources */,
+				ECEE9849800AC94BDFDA6670 /* BookmarkButtonViewModel.swift in Sources */,
 				F96DC17FC8A68AD95D88529C /* BookmarkCellView.swift in Sources */,
 				345ADA01197ECD1C8AD51AFD /* BookmarkCellViewModel.swift in Sources */,
 				0C3012E3E293D77502398374 /* BookmarkItem.swift in Sources */,
