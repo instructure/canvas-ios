@@ -22,4 +22,10 @@ public enum BookmarksAssembly {
         guard environment.app == .student else { return nil }
         return ShortcutsInteractorLive(environment: environment)
     }
+
+    public static func makeBookmarksViewController() -> UIViewController {
+        let viewModel = BookmarksViewModel()
+        let view = BookmarksView(viewModel: viewModel)
+        return CoreHostingController(view)
+    }
 }

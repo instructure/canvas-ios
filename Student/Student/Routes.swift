@@ -426,7 +426,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     "/native-route-master/*route": nativeFactory,
 
     "/bookmarks": { _, _, _ in
-        return CoreHostingController(BookmarksView(viewModel: BookmarksViewModel()))
+        BookmarksAssembly.makeBookmarksViewController()
     },
 
     "/about": { _, _, _ in
