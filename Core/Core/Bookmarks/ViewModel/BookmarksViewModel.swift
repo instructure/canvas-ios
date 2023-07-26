@@ -40,7 +40,7 @@ public class BookmarksViewModel: ObservableObject {
 
     private func bookmarksDidUpdate() {
         let bookmarkCells = bookmarks.all.map {
-            BookmarkCellViewModel(name: $0.name, url: $0.url)
+            BookmarkCellViewModel(id: $0.id, name: $0.name, url: $0.url)
         }
         if bookmarkCells.isEmpty {
             state = .empty

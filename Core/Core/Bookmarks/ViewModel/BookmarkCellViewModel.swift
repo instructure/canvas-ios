@@ -16,21 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+public struct BookmarkCellViewModel: Equatable, Identifiable {
+    public let id: String
+    public let name: String
+    public let url: String
 
-public class BookmarkCellViewModel {
-    let name: String
-    let url: String
-
-    init(name: String, url: String) {
+    public init(id: String, name: String, url: String) {
+        self.id = id
         self.name = name
         self.url = url
-    }
-}
-
-extension BookmarkCellViewModel: Equatable {
-
-    public static func == (lhs: BookmarkCellViewModel, rhs: BookmarkCellViewModel) -> Bool {
-        lhs.url == rhs.url && lhs.name == rhs.name
     }
 }

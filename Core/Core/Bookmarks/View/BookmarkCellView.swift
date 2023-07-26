@@ -57,7 +57,7 @@ struct BookmarkCellView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
             Color.backgroundLightest
-            BookmarkCellView(bookmark: BookmarkCellViewModel(name: "Test", url: "url"))
+            BookmarkCellView(bookmark: BookmarkCellViewModel(id: "0", name: "Test", url: "url"))
         }
     }
 }

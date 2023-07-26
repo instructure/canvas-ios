@@ -70,7 +70,7 @@ public struct BookmarksView: View {
 
     private func bookmarkList(_ bookmarks: [BookmarkCellViewModel]) -> some View {
         List {
-            ForEach(bookmarks, id: \.url) { bookmark in
+            ForEach(bookmarks) { bookmark in
                 BookmarkCellView(bookmark: bookmark)
                     .listRowInsets(EdgeInsets())
                     .listRowBackground(SwiftUI.EmptyView())
