@@ -47,14 +47,17 @@ class BookmarkButtonViewModel: ObservableObject {
     private let bookmarksInteractor: BookmarksInteractor
     private let title: String
     private let route: String
+    private let snackBarViewModel: SnackBarViewModel?
     private var existingBookmarkId: String?
 
     public init(bookmarksInteractor: BookmarksInteractor,
                 title: String,
-                route: String) {
+                route: String,
+                snackBarViewModel: SnackBarViewModel? = nil) {
         self.bookmarksInteractor = bookmarksInteractor
         self.title = title
         self.route = route
+        self.snackBarViewModel = snackBarViewModel
         self.confirmDialog = confirmAddDialog
         bookmarksInteractor
             .getBookmark(for: route)
@@ -77,6 +80,7 @@ class BookmarkButtonViewModel: ObservableObject {
                 }
                 .handleEvents(receiveOutput: { [weak self] _ in
                     self?.existingBookmarkId = nil
+                    self?.snackBarViewModel?.showSnack(NSLocalizedString("Bookmark deleted", comment: ""))
                 })
                 .mapToValue(false)
                 .replaceError(with: true)
@@ -91,6 +95,7 @@ class BookmarkButtonViewModel: ObservableObject {
                 }
                 .handleEvents(receiveOutput: { [weak self] bookmarkId in
                     self?.existingBookmarkId = bookmarkId
+                    self?.snackBarViewModel?.showSnack(NSLocalizedString("Bookmark added", comment: ""))
                 })
                 .mapToValue(true)
                 .replaceError(with: false)

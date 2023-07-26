@@ -35,15 +35,22 @@ public enum BookmarksAssembly {
         return CoreHostingController(view)
     }
 
-    static func makeBookmarkButtonViewModel(bookmarkTitle: String, bookmarkRoute: String) -> BookmarkButtonViewModel {
+    static func makeBookmarkButtonViewModel(bookmarkTitle: String,
+                                            bookmarkRoute: String,
+                                            snackBarViewModel: SnackBarViewModel? = nil) -> BookmarkButtonViewModel {
         let interactor = makeBookmarksInteractor()
         return BookmarkButtonViewModel(bookmarksInteractor: interactor,
                                        title: bookmarkTitle,
-                                       route: bookmarkRoute)
+                                       route: bookmarkRoute,
+                                       snackBarViewModel: snackBarViewModel)
     }
 
-    public static func makeBookmarkButtonView(bookmarkTitle: String, bookmarkRoute: String) -> some View {
-        let viewModel = makeBookmarkButtonViewModel(bookmarkTitle: bookmarkTitle, bookmarkRoute: bookmarkRoute)
+    public static func makeBookmarkButtonView(bookmarkTitle: String,
+                                              bookmarkRoute: String,
+                                              snackBarViewModel: SnackBarViewModel? = nil) -> some View {
+        let viewModel = makeBookmarkButtonViewModel(bookmarkTitle: bookmarkTitle,
+                                                    bookmarkRoute: bookmarkRoute,
+                                                    snackBarViewModel: snackBarViewModel)
         return BookmarkButtonView(viewModel: viewModel)
     }
 }
