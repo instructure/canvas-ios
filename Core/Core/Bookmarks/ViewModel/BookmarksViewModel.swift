@@ -17,6 +17,7 @@
 //
 
 import SwiftUI
+import Combine
 
 public class BookmarksViewModel: ObservableObject {
     public enum ViewModelState<T: Equatable>: Equatable {
@@ -26,34 +27,50 @@ public class BookmarksViewModel: ObservableObject {
     }
 
     @Published public private(set) var state: ViewModelState<[BookmarkCellViewModel]> = .loading
+    public let snackBarViewModel = SnackBarViewModel()
+    private let interactor: BookmarksInteractor
 
-    public lazy private (set) var bookmarks = AppEnvironment.shared.subscribe(GetBookmarks()) { [weak self] in
-        self?.bookmarksDidUpdate()
+    public init(interactor: BookmarksInteractor) {
+        self.interactor = interactor
+
+        interactor
+            .getBookmarks()
+            .mapArray {
+                BookmarkCellViewModel(id: $0.id, name: $0.name, url: $0.url)
+            }
+            .map { (bookmarks: [BookmarkCellViewModel]) -> ViewModelState<[BookmarkCellViewModel]> in
+                if bookmarks.isEmpty {
+                    return .empty
+                } else {
+                    return .data(bookmarks)
+                }
+            }
+            .replaceError(with: .empty)
+            .assign(to: &$state)
     }
 
-    public init() {}
+    public func deleteBookmark(at index: Int) {
+        guard case .data(var bookmarks) = state  else { return }
+        let idToDelete = bookmarks[index].id
 
-    public func viewDidAppear() {
-        state = .loading
-        bookmarks.exhaust()
+        var subscription: AnyCancellable?
+        subscription = interactor
+            .deleteBookmark(id: idToDelete)
+            .map {
+                bookmarks.removeAll { bookmarkViewModel in
+                    bookmarkViewModel.id == idToDelete
+                }
+                return bookmarks
+            }
+            .map { $0.isEmpty ? ViewModelState.empty : ViewModelState.data($0) }
+            .handleEvents(receiveOutput: { [snackBarViewModel] _ in
+                snackBarViewModel.showSnack(NSLocalizedString("Bookmark deleted", comment: ""))
+            })
+            .sink { _ in
+                subscription?.cancel()
+                subscription = nil
+            } receiveValue: { [weak self] in
+                self?.state = $0
+            }
     }
-
-    private func bookmarksDidUpdate() {
-        let bookmarkCells = bookmarks.all.map {
-            BookmarkCellViewModel(id: $0.id, name: $0.name, url: $0.url)
-        }
-        if bookmarkCells.isEmpty {
-            state = .empty
-        } else {
-            state = .data(bookmarkCells)
-        }
-    }
-
-#if DEBUG
-
-    init(state: ViewModelState<[BookmarkCellViewModel]>) {
-        self.state = state
-    }
-
-#endif
 }

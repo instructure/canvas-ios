@@ -22,6 +22,7 @@ import CombineExt
 public protocol BookmarksInteractor {
     func getBookmarks() -> AnyPublisher<[BookmarkItem], Error>
     func addBookmark(title: String, route: String) -> AnyPublisher<Void, Error>
+    func deleteBookmark(id: String) -> AnyPublisher<Void, Error>
 }
 
 struct BookmarksInteractorLive: BookmarksInteractor {
@@ -43,6 +44,13 @@ struct BookmarksInteractorLive: BookmarksInteractor {
 
         return api.makeRequest(request)
             .flatMap { _ in self.getBookmarks() }
+            .mapToVoid()
+            .eraseToAnyPublisher()
+    }
+
+    public func deleteBookmark(id: String) -> AnyPublisher<Void, Error> {
+        let request = DeleteBookmarkRequest(id: id)
+        return api.makeRequest(request)
             .mapToVoid()
             .eraseToAnyPublisher()
     }

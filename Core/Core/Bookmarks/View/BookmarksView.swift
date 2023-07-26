@@ -40,32 +40,42 @@ public struct BookmarksView: View {
         .navigationTitle(NSLocalizedString("Bookmarks", comment: ""),
                          subtitle: "")
         .navigationBarStyle(.global)
-        .onAppear { viewModel.viewDidAppear() }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                editButton
+            }
+        }
+        .snackBar(viewModel: viewModel.snackBarViewModel)
+    }
+
+    @ViewBuilder
+    private var editButton: some View {
+        if case .data = viewModel.state {
+            EditButton()
+                .foregroundColor(Color(Brand.shared.navTextColor))
+        }
     }
 
     @ViewBuilder
     private var emptyPanda: some View {
         Divider()
         GeometryReader { geometry in
-            List {
-                EmptyPanda(.NoEvents,
-                           title: Text("No Bookmarks", bundle: .core),
-                           message: Text("There are no bookmarks to display.", bundle: .core))
-                    .listRowSeparator(.hidden)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: geometry.size.height)
+            RefreshableScrollView {
+                InteractivePanda(scene: SpacePanda(),
+                                 title: Text("No Bookmarks", bundle: .core),
+                                 subtitle: Text("There are no bookmarks to display.", bundle: .core))
+                .frame(maxWidth: .infinity)
+                .frame(height: geometry.size.height)
+            } refreshAction: { completion in
             }
-            .listStyle(.plain)
         }
     }
 
     @ViewBuilder
     private var loadingView: some View {
-        Divider()
-        Spacer()
         ProgressView()
             .progressViewStyle(.indeterminateCircle())
-        Spacer()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     private func bookmarkList(_ bookmarks: [BookmarkCellViewModel]) -> some View {
@@ -75,6 +85,10 @@ public struct BookmarksView: View {
                     .listRowInsets(EdgeInsets())
                     .listRowBackground(SwiftUI.EmptyView())
             }
+            .onDelete { deletedIndexes in
+                guard let deletedIndex = deletedIndexes.first else { return }
+                viewModel.deleteBookmark(at: deletedIndex)
+            }
         }
         .listStyle(.plain)
     }
@@ -82,9 +96,28 @@ public struct BookmarksView: View {
 
 #if DEBUG
 
+@available(iOSApplicationExtension 16.0, *)
 struct BookmarksView_Previews: PreviewProvider {
+    static let preview = PreviewEnvironment()
     static var previews: some View {
-        BookmarksView(viewModel: BookmarksViewModel(state: .empty))
+        let interactors = [
+            BookmarksInteractorPreview(mockState: .loading,
+                                       context: preview.database.viewContext),
+            BookmarksInteractorPreview(mockState: .empty,
+                                       context: preview.database.viewContext),
+            BookmarksInteractorPreview(mockState: .data,
+                                       context: preview.database.viewContext),
+        ]
+
+        ForEach(0..<3) { index in
+            NavigationStack {
+                VStack(spacing: 0) {
+                    Divider().background(Color.backgroundDark)
+                    BookmarksView(viewModel: BookmarksViewModel(interactor: interactors[index]))
+                }
+                .navigationBarTitleDisplayMode(.inline)
+            }
+        }
     }
 }
 

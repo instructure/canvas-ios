@@ -20,23 +20,23 @@ import SwiftUI
 
 public enum BookmarksAssembly {
 
-    public static func makeBookmarksInteractor(api: API) -> BookmarksInteractor {
+    public static func makeBookmarksInteractor(api: API = AppEnvironment.shared.api) -> BookmarksInteractor {
         BookmarksInteractorLive(api: api)
     }
 
-    public static func makeShortcutsInteractor(environment: AppEnvironment) -> ShortcutsInteractor? {
+    public static func makeShortcutsInteractor(environment: AppEnvironment = AppEnvironment.shared) -> ShortcutsInteractor? {
         guard environment.app == .student else { return nil }
         return ShortcutsInteractorLive(environment: environment)
     }
 
     public static func makeBookmarksViewController() -> UIViewController {
-        let viewModel = BookmarksViewModel()
+        let viewModel = BookmarksViewModel(interactor: makeBookmarksInteractor())
         let view = BookmarksView(viewModel: viewModel)
         return CoreHostingController(view)
     }
 
     static func makeBookmarkButtonViewModel(bookmarkTitle: String, bookmarkRoute: String) -> BookmarkButtonViewModel {
-        let interactor = makeBookmarksInteractor(api: AppEnvironment.shared.api)
+        let interactor = makeBookmarksInteractor()
         return BookmarkButtonViewModel(bookmarksInteractor: interactor,
                                        title: bookmarkTitle,
                                        route: bookmarkRoute)

@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+// https://canvas.instructure.com/doc/api/bookmarks.html#method.bookmarks/bookmarks.index
 public struct GetBookmarksRequest: APIRequestable {
     public typealias Response = [APIBookmark]
 

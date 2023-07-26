@@ -16,15 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-// https://canvas.instructure.com/doc/api/bookmarks.html#method.bookmarks/bookmarks.create
-public struct CreateBookmarkRequest: APIRequestable {
-    public typealias Response = APIBookmark
+// https://canvas.instructure.com/doc/api/bookmarks.html#method.bookmarks/bookmarks.destroy
+public struct DeleteBookmarkRequest: APIRequestable {
+    public typealias Response = APINoContent
 
-    public let method: APIMethod = .post
-    public let path: String = "users/self/bookmarks"
-    public let body: APIBookmark?
+    public let method: APIMethod = .delete
+    public let path: String
 
-    public init(body: APIBookmark) {
-        self.body = body
+    public init(id: String) {
+        self.path = "users/self/bookmarks/\(id)"
     }
 }
