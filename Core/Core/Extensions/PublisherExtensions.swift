@@ -46,4 +46,8 @@ public extension Publisher {
         }
         .eraseToAnyPublisher()
     }
+
+    func mapToOptional() -> Publishers.Map<Self, Output?> {
+        map { $0 as Output? }
+    }
 }

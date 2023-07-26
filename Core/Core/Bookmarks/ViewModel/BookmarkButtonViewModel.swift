@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineExt
 
 class BookmarkButtonViewModel: ObservableObject {
     @Published public var isShowingConfirmationDialog = false
@@ -49,6 +50,10 @@ class BookmarkButtonViewModel: ObservableObject {
     private let route: String
     private let snackBarViewModel: SnackBarViewModel?
     private var existingBookmarkId: String?
+    private let bookmarkLoaded = PassthroughRelay<BookmarksInteractor.BookmarkID?>()
+    private let bookmarkDeleted = PassthroughRelay<Void>()
+    private let bookmarkAdded = PassthroughRelay<BookmarksInteractor.BookmarkID>()
+    private var subscriptions = Set<AnyCancellable>()
 
     public init(bookmarksInteractor: BookmarksInteractor,
                 title: String,
@@ -59,13 +64,18 @@ class BookmarkButtonViewModel: ObservableObject {
         self.route = route
         self.snackBarViewModel = snackBarViewModel
         self.confirmDialog = confirmAddDialog
-        bookmarksInteractor
-            .getBookmark(for: route)
-            .handleEvents(receiveOutput: { [weak self] bookmark in
-                self?.existingBookmarkId = bookmark?.id
-            })
-            .map { $0 != nil }
-            .assign(to: &$isBookmarked)
+
+        saveBookmarkIdOnBookmarkLoad()
+        updateBookmarkedStateOnBookmarkLoad()
+        loadBookmark()
+
+        showSnackbarOnBookmarkDelete()
+        resetStoredBookmarkIdOnBookmarkDelete()
+        updateBookmarkedStateOnBookmarkDelete()
+
+        showSnackbarOnNewBookmark()
+        saveBookmarkIdOnNewBookmark()
+        updateBookmarkedStateOnNewBookmark()
     }
 
     public func bookmarkButtonDidTap() {
@@ -77,14 +87,12 @@ class BookmarkButtonViewModel: ObservableObject {
                 .flatMap { [bookmarksInteractor] in
                     bookmarksInteractor
                         .deleteBookmark(id: existingBookmarkId)
+                        .ignoreFailure()
                 }
-                .handleEvents(receiveOutput: { [weak self] _ in
-                    self?.existingBookmarkId = nil
-                    self?.snackBarViewModel?.showSnack(NSLocalizedString("Bookmark deleted", comment: ""))
-                })
-                .mapToValue(false)
-                .replaceError(with: true)
-                .assign(to: &$isBookmarked)
+                .sink { [bookmarkDeleted] _ in
+                    bookmarkDeleted.accept(())
+                }
+                .store(in: &subscriptions)
         } else {
             confirmDialog = confirmAddDialog
             confirmAddDialog
@@ -92,16 +100,78 @@ class BookmarkButtonViewModel: ObservableObject {
                 .flatMap { [bookmarksInteractor, title, route] in
                     bookmarksInteractor
                         .addBookmark(title: title, route: route)
+                        .ignoreFailure()
                 }
-                .handleEvents(receiveOutput: { [weak self] bookmarkId in
-                    self?.existingBookmarkId = bookmarkId
-                    self?.snackBarViewModel?.showSnack(NSLocalizedString("Bookmark added", comment: ""))
-                })
-                .mapToValue(true)
-                .replaceError(with: false)
-                .assign(to: &$isBookmarked)
+                .sink { [bookmarkAdded] bookmarkId in
+                    bookmarkAdded.accept(bookmarkId)
+                }
+                .store(in: &subscriptions)
         }
 
         isShowingConfirmationDialog = true
+    }
+
+    private func loadBookmark() {
+        bookmarksInteractor
+            .getBookmark(for: route)
+            .map { $0?.id }
+            .sink { [bookmarkLoaded] bookmarkId in
+                bookmarkLoaded.accept(bookmarkId)
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func saveBookmarkIdOnBookmarkLoad() {
+        bookmarkLoaded
+            .assign(to: \.existingBookmarkId, on: self, ownership: .weak)
+            .store(in: &subscriptions)
+    }
+
+    private func updateBookmarkedStateOnBookmarkLoad() {
+        bookmarkLoaded
+            .map { $0 == nil ? false : true }
+            .assign(to: &$isBookmarked)
+    }
+
+    private func showSnackbarOnBookmarkDelete() {
+        bookmarkDeleted
+            .sink { [snackBarViewModel] _ in
+                snackBarViewModel?.showSnack(NSLocalizedString("Bookmark deleted", comment: ""))
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func resetStoredBookmarkIdOnBookmarkDelete() {
+        bookmarkDeleted
+            .mapToValue(nil)
+            .assign(to: \.existingBookmarkId, on: self, ownership: .weak)
+            .store(in: &subscriptions)
+    }
+
+    private func updateBookmarkedStateOnBookmarkDelete() {
+        bookmarkDeleted
+            .mapToValue(false)
+            .assign(to: &$isBookmarked)
+    }
+
+    private func showSnackbarOnNewBookmark() {
+        bookmarkAdded
+            .sink { [snackBarViewModel] _ in
+                snackBarViewModel?.showSnack(NSLocalizedString("Bookmark added", comment: ""))
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func saveBookmarkIdOnNewBookmark() {
+        bookmarkAdded
+            .mapToOptional()
+            .assign(to: \.existingBookmarkId, on: self, ownership: .weak)
+            .store(in: &subscriptions)
+    }
+
+    private func updateBookmarkedStateOnNewBookmark() {
+        bookmarkAdded
+            .mapToValue(true)
+            .assign(to: &$isBookmarked)
     }
 }
