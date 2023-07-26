@@ -26,12 +26,13 @@ struct BookmarkButtonView: View {
         Button {
             viewModel.bookmarkButtonDidTap()
         } label: {
-            Image.bookmarkLine
+            viewModel.isBookmarked ? Image.bookmarkSolid : Image.bookmarkLine
         }
         .frame(width: 44, height: 44)
         .foregroundColor(.textLightest)
         .confirmationAlert(isPresented: $viewModel.isShowingConfirmationDialog,
-                           presenting: viewModel.confirmAddDialog)
+                           presenting: viewModel.confirmDialog)
+        .animation(.default, value: viewModel.isBookmarked)
     }
 
     init(viewModel: BookmarkButtonViewModel) {

@@ -678,6 +678,7 @@
 		6DF09A80B642D47702861CC7 /* ContextCardHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CA5C03C26818D234CC8CD7 /* ContextCardHeaderView.swift */; };
 		6DF661C99B4F2DBCA7B5AC4F /* GetQuizzes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AC7E2761B85F389492EE5D /* GetQuizzes.swift */; };
 		6DFBDFF2DDE64856F845F646 /* GetQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388C06815656CB90AE60D906 /* GetQuiz.swift */; };
+		6E1D321EBDCD2509890AEAB6 /* DeleteBookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC55F56438CA47DC9C3271D /* DeleteBookmark.swift */; };
 		6E1F3408F345A6F9A2D0C87F /* CourseSyncSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE3BCE1E7BE0F36A72E9BEC /* CourseSyncSettings.swift */; };
 		6E3D818F435076EE7E6792B0 /* CoreTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABB9E672FB356DE26A0DC75 /* CoreTestCase.swift */; };
 		6E692CC7873C52648A1D46A9 /* K5SubjectViewMasqueradedSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48412BB001A4800F8647251 /* K5SubjectViewMasqueradedSession.swift */; };
@@ -2085,6 +2086,7 @@
 		3F5F8A824539B9C937DC4DD6 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ar; path = ar.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		3FC35876E6291843B59C8F6A /* WKWebViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebViewExtensionsTests.swift; sourceTree = "<group>"; };
 		3FC53E29AB1D4BA8DC3E108A /* ColoredNavViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredNavViewProtocol.swift; sourceTree = "<group>"; };
+		3FC55F56438CA47DC9C3271D /* DeleteBookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteBookmark.swift; sourceTree = "<group>"; };
 		3FCF9AF6B7E6E39E5AB26EE9 /* en-GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-GB"; path = "en-GB.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		3FD14A6D93BA0DEBC15A44F7 /* CreateTextComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTextComment.swift; sourceTree = "<group>"; };
 		401627C7F807CD6031079FC2 /* ModuleListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleListViewControllerTests.swift; sourceTree = "<group>"; };
@@ -4966,6 +4968,7 @@
 			isa = PBXGroup;
 			children = (
 				8F9F658FA9FBD3573C326A63 /* BookmarkItem.swift */,
+				3FC55F56438CA47DC9C3271D /* DeleteBookmark.swift */,
 				E69C1BD9206B6DD6367EACC6 /* GetBookmarks.swift */,
 			);
 			path = Database;
@@ -9785,6 +9788,7 @@
 				4D4B049A68B05018548CE052 /* DateSectionViewModelProtocol.swift in Sources */,
 				8B35211BBCAF0422D93E1162 /* DefaultViewProvider.swift in Sources */,
 				5FFA92A516A914963E3630C9 /* DefaultWKWebViewConfiguration.swift in Sources */,
+				6E1D321EBDCD2509890AEAB6 /* DeleteBookmark.swift in Sources */,
 				824B1564EEC1F9AB829FC312 /* DeleteBookmarkRequest.swift in Sources */,
 				B22210181A8D63607CDB39A9 /* DeterminateBarProgressViewStyle.swift in Sources */,
 				354482A755DA87DECDF9B43A /* DeterminateCircleProgressViewStyle.swift in Sources */,

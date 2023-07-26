@@ -18,6 +18,7 @@
 
 import SwiftUI
 import Combine
+import CombineSchedulers
 
 public class BookmarksViewModel: ObservableObject {
     public enum ViewModelState<T: Equatable>: Equatable {
@@ -29,9 +30,11 @@ public class BookmarksViewModel: ObservableObject {
     @Published public private(set) var state: ViewModelState<[BookmarkCellViewModel]> = .loading
     public let snackBarViewModel = SnackBarViewModel()
     private let interactor: BookmarksInteractor
+    private let mainScheduler: AnySchedulerOf<DispatchQueue>
 
-    public init(interactor: BookmarksInteractor) {
+    public init(interactor: BookmarksInteractor, mainScheduler: AnySchedulerOf<DispatchQueue> = .main) {
         self.interactor = interactor
+        self.mainScheduler = mainScheduler
 
         interactor
             .getBookmarks()
@@ -63,6 +66,7 @@ public class BookmarksViewModel: ObservableObject {
                 return bookmarks
             }
             .map { $0.isEmpty ? ViewModelState.empty : ViewModelState.data($0) }
+            .receive(on: mainScheduler)
             .handleEvents(receiveOutput: { [snackBarViewModel] _ in
                 snackBarViewModel.showSnack(NSLocalizedString("Bookmark deleted", comment: ""))
             })

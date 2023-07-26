@@ -20,9 +20,11 @@ import Combine
 import CombineExt
 
 public protocol BookmarksInteractor {
+    typealias BookmarkID = String
     func getBookmarks() -> AnyPublisher<[BookmarkItem], Error>
-    func addBookmark(title: String, route: String) -> AnyPublisher<Void, Error>
+    func addBookmark(title: String, route: String) -> AnyPublisher<BookmarkID, Error>
     func deleteBookmark(id: String) -> AnyPublisher<Void, Error>
+    func getBookmark(for route: String) -> AnyPublisher<BookmarkItem?, Never>
 }
 
 struct BookmarksInteractorLive: BookmarksInteractor {
@@ -38,20 +40,43 @@ struct BookmarksInteractorLive: BookmarksInteractor {
             .eraseToAnyPublisher()
     }
 
-    public func addBookmark(title: String, route: String) -> AnyPublisher<Void, Error> {
+    public func addBookmark(title: String, route: String) -> AnyPublisher<BookmarkID, Error> {
         let bookmark = APIBookmark(name: title, url: route)
         let request = CreateBookmarkRequest(body: bookmark)
 
         return api.makeRequest(request)
-            .flatMap { _ in self.getBookmarks() }
-            .mapToVoid()
+            .flatMap {
+                if let id = $0.body.id?.value {
+                    return Just(id as BookmarkID)
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                } else {
+                    return Fail(outputType: BookmarkID.self,
+                                failure: NSError.instructureError("Failed to extract bookmark ID from response."))
+                    .eraseToAnyPublisher()
+                }
+            }
+            .flatMap { bookmarkId in
+                self.getBookmarks().mapToValue(bookmarkId)
+            }
             .eraseToAnyPublisher()
     }
 
     public func deleteBookmark(id: String) -> AnyPublisher<Void, Error> {
-        let request = DeleteBookmarkRequest(id: id)
-        return api.makeRequest(request)
+        let useCase = DeleteBookmark(id: id)
+        return ReactiveStore(useCase: useCase)
+            .getEntities()
             .mapToVoid()
+            .eraseToAnyPublisher()
+    }
+
+    public func getBookmark(for route: String) -> AnyPublisher<BookmarkItem?, Never> {
+        let scope = Scope.where(#keyPath(BookmarkItem.url), equals: route, sortDescriptors: [])
+        let useCase = LocalUseCase<BookmarkItem>(scope: scope)
+        return ReactiveStore(useCase: useCase)
+            .getEntities()
+            .map { $0.first }
+            .replaceError(with: nil)
             .eraseToAnyPublisher()
     }
 }

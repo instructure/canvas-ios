@@ -60,8 +60,8 @@ struct BookmarksInteractorPreview: BookmarksInteractor {
         }
     }
 
-    func addBookmark(title: String, route: String) -> AnyPublisher<Void, Error> {
-        Just(())
+    func addBookmark(title: String, route: String) -> AnyPublisher<BookmarkID, Error> {
+        Just("")
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
@@ -69,6 +69,11 @@ struct BookmarksInteractorPreview: BookmarksInteractor {
     func deleteBookmark(id: String) -> AnyPublisher<Void, Error> {
         Just(())
             .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+
+    func getBookmark(for route: String) -> AnyPublisher<BookmarkItem?, Never> {
+        Just(nil)
             .eraseToAnyPublisher()
     }
 }

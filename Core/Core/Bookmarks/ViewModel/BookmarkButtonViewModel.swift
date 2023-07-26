@@ -20,7 +20,9 @@ import Combine
 
 class BookmarkButtonViewModel: ObservableObject {
     @Published public var isShowingConfirmationDialog = false
-    public let confirmAddDialog = ConfirmationAlertViewModel(
+    @Published public var isBookmarked = false
+    public private(set) var confirmDialog: ConfirmationAlertViewModel
+    private let confirmAddDialog = ConfirmationAlertViewModel(
         title: NSLocalizedString("Add Bookmark?", comment: ""),
         message: NSLocalizedString(
             """
@@ -32,10 +34,20 @@ class BookmarkButtonViewModel: ObservableObject {
         confirmButtonTitle: NSLocalizedString("OK", comment: ""),
         isDestructive: false
     )
+    private let confirmDeleteDialog = ConfirmationAlertViewModel(
+        title: NSLocalizedString("Delete Bookmark?", comment: ""),
+        message: NSLocalizedString(
+            """
+            This screen is already bookmarked. Do you want to delete the bookmark for this screen?
+            """, comment: ""),
+        cancelButtonTitle: NSLocalizedString("Cancel", comment: ""),
+        confirmButtonTitle: NSLocalizedString("Delete", comment: ""),
+        isDestructive: true
+    )
     private let bookmarksInteractor: BookmarksInteractor
     private let title: String
     private let route: String
-    private var createBookmarkSubscription: AnyCancellable?
+    private var existingBookmarkId: String?
 
     public init(bookmarksInteractor: BookmarksInteractor,
                 title: String,
@@ -43,16 +55,48 @@ class BookmarkButtonViewModel: ObservableObject {
         self.bookmarksInteractor = bookmarksInteractor
         self.title = title
         self.route = route
+        self.confirmDialog = confirmAddDialog
+        bookmarksInteractor
+            .getBookmark(for: route)
+            .handleEvents(receiveOutput: { [weak self] bookmark in
+                self?.existingBookmarkId = bookmark?.id
+            })
+            .map { $0 != nil }
+            .assign(to: &$isBookmarked)
     }
 
     public func bookmarkButtonDidTap() {
+        if isBookmarked {
+            guard let existingBookmarkId else { return }
+            confirmDialog = confirmDeleteDialog
+            confirmDeleteDialog
+                .userConfirmation()
+                .flatMap { [bookmarksInteractor] in
+                    bookmarksInteractor
+                        .deleteBookmark(id: existingBookmarkId)
+                }
+                .handleEvents(receiveOutput: { [weak self] _ in
+                    self?.existingBookmarkId = nil
+                })
+                .mapToValue(false)
+                .replaceError(with: true)
+                .assign(to: &$isBookmarked)
+        } else {
+            confirmDialog = confirmAddDialog
+            confirmAddDialog
+                .userConfirmation()
+                .flatMap { [bookmarksInteractor, title, route] in
+                    bookmarksInteractor
+                        .addBookmark(title: title, route: route)
+                }
+                .handleEvents(receiveOutput: { [weak self] bookmarkId in
+                    self?.existingBookmarkId = bookmarkId
+                })
+                .mapToValue(true)
+                .replaceError(with: false)
+                .assign(to: &$isBookmarked)
+        }
+
         isShowingConfirmationDialog = true
-        createBookmarkSubscription = confirmAddDialog
-            .userConfirmation()
-            .flatMap { [bookmarksInteractor, title, route] in
-                bookmarksInteractor
-                    .addBookmark(title: title, route: route)
-            }
-            .sink()
     }
 }
