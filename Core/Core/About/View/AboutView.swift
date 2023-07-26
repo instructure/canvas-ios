@@ -34,6 +34,7 @@ public struct AboutView: View {
                         Text(entry.label)
                             .foregroundColor(.textDark)
                             .font(.regular14, lineHeight: .fit)
+                            .accessibilityIdentifier(entry.title)
                     }
                     .padding(.horizontal, 16)
                     .padding(.top, 12)
@@ -45,9 +46,10 @@ public struct AboutView: View {
                 }
                 Image("instructure", bundle: .core)
                     .padding(.vertical, 36)
-                    .accessibilityHidden(true)
+                    .accessibilityIdentifier("InstructureLogo")
             }
         }
+        .accessibilityIdentifier("AboutView")
         .background(Color.backgroundLightest)
         .navigationTitle(viewModel.title)
     }
