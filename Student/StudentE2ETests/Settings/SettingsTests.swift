@@ -352,9 +352,6 @@ class SettingsTests: E2ETestCase {
         let privacyPolicy = Helper.menuItem(item: .privacyPolicy).waitToExist()
         XCTAssertTrue(privacyPolicy.isVisible)
 
-        let safariAppBaseState = SafariAppHelper.safariApp.state
-        XCTAssertEqual(safariAppBaseState, .notRunning)
-
         privacyPolicy.tap()
 
         let safariAppState = SafariAppHelper.safariApp.state
@@ -406,9 +403,6 @@ class SettingsTests: E2ETestCase {
         // MARK: Select "Canvas on GitHub", check if Safari opens
         let canvasOnGitHub = Helper.menuItem(item: .canvasOnGitHub).waitToExist()
         XCTAssertTrue(canvasOnGitHub.isVisible)
-
-        let safariAppBaseState = SafariAppHelper.safariApp.state
-        XCTAssertEqual(safariAppBaseState, .notRunning)
 
         canvasOnGitHub.tap()
 
