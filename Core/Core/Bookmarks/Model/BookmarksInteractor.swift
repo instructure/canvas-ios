@@ -25,6 +25,7 @@ public protocol BookmarksInteractor {
     func addBookmark(title: String, route: String) -> AnyPublisher<BookmarkID, Error>
     func deleteBookmark(id: String) -> AnyPublisher<Void, Error>
     func getBookmark(for route: String) -> AnyPublisher<BookmarkItem?, Never>
+    func moveBookmark(fromIndex: Int, toIndex: Int) -> AnyPublisher<[BookmarkItem], Error>
 }
 
 struct BookmarksInteractorLive: BookmarksInteractor {
@@ -55,7 +56,9 @@ struct BookmarksInteractorLive: BookmarksInteractor {
                 return value
             }
             .flatMap { bookmarkId in
-                self.getBookmarks().mapToValue(bookmarkId)
+                // fetch all bookmarks again to include the new one
+                self.getBookmarks()
+                    .mapToValue(bookmarkId)
             }
             .eraseToAnyPublisher()
     }
@@ -75,6 +78,22 @@ struct BookmarksInteractorLive: BookmarksInteractor {
             .getEntities()
             .map { $0.first }
             .replaceError(with: nil)
+            .eraseToAnyPublisher()
+    }
+
+    public func moveBookmark(fromIndex: Int, toIndex: Int) -> AnyPublisher<[BookmarkItem], Error> {
+        getBookmarks()
+            .compactMap {
+                $0.count > fromIndex ? $0[fromIndex] : nil
+            }
+            .flatMap { [api] in
+                let request = UpdateBookmarkRequest(id: $0.id, position: toIndex + 1)
+                return api.makeRequest(request)
+            }
+            .flatMap { _ in
+                // fetch all bookmarks again to get the new order
+                self.getBookmarks()
+            }
             .eraseToAnyPublisher()
     }
 }

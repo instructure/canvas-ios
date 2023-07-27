@@ -18,6 +18,7 @@
 
 import SwiftUI
 import Combine
+import CombineExt
 import CombineSchedulers
 
 public class BookmarksViewModel: ObservableObject {
@@ -52,7 +53,7 @@ public class BookmarksViewModel: ObservableObject {
             .assign(to: &$state)
     }
 
-    public func deleteBookmark(at index: Int) {
+    public func bookmarkDidDelete(at index: Int) {
         guard case .data(var bookmarks) = state  else { return }
         let idToDelete = bookmarks[index].id
 
@@ -76,5 +77,15 @@ public class BookmarksViewModel: ObservableObject {
             } receiveValue: { [weak self] in
                 self?.state = $0
             }
+    }
+
+    public func bookmarkDidMove(fromIndex: Int, toIndex: Int) {
+        interactor
+            .moveBookmark(fromIndex: fromIndex,
+                          toIndex: toIndex)
+            .mapArray { BookmarkCellViewModel(id: $0.id, name: $0.name, url: $0.url) }
+            .map { .data($0) }
+            .ignoreFailure()
+            .assign(to: &$state)
     }
 }

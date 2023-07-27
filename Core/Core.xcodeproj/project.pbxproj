@@ -743,6 +743,7 @@
 		7604A053D2905C439E171EE4 /* AssignmentGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C26B6A067BBBD2B3C90DA14 /* AssignmentGroupView.swift */; };
 		760FA063F2A361F1EF520260 /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDBB17A594371939DABCBE1 /* DividerView.swift */; };
 		768553C6E545957844AF7E26 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954DAE0F0268A743A977E372 /* Course.swift */; };
+		76942D63543163BBDA6BB0A0 /* UpdateBookmarkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9542AC6562A040748000038 /* UpdateBookmarkRequest.swift */; };
 		76B9A6D0AAFB1B226F978F42 /* SubmissionViewableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139598163BDC614785A3B1E3 /* SubmissionViewableTests.swift */; };
 		76C44D09FF4C013B9F69AA24 /* DashboardOfflineSyncProgressCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08FB3921176B62ADD500936 /* DashboardOfflineSyncProgressCardViewModel.swift */; };
 		76F6A8085A03DB5D06EEAAFE /* CourseSyncProgressViewModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B093091F6D011A8596EE68A4 /* CourseSyncProgressViewModelItem.swift */; };
@@ -3038,6 +3039,7 @@
 		C9045DFAA095E34E80D7DDF2 /* ShortcutsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsInteractor.swift; sourceTree = "<group>"; };
 		C90C70C1C994E0372260DEED /* DiscussionDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DiscussionDetailsViewController.storyboard; sourceTree = "<group>"; };
 		C9160E6FF32D199E6BF4310F /* MotionModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionModifier.swift; sourceTree = "<group>"; };
+		C9542AC6562A040748000038 /* UpdateBookmarkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateBookmarkRequest.swift; sourceTree = "<group>"; };
 		C969592BF3A06BD11FC1C93D /* TableViewBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewBackgroundView.swift; sourceTree = "<group>"; };
 		C970B37ADC570C2C8FDB19D7 /* FileProgressListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProgressListView.swift; sourceTree = "<group>"; };
 		C987203C9ADE623E509FE460 /* EmptyViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewControllerTests.swift; sourceTree = "<group>"; };
@@ -4524,6 +4526,7 @@
 				813609BBE65AF07F1585E77A /* CreateBookmarkRequest.swift */,
 				9069A978C9D08A905645AD53 /* DeleteBookmarkRequest.swift */,
 				D0BC42546BF979910064D7A0 /* GetBookmarksRequest.swift */,
+				C9542AC6562A040748000038 /* UpdateBookmarkRequest.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -10373,6 +10376,7 @@
 				DB3FC4B8A036EC32FAD91252 /* UTI.swift in Sources */,
 				19135A38E3ACE7FA1979B88C /* UTIFromNSItemProvider.swift in Sources */,
 				EB0A47D9DAD2660F1610772C /* UUID.swift in Sources */,
+				76942D63543163BBDA6BB0A0 /* UpdateBookmarkRequest.swift in Sources */,
 				2E9861D7075106AAF1F729CB /* UploadAvatar.swift in Sources */,
 				165BCC94E6D01296E4D6721C /* UploadFileComment.swift in Sources */,
 				F65B2410957AA33D09C3C9E0 /* UploadManager.swift in Sources */,

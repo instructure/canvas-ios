@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+#if DEBUG
+
 import Combine
 import CoreData
 
@@ -76,4 +78,12 @@ struct BookmarksInteractorPreview: BookmarksInteractor {
         Just(nil)
             .eraseToAnyPublisher()
     }
+
+    func moveBookmark(fromIndex: Int, toIndex: Int) -> AnyPublisher<[BookmarkItem], Error> {
+        Just([])
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
 }
+
+#endif

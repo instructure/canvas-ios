@@ -87,7 +87,11 @@ public struct BookmarksView: View {
             }
             .onDelete { deletedIndexes in
                 guard let deletedIndex = deletedIndexes.first else { return }
-                viewModel.deleteBookmark(at: deletedIndex)
+                viewModel.bookmarkDidDelete(at: deletedIndex)
+            }
+            .onMove { fromIndexes, toIndex in
+                guard let fromIndex = fromIndexes.first else { return }
+                viewModel.bookmarkDidMove(fromIndex: fromIndex, toIndex: toIndex)
             }
         }
         .listStyle(.plain)

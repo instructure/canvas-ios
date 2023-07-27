@@ -66,7 +66,7 @@ public class ReactiveStore<U: UseCase> {
     private var cancellable: AnyCancellable?
     private var subscriptions = Set<AnyCancellable>()
 
-    // MARK: -
+    // MARK: - Public Interface
 
     public init(
         env: AppEnvironment = .shared,
@@ -172,6 +172,8 @@ public class ReactiveStore<U: UseCase> {
             .first()
             .eraseToAnyPublisher()
     }
+
+    // MARK: - Private Methods
 
     private func fetchEntitiesFromCache<T: NSManagedObject>(
         fetchRequest: NSFetchRequest<T>
