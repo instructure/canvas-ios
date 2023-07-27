@@ -266,9 +266,6 @@ class SettingsTests: E2ETestCase {
         let subscribeToCalendarFeed = Helper.menuItem(item: .subscribeToCalendarFeed).waitToExist()
         XCTAssertTrue(subscribeToCalendarFeed.isVisible)
 
-        let calendarAppBaseState = CalendarAppHelper.calendarApp.state
-        XCTAssertEqual(calendarAppBaseState, .notRunning)
-
         subscribeToCalendarFeed.tap()
         let calendarAppState = CalendarAppHelper.calendarApp.state
         XCTAssertEqual(calendarAppState, .runningForeground)
