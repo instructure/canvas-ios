@@ -45,16 +45,14 @@ struct BookmarksInteractorLive: BookmarksInteractor {
         let request = CreateBookmarkRequest(body: bookmark)
 
         return api.makeRequest(request)
-            .flatMap {
-                if let id = $0.body.id?.value {
-                    return Just(id as BookmarkID)
-                        .setFailureType(to: Error.self)
-                        .eraseToAnyPublisher()
-                } else {
-                    return Fail(outputType: BookmarkID.self,
-                                failure: NSError.instructureError("Failed to extract bookmark ID from response."))
-                    .eraseToAnyPublisher()
+            .tryCompactMap {
+                let value = $0.body.id?.value
+
+                if value == nil {
+                    throw NSError.instructureError("Failed to extract bookmark ID from response.")
                 }
+
+                return value
             }
             .flatMap { bookmarkId in
                 self.getBookmarks().mapToValue(bookmarkId)
