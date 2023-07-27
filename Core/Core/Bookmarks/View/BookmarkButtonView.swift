@@ -35,8 +35,8 @@ struct BookmarkButtonView: View {
         .animation(.default, value: viewModel.isBookmarked)
     }
 
-    init(viewModel: BookmarkButtonViewModel) {
-        self._viewModel = StateObject(wrappedValue: viewModel)
+    init(viewModel: @escaping () -> BookmarkButtonViewModel) {
+        self._viewModel = StateObject(wrappedValue: viewModel())
     }
 }
 
