@@ -50,7 +50,6 @@ class BookmarkButtonViewModel: ObservableObject {
     private let route: String
     private let snackBarViewModel: SnackBarViewModel?
     private var existingBookmarkId: String?
-    private let bookmarkLoaded = PassthroughRelay<BookmarksInteractor.BookmarkID?>()
     private let bookmarkDeleted = PassthroughRelay<Void>()
     private let bookmarkAdded = PassthroughRelay<BookmarksInteractor.BookmarkID>()
     private var subscriptions = Set<AnyCancellable>()
@@ -65,9 +64,7 @@ class BookmarkButtonViewModel: ObservableObject {
         self.snackBarViewModel = snackBarViewModel
         self.confirmDialog = confirmAddDialog
 
-        saveBookmarkIdOnBookmarkLoad()
-        updateBookmarkedStateOnBookmarkLoad()
-        loadBookmark()
+        loadExistingBookmark()
 
         showSnackbarOnBookmarkDelete()
         resetStoredBookmarkIdOnBookmarkDelete()
@@ -111,24 +108,28 @@ class BookmarkButtonViewModel: ObservableObject {
         isShowingConfirmationDialog = true
     }
 
-    private func loadBookmark() {
-        bookmarksInteractor
+    private func loadExistingBookmark() {
+        let bookmarkPublisher = bookmarksInteractor
             .getBookmark(for: route)
             .map { $0?.id }
-            .sink { [bookmarkLoaded] bookmarkId in
-                bookmarkLoaded.accept(bookmarkId)
-            }
+            .makeConnectable()
+
+        saveBookmarkIdOnBookmarkLoad(bookmarkPublisher)
+        updateBookmarkedStateOnBookmarkLoad(bookmarkPublisher)
+
+        bookmarkPublisher
+            .connect()
             .store(in: &subscriptions)
     }
 
-    private func saveBookmarkIdOnBookmarkLoad() {
-        bookmarkLoaded
+    private func saveBookmarkIdOnBookmarkLoad(_ bookmarkLoad: some Publisher<BookmarksInteractor.BookmarkID?, Never>) {
+        bookmarkLoad
             .assign(to: \.existingBookmarkId, on: self, ownership: .weak)
             .store(in: &subscriptions)
     }
 
-    private func updateBookmarkedStateOnBookmarkLoad() {
-        bookmarkLoaded
+    private func updateBookmarkedStateOnBookmarkLoad(_ bookmarkLoad: some Publisher<BookmarksInteractor.BookmarkID?, Never>) {
+        bookmarkLoad
             .map { $0 == nil ? false : true }
             .assign(to: &$isBookmarked)
     }
