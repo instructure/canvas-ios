@@ -24,7 +24,7 @@ public var app: XCUIApplication { XCUIApplication() }
 public extension XCUIElement {
     static let defaultTimeout: TimeInterval = 15
     static let defaultGracePeriod: UInt32 = 1
-    var isVisible: Bool { self.exists && self.isHittable }
+    var isVisible: Bool { self.exists }
 
     enum ElementCondition {
         case visible
@@ -95,19 +95,9 @@ public extension XCUIElement {
                                      gracePeriod: UInt32 = defaultGracePeriod) -> Bool {
         let deadline = Date().addingTimeInterval(timeout)
         while Date() < deadline {
-            switch action {
-            case .tap: tap()
-            case .swipeUp: swipeUp()
-            case .swipeDown: swipeDown()
-            case .swipeLeft: swipeLeft()
-            case .swipeRight: swipeRight()
-            case .showKeyboard: CoreUITestCase.currentTestCase?.send(.showKeyboard, ignoreErrors: true)
-            }
-
-            sleep(gracePeriod)
             let actualElement = element ?? self
-
             var result = false
+
             switch condition {
             case .vanish:
                 result = !actualElement.isVisible
@@ -122,7 +112,18 @@ public extension XCUIElement {
             case .selected:
                 result = actualElement.exists && actualElement.isSelected
             }
-            if result { return true } else { sleep(gracePeriod) }
+            if result { return true } else {
+                switch action {
+                case .tap: tap()
+                case .swipeUp: swipeUp()
+                case .swipeDown: swipeDown()
+                case .swipeLeft: swipeLeft()
+                case .swipeRight: swipeRight()
+                case .showKeyboard: CoreUITestCase.currentTestCase?.send(.showKeyboard, ignoreErrors: true)
+                }
+                
+                sleep(gracePeriod)
+            }
         }
         return false
     }
