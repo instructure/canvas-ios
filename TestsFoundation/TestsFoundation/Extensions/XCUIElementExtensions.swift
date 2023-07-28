@@ -160,31 +160,31 @@ public extension XCUIElement {
 
     // MARK: Find
     func find(label: String, type: ElementType = .any) -> XCUIElement {
-        return descendants(matching: type).matching(label: label).element
+        return descendants(matching: type).matching(label: label).firstMatch
     }
 
     func find(labelContaining needle: String, type: ElementType = .any) -> XCUIElement {
-        return descendants(matching: type).matching(labelContaining: needle).element
+        return descendants(matching: type).matching(labelContaining: needle).firstMatch
     }
 
     func find(id: String, type: ElementType = .any) -> XCUIElement {
-        return descendants(matching: type).matching(id: id).element
+        return descendants(matching: type).matching(id: id).firstMatch
     }
 
     func find(idStartingWith prefix: String, type: ElementType = .any) -> XCUIElement {
-        return descendants(matching: type).matching(idStartingWith: prefix).element
+        return descendants(matching: type).matching(idStartingWith: prefix).firstMatch
     }
 
     func find(value: String, type: ElementType = .any) -> XCUIElement {
-        return descendants(matching: type).matching(value: value).element
+        return descendants(matching: type).matching(value: value).firstMatch
     }
 
     func find(type: ElementType = .any) -> XCUIElement {
-        return descendants(matching: type).element
+        return descendants(matching: type).firstMatch
     }
 
     func find(id: String, label: String, type: ElementType = .any) -> XCUIElement {
-        return descendants(matching: type).matching(id: id).matching(label: label).element
+        return descendants(matching: type).matching(id: id).matching(label: label).firstMatch
     }
 
     func findAll(type: XCUIElement.ElementType) -> [XCUIElement] {
@@ -198,10 +198,10 @@ public extension XCUIElement {
     // MARK: - Alerts
 
     func findAlertButton(label: String) -> XCUIElement {
-        descendants(matching: .alert).descendants(matching: .button).matching(label: label).element
+        descendants(matching: .alert).descendants(matching: .button).matching(label: label).firstMatch
     }
 
     func findAlertStaticText(label: String) -> XCUIElement {
-        descendants(matching: .alert).descendants(matching: .staticText).matching(label: label).element
+        descendants(matching: .alert).descendants(matching: .staticText).matching(label: label).firstMatch
     }
 }
