@@ -33,34 +33,37 @@ class SyllabusTests: E2ETestCase {
         logInDSUser(student)
         SyllabusHelper.navigateToSyllabus(course: course)
 
-        let navBar = SyllabusHelper.navBar(course: course).waitToExist()
+        let navBar = SyllabusHelper.navBar(course: course).waitUntil(condition: .visible)
         XCTAssertTrue(navBar.isVisible)
 
-        let syllabusTab = SyllabusHelper.syllabusTab.waitToExist()
+        let syllabusTab = SyllabusHelper.syllabusTab.waitUntil(condition: .visible)
         XCTAssertTrue(syllabusTab.isVisible)
 
-        let summaryTab = SyllabusHelper.summaryTab.waitToExist()
+        let summaryTab = SyllabusHelper.summaryTab.waitUntil(condition: .visible)
         XCTAssertTrue(summaryTab.isVisible)
 
-        let syllabusBodyLabel = SyllabusHelper.syllabusBody.waitToExist()
+        let syllabusBodyLabel = SyllabusHelper.syllabusBody.waitUntil(condition: .visible)
         XCTAssertTrue(syllabusBodyLabel.isVisible)
-        XCTAssertEqual(syllabusBodyLabel.label(), course.syllabus_body!)
+        XCTAssertEqual(syllabusBodyLabel.label, course.syllabus_body!)
 
         summaryTab.tap()
 
         // MARK: Check "Summary" tab
-        let summaryAssignmentItem = SyllabusHelper.summaryAssignmentCell(assignment: assignment).waitToExist()
+        let summaryAssignmentItem = SyllabusHelper.summaryAssignmentCell(assignment: assignment)
+            .waitUntil(condition: .visible)
         XCTAssertTrue(summaryAssignmentItem.isVisible)
 
-        let summaryAssignmentTitle = SyllabusHelper.summaryAssignmentTitle(assignment: assignment).waitToExist()
+        let summaryAssignmentTitle = SyllabusHelper.summaryAssignmentTitle(assignment: assignment)
+            .waitUntil(condition: .visible)
         XCTAssertTrue(summaryAssignmentTitle.isVisible)
-        XCTAssertEqual(summaryAssignmentTitle.label(), assignment.name)
+        XCTAssertEqual(summaryAssignmentTitle.label, assignment.name)
 
-        let summaryCalendarEventItem = SyllabusHelper.summaryCalendarEventCell(calendarEvent: calendarEvent).waitToExist()
+        let summaryCalendarEventItem = SyllabusHelper.summaryCalendarEventCell(calendarEvent: calendarEvent).waitUntil(condition: .visible)
         XCTAssertTrue(summaryCalendarEventItem.isVisible)
 
-        let summaryCalendarEventTitle = SyllabusHelper.summaryCalendarEventTitle(calendarEvent: calendarEvent).waitToExist()
+        let summaryCalendarEventTitle = SyllabusHelper.summaryCalendarEventTitle(calendarEvent: calendarEvent)
+            .waitUntil(condition: .visible)
         XCTAssertTrue(summaryCalendarEventTitle.isVisible)
-        XCTAssertEqual(summaryCalendarEventTitle.label(), calendarEvent.title)
+        XCTAssertEqual(summaryCalendarEventTitle.label, calendarEvent.title)
     }
 }

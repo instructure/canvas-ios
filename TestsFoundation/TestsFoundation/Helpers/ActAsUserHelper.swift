@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2021-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,30 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
-@testable import Core
-
-open class K5UITestCase: CoreUITestCase {
-    override open var experimentalFeatures: [ExperimentalFeature] { return [ExperimentalFeature.K5Dashboard]}
-
-    open func resetAppStateForK5() {
-        app.terminate()
-        launch()
-        sleep(5)
-    }
-
-    open override func setUp() {
-        super.setUp()
-    }
-
-    open override var user: UITestUser? {
-        .readStudentK5
-    }
-
-    open func setUpK5() {
-        K5Helper.homeroom.waitUntil(condition: .visible)
-        resetAppStateForK5()
-        pullToRefresh()
-        K5Helper.homeroom.waitUntil(condition: .visible)
-    }
+public class ActAsUserHelper: BaseHelper {
+    public static var actAsUserButton: XCUIElement { app.find(id: "ActAsUser.actAsUserButton") }
+    public static var domainField: XCUIElement { app.find(id: "ActAsUser.actAsUserButton") }
+    public static var userIDField: XCUIElement { app.find(id: "ActAsUser.userIDField") }
+    public static var endActAsUserButton: XCUIElement { app.find(id: "ActAsUser.endActAsUserButton") }
+    public static var okAlertButton: XCUIElement { app.findAlertButton(label: "OK") }
 }

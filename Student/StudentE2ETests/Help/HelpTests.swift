@@ -16,9 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import TestsFoundation
-import XCTest
 
 class HelpTests: E2ETestCase {
     func testHelpPage() {
@@ -33,45 +31,45 @@ class HelpTests: E2ETestCase {
         HelpHelper.navigateToHelpPage()
 
         // MARK: Check "Search the Canvas Guides" button
-        let searchTheCanvasGuidesButton = Help.searchTheCanvasGuides.waitToExist()
+        let searchTheCanvasGuidesButton = HelpHelper.searchTheCanvasGuides.waitUntil(condition: .visible)
         XCTAssertTrue(searchTheCanvasGuidesButton.isVisible)
-        XCTAssertTrue(searchTheCanvasGuidesButton.label().contains("Search the Canvas Guides"))
+        XCTAssertTrue(searchTheCanvasGuidesButton.label.contains("Search the Canvas Guides"))
         searchTheCanvasGuidesButton.tap()
         var browserURL = HelpHelper.browserURL
         XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Canvas-LMS/ct-p/canvaslms"))
         HelpHelper.returnToHelpPage()
 
         // MARK: Check "Ask Your Instructor a Question" button
-        let askYourInstructorButton = Help.askYourInstructor.waitToExist()
+        let askYourInstructorButton = HelpHelper.askYourInstructor.waitUntil(condition: .visible)
         XCTAssertTrue(askYourInstructorButton.isVisible)
-        XCTAssertTrue(askYourInstructorButton.label().contains("Ask Your Instructor a Question"))
+        XCTAssertTrue(askYourInstructorButton.label.contains("Ask Your Instructor a Question"))
         askYourInstructorButton.tap()
-        XCTAssertTrue(app.find(label: "New Message").waitToExist().isVisible)
-        app.find(label: "Cancel").tap()
+        XCTAssertTrue(app.find(label: "New Message").waitUntil(condition: .visible).isVisible)
+        app.find(label: "Cancel").hit()
         HelpHelper.navigateToHelpPage()
 
         // MARK: Check "Report a Problem" button
-        let reportAProblemButton = Help.reportAProblem.waitToExist()
+        let reportAProblemButton = HelpHelper.reportAProblem.waitUntil(condition: .visible)
         XCTAssertTrue(reportAProblemButton.isVisible)
-        XCTAssertTrue(reportAProblemButton.label().contains("Report a Problem"))
+        XCTAssertTrue(reportAProblemButton.label.contains("Report a Problem"))
         reportAProblemButton.tap()
-        XCTAssertTrue(app.find(label: "Report a Problem").waitToExist().isVisible)
-        app.find(label: "Cancel").tap()
+        XCTAssertTrue(app.find(label: "Report a Problem").waitUntil(condition: .visible).isVisible)
+        app.find(label: "Cancel").hit()
         HelpHelper.navigateToHelpPage()
 
         // MARK: Check "Submit a Feature Idea" button
-        let submitAFeatureButton = Help.submitAFeatureIdea.waitToExist()
+        let submitAFeatureButton = HelpHelper.submitAFeatureIdea.waitUntil(condition: .visible)
         XCTAssertTrue(submitAFeatureButton.isVisible)
-        XCTAssertTrue(submitAFeatureButton.label().contains("Submit a Feature Idea"))
+        XCTAssertTrue(submitAFeatureButton.label.contains("Submit a Feature Idea"))
         submitAFeatureButton.tap()
         browserURL = HelpHelper.browserURL
         XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Canvas-Ideas-and-Themes/ct-p/canvas-ideas-themes"))
         HelpHelper.returnToHelpPage()
 
         // MARK: Check "COVID-19 Canvas Resources" button
-        let covid19Button = Help.covid19.waitToExist()
+        let covid19Button = HelpHelper.covid19.waitUntil(condition: .visible)
         XCTAssertTrue(covid19Button.isVisible)
-        XCTAssertTrue(covid19Button.label().contains("COVID-19 Canvas Resources"))
+        XCTAssertTrue(covid19Button.label.contains("COVID-19 Canvas Resources"))
         covid19Button.tap()
         browserURL = HelpHelper.browserURL
         XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Contingency-Resources/gh-p/contingency"))
