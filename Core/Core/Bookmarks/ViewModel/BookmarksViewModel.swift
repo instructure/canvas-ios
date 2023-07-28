@@ -40,7 +40,7 @@ public class BookmarksViewModel: ObservableObject {
         interactor
             .getBookmarks()
             .mapArray {
-                BookmarkCellViewModel(id: $0.id, name: $0.name, url: $0.url)
+                BookmarkCellViewModel(id: $0.id, name: $0.name, contextName: $0.contextName, url: $0.url)
             }
             .map { (bookmarks: [BookmarkCellViewModel]) -> ViewModelState<[BookmarkCellViewModel]> in
                 if bookmarks.isEmpty {
@@ -83,7 +83,7 @@ public class BookmarksViewModel: ObservableObject {
         interactor
             .moveBookmark(fromIndex: fromIndex,
                           toIndex: toIndex)
-            .mapArray { BookmarkCellViewModel(id: $0.id, name: $0.name, url: $0.url) }
+            .mapArray { BookmarkCellViewModel(id: $0.id, name: $0.name, contextName: $0.contextName, url: $0.url) }
             .map { .data($0) }
             .ignoreFailure()
             .assign(to: &$state)

@@ -33,11 +33,16 @@ struct BookmarkCellView: View {
             env.router.route(to: bookmark.url, from: controller)
         } label: {
             HStack(spacing: 0) {
-                Image.bookmarkLine
-                    .padding(.leading, 22)
-                Text(bookmark.name)
-                    .font(.semibold16)
-                    .padding(.leading, 12)
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(bookmark.name)
+                        .font(.semibold16, lineHeight: .fit)
+                    if let contextName = bookmark.contextName {
+                        Text(contextName)
+                            .font(.regular14, lineHeight: .fit)
+                            .foregroundColor(.textDark)
+                    }
+                }
+                .padding(.leading, 12)
                 Spacer(minLength: 12)
                 InstDisclosureIndicator()
                     .padding(.trailing, 17)
@@ -55,9 +60,16 @@ struct BookmarkCellView: View {
 
 struct BookmarkCellView_Previews: PreviewProvider {
     static var previews: some View {
-        ZStack {
-            Color.backgroundLightest
-            BookmarkCellView(bookmark: BookmarkCellViewModel(id: "0", name: "Test", url: "url"))
+        VStack {
+            BookmarkCellView(bookmark: BookmarkCellViewModel(id: "0",
+                                                             name: "Test",
+                                                             contextName: "Course1",
+                                                             url: "url"))
+            BookmarkCellView(bookmark: BookmarkCellViewModel(id: "0",
+                                                             name: "Test",
+                                                             contextName: nil,
+                                                             url: "url"))
+
         }
     }
 }

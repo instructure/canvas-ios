@@ -19,11 +19,13 @@
 public struct BookmarkCellViewModel: Equatable, Identifiable {
     public let id: String
     public let name: String
+    public let contextName: String?
     public let url: String
 
-    public init(id: String, name: String, url: String) {
+    public init(id: String, name: String, contextName: String?, url: String) {
         self.id = id
         self.name = name
+        self.contextName = contextName
         self.url = url
     }
 }

@@ -25,6 +25,7 @@ public protocol BookmarksInteractor {
     func addBookmark(title: String, route: String, contextName: String?) -> AnyPublisher<BookmarkID, Error>
     func deleteBookmark(id: String) -> AnyPublisher<Void, Error>
     func getBookmark(for route: String) -> AnyPublisher<BookmarkItem?, Never>
+    /** Moves the bookmark at `fromIndex` to `toIndex` and returns the updated bookmark list. */
     func moveBookmark(fromIndex: Int, toIndex: Int) -> AnyPublisher<[BookmarkItem], Error>
 }
 
