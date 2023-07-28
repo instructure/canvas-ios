@@ -32,6 +32,7 @@ public class BookmarksViewModel: ObservableObject {
     public let snackBarViewModel = SnackBarViewModel()
     private let interactor: BookmarksInteractor
     private let mainScheduler: AnySchedulerOf<DispatchQueue>
+    private var subscriptions = Set<AnyCancellable>()
 
     public init(interactor: BookmarksInteractor, mainScheduler: AnySchedulerOf<DispatchQueue> = .main) {
         self.interactor = interactor
@@ -80,12 +81,27 @@ public class BookmarksViewModel: ObservableObject {
     }
 
     public func bookmarkDidMove(fromIndex: Int, toIndex: Int) {
-        interactor
+        let bookmarkUpdate = interactor
             .moveBookmark(fromIndex: fromIndex,
                           toIndex: toIndex)
+            .makeConnectableWithAnyFailureType()
+
+        bookmarkUpdate
             .mapArray { BookmarkCellViewModel(id: $0.id, name: $0.name, contextName: $0.contextName, url: $0.url) }
             .map { .data($0) }
             .ignoreFailure()
             .assign(to: &$state)
+
+        bookmarkUpdate
+            .map { _ in NSLocalizedString("Bookmark list updated", comment: "") }
+            .replaceError(with: NSLocalizedString("Failed to update bookmark list", comment: ""))
+            .sink { [snackBarViewModel] message in
+                snackBarViewModel.showSnack(message)
+            }
+            .store(in: &subscriptions)
+
+        bookmarkUpdate
+            .connect()
+            .store(in: &subscriptions)
     }
 }

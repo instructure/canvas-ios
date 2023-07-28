@@ -50,4 +50,8 @@ public extension Publisher {
     func mapToOptional() -> Publishers.Map<Self, Output?> {
         map { $0 as Output? }
     }
+
+    func makeConnectableWithAnyFailureType() -> Publishers.MakeConnectable<Self> {
+        .init(upstream: self)
+    }
 }
