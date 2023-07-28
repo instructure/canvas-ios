@@ -66,7 +66,8 @@ public struct BookmarksView: View {
                                  subtitle: Text("There are no bookmarks to display.", bundle: .core))
                 .frame(maxWidth: .infinity)
                 .frame(height: geometry.size.height)
-            } refreshAction: { completion in
+            } refreshAction: { _ in
+                // TODO: Refresh
             }
         }
     }
