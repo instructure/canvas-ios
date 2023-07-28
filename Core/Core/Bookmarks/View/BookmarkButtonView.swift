@@ -44,6 +44,45 @@ struct BookmarkButtonView: View {
     }
 }
 
+public extension View {
+
+    func bookmarkable(bookmarkTitle: String,
+                      bookmarkContextName: String? = nil,
+                      bookmarkRoute: String) -> some View {
+        modifier(BookmarkButtonViewModifier(bookmarkTitle: bookmarkTitle,
+                                            bookmarkContextName: bookmarkContextName,
+                                            bookmarkRoute: bookmarkRoute))
+    }
+}
+
+private struct BookmarkButtonViewModifier: ViewModifier {
+    @StateObject private var snackBarViewModel = SnackBarViewModel()
+    private let bookmarkTitle: String
+    private let bookmarkContextName: String?
+    private let bookmarkRoute: String
+
+    init(bookmarkTitle: String,
+         bookmarkContextName: String? = nil,
+         bookmarkRoute: String) {
+        self.bookmarkTitle = bookmarkTitle
+        self.bookmarkContextName = bookmarkContextName
+        self.bookmarkRoute = bookmarkRoute
+    }
+
+    func body(content: Content) -> some View {
+        content
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    BookmarksAssembly.makeBookmarkButtonView(bookmarkTitle: bookmarkTitle,
+                                                             bookmarkContextName: bookmarkContextName,
+                                                             bookmarkRoute: bookmarkRoute,
+                                                             snackBarViewModel: snackBarViewModel)
+                }
+            }
+            .snackBar(viewModel: snackBarViewModel)
+    }
+}
+
 #if DEBUG
 
 @available(iOSApplicationExtension 16.0, *)
@@ -58,12 +97,10 @@ struct BookmarkButton_Previews: PreviewProvider {
                 Spacer()
             }
             .navigationBarTitleDisplayMode(.inline)
+            .bookmarkable(bookmarkTitle: "Custom bookmark",
+                          bookmarkContextName: "Course 1",
+                          bookmarkRoute: "/route")
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    BookmarksAssembly.makeBookmarkButtonView(bookmarkTitle: "Custom bookmark",
-                                                             bookmarkContextName: "Course 1",
-                                                             bookmarkRoute: "/route")
-                }
                 ToolbarItem(placement: .principal) {
                     Text(verbatim: "Bookmarkable")
                         .foregroundColor(.textLightest)

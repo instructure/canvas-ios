@@ -58,6 +58,9 @@ public struct AssignmentListView: View, ScreenViewTrackable {
         .navigationBarGenericBackButton()
         .onAppear(perform: viewModel.viewDidAppear)
         .onReceive(viewModel.$defaultDetailViewRoute, perform: setupDefaultSplitDetailView)
+        .bookmarkable(bookmarkTitle: NSLocalizedString("Assignments", comment: ""),
+                      bookmarkContextName: viewModel.courseName,
+                      bookmarkRoute: screenViewTrackingParameters.eventName)
     }
 
     private var gradingPeriodTitle: some View {
