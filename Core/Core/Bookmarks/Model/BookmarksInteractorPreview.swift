@@ -62,7 +62,7 @@ struct BookmarksInteractorPreview: BookmarksInteractor {
         }
     }
 
-    func addBookmark(title: String, route: String) -> AnyPublisher<BookmarkID, Error> {
+    func addBookmark(title: String, route: String, contextName: String?) -> AnyPublisher<BookmarkID, Error> {
         Just("")
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()

@@ -21,10 +21,12 @@ import Combine
 
 struct BookmarkButtonView: View {
     @StateObject private var viewModel: BookmarkButtonViewModel
+    private let bookmarkTitle: String
+    private let bookmarkContextName: String?
 
     var body: some View {
         Button {
-            viewModel.bookmarkButtonDidTap()
+            viewModel.bookmarkButtonDidTap(title: bookmarkTitle, contextName: bookmarkContextName)
         } label: {
             viewModel.isBookmarked ? Image.bookmarkSolid : Image.bookmarkLine
         }
@@ -35,7 +37,9 @@ struct BookmarkButtonView: View {
         .animation(.default, value: viewModel.isBookmarked)
     }
 
-    init(viewModel: @escaping () -> BookmarkButtonViewModel) {
+    init(title: String, contextName: String?, viewModel: @escaping () -> BookmarkButtonViewModel) {
+        self.bookmarkTitle = title
+        self.bookmarkContextName = contextName
         self._viewModel = StateObject(wrappedValue: viewModel())
     }
 }
@@ -57,6 +61,7 @@ struct BookmarkButton_Previews: PreviewProvider {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     BookmarksAssembly.makeBookmarkButtonView(bookmarkTitle: "Custom bookmark",
+                                                             bookmarkContextName: "Course 1",
                                                              bookmarkRoute: "/route")
                 }
                 ToolbarItem(placement: .principal) {

@@ -36,21 +36,22 @@ public enum BookmarksAssembly {
     }
 
     public static func makeBookmarkButtonView(bookmarkTitle: String,
+                                              bookmarkContextName: String?,
                                               bookmarkRoute: String,
                                               snackBarViewModel: SnackBarViewModel? = nil) -> some View {
-        BookmarkButtonView(viewModel: {
-            makeBookmarkButtonViewModel(bookmarkTitle: bookmarkTitle,
-                                        bookmarkRoute: bookmarkRoute,
-                                        snackBarViewModel: snackBarViewModel)
-        })
+        BookmarkButtonView(
+            title: bookmarkTitle,
+            contextName: bookmarkContextName,
+            viewModel: {
+                makeBookmarkButtonViewModel(bookmarkRoute: bookmarkRoute,
+                                            snackBarViewModel: snackBarViewModel)
+            })
     }
 
-    private static func makeBookmarkButtonViewModel(bookmarkTitle: String,
-                                                    bookmarkRoute: String,
+    private static func makeBookmarkButtonViewModel(bookmarkRoute: String,
                                                     snackBarViewModel: SnackBarViewModel? = nil) -> BookmarkButtonViewModel {
         let interactor = makeBookmarksInteractor()
         return BookmarkButtonViewModel(bookmarksInteractor: interactor,
-                                       title: bookmarkTitle,
                                        route: bookmarkRoute,
                                        snackBarViewModel: snackBarViewModel)
     }

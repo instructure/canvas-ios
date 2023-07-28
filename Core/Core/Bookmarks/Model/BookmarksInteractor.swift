@@ -22,7 +22,7 @@ import CombineExt
 public protocol BookmarksInteractor {
     typealias BookmarkID = String
     func getBookmarks() -> AnyPublisher<[BookmarkItem], Error>
-    func addBookmark(title: String, route: String) -> AnyPublisher<BookmarkID, Error>
+    func addBookmark(title: String, route: String, contextName: String?) -> AnyPublisher<BookmarkID, Error>
     func deleteBookmark(id: String) -> AnyPublisher<Void, Error>
     func getBookmark(for route: String) -> AnyPublisher<BookmarkItem?, Never>
     func moveBookmark(fromIndex: Int, toIndex: Int) -> AnyPublisher<[BookmarkItem], Error>
@@ -41,8 +41,8 @@ struct BookmarksInteractorLive: BookmarksInteractor {
             .eraseToAnyPublisher()
     }
 
-    public func addBookmark(title: String, route: String) -> AnyPublisher<BookmarkID, Error> {
-        let bookmark = APIBookmark(name: title, url: route)
+    public func addBookmark(title: String, route: String, contextName: String?) -> AnyPublisher<BookmarkID, Error> {
+        let bookmark = APIBookmark(name: title, url: route, contextName: contextName)
         let request = CreateBookmarkRequest(body: bookmark)
 
         return api.makeRequest(request)
@@ -82,7 +82,7 @@ struct BookmarksInteractorLive: BookmarksInteractor {
     }
 
     public func moveBookmark(fromIndex: Int, toIndex: Int) -> AnyPublisher<[BookmarkItem], Error> {
-        getBookmarks()
+        getBookmarks() // TODO: Fetch from CoreData only, no need to get this from API
             .compactMap {
                 $0.count > fromIndex ? $0[fromIndex] : nil
             }

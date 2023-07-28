@@ -22,14 +22,48 @@ public struct APIBookmark: Codable, Equatable {
     public let name: String?
     public let url: String?
     public let position: Int?
+    public let data: String?
+    public var contextName: String? {
+        guard let stringData = data,
+              let data = stringData.data(using: .utf8)
+        else { return nil }
+
+        let contextNameContainer = try? decoder.decode(APIBookmarkContextName.self,
+                                                       from: data)
+        return contextNameContainer?.contextName
+    }
 
     public init(id: String? = nil,
                 name: String? = nil,
                 url: String? = nil,
-                position: Int? = nil) {
+                position: Int? = nil,
+                data: String? = nil) {
         self.id = ID(id)
         self.name = name
         self.url = url
         self.position = position
+        self.data = data
     }
+
+    public init(name: String,
+                url: String,
+                contextName: String?) {
+        self.id = nil
+        self.name = name
+        self.url = url
+        self.position = nil
+        self.data = {
+            guard let contextName else { return nil }
+            let container = APIBookmarkContextName(contextName: contextName)
+            guard let jsonData = try? encoder.encode(container) else { return nil }
+            return String(data: jsonData, encoding: .utf8)
+        }()
+    }
+}
+
+private let encoder = JSONEncoder()
+private let decoder = JSONDecoder()
+
+struct APIBookmarkContextName: Codable {
+    let contextName: String
 }

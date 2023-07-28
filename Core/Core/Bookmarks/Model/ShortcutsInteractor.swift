@@ -152,7 +152,7 @@ extension UIApplicationShortcutItem {
     convenience init(bookmark: BookmarkItem) {
         self.init(type: "bookmark",
                   localizedTitle: bookmark.name,
-                  localizedSubtitle: nil,
+                  localizedSubtitle: bookmark.contextName,
                   icon: UIApplicationShortcutIcon(templateImageName: "bookmarkLine"),
                   userInfo: ["bookmarkURL": bookmark.url as NSSecureCoding])
     }

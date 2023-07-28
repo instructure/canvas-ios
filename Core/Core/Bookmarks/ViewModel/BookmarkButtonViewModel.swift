@@ -46,7 +46,6 @@ class BookmarkButtonViewModel: ObservableObject {
         isDestructive: true
     )
     private let bookmarksInteractor: BookmarksInteractor
-    private let title: String
     private let route: String
     private let snackBarViewModel: SnackBarViewModel?
     private var existingBookmarkId: String?
@@ -55,11 +54,9 @@ class BookmarkButtonViewModel: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
 
     public init(bookmarksInteractor: BookmarksInteractor,
-                title: String,
                 route: String,
                 snackBarViewModel: SnackBarViewModel? = nil) {
         self.bookmarksInteractor = bookmarksInteractor
-        self.title = title
         self.route = route
         self.snackBarViewModel = snackBarViewModel
         self.confirmDialog = confirmAddDialog
@@ -75,7 +72,7 @@ class BookmarkButtonViewModel: ObservableObject {
         updateBookmarkedStateOnNewBookmark()
     }
 
-    public func bookmarkButtonDidTap() {
+    public func bookmarkButtonDidTap(title: String, contextName: String?) {
         if isBookmarked {
             guard let existingBookmarkId else { return }
             confirmDialog = confirmDeleteDialog
@@ -94,9 +91,9 @@ class BookmarkButtonViewModel: ObservableObject {
             confirmDialog = confirmAddDialog
             confirmAddDialog
                 .userConfirmation()
-                .flatMap { [bookmarksInteractor, title, route] in
+                .flatMap { [bookmarksInteractor, route] in
                     bookmarksInteractor
-                        .addBookmark(title: title, route: route)
+                        .addBookmark(title: title, route: route, contextName: contextName)
                         .ignoreFailure()
                 }
                 .sink { [bookmarkAdded] bookmarkId in

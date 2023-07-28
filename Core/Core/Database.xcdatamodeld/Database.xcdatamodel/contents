@@ -111,6 +111,7 @@
         <relationship name="assignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Assignment" inverseName="overrides" inverseEntity="Assignment"/>
     </entity>
     <entity name="BookmarkItem" representedClassName="Core.BookmarkItem" syncable="YES">
+        <attribute name="contextName" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="position" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>

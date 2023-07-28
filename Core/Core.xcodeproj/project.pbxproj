@@ -212,6 +212,7 @@
 		233052BCE72168FE30A23B74 /* APICommunicationChannelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BB6F21382DBCA8F6ADD5A5 /* APICommunicationChannelTests.swift */; };
 		233C97D062B5F23DFC9143E1 /* MockMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E64E29A0321D09B829B656 /* MockMessage.swift */; };
 		234630480D85497AF6A2DFB7 /* DiscussionTopicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6041A1279D7F4E60DF8A38 /* DiscussionTopicTests.swift */; };
+		234D949154A877D5196814E4 /* APIBookmarkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA372D032D04E2F4940C86B /* APIBookmarkTests.swift */; };
 		2352CD77933AB71702A23690 /* GroupPeopleListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A04437E8586A7F5B170797C2 /* GroupPeopleListViewControllerTests.swift */; };
 		2364098BD60656CBF5F55136 /* DynamicHeightTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87225254F0CDADCA1FDDA6C1 /* DynamicHeightTextEditor.swift */; };
 		237655722268858D90440FFA /* ExternalURLViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FCBB83E9BE068667A81632D /* ExternalURLViewController.storyboard */; };
@@ -2656,6 +2657,7 @@
 		8E0DC366BB1005096F43F42E /* CircleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		8E5D3EAD5E2135988C032705 /* defaultHeaderImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = defaultHeaderImage.png; sourceTree = "<group>"; };
 		8EA372204F1FEB82DA6595A8 /* SnackBarViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackBarViewModifier.swift; sourceTree = "<group>"; };
+		8EA372D032D04E2F4940C86B /* APIBookmarkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBookmarkTests.swift; sourceTree = "<group>"; };
 		8EDF7335213BE2D1B73AD467 /* TopBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarView.swift; sourceTree = "<group>"; };
 		8F0ED8425C4BF05D844180A6 /* SyllabusCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusCellViewModel.swift; sourceTree = "<group>"; };
 		8F28C51D1872B494738F36BA /* K5GradeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradeCellViewModel.swift; sourceTree = "<group>"; };
@@ -3858,6 +3860,14 @@
 				3DEF7BD54ECC568273B218AF /* Refreshable.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		138D7CB547E8F34670490AF9 /* Bookmarks */ = {
+			isa = PBXGroup;
+			children = (
+				E49C84429B75C42EA024436A /* Model */,
+			);
+			path = Bookmarks;
 			sourceTree = "<group>";
 		};
 		1391B913CACA809D64D3A023 /* CourseSync */ = {
@@ -6594,6 +6604,7 @@
 				48FE05FA18C46C239F4C3BED /* AppEnvironment */,
 				1D4B4A5925DD39DCEA3D27CB /* Assignments */,
 				5ECBBEB150F6C26BD7F12293 /* AudioVideo */,
+				138D7CB547E8F34670490AF9 /* Bookmarks */,
 				A6CBE9824C417B72BD91C357 /* Conferences */,
 				0069575334B10F07D0E66A9B /* Constants */,
 				98D4CBEB5C458164C5B6A90C /* Contexts */,
@@ -7351,6 +7362,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		B97078E3E42EC42408876E63 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				8EA372D032D04E2F4940C86B /* APIBookmarkTests.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		B99DC6F1A93192C1696A9E8F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -8077,6 +8096,14 @@
 				71EAD005E184B589BAC02E31 /* K5GradesView.swift */,
 			);
 			path = Grades;
+			sourceTree = "<group>";
+		};
+		E49C84429B75C42EA024436A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B97078E3E42EC42408876E63 /* API */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		E50F8BC55C910BF308CF0ABC /* Helpers */ = {
@@ -8947,6 +8974,7 @@
 				9D6D4F20B23DE6D37E6BB983 /* APIActivityTests.swift in Sources */,
 				5F7DEFE306C63CBB96A2D13A /* APIAssignmentListTests.swift in Sources */,
 				C8334187E3144139EC05A67B /* APIAssignmentTests.swift in Sources */,
+				234D949154A877D5196814E4 /* APIBookmarkTests.swift in Sources */,
 				8DDF049879B4EFA6680A326B /* APIBrandVariablesTests.swift in Sources */,
 				AC35317432FFBF5A3DB69AB1 /* APICalendarEventTests.swift in Sources */,
 				EE486E8D8A6101FF45D6F41E /* APICommentLibraryTests.swift in Sources */,

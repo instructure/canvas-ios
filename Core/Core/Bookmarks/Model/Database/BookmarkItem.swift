@@ -24,6 +24,7 @@ public final class BookmarkItem: NSManagedObject {
     @NSManaged public var name: String
     @NSManaged public var url: String
     @NSManaged public var position: Int
+    @NSManaged public var contextName: String?
 
     public static func save(_ item: APIBookmark, in context: NSManagedObjectContext) {
         guard let name = item.name,
@@ -36,5 +37,6 @@ public final class BookmarkItem: NSManagedObject {
         model.name = name
         model.url = url
         model.position = item.position ?? .max
+        model.contextName = item.contextName
     }
 }
