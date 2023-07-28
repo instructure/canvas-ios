@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,6 +13,8 @@
                 <outlet property="contentStackView" destination="YcZ-Kt-I2X" id="nGx-i0-TN1"/>
                 <outlet property="divider" destination="SfC-Vy-BHN" id="6SR-yE-Sla"/>
                 <outlet property="header" destination="866-WP-6Xm" id="e2C-WM-q8Y"/>
+                <outlet property="stackViewBottomAnchor" destination="Sgw-Ui-mVd" id="Eyp-cJ-32I"/>
+                <outlet property="stackViewTopAnchor" destination="w6f-PH-NyA" id="tWS-Ob-tig"/>
                 <outlet property="subHeader" destination="eoq-Fo-u8a" id="OL9-gc-CR5"/>
             </connections>
         </placeholder>
@@ -24,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="YcZ-Kt-I2X">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <rect key="frame" x="0.0" y="48" width="414" height="814"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="866-WP-6Xm" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -40,7 +40,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eoq-Fo-u8a" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="426" width="0.0" height="0.0"/>
+                            <rect key="frame" x="0.0" y="424" width="0.0" height="0.0"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -50,7 +50,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SfC-Vy-BHN" customClass="DividerView" customModule="Student" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="802" width="414" height="16"/>
+                            <rect key="frame" x="0.0" y="798" width="414" height="16"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="16" id="4a0-5d-w7E"/>
@@ -62,10 +62,12 @@
                     </subviews>
                     <constraints>
                         <constraint firstItem="SfC-Vy-BHN" firstAttribute="leading" secondItem="YcZ-Kt-I2X" secondAttribute="leading" id="2OX-Oj-yrg"/>
+                        <constraint firstAttribute="bottom" secondItem="SfC-Vy-BHN" secondAttribute="bottom" id="aa9-0h-sLR"/>
                         <constraint firstAttribute="trailing" secondItem="SfC-Vy-BHN" secondAttribute="trailing" id="xid-Zq-t5S"/>
                     </constraints>
                 </stackView>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="YcZ-Kt-I2X" secondAttribute="bottom" id="Sgw-Ui-mVd"/>
@@ -74,7 +76,11 @@
                 <constraint firstItem="YcZ-Kt-I2X" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="w6f-PH-NyA"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="51" y="14"/>
         </view>
     </objects>
+    <designables>
+        <designable name="866-WP-6Xm"/>
+        <designable name="eoq-Fo-u8a"/>
+    </designables>
 </document>

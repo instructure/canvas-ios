@@ -18,10 +18,23 @@
 
 import UIKit
 import Core
+import Combine
 
 class TextSubmissionViewController: UIViewController, ErrorViewController, RichContentEditorDelegate {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var keyboardSpace: NSLayoutConstraint!
+    private lazy var submitButton = UIBarButtonItem(
+        title: NSLocalizedString("Submit", bundle: .student, comment: ""),
+        style: .plain,
+        target: self,
+        action: #selector(submit)
+    )
+    private lazy var deleteButton = UIBarButtonItem(
+        title: NSLocalizedString("Delete", bundle: .student, comment: ""),
+        style: .plain,
+        target: self,
+        action: #selector(deleteDraftDidTap)
+    )
 
     var assignmentID: String!
     var courseID: String!
@@ -29,13 +42,20 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
     let env = AppEnvironment.shared
     var keyboard: KeyboardTransitioning?
     var userID: String!
+    var loadDraft: Bool!
+    private lazy var assignmentStore = ReactiveStore(
+        useCase: GetAssignment(courseID: courseID, assignmentID: assignmentID)
+    )
+    private var assignment: Assignment?
+    private var subscriptions = Set<AnyCancellable>()
 
-    static func create(courseID: String, assignmentID: String, userID: String) -> TextSubmissionViewController {
+    static func create(courseID: String, assignmentID: String, userID: String, loadDraft: Bool) -> TextSubmissionViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
         controller.courseID = courseID
         controller.userID = userID
         controller.editor = RichContentEditorViewController.create(context: .course(courseID), uploadTo: .myFiles)
+        controller.loadDraft = loadDraft
         return controller
     }
 
@@ -45,9 +65,12 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
         title = NSLocalizedString("Text Entry", bundle: .student, comment: "")
 
         navigationController?.navigationBar.useModalStyle()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Submit", bundle: .student, comment: ""), style: .plain, target: self, action: #selector(submit))
-        navigationItem.rightBarButtonItem?.accessibilityIdentifier = "TextSubmission.submitButton"
-        navigationItem.rightBarButtonItem?.isEnabled = false
+
+        submitButton.accessibilityIdentifier = "TextSubmission.submitButton"
+        submitButton.isEnabled = false
+        deleteButton.isEnabled = false
+        navigationItem.rightBarButtonItems = [submitButton, deleteButton]
+
         addCancelButton(side: .left)
 
         editor.delegate = self
@@ -55,6 +78,19 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
         editor.a11yLabel = NSLocalizedString("Submission text", bundle: .student, comment: "Text submission editor accessibility label")
         editor.webView.scrollView.layer.masksToBounds = false
         embed(editor, in: contentView)
+
+        assignmentStore
+            .getEntitiesFromDatabase()
+            .first()
+            .compactMap { $0.first }
+            .sink(
+                receiveCompletion: { _ in }) { [weak self] assignment in
+                    guard let self = self else { return }
+                    self.assignment = assignment
+                    guard loadDraft else { return }
+                    self.updateEditor(assignment.draftText)
+                }
+                .store(in: &subscriptions)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -63,7 +99,17 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
     }
 
     func rce(_ editor: RichContentEditorViewController, canSubmit: Bool) {
-        navigationItem.rightBarButtonItem?.isEnabled = canSubmit
+        editor.getHTML { [weak self] string in
+            if !string.isEmpty {
+                self?.assignment?.draftText = string
+            } else {
+                self?.assignment?.draftText = nil
+            }
+            try? AppEnvironment.shared.database.viewContext.save()
+        }
+
+        deleteButton.isEnabled = canSubmit
+        submitButton.isEnabled = canSubmit
     }
 
     func rce(_ editor: RichContentEditorViewController, didError error: Error) {
@@ -78,13 +124,45 @@ class TextSubmissionViewController: UIViewController, ErrorViewController, RichC
                 userID: self.userID,
                 submissionType: .online_text_entry,
                 body: html
-            ).fetch { (_, _, error) in performUIUpdate {
+            ).fetch { [weak self] (_, _, error) in performUIUpdate {
                 if let error = error {
-                    self.showError(error)
+                    self?.showError(error)
                 } else {
-                    self.dismiss(animated: true, completion: nil)
+                    self?.assignment?.draftText = nil
+                    self?.dismiss(animated: true, completion: nil)
                 }
             } }
         }
+    }
+
+    private func updateEditor(_ draftText: String?) {
+        if let draftText = draftText {
+            editor.setHTML(draftText)
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                self?.editor.focus()
+            }
+        }
+    }
+
+    @objc func deleteDraftDidTap() {
+        let alert = UIAlertController(
+            title: NSLocalizedString("Delete draft", bundle: .student, comment: ""),
+            message: NSLocalizedString("Do you want to delete your draft?", bundle: .student, comment: ""),
+            preferredStyle: .alert
+        )
+        let ok = UIAlertAction(
+            title: NSLocalizedString("Yes", bundle: .core, comment: ""),
+            style: .default
+        ) { [weak self] _ in
+            self?.assignment?.draftText = nil
+            try? AppEnvironment.shared.database.viewContext.save()
+            self?.dismiss(animated: true, completion: nil)
+        }
+        let cancelTitle = NSLocalizedString("No", bundle: .core, comment: "")
+        let cancel = UIAlertAction(title: cancelTitle, style: .cancel, handler: nil)
+        alert.addAction(ok)
+        alert.addAction(cancel)
+        present(alert, animated: true)
     }
 }

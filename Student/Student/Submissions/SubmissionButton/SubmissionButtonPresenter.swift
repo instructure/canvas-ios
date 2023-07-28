@@ -100,19 +100,19 @@ class SubmissionButtonPresenter: NSObject {
             : NSLocalizedString("Resubmit Assignment", bundle: .student, comment: "")
     }
 
-    func submitAssignment(_ assignment: Assignment, button: UIView) {
+    func submitAssignment(_ assignment: Assignment, button: UIView, loadDraft: Bool = false) {
         guard assignment.canMakeSubmissions else { return }
         self.assignment = assignment
         let types = assignment.submissionTypes
         let arc = types.contains(.online_upload) && arcID != .pending && arcID != .none
         if !arc && types.count == 1, let type = types.first {
-            return submitType(type, for: assignment, button: button)
+            return submitType(type, for: assignment, button: button, loadDraft: loadDraft)
         }
         let alert = SubmissionButtonAlertView.chooseTypeAlert(self, assignment: assignment, arc: arc, button: button)
         show(alert)
     }
 
-    func submitType(_ type: SubmissionType, for assignment: Assignment, button: UIView) {
+    func submitType(_ type: SubmissionType, for assignment: Assignment, button: UIView, loadDraft: Bool) {
         Analytics.shared.logEvent("assignment_submit_selected")
         guard let view = view as? UIViewController else { return }
         let courseID = assignment.courseID
@@ -139,7 +139,8 @@ class SubmissionButtonPresenter: NSObject {
             env.router.show(TextSubmissionViewController.create(
                 courseID: courseID,
                 assignmentID: assignment.id,
-                userID: userID
+                userID: userID,
+                loadDraft: loadDraft
             ), from: view, options: .modal(isDismissable: false, embedInNav: true))
         case .online_quiz:
             Analytics.shared.logEvent("assignment_detail_quizlaunch")

@@ -26,7 +26,7 @@ enum SubmissionButtonAlertView {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         for type in assignment.submissionTypes {
             let action = UIAlertAction(title: type.localizedString, style: .default) { [weak presenter] _ in
-                presenter?.submitType(type, for: assignment, button: button)
+                presenter?.submitType(type, for: assignment, button: button, loadDraft: false)
             }
             alert.addAction(action)
         }

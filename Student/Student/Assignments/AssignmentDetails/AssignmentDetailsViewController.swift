@@ -19,11 +19,13 @@
 import Core
 import UIKit
 
-class AssignmentDetailsViewController: ScreenViewTrackableViewController, AssignmentDetailsViewProtocol {
+class AssignmentDetailsViewController: ScreenViewTrackableViewController, AssignmentDetailsViewProtocol, UIAdaptivePresentationControllerDelegate {
     @IBOutlet weak var nameLabel: UILabel?
     @IBOutlet weak var pointsLabel: UILabel?
     @IBOutlet weak var statusIconView: UIImageView?
     @IBOutlet weak var statusLabel: UILabel?
+    @IBOutlet weak var draftView: AssignmentDetailsSectionContainerView!
+    @IBOutlet weak var draftDividerView: DividerView!
     @IBOutlet weak var gradeHeadingLabel: UILabel?
     @IBOutlet weak var descriptionHeadingLabel: UILabel?
     @IBOutlet weak var descriptionView: UIView?
@@ -158,6 +160,13 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         let tapGradedView = UITapGestureRecognizer(target: self, action: #selector(didTapSubmission(_:)))
         gradedView?.addGestureRecognizer(tapGradedView)
 
+        draftView.contentStackView.distribution = .fill
+        draftView.contentStackView.alignment = .fill
+        draftView.divider.isHidden = true
+        draftView.header.textAlignment = .center
+        draftView.subHeader.textAlignment = .center
+        let draftViewGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(draftViewTapped))
+        draftView.addGestureRecognizer(draftViewGestureRecognizer)
         presenter?.viewIsReady()
     }
 
@@ -300,6 +309,16 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
 
         guard let presenter = presenter else { return }
 
+        if !presenter.draftSectionIsHidden(), let draftText = assignment.draftText, !draftText.isEmpty {
+            draftDividerView.isHidden = false
+            draftView.isHidden = false
+            draftView.header.text = NSLocalizedString("Draft available", bundle: .core, comment: "")
+            draftView.subHeader.text = NSLocalizedString("Tap here to continue", bundle: .core, comment: "")
+        } else {
+            draftDividerView.isHidden = true
+            draftView.isHidden = true
+        }
+
         lockedIconContainerView.isHidden = presenter.lockedIconContainerViewIsHidden()
         dueSection?.isHidden = presenter.dueSectionIsHidden()
         lockedSection?.isHidden = presenter.lockedSectionIsHidden()
@@ -404,10 +423,15 @@ extension AssignmentDetailsViewController: CoreWebViewLinkDelegate {
 // MARK: - Events
 extension AssignmentDetailsViewController {
     @IBAction func actionSubmitAssignment(_ sender: UIButton) {
-        presenter?.submit(button: sender)
+        presenter?.submit(button: sender, loadDraft: false)
     }
 
     @IBAction func didTapSubmission(_ sender: UIButton) {
         presenter?.routeToSubmission(view: self)
+    }
+
+    @objc func draftViewTapped() {
+        guard let submitButton = submissionButton else { return }
+        presenter?.submit(button: submitButton, loadDraft: true)
     }
 }

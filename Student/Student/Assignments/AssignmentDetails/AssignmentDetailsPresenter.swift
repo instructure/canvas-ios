@@ -251,9 +251,9 @@ class AssignmentDetailsPresenter {
         return true
     }
 
-    func submit(button: UIView) {
+    func submit(button: UIView, loadDraft: Bool) {
         guard let assignment = assignment else { return }
-        submissionButtonPresenter.submitAssignment(assignment, button: button)
+        submissionButtonPresenter.submitAssignment(assignment, button: button, loadDraft: loadDraft)
     }
 
     func viewFileSubmission() {
@@ -265,6 +265,10 @@ class AssignmentDetailsPresenter {
 
     func dueSectionIsHidden() -> Bool {
         return assignment?.lockStatus == .before
+    }
+
+    func draftSectionIsHidden() -> Bool {
+        return assignment?.lockStatus != .unlocked
     }
 
     func lockedSectionIsHidden() -> Bool {

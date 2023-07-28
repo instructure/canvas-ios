@@ -35,6 +35,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var canSubmit: Bool
     @NSManaged public var canUnpublish: Bool
     @NSManaged public var courseID: String
+    @NSManaged public var draftText: String?
     @NSManaged public var details: String?
     @NSManaged public var discussionTopic: DiscussionTopic?
     @NSManaged public var dueAt: Date?

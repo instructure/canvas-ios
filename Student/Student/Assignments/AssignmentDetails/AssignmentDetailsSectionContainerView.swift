@@ -26,6 +26,20 @@ class AssignmentDetailsSectionContainerView: UIView {
     @IBOutlet weak var subHeader: DynamicLabel!
     @IBOutlet weak var divider: DividerView!
     @IBOutlet var contentView: UIView!
+    @IBOutlet weak var stackViewTopAnchor: NSLayoutConstraint!
+    @IBOutlet weak var stackViewBottomAnchor: NSLayoutConstraint!
+
+    @IBInspectable var stackViewTopOffset: Double = 0 {
+        didSet {
+            stackViewTopAnchor.constant = stackViewTopOffset
+        }
+    }
+
+    @IBInspectable var stackViewBottomOffset: Double = 0 {
+        didSet {
+            stackViewBottomAnchor.constant = stackViewBottomOffset
+        }
+    }
 
     @IBInspectable var headerText: String? {
         didSet {
@@ -33,9 +47,37 @@ class AssignmentDetailsSectionContainerView: UIView {
         }
     }
 
+    @IBInspectable
+    public var headerTextColorName: String = "textDarkest" {
+        didSet {
+            header.textColor = Brand.shared.color(headerTextColorName) ?? .textDarkest
+        }
+    }
+
+    @IBInspectable
+    public var headerTextStyle: String = "regular16" {
+        didSet {
+            header.font = UIFont.scaledNamedFont(UIFont.Name(rawValue: headerTextStyle) ?? .regular16)
+        }
+    }
+
     @IBInspectable var subHeaderText: String? {
         didSet {
             subHeader?.text = subHeaderText
+        }
+    }
+
+    @IBInspectable
+    public var subHeaderTextColorName: String = "textDarkest" {
+        didSet {
+            subHeader.textColor = Brand.shared.color(subHeaderTextColorName) ?? .textDarkest
+        }
+    }
+
+    @IBInspectable
+    public var subHeaderTextStyle: String = "regular16" {
+        didSet {
+            subHeader.font = UIFont.scaledNamedFont(UIFont.Name(rawValue: subHeaderTextStyle) ?? .regular16)
         }
     }
 
