@@ -73,6 +73,12 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
         target: self, action: #selector(sendReply)
     )
 
+    lazy var deleteButton = UIBarButtonItem(
+        image: .trashLine,
+        style: .plain,
+        target: self,
+        action: #selector(deleteDraftDidTap))
+
     var attachmentURL: URL?
     let collapsedHeight: CGFloat = 120
     var context = Context.currentUser
@@ -101,19 +107,10 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
     lazy var group = env.subscribe(GetGroup(groupID: context.id)) { [weak self] in
         self?.updateNavBar()
     }
-    lazy var editEntry = editEntryID.map {
-        env.subscribe(GetDiscussionEntry(context: context, topicID: topicID, entryID: $0)) { [weak self] in
-            self?.update()
-        }
-    }
-    lazy var replyToEntry = replyToEntryID.map {
-        env.subscribe(GetDiscussionEntry(context: context, topicID: topicID, entryID: $0)) { [weak self] in
-            self?.update()
-        }
-    }
-    lazy var topic = env.subscribe(GetDiscussionTopic(context: context, topicID: topicID)) { [weak self] in
-        self?.update()
-    }
+
+    private var topic: DiscussionTopic?
+    private var replyEntry: DiscussionEntry?
+    private var editEntry: DiscussionEntry?
     private var subscriptions = Set<AnyCancellable>()
 
     public static func create(context: Context, topicID: String, replyToEntryID: String? = nil, editEntryID: String? = nil) -> DiscussionReplyViewController {
@@ -171,8 +168,6 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
         } else {
             group.refresh()
         }
-        replyToEntry?.refresh()
-        topic.refresh()
 
         if context.id.hasShardID {
             ContextBaseURLInteractor(api: env.api)
@@ -182,6 +177,61 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
                 .assign(to: \.fileUploadBaseURL, on: editor, ownership: .weak)
                 .store(in: &subscriptions)
         }
+
+        let getDiscussionTopicStore = ReactiveStore(
+            useCase: GetDiscussionTopic(
+                context: context,
+                topicID: topicID
+            )
+        )
+        .getEntities()
+
+        let getDiscussionEntryStore: AnyPublisher<[DiscussionEntry], Error>
+
+        if let replyToEntryID {
+            getDiscussionEntryStore = ReactiveStore(
+                useCase: GetDiscussionEntry(
+                    context: context,
+                    topicID: topicID,
+                    entryID: replyToEntryID
+                )
+            )
+            .getEntitiesFromDatabase()
+        } else {
+            getDiscussionEntryStore = Just([]).setFailureType(to: Error.self).eraseToAnyPublisher()
+        }
+
+        let editEntryStore: AnyPublisher<[DiscussionEntry], Error>
+
+        if let editEntryID {
+            editEntryStore = ReactiveStore(
+                useCase: GetDiscussionEntry(
+                    context: context,
+                    topicID: topicID,
+                    entryID: editEntryID
+                )
+            )
+            .getEntitiesFromDatabase()
+        } else {
+            editEntryStore = Just([]).setFailureType(to: Error.self).eraseToAnyPublisher()
+        }
+
+        Publishers.Zip3(
+            getDiscussionTopicStore,
+            getDiscussionEntryStore,
+            editEntryStore
+        )
+        .sink(
+            receiveCompletion: { _ in },
+            receiveValue: { [weak self] topics, replyEntries, editEntries in
+                self?.update(
+                    topics: topics,
+                    replyToEntries: replyEntries,
+                    editEntries: editEntries
+                )
+            }
+        )
+        .store(in: &subscriptions)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -200,25 +250,45 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
         viewMoreButton.isHidden = contentHeight <= collapsedHeight
     }
 
-    func update() {
+    func update(topics: [DiscussionTopic], replyToEntries: [DiscussionEntry], editEntries: [DiscussionEntry]) {
         loadViewIfNeeded()
-        guard let topic = topic.first else { return }
-        loadingView.isHidden = replyToEntry?.pending != true || replyToEntry?.isEmpty != false
+        guard let topic = topics.first else { return }
+        self.topic = topic
+        self.replyEntry = replyToEntries.first
+        self.editEntry = editEntries.first
+
+        loadingView.isHidden = true
         navigationItem.rightBarButtonItems = topic.canAttach && editEntryID == nil
-            ? [ sendButton, attachButton ]
+            ? [ sendButton, attachButton, deleteButton ]
             : [ sendButton ]
 
         var html: String?
-        if replyToEntryID != nil, let replyTo = replyToEntry?.first {
+        if replyToEntryID != nil, let replyTo = replyToEntries.first {
             html = DiscussionHTML.string(for: replyTo)
+            if let drafts = env.userDefaults?.discussionDrafts, let draftText = drafts[replyTo.id] {
+                editHTML = draftText
+                editor.setHTML(draftText)
+                titleSubtitleView.title = NSLocalizedString("Reply (Draft)", bundle: .core, comment: "")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                    self?.editor.focus()
+                }
+            }
         } else if replyToEntryID == nil {
             html = DiscussionHTML.string(for: topic)
+            if let drafts = env.userDefaults?.discussionDrafts, let draftText = drafts[topic.id] {
+                editHTML = draftText
+                editor.setHTML(draftText)
+                titleSubtitleView.title = NSLocalizedString("Reply (Draft)", bundle: .core, comment: "")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                    self?.editor.focus()
+                }
+            }
         }
         if let html = html, webView.url != topic.htmlURL {
             webView.loadHTMLString(html, baseURL: topic.htmlURL)
         }
 
-        if let entry = editEntry?.first, editHTML != entry.message {
+        if let entry = editEntries.first, editHTML != entry.message {
             editHTML = entry.message
             editor.setHTML(entry.message ?? "")
         }
@@ -241,6 +311,8 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
             attachButton.accessibilityLabel = NSLocalizedString("Edit attachment (1)", bundle: .core, comment: "")
             attachBadge.isHidden = false
         }
+
+        deleteButton.isEnabled = rceCanSubmit
     }
 
     @IBAction func toggleViewMore() {
@@ -257,6 +329,24 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
     }
 
     public func rce(_ editor: RichContentEditorViewController, canSubmit: Bool) {
+        guard topic != nil else { return }
+        editor.getHTML { [weak self] string in
+            guard let self = self else { return }
+            if let replyToEntryID = self.replyToEntryID {
+                if !string.isEmpty {
+                    self.env.userDefaults?.discussionDrafts[replyToEntryID] = string
+                } else {
+                    self.env.userDefaults?.discussionDrafts[replyToEntryID] = nil
+                }
+            } else if replyToEntryID == nil, let topicID = self.topic?.id {
+                if !string.isEmpty {
+                    self.env.userDefaults?.discussionDrafts[topicID] = string
+                } else {
+                    self.env.userDefaults?.discussionDrafts[topicID] = nil
+                }
+            }
+        }
+
         rceCanSubmit = canSubmit
         updateButtons()
     }
@@ -293,7 +383,14 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
                 message: message,
                 attachment: attachmentURL
             ).fetch { [weak self] _, _, error in performUIUpdate {
-                self?.saveReplyComplete(error: error)
+                guard let self = self else { return }
+                if let replyToEntryID = self.replyToEntryID {
+                    self.env.userDefaults?.discussionDrafts[replyToEntryID] = nil
+                }
+                if let topicID = self.topic?.id {
+                    self.env.userDefaults?.discussionDrafts[topicID] = nil
+                }
+                self.saveReplyComplete(error: error)
             } }
             return
         }
@@ -311,6 +408,31 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
             UIAccessibility.announce(NSLocalizedString("Reply sent", bundle: .core, comment: "VoiceOver announcement after a reply was successfully posted."))
         }
         env.router.dismiss(self)
+    }
+
+    @objc func deleteDraftDidTap() {
+        let alert = UIAlertController(
+            title: NSLocalizedString("Delete draft", bundle: .core, comment: ""),
+            message: NSLocalizedString("Do you want to delete your draft?", bundle: .core, comment: ""),
+            preferredStyle: .alert
+        )
+        let ok = UIAlertAction(
+            title: NSLocalizedString("Yes", bundle: .core, comment: ""),
+            style: .default
+        ) { [weak self] _ in
+            guard let self = self else { return }
+            if let replyToEntryID {
+                env.userDefaults?.discussionDrafts[replyToEntryID] = nil
+            } else if let topic = topic {
+                env.userDefaults?.discussionDrafts[topic.id] = nil
+            }
+            self.dismiss(animated: true, completion: nil)
+        }
+        let cancelTitle = NSLocalizedString("No", bundle: .core, comment: "")
+        let cancel = UIAlertAction(title: cancelTitle, style: .cancel, handler: nil)
+        alert.addAction(ok)
+        alert.addAction(cancel)
+        present(alert, animated: true)
     }
 }
 

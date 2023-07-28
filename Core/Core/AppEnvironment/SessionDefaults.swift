@@ -156,6 +156,15 @@ public struct SessionDefaults {
         }
     }
 
+    public var discussionDrafts: [String: String] {
+        get {
+            self["discussionDrafts"] as? [String: String] ?? [:]
+        }
+        set {
+            self["discussionDrafts"] = newValue
+        }
+    }
+
     // MARK: Offline Settings -
 
     public mutating func reset() {

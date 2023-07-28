@@ -58,6 +58,7 @@ public final class DiscussionEntry: NSManagedObject {
         unreadIDs: Set<String>? = nil,
         forcedIDs: Set<String>? = nil,
         entryRatings: [String: Int]? = nil,
+        draftText: String? = nil,
         in context: NSManagedObjectContext
     ) -> DiscussionEntry {
         let model: DiscussionEntry = context.first(where: #keyPath(DiscussionEntry.id), equals: item.id.value) ?? context.insert()
