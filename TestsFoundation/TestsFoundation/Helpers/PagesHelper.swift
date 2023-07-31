@@ -17,7 +17,7 @@
 //
 
 public class PagesHelper: BaseHelper {
-    public static var frontPage: XCUIElement { app.find(id: "frontPage") }
+    public static var frontPage: XCUIElement { app.find(id: "PageList.frontPage") }
 
     public static func navigateToPages(course: DSCourse) {
         DashboardHelper.courseCard(course: course).hit()

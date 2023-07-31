@@ -43,6 +43,7 @@ public extension XCUIElement {
         case tap
         case showKeyboard
         case hideKeyboard
+        case pullToRefresh
     }
 
     func hasValue(value: String) -> Bool {
@@ -122,6 +123,7 @@ public extension XCUIElement {
                 case .swipeRight: swipeRight()
                 case .showKeyboard: CoreUITestCase.currentTestCase?.send(.showKeyboard, ignoreErrors: true)
                 case .hideKeyboard: CoreUITestCase.currentTestCase?.send(.hideKeyboard, ignoreErrors: true)
+                case .pullToRefresh: pullToRefresh()
                 }
 
                 sleep(gracePeriod)
@@ -161,6 +163,10 @@ public extension XCUIElement {
 
     func relativeCoordinate(x: CGFloat, y: CGFloat) -> XCUICoordinate {
         return coordinate(withNormalizedOffset: CGVector(dx: x, dy: y))
+    }
+
+    func pullToRefresh(x: CGFloat = 0.5) {
+        relativeCoordinate(x: x, y: 0.2).press(forDuration: 0.05, thenDragTo: relativeCoordinate(x: x, y: 1.0))
     }
 
     // MARK: Find

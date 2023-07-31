@@ -229,6 +229,8 @@ class DiscussionsTests: E2ETestCase {
         gradesAssignmentSubmittedLabel = GradesHelper.gradesAssignmentSubmittedLabel(assignment: assignmentDiscussion.assignment!)
             .waitUntil(condition: .visible)
         XCTAssertTrue(gradesAssignmentSubmittedLabel.isVisible)
+
+        gradesAssignmentSubmittedLabel.actionUntilElementCondition(action: .pullToRefresh, condition: .label, expected: "Submitted")
         XCTAssertEqual(gradesAssignmentSubmittedLabel.label, "Submitted")
     }
 }
