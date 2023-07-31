@@ -278,7 +278,7 @@ open class CoreUITestCase: XCTestCase {
         if LoginHelper.Start.lastLoginButton.exists && LoginHelper.Start.lastLoginButton.label == user.host {
             LoginHelper.Start.lastLoginButton.tap()
         } else {
-            findSchoolButton.tap()
+            findSchoolButton.hit()
             LoginHelper.FindSchool.searchField.writeText(text: user.host)
             LoginHelper.FindSchool.nextButton.hit()
         }

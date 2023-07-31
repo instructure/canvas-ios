@@ -34,7 +34,7 @@ open class E2ETestCase: CoreUITestCase {
     open func findSchool(lastLogin: Bool = false) {
         let findSchoolButton = LoginHelper.Start.findSchoolButton.waitUntil(condition: .visible)
         if lastLogin && LoginHelper.Start.lastLoginButton.exists && LoginHelper.Start.lastLoginButton.label == user.host {
-            LoginHelper.Start.lastLoginButton.tap()
+            LoginHelper.Start.lastLoginButton.hit()
         } else {
             findSchoolButton.tap()
             LoginHelper.FindSchool.searchField.pasteText(text: user.host)
@@ -44,8 +44,8 @@ open class E2ETestCase: CoreUITestCase {
 
     open func loginAfterSchoolFound(_ dsUser: DSUser, password: String = "password") {
         LoginHelper.Login.emailField.waitUntil(condition: .visible, timeout: 60)
-        LoginHelper.Login.emailField.pasteText(text: dsUser.login_id)
-        LoginHelper.Login.passwordField.hit().pasteText(text: password)
+        LoginHelper.Login.emailField.writeText(text: dsUser.login_id)
+        LoginHelper.Login.passwordField.hit().writeText(text: password)
         LoginHelper.Login.loginButton.hit()
 
         homeScreen.waitUntil(condition: .visible, timeout: 20)

@@ -34,6 +34,8 @@ public extension XCUIElement {
         case enabled
         case selected
         case hittable
+        case labelContaining
+        case labelHasPrefix
     }
 
     enum ElementAction {
@@ -86,6 +88,10 @@ public extension XCUIElement {
                 result = exists && isSelected
             case .hittable:
                 result = isHittable
+            case .labelContaining:
+                result = label.contains(expected!)
+            case .labelHasPrefix:
+                result = label.hasPrefix(expected!)
             }
             if result { break } else { sleep(gracePeriod) }
         }
@@ -119,6 +125,10 @@ public extension XCUIElement {
                 result = actualElement.exists && actualElement.isSelected
             case .hittable:
                 result = actualElement.isHittable
+            case .labelContaining:
+                result = label.contains(expected!)
+            case .labelHasPrefix:
+                result = label.hasPrefix(expected!)
             }
             if result { return true } else {
                 switch action {
