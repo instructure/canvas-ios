@@ -88,7 +88,6 @@ public class SettingsHelper: BaseHelper {
         public static var loginIdLabel: Element { app.find(id: "Login ID")}
         public static var emailLabel: Element { app.find(id: "Email")}
         public static var versionLabel: Element { app.find(id: "Version")}
-        public static var instructureLogo: Element { app.find(id: "InstructureLogo") }
     }
 }
 

@@ -326,9 +326,6 @@ class SettingsTests: E2ETestCase {
 
         let versionLabel = AboutHelper.versionLabel.waitToExist()
         XCTAssertTrue(versionLabel.isVisible)
-
-        let instructureLogo = AboutHelper.instructureLogo.waitToExist()
-        XCTAssertTrue(instructureLogo.isVisible)
     }
 
     func testPrivacyPolicy() {

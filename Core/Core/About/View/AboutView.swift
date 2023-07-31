@@ -46,7 +46,7 @@ public struct AboutView: View {
                 }
                 Image("instructure", bundle: .core)
                     .padding(.vertical, 36)
-                    .accessibilityIdentifier("InstructureLogo")
+                    .accessibilityHidden(true)
             }
         }
         .accessibilityIdentifier("AboutView")
