@@ -276,7 +276,7 @@ open class CoreUITestCase: XCTestCase {
         // Test retries can work with last logged in instance
         let findSchoolButton = LoginHelper.Start.findSchoolButton.waitUntil(condition: .visible)
         if LoginHelper.Start.lastLoginButton.exists && LoginHelper.Start.lastLoginButton.label == user.host {
-            LoginHelper.Start.lastLoginButton.tap()
+            LoginHelper.Start.lastLoginButton.hit()
         } else {
             findSchoolButton.hit()
             LoginHelper.FindSchool.searchField.writeText(text: user.host)
@@ -285,7 +285,7 @@ open class CoreUITestCase: XCTestCase {
         let emailField = LoginHelper.Login.emailField.waitUntil(condition: .visible, timeout: 60)
         emailField.writeText(text: user.username)
         LoginHelper.Login.passwordField.writeText(text: user.password)
-        LoginHelper.Login.loginButton.tap()
+        LoginHelper.Login.loginButton.hit()
 
         homeScreen.waitUntil(condition: .visible)
         user.session = currentSession()

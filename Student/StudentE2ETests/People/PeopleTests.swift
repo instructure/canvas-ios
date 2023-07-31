@@ -81,7 +81,7 @@ class PeopleTests: E2ETestCase {
         XCTAssertEqual(person5NameLabel.label, teachers[1].name)
 
         // MARK: Tap on one of them and check details on the Context Card
-        let randomIndex = Int.random(in: 0...5)
+        let randomIndex = Int.random(in: 0...4)
         PeopleHelper.peopleCell(index: randomIndex).hit()
 
         let nameLabel = PeopleHelper.ContextCard.userNameLabel.waitUntil(condition: .visible)

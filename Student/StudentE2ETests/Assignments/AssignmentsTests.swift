@@ -123,11 +123,11 @@ class AssignmentsTests: E2ETestCase {
 
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(condition: .visible)
         XCTAssertTrue(assignmentButton.isVisible)
-        assignmentButton.tap()
+        assignmentButton.hit()
 
         var submitAssignmentButton = DetailsHelper.submitAssignmentButton.waitUntil(condition: .visible)
         XCTAssertTrue(submitAssignmentButton.isVisible)
-        submitAssignmentButton.tap()
+        submitAssignmentButton.hit()
 
         // MARK: Check visibility of elements on submission edit screen
         let submissionNavBar = SubmissionHelper.navBar.waitUntil(condition: .visible)
