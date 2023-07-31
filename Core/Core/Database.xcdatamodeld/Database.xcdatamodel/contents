@@ -187,8 +187,6 @@
         <attribute name="pronouns" optional="YES" attributeType="String"/>
         <attribute name="shortName" attributeType="String"/>
         <attribute name="sortableName" attributeType="String"/>
-        <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Enrollment"/>
-        <relationship name="submissions" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Submission"/>
     </entity>
     <entity name="Conversation" representedClassName="Core.Conversation" syncable="YES">
         <attribute name="audienceIDsRaw" attributeType="String"/>
