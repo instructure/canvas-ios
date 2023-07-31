@@ -26,10 +26,7 @@ public final class ContextUser: NSManagedObject {
     @NSManaged public var shortName: String
     @NSManaged public var avatarURL: URL?
     @NSManaged public var email: String?
-    @NSManaged public var courseID: String?
-    @NSManaged public var groupID: String?
     @NSManaged public var pronouns: String?
-    @NSManaged public var observerID: String?
 
     public var enrollments: Set<Enrollment> {
         Set(managedObjectContext?.all(where: #keyPath(Enrollment.userID), equals: id) ?? [])
@@ -48,13 +45,13 @@ extension ContextUser: WriteableModel {
         user.avatarURL = item.avatar_url?.rawValue
         user.pronouns = item.pronouns
         if let enrollments = item.enrollments {
-            for item in enrollments {
-                let enrollment = context.insert() as Enrollment
+            for enrollment in enrollments {
+                let userEnrollment = context.insert() as Enrollment
                 var course: Course?
-                if let courseID = item.course_id?.value {
+                if let courseID = enrollment.course_id?.value {
                     course = context.first(where: #keyPath(Course.id), equals: courseID)
                 }
-                enrollment.update(fromApiModel: item, course: course, in: context)
+                userEnrollment.update(fromApiModel: enrollment, course: course, in: context)
             }
         }
         return user
