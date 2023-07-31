@@ -111,6 +111,7 @@
 		8B9845FC2A72CE57003E1E9F /* K5Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9845FB2A72CE57003E1E9F /* K5Helper.swift */; };
 		8B9845FE2A73C538003E1E9F /* FilesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9845FD2A73C538003E1E9F /* FilesHelper.swift */; };
 		8B9846002A73C716003E1E9F /* SettingsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9845FF2A73C716003E1E9F /* SettingsHelper.swift */; };
+		8B9846132A77BDE5003E1E9F /* CoreTestsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9846122A77BDE5003E1E9F /* CoreTestsHelper.swift */; };
 		8C02370D294ADC5E03166916 /* CreateDSQuizQuestionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFA2EB914E415CCFACDB /* CreateDSQuizQuestionRequest.swift */; };
 		8CE7A795708CBCF4AF7A2674 /* DSModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69E1EBE6B486730AE73F45 /* DSModuleItem.swift */; };
 		8CEEA54DE127851FF426490F /* CreateDSDiscussionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D6E99369534DE2260DD4EB /* CreateDSDiscussionRequest.swift */; };
@@ -309,6 +310,7 @@
 		8B9845FB2A72CE57003E1E9F /* K5Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5Helper.swift; sourceTree = "<group>"; };
 		8B9845FD2A73C538003E1E9F /* FilesHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesHelper.swift; sourceTree = "<group>"; };
 		8B9845FF2A73C716003E1E9F /* SettingsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHelper.swift; sourceTree = "<group>"; };
+		8B9846122A77BDE5003E1E9F /* CoreTestsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreTestsHelper.swift; sourceTree = "<group>"; };
 		8E046239E00E2F114C950D3A /* ModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFixture.swift; sourceTree = "<group>"; };
 		8E52A6F60DF961A9FB652399 /* DSSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSubmission.swift; sourceTree = "<group>"; };
 		8EB01A67D620697DB09B6F61 /* CreateDSAccountNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSAccountNotificationRequest.swift; sourceTree = "<group>"; };
@@ -625,6 +627,7 @@
 				8B9845FB2A72CE57003E1E9F /* K5Helper.swift */,
 				8B9845FD2A73C538003E1E9F /* FilesHelper.swift */,
 				8B9845FF2A73C716003E1E9F /* SettingsHelper.swift */,
+				8B9846122A77BDE5003E1E9F /* CoreTestsHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1077,6 +1080,7 @@
 				05CD80C7842E89D42927418D /* DataSeeder+AccountNotification.swift in Sources */,
 				F453D4519C4C96300A0BFC10 /* DataSeeder+Conversation.swift in Sources */,
 				8B9845FC2A72CE57003E1E9F /* K5Helper.swift in Sources */,
+				8B9846132A77BDE5003E1E9F /* CoreTestsHelper.swift in Sources */,
 				C7537D8A9003F2B0F5E87CA3 /* DataSeeder+DSAssignment.swift in Sources */,
 				F7C151FCF38EDD0F3C31E3D1 /* DataSeeder+DSCalendarEvent.swift in Sources */,
 				3E59D93402725FA9B4F7F863 /* DataSeeder+DSCourse.swift in Sources */,
