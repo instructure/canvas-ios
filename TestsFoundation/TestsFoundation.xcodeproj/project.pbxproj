@@ -602,15 +602,21 @@
 		57662E895B3D1418E5903FEB /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				8B9845F92A72BDB9003E1E9F /* ActAsUserHelper.swift */,
 				8B9845DE2A72897C003E1E9F /* AnnouncementsHelper.swift */,
 				8B9845DD2A72897C003E1E9F /* AssignmentsHelper.swift */,
+				E89F21CB0826337C08AC625D /* BaseHelper.swift */,
 				8B9845E12A72897C003E1E9F /* CalendarHelper.swift */,
+				218651481971AB40D5D80C79 /* CombineTestExtensions.swift */,
+				8B9846122A77BDE5003E1E9F /* CoreTestsHelper.swift */,
 				8B9845E02A72897C003E1E9F /* CourseDetailsHelper.swift */,
 				8B9845E52A72897C003E1E9F /* DashboardHelper.swift */,
 				8B9845E42A72897C003E1E9F /* DiscussionsHelper.swift */,
+				8B9845FD2A73C538003E1E9F /* FilesHelper.swift */,
 				8B9845E32A72897C003E1E9F /* GradesHelper.swift */,
 				8B9845E22A72897C003E1E9F /* HelpHelper.swift */,
 				8B9845DF2A72897C003E1E9F /* InboxHelper.swift */,
+				8B9845FB2A72CE57003E1E9F /* K5Helper.swift */,
 				8B9845DB2A72897B003E1E9F /* LoginHelper.swift */,
 				8B9845D92A72897B003E1E9F /* ModulesHelper.swift */,
 				8B9845D72A72897B003E1E9F /* NewQuizzesHelper.swift */,
@@ -618,16 +624,10 @@
 				8B9845DC2A72897C003E1E9F /* PeopleHelper.swift */,
 				8B9845E72A72897C003E1E9F /* ProfileHelper.swift */,
 				8B9845E62A72897C003E1E9F /* QuizzesHelper.swift */,
-				8B9845D82A72897B003E1E9F /* SyllabusHelper.swift */,
-				47BBBB47D5854C1CBC756C78 /* ThirdPartyApp */,
-				E89F21CB0826337C08AC625D /* BaseHelper.swift */,
-				218651481971AB40D5D80C79 /* CombineTestExtensions.swift */,
-				234C525F478ED716FA9FF1FC /* TestEnvironment.swift */,
-				8B9845F92A72BDB9003E1E9F /* ActAsUserHelper.swift */,
-				8B9845FB2A72CE57003E1E9F /* K5Helper.swift */,
-				8B9845FD2A73C538003E1E9F /* FilesHelper.swift */,
 				8B9845FF2A73C716003E1E9F /* SettingsHelper.swift */,
-				8B9846122A77BDE5003E1E9F /* CoreTestsHelper.swift */,
+				8B9845D82A72897B003E1E9F /* SyllabusHelper.swift */,
+				234C525F478ED716FA9FF1FC /* TestEnvironment.swift */,
+				47BBBB47D5854C1CBC756C78 /* ThirdPartyApp */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";

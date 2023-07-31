@@ -24,19 +24,19 @@ public class HelpHelper: BaseHelper {
     }
 
     public static var askYourInstructor: XCUIElement {
-        return app.find(id: "helpItems").findAll(type: .button)[1]
+        return app.find(id: "helpItems").findAll(type: .button, minimumCount: 2)[1]
     }
 
     public static var reportAProblem: XCUIElement {
-        return app.find(id: "helpItems").findAll(type: .button)[2]
+        return app.find(id: "helpItems").findAll(type: .button, minimumCount: 3)[2]
     }
 
     public static var submitAFeatureIdea: XCUIElement {
-        return app.find(id: "helpItems").findAll(type: .button)[3]
+        return app.find(id: "helpItems").findAll(type: .button, minimumCount: 4)[3]
     }
 
     public static var covid19: XCUIElement {
-        return app.find(id: "helpItems").findAll(type: .button)[4]
+        return app.find(id: "helpItems").findAll(type: .button, minimumCount: 5)[4]
     }
 
     public static func navigateToHelpPage() {

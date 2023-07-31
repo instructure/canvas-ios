@@ -27,7 +27,7 @@ public class SyllabusHelper: BaseHelper {
     }
 
     public static func summaryAssignmentTitle(assignment: DSAssignment) -> XCUIElement {
-        return summaryAssignmentCell(assignment: assignment).findAll(type: .staticText)[1]
+        return summaryAssignmentCell(assignment: assignment).findAll(type: .staticText, minimumCount: 2)[1]
     }
 
     public static func summaryCalendarEventCell(calendarEvent: DSCalendarEvent) -> XCUIElement {
@@ -35,7 +35,7 @@ public class SyllabusHelper: BaseHelper {
     }
 
     public static func summaryCalendarEventTitle(calendarEvent: DSCalendarEvent) -> XCUIElement {
-        return summaryCalendarEventCell(calendarEvent: calendarEvent).findAll(type: .staticText)[1]
+        return summaryCalendarEventCell(calendarEvent: calendarEvent).findAll(type: .staticText, minimumCount: 2)[1]
     }
 
     public static func navBar(course: DSCourse) -> XCUIElement {

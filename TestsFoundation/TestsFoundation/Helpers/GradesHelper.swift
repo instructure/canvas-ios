@@ -35,7 +35,7 @@ public class GradesHelper: BaseHelper {
     }
 
     public static func gradesAssignmentSubmittedLabel(assignment: DSAssignment) -> XCUIElement {
-        return gradesAssignmentButton(assignment: assignment).findAll(type: .staticText)[2]
+        return gradesAssignmentButton(assignment: assignment).findAll(type: .staticText, minimumCount: 3)[2]
     }
 
     public static func checkForTotalGrade(value: String) -> Bool {

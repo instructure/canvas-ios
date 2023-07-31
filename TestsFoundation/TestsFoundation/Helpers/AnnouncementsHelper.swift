@@ -24,7 +24,7 @@ public class AnnouncementsHelper: BaseHelper {
     public struct Details {
         public static var title: XCUIElement { app.find(id: "DiscussionDetails.title") }
         public static var message: XCUIElement {
-            app.find(id: "DiscussionDetails.body").findAll(type: .staticText)[1]
+            app.find(id: "DiscussionDetails.body").findAll(type: .staticText, minimumCount: 2)[1]
         }
 
         public static func navBar(course: DSCourse) -> XCUIElement {

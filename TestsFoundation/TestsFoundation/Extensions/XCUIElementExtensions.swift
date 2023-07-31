@@ -69,6 +69,7 @@ public extension XCUIElement {
         let deadline = Date().addingTimeInterval(timeout)
         while Date() < deadline {
             var result = false
+            
             switch condition {
             case .vanish:
                 result = !isVisible
@@ -198,8 +199,16 @@ public extension XCUIElement {
         return descendants(matching: type).matching(id: id).matching(label: label).firstMatch
     }
 
-    func findAll(type: XCUIElement.ElementType) -> [XCUIElement] {
-        descendants(matching: type).allElementsBoundByIndex
+    func findAll(type: XCUIElement.ElementType, minimumCount: Int = 1, timeout: TimeInterval = defaultTimeout, gracePeriod: UInt32 = defaultGracePeriod) -> [XCUIElement] {
+        let deadline = Date().addingTimeInterval(timeout)
+        var result = descendants(matching: type).allElementsBoundByIndex
+        while Date() < deadline {
+            if result.count >= minimumCount { return result } else {
+                sleep(gracePeriod)
+                result = descendants(matching: type).allElementsBoundByIndex
+            }
+        }
+        return result
     }
 
     func findAll(labelContaining: String, type: ElementType = .any) -> [XCUIElement] {

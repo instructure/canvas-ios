@@ -22,7 +22,7 @@ public class SettingsHelper: BaseHelper {
     public static var preferencesLabel: XCUIElement { app.find(id: "Preferences") }
 
     public static func menuItem(item: SettingsMenuItem) -> XCUIElement {
-        return app.find(id: "settings.tableView").findAll(type: .cell)[item.rawValue]
+        return app.find(id: "settings.tableView").findAll(type: .cell, minimumCount: 8)[item.rawValue]
     }
 
     public static func labelOfMenuItem(menuItem: XCUIElement) -> XCUIElement {
@@ -55,7 +55,7 @@ public class SettingsHelper: BaseHelper {
 
         public static var backButton: XCUIElement { app.find(label: "Settings", type: .button) }
         public static var shareButton: XCUIElement { app.find(label: "Share", type: .button) }
-        public static var doneButton: XCUIElement { app.findAll(type: .navigationBar)[1].find(id: "screen.dismiss") }
+        public static var doneButton: XCUIElement { app.findAll(type: .navigationBar, minimumCount: 2)[1].find(id: "screen.dismiss") }
 
         struct CalendarApp {
             public static let calendarApp = XCUIApplication(bundleIdentifier: "com.apple.mobilecal")

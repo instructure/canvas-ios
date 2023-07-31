@@ -25,7 +25,7 @@ public class DiscussionsHelper: BaseHelper {
     }
 
     public static func discussionDataLabel(discussion: DSDiscussionTopic, label: DiscussionLabelTypes) -> XCUIElement {
-        discussionButton(discussion: discussion).findAll(type: .staticText)[label.rawValue]
+        discussionButton(discussion: discussion).findAll(type: .staticText, minimumCount: 4)[label.rawValue]
     }
 
     public static func discussionsNavBar(course: DSCourse) -> XCUIElement {
@@ -42,10 +42,10 @@ public class DiscussionsHelper: BaseHelper {
             app.find(id: "DiscussionDetails.body").find(type: .staticText)
         }
         public static var messageLabel: XCUIElement {
-            app.find(id: "DiscussionDetails.body").findAll(type: .staticText)[1]
+            app.find(id: "DiscussionDetails.body").findAll(type: .staticText, minimumCount: 2)[1]
         }
         public static var replyButton: XCUIElement {
-            app.find(id: "DiscussionDetails.body").findAll(type: .link)[1]
+            app.find(id: "DiscussionDetails.body").findAll(type: .link, minimumCount: 2)[1]
         }
         public static var repliesSection: XCUIElement {
             app.find(id: "DiscussionDetails.body").find(label: "Replies", type: .other)

@@ -42,16 +42,16 @@ public class LoginHelper: BaseHelper {
     }
 
     public struct Login {
-        static var webView: XCUIElement { app.find(id: "LoginWeb.webView") }
-        static var linksOfWebview: [XCUIElement] { webView.waitUntil(condition: .visible).findAll(type: .link) }
+        static var webView: XCUIElement { app.find(id: "LoginWeb.webView").waitUntil(condition: .visible) }
+        static var linksOfWebView: [XCUIElement] { webView.findAll(type: .link, minimumCount: 2) }
 
         public static var navBar: XCUIElement { app.find(id: user.host) }
         public static var hostLabel: XCUIElement { navBar.find(type: .staticText) }
         public static var emailField: XCUIElement { webView.find(type: .textField) }
         public static var passwordField: XCUIElement { webView.find(type: .secureTextField) }
         public static var loginButton: XCUIElement { webView.find(type: .button) }
-        public static var forgotPasswordButton: XCUIElement { linksOfWebview[1] }
-        public static var needAccountButton: XCUIElement { linksOfWebview[0] }
+        public static var forgotPasswordButton: XCUIElement { linksOfWebView[1] }
+        public static var needAccountButton: XCUIElement { linksOfWebView[0] }
         public static var noPasswordLabel: XCUIElement { app.find(labelContaining: "No password was given") }
     }
 

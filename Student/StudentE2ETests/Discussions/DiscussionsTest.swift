@@ -134,7 +134,7 @@ class DiscussionsTests: E2ETestCase {
         // MARK: Write some text into reply text input and tap Send button
         let replyText = "Test replying to discussion"
         replyTextField.pasteText(text: replyText)
-        XCTAssertTrue(replySendButton.isEnabled)
+        XCTAssertTrue(replySendButton.waitUntil(condition: .enabled).isEnabled)
 
         replySendButton.tap()
 

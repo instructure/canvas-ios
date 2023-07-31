@@ -102,7 +102,7 @@ class LoginTests: E2ETestCase {
         emailInput.tap()
         emailInput.pasteText(text: student.login_id)
         passwordInput.tap()
-        emailInput.pasteText(text: student.password!)
+        passwordInput.pasteText(text: student.password!)
         loginButton.tap()
 
         // MARK: Check if login was successful
