@@ -39,13 +39,50 @@ extension CreateDSCalendarEventRequest {
         let description: String
         let start_at: String?
         let end_at: String?
+        let location_name: String?
+        let location_address: String?
+        let time_zone_edited: String
+        let all_day: Bool?
+        let rrule: String?
+        let blackout_date: Bool?
+        let duplicate: DSDuplicate?
 
-        public init(courseId: String, title: String, description: String, start_at: String? = nil, end_at: String? = nil) {
+        public init(courseId: String,
+                    title: String,
+                    description: String,
+                    start_at: String? = nil,
+                    end_at: String? = nil,
+                    location_name: String? = nil,
+                    location_address: String? = nil,
+                    time_zone_edited: String = "Europe/Budapest",
+                    all_day: Bool? = nil,
+                    rrule: String? = nil,
+                    blackout_date: Bool? = nil,
+                    duplicate: DSDuplicate? = nil) {
             self.context_code = "course_\(courseId)"
             self.title = title
             self.description = description
             self.start_at = start_at
             self.end_at = end_at
+            self.location_name = location_name
+            self.location_address = location_address
+            self.time_zone_edited = time_zone_edited
+            self.all_day = all_day
+            self.rrule = rrule
+            self.blackout_date = blackout_date
+            self.duplicate = duplicate
+        }
+    }
+
+    public struct DSDuplicate: Encodable {
+        let count: Int
+        let frequency: String
+        let append_iterator: Bool
+
+        public init(count: Int, frequency: DSFrequency, append_iterator: Bool = true) {
+            self.count = count
+            self.frequency = frequency.rawValue
+            self.append_iterator = append_iterator
         }
     }
 
@@ -56,4 +93,10 @@ extension CreateDSCalendarEventRequest {
             self.calendar_event = calendar_event
         }
     }
+}
+
+public enum DSFrequency: String {
+    case daily
+    case weekly
+    case monthly
 }

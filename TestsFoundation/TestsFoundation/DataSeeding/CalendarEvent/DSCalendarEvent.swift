@@ -19,8 +19,15 @@
 public struct DSCalendarEvent: Codable {
     public let id: String
     public let title: String
-    public let start_at: String?
+    public let start_at: String
     public let end_at: String?
     public let description: String
     public let context_code: String
+    public let location_name: String
+    public let location_address: String
+    public let duplicates: [DSDuplicate]?
+}
+
+public struct DSDuplicate: Codable {
+    public let calendar_event: DSCalendarEvent
 }
