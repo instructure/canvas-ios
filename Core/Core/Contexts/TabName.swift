@@ -44,5 +44,6 @@ public enum TabName: String, Codable {
         .conferences,
         .announcements,
         .people,
+        .quizzes,
     ]
 }

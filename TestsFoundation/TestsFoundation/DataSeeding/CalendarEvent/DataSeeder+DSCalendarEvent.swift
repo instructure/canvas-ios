@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,17 +17,9 @@
 //
 
 extension DataSeeder {
-
-    public func createCourse(name: String = "DataSeed iOS \(Int(Date().timeIntervalSince1970))",
-                             syllabus_body: String? = nil) -> DSCourse {
-        let requestedBody = CreateDSCourseRequest.Body(course: .init(name: name, syllabus_body: syllabus_body))
-        let request = CreateDSCourseRequest(body: requestedBody)
+    @discardableResult
+    public func createCalendarEvent(requestBody: CreateDSCalendarEventRequest.Body) -> DSCalendarEvent {
+        let request = CreateDSCalendarEventRequest(body: requestBody)
         return makeRequest(request)
-    }
-
-    public func updateCourseWithGradingScheme(courseId: String, gradingStandardId: Int) {
-        let requestedBody = UpdateDSCourseRequest.Body(course: .init(grading_standard_id: gradingStandardId))
-        let request = UpdateDSCourseRequest(body: requestedBody, courseId: courseId)
-        makeRequest(request)
     }
 }

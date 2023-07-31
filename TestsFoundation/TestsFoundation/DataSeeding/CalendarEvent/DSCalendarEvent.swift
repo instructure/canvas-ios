@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,29 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-
-struct CreateDSUserRequest: APIRequestable {
-    public typealias Response = DSUser
-
-    public let method = APIMethod.post
-    public var path: String { "accounts/self/users" }
-    public let body: Body?
+public struct DSCalendarEvent: Codable {
+    public let id: String
+    public let title: String
+    public let start_at: String
+    public let end_at: String?
+    public let description: String
+    public let context_code: String
+    public let location_name: String
+    public let location_address: String
+    public let duplicates: [DSDuplicate]?
 }
 
-extension CreateDSUserRequest {
-    public struct Body: Encodable, Equatable {
-        struct User: Encodable, Equatable {
-            let name: String
-            let time_zone: String = "Europe/Budapest"
-        }
-
-        struct Pseudonym: Encodable, Equatable {
-            let unique_id = UUID().uuidString
-            let password: String
-        }
-
-        let user: User
-        let pseudonym: Pseudonym
-    }
+public struct DSDuplicate: Codable {
+    public let calendar_event: DSCalendarEvent
 }

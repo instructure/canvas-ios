@@ -19,5 +19,7 @@
 public struct DSCourse: Codable {
     public let id: String
     public let name: String
+    public let time_zone: String
+    public var syllabus_body: String?
     public let account_id: String
 }
