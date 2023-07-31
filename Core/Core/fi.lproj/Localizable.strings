@@ -1781,6 +1781,9 @@
 "Offline Content Sync Failed" = "Verkon ulkopuolisen sisällön synkronisointi epäonnistui.";
 
 /* No comment provided by engineer. */
+"Offline mode" = "Offline-tila";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -2622,6 +2625,9 @@
 
 /* No comment provided by engineer. */
 "This is your personal color setting. Only you will see this color for the course." = "Tämä on henkilökohtainen väriasetuksesi. Vain sinä näet tämän värin kurssille.";
+
+/* No comment provided by engineer. */
+"This item is not available offline." = "Tämä kohde ei ole saatavissa verkon ulkopuolella.";
 
 /* No comment provided by engineer. */
 "This module is empty." = "Tämä moduuli on tyhjä.";

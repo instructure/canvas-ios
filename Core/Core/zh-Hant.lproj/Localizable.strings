@@ -1781,6 +1781,9 @@
 "Offline Content Sync Failed" = "離線內容同步失敗";
 
 /* No comment provided by engineer. */
+"Offline mode" = "離線模式";
+
+/* No comment provided by engineer. */
 "OK" = "確定";
 
 /* No comment provided by engineer. */
@@ -2622,6 +2625,9 @@
 
 /* No comment provided by engineer. */
 "This is your personal color setting. Only you will see this color for the course." = "這是您的個人顏色設定。只有您會看見本課程顏色。";
+
+/* No comment provided by engineer. */
+"This item is not available offline." = "此項目無法離線使用。";
 
 /* No comment provided by engineer. */
 "This module is empty." = "此單元為空。";

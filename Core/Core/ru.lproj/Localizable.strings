@@ -1781,6 +1781,9 @@
 "Offline Content Sync Failed" = "Сбой синхронизации автономного содержимого";
 
 /* No comment provided by engineer. */
+"Offline mode" = "Режим офлайн";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -2622,6 +2625,9 @@
 
 /* No comment provided by engineer. */
 "This is your personal color setting. Only you will see this color for the course." = "Это ваша персональная настройка цвета. Только вы будет видеть этот цвет для курса.";
+
+/* No comment provided by engineer. */
+"This item is not available offline." = "Данный элемент недоступен в режиме офлайн.";
 
 /* No comment provided by engineer. */
 "This module is empty." = "Этот модуль пуст.";
