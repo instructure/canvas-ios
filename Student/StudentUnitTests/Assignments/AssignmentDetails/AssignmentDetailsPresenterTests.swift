@@ -38,7 +38,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
 
     class MockButton: SubmissionButtonPresenter {
         var submitted = false
-        override func submitAssignment(_ assignment: Assignment, button: UIView) {
+        override func submitAssignment(_ assignment: Assignment, button: UIView, loadDraft: Bool) {
             submitted = true
         }
     }
@@ -189,12 +189,12 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
     }
 
     func testSubmit() {
-        presenter.submit(button: UIView())
+        presenter.submit(button: UIView(), loadDraft: false)
         XCTAssertFalse(mockButton.submitted)
 
         Assignment.make()
 
-        presenter.submit(button: UIView())
+        presenter.submit(button: UIView(), loadDraft: false)
         XCTAssertTrue(mockButton.submitted)
     }
 

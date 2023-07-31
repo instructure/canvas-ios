@@ -107,10 +107,19 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
     lazy var group = env.subscribe(GetGroup(groupID: context.id)) { [weak self] in
         self?.updateNavBar()
     }
-
-    private var topic: DiscussionTopic?
-    private var replyEntry: DiscussionEntry?
-    private var editEntry: DiscussionEntry?
+    lazy var editEntry = editEntryID.map {
+        env.subscribe(GetDiscussionEntry(context: context, topicID: topicID, entryID: $0)) { [weak self] in
+            self?.update()
+        }
+    }
+    lazy var replyToEntry = replyToEntryID.map {
+        env.subscribe(GetDiscussionEntry(context: context, topicID: topicID, entryID: $0)) { [weak self] in
+            self?.update()
+        }
+    }
+    lazy var topic = env.subscribe(GetDiscussionTopic(context: context, topicID: topicID)) { [weak self] in
+        self?.update()
+    }
     private var subscriptions = Set<AnyCancellable>()
 
     public static func create(context: Context, topicID: String, replyToEntryID: String? = nil, editEntryID: String? = nil) -> DiscussionReplyViewController {
@@ -168,6 +177,8 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
         } else {
             group.refresh()
         }
+        replyToEntry?.refresh()
+        topic.refresh()
 
         if context.id.hasShardID {
             ContextBaseURLInteractor(api: env.api)
@@ -177,61 +188,6 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
                 .assign(to: \.fileUploadBaseURL, on: editor, ownership: .weak)
                 .store(in: &subscriptions)
         }
-
-        let getDiscussionTopicStore = ReactiveStore(
-            useCase: GetDiscussionTopic(
-                context: context,
-                topicID: topicID
-            )
-        )
-        .getEntities()
-
-        let getDiscussionEntryStore: AnyPublisher<[DiscussionEntry], Error>
-
-        if let replyToEntryID {
-            getDiscussionEntryStore = ReactiveStore(
-                useCase: GetDiscussionEntry(
-                    context: context,
-                    topicID: topicID,
-                    entryID: replyToEntryID
-                )
-            )
-            .getEntitiesFromDatabase()
-        } else {
-            getDiscussionEntryStore = Just([]).setFailureType(to: Error.self).eraseToAnyPublisher()
-        }
-
-        let editEntryStore: AnyPublisher<[DiscussionEntry], Error>
-
-        if let editEntryID {
-            editEntryStore = ReactiveStore(
-                useCase: GetDiscussionEntry(
-                    context: context,
-                    topicID: topicID,
-                    entryID: editEntryID
-                )
-            )
-            .getEntitiesFromDatabase()
-        } else {
-            editEntryStore = Just([]).setFailureType(to: Error.self).eraseToAnyPublisher()
-        }
-
-        Publishers.Zip3(
-            getDiscussionTopicStore,
-            getDiscussionEntryStore,
-            editEntryStore
-        )
-        .sink(
-            receiveCompletion: { _ in },
-            receiveValue: { [weak self] topics, replyEntries, editEntries in
-                self?.update(
-                    topics: topics,
-                    replyToEntries: replyEntries,
-                    editEntries: editEntries
-                )
-            }
-        )
-        .store(in: &subscriptions)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -250,20 +206,16 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
         viewMoreButton.isHidden = contentHeight <= collapsedHeight
     }
 
-    func update(topics: [DiscussionTopic], replyToEntries: [DiscussionEntry], editEntries: [DiscussionEntry]) {
+    func update() {
         loadViewIfNeeded()
-        guard let topic = topics.first else { return }
-        self.topic = topic
-        self.replyEntry = replyToEntries.first
-        self.editEntry = editEntries.first
-
-        loadingView.isHidden = true
+        guard let topic = topic.first else { return }
+        loadingView.isHidden = replyToEntry?.pending != true || replyToEntry?.isEmpty != false
         navigationItem.rightBarButtonItems = topic.canAttach && editEntryID == nil
             ? [ sendButton, attachButton, deleteButton ]
             : [ sendButton ]
 
         var html: String?
-        if replyToEntryID != nil, let replyTo = replyToEntries.first {
+        if replyToEntryID != nil, let replyTo = replyToEntry?.first {
             html = DiscussionHTML.string(for: replyTo)
             if let drafts = env.userDefaults?.discussionDrafts, let draftText = drafts[replyTo.id] {
                 editHTML = draftText
@@ -288,7 +240,7 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
             webView.loadHTMLString(html, baseURL: topic.htmlURL)
         }
 
-        if let entry = editEntries.first, editHTML != entry.message {
+        if let entry = editEntry?.first, editHTML != entry.message {
             editHTML = entry.message
             editor.setHTML(entry.message ?? "")
         }
@@ -329,7 +281,6 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
     }
 
     public func rce(_ editor: RichContentEditorViewController, canSubmit: Bool) {
-        guard topic != nil else { return }
         editor.getHTML { [weak self] string in
             guard let self = self else { return }
             if let replyToEntryID = self.replyToEntryID {
@@ -338,7 +289,7 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
                 } else {
                     self.env.userDefaults?.discussionDrafts[replyToEntryID] = nil
                 }
-            } else if replyToEntryID == nil, let topicID = self.topic?.id {
+            } else if replyToEntryID == nil, let topicID = self.topic.first?.id {
                 if !string.isEmpty {
                     self.env.userDefaults?.discussionDrafts[topicID] = string
                 } else {
@@ -387,7 +338,7 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
                 if let replyToEntryID = self.replyToEntryID {
                     self.env.userDefaults?.discussionDrafts[replyToEntryID] = nil
                 }
-                if let topicID = self.topic?.id {
+                if let topicID = self.topic.first?.id {
                     self.env.userDefaults?.discussionDrafts[topicID] = nil
                 }
                 self.saveReplyComplete(error: error)
@@ -423,8 +374,8 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
             guard let self = self else { return }
             if let replyToEntryID {
                 env.userDefaults?.discussionDrafts[replyToEntryID] = nil
-            } else if let topic = topic {
-                env.userDefaults?.discussionDrafts[topic.id] = nil
+            } else if let topicID = topic.first?.id {
+                env.userDefaults?.discussionDrafts[topicID] = nil
             }
             self.dismiss(animated: true, completion: nil)
         }

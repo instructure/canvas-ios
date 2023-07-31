@@ -454,6 +454,36 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
         XCTAssertTrue(viewController.gradeStatisticGraphView!.isHidden)
     }
 
+    func testDraft() {
+        let course = APICourse.make(id: ID(courseID))
+        api.mock(viewController.presenter!.courses, value: course)
+
+        let assignment = Assignment.make()
+        assignment.draftText = "This is a draft."
+        try? databaseClient.save()
+
+        load()
+        drainMainQueue()
+
+        XCTAssertEqual(viewController.draftDividerView.isHidden, false)
+        XCTAssertEqual(viewController.draftView.isHidden, false)
+    }
+
+    func testDraftIsNotPresent() {
+        let course = APICourse.make(id: ID(courseID))
+        api.mock(viewController.presenter!.courses, value: course)
+
+        let assignment = Assignment.make()
+        assignment.draftText = nil
+        try? databaseClient.save()
+
+        load()
+        drainMainQueue()
+
+        XCTAssertEqual(viewController.draftDividerView.isHidden, true)
+        XCTAssertEqual(viewController.draftView.isHidden, true)
+    }
+
     func setupFileForSubmittedLabel(removeID: Bool = false, taskID: String? = nil, uploadError: String? = nil, apiAssignment: APIAssignment? = nil) {
         let course = APICourse.make(id: ID(courseID))
         api.mock(viewController.presenter!.courses, value: course)

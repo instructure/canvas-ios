@@ -41,6 +41,7 @@ class DiscussionReplyViewControllerTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
+        environment.userDefaults?.discussionDrafts.removeAll()
         controller.editor.webView = MockWebView(features: [])
         controller.webView = webView
         api.mock(controller.course, value: .make())
@@ -57,19 +58,25 @@ class DiscussionReplyViewControllerTests: CoreTestCase {
             new_entries: []
         ))
         api.mock(controller.group, value: .make())
-        api.mock(controller.topic, value: .make(
-            allow_rating: true,
-            assignment_id: 1,
-            author: .make(display_name: "Instructor", pronouns: "she/her"),
-            html_url: baseURL.appendingPathComponent("courses/1/discussion_topics/1"),
-            id: 1,
-            message: "<p>Is the cube rule of food valid? What's your take?</p>",
-            permissions: .make(reply: true),
-            posted_at: DateComponents(calendar: .current, year: 2020, month: 5, day: 7, hour: 8, minute: 35).date,
-            published: true,
-            sort_by_rating: true,
-            title: "What is a sandwich?"
-        ))
+        api.mock(
+            GetDiscussionTopic(
+                context: context,
+                topicID: "1"
+            ),
+            value: .make(
+                allow_rating: true,
+                assignment_id: 1,
+                author: .make(display_name: "Instructor", pronouns: "she/her"),
+                html_url: baseURL.appendingPathComponent("courses/1/discussion_topics/1"),
+                id: 1,
+                message: "<p>Is the cube rule of food valid? What's your take?</p>",
+                permissions: .make(reply: true),
+                posted_at: DateComponents(calendar: .current, year: 2020, month: 5, day: 7, hour: 8, minute: 35).date,
+                published: true,
+                sort_by_rating: true,
+                title: "What is a sandwich?"
+            )
+        )
     }
 
     func testLayout() {
@@ -155,5 +162,17 @@ class DiscussionReplyViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.sendButton.customView, nil)
         api.mock(UpdateDiscussionReply(context: context, topicID: "1", entryID: "1", message: ""), value: .make())
         _ = controller.sendButton.target?.perform(controller.sendButton.action)
+    }
+
+    func testDraft() {
+        controller.webView = CoreWebView() // unlink prev controller
+        context = Context(.group, id: "1")
+        controller = DiscussionReplyViewController.create(context: context, topicID: "1", replyToEntryID: "1")
+        setUp()
+        environment.userDefaults?.discussionDrafts = ["1": "This is a draft."]
+        controller.viewDidLoad()
+        XCTAssertEqual(controller.titleSubtitleView.title, "Reply (Draft)")
+        XCTAssertEqual(controller.titleSubtitleView.subtitle, "Group One")
+        XCTAssertEqual(controller.editHTML, "This is a draft.")
     }
 }

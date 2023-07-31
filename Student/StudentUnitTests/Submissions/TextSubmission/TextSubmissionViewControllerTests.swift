@@ -36,9 +36,21 @@ class TextSubmissionViewControllerTests: StudentTestCase {
         }
     }
 
+    class MockDraftEditor: RichContentEditorViewController {
+        private var html = ""
+
+        override func setHTML(_ html: String) {
+            self.html = html
+        }
+
+        override func getHTML(_ callback: @escaping (String) -> Void) {
+            callback(html)
+        }
+    }
+
     override func setUp() {
         super.setUp()
-        controller = TextSubmissionViewController.create(courseID: "1", assignmentID: "1", userID: "1")
+        controller = TextSubmissionViewController.create(courseID: "1", assignmentID: "1", userID: "1", loadDraft: false)
         controller.editor = MockEditor()
         controller.editor.env = env
         navigation = UINavigationController(rootViewController: controller)
@@ -72,5 +84,26 @@ class TextSubmissionViewControllerTests: StudentTestCase {
         XCTAssertTrue(submit.isEnabled)
         _ = submit.target?.perform(submit.action)
         XCTAssertNil(router.presented)
+    }
+
+    func testDraft() {
+        let assignment = Assignment.make()
+        assignment.draftText = "This is a draft."
+        try? databaseClient.save()
+
+        controller = TextSubmissionViewController.create(courseID: "1", assignmentID: "1", userID: "1", loadDraft: true)
+        controller.editor = MockDraftEditor()
+        controller.editor.env = env
+        controller.viewDidLoad()
+
+        drainMainQueue()
+
+        let expectation = expectation(description: "Draft text is set.")
+        controller.editor.getHTML { string in
+            XCTAssertEqual(string, "This is a draft.")
+            expectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 1)
     }
 }

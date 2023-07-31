@@ -132,7 +132,7 @@ class SubmissionButtonPresenterTests: StudentTestCase {
 
     func testSubmitTypeMissingSubmission() {
         let a = Assignment.make(from: .make(submission: nil))
-        presenter.submitType(.online_text_entry, for: a, button: UIView())
+        presenter.submitType(.online_text_entry, for: a, button: UIView(), loadDraft: false)
         XCTAssertNil(router.presented)
     }
 
@@ -141,7 +141,7 @@ class SubmissionButtonPresenterTests: StudentTestCase {
             discussion_topic: .make(html_url: URL(string: "/discussion")),
             external_tool_tag_attributes: .make(content_id: "1")
         ))
-        presenter.submitType(.external_tool, for: a, button: UIView())
+        presenter.submitType(.external_tool, for: a, button: UIView(), loadDraft: false)
         XCTAssertNil(router.presented)
 
         let request = GetSessionlessLaunchURLRequest(
@@ -154,7 +154,7 @@ class SubmissionButtonPresenterTests: StudentTestCase {
             resourceLinkLookupUUID: nil
         )
         api.mock(request, value: .make(url: URL(string: "https://instructure.com")!))
-        presenter.submitType(.external_tool, for: a, button: UIView())
+        presenter.submitType(.external_tool, for: a, button: UIView(), loadDraft: false)
         wait(for: [router.showExpectation], timeout: 5)
         XCTAssert(router.presented is SFSafariViewController)
     }
@@ -162,17 +162,17 @@ class SubmissionButtonPresenterTests: StudentTestCase {
     func testSubmitTypeDiscussion() {
         let url = URL(string: "/discussion")!
         let a = Assignment.make(from: .make(discussion_topic: .make()))
-        presenter.submitType(.discussion_topic, for: a, button: UIView())
+        presenter.submitType(.discussion_topic, for: a, button: UIView(), loadDraft: false)
         XCTAssert(router.calls.isEmpty)
 
         a.discussionTopic?.htmlURL = url
-        presenter.submitType(.discussion_topic, for: a, button: UIView())
+        presenter.submitType(.discussion_topic, for: a, button: UIView(), loadDraft: false)
         XCTAssert(router.lastRoutedTo(URL(string: "/discussion")!))
     }
 
     func testSubmitTypeMedia() {
         let a = Assignment.make()
-        presenter.submitType(.media_recording, for: a, button: UIView())
+        presenter.submitType(.media_recording, for: a, button: UIView(), loadDraft: false)
         let nav = router.presented as? UINavigationController
         XCTAssertNotNil(nav)
         XCTAssertNotNil(nav?.viewControllers.first as? FilePickerViewController)
@@ -180,22 +180,22 @@ class SubmissionButtonPresenterTests: StudentTestCase {
 
     func testSubmitTypeText() {
         let a = Assignment.make()
-        presenter.submitType(.online_text_entry, for: a, button: UIView())
+        presenter.submitType(.online_text_entry, for: a, button: UIView(), loadDraft: false)
         XCTAssert(router.presented is TextSubmissionViewController)
     }
 
     func testSubmitTypeQuiz() {
         let a = Assignment.make()
-        presenter.submitType(.online_quiz, for: a, button: UIView())
+        presenter.submitType(.online_quiz, for: a, button: UIView(), loadDraft: false)
         XCTAssert(router.calls.isEmpty)
         a.quizID = "1"
-        presenter.submitType(.online_quiz, for: a, button: UIView())
+        presenter.submitType(.online_quiz, for: a, button: UIView(), loadDraft: false)
         XCTAssert(router.presented is QuizWebViewController)
     }
 
     func testSubmitTypeUpload() {
         let a = Assignment.make()
-        presenter.submitType(.online_upload, for: a, button: UIView())
+        presenter.submitType(.online_upload, for: a, button: UIView(), loadDraft: false)
         let nav = router.presented as? UINavigationController
         XCTAssertNotNil(nav)
         XCTAssertNotNil(nav?.viewControllers.first as? FilePickerViewController)
@@ -203,7 +203,7 @@ class SubmissionButtonPresenterTests: StudentTestCase {
 
     func testSubmitTypeURL() {
         let a = Assignment.make()
-        presenter.submitType(.online_url, for: a, button: UIView())
+        presenter.submitType(.online_url, for: a, button: UIView(), loadDraft: false)
         XCTAssert(router.presented is UrlSubmissionViewController)
     }
 
@@ -218,7 +218,7 @@ class SubmissionButtonPresenterTests: StudentTestCase {
 
     func testSubmitTypeBad() {
         let a = Assignment.make()
-        presenter.submitType(.on_paper, for: a, button: UIView())
+        presenter.submitType(.on_paper, for: a, button: UIView(), loadDraft: false)
         XCTAssertNil(router.presented)
     }
 
