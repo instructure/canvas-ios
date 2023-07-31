@@ -113,9 +113,12 @@ public class QuizzesHelper: BaseHelper {
     }
 
     public static func navigateToQuizzes(course: DSCourse) {
-        DashboardHelper.courseCard(course: course).tap()
-        CourseDetailsHelper.cell(type: .quizzes).actionUntilElementCondition(action: .swipeUp, condition: .visible)
-        CourseDetailsHelper.cell(type: .quizzes).tap()
+        DashboardHelper.courseCard(course: course).hit()
+        CourseDetailsHelper.titleLabel.waitUntil(condition: .visible)
+        let quizzesCell = CourseDetailsHelper.cell(type: .quizzes)
+        quizzesCell.waitUntil(condition: .visible)
+        quizzesCell.actionUntilElementCondition(action: .swipeUp, condition: .hittable)
+        quizzesCell.tap()
     }
 
     // MARK: DataSeeding

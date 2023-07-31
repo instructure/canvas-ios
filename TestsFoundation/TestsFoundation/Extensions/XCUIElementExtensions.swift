@@ -33,6 +33,7 @@ public extension XCUIElement {
         case label
         case enabled
         case selected
+        case hittable
     }
 
     enum ElementAction {
@@ -56,7 +57,7 @@ public extension XCUIElement {
 
     @discardableResult
     func hit() -> XCUIElement {
-        waitUntil(condition: .visible)
+        waitUntil(condition: .hittable)
         tap()
         return self
     }
@@ -69,7 +70,7 @@ public extension XCUIElement {
         let deadline = Date().addingTimeInterval(timeout)
         while Date() < deadline {
             var result = false
-            
+
             switch condition {
             case .vanish:
                 result = !isVisible
@@ -83,6 +84,8 @@ public extension XCUIElement {
                 result = exists && isEnabled
             case .selected:
                 result = exists && isSelected
+            case .hittable:
+                result = isHittable
             }
             if result { break } else { sleep(gracePeriod) }
         }
@@ -114,14 +117,16 @@ public extension XCUIElement {
                 result = actualElement.exists && actualElement.isEnabled
             case .selected:
                 result = actualElement.exists && actualElement.isSelected
+            case .hittable:
+                result = actualElement.isHittable
             }
             if result { return true } else {
                 switch action {
                 case .tap: tap()
-                case .swipeUp: swipeUp()
-                case .swipeDown: swipeDown()
-                case .swipeLeft: swipeLeft()
-                case .swipeRight: swipeRight()
+                case .swipeUp: app.swipeUp()
+                case .swipeDown: app.swipeDown()
+                case .swipeLeft: app.swipeLeft()
+                case .swipeRight: app.swipeRight()
                 case .showKeyboard: CoreUITestCase.currentTestCase?.send(.showKeyboard, ignoreErrors: true)
                 case .hideKeyboard: CoreUITestCase.currentTestCase?.send(.hideKeyboard, ignoreErrors: true)
                 case .pullToRefresh: pullToRefresh()

@@ -26,7 +26,7 @@ public class PagesHelper: BaseHelper {
 
     public static func navigateToFrontPage(course: DSCourse) {
         navigateToPages(course: course)
-        frontPage.waitUntil(condition: .visible)
+        frontPage.hit()
     }
 
     public static func createLinkToAssignment(course: DSCourse, assignment: DSAssignment) -> String {

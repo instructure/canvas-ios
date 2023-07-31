@@ -39,9 +39,8 @@ public class GradesHelper: BaseHelper {
     }
 
     public static func checkForTotalGrade(value: String) -> Bool {
-        sleep(3) // No idea why this is needed but it doesn't work without this
         pullToRefresh()
-        return totalGrade.waitUntil(condition: .value, expected: value).isVisible
+        return totalGrade.waitUntil(condition: .label, expected: value).isVisible
     }
 
     public static func createSubmissionsForAssignments(course: DSCourse, student: DSUser, assignments: [DSAssignment]) {
