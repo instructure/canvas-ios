@@ -121,9 +121,14 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
     private static func fetchEnrollments(context: Context, currentGradingPeriodID: String?, userID: String) -> AnyPublisher<Void, Error> {
         Future { promise in
             let env = AppEnvironment.shared
-            guard context.id == env.currentSession?.userID else { return promise(.success(()))}
+            guard context.id == env.currentSession?.userID else { return promise(.failure(NSError.instructureError("User ID not found.")))}
             let request = GetEnrollmentsRequest(context: context, gradingPeriodID: currentGradingPeriodID, states: [ .active ])
-            AppEnvironment.shared.api.exhaust(request) { (enrollments, _, _) in performUIUpdate {
+            AppEnvironment.shared.api.exhaust(request) { (enrollments, _, error) in performUIUpdate {
+
+                if let error = error {
+                    promise(.failure(NSError.instructureError("Unexpected error from API.")))
+                    return
+                }
 
                 let apiEnrollment = enrollments?.first {
                     $0.id != nil &&
@@ -137,6 +142,7 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
                 }
                 promise(.success(()))
             }}
-        }.eraseToAnyPublisher()
+        }
+        .eraseToAnyPublisher()
     }
 }
