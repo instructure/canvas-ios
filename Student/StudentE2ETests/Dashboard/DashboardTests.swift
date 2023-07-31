@@ -155,7 +155,7 @@ class DashboardTests: E2ETestCase {
         XCTAssertTrue(courseCard1.isVisible)
         XCTAssertTrue(courseCard1.label.contains(courses[0].name))
 
-        courseCard2 = Helper.courseCard(course: courses[0]).waitUntil(condition: .visible)
+        courseCard2 = Helper.courseCard(course: courses[1]).waitUntil(condition: .visible)
         XCTAssertTrue(courseCard2.isVisible)
         XCTAssertTrue(courseCard2.label.contains(courses[1].name))
 

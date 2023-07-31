@@ -24,30 +24,34 @@ class ActAsUserTests: CoreUITestCase {
     override var user: UITestUser? { return .readAdmin1 }
 
     func testActAsUser() {
-        DashboardHelper.profileButton.hit()
+        let profileButton = DashboardHelper.profileButton
+        let userNameLabel = ProfileHelper.userNameLabel
+        profileButton.actionUntilElementCondition(action: .tap, element: userNameLabel, condition: .visible)
+        userNameLabel.waitUntil(condition: .label, expected: "Admin One")
         XCTAssertEqual(ProfileHelper.userNameLabel.waitUntil(condition: .visible).label, "Admin One")
 
         var actAsUserButton = ProfileHelper.actAsUserButton.waitUntil(condition: .visible)
         XCTAssertTrue(actAsUserButton.isVisible)
 
         actAsUserButton.tap()
-        XCTAssertTrue(ActAsUserHelper.userIDField.waitUntil(condition: .visible).isVisible)
-        XCTAssertTrue(ActAsUserHelper.domainField.waitUntil(condition: .visible).isVisible)
-
         let userIDField = ActAsUserHelper.userIDField.waitUntil(condition: .visible)
-        userIDField.writeText(text: "613").swipeUp()
         let domainField = ActAsUserHelper.domainField.waitUntil(condition: .visible)
+        XCTAssertTrue(userIDField.isVisible)
+        XCTAssertTrue(domainField.isVisible)
+
+        userIDField.writeText(text: "613").swipeUp()
         if domainField.hasValue(value: "https://\(user!.host)") {
             domainField.cutText()
             domainField.writeText(text: "https://\(user!.host)").swipeUp()
         }
-        actAsUserButton = ActAsUserHelper.actAsUserButton.waitUntil(condition: .visible)
+        actAsUserButton = ActAsUserHelper.actAsUserButton
+        actAsUserButton.actionUntilElementCondition(action: .swipeUp, condition: .visible)
         XCTAssertTrue(actAsUserButton.isVisible)
 
         actAsUserButton.tap()
-        let userNameLabel = ProfileHelper.userNameLabel
-        let profileButton = DashboardHelper.profileButton.waitUntil(condition: .visible)
+        profileButton.waitUntil(condition: .visible)
         profileButton.actionUntilElementCondition(action: .tap, element: userNameLabel, condition: .visible)
+        userNameLabel.waitUntil(condition: .label, expected: "Student One")
         XCTAssertEqual(userNameLabel.label, "Student One")
 
         let endActAsUserButton = ActAsUserHelper.endActAsUserButton.waitUntil(condition: .visible)
@@ -59,7 +63,7 @@ class ActAsUserTests: CoreUITestCase {
         XCTAssertFalse(endActAsUserButton.isVisible)
 
         profileButton.waitUntil(condition: .visible)
-        profileButton.actionUntilElementCondition(action: .tap, element: userNameLabel, condition: .visible)
+        profileButton.actionUntilElementCondition(action: .tap, element: userNameLabel, condition: .label, expected: "Admin One")
         XCTAssertEqual(userNameLabel.label, "Admin One")
     }
 }

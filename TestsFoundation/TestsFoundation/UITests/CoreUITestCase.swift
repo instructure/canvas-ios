@@ -280,7 +280,7 @@ open class CoreUITestCase: XCTestCase {
         } else {
             findSchoolButton.tap()
             LoginHelper.FindSchool.searchField.writeText(text: user.host)
-            LoginHelper.FindSchool.keyboardGoButton.hit()
+            LoginHelper.FindSchool.nextButton.hit()
         }
         let emailField = LoginHelper.Login.emailField.waitUntil(condition: .visible, timeout: 60)
         emailField.writeText(text: user.username)

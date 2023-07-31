@@ -42,6 +42,7 @@ public extension XCUIElement {
         case swipeLeft
         case tap
         case showKeyboard
+        case hideKeyboard
     }
 
     func hasValue(value: String) -> Bool {
@@ -100,7 +101,7 @@ public extension XCUIElement {
 
             switch condition {
             case .vanish:
-                result = !actualElement.isVisible
+                result = !(actualElement.isVisible && actualElement.isHittable)
             case .visible:
                 result = actualElement.isVisible
             case .value:
@@ -120,8 +121,9 @@ public extension XCUIElement {
                 case .swipeLeft: swipeLeft()
                 case .swipeRight: swipeRight()
                 case .showKeyboard: CoreUITestCase.currentTestCase?.send(.showKeyboard, ignoreErrors: true)
+                case .hideKeyboard: CoreUITestCase.currentTestCase?.send(.hideKeyboard, ignoreErrors: true)
                 }
-                
+
                 sleep(gracePeriod)
             }
         }
@@ -131,9 +133,11 @@ public extension XCUIElement {
     @discardableResult
     func writeText(text: String) -> XCUIElement {
         hit()
-        app.find(type: .keyboard).actionUntilElementCondition(action: .showKeyboard, condition: .visible)
+        let keyboard = app.find(type: .keyboard)
+        keyboard.actionUntilElementCondition(action: .showKeyboard, condition: .visible)
         waitUntil(condition: .visible)
         typeText(text)
+        keyboard.actionUntilElementCondition(action: .hideKeyboard, condition: .vanish)
         return self
     }
 
