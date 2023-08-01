@@ -21,9 +21,11 @@ import SwiftUI
 public struct ContextCardView: View {
     @Environment(\.viewController) private var controller
     @ObservedObject private var model: ContextCardViewModel
+    @ObservedObject private var offlineModeViewModel: OfflineModeViewModel
 
-    public init(model: ContextCardViewModel) {
+    public init(model: ContextCardViewModel, offlineModeViewModel: OfflineModeViewModel = OfflineModeViewModel(interactor: OfflineModeInteractorLive.shared)) {
         self.model = model
+        self.offlineModeViewModel = offlineModeViewModel
     }
 
     public var body: some View {
@@ -38,7 +40,7 @@ public struct ContextCardView: View {
 
     @ViewBuilder var emailButton: some View {
         if model.permissions.first?.sendMessages == true, model.isViewingAnotherUser {
-            PrimaryButton(isAvailable: !$model.offlineModeViewModel.isOffline,
+            PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline,
                           action: { model.openNewMessageComposer(controller: controller.value) }, label: {
                 let color = model.isModal ? Brand.shared.buttonPrimaryBackground : Brand.shared.buttonPrimaryText
                 Image.emailLine.foregroundColor(Color(color))

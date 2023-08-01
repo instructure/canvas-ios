@@ -75,12 +75,14 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
     }
 
     private static func fetchSubmissionsForStudent(context: Context, userID: String) -> AnyPublisher<Void, Error> {
-        guard userID == AppEnvironment.shared.currentSession?.userID else { return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher() }
-            return ReactiveStore(useCase: GetSubmissionsForStudent(context: context, studentID: userID))
-                .getEntities()
-                .mapToVoid()
-                .eraseToAnyPublisher()
+        guard userID == AppEnvironment.shared.currentSession?.userID else {
+            return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
         }
+        return ReactiveStore(useCase: GetSubmissionsForStudent(context: context, studentID: userID))
+            .getEntities()
+            .mapToVoid()
+            .eraseToAnyPublisher()
+    }
 
     private static func fetchSingleUser(context: Context, userID: String) -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: GetCourseContextUser(context: context, userID: userID))
@@ -121,11 +123,11 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
     private static func fetchEnrollments(context: Context, currentGradingPeriodID: String?, userID: String) -> AnyPublisher<Void, Error> {
         Future { promise in
             let env = AppEnvironment.shared
-            guard context.id == env.currentSession?.userID else { return promise(.failure(NSError.instructureError("User ID not found.")))}
+            guard userID == env.currentSession?.userID else { return promise(.failure(NSError.instructureError("User ID not found.")))}
             let request = GetEnrollmentsRequest(context: context, gradingPeriodID: currentGradingPeriodID, states: [ .active ])
             AppEnvironment.shared.api.exhaust(request) { (enrollments, _, error) in performUIUpdate {
 
-                if let error = error {
+                guard error == nil else {
                     promise(.failure(NSError.instructureError("Unexpected error from API.")))
                     return
                 }

@@ -20,10 +20,14 @@
 import XCTest
 
 class CourseSyncPeopleInteractorLiveTests: CoreTestCase {
-    private let testee = CourseSyncPeopleInteractorLive()
+
+    private var testee: CourseSyncPeopleInteractorLive!
 
     override func setUp() {
         super.setUp()
+        AppEnvironment.shared.currentSession = LoginSession.make()
+        testee = CourseSyncPeopleInteractorLive()
+
         mockCourseColors()
         mockCourse()
         mockEnrollments()
@@ -32,6 +36,10 @@ class CourseSyncPeopleInteractorLiveTests: CoreTestCase {
         mockUsers()
         mockSubmissions()
         mockCourseSections()
+    }
+
+    override func tearDown() {
+        testee = nil
     }
 
     func testSuccessfulSync() {
@@ -100,7 +108,7 @@ class CourseSyncPeopleInteractorLiveTests: CoreTestCase {
         )
     }
 
-    private let enrollmentUseCase = GetEnrollments(context: .course("1"), states: [ .active ])
+    private let enrollmentUseCase = GetEnrollments(context: .course("testCourse"), states: [ .active ])
 
     private func mockEnrollments() {
         let enrollment = makeEnrollment()
@@ -144,7 +152,7 @@ class CourseSyncPeopleInteractorLiveTests: CoreTestCase {
 
     private func mockUsers() {
         let enrollment = makeEnrollment()
-        let user = APIUser.make(id: "1", name: "Test User", login_id: "test", avatar_url: nil, enrollments: [enrollment], email: "test@test", pronouns: nil)
+        let user = APIUser.make(id: "1", name: "Test User", login_id: "1", avatar_url: nil, enrollments: [enrollment], email: "test@test", pronouns: nil)
         api.mock(usersUseCase, value: [user])
     }
 

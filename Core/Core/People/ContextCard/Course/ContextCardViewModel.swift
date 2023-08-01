@@ -21,7 +21,6 @@ import SwiftUI
 
 public class ContextCardViewModel: ObservableObject {
     @Published public var pending = true
-    public var offlineModeViewModel: OfflineModeViewModel
     public lazy var user = env.subscribe(GetCourseContextUser(context: context, userID: userID)) { [weak self] in self?.updateLoadingState() }
     public lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in self?.updateLoadingState() }
     public lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in self?.updateLoadingState() }
@@ -43,6 +42,7 @@ public class ContextCardViewModel: ObservableObject {
     private let userID: String
     private var enrollmentsAPICallResponsePending = true
     private var currentGradingPeriodID: String?
+    private let offlineModeViewModel: OfflineModeViewModel
 
     private var subscriptions = Set<AnyCancellable>()
 
@@ -57,9 +57,6 @@ public class ContextCardViewModel: ObservableObject {
         self.isLastActivityVisible = isLastActivityVisible
         self.isModal = isModal
         self.offlineModeViewModel = offlineModeViewModel
-
-        offlineModeViewModel.objectWillChange.sink { [weak self] _ in self?.objectWillChange.send() }
-            .store(in: &subscriptions)
     }
 
     public func viewAppeared() {
