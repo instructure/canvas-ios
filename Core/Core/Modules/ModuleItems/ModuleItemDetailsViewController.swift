@@ -147,14 +147,7 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
             return LTIViewController.create(tools: tools, name: item.title)
         default:
             guard let url = item.url else { return nil }
-            let preparedURL = url.appendingOrigin("module_item_details")
-            let itemViewController = env.router.match(preparedURL)
-
-            if let itemViewController, let routeTemplate = env.router.template(for: preparedURL) {
-                Analytics.shared.logScreenView(route: routeTemplate, viewController: itemViewController)
-            }
-
-            return itemViewController
+            return env.router.match(url.appendingOrigin("module_item_details"))
         }
     }
 
