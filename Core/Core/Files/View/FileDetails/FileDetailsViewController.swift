@@ -238,10 +238,22 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     }
 
     @IBAction func share(_ sender: UIBarButtonItem) {
-        guard offlineFileInteractor?.isOffline == false else { return UIAlertController.showItemNotAvailableInOfflineAlert() }
-        guard let url = localURL else { return }
-        let pdf = children.first { $0 is PDFViewController } as? PDFViewController
-        try? pdf?.document?.save()
+        guard offlineFileInteractor?.isOffline == false else {
+            return UIAlertController.showItemNotAvailableInOfflineAlert()
+        }
+        guard let url = localURL else {
+            return showFileNotAvailableForShareDialog()
+        }
+
+        if let pdf = children.first(where: { $0 is PDFViewController }) as? PDFViewController {
+            try? pdf.document?.save()
+        }
+
+        // CoreActivityViewController crashes if the url doesn't exist
+        guard FileManager.default.fileExists(atPath: url.path) else {
+            return showFileNotAvailableForShareDialog()
+        }
+
         let controller = CoreActivityViewController(activityItems: [url], applicationActivities: nil)
         controller.popoverPresentationController?.barButtonItem = sender
         env.router.show(controller, from: self, options: .modal())
@@ -272,6 +284,29 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
             return offlineFileInteractor?.filePath(sessionID: sessionID, fileID: fileID, fileName: name)
         }
         return "\(sessionID)/\(fileID)/\(name)"
+    }
+
+    // MARK: - Dialogs
+
+    private func showFileNoLongerExistsDialog() {
+        let alert = UIAlertController(title: NSLocalizedString("File No Longer Exists", comment: ""),
+                                      message: NSLocalizedString("The file has been deleted by the author.", comment: ""),
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Close", comment: ""),
+                                      style: .default,
+                                      handler: { [env] _ in
+            env.router.dismiss(self)
+        }))
+        env.router.show(alert, from: self, options: .modal())
+    }
+
+    private func showFileNotAvailableForShareDialog() {
+        let alert = UIAlertController(title: NSLocalizedString("File Not Available", comment: ""),
+                                      message: NSLocalizedString("The file is not available for sharing this time, please try again later.", comment: ""),
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""),
+                                      style: .default))
+        env.router.show(alert, from: self, options: .modal())
     }
 }
 
@@ -337,18 +372,6 @@ extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCre
         downloadTask = nil
         performUIUpdate { self.downloadComplete() }
         session.finishTasksAndInvalidate()
-    }
-
-    private func showFileNoLongerExistsDialog() {
-        let alert = UIAlertController(title: NSLocalizedString("File No Longer Exists", comment: ""),
-                                      message: NSLocalizedString("The file has been deleted by the author.", comment: ""),
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Close", comment: ""),
-                                      style: .default,
-                                      handler: { [env] _ in
-            env.router.dismiss(self)
-        }))
-        env.router.show(alert, from: self, options: .modal())
     }
 
     func downloadComplete() {
