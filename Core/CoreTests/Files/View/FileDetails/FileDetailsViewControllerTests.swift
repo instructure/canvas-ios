@@ -285,8 +285,28 @@ class FileDetailsViewControllerTests: CoreTestCase {
 
     func testShare() {
         controller.view.layoutIfNeeded()
+
+        guard let url = controller.localURL else {
+            return XCTFail()
+        }
+
+        FileManager.default.createFile(atPath: url.path, contents: Data())
         _ = controller.shareButton.target?.perform(controller.shareButton.action, with: [controller.shareButton])
         XCTAssert(router.presented is UIActivityViewController)
+    }
+
+    func testShareShowsErrorWhenFileNotAvailable() {
+        controller.view.layoutIfNeeded()
+        _ = controller.shareButton.target?.perform(controller.shareButton.action, with: [controller.shareButton])
+
+        guard let alert = router.presented as? UIAlertController else {
+            return XCTFail("File not available warning was not presented.")
+        }
+
+        XCTAssertEqual(alert.title, "File Not Available")
+        XCTAssertEqual(alert.message, "The file is not available for sharing this time, please try again later.")
+        XCTAssertEqual(alert.actions.count, 1)
+        XCTAssertEqual(alert.actions.first?.title, "OK")
     }
 
     func testLocked() {
@@ -310,6 +330,12 @@ class FileDetailsViewControllerTests: CoreTestCase {
         _ = controller.toolbarLinkButton.target?.perform(controller.toolbarLinkButton.action)
         XCTAssertEqual(controller.copiedView.isHidden, false)
         XCTAssertEqual(UIPasteboard.general.url, URL(string: "https://canvas.instructure.com/files/1/download"))
+
+        guard let url = controller.localURL else {
+            return XCTFail()
+        }
+
+        FileManager.default.createFile(atPath: url.path, contents: Data())
 
         _ = controller.toolbarShareButton.target?.perform(controller.toolbarShareButton.action, with: [controller.toolbarShareButton])
         XCTAssert(router.presented is UIActivityViewController)
