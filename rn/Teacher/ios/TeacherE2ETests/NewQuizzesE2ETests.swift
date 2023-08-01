@@ -16,22 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 import TestsFoundation
 
 class NewQuizzesE2ETests: CoreUITestCase {
     func testNewQuizzesE2E() {
-        Dashboard.courseCard(id: "399").waitToExist()
-        Dashboard.courseCard(id: "399").tap()
-        CourseNavigation.quizzes.tap()
-        app.find(label: "Read-only Quiz").tap()
-        QuizDetails.launchExternalToolButton.tap()
-        app.find(labelContaining: "This is an essay question").waitToExist()
-        app.find(labelContaining: "Please don't put text in this box.").waitToExist()
-        app.find(labelContaining: "More Quiz Actions").waitToExist()
-        app.find(labelContaining: "Toolbar").waitToExist()
-        app.find(label: "Done").tap()
-        app.find(labelContaining: "This is an essay question").waitToVanish()
-        app.find(labelContaining: "Toolbar").waitToVanish()
+        DashboardHelper.courseCard(courseId: "399").hit()
+        CourseDetailsHelper.cell(type: .quizzes).hit()
+        app.find(label: "Read-only Quiz").hit()
+        QuizzesHelper.Details.launchExternalToolButton.hit()
+        XCTAssertTrue(app.find(labelContaining: "This is an essay question").waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(app.find(labelContaining: "Please don't put text in this box.").waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(app.find(labelContaining: "More Quiz Actions").waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(app.find(labelContaining: "Toolbar").waitUntil(condition: .visible).isVisible)
+        app.find(label: "Done").hit()
+        XCTAssertFalse(app.find(labelContaining: "This is an essay question").waitUntil(condition: .vanish).isVisible)
+        XCTAssertFalse(app.find(labelContaining: "Toolbar").waitUntil(condition: .vanish).isVisible)
     }
 }

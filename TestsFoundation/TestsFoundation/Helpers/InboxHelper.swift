@@ -21,8 +21,8 @@ public class InboxHelper: BaseHelper {
     public static var profileButton: XCUIElement { app.find(id: "Inbox.profileButton") }
     public static var newMessageButton: XCUIElement { app.find(id: "inbox.new-message") }
 
-    public static func conversation(conversation: DSConversation) -> XCUIElement {
-        return app.find(id: "inbox.conversation-\(conversation.id)")
+    public static func conversation(conversation: DSConversation? = nil, conversationId: String? = nil) -> XCUIElement {
+        return app.find(id: "inbox.conversation-\(conversation?.id ?? conversationId!)")
     }
 
     public static func addDateToSubject(subject: String, unread: Bool = false) -> String {
@@ -88,12 +88,17 @@ public class InboxHelper: BaseHelper {
         public static var recipientsLabel: XCUIElement { app.find(id: "compose.recipients-placeholder") }
         public static var addRecipientButton: XCUIElement { app.find(id: "compose.add-recipient") }
 
-        public static func courseSelectionItem(course: DSCourse) -> XCUIElement {
-            return app.find(id: "inbox.course-select.course-\(course.id)")
+        public static func courseSelectionItem(course: DSCourse? = nil, courseId: String? = nil) -> XCUIElement {
+            return app.find(id: "inbox.course-select.course-\(course?.id ?? courseId!)")
         }
 
-        public static func recipientSelectionItem(course: DSCourse) -> XCUIElement {
-            return app.find(id: "branch_course_\(course.id)")
+        public static func recipientSelectionItem(course: DSCourse? = nil, courseId: String? = nil) -> XCUIElement {
+            return app.find(id: "branch_course_\(course?.id ?? courseId!)")
+        }
+
+        public struct Attachments {
+            public static var addButton: XCUIElement { app.find(id: "attachments.add-btn") }
+            public static var dismissButton: XCUIElement { app.find(id: "attachments.dismiss-btn") }
         }
     }
 

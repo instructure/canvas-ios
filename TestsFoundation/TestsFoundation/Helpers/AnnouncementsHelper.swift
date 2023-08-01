@@ -17,15 +17,21 @@
 //
 
 public class AnnouncementsHelper: BaseHelper {
+    public static var addNewAnnouncement: XCUIElement { app.find(label: "Create Announcement") }
+    public static var emptyAnnouncements: XCUIElement { app.find(label: "No Announcements") }
     public static func cell(index: Int) -> XCUIElement {
         return app.find(id: "announcements.list.announcement.row-\(index)")
     }
 
     public struct Details {
         public static var title: XCUIElement { app.find(id: "DiscussionDetails.title") }
+        public static var optionButton: XCUIElement { app.find(label: "Options") }
+        public static var replyButton: XCUIElement { app.find(label: "Reply to main discussion") }
         public static var message: XCUIElement {
             app.find(id: "DiscussionDetails.body").findAll(type: .staticText, minimumCount: 2)[1]
         }
+
+        public static func detailsByText(text: String) -> XCUIElement { return app.find(label: text) }
 
         public static func navBar(course: DSCourse) -> XCUIElement {
             app.find(id: "Announcement Details, \(course.name)")

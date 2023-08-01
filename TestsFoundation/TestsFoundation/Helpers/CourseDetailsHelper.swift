@@ -35,5 +35,6 @@ public class CourseDetailsHelper: BaseHelper {
         case collaborations = "collaborations"
         case googleDrive = "context_external_tool_1038049"
         case quizzes = "quizzes"
+        case files = "files"
     }
 }

@@ -172,7 +172,7 @@ public extension XCUIElement {
     func cutText() -> XCUIElement {
         let selectAll = app.find(label: "Select All")
         actionUntilElementCondition(action: .tap, element: selectAll, condition: .visible)
-        selectAll.tap()
+        selectAll.hit()
         app.find(label: "Cut").hit()
         return self
     }
@@ -183,6 +183,11 @@ public extension XCUIElement {
 
     func pullToRefresh(x: CGFloat = 0.5) {
         relativeCoordinate(x: x, y: 0.2).press(forDuration: 0.05, thenDragTo: relativeCoordinate(x: x, y: 1.0))
+    }
+
+    func tapAt(_ point: CGPoint) {
+        waitUntil(condition: .hittable)
+        coordinate(withNormalizedOffset: .zero).withOffset(CGVector(dx: point.x, dy: point.y)).tap()
     }
 
     // MARK: Find

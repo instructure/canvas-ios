@@ -16,26 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 import TestsFoundation
 
 class ModulesE2ETests: CoreUITestCase {
     func testModulesE2E() {
-        Dashboard.courseCard(id: "5586").waitToExist()
-        Dashboard.courseCard(id: "5586").tap()
-        CourseNavigation.modules.tap()
-        app.find(labelContaining: "No Modules").waitToExist()
-        NavBar.backButton.tap()
-        NavBar.backButton.tap()
-        Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
-        CourseNavigation.modules.tap()
-        XCTAssertEqual(ModuleList.item(section: 0, row: 0).label(), "assignment, Assignment One, published")
-        ModuleList.item(section: 0, row: 0).tap()
-        AssignmentDetails.description("This is assignment one.").waitToExist()
-        NavBar.backButton.tap()
-        NavBar.backButton.tap()
-        NavBar.backButton.tap()
-        XCTAssertTrue(Dashboard.courseCard(id: "263").exists())
+        DashboardHelper.courseCard(courseId: "5586").hit()
+        CourseDetailsHelper.cell(type: .modules).hit()
+        app.find(labelContaining: "No Modules").waitUntil(condition: .visible)
+        ModulesHelper.backButton.hit()
+        ModulesHelper.backButton.hit()
+        DashboardHelper.courseCard(courseId: "263").hit()
+        CourseDetailsHelper.cell(type: .modules).hit()
+        XCTAssertEqual(ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 0).waitUntil(condition: .visible).label,
+                       "assignment, Assignment One, published")
+        ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 0).hit()
+        app.find(labelContaining: "This is assignment one.").waitUntil(condition: .visible)
+        ModulesHelper.backButton.hit()
+        ModulesHelper.backButton.hit()
+        ModulesHelper.backButton.hit()
+        XCTAssertTrue(DashboardHelper.courseCard(courseId: "263").waitUntil(condition: .visible).isVisible)
     }
 }

@@ -44,7 +44,19 @@ public class PeopleHelper: BaseHelper {
 
     public struct ContextCard {
         public static var userNameLabel: XCUIElement { app.find(id: "ContextCard.userNameLabel") }
+        public static var userEmailLabel: XCUIElement { app.find(id: "ContextCard.userEmailLabel") }
         public static var courseLabel: XCUIElement { app.find(id: "ContextCard.courseLabel") }
         public static var sectionLabel: XCUIElement { app.find(id: "ContextCard.sectionLabel") }
+        public static var currentGradeLabel: XCUIElement { app.find(id: "ContextCard.currentGradeLabel") }
+        public static var lastActivityLabel: XCUIElement { app.find(id: "ContextCard.lastActivityLabel") }
+        public static var overrideGradeLabel: XCUIElement { app.find(id: "ContextCard.overrideGradeLabel") }
+        public static var submissionsLateLabel: XCUIElement { app.find(id: "ContextCard.submissionsLateLabel") }
+        public static var submissionsMissingLabel: XCUIElement { app.find(id: "ContextCard.submissionsMissingLabel") }
+        public static var submissionsTotalLabel: XCUIElement { app.find(id: "ContextCard.submissionsTotalLabel") }
+        public static var unpostedGradeLabel: XCUIElement { app.find(id: "ContextCard.unpostedGradeLabel") }
+
+        public static func submissionCell(assignment: DSAssignment? = nil, assignmentId: String? = nil) -> XCUIElement {
+            return app.find(id: "ContextCard.submissionCell(\(assignment?.id ?? assignmentId!))")
+        }
     }
 }

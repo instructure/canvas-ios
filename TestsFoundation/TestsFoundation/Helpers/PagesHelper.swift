@@ -18,6 +18,24 @@
 
 public class PagesHelper: BaseHelper {
     public static var frontPage: XCUIElement { app.find(id: "PageList.frontPage") }
+    public static var frontPageHeading: XCUIElement { app.find(id: "PageList.frontPageHeading") }
+    public static var frontPageTitle: XCUIElement { app.find(id: "PageList.frontPageTitle") }
+    public static var emptyPage: XCUIElement { app.find(label: "No Pages") }
+    public static var add: XCUIElement { app.find(id: "PageList.add") }
+
+    public static func page(index: Int) -> XCUIElement { return app.find(id: "PageList.\(index)") }
+
+    public struct Editor {
+        public static var done: XCUIElement { app.find(id: "PageEditor.doneButton") }
+        public static var title: XCUIElement { app.find(id: "PageEditor.titleField") }
+        public static var published: XCUIElement { app.find(id: "PageEditor.publishedToggle") }
+        public static var frontPage: XCUIElement { app.find(id: "PageEditor.frontPageToggle") }
+        public static var editors: XCUIElement { app.find(id: "PageEditor.editorsButton") }
+    }
+
+    public struct Details {
+        public static var options: XCUIElement { app.find(id: "PageDetails.options") }
+    }
 
     public static func navigateToPages(course: DSCourse) {
         DashboardHelper.courseCard(course: course).hit()

@@ -20,8 +20,8 @@ public class DiscussionsHelper: BaseHelper {
     public static var newButton: XCUIElement { app.find(id: "DiscussionList.newButton") }
     public static var noDiscussionsPandaImage: XCUIElement { app.find(id: "PandaNoDiscussions") }
 
-    public static func discussionButton(discussion: DSDiscussionTopic) -> XCUIElement {
-        app.find(id: "DiscussionListCell.\(discussion.id)")
+    public static func discussionButton(discussion: DSDiscussionTopic? = nil, discussionId: String? = nil) -> XCUIElement {
+        app.find(id: "DiscussionListCell.\(discussion?.id ?? discussionId!)")
     }
 
     public static func discussionDataLabel(discussion: DSDiscussionTopic, label: DiscussionLabelTypes) -> XCUIElement {
@@ -38,6 +38,7 @@ public class DiscussionsHelper: BaseHelper {
         }
         public static var optionsButton: XCUIElement { app.find(id: "DiscussionDetails.options") }
         public static var titleLabel: XCUIElement { app.find(id: "DiscussionDetails.title") }
+        public static var editButton: XCUIElement { app.find(id: "DiscussionDetails.edit") }
         public static var lastPostLabel: XCUIElement {
             app.find(id: "DiscussionDetails.body").find(type: .staticText)
         }
@@ -66,6 +67,27 @@ public class DiscussionsHelper: BaseHelper {
                 app.find(id: "DiscussionEditReply.attachmentButton")
             }
         }
+    }
+
+    public struct Editor {
+        public static var allowRatingToggle: XCUIElement { app.find(id: "DiscussionEditor.allowRatingToggle") }
+        public static var attachmentButton: XCUIElement { app.find(id: "DiscussionEditor.attachmentButton") }
+        public static var delayedPostAtToggle: XCUIElement { app.find(id: "DiscussionEditor.delayedPostAtToggle") }
+        public static var delayedPostAtPicker: XCUIElement { app.find(id: "DiscussionEditor.delayedPostAtPicker") }
+        public static var doneButton: XCUIElement { app.find(id: "DiscussionEditor.doneButton") }
+        public static var gradingTypeButton: XCUIElement { app.find(id: "DiscussionEditor.gradingTypeButton") }
+        public static var lockAtPicker: XCUIElement { app.find(id: "DiscussionEditor.lockAtPicker") }
+        public static var lockedToggle: XCUIElement { app.find(id: "DiscussionEditor.lockedToggle") }
+        public static var onlyGradersCanRateToggle: XCUIElement { app.find(id: "DiscussionEditor.onlyGradersCanRateToggle") }
+        public static var pointsField: XCUIElement { app.find(id: "DiscussionEditor.pointsField") }
+        public static var publishedToggle: XCUIElement { app.find(id: "DiscussionEditor.publishedToggle") }
+        public static var requireInitialPostToggle: XCUIElement { app.find(id: "DiscussionEditor.requireInitialPostToggle") }
+        public static var sectionsButton: XCUIElement { app.find(id: "DiscussionEditor.sectionsButton") }
+        public static var sortByRatingToggle: XCUIElement { app.find(id: "DiscussionEditor.sortByRatingToggle") }
+        public static var threadedToggle: XCUIElement { app.find(id: "DiscussionEditor.threadedToggle") }
+        public static var titleField: XCUIElement { app.find(id: "DiscussionEditor.titleField") }
+
+        public static var richContentEditorWebView: XCUIElement { app.find(id: "RichContentEditor.webView") }
     }
 
     // MARK: Other functions

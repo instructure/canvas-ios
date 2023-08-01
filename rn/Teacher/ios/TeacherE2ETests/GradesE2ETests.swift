@@ -16,27 +16,29 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 import TestsFoundation
 
 class GradesE2ETests: CoreUITestCase {
     func testGradesE2E() {
-        Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
-        CourseNavigation.people.tap()
-        app.find(label: "Student One").tap()
-        XCTAssertEqual(ContextCard.courseLabel.label(), "Assignments")
-        XCTAssertEqual(ContextCard.currentGradeLabel.label(), "Current Grade 72.73%")
-        XCTAssertEqual(ContextCard.submissionsTotalLabel.label(), "3 submitted")
-        XCTAssertEqual(ContextCard.submissionCell("5431").label(), "Submission New Grade Book Quiz, Submitted, grade 1 / 1")
-        XCTAssertEqual(ContextCard.submissionCell("1831").label(), "Submission Assignment One, Submitted, grade 7 / 10")
-        XCTAssertEqual(ContextCard.submissionCell("261986").label(), "Submission Needs Grading, Submitted, NEEDS GRADING")
-        NavBar.backButton.tap()
-        app.find(label: "Student Two").tap()
-        XCTAssertEqual(ContextCard.courseLabel.label(), "Assignments")
-        XCTAssertEqual(ContextCard.currentGradeLabel.label(), "Current Grade 0.0%")
-        XCTAssertEqual(ContextCard.submissionsMissingLabel.label(), "2 missing")
-        XCTAssertEqual(ContextCard.submissionsTotalLabel.label(), "0 submitted")
-        XCTAssertEqual(ContextCard.submissionCell("5431").label(), "Submission New Grade Book Quiz, Not Submitted, grade 0 / 1")
+        DashboardHelper.courseCard(courseId: "263").hit()
+        CourseDetailsHelper.cell(type: .people).hit()
+        app.find(label: "Student One").hit()
+        XCTAssertEqual(PeopleHelper.ContextCard.courseLabel.waitUntil(condition: .visible).label, "Assignments")
+        XCTAssertEqual(PeopleHelper.ContextCard.currentGradeLabel.waitUntil(condition: .visible).label, "Current Grade 72.73%")
+        XCTAssertEqual(PeopleHelper.ContextCard.submissionsTotalLabel.waitUntil(condition: .visible).label, "3 submitted")
+        XCTAssertEqual(PeopleHelper.ContextCard.submissionCell(assignmentId: "5431").waitUntil(condition: .visible).label,
+                       "Submission New Grade Book Quiz, Submitted, grade 1 / 1")
+        XCTAssertEqual(PeopleHelper.ContextCard.submissionCell(assignmentId: "1831").waitUntil(condition: .visible).label,
+                       "Submission Assignment One, Submitted, grade 7 / 10")
+        XCTAssertEqual(PeopleHelper.ContextCard.submissionCell(assignmentId: "261986").waitUntil(condition: .visible).label,
+                       "Submission Needs Grading, Submitted, NEEDS GRADING")
+        GradesHelper.backButton.hit()
+        app.find(label: "Student Two").hit()
+        XCTAssertEqual(PeopleHelper.ContextCard.courseLabel.waitUntil(condition: .visible).label, "Assignments")
+        XCTAssertEqual(PeopleHelper.ContextCard.currentGradeLabel.waitUntil(condition: .visible).label, "Current Grade 0.0%")
+        XCTAssertEqual(PeopleHelper.ContextCard.submissionsMissingLabel.waitUntil(condition: .visible).label, "2 missing")
+        XCTAssertEqual(PeopleHelper.ContextCard.submissionsTotalLabel.waitUntil(condition: .visible).label, "0 submitted")
+        XCTAssertEqual(PeopleHelper.ContextCard.submissionCell(assignmentId: "5431").waitUntil(condition: .visible).label,
+                       "Submission New Grade Book Quiz, Not Submitted, grade 0 / 1")
     }
 }

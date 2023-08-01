@@ -23,13 +23,31 @@ public class AssignmentsHelper: BaseHelper {
     public static var getYesterdaysDateString: String { Date().addDays(-1).ISO8601Format() }
 
     public static func navBar(course: DSCourse) -> XCUIElement {
-        app.find(id: "Assignments, \(course.name)")
+        return app.find(id: "Assignments, \(course.name)")
     }
-    public static func assignmentButton(assignment: DSAssignment) -> XCUIElement {
-        app.find(id: "assignment-list.assignment-list-row.cell-\(assignment.id)")
+
+    public static func assignmentButton(assignment: DSAssignment? = nil, assignmentId: String? = nil) -> XCUIElement {
+        return app.find(id: "assignment-list.assignment-list-row.cell-\(assignment?.id ?? assignmentId!)")
     }
+
     public static func pointsOutOf(actualScore: String, maxScore: String) -> XCUIElement {
-        app.find(id: "AssignmentDetails.gradeCircle", label: "Scored \(actualScore) out of \(maxScore) points possible")
+        return app.find(id: "AssignmentDetails.gradeCircle", label: "Scored \(actualScore) out of \(maxScore) points possible")
+    }
+
+    public static func submissionListCell(user: DSUser) -> XCUIElement {
+        return app.find(id: "SubmissionListCell.\(user.id)")
+    }
+
+    public struct SpeedGrader {
+        public static var userButton: XCUIElement { app.find(id: "SpeedGrader.userButton") }
+        public static var doneButton: XCUIElement { app.find(id: "SpeedGrader.doneButton") }
+        public static var toolPicker: XCUIElement { app.find(id: "SpeedGrader.toolPicker") }
+
+        public struct Segment {
+            public static var grades: XCUIElement { SpeedGrader.toolPicker.find(labelContaining: "Grades") }
+            public static var comments: XCUIElement { SpeedGrader.toolPicker.find(labelContaining: "Comments") }
+            public static var files: XCUIElement { SpeedGrader.toolPicker.find(labelContaining: "Files") }
+        }
     }
 
     public struct Details {
@@ -39,7 +57,6 @@ public class AssignmentsHelper: BaseHelper {
         public static var due: XCUIElement { app.find(id: "AssignmentDetails.due") }
         public static var submissionTypes: XCUIElement { app.find(id: "AssignmentDetails.submissionTypes") }
         public static var submissionsButton: XCUIElement { app.find(id: "AssignmentDetails.submissionsButton") }
-        public static var description: XCUIElement { app.find(id: "AssignmentDetails.description").find(type: .staticText) }
         public static var submitAssignmentButton: XCUIElement { app.find(id: "AssignmentDetails.submitAssignmentButton") }
         public static var successfulSubmissionLabel: XCUIElement { app.find(id: "AssignmentDetails.submittedText") }
         public static var allowedExtensions: XCUIElement { app.find(id: "AssignmentDetails.allowedExtensions") }
@@ -64,7 +81,11 @@ public class AssignmentsHelper: BaseHelper {
         }
 
         public static func navBar(course: DSCourse) -> XCUIElement {
-            app.find(id: "Assignment Details, \(course.name)")
+            return app.find(id: "Assignment Details, \(course.name)")
+        }
+
+        public static func description(assignment: DSAssignment) -> XCUIElement {
+            return app.find(label: assignment.description!, type: .staticText)
         }
     }
 
