@@ -24,10 +24,11 @@ struct ContextCardHeaderView: View {
     let sections: [CourseSection]
     let enrollment: Enrollment
     let showLastActivity: Bool
+    let isOffline: Bool
 
     var body: some View {
         VStack(spacing: 10) {
-            Avatar(name: user.name, url: user.avatarURL?.absoluteURL, size: 80)
+            Avatar(name: user.name, url: isOffline ? nil : user.avatarURL?.absoluteURL, size: 80)
                 .padding(20)
             Text(user.name)
                 .font(.bold20)
@@ -80,7 +81,8 @@ struct ContextCardHeaderView_Previews: PreviewProvider {
         let apiEnrollment = APIEnrollment.make(last_activity_at: Date())
         let enrollment = Enrollment(context: context)
         enrollment.update(fromApiModel: apiEnrollment, course: course, in: context)
-        return ContextCardHeaderView(user: user, course: course, sections: [], enrollment: enrollment, showLastActivity: true).previewLayout(.sizeThatFits)
+        return ContextCardHeaderView(user: user, course: course, sections: [], enrollment: enrollment, showLastActivity: true, isOffline: false)
+            .previewLayout(.sizeThatFits)
     }
 }
 #endif

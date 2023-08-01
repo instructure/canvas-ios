@@ -58,7 +58,8 @@ public struct ContextCardView: View {
         } else {
             if let course = model.course.first, let user = model.user.first, let enrollment = model.enrollment {
                 ScrollView {
-                    ContextCardHeaderView(user: user, course: course, sections: model.sections.all, enrollment: enrollment, showLastActivity: model.isLastActivityVisible)
+                    ContextCardHeaderView(user: user, course: course, sections: model.sections.all,
+                                          enrollment: enrollment, showLastActivity: model.isLastActivityVisible, isOffline: offlineModeViewModel.isOffline)
                     if enrollment.isStudent {
                         if let grades = enrollment.grades.first {
                             ContextCardGradesView(grades: grades, color: Color(course.color))

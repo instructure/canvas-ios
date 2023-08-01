@@ -54,6 +54,11 @@ public struct APIUser: Codable, Equatable {
         public let limit_parent_app_web_access: Bool?
     }
 
+    // Unique user based on course or group ID.
+
+    var course_id: String?
+    var group_id: String?
+
     public init(
         id: ID,
         name: String,

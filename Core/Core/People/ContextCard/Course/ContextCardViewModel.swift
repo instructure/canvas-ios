@@ -83,6 +83,7 @@ public class ContextCardViewModel: ObservableObject {
             enrollment = databaseContext.fetch(scope: scope).first
             enrollmentsAPICallResponsePending = false
             pending = false
+            return
         }
         if gradingPeriods.pending == false && gradingPeriods.requested {
             currentGradingPeriodID = gradingPeriods.all.current?.id

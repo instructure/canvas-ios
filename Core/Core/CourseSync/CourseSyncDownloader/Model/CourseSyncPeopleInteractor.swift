@@ -121,30 +121,9 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
     }
 
     private static func fetchEnrollments(context: Context, currentGradingPeriodID: String?, userID: String) -> AnyPublisher<Void, Error> {
-        Future { promise in
-            let env = AppEnvironment.shared
-            guard userID == env.currentSession?.userID else { return promise(.failure(NSError.instructureError("User ID not found.")))}
-            let request = GetEnrollmentsRequest(context: context, gradingPeriodID: currentGradingPeriodID, states: [ .active ])
-            AppEnvironment.shared.api.exhaust(request) { (enrollments, _, error) in performUIUpdate {
-
-                guard error == nil else {
-                    promise(.failure(NSError.instructureError("Unexpected error from API.")))
-                    return
-                }
-
-                let apiEnrollment = enrollments?.first {
-                    $0.id != nil &&
-                    $0.enrollment_state == .active &&
-                    $0.user_id.value == userID
-                }
-                if let apiEnrollment = apiEnrollment, let id = apiEnrollment.id?.value {
-                    let databaseContext = env.database.viewContext
-                    let enrollment: Enrollment = databaseContext.first(where: #keyPath(Enrollment.id), equals: id) ?? databaseContext.insert()
-                    enrollment.update(fromApiModel: apiEnrollment, course: nil, in: databaseContext)
-                }
-                promise(.success(()))
-            }}
-        }
-        .eraseToAnyPublisher()
+        return ReactiveStore(useCase: GetCourseSyncPeopleEnrollments(context: context, gradingPeriodID: currentGradingPeriodID, states: [ .active ], userID: userID))
+            .getEntities()
+            .mapToVoid()
+            .eraseToAnyPublisher()
     }
 }
