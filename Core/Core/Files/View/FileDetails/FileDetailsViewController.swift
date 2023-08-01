@@ -242,7 +242,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
             return UIAlertController.showItemNotAvailableInOfflineAlert()
         }
         guard let url = localURL else {
-            return showFileNotAvailableForShareDialog()
+            return showFileNotAvailableForSharingDialog()
         }
 
         if let pdf = children.first(where: { $0 is PDFViewController }) as? PDFViewController {
@@ -251,7 +251,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
 
         // CoreActivityViewController crashes if the url doesn't exist
         guard FileManager.default.fileExists(atPath: url.path) else {
-            return showFileNotAvailableForShareDialog()
+            return showFileNotAvailableForSharingDialog()
         }
 
         let controller = CoreActivityViewController(activityItems: [url], applicationActivities: nil)
@@ -300,7 +300,7 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
         env.router.show(alert, from: self, options: .modal())
     }
 
-    private func showFileNotAvailableForShareDialog() {
+    private func showFileNotAvailableForSharingDialog() {
         let alert = UIAlertController(title: NSLocalizedString("File Not Available", comment: ""),
                                       message: NSLocalizedString("The file is not available for sharing this time, please try again later.", comment: ""),
                                       preferredStyle: .alert)
