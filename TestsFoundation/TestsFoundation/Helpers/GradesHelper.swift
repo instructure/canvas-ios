@@ -21,17 +21,20 @@ import Core
 public class GradesHelper: BaseHelper {
     public static var totalGrade: XCUIElement { app.find(id: "CourseTotalGrade") }
 
-    public static func cell(assignmentID: String) -> XCUIElement {
-        return app.find(id: "GradeListCell.\(assignmentID)")
+    public static func cell(assignment: DSAssignment? = nil, assignmentId: String? = nil) -> XCUIElement {
+        return app.find(id: "GradeListCell.\(assignment?.id ?? assignmentId!)")
     }
 
-    public static func gradeOutOf(assignmentID: String, actualPoints: String, maxPoints: String) -> XCUIElement {
-        let assignment = app.find(id: "GradeListCell.\(assignmentID)")
+    public static func gradeOutOf(assignment: DSAssignment? = nil,
+                                  assignmentId: String? = nil,
+                                  actualPoints: String,
+                                  maxPoints: String) -> XCUIElement {
+        let assignment = app.find(id: "GradeListCell.\(assignment?.id ?? assignmentId!)")
         return assignment.find(label: "Grade, \(actualPoints) out of \(maxPoints)")
     }
 
-    public static func gradesAssignmentButton(assignment: DSAssignment) -> XCUIElement {
-        return app.find(id: "GradeListCell.\(assignment.id)")
+    public static func gradesAssignmentButton(assignment: DSAssignment? = nil, assignmentId: String? = nil) -> XCUIElement {
+        return app.find(id: "GradeListCell.\(assignment?.id ?? assignmentId!)")
     }
 
     public static func gradesAssignmentSubmittedLabel(assignment: DSAssignment) -> XCUIElement {

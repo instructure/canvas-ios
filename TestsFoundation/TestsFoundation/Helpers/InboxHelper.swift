@@ -161,3 +161,14 @@ public class InboxHelper: BaseHelper {
         return seeder.editConversation(conversationId: conversation.id, workflowState: workflowState, scope: scope)
     }
 }
+
+public class InboxHelperParent: BaseHelper {
+    public static var replyButton: XCUIElement { app.find(id: "ConversationDetail.replyButton") }
+    public static func conversation(conversation: DSConversation? = nil, conversationId: String? = nil) -> XCUIElement {
+        return app.find(id: "ConversationListCell.\(conversation?.id ?? conversationId!)")
+    }
+
+    public struct Reply {
+        public static var body: XCUIElement { app.find(id: "ComposeReply.body") }
+    }
+}

@@ -23,11 +23,11 @@ public class DashboardHelper: BaseHelper {
     public static var doneButton: XCUIElement { app.find(id: "screen.dismiss", type: .button) }
     public static var coursesLabel: XCUIElement { app.find(id: "dashboard.courses.heading-lbl") }
     public static var dashboardSettingsShowGradeToggle: XCUIElement {
-        app.find(id: "DashboardSettings.showGradesToggle", type: .switch)
+        return app.find(id: "DashboardSettings.showGradesToggle", type: .switch)
     }
 
     public static func courseCard(course: DSCourse? = nil, courseId: String? = nil) -> XCUIElement {
-        app.find(id: "DashboardCourseCell.\(course?.id ?? courseId!)")
+        return app.find(id: "DashboardCourseCell.\(course?.id ?? courseId!)")
     }
 
     public static func toggleFavorite(course: DSCourse) {
@@ -36,15 +36,15 @@ public class DashboardHelper: BaseHelper {
 
     public struct CourseInvitations {
         public static func acted(enrollment: DSEnrollment) -> XCUIElement {
-            app.find(id: "CourseInvitation.\(enrollment.id).acted")
+            return app.find(id: "CourseInvitation.\(enrollment.id).acted")
         }
 
         public static func acceptButton(enrollment: DSEnrollment) -> XCUIElement {
-            app.find(id: "CourseInvitation.\(enrollment.id).acceptButton")
+            return app.find(id: "CourseInvitation.\(enrollment.id).acceptButton")
         }
 
         public static func rejectButton(enrollment: DSEnrollment) -> XCUIElement {
-            app.find(id: "CourseInvitation.\(enrollment.id).rejectButton")
+            return app.find(id: "CourseInvitation.\(enrollment.id).rejectButton")
         }
     }
 
@@ -61,5 +61,11 @@ public class DashboardHelper: BaseHelper {
             courses.append(seeder.createCourse(name: courseName))
         }
         return courses
+    }
+}
+
+public class DashboardHelperParent: BaseHelper {
+    public static func courseCard(course: DSCourse? = nil, courseId: String? = nil) -> XCUIElement {
+        return app.find(id: "course_cell_\(course?.id ?? courseId!)")
     }
 }

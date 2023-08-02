@@ -24,6 +24,7 @@ public class LoginHelper: BaseHelper {
         public static var findSchoolButton: XCUIElement { app.find(id: "LoginStart.findSchoolButton") }
         public static var qrCodeButton: XCUIElement { app.find(id: "LoginStart.qrCodeButton") }
         public static var canvasNetworkButton: XCUIElement { app.find(id: "LoginStart.canvasNetworkButton") }
+        public static var dontHaveAccountAction: XCUIElement { app.find(id: "LoginStart.dontHaveAccountAction") }
 
         public static func previousLoginCell(dsUser: DSUser) -> XCUIElement {
             app.find(id: "LoginStartSession.\(user.host).\(dsUser.id)")
@@ -42,8 +43,8 @@ public class LoginHelper: BaseHelper {
     }
 
     public struct Login {
-        static var webView: XCUIElement { app.find(id: "LoginWeb.webView").waitUntil(condition: .visible) }
-        static var linksOfWebView: [XCUIElement] { webView.findAll(type: .link, minimumCount: 2) }
+        public static var webView: XCUIElement { app.find(id: "LoginWeb.webView").waitUntil(condition: .visible) }
+        public static var linksOfWebView: [XCUIElement] { webView.findAll(type: .link, minimumCount: 2) }
 
         public static var navBar: XCUIElement { app.find(id: user.host) }
         public static var hostLabel: XCUIElement { navBar.find(type: .staticText) }
@@ -53,11 +54,19 @@ public class LoginHelper: BaseHelper {
         public static var forgotPasswordButton: XCUIElement { linksOfWebView[1] }
         public static var needAccountButton: XCUIElement { linksOfWebView[0] }
         public static var noPasswordLabel: XCUIElement { app.find(labelContaining: "No password was given") }
+
+        public static var studentPairingCodeLabel: XCUIElement { webView.find(label: "Student Pairing Code") }
+        public static var parentCreateAccountButton: XCUIElement { webView.find(label: "Start Participating") }
     }
 
     public struct LoginStartSession {
         public static func cell(host: String, userID: String) -> XCUIElement {
             return app.find(id: "LoginStartSession.\(host).\(userID)")
         }
+    }
+
+    public struct PairWithStudentQR {
+        public static var nextButton: XCUIElement { app.find(id: "PairWithStudentQRCodeTutorial.nextButton") }
+        public static var headerLabel: XCUIElement { app.find(id: "PairWithStudentQRCodeTutorial.headerLabel") }
     }
 }

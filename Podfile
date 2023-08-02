@@ -47,7 +47,6 @@ abstract_target 'needs-pspdfkit' do
   pspdfkit
   target 'StudentE2ETests' do project 'Student/Student.xcodeproj' end
   target 'TeacherE2ETests' do project 'rn/Teacher/ios/Teacher.xcodeproj' end
-  target 'ParentUITests' do project 'Parent/Parent.xcodeproj' end
   target 'ParentE2ETests' do project 'Parent/Parent.xcodeproj' end
 end
 

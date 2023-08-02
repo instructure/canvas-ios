@@ -87,6 +87,13 @@ public class AssignmentsHelper: BaseHelper {
         public static func description(assignment: DSAssignment) -> XCUIElement {
             return app.find(label: assignment.description!, type: .staticText)
         }
+
+        public struct Reply {
+            public static var subject: XCUIElement { app.find(id: "Compose.subject") }
+            public static var body: XCUIElement { app.find(id: "Compose.body") }
+
+            public static func recipientName(id: String) -> XCUIElement { return app.find(id: "Compose.recipientName.\(id)") }
+        }
     }
 
     public struct Submission {
