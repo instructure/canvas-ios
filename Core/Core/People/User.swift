@@ -39,10 +39,7 @@ public final class User: NSManagedObject {
 extension User: WriteableModel {
     @discardableResult
     public static func save(_ item: APIUser, in context: NSManagedObjectContext) -> User {
-        var predicates = [NSPredicate(key: #keyPath(User.id), equals: item.id.value), ]
-        let userPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
-        let scope = Scope(predicate: userPredicate, order: [NSSortDescriptor(key: #keyPath(User.id), ascending: true)])
-        let user: User = context.first(scope: scope) ?? context.insert()
+        let user: User = context.first(where: #keyPath(User.id), equals: item.id.value) ?? context.insert()
         user.id = item.id.value
         user.name = item.name
         user.shortName = item.short_name
