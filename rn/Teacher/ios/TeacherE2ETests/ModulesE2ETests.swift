@@ -18,26 +18,40 @@
 
 import TestsFoundation
 
-class ModulesE2ETests: CoreUITestCase {
+class ModulesE2ETests: E2ETestCase {
     func testModulesE2E() {
-        DashboardHelper.courseCard(courseId: "5586").hit()
+        let teacher = seeder.createUser()
+        let course1 = seeder.createCourse()
+        let course2 = seeder.createCourse()
+        seeder.enrollTeacher(teacher, in: course1)
+        seeder.enrollTeacher(teacher, in: course2)
+        let module = ModulesHelper.createModule(course: course2)
+        let moduleAssignment = ModulesHelper.createModuleAssignment(course: course2, module: module)
+
+        logInDSUser(teacher)
+        let courseCard1 = DashboardHelper.courseCard(course: course1).waitUntil(condition: .visible)
+        courseCard1.hit()
         let modulesButton = CourseDetailsHelper.cell(type: .modules)
         modulesButton.actionUntilElementCondition(action: .swipeUp, condition: .hittable)
         modulesButton.hit()
         app.find(labelContaining: "No Modules").waitUntil(condition: .visible)
         ModulesHelper.backButton.hit()
         ModulesHelper.backButton.hit()
-        DashboardHelper.courseCard(courseId: "263").hit()
+        let courseCard2 = DashboardHelper.courseCard(course: course2).waitUntil(condition: .visible)
+        courseCard2.hit()
         modulesButton.actionUntilElementCondition(action: .swipeUp, condition: .hittable)
         modulesButton.hit()
-        XCTAssertEqual(ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 0).waitUntil(condition: .visible).label,
-                       "assignment, Assignment One, published")
+        let moduleElement = ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 0).waitUntil(condition: .visible)
+        XCTAssertTrue(moduleElement.isVisible)
+        XCTAssertEqual(ModulesHelper.moduleItemNameLabel(moduleIndex: 0, itemIndex: 0).waitUntil(condition: .visible).label,
+                       moduleAssignment.title)
 
-        ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 0).hit()
-        app.find(labelContaining: "This is assignment one.").waitUntil(condition: .visible)
+        moduleElement.hit()
+        app.find(labelContaining: moduleAssignment.title).waitUntil(condition: .visible)
         ModulesHelper.backButton.hit()
         ModulesHelper.backButton.hit()
         ModulesHelper.backButton.hit()
-        XCTAssertTrue(DashboardHelper.courseCard(courseId: "263").waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(courseCard1.waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(courseCard2.waitUntil(condition: .visible).isVisible)
     }
 }

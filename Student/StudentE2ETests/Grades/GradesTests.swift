@@ -51,10 +51,10 @@ class GradesTests: E2ETestCase {
         GradesHelper.navigateToGrades(course: course)
 
         XCTAssertTrue(app.find(label: "Total Grade").waitUntil(condition: .visible).isVisible)
-        XCTAssertTrue(GradesHelper.cell(assignmentID: assignments[0].id).waitUntil(condition: .visible, timeout: 5).isVisible)
-        XCTAssertTrue(GradesHelper.cell(assignmentID: assignments[1].id).waitUntil(condition: .visible, timeout: 5).isVisible)
-        XCTAssertTrue(GradesHelper.gradeOutOf(assignmentID: assignments[0].id, actualPoints: "5", maxPoints: "10").waitUntil(condition: .visible, timeout: 5).isVisible)
-        XCTAssertTrue(GradesHelper.gradeOutOf(assignmentID: assignments[1].id, actualPoints: "100", maxPoints: "100").waitUntil(condition: .visible, timeout: 5).isVisible)
+        XCTAssertTrue(GradesHelper.cell(assignment: assignments[0]).waitUntil(condition: .visible, timeout: 5).isVisible)
+        XCTAssertTrue(GradesHelper.cell(assignment: assignments[1]).waitUntil(condition: .visible, timeout: 5).isVisible)
+        XCTAssertTrue(GradesHelper.gradeOutOf(assignment: assignments[0], actualPoints: "5", maxPoints: "10").waitUntil(condition: .visible, timeout: 5).isVisible)
+        XCTAssertTrue(GradesHelper.gradeOutOf(assignment: assignments[1], actualPoints: "100", maxPoints: "100").waitUntil(condition: .visible, timeout: 5).isVisible)
         XCTAssertTrue(GradesHelper.totalGrade.waitUntil(condition: .label, expected: "95.45%", timeout: 5).isVisible)
     }
 
