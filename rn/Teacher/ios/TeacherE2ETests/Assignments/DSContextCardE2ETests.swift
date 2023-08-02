@@ -65,15 +65,21 @@ class DSContextCardE2ETests: E2ETestCase {
         app.find(label: student.name).hit()
         PeopleHelper.ContextCard.userNameLabel.waitUntil(condition: .visible)
         PeopleHelper.ContextCard.submissionsTotalLabel.waitUntil(condition: .visible)
-        XCTAssertEqual(PeopleHelper.ContextCard.userNameLabel.label, student.name)
-        XCTAssertEqual(PeopleHelper.ContextCard.courseLabel.label, course.name)
-        XCTAssertEqual(PeopleHelper.ContextCard.sectionLabel.label, "Section: \(course.name)")
-        XCTAssertEqual(PeopleHelper.ContextCard.submissionsTotalLabel.label, "3 submitted")
-        XCTAssertEqual(PeopleHelper.ContextCard.submissionsLateLabel.label, "0 late")
-        XCTAssertEqual(PeopleHelper.ContextCard.submissionsMissingLabel.label, "0 missing")
-        XCTAssertEqual(PeopleHelper.ContextCard.submissionCell(assignment: assignment).label, "Submission \(assignment.name), Submitted, NEEDS GRADING")
-        XCTAssertEqual(PeopleHelper.ContextCard.submissionCell(assignment: assignment2).label, "Submission \(assignment2.name), Submitted, grade 7 / 10")
-        XCTAssertEqual(PeopleHelper.ContextCard.submissionCell(assignment: assignment3).label, "Submission \(assignment3.name), Submitted, grade 5 / 5")
+        XCTAssertEqual(PeopleHelper.ContextCard.userNameLabel.waitUntil(condition: .visible).label, student.name)
+        XCTAssertEqual(PeopleHelper.ContextCard.courseLabel.waitUntil(condition: .visible).label, course.name)
+        XCTAssertEqual(PeopleHelper.ContextCard.sectionLabel.waitUntil(condition: .visible).label, "Section: \(course.name)")
+        XCTAssertEqual(PeopleHelper.ContextCard.submissionsTotalLabel.waitUntil(condition: .visible).label, "3 submitted")
+        XCTAssertEqual(PeopleHelper.ContextCard.submissionsLateLabel.waitUntil(condition: .visible).label, "0 late")
+        XCTAssertEqual(PeopleHelper.ContextCard.submissionsMissingLabel.waitUntil(condition: .visible).label, "0 missing")
+
+        var submissionCell1 = PeopleHelper.ContextCard.submissionCell(assignment: assignment).waitUntil(condition: .visible)
+        XCTAssertEqual(submissionCell1.label, "Submission \(assignment.name), Submitted, NEEDS GRADING")
+
+        var submissionCell2 = PeopleHelper.ContextCard.submissionCell(assignment: assignment2).waitUntil(condition: .visible)
+        XCTAssertEqual(submissionCell2.label, "Submission \(assignment2.name), Submitted, grade 7 / 10")
+
+        var submissionCell3 = PeopleHelper.ContextCard.submissionCell(assignment: assignment3).waitUntil(condition: .visible)
+        XCTAssertEqual(submissionCell3.label, "Submission \(assignment3.name), Submitted, grade 5 / 5")
 
         PeopleHelper.backButton.hit()
         PeopleHelper.backButton.hit()
@@ -92,8 +98,17 @@ class DSContextCardE2ETests: E2ETestCase {
         XCTAssertEqual(PeopleHelper.ContextCard.submissionsTotalLabel.label, "3 submitted")
         XCTAssertEqual(PeopleHelper.ContextCard.submissionsLateLabel.label, "0 late")
         XCTAssertEqual(PeopleHelper.ContextCard.submissionsMissingLabel.label, "0 missing")
-        XCTAssertEqual(PeopleHelper.ContextCard.submissionCell(assignment: assignment).label, "Submission \(assignment.name), Submitted, NEEDS GRADING")
-        XCTAssertEqual(PeopleHelper.ContextCard.submissionCell(assignment: assignment2).label, "Submission \(assignment2.name), Submitted, grade 7 / 10")
-        XCTAssertEqual(PeopleHelper.ContextCard.submissionCell(assignment: assignment3).label, "Submission \(assignment3.name), Submitted, grade 5 / 5")
+
+        submissionCell1.waitUntil(condition: .visible)
+        submissionCell1.actionUntilElementCondition(action: .swipeUp, condition: .hittable)
+        XCTAssertEqual(submissionCell1.label, "Submission \(assignment.name), Submitted, NEEDS GRADING")
+
+        submissionCell2.waitUntil(condition: .visible)
+        submissionCell2.actionUntilElementCondition(action: .swipeUp, condition: .hittable)
+        XCTAssertEqual(submissionCell2.label, "Submission \(assignment2.name), Submitted, grade 7 / 10")
+
+        submissionCell3.waitUntil(condition: .visible)
+        submissionCell3.actionUntilElementCondition(action: .swipeUp, condition: .hittable)
+        XCTAssertEqual(submissionCell3.label, "Submission \(assignment3.name), Submitted, grade 5 / 5")
     }
 }

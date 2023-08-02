@@ -40,6 +40,7 @@ public class AssignmentsHelper: BaseHelper {
 
     public struct SpeedGrader {
         public static var userButton: XCUIElement { app.find(id: "SpeedGrader.userButton") }
+        public static var drawerGripper: XCUIElement { app.find(id: "SpeedGrader.drawerGripper") }
         public static var doneButton: XCUIElement { app.find(id: "SpeedGrader.doneButton") }
         public static var toolPicker: XCUIElement { app.find(id: "SpeedGrader.toolPicker") }
 
