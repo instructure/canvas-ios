@@ -56,6 +56,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
 
     public override func loadView() {
         view = tableView
+        view.accessibilityIdentifier = "settings.tableView"
     }
 
     public override func viewDidLoad() {

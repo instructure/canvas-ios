@@ -145,6 +145,8 @@
 		8B70DC312A5EAC25007D3ED4 /* QuizzesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DC302A5EAC25007D3ED4 /* QuizzesTests.swift */; };
 		8B95EEC82A4EE33900ADCDB4 /* PeopleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B95EEC62A4EE33900ADCDB4 /* PeopleHelper.swift */; };
 		8B95EEC92A4EE33900ADCDB4 /* PeopleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B95EEC72A4EE33900ADCDB4 /* PeopleTests.swift */; };
+		8B9846182A77CF08003E1E9F /* SettingsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9846162A77CF08003E1E9F /* SettingsHelper.swift */; };
+		8B9846192A77CF08003E1E9F /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9846172A77CF08003E1E9F /* SettingsTests.swift */; };
 		8B9D055A2A667D76002E2447 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D05592A667D76002E2447 /* CalendarHelper.swift */; };
 		8B9D055E2A667D81002E2447 /* SyllabusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D055C2A667D81002E2447 /* SyllabusTests.swift */; };
 		8B9D055F2A667D81002E2447 /* SyllabusHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D055D2A667D81002E2447 /* SyllabusHelper.swift */; };
@@ -682,6 +684,8 @@
 		8B70DC302A5EAC25007D3ED4 /* QuizzesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizzesTests.swift; sourceTree = "<group>"; };
 		8B95EEC62A4EE33900ADCDB4 /* PeopleHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleHelper.swift; sourceTree = "<group>"; };
 		8B95EEC72A4EE33900ADCDB4 /* PeopleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTests.swift; sourceTree = "<group>"; };
+		8B9846162A77CF08003E1E9F /* SettingsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsHelper.swift; sourceTree = "<group>"; };
+		8B9846172A77CF08003E1E9F /* SettingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
 		8B9D05592A667D76002E2447 /* CalendarHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
 		8B9D055C2A667D81002E2447 /* SyllabusTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusTests.swift; sourceTree = "<group>"; };
 		8B9D055D2A667D81002E2447 /* SyllabusHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusHelper.swift; sourceTree = "<group>"; };
@@ -1499,6 +1503,7 @@
 		7DCF0F7622F8A0A0000AACCE /* StudentE2ETests */ = {
 			isa = PBXGroup;
 			children = (
+				8B9846152A77CF08003E1E9F /* Settings */,
 				8B9D055B2A667D81002E2447 /* Syllabus */,
 				8B9D05582A667D76002E2447 /* Calendar */,
 				8B70DC2B2A5EA9E9007D3ED4 /* NewQuizzes */,
@@ -1541,6 +1546,15 @@
 				C935D41D26DD1BDE00C940F7 /* NewQuizzesE2ETests.swift */,
 			);
 			path = NewQuizzes;
+			sourceTree = "<group>";
+		};
+		8B9846152A77CF08003E1E9F /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				8B9846162A77CF08003E1E9F /* SettingsHelper.swift */,
+				8B9846172A77CF08003E1E9F /* SettingsTests.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		8B9D05582A667D76002E2447 /* Calendar */ = {
@@ -2968,6 +2982,7 @@
 				8B9D055F2A667D81002E2447 /* SyllabusHelper.swift in Sources */,
 				C9A3C04D26A03B9900DAE8E1 /* K5StudentE2ETests.swift in Sources */,
 				8B9D05832A694AFF002E2447 /* CalendarTests.swift in Sources */,
+				8B9846192A77CF08003E1E9F /* SettingsTests.swift in Sources */,
 				8B0D25482A443CE800D7EDCA /* QuizzesHelper.swift in Sources */,
 				8B70DC312A5EAC25007D3ED4 /* QuizzesTests.swift in Sources */,
 				8BB5EDC32A374A79009D63DA /* DashboardHelper.swift in Sources */,
@@ -2979,6 +2994,7 @@
 				8B70DBDA2A571893007D3ED4 /* InboxHelper.swift in Sources */,
 				8B95EEC92A4EE33900ADCDB4 /* PeopleTests.swift in Sources */,
 				8B95EEC82A4EE33900ADCDB4 /* PeopleHelper.swift in Sources */,
+				8B9846182A77CF08003E1E9F /* SettingsHelper.swift in Sources */,
 				8BB5ED932A2E0F0B009D63DA /* HelpHelper.swift in Sources */,
 				8B05AB802A38889100A9C714 /* AssignmentsHelper.swift in Sources */,
 				8B70DBD92A571893007D3ED4 /* InboxTests.swift in Sources */,
