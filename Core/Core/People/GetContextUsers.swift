@@ -50,13 +50,12 @@ public class GetContextUsers: CollectionUseCase {
     public func write(response: [APIUser]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else { return }
         for item in response {
-            var userItem = item
+            let user = User.save(item, in: client)
             if context.contextType == .course {
-                userItem.course_id = context.id
+                user.courseID = context.id
             } else if context.contextType == .group {
-                userItem.group_id = context.id
+                user.groupID = context.id
             }
-            let user = User.save(userItem, in: client)
         }
     }
 }

@@ -46,7 +46,7 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
             .eraseToAnyPublisher()
     }
 
-    private static func fetchUserData(context: Context, users: [User], currentGradingPeriodID: String?) -> AnyPublisher<Void, Error> {
+    private static func fetchUserData(context: Context, users: [ContextUser], currentGradingPeriodID: String?) -> AnyPublisher<Void, Error> {
         Just(users)
             .map { $0.map { user in user.id} }
             .flatMap { userIDs in
@@ -91,8 +91,8 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
             .eraseToAnyPublisher()
     }
 
-    private static func fetchUsers(context: Context) -> AnyPublisher<[User], Error> {
-        ReactiveStore(useCase: GetContextUsers(context: context))
+    private static func fetchUsers(context: Context) -> AnyPublisher<[ContextUser], Error> {
+        ReactiveStore(useCase: GetCourseContextUsers(context: context))
             .getEntities()
             .eraseToAnyPublisher()
     }

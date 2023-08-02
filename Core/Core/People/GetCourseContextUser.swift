@@ -36,9 +36,18 @@ public struct GetCourseContextUser: APIUseCase {
         return "get-context-user-\(context.id)-\(userID)"
     }
 
-    public var scope: Scope { Scope(
-        predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
+    public var scope: Scope {
+        var courseID: String?
+        var groupID: String?
+        if context.contextType == .course {
+            courseID = context.id
+        } else if context.contextType == .group {
+            groupID = context.id
+        }
+        return Scope(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(ContextUser.id), equals: userID),
+            NSPredicate(key: #keyPath(ContextUser.courseID), equals: courseID),
+            NSPredicate(key: #keyPath(ContextUser.groupID), equals: groupID),
         ]), order: [])}
 }
 

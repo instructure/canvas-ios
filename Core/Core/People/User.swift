@@ -39,13 +39,7 @@ public final class User: NSManagedObject {
 extension User: WriteableModel {
     @discardableResult
     public static func save(_ item: APIUser, in context: NSManagedObjectContext) -> User {
-        var predicates = [NSPredicate(key: #keyPath(User.id), equals: item.id.value)]
-        if let groupID = item.group_id {
-            predicates.append(NSPredicate(key: #keyPath(User.groupID), equals: item.group_id))
-        }
-        if let courseID = item.course_id {
-            predicates.append(NSPredicate(key: #keyPath(User.courseID), equals: item.course_id))
-        }
+        var predicates = [NSPredicate(key: #keyPath(User.id), equals: item.id.value), ]
         let userPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         let scope = Scope(predicate: userPredicate, order: [NSSortDescriptor(key: #keyPath(User.id), ascending: true)])
         let user: User = context.first(scope: scope) ?? context.insert()
@@ -56,8 +50,6 @@ extension User: WriteableModel {
         user.email = item.email
         user.avatarURL = item.avatar_url?.rawValue
         user.pronouns = item.pronouns
-        user.courseID = item.course_id
-        user.groupID = item.group_id
         if let enrollments = item.enrollments {
             for item in enrollments {
                 let enrollment = context.insert() as Enrollment

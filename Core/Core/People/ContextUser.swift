@@ -27,16 +27,30 @@ public final class ContextUser: NSManagedObject {
     @NSManaged public var avatarURL: URL?
     @NSManaged public var email: String?
     @NSManaged public var pronouns: String?
+    @NSManaged public var courseID: String?
+    @NSManaged public var groupID: String?
+
+    private var scope: Scope {
+        Scope(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(key: #keyPath(Enrollment.userID), equals: id),
+            NSPredicate(key: #keyPath(Enrollment.course.id), equals: courseID),
+        ]), order: [])
+    }
 
     public var enrollments: Set<Enrollment> {
-        Set(managedObjectContext?.all(where: #keyPath(Enrollment.userID), equals: id) ?? [])
+        Set(managedObjectContext?.fetch(scope: scope) ?? [])
     }
 }
 
 extension ContextUser: WriteableModel {
     @discardableResult
     public static func save(_ item: APIUser, in context: NSManagedObjectContext) -> ContextUser {
-        let user: ContextUser = context.first(where: #keyPath(ContextUser.id), equals: item.id.value) ?? context.insert()
+        var predicates = [NSPredicate(key: #keyPath(User.id), equals: item.id.value),
+                          NSPredicate(key: #keyPath(User.groupID), equals: item.group_id),
+                          NSPredicate(key: #keyPath(User.courseID), equals: item.course_id), ]
+        let userPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+        let scope = Scope(predicate: userPredicate, order: [])
+        let user: ContextUser = context.first(scope: scope) ?? context.insert()
         user.id = item.id.value
         user.name = item.name
         user.shortName = item.short_name
@@ -44,6 +58,8 @@ extension ContextUser: WriteableModel {
         user.email = item.email
         user.avatarURL = item.avatar_url?.rawValue
         user.pronouns = item.pronouns
+        user.courseID = item.course_id
+        user.groupID = item.group_id
         if let enrollments = item.enrollments {
             for enrollment in enrollments {
                 let userEnrollment = context.insert() as Enrollment
