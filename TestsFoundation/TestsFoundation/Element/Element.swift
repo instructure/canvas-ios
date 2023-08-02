@@ -205,6 +205,18 @@ public extension Element {
     }
 
     @discardableResult
+    func waitUntilSelected(timeout: TimeInterval = 15, gracePeriod: UInt32 = 1) -> Bool {
+        let deadline = Date().addingTimeInterval(timeout)
+        while Date() < deadline {
+            if self.isSelected {
+                return true
+            }
+            sleep(gracePeriod)
+        }
+        return false
+    }
+
+    @discardableResult
     func swipeUntilVisible(direction: SwipeDirection = .up, timeout: TimeInterval = 15, gracePeriod: UInt32 = 1) -> Bool {
         let deadline = Date().addingTimeInterval(timeout)
         while Date() < deadline {
