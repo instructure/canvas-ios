@@ -89,6 +89,7 @@ class PairWithObserverViewController: UIViewController, ErrorViewController {
         guard let qrImage = qrFilter.outputImage?.transformed(by: transform) else { return }
 
         qrCodeImageView.image = UIImage(ciImage: qrImage)
+        qrCodeImageView.accessibilityIdentifier = "QRCodeImage"
         qrCodeContainer.isHidden = false
         let attrStr = NSAttributedString(
             string: NSLocalizedString("Pairing Code: ", comment: ""),

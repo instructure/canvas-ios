@@ -86,7 +86,6 @@ public class SettingsHelper: BaseHelper {
         public static var loginIdLabel: XCUIElement { app.find(id: "Login ID")}
         public static var emailLabel: XCUIElement { app.find(id: "Email")}
         public static var versionLabel: XCUIElement { app.find(id: "Version")}
-        public static var instructureLogo: XCUIElement { app.find(id: "InstructureLogo") }
     }
 }
 

@@ -113,6 +113,10 @@
 		8B70DBD92A571893007D3ED4 /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBD72A571893007D3ED4 /* InboxTests.swift */; };
 		8B70DC312A5EAC25007D3ED4 /* QuizzesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DC302A5EAC25007D3ED4 /* QuizzesTests.swift */; };
 		8B95EEC92A4EE33900ADCDB4 /* PeopleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B95EEC72A4EE33900ADCDB4 /* PeopleTests.swift */; };
+		8B9846182A77CF08003E1E9F /* SettingsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9846162A77CF08003E1E9F /* SettingsHelper.swift */; };
+		8B9846192A77CF08003E1E9F /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9846172A77CF08003E1E9F /* SettingsTests.swift */; };
+		8B9846262A7A444F003E1E9F /* LogoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9846252A7A444F003E1E9F /* LogoutTests.swift */; };
+		8B98462B2A7A6AFE003E1E9F /* CalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B98462A2A7A6AFE003E1E9F /* CalendarTests.swift */; };
 		8B9D055E2A667D81002E2447 /* SyllabusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D055C2A667D81002E2447 /* SyllabusTests.swift */; };
 		8BB5ED942A2E0F0B009D63DA /* HelpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5ED912A2E0F0B009D63DA /* HelpTests.swift */; };
 		9734351523866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9734351423866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift */; };
@@ -577,6 +581,10 @@
 		8B70DBD72A571893007D3ED4 /* InboxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxTests.swift; sourceTree = "<group>"; };
 		8B70DC302A5EAC25007D3ED4 /* QuizzesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizzesTests.swift; sourceTree = "<group>"; };
 		8B95EEC72A4EE33900ADCDB4 /* PeopleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTests.swift; sourceTree = "<group>"; };
+		8B9846162A77CF08003E1E9F /* SettingsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsHelper.swift; sourceTree = "<group>"; };
+		8B9846172A77CF08003E1E9F /* SettingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
+		8B9846252A7A444F003E1E9F /* LogoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutTests.swift; sourceTree = "<group>"; };
+		8B98462A2A7A6AFE003E1E9F /* CalendarTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTests.swift; sourceTree = "<group>"; };
 		8B9D055C2A667D81002E2447 /* SyllabusTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusTests.swift; sourceTree = "<group>"; };
 		8BB5ED912A2E0F0B009D63DA /* HelpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpTests.swift; sourceTree = "<group>"; };
 		9734351423866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStreamViewControllerTests.swift; sourceTree = "<group>"; };
@@ -848,13 +856,6 @@
 				49A04E561CF64C7F0051E1E7 /* StudentTabBarController.swift */,
 			);
 			path = Student;
-			sourceTree = "<group>";
-		};
-		5859590AD85157D503F2476A /* Conferences */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Conferences;
 			sourceTree = "<group>";
 		};
 		5B0FCCDFB07A88D993D5871D /* Frameworks */ = {
@@ -1272,6 +1273,8 @@
 		7DCF0F7622F8A0A0000AACCE /* StudentE2ETests */ = {
 			isa = PBXGroup;
 			children = (
+				8B9846242A7A444F003E1E9F /* Logout */,
+				8B9846152A77CF08003E1E9F /* Settings */,
 				8B9D055B2A667D81002E2447 /* Syllabus */,
 				8B9D05582A667D76002E2447 /* Calendar */,
 				8B70DBA52A559BF6007D3ED4 /* CourseDetails */,
@@ -1287,7 +1290,6 @@
 				E809365724C21CB700D15E9A /* Pages */,
 				E809365524C21CB600D15E9A /* Profile */,
 				E841D8C523D6648A00685A63 /* Assignments */,
-				5859590AD85157D503F2476A /* Conferences */,
 				E8EA86042304960800E4FD76 /* Modules */,
 				E8EA860C230497AC00E4FD76 /* People */,
 				E8EA86112304980000E4FD76 /* Quizzes */,
@@ -1304,9 +1306,27 @@
 			path = CourseDetails;
 			sourceTree = "<group>";
 		};
+		8B9846152A77CF08003E1E9F /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				8B9846162A77CF08003E1E9F /* SettingsHelper.swift */,
+				8B9846172A77CF08003E1E9F /* SettingsTests.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		8B9846242A7A444F003E1E9F /* Logout */ = {
+			isa = PBXGroup;
+			children = (
+				8B9846252A7A444F003E1E9F /* LogoutTests.swift */,
+			);
+			path = Logout;
+			sourceTree = "<group>";
+		};
 		8B9D05582A667D76002E2447 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				8B98462A2A7A6AFE003E1E9F /* CalendarTests.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -2465,15 +2485,19 @@
 				8B05ABB72A42043300A9C714 /* ModulesTests.swift in Sources */,
 				8B19F65B2A137E33007AA43F /* AssignmentsTests.swift in Sources */,
 				C9A3C04D26A03B9900DAE8E1 /* K5StudentE2ETests.swift in Sources */,
+				8B9846192A77CF08003E1E9F /* SettingsTests.swift in Sources */,
 				8B70DC312A5EAC25007D3ED4 /* QuizzesTests.swift in Sources */,
 				C935D43D26E5F5AF00C940F7 /* K5GradesE2ETests.swift in Sources */,
 				8B05AB8C2A38AEBA00A9C714 /* DashboardTests.swift in Sources */,
 				E80936E124C24CBE00D15E9A /* ActAsUserTests.swift in Sources */,
 				C99425E2284096300078A3BD /* GradeTotalsTests.swift in Sources */,
 				8B95EEC92A4EE33900ADCDB4 /* PeopleTests.swift in Sources */,
+				8B98462B2A7A6AFE003E1E9F /* CalendarTests.swift in Sources */,
+				8B9846182A77CF08003E1E9F /* SettingsHelper.swift in Sources */,
 				8B70DBD92A571893007D3ED4 /* InboxTests.swift in Sources */,
 				E80936EA24C24CDD00D15E9A /* PagesTests.swift in Sources */,
 				8BB5ED942A2E0F0B009D63DA /* HelpTests.swift in Sources */,
+				8B9846262A7A444F003E1E9F /* LogoutTests.swift in Sources */,
 				C935D43026E0EAE700C940F7 /* K5ScheduleE2ETests.swift in Sources */,
 				C9299FEC2817CCF2003A47C2 /* DiscussionsTest.swift in Sources */,
 				C9299FE528102A62003A47C2 /* AnnouncementsTests.swift in Sources */,
