@@ -22,7 +22,7 @@ struct ContextCardHeaderView: View {
     let user: ContextUser
     let course: Course
     let sections: [CourseSection]
-    let enrollment: Enrollment
+    let enrollment: ContextEnrollment
     let showLastActivity: Bool
     let isOffline: Bool
 
@@ -79,7 +79,7 @@ struct ContextCardHeaderView_Previews: PreviewProvider {
         let apiCourse = APICourse.make()
         let course = Course.save(apiCourse, in: context)
         let apiEnrollment = APIEnrollment.make(last_activity_at: Date())
-        let enrollment = Enrollment(context: context)
+        let enrollment = ContextEnrollment(context: context)
         enrollment.update(fromApiModel: apiEnrollment, course: course, in: context)
         return ContextCardHeaderView(user: user, course: course, sections: [], enrollment: enrollment, showLastActivity: true, isOffline: false)
             .previewLayout(.sizeThatFits)

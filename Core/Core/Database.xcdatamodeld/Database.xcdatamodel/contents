@@ -176,6 +176,33 @@
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="contextColor" inverseEntity="Course"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="contextColor" inverseEntity="Group"/>
     </entity>
+    <entity name="ContextEnrollment" representedClassName="Core.ContextEnrollment" syncable="YES">
+        <attribute name="canvasContextID" optional="YES" attributeType="String"/>
+        <attribute name="computedCurrentGrade" optional="YES" attributeType="String"/>
+        <attribute name="computedCurrentScoreRaw" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="computedFinalGrade" optional="YES" attributeType="String"/>
+        <attribute name="computedFinalScoreRaw" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="courseSectionID" optional="YES" attributeType="String"/>
+        <attribute name="currentGradingPeriodID" optional="YES" attributeType="String"/>
+        <attribute name="currentPeriodComputedCurrentGrade" optional="YES" attributeType="String"/>
+        <attribute name="currentPeriodComputedCurrentScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="currentPeriodComputedFinalGrade" optional="YES" attributeType="String"/>
+        <attribute name="currentPeriodComputedFinalScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="isFromInvitation" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="lastActivityAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="multipleGradingPeriodsEnabled" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="role" optional="YES" attributeType="String"/>
+        <attribute name="roleID" optional="YES" attributeType="String"/>
+        <attribute name="stateRaw" optional="YES" attributeType="String"/>
+        <attribute name="totalsForAllGradingPeriodsOption" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="type" attributeType="String"/>
+        <attribute name="userID" optional="YES" attributeType="String"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course"/>
+        <relationship name="grades" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Grade"/>
+        <relationship name="observedUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ContextUser"/>
+        <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Submission"/>
+    </entity>
     <entity name="ContextUser" representedClassName="Core.ContextUser" syncable="YES">
         <attribute name="avatarURL" optional="YES" attributeType="URI"/>
         <attribute name="courseID" optional="YES" attributeType="String"/>

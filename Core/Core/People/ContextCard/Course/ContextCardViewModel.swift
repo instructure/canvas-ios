@@ -34,7 +34,7 @@ public class ContextCardViewModel: ObservableObject {
     public let isSubmissionRowsVisible: Bool
     public let isLastActivityVisible: Bool
     public let isModal: Bool
-    public var enrollment: Enrollment?
+    public var enrollment: ContextEnrollment?
 
     private let env = AppEnvironment.shared
     private var isFirstAppear = true
@@ -74,9 +74,9 @@ public class ContextCardViewModel: ObservableObject {
     func gradingPeriodsDidUpdate() {
         if offlineModeViewModel.isOffline {
             let predicates = [
-                NSPredicate(format: "%K != nil", #keyPath(Enrollment.id)),
-                NSPredicate(key: #keyPath(Enrollment.stateRaw), equals: EnrollmentState.active.rawValue),
-                NSPredicate(key: #keyPath(Enrollment.userID), equals: userID),
+                NSPredicate(format: "%K != nil", #keyPath(ContextEnrollment.id)),
+                NSPredicate(key: #keyPath(ContextEnrollment.stateRaw), equals: EnrollmentState.active.rawValue),
+                NSPredicate(key: #keyPath(ContextEnrollment.userID), equals: userID),
             ]
             let scope = Scope(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: predicates), order: [])
             let databaseContext = self.env.database.viewContext
@@ -98,7 +98,7 @@ public class ContextCardViewModel: ObservableObject {
                     }
                     if let apiEnrollment = apiEnrollment, let id = apiEnrollment.id?.value {
                         let databaseContext = self.env.database.viewContext
-                        let enrollment: Enrollment = databaseContext.first(where: #keyPath(Enrollment.id), equals: id) ?? databaseContext.insert()
+                        let enrollment: ContextEnrollment = databaseContext.first(where: #keyPath(ContextEnrollment.id), equals: id) ?? databaseContext.insert()
                         enrollment.update(fromApiModel: apiEnrollment, course: nil, in: databaseContext)
                         self.enrollment = enrollment
                     }

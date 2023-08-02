@@ -18,9 +18,9 @@
 
 import CoreData
 
-public class GetCourseSyncPeopleEnrollments: CollectionUseCase {
+public class GetCourseSyncContextEnrollments: CollectionUseCase {
 
-    public typealias Model = Enrollment
+    public typealias Model = ContextEnrollment
 
     public var cacheKey: String? { "courseSyncPeopleEnrollments" }
     public let request: GetEnrollmentsRequest
@@ -43,7 +43,7 @@ public class GetCourseSyncPeopleEnrollments: CollectionUseCase {
         }
         if let apiEnrollment = apiEnrollment, let id = apiEnrollment.id?.value {
             let databaseContext = AppEnvironment.shared.database.viewContext
-            let enrollment: Enrollment = databaseContext.first(where: #keyPath(Enrollment.id), equals: id) ?? databaseContext.insert()
+            let enrollment: ContextEnrollment = databaseContext.first(where: #keyPath(ContextEnrollment.id), equals: id) ?? databaseContext.insert()
             enrollment.update(fromApiModel: apiEnrollment, course: nil, in: databaseContext)
         }
     }

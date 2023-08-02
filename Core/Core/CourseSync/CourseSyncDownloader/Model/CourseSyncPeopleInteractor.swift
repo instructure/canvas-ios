@@ -121,7 +121,7 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
     }
 
     private static func fetchEnrollments(context: Context, currentGradingPeriodID: String?, userID: String) -> AnyPublisher<Void, Error> {
-        return ReactiveStore(useCase: GetCourseSyncPeopleEnrollments(context: context, gradingPeriodID: currentGradingPeriodID, states: [ .active ], userID: userID))
+        return ReactiveStore(useCase: GetCourseSyncContextEnrollments(context: context, gradingPeriodID: currentGradingPeriodID, states: [ .active ], userID: userID))
             .getEntities()
             .mapToVoid()
             .eraseToAnyPublisher()
