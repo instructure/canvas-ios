@@ -23,8 +23,6 @@ class SettingsTests: E2ETestCase {
     typealias Helper = SettingsHelper
     typealias SubSettingsHelper = Helper.SubSettings
     typealias AboutHelper = Helper.About
-    typealias CalendarAppHelper = SubSettingsHelper.CalendarApp
-    typealias SafariAppHelper = SubSettingsHelper.SafariApp
 
     func testSettingsMenuItems() {
         // MARK: Seed the usual stuff
@@ -35,59 +33,59 @@ class SettingsTests: E2ETestCase {
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(student)
         Helper.navigateToSettings()
-        let navBar = Helper.navBar.waitToExist()
-        let doneButton = Helper.doneButton.waitToExist()
+        let navBar = Helper.navBar.waitUntil(condition: .visible)
+        let doneButton = Helper.doneButton.waitUntil(condition: .visible)
         XCTAssertTrue(navBar.isVisible)
         XCTAssertTrue(doneButton.isVisible)
 
         // MARK: Check menu items of Settings
-        let landingPage = Helper.menuItem(item: .landingPage).waitToExist()
-        let landingPageLabel = Helper.labelOfMenuItem(menuItem: landingPage).waitToExist()
+        let landingPage = Helper.menuItem(item: .landingPage).waitUntil(condition: .visible)
+        let landingPageLabel = Helper.labelOfMenuItem(menuItem: landingPage).waitUntil(condition: .visible)
         XCTAssertTrue(landingPage.isVisible)
         XCTAssertTrue(landingPageLabel.isVisible)
-        XCTAssertEqual(landingPageLabel.label(), "Landing Page")
+        XCTAssertEqual(landingPageLabel.label, "Landing Page")
 
-        let appearance = Helper.menuItem(item: .appearance).waitToExist()
-        let appearanceLabel = Helper.labelOfMenuItem(menuItem: appearance).waitToExist()
+        let appearance = Helper.menuItem(item: .appearance).waitUntil(condition: .visible)
+        let appearanceLabel = Helper.labelOfMenuItem(menuItem: appearance).waitUntil(condition: .visible)
         XCTAssertTrue(appearance.isVisible)
         XCTAssertTrue(appearanceLabel.isVisible)
-        XCTAssertEqual(appearanceLabel.label(), "Appearance")
+        XCTAssertEqual(appearanceLabel.label, "Appearance")
 
-        let pairWithObserver = Helper.menuItem(item: .pairWithObserver).waitToExist()
-        let pairWithObserverLabel = Helper.labelOfMenuItem(menuItem: pairWithObserver).waitToExist()
+        let pairWithObserver = Helper.menuItem(item: .pairWithObserver).waitUntil(condition: .visible)
+        let pairWithObserverLabel = Helper.labelOfMenuItem(menuItem: pairWithObserver).waitUntil(condition: .visible)
         XCTAssertTrue(pairWithObserver.isVisible)
         XCTAssertTrue(pairWithObserverLabel.isVisible)
-        XCTAssertEqual(pairWithObserverLabel.label(), "Pair with Observer")
+        XCTAssertEqual(pairWithObserverLabel.label, "Pair with Observer")
 
-        let subscribeToCalendarFeed = Helper.menuItem(item: .subscribeToCalendarFeed).waitToExist()
-        let subscribeToCalendarFeedLabel = Helper.labelOfMenuItem(menuItem: subscribeToCalendarFeed).waitToExist()
+        let subscribeToCalendarFeed = Helper.menuItem(item: .subscribeToCalendarFeed).waitUntil(condition: .visible)
+        let subscribeToCalendarFeedLabel = Helper.labelOfMenuItem(menuItem: subscribeToCalendarFeed).waitUntil(condition: .visible)
         XCTAssertTrue(subscribeToCalendarFeed.isVisible)
         XCTAssertTrue(subscribeToCalendarFeedLabel.isVisible)
-        XCTAssertEqual(subscribeToCalendarFeedLabel.label(), "Subscribe to Calendar Feed")
+        XCTAssertEqual(subscribeToCalendarFeedLabel.label, "Subscribe to Calendar Feed")
 
-        let about = Helper.menuItem(item: .about).waitToExist()
-        let aboutLabel = Helper.labelOfMenuItem(menuItem: about).waitToExist()
+        let about = Helper.menuItem(item: .about).waitUntil(condition: .visible)
+        let aboutLabel = Helper.labelOfMenuItem(menuItem: about).waitUntil(condition: .visible)
         XCTAssertTrue(about.isVisible)
         XCTAssertTrue(aboutLabel.isVisible)
-        XCTAssertEqual(aboutLabel.label(), "About")
+        XCTAssertEqual(aboutLabel.label, "About")
 
-        let privacyPolicy = Helper.menuItem(item: .privacyPolicy).waitToExist()
-        let privacyPolicyLabel = Helper.labelOfMenuItem(menuItem: privacyPolicy).waitToExist()
+        let privacyPolicy = Helper.menuItem(item: .privacyPolicy).waitUntil(condition: .visible)
+        let privacyPolicyLabel = Helper.labelOfMenuItem(menuItem: privacyPolicy).waitUntil(condition: .visible)
         XCTAssertTrue(privacyPolicy.isVisible)
         XCTAssertTrue(privacyPolicyLabel.isVisible)
-        XCTAssertEqual(privacyPolicyLabel.label(), "Privacy Policy")
+        XCTAssertEqual(privacyPolicyLabel.label, "Privacy Policy")
 
-        let termsOfUse = Helper.menuItem(item: .termsOfUse).waitToExist()
-        let termsOfUseLabel = Helper.labelOfMenuItem(menuItem: termsOfUse).waitToExist()
+        let termsOfUse = Helper.menuItem(item: .termsOfUse).waitUntil(condition: .visible)
+        let termsOfUseLabel = Helper.labelOfMenuItem(menuItem: termsOfUse).waitUntil(condition: .visible)
         XCTAssertTrue(termsOfUse.isVisible)
         XCTAssertTrue(termsOfUseLabel.isVisible)
-        XCTAssertEqual(termsOfUseLabel.label(), "Terms of Use")
+        XCTAssertEqual(termsOfUseLabel.label, "Terms of Use")
 
-        let canvasOnGitHub = Helper.menuItem(item: .canvasOnGitHub).waitToExist()
-        let canvasOnGitHubLabel = Helper.labelOfMenuItem(menuItem: canvasOnGitHub).waitToExist()
+        let canvasOnGitHub = Helper.menuItem(item: .canvasOnGitHub).waitUntil(condition: .visible)
+        let canvasOnGitHubLabel = Helper.labelOfMenuItem(menuItem: canvasOnGitHub).waitUntil(condition: .visible)
         XCTAssertTrue(canvasOnGitHub.isVisible)
         XCTAssertTrue(canvasOnGitHubLabel.isVisible)
-        XCTAssertEqual(canvasOnGitHubLabel.label(), "Canvas on GitHub")
+        XCTAssertEqual(canvasOnGitHubLabel.label, "Canvas on GitHub")
     }
 
     func testLandingPageSetting() {
@@ -99,67 +97,67 @@ class SettingsTests: E2ETestCase {
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(student)
         Helper.navigateToSettings()
-        let navBar = Helper.navBar.waitToExist()
-        let doneButton = Helper.doneButton.waitToExist()
+        let navBar = Helper.navBar.waitUntil(condition: .visible)
+        let doneButton = Helper.doneButton.waitUntil(condition: .visible)
         XCTAssertTrue(navBar.isVisible)
         XCTAssertTrue(doneButton.isVisible)
 
         // MARK: Select "Landing Page", check elements
-        let landingPage = Helper.menuItem(item: .landingPage).waitToExist()
+        let landingPage = Helper.menuItem(item: .landingPage).waitUntil(condition: .visible)
         XCTAssertTrue(landingPage.isVisible)
 
-        landingPage.tap()
+        landingPage.hit()
 
-        let landingPageNavBar = SubSettingsHelper.landingPageNavBar.waitToExist()
+        let landingPageNavBar = SubSettingsHelper.landingPageNavBar.waitUntil(condition: .visible)
         XCTAssertTrue(landingPageNavBar.isVisible)
 
-        let dashboard = SubSettingsHelper.landingPageMenuItem(item: .dashboard).waitToExist()
-        let dashboardLabel = SubSettingsHelper.labelOfMenuItem(menuItem: dashboard).waitToExist()
+        let dashboard = SubSettingsHelper.landingPageMenuItem(item: .dashboard).waitUntil(condition: .visible)
+        let dashboardLabel = SubSettingsHelper.labelOfMenuItem(menuItem: dashboard).waitUntil(condition: .visible)
         XCTAssertTrue(dashboard.isVisible)
         XCTAssertTrue(dashboard.isSelected)
         XCTAssertTrue(dashboardLabel.isVisible)
-        XCTAssertEqual(dashboardLabel.label(), "Dashboard")
+        XCTAssertEqual(dashboardLabel.label, "Dashboard")
 
-        let calendar = SubSettingsHelper.landingPageMenuItem(item: .calendar).waitToExist()
-        let calendarLabel = SubSettingsHelper.labelOfMenuItem(menuItem: calendar).waitToExist()
+        let calendar = SubSettingsHelper.landingPageMenuItem(item: .calendar).waitUntil(condition: .visible)
+        let calendarLabel = SubSettingsHelper.labelOfMenuItem(menuItem: calendar).waitUntil(condition: .visible)
         XCTAssertTrue(calendar.isVisible)
         XCTAssertFalse(calendar.isSelected)
         XCTAssertTrue(calendarLabel.isVisible)
-        XCTAssertEqual(calendarLabel.label(), "Calendar")
+        XCTAssertEqual(calendarLabel.label, "Calendar")
 
-        let toDo = SubSettingsHelper.landingPageMenuItem(item: .toDo).waitToExist()
-        let toDoLabel = SubSettingsHelper.labelOfMenuItem(menuItem: toDo).waitToExist()
+        let toDo = SubSettingsHelper.landingPageMenuItem(item: .toDo).waitUntil(condition: .visible)
+        let toDoLabel = SubSettingsHelper.labelOfMenuItem(menuItem: toDo).waitUntil(condition: .visible)
         XCTAssertTrue(toDo.isVisible)
         XCTAssertFalse(toDo.isSelected)
         XCTAssertTrue(toDoLabel.isVisible)
-        XCTAssertEqual(toDoLabel.label(), "To Do")
+        XCTAssertEqual(toDoLabel.label, "To Do")
 
-        let notifications = SubSettingsHelper.landingPageMenuItem(item: .notifications).waitToExist()
-        let notificationsLabel = SubSettingsHelper.labelOfMenuItem(menuItem: notifications).waitToExist()
+        let notifications = SubSettingsHelper.landingPageMenuItem(item: .notifications).waitUntil(condition: .visible)
+        let notificationsLabel = SubSettingsHelper.labelOfMenuItem(menuItem: notifications).waitUntil(condition: .visible)
         XCTAssertTrue(notifications.isVisible)
         XCTAssertFalse(notifications.isSelected)
         XCTAssertTrue(notificationsLabel.isVisible)
-        XCTAssertEqual(notificationsLabel.label(), "Notifications")
+        XCTAssertEqual(notificationsLabel.label, "Notifications")
 
-        let inbox = SubSettingsHelper.landingPageMenuItem(item: .inbox).waitToExist()
-        let inboxLabel = SubSettingsHelper.labelOfMenuItem(menuItem: inbox).waitToExist()
+        let inbox = SubSettingsHelper.landingPageMenuItem(item: .inbox).waitUntil(condition: .visible)
+        let inboxLabel = SubSettingsHelper.labelOfMenuItem(menuItem: inbox).waitUntil(condition: .visible)
         XCTAssertTrue(inbox.isVisible)
         XCTAssertFalse(inbox.isSelected)
         XCTAssertTrue(inboxLabel.isVisible)
-        XCTAssertEqual(inboxLabel.label(), "Inbox")
+        XCTAssertEqual(inboxLabel.label, "Inbox")
 
-        let backButton = SubSettingsHelper.backButton.waitToExist()
+        let backButton = SubSettingsHelper.backButton.waitUntil(condition: .visible)
         XCTAssertTrue(backButton.isVisible)
 
         // MARK: Select "Inbox", logout, login, check landing page
-        inbox.tap()
-        XCTAssertTrue(inbox.waitUntilSelected())
+        inbox.hit()
+        XCTAssertTrue(inbox.waitUntil(condition: .visible).isVisible)
 
-        backButton.tap()
-        doneButton.tap()
+        backButton.hit()
+        doneButton.hit()
         logOut()
         logInDSUser(student)
-        let inboxNavBar = InboxHelper.navBar.waitToExist()
+        let inboxNavBar = InboxHelper.navBar.waitUntil(condition: .visible)
         XCTAssertTrue(inboxNavBar.isVisible)
     }
 
@@ -172,47 +170,47 @@ class SettingsTests: E2ETestCase {
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(student)
         Helper.navigateToSettings()
-        let navBar = Helper.navBar.waitToExist()
-        let doneButton = Helper.doneButton.waitToExist()
+        let navBar = Helper.navBar.waitUntil(condition: .visible)
+        let doneButton = Helper.doneButton.waitUntil(condition: .visible)
         XCTAssertTrue(navBar.isVisible)
         XCTAssertTrue(doneButton.isVisible)
 
         // MARK: Select "Appearance", check elements
-        let appearance = Helper.menuItem(item: .appearance).waitToExist()
+        let appearance = Helper.menuItem(item: .appearance).waitUntil(condition: .visible)
         XCTAssertTrue(appearance.isVisible)
 
-        appearance.tap()
+        appearance.hit()
 
-        let appearanceNavBar = SubSettingsHelper.appearanceNavBar.waitToExist()
+        let appearanceNavBar = SubSettingsHelper.appearanceNavBar.waitUntil(condition: .visible)
         XCTAssertTrue(appearanceNavBar.isVisible)
 
-        let system = SubSettingsHelper.appearanceMenuItem(item: .system).waitToExist()
-        let systemLabel = SubSettingsHelper.labelOfMenuItem(menuItem: system).waitToExist()
+        let system = SubSettingsHelper.appearanceMenuItem(item: .system).waitUntil(condition: .visible)
+        let systemLabel = SubSettingsHelper.labelOfMenuItem(menuItem: system).waitUntil(condition: .visible)
         XCTAssertTrue(system.isVisible)
         XCTAssertTrue(system.isSelected)
         XCTAssertTrue(systemLabel.isVisible)
-        XCTAssertEqual(systemLabel.label(), "System Settings")
+        XCTAssertEqual(systemLabel.label, "System Settings")
 
-        let light = SubSettingsHelper.appearanceMenuItem(item: .light).waitToExist()
-        let lightLabel = SubSettingsHelper.labelOfMenuItem(menuItem: light).waitToExist()
+        let light = SubSettingsHelper.appearanceMenuItem(item: .light).waitUntil(condition: .visible)
+        let lightLabel = SubSettingsHelper.labelOfMenuItem(menuItem: light).waitUntil(condition: .visible)
         XCTAssertTrue(light.isVisible)
         XCTAssertFalse(light.isSelected)
         XCTAssertTrue(lightLabel.isVisible)
-        XCTAssertEqual(lightLabel.label(), "Light Theme")
+        XCTAssertEqual(lightLabel.label, "Light Theme")
 
-        let dark = SubSettingsHelper.appearanceMenuItem(item: .dark).waitToExist()
-        let darkLabel = SubSettingsHelper.labelOfMenuItem(menuItem: dark).waitToExist()
+        let dark = SubSettingsHelper.appearanceMenuItem(item: .dark).waitUntil(condition: .visible)
+        let darkLabel = SubSettingsHelper.labelOfMenuItem(menuItem: dark).waitUntil(condition: .visible)
         XCTAssertTrue(dark.isVisible)
         XCTAssertFalse(dark.isSelected)
         XCTAssertTrue(darkLabel.isVisible)
-        XCTAssertEqual(darkLabel.label(), "Dark Theme")
+        XCTAssertEqual(darkLabel.label, "Dark Theme")
 
         // MARK: Select "Dark Theme", check selection, select "Light Theme", check selection
-        dark.tap()
-        XCTAssertTrue(dark.waitUntilSelected())
+        dark.hit()
+        XCTAssertTrue(dark.waitUntil(condition: .selected).isSelected)
 
-        light.tap()
-        XCTAssertTrue(light.waitUntilSelected())
+        light.hit()
+        XCTAssertTrue(light.waitUntil(condition: .selected).isSelected)
     }
 
     func testPairWithObserverQRAppearance() {
@@ -224,27 +222,27 @@ class SettingsTests: E2ETestCase {
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(student)
         Helper.navigateToSettings()
-        let navBar = Helper.navBar.waitToExist()
-        var doneButton = Helper.doneButton.waitToExist()
+        let navBar = Helper.navBar.waitUntil(condition: .visible)
+        var doneButton = Helper.doneButton.waitUntil(condition: .visible)
         XCTAssertTrue(navBar.isVisible)
         XCTAssertTrue(doneButton.isVisible)
 
         // MARK: Select "Pair with Observer", check elements
-        let pairWithObserver = Helper.menuItem(item: .pairWithObserver).waitToExist()
+        let pairWithObserver = Helper.menuItem(item: .pairWithObserver).waitUntil(condition: .visible)
         XCTAssertTrue(pairWithObserver.isVisible)
 
-        pairWithObserver.tap()
+        pairWithObserver.hit()
 
-        let pairWithObserverNavBar = SubSettingsHelper.pairWithObserverNavBar.waitToExist()
+        let pairWithObserverNavBar = SubSettingsHelper.pairWithObserverNavBar.waitUntil(condition: .visible)
         XCTAssertTrue(pairWithObserverNavBar.isVisible)
 
-        doneButton = SubSettingsHelper.doneButton.waitToExist()
+        doneButton = SubSettingsHelper.doneButton.waitUntil(condition: .visible)
         XCTAssertTrue(doneButton.isVisible)
 
-        let shareButton = SubSettingsHelper.shareButton.waitToExist()
+        let shareButton = SubSettingsHelper.shareButton.waitUntil(condition: .visible)
         XCTAssertTrue(shareButton.isVisible)
 
-        let QRCodeImage = SubSettingsHelper.QRCodeImage.waitToExist()
+        let QRCodeImage = SubSettingsHelper.QRCodeImage.waitUntil(condition: .visible)
         XCTAssertTrue(QRCodeImage.isVisible)
     }
 
@@ -257,32 +255,32 @@ class SettingsTests: E2ETestCase {
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(student)
         Helper.navigateToSettings()
-        let navBar = Helper.navBar.waitToExist()
-        let doneButton = Helper.doneButton.waitToExist()
+        let navBar = Helper.navBar.waitUntil(condition: .visible)
+        let doneButton = Helper.doneButton.waitUntil(condition: .visible)
         XCTAssertTrue(navBar.isVisible)
         XCTAssertTrue(doneButton.isVisible)
 
         // MARK: Select "Subscribe to Calendar Feed", check if Calendar app opens
-        let subscribeToCalendarFeed = Helper.menuItem(item: .subscribeToCalendarFeed).waitToExist()
+        let subscribeToCalendarFeed = Helper.menuItem(item: .subscribeToCalendarFeed).waitUntil(condition: .visible)
         XCTAssertTrue(subscribeToCalendarFeed.isVisible)
 
-        subscribeToCalendarFeed.tap()
+        subscribeToCalendarFeed.hit()
         let calendarAppState = CalendarAppHelper.calendarApp.state
         XCTAssertEqual(calendarAppState, .runningForeground)
 
         // MARK: Handle first start of Calendar App, check subscription URL
-        let continueButton = CalendarAppHelper.continueButton.waitToExist(5, shouldFail: false)
+        let continueButton = CalendarAppHelper.continueButton.waitUntil(condition: .visible, timeout: 5)
         if continueButton.isVisible {
-            continueButton.tap()
-            app.tap()
+            continueButton.hit()
+            app.hit()
         }
 
-        let calendarNavBar = CalendarAppHelper.navBar.waitToExist()
+        let calendarNavBar = CalendarAppHelper.navBar.waitUntil(condition: .visible)
         XCTAssertTrue(calendarNavBar.isVisible)
 
-        let subscriptionUrlElement = CalendarAppHelper.subscriptionUrl.waitToExist()
+        let subscriptionUrlElement = CalendarAppHelper.subscriptionUrl.waitUntil(condition: .visible)
         XCTAssertTrue(subscriptionUrlElement.isVisible)
-        XCTAssertTrue(subscriptionUrlElement.value()!.contains(user.host))
+        XCTAssertTrue(subscriptionUrlElement.hasValue(value: user.host))
     }
 
     func testAbout() {
@@ -294,37 +292,37 @@ class SettingsTests: E2ETestCase {
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(student)
         Helper.navigateToSettings()
-        let navBar = Helper.navBar.waitToExist()
-        let doneButton = Helper.doneButton.waitToExist()
+        let navBar = Helper.navBar.waitUntil(condition: .visible)
+        let doneButton = Helper.doneButton.waitUntil(condition: .visible)
         XCTAssertTrue(navBar.isVisible)
         XCTAssertTrue(doneButton.isVisible)
 
         // MARK: Select About, check elements
-        let about = Helper.menuItem(item: .about).waitToExist()
+        let about = Helper.menuItem(item: .about).waitUntil(condition: .visible)
         XCTAssertTrue(about.isVisible)
 
-        about.tap()
+        about.hit()
 
-        let aboutView = AboutHelper.aboutView.waitToExist()
+        let aboutView = AboutHelper.aboutView.waitUntil(condition: .visible)
         XCTAssertTrue(aboutView.isVisible)
 
-        let appLabel = AboutHelper.appLabel.waitToExist()
+        let appLabel = AboutHelper.appLabel.waitUntil(condition: .visible)
         XCTAssertTrue(appLabel.isVisible)
-        XCTAssertEqual(appLabel.label(), "Canvas Student")
+        XCTAssertEqual(appLabel.label, "Canvas Student")
 
-        let domainLabel = AboutHelper.domainLabel.waitToExist()
+        let domainLabel = AboutHelper.domainLabel.waitUntil(condition: .visible)
         XCTAssertTrue(domainLabel.isVisible)
-        XCTAssertEqual(domainLabel.label(), "https://\(user.host)")
+        XCTAssertEqual(domainLabel.label, "https://\(user.host)")
 
-        let loginIdLabel = AboutHelper.loginIdLabel.waitToExist()
+        let loginIdLabel = AboutHelper.loginIdLabel.waitUntil(condition: .visible)
         XCTAssertTrue(loginIdLabel.isVisible)
-        XCTAssertEqual(loginIdLabel.label(), student.id)
+        XCTAssertEqual(loginIdLabel.label, student.id)
 
-        let emailLabel = AboutHelper.emailLabel.waitToExist()
+        let emailLabel = AboutHelper.emailLabel.waitUntil(condition: .visible)
         XCTAssertTrue(emailLabel.isVisible)
-        XCTAssertEqual(emailLabel.label(), "-")
+        XCTAssertEqual(emailLabel.label, "-")
 
-        let versionLabel = AboutHelper.versionLabel.waitToExist()
+        let versionLabel = AboutHelper.versionLabel.waitUntil(condition: .visible)
         XCTAssertTrue(versionLabel.isVisible)
     }
 
@@ -337,16 +335,16 @@ class SettingsTests: E2ETestCase {
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(student)
         Helper.navigateToSettings()
-        let navBar = Helper.navBar.waitToExist()
-        let doneButton = Helper.doneButton.waitToExist()
+        let navBar = Helper.navBar.waitUntil(condition: .visible)
+        let doneButton = Helper.doneButton.waitUntil(condition: .visible)
         XCTAssertTrue(navBar.isVisible)
         XCTAssertTrue(doneButton.isVisible)
 
         // MARK: Select "Privacy Policy", check if Safari app opens
-        let privacyPolicy = Helper.menuItem(item: .privacyPolicy).waitToExist()
+        let privacyPolicy = Helper.menuItem(item: .privacyPolicy).waitUntil(condition: .visible)
         XCTAssertTrue(privacyPolicy.isVisible)
 
-        privacyPolicy.tap()
+        privacyPolicy.hit()
 
         let safariAppState = SafariAppHelper.safariApp.state
         XCTAssertEqual(safariAppState, .runningForeground)
@@ -365,18 +363,18 @@ class SettingsTests: E2ETestCase {
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(student)
         Helper.navigateToSettings()
-        let navBar = Helper.navBar.waitToExist()
-        let doneButton = Helper.doneButton.waitToExist()
+        let navBar = Helper.navBar.waitUntil(condition: .visible)
+        let doneButton = Helper.doneButton.waitUntil(condition: .visible)
         XCTAssertTrue(navBar.isVisible)
         XCTAssertTrue(doneButton.isVisible)
 
         // MARK: Select "Terms of Use", check elements
-        let termsOfUse = Helper.menuItem(item: .termsOfUse).waitToExist()
+        let termsOfUse = Helper.menuItem(item: .termsOfUse).waitUntil(condition: .visible)
         XCTAssertTrue(termsOfUse.isVisible)
 
-        termsOfUse.tap()
+        termsOfUse.hit()
 
-        let termsOfUseNavBar = SubSettingsHelper.termsOfUseNavBar.waitToExist()
+        let termsOfUseNavBar = SubSettingsHelper.termsOfUseNavBar.waitUntil(condition: .visible)
         XCTAssertTrue(termsOfUseNavBar.isVisible)
     }
 
@@ -389,16 +387,16 @@ class SettingsTests: E2ETestCase {
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(student)
         Helper.navigateToSettings()
-        let navBar = Helper.navBar.waitToExist()
-        let doneButton = Helper.doneButton.waitToExist()
+        let navBar = Helper.navBar.waitUntil(condition: .visible)
+        let doneButton = Helper.doneButton.waitUntil(condition: .visible)
         XCTAssertTrue(navBar.isVisible)
         XCTAssertTrue(doneButton.isVisible)
 
         // MARK: Select "Canvas on GitHub", check if Safari opens
-        let canvasOnGitHub = Helper.menuItem(item: .canvasOnGitHub).waitToExist()
+        let canvasOnGitHub = Helper.menuItem(item: .canvasOnGitHub).waitUntil(condition: .visible)
         XCTAssertTrue(canvasOnGitHub.isVisible)
 
-        canvasOnGitHub.tap()
+        canvasOnGitHub.hit()
 
         let safariAppState = SafariAppHelper.safariApp.state
         XCTAssertEqual(safariAppState, .runningForeground)

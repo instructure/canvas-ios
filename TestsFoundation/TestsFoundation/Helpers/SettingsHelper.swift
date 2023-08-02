@@ -34,7 +34,7 @@ public class SettingsHelper: BaseHelper {
         ProfileHelper.settingsButton.hit()
     }
 
-    struct SubSettings {
+    public struct SubSettings {
         public static var landingPageNavBar: XCUIElement { app.find(id: "Landing Page") }
         public static var appearanceNavBar: XCUIElement { app.find(id: "Appearance") }
         public static var pairWithObserverNavBar: XCUIElement { app.find(id: "Pair with Observer")}
@@ -56,30 +56,9 @@ public class SettingsHelper: BaseHelper {
         public static var backButton: XCUIElement { app.find(label: "Settings", type: .button) }
         public static var shareButton: XCUIElement { app.find(label: "Share", type: .button) }
         public static var doneButton: XCUIElement { app.findAll(type: .navigationBar, minimumCount: 2)[1].find(id: "screen.dismiss") }
-
-        struct CalendarApp {
-            public static let calendarApp = XCUIApplication(bundleIdentifier: "com.apple.mobilecal")
-            public static var continueButton: XCUIElement { calendarApp.find(label: "Continue", type: .button) }
-            public static var navBar: XCUIElement { calendarApp.find(id: "Add Subscription Calendar") }
-            public static var subscriptionUrl: XCUIElement {
-                calendarApp.find(type: .table).find(type: .cell).find(type: .textField)
-            }
-        }
-
-        struct SafariApp {
-            public static let safariApp = XCUIApplication(bundleIdentifier: "com.apple.mobilesafari")
-
-            public static var browserURL: String {
-                safariApp.activate()
-                safariApp.find(id: "ReloadButton").waitUntil(condition: .visible)
-                safariApp.find(id: "TabBarItemTitle").hit()
-                let url = safariApp.find(id: "URL").waitUntil(condition: .visible).value as? String ?? ""
-                return url
-            }
-        }
     }
 
-    struct About {
+    public struct About {
         public static var aboutView: XCUIElement { app.find(id: "AboutView") }
         public static var appLabel: XCUIElement { app.find(id: "App")}
         public static var domainLabel: XCUIElement { app.find(id: "Domain")}

@@ -16,39 +16,35 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+public class PhotosAppHelper: BaseHelper {
+    static let defaultTimeout = TimeInterval(10)
+    public static let photosApp = XCUIApplication(bundleIdentifier: "com.apple.mobileslideshow")
 
-public class PhotosHelper {
-    let defaultTimeout = TimeInterval(10)
-    public let photosApp = XCUIApplication(bundleIdentifier: "com.apple.mobileslideshow")
-
-    public init () {}
-
-    public func launch() {
+    public static func launch() {
         photosApp.launch()
         photosApp.tap()
         tapContinue()
     }
 
-    public func tapContinue() {
+    public static func tapContinue() {
         if photosApp.buttons["Continue"].waitForExistence(timeout: 5) {
             photosApp.buttons["Continue"].tap()
         }
     }
 
-    public func tapFirstPicture() {
+    public static func tapFirstPicture() {
         if photosApp.collectionViews["PhotosGridView"].cells.firstMatch.waitForExistence(timeout: defaultTimeout) {
             photosApp.collectionViews["PhotosGridView"].cells.firstMatch.tap()
         }
     }
 
-    public func tapShare() {
+    public static func tapShare() {
         if photosApp.buttons["Share"].waitForExistence(timeout: defaultTimeout) {
             photosApp.buttons["Share"].tap()
         }
     }
 
-    public func tapCanvasButton() {
+    public static func tapCanvasButton() {
         let elements = photosApp
             .descendants(matching: .any)
             .matching(NSPredicate(format: "label == 'XCElementSnapshotPrivilegedValuePlaceholder'"))
@@ -59,7 +55,7 @@ public class PhotosHelper {
         }
     }
 
-    public func selectCourse(course: DSCourse) {
+    public static func selectCourse(course: DSCourse) {
         if photosApp.buttons["Select course"].waitForExistence(timeout: defaultTimeout) {
             photosApp.buttons["Select course"].tap()
         }
@@ -69,7 +65,7 @@ public class PhotosHelper {
         }
     }
 
-    public func selectAssignment(assignment: DSAssignment) {
+    public static func selectAssignment(assignment: DSAssignment) {
         if photosApp.buttons["Select assignment"].waitForExistence(timeout: defaultTimeout) {
             photosApp.buttons["Select assignment"].tap()
         }
@@ -79,19 +75,19 @@ public class PhotosHelper {
         }
     }
 
-    public func tapSubmitButton() {
+    public static func tapSubmitButton() {
         if photosApp.buttons["Submit"].waitForExistence(timeout: defaultTimeout) {
             photosApp.buttons["Submit"].tap()
         }
     }
 
-    public func tapDoneButton() {
+    public static func tapDoneButton() {
         if photosApp.buttons["Done"].waitForExistence(timeout: defaultTimeout) {
             photosApp.buttons["Done"].tap()
         }
     }
 
-    public func closeApp() {
+    public static func closeApp() {
         photosApp.terminate()
     }
 }

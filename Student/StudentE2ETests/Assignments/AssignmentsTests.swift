@@ -95,7 +95,7 @@ class AssignmentsTests: E2ETestCase {
         XCTAssertTrue(submissionsButtonLabel.isVisible)
         XCTAssertEqual(submissionsButtonLabel.label, "Submission & Rubric")
 
-        let descriptionLabel = DetailsHelper.description.waitUntil(condition: .visible)
+        let descriptionLabel = DetailsHelper.description(assignment: assignment).waitUntil(condition: .visible)
         XCTAssertTrue(descriptionLabel.isVisible)
         XCTAssertEqual(descriptionLabel.label, assignment.description)
 

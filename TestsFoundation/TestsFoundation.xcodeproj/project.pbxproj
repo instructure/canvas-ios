@@ -15,7 +15,7 @@
 		0D6EACF326CFCFD6317CBEEA /* TestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EF27109323758169F0E4CE /* TestRouter.swift */; };
 		113B16010F4632F524284678 /* MiniCanvasState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5DEEFDECDBCF81D4C9BD42 /* MiniCanvasState.swift */; };
 		120B07891919D2C19EA4A08F /* DSPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BAE17443766D452A139A1CE /* DSPage.swift */; };
-		1245BAC79D839B7729D27BAA /* PhotosHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62F38B11FBB339E63CE5878 /* PhotosHelper.swift */; };
+		1245BAC79D839B7729D27BAA /* PhotosAppHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62F38B11FBB339E63CE5878 /* PhotosAppHelper.swift */; };
 		1262342A0DDB2D111A04EA5C /* DataSeeder+DSGrades.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06069BF81EF75ADAD665ED65 /* DataSeeder+DSGrades.swift */; };
 		1347832830A632CFB069F4BB /* URLResponseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068F49BCAB12A9357B4C260A /* URLResponseExtensions.swift */; };
 		139E4E89AEE0DC48B69561AC /* DSProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8818EB2EB6BDCF26B5666D /* DSProgress.swift */; };
@@ -112,6 +112,8 @@
 		8B9845FE2A73C538003E1E9F /* FilesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9845FD2A73C538003E1E9F /* FilesHelper.swift */; };
 		8B9846002A73C716003E1E9F /* SettingsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9845FF2A73C716003E1E9F /* SettingsHelper.swift */; };
 		8B9846132A77BDE5003E1E9F /* CoreTestsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9846122A77BDE5003E1E9F /* CoreTestsHelper.swift */; };
+		8B9846302A7ABBEF003E1E9F /* CalendarAppHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B98462F2A7ABBEF003E1E9F /* CalendarAppHelper.swift */; };
+		8B9846322A7ABC22003E1E9F /* SafariAppHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9846312A7ABC22003E1E9F /* SafariAppHelper.swift */; };
 		8C02370D294ADC5E03166916 /* CreateDSQuizQuestionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFA2EB914E415CCFACDB /* CreateDSQuizQuestionRequest.swift */; };
 		8CE7A795708CBCF4AF7A2674 /* DSModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69E1EBE6B486730AE73F45 /* DSModuleItem.swift */; };
 		8CEEA54DE127851FF426490F /* CreateDSDiscussionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D6E99369534DE2260DD4EB /* CreateDSDiscussionRequest.swift */; };
@@ -311,6 +313,8 @@
 		8B9845FD2A73C538003E1E9F /* FilesHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesHelper.swift; sourceTree = "<group>"; };
 		8B9845FF2A73C716003E1E9F /* SettingsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsHelper.swift; sourceTree = "<group>"; };
 		8B9846122A77BDE5003E1E9F /* CoreTestsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreTestsHelper.swift; sourceTree = "<group>"; };
+		8B98462F2A7ABBEF003E1E9F /* CalendarAppHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarAppHelper.swift; sourceTree = "<group>"; };
+		8B9846312A7ABC22003E1E9F /* SafariAppHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariAppHelper.swift; sourceTree = "<group>"; };
 		8E046239E00E2F114C950D3A /* ModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFixture.swift; sourceTree = "<group>"; };
 		8E52A6F60DF961A9FB652399 /* DSSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSubmission.swift; sourceTree = "<group>"; };
 		8EB01A67D620697DB09B6F61 /* CreateDSAccountNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSAccountNotificationRequest.swift; sourceTree = "<group>"; };
@@ -367,7 +371,7 @@
 		ED0652909EA40F1E86A0B4C3 /* DSQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSQuiz.swift; sourceTree = "<group>"; };
 		ED4E87BB5E64AC3E82CDE316 /* XCUIApplicationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIApplicationExtensions.swift; sourceTree = "<group>"; };
 		ED9C7881D3779857136084CB /* FileFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileFixture.swift; sourceTree = "<group>"; };
-		F62F38B11FBB339E63CE5878 /* PhotosHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosHelper.swift; sourceTree = "<group>"; };
+		F62F38B11FBB339E63CE5878 /* PhotosAppHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosAppHelper.swift; sourceTree = "<group>"; };
 		F7FC060E41ED9753D6852CDF /* MockUploadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUploadManager.swift; sourceTree = "<group>"; };
 		F8913216F07538826E09B4D2 /* RubricFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricFixture.swift; sourceTree = "<group>"; };
 		FBCE6E0B51D949166BAE7489 /* CreateDSCalendarEventRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSCalendarEventRequest.swift; sourceTree = "<group>"; };
@@ -579,7 +583,9 @@
 		47BBBB47D5854C1CBC756C78 /* ThirdPartyApp */ = {
 			isa = PBXGroup;
 			children = (
-				F62F38B11FBB339E63CE5878 /* PhotosHelper.swift */,
+				F62F38B11FBB339E63CE5878 /* PhotosAppHelper.swift */,
+				8B98462F2A7ABBEF003E1E9F /* CalendarAppHelper.swift */,
+				8B9846312A7ABC22003E1E9F /* SafariAppHelper.swift */,
 			);
 			path = ThirdPartyApp;
 			sourceTree = "<group>";
@@ -1027,6 +1033,7 @@
 				2B1D0A68906A45E0D9F9F4D8 /* BaseHelper.swift in Sources */,
 				54923FEE77B2BB32BBCC2504 /* CalendarEventFixture.swift in Sources */,
 				509F3D8EDAAAF7425C36BE80 /* CombineTestExtensions.swift in Sources */,
+				8B9846322A7ABC22003E1E9F /* SafariAppHelper.swift in Sources */,
 				5D760DD0639FCD95BA6290AB /* CommunicationChannelFixture.swift in Sources */,
 				E6F7ECD7C962156372F2EF30 /* ConferenceFixture.swift in Sources */,
 				FA9954E150F63661C57C4DB0 /* ContextColorFixture.swift in Sources */,
@@ -1140,7 +1147,7 @@
 				8B9845FA2A72BDB9003E1E9F /* ActAsUserHelper.swift in Sources */,
 				3473CCA85DC34B470AB1A3B9 /* PageFixture.swift in Sources */,
 				190A08FCD83B5FC3C089C939 /* PermissionsFixture.swift in Sources */,
-				1245BAC79D839B7729D27BAA /* PhotosHelper.swift in Sources */,
+				1245BAC79D839B7729D27BAA /* PhotosAppHelper.swift in Sources */,
 				8B9845EF2A72897C003E1E9F /* AnnouncementsHelper.swift in Sources */,
 				529341EB7EBCDD31B3E310D4 /* PlannableFixture.swift in Sources */,
 				63EA3D8B2EF8758AF7CCC428 /* QuizFixture.swift in Sources */,
@@ -1164,6 +1171,7 @@
 				6D5BA2C2E22F7582E6F82F7D /* TestPersistence.swift in Sources */,
 				0D6EACF326CFCFD6317CBEEA /* TestRouter.swift in Sources */,
 				5B2E9009851FA5FE895D2773 /* TestTreeExtensions.swift in Sources */,
+				8B9846302A7ABBEF003E1E9F /* CalendarAppHelper.swift in Sources */,
 				68EC34C5A5828EE2497E1B9E /* TodoFixture.swift in Sources */,
 				017A5FC75C9358F125DA8E78 /* UITestUser.swift in Sources */,
 				8B9845ED2A72897C003E1E9F /* PeopleHelper.swift in Sources */,

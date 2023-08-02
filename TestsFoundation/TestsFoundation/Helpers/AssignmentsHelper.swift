@@ -131,21 +131,18 @@ public class AssignmentsHelper: BaseHelper {
 
     public static func sharePhotoUsingCanvasSE(course: DSCourse, assignment: DSAssignment) -> Bool {
         XCUIDevice.shared.press(.home)
+        PhotosAppHelper.launch()
+        PhotosAppHelper.tapFirstPicture()
+        PhotosAppHelper.tapShare()
+        PhotosAppHelper.tapCanvasButton()
+        PhotosAppHelper.selectCourse(course: course)
+        PhotosAppHelper.selectAssignment(assignment: assignment)
+        PhotosAppHelper.tapSubmitButton()
 
-        let photosHelper = PhotosHelper()
-
-        photosHelper.launch()
-        photosHelper.tapFirstPicture()
-        photosHelper.tapShare()
-        photosHelper.tapCanvasButton()
-        photosHelper.selectCourse(course: course)
-        photosHelper.selectAssignment(assignment: assignment)
-        photosHelper.tapSubmitButton()
-
-        let result = photosHelper.photosApp.staticTexts["Submission Success!"].waitForExistence(timeout: 50)
+        let result = PhotosAppHelper.photosApp.staticTexts["Submission Success!"].waitForExistence(timeout: 50)
         if result {
-            photosHelper.tapDoneButton()
-            photosHelper.closeApp()
+            PhotosAppHelper.tapDoneButton()
+            PhotosAppHelper.closeApp()
         }
 
         return result
