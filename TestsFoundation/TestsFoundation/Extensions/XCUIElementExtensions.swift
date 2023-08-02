@@ -24,7 +24,8 @@ public var app: XCUIApplication { XCUIApplication() }
 public extension XCUIElement {
     static let defaultTimeout: TimeInterval = 15
     static let defaultGracePeriod: UInt32 = 1
-    var isVisible: Bool { self.exists }
+    var isVisible: Bool { exists }
+    var isVanished: Bool { !(exists && isHittable) }
 
     enum ElementCondition {
         case visible
@@ -75,7 +76,7 @@ public extension XCUIElement {
 
             switch condition {
             case .vanish:
-                result = !isVisible
+                result = isVanished
             case .visible:
                 result = isVisible
             case .value:
@@ -112,7 +113,7 @@ public extension XCUIElement {
 
             switch condition {
             case .vanish:
-                result = !(actualElement.isVisible && actualElement.isHittable)
+                result = actualElement.isVanished
             case .visible:
                 result = actualElement.isVisible
             case .value:

@@ -45,7 +45,7 @@ public class QuizzesHelper: BaseHelper {
         public static var takeQuizButton: XCUIElement { return app.find(id: "QuizDetails.takeButton") }
         public static var submitButton: XCUIElement { app.find(label: "Submit") }
         public static var previewQuiz: XCUIElement { app.find(label: "Preview Quiz") }
-        public static var launchExternalToolButton: XCUIElement { app.find(label: "Launch External Tool") }
+        public static var launchExternalToolButton: XCUIElement { app.find(label: "Launch External Tool", type: .button) }
         public static var dueLabel: XCUIElement {
             app.find(id: "AssignmentDetails.dueSection").find(id: "dueDateLabel")
         }

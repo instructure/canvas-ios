@@ -98,7 +98,6 @@
 		C92796F126772C5B00582AC5 /* SyllabusE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92796F026772C5B00582AC5 /* SyllabusE2ETests.swift */; };
 		C9279701267C7AFC00582AC5 /* PeopleE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9279700267C7AFC00582AC5 /* PeopleE2ETests.swift */; };
 		C927971326830DA700582AC5 /* DiscussionsE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C927971226830DA700582AC5 /* DiscussionsE2ETests.swift */; };
-		C935D42626DE073B00C940F7 /* NewQuizzesE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C935D42526DE073B00C940F7 /* NewQuizzesE2ETests.swift */; };
 		C946A8C026661C2E004BCA4D /* DashboardE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C946A8BF26661C2E004BCA4D /* DashboardE2ETests.swift */; };
 		C956719D266E033B001FEA9B /* ModulesE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C956719C266E033B001FEA9B /* ModulesE2ETests.swift */; };
 		C990D81A2668ADBF00034C90 /* TodosE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C990D8192668ADBF00034C90 /* TodosE2ETests.swift */; };
@@ -536,7 +535,6 @@
 		C92796F026772C5B00582AC5 /* SyllabusE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusE2ETests.swift; sourceTree = "<group>"; };
 		C9279700267C7AFC00582AC5 /* PeopleE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleE2ETests.swift; sourceTree = "<group>"; };
 		C927971226830DA700582AC5 /* DiscussionsE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionsE2ETests.swift; sourceTree = "<group>"; };
-		C935D42526DE073B00C940F7 /* NewQuizzesE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewQuizzesE2ETests.swift; sourceTree = "<group>"; };
 		C946A8BF26661C2E004BCA4D /* DashboardE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardE2ETests.swift; sourceTree = "<group>"; };
 		C956719C266E033B001FEA9B /* ModulesE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesE2ETests.swift; sourceTree = "<group>"; };
 		C990D8192668ADBF00034C90 /* TodosE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosE2ETests.swift; sourceTree = "<group>"; };
@@ -982,7 +980,6 @@
 				C9FDE91D26BBBE5500DF0106 /* AnnouncementsE2ETests.swift */,
 				C91B216A26CA4E28006EE156 /* MessagesE2ETest.swift */,
 				C914BC0E26AFE0BC009A5607 /* QuizzesE2ETests.swift */,
-				C935D42526DE073B00C940F7 /* NewQuizzesE2ETests.swift */,
 				8B175C3C29F6BE8F007B6CFF /* DSPeopleE2ETests.swift */,
 			);
 			path = TeacherE2ETests;
@@ -1712,7 +1709,6 @@
 				C92796EC2671E6B400582AC5 /* AssignmentsE2ETests.swift in Sources */,
 				C909F7D527C383D800CB89DE /* DSSubmissionsE2ETests.swift in Sources */,
 				C927971326830DA700582AC5 /* DiscussionsE2ETests.swift in Sources */,
-				C935D42626DE073B00C940F7 /* NewQuizzesE2ETests.swift in Sources */,
 				C9A3C0412698391000DAE8E1 /* FilesE2ETests.swift in Sources */,
 				C9A23D2527A3D8BB00A1EE3B /* DSAssignmentsE2ETests.swift in Sources */,
 				C9279701267C7AFC00582AC5 /* PeopleE2ETests.swift in Sources */,

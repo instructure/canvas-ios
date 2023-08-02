@@ -58,6 +58,6 @@ class DSTodosE2ETests: E2ETestCase {
         pullToRefresh()
         pullToRefresh()
         XCTAssertFalse(BaseHelper.TabBar.todoTab.waitUntil(condition: .visible).hasValue(value: todoBadgeValue))
-        XCTAssertFalse(app.find(label: oneNeedsGradingLabel).waitUntil(condition: .vanish).isVisible)
+        XCTAssertTrue(app.find(label: oneNeedsGradingLabel).waitUntil(condition: .vanish).isVanished)
     }
 }

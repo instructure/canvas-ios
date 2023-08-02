@@ -30,18 +30,18 @@ open class BaseHelper {
     }
 
     public struct TabBar {
-        public static var dashboardTab: XCUIElement { app.find(id: "dashboardTab") }
-        public static var calendarTab: XCUIElement { app.find(id: "calendarTab") }
-        public static var todoTab: XCUIElement { app.find(id: "todoTab") }
-        public static var notificationsTab: XCUIElement { app.find(id: "notificationsTab") }
-        public static var inboxTab: XCUIElement { app.find(id: "inboxTab") }
+        public static var dashboardTab: XCUIElement { app.find(id: "TabBar.dashboardTab", type: .button) }
+        public static var calendarTab: XCUIElement { app.find(id: "TabBar.calendarTab", type: .button) }
+        public static var todoTab: XCUIElement { app.find(id: "TabBar.todoTab", type: .button) }
+        public static var notificationsTab: XCUIElement { app.find(id: "notificationsTab", type: .button) }
+        public static var inboxTab: XCUIElement { app.find(id: "TabBar.inboxTab", type: .button) }
 
         // Parent
-        public static var coursesTab: XCUIElement { app.find(id: "coursesTab") }
-        public static var alertsTab: XCUIElement { app.find(id: "alertsTab") }
+        public static var coursesTab: XCUIElement { app.find(id: "TabBar.coursesTab", type: .button) }
+        public static var alertsTab: XCUIElement { app.find(id: "TabBar.alertsTab", type: .button) }
 
         // K5
-        public static var myCanvasTab: XCUIElement { app.find(id: "myCanvasTab") }
+        public static var myCanvasTab: XCUIElement { app.find(id: "TabBar.myCanvasTab", type: .button) }
     }
 
     public struct AccountNotifications {

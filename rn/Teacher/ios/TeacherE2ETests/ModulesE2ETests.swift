@@ -21,14 +21,18 @@ import TestsFoundation
 class ModulesE2ETests: CoreUITestCase {
     func testModulesE2E() {
         DashboardHelper.courseCard(courseId: "5586").hit()
-        CourseDetailsHelper.cell(type: .modules).hit()
+        let modulesButton = CourseDetailsHelper.cell(type: .modules)
+        modulesButton.actionUntilElementCondition(action: .swipeUp, condition: .hittable)
+        modulesButton.hit()
         app.find(labelContaining: "No Modules").waitUntil(condition: .visible)
         ModulesHelper.backButton.hit()
         ModulesHelper.backButton.hit()
         DashboardHelper.courseCard(courseId: "263").hit()
-        CourseDetailsHelper.cell(type: .modules).hit()
+        modulesButton.actionUntilElementCondition(action: .swipeUp, condition: .hittable)
+        modulesButton.hit()
         XCTAssertEqual(ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 0).waitUntil(condition: .visible).label,
                        "assignment, Assignment One, published")
+
         ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 0).hit()
         app.find(labelContaining: "This is assignment one.").waitUntil(condition: .visible)
         ModulesHelper.backButton.hit()
