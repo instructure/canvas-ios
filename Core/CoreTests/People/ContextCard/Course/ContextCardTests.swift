@@ -46,7 +46,7 @@ class ContextCardTests: CoreTestCase {
 
     func testUnpostedGrade() {
         let enrollment = makeEnrollment(with: .make(current_grade: "A", final_grade: "B", current_score: 77, final_score: 88, unposted_current_grade: "B"))
-        api.mock(GetEnrollments(context: .course("1"), states: [ .active ]), value: [ enrollment ])
+        api.mock(GetEnrollments(context: .course("1"), gradingPeriodID: "1", states: [ .active ]), value: [ enrollment ])
 
         let controller = hostSwiftUIController(ContextCardView(model: ContextCardViewModel(courseID: "1", userID: "1", currentUserID: "0")))
         let tree = controller.testTree
@@ -57,7 +57,7 @@ class ContextCardTests: CoreTestCase {
 
     func testOverrideGrade() {
         let enrollment = makeEnrollment(with: .make(current_grade: "A", final_grade: "B", current_score: 77, final_score: 88, override_grade: "C", unposted_current_grade: "B"))
-        api.mock(GetEnrollments(context: .course("1"), states: [ .active ]), value: [ enrollment ])
+        api.mock(GetEnrollments(context: .course("1"), gradingPeriodID: "1", states: [ .active ]), value: [ enrollment ])
 
         let controller = hostSwiftUIController(ContextCardView(model: ContextCardViewModel(courseID: "1", userID: "1", currentUserID: "0")))
         let tree = controller.testTree
@@ -75,15 +75,18 @@ class ContextCardTests: CoreTestCase {
 
     private func mockApiCalls() {
         let enrollment = makeEnrollment(with: .make(current_grade: "A", final_grade: "B", current_score: 77, final_score: 88))
-        api.mock(GetCourseSingleUser(context: .course("1"), userID: "1"), value: makeUser(with: enrollment))
-        api.mock(GetCourse(courseID: "1"), value: .make())
+        api.mock(GetCourseContextUserRequest(context: .course("1"), userID: "1"), value: makeUser(with: enrollment))
+        api.mock(GetCourseRequest(courseID: "1"), value: .make())
         api.mock(GetCourseSectionsRequest(courseID: "1"), value: [ .make() ])
         api.mock(GetSubmissionsForStudent(context: .course("1"), studentID: "1"), value: [ APISubmission.make(assignment: APIAssignment.make(), assignment_id: "1", submission_history: [])])
-        api.mock(GetEnrollments(context: .course("1"), states: [ .active ]), value: [ enrollment ])
+        api.mock(GetEnrollments(context: .course("1"), gradingPeriodID: "1", states: [ .active ]), value: [ enrollment ])
+        api.mock(GetCustomColorsRequest(), value: .init(custom_colors: [:]))
+        api.mock(GetGradingPeriodsRequest(courseID: "1"), value: [.make()])
+        api.mock(GetContextPermissionsRequest(context: .course("1"), permissions: [.sendMessages]), value: .make(send_messages: true))
     }
 
     private func makeUser(with enrollment: APIEnrollment) -> APIUser {
-        APIUser.make(id: "1", name: "Test User", login_id: "test", avatar_url: nil, enrollments: [enrollment], email: "test@test", pronouns: nil)
+        APIUser.make(id: "1", name: "Test User", login_id: "test", avatar_url: nil, enrollments: [enrollment], email: "test@test", pronouns: nil, course_id: "1")
     }
 
     private func makeEnrollment(with grade: APIEnrollment.Grades) -> APIEnrollment {

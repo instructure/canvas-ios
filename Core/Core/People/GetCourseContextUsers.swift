@@ -44,7 +44,7 @@ public class GetCourseContextUsers: CollectionUseCase {
         } else if context.contextType == .group {
             return Scope.where(#keyPath(ContextUser.groupID), equals: context.id, orderBy: #keyPath(ContextUser.sortableName))
         }
-        return .all(orderBy: #keyPath(User.sortableName))
+        return .all(orderBy: #keyPath(ContextUser.sortableName))
     }
 
     public func write(response: [APIUser]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
@@ -56,7 +56,7 @@ public class GetCourseContextUsers: CollectionUseCase {
             } else if context.contextType == .group {
                 userItem.group_id = context.id
             }
-            let user = ContextUser.save(userItem, in: client)
+            ContextUser.save(userItem, in: client)
         }
     }
 }

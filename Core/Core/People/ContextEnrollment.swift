@@ -135,6 +135,7 @@ extension ContextEnrollment {
 
         if let courseID = item.course_id?.value ?? course?.id {
             canvasContextID = "course_\(courseID)"
+            print(canvasContextID)
         }
 
         self.course = course
@@ -192,4 +193,3 @@ extension ContextEnrollment {
         }
     }
 }
-

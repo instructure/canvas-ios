@@ -29,6 +29,7 @@ public class GetCourseSyncContextEnrollments: CollectionUseCase {
 
     public init(context: Context, gradingPeriodID: String? = nil, states: [GetEnrollmentsRequest.State]? = nil, userID: String) {
         request = GetEnrollmentsRequest(context: context,
+                                        userID: userID,
                                         gradingPeriodID: gradingPeriodID,
                                         states: [ .active ])
         self.userID = userID

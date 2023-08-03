@@ -32,12 +32,12 @@ public final class ContextUser: NSManagedObject {
 
     private var scope: Scope {
         Scope(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
-            NSPredicate(key: #keyPath(Enrollment.userID), equals: id),
-            NSPredicate(key: #keyPath(Enrollment.course.id), equals: courseID),
+            NSPredicate(key: #keyPath(ContextEnrollment.userID), equals: id),
+            NSPredicate(key: #keyPath(ContextEnrollment.course.id), equals: courseID),
         ]), order: [])
     }
 
-    public var enrollments: Set<Enrollment> {
+    public var enrollments: Set<ContextEnrollment> {
         Set(managedObjectContext?.fetch(scope: scope) ?? [])
     }
 }
@@ -45,7 +45,7 @@ public final class ContextUser: NSManagedObject {
 extension ContextUser: WriteableModel {
     @discardableResult
     public static func save(_ item: APIUser, in context: NSManagedObjectContext) -> ContextUser {
-        var predicates = [NSPredicate(key: #keyPath(User.id), equals: item.id.value),
+        let predicates = [NSPredicate(key: #keyPath(User.id), equals: item.id.value),
                           NSPredicate(key: #keyPath(User.groupID), equals: item.group_id),
                           NSPredicate(key: #keyPath(User.courseID), equals: item.course_id), ]
         let userPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
@@ -62,7 +62,7 @@ extension ContextUser: WriteableModel {
         user.groupID = item.group_id
         if let enrollments = item.enrollments {
             for enrollment in enrollments {
-                let userEnrollment = context.insert() as Enrollment
+                let userEnrollment = context.insert() as ContextEnrollment
                 var course: Course?
                 if let courseID = enrollment.course_id?.value {
                     course = context.first(where: #keyPath(Course.id), equals: courseID)
