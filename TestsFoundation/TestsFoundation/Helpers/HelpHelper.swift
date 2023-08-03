@@ -17,8 +17,6 @@
 //
 
 public class HelpHelper: BaseHelper {
-    public static let safariApp = XCUIApplication(bundleIdentifier: "com.apple.mobilesafari")
-
     public static var searchTheCanvasGuides: XCUIElement {
         return app.find(id: "helpItems").findAll(type: .button)[0]
     }
@@ -45,15 +43,15 @@ public class HelpHelper: BaseHelper {
     }
 
     public static var browserURL: String {
-        safariApp.activate()
-        safariApp.find(id: "ReloadButton").waitUntil(condition: .visible)
-        safariApp.find(id: "TabBarItemTitle").hit()
-        let url = safariApp.find(id: "URL").waitUntil(condition: .visible).value as? String ?? ""
+        SafariAppHelper.safariApp.activate()
+        SafariAppHelper.safariApp.find(id: "ReloadButton").waitUntil(condition: .visible)
+        SafariAppHelper.safariApp.find(id: "TabBarItemTitle").hit()
+        let url = SafariAppHelper.safariApp.find(id: "URL").waitUntil(condition: .visible).value as? String ?? ""
         return url
     }
 
     public static func closeSafariAndActivateApp() {
-        safariApp.terminate()
+        SafariAppHelper.safariApp.terminate()
         app.activate()
     }
 

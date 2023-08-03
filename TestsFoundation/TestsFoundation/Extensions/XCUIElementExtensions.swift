@@ -26,6 +26,7 @@ public extension XCUIElement {
     static let defaultGracePeriod: UInt32 = 1
     var isVisible: Bool { exists }
     var isVanished: Bool { !(exists && isHittable) }
+    func tacticalSleep(ms: UInt32 = 500000) { usleep(ms) }
 
     enum ElementCondition {
         case visible
@@ -34,6 +35,7 @@ public extension XCUIElement {
         case label
         case enabled
         case selected
+        case unselected
         case hittable
         case labelContaining
         case labelHasPrefix
@@ -73,6 +75,7 @@ public extension XCUIElement {
                    expected: String? = nil,
                    timeout: TimeInterval = defaultTimeout,
                    gracePeriod: UInt32 = defaultGracePeriod) -> XCUIElement {
+        tacticalSleep()
         let deadline = Date().addingTimeInterval(timeout)
         while Date() < deadline {
             var result = false
@@ -90,6 +93,8 @@ public extension XCUIElement {
                 result = exists && isEnabled
             case .selected:
                 result = exists && isSelected
+            case .unselected:
+                result = !isSelected
             case .hittable:
                 result = isHittable
             case .labelContaining:
@@ -109,6 +114,7 @@ public extension XCUIElement {
                                      expected: String? = nil,
                                      timeout: TimeInterval = defaultTimeout,
                                      gracePeriod: UInt32 = defaultGracePeriod) -> Bool {
+        tacticalSleep()
         let deadline = Date().addingTimeInterval(timeout)
         while Date() < deadline {
             let actualElement = element ?? self
@@ -127,6 +133,8 @@ public extension XCUIElement {
                 result = actualElement.exists && actualElement.isEnabled
             case .selected:
                 result = actualElement.exists && actualElement.isSelected
+            case .unselected:
+                result = !actualElement.isSelected
             case .hittable:
                 result = actualElement.isHittable
             case .labelContaining:

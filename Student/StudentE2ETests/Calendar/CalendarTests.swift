@@ -206,18 +206,18 @@ class CalendarTests: E2ETestCase {
 
         let courseCell1 = FilterHelper.courseCell(course: course1).waitUntil(condition: .visible)
         XCTAssertTrue(courseCell1.isVisible)
-        XCTAssertTrue(courseCell1.isSelected)
+        XCTAssertTrue(courseCell1.waitUntil(condition: .selected).isSelected)
 
         let courseCell2 = FilterHelper.courseCell(course: course2).waitUntil(condition: .visible)
         XCTAssertTrue(courseCell2.isVisible)
-        XCTAssertTrue(courseCell2.isSelected)
+        XCTAssertTrue(courseCell2.waitUntil(condition: .selected).isSelected)
 
         // MARK: Change filter to first course
         courseCell2.hit()
-        XCTAssertTrue(courseCell1.isSelected)
-        XCTAssertFalse(courseCell2.isSelected)
+        XCTAssertTrue(courseCell1.waitUntil(condition: .selected).isSelected)
+        XCTAssertFalse(courseCell2.waitUntil(condition: .unselected).isSelected)
 
-        doneButton.tap()
+        doneButton.hit()
         eventItem1 = Helper.eventCell(event: event1).waitUntil(condition: .visible)
         eventItem2 = Helper.eventCell(event: event2).waitUntil(condition: .vanish)
         XCTAssertTrue(eventItem1.isVisible)
@@ -227,8 +227,8 @@ class CalendarTests: E2ETestCase {
         filterButton.hit()
         courseCell1.hit()
         courseCell2.hit()
-        XCTAssertFalse(courseCell1.isSelected)
-        XCTAssertTrue(courseCell2.isSelected)
+        XCTAssertFalse(courseCell1.waitUntil(condition: .unselected).isSelected)
+        XCTAssertTrue(courseCell2.waitUntil(condition: .selected).isSelected)
 
         doneButton.hit()
         eventItem1 = Helper.eventCell(event: event1).waitUntil(condition: .vanish)
@@ -239,10 +239,10 @@ class CalendarTests: E2ETestCase {
         // MARK: Change filter to no course selected
         filterButton.hit()
         courseCell2.hit()
-        XCTAssertFalse(courseCell1.isSelected)
-        XCTAssertFalse(courseCell2.isSelected)
+        XCTAssertFalse(courseCell1.waitUntil(condition: .unselected).isSelected)
+        XCTAssertFalse(courseCell2.waitUntil(condition: .unselected).isSelected)
 
-        doneButton.tap()
+        doneButton.hit()
         eventItem1 = Helper.eventCell(event: event1).waitUntil(condition: .vanish)
         eventItem2 = Helper.eventCell(event: event2).waitUntil(condition: .vanish)
         XCTAssertTrue(eventItem1.isVanished)
