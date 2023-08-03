@@ -151,7 +151,7 @@ public extension XCUIElement {
                 case .swipeRight: app.swipeRight()
                 case .showKeyboard: CoreUITestCase.currentTestCase?.send(.showKeyboard, ignoreErrors: true)
                 case .hideKeyboard: CoreUITestCase.currentTestCase?.send(.hideKeyboard, ignoreErrors: true)
-                case .pullToRefresh: pullToRefresh()
+                case .pullToRefresh: app.pullToRefresh()
                 }
 
                 sleep(gracePeriod)
