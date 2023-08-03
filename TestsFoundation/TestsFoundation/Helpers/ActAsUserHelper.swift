@@ -18,7 +18,7 @@
 
 public class ActAsUserHelper: BaseHelper {
     public static var actAsUserButton: XCUIElement { app.find(id: "ActAsUser.actAsUserButton") }
-    public static var domainField: XCUIElement { app.find(id: "ActAsUser.actAsUserButton") }
+    public static var domainField: XCUIElement { app.find(id: "ActAsUser.domainField") }
     public static var userIDField: XCUIElement { app.find(id: "ActAsUser.userIDField") }
     public static var endActAsUserButton: XCUIElement { app.find(id: "ActAsUser.endActAsUserButton") }
     public static var okAlertButton: XCUIElement { app.findAlertButton(label: "OK") }
