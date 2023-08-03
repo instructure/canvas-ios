@@ -29,7 +29,7 @@ public enum CourseSyncDownloaderAssembly {
             CourseSyncConferencesInteractorLive(),
             CourseSyncAnnouncementsInteractorLive(),
             CourseSyncQuizzesInteractorLive(),
-            CourseSyncDiscussionsInteractorLive()
+            CourseSyncDiscussionsInteractorLive(),
         ]
         let scheduler = DispatchQueue(
             label: "com.instructure.icanvas.core.course-sync-download"
