@@ -156,7 +156,8 @@ public class CalendarHelper: BaseHelper {
 
     // MARK: DataSeeding
     public static func formatDate(addYears: Int = 0, addDays: Int = 0, addHours: Int = 0) -> String {
-        let date = Date().addYears(addYears).addDays(addDays).addMinutes(addHours*60).addMinutes(-360)
+        let plusTime = localTimeZoneAbbreviation != "GMT+2" ? 540 : 0
+        let date = Date().addYears(addYears).addDays(addDays).addMinutes(addHours*60).addMinutes(-360).addMinutes(plusTime)
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         let formattedDate = dateFormatter.string(from: date)
         return formattedDate

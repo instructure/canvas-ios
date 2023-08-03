@@ -50,7 +50,7 @@ class LoginTests: E2ETestCase {
         XCTAssertTrue(canvasNetworkButton.isVisible)
         XCTAssertEqual(canvasNetworkButton.label, "Canvas Network")
 
-        findSchoolButton.tap()
+        findSchoolButton.hit()
 
         // MARK: Check Find School screen
         let findSchoolLabel = LoginHelper.FindSchool.findSchoolLabel.waitUntil(condition: .visible)
@@ -69,7 +69,7 @@ class LoginTests: E2ETestCase {
         nextButton.waitUntil(condition: .visible)
         XCTAssertTrue(nextButton.isVisible)
 
-        nextButton.tap()
+        nextButton.hit()
 
         // MARK: Check Login screen
         let navBar = LoginHelper.Login.navBar.waitUntil(condition: .visible)
@@ -99,11 +99,9 @@ class LoginTests: E2ETestCase {
         XCTAssertTrue(needAccountButton.isVisible)
         XCTAssertEqual(needAccountButton.label, "Need a Canvas Account? Click Here, It's Free!")
 
-        emailInput.tap()
-        emailInput.pasteText(text: student.login_id)
-        passwordInput.tap()
-        passwordInput.pasteText(text: student.password!)
-        loginButton.tap()
+        emailInput.writeText(text: student.login_id)
+        passwordInput.writeText(text: student.password!)
+        loginButton.hit()
 
         // MARK: Check if login was successful
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(condition: .visible)
@@ -128,7 +126,7 @@ class LoginTests: E2ETestCase {
         XCTAssertEqual(lastLoginBtn.waitUntil(condition: .label, expected: user.host).label, user.host)
 
         // MARK: Get the user logged in using Last Login button
-        lastLoginBtn.tap()
+        lastLoginBtn.hit()
         loginAfterSchoolFound(student)
 
         // MARK: Check if login was successful
@@ -152,7 +150,7 @@ class LoginTests: E2ETestCase {
         XCTAssertEqual(forgotPasswordButton.label, "Forgot Password?")
 
         // MARK: Tap "Forgot Password" button
-        forgotPasswordButton.tap()
+        forgotPasswordButton.hit()
         let emailInput = LoginHelper.Login.emailField.waitUntil(condition: .visible)
         XCTAssertTrue(emailInput.isVisible)
 
@@ -179,7 +177,7 @@ class LoginTests: E2ETestCase {
         let loginButton = LoginHelper.Login.loginButton.waitUntil(condition: .visible)
         XCTAssertTrue(loginButton.isVisible)
 
-        loginButton.tap()
+        loginButton.hit()
 
         // MARK: Check "No password was given" label
         let noPasswordLabel = LoginHelper.Login.noPasswordLabel.waitUntil(condition: .visible)
@@ -188,9 +186,8 @@ class LoginTests: E2ETestCase {
         let emailInput = LoginHelper.Login.emailField.waitUntil(condition: .visible)
         XCTAssertTrue(emailInput.isVisible)
 
-        emailInput.tap()
-        emailInput.pasteText(text: student.login_id)
-        loginButton.tap()
+        emailInput.writeText(text: student.login_id)
+        loginButton.hit()
 
         noPasswordLabel.waitUntil(condition: .visible)
         XCTAssertTrue(noPasswordLabel.isVisible)
@@ -213,12 +210,12 @@ class LoginTests: E2ETestCase {
         let profileButton = DashboardHelper.profileButton.waitUntil(condition: .visible)
         XCTAssertTrue(profileButton.isVisible)
 
-        profileButton.tap()
+        profileButton.hit()
 
         let changeUserButton = ProfileHelper.changeUserButton.waitUntil(condition: .visible)
         XCTAssertTrue(changeUserButton.isVisible)
 
-        changeUserButton.tap()
+        changeUserButton.hit()
         XCTAssertTrue(LoginHelper.Start.findSchoolButton.waitUntil(condition: .visible).isVisible)
 
         // MARK: Check visibility of "Previous Login" cell
@@ -253,22 +250,18 @@ class LoginTests: E2ETestCase {
         XCTAssertTrue(loginButton.isVisible)
 
         // MARK: Wrong username and password
-        emailInput.tap()
-        emailInput.pasteText(text: "wrong email")
-        passwordInput.tap()
-        passwordInput.pasteText(text: "wrong password")
+        emailInput.writeText(text: "wrong email")
+        passwordInput.writeText(text: "wrong password")
 
-        loginButton.tap()
+        loginButton.hit()
 
         var invalidUsernameOrPasswordLabel = LoginHelper.Start.invalidUsernameOrPasswordLabel.waitUntil(condition: .visible)
         XCTAssertTrue(invalidUsernameOrPasswordLabel.isVisible)
 
         // MARK: Correct username with wrong password
-        emailInput.tap()
-        emailInput.pasteText(text: student.login_id)
-        passwordInput.tap()
-        passwordInput.pasteText(text: "wrong password")
-        loginButton.tap()
+        emailInput.writeText(text: student.login_id)
+        passwordInput.writeText(text: "wrong password")
+        loginButton.hit()
 
         invalidUsernameOrPasswordLabel = LoginHelper.Start.invalidUsernameOrPasswordLabel.waitUntil(condition: .visible)
         XCTAssertTrue(invalidUsernameOrPasswordLabel.isVisible)

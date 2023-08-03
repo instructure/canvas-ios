@@ -77,7 +77,7 @@ class PagesTests: E2ETestCase {
         // MARK: Check deep link to the assignment
         let assignmentDeepLink = app.find(labelContaining: assignment.name).waitUntil(condition: .visible)
         XCTAssertTrue(assignmentDeepLink.isVisible)
-        assignmentDeepLink.tap()
+        assignmentDeepLink.hit()
         let assignmentDetailsNavBar = AssignmentsHelper.Details.navBar(course: course).waitUntil(condition: .visible)
         XCTAssertTrue(assignmentDetailsNavBar.isVisible)
 
