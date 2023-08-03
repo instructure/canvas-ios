@@ -125,7 +125,7 @@ class LoginTests: E2ETestCase {
         // MARK: Check visibility and content of Last Login button
         let lastLoginBtn = LoginHelper.Start.lastLoginButton.waitUntil(condition: .visible)
         XCTAssertTrue(lastLoginBtn.isVisible)
-        XCTAssertEqual(lastLoginBtn.label, user.host)
+        XCTAssertEqual(lastLoginBtn.waitUntil(condition: .label, expected: user.host).label, user.host)
 
         // MARK: Get the user logged in using Last Login button
         lastLoginBtn.tap()
@@ -219,6 +219,7 @@ class LoginTests: E2ETestCase {
         XCTAssertTrue(changeUserButton.isVisible)
 
         changeUserButton.tap()
+        XCTAssertTrue(LoginHelper.Start.findSchoolButton.waitUntil(condition: .visible).isVisible)
 
         // MARK: Check visibility of "Previous Login" cell
         let previousLoginCell = LoginHelper.Start.previousLoginCell(dsUser: student1).waitUntil(condition: .visible)

@@ -50,17 +50,20 @@ public extension XCUIElement {
         case pullToRefresh
     }
 
-    func hasValue(value: String) -> Bool {
-        return self.value as? String == value
+    func hasValue(value: String, strict: Bool = true) -> Bool {
+        let elementValue = self.value as? String ?? ""
+        return strict ? elementValue == value : elementValue.contains(value)
     }
 
-    func hasLabel(label: String) -> Bool {
-        return self.label == label
+    func hasLabel(label: String, strict: Bool = true) -> Bool {
+        let elementLabel = self.label
+        return strict ? elementLabel == label : elementLabel.contains(label)
     }
 
     @discardableResult
     func hit() -> XCUIElement {
-        waitUntil(condition: .hittable)
+        waitUntil(condition: .visible)
+        if !isHittable { actionUntilElementCondition(action: .swipeUp, condition: .hittable, timeout: 5) }
         tap()
         return self
     }

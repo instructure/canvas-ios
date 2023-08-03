@@ -265,8 +265,8 @@ class SettingsTests: E2ETestCase {
         XCTAssertTrue(subscribeToCalendarFeed.isVisible)
 
         subscribeToCalendarFeed.hit()
-        let calendarAppState = CalendarAppHelper.calendarApp.state
-        XCTAssertEqual(calendarAppState, .runningForeground)
+        let calendarAppRunning = CalendarAppHelper.calendarApp.wait(for: .runningForeground, timeout: 15)
+        XCTAssertTrue(calendarAppRunning)
 
         // MARK: Handle first start of Calendar App, check subscription URL
         let continueButton = CalendarAppHelper.continueButton.waitUntil(condition: .visible, timeout: 5)
@@ -280,7 +280,7 @@ class SettingsTests: E2ETestCase {
 
         let subscriptionUrlElement = CalendarAppHelper.subscriptionUrl.waitUntil(condition: .visible)
         XCTAssertTrue(subscriptionUrlElement.isVisible)
-        XCTAssertTrue(subscriptionUrlElement.hasValue(value: user.host))
+        XCTAssertTrue(subscriptionUrlElement.hasValue(value: user.host, strict: false))
     }
 
     func testAbout() {

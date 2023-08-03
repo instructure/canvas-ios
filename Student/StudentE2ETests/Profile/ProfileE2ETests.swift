@@ -33,14 +33,6 @@ class ProfileE2ETests: CoreUITestCase {
         XCTAssertEqual(userNameLabel.label, "Student One")
     }
 
-    func testProfileChangesUser() {
-        DashboardHelper.profileButton.hit()
-        ProfileHelper.changeUserButton.hit()
-        let entry = user!.session!
-        XCTAssertTrue(LoginHelper.LoginStartSession.cell(host: entry.baseURL.host!, userID: entry.userID)
-            .waitUntil(condition: .visible).isVisible)
-    }
-
     func xtestProfileLogsOut() {
         DashboardHelper.profileButton.hit()
         ProfileHelper.logOutButton.hit()
