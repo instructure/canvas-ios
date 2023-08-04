@@ -78,11 +78,11 @@ public extension XCUIElement {
     /**
      * Waits until the given condition is true.
      *
-     * - Parameter condition: The condition that the element should fulfill.
-     * - Parameter timeout: Optional. Timeout in milliseconds. By default it's defaultTimeout.
-     * - Parameter gracePeriod: Optional. Milliseconds to wait between each iteration.
-     *
-     * - Returns: self, so calls can be chained.
+     * - parameters
+     *     - condition: The condition that the element should fulfill.
+     *     - timeout: Optional. Timeout in seconds. By default it's defaultTimeout.
+     *     - gracePeriod: Optional. Milliseconds to wait between each iteration.
+     * - returns: self, so calls can be chained.
      */
     @discardableResult
     func waitUntil(_ condition: ElementCondition,
@@ -123,13 +123,13 @@ public extension XCUIElement {
     /**
      * Does an action (tap, swipe, etc.) to the element until the given condition is true.
      *
-     * - Parameter action:The action to do to the element.
-     * - Parameter element: Optional. The element to check after the action happened. By default it's self.
-     * - Parameter condition: The condition that the element should fulfill.
-     * - Parameter timeout: Optional. Timeout in milliseconds. By default it's defaultTimeout.
-     * - Parameter gracePeriod: Optional. Milliseconds to wait between each iteration.
-     *
-     * - Returns: true or false, depending on if the condition has been fulfilled.
+     * - parameters
+     *     - action:The action to do to the element.
+     *     - element: Optional. The element to check after the action happened. By default it's self.
+     *     - condition: The condition that the element should fulfill.
+     *     - timeout: Optional. Timeout in seconds. By default it's defaultTimeout.
+     *     - gracePeriod: Optional. Milliseconds to wait between each iteration.
+     * - returns: true or false, depending on if the condition has been fulfilled.
      */
     @discardableResult
     func actionUntilElementCondition(action: ElementAction,
