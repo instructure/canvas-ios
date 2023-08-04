@@ -32,7 +32,7 @@ open class E2ETestCase: CoreUITestCase {
     }
 
     open func findSchool(lastLogin: Bool = false) {
-        let findSchoolButton = LoginHelper.Start.findSchoolButton.waitUntil(condition: .visible)
+        let findSchoolButton = LoginHelper.Start.findSchoolButton.waitUntil(.visible)
         if lastLogin && LoginHelper.Start.lastLoginButton.exists && LoginHelper.Start.lastLoginButton.label == user.host {
             LoginHelper.Start.lastLoginButton.hit()
         } else {
@@ -43,12 +43,12 @@ open class E2ETestCase: CoreUITestCase {
     }
 
     open func loginAfterSchoolFound(_ dsUser: DSUser, password: String = "password") {
-        LoginHelper.Login.emailField.waitUntil(condition: .visible, timeout: 60)
+        LoginHelper.Login.emailField.waitUntil(.visible, timeout: 60)
         LoginHelper.Login.emailField.writeText(text: dsUser.login_id)
         LoginHelper.Login.passwordField.writeText(text: password)
         LoginHelper.Login.loginButton.hit()
 
-        homeScreen.waitUntil(condition: .visible, timeout: 20)
+        homeScreen.waitUntil(.visible, timeout: 20)
         user.session = currentSession()
         setAppThemeToSystem()
     }
@@ -67,7 +67,7 @@ open class E2ETestCase: CoreUITestCase {
     open func setAppThemeToSystem() {
         let canvasThemePromptTitle = app.find(label: "Canvas is now available in dark theme")
         let systemSettingsButton = app.find(label: "System settings", type: .button)
-        if canvasThemePromptTitle.waitUntil(condition: .visible, timeout: 5).exists {
+        if canvasThemePromptTitle.waitUntil(.visible, timeout: 5).exists {
             systemSettingsButton.actionUntilElementCondition(action: .tap, element: canvasThemePromptTitle, condition: .vanish)
         }
     }

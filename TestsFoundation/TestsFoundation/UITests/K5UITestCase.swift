@@ -37,9 +37,9 @@ open class K5UITestCase: CoreUITestCase {
     }
 
     open func setUpK5() {
-        K5Helper.homeroom.waitUntil(condition: .visible)
+        K5Helper.homeroom.waitUntil(.visible)
         resetAppStateForK5()
         pullToRefresh()
-        K5Helper.homeroom.waitUntil(condition: .visible)
+        K5Helper.homeroom.waitUntil(.visible)
     }
 }

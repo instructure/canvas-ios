@@ -49,14 +49,14 @@ public extension XCUIElement {
 
     // MARK: Static vars
     static let defaultTimeout: TimeInterval = 15
-    static var defaultGracePeriod: TimeInterval = 1000
+    static var defaultGracePeriod: TimeInterval = 1
 
     // MARK: Private vars
     var isVisible: Bool { exists }
     var isVanished: Bool { !(exists && isHittable) }
 
     // MARK: Functions
-    func tacticalSleep(ms: TimeInterval = 500) { usleep(UInt32(ms*1000)) }
+    func tacticalSleep(_ seconds: TimeInterval = 0.5) { usleep(UInt32(seconds*1000000)) }
 
     func hasValue(value expectedValue: String, strict: Bool = true) -> Bool {
         let elementValue = value as? String ?? ""
@@ -64,8 +64,7 @@ public extension XCUIElement {
     }
 
     func hasLabel(label expectedLabel: String, strict: Bool = true) -> Bool {
-        let elementLabel = label
-        return strict ? elementLabel == expectedLabel : elementLabel.contains(expectedLabel)
+        return strict ? label == expectedLabel : label.contains(expectedLabel)
     }
 
     @discardableResult
@@ -76,22 +75,19 @@ public extension XCUIElement {
         return self
     }
 
+    /**
+     * Waits until the given condition is true.
+     *
+     * - Parameter condition: The condition that the element should fulfill.
+     * - Parameter timeout: Optional. Timeout in milliseconds. By default it's defaultTimeout.
+     * - Parameter gracePeriod: Optional. Milliseconds to wait between each iteration.
+     *
+     * - Returns: self, so calls can be chained.
+     */
     @discardableResult
     func waitUntil(_ condition: ElementCondition,
                    timeout: TimeInterval = defaultTimeout,
                    gracePeriod: TimeInterval = defaultGracePeriod) -> XCUIElement {
-        /**
-         * Waits until the given condition is true.
-         *
-         * @param condition
-         * The condition that the element should fulfill.
-         * @param timeout
-         * Optional. Timeout in milliseconds. By default it's defaultTimeout.
-         * @param gracePeriod
-         * Optional. Milliseconds to wait between each iteration.
-         *
-         * Returns an XCUIElement object.
-         */
         tacticalSleep()
         let deadline = Date().addingTimeInterval(timeout)
         while Date() < deadline {
@@ -119,37 +115,33 @@ public extension XCUIElement {
             case .labelHasPrefix(let expected):
                 result = label.hasPrefix(expected)
             }
-            if result { break } else { tacticalSleep(ms: gracePeriod) }
+            if result { break } else { tacticalSleep(gracePeriod) }
         }
         return self
     }
 
+    /**
+     * Does an action (tap, swipe, etc.) to the element until the given condition is true.
+     *
+     * - Parameter action:The action to do to the element.
+     * - Parameter element: Optional. The element to check after the action happened. By default it's self.
+     * - Parameter condition: The condition that the element should fulfill.
+     * - Parameter timeout: Optional. Timeout in milliseconds. By default it's defaultTimeout.
+     * - Parameter gracePeriod: Optional. Milliseconds to wait between each iteration.
+     *
+     * - Returns: true or false, depending on if the condition has been fulfilled.
+     */
     @discardableResult
     func actionUntilElementCondition(action: ElementAction,
                                      element: XCUIElement? = nil,
                                      condition: ElementCondition,
                                      timeout: TimeInterval = defaultTimeout,
                                      gracePeriod: TimeInterval = defaultGracePeriod) -> Bool {
-        /**
-         * Does an action (tap, swipe, etc.) to the element until the given condition is true.
-         *
-         * @param action
-         * The action to do to the element.
-         * @param element
-         * Optional. The element to check after the action happened. By default it's self.
-         * @param condition
-         * The condition that the element should fulfill.
-         * @param timeout
-         * Optional. Timeout in milliseconds. By default it's defaultTimeout.
-         * @param gracePeriod
-         * Optional. Milliseconds to wait between each iteration.
-         *
-         * Returns a Bool object depending on if the condition has been fulfilled.
-         */
         tacticalSleep()
         let deadline = Date().addingTimeInterval(timeout)
+        let actualElement = element ?? self
+
         while Date() < deadline {
-            let actualElement = element ?? self
             var result = false
 
             switch condition {
@@ -188,7 +180,7 @@ public extension XCUIElement {
             case .pullToRefresh: app.pullToRefresh()
             }
 
-            tacticalSleep(ms: gracePeriod)
+            tacticalSleep(gracePeriod)
         }
         return false
     }
@@ -268,7 +260,7 @@ public extension XCUIElement {
         let deadline = Date().addingTimeInterval(timeout)
         var result = descendants(matching: type).allElementsBoundByIndex
         while Date() < deadline && result.count < minimumCount {
-            tacticalSleep(ms: gracePeriod)
+            tacticalSleep(gracePeriod)
             result = descendants(matching: type).allElementsBoundByIndex
         }
         return result
