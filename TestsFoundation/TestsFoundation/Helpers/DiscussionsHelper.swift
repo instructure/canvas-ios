@@ -16,6 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+public enum DiscussionLabelTypes: Int {
+    case lastPost = 0
+    case replies = 1
+    case unread = 3
+}
+
 public class DiscussionsHelper: BaseHelper {
     public static var newButton: XCUIElement { app.find(id: "DiscussionList.newButton") }
     public static var noDiscussionsPandaImage: XCUIElement { app.find(id: "PandaNoDiscussions") }
@@ -109,27 +115,21 @@ public class DiscussionsHelper: BaseHelper {
     }
 
     public static func navigateToDiscussions(course: DSCourse) {
-        DashboardHelper.courseCard(course: course).tap()
+        DashboardHelper.courseCard(course: course).hit()
         CourseDetailsHelper.cell(type: .discussions).hit()
     }
 
     @discardableResult
     public static func replyToDiscussion(replyText: String = "Test replying to discussion", shouldPullToRefresh: Bool = false) -> Bool {
-        Details.replyButton.tap()
-        let textEntry = Details.Reply.textField.waitUntil(condition: .visible)
+        Details.replyButton.hit()
+        let textEntry = Details.Reply.textField.waitUntil(.visible)
         textEntry.pasteText(text: replyText)
         Details.Reply.sendButton.hit()
         sleep(3)
         if shouldPullToRefresh {
             pullToRefresh()
         }
-        let repliesSection = Details.repliesSection.waitUntil(condition: .visible)
+        let repliesSection = Details.repliesSection.waitUntil(.visible)
         return repliesSection.isVisible
     }
-}
-
-public enum DiscussionLabelTypes: Int {
-    case lastPost = 0
-    case replies = 1
-    case unread = 3
 }

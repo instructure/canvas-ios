@@ -22,23 +22,18 @@ import XCTest
 public var app: XCUIApplication { XCUIApplication() }
 
 public extension XCUIElement {
-    static let defaultTimeout: TimeInterval = 15
-    static let defaultGracePeriod: UInt32 = 1
-    var isVisible: Bool { exists }
-    var isVanished: Bool { !(exists && isHittable) }
-    func tacticalSleep(ms: UInt32 = 500000) { usleep(ms) }
-
+    // MARK: Enums
     enum ElementCondition {
         case visible
         case vanish
-        case value
-        case label
+        case value(expected: String)
+        case label(expected: String)
         case enabled
         case selected
         case unselected
         case hittable
-        case labelContaining
-        case labelHasPrefix
+        case labelContaining(expected: String)
+        case labelHasPrefix(expected: String)
     }
 
     enum ElementAction {
@@ -52,29 +47,51 @@ public extension XCUIElement {
         case pullToRefresh
     }
 
-    func hasValue(value: String, strict: Bool = true) -> Bool {
-        let elementValue = self.value as? String ?? ""
-        return strict ? elementValue == value : elementValue.contains(value)
+    // MARK: Static vars
+    static let defaultTimeout: TimeInterval = 15
+    static var defaultGracePeriod: TimeInterval = 1000
+
+    // MARK: Private vars
+    var isVisible: Bool { exists }
+    var isVanished: Bool { !(exists && isHittable) }
+
+    // MARK: Functions
+    func tacticalSleep(ms: TimeInterval = 500) { usleep(UInt32(ms*1000)) }
+
+    func hasValue(value expectedValue: String, strict: Bool = true) -> Bool {
+        let elementValue = value as? String ?? ""
+        return strict ? elementValue == expectedValue : elementValue.contains(expectedValue)
     }
 
-    func hasLabel(label: String, strict: Bool = true) -> Bool {
-        let elementLabel = self.label
-        return strict ? elementLabel == label : elementLabel.contains(label)
+    func hasLabel(label expectedLabel: String, strict: Bool = true) -> Bool {
+        let elementLabel = label
+        return strict ? elementLabel == expectedLabel : elementLabel.contains(expectedLabel)
     }
 
     @discardableResult
     func hit() -> XCUIElement {
-        waitUntil(condition: .visible)
+        waitUntil(.visible)
         if !isHittable { actionUntilElementCondition(action: .swipeUp, condition: .hittable, timeout: 5) }
         tap()
         return self
     }
 
     @discardableResult
-    func waitUntil(condition: ElementCondition,
-                   expected: String? = nil,
+    func waitUntil(_ condition: ElementCondition,
                    timeout: TimeInterval = defaultTimeout,
-                   gracePeriod: UInt32 = defaultGracePeriod) -> XCUIElement {
+                   gracePeriod: TimeInterval = defaultGracePeriod) -> XCUIElement {
+        /**
+         * Waits until the given condition is true.
+         *
+         * @param condition
+         * The condition that the element should fulfill.
+         * @param timeout
+         * Optional. Timeout in milliseconds. By default it's defaultTimeout.
+         * @param gracePeriod
+         * Optional. Milliseconds to wait between each iteration.
+         *
+         * Returns an XCUIElement object.
+         */
         tacticalSleep()
         let deadline = Date().addingTimeInterval(timeout)
         while Date() < deadline {
@@ -85,10 +102,10 @@ public extension XCUIElement {
                 result = isVanished
             case .visible:
                 result = isVisible
-            case .value:
-                result = hasValue(value: expected!)
-            case .label:
-                result = hasLabel(label: expected!)
+            case .value(let expected):
+                result = hasValue(value: expected)
+            case .label(let expected):
+                result = hasLabel(label: expected)
             case .enabled:
                 result = exists && isEnabled
             case .selected:
@@ -96,24 +113,39 @@ public extension XCUIElement {
             case .unselected:
                 result = !isSelected
             case .hittable:
-                result = isHittable
-            case .labelContaining:
-                result = label.contains(expected!)
-            case .labelHasPrefix:
-                result = label.hasPrefix(expected!)
+                result = isVisible && isHittable
+            case .labelContaining(let expected):
+                result = label.contains(expected)
+            case .labelHasPrefix(let expected):
+                result = label.hasPrefix(expected)
             }
-            if result { break } else { sleep(gracePeriod) }
+            if result { break } else { tacticalSleep(ms: gracePeriod) }
         }
         return self
     }
 
     @discardableResult
-    func actionUntilElementCondition(action: ElementAction = .tap,
+    func actionUntilElementCondition(action: ElementAction,
                                      element: XCUIElement? = nil,
                                      condition: ElementCondition,
-                                     expected: String? = nil,
                                      timeout: TimeInterval = defaultTimeout,
-                                     gracePeriod: UInt32 = defaultGracePeriod) -> Bool {
+                                     gracePeriod: TimeInterval = defaultGracePeriod) -> Bool {
+        /**
+         * Does an action (tap, swipe, etc.) to the element until the given condition is true.
+         *
+         * @param action
+         * The action to do to the element.
+         * @param element
+         * Optional. The element to check after the action happened. By default it's self.
+         * @param condition
+         * The condition that the element should fulfill.
+         * @param timeout
+         * Optional. Timeout in milliseconds. By default it's defaultTimeout.
+         * @param gracePeriod
+         * Optional. Milliseconds to wait between each iteration.
+         *
+         * Returns a Bool object depending on if the condition has been fulfilled.
+         */
         tacticalSleep()
         let deadline = Date().addingTimeInterval(timeout)
         while Date() < deadline {
@@ -125,10 +157,10 @@ public extension XCUIElement {
                 result = actualElement.isVanished
             case .visible:
                 result = actualElement.isVisible
-            case .value:
-                result = actualElement.hasValue(value: expected!)
-            case .label:
-                result = actualElement.hasLabel(label: expected!)
+            case .value(let expected):
+                result = actualElement.hasValue(value: expected)
+            case .label(let expected):
+                result = actualElement.hasLabel(label: expected)
             case .enabled:
                 result = actualElement.exists && actualElement.isEnabled
             case .selected:
@@ -136,26 +168,27 @@ public extension XCUIElement {
             case .unselected:
                 result = !actualElement.isSelected
             case .hittable:
-                result = actualElement.isHittable
-            case .labelContaining:
-                result = label.contains(expected!)
-            case .labelHasPrefix:
-                result = label.hasPrefix(expected!)
+                result = actualElement.isVisible && actualElement.isHittable
+            case .labelContaining(let expected):
+                result = label.contains(expected)
+            case .labelHasPrefix(let expected):
+                result = label.hasPrefix(expected)
             }
-            if result { return true } else {
-                switch action {
-                case .tap: tap()
-                case .swipeUp: app.swipeUp()
-                case .swipeDown: app.swipeDown()
-                case .swipeLeft: app.swipeLeft()
-                case .swipeRight: app.swipeRight()
-                case .showKeyboard: CoreUITestCase.currentTestCase?.send(.showKeyboard, ignoreErrors: true)
-                case .hideKeyboard: CoreUITestCase.currentTestCase?.send(.hideKeyboard, ignoreErrors: true)
-                case .pullToRefresh: app.pullToRefresh()
-                }
 
-                sleep(gracePeriod)
+            if result { return true }
+
+            switch action {
+            case .tap: tap()
+            case .swipeUp: app.swipeUp()
+            case .swipeDown: app.swipeDown()
+            case .swipeLeft: app.swipeLeft()
+            case .swipeRight: app.swipeRight()
+            case .showKeyboard: CoreUITestCase.currentTestCase?.send(.showKeyboard, ignoreErrors: true)
+            case .hideKeyboard: CoreUITestCase.currentTestCase?.send(.hideKeyboard, ignoreErrors: true)
+            case .pullToRefresh: app.pullToRefresh()
             }
+
+            tacticalSleep(ms: gracePeriod)
         }
         return false
     }
@@ -165,18 +198,18 @@ public extension XCUIElement {
         hit()
         let keyboard = app.find(type: .keyboard)
         keyboard.actionUntilElementCondition(action: .showKeyboard, condition: .visible)
-        waitUntil(condition: .visible)
+        waitUntil(.visible)
         typeText(text)
         keyboard.actionUntilElementCondition(action: .hideKeyboard, condition: .vanish)
         return self
     }
 
     @discardableResult
-    func pasteText(text: String, file: StaticString = #file, line: UInt = #line) -> XCUIElement {
+    func pasteText(text: String) -> XCUIElement {
         UIPasteboard.general.string = text
         let paste = app.find(label: "Paste", type: .menuItem)
         actionUntilElementCondition(action: .tap, element: paste, condition: .visible)
-        paste.tap()
+        paste.hit()
         return self
     }
 
@@ -198,11 +231,11 @@ public extension XCUIElement {
     }
 
     func tapAt(_ point: CGPoint) {
-        waitUntil(condition: .hittable)
+        waitUntil(.hittable)
         coordinate(withNormalizedOffset: .zero).withOffset(CGVector(dx: point.x, dy: point.y)).tap()
     }
 
-    // MARK: Find
+    // MARK: Find functions
     func find(label: String, type: ElementType = .any) -> XCUIElement {
         return descendants(matching: type).matching(label: label).firstMatch
     }
@@ -231,29 +264,27 @@ public extension XCUIElement {
         return descendants(matching: type).matching(id: id).matching(label: label).firstMatch
     }
 
-    func findAll(type: XCUIElement.ElementType, minimumCount: Int = 1, timeout: TimeInterval = defaultTimeout, gracePeriod: UInt32 = defaultGracePeriod) -> [XCUIElement] {
+    func findAll(type: XCUIElement.ElementType, minimumCount: Int = 1, timeout: TimeInterval = defaultTimeout, gracePeriod: TimeInterval = defaultGracePeriod) -> [XCUIElement] {
         let deadline = Date().addingTimeInterval(timeout)
         var result = descendants(matching: type).allElementsBoundByIndex
-        while Date() < deadline {
-            if result.count >= minimumCount { return result } else {
-                sleep(gracePeriod)
-                result = descendants(matching: type).allElementsBoundByIndex
-            }
+        while Date() < deadline && result.count < minimumCount {
+            tacticalSleep(ms: gracePeriod)
+            result = descendants(matching: type).allElementsBoundByIndex
         }
         return result
     }
 
     func findAll(labelContaining: String, type: ElementType = .any) -> [XCUIElement] {
-        descendants(matching: type).matching(labelContaining: labelContaining).allElementsBoundByIndex
+        return descendants(matching: type).matching(labelContaining: labelContaining).allElementsBoundByIndex
     }
 
-    // MARK: - Alerts
+    // MARK: Find alert functions
 
     func findAlertButton(label: String) -> XCUIElement {
-        descendants(matching: .alert).descendants(matching: .button).matching(label: label).firstMatch
+        return descendants(matching: .alert).descendants(matching: .button).matching(label: label).firstMatch
     }
 
     func findAlertStaticText(label: String) -> XCUIElement {
-        descendants(matching: .alert).descendants(matching: .staticText).matching(label: label).firstMatch
+        return descendants(matching: .alert).descendants(matching: .staticText).matching(label: label).firstMatch
     }
 }

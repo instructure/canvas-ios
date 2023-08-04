@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import TestsFoundation
 
 class DSLoginE2ETests: E2ETestCase {
@@ -27,12 +26,12 @@ class DSLoginE2ETests: E2ETestCase {
         seeder.enrollParent(parent, in: course)
         logInDSUser(parent, lastLogin: false)
         logOut()
-        let lastLoginBtn = LoginHelper.Start.lastLoginButton.waitUntil(condition: .visible)
+        let lastLoginBtn = LoginHelper.Start.lastLoginButton.waitUntil(.visible)
         XCTAssertEqual(lastLoginBtn.label, user.host)
 
         lastLoginBtn.hit()
         loginAfterSchoolFound(parent)
-        let profileButton = DashboardHelper.profileButton.waitUntil(condition: .visible)
+        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
         XCTAssertTrue(profileButton.isVisible)
     }
 }

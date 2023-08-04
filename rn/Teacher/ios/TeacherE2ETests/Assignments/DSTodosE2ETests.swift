@@ -37,27 +37,27 @@ class DSTodosE2ETests: E2ETestCase {
             .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
 
         pullToRefresh()
-        DashboardHelper.courseCard(course: course).waitUntil(condition: .visible)
+        DashboardHelper.courseCard(course: course).waitUntil(.visible)
 
         // Navigate to Todo tab, do a refresh so badge counter updates
         let oneNeedsGradingLabel = "1 NEEDS GRADING"
         let todoBadgeValue = "1 item"
         BaseHelper.TabBar.todoTab.hit()
         pullToRefresh()
-        XCTAssertTrue(BaseHelper.TabBar.todoTab.waitUntil(condition: .visible).hasValue(value: todoBadgeValue))
-        XCTAssertTrue(app.find(labelContaining: oneNeedsGradingLabel).waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(BaseHelper.TabBar.todoTab.waitUntil(.visible).hasValue(value: todoBadgeValue))
+        XCTAssertTrue(app.find(labelContaining: oneNeedsGradingLabel).waitUntil(.visible).isVisible)
         app.find(label: oneNeedsGradingLabel).hit()
         AssignmentsHelper.SpeedGrader.doneButton.hit()
         BaseHelper.TabBar.dashboardTab.hit()
         BaseHelper.TabBar.todoTab.hit()
-        XCTAssertTrue(BaseHelper.TabBar.todoTab.waitUntil(condition: .visible).hasValue(value: todoBadgeValue))
-        XCTAssertTrue(app.find(label: oneNeedsGradingLabel).waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(BaseHelper.TabBar.todoTab.waitUntil(.visible).hasValue(value: todoBadgeValue))
+        XCTAssertTrue(app.find(label: oneNeedsGradingLabel).waitUntil(.visible).isVisible)
 
         // Check if the todo counter disappears
         seeder.postGrade(courseId: course.id, assignmentId: assignment.id, userId: student.id, requestBody: .init(posted_grade: "7"))
         pullToRefresh()
         pullToRefresh()
-        XCTAssertFalse(BaseHelper.TabBar.todoTab.waitUntil(condition: .visible).hasValue(value: todoBadgeValue))
-        XCTAssertTrue(app.find(label: oneNeedsGradingLabel).waitUntil(condition: .vanish).isVanished)
+        XCTAssertFalse(BaseHelper.TabBar.todoTab.waitUntil(.visible).hasValue(value: todoBadgeValue))
+        XCTAssertTrue(app.find(label: oneNeedsGradingLabel).waitUntil(.vanish).isVanished)
     }
 }

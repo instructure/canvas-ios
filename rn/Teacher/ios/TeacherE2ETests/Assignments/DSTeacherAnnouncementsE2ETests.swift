@@ -37,7 +37,7 @@ class DSTeacherAnnouncementsE2ETests: E2ETestCase {
         pullToRefresh()
         CourseDetailsHelper.cell(type: .announcements).hit()
         AnnouncementsHelper.cell(index: 0).hit()
-        XCTAssertTrue(app.find(label: announcementMessage).waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(app.find(label: announcementMessage).waitUntil(.visible).isVisible)
         XCTAssertEqual(DiscussionsHelper.Details.titleLabel.label, announcementTitle)
         AnnouncementsHelper.backButton.hit()
 
@@ -47,7 +47,7 @@ class DSTeacherAnnouncementsE2ETests: E2ETestCase {
         DiscussionsHelper.Editor.titleField.writeText(text: newAnnouncementTitle)
         DiscussionsHelper.Editor.richContentEditorWebView.writeText(text: "Description")
         DiscussionsHelper.Editor.doneButton.hit()
-        XCTAssertTrue(app.find(labelContaining: newAnnouncementTitle).waitUntil(condition: .visible).isVisible)
-        XCTAssertTrue(app.find(labelContaining: announcementTitle).waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(app.find(labelContaining: newAnnouncementTitle).waitUntil(.visible).isVisible)
+        XCTAssertTrue(app.find(labelContaining: announcementTitle).waitUntil(.visible).isVisible)
     }
 }

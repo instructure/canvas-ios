@@ -43,10 +43,10 @@ public class SyllabusHelper: BaseHelper {
     }
 
     public static func navigateToSyllabus(course: DSCourse) {
-        DashboardHelper.courseCard(course: course).tap()
+        DashboardHelper.courseCard(course: course).hit()
         let syllabusItem = CourseDetailsHelper.cell(type: .syllabus)
         syllabusItem.actionUntilElementCondition(action: .swipeUp, condition: .visible)
-        syllabusItem.tap()
+        syllabusItem.hit()
     }
 
     // MARK: DataSeeding

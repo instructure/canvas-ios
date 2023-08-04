@@ -16,9 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import TestsFoundation
 import Core
+import TestsFoundation
 
 class DSSubmissionsE2ETests: E2ETestCase {
     func testSubmission() {
@@ -43,6 +42,6 @@ class DSSubmissionsE2ETests: E2ETestCase {
         AssignmentsHelper.assignmentButton(assignment: assignment).hit()
         AssignmentsHelper.Details.viewAllSubmissionsButton.hit()
         AssignmentsHelper.submissionListCell(user: student).hit()
-        XCTAssertTrue(app.find(label: submission.body).waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(app.find(label: submission.body).waitUntil(.visible).isVisible)
     }
 }

@@ -33,13 +33,13 @@ class DSPeopleE2ETests: E2ETestCase {
         DashboardHelper.courseCard(course: course).hit()
         CourseDetailsHelper.cell(type: .people).hit()
 
-        XCTAssertTrue(PeopleHelper.peopleCell(index: studentIndex).waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(PeopleHelper.peopleCell(index: studentIndex).waitUntil(.visible).isVisible)
 
         XCTAssertEqual(PeopleHelper.nameLabelOfPeopleCell(index: studentIndex).label, student.name)
         XCTAssertEqual(PeopleHelper.roleLabelOfPeopleCell(index: studentIndex).label, "Student")
         PeopleHelper.peopleCell(index: studentIndex).hit()
         PeopleHelper.backButton.hit()
-        XCTAssertTrue(PeopleHelper.peopleCell(index: studentIndex).waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(PeopleHelper.peopleCell(index: studentIndex).waitUntil(.visible).isVisible)
         XCTAssertEqual(PeopleHelper.roleLabelOfPeopleCell(index: studentIndex).label, "Student")
     }
 }

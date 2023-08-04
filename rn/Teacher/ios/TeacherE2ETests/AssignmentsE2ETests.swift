@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 import TestsFoundation
 
 class AssignmentsE2ETests: CoreUITestCase {
@@ -24,7 +23,7 @@ class AssignmentsE2ETests: CoreUITestCase {
         DashboardHelper.courseCard(courseId: "263").hit()
         CourseDetailsHelper.cell(type: .assignments).hit()
         AssignmentsHelper.assignmentButton(assignmentId: "1831").hit()
-        XCTAssertTrue(app.find(labelContaining: "This is assignment one.").waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(app.find(labelContaining: "This is assignment one.").waitUntil(.visible).isVisible)
         AssignmentsHelper.backButton.hit()
 
         // AssignmentsList.assignment(id: "261986").tap() doesn't work so we scroll to the cell
@@ -32,11 +31,11 @@ class AssignmentsE2ETests: CoreUITestCase {
         app.swipeUp()
         app.windows.firstMatch.tapAt(CGPoint(x: 10, y: 580))
 
-        XCTAssertTrue(app.find(labelContaining: "10 pts").waitUntil(condition: .visible).isVisible)
-        XCTAssertTrue(app.find(labelContaining: "Needs Grading").waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(app.find(labelContaining: "10 pts").waitUntil(.visible).isVisible)
+        XCTAssertTrue(app.find(labelContaining: "Needs Grading").waitUntil(.visible).isVisible)
         AssignmentsHelper.backButton.hit()
         AssignmentsHelper.backButton.hit()
         AssignmentsHelper.backButton.hit()
-        XCTAssertTrue(DashboardHelper.courseCard(courseId: "263").waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(DashboardHelper.courseCard(courseId: "263").waitUntil(.visible).isVisible)
     }
 }

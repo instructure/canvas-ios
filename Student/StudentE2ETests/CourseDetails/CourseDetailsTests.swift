@@ -33,16 +33,16 @@ class CourseDetailsTests: E2ETestCase {
 
         // MARK: Get the user logged in and navigate to the course
         logInDSUser(student)
-        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(condition: .visible)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCard.isVisible)
-        courseCard.tap()
+        courseCard.hit()
 
         // MARK: Check course details
-        let titleLabel = CourseDetailsHelper.titleLabel.waitUntil(condition: .visible)
+        let titleLabel = CourseDetailsHelper.titleLabel.waitUntil(.visible)
         XCTAssertTrue(titleLabel.exists)
         XCTAssertEqual(titleLabel.label, course.name)
 
-        let subtitleLabel = CourseDetailsHelper.subtitleLabel.waitUntil(condition: .visible)
+        let subtitleLabel = CourseDetailsHelper.subtitleLabel.waitUntil(.visible)
         XCTAssertTrue(subtitleLabel.exists)
         XCTAssertEqual(subtitleLabel.label, "Default Term")
 

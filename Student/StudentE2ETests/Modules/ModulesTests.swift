@@ -38,14 +38,14 @@ class ModulesTests: E2ETestCase {
 
         // MARK: Navigate to Modules
         ModulesHelper.navigateToModules(course: course)
-        let moduleNameLabel = ModulesHelper.moduleLabel(moduleIndex: 0).waitUntil(condition: .visible)
+        let moduleNameLabel = ModulesHelper.moduleLabel(moduleIndex: 0).waitUntil(.visible)
         XCTAssertTrue(moduleNameLabel.isVisible)
         XCTAssertTrue(moduleNameLabel.label.contains(module.name))
 
         // MARK: Check assignment module item
-        let assignmentItem = ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 0).waitUntil(condition: .visible)
-        let assignmentTitle = ModulesHelper.moduleItemNameLabel(moduleIndex: 0, itemIndex: 0).waitUntil(condition: .visible)
-        let assignmentPoints = ModulesHelper.moduleItemDueLabel(moduleIndex: 0, itemIndex: 0).waitUntil(condition: .visible)
+        let assignmentItem = ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 0).waitUntil(.visible)
+        let assignmentTitle = ModulesHelper.moduleItemNameLabel(moduleIndex: 0, itemIndex: 0).waitUntil(.visible)
+        let assignmentPoints = ModulesHelper.moduleItemDueLabel(moduleIndex: 0, itemIndex: 0).waitUntil(.visible)
         XCTAssertTrue(assignmentItem.isVisible)
         XCTAssertTrue(assignmentTitle.isVisible)
         XCTAssertEqual(assignmentTitle.label, moduleAssignment.title)
@@ -53,22 +53,22 @@ class ModulesTests: E2ETestCase {
         XCTAssertEqual(assignmentPoints.label, "0 pts")
 
         // MARK: Check discussion module item
-        let discussionItem = ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 1).waitUntil(condition: .visible)
-        let discussionTitle = ModulesHelper.moduleItemNameLabel(moduleIndex: 0, itemIndex: 1).waitUntil(condition: .visible)
+        let discussionItem = ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 1).waitUntil(.visible)
+        let discussionTitle = ModulesHelper.moduleItemNameLabel(moduleIndex: 0, itemIndex: 1).waitUntil(.visible)
         XCTAssertTrue(discussionItem.isVisible)
         XCTAssertTrue(discussionTitle.isVisible)
         XCTAssertEqual(discussionTitle.label, moduleDiscussion.title)
 
         // MARK: Check page module item
-        let pageItem = ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 2).waitUntil(condition: .visible)
-        let pageTitle = ModulesHelper.moduleItemNameLabel(moduleIndex: 0, itemIndex: 2).waitUntil(condition: .visible)
+        let pageItem = ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 2).waitUntil(.visible)
+        let pageTitle = ModulesHelper.moduleItemNameLabel(moduleIndex: 0, itemIndex: 2).waitUntil(.visible)
         XCTAssertTrue(pageItem.isVisible)
         XCTAssertTrue(pageTitle.isVisible)
         XCTAssertEqual(pageTitle.label, modulePage.title)
 
         // MARK: Check quiz module item
-        let quizItem = ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 3).waitUntil(condition: .visible)
-        let quizTitle = ModulesHelper.moduleItemNameLabel(moduleIndex: 0, itemIndex: 3).waitUntil(condition: .visible)
+        let quizItem = ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 3).waitUntil(.visible)
+        let quizTitle = ModulesHelper.moduleItemNameLabel(moduleIndex: 0, itemIndex: 3).waitUntil(.visible)
         XCTAssertTrue(quizItem.isVisible)
         XCTAssertTrue(quizTitle.isVisible)
         XCTAssertEqual(quizTitle.label, moduleQuiz.title)

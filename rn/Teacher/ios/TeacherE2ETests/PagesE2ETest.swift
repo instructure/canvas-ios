@@ -24,32 +24,32 @@ class PagesE2ETests: CoreUITestCase {
         CourseDetailsHelper.cell(type: .pages).hit()
 
         PagesHelper.frontPage.hit()
-        app.find(labelContaining: "This is a page for testing modules").waitUntil(condition: .visible)
+        app.find(labelContaining: "This is a page for testing modules").waitUntil(.visible)
         PagesHelper.backButton.hit()
         PagesHelper.add.hit()
 
-        PagesHelper.Editor.done.waitUntil(condition: .visible)
+        PagesHelper.Editor.done.waitUntil(.visible)
         PagesHelper.Editor.title.writeText(text: "New Page")
         PagesHelper.Editor.published.hit()
         PagesHelper.Editor.done.hit()
-        PagesHelper.add.waitUntil(condition: .visible)
+        PagesHelper.add.waitUntil(.visible)
         app.swipeDown()
 
         let editedPageTitle = "New Edited Page"
         PagesHelper.page(index: 2).hit()
         PagesHelper.Details.options.hit()
         app.find(label: "Edit").hit()
-        PagesHelper.Editor.done.waitUntil(condition: .visible)
+        PagesHelper.Editor.done.waitUntil(.visible)
         PagesHelper.Editor.title.cutText()
         PagesHelper.Editor.title.writeText(text: editedPageTitle)
         PagesHelper.Editor.done.hit()
         PagesHelper.backButton.hit()
 
-        PagesHelper.add.waitUntil(condition: .visible)
+        PagesHelper.add.waitUntil(.visible)
         app.find(label: editedPageTitle).hit()
         PagesHelper.Details.options.hit()
         app.find(label: "Delete").hit()
         app.find(label: "OK").hit()
-        XCTAssertFalse(app.find(label: editedPageTitle).waitUntil(condition: .vanish).isVisible)
+        XCTAssertFalse(app.find(label: editedPageTitle).waitUntil(.vanish).isVisible)
     }
 }

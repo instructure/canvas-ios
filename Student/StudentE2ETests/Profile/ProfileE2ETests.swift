@@ -29,16 +29,16 @@ class ProfileE2ETests: CoreUITestCase {
 
     func testProfileDisplaysUsername() {
         DashboardHelper.profileButton.hit()
-        let userNameLabel = ProfileHelper.userNameLabel.waitUntil(condition: .visible)
+        let userNameLabel = ProfileHelper.userNameLabel.waitUntil(.visible)
         XCTAssertEqual(userNameLabel.label, "Student One")
     }
 
     func xtestProfileLogsOut() {
         DashboardHelper.profileButton.hit()
         ProfileHelper.logOutButton.hit()
-        LoginHelper.Start.findSchoolButton.waitUntil(condition: .visible)
+        LoginHelper.Start.findSchoolButton.waitUntil(.visible)
         let entry = user!.session!
-        XCTAssertFalse(LoginHelper.LoginStartSession.cell(host: entry.baseURL.host!, userID: entry.userID).waitUntil(condition: .vanish).isVisible)
+        XCTAssertFalse(LoginHelper.LoginStartSession.cell(host: entry.baseURL.host!, userID: entry.userID).waitUntil(.vanish).isVisible)
     }
 
     func testPreviewUserFile() {
@@ -46,6 +46,6 @@ class ProfileE2ETests: CoreUITestCase {
         ProfileHelper.filesButton.hit()
 
         FilesHelper.List.file(index: 0).hit()
-        XCTAssertTrue(FilesHelper.Details.imageView.waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(FilesHelper.Details.imageView.waitUntil(.visible).isVisible)
     }
 }

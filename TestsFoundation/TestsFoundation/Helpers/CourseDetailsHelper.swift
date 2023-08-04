@@ -17,10 +17,6 @@
 //
 
 public class CourseDetailsHelper: BaseHelper {
-    public static var titleLabel: XCUIElement { app.find(id: "course-details.title-lbl") }
-    public static var subtitleLabel: XCUIElement { app.find(id: "course-details.subtitle-lbl") }
-    public static func cell(type: CellType) -> XCUIElement { app.find(id: "courses-details.\(type.rawValue)-cell") }
-
     public enum CellType: String {
         case home = "home"
         case announcements = "announcements"
@@ -37,4 +33,8 @@ public class CourseDetailsHelper: BaseHelper {
         case quizzes = "quizzes"
         case files = "files"
     }
+
+    public static var titleLabel: XCUIElement { app.find(id: "course-details.title-lbl") }
+    public static var subtitleLabel: XCUIElement { app.find(id: "course-details.subtitle-lbl") }
+    public static func cell(type: CellType) -> XCUIElement { app.find(id: "courses-details.\(type.rawValue)-cell") }
 }

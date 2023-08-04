@@ -24,15 +24,15 @@ class TodosE2ETests: CoreUITestCase {
         let needsGradingLabel = "Needs Grading"
         let todoBadgeValue = "1 item"
 
-        DashboardHelper.courseCard(courseId: "263").waitUntil(condition: .visible)
-        XCTAssertTrue(DashboardHelper.TabBar.todoTab.waitUntil(condition: .visible).hasValue(value: todoBadgeValue))
+        DashboardHelper.courseCard(courseId: "263").waitUntil(.visible)
+        XCTAssertTrue(DashboardHelper.TabBar.todoTab.waitUntil(.visible).hasValue(value: todoBadgeValue))
         DashboardHelper.TabBar.todoTab.hit()
-        XCTAssertTrue(app.find(labelContaining: oneNeedsGradingLabel).waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(app.find(labelContaining: oneNeedsGradingLabel).waitUntil(.visible).isVisible)
         app.find(label: needsGradingLabel).hit()
         AssignmentsHelper.SpeedGrader.doneButton.hit()
         DashboardHelper.TabBar.dashboardTab.hit()
         DashboardHelper.TabBar.todoTab.hit()
-        XCTAssertTrue(DashboardHelper.TabBar.todoTab.waitUntil(condition: .visible).hasValue(value: todoBadgeValue))
-        XCTAssertTrue(app.find(label: oneNeedsGradingLabel).waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(DashboardHelper.TabBar.todoTab.waitUntil(.visible).hasValue(value: todoBadgeValue))
+        XCTAssertTrue(app.find(label: oneNeedsGradingLabel).waitUntil(.visible).isVisible)
     }
 }

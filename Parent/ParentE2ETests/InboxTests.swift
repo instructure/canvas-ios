@@ -24,7 +24,7 @@ class InboxTests: CoreUITestCase {
     func testGetToReplyScreen() {
         DashboardHelper.profileButton.hit()
         ProfileHelper.inboxButton.hit()
-        let conversationElement = Helper.conversation(conversationId: "320").waitUntil(condition: .visible)
+        let conversationElement = Helper.conversation(conversationId: "320").waitUntil(.visible)
         let label = conversationElement.label
         XCTAssert(label.contains("Assignments"))
         XCTAssert(label.contains("need to talk"))
@@ -33,7 +33,7 @@ class InboxTests: CoreUITestCase {
 
         conversationElement.hit()
         Helper.replyButton.hit()
-        let messageInput = Helper.Reply.body.waitUntil(condition: .visible)
+        let messageInput = Helper.Reply.body.waitUntil(.visible)
         XCTAssertTrue(messageInput.isVisible)
     }
 }

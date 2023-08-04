@@ -31,11 +31,11 @@ class LoginCreateAccountE2ETests: CoreUITestCase {
     func testCreateAccount() {
         LoginHelper.Start.qrCodeButton.hit()
         LoginHelper.Start.dontHaveAccountAction.hit()
-        LoginHelper.PairWithStudentQR.headerLabel.waitUntil(condition: .visible)
+        LoginHelper.PairWithStudentQR.headerLabel.waitUntil(.visible)
         LoginHelper.PairWithStudentQR.nextButton.hit()
-        LoginHelper.Login.webView.waitUntil(condition: .visible)
+        LoginHelper.Login.webView.waitUntil(.visible)
         // Login screen automatically shows parent signup page
-        LoginHelper.Login.studentPairingCodeLabel.waitUntil(condition: .visible)
+        LoginHelper.Login.studentPairingCodeLabel.waitUntil(.visible)
         LoginHelper.Login.parentCreateAccountButton.hit()
     }
 }

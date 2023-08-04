@@ -24,17 +24,17 @@ class AnnouncementsE2ETests: CoreUITestCase {
         let announcementDescription = "For testing purposes"
         DashboardHelper.courseCard(courseId: "263").hit()
         CourseDetailsHelper.cell(type: .announcements).hit()
-        XCTAssertTrue(AnnouncementsHelper.emptyAnnouncements.waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(AnnouncementsHelper.emptyAnnouncements.waitUntil(.visible).isVisible)
         AnnouncementsHelper.backButton.hit()
         AnnouncementsHelper.backButton.hit()
         DashboardHelper.courseCard(courseId: "892").hit()
         CourseDetailsHelper.cell(type: .announcements).hit()
-        XCTAssertTrue(AnnouncementsHelper.addNewAnnouncement.waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(AnnouncementsHelper.addNewAnnouncement.waitUntil(.visible).isVisible)
         app.find(labelContaining: announcementTitle).hit()
-        XCTAssertTrue(AnnouncementsHelper.Details.optionButton.waitUntil(condition: .visible).isVisible)
-        XCTAssertTrue(AnnouncementsHelper.Details.replyButton.waitUntil(condition: .visible).isVisible)
-        XCTAssertTrue(AnnouncementsHelper.Details.detailsByText(text: announcementDescription).waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(AnnouncementsHelper.Details.optionButton.waitUntil(.visible).isVisible)
+        XCTAssertTrue(AnnouncementsHelper.Details.replyButton.waitUntil(.visible).isVisible)
+        XCTAssertTrue(AnnouncementsHelper.Details.detailsByText(text: announcementDescription).waitUntil(.visible).isVisible)
         AnnouncementsHelper.Details.optionButton.hit()
-        XCTAssertTrue(app.find(label: "Edit").waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(app.find(label: "Edit").waitUntil(.visible).isVisible)
     }
 }

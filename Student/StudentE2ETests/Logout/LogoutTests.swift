@@ -30,17 +30,17 @@ class LogoutTests: E2ETestCase {
         logInDSUser(student)
 
         // MARK: Start logout process
-        let profileButton = DashboardHelper.profileButton.waitUntil(condition: .visible)
+        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
         XCTAssertTrue(profileButton.isVisible)
 
         // MARK: Check "Log Out" button
         profileButton.hit()
-        let logoutButton = ProfileHelper.logOutButton.waitUntil(condition: .visible)
+        let logoutButton = ProfileHelper.logOutButton.waitUntil(.visible)
         XCTAssertTrue(logoutButton.isVisible)
 
         // MARK: Check "Last Login" button after logout
         logoutButton.hit()
-        let lastLoginButton = LoginHelper.Start.lastLoginButton.waitUntil(condition: .visible)
+        let lastLoginButton = LoginHelper.Start.lastLoginButton.waitUntil(.visible)
         XCTAssertTrue(lastLoginButton.isVisible)
         XCTAssertEqual(lastLoginButton.label, user.host)
     }

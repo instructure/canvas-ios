@@ -17,6 +17,22 @@
 //
 
 public class CalendarHelper: BaseHelper {
+    public struct SampleEvents {
+        public var yesterdays: DSCalendarEvent?
+        public var todays: DSCalendarEvent?
+        public var tomorrows: DSCalendarEvent?
+        public var recurring: DSCalendarEvent?
+        public var nextYears: DSCalendarEvent?
+    }
+
+    public enum EventType: String {
+        case yesterdays
+        case todays
+        case tomorrows
+        case recurring
+        case nextYears
+    }
+
     static var localTimeZoneAbbreviation: String { return TimeZone.current.abbreviation() ?? "" }
     static var plusMinutes = localTimeZoneAbbreviation == "GMT+2" ? 120 : -360
     static let dateFormatter = DateFormatter()
@@ -81,14 +97,14 @@ public class CalendarHelper: BaseHelper {
 
         // Finding the year
         let yearOfEvent = Int(dateArray[0])!
-        var yearLabelElement = yearLabel.waitUntil(condition: .visible)
+        var yearLabelElement = yearLabel.waitUntil(.visible)
         var yearLabelText = Int(yearLabelElement.label)!
         let monthSwipeDirection = yearOfEvent < yearLabelText ? "right" : "left"
 
         if yearOfEvent != yearLabelText {
             for _ in 1...12*abs(yearOfEvent-yearLabelText) {
                 if yearOfEvent < yearLabelText { app.swipeRight() } else { app.swipeLeft() }
-                yearLabelElement = yearLabel.waitUntil(condition: .visible)
+                yearLabelElement = yearLabel.waitUntil(.visible)
                 yearLabelText = Int(yearLabelElement.label)!
                 if yearOfEvent == yearLabelText { break }
             }
@@ -96,22 +112,22 @@ public class CalendarHelper: BaseHelper {
 
         // Finding the month
         let monthOfEvent = dateArray[1]
-        var monthLabelElement = monthLabel.waitUntil(condition: .visible)
+        var monthLabelElement = monthLabel.waitUntil(.visible)
         var monthLabelText = monthLabelElement.label
 
         if monthOfEvent != monthLabelText {
             for _ in 1...12 {
                 if monthSwipeDirection == "right" { app.swipeRight() } else { app.swipeLeft() }
-                monthLabelElement = monthLabel.waitUntil(condition: .visible)
+                monthLabelElement = monthLabel.waitUntil(.visible)
                 monthLabelText = monthLabelElement.label
                 if monthOfEvent == monthLabelText { break }
             }
         }
 
         // Finding the day and then the event cell
-        let dayButtonElement = dayButton(event: event).waitUntil(condition: .visible)
+        let dayButtonElement = dayButton(event: event).waitUntil(.visible)
         dayButtonElement.hit()
-        return eventCell(event: event).waitUntil(condition: .visible)
+        return eventCell(event: event).waitUntil(.visible)
     }
 
     public struct Details {
@@ -234,21 +250,5 @@ public class CalendarHelper: BaseHelper {
             duplicate: duplicate)
         let requestBody = CreateDSCalendarEventRequest.Body(calendar_event: calendarEvent)
         return seeder.createCalendarEvent(requestBody: requestBody)
-    }
-
-    public struct SampleEvents {
-        public var yesterdays: DSCalendarEvent?
-        public var todays: DSCalendarEvent?
-        public var tomorrows: DSCalendarEvent?
-        public var recurring: DSCalendarEvent?
-        public var nextYears: DSCalendarEvent?
-    }
-
-    public enum EventType: String {
-        case yesterdays
-        case todays
-        case tomorrows
-        case recurring
-        case nextYears
     }
 }

@@ -16,9 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import XCTest
-
 public class ProfileHelper: BaseHelper {
     public static var actAsUserButton: XCUIElement { app.find(id: "Profile.actAsUserButton") }
     public static var changeUserButton: XCUIElement { app.find(id: "Profile.changeUserButton") }

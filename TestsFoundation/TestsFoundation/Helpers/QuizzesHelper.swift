@@ -42,7 +42,7 @@ public class QuizzesHelper: BaseHelper {
         public static var nameLabel: XCUIElement { app.find(id: "AssignmentDetails.name") }
         public static var pointsLabel: XCUIElement { app.find(id: "AssignmentDetails.points") }
         public static var statusLabel: XCUIElement { app.find(id: "AssignmentDetails.status") }
-        public static var takeQuizButton: XCUIElement { return app.find(id: "QuizDetails.takeButton") }
+        public static var takeQuizButton: XCUIElement { app.find(id: "QuizDetails.takeButton") }
         public static var submitButton: XCUIElement { app.find(label: "Submit") }
         public static var previewQuiz: XCUIElement { app.find(label: "Preview Quiz") }
         public static var launchExternalToolButton: XCUIElement { app.find(label: "Launch External Tool", type: .button) }
@@ -75,18 +75,18 @@ public class QuizzesHelper: BaseHelper {
 
             public static func answerFirstQuestion() {
                 // Correct answer to first question
-                exitButton.waitUntil(condition: .visible)
+                exitButton.waitUntil(.visible)
                 let firstQuestionAnswer = app.find(label: TestData.Question1.Answers.correct, type: .staticText)
                 firstQuestionAnswer.actionUntilElementCondition(action: .swipeUp, condition: .visible)
-                firstQuestionAnswer.tap()
+                firstQuestionAnswer.hit()
             }
 
             public static func answerSecondQuestion() {
                 // Correct answer to second question
-                exitButton.waitUntil(condition: .visible)
+                exitButton.waitUntil(.visible)
                 let secondQuestionAnswer = app.find(label: TestData.Question2.Answers.correct, type: .staticText)
                 secondQuestionAnswer.actionUntilElementCondition(action: .swipeUp, condition: .visible)
-                secondQuestionAnswer.tap()
+                secondQuestionAnswer.hit()
             }
         }
     }
@@ -117,11 +117,11 @@ public class QuizzesHelper: BaseHelper {
 
     public static func navigateToQuizzes(course: DSCourse) {
         DashboardHelper.courseCard(course: course).hit()
-        CourseDetailsHelper.titleLabel.waitUntil(condition: .visible)
+        CourseDetailsHelper.titleLabel.waitUntil(.visible)
         let quizzesCell = CourseDetailsHelper.cell(type: .quizzes)
-        quizzesCell.waitUntil(condition: .visible)
+        quizzesCell.waitUntil(.visible)
         quizzesCell.actionUntilElementCondition(action: .swipeUp, condition: .hittable)
-        quizzesCell.tap()
+        quizzesCell.hit()
     }
 
     // MARK: DataSeeding

@@ -51,11 +51,11 @@ class DSSpeedGraderE2ETests: E2ETestCase {
         AssignmentsHelper.SpeedGrader.doneButton.hit()
         sleep(1)
         pullToRefresh()
-        XCTAssertFalse(AssignmentsHelper.submissionListCell(user: student).waitUntil(condition: .vanish).isVisible)
+        XCTAssertFalse(AssignmentsHelper.submissionListCell(user: student).waitUntil(.vanish).isVisible)
         app.find(labelContaining: "Filter").hit()
         app.find(label: "Graded").hit()
         app.find(label: "Done").hit()
         pullToRefresh()
-        XCTAssertTrue(AssignmentsHelper.submissionListCell(user: student).waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(AssignmentsHelper.submissionListCell(user: student).waitUntil(.visible).isVisible)
     }
 }

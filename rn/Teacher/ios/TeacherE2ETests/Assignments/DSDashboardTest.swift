@@ -27,28 +27,28 @@ class DSDashboardTest: E2ETestCase {
 
         // Let's seed and check coursecard one-by-one
         logInDSUser(teacher)
-        DashboardHelper.courseCard(course: course1).waitUntil(condition: .visible)
+        DashboardHelper.courseCard(course: course1).waitUntil(.visible)
 
         let course2 = seeder.createCourse()
         seeder.enrollTeacher(teacher, in: course2)
         pullToRefresh()
-        XCTAssertTrue(DashboardHelper.courseCard(course: course1).waitUntil(condition: .visible).isVisible)
-        XCTAssertTrue(DashboardHelper.courseCard(course: course2).waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(DashboardHelper.courseCard(course: course1).waitUntil(.visible).isVisible)
+        XCTAssertTrue(DashboardHelper.courseCard(course: course2).waitUntil(.visible).isVisible)
 
         let course3 = seeder.createCourse()
         seeder.enrollTeacher(teacher, in: course3)
         pullToRefresh()
-        XCTAssertTrue(DashboardHelper.courseCard(course: course1).waitUntil(condition: .visible).isVisible)
-        XCTAssertTrue(DashboardHelper.courseCard(course: course2).waitUntil(condition: .visible).isVisible)
-        XCTAssertTrue(DashboardHelper.courseCard(course: course3).waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(DashboardHelper.courseCard(course: course1).waitUntil(.visible).isVisible)
+        XCTAssertTrue(DashboardHelper.courseCard(course: course2).waitUntil(.visible).isVisible)
+        XCTAssertTrue(DashboardHelper.courseCard(course: course3).waitUntil(.visible).isVisible)
 
         // Check if only favorited card is shown
         DashboardHelper.editButton.hit()
         DashboardHelper.toggleFavorite(course: course1)
         DashboardHelper.backButton.hit()
         pullToRefresh()
-        XCTAssertTrue(DashboardHelper.courseCard(course: course1).waitUntil(condition: .visible).isVisible)
-        XCTAssertFalse(DashboardHelper.courseCard(course: course2).waitUntil(condition: .visible).isVisible)
-        XCTAssertFalse(DashboardHelper.courseCard(course: course3).waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(DashboardHelper.courseCard(course: course1).waitUntil(.visible).isVisible)
+        XCTAssertFalse(DashboardHelper.courseCard(course: course2).waitUntil(.visible).isVisible)
+        XCTAssertFalse(DashboardHelper.courseCard(course: course3).waitUntil(.visible).isVisible)
     }
 }

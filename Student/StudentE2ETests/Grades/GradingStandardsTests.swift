@@ -37,8 +37,8 @@ class GradingStandardsTests: E2ETestCase {
 
         // MARK: Navigate to grades
         GradesHelper.navigateToGrades(course: course)
-        XCTAssertTrue(app.find(label: "Total Grade").waitUntil(condition: .visible).isVisible)
-        XCTAssertTrue(GradesHelper.totalGrade.waitUntil(condition: .visible).hasLabel(label: "N/A (F)"))
+        XCTAssertTrue(app.find(label: "Total Grade").waitUntil(.visible).isVisible)
+        XCTAssertTrue(GradesHelper.totalGrade.waitUntil(.visible).hasLabel(label: "N/A (F)"))
 
         // MARK: Check if total is updating accordingly
         GradesHelper.gradeAssignments(grades: ["100"], course: course, assignments: [assignments[0]], user: student)

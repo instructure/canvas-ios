@@ -16,6 +16,31 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+public enum SettingsMenuItem: Int {
+    case landingPage = 0
+    case appearance = 1
+    case pairWithObserver = 2
+    case subscribeToCalendarFeed = 3
+    case about = 4
+    case privacyPolicy = 5
+    case termsOfUse = 6
+    case canvasOnGitHub = 7
+}
+
+public enum LandingPageMenuItem: Int {
+    case dashboard = 0
+    case calendar = 1
+    case toDo = 2
+    case notifications = 3
+    case inbox = 4
+}
+
+public enum AppearanceMenuItem: Int {
+    case system = 0
+    case light = 1
+    case dark = 2
+}
+
 public class SettingsHelper: BaseHelper {
     public static var navBar: XCUIElement { app.find(id: "Settings") }
     public static var doneButton: XCUIElement { app.find(id: "screen.dismiss") }
@@ -66,29 +91,4 @@ public class SettingsHelper: BaseHelper {
         public static var emailLabel: XCUIElement { app.find(id: "Email")}
         public static var versionLabel: XCUIElement { app.find(id: "Version")}
     }
-}
-
-public enum SettingsMenuItem: Int {
-    case landingPage = 0
-    case appearance = 1
-    case pairWithObserver = 2
-    case subscribeToCalendarFeed = 3
-    case about = 4
-    case privacyPolicy = 5
-    case termsOfUse = 6
-    case canvasOnGitHub = 7
-}
-
-public enum LandingPageMenuItem: Int {
-    case dashboard = 0
-    case calendar = 1
-    case toDo = 2
-    case notifications = 3
-    case inbox = 4
-}
-
-public enum AppearanceMenuItem: Int {
-    case system = 0
-    case light = 1
-    case dark = 2
 }

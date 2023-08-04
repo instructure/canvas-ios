@@ -44,9 +44,9 @@ public class HelpHelper: BaseHelper {
 
     public static var browserURL: String {
         SafariAppHelper.safariApp.activate()
-        SafariAppHelper.safariApp.find(id: "ReloadButton").waitUntil(condition: .visible)
+        SafariAppHelper.safariApp.find(id: "ReloadButton").waitUntil(.visible)
         SafariAppHelper.safariApp.find(id: "TabBarItemTitle").hit()
-        let url = SafariAppHelper.safariApp.find(id: "URL").waitUntil(condition: .visible).value as? String ?? ""
+        let url = SafariAppHelper.safariApp.find(id: "URL").waitUntil(.visible).value as? String ?? ""
         return url
     }
 

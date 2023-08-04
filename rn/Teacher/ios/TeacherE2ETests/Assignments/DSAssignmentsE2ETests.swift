@@ -37,8 +37,8 @@ class DSAssignmentsE2ETests: E2ETestCase {
         DashboardHelper.courseCard(course: course).hit()
         CourseDetailsHelper.cell(type: .assignments).hit()
         AssignmentsHelper.assignmentButton(assignment: assignment).hit()
-        XCTAssertEqual(AssignmentsHelper.Details.name.waitUntil(condition: .visible).label, assignment.name)
-        XCTAssertTrue(AssignmentsHelper.Details.published.waitUntil(condition: .visible).isVisible)
-        XCTAssertTrue(AssignmentsHelper.Details.description(assignment: assignment).waitUntil(condition: .visible).isVisible)
+        XCTAssertEqual(AssignmentsHelper.Details.name.waitUntil(.visible).label, assignment.name)
+        XCTAssertTrue(AssignmentsHelper.Details.published.waitUntil(.visible).isVisible)
+        XCTAssertTrue(AssignmentsHelper.Details.description(assignment: assignment).waitUntil(.visible).isVisible)
     }
 }

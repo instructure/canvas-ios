@@ -37,6 +37,11 @@ public class ModulesHelper: BaseHelper {
         return app.find(id: "ModuleList.\(moduleIndex).\(itemIndex).nameLabel")
     }
 
+    public static func navigateToModules(course: DSCourse) {
+        DashboardHelper.courseCard(course: course).hit()
+        CourseDetailsHelper.cell(type: .modules).hit()
+    }
+
     @discardableResult
     public static func createModule(course: DSCourse, name: String = "Sample Module", published: Bool = true) -> DSModule {
         let moduleBody = CreateDSModuleRequest.RequestedDSModule(name: name)
@@ -118,10 +123,5 @@ public class ModulesHelper: BaseHelper {
                                                               published: published)
         }
         return moduleItem
-    }
-
-    public static func navigateToModules(course: DSCourse) {
-        DashboardHelper.courseCard(course: course).hit()
-        CourseDetailsHelper.cell(type: .modules).hit()
     }
 }

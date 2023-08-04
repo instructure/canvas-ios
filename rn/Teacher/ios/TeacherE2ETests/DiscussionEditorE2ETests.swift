@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import TestsFoundation
 
 class DiscussionEditE2ETests: CoreUITestCase {
@@ -28,16 +27,16 @@ class DiscussionEditE2ETests: CoreUITestCase {
         let discussionsButton = CourseDetailsHelper.cell(type: .discussions)
         DashboardHelper.courseCard(courseId: "263").actionUntilElementCondition(action: .tap, element: discussionsButton, condition: .visible)
         discussionsButton.hit()
-        DiscussionsHelper.discussionButton(discussionId: gradedDiscussionId).waitUntil(condition: .visible)
+        DiscussionsHelper.discussionButton(discussionId: gradedDiscussionId).waitUntil(.visible)
     }
 
     func testEditDiscussion() throws {
         DiscussionsHelper.discussionButton(discussionId: simpleDiscussionId).hit()
-        let optionsButton = DiscussionsHelper.Details.optionsButton.waitUntil(condition: .visible)
+        let optionsButton = DiscussionsHelper.Details.optionsButton.waitUntil(.visible)
         let editButton = app.find(label: "Edit")
         optionsButton.actionUntilElementCondition(action: .tap, element: editButton, condition: .visible)
         editButton.hit()
 
-        XCTAssertTrue(DiscussionsHelper.Editor.titleField.waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(DiscussionsHelper.Editor.titleField.waitUntil(.visible).isVisible)
     }
 }

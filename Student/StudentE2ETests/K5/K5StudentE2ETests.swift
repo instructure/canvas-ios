@@ -21,19 +21,19 @@ import TestsFoundation
 class K5StudentE2ETests: K5UITestCase {
     func testStudentK5() {
         setUpK5()
-        XCTAssertTrue(K5Helper.courseCard(id: "21025").waitUntil(condition: .visible).isVisible)
-        XCTAssertTrue(K5Helper.accountNotificationString.waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(K5Helper.courseCard(id: "21025").waitUntil(.visible).isVisible)
+        XCTAssertTrue(K5Helper.accountNotificationString.waitUntil(.visible).isVisible)
 
         K5Helper.courseCard(id: "21025").hit()
-        XCTAssertTrue(K5Helper.homeTab.waitUntil(condition: .visible).isVisible)
-        XCTAssertTrue(K5Helper.scheduleTab.waitUntil(condition: .visible).isVisible)
-        XCTAssertTrue(K5Helper.gradesTab.waitUntil(condition: .visible).isVisible)
-        XCTAssertTrue(K5Helper.modulesTab.waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(K5Helper.homeTab.waitUntil(.visible).isVisible)
+        XCTAssertTrue(K5Helper.scheduleTab.waitUntil(.visible).isVisible)
+        XCTAssertTrue(K5Helper.gradesTab.waitUntil(.visible).isVisible)
+        XCTAssertTrue(K5Helper.modulesTab.waitUntil(.visible).isVisible)
 
         K5Helper.gradesTab.hit()
-        XCTAssertTrue(K5Helper.emptyGradesForCourse.waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(K5Helper.emptyGradesForCourse.waitUntil(.visible).isVisible)
 
         K5Helper.modulesTab.hit()
-        XCTAssertTrue(K5Helper.emptyPage.waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(K5Helper.emptyPage.waitUntil(.visible).isVisible)
     }
 }

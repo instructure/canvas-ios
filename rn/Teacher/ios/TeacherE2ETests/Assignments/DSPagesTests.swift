@@ -34,8 +34,8 @@ class DSPagesTests: E2ETestCase {
         DashboardHelper.courseCard(course: course).hit()
         CourseDetailsHelper.cell(type: .pages).hit()
         pullToRefresh()
-        XCTAssertTrue(PagesHelper.emptyPage.waitUntil(condition: .visible).isVisible)
-        XCTAssertFalse(PagesHelper.page(index: 0).waitUntil(condition: .vanish).isVisible)
+        XCTAssertTrue(PagesHelper.emptyPage.waitUntil(.visible).isVisible)
+        XCTAssertFalse(PagesHelper.page(index: 0).waitUntil(.vanish).isVisible)
 
         // Let's add a page manually
         PagesHelper.add.hit()
@@ -43,22 +43,22 @@ class DSPagesTests: E2ETestCase {
         PagesHelper.Editor.title.writeText(text: pageTitle)
         PagesHelper.Editor.done.hit()
         pullToRefresh()
-        XCTAssertTrue(PagesHelper.page(index: 0).waitUntil(condition: .visible).isVisible)
-        XCTAssertFalse(PagesHelper.frontPageHeading.waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(PagesHelper.page(index: 0).waitUntil(.visible).isVisible)
+        XCTAssertFalse(PagesHelper.frontPageHeading.waitUntil(.visible).isVisible)
 
         // Let's create a page that is published and frontpage
         let seededPageTitle = "This is a seeded page"
         let seededPageContent = "This is the body of the seeded page"
         let seededPublishedFrontPage = seeder.createPage(courseId: course.id, requestBody: .init(title: seededPageTitle, body: seededPageContent, front_page: true, published: true))
         pullToRefresh()
-        XCTAssertTrue(PagesHelper.frontPageHeading.waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(PagesHelper.frontPageHeading.waitUntil(.visible).isVisible)
 
         PagesHelper.frontPageHeading.hit()
-        XCTAssertTrue(PagesHelper.Details.options.waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(PagesHelper.Details.options.waitUntil(.visible).isVisible)
 
         pullToRefresh()
-        XCTAssertTrue(app.find(id: "\(seededPublishedFrontPage.title), \(course.name)").waitUntil(condition: .visible).isVisible)
-        XCTAssertTrue(app.find(labelContaining: seededPublishedFrontPage.body).waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(app.find(id: "\(seededPublishedFrontPage.title), \(course.name)").waitUntil(.visible).isVisible)
+        XCTAssertTrue(app.find(labelContaining: seededPublishedFrontPage.body).waitUntil(.visible).isVisible)
     }
 
     // Enable this once https://instructure.atlassian.net/browse/MBL-15906 is fixed
@@ -75,42 +75,42 @@ class DSPagesTests: E2ETestCase {
         logInDSUser(teacher)
         DashboardHelper.courseCard(course: course).hit()
         CourseDetailsHelper.cell(type: .pages).hit()
-        XCTAssertTrue(PagesHelper.emptyPage.waitUntil(condition: .visible).isVisible)
-        XCTAssertFalse(PagesHelper.page(index: 0).waitUntil(condition: .vanish).isVisible)
+        XCTAssertTrue(PagesHelper.emptyPage.waitUntil(.visible).isVisible)
+        XCTAssertFalse(PagesHelper.page(index: 0).waitUntil(.vanish).isVisible)
 
         // Let's seed a published front page
         var seededPageTitle = "This is a Front page"
         let seededPageContent = "This is the body of the seeded page"
         seeder.createPage(courseId: course.id, requestBody: .init(title: seededPageTitle, body: seededPageContent, front_page: true, published: true))
         pullToRefresh()
-        XCTAssertTrue(PagesHelper.frontPageHeading.waitUntil(condition: .visible).isVisible)
-        XCTAssertFalse(PagesHelper.page(index: 0).waitUntil(condition: .vanish).isVisible)
+        XCTAssertTrue(PagesHelper.frontPageHeading.waitUntil(.visible).isVisible)
+        XCTAssertFalse(PagesHelper.page(index: 0).waitUntil(.vanish).isVisible)
         PagesHelper.frontPageHeading.hit()
         PagesHelper.Details.options.hit()
 
         // Delete option should be missing if it is a front page
-        XCTAssertFalse(app.find(label: "Delete").waitUntil(condition: .vanish).isVisible)
-        XCTAssertTrue(app.find(label: "Edit").waitUntil(condition: .visible).isVisible)
+        XCTAssertFalse(app.find(label: "Delete").waitUntil(.vanish).isVisible)
+        XCTAssertTrue(app.find(label: "Edit").waitUntil(.visible).isVisible)
         app.find(label: "Edit").hit()
         seededPageTitle = "This is not a front page"
         PagesHelper.Editor.title.writeText(text: seededPageTitle)
-        XCTAssertTrue(PagesHelper.Editor.frontPage.waitUntil(condition: .enabled).isEnabled)
+        XCTAssertTrue(PagesHelper.Editor.frontPage.waitUntil(.enabled).isEnabled)
         PagesHelper.Editor.frontPage.hit()
-        XCTAssertTrue(PagesHelper.Editor.published.waitUntil(condition: .enabled).isEnabled)
+        XCTAssertTrue(PagesHelper.Editor.published.waitUntil(.enabled).isEnabled)
         PagesHelper.Editor.done.hit()
 
         // Check for page to be updated with new title and no longer a front page and delete it
         pullToRefresh()
-        XCTAssertFalse(PagesHelper.frontPageHeading.waitUntil(condition: .visible).isVisible)
-        XCTAssertTrue(PagesHelper.page(index: 0).waitUntil(condition: .visible).isVisible)
+        XCTAssertFalse(PagesHelper.frontPageHeading.waitUntil(.visible).isVisible)
+        XCTAssertTrue(PagesHelper.page(index: 0).waitUntil(.visible).isVisible)
         PagesHelper.page(index: 0).hit()
-        XCTAssertTrue(app.find(id: "\(seededPageTitle), \(course.name)").waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(app.find(id: "\(seededPageTitle), \(course.name)").waitUntil(.visible).isVisible)
         PagesHelper.Details.options.hit()
         app.find(label: "Delete").hit()
         app.find(label: "OK").hit()
         pullToRefresh()
-        XCTAssertTrue(PagesHelper.emptyPage.waitUntil(condition: .visible).isVisible)
-        XCTAssertFalse(PagesHelper.frontPageHeading.waitUntil(condition: .vanish).isVisible)
-        XCTAssertFalse(PagesHelper.page(index: 0).waitUntil(condition: .vanish).isVisible)
+        XCTAssertTrue(PagesHelper.emptyPage.waitUntil(.visible).isVisible)
+        XCTAssertFalse(PagesHelper.frontPageHeading.waitUntil(.vanish).isVisible)
+        XCTAssertFalse(PagesHelper.page(index: 0).waitUntil(.vanish).isVisible)
     }
 }

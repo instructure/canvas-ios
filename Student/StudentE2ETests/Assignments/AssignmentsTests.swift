@@ -56,50 +56,50 @@ class AssignmentsTests: E2ETestCase {
 
         // MARK: Navigate to Assignments and check visibility
         Helper.navigateToAssignments(course: course)
-        let navBar = Helper.navBar(course: course).waitUntil(condition: .visible)
+        let navBar = Helper.navBar(course: course).waitUntil(.visible)
         XCTAssertTrue(navBar.isVisible)
 
-        let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(condition: .visible)
+        let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(assignmentButton.isVisible)
         XCTAssertTrue(assignmentButton.label.contains(assignment.name))
 
         // MARK: Tap on the assignment and check details
-        assignmentButton.tap()
-        let detailsNavBar = DetailsHelper.navBar(course: course).waitUntil(condition: .visible)
+        assignmentButton.hit()
+        let detailsNavBar = DetailsHelper.navBar(course: course).waitUntil(.visible)
         XCTAssertTrue(detailsNavBar.isVisible)
 
-        let nameLabel = DetailsHelper.name.waitUntil(condition: .visible)
+        let nameLabel = DetailsHelper.name.waitUntil(.visible)
         XCTAssertTrue(nameLabel.isVisible)
         XCTAssertEqual(nameLabel.label, assignment.name)
 
-        let pointsLabel = DetailsHelper.points.waitUntil(condition: .visible)
+        let pointsLabel = DetailsHelper.points.waitUntil(.visible)
         XCTAssertTrue(pointsLabel.isVisible)
         XCTAssertEqual(pointsLabel.label, "0 pts")
 
-        let statusLabel = DetailsHelper.status.waitUntil(condition: .visible)
+        let statusLabel = DetailsHelper.status.waitUntil(.visible)
         XCTAssertTrue(statusLabel.isVisible)
         XCTAssertEqual(statusLabel.label, "Not Submitted")
 
-        let dueLabel = DetailsHelper.due.waitUntil(condition: .visible)
+        let dueLabel = DetailsHelper.due.waitUntil(.visible)
         XCTAssertTrue(dueLabel.isVisible)
         XCTAssertEqual(dueLabel.label, "No Due Date")
 
-        let submissionTypesLabel = DetailsHelper.submissionTypes.waitUntil(condition: .visible)
+        let submissionTypesLabel = DetailsHelper.submissionTypes.waitUntil(.visible)
         XCTAssertTrue(submissionTypesLabel.isVisible)
         XCTAssertEqual(submissionTypesLabel.label, "Text Entry")
 
-        let submissionsButton = DetailsHelper.submissionsButton.waitUntil(condition: .visible)
+        let submissionsButton = DetailsHelper.submissionsButton.waitUntil(.visible)
         XCTAssertTrue(submissionsButton.isVisible)
 
-        let submissionsButtonLabel = DetailsHelper.submissionsButtonLabel.waitUntil(condition: .visible)
+        let submissionsButtonLabel = DetailsHelper.submissionsButtonLabel.waitUntil(.visible)
         XCTAssertTrue(submissionsButtonLabel.isVisible)
         XCTAssertEqual(submissionsButtonLabel.label, "Submission & Rubric")
 
-        let descriptionLabel = DetailsHelper.description(assignment: assignment).waitUntil(condition: .visible)
+        let descriptionLabel = DetailsHelper.description(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(descriptionLabel.isVisible)
         XCTAssertEqual(descriptionLabel.label, assignment.description)
 
-        let submitAssignmentButton = DetailsHelper.submitAssignmentButton.waitUntil(condition: .visible)
+        let submitAssignmentButton = DetailsHelper.submitAssignmentButton.waitUntil(.visible)
         XCTAssertTrue(submitAssignmentButton.isVisible)
     }
 
@@ -118,48 +118,48 @@ class AssignmentsTests: E2ETestCase {
 
         // MARK: Navigate to Assignments and tap the assignment
         Helper.navigateToAssignments(course: course)
-        let navBar = Helper.navBar(course: course).waitUntil(condition: .visible)
+        let navBar = Helper.navBar(course: course).waitUntil(.visible)
         XCTAssertTrue(navBar.isVisible)
 
-        let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(condition: .visible)
+        let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(assignmentButton.isVisible)
         assignmentButton.hit()
 
-        var submitAssignmentButton = DetailsHelper.submitAssignmentButton.waitUntil(condition: .visible)
+        var submitAssignmentButton = DetailsHelper.submitAssignmentButton.waitUntil(.visible)
         XCTAssertTrue(submitAssignmentButton.isVisible)
         submitAssignmentButton.hit()
 
         // MARK: Check visibility of elements on submission edit screen
-        let submissionNavBar = SubmissionHelper.navBar.waitUntil(condition: .visible)
+        let submissionNavBar = SubmissionHelper.navBar.waitUntil(.visible)
         XCTAssertTrue(submissionNavBar.isVisible)
 
-        let submissionCancelButton = SubmissionHelper.cancelButton.waitUntil(condition: .visible)
+        let submissionCancelButton = SubmissionHelper.cancelButton.waitUntil(.visible)
         XCTAssertTrue(submissionCancelButton.isVisible)
         XCTAssertEqual(submissionCancelButton.label, "Cancel")
 
-        var submissionSubmitButton = SubmissionHelper.submitButton.waitUntil(condition: .visible)
+        var submissionSubmitButton = SubmissionHelper.submitButton.waitUntil(.visible)
         XCTAssertTrue(submissionSubmitButton.isVisible)
         XCTAssertFalse(submissionSubmitButton.isEnabled)
         XCTAssertEqual(submissionSubmitButton.label, "Submit")
 
-        let textField = SubmissionHelper.textField.waitUntil(condition: .visible)
+        let textField = SubmissionHelper.textField.waitUntil(.visible)
         XCTAssertTrue(textField.isVisible)
 
         // MARK: Write some text and submit the assignment
         let testText = "SubmitAssignment test"
         textField.pasteText(text: testText)
 
-        submissionSubmitButton = SubmissionHelper.submitButton.waitUntil(condition: .visible)
+        submissionSubmitButton = SubmissionHelper.submitButton.waitUntil(.visible)
         XCTAssertTrue(submissionSubmitButton.isEnabled)
 
-        submissionSubmitButton.tap()
+        submissionSubmitButton.hit()
 
         // MARK: Check if submission was successful
-        let successfulSubmissionLabel = DetailsHelper.successfulSubmissionLabel.waitUntil(condition: .visible)
+        let successfulSubmissionLabel = DetailsHelper.successfulSubmissionLabel.waitUntil(.visible)
         XCTAssertTrue(successfulSubmissionLabel.isVisible)
         XCTAssertEqual(successfulSubmissionLabel.label, "Successfully submitted!")
 
-        submitAssignmentButton = DetailsHelper.submitAssignmentButton.waitUntil(condition: .visible)
+        submitAssignmentButton = DetailsHelper.submitAssignmentButton.waitUntil(.visible)
         XCTAssertTrue(submitAssignmentButton.isVisible)
         XCTAssertEqual(submitAssignmentButton.label, "Resubmit Assignment")
     }
@@ -185,18 +185,18 @@ class AssignmentsTests: E2ETestCase {
 
         // MARK: Navigate to Assignments
         Helper.navigateToAssignments(course: course)
-        let navBar = Helper.navBar(course: course).waitUntil(condition: .visible)
+        let navBar = Helper.navBar(course: course).waitUntil(.visible)
         XCTAssertTrue(navBar.isVisible)
 
         // MARK: Check Yesterdays Assignment due date
         let yesterdaysAssignmentButton = Helper.assignmentButton(assignment: yesterdaysAssignment)
-            .waitUntil(condition: .visible)
+            .waitUntil(.visible)
         XCTAssertTrue(yesterdaysAssignmentButton.isVisible)
         XCTAssertTrue(yesterdaysAssignmentButton.label.contains("Due Yesterday"))
 
         // MARK: Check Tomorrows Assignment due date
         let tomorrowsAssignmentButton = Helper.assignmentButton(assignment: tomorrowsAssignment)
-            .waitUntil(condition: .visible)
+            .waitUntil(.visible)
         XCTAssertTrue(tomorrowsAssignmentButton.isVisible)
         XCTAssertTrue(tomorrowsAssignmentButton.label.contains("Due Tomorrow"))
     }

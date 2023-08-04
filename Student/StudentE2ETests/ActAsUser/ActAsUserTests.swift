@@ -25,18 +25,18 @@ class ActAsUserTests: CoreUITestCase {
 
     func testActAsUser() {
         let profileButton = DashboardHelper.profileButton.hit()
-        let userNameLabel = ProfileHelper.userNameLabel.waitUntil(condition: .visible)
-        XCTAssertTrue(userNameLabel.waitUntil(condition: .visible).hasLabel(label: "Admin One"))
+        let userNameLabel = ProfileHelper.userNameLabel.waitUntil(.visible)
+        XCTAssertTrue(userNameLabel.waitUntil(.visible).hasLabel(label: "Admin One"))
 
-        var actAsUserButton = ProfileHelper.actAsUserButton.waitUntil(condition: .visible)
+        var actAsUserButton = ProfileHelper.actAsUserButton.waitUntil(.visible)
         XCTAssertTrue(actAsUserButton.isVisible)
 
         actAsUserButton.hit()
-        let userIDField = ActAsUserHelper.userIDField.waitUntil(condition: .visible)
+        let userIDField = ActAsUserHelper.userIDField.waitUntil(.visible)
         XCTAssertTrue(userIDField.isVisible)
 
         userIDField.writeText(text: "613")
-        let domainField = ActAsUserHelper.domainField.waitUntil(condition: .visible)
+        let domainField = ActAsUserHelper.domainField.waitUntil(.visible)
         if !domainField.hasValue(value: "https://\(user!.host)") {
             domainField.cutText()
             domainField.writeText(text: "https://\(user!.host)")
@@ -46,19 +46,19 @@ class ActAsUserTests: CoreUITestCase {
         XCTAssertTrue(actAsUserButton.isVisible)
 
         actAsUserButton.hit()
-        DashboardHelper.courseCard(courseId: "262").waitUntil(condition: .visible)
+        DashboardHelper.courseCard(courseId: "262").waitUntil(.visible)
         profileButton.hit()
-        XCTAssertTrue(userNameLabel.waitUntil(condition: .visible).hasLabel(label: "Student One"))
+        XCTAssertTrue(userNameLabel.waitUntil(.visible).hasLabel(label: "Student One"))
 
-        let endActAsUserButton = ActAsUserHelper.endActAsUserButton.waitUntil(condition: .visible)
+        let endActAsUserButton = ActAsUserHelper.endActAsUserButton.waitUntil(.visible)
         XCTAssertTrue(endActAsUserButton.isVisible)
 
         endActAsUserButton.hit()
         ActAsUserHelper.okAlertButton.hit()
-        app.find(label: "No Courses", type: .staticText).waitUntil(condition: .visible)
-        XCTAssertFalse(endActAsUserButton.waitUntil(condition: .vanish).isVisible)
+        app.find(label: "No Courses", type: .staticText).waitUntil(.visible)
+        XCTAssertFalse(endActAsUserButton.waitUntil(.vanish).isVisible)
 
         profileButton.hit()
-        XCTAssertTrue(userNameLabel.waitUntil(condition: .visible).hasLabel(label: "Admin One"))
+        XCTAssertTrue(userNameLabel.waitUntil(.visible).hasLabel(label: "Admin One"))
     }
 }

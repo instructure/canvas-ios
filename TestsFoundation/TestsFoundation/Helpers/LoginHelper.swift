@@ -43,7 +43,7 @@ public class LoginHelper: BaseHelper {
     }
 
     public struct Login {
-        public static var webView: XCUIElement { app.find(id: "LoginWeb.webView").waitUntil(condition: .visible) }
+        public static var webView: XCUIElement { app.find(id: "LoginWeb.webView").waitUntil(.visible) }
         public static var linksOfWebView: [XCUIElement] { webView.findAll(type: .link, minimumCount: 2) }
 
         public static var navBar: XCUIElement { app.find(id: user.host) }

@@ -36,27 +36,27 @@ class GradesTests: E2ETestCase {
         // MARK: Navigate to an assignment detail and check if grade updates
         GradesHelper.navigateToAssignments(course: course)
 
-        let assignmentOne = AssignmentsHelper.assignmentButton(assignment: assignments[0]).waitUntil(condition: .visible)
+        let assignmentOne = AssignmentsHelper.assignmentButton(assignment: assignments[0]).waitUntil(.visible)
         XCTAssertTrue(assignmentOne.isVisible)
-        assignmentOne.tap()
+        assignmentOne.hit()
 
         let grades = ["5", "100"]
         GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
 
         pullToRefresh()
-        let assignmentGrade = AssignmentsHelper.pointsOutOf(actualScore: "5", maxScore: "10").waitUntil(condition: .visible)
+        let assignmentGrade = AssignmentsHelper.pointsOutOf(actualScore: "5", maxScore: "10").waitUntil(.visible)
         XCTAssertTrue(assignmentGrade.isVisible)
 
         // MARK: Navigate to Grades Page and check there too
-        GradesHelper.TabBar.dashboardTab.tap()
+        GradesHelper.TabBar.dashboardTab.hit()
         GradesHelper.navigateToGrades(course: course)
 
-        XCTAssertTrue(app.find(label: "Total Grade").waitUntil(condition: .visible).isVisible)
-        XCTAssertTrue(GradesHelper.cell(assignment: assignments[0]).waitUntil(condition: .visible, timeout: 5).isVisible)
-        XCTAssertTrue(GradesHelper.cell(assignment: assignments[1]).waitUntil(condition: .visible, timeout: 5).isVisible)
-        XCTAssertTrue(GradesHelper.gradeOutOf(assignment: assignments[0], actualPoints: "5", maxPoints: "10").waitUntil(condition: .visible, timeout: 5).isVisible)
-        XCTAssertTrue(GradesHelper.gradeOutOf(assignment: assignments[1], actualPoints: "100", maxPoints: "100").waitUntil(condition: .visible, timeout: 5).isVisible)
-        XCTAssertTrue(GradesHelper.totalGrade.waitUntil(condition: .label, expected: "95.45%", timeout: 5).isVisible)
+        XCTAssertTrue(app.find(label: "Total Grade").waitUntil(.visible).isVisible)
+        XCTAssertTrue(GradesHelper.cell(assignment: assignments[0]).waitUntil(.visible, timeout: 5).isVisible)
+        XCTAssertTrue(GradesHelper.cell(assignment: assignments[1]).waitUntil(.visible, timeout: 5).isVisible)
+        XCTAssertTrue(GradesHelper.gradeOutOf(assignment: assignments[0], actualPoints: "5", maxPoints: "10").waitUntil(.visible, timeout: 5).isVisible)
+        XCTAssertTrue(GradesHelper.gradeOutOf(assignment: assignments[1], actualPoints: "100", maxPoints: "100").waitUntil(.visible, timeout: 5).isVisible)
+        XCTAssertTrue(GradesHelper.totalGrade.waitUntil(.label(expected: "95.45%"), timeout: 5).isVisible)
     }
 
     func testLetterGrades() {
@@ -76,7 +76,7 @@ class GradesTests: E2ETestCase {
         GradesHelper.navigateToAssignments(course: course)
 
         pullToRefresh()
-        let firstAssignment = AssignmentsHelper.assignmentButton(assignment: assignments[0]).waitUntil(condition: .visible)
+        let firstAssignment = AssignmentsHelper.assignmentButton(assignment: assignments[0]).waitUntil(.visible)
         XCTAssertTrue(firstAssignment.isVisible)
 
         // MARK: Grade assignments and check if grades are updated on the UI
@@ -84,21 +84,21 @@ class GradesTests: E2ETestCase {
         GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
         pullToRefresh()
 
-        firstAssignment.tap()
+        firstAssignment.hit()
         XCTAssertEqual(AssignmentsHelper.Details.gradeCircle.label, "Scored \(grades[0]) out of 100 points possible")
         XCTAssertEqual(AssignmentsHelper.Details.gradeDisplayGrade.label, "F")
 
         GradesHelper.backButton.hit()
-        let assignment1 = AssignmentsHelper.assignmentButton(assignment: assignments[1]).waitUntil(condition: .visible)
-        assignment1.tap()
-        AssignmentsHelper.Details.navBar(course: course).waitUntil(condition: .visible)
+        let assignment1 = AssignmentsHelper.assignmentButton(assignment: assignments[1]).waitUntil(.visible)
+        assignment1.hit()
+        AssignmentsHelper.Details.navBar(course: course).waitUntil(.visible)
         XCTAssertEqual(AssignmentsHelper.Details.gradeCircle.label, "Scored \(grades[1]) out of 100 points possible")
         XCTAssertEqual(AssignmentsHelper.Details.gradeDisplayGrade.label, "A")
 
         GradesHelper.backButton.hit()
-        let assignment2 = AssignmentsHelper.assignmentButton(assignment: assignments[2]).waitUntil(condition: .visible)
-        assignment2.tap()
-        AssignmentsHelper.Details.navBar(course: course).waitUntil(condition: .visible)
+        let assignment2 = AssignmentsHelper.assignmentButton(assignment: assignments[2]).waitUntil(.visible)
+        assignment2.hit()
+        AssignmentsHelper.Details.navBar(course: course).waitUntil(.visible)
         XCTAssertEqual(AssignmentsHelper.Details.gradeCircle.label, "Scored 83 out of 100 points possible")
         XCTAssertEqual(AssignmentsHelper.Details.gradeDisplayGrade.label, "B-")
     }
@@ -124,20 +124,20 @@ class GradesTests: E2ETestCase {
         GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
         pullToRefresh()
 
-        let firstAssignment = AssignmentsHelper.assignmentButton(assignment: assignments[0]).waitUntil(condition: .visible)
+        let firstAssignment = AssignmentsHelper.assignmentButton(assignment: assignments[0]).waitUntil(.visible)
         XCTAssertTrue(firstAssignment.isVisible)
 
-        firstAssignment.tap()
-        AssignmentsHelper.Details.navBar(course: course).waitUntil(condition: .visible)
+        firstAssignment.hit()
+        AssignmentsHelper.Details.navBar(course: course).waitUntil(.visible)
         XCTAssertEqual(AssignmentsHelper.Details.gradeCircle.label, "Scored \(grades[0]) out of 100 points possible")
         XCTAssertEqual(AssignmentsHelper.Details.gradeDisplayGrade.label, "\(grades[0])%")
 
         GradesHelper.backButton.hit()
-        let secondAssignment = AssignmentsHelper.assignmentButton(assignment: assignments[1]).waitUntil(condition: .visible)
+        let secondAssignment = AssignmentsHelper.assignmentButton(assignment: assignments[1]).waitUntil(.visible)
         XCTAssertTrue(secondAssignment.isVisible)
 
-        secondAssignment.tap()
-        AssignmentsHelper.Details.navBar(course: course).waitUntil(condition: .visible)
+        secondAssignment.hit()
+        AssignmentsHelper.Details.navBar(course: course).waitUntil(.visible)
         XCTAssertEqual(AssignmentsHelper.Details.gradeCircle.label, "Scored \(grades[1]) out of 100 points possible")
         XCTAssertEqual(AssignmentsHelper.Details.gradeDisplayGrade.label, "\(grades[1])%")
     }
@@ -163,38 +163,38 @@ class GradesTests: E2ETestCase {
         GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
 
         pullToRefresh()
-        let firstAssignment = AssignmentsHelper.assignmentButton(assignment: assignments[0]).waitUntil(condition: .visible)
+        let firstAssignment = AssignmentsHelper.assignmentButton(assignment: assignments[0]).waitUntil(.visible)
         XCTAssertTrue(firstAssignment.isVisible)
 
-        firstAssignment.tap()
-        AssignmentsHelper.Details.navBar(course: course).waitUntil(condition: .visible)
+        firstAssignment.hit()
+        AssignmentsHelper.Details.navBar(course: course).waitUntil(.visible)
         XCTAssertEqual(AssignmentsHelper.Details.gradeCircle.label, "Scored 100 out of 100 points possible")
         XCTAssertEqual(AssignmentsHelper.Details.gradeDisplayGrade.label, "Complete")
 
         GradesHelper.backButton.hit()
-        let secondAssignment = AssignmentsHelper.assignmentButton(assignment: assignments[1]).waitUntil(condition: .visible)
+        let secondAssignment = AssignmentsHelper.assignmentButton(assignment: assignments[1]).waitUntil(.visible)
         XCTAssertTrue(secondAssignment.isVisible)
 
-        secondAssignment.tap()
-        AssignmentsHelper.Details.navBar(course: course).waitUntil(condition: .visible)
+        secondAssignment.hit()
+        AssignmentsHelper.Details.navBar(course: course).waitUntil(.visible)
         XCTAssertEqual(AssignmentsHelper.Details.gradeCircle.label, "Scored 100 out of 100 points possible")
         XCTAssertEqual(AssignmentsHelper.Details.gradeDisplayGrade.label, "Complete")
 
         GradesHelper.backButton.hit()
-        let thirdAssignment = AssignmentsHelper.assignmentButton(assignment: assignments[2]).waitUntil(condition: .visible)
+        let thirdAssignment = AssignmentsHelper.assignmentButton(assignment: assignments[2]).waitUntil(.visible)
         XCTAssertTrue(thirdAssignment.isVisible)
 
-        thirdAssignment.tap()
-        AssignmentsHelper.Details.navBar(course: course).waitUntil(condition: .visible)
+        thirdAssignment.hit()
+        AssignmentsHelper.Details.navBar(course: course).waitUntil(.visible)
         XCTAssertEqual(AssignmentsHelper.Details.gradeCircle.label, "Scored 0 out of 100 points possible")
         XCTAssertEqual(AssignmentsHelper.Details.gradeDisplayGrade.label, "Incomplete")
 
         GradesHelper.backButton.hit()
-        let fourthAssignment = AssignmentsHelper.assignmentButton(assignment: assignments[3]).waitUntil(condition: .visible)
+        let fourthAssignment = AssignmentsHelper.assignmentButton(assignment: assignments[3]).waitUntil(.visible)
         XCTAssertTrue(fourthAssignment.isVisible)
 
-        fourthAssignment.tap()
-        AssignmentsHelper.Details.navBar(course: course).waitUntil(condition: .visible)
+        fourthAssignment.hit()
+        AssignmentsHelper.Details.navBar(course: course).waitUntil(.visible)
         XCTAssertEqual(AssignmentsHelper.Details.gradeCircle.label, "Scored 0 out of 100 points possible")
         XCTAssertEqual(AssignmentsHelper.Details.gradeDisplayGrade.label, "Incomplete")
     }

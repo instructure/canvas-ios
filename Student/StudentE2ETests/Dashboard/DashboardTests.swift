@@ -31,35 +31,35 @@ class DashboardTests: E2ETestCase {
 
         // MARK: Check for empty dashboard
         logInDSUser(student)
-        let noCoursesLabel = app.find(label: "No Courses").waitUntil(condition: .visible)
+        let noCoursesLabel = app.find(label: "No Courses").waitUntil(.visible)
         XCTAssertTrue(noCoursesLabel.isVisible)
 
         // MARK: Check for course1
         seeder.enrollStudent(student, in: course1)
         pullToRefresh()
-        let courseCard1 = Helper.courseCard(course: course1).waitUntil(condition: .visible)
+        let courseCard1 = Helper.courseCard(course: course1).waitUntil(.visible)
         XCTAssertTrue(courseCard1.isVisible)
 
         // MARK: Check for course2
         let course2 = seeder.createCourse()
         seeder.enrollStudent(student, in: course2)
         pullToRefresh()
-        let courseCard2 = Helper.courseCard(course: course2).waitUntil(condition: .visible)
+        let courseCard2 = Helper.courseCard(course: course2).waitUntil(.visible)
         XCTAssertTrue(courseCard2.isVisible)
 
         // MARK: Select a favorite course and check for dashboard updating
-        let dashboardEditButton = Helper.editButton.waitUntil(condition: .visible)
+        let dashboardEditButton = Helper.editButton.waitUntil(.visible)
         XCTAssertTrue(dashboardEditButton.isVisible)
 
-        dashboardEditButton.tap()
+        dashboardEditButton.hit()
         Helper.toggleFavorite(course: course2)
-        let navBarBackButton = Helper.backButton.waitUntil(condition: .visible)
+        let navBarBackButton = Helper.backButton.waitUntil(.visible)
         XCTAssertTrue(navBarBackButton.isVisible)
 
-        navBarBackButton.tap()
+        navBarBackButton.hit()
         pullToRefresh()
-        XCTAssertTrue(courseCard2.waitUntil(condition: .visible).isVisible)
-        XCTAssertFalse(courseCard1.waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(courseCard2.waitUntil(.visible).isVisible)
+        XCTAssertFalse(courseCard1.waitUntil(.visible).isVisible)
     }
 
     func testAnnouncementBelowInvite() {
@@ -69,7 +69,7 @@ class DashboardTests: E2ETestCase {
 
         // MARK: Check for empty dashboard
         logInDSUser(student)
-        XCTAssertTrue(app.find(label: "No Courses").waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(app.find(label: "No Courses").waitUntil(.visible).isVisible)
 
         // MARK: Create an enrollment and an announcement
         let enrollment = seeder.enrollStudent(student, in: course, state: .invited)
@@ -77,11 +77,11 @@ class DashboardTests: E2ETestCase {
         Helper.pullToRefresh()
 
         // MARK: Check visibility and order of the enrollment and the announcement
-        let courseAcceptButton = CourseInvitations.acceptButton(enrollment: enrollment).waitUntil(condition: .visible)
+        let courseAcceptButton = CourseInvitations.acceptButton(enrollment: enrollment).waitUntil(.visible)
         XCTAssertTrue(courseAcceptButton.isVisible)
 
         let notificationToggleButton = AccountNotifications.toggleButton(notification: announcement)
-            .waitUntil(condition: .visible)
+            .waitUntil(.visible)
         XCTAssertTrue(notificationToggleButton.isVisible)
 
         XCTAssertLessThan(courseAcceptButton.frame.maxY, notificationToggleButton.frame.minY)
@@ -96,9 +96,9 @@ class DashboardTests: E2ETestCase {
 
         // MARK: Get the user logged in and navigate to the course
         logInDSUser(student)
-        var courseCard = DashboardHelper.courseCard(course: course).waitUntil(condition: .visible)
+        var courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCard.isVisible)
-        courseCard.tap()
+        courseCard.hit()
 
         // MARK: Navigate to pages of course and open front page
         CourseDetailsHelper.cell(type: .pages).hit()
@@ -106,8 +106,8 @@ class DashboardTests: E2ETestCase {
 
         // MARK: Tap dashboard tab and check visibility of course card and label
         Helper.TabBar.dashboardTab.hit()
-        let coursesLabel = Helper.coursesLabel.waitUntil(condition: .visible)
-        courseCard = Helper.courseCard(course: course).waitUntil(condition: .visible)
+        let coursesLabel = Helper.coursesLabel.waitUntil(.visible)
+        courseCard = Helper.courseCard(course: course).waitUntil(.visible)
         XCTAssertTrue(coursesLabel.isVisible)
         XCTAssertTrue(courseCard.isVisible)
     }
@@ -120,7 +120,7 @@ class DashboardTests: E2ETestCase {
 
         // MARK: Get the user logged in and check visibility and label of course
         logInDSUser(student)
-        let courseCard = Helper.courseCard(course: course).waitUntil(condition: .visible)
+        let courseCard = Helper.courseCard(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCard.isVisible)
         XCTAssertTrue(courseCard.label.contains(course.name))
     }
@@ -139,11 +139,11 @@ class DashboardTests: E2ETestCase {
 
         // MARK: Get the user logged in and check visibility and label of courses
         logInDSUser(student)
-        var courseCard1 = Helper.courseCard(course: courses[0]).waitUntil(condition: .visible)
+        var courseCard1 = Helper.courseCard(course: courses[0]).waitUntil(.visible)
         XCTAssertTrue(courseCard1.isVisible)
         XCTAssertTrue(courseCard1.label.contains(courses[0].name))
 
-        var courseCard2 = Helper.courseCard(course: courses[1]).waitUntil(condition: .visible)
+        var courseCard2 = Helper.courseCard(course: courses[1]).waitUntil(.visible)
         XCTAssertTrue(courseCard2.isVisible)
         XCTAssertTrue(courseCard2.label.contains(courses[1].name))
 
@@ -151,26 +151,26 @@ class DashboardTests: E2ETestCase {
         Helper.editButton.hit()
 
         // MARK: Completed, Active, Invited courses should be listed
-        courseCard1 = Helper.courseCard(course: courses[0]).waitUntil(condition: .visible)
+        courseCard1 = Helper.courseCard(course: courses[0]).waitUntil(.visible)
         XCTAssertTrue(courseCard1.isVisible)
         XCTAssertTrue(courseCard1.label.contains(courses[0].name))
 
-        courseCard2 = Helper.courseCard(course: courses[1]).waitUntil(condition: .visible)
+        courseCard2 = Helper.courseCard(course: courses[1]).waitUntil(.visible)
         XCTAssertTrue(courseCard2.isVisible)
         XCTAssertTrue(courseCard2.label.contains(courses[1].name))
 
-        let courseCard3 = Helper.courseCard(course: courses[2]).waitUntil(condition: .visible)
+        let courseCard3 = Helper.courseCard(course: courses[2]).waitUntil(.visible)
         XCTAssertTrue(courseCard3.isVisible)
         XCTAssertTrue(courseCard3.label.contains(courses[2].name))
 
         // MARK: Creation Pending, Deleted, Inactive, Rejected should not be listed
-        let courseCard4 = Helper.courseCard(course: courses[3]).waitUntil(condition: .vanish)
+        let courseCard4 = Helper.courseCard(course: courses[3]).waitUntil(.vanish)
         XCTAssertFalse(courseCard4.isVisible)
-        let courseCard5 = Helper.courseCard(course: courses[4]).waitUntil(condition: .vanish)
+        let courseCard5 = Helper.courseCard(course: courses[4]).waitUntil(.vanish)
         XCTAssertFalse(courseCard5.isVisible)
-        let courseCard6 = Helper.courseCard(course: courses[5]).waitUntil(condition: .vanish)
+        let courseCard6 = Helper.courseCard(course: courses[5]).waitUntil(.vanish)
         XCTAssertFalse(courseCard6.isVisible)
-        let courseCard7 = Helper.courseCard(course: courses[6]).waitUntil(condition: .vanish)
+        let courseCard7 = Helper.courseCard(course: courses[6]).waitUntil(.vanish)
         XCTAssertFalse(courseCard7.isVisible)
     }
 
@@ -187,49 +187,49 @@ class DashboardTests: E2ETestCase {
 
         // MARK: Get the user logged in and check visibility of course
         logInDSUser(student)
-        var courseCard = Helper.courseCard(course: course).waitUntil(condition: .visible)
+        var courseCard = Helper.courseCard(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Check visibility of Dashboard Settings button
-        var dashboardSettingsButton = Helper.dashboardSettings.waitUntil(condition: .visible)
+        var dashboardSettingsButton = Helper.dashboardSettings.waitUntil(.visible)
         XCTAssertTrue(dashboardSettingsButton.isVisible)
 
         // MARK: Tap Dashboard Settings button then check visibility and value of Show Grade toggle
-        dashboardSettingsButton.tap()
-        var showGradeToggle = Helper.dashboardSettingsShowGradeToggle.waitUntil(condition: .visible)
+        dashboardSettingsButton.hit()
+        var showGradeToggle = Helper.dashboardSettingsShowGradeToggle.waitUntil(.visible)
         XCTAssertTrue(showGradeToggle.isVisible)
         XCTAssertTrue(showGradeToggle.hasValue(value: "0"))
 
         // MARK: Tap Show Grade toggle and check value again
-        showGradeToggle.tap()
+        showGradeToggle.hit()
         XCTAssertTrue(showGradeToggle.hasValue(value: "1"))
 
         // MARK: Tap Done button then check visibility of course again
-        var doneButton = Helper.doneButton.waitUntil(condition: .visible)
+        var doneButton = Helper.doneButton.waitUntil(.visible)
         XCTAssertTrue(doneButton.isVisible)
 
-        doneButton.tap()
+        doneButton.hit()
 
         // MARK: Check grade on Course Card label
-        courseCard = Helper.courseCard(course: course).waitUntil(condition: .visible)
+        courseCard = Helper.courseCard(course: course).waitUntil(.visible)
         let courseCardLabel = courseCard.label
         XCTAssertGreaterThan(courseCardLabel.count, 4)
         XCTAssertEqual(courseCardLabel.suffix(4), "100%")
 
         // MARK: Unselect Show Grades toggle then check Course Card label again
-        dashboardSettingsButton = Helper.dashboardSettings.waitUntil(condition: .visible)
+        dashboardSettingsButton = Helper.dashboardSettings.waitUntil(.visible)
         XCTAssertTrue(dashboardSettingsButton.isVisible)
 
-        dashboardSettingsButton.tap()
-        showGradeToggle = Helper.dashboardSettingsShowGradeToggle.waitUntil(condition: .visible)
+        dashboardSettingsButton.hit()
+        showGradeToggle = Helper.dashboardSettingsShowGradeToggle.waitUntil(.visible)
         XCTAssertTrue(showGradeToggle.isVisible)
 
-        showGradeToggle.tap()
-        doneButton = Helper.doneButton.waitUntil(condition: .visible)
+        showGradeToggle.hit()
+        doneButton = Helper.doneButton.waitUntil(.visible)
         XCTAssertTrue(doneButton.isVisible)
 
-        doneButton.tap()
-        courseCard = Helper.courseCard(course: course).waitUntil(condition: .visible)
+        doneButton.hit()
+        courseCard = Helper.courseCard(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCard.isVisible)
         XCTAssertTrue(courseCard.label.contains(course.name))
     }

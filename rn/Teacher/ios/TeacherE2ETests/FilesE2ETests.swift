@@ -22,14 +22,14 @@ class FilesE2ETests: CoreUITestCase {
     func testfilesE2E() {
         DashboardHelper.courseCard(courseId: "263").hit()
         CourseDetailsHelper.cell(type: .files).hit()
-        XCTAssertTrue(FilesHelper.List.addButton.waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(FilesHelper.List.addButton.waitUntil(.visible).isVisible)
         XCTAssertEqual(FilesHelper.List.file(index: 0).label, "Published, run.jpg, 133 KB")
         XCTAssertEqual(FilesHelper.List.file(index: 1).label, "Published, unfiled, 1 item")
         FilesHelper.List.file(index: 1).hit()
-        XCTAssertEqual(FilesHelper.List.file(index: 0).waitUntil(condition: .visible).label, "Published, xcode-black.png, 818 KB")
+        XCTAssertEqual(FilesHelper.List.file(index: 0).waitUntil(.visible).label, "Published, xcode-black.png, 818 KB")
         FilesHelper.backButton.hit()
         FilesHelper.List.addButton.hit()
-        XCTAssertTrue(FilesHelper.List.addFolderButton.waitUntil(condition: .visible).isVisible)
-        XCTAssertTrue(FilesHelper.List.addFileButton.waitUntil(condition: .visible).isVisible)
+        XCTAssertTrue(FilesHelper.List.addFolderButton.waitUntil(.visible).isVisible)
+        XCTAssertTrue(FilesHelper.List.addFileButton.waitUntil(.visible).isVisible)
     }
 }

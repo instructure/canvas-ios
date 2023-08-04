@@ -22,25 +22,25 @@ public class PhotosAppHelper: BaseHelper {
 
     public static func launch() {
         photosApp.launch()
-        photosApp.tap()
+        photosApp.hit()
         tapContinue()
     }
 
     public static func tapContinue() {
         if photosApp.buttons["Continue"].waitForExistence(timeout: 5) {
-            photosApp.buttons["Continue"].tap()
+            photosApp.buttons["Continue"].hit()
         }
     }
 
     public static func tapFirstPicture() {
         if photosApp.collectionViews["PhotosGridView"].cells.firstMatch.waitForExistence(timeout: defaultTimeout) {
-            photosApp.collectionViews["PhotosGridView"].cells.firstMatch.tap()
+            photosApp.collectionViews["PhotosGridView"].cells.firstMatch.hit()
         }
     }
 
     public static func tapShare() {
         if photosApp.buttons["Share"].waitForExistence(timeout: defaultTimeout) {
-            photosApp.buttons["Share"].tap()
+            photosApp.buttons["Share"].hit()
         }
     }
 
@@ -51,39 +51,39 @@ public class PhotosAppHelper: BaseHelper {
             .allElementsBoundByIndex
 
         if elements[3].waitForExistence(timeout: defaultTimeout) {
-            elements[3].tap()
+            elements[3].hit()
         }
     }
 
     public static func selectCourse(course: DSCourse) {
         if photosApp.buttons["Select course"].waitForExistence(timeout: defaultTimeout) {
-            photosApp.buttons["Select course"].tap()
+            photosApp.buttons["Select course"].hit()
         }
 
         if photosApp.buttons[course.name].waitForExistence(timeout: defaultTimeout) {
-            photosApp.buttons[course.name].tap()
+            photosApp.buttons[course.name].hit()
         }
     }
 
     public static func selectAssignment(assignment: DSAssignment) {
         if photosApp.buttons["Select assignment"].waitForExistence(timeout: defaultTimeout) {
-            photosApp.buttons["Select assignment"].tap()
+            photosApp.buttons["Select assignment"].hit()
         }
 
         if photosApp.buttons[assignment.name].waitForExistence(timeout: defaultTimeout) {
-            photosApp.buttons[assignment.name].tap()
+            photosApp.buttons[assignment.name].hit()
         }
     }
 
     public static func tapSubmitButton() {
         if photosApp.buttons["Submit"].waitForExistence(timeout: defaultTimeout) {
-            photosApp.buttons["Submit"].tap()
+            photosApp.buttons["Submit"].hit()
         }
     }
 
     public static func tapDoneButton() {
         if photosApp.buttons["Done"].waitForExistence(timeout: defaultTimeout) {
-            photosApp.buttons["Done"].tap()
+            photosApp.buttons["Done"].hit()
         }
     }
 
