@@ -48,7 +48,8 @@ class CourseSyncSyllabusInteractorLiveTests: CoreTestCase {
     private func mockSyllabusSummary() {
         api.mock(GetCourseSettings(courseID: "testCourse"),
                  value: .init(usage_rights_required: false,
-                              syllabus_course_summary: true))
+                              syllabus_course_summary: true,
+                              restrict_quantitative_data: false))
         api.mock(GetCalendarEvents(context: .course("testCourse"),
                                    type: .assignment),
                  value: [.make(id: "1")])

@@ -31,7 +31,6 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
     @ObservedObject var fileUploadNotificationCardViewModel = FileUploadNotificationCardListViewModel()
     @ObservedObject private var offlineModeViewModel: OfflineModeViewModel
 
-    @Environment(\.scenePhase) var scenePhase
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
