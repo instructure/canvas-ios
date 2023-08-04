@@ -80,8 +80,8 @@ public extension XCUIElement {
      *
      * - parameters
      *     - condition: The condition that the element should fulfill.
-     *     - timeout: Optional. Timeout in seconds. By default it's defaultTimeout.
-     *     - gracePeriod: Optional. Milliseconds to wait between each iteration.
+     *     - timeout: Optional. Time interval as timeout for the function. By default it's defaultTimeout.
+     *     - gracePeriod: Optional. Time interval to wait between each iteration.
      * - returns: self, so calls can be chained.
      */
     @discardableResult
@@ -127,8 +127,8 @@ public extension XCUIElement {
      *     - action:The action to do to the element.
      *     - element: Optional. The element to check after the action happened. By default it's self.
      *     - condition: The condition that the element should fulfill.
-     *     - timeout: Optional. Timeout in seconds. By default it's defaultTimeout.
-     *     - gracePeriod: Optional. Milliseconds to wait between each iteration.
+     *     - timeout: Optional. Time interval as timeout for the function. By default it's defaultTimeout.
+     *     - gracePeriod: Optional. Time interval to wait between each iteration.
      * - returns: true or false, depending on if the condition has been fulfilled.
      */
     @discardableResult
