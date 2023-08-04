@@ -16,27 +16,27 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import TestsFoundation
 
 class DiscussionEditE2ETests: CoreUITestCase {
+    let gradedDiscussionId = "14393"
+    let simpleDiscussionId = "14392"
 
     override func setUp() {
         super.setUp()
-        Dashboard.courseCard(id: "263").tapUntil {
-            CourseNavigation.discussions.exists
-        }
-        CourseNavigation.discussions.tap()
-        DiscussionListCell.graded.waitToExist()
+        let discussionsButton = CourseDetailsHelper.cell(type: .discussions)
+        DashboardHelper.courseCard(courseId: "263").actionUntilElementCondition(action: .tap, element: discussionsButton, condition: .visible)
+        discussionsButton.hit()
+        DiscussionsHelper.discussionButton(discussionId: gradedDiscussionId).waitUntil(.visible)
     }
 
     func testEditDiscussion() throws {
-        DiscussionListCell.cell(id: "14392").tap()
-        app.find(id: "DiscussionDetails.options").tapUntil {
-            app.find(label: "Edit").exists
-        }
-        app.find(label: "Edit").tap()
+        DiscussionsHelper.discussionButton(discussionId: simpleDiscussionId).hit()
+        let optionsButton = DiscussionsHelper.Details.optionsButton.waitUntil(.visible)
+        let editButton = app.find(label: "Edit")
+        optionsButton.actionUntilElementCondition(action: .tap, element: editButton, condition: .visible)
+        editButton.hit()
 
-        DiscussionEditor.titleField.waitToExist()
+        XCTAssertTrue(DiscussionsHelper.Editor.titleField.waitUntil(.visible).isVisible)
     }
 }

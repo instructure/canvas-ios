@@ -16,28 +16,26 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 import TestsFoundation
 
 class DashboardE2ETests: CoreUITestCase {
     func testDashboardE2E() {
-        Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
-        CourseNavigation.assignments.tap()
-        AssignmentsList.assignment(id: "1831").tap()
-        NavBar.backButton.tap()
-        NavBar.backButton.tap()
-        NavBar.backButton.tap()
-        XCTAssertTrue(Dashboard.courseCard(id: "263").exists())
-        TabBar.inboxTab.tap()
-        Inbox.filterButton.waitToExist()
-        TabBar.dashboardTab.tap()
-        XCTAssertTrue(Dashboard.courseCard(id: "263").exists())
-        app.find(label: "Edit").tap()
-        NavBar.backButton.tap()
-        XCTAssertTrue(Dashboard.courseCard(id: "263").exists())
-        XCTAssertTrue(Dashboard.courseCard(id: "5586").exists())
-        XCTAssertTrue(Dashboard.courseCard(id: "892").exists())
-        XCTAssertTrue(Dashboard.courseCard(id: "399").exists())
+        DashboardHelper.courseCard(courseId: "263").hit()
+        CourseDetailsHelper.cell(type: .assignments).hit()
+        AssignmentsHelper.assignmentButton(assignmentId: "1831").hit()
+        DashboardHelper.backButton.hit()
+        DashboardHelper.backButton.hit()
+        DashboardHelper.backButton.hit()
+        XCTAssertTrue(DashboardHelper.courseCard(courseId: "263").waitUntil(.visible).isVisible)
+        DashboardHelper.TabBar.inboxTab.hit()
+        InboxHelper.Filter.byCourse.waitUntil(.visible)
+        DashboardHelper.TabBar.dashboardTab.hit()
+        XCTAssertTrue(DashboardHelper.courseCard(courseId: "263").waitUntil(.visible).isVisible)
+        app.find(label: "Edit").hit()
+        DashboardHelper.backButton.hit()
+        XCTAssertTrue(DashboardHelper.courseCard(courseId: "263").waitUntil(.visible).isVisible)
+        XCTAssertTrue(DashboardHelper.courseCard(courseId: "5586").waitUntil(.visible).isVisible)
+        XCTAssertTrue(DashboardHelper.courseCard(courseId: "892").waitUntil(.visible).isVisible)
+        XCTAssertTrue(DashboardHelper.courseCard(courseId: "399").waitUntil(.visible).isVisible)
     }
 }

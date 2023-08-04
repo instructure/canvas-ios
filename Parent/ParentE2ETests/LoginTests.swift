@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
 import TestsFoundation
 
 class LoginCreateAccountE2ETests: CoreUITestCase {
@@ -30,13 +29,13 @@ class LoginCreateAccountE2ETests: CoreUITestCase {
     }
 
     func testCreateAccount() {
-        LoginStart.qrCodeButton.tap()
-        LoginStart.dontHaveAccountAction.tap()
-        PairWithStudentQRCodeTutorial.headerLabel.waitToExist()
-        PairWithStudentQRCodeTutorial.nextButton.tap()
-        LoginWeb.webView.waitToExist(shouldFail: false)
+        LoginHelper.Start.qrCodeButton.hit()
+        LoginHelper.Start.dontHaveAccountAction.hit()
+        LoginHelper.PairWithStudentQR.headerLabel.waitUntil(.visible)
+        LoginHelper.PairWithStudentQR.nextButton.hit()
+        LoginHelper.Login.webView.waitUntil(.visible)
         // Login screen automatically shows parent signup page
-        LoginWeb.studentPairingCodeLabel.waitToExist(shouldFail: false)
-        LoginWeb.parentCreateAccountButton.tap()
+        LoginHelper.Login.studentPairingCodeLabel.waitUntil(.visible)
+        LoginHelper.Login.parentCreateAccountButton.hit()
     }
 }

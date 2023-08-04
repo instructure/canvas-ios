@@ -16,44 +16,40 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 import TestsFoundation
 
 class PagesE2ETests: CoreUITestCase {
     func testCreateAndDeletePage() {
-        Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
+        DashboardHelper.courseCard(courseId: "263").hit()
+        CourseDetailsHelper.cell(type: .pages).hit()
 
-        CourseNavigation.pages.tap()
+        PagesHelper.frontPage.hit()
+        app.find(labelContaining: "This is a page for testing modules").waitUntil(.visible)
+        PagesHelper.backButton.hit()
+        PagesHelper.add.hit()
 
-        PageList.frontPage.tap()
-        app.find(labelContaining: "This is a page for testing modules").waitToExist()
-        NavBar.backButton.tap()
-        PageList.add.tap()
-
-        PageEditor.doneButton.waitToExist()
-        PageEditor.titleField.typeText("New Page")
-        PageEditor.publishedToggle.tap()
-        PageEditor.doneButton.tap()
-        PageList.add.waitToExist()
+        PagesHelper.Editor.done.waitUntil(.visible)
+        PagesHelper.Editor.title.writeText(text: "New Page")
+        PagesHelper.Editor.published.hit()
+        PagesHelper.Editor.done.hit()
+        PagesHelper.add.waitUntil(.visible)
         app.swipeDown()
 
         let editedPageTitle = "New Edited Page"
-        PageList.page(index: 2).tap()
-        PageDetails.options.waitToExist()
-        PageDetails.options.tap()
-        app.find(label: "Edit").tap()
-        PageEditor.doneButton.waitToExist()
-        PageEditor.titleField.cutText()
-        PageEditor.titleField.typeText(editedPageTitle)
-        PageEditor.doneButton.tap()
-        NavBar.backButton.tap()
+        PagesHelper.page(index: 2).hit()
+        PagesHelper.Details.options.hit()
+        app.find(label: "Edit").hit()
+        PagesHelper.Editor.done.waitUntil(.visible)
+        PagesHelper.Editor.title.cutText()
+        PagesHelper.Editor.title.writeText(text: editedPageTitle)
+        PagesHelper.Editor.done.hit()
+        PagesHelper.backButton.hit()
 
-        PageList.add.waitToExist()
-        app.find(label: editedPageTitle).tap()
-        PageDetails.options.tap()
-        app.find(label: "Delete").tap()
-        app.find(label: "OK").tap()
-        XCTAssertEqual(app.find(label: editedPageTitle).exists(), false)
+        PagesHelper.add.waitUntil(.visible)
+        app.find(label: editedPageTitle).hit()
+        PagesHelper.Details.options.hit()
+        app.find(label: "Delete").hit()
+        app.find(label: "OK").hit()
+        XCTAssertFalse(app.find(label: editedPageTitle).waitUntil(.vanish).isVisible)
     }
 }

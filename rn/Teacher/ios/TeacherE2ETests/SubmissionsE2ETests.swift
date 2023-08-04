@@ -16,60 +16,58 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 import TestsFoundation
 
 class SubmissionsE2ETests: CoreUITestCase {
     func testSubmissionsE2E() {
-        Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
-        CourseNavigation.assignments.tap()
-        AssignmentsList.assignment(id: "1831").tap()
-        AssignmentDetails.description("This is assignment one.").waitToExist()
+        DashboardHelper.courseCard(courseId: "263").hit()
+        CourseDetailsHelper.cell(type: .assignments).hit()
+        AssignmentsHelper.assignmentButton(assignmentId: "1831").hit()
+        XCTAssertTrue(app.find(labelContaining: "This is assignment one.").waitUntil(.visible).isVisible)
 
-        AssignmentDetails.viewAllSubmissionsButton.tap()
+        AssignmentsHelper.Details.viewAllSubmissionsButton.hit()
         pullToRefresh()
-        app.find(labelContaining: "Filter").tap()
-        app.find(labelContaining: "Graded").tap()
-        app.find(label: "Done").tap()
-        app.find(labelContaining: "Student One").waitToExist()
+        app.find(labelContaining: "Filter").hit()
+        app.find(labelContaining: "Graded").hit()
+        app.find(label: "Done").hit()
+        XCTAssertTrue(app.find(labelContaining: "Student One").waitUntil(.visible).isVisible)
 
-        app.find(labelContaining: "Filter").tap()
-        app.find(labelContaining: "Needs Grading").tap()
-        app.find(label: "Done").tap()
-        app.find(labelContaining: "No Submissions").waitToExist()
+        app.find(labelContaining: "Filter").hit()
+        app.find(labelContaining: "Needs Grading").hit()
+        app.find(label: "Done").hit()
+        XCTAssertTrue(app.find(labelContaining: "No Submissions").waitUntil(.visible).isVisible)
 
-        app.find(labelContaining: "Filter").tap()
-        app.find(labelContaining: "Not Submitted").tap()
-        app.find(label: "Done").tap()
+        app.find(labelContaining: "Filter").hit()
+        app.find(labelContaining: "Not Submitted").hit()
+        app.find(label: "Done").hit()
         pullToRefresh()
-        app.find(labelContaining: "Test Student").waitToExist()
-        app.find(labelContaining: "Student Two").waitToExist()
-        app.find(labelContaining: "Student One").waitToVanish()
+        XCTAssertTrue(app.find(labelContaining: "Test Student").waitUntil(.visible).isVisible)
+        XCTAssertTrue(app.find(labelContaining: "Student Two").waitUntil(.visible).isVisible)
+        XCTAssertFalse(app.find(labelContaining: "Student One").waitUntil(.vanish).isVisible)
 
         // On the submissions list screen, the navbar's back button is somehow different
-        app.find(labelContaining: "Assignment Details, Assignments").tap()
-        NavBar.backButton.tap()
-        AssignmentsList.assignment(id: "2075").tap()
-        AssignmentDetails.description("This assignment is for testing module navigation").waitToExist()
+        app.find(labelContaining: "Assignment Details, Assignments").hit()
+        AssignmentsHelper.backButton.hit()
+        AssignmentsHelper.assignmentButton(assignmentId: "2075").hit()
+        XCTAssertTrue(app.find(labelContaining: "This assignment is for testing module navigation").waitUntil(.visible).isVisible)
 
-        AssignmentDetails.viewAllSubmissionsButton.tap()
-        app.find(labelContaining: "Filter").tap()
-        app.find(labelContaining: "Graded").tap()
-        app.find(label: "Done").tap()
-        app.find(labelContaining: "No Submissions").waitToExist()
+        AssignmentsHelper.Details.viewAllSubmissionsButton.hit()
+        app.find(labelContaining: "Filter").hit()
+        app.find(labelContaining: "Graded").hit()
+        app.find(label: "Done").hit()
+        XCTAssertTrue(app.find(labelContaining: "No Submissions").waitUntil(.visible).isVisible)
 
-        app.find(labelContaining: "Filter").tap()
-        app.find(labelContaining: "Needs Grading").tap()
-        app.find(label: "Done").tap()
-        app.find(labelContaining: "No Submissions").waitToExist()
+        app.find(labelContaining: "Filter").hit()
+        app.find(labelContaining: "Needs Grading").hit()
+        app.find(label: "Done").hit()
+        XCTAssertTrue(app.find(labelContaining: "No Submissions").waitUntil(.visible).isVisible)
 
-        app.find(labelContaining: "Filter").tap()
-        app.find(labelContaining: "Not Submitted").tap()
-        app.find(label: "Done").tap()
+        app.find(labelContaining: "Filter").hit()
+        app.find(labelContaining: "Not Submitted").hit()
+        app.find(label: "Done").hit()
         pullToRefresh()
-        app.find(labelContaining: "Test Student").waitToExist()
-        app.find(labelContaining: "Student Two").waitToExist()
-        app.find(labelContaining: "Student One").waitToExist()
+        XCTAssertTrue(app.find(labelContaining: "Test Student").waitUntil(.visible).isVisible)
+        XCTAssertTrue(app.find(labelContaining: "Student Two").waitUntil(.visible).isVisible)
+        XCTAssertTrue(app.find(labelContaining: "Student One").waitUntil(.visible).isVisible)
     }
 }

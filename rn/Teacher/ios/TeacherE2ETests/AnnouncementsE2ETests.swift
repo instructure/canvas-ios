@@ -16,29 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 import TestsFoundation
 
 class AnnouncementsE2ETests: CoreUITestCase {
     func testAnnouncementsE2E() {
         let announcementTitle = "This is a test announcement"
         let announcementDescription = "For testing purposes"
-        Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
-        CourseNavigation.announcements.tap()
-        Announcements.emptyAnnouncements.waitToExist()
-        NavBar.backButton.tap()
-        NavBar.backButton.tap()
-        Dashboard.courseCard(id: "892").waitToExist()
-        Dashboard.courseCard(id: "892").tap()
-        CourseNavigation.announcements.tap()
-        Announcements.addNewAnnouncement.waitToExist()
-        Announcements.announcementByTitle(title: announcementTitle).waitToExist()
-        Announcements.announcementByTitle(title: announcementTitle).tap()
-        AnnouncementsDetails.optionButton.waitToExist()
-        AnnouncementsDetails.replyButton.waitToExist()
-        AnnouncementsDetails.detailsByText(text: announcementDescription).waitToExist()
-        AnnouncementsDetails.optionButton.tap()
-        app.find(label: "Edit").waitToExist()
+        DashboardHelper.courseCard(courseId: "263").hit()
+        CourseDetailsHelper.cell(type: .announcements).hit()
+        XCTAssertTrue(AnnouncementsHelper.emptyAnnouncements.waitUntil(.visible).isVisible)
+        AnnouncementsHelper.backButton.hit()
+        AnnouncementsHelper.backButton.hit()
+        DashboardHelper.courseCard(courseId: "892").hit()
+        CourseDetailsHelper.cell(type: .announcements).hit()
+        XCTAssertTrue(AnnouncementsHelper.addNewAnnouncement.waitUntil(.visible).isVisible)
+        app.find(labelContaining: announcementTitle).hit()
+        XCTAssertTrue(AnnouncementsHelper.Details.optionButton.waitUntil(.visible).isVisible)
+        XCTAssertTrue(AnnouncementsHelper.Details.replyButton.waitUntil(.visible).isVisible)
+        XCTAssertTrue(AnnouncementsHelper.Details.detailsByText(text: announcementDescription).waitUntil(.visible).isVisible)
+        AnnouncementsHelper.Details.optionButton.hit()
+        XCTAssertTrue(app.find(label: "Edit").waitUntil(.visible).isVisible)
     }
 }

@@ -19,50 +19,264 @@
 import Foundation
 import XCTest
 
+public var app: XCUIApplication { XCUIApplication() }
+
 public extension XCUIElement {
-    func find(label: String, type: XCUIElement.ElementType = .any) -> Element {
-        return descendants(matching: type).matching(label: label).firstElement
+    // MARK: Enums
+    enum ElementCondition {
+        case visible
+        case vanish
+        case value(expected: String)
+        case label(expected: String)
+        case enabled
+        case selected
+        case unselected
+        case hittable
+        case labelContaining(expected: String)
+        case labelHasPrefix(expected: String)
     }
 
-    func find(labelContaining needle: String, type: XCUIElement.ElementType = .any) -> Element {
-        return descendants(matching: type).matching(labelContaining: needle).firstElement
+    enum ElementAction {
+        case swipeUp
+        case swipeDown
+        case swipeRight
+        case swipeLeft
+        case tap
+        case showKeyboard
+        case hideKeyboard
+        case pullToRefresh
     }
 
-    func find(id: String, type: XCUIElement.ElementType = .any) -> Element {
-        return descendants(matching: type).matching(id: id).firstElement
+    // MARK: Static vars
+    static let defaultTimeout: TimeInterval = 15
+    static var defaultGracePeriod: TimeInterval = 1
+
+    // MARK: Private vars
+    var isVisible: Bool { exists }
+    var isVanished: Bool { !(exists && isHittable) }
+
+    // MARK: Functions
+    func tacticalSleep(_ seconds: TimeInterval = 0.5) { usleep(UInt32(seconds*1000000)) }
+
+    func hasValue(value expectedValue: String, strict: Bool = true) -> Bool {
+        let elementValue = value as? String ?? ""
+        return strict ? elementValue == expectedValue : elementValue.contains(expectedValue)
     }
 
-    func find(idStartingWith prefix: String, type: XCUIElement.ElementType = .any) -> Element {
-        return descendants(matching: type).matching(idStartingWith: prefix).firstElement
+    func hasLabel(label expectedLabel: String, strict: Bool = true) -> Bool {
+        return strict ? label == expectedLabel : label.contains(expectedLabel)
     }
 
-    func find(value: String, type: XCUIElement.ElementType = .any) -> Element {
-        return descendants(matching: type).matching(value: value).firstElement
+    @discardableResult
+    func hit() -> XCUIElement {
+        waitUntil(.visible)
+        if !isHittable { actionUntilElementCondition(action: .swipeUp, condition: .hittable, timeout: 5) }
+        tap()
+        return self
     }
 
-    func find(type: XCUIElement.ElementType, index: Int = 0) -> Element {
-        return XCUIElementQueryWrapper(descendants(matching: type), index: index)
+    /**
+     * Waits until the given condition is true.
+     *
+     * - parameters
+     *     - condition: The condition that the element should fulfill.
+     *     - timeout: Optional. Time interval as timeout for the function. By default it's defaultTimeout.
+     *     - gracePeriod: Optional. Time interval to wait between each iteration.
+     * - returns: self, so calls can be chained.
+     */
+    @discardableResult
+    func waitUntil(_ condition: ElementCondition,
+                   timeout: TimeInterval = defaultTimeout,
+                   gracePeriod: TimeInterval = defaultGracePeriod) -> XCUIElement {
+        tacticalSleep()
+        let deadline = Date().addingTimeInterval(timeout)
+        while Date() < deadline {
+            var result = false
+
+            switch condition {
+            case .vanish:
+                result = isVanished
+            case .visible:
+                result = isVisible
+            case .value(let expected):
+                result = hasValue(value: expected)
+            case .label(let expected):
+                result = hasLabel(label: expected)
+            case .enabled:
+                result = exists && isEnabled
+            case .selected:
+                result = exists && isSelected
+            case .unselected:
+                result = !isSelected
+            case .hittable:
+                result = isVisible && isHittable
+            case .labelContaining(let expected):
+                result = label.contains(expected)
+            case .labelHasPrefix(let expected):
+                result = label.hasPrefix(expected)
+            }
+            if result { break } else { tacticalSleep(gracePeriod) }
+        }
+        return self
     }
 
-    func find(id: String, label: String, type: XCUIElement.ElementType = .any) -> Element {
-        return descendants(matching: type).matching(id: id).matching(label: label).firstElement
+    /**
+     * Does an action (tap, swipe, etc.) to the element until the given condition is true.
+     *
+     * - parameters
+     *     - action:The action to do to the element.
+     *     - element: Optional. The element to check after the action happened. By default it's self.
+     *     - condition: The condition that the element should fulfill.
+     *     - timeout: Optional. Time interval as timeout for the function. By default it's defaultTimeout.
+     *     - gracePeriod: Optional. Time interval to wait between each iteration.
+     * - returns: true or false, depending on if the condition has been fulfilled.
+     */
+    @discardableResult
+    func actionUntilElementCondition(action: ElementAction,
+                                     element: XCUIElement? = nil,
+                                     condition: ElementCondition,
+                                     timeout: TimeInterval = defaultTimeout,
+                                     gracePeriod: TimeInterval = defaultGracePeriod) -> Bool {
+        tacticalSleep()
+        let deadline = Date().addingTimeInterval(timeout)
+        let actualElement = element ?? self
+
+        while Date() < deadline {
+            var result = false
+
+            switch condition {
+            case .vanish:
+                result = actualElement.isVanished
+            case .visible:
+                result = actualElement.isVisible
+            case .value(let expected):
+                result = actualElement.hasValue(value: expected)
+            case .label(let expected):
+                result = actualElement.hasLabel(label: expected)
+            case .enabled:
+                result = actualElement.exists && actualElement.isEnabled
+            case .selected:
+                result = actualElement.exists && actualElement.isSelected
+            case .unselected:
+                result = !actualElement.isSelected
+            case .hittable:
+                result = actualElement.isVisible && actualElement.isHittable
+            case .labelContaining(let expected):
+                result = label.contains(expected)
+            case .labelHasPrefix(let expected):
+                result = label.hasPrefix(expected)
+            }
+
+            if result { return true }
+
+            switch action {
+            case .tap: tap()
+            case .swipeUp: app.swipeUp()
+            case .swipeDown: app.swipeDown()
+            case .swipeLeft: app.swipeLeft()
+            case .swipeRight: app.swipeRight()
+            case .showKeyboard: CoreUITestCase.currentTestCase?.send(.showKeyboard, ignoreErrors: true)
+            case .hideKeyboard: CoreUITestCase.currentTestCase?.send(.hideKeyboard, ignoreErrors: true)
+            case .pullToRefresh: app.pullToRefresh()
+            }
+
+            tacticalSleep(gracePeriod)
+        }
+        return false
     }
 
-    func findAll(type: XCUIElement.ElementType) -> [Element] {
-        XCUIElementQueryWrapper(descendants(matching: type)).allElements
+    @discardableResult
+    func writeText(text: String) -> XCUIElement {
+        hit()
+        let keyboard = app.find(type: .keyboard)
+        keyboard.actionUntilElementCondition(action: .showKeyboard, condition: .visible)
+        waitUntil(.visible)
+        typeText(text)
+        keyboard.actionUntilElementCondition(action: .hideKeyboard, condition: .vanish)
+        return self
     }
 
-    func findAll(labelContaining: String, type: XCUIElement.ElementType = .any) -> [Element] {
-        XCUIElementQueryWrapper(descendants(matching: type).matching(labelContaining: labelContaining)).allElements
+    @discardableResult
+    func pasteText(text: String) -> XCUIElement {
+        UIPasteboard.general.string = text
+        let paste = app.find(label: "Paste", type: .menuItem)
+        actionUntilElementCondition(action: .tap, element: paste, condition: .visible)
+        paste.hit()
+        return self
     }
 
-    // MARK: - Alerts
-
-    func findAlertButton(label: String) -> Element {
-        descendants(matching: .alert).descendants(matching: .button).matching(label: label).firstElement
+    @discardableResult
+    func cutText() -> XCUIElement {
+        let selectAll = app.find(label: "Select All")
+        actionUntilElementCondition(action: .tap, element: selectAll, condition: .visible)
+        selectAll.hit()
+        app.find(label: "Cut").hit()
+        return self
     }
 
-    func findAlertStaticText(label: String) -> Element {
-        descendants(matching: .alert).descendants(matching: .staticText).matching(label: label).firstElement
+    func relativeCoordinate(x: CGFloat, y: CGFloat) -> XCUICoordinate {
+        return coordinate(withNormalizedOffset: CGVector(dx: x, dy: y))
+    }
+
+    func pullToRefresh(x: CGFloat = 0.5) {
+        relativeCoordinate(x: x, y: 0.2).press(forDuration: 0.05, thenDragTo: relativeCoordinate(x: x, y: 1.0))
+    }
+
+    func tapAt(_ point: CGPoint) {
+        waitUntil(.hittable)
+        coordinate(withNormalizedOffset: .zero).withOffset(CGVector(dx: point.x, dy: point.y)).tap()
+    }
+
+    // MARK: Find functions
+    func find(label: String, type: ElementType = .any) -> XCUIElement {
+        return descendants(matching: type).matching(label: label).firstMatch
+    }
+
+    func find(labelContaining needle: String, type: ElementType = .any) -> XCUIElement {
+        return descendants(matching: type).matching(labelContaining: needle).firstMatch
+    }
+
+    func find(id: String, type: ElementType = .any) -> XCUIElement {
+        return descendants(matching: type).matching(id: id).firstMatch
+    }
+
+    func find(idStartingWith prefix: String, type: ElementType = .any) -> XCUIElement {
+        return descendants(matching: type).matching(idStartingWith: prefix).firstMatch
+    }
+
+    func find(value: String, type: ElementType = .any) -> XCUIElement {
+        return descendants(matching: type).matching(value: value).firstMatch
+    }
+
+    func find(type: ElementType = .any) -> XCUIElement {
+        return descendants(matching: type).firstMatch
+    }
+
+    func find(id: String, label: String, type: ElementType = .any) -> XCUIElement {
+        return descendants(matching: type).matching(id: id).matching(label: label).firstMatch
+    }
+
+    func findAll(type: XCUIElement.ElementType, minimumCount: Int = 1, timeout: TimeInterval = defaultTimeout, gracePeriod: TimeInterval = defaultGracePeriod) -> [XCUIElement] {
+        let deadline = Date().addingTimeInterval(timeout)
+        var result = descendants(matching: type).allElementsBoundByIndex
+        while Date() < deadline && result.count < minimumCount {
+            tacticalSleep(gracePeriod)
+            result = descendants(matching: type).allElementsBoundByIndex
+        }
+        return result
+    }
+
+    func findAll(labelContaining: String, type: ElementType = .any) -> [XCUIElement] {
+        return descendants(matching: type).matching(labelContaining: labelContaining).allElementsBoundByIndex
+    }
+
+    // MARK: Find alert functions
+
+    func findAlertButton(label: String) -> XCUIElement {
+        return descendants(matching: .alert).descendants(matching: .button).matching(label: label).firstMatch
+    }
+
+    func findAlertStaticText(label: String) -> XCUIElement {
+        return descendants(matching: .alert).descendants(matching: .staticText).matching(label: label).firstMatch
     }
 }

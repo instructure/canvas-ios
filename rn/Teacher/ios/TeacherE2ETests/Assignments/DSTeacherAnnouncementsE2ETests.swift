@@ -33,24 +33,21 @@ class DSTeacherAnnouncementsE2ETests: E2ETestCase {
 
         // Login and check the seeded announcement
         logInDSUser(teacher)
-        Dashboard.courseCard(id: course.id).waitToExist()
-        Dashboard.courseCard(id: course.id).tap()
+        DashboardHelper.courseCard(course: course).hit()
         pullToRefresh()
-        CourseNavigation.announcements.waitToExist()
-        CourseNavigation.announcements.tap()
-        AnnouncementList.announcement(index: 0).waitToExist()
-        AnnouncementList.announcement(index: 0).tap()
-        XCTAssertTrue(app.find(label: announcementMessage).waitToExist(5).exists())
-        XCTAssertEqual(DiscussionDetails.title.label(), announcementTitle)
-        NavBar.backButton.tap()
+        CourseDetailsHelper.cell(type: .announcements).hit()
+        AnnouncementsHelper.cell(index: 0).hit()
+        XCTAssertTrue(app.find(label: announcementMessage).waitUntil(.visible).isVisible)
+        XCTAssertEqual(DiscussionsHelper.Details.titleLabel.label, announcementTitle)
+        AnnouncementsHelper.backButton.hit()
 
         // Add a new announcement from the app
-        Announcements.addNewAnnouncement.tap()
+        AnnouncementsHelper.addNewAnnouncement.hit()
         let newAnnouncementTitle = "New Announcement"
-        DiscussionEditor.titleField.typeText(newAnnouncementTitle)
-        RichContentEditor.webView.typeText("Description")
-        DiscussionEditor.doneButton.tap()
-        XCTAssertTrue(Announcements.announcementByTitle(title: newAnnouncementTitle).exists())
-        XCTAssertTrue(Announcements.announcementByTitle(title: announcementTitle).exists())
+        DiscussionsHelper.Editor.titleField.writeText(text: newAnnouncementTitle)
+        DiscussionsHelper.Editor.richContentEditorWebView.writeText(text: "Description")
+        DiscussionsHelper.Editor.doneButton.hit()
+        XCTAssertTrue(app.find(labelContaining: newAnnouncementTitle).waitUntil(.visible).isVisible)
+        XCTAssertTrue(app.find(labelContaining: announcementTitle).waitUntil(.visible).isVisible)
     }
 }

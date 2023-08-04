@@ -16,25 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import TestsFoundation
 
 class DSLoginE2ETests: E2ETestCase {
     // Follow-up of MBL-14653
     func testLoginWithLastUser() {
-        let users = seeder.createUsers(1)
+        let parent = seeder.createUser()
         let course = seeder.createCourse()
-        let parent = users[0]
         seeder.enrollParent(parent, in: course)
-
         logInDSUser(parent, lastLogin: false)
-
         logOut()
+        let lastLoginBtn = LoginHelper.Start.lastLoginButton.waitUntil(.visible)
+        XCTAssertEqual(lastLoginBtn.label, user.host)
 
-        let lastLoginBtn = LoginStart.lastLoginButton.waitToExist()
-        XCTAssertEqual(lastLoginBtn.label(), user.host)
-
-        lastLoginBtn.tap()
+        lastLoginBtn.hit()
         loginAfterSchoolFound(parent)
+        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
+        XCTAssertTrue(profileButton.isVisible)
     }
 }
