@@ -34,6 +34,7 @@ public extension XCUIElement {
         case hittable
         case labelContaining(expected: String)
         case labelHasPrefix(expected: String)
+        case idContains(expected: String)
     }
 
     enum ElementAction {
@@ -57,6 +58,8 @@ public extension XCUIElement {
 
     // MARK: Functions
     func tacticalSleep(_ seconds: TimeInterval = 0.5) { usleep(UInt32(seconds*1000000)) }
+
+    func idContains(expected: String) -> Bool { identifier.contains(expected) }
 
     func hasValue(value expectedValue: String, strict: Bool = true) -> Bool {
         let elementValue = value as? String ?? ""
@@ -114,6 +117,8 @@ public extension XCUIElement {
                 result = label.contains(expected)
             case .labelHasPrefix(let expected):
                 result = label.hasPrefix(expected)
+            case .idContains(let expected):
+                result = idContains(expected: expected)
             }
             if result { break } else { tacticalSleep(gracePeriod) }
         }
@@ -165,6 +170,8 @@ public extension XCUIElement {
                 result = label.contains(expected)
             case .labelHasPrefix(let expected):
                 result = label.hasPrefix(expected)
+            case .idContains(let expected):
+                result = idContains(expected: expected)
             }
 
             if result { return true }
