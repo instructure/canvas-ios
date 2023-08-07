@@ -28,50 +28,24 @@ class ProfileE2ETests: CoreUITestCase {
     }
 
     func testProfileDisplaysUsername() {
-        Profile.open()
-        XCTAssertEqual(Profile.userNameLabel.label(), "Student One")
-    }
-
-    func testProfileChangesUser() {
-        Profile.open()
-        Profile.changeUserButton.tap()
-        let entry = user!.session!
-        LoginStartSession.cell(host: entry.baseURL.host!, userID: entry.userID).waitToExist()
+        DashboardHelper.profileButton.hit()
+        let userNameLabel = ProfileHelper.userNameLabel.waitUntil(.visible)
+        XCTAssertEqual(userNameLabel.label, "Student One")
     }
 
     func xtestProfileLogsOut() {
-        Profile.open()
-        Profile.logOutButton.tap()
-        LoginStart.findSchoolButton.waitToExist()
+        DashboardHelper.profileButton.hit()
+        ProfileHelper.logOutButton.hit()
+        LoginHelper.Start.findSchoolButton.waitUntil(.visible)
         let entry = user!.session!
-        XCTAssertFalse(LoginStartSession.cell(host: entry.baseURL.host!, userID: entry.userID).exists)
+        XCTAssertFalse(LoginHelper.LoginStartSession.cell(host: entry.baseURL.host!, userID: entry.userID).waitUntil(.vanish).isVisible)
     }
 
     func testPreviewUserFile() {
-        Profile.open()
-        Profile.filesButton.tap()
+        DashboardHelper.profileButton.hit()
+        ProfileHelper.filesButton.hit()
 
-        FileList.file(index: 0).tap()
-        FileDetails.imageView.waitToExist()
-    }
-
-    func xtestProfileLandingPage() {
-        guard let entry = user?.session else {
-            return XCTFail("Couldn't get keychain entry")
-        }
-        for cell in LandingPageCell.allCases.reversed() { // dashboard last
-            TabBar.dashboardTab.tap()
-            Profile.open()
-            Profile.settingsButton.tap()
-            ProfileSettings.landingPage.tap()
-            cell.tap()
-            app.find(label: "Settings", type: .button).tap()
-            app.find(label: "Done", type: .button).tap()
-            Profile.open()
-            Profile.changeUserButton.tap()
-            LoginStartSession.cell(entry).tap()
-            cell.relatedTab.waitToExist()
-            XCTAssertTrue(cell.relatedTab.isSelected)
-        }
+        FilesHelper.List.file(index: 0).hit()
+        XCTAssertTrue(FilesHelper.Details.imageView.waitUntil(.visible).isVisible)
     }
 }

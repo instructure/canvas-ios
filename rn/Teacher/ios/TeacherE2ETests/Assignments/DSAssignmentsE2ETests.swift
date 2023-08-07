@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import TestsFoundation
 
 class DSAssignmentsE2ETests: E2ETestCase {
@@ -35,13 +34,11 @@ class DSAssignmentsE2ETests: E2ETestCase {
 
         logInDSUser(teacher)
 
-        Dashboard.courseCard(id: course.id).waitToExist()
-        Dashboard.courseCard(id: course.id).tap()
-        CourseNavigation.assignments.waitToExist().tap()
-        AssignmentsList.assignment(id: assignment.id).tap()
-        XCTAssertEqual(AssignmentDetails.name.label(), assignment.name)
-        AssignmentDetails.description(assignmentDescription).waitToExist(5)
-        XCTAssertTrue(AssignmentDetails.published.exists())
-        XCTAssertTrue(AssignmentDetails.description(assignmentDescription).exists())
+        DashboardHelper.courseCard(course: course).hit()
+        CourseDetailsHelper.cell(type: .assignments).hit()
+        AssignmentsHelper.assignmentButton(assignment: assignment).hit()
+        XCTAssertEqual(AssignmentsHelper.Details.name.waitUntil(.visible).label, assignment.name)
+        XCTAssertTrue(AssignmentsHelper.Details.published.waitUntil(.visible).isVisible)
+        XCTAssertTrue(AssignmentsHelper.Details.description(assignment: assignment).waitUntil(.visible).isVisible)
     }
 }

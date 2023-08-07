@@ -16,24 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 import TestsFoundation
 
 class SyllabusE2ETests: CoreUITestCase {
     func testSyllabusE2E() {
-        Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
-        CourseNavigation.syllabus.tap()
-        app.find(labelContaining: "Graded Discussion").tap()
-        AssignmentDetails.description("Why does Xcode come with a black version of its icon?").waitToExist()
-        NavBar.backButton.tap()
-        app.find(labelContaining: "Past Due").waitToExist()
-        app.find(label: "Edit").tap()
-        app.find(labelContaining: "Show Course Summary").waitToExist()
-        app.find(label: "Cancel").tap()
-        app.find(labelContaining: "Assignment One").waitToExist()
-        NavBar.backButton.tap()
-        NavBar.backButton.tap()
-        Dashboard.courseCard(id: "263").waitToExist()
+        DashboardHelper.courseCard(courseId: "263").hit()
+        CourseDetailsHelper.cell(type: .syllabus).hit()
+        app.find(labelContaining: "Graded Discussion").hit()
+        XCTAssertTrue(app.find(labelContaining: "Why does Xcode come with a black version of its icon?").waitUntil(.visible).isVisible)
+        SyllabusHelper.backButton.hit()
+        XCTAssertTrue(app.find(labelContaining: "Past Due").waitUntil(.visible).isVisible)
+        app.find(label: "Edit").hit()
+        XCTAssertTrue(app.find(labelContaining: "Show Course Summary").waitUntil(.visible).isVisible)
+        app.find(label: "Cancel").hit()
+        XCTAssertTrue(app.find(labelContaining: "Assignment One").waitUntil(.visible).isVisible)
+        SyllabusHelper.backButton.hit()
+        SyllabusHelper.backButton.hit()
+        XCTAssertTrue(DashboardHelper.courseCard(courseId: "263").waitUntil(.visible).isVisible)
     }
 }

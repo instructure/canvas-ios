@@ -37,9 +37,9 @@ open class K5UITestCase: CoreUITestCase {
     }
 
     open func setUpK5() {
-        K5NavigationBar.homeroom.waitToExist()
+        K5Helper.homeroom.waitUntil(.visible)
         resetAppStateForK5()
         pullToRefresh()
-        K5NavigationBar.homeroom.waitToExist()
+        K5Helper.homeroom.waitUntil(.visible)
     }
 }

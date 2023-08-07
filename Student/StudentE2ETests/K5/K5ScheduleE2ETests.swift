@@ -16,33 +16,31 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 import TestsFoundation
-@testable import Core
 
 class K5ScheduleE2ETests: K5UITestCase {
     func testK5Schedule() {
         setUpK5()
 
-        K5CourseCard.courseCard(id: "21025").waitToExist()
-        K5NavigationBar.schedule.waitToExist()
-        K5NavigationBar.schedule.tap()
-        K5Schedule.todayHeader.waitToExist()
+        XCTAssertTrue(K5Helper.courseCard(id: "21025").waitUntil(.visible).isVisible)
+        XCTAssertTrue(K5Helper.schedule.waitUntil(.visible).isVisible)
+        K5Helper.schedule.hit()
+        XCTAssertTrue(K5Helper.todayHeader.waitUntil(.visible).isVisible)
         app.swipeLeft()
-        K5Schedule.todayHeader.waitToVanish()
-        K5Schedule.todayButton.waitToExist()
+        XCTAssertFalse(K5Helper.todayHeader.waitUntil(.vanish).isVisible)
+        XCTAssertTrue(K5Helper.todayButton.waitUntil(.visible).isVisible)
         app.swipeRight()
-        K5Schedule.todayHeader.waitToExist()
+        XCTAssertTrue(K5Helper.todayHeader.waitUntil(.visible).isVisible)
         app.swipeRight()
-        K5Schedule.todayButton.waitToExist()
-        K5Schedule.todayButton.tap()
-        K5Schedule.todayHeader.waitToExist()
-        K5Schedule.previousWeekButton.waitToExist()
-        K5Schedule.previousWeekButton.tap()
-        K5Schedule.previousWeekButton.waitToExist()
-        K5Schedule.todayHeader.waitToVanish()
-        K5Schedule.todayButton.waitToExist()
-        K5Schedule.todayButton.tap()
-        K5Schedule.todayHeader.waitToExist()
+        XCTAssertTrue(K5Helper.todayButton.waitUntil(.visible).isVisible)
+        K5Helper.todayButton.hit()
+        XCTAssertTrue(K5Helper.todayHeader.waitUntil(.visible).isVisible)
+        XCTAssertTrue(K5Helper.previousWeekButton.waitUntil(.visible).isVisible)
+        K5Helper.previousWeekButton.hit()
+        XCTAssertTrue(K5Helper.previousWeekButton.waitUntil(.visible).isVisible)
+        XCTAssertFalse(K5Helper.todayHeader.waitUntil(.vanish).isVisible)
+        XCTAssertTrue(K5Helper.todayButton.waitUntil(.visible).isVisible)
+        K5Helper.todayButton.hit()
+        XCTAssertTrue(K5Helper.todayHeader.waitUntil(.visible).isVisible)
     }
 }
