@@ -145,7 +145,9 @@ class CourseListCell: UITableViewCell {
             }
         }
 
-        guard let scoreNoNil = score, let scoreString = Course.scoreFormatter.string(from: NSNumber(value: scoreNoNil)) else {
+        let hideScores = course.settings?.restrictQuantitativeData == true
+
+        guard !hideScores, let scoreNoNil = score, let scoreString = Course.scoreFormatter.string(from: NSNumber(value: scoreNoNil)) else {
             return grade ?? NSLocalizedString("No Grade", comment: "")
         }
 
