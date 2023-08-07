@@ -496,7 +496,12 @@ extension DiscussionDetailsViewController: CoreWebViewLinkDelegate {
             url.path.hasPrefix("/\(context.pathComponent)/discussion_topics/\(topicID)/")
         else {
             if url.pathComponents.contains("files") {
-                env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+                if offlineModeInteractor?.isOfflineModeEnabled() == true {
+                    UIAlertController.showItemNotAvailableInOfflineAlert()
+                    return true
+                } else {
+                    env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+                }
             } else {
                 env.router.route(to: url, from: self)
             }
