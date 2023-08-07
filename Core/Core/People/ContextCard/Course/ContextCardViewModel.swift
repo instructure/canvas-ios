@@ -25,7 +25,7 @@ public class ContextCardViewModel: ObservableObject {
     public lazy var course = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in self?.updateLoadingState() }
     public lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in self?.updateLoadingState() }
     public lazy var sections = env.subscribe(GetCourseSections(courseID: courseID)) { [weak self] in self?.updateLoadingState() }
-    public lazy var submissions = env.subscribe(GetSubmissionsForStudent(context: context, studentID: userID)) { [weak self] in self?.updateLoadingState() }
+    public lazy var submissions = env.subscribe(GetContextSubmissionsForStudent(context: context, studentID: userID, courseID: courseID)) { [weak self] in self?.updateLoadingState() }
     public lazy var permissions = env.subscribe(GetContextPermissions(context: context, permissions: [ .sendMessages ])) { [weak self] in self?.updateLoadingState() }
     public lazy var gradingPeriods = env.subscribe(GetGradingPeriods(courseID: courseID)) { [weak self] in self?.gradingPeriodsDidUpdate() }
 
@@ -76,6 +76,7 @@ public class ContextCardViewModel: ObservableObject {
             let predicates = [
                 NSPredicate(format: "%K != nil", #keyPath(ContextEnrollment.id)),
                 NSPredicate(key: #keyPath(ContextEnrollment.stateRaw), equals: EnrollmentState.active.rawValue),
+                NSPredicate(key: #keyPath(ContextEnrollment.canvasContextID), equals: "course_\(courseID)"),
                 NSPredicate(key: #keyPath(ContextEnrollment.userID), equals: userID),
             ]
             let scope = Scope(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: predicates), order: [])
@@ -109,8 +110,8 @@ public class ContextCardViewModel: ObservableObject {
         }
     }
 
-    public func assignment(with id: String) -> Assignment? {
-        env.database.viewContext.first(where: #keyPath(Assignment.id), equals: id)
+    public func assignment(with id: String) -> ContextAssignment? {
+        env.database.viewContext.first(where: #keyPath(ContextAssignment.id), equals: id)
     }
 
     public func openNewMessageComposer(controller: UIViewController) {
@@ -129,6 +130,13 @@ public class ContextCardViewModel: ObservableObject {
     }
 
     private func updateLoadingState() {
+
+        if !submissions.pending {
+            submissions.all.forEach {
+                print($0.assignment?.courseID)
+            }
+        }
+
         let newPending = user.pending || !user.requested ||
             course.pending ||
             colors.pending ||

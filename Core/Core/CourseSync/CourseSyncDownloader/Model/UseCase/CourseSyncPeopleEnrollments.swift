@@ -24,7 +24,7 @@ public class GetCourseSyncContextEnrollments: CollectionUseCase {
 
     public var cacheKey: String? { "courseSyncPeopleEnrollments" }
     public let request: GetEnrollmentsRequest
-    public let scope: Scope = .all
+    public let scope: Scope
     private let userID: String
 
     public init(context: Context, gradingPeriodID: String? = nil, states: [GetEnrollmentsRequest.State]? = nil, userID: String) {
@@ -33,6 +33,9 @@ public class GetCourseSyncContextEnrollments: CollectionUseCase {
                                         gradingPeriodID: gradingPeriodID,
                                         states: [ .active ])
         self.userID = userID
+        let predicates = [NSPredicate(key: #keyPath(ContextEnrollment.canvasContextID), equals: context.canvasContextID),
+                          NSPredicate(key: #keyPath(ContextEnrollment.userID), equals: userID), ]
+        scope = Scope(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: predicates), order: [])
     }
 
     public func write(response: [APIEnrollment]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {

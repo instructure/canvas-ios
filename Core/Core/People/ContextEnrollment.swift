@@ -32,7 +32,7 @@ final public class ContextEnrollment: NSManagedObject {
     @NSManaged public var type: String
     @NSManaged public var course: Course?
     @NSManaged public var courseSectionID: String?
-    @NSManaged public var grades: Set<Grade>
+    @NSManaged public var grades: Set<ContextGrade>
     @NSManaged public var observedUser: User?
     @NSManaged public var isFromInvitation: Bool
     @NSManaged public var lastActivityAt: Date?
@@ -135,7 +135,6 @@ extension ContextEnrollment {
 
         if let courseID = item.course_id?.value ?? course?.id {
             canvasContextID = "course_\(courseID)"
-            print(canvasContextID)
         }
 
         self.course = course
@@ -185,6 +184,7 @@ extension ContextEnrollment {
         }
 
         if let courseID = item.course_id?.value ?? course?.id {
+            print("saving submission for \(courseID)")
             let submissions: [Submission] = client.fetch(NSPredicate(format: "%K == %@ AND %K == %@",
                 #keyPath(Submission.assignment.courseID), courseID,
                 #keyPath(Submission.userID), item.user_id.value

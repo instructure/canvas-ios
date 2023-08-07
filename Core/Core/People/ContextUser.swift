@@ -29,16 +29,13 @@ public final class ContextUser: NSManagedObject {
     @NSManaged public var pronouns: String?
     @NSManaged public var courseID: String?
     @NSManaged public var groupID: String?
+    @NSManaged public var enrollments: Set<ContextEnrollment>
 
     private var scope: Scope {
         Scope(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(ContextEnrollment.userID), equals: id),
             NSPredicate(key: #keyPath(ContextEnrollment.course.id), equals: courseID),
         ]), order: [])
-    }
-
-    public var enrollments: Set<ContextEnrollment> {
-        Set(managedObjectContext?.fetch(scope: scope) ?? [])
     }
 }
 

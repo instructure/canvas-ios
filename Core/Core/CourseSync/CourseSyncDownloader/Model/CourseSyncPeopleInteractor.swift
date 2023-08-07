@@ -37,7 +37,7 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
                 .flatMap { users in
                     Self.fetchCurrentGradingPeriodId(courseID: courseId)
                         .flatMap {
-                            Self.fetchUserData(context: context, users: users, currentGradingPeriodID: $0)
+                            Self.fetchUserData(context: context, users: users, currentGradingPeriodID: $0, courseID: courseId)
                     }
                 }.eraseToAnyPublisher(),
         ]
@@ -46,7 +46,7 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
             .eraseToAnyPublisher()
     }
 
-    private static func fetchUserData(context: Context, users: [ContextUser], currentGradingPeriodID: String?) -> AnyPublisher<Void, Error> {
+    private static func fetchUserData(context: Context, users: [ContextUser], currentGradingPeriodID: String?, courseID: String) -> AnyPublisher<Void, Error> {
         Just(users)
             .map { $0.map { user in user.id} }
             .flatMap { userIDs in
@@ -54,7 +54,7 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
                     .setFailureType(to: Error.self)
                     .flatMap {
                         Publishers.Zip3(Self.fetchSingleUser(context: context, userID: $0),
-                                        Self.fetchSubmissionsForStudent(context: context, userID: $0),
+                                        Self.fetchSubmissionsForStudent(context: context, userID: $0, courseID: courseID),
                                         Self.fetchEnrollments(context: context, currentGradingPeriodID: currentGradingPeriodID, userID: $0) )
                     }.collect().mapToVoid()
             }.eraseToAnyPublisher()
@@ -74,11 +74,11 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
             .eraseToAnyPublisher()
     }
 
-    private static func fetchSubmissionsForStudent(context: Context, userID: String) -> AnyPublisher<Void, Error> {
+    private static func fetchSubmissionsForStudent(context: Context, userID: String, courseID: String) -> AnyPublisher<Void, Error> {
         guard userID == AppEnvironment.shared.currentSession?.userID else {
             return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
         }
-        return ReactiveStore(useCase: GetSubmissionsForStudent(context: context, studentID: userID))
+        return ReactiveStore(useCase: GetContextSubmissionsForStudent(context: context, studentID: userID, courseID: courseID))
             .getEntities()
             .mapToVoid()
             .eraseToAnyPublisher()
