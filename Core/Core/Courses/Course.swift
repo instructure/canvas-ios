@@ -185,6 +185,10 @@ extension Course {
         return scoreString
     }
 
+    public var hideQuantitativeData: Bool {
+        return settings?.restrictQuantitativeData ?? false
+    }
+
     public var hideTotalGrade: Bool {
         let enrollment = enrollments?.filter({ $0.isStudent }).first
         return hideFinalGrades == true || (

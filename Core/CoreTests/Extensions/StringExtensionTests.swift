@@ -44,4 +44,11 @@ class StringExtensionTests: XCTestCase {
         XCTAssertEqual("<>&'\"".removingXMLEscaping, "<>&'\"")
         XCTAssertEqual("&amp=&gt;".removingXMLEscaping, "&amp=>")
     }
+
+    func testContainsNumbers() {
+        XCTAssertFalse("".containsNumber)
+        XCTAssertFalse("test".containsNumber)
+        XCTAssertTrue("123".containsNumber)
+        XCTAssertTrue("test123".containsNumber)
+    }
 }

@@ -138,8 +138,8 @@ extension Enrollment {
         }
 
         self.course = course
-        
-        let showScores = course?.settings?.restrictQuantitativeData == false
+
+        let hideScores = false//course?.hideQuantitativeData == true
 
         if let apiGrades = item.grades {
             let grade = grades.first { $0.gradingPeriodID == gradingPeriodID } ?? client.insert()
@@ -148,7 +148,7 @@ extension Enrollment {
             grade.unpostedCurrentGrade = apiGrades.unposted_current_grade
             grade.overrideGrade = apiGrades.override_grade
 
-            if showScores {
+            if !hideScores {
                 grade.currentScore = apiGrades.current_score
                 grade.finalScore = apiGrades.final_score
                 grade.unpostedCurrentScore = apiGrades.unposted_current_score
@@ -170,7 +170,7 @@ extension Enrollment {
             let grade = grades.first { $0.gradingPeriodID == nil } ?? client.insert()
             grade.gradingPeriodID = nil
 
-            if showScores {
+            if !hideScores {
                 grade.currentScore = item.computed_current_score
                 computedCurrentScore = item.computed_current_score
                 computedFinalScore = item.computed_final_score
@@ -182,7 +182,7 @@ extension Enrollment {
             if let currentGradingPeriodID = item.current_grading_period_id {
                 let currentPeriodGrade = grades.first { $0.gradingPeriodID == currentGradingPeriodID } ?? client.insert()
                 currentPeriodGrade.gradingPeriodID = currentGradingPeriodID
-                currentPeriodGrade.currentScore = showScores ? item.current_period_computed_current_score : nil
+                currentPeriodGrade.currentScore = hideScores ? nil : item.current_period_computed_current_score
                 grades.insert(currentPeriodGrade)
             }
         }

@@ -98,6 +98,10 @@ public class Assignment: NSManagedObject {
      */
     @NSManaged public var submissions: Set<Submission>?
 
+    public var course: Course? {
+        managedObjectContext?.first(where: #keyPath(Course.id), equals: courseID)
+    }
+
     public var allowedExtensions: [String] {
         get { return allowedExtensionsRaw.split(separator: ",").map { String($0) } }
         set { allowedExtensionsRaw = newValue.joined(separator: ",") }

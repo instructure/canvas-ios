@@ -202,7 +202,9 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
                     letterGrade = courseEnrollment?.computedCurrentGrade ?? courseEnrollment?.computedFinalGrade
                 }
             }
-            if let scoreText = totalGradeLabel.text, let letterGrade = letterGrade {
+            if courses.first?.hideQuantitativeData == true {
+                totalGradeLabel.text = letterGrade ?? NSLocalizedString("N/A", bundle: .core, comment: "")
+            } else if let scoreText = totalGradeLabel.text, let letterGrade = letterGrade {
                 totalGradeLabel.text = scoreText + " (\(letterGrade))"
             }
         }
