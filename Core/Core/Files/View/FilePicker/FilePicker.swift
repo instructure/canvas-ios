@@ -16,11 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Combine
 import UIKit
 import UniformTypeIdentifiers
 
 public protocol FilePickerDelegate: ErrorViewController {
+    /**
+     - parameters:
+        - url: The URL pointing to a copy of the picked file. It's the receiver's responsibility to delete this file after it's no longer used.
+     */
     func filePicker(didPick url: URL)
     func filePicker(didRetry file: File)
 }
@@ -30,6 +34,7 @@ public class FilePicker: NSObject {
     public weak var delegate: FilePickerDelegate?
     public var batchAction: ((String) -> Void)?
     public var singleAction: ((Result<URL, Error>) -> Void)?
+    private var subscriptions = Set<AnyCancellable>()
 
     public init(delegate: FilePickerDelegate? = nil) {
         self.delegate = delegate
@@ -57,6 +62,8 @@ public class FilePicker: NSObject {
         }
 
         sheet.addAction(image: .paperclipLine, title: NSLocalizedString("Upload File", bundle: .core, comment: "")) { [weak self] in
+            // The asCopy: true ensures that file operations leave the original file untouched
+            // and we can safely work (annotate for example) on a copy of the original file
             let controller = UIDocumentPickerViewController(forOpeningContentTypes: [.item], asCopy: true)
             controller.delegate = self
             self?.env.router.show(controller, from: from, options: .modal())
@@ -138,7 +145,29 @@ extension FilePicker: UIImagePickerControllerDelegate, UINavigationControllerDel
 
 extension FilePicker: UIDocumentPickerDelegate {
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        for url in urls { delegate?.filePicker(didPick: url) }
+        guard let session = env.currentSession else { return }
+
+        Publishers
+            .Sequence<[URL], Never>(sequence: urls)
+            .subscribe(on: DispatchQueue.global())
+            .compactMap {
+                let tempURL = URL
+                    .Directories.temporary
+                    .appendingPathComponent(UUID.string, isDirectory: true)
+                    .appendingPathComponent($0.lastPathComponent, isDirectory: false)
+                do {
+                    try $0.move(to: tempURL)
+                    return tempURL
+                } catch {
+                    return nil
+                }
+            }
+            .collect()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak delegate] in
+                for url in $0 { delegate?.filePicker(didPick: url) }
+            }
+            .store(in: &subscriptions)
     }
 }
 

@@ -116,4 +116,16 @@ public class TestRouter: Router {
         showExpectation = XCTestExpectation(description: "show")
         popExpectation = XCTestExpectation(description: "pop")
     }
+
+    // MARK: Template Method Mocks
+
+    public private(set) var mockedURLTemplates: [URL: String] = [:]
+
+    public func mockTemplate(for url: URL, template: String) {
+        mockedURLTemplates[url] = template
+    }
+
+    public override func template(for url: URL) -> String? {
+        mockedURLTemplates[url]
+    }
 }

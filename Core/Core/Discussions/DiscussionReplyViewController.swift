@@ -125,6 +125,12 @@ public class DiscussionReplyViewController: ScreenViewTrackableViewController, E
         return controller
     }
 
+    deinit {
+        if let attachmentURL {
+            try? FileManager.default.removeItem(at: attachmentURL)
+        }
+    }
+
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
