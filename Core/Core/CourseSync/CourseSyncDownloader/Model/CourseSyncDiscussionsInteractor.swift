@@ -30,7 +30,7 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
     public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
         Self.fetchTopics(courseId: courseId)
             .flatMap { $0.publisher }
-            .filter { $0.discussionSubEntryCount > 0 }
+            .filter { $0.discussionSubEntryCount > 0 && !$0.locked }
             .flatMap { Self.getDiscussionView(courseId: courseId, topicId: $0.id) }
             .collect()
             .mapToVoid()
