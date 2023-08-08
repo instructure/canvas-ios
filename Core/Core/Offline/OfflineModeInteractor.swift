@@ -43,11 +43,10 @@ public final class OfflineModeInteractorLive: OfflineModeInteractor {
     }
 
     public func observeIsOfflineMode() -> AnyPublisher<Bool, Never> {
-        unowned let unownedSelf = self
         return availabilityService
             .startObservingStatus()
             .receive(on: DispatchQueue.main)
-            .map { _ in unownedSelf.isOfflineModeEnabled() }
+            .map { _ in self.isOfflineModeEnabled() }
             .eraseToAnyPublisher()
     }
 
