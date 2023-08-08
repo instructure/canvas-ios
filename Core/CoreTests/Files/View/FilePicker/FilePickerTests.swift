@@ -21,6 +21,8 @@ import XCTest
 import TestsFoundation
 
 class FilePickerTests: CoreTestCase, FilePickerDelegate {
+    private let testFileLocation = URL.Directories.temporary.appendingPathComponent("test.txt", isDirectory: false)
+
     var alertMessage: String?
     func showAlert(title: String?, message: String?) {
         alertMessage = message
@@ -38,7 +40,7 @@ class FilePickerTests: CoreTestCase, FilePickerDelegate {
 
     lazy var picker = FilePicker(delegate: self)
 
-    func testPick() {
+    func testPick() throws {
         picker.pick(from: UIViewController())
         let sheet = router.presented as? BottomSheetPickerViewController
         let actions = sheet?.actions
@@ -69,8 +71,14 @@ class FilePickerTests: CoreTestCase, FilePickerDelegate {
         XCTAssertEqual(actions?[current].title, "Upload File")
         actions?[current].action()
         let docPicker = router.presented as! UIDocumentPickerViewController
-        docPicker.delegate?.documentPicker?(docPicker, didPickDocumentsAt: [URL(string: "doc")!])
-        XCTAssertEqual(pickedURL, URL(string: "doc"))
+        try FileManager.default.createDirectory(at: testFileLocation.deletingLastPathComponent(), withIntermediateDirectories: true)
+        try Data().write(to: testFileLocation)
+        docPicker.delegate?.documentPicker?(docPicker, didPickDocumentsAt: [testFileLocation])
+        waitUntil(shouldFail: true) {
+            // The test file should be moved to a temp location
+            FileManager.default.fileExists(atPath: testFile.path)
+        }
+        XCTAssertNotEqual(pickedURL, testFileLocation, "The picked test file should be moved to the tmp folder.")
 
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             current += 1
