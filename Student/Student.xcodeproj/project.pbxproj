@@ -116,6 +116,7 @@
 		8B9846192A77CF08003E1E9F /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9846172A77CF08003E1E9F /* SettingsTests.swift */; };
 		8B9846262A7A444F003E1E9F /* LogoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9846252A7A444F003E1E9F /* LogoutTests.swift */; };
 		8B98462B2A7A6AFE003E1E9F /* CalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B98462A2A7A6AFE003E1E9F /* CalendarTests.swift */; };
+		8B9846372A80E89B003E1E9F /* ToDoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9846362A80E89B003E1E9F /* ToDoTests.swift */; };
 		8B9D055E2A667D81002E2447 /* SyllabusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D055C2A667D81002E2447 /* SyllabusTests.swift */; };
 		8BB5ED942A2E0F0B009D63DA /* HelpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5ED912A2E0F0B009D63DA /* HelpTests.swift */; };
 		9734351523866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9734351423866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift */; };
@@ -583,6 +584,7 @@
 		8B9846172A77CF08003E1E9F /* SettingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
 		8B9846252A7A444F003E1E9F /* LogoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutTests.swift; sourceTree = "<group>"; };
 		8B98462A2A7A6AFE003E1E9F /* CalendarTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTests.swift; sourceTree = "<group>"; };
+		8B9846362A80E89B003E1E9F /* ToDoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTests.swift; sourceTree = "<group>"; };
 		8B9D055C2A667D81002E2447 /* SyllabusTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusTests.swift; sourceTree = "<group>"; };
 		8BB5ED912A2E0F0B009D63DA /* HelpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpTests.swift; sourceTree = "<group>"; };
 		9734351423866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStreamViewControllerTests.swift; sourceTree = "<group>"; };
@@ -1271,27 +1273,28 @@
 		7DCF0F7622F8A0A0000AACCE /* StudentE2ETests */ = {
 			isa = PBXGroup;
 			children = (
-				8B9846242A7A444F003E1E9F /* Logout */,
-				8B9846152A77CF08003E1E9F /* Settings */,
-				8B9D055B2A667D81002E2447 /* Syllabus */,
+				8BE0C3602A28990700034CC6 /* ActAsUser */,
+				E809365124C21CB600D15E9A /* Announcements */,
+				E841D8C523D6648A00685A63 /* Assignments */,
 				8B9D05582A667D76002E2447 /* Calendar */,
 				8B70DBA52A559BF6007D3ED4 /* CourseDetails */,
-				8BB5ED882A2DE435009D63DA /* Help */,
-				8BE0C3602A28990700034CC6 /* ActAsUser */,
-				C9BCCA0E27D73EFC003E9CB0 /* Grades */,
-				C9A3C04B26A03B8200DAE8E1 /* K5 */,
-				E809365124C21CB600D15E9A /* Announcements */,
 				E809365D24C21CB700D15E9A /* Dashboard */,
 				E809364F24C21CB600D15E9A /* Discussions */,
+				C9BCCA0E27D73EFC003E9CB0 /* Grades */,
+				8BB5ED882A2DE435009D63DA /* Help */,
 				E809365324C21CB600D15E9A /* Inbox */,
-				E809364A24C21CB500D15E9A /* Login */,
-				E809365724C21CB700D15E9A /* Pages */,
-				E809365524C21CB600D15E9A /* Profile */,
-				E841D8C523D6648A00685A63 /* Assignments */,
-				E8EA86042304960800E4FD76 /* Modules */,
-				E8EA860C230497AC00E4FD76 /* People */,
-				E8EA86112304980000E4FD76 /* Quizzes */,
 				7DCF0F5E22F8A0A0000AACCE /* Info.plist */,
+				C9A3C04B26A03B8200DAE8E1 /* K5 */,
+				E809364A24C21CB500D15E9A /* Login */,
+				8B9846242A7A444F003E1E9F /* Logout */,
+				E8EA86042304960800E4FD76 /* Modules */,
+				E809365724C21CB700D15E9A /* Pages */,
+				E8EA860C230497AC00E4FD76 /* People */,
+				E809365524C21CB600D15E9A /* Profile */,
+				E8EA86112304980000E4FD76 /* Quizzes */,
+				8B9846152A77CF08003E1E9F /* Settings */,
+				8B9D055B2A667D81002E2447 /* Syllabus */,
+				8B9846352A80E888003E1E9F /* ToDo */,
 			);
 			path = StudentE2ETests;
 			sourceTree = "<group>";
@@ -1318,6 +1321,14 @@
 				8B9846252A7A444F003E1E9F /* LogoutTests.swift */,
 			);
 			path = Logout;
+			sourceTree = "<group>";
+		};
+		8B9846352A80E888003E1E9F /* ToDo */ = {
+			isa = PBXGroup;
+			children = (
+				8B9846362A80E89B003E1E9F /* ToDoTests.swift */,
+			);
+			path = ToDo;
 			sourceTree = "<group>";
 		};
 		8B9D05582A667D76002E2447 /* Calendar */ = {
@@ -2477,6 +2488,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B9D055E2A667D81002E2447 /* SyllabusTests.swift in Sources */,
+				8B9846372A80E89B003E1E9F /* ToDoTests.swift in Sources */,
 				C9BCCA1027D73F0F003E9CB0 /* GradesTests.swift in Sources */,
 				8B70DAFF2A52B603007D3ED4 /* LoginTests.swift in Sources */,
 				8B05ABB72A42043300A9C714 /* ModulesTests.swift in Sources */,

@@ -211,7 +211,7 @@ class TodoListCell: UITableViewCell {
         needsGradingView.isHidden = todo?.type != .grading
         needsGradingSpacer.isHidden = needsGradingView.isHidden
         needsGradingLabel.text = todo?.needsGradingText
-        accessibilityIdentifier = "to-do.list.\(todo?.assignment.htmlURL?.absoluteString ?? "unknown").row"
+        accessibilityIdentifier = "to-do.list.\(todo?.assignment.id ?? "unknown").row"
         accessibilityLabel = [accessIconView.accessibilityLabel, todo?.contextName, todo?.assignment.name, todo?.dueText, todo?.needsGradingText].compactMap { $0 }.joined(separator: ", ")
     }
 }
