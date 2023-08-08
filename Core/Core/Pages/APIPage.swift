@@ -59,6 +59,10 @@ extension APIPage {
 #endif
 
 public struct GetPagesRequest: APIRequestable {
+    public enum Include: String, CaseIterable {
+        case body
+    }
+
     public typealias Response = [APIPage]
 
     let context: Context
@@ -67,7 +71,10 @@ public struct GetPagesRequest: APIRequestable {
         return "\(context.pathComponent)/pages"
     }
     public var query: [APIQueryItem] {
-        return [.value("sort", "title")]
+        return [
+            .value("sort", "title"),
+            .include(Include.allCases.map { $0.rawValue }),
+        ]
     }
 }
 
