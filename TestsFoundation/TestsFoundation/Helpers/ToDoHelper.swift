@@ -16,11 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import TestsFoundation
-
 public class ToDoHelper: BaseHelper {
     public static var navBar: XCUIElement { app.find(type: .navigationBar) }
     public static var toDoBackButton: XCUIElement { navBar.find(label: "To Do", type: .button) }
+
     public static func cell(id: String) -> XCUIElement {
         return app.find(id: "to-do.list.\(id).row")
     }

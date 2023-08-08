@@ -114,6 +114,7 @@
 		8B9846132A77BDE5003E1E9F /* CoreTestsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9846122A77BDE5003E1E9F /* CoreTestsHelper.swift */; };
 		8B9846302A7ABBEF003E1E9F /* CalendarAppHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B98462F2A7ABBEF003E1E9F /* CalendarAppHelper.swift */; };
 		8B9846322A7ABC22003E1E9F /* SafariAppHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9846312A7ABC22003E1E9F /* SafariAppHelper.swift */; };
+		8B98463D2A823D5D003E1E9F /* ToDoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B98463C2A823D5D003E1E9F /* ToDoHelper.swift */; };
 		8C02370D294ADC5E03166916 /* CreateDSQuizQuestionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFA2EB914E415CCFACDB /* CreateDSQuizQuestionRequest.swift */; };
 		8CE7A795708CBCF4AF7A2674 /* DSModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69E1EBE6B486730AE73F45 /* DSModuleItem.swift */; };
 		8CEEA54DE127851FF426490F /* CreateDSDiscussionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D6E99369534DE2260DD4EB /* CreateDSDiscussionRequest.swift */; };
@@ -315,6 +316,7 @@
 		8B9846122A77BDE5003E1E9F /* CoreTestsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreTestsHelper.swift; sourceTree = "<group>"; };
 		8B98462F2A7ABBEF003E1E9F /* CalendarAppHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarAppHelper.swift; sourceTree = "<group>"; };
 		8B9846312A7ABC22003E1E9F /* SafariAppHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariAppHelper.swift; sourceTree = "<group>"; };
+		8B98463C2A823D5D003E1E9F /* ToDoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoHelper.swift; sourceTree = "<group>"; };
 		8E046239E00E2F114C950D3A /* ModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFixture.swift; sourceTree = "<group>"; };
 		8E52A6F60DF961A9FB652399 /* DSSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSubmission.swift; sourceTree = "<group>"; };
 		8EB01A67D620697DB09B6F61 /* CreateDSAccountNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSAccountNotificationRequest.swift; sourceTree = "<group>"; };
@@ -634,6 +636,7 @@
 				8B9845D82A72897B003E1E9F /* SyllabusHelper.swift */,
 				234C525F478ED716FA9FF1FC /* TestEnvironment.swift */,
 				47BBBB47D5854C1CBC756C78 /* ThirdPartyApp */,
+				8B98463C2A823D5D003E1E9F /* ToDoHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1049,6 +1052,7 @@
 				0793478FD5197EFFFD73BEB1 /* CreateDSAssignmentRequest.swift in Sources */,
 				CA33126D18814BE755EBB079 /* CreateDSCalendarEventRequest.swift in Sources */,
 				4AF772C9B1DEBEE7F021DAFB /* CreateDSConversationRequest.swift in Sources */,
+				8B98463D2A823D5D003E1E9F /* ToDoHelper.swift in Sources */,
 				1715B688AD0D030B01827E03 /* CreateDSCourseRequest.swift in Sources */,
 				8CEEA54DE127851FF426490F /* CreateDSDiscussionRequest.swift in Sources */,
 				9654B26FD1E6FA167D2CE1D5 /* CreateDSGradesRequest.swift in Sources */,
