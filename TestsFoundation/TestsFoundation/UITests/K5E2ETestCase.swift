@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,11 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct DSCourse: Codable {
-    public let id: String
-    public let name: String
-    public let time_zone: String
-    public var syllabus_body: String?
-    public let account_id: String
-    public var homeroom_course: Bool = false
+import Core
+
+open class K5E2ETestCase: E2ETestCase {
+    override open var experimentalFeatures: [ExperimentalFeature] { return [ExperimentalFeature.K5Dashboard]}
 }

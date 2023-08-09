@@ -34,7 +34,7 @@ public class CalendarHelper: BaseHelper {
     }
 
     static var localTimeZoneAbbreviation: String { return TimeZone.current.abbreviation() ?? "" }
-    static var plusMinutes = localTimeZoneAbbreviation == "GMT+2" ? 120 : -360
+    static var plusMinutes = localTimeZoneAbbreviation == "GMT+2" ? -480 : -360
     static let dateFormatter = DateFormatter()
 
     // MARK: UI Elements
@@ -171,9 +171,8 @@ public class CalendarHelper: BaseHelper {
     }
 
     // MARK: DataSeeding
-    public static func formatDate(addYears: Int = 0, addDays: Int = 0, addHours: Int = 0) -> String {
-        let plusTime = localTimeZoneAbbreviation != "GMT+2" ? 540 : 0
-        let date = Date().addYears(addYears).addDays(addDays).addMinutes(addHours*60).addMinutes(-360).addMinutes(plusTime)
+    public static func formatDate(addYears: Int = 0, addDays: Int = 0, addHours: Int = 0, addMinutes: Int = 0) -> String {
+        let date = Date().addYears(addYears).addDays(addDays).addMinutes(addHours*60).addMinutes(addMinutes).addMinutes(plusMinutes)
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         let formattedDate = dateFormatter.string(from: date)
         return formattedDate

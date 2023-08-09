@@ -115,6 +115,7 @@
 		8B9846302A7ABBEF003E1E9F /* CalendarAppHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B98462F2A7ABBEF003E1E9F /* CalendarAppHelper.swift */; };
 		8B9846322A7ABC22003E1E9F /* SafariAppHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9846312A7ABC22003E1E9F /* SafariAppHelper.swift */; };
 		8B98463D2A823D5D003E1E9F /* ToDoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B98463C2A823D5D003E1E9F /* ToDoHelper.swift */; };
+		8B9846592A83B11B003E1E9F /* K5E2ETestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9846582A83B11B003E1E9F /* K5E2ETestCase.swift */; };
 		8C02370D294ADC5E03166916 /* CreateDSQuizQuestionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFA2EB914E415CCFACDB /* CreateDSQuizQuestionRequest.swift */; };
 		8CE7A795708CBCF4AF7A2674 /* DSModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69E1EBE6B486730AE73F45 /* DSModuleItem.swift */; };
 		8CEEA54DE127851FF426490F /* CreateDSDiscussionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D6E99369534DE2260DD4EB /* CreateDSDiscussionRequest.swift */; };
@@ -317,6 +318,7 @@
 		8B98462F2A7ABBEF003E1E9F /* CalendarAppHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarAppHelper.swift; sourceTree = "<group>"; };
 		8B9846312A7ABC22003E1E9F /* SafariAppHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariAppHelper.swift; sourceTree = "<group>"; };
 		8B98463C2A823D5D003E1E9F /* ToDoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoHelper.swift; sourceTree = "<group>"; };
+		8B9846582A83B11B003E1E9F /* K5E2ETestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5E2ETestCase.swift; sourceTree = "<group>"; };
 		8E046239E00E2F114C950D3A /* ModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFixture.swift; sourceTree = "<group>"; };
 		8E52A6F60DF961A9FB652399 /* DSSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSubmission.swift; sourceTree = "<group>"; };
 		8EB01A67D620697DB09B6F61 /* CreateDSAccountNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSAccountNotificationRequest.swift; sourceTree = "<group>"; };
@@ -502,6 +504,7 @@
 				43B5DF0CBA8B3D804447D3C8 /* K5UITestCase.swift */,
 				BAF04BB223057EC494C75FB3 /* MiniCanvasUITestCase.swift */,
 				54130240B3C6C03B9CC9411A /* UITestUser.swift */,
+				8B9846582A83B11B003E1E9F /* K5E2ETestCase.swift */,
 			);
 			path = UITests;
 			sourceTree = "<group>";
@@ -1147,6 +1150,7 @@
 				B0B15E631B9125348B385E2E /* MockNotificationManager.swift in Sources */,
 				98295FB98C426A789A07658C /* MockUploadManager.swift in Sources */,
 				365EFAD2ABB62CBA24574AFA /* ModuleFixture.swift in Sources */,
+				8B9846592A83B11B003E1E9F /* K5E2ETestCase.swift in Sources */,
 				8917C1628DAFDC52287BF98D /* ModuleItemFixture.swift in Sources */,
 				8B9845FA2A72BDB9003E1E9F /* ActAsUserHelper.swift in Sources */,
 				3473CCA85DC34B470AB1A3B9 /* PageFixture.swift in Sources */,
