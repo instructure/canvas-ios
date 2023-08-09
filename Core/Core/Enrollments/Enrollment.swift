@@ -39,6 +39,7 @@ final public class Enrollment: NSManagedObject {
 
     @NSManaged public var computedCurrentScoreRaw: NSNumber?
     @NSManaged public var computedCurrentGrade: String?
+    @NSManaged public var computedCurrentLetterGrade: String?
     @NSManaged public var computedFinalScoreRaw: NSNumber?
     @NSManaged public var computedFinalGrade: String?
 
@@ -162,6 +163,7 @@ extension Enrollment {
             currentGradingPeriodID = item.current_grading_period_id
             totalsForAllGradingPeriodsOption = item.totals_for_all_grading_periods_option ?? false
 
+            computedCurrentLetterGrade = item.computed_current_letter_grade
             computedCurrentGrade = item.computed_current_grade
             computedFinalGrade = item.computed_final_grade
             currentPeriodComputedCurrentGrade = item.current_period_computed_current_grade

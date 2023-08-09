@@ -174,6 +174,10 @@ extension Course {
             return NSLocalizedString("N/A", bundle: .core, comment: "")
         }
 
+        if hideQuantitativeData == true {
+            return grade ?? enrollment.computedCurrentLetterGrade ?? NSLocalizedString("N/A", bundle: .core, comment: "")
+        }
+
         guard let scoreNotNil = score, let scoreString = Course.scoreFormatter.string(from: NSNumber(value: scoreNotNil)) else {
             return grade ?? NSLocalizedString("N/A", bundle: .core, comment: "")
         }
@@ -227,7 +231,8 @@ final public class CourseSettings: NSManagedObject {
         model.courseID = courseID
         model.syllabusCourseSummary = item.syllabus_course_summary ?? false
         model.usageRightsRequired = item.usage_rights_required ?? false
-        model.restrictQuantitativeData = item.restrict_quantitative_data ?? false
+        let isTeacher = AppEnvironment.shared.app == .teacher
+        model.restrictQuantitativeData = isTeacher ? false : item.restrict_quantitative_data ?? false
 
         if let course: Course = context.fetch(scope: .where(#keyPath(Course.id), equals: courseID)).first,
            course.settings == nil {
