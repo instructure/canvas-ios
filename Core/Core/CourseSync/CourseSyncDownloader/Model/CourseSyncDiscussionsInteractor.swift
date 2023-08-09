@@ -30,7 +30,7 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
     public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
         Self.fetchTopics(courseId: courseId)
             .flatMap { $0.publisher }
-            .filter { $0.discussionSubEntryCount > 0 && !$0.locked }
+            .filter { $0.discussionSubEntryCount > 0 }
             .flatMap { Self.getDiscussionView(courseId: courseId, topicId: $0.id) }
             .collect()
             .mapToVoid()
@@ -51,6 +51,8 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
     ) -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: GetDiscussionView(context: .course(courseId), topicID: topicId))
             .getEntities()
+            .replaceError(with: [])
+            .setFailureType(to: Error.self)
             .mapToVoid()
             .eraseToAnyPublisher()
     }
