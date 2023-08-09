@@ -28,6 +28,7 @@ class APIPageTests: XCTestCase {
         XCTAssertEqual(GetPagesRequest(context: groupContext).path, "groups/42/pages")
         XCTAssertEqual(GetPagesRequest(context: courseContext).queryItems, [
             URLQueryItem(name: "sort", value: "title"),
+            URLQueryItem(name: "include[]", value: "body"),
         ])
     }
 
