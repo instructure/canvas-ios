@@ -70,7 +70,6 @@ public class GradeFormatter {
         formatter.gradingType = assignment.gradingType
         formatter.gradeStyle = style
         formatter.hideScores = assignment.course?.hideQuantitativeData
-        formatter.placeholder = assignment.submission != nil ? "ng" : "np"
         if let userID = userID {
             let submission = assignment.submissions?.first { $0.userID == userID }
             return formatter.string(from: submission)
@@ -88,7 +87,6 @@ public class GradeFormatter {
         formatter.gradingType = assignment.gradingType
         formatter.gradeStyle = style
         formatter.hideScores = assignment.course?.hideQuantitativeData
-        formatter.placeholder = assignment.submission != nil ? "ng" : "np"
         if assignment.gradingType == .letter_grade {
             formatter.gradeStyle = .short
         }
@@ -136,7 +134,7 @@ public class GradeFormatter {
                 if let grade = submission.grade {
                     return String.localizedStringWithFormat(NSLocalizedString("%@ GPA", bundle: .core, comment: ""), grade)
                 }
-                return nil
+                return placeholder
             }
             switch gradeStyle {
             case .short:
@@ -154,7 +152,7 @@ public class GradeFormatter {
                 return medium(score: score, grade: submission.grade)
             }
         case .letter_grade:
-            if hideScores == true { return submission.grade }
+            if hideScores == true { return submission.grade ?? placeholder }
             switch gradeStyle {
             case .short:
                 return submission.grade

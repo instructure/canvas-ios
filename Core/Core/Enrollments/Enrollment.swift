@@ -139,7 +139,7 @@ extension Enrollment {
 
         self.course = course
 
-        let hideScores = false//course?.hideQuantitativeData == true
+        let hideScores = course?.hideQuantitativeData == true
 
         if let apiGrades = item.grades {
             let grade = grades.first { $0.gradingPeriodID == gradingPeriodID } ?? client.insert()
