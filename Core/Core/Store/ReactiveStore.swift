@@ -68,7 +68,7 @@ public class ReactiveStore<U: UseCase> {
     // MARK: -
 
     public init(
-        offlineModeInteractor: OfflineModeInteractor = OfflineModeInteractorLive.shared,
+        offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make(),
         context: NSManagedObjectContext = AppEnvironment.shared.database.viewContext,
         useCase: U
     ) {

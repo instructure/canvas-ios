@@ -27,7 +27,7 @@ struct DashboardCourseCardView: View {
     /** Wide layout puts the course image to the left of the cell while the course name and code will be next to it on the right. */
     let isWideLayout: Bool
     @Binding var isAvailable: Bool
-    @StateObject private var offlineModeViewModel = OfflineModeViewModel(interactor: OfflineModeInteractorLive.shared)
+    @StateObject private var offlineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
     @State private var isShowingKebabDialog = false
 
     @Environment(\.appEnvironment) var env

@@ -42,7 +42,7 @@ struct SideMenuMainSection: View {
     }
     @ObservedObject private var offlineModeViewModel: OfflineModeViewModel
 
-    init(_ enrollment: HelpLinkEnrollment, offlineModeViewModel: OfflineModeViewModel = OfflineModeViewModel(interactor: OfflineModeInteractorLive.shared)) {
+    init(_ enrollment: HelpLinkEnrollment, offlineModeViewModel: OfflineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())) {
         self.enrollment = enrollment
         let env = AppEnvironment.shared
         self.tools = env.subscribe(GetGlobalNavExternalPlacements())

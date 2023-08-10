@@ -117,7 +117,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
 
     public init(
         env: AppEnvironment,
-        offlineModeInteractor: OfflineModeInteractor = OfflineModeInteractorLive.shared,
+        offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make(),
         context: NSManagedObjectContext,
         useCase: U,
         eventHandler: @escaping EventHandler

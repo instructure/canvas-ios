@@ -24,7 +24,7 @@ extension UIButton {
 
     // MARK: - Public Interface
 
-    public func makeUnavailableInOfflineMode(_ interactor: OfflineModeInteractor = OfflineModeInteractorLive.shared) {
+    public func makeUnavailableInOfflineMode(_ interactor: OfflineModeInteractor = OfflineModeAssembly.make()) {
 
         // This method is usually called in some setup method and it looks better if the button is instantly disabled
         // rather then animating to its disabled state while the view controller is animating in.

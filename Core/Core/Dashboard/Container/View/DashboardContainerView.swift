@@ -48,7 +48,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
 
     public init(shouldShowGroupList: Bool,
                 showOnlyTeacherEnrollment: Bool,
-                offlineViewModel: OfflineModeViewModel = OfflineModeViewModel(interactor: OfflineModeInteractorLive.shared)) {
+                offlineViewModel: OfflineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())) {
         courseCardListViewModel = DashboardCourseCardListAssembly.makeDashboardCourseCardListViewModel(showOnlyTeacherEnrollment: showOnlyTeacherEnrollment)
         self.shouldShowGroupList = shouldShowGroupList
         let env = AppEnvironment.shared
