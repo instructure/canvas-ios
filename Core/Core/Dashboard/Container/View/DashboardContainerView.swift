@@ -144,7 +144,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
     @ViewBuilder
     private var rightNavBarButtons: some View {
         if courseCardListViewModel.shouldShowSettingsButton {
-            if ExperimentalFeature.offlineMode.isEnabled, env.app == .student {
+            if offlineModeViewModel.isOfflineFeatureEnabled, env.app == .student {
                 optionsKebabButton
             } else {
                 dashboardSettingsButton

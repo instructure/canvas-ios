@@ -18,18 +18,25 @@
 
 import Combine
 
-public class OfflineModeViewModel: ObservableObject {
-    @Published public var isOffline: Bool
-    @Published public var isOfflineFeatureEnabled: Bool
+class OfflineModeInteractorDummy: OfflineModeInteractor {
 
-    private let interactor: OfflineModeInteractor
+    func isFeatureFlagEnabled() -> Bool {
+        false
+    }
 
-    public init(interactor: OfflineModeInteractor) {
-        self.interactor = interactor
+    func isOfflineModeEnabled() -> Bool {
+        false
+    }
 
-        isOffline = interactor.isOfflineModeEnabled()
-        isOfflineFeatureEnabled = interactor.isFeatureFlagEnabled()
-        interactor.observeIsOfflineMode().assign(to: &$isOffline)
-        interactor.observeIsFeatureFlagEnabled().assign(to: &$isOfflineFeatureEnabled)
+    func observeIsFeatureFlagEnabled() -> AnyPublisher<Bool, Never> {
+        Just(false).eraseToAnyPublisher()
+    }
+
+    func observeIsOfflineMode() -> AnyPublisher<Bool, Never> {
+        Just(false).eraseToAnyPublisher()
+    }
+
+    func observeNetworkStatus() -> AnyPublisher<NetworkAvailabilityStatus, Never> {
+        Just(NetworkAvailabilityStatus.disconnected).eraseToAnyPublisher()
     }
 }

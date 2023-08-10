@@ -17,9 +17,13 @@
 //
 
 import Combine
+import CombineExt
+import CoreData
 
 public protocol OfflineModeInteractor {
+    func isFeatureFlagEnabled() -> Bool
     func isOfflineModeEnabled() -> Bool
+    func observeIsFeatureFlagEnabled() -> AnyPublisher<Bool, Never>
     func observeIsOfflineMode() -> AnyPublisher<Bool, Never>
     func observeNetworkStatus() -> AnyPublisher<NetworkAvailabilityStatus, Never>
 }
@@ -30,12 +34,31 @@ public final class OfflineModeInteractorLive: OfflineModeInteractor {
     public internal(set) static var shared: OfflineModeInteractor = OfflineModeInteractorLive()
 
     // MARK: - Dependencies
-
     private let availabilityService: NetworkAvailabilityService
 
-    public init(availabilityService: NetworkAvailabilityService = NetworkAvailabilityServiceLive()) {
+    // MARK: - Internal State
+    private var featureFlagEnabled = CurrentValueRelay<Bool>(false)
+    private let offlineFlagStore: ReactiveStore<LocalUseCase<FeatureFlag>>
+    private var subscriptions = Set<AnyCancellable>()
+
+    // MARK: - Public Interface
+
+    public init(availabilityService: NetworkAvailabilityService = NetworkAvailabilityServiceLive(),
+                context: NSManagedObjectContext = AppEnvironment.shared.database.viewContext) {
         self.availabilityService = availabilityService
         self.availabilityService.startMonitoring()
+        self.offlineFlagStore = ReactiveStore(offlineModeInteractor: OfflineModeInteractorDummy(),
+                                              context: context,
+                                              useCase: Self.LocalFeatureFlagUseCase)
+        subscribeToOfflineFeatureFlagChanges()
+    }
+
+    deinit {
+        offlineFlagStore.cancel()
+    }
+
+    public func isFeatureFlagEnabled() -> Bool {
+        featureFlagEnabled.value
     }
 
     public func isOfflineModeEnabled() -> Bool {
@@ -58,11 +81,30 @@ public final class OfflineModeInteractorLive: OfflineModeInteractor {
             .eraseToAnyPublisher()
     }
 
-    private func isFeatureFlagEnabled() -> Bool {
-        ExperimentalFeature.offlineMode.isEnabled
+    public func observeIsFeatureFlagEnabled() -> AnyPublisher<Bool, Never> {
+        featureFlagEnabled.eraseToAnyPublisher()
     }
+
+    // MARK: - Private Methods
 
     private func isNetworkOffline() -> Bool {
         !availabilityService.status.isConnected
+    }
+
+    private func subscribeToOfflineFeatureFlagChanges() {
+        offlineFlagStore
+            .observeEntities()
+            .compactMap { $0.firstItem }
+            .map { $0.enabled }
+            .subscribe(featureFlagEnabled)
+            .store(in: &subscriptions)
+    }
+
+    private static var LocalFeatureFlagUseCase: LocalUseCase<FeatureFlag> {
+        let environmentFlagsPredicate = GetEnvironmentFeatureFlags(context: .currentUser).scope.predicate
+        let offlineFlagFilter = NSPredicate(key: #keyPath(FeatureFlag.name), equals: EnvironmentFeatureFlags.mobile_offline_mode.rawValue)
+        let offlineFlagScope = Scope(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [environmentFlagsPredicate, offlineFlagFilter]),
+                                     order: [])
+        return LocalUseCase<FeatureFlag>(scope: offlineFlagScope)
     }
 }

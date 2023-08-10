@@ -21,6 +21,7 @@ import Foundation
 
 public enum EnvironmentFeatureFlags: String {
     case send_usage_metrics
+    case mobile_offline_mode
 }
 
 public class GetEnvironmentFeatureFlags: CollectionUseCase {

@@ -53,7 +53,6 @@ public class ReactiveStore<U: UseCase> {
         }
     }
 
-    private let env: AppEnvironment
     private let offlineModeInteractor: OfflineModeInteractor
     private let useCase: U
     private let context: NSManagedObjectContext
@@ -69,12 +68,10 @@ public class ReactiveStore<U: UseCase> {
     // MARK: -
 
     public init(
-        env: AppEnvironment = .shared,
         offlineModeInteractor: OfflineModeInteractor = OfflineModeInteractorLive.shared,
         context: NSManagedObjectContext = AppEnvironment.shared.database.viewContext,
         useCase: U
     ) {
-        self.env = env
         self.offlineModeInteractor = offlineModeInteractor
         self.useCase = useCase
         self.context = context
