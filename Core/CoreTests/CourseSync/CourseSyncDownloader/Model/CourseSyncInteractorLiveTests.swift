@@ -51,6 +51,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                     .init(id: "tab-syllabus", name: "Syllabus", type: .syllabus),
                     .init(id: "tab-conferences", name: "Conferences", type: .conferences),
                     .init(id: "tab-quizzes", name: "Quizzes", type: .quizzes),
+                    .init(id: "tab-discussions", name: "Discussions", type: .discussions),
                 ],
                 files: [
                     .make(id: "file-1", displayName: "1", url: URL(string: "1.jpg")!, bytesToDownload: 1000),
@@ -470,6 +471,27 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         wait(for: [expectation], timeout: 1)
         subscription.cancel()
     }
+
+    func testStartsDiscussionsDownload() {
+        let expectation = expectation(description: "Discussions download started")
+        let mockDiscussionsInteractor = CourseSyncDiscussionsInteractorMock(expectation: expectation)
+        let testee = CourseSyncInteractorLive(
+            contentInteractors: [
+                pagesInteractor,
+                assignmentsInteractor,
+                mockDiscussionsInteractor,
+            ],
+            filesInteractor: filesInteractor,
+            progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
+            scheduler: .immediate
+        )
+        entries[0].tabs[6].selectionState = .selected
+
+        let subscription = testee.downloadContent(for: entries).sink()
+
+        wait(for: [expectation], timeout: 1)
+        subscription.cancel()
+    }
 }
 
 // MARK: - Mocks
@@ -505,6 +527,21 @@ private class CourseSyncConferencesInteractorMock: CourseSyncConferencesInteract
 }
 
 private class CourseSyncQuizzesInteractorMock: CourseSyncQuizzesInteractor {
+    let expectation: XCTestExpectation
+
+    init(expectation: XCTestExpectation) {
+        self.expectation = expectation
+    }
+
+    func getContent(courseId _: String) -> AnyPublisher<Void, Error> {
+        expectation.fulfill()
+        return Just(())
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+}
+
+private class CourseSyncDiscussionsInteractorMock: CourseSyncDiscussionsInteractor {
     let expectation: XCTestExpectation
 
     init(expectation: XCTestExpectation) {
