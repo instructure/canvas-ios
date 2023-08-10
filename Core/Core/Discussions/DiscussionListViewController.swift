@@ -233,6 +233,11 @@ extension DiscussionListViewController: UITableViewDataSource, UITableViewDelega
             cell.accessoryType = .none
         }
 
+        if course?.first?.hideQuantitativeData == true {
+            cell.pointsLabel.isHidden = true
+            cell.pointsDot.isHidden = true
+        }
+
         return cell
     }
 

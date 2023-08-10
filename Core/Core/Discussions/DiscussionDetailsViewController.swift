@@ -250,7 +250,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
 
         titleLabel.text = topic.first?.title
         pointsLabel.text = assignment?.first?.pointsPossibleText
-        pointsView.isHidden = assignment?.first?.pointsPossible == nil || showRepliesToEntryID != nil
+        pointsView.isHidden = assignment?.first?.pointsPossible == nil || showRepliesToEntryID != nil || course.first?.hideQuantitativeData == true
 
         let isPublished = topic.first?.published == true
         publishedIcon.image = isPublished ? .publishSolid : .noSolid
