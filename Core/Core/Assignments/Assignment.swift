@@ -209,7 +209,7 @@ extension Assignment {
         }
 
         freeFormCriterionCommentsOnRubric = item.rubric_settings?.free_form_criterion_comments == true
-        hideRubricPoints = item.rubric_settings?.hide_points == true
+        hideRubricPoints = item.rubric_settings?.hide_points == true || course?.hideQuantitativeData == true
         rubricPointsPossible = item.rubric_settings?.points_possible
 
         if let assignmentGroupID = item.assignment_group_id?.value,
