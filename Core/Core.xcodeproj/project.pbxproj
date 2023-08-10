@@ -22,6 +22,7 @@
 		01870191FC76B68C6788D6D7 /* ItemPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748E9C6FDA00F93447290C37 /* ItemPickerViewController.swift */; };
 		0187F32C12EF33B4D8E0A651 /* GetGroupsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48E201DA0874CE26B423859 /* GetGroupsTests.swift */; };
 		0215A9C5E8E7B2EB71092873 /* GetFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5B788C76651147C12CC7FD /* GetFile.swift */; };
+		02261C28D0E11D1F7ED8B010 /* OfflineModeInteractorDummyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4793BD04F4D2C5C1ED077865 /* OfflineModeInteractorDummyTests.swift */; };
 		02339020315C0F61979BC57D /* BoolExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EEC8DDDE6457135B60D04 /* BoolExtensionsTests.swift */; };
 		024704F565C61DECF256418E /* CalendarDaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242276411E0D174287066C6 /* CalendarDaysViewController.swift */; };
 		025DBADB30B66B2A21FA6C6E /* K5ScheduleDayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E616B25EC360DE86159EC86 /* K5ScheduleDayViewModel.swift */; };
@@ -247,6 +248,7 @@
 		27E39A6FEE788EEECFB62487 /* AvatarGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABF14A84C04AC7C50795EBF /* AvatarGroupView.swift */; };
 		28485606956B2DF5DC75C9AA /* AssignmentPickerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CF366D7985F43353104FD5 /* AssignmentPickerViewModelTests.swift */; };
 		286026E0C852F037EA896EEC /* TabBarBadgeCounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995373018BD96584CB32909F /* TabBarBadgeCounts.swift */; };
+		28BDE77AD3F0D5E27CEB14B9 /* OfflineModeInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE83D1748797630A3B967EC /* OfflineModeInteractorTests.swift */; };
 		28CA9E1050B8CADBD05BD703 /* GenericCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CDD7C2C9B75A598367EB87 /* GenericCellViewModelTests.swift */; };
 		2911ECDF66416CF9F2624F2E /* PSPDFAnnotationExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE752EA292CCE0C75DF51E1 /* PSPDFAnnotationExtensionTests.swift */; };
 		2954539C4875336BDCF4DC2A /* CreateTextComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD14A6D93BA0DEBC15A44F7 /* CreateTextComment.swift */; };
@@ -1729,6 +1731,7 @@
 		0EF6599425A23530CBA35A7A /* UTIFromNSItemProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTIFromNSItemProviderTests.swift; sourceTree = "<group>"; };
 		0F0FCD93C55B3F2702004006 /* NSPersistentContainerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPersistentContainerExtensions.swift; sourceTree = "<group>"; };
 		0F1121B718EEE6F7DF197EB6 /* RightDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightDetailTableViewCell.swift; sourceTree = "<group>"; };
+		0FE83D1748797630A3B967EC /* OfflineModeInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineModeInteractorTests.swift; sourceTree = "<group>"; };
 		0FF0714F1EEA5A8EE7600BCD /* AssignmentDueDatesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDueDatesInteractor.swift; sourceTree = "<group>"; };
 		0FF2DE564B9DEF83671BB4FE /* MessageListStateUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListStateUpdater.swift; sourceTree = "<group>"; };
 		102CB3E54DD306EDD17D6CA5 /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
@@ -2126,6 +2129,7 @@
 		4726A9C2B95A3F081F7156CC /* CourseSyncEntryTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncEntryTab.swift; sourceTree = "<group>"; };
 		4767E14ACCF59121D48AEBDC /* APICourseSectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICourseSectionTests.swift; sourceTree = "<group>"; };
 		477F146693FF2F5997AC2FA3 /* ScrollViewWithReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewWithReader.swift; sourceTree = "<group>"; };
+		4793BD04F4D2C5C1ED077865 /* OfflineModeInteractorDummyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineModeInteractorDummyTests.swift; sourceTree = "<group>"; };
 		479672AB3209F6CAD09558DD /* UIWindowExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExtensions.swift; sourceTree = "<group>"; };
 		47C13E2CD11361F14F8468FC /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		47D24757E71AB65534CFBE92 /* InboxMessageContextFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageContextFilterTests.swift; sourceTree = "<group>"; };
@@ -4995,6 +4999,15 @@
 			path = Invitations;
 			sourceTree = "<group>";
 		};
+		4E497C6CC03A4D4FD76B791C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4793BD04F4D2C5C1ED077865 /* OfflineModeInteractorDummyTests.swift */,
+				0FE83D1748797630A3B967EC /* OfflineModeInteractorTests.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		4E6B9C373FD075B30CD02684 /* UITestHelpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -5397,6 +5410,7 @@
 		5E684E2634773641669957C3 /* Offline */ = {
 			isa = PBXGroup;
 			children = (
+				4E497C6CC03A4D4FD76B791C /* Model */,
 				19A1E69CFC2A77F0C16AE5EE /* View */,
 				F082B48BB14C714668891A57 /* ViewModel */,
 			);
@@ -9253,6 +9267,8 @@
 				77E758F887C9D6348B394BD0 /* NotificationCenterExtensionsTests.swift in Sources */,
 				35A7651A1B0B7D648339F4B9 /* NotificationManagerTests.swift in Sources */,
 				C93CEA168E0C80439E49D0FC /* ObserverAlertTests.swift in Sources */,
+				02261C28D0E11D1F7ED8B010 /* OfflineModeInteractorDummyTests.swift in Sources */,
+				28BDE77AD3F0D5E27CEB14B9 /* OfflineModeInteractorTests.swift in Sources */,
 				ABEF4C94F203A79C882FD6D9 /* OfflineModeViewModelTests.swift in Sources */,
 				5C9304B5AD56EFF156F8C3A8 /* OnElementAppearTests.swift in Sources */,
 				2911ECDF66416CF9F2624F2E /* PSPDFAnnotationExtensionTests.swift in Sources */,
