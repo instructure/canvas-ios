@@ -104,7 +104,7 @@ class StoreTests: CoreTestCase {
     func test_OfflineModeIsEnabled_RefreshCalled_ObjectsReturnFromDatabase() {
         // Given
         Course.make(from: .make(id: "0"))
-        ExperimentalFeature.offlineMode.isEnabled = true
+        injectOfflineFeatureFlag(isEnabled: true)
 
         // When
         let expectation = expectation(description: "Refresh callback called")
@@ -127,7 +127,7 @@ class StoreTests: CoreTestCase {
     func test_OfflineModeIsEnabled_ExhaustCalled_ObjectsReturnFromDatabase() {
         // Given
         Course.make(from: .make(id: "0"))
-        ExperimentalFeature.offlineMode.isEnabled = true
+        injectOfflineFeatureFlag(isEnabled: true)
 
         // When
         let expectation = expectation(description: "Exhaust callback called")
@@ -151,7 +151,7 @@ class StoreTests: CoreTestCase {
     func test_OfflineModeIsNotEnabled_RefreshCalled_ObjectsReturnFromNetwork() {
         // Given
         Course.make(from: .make(id: "0"))
-        ExperimentalFeature.offlineMode.isEnabled = false
+        injectOfflineFeatureFlag(isEnabled: false)
 
         // When
         let useCase = TestUseCase(courses: [.make(id: "1")])
@@ -174,7 +174,7 @@ class StoreTests: CoreTestCase {
     func test_OfflineModeIsEnabled_RefreshCalled_StateChangesArePublished() {
         // Given
         Course.make(from: .make(id: "0"))
-        ExperimentalFeature.offlineMode.isEnabled = true
+        injectOfflineFeatureFlag(isEnabled: true)
 
         // When
         let useCase = TestUseCase(courses: [])
@@ -206,7 +206,20 @@ class StoreTests: CoreTestCase {
     private func createOfflineModeInteractor() -> OfflineModeInteractor {
         let monitor = NWPathMonitorWrapper(start: { _ in () }, cancel: {})
         let availabilityService = NetworkAvailabilityServiceLive(monitor: monitor)
-        return OfflineModeInteractorLive(availabilityService: availabilityService)
+        let result = OfflineModeInteractorLive(availabilityService: availabilityService)
+        drainMainQueue()
+        return result
+    }
+
+    private func injectOfflineFeatureFlag(isEnabled: Bool) {
+        let scope: Scope = .where(#keyPath(FeatureFlag.name),
+                                  equals: EnvironmentFeatureFlags.mobile_offline_mode.rawValue,
+                                  sortDescriptors: [])
+        let flag: FeatureFlag = databaseClient.fetch(scope: scope).first ?? databaseClient.insert()
+        flag.name = EnvironmentFeatureFlags.mobile_offline_mode.rawValue
+        flag.isEnvironmentFlag = true
+        flag.enabled = isEnabled
+        flag.context = .currentUser
     }
 
     // MARK: - Reactive Properties Tests -

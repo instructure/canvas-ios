@@ -87,6 +87,13 @@ class CourseSyncConferencesInteractorLiveTests: CoreTestCase {
 }
 
 class AlwaysOfflineModeInteractor: OfflineModeInteractor {
+    func isFeatureFlagEnabled() -> Bool {
+        true
+    }
+
+    func observeIsFeatureFlagEnabled() -> AnyPublisher<Bool, Never> {
+        Just(true).eraseToAnyPublisher()
+    }
 
     func isOfflineModeEnabled() -> Bool {
         true
