@@ -29,10 +29,6 @@ public protocol OfflineModeInteractor {
 }
 
 public final class OfflineModeInteractorLive: OfflineModeInteractor {
-    /// Use a shared instance in cases where you need immediate result from `NetworkAvailabilityService`. Otherwise initiate a unique instance.
-    /// The internal(set) is for mocking purposes.
-    public internal(set) static var shared: OfflineModeInteractor = OfflineModeInteractorLive()
-
     // MARK: - Dependencies
     private let availabilityService: NetworkAvailabilityService
 
