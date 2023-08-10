@@ -180,5 +180,10 @@ class QuizListCell: UITableViewCell {
             statusLabel.isHidden = true
             statusDot.isHidden = true
         }
+
+        if quiz?.course?.hideQuantitativeData == true {
+            pointsLabel.isHidden = true
+            pointsDot.isHidden = true
+        }
     }
 }

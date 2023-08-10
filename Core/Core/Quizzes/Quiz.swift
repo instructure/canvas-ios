@@ -59,6 +59,10 @@ public class Quiz: NSManagedObject {
     @NSManaged public var unlockAt: Date?
     @NSManaged public var unpublishable: Bool
 
+    public var course: Course? {
+        managedObjectContext?.first(where: #keyPath(Course.id), equals: courseID)
+    }
+
     public var hideResults: QuizHideResults? {
         get { return hideResultsRaw.flatMap { QuizHideResults(rawValue: $0) } }
         set { hideResultsRaw = newValue?.rawValue }
