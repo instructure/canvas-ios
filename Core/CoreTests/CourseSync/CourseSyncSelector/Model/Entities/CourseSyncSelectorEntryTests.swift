@@ -35,6 +35,7 @@ class CourseSyncEntryTests: XCTestCase {
                                           fileName: "",
                                           url: URL(string: "/")!,
                                           mimeClass: "",
+                                          updatedAt: nil,
                                           bytesToDownload: 0
         )
         XCTAssertEqual(testee.fileId, "2")

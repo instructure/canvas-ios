@@ -67,7 +67,7 @@ class CourseSyncItemSelectionTests: XCTestCase {
                                      ],
                                      files: [
                                         .init(id: "file-1", displayName: "", fileName: "",
-                                              url: URL(string: "/")!, mimeClass: "", selectionState: .selected, bytesToDownload: 0),
+                                              url: URL(string: "/")!, mimeClass: "", updatedAt: nil, selectionState: .selected, bytesToDownload: 0),
                                      ],
                                      selectionState: .selected)
         XCTAssertEqual(CourseSyncItemSelection.make(from: [course]), ["course-1"])
@@ -81,7 +81,7 @@ class CourseSyncItemSelectionTests: XCTestCase {
                                      ],
                                      files: [
                                         .init(id: "file-1", displayName: "", fileName: "",
-                                              url: URL(string: "/")!, mimeClass: "", selectionState: .selected, bytesToDownload: 0),
+                                              url: URL(string: "/")!, mimeClass: "", updatedAt: nil, selectionState: .selected, bytesToDownload: 0),
                                      ],
                                      selectionState: .partiallySelected)
         XCTAssertEqual(CourseSyncItemSelection.make(from: [course]), ["tab-files"])
@@ -107,9 +107,9 @@ class CourseSyncItemSelectionTests: XCTestCase {
                                      ],
                                      files: [
                                         .init(id: "file-1", displayName: "", fileName: "",
-                                              url: URL(string: "/")!, mimeClass: "", selectionState: .deselected, bytesToDownload: 0),
+                                              url: URL(string: "/")!, mimeClass: "", updatedAt: nil, selectionState: .deselected, bytesToDownload: 0),
                                         .init(id: "file-2", displayName: "", fileName: "",
-                                              url: URL(string: "/")!, mimeClass: "", selectionState: .selected, bytesToDownload: 0),
+                                              url: URL(string: "/")!, mimeClass: "", updatedAt: nil, selectionState: .selected, bytesToDownload: 0),
                                      ],
                                      selectionState: .partiallySelected)
         XCTAssertEqual(CourseSyncItemSelection.make(from: [course]), ["file-2"])
