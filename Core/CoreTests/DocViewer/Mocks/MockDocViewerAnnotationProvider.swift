@@ -31,7 +31,7 @@ class MockDocViewerAnnotationProvider: DocViewerAnnotationProvider {
         super.init(documentProvider: documentProvider,
                    fileAnnotationProvider: PDFFileAnnotationProvider(documentProvider: documentProvider),
                    metadata: .make(annotations: .make(enabled: isAPIEnabledAnnotations)),
-                   annotations: [],
+                   apiAnnotations: [],
                    api: API(),
                    sessionID: "",
                    isAnnotationEditingDisabled: isAnnotatingDisabledInApp)
