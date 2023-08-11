@@ -44,10 +44,12 @@ public class K5GradesViewModel: ObservableObject {
         grades = courses.filter({ !$0.isHomeroomCourse }).map {
             let enrollment = $0.enrollments?.first
             let isMultiGradingPeriod = enrollment?.multipleGradingPeriodsEnabled ?? false
+            let shouldHideScore = enrollment?.course?.hideQuantitativeData == true
+            let score = shouldHideScore ? nil : isMultiGradingPeriod ? enrollment?.currentPeriodComputedCurrentScore : enrollment?.computedCurrentScore
             return K5GradeCellViewModel(title: $0.name,
                                         imageURL: $0.imageDownloadURL,
                                         grade: isMultiGradingPeriod ? enrollment?.currentPeriodComputedCurrentGrade : enrollment?.computedCurrentGrade,
-                                        score: isMultiGradingPeriod ? enrollment?.currentPeriodComputedCurrentScore : enrollment?.computedCurrentScore,
+                                        score: score,
                                         color: $0.color,
                                         courseID: $0.id)
         }
@@ -66,10 +68,11 @@ public class K5GradesViewModel: ObservableObject {
             var grades: [K5GradeCellViewModel] = []
             apiEnrollments?.forEach { enrollment in
                 guard let course = self?.courses.first(where: { $0.id == enrollment.course_id?.rawValue }), !course.isHomeroomCourse else { return }
+                let shouldHideScores = course.hideQuantitativeData == true
                 let cellModel = K5GradeCellViewModel(title: course.name ?? "",
                                                      imageURL: course.imageDownloadURL,
                                                      grade: enrollment.computed_current_grade ?? enrollment.grades?.current_grade,
-                                                     score: enrollment.computed_current_score ?? enrollment.grades?.current_score,
+                                                     score: shouldHideScores ? nil : enrollment.computed_current_score ?? enrollment.grades?.current_score,
                                                      color: course.color,
                                                      courseID: course.id)
                 grades.append(cellModel)
