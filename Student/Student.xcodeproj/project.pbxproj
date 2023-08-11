@@ -117,7 +117,6 @@
 		8B9846262A7A444F003E1E9F /* LogoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9846252A7A444F003E1E9F /* LogoutTests.swift */; };
 		8B98462B2A7A6AFE003E1E9F /* CalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B98462A2A7A6AFE003E1E9F /* CalendarTests.swift */; };
 		8B9846372A80E89B003E1E9F /* ToDoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9846362A80E89B003E1E9F /* ToDoTests.swift */; };
-		8B9846512A839D97003E1E9F /* K5Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9846502A839D97003E1E9F /* K5Tests.swift */; };
 		8B9D055E2A667D81002E2447 /* SyllabusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9D055C2A667D81002E2447 /* SyllabusTests.swift */; };
 		8BB5ED942A2E0F0B009D63DA /* HelpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB5ED912A2E0F0B009D63DA /* HelpTests.swift */; };
 		9734351523866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9734351423866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift */; };
@@ -586,7 +585,6 @@
 		8B9846252A7A444F003E1E9F /* LogoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutTests.swift; sourceTree = "<group>"; };
 		8B98462A2A7A6AFE003E1E9F /* CalendarTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTests.swift; sourceTree = "<group>"; };
 		8B9846362A80E89B003E1E9F /* ToDoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTests.swift; sourceTree = "<group>"; };
-		8B9846502A839D97003E1E9F /* K5Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5Tests.swift; sourceTree = "<group>"; };
 		8B9D055C2A667D81002E2447 /* SyllabusTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyllabusTests.swift; sourceTree = "<group>"; };
 		8BB5ED912A2E0F0B009D63DA /* HelpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpTests.swift; sourceTree = "<group>"; };
 		9734351423866A7B002E9CE5 /* ActivityStreamViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStreamViewControllerTests.swift; sourceTree = "<group>"; };
@@ -1401,7 +1399,6 @@
 				C9A3C04C26A03B9900DAE8E1 /* K5StudentE2ETests.swift */,
 				C935D42F26E0EAE700C940F7 /* K5ScheduleE2ETests.swift */,
 				C935D43C26E5F5AF00C940F7 /* K5GradesE2ETests.swift */,
-				8B9846502A839D97003E1E9F /* K5Tests.swift */,
 			);
 			path = K5;
 			sourceTree = "<group>";
@@ -2513,7 +2510,6 @@
 				C9299FEC2817CCF2003A47C2 /* DiscussionsTest.swift in Sources */,
 				C9299FE528102A62003A47C2 /* AnnouncementsTests.swift in Sources */,
 				E80936EB24C24CDD00D15E9A /* ProfileE2ETests.swift in Sources */,
-				8B9846512A839D97003E1E9F /* K5Tests.swift in Sources */,
 				8B70DBA82A559BF6007D3ED4 /* CourseDetailsTests.swift in Sources */,
 				C99425EB2847821D0078A3BD /* GradingStandardsTests.swift in Sources */,
 			);

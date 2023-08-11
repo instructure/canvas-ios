@@ -34,7 +34,8 @@ public class CalendarHelper: BaseHelper {
     }
 
     static var localTimeZoneAbbreviation: String { return TimeZone.current.abbreviation() ?? "" }
-    static var plusMinutes = localTimeZoneAbbreviation == "GMT+2" ? -480 : -360
+    static var plusMinutes = localTimeZoneAbbreviation == "GMT+2" ? -480 : 0
+    static var plusMinutesUI = localTimeZoneAbbreviation == "GMT+2" ? 120 : 0
     static let dateFormatter = DateFormatter()
 
     // MARK: UI Elements
@@ -53,7 +54,7 @@ public class CalendarHelper: BaseHelper {
 
     public static func formatDateForDayButton(event: DSCalendarEvent) -> String {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        let date = dateFormatter.date(from: event.start_at)!.addMinutes(plusMinutes)
+        let date = dateFormatter.date(from: event.start_at)!.addMinutes(plusMinutesUI)
         dateFormatter.dateFormat = "yyyy-M-d"
         let formattedDate = dateFormatter.string(from: date)
         return formattedDate
@@ -61,7 +62,7 @@ public class CalendarHelper: BaseHelper {
 
     public static func formatDateForDateLabel(event: DSCalendarEvent) -> String {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        let date = dateFormatter.date(from: event.start_at)!.addMinutes(plusMinutes)
+        let date = dateFormatter.date(from: event.start_at)!.addMinutes(120)
         dateFormatter.dateFormat = "MMM d, yyyy 'at' h:mm a"
         let formattedDate = dateFormatter.string(from: date)
         return formattedDate
@@ -86,7 +87,7 @@ public class CalendarHelper: BaseHelper {
     public static func navigateToEvent(event: DSCalendarEvent) -> XCUIElement {
         // Formatting the date
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        let date = dateFormatter.date(from: event.start_at)!.addMinutes(plusMinutes)
+        let date = dateFormatter.date(from: event.start_at)!.addMinutes(plusMinutesUI)
         dateFormatter.dateFormat = "yyyy-MMMM-d"
         let formattedDate = dateFormatter.string(from: date)
         let dateArray = formattedDate.split(separator: "-")
@@ -154,7 +155,7 @@ public class CalendarHelper: BaseHelper {
 
         public static func formatDateForDateLabel(event: DSCalendarEvent) -> String {
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-            let date = dateFormatter.date(from: event.start_at)!.addMinutes(CalendarHelper.plusMinutes)
+            let date = dateFormatter.date(from: event.start_at)!.addMinutes(CalendarHelper.plusMinutesUI)
             dateFormatter.dateFormat = "MMM d, yyyy 'at' h:mm a"
             let formattedDate = dateFormatter.string(from: date)
             return formattedDate
@@ -184,21 +185,21 @@ public class CalendarHelper: BaseHelper {
             result.yesterdays = createCalendarEvent(
                 course: course,
                 title: "Yesterdays Event",
-                startDate: formatDate(addDays: -1, addHours: 1),
+                startDate: formatDate(addDays: -1, addHours: -1),
                 endDate: formatDate(addDays: -1, addHours: 2))
         }
         if eventTypes.contains(.todays) {
             result.todays = createCalendarEvent(
                 course: course,
                 title: "Todays Event",
-                startDate: formatDate(addHours: 1),
+                startDate: formatDate(addHours: -1),
                 endDate: formatDate(addHours: 2))
         }
         if eventTypes.contains(.tomorrows) {
             result.tomorrows = createCalendarEvent(
                 course: course,
                 title: "Tomorrows Event",
-                startDate: formatDate(addDays: 1, addHours: 1),
+                startDate: formatDate(addDays: 1, addHours: -1),
                 endDate: formatDate(addDays: 1, addHours: 2))
         }
         if eventTypes.contains(.recurring) {
@@ -214,8 +215,8 @@ public class CalendarHelper: BaseHelper {
             result.nextYears = createCalendarEvent(
                 course: course,
                 title: "Next Years Event",
-                startDate: formatDate(addYears: 1),
-                endDate: formatDate(addYears: 1),
+                startDate: formatDate(addYears: 1, addHours: -1),
+                endDate: formatDate(addYears: 1, addHours: 2),
                 allDay: true)
         }
         return result

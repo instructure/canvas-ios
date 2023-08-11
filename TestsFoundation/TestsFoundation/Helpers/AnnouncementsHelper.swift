@@ -67,7 +67,7 @@ public class AnnouncementsHelper: BaseHelper {
 
     public static func postAccountNotification(subject: String? = nil, message: String? = nil, isK5: Bool = false) -> DSAccountNotification {
         let dateFormatter = ISO8601DateFormatter()
-        let globalAnnouncementSubject = subject ?? "This is a GA"
+        let globalAnnouncementSubject = subject ?? "This is not a drill!"
         let globalAnnouncementMessage = message ?? "This will disappear in 4 minutes"
         let globalAnnouncementStartAt = CalendarHelper.formatDate()
         let globalAnnouncementEndAt = CalendarHelper.formatDate(addMinutes: 4)
