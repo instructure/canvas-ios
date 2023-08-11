@@ -43,7 +43,7 @@ public final class OfflineModeInteractorLive: OfflineModeInteractor {
                 context: NSManagedObjectContext = AppEnvironment.shared.database.viewContext) {
         self.availabilityService = availabilityService
         self.availabilityService.startMonitoring()
-        self.offlineFlagStore = ReactiveStore(offlineModeInteractor: OfflineModeInteractorDummy(),
+        self.offlineFlagStore = ReactiveStore(offlineModeInteractor: nil,
                                               context: context,
                                               useCase: Self.LocalFeatureFlagUseCase)
         subscribeToOfflineFeatureFlagChanges()

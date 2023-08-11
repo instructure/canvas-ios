@@ -22,7 +22,6 @@
 		01870191FC76B68C6788D6D7 /* ItemPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748E9C6FDA00F93447290C37 /* ItemPickerViewController.swift */; };
 		0187F32C12EF33B4D8E0A651 /* GetGroupsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48E201DA0874CE26B423859 /* GetGroupsTests.swift */; };
 		0215A9C5E8E7B2EB71092873 /* GetFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5B788C76651147C12CC7FD /* GetFile.swift */; };
-		02261C28D0E11D1F7ED8B010 /* OfflineModeInteractorDummyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4793BD04F4D2C5C1ED077865 /* OfflineModeInteractorDummyTests.swift */; };
 		02339020315C0F61979BC57D /* BoolExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377EEC8DDDE6457135B60D04 /* BoolExtensionsTests.swift */; };
 		024704F565C61DECF256418E /* CalendarDaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0242276411E0D174287066C6 /* CalendarDaysViewController.swift */; };
 		025DBADB30B66B2A21FA6C6E /* K5ScheduleDayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E616B25EC360DE86159EC86 /* K5ScheduleDayViewModel.swift */; };
@@ -826,7 +825,6 @@
 		85B2053577C59C6DDECD0D8E /* FilePickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C57A99E23AA37127B23EE41 /* FilePickerTests.swift */; };
 		862546271FFB6C7E6F6563E8 /* LoggerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E107AE8148A79BA4653BBE83 /* LoggerExtensions.swift */; };
 		865EE3DD688BF572B835E9A7 /* CommunicationChannelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025E343B90388BAD2A027023 /* CommunicationChannelTests.swift */; };
-		8668EB3D6AABE074B780CED0 /* OfflineModeInteractorDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CD42E7F4A7C0C9BC9BAD27 /* OfflineModeInteractorDummy.swift */; };
 		86B739E60D926E5E8F6CCA71 /* CourseEntrySelectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6587133058F1645552983E97 /* CourseEntrySelectionTests.swift */; };
 		86C1EEB9ADDEDF2BF865829F /* NotSupportedInOfflineAlertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EBD5F68A6F040D9FE98E0A1 /* NotSupportedInOfflineAlertTests.swift */; };
 		86F31CCE29F59313CB0EDE9B /* DocViewerAnnotationStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B86D5A28FBCF70DE68011B /* DocViewerAnnotationStateManager.swift */; };
@@ -2129,7 +2127,6 @@
 		4726A9C2B95A3F081F7156CC /* CourseSyncEntryTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncEntryTab.swift; sourceTree = "<group>"; };
 		4767E14ACCF59121D48AEBDC /* APICourseSectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICourseSectionTests.swift; sourceTree = "<group>"; };
 		477F146693FF2F5997AC2FA3 /* ScrollViewWithReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewWithReader.swift; sourceTree = "<group>"; };
-		4793BD04F4D2C5C1ED077865 /* OfflineModeInteractorDummyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineModeInteractorDummyTests.swift; sourceTree = "<group>"; };
 		479672AB3209F6CAD09558DD /* UIWindowExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExtensions.swift; sourceTree = "<group>"; };
 		47C13E2CD11361F14F8468FC /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		47D24757E71AB65534CFBE92 /* InboxMessageContextFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageContextFilterTests.swift; sourceTree = "<group>"; };
@@ -3243,7 +3240,6 @@
 		E916D1B21C78B7EF159C860D /* LocalizationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationManagerTests.swift; sourceTree = "<group>"; };
 		E929B3AD4F187D2C4F6E65A2 /* UIImageExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensionsTests.swift; sourceTree = "<group>"; };
 		E9A23A52B20EF4CF8C93B132 /* ErrorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorExtensions.swift; sourceTree = "<group>"; };
-		E9CD42E7F4A7C0C9BC9BAD27 /* OfflineModeInteractorDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineModeInteractorDummy.swift; sourceTree = "<group>"; };
 		E9E145AFE0E25E06C21924F3 /* LoginSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSession.swift; sourceTree = "<group>"; };
 		E9E189AFC87279DA88F2F592 /* AssignmentPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPickerView.swift; sourceTree = "<group>"; };
 		EA383B82377A796427C47AB1 /* DiscussionHTMLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionHTMLTests.swift; sourceTree = "<group>"; };
@@ -5002,7 +4998,6 @@
 		4E497C6CC03A4D4FD76B791C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4793BD04F4D2C5C1ED077865 /* OfflineModeInteractorDummyTests.swift */,
 				0FE83D1748797630A3B967EC /* OfflineModeInteractorTests.swift */,
 			);
 			path = Model;
@@ -5969,7 +5964,6 @@
 			children = (
 				B675049F9FCDD726A29D2D27 /* OfflineFileInteractor.swift */,
 				450AE3E1E678497BDDC57FB8 /* OfflineModeInteractor.swift */,
-				E9CD42E7F4A7C0C9BC9BAD27 /* OfflineModeInteractorDummy.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -9267,7 +9261,6 @@
 				77E758F887C9D6348B394BD0 /* NotificationCenterExtensionsTests.swift in Sources */,
 				35A7651A1B0B7D648339F4B9 /* NotificationManagerTests.swift in Sources */,
 				C93CEA168E0C80439E49D0FC /* ObserverAlertTests.swift in Sources */,
-				02261C28D0E11D1F7ED8B010 /* OfflineModeInteractorDummyTests.swift in Sources */,
 				28BDE77AD3F0D5E27CEB14B9 /* OfflineModeInteractorTests.swift in Sources */,
 				ABEF4C94F203A79C882FD6D9 /* OfflineModeViewModelTests.swift in Sources */,
 				5C9304B5AD56EFF156F8C3A8 /* OnElementAppearTests.swift in Sources */,
@@ -10089,7 +10082,6 @@
 				78C6DB6653BAB187BE11BA9E /* OfflineFileInteractor.swift in Sources */,
 				F43A6AD53D12F296F80C54BD /* OfflineModeAssembly.swift in Sources */,
 				88B8C676C0AFFC04953F57DA /* OfflineModeInteractor.swift in Sources */,
-				8668EB3D6AABE074B780CED0 /* OfflineModeInteractorDummy.swift in Sources */,
 				55DBE9B3CF856AAFACD73C10 /* OfflineModeViewModel.swift in Sources */,
 				380910D5984AECF21C4A1A51 /* OnElementAppear.swift in Sources */,
 				394C4760D46A1639B831848C /* OptionalDatePicker.swift in Sources */,
