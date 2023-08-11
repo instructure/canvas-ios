@@ -33,18 +33,15 @@ public protocol CourseSyncFilesInteractor {
 public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, LocalFileURLCreator {
     private let env: AppEnvironment
     private let fileManager: FileManager
-    private let viewContext: NSManagedObjectContext
     private let offlineFileInteractor: OfflineFileInteractor
 
     public init(
         env: AppEnvironment = .shared,
         fileManager: FileManager = .default,
-        viewContext: NSManagedObjectContext = AppEnvironment.shared.database.viewContext,
         offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()
     ) {
         self.env = env
         self.fileManager = fileManager
-        self.viewContext = viewContext
         self.offlineFileInteractor = offlineFileInteractor
     }
 
@@ -74,14 +71,10 @@ public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, Loc
             location: URL.Directories.documents
         )
 
-        let folderItem: FolderItem? = viewContext.first(
-            where: #keyPath(FolderItem.id),
-            equals: "file-\(fileID)"
-        )
-
-        if fileManager.fileExists(atPath: localURL.path),   // File exists on the disk
-           let file = folderItem?.file,                     // and
-           file.updatedAt == updatedAt {                    // is up to date
+        if fileManager.fileExists(atPath: localURL.path),                               // File exists on the disk
+           let fileModificationDate = fileManager.fileModificationDate(url: localURL),
+           let updatedAt = updatedAt,                                                   // and
+           fileModificationDate >= updatedAt {                                          // is up to date
             return Just(1)
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()

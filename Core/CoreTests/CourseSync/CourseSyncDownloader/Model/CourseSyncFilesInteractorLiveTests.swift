@@ -138,12 +138,13 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
             contents: "test".data(using: .utf8)
         )
 
+        let now = Date()
         let existingFile: File = databaseClient.insert()
         existingFile.url = url
         existingFile.id = "file-fileID"
         existingFile.filename = "fileName"
         existingFile.mimeClass = "mimeClass"
-        existingFile.updatedAt = Date(timeIntervalSince1970: 1000)
+        existingFile.updatedAt = now
         let folderItem: FolderItem = databaseClient.insert()
         folderItem.id = "file-fileID"
         folderItem.file = existingFile
@@ -153,7 +154,7 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
             fileID: "fileID",
             fileName: "fileName",
             mimeClass: "mimeClass",
-            updatedAt: Date(timeIntervalSince1970: 2000)
+            updatedAt: now
         )
         .sink(
             receiveCompletion: { _ in },

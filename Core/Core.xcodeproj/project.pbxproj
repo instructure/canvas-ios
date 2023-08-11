@@ -1086,6 +1086,7 @@
 		B4A9F8F38D3E9471376494D2 /* UIImageViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E7F1F3185A5D719A85B955 /* UIImageViewExtensionsTests.swift */; };
 		B4DF4C098A48DF5D8D497B95 /* CommentListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1F0DD981A30F2F8DEF4E68D /* CommentListViewController.storyboard */; };
 		B4FE033171D1FCD00FD1D462 /* FileUploadNotificationCardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F96E0F2753D6B4E37E45CF /* FileUploadNotificationCardListViewModel.swift */; };
+		B4FE7E8F2A8610FC00B1DA23 /* FileManagerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FE7E8E2A8610FC00B1DA23 /* FileManagerExtensions.swift */; };
 		B51884AD83FC462A08BF6B7D /* GoogleCloudAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC0DE3267FE05FE686605D8 /* GoogleCloudAssignmentViewController.swift */; };
 		B580B7D64DEBE530DCE1047A /* DashboardLayoutViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013EC69697062CD92968F342 /* DashboardLayoutViewModelTests.swift */; };
 		B596EFD00F2E7D75D850FC34 /* HorizontalScrollingStackview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BF08DA5C66C1FAAD4A14A4 /* HorizontalScrollingStackview.swift */; };
@@ -2880,6 +2881,7 @@
 		B455F8753438D40CC45D5A87 /* QuizDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDetailsViewModelTests.swift; sourceTree = "<group>"; };
 		B467615FEB9F47B169A18150 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		B4F936DF23DC61D04F89DFE0 /* APILatePolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APILatePolicyTests.swift; sourceTree = "<group>"; };
+		B4FE7E8E2A8610FC00B1DA23 /* FileManagerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerExtensions.swift; sourceTree = "<group>"; };
 		B52803DBEDEDD92FF68782A9 /* K5GradesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradesViewModelTests.swift; sourceTree = "<group>"; };
 		B54819C7CC40C9F86C5B5F69 /* CourseSyncCleanupInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncCleanupInteractor.swift; sourceTree = "<group>"; };
 		B5606C2158AEEDA3F5D8C94A /* APIConference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConference.swift; sourceTree = "<group>"; };
@@ -4432,6 +4434,7 @@
 				F94D19A71DAE64D32998FA3B /* URLRequestExtensions.swift */,
 				FDDC6B296DCABD17B5F39E24 /* URLResponseExtensions.swift */,
 				9E04A17FCF37B8ACE5700BD0 /* WKWebViewExtensions.swift */,
+				B4FE7E8E2A8610FC00B1DA23 /* FileManagerExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -9915,6 +9918,7 @@
 				62321F54EE9D7D1779FE5133 /* InterprocessNotificationCenter.swift in Sources */,
 				69EED14272FCDD7E322AF9F3 /* InvertColorsInDarkMode.swift in Sources */,
 				01870191FC76B68C6788D6D7 /* ItemPickerViewController.swift in Sources */,
+				B4FE7E8F2A8610FC00B1DA23 /* FileManagerExtensions.swift in Sources */,
 				6DCBF18CB92F29E6D585F34C /* JustifiedGrid.swift in Sources */,
 				30BD8417CCF44CD155156400 /* K5DashboardView.swift in Sources */,
 				7D4C6A371E30D26DEDACB503 /* K5DashboardViewModel.swift in Sources */,
