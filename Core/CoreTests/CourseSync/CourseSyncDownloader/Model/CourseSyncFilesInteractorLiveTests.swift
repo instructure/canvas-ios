@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 @testable import Core
 import Foundation
 import TestsFoundation
@@ -43,7 +44,8 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
             url: url,
             fileID: "fileID",
             fileName: "fileName",
-            mimeClass: "mimeClass"
+            mimeClass: "mimeClass",
+            updatedAt: nil
         ).sink(
             receiveCompletion: { completion in
                 switch completion {
@@ -75,6 +77,96 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
         subscription.cancel()
     }
 
+    func testUpToDateFile() {
+        let testee = CourseSyncFilesInteractorLive()
+        let expectation = expectation(description: "Publisher sends value")
+        let url = URL(string: "1.jpg")!
+        let folderName = "canvas.instructure.com-1/Offline/Files/fileID"
+
+        try? FileManager.default.createDirectory(
+            at: URL.Directories.documents.appendingPathComponent(folderName),
+            withIntermediateDirectories: true
+        )
+        FileManager.default.createFile(
+            atPath: URL.Directories.documents.appendingPathComponent(folderName + "/fileName").path,
+            contents: "test".data(using: .utf8)
+        )
+
+        let existingFile: File = databaseClient.insert()
+        existingFile.url = url
+        existingFile.id = "file-fileID"
+        existingFile.filename = "fileName"
+        existingFile.mimeClass = "mimeClass"
+        existingFile.updatedAt = Date(timeIntervalSince1970: 1000)
+        let folderItem: FolderItem = databaseClient.insert()
+        folderItem.id = "file-fileID"
+        folderItem.file = existingFile
+
+        let subscription = testee.getFile(
+            url: url,
+            fileID: "fileID",
+            fileName: "fileName",
+            mimeClass: "mimeClass",
+            updatedAt: Date(timeIntervalSince1970: 1000)
+        )
+        .sink(
+            receiveCompletion: { _ in },
+            receiveValue: { progress in
+                XCTAssertEqual(progress, 1)
+                expectation.fulfill()
+            }
+        )
+
+        waitForExpectations(timeout: 0.1)
+        subscription.cancel()
+    }
+
+    func testNotUpToDateFile() {
+        let testee = CourseSyncFilesInteractorLive()
+        let shouldntInvokeExpectation = expectation(description: "Expectation is not triggered.")
+        shouldntInvokeExpectation.isInverted = true
+
+        let url = URL(string: "1.jpg")!
+        let folderName = "canvas.instructure.com-1/Offline/Files/fileID"
+
+        try? FileManager.default.createDirectory(
+            at: URL.Directories.documents.appendingPathComponent(folderName),
+            withIntermediateDirectories: true
+        )
+        FileManager.default.createFile(
+            atPath: URL.Directories.documents.appendingPathComponent(folderName + "/fileName").path,
+            contents: "test".data(using: .utf8)
+        )
+
+        let now = Date()
+        let existingFile: File = databaseClient.insert()
+        existingFile.url = url
+        existingFile.id = "file-fileID"
+        existingFile.filename = "fileName"
+        existingFile.mimeClass = "mimeClass"
+        existingFile.updatedAt = now
+        let folderItem: FolderItem = databaseClient.insert()
+        folderItem.id = "file-fileID"
+        folderItem.file = existingFile
+
+        let subscription = testee.getFile(
+            url: url,
+            fileID: "fileID",
+            fileName: "fileName",
+            mimeClass: "mimeClass",
+            updatedAt: now
+        )
+        .sink(
+            receiveCompletion: { _ in },
+            receiveValue: { _ in
+                shouldntInvokeExpectation.fulfill()
+            }
+        )
+
+        waitForExpectations(timeout: 0.1)
+        subscription.cancel()
+    }
+
     func testFileDownloadError() {
         let testee = CourseSyncFilesInteractorLive()
         let expectation = expectation(description: "Publisher sends value")
@@ -89,7 +181,8 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
             url: url,
             fileID: "1",
             fileName: "fileName",
-            mimeClass: "mimeClass"
+            mimeClass: "mimeClass",
+            updatedAt: nil
         ).sink(
             receiveCompletion: { completion in
                 switch completion {
@@ -124,7 +217,7 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
 
         environment.currentSession = nil
 
-        let subscription = testee.getFile(url: URL(string: "1")!, fileID: "1", fileName: "1", mimeClass: "1")
+        let subscription = testee.getFile(url: URL(string: "1")!, fileID: "1", fileName: "1", mimeClass: "1", updatedAt: nil)
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case let .failure(error):

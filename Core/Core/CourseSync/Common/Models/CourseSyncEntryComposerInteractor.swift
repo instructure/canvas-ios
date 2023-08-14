@@ -97,6 +97,7 @@ public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryCompose
                             fileName: $0.filename,
                             url: $0.url!,
                             mimeClass: $0.mimeClass!,
+                            updatedAt: $0.updatedAt,
                             bytesToDownload: $0.size
                         )
                     }
