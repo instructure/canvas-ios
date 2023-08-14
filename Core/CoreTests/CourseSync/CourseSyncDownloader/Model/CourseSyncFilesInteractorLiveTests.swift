@@ -123,8 +123,8 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
 
     func testNotUpToDateFile() {
         let testee = CourseSyncFilesInteractorLive()
-        let expectation = expectation(description: "Publisher doesn't send value")
-        expectation.isInverted = true
+        let shouldntInvokeExpectation = expectation(description: "Expectation is not triggered.")
+        shouldntInvokeExpectation.isInverted = true
 
         let url = URL(string: "1.jpg")!
         let folderName = "canvas.instructure.com-1/Offline/Files/fileID"
@@ -159,8 +159,7 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
         .sink(
             receiveCompletion: { _ in },
             receiveValue: { progress in
-                XCTAssertEqual(progress, 1)
-                expectation.fulfill()
+                shouldntInvokeExpectation.fulfill()
             }
         )
 
