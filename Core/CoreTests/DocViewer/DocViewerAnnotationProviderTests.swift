@@ -73,7 +73,7 @@ class DocViewerAnnotationProviderTests: CoreTestCase {
                 rotations: nil,
                 urls: APIDocViewerURLsMetadata(pdf_download: APIURL.make().rawValue)
             ),
-            annotations: annotations,
+            apiAnnotations: annotations,
             api: environment.api,
             sessionID: "a",
             isAnnotationEditingDisabled: isAnnotationEditingDisabled
@@ -219,7 +219,7 @@ class DocViewerAnnotationProviderTests: CoreTestCase {
 
         guard let annotation = providers.annotationProvider.annotationsForPage(at: 0)?.first else { XCTFail("No annotations to test"); return }
 
-        XCTAssertTrue(annotation.flags.contains(.readOnly))
+        XCTAssertFalse(annotation.isEditable)
     }
 
     func testAnnotationFromPDFIsReadOnlyWhenAnnotatingIsDisabled() {
@@ -227,7 +227,7 @@ class DocViewerAnnotationProviderTests: CoreTestCase {
 
         guard let annotation = providers.annotationProvider.annotationsForPage(at: 0)?.first else { XCTFail("No annotations to test"); return }
 
-        XCTAssertTrue(annotation.flags.contains(.readOnly))
+        XCTAssertFalse(annotation.isEditable)
     }
 
     func testAnnotationFromPDFIsFlagged() {

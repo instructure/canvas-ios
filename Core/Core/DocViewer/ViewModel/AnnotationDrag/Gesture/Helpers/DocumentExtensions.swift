@@ -24,6 +24,6 @@ extension Optional where Wrapped == Document {
     func movableAnnotations(on pageIndex: PageIndex) -> [Annotation] {
         guard let document = self else { return [] }
         let annotationsOnPage = document.annotations(at: pageIndex)
-        return annotationsOnPage.filter { !$0.isReadOnly && $0.isMovable }
+        return annotationsOnPage.filter { $0.isEditable && $0.isMovable }
     }
 }

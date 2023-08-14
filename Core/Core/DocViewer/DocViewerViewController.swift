@@ -125,7 +125,7 @@ public class DocViewerViewController: UIViewController {
                 let provider = DocViewerAnnotationProvider(documentProvider: documentProvider,
                                                            fileAnnotationProvider: fileAnnotationProvider,
                                                            metadata: metadata,
-                                                           annotations: annotations,
+                                                           apiAnnotations: annotations,
                                                            api: self.session.api,
                                                            sessionID: sessionID,
                                                            isAnnotationEditingDisabled: !self.isAnnotatable || metadata.annotations?.enabled == false)
