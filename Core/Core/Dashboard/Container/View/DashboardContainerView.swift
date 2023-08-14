@@ -48,7 +48,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
 
     public init(shouldShowGroupList: Bool,
                 showOnlyTeacherEnrollment: Bool,
-                offlineViewModel: OfflineModeViewModel = OfflineModeViewModel(interactor: OfflineModeInteractorLive.shared)) {
+                offlineViewModel: OfflineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())) {
         courseCardListViewModel = DashboardCourseCardListAssembly.makeDashboardCourseCardListViewModel(showOnlyTeacherEnrollment: showOnlyTeacherEnrollment)
         self.shouldShowGroupList = shouldShowGroupList
         let env = AppEnvironment.shared
@@ -144,7 +144,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
     @ViewBuilder
     private var rightNavBarButtons: some View {
         if courseCardListViewModel.shouldShowSettingsButton {
-            if ExperimentalFeature.offlineMode.isEnabled, env.app == .student {
+            if offlineModeViewModel.isOfflineFeatureEnabled, env.app == .student {
                 optionsKebabButton
             } else {
                 dashboardSettingsButton

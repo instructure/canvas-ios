@@ -53,8 +53,7 @@ public class ReactiveStore<U: UseCase> {
         }
     }
 
-    private let env: AppEnvironment
-    private let offlineModeInteractor: OfflineModeInteractor
+    private let offlineModeInteractor: OfflineModeInteractor?
     private let useCase: U
     private let context: NSManagedObjectContext
 
@@ -69,12 +68,10 @@ public class ReactiveStore<U: UseCase> {
     // MARK: -
 
     public init(
-        env: AppEnvironment = .shared,
-        offlineModeInteractor: OfflineModeInteractor = OfflineModeInteractorLive.shared,
+        offlineModeInteractor: OfflineModeInteractor? = OfflineModeAssembly.make(),
         context: NSManagedObjectContext = AppEnvironment.shared.database.viewContext,
         useCase: U
     ) {
-        self.env = env
         self.offlineModeInteractor = offlineModeInteractor
         self.useCase = useCase
         self.context = context
@@ -111,7 +108,7 @@ public class ReactiveStore<U: UseCase> {
 
         let entitiesPublisher: AnyPublisher<[U.Model], Error>
 
-        if offlineModeInteractor.isOfflineModeEnabled() {
+        if offlineModeInteractor?.isOfflineModeEnabled() == true {
             entitiesPublisher = fetchEntitiesFromDatabase(fetchRequest: request)
         } else {
             entitiesPublisher = forceFetch ?
@@ -151,7 +148,7 @@ public class ReactiveStore<U: UseCase> {
         request.predicate = scope.predicate
         request.sortDescriptors = scope.order
 
-        if offlineModeInteractor.isOfflineModeEnabled() {
+        if offlineModeInteractor?.isOfflineModeEnabled() == true {
             return fetchEntitiesFromDatabase(fetchRequest: request)
                 .first()
                 .eraseToAnyPublisher()

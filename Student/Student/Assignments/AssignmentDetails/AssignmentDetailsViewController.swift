@@ -371,7 +371,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             submitAssignmentButton.alpha = 0
         } else {
             scrollViewBottom.constant = -submitAssignmentButton.bounds.size.height
-            submitAssignmentButton.alpha = OfflineModeInteractorLive.shared.isOfflineModeEnabled() ? UIButton.DisabledInOfflineAlpha : 1.0
+            submitAssignmentButton.alpha = OfflineModeAssembly.make().isOfflineModeEnabled() ? UIButton.DisabledInOfflineAlpha : 1.0
         }
     }
 

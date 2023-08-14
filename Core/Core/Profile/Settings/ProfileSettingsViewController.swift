@@ -117,7 +117,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
 
         var sections: [Section] = [preferencesSection]
 
-        if ExperimentalFeature.offlineMode.isEnabled, env.app == .student {
+        if OfflineModeAssembly.make().isFeatureFlagEnabled(), env.app == .student {
             sections.append(offlineSettingSection)
         }
 

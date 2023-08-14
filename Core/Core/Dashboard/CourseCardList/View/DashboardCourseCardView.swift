@@ -27,6 +27,7 @@ struct DashboardCourseCardView: View {
     /** Wide layout puts the course image to the left of the cell while the course name and code will be next to it on the right. */
     let isWideLayout: Bool
     @Binding var isAvailable: Bool
+    @StateObject private var offlineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
     @State private var isShowingKebabDialog = false
 
     @Environment(\.appEnvironment) var env
@@ -114,7 +115,7 @@ struct DashboardCourseCardView: View {
     @ViewBuilder
     private var optionsKebabButton: some View {
         PrimaryButton(isAvailable: $isAvailable) {
-            if ExperimentalFeature.offlineMode.isEnabled, env.app == .student {
+            if offlineModeViewModel.isOfflineFeatureEnabled, env.app == .student {
                 isShowingKebabDialog.toggle()
             } else {
                 openDashboardCardCustomizeSheet()

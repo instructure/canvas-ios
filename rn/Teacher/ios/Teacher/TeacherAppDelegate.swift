@@ -92,6 +92,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
 
             self.environmentFeatureFlags = self.environment.subscribe(GetEnvironmentFeatureFlags(context: Context.currentUser))
             self.environmentFeatureFlags?.refresh(force: true) { _ in
+                defer { self.environmentFeatureFlags = nil }
                 guard let envFlags = self.environmentFeatureFlags, envFlags.error == nil else { return }
                 self.initializeTracking()
             }

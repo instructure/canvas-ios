@@ -50,6 +50,14 @@ class DocViewerViewControllerTests: CoreTestCase {
     }
 
     class MockOfflineModeInteractorDisabled: OfflineModeInteractor {
+        func isFeatureFlagEnabled() -> Bool {
+            false
+        }
+
+        func observeIsFeatureFlagEnabled() -> AnyPublisher<Bool, Never> {
+            Just(false).eraseToAnyPublisher()
+        }
+
         func observeIsOfflineMode() -> AnyPublisher<Bool, Never> {
             Just(false).eraseToAnyPublisher()
         }
@@ -58,24 +66,24 @@ class DocViewerViewControllerTests: CoreTestCase {
             Just(.connected(.wifi)).eraseToAnyPublisher()
         }
 
-        func filePath(sessionID: String, fileID: String, fileName: String) -> String {
-            ""
-        }
-
         func isOfflineModeEnabled() -> Bool { false }
     }
 
     class MockOfflineModeInteractorEnabled: OfflineModeInteractor {
+        func isFeatureFlagEnabled() -> Bool {
+            true
+        }
+
+        func observeIsFeatureFlagEnabled() -> AnyPublisher<Bool, Never> {
+            Just(true).eraseToAnyPublisher()
+        }
+
         func observeIsOfflineMode() -> AnyPublisher<Bool, Never> {
             Just(true).eraseToAnyPublisher()
         }
 
         func observeNetworkStatus() -> AnyPublisher<Core.NetworkAvailabilityStatus, Never> {
             Just(.disconnected).eraseToAnyPublisher()
-        }
-
-        func filePath(sessionID: String, fileID: String, fileName: String) -> String {
-            ""
         }
 
         func isOfflineModeEnabled() -> Bool { true }

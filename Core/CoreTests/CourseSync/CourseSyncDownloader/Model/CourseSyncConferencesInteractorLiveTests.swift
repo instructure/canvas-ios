@@ -23,7 +23,7 @@ import XCTest
 class CourseSyncConferencesInteractorLiveTests: CoreTestCase {
 
     override class func tearDown() {
-        OfflineModeInteractorLive.shared = OfflineModeInteractorLive()
+        OfflineModeAssembly.reset()
         super.tearDown()
     }
 
@@ -51,7 +51,7 @@ class CourseSyncConferencesInteractorLiveTests: CoreTestCase {
         API.resetMocks()
 
         // MARK: - WHEN
-        OfflineModeInteractorLive.shared = AlwaysOfflineModeInteractor()
+        OfflineModeAssembly.mock(AlwaysOfflineModeInteractor())
         let testee = ConferenceListViewController.create(context: .course("testCourse"))
         testee.view.layoutIfNeeded()
         testee.viewWillAppear(false)
@@ -87,6 +87,13 @@ class CourseSyncConferencesInteractorLiveTests: CoreTestCase {
 }
 
 class AlwaysOfflineModeInteractor: OfflineModeInteractor {
+    func isFeatureFlagEnabled() -> Bool {
+        true
+    }
+
+    func observeIsFeatureFlagEnabled() -> AnyPublisher<Bool, Never> {
+        Just(true).eraseToAnyPublisher()
+    }
 
     func isOfflineModeEnabled() -> Bool {
         true
