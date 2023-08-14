@@ -34,8 +34,8 @@ public class CalendarHelper: BaseHelper {
     }
 
     static var localTimeZoneAbbreviation: String { return TimeZone.current.abbreviation() ?? "" }
-    static var plusMinutes = localTimeZoneAbbreviation == "GMT+2" ? -480 : 0
-    static var plusMinutesUI = localTimeZoneAbbreviation == "GMT+2" ? 120 : -960
+    static var plusMinutes = localTimeZoneAbbreviation == "GMT+2" ? -480 : 960
+    static var plusMinutesUI = localTimeZoneAbbreviation == "GMT+2" ? 120 : 120
     static let dateFormatter = DateFormatter()
 
     // MARK: UI Elements
@@ -49,7 +49,13 @@ public class CalendarHelper: BaseHelper {
 
     public static func dayButton(event: DSCalendarEvent) -> XCUIElement {
         let dateString = formatDateForDayButton(event: event)
-        return app.find(id: "PlannerCalendar.dayButton.\(dateString)")
+        let result = app.find(id: "PlannerCalendar.dayButton.\(dateString)")
+
+        // MARK: Only for debugging calendar tests on Bitrise (should be removed after)
+        let selectedDayButton = app.findAll(idStartingWith: "PlannerCalendar.dayButton.").filter( { $0.isSelected } )[0]
+        XCTAssertEqual(selectedDayButton.label, result.label)
+
+        return result
     }
 
     public static func formatDateForDayButton(event: DSCalendarEvent) -> String {
@@ -62,7 +68,7 @@ public class CalendarHelper: BaseHelper {
 
     public static func formatDateForDateLabel(event: DSCalendarEvent) -> String {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        let date = dateFormatter.date(from: event.start_at)!.addMinutes(120)
+        let date = dateFormatter.date(from: event.start_at)!.addMinutes(plusMinutesUI)
         dateFormatter.dateFormat = "MMM d, yyyy 'at' h:mm a"
         let formattedDate = dateFormatter.string(from: date)
         return formattedDate
