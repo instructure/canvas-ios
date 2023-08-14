@@ -198,7 +198,8 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                     url: element.url,
                     fileID: element.fileId,
                     fileName: element.fileName,
-                    mimeClass: element.mimeClass
+                    mimeClass: element.mimeClass,
+                    updatedAt: element.updatedAt
                 )
                 .throttle(for: .milliseconds(300), scheduler: unownedSelf.scheduler, latest: true)
                 .tryCatch { error -> AnyPublisher<Float, Error> in

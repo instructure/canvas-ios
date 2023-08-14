@@ -29,6 +29,7 @@ public extension CourseSyncEntry {
         let fileName: String
         let url: URL
         let mimeClass: String
+        let updatedAt: Date?
         var state: State = .loading(nil)
         var selectionState: ListCellView.SelectionState = .deselected
 

@@ -291,6 +291,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
                         fileName: "file-name-1",
                         url: URL(string: "https://canvas.instructure.com/files/1/download")!,
                         mimeClass: "image",
+                        updatedAt: nil,
                         bytesToDownload: 1000
                     ),
                 ]

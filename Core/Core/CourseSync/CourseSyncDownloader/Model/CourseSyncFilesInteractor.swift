@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CoreData
 import Foundation
 
 public protocol CourseSyncFilesInteractor {
@@ -24,7 +25,8 @@ public protocol CourseSyncFilesInteractor {
         url: URL,
         fileID: String,
         fileName: String,
-        mimeClass: String
+        mimeClass: String,
+        updatedAt: Date?
     ) -> AnyPublisher<Float, Error>
 }
 
@@ -47,7 +49,8 @@ public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, Loc
         url: URL,
         fileID: String,
         fileName: String,
-        mimeClass: String
+        mimeClass: String,
+        updatedAt: Date?
     ) -> AnyPublisher<Float, Error> {
         guard let sessionID = env.currentSession?.uniqueID else {
             return Fail(error:
@@ -68,19 +71,22 @@ public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, Loc
             location: URL.Directories.documents
         )
 
-        if fileManager.fileExists(atPath: localURL.path) {
+        if fileManager.fileExists(atPath: localURL.path),                               // File exists on the disk
+           let fileModificationDate = fileManager.fileModificationDate(url: localURL),
+           let updatedAt = updatedAt,                                                   // and
+           fileModificationDate >= updatedAt {                                          // is up to date
             return Just(1)
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
-        }
-
-        return DownloadTaskPublisher(parameters:
-            DownloadTaskParameters(
-                remoteURL: url,
-                localURL: localURL,
-                fileID: fileID
+        } else {
+            return DownloadTaskPublisher(parameters:
+                DownloadTaskParameters(
+                    remoteURL: url,
+                    localURL: localURL,
+                    fileID: fileID
+                )
             )
-        )
-        .eraseToAnyPublisher()
+            .eraseToAnyPublisher()
+        }
     }
 }
