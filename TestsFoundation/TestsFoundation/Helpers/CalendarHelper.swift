@@ -34,8 +34,8 @@ public class CalendarHelper: BaseHelper {
     }
 
     static var localTimeZoneAbbreviation: String { return TimeZone.current.abbreviation() ?? "" }
-    static var plusMinutes = localTimeZoneAbbreviation == "GMT+2" ? -480 : 960
-    static var plusMinutesUI = localTimeZoneAbbreviation == "GMT+2" ? 120 : 120
+    static var plusMinutes = localTimeZoneAbbreviation == "GMT+2" ? -480 : 480
+    static var plusMinutesUI = localTimeZoneAbbreviation == "GMT+2" ? 120 : 480
     static let dateFormatter = DateFormatter()
 
     // MARK: UI Elements
@@ -52,7 +52,7 @@ public class CalendarHelper: BaseHelper {
         let result = app.find(id: "PlannerCalendar.dayButton.\(dateString)")
 
         // MARK: Only for debugging calendar tests on Bitrise (should be removed after)
-        let selectedDayButton = app.findAll(idStartingWith: "PlannerCalendar.dayButton.").filter( { $0.isSelected } )[0]
+        let selectedDayButton = app.findAll(idStartingWith: "PlannerCalendar.dayButton.").filter({ $0.isSelected })[0]
         XCTAssertEqual(selectedDayButton.label, result.label)
 
         return result
@@ -178,6 +178,12 @@ public class CalendarHelper: BaseHelper {
     }
 
     // MARK: DataSeeding
+    public static func currentDateString() -> String {
+        let date = Date()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        return dateFormatter.string(from: date)
+    }
+
     public static func formatDate(addYears: Int = 0, addDays: Int = 0, addHours: Int = 0, addMinutes: Int = 0) -> String {
         let date = Date().addYears(addYears).addDays(addDays).addMinutes(addHours*60).addMinutes(addMinutes).addMinutes(plusMinutes)
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
@@ -241,20 +247,23 @@ public class CalendarHelper: BaseHelper {
             rRule: String? = nil,
             blackoutDate: Bool? = nil,
             weekly: Bool = false) -> DSCalendarEvent {
+        let now = currentDateString()
         let duplicate = weekly ? CreateDSCalendarEventRequest.DSDuplicate(count: 2, frequency: .weekly) : nil
         let calendarEvent = CreateDSCalendarEventRequest.RequestedDSCalendarEvent(
-            courseId: course.id,
-            title: title,
-            description: description,
-            start_at: startDate,
-            end_at: endDate,
-            location_name: locationName,
-            location_address: locationAddress,
-            all_day: allDay,
-            rrule: rRule,
-            blackout_date: blackoutDate,
-            duplicate: duplicate)
+                courseId: course.id,
+                title: title,
+                description: description,
+                start_at: startDate,
+                end_at: endDate,
+                location_name: locationName,
+                location_address: locationAddress,
+                all_day: allDay,
+                rrule: rRule,
+                blackout_date: blackoutDate,
+                duplicate: duplicate)
         let requestBody = CreateDSCalendarEventRequest.Body(calendar_event: calendarEvent)
-        return seeder.createCalendarEvent(requestBody: requestBody)
+        let result = seeder.createCalendarEvent(requestBody: requestBody)
+        XCTAssertEqual(now, result.start_at)
+        return result
     }
 }
