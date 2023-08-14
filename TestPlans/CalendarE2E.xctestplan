@@ -2,14 +2,24 @@
   "configurations" : [
     {
       "id" : "A44E9EC1-9442-435C-A91E-BC367966686A",
-      "name" : "Configuration 1",
+      "name" : "Default",
       "options" : {
-
+        "targetForVariableExpansion" : {
+          "containerPath" : "container:Student.xcodeproj",
+          "identifier" : "492704721CF4AF7100C631C6",
+          "name" : "Student"
+        },
+        "testTimeoutsEnabled" : false
       }
     }
   ],
   "defaultOptions" : {
-    "testTimeoutsEnabled" : true
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Student.xcodeproj",
+      "identifier" : "492704721CF4AF7100C631C6",
+      "name" : "Student"
+    }
   },
   "testTargets" : [
     {
