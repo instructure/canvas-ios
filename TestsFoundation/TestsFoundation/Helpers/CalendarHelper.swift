@@ -49,13 +49,7 @@ public class CalendarHelper: BaseHelper {
 
     public static func dayButton(event: DSCalendarEvent) -> XCUIElement {
         let dateString = formatDateForDayButton(event: event)
-        let result = app.find(id: "PlannerCalendar.dayButton.\(dateString)")
-
-        // MARK: Only for debugging calendar tests on Bitrise (should be removed after)
-        let selectedDayButton = app.findAll(idStartingWith: "PlannerCalendar.dayButton.").filter({ $0.isSelected })[0]
-        XCTAssertEqual(selectedDayButton.label, result.label)
-
-        return result
+        return app.find(id: "PlannerCalendar.dayButton.\(dateString)")
     }
 
     public static func formatDateForDayButton(event: DSCalendarEvent) -> String {
@@ -247,7 +241,6 @@ public class CalendarHelper: BaseHelper {
             rRule: String? = nil,
             blackoutDate: Bool? = nil,
             weekly: Bool = false) -> DSCalendarEvent {
-        let now = currentDateString()
         let duplicate = weekly ? CreateDSCalendarEventRequest.DSDuplicate(count: 2, frequency: .weekly) : nil
         let calendarEvent = CreateDSCalendarEventRequest.RequestedDSCalendarEvent(
                 courseId: course.id,
@@ -262,8 +255,6 @@ public class CalendarHelper: BaseHelper {
                 blackout_date: blackoutDate,
                 duplicate: duplicate)
         let requestBody = CreateDSCalendarEventRequest.Body(calendar_event: calendarEvent)
-        let result = seeder.createCalendarEvent(requestBody: requestBody)
-        XCTAssertEqual(now, result.start_at)
-        return result
+        return seeder.createCalendarEvent(requestBody: requestBody)
     }
 }
