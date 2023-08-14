@@ -59,7 +59,7 @@ public class DocViewerViewController: UIViewController {
         previewURL: URL?,
         fallbackURL: URL,
         navigationItem: UINavigationItem? = nil,
-        offlineModeInteractor: OfflineModeInteractor = OfflineModeInteractorLive.shared
+        offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
     ) -> DocViewerViewController {
         stylePSPDFKit()
 

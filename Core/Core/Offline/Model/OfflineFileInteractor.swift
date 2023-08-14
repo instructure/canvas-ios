@@ -30,7 +30,7 @@ public final class OfflineFileInteractorLive: OfflineFileInteractor {
 
     private let offlineModeInteractor: OfflineModeInteractor
 
-    public init(offlineModeInteractor: OfflineModeInteractor = OfflineModeInteractorLive.shared) {
+    public init(offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()) {
         self.offlineModeInteractor = offlineModeInteractor
     }
 
