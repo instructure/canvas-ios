@@ -33,6 +33,7 @@ public class CalendarHelper: BaseHelper {
         case nextYears
     }
 
+    // MARK: Timezone-related stuff
     static var localTimeZoneAbbreviation: String { return TimeZone.current.abbreviation() ?? "" }
     static var plusMinutes = localTimeZoneAbbreviation == "GMT+2" ? -480 : -360
     static var plusMinutesUI = localTimeZoneAbbreviation == "GMT+2" ? 120 : -360
