@@ -158,7 +158,7 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
         )
         .sink(
             receiveCompletion: { _ in },
-            receiveValue: { progress in
+            receiveValue: { _ in
                 shouldntInvokeExpectation.fulfill()
             }
         )
