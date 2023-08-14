@@ -19,6 +19,8 @@
 import UIKit
 
 extension UIButton {
+    /// When a button is disabled in offline mode this is the alpha component we apply to it.
+    public static var DisabledInOfflineAlpha: CGFloat = 0.3
 
     // MARK: - Public Interface
 
@@ -53,7 +55,7 @@ extension UIButton {
 
     private func setUnavailableState(isAnimated: Bool) {
         UIView.animate(withDuration: isAnimated ? 0.3 : 0.0) {
-            self.alpha = 0.3
+            self.alpha = UIButton.DisabledInOfflineAlpha
         }
 
         // Extra safety not to add any more tap recognizers if one is already in place

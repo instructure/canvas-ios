@@ -165,13 +165,13 @@ class DashboardTests: E2ETestCase {
 
         // MARK: Creation Pending, Deleted, Inactive, Rejected should not be listed
         let courseCard4 = Helper.courseCard(course: courses[3]).waitUntil(.vanish)
-        XCTAssertFalse(courseCard4.isVisible)
+        XCTAssertTrue(courseCard4.isVanished)
         let courseCard5 = Helper.courseCard(course: courses[4]).waitUntil(.vanish)
-        XCTAssertFalse(courseCard5.isVisible)
+        XCTAssertTrue(courseCard5.isVanished)
         let courseCard6 = Helper.courseCard(course: courses[5]).waitUntil(.vanish)
-        XCTAssertFalse(courseCard6.isVisible)
+        XCTAssertTrue(courseCard6.isVanished)
         let courseCard7 = Helper.courseCard(course: courses[6]).waitUntil(.vanish)
-        XCTAssertFalse(courseCard7.isVisible)
+        XCTAssertTrue(courseCard7.isVanished)
     }
 
     func testCourseCardGrades() throws {

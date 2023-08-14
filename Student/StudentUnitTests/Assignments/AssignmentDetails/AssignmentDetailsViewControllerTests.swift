@@ -83,8 +83,7 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
         viewController.showSubmitAssignmentButton(title: "hello")
         XCTAssertEqual(viewController.submitAssignmentButton.title(for: .normal), "hello")
         XCTAssertEqual(viewController.submitAssignmentButton.alpha, 1.0)
-        XCTAssertNotEqual(viewController.scrollView?.contentInset, .zero)
-        XCTAssertNotEqual(viewController.scrollView?.verticalScrollIndicatorInsets, .zero)
+        XCTAssertNotEqual(viewController.scrollViewBottom.constant, 0)
 
         viewController.showSubmitAssignmentButton(title: nil)
         XCTAssertEqual(viewController.scrollView?.contentInset, .zero)

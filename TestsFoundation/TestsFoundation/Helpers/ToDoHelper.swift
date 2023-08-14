@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,34 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+public class ToDoHelper: BaseHelper {
+    public static var navBar: XCUIElement { app.find(type: .navigationBar) }
+    public static var toDoBackButton: XCUIElement { navBar.find(label: "To Do", type: .button) }
 
-// These are the currently supported tabs on mobile
-public enum TabName: String, Codable {
-    case assignments
-    case quizzes
-    case discussions
-    case announcements
-    case people
-    case pages
-    case files
-    case modules
-    case syllabus
-    case collaborations
-    case conferences
-    case outcomes
-    case custom
-    case grades
+    public static func cell(id: String) -> XCUIElement {
+        return app.find(id: "to-do.list.\(id).row")
+    }
 
-    public static let OfflineSyncableTabs: [TabName] = [
-        .assignments,
-        .pages,
-        .files,
-        .grades,
-        .syllabus,
-        .conferences,
-        .announcements,
-        .quizzes,
-        .discussions,
-    ]
+    public static func cellItemTitle(cell itemCell: XCUIElement) -> XCUIElement {
+        return itemCell.find(type: .staticText)
+    }
 }
