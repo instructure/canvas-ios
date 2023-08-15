@@ -47,7 +47,7 @@ class ModuleItemCell: UITableViewCell {
         indentConstraint.constant = CGFloat(item.indent) * ModuleItemCell.IndentMultiplier
         let dueAt = item.dueAt.flatMap { DateFormatter.localizedString(from: $0, dateStyle: .medium, timeStyle: .none) }
         let points: String? = item.pointsPossible.flatMap {
-            if item.course?.hideQuantitativeData == true {
+            if item.hideQuantitativeData {
                 return nil
             } else {
                 return String.localizedStringWithFormat(

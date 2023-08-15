@@ -49,6 +49,10 @@ final public class Enrollment: NSManagedObject {
     @NSManaged public var currentPeriodComputedFinalGrade: String?
 
     @NSManaged public var submissions: Set<Submission>
+
+    public var hideQuantitativeData: Bool {
+        course?.hideQuantitativeData == true
+    }
 }
 
 extension Enrollment {
@@ -140,8 +144,6 @@ extension Enrollment {
 
         self.course = course
 
-        let hideScores = course?.hideQuantitativeData == true
-
         if let apiGrades = item.grades {
             let grade = grades.first { $0.gradingPeriodID == gradingPeriodID } ?? client.insert()
             grade.currentGrade = apiGrades.current_grade
@@ -149,7 +151,7 @@ extension Enrollment {
             grade.unpostedCurrentGrade = apiGrades.unposted_current_grade
             grade.overrideGrade = apiGrades.override_grade
 
-            if !hideScores {
+            if !hideQuantitativeData {
                 grade.currentScore = apiGrades.current_score
                 grade.finalScore = apiGrades.final_score
                 grade.unpostedCurrentScore = apiGrades.unposted_current_score
@@ -172,7 +174,7 @@ extension Enrollment {
             let grade = grades.first { $0.gradingPeriodID == nil } ?? client.insert()
             grade.gradingPeriodID = nil
 
-            if !hideScores {
+            if !hideQuantitativeData {
                 grade.currentScore = item.computed_current_score
                 computedCurrentScore = item.computed_current_score
                 computedFinalScore = item.computed_final_score
@@ -184,7 +186,7 @@ extension Enrollment {
             if let currentGradingPeriodID = item.current_grading_period_id {
                 let currentPeriodGrade = grades.first { $0.gradingPeriodID == currentGradingPeriodID } ?? client.insert()
                 currentPeriodGrade.gradingPeriodID = currentGradingPeriodID
-                currentPeriodGrade.currentScore = hideScores ? nil : item.current_period_computed_current_score
+                currentPeriodGrade.currentScore = hideQuantitativeData ? nil : item.current_period_computed_current_score
                 grades.insert(currentPeriodGrade)
             }
         }

@@ -108,6 +108,10 @@ public class Quiz: NSManagedObject {
         return URL(string: path, relativeTo: AppEnvironment.shared.api.baseURL)
     }
 
+    public var hideQuantitativeData: Bool {
+        course?.hideQuantitativeData == true
+    }
+
     public func resultsPath(for attempt: Int) -> String? {
         switch hideResults {
         case .always:

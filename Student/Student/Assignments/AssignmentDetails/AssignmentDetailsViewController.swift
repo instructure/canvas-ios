@@ -279,7 +279,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     }
 
     func update(assignment: Assignment, quiz: Quiz?, baseURL: URL?) {
-        let hideScores = assignment.course?.hideQuantitativeData == true
+        let hideScores = assignment.hideQuantitativeData
         nameLabel?.text = assignment.name
         pointsLabel?.text = hideScores ? nil : assignment.pointsPossibleText
         statusIconView?.isHidden = assignment.submissionStatusIsHidden
@@ -315,7 +315,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             (assignment.submission?.isGraded == true  && assignment.gradingType != .not_graded ) ||
             presenter.onlineUploadState != nil
         let gradeText = GradeFormatter.string(from: assignment, style: .short)
-        if assignment.course?.hideQuantitativeData == true, (gradeText ?? "").isEmpty == true {
+        if assignment.hideQuantitativeData, (gradeText ?? "").isEmpty == true {
             showGradeSection = false
         }
         attemptsView.isHidden = presenter.attemptsIsHidden()

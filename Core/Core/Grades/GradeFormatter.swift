@@ -69,7 +69,7 @@ public class GradeFormatter {
         formatter.pointsPossible = assignment.pointsPossible ?? 0
         formatter.gradingType = assignment.gradingType
         formatter.gradeStyle = style
-        formatter.hideScores = assignment.course?.hideQuantitativeData ?? false
+        formatter.hideScores = assignment.hideQuantitativeData
         if let userID = userID {
             let submission = assignment.submissions?.first { $0.userID == userID }
             return formatter.string(from: submission)
@@ -86,7 +86,7 @@ public class GradeFormatter {
         formatter.pointsPossible = assignment.pointsPossible ?? 0
         formatter.gradingType = assignment.gradingType
         formatter.gradeStyle = style
-        formatter.hideScores = assignment.course?.hideQuantitativeData ?? false
+        formatter.hideScores = assignment.hideQuantitativeData
         if assignment.gradingType == .letter_grade {
             formatter.gradeStyle = .short
         }
@@ -209,7 +209,7 @@ public class GradeFormatter {
         let grade = final ? submission.grade : submission.enteredGrade
         let score = final ? submission.score : submission.enteredScore
 
-        let shouldHideScore = assignment.course?.hideQuantitativeData == true
+        let shouldHideScore = assignment.hideQuantitativeData
 
         switch assignment.gradingType {
         case .percent:
@@ -244,7 +244,7 @@ public class GradeFormatter {
         let scoreString = numberFormatter.string(from: truncate(score)) ?? "0"
         let possibleString = numberFormatter.string(from: truncate(assignment.pointsPossible ?? 0)) ?? "0"
         let grade = assignment.gradingType == .points ? nil : gradeString(for: assignment, submission: submission, final: final)
-        if assignment.course?.hideQuantitativeData == true {
+        if assignment.hideQuantitativeData {
             return grade ?? ""
         }
         if let grade = grade {

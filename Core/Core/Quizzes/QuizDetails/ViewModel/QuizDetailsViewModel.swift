@@ -32,7 +32,7 @@ public class QuizDetailsViewModel: QuizDetailsViewModelProtocol {
 
     public var quizTitle: String { quiz?.title ?? "" }
     public var pointsPossibleText: String {
-        if quiz?.course?.hideQuantitativeData == true { return "" }
+        if quiz?.hideQuantitativeData == true { return "" }
         return quiz?.pointsPossibleText ?? ""
     }
     public var published: Bool { quiz?.published ?? false }

@@ -142,7 +142,7 @@ public class GradeCircleView: UIView {
         }
 
         // Update for hidden quantitative data
-        if assignment.course?.hideQuantitativeData == true {
+        if assignment.hideQuantitativeData {
             outOfLabel.isHidden = true
             displayGrade.isHidden = gradeText.isEmpty
             latePenaltyLabel.isHidden = true
