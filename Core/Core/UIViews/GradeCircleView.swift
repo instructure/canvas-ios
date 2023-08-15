@@ -151,6 +151,7 @@ public class GradeCircleView: UIView {
             circlePoints.isHidden = true
             circleLabel.isHidden = true
             gradeCircle?.progress = 1
+            gradeCircle.accessibilityLabel = gradeCircle.accessibilityLabel?.containsNumber == true ? nil : gradeCircle.accessibilityLabel
         }
     }
 }
