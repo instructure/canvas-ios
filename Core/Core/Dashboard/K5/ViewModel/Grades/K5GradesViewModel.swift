@@ -39,21 +39,20 @@ public class K5GradesViewModel: ObservableObject {
         courses.refresh()
     }
 
-    public var hideQuantitativeData: Bool = false
-
     private func coursesUpdated() {
         gradingPeriods = [defaultCurrentGradingPeriod]
         grades = courses.filter({ !$0.isHomeroomCourse }).map {
             let enrollment = $0.enrollments?.first
             let isMultiGradingPeriod = enrollment?.multipleGradingPeriodsEnabled ?? false
-            hideQuantitativeData = enrollment?.hideQuantitativeData == true
+            let hideQuantitativeData = enrollment?.hideQuantitativeData == true
             let score = hideQuantitativeData ? nil : isMultiGradingPeriod ? enrollment?.currentPeriodComputedCurrentScore : enrollment?.computedCurrentScore
             return K5GradeCellViewModel(title: $0.name,
                                         imageURL: $0.imageDownloadURL,
                                         grade: isMultiGradingPeriod ? enrollment?.currentPeriodComputedCurrentGrade : enrollment?.computedCurrentGrade,
                                         score: score,
                                         color: $0.color,
-                                        courseID: $0.id)
+                                        courseID: $0.id,
+                                        hideGradeBar: hideQuantitativeData)
         }
         var gradingPeriodModels = courses.compactMap { $0.gradingPeriods }.flatMap { $0 }
         gradingPeriodModels.sort(by: {
@@ -76,7 +75,8 @@ public class K5GradesViewModel: ObservableObject {
                                                      grade: enrollment.computed_current_grade ?? enrollment.grades?.current_grade,
                                                      score: shouldHideQuantitativeData ? nil : enrollment.computed_current_score ?? enrollment.grades?.current_score,
                                                      color: course.color,
-                                                     courseID: course.id)
+                                                     courseID: course.id,
+                                                     hideGradeBar: shouldHideQuantitativeData)
                 grades.append(cellModel)
             }
             grades.sort(by: {$0.title < $1.title})

@@ -23,27 +23,27 @@ import SwiftUI
 class K5GradeCellViewModelTests: CoreTestCase {
 
     func testDefaultK5Color() {
-        let testee = K5GradeCellViewModel(title: "ART", imageURL: nil, grade: nil, score: 55, color: nil, courseID: "")
+        let testee = K5GradeCellViewModel(title: "ART", imageURL: nil, grade: nil, score: 55, color: nil, courseID: "", hideGradeBar: false)
         XCTAssertEqual(testee.color, .oxford)
     }
 
     func testGradePercentage() {
-        let testee = K5GradeCellViewModel(title: "ART", imageURL: nil, grade: "55", score: 55, color: nil, courseID: "")
+        let testee = K5GradeCellViewModel(title: "ART", imageURL: nil, grade: "55", score: 55, color: nil, courseID: "", hideGradeBar: false)
         XCTAssertEqual(testee.gradePercentage, 55)
     }
 
     func testGradePercentageWithoutScore() {
-        let testee = K5GradeCellViewModel(title: "ART", imageURL: nil, grade: "B", score: nil, color: nil, courseID: "")
+        let testee = K5GradeCellViewModel(title: "ART", imageURL: nil, grade: "B", score: nil, color: nil, courseID: "", hideGradeBar: false)
         XCTAssertEqual(testee.gradePercentage, 0)
     }
 
     func testRoundedDisplayGrade() {
-        let testee = K5GradeCellViewModel(title: "ART", imageURL: nil, grade: "A", score: 99.9, color: nil, courseID: "")
+        let testee = K5GradeCellViewModel(title: "ART", imageURL: nil, grade: "A", score: 99.9, color: nil, courseID: "", hideGradeBar: false)
         XCTAssertEqual(testee.roundedDisplayGrade, "100%")
     }
 
     func testRoute() {
-        let testee = K5GradeCellViewModel(title: "ART", imageURL: nil, grade: "A", score: 99.9, color: nil, courseID: "66")
+        let testee = K5GradeCellViewModel(title: "ART", imageURL: nil, grade: "A", score: 99.9, color: nil, courseID: "66", hideGradeBar: false)
         XCTAssertEqual(testee.route, "/courses/66#grades")
     }
 }
