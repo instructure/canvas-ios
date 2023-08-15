@@ -46,9 +46,16 @@ public class K5GradesViewModel: ObservableObject {
             let isMultiGradingPeriod = enrollment?.multipleGradingPeriodsEnabled ?? false
             let hideQuantitativeData = enrollment?.hideQuantitativeData == true
             let score = hideQuantitativeData ? nil : isMultiGradingPeriod ? enrollment?.currentPeriodComputedCurrentScore : enrollment?.computedCurrentScore
+            let grade: String? = {
+                if hideQuantitativeData {
+                    return enrollment?.computedCurrentLetterGrade
+                } else {
+                    return isMultiGradingPeriod ? enrollment?.currentPeriodComputedCurrentGrade : enrollment?.computedCurrentGrade
+                }
+            }()
             return K5GradeCellViewModel(title: $0.name,
                                         imageURL: $0.imageDownloadURL,
-                                        grade: isMultiGradingPeriod ? enrollment?.currentPeriodComputedCurrentGrade : enrollment?.computedCurrentGrade,
+                                        grade: grade,
                                         score: score,
                                         color: $0.color,
                                         courseID: $0.id,
@@ -70,9 +77,16 @@ public class K5GradesViewModel: ObservableObject {
             apiEnrollments?.forEach { enrollment in
                 guard let course = self?.courses.first(where: { $0.id == enrollment.course_id?.rawValue }), !course.isHomeroomCourse else { return }
                 let shouldHideQuantitativeData = course.hideQuantitativeData
+                let grade: String? = {
+                    if shouldHideQuantitativeData {
+                        return enrollment.computed_current_letter_grade
+                    } else {
+                        return enrollment.computed_current_grade ?? enrollment.grades?.current_grade
+                    }
+                }()
                 let cellModel = K5GradeCellViewModel(title: course.name ?? "",
                                                      imageURL: course.imageDownloadURL,
-                                                     grade: enrollment.computed_current_grade ?? enrollment.grades?.current_grade,
+                                                     grade: grade,
                                                      score: shouldHideQuantitativeData ? nil : enrollment.computed_current_score ?? enrollment.grades?.current_score,
                                                      color: course.color,
                                                      courseID: course.id,

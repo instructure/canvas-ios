@@ -97,6 +97,93 @@ class K5GradesViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.grades.first?.score, 6)
     }
 
+    func testHidesGradeBarWhenQuantitativeDataEnabled() {
+        api.mock(GetUserCourses(userID: "1"), value: [
+            .make(
+                id: "1",
+                name: "Math",
+                course_code: "CRS-1",
+                enrollments: [
+                    .make(
+                        id: "1",
+                        course_id: "1",
+                        user_id: "1",
+                        multiple_grading_periods_enabled: true,
+                        current_period_computed_current_score: 6,
+                        current_period_computed_current_grade: "Hat"
+                    ),
+                ],
+                settings: APICourseSettings.make(restrict_quantitative_data: true)
+            ),
+        ])
+
+        let testee = K5GradesViewModel()
+        XCTAssertTrue(testee.grades[0].hideGradeBar)
+    }
+
+    func testShowsCourseLetterGradeWhenQuantitativeDataEnabled() {
+        api.mock(GetUserCourses(userID: "1"), value: [
+            .make(
+                id: "1",
+                name: "Math",
+                course_code: "CRS-1",
+                enrollments: [
+                    .make(
+                        id: "1",
+                        course_id: "1",
+                        user_id: "1",
+                        computed_current_letter_grade: "B",
+                        multiple_grading_periods_enabled: true,
+                        current_period_computed_current_score: 6,
+                        current_period_computed_current_grade: "Hat"
+                    ),
+                ],
+                settings: APICourseSettings.make(restrict_quantitative_data: true)
+            ),
+        ])
+
+        let testee = K5GradesViewModel()
+        XCTAssertEqual(testee.grades.first?.grade, "B")
+        XCTAssertNil(testee.grades.first?.score)
+    }
+
+    func testShowsEnrollmentLetterGradeWhenQuantitativeDataEnabled() {
+        let gradingPeriods: [APIGradingPeriod] = [
+            .make(id: "1", title: "grading period 1", start_date: Clock.now.addDays(-7)),
+        ]
+        api.mock(GetUserCourses(userID: "1"), value: [
+            .make(
+                id: "1",
+                name: "",
+                course_code: "CRS-1",
+                enrollments: [
+                    .make(
+                        id: "1",
+                        course_id: "1",
+                        user_id: "1"
+                    ),
+                ],
+                grading_periods: gradingPeriods,
+                homeroom_course: false,
+                settings: APICourseSettings.make(restrict_quantitative_data: true)
+            ),
+        ])
+        let request = GetEnrollmentsRequest(context: .currentUser,
+                                            userID: "1",
+                                            gradingPeriodID: "1",
+                                            types: ["StudentEnrollment"],
+                                            states: [.active])
+        api.mock(request, value: [
+            .make(id: "1", course_id: "1", computed_current_letter_grade: "B"),
+        ])
+
+        let testee = K5GradesViewModel()
+        testee.didSelect(gradingPeriod: testee.gradingPeriods[1])
+
+        XCTAssertEqual(testee.grades.first?.grade, "B")
+        XCTAssertNil(testee.grades.first?.score)
+    }
+
     // MARK: - Private Helpers
 
     private func mockCourses() {
