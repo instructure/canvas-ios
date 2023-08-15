@@ -28,7 +28,8 @@ public struct CoursePickerView: View {
 
     public var body: some View {
         content
-            .navigationBarTitleView(Text("Select Course", bundle: .core).font(.semibold17).foregroundColor(.textDarkest), displayMode: .inline)
+            .navigationTitleStyled(Text("Select Course", bundle: .core).font(.semibold17).foregroundColor(.textDarkest))
+            .navigationBarTitleDisplayMode(.inline)
     }
 
     @ViewBuilder

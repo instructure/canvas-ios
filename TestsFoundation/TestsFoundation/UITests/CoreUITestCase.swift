@@ -27,11 +27,11 @@ open class CoreUITestCase: XCTestCase {
         encoder.dateEncodingStrategy = .iso8601
         return encoder
     }
-    open var homeScreen: Element {
+    open var homeScreen: XCUIElement {
         if Bundle.main.isParentApp {
-            return TabBar.coursesTab
+            return BaseHelper.TabBar.coursesTab
         } else {
-            return TabBar.dashboardTab
+            return BaseHelper.TabBar.dashboardTab
         }
     }
 
@@ -101,7 +101,7 @@ open class CoreUITestCase: XCTestCase {
             CoreUITestCase.needsLaunch = false
             launch()
             if currentSession() != nil {
-                homeScreen.waitToExist()
+                homeScreen.waitUntil(.visible)
             }
         }
         if useMocks {
@@ -229,7 +229,7 @@ open class CoreUITestCase: XCTestCase {
         block?(app)
         app.launch()
         // Wait for RN to finish loading
-        app.find(labelContaining: "Loading").waitToVanish(120)
+        app.find(labelContaining: "Loading").waitUntil(.vanish, timeout: 120)
     }
 
     open func send(_ helper: UITestHelpers.Helper, ignoreErrors: Bool = false) {
@@ -247,7 +247,7 @@ open class CoreUITestCase: XCTestCase {
 
     open func reset(file: StaticString = #file, line: UInt = #line) {
         send(.reset(useMocks: useMocks))
-        LoginStart.findSchoolButton.waitToExist(file: file, line: line)
+        LoginHelper.Start.findSchoolButton.waitUntil(.visible)
     }
 
     open func logIn(domain: String = "canvas.instructure.com", token: String = "t", file: StaticString = #file, line: UInt = #line) {
@@ -265,7 +265,7 @@ open class CoreUITestCase: XCTestCase {
 
     open func logInEntry(_ session: LoginSession, file: StaticString = #file, line: UInt = #line) {
         send(.login(session))
-        homeScreen.waitToExist(file: file, line: line)
+        homeScreen.waitUntil(.visible)
     }
 
     open func logInUser(_ user: UITestUser) {
@@ -274,20 +274,20 @@ open class CoreUITestCase: XCTestCase {
         }
 
         // Test retries can work with last logged in instance
-        LoginStart.findSchoolButton.waitToExist()
-        if LoginStart.lastLoginButton.exists && LoginStart.lastLoginButton.label() == user.host {
-            LoginStart.lastLoginButton.tap()
+        let findSchoolButton = LoginHelper.Start.findSchoolButton.waitUntil(.visible)
+        if LoginHelper.Start.lastLoginButton.exists && LoginHelper.Start.lastLoginButton.label == user.host {
+            LoginHelper.Start.lastLoginButton.hit()
         } else {
-            LoginStart.findSchoolButton.tap()
-            LoginFindSchool.searchField.typeText("\(user.host)")
-            LoginFindSchool.keyboardGoButton.tap()
+            findSchoolButton.hit()
+            LoginHelper.FindSchool.searchField.writeText(text: user.host)
+            LoginHelper.FindSchool.nextButton.hit()
         }
-        LoginWeb.emailField.waitToExist(60)
-        LoginWeb.emailField.typeText(user.username)
-        LoginWeb.passwordField.typeText(user.password)
-        LoginWeb.logInButton.tap()
+        let emailField = LoginHelper.Login.emailField.waitUntil(.visible, timeout: 60)
+        emailField.writeText(text: user.username)
+        LoginHelper.Login.passwordField.writeText(text: user.password)
+        LoginHelper.Login.loginButton.hit()
 
-        homeScreen.waitToExist()
+        homeScreen.waitUntil(.visible)
         user.session = currentSession()
     }
 
@@ -331,21 +331,21 @@ open class CoreUITestCase: XCTestCase {
     }
 
     open func handleAlert(withTexts texts: [String]? = nil, byPressingButton button: String) {
-        let alert = app.find(type: .alert).waitToExist()
+        let alert = app.find(type: .alert).waitUntil(.visible)
         if let texts = texts {
-            let textElements = alert.rawElement.descendants(matching: .staticText)
+            let textElements = alert.descendants(matching: .staticText)
             let alertTexts = textElements.allElementsBoundByIndex.map { $0.label }
             XCTAssertEqual(alertTexts, texts)
         }
-        alert.rawElement.find(label: button).waitToExist().tap()
-        alert.waitToVanish()
+        alert.find(label: button).hit()
+        alert.waitUntil(.vanish)
     }
 
     open func allowAccessToPhotos(block: () -> Void) {
         setSimulatorPermission(.photos)
         let alertHandler = addUIInterruptionMonitor(withDescription: "Photos Access Alert") { (alert) -> Bool in
             _ = alert.buttons["OK"].waitForExistence(timeout: 3)
-            alert.buttons["OK"].tap()
+            alert.buttons["OK"].hit()
             return true
         }
         block()
@@ -357,7 +357,7 @@ open class CoreUITestCase: XCTestCase {
         setSimulatorPermission(.microphone)
         let alertHandler = addUIInterruptionMonitor(withDescription: "Permission Alert") { (alert) -> Bool in
             _ = alert.buttons["OK"].waitForExistence(timeout: 3)
-            alert.buttons["OK"].tap()
+            alert.buttons["OK"].hit()
             return true
         }
         block()

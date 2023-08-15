@@ -716,6 +716,9 @@
 "d_items" = "d_items";
 
 /* No comment provided by engineer. */
+"d_items_syncing" = "d_items_syncing";
+
+/* No comment provided by engineer. */
 "d_likes" = "d_likes";
 
 /* No comment provided by engineer. */
@@ -861,6 +864,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Исключить %@";
+
+/* No comment provided by engineer. */
+"Dismiss notification" = "Пропустить уведомление";
 
 /* No comment provided by engineer. */
 "Display As" = "Отобразить как";
@@ -1056,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "File Details" = "Подробная информация о файле";
+
+/* No comment provided by engineer. */
+"File download failed." = "Не удалось скачать файл.";
 
 /* No comment provided by engineer. */
 "File No Longer Exists" = "Файл больше не существует";
@@ -1781,6 +1790,9 @@
 "Offline Content Sync Failed" = "Сбой синхронизации автономного содержимого";
 
 /* No comment provided by engineer. */
+"Offline mode" = "Режим офлайн";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -2453,6 +2465,9 @@
 "Synchronization" = "Синхронизация";
 
 /* No comment provided by engineer. */
+"Syncing Offline Content" = "Синхронизировать офлайн-контент";
+
+/* No comment provided by engineer. */
 "System settings" = "Системные настройки";
 
 /* No comment provided by engineer. */
@@ -2622,6 +2637,9 @@
 
 /* No comment provided by engineer. */
 "This is your personal color setting. Only you will see this color for the course." = "Это ваша персональная настройка цвета. Только вы будет видеть этот цвет для курса.";
+
+/* No comment provided by engineer. */
+"This item is not available offline." = "Данный элемент недоступен в режиме офлайн.";
 
 /* No comment provided by engineer. */
 "This module is empty." = "Этот модуль пуст.";

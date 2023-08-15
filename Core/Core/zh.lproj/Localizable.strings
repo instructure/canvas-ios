@@ -716,6 +716,9 @@
 "d_items" = "d_items";
 
 /* No comment provided by engineer. */
+"d_items_syncing" = "d_items_syncing";
+
+/* No comment provided by engineer. */
 "d_likes" = "d_likes";
 
 /* No comment provided by engineer. */
@@ -861,6 +864,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "撤销%@";
+
+/* No comment provided by engineer. */
+"Dismiss notification" = "解散通知";
 
 /* No comment provided by engineer. */
 "Display As" = "显示为";
@@ -1056,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "File Details" = "文件详细信息";
+
+/* No comment provided by engineer. */
+"File download failed." = "下载文件失败。";
 
 /* No comment provided by engineer. */
 "File No Longer Exists" = "文件已不存在";
@@ -1781,6 +1790,9 @@
 "Offline Content Sync Failed" = "离线同步内容失败";
 
 /* No comment provided by engineer. */
+"Offline mode" = "离线模式";
+
+/* No comment provided by engineer. */
 "OK" = "确定";
 
 /* No comment provided by engineer. */
@@ -2453,6 +2465,9 @@
 "Synchronization" = "同步";
 
 /* No comment provided by engineer. */
+"Syncing Offline Content" = "正在同步脱机内容";
+
+/* No comment provided by engineer. */
 "System settings" = "系统设置";
 
 /* No comment provided by engineer. */
@@ -2622,6 +2637,9 @@
 
 /* No comment provided by engineer. */
 "This is your personal color setting. Only you will see this color for the course." = "这是您的个人颜色设置。只有您自己可以看到此课程颜色。";
+
+/* No comment provided by engineer. */
+"This item is not available offline." = "该项目无法离线使用。";
 
 /* No comment provided by engineer. */
 "This module is empty." = "该单元为空。";

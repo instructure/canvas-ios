@@ -16,26 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 import TestsFoundation
 
 class K5GradesE2ETests: K5UITestCase {
     func testK5GradesE2E() {
         setUpK5()
 
-        K5CourseCard.courseCard(id: "21025").waitToExist()
-        K5NavigationBar.grades.tap()
-        K5Grades.gradingPeriodSelectorClosed.waitToExist()
-        K5Grades.gradingPeriodSelectorClosed.tap()
-        K5Grades.gradingPeriodSelectorOpen.waitToExist()
-        app.find(labelContaining: "MATH").waitToExist()
-        app.find(labelContaining: "MATH").tap()
-        K5CourseGrades.emptyGradesForCourse.waitToExist()
-        NavBar.backButton.tap()
-        app.find(labelContaining: "AUTOMATION 101").waitToExist()
-        app.find(labelContaining: "AUTOMATION 101").tap()
-        app.find(label: "Auto Intro").waitToExist()
-        K5CourseGrades.gradedPointsMax(maxPoints: "5").waitToExist()
-        K5CourseGrades.gradedPointsActual(actualPoints: "4").waitToExist()
+        XCTAssertTrue(K5Helper.courseCard(id: "21025").waitUntil(.visible).isVisible)
+        K5Helper.grades.hit()
+        XCTAssertTrue(K5Helper.gradingPeriodSelectorClosed.waitUntil(.visible).isVisible)
+        K5Helper.gradingPeriodSelectorClosed.hit()
+        XCTAssertTrue(K5Helper.gradingPeriodSelectorOpen.waitUntil(.visible).isVisible)
+        XCTAssertTrue(app.find(labelContaining: "MATH").waitUntil(.visible).isVisible)
+        app.find(labelContaining: "MATH").hit()
+        XCTAssertTrue(K5Helper.emptyGradesForCourse.waitUntil(.visible).isVisible)
+        K5Helper.backButton.hit()
+        XCTAssertTrue(app.find(labelContaining: "AUTOMATION 101").waitUntil(.visible).isVisible)
+        app.find(labelContaining: "AUTOMATION 101").hit()
+        XCTAssertTrue(app.find(label: "Auto Intro").waitUntil(.visible).isVisible)
+        XCTAssertTrue(K5Helper.gradedPointsMax(maxPoints: "5").waitUntil(.visible).isVisible)
+        XCTAssertTrue(K5Helper.gradedPointsActual(actualPoints: "4").waitUntil(.visible).isVisible)
     }
 }

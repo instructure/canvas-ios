@@ -80,7 +80,7 @@ final class DownloadTaskSubscription<SubscriberType: Subscriber>: NSObject,
     }
 
     func cancel() {
-        downloadTask?.cancel()
+        resetAll()
     }
 
     func urlSession(
@@ -101,8 +101,8 @@ final class DownloadTaskSubscription<SubscriberType: Subscriber>: NSObject,
         let localURL = parameters.localURL
 
         defer {
-            downloadTask = nil
             session.finishTasksAndInvalidate()
+            resetAll()
         }
 
         do {
@@ -137,9 +137,15 @@ final class DownloadTaskSubscription<SubscriberType: Subscriber>: NSObject,
         guard let error = error else {
             return
         }
-        downloadTask = nil
         session.finishTasksAndInvalidate()
         _ = subscriber?.receive(completion: .failure(error))
+        resetAll()
+    }
+
+    private func resetAll() {
+        downloadTask?.cancel()
+        downloadTask = nil
+        subscriber = nil
     }
 }
 

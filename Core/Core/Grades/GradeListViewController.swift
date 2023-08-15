@@ -22,6 +22,17 @@ public protocol ColorDelegate: AnyObject {
     var iconColor: UIColor? { get }
 }
 
+extension Course {
+
+    func enrollmentForGrades(userId: String?) -> Enrollment? {
+        enrollments?.first {
+            $0.state == .active &&
+            $0.userID == userId &&
+            $0.type.lowercased().contains("student")
+        }
+    }
+}
+
 public class GradeListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
@@ -42,11 +53,7 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
     public weak var colorDelegate: ColorDelegate?
     var courseID = ""
     var courseEnrollment: Enrollment? {
-        return courses.first?.enrollments?.first {
-            $0.state == .active &&
-            $0.userID == userID &&
-            $0.type.lowercased().contains("student")
-        }
+        courses.first?.enrollmentForGrades(userId: userID)
     }
     var gradeEnrollment: Enrollment? {
         return enrollments.first {
@@ -60,11 +67,12 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
     var gradingPeriodID: String?
     var gradingPeriodLoaded = false
     var userID: String?
+    var offlineModeInteractor: OfflineModeInteractor?
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
         eventName: "/courses/\(courseID)/grades"
     )
 
-    lazy var assignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: gradingPeriodID, gradedOnly: true)) { [weak self] in
+    lazy var assignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: nil, gradedOnly: true)) { [weak self] in
         self?.update()
     }
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
@@ -77,7 +85,7 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
     lazy var enrollments = env.subscribe(GetEnrollments(
         context: .course(courseID),
         userID: userID,
-        gradingPeriodID: gradingPeriodID,
+        gradingPeriodID: nil,
         types: [ "StudentEnrollment" ],
         states: [ .active ]
     )) { [weak self] in
@@ -87,11 +95,16 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
         self?.update()
     }
 
-    public static func create(courseID: String, userID: String? = nil, colorDelegate: ColorDelegate? = nil) -> GradeListViewController {
+    public static func create(courseID: String,
+                              userID: String? = nil,
+                              colorDelegate: ColorDelegate? = nil,
+                              offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make())
+    -> GradeListViewController {
         let controller = loadFromStoryboard()
         controller.colorDelegate = colorDelegate
         controller.courseID = courseID
         controller.userID = userID ?? controller.env.currentSession?.userID
+        controller.offlineModeInteractor = offlineModeInteractor
         return controller
     }
 
@@ -105,6 +118,7 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
         errorView.messageLabel.text = NSLocalizedString("There was an error loading grades. Pull to refresh to try again.", bundle: .core, comment: "")
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         filterButton.setTitle(NSLocalizedString("Filter", bundle: .core, comment: ""), for: .normal)
+        filterButton.makeUnavailableInOfflineMode()
 
         gradingPeriodView.isHidden = true
 
@@ -132,6 +146,17 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
             tableView.deselectRow(at: index, animated: animated)
         }
         navigationController?.navigationBar.useContextColor(color)
+    }
+
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        // Without this there was some weird empty space at the end of the tableview
+        // that went away after rotation or when we moved away from the screen and returned
+        if offlineModeInteractor?.isOfflineModeEnabled() == true {
+            view.setNeedsLayout()
+            tableView.reloadData()
+        }
     }
 
     @objc func refresh() {
@@ -203,9 +228,14 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
         assignments = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: gradingPeriodID, gradedOnly: true)) { [weak self] in
             self?.update()
         }
-        // Delete assignment groups immediately, to see a spinner again
-        assignments.useCase.reset(context: env.database.viewContext)
-        try? env.database.viewContext.save()
+
+        // In offline mode we don't want to delete anything from CoreData
+        if offlineModeInteractor?.isOfflineModeEnabled() == false {
+            // Delete assignment groups immediately, to see a spinner again
+            assignments.useCase.reset(context: env.database.viewContext)
+            try? env.database.viewContext.save()
+        }
+
         assignments.refresh(force: true)
         enrollments.refresh(force: true)
     }

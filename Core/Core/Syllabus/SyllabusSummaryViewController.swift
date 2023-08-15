@@ -147,6 +147,7 @@ class SyllabusSummaryItemCell: UITableViewCell {
         iconImageView?.image = item?.type == .assignment ? .assignmentLine : .calendarMonthLine
         iconImageView?.tintColor = color
         dateLabel?.setText(item?.startAt.flatMap(formatDate(_:)) ?? NSLocalizedString("No Due Date", bundle: .core, comment: ""), style: .textCellSupportingText)
+        accessibilityIdentifier = "itemCell.\(item?.id ?? "")"
         selectedBackgroundView = ContextCellBackgroundView.create(color: color)
     }
 

@@ -716,6 +716,9 @@
 "d_items" = "d_items";
 
 /* No comment provided by engineer. */
+"d_items_syncing" = "d_items_syncing";
+
+/* No comment provided by engineer. */
 "d_likes" = "d_likes";
 
 /* No comment provided by engineer. */
@@ -861,6 +864,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Ignorar %@";
+
+/* No comment provided by engineer. */
+"Dismiss notification" = "Ignorar notificação";
 
 /* No comment provided by engineer. */
 "Display As" = "Mostrar como";
@@ -1056,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "File Details" = "Detalhes do ficheiro";
+
+/* No comment provided by engineer. */
+"File download failed." = "A transferência de ficheiros falhou.";
 
 /* No comment provided by engineer. */
 "File No Longer Exists" = "Ficheiro Já Não Existe";
@@ -1781,6 +1790,9 @@
 "Offline Content Sync Failed" = "Falha na sincronização de conteúdos offline";
 
 /* No comment provided by engineer. */
+"Offline mode" = "Modo offline";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -2453,6 +2465,9 @@
 "Synchronization" = "Sincronização";
 
 /* No comment provided by engineer. */
+"Syncing Offline Content" = "Sincronizar conteúdo offline";
+
+/* No comment provided by engineer. */
 "System settings" = "Configurações do sistema";
 
 /* No comment provided by engineer. */
@@ -2622,6 +2637,9 @@
 
 /* No comment provided by engineer. */
 "This is your personal color setting. Only you will see this color for the course." = "Esta é a sua definição de cor pessoal. Somente você verá essa cor para a disciplina.";
+
+/* No comment provided by engineer. */
+"This item is not available offline." = "Este item não está disponível offline.";
 
 /* No comment provided by engineer. */
 "This module is empty." = "Este módulo está vazio.";

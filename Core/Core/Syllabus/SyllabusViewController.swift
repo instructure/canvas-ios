@@ -51,6 +51,7 @@ open class SyllabusViewController: UIViewController, CoreWebViewLinkDelegate {
     func update() {
         if let html = courses.first?.syllabusBody, !html.isEmpty {
             webView.loadHTMLString(html)
+            webView.accessibilityIdentifier = "syllabusBody"
         }
     }
 

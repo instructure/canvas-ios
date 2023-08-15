@@ -23,7 +23,7 @@ public enum CourseSyncSelectorAssembly {
     public static func makeViewController(env: AppEnvironment, courseID: String? = nil) -> UIViewController {
         let selectorInteractor = CourseSyncSelectorInteractorLive(courseID: courseID,
                                                                   sessionDefaults: env.userDefaults ?? .fallback)
-        let syncInteractor = CourseSyncInteractorLive()
+        let syncInteractor = CourseSyncDownloaderAssembly.makeInteractor()
         let diskSpaceInteractor = DiskSpaceInteractorLive()
         let viewModel = CourseSyncSelectorViewModel(
             selectorInteractor: selectorInteractor,

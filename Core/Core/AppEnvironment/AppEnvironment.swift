@@ -59,7 +59,11 @@ open class AppEnvironment {
     }
 
     public func userDidLogin(session: LoginSession) {
+        // If the interactor was re-created using the global database
+        // we have to reset and re-initialize it to use the session's DB
+        OfflineModeAssembly.reset()
         database = NSPersistentContainer.create(session: session)
+        OfflineModeAssembly.make()
         api = API(session)
         currentSession = session
         userDefaults = SessionDefaults(sessionID: session.uniqueID)
@@ -70,6 +74,7 @@ open class AppEnvironment {
 
     public func userDidLogout(session: LoginSession) {
         guard session == currentSession else { return }
+        OfflineModeAssembly.reset()
         database = globalDatabase
         api = API()
         k5.userDidLogout()
@@ -99,11 +104,19 @@ open class AppEnvironment {
     }
 
     public var topViewController: UIViewController? {
-        var controller = window?.rootViewController
-        while controller?.presentedViewController != nil {
-            controller = controller?.presentedViewController
+        let locateTopViewController: () -> UIViewController? = {
+            var controller = self.window?.rootViewController
+            while controller?.presentedViewController != nil {
+                controller = controller?.presentedViewController
+            }
+            return controller
         }
-        return controller
+
+        if Thread.isMainThread {
+            return locateTopViewController()
+        } else {
+            return DispatchQueue.main.sync { locateTopViewController() }
+        }
     }
 
     private var startupIsCompleted = false

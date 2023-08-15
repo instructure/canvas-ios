@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 import TestsFoundation
 
 class TodosE2ETests: CoreUITestCase {
@@ -25,15 +24,15 @@ class TodosE2ETests: CoreUITestCase {
         let needsGradingLabel = "Needs Grading"
         let todoBadgeValue = "1 item"
 
-        Dashboard.courseCard(id: "263").waitToExist()
-        XCTAssertEqual(TabBar.todoTab.value(), todoBadgeValue)
-        TabBar.todoTab.tap()
-        XCTAssertTrue(app.find(labelContaining: oneNeedsGradingLabel).exists())
-        app.find(label: needsGradingLabel).tap()
-        SpeedGrader.doneButton.tap()
-        TabBar.dashboardTab.tap()
-        TabBar.todoTab.tap()
-        XCTAssertEqual(TabBar.todoTab.value(), todoBadgeValue)
-        XCTAssertTrue(app.find(label: oneNeedsGradingLabel).exists())
+        DashboardHelper.courseCard(courseId: "263").waitUntil(.visible)
+        XCTAssertTrue(DashboardHelper.TabBar.todoTab.waitUntil(.visible).hasValue(value: todoBadgeValue))
+        DashboardHelper.TabBar.todoTab.hit()
+        XCTAssertTrue(app.find(labelContaining: oneNeedsGradingLabel).waitUntil(.visible).isVisible)
+        app.find(label: needsGradingLabel).hit()
+        AssignmentsHelper.SpeedGrader.doneButton.hit()
+        DashboardHelper.TabBar.dashboardTab.hit()
+        DashboardHelper.TabBar.todoTab.hit()
+        XCTAssertTrue(DashboardHelper.TabBar.todoTab.waitUntil(.visible).hasValue(value: todoBadgeValue))
+        XCTAssertTrue(app.find(label: oneNeedsGradingLabel).waitUntil(.visible).isVisible)
     }
 }

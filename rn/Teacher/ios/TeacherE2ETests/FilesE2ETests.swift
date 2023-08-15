@@ -16,22 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 import TestsFoundation
 
 class FilesE2ETests: CoreUITestCase {
     func testfilesE2E() {
-        Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
-        CourseNavigation.files.tap()
-        FileList.addButton.waitToExist()
-        XCTAssertEqual(FileList.file(index: 0).label(), "Published, run.jpg, 133 KB")
-        XCTAssertEqual(FileList.file(index: 1).label(), "Published, unfiled, 1 item")
-        FileList.file(index: 1).tap()
-        XCTAssertEqual(FileList.file(index: 0).label(), "Published, xcode-black.png, 818 KB")
-        NavBar.backButton.tap()
-        FileList.addButton.tap()
-        FileList.addFolderButton.waitToExist()
-        FileList.addFileButton.waitToExist()
+        DashboardHelper.courseCard(courseId: "263").hit()
+        CourseDetailsHelper.cell(type: .files).hit()
+        XCTAssertTrue(FilesHelper.List.addButton.waitUntil(.visible).isVisible)
+        XCTAssertEqual(FilesHelper.List.file(index: 0).label, "Published, run.jpg, 133 KB")
+        XCTAssertEqual(FilesHelper.List.file(index: 1).label, "Published, unfiled, 1 item")
+        FilesHelper.List.file(index: 1).hit()
+        XCTAssertEqual(FilesHelper.List.file(index: 0).waitUntil(.visible).label, "Published, xcode-black.png, 818 KB")
+        FilesHelper.backButton.hit()
+        FilesHelper.List.addButton.hit()
+        XCTAssertTrue(FilesHelper.List.addFolderButton.waitUntil(.visible).isVisible)
+        XCTAssertTrue(FilesHelper.List.addFileButton.waitUntil(.visible).isVisible)
     }
 }

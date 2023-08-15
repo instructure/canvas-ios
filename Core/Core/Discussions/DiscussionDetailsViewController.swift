@@ -54,6 +54,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
     var topicID = ""
     private var newReplyIDFromCurrentUser: String?
     private var isContentLargerThanView: Bool { webView.scrollView.contentSize.height > view.frame.size.height }
+    private var offlineModeInteractor: OfflineModeInteractor?
 
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
         eventName: "\(context.pathComponent)/\(isAnnouncement ? "announcements" : "discussion_topics")/\(topicID)"
@@ -98,7 +99,8 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         topicID: String,
         isAnnouncement: Bool = false,
         showEntryID: String? = nil,
-        showRepliesToEntryID: String? = nil
+        showRepliesToEntryID: String? = nil,
+        offlineModeInteractor: OfflineModeInteractor? = OfflineModeAssembly.make()
     ) -> DiscussionDetailsViewController {
         let controller = loadFromStoryboard()
         controller.context = context
@@ -106,6 +108,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         controller.showEntryID = showEntryID
         controller.showRepliesToEntryID = showRepliesToEntryID
         controller.topicID = topicID
+        controller.offlineModeInteractor = offlineModeInteractor
         // needs to be set early for helm to correctly place done button
         controller.navigationItem.rightBarButtonItem = controller.optionsButton
         return controller
@@ -493,7 +496,12 @@ extension DiscussionDetailsViewController: CoreWebViewLinkDelegate {
             url.path.hasPrefix("/\(context.pathComponent)/discussion_topics/\(topicID)/")
         else {
             if url.pathComponents.contains("files") {
-                env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+                if offlineModeInteractor?.isOfflineModeEnabled() == true {
+                    UIAlertController.showItemNotAvailableInOfflineAlert()
+                    return true
+                } else {
+                    env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+                }
             } else {
                 env.router.route(to: url, from: self)
             }
@@ -502,12 +510,22 @@ extension DiscussionDetailsViewController: CoreWebViewLinkDelegate {
         let path = Array(url.pathComponents.dropFirst(5))
         // Reply to main discussion
         if path.count == 1, path[0] == "reply" {
+            if offlineModeInteractor?.isOfflineModeEnabled() == true {
+                UIAlertController.showItemNotAvailableInOfflineAlert()
+                return true
+            }
+
             Analytics.shared.logEvent(isAnnouncement ? "announcement_replied" : "discussion_topic_replied")
             env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
             return true
         }
         // Reply to thread
         if path.count == 3, path[0] == "entries", !path[1].isEmpty, path[2] == "replies" {
+            if offlineModeInteractor?.isOfflineModeEnabled() == true {
+                UIAlertController.showItemNotAvailableInOfflineAlert()
+                return true
+            }
+
             env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
             return true
         }
@@ -526,8 +544,16 @@ extension DiscussionDetailsViewController: CoreWebViewLinkDelegate {
     }
 }
 
+// MARK: - User Actions From Nav Bar
+
 extension DiscussionDetailsViewController {
-    @objc func showTopicOptions() {
+
+    @objc
+    func showTopicOptions() {
+        if offlineModeInteractor?.isOfflineModeEnabled() == true {
+            return UIAlertController.showItemNotAvailableInOfflineAlert()
+        }
+
         guard let topic = topic.first else { return }
 
         let sheet = BottomSheetPickerViewController.create()
@@ -618,8 +644,15 @@ extension DiscussionDetailsViewController {
     }
 }
 
+// MARK: - User Actions From HTML
+
 extension DiscussionDetailsViewController {
+
     private func handleLike(_ message: WKScriptMessage) {
+        if offlineModeInteractor?.isOfflineModeEnabled() == true {
+            return UIAlertController.showItemNotAvailableInOfflineAlert()
+        }
+
         guard
             let body = message.body as? [String: Any],
             let entryID = body["entryID"] as? String,
@@ -652,6 +685,10 @@ extension DiscussionDetailsViewController {
     }
 
     private func handleMoreOptions(_ message: WKScriptMessage) {
+        if offlineModeInteractor?.isOfflineModeEnabled() == true {
+            return UIAlertController.showItemNotAvailableInOfflineAlert()
+        }
+
         guard
             let body = message.body as? [String: Any],
             let entryID = body["entryID"] as? String

@@ -716,6 +716,9 @@
 "d_items" = "d_items";
 
 /* No comment provided by engineer. */
+"d_items_syncing" = "d_items_syncing";
+
+/* No comment provided by engineer. */
 "d_likes" = "d_likes";
 
 /* No comment provided by engineer. */
@@ -861,6 +864,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Rejte %@";
+
+/* No comment provided by engineer. */
+"Dismiss notification" = "Rejte notifikasyon";
 
 /* No comment provided by engineer. */
 "Display As" = "Afiche Tankou";
@@ -1056,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "File Details" = "Detay Fichye";
+
+/* No comment provided by engineer. */
+"File download failed." = "Telechajman fichye echwe.";
 
 /* No comment provided by engineer. */
 "File No Longer Exists" = "Fichye Pa Egziste Ankò";
@@ -1781,6 +1790,9 @@
 "Offline Content Sync Failed" = "Senkwonizasyon Kontni san Koneksyon an Echwe";
 
 /* No comment provided by engineer. */
+"Offline mode" = "Mòd san koneksyon";
+
+/* No comment provided by engineer. */
 "OK" = "DAKO";
 
 /* No comment provided by engineer. */
@@ -2453,6 +2465,9 @@
 "Synchronization" = "Senkwonizasyon";
 
 /* No comment provided by engineer. */
+"Syncing Offline Content" = "Senkwonizasyon Kontni San Koneksyon";
+
+/* No comment provided by engineer. */
 "System settings" = "Paramèt sistèm";
 
 /* No comment provided by engineer. */
@@ -2622,6 +2637,9 @@
 
 /* No comment provided by engineer. */
 "This is your personal color setting. Only you will see this color for the course." = "Sa se paramèt koulè pèsonèl ou. Sèlman ou menm k ap wè koulè sa a pou kou a.";
+
+/* No comment provided by engineer. */
+"This item is not available offline." = "Atik sa a pa disponib san koneksyon.";
 
 /* No comment provided by engineer. */
 "This module is empty." = "Modil sa a vid.";

@@ -158,11 +158,10 @@ class CourseSyncSelectorViewModel: ObservableObject {
             .flatMap { [weak self] view in
                 self?.state = .loading
                 return selectorInteractor.getSelectedCourseEntries()
-                    .flatMap { syncInteractor.downloadContent(for: $0) }
+                    .delay(for: .milliseconds(500), scheduler: RunLoop.main)
                     .receive(on: DispatchQueue.main)
-                    .handleEvents(receiveCompletion: { _ in
-                        // TODO: Start download, go to dashboard
-                        self?.state = .data
+                    .handleEvents(receiveOutput: { entries in
+                        NotificationCenter.default.post(name: .OfflineSyncTriggered, object: entries)
                         AppEnvironment.shared.router.dismiss(view)
                     })
             }
@@ -186,4 +185,8 @@ class CourseSyncSelectorViewModel: ObservableObject {
             .replaceError(with: [])
             .assign(to: &$cells)
     }
+}
+
+extension Notification.Name {
+    static let OfflineSyncTriggered = Notification.Name(rawValue: "com.instructure.core.notification.OfflineSyncTriggered")
 }

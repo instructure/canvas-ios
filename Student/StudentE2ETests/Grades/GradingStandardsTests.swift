@@ -17,7 +17,6 @@
 //
 
 import TestsFoundation
-import XCTest
 
 class GradingStandardsTests: E2ETestCase {
     func testGradingStandards() {
@@ -38,14 +37,14 @@ class GradingStandardsTests: E2ETestCase {
 
         // MARK: Navigate to grades
         GradesHelper.navigateToGrades(course: course)
-        XCTAssertTrue(app.find(label: "Total Grade").waitToExist().isVisible)
-        XCTAssertTrue(GradeList.totalGrade(totalGrade: "N/A (F)").waitToExist().isVisible)
+        XCTAssertTrue(app.find(label: "Total Grade").waitUntil(.visible).isVisible)
+        XCTAssertTrue(GradesHelper.totalGrade.waitUntil(.visible).hasLabel(label: "N/A (F)"))
 
         // MARK: Check if total is updating accordingly
         GradesHelper.gradeAssignments(grades: ["100"], course: course, assignments: [assignments[0]], user: student)
-        XCTAssertTrue(GradesHelper.checkForTotalGrade(totalGrade: "100% (A)"))
+        XCTAssertTrue(GradesHelper.checkForTotalGrade(value: "100% (A)"))
 
         GradesHelper.gradeAssignments(grades: ["0"], course: course, assignments: [assignments[1]], user: student)
-        XCTAssertTrue(GradesHelper.checkForTotalGrade(totalGrade: "50% (F)"))
+        XCTAssertTrue(GradesHelper.checkForTotalGrade(value: "50% (F)"))
     }
 }

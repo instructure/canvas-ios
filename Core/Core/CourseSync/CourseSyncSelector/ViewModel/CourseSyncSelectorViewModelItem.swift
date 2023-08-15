@@ -36,7 +36,7 @@ extension CourseSyncSelectorViewModel {
         /** The SwiftUI view ID. */
         let id: String
         let title: String
-        let subtitle: String?
+        var subtitle: String?
         let selectionState: ListCellView.SelectionState
         var isCollapsed: Bool?
         let cellStyle: ListCellView.ListCellStyle
@@ -67,16 +67,18 @@ extension CourseSyncSelectorViewModel {
 extension Array where Element == CourseSyncEntry {
 
     func makeViewModelItems(interactor: CourseSyncSelectorInteractor) -> [CourseSyncSelectorViewModel.Cell] {
+        weak var interactor = interactor
+
         var cells: [CourseSyncSelectorViewModel.Cell] = []
 
-        for (courseIndex, course) in enumerated() {
+        for course in self {
             var courseItem = course.makeViewModelItem()
             courseItem.selectionDidToggle = {
-                let selectionState: ListCellView.SelectionState = courseItem.selectionState == .selected || courseItem.selectionState == .partiallySelected ? .deselected : .selected
-                interactor.setSelected(selection: .course(courseIndex), selectionState: selectionState)
+                let selectionState: ListCellView.SelectionState = course.selectionState == .selected || course.selectionState == .partiallySelected ? .deselected : .selected
+                interactor?.setSelected(selection: .course(course.id), selectionState: selectionState)
             }
             courseItem.collapseDidToggle = {
-                interactor.setCollapsed(selection: .course(courseIndex), isCollapsed: !(courseItem.isCollapsed ?? false))
+                interactor?.setCollapsed(selection: .course(course.id), isCollapsed: !(course.isCollapsed))
             }
             cells.append(.item(courseItem))
 
@@ -89,25 +91,33 @@ extension Array where Element == CourseSyncEntry {
                 continue
             }
 
-            for (tabIndex, tab) in course.tabs.enumerated() {
+            for tab in course.tabs {
                 var tabItem = tab.makeViewModelItem()
                 tabItem.selectionDidToggle = {
-                    let selectionState: ListCellView.SelectionState = tabItem.selectionState == .selected || tabItem.selectionState == .partiallySelected ? .deselected : .selected
-                    interactor.setSelected(selection: .tab(courseIndex, tabIndex), selectionState: selectionState)
+                    let selectionState: ListCellView.SelectionState = tab.selectionState == .selected || tab.selectionState == .partiallySelected ? .deselected : .selected
+                    interactor?.setSelected(selection: .tab(course.id, tab.id), selectionState: selectionState)
                 }
                 tabItem.collapseDidToggle = {
-                    interactor.setCollapsed(selection: .tab(courseIndex, tabIndex), isCollapsed: !(tabItem.isCollapsed ?? false))
+                    interactor?.setCollapsed(selection: .tab(course.id, tab.id), isCollapsed: !(tab.isCollapsed))
                 }
-                cells.append(.item(tabItem))
 
-                guard tab.type == .files, !tab.isCollapsed else {
+                guard tab.type == .files else {
+                    tabItem.subtitle = tab.bytesToDownload.humanReadableFileSize
+                    cells.append(.item(tabItem))
                     continue
                 }
 
-                for (fileIndex, file) in course.files.enumerated() {
+                tabItem.subtitle = course.totalFileSize.humanReadableFileSize
+                cells.append(.item(tabItem))
+
+                guard !tab.isCollapsed else {
+                    continue
+                }
+
+                for file in course.files {
                     var fileItem = file.makeViewModelItem()
                     fileItem.selectionDidToggle = {
-                        interactor.setSelected(selection: .file(courseIndex, fileIndex), selectionState: fileItem.selectionState == .selected ? .deselected : .selected)
+                        interactor?.setSelected(selection: .file(course.id, file.id), selectionState: file.selectionState == .selected ? .deselected : .selected)
                     }
                     cells.append(.item(fileItem))
                 }
@@ -119,11 +129,10 @@ extension Array where Element == CourseSyncEntry {
 }
 
 extension CourseSyncEntry {
-
     func makeViewModelItem() -> CourseSyncSelectorViewModel.Item {
         .init(id: id,
               title: name,
-              subtitle: nil,
+              subtitle: totalSizeFormattedString,
               selectionState: selectionState,
               isCollapsed: isCollapsed,
               cellStyle: .mainAccordionHeader)
@@ -147,7 +156,7 @@ extension CourseSyncEntry.File {
     func makeViewModelItem() -> CourseSyncSelectorViewModel.Item {
         .init(id: id,
               title: displayName,
-              subtitle: nil,
+              subtitle: bytesToDownload.humanReadableFileSize,
               selectionState: selectionState,
               cellStyle: .listItem)
     }

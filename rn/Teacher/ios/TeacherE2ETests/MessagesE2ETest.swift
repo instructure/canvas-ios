@@ -16,29 +16,26 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 import TestsFoundation
 
 class MessagesE2ETest: CoreUITestCase {
     func testMessagesE2ETest() {
-        Dashboard.courseCard(id: "263").waitToExist()
-        TabBar.inboxTab.tap()
-        Inbox.newMessageButton.waitToExist()
-        Inbox.filterButton.waitToExist()
-        Inbox.message(id: "320").waitToExist()
-        app.find(labelContaining: "We need to talk about Student One").waitToExist()
-        Inbox.newMessageButton.tap()
-        NewMessage.selectCourseButton.waitToExist()
-        NewMessage.selectCourseButton.tap()
-        MessageCourseSelection.course(id: "263").waitToExist()
-        MessageCourseSelection.course(id: "263").tap()
-        NewMessage.addRecipientButton.tap()
-        MessageRecipientsSelection.messageAllInCourse(courseID: "263").tap()
-        NewMessage.subjectTextView.waitToExist()
-        NewMessage.attachButton.waitToExist()
-        NewMessage.attachButton.tap()
-        Attachments.addButton.waitToExist()
-        Attachments.dismissButton.tap()
-        NewMessage.cancelButton.tap()
+        DashboardHelper.courseCard(courseId: "263").hit()
+        DashboardHelper.TabBar.inboxTab.hit()
+        XCTAssertTrue(InboxHelper.newMessageButton.waitUntil(.visible).isVisible)
+        XCTAssertTrue(InboxHelper.Filter.byCourse.waitUntil(.visible).isVisible)
+        XCTAssertTrue(InboxHelper.conversation(conversationId: "320").waitUntil(.visible).isVisible)
+        XCTAssertTrue(app.find(labelContaining: "We need to talk about Student One").waitUntil(.visible).isVisible)
+        InboxHelper.newMessageButton.hit()
+        InboxHelper.Composer.courseSelectButton.hit()
+        InboxHelper.Composer.courseSelectionItem(courseId: "263").hit()
+        InboxHelper.Composer.addRecipientButton.hit()
+        InboxHelper.Composer.recipientSelectionItem(courseId: "263").hit()
+        XCTAssertTrue(InboxHelper.Composer.subjectInput.waitUntil(.visible).isVisible)
+        XCTAssertTrue(InboxHelper.Composer.attachButton.waitUntil(.visible).isVisible)
+        InboxHelper.Composer.attachButton.hit()
+        XCTAssertTrue(InboxHelper.Composer.Attachments.addButton.waitUntil(.visible).isVisible)
+        InboxHelper.Composer.Attachments.dismissButton.hit()
+        InboxHelper.Composer.cancelButton.hit()
     }
 }

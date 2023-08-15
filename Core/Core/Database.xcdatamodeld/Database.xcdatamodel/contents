@@ -239,6 +239,7 @@
         <relationship name="gradingPeriods" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GradingPeriod" inverseName="course" inverseEntity="GradingPeriod"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="course" inverseEntity="Group"/>
         <relationship name="sections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CourseSection" inverseName="course" inverseEntity="CourseSection"/>
+        <relationship name="settings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CourseSettings" inverseName="course" inverseEntity="CourseSettings"/>
         <relationship name="todos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Todo" inverseName="course" inverseEntity="Todo"/>
     </entity>
     <entity name="CourseListItem" representedClassName="Core.CourseListItem" syncable="YES">
@@ -265,23 +266,30 @@
     </entity>
     <entity name="CourseSettings" representedClassName="Core.CourseSettings" syncable="YES">
         <attribute name="courseID" attributeType="String"/>
-        <attribute name="syllabusCourseSummary" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="restrictQuantitativeData" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="syllabusCourseSummary" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="usageRightsRequired" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="settings" inverseEntity="Course"/>
     </entity>
-    <entity name="CourseSyncEntryProgress" representedClassName="Core.CourseSyncEntryProgress" syncable="YES">
-        <attribute name="id" attributeType="String"/>
-        <attribute name="selectionRaw" attributeType="Binary"/>
-        <attribute name="stateRaw" attributeType="Binary"/>
-    </entity>
-    <entity name="CourseSyncFileProgress" representedClassName="Core.CourseSyncFileProgress" syncable="YES">
+    <entity name="CourseSyncDownloadProgress" representedClassName="Core.CourseSyncDownloadProgress" syncable="YES">
         <attribute name="bytesDownloaded" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="bytesToDownload" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="error" optional="YES" attributeType="String"/>
     </entity>
     <entity name="CourseSyncSelectorCourse" representedClassName="Core.CourseSyncSelectorCourse" syncable="YES">
         <attribute name="courseCode" attributeType="String"/>
         <attribute name="courseId" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <relationship name="tabs" toMany="YES" deletionRule="Nullify" destinationEntity="Tab" inverseName="course" inverseEntity="Tab"/>
+    </entity>
+    <entity name="CourseSyncStateProgress" representedClassName="Core.CourseSyncStateProgress" syncable="YES">
+        <attribute name="entryID" attributeType="String"/>
+        <attribute name="fileID" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="progress" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="selectionRaw" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="stateRaw" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="tabID" optional="YES" attributeType="String"/>
     </entity>
     <entity name="DashboardCard" representedClassName="Core.DashboardCard" syncable="YES">
         <attribute name="courseCode" attributeType="String"/>

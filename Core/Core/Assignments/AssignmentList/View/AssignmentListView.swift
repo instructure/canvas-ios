@@ -21,6 +21,7 @@ import SwiftUI
 public struct AssignmentListView: View, ScreenViewTrackable {
     @Environment(\.viewController) private var controller
     @ObservedObject private var viewModel: AssignmentListViewModel
+    @StateObject private var offlineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     @State private var isShowingGradingPeriodPicker = false
@@ -75,13 +76,13 @@ public struct AssignmentListView: View, ScreenViewTrackable {
     @ViewBuilder
     private var gradingPeriodButton: some View {
         if viewModel.selectedGradingPeriod == nil {
-            Button(action: {
+            PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline) {
                 isShowingGradingPeriodPicker = true
-            }, label: {
+            } label: {
                 Text("Filter", bundle: .core)
                     .font(.semibold16)
                     .foregroundColor(Color(Brand.shared.linkColor))
-            }).actionSheet(isPresented: $isShowingGradingPeriodPicker) {
+            }.actionSheet(isPresented: $isShowingGradingPeriodPicker) {
                 ActionSheet(title: Text("Filter by", bundle: .core), buttons: gradingPeriodButtons)
             }
         } else {

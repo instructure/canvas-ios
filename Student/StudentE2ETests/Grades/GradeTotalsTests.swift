@@ -16,9 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
 import TestsFoundation
-import XCTest
 
 class GradeTotalsTests: E2ETestCase {
     func testGradeTotals() {
@@ -43,8 +41,8 @@ class GradeTotalsTests: E2ETestCase {
 
         // MARK: See if total grades is N/A
         GradesHelper.navigateToGrades(course: course)
-        XCTAssertTrue(app.find(label: "Total Grade").waitToExist().isVisible)
-        XCTAssertTrue(GradeList.totalGrade(totalGrade: "N/A").waitToExist().isVisible)
+        XCTAssertTrue(app.find(label: "Total Grade").waitUntil(.visible).isVisible)
+        XCTAssertTrue(GradesHelper.totalGrade.waitUntil(.visible).hasLabel(label: "N/A"))
 
         // MARK: Check if total is updating accordingly
         let grades = ["100", "25"]
@@ -52,15 +50,15 @@ class GradeTotalsTests: E2ETestCase {
         let pg_grades = ["30%", "90%"]
         let lg_grades = ["A", "E"]
         GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
-        XCTAssertTrue(GradesHelper.checkForTotalGrade(totalGrade: "62.5%"))
+        XCTAssertTrue(GradesHelper.checkForTotalGrade(value: "62.5%"))
 
         GradesHelper.gradeAssignments(grades: pfg_grades, course: course, assignments: pfg_assignments, user: student)
-        XCTAssertTrue(GradesHelper.checkForTotalGrade(totalGrade: "56.25%"))
+        XCTAssertTrue(GradesHelper.checkForTotalGrade(value: "56.25%"))
 
         GradesHelper.gradeAssignments(grades: pg_grades, course: course, assignments: pg_assignments, user: student)
-        XCTAssertTrue(GradesHelper.checkForTotalGrade(totalGrade: "57.5%"))
+        XCTAssertTrue(GradesHelper.checkForTotalGrade(value: "57.5%"))
 
         GradesHelper.gradeAssignments(grades: lg_grades, course: course, assignments: lg_assignments, user: student)
-        XCTAssertTrue(GradesHelper.checkForTotalGrade(totalGrade: "63.57%"))
+        XCTAssertTrue(GradesHelper.checkForTotalGrade(value: "63.57%"))
     }
 }

@@ -19,79 +19,69 @@
 import Combine
 import CombineSchedulers
 import Foundation
+import CombineExt
 
-protocol CourseSyncInteractor {
+public protocol CourseSyncInteractor {
     func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Error>
 }
 
-protocol CourseSyncContentInteractor {
+public protocol CourseSyncContentInteractor {
     var associatedTabType: TabName { get }
     func getContent(courseId: String) -> AnyPublisher<Void, Error>
 }
 
-final class CourseSyncInteractorLive: CourseSyncInteractor {
+public final class CourseSyncInteractorLive: CourseSyncInteractor {
     private let contentInteractors: [CourseSyncContentInteractor]
     private let filesInteractor: CourseSyncFilesInteractor
     private let progressWriterInteractor: CourseSyncProgressWriterInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
-
     private var courseSyncEntries = CurrentValueSubject<[CourseSyncEntry], Error>.init([])
+    private var safeCourseSyncEntriesValue: [CourseSyncEntry] {
+        backgroundQueue.sync {
+            courseSyncEntries.value
+        }
+    }
+    private let backgroundQueue = DispatchQueue(
+        label: "com.instructure.icanvas.core.course-sync-utility",
+        attributes: .concurrent
+    )
+    private let fileErrorMessage = NSLocalizedString("File download failed.", comment: "")
     private var subscription: AnyCancellable?
 
-    init(
-        pagesInteractor: CourseSyncPagesInteractor = CourseSyncPagesInteractorLive(),
-        assignmentsInteractor: CourseSyncAssignmentsInteractor = CourseSyncAssignmentsInteractorLive(),
-        filesInteractor: CourseSyncFilesInteractor = CourseSyncFilesInteractorLive(),
-        progressWriterInteractor: CourseSyncProgressWriterInteractor = CourseSyncProgressWriterInteractorLive(),
-        scheduler: AnySchedulerOf<DispatchQueue> = .main
+    public init(
+        contentInteractors: [CourseSyncContentInteractor],
+        filesInteractor: CourseSyncFilesInteractor,
+        progressWriterInteractor: CourseSyncProgressWriterInteractor,
+        scheduler: AnySchedulerOf<DispatchQueue>
     ) {
-        contentInteractors = [
-            pagesInteractor,
-            assignmentsInteractor,
-        ]
+        self.contentInteractors = contentInteractors
         self.filesInteractor = filesInteractor
         self.progressWriterInteractor = progressWriterInteractor
         self.scheduler = scheduler
     }
 
-    func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Error> {
+    public func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Error> {
+        subscription?.cancel()
+        subscription = nil
+
         unowned let unownedSelf = self
 
-        courseSyncEntries.send(entries)
+        backgroundQueue.sync(flags: .barrier) {
+            courseSyncEntries.send(entries)
+        }
 
-        subscription = Publishers.Sequence(sequence: entries.enumerated())
-            .flatMap { index, entry in
-                unownedSelf.setState(
-                    selection: .course(index),
-                    state: .loading(nil)
-                )
+        progressWriterInteractor.cleanUpPreviousDownloadProgress()
 
-                return Publishers.Zip3(
-                    unownedSelf.downloadTabContent(for: entry, index: index, tabName: .assignments),
-                    unownedSelf.downloadTabContent(for: entry, index: index, tabName: .pages),
-                    unownedSelf.downloadFiles(for: entry, courseIndex: index)
-                )
-                .updateErrorState {
-                    unownedSelf.setState(
-                        selection: .course(index),
-                        state: .error
-                    )
-                }
-                .updateDownloadedState {
-                    unownedSelf.setState(
-                        selection: .course(index),
-                        state: .downloaded
-                    )
-                }
-                .eraseToAnyPublisher()
-            }
+        subscription = Publishers.Sequence(sequence: entries)
+            .buffer(size: .max, prefetch: .byRequest, whenFull: .dropOldest)
+            .receive(on: scheduler)
+            .flatMap(maxPublishers: .max(3)) { unownedSelf.downloadCourseDetails($0) }
             .collect()
             .handleEvents(
-                receiveOutput: { _ in
-                    unownedSelf.courseSyncEntries.send(completion: .finished)
-                },
-                receiveCompletion: { _ in
-                    unownedSelf.courseSyncEntries.send(completion: .finished)
+                receiveCompletion: { completion in
+                    if case .failure = completion {
+                        unownedSelf.setIdleStateForUnfinishedEntries()
+                    }
                 }
             )
             .sink()
@@ -99,10 +89,80 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
         return courseSyncEntries.eraseToAnyPublisher()
     }
 
-    private func downloadFiles(
-        for entry: CourseSyncEntry,
-        courseIndex: Int
-    ) -> AnyPublisher<Void, Error> {
+    private func downloadCourseDetails(_ entry: CourseSyncEntry) -> AnyPublisher<Void, Error> {
+        unowned let unownedSelf = self
+
+        setState(
+            selection: .course(entry.id),
+            state: .loading(nil)
+        )
+
+        var downloaders = TabName
+            .OfflineSyncableTabs
+            .filter { $0 != .files } // files are handled separately
+            .map { downloadTabContent(for: entry, tabName: $0) }
+        downloaders.append(downloadFiles(for: entry))
+
+        return downloaders
+            .zip()
+            .receive(on: scheduler)
+            .updateErrorState {
+                unownedSelf.setState(
+                    selection: .course(entry.id),
+                    state: .error
+                )
+            }
+            .updateDownloadedState {
+                unownedSelf.setState(
+                    selection: .course(entry.id),
+                    state: .downloaded
+                )
+            }
+            .map { _ in () }
+            .eraseToAnyPublisher()
+    }
+
+    private func downloadTabContent(for entry: CourseSyncEntry, tabName: TabName) -> AnyPublisher<Void, Error> {
+        unowned let unownedSelf = self
+
+        guard let tabIndex = entry.tabs.firstIndex(where: { $0.type == tabName }),
+              entry.tabs[tabIndex].selectionState == .selected else {
+            return Just(())
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+
+        guard let interactor = contentInteractors.first(where: { $0.associatedTabType == tabName }) else {
+            assertionFailure("No interactor found for selected tab: \(tabName)")
+            return Just(())
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+
+        return interactor.getContent(courseId: entry.courseId)
+            .receive(on: scheduler)
+            .updateLoadingState {
+                unownedSelf.setState(
+                    selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                    state: .loading(nil)
+                )
+            }
+            .updateErrorState {
+                unownedSelf.setState(
+                    selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                    state: .error
+                )
+            }
+            .updateDownloadedState {
+                unownedSelf.setState(
+                    selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                    state: .downloaded
+                )
+            }
+            .eraseToAnyPublisher()
+    }
+
+    private func downloadFiles(for entry: CourseSyncEntry) -> AnyPublisher<Void, Error> {
         guard
             let tabIndex = entry.tabs.firstIndex(where: { $0.type == .files }),
             entry.files.count > 0,
@@ -119,29 +179,35 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
         let files = entry.files.filter { $0.selectionState == .selected }
 
         unownedSelf.setState(
-            selection: .tab(courseIndex, tabIndex),
+            selection: .tab(entry.id, entry.tabs[tabIndex].id),
             state: .loading(nil)
         )
 
-        return Publishers.Sequence(sequence: files.enumerated())
-            .flatMap { fileIndex, element in
+        return files.publisher
+            .eraseToAnyPublisher()
+            .buffer(size: .max, prefetch: .byRequest, whenFull: .dropOldest)
+            .receive(on: scheduler)
+            .flatMap(maxPublishers: .max(6)) { element in
+                let fileIndex = files.firstIndex(of: element)!
+
                 unownedSelf.setState(
-                    selection: .file(courseIndex, fileIndex), state: .loading(nil)
+                    selection: .file(entry.id, files[fileIndex].id), state: .loading(nil)
                 )
 
                 return unownedSelf.filesInteractor.getFile(
                     url: element.url,
                     fileID: element.fileId,
                     fileName: element.fileName,
-                    mimeClass: element.mimeClass
+                    mimeClass: element.mimeClass,
+                    updatedAt: element.updatedAt
                 )
-                .debounce(for: .milliseconds(300), scheduler: unownedSelf.scheduler)
+                .throttle(for: .milliseconds(300), scheduler: unownedSelf.scheduler, latest: true)
                 .tryCatch { error -> AnyPublisher<Float, Error> in
                     unownedSelf.setState(
-                        selection: .file(courseIndex, fileIndex), state: .error
+                        selection: .file(entry.id, files[fileIndex].id), state: .error
                     )
                     unownedSelf.setState(
-                        selection: .tab(courseIndex, tabIndex), state: .error
+                        selection: .tab(entry.id, entry.tabs[tabIndex].id), state: .error
                     )
                     throw error
                 }
@@ -149,17 +215,25 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
                 .handleEvents(
                     receiveOutput: { progress in
                         unownedSelf.setState(
-                            selection: .file(courseIndex, fileIndex), state: .loading(progress)
+                            selection: .file(entry.id, files[fileIndex].id), state: .loading(progress)
                         )
                         unownedSelf.setState(
-                            selection: .tab(courseIndex, tabIndex),
-                            state: .loading(unownedSelf.courseSyncEntries.value[courseIndex].progress)
+                            selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                            state: .loading(unownedSelf.safeCourseSyncEntriesValue[id: entry.id]?.progress)
                         )
+
                     },
-                    receiveCompletion: { _ in
-                        unownedSelf.setState(
-                            selection: .file(courseIndex, fileIndex), state: .downloaded
-                        )
+                    receiveCompletion: { completion in
+                        switch completion {
+                        case .finished:
+                            unownedSelf.setState(
+                                selection: .file(entry.id, files[fileIndex].id), state: .downloaded
+                            )
+                        case .failure:
+                            unownedSelf.setState(
+                                selection: .file(entry.id, files[fileIndex].id), state: .error
+                            )
+                        }
                     }
                 )
             }
@@ -167,7 +241,7 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
             .handleEvents(
                 receiveOutput: { _ in
                     unownedSelf.setState(
-                        selection: .tab(courseIndex, tabIndex), state: .downloaded
+                        selection: .tab(entry.id, entry.tabs[tabIndex].id), state: .downloaded
                     )
                 }
             )
@@ -175,57 +249,74 @@ final class CourseSyncInteractorLive: CourseSyncInteractor {
             .eraseToAnyPublisher()
     }
 
-    private func downloadTabContent(for entry: CourseSyncEntry, index: Int, tabName: TabName) -> AnyPublisher<Void, Error> {
-        unowned let unownedSelf = self
+    /// When a download fails, we need to update the state of every other item that were still loading at the time when the error occured.
+    private func setIdleStateForUnfinishedEntries() {
+        var entries = safeCourseSyncEntriesValue
 
-        if let tabIndex = entry.tabs.firstIndex(where: { $0.type == tabName }),
-           entry.tabs[tabIndex].selectionState == .selected,
-           let interactor = contentInteractors.first(where: { $0.associatedTabType == tabName }) {
-            return interactor.getContent(courseId: entry.courseId)
-                .updateLoadingState {
-                    unownedSelf.setState(
-                        selection: .tab(index, tabIndex),
-                        state: .loading(nil)
+        entries.forEach { entry in
+            if case .loading = entry.state {
+                entries[id: entry.id]?.updateCourseState(state: .idle)
+                progressWriterInteractor.saveStateProgress(
+                    id: entry.id,
+                    selection: .course(entry.id),
+                    state: .idle
+                )
+            }
+
+            entry.tabs.forEach { tab in
+                if case .loading = tab.state {
+                    entries[id: entry.id]?.updateTabState(id: tab.id, state: .idle)
+                    progressWriterInteractor.saveStateProgress(
+                        id: tab.id,
+                        selection: .tab(entry.id, tab.id),
+                        state: .idle
                     )
                 }
-                .updateErrorState {
-                    unownedSelf.setState(
-                        selection: .tab(index, tabIndex),
-                        state: .error
+            }
+            entry.files.forEach { file in
+                if case .loading = file.state {
+                    entries[id: entry.id]?.updateFileState(id: file.id, state: .idle)
+                    progressWriterInteractor.saveStateProgress(
+                        id: file.id,
+                        selection: .file(entry.id, file.id),
+                        state: .idle
                     )
                 }
-                .updateDownloadedState {
-                    unownedSelf.setState(
-                        selection: .tab(index, tabIndex),
-                        state: .downloaded
-                    )
-                }
-                .eraseToAnyPublisher()
-        } else {
-            return Just(())
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
+            }
+        }
+
+        progressWriterInteractor.saveDownloadProgress(entries: entries, error: fileErrorMessage)
+        backgroundQueue.sync(flags: .barrier) {
+            courseSyncEntries.send(entries)
         }
     }
 
     /// Updates entry state in memory and writes it to Core Data. In addition it also writes file progress to Core Data.
     private func setState(selection: CourseEntrySelection, state: CourseSyncEntry.State) {
-        var entries = courseSyncEntries.value
+        var entries = safeCourseSyncEntriesValue
 
         switch selection {
-        case let .course(courseIndex):
-            entries[courseIndex].updateCourseState(state: state)
-            progressWriterInteractor.saveEntryProgress(id: entries[courseIndex].id, selection: selection, state: state)
-        case let .tab(courseIndex, tabIndex):
-            entries[courseIndex].updateTabState(index: tabIndex, state: state)
-            progressWriterInteractor.saveEntryProgress(id: entries[courseIndex].tabs[tabIndex].id, selection: selection, state: state)
-        case let .file(courseIndex, fileIndex):
-            entries[courseIndex].updateFileState(index: fileIndex, state: state)
-            progressWriterInteractor.saveEntryProgress(id: entries[courseIndex].files[fileIndex].id, selection: selection, state: state)
+        case let .course(entryID):
+            entries[id: entryID]?.updateCourseState(state: state)
+            progressWriterInteractor.saveStateProgress(id: entryID, selection: selection, state: state)
+        case let .tab(entryID, tabID):
+            entries[id: entryID]?.updateTabState(id: tabID, state: state)
+            progressWriterInteractor.saveStateProgress(id: tabID, selection: selection, state: state)
+        case let .file(entryID, fileID):
+            entries[id: entryID]?.updateFileState(id: fileID, state: state)
+            progressWriterInteractor.saveStateProgress(id: fileID, selection: selection, state: state)
         }
 
-        progressWriterInteractor.saveFileProgress(entries: entries)
-        courseSyncEntries.send(entries)
+        var errorMessage: String?
+
+        if case .error = state {
+            errorMessage = fileErrorMessage
+        }
+
+        progressWriterInteractor.saveDownloadProgress(entries: entries, error: errorMessage)
+        backgroundQueue.sync(flags: .barrier) {
+            courseSyncEntries.send(entries)
+        }
     }
 }
 

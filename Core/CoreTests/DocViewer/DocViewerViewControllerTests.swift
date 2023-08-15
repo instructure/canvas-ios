@@ -50,6 +50,14 @@ class DocViewerViewControllerTests: CoreTestCase {
     }
 
     class MockOfflineModeInteractorDisabled: OfflineModeInteractor {
+        func isFeatureFlagEnabled() -> Bool {
+            false
+        }
+
+        func observeIsFeatureFlagEnabled() -> AnyPublisher<Bool, Never> {
+            Just(false).eraseToAnyPublisher()
+        }
+
         func observeIsOfflineMode() -> AnyPublisher<Bool, Never> {
             Just(false).eraseToAnyPublisher()
         }
@@ -62,6 +70,14 @@ class DocViewerViewControllerTests: CoreTestCase {
     }
 
     class MockOfflineModeInteractorEnabled: OfflineModeInteractor {
+        func isFeatureFlagEnabled() -> Bool {
+            true
+        }
+
+        func observeIsFeatureFlagEnabled() -> AnyPublisher<Bool, Never> {
+            Just(true).eraseToAnyPublisher()
+        }
+
         func observeIsOfflineMode() -> AnyPublisher<Bool, Never> {
             Just(true).eraseToAnyPublisher()
         }

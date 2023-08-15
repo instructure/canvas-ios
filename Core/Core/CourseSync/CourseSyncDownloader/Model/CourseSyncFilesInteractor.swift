@@ -17,34 +17,40 @@
 //
 
 import Combine
+import CoreData
 import Foundation
 
-protocol CourseSyncFilesInteractor {
+public protocol CourseSyncFilesInteractor {
     func getFile(
         url: URL,
         fileID: String,
         fileName: String,
-        mimeClass: String
+        mimeClass: String,
+        updatedAt: Date?
     ) -> AnyPublisher<Float, Error>
 }
 
-final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, LocalFileURLCreator {
+public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, LocalFileURLCreator {
     private let env: AppEnvironment
     private let fileManager: FileManager
+    private let offlineFileInteractor: OfflineFileInteractor
 
     public init(
         env: AppEnvironment = .shared,
-        fileManager: FileManager = .default
+        fileManager: FileManager = .default,
+        offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()
     ) {
         self.env = env
         self.fileManager = fileManager
+        self.offlineFileInteractor = offlineFileInteractor
     }
 
-    func getFile(
+    public func getFile(
         url: URL,
         fileID: String,
         fileName: String,
-        mimeClass: String
+        mimeClass: String,
+        updatedAt: Date?
     ) -> AnyPublisher<Float, Error> {
         guard let sessionID = env.currentSession?.uniqueID else {
             return Fail(error:
@@ -60,24 +66,27 @@ final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, LocalFileU
         }
 
         let localURL = prepareLocalURL(
-            fileName: "\(sessionID)/Offline/Files/\(fileID)/\(fileName)",
+            fileName: offlineFileInteractor.filePath(sessionID: sessionID, fileID: fileID, fileName: fileName),
             mimeClass: mimeClass,
             location: URL.Directories.documents
         )
 
-        if fileManager.fileExists(atPath: localURL.path) {
+        if fileManager.fileExists(atPath: localURL.path),                               // File exists on the disk
+           let fileModificationDate = fileManager.fileModificationDate(url: localURL),
+           let updatedAt = updatedAt,                                                   // and
+           fileModificationDate >= updatedAt {                                          // is up to date
             return Just(1)
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
-        }
-
-        return DownloadTaskPublisher(parameters:
-            DownloadTaskParameters(
-                remoteURL: url,
-                localURL: localURL,
-                fileID: fileID
+        } else {
+            return DownloadTaskPublisher(parameters:
+                DownloadTaskParameters(
+                    remoteURL: url,
+                    localURL: localURL,
+                    fileID: fileID
+                )
             )
-        )
-        .eraseToAnyPublisher()
+            .eraseToAnyPublisher()
+        }
     }
 }

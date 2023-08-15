@@ -35,6 +35,7 @@ class CourseSyncEntryTests: XCTestCase {
                                           fileName: "",
                                           url: URL(string: "/")!,
                                           mimeClass: "",
+                                          updatedAt: nil,
                                           bytesToDownload: 0
         )
         XCTAssertEqual(testee.fileId, "2")
@@ -75,11 +76,11 @@ class CourseSyncEntryTests: XCTestCase {
         XCTAssertEqual(entry.selectionState, .deselected)
         XCTAssertEqual(entry.selectedTabsCount, 0)
 
-        entry.selectTab(index: 0, selectionState: .selected)
+        entry.selectTab(id: "tab1", selectionState: .selected)
         XCTAssertEqual(entry.selectionState, .partiallySelected)
         XCTAssertEqual(entry.selectedTabsCount, 1)
 
-        entry.selectTab(index: 1, selectionState: .deselected)
+        entry.selectTab(id: "tab2", selectionState: .deselected)
         XCTAssertEqual(entry.selectionState, .partiallySelected)
         XCTAssertEqual(entry.selectedTabsCount, 1)
 
@@ -103,11 +104,11 @@ class CourseSyncEntryTests: XCTestCase {
         XCTAssertEqual(entry.selectionState, .deselected)
         XCTAssertEqual(entry.selectedTabsCount, 0)
 
-        entry.selectFile(index: 0, selectionState: .selected)
+        entry.selectFile(id: "file1", selectionState: .selected)
         XCTAssertEqual(entry.selectedTabsCount, 1)
         XCTAssertEqual(entry.selectedFilesCount, 1)
 
-        entry.selectFile(index: 1, selectionState: .deselected)
+        entry.selectFile(id: "file2", selectionState: .deselected)
         XCTAssertEqual(entry.selectionState, .partiallySelected)
         XCTAssertEqual(entry.selectedTabsCount, 1)
         XCTAssertEqual(entry.selectedFilesCount, 1)
@@ -128,19 +129,19 @@ class CourseSyncEntryTests: XCTestCase {
         )
         XCTAssertEqual(entry.isEverythingSelected, false)
 
-        entry.selectTab(index: 0, selectionState: .selected)
+        entry.selectTab(id: "tab1", selectionState: .selected)
         XCTAssertEqual(entry.isEverythingSelected, false)
 
-        entry.selectTab(index: 1, selectionState: .deselected)
+        entry.selectTab(id: "tab2", selectionState: .deselected)
         XCTAssertEqual(entry.isEverythingSelected, false)
 
-        entry.selectTab(index: 1, selectionState: .selected)
+        entry.selectTab(id: "tab2", selectionState: .selected)
         XCTAssertEqual(entry.isEverythingSelected, true)
 
-        entry.selectFile(index: 0, selectionState: .deselected)
+        entry.selectFile(id: "file1", selectionState: .deselected)
         XCTAssertEqual(entry.isEverythingSelected, false)
 
-        entry.selectFile(index: 0, selectionState: .selected)
+        entry.selectFile(id: "file1", selectionState: .selected)
         XCTAssertEqual(entry.isEverythingSelected, true)
     }
 
@@ -160,15 +161,15 @@ class CourseSyncEntryTests: XCTestCase {
 
         XCTAssertEqual(entry.selectionCount, 0)
 
-        entry.selectTab(index: 1, selectionState: .selected)
-        entry.selectFile(index: 0, selectionState: .selected)
+        entry.selectTab(id: "tab2", selectionState: .selected)
+        entry.selectFile(id: "file1", selectionState: .selected)
         XCTAssertEqual(entry.selectionCount, 2)
 
-        entry.selectFile(index: 1, selectionState: .deselected)
+        entry.selectFile(id: "file2", selectionState: .deselected)
         XCTAssertEqual(entry.selectionCount, 1)
 
-        entry.selectFile(index: 0, selectionState: .selected)
-        entry.selectFile(index: 1, selectionState: .selected)
+        entry.selectFile(id: "file1", selectionState: .selected)
+        entry.selectFile(id: "file2", selectionState: .selected)
         XCTAssertEqual(entry.selectionCount, 2)
     }
 }

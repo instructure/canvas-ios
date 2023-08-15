@@ -16,29 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 import TestsFoundation
-@testable import Core
 
 class K5StudentE2ETests: K5UITestCase {
-
     func testStudentK5() {
         setUpK5()
+        XCTAssertTrue(K5Helper.courseCard(id: "21025").waitUntil(.visible).isVisible)
+        XCTAssertTrue(K5Helper.accountNotificationString.waitUntil(.visible).isVisible)
 
-        K5CourseCard.courseCard(id: "21025").waitToExist()
-        K5Dashboard.accountNotificationString.waitToExist()
-        K5CourseCard.courseCard(id: "21025").tap()
+        K5Helper.courseCard(id: "21025").hit()
+        XCTAssertTrue(K5Helper.homeTab.waitUntil(.visible).isVisible)
+        XCTAssertTrue(K5Helper.scheduleTab.waitUntil(.visible).isVisible)
+        XCTAssertTrue(K5Helper.gradesTab.waitUntil(.visible).isVisible)
+        XCTAssertTrue(K5Helper.modulesTab.waitUntil(.visible).isVisible)
 
-        K5CourseNavigation.homeTab.waitToExist()
-        K5CourseNavigation.scheduleTab.waitToExist()
-        K5CourseNavigation.gradesTab.waitToExist()
-        K5CourseNavigation.modulesTab.waitToExist()
+        K5Helper.gradesTab.hit()
+        XCTAssertTrue(K5Helper.emptyGradesForCourse.waitUntil(.visible).isVisible)
 
-        K5CourseNavigation.gradesTab.tap()
-        K5CourseGrades.emptyGradesForCourse.waitToExist()
-
-        K5CourseNavigation.modulesTab.tap()
-        K5CourseModulesPage.emptyPage.waitToExist()
-
+        K5Helper.modulesTab.hit()
+        XCTAssertTrue(K5Helper.emptyPage.waitUntil(.visible).isVisible)
     }
 }

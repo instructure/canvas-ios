@@ -30,7 +30,7 @@ public class DataSeeder {
 
     private let api: API
 
-    public init() {
+    public init(api: API? = nil) {
         let loginSession: LoginSession = {
             let dataSeedUser = UITestUser.dataSeedAdmin
             return LoginSession(accessToken: dataSeedUser.password,
@@ -38,7 +38,7 @@ public class DataSeeder {
                                 userID: "",
                                 userName: "")
         }()
-        self.api = API(loginSession)
+        self.api = api ?? API(loginSession)
     }
 
     @discardableResult
@@ -70,7 +70,9 @@ public class DataSeeder {
         }
 
         XCTFail(result?.error?.localizedDescription ?? "API call failed")
-        return APINoContent() as! Request.Response
+
+        // Next line never runs because the above one fails the test
+        return 0 as! Request.Response
     }
 
     private func request<Request: APIRequestable>(_ requestable: Request) -> (entity: Request.Response?, urlResponse: URLResponse?, error: Error?) {

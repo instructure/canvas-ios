@@ -150,7 +150,7 @@ class ReactiveStoreTests: CoreTestCase {
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee
             .observeEntities()
-            .dropFirst()
+            .dropFirst(2) // drop .loading and initialy .data[]
             .sink { state in
                 switch state {
                 case let .data(courses):
@@ -162,6 +162,7 @@ class ReactiveStoreTests: CoreTestCase {
                 XCTAssertTrue(Thread.isMainThread)
             }
 
+        drainMainQueue()
         Course.save(.make(id: "3rdpartyinsert"), in: databaseClient)
 
         waitForExpectations(timeout: 1)
@@ -213,6 +214,7 @@ class ReactiveStoreTests: CoreTestCase {
 
         let expectation2 = expectation(description: "Publisher sends value")
         let subscription2 = store.observeEntities(forceFetch: false)
+            .dropFirst() // Drop previously saved data
             .sink { state in
                 if case let .data(courses) = state {
                     XCTAssertEqual(courses.count, 0)
@@ -256,6 +258,7 @@ class ReactiveStoreTests: CoreTestCase {
 
         let expectation2 = XCTestExpectation(description: "Publisher sends value")
         let subscription2 = store.observeEntities(forceFetch: true, loadAllPages: true)
+            .dropFirst()
             .sink { state in
                 if case let .data(courses) = state {
                     XCTAssertEqual(courses.count, 2)
@@ -272,7 +275,7 @@ class ReactiveStoreTests: CoreTestCase {
     func test_OfflineModeIsEnabled_ObserveEntitiesCalled_ObjectsAreReturnedFromDatabase() {
         // Given
         let course = Course.make(from: .make(id: "0"))
-        ExperimentalFeature.offlineMode.isEnabled = true
+        injectOfflineFeatureFlag(isEnabled: true)
 
         // When
         let expectation = expectation(description: "Refresh callback called")
@@ -310,7 +313,7 @@ class ReactiveStoreTests: CoreTestCase {
     func test_OfflineModeIsEnabled_GetEntitiesCalled_ObjectsAreReturnedFromDatabase() {
         // Given
         Course.make(from: .make(id: "0"))
-        ExperimentalFeature.offlineMode.isEnabled = true
+        injectOfflineFeatureFlag(isEnabled: true)
 
         // When
         let expectation = expectation(description: "Refresh callback called")
@@ -342,7 +345,7 @@ class ReactiveStoreTests: CoreTestCase {
     func test_OfflineModeIsNotEnabled_ObserveEntitiesCalled_ObjectsAreReturnedFromNetwork() {
         // Given
         Course.make(from: .make(id: "0"))
-        ExperimentalFeature.offlineMode.isEnabled = false
+        injectOfflineFeatureFlag(isEnabled: false)
 
         // When
         let expectation = expectation(description: "Refresh callback called")
@@ -379,7 +382,7 @@ class ReactiveStoreTests: CoreTestCase {
     func test_OfflineModeIsNotEnabled_GetEntitiesCalled_ObjectsAreReturnedFromNetwork() {
         // Given
         Course.make(from: .make(id: "0"))
-        ExperimentalFeature.offlineMode.isEnabled = false
+        injectOfflineFeatureFlag(isEnabled: false)
 
         // When
         let expectation = expectation(description: "Refresh callback called")
@@ -442,7 +445,6 @@ class ReactiveStoreTests: CoreTestCase {
 
     private func createStore<U: UseCase>(useCase: U) -> ReactiveStore<U> {
         ReactiveStore(
-            env: environment,
             offlineModeInteractor: createOfflineModeInteractor(),
             context: environment.database.viewContext,
             useCase: useCase
@@ -452,7 +454,20 @@ class ReactiveStoreTests: CoreTestCase {
     private func createOfflineModeInteractor() -> OfflineModeInteractor {
         let monitor = NWPathMonitorWrapper(start: { _ in () }, cancel: {})
         let availabilityService = NetworkAvailabilityServiceLive(monitor: monitor)
-        return OfflineModeInteractorLive(availabilityService: availabilityService)
+        let result = OfflineModeInteractorLive(availabilityService: availabilityService)
+        drainMainQueue()
+        return result
+    }
+
+    private func injectOfflineFeatureFlag(isEnabled: Bool) {
+        let scope: Scope = .where(#keyPath(FeatureFlag.name),
+                                  equals: EnvironmentFeatureFlags.mobile_offline_mode.rawValue,
+                                  sortDescriptors: [])
+        let flag: FeatureFlag = databaseClient.fetch(scope: scope).first ?? databaseClient.insert()
+        flag.name = EnvironmentFeatureFlags.mobile_offline_mode.rawValue
+        flag.isEnvironmentFlag = true
+        flag.enabled = isEnabled
+        flag.context = .currentUser
     }
 }
 

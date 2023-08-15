@@ -16,30 +16,27 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 import TestsFoundation
 
 class QuizzesE2ETests: CoreUITestCase {
     func testQuizzesE2E() {
-        Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
-        CourseNavigation.quizzes.tap()
-        app.find(label: "Quiz One").tap()
-        QuizDetails.previewQuiz.waitToExist()
-        QuizDetails.previewQuiz.tap()
-        app.find(label: "Quiz Preview").waitToExist()
-        app.find(label: "Preview").waitToExist()
-        app.find(label: "Preview").tap()
-        app.find(label: "Quiz Instructions").waitToExist()
-        app.find(label: "This is question A").waitToExist()
-        XCTAssertTrue(app.find(labelContaining: "This is a preview of the published version of the quiz").exists())
-        app.find(label: "Done").tap()
-        QuizDetails.previewQuiz.waitToExist()
-        app.find(label: "Edit").waitToExist()
-        app.find(label: "Edit").tap()
-        app.find(labelContaining: "Edit Quiz Details").waitToExist()
-        XCTAssertTrue(app.find(labelContaining: "Shuffle Answers").exists())
-        app.find(label: "Done").tap()
-        app.find(labelContaining: "Edit Quiz Details").waitToVanish()
+        DashboardHelper.courseCard(courseId: "263").hit()
+        CourseDetailsHelper.cell(type: .quizzes).hit()
+        app.find(label: "Quiz One").hit()
+        QuizzesHelper.Details.previewQuiz.hit()
+        XCTAssertTrue(app.find(label: "Quiz Preview").waitUntil(.visible).isVisible)
+        XCTAssertTrue(app.find(label: "Preview").waitUntil(.visible).isVisible)
+        app.find(label: "Preview").hit()
+        XCTAssertTrue(app.find(label: "Quiz Instructions").waitUntil(.visible).isVisible)
+        XCTAssertTrue(app.find(label: "This is question A").waitUntil(.visible).isVisible)
+        XCTAssertTrue(app.find(labelContaining: "This is a preview of the published version of the quiz").waitUntil(.visible).isVisible)
+        app.find(label: "Done").hit()
+        XCTAssertTrue(QuizzesHelper.Details.previewQuiz.waitUntil(.visible).isVisible)
+        XCTAssertTrue(app.find(label: "Edit").waitUntil(.visible).isVisible)
+        app.find(label: "Edit").hit()
+        XCTAssertTrue(app.find(labelContaining: "Edit Quiz Details").waitUntil(.visible).isVisible)
+        XCTAssertTrue(app.find(labelContaining: "Shuffle Answers").waitUntil(.visible).isVisible)
+        app.find(label: "Done").hit()
+        XCTAssertFalse(app.find(labelContaining: "Edit Quiz Details").waitUntil(.vanish).isVisible)
     }
 }

@@ -39,7 +39,7 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
     public init(documentProvider: PDFDocumentProvider!,
                 fileAnnotationProvider: PDFFileAnnotationProvider,
                 metadata: APIDocViewerMetadata,
-                annotations: [APIDocViewerAnnotation],
+                apiAnnotations: [APIDocViewerAnnotation],
                 api: API,
                 sessionID: String,
                 isAnnotationEditingDisabled: Bool) {
@@ -51,7 +51,7 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
 
         guard let annotationsMetadata = metadata.annotations, annotationsMetadata.enabled else { return }
         var hasReplies: Set<String> = []
-        let allAnnotations = annotations.compactMap { (apiAnnotation: APIDocViewerAnnotation) -> Annotation? in
+        let allAnnotations = apiAnnotations.compactMap { (apiAnnotation: APIDocViewerAnnotation) -> Annotation? in
             if let id = apiAnnotation.inreplyto { hasReplies.insert(id) }
 
             let pspdfAnnotation = Annotation.from(apiAnnotation, metadata: annotationsMetadata)
@@ -91,14 +91,19 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
 
     public override func annotationsForPage(at pageIndex: PageIndex) -> [Annotation]? {
         // First, fetch the annotations from the file annotation provider.
-        let fileAnnotations = fileAnnotationProvider.annotationsForPage(at: pageIndex) ?? []
-        // Editing of annotations stored in the pdf file are always disabled
-        fileAnnotations.forEach {
-            $0.flags.update(with: .readOnly)
+        let fileAnnotations = performRead {
+            fileAnnotationProvider.annotationsForPage(at: pageIndex) ?? []
         }
-        // Then ask `super` to retrieve the custom annotations from cache.
-        let docViewerAnnotations = super.annotationsForPage(at: pageIndex) ?? []
-        // Merge annotations loaded from the file annotation provider with our custom ones.
+
+        // Editing of annotations stored in the pdf file are always disabled
+        fileAnnotations.forEach { $0.isEditable = false }
+
+        // Then ask `super` to retrieve the API annotations from cache.
+        let docViewerAnnotations = performRead {
+            super.annotationsForPage(at: pageIndex) ?? []
+        }
+
+        // Merge annotations loaded from the file annotation provider with the API ones.
         return fileAnnotations + docViewerAnnotations
     }
 

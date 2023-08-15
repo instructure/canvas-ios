@@ -56,6 +56,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
 
     public override func loadView() {
         view = tableView
+        view.accessibilityIdentifier = "settings.tableView"
     }
 
     public override func viewDidLoad() {
@@ -116,7 +117,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
 
         var sections: [Section] = [preferencesSection]
 
-        if ExperimentalFeature.offlineMode.isEnabled, env.app == .student {
+        if OfflineModeAssembly.make().isFeatureFlagEnabled(), env.app == .student {
             sections.append(offlineSettingSection)
         }
 

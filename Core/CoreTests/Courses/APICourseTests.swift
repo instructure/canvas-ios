@@ -35,6 +35,7 @@ class APICourseTests: XCTestCase {
             URLQueryItem(name: "include[]", value: "tabs"),
             URLQueryItem(name: "include[]", value: "term"),
             URLQueryItem(name: "include[]", value: "total_scores"),
+            URLQueryItem(name: "include[]", value: "settings"),
             URLQueryItem(name: "per_page", value: "10"),
             URLQueryItem(name: "enrollment_state", value: "active"),
         ])
@@ -51,6 +52,7 @@ class APICourseTests: XCTestCase {
             URLQueryItem(name: "include[]", value: "tabs"),
             URLQueryItem(name: "include[]", value: "term"),
             URLQueryItem(name: "include[]", value: "total_scores"),
+            URLQueryItem(name: "include[]", value: "settings"),
             URLQueryItem(name: "per_page", value: "20"),
             URLQueryItem(name: "enrollment_state", value: "completed"),
             URLQueryItem(name: "state[]", value: "available"),
@@ -76,6 +78,7 @@ class APICourseTests: XCTestCase {
             URLQueryItem(name: "include[]", value: "term"),
             URLQueryItem(name: "include[]", value: "total_scores"),
             URLQueryItem(name: "include[]", value: "observed_users"),
+            URLQueryItem(name: "include[]", value: "settings"),
         ])
     }
 

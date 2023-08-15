@@ -37,7 +37,7 @@ extension CourseSyncProgressViewModel {
         /** The SwiftUI view ID. */
         let id: String
         let title: String
-        let subtitle: String?
+        var subtitle: String?
         var isCollapsed: Bool?
         let cellStyle: ListCellView.ListCellStyle
         let state: CourseSyncEntry.State
@@ -68,12 +68,17 @@ extension CourseSyncProgressViewModel {
 extension Array where Element == CourseSyncEntry {
 
     func makeSyncProgressViewModelItems(interactor: CourseSyncProgressInteractor) -> [CourseSyncProgressViewModel.Cell] {
+        weak var interactor = interactor
+
         var cells: [CourseSyncProgressViewModel.Cell] = []
 
-        for (courseIndex, course) in enumerated() {
+        for course in self {
             var courseItem = course.makeSyncProgressViewModelItem()
             courseItem.collapseDidToggle = {
-                interactor.setCollapsed(selection: .course(courseIndex), isCollapsed: !(courseItem.isCollapsed ?? false))
+                interactor?.setCollapsed(
+                    selection: .course(course.id),
+                    isCollapsed: !(course.isCollapsed)
+                )
             }
             cells.append(.item(courseItem))
 
@@ -86,14 +91,25 @@ extension Array where Element == CourseSyncEntry {
                 continue
             }
 
-            for (tabIndex, tab) in course.tabs.enumerated() {
+            for tab in course.tabs {
                 var tabItem = tab.makeSyncProgressViewModelItem()
                 tabItem.collapseDidToggle = {
-                    interactor.setCollapsed(selection: .tab(courseIndex, tabIndex), isCollapsed: !(tabItem.isCollapsed ?? false))
+                    interactor?.setCollapsed(
+                        selection: .tab(course.id, tab.id),
+                        isCollapsed: !(tab.isCollapsed)
+                    )
                 }
+
+                guard tab.type == .files else {
+                    tabItem.subtitle = tab.bytesToDownload.humanReadableFileSize
+                    cells.append(.item(tabItem))
+                    continue
+                }
+
+                tabItem.subtitle = course.totalFileSize.humanReadableFileSize
                 cells.append(.item(tabItem))
 
-                guard tab.type == .files, !tab.isCollapsed else {
+                guard !tab.isCollapsed else {
                     continue
                 }
 
@@ -112,7 +128,7 @@ extension CourseSyncEntry {
     func makeSyncProgressViewModelItem() -> CourseSyncProgressViewModel.Item {
         .init(id: id,
               title: name,
-              subtitle: nil,
+              subtitle: totalSizeFormattedString,
               isCollapsed: isCollapsed,
               cellStyle: .mainAccordionHeader,
               state: state)
@@ -136,7 +152,7 @@ extension CourseSyncEntry.File {
     func makeSyncProgressViewModelItem() -> CourseSyncProgressViewModel.Item {
         .init(id: id,
               title: displayName,
-              subtitle: nil,
+              subtitle: bytesToDownload.humanReadableFileSize,
               cellStyle: .listItem,
               state: state)
     }

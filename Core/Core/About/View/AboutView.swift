@@ -34,6 +34,7 @@ public struct AboutView: View {
                         Text(entry.label)
                             .foregroundColor(.textDark)
                             .font(.regular14, lineHeight: .fit)
+                            .accessibilityIdentifier(entry.title)
                     }
                     .padding(.horizontal, 16)
                     .padding(.top, 12)
@@ -48,6 +49,7 @@ public struct AboutView: View {
                     .accessibilityHidden(true)
             }
         }
+        .accessibilityIdentifier("AboutView")
         .background(Color.backgroundLightest)
         .navigationTitle(viewModel.title)
     }

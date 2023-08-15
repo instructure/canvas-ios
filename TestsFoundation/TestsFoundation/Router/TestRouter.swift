@@ -24,6 +24,7 @@ public class TestRouter: Router {
         super.init(routes: []) { _, _, _, _ in }
     }
     public var calls = [(URLComponents?, UIViewController, RouteOptions)]()
+    /// (presented, source, options)
     public var viewControllerCalls = [(UIViewController, UIViewController, RouteOptions)]()
     public var presented: UIViewController? {
         if viewControllerCalls.last?.2.isModal == true {
@@ -114,5 +115,17 @@ public class TestRouter: Router {
         routeExpectation = XCTestExpectation(description: "route")
         showExpectation = XCTestExpectation(description: "show")
         popExpectation = XCTestExpectation(description: "pop")
+    }
+
+    // MARK: Template Method Mocks
+
+    public private(set) var mockedURLTemplates: [URL: String] = [:]
+
+    public func mockTemplate(for url: URL, template: String) {
+        mockedURLTemplates[url] = template
+    }
+
+    public override func template(for url: URL) -> String? {
+        mockedURLTemplates[url]
     }
 }

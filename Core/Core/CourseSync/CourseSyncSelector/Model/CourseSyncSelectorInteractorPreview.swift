@@ -22,9 +22,11 @@ import Combine
 import CombineExt
 
 class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
-    private let mockData: CurrentValueRelay<[CourseSyncEntry]>
-
-    required init(courseID: String? = nil, sessionDefaults: SessionDefaults) {
+    required init(
+        courseID: String? = nil,
+        entryComposerInteractor: CourseSyncEntryComposerInteractor = CourseSyncEntryComposerInteractorLive(),
+        sessionDefaults: SessionDefaults
+    ) {
         mockData = CurrentValueRelay<[CourseSyncEntry]>([
             .init(name: "Black Hole",
                   id: "0",
@@ -44,6 +46,8 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
             .init(name: "Empty Course", id: "1", tabs: [], files: []),
         ])
     }
+
+    private let mockData: CurrentValueRelay<[CourseSyncEntry]>
 
     func mockEmptyState() {
         mockData.accept([])
@@ -73,12 +77,12 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
         var entries = mockData.value
 
         switch selection {
-        case let .course(courseIndex):
-            entries[courseIndex].selectCourse(selectionState: selectionState)
-        case let .tab(courseIndex, tabIndex):
-            entries[courseIndex].selectTab(index: tabIndex, selectionState: selectionState)
-        case let .file(courseIndex, fileIndex):
-            entries[courseIndex].selectFile(index: fileIndex, selectionState: selectionState)
+        case let .course(courseID):
+            entries[id: courseID]?.selectCourse(selectionState: selectionState)
+        case let .tab(courseID, tabID):
+            entries[id: courseID]?.selectTab(id: tabID, selectionState: selectionState)
+        case let .file(courseID, fileID):
+            entries[id: courseID]?.selectFile(id: fileID, selectionState: selectionState)
         }
 
         mockData.accept(entries)

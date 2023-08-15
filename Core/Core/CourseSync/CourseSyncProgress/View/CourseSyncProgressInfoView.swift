@@ -19,7 +19,6 @@
 import SwiftUI
 
 struct CourseSyncProgressInfoView: View {
-
     @ObservedObject var viewModel: CourseSyncProgressInfoViewModel
 
     var body: some View {
@@ -38,10 +37,26 @@ struct CourseSyncProgressInfoView: View {
                     .font(.regular14)
                     .foregroundColor(.textDarkest)
                     .padding(.top, 24)
-                ProgressView(value: viewModel.progressPercentage)
-                    .tint(.backgroundInfo)
-                    .background(Color.backgroundInfo.opacity(0.24))
-                    .padding(.bottom, 32)
+
+                if viewModel.progressPercentage > 0 {
+                    ProgressView(value: viewModel.progressPercentage)
+                        .progressViewStyle(
+                            .determinateBar(
+                                foregroundColor: .backgroundInfo,
+                                backgroundColor: .backgroundInfo.opacity(0.24)
+                            )
+                        )
+                        .padding(.bottom, 32)
+                } else {
+                    ProgressView()
+                        .progressViewStyle(
+                            .indeterminateBar(
+                                foregroundColor: .backgroundInfo,
+                                backgroundColor: .backgroundInfo.opacity(0.24)
+                            )
+                        )
+                        .padding(.bottom, 32)
+                }
             }
         }.padding(.horizontal, 16)
     }

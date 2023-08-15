@@ -16,18 +16,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
 import TestsFoundation
 
 class GradeListTests: CoreUITestCase {
     func testAssignmentDetailsCompose() {
-        let courseCell = Courses.course(id: "263")
-        courseCell.tapUntil { !courseCell.exists }
-        GradeList.cell(assignmentID: "1831").tap()
-        app.find(labelContaining: "This is assignment one.").waitToExist()
-        AssignmentDetails.replyButton.tap()
+        DashboardHelperParent.courseCard(courseId: "263").hit()
+        GradesHelper.cell(assignmentId: "1831").hit()
+        XCTAssertTrue(app.find(labelContaining: "This is assignment one.").waitUntil(.visible).isVisible)
 
-        XCTAssertEqual(Compose.recipientName(id: "837").label(), "Teacher One")
-        XCTAssertEqual(Compose.subject.value(), "Regarding: Student One, Assignment - Assignment One")
+        AssignmentsHelper.Details.replyButton.hit()
+        XCTAssertEqual(AssignmentsHelper.Details.Reply.recipientName(id: "837").waitUntil(.visible).label, "Teacher One")
+        XCTAssertTrue(AssignmentsHelper.Details.Reply.subject.waitUntil(.visible)
+            .hasValue(value: "Regarding: Student One, Assignment - Assignment One"))
     }
 }

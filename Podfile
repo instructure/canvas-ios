@@ -18,7 +18,7 @@ def canvas_crashlytics_rn_firebase_pods
 end
 
 def pspdfkit
-  pod 'PSPDFKit', podspec: 'https://customers.pspdfkit.com/pspdfkit-ios/12.0.3.podspec'
+  pod 'PSPDFKit', podspec: 'https://customers.pspdfkit.com/pspdfkit-ios/12.3.0.podspec'
 end
 
 def react_native_pods
@@ -45,11 +45,8 @@ end
 abstract_target 'needs-pspdfkit' do
   use_frameworks!
   pspdfkit
-  target 'StudentUITests' do project 'Student/Student.xcodeproj' end
   target 'StudentE2ETests' do project 'Student/Student.xcodeproj' end
-  target 'TeacherUITests' do project 'rn/Teacher/ios/Teacher.xcodeproj' end
   target 'TeacherE2ETests' do project 'rn/Teacher/ios/Teacher.xcodeproj' end
-  target 'ParentUITests' do project 'Parent/Parent.xcodeproj' end
   target 'ParentE2ETests' do project 'Parent/Parent.xcodeproj' end
 end
 

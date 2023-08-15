@@ -35,6 +35,7 @@ extension UpdateDSModuleRequest {
     public struct UpdatedDSModule: Encodable {
         let published: Bool
     }
+
     public struct Body: Encodable {
         let module: UpdatedDSModule
     }

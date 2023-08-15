@@ -51,7 +51,8 @@ public struct SubmitAssignmentExtensionView: View {
             .foregroundColor(.textDarkest)
             .font(.regular16)
             .navigationBarGlobal()
-            .navigationBarTitleView(titleView, displayMode: .inline)
+            .navigationTitleStyled(title)
+            .navigationBarTitleDisplayMode(.inline)
             .navBarItems(trailing: cancelButton)
     }
 
@@ -69,14 +70,15 @@ public struct SubmitAssignmentExtensionView: View {
             .padding(.horizontal, 20)
         }
         .navigationBarGlobal()
-        .navigationBarTitleView(titleView, displayMode: .inline)
+        .navigationTitleStyled(title)
+        .navigationBarTitleDisplayMode(.inline)
         .navBarItems(leading: cancelButton, trailing: submitButton)
         .onDisappear {
             accessibilityFocus = nil
         }
     }
 
-    private var titleView: some View {
+    private var title: Text {
         Text("Canvas Student", bundle: .core).font(.semibold17).foregroundColor(.textDarkest)
     }
 
