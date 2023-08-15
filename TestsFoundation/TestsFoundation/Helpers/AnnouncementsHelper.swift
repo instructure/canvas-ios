@@ -66,11 +66,12 @@ public class AnnouncementsHelper: BaseHelper {
     }
 
     public static func postAccountNotification(subject: String? = nil, message: String? = nil, isK5: Bool = false) -> DSAccountNotification {
-        let dateFormatter = ISO8601DateFormatter()
         let globalAnnouncementSubject = subject ?? "This is not a drill!"
         let globalAnnouncementMessage = message ?? "This is an account notification!"
-        let globalAnnouncementStartAt = CalendarHelper.formatDate(addHours: -1)
-        let globalAnnouncementEndAt = CalendarHelper.formatDate(addHours: 4)
+        let startPlus = CalendarHelper.isGmt2 ? 0 : -6
+        let endPlus = CalendarHelper.isGmt2 ? 0 : +6
+        let globalAnnouncementStartAt = CalendarHelper.formatDate(addHours: startPlus)
+        let globalAnnouncementEndAt = CalendarHelper.formatDate(addHours: endPlus, addMinutes: 4)
 
         return seeder.postAccountNotifications(
             requestBody: .init(subject: globalAnnouncementSubject,

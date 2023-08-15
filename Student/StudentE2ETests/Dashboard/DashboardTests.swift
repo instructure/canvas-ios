@@ -83,8 +83,10 @@ class DashboardTests: E2ETestCase {
         let notificationToggleButton = AccountNotifications.toggleButton(notification: announcement)
             .waitUntil(.visible)
         XCTAssertTrue(notificationToggleButton.isVisible)
-
         XCTAssertLessThan(courseAcceptButton.frame.maxY, notificationToggleButton.frame.minY)
+
+        notificationToggleButton.hit()
+        AccountNotifications.dismissButton(notification: announcement).hit()
     }
 
     func testNavigateToDashboard() {

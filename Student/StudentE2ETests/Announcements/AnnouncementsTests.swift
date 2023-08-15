@@ -98,7 +98,7 @@ class AnnouncementsTests: E2ETestCase {
             .waitUntil(.visible)
         XCTAssertTrue(toggleButton.isVisible)
         var dismissButton = AccountNotifications.dismissButton(notification: globalAnnouncement)
-            .waitUntil(.visible)
+            .waitUntil(.vanish)
         XCTAssertFalse(dismissButton.isVisible)
 
         // MARK: Tap the toggle button and check visibility of dismiss button again
