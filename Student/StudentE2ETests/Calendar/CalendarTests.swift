@@ -48,9 +48,11 @@ class CalendarTests: E2ETestCase {
         let addNoteButton = Helper.addNoteButton.waitUntil(.visible)
         XCTAssertTrue(addNoteButton.isVisible)
 
-        let todayDateButton = Helper.dayButton(event: event).waitUntil(.visible)
-        XCTAssertTrue(todayDateButton.isVisible)
-        XCTAssertTrue(todayDateButton.isSelected)
+        let eventDateButton = Helper.dayButton(event: event).waitUntil(.visible)
+        XCTAssertTrue(eventDateButton.isVisible)
+
+        eventDateButton.hit()
+        XCTAssertTrue(eventDateButton.waitUntil(.selected).isSelected)
 
         let eventItem = Helper.eventCell(event: event).waitUntil(.visible)
         XCTAssertTrue(eventItem.isVisible)
@@ -82,6 +84,12 @@ class CalendarTests: E2ETestCase {
         XCTAssertTrue(calendarTab.isVisible)
 
         calendarTab.hit()
+
+        let eventDateButton = Helper.dayButton(event: event).waitUntil(.visible)
+        XCTAssertTrue(eventDateButton.isVisible)
+
+        eventDateButton.hit()
+        XCTAssertTrue(eventDateButton.waitUntil(.selected).isSelected)
 
         // MARK: Tap on the event item and check the details
         let eventItem = Helper.eventCell(event: event).waitUntil(.visible)
@@ -125,8 +133,7 @@ class CalendarTests: E2ETestCase {
         let yesterdaysEventItem = Helper.navigateToEvent(event: events.yesterdays!)
         XCTAssertTrue(yesterdaysEventItem.isVisible)
 
-        Helper.todayButton.hit()
-        let todaysEventItem = Helper.eventCell(event: events.todays!).waitUntil(.visible)
+        let todaysEventItem = Helper.navigateToEvent(event: events.todays!)
         XCTAssertTrue(todaysEventItem.isVisible)
 
         let tomorrowsEventItem = Helper.navigateToEvent(event: events.tomorrows!)
@@ -187,8 +194,8 @@ class CalendarTests: E2ETestCase {
         calendarTab.hit()
 
         // MARK: Check events
-        var eventItem1 = Helper.eventCell(event: event1).waitUntil(.visible)
-        var eventItem2 = Helper.eventCell(event: event2).waitUntil(.visible)
+        var eventItem1 = Helper.navigateToEvent(event: event1).waitUntil(.visible)
+        var eventItem2 = Helper.navigateToEvent(event: event2).waitUntil(.visible)
         XCTAssertTrue(eventItem1.isVisible)
         XCTAssertTrue(eventItem2.isVisible)
 
