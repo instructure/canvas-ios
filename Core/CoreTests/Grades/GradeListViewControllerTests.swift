@@ -197,6 +197,85 @@ class GradeListViewControllerTests: CoreTestCase {
         XCTAssertNoThrow(controller.viewWillDisappear(false))
     }
 
+    func testLayoutHideQuantitativeData() {
+        api.mock(controller.courses, value: .make(enrollments: [ .make(
+            id: nil,
+            course_id: "1",
+            enrollment_state: .active,
+            user_id: currentSession.userID,
+            multiple_grading_periods_enabled: true,
+            current_grading_period_id: "1"
+        ), ], settings: .make(restrict_quantitative_data: true)))
+        let nav = UINavigationController(rootViewController: controller)
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#008800")
+        XCTAssertEqual(controller.titleSubtitleView.title, "Grades")
+        XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
+
+        XCTAssertEqual(controller.gradingPeriodLabel.text, "One")
+        XCTAssertEqual(controller.filterButton.title(for: .normal), "Filter")
+        XCTAssertEqual(controller.totalGradeLabel.text, "N/A")
+
+        let index00 = IndexPath(row: 0, section: 0)
+        var cell00 = controller.tableView.cellForRow(at: index00) as! GradeListCell
+        XCTAssertEqual(cell00.nameLabel.text, "Complex Numbers")
+        XCTAssertEqual(cell00.gradeLabel.text, nil)
+        XCTAssertEqual(cell00.gradeLabel.accessibilityLabel, nil)
+        XCTAssertEqual(cell00.dueLabel.text, "Due Jan 1, 2020 at 12:00 AM")
+        XCTAssertEqual(cell00.statusLabel.text, "Late")
+
+        controller.tableView.selectRow(at: index00, animated: false, scrollPosition: .none)
+        controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: index00)
+        XCTAssert(router.lastRoutedTo("/courses/1/assignments/1", withOptions: .detail))
+
+        XCTAssertEqual(controller.tableView.indexPathForSelectedRow, index00)
+        controller.viewWillAppear(false)
+        XCTAssertNil(controller.tableView.indexPathForSelectedRow)
+
+        XCTAssertEqual(controller.tableView.numberOfSections, 1)
+        controller.filterButton.sendActions(for: .primaryActionTriggered)
+        var alert = router.presented as! UIAlertController
+        XCTAssertEqual(alert.message, "Filter by:")
+        let two = alert.actions[2] as! AlertAction
+        XCTAssertEqual(two.title, "Two")
+        two.handler?(AlertAction())
+        XCTAssertEqual(controller.tableView.numberOfSections, 1)
+        cell00 = controller.tableView.cellForRow(at: index00) as! GradeListCell
+        XCTAssertEqual(cell00.nameLabel.text, "Proof that proofs are useful")
+
+        controller.filterButton.sendActions(for: .primaryActionTriggered)
+        alert = router.presented as! UIAlertController
+        XCTAssertEqual(alert.message, "Filter by:")
+        let three = alert.actions[3] as! AlertAction
+        XCTAssertEqual(three.title, "Three")
+        three.handler?(AlertAction())
+        cell00 = controller.tableView.cellForRow(at: index00) as! GradeListCell
+        XCTAssertEqual(cell00.nameLabel.text, "Paper Assignment")
+        XCTAssertFalse(cell00.statusLabel.isHidden)
+        XCTAssertEqual(cell00.statusLabel.text, "Late")
+
+        api.mock(GetAssignmentsByGroup(courseID: "1"), error: NSError.internalError())
+        (alert.actions[0] as? AlertAction)?.handler?(AlertAction())
+        XCTAssertEqual(controller.errorView.isHidden, false)
+        XCTAssertEqual(controller.errorView.messageLabel.text, "There was an error loading grades. Pull to refresh to try again.")
+
+        api.mock(GetAssignmentsByGroup(courseID: "1"), value: [])
+        controller.errorView.retryButton.sendActions(for: .primaryActionTriggered)
+        XCTAssertEqual(controller.refreshControl.isRefreshing, false)
+        XCTAssertEqual(controller.errorView.isHidden, true)
+        XCTAssertEqual(controller.emptyView.isHidden, false)
+        XCTAssertEqual(controller.emptyTitleLabel.text, "No Assignments")
+        XCTAssertEqual(controller.emptyMessageLabel.text, "It looks like assignments haven’t been created in this space yet.")
+
+        api.mock(GetAssignmentsByGroup(courseID: "1"), error: NSError.internalError())
+        controller.tableView.refreshControl?.sendActions(for: .primaryActionTriggered)
+        XCTAssertEqual(controller.errorView.isHidden, false)
+        XCTAssertEqual(controller.emptyView.isHidden, true)
+
+        XCTAssertNoThrow(controller.viewWillDisappear(false))
+    }
+
     func testHideTotals() {
         api.mock(controller.courses, value: .make(enrollments: [ .make(
             id: nil,
@@ -206,6 +285,19 @@ class GradeListViewControllerTests: CoreTestCase {
             multiple_grading_periods_enabled: true,
             current_grading_period_id: "1"
         ), ], hide_final_grades: true))
+        controller.view.layoutIfNeeded()
+        XCTAssertEqual(controller.totalGradeLabel.text, "N/A")
+    }
+
+    func testHideTotalsQuantitativeDataEnabled() {
+        api.mock(controller.courses, value: .make(enrollments: [ .make(
+            id: nil,
+            course_id: "1",
+            enrollment_state: .active,
+            user_id: currentSession.userID,
+            multiple_grading_periods_enabled: true,
+            current_grading_period_id: "1"
+        ), ], hide_final_grades: true, settings: .make(restrict_quantitative_data: true)))
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.totalGradeLabel.text, "N/A")
     }
@@ -234,6 +326,32 @@ class GradeListViewControllerTests: CoreTestCase {
         ), ])
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.totalGradeLabel.text, "42% (C)")
+    }
+
+    func testShowGradeLetterQuantitativeDataEnabled() {
+        api.mock(controller.courses, value: .make(enrollments: [ .make(
+            id: nil,
+            course_id: "1",
+            enrollment_state: .active,
+            user_id: currentSession.userID,
+            current_grading_period_id: "1"
+        ), ], settings: .make(restrict_quantitative_data: true)))
+        api.mock(GetEnrollments(
+            context: .course("1"),
+            userID: currentSession.userID,
+            gradingPeriodID: "1",
+            types: [ "StudentEnrollment" ],
+            states: [ .active ]
+        ), value: [ .make(
+            id: "1",
+            course_id: "1",
+            enrollment_state: .active,
+            type: "StudentEnrollment",
+            user_id: self.currentSession.userID,
+            grades: .make(current_grade: "C", current_score: 42)
+        ), ])
+        controller.view.layoutIfNeeded()
+        XCTAssertEqual(controller.totalGradeLabel.text, "C")
     }
 
     func testPaginatedRefresh() {
