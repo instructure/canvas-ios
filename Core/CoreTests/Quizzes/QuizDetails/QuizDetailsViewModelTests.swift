@@ -96,4 +96,53 @@ class QuizDetailsViewModelTests: CoreTestCase {
             .make(id: "AG1", name: "AGroup1", position: 1, assignments: [.make(assignment_group_id: "AG1", id: "3", name: "test quiz")]),
         ])
     }
+
+    // MARK: - Quantitative Data Display Tests
+
+    func testPointsPossibleTextWhenQuantitativeDataEnabled() {
+        // MARK: GIVEN
+        mockDataForQuantitativeDataTests(restrict_quantitative_data: true)
+        let testee = QuizDetailsViewModel(courseID: "1", quizID: "123")
+
+        // MARK: WHEN
+        testee.viewDidAppear()
+
+        // MARK: THEN
+        XCTAssertEqual(testee.pointsPossibleText, "")
+    }
+
+    func testPointsPossibleTextWhenQuantitativeDataDisabled() {
+        // MARK: GIVEN
+        mockDataForQuantitativeDataTests(restrict_quantitative_data: false)
+        let testee = QuizDetailsViewModel(courseID: "1", quizID: "123")
+
+        // MARK: WHEN
+        testee.viewDidAppear()
+
+        // MARK: THEN
+        XCTAssertEqual(testee.pointsPossibleText, "11.1 pts")
+    }
+
+    func testPointsPossibleTextWhenQuantitativeDataNotSpecified() {
+        // MARK: GIVEN
+        mockDataForQuantitativeDataTests(restrict_quantitative_data: nil)
+        let testee = QuizDetailsViewModel(courseID: "1", quizID: "123")
+
+        // MARK: WHEN
+        testee.viewDidAppear()
+
+        // MARK: THEN
+        XCTAssertEqual(testee.pointsPossibleText, "11.1 pts")
+    }
+
+    private func mockDataForQuantitativeDataTests(restrict_quantitative_data: Bool?) {
+        api.mock(GetCourse(courseID: "1"),
+                 value: .make(settings: .make(restrict_quantitative_data: restrict_quantitative_data)))
+        api.mock(GetQuizRequest(courseID: "1", quizID: "123"),
+                 value: .make())
+        api.mock(GetQuizSubmissionRequest(courseID: "1", quizID: "123"),
+                 value: .init(quiz_submissions: []))
+        api.mock(GetAssignmentsByGroup(courseID: "1"),
+                 value: [])
+    }
 }
