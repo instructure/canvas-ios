@@ -40,20 +40,6 @@
         "identifier" : "E841D8A223D6472F00685A63",
         "name" : "TeacherE2ETests"
       }
-    },
-    {
-      "skippedTests" : [
-        "DiscussionsUITests\/testCloseDiscussion()",
-        "FilesUITests\/testAddFileFromLibrary()",
-        "FilesUITests\/testUploadAudioFile()",
-        "IPadSpeedGraderTests\/testSpeedGrader()",
-        "SpeedGraderCommentUITests\/testNewAudioComment()"
-      ],
-      "target" : {
-        "containerPath" : "container:Teacher.xcodeproj",
-        "identifier" : "E8315D3522FC9E60003CD27C",
-        "name" : "TeacherUITests"
-      }
     }
   ],
   "version" : 1

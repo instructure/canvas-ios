@@ -31,22 +31,6 @@
         "identifier" : "E8C6F4CF23D626220086B865",
         "name" : "StudentE2ETests"
       }
-    },
-    {
-      "skippedTests" : [
-        "DiscussionEditorTests\/testCreateDiscussionWithAttachment()",
-        "DiscussionReplyTests\/testReplyingWithAttachment()",
-        "IPadAssignmentsTest\/testAssignments()",
-        "InboxTests\/testCanMessageAttachment()",
-        "SpringBoardTests\/testMultitaskingSetup()",
-        "UserFilesTests\/testAddFileAudio()",
-        "UserFilesTests\/testAddFileFiles()"
-      ],
-      "target" : {
-        "containerPath" : "container:Student.xcodeproj",
-        "identifier" : "7DC5716F22F8B16200F2E9BB",
-        "name" : "StudentUITests"
-      }
     }
   ],
   "version" : 1

@@ -89,15 +89,16 @@ class AnnouncementsTests: E2ETestCase {
         // MARK: Check visibility of the course and the announcement notification title
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCard.isVisible)
-        let annountementTitle = Helper.notificationTitle(announcement: globalAnnouncement).waitUntil(.visible)
-        XCTAssertTrue(annountementTitle.isVisible)
+        let announcementTitle = Helper.notificationTitle(announcement: globalAnnouncement)
+        announcementTitle.actionUntilElementCondition(action: .pullToRefresh, condition: .visible, timeout: 60, gracePeriod: 3)
+        XCTAssertTrue(announcementTitle.isVisible)
 
         // MARK: Check visibility toggle and dismiss button of the announcement notificaiton
         let toggleButton = AccountNotifications.toggleButton(notification: globalAnnouncement)
             .waitUntil(.visible)
         XCTAssertTrue(toggleButton.isVisible)
         var dismissButton = AccountNotifications.dismissButton(notification: globalAnnouncement)
-            .waitUntil(.visible)
+            .waitUntil(.vanish)
         XCTAssertFalse(dismissButton.isVisible)
 
         // MARK: Tap the toggle button and check visibility of dismiss button again

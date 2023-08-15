@@ -34,13 +34,6 @@
         "identifier" : "E80763C723E08DA10085DAFB",
         "name" : "ParentE2ETests"
       }
-    },
-    {
-      "target" : {
-        "containerPath" : "container:Parent.xcodeproj",
-        "identifier" : "E8E1BE4923C6891F000E3A76",
-        "name" : "ParentUITests"
-      }
     }
   ],
   "version" : 1

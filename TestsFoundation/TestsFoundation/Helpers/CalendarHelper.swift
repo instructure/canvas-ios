@@ -33,8 +33,11 @@ public class CalendarHelper: BaseHelper {
         case nextYears
     }
 
+    // MARK: Timezone-related stuff
     static var localTimeZoneAbbreviation: String { return TimeZone.current.abbreviation() ?? "" }
-    static var plusMinutes = localTimeZoneAbbreviation == "GMT+2" ? 120 : -360
+    static var isGmt2 = localTimeZoneAbbreviation == "GMT+2"
+    static var plusMinutes = isGmt2 ? -480 : -360
+    static var plusMinutesUI = isGmt2 ? 120 : -360
     static let dateFormatter = DateFormatter()
 
     // MARK: UI Elements
@@ -53,7 +56,7 @@ public class CalendarHelper: BaseHelper {
 
     public static func formatDateForDayButton(event: DSCalendarEvent) -> String {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        let date = dateFormatter.date(from: event.start_at)!.addMinutes(plusMinutes)
+        let date = dateFormatter.date(from: event.start_at)!.addMinutes(plusMinutesUI)
         dateFormatter.dateFormat = "yyyy-M-d"
         let formattedDate = dateFormatter.string(from: date)
         return formattedDate
@@ -61,7 +64,7 @@ public class CalendarHelper: BaseHelper {
 
     public static func formatDateForDateLabel(event: DSCalendarEvent) -> String {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        let date = dateFormatter.date(from: event.start_at)!.addMinutes(plusMinutes)
+        let date = dateFormatter.date(from: event.start_at)!.addMinutes(plusMinutesUI)
         dateFormatter.dateFormat = "MMM d, yyyy 'at' h:mm a"
         let formattedDate = dateFormatter.string(from: date)
         return formattedDate
@@ -86,7 +89,7 @@ public class CalendarHelper: BaseHelper {
     public static func navigateToEvent(event: DSCalendarEvent) -> XCUIElement {
         // Formatting the date
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        let date = dateFormatter.date(from: event.start_at)!.addMinutes(plusMinutes)
+        let date = dateFormatter.date(from: event.start_at)!.addMinutes(plusMinutesUI)
         dateFormatter.dateFormat = "yyyy-MMMM-d"
         let formattedDate = dateFormatter.string(from: date)
         let dateArray = formattedDate.split(separator: "-")
@@ -154,7 +157,7 @@ public class CalendarHelper: BaseHelper {
 
         public static func formatDateForDateLabel(event: DSCalendarEvent) -> String {
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-            let date = dateFormatter.date(from: event.start_at)!.addMinutes(CalendarHelper.plusMinutes)
+            let date = dateFormatter.date(from: event.start_at)!.addMinutes(CalendarHelper.plusMinutesUI)
             dateFormatter.dateFormat = "MMM d, yyyy 'at' h:mm a"
             let formattedDate = dateFormatter.string(from: date)
             return formattedDate
@@ -171,9 +174,14 @@ public class CalendarHelper: BaseHelper {
     }
 
     // MARK: DataSeeding
-    public static func formatDate(addYears: Int = 0, addDays: Int = 0, addHours: Int = 0) -> String {
-        let plusTime = localTimeZoneAbbreviation != "GMT+2" ? 540 : 0
-        let date = Date().addYears(addYears).addDays(addDays).addMinutes(addHours*60).addMinutes(-360).addMinutes(plusTime)
+    public static func currentDateString() -> String {
+        let date = Date()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        return dateFormatter.string(from: date)
+    }
+
+    public static func formatDate(addYears: Int = 0, addDays: Int = 0, addHours: Int = 0, addMinutes: Int = 0) -> String {
+        let date = Date().addYears(addYears).addDays(addDays).addMinutes(addHours*60).addMinutes(addMinutes).addMinutes(plusMinutes)
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         let formattedDate = dateFormatter.string(from: date)
         return formattedDate
@@ -185,21 +193,21 @@ public class CalendarHelper: BaseHelper {
             result.yesterdays = createCalendarEvent(
                 course: course,
                 title: "Yesterdays Event",
-                startDate: formatDate(addDays: -1, addHours: 1),
+                startDate: formatDate(addDays: -1, addHours: -1),
                 endDate: formatDate(addDays: -1, addHours: 2))
         }
         if eventTypes.contains(.todays) {
             result.todays = createCalendarEvent(
                 course: course,
                 title: "Todays Event",
-                startDate: formatDate(addHours: 1),
+                startDate: formatDate(addHours: -1),
                 endDate: formatDate(addHours: 2))
         }
         if eventTypes.contains(.tomorrows) {
             result.tomorrows = createCalendarEvent(
                 course: course,
                 title: "Tomorrows Event",
-                startDate: formatDate(addDays: 1, addHours: 1),
+                startDate: formatDate(addDays: 1, addHours: -1),
                 endDate: formatDate(addDays: 1, addHours: 2))
         }
         if eventTypes.contains(.recurring) {
@@ -215,8 +223,8 @@ public class CalendarHelper: BaseHelper {
             result.nextYears = createCalendarEvent(
                 course: course,
                 title: "Next Years Event",
-                startDate: formatDate(addYears: 1),
-                endDate: formatDate(addYears: 1),
+                startDate: formatDate(addYears: 1, addHours: -1),
+                endDate: formatDate(addYears: 1, addHours: 2),
                 allDay: true)
         }
         return result
@@ -237,17 +245,17 @@ public class CalendarHelper: BaseHelper {
             weekly: Bool = false) -> DSCalendarEvent {
         let duplicate = weekly ? CreateDSCalendarEventRequest.DSDuplicate(count: 2, frequency: .weekly) : nil
         let calendarEvent = CreateDSCalendarEventRequest.RequestedDSCalendarEvent(
-            courseId: course.id,
-            title: title,
-            description: description,
-            start_at: startDate,
-            end_at: endDate,
-            location_name: locationName,
-            location_address: locationAddress,
-            all_day: allDay,
-            rrule: rRule,
-            blackout_date: blackoutDate,
-            duplicate: duplicate)
+                courseId: course.id,
+                title: title,
+                description: description,
+                start_at: startDate,
+                end_at: endDate,
+                location_name: locationName,
+                location_address: locationAddress,
+                all_day: allDay,
+                rrule: rRule,
+                blackout_date: blackoutDate,
+                duplicate: duplicate)
         let requestBody = CreateDSCalendarEventRequest.Body(calendar_event: calendarEvent)
         return seeder.createCalendarEvent(requestBody: requestBody)
     }

@@ -277,6 +277,10 @@ public extension XCUIElement {
         return descendants(matching: type).matching(labelContaining: labelContaining).allElementsBoundByIndex
     }
 
+    func findAll(idStartingWith: String, type: ElementType = .any) -> [XCUIElement] {
+        return descendants(matching: type).matching(idStartingWith: idStartingWith).allElementsBoundByIndex
+    }
+
     // MARK: Find alert functions
 
     func findAlertButton(label: String) -> XCUIElement {

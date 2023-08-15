@@ -22,8 +22,14 @@ struct CreateDSUserRequest: APIRequestable {
     public typealias Response = DSUser
 
     public let method = APIMethod.post
-    public var path: String { "accounts/self/users" }
+    public let path: String
     public let body: Body?
+
+    public init(body: Body?, isK5: Bool = false) {
+        self.body = body
+        let accountId = isK5 ? "181364" : "self"
+        self.path = "accounts/\(accountId)/users"
+    }
 }
 
 extension CreateDSUserRequest {
