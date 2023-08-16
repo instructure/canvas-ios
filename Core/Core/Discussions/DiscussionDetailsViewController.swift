@@ -105,7 +105,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         isAnnouncement: Bool = false,
         showEntryID: String? = nil,
         showRepliesToEntryID: String? = nil,
-        offlineModeInteractor: OfflineModeInteractor? = OfflineModeInteractorLive.shared
+        offlineModeInteractor: OfflineModeInteractor? = OfflineModeAssembly.make()
     ) -> DiscussionDetailsViewController {
         let controller = loadFromStoryboard()
         controller.context = context

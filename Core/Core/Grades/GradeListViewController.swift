@@ -98,7 +98,7 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
     public static func create(courseID: String,
                               userID: String? = nil,
                               colorDelegate: ColorDelegate? = nil,
-                              offlineModeInteractor: OfflineModeInteractor = OfflineModeInteractorLive.shared)
+                              offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make())
     -> GradeListViewController {
         let controller = loadFromStoryboard()
         controller.colorDelegate = colorDelegate

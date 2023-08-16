@@ -218,6 +218,7 @@ extension CourseSyncEntry.File {
         fileName: String = "File",
         url: URL = URL(string: "1")!,
         mimeClass: String = "jpg",
+        updatedAt: Date? = nil,
         bytesToDownload: Int = 0,
         state: CourseSyncEntry.State = .loading(nil),
         selectionState: ListCellView.SelectionState = .deselected
@@ -228,6 +229,7 @@ extension CourseSyncEntry.File {
             fileName: fileName,
             url: url,
             mimeClass: mimeClass,
+            updatedAt: updatedAt,
             state: state,
             selectionState: selectionState,
             bytesToDownload: bytesToDownload

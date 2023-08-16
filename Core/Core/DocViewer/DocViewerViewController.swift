@@ -59,7 +59,7 @@ public class DocViewerViewController: UIViewController {
         previewURL: URL?,
         fallbackURL: URL,
         navigationItem: UINavigationItem? = nil,
-        offlineModeInteractor: OfflineModeInteractor = OfflineModeInteractorLive.shared
+        offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
     ) -> DocViewerViewController {
         stylePSPDFKit()
 
@@ -125,7 +125,7 @@ public class DocViewerViewController: UIViewController {
                 let provider = DocViewerAnnotationProvider(documentProvider: documentProvider,
                                                            fileAnnotationProvider: fileAnnotationProvider,
                                                            metadata: metadata,
-                                                           annotations: annotations,
+                                                           apiAnnotations: annotations,
                                                            api: self.session.api,
                                                            sessionID: sessionID,
                                                            isAnnotationEditingDisabled: !self.isAnnotatable || metadata.annotations?.enabled == false)

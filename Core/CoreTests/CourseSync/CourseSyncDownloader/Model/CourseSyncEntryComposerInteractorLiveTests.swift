@@ -22,18 +22,20 @@ import TestsFoundation
 import XCTest
 
 class CourseSyncEntryComposerInteractorLiveTests: CoreTestCase {
+    private lazy var updatedAt = Date.init(timeIntervalSince1970: 1000)
     private let rootFolder = APIFolder.make(
         context_type: "Course",
         context_id: "course-id-1",
         files_count: 1,
         id: 0
     )
-    private let rootFolderFile = APIFile.make(
+    private lazy var rootFolderFile = APIFile.make(
         id: "file-1",
         folder_id: 0,
         display_name: "file-displayname-1",
         filename: "file-name-1",
-        size: 1000
+        size: 1000,
+        updated_at: updatedAt
     )
 
     func testFileTabAndFilesAreMapped() {
@@ -67,6 +69,7 @@ class CourseSyncEntryComposerInteractorLiveTests: CoreTestCase {
                         fileName: "file-name-1",
                         url: URL(string: "https://canvas.instructure.com/files/1/download")!,
                         mimeClass: "image",
+                        updatedAt: updatedAt,
                         bytesToDownload: 1000
                     ),
                 ]

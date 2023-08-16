@@ -56,6 +56,14 @@ class OfflineModeViewModelTests: XCTestCase {
 }
 
 class MockOfflineModeInteractor: OfflineModeInteractor {
+    func isFeatureFlagEnabled() -> Bool {
+        false
+    }
+
+    func observeIsFeatureFlagEnabled() -> AnyPublisher<Bool, Never> {
+        Just(false).eraseToAnyPublisher()
+    }
+
     let offlineMode = PassthroughSubject<Bool, Never>()
 
     func isOfflineModeEnabled() -> Bool {

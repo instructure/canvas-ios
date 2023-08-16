@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,14 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import PSPDFKit
-import PSPDFKitUI
+import Foundation
 
-extension Optional where Wrapped == Document {
-
-    func movableAnnotations(on pageIndex: PageIndex) -> [Annotation] {
-        guard let document = self else { return [] }
-        let annotationsOnPage = document.annotations(at: pageIndex)
-        return annotationsOnPage.filter { $0.isEditable && $0.isMovable }
+extension FileManager {
+    func fileModificationDate(url: URL) -> Date? {
+        do {
+            let attr = try self.attributesOfItem(atPath: url.path)
+            return attr[FileAttributeKey.modificationDate] as? Date
+        } catch {
+            return nil
+        }
     }
 }

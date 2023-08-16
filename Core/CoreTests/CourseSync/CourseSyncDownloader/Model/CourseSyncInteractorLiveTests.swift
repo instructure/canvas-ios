@@ -575,7 +575,7 @@ private class CourseSyncAssignmentsInteractorMock: CourseSyncAssignmentsInteract
 private class CourseSyncFilesInteractorMock: CourseSyncFilesInteractor {
     let publisher = PassthroughSubject<Float, Error>()
 
-    func getFile(url _: URL, fileID _: String, fileName _: String, mimeClass _: String) -> AnyPublisher<Float, Error> {
+    func getFile(url _: URL, fileID _: String, fileName _: String, mimeClass _: String, updatedAt _: Date?) -> AnyPublisher<Float, Error> {
         publisher.eraseToAnyPublisher()
     }
 }
