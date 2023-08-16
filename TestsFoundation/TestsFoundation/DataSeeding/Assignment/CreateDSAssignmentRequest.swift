@@ -41,6 +41,7 @@ extension CreateDSAssignmentRequest {
         let points_possible: Float?
         let grading_type: GradingType?
         let due_at: String?
+        let lock_at: String?
 
         public init(name: String = "Assignment Name",
                     description: String? = nil,
@@ -48,14 +49,16 @@ extension CreateDSAssignmentRequest {
                     submission_types: [SubmissionType] = [.online_text_entry],
                     points_possible: Float? = nil,
                     grading_type: GradingType? = nil,
-                    due_at: String? = nil) {
+                    due_at: String? = nil,
+                    lock_at: String? = nil) {
             self.name = name
             self.description = description
             self.published = published
             self.submission_types = submission_types
-            self.points_possible = points_possible
+            self.points_possible = points_possible ?? 1.0
             self.grading_type = grading_type
             self.due_at = due_at
+            self.lock_at = lock_at
         }
     }
 

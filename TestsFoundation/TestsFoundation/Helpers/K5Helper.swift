@@ -17,6 +17,7 @@
 //
 
 public class K5Helper: BaseHelper {
+    static let dateFormatter = DateFormatter()
     public static var homeroom: XCUIElement { app.find(label: "Homeroom", type: .button) }
     public static var schedule: XCUIElement { app.find(label: "Schedule", type: .button) }
     public static var grades: XCUIElement { app.find(label: "Grades", type: .button) }
@@ -25,9 +26,30 @@ public class K5Helper: BaseHelper {
 
     public struct Homeroom {
         public static var mySubjects: XCUIElement { app.find(label: "My Subjects", type: .staticText) }
+        public static func welcomeMessage(student: DSUser) -> XCUIElement {
+            return app.find(label: "Welcome, \(student.name)!")
+        }
     }
 
     public struct Schedule {
         public static var today: XCUIElement { app.find(id: "K5Schedule.today") }
+        public static var cells: [XCUIElement] { app.find(type: .collectionView).findAll(type: .cell) }
+
+        public static func cellOfDate(date: Date) -> XCUIElement {
+            dateFormatter.dateFormat = "MMMM d"
+            let formattedDate = dateFormatter.string(from: date)
+            let allCells = cells
+            let cell = allCells.filter({ $0.find(label: formattedDate, type: .staticText).isVisible })[0]
+            return allCells[allCells.firstIndex(of: cell)! + 1]
+        }
+
+        public static func titleOfItem(cell: XCUIElement, title: String) -> XCUIElement { return cell.find(label: title, type: .staticText) }
+    }
+
+    public struct Grades {
+        public static var selectGradingPeriodButton: XCUIElement { app.find(labelContaining: "Select Grading Period", type: .button) }
+        public static var currentGradingPeriodButton: XCUIElement { app.find(label: "Current Grading Period", type: .button) }
+
+        public static func courseProgressCard(course: DSCourse) -> XCUIElement { return app.find(labelContaining: course.name.uppercased()) }
     }
 }

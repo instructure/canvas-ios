@@ -20,17 +20,24 @@ import TestsFoundation
 
 class K5Tests: K5E2ETestCase {
     typealias Helper = K5Helper
+    typealias ScheduleHelper = Helper.Schedule
 
     func testK5Homeroom() {
-        // MARK: Seed the usual stuff with a calendar event
+        // MARK: Seed the usual stuff with homeroom and course
         let student = seeder.createK5User()
         let homeroom = seeder.createK5Course()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: homeroom)
         seeder.enrollStudent(student, in: course)
 
-        // MARK: Get the user logged in, check elements
+        // MARK: Get the user logged in, check elements of Homeroom
         logInDSUser(student)
+        let welcomeMessage = Helper.Homeroom.welcomeMessage(student: student).waitUntil(.visible)
+        XCTAssertTrue(welcomeMessage.isVisible)
+
+        let mySubjectsLabel = Helper.Homeroom.mySubjects.waitUntil(.visible)
+        XCTAssertTrue(mySubjectsLabel.isVisible)
+
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCard.isVisible)
 
@@ -39,10 +46,160 @@ class K5Tests: K5E2ETestCase {
         let gradesButton = Helper.grades.waitUntil(.visible)
         let resourcesButton = Helper.resources.waitUntil(.visible)
         let importantDatesButton = Helper.importantDates.waitUntil(.visible)
-        XCTAssertTrue(homeroomButton.actionUntilElementCondition(action: .swipeLeft, condition: .visible))
-        XCTAssertTrue(scheduleButton.actionUntilElementCondition(action: .swipeLeft, condition: .visible))
-        XCTAssertTrue(gradesButton.actionUntilElementCondition(action: .swipeLeft, condition: .visible))
-        XCTAssertTrue(resourcesButton.actionUntilElementCondition(action: .swipeLeft, condition: .visible))
-        XCTAssertTrue(importantDatesButton.actionUntilElementCondition(action: .swipeLeft, condition: .visible))
+        XCTAssertTrue(homeroomButton.actionUntilElementCondition(action: .swipeLeft, condition: .hittable))
+        XCTAssertTrue(homeroomButton.isSelected)
+        XCTAssertTrue(scheduleButton.actionUntilElementCondition(action: .swipeLeft, condition: .hittable))
+        XCTAssertTrue(gradesButton.actionUntilElementCondition(action: .swipeLeft, condition: .hittable))
+        XCTAssertTrue(resourcesButton.actionUntilElementCondition(action: .swipeLeft, condition: .hittable))
+        XCTAssertTrue(importantDatesButton.actionUntilElementCondition(action: .swipeLeft, condition: .hittable))
+    }
+
+    func testK5Schedule() {
+        // MARK: Seed the usual stuff with homeroom, course, assignment, quiz
+        let student = seeder.createK5User()
+        let homeroom = seeder.createK5Course()
+        let course = seeder.createCourse()
+        let todaysAssignment = AssignmentsHelper.createAssignment(
+                course: course, dueDate: CalendarHelper.formatDate(addMinutes: 30))
+        let tomorrowsQuiz = QuizzesHelper.createTestQuizWith2Questions(
+                course: course, due_at: CalendarHelper.formatDate(addHours: 24, addMinutes: 30))
+        seeder.enrollStudent(student, in: homeroom)
+        seeder.enrollStudent(student, in: course)
+
+        // MARK: Get the user logged in, navigate to Schedule, check elements
+        logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+
+        let scheduleButton = Helper.schedule.waitUntil(.visible)
+        scheduleButton.actionUntilElementCondition(action: .swipeLeft, condition: .hittable)
+        scheduleButton.hit()
+        XCTAssertTrue(scheduleButton.waitUntil(.selected).isSelected)
+
+        let assignmentItem = ScheduleHelper.cellOfDate(date: todaysAssignment.due_at!)
+        let titleOfAssignment = ScheduleHelper.titleOfItem(cell: assignmentItem, title: todaysAssignment.name).waitUntil(.visible)
+        XCTAssertTrue(titleOfAssignment.isVisible)
+        XCTAssertTrue(titleOfAssignment.actionUntilElementCondition(action: .swipeUp, condition: .hittable))
+
+        let quizItem = ScheduleHelper.cellOfDate(date: tomorrowsQuiz.due_at!)
+        let titleOfQuiz = ScheduleHelper.titleOfItem(cell: quizItem, title: tomorrowsQuiz.title)
+        XCTAssertTrue(titleOfQuiz.isVisible)
+        XCTAssertTrue(titleOfQuiz.actionUntilElementCondition(action: .swipeUp, condition: .hittable))
+    }
+
+    func testK5Grades() {
+        // MARK: Seed the usual stuff with homeroom, course, graded assignment
+        let student = seeder.createK5User()
+        let homeroom = seeder.createK5Course()
+        let course = seeder.createCourse()
+        let assignment = AssignmentsHelper.createAssignment(
+                course: course, gradingType: .letter_grade, dueDate: CalendarHelper.formatDate(addMinutes: 30))
+        seeder.enrollStudent(student, in: homeroom)
+        seeder.enrollStudent(student, in: course)
+        GradesHelper.submitAssignment(course: course, student: student, assignment: assignment)
+        GradesHelper.gradeAssignment(grade: "A", course: course, assignment: assignment, user: student)
+
+        // MARK: Get the user logged in, navigate to Grades, check elements
+        logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+
+        let gradesButton = Helper.grades.waitUntil(.visible)
+        gradesButton.actionUntilElementCondition(action: .swipeLeft, condition: .hittable)
+        gradesButton.hit()
+        XCTAssertTrue(gradesButton.waitUntil(.selected).isSelected)
+
+        let selectGradingPeriodButton = Helper.Grades.selectGradingPeriodButton.waitUntil(.visible)
+        XCTAssertTrue(selectGradingPeriodButton.isVisible)
+        XCTAssertTrue(selectGradingPeriodButton.label.hasSuffix("Closed"))
+
+        selectGradingPeriodButton.hit()
+        let currentGradingPeriodButton = Helper.Grades.currentGradingPeriodButton.waitUntil(.visible)
+        XCTAssertTrue(currentGradingPeriodButton.isVisible)
+
+        currentGradingPeriodButton.hit()
+
+        let courseProgressCard = Helper.Grades.courseProgressCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseProgressCard.isVisible)
+        XCTAssertTrue(courseProgressCard.label.hasSuffix("100%"))
+
+        courseProgressCard.hit()
+
+        let courseGradesButton = CourseDetailsHelper.cell(type: .grades).waitUntil(.visible)
+        courseGradesButton.actionUntilElementCondition(action: .swipeUp, condition: .hittable)
+        courseGradesButton.hit()
+
+        let totalGrade = GradesHelper.totalGrade.waitUntil(.visible)
+        XCTAssertTrue(totalGrade.isVisible)
+        XCTAssertTrue(totalGrade.hasLabel(label: "100%"))
+
+        let assignmentGrade = GradesHelper.cell(assignment: assignment).waitUntil(.visible)
+        XCTAssertTrue(assignmentGrade.isVisible)
+
+        let assignmentGradeOutOf = GradesHelper.gradeOutOf(
+                assignment: assignment,
+                actualPoints: String(assignment.points_possible!),
+                maxPoints: String(assignment.points_possible!),
+                letterGrade: "A").waitUntil(.visible)
+        XCTAssertTrue(assignmentGradeOutOf.isVisible)
+    }
+
+    func testK5CourseDetails() {
+        // MARK: Seed the usual stuff with homeroom and other contents
+        let student = seeder.createK5User()
+        let homeroom = seeder.createK5Course()
+        let course = seeder.createCourse(syllabus_body: "K5 Syllabus")
+        let module = ModulesHelper.createModule(course: course)
+        seeder.enrollStudent(student, in: homeroom)
+        seeder.enrollStudent(student, in: course)
+        AssignmentsHelper.createAssignment(course: course)
+        AnnouncementsHelper.createAnnouncements(course: course)
+        DiscussionsHelper.createDiscussion(course: course)
+        PagesHelper.createPage(course: course)
+        ModulesHelper.createModulePage(course: course, module: module)
+
+        // MARK: Get the user logged in, navigate to course details
+        logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+
+        courseCard.hit()
+
+        // MARK: Check buttons of course details
+        let homeButton = CourseDetailsHelper.cell(type: .home).waitUntil(.visible)
+        XCTAssertTrue(homeButton.actionUntilElementCondition(action: .swipeUp, condition: .hittable))
+
+        let announcementsButton = CourseDetailsHelper.cell(type: .announcements).waitUntil(.visible)
+        XCTAssertTrue(announcementsButton.actionUntilElementCondition(action: .swipeUp, condition: .hittable))
+
+        let assignmentsButton = CourseDetailsHelper.cell(type: .assignments).waitUntil(.visible)
+        XCTAssertTrue(assignmentsButton.actionUntilElementCondition(action: .swipeUp, condition: .hittable))
+
+        let discussionsButton = CourseDetailsHelper.cell(type: .discussions).waitUntil(.visible)
+        XCTAssertTrue(discussionsButton.actionUntilElementCondition(action: .swipeUp, condition: .hittable))
+
+        let gradesButton = CourseDetailsHelper.cell(type: .grades).waitUntil(.visible)
+        XCTAssertTrue(gradesButton.actionUntilElementCondition(action: .swipeUp, condition: .hittable))
+
+        let peopleButton = CourseDetailsHelper.cell(type: .people).waitUntil(.visible)
+        XCTAssertTrue(peopleButton.actionUntilElementCondition(action: .swipeUp, condition: .hittable))
+
+        let pagesButton = CourseDetailsHelper.cell(type: .pages).waitUntil(.visible)
+        XCTAssertTrue(pagesButton.actionUntilElementCondition(action: .swipeUp, condition: .hittable))
+
+        let syllabusButton = CourseDetailsHelper.cell(type: .syllabus).waitUntil(.visible)
+        XCTAssertTrue(syllabusButton.actionUntilElementCondition(action: .swipeUp, condition: .hittable))
+
+        let modulesButton = CourseDetailsHelper.cell(type: .modules).waitUntil(.visible)
+        XCTAssertTrue(modulesButton.actionUntilElementCondition(action: .swipeUp, condition: .hittable))
+
+        let bigBlueButtonButton = CourseDetailsHelper.cell(type: .bigBlueButton).waitUntil(.visible)
+        XCTAssertTrue(bigBlueButtonButton.actionUntilElementCondition(action: .swipeUp, condition: .hittable))
+
+        let collaborationsButton = CourseDetailsHelper.cell(type: .collaborations).waitUntil(.visible)
+        XCTAssertTrue(collaborationsButton.actionUntilElementCondition(action: .swipeUp, condition: .hittable))
+
+        let googleDriveButton = CourseDetailsHelper.cell(type: .googleDrive).waitUntil(.visible)
+        XCTAssertTrue(googleDriveButton.actionUntilElementCondition(action: .swipeUp, condition: .hittable))
     }
 }

@@ -28,9 +28,10 @@ public class GradesHelper: BaseHelper {
     public static func gradeOutOf(assignment: DSAssignment? = nil,
                                   assignmentId: String? = nil,
                                   actualPoints: String,
-                                  maxPoints: String) -> XCUIElement {
+                                  maxPoints: String, letterGrade: String = "") -> XCUIElement {
         let assignment = app.find(id: "GradeListCell.\(assignment?.id ?? assignmentId!)")
-        return assignment.find(label: "Grade, \(actualPoints) out of \(maxPoints)")
+        let lgSuffix = letterGrade != "" ? " (\(letterGrade))" : letterGrade
+        return assignment.find(label: "Grade, \(actualPoints) out of \(maxPoints)\(lgSuffix)")
     }
 
     public static func gradesAssignmentButton(assignment: DSAssignment? = nil, assignmentId: String? = nil) -> XCUIElement {
@@ -46,10 +47,17 @@ public class GradesHelper: BaseHelper {
         return totalGrade.waitUntil(.label(expected: value)).isVisible
     }
 
+    public static func submitAssignment(course: DSCourse, student: DSUser, assignment: DSAssignment) {
+        seeder.createSubmission(courseId: course.id,
+                                assignmentId: assignment.id,
+                                requestBody: .init(submission_type: .online_text_entry,
+                                                   body: "This is a submission body",
+                                                   user_id: student.id))
+    }
+
     public static func createSubmissionsForAssignments(course: DSCourse, student: DSUser, assignments: [DSAssignment]) {
         for assignment in assignments {
-            seeder.createSubmission(courseId: course.id, assignmentId: assignment.id, requestBody:
-                .init(submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
+            submitAssignment(course: course, student: student, assignment: assignment)
         }
     }
 
@@ -69,13 +77,13 @@ public class GradesHelper: BaseHelper {
         return assignments
     }
 
+    public static func gradeAssignment(grade: String, course: DSCourse, assignment: DSAssignment, user: DSUser) {
+        seeder.postGrade(courseId: course.id, assignmentId: assignment.id, userId: user.id, requestBody: .init(posted_grade: grade))
+    }
+
     public static func gradeAssignments(grades: [String], course: DSCourse, assignments: [DSAssignment], user: DSUser) {
         for i in 0..<assignments.count {
-            seeder.postGrade(
-                courseId: course.id,
-                assignmentId: assignments[i].id,
-                userId: user.id,
-                requestBody: .init(posted_grade: grades[i]))
+            gradeAssignment(grade: grades[i], course: course, assignment: assignments[i], user: user)
         }
     }
 

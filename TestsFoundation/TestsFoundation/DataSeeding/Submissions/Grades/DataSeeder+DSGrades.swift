@@ -18,8 +18,8 @@
 
 extension DataSeeder {
 
-    public func postGrade(courseId: String, assignmentId: String, userId: String, requestBody: CreateDSGradesRequest.RequestedDSGrades) {
-        let requestedBody = CreateDSGradesRequest.Body(submission: requestBody)
+    public func postGrade(courseId: String, assignmentId: String, userId: String, requestBody: CreateDSGradesRequest.RequestedDSGrade) {
+        let requestedBody = CreateDSGradesRequest.Body(submission: requestBody, comment: .init())
         let request = CreateDSGradesRequest(body: requestedBody, courseId: courseId, assignmentId: assignmentId, userId: userId)
         makeRequest(request)
     }

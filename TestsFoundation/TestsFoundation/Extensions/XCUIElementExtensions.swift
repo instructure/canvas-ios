@@ -42,6 +42,7 @@ public extension XCUIElement {
         case swipeDown
         case swipeRight
         case swipeLeft
+        case selfSwipeLeft
         case tap
         case showKeyboard
         case hideKeyboard
@@ -182,6 +183,7 @@ public extension XCUIElement {
             case .swipeDown: app.swipeDown()
             case .swipeLeft: app.swipeLeft()
             case .swipeRight: app.swipeRight()
+            case .selfSwipeLeft: swipeLeft()
             case .showKeyboard: CoreUITestCase.currentTestCase?.send(.showKeyboard, ignoreErrors: true)
             case .hideKeyboard: CoreUITestCase.currentTestCase?.send(.hideKeyboard, ignoreErrors: true)
             case .pullToRefresh: app.pullToRefresh()

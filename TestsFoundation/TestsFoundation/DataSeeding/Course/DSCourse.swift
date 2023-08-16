@@ -23,4 +23,6 @@ public struct DSCourse: Codable {
     public var syllabus_body: String?
     public let account_id: String
     public var homeroom_course: Bool = false
+    public let start_at: String?
+    public let end_at: String?
 }
