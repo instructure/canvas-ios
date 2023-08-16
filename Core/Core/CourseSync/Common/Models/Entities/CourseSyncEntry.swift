@@ -160,6 +160,13 @@ public struct CourseSyncEntry: Equatable {
         return (totalFilesProgress + totalTabsProgress) / selectedCount
     }
 
+    var hasError: Bool {
+        let tabsError = tabs.contains { $0.state == .error }
+        let filesError = files.contains { $0.state == .error }
+
+        return state == .error || tabsError || filesError
+    }
+
     mutating func selectCourse(selectionState: ListCellView.SelectionState) {
         tabs.indices.forEach { tabs[$0].selectionState = selectionState }
         files.indices.forEach { files[$0].selectionState = selectionState }

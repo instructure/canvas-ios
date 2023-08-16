@@ -17,9 +17,9 @@
 //
 
 import Combine
+import CombineExt
 import CombineSchedulers
 import Foundation
-import CombineExt
 
 public protocol CourseSyncInteractor {
     func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Error>
@@ -41,6 +41,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             courseSyncEntries.value
         }
     }
+
     private let backgroundQueue = DispatchQueue(
         label: "com.instructure.icanvas.core.course-sync-utility",
         attributes: .concurrent
@@ -115,7 +116,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             .updateDownloadedState {
                 unownedSelf.setState(
                     selection: .course(entry.id),
-                    state: .downloaded
+                    state: unownedSelf.safeCourseSyncEntriesValue.hasError ? .error : .downloaded
                 )
             }
             .map { _ in () }
@@ -147,17 +148,20 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                     state: .loading(nil)
                 )
             }
-            .updateErrorState {
-                unownedSelf.setState(
-                    selection: .tab(entry.id, entry.tabs[tabIndex].id),
-                    state: .error
-                )
-            }
             .updateDownloadedState {
                 unownedSelf.setState(
                     selection: .tab(entry.id, entry.tabs[tabIndex].id),
                     state: .downloaded
                 )
+            }
+            .catch { _ in
+                unownedSelf.setState(
+                    selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                    state: .error
+                )
+                return Just(())
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
     }
@@ -202,16 +206,6 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                     updatedAt: element.updatedAt
                 )
                 .throttle(for: .milliseconds(300), scheduler: unownedSelf.scheduler, latest: true)
-                .tryCatch { error -> AnyPublisher<Float, Error> in
-                    unownedSelf.setState(
-                        selection: .file(entry.id, files[fileIndex].id), state: .error
-                    )
-                    unownedSelf.setState(
-                        selection: .tab(entry.id, entry.tabs[tabIndex].id), state: .error
-                    )
-                    throw error
-                }
-                .eraseToAnyPublisher()
                 .handleEvents(
                     receiveOutput: { progress in
                         unownedSelf.setState(
@@ -221,7 +215,6 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                             selection: .tab(entry.id, entry.tabs[tabIndex].id),
                             state: .loading(unownedSelf.safeCourseSyncEntriesValue[id: entry.id]?.progress)
                         )
-
                     },
                     receiveCompletion: { completion in
                         switch completion {
@@ -236,12 +229,27 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                         }
                     }
                 )
+                .catch { _ -> AnyPublisher<Float, Error> in
+                    unownedSelf.setState(
+                        selection: .file(entry.id, files[fileIndex].id), state: .error
+                    )
+                    unownedSelf.setState(
+                        selection: .tab(entry.id, entry.tabs[tabIndex].id), state: .error
+                    )
+                    return Just(0)
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                }
+                .eraseToAnyPublisher()
             }
             .collect()
             .handleEvents(
                 receiveOutput: { _ in
+                    let hasError = unownedSelf.safeCourseSyncEntriesValue.hasError
+                    let state: CourseSyncEntry.State = hasError ? .error : .downloaded
+
                     unownedSelf.setState(
-                        selection: .tab(entry.id, entry.tabs[tabIndex].id), state: .downloaded
+                        selection: .tab(entry.id, entry.tabs[tabIndex].id), state: state
                     )
                 }
             )
