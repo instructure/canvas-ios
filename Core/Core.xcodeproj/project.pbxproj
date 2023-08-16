@@ -1089,7 +1089,6 @@
 		B4A9F8F38D3E9471376494D2 /* UIImageViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E7F1F3185A5D719A85B955 /* UIImageViewExtensionsTests.swift */; };
 		B4DF4C098A48DF5D8D497B95 /* CommentListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1F0DD981A30F2F8DEF4E68D /* CommentListViewController.storyboard */; };
 		B4FE033171D1FCD00FD1D462 /* FileUploadNotificationCardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F96E0F2753D6B4E37E45CF /* FileUploadNotificationCardListViewModel.swift */; };
-		B4FE7E8F2A8610FC00B1DA23 /* FileManagerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FE7E8E2A8610FC00B1DA23 /* FileManagerExtensions.swift */; };
 		B51884AD83FC462A08BF6B7D /* GoogleCloudAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC0DE3267FE05FE686605D8 /* GoogleCloudAssignmentViewController.swift */; };
 		B580B7D64DEBE530DCE1047A /* DashboardLayoutViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013EC69697062CD92968F342 /* DashboardLayoutViewModelTests.swift */; };
 		B596EFD00F2E7D75D850FC34 /* HorizontalScrollingStackview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78BF08DA5C66C1FAAD4A14A4 /* HorizontalScrollingStackview.swift */; };
@@ -1126,6 +1125,7 @@
 		BA5419F816E27C21071C3207 /* UITestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB895C3AEEA85C6EFC4D563 /* UITestHelpers.swift */; };
 		BA5E98F4FC647FD448488431 /* RichContentEditor.js in Resources */ = {isa = PBXBuildFile; fileRef = 7CD06BD85946FE58878B9134 /* RichContentEditor.js */; };
 		BA812AAEDDC344B2F1273FF4 /* APICommentLibraryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38294A8FA8F588332BF0C2E0 /* APICommentLibraryRequest.swift */; };
+		BA8A9DF74B4427F649B17E64 /* CourseSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CBD2A123330769319E0D7D /* CourseSettingsTests.swift */; };
 		BB206552E39A0481AD10261A /* InboxAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D114C3F2B149C57DC9EAA7F /* InboxAssembly.swift */; };
 		BB4203A9042EAF729CC13DB6 /* RichContentEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74853D7E3A4FAF817AD060D /* RichContentEditor.swift */; };
 		BB4EF46850550E3621E96551 /* GetEnabledFeatureFlagsRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D76D702D639BBFCB710DD675 /* GetEnabledFeatureFlagsRequestTests.swift */; };
@@ -1148,6 +1148,7 @@
 		BD3F3A81AD3719824875D7F9 /* GetAssignmentsByGroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC27EF3ECC13EB2F1095831 /* GetAssignmentsByGroupTests.swift */; };
 		BD927FEBA8ABA6837EE748BB /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E2DB6511139FD56FAE6EE3 /* Script.swift */; };
 		BDDF6993A496E201BA84AE04 /* K5ScheduleSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5545BC860E0410957FE8C73A /* K5ScheduleSubject.swift */; };
+		BDE88735E766CEAEB7C2FEA5 /* FileManagerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB54E5C07B5C4005580EA7AE /* FileManagerExtensions.swift */; };
 		BE4460591472C977C20035EA /* FontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 140D097EF0F5E423219BF36C /* FontExtensions.swift */; };
 		BE46BFD1F5718B24DB93E1BD /* K5ScheduleEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E878EFC35C189D70F1DFC9DF /* K5ScheduleEntryViewModel.swift */; };
 		BE4EEF28DD05562FA1C28E17 /* SyllabusEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEEC1557E35A07662148D0F /* SyllabusEditorView.swift */; };
@@ -2772,6 +2773,7 @@
 		A2BF01404113FB190130FEF2 /* APIListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIListTests.swift; sourceTree = "<group>"; };
 		A352C359FEF9F433F0479815 /* AppStoreReviewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoreReviewTests.swift; sourceTree = "<group>"; };
 		A39C7A23AEDFA7CAA2A6DDEB /* APIRequestableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestableTests.swift; sourceTree = "<group>"; };
+		A3CBD2A123330769319E0D7D /* CourseSettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSettingsTests.swift; sourceTree = "<group>"; };
 		A3EA58F752AE33267DC3D54C /* CourseSyncProgressInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncProgressInfoViewModel.swift; sourceTree = "<group>"; };
 		A42096D6B21359616953C14C /* preview_test.mp4 */ = {isa = PBXFileReference; path = preview_test.mp4; sourceTree = "<group>"; };
 		A428BBF27D3A0637022B49F2 /* FileListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListViewControllerTests.swift; sourceTree = "<group>"; };
@@ -2889,7 +2891,6 @@
 		B455F8753438D40CC45D5A87 /* QuizDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDetailsViewModelTests.swift; sourceTree = "<group>"; };
 		B467615FEB9F47B169A18150 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		B4F936DF23DC61D04F89DFE0 /* APILatePolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APILatePolicyTests.swift; sourceTree = "<group>"; };
-		B4FE7E8E2A8610FC00B1DA23 /* FileManagerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerExtensions.swift; sourceTree = "<group>"; };
 		B52803DBEDEDD92FF68782A9 /* K5GradesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradesViewModelTests.swift; sourceTree = "<group>"; };
 		B54819C7CC40C9F86C5B5F69 /* CourseSyncCleanupInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncCleanupInteractor.swift; sourceTree = "<group>"; };
 		B5606C2158AEEDA3F5D8C94A /* APIConference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConference.swift; sourceTree = "<group>"; };
@@ -2933,6 +2934,7 @@
 		BB13FE3661707D5C320E59ED /* GetAccountHelpLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAccountHelpLinks.swift; sourceTree = "<group>"; };
 		BB22D9B64EBF2559C21C91E2 /* MockFileTextAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFileTextAnnotation.swift; sourceTree = "<group>"; };
 		BB3701AA1887D3302A43B209 /* AssignmentPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPickerViewModel.swift; sourceTree = "<group>"; };
+		BB54E5C07B5C4005580EA7AE /* FileManagerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerExtensions.swift; sourceTree = "<group>"; };
 		BB5E8C5FC4BCA8DE71652140 /* BackgroundActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundActivity.swift; sourceTree = "<group>"; };
 		BB5F3BBC04BC2816DB169468 /* UITextViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewExtensions.swift; sourceTree = "<group>"; };
 		BB9634E58ACF57A036D0FC15 /* ConversationParticipantNamesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationParticipantNamesTests.swift; sourceTree = "<group>"; };
@@ -4393,6 +4395,7 @@
 				428C87C9B22A498638AABB58 /* DateExtensions.swift */,
 				E743B7C668F7B90BAD0C2F3A /* DispatchExtensions.swift */,
 				E9A23A52B20EF4CF8C93B132 /* ErrorExtensions.swift */,
+				BB54E5C07B5C4005580EA7AE /* FileManagerExtensions.swift */,
 				32C8F809BBD50DBEF5DFA6E2 /* FutureExtensions.swift */,
 				D6824A8A2E78E81DF9A72C1A /* InputStreamExtensions.swift */,
 				08E312A40F6CDB971CCE4A8D /* InstColorExtensions.swift */,
@@ -4442,7 +4445,6 @@
 				F94D19A71DAE64D32998FA3B /* URLRequestExtensions.swift */,
 				FDDC6B296DCABD17B5F39E24 /* URLResponseExtensions.swift */,
 				9E04A17FCF37B8ACE5700BD0 /* WKWebViewExtensions.swift */,
-				B4FE7E8E2A8610FC00B1DA23 /* FileManagerExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -6265,6 +6267,7 @@
 				4767E14ACCF59121D48AEBDC /* APICourseSectionTests.swift */,
 				CE5DDA5450CF82950F2E81D0 /* APICourseTests.swift */,
 				E660BA17A87F6B0D17FB705F /* CourseSectionTests.swift */,
+				A3CBD2A123330769319E0D7D /* CourseSettingsTests.swift */,
 				F12AC654821F7177126C4248 /* CourseTests.swift */,
 				C4DD3D2ACD37C0DCFC3EB76D /* GetCourseSectionsTests.swift */,
 				D921268830A9A2048F331AF8 /* GetCoursesTest.swift */,
@@ -9007,6 +9010,7 @@
 				267E2A8EE8010C6B5C464FB5 /* CourseListViewModelTests.swift in Sources */,
 				8CCBC000ED57E3B30185A885 /* CoursePickerViewModelTests.swift in Sources */,
 				736AE1BECC79C6AF052D56A4 /* CourseSectionTests.swift in Sources */,
+				BA8A9DF74B4427F649B17E64 /* CourseSettingsTests.swift in Sources */,
 				DFD3AAD755B3F0286737535B /* CourseSettingsViewModelTests.swift in Sources */,
 				BED66F3AD8DF7E27178ADF80 /* CourseSyncAnnouncementsInteractorLiveTests.swift in Sources */,
 				047A1B30D4E1BCEF0CC4F681 /* CourseSyncAssignmentsInteractorLiveTests.swift in Sources */,
@@ -9781,6 +9785,7 @@
 				5EA12F667F92BD83FF917CFE /* FileDetailsViewController.swift in Sources */,
 				04C9CEB3DBC0B2DF0E18780D /* FileEditorView.swift in Sources */,
 				E123E7D2602BF98A63FF8608 /* FileListViewController.swift in Sources */,
+				BDE88735E766CEAEB7C2FEA5 /* FileManagerExtensions.swift in Sources */,
 				C32ACDB77E0F1BA38E7AAD85 /* FilePicker.swift in Sources */,
 				A25FF03995388BAA37EAE485 /* FilePickerCell.swift in Sources */,
 				365E8A154225010CF1F616C0 /* FilePickerProgressView.swift in Sources */,
@@ -9949,7 +9954,6 @@
 				62321F54EE9D7D1779FE5133 /* InterprocessNotificationCenter.swift in Sources */,
 				69EED14272FCDD7E322AF9F3 /* InvertColorsInDarkMode.swift in Sources */,
 				01870191FC76B68C6788D6D7 /* ItemPickerViewController.swift in Sources */,
-				B4FE7E8F2A8610FC00B1DA23 /* FileManagerExtensions.swift in Sources */,
 				6DCBF18CB92F29E6D585F34C /* JustifiedGrid.swift in Sources */,
 				30BD8417CCF44CD155156400 /* K5DashboardView.swift in Sources */,
 				7D4C6A371E30D26DEDACB503 /* K5DashboardViewModel.swift in Sources */,
