@@ -35,7 +35,7 @@ class CourseListCellGradesTests: ParentTestCase {
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "")
     }
 
-    func testNoEnrollmentQuantitativeDataEnabled() {
+    func testNoEnrollmentWhenQuantitativeDataEnabled() {
         var course = Course.make(from: .make(enrollments: nil, settings: .make(restrict_quantitative_data: true)))
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "")
 
@@ -48,7 +48,7 @@ class CourseListCellGradesTests: ParentTestCase {
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "")
     }
 
-    func testHideGradesWithHideFinalGradesQuantitativeDataEnabled() {
+    func testHideGradesWithHideFinalGradesWhenQuantitativeDataEnabled() {
         let course = Course.make(from: .make(hide_final_grades: true, settings: .make(restrict_quantitative_data: true)))
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "")
     }
@@ -62,7 +62,7 @@ class CourseListCellGradesTests: ParentTestCase {
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "N/A")
     }
 
-    func testHideGradesWithoutHidingFinalGradesQuantitativeDataEnabled() {
+    func testHideGradesWithoutHidingFinalGradesWhenQuantitativeDataEnabled() {
         let course = Course.make(from: .make(enrollments: [.make(
             multiple_grading_periods_enabled: true,
             totals_for_all_grading_periods_option: false,
@@ -82,7 +82,7 @@ class CourseListCellGradesTests: ParentTestCase {
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "No Grade")
     }
 
-    func testNoScoreNoGradeQuantitativeDataEnabled() {
+    func testNoScoreNoGradeWhenQuantitativeDataEnabled() {
         let course = Course.make(from: .make(enrollments: [.make(
             computed_current_score: nil,
             computed_current_grade: nil,
@@ -100,7 +100,7 @@ class CourseListCellGradesTests: ParentTestCase {
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "F")
     }
 
-    func testNoScoreWithGradeQuantitativeDataEnabled() {
+    func testNoScoreWithGradeWhenQuantitativeDataEnabled() {
         let course = Course.make(from: .make(enrollments: [.make(
             computed_current_score: nil,
             computed_current_grade: "F",
@@ -118,7 +118,7 @@ class CourseListCellGradesTests: ParentTestCase {
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "40%")
     }
 
-    func testScoreWithoutGradeQuantitativeDataEnabled() {
+    func testScoreWithoutGradeWhenQuantitativeDataEnabled() {
         let course = Course.make(from: .make(enrollments: [.make(
             computed_current_score: 40,
             computed_current_grade: nil,
@@ -136,7 +136,7 @@ class CourseListCellGradesTests: ParentTestCase {
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "C   40%")
     }
 
-    func testScoreWithGradeQuantitativeDataEnabled() {
+    func testScoreWithGradeWhenQuantitativeDataEnabled() {
         let course = Course.make(from: .make(enrollments: [.make(
             computed_current_score: 40,
             computed_current_grade: "C",
@@ -156,7 +156,7 @@ class CourseListCellGradesTests: ParentTestCase {
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "C   40%")
     }
 
-    func testActiveGradingPeriodScoreWithGradeQuantitativeDataEnabled() {
+    func testActiveGradingPeriodScoreWithGradeWhenQuantitativeDataEnabled() {
         let course = Course.make(from: .make(enrollments: [.make(
             multiple_grading_periods_enabled: true,
             current_period_computed_current_score: 40,
@@ -176,7 +176,7 @@ class CourseListCellGradesTests: ParentTestCase {
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "C   40%")
     }
 
-    func testNoActiveGradingPeriodWithTotalsForAllGradingPeriodsOptionScoreWithGradeQuantitativeDataEnabled() {
+    func testNoActiveGradingPeriodWithTotalsForAllGradingPeriodsOptionScoreWithGradeWhenQuantitativeDataEnabled() {
         let course = Course.make(from: .make(enrollments: [.make(
             computed_current_score: 40,
             computed_current_grade: "C",
@@ -196,7 +196,7 @@ class CourseListCellGradesTests: ParentTestCase {
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "N/A")
     }
 
-    func testNoActiveGradingPeriodWithoutTotalsForAllGradingPeriodsOptionQuantitativeDataEnabled() {
+    func testNoActiveGradingPeriodWithoutTotalsForAllGradingPeriodsOptionWhenQuantitativeDataEnabled() {
         let course = Course.make(from: .make(enrollments: [.make(
             multiple_grading_periods_enabled: true,
             totals_for_all_grading_periods_option: false,

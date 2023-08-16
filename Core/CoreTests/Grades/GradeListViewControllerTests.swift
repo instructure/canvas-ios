@@ -289,7 +289,7 @@ class GradeListViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.totalGradeLabel.text, "N/A")
     }
 
-    func testHideTotalsQuantitativeDataEnabled() {
+    func testHideTotalsWhenQuantitativeDataEnabled() {
         api.mock(controller.courses, value: .make(enrollments: [ .make(
             id: nil,
             course_id: "1",
@@ -328,7 +328,7 @@ class GradeListViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.totalGradeLabel.text, "42% (C)")
     }
 
-    func testShowGradeLetterQuantitativeDataEnabled() {
+    func testShowGradeLetterWhenQuantitativeDataEnabled() {
         api.mock(controller.courses, value: .make(enrollments: [ .make(
             id: nil,
             course_id: "1",

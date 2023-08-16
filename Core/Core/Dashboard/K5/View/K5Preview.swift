@@ -100,6 +100,10 @@ struct K5Preview {
                                                                       image: URL(string: "https://inst.prod.acquia-sites.com/sites/default/files/image/2021-01/Instructure%20Office.jpg")!,
                                                                       route: URL(string: "https://i.com"), shouldHideQuantitativeData: false), entries: entries),
                 K5ScheduleSubjectViewModel(subject: K5ScheduleSubject(name: "To Do", color: .electric, image: nil, route: nil, shouldHideQuantitativeData: false), entries: entries),
+                K5ScheduleSubjectViewModel(subject: K5ScheduleSubject(name: "Physics", color: Color(hexString: "#6789AF")!,
+                                                                      image: URL(string: "https://inst.prod.acquia-sites.com/sites/default/files/image/2021-01/Instructure%20Office.jpg")!,
+                                                                      route: URL(string: "https://i.com"), shouldHideQuantitativeData: true), entries: entries),
+                K5ScheduleSubjectViewModel(subject: K5ScheduleSubject(name: "To Do", color: .electric, image: nil, route: nil, shouldHideQuantitativeData: true), entries: entries),
             ]
 
             static let missingItems = [
