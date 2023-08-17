@@ -37,10 +37,10 @@ extension CreateDSAccountNotificationRequest {
     public struct RequestedDSAccountNotification: Encodable {
         let subject: String
         let message: String
-        let start_at: String
-        let end_at: String
+        let start_at: Date
+        let end_at: Date
 
-        public init(subject: String, message: String, start_at: String, end_at: String) {
+        public init(subject: String, message: String, start_at: Date, end_at: Date) {
             self.subject = subject
             self.message = message
             self.start_at = start_at

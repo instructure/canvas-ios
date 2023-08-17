@@ -34,10 +34,6 @@ public class CalendarHelper: BaseHelper {
     }
 
     // MARK: Timezone-related stuff
-    static var localTimeZoneAbbreviation: String { return TimeZone.current.abbreviation() ?? "" }
-    static var isGmt2 = localTimeZoneAbbreviation == "GMT+2"
-    static var plusMinutes = isGmt2 ? -480 : -360
-    static var plusMinutesUI = isGmt2 ? 120 : -360
     static let dateFormatter = DateFormatter()
 
     // MARK: UI Elements
@@ -55,18 +51,14 @@ public class CalendarHelper: BaseHelper {
     }
 
     public static func formatDateForDayButton(event: DSCalendarEvent) -> String {
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        let date = dateFormatter.date(from: event.start_at)!.addMinutes(plusMinutesUI)
         dateFormatter.dateFormat = "yyyy-M-d"
-        let formattedDate = dateFormatter.string(from: date)
+        let formattedDate = dateFormatter.string(from: event.start_at)
         return formattedDate
     }
 
     public static func formatDateForDateLabel(event: DSCalendarEvent) -> String {
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        let date = dateFormatter.date(from: event.start_at)!.addMinutes(plusMinutesUI)
         dateFormatter.dateFormat = "MMM d, yyyy 'at' h:mm a"
-        let formattedDate = dateFormatter.string(from: date)
+        let formattedDate = dateFormatter.string(from: event.start_at)
         return formattedDate
     }
 
@@ -88,10 +80,8 @@ public class CalendarHelper: BaseHelper {
 
     public static func navigateToEvent(event: DSCalendarEvent) -> XCUIElement {
         // Formatting the date
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        let date = dateFormatter.date(from: event.start_at)!.addMinutes(plusMinutesUI)
         dateFormatter.dateFormat = "yyyy-MMMM-d"
-        let formattedDate = dateFormatter.string(from: date)
+        let formattedDate = dateFormatter.string(from: event.start_at)
         let dateArray = formattedDate.split(separator: "-")
 
         if !dayButton(event: event).isVisible {
@@ -156,10 +146,8 @@ public class CalendarHelper: BaseHelper {
         }
 
         public static func formatDateForDateLabel(event: DSCalendarEvent) -> String {
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-            let date = dateFormatter.date(from: event.start_at)!.addMinutes(CalendarHelper.plusMinutesUI)
             dateFormatter.dateFormat = "MMM d, yyyy 'at' h:mm a"
-            let formattedDate = dateFormatter.string(from: date)
+            let formattedDate = dateFormatter.string(from: event.start_at)
             return formattedDate
         }
     }
@@ -174,48 +162,35 @@ public class CalendarHelper: BaseHelper {
     }
 
     // MARK: DataSeeding
-    public static func currentDateString() -> String {
-        let date = Date()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        return dateFormatter.string(from: date)
-    }
-
-    public static func formatDate(addYears: Int = 0, addDays: Int = 0, addHours: Int = 0, addMinutes: Int = 0) -> String {
-        let date = Date().addYears(addYears).addDays(addDays).addMinutes(addHours*60).addMinutes(addMinutes).addMinutes(plusMinutes)
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        let formattedDate = dateFormatter.string(from: date)
-        return formattedDate
-    }
-
     public static func createSampleCalendarEvents(course: DSCourse, eventTypes: [EventType]) -> SampleEvents {
         var result = SampleEvents()
         if eventTypes.contains(.yesterdays) {
             result.yesterdays = createCalendarEvent(
                 course: course,
                 title: "Yesterdays Event",
-                startDate: formatDate(addDays: -1, addHours: -1),
-                endDate: formatDate(addDays: -1, addHours: 2))
+                startDate: Date.now.addDays(-1),
+                endDate: Date.now.addDays(-1).addMinutes(30))
         }
         if eventTypes.contains(.todays) {
             result.todays = createCalendarEvent(
                 course: course,
                 title: "Todays Event",
-                startDate: formatDate(addHours: -1),
-                endDate: formatDate(addHours: 2))
+                startDate: Date.now,
+                endDate: Date.now.addMinutes(30))
         }
         if eventTypes.contains(.tomorrows) {
             result.tomorrows = createCalendarEvent(
                 course: course,
                 title: "Tomorrows Event",
-                startDate: formatDate(addDays: 1, addHours: -1),
-                endDate: formatDate(addDays: 1, addHours: 2))
+                startDate: Date.now.addDays(1),
+                endDate: Date.now.addDays(1).addMinutes(30))
         }
         if eventTypes.contains(.recurring) {
             result.recurring = createCalendarEvent(
                 course: course,
                 title: "Recurring Event",
-                startDate: formatDate(),
-                endDate: formatDate(addDays: 70),
+                startDate: Date.now,
+                endDate: Date.now.addDays(70),
                 allDay: true,
                 weekly: true)
         }
@@ -223,8 +198,8 @@ public class CalendarHelper: BaseHelper {
             result.nextYears = createCalendarEvent(
                 course: course,
                 title: "Next Years Event",
-                startDate: formatDate(addYears: 1, addHours: -1),
-                endDate: formatDate(addYears: 1, addHours: 2),
+                startDate: Date.now.addYears(1),
+                endDate: Date.now.addYears(1).addMinutes(30),
                 allDay: true)
         }
         return result
@@ -235,8 +210,8 @@ public class CalendarHelper: BaseHelper {
             course: DSCourse,
             title: String = "Sample Calendar Event",
             description: String = "Be there or be square!",
-            startDate: String = formatDate(),
-            endDate: String? = nil,
+            startDate: Date = Date.now,
+            endDate: Date? = nil,
             locationName: String = "Best Location",
             locationAddress: String = "Right there under that old chestnut tree",
             allDay: Bool? = nil,

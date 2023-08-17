@@ -25,18 +25,15 @@ public class InboxHelper: BaseHelper {
         return app.find(id: "inbox.conversation-\(conversation?.id ?? conversationId!)")
     }
 
-    public static func addDateToSubject(subject: String, unread: Bool = false) -> String {
+    public static func conversationBySubject(subject: String, unread: Bool = true) -> XCUIElement {
         let date = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "LLLL d, yyyy"
         let formattedDate = dateFormatter.string(from: date)
         let result = "\(formattedDate), \(subject)"
-        return unread ? result + ", Unread" : result
-    }
 
-    public static func conversationBySubject(subject: String, unread: Bool = true) -> XCUIElement {
-        let toFind = addDateToSubject(subject: subject, unread: unread)
-        return app.find(label: toFind)
+        let stringToFind = unread ? result + ", Unread" : result
+        return app.find(label: stringToFind)
     }
 
     public struct Filter {
