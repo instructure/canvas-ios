@@ -22,7 +22,7 @@ import CombineSchedulers
 import Foundation
 
 public protocol CourseSyncInteractor {
-    func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Error>
+    func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Never>
 }
 
 public protocol CourseSyncContentInteractor {
@@ -35,7 +35,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     private let filesInteractor: CourseSyncFilesInteractor
     private let progressWriterInteractor: CourseSyncProgressWriterInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
-    private var courseSyncEntries = CurrentValueSubject<[CourseSyncEntry], Error>.init([])
+    private var courseSyncEntries = CurrentValueSubject<[CourseSyncEntry], Never>.init([])
     private var safeCourseSyncEntriesValue: [CourseSyncEntry] {
         backgroundQueue.sync {
             courseSyncEntries.value
@@ -61,7 +61,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         self.scheduler = scheduler
     }
 
-    public func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Error> {
+    public func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Never> {
         subscription?.cancel()
         subscription = nil
 
@@ -79,10 +79,8 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             .flatMap(maxPublishers: .max(3)) { unownedSelf.downloadCourseDetails($0) }
             .collect()
             .handleEvents(
-                receiveCompletion: { completion in
-                    if case .failure = completion {
-                        unownedSelf.setIdleStateForUnfinishedEntries()
-                    }
+                receiveCompletion: { _ in
+                    unownedSelf.setIdleStateForUnfinishedEntries()
                 }
             )
             .sink()
@@ -90,7 +88,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         return courseSyncEntries.eraseToAnyPublisher()
     }
 
-    private func downloadCourseDetails(_ entry: CourseSyncEntry) -> AnyPublisher<Void, Error> {
+    private func downloadCourseDetails(_ entry: CourseSyncEntry) -> AnyPublisher<Void, Never> {
         unowned let unownedSelf = self
 
         setState(
@@ -102,17 +100,12 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             .OfflineSyncableTabs
             .filter { $0 != .files } // files are handled separately
             .map { downloadTabContent(for: entry, tabName: $0) }
+
         downloaders.append(downloadFiles(for: entry))
 
         return downloaders
             .zip()
             .receive(on: scheduler)
-            .updateErrorState {
-                unownedSelf.setState(
-                    selection: .course(entry.id),
-                    state: .error
-                )
-            }
             .updateDownloadedState {
                 unownedSelf.setState(
                     selection: .course(entry.id),
@@ -123,21 +116,17 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             .eraseToAnyPublisher()
     }
 
-    private func downloadTabContent(for entry: CourseSyncEntry, tabName: TabName) -> AnyPublisher<Void, Error> {
+    private func downloadTabContent(for entry: CourseSyncEntry, tabName: TabName) -> AnyPublisher<Void, Never> {
         unowned let unownedSelf = self
 
         guard let tabIndex = entry.tabs.firstIndex(where: { $0.type == tabName }),
               entry.tabs[tabIndex].selectionState == .selected else {
-            return Just(())
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
+            return Just(()).eraseToAnyPublisher()
         }
 
         guard let interactor = contentInteractors.first(where: { $0.associatedTabType == tabName }) else {
             assertionFailure("No interactor found for selected tab: \(tabName)")
-            return Just(())
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
+            return Just(()).eraseToAnyPublisher()
         }
 
         return interactor.getContent(courseId: entry.courseId)
@@ -159,23 +148,19 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                     selection: .tab(entry.id, entry.tabs[tabIndex].id),
                     state: .error
                 )
-                return Just(())
-                    .setFailureType(to: Error.self)
-                    .eraseToAnyPublisher()
+                return Just(()).eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
     }
 
-    private func downloadFiles(for entry: CourseSyncEntry) -> AnyPublisher<Void, Error> {
+    private func downloadFiles(for entry: CourseSyncEntry) -> AnyPublisher<Void, Never> {
         guard
             let tabIndex = entry.tabs.firstIndex(where: { $0.type == .files }),
             entry.files.count > 0,
             entry.tabs[tabIndex].selectionState == .selected ||
             entry.tabs[tabIndex].selectionState == .partiallySelected
         else {
-            return Just(())
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
+            return Just(()).eraseToAnyPublisher()
         }
 
         unowned let unownedSelf = self
@@ -226,20 +211,13 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                             unownedSelf.setState(
                                 selection: .file(entry.id, files[fileIndex].id), state: .error
                             )
+                            unownedSelf.setState(
+                                selection: .tab(entry.id, entry.tabs[tabIndex].id), state: .error
+                            )
                         }
                     }
                 )
-                .catch { _ -> AnyPublisher<Float, Error> in
-                    unownedSelf.setState(
-                        selection: .file(entry.id, files[fileIndex].id), state: .error
-                    )
-                    unownedSelf.setState(
-                        selection: .tab(entry.id, entry.tabs[tabIndex].id), state: .error
-                    )
-                    return Just(0)
-                        .setFailureType(to: Error.self)
-                        .eraseToAnyPublisher()
-                }
+                .catch { _ in Just(0).eraseToAnyPublisher() }
                 .eraseToAnyPublisher()
             }
             .collect()
@@ -335,14 +313,6 @@ private extension Publisher {
                 stateUpdate()
             }
         )
-        .eraseToAnyPublisher()
-    }
-
-    func updateErrorState(_ stateUpdate: @escaping () -> Void) -> AnyPublisher<Self.Output, Error> {
-        return tryCatch { error -> AnyPublisher<Self.Output, Error> in
-            stateUpdate()
-            throw error
-        }
         .eraseToAnyPublisher()
     }
 
