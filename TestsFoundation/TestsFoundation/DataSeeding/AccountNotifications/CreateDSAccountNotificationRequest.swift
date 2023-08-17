@@ -27,7 +27,7 @@ public struct CreateDSAccountNotificationRequest: APIRequestable {
     public let body: Body?
 
     public init(body: Body, isK5: Bool = false) {
-        let accountId = isK5 ? "181364" : "self"
+        let accountId = isK5 ? Secret.k5SubAccountId.string! : "self"
         self.path = "accounts/\(accountId)/account_notifications"
         self.body = body
     }
