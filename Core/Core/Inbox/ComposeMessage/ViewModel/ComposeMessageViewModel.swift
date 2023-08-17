@@ -90,10 +90,28 @@ class ComposeMessageViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
+    private func messageParameters() -> MessageParameters? {
+        guard let courseID = selectedCourse?.courseId else { return nil }
+        return MessageParameters(
+            subject: subject,
+            body: bodyText,
+            recipientIDs: recipients,
+            context: .course(courseID)
+        )
+    }
+
     private func setupInputBindings(router: Router) {
         cancelButtonDidTap
             .sink { [router] viewController in
                 router.dismiss(viewController)
+            }
+            .store(in: &subscriptions)
+        sendButtonDidTap
+            .sink { [interactor] _ in
+                if let parameters = self.messageParameters() {
+                    interactor
+                        .send(parameters: parameters)
+                }
             }
             .store(in: &subscriptions)
     }

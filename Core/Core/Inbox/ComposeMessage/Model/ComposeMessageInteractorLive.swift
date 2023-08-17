@@ -46,10 +46,20 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
         courseListStore.exhaust()
     }
 
-    public func send() -> Future<Void, Never> {
-        Future<Void, Never> { promise in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                promise(.success(()))
+    public func send(parameters: MessageParameters) -> Future<Void, Error> {
+        Future<Void, Error> { promise in
+            CreateConversation(
+                subject: parameters.subject,
+                body: parameters.body,
+                recipientIDs: parameters.recipientIDs,
+                canvasContextID: parameters.context.canvasContextID,
+                attachmentIDs: parameters.attachmentIDs)
+            .fetch { _, _, error in
+                if let error = error {
+                    promise(.failure(error))
+                } else {
+                    promise(.success(()))
+                }
             }
         }
     }

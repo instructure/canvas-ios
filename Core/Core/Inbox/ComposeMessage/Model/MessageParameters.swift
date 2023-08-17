@@ -16,13 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
+import Foundation
 
-public protocol ComposeMessageInteractor {
-    // MARK: - Outputs
-    var state: CurrentValueSubject<StoreState, Never> { get }
-    var courses: CurrentValueSubject<[InboxCourse], Never> { get }
+public struct MessageParameters {
 
-    // MARK: - Inputs
-    func send(parameters: MessageParameters) -> Future<Void, Error>
+    public let subject: String
+    public let body: String
+    public let recipientIDs: [String]
+    public let attachmentIDs: [String]?
+    public let context: Context
+
+    public init(subject: String, body: String, recipientIDs: [String], attachmentIDs: [String]? = nil, context: Context) {
+        self.subject = subject
+        self.body = body
+        self.recipientIDs = recipientIDs
+        self.attachmentIDs = attachmentIDs
+        self.context = context
+    }
 }
