@@ -120,107 +120,6 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         subscription.cancel()
     }
 
-    /*
-    func testDownloadStateProgressSaving() {
-        let syncInteractor = CourseSyncInteractorLive(
-            pagesInteractor: pagesInteractor,
-            assignmentsInteractor: assignmentsInteractor,
-            filesInteractor: filesInteractor,
-            progressWriterInteractor: progressWriterInteractor,
-            scheduler: .immediate
-        )
-        entries[0].selectionState = .partiallySelected
-        entries[0].tabs[0].selectionState = .selected
-        entries[0].tabs[1].selectionState = .selected
-        entries[0].tabs[2].selectionState = .selected
-        entries[0].files[0].selectionState = .selected
-        entries[0].files[1].selectionState = .selected
-
-        var progressList = [CourseSyncEntryProgress]()
-        let subscription1 = progressObserverInteractor.observeEntryProgress()
-            .dropFirst()
-            .sink(
-                receiveValue: { val in
-                    if case let .data(list) = val {
-                        progressList = list.sorted()
-                    }
-                }
-            )
-
-        let subscription2 = syncInteractor.downloadContent(for: entries)
-            .sink(
-                receiveCompletion: { _ in },
-                receiveValue: { val in
-                    self.entries = val
-                }
-            )
-
-        drainMainQueue()
-        XCTAssertEqual(progressList[0].selection, .course("entry-1"))
-        XCTAssertEqual(progressList[0].state, .loading(nil))
-        XCTAssertEqual(progressList[1].selection, .tab("entry-1", "tab-assignments"))
-        XCTAssertEqual(progressList[1].state, .loading(nil))
-        XCTAssertEqual(progressList[2].selection, .tab("entry-1", "tab-files"))
-        XCTAssertEqual(progressList[2].state, .loading(nil))
-        XCTAssertEqual(progressList[3].selection, .tab("entry-1", "tab-pages"))
-        XCTAssertEqual(progressList[3].state, .loading(nil))
-        XCTAssertEqual(progressList[4].selection, .file("entry-1", "file-1"))
-        XCTAssertEqual(progressList[4].state, .loading(nil))
-        XCTAssertEqual(progressList[5].selection, .file("entry-1", "file-2"))
-        XCTAssertEqual(progressList[5].state, .loading(nil))
-
-        assignmentsInteractor.publisher.send(())
-        drainMainQueue()
-        // Course
-        XCTAssertEqual(progressList[0].state, .loading(nil))
-        // Assignments Tab
-        XCTAssertEqual(progressList[1].state, .downloaded)
-        // Pages Tab
-        XCTAssertEqual(progressList[2].state, .loading(nil))
-        // Files Tab
-        XCTAssertEqual(progressList[3].state, .loading(nil))
-        // Files #1
-        XCTAssertEqual(progressList[4].state, .loading(nil))
-        // Files #2
-        XCTAssertEqual(progressList[5].state, .loading(nil))
-
-        pagesInteractor.publisher.send(())
-        drainMainQueue()
-        // Course
-        XCTAssertEqual(progressList[0].state, .loading(nil))
-        // Assignments Tab
-        XCTAssertEqual(progressList[1].state, .downloaded)
-        // Files Tab
-        XCTAssertEqual(progressList[2].state, .loading(nil))
-        // Pages Tab
-        XCTAssertEqual(progressList[3].state, .downloaded)
-        // Files #1
-        XCTAssertEqual(progressList[4].state, .loading(nil))
-        // Files #2
-        XCTAssertEqual(progressList[5].state, .loading(nil))
-
-        filesInteractor.publisher.send(1)
-        drainMainQueue()
-        filesInteractor.publisher.send(completion: .finished)
-        drainMainQueue()
-        // Course
-        XCTAssertEqual(progressList[0].state, .downloaded)
-        // Assignments Tab
-        XCTAssertEqual(progressList[1].state, .downloaded)
-        // Pages Tab
-        XCTAssertEqual(progressList[2].state, .downloaded)
-        // Files Tab
-        XCTAssertEqual(progressList[3].state, .downloaded)
-        // Files #1
-        XCTAssertEqual(progressList[4].state, .downloaded)
-        // Files #2
-        XCTAssertEqual(progressList[5].state, .downloaded)
-
-        subscription1.cancel()
-        subscription2.cancel()
-    }
-     */
-
     func testFilesLoadingState() {
         let testee = CourseSyncInteractorLive(
             contentInteractors: [],
@@ -325,7 +224,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         filesInteractor.publisher.send(completion: .finished)
         XCTAssertEqual(entries[0].tabs[2].state, .downloaded)
         XCTAssertEqual(entries[0].files[0].state, .downloaded)
-        XCTAssertEqual(entries[0].files[1].state, .loading(nil))
+        XCTAssertEqual(entries[0].files[1].state, .idle)
 
         subscription.cancel()
     }
