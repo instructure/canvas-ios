@@ -179,6 +179,7 @@ class CalendarTests: E2ETestCase {
         // MARK: Seed the usual stuff with 2 course and 2 separate calendar events
         let student = seeder.createUser()
         let course1 = seeder.createCourse()
+        sleep(1)
         let course2 = seeder.createCourse()
         seeder.enrollStudent(student, in: course1)
         seeder.enrollStudent(student, in: course2)
