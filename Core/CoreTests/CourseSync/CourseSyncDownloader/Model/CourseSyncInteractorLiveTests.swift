@@ -224,7 +224,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         filesInteractor.publisher.send(completion: .finished)
         XCTAssertEqual(entries[0].tabs[2].state, .downloaded)
         XCTAssertEqual(entries[0].files[0].state, .downloaded)
-        XCTAssertEqual(entries[0].files[1].state, .idle)
+        XCTAssertEqual(entries[0].files[1].state, .loading(nil))
 
         subscription.cancel()
     }
