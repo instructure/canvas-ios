@@ -80,7 +80,9 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             .collect()
             .handleEvents(
                 receiveCompletion: { _ in
-                    unownedSelf.setIdleStateForUnfinishedEntries()
+                    if unownedSelf.safeCourseSyncEntriesValue.hasError {
+                        unownedSelf.setIdleStateForUnfinishedEntries()
+                    }
                 }
             )
             .sink()
@@ -107,9 +109,11 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             .zip()
             .receive(on: scheduler)
             .updateDownloadedState {
+                let hasError = unownedSelf.safeCourseSyncEntriesValue[id: entry.id]?.hasError ?? false
+                let state: CourseSyncEntry.State = hasError ? .error : .downloaded
                 unownedSelf.setState(
                     selection: .course(entry.id),
-                    state: unownedSelf.safeCourseSyncEntriesValue.hasError ? .error : .downloaded
+                    state: state
                 )
             }
             .map { _ in () }
@@ -223,7 +227,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             .collect()
             .handleEvents(
                 receiveOutput: { _ in
-                    let hasError = unownedSelf.safeCourseSyncEntriesValue.hasError
+                    let hasError = unownedSelf.safeCourseSyncEntriesValue[id: entry.id]?.hasError ?? false
                     let state: CourseSyncEntry.State = hasError ? .error : .downloaded
 
                     unownedSelf.setState(
