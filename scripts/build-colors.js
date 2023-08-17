@@ -31,7 +31,7 @@ const fs = require('fs')
 const { dirname } = require('path')
 
 // Canvas Styleguide colors
-const electric  = { normal: '#008EE2', high: '#0770A3' }
+const electric  = { normal: '#008EE2', high: '#1283C4' }
 const shamrock  = { normal: '#00AC18', high: '#1A8E56' }
 const barney    = { normal: '#BF32A4', high: '#C74BAF' }
 const crimson   = { normal: '#EE0612', high: '#E73A4E' }
@@ -65,13 +65,10 @@ const lightest = {
 }
 
 const colors = {
-  electric: {
-  light: { normal: electric.high, high: electric.high },
-  dark: { normal: electric.normal, high: electric.normal },
-  },
+  electric: { light: electric, dark: electric },
   electricHighContrast: {
-  light: { normal: electric.high, high: electric.high },
-  dark: { normal: electric.high, high: electric.high },
+  light: { normal: '#0770A3', high: '#0770A3' },
+  dark: { normal: '#0770A3', high: '#0770A3' },
   },
   shamrock: { light: shamrock, dark: shamrock },
   barney: { light: barney, dark: barney },
