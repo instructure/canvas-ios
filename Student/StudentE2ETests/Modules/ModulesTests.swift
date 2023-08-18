@@ -50,7 +50,7 @@ class ModulesTests: E2ETestCase {
         XCTAssertTrue(assignmentTitle.isVisible)
         XCTAssertEqual(assignmentTitle.label, moduleAssignment.title)
         XCTAssertTrue(assignmentPoints.isVisible)
-        XCTAssertEqual(assignmentPoints.label, "0 pts")
+        XCTAssertEqual(assignmentPoints.label, "1 pt")
 
         // MARK: Check discussion module item
         let discussionItem = ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 1).waitUntil(.visible)
