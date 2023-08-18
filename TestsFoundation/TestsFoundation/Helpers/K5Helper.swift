@@ -33,17 +33,24 @@ public class K5Helper: BaseHelper {
 
     public struct Schedule {
         public static var today: XCUIElement { app.find(id: "K5Schedule.today") }
-        public static var cells: [XCUIElement] { app.find(type: .collectionView).findAll(type: .cell) }
 
-        public static func cellOfDate(date: Date) -> XCUIElement {
-            dateFormatter.dateFormat = "MMMM d"
-            let formattedDate = dateFormatter.string(from: date)
-            let allCells = cells
-            let cell = allCells.filter({ $0.find(label: formattedDate, type: .staticText).isVisible })[0]
-            return allCells[allCells.firstIndex(of: cell)! + 1]
+        public static func assignmentItemButton(assignment: DSAssignment) -> XCUIElement {
+            K5Helper.dateFormatter.dateFormat = "h:mm a"
+            let due = K5Helper.dateFormatter.string(from: assignment.due_at!)
+            let labelToFind = "\(assignment.name), \(assignment.points_possible!) pts, Due: \(due)"
+            let element = app.find(label: labelToFind, type: .button)
+            app.actionUntilElementCondition(action: .swipeUp, element: element, condition: .visible)
+            return element
         }
 
-        public static func titleOfItem(cell: XCUIElement, title: String) -> XCUIElement { return cell.find(label: title, type: .staticText) }
+        public static func quizItemButton(quiz: DSQuiz) -> XCUIElement {
+            K5Helper.dateFormatter.dateFormat = "h:mm a"
+            let due = K5Helper.dateFormatter.string(from: quiz.due_at!)
+            let labelToFind = "\(quiz.title), \(quiz.points_possible!) pts, Due: \(due)"
+            let element = app.find(label: labelToFind, type: .button)
+            app.actionUntilElementCondition(action: .swipeUp, element: element, condition: .visible)
+            return element
+        }
     }
 
     public struct Grades {

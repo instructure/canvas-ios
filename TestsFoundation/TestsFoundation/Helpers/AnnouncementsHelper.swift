@@ -66,7 +66,7 @@ public class AnnouncementsHelper: BaseHelper {
     }
 
     public static func postAccountNotification(
-            subject: String? = nil, message: String? = nil, isK5: Bool = false, durationMinutes: Int = 4) -> DSAccountNotification {
+            subject: String? = nil, message: String? = nil, isK5: Bool = false, durationMinutes: Int = 2) -> DSAccountNotification {
         let globalAnnouncementSubject = subject ?? "This is not a drill!"
         let globalAnnouncementMessage = message ?? "This is an account notification! Will disappear in \(durationMinutes) minutes"
         let globalAnnouncementStartAt = Date.now

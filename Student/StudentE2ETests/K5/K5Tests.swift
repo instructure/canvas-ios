@@ -46,12 +46,14 @@ class K5Tests: K5E2ETestCase {
         let gradesButton = Helper.grades.waitUntil(.visible)
         let resourcesButton = Helper.resources.waitUntil(.visible)
         let importantDatesButton = Helper.importantDates.waitUntil(.visible)
-        XCTAssertTrue(homeroomButton.actionUntilElementCondition(action: .swipeLeft, condition: .hittable))
+        XCTAssertTrue(homeroomButton.waitUntil(.hittable).isHittable)
         XCTAssertTrue(homeroomButton.isSelected)
-        XCTAssertTrue(scheduleButton.actionUntilElementCondition(action: .swipeLeft, condition: .hittable))
-        XCTAssertTrue(gradesButton.actionUntilElementCondition(action: .swipeLeft, condition: .hittable))
-        XCTAssertTrue(resourcesButton.actionUntilElementCondition(action: .swipeLeft, condition: .hittable))
-        XCTAssertTrue(importantDatesButton.actionUntilElementCondition(action: .swipeLeft, condition: .hittable))
+        XCTAssertTrue(scheduleButton.waitUntil(.hittable).isHittable)
+
+        scheduleButton.actionUntilElementCondition(action: .selfSwipeLeft, element: importantDatesButton, condition: .hittable)
+        XCTAssertTrue(gradesButton.waitUntil(.hittable).isHittable)
+        XCTAssertTrue(resourcesButton.waitUntil(.hittable).isHittable)
+        XCTAssertTrue(importantDatesButton.waitUntil(.hittable).isHittable)
     }
 
     func testK5Schedule() {
@@ -60,9 +62,9 @@ class K5Tests: K5E2ETestCase {
         let homeroom = seeder.createK5Course()
         let course = seeder.createCourse()
         let todaysAssignment = AssignmentsHelper.createAssignment(
-                course: course, dueDate: CalendarHelper.formatDate(addMinutes: 30))
+            course: course, dueDate: Date.now.addMinutes(30))
         let tomorrowsQuiz = QuizzesHelper.createTestQuizWith2Questions(
-                course: course, due_at: CalendarHelper.formatDate(addHours: 24, addMinutes: 30))
+            course: course, due_at: Date.now.addDays(1))
         seeder.enrollStudent(student, in: homeroom)
         seeder.enrollStudent(student, in: course)
 
@@ -72,19 +74,14 @@ class K5Tests: K5E2ETestCase {
         XCTAssertTrue(courseCard.isVisible)
 
         let scheduleButton = Helper.schedule.waitUntil(.visible)
-        scheduleButton.actionUntilElementCondition(action: .swipeLeft, condition: .hittable)
         scheduleButton.hit()
         XCTAssertTrue(scheduleButton.waitUntil(.selected).isSelected)
 
-        let assignmentItem = ScheduleHelper.cellOfDate(date: todaysAssignment.due_at!)
-        let titleOfAssignment = ScheduleHelper.titleOfItem(cell: assignmentItem, title: todaysAssignment.name).waitUntil(.visible)
-        XCTAssertTrue(titleOfAssignment.isVisible)
-        XCTAssertTrue(titleOfAssignment.actionUntilElementCondition(action: .swipeUp, condition: .hittable))
+        let assignmentItemButton = ScheduleHelper.assignmentItemButton(assignment: todaysAssignment).waitUntil(.hittable)
+        XCTAssertTrue(assignmentItemButton.isHittable)
 
-        let quizItem = ScheduleHelper.cellOfDate(date: tomorrowsQuiz.due_at!)
-        let titleOfQuiz = ScheduleHelper.titleOfItem(cell: quizItem, title: tomorrowsQuiz.title)
-        XCTAssertTrue(titleOfQuiz.isVisible)
-        XCTAssertTrue(titleOfQuiz.actionUntilElementCondition(action: .swipeUp, condition: .hittable))
+        let quizItemButton = ScheduleHelper.quizItemButton(quiz: tomorrowsQuiz).waitUntil(.visible)
+        XCTAssertTrue(quizItemButton.isHittable)
     }
 
     func testK5Grades() {
@@ -92,8 +89,7 @@ class K5Tests: K5E2ETestCase {
         let student = seeder.createK5User()
         let homeroom = seeder.createK5Course()
         let course = seeder.createCourse()
-        let assignment = AssignmentsHelper.createAssignment(
-                course: course, gradingType: .letter_grade, dueDate: CalendarHelper.formatDate(addMinutes: 30))
+        let assignment = AssignmentsHelper.createAssignment(course: course, gradingType: .letter_grade, dueDate: Date.now.addMinutes(30))
         seeder.enrollStudent(student, in: homeroom)
         seeder.enrollStudent(student, in: course)
         GradesHelper.submitAssignment(course: course, student: student, assignment: assignment)
@@ -105,7 +101,7 @@ class K5Tests: K5E2ETestCase {
         XCTAssertTrue(courseCard.isVisible)
 
         let gradesButton = Helper.grades.waitUntil(.visible)
-        gradesButton.actionUntilElementCondition(action: .swipeLeft, condition: .hittable)
+        Helper.schedule.actionUntilElementCondition(action: .selfSwipeLeft, element: gradesButton, condition: .hittable)
         gradesButton.hit()
         XCTAssertTrue(gradesButton.waitUntil(.selected).isSelected)
 
