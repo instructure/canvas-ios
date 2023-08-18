@@ -50,7 +50,7 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
             .background(Color.backgroundLightest)
             .navigationBarStyle(.color(course.first?.color))
             .navigationTitle(NSLocalizedString("Assignment Details", comment: ""), subtitle: course.first?.name)
-            .navigationBarItems(trailing: isTeacherEnrollment ? editButton : nil)
+            .rightBarButtonItems(editButton)
             .onAppear {
                 refreshAssignments()
                 refreshCourses()
@@ -202,29 +202,27 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
         }
     }
 
-    private func rightButtonItems() -> [UIBarButtonItemWithCompletion] {
-        guard isTeacherEnrollment else { return [] }
-        return [
-            UIBarButtonItemWithCompletion(title: NSLocalizedString("Edit", comment: ""), actionHandler: {
-                env.router.route(to: "courses/\(courseID)/assignments/\(assignmentID)/edit",
-                                 from: controller,
-                                 options: .modal(isDismissable: false, embedInNav: true))
-            }),
+    /**
+     This method returns a static edit button that checks permissions when tapped. Returning an empty array here doesn't work
+     because when this view is embedded into a `ModuleItemSequenceViewController` bar button updates don't get synced
+     so no matter if the `isTeacherEnrollment` turns to true the change won't propagate via KVO in `UIViewControllerExtensions.syncNavigationBar`
+     */
+    private func editButton() -> [UIBarButtonItemWithCompletion] {
+        [
+            UIBarButtonItemWithCompletion(title: NSLocalizedString("Edit", comment: "")) { [_isTeacherEnrollment] in
+                if _isTeacherEnrollment.wrappedValue {
+                    env.router.route(to: "courses/\(courseID)/assignments/\(assignmentID)/edit",
+                                     from: controller,
+                                     options: .modal(isDismissable: false, embedInNav: true))
+                } else {
+                    let alert = UIAlertController(title: NSLocalizedString("Error", bundle: .core, comment: ""),
+                                                  message: NSLocalizedString("You are not authorized to perform this action", comment: ""),
+                                                  preferredStyle: .alert)
+                    alert.addAction(AlertAction(NSLocalizedString("OK", comment: ""), style: .default))
+                    env.router.show(alert, from: controller, options: .modal())
+                }
+            },
         ]
-    }
-
-    @ViewBuilder
-    private var editButton: some View {
-        Button {
-            env.router.route(to: "courses/\(courseID)/assignments/\(assignmentID)/edit",
-                             from: controller,
-                             options: .modal(isDismissable: false, embedInNav: true))
-        } label: {
-            Text("Edit", bundle: .core)
-                .font(.regular17)
-                .foregroundColor(.textLightest)
-        }
-        .accessibility(label: Text("Edit Assignment", bundle: .core))
     }
 
     private func refreshAssignments() {

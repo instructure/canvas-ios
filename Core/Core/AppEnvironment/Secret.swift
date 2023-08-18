@@ -36,6 +36,9 @@ public enum Secret {
     case testLDAPUser, testNotEnrolled, testSAMLUser, testVanityDomainUser
     case dataSeedAdmin
 
+    /// K5 SubAccount ID for Tests
+    case k5SubAccountId
+
     /// The value used for testing that Secret is working properly
     case testSecret
 
