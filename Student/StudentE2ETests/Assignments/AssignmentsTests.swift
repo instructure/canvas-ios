@@ -74,7 +74,7 @@ class AssignmentsTests: E2ETestCase {
 
         let pointsLabel = DetailsHelper.points.waitUntil(.visible)
         XCTAssertTrue(pointsLabel.isVisible)
-        XCTAssertEqual(pointsLabel.label, "\(assignment.points_possible!) pts")
+        XCTAssertEqual(pointsLabel.label, "\(assignment.points_possible!) pt")
 
         let statusLabel = DetailsHelper.status.waitUntil(.visible)
         XCTAssertTrue(statusLabel.isVisible)
