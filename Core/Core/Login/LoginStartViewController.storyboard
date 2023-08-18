@@ -492,6 +492,7 @@
                         <outlet property="whatsNewContainer" destination="3Ua-og-syp" id="X4Y-L1-IsS"/>
                         <outlet property="whatsNewLabel" destination="qRY-FA-Dia" id="P1N-zF-7St"/>
                         <outlet property="whatsNewLink" destination="va0-Ci-EPu" id="tKP-Ct-BDQ"/>
+                        <outlet property="wordmark" destination="shp-bR-v4y" id="udQ-J9-gKP"/>
                         <outlet property="wordmarkLabel" destination="1qr-uo-RMu" id="1PZ-ER-KtI"/>
                     </connections>
                 </viewController>

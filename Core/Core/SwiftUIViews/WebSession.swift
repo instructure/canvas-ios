@@ -45,9 +45,11 @@ public struct WebSession<Content: View>: View {
             }
                 .onAppear {
                     let url = self.url // Ensure loaded is the url requested
-                    env.api.makeRequest(GetWebSessionRequest(to: url)) { (response, _, _) in
-                        loaded = url
-                        sessionURL = response?.session_url ?? url
+                    env.api.makeRequest(GetWebSessionRequest(to: url)) { response, _, _ in
+                        performUIUpdate {
+                            loaded = url
+                            sessionURL = response?.session_url ?? url
+                        }
                     }
                 }
         }
