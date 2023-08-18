@@ -107,10 +107,21 @@ class ComposeMessageViewModel: ObservableObject {
             }
             .store(in: &subscriptions)
         sendButtonDidTap
-            .sink { [interactor] _ in
+            //TODO: refactor
+            .sink { [interactor, router] viewController in
                 if let parameters = self.messageParameters() {
                     interactor
                         .send(parameters: parameters)
+                        .sink { completion in
+                            if case .failure(let error) = completion {
+                                // error
+                            } else {
+                                performUIUpdate {
+                                    router.dismiss(viewController)
+                                }
+                            }
+                        }
+                        .store(in: &self.subscriptions)
                 }
             }
             .store(in: &subscriptions)
