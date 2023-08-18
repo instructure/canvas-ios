@@ -41,7 +41,7 @@ const instColors = {
   borderLight: [ '#F5F5F5', '#FFFFFF', '#6B7780', '#6B7780' ],
   borderLightest: [ '#FFFFFF', '#FFFFFF', '#FFFFFF', '#FFFFFF' ],
   borderMedium: [ '#C7CDD1', '#556572', '#394B58', '#394B58' ],
-  borderSuccess: [ '#127A1B', '#127A1B', '#00AC18', '#00AC18' ],
+  borderSuccess: [ '#127A1B', '#127A1B', '#127A1B', '#127A1B' ],
   borderWarning: [ '#FC5E13', '#E36327', '#FC5E13', '#E36327' ],
   crimson: [ '#EE0612', '#E73A4E', '#EE0612', '#E73A4E' ],
   electric: [ '#008EE2', '#1283C4', '#008EE2', '#1283C4' ],

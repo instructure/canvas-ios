@@ -229,7 +229,7 @@ exports[`QuizSubmissionList loads correctly when data is supplied 1`] = `
                         },
                         undefined,
                         Object {
-                          "color": "#00AC18",
+                          "color": "#127A1B",
                         },
                       ],
                     ]
@@ -585,7 +585,7 @@ exports[`QuizSubmissionList loads with a filter type 1`] = `
                         },
                         undefined,
                         Object {
-                          "color": "#00AC18",
+                          "color": "#127A1B",
                         },
                       ],
                     ]

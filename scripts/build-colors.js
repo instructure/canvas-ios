@@ -140,9 +140,13 @@ const colors = {
   borderLightest: lightest,
   get borderAlert () { return colors.barney },
   get borderInfo () { return colors.electric },
-  get borderSuccess () { return colors.shamrock },
   get borderDanger () { return colors.crimson },
   get borderWarning () { return colors.fire },
+
+  borderSuccess: {
+  light: { normal: shamrock.high, high: shamrock.high },
+  dark: { normal: shamrock.high, high: shamrock.high },
+  },
 }
 
 const root = './Core/Core/Assets.xcassets/Colors/'
