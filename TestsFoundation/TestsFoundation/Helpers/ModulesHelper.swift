@@ -66,6 +66,7 @@ public class ModulesHelper: BaseHelper {
                                                               itemId: moduleItem.id,
                                                               published: published)
         }
+        moduleItem.points_possible = assignment.points_possible!
         return moduleItem
     }
 
@@ -122,6 +123,7 @@ public class ModulesHelper: BaseHelper {
                                                               itemId: moduleItem.id,
                                                               published: published)
         }
+        moduleItem.points_possible = quiz.points_possible!
         return moduleItem
     }
 }
