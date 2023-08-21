@@ -116,6 +116,10 @@
 		8B9846322A7ABC22003E1E9F /* SafariAppHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9846312A7ABC22003E1E9F /* SafariAppHelper.swift */; };
 		8B98463D2A823D5D003E1E9F /* ToDoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B98463C2A823D5D003E1E9F /* ToDoHelper.swift */; };
 		8B9846592A83B11B003E1E9F /* K5E2ETestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9846582A83B11B003E1E9F /* K5E2ETestCase.swift */; };
+		8B9846872A936034003E1E9F /* ConferencesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9846862A936034003E1E9F /* ConferencesHelper.swift */; };
+		8B98468C2A9365C0003E1E9F /* CreateDSConferencesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B98468B2A9365C0003E1E9F /* CreateDSConferencesRequest.swift */; };
+		8B98468E2A936729003E1E9F /* DataSeeder+Conferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B98468D2A936729003E1E9F /* DataSeeder+Conferences.swift */; };
+		8B9846902A936797003E1E9F /* DSConference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B98468F2A936797003E1E9F /* DSConference.swift */; };
 		8C02370D294ADC5E03166916 /* CreateDSQuizQuestionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFA2EB914E415CCFACDB /* CreateDSQuizQuestionRequest.swift */; };
 		8CE7A795708CBCF4AF7A2674 /* DSModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69E1EBE6B486730AE73F45 /* DSModuleItem.swift */; };
 		8CEEA54DE127851FF426490F /* CreateDSDiscussionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D6E99369534DE2260DD4EB /* CreateDSDiscussionRequest.swift */; };
@@ -319,6 +323,10 @@
 		8B9846312A7ABC22003E1E9F /* SafariAppHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariAppHelper.swift; sourceTree = "<group>"; };
 		8B98463C2A823D5D003E1E9F /* ToDoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoHelper.swift; sourceTree = "<group>"; };
 		8B9846582A83B11B003E1E9F /* K5E2ETestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5E2ETestCase.swift; sourceTree = "<group>"; };
+		8B9846862A936034003E1E9F /* ConferencesHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferencesHelper.swift; sourceTree = "<group>"; };
+		8B98468B2A9365C0003E1E9F /* CreateDSConferencesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSConferencesRequest.swift; sourceTree = "<group>"; };
+		8B98468D2A936729003E1E9F /* DataSeeder+Conferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+Conferences.swift"; sourceTree = "<group>"; };
+		8B98468F2A936797003E1E9F /* DSConference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSConference.swift; sourceTree = "<group>"; };
 		8E046239E00E2F114C950D3A /* ModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFixture.swift; sourceTree = "<group>"; };
 		8E52A6F60DF961A9FB652399 /* DSSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSubmission.swift; sourceTree = "<group>"; };
 		8EB01A67D620697DB09B6F61 /* CreateDSAccountNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSAccountNotificationRequest.swift; sourceTree = "<group>"; };
@@ -443,6 +451,7 @@
 		039CF14263C4180E857200CA /* DataSeeding */ = {
 			isa = PBXGroup;
 			children = (
+				8B98468A2A9365A5003E1E9F /* Conferences */,
 				BB6B6C485316F1CF22E406E2 /* AccountNotifications */,
 				C116E77902A4568988D60E21 /* Assignment */,
 				B5CEDB1B4A7B0FE138274A4F /* CalendarEvent */,
@@ -640,6 +649,7 @@
 				234C525F478ED716FA9FF1FC /* TestEnvironment.swift */,
 				47BBBB47D5854C1CBC756C78 /* ThirdPartyApp */,
 				8B98463C2A823D5D003E1E9F /* ToDoHelper.swift */,
+				8B9846862A936034003E1E9F /* ConferencesHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -720,6 +730,16 @@
 				015DEE159015A4F3FEF57547 /* Model */,
 			);
 			path = Fixtures;
+			sourceTree = "<group>";
+		};
+		8B98468A2A9365A5003E1E9F /* Conferences */ = {
+			isa = PBXGroup;
+			children = (
+				8B98468B2A9365C0003E1E9F /* CreateDSConferencesRequest.swift */,
+				8B98468D2A936729003E1E9F /* DataSeeder+Conferences.swift */,
+				8B98468F2A936797003E1E9F /* DSConference.swift */,
+			);
+			path = Conferences;
 			sourceTree = "<group>";
 		};
 		9A7561DA742A2C1B232DFA62 /* Tabs */ = {
@@ -1103,6 +1123,7 @@
 				DF6574E0981A8B23E7E05DC5 /* DataSeeder+DSGradingStandards.swift in Sources */,
 				7F087B1298EF1D6ABD5C37E7 /* DataSeeder+DSModule.swift in Sources */,
 				C67EA08A87AE4C8393A805B9 /* DataSeeder+DSModuleItem.swift in Sources */,
+				8B98468E2A936729003E1E9F /* DataSeeder+Conferences.swift in Sources */,
 				CFDB42EFF68210A20C785670 /* DataSeeder+DSNewQuiz.swift in Sources */,
 				36BB777AE42F3B53D7EBCB89 /* DataSeeder+DSNewQuizItem.swift in Sources */,
 				66763804BE506F3E75E07C73 /* DataSeeder+DSPage.swift in Sources */,
@@ -1119,6 +1140,7 @@
 				CB3E304F604F0F5356207D04 /* DiscussionFixture.swift in Sources */,
 				258D2D5DF28E9EBAFF974F9C /* E2ETestCase.swift in Sources */,
 				28FFD061984BE1FE8B88732E /* EditDSConversationRequest.swift in Sources */,
+				8B9846872A936034003E1E9F /* ConferencesHelper.swift in Sources */,
 				1D32E8F27C18A2D7D414D21A /* EnrollRequest.swift in Sources */,
 				B8880BD61DBD3D79F27027B8 /* EnrollmentFixture.swift in Sources */,
 				3D55C742893789C26F3CF6BF /* ExternalToolFixture.swift in Sources */,
@@ -1155,6 +1177,7 @@
 				8B9845FA2A72BDB9003E1E9F /* ActAsUserHelper.swift in Sources */,
 				3473CCA85DC34B470AB1A3B9 /* PageFixture.swift in Sources */,
 				190A08FCD83B5FC3C089C939 /* PermissionsFixture.swift in Sources */,
+				8B98468C2A9365C0003E1E9F /* CreateDSConferencesRequest.swift in Sources */,
 				1245BAC79D839B7729D27BAA /* PhotosAppHelper.swift in Sources */,
 				8B9845EF2A72897C003E1E9F /* AnnouncementsHelper.swift in Sources */,
 				529341EB7EBCDD31B3E310D4 /* PlannableFixture.swift in Sources */,
@@ -1163,6 +1186,7 @@
 				40EE68261004632A33226A77 /* RubricFixture.swift in Sources */,
 				C2630F1DC05AB47A6FE34DC1 /* ScreenViewTrackerMock.swift in Sources */,
 				694C0903383535038FC95B85 /* SearchRecipientFixture.swift in Sources */,
+				8B9846902A936797003E1E9F /* DSConference.swift in Sources */,
 				D0AD7CA468E4625FD2087FD0 /* SetDSFeatureFlagRequest.swift in Sources */,
 				8B9846002A73C716003E1E9F /* SettingsHelper.swift in Sources */,
 				29C0BB4FE112AEDA68383D14 /* SubmissionCommentFixture.swift in Sources */,
