@@ -118,6 +118,7 @@
 		9654B26FD1E6FA167D2CE1D5 /* CreateDSGradesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51606BE1BCF00575840790B4 /* CreateDSGradesRequest.swift */; };
 		97ABA64DE07E931046AEE920 /* SubmissionListFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5B8CD0AC29BA4C535AE56F /* SubmissionListFixture.swift */; };
 		98295FB98C426A789A07658C /* MockUploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7FC060E41ED9753D6852CDF /* MockUploadManager.swift */; };
+		9C586F6B9CBC116CEC1C2060 /* K5E2ETestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0E7DA18A4CD673CBE94365 /* K5E2ETestCase.swift */; };
 		A0BC38309F88C41B8E1A0BDA /* DataSeeder+DSQuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C28544957348F08F181112 /* DataSeeder+DSQuizQuestion.swift */; };
 		A27076A60D024EC61105BEE9 /* DSNewQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC1BBD93A2B51D20EF79BD /* DSNewQuiz.swift */; };
 		A4683443CC2FC40D51266A48 /* AssignmentsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4EEA6103089796AACCF84D /* AssignmentsHelper.swift */; };
@@ -323,6 +324,7 @@
 		B5E635C9C8B745268C729823 /* SubmissionFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionFixture.swift; sourceTree = "<group>"; };
 		B5EBB0DB40490CC32D89A28C /* EnrollmentFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollmentFixture.swift; sourceTree = "<group>"; };
 		B85D9D63A008E4D13C9A8D35 /* PageFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageFixture.swift; sourceTree = "<group>"; };
+		BA0E7DA18A4CD673CBE94365 /* K5E2ETestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5E2ETestCase.swift; sourceTree = "<group>"; };
 		BAF04BB223057EC494C75FB3 /* MiniCanvasUITestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniCanvasUITestCase.swift; sourceTree = "<group>"; };
 		BC285A489CD1E700F883CC84 /* DataSeeder+DSModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSModule.swift"; sourceTree = "<group>"; };
 		BC9860C140CEE40D2BA5F441 /* MiniAssignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniAssignment.swift; sourceTree = "<group>"; };
@@ -485,6 +487,7 @@
 			children = (
 				D30B78C95917C86551919769 /* CoreUITestCase.swift */,
 				089CFAA9D22AB16547CB5C2C /* E2ETestCase.swift */,
+				BA0E7DA18A4CD673CBE94365 /* K5E2ETestCase.swift */,
 				43B5DF0CBA8B3D804447D3C8 /* K5UITestCase.swift */,
 				BAF04BB223057EC494C75FB3 /* MiniCanvasUITestCase.swift */,
 				54130240B3C6C03B9CC9411A /* UITestUser.swift */,
@@ -1097,6 +1100,7 @@
 				61BD60E72184E0F4FD7370F3 /* HelpHelper.swift in Sources */,
 				725E9BF8E41C6A616B1AA541 /* HttpResponseExtensions.swift in Sources */,
 				29106714316FC6E492695718 /* InboxHelper.swift in Sources */,
+				9C586F6B9CBC116CEC1C2060 /* K5E2ETestCase.swift in Sources */,
 				7B4C6D235E858C6C17C29830 /* K5Helper.swift in Sources */,
 				DC911A2167CFB16C6A61670F /* K5UITestCase.swift in Sources */,
 				80B8FDF8E9845B91049CFE77 /* KeychainEntryFixture.swift in Sources */,
