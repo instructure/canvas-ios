@@ -23,7 +23,7 @@ public struct CreateDSConferencesRequest: APIRequestable {
 
     public let method = APIMethod.post
     public let path: String
-    public let form: APIFormData
+    public let form: APIFormData?
 
     public init(course: DSCourse,
                 title: String,
