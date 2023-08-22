@@ -23,7 +23,7 @@ exports[`render larger icon size 1`] = `
       Array [
         Object {
           "height": 21,
-          "tintColor": "#00AC18",
+          "tintColor": "#127A1B",
           "width": 21,
         },
         Object {
@@ -49,7 +49,7 @@ exports[`render larger icon size 1`] = `
             "marginLeft": 6,
           },
           Object {
-            "color": "#00AC18",
+            "color": "#127A1B",
           },
         ],
       ]
@@ -84,7 +84,7 @@ exports[`render published 1`] = `
       Array [
         Object {
           "height": 21,
-          "tintColor": "#00AC18",
+          "tintColor": "#127A1B",
           "width": 21,
         },
         Object {},
@@ -107,7 +107,7 @@ exports[`render published 1`] = `
             "marginLeft": 6,
           },
           Object {
-            "color": "#00AC18",
+            "color": "#127A1B",
           },
         ],
       ]

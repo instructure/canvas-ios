@@ -32,7 +32,7 @@ const { dirname } = require('path')
 
 // Canvas Styleguide colors
 const electric  = { normal: '#008EE2', high: '#1283C4' }
-const shamrock  = { normal: '#00AC18', high: '#1A8E56' }
+const shamrock  = { normal: '#00AC18', high: '#127A1B' }
 const barney    = { normal: '#BF32A4', high: '#C74BAF' }
 const crimson   = { normal: '#EE0612', high: '#E73A4E' }
 const fire      = { normal: '#FC5E13', high: '#E36327' }
@@ -70,7 +70,10 @@ const colors = {
   light: { normal: '#0770A3', high: '#0770A3' },
   dark: { normal: '#0770A3', high: '#0770A3' },
   },
-  shamrock: { light: shamrock, dark: shamrock },
+  shamrock: {
+  light: { normal: shamrock.high, high: shamrock.high },
+  dark: { normal: shamrock.normal, high: shamrock.normal },
+  },
   barney: { light: barney, dark: barney },
   crimson: { light: crimson, dark: crimson },
   fire: { light: fire, dark: fire },
@@ -126,9 +129,13 @@ const colors = {
   },
   get backgroundAlert () { return colors.barney },
   get backgroundInfo () { return colors.electricHighContrast },
-  get backgroundSuccess () { return colors.shamrock },
   get backgroundDanger () { return colors.crimson },
   get backgroundWarning () { return colors.fire },
+
+  backgroundSuccess: {
+  light: { normal: shamrock.high, high: shamrock.high },
+  dark: { normal: shamrock.high, high: shamrock.high },
+  },
 
   borderDarkest: darkest,
   borderDark: dark,
@@ -137,9 +144,13 @@ const colors = {
   borderLightest: lightest,
   get borderAlert () { return colors.barney },
   get borderInfo () { return colors.electricHighContrast },
-  get borderSuccess () { return colors.shamrock },
   get borderDanger () { return colors.crimson },
   get borderWarning () { return colors.fire },
+
+  borderSuccess: {
+  light: { normal: shamrock.high, high: shamrock.high },
+  dark: { normal: shamrock.high, high: shamrock.high },
+  },
 }
 
 const root = './Core/Core/Assets.xcassets/Colors/'
