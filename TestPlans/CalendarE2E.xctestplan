@@ -1,0 +1,60 @@
+{
+  "configurations" : [
+    {
+      "id" : "A44E9EC1-9442-435C-A91E-BC367966686A",
+      "name" : "Default",
+      "options" : {
+        "targetForVariableExpansion" : {
+          "containerPath" : "container:Student.xcodeproj",
+          "identifier" : "492704721CF4AF7100C631C6",
+          "name" : "Student"
+        },
+        "testTimeoutsEnabled" : false
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Student.xcodeproj",
+      "identifier" : "492704721CF4AF7100C631C6",
+      "name" : "Student"
+    }
+  },
+  "testTargets" : [
+    {
+      "skippedTests" : [
+        "ActAsUserTests",
+        "AnnouncementsTests",
+        "AssignmentsTests",
+        "CourseDetailsTests",
+        "DashboardTests",
+        "DiscussionsTests",
+        "GradeTotalsTests",
+        "GradesTests",
+        "GradingStandardsTests",
+        "HelpTests",
+        "InboxTests",
+        "K5GradesE2ETests",
+        "K5ScheduleE2ETests",
+        "K5StudentE2ETests",
+        "LoginTests",
+        "LogoutTests",
+        "ModulesTests",
+        "PagesTests",
+        "PeopleTests",
+        "ProfileE2ETests",
+        "QuizzesTests",
+        "SettingsTests",
+        "SyllabusTests",
+        "ToDoTests"
+      ],
+      "target" : {
+        "containerPath" : "container:Student.xcodeproj",
+        "identifier" : "E8C6F4CF23D626220086B865",
+        "name" : "StudentE2ETests"
+      }
+    }
+  ],
+  "version" : 1
+}

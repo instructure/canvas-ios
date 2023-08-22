@@ -80,51 +80,10 @@
       }
     },
     {
-      "skippedTests" : [
-        "DiscussionEditorTests\/testCreateDiscussionWithAttachment()",
-        "DiscussionReplyTests\/testReplyingWithAttachment()",
-        "IPadAssignmentsTest",
-        "InboxTests\/testCanMessageAttachment()",
-        "SpringBoardTests",
-        "UserFilesTests\/testAddFileAudio()",
-        "UserFilesTests\/testAddFileFiles()"
-      ],
-      "target" : {
-        "containerPath" : "container:Student.xcodeproj",
-        "identifier" : "7DC5716F22F8B16200F2E9BB",
-        "name" : "StudentUITests"
-      }
-    },
-    {
-      "skippedTests" : [
-        "DiscussionsUITests\/testCloseDiscussion()",
-        "FilesUITests\/testAddFileFromLibrary()",
-        "FilesUITests\/testUploadAudioFile()",
-        "IPadSpeedGraderTests",
-        "SpeedGraderCommentUITests\/testNewAudioComment()",
-        "SpeedGraderIPadTests"
-      ],
-      "target" : {
-        "containerPath" : "container:..\/rn\/Teacher\/ios\/Teacher.xcodeproj",
-        "identifier" : "E8315D3522FC9E60003CD27C",
-        "name" : "TeacherUITests"
-      }
-    },
-    {
       "target" : {
         "containerPath" : "container:..\/Parent\/Parent.xcodeproj",
         "identifier" : "3B36A2DE2322C26A00599A1E",
         "name" : "ParentUnitTests"
-      }
-    },
-    {
-      "skippedTests" : [
-        "InboxTests\/testReplyWithAttachments()"
-      ],
-      "target" : {
-        "containerPath" : "container:..\/Parent\/Parent.xcodeproj",
-        "identifier" : "E8E1BE4923C6891F000E3A76",
-        "name" : "ParentUITests"
       }
     },
     {

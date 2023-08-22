@@ -37,8 +37,8 @@ extension CreateDSCalendarEventRequest {
         let context_code: String
         let title: String
         let description: String
-        let start_at: String?
-        let end_at: String?
+        let start_at: Date?
+        let end_at: Date?
         let location_name: String?
         let location_address: String?
         let time_zone_edited: String
@@ -50,8 +50,8 @@ extension CreateDSCalendarEventRequest {
         public init(courseId: String,
                     title: String,
                     description: String,
-                    start_at: String? = nil,
-                    end_at: String? = nil,
+                    start_at: Date? = nil,
+                    end_at: Date? = nil,
                     location_name: String? = nil,
                     location_address: String? = nil,
                     time_zone_edited: String = "Europe/Budapest",

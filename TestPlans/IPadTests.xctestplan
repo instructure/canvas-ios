@@ -18,24 +18,24 @@
   },
   "testTargets" : [
     {
-      "selectedTests" : [
-        "IPadAssignmentsTest\/testAssignments()",
-        "SpringBoardTests\/testMultitaskingSetup()",
-      ],
       "target" : {
-        "containerPath" : "container:Student.xcodeproj",
-        "identifier" : "7DC5716F22F8B16200F2E9BB",
-        "name" : "StudentUITests"
+        "containerPath" : "container:..\/Parent\/Parent.xcodeproj",
+        "identifier" : "E80763C723E08DA10085DAFB",
+        "name" : "ParentE2ETests"
       }
     },
     {
-      "selectedTests" : [
-        "IPadSpeedGraderTests\/testSpeedGrader()"
-      ],
+      "target" : {
+        "containerPath" : "container:Student.xcodeproj",
+        "identifier" : "E8C6F4CF23D626220086B865",
+        "name" : "StudentE2ETests"
+      }
+    },
+    {
       "target" : {
         "containerPath" : "container:..\/rn\/Teacher\/ios\/Teacher.xcodeproj",
-        "identifier" : "E8315D3522FC9E60003CD27C",
-        "name" : "TeacherUITests"
+        "identifier" : "E841D8A223D6472F00685A63",
+        "name" : "TeacherE2ETests"
       }
     }
   ],
