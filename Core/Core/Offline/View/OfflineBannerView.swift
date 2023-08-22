@@ -57,6 +57,12 @@ class OfflineBannerView: UIView {
                 }
             }
             .store(in: &subscriptions)
+
+        viewModel
+            .$isVisible
+            .map { !$0 }
+            .assign(to: \.accessibilityElementsHidden, on: self, ownership: .weak)
+            .store(in: &subscriptions)
     }
 }
 
