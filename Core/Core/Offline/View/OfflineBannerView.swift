@@ -62,7 +62,7 @@ class OfflineBannerView: UIView {
 
 public extension UIViewController {
 
-    func enableOfflineBanner() {
+    func embedOfflineBanner() {
         let bannerViewModel = OfflineModeAssembly.make(parent: self)
         let view = OfflineBannerView.create(viewModel: bannerViewModel)
         view.embed(into: self)

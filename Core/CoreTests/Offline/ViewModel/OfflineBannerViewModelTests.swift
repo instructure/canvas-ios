@@ -25,6 +25,7 @@ import XCTest
 class OfflineBannerViewModelTests: XCTestCase {
 
     public func testBannerBecomesVisibleWhenAppGoesOffline() {
+        // GIVEN
         let mockInteractor = MockOfflineModeInteractor()
         let hostingView = UIViewController()
         let scheduler = DispatchQueue.test.eraseToAnyScheduler()
@@ -44,6 +45,7 @@ class OfflineBannerViewModelTests: XCTestCase {
     }
 
     public func testBannerStaysVisibleAndShowsBackOnlineStateWhenAppGoesOnline() {
+        // GIVEN
         let mockInteractor = MockOfflineModeInteractor()
         let hostingView = UIViewController()
         let scheduler = DispatchQueue.test
@@ -63,6 +65,27 @@ class OfflineBannerViewModelTests: XCTestCase {
         scheduler.advance(by: .seconds(0.1))
         XCTAssertFalse(testee.isVisible)
         XCTAssertEqual(hostingView.additionalSafeAreaInsets.bottom, 0)
+    }
+
+    public func testBannerNotGettingHiddenWhenOfflineModeTriggeredWhileShowingBackOnlineState() {
+        // GIVEN
+        let mockInteractor = MockOfflineModeInteractor()
+        let hostingView = UIViewController()
+        let scheduler = DispatchQueue.test
+        let testee = OfflineBannerViewModel(interactor: mockInteractor,
+                                            parent: hostingView,
+                                            scheduler: scheduler.eraseToAnyScheduler())
+        mockInteractor.offlineMode.accept(true)
+        mockInteractor.offlineMode.accept(false)
+
+        // WHEN
+        scheduler.advance(by: .seconds(1))
+        mockInteractor.offlineMode.accept(true)
+        scheduler.advance(by: .seconds(2))
+
+        // THEN
+        XCTAssertTrue(testee.isOffline)
+        XCTAssertTrue(testee.isVisible)
     }
 }
 

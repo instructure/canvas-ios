@@ -63,8 +63,8 @@ public class OfflineBannerViewModel: ObservableObject {
 
     private func hideBannerDelayedWhenAppGoesOnline(_ isOfflinePublisher: some Publisher<Bool, Never>) {
         isOfflinePublisher
+            .debounce(for: 3, scheduler: scheduler)
             .filter { !$0 }
-            .delay(for: 3, scheduler: scheduler)
             .assign(to: &$isVisible)
     }
 
