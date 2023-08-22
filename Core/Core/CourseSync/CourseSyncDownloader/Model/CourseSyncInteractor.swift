@@ -220,7 +220,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             .collect()
             .handleEvents(
                 receiveOutput: { _ in
-                    let hasError = unownedSelf.safeCourseSyncEntriesValue[id: entry.id]?.hasError ?? false
+                    let hasError = unownedSelf.safeCourseSyncEntriesValue[id: entry.id]?.hasFileError ?? false
                     let state: CourseSyncEntry.State = hasError ? .error : .downloaded
 
                     unownedSelf.setState(

@@ -23,14 +23,16 @@ import SwiftUI
 class CourseSyncProgressViewModel: ObservableObject {
     enum State {
         case loading
+        case initialError
         case data
-        case error
+        case dataWithError
     }
 
     // MARK: - Output
 
     @Published public private(set) var state = State.loading
     @Published public private(set) var cells: [Cell] = []
+    @Published public private(set) var showRetryButton = false
 
     public let labels = (
         noCourses: (
@@ -51,7 +53,7 @@ class CourseSyncProgressViewModel: ObservableObject {
 
     public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
     public let dismissButtonDidTap = PassthroughRelay<WeakViewController>()
-    public let retryButtonDidTap = PassthroughRelay<WeakViewController>()
+    public let retryButtonDidTap = PassthroughRelay<Void>()
 
     // MARK: - Private
 
@@ -77,7 +79,7 @@ class CourseSyncProgressViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private func handleDismissButtonTap(_ interactor: CourseSyncProgressInteractor) {
+    private func handleDismissButtonTap(_: CourseSyncProgressInteractor) {
         dismissButtonDidTap
             .sink { [unowned router] viewController in
                 router.dismiss(viewController)
@@ -87,28 +89,35 @@ class CourseSyncProgressViewModel: ObservableObject {
 
     private func handleRetryButtonTap(_ interactor: CourseSyncProgressInteractor, router: Router) {
         retryButtonDidTap
-            .sink { viewController in
+            .sink { _ in
                 interactor.retrySync()
-                router.dismiss(viewController)
             }
             .store(in: &subscriptions)
     }
 
     private func updateState(_ interactor: CourseSyncProgressInteractor) {
-        interactor
-            .observeEntries()
-            .map { $0.makeSyncProgressViewModelItems(interactor: interactor) }
-            .receive(on: DispatchQueue.main)
-            .handleEvents(receiveOutput: { [unowned self] progressList in
-                if progressList.count > 0 {
-                    state = .data
+        Publishers.CombineLatest(
+            interactor.observeDownloadProgress().setFailureType(to: Error.self),
+            interactor.observeEntries()
+        )
+        .throttle(for: .milliseconds(300), scheduler: DispatchQueue.main, latest: true)
+        .map { ($0.0, $0.1.makeSyncProgressViewModelItems(interactor: interactor)) }
+        .receive(on: DispatchQueue.main)
+        .handleEvents(receiveOutput: { [unowned self] downloadProgress, entryProgressList in
+            if entryProgressList.count > 0 {
+                state = .data
+
+                if downloadProgress.firstItem?.error != nil {
+                    state = .dataWithError
                 }
-            }, receiveCompletion: { [unowned self] result in
-                if case .failure = result {
-                    state = .error
-                }
-            })
-            .replaceError(with: [])
-            .assign(to: &$cells)
+            }
+        }, receiveCompletion: { [unowned self] result in
+            if case .failure = result {
+                state = .initialError
+            }
+        })
+        .map { $0.1 }
+        .replaceError(with: [])
+        .assign(to: &$cells)
     }
 }

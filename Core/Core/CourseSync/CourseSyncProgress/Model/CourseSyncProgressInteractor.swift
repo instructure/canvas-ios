@@ -236,5 +236,14 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
 
     func cancelSync() {}
 
-    func retrySync() {}
+    func retrySync() {
+        let failedEntries = safeCourseSyncEntriesValue.map { entry in
+            var cpy = entry
+            cpy.tabs.removeAll { $0.state == .downloaded }
+            cpy.files.removeAll { $0.state == .downloaded }
+            return cpy
+        }
+
+        NotificationCenter.default.post(name: .OfflineSyncTriggered, object: failedEntries)
+    }
 }

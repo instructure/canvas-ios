@@ -48,6 +48,7 @@ class CourseSyncProgressInfoViewModel: ObservableObject {
 
         interactor.observeDownloadProgress()
             .receive(on: scheduler)
+            .throttle(for: .milliseconds(300), scheduler: scheduler, latest: true)
             .sink { state in
                 switch state {
                 case .data(let progressList):
@@ -59,6 +60,8 @@ class CourseSyncProgressInfoViewModel: ObservableObject {
                         unownedSelf.syncFailure = true
                         return
                     }
+
+                    unownedSelf.syncFailure = false
 
                     let format = NSLocalizedString("Downloading %@ of %@", bundle: .core, comment: "Downloading 42 GB of 64 GB")
                     unownedSelf.progress = String.localizedStringWithFormat(
