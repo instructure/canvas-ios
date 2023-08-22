@@ -44,7 +44,7 @@ struct CourseSyncProgressView: View {
     @ViewBuilder
     private var content: some View {
         switch viewModel.state {
-        case .initialError:
+        case .error:
             InteractivePanda(scene: NoResultsPanda(),
                              title: Text("Something went wrong", bundle: .core),
                              subtitle: Text("There was an unexpected error.", bundle: .core))

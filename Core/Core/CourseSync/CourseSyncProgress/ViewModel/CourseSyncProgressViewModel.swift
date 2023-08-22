@@ -23,7 +23,7 @@ import SwiftUI
 class CourseSyncProgressViewModel: ObservableObject {
     enum State {
         case loading
-        case initialError
+        case error
         case data
         case dataWithError
     }
@@ -113,7 +113,7 @@ class CourseSyncProgressViewModel: ObservableObject {
             }
         }, receiveCompletion: { [unowned self] result in
             if case .failure = result {
-                state = .initialError
+                state = .error
             }
         })
         .map { $0.1 }

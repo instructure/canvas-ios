@@ -21,11 +21,10 @@ import Combine
 import TestsFoundation
 import XCTest
 
-class CourseSyncProgressViewModelTests: XCTestCase {
+class CourseSyncProgressViewModelTests: CoreTestCase {
     var testee: CourseSyncProgressViewModel!
     var mockProgressInteractor: MockCourseSyncProgressInteractor!
     var mockSyncInteractor: CourseSyncInteractorMock!
-    var router: TestRouter!
 
     override func setUp() {
         super.setUp()
@@ -54,13 +53,6 @@ class CourseSyncProgressViewModelTests: XCTestCase {
         XCTAssertEqual(router.dismissed, controller)
     }
 
-    func testRetryTap() {
-        let controller = UIViewController()
-        let weakController = WeakViewController(controller)
-        testee.retryButtonDidTap.accept(weakController)
-        XCTAssertEqual(router.dismissed, controller)
-    }
-
     func testUpdateStateFails() {
         mockProgressInteractor.courseSyncEntriesSubject.send(completion: .failure(NSError.instructureError("Failed")))
         waitUntil(shouldFail: true) {
@@ -74,8 +66,34 @@ class CourseSyncProgressViewModelTests: XCTestCase {
                                        tabs: [],
                                        files: [])
         mockProgressInteractor.courseSyncEntriesSubject.send([mockItem])
+        mockProgressInteractor.courseSyncFileProgressSubject.send(.data([]))
         waitUntil(shouldFail: true) {
             testee.state == .data
+        }
+        XCTAssertEqual(testee.cells.count, 1)
+
+        guard case .item(let item) = testee.cells.first else {
+            return XCTFail()
+        }
+
+        XCTAssertEqual(item.id, "test")
+    }
+
+    func testUpdateStateOutputsDataWithError() {
+        let mockItem = CourseSyncEntry(name: "",
+                                       id: "test",
+                                       tabs: [],
+                                       files: [])
+        mockProgressInteractor.courseSyncEntriesSubject.send([mockItem])
+
+        let mockFileProgress: CourseSyncDownloadProgress = databaseClient.insert()
+        mockFileProgress.bytesDownloaded = 1
+        mockFileProgress.bytesToDownload = 2
+        mockFileProgress.error = "File download failed."
+        mockProgressInteractor.courseSyncFileProgressSubject.send(.data([mockFileProgress]))
+
+        waitUntil(shouldFail: true) {
+            testee.state == .dataWithError
         }
         XCTAssertEqual(testee.cells.count, 1)
 

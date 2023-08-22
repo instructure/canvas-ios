@@ -260,6 +260,82 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
         subscription.cancel()
     }
 
+    func testRetry() {
+        // GIVEN
+        let testee = CourseSyncProgressInteractorLive(
+            entryComposerInteractor: entryComposerInteractorMock,
+            progressObserverInteractor: progressObserverInteractorMock,
+            sessionDefaults: sesssionDefaults,
+            scheduler: .immediate
+        )
+
+        createAndSaveCourseSyncSelectorCourse()
+        sesssionDefaults.offlineSyncSelections = ["courses/course-id-1"]
+
+        // WHEN
+        var entries = [CourseSyncEntry]()
+        let subscription1 = testee.observeEntries()
+            .sink()
+
+        let subscription2 = NotificationCenter.default.publisher(for: .OfflineSyncTriggered)
+            .compactMap { $0.object as? [CourseSyncEntry] }
+            .sink(receiveValue: { newList in
+                entries = newList
+
+            })
+
+        drainMainQueue()
+        entryComposerInteractorMock.courseSyncEntrySubject.send(
+            CourseSyncEntry(
+                name: "course-name-1",
+                id: "courses/course-id-1",
+                tabs: [
+                    .init(id: "courses/course-id-1/tabs/files", name: "tab-files", type: .files, state: .error),
+                    .init(id: "courses/course-id-1/tabs/assignments", name: "tab-assignments", type: .assignments, state: .downloaded),
+                ],
+                files: [
+                    .init(
+                        id: "courses/course-id-1/files/file-1",
+                        displayName: "file-displayname-1",
+                        fileName: "file-name-1",
+                        url: URL(string: "https://canvas.instructure.com/files/1/download")!,
+                        mimeClass: "image",
+                        updatedAt: nil,
+                        state: .error,
+                        bytesToDownload: 1000,
+                    ),
+                    .init(
+                        id: "courses/course-id-1/files/file-2",
+                        displayName: "file-displayname-2",
+                        fileName: "file-name-2",
+                        url: URL(string: "https://canvas.instructure.com/files/2/download")!,
+                        mimeClass: "image",
+                        updatedAt: nil,
+                        state: .downloaded,
+                        bytesToDownload: 1000
+                    ),
+                ],
+                state: .loading(nil)
+            )
+        )
+
+        entryComposerInteractorMock.courseSyncEntrySubject.send(completion: .finished)
+
+        testee.retrySync()
+
+        // THEN
+        XCTAssertEqual(entries.count, 1)
+        XCTAssertEqual(entries[0].state, .loading(nil))
+        XCTAssertEqual(entries[0].tabs.count, 1)
+        XCTAssertEqual(entries[0].tabs[0].id, "courses/course-id-1/tabs/files")
+        XCTAssertEqual(entries[0].tabs[0].state, .error)
+        XCTAssertEqual(entries[0].files.count, 1)
+        XCTAssertEqual(entries[0].files[0].id, "courses/course-id-1/files/file-1")
+
+        subscription1.cancel()
+        subscription2.cancel()
+    }
+
     private func createAndSaveCourseSyncSelectorCourse() {
         CourseSyncSelectorCourse.save(
             .make(
