@@ -79,14 +79,18 @@ public class CalendarHelper: BaseHelper {
     }
 
     public static func navigateToEvent(event: DSCalendarEvent) -> XCUIElement {
+        let dayButtonOfEvent = dayButton(event: event).waitUntil(.visible, timeout: 3)
+        if dayButtonOfEvent.isHittable {
+            dayButtonOfEvent.hit()
+            return eventCell(event: event).waitUntil(.visible)
+        }
+
         // Formatting the date
         dateFormatter.dateFormat = "yyyy-MMMM-d"
         let formattedDate = dateFormatter.string(from: event.start_at)
         let dateArray = formattedDate.split(separator: "-")
 
-        if !dayButton(event: event).isHittable {
-            monthButton.hit()
-        }
+        monthButton.hit()
 
         // Finding the year
         let yearOfEvent = Int(dateArray[0])!
@@ -118,8 +122,7 @@ public class CalendarHelper: BaseHelper {
         }
 
         // Finding the day and then the event cell
-        let dayButtonElement = dayButton(event: event).waitUntil(.visible)
-        dayButtonElement.hit()
+        dayButtonOfEvent.hit()
         monthButton.hit()
         return eventCell(event: event).waitUntil(.visible)
     }
