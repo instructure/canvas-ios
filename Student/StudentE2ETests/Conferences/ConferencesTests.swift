@@ -20,6 +20,7 @@ import TestsFoundation
 
 class ConferencesTests: E2ETestCase {
     typealias Helper = ConferencesHelper
+    typealias DetailsHelper = Helper.Details
 
     func testConferences() {
         // MARK: Seed the usual stuff
@@ -28,8 +29,35 @@ class ConferencesTests: E2ETestCase {
         seeder.enrollStudent(student, in: course)
         let conference = Helper.createConference(course: course)
 
+        // MARK: Get the user logged in, navigate to Conferences
         logInDSUser(student)
-
         Helper.navigateToConferences(course: course)
+        let navBar = Helper.navBar.waitUntil(.visible)
+        let newConferencesHeader = Helper.newConferencesHeader.waitUntil(.visible)
+        XCTAssertTrue(navBar.isVisible)
+        XCTAssertTrue(newConferencesHeader.isVisible)
+
+        // MARK: Check elements of Conferences
+        let conferenceTitle = Helper.cellTitle(conference: conference).waitUntil(.visible)
+        let conferenceStatus = Helper.cellStatus(conference: conference).waitUntil(.visible)
+        let conferenceDetails = Helper.cellDetails(conference: conference).waitUntil(.visible)
+        XCTAssertTrue(conferenceTitle.isVisible)
+        XCTAssertTrue(conferenceStatus.isVisible)
+        XCTAssertTrue(conferenceDetails.isVisible)
+        XCTAssertTrue(conferenceTitle.hasLabel(label: conference.title))
+        XCTAssertTrue(conferenceStatus.hasLabel(label: "Not Started"))
+        XCTAssertTrue(conferenceDetails.hasLabel(label: conference.description))
+
+        // MARK: Check elements of Conference Details
+        conferenceTitle.hit()
+        let detailsTitle = DetailsHelper.title.waitUntil(.visible)
+        let detailsStatus = DetailsHelper.status.waitUntil(.visible)
+        let detailsDetails = DetailsHelper.details.waitUntil(.visible)
+        XCTAssertTrue(detailsTitle.isVisible)
+        XCTAssertTrue(detailsStatus.isVisible)
+        XCTAssertTrue(detailsDetails.isVisible)
+        XCTAssertTrue(detailsTitle.hasLabel(label: conference.title))
+        XCTAssertTrue(detailsStatus.hasLabel(label: "Not Started"))
+        XCTAssertTrue(detailsDetails.hasLabel(label: conference.description))
     }
 }

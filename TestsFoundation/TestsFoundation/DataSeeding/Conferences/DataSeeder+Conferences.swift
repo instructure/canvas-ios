@@ -19,8 +19,8 @@
 import Core
 
 extension DataSeeder {
-    public func createConference(course: DSCourse, title: String, duration: TimeInterval, description: String) -> DSConference {
-        let request = CreateDSConferencesRequest(course: course, title: title, duration: duration, description: description)
+    public func createConference(course: DSCourse, body: CreateDSConferencesRequest.Body) -> DSConference {
+        let request = CreateDSConferencesRequest(course: course, body: body)
         return makeRequest(request)
     }
 }

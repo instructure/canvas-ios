@@ -23,8 +23,8 @@ public struct DSConference: Codable {
     public let context_id: String
     public let context_type: String
     public let description: String
-    public let duration: TimeInterval
-    public let start_at: String
-    public let end_at: String
+    public let duration: TimeInterval?
+    public let start_at: Date?
+    public let end_at: Date?
     public let context_code: String
 }

@@ -23,20 +23,44 @@ public struct CreateDSConferencesRequest: APIRequestable {
 
     public let method = APIMethod.post
     public let path: String
-    public let form: APIFormData?
+    public let body: Body?
 
-    public init(course: DSCourse,
-                title: String,
-                duration: TimeInterval,
-                description: String) {
-        self.path = "/courses/\(course.id)/conferences"
+    public init(course: DSCourse, body: Body) {
+        self.path = "courses/\(course.id)/conferences"
+        self.body = body
+    }
+}
 
-        var form = APIFormData()
-        form.append((key: "_method", value: APIFormDatum.string("POST")))
-        form.append((key: "title", value: APIFormDatum.string(title.replacingOccurrences(of: " ", with: "+"))))
-        form.append((key: "conference_type", value: APIFormDatum.string("BigBlueButton")))
-        form.append((key: "duration", value: APIFormDatum.string(String(Int(duration)))))
-        form.append((key: "description", value: APIFormDatum.string(description.replacingOccurrences(of: " ", with: "+"))))
-        self.form = form
+extension CreateDSConferencesRequest {
+    public struct Body: Encodable {
+        let title: String
+        let conference_type: String = "BigBlueButton"
+        let duration: TimeInterval?
+        let description: String
+        let long_running: Int
+        let web_conference: WebConference
+
+        public init(web_conference: WebConference) {
+            self.web_conference = web_conference
+            self.title = web_conference.title
+            self.duration = web_conference.duration
+            self.description = web_conference.description
+            self.long_running = web_conference.long_running
+        }
+    }
+
+    public struct WebConference: Encodable {
+        let title: String
+        let conference_type: String = "BigBlueButton"
+        let duration: TimeInterval?
+        let description: String
+        let long_running: Int
+
+        public init(title: String, duration: TimeInterval? = nil, description: String, long_running: Int = 1) {
+            self.title = title
+            self.description = description
+            self.long_running = long_running
+            self.duration = long_running == 1 ? nil : duration
+        }
     }
 }
