@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_12" orientation="portrait" appearance="dark"/>
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
@@ -28,7 +28,7 @@
                             <rect key="frame" x="166.66666666666666" y="0.0" width="60" height="30"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="offlineLine" translatesAutoresizingMaskIntoConstraints="NO" id="ohM-Lc-GPb">
-                                    <rect key="frame" x="0.0" y="6" width="18" height="18"/>
+                                    <rect key="frame" x="0.0" y="7" width="18" height="18"/>
                                     <color key="tintColor" name="textDarkest"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="18" id="4RO-7N-BNJ"/>
@@ -51,7 +51,7 @@
                                 <constraint firstItem="ohM-Lc-GPb" firstAttribute="leading" secondItem="esq-fQ-yUr" secondAttribute="leading" id="Vft-Tx-sNb"/>
                                 <constraint firstItem="Bly-U5-Ddc" firstAttribute="centerY" secondItem="esq-fQ-yUr" secondAttribute="centerY" id="bKY-k7-IX8"/>
                                 <constraint firstItem="Bly-U5-Ddc" firstAttribute="leading" secondItem="ohM-Lc-GPb" secondAttribute="trailing" constant="4" id="mMc-cR-RDV"/>
-                                <constraint firstItem="ohM-Lc-GPb" firstAttribute="centerY" secondItem="esq-fQ-yUr" secondAttribute="centerY" id="pzC-a9-96I"/>
+                                <constraint firstItem="ohM-Lc-GPb" firstAttribute="centerY" secondItem="esq-fQ-yUr" secondAttribute="centerY" constant="1" id="pzC-a9-96I"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -129,7 +129,7 @@
             <color red="0.93333333333333335" green="0.023529411764705882" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="shamrock">
-            <color red="0.0" green="0.67450980392156867" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.070588235294117646" green="0.47843137254901963" blue="0.10588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="textDarkest">
             <color red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
