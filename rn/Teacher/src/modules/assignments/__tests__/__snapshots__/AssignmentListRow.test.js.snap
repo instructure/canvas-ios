@@ -1673,7 +1673,7 @@ exports[`renders correctly with needs_grading_count 1`] = `
                 Object {
                   "alignSelf": "flex-start",
                   "backgroundColor": "#FFFFFF",
-                  "borderColor": "#008EE2",
+                  "borderColor": "#0770A3",
                   "borderRadius": 9,
                   "borderWidth": 1,
                   "color": "#008EE2",

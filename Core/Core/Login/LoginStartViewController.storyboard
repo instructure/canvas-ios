@@ -84,7 +84,7 @@
                                                 <inset key="contentEdgeInsets" minX="24" minY="16" maxX="24" maxY="16"/>
                                                 <state key="normal" title="Log In"/>
                                                 <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="electric"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="electricHighContrast"/>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="white"/>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -104,7 +104,7 @@
                                                 <inset key="contentEdgeInsets" minX="24" minY="16" maxX="24" maxY="16"/>
                                                 <state key="normal" title="Find my school"/>
                                                 <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="electric"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="electricHighContrast"/>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="white"/>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
