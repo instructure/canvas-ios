@@ -43,6 +43,18 @@ class CourseSettingsTests: CoreTestCase {
         XCTAssertTrue(testee.usageRightsRequired)
     }
 
+    func testRestrictQuantitativeDataFlagNotSavedForTeacherApp() {
+        AppEnvironment.shared.app = .teacher
+        let apiResponse = APICourseSettings(usage_rights_required: true,
+                                            syllabus_course_summary: true,
+                                            restrict_quantitative_data: true)
+        let testee = CourseSettings.save(apiResponse, courseID: "1", in: databaseClient)
+
+        XCTAssertFalse(testee.restrictQuantitativeData)
+        XCTAssertTrue(testee.syllabusCourseSummary)
+        XCTAssertTrue(testee.usageRightsRequired)
+    }
+
     func testEmptyResponseNotOverwritesSavedData() {
         let dbEntity: CourseSettings = databaseClient.insert()
         dbEntity.courseID = "1"

@@ -190,4 +190,67 @@ class CourseTests: CoreTestCase {
         XCTAssertEqual(group1.course, course)
         XCTAssertEqual(group2.course, course)
     }
+
+    // MARK: - Quantitative Data Display Tests
+
+    func testPointsTextWhenQuantitativeDataEnabled() {
+        // MARK: GIVEN
+        let testee = mockDataForQuantitativeDataTests(restrict_quantitative_data: true,
+                                                      computed_current_grade: nil,
+                                                      computed_current_letter_grade: nil)
+
+        // MARK: THEN
+        XCTAssertEqual(testee.displayGrade, "N/A")
+    }
+
+    func testPointsTextWhenQuantitativeDataEnabledAndCurrentGradeAvailable() {
+        // MARK: GIVEN
+        let testee = mockDataForQuantitativeDataTests(restrict_quantitative_data: true,
+                                                      computed_current_grade: "A",
+                                                      computed_current_letter_grade: nil)
+
+        // MARK: THEN
+        XCTAssertEqual(testee.displayGrade, "A")
+    }
+
+    func testPointsTextWhenQuantitativeDataEnabledAndCurrentLetterGradeAvailable() {
+        // MARK: GIVEN
+        let testee = mockDataForQuantitativeDataTests(restrict_quantitative_data: true,
+                                                      computed_current_grade: nil,
+                                                      computed_current_letter_grade: "A")
+
+        // MARK: THEN
+        XCTAssertEqual(testee.displayGrade, "A")
+    }
+
+    func testPointsTextWhenQuantitativeDataDisabled() {
+        // MARK: GIVEN
+        let testee = mockDataForQuantitativeDataTests(restrict_quantitative_data: false,
+                                                      computed_current_grade: nil,
+                                                      computed_current_letter_grade: nil)
+
+        // MARK: THEN
+        XCTAssertEqual(testee.displayGrade, "40.05%")
+    }
+
+    func testPointsTextWhenQuantitativeDataNotSpecified() {
+        // MARK: GIVEN
+        let testee = mockDataForQuantitativeDataTests(restrict_quantitative_data: nil,
+                                                      computed_current_grade: nil,
+                                                      computed_current_letter_grade: nil)
+
+        // MARK: THEN
+        XCTAssertEqual(testee.displayGrade, "40.05%")
+    }
+
+    private func mockDataForQuantitativeDataTests(restrict_quantitative_data: Bool?,
+                                                  computed_current_grade: String?,
+                                                  computed_current_letter_grade: String?) -> Course {
+        Course.make(from: .make(enrollments: [
+                                    .make(computed_current_score: 40.05,
+                                          computed_current_grade: computed_current_grade,
+                                          computed_current_letter_grade: computed_current_letter_grade),
+                                ],
+                                settings: .make(restrict_quantitative_data: restrict_quantitative_data)))
+    }
 }

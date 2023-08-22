@@ -44,12 +44,22 @@ public class K5GradesViewModel: ObservableObject {
         grades = courses.filter({ !$0.isHomeroomCourse }).map {
             let enrollment = $0.enrollments?.first
             let isMultiGradingPeriod = enrollment?.multipleGradingPeriodsEnabled ?? false
+            let hideQuantitativeData = enrollment?.hideQuantitativeData == true
+            let score = hideQuantitativeData ? nil : isMultiGradingPeriod ? enrollment?.currentPeriodComputedCurrentScore : enrollment?.computedCurrentScore
+            let grade: String? = {
+                if hideQuantitativeData {
+                    return enrollment?.computedCurrentLetterGrade
+                } else {
+                    return isMultiGradingPeriod ? enrollment?.currentPeriodComputedCurrentGrade : enrollment?.computedCurrentGrade
+                }
+            }()
             return K5GradeCellViewModel(title: $0.name,
                                         imageURL: $0.imageDownloadURL,
-                                        grade: isMultiGradingPeriod ? enrollment?.currentPeriodComputedCurrentGrade : enrollment?.computedCurrentGrade,
-                                        score: isMultiGradingPeriod ? enrollment?.currentPeriodComputedCurrentScore : enrollment?.computedCurrentScore,
+                                        grade: grade,
+                                        score: score,
                                         color: $0.color,
-                                        courseID: $0.id)
+                                        courseID: $0.id,
+                                        hideGradeBar: hideQuantitativeData)
         }
         var gradingPeriodModels = courses.compactMap { $0.gradingPeriods }.flatMap { $0 }
         gradingPeriodModels.sort(by: {
@@ -66,12 +76,21 @@ public class K5GradesViewModel: ObservableObject {
             var grades: [K5GradeCellViewModel] = []
             apiEnrollments?.forEach { enrollment in
                 guard let course = self?.courses.first(where: { $0.id == enrollment.course_id?.rawValue }), !course.isHomeroomCourse else { return }
+                let shouldHideQuantitativeData = course.hideQuantitativeData
+                let grade: String? = {
+                    if shouldHideQuantitativeData {
+                        return enrollment.computed_current_letter_grade
+                    } else {
+                        return enrollment.computed_current_grade ?? enrollment.grades?.current_grade
+                    }
+                }()
                 let cellModel = K5GradeCellViewModel(title: course.name ?? "",
                                                      imageURL: course.imageDownloadURL,
-                                                     grade: enrollment.computed_current_grade ?? enrollment.grades?.current_grade,
-                                                     score: enrollment.computed_current_score ?? enrollment.grades?.current_score,
+                                                     grade: grade,
+                                                     score: shouldHideQuantitativeData ? nil : enrollment.computed_current_score ?? enrollment.grades?.current_score,
                                                      color: course.color,
-                                                     courseID: course.id)
+                                                     courseID: course.id,
+                                                     hideGradeBar: shouldHideQuantitativeData)
                 grades.append(cellModel)
             }
             grades.sort(by: {$0.title < $1.title})
