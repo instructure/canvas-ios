@@ -20,8 +20,8 @@ extension DataSeeder {
     public func createCourse(name: String = "DataSeed iOS \(Int(Date().timeIntervalSince1970))",
                              isK5: Bool = false,
                              syllabus_body: String? = nil,
-                             start_at: String? = nil,
-                             end_at: String? = nil) -> DSCourse {
+                             start_at: Date? = nil,
+                             end_at: Date? = nil) -> DSCourse {
         let requestedBody = CreateDSCourseRequest.Body(course: .init(
                 name: name, syllabus_body: syllabus_body, start_at: start_at, end_at: end_at))
         let request = CreateDSCourseRequest(body: requestedBody)
