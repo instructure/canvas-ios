@@ -42,6 +42,18 @@ class GradeFormatterTests: CoreTestCase {
         XCTAssertEqual(GradeFormatter.string(from: assignment, style: .short), "Complete")
     }
 
+    func testFromAssignmentScoresHidden() {
+        let assignment = Assignment.make(from: .make(
+            grading_type: .pass_fail,
+            points_possible: 11,
+            submission: .make(grade: "complete", score: 1)
+        ))
+        Course.make(from: .make(settings: .make(restrict_quantitative_data: true)))
+        XCTAssertEqual(GradeFormatter.string(from: assignment), "Complete")
+        XCTAssertEqual(GradeFormatter.a11yString(from: assignment), "Complete")
+        XCTAssertEqual(GradeFormatter.string(from: assignment, style: .short), "Complete")
+    }
+
     func testFromAssignmentMultipleSubmissions() {
         let assignment = Assignment.make(from: .make(
             grading_type: .pass_fail,
@@ -50,6 +62,18 @@ class GradeFormatterTests: CoreTestCase {
         ))
         XCTAssertEqual(GradeFormatter.string(from: assignment, userID: "2", style: .medium), "Incomplete / 10")
         XCTAssertEqual(GradeFormatter.a11yString(from: assignment, userID: "2", style: .medium), "Incomplete out of 10")
+        XCTAssertEqual(GradeFormatter.string(from: assignment, userID: "2", style: .short), "Incomplete")
+    }
+
+    func testFromAssignmentMultipleSubmissionsScoresHidden() {
+        let assignment = Assignment.make(from: .make(
+            grading_type: .pass_fail,
+            points_possible: 10,
+            submissions: [.make(grade: "complete", score: 1, user_id: "1"), .make(grade: "incomplete", score: 0, user_id: "2")]
+        ))
+        Course.make(from: .make(settings: .make(restrict_quantitative_data: true)))
+        XCTAssertEqual(GradeFormatter.string(from: assignment, userID: "2", style: .medium), "Incomplete")
+        XCTAssertEqual(GradeFormatter.a11yString(from: assignment, userID: "2", style: .medium), "Incomplete")
         XCTAssertEqual(GradeFormatter.string(from: assignment, userID: "2", style: .short), "Incomplete")
     }
 
@@ -62,7 +86,23 @@ class GradeFormatterTests: CoreTestCase {
         XCTAssertEqual(formatter.string(from: submission), "1")
     }
 
+    func testDecimalsScoresHidden() {
+        formatter.hideScores = true
+        formatter.gradeStyle = .short
+        formatter.gradingType = .points
+        submission.score = 1.05
+        XCTAssertEqual(formatter.string(from: submission), nil)
+        submission.score = 1.0005
+        XCTAssertEqual(formatter.string(from: submission), nil)
+    }
+
     func testNilSubmission() {
+        formatter.gradeStyle = .short
+        XCTAssertNil(formatter.string(from: nil))
+    }
+
+    func testNilSubmissionScoresHidden() {
+        formatter.hideScores = true
         formatter.gradeStyle = .short
         XCTAssertNil(formatter.string(from: nil))
     }
@@ -81,6 +121,23 @@ class GradeFormatterTests: CoreTestCase {
         submission.score = nil
         XCTAssertEqual(formatter.string(from: submission), "Excused / 10")
         XCTAssertEqual(formatter.a11yString(from: submission), "Excused out of 10")
+    }
+
+    func testExcusedScoresHidden() {
+        formatter.hideScores = true
+        formatter.gradeStyle = .short
+        submission.score = nil
+        submission.excused = true
+        XCTAssertEqual(formatter.string(from: submission), "Excused")
+        submission.score = 1
+        XCTAssertEqual(formatter.string(from: submission), "Excused")
+
+        formatter.gradeStyle = .medium
+        XCTAssertEqual(formatter.string(from: submission), "Excused")
+        XCTAssertEqual(formatter.a11yString(from: submission), "Excused")
+        submission.score = nil
+        XCTAssertEqual(formatter.string(from: submission), "Excused")
+        XCTAssertEqual(formatter.a11yString(from: submission), "Excused")
     }
 
     func testPassFail() {
@@ -106,6 +163,30 @@ class GradeFormatterTests: CoreTestCase {
         XCTAssertEqual(formatter.a11yString(from: submission), "- out of 10")
     }
 
+    func testPassFailScoresHidden() {
+        formatter.hideScores = true
+        formatter.gradeStyle = .short
+        formatter.gradingType = .pass_fail
+        submission.score = 1
+        submission.grade = "complete"
+        XCTAssertEqual(formatter.string(from: submission), "Complete")
+        submission.grade = "incomplete"
+        XCTAssertEqual(formatter.string(from: submission), "Incomplete")
+        submission.grade = "something else"
+        XCTAssertEqual(formatter.string(from: submission), "-")
+
+        formatter.gradeStyle = .medium
+        submission.grade = "complete"
+        XCTAssertEqual(formatter.string(from: submission), "Complete")
+        XCTAssertEqual(formatter.a11yString(from: submission), "Complete")
+        submission.grade = "incomplete"
+        XCTAssertEqual(formatter.string(from: submission), "Incomplete")
+        XCTAssertEqual(formatter.a11yString(from: submission), "Incomplete")
+        submission.grade = "something else"
+        XCTAssertEqual(formatter.string(from: submission), "-")
+        XCTAssertEqual(formatter.a11yString(from: submission), "-")
+    }
+
     func testPoints() {
         formatter.gradeStyle = .short
         formatter.gradingType = .points
@@ -120,6 +201,21 @@ class GradeFormatterTests: CoreTestCase {
         XCTAssertEqual(formatter.a11yString(from: submission), "5 out of 10")
     }
 
+    func testPointsScoresHidden() {
+        submission.score = 5
+        formatter.pointsPossible = 5
+        formatter.hideScores = true
+        formatter.gradingType = .points
+
+        formatter.gradeStyle = .short
+        XCTAssertEqual(formatter.string(from: submission), nil)
+        XCTAssertEqual(formatter.a11yString(from: submission), nil)
+
+        formatter.gradeStyle = .medium
+        XCTAssertEqual(formatter.string(from: submission), nil)
+        XCTAssertEqual(formatter.a11yString(from: submission), nil)
+    }
+
     func testGPAScale() {
         formatter.gradeStyle = .short
         formatter.gradingType = .gpa_scale
@@ -130,6 +226,25 @@ class GradeFormatterTests: CoreTestCase {
         submission.score = 5
         XCTAssertEqual(formatter.string(from: submission), "5 / 10 (50%)")
         XCTAssertEqual(formatter.a11yString(from: submission), "5 out of 10 (50%)")
+    }
+
+    func testGPAScaleScoresHidden() {
+        formatter.hideScores = true
+        formatter.gradeStyle = .short
+        formatter.gradingType = .gpa_scale
+        submission.grade = "50%"
+        XCTAssertEqual(formatter.string(from: submission), nil)
+        submission.grade = "F"
+        XCTAssertEqual(formatter.string(from: submission), "F GPA")
+
+        formatter.gradeStyle = .medium
+        submission.score = 5
+        submission.grade = "50%"
+        XCTAssertEqual(formatter.string(from: submission), nil)
+        XCTAssertEqual(formatter.a11yString(from: submission), nil)
+        submission.grade = "F"
+        XCTAssertEqual(formatter.string(from: submission), "F GPA")
+        XCTAssertEqual(formatter.a11yString(from: submission), "F GPA")
     }
 
     func testPercent() {
@@ -144,6 +259,19 @@ class GradeFormatterTests: CoreTestCase {
         XCTAssertEqual(formatter.a11yString(from: submission), "5 out of 10 (50%)")
     }
 
+    func testPercentScoresHidden() {
+        formatter.hideScores = true
+        formatter.gradeStyle = .short
+        formatter.gradingType = .percent
+        submission.grade = "50%"
+        XCTAssertEqual(formatter.string(from: submission), nil)
+
+        formatter.gradeStyle = .medium
+        submission.score = 5
+        XCTAssertEqual(formatter.string(from: submission), nil)
+        XCTAssertEqual(formatter.a11yString(from: submission), nil)
+    }
+
     func testLetterGrade() {
         formatter.gradeStyle = .short
         formatter.gradingType = .letter_grade
@@ -156,7 +284,30 @@ class GradeFormatterTests: CoreTestCase {
         XCTAssertEqual(formatter.a11yString(from: submission), "5 out of 10 (A)")
     }
 
+    func testLetterGradeScoresHidden() {
+        formatter.hideScores = true
+        formatter.gradeStyle = .short
+        formatter.gradingType = .letter_grade
+        submission.grade = "A"
+        XCTAssertEqual(formatter.string(from: submission), "A")
+
+        formatter.gradeStyle = .medium
+        submission.score = 5
+        XCTAssertEqual(formatter.string(from: submission), "A")
+        XCTAssertEqual(formatter.a11yString(from: submission), "A")
+    }
+
     func testNotGraded() {
+        formatter.gradeStyle = .short
+        formatter.gradingType = .not_graded
+        XCTAssertNil(formatter.string(from: submission))
+
+        formatter.gradeStyle = .medium
+        XCTAssertNil(formatter.string(from: submission))
+    }
+
+    func testNotGradedScoresHidden() {
+        formatter.hideScores = true
         formatter.gradeStyle = .short
         formatter.gradingType = .not_graded
         XCTAssertNil(formatter.string(from: submission))
@@ -225,5 +376,69 @@ class GradeFormatterTests: CoreTestCase {
         s.grade = nil
         XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "--")
         XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "0/100")
+    }
+
+    func testGraderStringsScoresHidden() {
+        let a = Assignment.make()
+        let s = Submission.make()
+        Course.make(from: .make(settings: .make(restrict_quantitative_data: true)))
+
+        a.pointsPossible = 100
+
+        a.gradingType = .not_graded
+        XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "")
+        a.gradingType = .percent
+
+        s.workflowState = .unsubmitted
+        XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "--")
+        s.workflowState = .submitted
+
+        s.excused = true
+        XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "Excused")
+        s.excused = false
+
+        s.grade = "2.1189%"
+        XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "")
+        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "")
+        s.grade = "99.999%"
+        XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "")
+        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "")
+        s.grade = "bogus"
+        XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "")
+        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "")
+
+        a.gradingType = .points
+        XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "")
+        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "")
+        s.score = 2.1189
+        XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "")
+        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "")
+        s.score = 99.999
+        XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "")
+        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "")
+
+        a.gradingType = .pass_fail
+        s.score = 0
+        s.grade = "pass"
+        XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "Pass")
+        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "Pass")
+        s.grade = "fail"
+        XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "Fail")
+        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "Fail")
+        s.grade = "complete"
+        XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "Complete")
+        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "Complete")
+        s.grade = "incomplete"
+        XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "Incomplete")
+        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "Incomplete")
+        s.grade = "10.1234"
+        XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "")
+        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "")
+        s.grade = "Something Else"
+        XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "Something Else")
+        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "Something Else")
+        s.grade = nil
+        XCTAssertEqual(GradeFormatter.shortString(for: a, submission: s), "--")
+        XCTAssertEqual(GradeFormatter.longString(for: a, submission: s), "")
     }
 }

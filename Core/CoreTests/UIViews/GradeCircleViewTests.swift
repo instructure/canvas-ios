@@ -19,7 +19,7 @@
 import XCTest
 @testable import Core
 
-class GradeCircleViewTests: XCTestCase {
+class GradeCircleViewTests: CoreTestCase {
     var view: GradeCircleView!
 
     override func setUp() {
@@ -81,6 +81,20 @@ class GradeCircleViewTests: XCTestCase {
         XCTAssertTrue(view.circleComplete.isHidden)
     }
 
+    func testItShowsCorrectViewsForNonPassFailWhenQuantitativeDataEnabled() {
+        Course.make(from: .make(settings: .make(restrict_quantitative_data: true)))
+        let a = Assignment.make(from: .make(grading_type: .points))
+        a.submission = Submission.make(from: .make(
+            grade: "10",
+            score: 10,
+            workflow_state: .graded
+        ))
+        view.update(a)
+        XCTAssertTrue(view.circlePoints.isHidden)
+        XCTAssertTrue(view.circleLabel.isHidden)
+        XCTAssertFalse(view.circleComplete.isHidden)
+    }
+
     func testItUpdatesCircle() {
         let a = Assignment.make(from: .make(
             grading_type: .points,
@@ -95,6 +109,23 @@ class GradeCircleViewTests: XCTestCase {
         XCTAssertEqual(view.circlePoints.text, "80")
         XCTAssertEqual(view.gradeCircle?.progress, 0.8)
         XCTAssertEqual(view.gradeCircle?.accessibilityLabel, "Scored 80 out of 100 points possible")
+    }
+
+    func testItUpdatesCircleWhenQuantitativeDataEnabled() {
+        Course.make(from: .make(settings: .make(restrict_quantitative_data: true)))
+        let a = Assignment.make(from: .make(
+            grading_type: .points,
+            points_possible: 100
+        ))
+        a.submission = Submission.make(from: .make(
+            grade: "80",
+            score: 80,
+            workflow_state: .graded
+        ))
+        view.update(a)
+        XCTAssertEqual(view.circlePoints.isHidden, true)
+        XCTAssertEqual(view.gradeCircle?.progress, 1.0)
+        XCTAssertEqual(view.gradeCircle?.accessibilityLabel, nil)
     }
 
     func testItShowsLatePenalty() {
@@ -116,6 +147,24 @@ class GradeCircleViewTests: XCTestCase {
         XCTAssertEqual(view.finalGradeLabel.text, "Final Grade: 80 pts")
     }
 
+    func testItShowsLatePenaltyWhenQuantitativeDataEnabled() {
+        Course.make(from: .make(settings: .make(restrict_quantitative_data: true)))
+        let a = Assignment.make(from: .make(
+            grading_type: .points,
+            points_possible: 100
+        ))
+        a.submission = Submission.make(from: .make(
+            grade: "80",
+            late: true,
+            points_deducted: 10,
+            score: 80,
+            workflow_state: .graded
+        ))
+        view.update(a)
+        XCTAssertTrue(view.latePenaltyLabel.isHidden)
+        XCTAssertTrue(view.finalGradeLabel.isHidden)
+    }
+
     func testDisplayGrade() {
         let a = Assignment.make(from: .make(
             grading_type: .points,
@@ -134,6 +183,30 @@ class GradeCircleViewTests: XCTestCase {
         view.update(a)
         XCTAssertFalse(view.displayGrade.isHidden)
         XCTAssertEqual(view.displayGrade.text, "3.8 GPA")
+
+        a.submission?.late = true
+        view.update(a)
+        XCTAssertTrue(view.displayGrade.isHidden)
+    }
+
+    func testDisplayGradeWhenQuantitativeDataEnabled() {
+        Course.make(from: .make(settings: .make(restrict_quantitative_data: true)))
+        let a = Assignment.make(from: .make(
+            grading_type: .points,
+            points_possible: 100
+        ))
+        a.submission = Submission.make(from: .make(
+            grade: "80",
+            score: 80,
+            workflow_state: .graded
+        ))
+        view.update(a)
+        XCTAssertTrue(view.displayGrade.isHidden)
+
+        a.gradingType = .gpa_scale
+        a.submission?.grade = "3.8"
+        view.update(a)
+        XCTAssertTrue(view.displayGrade.isHidden)
 
         a.submission?.late = true
         view.update(a)
@@ -188,5 +261,24 @@ class GradeCircleViewTests: XCTestCase {
         XCTAssertEqual(view.gradeCircle?.accessibilityLabel, "77.0 Points")
         XCTAssertTrue(view.displayGrade.isHidden)
         XCTAssertEqual(view.displayGrade.text, "77")
+    }
+
+    func testItRendersScoreWhenNoPointsIsPossibleWhenQuantitativeDataEnabled() {
+        Course.make(from: .make(settings: .make(restrict_quantitative_data: true)))
+        let a = Assignment.make(from: .make(grading_type: .points,
+                                            points_possible: nil,
+                                            submission: .make(grade: "77",
+                                                              score: 77,
+                                                              workflow_state: .graded)
+        ))
+        view.update(a)
+        XCTAssertFalse(view.isHidden)
+        XCTAssertTrue(view.circlePoints.isHidden)
+        XCTAssertTrue(view.circleLabel.isHidden)
+        XCTAssertFalse(view.circleComplete.isHidden)
+        XCTAssertEqual(view.gradeCircle?.progress, 1)
+        XCTAssertEqual(view.gradeCircle?.accessibilityLabel, nil)
+        XCTAssertTrue(view.displayGrade.isHidden)
+        XCTAssertEqual(view.displayGrade.text, "")
     }
 }

@@ -17,17 +17,32 @@
 //
 
 extension DataSeeder {
-
     public func createCourse(name: String = "DataSeed iOS \(Int(Date().timeIntervalSince1970))",
+                             isK5: Bool = false,
                              syllabus_body: String? = nil) -> DSCourse {
         let requestedBody = CreateDSCourseRequest.Body(course: .init(name: name, syllabus_body: syllabus_body))
         let request = CreateDSCourseRequest(body: requestedBody)
         return makeRequest(request)
     }
 
+    public func createK5Course(name: String = "DataSeed iOS K5 \(Int(Date().timeIntervalSince1970))") -> DSCourse {
+        let requestedBody = CreateDSCourseRequest.Body(course: .init(name: name))
+        let request = CreateDSCourseRequest(body: requestedBody, isK5: true)
+        var course = makeRequest(request)
+        updateCourseToHomeroomCourse(course: course)
+        course.homeroom_course = true
+        return course
+    }
+
     public func updateCourseWithGradingScheme(courseId: String, gradingStandardId: Int) {
         let requestedBody = UpdateDSCourseRequest.Body(course: .init(grading_standard_id: gradingStandardId))
         let request = UpdateDSCourseRequest(body: requestedBody, courseId: courseId)
+        makeRequest(request)
+    }
+
+    public func updateCourseToHomeroomCourse(course: DSCourse) {
+        let requestedBody = UpdateDSCourseRequest.Body(course: .init(homeroom_course: true))
+        let request = UpdateDSCourseRequest(body: requestedBody, courseId: course.id)
         makeRequest(request)
     }
 }

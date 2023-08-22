@@ -66,6 +66,10 @@ const lightest = {
 
 const colors = {
   electric: { light: electric, dark: electric },
+  electricHighContrast: {
+  light: { normal: '#0770A3', high: '#0770A3' },
+  dark: { normal: '#0770A3', high: '#0770A3' },
+  },
   shamrock: {
   light: { normal: shamrock.high, high: shamrock.high },
   dark: { normal: shamrock.normal, high: shamrock.normal },
@@ -124,7 +128,7 @@ const colors = {
   	dark: { normal: '#1D1E1F', high: '#1D1E1F' },
   },
   get backgroundAlert () { return colors.barney },
-  get backgroundInfo () { return colors.electric },
+  get backgroundInfo () { return colors.electricHighContrast },
   get backgroundDanger () { return colors.crimson },
   get backgroundWarning () { return colors.fire },
 
@@ -139,7 +143,7 @@ const colors = {
   borderLight: light,
   borderLightest: lightest,
   get borderAlert () { return colors.barney },
-  get borderInfo () { return colors.electric },
+  get borderInfo () { return colors.electricHighContrast },
   get borderDanger () { return colors.crimson },
   get borderWarning () { return colors.fire },
 

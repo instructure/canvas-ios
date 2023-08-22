@@ -49,7 +49,7 @@ class LoginFindSchoolViewControllerTests: CoreTestCase {
         api.mock(GetAccountsSearchRequest(searchTerm: "nope"))
         controller.searchField.text = "nope"
         controller.searchField.sendActions(for: .editingChanged)
-        XCTAssertEqual(controller.resultsTableView.cellForRow(at: first)?.textLabel?.text, "Can’t find your school? Try typing the full school URL. Tap here for help.")
+        XCTAssertEqual(controller.resultsTableView.cellForRow(at: first)?.textLabel?.text, "Can’t find your school? Try typing the full school URL. Login help.")
         controller.resultsTableView.delegate?.tableView?(controller.resultsTableView, didSelectRowAt: first)
         XCTAssertEqual(opened, helpURL)
 

@@ -128,7 +128,7 @@ class QuizDetailsViewController: ScreenViewTrackableViewController, ColoredNavVi
         let submission = quiz?.submission
         loadingView.isHidden = quizzes.error != nil || !quizzes.pending || !quizzes.isEmpty || refreshControl.isRefreshing
         titleLabel.text = quiz?.title
-        pointsLabel.text = quiz?.pointsPossibleText
+        pointsLabel.text = quiz?.hideQuantitativeData == true ? nil : quiz?.pointsPossibleText
         if let finishedAt = submission?.finishedAt {
             statusIconView.image = .completeSolid
             statusIconView.tintColor = .textSuccess

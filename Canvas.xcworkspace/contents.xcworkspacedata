@@ -69,6 +69,9 @@
          location = "group:StudentE2E.xctestplan">
       </FileRef>
       <FileRef
+         location = "group:CalendarE2E.xctestplan">
+      </FileRef>
+      <FileRef
          location = "group:TeacherE2E.xctestplan">
       </FileRef>
       <FileRef

@@ -105,4 +105,49 @@ class QuizDetailsViewControllerTests: StudentTestCase {
         controller.view.layoutIfNeeded()
         XCTAssertNoThrow(controller.takeButton.sendActions(for: .primaryActionTriggered))
     }
+
+    // MARK: - Quantitative Data Display Tests
+
+    func testPointsTextWhenQuantitativeDataEnabled() {
+        // MARK: GIVEN
+        mockDataForQuantitativeDataTests(restrict_quantitative_data: true)
+        let testee = QuizDetailsViewController.create(courseID: "1", quizID: "123")
+
+        // MARK: WHEN
+        testee.loadViewIfNeeded()
+
+        // MARK: THEN
+        XCTAssertNil(testee.pointsLabel.text)
+    }
+
+    func testPointsTextWhenQuantitativeDataDisabled() {
+        // MARK: GIVEN
+        mockDataForQuantitativeDataTests(restrict_quantitative_data: false)
+        let testee = QuizDetailsViewController.create(courseID: "1", quizID: "123")
+
+        // MARK: WHEN
+        testee.loadViewIfNeeded()
+
+        // MARK: THEN
+        XCTAssertEqual(testee.pointsLabel.text, "11.1 pts")
+    }
+
+    func testPointsTextWhenQuantitativeDataNotSpecified() {
+        // MARK: GIVEN
+        mockDataForQuantitativeDataTests(restrict_quantitative_data: nil)
+        let testee = QuizDetailsViewController.create(courseID: "1", quizID: "123")
+
+        // MARK: WHEN
+        testee.loadViewIfNeeded()
+
+        // MARK: THEN
+        XCTAssertEqual(testee.pointsLabel.text, "11.1 pts")
+    }
+
+    private func mockDataForQuantitativeDataTests(restrict_quantitative_data: Bool?) {
+        api.mock(GetCourse(courseID: "1"),
+                 value: .make(settings: .make(restrict_quantitative_data: restrict_quantitative_data)))
+        api.mock(GetQuizRequest(courseID: "1", quizID: "123"),
+                 value: .make())
+    }
 }

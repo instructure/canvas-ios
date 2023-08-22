@@ -16,18 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct DSCalendarEvent: Codable {
-    public let id: String
-    public let title: String
-    public let start_at: Date
-    public let end_at: Date?
-    public let description: String
-    public let context_code: String
-    public let location_name: String
-    public let location_address: String
-    public let duplicates: [DSDuplicate]?
-}
+import Core
 
-public struct DSDuplicate: Codable {
-    public let calendar_event: DSCalendarEvent
+open class K5E2ETestCase: E2ETestCase {
+    override open var experimentalFeatures: [ExperimentalFeature] { return [ExperimentalFeature.K5Dashboard]}
 }

@@ -58,6 +58,7 @@ public class GradeFormatter {
     public var gradingType: GradingType = .points
     public var pointsPossible: Double = 0
     public var placeholder = "-"
+    public var hideScores: Bool = false
 
     public static func a11yString(from assignment: Assignment, userID: String? = nil, style: Style = .medium) -> String? {
         a11yString(from: string(from: assignment, userID: userID, style: style))
@@ -68,6 +69,7 @@ public class GradeFormatter {
         formatter.pointsPossible = assignment.pointsPossible ?? 0
         formatter.gradingType = assignment.gradingType
         formatter.gradeStyle = style
+        formatter.hideScores = assignment.hideQuantitativeData
         if let userID = userID {
             let submission = assignment.submissions?.first { $0.userID == userID }
             return formatter.string(from: submission)
@@ -84,6 +86,7 @@ public class GradeFormatter {
         formatter.pointsPossible = assignment.pointsPossible ?? 0
         formatter.gradingType = assignment.gradingType
         formatter.gradeStyle = style
+        formatter.hideScores = assignment.hideQuantitativeData
         if assignment.gradingType == .letter_grade {
             formatter.gradeStyle = .short
         }
@@ -115,16 +118,24 @@ public class GradeFormatter {
         switch gradingType {
         case .pass_fail:
             let grade = submission.grade.flatMap(PassFail.init(rawValue:))
+            if hideScores { return grade?.localizedString ?? placeholder }
             switch gradeStyle {
             case .short: return grade?.localizedString
             case .medium: return medium(score: grade?.localizedString ?? placeholder)
             }
         case .points:
+            if hideScores { return nil }
             switch gradeStyle {
             case .short: return format(score)
             case .medium: return medium(score: score)
             }
         case .gpa_scale:
+            if hideScores {
+                if let grade = submission.grade, !grade.containsNumber {
+                    return String.localizedStringWithFormat(NSLocalizedString("%@ GPA", bundle: .core, comment: ""), grade)
+                }
+                return nil
+            }
             switch gradeStyle {
             case .short:
                 guard let grade = submission.grade else { return nil }
@@ -132,7 +143,16 @@ public class GradeFormatter {
             case .medium:
                 return medium(score: score, grade: submission.grade)
             }
-        case .percent, .letter_grade:
+        case .percent:
+            if hideScores { return nil }
+            switch gradeStyle {
+            case .short:
+                return submission.grade
+            case .medium:
+                return medium(score: score, grade: submission.grade)
+            }
+        case .letter_grade:
+            if hideScores { return submission.grade ?? placeholder }
             switch gradeStyle {
             case .short:
                 return submission.grade
@@ -145,6 +165,9 @@ public class GradeFormatter {
     }
 
     private func format(_ number: Double) -> String? {
+        if hideScores {
+            return nil
+        }
         return GradeFormatter.numberFormatter.string(from: GradeFormatter.truncate(number))
     }
 
@@ -153,6 +176,9 @@ public class GradeFormatter {
     }
 
     private func medium(score: String, grade: String? = nil) -> String {
+        if hideScores {
+            return grade ?? (score.containsNumber ? "" : score)
+        }
         let pointsPossible = format(self.pointsPossible) ?? placeholder
         if let grade = grade {
             return "\(score) / \(pointsPossible) (\(grade))"
@@ -183,11 +209,15 @@ public class GradeFormatter {
         let grade = final ? submission.grade : submission.enteredGrade
         let score = final ? submission.score : submission.enteredScore
 
+        let shouldHideScore = assignment.hideQuantitativeData
+
         switch assignment.gradingType {
         case .percent:
+            if shouldHideScore { return "" }
             return (grade?.replacingOccurrences(of: "%", with: "")).flatMap { Double($0) }
                 .flatMap { percentFormatter.string(from: truncate($0 / 100, factor: 10000)) }
         case .points:
+            if shouldHideScore { return "" }
             return (score ?? grade.flatMap { Double($0) })
                 .flatMap { numberFormatter.string(from: truncate($0)) }
         default:
@@ -201,6 +231,7 @@ public class GradeFormatter {
             case "incomplete":
                 return NSLocalizedString("Incomplete", comment: "")
             default:
+                if shouldHideScore, grade?.containsNumber == true { return "" }
                 return grade.flatMap { Double($0) }
                     .flatMap { numberFormatter.string(from: truncate($0)) }
                     ?? grade
@@ -213,6 +244,9 @@ public class GradeFormatter {
         let scoreString = numberFormatter.string(from: truncate(score)) ?? "0"
         let possibleString = numberFormatter.string(from: truncate(assignment.pointsPossible ?? 0)) ?? "0"
         let grade = assignment.gradingType == .points ? nil : gradeString(for: assignment, submission: submission, final: final)
+        if assignment.hideQuantitativeData {
+            return grade ?? ""
+        }
         if let grade = grade {
             return String.localizedStringWithFormat(
                 NSLocalizedString("%@/%@ (%@)", comment: "score/points possible (grade)"),

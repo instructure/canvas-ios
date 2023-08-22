@@ -135,6 +135,72 @@ class DiscussionListViewControllerTests: CoreTestCase {
         XCTAssertNoThrow(controller.viewWillDisappear(false))
     }
 
+    func testPointsLabelWhenQuantitativeDataEnabled() {
+        // Given
+        mockCourseAndAssignmentWith(restrict_quantitative_data: true)
+
+        // When
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        // Then
+        let cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? Core.DiscussionListCell
+        XCTAssertEqual(cell?.pointsLabel.isHidden, true)
+        XCTAssertEqual(cell?.pointsLabel.text, "21 pts")
+    }
+
+    func testPointsLabelWhenQuantitativeDataDisabled() {
+        // Given
+        mockCourseAndAssignmentWith(restrict_quantitative_data: false)
+
+        // When
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        // Then
+        let cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? Core.DiscussionListCell
+        XCTAssertEqual(cell?.pointsLabel.isHidden, false)
+        XCTAssertEqual(cell?.pointsLabel.text, "21 pts")
+    }
+
+    func testPointsLabelWhenQuantitativeDataNotSpecified() {
+        // Given
+        mockCourseAndAssignmentWith(restrict_quantitative_data: nil)
+
+        // When
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        // Then
+        let cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? Core.DiscussionListCell
+        XCTAssertEqual(cell?.pointsLabel.isHidden, false)
+        XCTAssertEqual(cell?.pointsLabel.text, "21 pts")
+    }
+
+    private func mockCourseAndAssignmentWith(restrict_quantitative_data: Bool?) {
+        api.mock(
+            GetCourse(courseID: "1"),
+            value: .make(
+                settings: APICourseSettings(
+                    usage_rights_required: nil,
+                    syllabus_course_summary: nil,
+                    restrict_quantitative_data: restrict_quantitative_data
+                )
+            )
+        )
+
+        api.mock(controller.topics, value: [
+            .make(
+                assignment: .make(has_overrides: true, points_possible: 21),
+                assignment_id: "1",
+                html_url: URL(string: "/courses/1/discussion_topics/2"),
+                id: "2",
+                posted_at: DateComponents(calendar: .current, year: 2020, month: 11, day: 3).date,
+                title: "Overrides"
+            ),
+        ])
+    }
+
     func testGroupDiscussions() {
         controller = DiscussionListViewController.create(context: .group("1"))
         api.mock(GetGroup(groupID: "1"), value: .make(permissions: .make(create_discussion_topic: true)))

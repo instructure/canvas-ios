@@ -119,3 +119,65 @@ class QuizListViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.emptyMessageLabel.text, "It looks like quizzes haven’t been created in this space yet.")
     }
 }
+
+class QuizListCellTests: CoreTestCase {
+    private var testee: QuizListCell!
+
+    override func tearDown() {
+        super.tearDown()
+        testee = nil
+    }
+
+    func testPointsUIWhenQuantitativeDataEnabled() {
+        // MARK: GIVEN
+        let mock = mockData(restrict_quantitative_data: true)
+        loadTestee()
+
+        // MARK: WHEN
+        testee.update(quiz: mock.quiz, isTeacher: false, color: nil)
+
+        // MARK: THEN
+        XCTAssertTrue(testee.pointsLabel.isHidden)
+        XCTAssertTrue(testee.pointsDot.isHidden)
+    }
+
+    func testPointsUIWhenQuantitativeDataDisabled() {
+        // MARK: GIVEN
+        let mock = mockData(restrict_quantitative_data: false)
+        loadTestee()
+
+        // MARK: WHEN
+        testee.update(quiz: mock.quiz, isTeacher: false, color: nil)
+
+        // MARK: THEN
+        XCTAssertFalse(testee.pointsLabel.isHidden)
+        XCTAssertFalse(testee.pointsDot.isHidden)
+    }
+
+    func testPointsUIWhenQuantitativeDataNotSpecified() {
+        // MARK: GIVEN
+        let mock = mockData(restrict_quantitative_data: nil)
+        loadTestee()
+
+        // MARK: WHEN
+        testee.update(quiz: mock.quiz, isTeacher: false, color: nil)
+
+        // MARK: THEN
+        XCTAssertFalse(testee.pointsLabel.isHidden)
+        XCTAssertFalse(testee.pointsDot.isHidden)
+    }
+
+    private func mockData(restrict_quantitative_data: Bool?) -> (course: Course, quiz: Quiz) {
+        let quiz = Quiz.save(.make(), in: databaseClient)
+        let course = Course.save(.make(settings: .make(restrict_quantitative_data: restrict_quantitative_data)),
+                                 in: databaseClient)
+        quiz.courseID = course.id
+        return (course: course, quiz: quiz)
+    }
+
+    private func loadTestee() {
+        let host = QuizListViewController.create(courseID: "")
+        host.loadViewIfNeeded()
+        testee = (host.tableView.dequeueReusableCell(withIdentifier: "QuizListCell") as! QuizListCell)
+    }
+}

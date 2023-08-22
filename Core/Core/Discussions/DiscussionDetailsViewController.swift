@@ -61,6 +61,11 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
     )
 
     var assignment: Store<GetAssignment>?
+
+    public var hideQuantitativeData: Bool {
+        return assignment?.first?.hideQuantitativeData ?? false
+    }
+
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
     }
@@ -250,7 +255,8 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
 
         titleLabel.text = topic.first?.title
         pointsLabel.text = assignment?.first?.pointsPossibleText
-        pointsView.isHidden = assignment?.first?.pointsPossible == nil || showRepliesToEntryID != nil
+        pointsView.isHidden = assignment?.first?.pointsPossible == nil || showRepliesToEntryID != nil ||
+        hideQuantitativeData
 
         let isPublished = topic.first?.published == true
         publishedIcon.image = isPublished ? .publishSolid : .noSolid

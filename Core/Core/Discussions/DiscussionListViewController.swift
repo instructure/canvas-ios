@@ -37,6 +37,10 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
         eventName: "\(context.pathComponent)/discussion_topics"
     )
 
+    public var hideQuantitativeData: Bool {
+        return course?.first?.hideQuantitativeData ?? false
+    }
+
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
     }
@@ -231,6 +235,11 @@ extension DiscussionListViewController: UITableViewDataSource, UITableViewDelega
             cell.dateLabel.isHidden = true
             cell.isUserInteractionEnabled = false
             cell.accessoryType = .none
+        }
+
+        if hideQuantitativeData {
+            cell.pointsLabel.isHidden = true
+            cell.pointsDot.isHidden = true
         }
 
         return cell

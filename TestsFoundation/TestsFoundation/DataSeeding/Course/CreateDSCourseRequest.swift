@@ -26,8 +26,9 @@ struct CreateDSCourseRequest: APIRequestable {
     public var path: String
     public let body: Body?
 
-    public init(body: Body, accountId: String = "self") {
+    public init(body: Body, isK5: Bool = false) {
         self.body = body
+        let accountId = isK5 ? Secret.k5SubAccountId.string! : "self"
         self.path = "accounts/\(accountId)/courses"
     }
 }
