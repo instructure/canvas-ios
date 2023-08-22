@@ -174,6 +174,10 @@ extension Course {
             return NSLocalizedString("N/A", bundle: .core, comment: "")
         }
 
+        if hideQuantitativeData == true {
+            return grade ?? enrollment.computedCurrentLetterGrade ?? NSLocalizedString("N/A", bundle: .core, comment: "")
+        }
+
         guard let scoreNotNil = score, let scoreString = Course.scoreFormatter.string(from: NSNumber(value: scoreNotNil)) else {
             return grade ?? NSLocalizedString("N/A", bundle: .core, comment: "")
         }
@@ -183,6 +187,10 @@ extension Course {
         }
 
         return scoreString
+    }
+
+    public var hideQuantitativeData: Bool {
+        return settings?.restrictQuantitativeData ?? false
     }
 
     public var hideTotalGrade: Bool {
@@ -240,7 +248,7 @@ final public class CourseSettings: NSManagedObject {
             model.usageRightsRequired = usage_rights_required
         }
 
-        if let restrict_quantitative_data = item.restrict_quantitative_data {
+        if let restrict_quantitative_data = item.restrict_quantitative_data, AppEnvironment.shared.app != .teacher {
             model.restrictQuantitativeData = restrict_quantitative_data
         }
 

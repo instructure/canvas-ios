@@ -46,11 +46,15 @@ class ModuleItemCell: UITableViewCell {
         completedStatusView.tintColor = item.completed == true ? .backgroundSuccess : .borderMedium
         indentConstraint.constant = CGFloat(item.indent) * ModuleItemCell.IndentMultiplier
         let dueAt = item.dueAt.flatMap { DateFormatter.localizedString(from: $0, dateStyle: .medium, timeStyle: .none) }
-        let points = item.pointsPossible.flatMap {
-            String.localizedStringWithFormat(
-                NSLocalizedString("%@ pts", bundle: .core, comment: ""),
-                NSNumber(value: $0)
-            )
+        let points: String? = item.pointsPossible.flatMap {
+            if item.hideQuantitativeData {
+                return nil
+            } else {
+                return String.localizedStringWithFormat(
+                    NSLocalizedString("%@ pts", bundle: .core, comment: ""),
+                    NSNumber(value: $0)
+                )
+            }
         }
         let requirement = item.completionRequirement?.description
         if let masteryPath = item.masteryPath, masteryPath.needsSelection, !masteryPath.locked {

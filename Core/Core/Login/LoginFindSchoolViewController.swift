@@ -38,7 +38,7 @@ class LoginFindSchoolViewController: UIViewController {
 
     var notFoundAttributedText: NSAttributedString = {
         let text = NSLocalizedString("Can’t find your school? Try typing the full school URL.", bundle: .core, comment: "")
-        let link = NSLocalizedString("Tap here for help.", bundle: .core, comment: "")
+        let link = NSLocalizedString("Login help.", bundle: .core, comment: "")
         let combined = "\(text) \(link)"
         let attributedText = NSMutableAttributedString(string: combined, attributes: [
             .foregroundColor: UIColor.textDark,

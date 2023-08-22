@@ -23,6 +23,7 @@ public struct K5ScheduleSubject {
     public let color: Color
     public let image: URL?
     public let route: URL?
+    public let shouldHideQuantitativeData: Bool
 }
 
 extension K5ScheduleSubject: Hashable {

@@ -60,6 +60,12 @@ extension String {
 
         return result
     }
+
+    public var containsNumber: Bool {
+        return unicodeScalars.contains { char in
+            CharacterSet.decimalDigits.contains(char)
+        }
+    }
 }
 
 extension String: Error {

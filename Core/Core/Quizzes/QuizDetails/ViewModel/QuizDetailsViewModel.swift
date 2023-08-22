@@ -31,7 +31,10 @@ public class QuizDetailsViewModel: QuizDetailsViewModelProtocol {
     public private(set) var quizDateSectionViewModel: QuizDateSectionViewModel?
 
     public var quizTitle: String { quiz?.title ?? "" }
-    public var pointsPossibleText: String { quiz?.pointsPossibleText ?? "" }
+    public var pointsPossibleText: String {
+        if quiz?.hideQuantitativeData == true { return "" }
+        return quiz?.pointsPossibleText ?? ""
+    }
     public var published: Bool { quiz?.published ?? false }
     public var quizDetailsHTML: String? { quiz?.details }
     public var attributes: [QuizAttribute] {
