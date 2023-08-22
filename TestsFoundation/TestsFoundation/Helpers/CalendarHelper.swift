@@ -84,7 +84,7 @@ public class CalendarHelper: BaseHelper {
         let formattedDate = dateFormatter.string(from: event.start_at)
         let dateArray = formattedDate.split(separator: "-")
 
-        if !dayButton(event: event).isVisible {
+        if !dayButton(event: event).isHittable {
             monthButton.hit()
         }
 
@@ -120,6 +120,7 @@ public class CalendarHelper: BaseHelper {
         // Finding the day and then the event cell
         let dayButtonElement = dayButton(event: event).waitUntil(.visible)
         dayButtonElement.hit()
+        monthButton.hit()
         return eventCell(event: event).waitUntil(.visible)
     }
 
