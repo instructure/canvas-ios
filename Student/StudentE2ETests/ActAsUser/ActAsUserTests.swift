@@ -42,7 +42,7 @@ class ActAsUserTests: CoreUITestCase {
             domainField.writeText(text: "https://\(user!.host)")
         }
         actAsUserButton = ActAsUserHelper.actAsUserButton
-        actAsUserButton.actionUntilElementCondition(action: .swipeUp, condition: .visible)
+        actAsUserButton.actionUntilElementCondition(action: .swipeUp(), condition: .visible)
         XCTAssertTrue(actAsUserButton.isVisible)
 
         actAsUserButton.hit()

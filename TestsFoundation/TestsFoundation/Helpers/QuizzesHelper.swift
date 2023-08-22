@@ -77,7 +77,7 @@ public class QuizzesHelper: BaseHelper {
                 // Correct answer to first question
                 exitButton.waitUntil(.visible)
                 let firstQuestionAnswer = app.find(label: TestData.Question1.Answers.correct, type: .staticText)
-                firstQuestionAnswer.actionUntilElementCondition(action: .swipeUp, condition: .visible)
+                firstQuestionAnswer.actionUntilElementCondition(action: .swipeUp(), condition: .visible)
                 firstQuestionAnswer.hit()
             }
 
@@ -85,7 +85,7 @@ public class QuizzesHelper: BaseHelper {
                 // Correct answer to second question
                 exitButton.waitUntil(.visible)
                 let secondQuestionAnswer = app.find(label: TestData.Question2.Answers.correct, type: .staticText)
-                secondQuestionAnswer.actionUntilElementCondition(action: .swipeUp, condition: .visible)
+                secondQuestionAnswer.actionUntilElementCondition(action: .swipeUp(), condition: .visible)
                 secondQuestionAnswer.hit()
             }
         }
@@ -120,7 +120,7 @@ public class QuizzesHelper: BaseHelper {
         CourseDetailsHelper.titleLabel.waitUntil(.visible)
         let quizzesCell = CourseDetailsHelper.cell(type: .quizzes)
         quizzesCell.waitUntil(.visible)
-        quizzesCell.actionUntilElementCondition(action: .swipeUp, condition: .hittable)
+        quizzesCell.actionUntilElementCondition(action: .swipeUp(), condition: .hittable)
         quizzesCell.hit()
     }
 

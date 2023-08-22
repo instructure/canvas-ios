@@ -28,9 +28,10 @@ public class GradesHelper: BaseHelper {
     public static func gradeOutOf(assignment: DSAssignment? = nil,
                                   assignmentId: String? = nil,
                                   actualPoints: String,
-                                  maxPoints: String, letterGrade: String = "") -> XCUIElement {
+                                  maxPoints: String,
+                                  letterGrade: String = "") -> XCUIElement {
         let assignment = app.find(id: "GradeListCell.\(assignment?.id ?? assignmentId!)")
-        let lgSuffix = letterGrade != "" ? " (\(letterGrade))" : letterGrade
+        let lgSuffix = letterGrade == "" ? "" : " (\(letterGrade))"
         return assignment.find(label: "Grade, \(actualPoints) out of \(maxPoints)\(lgSuffix)")
     }
 

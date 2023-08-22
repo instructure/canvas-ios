@@ -40,7 +40,7 @@ public class K5Helper: BaseHelper {
             let pointsString = assignment.points_possible! == 1 ? "pt" : "pts"
             let labelToFind = "\(assignment.name), \(assignment.points_possible!) \(pointsString), Due: \(due)"
             let element = app.find(label: labelToFind, type: .button)
-            app.actionUntilElementCondition(action: .swipeUp, element: element, condition: .visible)
+            app.actionUntilElementCondition(action: .swipeUp(), element: element, condition: .visible)
             return element
         }
 
@@ -50,7 +50,7 @@ public class K5Helper: BaseHelper {
             let pointsString = quiz.points_possible! == 1 ? "pt" : "pts"
             let labelToFind = "\(quiz.title), \(quiz.points_possible!) \(pointsString), Due: \(due)"
             let element = app.find(label: labelToFind, type: .button)
-            app.actionUntilElementCondition(action: .swipeUp, element: element, condition: .visible)
+            app.actionUntilElementCondition(action: .swipeUp(), element: element, condition: .visible)
             return element
         }
     }
