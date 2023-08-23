@@ -29,45 +29,53 @@ struct K5GradeCell: View {
     }
 
     var body: some View {
+        let gradeBarHeight: CGFloat = 28
+        let imageSize = CGFloat(72 - (viewModel.hideGradeBar ? gradeBarHeight : 0))
+
         GeometryReader { geometry in
-            Button(action: {
+            Button {
                 env.router.route(to: viewModel.route, from: controller, options: .push)
-            }, label: {
+            } label: {
                 HStack(spacing: 13) {
                     if geometry.size.width > 396 {
                         ZStack {
                             if let imageURL = viewModel.imageURL {
-                                RemoteImage(imageURL, width: 72, height: 72).cornerRadius(4)
+                                RemoteImage(imageURL, width: imageSize, height: imageSize)
+                                    .cornerRadius(4)
                             }
                             Rectangle()
-                                .frame(width: 72, height: 72)
+                                .frame(width: imageSize, height: imageSize)
                                 .cornerRadius(4)
                                 .foregroundColor(viewModel.color)
                                 .opacity(0.75)
                         }
                     }
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text(viewModel.title.uppercased())
-                            .font(.bold17)
-                            .foregroundColor(viewModel.color)
-                        HStack {
-                            let percentage = viewModel.gradePercentage
-                            K5GradeProgressBar(percentage: percentage, color: viewModel.color).frame(height: 16)
-                            Image.arrowOpenRightLine
-                                .resizable()
-                                .frame(width: 16, height: 16)
-                                .foregroundColor(.textDark)
+                    HStack {
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text(viewModel.title.uppercased())
+                                .font(.bold17)
+                                .foregroundColor(viewModel.color)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            if !viewModel.hideGradeBar {
+                                let percentage = viewModel.gradePercentage
+                                K5GradeProgressBar(percentage: percentage, color: viewModel.color).frame(height: 16)
+                            }
+                            if viewModel.grade == nil, viewModel.score == nil {
+                                Text("Not Graded", bundle: .core).font(.regular17)
+                            } else {
+                                Text(viewModel.roundedDisplayGrade).font(.regular17)
+                            }
                         }
-                        if viewModel.grade == nil, viewModel.score == nil {
-                            Text("Not Graded", bundle: .core).font(.regular17)
-                        } else {
-                            Text(viewModel.roundedDisplayGrade).font(.regular17)
-                        }
+                        Image.arrowOpenRightLine
+                            .resizable()
+                            .frame(width: 16, height: 16)
+                            .foregroundColor(.textDark)
                     }
                 }
-            })
+            }
         }
-        .frame(minHeight: 72).padding(.vertical, 13.5)
+        .frame(minHeight: imageSize)
+        .padding(.vertical, 13.5)
     }
 }
 
@@ -79,14 +87,16 @@ struct K5GradeCell_Previews: PreviewProvider {
                                                imageURL: URL(string: "https://inst.prod.acquia-sites.com/sites/default/files/image/2021-01/Instructure%20Office.jpg")!,
                                                grade: nil,
                                                score: 55,
-                                               color: .yellow,
-                                               courseID: ""))
+                                               color: .red,
+                                               courseID: "",
+                                               hideGradeBar: false))
         K5GradeCell(with: K5GradeCellViewModel(title: "ART",
                                                imageURL: nil,
                                                grade: nil,
                                                score: 55,
-                                               color: .yellow,
-                                               courseID: ""))
+                                               color: .red,
+                                               courseID: "",
+                                               hideGradeBar: true))
     }
 }
 

@@ -155,7 +155,7 @@ struct K5ScheduleSubjectView_Previews: PreviewProvider {
                 K5ScheduleSubjectView(viewModel: $0)
             }
         }
-            .previewLayout(.device)
+        .previewLayout(.device)
     }
 }
 

@@ -38,10 +38,15 @@ public extension XCUIElement {
     }
 
     enum ElementAction {
-        case swipeUp
-        case swipeDown
-        case swipeRight
-        case swipeLeft
+        public enum Target {
+            case onApp
+            case onElement
+        }
+
+        case swipeUp(_ target: Target = .onApp)
+        case swipeDown(_ target: Target = .onApp)
+        case swipeRight(_ target: Target = .onApp)
+        case swipeLeft(_ target: Target = .onApp)
         case tap
         case showKeyboard
         case hideKeyboard
@@ -73,7 +78,7 @@ public extension XCUIElement {
     @discardableResult
     func hit() -> XCUIElement {
         waitUntil(.visible)
-        if !isHittable { actionUntilElementCondition(action: .swipeUp, condition: .hittable, timeout: 5) }
+        if !isHittable { actionUntilElementCondition(action: .swipeUp(), condition: .hittable, timeout: 5) }
         tap()
         return self
     }
@@ -178,13 +183,29 @@ public extension XCUIElement {
 
             switch action {
             case .tap: tap()
-            case .swipeUp: app.swipeUp()
-            case .swipeDown: app.swipeDown()
-            case .swipeLeft: app.swipeLeft()
-            case .swipeRight: app.swipeRight()
             case .showKeyboard: CoreUITestCase.currentTestCase?.send(.showKeyboard, ignoreErrors: true)
             case .hideKeyboard: CoreUITestCase.currentTestCase?.send(.hideKeyboard, ignoreErrors: true)
             case .pullToRefresh: app.pullToRefresh()
+            case .swipeUp(let target):
+                switch target {
+                case .onApp: app.swipeUp()
+                case .onElement: actualElement.swipeUp()
+                }
+            case .swipeDown(let target):
+                switch target {
+                case .onApp: app.swipeDown()
+                case .onElement: actualElement.swipeDown()
+                }
+            case .swipeRight(let target):
+                switch target {
+                case .onApp: app.swipeRight()
+                case .onElement: actualElement.swipeRight()
+                }
+            case .swipeLeft(let target):
+                switch target {
+                case .onApp: app.swipeLeft()
+                case .onElement: actualElement.swipeLeft()
+                }
             }
 
             tacticalSleep(gracePeriod)

@@ -39,6 +39,7 @@ final public class Enrollment: NSManagedObject {
 
     @NSManaged public var computedCurrentScoreRaw: NSNumber?
     @NSManaged public var computedCurrentGrade: String?
+    @NSManaged public var computedCurrentLetterGrade: String?
     @NSManaged public var computedFinalScoreRaw: NSNumber?
     @NSManaged public var computedFinalGrade: String?
 
@@ -48,6 +49,10 @@ final public class Enrollment: NSManagedObject {
     @NSManaged public var currentPeriodComputedFinalGrade: String?
 
     @NSManaged public var submissions: Set<Submission>
+
+    public var hideQuantitativeData: Bool {
+        course?.hideQuantitativeData == true
+    }
 }
 
 extension Enrollment {
@@ -142,13 +147,16 @@ extension Enrollment {
         if let apiGrades = item.grades {
             let grade = grades.first { $0.gradingPeriodID == gradingPeriodID } ?? client.insert()
             grade.currentGrade = apiGrades.current_grade
-            grade.currentScore = apiGrades.current_score
             grade.finalGrade = apiGrades.final_grade
-            grade.finalScore = apiGrades.final_score
             grade.unpostedCurrentGrade = apiGrades.unposted_current_grade
-            grade.unpostedCurrentScore = apiGrades.unposted_current_score
             grade.overrideGrade = apiGrades.override_grade
-            grade.overrideScore = apiGrades.override_score
+
+            if !hideQuantitativeData {
+                grade.currentScore = apiGrades.current_score
+                grade.finalScore = apiGrades.final_score
+                grade.unpostedCurrentScore = apiGrades.unposted_current_score
+                grade.overrideScore = apiGrades.override_score
+            }
 
             grade.gradingPeriodID = gradingPeriodID
             grades.insert(grade)
@@ -156,22 +164,29 @@ extension Enrollment {
             multipleGradingPeriodsEnabled = item.multiple_grading_periods_enabled ?? false
             currentGradingPeriodID = item.current_grading_period_id
             totalsForAllGradingPeriodsOption = item.totals_for_all_grading_periods_option ?? false
-            computedCurrentScore = item.computed_current_score
+
+            computedCurrentLetterGrade = item.computed_current_letter_grade
             computedCurrentGrade = item.computed_current_grade
-            computedFinalScore = item.computed_final_score
             computedFinalGrade = item.computed_final_grade
-            currentPeriodComputedCurrentScore = item.current_period_computed_current_score
             currentPeriodComputedCurrentGrade = item.current_period_computed_current_grade
-            currentPeriodComputedFinalScore = item.current_period_computed_final_score
             currentPeriodComputedFinalGrade = item.current_period_computed_final_grade
+
             let grade = grades.first { $0.gradingPeriodID == nil } ?? client.insert()
             grade.gradingPeriodID = nil
-            grade.currentScore = item.computed_current_score
+
+            if !hideQuantitativeData {
+                grade.currentScore = item.computed_current_score
+                computedCurrentScore = item.computed_current_score
+                computedFinalScore = item.computed_final_score
+                currentPeriodComputedCurrentScore = item.current_period_computed_current_score
+                currentPeriodComputedFinalScore = item.current_period_computed_final_score
+            }
+
             grades.insert(grade)
             if let currentGradingPeriodID = item.current_grading_period_id {
                 let currentPeriodGrade = grades.first { $0.gradingPeriodID == currentGradingPeriodID } ?? client.insert()
                 currentPeriodGrade.gradingPeriodID = currentGradingPeriodID
-                currentPeriodGrade.currentScore = item.current_period_computed_current_score
+                currentPeriodGrade.currentScore = hideQuantitativeData ? nil : item.current_period_computed_current_score
                 grades.insert(currentPeriodGrade)
             }
         }

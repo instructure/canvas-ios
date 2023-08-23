@@ -355,6 +355,42 @@ class ModuleListViewControllerTests: CoreTestCase {
 
     }
 
+    func testCellPointsLabelWhenQuantitativeDataEnabled() {
+        // Given
+        mockCourseAndModuleItemWith(restrict_quantitative_data: true)
+
+        // When
+        loadView()
+
+        // Then
+        let cell = moduleItemCell(at: IndexPath(row: 0, section: 0))
+        XCTAssertEqual(cell.dueLabel.text, "")
+    }
+
+    func testCellPointsLabelWhenQuantitativeDataDisabled() {
+        // Given
+        mockCourseAndModuleItemWith(restrict_quantitative_data: false)
+
+        // When
+        loadView()
+
+        // Then
+        let cell = moduleItemCell(at: IndexPath(row: 0, section: 0))
+        XCTAssertEqual(cell.dueLabel.text, "10 pts")
+    }
+
+    func testCellPointsLabelWhenQuantitativeDataNotSpecified() {
+        // Given
+        mockCourseAndModuleItemWith(restrict_quantitative_data: nil)
+
+        // When
+        loadView()
+
+        // Then
+        let cell = moduleItemCell(at: IndexPath(row: 0, section: 0))
+        XCTAssertEqual(cell.dueLabel.text, "10 pts")
+    }
+
     func testSelectItem() {
         api.mock(GetModulesRequest(courseID: "1", include: []), value: [ .make(id: "1") ])
         api.mock(GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]), value: [
@@ -514,5 +550,39 @@ class ModuleListViewControllerTests: CoreTestCase {
         XCTAssertTrue(viewController.emptyView.isHidden)
         XCTAssertEqual(viewController.errorView.messageLabel.text, "This page has been disabled for this course.")
         XCTAssertEqual(viewController.tableView!.dataSource!.numberOfSections?(in: viewController.tableView!), 0)
+    }
+
+    private func mockCourseAndModuleItemWith(restrict_quantitative_data: Bool?) {
+        api.mock(
+            GetCourse(courseID: "1"),
+            value: .make(
+                settings: APICourseSettings(
+                    usage_rights_required: nil,
+                    syllabus_course_summary: nil,
+                    restrict_quantitative_data: restrict_quantitative_data
+                )
+            )
+        )
+        api.mock(
+            GetModulesRequest(courseID: "1", include: []),
+            value: [.make(id: "1", items: nil)]
+        )
+        api.mock(
+            GetModuleItemsRequest(courseID: "1", moduleID: "1", include: [.content_details, .mastery_paths]),
+            value: [
+                .make(
+                    id: "1",
+                    position: 1,
+                    content: .file("1"),
+                    content_details: .make(
+                        due_at: nil,
+                        points_possible: 10,
+                        locked_for_user: true,
+                        lock_explanation: "Reasons"
+                    ),
+                    completion_requirement: nil
+                ),
+            ]
+        )
     }
 }

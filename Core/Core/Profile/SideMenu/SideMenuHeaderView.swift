@@ -24,6 +24,7 @@ struct SideMenuHeaderView: View {
 
     @ObservedObject private var viewModel = ImagePickerViewModel()
     @ObservedObject var userModel = UserModel()
+    @StateObject private var offlineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
 
     @State private var isShowingActionSheet = false
     @State private var isUploadingImage = false
@@ -69,7 +70,24 @@ struct SideMenuHeaderView: View {
                 .foregroundColor(.textDark)
                 .minimumScaleFactor(0.2)
                 .identifier("Profile.userEmailLabel")
-        }.padding(20).frame(height: 185)
+
+            if offlineModeViewModel.isOffline {
+                HStack(spacing: 4) {
+                    Image
+                        .offlineLine
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                    Text("Offline", bundle: .core)
+                        .font(.regular14)
+                        .padding(.bottom, 2)
+                }
+                .foregroundColor(.textDarkest)
+                .padding(.top, 6)
+            }
+        }
+        .animation(.default, value: offlineModeViewModel.isOffline)
+        .padding(20)
+        .frame(minHeight: 185)
         .sheet(isPresented: $viewModel.isPresentingImagePicker) {
             ProfileImagePicker(sourceType: viewModel.sourceType) { image in
                 viewModel.isPresentingImagePicker = false

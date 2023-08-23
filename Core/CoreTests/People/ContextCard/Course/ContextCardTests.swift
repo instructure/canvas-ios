@@ -73,6 +73,59 @@ class ContextCardTests: CoreTestCase {
         XCTAssertNotNil(tree?.find(id: "ContextCard.submissionCell(1)"))
     }
 
+    func testGradesViewWhenQuantitativeDataEnabled() {
+        // Given
+        let testee = ContextCardViewModel(courseID: "1", userID: "1", currentUserID: "1")
+        mockCourseAndAssignmentWith(restrict_quantitative_data: true)
+
+        // When
+        testee.viewAppeared()
+
+        // Then
+        XCTAssertEqual(testee.shouldHideScore, true)
+    }
+
+    func testGradesViewWhenQuantitativeDataDisabled() {
+        // Given
+        let testee = ContextCardViewModel(courseID: "1", userID: "1", currentUserID: "1")
+        mockCourseAndAssignmentWith(restrict_quantitative_data: false)
+
+        // When
+        testee.viewAppeared()
+
+        // Then
+        XCTAssertEqual(testee.shouldHideScore, false)
+    }
+
+    func testGradesViewWhenQuantitativeDataNotSpecified() {
+        // Given
+        let testee = ContextCardViewModel(courseID: "1", userID: "1", currentUserID: "1")
+        mockCourseAndAssignmentWith(restrict_quantitative_data: nil)
+
+        // When
+        testee.viewAppeared()
+
+        // Then
+        XCTAssertEqual(testee.shouldHideScore, false)
+    }
+
+    private func mockCourseAndAssignmentWith(restrict_quantitative_data: Bool?) {
+        let enrollment = makeEnrollment(with: .make(current_grade: "3", final_grade: "4", current_score: 77, final_score: 88))
+        api.mock(GetCourseSingleUser(context: .course("1"), userID: "1"), value: makeUser(with: enrollment))
+        api.mock(GetEnrollments(context: .course("1"), states: [ .active ]), value: [ enrollment ])
+
+        api.mock(
+            GetCourse(courseID: "1"),
+            value: .make(
+                settings: APICourseSettings(
+                    usage_rights_required: nil,
+                    syllabus_course_summary: nil,
+                    restrict_quantitative_data: restrict_quantitative_data
+                )
+            )
+        )
+    }
+
     private func mockApiCalls() {
         let enrollment = makeEnrollment(with: .make(current_grade: "A", final_grade: "B", current_score: 77, final_score: 88))
         api.mock(GetCourseSingleUser(context: .course("1"), userID: "1"), value: makeUser(with: enrollment))

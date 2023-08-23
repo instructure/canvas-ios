@@ -50,6 +50,11 @@ public class ModuleItem: NSManagedObject {
         set { publishedRaw = NSNumber(value: newValue) }
     }
 
+    public var hideQuantitativeData: Bool {
+        let course: Course? = managedObjectContext?.first(where: #keyPath(Course.id), equals: courseID)
+        return course?.hideQuantitativeData ?? false
+    }
+
     public var type: ModuleItemType? {
         get {
             if let data = typeRaw {

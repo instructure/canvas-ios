@@ -21,7 +21,7 @@ import Combine
 import XCTest
 
 class OfflineModeViewModelTests: XCTestCase {
-    let mockInteractor = MockOfflineModeInteractor()
+    private let mockInteractor = MockOfflineModeInteractor()
 
     func testInitialOfflineValue() {
         let testee = OfflineModeViewModel(interactor: mockInteractor)
@@ -55,7 +55,7 @@ class OfflineModeViewModelTests: XCTestCase {
     }
 }
 
-class MockOfflineModeInteractor: OfflineModeInteractor {
+private class MockOfflineModeInteractor: OfflineModeInteractor {
     func isFeatureFlagEnabled() -> Bool {
         false
     }

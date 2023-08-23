@@ -125,7 +125,7 @@ exports[`SubmissionStatus status \`submitted\` renders properly 1`] = `
         },
         undefined,
         Object {
-          "color": "#00AC18",
+          "color": "#127A1B",
         },
       ],
     ]

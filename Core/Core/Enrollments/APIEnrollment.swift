@@ -51,6 +51,7 @@ public struct APIEnrollment: Codable, Equatable {
     let computed_current_score: Double?
     let computed_final_score: Double?
     let computed_current_grade: String?
+    let computed_current_letter_grade: String?
     let computed_final_grade: String?
     // let unposted_current_grade: String?
     // let unposted_final_grade: String?
@@ -111,6 +112,7 @@ extension APIEnrollment {
         computed_current_score: Double? = nil,
         computed_final_score: Double? = nil,
         computed_current_grade: String? = nil,
+        computed_current_letter_grade: String? = nil,
         computed_final_grade: String? = nil,
         multiple_grading_periods_enabled: Bool? = false,
         totals_for_all_grading_periods_option: Bool? = true,
@@ -140,6 +142,7 @@ extension APIEnrollment {
             computed_current_score: computed_current_score,
             computed_final_score: computed_final_score,
             computed_current_grade: computed_current_grade,
+            computed_current_letter_grade: computed_current_letter_grade,
             computed_final_grade: computed_final_grade,
             multiple_grading_periods_enabled: multiple_grading_periods_enabled,
             totals_for_all_grading_periods_option: totals_for_all_grading_periods_option,

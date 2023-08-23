@@ -59,6 +59,10 @@ public class Quiz: NSManagedObject {
     @NSManaged public var unlockAt: Date?
     @NSManaged public var unpublishable: Bool
 
+    public var course: Course? {
+        managedObjectContext?.first(where: #keyPath(Course.id), equals: courseID)
+    }
+
     public var hideResults: QuizHideResults? {
         get { return hideResultsRaw.flatMap { QuizHideResults(rawValue: $0) } }
         set { hideResultsRaw = newValue?.rawValue }
@@ -102,6 +106,10 @@ public class Quiz: NSManagedObject {
             return nil
         }
         return URL(string: path, relativeTo: AppEnvironment.shared.api.baseURL)
+    }
+
+    public var hideQuantitativeData: Bool {
+        course?.hideQuantitativeData == true
     }
 
     public func resultsPath(for attempt: Int) -> String? {

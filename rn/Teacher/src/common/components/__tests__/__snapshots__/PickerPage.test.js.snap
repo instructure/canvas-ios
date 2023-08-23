@@ -205,7 +205,7 @@ exports[`PickerPage renders the given options as rows: b 1`] = `
               "height": 20,
               "marginLeft": 16,
               "resizeMode": "contain",
-              "tintColor": "#00AC18",
+              "tintColor": "#127A1B",
               "width": 20,
             }
           }
