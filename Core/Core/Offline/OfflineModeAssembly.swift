@@ -42,6 +42,10 @@ public enum OfflineModeAssembly {
         }
     }
 
+    public static func make(parent: UIViewController) -> OfflineBannerViewModel {
+        OfflineBannerViewModel(interactor: make(), parent: parent)
+    }
+
 #if DEBUG
 
     static func mock(_ interactor: OfflineModeInteractor) {

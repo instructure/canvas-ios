@@ -66,6 +66,7 @@ public final class OfflineModeInteractorLive: OfflineModeInteractor {
             .startObservingStatus()
             .receive(on: DispatchQueue.main)
             .map { _ in self.isOfflineModeEnabled() }
+            .removeDuplicates()
             .eraseToAnyPublisher()
     }
 
@@ -74,6 +75,7 @@ public final class OfflineModeInteractorLive: OfflineModeInteractor {
             .startObservingStatus()
             .receive(on: DispatchQueue.main)
             .map { $0 }
+            .removeDuplicates()
             .eraseToAnyPublisher()
     }
 
