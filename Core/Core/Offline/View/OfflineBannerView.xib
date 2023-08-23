@@ -83,7 +83,6 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" name="crimson"/>
             <accessibility key="accessibilityConfiguration">
                 <accessibilityTraits key="traits" notEnabled="YES"/>
             </accessibility>
@@ -124,9 +123,6 @@
         </namedColor>
         <namedColor name="borderMedium">
             <color red="0.7803921568627451" green="0.80392156862745101" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="crimson">
-            <color red="0.93333333333333335" green="0.023529411764705882" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="shamrock">
             <color red="0.070588235294117646" green="0.47843137254901963" blue="0.10588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -41,8 +41,8 @@ class OfflineBannerView: UIView {
         leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor).isActive = true
         trailingAnchor.constraint(equalTo: viewController.view.trailingAnchor).isActive = true
         topAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        heightAnchor.constraint(greaterThanOrEqualToConstant: 31.5).isActive = true
-        separatorHeight.constant = 0.5
+        heightAnchor.constraint(equalToConstant: 32).isActive = true
+        separatorHeight.constant = 1 / UIScreen.main.scale
     }
 
     private func setup() {
