@@ -33,7 +33,6 @@ public extension CourseSyncEntry {
 
         var bytesDownloaded: Int {
             switch state {
-            case .idle: return 0
             case .downloaded: return bytesToDownload
             case .loading: return 0
             case .error: return 0
