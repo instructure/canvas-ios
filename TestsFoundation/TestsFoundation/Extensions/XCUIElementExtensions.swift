@@ -189,22 +189,22 @@ public extension XCUIElement {
             case .swipeUp(let target):
                 switch target {
                 case .onApp: app.swipeUp()
-                case .onElement: actualElement.swipeUp()
+                case .onElement: swipeUp()
                 }
             case .swipeDown(let target):
                 switch target {
                 case .onApp: app.swipeDown()
-                case .onElement: actualElement.swipeDown()
+                case .onElement: swipeDown()
                 }
             case .swipeRight(let target):
                 switch target {
                 case .onApp: app.swipeRight()
-                case .onElement: actualElement.swipeRight()
+                case .onElement: swipeRight()
                 }
             case .swipeLeft(let target):
                 switch target {
                 case .onApp: app.swipeLeft()
-                case .onElement: actualElement.swipeLeft()
+                case .onElement: swipeLeft()
                 }
             }
 
