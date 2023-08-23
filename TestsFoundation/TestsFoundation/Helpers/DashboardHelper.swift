@@ -30,8 +30,19 @@ public class DashboardHelper: BaseHelper {
         return app.find(id: "DashboardCourseCell.\(course?.id ?? courseId!)")
     }
 
+    public static func courseCardGradeLabel(courseCard: XCUIElement, grade: String) -> XCUIElement {
+        return courseCard.find(label: grade)
+    }
+
     public static func toggleFavorite(course: DSCourse) {
         app.find(id: "DashboardCourseCell.\(course.id).favoriteButton", type: .button).hit()
+    }
+
+    public static func turnOnShowGrades() {
+        dashboardSettings.hit()
+        let showGradeToggle = dashboardSettingsShowGradeToggle.waitUntil(.visible)
+        if showGradeToggle.hasValue(value: "0") { showGradeToggle.hit() }
+        doneButton.hit()
     }
 
     public struct CourseInvitations {

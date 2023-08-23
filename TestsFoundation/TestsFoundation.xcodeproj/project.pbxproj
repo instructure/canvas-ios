@@ -110,6 +110,7 @@
 		8B9846A52A94F552003E1E9F /* CreateDSConferencesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9846A22A94F552003E1E9F /* CreateDSConferencesRequest.swift */; };
 		8B9846A62A94F552003E1E9F /* DataSeeder+Conferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9846A32A94F552003E1E9F /* DataSeeder+Conferences.swift */; };
 		8B9846A82A94F56A003E1E9F /* ConferencesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9846A72A94F56A003E1E9F /* ConferencesHelper.swift */; };
+		8B9846AE2A9619F1003E1E9F /* UpdateDSCourseSettingsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9846AD2A9619F1003E1E9F /* UpdateDSCourseSettingsRequest.swift */; };
 		8C02370D294ADC5E03166916 /* CreateDSQuizQuestionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFA2EB914E415CCFACDB /* CreateDSQuizQuestionRequest.swift */; };
 		8CE7A795708CBCF4AF7A2674 /* DSModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69E1EBE6B486730AE73F45 /* DSModuleItem.swift */; };
 		8CEEA54DE127851FF426490F /* CreateDSDiscussionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D6E99369534DE2260DD4EB /* CreateDSDiscussionRequest.swift */; };
@@ -313,6 +314,7 @@
 		8B9846A22A94F552003E1E9F /* CreateDSConferencesRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateDSConferencesRequest.swift; sourceTree = "<group>"; };
 		8B9846A32A94F552003E1E9F /* DataSeeder+Conferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataSeeder+Conferences.swift"; sourceTree = "<group>"; };
 		8B9846A72A94F56A003E1E9F /* ConferencesHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConferencesHelper.swift; sourceTree = "<group>"; };
+		8B9846AD2A9619F1003E1E9F /* UpdateDSCourseSettingsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDSCourseSettingsRequest.swift; sourceTree = "<group>"; };
 		8E046239E00E2F114C950D3A /* ModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFixture.swift; sourceTree = "<group>"; };
 		8E52A6F60DF961A9FB652399 /* DSSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSubmission.swift; sourceTree = "<group>"; };
 		8EB01A67D620697DB09B6F61 /* CreateDSAccountNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSAccountNotificationRequest.swift; sourceTree = "<group>"; };
@@ -889,6 +891,7 @@
 				7696666C5B013125861D6568 /* DataSeeder+DSCourse.swift */,
 				36F4DB85C49C47721883E34F /* DSCourse.swift */,
 				AB2AB5C640DE9A874C8DB52C /* UpdateDSCourseRequest.swift */,
+				8B9846AD2A9619F1003E1E9F /* UpdateDSCourseSettingsRequest.swift */,
 			);
 			path = Course;
 			sourceTree = "<group>";
@@ -1146,6 +1149,7 @@
 				DEEC97DD9DE164FC85B7CC78 /* FileFixture.swift in Sources */,
 				D2224694AC33EBC4810E0CDD /* FileUploadTargetFixture.swift in Sources */,
 				8B9846A42A94F552003E1E9F /* DSConference.swift in Sources */,
+				8B9846AE2A9619F1003E1E9F /* UpdateDSCourseSettingsRequest.swift in Sources */,
 				69C34E78717F6C85DDF399A8 /* FilesHelper.swift in Sources */,
 				CB1F323336229DCF025587F7 /* GradesHelper.swift in Sources */,
 				1D4A01CB676468A90CF777A3 /* GradingPeriodFixture.swift in Sources */,

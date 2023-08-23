@@ -77,7 +77,7 @@ public extension XCUIElement {
 
     @discardableResult
     func hit() -> XCUIElement {
-        waitUntil(.visible)
+        waitUntil(.visible).waitUntil(.hittable, timeout: 5)
         if !isHittable { actionUntilElementCondition(action: .swipeUp(), condition: .hittable, timeout: 5) }
         tap()
         return self
