@@ -78,13 +78,6 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             .receive(on: scheduler)
             .flatMap(maxPublishers: .max(3)) { unownedSelf.downloadCourseDetails($0) }
             .collect()
-            .handleEvents(
-                receiveCompletion: { _ in
-                    if unownedSelf.safeCourseSyncEntriesValue.hasError {
-                        unownedSelf.setIdleStateForUnfinishedEntries()
-                    }
-                }
-            )
             .sink()
 
         return courseSyncEntries.eraseToAnyPublisher()
@@ -237,48 +230,6 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             )
             .map { _ in () }
             .eraseToAnyPublisher()
-    }
-
-    /// When a download fails, we need to update the state of every other item that were still loading at the time when the error occured.
-    private func setIdleStateForUnfinishedEntries() {
-        var entries = safeCourseSyncEntriesValue
-
-        entries.forEach { entry in
-            if case .loading = entry.state {
-                entries[id: entry.id]?.updateCourseState(state: .idle)
-                progressWriterInteractor.saveStateProgress(
-                    id: entry.id,
-                    selection: .course(entry.id),
-                    state: .idle
-                )
-            }
-
-            entry.tabs.forEach { tab in
-                if case .loading = tab.state {
-                    entries[id: entry.id]?.updateTabState(id: tab.id, state: .idle)
-                    progressWriterInteractor.saveStateProgress(
-                        id: tab.id,
-                        selection: .tab(entry.id, tab.id),
-                        state: .idle
-                    )
-                }
-            }
-            entry.files.forEach { file in
-                if case .loading = file.state {
-                    entries[id: entry.id]?.updateFileState(id: file.id, state: .idle)
-                    progressWriterInteractor.saveStateProgress(
-                        id: file.id,
-                        selection: .file(entry.id, file.id),
-                        state: .idle
-                    )
-                }
-            }
-        }
-
-        progressWriterInteractor.saveDownloadProgress(entries: entries, error: fileErrorMessage)
-        backgroundQueue.sync(flags: .barrier) {
-            courseSyncEntries.send(entries)
-        }
     }
 
     /// Updates entry state in memory and writes it to Core Data. In addition it also writes file progress to Core Data.
