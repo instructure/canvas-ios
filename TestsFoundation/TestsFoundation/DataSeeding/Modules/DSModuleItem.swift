@@ -23,6 +23,7 @@ public struct DSModuleItem: Codable {
     public let type: String
     public let content_id: String?
     public let published: Bool
+    public var points_possible: Int?
 }
 
 public enum DSModuleItemType: String, Encodable {

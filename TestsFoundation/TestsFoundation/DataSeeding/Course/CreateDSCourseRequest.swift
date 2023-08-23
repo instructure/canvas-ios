@@ -38,10 +38,14 @@ extension CreateDSCourseRequest {
         let name: String
         let time_zone: String = "Europe/Budapest"
         let syllabus_body: String?
+        let start_at: Date?
+        let end_at: Date?
 
-        public init(name: String, syllabus_body: String? = nil) {
+        public init(name: String, syllabus_body: String? = nil, start_at: Date? = nil, end_at: Date? = nil) {
             self.name = name
             self.syllabus_body = syllabus_body
+            self.start_at = start_at
+            self.end_at = end_at
         }
     }
 

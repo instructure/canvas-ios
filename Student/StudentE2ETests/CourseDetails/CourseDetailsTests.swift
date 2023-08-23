@@ -46,40 +46,40 @@ class CourseDetailsTests: E2ETestCase {
         XCTAssertTrue(subtitleLabel.exists)
         XCTAssertEqual(subtitleLabel.label, "Default Term")
 
-        let homeButton = CourseDetailsHelper.cell(type: .home)
-        XCTAssertTrue(homeButton.actionUntilElementCondition(action: .swipeUp, condition: .visible))
+        let homeButton = CourseDetailsHelper.cell(type: .home).waitUntil(.visible)
+        XCTAssertTrue(homeButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))
 
-        let announcementsButton = CourseDetailsHelper.cell(type: .announcements)
-        XCTAssertTrue(announcementsButton.actionUntilElementCondition(action: .swipeUp, condition: .visible))
+        let announcementsButton = CourseDetailsHelper.cell(type: .announcements).waitUntil(.visible)
+        XCTAssertTrue(announcementsButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))
 
-        let assignmentsButton = CourseDetailsHelper.cell(type: .assignments)
-        XCTAssertTrue(assignmentsButton.actionUntilElementCondition(action: .swipeUp, condition: .visible))
+        let assignmentsButton = CourseDetailsHelper.cell(type: .assignments).waitUntil(.visible)
+        XCTAssertTrue(assignmentsButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))
 
-        let discussionsButton = CourseDetailsHelper.cell(type: .discussions)
-        XCTAssertTrue(discussionsButton.actionUntilElementCondition(action: .swipeUp, condition: .visible))
+        let discussionsButton = CourseDetailsHelper.cell(type: .discussions).waitUntil(.visible)
+        XCTAssertTrue(discussionsButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))
 
-        let gradesButton = CourseDetailsHelper.cell(type: .grades)
-        XCTAssertTrue(gradesButton.actionUntilElementCondition(action: .swipeUp, condition: .visible))
+        let gradesButton = CourseDetailsHelper.cell(type: .grades).waitUntil(.visible)
+        XCTAssertTrue(gradesButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))
 
-        let peopleButton = CourseDetailsHelper.cell(type: .people)
-        XCTAssertTrue(peopleButton.actionUntilElementCondition(action: .swipeUp, condition: .visible))
+        let peopleButton = CourseDetailsHelper.cell(type: .people).waitUntil(.visible)
+        XCTAssertTrue(peopleButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))
 
-        let pagesButton = CourseDetailsHelper.cell(type: .pages)
-        XCTAssertTrue(pagesButton.actionUntilElementCondition(action: .swipeUp, condition: .visible))
+        let pagesButton = CourseDetailsHelper.cell(type: .pages).waitUntil(.visible)
+        XCTAssertTrue(pagesButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))
 
-        let syllabusButton = CourseDetailsHelper.cell(type: .syllabus)
-        XCTAssertTrue(syllabusButton.actionUntilElementCondition(action: .swipeUp, condition: .visible))
+        let syllabusButton = CourseDetailsHelper.cell(type: .syllabus).waitUntil(.visible)
+        XCTAssertTrue(syllabusButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))
 
-        let modulesButton = CourseDetailsHelper.cell(type: .modules)
-        XCTAssertTrue(modulesButton.actionUntilElementCondition(action: .swipeUp, condition: .visible))
+        let modulesButton = CourseDetailsHelper.cell(type: .modules).waitUntil(.visible)
+        XCTAssertTrue(modulesButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))
 
-        let bigBlueButtonButton = CourseDetailsHelper.cell(type: .bigBlueButton)
-        XCTAssertTrue(bigBlueButtonButton.actionUntilElementCondition(action: .swipeUp, condition: .visible))
+        let bigBlueButtonButton = CourseDetailsHelper.cell(type: .bigBlueButton).waitUntil(.visible)
+        XCTAssertTrue(bigBlueButtonButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))
 
-        let collaborationsButton = CourseDetailsHelper.cell(type: .collaborations)
-        XCTAssertTrue(collaborationsButton.actionUntilElementCondition(action: .swipeUp, condition: .visible))
+        let collaborationsButton = CourseDetailsHelper.cell(type: .collaborations).waitUntil(.visible)
+        XCTAssertTrue(collaborationsButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))
 
-        let googleDriveButton = CourseDetailsHelper.cell(type: .googleDrive)
-        XCTAssertTrue(googleDriveButton.actionUntilElementCondition(action: .swipeUp, condition: .visible))
+        let googleDriveButton = CourseDetailsHelper.cell(type: .googleDrive).waitUntil(.visible)
+        XCTAssertTrue(googleDriveButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))
     }
 }

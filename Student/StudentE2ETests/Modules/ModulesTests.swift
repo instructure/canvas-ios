@@ -50,7 +50,11 @@ class ModulesTests: E2ETestCase {
         XCTAssertTrue(assignmentTitle.isVisible)
         XCTAssertEqual(assignmentTitle.label, moduleAssignment.title)
         XCTAssertTrue(assignmentPoints.isVisible)
-        XCTAssertEqual(assignmentPoints.label, "0 pts")
+
+        // TODO: Update the below line once the points label bug is fixed
+        let pointsString = moduleAssignment.points_possible! == 1 ? "pts" : "pts"
+
+        XCTAssertEqual(assignmentPoints.label, "\(moduleAssignment.points_possible!) \(pointsString)")
 
         // MARK: Check discussion module item
         let discussionItem = ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 1).waitUntil(.visible)
