@@ -40,9 +40,15 @@ class CourseSyncProgressViewModelTests: CoreTestCase {
     }
 
     func testCancelTap() {
+        testee.cancelButtonDidTap.accept(())
+        XCTAssertEqual(testee.isShowingCancelDialog, true)
+    }
+
+    func testCancelConfirmTap() {
         let controller = UIViewController()
         let weakController = WeakViewController(controller)
-        testee.cancelButtonDidTap.accept(weakController)
+        testee.viewOnAppear.accept(weakController)
+        testee.confirmAlert.notifyCompletion(isConfirmed: true)
         XCTAssertEqual(router.dismissed, controller)
     }
 

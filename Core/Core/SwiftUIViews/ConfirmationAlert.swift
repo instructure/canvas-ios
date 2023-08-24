@@ -50,7 +50,8 @@ public class ConfirmationAlertViewModel {
         return subject.eraseToAnyPublisher()
     }
 
-    fileprivate func notifyCompletion(isConfirmed: Bool) {
+    // Don't use this function outside of this class. Internal access level is required because of tests.
+    internal func notifyCompletion(isConfirmed: Bool) {
         for subscriber in subscribers {
 
             if isConfirmed {

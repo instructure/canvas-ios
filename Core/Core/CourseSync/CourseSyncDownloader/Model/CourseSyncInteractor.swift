@@ -47,7 +47,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         attributes: .concurrent
     )
     private let fileErrorMessage = NSLocalizedString("File download failed.", comment: "")
-    private var downloadSubscription: AnyCancellable?
+    internal private(set) var downloadSubscription: AnyCancellable?
     private var subscriptions = Set<AnyCancellable>()
 
     public init(
