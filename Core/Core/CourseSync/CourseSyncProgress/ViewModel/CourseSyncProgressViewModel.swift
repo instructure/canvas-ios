@@ -33,6 +33,7 @@ class CourseSyncProgressViewModel: ObservableObject {
     @Published public private(set) var state = State.loading
     @Published public private(set) var cells: [Cell] = []
     @Published public private(set) var showRetryButton = false
+    @Published public var isShowingCancelDialog = false
 
     public let labels = (
         noCourses: (
@@ -49,9 +50,21 @@ class CourseSyncProgressViewModel: ObservableObject {
         )
     )
 
+    public let confirmAlert = ConfirmationAlertViewModel(
+        title: NSLocalizedString("Cancel Sync?", comment: ""),
+        message: NSLocalizedString(
+           """
+           It will stop offline content sync. You can do it again later.
+           """, comment: ""),
+        cancelButtonTitle: NSLocalizedString("No", comment: ""),
+        confirmButtonTitle: NSLocalizedString("Yes", comment: ""),
+        isDestructive: false
+    )
+
     // MARK: - Input
 
-    public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
+    public let cancelButtonDidTap = PassthroughRelay<Void>()
+    public let viewOnAppear = CurrentValueRelay<WeakViewController?>(nil)
     public let dismissButtonDidTap = PassthroughRelay<WeakViewController>()
     public let retryButtonDidTap = PassthroughRelay<Void>()
 
@@ -65,13 +78,24 @@ class CourseSyncProgressViewModel: ObservableObject {
         self.interactor = interactor
         self.router = router
         updateState(interactor)
-        handleCancelButtonTap(interactor)
+        handleCancelButtonTap()
+        handleCancelConfirmButtonTap(interactor)
         handleDismissButtonTap(interactor)
         handleRetryButtonTap(interactor, router: router)
     }
 
-    private func handleCancelButtonTap(_ interactor: CourseSyncProgressInteractor) {
+    private func handleCancelButtonTap() {
         cancelButtonDidTap
+            .sink { [unowned self] _ in
+                isShowingCancelDialog = true
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func handleCancelConfirmButtonTap(_ interactor: CourseSyncProgressInteractor) {
+        confirmAlert
+            .userConfirmation()
+            .flatMap { [unowned viewOnAppear] in viewOnAppear.first().compactMap { $0 } }
             .sink { [unowned router] viewController in
                 interactor.cancelSync()
                 router.dismiss(viewController)
