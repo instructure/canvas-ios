@@ -30,8 +30,8 @@ public class DashboardHelper: BaseHelper {
         return app.find(id: "DashboardCourseCell.\(course?.id ?? courseId!)")
     }
 
-    public static func courseCardGradeLabel(courseCard: XCUIElement, grade: String) -> XCUIElement {
-        return courseCard.find(label: grade)
+    public static func courseCardGradeLabel(course: DSCourse) -> XCUIElement {
+        return app.find(id: "DashboardCourseCell.\(course.id).gradePill")
     }
 
     public static func toggleFavorite(course: DSCourse) {

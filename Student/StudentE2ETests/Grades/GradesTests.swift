@@ -200,7 +200,7 @@ class GradesTests: E2ETestCase {
     }
 
     func testLetterGradeOnly() {
-        // MARK: Seed the usual stuff with 3 assignments
+        // MARK: Seed the usual stuff, 3 assignments with submissions
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.updateCourseSettings(course: course, restrictQuantitativeData: true)
@@ -210,11 +210,9 @@ class GradesTests: E2ETestCase {
         let percentAssignment = AssignmentsHelper.createAssignment(course: course, pointsPossible: 10, gradingType: .percent)
         let passFailAssignment = AssignmentsHelper.createAssignment(course: course, pointsPossible: 10, gradingType: .pass_fail)
         let assignments = [pointsAssignment, percentAssignment, passFailAssignment]
+        GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
 
         logInDSUser(student)
-
-        // MARK: Create submissions for all
-        GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
 
         // MARK: Grade assignments, Check Grades page
         let grades = ["6", "7", "8"]
@@ -222,9 +220,11 @@ class GradesTests: E2ETestCase {
         GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
 
         DashboardHelper.turnOnShowGrades()
-        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        let courseCardGradeLabel = DashboardHelper.courseCardGradeLabel(courseCard: courseCard, grade: totalGrade)
-        XCTAssertTrue(app.actionUntilElementCondition(action: .pullToRefresh, element: courseCardGradeLabel, condition: .visible))
+        DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        pullToRefresh()
+        let courseCardGradeLabel = DashboardHelper.courseCardGradeLabel(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCardGradeLabel.isVisible)
+        XCTAssertTrue(courseCardGradeLabel.hasLabel(label: totalGrade))
 
         GradesHelper.navigateToGrades(course: course)
         let pointsAssignmentCell = GradesHelper.cell(assignment: pointsAssignment).waitUntil(.visible)
