@@ -79,7 +79,7 @@ class CourseSyncProgressViewModelTests: CoreTestCase {
         XCTAssertEqual(item.id, "test")
     }
 
-    func testUpdateStateOutputsDataWithError() {
+    func testUpdateStateDataWithErrorIsShownWhenFinished() {
         let mockItem = CourseSyncEntry(name: "",
                                        id: "test",
                                        tabs: [],
@@ -90,10 +90,37 @@ class CourseSyncProgressViewModelTests: CoreTestCase {
         mockFileProgress.bytesDownloaded = 1
         mockFileProgress.bytesToDownload = 2
         mockFileProgress.error = "File download failed."
+        mockFileProgress.isFinished = true
         mockProgressInteractor.courseSyncFileProgressSubject.send(.data([mockFileProgress]))
 
         waitUntil(shouldFail: true) {
             testee.state == .dataWithError
+        }
+        XCTAssertEqual(testee.cells.count, 1)
+
+        guard case .item(let item) = testee.cells.first else {
+            return XCTFail()
+        }
+
+        XCTAssertEqual(item.id, "test")
+    }
+
+    func testUpdateStateDataWithErrorIsNotShownUntilFinished() {
+        let mockItem = CourseSyncEntry(name: "",
+                                       id: "test",
+                                       tabs: [],
+                                       files: [])
+        mockProgressInteractor.courseSyncEntriesSubject.send([mockItem])
+
+        let mockFileProgress: CourseSyncDownloadProgress = databaseClient.insert()
+        mockFileProgress.bytesDownloaded = 1
+        mockFileProgress.bytesToDownload = 2
+        mockFileProgress.error = "File download failed."
+        mockFileProgress.isFinished = false
+        mockProgressInteractor.courseSyncFileProgressSubject.send(.data([mockFileProgress]))
+
+        waitUntil(shouldFail: true) {
+            testee.state == .data
         }
         XCTAssertEqual(testee.cells.count, 1)
 

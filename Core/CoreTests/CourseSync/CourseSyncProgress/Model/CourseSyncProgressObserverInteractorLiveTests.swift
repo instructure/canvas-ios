@@ -53,7 +53,7 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
         entries[0].files[1].selectionState = .selected
         entries[0].files[0].state = .downloaded
         entries[0].files[1].state = .downloaded
-        helper.saveDownloadProgress(entries: entries, error: nil)
+        helper.saveDownloadProgress(entries: entries)
 
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee.observeDownloadProgress()

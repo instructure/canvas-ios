@@ -302,7 +302,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
                         mimeClass: "image",
                         updatedAt: nil,
                         state: .error,
-                        bytesToDownload: 1000,
+                        bytesToDownload: 1000
                     ),
                     .init(
                         id: "courses/course-id-1/files/file-2",
