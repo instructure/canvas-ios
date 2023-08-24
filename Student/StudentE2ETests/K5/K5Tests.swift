@@ -80,7 +80,7 @@ class K5Tests: K5E2ETestCase {
         let assignmentItemButton = ScheduleHelper.assignmentItemButton(assignment: todaysAssignment).waitUntil(.hittable)
         XCTAssertTrue(assignmentItemButton.isHittable)
 
-        let quizItemButton = ScheduleHelper.quizItemButton(quiz: tomorrowsQuiz).waitUntil(.visible)
+        let quizItemButton = ScheduleHelper.quizItemButton(quiz: tomorrowsQuiz).waitUntil(.hittable)
         XCTAssertTrue(quizItemButton.isHittable)
     }
 

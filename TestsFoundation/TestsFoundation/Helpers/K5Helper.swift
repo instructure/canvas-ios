@@ -39,8 +39,8 @@ public class K5Helper: BaseHelper {
             let due = K5Helper.dateFormatter.string(from: assignment.due_at!)
             let pointsString = assignment.points_possible! == 1 ? "pt" : "pts"
             let labelToFind = "\(assignment.name), \(assignment.points_possible!) \(pointsString), Due: \(due)"
-            let element = app.find(label: labelToFind, type: .button)
-            app.actionUntilElementCondition(action: .swipeUp(), element: element, condition: .visible)
+            let element = app.find(label: labelToFind, type: .button).waitUntil(.visible)
+            app.actionUntilElementCondition(action: .swipeUp(), element: element, condition: .hittable)
             return element
         }
 
@@ -49,8 +49,8 @@ public class K5Helper: BaseHelper {
             let due = K5Helper.dateFormatter.string(from: quiz.due_at!)
             let pointsString = quiz.points_possible! == 1 ? "pt" : "pts"
             let labelToFind = "\(quiz.title), \(quiz.points_possible!) \(pointsString), Due: \(due)"
-            let element = app.find(label: labelToFind, type: .button)
-            app.actionUntilElementCondition(action: .swipeUp(), element: element, condition: .visible)
+            let element = app.find(label: labelToFind, type: .button).waitUntil(.visible)
+            app.actionUntilElementCondition(action: .swipeUp(), element: element, condition: .hittable)
             return element
         }
     }
