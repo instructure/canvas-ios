@@ -78,7 +78,16 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             .receive(on: scheduler)
             .flatMap(maxPublishers: .max(3)) { unownedSelf.downloadCourseDetails($0) }
             .collect()
-            .sink()
+            .sink(
+                receiveCompletion: { _ in
+                    let hasError = unownedSelf.safeCourseSyncEntriesValue.hasError
+                    unownedSelf.progressWriterInteractor.saveDownloadResult(
+                        isFinished: true,
+                        error: hasError ? unownedSelf.fileErrorMessage : nil
+                    )
+                },
+                receiveValue: { _ in }
+            )
 
         return courseSyncEntries.eraseToAnyPublisher()
     }
@@ -208,9 +217,6 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                             unownedSelf.setState(
                                 selection: .file(entry.id, files[fileIndex].id), state: .error
                             )
-                            unownedSelf.setState(
-                                selection: .tab(entry.id, entry.tabs[tabIndex].id), state: .error
-                            )
                         }
                     }
                 )
@@ -248,13 +254,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             progressWriterInteractor.saveStateProgress(id: fileID, selection: selection, state: state)
         }
 
-        var errorMessage: String?
-
-        if case .error = state {
-            errorMessage = fileErrorMessage
-        }
-
-        progressWriterInteractor.saveDownloadProgress(entries: entries, error: errorMessage)
+        progressWriterInteractor.saveDownloadProgress(entries: entries)
         backgroundQueue.sync(flags: .barrier) {
             courseSyncEntries.send(entries)
         }
