@@ -22,6 +22,7 @@ class OfflineBannerView: UIView {
     @IBOutlet private unowned var onlineContainer: UIView!
     @IBOutlet private unowned var offlineContainer: UIView!
     @IBOutlet private unowned var separatorHeight: NSLayoutConstraint!
+    @IBOutlet private unowned var offlineIconCenter: NSLayoutConstraint!
     private var viewModel: OfflineBannerViewModel! {
         didSet {
             setup()
@@ -41,8 +42,9 @@ class OfflineBannerView: UIView {
         leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor).isActive = true
         trailingAnchor.constraint(equalTo: viewController.view.trailingAnchor).isActive = true
         topAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        heightAnchor.constraint(greaterThanOrEqualToConstant: 31.5).isActive = true
-        separatorHeight.constant = 0.5
+        heightAnchor.constraint(equalToConstant: 32).isActive = true
+        offlineIconCenter.constant = 1 / UIScreen.main.scale
+        separatorHeight.constant = 1 / UIScreen.main.scale
     }
 
     private func setup() {
