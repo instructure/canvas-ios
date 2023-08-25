@@ -137,6 +137,12 @@ extension Enrollment {
         }
         return notAvailable
     }
+
+    public func convertedLetterGrade(scorePercentage: Double, gradingScheme: [GradingSchemeEntry]) -> String {
+        let notAvailable = NSLocalizedString("N/A", bundle: .core, comment: "")
+        let normalizedScore = scorePercentage / 100.0
+        return gradingScheme.convertScoreToLetterGrade(score: normalizedScore) ?? notAvailable
+    }
 }
 
 extension Enrollment {

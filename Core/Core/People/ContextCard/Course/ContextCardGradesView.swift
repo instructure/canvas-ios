@@ -28,18 +28,30 @@ struct ContextCardGradesView: View {
     private var gradeSelected = false
     private var unpostedSelected = false
 
-    init(grades: Grade, color: Color) {
+    init(grades: Grade, color: Color, gradingScheme: [GradingSchemeEntry], hideQunatitativeData: Bool) {
         self.grades = grades
         self.color = color
 
         guard grades.currentGrade != nil || grades.currentScore != nil else { return }
 
-        grade = grades.currentGrade ?? "\(grades.currentScore ?? 0)%"
+        grade = {
+            if hideQunatitativeData {
+                return grades.currentGrade ?? grades.enrollment?.convertedLetterGrade(gradingPeriodID: grades.gradingPeriodID,
+                                                                                      gradingScheme: gradingScheme)
+            } else {
+                return grades.currentGrade ?? "\(grades.currentScore ?? 0)%"
+            }
+        }()
 
         if grades.unpostedCurrentGrade != nil {
             unpostedGrade = grades.unpostedCurrentGrade
         } else if let unpostedScore = grades.unpostedCurrentScore {
-            unpostedGrade = "\(unpostedScore)%"
+            if hideQunatitativeData {
+                unpostedGrade = grades.enrollment?.convertedLetterGrade(scorePercentage: unpostedScore,
+                                                                        gradingScheme: gradingScheme)
+            } else {
+                unpostedGrade = "\(unpostedScore)%"
+            }
         }
         if unpostedGrade == grade {
             unpostedGrade = nil
@@ -48,7 +60,12 @@ struct ContextCardGradesView: View {
         if grades.overrideGrade != nil {
             overrideGrade = grades.overrideGrade
         } else if let overrideScore = grades.overrideScore {
-            overrideGrade = "\(Int(overrideScore))%"
+            if hideQunatitativeData {
+                overrideGrade = grades.enrollment?.convertedLetterGrade(scorePercentage: overrideScore,
+                                                                        gradingScheme: gradingScheme)
+            } else {
+                overrideGrade = "\(Int(overrideScore))%"
+            }
         }
 
         gradeSelected = unpostedGrade == nil && overrideGrade == nil
@@ -97,9 +114,9 @@ struct ContextCardGradesView_Previews: PreviewProvider {
         grade.overrideGrade = "C"
         grade.unpostedCurrentScore = 33
         return SwiftUI.Group {
-            ContextCardGradesView(grades: grade, color: .blue)
+            ContextCardGradesView(grades: grade, color: .blue, gradingScheme: [], hideQunatitativeData: false)
                 .previewLayout(.sizeThatFits)
-            ContextCardGradesView(grades: grade, color: .blue)
+            ContextCardGradesView(grades: grade, color: .blue, gradingScheme: [], hideQunatitativeData: false)
                 .previewLayout(.sizeThatFits)
                 .preferredColorScheme(.dark)
         }

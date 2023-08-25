@@ -400,6 +400,7 @@
 		421F584C346A7193E9D91081 /* FileSubmissionAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B7F797D4E7AFA26302167D /* FileSubmissionAssembly.swift */; };
 		422DE90F31788D7B78647A0D /* QuizPreviewInteractorPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3402B4A8CF016A20E4987DB2 /* QuizPreviewInteractorPreview.swift */; };
 		422EBC36E9CFCBC19AC29716 /* APIGraphQLRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D1D67BC091E142BEA2E7D /* APIGraphQLRequestableTests.swift */; };
+		425BB4FB4231F411906AB3C6 /* GradingSchemeEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A56100B33EF4A4057A33F9 /* GradingSchemeEntryTests.swift */; };
 		427503CB25EB9703BC0134DB /* DocViewerAnnotationToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B62E8A3FF971524AF71C20 /* DocViewerAnnotationToolbar.swift */; };
 		42AB7D5A02DBBEDE4BDA5870 /* FileViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF268BEC79B917199C28F06 /* FileViewer.swift */; };
 		42EA12E28B24AFC3D1C0F462 /* AssignmentDueDatesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF0714F1EEA5A8EE7600BCD /* AssignmentDueDatesInteractor.swift */; };
@@ -2328,6 +2329,7 @@
 		6155D4510187D7753BBCF8EE /* APIAccountTermsOfService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAccountTermsOfService.swift; sourceTree = "<group>"; };
 		617AE70312B1FC5CC341AD98 /* PairWithObserverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairWithObserverViewController.swift; sourceTree = "<group>"; };
 		61A1E8C4C40ECFEDE96D43D0 /* DocViewerAnnotationUploadResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationUploadResponseHandler.swift; sourceTree = "<group>"; };
+		61A56100B33EF4A4057A33F9 /* GradingSchemeEntryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradingSchemeEntryTests.swift; sourceTree = "<group>"; };
 		61E6D0169A03E2B671E863A6 /* APICourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICourse.swift; sourceTree = "<group>"; };
 		61EB41A8DAD851F6FBEEBC18 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/Localizable.strings; sourceTree = "<group>"; };
 		62232B5046E8A19273A91F1B /* GetCustomColorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCustomColorsTests.swift; sourceTree = "<group>"; };
@@ -6690,6 +6692,14 @@
 			path = Contexts;
 			sourceTree = "<group>";
 		};
+		9A31D032C7DFE42C3DACCA92 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				61A56100B33EF4A4057A33F9 /* GradingSchemeEntryTests.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		9B555192B24CC8C625B0A8E7 /* Discussions */ = {
 			isa = PBXGroup;
 			children = (
@@ -6717,6 +6727,7 @@
 		9B9A859EBDA405BD7A4D83DA /* Grades */ = {
 			isa = PBXGroup;
 			children = (
+				C4B66311A3DF684D54914287 /* GradingStandard */,
 				C2FD10ABDCFF5A22C7A8FBD5 /* APIGradingPeriodTests.swift */,
 				9AAD4B409FB7E6EFA8231347 /* APIPostPolicyInfoTests.swift */,
 				7BC27EF3ECC13EB2F1095831 /* GetAssignmentsByGroupTests.swift */,
@@ -7513,6 +7524,14 @@
 			path = TermsOfService;
 			sourceTree = "<group>";
 		};
+		C4B66311A3DF684D54914287 /* GradingStandard */ = {
+			isa = PBXGroup;
+			children = (
+				E1C74A86E962FADD78F10BE7 /* Model */,
+			);
+			path = GradingStandard;
+			sourceTree = "<group>";
+		};
 		C61DA8726619AD804BEB5A1F /* MessageDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -7968,6 +7987,14 @@
 				EFCF0CDD7C138EAAAF90F11B /* QuizPreviewInteractor.swift */,
 				64FDA1A0D32BC10484A7BAA5 /* QuizPreviewInteractorLive.swift */,
 				3402B4A8CF016A20E4987DB2 /* QuizPreviewInteractorPreview.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E1C74A86E962FADD78F10BE7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9A31D032C7DFE42C3DACCA92 /* CoreData */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -9237,6 +9264,7 @@
 				BB7221E1AFC07E9FEA7279E2 /* GradeStatisticsGraphViewTests.swift in Sources */,
 				2C6E0264FED600B17C031219 /* GradeSubmissionTests.swift in Sources */,
 				250A39B285F5DD7E6EF5528C /* GradeViewableTests.swift in Sources */,
+				425BB4FB4231F411906AB3C6 /* GradingSchemeEntryTests.swift in Sources */,
 				FA9553752BFF0C88C6E27BD3 /* GroupContextCardTests.swift in Sources */,
 				DBA5735342C15B3632037F40 /* GroupContextCardViewModelTests.swift in Sources */,
 				2352CD77933AB71702A23690 /* GroupPeopleListViewControllerTests.swift in Sources */,
