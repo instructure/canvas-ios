@@ -114,5 +114,7 @@ public class GradesHelper: BaseHelper {
         for i in 0..<staticTexts.count {
             XCTAssertEqual(staticTexts[i].waitUntil(.visible).label, expectedStaticTexts[i])
         }
+
+        XCTAssertEqual(staticTexts[-1].waitUntil(.visible).identifier, "DashboardCourseCell.\(course.id).gradePill")
     }
 }
