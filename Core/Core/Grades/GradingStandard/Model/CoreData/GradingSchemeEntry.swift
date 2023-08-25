@@ -35,3 +35,10 @@ extension GradingSchemeEntry: WriteableModel {
         return gradingSchemeEntry
     }
 }
+
+extension Sequence where Element == GradingSchemeEntry {
+
+    func convertScoreToLetterGrade(score: Double) -> String? {
+        first { score >= $0.value }?.name
+    }
+}
