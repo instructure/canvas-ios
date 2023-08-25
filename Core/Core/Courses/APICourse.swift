@@ -316,6 +316,7 @@ public struct GetCourseRequest: APIRequestable {
         case observedUsers = "observed_users"
         case tabs = "tabs"
         case settings
+        case grading_scheme
     }
 
     let courseID: String
@@ -331,6 +332,7 @@ public struct GetCourseRequest: APIRequestable {
         .totalScores,
         .observedUsers,
         .settings,
+        .grading_scheme,
     ]
 
     var include: [Include] = defaultIncludes
