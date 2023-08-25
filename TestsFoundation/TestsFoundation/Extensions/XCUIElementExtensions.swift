@@ -182,7 +182,7 @@ public extension XCUIElement {
             if result { return true }
 
             switch action {
-            case .tap: tap()
+            case .tap: hit()
             case .showKeyboard: CoreUITestCase.currentTestCase?.send(.showKeyboard, ignoreErrors: true)
             case .hideKeyboard: CoreUITestCase.currentTestCase?.send(.hideKeyboard, ignoreErrors: true)
             case .pullToRefresh: app.pullToRefresh()
