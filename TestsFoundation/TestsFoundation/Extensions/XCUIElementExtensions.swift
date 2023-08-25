@@ -80,6 +80,7 @@ public extension XCUIElement {
         waitUntil(.visible).waitUntil(.hittable, timeout: 5)
         if !isHittable { actionUntilElementCondition(action: .swipeUp(), condition: .hittable, timeout: 5) }
         tap()
+        tacticalSleep(1)
         return self
     }
 
