@@ -212,19 +212,22 @@ class GradesTests: E2ETestCase {
         let assignments = [pointsAssignment, percentAssignment, passFailAssignment]
         GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
 
-        logInDSUser(student)
-
-        // MARK: Grade assignments, Check Grades page
+        // MARK: Grade assignments, get the user logged in, check grade pill
         let grades = ["6", "7", "8"]
         let totalGrade = "D"
         GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
 
+        logInDSUser(student)
+
         DashboardHelper.turnOnShowGrades()
-        DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+
         let courseCardGradeLabel = DashboardHelper.courseCardGradeLabel(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCardGradeLabel.isVisible)
         XCTAssertTrue(courseCardGradeLabel.actionUntilElementCondition(action: .pullToRefresh, condition: .label(expected: totalGrade)))
 
+        // MARK: Check total grade on Grades page
         GradesHelper.navigateToGrades(course: course)
         let pointsAssignmentCell = GradesHelper.cell(assignment: pointsAssignment).waitUntil(.visible)
         let percentAssignmentCell = GradesHelper.cell(assignment: percentAssignment).waitUntil(.visible)
