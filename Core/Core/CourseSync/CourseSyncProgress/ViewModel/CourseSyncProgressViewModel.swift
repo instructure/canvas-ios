@@ -93,12 +93,14 @@ class CourseSyncProgressViewModel: ObservableObject {
     }
 
     private func handleCancelConfirmButtonTap(_ interactor: CourseSyncProgressInteractor) {
-        confirmAlert
-            .userConfirmation()
-            .flatMap { [unowned viewOnAppear] in viewOnAppear.first().compactMap { $0 } }
-            .sink { [unowned router] viewController in
+        unowned let unownedSelf = self
+
+        cancelButtonDidTap
+            .flatMap { unownedSelf.confirmAlert.userConfirmation() }
+            .flatMap { unownedSelf.viewOnAppear.first().compactMap { $0 }}
+            .sink { viewController in
                 interactor.cancelSync()
-                router.dismiss(viewController)
+                unownedSelf.router.dismiss(viewController)
             }
             .store(in: &subscriptions)
     }

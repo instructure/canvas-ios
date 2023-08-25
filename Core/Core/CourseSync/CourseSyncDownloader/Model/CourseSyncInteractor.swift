@@ -266,9 +266,9 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     private func listenToCancellationEvent() {
         NotificationCenter.default.publisher(for: .OfflineSyncCancelled)
             .sink(receiveValue: { [unowned self] _ in
-                progressWriterInteractor.cleanUpPreviousDownloadProgress()
                 downloadSubscription?.cancel()
                 downloadSubscription = nil
+                progressWriterInteractor.cleanUpPreviousDownloadProgress()
             })
             .store(in: &subscriptions)
     }
