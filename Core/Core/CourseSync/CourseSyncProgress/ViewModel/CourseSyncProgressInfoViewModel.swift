@@ -48,7 +48,6 @@ class CourseSyncProgressInfoViewModel: ObservableObject {
 
         interactor.observeDownloadProgress()
             .receive(on: scheduler)
-            .throttle(for: .milliseconds(300), scheduler: scheduler, latest: true)
             .sink { state in
                 switch state {
                 case .data(let progressList):
