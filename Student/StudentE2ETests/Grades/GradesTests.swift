@@ -221,10 +221,9 @@ class GradesTests: E2ETestCase {
 
         DashboardHelper.turnOnShowGrades()
         DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        let courseCardGradeLabel = DashboardHelper.courseCardGradeLabel(course: course)
-        app.actionUntilElementCondition(action: .pullToRefresh, element: courseCardGradeLabel, condition: .visible)
+        let courseCardGradeLabel = DashboardHelper.courseCardGradeLabel(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCardGradeLabel.isVisible)
-        XCTAssertTrue(courseCardGradeLabel.hasLabel(label: totalGrade))
+        XCTAssertTrue(courseCardGradeLabel.actionUntilElementCondition(action: .pullToRefresh, condition: .label(expected: totalGrade)))
 
         GradesHelper.navigateToGrades(course: course)
         let pointsAssignmentCell = GradesHelper.cell(assignment: pointsAssignment).waitUntil(.visible)
