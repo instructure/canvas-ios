@@ -125,6 +125,18 @@ extension Enrollment {
         }
         return notAvailable
     }
+
+    public func convertedLetterGrade(gradingPeriodID: String?, gradingScheme: [GradingSchemeEntry]) -> String {
+        let notAvailable = NSLocalizedString("N/A", bundle: .core, comment: "")
+        if gradingPeriodID == nil, multipleGradingPeriodsEnabled, !totalsForAllGradingPeriodsOption {
+            return notAvailable
+        }
+        if let score = currentScore(gradingPeriodID: gradingPeriodID) {
+            let normalizedScore = score / 100.0
+            return gradingScheme.convertScoreToLetterGrade(score: normalizedScore) ?? notAvailable
+        }
+        return notAvailable
+    }
 }
 
 extension Enrollment {
@@ -150,14 +162,10 @@ extension Enrollment {
             grade.finalGrade = apiGrades.final_grade
             grade.unpostedCurrentGrade = apiGrades.unposted_current_grade
             grade.overrideGrade = apiGrades.override_grade
-
-            if !hideQuantitativeData {
-                grade.currentScore = apiGrades.current_score
-                grade.finalScore = apiGrades.final_score
-                grade.unpostedCurrentScore = apiGrades.unposted_current_score
-                grade.overrideScore = apiGrades.override_score
-            }
-
+            grade.currentScore = apiGrades.current_score
+            grade.finalScore = apiGrades.final_score
+            grade.unpostedCurrentScore = apiGrades.unposted_current_score
+            grade.overrideScore = apiGrades.override_score
             grade.gradingPeriodID = gradingPeriodID
             grades.insert(grade)
         } else {
@@ -173,14 +181,11 @@ extension Enrollment {
 
             let grade = grades.first { $0.gradingPeriodID == nil } ?? client.insert()
             grade.gradingPeriodID = nil
-
-            if !hideQuantitativeData {
-                grade.currentScore = item.computed_current_score
-                computedCurrentScore = item.computed_current_score
-                computedFinalScore = item.computed_final_score
-                currentPeriodComputedCurrentScore = item.current_period_computed_current_score
-                currentPeriodComputedFinalScore = item.current_period_computed_final_score
-            }
+            grade.currentScore = item.computed_current_score
+            computedCurrentScore = item.computed_current_score
+            computedFinalScore = item.computed_final_score
+            currentPeriodComputedCurrentScore = item.current_period_computed_current_score
+            currentPeriodComputedFinalScore = item.current_period_computed_final_score
 
             grades.insert(grade)
             if let currentGradingPeriodID = item.current_grading_period_id {

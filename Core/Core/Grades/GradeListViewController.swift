@@ -186,9 +186,22 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
         gradingPeriodLabel.text = gradingPeriodID == nil && gradingPeriodLoaded
             ? NSLocalizedString("All", bundle: .core, comment: "")
             : gradingPeriods.first(where: { $0.id == gradingPeriodID })?.title
+        let hideQuantitativeData = courses.first?.hideQuantitativeData == true
 
         if courses.first?.hideFinalGrades == true {
             totalGradeLabel.text = NSLocalizedString("N/A", bundle: .core, comment: "")
+        } else if hideQuantitativeData {
+            if let gradingScheme = courses.first?.gradingScheme {
+                if let gradingPeriodID = gradingPeriodID {
+                    totalGradeLabel.text = gradeEnrollment?.convertedLetterGrade(gradingPeriodID: gradingPeriodID,
+                                                                                 gradingScheme: gradingScheme)
+                } else {
+                    totalGradeLabel.text = courseEnrollment?.convertedLetterGrade(gradingPeriodID: nil,
+                                                                                  gradingScheme: gradingScheme)
+                }
+            } else {
+                totalGradeLabel.text = ""
+            }
         } else {
             var letterGrade: String?
             if let gradingPeriodID = gradingPeriodID {
@@ -202,9 +215,8 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
                     letterGrade = courseEnrollment?.computedCurrentGrade ?? courseEnrollment?.computedFinalGrade ?? courseEnrollment?.computedCurrentLetterGrade
                 }
             }
-            if courses.first?.hideQuantitativeData == true {
-                totalGradeLabel.text = letterGrade ?? NSLocalizedString("N/A", bundle: .core, comment: "")
-            } else if let scoreText = totalGradeLabel.text, let letterGrade = letterGrade {
+
+            if let scoreText = totalGradeLabel.text, let letterGrade = letterGrade {
                 totalGradeLabel.text = scoreText + " (\(letterGrade))"
             }
         }
