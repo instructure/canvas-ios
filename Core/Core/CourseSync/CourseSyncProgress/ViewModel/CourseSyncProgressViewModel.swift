@@ -124,7 +124,6 @@ class CourseSyncProgressViewModel: ObservableObject {
             interactor.observeDownloadProgress().setFailureType(to: Error.self),
             interactor.observeEntries()
         )
-        .throttle(for: .milliseconds(300), scheduler: DispatchQueue.main, latest: true)
         .map { ($0.0, $0.1.makeSyncProgressViewModelItems(interactor: interactor)) }
         .receive(on: DispatchQueue.main)
         .handleEvents(receiveOutput: { [unowned self] downloadProgress, entryProgressList in
