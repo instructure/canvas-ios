@@ -223,6 +223,8 @@ class GradesTests: E2ETestCase {
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCard.isVisible)
 
+        GradesHelper.allStaticTextsOfDashboardCourseCard(course: course)
+
         let courseCardGradeLabel = DashboardHelper.courseCardGradeLabel(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCardGradeLabel.isVisible)
         XCTAssertTrue(courseCardGradeLabel.actionUntilElementCondition(action: .pullToRefresh, condition: .label(expected: totalGrade)))
