@@ -36,4 +36,22 @@ extension Date {
         let formatter = ISO8601DateFormatter()
         return formatter.date(from: dateString)
     }
+
+    public func day() -> Int {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d"
+        return Int(formatter.string(from: self))!
+    }
+
+    public func month() -> Int {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "M"
+        return Int(formatter.string(from: self))!
+    }
+
+    public func year() -> Int {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy"
+        return Int(formatter.string(from: self))!
+    }
 }
