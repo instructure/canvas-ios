@@ -35,16 +35,8 @@ public class K5Helper: BaseHelper {
         public static var today: XCUIElement { app.find(id: "K5Schedule.today") }
         public static var nextWeekButton: XCUIElement { app.find(label: "Next Week", type: .button) }
 
-        public static func isFutureDate(date: Date) -> Bool {
-            let now = Date.now
-            if now.year() < date.year() { return true }
-            if now.month() < date.month() { return true }
-            if now.day() < date.day() { return true}
-            return false
-        }
-
         public static func assignmentItemButton(assignment: DSAssignment) -> XCUIElement {
-            if isFutureDate(date: assignment.due_at!) && Date.now.weekdayName == "Saturday" { nextWeekButton.hit() }
+            if assignment.due_at!.isFutureDate && Date.now.weekdayName == "Saturday" { nextWeekButton.hit() }
             K5Helper.dateFormatter.dateFormat = "h:mm a"
             let due = K5Helper.dateFormatter.string(from: assignment.due_at!)
             let pointsString = assignment.points_possible! == 1 ? "pt" : "pts"
@@ -56,7 +48,7 @@ public class K5Helper: BaseHelper {
         }
 
         public static func quizItemButton(quiz: DSQuiz) -> XCUIElement {
-            if isFutureDate(date: quiz.due_at!) && Date.now.weekdayName == "Saturday" { nextWeekButton.hit() }
+            if quiz.due_at!.isFutureDate && Date.now.weekdayName == "Saturday" { nextWeekButton.hit() }
             K5Helper.dateFormatter.dateFormat = "h:mm a"
             let due = K5Helper.dateFormatter.string(from: quiz.due_at!)
             let pointsString = quiz.points_possible! == 1 ? "pt" : "pts"

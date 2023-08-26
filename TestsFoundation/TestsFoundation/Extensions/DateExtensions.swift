@@ -20,11 +20,37 @@ import Foundation
 
 extension Date {
 
+    // MARK: Variables
+    public var day: Int {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d"
+        return Int(formatter.string(from: self))!
+    }
+
+    public var month: Int {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "M"
+        return Int(formatter.string(from: self))!
+    }
+
+    public var year: Int {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy"
+        return Int(formatter.string(from: self))!
+    }
+
+    public var isFutureDate: Bool {
+        let now = Date.now
+        return now.year < year || now.month < month || now.day < day
+    }
+
+    // MARK: Functions
     public func add(_ calendarComponent: Calendar.Component, number: Int) -> Date {
         let endDate = Calendar.current.date(byAdding: calendarComponent, value: number, to: self)
         return endDate ?? Date()
     }
 
+    // MARK: Static functions
     public static func dateFromString(_ dateString: String, format: String = "yyyy-MM-dd HH:mm") -> Date? {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
@@ -35,23 +61,5 @@ extension Date {
     public static func isoDateFromString(_ dateString: String) -> Date? {
         let formatter = ISO8601DateFormatter()
         return formatter.date(from: dateString)
-    }
-
-    public func day() -> Int {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "d"
-        return Int(formatter.string(from: self))!
-    }
-
-    public func month() -> Int {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "M"
-        return Int(formatter.string(from: self))!
-    }
-
-    public func year() -> Int {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy"
-        return Int(formatter.string(from: self))!
     }
 }
