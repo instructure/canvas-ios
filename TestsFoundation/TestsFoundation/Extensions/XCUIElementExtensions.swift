@@ -256,6 +256,10 @@ public extension XCUIElement {
         coordinate(withNormalizedOffset: .zero).withOffset(CGVector(dx: point.x, dy: point.y)).tap()
     }
 
+    func forceTap() {
+        coordinate(withNormalizedOffset: CGVector(dx: 0.0, dy: 0.0)).tap()
+    }
+
     // MARK: Find functions
     func find(label: String, type: ElementType = .any) -> XCUIElement {
         return descendants(matching: type).matching(label: label).firstMatch

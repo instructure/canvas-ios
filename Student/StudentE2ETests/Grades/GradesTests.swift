@@ -219,7 +219,9 @@ class GradesTests: E2ETestCase {
 
         logInDSUser(student)
 
-        DashboardHelper.turnOnShowGrades()
+        let showGradesTurnedOn = DashboardHelper.turnOnShowGrades()
+        XCTAssertTrue(showGradesTurnedOn, "Failed to turn on Show Grades")
+
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCard.isVisible)
 

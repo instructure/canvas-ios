@@ -38,11 +38,15 @@ public class DashboardHelper: BaseHelper {
         app.find(id: "DashboardCourseCell.\(course.id).favoriteButton", type: .button).hit()
     }
 
-    public static func turnOnShowGrades() {
+    public static func turnOnShowGrades() -> Bool {
         dashboardSettings.hit()
-        dashboardSettingsShowGradeToggle.waitUntil(.visible)
-            .actionUntilElementCondition(action: .tap, condition: .value(expected: "1"), gracePeriod: 2)
+        dashboardSettingsShowGradeToggle.hit()
+        var result = dashboardSettingsShowGradeToggle.waitUntil(.value(expected: "1"), timeout: 5).hasValue(value: "1")
+        if !result { dashboardSettingsShowGradeToggle.forceTap() }
+        result = dashboardSettingsShowGradeToggle.waitUntil(.value(expected: "1"), timeout: 5).hasValue(value: "1")
+        guard result else { return result }
         doneButton.hit()
+        return dashboardSettingsShowGradeToggle.waitUntil(.vanish).isVanished
     }
 
     public struct CourseInvitations {
