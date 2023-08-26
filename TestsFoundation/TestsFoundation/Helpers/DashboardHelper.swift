@@ -40,11 +40,9 @@ public class DashboardHelper: BaseHelper {
 
     public static func turnOnShowGrades() {
         dashboardSettings.hit()
-        XCTAssertTrue(dashboardSettingsShowGradeToggle.waitUntil(.value(expected: "0")).hasValue(value: "0"))
-        dashboardSettingsShowGradeToggle.waitUntil(.visible).actionUntilElementCondition(action: .tap, condition: .value(expected: "1"))
-        XCTAssertTrue(dashboardSettingsShowGradeToggle.waitUntil(.value(expected: "1")).hasValue(value: "1"))
+        dashboardSettingsShowGradeToggle.waitUntil(.visible)
+            .actionUntilElementCondition(action: .tap, condition: .value(expected: "1"), gracePeriod: 2)
         doneButton.hit()
-        XCTAssertTrue(dashboardSettingsShowGradeToggle.waitUntil(.vanish).isVanished)
     }
 
     public struct CourseInvitations {

@@ -101,20 +101,4 @@ public class GradesHelper: BaseHelper {
         DashboardHelper.courseCard(course: course).hit()
         CourseDetailsHelper.cell(type: .grades).hit()
     }
-
-    // MARK: TEMPORARY FUNCTION FOR DEBUGGING ON BITRISE
-    public static func allStaticTextsOfDashboardCourseCard(course: DSCourse) {
-        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        let staticTexts = courseCard.findAll(type: .staticText)
-        for i in 0..<staticTexts.count {
-            print("\nLABEL OF STATIC TEXT \(i): \n\(staticTexts[i].waitUntil(.visible).label)\n\n")
-        }
-
-        let expectedStaticTexts = [course.name, course.name.replacingOccurrences(of: " iOS", with: ""), "D"]
-        for i in 0..<staticTexts.count {
-            XCTAssertEqual(staticTexts[i].waitUntil(.visible).label, expectedStaticTexts[i])
-        }
-
-        XCTAssertEqual(staticTexts[-1].waitUntil(.visible).identifier, "DashboardCourseCell.\(course.id).gradePill")
-    }
 }
