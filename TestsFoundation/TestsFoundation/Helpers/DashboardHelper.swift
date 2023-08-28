@@ -40,6 +40,7 @@ public class DashboardHelper: BaseHelper {
 
     public static func turnOnShowGrades() -> Bool {
         dashboardSettings.hit()
+        sleep(5)
         dashboardSettingsShowGradeToggle.hit()
         var result = dashboardSettingsShowGradeToggle.waitUntil(.value(expected: "1"), timeout: 5).hasValue(value: "1")
         if !result { dashboardSettingsShowGradeToggle.forceTap() }
