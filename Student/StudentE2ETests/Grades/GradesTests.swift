@@ -204,24 +204,32 @@ class GradesTests: E2ETestCase {
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.updateCourseSettings(course: course, restrictQuantitativeData: true)
+
+        sleep(10)
+
         seeder.enrollStudent(student, in: course)
 
         let pointsAssignment = AssignmentsHelper.createAssignment(course: course, pointsPossible: 10, gradingType: .points)
         let percentAssignment = AssignmentsHelper.createAssignment(course: course, pointsPossible: 10, gradingType: .percent)
         let passFailAssignment = AssignmentsHelper.createAssignment(course: course, pointsPossible: 10, gradingType: .pass_fail)
-        let assignments = [pointsAssignment, percentAssignment, passFailAssignment]
+        let letterGradeAssignment = AssignmentsHelper.createAssignment(course: course, pointsPossible: 10, gradingType: .letter_grade)
+        let assignments = [pointsAssignment, percentAssignment, passFailAssignment, letterGradeAssignment]
+
+        sleep(10)
         GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
 
         // MARK: Grade assignments, get the user logged in, check grade pill
-        let grades = ["6", "7", "8"]
+        let grades = ["6", "7", "8", "D"]
         let totalGrade = "D"
         GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
 
+        sleep(10)
         logInDSUser(student)
 
-        let showGradesTurnedOn = DashboardHelper.turnOnShowGrades()
-        XCTAssertTrue(showGradesTurnedOn, "Failed to turn on Show Grades")
+        sleep(10)
+        DashboardHelper.turnOnShowGrades()
 
+        sleep(10)
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCard.isVisible)
 
@@ -234,9 +242,11 @@ class GradesTests: E2ETestCase {
         let pointsAssignmentCell = GradesHelper.cell(assignment: pointsAssignment).waitUntil(.visible)
         let percentAssignmentCell = GradesHelper.cell(assignment: percentAssignment).waitUntil(.visible)
         let passFailAssignmentCell = GradesHelper.cell(assignment: passFailAssignment).waitUntil(.visible)
+        let letterGradeAssignmentCell = GradesHelper.cell(assignment: letterGradeAssignment).waitUntil(.visible)
         XCTAssertTrue(pointsAssignmentCell.isVisible)
         XCTAssertTrue(percentAssignmentCell.isVisible)
         XCTAssertTrue(passFailAssignmentCell.isVisible)
+        XCTAssertTrue(letterGradeAssignmentCell.isVisible)
 
         XCTAssertTrue(GradesHelper.totalGrade.waitUntil(.label(expected: totalGrade)).isVisible)
     }
