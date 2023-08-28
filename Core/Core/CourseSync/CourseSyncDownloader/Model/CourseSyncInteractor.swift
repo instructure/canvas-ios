@@ -79,7 +79,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         progressWriterInteractor.cleanUpPreviousDownloadProgress()
         progressWriterInteractor.setInitialLoadingState(entries: entriesWithInitialLoadingState)
 
-        subscription = Publishers.Sequence(sequence: entriesWithInitialLoadingState)
+        downloadSubscription = Publishers.Sequence(sequence: entriesWithInitialLoadingState)
             .buffer(size: .max, prefetch: .byRequest, whenFull: .dropOldest)
             .receive(on: scheduler)
             .flatMap(maxPublishers: .max(3)) { unownedSelf.downloadCourseDetails($0) }
