@@ -261,8 +261,9 @@ public extension XCUIElement {
     }
 
     func forceTap() {
-        let coords = coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
-        coords.tap()
+        waitUntil(.visible)
+        let coordinatesToTap = CGPoint(x: frame.midX, y: frame.midY)
+        app.tapAt(coordinatesToTap)
     }
 
     func longTap() {
@@ -290,7 +291,7 @@ public extension XCUIElement {
         return descendants(matching: type).matching(value: value).firstMatch
     }
 
-    func find(type: ElementType = .any) -> XCUIElement {
+    func find(type: ElementType) -> XCUIElement {
         return descendants(matching: type).firstMatch
     }
 

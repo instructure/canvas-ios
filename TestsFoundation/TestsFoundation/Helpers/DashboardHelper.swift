@@ -23,7 +23,7 @@ public class DashboardHelper: BaseHelper {
     public static var doneButton: XCUIElement { app.find(id: "screen.dismiss", type: .button) }
     public static var coursesLabel: XCUIElement { app.find(id: "dashboard.courses.heading-lbl") }
     public static var dashboardSettingsShowGradeToggle: XCUIElement {
-        return app.find(id: "DashboardSettings.showGradesToggle", type: .switch)
+        return app.find(id: "DashboardSettings.showGradesToggle", type: .switch).find(type: .switch)
     }
 
     public static func courseCard(course: DSCourse? = nil, courseId: String? = nil) -> XCUIElement {
@@ -40,7 +40,7 @@ public class DashboardHelper: BaseHelper {
 
     public static func turnOnShowGrades() {
         dashboardSettings.hit()
-        dashboardSettingsShowGradeToggle.actionUntilElementCondition(action: .tap, condition: .value(expected: "1"))
+        dashboardSettingsShowGradeToggle.forceTap()
         doneButton.hit()
     }
 
