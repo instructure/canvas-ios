@@ -67,13 +67,16 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
 
         unowned let unownedSelf = self
 
+        let entriesWithInitialLoadingState = resetEntryStates(entries: entries)
+
         backgroundQueue.sync(flags: .barrier) {
-            courseSyncEntries.send(entries)
+            courseSyncEntries.send(entriesWithInitialLoadingState)
         }
 
         progressWriterInteractor.cleanUpPreviousDownloadProgress()
+        progressWriterInteractor.setInitialLoadingState(entries: entriesWithInitialLoadingState)
 
-        subscription = Publishers.Sequence(sequence: entries)
+        subscription = Publishers.Sequence(sequence: entriesWithInitialLoadingState)
             .buffer(size: .max, prefetch: .byRequest, whenFull: .dropOldest)
             .receive(on: scheduler)
             .flatMap(maxPublishers: .max(3)) { unownedSelf.downloadCourseDetails($0) }
@@ -257,6 +260,27 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         progressWriterInteractor.saveDownloadProgress(entries: entries)
         backgroundQueue.sync(flags: .barrier) {
             courseSyncEntries.send(entries)
+        }
+    }
+
+    private func resetEntryStates(entries: [CourseSyncEntry]) -> [CourseSyncEntry] {
+        entries.map { entry in
+            var cpy = entry
+            if cpy.state != .downloaded {
+                cpy.state = .loading(nil)
+            } else {
+                return cpy
+            }
+
+            for var tab in cpy.tabs where tab.state != .downloaded {
+                tab.state = .loading(nil)
+            }
+
+            for var file in cpy.files where file.state != .downloaded {
+                file.state = .loading(nil)
+            }
+
+            return cpy
         }
     }
 }
