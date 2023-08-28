@@ -51,6 +51,7 @@ public extension XCUIElement {
         case showKeyboard
         case hideKeyboard
         case pullToRefresh
+        case forceTap
     }
 
     // MARK: Static vars
@@ -207,6 +208,7 @@ public extension XCUIElement {
                 case .onApp: app.swipeLeft()
                 case .onElement: swipeLeft()
                 }
+            case .forceTap: forceTap()
             }
 
             tacticalSleep(gracePeriod)
@@ -257,7 +259,8 @@ public extension XCUIElement {
     }
 
     func forceTap() {
-        coordinate(withNormalizedOffset: CGVector(dx: 0.0, dy: 0.0)).tap()
+        let point = CGPoint(x: frame.midX, y: frame.midY)
+        app.tapAt(point)
     }
 
     // MARK: Find functions
