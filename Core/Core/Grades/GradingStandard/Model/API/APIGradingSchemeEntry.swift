@@ -27,6 +27,10 @@ public struct APIGradingSchemeEntry: Codable, Equatable {
         self.value = value
     }
 
+    /**
+     This initializer is used when constructing grading scheme from a Course API response
+     which has a different format compared to the grading scheme API.
+     */
     public init?(courseGradingScheme: [TypeSafeCodable<String, Double>]) {
         guard courseGradingScheme.count == 2,
               let name = courseGradingScheme[0].value1,

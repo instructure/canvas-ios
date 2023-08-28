@@ -260,7 +260,6 @@
 		2B7719224F4837F78B538FFD /* CourseSyncQuizzesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5240F79A2B2DD6AD5983C0D5 /* CourseSyncQuizzesInteractor.swift */; };
 		2BC902555C15AD95479E1CF0 /* K5GradesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A1E11BAE258EC133022808 /* K5GradesViewModel.swift */; };
 		2BF5D8C0F10225334CD0D2FD /* CourseSyncDiskSpaceInfoViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D1671C071758F47CB224FF /* CourseSyncDiskSpaceInfoViewModelTests.swift */; };
-		2C07CA6198DAF37727FBBFBE /* APIGradingStandard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75765B1D4CA272E5E98080C0 /* APIGradingStandard.swift */; };
 		2C47F4E69713ECDE9F228538 /* VideoRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84DF62618B2EE1C331CC4F7 /* VideoRecorder.swift */; };
 		2C48C07EF76DA636F7754F8B /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9E9E318154599C9606AD4B /* AudioPlayer.swift */; };
 		2C6B3CD6AC524FAF84AE9EF0 /* ConversationParticipantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557A65FF2D61BF8FE419192D /* ConversationParticipantTests.swift */; };
@@ -322,7 +321,6 @@
 		343A99579F6D694CB5E8FCE8 /* LoginSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E145AFE0E25E06C21924F3 /* LoginSession.swift */; };
 		34B620075231C25A1812C3AB /* TabFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55753C99A41758BD59B26AD9 /* TabFilter.swift */; };
 		34E9C98C930CBD0535E22DF7 /* CourseSyncSelectorInteractorPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40701F5934FAAF25130677B3 /* CourseSyncSelectorInteractorPreview.swift */; };
-		34F103BF155FD3D88D6C6B30 /* GradingStandard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4FE73ACC0C2D8A94D0DBD84 /* GradingStandard.swift */; };
 		354482A755DA87DECDF9B43A /* DeterminateCircleProgressViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5A6601A3A0744DEDCFBCC2 /* DeterminateCircleProgressViewStyle.swift */; };
 		35592A9A9B1477D41DA36BF1 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8402A4E524501E8C4F78256C /* TodoListViewController.swift */; };
 		35A7651A1B0B7D648339F4B9 /* NotificationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA20D44E6F8911D19B4BCC4 /* NotificationManagerTests.swift */; };
@@ -2468,7 +2466,6 @@
 		7549A1F38E75C798A55E679D /* ModuleItemTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleItemTypeTests.swift; sourceTree = "<group>"; };
 		756C909522B81F412C9E52E6 /* MediaCommentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCommentTests.swift; sourceTree = "<group>"; };
 		7575874152CFD2D715353539 /* DocViewerAnnotationPutResponseHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationPutResponseHandlerTests.swift; sourceTree = "<group>"; };
-		75765B1D4CA272E5E98080C0 /* APIGradingStandard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGradingStandard.swift; sourceTree = "<group>"; };
 		757F1DE3CF0FFF2EF5067328 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = nl; path = nl.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		759681D7A08414DDA0ECE61F /* nb-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "nb-instk12"; path = "nb-instk12.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		75A03DFE70D37F0E94D76A44 /* ModuleItemSequenceViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ModuleItemSequenceViewController.storyboard; sourceTree = "<group>"; };
@@ -2906,7 +2903,6 @@
 		B455F8753438D40CC45D5A87 /* QuizDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDetailsViewModelTests.swift; sourceTree = "<group>"; };
 		B467615FEB9F47B169A18150 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
 		B4F936DF23DC61D04F89DFE0 /* APILatePolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APILatePolicyTests.swift; sourceTree = "<group>"; };
-		B4FE73ACC0C2D8A94D0DBD84 /* GradingStandard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradingStandard.swift; sourceTree = "<group>"; };
 		B52803DBEDEDD92FF68782A9 /* K5GradesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradesViewModelTests.swift; sourceTree = "<group>"; };
 		B54819C7CC40C9F86C5B5F69 /* CourseSyncCleanupInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncCleanupInteractor.swift; sourceTree = "<group>"; };
 		B5606C2158AEEDA3F5D8C94A /* APIConference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConference.swift; sourceTree = "<group>"; };
@@ -3749,7 +3745,6 @@
 			isa = PBXGroup;
 			children = (
 				8D31ECE60022F3F0880DE4A5 /* GradingSchemeEntry.swift */,
-				B4FE73ACC0C2D8A94D0DBD84 /* GradingStandard.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -6443,7 +6438,6 @@
 			isa = PBXGroup;
 			children = (
 				A3F215916DB26B661EA4FC39 /* APIGradingSchemeEntry.swift */,
-				75765B1D4CA272E5E98080C0 /* APIGradingStandard.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -9529,7 +9523,6 @@
 				FC447A2DF2FE8F7042EDDFCB /* APIFormData.swift in Sources */,
 				80540CC06D7EC9A091984999 /* APIGradingPeriod.swift in Sources */,
 				8C4A73EEBFD2BAA62B12D4FA /* APIGradingSchemeEntry.swift in Sources */,
-				2C07CA6198DAF37727FBBFBE /* APIGradingStandard.swift in Sources */,
 				126B7361F1D0A24DBD7845DF /* APIGraphQLRequestable.swift in Sources */,
 				6ECFC13B438ECCEFDCE4E8B7 /* APIGroup.swift in Sources */,
 				BA3E36262C43A9629722478C /* APIHelpLinks.swift in Sources */,
@@ -9995,7 +9988,6 @@
 				7CF7358D1F1E56FC86A77843 /* GradesPanda.swift in Sources */,
 				75C4D34260AFBF72CB18FDF4 /* GradingPeriod.swift in Sources */,
 				D2D5C96EE222080DEA01F7D6 /* GradingSchemeEntry.swift in Sources */,
-				34F103BF155FD3D88D6C6B30 /* GradingStandard.swift in Sources */,
 				91FFEEEAE7900CBDF36213BC /* Group.swift in Sources */,
 				44B9C45B72A1F56B00059247 /* GroupCard.swift in Sources */,
 				17AF4F75E8D00D6361E61F58 /* GroupContextCardView.swift in Sources */,

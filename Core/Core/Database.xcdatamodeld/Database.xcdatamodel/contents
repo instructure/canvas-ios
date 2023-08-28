@@ -544,12 +544,6 @@
         <attribute name="name" attributeType="String"/>
         <attribute name="value" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="gradingSchemeRaw" inverseEntity="Course"/>
-        <relationship name="gradingStandard" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GradingStandard" inverseName="gradingSchemeRaw" inverseEntity="GradingStandard"/>
-    </entity>
-    <entity name="GradingStandard" representedClassName="Core.GradingStandard" syncable="YES">
-        <attribute name="id" attributeType="String"/>
-        <relationship name="courses" toMany="YES" deletionRule="Nullify" destinationEntity="Course"/>
-        <relationship name="gradingSchemeRaw" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="GradingSchemeEntry" inverseName="gradingStandard" inverseEntity="GradingSchemeEntry"/>
     </entity>
     <entity name="Group" representedClassName="Core.Group" syncable="YES">
         <attribute name="avatarURL" optional="YES" attributeType="URI"/>

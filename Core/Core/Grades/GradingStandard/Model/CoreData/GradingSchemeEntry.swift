@@ -21,7 +21,6 @@ import CoreData
 public final class GradingSchemeEntry: NSManagedObject {
     @NSManaged public var name: String
     @NSManaged public var value: Double
-    @NSManaged public var gradingStandard: GradingStandard?
     @NSManaged public var course: Course?
 }
 
