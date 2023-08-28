@@ -24,36 +24,41 @@ class ActAsUserTests: CoreUITestCase {
     override var user: UITestUser? { return .readAdmin1 }
 
     func testActAsUser() {
-        Profile.open()
-        XCTAssertEqual(Profile.userNameLabel.label(), "Admin One")
-        XCTAssertTrue(Profile.actAsUserButton.waitToExist().isVisible)
+        let profileButton = DashboardHelper.profileButton.hit()
+        let userNameLabel = ProfileHelper.userNameLabel.waitUntil(.visible)
+        XCTAssertTrue(userNameLabel.waitUntil(.visible).hasLabel(label: "Admin One"))
 
-        Profile.actAsUserButton.tap()
-        XCTAssertTrue(ActAsUser.userIDField.waitToExist().isVisible)
-        XCTAssertTrue(ActAsUser.domainField.waitToExist().isVisible)
+        var actAsUserButton = ProfileHelper.actAsUserButton.waitUntil(.visible)
+        XCTAssertTrue(actAsUserButton.isVisible)
 
-        ActAsUser.userIDField.typeText("613").swipeUp()
-        if ActAsUser.domainField.value() != "https://\(user!.host)" {
-            ActAsUser.domainField.cutText()
-            ActAsUser.domainField.typeText("https://\(user!.host)").swipeUp()
+        actAsUserButton.hit()
+        let userIDField = ActAsUserHelper.userIDField.waitUntil(.visible)
+        XCTAssertTrue(userIDField.isVisible)
+
+        userIDField.writeText(text: "613")
+        let domainField = ActAsUserHelper.domainField.waitUntil(.visible)
+        if !domainField.hasValue(value: "https://\(user!.host)") {
+            domainField.cutText()
+            domainField.writeText(text: "https://\(user!.host)")
         }
-        XCTAssertTrue(ActAsUser.actAsUserButton.waitToExist().isVisible)
+        actAsUserButton = ActAsUserHelper.actAsUserButton
+        actAsUserButton.actionUntilElementCondition(action: .swipeUp(), condition: .visible)
+        XCTAssertTrue(actAsUserButton.isVisible)
 
-        ActAsUser.actAsUserButton.tap()
-        Profile.open()
-        XCTAssertEqual(Profile.userNameLabel.label(), "Student One")
+        actAsUserButton.hit()
+        DashboardHelper.courseCard(courseId: "262").waitUntil(.visible)
+        profileButton.hit()
+        XCTAssertTrue(userNameLabel.waitUntil(.visible).hasLabel(label: "Student One"))
 
-        Profile.close()
-        XCTAssertTrue(ActAsUser.endActAsUserButton.waitToExist().isVisible)
+        let endActAsUserButton = ActAsUserHelper.endActAsUserButton.waitUntil(.visible)
+        XCTAssertTrue(endActAsUserButton.isVisible)
 
-        ActAsUser.endActAsUserButton.tap()
-        ActAsUser.okAlertButton.tap()
-        ActAsUser.endActAsUserButton.waitToVanish()
-        XCTAssertFalse(ActAsUser.endActAsUserButton.isVisible)
+        endActAsUserButton.hit()
+        ActAsUserHelper.okAlertButton.hit()
+        app.find(label: "No Courses", type: .staticText).waitUntil(.visible)
+        XCTAssertFalse(endActAsUserButton.waitUntil(.vanish).isVisible)
 
-        Profile.open()
-        XCTAssertEqual(Profile.userNameLabel.label(), "Admin One")
-
-        Profile.close()
+        profileButton.hit()
+        XCTAssertTrue(userNameLabel.waitUntil(.visible).hasLabel(label: "Admin One"))
     }
 }

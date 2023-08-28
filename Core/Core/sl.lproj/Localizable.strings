@@ -716,6 +716,9 @@
 "d_items" = "d_items";
 
 /* No comment provided by engineer. */
+"d_items_syncing" = "d_items_syncing";
+
+/* No comment provided by engineer. */
 "d_likes" = "d_likes";
 
 /* No comment provided by engineer. */
@@ -861,6 +864,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Opusti %@";
+
+/* No comment provided by engineer. */
+"Dismiss notification" = "Opusti obvestilo";
 
 /* No comment provided by engineer. */
 "Display As" = "Prikaži kot";
@@ -1056,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "File Details" = "Podatki o datoteki";
+
+/* No comment provided by engineer. */
+"File download failed." = "Prenos datoteke ni uspel.";
 
 /* No comment provided by engineer. */
 "File No Longer Exists" = "Ta datoteka ne obstaja več";
@@ -2456,6 +2465,9 @@
 "Synchronization" = "Sinhronizacija";
 
 /* No comment provided by engineer. */
+"Syncing Offline Content" = "Sinhronizacija vsebine brez povezave";
+
+/* No comment provided by engineer. */
 "System settings" = "Sistemske nastavitve";
 
 /* No comment provided by engineer. */
@@ -2469,9 +2481,6 @@
 
 /* No comment provided by engineer. */
 "Tap here for details" = "Za pomoč tapnite tukaj.";
-
-/* No comment provided by engineer. */
-"Tap here for help." = "Za pomoč tapnite tukaj.";
 
 /* No comment provided by engineer. */
 "Tap the \"+\" to create a new conversation" = "Tapnite »+«, da ustvarite nov pogovor.";

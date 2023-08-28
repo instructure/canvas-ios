@@ -75,6 +75,7 @@ public struct APICourse: Codable, Equatable {
     var is_favorite: Bool? // include[]=favorites
     let sections: [SectionRef]? // include[]=sections
     let tabs: [APITab]? // include[]=tabs
+    let settings: APICourseSettings? // include[]=settings
 
     public var context: Context { Context(.course, id: id.rawValue) }
 
@@ -99,10 +100,10 @@ public struct APICourse: Codable, Equatable {
     }
 }
 
-public struct APICourseSettings: Codable {
-    let usage_rights_required: Bool
-    // let home_page_announcement_limit: Int
-    let syllabus_course_summary: Bool
+public struct APICourseSettings: Codable, Equatable {
+    let usage_rights_required: Bool?
+    let syllabus_course_summary: Bool?
+    let restrict_quantitative_data: Bool?
 }
 
 public enum CourseDefaultView: String, Codable, CaseIterable {
@@ -159,7 +160,8 @@ extension APICourse {
         image_download_url: String? = nil,
         is_favorite: Bool? = nil,
         sections: [SectionRef]? = nil,
-        tabs: [APITab]? = nil
+        tabs: [APITab]? = nil,
+        settings: APICourseSettings? = nil
     ) -> APICourse {
         return APICourse(
             id: id,
@@ -184,7 +186,8 @@ extension APICourse {
             image_download_url: image_download_url,
             is_favorite: is_favorite,
             sections: sections,
-            tabs: tabs
+            tabs: tabs,
+            settings: settings
         )
     }
 }
@@ -206,13 +209,15 @@ extension APICourse.Term {
 }
 
 extension APICourseSettings {
-    static func make(
+    public static func make(
         usage_rights_required: Bool = false,
-        syllabus_course_summary: Bool = true
+        syllabus_course_summary: Bool = true,
+        restrict_quantitative_data: Bool? = nil
     ) -> APICourseSettings {
-        return APICourseSettings(
+        APICourseSettings(
             usage_rights_required: usage_rights_required,
-            syllabus_course_summary: syllabus_course_summary
+            syllabus_course_summary: syllabus_course_summary,
+            restrict_quantitative_data: restrict_quantitative_data
         )
     }
 }
@@ -247,6 +252,7 @@ public struct GetCoursesRequest: APIRequestable {
         case tabs
         case term
         case total_scores
+        case settings
     }
 
     let enrollmentState: EnrollmentState?
@@ -304,6 +310,7 @@ public struct GetCourseRequest: APIRequestable {
         case totalScores = "total_scores"
         case observedUsers = "observed_users"
         case tabs = "tabs"
+        case settings
     }
 
     let courseID: String
@@ -318,6 +325,7 @@ public struct GetCourseRequest: APIRequestable {
         .term,
         .totalScores,
         .observedUsers,
+        .settings,
     ]
 
     var include: [Include] = defaultIncludes

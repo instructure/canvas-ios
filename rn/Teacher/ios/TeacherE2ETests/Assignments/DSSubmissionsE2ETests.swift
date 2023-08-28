@@ -16,9 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import TestsFoundation
 import Core
+import TestsFoundation
 
 class DSSubmissionsE2ETests: E2ETestCase {
     func testSubmission() {
@@ -33,19 +32,16 @@ class DSSubmissionsE2ETests: E2ETestCase {
         let assignmentName = "Assignment 1"
         let assignmentDescription = "This is a description for Assignment 1"
         let assignment = seeder.createAssignment(courseId: course.id, assignementBody: .init(name: assignmentName, description: assignmentDescription, published: true))
-
-        logInDSUser(teacher)
-
         let submission = seeder.createSubmission(courseId: course.id, assignmentId: assignment.id, requestBody:
             .init(submission_type: SubmissionType.online_text_entry, body: "This is a submission body", user_id: student.id))
 
-        Dashboard.courseCard(id: course.id).waitToExist()
-        Dashboard.courseCard(id: course.id).tap()
-        CourseNavigation.assignments.tap()
-        AssignmentsList.assignment(id: assignment.id).tap()
-        AssignmentDetails.viewAllSubmissionsButton.tap()
-        SubmissionsListPage.cell(userID: student.id).waitToExist()
-        SubmissionsListPage.cell(userID: student.id).tap()
-        app.find(label: submission.body).waitToExist()
+        logInDSUser(teacher)
+
+        DashboardHelper.courseCard(course: course).hit()
+        CourseDetailsHelper.cell(type: .assignments).hit()
+        AssignmentsHelper.assignmentButton(assignment: assignment).hit()
+        AssignmentsHelper.Details.viewAllSubmissionsButton.hit()
+        AssignmentsHelper.submissionListCell(user: student).hit()
+        XCTAssertTrue(app.find(label: submission.body).waitUntil(.visible).isVisible)
     }
 }

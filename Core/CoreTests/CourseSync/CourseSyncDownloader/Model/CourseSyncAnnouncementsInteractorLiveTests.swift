@@ -24,7 +24,7 @@ import XCTest
 class CourseSyncAnnouncementsInteractorLiveTests: CoreTestCase {
 
     override class func tearDown() {
-        OfflineModeInteractorLive.shared = OfflineModeInteractorLive()
+        OfflineModeAssembly.reset()
         super.tearDown()
     }
 
@@ -39,7 +39,7 @@ class CourseSyncAnnouncementsInteractorLiveTests: CoreTestCase {
         API.resetMocks()
 
         // MARK: - WHEN
-        OfflineModeInteractorLive.shared = AlwaysOfflineModeInteractor()
+        OfflineModeAssembly.mock(AlwaysOfflineModeInteractor())
         let testee = AnnouncementListViewController.create(context: .course("testCourse"))
         testee.view.layoutIfNeeded()
         testee.viewWillAppear(false)

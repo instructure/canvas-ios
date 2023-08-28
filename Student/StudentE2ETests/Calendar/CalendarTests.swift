@@ -33,39 +33,41 @@ class CalendarTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Calendar
         logInDSUser(student)
-        let calendarTab = TabBar.calendarTab.waitToExist()
+        let calendarTab = Helper.TabBar.calendarTab.waitUntil(.visible)
         XCTAssertTrue(calendarTab.isVisible)
 
-        calendarTab.tap()
+        calendarTab.hit()
 
         // MARK: Check elements of event list
-        let navBar = Helper.navBar.waitToExist()
+        let navBar = Helper.navBar.waitUntil(.visible)
         XCTAssertTrue(navBar.isVisible)
 
-        let todayButton = Helper.todayButton.waitToExist()
+        let todayButton = Helper.todayButton.waitUntil(.visible)
         XCTAssertTrue(todayButton.isVisible)
 
-        let addNoteButton = Helper.addNoteButton.waitToExist()
+        let addNoteButton = Helper.addNoteButton.waitUntil(.visible)
         XCTAssertTrue(addNoteButton.isVisible)
 
-        let todayDateButton = Helper.dayButton(event: event).waitToExist()
-        XCTAssertTrue(todayDateButton.isVisible)
-        XCTAssertTrue(todayDateButton.isSelected)
+        let eventDateButton = Helper.dayButton(event: event).waitUntil(.visible)
+        XCTAssertTrue(eventDateButton.isVisible)
 
-        let eventItem = Helper.eventCell(event: event).waitToExist()
+        eventDateButton.hit()
+        XCTAssertTrue(eventDateButton.waitUntil(.selected).isSelected)
+
+        let eventItem = Helper.eventCell(event: event).waitUntil(.visible)
         XCTAssertTrue(eventItem.isVisible)
 
-        let eventTitleLabel = Helper.titleLabelOfEvent(eventCell: eventItem).waitToExist()
+        let eventTitleLabel = Helper.titleLabelOfEvent(eventCell: eventItem).waitUntil(.visible)
         XCTAssertTrue(eventTitleLabel.isVisible)
-        XCTAssertEqual(eventTitleLabel.label(), event.title)
+        XCTAssertEqual(eventTitleLabel.label, event.title)
 
-        let eventDateLabel = Helper.dateLabelOfEvent(eventCell: eventItem).waitToExist()
+        let eventDateLabel = Helper.dateLabelOfEvent(eventCell: eventItem).waitUntil(.visible)
         XCTAssertTrue(eventDateLabel.isVisible)
-        XCTAssertEqual(eventDateLabel.label(), Helper.formatDateForDateLabel(event: event))
+        XCTAssertEqual(eventDateLabel.label, Helper.formatDateForDateLabel(event: event))
 
-        let eventCourseLabel = Helper.courseLabelOfEvent(eventCell: eventItem).waitToExist()
+        let eventCourseLabel = Helper.courseLabelOfEvent(eventCell: eventItem).waitUntil(.visible)
         XCTAssertTrue(eventCourseLabel.isVisible)
-        XCTAssertEqual(eventCourseLabel.label(), course.name)
+        XCTAssertEqual(eventCourseLabel.label, course.name)
     }
 
     func testCalendarEventDetails() {
@@ -78,29 +80,35 @@ class CalendarTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Calendar
         logInDSUser(student)
-        let calendarTab = TabBar.calendarTab.waitToExist()
+        let calendarTab = Helper.TabBar.calendarTab.waitUntil(.visible)
         XCTAssertTrue(calendarTab.isVisible)
 
-        calendarTab.tap()
+        calendarTab.hit()
+
+        let eventDateButton = Helper.dayButton(event: event).waitUntil(.visible)
+        XCTAssertTrue(eventDateButton.isVisible)
+
+        eventDateButton.hit()
+        XCTAssertTrue(eventDateButton.waitUntil(.selected).isSelected)
 
         // MARK: Tap on the event item and check the details
-        let eventItem = Helper.eventCell(event: event).waitToExist()
+        let eventItem = Helper.eventCell(event: event).waitUntil(.visible)
         XCTAssertTrue(eventItem.isVisible)
 
-        eventItem.tap()
-        let titleLabel = DetailsHelper.titleLabel(event: event).waitToExist()
+        eventItem.hit()
+        let titleLabel = DetailsHelper.titleLabel(event: event).waitUntil(.visible)
         XCTAssertTrue(titleLabel.isVisible)
 
-        let dateLabel = DetailsHelper.dateLabel(event: event).waitToExist()
+        let dateLabel = DetailsHelper.dateLabel(event: event).waitUntil(.visible)
         XCTAssertTrue(dateLabel.isVisible)
 
-        let locationNameLabel = DetailsHelper.locationNameLabel(event: event).waitToExist()
+        let locationNameLabel = DetailsHelper.locationNameLabel(event: event).waitUntil(.visible)
         XCTAssertTrue(locationNameLabel.isVisible)
 
-        let locationAddressLabel = DetailsHelper.locationAddressLabel(event: event).waitToExist()
+        let locationAddressLabel = DetailsHelper.locationAddressLabel(event: event).waitUntil(.visible)
         XCTAssertTrue(locationAddressLabel.isVisible)
 
-        let descriptionLabel = DetailsHelper.descriptionLabel(event: event).waitToExist()
+        let descriptionLabel = DetailsHelper.descriptionLabel(event: event).waitUntil(.visible)
         XCTAssertTrue(descriptionLabel.isVisible)
     }
 
@@ -116,17 +124,16 @@ class CalendarTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Calendar
         logInDSUser(student)
-        let calendarTab = TabBar.calendarTab.waitToExist()
+        let calendarTab = Helper.TabBar.calendarTab.waitUntil(.visible)
         XCTAssertTrue(calendarTab.isVisible)
 
-        calendarTab.tap()
+        calendarTab.hit()
 
         // MARK: Navigate to dates and check the events
         let yesterdaysEventItem = Helper.navigateToEvent(event: events.yesterdays!)
         XCTAssertTrue(yesterdaysEventItem.isVisible)
 
-        Helper.todayButton.tap()
-        let todaysEventItem = Helper.eventCell(event: events.todays!).waitToExist()
+        let todaysEventItem = Helper.navigateToEvent(event: events.todays!)
         XCTAssertTrue(todaysEventItem.isVisible)
 
         let tomorrowsEventItem = Helper.navigateToEvent(event: events.tomorrows!)
@@ -146,32 +153,33 @@ class CalendarTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Calendar
         logInDSUser(student)
-        let calendarTab = TabBar.calendarTab.waitToExist()
+        let calendarTab = Helper.TabBar.calendarTab.waitUntil(.visible)
         XCTAssertTrue(calendarTab.isVisible)
 
-        calendarTab.tap()
+        calendarTab.hit()
 
         // MARK: Navigate to Recurring event and check recurrency
         let recurringEventItem1 = Helper.navigateToEvent(event: events.recurring!)
-        let recurringEventTitle1 = Helper.titleLabelOfEvent(eventCell: recurringEventItem1).waitToExist()
+        let recurringEventTitle1 = Helper.titleLabelOfEvent(eventCell: recurringEventItem1).waitUntil(.visible)
         XCTAssertTrue(recurringEventItem1.isVisible)
-        XCTAssertEqual(recurringEventTitle1.label(), events.recurring!.title)
+        XCTAssertEqual(recurringEventTitle1.label, events.recurring!.title)
 
         let recurringEventItem2 = Helper.navigateToEvent(event: events.recurring!.duplicates![0].calendar_event)
-        let recurringEventTitle2 = Helper.titleLabelOfEvent(eventCell: recurringEventItem2).waitToExist()
+        let recurringEventTitle2 = Helper.titleLabelOfEvent(eventCell: recurringEventItem2).waitUntil(.visible)
         XCTAssertTrue(recurringEventItem2.isVisible)
-        XCTAssertEqual(recurringEventTitle2.label(), events.recurring!.duplicates![0].calendar_event.title)
+        XCTAssertEqual(recurringEventTitle2.label, events.recurring!.duplicates![0].calendar_event.title)
 
         let recurringEventItem3 = Helper.navigateToEvent(event: events.recurring!.duplicates![1].calendar_event)
-        let recurringEventTitle3 = Helper.titleLabelOfEvent(eventCell: recurringEventItem3).waitToExist()
+        let recurringEventTitle3 = Helper.titleLabelOfEvent(eventCell: recurringEventItem3).waitUntil(.visible)
         XCTAssertTrue(recurringEventItem3.isVisible)
-        XCTAssertEqual(recurringEventTitle3.label(), events.recurring!.duplicates![1].calendar_event.title)
+        XCTAssertEqual(recurringEventTitle3.label, events.recurring!.duplicates![1].calendar_event.title)
     }
 
     func testCourseFilter() {
         // MARK: Seed the usual stuff with 2 course and 2 separate calendar events
         let student = seeder.createUser()
         let course1 = seeder.createCourse()
+        sleep(1)
         let course2 = seeder.createCourse()
         seeder.enrollStudent(student, in: course1)
         seeder.enrollStudent(student, in: course2)
@@ -181,71 +189,73 @@ class CalendarTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Calendar
         logInDSUser(student)
-        let calendarTab = TabBar.calendarTab.waitToExist()
+        let calendarTab = Helper.TabBar.calendarTab.waitUntil(.visible)
         XCTAssertTrue(calendarTab.isVisible)
 
-        calendarTab.tap()
+        calendarTab.hit()
 
         // MARK: Check events
-        var eventItem1 = Helper.eventCell(event: event1).waitToExist()
-        var eventItem2 = Helper.eventCell(event: event2).waitToExist()
+        var eventItem1 = Helper.navigateToEvent(event: event1).waitUntil(.visible)
+        var eventItem2 = Helper.navigateToEvent(event: event2).waitUntil(.visible)
         XCTAssertTrue(eventItem1.isVisible)
         XCTAssertTrue(eventItem2.isVisible)
 
         // MARK: Check course filtering
-        let filterButton = Helper.filterButton.waitToExist()
+        let filterButton = Helper.filterButton.waitUntil(.visible)
         XCTAssertTrue(filterButton.isVisible)
 
-        filterButton.tap()
+        filterButton.hit()
 
-        let filterNavBar = FilterHelper.navBar.waitToExist()
+        let filterNavBar = FilterHelper.navBar.waitUntil(.visible)
         XCTAssertTrue(filterNavBar.isVisible)
 
-        let doneButton = FilterHelper.doneButton.waitToExist()
+        let doneButton = FilterHelper.doneButton.waitUntil(.visible)
         XCTAssertTrue(doneButton.isVisible)
 
-        let courseCell1 = FilterHelper.courseCell(course: course1).waitToExist()
+        let courseCell1 = FilterHelper.courseCell(course: course1).waitUntil(.visible)
         XCTAssertTrue(courseCell1.isVisible)
-        XCTAssertTrue(courseCell1.isSelected)
+        XCTAssertTrue(courseCell1.waitUntil(.selected).isSelected)
 
-        let courseCell2 = FilterHelper.courseCell(course: course2).waitToExist()
+        let courseCell2 = FilterHelper.courseCell(course: course2).waitUntil(.visible)
         XCTAssertTrue(courseCell2.isVisible)
-        XCTAssertTrue(courseCell2.isSelected)
+        XCTAssertTrue(courseCell2.waitUntil(.selected).isSelected)
 
         // MARK: Change filter to first course
-        courseCell2.tap()
+        courseCell1.actionUntilElementCondition(action: .tap, condition: .selected, gracePeriod: 2)
+        courseCell2.actionUntilElementCondition(action: .tap, condition: .unselected, gracePeriod: 2)
         XCTAssertTrue(courseCell1.isSelected)
         XCTAssertFalse(courseCell2.isSelected)
 
-        doneButton.tap()
-        eventItem1 = Helper.eventCell(event: event1).waitToExist()
-        eventItem2 = Helper.eventCell(event: event2).waitToVanish()
+        doneButton.hit()
+        eventItem1 = Helper.eventCell(event: event1).waitUntil(.visible)
+        eventItem2 = Helper.eventCell(event: event2).waitUntil(.vanish)
         XCTAssertTrue(eventItem1.isVisible)
-        XCTAssertFalse(eventItem2.isVisible)
+        XCTAssertTrue(eventItem2.isVanished)
 
         // MARK: Change filter to second course
-        filterButton.tap()
-        courseCell1.tap()
-        courseCell2.tap()
+        filterButton.hit()
+        courseCell1.actionUntilElementCondition(action: .tap, condition: .unselected, gracePeriod: 2)
+        courseCell2.actionUntilElementCondition(action: .tap, condition: .selected, gracePeriod: 2)
         XCTAssertFalse(courseCell1.isSelected)
         XCTAssertTrue(courseCell2.isSelected)
 
-        doneButton.tap()
-        eventItem1 = Helper.eventCell(event: event1).waitToVanish()
-        eventItem2 = Helper.eventCell(event: event2).waitToExist()
-        XCTAssertFalse(eventItem1.isVisible)
+        doneButton.hit()
+        eventItem1 = Helper.eventCell(event: event1).waitUntil(.vanish, gracePeriod: 2)
+        eventItem2 = Helper.eventCell(event: event2).waitUntil(.visible, gracePeriod: 2)
+        XCTAssertTrue(eventItem1.isVanished)
         XCTAssertTrue(eventItem2.isVisible)
 
         // MARK: Change filter to no course selected
-        filterButton.tap()
-        courseCell2.tap()
+        filterButton.hit()
+        courseCell1.actionUntilElementCondition(action: .tap, condition: .unselected, gracePeriod: 2)
+        courseCell2.actionUntilElementCondition(action: .tap, condition: .unselected, gracePeriod: 2)
         XCTAssertFalse(courseCell1.isSelected)
         XCTAssertFalse(courseCell2.isSelected)
 
-        doneButton.tap()
-        eventItem1 = Helper.eventCell(event: event1).waitToVanish()
-        eventItem2 = Helper.eventCell(event: event2).waitToVanish()
-        XCTAssertFalse(eventItem1.isVisible)
-        XCTAssertFalse(eventItem2.isVisible)
+        doneButton.hit()
+        eventItem1 = Helper.eventCell(event: event1).waitUntil(.vanish, gracePeriod: 2)
+        eventItem2 = Helper.eventCell(event: event2).waitUntil(.vanish, gracePeriod: 2)
+        XCTAssertTrue(eventItem1.isVanished)
+        XCTAssertTrue(eventItem2.isVanished)
     }
 }

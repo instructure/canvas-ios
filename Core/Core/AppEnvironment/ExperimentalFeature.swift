@@ -30,7 +30,6 @@ public enum ExperimentalFeature: String, CaseIterable, Codable {
     case nativeTeacherInbox = "native_teacher_inbox"
     case K5Dashboard = "enable_K5_dashboard"
     case hybridDiscussionDetails = "hybrid_discussion_details"
-    case offlineMode = "offline_mode"
 
     public var isEnabled: Bool {
         get {

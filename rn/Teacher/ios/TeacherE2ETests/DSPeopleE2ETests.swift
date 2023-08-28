@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import TestsFoundation
 
 class DSPeopleE2ETests: E2ETestCase {
@@ -31,16 +30,16 @@ class DSPeopleE2ETests: E2ETestCase {
         seeder.enrollStudent(student, in: course)
 
         logInDSUser(teacher)
-        Dashboard.courseCard(id: course.id).tap()
-        CourseNavigation.people.tap()
+        DashboardHelper.courseCard(course: course).hit()
+        CourseDetailsHelper.cell(type: .people).hit()
 
-        PeopleListCell.cell(index: studentIndex).waitToExist()
+        XCTAssertTrue(PeopleHelper.peopleCell(index: studentIndex).waitUntil(.visible).isVisible)
 
-        XCTAssertEqual(PeopleListCell.name(index: studentIndex), student.name)
-        XCTAssertEqual(PeopleListCell.role(index: studentIndex), "Student")
-        PeopleListCell.cell(index: studentIndex).tap()
-        NavBar.backButton.tap()
-        PeopleListCell.cell(index: studentIndex).waitToExist()
-        XCTAssertEqual(PeopleListCell.role(index: studentIndex), "Student")
+        XCTAssertEqual(PeopleHelper.nameLabelOfPeopleCell(index: studentIndex).label, student.name)
+        XCTAssertEqual(PeopleHelper.roleLabelOfPeopleCell(index: studentIndex).label, "Student")
+        PeopleHelper.peopleCell(index: studentIndex).hit()
+        PeopleHelper.backButton.hit()
+        XCTAssertTrue(PeopleHelper.peopleCell(index: studentIndex).waitUntil(.visible).isVisible)
+        XCTAssertEqual(PeopleHelper.roleLabelOfPeopleCell(index: studentIndex).label, "Student")
     }
 }

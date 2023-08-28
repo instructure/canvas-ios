@@ -716,6 +716,9 @@
 "d_items" = "d_items";
 
 /* No comment provided by engineer. */
+"d_items_syncing" = "d_items_syncing";
+
+/* No comment provided by engineer. */
 "d_likes" = "d_likes";
 
 /* No comment provided by engineer. */
@@ -861,6 +864,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Afwijzen %@";
+
+/* No comment provided by engineer. */
+"Dismiss notification" = "Melding verwijderen";
 
 /* No comment provided by engineer. */
 "Display As" = "Weergaven als";
@@ -1056,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "File Details" = "Bestandsdetails";
+
+/* No comment provided by engineer. */
+"File download failed." = "Bestand downloaden mislukt.";
 
 /* No comment provided by engineer. */
 "File No Longer Exists" = "Bestand bestaat niet meer";
@@ -2456,6 +2465,9 @@
 "Synchronization" = "Synchronisatie";
 
 /* No comment provided by engineer. */
+"Syncing Offline Content" = "Offline inhoud synchroniseren";
+
+/* No comment provided by engineer. */
 "System settings" = "Systeeminstellingen";
 
 /* No comment provided by engineer. */
@@ -2469,9 +2481,6 @@
 
 /* No comment provided by engineer. */
 "Tap here for details" = "Tik hier voor details";
-
-/* No comment provided by engineer. */
-"Tap here for help." = "Tik hier voor hulp.";
 
 /* No comment provided by engineer. */
 "Tap the \"+\" to create a new conversation" = "Tik op de \"+\\\" om een nieuw gesprek te maken.";

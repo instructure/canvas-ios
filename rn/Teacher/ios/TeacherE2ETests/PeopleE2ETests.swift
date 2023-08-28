@@ -16,25 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 import TestsFoundation
 
 class PeopleE2ETests: CoreUITestCase {
     func testPeopleE2E() {
-        Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
-        CourseNavigation.people.tap()
-        app.find(label: "Student One").tap()
-        app.find(labelContaining: "Assignments").waitToExist()
-        XCTAssertEqual(ContextCard.submissionsTotalLabel.label(), "3 submitted")
-        NavBar.backButton.tap()
-        app.find(label: "Student Two").tap()
-        XCTAssertEqual(ContextCard.submissionsMissingLabel.label(), "1 missing")
-        NavBar.backButton.tap()
-        app.find(label: "Filter").tap()
-        app.find(label: "Teachers").tap()
+        DashboardHelper.courseCard(courseId: "263").hit()
+        CourseDetailsHelper.cell(type: .people).hit()
+        app.find(label: "Student One").hit()
+        XCTAssertTrue(app.find(labelContaining: "Assignments").waitUntil(.visible).isVisible)
+        XCTAssertEqual(PeopleHelper.ContextCard.submissionsTotalLabel.waitUntil(.visible).label, "3 submitted")
+        PeopleHelper.backButton.hit()
+        app.find(label: "Student Two").hit()
+        XCTAssertEqual(PeopleHelper.ContextCard.submissionsMissingLabel.waitUntil(.visible).label, "1 missing")
+        PeopleHelper.backButton.hit()
+        app.find(label: "Filter").hit()
+        app.find(label: "Teachers").hit()
         app.swipeDown()
-        XCTAssertFalse(app.find(label: "Student One").exists())
-        XCTAssertTrue(app.find(label: "Teacher One").exists())
+        XCTAssertFalse(app.find(label: "Student One").waitUntil(.vanish).isVisible)
+        XCTAssertTrue(app.find(label: "Teacher One").waitUntil(.visible).isVisible)
     }
 }

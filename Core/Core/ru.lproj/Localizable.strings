@@ -716,6 +716,9 @@
 "d_items" = "d_items";
 
 /* No comment provided by engineer. */
+"d_items_syncing" = "d_items_syncing";
+
+/* No comment provided by engineer. */
 "d_likes" = "d_likes";
 
 /* No comment provided by engineer. */
@@ -861,6 +864,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Исключить %@";
+
+/* No comment provided by engineer. */
+"Dismiss notification" = "Пропустить уведомление";
 
 /* No comment provided by engineer. */
 "Display As" = "Отобразить как";
@@ -1056,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "File Details" = "Подробная информация о файле";
+
+/* No comment provided by engineer. */
+"File download failed." = "Не удалось скачать файл.";
 
 /* No comment provided by engineer. */
 "File No Longer Exists" = "Файл больше не существует";
@@ -2456,6 +2465,9 @@
 "Synchronization" = "Синхронизация";
 
 /* No comment provided by engineer. */
+"Syncing Offline Content" = "Синхронизировать офлайн-контент";
+
+/* No comment provided by engineer. */
 "System settings" = "Системные настройки";
 
 /* No comment provided by engineer. */
@@ -2469,9 +2481,6 @@
 
 /* No comment provided by engineer. */
 "Tap here for details" = "Прикоснитесь здесь для получения подробных сведений";
-
-/* No comment provided by engineer. */
-"Tap here for help." = "Прикоснитесь здесь для получения помощи.";
 
 /* No comment provided by engineer. */
 "Tap the \"+\" to create a new conversation" = "Прикоснитесь к \"+\" для создания новой дискуссии";

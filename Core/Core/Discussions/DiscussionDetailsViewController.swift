@@ -61,6 +61,11 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
     )
 
     var assignment: Store<GetAssignment>?
+
+    public var hideQuantitativeData: Bool {
+        return assignment?.first?.hideQuantitativeData ?? false
+    }
+
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
     }
@@ -100,7 +105,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         isAnnouncement: Bool = false,
         showEntryID: String? = nil,
         showRepliesToEntryID: String? = nil,
-        offlineModeInteractor: OfflineModeInteractor? = OfflineModeInteractorLive.shared
+        offlineModeInteractor: OfflineModeInteractor? = OfflineModeAssembly.make()
     ) -> DiscussionDetailsViewController {
         let controller = loadFromStoryboard()
         controller.context = context
@@ -250,7 +255,8 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
 
         titleLabel.text = topic.first?.title
         pointsLabel.text = assignment?.first?.pointsPossibleText
-        pointsView.isHidden = assignment?.first?.pointsPossible == nil || showRepliesToEntryID != nil
+        pointsView.isHidden = assignment?.first?.pointsPossible == nil || showRepliesToEntryID != nil ||
+        hideQuantitativeData
 
         let isPublished = topic.first?.published == true
         publishedIcon.image = isPublished ? .publishSolid : .noSolid
@@ -496,7 +502,12 @@ extension DiscussionDetailsViewController: CoreWebViewLinkDelegate {
             url.path.hasPrefix("/\(context.pathComponent)/discussion_topics/\(topicID)/")
         else {
             if url.pathComponents.contains("files") {
-                env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+                if offlineModeInteractor?.isOfflineModeEnabled() == true {
+                    UIAlertController.showItemNotAvailableInOfflineAlert()
+                    return true
+                } else {
+                    env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
+                }
             } else {
                 env.router.route(to: url, from: self)
             }

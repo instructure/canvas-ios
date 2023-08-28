@@ -16,29 +16,27 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 import TestsFoundation
 
 class DiscussionsE2ETests: CoreUITestCase {
     func testDiscussionsE2E() {
-        Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
-        CourseNavigation.discussions.tap()
-        DiscussionList.newButton.waitToExist()
-        DiscussionListCell.cell(id: "14393").tap()
-        XCTAssertEqual(DiscussionDetails.title.label(), "Graded Discussion")
-        NavBar.backButton.tap()
-        DiscussionListCell.cell(id: "14392").tap()
-        XCTAssertEqual(DiscussionDetails.title.label(), "Simple Discussion")
-        app.find(labelContaining: "No Attachment").waitToExist()
-        DiscussionDetails.options.tap()
-        DiscussionDetails.edit.tap()
-        DiscussionEditor.doneButton.waitToExist()
-        app.find(label: "Cancel").tap()
-        DiscussionDetails.title.waitToExist()
-        NavBar.backButton.tap()
-        DiscussionList.newButton.tap()
-        DiscussionEditor.doneButton.waitToExist()
-        app.find(label: "Cancel").tap()
+        DashboardHelper.courseCard(courseId: "263").hit()
+        CourseDetailsHelper.cell(type: .discussions).hit()
+        XCTAssertTrue(DiscussionsHelper.newButton.waitUntil(.visible).isVisible)
+        DiscussionsHelper.discussionButton(discussionId: "14393").hit()
+        XCTAssertEqual(DiscussionsHelper.Details.titleLabel.waitUntil(.visible).label, "Graded Discussion")
+        DiscussionsHelper.backButton.hit()
+        DiscussionsHelper.discussionButton(discussionId: "14392").hit()
+        XCTAssertEqual(DiscussionsHelper.Details.titleLabel.waitUntil(.visible).label, "Simple Discussion")
+        XCTAssertTrue(app.find(labelContaining: "No Attachment").waitUntil(.visible).isVisible)
+        DiscussionsHelper.Details.optionsButton.hit()
+        DiscussionsHelper.Details.editButton.hit()
+        XCTAssertTrue(DiscussionsHelper.Editor.doneButton.waitUntil(.visible).isVisible)
+        app.find(label: "Cancel").hit()
+        XCTAssertTrue(DiscussionsHelper.Details.titleLabel.waitUntil(.visible).isVisible)
+        DiscussionsHelper.backButton.hit()
+        DiscussionsHelper.newButton.hit()
+        XCTAssertTrue(DiscussionsHelper.Editor.doneButton.waitUntil(.visible).isVisible)
+        app.find(label: "Cancel").hit()
     }
 }

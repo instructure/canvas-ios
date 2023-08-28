@@ -596,7 +596,9 @@
                                     </view>
                                     <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q3R-vd-zmQ">
                                         <rect key="frame" x="0.0" y="1449" width="375" height="100"/>
-                                        <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.description"/>
+                                        <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.description">
+                                            <bool key="isElement" value="NO"/>
+                                        </accessibility>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" placeholder="YES" id="rno-a9-Zp1"/>
                                         </constraints>
@@ -680,6 +682,7 @@
                         <outlet property="quizTimeLimitValueLabel" destination="vY4-Ty-iuC" id="UBY-Az-JpA"/>
                         <outlet property="quizView" destination="RBf-wD-x1b" id="AoK-pJ-beV"/>
                         <outlet property="scrollView" destination="2qC-UP-t75" id="IxZ-Ml-aPC"/>
+                        <outlet property="scrollViewBottom" destination="JB1-8g-YCS" id="kKF-fu-C4c"/>
                         <outlet property="statusIconView" destination="Tdl-M0-B5e" id="11O-xE-tnq"/>
                         <outlet property="statusLabel" destination="co0-jJ-6sI" id="P3s-MG-6Xw"/>
                         <outlet property="submissionButton" destination="bN3-2w-CuG" id="uhR-2z-p6S"/>

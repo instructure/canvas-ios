@@ -29,6 +29,7 @@ public extension CourseSyncEntry {
         let fileName: String
         let url: URL
         let mimeClass: String
+        let updatedAt: Date?
         var state: State = .loading(nil)
         var selectionState: ListCellView.SelectionState = .deselected
 
@@ -38,7 +39,6 @@ public extension CourseSyncEntry {
         /// Downloaded bytes, progress is persisted to Core Data.
         var bytesDownloaded: Int {
             switch state {
-            case .idle: return 0
             case .downloaded: return bytesToDownload
             case let .loading(progress):
                 if let progress {

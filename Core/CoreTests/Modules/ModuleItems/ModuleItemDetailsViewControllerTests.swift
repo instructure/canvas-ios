@@ -237,4 +237,26 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         wait(for: [expectation], timeout: 0.1)
     }
+
+    func testReportsScreenViewForLoadedChildViewController() {
+        let mockAnalyticsHandler = MockAnalyticsHandler()
+        Analytics.shared.handler = mockAnalyticsHandler
+        router.mock("/courses/1/assignments/2?origin=module_item_details") {
+            DetailViewController()
+        }
+        router.mockTemplate(for: URL(string: "/courses/1/assignments/2?origin=module_item_details")!, template: "/courses/:courseId")
+        api.mock(controller.store,
+                 value: .make(
+                    id: "3",
+                    title: "Submit this thing!",
+                    content: .assignment("2"),
+                    url: URL(string: "/courses/1/assignments/2")!,
+                    content_details: .make())
+        )
+        controller.view.layoutIfNeeded()
+
+        XCTAssertEqual(mockAnalyticsHandler.lastEventName, "screen_view")
+        XCTAssertEqual(mockAnalyticsHandler.lastEventParameters?["screen_name"] as? String, "/courses/:courseId")
+        XCTAssertEqual(mockAnalyticsHandler.lastEventParameters?["screen_class"] as? String, "DetailViewController")
+    }
 }

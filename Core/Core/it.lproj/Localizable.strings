@@ -716,6 +716,9 @@
 "d_items" = "d_items";
 
 /* No comment provided by engineer. */
+"d_items_syncing" = "d_items_syncing";
+
+/* No comment provided by engineer. */
 "d_likes" = "d_likes";
 
 /* No comment provided by engineer. */
@@ -861,6 +864,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Ignora %@";
+
+/* No comment provided by engineer. */
+"Dismiss notification" = "Elimina notifica";
 
 /* No comment provided by engineer. */
 "Display As" = "Visualizza come";
@@ -1056,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "File Details" = "Dettagli file";
+
+/* No comment provided by engineer. */
+"File download failed." = "Errore download file.";
 
 /* No comment provided by engineer. */
 "File No Longer Exists" = "Il file non esiste più";
@@ -2456,6 +2465,9 @@
 "Synchronization" = "Sincronizzazione";
 
 /* No comment provided by engineer. */
+"Syncing Offline Content" = "Sincronizzare contenuto offline";
+
+/* No comment provided by engineer. */
 "System settings" = "Impostazioni sistema";
 
 /* No comment provided by engineer. */
@@ -2469,9 +2481,6 @@
 
 /* No comment provided by engineer. */
 "Tap here for details" = "Toccare qui per i dettagli";
-
-/* No comment provided by engineer. */
-"Tap here for help." = "Tocca qui per assistenza.";
 
 /* No comment provided by engineer. */
 "Tap the \"+\" to create a new conversation" = "Tocca \"+\" per creare una nuova conversazione";

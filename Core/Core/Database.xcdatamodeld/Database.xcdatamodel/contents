@@ -388,6 +388,7 @@
         <relationship name="gradingPeriods" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GradingPeriod" inverseName="course" inverseEntity="GradingPeriod"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="course" inverseEntity="Group"/>
         <relationship name="sections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CourseSection" inverseName="course" inverseEntity="CourseSection"/>
+        <relationship name="settings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CourseSettings" inverseName="course" inverseEntity="CourseSettings"/>
         <relationship name="todos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Todo" inverseName="course" inverseEntity="Todo"/>
     </entity>
     <entity name="CourseListItem" representedClassName="Core.CourseListItem" syncable="YES">
@@ -414,8 +415,10 @@
     </entity>
     <entity name="CourseSettings" representedClassName="Core.CourseSettings" syncable="YES">
         <attribute name="courseID" attributeType="String"/>
-        <attribute name="syllabusCourseSummary" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="restrictQuantitativeData" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="syllabusCourseSummary" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="usageRightsRequired" attributeType="Boolean" usesScalarValueType="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="settings" inverseEntity="Course"/>
     </entity>
     <entity name="CourseSyncDownloadProgress" representedClassName="Core.CourseSyncDownloadProgress" syncable="YES">
         <attribute name="bytesDownloaded" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -528,6 +531,7 @@
     <entity name="Enrollment" representedClassName="Core.Enrollment" syncable="YES">
         <attribute name="canvasContextID" optional="YES" attributeType="String"/>
         <attribute name="computedCurrentGrade" optional="YES" attributeType="String"/>
+        <attribute name="computedCurrentLetterGrade" optional="YES" attributeType="String"/>
         <attribute name="computedCurrentScoreRaw" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="computedFinalGrade" optional="YES" attributeType="String"/>
         <attribute name="computedFinalScoreRaw" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>

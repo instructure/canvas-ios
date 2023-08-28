@@ -716,6 +716,9 @@
 "d_items" = "d_items";
 
 /* No comment provided by engineer. */
+"d_items_syncing" = "d_items_syncing";
+
+/* No comment provided by engineer. */
 "d_likes" = "d_likes";
 
 /* No comment provided by engineer. */
@@ -861,6 +864,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "取り下げる%@";
+
+/* No comment provided by engineer. */
+"Dismiss notification" = "通知を閉じる";
 
 /* No comment provided by engineer. */
 "Display As" = "表示方法";
@@ -1056,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "File Details" = "ファイル詳細";
+
+/* No comment provided by engineer. */
+"File download failed." = "ファイル読み取りに失敗しました。";
 
 /* No comment provided by engineer. */
 "File No Longer Exists" = "ファイルはもう存在しません";
@@ -2456,6 +2465,9 @@
 "Synchronization" = "同期";
 
 /* No comment provided by engineer. */
+"Syncing Offline Content" = "オフラインコンテンツの同期";
+
+/* No comment provided by engineer. */
 "System settings" = "システム設定";
 
 /* No comment provided by engineer. */
@@ -2469,9 +2481,6 @@
 
 /* No comment provided by engineer. */
 "Tap here for details" = "こちらをタップすると詳細が表示されます。";
-
-/* No comment provided by engineer. */
-"Tap here for help." = "ここをタップしてヘルプを表示します。";
 
 /* No comment provided by engineer. */
 "Tap the \"+\" to create a new conversation" = "\\\"+\\\" をタップして新しい会話を作成する";

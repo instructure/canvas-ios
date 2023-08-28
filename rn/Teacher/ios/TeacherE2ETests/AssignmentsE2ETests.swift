@@ -16,28 +16,26 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 import TestsFoundation
 
 class AssignmentsE2ETests: CoreUITestCase {
     func testAssignmentsE2E() {
-        Dashboard.courseCard(id: "263").waitToExist()
-        Dashboard.courseCard(id: "263").tap()
-        CourseNavigation.assignments.tap()
-        AssignmentsList.assignment(id: "1831").tap()
-        AssignmentDetails.description("This is assignment one.").waitToExist()
-        NavBar.backButton.tap()
+        DashboardHelper.courseCard(courseId: "263").hit()
+        CourseDetailsHelper.cell(type: .assignments).hit()
+        AssignmentsHelper.assignmentButton(assignmentId: "1831").hit()
+        XCTAssertTrue(app.find(labelContaining: "This is assignment one.").waitUntil(.visible).isVisible)
+        AssignmentsHelper.backButton.hit()
 
         // AssignmentsList.assignment(id: "261986").tap() doesn't work so we scroll to the cell
         // and tap on the screen with absolute screen coordinates.
         app.swipeUp()
-        app.windows.firstElement.tapAt(CGPoint(x: 10, y: 580))
+        app.windows.firstMatch.tapAt(CGPoint(x: 10, y: 580))
 
-        app.find(labelContaining: "10 pts").waitToExist()
-        app.find(labelContaining: "Needs Grading").waitToExist()
-        NavBar.backButton.tap()
-        NavBar.backButton.tap()
-        NavBar.backButton.tap()
-        Dashboard.courseCard(id: "263").waitToExist()
+        XCTAssertTrue(app.find(labelContaining: "10 pts").waitUntil(.visible).isVisible)
+        XCTAssertTrue(app.find(labelContaining: "Needs Grading").waitUntil(.visible).isVisible)
+        AssignmentsHelper.backButton.hit()
+        AssignmentsHelper.backButton.hit()
+        AssignmentsHelper.backButton.hit()
+        XCTAssertTrue(DashboardHelper.courseCard(courseId: "263").waitUntil(.visible).isVisible)
     }
 }

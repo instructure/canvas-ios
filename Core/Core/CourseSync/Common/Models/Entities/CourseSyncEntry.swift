@@ -22,11 +22,10 @@ public struct CourseSyncEntry: Equatable {
     public enum State: Codable, Equatable, Hashable {
         // CourseSyncEntryProgress relies on this order when it saves its' data.
         // Core Data Raw values:
-        // idle = 0
-        // loading = 1
-        // error = 2
-        // downloaded 3
-        case idle, loading(Float?), error, downloaded
+        // loading = 0
+        // error = 1
+        // downloaded 2
+        case loading(Float?), error, downloaded
     }
 
     let name: String
@@ -132,7 +131,6 @@ public struct CourseSyncEntry: Equatable {
             .filter { $0.selectionState == .selected }
             .reduce(0 as Float) { partialResult, file in
                 switch file.state {
-                case .idle: return 0
                 case .downloaded: return partialResult + 1
                 case let .loading(progress): return partialResult + (progress ?? 0)
                 case .error: return partialResult + 0
@@ -144,7 +142,6 @@ public struct CourseSyncEntry: Equatable {
             .filter { $0.selectionState == .selected }
             .reduce(0 as Float) { partialResult, tab in
                 switch tab.state {
-                case .idle: return 0
                 case .downloaded: return partialResult + 1
                 case .loading: return partialResult + 0
                 case .error: return partialResult + 0
@@ -158,6 +155,13 @@ public struct CourseSyncEntry: Equatable {
         let selectedCount = (Float(selectedFilesCount) + Float(selectedTabs.count))
         guard selectedCount > 0 else { return 0 }
         return (totalFilesProgress + totalTabsProgress) / selectedCount
+    }
+
+    var hasError: Bool {
+        let tabsError = tabs.contains { $0.state == .error }
+        let filesError = files.contains { $0.state == .error }
+
+        return state == .error || tabsError || filesError
     }
 
     mutating func selectCourse(selectionState: ListCellView.SelectionState) {
@@ -218,6 +222,7 @@ extension CourseSyncEntry.File {
         fileName: String = "File",
         url: URL = URL(string: "1")!,
         mimeClass: String = "jpg",
+        updatedAt: Date? = nil,
         bytesToDownload: Int = 0,
         state: CourseSyncEntry.State = .loading(nil),
         selectionState: ListCellView.SelectionState = .deselected
@@ -228,6 +233,7 @@ extension CourseSyncEntry.File {
             fileName: fileName,
             url: url,
             mimeClass: mimeClass,
+            updatedAt: updatedAt,
             state: state,
             selectionState: selectionState,
             bytesToDownload: bytesToDownload

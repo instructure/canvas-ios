@@ -716,6 +716,9 @@
 "d_items" = "d_items";
 
 /* No comment provided by engineer. */
+"d_items_syncing" = "d_items_syncing";
+
+/* No comment provided by engineer. */
 "d_likes" = "d_likes";
 
 /* No comment provided by engineer. */
@@ -861,6 +864,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Avvisa %@";
+
+/* No comment provided by engineer. */
+"Dismiss notification" = "Avvisa aviseringen";
 
 /* No comment provided by engineer. */
 "Display As" = "Visa som";
@@ -1056,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "File Details" = "Filinformation";
+
+/* No comment provided by engineer. */
+"File download failed." = "Filnedladdningen misslyckades";
 
 /* No comment provided by engineer. */
 "File No Longer Exists" = "Filen finns inte längre";
@@ -2456,6 +2465,9 @@
 "Synchronization" = "Synkronisering";
 
 /* No comment provided by engineer. */
+"Syncing Offline Content" = "Synkroniserar offlineinnehåll";
+
+/* No comment provided by engineer. */
 "System settings" = "Systeminställningar";
 
 /* No comment provided by engineer. */
@@ -2469,9 +2481,6 @@
 
 /* No comment provided by engineer. */
 "Tap here for details" = "Tryck här för information";
-
-/* No comment provided by engineer. */
-"Tap here for help." = "Tryck här för hjälp.";
 
 /* No comment provided by engineer. */
 "Tap the \"+\" to create a new conversation" = "Tryck på ”+” för att skapa en ny konversation";

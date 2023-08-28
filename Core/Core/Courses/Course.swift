@@ -47,6 +47,7 @@ final public class Course: NSManagedObject, WriteableModel {
     @NSManaged public var sections: Set<CourseSection>
     @NSManaged public var syllabusBody: String?
     @NSManaged public var termName: String?
+    @NSManaged public var settings: CourseSettings?
 
     public var defaultView: CourseDefaultView? {
         get { return CourseDefaultView(rawValue: defaultViewRaw ?? "") }
@@ -134,6 +135,12 @@ final public class Course: NSManagedObject, WriteableModel {
             group.course = model
         }
 
+        if let apiSettings = item.settings {
+            CourseSettings.save(apiSettings, courseID: item.id.value, in: context)
+        } else if let settings: CourseSettings = context.fetch(scope: .where(#keyPath(CourseSettings.courseID), equals: model.id)).first {
+            model.settings = settings
+        }
+
         return model
     }
 }
@@ -167,6 +174,10 @@ extension Course {
             return NSLocalizedString("N/A", bundle: .core, comment: "")
         }
 
+        if hideQuantitativeData == true {
+            return grade ?? enrollment.computedCurrentLetterGrade ?? NSLocalizedString("N/A", bundle: .core, comment: "")
+        }
+
         guard let scoreNotNil = score, let scoreString = Course.scoreFormatter.string(from: NSNumber(value: scoreNotNil)) else {
             return grade ?? NSLocalizedString("N/A", bundle: .core, comment: "")
         }
@@ -176,6 +187,10 @@ extension Course {
         }
 
         return scoreString
+    }
+
+    public var hideQuantitativeData: Bool {
+        return settings?.restrictQuantitativeData ?? false
     }
 
     public var hideTotalGrade: Bool {
@@ -207,13 +222,41 @@ final public class CourseSettings: NSManagedObject {
     @NSManaged public var courseID: String
     @NSManaged public var syllabusCourseSummary: Bool
     @NSManaged public var usageRightsRequired: Bool
+    @NSManaged public var restrictQuantitativeData: Bool
+    @NSManaged public var course: Course?
 
     @discardableResult
     static func save(_ item: APICourseSettings, courseID: String, in context: NSManagedObjectContext) -> CourseSettings {
-        let model: CourseSettings = context.first(where: #keyPath(CourseSettings.courseID), equals: courseID) ?? context.insert()
-        model.courseID = courseID
-        model.syllabusCourseSummary = item.syllabus_course_summary
-        model.usageRightsRequired = item.usage_rights_required
+        let model: CourseSettings = {
+            if let settings: CourseSettings = context.first(where: #keyPath(CourseSettings.courseID), equals: courseID) {
+                return settings
+            }
+
+            let settings: CourseSettings = context.insert()
+            settings.courseID = courseID
+            settings.syllabusCourseSummary = false
+            settings.usageRightsRequired = false
+            settings.restrictQuantitativeData = false
+            return settings
+        }()
+
+        if let syllabus_course_summary = item.syllabus_course_summary {
+            model.syllabusCourseSummary = syllabus_course_summary
+        }
+
+        if let usage_rights_required = item.usage_rights_required {
+            model.usageRightsRequired = usage_rights_required
+        }
+
+        if let restrict_quantitative_data = item.restrict_quantitative_data, AppEnvironment.shared.app != .teacher {
+            model.restrictQuantitativeData = restrict_quantitative_data
+        }
+
+        if let course: Course = context.fetch(scope: .where(#keyPath(Course.id), equals: courseID)).first,
+           course.settings == nil {
+            course.settings = model
+        }
+
         return model
     }
 }

@@ -97,6 +97,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             self.environment.userDefaults?.isK5StudentView = self.shouldSetK5StudentView
             self.environmentFeatureFlags = self.environment.subscribe(GetEnvironmentFeatureFlags(context: Context.currentUser))
             self.environmentFeatureFlags?.refresh(force: true) { _ in
+                defer { self.environmentFeatureFlags = nil }
                 guard let envFlags = self.environmentFeatureFlags, envFlags.error == nil else { return }
                 self.initializeTracking()
             }
@@ -200,7 +201,8 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     }
 }
 
-// MARK: Push notifications
+// MARK: - Push notifications
+
 extension StudentAppDelegate: UNUserNotificationCenterDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         NotificationManager.shared.subscribeToPushChannel(token: deviceToken)
@@ -268,7 +270,8 @@ extension StudentAppDelegate: Core.AnalyticsHandler {
     }
 }
 
-// MARK: Error Handling
+// MARK: - Error Handling
+
 extension StudentAppDelegate {
     func setupDefaultErrorHandling() {
         environment.errorHandler = { error, controller in performUIUpdate {
@@ -281,7 +284,8 @@ extension StudentAppDelegate {
     }
 }
 
-// MARK: Crashlytics
+// MARK: - Crashlytics
+
 extension StudentAppDelegate {
 
     @objc func setupFirebase() {
@@ -306,7 +310,8 @@ extension StudentAppDelegate {
     }
 }
 
-// MARK: PageView Logging
+// MARK: - PageView Logging
+
 extension StudentAppDelegate {
     func setupPageViewLogging() {
         class BackgroundAppHelper: AppBackgroundHelperProtocol {
@@ -339,7 +344,8 @@ extension StudentAppDelegate {
     }
 }
 
-// MARK: Launching URLS
+// MARK: - Launching URLS
+
 extension StudentAppDelegate {
     @objc @discardableResult func openURL(_ url: URL, userInfo: [String: Any]? = nil) -> Bool {
         if LoginSession.mostRecent == nil, let host = url.host {
@@ -378,6 +384,8 @@ extension StudentAppDelegate {
         return true
     }
 }
+
+// MARK: - Login Delegate
 
 extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     func changeUser() {

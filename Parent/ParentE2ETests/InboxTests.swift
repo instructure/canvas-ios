@@ -16,21 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
 import TestsFoundation
 
 class InboxTests: CoreUITestCase {
+    typealias Helper = InboxHelperParent
+
     func testGetToReplyScreen() {
-        Dashboard.profileButton.tap()
-        Profile.inboxButton.tap()
-        let label = ConversationList.cell(id: "320").label()
+        DashboardHelper.profileButton.hit()
+        ProfileHelper.inboxButton.hit()
+        let conversationElement = Helper.conversation(conversationId: "320").waitUntil(.visible)
+        let label = conversationElement.label
         XCTAssert(label.contains("Assignments"))
         XCTAssert(label.contains("need to talk"))
         XCTAssert(label.contains("last message was on Jan"))
         XCTAssert(label.contains("Yeah, whatever"))
-        ConversationList.cell(id: "320").waitToExist().tap()
-        ConversationDetail.replyButton.tapUntil {
-            ComposeReply.body.exists()
-        }
+
+        conversationElement.hit()
+        Helper.replyButton.hit()
+        let messageInput = Helper.Reply.body.waitUntil(.visible)
+        XCTAssertTrue(messageInput.isVisible)
     }
 }

@@ -61,7 +61,7 @@ public struct ContextCardView: View {
                     ContextCardHeaderView(user: user, course: course, sections: model.sections.all,
                                           enrollment: enrollment, showLastActivity: model.isLastActivityVisible, isOffline: offlineModeViewModel.isOffline)
                     if enrollment.isStudent {
-                        if let grades = enrollment.grades.first {
+                        if let grades = enrollment.grades.first, !model.shouldHideScore {
                             ContextCardGradesView(grades: grades, color: Color(course.color))
                         }
                         if model.submissions.all.count != 0 {

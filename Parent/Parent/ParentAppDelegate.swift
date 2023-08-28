@@ -90,6 +90,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         environment.userDidLogin(session: session)
         environmentFeatureFlags = environment.subscribe(GetEnvironmentFeatureFlags(context: Context.currentUser))
         environmentFeatureFlags?.refresh(force: true) { _ in
+            defer { self.environmentFeatureFlags = nil }
             guard let envFlags = self.environmentFeatureFlags, envFlags.error == nil else { return }
             self.initializeTracking()
         }

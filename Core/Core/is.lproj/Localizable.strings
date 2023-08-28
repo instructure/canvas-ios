@@ -716,6 +716,9 @@
 "d_items" = "d_items";
 
 /* No comment provided by engineer. */
+"d_items_syncing" = "d_items_syncing";
+
+/* No comment provided by engineer. */
 "d_likes" = "d_likes";
 
 /* No comment provided by engineer. */
@@ -861,6 +864,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Sleppa %@";
+
+/* No comment provided by engineer. */
+"Dismiss notification" = "Hafna tilkynningu";
 
 /* No comment provided by engineer. */
 "Display As" = "Sýna sem";
@@ -1056,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "File Details" = "Upplýsingar um skrá";
+
+/* No comment provided by engineer. */
+"File download failed." = "Niðurhal skrár mistókst.";
 
 /* No comment provided by engineer. */
 "File No Longer Exists" = "Skrá er ekki lengur til";
@@ -2456,6 +2465,9 @@
 "Synchronization" = "Samstilling";
 
 /* No comment provided by engineer. */
+"Syncing Offline Content" = "Samhæfir efni utan nets";
+
+/* No comment provided by engineer. */
 "System settings" = "Kerfisstillingar";
 
 /* No comment provided by engineer. */
@@ -2469,9 +2481,6 @@
 
 /* No comment provided by engineer. */
 "Tap here for details" = "Smelltu hér til að fá upplýsingar";
-
-/* No comment provided by engineer. */
-"Tap here for help." = "Smelltu hér til að fá hjálp.";
 
 /* No comment provided by engineer. */
 "Tap the \"+\" to create a new conversation" = "Ýttu á „+“ til að búa til nýja samræðu";

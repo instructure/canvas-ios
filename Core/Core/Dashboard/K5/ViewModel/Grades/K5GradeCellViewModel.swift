@@ -26,16 +26,18 @@ public struct K5GradeCellViewModel {
     public let grade: String?
     public let score: Double?
     public let color: Color
-    public let courseID: String
+    public let route: String
+    public let hideGradeBar: Bool
 
-    init(title: String?, imageURL: URL?, grade: String?, score: Double?, color: UIColor?, courseID: String) {
+    init(title: String?, imageURL: URL?, grade: String?, score: Double?, color: UIColor?, courseID: String, hideGradeBar: Bool) {
         self.title = title ?? ""
         self.imageURL = imageURL
         self.grade = grade
         self.score = score
         self.color = ((color != nil) ? Color(color!) : .oxford)
-        self.courseID = courseID
         self.a11yId = "K5GradeCell.\(courseID)"
+        self.route = "/courses/\(courseID)#grades"
+        self.hideGradeBar = hideGradeBar
     }
 
     public var gradePercentage: Double {
@@ -46,10 +48,6 @@ public struct K5GradeCellViewModel {
     public var roundedDisplayGrade: String {
         guard let score = score else { return grade ?? "" }
         return "\(Int(score.rounded()))%"
-    }
-
-    public var route: String {
-        "/courses/\(courseID)#grades"
     }
 }
 

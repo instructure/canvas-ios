@@ -45,11 +45,8 @@ end
 abstract_target 'needs-pspdfkit' do
   use_frameworks!
   pspdfkit
-  target 'StudentUITests' do project 'Student/Student.xcodeproj' end
   target 'StudentE2ETests' do project 'Student/Student.xcodeproj' end
-  target 'TeacherUITests' do project 'rn/Teacher/ios/Teacher.xcodeproj' end
   target 'TeacherE2ETests' do project 'rn/Teacher/ios/Teacher.xcodeproj' end
-  target 'ParentUITests' do project 'Parent/Parent.xcodeproj' end
   target 'ParentE2ETests' do project 'Parent/Parent.xcodeproj' end
 end
 
@@ -109,6 +106,8 @@ pre_install do |installer|
 end
 
 post_install do |installer|
+  puts "\nPost Install Hooks"
+  
   installer.pod_targets.each do |target|
     silenceWarningsInUmbrellas = %w[ React-Core ]
     next unless silenceWarningsInUmbrellas.include? target.name
@@ -145,7 +144,7 @@ post_install do |installer|
       react-native-wkwebview
     ]
     next unless usesNonAppExAPI.include? target.name
-    puts "*** Setting #{target.name} target to APPLICATION_EXTENSION_API_ONLY = NO ***"
+    puts "- Disable APPLICATION_EXTENSION_API_ONLY on #{target.name}"
     target.build_configurations.each do |config|
       config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'NO'
     end
@@ -159,4 +158,12 @@ post_install do |installer|
       end
     end
   end
+  
+  # Work around the issue: Cannot code sign because the target does not have an Info.plist file and one is not being generated automatically.
+  installer.pods_project.build_configurations.each do |config|
+    puts "- Enable GENERATE_INFOPLIST_FILE on Pods Project (#{config})"
+    config.build_settings['GENERATE_INFOPLIST_FILE'] = 'YES'
+  end
+  
+  puts "\n"
 end

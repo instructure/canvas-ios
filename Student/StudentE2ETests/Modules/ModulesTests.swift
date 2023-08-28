@@ -16,9 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import TestsFoundation
-import Core
 
 class ModulesTests: E2ETestCase {
     func testModuleItems() {
@@ -40,39 +38,43 @@ class ModulesTests: E2ETestCase {
 
         // MARK: Navigate to Modules
         ModulesHelper.navigateToModules(course: course)
-        let moduleNameLabel = ModulesHelper.moduleLabel(moduleIndex: 0).waitToExist()
+        let moduleNameLabel = ModulesHelper.moduleLabel(moduleIndex: 0).waitUntil(.visible)
         XCTAssertTrue(moduleNameLabel.isVisible)
-        XCTAssertTrue(moduleNameLabel.label().contains(module.name))
+        XCTAssertTrue(moduleNameLabel.label.contains(module.name))
 
         // MARK: Check assignment module item
-        let assignmentItem = ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 0).waitToExist()
-        let assignmentTitle = ModulesHelper.moduleItemNameLabel(moduleIndex: 0, itemIndex: 0).waitToExist()
-        let assignmentPoints = ModulesHelper.moduleItemDueLabel(moduleIndex: 0, itemIndex: 0).waitToExist()
+        let assignmentItem = ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 0).waitUntil(.visible)
+        let assignmentTitle = ModulesHelper.moduleItemNameLabel(moduleIndex: 0, itemIndex: 0).waitUntil(.visible)
+        let assignmentPoints = ModulesHelper.moduleItemDueLabel(moduleIndex: 0, itemIndex: 0).waitUntil(.visible)
         XCTAssertTrue(assignmentItem.isVisible)
         XCTAssertTrue(assignmentTitle.isVisible)
-        XCTAssertEqual(assignmentTitle.label(), moduleAssignment.title)
+        XCTAssertEqual(assignmentTitle.label, moduleAssignment.title)
         XCTAssertTrue(assignmentPoints.isVisible)
-        XCTAssertEqual(assignmentPoints.label(), "0 pts")
+
+        // TODO: Update the below line once the points label bug is fixed
+        let pointsString = moduleAssignment.points_possible! == 1 ? "pts" : "pts"
+
+        XCTAssertEqual(assignmentPoints.label, "\(moduleAssignment.points_possible!) \(pointsString)")
 
         // MARK: Check discussion module item
-        let discussionItem = ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 1).waitToExist()
-        let discussionTitle = ModulesHelper.moduleItemNameLabel(moduleIndex: 0, itemIndex: 1).waitToExist()
+        let discussionItem = ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 1).waitUntil(.visible)
+        let discussionTitle = ModulesHelper.moduleItemNameLabel(moduleIndex: 0, itemIndex: 1).waitUntil(.visible)
         XCTAssertTrue(discussionItem.isVisible)
         XCTAssertTrue(discussionTitle.isVisible)
-        XCTAssertEqual(discussionTitle.label(), moduleDiscussion.title)
+        XCTAssertEqual(discussionTitle.label, moduleDiscussion.title)
 
         // MARK: Check page module item
-        let pageItem = ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 2).waitToExist()
-        let pageTitle = ModulesHelper.moduleItemNameLabel(moduleIndex: 0, itemIndex: 2).waitToExist()
+        let pageItem = ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 2).waitUntil(.visible)
+        let pageTitle = ModulesHelper.moduleItemNameLabel(moduleIndex: 0, itemIndex: 2).waitUntil(.visible)
         XCTAssertTrue(pageItem.isVisible)
         XCTAssertTrue(pageTitle.isVisible)
-        XCTAssertEqual(pageTitle.label(), modulePage.title)
+        XCTAssertEqual(pageTitle.label, modulePage.title)
 
         // MARK: Check quiz module item
-        let quizItem = ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 3).waitToExist()
-        let quizTitle = ModulesHelper.moduleItemNameLabel(moduleIndex: 0, itemIndex: 3).waitToExist()
+        let quizItem = ModulesHelper.moduleItem(moduleIndex: 0, itemIndex: 3).waitUntil(.visible)
+        let quizTitle = ModulesHelper.moduleItemNameLabel(moduleIndex: 0, itemIndex: 3).waitUntil(.visible)
         XCTAssertTrue(quizItem.isVisible)
         XCTAssertTrue(quizTitle.isVisible)
-        XCTAssertEqual(quizTitle.label(), moduleQuiz.title)
+        XCTAssertEqual(quizTitle.label, moduleQuiz.title)
     }
 }

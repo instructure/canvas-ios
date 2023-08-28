@@ -19,10 +19,12 @@
 import UIKit
 
 extension UIButton {
+    /// When a button is disabled in offline mode this is the alpha component we apply to it.
+    public static var DisabledInOfflineAlpha: CGFloat = 0.3
 
     // MARK: - Public Interface
 
-    public func makeUnavailableInOfflineMode(_ interactor: OfflineModeInteractor = OfflineModeInteractorLive.shared) {
+    public func makeUnavailableInOfflineMode(_ interactor: OfflineModeInteractor = OfflineModeAssembly.make()) {
 
         // This method is usually called in some setup method and it looks better if the button is instantly disabled
         // rather then animating to its disabled state while the view controller is animating in.
@@ -53,7 +55,7 @@ extension UIButton {
 
     private func setUnavailableState(isAnimated: Bool) {
         UIView.animate(withDuration: isAnimated ? 0.3 : 0.0) {
-            self.alpha = 0.3
+            self.alpha = UIButton.DisabledInOfflineAlpha
         }
 
         // Extra safety not to add any more tap recognizers if one is already in place

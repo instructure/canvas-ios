@@ -140,7 +140,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -163,7 +163,7 @@ exports[`QuizDetails displays "Lock Questions After Answering" 1`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -1243,7 +1243,7 @@ exports[`QuizDetails displays access code 1`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -1266,7 +1266,7 @@ exports[`QuizDetails displays access code 1`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -2346,7 +2346,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -2369,7 +2369,7 @@ exports[`QuizDetails does not render Show Correct Answers when hide_results is n
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -3365,7 +3365,7 @@ exports[`QuizDetails renders 1`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -3388,7 +3388,7 @@ exports[`QuizDetails renders 1`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -4426,7 +4426,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -4449,7 +4449,7 @@ exports[`QuizDetails renders One Question At A Time: 1`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -5529,7 +5529,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -5552,7 +5552,7 @@ exports[`QuizDetails renders One Question At A Time: 2`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -6590,7 +6590,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -6613,7 +6613,7 @@ exports[`QuizDetails renders Show Correct Answers dates 1`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -7651,7 +7651,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -7674,7 +7674,7 @@ exports[`QuizDetails renders Show Correct Answers dates 2`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -8712,7 +8712,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -8735,7 +8735,7 @@ exports[`QuizDetails renders Show Correct Answers dates 3`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -9773,7 +9773,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -9796,7 +9796,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 1`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -10834,7 +10834,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -10857,7 +10857,7 @@ exports[`QuizDetails renders Show Correct Answers: After Last Attempt 2`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -11853,7 +11853,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -11876,7 +11876,7 @@ exports[`QuizDetails renders allowed attempts 1`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -12914,7 +12914,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -12937,7 +12937,7 @@ exports[`QuizDetails renders allowed attempts 2`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -13975,7 +13975,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -13998,7 +13998,7 @@ exports[`QuizDetails renders assignment due dates 1`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -15070,7 +15070,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -15093,7 +15093,7 @@ exports[`QuizDetails renders assignment group 1`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -17234,7 +17234,7 @@ exports[`QuizDetails renders published state 2`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -17257,7 +17257,7 @@ exports[`QuizDetails renders published state 2`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -18295,7 +18295,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -18318,7 +18318,7 @@ exports[`QuizDetails renders quiz type 1`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -19356,7 +19356,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -19379,7 +19379,7 @@ exports[`QuizDetails renders quiz type 2`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -20417,7 +20417,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -20440,7 +20440,7 @@ exports[`QuizDetails renders scoring policy 1`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -21478,7 +21478,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -21501,7 +21501,7 @@ exports[`QuizDetails renders scoring policy 2`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -22539,7 +22539,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -22562,7 +22562,7 @@ exports[`QuizDetails renders scoring policy 3`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -23600,7 +23600,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -23623,7 +23623,7 @@ exports[`QuizDetails renders show correct answers 1`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -24661,7 +24661,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -24684,7 +24684,7 @@ exports[`QuizDetails renders show correct answers 2`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -25722,7 +25722,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -25745,7 +25745,7 @@ exports[`QuizDetails renders shuffle answers 1`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -26783,7 +26783,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -26806,7 +26806,7 @@ exports[`QuizDetails renders shuffle answers 2`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -27844,7 +27844,7 @@ exports[`QuizDetails renders time limit 1`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -27867,7 +27867,7 @@ exports[`QuizDetails renders time limit 1`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -28905,7 +28905,7 @@ exports[`QuizDetails renders time limit 2`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -28928,7 +28928,7 @@ exports[`QuizDetails renders time limit 2`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -29966,7 +29966,7 @@ exports[`QuizDetails renders view responses 1`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -29989,7 +29989,7 @@ exports[`QuizDetails renders view responses 1`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -31027,7 +31027,7 @@ exports[`QuizDetails renders view responses 2`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -31050,7 +31050,7 @@ exports[`QuizDetails renders view responses 2`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -32046,7 +32046,7 @@ exports[`QuizDetails renders view responses 3`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -32069,7 +32069,7 @@ exports[`QuizDetails renders view responses 3`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]
@@ -33065,7 +33065,7 @@ exports[`QuizDetails renders without a description 1`] = `
                       Array [
                         Object {
                           "height": 21,
-                          "tintColor": "#00AC18",
+                          "tintColor": "#127A1B",
                           "width": 21,
                         },
                         Object {},
@@ -33088,7 +33088,7 @@ exports[`QuizDetails renders without a description 1`] = `
                             "marginLeft": 6,
                           },
                           Object {
-                            "color": "#00AC18",
+                            "color": "#127A1B",
                           },
                         ],
                       ]

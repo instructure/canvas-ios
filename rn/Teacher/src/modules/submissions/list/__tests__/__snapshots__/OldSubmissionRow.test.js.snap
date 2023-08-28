@@ -735,7 +735,7 @@ exports[`submitted ungraded row renders correctly 1`] = `
                 },
                 undefined,
                 Object {
-                  "color": "#00AC18",
+                  "color": "#127A1B",
                 },
               ],
             ]

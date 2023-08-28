@@ -52,22 +52,13 @@ class CourseSyncEntryProgressTests: CoreTestCase {
         XCTAssertEqual(testee.selectionRaw, 2)
     }
 
-    func testIdleStateMapping() {
-        let progress: CourseSyncStateProgress = databaseClient.insert()
-        progress.state = .idle
-
-        let testee: CourseSyncStateProgress = databaseClient.fetch().first!
-        XCTAssertEqual(testee.state, .idle)
-        XCTAssertEqual(testee.stateRaw, 0)
-    }
-
     func testNilProgressLoadingStateMapping() {
         let progress: CourseSyncStateProgress = databaseClient.insert()
         progress.state = .loading(nil)
 
         let testee: CourseSyncStateProgress = databaseClient.fetch().first!
         XCTAssertEqual(testee.state, .loading(nil))
-        XCTAssertEqual(testee.stateRaw, 1)
+        XCTAssertEqual(testee.stateRaw, 0)
         XCTAssertEqual(testee.progress, nil)
     }
 
@@ -77,7 +68,7 @@ class CourseSyncEntryProgressTests: CoreTestCase {
 
         let testee: CourseSyncStateProgress = databaseClient.fetch().first!
         XCTAssertEqual(testee.state, .loading(0.75))
-        XCTAssertEqual(testee.stateRaw, 1)
+        XCTAssertEqual(testee.stateRaw, 0)
         XCTAssertEqual(testee.progress, 0.75)
     }
 
@@ -87,7 +78,7 @@ class CourseSyncEntryProgressTests: CoreTestCase {
 
         let testee: CourseSyncStateProgress = databaseClient.fetch().first!
         XCTAssertEqual(testee.state, .error)
-        XCTAssertEqual(testee.stateRaw, 2)
+        XCTAssertEqual(testee.stateRaw, 1)
     }
 
     func testDownloadedStateMapping() {
@@ -96,6 +87,6 @@ class CourseSyncEntryProgressTests: CoreTestCase {
 
         let testee: CourseSyncStateProgress = databaseClient.fetch().first!
         XCTAssertEqual(testee.state, .downloaded)
-        XCTAssertEqual(testee.stateRaw, 3)
+        XCTAssertEqual(testee.stateRaw, 2)
     }
 }

@@ -21,7 +21,7 @@ import Foundation
 import SwiftUI
 
 struct SideMenuDeveloperOptionsSection: View {
-    @ObservedObject private var viewModel = SideDeveloperOptionsViewModel(interactor: OfflineModeInteractorLive.shared)
+    @ObservedObject private var viewModel = SideDeveloperOptionsViewModel(interactor: OfflineModeAssembly.make())
     @State var onDeveloperMenuTap: () -> Void
 
     var body: some View {

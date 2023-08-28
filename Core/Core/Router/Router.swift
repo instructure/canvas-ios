@@ -128,7 +128,7 @@ open class Router {
         return nil
     }
 
-    public func template(for url: URL) -> String? {
+    open func template(for url: URL) -> String? {
         template(for: .parse(url))
     }
     public func template(for url: String) -> String? {

@@ -36,6 +36,10 @@ public extension Array where Element == CourseSyncEntry {
         return Float(totalDownloadedSize) / Float(totalSelectedSize)
     }
 
+    var hasError: Bool {
+        contains { $0.hasError }
+    }
+
     subscript(id id: String) -> CourseSyncEntry? {
         get {
             self.first(where: { $0.id == id })

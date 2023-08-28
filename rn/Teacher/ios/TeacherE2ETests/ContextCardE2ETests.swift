@@ -21,29 +21,30 @@ import TestsFoundation
 class ContextCardE2ETests: CoreUITestCase {
     override func setUp() {
         super.setUp()
-        Dashboard.courseCard(id: "263").tapUntil {
-            CourseNavigation.assignments.exists
-        }
-        CourseNavigation.assignments.tap()
-        AssignmentsList.assignment(id: "1831").tap()
+        DashboardHelper.courseCard(courseId: "263").hit()
+        CourseDetailsHelper.cell(type: .assignments).hit()
+        AssignmentsHelper.assignmentButton(assignmentId: "1831").hit()
         // Simulate a tap on the "Graded" circle since it's not visible to accessibility because it's a button inside another button
-        AssignmentDetails.viewAllSubmissionsButton.tapAt(CGPoint(x: 50, y: 50))
-        app.find(id: "SubmissionListCell.613").tap()
-        SpeedGrader.userButton.tap()
+        AssignmentsHelper.Details.viewAllSubmissionsButton.tapAt(CGPoint(x: 50, y: 50))
+        app.find(id: "SubmissionListCell.613").hit()
+        AssignmentsHelper.SpeedGrader.userButton.hit()
     }
 
     func testContextCard() throws {
-        XCTAssertEqual(ContextCard.userNameLabel.label(), "Student One")
-        XCTAssertEqual(ContextCard.userEmailLabel.label(), "ios+student1@instructure.com")
-        XCTAssert(ContextCard.lastActivityLabel.label().hasPrefix("Last activity on "))
-        XCTAssertEqual(ContextCard.courseLabel.label(), "Assignments")
-        XCTAssertEqual(ContextCard.sectionLabel.label(), "Section: Assignments")
-        XCTAssertEqual(ContextCard.currentGradeLabel.label(), "Current Grade 72.73%")
-        XCTAssertEqual(ContextCard.submissionsTotalLabel.label(), "3 submitted")
-        XCTAssertEqual(ContextCard.submissionsLateLabel.label(), "0 late")
-        XCTAssertEqual(ContextCard.submissionsMissingLabel.label(), "0 missing")
-        XCTAssertEqual(ContextCard.submissionCell("5431").label(), "Submission New Grade Book Quiz, Submitted, grade 1 / 1")
-        XCTAssertEqual(ContextCard.submissionCell("1831").label(), "Submission Assignment One, Submitted, grade 7 / 10")
-        XCTAssertEqual(ContextCard.submissionCell("261986").label(), "Submission Needs Grading, Submitted, NEEDS GRADING")
+        XCTAssertEqual(PeopleHelper.ContextCard.userNameLabel.label, "Student One")
+        XCTAssertEqual(PeopleHelper.ContextCard.userEmailLabel.label, "ios+student1@instructure.com")
+        XCTAssert(PeopleHelper.ContextCard.lastActivityLabel.label.hasPrefix("Last activity on "))
+        XCTAssertEqual(PeopleHelper.ContextCard.courseLabel.label, "Assignments")
+        XCTAssertEqual(PeopleHelper.ContextCard.sectionLabel.label, "Section: Assignments")
+        XCTAssertEqual(PeopleHelper.ContextCard.currentGradeLabel.label, "Current Grade 72.73%")
+        XCTAssertEqual(PeopleHelper.ContextCard.submissionsTotalLabel.label, "3 submitted")
+        XCTAssertEqual(PeopleHelper.ContextCard.submissionsLateLabel.label, "0 late")
+        XCTAssertEqual(PeopleHelper.ContextCard.submissionsMissingLabel.label, "0 missing")
+        XCTAssertEqual(PeopleHelper.ContextCard.submissionCell(assignmentId: "5431").label,
+                       "Submission New Grade Book Quiz, Submitted, grade 1 / 1")
+        XCTAssertEqual(PeopleHelper.ContextCard.submissionCell(assignmentId: "1831").label,
+                       "Submission Assignment One, Submitted, grade 7 / 10")
+        XCTAssertEqual(PeopleHelper.ContextCard.submissionCell(assignmentId: "261986").label,
+                       "Submission Needs Grading, Submitted, NEEDS GRADING")
     }
 }

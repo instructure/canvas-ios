@@ -20,9 +20,16 @@ import Combine
 
 public class OfflineModeViewModel: ObservableObject {
     @Published public var isOffline: Bool
+    @Published public var isOfflineFeatureEnabled: Bool
+
+    private let interactor: OfflineModeInteractor
 
     public init(interactor: OfflineModeInteractor) {
+        self.interactor = interactor
+
         isOffline = interactor.isOfflineModeEnabled()
+        isOfflineFeatureEnabled = interactor.isFeatureFlagEnabled()
         interactor.observeIsOfflineMode().assign(to: &$isOffline)
+        interactor.observeIsFeatureFlagEnabled().assign(to: &$isOfflineFeatureEnabled)
     }
 }

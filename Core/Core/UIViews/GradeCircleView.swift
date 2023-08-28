@@ -140,5 +140,18 @@ public class GradeCircleView: UIView {
             displayGrade.isHidden = false
             displayGrade.text = NSLocalizedString("Excused", bundle: .core, comment: "")
         }
+
+        // Update for hidden quantitative data
+        if assignment.hideQuantitativeData {
+            outOfLabel.isHidden = true
+            displayGrade.isHidden = gradeText.isEmpty
+            latePenaltyLabel.isHidden = true
+            finalGradeLabel.isHidden = true
+            circleComplete.isHidden = false
+            circlePoints.isHidden = true
+            circleLabel.isHidden = true
+            gradeCircle?.progress = 1
+            gradeCircle.accessibilityLabel = gradeCircle.accessibilityLabel?.containsNumber == true ? nil : gradeCircle.accessibilityLabel
+        }
     }
 }

@@ -716,6 +716,9 @@
 "d_items" = "d_items";
 
 /* No comment provided by engineer. */
+"d_items_syncing" = "d_items_syncing";
+
+/* No comment provided by engineer. */
 "d_likes" = "d_likes";
 
 /* No comment provided by engineer. */
@@ -861,6 +864,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "撤销%@";
+
+/* No comment provided by engineer. */
+"Dismiss notification" = "解散通知";
 
 /* No comment provided by engineer. */
 "Display As" = "显示为";
@@ -1056,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "File Details" = "文件详细信息";
+
+/* No comment provided by engineer. */
+"File download failed." = "下载文件失败。";
 
 /* No comment provided by engineer. */
 "File No Longer Exists" = "文件已不存在";
@@ -2456,6 +2465,9 @@
 "Synchronization" = "同步";
 
 /* No comment provided by engineer. */
+"Syncing Offline Content" = "正在同步脱机内容";
+
+/* No comment provided by engineer. */
 "System settings" = "系统设置";
 
 /* No comment provided by engineer. */
@@ -2469,9 +2481,6 @@
 
 /* No comment provided by engineer. */
 "Tap here for details" = "点击此处了解详情";
-
-/* No comment provided by engineer. */
-"Tap here for help." = "轻击此处获取帮助。";
 
 /* No comment provided by engineer. */
 "Tap the \"+\" to create a new conversation" = "点击“+”以创建新对话 ";

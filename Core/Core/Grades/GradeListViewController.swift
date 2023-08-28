@@ -98,7 +98,7 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
     public static func create(courseID: String,
                               userID: String? = nil,
                               colorDelegate: ColorDelegate? = nil,
-                              offlineModeInteractor: OfflineModeInteractor = OfflineModeInteractorLive.shared)
+                              offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make())
     -> GradeListViewController {
         let controller = loadFromStoryboard()
         controller.colorDelegate = colorDelegate
@@ -199,10 +199,12 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
                 if courseEnrollment?.multipleGradingPeriodsEnabled == true, courseEnrollment?.totalsForAllGradingPeriodsOption == false {
                     letterGrade = nil
                 } else {
-                    letterGrade = courseEnrollment?.computedCurrentGrade ?? courseEnrollment?.computedFinalGrade
+                    letterGrade = courseEnrollment?.computedCurrentGrade ?? courseEnrollment?.computedFinalGrade ?? courseEnrollment?.computedCurrentLetterGrade
                 }
             }
-            if let scoreText = totalGradeLabel.text, let letterGrade = letterGrade {
+            if courses.first?.hideQuantitativeData == true {
+                totalGradeLabel.text = letterGrade ?? NSLocalizedString("N/A", bundle: .core, comment: "")
+            } else if let scoreText = totalGradeLabel.text, let letterGrade = letterGrade {
                 totalGradeLabel.text = scoreText + " (\(letterGrade))"
             }
         }

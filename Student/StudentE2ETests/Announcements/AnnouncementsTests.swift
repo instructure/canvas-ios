@@ -17,12 +17,13 @@
 //
 
 import TestsFoundation
-import XCTest
 
 class AnnouncementsTests: E2ETestCase {
-    func testAnnouncementsMatchWebOrder() {
-        typealias Helper = AnnouncementsHelper
+    typealias Helper = AnnouncementsHelper
+    typealias DetailsHelper = Helper.Details
+    typealias AccountNotifications = Helper.AccountNotifications
 
+    func testAnnouncementsMatchWebOrder() {
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
         let course = seeder.createCourse()
@@ -35,23 +36,20 @@ class AnnouncementsTests: E2ETestCase {
         // MARK: Navigate to Announcement page and check the order of the announcements
         AnnouncementsHelper.navigateToAnnouncementsPage(course: course)
 
-        let firstAnnouncement = AnnouncementList.cell(index: 0).waitToExist()
+        let firstAnnouncement = AnnouncementsHelper.cell(index: 0).waitUntil(.visible)
         XCTAssertTrue(firstAnnouncement.isVisible)
-        XCTAssertTrue(firstAnnouncement.label().contains(announcements[2].title))
+        XCTAssertTrue(firstAnnouncement.label.contains(announcements[2].title))
 
-        let secondAnnouncement = AnnouncementList.cell(index: 1).waitToExist()
+        let secondAnnouncement = AnnouncementsHelper.cell(index: 1).waitUntil(.visible)
         XCTAssertTrue(secondAnnouncement.isVisible)
-        XCTAssertTrue(secondAnnouncement.label().contains(announcements[1].title))
+        XCTAssertTrue(secondAnnouncement.label.contains(announcements[1].title))
 
-        let thirdAnnouncement = AnnouncementList.cell(index: 2).waitToExist()
+        let thirdAnnouncement = AnnouncementsHelper.cell(index: 2).waitUntil(.visible)
         XCTAssertTrue(thirdAnnouncement.isVisible)
-        XCTAssertTrue(thirdAnnouncement.label().contains(announcements[0].title))
+        XCTAssertTrue(thirdAnnouncement.label.contains(announcements[0].title))
     }
 
     func testAnnouncementsTitleAndMessage() {
-        typealias Helper = AnnouncementsHelper
-        typealias DetailsHelper = Helper.Details
-
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
         let course = seeder.createCourse()
@@ -64,23 +62,21 @@ class AnnouncementsTests: E2ETestCase {
         // MARK: Navigate to Announcement page and check the title and message of the announcement
         Helper.navigateToAnnouncementsPage(course: course, shouldPullToRefresh: true)
 
-        let firstAnnouncement = AnnouncementList.cell(index: 0).waitToExist()
+        let firstAnnouncement = AnnouncementsHelper.cell(index: 0).waitUntil(.visible)
         XCTAssertTrue(firstAnnouncement.isVisible)
-        XCTAssertTrue(firstAnnouncement.label().contains(announcement.title))
+        XCTAssertTrue(firstAnnouncement.label.contains(announcement.title))
 
-        firstAnnouncement.tap()
-        let announcementTitle = DetailsHelper.title.waitToExist()
+        firstAnnouncement.hit()
+        let announcementTitle = DetailsHelper.title.waitUntil(.visible)
         XCTAssertTrue(announcementTitle.isVisible)
-        XCTAssertEqual(announcementTitle.label(), announcement.title)
+        XCTAssertEqual(announcementTitle.label, announcement.title)
 
-        let announcementMessage = DetailsHelper.message.waitToExist()
+        let announcementMessage = DetailsHelper.message.waitUntil(.visible)
         XCTAssertTrue(announcementMessage.isVisible)
-        XCTAssertEqual(announcementMessage.label(), announcement.message)
+        XCTAssertEqual(announcementMessage.label, announcement.message)
     }
 
     func testAnnouncementToggle() {
-        typealias Helper = AnnouncementsHelper
-
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
         let course = seeder.createCourse()
@@ -91,45 +87,33 @@ class AnnouncementsTests: E2ETestCase {
         logInDSUser(student)
 
         // MARK: Check visibility of the course and the announcement notification title
-        let courseCard = Dashboard.courseCard(id: course.id).waitToExist()
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCard.isVisible)
-        let annountementTitle = Helper.notificationTitle(announcement: globalAnnouncement).waitToExist()
-        XCTAssertTrue(annountementTitle.isVisible)
+        let announcementTitle = Helper.notificationTitle(announcement: globalAnnouncement)
+        announcementTitle.actionUntilElementCondition(action: .pullToRefresh, condition: .visible, timeout: 60, gracePeriod: 3)
+        XCTAssertTrue(announcementTitle.isVisible)
 
         // MARK: Check visibility toggle and dismiss button of the announcement notificaiton
-        let toggleButton = AccountNotifications.toggleButton(id: globalAnnouncement.id).waitToExist()
+        let toggleButton = AccountNotifications.toggleButton(notification: globalAnnouncement)
+            .waitUntil(.visible)
         XCTAssertTrue(toggleButton.isVisible)
-        var dismissButton = AccountNotifications.dismissButton(id: globalAnnouncement.id)
+        var dismissButton = AccountNotifications.dismissButton(notification: globalAnnouncement)
+            .waitUntil(.vanish)
         XCTAssertFalse(dismissButton.isVisible)
 
         // MARK: Tap the toggle button and check visibility of dismiss button again
-        toggleButton.tap()
-        dismissButton = dismissButton.waitToExist()
+        toggleButton.hit()
+        dismissButton = dismissButton.waitUntil(.visible)
         XCTAssertTrue(dismissButton.isVisible)
 
         // MARK: Check the message of the announcement
-        let announcementMessage = Helper.notificationMessage(announcement: globalAnnouncement).waitToExist()
+        let announcementMessage = Helper.notificationMessage(announcement: globalAnnouncement).waitUntil(.visible)
         XCTAssertTrue(announcementMessage.isVisible)
-        XCTAssertEqual(announcementMessage.label(), globalAnnouncement.message)
+        XCTAssertEqual(announcementMessage.label, globalAnnouncement.message)
 
         // MARK: Tap dismiss button and check the visibility
-        dismissButton.tap()
-        dismissButton = dismissButton.waitToVanish()
+        dismissButton.hit()
+        dismissButton = dismissButton.waitUntil(.vanish)
         XCTAssertFalse(dismissButton.isVisible)
-    }
-}
-
-// MARK: Tests without DataSeeder (to be upgraded: MBL-16825)
-
-class OldAnnouncementE2ETests: CoreUITestCase {
-    func testPreviewAnnouncementAttachment() {
-        Dashboard.courseCard(id: "262").tapUntil {
-            CourseNavigation.announcements.exists
-        }
-        CourseNavigation.announcements.tap()
-
-        AnnouncementList.cell(index: 0).tap()
-        app.find(label: "run.jpg").tap()
-        app.find(type: .image).waitToExist()
     }
 }

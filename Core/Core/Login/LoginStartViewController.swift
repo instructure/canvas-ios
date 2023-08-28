@@ -24,6 +24,7 @@ class LoginStartViewController: UIViewController {
     @IBOutlet weak var findSchoolButton: DynamicButton!
     @IBOutlet weak var lastLoginButton: UIButton!
     @IBOutlet weak var logoView: UIImageView!
+    @IBOutlet weak var wordmark: UIImageView!
     @IBOutlet weak var previousLoginsLabel: UILabel!
     @IBOutlet weak var previousLoginsTableView: UITableView!
     @IBOutlet weak var previousLoginsView: UIView!
@@ -78,6 +79,7 @@ class LoginStartViewController: UIViewController {
         }
         authenticationMethodLabel.isHidden = true
         logoView.tintColor = .currentLogoColor()
+        wordmark.tintColor = .currentLogoColor()
         animatableLogo.tintColor = logoView.tintColor
         previousLoginsView.isHidden = true
         self.lastLoginAccount = nil
@@ -90,7 +92,8 @@ class LoginStartViewController: UIViewController {
             : Bundle.main.isTeacherApp ? "TEACHER"
             : "STUDENT"
         ), attributes: [.kern: 2])
-        wordmarkLabel.textColor = .currentLogoColor()
+        wordmarkLabel.textColor = .textDarkest
+        logoView.superview?.accessibilityLabel = "Canvas " + (wordmarkLabel.text ?? "")
         let loginText = NSLocalizedString("Log In", bundle: .core, comment: "")
         if MDMManager.shared.host != nil {
             findSchoolButton.isHidden = true

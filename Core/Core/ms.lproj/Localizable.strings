@@ -716,6 +716,9 @@
 "d_items" = "d_items";
 
 /* No comment provided by engineer. */
+"d_items_syncing" = "d_items_syncing";
+
+/* No comment provided by engineer. */
 "d_likes" = "d_likes";
 
 /* No comment provided by engineer. */
@@ -861,6 +864,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Tolak %@";
+
+/* No comment provided by engineer. */
+"Dismiss notification" = "Tolak pemberitahuan";
 
 /* No comment provided by engineer. */
 "Display As" = "Paparkan Sebagai";
@@ -1056,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "File Details" = "Butiran Fail";
+
+/* No comment provided by engineer. */
+"File download failed." = "Muat turun fail gagal.";
 
 /* No comment provided by engineer. */
 "File No Longer Exists" = "Fail Tidak Lagi Wujud";
@@ -2456,6 +2465,9 @@
 "Synchronization" = "Penyegerakan";
 
 /* No comment provided by engineer. */
+"Syncing Offline Content" = "Menyegerakkan Kandungan Luar Talian";
+
+/* No comment provided by engineer. */
 "System settings" = "Tetapan sistem";
 
 /* No comment provided by engineer. */
@@ -2469,9 +2481,6 @@
 
 /* No comment provided by engineer. */
 "Tap here for details" = "Ketik di sini untuk mendapatkan butiran";
-
-/* No comment provided by engineer. */
-"Tap here for help." = "Ketik di sini untuk mendapatkan bantuan.";
 
 /* No comment provided by engineer. */
 "Tap the \"+\" to create a new conversation" = "Ketik \"+\" untuk mencipta perbualan baharu";

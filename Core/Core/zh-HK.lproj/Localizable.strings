@@ -716,6 +716,9 @@
 "d_items" = "d_items";
 
 /* No comment provided by engineer. */
+"d_items_syncing" = "d_items_syncing";
+
+/* No comment provided by engineer. */
 "d_likes" = "d_likes";
 
 /* No comment provided by engineer. */
@@ -861,6 +864,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "忽略%@";
+
+/* No comment provided by engineer. */
+"Dismiss notification" = "解除通知";
 
 /* No comment provided by engineer. */
 "Display As" = "顯示為";
@@ -1056,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "File Details" = "檔案詳情";
+
+/* No comment provided by engineer. */
+"File download failed." = "檔案上傳失敗。";
 
 /* No comment provided by engineer. */
 "File No Longer Exists" = "檔案不再存在";
@@ -2456,6 +2465,9 @@
 "Synchronization" = "同步化";
 
 /* No comment provided by engineer. */
+"Syncing Offline Content" = "同步離線內容";
+
+/* No comment provided by engineer. */
 "System settings" = "系統設定";
 
 /* No comment provided by engineer. */
@@ -2469,9 +2481,6 @@
 
 /* No comment provided by engineer. */
 "Tap here for details" = "點選此處取得詳細資料";
-
-/* No comment provided by engineer. */
-"Tap here for help." = "點按此處獲取支援。";
 
 /* No comment provided by engineer. */
 "Tap the \"+\" to create a new conversation" = "按下「+」建立新交談";

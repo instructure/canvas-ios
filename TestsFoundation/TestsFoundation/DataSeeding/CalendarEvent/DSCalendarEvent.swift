@@ -19,8 +19,8 @@
 public struct DSCalendarEvent: Codable {
     public let id: String
     public let title: String
-    public let start_at: String
-    public let end_at: String?
+    public let start_at: Date
+    public let end_at: Date?
     public let description: String
     public let context_code: String
     public let location_name: String

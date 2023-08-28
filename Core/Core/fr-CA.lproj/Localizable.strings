@@ -716,6 +716,9 @@
 "d_items" = "d_items";
 
 /* No comment provided by engineer. */
+"d_items_syncing" = "d_items_syncing";
+
+/* No comment provided by engineer. */
 "d_likes" = "d_likes";
 
 /* No comment provided by engineer. */
@@ -861,6 +864,9 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Ignorer %@";
+
+/* No comment provided by engineer. */
+"Dismiss notification" = "Ignorer la notification";
 
 /* No comment provided by engineer. */
 "Display As" = "Afficher comme";
@@ -1056,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "File Details" = "Détails du fichier";
+
+/* No comment provided by engineer. */
+"File download failed." = "Échec du téléchargement du fichier.";
 
 /* No comment provided by engineer. */
 "File No Longer Exists" = "Le fichier n'existe plus";
@@ -2456,6 +2465,9 @@
 "Synchronization" = "Synchronisation";
 
 /* No comment provided by engineer. */
+"Syncing Offline Content" = "Synchronisation hors connexion du contenu";
+
+/* No comment provided by engineer. */
 "System settings" = "Paramètres du système";
 
 /* No comment provided by engineer. */
@@ -2469,9 +2481,6 @@
 
 /* No comment provided by engineer. */
 "Tap here for details" = "Appuyez ici pour plus de détails";
-
-/* No comment provided by engineer. */
-"Tap here for help." = "Appuyer ici pour obtenir de l'aide.";
 
 /* No comment provided by engineer. */
 "Tap the \"+\" to create a new conversation" = "Tapoter sur le « + » pour créer une nouvelle conversation";

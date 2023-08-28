@@ -21,11 +21,36 @@ import Foundation
 open class BaseHelper {
     public static let seeder = DataSeeder()
     public static var user: UITestUser {.dataSeedAdmin}
-    public static var backButton: Element { app.find(label: "Back", type: .button) }
-    public static var nextButton: Element { app.find(id: "nextButton", type: .button) }
+    public static var backButton: XCUIElement { app.find(label: "Back", type: .button) }
+    public static var nextButton: XCUIElement { app.find(id: "nextButton", type: .button) }
     public static func pullToRefresh() {
         let window = app.find(type: .window)
         window.relativeCoordinate(x: 0.5, y: 0.2)
             .press(forDuration: 0.05, thenDragTo: window.relativeCoordinate(x: 0.5, y: 1.0))
+    }
+
+    public struct TabBar {
+        public static var dashboardTab: XCUIElement { app.find(id: "TabBar.dashboardTab", type: .button) }
+        public static var calendarTab: XCUIElement { app.find(id: "TabBar.calendarTab", type: .button) }
+        public static var todoTab: XCUIElement { app.find(id: "TabBar.todoTab", type: .button) }
+        public static var notificationsTab: XCUIElement { app.find(id: "notificationsTab", type: .button) }
+        public static var inboxTab: XCUIElement { app.find(id: "TabBar.inboxTab", type: .button) }
+
+        // Parent
+        public static var coursesTab: XCUIElement { app.find(id: "TabBar.coursesTab", type: .button) }
+        public static var alertsTab: XCUIElement { app.find(id: "TabBar.alertsTab", type: .button) }
+
+        // K5
+        public static var myCanvasTab: XCUIElement { app.find(id: "TabBar.myCanvasTab", type: .button) }
+    }
+
+    public struct AccountNotifications {
+        public static func toggleButton(notification: DSAccountNotification) -> XCUIElement {
+            return app.find(id: "AccountNotification.\(notification.id).toggleButton")
+        }
+
+        public static func dismissButton(notification: DSAccountNotification) -> XCUIElement {
+            return app.find(id: "AccountNotification.\(notification.id).dismissButton")
+        }
     }
 }

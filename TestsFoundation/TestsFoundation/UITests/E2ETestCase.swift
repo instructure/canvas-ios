@@ -32,23 +32,23 @@ open class E2ETestCase: CoreUITestCase {
     }
 
     open func findSchool(lastLogin: Bool = false) {
-        LoginStart.findSchoolButton.waitToExist()
-        if lastLogin && LoginStart.lastLoginButton.exists && LoginStart.lastLoginButton.label() == user.host {
-            LoginStart.lastLoginButton.tap()
+        let findSchoolButton = LoginHelper.Start.findSchoolButton.waitUntil(.visible)
+        if lastLogin && LoginHelper.Start.lastLoginButton.exists && LoginHelper.Start.lastLoginButton.label == user.host {
+            LoginHelper.Start.lastLoginButton.hit()
         } else {
-            LoginStart.findSchoolButton.tap()
-            LoginFindSchool.searchField.pasteText("\(user.host)")
-            LoginFindSchool.nextButton.tap()
+            findSchoolButton.hit()
+            LoginHelper.FindSchool.searchField.writeText(text: user.host)
+            LoginHelper.FindSchool.nextButton.hit()
         }
     }
 
     open func loginAfterSchoolFound(_ dsUser: DSUser, password: String = "password") {
-        LoginWeb.emailField.waitToExist(60)
-        LoginWeb.emailField.pasteText(dsUser.login_id)
-        LoginWeb.passwordField.tap().pasteText(password)
-        LoginWeb.logInButton.tap()
+        LoginHelper.Login.emailField.waitUntil(.visible, timeout: 60)
+        LoginHelper.Login.emailField.writeText(text: dsUser.login_id)
+        LoginHelper.Login.passwordField.writeText(text: password)
+        LoginHelper.Login.loginButton.hit()
 
-        homeScreen.waitToExist(20)
+        homeScreen.waitUntil(.visible, timeout: 20)
         user.session = currentSession()
         setAppThemeToSystem()
     }
@@ -59,18 +59,16 @@ open class E2ETestCase: CoreUITestCase {
     }
 
     open func logOut() {
-        Dashboard.profileButton.tap()
-        Profile.logOutButton.tap()
+        DashboardHelper.profileButton.hit()
+        ProfileHelper.logOutButton.hit()
     }
 
     // Workaround to handle app theme prompt
     open func setAppThemeToSystem() {
         let canvasThemePromptTitle = app.find(label: "Canvas is now available in dark theme")
         let systemSettingsButton = app.find(label: "System settings", type: .button)
-        if canvasThemePromptTitle.waitToExist(5, shouldFail: false).exists() {
-            systemSettingsButton.tapUntil {
-                !canvasThemePromptTitle.exists()
-            }
+        if canvasThemePromptTitle.waitUntil(.visible, timeout: 5).exists {
+            systemSettingsButton.actionUntilElementCondition(action: .tap, element: canvasThemePromptTitle, condition: .vanish)
         }
     }
 }

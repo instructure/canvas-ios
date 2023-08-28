@@ -28,6 +28,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     @IBOutlet weak var descriptionHeadingLabel: UILabel?
     @IBOutlet weak var descriptionView: UIView?
     @IBOutlet weak var scrollView: UIScrollView?
+    @IBOutlet weak var scrollViewBottom: NSLayoutConstraint!
     @IBOutlet weak var loadingView: CircleProgressView!
     @IBOutlet weak var submissionButtonView: UIView?
     @IBOutlet weak var submissionButton: DynamicButton?
@@ -158,6 +159,10 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         let tapGradedView = UITapGestureRecognizer(target: self, action: #selector(didTapSubmission(_:)))
         gradedView?.addGestureRecognizer(tapGradedView)
 
+        submitAssignmentButton.makeUnavailableInOfflineMode()
+        fileSubmissionButton?.makeUnavailableInOfflineMode()
+        submissionButton?.makeUnavailableInOfflineMode()
+
         presenter?.viewIsReady()
     }
 
@@ -274,8 +279,9 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     }
 
     func update(assignment: Assignment, quiz: Quiz?, baseURL: URL?) {
+        let hideScores = assignment.hideQuantitativeData
         nameLabel?.text = assignment.name
-        pointsLabel?.text = assignment.pointsPossibleText
+        pointsLabel?.text = hideScores ? nil : assignment.pointsPossibleText
         statusIconView?.isHidden = assignment.submissionStatusIsHidden
         statusIconView?.image = assignment.submissionStatusIcon
         statusIconView?.tintColor = assignment.submissionStatusColor
@@ -305,22 +311,19 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         lockedSection?.isHidden = presenter.lockedSectionIsHidden()
         fileTypesSection?.isHidden = presenter.fileTypesSectionIsHidden()
         submissionTypesSection?.isHidden = presenter.submissionTypesSectionIsHidden()
-        let showGradeSection = assignment.submission?.needsGrading == true ||
+        var showGradeSection = assignment.submission?.needsGrading == true ||
             (assignment.submission?.isGraded == true  && assignment.gradingType != .not_graded ) ||
             presenter.onlineUploadState != nil
+        let gradeText = GradeFormatter.string(from: assignment, style: .short)
+        if assignment.hideQuantitativeData, (gradeText ?? "").isEmpty == true {
+            showGradeSection = false
+        }
         attemptsView.isHidden = presenter.attemptsIsHidden()
         gradeSection?.isHidden = !showGradeSection
         submissionButtonSection?.isHidden = presenter.viewSubmissionButtonSectionIsHidden()
         showDescription(!presenter.descriptionIsHidden())
 
-        if assignment.submissionTypes.contains(where: { type in
-            type == .basic_lti_launch || type == .external_tool
-        }) {
-            submitAssignmentButton.makeUnavailableInOfflineMode()
-        } else {
-            submitAssignmentButton.isHidden = presenter.submitAssignmentButtonIsHidden()
-
-        }
+        submitAssignmentButton.isHidden = presenter.submitAssignmentButtonIsHidden()
 
         lockedSubheaderWebView.loadHTMLString(presenter.lockExplanation)
         centerLockedIconContainerView()
@@ -369,14 +372,11 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         submitAssignmentButton.setTitle(title, for: .normal)
 
         if title == nil {
-            scrollView?.scrollIndicatorInsets = .zero
-            scrollView?.contentInset = .zero
+            scrollViewBottom.constant = 0
             submitAssignmentButton.alpha = 0
         } else {
-            let inset = UIEdgeInsets(top: 0, left: 0, bottom: submitAssignmentButton.bounds.size.height, right: 0)
-            scrollView?.scrollIndicatorInsets = inset
-            scrollView?.contentInset = inset
-            submitAssignmentButton.alpha = 1.0
+            scrollViewBottom.constant = -submitAssignmentButton.bounds.size.height
+            submitAssignmentButton.alpha = OfflineModeAssembly.make().isOfflineModeEnabled() ? UIButton.DisabledInOfflineAlpha : 1.0
         }
     }
 
