@@ -180,12 +180,15 @@ class DashboardTests: E2ETestCase {
         // MARK: Seed the usual stuff with a graded assignment
         let student = seeder.createUser()
         let course = seeder.createCourse()
+        let pointsPossible = "10"
+        let totalGrade = "100%"
         seeder.enrollStudent(student, in: course)
-        let assignment = GradesHelper.createAssignments(course: course, count: 1)
-        GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignment)
-        GradesHelper.gradeAssignments(grades: ["100"], course: course, assignments: assignment, user: student)
 
-        // MARK: Get the user logged in and check visibility of course
+        let assignment = AssignmentsHelper.createAssignment(course: course, pointsPossible: Float(pointsPossible), gradingType: .percent)
+        GradesHelper.submitAssignment(course: course, student: student, assignment: assignment)
+        GradesHelper.gradeAssignment(grade: pointsPossible, course: course, assignment: assignment, user: student)
+
+        // MARK: Get the user logged in, check course card
         logInDSUser(student)
         var courseCard = Helper.courseCard(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCard.isVisible)
@@ -211,10 +214,12 @@ class DashboardTests: E2ETestCase {
         doneButton.hit()
 
         // MARK: Check grade on Course Card label
-        courseCard = Helper.courseCard(course: course).waitUntil(.visible)
-        let courseCardLabel = courseCard.label
-        XCTAssertGreaterThan(courseCardLabel.count, 4)
-        XCTAssertEqual(courseCardLabel.suffix(4), "100%")
+        courseCard.waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+
+        let courseCardGradeLabel = DashboardHelper.courseCardGradeLabel(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCardGradeLabel.isVisible)
+        XCTAssertTrue(courseCardGradeLabel.actionUntilElementCondition(action: .pullToRefresh, condition: .label(expected: totalGrade)))
 
         // MARK: Unselect Show Grades toggle then check Course Card label again
         dashboardSettingsButton = Helper.dashboardSettings.waitUntil(.visible)
@@ -224,13 +229,14 @@ class DashboardTests: E2ETestCase {
         showGradeToggle = Helper.dashboardSettingsShowGradeToggle.waitUntil(.visible)
         XCTAssertTrue(showGradeToggle.isVisible)
 
-        showGradeToggle.hit()
+        showGradeToggle.forceTap()
         doneButton = Helper.doneButton.waitUntil(.visible)
         XCTAssertTrue(doneButton.isVisible)
 
         doneButton.hit()
-        courseCard = Helper.courseCard(course: course).waitUntil(.visible)
+        courseCard.waitUntil(.visible)
+        courseCardGradeLabel.waitUntil(.vanish)
         XCTAssertTrue(courseCard.isVisible)
-        XCTAssertTrue(courseCard.label.contains(course.name))
+        XCTAssertTrue(courseCardGradeLabel.isVanished)
     }
 }
