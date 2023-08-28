@@ -42,9 +42,24 @@ public class DashboardHelper: BaseHelper {
         dashboardSettings.hit()
         dashboardSettingsShowGradeToggle.actionUntilElementCondition(action: .tap, condition: .value(expected: "1"))
         var result = dashboardSettingsShowGradeToggle.waitUntil(.value(expected: "1"), timeout: 5).hasValue(value: "1")
+
+        // ForceTap
         if !result {
             dashboardSettingsShowGradeToggle.actionUntilElementCondition(action: .forceTap, condition: .value(expected: "1"))
         }
+
+        // LongTap
+        result = dashboardSettingsShowGradeToggle.waitUntil(.value(expected: "1"), timeout: 5).hasValue(value: "1")
+        if !result {
+            dashboardSettingsShowGradeToggle.actionUntilElementCondition(action: .longTap, condition: .value(expected: "1"))
+        }
+
+        // SwipeUp on element
+        result = dashboardSettingsShowGradeToggle.waitUntil(.value(expected: "1"), timeout: 5).hasValue(value: "1")
+        if !result {
+            dashboardSettingsShowGradeToggle.actionUntilElementCondition(action: .swipeUp(.onElement), condition: .value(expected: "1"))
+        }
+
         result = dashboardSettingsShowGradeToggle.waitUntil(.value(expected: "1"), timeout: 5).hasValue(value: "1")
         guard result else { return result }
         doneButton.hit()
