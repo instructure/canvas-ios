@@ -176,9 +176,7 @@ class DashboardTests: E2ETestCase {
         XCTAssertTrue(courseCard7.isVanished)
     }
 
-    func testCourseCardGrades() throws {
-        try XCTSkipIf(true, "Works locally but fails on CI")
-
+    func testCourseCardGrades() {
         // MARK: Seed the usual stuff with a graded assignment
         let student = seeder.createUser()
         let course = seeder.createCourse()
@@ -203,7 +201,7 @@ class DashboardTests: E2ETestCase {
         XCTAssertTrue(showGradeToggle.hasValue(value: "0"))
 
         // MARK: Tap Show Grade toggle and check value again
-        showGradeToggle.hit()
+        showGradeToggle.forceTap()
         XCTAssertTrue(showGradeToggle.hasValue(value: "1"))
 
         // MARK: Tap Done button then check visibility of course again
