@@ -1634,10 +1634,10 @@
 "New Page" = "Neue Seite";
 
 /* No comment provided by engineer. */
-"New Quiz" = "Neues Quiz";
+"New Quiz" = "New Quiz";
 
 /* No comment provided by engineer. */
-"New Quizzes" = "Neue Quizze";
+"New Quizzes" = "New Quizzes";
 
 /* No comment provided by engineer. */
 "New To Do" = "Neue Aufgabe";
@@ -2481,9 +2481,6 @@
 
 /* No comment provided by engineer. */
 "Tap here for details" = "Tippen Sie hier, um weitere Informationen zu erhalten.";
-
-/* No comment provided by engineer. */
-"Tap here for help." = "Tippen Sie hier, um Hilfe zu erhalten.";
 
 /* No comment provided by engineer. */
 "Tap the \"+\" to create a new conversation" = "Auf „+“ tippen, um neue Conversation zu beginnen";
