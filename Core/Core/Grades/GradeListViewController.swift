@@ -193,11 +193,21 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
         } else if hideQuantitativeData {
             if let gradingScheme = courses.first?.gradingScheme {
                 if let gradingPeriodID = gradingPeriodID {
-                    totalGradeLabel.text = gradeEnrollment?.convertedLetterGrade(gradingPeriodID: gradingPeriodID,
-                                                                                 gradingScheme: gradingScheme)
+                    if let letterGrade = gradeEnrollment?.currentGrade(gradingPeriodID: gradingPeriodID) ?? gradeEnrollment?.finalGrade(gradingPeriodID: gradingPeriodID) {
+                        totalGradeLabel.text = letterGrade
+                    } else {
+                        totalGradeLabel.text = gradeEnrollment?.convertedLetterGrade(gradingPeriodID: gradingPeriodID,
+                                                                                     gradingScheme: gradingScheme)
+                    }
                 } else {
-                    totalGradeLabel.text = courseEnrollment?.convertedLetterGrade(gradingPeriodID: nil,
-                                                                                  gradingScheme: gradingScheme)
+                    if courseEnrollment?.multipleGradingPeriodsEnabled == true, courseEnrollment?.totalsForAllGradingPeriodsOption == false {
+                        totalGradeLabel.text = nil
+                    } else if let letterGrade = courseEnrollment?.computedCurrentGrade ?? courseEnrollment?.computedFinalGrade ?? courseEnrollment?.computedCurrentLetterGrade {
+                        totalGradeLabel.text = letterGrade
+                    } else {
+                        totalGradeLabel.text = courseEnrollment?.convertedLetterGrade(gradingPeriodID: nil,
+                                                                                      gradingScheme: gradingScheme)
+                    }
                 }
             } else {
                 totalGradeLabel.text = ""
