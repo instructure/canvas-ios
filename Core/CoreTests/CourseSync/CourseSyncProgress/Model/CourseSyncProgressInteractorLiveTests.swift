@@ -325,10 +325,10 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
         // THEN
         XCTAssertEqual(entries.count, 1)
         XCTAssertEqual(entries[0].state, .loading(nil))
-        XCTAssertEqual(entries[0].tabs.count, 1)
+        XCTAssertEqual(entries[0].tabs.count, 2)
         XCTAssertEqual(entries[0].tabs[0].id, "courses/course-id-1/tabs/files")
         XCTAssertEqual(entries[0].tabs[0].state, .error)
-        XCTAssertEqual(entries[0].files.count, 1)
+        XCTAssertEqual(entries[0].files.count, 2)
         XCTAssertEqual(entries[0].files[0].id, "courses/course-id-1/files/file-1")
 
         subscription1.cancel()
