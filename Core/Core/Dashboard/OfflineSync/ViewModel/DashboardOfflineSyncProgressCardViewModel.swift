@@ -42,6 +42,7 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
 
         setupProgressUpdates()
         setupAutoAppearanceOnSyncStart()
+        setupAutoHideOnSyncCancel()
         setupAutoDismissUponCompletion()
         setupSubtitleCounterUpdates()
         handleDismissTap()
@@ -83,6 +84,14 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
             .default
             .publisher(for: .OfflineSyncTriggered)
             .mapToValue(true)
+            .assign(to: &$isVisible)
+    }
+
+    private func setupAutoHideOnSyncCancel() {
+        NotificationCenter
+            .default
+            .publisher(for: .OfflineSyncCancelled)
+            .mapToValue(false)
             .assign(to: &$isVisible)
     }
 

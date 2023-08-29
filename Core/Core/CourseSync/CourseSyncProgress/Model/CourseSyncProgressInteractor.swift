@@ -234,7 +234,9 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         }
     }
 
-    func cancelSync() {}
+    func cancelSync() {
+        NotificationCenter.default.post(name: .OfflineSyncCancelled, object: nil)
+    }
 
     func retrySync() {
         NotificationCenter.default.post(name: .OfflineSyncTriggered, object: safeCourseSyncEntriesValue)

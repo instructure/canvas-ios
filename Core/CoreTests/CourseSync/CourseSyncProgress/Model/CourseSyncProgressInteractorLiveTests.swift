@@ -281,7 +281,6 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
             .compactMap { $0.object as? [CourseSyncEntry] }
             .sink(receiveValue: { newList in
                 entries = newList
-
             })
 
         drainMainQueue()
@@ -334,6 +333,26 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
 
         subscription1.cancel()
         subscription2.cancel()
+    }
+
+    func testCancel() {
+        // GIVEN
+        let testee = CourseSyncProgressInteractorLive(
+            entryComposerInteractor: entryComposerInteractorMock,
+            progressObserverInteractor: progressObserverInteractorMock,
+            sessionDefaults: sesssionDefaults,
+            scheduler: .immediate
+        )
+        var notificationFired = false
+        let subscription = NotificationCenter.default
+            .publisher(for: .OfflineSyncCancelled)
+            .sink(receiveValue: { _ in notificationFired = true })
+
+        // WHEN
+        testee.cancelSync()
+
+        // THEN
+        XCTAssertTrue(notificationFired)
     }
 
     private func createAndSaveCourseSyncSelectorCourse() {

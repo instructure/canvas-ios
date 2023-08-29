@@ -47,7 +47,8 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         attributes: .concurrent
     )
     private let fileErrorMessage = NSLocalizedString("File download failed.", comment: "")
-    private var subscription: AnyCancellable?
+    internal private(set) var downloadSubscription: AnyCancellable?
+    private var subscriptions = Set<AnyCancellable>()
 
     public init(
         contentInteractors: [CourseSyncContentInteractor],
@@ -59,11 +60,13 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         self.filesInteractor = filesInteractor
         self.progressWriterInteractor = progressWriterInteractor
         self.scheduler = scheduler
+
+        listenToCancellationEvent()
     }
 
     public func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Never> {
-        subscription?.cancel()
-        subscription = nil
+        downloadSubscription?.cancel()
+        downloadSubscription = nil
 
         unowned let unownedSelf = self
 
@@ -76,7 +79,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         progressWriterInteractor.cleanUpPreviousDownloadProgress()
         progressWriterInteractor.setInitialLoadingState(entries: entriesWithInitialLoadingState)
 
-        subscription = Publishers.Sequence(sequence: entriesWithInitialLoadingState)
+        downloadSubscription = Publishers.Sequence(sequence: entriesWithInitialLoadingState)
             .buffer(size: .max, prefetch: .byRequest, whenFull: .dropOldest)
             .receive(on: scheduler)
             .flatMap(maxPublishers: .max(3)) { unownedSelf.downloadCourseDetails($0) }
@@ -282,6 +285,16 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
 
             return cpy
         }
+    }
+
+    private func listenToCancellationEvent() {
+        NotificationCenter.default.publisher(for: .OfflineSyncCancelled)
+            .sink(receiveValue: { [unowned self] _ in
+                downloadSubscription?.cancel()
+                downloadSubscription = nil
+                progressWriterInteractor.cleanUpPreviousDownloadProgress()
+            })
+            .store(in: &subscriptions)
     }
 }
 

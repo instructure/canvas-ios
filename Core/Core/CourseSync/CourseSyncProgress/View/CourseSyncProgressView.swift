@@ -26,9 +26,16 @@ struct CourseSyncProgressView: View {
 
     var body: some View {
         content
-        .navigationTitleStyled(navBarTitleView)
-        .navigationBarItems(leading: cancelButton, trailing: trailingBarItem)
-        .navigationBarStyle(.modal)
+            .navigationTitleStyled(navBarTitleView)
+            .navigationBarItems(leading: cancelButton, trailing: trailingBarItem)
+            .navigationBarStyle(.modal)
+            .confirmationAlert(
+                isPresented: $viewModel.isShowingCancelDialog,
+                presenting: viewModel.confirmAlert
+            )
+            .onAppear {
+                viewModel.viewOnAppear.accept(viewController)
+            }
     }
 
     @ViewBuilder
@@ -96,7 +103,7 @@ struct CourseSyncProgressView: View {
 
     private var cancelButton: some View {
         Button {
-            viewModel.cancelButtonDidTap.accept(viewController)
+            viewModel.cancelButtonDidTap.accept()
         } label: {
             Text("Cancel", bundle: .core)
                 .font(.regular16)
