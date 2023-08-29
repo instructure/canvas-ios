@@ -36,10 +36,8 @@ public class ContextCardViewModel: ObservableObject {
     public let isLastActivityVisible: Bool
     public let isModal: Bool
     public var enrollment: Enrollment?
-    public var shouldHideScore: Bool {
-        guard let hideScore = course.first?.hideQuantitativeData, hideScore == true else { return false }
-        guard let grade = enrollment?.grades.first?.currentGrade, !grade.containsNumber else { return true }
-        return hideScore
+    public var shouldHideQuantitativeData: Bool {
+        return course.first?.hideQuantitativeData == true
     }
 
     private let env = AppEnvironment.shared

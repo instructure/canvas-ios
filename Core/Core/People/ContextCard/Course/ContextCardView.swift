@@ -57,7 +57,7 @@ public struct ContextCardView: View {
                 ScrollView {
                     ContextCardHeaderView(user: apiUser, course: course, sections: model.sections.all, enrollment: enrollment, showLastActivity: model.isLastActivityVisible)
                     if enrollment.isStudent {
-                        if let grades = enrollment.grades.first, !model.shouldHideScore {
+                        if let grades = enrollment.grades.first, !model.shouldHideQuantitativeData {
                             ContextCardGradesView(grades: grades, color: Color(course.color))
                         }
                         if model.submissions.all.count != 0 {

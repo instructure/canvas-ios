@@ -82,7 +82,7 @@ class ContextCardTests: CoreTestCase {
         testee.viewAppeared()
 
         // Then
-        XCTAssertEqual(testee.shouldHideScore, true)
+        XCTAssertEqual(testee.shouldHideQuantitativeData, true)
     }
 
     func testGradesViewWhenQuantitativeDataDisabled() {
@@ -94,7 +94,7 @@ class ContextCardTests: CoreTestCase {
         testee.viewAppeared()
 
         // Then
-        XCTAssertEqual(testee.shouldHideScore, false)
+        XCTAssertEqual(testee.shouldHideQuantitativeData, false)
     }
 
     func testGradesViewWhenQuantitativeDataNotSpecified() {
@@ -106,7 +106,7 @@ class ContextCardTests: CoreTestCase {
         testee.viewAppeared()
 
         // Then
-        XCTAssertEqual(testee.shouldHideScore, false)
+        XCTAssertEqual(testee.shouldHideQuantitativeData, false)
     }
 
     private func mockCourseAndAssignmentWith(restrict_quantitative_data: Bool?) {
@@ -129,7 +129,7 @@ class ContextCardTests: CoreTestCase {
     private func mockApiCalls() {
         let enrollment = makeEnrollment(with: .make(current_grade: "A", final_grade: "B", current_score: 77, final_score: 88))
         api.mock(GetCourseSingleUser(context: .course("1"), userID: "1"), value: makeUser(with: enrollment))
-        api.mock(GetCourseRequest(courseID: "1"), value: .make())
+        api.mock(GetCourse(courseID: "1"), value: .make())
         api.mock(GetCourseSectionsRequest(courseID: "1"), value: [ .make() ])
         api.mock(GetSubmissionsForStudent(context: .course("1"), studentID: "1"), value: [ APISubmission.make(assignment: APIAssignment.make(), assignment_id: "1", submission_history: [])])
         api.mock(GetEnrollments(context: .course("1"), gradingPeriodID: "1", states: [ .active ]), value: [ enrollment ])
@@ -139,7 +139,7 @@ class ContextCardTests: CoreTestCase {
     }
 
     private func makeUser(with enrollment: APIEnrollment) -> APIUser {
-        APIUser.make(id: "1", name: "Test User", login_id: "test", avatar_url: nil, enrollments: [enrollment], email: "test@test", pronouns: nil, course_id: "1")
+        APIUser.make(id: "1", name: "Test User", login_id: "test", avatar_url: nil, enrollments: [enrollment], email: "test@test", pronouns: nil)
     }
 
     private func makeEnrollment(with grade: APIEnrollment.Grades) -> APIEnrollment {
