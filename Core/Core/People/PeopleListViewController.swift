@@ -58,7 +58,7 @@ public class PeopleListViewController: ScreenViewTrackableViewController, Colore
     private weak var accessibilityFocusAfterReload: UIView?
     private var offlineModelInteractor: OfflineModeInteractor?
 
-    public static func create(context: Context, offlineModeInteractor: OfflineModeInteractor = OfflineModeInteractorLive.shared) -> PeopleListViewController {
+    public static func create(context: Context, offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()) -> PeopleListViewController {
         let controller = loadFromStoryboard()
         controller.context = context
         controller.offlineModelInteractor = offlineModeInteractor

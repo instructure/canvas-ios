@@ -21,11 +21,9 @@ import SwiftUI
 public struct ContextCardView: View {
     @Environment(\.viewController) private var controller
     @ObservedObject private var model: ContextCardViewModel
-    @ObservedObject private var offlineModeViewModel: OfflineModeViewModel
 
-    public init(model: ContextCardViewModel, offlineModeViewModel: OfflineModeViewModel = OfflineModeViewModel(interactor: OfflineModeInteractorLive.shared)) {
+    public init(model: ContextCardViewModel) {
         self.model = model
-        self.offlineModeViewModel = offlineModeViewModel
     }
 
     public var body: some View {
@@ -40,8 +38,7 @@ public struct ContextCardView: View {
 
     @ViewBuilder var emailButton: some View {
         if model.permissions.first?.sendMessages == true, model.isViewingAnotherUser {
-            PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline,
-                          action: { model.openNewMessageComposer(controller: controller.value) }, label: {
+            Button(action: { model.openNewMessageComposer(controller: controller.value) }, label: {
                 let color = model.isModal ? Brand.shared.buttonPrimaryBackground : Brand.shared.buttonPrimaryText
                 Image.emailLine.foregroundColor(Color(color))
             })
@@ -56,10 +53,9 @@ public struct ContextCardView: View {
                 .progressViewStyle(.indeterminateCircle())
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         } else {
-            if let course = model.course.first, let user = model.user.first, let enrollment = model.enrollment {
+            if let course = model.course.first, let apiUser = model.apiUser, let enrollment = model.enrollment {
                 ScrollView {
-                    ContextCardHeaderView(user: user, course: course, sections: model.sections.all,
-                                          enrollment: enrollment, showLastActivity: model.isLastActivityVisible, isOffline: offlineModeViewModel.isOffline)
+                    ContextCardHeaderView(user: apiUser, course: course, sections: model.sections.all, enrollment: enrollment, showLastActivity: model.isLastActivityVisible)
                     if enrollment.isStudent {
                         if let grades = enrollment.grades.first, !model.shouldHideScore {
                             ContextCardGradesView(grades: grades, color: Color(course.color))

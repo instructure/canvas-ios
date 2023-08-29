@@ -23,7 +23,7 @@ struct ContextCardSubmissionsView: View {
     private var late = 0
     private var missing = 0
 
-    init(submissions: [ContextSubmission]) {
+    init(submissions: [Submission]) {
         for submission in submissions {
             switch submission.status {
             case .submitted:
@@ -64,12 +64,12 @@ struct ContextCardSubmissionsView_Previews: PreviewProvider {
     static let env = PreviewEnvironment()
     static let context = env.globalDatabase.viewContext
 
-    static var submissions: [ContextSubmission] {
-        let submission = ContextSubmission(context: context)
+    static var submissions: [Submission] {
+        let submission = Submission(context: context)
         submission.submittedAt = Date()
-        let late = ContextSubmission(context: context)
+        let late = Submission(context: context)
         late.late = true
-        let missing = ContextSubmission(context: context)
+        let missing = Submission(context: context)
         missing.missing = true
         return [submission, late, missing]
     }
