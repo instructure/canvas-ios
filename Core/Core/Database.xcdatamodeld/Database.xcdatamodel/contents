@@ -169,62 +169,6 @@
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="conference" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Conference" inverseName="recordingsRaw" inverseEntity="Conference"/>
     </entity>
-    <entity name="ContextAssignment" representedClassName="Core.ContextAssignment" syncable="YES">
-        <attribute name="allowedAttempts" attributeType="Integer 64" defaultValueString="-1" usesScalarValueType="YES"/>
-        <attribute name="allowedExtensionsRaw" attributeType="String"/>
-        <attribute name="annotatableAttachmentID" optional="YES" attributeType="String"/>
-        <attribute name="anonymizeStudents" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="anonymousSubmissions" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="assignmentGroupID" optional="YES" attributeType="String"/>
-        <attribute name="assignmentGroupPosition" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="assignmentGroupSectionName" optional="YES" transient="YES" attributeType="String"/>
-        <attribute name="cacheKey" optional="YES" attributeType="String"/>
-        <attribute name="canSubmit" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="canUnpublish" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="courseID" attributeType="String"/>
-        <attribute name="details" optional="YES" attributeType="String"/>
-        <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="dueAtSortNilsAtBottom" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="externalToolContentID" optional="YES" attributeType="String"/>
-        <attribute name="externalToolTagAttributeURL" optional="YES" attributeType="URI"/>
-        <attribute name="freeFormCriterionCommentsOnRubric" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="gradedIndividually" optional="YES" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
-        <attribute name="gradingPeriodID" optional="YES" attributeType="String"/>
-        <attribute name="gradingTypeRaw" attributeType="String"/>
-        <attribute name="groupCategoryID" optional="YES" attributeType="String"/>
-        <attribute name="hasOverrides" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="hideRubricPoints" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="htmlURL" attributeType="URI"/>
-        <attribute name="id" attributeType="String"/>
-        <attribute name="lastUpdatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="lockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="lockedForUser" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="lockExplanation" optional="YES" attributeType="String"/>
-        <attribute name="moderatedGrading" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="name" attributeType="String"/>
-        <attribute name="needsGradingCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="onlyVisibleToOverrides" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
-        <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="published" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
-        <attribute name="quizID" optional="YES" attributeType="String"/>
-        <attribute name="rubricPointsPossibleRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
-        <attribute name="submissionTypesRaw" attributeType="String"/>
-        <attribute name="unlockAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="url" optional="YES" attributeType="URI"/>
-        <attribute name="useRubricForGrading" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <relationship name="allDates" toMany="YES" deletionRule="No Action" destinationEntity="AssignmentDate"/>
-        <relationship name="assignmentGroup" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="AssignmentGroup"/>
-        <relationship name="discussionTopic" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="DiscussionTopic"/>
-        <relationship name="gradingPeriod" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="GradingPeriod"/>
-        <relationship name="masteryPathAssignment" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="MasteryPathAssignment"/>
-        <relationship name="overrides" toMany="YES" deletionRule="No Action" destinationEntity="AssignmentOverride"/>
-        <relationship name="rubricRaw" optional="YES" toMany="YES" deletionRule="No Action" ordered="YES" destinationEntity="Rubric"/>
-        <relationship name="scoreStatistics" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="ScoreStatistics"/>
-        <relationship name="submissions" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="ContextSubmission" inverseName="assignment" inverseEntity="ContextSubmission"/>
-        <relationship name="syllabus" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Syllabus"/>
-        <relationship name="todo" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="Todo"/>
-    </entity>
     <entity name="ContextColor" representedClassName="Core.ContextColor" syncable="YES">
         <attribute name="canvasContextID" attributeType="String"/>
         <attribute name="colorRaw" attributeType="Integer 32" valueTransformerName="" defaultValueString="0" usesScalarValueType="YES" customClassName="UIKit.UIColor"/>
@@ -271,47 +215,6 @@
         <attribute name="unpostedCurrentScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="enrollment" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="ContextEnrollment" inverseName="grades" inverseEntity="ContextEnrollment"/>
     </entity>
-    <entity name="ContextSubmission" representedClassName="Core.ContextSubmission" syncable="YES">
-        <attribute name="assignmentID" attributeType="String"/>
-        <attribute name="attempt" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="body" optional="YES" attributeType="String"/>
-        <attribute name="enteredGrade" optional="YES" attributeType="String"/>
-        <attribute name="enteredScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="excusedRaw" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="externalToolURL" optional="YES" attributeType="URI"/>
-        <attribute name="grade" optional="YES" attributeType="String"/>
-        <attribute name="gradedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="gradeMatchesCurrentSubmission" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="groupID" optional="YES" attributeType="String"/>
-        <attribute name="groupName" optional="YES" attributeType="String"/>
-        <attribute name="id" attributeType="String"/>
-        <attribute name="isLatest" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO"/>
-        <attribute name="late" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="latePolicyStatusRaw" optional="YES" attributeType="String"/>
-        <attribute name="missing" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="pointsDeductedRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
-        <attribute name="postedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="previewUrl" optional="YES" attributeType="URI"/>
-        <attribute name="scoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="shuffleOrder" attributeType="String"/>
-        <attribute name="similarityScore" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="similarityStatus" optional="YES" attributeType="String"/>
-        <attribute name="similarityURL" optional="YES" attributeType="URI"/>
-        <attribute name="sortableName" optional="YES" attributeType="String"/>
-        <attribute name="submittedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="typeRaw" optional="YES" attributeType="String"/>
-        <attribute name="url" optional="YES" attributeType="URI"/>
-        <attribute name="userID" optional="YES" attributeType="String"/>
-        <attribute name="workflowStateRaw" attributeType="String"/>
-        <relationship name="assignment" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="ContextAssignment" inverseName="submissions" inverseEntity="ContextAssignment"/>
-        <relationship name="attachments" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="File"/>
-        <relationship name="discussionEntries" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="DiscussionEntry"/>
-        <relationship name="enrollments" toMany="YES" deletionRule="No Action" destinationEntity="ContextEnrollment"/>
-        <relationship name="list" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="SubmissionList"/>
-        <relationship name="mediaComment" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="MediaComment"/>
-        <relationship name="rubricAssesmentRaw" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="Rubric"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="ContextUser"/>
-    </entity>
     <entity name="ContextUser" representedClassName="Core.ContextUser" syncable="YES">
         <attribute name="avatarURL" optional="YES" attributeType="URI"/>
         <attribute name="courseID" optional="YES" attributeType="String"/>
@@ -323,7 +226,7 @@
         <attribute name="pronouns" optional="YES" attributeType="String"/>
         <attribute name="shortName" attributeType="String"/>
         <attribute name="sortableName" attributeType="String"/>
-        <relationship name="enrollments" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ContextEnrollment" inverseName="observedUser" inverseEntity="ContextEnrollment"/>
+        <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ContextEnrollment" inverseName="observedUser" inverseEntity="ContextEnrollment"/>
     </entity>
     <entity name="Conversation" representedClassName="Core.Conversation" syncable="YES">
         <attribute name="audienceIDsRaw" attributeType="String"/>

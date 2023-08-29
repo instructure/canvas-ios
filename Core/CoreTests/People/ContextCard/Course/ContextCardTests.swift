@@ -128,7 +128,7 @@ class ContextCardTests: CoreTestCase {
 
     private func mockApiCalls() {
         let enrollment = makeEnrollment(with: .make(current_grade: "A", final_grade: "B", current_score: 77, final_score: 88))
-        api.mock(GetCourseContextUserRequest(context: .course("1"), userID: "1"), value: makeUser(with: enrollment))
+        api.mock(GetCourseSingleUser(context: .course("1"), userID: "1"), value: makeUser(with: enrollment))
         api.mock(GetCourseRequest(courseID: "1"), value: .make())
         api.mock(GetCourseSectionsRequest(courseID: "1"), value: [ .make() ])
         api.mock(GetSubmissionsForStudent(context: .course("1"), studentID: "1"), value: [ APISubmission.make(assignment: APIAssignment.make(), assignment_id: "1", submission_history: [])])

@@ -57,14 +57,15 @@ extension ContextUser: WriteableModel {
         user.pronouns = item.pronouns
         user.courseID = item.course_id
         user.groupID = item.group_id
-        if let enrollments = item.enrollments {
-            for enrollment in enrollments {
-                let userEnrollment = context.insert() as ContextEnrollment
+        if let apiEnrollments = item.enrollments {
+            for enrollment in apiEnrollments {
+                let userEnrollment: ContextEnrollment = context.first(where: #keyPath(ContextEnrollment.id), equals: enrollment.id?.value) ?? context.insert()
                 var course: Course?
                 if let courseID = enrollment.course_id?.value {
                     course = context.first(where: #keyPath(Course.id), equals: courseID)
                 }
                 userEnrollment.update(fromApiModel: enrollment, course: course, in: context)
+                user.enrollments.insert(userEnrollment)
             }
         }
         return user

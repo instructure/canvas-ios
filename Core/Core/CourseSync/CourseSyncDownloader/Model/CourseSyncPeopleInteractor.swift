@@ -33,31 +33,11 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
             Self.fetchCourseColors(),
             Self.fetchCourse(context: context),
             Self.fetchSections(courseID: courseId),
-            Self.fetchUsers(context: context)
-                .flatMap { users in
-                    Self.fetchCurrentGradingPeriodId(courseID: courseId)
-                        .flatMap {
-                            Self.fetchUserData(context: context, users: users, currentGradingPeriodID: $0, courseID: courseId)
-                    }
-                }.eraseToAnyPublisher(),
+            Self.fetchUsers(context: context),
         ]
             .zip()
             .mapToVoid()
             .eraseToAnyPublisher()
-    }
-
-    private static func fetchUserData(context: Context, users: [ContextUser], currentGradingPeriodID: String?, courseID: String) -> AnyPublisher<Void, Error> {
-        Just(users)
-            .map { $0.map { user in user.id} }
-            .flatMap { userIDs in
-                Publishers.Sequence(sequence: userIDs)
-                    .setFailureType(to: Error.self)
-                    .flatMap {
-                        Publishers.Zip3(Self.fetchSingleUser(context: context, userID: $0),
-                                        Self.fetchSubmissionsForStudent(context: context, userID: $0, courseID: courseID),
-                                        Self.fetchEnrollments(context: context, currentGradingPeriodID: currentGradingPeriodID, userID: $0) )
-                    }.collect().mapToVoid()
-            }.eraseToAnyPublisher()
     }
 
     private static func fetchCourseColors() -> AnyPublisher<Void, Error> {
@@ -74,54 +54,15 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
             .eraseToAnyPublisher()
     }
 
-    private static func fetchSubmissionsForStudent(context: Context, userID: String, courseID: String) -> AnyPublisher<Void, Error> {
-        guard userID == AppEnvironment.shared.currentSession?.userID else {
-            return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
-        }
-        return ReactiveStore(useCase: GetContextSubmissionsForStudent(context: context, studentID: userID, courseID: courseID))
-            .getEntities()
-            .mapToVoid()
-            .eraseToAnyPublisher()
-    }
-
-    private static func fetchSingleUser(context: Context, userID: String) -> AnyPublisher<Void, Error> {
-        ReactiveStore(useCase: GetCourseContextUser(context: context, userID: userID))
-            .getEntities()
-            .mapToVoid()
-            .eraseToAnyPublisher()
-    }
-
-    private static func fetchUsers(context: Context) -> AnyPublisher<[ContextUser], Error> {
+    private static func fetchUsers(context: Context) -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: GetCourseContextUsers(context: context))
             .getEntities()
-            .eraseToAnyPublisher()
-    }
-
-    private static func fetchGroup(context: Context) -> AnyPublisher<Void, Error> {
-        ReactiveStore(useCase: GetGroup(groupID: context.id))
-            .getEntities()
             .mapToVoid()
-            .eraseToAnyPublisher()
-    }
-
-    private static func fetchCurrentGradingPeriodId(courseID: String) -> AnyPublisher<String?, Error> {
-        ReactiveStore(useCase: GetGradingPeriods(courseID: courseID))
-            .getEntities()
-            .map {
-                $0.current?.id
-            }
             .eraseToAnyPublisher()
     }
 
     private static func fetchSections(courseID: String) -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: GetCourseSections(courseID: courseID))
-            .getEntities()
-            .mapToVoid()
-            .eraseToAnyPublisher()
-    }
-
-    private static func fetchEnrollments(context: Context, currentGradingPeriodID: String?, userID: String) -> AnyPublisher<Void, Error> {
-        return ReactiveStore(useCase: GetCourseSyncContextEnrollments(context: context, gradingPeriodID: currentGradingPeriodID, states: [ .active ], userID: userID))
             .getEntities()
             .mapToVoid()
             .eraseToAnyPublisher()

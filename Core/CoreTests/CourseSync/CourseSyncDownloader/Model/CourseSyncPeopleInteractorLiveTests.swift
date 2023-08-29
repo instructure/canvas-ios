@@ -30,11 +30,7 @@ class CourseSyncPeopleInteractorLiveTests: CoreTestCase {
 
         mockCourseColors()
         mockCourse()
-        mockEnrollments()
-        mockGradingPeriods()
-        mockContextUser()
         mockUsers()
-        mockSubmissions()
         mockCourseSections()
     }
 
@@ -56,8 +52,8 @@ class CourseSyncPeopleInteractorLiveTests: CoreTestCase {
         XCTAssertFailure(testee.getContent(courseId: "testCourse"))
     }
 
-    func testEnrollmentsSyncFailure() {
-        mockEnrollmentsFailure()
+    func testUsersSyncFailure() {
+        mockUsersFailure()
         XCTAssertFailure(testee.getContent(courseId: "testCourse"))
     }
 
@@ -108,44 +104,6 @@ class CourseSyncPeopleInteractorLiveTests: CoreTestCase {
         )
     }
 
-    private let enrollmentUseCase = GetEnrollments(context: .course("testCourse"), states: [ .active ])
-
-    private func mockEnrollments() {
-        let enrollment = makeEnrollment()
-        api.mock(enrollmentUseCase, value: [enrollment])
-    }
-
-    private func mockEnrollmentsFailure() {
-        api.mock(enrollmentUseCase,
-                 error: NSError.instructureError(""))
-    }
-
-    // MARK: Grading Periods
-
-    private func mockGradingPeriods() {
-        api.mock(GetGradingPeriods(courseID: "testCourse"),
-                 value: [])
-    }
-
-    private func mockGradingPeriodsFailure() {
-        api.mock(GetGradingPeriods(courseID: "testCourse"),
-                 error: NSError.instructureError(""))
-    }
-
-    // MARK: Context User
-
-    private let contextUserUseCase = GetCourseContextUser(context: .course("testCourse"), userID: "1")
-
-    private func mockContextUser() {
-        let enrollment = makeEnrollment()
-        let user = APIUser.make(id: "1", name: "Test User", login_id: "test", avatar_url: nil, enrollments: [enrollment], email: "test@test", pronouns: nil)
-        api.mock(contextUserUseCase, value: user)
-    }
-
-    private func mockContextUserFailure() {
-        api.mock(contextUserUseCase, error: NSError.instructureError(""))
-    }
-
     // MARK: Users
 
     private let usersUseCase = GetContextUsers(context: .course("testCourse"))
@@ -158,18 +116,6 @@ class CourseSyncPeopleInteractorLiveTests: CoreTestCase {
 
     private func mockUsersFailure() {
         api.mock(usersUseCase, error: NSError.instructureError(""))
-    }
-
-    // MARK: Assignments
-
-    private let submissionsUseCase = GetSubmissionsForStudent(context: .course("testCourse"), studentID: "1")
-    private func mockSubmissions() {
-        api.mock(submissionsUseCase, value: [APISubmission.make(assignment: APIAssignment.make(), assignment_id: "1", submission_history: [])])
-    }
-
-    private func mockSubmissionsFailure() {
-        api.mock(submissionsUseCase,
-                 error: NSError.instructureError(""))
     }
 
     // MARK: Course Sections
