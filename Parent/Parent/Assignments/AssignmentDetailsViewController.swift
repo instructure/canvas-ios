@@ -143,7 +143,12 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         title = course.first?.name ?? NSLocalizedString("Assignment Details", comment: "")
 
         titleLabel.text = assignment.name
-        pointsLabel.text = assignment.pointsPossibleText
+        pointsLabel.text = {
+            if assignment.hideQuantitativeData {
+                if assignment.pointsPossibleText.containsNumber { return " " }
+            }
+            return assignment.pointsPossibleText
+        }()
         statusIconView.isHidden = assignment.submissionStatusIsHidden
         statusIconView.image = status.icon
         statusIconView.tintColor = status.color

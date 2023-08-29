@@ -43,6 +43,7 @@ class CourseSyncProgressInfoViewModelTests: CoreTestCase {
         let fileProgress = CourseSyncDownloadProgress.save(
             bytesToDownload: 1000,
             bytesDownloaded: 500,
+            isFinished: false,
             error: nil,
             in: databaseClient
         )
@@ -61,7 +62,7 @@ class CourseSyncProgressInfoViewModelTests: CoreTestCase {
         )
     }
 
-    func testErrorDetails() {
+    func testErrorIsShownWhenFinished() {
         // GIVEN
         let testee = CourseSyncProgressInfoViewModel(
             interactor: courseSyncProgressInteractorMock,
@@ -70,6 +71,7 @@ class CourseSyncProgressInfoViewModelTests: CoreTestCase {
         let fileProgress = CourseSyncDownloadProgress.save(
             bytesToDownload: 1000,
             bytesDownloaded: 0,
+            isFinished: true,
             error: "Download failed.",
             in: databaseClient
         )
@@ -89,6 +91,30 @@ class CourseSyncProgressInfoViewModelTests: CoreTestCase {
         XCTAssertSingleOutputEquals(
             testee.$syncFailureSubtitle,
             "One or more files failed to sync. Check your internet connection and retry to submit."
+        )
+    }
+
+    func testErrorIsNotShownUntilFinished() {
+        // GIVEN
+        let testee = CourseSyncProgressInfoViewModel(
+            interactor: courseSyncProgressInteractorMock,
+            scheduler: .immediate
+        )
+        let fileProgress = CourseSyncDownloadProgress.save(
+            bytesToDownload: 1000,
+            bytesDownloaded: 0,
+            isFinished: false,
+            error: "Download failed.",
+            in: databaseClient
+        )
+
+        // WHEN
+        courseSyncProgressInteractorMock.courseSyncFileProgressSubject.send(.data([fileProgress]))
+
+        // THEN
+        XCTAssertSingleOutputEquals(
+            testee.$syncFailure,
+            false
         )
     }
 }

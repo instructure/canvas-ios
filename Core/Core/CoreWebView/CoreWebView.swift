@@ -135,6 +135,11 @@ open class CoreWebView: WKWebView {
         isOpaque = false
         backgroundColor = UIColor.clear
 
+#if DEBUG
+        if #available(iOS 16.4, *) {
+            isInspectable = true
+        }
+#endif
         addScript(js)
         handle("resize") { [weak self] message in
             guard let self = self,
