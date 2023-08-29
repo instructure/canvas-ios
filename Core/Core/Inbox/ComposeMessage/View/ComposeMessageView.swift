@@ -40,8 +40,7 @@ public struct ComposeMessageView: View {
             bodyView
         }
         .background(Color.backgroundLightest)
-        .navigationBarTitle(model.title, displayMode: .inline)
-        .navBarItems(leading: cancelButton, trailing: sendButton)
+        .navigationBarItems(leading: cancelButton)
     }
 
     private var separator: some View {
@@ -77,6 +76,16 @@ public struct ComposeMessageView: View {
                 .foregroundColor(Color.textDarkest)
         })
         .accessibility(label: Text("Add recipient", bundle: .core))
+    }
+
+    private var headerView: some View {
+        HStack {
+            Text(model.title)
+                .font(.bold22)
+                .foregroundColor(.textDarkest)
+            Spacer()
+            sendButton
+        }
     }
 
     private var courseView: some View {
