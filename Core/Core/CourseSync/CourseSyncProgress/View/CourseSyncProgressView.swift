@@ -34,7 +34,7 @@ struct CourseSyncProgressView: View {
     @ViewBuilder
     private var trailingBarItem: some View {
         switch viewModel.state {
-        case .error:
+        case .dataWithError:
             retryButton
         default:
             dismissButton
@@ -51,7 +51,7 @@ struct CourseSyncProgressView: View {
         case .loading:
             ProgressView()
                 .progressViewStyle(.indeterminateCircle())
-        case .data:
+        case .data, .dataWithError:
             VStack(spacing: 0) {
                 CourseSyncProgressInfoView(viewModel: courseSyncProgressInfoViewModel)
                     .padding(16)
@@ -116,7 +116,7 @@ struct CourseSyncProgressView: View {
 
     private var retryButton: some View {
         Button {
-            viewModel.retryButtonDidTap.accept(viewController)
+            viewModel.retryButtonDidTap.accept(())
         } label: {
             Text("Retry", bundle: .core)
                 .font(.regular16)

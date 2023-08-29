@@ -387,6 +387,49 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         wait(for: [expectation], timeout: 1)
         subscription.cancel()
     }
+
+    func testInitialLoadingState() {
+        let testee = CourseSyncInteractorLive(
+            contentInteractors: [pagesInteractor, assignmentsInteractor],
+            filesInteractor: filesInteractor,
+            progressWriterInteractor: CourseSyncProgressWriterInteractorLive(container: database),
+            scheduler: .immediate
+        )
+        entries[0].tabs[0].selectionState = .selected
+        entries[0].tabs[1].selectionState = .selected
+        entries[0].tabs[2].selectionState = .selected
+        entries[0].files[0].selectionState = .selected
+        entries[0].files[1].selectionState = .selected
+
+        let subscription = testee.downloadContent(for: entries).sink()
+
+        let courseProgress: CourseSyncStateProgress = databaseClient.fetch(
+            scope: .where(#keyPath(CourseSyncStateProgress.id), equals: "entry-1")
+        ).first!
+        XCTAssertEqual(courseProgress.state, .loading(nil))
+
+        let assignmentsProgress: CourseSyncStateProgress = databaseClient.fetch(
+            scope: .where(#keyPath(CourseSyncStateProgress.id), equals: "tab-assignments")
+        ).first!
+        XCTAssertEqual(assignmentsProgress.state, .loading(nil))
+
+        let pagesProgress: CourseSyncStateProgress = databaseClient.fetch(
+            scope: .where(#keyPath(CourseSyncStateProgress.id), equals: "tab-pages")
+        ).first!
+        XCTAssertEqual(pagesProgress.state, .loading(nil))
+
+        let file1Progress: CourseSyncStateProgress = databaseClient.fetch(
+            scope: .where(#keyPath(CourseSyncStateProgress.id), equals: "file-1")
+        ).first!
+        XCTAssertEqual(file1Progress.state, .loading(nil))
+
+        let file2Progress: CourseSyncStateProgress = databaseClient.fetch(
+            scope: .where(#keyPath(CourseSyncStateProgress.id), equals: "file-1")
+        ).first!
+        XCTAssertEqual(file2Progress.state, .loading(nil))
+
+        subscription.cancel()
+    }
 }
 
 // MARK: - Mocks

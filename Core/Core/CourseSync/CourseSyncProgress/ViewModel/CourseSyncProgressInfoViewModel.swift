@@ -55,11 +55,6 @@ class CourseSyncProgressInfoViewModel: ObservableObject {
                         return
                     }
 
-                    guard progressList[0].error == nil else {
-                        unownedSelf.syncFailure = true
-                        return
-                    }
-
                     let format = NSLocalizedString("Downloading %@ of %@", bundle: .core, comment: "Downloading 42 GB of 64 GB")
                     unownedSelf.progress = String.localizedStringWithFormat(
                         format,
@@ -67,6 +62,12 @@ class CourseSyncProgressInfoViewModel: ObservableObject {
                         progressList[0].bytesToDownload.humanReadableFileSize
                     )
                     unownedSelf.progressPercentage = progressList[0].progress
+
+                    if progressList[0].isFinished, progressList[0].error != nil {
+                        unownedSelf.syncFailure = true
+                    } else {
+                        unownedSelf.syncFailure = false
+                    }
                 default:
                     break
                 }

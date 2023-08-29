@@ -22,6 +22,7 @@ import CoreData
 public final class CourseSyncDownloadProgress: NSManagedObject {
     @NSManaged public var bytesToDownload: Int
     @NSManaged public var bytesDownloaded: Int
+    @NSManaged public var isFinished: Bool
     @NSManaged public var error: String?
 
     var progress: Float {
@@ -34,14 +35,15 @@ public extension CourseSyncDownloadProgress {
     static func save(
         bytesToDownload: Int,
         bytesDownloaded: Int,
+        isFinished: Bool,
         error: String?,
         in context: NSManagedObjectContext
     ) -> CourseSyncDownloadProgress {
         let model: CourseSyncDownloadProgress = context.first(scope: .all) ?? context.insert()
         model.bytesToDownload = bytesToDownload
         model.bytesDownloaded = bytesDownloaded
+        model.isFinished = isFinished
         model.error = error
-
         return model
     }
 }

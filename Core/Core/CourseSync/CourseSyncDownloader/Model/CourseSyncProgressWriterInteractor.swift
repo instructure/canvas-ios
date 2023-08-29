@@ -21,8 +21,10 @@ import CoreData
 import Foundation
 
 public protocol CourseSyncProgressWriterInteractor {
-    func saveDownloadProgress(entries: [CourseSyncEntry], error: String?)
+    func saveDownloadProgress(entries: [CourseSyncEntry])
+    func saveDownloadResult(isFinished: Bool, error: String?)
     func cleanUpPreviousDownloadProgress()
+    func setInitialLoadingState(entries: [CourseSyncEntry])
     func saveStateProgress(id: String, selection: CourseEntrySelection, state: CourseSyncEntry.State)
 }
 
@@ -34,7 +36,7 @@ public final class CourseSyncProgressWriterInteractorLive: CourseSyncProgressWri
         context.automaticallyMergesChangesFromParent = true
     }
 
-    public func saveDownloadProgress(entries: [CourseSyncEntry], error: String? = nil) {
+    public func saveDownloadProgress(entries: [CourseSyncEntry]) {
         let bytesDownloaded = entries.totalDownloadedSize
         let bytesToDownloaded = entries.totalSelectedSize
 
@@ -42,6 +44,14 @@ public final class CourseSyncProgressWriterInteractorLive: CourseSyncProgressWri
             let progress: CourseSyncDownloadProgress = context.fetch(scope: .all).first ?? context.insert()
             progress.bytesDownloaded = bytesDownloaded
             progress.bytesToDownload = bytesToDownloaded
+            try? context.save()
+        }
+    }
+
+    public func saveDownloadResult(isFinished: Bool, error: String?) {
+        context.performAndWait {
+            let progress: CourseSyncDownloadProgress = context.fetch(scope: .all).first ?? context.insert()
+            progress.isFinished = isFinished
             progress.error = error
             try? context.save()
         }
@@ -52,6 +62,20 @@ public final class CourseSyncProgressWriterInteractorLive: CourseSyncProgressWri
             context.delete(context.fetch(scope: .all) as [CourseSyncStateProgress])
             context.delete(context.fetch(scope: .all) as [CourseSyncDownloadProgress])
             try? context.save()
+        }
+    }
+
+    public func setInitialLoadingState(entries: [CourseSyncEntry]) {
+        for entry in entries {
+            saveStateProgress(id: entry.id, selection: .course(entry.id), state: .loading(nil))
+
+            for tab in entry.tabs {
+                saveStateProgress(id: tab.id, selection: .tab(entry.id, tab.id), state: .loading(nil))
+            }
+
+            for file in entry.files {
+                saveStateProgress(id: file.id, selection: .file(entry.id, file.id), state: .loading(nil))
+            }
         }
     }
 
