@@ -457,4 +457,61 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
 
         wait(for: [newDiscussionNotification], timeout: 1)
     }
+
+    func testPointsLabelWhenQuantitativeDataEnabled() {
+        // Given
+        mockCourseAndAssignmentWith(restrict_quantitative_data: true)
+
+        // When
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        // Then
+        XCTAssertEqual(controller.pointsView.isHidden, true)
+        XCTAssertEqual(controller.pointsLabel.text, "95 pts")
+    }
+
+    func testPointsLabelWhenQuantitativeDataDisabled() {
+        // Given
+        mockCourseAndAssignmentWith(restrict_quantitative_data: false)
+
+        // When
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        // Then
+        XCTAssertEqual(controller.pointsView.isHidden, false)
+        XCTAssertEqual(controller.pointsLabel.text, "95 pts")
+    }
+
+    func testPointsLabelWhenQuantitativeDataNotSpecified() {
+        // Given
+        mockCourseAndAssignmentWith(restrict_quantitative_data: nil)
+
+        // When
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+
+        // Then
+        XCTAssertEqual(controller.pointsView.isHidden, false)
+        XCTAssertEqual(controller.pointsLabel.text, "95 pts")
+    }
+
+    private func mockCourseAndAssignmentWith(restrict_quantitative_data: Bool?) {
+        api.mock(
+            GetCourse(courseID: "1"),
+            value: .make(
+                settings: APICourseSettings(
+                    usage_rights_required: nil,
+                    syllabus_course_summary: nil,
+                    restrict_quantitative_data: restrict_quantitative_data
+                )
+            )
+        )
+
+        api.mock(
+            GetAssignment(courseID: "1", assignmentID: "1"),
+            value: .make(points_possible: 95)
+        )
+    }
 }

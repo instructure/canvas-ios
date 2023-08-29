@@ -134,7 +134,7 @@ class QuizzesTests: E2ETestCase {
         TakeQuizHelper.answerFirstQuestion()
         TakeQuizHelper.answerSecondQuestion()
         let takeQuizSubmitQuizButton = TakeQuizHelper.submitQuizButton.waitUntil(.visible)
-        XCTAssertTrue(takeQuizSubmitQuizButton.actionUntilElementCondition(action: .swipeUp, condition: .visible))
+        XCTAssertTrue(takeQuizSubmitQuizButton.actionUntilElementCondition(action: .swipeUp(), condition: .visible))
         XCTAssertTrue(takeQuizSubmitQuizButton.isVisible)
 
         takeQuizSubmitQuizButton.hit()

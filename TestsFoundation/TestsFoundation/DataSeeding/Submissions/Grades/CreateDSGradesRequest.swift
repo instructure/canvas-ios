@@ -33,7 +33,7 @@ public struct CreateDSGradesRequest: APIRequestable {
 }
 
 extension CreateDSGradesRequest {
-    public struct RequestedDSGrades: Encodable {
+    public struct RequestedDSGrade: Encodable {
         let posted_grade: String
 
         public init(posted_grade: String) {
@@ -41,7 +41,16 @@ extension CreateDSGradesRequest {
         }
     }
 
+    public struct RequestedDSComment: Encodable {
+        let text_comment: String
+
+        public init(textComment: String? = nil) {
+            self.text_comment = textComment ?? "Nice submission!"
+        }
+    }
+
     public struct Body: Encodable {
-        let submission: RequestedDSGrades
+        let submission: RequestedDSGrade
+        let comment: RequestedDSComment
     }
 }

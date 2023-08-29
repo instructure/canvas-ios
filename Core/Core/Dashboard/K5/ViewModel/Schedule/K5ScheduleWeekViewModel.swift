@@ -34,7 +34,7 @@ public class K5ScheduleWeekViewModel: ObservableObject {
 
     private var plannables: [APIPlannable] = []
     private var missingSubmissions: [APIAssignment] = []
-    private var courseInfoByCourseIDs: [String: (color: Color, image: URL?, isHomeroom: Bool)] = [:]
+    private var courseInfoByCourseIDs: [String: (color: Color, image: URL?, isHomeroom: Bool, shouldHideQuantitativeData: Bool)] = [:]
 
     public init(weekRange: Range<Date>, isTodayButtonAvailable: Bool, days: [K5ScheduleDayViewModel]) {
         self.weekRange = weekRange
@@ -125,12 +125,13 @@ public class K5ScheduleWeekViewModel: ObservableObject {
 
     private func setupCourseColors(_ courses: [Course]) {
         let coursesByIDs = Dictionary(grouping: courses) { $0.id }
-        let courseInfoByCourseIDs = coursesByIDs.mapValues { (Color($0[0].color), $0[0].imageDownloadURL, isHomeroom: $0[0].isHomeroomCourse) }
+        let courseInfoByCourseIDs = coursesByIDs.mapValues { (Color($0[0].color), $0[0].imageDownloadURL, isHomeroom: $0[0].isHomeroomCourse, shouldHideQuantitativeData: $0[0].hideQuantitativeData) }
         self.courseInfoByCourseIDs = courseInfoByCourseIDs
     }
 
     private func makeMissingItems() -> [K5ScheduleEntryViewModel] {
         return missingSubmissions.map { assignment in
+            let shouldHideQuantitativeData = courseInfoByCourseIDs[assignment.course_id.rawValue]?.shouldHideQuantitativeData == true
             let score = APIPlannable.k5SchedulePoints(from: assignment.points_possible) ?? ""
             let dueText = assignment.due_at?.relativeShortDateOnlyString ?? ""
             let courseColor: Color = courseInfoByCourseIDs[assignment.course_id.rawValue]?.color ?? .oxford
@@ -139,7 +140,7 @@ public class K5ScheduleWeekViewModel: ObservableObject {
                                             title: assignment.name,
                                             subtitle: .init(text: assignment.course?.name?.uppercased() ?? "", color: courseColor, font: .bold10),
                                             labels: [],
-                                            score: score,
+                                            score: shouldHideQuantitativeData ? nil : score,
                                             dueText: dueText,
                                             route: assignment.html_url)
         }
@@ -165,7 +166,7 @@ public class K5ScheduleWeekViewModel: ObservableObject {
                                                 title: plannable.plannableTitle ?? "",
                                                 subtitle: nil,
                                                 labels: plannable.k5ScheduleLabels.map { K5ScheduleEntryViewModel.LabelViewModel(text: $0.text, color: $0.color)},
-                                                score: plannable.k5SchedulePoints,
+                                                score: subject.shouldHideQuantitativeData ? nil : plannable.k5SchedulePoints,
                                                 dueText: plannable.k5ScheduleDueText,
                                                 route: plannable.htmlURL,
                                                 apiService: apiService)

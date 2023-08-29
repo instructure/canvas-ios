@@ -48,9 +48,11 @@ class CalendarTests: E2ETestCase {
         let addNoteButton = Helper.addNoteButton.waitUntil(.visible)
         XCTAssertTrue(addNoteButton.isVisible)
 
-        let todayDateButton = Helper.dayButton(event: event).waitUntil(.visible)
-        XCTAssertTrue(todayDateButton.isVisible)
-        XCTAssertTrue(todayDateButton.isSelected)
+        let eventDateButton = Helper.dayButton(event: event).waitUntil(.visible)
+        XCTAssertTrue(eventDateButton.isVisible)
+
+        eventDateButton.hit()
+        XCTAssertTrue(eventDateButton.waitUntil(.selected).isSelected)
 
         let eventItem = Helper.eventCell(event: event).waitUntil(.visible)
         XCTAssertTrue(eventItem.isVisible)
@@ -82,6 +84,12 @@ class CalendarTests: E2ETestCase {
         XCTAssertTrue(calendarTab.isVisible)
 
         calendarTab.hit()
+
+        let eventDateButton = Helper.dayButton(event: event).waitUntil(.visible)
+        XCTAssertTrue(eventDateButton.isVisible)
+
+        eventDateButton.hit()
+        XCTAssertTrue(eventDateButton.waitUntil(.selected).isSelected)
 
         // MARK: Tap on the event item and check the details
         let eventItem = Helper.eventCell(event: event).waitUntil(.visible)
@@ -125,8 +133,7 @@ class CalendarTests: E2ETestCase {
         let yesterdaysEventItem = Helper.navigateToEvent(event: events.yesterdays!)
         XCTAssertTrue(yesterdaysEventItem.isVisible)
 
-        Helper.todayButton.hit()
-        let todaysEventItem = Helper.eventCell(event: events.todays!).waitUntil(.visible)
+        let todaysEventItem = Helper.navigateToEvent(event: events.todays!)
         XCTAssertTrue(todaysEventItem.isVisible)
 
         let tomorrowsEventItem = Helper.navigateToEvent(event: events.tomorrows!)
@@ -172,6 +179,7 @@ class CalendarTests: E2ETestCase {
         // MARK: Seed the usual stuff with 2 course and 2 separate calendar events
         let student = seeder.createUser()
         let course1 = seeder.createCourse()
+        sleep(1)
         let course2 = seeder.createCourse()
         seeder.enrollStudent(student, in: course1)
         seeder.enrollStudent(student, in: course2)
@@ -187,8 +195,8 @@ class CalendarTests: E2ETestCase {
         calendarTab.hit()
 
         // MARK: Check events
-        var eventItem1 = Helper.eventCell(event: event1).waitUntil(.visible)
-        var eventItem2 = Helper.eventCell(event: event2).waitUntil(.visible)
+        var eventItem1 = Helper.navigateToEvent(event: event1).waitUntil(.visible)
+        var eventItem2 = Helper.navigateToEvent(event: event2).waitUntil(.visible)
         XCTAssertTrue(eventItem1.isVisible)
         XCTAssertTrue(eventItem2.isVisible)
 
@@ -213,8 +221,8 @@ class CalendarTests: E2ETestCase {
         XCTAssertTrue(courseCell2.waitUntil(.selected).isSelected)
 
         // MARK: Change filter to first course
-        courseCell1.actionUntilElementCondition(action: .tap, condition: .selected)
-        courseCell2.actionUntilElementCondition(action: .tap, condition: .unselected)
+        courseCell1.actionUntilElementCondition(action: .tap, condition: .selected, gracePeriod: 2)
+        courseCell2.actionUntilElementCondition(action: .tap, condition: .unselected, gracePeriod: 2)
         XCTAssertTrue(courseCell1.isSelected)
         XCTAssertFalse(courseCell2.isSelected)
 
@@ -226,27 +234,27 @@ class CalendarTests: E2ETestCase {
 
         // MARK: Change filter to second course
         filterButton.hit()
-        courseCell1.actionUntilElementCondition(action: .tap, condition: .unselected)
-        courseCell2.actionUntilElementCondition(action: .tap, condition: .selected)
+        courseCell1.actionUntilElementCondition(action: .tap, condition: .unselected, gracePeriod: 2)
+        courseCell2.actionUntilElementCondition(action: .tap, condition: .selected, gracePeriod: 2)
         XCTAssertFalse(courseCell1.isSelected)
         XCTAssertTrue(courseCell2.isSelected)
 
         doneButton.hit()
-        eventItem1 = Helper.eventCell(event: event1).waitUntil(.vanish)
-        eventItem2 = Helper.eventCell(event: event2).waitUntil(.visible)
+        eventItem1 = Helper.eventCell(event: event1).waitUntil(.vanish, gracePeriod: 2)
+        eventItem2 = Helper.eventCell(event: event2).waitUntil(.visible, gracePeriod: 2)
         XCTAssertTrue(eventItem1.isVanished)
         XCTAssertTrue(eventItem2.isVisible)
 
         // MARK: Change filter to no course selected
         filterButton.hit()
-        courseCell1.actionUntilElementCondition(action: .tap, condition: .unselected)
-        courseCell2.actionUntilElementCondition(action: .tap, condition: .unselected)
+        courseCell1.actionUntilElementCondition(action: .tap, condition: .unselected, gracePeriod: 2)
+        courseCell2.actionUntilElementCondition(action: .tap, condition: .unselected, gracePeriod: 2)
         XCTAssertFalse(courseCell1.isSelected)
         XCTAssertFalse(courseCell2.isSelected)
 
         doneButton.hit()
-        eventItem1 = Helper.eventCell(event: event1).waitUntil(.vanish)
-        eventItem2 = Helper.eventCell(event: event2).waitUntil(.vanish)
+        eventItem1 = Helper.eventCell(event: event1).waitUntil(.vanish, gracePeriod: 2)
+        eventItem2 = Helper.eventCell(event: event2).waitUntil(.vanish, gracePeriod: 2)
         XCTAssertTrue(eventItem1.isVanished)
         XCTAssertTrue(eventItem2.isVanished)
     }

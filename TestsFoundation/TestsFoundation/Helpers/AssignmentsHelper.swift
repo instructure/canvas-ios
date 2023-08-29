@@ -19,9 +19,6 @@
 import Core
 
 public class AssignmentsHelper: BaseHelper {
-    public static var getTomorrowsDateString: String { Date().addDays(1).ISO8601Format() }
-    public static var getYesterdaysDateString: String { Date().addDays(-1).ISO8601Format() }
-
     public static func navBar(course: DSCourse) -> XCUIElement {
         return app.find(id: "Assignments, \(course.name)")
     }
@@ -111,10 +108,17 @@ public class AssignmentsHelper: BaseHelper {
         description: String = "Description of ",
         published: Bool = true,
         submissionTypes: [SubmissionType] = [.online_text_entry],
-        pointsPossible: Float? = nil,
-        dueDate: String? = nil) -> DSAssignment {
+        pointsPossible: Float? = 1.0,
+        gradingType: GradingType? = nil,
+        dueDate: Date? = nil) -> DSAssignment {
         let assignmentBody = CreateDSAssignmentRequest.RequestedDSAssignment(
-            name: name, description: description + name, published: published, submission_types: submissionTypes, points_possible: pointsPossible, due_at: dueDate)
+                name: name,
+                description: description + name,
+                published: published,
+                submission_types: submissionTypes,
+                points_possible: pointsPossible,
+                grading_type: gradingType,
+                due_at: dueDate)
         return seeder.createAssignment(courseId: course.id, assignementBody: assignmentBody)
     }
 

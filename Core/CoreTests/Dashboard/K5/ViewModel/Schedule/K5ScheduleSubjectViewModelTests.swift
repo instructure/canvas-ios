@@ -23,7 +23,7 @@ class K5ScheduleSubjectViewModelTests: CoreTestCase {
 
     func testInvokesTapAction() {
         router.routeExpectation = expectation(description: "Route happened")
-        let testee = K5ScheduleSubjectViewModel(subject: K5ScheduleSubject(name: "", color: .red, image: nil, route: URL(string: "/a")!), entries: [])
+        let testee = K5ScheduleSubjectViewModel(subject: K5ScheduleSubject(name: "", color: .red, image: nil, route: URL(string: "/a")!, shouldHideQuantitativeData: false), entries: [])
 
         testee.viewTapped(router: router, viewController: WeakViewController(UIViewController()))
 
@@ -31,7 +31,7 @@ class K5ScheduleSubjectViewModelTests: CoreTestCase {
     }
 
     func testHasTapActionProperty() {
-        XCTAssertTrue(K5ScheduleSubjectViewModel(subject: K5ScheduleSubject(name: "", color: .red, image: nil, route: URL(string: "/a")!), entries: []).isTappable)
-        XCTAssertFalse(K5ScheduleSubjectViewModel(subject: K5ScheduleSubject(name: "", color: .red, image: nil, route: nil), entries: []).isTappable)
+        XCTAssertTrue(K5ScheduleSubjectViewModel(subject: K5ScheduleSubject(name: "", color: .red, image: nil, route: URL(string: "/a")!, shouldHideQuantitativeData: false), entries: []).isTappable)
+        XCTAssertFalse(K5ScheduleSubjectViewModel(subject: K5ScheduleSubject(name: "", color: .red, image: nil, route: nil, shouldHideQuantitativeData: false), entries: []).isTappable)
     }
 }

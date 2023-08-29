@@ -65,16 +65,18 @@ public class AnnouncementsHelper: BaseHelper {
         return announcements
     }
 
-    public static func postAccountNotification(subject: String? = nil, message: String? = nil) -> DSAccountNotification {
-        let dateFormatter = ISO8601DateFormatter()
-        let globalAnnouncementSubject = subject ?? "This is a GA"
-        let globalAnnouncementMessage = message ?? "This will disappear in 4 minutes"
-        let globalAnnouncementStartAt = dateFormatter.string(from: Date().addMinutes(-1))
-        let globalAnnouncementEndAt = dateFormatter.string(from: Date().addMinutes(3))
+    public static func postAccountNotification(
+            subject: String? = nil, message: String? = nil, isK5: Bool = false, durationMinutes: Int = 2) -> DSAccountNotification {
+        let globalAnnouncementSubject = subject ?? "This is not a drill!"
+        let globalAnnouncementMessage = message ?? "This is an account notification! Will disappear in \(durationMinutes) minutes"
+        let globalAnnouncementStartAt = Date.now
+        let globalAnnouncementEndAt = Date.now.addMinutes(durationMinutes)
 
-        return seeder.postAccountNotifications(requestBody:
-                .init(subject: globalAnnouncementSubject, message: globalAnnouncementMessage,
-                      start_at: globalAnnouncementStartAt, end_at: globalAnnouncementEndAt)
-        )
+        return seeder.postAccountNotifications(
+            requestBody: .init(subject: globalAnnouncementSubject,
+                               message: globalAnnouncementMessage,
+                               start_at: globalAnnouncementStartAt,
+                               end_at: globalAnnouncementEndAt),
+            isK5: isK5)
     }
 }

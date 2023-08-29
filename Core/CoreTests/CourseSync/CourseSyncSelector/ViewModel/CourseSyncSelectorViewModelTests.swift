@@ -174,9 +174,9 @@ class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
 }
 
 class CourseSyncInteractorMock: CourseSyncInteractor {
-    let courseSyncEntriesSubject = PassthroughSubject<[CourseSyncEntry], Error>()
+    let courseSyncEntriesSubject = PassthroughSubject<[CourseSyncEntry], Never>()
 
-    func downloadContent(for _: [Core.CourseSyncEntry]) -> AnyPublisher<[Core.CourseSyncEntry], Error> {
+    func downloadContent(for _: [Core.CourseSyncEntry]) -> AnyPublisher<[Core.CourseSyncEntry], Never> {
         courseSyncEntriesSubject.eraseToAnyPublisher()
     }
 }

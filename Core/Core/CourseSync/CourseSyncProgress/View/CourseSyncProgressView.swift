@@ -26,15 +26,22 @@ struct CourseSyncProgressView: View {
 
     var body: some View {
         content
-        .navigationTitleStyled(navBarTitleView)
-        .navigationBarItems(leading: cancelButton, trailing: trailingBarItem)
-        .navigationBarStyle(.modal)
+            .navigationTitleStyled(navBarTitleView)
+            .navigationBarItems(leading: cancelButton, trailing: trailingBarItem)
+            .navigationBarStyle(.modal)
+            .confirmationAlert(
+                isPresented: $viewModel.isShowingCancelDialog,
+                presenting: viewModel.confirmAlert
+            )
+            .onAppear {
+                viewModel.viewOnAppear.accept(viewController)
+            }
     }
 
     @ViewBuilder
     private var trailingBarItem: some View {
         switch viewModel.state {
-        case .error:
+        case .dataWithError:
             retryButton
         default:
             dismissButton
@@ -51,7 +58,7 @@ struct CourseSyncProgressView: View {
         case .loading:
             ProgressView()
                 .progressViewStyle(.indeterminateCircle())
-        case .data:
+        case .data, .dataWithError:
             VStack(spacing: 0) {
                 CourseSyncProgressInfoView(viewModel: courseSyncProgressInfoViewModel)
                     .padding(16)
@@ -96,7 +103,7 @@ struct CourseSyncProgressView: View {
 
     private var cancelButton: some View {
         Button {
-            viewModel.cancelButtonDidTap.accept(viewController)
+            viewModel.cancelButtonDidTap.accept()
         } label: {
             Text("Cancel", bundle: .core)
                 .font(.regular16)
@@ -116,7 +123,7 @@ struct CourseSyncProgressView: View {
 
     private var retryButton: some View {
         Button {
-            viewModel.retryButtonDidTap.accept(viewController)
+            viewModel.retryButtonDidTap.accept(())
         } label: {
             Text("Retry", bundle: .core)
                 .font(.regular16)
@@ -128,14 +135,6 @@ struct CourseSyncProgressView: View {
     private func listCell(for item: CourseSyncProgressViewModel.Item) -> some View {
         VStack(spacing: 0) {
             switch item.state {
-            case .idle:
-                ListCellView(ListCellViewModel(cellStyle: item.cellStyle,
-                                               title: item.title,
-                                               subtitle: item.subtitle,
-                                               isCollapsed: item.isCollapsed,
-                                               collapseDidToggle: item.collapseDidToggle,
-                                               removeItemPressed: item.removeItemPressed,
-                                               state: .idle))
             case let .loading(progress):
                 ListCellView(ListCellViewModel(cellStyle: item.cellStyle,
                                                title: item.title,

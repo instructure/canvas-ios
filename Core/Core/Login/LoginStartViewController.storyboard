@@ -36,6 +36,9 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="instructureLine" translatesAutoresizingMaskIntoConstraints="NO" id="YBX-Gr-kI6">
                                         <rect key="frame" x="155.5" y="22" width="64" height="64"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                                        </accessibility>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="64" id="TGN-lb-CPg"/>
                                             <constraint firstAttribute="width" constant="64" id="wxc-X2-xtt"/>
@@ -44,6 +47,9 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wordmark" translatesAutoresizingMaskIntoConstraints="NO" id="shp-bR-v4y" customClass="IconView" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="105.5" y="104" width="164" height="40"/>
                                         <color key="tintColor" red="0.7803921568627451" green="0.80392156862745101" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" notEnabled="YES"/>
+                                        </accessibility>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="iconColorName" value="tiara"/>
                                         </userDefinedRuntimeAttributes>
@@ -51,6 +57,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STUDENT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1qr-uo-RMu">
                                         <rect key="frame" x="159.5" y="152" width="56" height="16.5"/>
                                         <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" notEnabled="YES"/>
                                             <bool key="isElement" value="NO"/>
                                         </accessibility>
                                         <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="12"/>
@@ -59,6 +66,10 @@
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES"/>
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstItem="YBX-Gr-kI6" firstAttribute="centerX" secondItem="R5c-gK-Ayu" secondAttribute="centerX" id="30s-bU-tUh"/>
                                     <constraint firstItem="shp-bR-v4y" firstAttribute="centerX" secondItem="R5c-gK-Ayu" secondAttribute="centerX" id="96q-S4-CDS"/>
@@ -84,7 +95,7 @@
                                                 <inset key="contentEdgeInsets" minX="24" minY="16" maxX="24" maxY="16"/>
                                                 <state key="normal" title="Log In"/>
                                                 <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="electric"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="electricHighContrast"/>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="white"/>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -104,7 +115,7 @@
                                                 <inset key="contentEdgeInsets" minX="24" minY="16" maxX="24" maxY="16"/>
                                                 <state key="normal" title="Find my school"/>
                                                 <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="electric"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="backgroundColorName" value="electricHighContrast"/>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="white"/>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -492,6 +503,7 @@
                         <outlet property="whatsNewContainer" destination="3Ua-og-syp" id="X4Y-L1-IsS"/>
                         <outlet property="whatsNewLabel" destination="qRY-FA-Dia" id="P1N-zF-7St"/>
                         <outlet property="whatsNewLink" destination="va0-Ci-EPu" id="tKP-Ct-BDQ"/>
+                        <outlet property="wordmark" destination="shp-bR-v4y" id="udQ-J9-gKP"/>
                         <outlet property="wordmarkLabel" destination="1qr-uo-RMu" id="1PZ-ER-KtI"/>
                     </connections>
                 </viewController>

@@ -100,7 +100,7 @@ exports[`renders correctly 1`] = `
                     "width": 16,
                   },
                   Object {
-                    "tintColor": "#00AC18",
+                    "tintColor": "#127A1B",
                   },
                 ]
               }
@@ -314,7 +314,7 @@ exports[`renders correctly assignment icon 1`] = `
                     "width": 16,
                   },
                   Object {
-                    "tintColor": "#00AC18",
+                    "tintColor": "#127A1B",
                   },
                 ]
               }
@@ -528,7 +528,7 @@ exports[`renders correctly discussion icon 1`] = `
                     "width": 16,
                   },
                   Object {
-                    "tintColor": "#00AC18",
+                    "tintColor": "#127A1B",
                   },
                 ]
               }
@@ -956,7 +956,7 @@ exports[`renders correctly published icon 1`] = `
                     "width": 16,
                   },
                   Object {
-                    "tintColor": "#00AC18",
+                    "tintColor": "#127A1B",
                   },
                 ]
               }
@@ -1170,7 +1170,7 @@ exports[`renders correctly quiz icon 1`] = `
                     "width": 16,
                   },
                   Object {
-                    "tintColor": "#00AC18",
+                    "tintColor": "#127A1B",
                   },
                 ]
               }
@@ -1384,7 +1384,7 @@ exports[`renders correctly with closed due dates 1`] = `
                     "width": 16,
                   },
                   Object {
-                    "tintColor": "#00AC18",
+                    "tintColor": "#127A1B",
                   },
                 ]
               }
@@ -1598,7 +1598,7 @@ exports[`renders correctly with needs_grading_count 1`] = `
                     "width": 16,
                   },
                   Object {
-                    "tintColor": "#00AC18",
+                    "tintColor": "#127A1B",
                   },
                 ]
               }
@@ -1673,7 +1673,7 @@ exports[`renders correctly with needs_grading_count 1`] = `
                 Object {
                   "alignSelf": "flex-start",
                   "backgroundColor": "#FFFFFF",
-                  "borderColor": "#008EE2",
+                  "borderColor": "#0770A3",
                   "borderRadius": 9,
                   "borderWidth": 1,
                   "color": "#008EE2",
@@ -1841,7 +1841,7 @@ exports[`renders correctly with needs_grading_count and set to not_graded 1`] = 
                     "width": 16,
                   },
                   Object {
-                    "tintColor": "#00AC18",
+                    "tintColor": "#127A1B",
                   },
                 ]
               }
@@ -2055,7 +2055,7 @@ exports[`renders correctly with open due dates 1`] = `
                     "width": 16,
                   },
                   Object {
-                    "tintColor": "#00AC18",
+                    "tintColor": "#127A1B",
                   },
                 ]
               }
@@ -2269,7 +2269,7 @@ exports[`renders correctly with selected props 1`] = `
                     "width": 16,
                   },
                   Object {
-                    "tintColor": "#00AC18",
+                    "tintColor": "#127A1B",
                   },
                 ]
               }

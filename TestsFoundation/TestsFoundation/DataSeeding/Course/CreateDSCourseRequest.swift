@@ -26,8 +26,9 @@ struct CreateDSCourseRequest: APIRequestable {
     public var path: String
     public let body: Body?
 
-    public init(body: Body, accountId: String = "self") {
+    public init(body: Body, isK5: Bool = false) {
         self.body = body
+        let accountId = isK5 ? Secret.k5SubAccountId.string! : "self"
         self.path = "accounts/\(accountId)/courses"
     }
 }
@@ -37,10 +38,14 @@ extension CreateDSCourseRequest {
         let name: String
         let time_zone: String = "Europe/Budapest"
         let syllabus_body: String?
+        let start_at: Date?
+        let end_at: Date?
 
-        public init(name: String, syllabus_body: String? = nil) {
+        public init(name: String, syllabus_body: String? = nil, start_at: Date? = nil, end_at: Date? = nil) {
             self.name = name
             self.syllabus_body = syllabus_body
+            self.start_at = start_at
+            self.end_at = end_at
         }
     }
 

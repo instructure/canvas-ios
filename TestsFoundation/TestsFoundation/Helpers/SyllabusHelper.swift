@@ -45,7 +45,7 @@ public class SyllabusHelper: BaseHelper {
     public static func navigateToSyllabus(course: DSCourse) {
         DashboardHelper.courseCard(course: course).hit()
         let syllabusItem = CourseDetailsHelper.cell(type: .syllabus)
-        syllabusItem.actionUntilElementCondition(action: .swipeUp, condition: .visible)
+        syllabusItem.actionUntilElementCondition(action: .swipeUp(), condition: .visible)
         syllabusItem.hit()
     }
 
@@ -53,8 +53,9 @@ public class SyllabusHelper: BaseHelper {
     @discardableResult
     public static func createCourseWithSyllabus() -> DSCourse {
         let syllabusBody = "This is the body of the syllabus"
-        var result = seeder.createCourse(name: "DS iOS Course With Syllabus \(Int(Date().timeIntervalSince1970))",
-                                         syllabus_body: syllabusBody)
+        var result = seeder.createCourse(
+                name: "DS iOS Course With Syllabus \(Int(Date().timeIntervalSince1970))",
+                syllabus_body: syllabusBody)
         result.syllabus_body = syllabusBody
         return result
     }

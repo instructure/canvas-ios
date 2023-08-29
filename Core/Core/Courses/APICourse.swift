@@ -209,7 +209,7 @@ extension APICourse.Term {
 }
 
 extension APICourseSettings {
-    static func make(
+    public static func make(
         usage_rights_required: Bool = false,
         syllabus_course_summary: Bool = true,
         restrict_quantitative_data: Bool? = nil

@@ -74,7 +74,7 @@ class AssignmentsTests: E2ETestCase {
 
         let pointsLabel = DetailsHelper.points.waitUntil(.visible)
         XCTAssertTrue(pointsLabel.isVisible)
-        XCTAssertEqual(pointsLabel.label, "0 pts")
+        XCTAssertEqual(pointsLabel.label, "\(assignment.points_possible!) pt")
 
         let statusLabel = DetailsHelper.status.waitUntil(.visible)
         XCTAssertTrue(statusLabel.isVisible)
@@ -172,11 +172,11 @@ class AssignmentsTests: E2ETestCase {
         seeder.enrollStudent(student, in: course)
 
         // MARK: Create 2 assignments (1 due yesterday and 1 due tomorrow)
-        let yesterdaysDate = Helper.getYesterdaysDateString
+        let yesterdaysDate = Date.now.addDays(-1)
         let yesterdaysAssignment = Helper.createAssignment(
             course: course, name: "Yesterdays Assignment", dueDate: yesterdaysDate)
 
-        let tomorrowsDate = Helper.getTomorrowsDateString
+        let tomorrowsDate = Date.now.addDays(1)
         let tomorrowsAssignment = Helper.createAssignment(
             course: course, name: "Tomorrows Assignment", dueDate: tomorrowsDate)
 

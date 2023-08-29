@@ -58,29 +58,26 @@ final class CourseSyncStateProgress: NSManagedObject, Comparable {
     var state: CourseSyncEntry.State {
         get {
             switch stateRaw {
-            case 0: return .idle
-            case 1: return .loading(progress?.floatValue)
-            case 2: return .error
-            case 3: return .downloaded
+            case 0: return .loading(progress?.floatValue)
+            case 1: return .error
+            case 2: return .downloaded
             default:
                 fatalError("CourseSyncEntryProgress.State incorrect data.")
             }
         }
         set {
             switch newValue {
-            case .idle:
-                stateRaw = 0
             case let .loading(progress):
-                stateRaw = 1
+                stateRaw = 0
                 if let progress {
                     self.progress = NSNumber(value: progress)
                 } else {
                     self.progress = nil
                 }
             case .error:
-                stateRaw = 2
+                stateRaw = 1
             case .downloaded:
-                stateRaw = 3
+                stateRaw = 2
             }
         }
     }

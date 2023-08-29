@@ -98,6 +98,11 @@ public class Assignment: NSManagedObject {
      */
     @NSManaged public var submissions: Set<Submission>?
 
+    public var hideQuantitativeData: Bool {
+        let course: Course? = managedObjectContext?.first(where: #keyPath(Course.id), equals: courseID)
+        return course?.hideQuantitativeData ?? false
+    }
+
     public var allowedExtensions: [String] {
         get { return allowedExtensionsRaw.split(separator: ",").map { String($0) } }
         set { allowedExtensionsRaw = newValue.joined(separator: ",") }
@@ -205,7 +210,7 @@ extension Assignment {
         }
 
         freeFormCriterionCommentsOnRubric = item.rubric_settings?.free_form_criterion_comments == true
-        hideRubricPoints = item.rubric_settings?.hide_points == true
+        hideRubricPoints = item.rubric_settings?.hide_points == true || hideQuantitativeData
         rubricPointsPossible = item.rubric_settings?.points_possible
 
         if let assignmentGroupID = item.assignment_group_id?.value,

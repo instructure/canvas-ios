@@ -77,7 +77,7 @@ public class QuizzesHelper: BaseHelper {
                 // Correct answer to first question
                 exitButton.waitUntil(.visible)
                 let firstQuestionAnswer = app.find(label: TestData.Question1.Answers.correct, type: .staticText)
-                firstQuestionAnswer.actionUntilElementCondition(action: .swipeUp, condition: .visible)
+                firstQuestionAnswer.actionUntilElementCondition(action: .swipeUp(), condition: .visible)
                 firstQuestionAnswer.hit()
             }
 
@@ -85,7 +85,7 @@ public class QuizzesHelper: BaseHelper {
                 // Correct answer to second question
                 exitButton.waitUntil(.visible)
                 let secondQuestionAnswer = app.find(label: TestData.Question2.Answers.correct, type: .staticText)
-                secondQuestionAnswer.actionUntilElementCondition(action: .swipeUp, condition: .visible)
+                secondQuestionAnswer.actionUntilElementCondition(action: .swipeUp(), condition: .visible)
                 secondQuestionAnswer.hit()
             }
         }
@@ -120,7 +120,7 @@ public class QuizzesHelper: BaseHelper {
         CourseDetailsHelper.titleLabel.waitUntil(.visible)
         let quizzesCell = CourseDetailsHelper.cell(type: .quizzes)
         quizzesCell.waitUntil(.visible)
-        quizzesCell.actionUntilElementCondition(action: .swipeUp, condition: .hittable)
+        quizzesCell.actionUntilElementCondition(action: .swipeUp(), condition: .hittable)
         quizzesCell.hit()
     }
 
@@ -132,13 +132,13 @@ public class QuizzesHelper: BaseHelper {
                                   quiz_type: DSQuizType,
                                   points_possible: Float = 10.0,
                                   published: Bool = false,
-                                  due_at: String? = nil) -> DSQuiz {
+                                  due_at: Date? = nil) -> DSQuiz {
         let quizBody = CreateDSQuizRequest.RequestedDSQuiz(title: title, description: description, quiz_type: quiz_type, points_possible: points_possible, published: published, due_at: due_at)
         return seeder.createQuiz(courseId: course.id, quizBody: quizBody)
     }
 
     @discardableResult
-    public static func createTestQuizWith2Questions(course: DSCourse, due_at: String? = nil) -> DSQuiz {
+    public static func createTestQuizWith2Questions(course: DSCourse, due_at: Date? = nil) -> DSQuiz {
         let quiz = createQuiz(course: course,
                               title: "Test Quiz",
                               description: "Description of Test Quiz",
