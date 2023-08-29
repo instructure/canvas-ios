@@ -51,14 +51,15 @@ public struct DashboardSettingsView: View {
                            isOn: $viewModel.showGrades,
                            a11yID: "DashboardSettings.Switch.Grades")
                     .accessibilityIdentifier("DashboardSettings.showGradesToggle")
-                    separator
                 }
+                separator
                 if viewModel.isColorOverlaySwitchVisible {
                     toggle(text: Text("Color Overlay", bundle: .core),
                            isOn: $viewModel.colorOverlay,
                            a11yID: "DashboardSettings.Switch.ColorOverlay")
+                    .accessibilityIdentifier("DashboardSettings.colorOverlayToggle")
+                    separator
                 }
-                separator
                 Spacer()
             }
             .padding(.horizontal, horizontalPadding)

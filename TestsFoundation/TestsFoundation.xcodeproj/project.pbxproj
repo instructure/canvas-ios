@@ -108,6 +108,7 @@
 		8917C1628DAFDC52287BF98D /* ModuleItemFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B59FD3B1D002FA5E94E1C6 /* ModuleItemFixture.swift */; };
 		8A07DBDCA9A16E7CA4119BA8 /* SafariAppHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88031258B44C726398315548 /* SafariAppHelper.swift */; };
 		8AAB7EC58190ABB57E0F40AD /* MiniCanvasServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A98E1BAD9BED63BDEAD29 /* MiniCanvasServer.swift */; };
+		8B7CF4132A9D168400229CD3 /* UpdateDSCourseSettingsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7CF4102A9D168400229CD3 /* UpdateDSCourseSettingsRequest.swift */; };
 		8C02370D294ADC5E03166916 /* CreateDSQuizQuestionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFA2EB914E415CCFACDB /* CreateDSQuizQuestionRequest.swift */; };
 		8CE7A795708CBCF4AF7A2674 /* DSModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69E1EBE6B486730AE73F45 /* DSModuleItem.swift */; };
 		8CEEA54DE127851FF426490F /* CreateDSDiscussionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D6E99369534DE2260DD4EB /* CreateDSDiscussionRequest.swift */; };
@@ -297,6 +298,7 @@
 		8A068B0E01FE8DF60B7EB29C /* DataSeeder+DSCalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSCalendarEvent.swift"; sourceTree = "<group>"; };
 		8A620771B1587A67246AE4EC /* DataSeeder+DSNewQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSNewQuiz.swift"; sourceTree = "<group>"; };
 		8A786B4F2BC2E643D0EA58C0 /* SetDSFeatureFlagRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDSFeatureFlagRequest.swift; sourceTree = "<group>"; };
+		8B7CF4102A9D168400229CD3 /* UpdateDSCourseSettingsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateDSCourseSettingsRequest.swift; sourceTree = "<group>"; };
 		8E046239E00E2F114C950D3A /* ModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFixture.swift; sourceTree = "<group>"; };
 		8E52A6F60DF961A9FB652399 /* DSSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSubmission.swift; sourceTree = "<group>"; };
 		8EB01A67D620697DB09B6F61 /* CreateDSAccountNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSAccountNotificationRequest.swift; sourceTree = "<group>"; };
@@ -868,6 +870,7 @@
 		E9C31C8EF04AEA0B22366489 /* Course */ = {
 			isa = PBXGroup;
 			children = (
+				8B7CF4102A9D168400229CD3 /* UpdateDSCourseSettingsRequest.swift */,
 				9A7561DA742A2C1B232DFA62 /* Tabs */,
 				3258B341703AB94A86D1CD4C /* CreateDSCourseRequest.swift */,
 				7696666C5B013125861D6568 /* DataSeeder+DSCourse.swift */,
@@ -1116,6 +1119,7 @@
 				3D55C742893789C26F3CF6BF /* ExternalToolFixture.swift in Sources */,
 				714095469EADAA3DEDEC6E47 /* FeatureFlagFixture.swift in Sources */,
 				DEEC97DD9DE164FC85B7CC78 /* FileFixture.swift in Sources */,
+				8B7CF4132A9D168400229CD3 /* UpdateDSCourseSettingsRequest.swift in Sources */,
 				D2224694AC33EBC4810E0CDD /* FileUploadTargetFixture.swift in Sources */,
 				69C34E78717F6C85DDF399A8 /* FilesHelper.swift in Sources */,
 				CB1F323336229DCF025587F7 /* GradesHelper.swift in Sources */,
