@@ -28,10 +28,12 @@ struct CourseSyncProgressInfoView: View {
                     .font(.semibold16)
                     .foregroundColor(.textDarkest)
                     .padding(.top, 24)
+                    .multilineTextAlignment(.center)
                 Text(viewModel.syncFailureSubtitle)
                     .font(.regular14)
                     .foregroundColor(.textDarkest)
                     .padding(.top, 24)
+                    .multilineTextAlignment(.center)
             } else {
                 Text(viewModel.progress)
                     .font(.regular14)
