@@ -19,7 +19,7 @@
 import SwiftUI
 
 struct ContextCardGradesView: View {
-    private let grades: ContextGrade
+    private let grades: Grade
     private let color: Color
 
     private var grade: String?
@@ -28,7 +28,7 @@ struct ContextCardGradesView: View {
     private var gradeSelected = false
     private var unpostedSelected = false
 
-    init(grades: ContextGrade, color: Color) {
+    init(grades: Grade, color: Color) {
         self.grades = grades
         self.color = color
 
@@ -91,7 +91,7 @@ struct ContextCardGradesView_Previews: PreviewProvider {
     static let context = env.globalDatabase.viewContext
 
     static var previews: some View {
-        let grade = ContextGrade(context: context)
+        let grade = Grade(context: context)
         grade.currentScore = 11
         grade.overrideScore = 99
         grade.overrideGrade = "C"

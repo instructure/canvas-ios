@@ -245,6 +245,11 @@ extension PeopleListViewController: UITableViewDataSource, UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let user = users[indexPath.row] else { return }
+        guard offlineModelInteractor?.isOfflineModeEnabled() == false else {
+            return UIAlertController.showItemNotAvailableInOfflineAlert {
+                tableView.deselectRow(at: indexPath, animated: true)
+            }
+        }
         env.router.route(to: "/\(context.pathComponent)/users/\(user.id)", from: self, options: .detail)
     }
 

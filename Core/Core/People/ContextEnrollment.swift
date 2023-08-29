@@ -184,7 +184,6 @@ extension ContextEnrollment {
         }
 
         if let courseID = item.course_id?.value ?? course?.id {
-            print("saving submission for \(courseID)")
             let submissions: [Submission] = client.fetch(NSPredicate(format: "%K == %@ AND %K == %@",
                 #keyPath(Submission.assignment.courseID), courseID,
                 #keyPath(Submission.userID), item.user_id.value
