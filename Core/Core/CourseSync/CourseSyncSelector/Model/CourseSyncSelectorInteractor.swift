@@ -37,9 +37,6 @@ protocol CourseSyncSelectorInteractor: AnyObject {
 }
 
 final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
-    private let courseListStore = ReactiveStore(
-        useCase: GetCourseSyncSelectorCourses()
-    )
     private let courseSyncEntries = CurrentValueSubject<[CourseSyncEntry], Error>(.init())
     private var subscriptions = Set<AnyCancellable>()
     private let courseID: String?

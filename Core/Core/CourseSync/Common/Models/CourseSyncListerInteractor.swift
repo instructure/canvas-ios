@@ -26,9 +26,9 @@ protocol CourseSyncListInteractor {
 
 class CourseSyncListInteractorLive: CourseSyncListInteractor {
     enum Filter {
-        case courseID(String)
-        case all
-        case synced
+        case courseID(String) // A specific course
+        case all // All the available courses
+        case synced // Synchronized courses
 
         var isLimitedToSyncedOnly: Bool {
             switch self {
