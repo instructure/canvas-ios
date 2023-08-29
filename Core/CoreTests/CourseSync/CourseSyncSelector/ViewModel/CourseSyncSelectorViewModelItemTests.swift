@@ -22,13 +22,13 @@ import XCTest
 
 class CourseSyncSelectorViewModelItemTests: XCTestCase {
     private var mockInteractor: MockCourseSyncSelectorInteractor!
-    private var mockEntryComposerInteractor: CourseSyncEntryComposerInteractorMock!
+    private var mockCourseSyncListInteractor: CourseSyncListInteractorMock!
 
     override func setUp() {
         super.setUp()
-        mockEntryComposerInteractor = CourseSyncEntryComposerInteractorMock()
+        mockCourseSyncListInteractor = CourseSyncListInteractorMock()
         mockInteractor = MockCourseSyncSelectorInteractor(
-            entryComposerInteractor: mockEntryComposerInteractor,
+            courseSyncListInteractor: mockCourseSyncListInteractor,
             sessionDefaults: .fallback
         )
     }
@@ -262,7 +262,7 @@ private class MockCourseSyncSelectorInteractor: CourseSyncSelectorInteractor {
 
     required init(
         courseID: String? = nil,
-        entryComposerInteractor: CourseSyncEntryComposerInteractor,
+        courseSyncListInteractor: CourseSyncListInteractor,
         sessionDefaults: SessionDefaults
     ) {}
 
