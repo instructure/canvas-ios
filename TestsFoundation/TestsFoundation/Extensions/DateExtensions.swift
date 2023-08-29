@@ -21,28 +21,10 @@ import Foundation
 extension Date {
 
     // MARK: Variables
-    public var day: Int {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "d"
-        return Int(formatter.string(from: self))!
-    }
-
-    public var month: Int {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "M"
-        return Int(formatter.string(from: self))!
-    }
-
-    public var year: Int {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy"
-        return Int(formatter.string(from: self))!
-    }
-
-    public var isFutureDate: Bool {
-        let now = Date.now
-        return now.year < year || now.month < month || now.day < day
-    }
+    public var day: Int { Calendar.current.component(.day, from: self) }
+    public var month: Int { Calendar.current.component(.month, from: self) }
+    public var year: Int { Calendar.current.component(.year, from: self) }
+    public var isFutureDate: Bool { self.startOfDay() > Date.now.startOfDay() }
 
     // MARK: Functions
     public func add(_ calendarComponent: Calendar.Component, number: Int) -> Date {

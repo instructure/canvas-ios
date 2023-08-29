@@ -58,8 +58,8 @@ public struct DashboardSettingsView: View {
                            isOn: $viewModel.colorOverlay,
                            a11yID: "DashboardSettings.Switch.ColorOverlay")
                     .accessibilityIdentifier("DashboardSettings.colorOverlayToggle")
+                    separator
                 }
-                separator
                 Spacer()
             }
             .padding(.horizontal, horizontalPadding)
