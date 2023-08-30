@@ -166,6 +166,7 @@
 		E6069C48343F3A89A0AACF06 /* CreateDSSubmissionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0802341FC04F9C6AD34B8D /* CreateDSSubmissionRequest.swift */; };
 		E634B330B91086EF34452772 /* ActAsUserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277A35F90288F094545F846C /* ActAsUserHelper.swift */; };
 		E6F7ECD7C962156372F2EF30 /* ConferenceFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDE761FC87592203DC32D14 /* ConferenceFixture.swift */; };
+		EB25BA6C2A9F210700F0A276 /* ContextEnrollmentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB25BA6B2A9F210700F0A276 /* ContextEnrollmentFixture.swift */; };
 		EE0131667C22EB6DFEE6BE74 /* DSUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF23850042CD551D7DF85779 /* DSUser.swift */; };
 		EE5667413AE1D36643986207 /* DataSeeder+DSQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2E233390F6F43020E31217 /* DataSeeder+DSQuiz.swift */; };
 		EF5AA536F33A0E6BCA1484A1 /* Swifter in Frameworks */ = {isa = PBXBuildFile; productRef = 94AE2F7697F364E263431847 /* Swifter */; };
@@ -379,6 +380,7 @@
 		E7E83107029F08BB0F92257A /* CreateDSAssignmentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSAssignmentRequest.swift; sourceTree = "<group>"; };
 		E89F21CB0826337C08AC625D /* BaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHelper.swift; sourceTree = "<group>"; };
 		E9D86B8106C5392332BC55C2 /* CreateDSUserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSUserRequest.swift; sourceTree = "<group>"; };
+		EB25BA6B2A9F210700F0A276 /* ContextEnrollmentFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextEnrollmentFixture.swift; sourceTree = "<group>"; };
 		ED0652909EA40F1E86A0B4C3 /* DSQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSQuiz.swift; sourceTree = "<group>"; };
 		ED4E87BB5E64AC3E82CDE316 /* XCUIApplicationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCUIApplicationExtensions.swift; sourceTree = "<group>"; };
 		ED9C7881D3779857136084CB /* FileFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileFixture.swift; sourceTree = "<group>"; };
@@ -416,6 +418,7 @@
 				B100D8DADCC9EB9B008A30A8 /* CommunicationChannelFixture.swift */,
 				FDDE761FC87592203DC32D14 /* ConferenceFixture.swift */,
 				4B1EA26437E4B37002DFA727 /* ContextColorFixture.swift */,
+				EB25BA6B2A9F210700F0A276 /* ContextEnrollmentFixture.swift */,
 				15FC024B5D54ECDD44AA5E7C /* ConversationFixture.swift */,
 				60ECACB19D1C2CE215241714 /* CourseFixture.swift */,
 				1C5A4B21062D29A3ABFF82B1 /* CourseSectionFixture.swift */,
@@ -1164,6 +1167,7 @@
 				01C399BC61AB495F7669942A /* MediaCommentFixture.swift in Sources */,
 				DD987EDC47A00AFE9EBBCC55 /* MiniAssignment.swift in Sources */,
 				91233B0A98BF885B4E721032 /* MiniCanvasEndpoints.swift in Sources */,
+				EB25BA6C2A9F210700F0A276 /* ContextEnrollmentFixture.swift in Sources */,
 				8AAB7EC58190ABB57E0F40AD /* MiniCanvasServer.swift in Sources */,
 				113B16010F4632F524284678 /* MiniCanvasState.swift in Sources */,
 				FBCBC5F2006F22BE66184CB7 /* MiniCanvasUITestCase.swift in Sources */,

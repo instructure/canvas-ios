@@ -33,7 +33,7 @@ final public class ContextEnrollment: NSManagedObject {
     @NSManaged public var course: Course?
     @NSManaged public var courseSectionID: String?
     @NSManaged public var grades: Set<ContextGrade>
-    @NSManaged public var observedUser: User?
+    @NSManaged public var observedUser: ContextUser?
     @NSManaged public var isFromInvitation: Bool
     @NSManaged public var lastActivityAt: Date?
 
@@ -177,7 +177,7 @@ extension ContextEnrollment {
         }
 
         if let apiObservedUser = item.observed_user {
-            let observedUserModel = User.save(apiObservedUser, in: client)
+            let observedUserModel = ContextUser.save(apiObservedUser, in: client)
             observedUser = observedUserModel
         } else {
             observedUser = nil
