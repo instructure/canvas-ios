@@ -17,6 +17,26 @@
 //
 
 public class FilesHelper: BaseHelper {
+    // MARK: Test data
+    public struct TestPDF {
+        public static let url = "https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_100KB_PDF.pdf"
+        public static let name = "Free_Test_Data_100KB_PDF"
+
+        public static func download() {
+            SafariAppHelper.launchAppWithURL(url)
+            SafariAppHelper.shareButton.hit()
+            SafariAppHelper.Share.titleLabel(title: TestPDF.name).actionUntilElementCondition(
+                action: .swipeUp(.onElement), element: SafariAppHelper.Share.saveToFiles, condition: .hittable)
+            SafariAppHelper.Share.saveToFiles.hit()
+            SafariAppHelper.Share.onMyIphoneButton.hit()
+            SafariAppHelper.Share.onMyIphoneLabel.waitUntil(.visible)
+            SafariAppHelper.Share.saveButton.hit()
+        }
+    }
+
+    // MARK: UI Elements
+    public static var noFilesLabel: XCUIElement { app.find(labelContaining: "No Files", type: .table) }
+
     public struct Details {
         public static var editButton: XCUIElement { app.find(id: "FileDetails.editButton") }
         public static var imageView: XCUIElement { app.find(id: "FileDetails.imageView") }
@@ -41,9 +61,34 @@ public class FilesHelper: BaseHelper {
         public static var editButton: XCUIElement { app.find(id: "FileList.editButton") }
         public static var addFileButton: XCUIElement { app.find(id: "FileList.addFileButton") }
         public static var addFolderButton: XCUIElement { app.find(id: "FileList.addFolderButton") }
+        public static var uploadFileButton: XCUIElement { app.find(label: "Upload File", type: .button) }
+        public static var testPDFButton: XCUIElement { app.find(id: "\(FilesHelper.TestPDF.name), pdf") }
+        public static var deleteButton: XCUIElement { app.find(label: "Delete", type: .button) }
+        public static var areYouSureLabel: XCUIElement { app.find(labelContaining: "Are you sure", type: .staticText) }
 
         public static func file(index: Int) -> XCUIElement {
             return app.find(id: "FileList.\(index)")
         }
+
+        public static func uploadTestPDF() {
+            addButton.hit()
+            addFileButton.hit()
+            uploadFileButton.hit()
+            testPDFButton.hit()
+        }
+    }
+
+    public struct PDFViewer {
+        public static var PDFView: XCUIElement { app.find(id: "PDF View") }
+
+        public static var testText1: XCUIElement { app.find(labelContaining: "Lorem ipsum dolor sit amet", type: .staticText) }
+        public static var testText2: XCUIElement { app.find(labelContaining: "Aenean pulvinar euismod ligula at lacinia", type: .staticText) }
+        public static var testText3: XCUIElement { app.find(labelContaining: "Fusce efficitur mi ex", type: .staticText) }
+    }
+
+    // MARK: Functions
+    public static func navigateToFiles() {
+        DashboardHelper.profileButton.hit()
+        ProfileHelper.filesButton.hit()
     }
 }
