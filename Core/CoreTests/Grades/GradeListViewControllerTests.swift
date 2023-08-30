@@ -198,14 +198,18 @@ class GradeListViewControllerTests: CoreTestCase {
     }
 
     func testLayoutHideQuantitativeData() {
-        api.mock(controller.courses, value: .make(enrollments: [ .make(
-            id: nil,
-            course_id: "1",
-            enrollment_state: .active,
-            user_id: currentSession.userID,
-            multiple_grading_periods_enabled: true,
-            current_grading_period_id: "1"
-        ), ], settings: .make(restrict_quantitative_data: true)))
+        api.mock(controller.courses,
+                 value: .make(enrollments: [.make(id: nil,
+                                                  course_id: "1",
+                                                  enrollment_state: .active,
+                                                  user_id: currentSession.userID,
+                                                  multiple_grading_periods_enabled: true,
+                                                  current_grading_period_id: "1"),
+                                            ],
+                              settings: .make(restrict_quantitative_data: true),
+                              grading_scheme: [[.init(value1: "A", value2: nil), .init(value1: nil, value2: 0.8)]]
+                             )
+        )
         let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
@@ -220,8 +224,8 @@ class GradeListViewControllerTests: CoreTestCase {
         let index00 = IndexPath(row: 0, section: 0)
         var cell00 = controller.tableView.cellForRow(at: index00) as! GradeListCell
         XCTAssertEqual(cell00.nameLabel.text, "Complex Numbers")
-        XCTAssertEqual(cell00.gradeLabel.text, nil)
-        XCTAssertEqual(cell00.gradeLabel.accessibilityLabel, nil)
+        XCTAssertEqual(cell00.gradeLabel.text, "A")
+        XCTAssertEqual(cell00.gradeLabel.accessibilityLabel, "Grade, A")
         XCTAssertEqual(cell00.dueLabel.text, "Due Jan 1, 2020 at 12:00 AM")
         XCTAssertEqual(cell00.statusLabel.text, "Late")
 
