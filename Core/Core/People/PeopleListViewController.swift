@@ -269,7 +269,7 @@ class PeopleListCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var rolesLabel: UILabel!
 
-    func update(user: ContextUser?, color: UIColor?, isOffline: Bool) {
+    func update(user: PeopleListUser?, color: UIColor?, isOffline: Bool) {
         backgroundColor = .backgroundLightest
         selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         avatarView.name = user?.name ?? ""

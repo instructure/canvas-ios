@@ -20,7 +20,7 @@ import Foundation
 import CoreData
 
 public class GetCourseContextUsers: CollectionUseCase {
-    public typealias Model = ContextUser
+    public typealias Model = PeopleListUser
 
     let context: Context
     let type: BaseEnrollmentType?
@@ -40,23 +40,19 @@ public class GetCourseContextUsers: CollectionUseCase {
 
     public var scope: Scope {
         if context.contextType == .course {
-            return Scope.where(#keyPath(ContextUser.courseID), equals: context.id, orderBy: #keyPath(ContextUser.sortableName))
+            return Scope.where(#keyPath(PeopleListUser.courseID), equals: context.id, orderBy: #keyPath(PeopleListUser.sortableName))
         } else if context.contextType == .group {
-            return Scope.where(#keyPath(ContextUser.groupID), equals: context.id, orderBy: #keyPath(ContextUser.sortableName))
+            return Scope.where(#keyPath(PeopleListUser.groupID), equals: context.id, orderBy: #keyPath(PeopleListUser.sortableName))
         }
-        return .all(orderBy: #keyPath(ContextUser.sortableName))
+        return .all(orderBy: #keyPath(PeopleListUser.sortableName))
     }
 
     public func write(response: [APIUser]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else { return }
         for item in response {
-            var userItem = item
-            if context.contextType == .course {
-                userItem.course_id = context.id
-            } else if context.contextType == .group {
-                userItem.group_id = context.id
-            }
-            ContextUser.save(userItem, in: client)
+            var courseId = context.contextType == .course ? context.id : nil
+            var groupId = context.contextType == .group ? context.id : nil
+            PeopleListUser.save(item, courseId: courseId, groupId: groupId, in: client)
         }
     }
 }

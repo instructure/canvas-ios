@@ -54,11 +54,6 @@ public struct APIUser: Codable, Equatable {
         public let limit_parent_app_web_access: Bool?
     }
 
-    // Unique user based on course or group ID.
-
-    var course_id: String?
-    var group_id: String?
-
     public init(
         id: ID,
         name: String,
@@ -73,9 +68,7 @@ public struct APIUser: Codable, Equatable {
         bio: String?,
         pronouns: String?,
         permissions: Permissions?,
-        root_account: String?,
-        course_id: String?,
-        group_id: String?
+        root_account: String?
     ) {
         self.id = id
         self.name = name
@@ -91,8 +84,6 @@ public struct APIUser: Codable, Equatable {
         self.pronouns = pronouns
         self.permissions = permissions
         self.root_account = root_account
-        self.course_id = course_id
-        self.group_id = group_id
     }
 
     public init(from decoder: Decoder) throws {
@@ -111,8 +102,6 @@ public struct APIUser: Codable, Equatable {
         pronouns = try container.decodeIfPresent(String.self, forKey: .pronouns)
         permissions = try container.decodeIfPresent(Permissions.self, forKey: .permissions)
         root_account = try container.decodeIfPresent(String.self, forKey: .root_account)
-        course_id = try container.decodeIfPresent(String.self, forKey: .course_id)
-        group_id = try container.decodeIfPresent(String.self, forKey: .group_id)
     }
 }
 
@@ -184,9 +173,7 @@ extension APIUser {
             bio: bio,
             pronouns: pronouns,
             permissions: permissions,
-            root_account: root_account,
-            course_id: course_id,
-            group_id: group_id
+            root_account: root_account
         )
     }
 

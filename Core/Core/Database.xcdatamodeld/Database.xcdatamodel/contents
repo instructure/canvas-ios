@@ -176,58 +176,6 @@
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="contextColor" inverseEntity="Course"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="contextColor" inverseEntity="Group"/>
     </entity>
-    <entity name="ContextEnrollment" representedClassName="Core.ContextEnrollment" syncable="YES">
-        <attribute name="canvasContextID" optional="YES" attributeType="String"/>
-        <attribute name="computedCurrentGrade" optional="YES" attributeType="String"/>
-        <attribute name="computedCurrentScoreRaw" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="computedFinalGrade" optional="YES" attributeType="String"/>
-        <attribute name="computedFinalScoreRaw" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="courseSectionID" optional="YES" attributeType="String"/>
-        <attribute name="currentGradingPeriodID" optional="YES" attributeType="String"/>
-        <attribute name="currentPeriodComputedCurrentGrade" optional="YES" attributeType="String"/>
-        <attribute name="currentPeriodComputedCurrentScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="currentPeriodComputedFinalGrade" optional="YES" attributeType="String"/>
-        <attribute name="currentPeriodComputedFinalScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="id" optional="YES" attributeType="String"/>
-        <attribute name="isFromInvitation" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-        <attribute name="lastActivityAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="multipleGradingPeriodsEnabled" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="role" optional="YES" attributeType="String"/>
-        <attribute name="roleID" optional="YES" attributeType="String"/>
-        <attribute name="stateRaw" optional="YES" attributeType="String"/>
-        <attribute name="totalsForAllGradingPeriodsOption" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="type" attributeType="String"/>
-        <attribute name="userID" optional="YES" attributeType="String"/>
-        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course"/>
-        <relationship name="grades" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ContextGrade" inverseName="enrollment" inverseEntity="ContextGrade"/>
-        <relationship name="observedUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ContextUser" inverseName="enrollments" inverseEntity="ContextUser"/>
-        <relationship name="submissions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Submission"/>
-    </entity>
-    <entity name="ContextGrade" representedClassName="Core.ContextGrade" syncable="YES">
-        <attribute name="currentGrade" optional="YES" attributeType="String"/>
-        <attribute name="currentScoreRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
-        <attribute name="finalGrade" optional="YES" attributeType="String"/>
-        <attribute name="finalScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="gradingPeriodID" optional="YES" attributeType="String"/>
-        <attribute name="overrideGrade" optional="YES" attributeType="String"/>
-        <attribute name="overrideScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="unpostedCurrentGrade" optional="YES" attributeType="String"/>
-        <attribute name="unpostedCurrentScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="enrollment" optional="YES" maxCount="1" deletionRule="No Action" destinationEntity="ContextEnrollment" inverseName="grades" inverseEntity="ContextEnrollment"/>
-    </entity>
-    <entity name="ContextUser" representedClassName="Core.ContextUser" syncable="YES">
-        <attribute name="avatarURL" optional="YES" attributeType="URI"/>
-        <attribute name="courseID" optional="YES" attributeType="String"/>
-        <attribute name="email" optional="YES" attributeType="String"/>
-        <attribute name="groupID" optional="YES" attributeType="String"/>
-        <attribute name="id" attributeType="String"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="observerID" optional="YES" attributeType="String"/>
-        <attribute name="pronouns" optional="YES" attributeType="String"/>
-        <attribute name="shortName" attributeType="String"/>
-        <attribute name="sortableName" attributeType="String"/>
-        <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ContextEnrollment" inverseName="observedUser" inverseEntity="ContextEnrollment"/>
-    </entity>
     <entity name="Conversation" representedClassName="Core.Conversation" syncable="YES">
         <attribute name="audienceIDsRaw" attributeType="String"/>
         <attribute name="avatarURL" attributeType="URI"/>
@@ -763,6 +711,29 @@
         <attribute name="published" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="title" attributeType="String"/>
         <attribute name="url" attributeType="String"/>
+    </entity>
+    <entity name="PeopleListEnrollment" representedClassName="Core.PeopleListEnrollment" syncable="YES">
+        <attribute name="canvasContextID" optional="YES" attributeType="String"/>
+        <attribute name="courseSectionID" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="role" optional="YES" attributeType="String"/>
+        <attribute name="roleID" optional="YES" attributeType="String"/>
+        <attribute name="stateRaw" optional="YES" attributeType="String"/>
+        <attribute name="type" attributeType="String"/>
+        <attribute name="userID" optional="YES" attributeType="String"/>
+        <relationship name="observedUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PeopleListUser" inverseName="enrollments" inverseEntity="PeopleListUser"/>
+    </entity>
+    <entity name="PeopleListUser" representedClassName="Core.PeopleListUser" syncable="YES">
+        <attribute name="avatarURL" optional="YES" attributeType="URI"/>
+        <attribute name="courseID" optional="YES" attributeType="String"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="groupID" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="pronouns" optional="YES" attributeType="String"/>
+        <attribute name="shortName" attributeType="String"/>
+        <attribute name="sortableName" attributeType="String"/>
+        <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PeopleListEnrollment" inverseName="observedUser" inverseEntity="PeopleListEnrollment"/>
     </entity>
     <entity name="Permissions" representedClassName="Core.Permissions" syncable="YES">
         <attribute name="becomeUser" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
