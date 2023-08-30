@@ -45,6 +45,14 @@ extension EnrollRequest {
         let enrollment_state: EnrollmentState
         let user_id: String
         let type: DSEnrollmentType
+        let associated_user_id: String?
+
+        public init(enrollment_state: EnrollmentState, user_id: String, type: DSEnrollmentType, associated_user_id: String? = nil) {
+            self.enrollment_state = enrollment_state
+            self.user_id = user_id
+            self.type = type
+            self.associated_user_id = associated_user_id
+        }
     }
 
     public struct Body: Encodable {

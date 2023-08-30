@@ -62,6 +62,19 @@ class AssignmentDetailsViewControllerTests: ParentTestCase {
         XCTAssertEqual(compose?.hiddenMessage, "Regarding: John Doe, \(url)")
     }
 
+    func testScoreLayoutWhenQuantitativeDataDisabled() {
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+        XCTAssertEqual(controller.pointsLabel.text, "10 pts")
+    }
+
+    func testScoreLayoutWhenQuantitativeDataEnabled() {
+        api.mock(controller.course, value: .make(settings: .make(restrict_quantitative_data: true)))
+        controller.view.layoutIfNeeded()
+        controller.viewWillAppear(false)
+        XCTAssertEqual(controller.pointsLabel.text, " ")
+    }
+
     func testReminder() {
         let prev = Clock.now.startOfDay().addDays(1)
         notificationManager.setReminder(id: "1", content: UNMutableNotificationContent(), at: prev) { _ in }

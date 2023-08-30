@@ -87,6 +87,12 @@ extension CoreWebView {
         function fixLTITools() {
             // Replace all iframes with a button to launch in SFSafariViewController
             document.querySelectorAll('iframe').forEach(iframe => {
+
+                const allowedStudioDomains = ['instructuremedia.com', 'arc.inseng.net', 'arc.docker'];
+                if (allowedStudioDomains.some(domain => iframe.src.includes(domain))) {
+                    return;
+                }
+
                 const replace = iframe => {
                     const a = document.createElement('a')
                     a.textContent = \(CoreWebView.jsString(buttonText))

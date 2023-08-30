@@ -33,24 +33,29 @@ public class K5Helper: BaseHelper {
 
     public struct Schedule {
         public static var today: XCUIElement { app.find(id: "K5Schedule.today") }
+        public static var nextWeekButton: XCUIElement { app.find(label: "Next Week", type: .button) }
 
         public static func assignmentItemButton(assignment: DSAssignment) -> XCUIElement {
+            if assignment.due_at!.isFutureDate && Date.now.weekdayName == "Saturday" { nextWeekButton.hit() }
             K5Helper.dateFormatter.dateFormat = "h:mm a"
             let due = K5Helper.dateFormatter.string(from: assignment.due_at!)
             let pointsString = assignment.points_possible! == 1 ? "pt" : "pts"
             let labelToFind = "\(assignment.name), \(assignment.points_possible!) \(pointsString), Due: \(due)"
             let element = app.find(label: labelToFind, type: .button)
             app.actionUntilElementCondition(action: .swipeUp(), element: element, condition: .visible)
+            app.actionUntilElementCondition(action: .swipeUp(), element: element, condition: .hittable)
             return element
         }
 
         public static func quizItemButton(quiz: DSQuiz) -> XCUIElement {
+            if quiz.due_at!.isFutureDate && Date.now.weekdayName == "Saturday" { nextWeekButton.hit() }
             K5Helper.dateFormatter.dateFormat = "h:mm a"
             let due = K5Helper.dateFormatter.string(from: quiz.due_at!)
             let pointsString = quiz.points_possible! == 1 ? "pt" : "pts"
             let labelToFind = "\(quiz.title), \(quiz.points_possible!) \(pointsString), Due: \(due)"
             let element = app.find(label: labelToFind, type: .button)
             app.actionUntilElementCondition(action: .swipeUp(), element: element, condition: .visible)
+            app.actionUntilElementCondition(action: .swipeUp(), element: element, condition: .hittable)
             return element
         }
     }

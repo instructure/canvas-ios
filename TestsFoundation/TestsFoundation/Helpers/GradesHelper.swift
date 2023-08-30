@@ -25,6 +25,10 @@ public class GradesHelper: BaseHelper {
         return app.find(id: "GradeListCell.\(assignment?.id ?? assignmentId!)")
     }
 
+    public static func gradeLabel(assignmentCell: XCUIElement) -> XCUIElement {
+        return assignmentCell.find(labelContaining: "Grade")
+    }
+
     public static func gradeOutOf(assignment: DSAssignment? = nil,
                                   assignmentId: String? = nil,
                                   actualPoints: String,

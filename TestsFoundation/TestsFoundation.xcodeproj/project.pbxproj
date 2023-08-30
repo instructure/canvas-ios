@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -41,6 +41,7 @@
 		24180865C4F33B4A68DC7C01 /* DataSeeder+Conferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2676FD0DAF58E5873C6E8E /* DataSeeder+Conferences.swift */; };
 		258D2D5DF28E9EBAFF974F9C /* E2ETestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089CFAA9D22AB16547CB5C2C /* E2ETestCase.swift */; };
 		26BBEB8AE1503D01089D75FF /* TTLFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1BB8E64B1CFF8974ECBB31 /* TTLFixture.swift */; };
+		272692EFA7C80942A40997A1 /* UpdateDSCourseSettingsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FD80E58D3077DB2ED67A2F /* UpdateDSCourseSettingsRequest.swift */; };
 		28FFD061984BE1FE8B88732E /* EditDSConversationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F0BD39E7B8518737ED2103 /* EditDSConversationRequest.swift */; };
 		29106714316FC6E492695718 /* InboxHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A02184D496B640EBD20AA73F /* InboxHelper.swift */; };
 		29C0BB4FE112AEDA68383D14 /* SubmissionCommentFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351CF5968EC873CD1961F1D6 /* SubmissionCommentFixture.swift */; };
@@ -184,20 +185,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5B85368B2A9C7E89007CF4C8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 19FB565ABEC6EA3620720E25 /* Core */;
-			proxyType = 2;
-			remoteGlobalIDString = 8F6731E780A5363E04E3620A;
-			remoteInfo = CoreTester;
-		};
-		5B85368D2A9C7E89007CF4C8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 19FB565ABEC6EA3620720E25 /* Core */;
-			proxyType = 2;
-			remoteGlobalIDString = DC35484E0C7EE977582AF3AE;
-			remoteInfo = CoreTests;
-		};
 		ADD0BD039DBE20C141DFDF5E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 19FB565ABEC6EA3620720E25 /* Core */;
@@ -322,6 +309,7 @@
 		957ABCB8A7F6CF6255310099 /* CreateDSQuizRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSQuizRequest.swift; sourceTree = "<group>"; };
 		95E5C364ABC64433E66E81C9 /* TodoFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoFixture.swift; sourceTree = "<group>"; };
 		99F9F90DF2D6719D95A93511 /* TestLoginDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestLoginDelegate.swift; sourceTree = "<group>"; };
+		99FD80E58D3077DB2ED67A2F /* UpdateDSCourseSettingsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDSCourseSettingsRequest.swift; sourceTree = "<group>"; };
 		9BB8E99C1F860E3A23A5F969 /* DSConference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSConference.swift; sourceTree = "<group>"; };
 		9BEE0494621CB122B4244C02 /* MiniSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniSubmission.swift; sourceTree = "<group>"; };
 		9F6BD71926CBC7899DBED383 /* LoginHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginHelper.swift; sourceTree = "<group>"; };
@@ -718,8 +706,6 @@
 			isa = PBXGroup;
 			children = (
 				59FDA90639A28B677F0E6B7A /* Core.framework */,
-				5B85368C2A9C7E89007CF4C8 /* CoreTester.app */,
-				5B85368E2A9C7E89007CF4C8 /* CoreTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -889,6 +875,7 @@
 				7696666C5B013125861D6568 /* DataSeeder+DSCourse.swift */,
 				36F4DB85C49C47721883E34F /* DSCourse.swift */,
 				AB2AB5C640DE9A874C8DB52C /* UpdateDSCourseRequest.swift */,
+				99FD80E58D3077DB2ED67A2F /* UpdateDSCourseSettingsRequest.swift */,
 			);
 			path = Course;
 			sourceTree = "<group>";
@@ -1007,20 +994,6 @@
 			fileType = wrapper.framework;
 			path = Core.framework;
 			remoteRef = C62A32602F4B1A165BCFE80A /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		5B85368C2A9C7E89007CF4C8 /* CoreTester.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = CoreTester.app;
-			remoteRef = 5B85368B2A9C7E89007CF4C8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		5B85368E2A9C7E89007CF4C8 /* CoreTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = CoreTests.xctest;
-			remoteRef = 5B85368D2A9C7E89007CF4C8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1213,6 +1186,7 @@
 				1347832830A632CFB069F4BB /* URLResponseExtensions.swift in Sources */,
 				3145672A1B17CD9639390B43 /* UpdateDSConversationRequest.swift in Sources */,
 				19524210201B32C73ECA7C7B /* UpdateDSCourseRequest.swift in Sources */,
+				272692EFA7C80942A40997A1 /* UpdateDSCourseSettingsRequest.swift in Sources */,
 				163EB8832D00080EE676CCBD /* UpdateDSModuleItemRequest.swift in Sources */,
 				E343D5ABC7ADB65D09ADE6F2 /* UpdateDSModuleRequest.swift in Sources */,
 				17631520A7E57E378E8CB14E /* UpdateDSQuizRequest.swift in Sources */,

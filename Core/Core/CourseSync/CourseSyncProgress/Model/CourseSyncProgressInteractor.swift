@@ -48,7 +48,7 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         }
     }
 
-    private let entryComposerInteractor: CourseSyncEntryComposerInteractor
+    private let courseSyncListInteractor: CourseSyncListInteractor
     private let progressObserverInteractor: CourseSyncProgressObserverInteractor
     private let sessionDefaults: SessionDefaults
     private let scheduler: AnySchedulerOf<DispatchQueue>
@@ -74,7 +74,7 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
     // MARK: - Progress info view
 
     init(
-        entryComposerInteractor: CourseSyncEntryComposerInteractor = CourseSyncEntryComposerInteractorLive(),
+        courseSyncListInteractor: CourseSyncListInteractor = CourseSyncListInteractorLive(),
         progressObserverInteractor: CourseSyncProgressObserverInteractor = CourseSyncProgressObserverInteractorLive(),
         sessionDefaults: SessionDefaults = AppEnvironment.shared.userDefaults ?? .fallback,
         container: NSPersistentContainer = AppEnvironment.shared.database,
@@ -82,7 +82,7 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
             label: "com.instructure.icanvas.core.course-sync-progress"
         ).eraseToAnyScheduler()
     ) {
-        self.entryComposerInteractor = entryComposerInteractor
+        self.courseSyncListInteractor = courseSyncListInteractor
         self.progressObserverInteractor = progressObserverInteractor
         self.sessionDefaults = sessionDefaults
         self.scheduler = scheduler
@@ -100,13 +100,7 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
     func observeEntries() -> AnyPublisher<[CourseSyncEntry], Error> {
         unowned let unownedSelf = self
 
-        return courseListStore.getEntitiesFromDatabase()
-            .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
-            .flatMap { unownedSelf.entryComposerInteractor.composeEntry(from: $0, useCache: true) }
-            .collect()
-            .replaceEmpty(with: [])
-            .map { unownedSelf.applySelectionsFromPreviousSession($0) }
-            .map { unownedSelf.filterToSelectedCourses($0) }
+        return courseSyncListInteractor.getCourseSyncEntries(filter: .synced)
             .handleEvents(
                 receiveOutput: {
                     unownedSelf.courseSyncEntries.send($0)
@@ -151,55 +145,6 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
             .store(in: &subscriptions)
     }
 
-    // MARK: - Private Methods
-
-    private func applySelectionsFromPreviousSession(
-        _ entries: [CourseSyncEntry]
-    ) -> [CourseSyncEntry] {
-        var entriesCpy = entries
-        let selections = sessionDefaults.offlineSyncSelections
-            .compactMap { $0.toCourseEntrySelection(from: entries) }
-
-        for selection in selections {
-            let entriesWithSelection = setSelected(entries: entriesCpy, selection: selection, selectionState: .selected)
-            entriesCpy = entriesWithSelection
-        }
-
-        return entriesCpy
-    }
-
-    /// Removes any tab and file that is not selected.
-    private func filterToSelectedCourses(
-        _ entries: [CourseSyncEntry]
-    ) -> [CourseSyncEntry] {
-        entries
-            .filter { $0.selectionState == .selected || $0.selectionState == .partiallySelected }
-            .map { filteredEntries in
-                var entriesCpy = filteredEntries
-                entriesCpy.tabs.removeAll { $0.selectionState == .deselected }
-                entriesCpy.files.removeAll { $0.selectionState == .deselected }
-                return entriesCpy
-            }
-    }
-
-    private func setSelected(
-        entries: [CourseSyncEntry],
-        selection: CourseEntrySelection,
-        selectionState: ListCellView.SelectionState
-    ) -> [CourseSyncEntry] {
-        var entriesCpy = entries
-
-        switch selection {
-        case let .course(entryID):
-            entriesCpy[id: entryID]?.selectCourse(selectionState: selectionState)
-        case let .tab(entryID, tabID):
-            entriesCpy[id: entryID]?.selectTab(id: tabID, selectionState: selectionState)
-        case let .file(entryID, fileID):
-            entriesCpy[id: entryID]?.selectFile(id: fileID, selectionState: selectionState)
-        }
-        return entriesCpy
-    }
-
     private func setState(newList: [StateProgress]) {
         var entries = safeCourseSyncEntriesValue
 
@@ -234,7 +179,11 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         }
     }
 
-    func cancelSync() {}
+    func cancelSync() {
+        NotificationCenter.default.post(name: .OfflineSyncCancelled, object: nil)
+    }
 
-    func retrySync() {}
+    func retrySync() {
+        NotificationCenter.default.post(name: .OfflineSyncTriggered, object: safeCourseSyncEntriesValue)
+    }
 }

@@ -47,7 +47,8 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         attributes: .concurrent
     )
     private let fileErrorMessage = NSLocalizedString("File download failed.", comment: "")
-    private var subscription: AnyCancellable?
+    internal private(set) var downloadSubscription: AnyCancellable?
+    private var subscriptions = Set<AnyCancellable>()
 
     public init(
         contentInteractors: [CourseSyncContentInteractor],
@@ -59,26 +60,40 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         self.filesInteractor = filesInteractor
         self.progressWriterInteractor = progressWriterInteractor
         self.scheduler = scheduler
+
+        listenToCancellationEvent()
     }
 
     public func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Never> {
-        subscription?.cancel()
-        subscription = nil
+        downloadSubscription?.cancel()
+        downloadSubscription = nil
 
         unowned let unownedSelf = self
 
+        let entriesWithInitialLoadingState = resetEntryStates(entries: entries)
+
         backgroundQueue.sync(flags: .barrier) {
-            courseSyncEntries.send(entries)
+            courseSyncEntries.send(entriesWithInitialLoadingState)
         }
 
         progressWriterInteractor.cleanUpPreviousDownloadProgress()
+        progressWriterInteractor.setInitialLoadingState(entries: entriesWithInitialLoadingState)
 
-        subscription = Publishers.Sequence(sequence: entries)
+        downloadSubscription = Publishers.Sequence(sequence: entriesWithInitialLoadingState)
             .buffer(size: .max, prefetch: .byRequest, whenFull: .dropOldest)
             .receive(on: scheduler)
             .flatMap(maxPublishers: .max(3)) { unownedSelf.downloadCourseDetails($0) }
             .collect()
-            .sink()
+            .sink(
+                receiveCompletion: { _ in
+                    let hasError = unownedSelf.safeCourseSyncEntriesValue.hasError
+                    unownedSelf.progressWriterInteractor.saveDownloadResult(
+                        isFinished: true,
+                        error: hasError ? unownedSelf.fileErrorMessage : nil
+                    )
+                },
+                receiveValue: { _ in }
+            )
 
         return courseSyncEntries.eraseToAnyPublisher()
     }
@@ -208,9 +223,6 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                             unownedSelf.setState(
                                 selection: .file(entry.id, files[fileIndex].id), state: .error
                             )
-                            unownedSelf.setState(
-                                selection: .tab(entry.id, entry.tabs[tabIndex].id), state: .error
-                            )
                         }
                     }
                 )
@@ -220,7 +232,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             .collect()
             .handleEvents(
                 receiveOutput: { _ in
-                    let hasError = unownedSelf.safeCourseSyncEntriesValue[id: entry.id]?.hasError ?? false
+                    let hasError = unownedSelf.safeCourseSyncEntriesValue[id: entry.id]?.hasFileError ?? false
                     let state: CourseSyncEntry.State = hasError ? .error : .downloaded
 
                     unownedSelf.setState(
@@ -248,16 +260,41 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             progressWriterInteractor.saveStateProgress(id: fileID, selection: selection, state: state)
         }
 
-        var errorMessage: String?
-
-        if case .error = state {
-            errorMessage = fileErrorMessage
-        }
-
-        progressWriterInteractor.saveDownloadProgress(entries: entries, error: errorMessage)
+        progressWriterInteractor.saveDownloadProgress(entries: entries)
         backgroundQueue.sync(flags: .barrier) {
             courseSyncEntries.send(entries)
         }
+    }
+
+    private func resetEntryStates(entries: [CourseSyncEntry]) -> [CourseSyncEntry] {
+        entries.map { entry in
+            var cpy = entry
+            if cpy.state != .downloaded {
+                cpy.state = .loading(nil)
+            } else {
+                return cpy
+            }
+
+            for var tab in cpy.tabs where tab.state != .downloaded {
+                tab.state = .loading(nil)
+            }
+
+            for var file in cpy.files where file.state != .downloaded {
+                file.state = .loading(nil)
+            }
+
+            return cpy
+        }
+    }
+
+    private func listenToCancellationEvent() {
+        NotificationCenter.default.publisher(for: .OfflineSyncCancelled)
+            .sink(receiveValue: { [unowned self] _ in
+                downloadSubscription?.cancel()
+                downloadSubscription = nil
+                progressWriterInteractor.cleanUpPreviousDownloadProgress()
+            })
+            .store(in: &subscriptions)
     }
 }
 

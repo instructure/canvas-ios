@@ -173,6 +173,7 @@ struct DashboardCourseCardView: View {
             .padding(.horizontal, 6).frame(height: 20)
             .background(RoundedRectangle(cornerRadius: 10).fill(Color.backgroundLightest))
             .frame(maxWidth: 120, alignment: .leading)
+            .accessibilityIdentifier("DashboardCourseCell.\(courseCard.id).gradePill")
         }
     }
 
