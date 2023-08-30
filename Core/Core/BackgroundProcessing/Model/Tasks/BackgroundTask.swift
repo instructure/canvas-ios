@@ -19,8 +19,7 @@
 import BackgroundTasks
 
 public protocol BackgroundTask {
-    var identifier: String { get }
-    var request: BGProcessingTaskRequest { get }
+    var request: BGTaskRequest { get }
 
     func start(completion: @escaping () -> Void)
     func cancel()

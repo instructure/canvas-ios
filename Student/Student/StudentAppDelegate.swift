@@ -43,6 +43,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         BackgroundProcessingAssembly.register(scheduler: CoreTaskSchedulerLive(taskScheduler: .shared))
+        BackgroundProcessingAssembly.make().register(task: OfflineSyncBackgroundTask())
         setupFirebase()
         Core.Analytics.shared.handler = self
         CacheManager.resetAppIfNecessary()

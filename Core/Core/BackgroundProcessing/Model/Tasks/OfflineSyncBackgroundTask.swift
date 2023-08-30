@@ -19,20 +19,21 @@
 import BackgroundTasks
 
 public struct OfflineSyncBackgroundTask: BackgroundTask {
-    public let identifier: String
-    public let request: BGProcessingTaskRequest
+    public let request: BGTaskRequest
 
     public init() {
-        let id = "com.instructure.icanvas.Core.offline-sync"
-        identifier = id
-        request = BGProcessingTaskRequest(identifier: id)
+        let request = BGProcessingTaskRequest(identifier: "com.instructure.icanvas.offline-sync")
         request.requiresExternalPower = false
         request.requiresNetworkConnectivity = true
-        request.earliestBeginDate = .now.addDays(1)
+        request.earliestBeginDate = .now.addMinutes(8*60)
+        self.request = request
     }
 
     public func start(completion: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { completion() }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            Logger.shared.log("Offline sync.")
+            completion()
+        }
     }
 
     public func cancel() {

@@ -26,19 +26,18 @@ public struct BackgroundProcessingInteractor {
     }
 
     public func register(task: BackgroundTask) {
-        let result = scheduler.register(forTaskWithIdentifier: task.identifier, using: nil) { backgroundTask in
-            guard let processingTask = backgroundTask as? BGProcessingTask else { return }
-            processingTask.expirationHandler = {
-                Logger.shared.error("BackgroundProcessingInteractor: Background task \(task.identifier) will be cancelled.")
+        let result = scheduler.register(forTaskWithIdentifier: task.request.identifier, using: nil) { backgroundTask in
+            backgroundTask.expirationHandler = {
+                Logger.shared.error("BackgroundProcessingInteractor: Background task \(task.request.identifier) will be cancelled.")
                 task.cancel()
             }
             task.start {
-                processingTask.setTaskCompleted(success: true)
+                backgroundTask.setTaskCompleted(success: true)
             }
         }
 
         if !result {
-            Logger.shared.error("BackgroundProcessingInteractor: Failed to register background task \(task.identifier).")
+            Logger.shared.error("BackgroundProcessingInteractor: Failed to register background task \(task.request.identifier).")
         }
     }
 
@@ -46,11 +45,11 @@ public struct BackgroundProcessingInteractor {
         do {
             try scheduler.submit(task.request)
         } catch(let error) {
-            Logger.shared.error("BackgroundProcessingInteractor: Error scheduling task \(task.identifier): \(error.localizedDescription)")
+            Logger.shared.error("BackgroundProcessingInteractor: Error scheduling task \(task.request.identifier): \(error.localizedDescription)")
         }
     }
 
     public func cancel(task: BackgroundTask) {
-        scheduler.cancel(taskRequestWithIdentifier: task.identifier)
+        scheduler.cancel(taskRequestWithIdentifier: task.request.identifier)
     }
 }
