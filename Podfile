@@ -159,13 +159,13 @@ post_install do |installer|
   # Non-executable bundles shouldn't be code signed nor require info.plist file generation
   installer.pods_project.targets.each do |target|
     if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
-	    target.build_configurations.each do |config|
-    		puts "- Disable GENERATE_INFOPLIST_FILE on #{target} (#{config})"
-	    	config.build_settings['GENERATE_INFOPLIST_FILE'] = 'NO'
-    		puts "- Disable CODE_SIGNING_ALLOWED on #{target} (#{config})"
-            config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
-	    end
-	end
+      target.build_configurations.each do |config|
+        puts "- Disable GENERATE_INFOPLIST_FILE on #{target} (#{config})"
+        config.build_settings['GENERATE_INFOPLIST_FILE'] = 'NO'
+        puts "- Disable CODE_SIGNING_ALLOWED on #{target} (#{config})"
+        config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+      end
+    end
   end
   
   puts "\n"
