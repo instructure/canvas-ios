@@ -16,24 +16,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import BackgroundTasks
+import Foundation
 
-struct BackgroundProcessingInteractor {
-    private let scheduler: BGTaskSchedulerWrapper
+public struct BackgroundProcessingAssembly {
+    private static var scheduler: CoreTaskScheduler!
 
-    public init(scheduler: BGTaskSchedulerWrapper) {
+    public static func register(scheduler: CoreTaskScheduler) {
         self.scheduler = scheduler
     }
-}
 
-/**
- Core is an extension API only project that forbids calling various methods on `BGTaskScheduler`
- so we have to abstract it away and inject it from a higher level project.
- */
-public protocol BGTaskSchedulerWrapper {
-
-    func register(forTaskWithIdentifier identifier: String,
-                  using queue: DispatchQueue?,
-                  launchHandler: @escaping (BGTask) -> Void) -> Bool
-    func cancel(taskRequestWithIdentifier identifier: String)
+    public static func make() -> BackgroundProcessingInteractor {
+        BackgroundProcessingInteractor(scheduler: scheduler)
+    }
 }

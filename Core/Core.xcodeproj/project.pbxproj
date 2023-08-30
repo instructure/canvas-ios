@@ -1265,6 +1265,10 @@
 		CF848A454985D319B862329B /* InboxCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534C5973089478FB911C2D40 /* InboxCourse.swift */; };
 		CFA8398A890008FC131E5659 /* PairWithStudentQRCodeTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B30F0A5FF24A16E638535AB /* PairWithStudentQRCodeTutorialViewController.swift */; };
 		CFB4F7D6AA0DFCC12C79CB03 /* DiscussionReplyViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BAC19414BABEF1BE119505 /* DiscussionReplyViewControllerTests.swift */; };
+		CFCD4C2B2A9E2EA4005B6947 /* BackgroundProcessingAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD4C2A2A9E2EA4005B6947 /* BackgroundProcessingAssembly.swift */; };
+		CFCD4C2D2A9E3138005B6947 /* CoreTaskScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD4C2C2A9E3138005B6947 /* CoreTaskScheduler.swift */; };
+		CFCD4C342A9E7862005B6947 /* BackgroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD4C332A9E7862005B6947 /* BackgroundTask.swift */; };
+		CFCD4C382A9E78E9005B6947 /* OfflineSyncBackgroundTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD4C372A9E78E9005B6947 /* OfflineSyncBackgroundTask.swift */; };
 		CFDED43EFD2EFE248E2C0AD3 /* FileProgressListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7A16122D559CDD2F497160 /* FileProgressListViewModel.swift */; };
 		D01F1A0AB0AAF5643C03EFF1 /* ModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0C6A481F3EFC1B4F0777CB /* ModuleTests.swift */; };
 		D06B1B95D0FF65F7E7761F95 /* Hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = B408E358BA052F9B08697E7E /* Hidden.swift */; };
@@ -3075,6 +3079,10 @@
 		CF56EB7E2A9744D100F3EAE7 /* BackgroundProcessingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundProcessingInteractor.swift; sourceTree = "<group>"; };
 		CF76AA92A0745A9D16189BB8 /* GetDiscussionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDiscussionsTests.swift; sourceTree = "<group>"; };
 		CFAD2AE1CF6B4872E30170B5 /* FileEditorViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEditorViewTests.swift; sourceTree = "<group>"; };
+		CFCD4C2A2A9E2EA4005B6947 /* BackgroundProcessingAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundProcessingAssembly.swift; sourceTree = "<group>"; };
+		CFCD4C2C2A9E3138005B6947 /* CoreTaskScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreTaskScheduler.swift; sourceTree = "<group>"; };
+		CFCD4C332A9E7862005B6947 /* BackgroundTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTask.swift; sourceTree = "<group>"; };
+		CFCD4C372A9E78E9005B6947 /* OfflineSyncBackgroundTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineSyncBackgroundTask.swift; sourceTree = "<group>"; };
 		CFDD1E1B04BCE0A3513A061A /* ReactiveStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactiveStore.swift; sourceTree = "<group>"; };
 		CFE760866143E8E9B1CE23ED /* DashboardConferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardConferencesViewModel.swift; sourceTree = "<group>"; };
 		D0654F8E73E24CF21BFD4A29 /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
@@ -7589,7 +7597,8 @@
 		CF56EB7D2A9744BA00F3EAE7 /* BackgroundProcessing */ = {
 			isa = PBXGroup;
 			children = (
-				CF56EB7E2A9744D100F3EAE7 /* BackgroundProcessingInteractor.swift */,
+				CFCD4C312A9E43C1005B6947 /* Model */,
+				CFCD4C2A2A9E2EA4005B6947 /* BackgroundProcessingAssembly.swift */,
 			);
 			path = BackgroundProcessing;
 			sourceTree = "<group>";
@@ -7601,6 +7610,25 @@
 				95C2911582AB8E145E1C7639 /* ImageBackground.swift */,
 			);
 			path = SharedLayers;
+			sourceTree = "<group>";
+		};
+		CFCD4C312A9E43C1005B6947 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CFCD4C322A9E7850005B6947 /* Tasks */,
+				CF56EB7E2A9744D100F3EAE7 /* BackgroundProcessingInteractor.swift */,
+				CFCD4C2C2A9E3138005B6947 /* CoreTaskScheduler.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CFCD4C322A9E7850005B6947 /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				CFCD4C332A9E7862005B6947 /* BackgroundTask.swift */,
+				CFCD4C372A9E78E9005B6947 /* OfflineSyncBackgroundTask.swift */,
+			);
+			path = Tasks;
 			sourceTree = "<group>";
 		};
 		CFE8DC8A2A6D3DF99E92D0C8 /* Model */ = {
@@ -9514,6 +9542,7 @@
 				E9943F3D5301879352B974C2 /* AnnotationExtensions.swift in Sources */,
 				542FFF1BD248B4C07F8ACF2B /* AnnouncementListViewController.swift in Sources */,
 				E545D6C520440839B7333CBD /* App.swift in Sources */,
+				CFCD4C382A9E78E9005B6947 /* OfflineSyncBackgroundTask.swift in Sources */,
 				443CBF53B6CECB4C120A3399 /* AppBackgroundHelperProtocol.swift in Sources */,
 				0EE25BF09581E5E4AC1669F5 /* AppEnvironment.swift in Sources */,
 				35EE2306FDCEA826BD706224 /* AppStoreReview.swift in Sources */,
@@ -9630,6 +9659,7 @@
 				C133D64598EDB7F944AC01A4 /* CoreWebView.swift in Sources */,
 				6085A3181F1CC953CD49F089 /* CoreWebViewController.swift in Sources */,
 				3AA554CB9BA21A3D130963D3 /* CoreWebViewFeature.swift in Sources */,
+				CFCD4C2B2A9E2EA4005B6947 /* BackgroundProcessingAssembly.swift in Sources */,
 				04BA2764BEF7857998888D0C /* CoreWebViewJSInjections.swift in Sources */,
 				768553C6E545957844AF7E26 /* Course.swift in Sources */,
 				D6D6D1856C800F91E8F2F0B0 /* CourseDetailsCellView.swift in Sources */,
@@ -10233,6 +10263,7 @@
 				C0522ECAC2CE3634485646CE /* SnackBarView.swift in Sources */,
 				8B3011A9B1BE7D9631BB0216 /* SnackBarViewModel.swift in Sources */,
 				5426E43A98AF2944306F7E0B /* SnackBarViewModifier.swift in Sources */,
+				CFCD4C2D2A9E3138005B6947 /* CoreTaskScheduler.swift in Sources */,
 				6F9EF5621BB0D85FBDE61031 /* SpacePanda.swift in Sources */,
 				72D521C15C06918E64758ACB /* SplitViewModeObserver.swift in Sources */,
 				A906998282C2BE38BDE41116 /* StaffContactInfoService.swift in Sources */,
@@ -10318,6 +10349,7 @@
 				F0BCF68264B90D755AA60C86 /* UIViewControllerExtensions.swift in Sources */,
 				DA434423003DFEFA2F3A1988 /* UIViewExtensions.swift in Sources */,
 				07ABBB24641EE81AA49D9469 /* UIWindowExtensions.swift in Sources */,
+				CFCD4C342A9E7862005B6947 /* BackgroundTask.swift in Sources */,
 				999FE06E36CDDF7EEAC1A480 /* URLComponentsExtensions.swift in Sources */,
 				543308A38BE83C0A2D145423 /* URLExtensions.swift in Sources */,
 				4607F5EFF85490DFC7EAC7D0 /* URLRequestExtensions.swift in Sources */,

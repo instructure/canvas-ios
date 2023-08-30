@@ -149,6 +149,7 @@
 		CF7995E325594AF500A92A1E /* MediumLargeAnnouncementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7995E225594AF500A92A1E /* MediumLargeAnnouncementsView.swift */; };
 		CF7D8A782535E45000DC7D79 /* SubmissionDetailsPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7D8A772535E45000DC7D79 /* SubmissionDetailsPickerTests.swift */; };
 		CFC7AE3927157DC50077F9D5 /* StudentAnnotationSubmissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC7AE3827157DC50077F9D5 /* StudentAnnotationSubmissionView.swift */; };
+		CFCD4C302A9E3B38005B6947 /* CoreTaskSchedulerLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFCD4C2F2A9E3B38005B6947 /* CoreTaskSchedulerLive.swift */; };
 		CFD96BA227158FD000A38E66 /* StudentAnnotationSubmissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD96BA127158FD000A38E66 /* StudentAnnotationSubmissionViewModel.swift */; };
 		CFD96BA527171F0100A38E66 /* StudentAnnotationSubmissionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD96BA427171F0100A38E66 /* StudentAnnotationSubmissionViewModelTests.swift */; };
 		CFE2C3CE2552CF6B00113CFC /* GradeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8080592547168200A0B2D3 /* GradeItem.swift */; };
@@ -688,6 +689,7 @@
 		CFC467DD2549628700BC9AEA /* SmallGradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallGradeView.swift; sourceTree = "<group>"; };
 		CFC467FA2549686B00BC9AEA /* MediumLargeGradesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumLargeGradesView.swift; sourceTree = "<group>"; };
 		CFC7AE3827157DC50077F9D5 /* StudentAnnotationSubmissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAnnotationSubmissionView.swift; sourceTree = "<group>"; };
+		CFCD4C2F2A9E3B38005B6947 /* CoreTaskSchedulerLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreTaskSchedulerLive.swift; sourceTree = "<group>"; };
 		CFD96BA127158FD000A38E66 /* StudentAnnotationSubmissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAnnotationSubmissionViewModel.swift; sourceTree = "<group>"; };
 		CFD96BA427171F0100A38E66 /* StudentAnnotationSubmissionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAnnotationSubmissionViewModelTests.swift; sourceTree = "<group>"; };
 		CFE2C3F22552D04C00113CFC /* Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widgets.swift; sourceTree = "<group>"; };
@@ -832,6 +834,7 @@
 			children = (
 				49F9FA4A1CF7B73100654758 /* Assets.xcassets */,
 				7DCF0E9D22F89FB0000AACCE /* Assignments */,
+				CFCD4C2E2A9E3437005B6947 /* BackgroundProcessing */,
 				7DCF0EB122F89FC2000AACCE /* Courses */,
 				7DCF0EBD22F8A001000AACCE /* Extensions */,
 				7DCF0EC122F8A00D000AACCE /* Groups */,
@@ -1534,6 +1537,14 @@
 				CFD96BA127158FD000A38E66 /* StudentAnnotationSubmissionViewModel.swift */,
 			);
 			path = StudentAnnotationSubmission;
+			sourceTree = "<group>";
+		};
+		CFCD4C2E2A9E3437005B6947 /* BackgroundProcessing */ = {
+			isa = PBXGroup;
+			children = (
+				CFCD4C2F2A9E3B38005B6947 /* CoreTaskSchedulerLive.swift */,
+			);
+			path = BackgroundProcessing;
 			sourceTree = "<group>";
 		};
 		CFD96BA327171EE300A38E66 /* StudentAnnotationSubmission */ = {
@@ -2412,6 +2423,7 @@
 				CFC7AE3927157DC50077F9D5 /* StudentAnnotationSubmissionView.swift in Sources */,
 				7DA4DA2E2440EF70009CA964 /* IBDesignables.swift in Sources */,
 				7DCF0F8322F8A831000AACCE /* AssignmentDetailsPresenter.swift in Sources */,
+				CFCD4C302A9E3B38005B6947 /* CoreTaskSchedulerLive.swift in Sources */,
 				7DCF0F8622F8A831000AACCE /* AssignmentDetailsSectionContainerView.swift in Sources */,
 				7DCF0FC922F8A8D7000AACCE /* SubmissionFilesCell.swift in Sources */,
 				7DCF0FB422F8A8D7000AACCE /* SubmissionCommentFileView.swift in Sources */,
