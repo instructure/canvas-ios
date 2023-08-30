@@ -103,6 +103,14 @@ public class Assignment: NSManagedObject {
         return course?.hideQuantitativeData ?? false
     }
 
+    public var gradingScheme: [GradingSchemeEntry] {
+        guard let course: Course = managedObjectContext?.first(where: #keyPath(Course.id),
+                                                               equals: courseID)
+        else { return [] }
+
+        return course.gradingScheme
+    }
+
     public var allowedExtensions: [String] {
         get { return allowedExtensionsRaw.split(separator: ",").map { String($0) } }
         set { allowedExtensionsRaw = newValue.joined(separator: ",") }
