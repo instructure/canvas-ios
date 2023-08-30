@@ -1091,6 +1091,7 @@
 		B4571CBA2A9E09E90095DE08 /* CourseSyncListerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4571CB92A9E09E90095DE08 /* CourseSyncListerInteractor.swift */; };
 		B47D227A0865E330DA75FE00 /* DiscussionEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E395BCD6AB59AC2045342498 /* DiscussionEntryTests.swift */; };
 		B489A81D6037AD16A513F2BB /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0CC82562D352809583B9955 /* MockURLSession.swift */; };
+		B48AAA7A2A9F5F6F003A3D4D /* CourseSyncListFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48AAA792A9F5F6F003A3D4D /* CourseSyncListFilter.swift */; };
 		B4A9F8F38D3E9471376494D2 /* UIImageViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E7F1F3185A5D719A85B955 /* UIImageViewExtensionsTests.swift */; };
 		B4DF4C098A48DF5D8D497B95 /* CommentListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1F0DD981A30F2F8DEF4E68D /* CommentListViewController.storyboard */; };
 		B4FE033171D1FCD00FD1D462 /* FileUploadNotificationCardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F96E0F2753D6B4E37E45CF /* FileUploadNotificationCardListViewModel.swift */; };
@@ -2898,6 +2899,7 @@
 		B455F8753438D40CC45D5A87 /* QuizDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDetailsViewModelTests.swift; sourceTree = "<group>"; };
 		B4571CB92A9E09E90095DE08 /* CourseSyncListerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncListerInteractor.swift; sourceTree = "<group>"; };
 		B467615FEB9F47B169A18150 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		B48AAA792A9F5F6F003A3D4D /* CourseSyncListFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncListFilter.swift; sourceTree = "<group>"; };
 		B4F936DF23DC61D04F89DFE0 /* APILatePolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APILatePolicyTests.swift; sourceTree = "<group>"; };
 		B52803DBEDEDD92FF68782A9 /* K5GradesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradesViewModelTests.swift; sourceTree = "<group>"; };
 		B54819C7CC40C9F86C5B5F69 /* CourseSyncCleanupInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncCleanupInteractor.swift; sourceTree = "<group>"; };
@@ -4756,6 +4758,7 @@
 				5DBDC6F18A76578520F5C427 /* CourseSyncEntryFile.swift */,
 				4726A9C2B95A3F081F7156CC /* CourseSyncEntryTab.swift */,
 				02BCDEAD9F0BC5E1937469A4 /* CourseSyncStateProgress.swift */,
+				B48AAA792A9F5F6F003A3D4D /* CourseSyncListFilter.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -9776,6 +9779,7 @@
 				3F9AD9B2FDC462CE48AAA40A /* DynamicButton.swift in Sources */,
 				2364098BD60656CBF5F55136 /* DynamicHeightTextEditor.swift in Sources */,
 				B85BDB8E69AE9ECB64ED9A17 /* DynamicLabel.swift in Sources */,
+				B48AAA7A2A9F5F6F003A3D4D /* CourseSyncListFilter.swift in Sources */,
 				2E992A9181D106596A664A6E /* DynamicTextField.swift in Sources */,
 				AD489D2636341F1C744CC2AB /* EditComposeRecipientsViewController.swift in Sources */,
 				32BDE84B5507C6FB7F903FD8 /* EditorForm.swift in Sources */,

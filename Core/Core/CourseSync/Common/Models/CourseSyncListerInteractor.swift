@@ -21,29 +21,16 @@ import CombineSchedulers
 import Foundation
 
 protocol CourseSyncListInteractor {
-    func getCourseSyncEntries(filter: CourseSyncListInteractorLive.Filter) -> AnyPublisher<[CourseSyncEntry], Error>
+    func getCourseSyncEntries(filter: CourseSyncListFilter) -> AnyPublisher<[CourseSyncEntry], Error>
 }
 
 class CourseSyncListInteractorLive: CourseSyncListInteractor {
-    enum Filter {
-        case courseID(String) // A specific course
-        case all // All the available courses
-        case synced // Synchronized courses
-
-        var isLimitedToSyncedOnly: Bool {
-            switch self {
-            case .synced: return true
-            default: return false
-            }
-        }
-    }
-
     private let courseListStore = ReactiveStore(
         useCase: GetCourseSyncSelectorCourses()
     )
     private let entryComposerInteractor: CourseSyncEntryComposerInteractor
     private var sessionDefaults: SessionDefaults
-    private var filter: Filter!
+    private var filter: CourseSyncListFilter!
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     init(
@@ -56,7 +43,7 @@ class CourseSyncListInteractorLive: CourseSyncListInteractor {
         self.scheduler = scheduler
     }
 
-    func getCourseSyncEntries(filter: CourseSyncListInteractorLive.Filter) -> AnyPublisher<[CourseSyncEntry], Error> {
+    func getCourseSyncEntries(filter: CourseSyncListFilter) -> AnyPublisher<[CourseSyncEntry], Error> {
         self.filter = filter
 
         unowned let unownedSelf = self
