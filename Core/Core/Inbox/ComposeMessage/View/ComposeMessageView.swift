@@ -33,6 +33,7 @@ public struct ComposeMessageView: View {
             propertiesView
             Divider()
             bodyView
+            Spacer()
         }
         .background(Color.backgroundLightest)
         .navigationBarItems(leading: cancelButton)
@@ -76,6 +77,7 @@ public struct ComposeMessageView: View {
     private var headerView: some View {
         HStack {
             Text(model.subject.isEmpty ? model.title : model.subject)
+                .multilineTextAlignment(.leading)
                 .font(.bold22)
                 .foregroundColor(.textDarkest)
             Spacer()
@@ -146,11 +148,9 @@ public struct ComposeMessageView: View {
     }
 
     private var bodyView: some View {
-        CustomTextField(placeholder: Text("Compose message", bundle: .core),
-                        text: $model.bodyText,
-                        identifier: "composeMessage.body",
-                        accessibilityLabel: Text("Message Body", bundle: .core))
-        .frame(maxHeight: .infinity)
+        DynamicHeightTextEditor(text: $model.bodyText, placeholder: NSLocalizedString("Compose message", bundle: .core, comment: ""))
+            .font(.regular16)
+            .padding(.horizontal, 16).padding(.vertical, 12)
     }
 }
 
