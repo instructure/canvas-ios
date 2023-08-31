@@ -54,6 +54,11 @@ class CourseSyncSettingsInteractorLive: CourseSyncSettingsInteractor {
     public func setAutoSyncEnabled(_ isEnabled: Bool) -> AnyPublisher<Bool, Never> {
         Future { [unowned self] promise in
             storage.isOfflineAutoSyncEnabled = isEnabled
+
+            let nextSync = isEnabled ? storedSettings.syncFrequency.nextSyncDate(from: Clock.now)
+                                     : nil
+            storage.offlineSyncNextDate = nextSync
+
             promise(.success(isEnabled))
         }
         .eraseToAnyPublisher()
@@ -70,6 +75,11 @@ class CourseSyncSettingsInteractorLive: CourseSyncSettingsInteractor {
     public func setSyncFrequency(_ syncFrequency: CourseSyncFrequency) -> AnyPublisher<CourseSyncFrequency, Never> {
         Future { [unowned self] promise in
             storage.offlineSyncFrequency = syncFrequency.rawValue
+
+            if storedSettings.isAutoSyncEnabled {
+                storage.offlineSyncNextDate = storedSettings.syncFrequency.nextSyncDate(from: Clock.now)
+            }
+
             promise(.success(syncFrequency))
         }
         .eraseToAnyPublisher()

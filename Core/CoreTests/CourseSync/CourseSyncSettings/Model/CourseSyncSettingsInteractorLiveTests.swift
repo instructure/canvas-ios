@@ -81,4 +81,70 @@ class CourseSyncSettingsInteractorLiveTests: XCTestCase {
         XCTAssertFinish(testee.setSyncFrequency(.weekly))
         XCTAssertEqual(testee.getOfflineSyncSettingsLabel(), "Weekly Auto")
     }
+
+    func testSetsNextSyncDateWhenSyncTurnedOn() {
+        let testee = CourseSyncSettingsInteractorLive(storage: defaults)
+        let now = Date()
+        Clock.mockNow(now)
+        XCTAssertNil(defaults.offlineSyncNextDate)
+
+        // WHEN
+        XCTAssertFinish(testee.setAutoSyncEnabled(true))
+
+        // THEN
+        let expectedNextSyncDate = now.addingTimeInterval(24 * 60 * 60) // daily sync is the default
+        XCTAssertEqual(defaults.offlineSyncNextDate, expectedNextSyncDate)
+    }
+
+    func testRemovesNextSyncDateWhenSyncTurnedOff() {
+        let testee = CourseSyncSettingsInteractorLive(storage: defaults)
+        XCTAssertFinish(testee.setAutoSyncEnabled(true))
+        XCTAssertNotNil(defaults.offlineSyncNextDate)
+
+        // WHEN
+        XCTAssertFinish(testee.setAutoSyncEnabled(false))
+
+        // THEN
+        XCTAssertNil(defaults.offlineSyncNextDate)
+    }
+
+    func testUpdatesNextSyncDateWhenFrequencyChangedIfSyncTurnedOn() {
+        let testee = CourseSyncSettingsInteractorLive(storage: defaults)
+        Clock.mockNow(Date())
+        let tomorrow = Clock.now.addingTimeInterval(24 * 60 * 60)
+        let nextWeek = Clock.now.addingTimeInterval(7 * 24 * 60 * 60)
+        XCTAssertFinish(testee.setAutoSyncEnabled(true))
+
+        // WHEN
+        XCTAssertFinish(testee.setSyncFrequency(.weekly))
+
+        // THEN
+        XCTAssertEqual(defaults.offlineSyncNextDate, nextWeek)
+
+        // WHEN
+        XCTAssertFinish(testee.setSyncFrequency(.daily))
+
+        // THEN
+        XCTAssertEqual(defaults.offlineSyncNextDate, tomorrow)
+    }
+
+    func testNotUpdatesNextSyncDateWhenFrequencyChangedIfSyncTurnedOff() {
+        let testee = CourseSyncSettingsInteractorLive(storage: defaults)
+        Clock.mockNow(Date())
+        let tomorrow = Clock.now.addingTimeInterval(24 * 60 * 60)
+        let nextWeek = Clock.now.addingTimeInterval(7 * 24 * 60 * 60)
+        XCTAssertFinish(testee.setAutoSyncEnabled(false))
+
+        // WHEN
+        XCTAssertFinish(testee.setSyncFrequency(.weekly))
+
+        // THEN
+        XCTAssertNil(defaults.offlineSyncNextDate)
+
+        // WHEN
+        XCTAssertFinish(testee.setSyncFrequency(.daily))
+
+        // THEN
+        XCTAssertNil(defaults.offlineSyncNextDate)
+    }
 }

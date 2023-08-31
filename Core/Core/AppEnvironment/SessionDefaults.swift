@@ -142,6 +142,11 @@ public struct SessionDefaults {
         set { self["offlineSyncFrequency"] = newValue }
     }
 
+    public var offlineSyncNextDate: Date? {
+        get { self["offlineSyncNextDate"] as? Date }
+        set { self["offlineSyncNextDate"] = newValue }
+    }
+
     public var isOfflineWifiOnlySyncEnabled: Bool? {
         get { self["isOfflineWifiOnlySyncEnabled"] as? Bool }
         set { self["isOfflineWifiOnlySyncEnabled"] = newValue }

@@ -27,6 +27,13 @@ enum CourseSyncFrequency: Int, CaseIterable {
         }
     }
 
+    func nextSyncDate(from date: Date) -> Date {
+        switch self {
+        case .daily: return date.addingTimeInterval(24 * 60 * 60)
+        case .weekly: return date.addingTimeInterval(7 * 24 * 60 * 60)
+        }
+    }
+
     static var itemPickerData: [ItemPickerSection] {
         let pickerRows = allCases.map { ItemPickerItem(title: $0.stringValue) }
         return [ItemPickerSection(items: pickerRows)]
