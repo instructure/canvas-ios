@@ -182,6 +182,14 @@ public struct CourseSyncEntry: Equatable {
             files.indices.forEach { files[$0].selectionState = selectionState }
         }
 
+        if selectionState == .selected {
+            if tabs[id: id]?.type == .modules || tabs[id: id]?.type == .grades {
+                for (index, tab) in tabs.enumerated() where tab.type != .modules && tab.type != .grades {
+                    tabs[index].selectionState = .selected
+                }
+            }
+        }
+
         isEverythingSelected = (selectedTabsCount == tabs.count) && (selectedFilesCount == files.count)
         self.selectionState = selectedTabsCount > 0 ? .partiallySelected : .deselected
     }
