@@ -150,18 +150,10 @@ post_install do |installer|
     end
   end
   
-  # Work around the issue: Cannot code sign because the target does not have an Info.plist file and one is not being generated automatically.
-  installer.pods_project.build_configurations.each do |config|
-    puts "- Enable GENERATE_INFOPLIST_FILE on Pods Project (#{config})"
-    config.build_settings['GENERATE_INFOPLIST_FILE'] = 'YES'
-  end
-
-  # Non-executable bundles shouldn't be code signed nor require info.plist file generation
+  # Non-executable bundles shouldn't be code signed
   installer.pods_project.targets.each do |target|
     if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
       target.build_configurations.each do |config|
-        puts "- Disable GENERATE_INFOPLIST_FILE on #{target} (#{config})"
-        config.build_settings['GENERATE_INFOPLIST_FILE'] = 'NO'
         puts "- Disable CODE_SIGNING_ALLOWED on #{target} (#{config})"
         config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
       end
