@@ -52,7 +52,7 @@ public class PeopleListViewController: ScreenViewTrackableViewController, Colore
     lazy var group = env.subscribe(GetGroup(groupID: context.id)) { [weak self] in
         self?.updateNavBar()
     }
-    lazy var users = env.subscribe(GetCourseContextUsers(context: context)) { [weak self] in
+    lazy var users = env.subscribe(GetPeopleListUsers(context: context)) { [weak self] in
         self?.update()
     }
     private weak var accessibilityFocusAfterReload: UIView?
@@ -201,7 +201,7 @@ extension PeopleListViewController: UISearchBarDelegate {
     }
 
     func updateUsers() {
-        users = env.subscribe(GetCourseContextUsers(context: context, type: enrollmentType, search: search)) { [weak self] in
+        users = env.subscribe(GetPeopleListUsers(context: context, type: enrollmentType, search: search)) { [weak self] in
             self?.update()
         }
         users.refresh()

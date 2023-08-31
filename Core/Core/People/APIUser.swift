@@ -155,9 +155,7 @@ extension APIUser {
         bio: String? = nil,
         pronouns: String? = nil,
         permissions: Permissions? = .make(),
-        root_account: String? = nil,
-        course_id: String? = "1",
-        group_id: String? = nil
+        root_account: String? = nil
     ) -> APIUser {
         return APIUser(
             id: id,

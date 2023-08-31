@@ -721,14 +721,13 @@
     </entity>
     <entity name="PeopleListEnrollment" representedClassName="Core.PeopleListEnrollment" syncable="YES">
         <attribute name="canvasContextID" optional="YES" attributeType="String"/>
-        <attribute name="courseSectionID" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="role" optional="YES" attributeType="String"/>
         <attribute name="roleID" optional="YES" attributeType="String"/>
         <attribute name="stateRaw" optional="YES" attributeType="String"/>
         <attribute name="type" attributeType="String"/>
         <attribute name="userID" optional="YES" attributeType="String"/>
-        <relationship name="observedUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PeopleListUser" inverseName="enrollments" inverseEntity="PeopleListUser"/>
+        <relationship name="enrolledUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PeopleListUser" inverseName="enrollments" inverseEntity="PeopleListUser"/>
     </entity>
     <entity name="PeopleListUser" representedClassName="Core.PeopleListUser" syncable="YES">
         <attribute name="avatarURL" optional="YES" attributeType="URI"/>
@@ -740,7 +739,7 @@
         <attribute name="pronouns" optional="YES" attributeType="String"/>
         <attribute name="shortName" attributeType="String"/>
         <attribute name="sortableName" attributeType="String"/>
-        <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PeopleListEnrollment" inverseName="observedUser" inverseEntity="PeopleListEnrollment"/>
+        <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PeopleListEnrollment" inverseName="enrolledUser" inverseEntity="PeopleListEnrollment"/>
     </entity>
     <entity name="Permissions" representedClassName="Core.Permissions" syncable="YES">
         <attribute name="becomeUser" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>

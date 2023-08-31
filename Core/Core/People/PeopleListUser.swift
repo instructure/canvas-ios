@@ -34,7 +34,10 @@ public final class PeopleListUser: NSManagedObject {
     private var scope: Scope {
         Scope(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(PeopleListEnrollment.userID), equals: id),
-            NSPredicate(key: #keyPath(PeopleListEnrollment.course.id), equals: courseID),
+            NSCompoundPredicate(orPredicateWithSubpredicates: [
+                NSPredicate(key: #keyPath(PeopleListEnrollment.canvasContextID), equals: "course_\(courseID ?? "")"),
+                NSPredicate(key: #keyPath(PeopleListEnrollment.canvasContextID), equals: "group_\(groupID ?? "")"),
+            ]),
         ]), order: [])
     }
 }
@@ -60,11 +63,7 @@ extension PeopleListUser {
         if let apiEnrollments = item.enrollments {
             for enrollment in apiEnrollments {
                 let userEnrollment: PeopleListEnrollment = context.first(where: #keyPath(PeopleListEnrollment.id), equals: enrollment.id?.value) ?? context.insert()
-                var course: Course?
-                if let courseID = enrollment.course_id?.value {
-                    course = context.first(where: #keyPath(Course.id), equals: courseID)
-                }
-                userEnrollment.update(fromApiModel: enrollment, course: course, in: context)
+                userEnrollment.update(fromApiModel: enrollment, user: user, in: context)
                 user.enrollments.insert(userEnrollment)
             }
         }

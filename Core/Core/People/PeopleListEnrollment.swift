@@ -27,29 +27,10 @@ final public class PeopleListEnrollment: NSManagedObject {
     @NSManaged public var stateRaw: String?
     @NSManaged public var userID: String?
     @NSManaged public var type: String
-    @NSManaged public var course: Course?
-    @NSManaged public var courseSectionID: String?
-    @NSManaged public var observedUser: PeopleListUser?
+    @NSManaged public var enrolledUser: PeopleListUser?
 }
 
 extension PeopleListEnrollment {
-    public var state: EnrollmentState {
-        get { return EnrollmentState(rawValue: stateRaw ?? "") ?? .inactive }
-        set { stateRaw = newValue.rawValue }
-    }
-
-    public var isStudent: Bool {
-        return type.lowercased().contains("student")
-    }
-
-    public var isTeacher: Bool {
-        return type.lowercased().contains("teacher")
-    }
-
-    public var isTA: Bool {
-        return type.lowercased().contains("ta")
-    }
-
     /// The localized, human-readable `role` or the custom role
     public var formattedRole: String? {
         guard let role = role else { return nil }
@@ -58,25 +39,16 @@ extension PeopleListEnrollment {
 }
 
 extension PeopleListEnrollment {
-    func update(fromApiModel item: APIEnrollment, course: Course?, gradingPeriodID: String? = nil, in client: NSManagedObjectContext) {
+    func update(fromApiModel item: APIEnrollment, user: PeopleListUser, gradingPeriodID: String? = nil, in client: NSManagedObjectContext) {
         id = item.id?.value
         role = item.role
         roleID = item.role_id
-        state = item.enrollment_state
         type = item.type
         userID = item.user_id.value
-        courseSectionID = item.course_section_id?.value
+        enrolledUser = user
 
-        let courseID = item.course_id?.value ?? course?.id
-        if let courseID = courseID {
+        if let courseID = item.course_id?.value {
             canvasContextID = "course_\(courseID)"
-        }
-
-        if let apiObservedUser = item.observed_user {
-            let observedUserModel = PeopleListUser.save(apiObservedUser, courseId: courseID, in: client)
-            observedUser = observedUserModel
-        } else {
-            observedUser = nil
         }
     }
 }

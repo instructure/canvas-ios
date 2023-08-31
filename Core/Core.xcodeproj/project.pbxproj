@@ -123,7 +123,7 @@
 		13B4C89698A749D0035AB4D8 /* FileProgressListViewPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CD30A59D9B28E1A04AAA50 /* FileProgressListViewPreview.swift */; };
 		13BF34EE4ABA277EE07DC05A /* LockStatusViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD016DDC9E7807CB2AD213AA /* LockStatusViewable.swift */; };
 		13C2D35FB354D7573DE6A110 /* lato_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BF07DCDA931118841FFC177 /* lato_regular.ttf */; };
-		13CD4B193E18BEE28E2AEE25 /* GetCourseContextUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2743EAE2677581014A3F9441 /* GetCourseContextUsers.swift */; };
+		13CD4B193E18BEE28E2AEE25 /* GetPeopleListUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2743EAE2677581014A3F9441 /* GetPeopleListUsers.swift */; };
 		13CDE2389B19163EA51C33B9 /* ChatBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8963BE37218640395B2F3CB7 /* ChatBubbleView.swift */; };
 		13E00D0D83850D66833DA2B3 /* EmptyViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C987203C9ADE623E509FE460 /* EmptyViewControllerTests.swift */; };
 		13E406DACBE072D53AA6EE5F /* APIObserverAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48DE98C91B4774F4C5E404D /* APIObserverAlert.swift */; };
@@ -1918,7 +1918,7 @@
 		26EE7E2834C85B2C2FC32460 /* PlannerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerViewControllerTests.swift; sourceTree = "<group>"; };
 		26F5F27F63B217122A32EB8B /* AttachmentCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCardsViewController.swift; sourceTree = "<group>"; };
 		26F7BAA18100F238330CDDC5 /* K5ImportantDatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ImportantDatesView.swift; sourceTree = "<group>"; };
-		2743EAE2677581014A3F9441 /* GetCourseContextUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourseContextUsers.swift; sourceTree = "<group>"; };
+		2743EAE2677581014A3F9441 /* GetPeopleListUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPeopleListUsers.swift; sourceTree = "<group>"; };
 		27488FF7100A4ED0B7B5CEC9 /* LoginDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDelegateTests.swift; sourceTree = "<group>"; };
 		274FA603F2CC4D48DD7C7E4B /* UIViewControllerExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensionsTests.swift; sourceTree = "<group>"; };
 		2766751E37F582585C18C994 /* SideMenuMainSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuMainSection.swift; sourceTree = "<group>"; };
@@ -2197,7 +2197,7 @@
 		4BDF0042C4EC9719269D89FE /* AssignmentDueDatesInteractorLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDueDatesInteractorLive.swift; sourceTree = "<group>"; };
 		4BF8139D888212DC95299155 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4BF91515A5A28F35FBD75E03 /* GetObservedStudents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetObservedStudents.swift; sourceTree = "<group>"; };
-		4C02C87B4FD4AD4D7489EE6D /* TestImage.svg */ = {isa = PBXFileReference; path = TestImage.svg; sourceTree = "<group>"; };
+		4C02C87B4FD4AD4D7489EE6D /* TestImage.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestImage.svg; sourceTree = "<group>"; };
 		4C0C49ADE7F2DE21CE36FB77 /* CourseSyncDiskSpaceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncDiskSpaceInfoView.swift; sourceTree = "<group>"; };
 		4C11E387DD144E7B7A7D7405 /* DateSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSection.swift; sourceTree = "<group>"; };
 		4C310E09D98CD58CE1C3D781 /* AssignmentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentListViewModel.swift; sourceTree = "<group>"; };
@@ -2799,7 +2799,7 @@
 		A3CBD2A123330769319E0D7D /* CourseSettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSettingsTests.swift; sourceTree = "<group>"; };
 		A3EA58F752AE33267DC3D54C /* CourseSyncProgressInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncProgressInfoViewModel.swift; sourceTree = "<group>"; };
 		A3F215916DB26B661EA4FC39 /* APIGradingSchemeEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGradingSchemeEntry.swift; sourceTree = "<group>"; };
-		A42096D6B21359616953C14C /* preview_test.mp4 */ = {isa = PBXFileReference; path = preview_test.mp4; sourceTree = "<group>"; };
+		A42096D6B21359616953C14C /* preview_test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = preview_test.mp4; sourceTree = "<group>"; };
 		A428BBF27D3A0637022B49F2 /* FileListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListViewControllerTests.swift; sourceTree = "<group>"; };
 		A42E6D4DF3963671589B5A3A /* DashboardCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCardTests.swift; sourceTree = "<group>"; };
 		A43DD0C2A830D421979AEF65 /* InboxMessageScopeFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageScopeFilterTests.swift; sourceTree = "<group>"; };
@@ -5230,7 +5230,7 @@
 				0E753587802CE4F204785908 /* ContextCard */,
 				EB1F17518E5A0ED0FB823AA0 /* APIUser.swift */,
 				291D11D1AD4CCB7DC634A56C /* GetContextUsers.swift */,
-				2743EAE2677581014A3F9441 /* GetCourseContextUsers.swift */,
+				2743EAE2677581014A3F9441 /* GetPeopleListUsers.swift */,
 				41F5957C6091319417E638E2 /* GetCourseSingleUser.swift */,
 				840BD5EB06533DC1D9DA5B21 /* GetUserSettings.swift */,
 				FF50E14EA9E674E3FA4DC13B /* PeopleListEnrollment.swift */,
@@ -9953,7 +9953,7 @@
 				996884C777B5C0D31FBC7C8D /* GetContextUsers.swift in Sources */,
 				7792D701B8ADE8A1511B2D90 /* GetConversationCourses.swift in Sources */,
 				EDE956B9A68A0C8A8D48100D /* GetConversations.swift in Sources */,
-				13CD4B193E18BEE28E2AEE25 /* GetCourseContextUsers.swift in Sources */,
+				13CD4B193E18BEE28E2AEE25 /* GetPeopleListUsers.swift in Sources */,
 				F6BC5D78896B2BFE7217DB47 /* GetCourseListCourses.swift in Sources */,
 				670167FC9419CB70A2CF1846 /* GetCourseNavigationToolsRequest.swift in Sources */,
 				CEC97448F930BB18B9BE614A /* GetCourseSections.swift in Sources */,

@@ -19,7 +19,7 @@
 import Foundation
 import CoreData
 
-public class GetCourseContextUsers: CollectionUseCase {
+public class GetPeopleListUsers: CollectionUseCase {
     public typealias Model = PeopleListUser
 
     let context: Context
@@ -50,8 +50,8 @@ public class GetCourseContextUsers: CollectionUseCase {
     public func write(response: [APIUser]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response = response else { return }
         for item in response {
-            var courseId = context.contextType == .course ? context.id : nil
-            var groupId = context.contextType == .group ? context.id : nil
+            let courseId = context.contextType == .course ? context.id : nil
+            let groupId = context.contextType == .group ? context.id : nil
             PeopleListUser.save(item, courseId: courseId, groupId: groupId, in: client)
         }
     }

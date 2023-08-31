@@ -55,7 +55,7 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
     }
 
     private static func fetchUsers(context: Context) -> AnyPublisher<Void, Error> {
-        ReactiveStore(useCase: GetCourseContextUsers(context: context))
+        ReactiveStore(useCase: GetPeopleListUsers(context: context))
             .getEntities()
             .mapToVoid()
             .eraseToAnyPublisher()
