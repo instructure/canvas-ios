@@ -16,25 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Combine
+import CombineExt
 
-public enum ComposeMessageAssembly {
+public class ComposeMessageInteractorPreview: ComposeMessageInteractor {
+    // MARK: - Outputs
+    public var state = CurrentValueSubject<StoreState, Never>(.loading)
+    public var courses = CurrentValueSubject<[InboxCourse], Never>([])
 
-    public static func makeNewMessageViewController(env: AppEnvironment = .shared) -> UIViewController {
-        let interactor = ComposeMessageInteractorLive(env: env)
-        let viewModel = ComposeMessageViewModel(router: env.router, interactor: interactor)
-        let view = ComposeMessageView(model: viewModel)
-        return CoreHostingController(view)
+    public init(env: AppEnvironment) {
+        self.courses = CurrentValueSubject<[InboxCourse], Never>([
+            .save(.make(id: "1", name: "Test Course"), in: env.database.viewContext),
+        ])
     }
 
-#if DEBUG
-
-    public static func makePreview(env: AppEnvironment)
-    -> ComposeMessageView {
-        let interactor = ComposeMessageInteractorPreview(env: env)
-        let viewModel = ComposeMessageViewModel(router: env.router, interactor: interactor)
-        return ComposeMessageView(model: viewModel)
+    public func send(parameters: MessageParameters) -> Future<Void, Error> {
+        Future<Void, Error> { promise in
+            promise(.success(()))
+        }
     }
-
-#endif
 }

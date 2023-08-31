@@ -28,6 +28,7 @@ class ComposeMessageViewModel: ObservableObject {
     @Published public var sendIndividual: Bool = false
     @Published public var bodyText: String = ""
     @Published public var subject: String = ""
+    @Published public var selectedCourse: InboxCourse?
 
     public let title = NSLocalizedString("New Message", bundle: .core, comment: "")
 
@@ -36,7 +37,6 @@ class ComposeMessageViewModel: ObservableObject {
     public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
     public let addRecipientButtonDidTap = PassthroughRelay<WeakViewController>()
     public let selectedRecipient = CurrentValueRelay<String?>(nil)
-    public var selectedCourse: InboxCourse?
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()

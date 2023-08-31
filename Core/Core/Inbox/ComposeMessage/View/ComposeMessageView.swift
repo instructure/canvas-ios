@@ -28,14 +28,9 @@ public struct ComposeMessageView: View {
 
     public var body: some View {
         VStack(spacing: 0) {
+            headerView
             Divider()
-            courseView
-            Divider()
-            toView
-            Divider()
-            subjectView
-            Divider()
-            individualView
+            propertiesView
             Divider()
             bodyView
         }
@@ -80,26 +75,45 @@ public struct ComposeMessageView: View {
 
     private var headerView: some View {
         HStack {
-            Text(model.title)
+            Text(model.subject.isEmpty ? model.title : model.subject)
                 .font(.bold22)
                 .foregroundColor(.textDarkest)
             Spacer()
             sendButton
         }
+        .padding(.horizontal, 16).padding(.vertical, 12)
+        .frame(minHeight: 52)
     }
 
+    private var propertiesView: some View {
+        VStack(spacing: 0) {
+            courseView
+            Divider()
+            toView
+            Divider()
+            subjectView
+            Divider()
+            individualView
+        }
+    }
     private var courseView: some View {
         Button(action: {
             model.courseSelectButtonDidTap(viewController: controller)
         }, label: {
             HStack {
-                Text("Select Course")
+                Text("Course")
                     .font(.medium16)
                     .foregroundColor(.textDark)
+                if let course = model.selectedCourse {
+                    Text(course.name)
+                        .font(.medium16)
+                        .foregroundColor(.textDark)
+                }
                 Spacer()
-                DisclosureIndicator().padding(.trailing, 16)
+                DisclosureIndicator()
             }
         })
+        .padding(.horizontal, 16).padding(.vertical, 12)
         .accessibility(label: Text("Add recipient", bundle: .core))
     }
 
@@ -111,6 +125,7 @@ public struct ComposeMessageView: View {
             Spacer()
             addRecipientButton
         }
+        .padding(.horizontal, 16).padding(.vertical, 12)
     }
 
     private var subjectView: some View {
@@ -127,6 +142,7 @@ public struct ComposeMessageView: View {
                 .font(.medium16)
                 .foregroundColor(.textDark)
         })
+        .padding(.horizontal, 16).padding(.vertical, 12)
     }
 
     private var bodyView: some View {
@@ -137,3 +153,15 @@ public struct ComposeMessageView: View {
         .frame(maxHeight: .infinity)
     }
 }
+
+#if DEBUG
+
+struct ComposeMessageView_Previews: PreviewProvider {
+    static let env = PreviewEnvironment()
+
+    static var previews: some View {
+        ComposeMessageAssembly.makePreview(env: env)
+    }
+}
+
+#endif

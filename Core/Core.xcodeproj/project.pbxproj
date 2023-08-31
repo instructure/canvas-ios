@@ -225,6 +225,7 @@
 		2455859ED40B1F74E4A75301 /* K5HomeroomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A79D4D221B7A3F93B0976DE /* K5HomeroomViewModel.swift */; };
 		245AB24A2DC42AE01BFAAB5E /* StoreStateCombine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38956117E9EC3DE1683B19B7 /* StoreStateCombine.swift */; };
 		245C9DB44886418467A2A5AE /* FileUploadTargetRequesterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEB50CAF7EBB10B51D6062D /* FileUploadTargetRequesterTests.swift */; };
+		246B012D7E4B257E0C8D37DC /* ComposeMessageInteractorPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B64697A4E15B8FACC3B1C8 /* ComposeMessageInteractorPreview.swift */; };
 		246B4B0D8AE27AA8BA4EFC0A /* FileProgressItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF688B43191518E8C02434 /* FileProgressItemView.swift */; };
 		248B95D3107374D23924B067 /* DocumentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BFFAB9ADA0ED5BB3AD4C67 /* DocumentExtensions.swift */; };
 		24AA3689F8728BE8850B8458 /* UsageRights.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6A40B05A66159F069CA28F /* UsageRights.swift */; };
@@ -3099,6 +3100,7 @@
 		D0795F7FD2E35FF931C3CEAD /* lato_black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_black.ttf; sourceTree = "<group>"; };
 		D08DFC503F7F8CBD23CB14B4 /* UITableViewHeaderFooterViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewHeaderFooterViewExtensionsTests.swift; sourceTree = "<group>"; };
 		D08FB3921176B62ADD500936 /* DashboardOfflineSyncProgressCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardOfflineSyncProgressCardViewModel.swift; sourceTree = "<group>"; };
+		D0B64697A4E15B8FACC3B1C8 /* ComposeMessageInteractorPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMessageInteractorPreview.swift; sourceTree = "<group>"; };
 		D10AB922BD5A8D0A1C458172 /* TodoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTests.swift; sourceTree = "<group>"; };
 		D113E7115A60BA7F01CAA440 /* GetFolderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetFolderTests.swift; sourceTree = "<group>"; };
 		D127195ADBA1D03BA926F9F9 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -8597,6 +8599,7 @@
 			children = (
 				B1499956CA52305A608614DF /* ComposeMessageInteractor.swift */,
 				558C1C59B040DAD81E984940 /* ComposeMessageInteractorLive.swift */,
+				D0B64697A4E15B8FACC3B1C8 /* ComposeMessageInteractorPreview.swift */,
 				B953FCABE3764807F829338F /* MessageParameters.swift */,
 			);
 			path = Model;
@@ -9689,6 +9692,7 @@
 				53FCD74EB6E9AC012A688780 /* ComposeMessageAssembly.swift in Sources */,
 				944A19FF38A83AA64C293A7E /* ComposeMessageInteractor.swift in Sources */,
 				F4BA3A05E43397D00B9365B4 /* ComposeMessageInteractorLive.swift in Sources */,
+				246B012D7E4B257E0C8D37DC /* ComposeMessageInteractorPreview.swift in Sources */,
 				8912EA212181949E5426EB26 /* ComposeMessageView.swift in Sources */,
 				156CE7F64AA2185565252A22 /* ComposeMessageViewModel.swift in Sources */,
 				98FC2E46BE47E94FA1DFD709 /* ComposeRecipientsView.swift in Sources */,
