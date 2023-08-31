@@ -723,9 +723,6 @@
         <attribute name="canvasContextID" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="role" optional="YES" attributeType="String"/>
-        <attribute name="roleID" optional="YES" attributeType="String"/>
-        <attribute name="stateRaw" optional="YES" attributeType="String"/>
-        <attribute name="type" attributeType="String"/>
         <attribute name="userID" optional="YES" attributeType="String"/>
         <relationship name="enrolledUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PeopleListUser" inverseName="enrollments" inverseEntity="PeopleListUser"/>
     </entity>

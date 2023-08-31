@@ -23,10 +23,6 @@ final public class PeopleListEnrollment: NSManagedObject {
     @NSManaged public var id: String?
     @NSManaged public var canvasContextID: String?
     @NSManaged public var role: String?
-    @NSManaged public var roleID: String?
-    @NSManaged public var stateRaw: String?
-    @NSManaged public var userID: String?
-    @NSManaged public var type: String
     @NSManaged public var enrolledUser: PeopleListUser?
 }
 
@@ -42,9 +38,6 @@ extension PeopleListEnrollment {
     func update(fromApiModel item: APIEnrollment, user: PeopleListUser, gradingPeriodID: String? = nil, in client: NSManagedObjectContext) {
         id = item.id?.value
         role = item.role
-        roleID = item.role_id
-        type = item.type
-        userID = item.user_id.value
         enrolledUser = user
 
         if let courseID = item.course_id?.value {

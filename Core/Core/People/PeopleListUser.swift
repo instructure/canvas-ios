@@ -33,7 +33,7 @@ public final class PeopleListUser: NSManagedObject {
 
     private var scope: Scope {
         Scope(predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
-            NSPredicate(key: #keyPath(PeopleListEnrollment.userID), equals: id),
+            NSPredicate(key: #keyPath(PeopleListEnrollment.enrolledUser.id), equals: id),
             NSCompoundPredicate(orPredicateWithSubpredicates: [
                 NSPredicate(key: #keyPath(PeopleListEnrollment.canvasContextID), equals: "course_\(courseID ?? "")"),
                 NSPredicate(key: #keyPath(PeopleListEnrollment.canvasContextID), equals: "group_\(groupID ?? "")"),
