@@ -500,6 +500,7 @@
 		5233197D4D23D21ABD6A7FE9 /* CreateTextCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF63DE1D9F43C3F5556A81BC /* CreateTextCommentTests.swift */; };
 		523D8AF614F4882D8CEB30CD /* PageViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91956458E65DEC161379670F /* PageViewEvent.swift */; };
 		5244A61E96BEDB72BCF11B7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEF028266741629EAFE921A /* AppDelegate.swift */; };
+		5257A5286B5901FB730AB65D /* OfflineSyncNextDateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8F3AF71FE72EAF60E76FAB /* OfflineSyncNextDateTests.swift */; };
 		5269B3FBE2388D2AB642929F /* preview_test.pdf in Resources */ = {isa = PBXBuildFile; fileRef = B0B5F4F932EAC4447DF4B2B2 /* preview_test.pdf */; };
 		52B4CB27807627AD142713E6 /* FileSubmissionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C406AFB27E249C6DB3BEA1 /* FileSubmissionState.swift */; };
 		52E8FA015AD29EE3F0E442E1 /* SubmissionBreakdownViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0920367FB90AE9D60CE342 /* SubmissionBreakdownViewModelProtocol.swift */; };
@@ -930,6 +931,7 @@
 		996AF88DD178988011C297C8 /* MockPDFPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999ECD2E73E5DF4EBB5457C2 /* MockPDFPageView.swift */; };
 		999FE06E36CDDF7EEAC1A480 /* URLComponentsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D9D67F088D92B870E04B04 /* URLComponentsExtensions.swift */; };
 		99BB72B8C3C395A7023621BE /* PlannerNoteDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7879FA103ED210E1F4DFEEE9 /* PlannerNoteDetailViewController.swift */; };
+		99CF0D3E7EF7014DE38DA379 /* OfflineSyncNextDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A991D005A5CB23AC737DB635 /* OfflineSyncNextDate.swift */; };
 		99F51DF77DA6E3E00C441D3C /* LoginStartSessionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D892DF353E5291ED4BE3C7 /* LoginStartSessionCell.swift */; };
 		9A07ABE5736563A0285AA391 /* K5ResourcesApplicationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03CE7996615CA5C57CC97364 /* K5ResourcesApplicationViewModelTests.swift */; };
 		9A1F13BBEAA42BF25ED4A824 /* K5HomeroomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1725EB019B977FF9E6463196 /* K5HomeroomView.swift */; };
@@ -2305,6 +2307,7 @@
 		5D10762654AACBA65EE5CFE4 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5D2A9B22E1C592A0DFAC9EF2 /* SubmissionSummaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionSummaryTests.swift; sourceTree = "<group>"; };
 		5D819E71600A7A94CBEB23B4 /* AssignmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentTests.swift; sourceTree = "<group>"; };
+		5D8F3AF71FE72EAF60E76FAB /* OfflineSyncNextDateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineSyncNextDateTests.swift; sourceTree = "<group>"; };
 		5DB895C3AEEA85C6EFC4D563 /* UITestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestHelpers.swift; sourceTree = "<group>"; };
 		5DBDC6F18A76578520F5C427 /* CourseSyncEntryFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncEntryFile.swift; sourceTree = "<group>"; };
 		5DC8DFF2F9C9DE3128272EA3 /* FileSubmissionStateEnumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionStateEnumTests.swift; sourceTree = "<group>"; };
@@ -2837,6 +2840,7 @@
 		A9193DA17C6897AC20A0F645 /* ClosedRangeExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedRangeExtensions.swift; sourceTree = "<group>"; };
 		A92489739FA867834EE67DA3 /* APIBrandVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBrandVariables.swift; sourceTree = "<group>"; };
 		A9328E630A8C08D6995EDCC8 /* LoginFindSchoolViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFindSchoolViewControllerTests.swift; sourceTree = "<group>"; };
+		A991D005A5CB23AC737DB635 /* OfflineSyncNextDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineSyncNextDate.swift; sourceTree = "<group>"; };
 		A9AFA4DDC9F66EFAFE5795E0 /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
 		A9B4C16E6E68A8586390D94C /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Main.strings; sourceTree = "<group>"; };
 		A9F8E88E51C265BD7A6ADED7 /* PageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageListViewController.swift; sourceTree = "<group>"; };
@@ -3730,6 +3734,7 @@
 			isa = PBXGroup;
 			children = (
 				5711D20C519180C6C2324CD2 /* OfflineSyncBackgroundTask.swift */,
+				A991D005A5CB23AC737DB635 /* OfflineSyncNextDate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -4822,6 +4827,7 @@
 		41D2077C22A27D1809910419 /* CourseSync */ = {
 			isa = PBXGroup;
 			children = (
+				EE47A667792D181291BC8D12 /* BackgroundUpdates */,
 				B7E02C340D50A6B95CD0A898 /* Common */,
 				B86615B3933B3D08528033E3 /* CourseSyncDownloader */,
 				16AA6C7702C406B9B5672D4C /* CourseSyncProgress */,
@@ -5171,6 +5177,14 @@
 				08A7A5A46E49E3761398CA93 /* K5ImportantDatesViewModel.swift */,
 			);
 			path = ImportantDates;
+			sourceTree = "<group>";
+		};
+		57134DDA24547C9F07DF08CA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5D8F3AF71FE72EAF60E76FAB /* OfflineSyncNextDateTests.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		5727DCDEEB8BCCCB44A3DE99 /* QuizPreview */ = {
@@ -8241,6 +8255,14 @@
 			path = Help;
 			sourceTree = "<group>";
 		};
+		EE47A667792D181291BC8D12 /* BackgroundUpdates */ = {
+			isa = PBXGroup;
+			children = (
+				57134DDA24547C9F07DF08CA /* Model */,
+			);
+			path = BackgroundUpdates;
+			sourceTree = "<group>";
+		};
 		EF6411B19B50D5CAC78E0CAD /* TopBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -9341,6 +9363,7 @@
 				ABACC6D11460D467E8CB21A4 /* OfflineBannerViewModelTests.swift in Sources */,
 				28BDE77AD3F0D5E27CEB14B9 /* OfflineModeInteractorTests.swift in Sources */,
 				ABEF4C94F203A79C882FD6D9 /* OfflineModeViewModelTests.swift in Sources */,
+				5257A5286B5901FB730AB65D /* OfflineSyncNextDateTests.swift in Sources */,
 				5C9304B5AD56EFF156F8C3A8 /* OnElementAppearTests.swift in Sources */,
 				2911ECDF66416CF9F2624F2E /* PSPDFAnnotationExtensionTests.swift in Sources */,
 				B27B8AA086E654466F1CD444 /* PageDetailsViewControllerTests.swift in Sources */,
@@ -10171,6 +10194,7 @@
 				88B8C676C0AFFC04953F57DA /* OfflineModeInteractor.swift in Sources */,
 				55DBE9B3CF856AAFACD73C10 /* OfflineModeViewModel.swift in Sources */,
 				87A240BB21AD1D919C027C9E /* OfflineSyncBackgroundTask.swift in Sources */,
+				99CF0D3E7EF7014DE38DA379 /* OfflineSyncNextDate.swift in Sources */,
 				380910D5984AECF21C4A1A51 /* OnElementAppear.swift in Sources */,
 				394C4760D46A1639B831848C /* OptionalDatePicker.swift in Sources */,
 				A90693D68DADAC27F3F28A85 /* OutputStreamExtensions.swift in Sources */,
