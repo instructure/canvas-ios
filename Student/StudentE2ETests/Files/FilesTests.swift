@@ -21,24 +21,24 @@ import TestsFoundation
 class FilesTests: E2ETestCase {
     typealias Helper = FilesHelper
     typealias FileList = Helper.List
+    typealias Details = Helper.Details
     typealias PDFViewer = Helper.PDFViewer
     typealias Dashboard = DashboardHelper
     typealias Profile = ProfileHelper
 
-    override func setUp() {
+    let testFolderName = "Test Folder"
+
+    func testCreateTestFolderAndUploadPDF() {
         // MARK: Download and save test PDF file
         Helper.TestPDF.download()
+        app.activate()
 
-        super.setUp()
-    }
-
-    func testUploadPDF() {
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
 
-        // MARK: Get the user logged in, navigate to Files
+        // MARK: Get the user logged in, navigate to Files, create test folder
         logInDSUser(student)
 
         let profileButton = Dashboard.profileButton.waitUntil(.visible)
@@ -52,10 +52,28 @@ class FilesTests: E2ETestCase {
         let noFilesLabel = Helper.noFilesLabel.waitUntil(.visible)
         XCTAssertTrue(noFilesLabel.isVisible)
 
-        // MARK: Upload test PDF
         let addButton = FileList.addButton.waitUntil(.visible)
         XCTAssertTrue(addButton.isVisible)
 
+        addButton.hit()
+
+        let addFolderButton = FileList.addFolderButton.waitUntil(.visible)
+        XCTAssertTrue(addFolderButton.isVisible)
+
+        addFolderButton.hit()
+
+        let folderNameInput = FileList.folderNameInput.waitUntil(.visible)
+        let okButton = FileList.okButton.waitUntil(.visible)
+        XCTAssertTrue(folderNameInput.isVisible)
+        XCTAssertTrue(okButton.isVisible)
+
+        folderNameInput.writeText(text: testFolderName)
+        okButton.hit()
+        let testFolder = FileList.file(index: 0).waitUntil(.visible)
+        XCTAssertTrue(testFolder.isVisible)
+
+        // MARK: Upload test PDF to the test folder
+        testFolder.hit()
         addButton.hit()
         let addFileButton = FileList.addFileButton.waitUntil(.visible)
         XCTAssertTrue(addFileButton.isVisible)
@@ -102,5 +120,58 @@ class FilesTests: E2ETestCase {
         deleteButton.hit()
         deleteButton.waitUntil(.vanish)
         XCTAssertTrue(uploadedFileListItem.waitUntil(.vanish).isVanished)
+    }
+
+    func testUploadImage() {
+        // MARK: Seed the usual stuff
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+
+        // MARK: Get the user logged in, navigate to Files, create test folder
+        logInDSUser(student)
+
+        Helper.navigateToFiles()
+        let folderIsCreated = FileList.createFolder(name: Helper.testImageName, shouldOpen: true)
+        XCTAssertTrue(folderIsCreated)
+
+        // MARK: Upload test image, check result
+        FileList.addButton.hit()
+        FileList.addFileButton.hit()
+
+        let uploadImageButton = FileList.uploadImageButton.waitUntil(.visible)
+        XCTAssertTrue(uploadImageButton.isVisible)
+
+        uploadImageButton.hit()
+        let imageItem = FileList.imageItem.waitUntil(.visible)
+        XCTAssertTrue(imageItem.isVisible)
+
+        imageItem.hit()
+        imageItem.waitUntil(.vanish)
+
+        let uploadedImageItem = FileList.file(index: 0).waitUntil(.visible, timeout: 60)
+        XCTAssertTrue(uploadedImageItem.isVisible)
+
+        uploadedImageItem.hit()
+
+        let imageView = Details.imageView.waitUntil(.visible)
+        let backButton = Helper.backButton.waitUntil(.visible)
+        XCTAssertTrue(imageView.isVisible)
+        XCTAssertTrue(backButton.isVisible)
+
+        backButton.hit()
+
+        // MARK: Delete image
+        uploadedImageItem.actionUntilElementCondition(action: .swipeLeft(.onElement), element: FileList.deleteButton, condition: .visible)
+        let deleteButton = FileList.deleteButton.waitUntil(.visible)
+        XCTAssertTrue(deleteButton.isVisible)
+
+        deleteButton.hit()
+        let areYouSureLabel = FileList.areYouSureLabel.waitUntil(.visible)
+        XCTAssertTrue(areYouSureLabel.isVisible)
+
+        deleteButton.hit()
+        deleteButton.waitUntil(.vanish)
+        XCTAssertTrue(uploadedImageItem.waitUntil(.vanish).isVanished)
     }
 }

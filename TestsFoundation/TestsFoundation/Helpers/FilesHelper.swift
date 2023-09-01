@@ -18,6 +18,7 @@
 
 public class FilesHelper: BaseHelper {
     // MARK: Test data
+    public static let testImageName = "Photo, August 08, 2012, 8:52 PM"
     public struct TestPDF {
         public static let url = "https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_100KB_PDF.pdf"
         public static let name = "Free_Test_Data_100KB_PDF"
@@ -57,17 +58,45 @@ public class FilesHelper: BaseHelper {
     }
 
     public struct List {
+        public static var files: [XCUIElement] { app.findAll(idStartingWith: "FileList.") }
         public static var addButton: XCUIElement { app.find(id: "FileList.addButton") }
         public static var editButton: XCUIElement { app.find(id: "FileList.editButton") }
         public static var addFileButton: XCUIElement { app.find(id: "FileList.addFileButton") }
         public static var addFolderButton: XCUIElement { app.find(id: "FileList.addFolderButton") }
+
+        // Upload file
         public static var uploadFileButton: XCUIElement { app.find(label: "Upload File", type: .button) }
         public static var testPDFButton: XCUIElement { app.find(id: "\(FilesHelper.TestPDF.name), pdf") }
+        public static var uploadImageButton: XCUIElement { app.find(label: "Photo Library", type: .button) }
+        public static var imageItem: XCUIElement { app.find(label: FilesHelper.testImageName, type: .image) }
+
+        // Deleting file
         public static var deleteButton: XCUIElement { app.find(label: "Delete", type: .button) }
         public static var areYouSureLabel: XCUIElement { app.find(labelContaining: "Are you sure", type: .staticText) }
 
+        // Folder creation
+        public static var folderNameInput: XCUIElement { app.find(label: "Folder Name", type: .textField) }
+        public static var okButton: XCUIElement { app.find(label: "OK", type: .button) }
+
+        // File list item
         public static func file(index: Int) -> XCUIElement {
             return app.find(id: "FileList.\(index)")
+        }
+
+        public static func createFolder(name: String, shouldOpen: Bool = true) -> Bool {
+            let filesCount = files.count
+            addButton.hit()
+            addFolderButton.hit()
+            folderNameInput.writeText(text: name)
+            okButton.hit()
+            folderNameInput.waitUntil(.vanish)
+            let allFiles = files
+            allFiles[0].waitUntil(.visible)
+            guard allFiles.count > filesCount else { return false }
+
+            let theFolder = allFiles.filter { $0.hasLabel(label: name, strict: false) }
+            theFolder[0].hit()
+            return true
         }
 
         public static func uploadTestPDF() {
