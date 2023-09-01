@@ -20,20 +20,36 @@ import BackgroundTasks
 
 public struct OfflineSyncBackgroundTask: BackgroundTask {
     public let request: BGTaskRequest
+    private let sessions: Set<LoginSession>
+    private let syncableAccounts: OfflineSyncAccounts
 
-    public init(nextSyncDate: OfflineSyncNextDate, sessions: Set<LoginSession>) {
+    public init(nextSyncDate: OfflineSyncNextDate,
+                syncableAccounts: OfflineSyncAccounts,
+                sessions: Set<LoginSession>) {
         let request = BGProcessingTaskRequest(identifier: "com.instructure.icanvas.offline-sync")
         request.requiresExternalPower = false
         request.requiresNetworkConnectivity = true
         request.earliestBeginDate = nextSyncDate.calculate(sessionUniqueIDs: sessions.map { $0.uniqueID })
         self.request = request
+        self.sessions = sessions
+        self.syncableAccounts = syncableAccounts
     }
 
     public func start(completion: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            Logger.shared.log("Offline sync.")
-            completion()
+        let sessionsToSync = syncableAccounts.calculate(Array(sessions),
+                                                        date: Clock.now)
+        let lastLoggedInUser = LoginSession.mostRecent
+
+        sessionsToSync.forEach { session in
+            AppEnvironment.shared.userDidLogin(session: session)
+            Logger.shared.log("Offline sync triggered!")
         }
+
+        if let lastLoggedInUser {
+            AppEnvironment.shared.userDidLogin(session: lastLoggedInUser)
+        }
+
+        completion()
     }
 
     public func cancel() {

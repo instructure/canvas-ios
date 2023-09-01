@@ -25,8 +25,10 @@ public struct BackgroundProcessingInteractor {
         self.scheduler = scheduler
     }
 
+    // TODO: Change to receive task ID instead
     public func register(task: BackgroundTask) {
         let result = scheduler.register(forTaskWithIdentifier: task.request.identifier, using: nil) { backgroundTask in
+            // TODO: re-create task
             backgroundTask.expirationHandler = {
                 Logger.shared.error("BackgroundProcessingInteractor: Background task \(task.request.identifier) will be cancelled.")
                 task.cancel()
@@ -49,6 +51,7 @@ public struct BackgroundProcessingInteractor {
         }
     }
 
+    // TODO: Change to receive task ID instead
     public func cancel(task: BackgroundTask) {
         scheduler.cancel(taskRequestWithIdentifier: task.request.identifier)
     }
