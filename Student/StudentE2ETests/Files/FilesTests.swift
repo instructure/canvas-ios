@@ -122,7 +122,7 @@ class FilesTests: E2ETestCase {
         XCTAssertTrue(uploadedFileListItem.waitUntil(.vanish).isVanished)
     }
 
-    func testUploadImage() {
+    func testCreateTestFolderAndUploadImage() {
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
         let course = seeder.createCourse()
