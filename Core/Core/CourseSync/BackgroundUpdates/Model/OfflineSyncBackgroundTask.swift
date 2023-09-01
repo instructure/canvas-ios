@@ -19,18 +19,11 @@
 import BackgroundTasks
 
 public struct OfflineSyncBackgroundTask: BackgroundTask {
-    public let request: BGTaskRequest
     private let sessions: Set<LoginSession>
     private let syncableAccounts: OfflineSyncAccounts
 
-    public init(nextSyncDate: OfflineSyncNextDate,
-                syncableAccounts: OfflineSyncAccounts,
+    public init(syncableAccounts: OfflineSyncAccounts,
                 sessions: Set<LoginSession>) {
-        let request = BGProcessingTaskRequest(identifier: "com.instructure.icanvas.offline-sync")
-        request.requiresExternalPower = false
-        request.requiresNetworkConnectivity = true
-        request.earliestBeginDate = nextSyncDate.calculate(sessionUniqueIDs: sessions.map { $0.uniqueID })
-        self.request = request
         self.sessions = sessions
         self.syncableAccounts = syncableAccounts
     }

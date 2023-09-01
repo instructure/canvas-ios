@@ -43,7 +43,10 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         BackgroundProcessingAssembly.register(scheduler: CoreTaskSchedulerLive(taskScheduler: .shared))
-        BackgroundProcessingAssembly.make().register(task: OfflineSyncBackgroundTask())
+        BackgroundProcessingAssembly.register(taskID: OfflineSyncBackgroundTaskRequest.ID) {
+            CourseSyncBackgroundUpdatesAssembly.makeOfflineSyncBackgroundTask()
+        }
+        BackgroundProcessingAssembly.resolveInteractor().register(taskID: OfflineSyncBackgroundTaskRequest.ID)
         setupFirebase()
         Core.Analytics.shared.handler = self
         CacheManager.resetAppIfNecessary()
@@ -151,6 +154,11 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         CoreWebView.stopCookieKeepAlive()
         BackgroundVideoPlayer.shared.background()
         environment.refreshWidgets()
+
+        BackgroundProcessingAssembly
+            .resolveInteractor()
+            .schedule(task: CourseSyncBackgroundUpdatesAssembly.makeTaskRequest())
+
         if LocalizationManager.needsRestart {
             exit(EXIT_SUCCESS)
         }

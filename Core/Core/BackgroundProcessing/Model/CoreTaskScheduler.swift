@@ -20,7 +20,7 @@ import BackgroundTasks
 
 /**
  Core is an extension API only project that forbids calling various methods on `BGTaskScheduler`
- so we have to abstract it away and inject it from a higher level project.
+ so we have to abstract it away using a protocol and inject its live implementation from a higher level project.
  */
 public protocol CoreTaskScheduler {
 

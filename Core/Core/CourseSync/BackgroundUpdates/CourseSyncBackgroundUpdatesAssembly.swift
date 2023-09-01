@@ -16,13 +16,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import BackgroundTasks
 
 public enum CourseSyncBackgroundUpdatesAssembly {
 
     public static func makeOfflineSyncBackgroundTask() -> BackgroundTask {
-        OfflineSyncBackgroundTask(nextSyncDate: OfflineSyncNextDate(),
-                                  syncableAccounts: OfflineSyncAccounts(),
+        OfflineSyncBackgroundTask(syncableAccounts: OfflineSyncAccounts(),
                                   sessions: LoginSession.sessions)
+    }
+
+    public static func makeTaskRequest() -> BGProcessingTaskRequest {
+        OfflineSyncBackgroundTaskRequest(nextSyncDate: OfflineSyncNextDate(),
+                                         sessions: LoginSession.sessions)
     }
 }

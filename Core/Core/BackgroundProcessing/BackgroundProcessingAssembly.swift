@@ -20,12 +20,22 @@ import Foundation
 
 public struct BackgroundProcessingAssembly {
     private static var scheduler: CoreTaskScheduler!
+    private static var factoriesByID: [String: () -> BackgroundTask] = [:]
 
     public static func register(scheduler: CoreTaskScheduler) {
         self.scheduler = scheduler
     }
 
-    public static func make() -> BackgroundProcessingInteractor {
+    public static func register(taskID: String,
+                                using taskFactory: @escaping () -> BackgroundTask) {
+        factoriesByID[taskID] = taskFactory
+    }
+
+    public static func resolveTask(for ID: String) -> BackgroundTask? {
+        factoriesByID[ID]?()
+    }
+
+    public static func resolveInteractor() -> BackgroundProcessingInteractor {
         BackgroundProcessingInteractor(scheduler: scheduler)
     }
 }

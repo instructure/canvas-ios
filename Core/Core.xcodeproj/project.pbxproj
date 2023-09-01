@@ -491,6 +491,7 @@
 		4F9AA6830FA947F626C45334 /* FileSubmissionItemsUploadStarterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82BC851BA31ABB9F2F44BD47 /* FileSubmissionItemsUploadStarterTests.swift */; };
 		4FFF8E7BDCAC32E9BA856537 /* GradeSubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496B2DC6DB13782096ED7BD1 /* GradeSubmission.swift */; };
 		503349C930BC94A2FC3F1E7A /* APIAccountResults.json in Resources */ = {isa = PBXBuildFile; fileRef = F39A48F2B69848C649A1A8B6 /* APIAccountResults.json */; };
+		505BD90E3F56627E57E496F8 /* OfflineSyncBackgroundTaskRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2928BE7DF891A31421706A8F /* OfflineSyncBackgroundTaskRequest.swift */; };
 		5066BDC7E32C4D48C3A40B7E /* CompletionRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = F471835A32C8C21EF77C5949 /* CompletionRequirement.swift */; };
 		50AA135B825E1E649EEEE7C6 /* Int64ExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C80F1235D275D1ADDFD1C5 /* Int64ExtensionsTests.swift */; };
 		5197C59BB41BCF6A23649A38 /* CalendarDaysViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F6AA2D9C5C50EDA97418D3 /* CalendarDaysViewControllerTests.swift */; };
@@ -1931,6 +1932,7 @@
 		28B842B168FCDE59E85F02F8 /* cy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cy; path = cy.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		28F6A7D7490A3EF76B8248B5 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		291D11D1AD4CCB7DC634A56C /* GetContextUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextUsers.swift; sourceTree = "<group>"; };
+		2928BE7DF891A31421706A8F /* OfflineSyncBackgroundTaskRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineSyncBackgroundTaskRequest.swift; sourceTree = "<group>"; };
 		29312F9AEDF8DDC977CF3A7D /* K5State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5State.swift; sourceTree = "<group>"; };
 		294093A3B880AAB94EA2D84F /* APIAssignmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAssignmentTests.swift; sourceTree = "<group>"; };
 		29590684F0970EF3194ACF31 /* GetQuizTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetQuizTests.swift; sourceTree = "<group>"; };
@@ -3741,6 +3743,7 @@
 			children = (
 				73CADF1CB23C6ECC72E47832 /* OfflineSyncAccounts.swift */,
 				5711D20C519180C6C2324CD2 /* OfflineSyncBackgroundTask.swift */,
+				2928BE7DF891A31421706A8F /* OfflineSyncBackgroundTaskRequest.swift */,
 				A991D005A5CB23AC737DB635 /* OfflineSyncNextDate.swift */,
 			);
 			path = Model;
@@ -10206,6 +10209,7 @@
 				55DBE9B3CF856AAFACD73C10 /* OfflineModeViewModel.swift in Sources */,
 				D8AC70BBEFD849795E3174F4 /* OfflineSyncAccounts.swift in Sources */,
 				87A240BB21AD1D919C027C9E /* OfflineSyncBackgroundTask.swift in Sources */,
+				505BD90E3F56627E57E496F8 /* OfflineSyncBackgroundTaskRequest.swift in Sources */,
 				99CF0D3E7EF7014DE38DA379 /* OfflineSyncNextDate.swift in Sources */,
 				380910D5984AECF21C4A1A51 /* OnElementAppear.swift in Sources */,
 				394C4760D46A1639B831848C /* OptionalDatePicker.swift in Sources */,

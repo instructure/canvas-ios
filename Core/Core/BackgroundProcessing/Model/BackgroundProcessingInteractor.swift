@@ -25,12 +25,17 @@ public struct BackgroundProcessingInteractor {
         self.scheduler = scheduler
     }
 
-    // TODO: Change to receive task ID instead
-    public func register(task: BackgroundTask) {
-        let result = scheduler.register(forTaskWithIdentifier: task.request.identifier, using: nil) { backgroundTask in
-            // TODO: re-create task
+    public func register(taskID: String) {
+        let result = scheduler.register(forTaskWithIdentifier: taskID,
+                                        using: nil) { backgroundTask in
+            guard let task = BackgroundProcessingAssembly.resolveTask(for: backgroundTask.identifier) else {
+                Logger.shared.error("BackgroundProcessingInteractor: Background task ID \(taskID) couldn't be resolved to a task.")
+                backgroundTask.setTaskCompleted(success: true)
+                return
+            }
+
             backgroundTask.expirationHandler = {
-                Logger.shared.error("BackgroundProcessingInteractor: Background task \(task.request.identifier) will be cancelled.")
+                Logger.shared.error("BackgroundProcessingInteractor: Background task \(taskID) will be cancelled.")
                 task.cancel()
             }
             task.start {
@@ -39,20 +44,20 @@ public struct BackgroundProcessingInteractor {
         }
 
         if !result {
-            Logger.shared.error("BackgroundProcessingInteractor: Failed to register background task \(task.request.identifier).")
+            Logger.shared.error("BackgroundProcessingInteractor: Failed to register background task \(taskID).")
         }
     }
 
-    public func schedule(task: BackgroundTask) {
+    public func schedule(task: BGProcessingTaskRequest) {
         do {
-            try scheduler.submit(task.request)
+            try scheduler.submit(task)
         } catch(let error) {
-            Logger.shared.error("BackgroundProcessingInteractor: Error scheduling task \(task.request.identifier): \(error.localizedDescription)")
+            Logger.shared.error("BackgroundProcessingInteractor: Error scheduling task \(task.identifier): \(error.localizedDescription)")
         }
     }
 
     // TODO: Change to receive task ID instead
-    public func cancel(task: BackgroundTask) {
-        scheduler.cancel(taskRequestWithIdentifier: task.request.identifier)
+    public func cancel(taskID: String) {
+        scheduler.cancel(taskRequestWithIdentifier: taskID)
     }
 }

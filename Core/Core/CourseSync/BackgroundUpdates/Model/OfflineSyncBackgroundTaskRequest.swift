@@ -18,7 +18,13 @@
 
 import BackgroundTasks
 
-public protocol BackgroundTask {
-    func start(completion: @escaping () -> Void)
-    func cancel()
+public class OfflineSyncBackgroundTaskRequest: BGProcessingTaskRequest {
+    public static let ID = "com.instructure.icanvas.offline-sync"
+
+    public init(nextSyncDate: OfflineSyncNextDate, sessions: Set<LoginSession>) {
+        super.init(identifier: Self.ID)
+        requiresExternalPower = false
+        requiresNetworkConnectivity = true
+        earliestBeginDate = nextSyncDate.calculate(sessionUniqueIDs: sessions.map { $0.uniqueID })
+    }
 }
