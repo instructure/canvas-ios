@@ -33,13 +33,39 @@ class CourseSyncModulesInteractorLiveTests: CoreTestCase {
         super.tearDown()
     }
 
-    func testSuccess() {
-        mockModules()
-        XCTAssertFinish(testee.getContent(courseId: "course-1"))
+    func testAssociatedTabType() {
+        XCTAssertEqual(testee.associatedTabType, .modules)
     }
 
-    func testFailure() {
+    func testSuccess() {
+        mockModules()
+        mockModuleItemSequence()
+        mockModuleItems()
+        XCTAssertFinish(testee.getContent(courseId: "course-1"))
+
+        let modules: [Module] = databaseClient.fetch()
+        XCTAssertEqual(modules.count, 1)
+        XCTAssertEqual(modules[0].id, "module-1")
+    }
+
+    func testModulesFailure() {
         mockModulesError()
+        mockModuleItemSequence()
+        mockModuleItems()
+        XCTAssertFailure(testee.getContent(courseId: "course-1"))
+    }
+
+    func testModuleItemSequenceFailure() {
+        mockModules()
+        mockModuleItemSequenceError()
+        mockModuleItems()
+        XCTAssertFailure(testee.getContent(courseId: "course-1"))
+    }
+
+    func testModuleItemsFailure() {
+        mockModules()
+        mockModuleItemSequence()
+        mockModuleItemsError()
         XCTAssertFailure(testee.getContent(courseId: "course-1"))
     }
 
@@ -59,9 +85,72 @@ class CourseSyncModulesInteractorLiveTests: CoreTestCase {
         )
     }
 
+    private func mockModuleItems() {
+        api.mock(
+            GetModuleItemsRequest(
+                courseID: "course-1",
+                moduleID: "module-1", include: [.content_details, .mastery_paths],
+                perPage: nil
+            ),
+            value: [
+                .make(id: "module-item-1"),
+                .make(id: "module-item-1"),
+            ]
+        )
+    }
+
+    private func mockModuleItemSequence() {
+        api.mock(
+            GetModuleItemSequence(
+                courseID: "course-1",
+                assetType: .moduleItem,
+                assetID: "module-item-1"
+            ),
+            value: .make(modules: [.make(id: "module-1")])
+        )
+        api.mock(
+            GetModuleItemSequence(
+                courseID: "course-1",
+                assetType: .moduleItem,
+                assetID: "module-item-2"
+            ),
+            value: .make(modules: [.make(id: "module-1")])
+        )
+    }
+
     private func mockModulesError() {
         api.mock(
             GetModulesRequest(courseID: "course-1"),
+            error: NSError.instructureError("")
+        )
+    }
+
+    private func mockModuleItemSequenceError() {
+        api.mock(
+            GetModuleItemSequence(
+                courseID: "course-1",
+                assetType: .moduleItem,
+                assetID: "module-item-1"
+            ),
+            error: NSError.instructureError("")
+        )
+        api.mock(
+            GetModuleItemSequence(
+                courseID: "course-1",
+                assetType: .moduleItem,
+                assetID: "module-item-2"
+            ),
+            error: NSError.instructureError("")
+        )
+    }
+
+    private func mockModuleItemsError() {
+        api.mock(
+            GetModuleItemsRequest(
+                courseID: "course-1",
+                moduleID: "module-1", include: [.content_details, .mastery_paths],
+                perPage: nil
+            ),
             error: NSError.instructureError("")
         )
     }
