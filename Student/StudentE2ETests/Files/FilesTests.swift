@@ -75,20 +75,30 @@ class FilesTests: E2ETestCase {
 
         // MARK: Upload test PDF to the test folder
         testFolder.hit()
+        XCTAssertTrue(testFolder.waitUntil(.vanish).isVanished)
+
         addButton.hit()
+        XCTAssertTrue(addButton.waitUntil(.vanish).isVanished)
+
         let addFileButton = FileList.addFileButton.waitUntil(.visible)
         XCTAssertTrue(addFileButton.isVisible)
 
         addFileButton.hit()
+        XCTAssertTrue(addFileButton.waitUntil(.vanish).isVanished)
+
         let uploadFileButton = FileList.uploadFileButton.waitUntil(.visible)
         XCTAssertTrue(uploadFileButton.isVisible)
 
         uploadFileButton.hit()
+        XCTAssertTrue(uploadFileButton.waitUntil(.vanish).isVanished)
+
         let testPDFButton = FileList.testPDFButton.waitUntil(.visible)
         XCTAssertTrue(testPDFButton.isVisible)
 
-        // MARK: Check uploaded file in list
         testPDFButton.hit()
+        XCTAssertTrue(testPDFButton.waitUntil(.vanish).isVanished)
+
+        // MARK: Check uploaded file in list
         let uploadedFileListItem = FileList.file(index: 0).waitUntil(.visible)
         XCTAssertTrue(uploadedFileListItem.isVisible)
         XCTAssertTrue(uploadedFileListItem.hasLabel(label: Helper.TestPDF.title, strict: false))
