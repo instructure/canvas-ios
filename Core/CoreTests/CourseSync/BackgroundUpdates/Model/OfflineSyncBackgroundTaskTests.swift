@@ -34,7 +34,7 @@ class OfflineSyncBackgroundTaskTests: XCTestCase {
                                                ]))
 
         // THEN
-        XCTAssertEqual(mockOfflineSyncNextDate.receivedSessionIDs, ["testURL-testUser", "testURL2-testUser2"])
+        XCTAssertEqual(mockOfflineSyncNextDate.receivedSessionIDs.sorted(), ["testURL-testUser", "testURL2-testUser2"])
         XCTAssertEqual(testee.request.earliestBeginDate, mockOfflineSyncNextDate.mockDate)
     }
 }
