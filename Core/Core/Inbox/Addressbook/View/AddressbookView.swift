@@ -54,7 +54,7 @@ public struct AddressbookView: View {
                 Color.borderMedium
                     .frame(height: 0.5)
                 Button(action: {
-                    model.recipientDidTap.send((userID: recipient.id, controller: controller))
+                    model.recipientDidTap.send((recipient: recipient, controller: controller))
                 }, label: {
                     peopleRowView(recipient)
                 })

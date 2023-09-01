@@ -23,7 +23,7 @@ class ComposeMessageViewModel: ObservableObject {
     // MARK: - Outputs
     @Published public private(set) var state: StoreState = .loading
     @Published public private(set) var courses: [InboxCourse] = []
-    @Published public private(set) var recipients: [String] = []
+    @Published public private(set) var recipients: [SearchRecipient] = []
 
     @Published public var sendIndividual: Bool = false
     @Published public var bodyText: String = ""
@@ -31,12 +31,19 @@ class ComposeMessageViewModel: ObservableObject {
     @Published public var selectedCourse: InboxCourse?
 
     public let title = NSLocalizedString("New Message", bundle: .core, comment: "")
+    public var sendButtonActive: Bool {
+        !bodyText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
+        !subject.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
+        !recipients.isEmpty
+        //&& (attachments.isEmpty || attachments.allSatisfy({ $0.isUploaded }))
+
+    }
 
     // MARK: - Inputs
     public let sendButtonDidTap = PassthroughRelay<WeakViewController>()
     public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
     public let addRecipientButtonDidTap = PassthroughRelay<WeakViewController>()
-    public let selectedRecipient = CurrentValueRelay<String?>(nil)
+    public let selectedRecipient = CurrentValueRelay<SearchRecipient?>(nil)
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
@@ -92,10 +99,12 @@ class ComposeMessageViewModel: ObservableObject {
 
     private func messageParameters() -> MessageParameters? {
         guard let courseID = selectedCourse?.courseId else { return nil }
+        let recipientIDs = recipients.map { $0.id }
+
         return MessageParameters(
             subject: subject,
             body: bodyText,
-            recipientIDs: recipients,
+            recipientIDs: recipientIDs,
             context: .course(courseID)
         )
     }

@@ -124,10 +124,22 @@ public struct ComposeMessageView: View {
             Text("To")
                 .font(.medium16)
                 .foregroundColor(.textDark)
-            Spacer()
+            if model.recipients.isEmpty {
+                Spacer()
+            } else {
+                recipientsView
+            }
             addRecipientButton
         }
         .padding(.horizontal, 16).padding(.vertical, 12)
+    }
+
+    private var recipientsView: some View {
+        HStack {
+            ForEach(model.recipients, id: \.id) { recipient in
+                RecipientPillView(recipient: recipient)
+            }
+        }
     }
 
     private var subjectView: some View {

@@ -16,14 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import CombineExt
+import SwiftUI
 
-public enum AddressBookAssembly {
+public struct RecipientPillView: View {
 
-    public static func makeAddressbookViewController(env: AppEnvironment = .shared, courseID: String, recipientDidSelect: CurrentValueRelay<SearchRecipient?>) -> UIViewController {
-        let interactor = AddressbookInteractorLive(env: env, courseID: courseID)
-        let viewModel = AddressbookViewModel(router: env.router, interactor: interactor, recipientDidSelect: recipientDidSelect)
-        let view = AddressbookView(model: viewModel)
-        return CoreHostingController(view)
+    private let recipient: SearchRecipient
+
+    public init(recipient: SearchRecipient) {
+        self.recipient = recipient
     }
+
+    public var body: some View {
+        HStack(spacing: 0) {
+            Avatar(name: recipient.name, url: recipient.avatarURL)
+            Text(recipient.name)
+        }
+        .overlay(
+               RoundedRectangle(cornerRadius: 16)
+                   .stroke(.blue, lineWidth: 4)
+           )    }
 }
