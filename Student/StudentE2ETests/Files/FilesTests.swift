@@ -32,6 +32,7 @@ class FilesTests: E2ETestCase {
         // MARK: Download and save test PDF file
         Helper.TestPDF.download()
         app.activate()
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 30))
 
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
