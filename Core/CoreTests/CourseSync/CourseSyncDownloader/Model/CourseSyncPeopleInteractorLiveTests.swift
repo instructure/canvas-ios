@@ -35,6 +35,7 @@ class CourseSyncPeopleInteractorLiveTests: CoreTestCase {
     }
 
     override func tearDown() {
+        super.tearDown()
         testee = nil
     }
 
