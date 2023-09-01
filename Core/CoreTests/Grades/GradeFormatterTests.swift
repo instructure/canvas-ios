@@ -87,13 +87,22 @@ class GradeFormatterTests: CoreTestCase {
     }
 
     func testDecimalsScoresHidden() {
+        _ = Course.save(.make(grading_scheme: [
+            [
+                .init(value1: "A", value2: nil),
+                .init(value1: nil, value2: 0.0),
+            ],
+        ]), in: databaseClient)
+        let assignment = Assignment.save(.make(), in: databaseClient, updateSubmission: false, updateScoreStatistics: false)
+        let submission = Submission.save(.make(), in: databaseClient)
+        submission.assignment = assignment
         formatter.hideScores = true
         formatter.gradeStyle = .short
         formatter.gradingType = .points
         submission.score = 1.05
-        XCTAssertEqual(formatter.string(from: submission), nil)
+        XCTAssertEqual(formatter.string(from: submission), "A")
         submission.score = 1.0005
-        XCTAssertEqual(formatter.string(from: submission), nil)
+        XCTAssertEqual(formatter.string(from: submission), "A")
     }
 
     func testNilSubmission() {
@@ -173,7 +182,7 @@ class GradeFormatterTests: CoreTestCase {
         submission.grade = "incomplete"
         XCTAssertEqual(formatter.string(from: submission), "Incomplete")
         submission.grade = "something else"
-        XCTAssertEqual(formatter.string(from: submission), "-")
+        XCTAssertNil(formatter.string(from: submission))
 
         formatter.gradeStyle = .medium
         submission.grade = "complete"
@@ -202,18 +211,28 @@ class GradeFormatterTests: CoreTestCase {
     }
 
     func testPointsScoresHidden() {
+        _ = Course.save(.make(grading_scheme: [
+            [
+                .init(value1: "A", value2: nil),
+                .init(value1: nil, value2: 0.0),
+            ],
+        ]), in: databaseClient)
+        let assignment = Assignment.save(.make(), in: databaseClient, updateSubmission: false, updateScoreStatistics: false)
+        let submission = Submission.save(.make(), in: databaseClient)
+        submission.assignment = assignment
+
         submission.score = 5
         formatter.pointsPossible = 5
         formatter.hideScores = true
         formatter.gradingType = .points
 
         formatter.gradeStyle = .short
-        XCTAssertEqual(formatter.string(from: submission), nil)
-        XCTAssertEqual(formatter.a11yString(from: submission), nil)
+        XCTAssertEqual(formatter.string(from: submission), "A")
+        XCTAssertEqual(formatter.a11yString(from: submission), "A")
 
         formatter.gradeStyle = .medium
-        XCTAssertEqual(formatter.string(from: submission), nil)
-        XCTAssertEqual(formatter.a11yString(from: submission), nil)
+        XCTAssertEqual(formatter.string(from: submission), "A")
+        XCTAssertEqual(formatter.a11yString(from: submission), "A")
     }
 
     func testGPAScale() {
@@ -260,6 +279,16 @@ class GradeFormatterTests: CoreTestCase {
     }
 
     func testPercentScoresHidden() {
+        _ = Course.save(.make(grading_scheme: [
+            [
+                .init(value1: "A", value2: nil),
+                .init(value1: nil, value2: 0.0),
+            ],
+        ]), in: databaseClient)
+        let assignment = Assignment.save(.make(), in: databaseClient, updateSubmission: false, updateScoreStatistics: false)
+        let submission = Submission.save(.make(), in: databaseClient)
+        submission.assignment = assignment
+
         formatter.hideScores = true
         formatter.gradeStyle = .short
         formatter.gradingType = .percent
@@ -268,8 +297,8 @@ class GradeFormatterTests: CoreTestCase {
 
         formatter.gradeStyle = .medium
         submission.score = 5
-        XCTAssertEqual(formatter.string(from: submission), nil)
-        XCTAssertEqual(formatter.a11yString(from: submission), nil)
+        XCTAssertEqual(formatter.string(from: submission), "A")
+        XCTAssertEqual(formatter.a11yString(from: submission), "A")
     }
 
     func testLetterGrade() {

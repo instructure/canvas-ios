@@ -23,6 +23,7 @@ import TestsFoundation
 import XCTest
 
 class CourseSyncProgressInteractorLiveTests: CoreTestCase {
+    private var listInteractor: CourseSyncListInteractor!
     private var entryComposerInteractorMock: CourseSyncEntryComposerInteractorMock!
     private var progressObserverInteractorMock: CourseSyncProgressObserverInteractorMock!
     private var sesssionDefaults: SessionDefaults!
@@ -32,9 +33,15 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
         entryComposerInteractorMock = CourseSyncEntryComposerInteractorMock()
         progressObserverInteractorMock = CourseSyncProgressObserverInteractorMock()
         sesssionDefaults = SessionDefaults(sessionID: "uniqueID")
+        listInteractor = CourseSyncListInteractorLive(
+            entryComposerInteractor: entryComposerInteractorMock,
+            sessionDefaults: sesssionDefaults,
+            scheduler: .immediate
+        )
     }
 
     override func tearDown() {
+        listInteractor = nil
         entryComposerInteractorMock = nil
         progressObserverInteractorMock = nil
         sesssionDefaults = nil
@@ -44,7 +51,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
     func testCourseSelection() {
         // GIVEN
         let testee = CourseSyncProgressInteractorLive(
-            entryComposerInteractor: entryComposerInteractorMock,
+            courseSyncListInteractor: listInteractor,
             progressObserverInteractor: progressObserverInteractorMock,
             sessionDefaults: sesssionDefaults
         )
@@ -80,7 +87,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
     func testPartialSelection() {
         // GIVEN
         let testee = CourseSyncProgressInteractorLive(
-            entryComposerInteractor: entryComposerInteractorMock,
+            courseSyncListInteractor: listInteractor,
             progressObserverInteractor: progressObserverInteractorMock,
             sessionDefaults: sesssionDefaults
         )
@@ -117,7 +124,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
     func testNoPreviousSelection() {
         // GIVEN
         let testee = CourseSyncProgressInteractorLive(
-            entryComposerInteractor: entryComposerInteractorMock,
+            courseSyncListInteractor: listInteractor,
             progressObserverInteractor: progressObserverInteractorMock,
             sessionDefaults: sesssionDefaults
         )
@@ -149,7 +156,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
     func testDownloadedEntryProgress() {
         // GIVEN
         let testee = CourseSyncProgressInteractorLive(
-            entryComposerInteractor: entryComposerInteractorMock,
+            courseSyncListInteractor: listInteractor,
             progressObserverInteractor: progressObserverInteractorMock,
             sessionDefaults: sesssionDefaults,
             scheduler: .immediate
@@ -222,7 +229,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
     func testFailedEntryProgress() {
         // GIVEN
         let testee = CourseSyncProgressInteractorLive(
-            entryComposerInteractor: entryComposerInteractorMock,
+            courseSyncListInteractor: listInteractor,
             progressObserverInteractor: progressObserverInteractorMock,
             sessionDefaults: sesssionDefaults,
             scheduler: .immediate
@@ -263,7 +270,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
     func testRetry() {
         // GIVEN
         let testee = CourseSyncProgressInteractorLive(
-            entryComposerInteractor: entryComposerInteractorMock,
+            courseSyncListInteractor: listInteractor,
             progressObserverInteractor: progressObserverInteractorMock,
             sessionDefaults: sesssionDefaults,
             scheduler: .immediate
@@ -338,7 +345,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
     func testCancel() {
         // GIVEN
         let testee = CourseSyncProgressInteractorLive(
-            entryComposerInteractor: entryComposerInteractorMock,
+            courseSyncListInteractor: listInteractor,
             progressObserverInteractor: progressObserverInteractorMock,
             sessionDefaults: sesssionDefaults,
             scheduler: .immediate

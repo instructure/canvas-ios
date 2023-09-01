@@ -25,7 +25,7 @@ protocol CourseSyncSelectorInteractor: AnyObject {
      - parameters:
         - sessionDefaults: The storage from where the selection states are read and written to.
      */
-    init(courseID: String?, entryComposerInteractor: CourseSyncEntryComposerInteractor, sessionDefaults: SessionDefaults)
+    init(courseID: String?, courseSyncListInteractor: CourseSyncListInteractor, sessionDefaults: SessionDefaults)
     func getCourseSyncEntries() -> AnyPublisher<[CourseSyncEntry], Error>
     func observeSelectedCount() -> AnyPublisher<Int, Never>
     func observeIsEverythingSelected() -> AnyPublisher<Bool, Never>
@@ -37,35 +37,34 @@ protocol CourseSyncSelectorInteractor: AnyObject {
 }
 
 final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
-    private let courseListStore = ReactiveStore(
-        useCase: GetCourseSyncSelectorCourses()
-    )
     private let courseSyncEntries = CurrentValueSubject<[CourseSyncEntry], Error>(.init())
     private var subscriptions = Set<AnyCancellable>()
     private let courseID: String?
-    private let entryComposerInteractor: CourseSyncEntryComposerInteractor
+    private let courseSyncListInteractor: CourseSyncListInteractor
     private var sessionDefaults: SessionDefaults
 
     init(
         courseID: String? = nil,
-        entryComposerInteractor: CourseSyncEntryComposerInteractor = CourseSyncEntryComposerInteractorLive(),
-        sessionDefaults: SessionDefaults
+        courseSyncListInteractor: CourseSyncListInteractor = CourseSyncListInteractorLive(),
+        sessionDefaults: SessionDefaults = AppEnvironment.shared.userDefaults ?? .fallback
     ) {
         self.courseID = courseID
-        self.entryComposerInteractor = entryComposerInteractor
+        self.courseSyncListInteractor = courseSyncListInteractor
         self.sessionDefaults = sessionDefaults
     }
 
     // MARK: - Public Interface
 
     func getCourseSyncEntries() -> AnyPublisher<[CourseSyncEntry], Error> {
-        courseListStore.getEntities()
-            .filterToCourseID(courseID)
-            .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
-            .flatMap { self.entryComposerInteractor.composeEntry(from: $0, useCache: false) }
-            .collect()
-            .replaceEmpty(with: [])
-            .receive(on: DispatchQueue.main)
+        let publisher: AnyPublisher<[CourseSyncEntry], Error>
+
+        if let courseID {
+            publisher = courseSyncListInteractor.getCourseSyncEntries(filter: .courseID(courseID))
+        } else {
+            publisher = courseSyncListInteractor.getCourseSyncEntries(filter: .all)
+        }
+
+        return publisher
             .handleEvents(
                 receiveOutput: { self.courseSyncEntries.send($0) },
                 receiveCompletion: { completion in
@@ -77,7 +76,6 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
                     }
                 }
             )
-            .flatMap { self.applySelectionsFromPreviousSession($0) }
             .flatMap { _ in self.courseSyncEntries.eraseToAnyPublisher() }
             .eraseToAnyPublisher()
     }
@@ -174,32 +172,5 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
             .replaceNil(with: "")
             .replaceError(with: "")
             .eraseToAnyPublisher()
-    }
-
-    // MARK: - Private Methods
-
-    private func applySelectionsFromPreviousSession(_ entries: [CourseSyncEntry])
-        -> AnyPublisher<[CourseSyncEntry], Never> {
-        Future<[CourseSyncEntry], Never> { [sessionDefaults, weak self] promise in
-            sessionDefaults.offlineSyncSelections
-                .compactMap { $0.toCourseEntrySelection(from: entries) }
-                .forEach { self?.setSelected(selection: $0, selectionState: .selected) }
-            promise(.success(entries))
-        }.eraseToAnyPublisher()
-    }
-}
-
-private extension AnyPublisher<[CourseSyncSelectorCourse], Error> {
-    func filterToCourseID(_ courseID: String?) -> AnyPublisher<[CourseSyncSelectorCourse], Error> {
-        map { [courseID] courses in
-            guard let courseID else {
-                return courses
-            }
-
-            return courses.filter {
-                $0.courseId == courseID
-            }
-        }
-        .eraseToAnyPublisher()
     }
 }

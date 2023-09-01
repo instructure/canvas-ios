@@ -279,6 +279,6 @@ class GradeCircleViewTests: CoreTestCase {
         XCTAssertEqual(view.gradeCircle?.progress, 1)
         XCTAssertEqual(view.gradeCircle?.accessibilityLabel, nil)
         XCTAssertTrue(view.displayGrade.isHidden)
-        XCTAssertEqual(view.displayGrade.text, "")
+        XCTAssertEqual(view.displayGrade.text, "-")
     }
 }
