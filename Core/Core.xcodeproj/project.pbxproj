@@ -118,6 +118,7 @@
 		12C9F3717527699528FEE769 /* Scope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276E30DBDC4251ACD3C6374B /* Scope.swift */; };
 		12F04503B4F36B1E39B37CF0 /* GetDiscussionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF76AA92A0745A9D16189BB8 /* GetDiscussionsTests.swift */; };
 		13075C932066B5572FBF3026 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BFB4485D98F655F81BEC4BD /* TestsFoundation.framework */; };
+		1326B52D264490D7958690D3 /* OfflineSyncBackgroundTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112289B17CC6225129604FB1 /* OfflineSyncBackgroundTaskTests.swift */; };
 		133EEF7ACD45A1F1FD3DD3A3 /* FileSubmissionErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AB080AC1303FBA3B9B77633 /* FileSubmissionErrors.swift */; };
 		138442647B5457C467F6106E /* IDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE2E90722DA48FE7D706B2B /* IDTests.swift */; };
 		13AAAEE87EB5FD6AC6D6C3FA /* DiscussionListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BD338D1F8F950877136F98 /* DiscussionListViewController.swift */; };
@@ -1757,6 +1758,7 @@
 		10D2891E84B40A1C396F7C7C /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
 		10E783D9A7E968F54EB8AFAB /* ConferencesPanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferencesPanda.swift; sourceTree = "<group>"; };
 		10F178FA8256417FC5BF59B8 /* GradeFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeFormatterTests.swift; sourceTree = "<group>"; };
+		112289B17CC6225129604FB1 /* OfflineSyncBackgroundTaskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineSyncBackgroundTaskTests.swift; sourceTree = "<group>"; };
 		112A894D15018FF01042BDF4 /* UserSettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsTests.swift; sourceTree = "<group>"; };
 		1133315F37110C2A7D8931D5 /* PlannerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerListViewController.swift; sourceTree = "<group>"; };
 		113D33FE1948CCBB21332F75 /* GetContextHead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextHead.swift; sourceTree = "<group>"; };
@@ -5182,6 +5184,7 @@
 		57134DDA24547C9F07DF08CA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				112289B17CC6225129604FB1 /* OfflineSyncBackgroundTaskTests.swift */,
 				5D8F3AF71FE72EAF60E76FAB /* OfflineSyncNextDateTests.swift */,
 			);
 			path = Model;
@@ -9363,6 +9366,7 @@
 				ABACC6D11460D467E8CB21A4 /* OfflineBannerViewModelTests.swift in Sources */,
 				28BDE77AD3F0D5E27CEB14B9 /* OfflineModeInteractorTests.swift in Sources */,
 				ABEF4C94F203A79C882FD6D9 /* OfflineModeViewModelTests.swift in Sources */,
+				1326B52D264490D7958690D3 /* OfflineSyncBackgroundTaskTests.swift in Sources */,
 				5257A5286B5901FB730AB65D /* OfflineSyncNextDateTests.swift in Sources */,
 				5C9304B5AD56EFF156F8C3A8 /* OnElementAppearTests.swift in Sources */,
 				2911ECDF66416CF9F2624F2E /* PSPDFAnnotationExtensionTests.swift in Sources */,

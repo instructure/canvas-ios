@@ -21,6 +21,7 @@ import Foundation
 public enum CourseSyncBackgroundUpdatesAssembly {
 
     public static func makeOfflineSyncBackgroundTask() -> BackgroundTask {
-        OfflineSyncBackgroundTask()
+        OfflineSyncBackgroundTask(nextSyncDate: OfflineSyncNextDate(),
+                                  sessions: LoginSession.sessions)
     }
 }
