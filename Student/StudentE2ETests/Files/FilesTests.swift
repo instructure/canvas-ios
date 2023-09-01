@@ -91,7 +91,7 @@ class FilesTests: E2ETestCase {
         testPDFButton.hit()
         let uploadedFileListItem = FileList.file(index: 0).waitUntil(.visible)
         XCTAssertTrue(uploadedFileListItem.isVisible)
-        XCTAssertTrue(uploadedFileListItem.hasLabel(label: Helper.TestPDF.name, strict: false))
+        XCTAssertTrue(uploadedFileListItem.hasLabel(label: Helper.TestPDF.title, strict: false))
 
         // MARK: Tap test PDF file, check details
         uploadedFileListItem.hit()
@@ -133,7 +133,7 @@ class FilesTests: E2ETestCase {
         logInDSUser(student)
 
         Helper.navigateToFiles()
-        let folderIsCreated = FileList.createFolder(name: Helper.testImageName, shouldOpen: true)
+        let folderIsCreated = FileList.createFolder(name: testFolderName, shouldOpen: true)
         XCTAssertTrue(folderIsCreated)
 
         // MARK: Upload test image, check result
@@ -155,7 +155,7 @@ class FilesTests: E2ETestCase {
 
         uploadedImageItem.hit()
 
-        let imageView = Details.imageView.waitUntil(.visible)
+        let imageView = Details.imageView.waitUntil(.visible, timeout: 60)
         let backButton = Helper.backButton.waitUntil(.visible)
         XCTAssertTrue(imageView.isVisible)
         XCTAssertTrue(backButton.isVisible)

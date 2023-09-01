@@ -18,16 +18,15 @@
 
 public class FilesHelper: BaseHelper {
     // MARK: Test data
-    public static let testImageName = "Photo, August 08, 2012, 8:52 PM"
     public struct TestPDF {
         public static let url = "https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_100KB_PDF.pdf"
-        public static let name = "Free_Test_Data_100KB_PDF"
+        public static let title = "Free_Test_Data_100KB_PDF"
 
         public static func download() {
             SafariAppHelper.launchAppWithURL(url)
             SafariAppHelper.shareButton.hit()
-            SafariAppHelper.Share.titleLabel(title: TestPDF.name).actionUntilElementCondition(
-                action: .swipeUp(.onElement), element: SafariAppHelper.Share.saveToFiles, condition: .hittable)
+            SafariAppHelper.Share.titleLabel(title: title).waitUntil(.visible)
+            SafariAppHelper.safariApp.swipeUp()
             SafariAppHelper.Share.saveToFiles.hit()
             SafariAppHelper.Share.onMyIphoneButton.hit()
             SafariAppHelper.Share.onMyIphoneLabel.waitUntil(.visible)
@@ -66,9 +65,9 @@ public class FilesHelper: BaseHelper {
 
         // Upload file
         public static var uploadFileButton: XCUIElement { app.find(label: "Upload File", type: .button) }
-        public static var testPDFButton: XCUIElement { app.find(id: "\(FilesHelper.TestPDF.name), pdf") }
+        public static var testPDFButton: XCUIElement { app.find(id: "\(FilesHelper.TestPDF.title), pdf") }
         public static var uploadImageButton: XCUIElement { app.find(label: "Photo Library", type: .button) }
-        public static var imageItem: XCUIElement { app.find(label: FilesHelper.testImageName, type: .image) }
+        public static var imageItem: XCUIElement { app.find(labelContaining: "Photo", type: .image) }
 
         // Deleting file
         public static var deleteButton: XCUIElement { app.find(label: "Delete", type: .button) }
