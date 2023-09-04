@@ -23,6 +23,7 @@ public class SafariAppHelper: BaseHelper {
     public static var URL: XCUIElement { safariApp.find(id: "URL") }
     public static var shareButton: XCUIElement { safariApp.find(id: "ShareButton") }
     public static var clearTextButton: XCUIElement { safariApp.find(id: "ClearTextButton") }
+    public static var replaceButton: XCUIElement { safariApp.find(label: "Replace", type: .button) }
 
     public static var browserURL: String {
         safariApp.activate()
@@ -30,15 +31,6 @@ public class SafariAppHelper: BaseHelper {
         tabBarItemTitle.hit()
         let url = URL.waitUntil(.visible).value as? String ?? ""
         return url
-    }
-
-    public static func launchAppWithURL(_ url: String) {
-        safariApp.launch()
-        tabBarItemTitle.hit()
-        if clearTextButton.waitUntil(.hittable, timeout: 5).isVisible {
-            clearTextButton.hit()
-        }
-        URL.writeText(text: url, hitGo: true, customApp: safariApp)
     }
 
     public struct Share {

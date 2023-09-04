@@ -28,11 +28,53 @@ class FilesTests: E2ETestCase {
 
     let testFolderName = "Test Folder"
 
+    func downloadTestPDF() {
+        SafariAppHelper.safariApp.launch()
+        let tabBarItemTitle = SafariAppHelper.tabBarItemTitle.waitUntil(.visible)
+        XCTAssertTrue(tabBarItemTitle.isVisible)
+
+        tabBarItemTitle.hit()
+        let clearTextButton = SafariAppHelper.clearTextButton.waitUntil(.visible, timeout: 5)
+        if clearTextButton.isVisible { clearTextButton.hit() }
+        let UrlField = SafariAppHelper.URL.waitUntil(.visible)
+        XCTAssertTrue(UrlField.isVisible)
+
+        UrlField.writeText(text: FilesHelper.TestPDF.url, hitGo: true, customApp: SafariAppHelper.safariApp)
+
+        let shareButton = SafariAppHelper.shareButton.waitUntil(.visible)
+        XCTAssertTrue(shareButton.isVisible)
+
+        shareButton.hit()
+        let titleOfFile = SafariAppHelper.Share.titleLabel(title: FilesHelper.TestPDF.title).waitUntil(.visible)
+        XCTAssertTrue(titleOfFile.isVisible)
+
+        SafariAppHelper.safariApp.swipeUp()
+        let saveToFilesButton = SafariAppHelper.Share.saveToFiles.waitUntil(.visible)
+        XCTAssertTrue(saveToFilesButton.isVisible)
+
+        saveToFilesButton.hit()
+        let onMyIphoneButton = SafariAppHelper.Share.onMyIphoneButton.waitUntil(.visible)
+        XCTAssertTrue(onMyIphoneButton.isVisible)
+
+        onMyIphoneButton.hit()
+        let onMyIphoneLabel = SafariAppHelper.Share.onMyIphoneLabel.waitUntil(.visible)
+        XCTAssertTrue(onMyIphoneLabel.isVisible)
+
+        let saveButton = SafariAppHelper.Share.saveButton.waitUntil(.visible)
+        XCTAssertTrue(saveButton.isVisible)
+
+        saveButton.hit()
+        let replaceButton = SafariAppHelper.replaceButton.waitUntil(.visible, timeout: 5)
+        if replaceButton.isVisible { replaceButton.hit() }
+
+        sleep(5) // Waiting a bit for the download to finish
+    }
+
     func testCreateTestFolderAndUploadPDF() {
         // MARK: Download and save test PDF file
-        Helper.TestPDF.download()
+        downloadTestPDF()
         app.activate()
-        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 30))
+        XCTAssertTrue(app.wait(for: .runningForeground, timeout: 10))
 
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
@@ -91,6 +133,11 @@ class FilesTests: E2ETestCase {
 
         uploadFileButton.hit()
         XCTAssertTrue(uploadFileButton.waitUntil(.vanish).isVanished)
+
+        let browseButton = FileList.browseButton.waitUntil(.visible)
+        XCTAssertTrue(browseButton.isVisible)
+
+        if !browseButton.isSelected { browseButton.hit() }
 
         let testPDFButton = FileList.testPDFButton.waitUntil(.visible)
         XCTAssertTrue(testPDFButton.isVisible)

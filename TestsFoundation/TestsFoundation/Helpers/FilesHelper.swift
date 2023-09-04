@@ -21,17 +21,6 @@ public class FilesHelper: BaseHelper {
     public struct TestPDF {
         public static let url = "https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_100KB_PDF.pdf"
         public static let title = "Free_Test_Data_100KB_PDF"
-
-        public static func download() {
-            SafariAppHelper.launchAppWithURL(url)
-            SafariAppHelper.shareButton.hit()
-            SafariAppHelper.Share.titleLabel(title: title).waitUntil(.visible)
-            SafariAppHelper.safariApp.swipeUp()
-            SafariAppHelper.Share.saveToFiles.hit()
-            SafariAppHelper.Share.onMyIphoneButton.hit()
-            SafariAppHelper.Share.onMyIphoneLabel.waitUntil(.visible)
-            SafariAppHelper.Share.saveButton.hit()
-        }
     }
 
     // MARK: UI Elements
@@ -68,6 +57,7 @@ public class FilesHelper: BaseHelper {
         public static var testPDFButton: XCUIElement { app.find(id: "\(FilesHelper.TestPDF.title), pdf") }
         public static var uploadImageButton: XCUIElement { app.find(label: "Photo Library", type: .button) }
         public static var imageItem: XCUIElement { app.find(labelContaining: "Photo", type: .image) }
+        public static var browseButton: XCUIElement { app.find(label: "Browse", type: .button) }
 
         // Deleting file
         public static var deleteButton: XCUIElement { app.find(label: "Delete", type: .button) }
