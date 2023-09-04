@@ -25,7 +25,7 @@ public enum CourseSyncBackgroundUpdatesAssembly {
                                   sessions: LoginSession.sessions)
     }
 
-    public static func makeTaskRequest() -> BGProcessingTaskRequest {
+    public static func makeTaskRequest() -> BGProcessingTaskRequest? {
         OfflineSyncBackgroundTaskRequest(nextSyncDate: OfflineSyncNextDate(),
                                          sessions: LoginSession.sessions)
     }

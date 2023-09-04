@@ -21,11 +21,11 @@ import BackgroundTasks
 public class OfflineSyncBackgroundTaskRequest: BGProcessingTaskRequest {
     public static let ID = "com.instructure.icanvas.offline-sync"
 
-    // TODO: Return nil if there's no `earliestBeginDate`, there's no point of scheduling background work without syncable accounts
-    public init(nextSyncDate: OfflineSyncNextDate, sessions: Set<LoginSession>) {
+    public init?(nextSyncDate: OfflineSyncNextDate, sessions: Set<LoginSession>) {
+        guard let nextSyncDate = nextSyncDate.calculate(sessionUniqueIDs: sessions.map { $0.uniqueID }) else { return nil }
         super.init(identifier: Self.ID)
         requiresExternalPower = false
         requiresNetworkConnectivity = true
-        earliestBeginDate = nextSyncDate.calculate(sessionUniqueIDs: sessions.map { $0.uniqueID })
+        earliestBeginDate = nextSyncDate
     }
 }

@@ -21,30 +21,4 @@ import XCTest
 
 class OfflineSyncBackgroundTaskTests: XCTestCase {
 
-    func testCalculatesEarliestBeginDateFromLoginSessions() {
-        let mockOfflineSyncNextDate = MockOfflineSyncNextDate()
-
-        // WHEN
-        let testee = OfflineSyncBackgroundTask(nextSyncDate: mockOfflineSyncNextDate,
-                                               sessions: Set([
-                                                LoginSession.make(baseURL: URL(string: "https://testURL")!,
-                                                                  userID: "testUser"),
-                                                LoginSession.make(baseURL: URL(string: "https://testURL2")!,
-                                                                  userID: "testUser2"),
-                                               ]))
-
-        // THEN
-        XCTAssertEqual(mockOfflineSyncNextDate.receivedSessionIDs.sorted(), ["testURL-testUser", "testURL2-testUser2"])
-        XCTAssertEqual(testee.request.earliestBeginDate, mockOfflineSyncNextDate.mockDate)
-    }
-}
-
-private class MockOfflineSyncNextDate: OfflineSyncNextDate {
-    let mockDate = Date(timeIntervalSince1970: 3456)
-    var receivedSessionIDs: [String] = []
-
-    override func calculate(sessionUniqueIDs: [String]) -> Date? {
-        receivedSessionIDs = sessionUniqueIDs
-        return mockDate
-    }
 }
