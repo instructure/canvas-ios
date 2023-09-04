@@ -56,7 +56,6 @@ public struct BackgroundProcessingInteractor {
         }
     }
 
-    // TODO: Change to receive task ID instead
     public func cancel(taskID: String) {
         scheduler.cancel(taskRequestWithIdentifier: taskID)
     }

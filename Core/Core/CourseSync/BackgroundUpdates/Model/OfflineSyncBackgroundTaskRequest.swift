@@ -21,6 +21,7 @@ import BackgroundTasks
 public class OfflineSyncBackgroundTaskRequest: BGProcessingTaskRequest {
     public static let ID = "com.instructure.icanvas.offline-sync"
 
+    // TODO: Return nil if there's no `earliestBeginDate`, there's no point of scheduling background work without syncable accounts
     public init(nextSyncDate: OfflineSyncNextDate, sessions: Set<LoginSession>) {
         super.init(identifier: Self.ID)
         requiresExternalPower = false
