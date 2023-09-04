@@ -98,6 +98,7 @@ public struct ComposeMessageView: View {
             individualView
         }
     }
+
     private var courseView: some View {
         Button(action: {
             model.courseSelectButtonDidTap(viewController: controller)
@@ -124,11 +125,10 @@ public struct ComposeMessageView: View {
             Text("To")
                 .font(.medium16)
                 .foregroundColor(.textDark)
-            if model.recipients.isEmpty {
-                Spacer()
-            } else {
+            if !model.recipients.isEmpty {
                 recipientsView
             }
+            Spacer()
             addRecipientButton
         }
         .padding(.horizontal, 16).padding(.vertical, 12)
@@ -137,7 +137,8 @@ public struct ComposeMessageView: View {
     private var recipientsView: some View {
         HStack {
             ForEach(model.recipients, id: \.id) { recipient in
-                RecipientPillView(recipient: recipient)
+                RecipientPillView(recipient: recipient, removeDidTap: { recipient in model.removeRecipientButtonDidTap(recipient: recipient)
+                })
             }
         }
     }

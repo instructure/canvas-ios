@@ -84,6 +84,10 @@ class ComposeMessageViewModel: ObservableObject {
         router.show(addressbook, from: viewController)
     }
 
+    public func removeRecipientButtonDidTap(recipient: SearchRecipient) {
+        recipients.removeAll { $0 == recipient}
+    }
+
     private func setupOutputBindings() {
         interactor.state
                 .assign(to: &$state)

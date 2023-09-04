@@ -63,3 +63,22 @@ public final class SearchRecipient: NSManagedObject {
         return commonCourses.first { $0.courseID == context.id && Role(rawValue: $0.role) == role } != nil
     }
 }
+
+#if DEBUG
+
+public extension SearchRecipient {
+    static func make(id: String = "0",
+                     name: String = "Bob, Alice",
+                     in context: NSManagedObjectContext)
+    -> SearchRecipient {
+        let mockObject: SearchRecipient = context.insert()
+        mockObject.id = id
+        mockObject.name = name
+        mockObject.fullName = name
+        mockObject.filter = ""
+        mockObject.commonCourses = []
+        return mockObject
+    }
+}
+
+#endif

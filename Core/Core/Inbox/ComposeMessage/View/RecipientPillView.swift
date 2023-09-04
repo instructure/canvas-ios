@@ -21,18 +21,50 @@ import SwiftUI
 public struct RecipientPillView: View {
 
     private let recipient: SearchRecipient
+    private var removeDidTap: (SearchRecipient) -> Void
 
-    public init(recipient: SearchRecipient) {
+    public init(recipient: SearchRecipient, removeDidTap: @escaping (SearchRecipient) -> Void) {
         self.recipient = recipient
+        self.removeDidTap = removeDidTap
     }
 
     public var body: some View {
         HStack(spacing: 0) {
-            Avatar(name: recipient.name, url: recipient.avatarURL)
+            Avatar(name: recipient.name, url: recipient.avatarURL, size: 26)
             Text(recipient.name)
+                .font(.regular14)
+                .foregroundColor(.textDark)
+                .padding(.leading, 2)
+            removeButton
         }
+        .padding(1)
         .overlay(
-               RoundedRectangle(cornerRadius: 16)
-                   .stroke(.blue, lineWidth: 4)
-           )    }
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(Color.textDark, lineWidth: 0.5)
+        )
+    }
+
+    private var removeButton: some View {
+        Button(action: {
+            removeDidTap(recipient)
+        }, label: {
+            Image.xLine
+                .frame(width: 9, height: 9)
+                .foregroundColor(.textDark)
+                .padding(.horizontal, 2)
+        })
+        .accessibility(label: Text("Remove recipient", bundle: .core))
+    }
 }
+
+#if DEBUG
+
+struct RecipientPillView_Previews: PreviewProvider {
+    static let context = PreviewEnvironment().globalDatabase.viewContext
+
+    static var previews: some View {
+        RecipientPillView(recipient: SearchRecipient.make(in: context), removeDidTap: {_ in })
+    }
+}
+
+#endif
