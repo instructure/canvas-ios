@@ -33,20 +33,37 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
 
+    /**
+     - parameters:
+        - offlineModeInteractor: This is used to determine if the feature flag is turned on. If it's off then
+     we don't subscribe to CoreData updates to save some CPU time.
+     */
     public init(interactor: CourseSyncProgressObserverInteractor,
+                offlineModeInteractor: OfflineModeInteractor,
                 router: Router,
                 scheduler: AnySchedulerOf<DispatchQueue> = .main) {
         self.interactor = interactor
         self.router = router
         self.scheduler = scheduler
 
-        setupProgressUpdates()
+        guard offlineModeInteractor.isFeatureFlagEnabled() else { return }
+
+        let downloadProgressPublisher = interactor
+            .observeDownloadProgress()
+            .share()
+            .makeConnectable()
+
+        setupProgressUpdates(downloadProgressPublisher)
         setupAutoAppearanceOnSyncStart()
         setupAutoHideOnSyncCancel()
-        setupAutoDismissUponCompletion()
+        setupAutoDismissUponCompletion(downloadProgressPublisher)
         setupSubtitleCounterUpdates()
         handleDismissTap()
         handleCardTap()
+
+        downloadProgressPublisher
+            .connect()
+            .store(in: &subscriptions)
     }
 
     private func setupSubtitleCounterUpdates() {
@@ -61,17 +78,15 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
             .assign(to: &$subtitle)
     }
 
-    private func setupProgressUpdates() {
-        interactor
-            .observeDownloadProgress()
+    private func setupProgressUpdates(_ downloadProgress: some Publisher<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never>) {
+        downloadProgress
             .map { $0.firstItem?.progress ?? 0 }
             .receive(on: scheduler)
             .assign(to: &$progress)
     }
 
-    private func setupAutoDismissUponCompletion() {
-        interactor
-            .observeDownloadProgress()
+    private func setupAutoDismissUponCompletion(_ downloadProgress: some Publisher<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never>) {
+        downloadProgress
             .map { $0.firstItem?.progress ?? 0 }
             .filter { $0 >= 1 }
             .mapToValue(false)
