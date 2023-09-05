@@ -24,13 +24,17 @@ public struct CourseDetailsCellView: View {
     @ScaledMetric private var uiScale: CGFloat = 1
 
     @ObservedObject private var viewModel: CourseDetailsCellViewModel
-
+    @StateObject private var offlineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
+    var isAvailable: Binding<Bool> {
+        Binding<Bool>(get: { return !self.offlineModeViewModel.isOffline || self.viewModel.isSupportedOffline },
+                      set: { _ in })
+    }
     public init(viewModel: CourseDetailsCellViewModel) {
         self.viewModel = viewModel
     }
 
     public var body: some View {
-        Button {
+        PrimaryButton(isAvailable: isAvailable) {
             viewModel.selected(router: env.router, viewController: controller)
         } label: {
             HStack(spacing: 12) {

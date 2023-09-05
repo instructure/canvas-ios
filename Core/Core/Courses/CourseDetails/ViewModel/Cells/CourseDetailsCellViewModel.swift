@@ -26,6 +26,7 @@ public class CourseDetailsCellViewModel: Equatable, Identifiable, ObservableObje
     @Published public var showGenericError: Bool = false
     @Published public internal(set) var accessoryIconType: AccessoryType
     @Published public var isHighlighted = false
+    @Published public var isSupportedOffline: Bool = false
     public let a11yIdentifier: String
     public let courseColor: UIColor
     public let iconImage: UIImage
