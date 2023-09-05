@@ -16,17 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import XCTest
 import TestsFoundation
 
-class ActAsUserTests: CoreUITestCase {
-    // TODO: Make it use DataSeeder
-    override var user: UITestUser? { return .readAdmin1 }
-
+class ActAsUserTests: E2ETestCase {
     func testActAsUser() {
-        let profileButton = DashboardHelper.profileButton.hit()
+        // MARK: Seed the usual stuff
+        let admin = seeder.createAdminUser()
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+
+        // MARK: Get the user logged in, check "Act As User"
+        logInDSUser(admin)
+
+        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
+        XCTAssertTrue(profileButton.isVisible)
+
+        profileButton.hit()
         let userNameLabel = ProfileHelper.userNameLabel.waitUntil(.visible)
-        XCTAssertTrue(userNameLabel.waitUntil(.visible).hasLabel(label: "Admin One"))
+        XCTAssertTrue(userNameLabel.hasLabel(label: admin.name))
 
         var actAsUserButton = ProfileHelper.actAsUserButton.waitUntil(.visible)
         XCTAssertTrue(actAsUserButton.isVisible)
@@ -35,20 +43,22 @@ class ActAsUserTests: CoreUITestCase {
         let userIDField = ActAsUserHelper.userIDField.waitUntil(.visible)
         XCTAssertTrue(userIDField.isVisible)
 
-        userIDField.writeText(text: "613")
+        userIDField.writeText(text: student.id)
         let domainField = ActAsUserHelper.domainField.waitUntil(.visible)
-        if !domainField.hasValue(value: "https://\(user!.host)") {
+        if !domainField.hasValue(value: "https://\(user.host)") {
             domainField.cutText()
-            domainField.writeText(text: "https://\(user!.host)")
+            domainField.writeText(text: "https://\(user.host)")
         }
         actAsUserButton = ActAsUserHelper.actAsUserButton
         actAsUserButton.actionUntilElementCondition(action: .swipeUp(), condition: .visible)
         XCTAssertTrue(actAsUserButton.isVisible)
 
         actAsUserButton.hit()
-        DashboardHelper.courseCard(courseId: "262").waitUntil(.visible)
+        DashboardHelper.courseCard(course: course).waitUntil(.visible)
         profileButton.hit()
-        XCTAssertTrue(userNameLabel.waitUntil(.visible).hasLabel(label: "Student One"))
+        userNameLabel.waitUntil(.visible)
+        XCTAssertTrue(userNameLabel.isVisible)
+        XCTAssertTrue(userNameLabel.hasLabel(label: student.name))
 
         let endActAsUserButton = ActAsUserHelper.endActAsUserButton.waitUntil(.visible)
         XCTAssertTrue(endActAsUserButton.isVisible)
@@ -59,6 +69,8 @@ class ActAsUserTests: CoreUITestCase {
         XCTAssertFalse(endActAsUserButton.waitUntil(.vanish).isVisible)
 
         profileButton.hit()
-        XCTAssertTrue(userNameLabel.waitUntil(.visible).hasLabel(label: "Admin One"))
+        userNameLabel.waitUntil(.visible)
+        XCTAssertTrue(userNameLabel.isVisible)
+        XCTAssertTrue(userNameLabel.hasLabel(label: admin.name))
     }
 }
