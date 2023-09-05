@@ -70,15 +70,17 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
         let courseSyncInteractor = CourseSyncDownloaderAssembly.makeInteractor()
 
         selectorInteractor
-            .getSelectedCourseEntries()
-            .flatMap { courseSyncInteractor.downloadContent(for: $0) }
+            .getCourseSyncEntries() // We need this to setup the internal state of the interactor
+            .flatMap { _ in selectorInteractor.getSelectedCourseEntries().setFailureType(to: Error.self) }
+            .flatMap { courseSyncInteractor.downloadContent(for: $0).setFailureType(to: Error.self) }
             .first()
-            .flatMap { _ in Self.waitForSyncFinish() }
-            .sink { [weak self] in
+            .flatMap { _ in Self.waitForSyncFinish().setFailureType(to: Error.self) }
+            .sink(receiveCompletion: { _ in
+            }, receiveValue: { [weak self] _ in
                 var updatedSessions = sessions
                 updatedSessions.removeFirst()
                 self?.syncNextAccount(in: updatedSessions, completion: completion)
-            }
+            })
             .store(in: &subscriptions)
     }
 
