@@ -28,6 +28,7 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
     private let syncableAccounts: OfflineSyncAccounts
     private let lastLoggedInUser: LoginSession?
     private var isCancelled = false
+    private var subscriptions = Set<AnyCancellable>()
 
     public init(syncableAccounts: OfflineSyncAccounts,
                 sessions: Set<LoginSession>) {
@@ -38,28 +39,47 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
     }
 
     public func start(completion: @escaping () -> Void) {
-        for session in sessionsToSync {
-            if isCancelled { return }
-
-            Logger.shared.log()
-            AppEnvironment.shared.userDidLogin(session: session, isSilent: true)
-            let sessionDefaults = SessionDefaults(sessionID: session.uniqueID)
-            let selectorInteractor = CourseSyncSelectorInteractorLive(courseID: nil,
-                                                                      sessionDefaults: sessionDefaults)
-            let entriesToSync = selectorInteractor.getSelectedCourseEntries()
-            NotificationCenter.default.post(name: .OfflineSyncTriggered, object: entriesToSync)
-            waitForSyncFinish()
-        }
-
-        handleSyncCompleted(completion: completion)
+        syncNextAccount(in: sessionsToSync, completion: completion)
     }
 
     public func cancel() {
         Logger.shared.log()
         isCancelled = true
         NotificationCenter.default.post(name: .OfflineSyncCancelled, object: nil)
-        waitForSyncFinish()
-        restoreLastLoggedInUser()
+
+        Self.waitForSyncFinish()
+            .sink { [weak self] in
+                self?.restoreLastLoggedInUser()
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func syncNextAccount(in sessions: [LoginSession], completion: @escaping () -> Void) {
+        if isCancelled {
+            return
+        }
+        guard let session = sessions.first else {
+            return handleSyncCompleted(completion: completion)
+        }
+
+        Logger.shared.log()
+        AppEnvironment.shared.userDidLogin(session: session, isSilent: true)
+        let sessionDefaults = SessionDefaults(sessionID: session.uniqueID)
+        let selectorInteractor = CourseSyncSelectorInteractorLive(courseID: nil,
+                                                                  sessionDefaults: sessionDefaults)
+        let courseSyncInteractor = CourseSyncDownloaderAssembly.makeInteractor()
+
+        selectorInteractor
+            .getSelectedCourseEntries()
+            .flatMap { courseSyncInteractor.downloadContent(for: $0) }
+            .first()
+            .flatMap { _ in Self.waitForSyncFinish() }
+            .sink { [weak self] in
+                var updatedSessions = sessions
+                updatedSessions.removeFirst()
+                self?.syncNextAccount(in: updatedSessions, completion: completion)
+            }
+            .store(in: &subscriptions)
     }
 
     private func handleSyncCompleted(completion: () -> Void) {
@@ -76,24 +96,19 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
     }
 
     // TODO: This wont detect cancelled downloads
-    private func waitForSyncFinish() {
+    private static func waitForSyncFinish() -> AnyPublisher<Void, Never> {
         Logger.shared.log()
         let downloadFinishedPredicate = NSPredicate(key: #keyPath(CourseSyncDownloadProgress.isFinished), equals: true)
         let downloadFinishedScope = Scope(predicate: downloadFinishedPredicate, order: [])
         let useCase = LocalUseCase<CourseSyncDownloadProgress>(scope: downloadFinishedScope)
         let store = ReactiveStore(offlineModeInteractor: nil, useCase: useCase)
 
-        let semaphore = DispatchSemaphore(value: 0)
-        var subscription: AnyCancellable?
-        subscription = store
+        return store
             .observeEntities()
             .compactMap { $0.firstItem }
-            .sink { _ in
-                semaphore.signal()
-            }
-
-        semaphore.wait()
-        subscription?.cancel()
-        store.cancel()
+            .mapToVoid()
+            .first()
+            .map { store.cancel() }
+            .eraseToAnyPublisher()
     }
 }
