@@ -65,13 +65,11 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
         Logger.shared.log()
         AppEnvironment.shared.userDidLogin(session: session, isSilent: true)
         let sessionDefaults = SessionDefaults(sessionID: session.uniqueID)
-        let selectorInteractor = CourseSyncSelectorInteractorLive(courseID: nil,
-                                                                  sessionDefaults: sessionDefaults)
+        let selectedItemsInteractor = CourseSyncListInteractorLive(sessionDefaults: sessionDefaults)
         let courseSyncInteractor = CourseSyncDownloaderAssembly.makeInteractor()
 
-        selectorInteractor
-            .getCourseSyncEntries() // We need this to setup the internal state of the interactor
-            .flatMap { _ in selectorInteractor.getSelectedCourseEntries().setFailureType(to: Error.self) }
+        selectedItemsInteractor
+            .getCourseSyncEntries(filter: .all)
             .flatMap { courseSyncInteractor.downloadContent(for: $0).setFailureType(to: Error.self) }
             .first()
             .flatMap { _ in Self.waitForSyncFinish().setFailureType(to: Error.self) }
