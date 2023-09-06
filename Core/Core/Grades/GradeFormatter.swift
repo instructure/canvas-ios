@@ -118,13 +118,19 @@ public class GradeFormatter {
         switch gradingType {
         case .pass_fail:
             let grade = submission.grade.flatMap(PassFail.init(rawValue:))
-            if hideScores { return grade?.localizedString ?? placeholder }
             switch gradeStyle {
             case .short: return grade?.localizedString
             case .medium: return medium(score: grade?.localizedString ?? placeholder)
             }
         case .points:
-            if hideScores { return nil }
+            if hideScores {
+                if let normalizedScore = submission.normalizedScore,
+                   let converterLetterGrade =  submission.assignment?.gradingScheme.convertScoreToLetterGrade(score: normalizedScore) {
+                    return converterLetterGrade
+                } else {
+                    return placeholder
+                }
+            }
             switch gradeStyle {
             case .short: return format(score)
             case .medium: return medium(score: score)
@@ -144,7 +150,14 @@ public class GradeFormatter {
                 return medium(score: score, grade: submission.grade)
             }
         case .percent:
-            if hideScores { return nil }
+            if hideScores {
+                if let normalizedScore = submission.normalizedScore,
+                   let converterLetterGrade =  submission.assignment?.gradingScheme.convertScoreToLetterGrade(score: normalizedScore) {
+                    return converterLetterGrade
+                } else {
+                    return placeholder
+                }
+            }
             switch gradeStyle {
             case .short:
                 return submission.grade
@@ -152,7 +165,6 @@ public class GradeFormatter {
                 return medium(score: score, grade: submission.grade)
             }
         case .letter_grade:
-            if hideScores { return submission.grade ?? placeholder }
             switch gradeStyle {
             case .short:
                 return submission.grade

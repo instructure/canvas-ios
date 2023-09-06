@@ -23,15 +23,25 @@ public class DashboardHelper: BaseHelper {
     public static var doneButton: XCUIElement { app.find(id: "screen.dismiss", type: .button) }
     public static var coursesLabel: XCUIElement { app.find(id: "dashboard.courses.heading-lbl") }
     public static var dashboardSettingsShowGradeToggle: XCUIElement {
-        return app.find(id: "DashboardSettings.showGradesToggle", type: .switch)
+        return app.find(id: "DashboardSettings.showGradesToggle", type: .switch).find(type: .switch)
     }
 
     public static func courseCard(course: DSCourse? = nil, courseId: String? = nil) -> XCUIElement {
         return app.find(id: "DashboardCourseCell.\(course?.id ?? courseId!)")
     }
 
+    public static func courseCardGradeLabel(course: DSCourse) -> XCUIElement {
+        return app.find(id: "DashboardCourseCell.\(course.id).gradePill")
+    }
+
     public static func toggleFavorite(course: DSCourse) {
         app.find(id: "DashboardCourseCell.\(course.id).favoriteButton", type: .button).hit()
+    }
+
+    public static func turnOnShowGrades() {
+        dashboardSettings.hit()
+        dashboardSettingsShowGradeToggle.forceTap()
+        doneButton.hit()
     }
 
     public struct CourseInvitations {

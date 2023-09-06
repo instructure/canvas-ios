@@ -149,20 +149,15 @@ post_install do |installer|
       config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'NO'
     end
   end
-
-  # Xcode 13 CODE_SIGNING_ALLOWED was set to NO by default. In Xcode 14 it defaults to YES. 
+  
+  # Non-executable bundles shouldn't be code signed
   installer.pods_project.targets.each do |target|
     if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
       target.build_configurations.each do |config|
-          config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+        puts "- Disable CODE_SIGNING_ALLOWED on #{target} (#{config})"
+        config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
       end
     end
-  end
-  
-  # Work around the issue: Cannot code sign because the target does not have an Info.plist file and one is not being generated automatically.
-  installer.pods_project.build_configurations.each do |config|
-    puts "- Enable GENERATE_INFOPLIST_FILE on Pods Project (#{config})"
-    config.build_settings['GENERATE_INFOPLIST_FILE'] = 'YES'
   end
   
   puts "\n"

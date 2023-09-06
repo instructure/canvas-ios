@@ -48,6 +48,12 @@ final public class Course: NSManagedObject, WriteableModel {
     @NSManaged public var syllabusBody: String?
     @NSManaged public var termName: String?
     @NSManaged public var settings: CourseSettings?
+    @NSManaged public var gradingSchemeRaw: NSOrderedSet?
+
+    public var gradingScheme: [GradingSchemeEntry] {
+        get { gradingSchemeRaw?.array as? [GradingSchemeEntry] ?? [] }
+        set { gradingSchemeRaw = NSOrderedSet(array: newValue) }
+    }
 
     public var defaultView: CourseDefaultView? {
         get { return CourseDefaultView(rawValue: defaultViewRaw ?? "") }
@@ -139,6 +145,15 @@ final public class Course: NSManagedObject, WriteableModel {
             CourseSettings.save(apiSettings, courseID: item.id.value, in: context)
         } else if let settings: CourseSettings = context.fetch(scope: .where(#keyPath(CourseSettings.courseID), equals: model.id)).first {
             model.settings = settings
+        }
+
+        if let gradingScheme = item.grading_scheme {
+            model.gradingScheme = gradingScheme.compactMap {
+                guard let apiEntry = APIGradingSchemeEntry(courseGradingScheme: $0) else {
+                    return nil
+                }
+                return GradingSchemeEntry.save(apiEntry, in: context)
+            }
         }
 
         return model

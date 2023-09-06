@@ -69,7 +69,7 @@ const fixVersionForAppVersion = async (app, version) => {
 exports.addFixVersion = async (tag, issueKeys) => {
   const fixVersionName = await fixVersionForAppVersion(...(tag.split('-')))
   console.log(`Adding fix version "${fixVersionName}"\n${issueKeys.join('\n')}`)
-  await Promise.all(issueKeys.map(issueKey => client.updateIssue(issueKey, {
+  await Promise.allSettled(issueKeys.map(issueKey => client.updateIssue(issueKey, {
     update: { fixVersions: [ { add: { name: fixVersionName } } ] },
   })))
 }

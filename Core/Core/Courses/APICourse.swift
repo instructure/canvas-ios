@@ -76,6 +76,8 @@ public struct APICourse: Codable, Equatable {
     let sections: [SectionRef]? // include[]=sections
     let tabs: [APITab]? // include[]=tabs
     let settings: APICourseSettings? // include[]=settings
+    /// Example format: [["A",0.94],["A-",0.9],["B+",0.87] ... ["D",0.64],["D-",0.61],["F",0.0]]
+    let grading_scheme: [[TypeSafeCodable<String, Double>]]? // include[]=grading_scheme
 
     public var context: Context { Context(.course, id: id.rawValue) }
 
@@ -161,7 +163,8 @@ extension APICourse {
         is_favorite: Bool? = nil,
         sections: [SectionRef]? = nil,
         tabs: [APITab]? = nil,
-        settings: APICourseSettings? = nil
+        settings: APICourseSettings? = nil,
+        grading_scheme: [[TypeSafeCodable<String, Double>]]? = nil
     ) -> APICourse {
         return APICourse(
             id: id,
@@ -187,7 +190,8 @@ extension APICourse {
             is_favorite: is_favorite,
             sections: sections,
             tabs: tabs,
-            settings: settings
+            settings: settings,
+            grading_scheme: grading_scheme
         )
     }
 }
@@ -253,6 +257,7 @@ public struct GetCoursesRequest: APIRequestable {
         case term
         case total_scores
         case settings
+        case grading_scheme
     }
 
     let enrollmentState: EnrollmentState?
@@ -311,6 +316,7 @@ public struct GetCourseRequest: APIRequestable {
         case observedUsers = "observed_users"
         case tabs = "tabs"
         case settings
+        case grading_scheme
     }
 
     let courseID: String
@@ -326,6 +332,7 @@ public struct GetCourseRequest: APIRequestable {
         .totalScores,
         .observedUsers,
         .settings,
+        .grading_scheme,
     ]
 
     var include: [Include] = defaultIncludes

@@ -18,10 +18,10 @@
 
 extension DataSeeder {
     public func createCourse(name: String = "DataSeed iOS \(Int(Date().timeIntervalSince1970))",
-                             isK5: Bool = false,
                              syllabus_body: String? = nil,
                              start_at: Date? = nil,
-                             end_at: Date? = nil) -> DSCourse {
+                             end_at: Date? = nil,
+                             restrictQuantitativeData: Bool = false) -> DSCourse {
         let requestedBody = CreateDSCourseRequest.Body(course: .init(
                 name: name, syllabus_body: syllabus_body, start_at: start_at, end_at: end_at))
         let request = CreateDSCourseRequest(body: requestedBody)
@@ -46,6 +46,12 @@ extension DataSeeder {
     public func updateCourseToHomeroomCourse(course: DSCourse) {
         let requestedBody = UpdateDSCourseRequest.Body(course: .init(homeroom_course: true))
         let request = UpdateDSCourseRequest(body: requestedBody, courseId: course.id)
+        makeRequest(request)
+    }
+
+    public func updateCourseSettings(course: DSCourse, restrictQuantitativeData: Bool) {
+        let requestBody = UpdateDSCourseSettingsRequest.Body(restrict_quantitative_data: restrictQuantitativeData)
+        let request = UpdateDSCourseSettingsRequest(body: requestBody, course: course)
         makeRequest(request)
     }
 }
