@@ -190,7 +190,7 @@ class DashboardTests: E2ETestCase {
 
         // MARK: Get the user logged in, check course card
         logInDSUser(student)
-        var courseCard = Helper.courseCard(course: course).waitUntil(.visible)
+        let courseCard = Helper.courseCard(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Check visibility of Dashboard Settings button
