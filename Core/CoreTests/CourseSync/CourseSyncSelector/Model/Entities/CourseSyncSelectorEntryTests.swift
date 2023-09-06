@@ -132,6 +132,31 @@ class CourseSyncEntryTests: XCTestCase {
         XCTAssertEqual(entry.tabs[3].selectionState, .selected)
     }
 
+    func testModulesAndGradesDeselection() {
+        var entry = CourseSyncEntry(
+            name: "1",
+            id: "1",
+            tabs: [
+                CourseSyncEntry.Tab(id: "tab1", name: "tab1", type: .assignments),
+                CourseSyncEntry.Tab(id: "tab2", name: "tab2", type: .files),
+                CourseSyncEntry.Tab(id: "tab3", name: "tab3", type: .modules),
+                CourseSyncEntry.Tab(id: "tab4", name: "tab4", type: .grades),
+            ],
+            files: []
+        )
+        entry.selectCourse(selectionState: .selected)
+        XCTAssertEqual(entry.tabs[0].selectionState, .selected)
+        XCTAssertEqual(entry.tabs[1].selectionState, .selected)
+        XCTAssertEqual(entry.tabs[2].selectionState, .selected)
+        XCTAssertEqual(entry.tabs[3].selectionState, .selected)
+
+        entry.selectTab(id: "tab1", selectionState: .deselected)
+        XCTAssertEqual(entry.tabs[0].selectionState, .deselected)
+        XCTAssertEqual(entry.tabs[1].selectionState, .selected)
+        XCTAssertEqual(entry.tabs[2].selectionState, .deselected)
+        XCTAssertEqual(entry.tabs[3].selectionState, .deselected)
+    }
+
     func testFileSelection() {
         var entry = CourseSyncEntry(
             name: "1",
