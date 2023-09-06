@@ -18,11 +18,30 @@
 
 public class SafariAppHelper: BaseHelper {
     public static let safariApp = XCUIApplication(bundleIdentifier: "com.apple.mobilesafari")
+    public static var tabBarItemTitle: XCUIElement { safariApp.find(id: "TabBarItemTitle") }
+    public static var reloadButton: XCUIElement { safariApp.find(id: "ReloadButton") }
+    public static var URL: XCUIElement { safariApp.find(id: "URL") }
+    public static var shareButton: XCUIElement { safariApp.find(id: "ShareButton") }
+    public static var clearTextButton: XCUIElement { safariApp.find(id: "ClearTextButton") }
+    public static var replaceButton: XCUIElement { safariApp.find(label: "Replace", type: .button) }
+
     public static var browserURL: String {
         safariApp.activate()
-        safariApp.find(id: "ReloadButton").waitUntil(.visible)
-        safariApp.find(id: "TabBarItemTitle").hit()
-        let url = safariApp.find(id: "URL").waitUntil(.visible).value as? String ?? ""
+        reloadButton.waitUntil(.visible)
+        tabBarItemTitle.hit()
+        let url = URL.waitUntil(.visible).value as? String ?? ""
         return url
+    }
+
+    public struct Share {
+        public static var copyButton: XCUIElement { SafariAppHelper.safariApp.find(label: "Copy", type: .cell) }
+        public static var saveToFiles: XCUIElement { SafariAppHelper.safariApp.findAll(type: .cell, minimumCount: 6)[6] }
+        public static var onMyIphoneButton: XCUIElement { SafariAppHelper.safariApp.find(label: "On My iPhone", type: .button) }
+        public static var onMyIphoneLabel: XCUIElement { SafariAppHelper.safariApp.find(label: "On My iPhone", type: .staticText) }
+        public static var saveButton: XCUIElement { SafariAppHelper.safariApp.find(label: "Save", type: .button) }
+
+        public static func titleLabel(title: String) -> XCUIElement {
+            return SafariAppHelper.safariApp.find(label: title, type: .staticText)
+        }
     }
 }
