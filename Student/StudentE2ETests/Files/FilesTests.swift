@@ -66,8 +66,6 @@ class FilesTests: E2ETestCase {
         saveButton.hit()
         let replaceButton = SafariAppHelper.replaceButton.waitUntil(.visible, timeout: 5)
         if replaceButton.isVisible { replaceButton.hit() }
-
-        sleep(5) // Waiting a bit for the download to finish
     }
 
     func testCreateTestFolderAndUploadPDF() {
