@@ -1420,6 +1420,7 @@
 		E5F13083096134000E076326 /* UIApplicationDelegateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A027B0A0107152ACF930EA /* UIApplicationDelegateExtensions.swift */; };
 		E608963014010BD9A20D9014 /* CourseSyncSelectorCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A60CB2B3811373D99B9DAD4 /* CourseSyncSelectorCourse.swift */; };
 		E612373CABC74630F99BAAF5 /* CourseSyncInteractorLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C7B21638F9CF16530540D4 /* CourseSyncInteractorLiveTests.swift */; };
+		E621270C3F071D97B183E04B /* CourseSyncListInteractorLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995044E4D1C5951D445EC5B4 /* CourseSyncListInteractorLiveTests.swift */; };
 		E63D5323E02038FC38F74E8A /* APIConferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA885AC87C38842D28FDD8D9 /* APIConferenceTests.swift */; };
 		E6848F9D7260549B3D63BB37 /* CourseSyncSettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8A8A7483EE2E7C996F2B87 /* CourseSyncSettingsInteractor.swift */; };
 		E690FC2B19CFBA73F95C41AB /* TabBarBadgeCountsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E2CA4E53BA7572C4872E1 /* TabBarBadgeCountsTests.swift */; };
@@ -2740,6 +2741,7 @@
 		98D35E39902E002CAE151F8E /* ContextColorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextColorTests.swift; sourceTree = "<group>"; };
 		98D4396357A7873CBAFE4B2E /* SubmissionBreakdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionBreakdown.swift; sourceTree = "<group>"; };
 		98ED9BA14B45A2D1C179DA4C /* K5GradeCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradeCellViewModelTests.swift; sourceTree = "<group>"; };
+		995044E4D1C5951D445EC5B4 /* CourseSyncListInteractorLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncListInteractorLiveTests.swift; sourceTree = "<group>"; };
 		995373018BD96584CB32909F /* TabBarBadgeCounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarBadgeCounts.swift; sourceTree = "<group>"; };
 		995704AB4B7CA8FBBBF42F14 /* ConversationCoursesActionSheetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCoursesActionSheetTests.swift; sourceTree = "<group>"; };
 		995AF66A8B5294FE7C37C54A /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
@@ -7395,6 +7397,7 @@
 				6587133058F1645552983E97 /* CourseEntrySelectionTests.swift */,
 				0B51203DE2F1EBC486443DB1 /* CourseSyncCleanupInteractorTests.swift */,
 				C62A9E757BF6FA6ADA483ADC /* CourseSyncEntryProgressTests.swift */,
+				995044E4D1C5951D445EC5B4 /* CourseSyncListInteractorLiveTests.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -9196,6 +9199,7 @@
 				71BFDA2454368567921337D6 /* CourseSyncGradesInteractorLiveTests.swift in Sources */,
 				E612373CABC74630F99BAAF5 /* CourseSyncInteractorLiveTests.swift in Sources */,
 				D4BDF1EE353A18DF24F5E7E3 /* CourseSyncItemSelectionTests.swift in Sources */,
+				E621270C3F071D97B183E04B /* CourseSyncListInteractorLiveTests.swift in Sources */,
 				322EB518CAA5C15100366E6B /* CourseSyncPagesInteractorLiveTests.swift in Sources */,
 				4F46F1953E6835A413D1E58B /* CourseSyncProgressInfoViewModelTests.swift in Sources */,
 				625CC8069C8B6DDC4B38BC42 /* CourseSyncProgressInteractorLiveTests.swift in Sources */,
