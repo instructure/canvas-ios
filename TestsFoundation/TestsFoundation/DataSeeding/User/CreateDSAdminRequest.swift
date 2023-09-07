@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,36 +16,28 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Core
 
-// These are the currently supported tabs on mobile
-public enum TabName: String, Codable {
-    case assignments
-    case quizzes
-    case discussions
-    case announcements
-    case people
-    case pages
-    case files
-    case modules
-    case syllabus
-    case collaborations
-    case conferences
-    case outcomes
-    case custom
-    case grades
+struct CreateDSAdminRequest: APIRequestable {
+    public typealias Response = DSAdmin
 
-    public static let OfflineSyncableTabs: [TabName] = [
-        .assignments,
-        .pages,
-        .files,
-        .grades,
-        .syllabus,
-        .conferences,
-        .announcements,
-        .people,
-        .quizzes,
-        .discussions,
-        .modules,
-    ]
+    public let method = APIMethod.post
+    public let path: String
+    public let body: Body?
+
+    public init(body: Body?) {
+        self.body = body
+        self.path = "accounts/self/admins"
+    }
+}
+
+extension CreateDSAdminRequest {
+    public struct Body: Encodable {
+        let user_id: String
+        let send_confirmation: Bool = false
+
+        public init(user: DSUser) {
+            self.user_id = user.id
+        }
+    }
 }

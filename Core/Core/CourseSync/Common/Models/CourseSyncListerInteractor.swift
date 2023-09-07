@@ -106,20 +106,6 @@ private extension Array where Element == CourseSyncEntry {
             entriesCpy[id: entryID]?.selectFile(id: fileID, selectionState: .selected)
         }
 
-        switch filter {
-        case let .courseID(courseID):
-            // If we only show one course then we should keep other course selections intact
-            var oldSelections = sessionDefaults.offlineSyncSelections
-            oldSelections.removeAll { $0.hasPrefix("courses/\(courseID)") }
-            let newSelections = CourseSyncItemSelection.make(from: self)
-            sessionDefaults.offlineSyncSelections = oldSelections + newSelections
-        case .all:
-            // If all courses are visible then it's safe to overwrite all course selections
-            sessionDefaults.offlineSyncSelections = CourseSyncItemSelection.make(from: self)
-        case .synced:
-            break
-        }
-
         return entriesCpy
     }
 

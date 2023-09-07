@@ -52,6 +52,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                     .init(id: "tab-conferences", name: "Conferences", type: .conferences),
                     .init(id: "tab-quizzes", name: "Quizzes", type: .quizzes),
                     .init(id: "tab-discussions", name: "Discussions", type: .discussions),
+                    .init(id: "tab-modules", name: "Modules", type: .modules),
                 ],
                 files: [
                     .make(id: "file-1", displayName: "1", url: URL(string: "1.jpg")!, bytesToDownload: 1000),
@@ -388,6 +389,27 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         subscription.cancel()
     }
 
+    func testStartsModulesDownload() {
+        let expectation = expectation(description: "Modules download started")
+        let mockModulesInteractor = CourseSyncModulesInteractorMock(expectation: expectation)
+        let testee = CourseSyncInteractorLive(
+            contentInteractors: [
+                pagesInteractor,
+                assignmentsInteractor,
+                mockModulesInteractor,
+            ],
+            filesInteractor: filesInteractor,
+            progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
+            scheduler: .immediate
+        )
+        entries[0].tabs[7].selectionState = .selected
+
+        let subscription = testee.downloadContent(for: entries).sink()
+
+        wait(for: [expectation], timeout: 1)
+        subscription.cancel()
+    }
+
     func testInitialLoadingState() {
         let testee = CourseSyncInteractorLive(
             contentInteractors: [pagesInteractor, assignmentsInteractor],
@@ -445,7 +467,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         entries[0].tabs[0].selectionState = .selected
         entries[0].tabs[1].selectionState = .selected
 
-        testee.downloadContent(for: entries).sink()
+        let subscription = testee.downloadContent(for: entries).sink()
         assignmentsInteractor.publisher.send(())
         pagesInteractor.publisher.send(())
 
@@ -458,6 +480,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(fileProgressList.count, 0)
         XCTAssertEqual(entryProgressList.count, 0)
         XCTAssertEqual(testee.downloadSubscription, nil)
+        subscription.cancel()
     }
 }
 
@@ -544,5 +567,20 @@ private class CourseSyncFilesInteractorMock: CourseSyncFilesInteractor {
 
     func getFile(url _: URL, fileID _: String, fileName _: String, mimeClass _: String, updatedAt _: Date?) -> AnyPublisher<Float, Error> {
         publisher.eraseToAnyPublisher()
+    }
+}
+
+private class CourseSyncModulesInteractorMock: CourseSyncModulesInteractor {
+    let expectation: XCTestExpectation
+
+    init(expectation: XCTestExpectation) {
+        self.expectation = expectation
+    }
+
+    func getContent(courseId _: String) -> AnyPublisher<Void, Error> {
+        expectation.fulfill()
+        return Just(())
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
 }
