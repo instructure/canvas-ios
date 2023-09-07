@@ -24,11 +24,16 @@ import Combine
  who have this turned on.
  */
 public class OfflineSyncBackgroundTask: BackgroundTask {
+    // MARK: - Dependencies
     private let sessionsToSync: [LoginSession]
     private let syncableAccounts: OfflineSyncAccounts
+    // MARK: - Internal State
     private let lastLoggedInUser: LoginSession?
     private var isCancelled = false
     private var subscriptions = Set<AnyCancellable>()
+    private var syncingInteractor: CourseSyncInteractor?
+
+    // MARK: - Public Interface
 
     public init(syncableAccounts: OfflineSyncAccounts,
                 sessions: Set<LoginSession>) {
@@ -45,14 +50,17 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
     public func cancel() {
         Logger.shared.log()
         isCancelled = true
-        NotificationCenter.default.post(name: .OfflineSyncCancelled, object: nil)
+        subscriptions.removeAll()
 
-        Self.waitForSyncFinish()
-            .sink { [weak self] in
-                self?.restoreLastLoggedInUser()
-            }
-            .store(in: &subscriptions)
+        guard let syncingInteractor else {
+            return
+        }
+
+        syncingInteractor.cancel()
+        restoreLastLoggedInUser()
     }
+
+    // MARK: - Private Methods
 
     private func syncNextAccount(in sessions: [LoginSession], completion: @escaping () -> Void) {
         if isCancelled {
@@ -67,6 +75,7 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
         let sessionDefaults = SessionDefaults(sessionID: session.uniqueID)
         let selectedItemsInteractor = CourseSyncListInteractorLive(sessionDefaults: sessionDefaults)
         let courseSyncInteractor = CourseSyncDownloaderAssembly.makeInteractor()
+        syncingInteractor = courseSyncInteractor
 
         selectedItemsInteractor
             .getCourseSyncEntries(filter: .all)
@@ -74,7 +83,6 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
             .first()
             .flatMap { _ in Self.waitForSyncFinish().setFailureType(to: Error.self) }
             .sink(receiveCompletion: { _ in
-                _ = courseSyncInteractor // Work around to keep the interactor in memory while the stream is active
             }, receiveValue: { [weak self] _ in
                 var updatedSessions = sessions
                 updatedSessions.removeFirst()

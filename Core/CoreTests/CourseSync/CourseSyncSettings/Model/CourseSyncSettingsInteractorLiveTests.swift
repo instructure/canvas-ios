@@ -130,9 +130,6 @@ class CourseSyncSettingsInteractorLiveTests: XCTestCase {
 
     func testNotUpdatesNextSyncDateWhenFrequencyChangedIfSyncTurnedOff() {
         let testee = CourseSyncSettingsInteractorLive(storage: defaults)
-        Clock.mockNow(Date())
-        let tomorrow = Clock.now.addingTimeInterval(24 * 60 * 60)
-        let nextWeek = Clock.now.addingTimeInterval(7 * 24 * 60 * 60)
         XCTAssertFinish(testee.setAutoSyncEnabled(false))
 
         // WHEN
