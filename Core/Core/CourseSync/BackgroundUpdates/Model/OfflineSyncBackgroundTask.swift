@@ -74,6 +74,7 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
             .first()
             .flatMap { _ in Self.waitForSyncFinish().setFailureType(to: Error.self) }
             .sink(receiveCompletion: { _ in
+                _ = courseSyncInteractor // Work around to keep the interactor in memory while the stream is active
             }, receiveValue: { [weak self] _ in
                 var updatedSessions = sessions
                 updatedSessions.removeFirst()
