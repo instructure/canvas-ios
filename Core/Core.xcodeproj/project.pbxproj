@@ -123,7 +123,6 @@
 		13B4C89698A749D0035AB4D8 /* FileProgressListViewPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CD30A59D9B28E1A04AAA50 /* FileProgressListViewPreview.swift */; };
 		13BF34EE4ABA277EE07DC05A /* LockStatusViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD016DDC9E7807CB2AD213AA /* LockStatusViewable.swift */; };
 		13C2D35FB354D7573DE6A110 /* lato_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8BF07DCDA931118841FFC177 /* lato_regular.ttf */; };
-		13CD4B193E18BEE28E2AEE25 /* GetPeopleListUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2743EAE2677581014A3F9441 /* GetPeopleListUsers.swift */; };
 		13CDE2389B19163EA51C33B9 /* ChatBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8963BE37218640395B2F3CB7 /* ChatBubbleView.swift */; };
 		13E00D0D83850D66833DA2B3 /* EmptyViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C987203C9ADE623E509FE460 /* EmptyViewControllerTests.swift */; };
 		13E406DACBE072D53AA6EE5F /* APIObserverAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F48DE98C91B4774F4C5E404D /* APIObserverAlert.swift */; };
@@ -846,6 +845,7 @@
 		87B2CB2E210892557B147843 /* confetti.json in Resources */ = {isa = PBXBuildFile; fileRef = 154AFFC414CC0A0C52B7A557 /* confetti.json */; };
 		8845403752E1C349262CEDC6 /* CourseSyncDiskSpaceInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0C49ADE7F2DE21CE36FB77 /* CourseSyncDiskSpaceInfoView.swift */; };
 		884FA7BB6011DD7E53C12629 /* GetCourseSectionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DD3D2ACD37C0DCFC3EB76D /* GetCourseSectionsTests.swift */; };
+		885FCB3C247F4CC410CB28B4 /* GetPeopleListUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952C7B1583EDE355465D7A2C /* GetPeopleListUsers.swift */; };
 		88B8C676C0AFFC04953F57DA /* OfflineModeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450AE3E1E678497BDDC57FB8 /* OfflineModeInteractor.swift */; };
 		88CAB3756A315A8E23402E0D /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AFA4DDC9F66EFAFE5795E0 /* ErrorViewController.swift */; };
 		88D31E573C11B7BF5BE45E0E /* AboutInfoEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE581E58EA949C49C03C952F /* AboutInfoEntry.swift */; };
@@ -1415,6 +1415,7 @@
 		E5F13083096134000E076326 /* UIApplicationDelegateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A027B0A0107152ACF930EA /* UIApplicationDelegateExtensions.swift */; };
 		E608963014010BD9A20D9014 /* CourseSyncSelectorCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A60CB2B3811373D99B9DAD4 /* CourseSyncSelectorCourse.swift */; };
 		E612373CABC74630F99BAAF5 /* CourseSyncInteractorLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C7B21638F9CF16530540D4 /* CourseSyncInteractorLiveTests.swift */; };
+		E621270C3F071D97B183E04B /* CourseSyncListInteractorLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995044E4D1C5951D445EC5B4 /* CourseSyncListInteractorLiveTests.swift */; };
 		E63D5323E02038FC38F74E8A /* APIConferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA885AC87C38842D28FDD8D9 /* APIConferenceTests.swift */; };
 		E6848F9D7260549B3D63BB37 /* CourseSyncSettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8A8A7483EE2E7C996F2B87 /* CourseSyncSettingsInteractor.swift */; };
 		E690FC2B19CFBA73F95C41AB /* TabBarBadgeCountsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9E2CA4E53BA7572C4872E1 /* TabBarBadgeCountsTests.swift */; };
@@ -1920,7 +1921,6 @@
 		26EE7E2834C85B2C2FC32460 /* PlannerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerViewControllerTests.swift; sourceTree = "<group>"; };
 		26F5F27F63B217122A32EB8B /* AttachmentCardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCardsViewController.swift; sourceTree = "<group>"; };
 		26F7BAA18100F238330CDDC5 /* K5ImportantDatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ImportantDatesView.swift; sourceTree = "<group>"; };
-		2743EAE2677581014A3F9441 /* GetPeopleListUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPeopleListUsers.swift; sourceTree = "<group>"; };
 		27488FF7100A4ED0B7B5CEC9 /* LoginDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDelegateTests.swift; sourceTree = "<group>"; };
 		274FA603F2CC4D48DD7C7E4B /* UIViewControllerExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensionsTests.swift; sourceTree = "<group>"; };
 		2766751E37F582585C18C994 /* SideMenuMainSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuMainSection.swift; sourceTree = "<group>"; };
@@ -2706,6 +2706,7 @@
 		9467A28F4731CC9B069D5575 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		95183AEE793FE6517A236743 /* PlannerFilterViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerFilterViewControllerTests.swift; sourceTree = "<group>"; };
 		9523B748245D70C36D35CD7E /* StoreStateMergeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreStateMergeTests.swift; sourceTree = "<group>"; };
+		952C7B1583EDE355465D7A2C /* GetPeopleListUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPeopleListUsers.swift; sourceTree = "<group>"; };
 		954DAE0F0268A743A977E372 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		95872034721E02BEA86773C2 /* GroupContextCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardTests.swift; sourceTree = "<group>"; };
 		9589109984A509C9CE821552 /* GetEnvironmentFeatureFlagsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEnvironmentFeatureFlagsTests.swift; sourceTree = "<group>"; };
@@ -2729,6 +2730,7 @@
 		98D35E39902E002CAE151F8E /* ContextColorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextColorTests.swift; sourceTree = "<group>"; };
 		98D4396357A7873CBAFE4B2E /* SubmissionBreakdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionBreakdown.swift; sourceTree = "<group>"; };
 		98ED9BA14B45A2D1C179DA4C /* K5GradeCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradeCellViewModelTests.swift; sourceTree = "<group>"; };
+		995044E4D1C5951D445EC5B4 /* CourseSyncListInteractorLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncListInteractorLiveTests.swift; sourceTree = "<group>"; };
 		995373018BD96584CB32909F /* TabBarBadgeCounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarBadgeCounts.swift; sourceTree = "<group>"; };
 		995704AB4B7CA8FBBBF42F14 /* ConversationCoursesActionSheetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCoursesActionSheetTests.swift; sourceTree = "<group>"; };
 		995AF66A8B5294FE7C37C54A /* ArrayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
@@ -5234,8 +5236,8 @@
 				0E753587802CE4F204785908 /* ContextCard */,
 				EB1F17518E5A0ED0FB823AA0 /* APIUser.swift */,
 				291D11D1AD4CCB7DC634A56C /* GetContextUsers.swift */,
-				2743EAE2677581014A3F9441 /* GetPeopleListUsers.swift */,
 				41F5957C6091319417E638E2 /* GetCourseSingleUser.swift */,
+				952C7B1583EDE355465D7A2C /* GetPeopleListUsers.swift */,
 				840BD5EB06533DC1D9DA5B21 /* GetUserSettings.swift */,
 				FF50E14EA9E674E3FA4DC13B /* PeopleListEnrollment.swift */,
 				127D85A795D2F0E8F3EEB234 /* PeopleListUser.swift */,
@@ -7338,6 +7340,7 @@
 				6587133058F1645552983E97 /* CourseEntrySelectionTests.swift */,
 				0B51203DE2F1EBC486443DB1 /* CourseSyncCleanupInteractorTests.swift */,
 				C62A9E757BF6FA6ADA483ADC /* CourseSyncEntryProgressTests.swift */,
+				995044E4D1C5951D445EC5B4 /* CourseSyncListInteractorLiveTests.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -9130,6 +9133,7 @@
 				71BFDA2454368567921337D6 /* CourseSyncGradesInteractorLiveTests.swift in Sources */,
 				E612373CABC74630F99BAAF5 /* CourseSyncInteractorLiveTests.swift in Sources */,
 				D4BDF1EE353A18DF24F5E7E3 /* CourseSyncItemSelectionTests.swift in Sources */,
+				E621270C3F071D97B183E04B /* CourseSyncListInteractorLiveTests.swift in Sources */,
 				D20AC199BCD0710DB36BD83F /* CourseSyncModulesInteractorLiveTests.swift in Sources */,
 				322EB518CAA5C15100366E6B /* CourseSyncPagesInteractorLiveTests.swift in Sources */,
 				A2B7C4866D9320037491BAD3 /* CourseSyncPeopleInteractorLiveTests.swift in Sources */,
@@ -9961,7 +9965,6 @@
 				996884C777B5C0D31FBC7C8D /* GetContextUsers.swift in Sources */,
 				7792D701B8ADE8A1511B2D90 /* GetConversationCourses.swift in Sources */,
 				EDE956B9A68A0C8A8D48100D /* GetConversations.swift in Sources */,
-				13CD4B193E18BEE28E2AEE25 /* GetPeopleListUsers.swift in Sources */,
 				F6BC5D78896B2BFE7217DB47 /* GetCourseListCourses.swift in Sources */,
 				670167FC9419CB70A2CF1846 /* GetCourseNavigationToolsRequest.swift in Sources */,
 				CEC97448F930BB18B9BE614A /* GetCourseSections.swift in Sources */,
@@ -9999,6 +10002,7 @@
 				B02F8B775CB615121722804C /* GetObserverAlerts.swift in Sources */,
 				B5E17373B31D31F1C7D00A68 /* GetPage.swift in Sources */,
 				CC4EC03F563FE5E7EFD9EF1A /* GetPages.swift in Sources */,
+				885FCB3C247F4CC410CB28B4 /* GetPeopleListUsers.swift in Sources */,
 				775DAFB37C72332BA7FB71B8 /* GetPlannables.swift in Sources */,
 				F1967A6C0D99FD27E15EDD33 /* GetPlannerCourses.swift in Sources */,
 				6DFBDFF2DDE64856F845F646 /* GetQuiz.swift in Sources */,
