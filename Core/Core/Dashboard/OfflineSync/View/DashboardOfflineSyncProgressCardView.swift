@@ -28,33 +28,34 @@ struct DashboardOfflineSyncProgressCardView: View {
 
     public var body: some View {
         ZStack {
-            if viewModel.isVisible {
-                card
-                    .transition(.move(edge: .top))
+            switch viewModel.state {
+            case .error:
+                containerCard(backgroundColor: Color.textDanger) {
+                    errorView
+                }
+            case let .progress(progress, progressText):
+                containerCard(backgroundColor: Color.backgroundDarkest) {
+                    progressView(progress, progressText)
+                }
+            case .hidden:
+                SwiftUI.EmptyView()
             }
         }
-        .animation(.default, value: viewModel.isVisible)
+        .animation(.default, value: viewModel.state.isHidden)
     }
 
-    private var card: some View {
+    private func containerCard(backgroundColor: Color, innerView: () -> some View) -> some View {
         Button {
             viewModel.cardDidTap.accept(viewController)
         } label: {
-            VStack(alignment: .leading, spacing: 0) {
-                Text("Syncing Offline Content", bundle: .core)
-                    .font(.semibold16, lineHeight: .fit)
-                    .padding(.bottom, 2)
-                Text(viewModel.subtitle)
-                    .font(.regular14, lineHeight: .fit)
-                    .padding(.bottom, 14)
-                progressBar
-            }
-            .foregroundColor(.textLightest)
-            .padding(.horizontal, 16)
-            .padding(.top, 16)
-            .padding(.bottom, 20)
+            innerView()
+                .frame(maxWidth: .infinity)
+                .foregroundColor(.textLightest)
+                .padding(.horizontal, 16)
+                .padding(.top, 16)
+                .padding(.bottom, 20)
         }
-        .background(Color.backgroundDarkest)
+        .background(backgroundColor)
         .cornerRadius(6)
         .overlay(alignment: .topTrailing) {
             Button {
@@ -74,13 +75,40 @@ struct DashboardOfflineSyncProgressCardView: View {
         }
     }
 
-    private var progressBar: some View {
-        ProgressView(value: viewModel.progress)
+    private func progressView(_ progress: Float, _ progressText: String) -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("Syncing Offline Content", bundle: .core)
+                .font(.semibold16, lineHeight: .fit)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.bottom, 2)
+            Text(progressText)
+                .font(.regular14, lineHeight: .fit)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.bottom, 14)
+            progressBar(progress: progress)
+        }
+    }
+
+    private var errorView: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("Offline Content Sync Failed", bundle: .core)
+                .font(.semibold16, lineHeight: .fit)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.bottom, 2)
+            Text("One or more files failed to sync. Check your internet connection and retry to submit.")
+                .font(.regular14, lineHeight: .fit)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .multilineTextAlignment(.leading)
+        }
+    }
+
+    private func progressBar(progress: Float) -> some View {
+        ProgressView(value: progress)
             .progressViewStyle(
                 .determinateBar(foregroundColor: .textLightest,
                                 backgroundColor: .textLightest.opacity(0.2))
             )
-            .animation(.default, value: viewModel.progress)
+            .animation(.default, value: progress)
     }
 
     private var closeIcon: some View {

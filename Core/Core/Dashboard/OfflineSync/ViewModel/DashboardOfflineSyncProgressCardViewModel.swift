@@ -21,9 +21,23 @@ import CombineExt
 import CombineSchedulers
 
 class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
-    @Published public private(set) var progress: Float = 0
-    @Published public private(set) var isVisible = false
-    @Published public private(set) var subtitle = ""
+    enum ViewState {
+        typealias Progress = Float // Ranging from 0 to 1
+        typealias ProgressText = String // Text
+
+        case progress(Progress, ProgressText)
+        case error
+        case hidden
+
+        var isHidden: Bool {
+            switch self {
+            case .hidden: return true
+            default: return false
+            }
+        }
+    }
+
+    @Published public private(set) var state: ViewState = .hidden
 
     public let dismissDidTap = PassthroughRelay<Void>()
     public let cardDidTap = PassthroughRelay<WeakViewController>()
@@ -35,7 +49,7 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
 
     /**
      - parameters:
-        - offlineModeInteractor: This is used to determine if the feature flag is turned on. If it's off then
+     - offlineModeInteractor: This is used to determine if the feature flag is turned on. If it's off then
      we don't subscribe to CoreData updates to save some CPU time.
      */
     public init(interactor: CourseSyncProgressObserverInteractor,
@@ -53,11 +67,9 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
             .share()
             .makeConnectable()
 
-        setupProgressUpdates(downloadProgressPublisher)
-        setupAutoAppearanceOnSyncStart()
+        setupAutoAppearanceOnSyncStart(downloadProgressPublisher)
         setupAutoHideOnSyncCancel()
         setupAutoDismissUponCompletion(downloadProgressPublisher)
-        setupSubtitleCounterUpdates()
         handleDismissTap()
         handleCardTap()
 
@@ -66,54 +78,60 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private func setupSubtitleCounterUpdates() {
-        interactor
-            .observeStateProgress()
-            .compactMap { $0.allItems }
-            .map { $0.ignoreContainerSelections() }
-            .map {
-                let format = NSLocalizedString("d_items_syncing", comment: "")
-                return String.localizedStringWithFormat(format, $0.count) }
-            .receive(on: scheduler)
-            .assign(to: &$subtitle)
-    }
+    private typealias DownloadProgressPublisher = Publisher<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never>
 
-    private func setupProgressUpdates(_ downloadProgress: some Publisher<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never>) {
-        downloadProgress
-            .map { $0.firstItem?.progress ?? 0 }
-            .receive(on: scheduler)
-            .assign(to: &$progress)
-    }
-
-    private func setupAutoDismissUponCompletion(_ downloadProgress: some Publisher<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never>) {
-        downloadProgress
-            .map { $0.firstItem?.progress ?? 0 }
-            .filter { $0 >= 1 }
-            .mapToValue(false)
-            .delay(for: .seconds(1), scheduler: scheduler)
-            .assign(to: &$isVisible)
-    }
-
-    private func setupAutoAppearanceOnSyncStart() {
+    private func setupAutoAppearanceOnSyncStart(_ downloadProgressPublisher: some DownloadProgressPublisher) {
         NotificationCenter
             .default
             .publisher(for: .OfflineSyncTriggered)
-            .mapToValue(true)
-            .assign(to: &$isVisible)
+            .flatMapLatest { [unowned self] _ in setupProgressUpdates(downloadProgressPublisher) }
+            .receive(on: scheduler)
+            .assign(to: &$state)
+    }
+
+    private func setupProgressUpdates(
+        _ downloadProgressPublisher: some DownloadProgressPublisher
+    ) -> AnyPublisher<DashboardOfflineSyncProgressCardViewModel.ViewState, Never> {
+        Publishers.CombineLatest(
+            interactor.observeStateProgress().compactMap { $0.allItems }.map { $0.ignoreContainerSelections() },
+            downloadProgressPublisher.compactMap { $0.firstItem }
+        )
+        .receive(on: scheduler)
+        .map { stateProgress, downloadProgress in
+            if downloadProgress.isFinished, downloadProgress.error != nil {
+                return .error
+            } else {
+                let format = NSLocalizedString("d_items_syncing", comment: "")
+                let formattedText = String.localizedStringWithFormat(format, stateProgress.count)
+                return .progress(downloadProgress.progress, formattedText)
+            }
+        }
+        .eraseToAnyPublisher()
     }
 
     private func setupAutoHideOnSyncCancel() {
         NotificationCenter
             .default
             .publisher(for: .OfflineSyncCancelled)
-            .mapToValue(false)
-            .assign(to: &$isVisible)
+            .mapToValue(.hidden)
+            .receive(on: scheduler)
+            .assign(to: &$state)
+    }
+
+    private func setupAutoDismissUponCompletion(_ downloadProgressPublisher: some DownloadProgressPublisher) {
+        downloadProgressPublisher
+            .compactMap { $0.firstItem }
+            .filter { $0.isFinished && $0.error == nil }
+            .mapToValue(.hidden)
+            .delay(for: .seconds(1), scheduler: scheduler)
+            .receive(on: scheduler)
+            .assign(to: &$state)
     }
 
     private func handleDismissTap() {
         dismissDidTap
-            .map { false }
-            .assign(to: &$isVisible)
+            .map { .hidden }
+            .assign(to: &$state)
     }
 
     private func handleCardTap() {
@@ -128,13 +146,12 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
 }
 
 private extension Array where Element == CourseSyncStateProgress {
-
     /// Courses and file tabs are not syncable items so we should'n count them.
     func ignoreContainerSelections() -> Self {
         filter { entry in
             switch entry.selection {
             case .course: return false
-            case .tab(_, let tabID) where tabID.contains("/tabs/files"): return false
+            case let .tab(_, tabID) where tabID.contains("/tabs/files"): return false
             default: return true
             }
         }
