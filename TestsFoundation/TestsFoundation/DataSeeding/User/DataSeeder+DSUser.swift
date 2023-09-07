@@ -44,4 +44,12 @@ extension DataSeeder {
     public func createK5User() -> DSUser {
         return createUser(isK5: true)
     }
+
+    public func createAdminUser() -> DSUser {
+        let user = createUser()
+        let requestBody = CreateDSAdminRequest.Body(user: user)
+        let request = CreateDSAdminRequest(body: requestBody)
+        let result = makeRequest(request)
+        return result.user
+    }
 }

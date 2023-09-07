@@ -128,22 +128,6 @@ class CourseSyncListInteractorLive: CourseSyncListInteractor {
             entriesCpy[id: entryID]?.selectFile(id: fileID, selectionState: selectionState)
         }
 
-        switch filter {
-        case let .courseID(courseID):
-            // If we only show one course then we should keep other course selections intact
-            var oldSelections = sessionDefaults.offlineSyncSelections
-            oldSelections.removeAll { $0.hasPrefix("courses/\(courseID)") }
-            let newSelections = CourseSyncItemSelection.make(from: entries)
-            sessionDefaults.offlineSyncSelections = oldSelections + newSelections
-        case .all:
-            // If all courses are visible then it's safe to overwrite all course selections
-            sessionDefaults.offlineSyncSelections = CourseSyncItemSelection.make(from: entries)
-        case .synced:
-            break
-        case .none:
-            break
-        }
-
         return entriesCpy
     }
 }

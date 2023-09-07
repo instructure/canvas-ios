@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,36 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-
-// These are the currently supported tabs on mobile
-public enum TabName: String, Codable {
-    case assignments
-    case quizzes
-    case discussions
-    case announcements
-    case people
-    case pages
-    case files
-    case modules
-    case syllabus
-    case collaborations
-    case conferences
-    case outcomes
-    case custom
-    case grades
-
-    public static let OfflineSyncableTabs: [TabName] = [
-        .assignments,
-        .pages,
-        .files,
-        .grades,
-        .syllabus,
-        .conferences,
-        .announcements,
-        .people,
-        .quizzes,
-        .discussions,
-        .modules,
-    ]
+public struct DSAdmin: Codable {
+    public let id: String
+    public let role: String
+    public let user: DSUser
+    public var workflow_state: String
 }
