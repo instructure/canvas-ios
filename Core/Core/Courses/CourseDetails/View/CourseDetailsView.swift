@@ -175,9 +175,10 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
 
     @ViewBuilder
     private func imageHeader(geometry: GeometryProxy) -> some View {
-        if headerViewModel.shouldShowHeader(for: geometry.size.height) {
-            CourseDetailsHeaderView(viewModel: headerViewModel, width: geometry.size.width)
-        }
+        CourseDetailsHeaderView(viewModel: headerViewModel, width: geometry.size.width)
+//        if headerViewModel.shouldShowHeader(for: geometry.size.height) {
+//            CourseDetailsHeaderView(viewModel: headerViewModel, width: geometry.size.width)
+//        }
     }
 
     private func setupDefaultSplitDetailView(_ url: URL?) {

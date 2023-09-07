@@ -19,8 +19,16 @@
 import Foundation
 import UIKit
 
-public class ModuleItemSequenceViewController: UIViewController {
+public class ModuleItemSequenceViewController: UIViewController, DownloadableItems, DownloadsProgressBarHidden {
     public typealias AssetType = GetModuleItemSequenceRequest.AssetType
+
+    deinit {
+        debugLog("☠️ Deinitialized -> \(String.init(describing: self))☠️")
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            toggleDownloadingBarView(hidden: false)
+        }
+        NotificationCenter.default.post(name: .DownloadContentClosed, object: nil)
+    }
 
     @IBOutlet weak var pagesContainer: UIView!
     @IBOutlet weak var buttonsContainer: UIView!
@@ -90,6 +98,10 @@ public class ModuleItemSequenceViewController: UIViewController {
         spinnerView.isHidden = true
         if embed, let viewController = currentViewController() {
             setCurrentPage(viewController)
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                toggleDownloadingBarView(hidden: true)
+                NotificationCenter.default.post(name: .DownloadContentOpened, object: nil)
+            }
         }
         showSequenceButtons(prev: sequence?.prev != nil, next: sequence?.next != nil)
     }
@@ -97,8 +109,13 @@ public class ModuleItemSequenceViewController: UIViewController {
     func currentViewController() -> UIViewController? {
         guard let url = url.url else { return nil }
         if let current = sequence?.current {
-            return ModuleItemDetailsViewController.create(courseID: courseID, moduleID: current.moduleID, itemID: current.id)
+            let details = ModuleItemDetailsViewController.create(courseID: courseID, moduleID: current.moduleID, itemID: current.id)
+            subscribe(detailViewController: details, assetType: assetType)
+            return details
         } else if assetType != .moduleItem, let match = env.router.match(url.appendingOrigin("module_item_details")) {
+            if let match = match as? DownloadableViewController {
+               subscribe(detailViewController: match, assetType: assetType)
+            }
             return match
         } else {
             let external = ExternalURLViewController.create(
@@ -122,6 +139,7 @@ public class ModuleItemSequenceViewController: UIViewController {
 
     func show(item: ModuleItemSequenceNode, direction: PagesViewController.Direction? = nil) {
         let details = ModuleItemDetailsViewController.create(courseID: courseID, moduleID: item.moduleID, itemID: item.id)
+        subscribe(detailViewController: details, assetType: assetType)
         setCurrentPage(details, direction: direction)
         store = env.subscribe(GetModuleItemSequence(courseID: courseID, assetType: .moduleItem, assetID: item.id)) { [weak self] in
             self?.update(embed: false)

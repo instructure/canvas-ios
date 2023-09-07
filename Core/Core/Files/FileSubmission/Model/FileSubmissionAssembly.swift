@@ -148,12 +148,12 @@ public class FileSubmissionAssembly {
 }
 
 extension FileSubmissionAssembly {
-    public static let ShareExtensionSessionID = "com.instructure.icanvas.SubmitAssignment.file-uploads"
+    public static let ShareExtensionSessionID = "com.instructure.icanvas.2u.SubmitAssignment.file-uploads"
 
     public static func makeShareExtensionAssembly() -> FileSubmissionAssembly {
         FileSubmissionAssembly(container: AppEnvironment.shared.database,
                                sessionID: ShareExtensionSessionID,
-                               sharedContainerID: "group.instructure.shared",
+                               sharedContainerID: "group.instructure.shared.2u",
                                api: AppEnvironment.shared.api)
     }
 }

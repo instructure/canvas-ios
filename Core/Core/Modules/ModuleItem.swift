@@ -22,7 +22,7 @@ import CoreData
 private let encoder = JSONEncoder()
 private let decoder = JSONDecoder()
 
-public class ModuleItem: NSManagedObject {
+final public class ModuleItem: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var courseID: String
     @NSManaged public var moduleID: String

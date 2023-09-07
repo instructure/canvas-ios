@@ -61,6 +61,12 @@ public struct LoginSession: Codable, Hashable {
         .joined(separator: "-")
     }
 
+    public var clearDomain: String {
+        baseURL.absoluteString
+            .replacingOccurrences(of: "https://", with: "")
+            .replacingOccurrences(of: "http://", with: "")
+    }
+
     public init(
         accessToken: String? = nil,
         baseURL: URL,

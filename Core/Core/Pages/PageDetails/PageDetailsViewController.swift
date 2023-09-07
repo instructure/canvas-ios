@@ -17,8 +17,11 @@
 //
 
 import UIKit
+import mobile_offline_downloader_ios
 
-public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
+public class PageDetailsViewController: DownloadableViewController, ColoredNavViewProtocol {
+    var updated: ((Page, Course) -> Void)?
+
     lazy var optionsButton = UIBarButtonItem(image: .moreLine, style: .plain, target: self, action: #selector(showOptions))
     @IBOutlet weak var webViewContainer: UIView!
     let webView = CoreWebView()
@@ -115,12 +118,16 @@ public class PageDetailsViewController: UIViewController, ColoredNavViewProtocol
         optionsButton.accessibilityIdentifier = "PageDetails.options"
         navigationItem.rightBarButtonItem = canEdit ? optionsButton : nil
         webView.loadHTMLString(page.body, baseURL: page.htmlURL)
+        if let course = courses.first {
+            updated?(page, course)
+        }
     }
 
     private func updatePages() {
         guard let page = pages.first else { return }
         localPages = env.subscribe(scope: .where(#keyPath(Page.id), equals: page.id)) { [weak self] in
-            self?.update() }
+            self?.update()
+        }
         localPages?.refresh()
     }
 

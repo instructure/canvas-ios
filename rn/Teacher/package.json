@@ -22,7 +22,8 @@
     "danger": "danger",
     "packager:kill": "react-native-kill-packager",
     "postinstall": "./rn-mods.sh",
-    "prepush": "yarn test --coverage && yarn lint:fix && yarn flow"
+    "prepush": "yarn test --coverage && yarn lint:fix && yarn flow",
+    "build:ios": "react-native bundle --entry-file='index.ios.js' --bundle-output='./ios/main.jsbundle' --dev=false --platform='ios'"
   },
   "optionalDependencies": {
     "fsevents": "^1.2.4"

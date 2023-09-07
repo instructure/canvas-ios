@@ -42,10 +42,16 @@ public class DashboardContainerViewController: HelmNavigationController {
     override public func show(_ vc: UIViewController, sender: Any?) {
         vc.addNavigationButton(.back(target: self, action: #selector(pop)), side: .left)
 
+        if vc is CoreHostingController<DownloadsView> {
+            let container = UIViewController()
+            container.embed(HelmNavigationController(rootViewController: vc), in: container.view)
+            super.show(container, sender: sender)
+            return
+        }
+
         let split = makeSplitViewController(masterViewController: vc)
         let container = UIViewController()
         container.embed(split, in: container.view)
-
         super.show(container, sender: sender)
     }
 

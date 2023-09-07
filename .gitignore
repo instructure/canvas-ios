@@ -82,3 +82,6 @@ scripts/Package.resolved
 # Secrets
 **/*.xcassets/Secrets/*.dataset
 .bitrise.secrets.yml
+
+# Offline
+mobile-offline-downloader-ios/

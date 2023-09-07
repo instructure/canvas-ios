@@ -75,6 +75,7 @@ public class AnnouncementListViewController: ScreenViewTrackableViewController, 
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .borderMedium
         tableView.backgroundColor = .backgroundLightest
+        tableView.contentInset = .init(top: 0, left: 0, bottom: 60, right: 0)
         view.backgroundColor = .backgroundLightest
         colors.refresh()
         // We must force refresh because the GetCourses call deletes all existing Courses from the CoreData cache and since GetCourses response includes no permissions we lose that information.

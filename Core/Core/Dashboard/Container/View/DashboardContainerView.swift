@@ -18,7 +18,10 @@
 
 import SwiftUI
 
-public struct DashboardContainerView: View, ScreenViewTrackable {
+public struct DashboardContainerView: View, ScreenViewTrackable, DownloadsProgressBarHidden {
+
+    @Injected(\.reachability) var reachability: ReachabilityProvider
+
     @StateObject var viewModel: DashboardContainerViewModel
     @ObservedObject var courseCardListViewModel: DashboardCourseCardListViewModel
     @ObservedObject var colors: Store<GetCustomColors>
@@ -67,6 +70,11 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                 VStack(spacing: 0) {
                     DashboardOfflineSyncProgressCardView(viewModel: offlineSyncCardViewModel)
                     fileUploadNotificationCards()
+                    if !reachability.isConnected {
+                        DownloadedContentCellView {
+                            showDownloads()
+                        }
+                    }
                     list(CGSize(width: geometry.size.width - 32, height: geometry.size.height))
                 }
                 .animation(.default, value: offlineSyncCardViewModel.isVisible)
@@ -85,6 +93,13 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                 if env.userDefaults?.interfaceStyle == nil, env.currentSession?.isFakeStudent == false {
                     controller.value.showThemeSelectorAlert()
                 }
+            }
+            NotificationCenter.default.post(name: .DownloadContentClosed, object: nil)
+            toggleDownloadingBarView(hidden: false)
+        }
+        .onDisappear {
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                toggleDownloadingBarView(hidden: true)
             }
         }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
@@ -342,5 +357,14 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
 
     func showAllCourses() {
         env.router.route(to: "/courses", from: controller)
+    }
+
+    func showDownloads() {
+        let downloadsViewHostingController = CoreHostingController(DownloadsView())
+        env.router.show(
+            downloadsViewHostingController,
+            from: controller,
+            options: .push
+        )
     }
 }

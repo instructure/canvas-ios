@@ -17,8 +17,9 @@
 //
 
 import Foundation
+import mobile_offline_downloader_ios
 
-public class LTIViewController: UIViewController, ErrorViewController, ColoredNavViewProtocol {
+public class LTIViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
     @IBOutlet weak var spinnerView: CircleProgressView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var openButton: UIButton!
@@ -28,6 +29,8 @@ public class LTIViewController: UIViewController, ErrorViewController, ColoredNa
     public var name: String?
     public var color: UIColor?
     public var titleSubtitleView: TitleSubtitleView = TitleSubtitleView.create()
+
+    public var moduleItem: ModuleItem?
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
@@ -46,6 +49,14 @@ public class LTIViewController: UIViewController, ErrorViewController, ColoredNa
         let controller = loadFromStoryboard()
         controller.tools = tools
         controller.name = name
+        return controller
+    }
+
+    public static func create(tools: LTITools, moduleItem: ModuleItem) -> Self {
+        let controller = loadFromStoryboard()
+        controller.tools = tools
+        controller.moduleItem = moduleItem
+        controller.title = moduleItem.title
         return controller
     }
 

@@ -77,6 +77,13 @@ struct SideMenuMainSection: View {
                 }
                 .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
 
+                Button {
+                    showDownloads()
+                } label: {
+                    SideMenuItem(id: "downloads", image: Image(systemName: "checkmark.icloud"), title: Text("Downloads", bundle: .core))
+                }
+                .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
+
                 ForEach(Array(tools), id: \.self) { tool in
                     Button {
                         launchLTI(url: tool.url)
@@ -126,6 +133,24 @@ struct SideMenuMainSection: View {
         let dashboard = self.dashboard
         env.router.dismiss(controller) {
             LTITools(url: url).presentTool(from: dashboard, animated: true)
+        }
+    }
+
+    func showDownloads() {
+        guard let tabs =  controller.value.presentingViewController as? UITabBarController else {
+            return
+        }
+        tabs.selectedIndex = 0
+        let downloadsViewHostingController = CoreHostingController(
+            DownloadsView()
+        )
+        let dashboard = self.dashboard
+        env.router.dismiss(controller) {
+            self.env.router.show(
+                downloadsViewHostingController,
+                from: dashboard,
+                options: .push
+            )
         }
     }
 }

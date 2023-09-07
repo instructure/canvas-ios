@@ -4,9 +4,9 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.instructure.Contexts</string>
-		<string>group.com.instructure.icanvas</string>
-		<string>group.instructure.shared</string>
+		<string>group.com.instructure.Contexts.2u</string>
+		<string>group.com.instructure.icanvas.2u</string>
+		<string>group.instructure.shared.2u</string>
 	</array>
 	<key>keychain-access-groups</key>
 	<array>

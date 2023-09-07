@@ -76,6 +76,11 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
         super.init(coder: aDecoder)
     }
 
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        isOpenDownloadsView()
+    }
+
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.useStyle(navigationBarStyle)
@@ -85,6 +90,10 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
     public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         screenViewTracker?.stopTrackingTimeOnViewController()
+    }
+
+    deinit {
+        isClosedDownloadsView()
     }
 }
 
@@ -102,5 +111,23 @@ public struct CoreHostingBaseView<Content: View>: View {
                 guard let controller = controller.value as? TestTreeHolder else { return }
                 controller.testTree = testTrees.first { $0.type == Content.self }
             }
+    }
+}
+
+extension CoreHostingController: DownloadsProgressBarHidden {
+    func isOpenDownloadsView() {
+        if rootView is CoreHostingBaseView<DownloadsView> {
+            debugLog("isDownloadsView = opened")
+            NotificationCenter.default.post(name: .DownloadContentOpened, object: nil)
+            toggleDownloadingBarView(hidden: true)
+        }
+    }
+
+    func isClosedDownloadsView() {
+        if rootView is CoreHostingBaseView<DownloadsView> {
+            debugLog("isDownloadsView = closed")
+            NotificationCenter.default.post(name: .DownloadContentClosed, object: nil)
+            toggleDownloadingBarView(hidden: false)
+        }
     }
 }

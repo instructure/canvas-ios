@@ -67,10 +67,10 @@ class UploadManagerTests: CoreTestCase {
         UUID.mock("shared")
         let expected = URL
             .Directories
-            .sharedContainer(appGroup: "group.com.instructure.icanvas")?
+            .sharedContainer(appGroup: "group.com.instructure.icanvas.2u")?
             .appendingPathComponent("uploads/shared/")
             .appendingPathComponent(url.lastPathComponent)
-        let manager = UploadManager(identifier: "test", sharedContainerIdentifier: "group.com.instructure.icanvas")
+        let manager = UploadManager(identifier: "test", sharedContainerIdentifier: "group.com.instructure.icanvas.2u")
         XCTAssertEqual(try manager.copyFileToSharedContainer(url), expected)
     }
 

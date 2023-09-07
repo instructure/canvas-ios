@@ -17,8 +17,21 @@
 //
 
 import UIKit
+import Combine
 
-public class PageListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
+public class PageListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol, Reachabilitable {
+
+    deinit {
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
+    }
+
+    @Injected(\.reachability) var reachability: ReachabilityProvider
+    var cancellables: [AnyCancellable] = []
+
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -80,6 +93,7 @@ public class PageListViewController: ScreenViewTrackableViewController, ColoredN
         tableView.backgroundColor = .backgroundLightest
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .borderMedium
+        tableView.contentInset = .init(top: 0, left: 0, bottom: 60, right: 0)
 
         colors.refresh()
         frontPage.refresh()
@@ -90,6 +104,19 @@ public class PageListViewController: ScreenViewTrackableViewController, ColoredN
             course.refresh()
         }
         NotificationCenter.default.addObserver(self, selector: #selector(pageCreated), name: Notification.Name("page-created"), object: nil)
+
+        tableView.registerCell(DownloadPageListTableViewCell.self)
+
+        connection { [weak self] _  in
+            self?.tableView.reloadData()
+        }
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(didBecomeActiveNotification),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -159,6 +186,11 @@ public class PageListViewController: ScreenViewTrackableViewController, ColoredN
         Page.save(item, in: env.database.viewContext)
         try? env.database.viewContext.save()
     }
+
+    @objc
+    private func didBecomeActiveNotification() {
+        tableView.reloadData()
+    }
 }
 
 extension PageListViewController: UITableViewDataSource, UITableViewDelegate {
@@ -182,14 +214,22 @@ extension PageListViewController: UITableViewDataSource, UITableViewDelegate {
         if pages.hasNextPage, indexPath.row == pages.count {
             return LoadingCell(style: .default, reuseIdentifier: nil)
         }
-        let cell: PageListCell = tableView.dequeue(for: indexPath)
-        cell.update(pages[indexPath.row], indexPath: indexPath, color: color)
+        let cell: DownloadPageListTableViewCell = tableView.dequeue(for: indexPath)
+        let page = pages[indexPath.row]
+        cell.update(
+            page: page,
+            course: course.first,
+            indexPath: indexPath,
+            color: color
+        )
         return cell
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let page = (indexPath.section == 0 && !frontPage.isEmpty) ? frontPage.first : pages[indexPath.row]
-        guard let url = page?.htmlURL else { return }
+        guard let page = (indexPath.section == 0 && !frontPage.isEmpty) ? frontPage.first : pages[indexPath.row] else {
+            return
+        }
+        guard let url = page.htmlURL else { return }
         env.router.route(to: url, from: self, options: .detail)
     }
 

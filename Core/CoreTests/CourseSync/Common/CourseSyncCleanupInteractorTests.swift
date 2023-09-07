@@ -25,18 +25,18 @@ class CourseSyncCleanupInteractorTests: XCTestCase {
         // MARK: - GIVEN
         // MARK: This should be deleted
         let mockSession = LoginSession.make(baseURL: URL(string: "https://test.instructure.com")!, userID: "testUserID")
-        let dbURL = URL.Directories.databaseURL(appGroup: "group.com.instructure.icanvas", session: mockSession)
+        let dbURL = URL.Directories.databaseURL(appGroup: "group.com.instructure.icanvas.2u", session: mockSession)
         try write("test", to: dbURL)
         XCTAssertTrue(FileManager.default.fileExists(atPath: dbURL.path))
 
         // MARK: This user's files should be left intact
         let anotherMockSession = LoginSession.make(baseURL: URL(string: "https://test.instructure.com")!, userID: "testUserID2")
-        let anotherDbURL = URL.Directories.databaseURL(appGroup: "group.com.instructure.icanvas", session: anotherMockSession)
+        let anotherDbURL = URL.Directories.databaseURL(appGroup: "group.com.instructure.icanvas.2u", session: anotherMockSession)
         try write("test", to: anotherDbURL)
         XCTAssertTrue(FileManager.default.fileExists(atPath: anotherDbURL.path))
 
         // MARK: - WHEN
-        let testee = CourseSyncCleanupInteractor(appGroup: "group.com.instructure.icanvas", session: mockSession)
+        let testee = CourseSyncCleanupInteractor(appGroup: "group.com.instructure.icanvas.2u", session: mockSession)
         XCTAssertFinish(testee.clean())
 
         // MARK: - THEN

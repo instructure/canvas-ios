@@ -27,7 +27,6 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
     func testSubtitleItemCounterIgnoresContainerSelections() {
         let mockInteractor = CourseSyncProgressObserverInteractorMock(context: databaseClient)
         let testee = DashboardOfflineSyncProgressCardViewModel(interactor: mockInteractor,
-                                                               offlineModeInteractor: MockOfflineModeInteractorEnabled(),
                                                                router: router,
                                                                scheduler: .immediate)
         XCTAssertEqual(testee.subtitle, "2 items are syncing.")
@@ -37,7 +36,6 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
         // MARK: - GIVEN
         let mockInteractor = CourseSyncProgressObserverInteractorMock(context: databaseClient)
         let testee = DashboardOfflineSyncProgressCardViewModel(interactor: mockInteractor,
-                                                               offlineModeInteractor: MockOfflineModeInteractorEnabled(),
                                                                router: router)
         XCTAssertFalse(testee.isVisible)
 
@@ -55,7 +53,6 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
         let mockInteractor = CourseSyncProgressObserverInteractorMock(context: databaseClient,
                                                                       progressToReport: 1)
         let testee = DashboardOfflineSyncProgressCardViewModel(interactor: mockInteractor,
-                                                               offlineModeInteractor: MockOfflineModeInteractorEnabled(),
                                                                router: router,
                                                                scheduler: testScheduler.eraseToAnyScheduler())
         NotificationCenter.default.post(name: .OfflineSyncTriggered,
@@ -74,7 +71,6 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
     func testUpdatesProgress() {
         let mockInteractor = CourseSyncProgressObserverInteractorMock(context: databaseClient)
         let testee = DashboardOfflineSyncProgressCardViewModel(interactor: mockInteractor,
-                                                               offlineModeInteractor: MockOfflineModeInteractorEnabled(),
                                                                router: router,
                                                                scheduler: .immediate)
 
@@ -85,7 +81,6 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
         // MARK: - GIVEN
         let mockInteractor = CourseSyncProgressObserverInteractorMock(context: databaseClient)
         let testee = DashboardOfflineSyncProgressCardViewModel(interactor: mockInteractor,
-                                                               offlineModeInteractor: MockOfflineModeInteractorEnabled(),
                                                                router: router)
         NotificationCenter.default.post(name: .OfflineSyncTriggered,
                                         object: nil)
@@ -102,7 +97,6 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
         // MARK: - GIVEN
         let mockInteractor = CourseSyncProgressObserverInteractorMock(context: databaseClient)
         let testee = DashboardOfflineSyncProgressCardViewModel(interactor: mockInteractor,
-                                                               offlineModeInteractor: MockOfflineModeInteractorEnabled(),
                                                                router: router)
         let source = UIViewController()
 
@@ -147,24 +141,4 @@ private class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserv
 
         return Just(.data([course, fileTab, file1, file2])).eraseToAnyPublisher()
     }
-}
-
-private class MockOfflineModeInteractorEnabled: OfflineModeInteractor {
-    func isFeatureFlagEnabled() -> Bool {
-        true
-    }
-
-    func observeIsFeatureFlagEnabled() -> AnyPublisher<Bool, Never> {
-        Just(true).eraseToAnyPublisher()
-    }
-
-    func observeIsOfflineMode() -> AnyPublisher<Bool, Never> {
-        Just(true).eraseToAnyPublisher()
-    }
-
-    func observeNetworkStatus() -> AnyPublisher<Core.NetworkAvailabilityStatus, Never> {
-        Just(.disconnected).eraseToAnyPublisher()
-    }
-
-    func isOfflineModeEnabled() -> Bool { true }
 }

@@ -18,8 +18,21 @@
 
 import Foundation
 import SafariServices
+import Combine
 
-public class ModuleListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol, ErrorViewController {
+public class ModuleListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol, ErrorViewController, Reachabilitable {
+
+    deinit {
+        NotificationCenter.default.removeObserver(
+            self,
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
+    }
+
+    @Injected(\.reachability) var reachability: ReachabilityProvider
+    var cancellables: [AnyCancellable] = []
+
     let refreshControl = CircleRefreshControl()
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
@@ -88,6 +101,7 @@ public class ModuleListViewController: ScreenViewTrackableViewController, Colore
         tableView.refreshControl = refreshControl
         tableView.registerCell(EmptyCell.self)
         tableView.registerHeaderFooterView(ModuleSectionHeaderView.self, fromNib: false)
+        tableView.contentInset = .init(top: 0, left: 0, bottom: 60, right: 0)
         if let footer = tableView.tableFooterView as? UILabel {
             footer.isHidden = true
             footer.text = NSLocalizedString("Loading more modules...", bundle: .core, comment: "")
@@ -101,6 +115,17 @@ public class ModuleListViewController: ScreenViewTrackableViewController, Colore
         colors.refresh()
         modules.refresh()
         tabs.refresh()
+
+        connection { [weak self] _ in
+            self?.tableView.reloadData()
+        }
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(didBecomeActiveNotification),
+            name: UIApplication.didBecomeActiveNotification,
+            object: nil
+        )
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -179,6 +204,11 @@ public class ModuleListViewController: ScreenViewTrackableViewController, Colore
             )
         }
     }
+
+    @objc
+    private func didBecomeActiveNotification() {
+        tableView.reloadData()
+    }
 }
 
 extension ModuleListViewController: UITableViewDataSource {
@@ -244,7 +274,12 @@ extension ModuleListViewController: UITableViewDataSource {
         default:
             let cell: ModuleItemCell = tableView.dequeue(for: indexPath)
             if let item = item {
-                cell.update(item, indexPath: indexPath, color: color)
+                cell.update(
+                    item,
+                    course: courses.first,
+                    indexPath: indexPath,
+                    color: color
+                )
             }
             return cell
         }

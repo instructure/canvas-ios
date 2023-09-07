@@ -38,3 +38,15 @@ public extension View {
         }
     }
 }
+
+public extension View {
+    /**
+     This view modifier fixes the iOS 16.0 only bug where the List scroll content background is not hidden by default.
+     */
+    @ViewBuilder
+    func listSystemBackgroundColor() -> some View {
+        self
+            .iOS16HideListScrollContentBackground()
+            .background(Color.backgroundLightest.ignoresSafeArea())
+    }
+}

@@ -89,6 +89,8 @@ public struct RefreshableScrollView<Content: View>: View {
                         .onPreferenceChange(ViewOffsetKey.self) { newValue in
                             updateState(offset: newValue)
                         }
+                    Spacer()
+                        .frame(height: 60)
                 }
             )
             .coordinateSpace(name: "frameLayer")

@@ -28,6 +28,6 @@ class BundleExtensionsTests: XCTestCase {
 
     func testAppGroupID() {
         XCTAssertNil(Bundle.main.appGroupID())
-        XCTAssertEqual(Bundle.main.appGroupID(bundleID: Bundle.studentBundleID), "group.com.instructure.icanvas")
+        XCTAssertEqual(Bundle.main.appGroupID(bundleID: Bundle.studentBundleID), "group.com.instructure.icanvas.2u")
     }
 }

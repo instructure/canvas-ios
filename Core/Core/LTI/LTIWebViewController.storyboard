@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Web View Controller-->
+        <scene sceneID="WOr-VT-7rE">
+            <objects>
+                <viewController storyboardIdentifier="LTIWebViewController" id="tZR-Cg-rOo" customClass="LTIWebViewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hAD-e6-Ocj">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zwb-JE-aFc" customClass="CoreWebView" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R0c-LQ-jfg" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="176.66666666666666" y="418.66666666666669" width="40" height="40"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="n2I-cZ-qDf"/>
+                                    <constraint firstAttribute="width" constant="40" id="zwE-ek-0zt"/>
+                                </constraints>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Zv-FN-BIb">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="amr-Bl-MUu"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="amr-Bl-MUu" firstAttribute="bottom" secondItem="8Zv-FN-BIb" secondAttribute="bottom" id="5Gm-Oh-Ajc"/>
+                            <constraint firstItem="amr-Bl-MUu" firstAttribute="bottom" secondItem="Zwb-JE-aFc" secondAttribute="bottom" id="7hq-hy-Xyk"/>
+                            <constraint firstItem="amr-Bl-MUu" firstAttribute="trailing" secondItem="Zwb-JE-aFc" secondAttribute="trailing" id="8Ct-eX-jyT"/>
+                            <constraint firstItem="R0c-LQ-jfg" firstAttribute="centerY" secondItem="amr-Bl-MUu" secondAttribute="centerY" id="MTO-te-g8C"/>
+                            <constraint firstItem="8Zv-FN-BIb" firstAttribute="leading" secondItem="amr-Bl-MUu" secondAttribute="leading" id="Nwk-dF-9hP"/>
+                            <constraint firstItem="Zwb-JE-aFc" firstAttribute="leading" secondItem="amr-Bl-MUu" secondAttribute="leading" id="Va1-gt-TBo"/>
+                            <constraint firstItem="amr-Bl-MUu" firstAttribute="trailing" secondItem="8Zv-FN-BIb" secondAttribute="trailing" id="cRx-aT-yEw"/>
+                            <constraint firstItem="Zwb-JE-aFc" firstAttribute="top" secondItem="amr-Bl-MUu" secondAttribute="top" id="oHo-Q6-ETo"/>
+                            <constraint firstItem="R0c-LQ-jfg" firstAttribute="centerX" secondItem="amr-Bl-MUu" secondAttribute="centerX" id="peh-mw-jJo"/>
+                            <constraint firstItem="8Zv-FN-BIb" firstAttribute="top" secondItem="amr-Bl-MUu" secondAttribute="top" id="qMY-lU-447"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="oldLTIContainer" destination="8Zv-FN-BIb" id="opI-p9-R5l"/>
+                        <outlet property="spinnerView" destination="R0c-LQ-jfg" id="0lZ-aG-T17"/>
+                        <outlet property="webView" destination="Zwb-JE-aFc" id="Ako-xN-KBT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rbc-7Q-hcJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-597" y="-40"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

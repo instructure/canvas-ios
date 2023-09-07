@@ -109,9 +109,7 @@ class NotificationCategoriesViewController: UIViewController, ErrorViewControlle
         let alerts = NSLocalizedString("Alerts", bundle: .core, comment: "")
 
         var map = [
-            "all_submissions": (0, NSLocalizedString("All Submissions", bundle: .core, comment: ""), courseActivities),
             "announcement": (0, NSLocalizedString("Announcement", bundle: .core, comment: ""), courseActivities),
-            "announcement_created_by_you": (0, NSLocalizedString("Announcement Created By You", bundle: .core, comment: ""), courseActivities),
             "appointment_availability": (3, NSLocalizedString("Appointment Availability", bundle: .core, comment: ""), scheduling),
             "appointment_cancelations": (3, NSLocalizedString("Appointment Cancellations", bundle: .core, comment: ""), scheduling),
             "calendar": (3, NSLocalizedString("Calendar", bundle: .core, comment: ""), scheduling),
@@ -122,6 +120,7 @@ class NotificationCategoriesViewController: UIViewController, ErrorViewControlle
             "invitation": (0, NSLocalizedString("Invitation", bundle: .core, comment: ""), courseActivities),
             "student_appointment_signups": (3, NSLocalizedString("Student Appointment Signups", bundle: .core, comment: ""), scheduling),
             "submission_comment": (0, NSLocalizedString("Submission Comment", bundle: .core, comment: ""), courseActivities),
+            "discussion_mention": (1, NSLocalizedString("New Mention", bundle: .core, comment: ""), discussions),
         ]
 
         if channelType == .push {
@@ -129,6 +128,8 @@ class NotificationCategoriesViewController: UIViewController, ErrorViewControlle
         }
 
         map.merge( [
+            "all_submissions": (0, NSLocalizedString("All Submissions", bundle: .core, comment: ""), courseActivities),
+            "announcement_created_by_you": (0, NSLocalizedString("Announcement Created By You", bundle: .core, comment: ""), courseActivities),
             "added_to_conversation": (2, NSLocalizedString("Added To Conversation", bundle: .core, comment: ""), conversations),
             "appointment_signups": (3, NSLocalizedString("Appointment Signups", bundle: .core, comment: ""), scheduling),
             "conversation_created": (2, NSLocalizedString("Conversation Created By Me", bundle: .core, comment: ""), conversations),

@@ -219,18 +219,13 @@ public extension XCUIElement {
     }
 
     @discardableResult
-    func writeText(text: String, hitGo: Bool = false, customApp: XCUIApplication? = nil) -> XCUIElement {
-        let appInUse = customApp ?? app
+    func writeText(text: String) -> XCUIElement {
         hit()
-        let keyboard = appInUse.find(type: .keyboard)
+        let keyboard = app.find(type: .keyboard)
         keyboard.actionUntilElementCondition(action: .showKeyboard, condition: .visible)
         waitUntil(.visible)
         typeText(text)
-        if hitGo {
-            keyboard.find(id: "Go", type: .button).hit()
-        } else {
-            keyboard.actionUntilElementCondition(action: .hideKeyboard, condition: .vanish)
-        }
+        keyboard.actionUntilElementCondition(action: .hideKeyboard, condition: .vanish)
         return self
     }
 

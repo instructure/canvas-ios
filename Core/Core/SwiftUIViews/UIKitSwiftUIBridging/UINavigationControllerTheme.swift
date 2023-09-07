@@ -86,6 +86,16 @@ struct NavBarBackButtonModifier: ViewModifier {
     }
 }
 
+struct HideBackButtonModifier: ViewModifier {
+    @Environment(\.viewController) private var controller
+
+    func body(content: Content) -> some View {
+        controller.value.navigationItem.hidesBackButton = true
+        controller.value.navigationItem.leftBarButtonItems = []
+        return content.overlay(Color?.none) // needs something modified to actually run
+    }
+}
+
 extension View {
     public func navigationBarStyle(_ style: UINavigationBar.Style) -> some View {
         modifier(NavigationBarStyleModifier(style: style))
@@ -108,5 +118,9 @@ extension View {
     /** Make the next view controller in the navigation stack to display a standard < Back button. */
     public func navigationBarGenericBackButton() -> some View {
         modifier(NavBarBackButtonModifier())
+    }
+
+    public func hideBackButton() -> some View {
+        modifier(HideBackButtonModifier())
     }
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -23,7 +23,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="zel-h8-3v4" customClass="ListBackgroundView" customModule="Core" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="239.5" width="375" height="245.5"/>
+                                    <rect key="frame" x="0.0" y="250.5" width="375" height="245.5"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ksX-Wo-aaV" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
@@ -97,7 +97,7 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="PageListFrontPageCell" id="bvq-Al-4Yo" customClass="PageListFrontPageCell" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="375" height="119.5"/>
+                                        <rect key="frame" x="0.0" y="50" width="375" height="119.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bvq-Al-4Yo" id="fSH-Ma-RNS">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
@@ -178,10 +178,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationWidth="10" reuseIdentifier="PageListCell" id="K47-fz-UXy" customClass="PageListCell" customModule="Core" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="164" width="375" height="53"/>
+                                        <rect key="frame" x="0.0" y="169.5" width="375" height="53"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="K47-fz-UXy" id="h18-Ci-Mgd">
-                                            <rect key="frame" x="0.0" y="0.0" width="350.5" height="53"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="348.5" height="53"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yZj-us-baR" customClass="AccessIconView" customModule="Core" customModuleProvider="target">
@@ -192,7 +192,7 @@
                                                     </constraints>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="SYx-zd-ZSF">
-                                                    <rect key="frame" x="58" y="8.5" width="284.5" height="36.5"/>
+                                                    <rect key="frame" x="58" y="8.5" width="282.5" height="36.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Page Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qIt-LP-q9h" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="75" height="19.5"/>
@@ -267,7 +267,7 @@
     </scenes>
     <designables>
         <designable name="1s1-Cn-Jrv">
-            <size key="intrinsicContentSize" width="101.5" height="24"/>
+            <size key="intrinsicContentSize" width="97" height="24"/>
         </designable>
         <designable name="MRG-6a-5mX">
             <size key="intrinsicContentSize" width="24" height="24"/>
@@ -276,16 +276,16 @@
             <size key="intrinsicContentSize" width="300" height="162"/>
         </designable>
         <designable name="Zla-nM-E34">
-            <size key="intrinsicContentSize" width="245" height="19.5"/>
+            <size key="intrinsicContentSize" width="231" height="19.5"/>
         </designable>
         <designable name="bRn-mG-uYY">
             <size key="intrinsicContentSize" width="21" height="21"/>
         </designable>
         <designable name="oQL-N1-MIR">
-            <size key="intrinsicContentSize" width="88.5" height="24"/>
+            <size key="intrinsicContentSize" width="83" height="24"/>
         </designable>
         <designable name="paN-70-GrB">
-            <size key="intrinsicContentSize" width="66" height="17"/>
+            <size key="intrinsicContentSize" width="62" height="17"/>
         </designable>
         <designable name="qIt-LP-q9h">
             <size key="intrinsicContentSize" width="75" height="19.5"/>

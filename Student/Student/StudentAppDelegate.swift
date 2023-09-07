@@ -17,6 +17,9 @@
 //
 
 import AVKit
+import AWSLambda
+import AWSSNS
+import BugfenderSDK
 import CanvasCore
 import Core
 import Firebase
@@ -78,8 +81,26 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             window?.makeKeyAndVisible()
             Analytics.shared.logScreenView(route: "/login", viewController: window?.rootViewController)
         }
-
+        setupOffline()
+        setupAWS()
+        setupBugfender()
         return true
+    }
+
+    func setupOffline() {
+        DownloaderClient.setup()
+    }
+    func setupAWS() {
+        guard let accessKey = Secret.awsAccessKey.string, let secretKey = Secret.awsSecretKey.string else { return }
+        let credProvider = AWSStaticCredentialsProvider(accessKey: accessKey, secretKey: secretKey)
+        if let awsConfiguration = AWSServiceConfiguration(region: .USEast1, credentialsProvider: credProvider) {
+            AWSSNS.register(with: awsConfiguration, forKey: "mySNS")
+            AWSLambda.register(with: awsConfiguration, forKey: "myLambda")
+        }
+    }
+    func setupBugfender() {
+        guard let bugfenderKey = Secret.bugfenderKey.string else { return }
+        Bugfender.activateLogger(bugfenderKey)
     }
 
     func setup(session: LoginSession) {
@@ -246,6 +267,7 @@ extension StudentAppDelegate: Core.AnalyticsHandler {
            let screenClass = parameters?["screen_class"] as? String {
             Firebase.Crashlytics.crashlytics().log("\(screenName) (\(screenClass))")
         }
+        Analytics.logEvent(name, parameters: parameters)
     }
 
     private func initializeTracking() {
@@ -316,7 +338,7 @@ extension StudentAppDelegate {
     func setupPageViewLogging() {
         class BackgroundAppHelper: AppBackgroundHelperProtocol {
 
-            let queue = DispatchQueue(label: "com.instructure.icanvas.app-background-helper", attributes: .concurrent)
+            let queue = DispatchQueue(label: "com.instructure.icanvas.2u.app-background-helper", attributes: .concurrent)
             var tasks: [String: UIBackgroundTaskIdentifier] = [:]
 
             func startBackgroundTask(taskName: String) {
@@ -426,7 +448,8 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         LoginSession.remove(session)
         guard environment.currentSession == session else { return }
         PageViewEventController.instance.userDidChange()
-        NotificationManager.shared.unsubscribeFromPushChannel()
+//        NotificationManager.shared.unsubscribeFromPushChannel()
+        NotificationManager.shared.unsubscribeFromUserSNSTopic()
         UIApplication.shared.applicationIconBadgeNumber = 0
         environment.userDidLogout(session: session)
         CoreWebView.stopCookieKeepAlive()

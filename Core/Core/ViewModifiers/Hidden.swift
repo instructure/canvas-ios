@@ -35,4 +35,14 @@ extension View {
             .disabled(isDisabled)
             .opacity(isDisabled ? disabledOpacity : 1.0)
     }
+
+    @ViewBuilder func isHidden(_ hidden: Bool, remove: Bool = true) -> some View {
+        if hidden {
+            if !remove {
+                self.hidden()
+            }
+        } else {
+            self
+        }
+    }
 }

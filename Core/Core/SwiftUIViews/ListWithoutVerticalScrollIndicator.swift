@@ -17,6 +17,7 @@
 //
 
 import SwiftUI
+import Combine
 
 public struct ListWithoutVerticalScrollIndicator<Content: View>: View {
     private let scrollIndicatorWidth: CGFloat = 6
@@ -28,8 +29,62 @@ public struct ListWithoutVerticalScrollIndicator<Content: View>: View {
 
     public var body: some View {
         List {
-            content().padding(.horizontal, scrollIndicatorWidth)
+            content()
+                .padding(.horizontal, scrollIndicatorWidth)
         }
         .padding(.horizontal, -scrollIndicatorWidth)
+        .safeAreaInset(edge: .bottom) {
+            Color.clear
+                .frame(height: 60)
+        }
+    }
+}
+
+final class NoConnectionViewModel: ObservableObject, Reachabilitable {
+
+    @Injected(\.reachability) var reachability: ReachabilityProvider
+    var cancellables: [AnyCancellable] = []
+
+    @Published var isConnected: Bool = false
+
+    init() {
+        isConnected = reachability.isConnected
+        connection { [weak self] isConnected in
+            self?.isConnected = isConnected
+        }
+    }
+}
+
+public struct ListNoConnectionBarPadding<Content: View>: View {
+
+    @StateObject private var viewModel: NoConnectionViewModel = .init()
+    private let content: () -> Content
+
+    public init(@ViewBuilder content: @escaping () -> Content) {
+        self.content = content
+    }
+
+    public var body: some View {
+        List {
+            content()
+        }
+        .padding(.bottom, viewModel.isConnected ? 0 : 20)
+    }
+}
+
+public struct ScrollViewNoConnectionBarPadding<Content: View>: View {
+
+    @StateObject private var viewModel: NoConnectionViewModel = .init()
+    private let content: () -> Content
+
+    public init(@ViewBuilder content: @escaping () -> Content) {
+        self.content = content
+    }
+
+    public var body: some View {
+        ScrollView {
+            content()
+        }
+        .padding(.bottom, viewModel.isConnected ? 0 : 20)
     }
 }

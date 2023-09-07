@@ -129,6 +129,7 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
         tableView.refreshControl = refreshControl
         tableView.registerHeaderFooterView(SectionHeaderView.self)
         tableView.separatorColor = .borderMedium
+        tableView.contentInset = .init(top: 0, left: 0, bottom: 60, right: 0)
 
         totalGradeHeadingLabel.text = NSLocalizedString("Total Grade", bundle: .core, comment: "")
         totalGradeLabel.accessibilityIdentifier = "CourseTotalGrade"

@@ -109,8 +109,6 @@
 		8917C1628DAFDC52287BF98D /* ModuleItemFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B59FD3B1D002FA5E94E1C6 /* ModuleItemFixture.swift */; };
 		8A07DBDCA9A16E7CA4119BA8 /* SafariAppHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88031258B44C726398315548 /* SafariAppHelper.swift */; };
 		8AAB7EC58190ABB57E0F40AD /* MiniCanvasServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A98E1BAD9BED63BDEAD29 /* MiniCanvasServer.swift */; };
-		8B086EFE2AA784C50013C15F /* CreateDSAdminRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B086EFD2AA784C50013C15F /* CreateDSAdminRequest.swift */; };
-		8B086F002AA7863B0013C15F /* DSAdmin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B086EFF2AA7863B0013C15F /* DSAdmin.swift */; };
 		8C02370D294ADC5E03166916 /* CreateDSQuizQuestionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFA2EB914E415CCFACDB /* CreateDSQuizQuestionRequest.swift */; };
 		8CE7A795708CBCF4AF7A2674 /* DSModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69E1EBE6B486730AE73F45 /* DSModuleItem.swift */; };
 		8CEEA54DE127851FF426490F /* CreateDSDiscussionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D6E99369534DE2260DD4EB /* CreateDSDiscussionRequest.swift */; };
@@ -187,14 +185,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		8B086EF92AA784A80013C15F /* PBXContainerItemProxy */ = {
+		A50D35CB2A7D1BF8006204F1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 19FB565ABEC6EA3620720E25 /* Core */;
 			proxyType = 2;
 			remoteGlobalIDString = 8F6731E780A5363E04E3620A;
 			remoteInfo = CoreTester;
 		};
-		8B086EFB2AA784A80013C15F /* PBXContainerItemProxy */ = {
+		A50D35CD2A7D1BF8006204F1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 19FB565ABEC6EA3620720E25 /* Core */;
 			proxyType = 2;
@@ -314,8 +312,6 @@
 		8A068B0E01FE8DF60B7EB29C /* DataSeeder+DSCalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSCalendarEvent.swift"; sourceTree = "<group>"; };
 		8A620771B1587A67246AE4EC /* DataSeeder+DSNewQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSNewQuiz.swift"; sourceTree = "<group>"; };
 		8A786B4F2BC2E643D0EA58C0 /* SetDSFeatureFlagRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDSFeatureFlagRequest.swift; sourceTree = "<group>"; };
-		8B086EFD2AA784C50013C15F /* CreateDSAdminRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSAdminRequest.swift; sourceTree = "<group>"; };
-		8B086EFF2AA7863B0013C15F /* DSAdmin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSAdmin.swift; sourceTree = "<group>"; };
 		8E046239E00E2F114C950D3A /* ModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFixture.swift; sourceTree = "<group>"; };
 		8E52A6F60DF961A9FB652399 /* DSSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSubmission.swift; sourceTree = "<group>"; };
 		8EB01A67D620697DB09B6F61 /* CreateDSAccountNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSAccountNotificationRequest.swift; sourceTree = "<group>"; };
@@ -488,11 +484,9 @@
 		04A5599E788D08E7D2E6531C /* User */ = {
 			isa = PBXGroup;
 			children = (
-				8B086EFD2AA784C50013C15F /* CreateDSAdminRequest.swift */,
 				E9D86B8106C5392332BC55C2 /* CreateDSUserRequest.swift */,
 				3F33C4DD360C44A1B0C15A45 /* DataSeeder+DSUser.swift */,
 				FF23850042CD551D7DF85779 /* DSUser.swift */,
-				8B086EFF2AA7863B0013C15F /* DSAdmin.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -726,8 +720,8 @@
 			isa = PBXGroup;
 			children = (
 				59FDA90639A28B677F0E6B7A /* Core.framework */,
-				8B086EFA2AA784A80013C15F /* CoreTester.app */,
-				8B086EFC2AA784A80013C15F /* CoreTests.xctest */,
+				A50D35CC2A7D1BF8006204F1 /* CoreTester.app */,
+				A50D35CE2A7D1BF8006204F1 /* CoreTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1018,18 +1012,18 @@
 			remoteRef = C62A32602F4B1A165BCFE80A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		8B086EFA2AA784A80013C15F /* CoreTester.app */ = {
+		A50D35CC2A7D1BF8006204F1 /* CoreTester.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
 			path = CoreTester.app;
-			remoteRef = 8B086EF92AA784A80013C15F /* PBXContainerItemProxy */;
+			remoteRef = A50D35CB2A7D1BF8006204F1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		8B086EFC2AA784A80013C15F /* CoreTests.xctest */ = {
+		A50D35CE2A7D1BF8006204F1 /* CoreTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = CoreTests.xctest;
-			remoteRef = 8B086EFB2AA784A80013C15F /* PBXContainerItemProxy */;
+			remoteRef = A50D35CD2A7D1BF8006204F1 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1088,7 +1082,6 @@
 				41EF890640769E4E04EE412E /* CreateDSConferencesRequest.swift in Sources */,
 				4AF772C9B1DEBEE7F021DAFB /* CreateDSConversationRequest.swift in Sources */,
 				1715B688AD0D030B01827E03 /* CreateDSCourseRequest.swift in Sources */,
-				8B086F002AA7863B0013C15F /* DSAdmin.swift in Sources */,
 				8CEEA54DE127851FF426490F /* CreateDSDiscussionRequest.swift in Sources */,
 				9654B26FD1E6FA167D2CE1D5 /* CreateDSGradesRequest.swift in Sources */,
 				4EC7BDF80A9E65AA6FBDFACA /* CreateDSGradingStandardsRequest.swift in Sources */,
@@ -1096,7 +1089,6 @@
 				F5B478B2353311462EE3EA17 /* CreateDSModuleRequest.swift in Sources */,
 				765C2293273667500ADC3E78 /* CreateDSNewQuizItemRequest.swift in Sources */,
 				1E94E6D656914C3A1F62666A /* CreateDSNewQuizRequest.swift in Sources */,
-				8B086EFE2AA784C50013C15F /* CreateDSAdminRequest.swift in Sources */,
 				C1FA2728C0AE9A71D63C155F /* CreateDSPageRequest.swift in Sources */,
 				8C02370D294ADC5E03166916 /* CreateDSQuizQuestionRequest.swift in Sources */,
 				C4540EFF67042FF61A803D75 /* CreateDSQuizRequest.swift in Sources */,

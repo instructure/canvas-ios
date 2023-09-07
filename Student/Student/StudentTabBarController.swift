@@ -23,6 +23,17 @@ import Core
 class StudentTabBarController: UITabBarController {
     private var previousSelectedIndex = 0
 
+    lazy var downloadingBarView = DownloadingBarView()
+    lazy var connectionBarView = NotConnectionBarView()
+
+    private let backgroundTaskProvider = BackgroundTaskProvider()
+
+    override var selectedIndex: Int {
+        didSet {
+            downloadingBarView.tabSelected = selectedIndex
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
@@ -42,6 +53,9 @@ class StudentTabBarController: UITabBarController {
         tabBar.useGlobalNavStyle()
         NotificationCenter.default.addObserver(self, selector: #selector(checkForPolicyChanges), name: UIApplication.didBecomeActiveNotification, object: nil)
         reportScreenView(for: selectedIndex, viewController: viewControllers![selectedIndex])
+
+        attachDownloadingBarView()
+        attachConnectionBarView()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -172,6 +186,31 @@ class StudentTabBarController: UITabBarController {
             AppEnvironment.shared.loginDelegate?.changeUser()
         })
     }
+
+    private func attachDownloadingBarView() {
+        downloadingBarView.attach(tabBar: tabBar, in: view)
+        downloadingBarView.onTap = { [weak self] in
+            self?.showDownloadingView()
+        }
+    }
+
+    private func attachConnectionBarView() {
+        connectionBarView.attach(tabBar: tabBar, in: view)
+    }
+
+    private func showDownloadingView() {
+        let downloadsViewController = CoreHostingController(
+            DownloadsView()
+        )
+        selectedViewController.flatMap {
+            AppEnvironment.shared.router.show(
+                downloadsViewController,
+                from: $0,
+                options: .push
+            )
+        }
+    }
+
 }
 
 extension StudentTabBarController: UITabBarControllerDelegate {
@@ -181,7 +220,23 @@ extension StudentTabBarController: UITabBarControllerDelegate {
         if let index = viewControllers?.firstIndex(of: viewController), selectedViewController != viewController {
             reportScreenView(for: index, viewController: viewController)
         }
-
         return true
+    }
+
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        downloadingBarView.tabSelected = selectedIndex
+        if downloadingBarView.downloadContentOpened { return }
+        if selectedIndex == 0 {
+            if UIDevice.current.userInterfaceIdiom == .pad,
+               let navigationController = viewController as? UINavigationController,
+               navigationController.viewControllers.count == 1,
+               navigationController.viewControllers.first is CoreHostingController<DashboardContainerView> {
+                downloadingBarView.show()
+            } else if UIDevice.current.userInterfaceIdiom == .phone {
+                downloadingBarView.show()
+            }
+        } else {
+            downloadingBarView.hidden()
+        }
     }
 }

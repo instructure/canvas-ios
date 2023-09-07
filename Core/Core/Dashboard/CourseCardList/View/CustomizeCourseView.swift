@@ -17,6 +17,7 @@
 //
 
 import SwiftUI
+import mobile_offline_downloader_ios
 
 struct CustomizeCourseView: View {
     let course: Course
@@ -127,6 +128,9 @@ struct CustomizeCourseView: View {
     }
 
     func save() {
+        defer {
+            update(color: color.hexString, name: name)
+        }
         controller.view.endEditing(true) // dismiss keyboard
         isSaving = true
         guard name != course.name else { return saveColor() }
@@ -157,5 +161,22 @@ struct CustomizeCourseView: View {
     func cancel() {
         controller.view.endEditing(true) // dismiss keyboard
         env.router.dismiss(controller)
+    }
+
+    private func update(color: String?, name: String?) {
+        OfflineStorageManager.shared.load(
+            for: CourseStorageDataModel.configureId(id: course.id),
+            castingType: CourseStorageDataModel.self
+        ) { result in
+            result.success { courseStorageDataModel in
+                name.flatMap {
+                    courseStorageDataModel.course.name = $0
+                }
+                color.flatMap {
+                    courseStorageDataModel.course.courseColor = $0
+                }
+                OfflineStorageManager.shared.save(courseStorageDataModel) { _ in }
+            }
+        }
     }
 }

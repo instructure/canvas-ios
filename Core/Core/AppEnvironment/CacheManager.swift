@@ -55,7 +55,7 @@ public class CacheManager {
 
     public static func clear() {
         URLCache.shared.removeAllCachedResponses()
-        clearAppGroup("group.com.instructure.Contexts") // LocalStoreAppGroupName
+        clearAppGroup("group.com.instructure.Contexts.2u") // LocalStoreAppGroupName
         clearCaches()
         clearLibrary()
         clearRNAsyncStorage()

@@ -25,7 +25,7 @@ public class InterprocessNotificationCenter {
     public lazy var notifications: AnyPublisher<String, Never> = notificationsSubject.eraseToAnyPublisher()
     private let notificationsSubject = PassthroughSubject<String, Never>()
     private var subscriberCountByNotificationName: [String: Int] = [:]
-    private let synchronizer = DispatchQueue(label: "com.instructure.icanvas.darwinnotificationcenter")
+    private let synchronizer = DispatchQueue(label: "com.instructure.icanvas.2u.darwinnotificationcenter")
 
     private init() {
     }

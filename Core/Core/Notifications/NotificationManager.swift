@@ -37,6 +37,17 @@ public class NotificationManager {
     public var remoteToken: Data?
     public var remoteSession: LoginSession?
 
+    private let subscriptArnKey: String = "icanvas.mobile.2u.subscriptArnKey"
+    public var subscriptionArn: String? {
+        get {
+            UserDefaults.standard.string(forKey: subscriptArnKey)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: subscriptArnKey)
+        }
+    }
+    public var emailAsPushChannelID: String?
+
     public static var shared = NotificationManager(
         notificationCenter: UNUserNotificationCenter.current(),
         logger: AppEnvironment.shared.logger
@@ -90,11 +101,13 @@ extension NotificationManager {
         }
         let newToken = token ?? remoteToken
         guard newToken != remoteToken || session != remoteSession else { return }
-        unsubscribeFromPushChannel()
+//        unsubscribeFromPushChannel()
         remoteToken = newToken
         remoteSession = session
         guard let token = newToken, let session = session else { return }
-        createPushChannel(token: token, session: session)
+//        createPushChannel(token: token, session: session)
+        checkIfShouldCreateEmailChannelForPush(session: session)
+        subscribeToUserSNSTopic(deviceToken: token, session: session)
     }
 
     func createPushChannel(token: Data, session: LoginSession, retriesLeft: Int = 4) {

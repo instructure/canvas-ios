@@ -12,12 +12,12 @@
 	</array>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.instructure.Contexts</string>
-		<string>group.instructure.shared</string>
+		<string>group.com.instructure.Contexts.2u</string>
+		<string>group.instructure.shared.2u</string>
 	</array>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)com.instructure.parentapp</string>
+		<string>$(AppIdentifierPrefix)com.instructure.parentapp.2u</string>
 	</array>
 </dict>
 </plist>

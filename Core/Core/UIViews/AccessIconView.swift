@@ -90,6 +90,11 @@ open class AccessIconView: UIView {
         set { state = newValue ? .published : .unpublished }
     }
 
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        loadFromXib()
+    }
+
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadFromXib()
