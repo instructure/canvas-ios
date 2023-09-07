@@ -18,11 +18,18 @@
 
 public class SafariAppHelper: BaseHelper {
     public static let safariApp = XCUIApplication(bundleIdentifier: "com.apple.mobilesafari")
+
     public static var browserURL: String {
         safariApp.activate()
         safariApp.find(id: "ReloadButton").waitUntil(.visible)
-        safariApp.find(id: "TabBarItemTitle").hit()
-        let url = safariApp.find(id: "URL").waitUntil(.visible).value as? String ?? ""
+        var addressLabel = safariApp.find(id: "UnifiedTabBarItemView?isSelected=true").waitUntil(.visible, timeout: 5)
+        if addressLabel.isVisible {
+            addressLabel.hit()
+        } else {
+            safariApp.find(id: "TabBarItemTitle").hit()
+            addressLabel = safariApp.find(id: "URL").waitUntil(.visible)
+        }
+        let url = addressLabel.value as? String ?? ""
         return url
     }
 }

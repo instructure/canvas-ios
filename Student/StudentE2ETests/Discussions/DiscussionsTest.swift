@@ -211,9 +211,15 @@ class DiscussionsTests: E2ETestCase {
         let repliesSection = DetailsHelper.repliesSection.waitUntil(.visible)
         XCTAssertTrue(repliesSection.isVisible)
 
-        Helper.backButton.hit()
+        // On iPad: Discussion replies label is visible right after the reply is sent
+        // On iPhone: Back button needs to be tapped for the label to get visible
         let discussionDataLabelReplies = Helper.discussionDataLabel(discussion: assignmentDiscussion, label: .replies)
-            .waitUntil(.visible)
+            .waitUntil(.visible, timeout: 5)
+        if discussionDataLabelReplies.isVanished {
+            Helper.backButton.hit()
+            discussionDataLabelReplies.waitUntil(.visible)
+        }
+
         XCTAssertEqual(discussionDataLabelReplies.label, "1 Reply")
 
         Helper.backButton.hit()
