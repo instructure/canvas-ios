@@ -23,6 +23,7 @@ public enum CourseSyncDownloaderAssembly {
     public static func makeInteractor() -> CourseSyncInteractor {
         let contentInteractors: [CourseSyncContentInteractor] = [
             CourseSyncPagesInteractorLive(),
+            CourseSyncPeopleInteractorLive(),
             CourseSyncAssignmentsInteractorLive(),
             CourseSyncGradesInteractorLive(userId: AppEnvironment.shared.currentSession?.userID ?? "self"),
             CourseSyncSyllabusInteractorLive(),
