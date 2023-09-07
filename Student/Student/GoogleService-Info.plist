@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>621987604776-vp8lpvm757phamss0dgi2h773is2i59u.apps.googleusercontent.com</string>
+	<string>1068774923290-ahuacjl56jmnk86heif0bkbu8rpnuup2.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.621987604776-vp8lpvm757phamss0dgi2h773is2i59u</string>
+	<string>com.googleusercontent.apps.1068774923290-ahuacjl56jmnk86heif0bkbu8rpnuup2</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAuMQcDoNGYa_-uF-gJvjNDdgksgj0nwUQ</string>
+	<string>AIzaSyD1vNLWjOeQjIcZSB5bBXLCsQo7Jrdr6Rs</string>
 	<key>GCM_SENDER_ID</key>
-	<string>621987604776</string>
+	<string>1068774923290</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.instructure.icanvas.2u</string>
 	<key>PROJECT_ID</key>
-	<string>canvas-fba17</string>
+	<string>canvas-82791</string>
 	<key>STORAGE_BUCKET</key>
-	<string>canvas-fba17.appspot.com</string>
+	<string>canvas-82791.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:621987604776:ios:2a01d827bc24e0fdd1481d</string>
+	<string>1:1068774923290:ios:6032dd1509036b217445a3</string>
 </dict>
 </plist>
