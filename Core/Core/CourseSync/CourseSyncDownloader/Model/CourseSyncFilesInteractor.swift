@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineExt
 import CoreData
 import Foundation
 
@@ -75,9 +76,13 @@ public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, Loc
            let fileModificationDate = fileManager.fileModificationDate(url: localURL),
            let updatedAt = updatedAt,                                                   // and
            fileModificationDate >= updatedAt {                                          // is up to date
-            return Just(1)
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
+            return AnyPublisher<Float, Error>.create { subscriber in
+                subscriber.send(1)
+                subscriber.send(completion: .finished)
+
+                return AnyCancellable {}
+            }
+
         } else {
             return DownloadTaskPublisher(parameters:
                 DownloadTaskParameters(

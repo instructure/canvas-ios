@@ -46,5 +46,6 @@ public enum TabName: String, Codable {
         .people,
         .quizzes,
         .discussions,
+        .modules,
     ]
 }
