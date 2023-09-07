@@ -20,5 +20,6 @@ import BackgroundTasks
 
 public protocol BackgroundTask {
     func start(completion: @escaping () -> Void)
+    /** This must be a blocking method. When this method returns there's no guarantee that the app will run any longer. */
     func cancel()
 }

@@ -37,14 +37,12 @@ public struct BackgroundProcessingInteractor {
             backgroundTask.expirationHandler = {
                 Logger.shared.error("BackgroundProcessingInteractor: Background task \(taskID) will be cancelled.")
                 task.cancel()
+                backgroundTask.setTaskCompleted(success: false)
             }
 
-            let semaphore = DispatchSemaphore(value: 0)
             task.start {
                 backgroundTask.setTaskCompleted(success: true)
-                semaphore.signal()
             }
-            semaphore.wait()
         }
 
         if !result {
