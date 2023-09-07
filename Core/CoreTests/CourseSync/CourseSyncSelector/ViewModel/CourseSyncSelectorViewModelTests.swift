@@ -179,6 +179,8 @@ class CourseSyncInteractorMock: CourseSyncInteractor {
     func downloadContent(for _: [Core.CourseSyncEntry]) -> AnyPublisher<[Core.CourseSyncEntry], Never> {
         courseSyncEntriesSubject.eraseToAnyPublisher()
     }
+
+    func cancel() {}
 }
 
 class CourseSyncListInteractorMock: CourseSyncListInteractor {
