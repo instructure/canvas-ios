@@ -21,7 +21,7 @@ import CombineExt
 import CombineSchedulers
 
 class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
-    enum ViewState {
+    enum ViewState: Equatable {
         typealias Progress = Float // Ranging from 0 to 1
         typealias ProgressText = String // Text
 
@@ -64,6 +64,7 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
 
         let downloadProgressPublisher = interactor
             .observeDownloadProgress()
+            .print("🍏 ")
             .share()
             .makeConnectable()
 
@@ -93,8 +94,8 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
         _ downloadProgressPublisher: some DownloadProgressPublisher
     ) -> AnyPublisher<DashboardOfflineSyncProgressCardViewModel.ViewState, Never> {
         Publishers.CombineLatest(
-            interactor.observeStateProgress().compactMap { $0.allItems }.map { $0.ignoreContainerSelections() },
-            downloadProgressPublisher.compactMap { $0.firstItem }
+            interactor.observeStateProgress().compactMap { $0.allItems }.map { $0.ignoreContainerSelections() }.print("🍔 "),
+            downloadProgressPublisher.compactMap { $0.firstItem }.print("🍎 ")
         )
         .receive(on: scheduler)
         .map { stateProgress, downloadProgress in
