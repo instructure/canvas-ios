@@ -453,7 +453,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         subscription.cancel()
     }
 
-    func testCancellation() {
+    func testCancellationViaNotification() {
         // GIVEN
         let testee = CourseSyncInteractorLive(
             contentInteractors: [
@@ -473,6 +473,38 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
 
         // WHEN
         NotificationCenter.default.post(name: .OfflineSyncCancelled, object: nil)
+
+        // THEN
+        let fileProgressList: [CourseSyncDownloadProgress] = databaseClient.fetch()
+        let entryProgressList: [CourseSyncStateProgress] = databaseClient.fetch()
+        XCTAssertEqual(fileProgressList.count, 0)
+        XCTAssertEqual(entryProgressList.count, 0)
+        XCTAssertEqual(testee.downloadSubscription, nil)
+        subscription.cancel()
+    }
+
+    func testCancellation() {
+        // GIVEN
+        let testee = CourseSyncInteractorLive(
+            contentInteractors: [
+                pagesInteractor,
+                assignmentsInteractor,
+            ],
+            filesInteractor: filesInteractor,
+            progressWriterInteractor: CourseSyncProgressWriterInteractorLive(container: database),
+            scheduler: .immediate
+        )
+        entries[0].tabs[0].selectionState = .selected
+        entries[0].tabs[1].selectionState = .selected
+
+        let subscription = testee
+            .downloadContent(for: entries)
+            .sink()
+        assignmentsInteractor.publisher.send(())
+        pagesInteractor.publisher.send(())
+
+        // WHEN
+        testee.cancel()
 
         // THEN
         let fileProgressList: [CourseSyncDownloadProgress] = databaseClient.fetch()

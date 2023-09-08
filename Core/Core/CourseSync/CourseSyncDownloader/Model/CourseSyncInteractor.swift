@@ -23,6 +23,7 @@ import Foundation
 
 public protocol CourseSyncInteractor {
     func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Never>
+    func cancel()
 }
 
 public protocol CourseSyncContentInteractor {
@@ -64,6 +65,9 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         listenToCancellationEvent()
     }
 
+    /**
+      **Warning!** While the download is in progress the interactor must not be released otherwise it will crash!
+     */
     public func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Never> {
         downloadSubscription?.cancel()
         downloadSubscription = nil
@@ -97,6 +101,14 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
 
         return courseSyncEntries.eraseToAnyPublisher()
     }
+
+    public func cancel() {
+        downloadSubscription?.cancel()
+        downloadSubscription = nil
+        progressWriterInteractor.cleanUpPreviousDownloadProgress()
+    }
+
+    // MARK: - Private Methods
 
     private func downloadCourseDetails(_ entry: CourseSyncEntry) -> AnyPublisher<Void, Never> {
         unowned let unownedSelf = self
@@ -289,10 +301,8 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
 
     private func listenToCancellationEvent() {
         NotificationCenter.default.publisher(for: .OfflineSyncCancelled)
-            .sink(receiveValue: { [unowned self] _ in
-                downloadSubscription?.cancel()
-                downloadSubscription = nil
-                progressWriterInteractor.cleanUpPreviousDownloadProgress()
+            .sink(receiveCompletion: { _ in }, receiveValue: { [unowned self] _ in
+                self.cancel()
             })
             .store(in: &subscriptions)
     }
