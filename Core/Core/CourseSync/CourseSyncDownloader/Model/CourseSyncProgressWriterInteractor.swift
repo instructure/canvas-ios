@@ -67,14 +67,14 @@ public final class CourseSyncProgressWriterInteractorLive: CourseSyncProgressWri
 
     public func setInitialLoadingState(entries: [CourseSyncEntry]) {
         for entry in entries {
-            saveStateProgress(id: entry.id, selection: .course(entry.id), state: .loading(nil))
+            saveStateProgress(id: entry.id, selection: .course(entry.id), state: entry.state)
 
             for tab in entry.tabs {
-                saveStateProgress(id: tab.id, selection: .tab(entry.id, tab.id), state: .loading(nil))
+                saveStateProgress(id: tab.id, selection: .tab(entry.id, tab.id), state: tab.state)
             }
 
             for file in entry.files {
-                saveStateProgress(id: file.id, selection: .file(entry.id, file.id), state: .loading(nil))
+                saveStateProgress(id: file.id, selection: .file(entry.id, file.id), state: file.state)
             }
         }
     }
