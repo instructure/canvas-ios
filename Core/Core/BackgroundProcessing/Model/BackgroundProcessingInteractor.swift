@@ -50,7 +50,7 @@ public struct BackgroundProcessingInteractor {
         }
     }
 
-    public func schedule(task: BGProcessingTaskRequest) {
+    public func schedule(task: BGTaskRequest) {
         do {
             try scheduler.submit(task)
         } catch(let error) {
