@@ -67,12 +67,9 @@ struct DashboardOfflineSyncProgressCardView: View {
                     .padding(.leading, 5)
                     .padding(.bottom, 5)
             }
-            .accessibilityHidden(true)
+            .accessibilityLabel(Text("Dismiss notification", bundle: .core))
         }
         .padding(.top, 16) // This is to add spacing between the dashboard's nav bar and this card
-        .accessibilityAction(named: Text("Dismiss notification", bundle: .core)) {
-            viewModel.dismissDidTap.accept()
-        }
     }
 
     private func progressView(_ progress: Float, _ progressText: String) -> some View {
