@@ -19,7 +19,7 @@
 import Core
 import BackgroundTasks
 
-struct CoreTaskSchedulerLive: CoreTaskScheduler {
+struct CoreTaskSchedulerLive: CoreBGTaskScheduler {
     private let taskScheduler: BGTaskScheduler
 
     init(taskScheduler: BGTaskScheduler) {
@@ -28,7 +28,7 @@ struct CoreTaskSchedulerLive: CoreTaskScheduler {
 
     func register(forTaskWithIdentifier identifier: String,
                   using queue: DispatchQueue?,
-                  launchHandler: @escaping (BGTask) -> Void)
+                  launchHandler: @escaping (CoreBGTask) -> Void)
     -> Bool {
         taskScheduler.register(forTaskWithIdentifier: identifier,
                                using: queue,

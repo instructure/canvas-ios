@@ -19,9 +19,9 @@
 import BackgroundTasks
 
 public struct BackgroundProcessingInteractor {
-    private let scheduler: CoreTaskScheduler
+    private let scheduler: CoreBGTaskScheduler
 
-    public init(scheduler: CoreTaskScheduler) {
+    public init(scheduler: CoreBGTaskScheduler) {
         self.scheduler = scheduler
     }
 

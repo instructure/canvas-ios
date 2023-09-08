@@ -19,23 +19,34 @@
 import Foundation
 
 public struct BackgroundProcessingAssembly {
-    private static var scheduler: CoreTaskScheduler!
-    private static var factoriesByID: [String: () -> BackgroundTask] = [:]
 
-    public static func register(scheduler: CoreTaskScheduler) {
+    public static func resolveInteractor() -> BackgroundProcessingInteractor {
+        BackgroundProcessingInteractor(scheduler: scheduler)
+    }
+
+    // MARK: - Injecting BGTaskScheduler Implementation
+
+    private static var scheduler: CoreBGTaskScheduler!
+
+    public static func register(scheduler: CoreBGTaskScheduler) {
         self.scheduler = scheduler
     }
+
+    // MARK: - Task Management
+
+    private static var factoriesByID: [String: () -> BackgroundTask] = [:]
 
     public static func register(taskID: String,
                                 using taskFactory: @escaping () -> BackgroundTask) {
         factoriesByID[taskID] = taskFactory
     }
 
+    public static func resetRegisteredTaskIDs() {
+        factoriesByID.removeAll()
+    }
+
     public static func resolveTask(for ID: String) -> BackgroundTask? {
         factoriesByID[ID]?()
     }
 
-    public static func resolveInteractor() -> BackgroundProcessingInteractor {
-        BackgroundProcessingInteractor(scheduler: scheduler)
-    }
 }

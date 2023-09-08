@@ -22,11 +22,11 @@ import BackgroundTasks
  Core is an extension API only project that forbids calling various methods on `BGTaskScheduler`
  so we have to abstract it away using a protocol and inject its live implementation from a higher level project.
  */
-public protocol CoreTaskScheduler {
+public protocol CoreBGTaskScheduler {
 
     func register(forTaskWithIdentifier identifier: String,
                   using queue: DispatchQueue?,
-                  launchHandler: @escaping (BGTask) -> Void)
+                  launchHandler: @escaping (CoreBGTask) -> Void)
     -> Bool
 
     func submit(_ request: BGTaskRequest) throws
