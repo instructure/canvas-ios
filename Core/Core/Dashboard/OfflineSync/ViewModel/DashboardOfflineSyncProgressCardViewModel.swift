@@ -64,7 +64,6 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
 
         let downloadProgressPublisher = interactor
             .observeDownloadProgress()
-            .print("🍏 ")
             .share()
             .makeConnectable()
 
@@ -94,8 +93,8 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
         _ downloadProgressPublisher: some DownloadProgressPublisher
     ) -> AnyPublisher<DashboardOfflineSyncProgressCardViewModel.ViewState, Never> {
         Publishers.CombineLatest(
-            interactor.observeStateProgress().compactMap { $0.allItems }.map { $0.ignoreContainerSelections() }.print("🍔 "),
-            downloadProgressPublisher.compactMap { $0.firstItem }.print("🍎 ")
+            interactor.observeStateProgress().compactMap { $0.allItems }.map { $0.ignoreContainerSelections() },
+            downloadProgressPublisher.compactMap { $0.firstItem }
         )
         .receive(on: scheduler)
         .map { stateProgress, downloadProgress in
