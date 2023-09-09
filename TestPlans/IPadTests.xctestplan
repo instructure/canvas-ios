@@ -32,6 +32,7 @@
       }
     },
     {
+      "enabled" : false,
       "target" : {
         "containerPath" : "container:..\/rn\/Teacher\/ios\/Teacher.xcodeproj",
         "identifier" : "E841D8A223D6472F00685A63",

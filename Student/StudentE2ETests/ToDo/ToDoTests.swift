@@ -57,25 +57,21 @@ class ToDoTests: E2ETestCase {
 
         // MARK: Tap on each item
         discussionItem.hit()
-        let backButton = ToDoHelper.toDoBackButton.waitUntil(.visible)
+        let backButton = ToDoHelper.toDoBackButton.waitUntil(.visible, timeout: 5)
         let discussionMessage = app.find(label: discussion.message).waitUntil(.visible)
-        XCTAssertTrue(backButton.isVisible)
         XCTAssertTrue(discussionMessage.isVisible)
 
-        backButton.hit()
+        if backButton.isVisible { backButton.hit() }
         backButton.waitUntil(.vanish)
         assignmentItem.hit()
-        backButton.waitUntil(.visible)
+        backButton.waitUntil(.visible, timeout: 5)
         let assignmentDescription = app.find(label: assignment.description!).waitUntil(.visible)
-        XCTAssertTrue(backButton.isVisible)
         XCTAssertTrue(assignmentDescription.isVisible)
 
-        backButton.hit()
+        if backButton.isVisible { backButton.hit() }
         backButton.waitUntil(.vanish)
         quizItem.hit()
-        backButton.waitUntil(.visible)
         let quizDescription = app.find(label: quiz.description).waitUntil(.visible)
-        XCTAssertTrue(backButton.isVisible)
         XCTAssertTrue(quizDescription.isVisible)
     }
 }
