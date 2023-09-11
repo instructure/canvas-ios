@@ -24,6 +24,8 @@ final class CourseSyncInteractorPreview: CourseSyncInteractor {
     func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Never> {
         Just([]).eraseToAnyPublisher()
     }
+
+    func cancel() {}
 }
 
 #endif
