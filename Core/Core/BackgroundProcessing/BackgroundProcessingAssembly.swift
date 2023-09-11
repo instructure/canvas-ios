@@ -18,7 +18,7 @@
 
 import Foundation
 
-public struct BackgroundProcessingAssembly {
+public enum BackgroundProcessingAssembly {
 
     public static func resolveInteractor() -> BackgroundProcessingInteractor {
         BackgroundProcessingInteractor(scheduler: scheduler)
@@ -48,5 +48,4 @@ public struct BackgroundProcessingAssembly {
     public static func resolveTask(for ID: String) -> BackgroundTask? {
         factoriesByID[ID]?()
     }
-
 }
