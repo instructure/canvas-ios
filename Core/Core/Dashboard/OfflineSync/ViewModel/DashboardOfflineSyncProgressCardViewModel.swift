@@ -116,7 +116,6 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
 
     private func restorePreviousFailedState(_ downloadProgressPublisher: some DownloadProgressPublisher) {
         downloadProgressPublisher
-            .first()
             .compactMap { $0.firstItem }
             .flatMap { downloadProgress -> AnyPublisher<DashboardOfflineSyncProgressCardViewModel.ViewState, Never> in
                 if downloadProgress.isFinished, downloadProgress.error != nil {
@@ -125,6 +124,7 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
                     return Empty(completeImmediately: true).eraseToAnyPublisher()
                 }
             }
+            .first()
             .receive(on: scheduler)
             .assign(to: &$state)
     }
