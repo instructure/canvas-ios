@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-class OfflineSyncAccountsTests: XCTestCase {
+class OfflineSyncAccountsCalculatorTests: XCTestCase {
 
     func testReturnsAccountsWithSyncEnabledAndSyncDateInThePast() {
         let now = Date.now
@@ -53,7 +53,7 @@ class OfflineSyncAccountsTests: XCTestCase {
         ]
 
         // WHEN
-        let result = OfflineSyncAccounts().calculate(sessions, date: now)
+        let result = OfflineSyncAccountsCalculator().calculate(sessions, date: now)
 
         // THEN
         XCTAssertEqual(result, [syncEnabledDateInPastAccount, syncEnabledDateIsNowAccount])

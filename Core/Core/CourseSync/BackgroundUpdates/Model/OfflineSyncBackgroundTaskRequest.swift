@@ -21,7 +21,7 @@ import BackgroundTasks
 public class OfflineSyncBackgroundTaskRequest: BGProcessingTaskRequest {
     public static let ID = "com.instructure.icanvas.offline-sync"
 
-    public init?(nextSyncDate: OfflineSyncNextDate, sessions: Set<LoginSession>) {
+    public init?(nextSyncDate: OfflineSyncNextDateCalculator, sessions: Set<LoginSession>) {
         guard let nextSyncDate = nextSyncDate.calculate(sessionUniqueIDs: sessions.map { $0.uniqueID }) else { return nil }
         super.init(identifier: Self.ID)
         requiresExternalPower = false

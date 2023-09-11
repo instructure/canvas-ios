@@ -21,12 +21,12 @@ import BackgroundTasks
 public enum CourseSyncBackgroundUpdatesAssembly {
 
     public static func makeOfflineSyncBackgroundTask() -> BackgroundTask {
-        OfflineSyncBackgroundTask(syncableAccounts: OfflineSyncAccounts(),
+        OfflineSyncBackgroundTask(syncableAccounts: OfflineSyncAccountsCalculator(),
                                   sessions: LoginSession.sessions)
     }
 
     public static func makeTaskRequest() -> BGProcessingTaskRequest? {
-        OfflineSyncBackgroundTaskRequest(nextSyncDate: OfflineSyncNextDate(),
+        OfflineSyncBackgroundTaskRequest(nextSyncDate: OfflineSyncNextDateCalculator(),
                                          sessions: LoginSession.sessions)
     }
 }

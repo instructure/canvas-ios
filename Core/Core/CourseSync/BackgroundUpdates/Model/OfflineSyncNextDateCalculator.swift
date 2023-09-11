@@ -18,21 +18,22 @@
 
 import Foundation
 
-/**
- This helper returns all accounts that needs offline sync at a given time.
- */
-public class OfflineSyncAccounts {
+public class OfflineSyncNextDateCalculator {
 
-    public func calculate(_ sessions: [LoginSession], date: Date) -> [LoginSession] {
-        sessions.reduce(into: []) { partialResult, session in
-            let defaults = SessionDefaults(sessionID: session.uniqueID)
+    /**
+     - parameters:
+        - sessionUniqueIDs: All session uniqueIDs currently logged into the app.
+     */
+    public func calculate(sessionUniqueIDs: [String]) -> Date? {
+        let dates: [Date] = sessionUniqueIDs.compactMap { sessionID in
+            let defaults = SessionDefaults(sessionID: sessionID)
             guard defaults.isOfflineAutoSyncEnabled == true,
-                  let syncDate = defaults.offlineSyncNextDate,
-                  syncDate <= date
+                  let nextSyncDate = defaults.offlineSyncNextDate
             else {
-                return
+                return nil
             }
-            partialResult.append(session)
+            return nextSyncDate
         }
+        return dates.min()
     }
 }

@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-class OfflineSyncNextDateTests: XCTestCase {
+class OfflineSyncNextDateCalculatorTests: XCTestCase {
     private var defaults1 = SessionDefaults(sessionID: "test1")
     private var defaults2 = SessionDefaults(sessionID: "test2")
 
@@ -40,7 +40,7 @@ class OfflineSyncNextDateTests: XCTestCase {
         defaults.isOfflineAutoSyncEnabled = true
 
         // WHEN
-        let result = OfflineSyncNextDate().calculate(sessionUniqueIDs: ["test1", "test2"])
+        let result = OfflineSyncNextDateCalculator().calculate(sessionUniqueIDs: ["test1", "test2"])
 
         // THEN
         XCTAssertEqual(result, date2)
@@ -53,7 +53,7 @@ class OfflineSyncNextDateTests: XCTestCase {
         defaults.isOfflineAutoSyncEnabled = false
 
         // WHEN
-        let result = OfflineSyncNextDate().calculate(sessionUniqueIDs: ["test1", "test2"])
+        let result = OfflineSyncNextDateCalculator().calculate(sessionUniqueIDs: ["test1", "test2"])
 
         // THEN
         XCTAssertNil(result)

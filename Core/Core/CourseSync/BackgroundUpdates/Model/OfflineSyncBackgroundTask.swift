@@ -26,7 +26,7 @@ import Combine
 public class OfflineSyncBackgroundTask: BackgroundTask {
     // MARK: - Dependencies
     private let sessionsToSync: [LoginSession]
-    private let syncableAccounts: OfflineSyncAccounts
+    private let syncableAccounts: OfflineSyncAccountsCalculator
     // MARK: - Internal State
     private let lastLoggedInUser: LoginSession?
     private var isCancelled = false
@@ -35,7 +35,7 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
 
     // MARK: - Public Interface
 
-    public init(syncableAccounts: OfflineSyncAccounts,
+    public init(syncableAccounts: OfflineSyncAccountsCalculator,
                 sessions: Set<LoginSession>) {
         self.syncableAccounts = syncableAccounts
         self.sessionsToSync = syncableAccounts.calculate(Array(sessions),

@@ -62,7 +62,7 @@ class OfflineSyncBackgroundTaskRequestTests: XCTestCase {
     }
 }
 
-class MockOfflineSyncNextDate: OfflineSyncNextDate {
+class MockOfflineSyncNextDate: OfflineSyncNextDateCalculator {
     var mockedDate: Date? = Date(timeIntervalSince1970: 3456)
     var receivedSessionIDs: [String] = []
 
