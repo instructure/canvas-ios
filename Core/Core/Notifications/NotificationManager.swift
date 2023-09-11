@@ -37,13 +37,13 @@ public class NotificationManager {
     public var remoteToken: Data?
     public var remoteSession: LoginSession?
 
-    private let subscriptArnKey: String = "icanvas.mobile.2u.subscriptArnKey"
-    public var subscriptionArn: String? {
+    private let deviceTokenKey: String = "icanvas.mobile.2u.deviceTokenKey"
+    public var deviceTokenString: String? {
         get {
-            UserDefaults.standard.string(forKey: subscriptArnKey)
+            UserDefaults.standard.string(forKey: deviceTokenKey)
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: subscriptArnKey)
+            UserDefaults.standard.set(newValue, forKey: deviceTokenKey)
         }
     }
     public var emailAsPushChannelID: String?
@@ -107,7 +107,7 @@ extension NotificationManager {
         guard let token = newToken, let session = session else { return }
 //        createPushChannel(token: token, session: session)
         checkIfShouldCreateEmailChannelForPush(session: session)
-        subscribeToUserSNSTopic(deviceToken: token, session: session)
+        createDevicePlatformEndpoint(deviceToken: token, session: session)
     }
 
     func createPushChannel(token: Data, session: LoginSession, retriesLeft: Int = 4) {
