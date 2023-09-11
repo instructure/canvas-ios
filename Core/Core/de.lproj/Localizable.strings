@@ -1352,7 +1352,7 @@
 "It looks like discussions haven’t been created in this space yet." = "Diskussionen wurden in diesem Raum scheinbar noch nicht angelegt.";
 
 /* No comment provided by engineer. */
-"It looks like quizzes haven’t been created in this space yet." = "Quizze wurden in diesem Raum scheinbar noch nicht angelegt.";
+"It looks like quizzes haven’t been created in this space yet." = "Quiz wurden in diesem Raum scheinbar noch nicht angelegt.";
 
 /* No comment provided by engineer. */
 "It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Es scheint, dass mit diesem Konto keine Kurse verknüpft sind. Besuchen Sie das Internet, um heute einen Kurs zu erstellen.";
@@ -1715,7 +1715,7 @@
 "No preview available" = "Keine Vorschau verfügbar";
 
 /* No comment provided by engineer. */
-"No Quizzes" = "Keine Quizze";
+"No Quizzes" = "Keine Quiz";
 
 /* No comment provided by engineer. */
 "No Results" = "Keine Ergebnisse";
@@ -2030,7 +2030,7 @@
 "Quiz Type:" = "Quiztyp:";
 
 /* No comment provided by engineer. */
-"Quizzes" = "Quizze";
+"Quizzes" = "Quiz";
 
 /* No comment provided by engineer. */
 "Recent Activity" = "Aktuelle Aktivität";
@@ -2597,7 +2597,7 @@
 "There was an error loading people. Pull to refresh to try again." = "Fehler beim Laden der Personen. Ziehen Sie zur Aktualisierung, um es erneut zu versuchen.";
 
 /* No comment provided by engineer. */
-"There was an error loading quizzes. Pull to refresh to try again." = "Fehler beim Laden der Quizze. Ziehen Sie zur Aktualisierung, um es erneut zu versuchen.";
+"There was an error loading quizzes. Pull to refresh to try again." = "Fehler beim Laden der Quiz. Ziehen Sie zur Aktualisierung, um es erneut zu versuchen.";
 
 /* No comment provided by engineer. */
 "There was an error loading the message. Pull to refresh to try again." = "Fehler beim Laden der Nachricht Ziehen Sie zur Aktualisierung, um es erneut zu versuchen.";
