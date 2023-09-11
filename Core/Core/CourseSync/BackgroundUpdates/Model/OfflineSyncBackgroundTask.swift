@@ -81,8 +81,14 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
             .getCourseSyncEntries(filter: .all)
             .flatMap { courseSyncInteractor.downloadContent(for: $0).setFailureType(to: Error.self) }
             .first()
-            .flatMap { _ in Self.waitForSyncFinish().setFailureType(to: Error.self) }
-            .sink(receiveCompletion: { _ in
+            .waitOfflineSyncToFinish()
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    Logger.shared.log("Sync finished")
+                case .failure(let error):
+                    Logger.shared.log("Sync failed with error: \(error.localizedDescription)")
+                }
             }, receiveValue: { [weak self] _ in
                 var updatedSessions = sessions
                 updatedSessions.removeFirst()
@@ -102,22 +108,5 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
             Logger.shared.log()
             AppEnvironment.shared.userDidLogin(session: lastLoggedInUser)
         }
-    }
-
-    // TODO: This wont detect cancelled downloads
-    private static func waitForSyncFinish() -> AnyPublisher<Void, Never> {
-        Logger.shared.log()
-        let downloadFinishedPredicate = NSPredicate(key: #keyPath(CourseSyncDownloadProgress.isFinished), equals: true)
-        let downloadFinishedScope = Scope(predicate: downloadFinishedPredicate, order: [])
-        let useCase = LocalUseCase<CourseSyncDownloadProgress>(scope: downloadFinishedScope)
-        let store = ReactiveStore(offlineModeInteractor: nil, useCase: useCase)
-
-        return store
-            .observeEntities()
-            .compactMap { $0.firstItem }
-            .mapToVoid()
-            .first()
-            .map { store.cancel() }
-            .eraseToAnyPublisher()
     }
 }
