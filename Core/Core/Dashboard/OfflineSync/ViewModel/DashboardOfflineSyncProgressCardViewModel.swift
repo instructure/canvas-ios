@@ -49,7 +49,7 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
 
     /**
      - parameters:
-     - offlineModeInteractor: This is used to determine if the feature flag is turned on. If it's off then
+        - offlineModeInteractor: This is used to determine if the feature flag is turned on. If it's off then
      we don't subscribe to CoreData updates to save some CPU time.
      */
     public init(interactor: CourseSyncProgressObserverInteractor,
