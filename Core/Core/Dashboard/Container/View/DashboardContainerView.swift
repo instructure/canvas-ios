@@ -69,7 +69,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                     fileUploadNotificationCards()
                     list(CGSize(width: geometry.size.width - 32, height: geometry.size.height))
                 }
-                .animation(.default, value: offlineSyncCardViewModel.state.isHidden)
+                .animation(.default, value: offlineSyncCardViewModel.state)
                 .padding(.horizontal, verticalSpacing)
             }
             refreshAction: { onComplete in

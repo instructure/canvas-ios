@@ -41,7 +41,7 @@ struct DashboardOfflineSyncProgressCardView: View {
                 SwiftUI.EmptyView()
             }
         }
-        .animation(.default, value: viewModel.state.isHidden)
+        .animation(.default, value: viewModel.state)
     }
 
     private func containerCard(backgroundColor: Color, innerView: () -> some View) -> some View {
@@ -67,9 +67,15 @@ struct DashboardOfflineSyncProgressCardView: View {
                     .padding(.leading, 5)
                     .padding(.bottom, 5)
             }
-            .accessibilityLabel(Text("Dismiss notification", bundle: .core))
+            .accessibilityHidden(true)
         }
         .padding(.top, 16) // This is to add spacing between the dashboard's nav bar and this card
+        .accessibilityAction(named: Text("Show sync details", bundle: .core)) {
+            viewModel.cardDidTap.accept(viewController)
+        }
+        .accessibilityAction(named: Text("Dismiss", bundle: .core)) {
+            viewModel.dismissDidTap.accept()
+        }
     }
 
     private func progressView(_ progress: Float, _ progressText: String) -> some View {

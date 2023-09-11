@@ -67,6 +67,7 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
             .share()
             .makeConnectable()
 
+        restorePreviousFailedState(downloadProgressPublisher)
         setupAutoAppearanceOnSyncStart(downloadProgressPublisher)
         setupAutoHideOnSyncCancel()
         setupAutoDismissUponCompletion(downloadProgressPublisher)
@@ -97,16 +98,35 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
             downloadProgressPublisher.compactMap { $0.firstItem }
         )
         .receive(on: scheduler)
-        .map { stateProgress, downloadProgress in
+        .flatMap { stateProgress, downloadProgress -> AnyPublisher<DashboardOfflineSyncProgressCardViewModel.ViewState, Never> in
+            guard stateProgress.count > 0 else {
+                return Empty(completeImmediately: false).eraseToAnyPublisher()
+            }
+
             if downloadProgress.isFinished, downloadProgress.error != nil {
-                return .error
+                return Just(.error).eraseToAnyPublisher()
             } else {
                 let format = NSLocalizedString("d_items_syncing", comment: "")
                 let formattedText = String.localizedStringWithFormat(format, stateProgress.count)
-                return .progress(downloadProgress.progress, formattedText)
+                return Just(.progress(downloadProgress.progress, formattedText)).eraseToAnyPublisher()
             }
         }
         .eraseToAnyPublisher()
+    }
+
+    private func restorePreviousFailedState(_ downloadProgressPublisher: some DownloadProgressPublisher) {
+        downloadProgressPublisher
+            .first()
+            .compactMap { $0.firstItem }
+            .flatMap { downloadProgress -> AnyPublisher<DashboardOfflineSyncProgressCardViewModel.ViewState, Never> in
+                if downloadProgress.isFinished, downloadProgress.error != nil {
+                    return Just(.error).eraseToAnyPublisher()
+                } else {
+                    return Empty(completeImmediately: true).eraseToAnyPublisher()
+                }
+            }
+            .receive(on: scheduler)
+            .assign(to: &$state)
     }
 
     private func setupAutoHideOnSyncCancel() {
