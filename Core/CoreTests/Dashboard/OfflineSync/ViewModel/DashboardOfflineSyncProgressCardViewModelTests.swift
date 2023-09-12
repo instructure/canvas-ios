@@ -52,11 +52,12 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
                                                                router: router,
                                                                scheduler: .immediate)
 
-        let progress: CourseSyncDownloadProgressEntity = databaseClient.insert()
-        progress.bytesToDownload = 1000
-        progress.bytesDownloaded = 100
-        progress.isFinished = false
-        progress.error = nil
+        var progress = CourseSyncDownloadProgress(
+            bytesToDownload: 1000,
+            bytesDownloaded: 100,
+            isFinished: false,
+            error: nil
+        )
 
         // MARK: - WHEN
 
@@ -209,45 +210,35 @@ private class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserv
     private let progressToReport: Float
     private let bytesToDownload: Float = 10
 
-    private let downloadProgressPublisher = PassthroughSubject<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never>()
-    private let stateProgressPublisher = PassthroughSubject<ReactiveStore<GetCourseSyncStateProgressUseCase>.State, Never>()
+    private let downloadProgressPublisher = PassthroughSubject<CourseSyncDownloadProgress, Never>()
+    private let stateProgressPublisher = PassthroughSubject<[CourseSyncStateProgress], Never>()
 
-    private lazy var downloadProgressMock: CourseSyncDownloadProgressEntity = {
-        let item: CourseSyncDownloadProgressEntity = context.insert()
-        item.bytesToDownload = Int(bytesToDownload)
-        item.bytesDownloaded = Int(progressToReport * bytesToDownload)
-        item.isFinished = false
-        item.error = nil
-        return item
-    }()
+    private lazy var downloadProgressMock = CourseSyncDownloadProgress(
+        bytesToDownload: Int(bytesToDownload),
+        bytesDownloaded: Int(progressToReport * bytesToDownload),
+        isFinished: false,
+        error: nil
+    )
 
-    private lazy var downloadProgressFinishedMock: CourseSyncDownloadProgressEntity = {
-        let item: CourseSyncDownloadProgressEntity = context.insert()
-        item.bytesToDownload = Int(bytesToDownload)
-        item.bytesDownloaded = Int(progressToReport * bytesToDownload)
-        item.isFinished = true
-        item.error = nil
-        return item
-    }()
+    private lazy var downloadProgressFinishedMock = CourseSyncDownloadProgress(
+        bytesToDownload: Int(bytesToDownload),
+        bytesDownloaded: Int(progressToReport * bytesToDownload),
+        isFinished: true,
+        error: nil
+    )
 
-    private lazy var downloadProgressErrorMock: CourseSyncDownloadProgressEntity = {
-        let item: CourseSyncDownloadProgressEntity = context.insert()
-        item.bytesToDownload = Int(bytesToDownload)
-        item.bytesDownloaded = Int(progressToReport * bytesToDownload)
-        item.isFinished = true
-        item.error = "Failed."
-        return item
-    }()
+    private lazy var downloadProgressErrorMock = CourseSyncDownloadProgress(
+        bytesToDownload: Int(bytesToDownload),
+        bytesDownloaded: Int(progressToReport * bytesToDownload),
+        isFinished: true,
+        error: "Failed."
+    )
 
-    private lazy var stateProgressMock: [CourseSyncStateProgressEntity] = {
-        let course: CourseSyncStateProgressEntity = context.insert()
-        course.selection = .course("")
-        let fileTab: CourseSyncStateProgressEntity = context.insert()
-        fileTab.selection = .tab("", "courses/123/tabs/files")
-        let file1: CourseSyncStateProgressEntity = context.insert()
-        file1.selection = .file("", "")
-        let file2: CourseSyncStateProgressEntity = context.insert()
-        file2.selection = .file("", "")
+    private lazy var stateProgressMock: [CourseSyncStateProgress] = {
+        let course = CourseSyncStateProgress.make(selection: .course(""))
+        let fileTab = CourseSyncStateProgress.make(selection: .tab("", "courses/123/tabs/files"))
+        let file1 = CourseSyncStateProgress.make(selection: .file("", ""))
+        let file2 = CourseSyncStateProgress.make(selection: .file("", ""))
         return [course, fileTab, file1, file2]
     }()
 
@@ -256,34 +247,32 @@ private class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserv
         self.progressToReport = progressToReport
     }
 
-    func observeDownloadProgress()
-        -> AnyPublisher<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never> {
+    func observeDownloadProgress() -> AnyPublisher<CourseSyncDownloadProgress, Never> {
         downloadProgressPublisher.eraseToAnyPublisher()
     }
 
-    func observeStateProgress()
-        -> AnyPublisher<ReactiveStore<GetCourseSyncStateProgressUseCase>.State, Never> {
+    func observeStateProgress() -> AnyPublisher<[CourseSyncStateProgress], Never> {
         stateProgressPublisher.eraseToAnyPublisher()
     }
 
     func mockDownloadProgress() {
-        downloadProgressPublisher.send(.data([downloadProgressMock]))
+        downloadProgressPublisher.send(downloadProgressMock)
     }
 
-    func mockDownloadProgress(_ progress: CourseSyncDownloadProgressEntity) {
-        downloadProgressPublisher.send(.data([progress]))
+    func mockDownloadProgress(_ progress: CourseSyncDownloadProgress) {
+        downloadProgressPublisher.send(progress)
     }
 
     func mockFinishedDownloadProgress() {
-        downloadProgressPublisher.send(.data([downloadProgressFinishedMock]))
+        downloadProgressPublisher.send(downloadProgressFinishedMock)
     }
 
     func mockFailedDownloadProgress() {
-        downloadProgressPublisher.send(.data([downloadProgressErrorMock]))
+        downloadProgressPublisher.send(downloadProgressErrorMock)
     }
 
     func mockStateProgress() {
-        stateProgressPublisher.send(.data(stateProgressMock))
+        stateProgressPublisher.send(stateProgressMock)
     }
 }
 

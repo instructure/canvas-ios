@@ -28,6 +28,24 @@ public struct CourseSyncStateProgress {
     var fileID: String?
     var progress: NSNumber?
 
+    init(
+        id: String,
+        selection: CourseEntrySelection,
+        state: CourseSyncEntry.State,
+        entryID: String,
+        tabID: String?,
+        fileID: String?,
+        progress: NSNumber?
+    ) {
+        self.id = id
+        self.selection = selection
+        self.state = state
+        self.entryID = entryID
+        self.tabID = tabID
+        self.fileID = fileID
+        self.progress = progress
+    }
+
     init(from entity: CourseSyncStateProgressEntity) {
         id = entity.id
         selection = entity.selection
@@ -36,6 +54,28 @@ public struct CourseSyncStateProgress {
         tabID = entity.tabID
         fileID = entity.fileID
         progress = entity.progress
+    }
+}
+
+extension CourseSyncStateProgress {
+    static func make(
+        id: String = "1",
+        selection: CourseEntrySelection = .course("1"),
+        state: CourseSyncEntry.State = .loading(nil),
+        entryID: String = "1",
+        tabID: String? = nil,
+        fileID: String? = nil,
+        progress: NSNumber? = nil
+    ) -> CourseSyncStateProgress {
+        .init(
+            id: id,
+            selection: selection,
+            state: state,
+            entryID: entryID,
+            tabID: tabID,
+            fileID: fileID,
+            progress: progress
+        )
     }
 }
 

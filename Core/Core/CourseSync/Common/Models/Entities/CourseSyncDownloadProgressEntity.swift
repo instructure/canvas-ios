@@ -49,6 +49,22 @@ public struct CourseSyncDownloadProgress {
     }
 }
 
+extension CourseSyncDownloadProgress {
+    static func make(
+        bytesToDownload: Int = 1000,
+        bytesDownloaded: Int = 100,
+        isFinished: Bool = false,
+        error: String? = nil
+    ) -> CourseSyncDownloadProgress {
+        .init(
+            bytesToDownload: bytesToDownload,
+            bytesDownloaded: bytesDownloaded,
+            isFinished: isFinished,
+            error: error
+        )
+    }
+}
+
 public final class CourseSyncDownloadProgressEntity: NSManagedObject {
     @NSManaged public var bytesToDownload: Int
     @NSManaged public var bytesDownloaded: Int

@@ -55,9 +55,10 @@ class CourseSyncProgressWriterInteractorLiveTests: CoreTestCase {
 
         let progressList: [CourseSyncDownloadProgressEntity] = databaseClient.fetch(scope: .all)
         XCTAssertEqual(progressList.count, 1)
-        XCTAssertEqual(progressList[0].bytesToDownload, 2000)
-        XCTAssertEqual(progressList[0].bytesDownloaded, 2000)
-        XCTAssertEqual(progressList[0].progress, 1)
+        let progress = CourseSyncDownloadProgress(from: progressList[0])
+        XCTAssertEqual(progress.bytesToDownload, 2000)
+        XCTAssertEqual(progress.bytesDownloaded, 2000)
+        XCTAssertEqual(progress.progress, 1)
     }
 
     func testPartiallyDownloadedFileProgress() {
@@ -71,9 +72,10 @@ class CourseSyncProgressWriterInteractorLiveTests: CoreTestCase {
 
         let progressList: [CourseSyncDownloadProgressEntity] = databaseClient.fetch(scope: .all)
         XCTAssertEqual(progressList.count, 1)
-        XCTAssertEqual(progressList[0].bytesToDownload, 2000)
-        XCTAssertEqual(progressList[0].bytesDownloaded, 1000)
-        XCTAssertEqual(progressList[0].progress, 0.5)
+        let progress = CourseSyncDownloadProgress(from: progressList[0])
+        XCTAssertEqual(progress.bytesToDownload, 2000)
+        XCTAssertEqual(progress.bytesDownloaded, 1000)
+        XCTAssertEqual(progress.progress, 0.5)
     }
 
     func testFailedDownloadFileProgress() {
@@ -87,9 +89,10 @@ class CourseSyncProgressWriterInteractorLiveTests: CoreTestCase {
 
         let progressList: [CourseSyncDownloadProgressEntity] = databaseClient.fetch(scope: .all)
         XCTAssertEqual(progressList.count, 1)
-        XCTAssertEqual(progressList[0].bytesToDownload, 2000)
-        XCTAssertEqual(progressList[0].bytesDownloaded, 500)
-        XCTAssertEqual(progressList[0].progress, 0.25)
+        let progress = CourseSyncDownloadProgress(from: progressList[0])
+        XCTAssertEqual(progress.bytesToDownload, 2000)
+        XCTAssertEqual(progress.bytesDownloaded, 500)
+        XCTAssertEqual(progress.progress, 0.25)
     }
 
     func testCourseSelectionEntryProgress() {
