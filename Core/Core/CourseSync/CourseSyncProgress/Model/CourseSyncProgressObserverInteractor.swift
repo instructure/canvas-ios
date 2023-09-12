@@ -22,7 +22,7 @@ import Foundation
 
 protocol CourseSyncProgressObserverInteractor {
     func observeDownloadProgress() -> AnyPublisher<CourseSyncDownloadProgress, Never>
-    func observeStateProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncStateProgressUseCase>.State, Never>
+    func observeStateProgress() -> AnyPublisher<[CourseSyncStateProgress], Never>
 }
 
 final class CourseSyncProgressObserverInteractorLive: CourseSyncProgressObserverInteractor {
@@ -59,9 +59,11 @@ final class CourseSyncProgressObserverInteractorLive: CourseSyncProgressObserver
             .eraseToAnyPublisher()
     }
 
-    func observeStateProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncStateProgressUseCase>.State, Never> {
+    func observeStateProgress() -> AnyPublisher<[CourseSyncStateProgress], Never> {
         entryProgressUseCase
             .observeEntities()
+            .compactMap { $0.allItems }
+            .map { $0.makeItems() }
             .eraseToAnyPublisher()
     }
 }

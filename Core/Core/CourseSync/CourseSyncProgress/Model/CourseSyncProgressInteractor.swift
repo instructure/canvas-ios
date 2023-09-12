@@ -36,13 +36,13 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         var selection: CourseEntrySelection
         var state: CourseSyncEntry.State
 
-        init(from entity: CourseSyncStateProgressEntity) {
+        init(from entity: CourseSyncStateProgress) {
             id = entity.id
             selection = entity.selection
             state = entity.state
         }
 
-        mutating func update(with entity: CourseSyncStateProgressEntity) {
+        mutating func update(with entity: CourseSyncStateProgress) {
             selection = entity.selection
             state = entity.state
         }
@@ -123,17 +123,6 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         progressObserverInteractor.observeStateProgress()
             .receive(on: scheduler)
             .throttle(for: .milliseconds(300), scheduler: scheduler, latest: true)
-            .flatMap { state -> AnyPublisher<[CourseSyncStateProgressEntity], Never> in
-                switch state {
-                case let .data(progressList):
-                    guard progressList.count > 0 else {
-                        return Empty(completeImmediately: false).eraseToAnyPublisher()
-                    }
-                    return Just(progressList).eraseToAnyPublisher()
-                default:
-                    return Empty(completeImmediately: false).eraseToAnyPublisher()
-                }
-            }
             .map { $0.map { StateProgress(from: $0) } }
             .map { Set($0) }
             .scan((Set([]), Set([]))) { ($0.1, $1) } // Access previous and current published element

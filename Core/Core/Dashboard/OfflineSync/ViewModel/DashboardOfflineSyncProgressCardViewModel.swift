@@ -94,7 +94,7 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
         _ downloadProgressPublisher: some DownloadProgressPublisher
     ) -> AnyPublisher<DashboardOfflineSyncProgressCardViewModel.ViewState, Never> {
         Publishers.CombineLatest(
-            interactor.observeStateProgress().compactMap { $0.allItems }.map { $0.ignoreContainerSelections() },
+            interactor.observeStateProgress().map { $0.ignoreContainerSelections() },
             downloadProgressPublisher
         )
         .receive(on: scheduler)
@@ -163,7 +163,7 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
     }
 }
 
-private extension Array where Element == CourseSyncStateProgressEntity {
+private extension Array where Element == CourseSyncStateProgress {
     /// Courses and file tabs are not syncable items so we should'n count them.
     func ignoreContainerSelections() -> Self {
         filter { entry in

@@ -40,8 +40,8 @@ class DashboardOfflineSyncInteractorPreview: CourseSyncProgressObserverInteracto
             .eraseToAnyPublisher()
     }
 
-    func observeStateProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncStateProgressUseCase>.State, Never> {
-        Just(.data([])).eraseToAnyPublisher()
+    func observeStateProgress() -> AnyPublisher<[CourseSyncStateProgress], Never> {
+        Just([]).eraseToAnyPublisher()
     }
 }
 

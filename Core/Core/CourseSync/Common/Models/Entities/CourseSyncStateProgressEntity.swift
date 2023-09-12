@@ -19,6 +19,26 @@
 import CoreData
 import Foundation
 
+public struct CourseSyncStateProgress {
+    var id: String
+    var selection: CourseEntrySelection
+    var state: CourseSyncEntry.State
+    var entryID: String
+    var tabID: String?
+    var fileID: String?
+    var progress: NSNumber?
+
+    init(from entity: CourseSyncStateProgressEntity) {
+        id = entity.id
+        selection = entity.selection
+        state = entity.state
+        entryID = entity.entryID
+        tabID = entity.tabID
+        fileID = entity.fileID
+        progress = entity.progress
+    }
+}
+
 final class CourseSyncStateProgressEntity: NSManagedObject, Comparable {
     @NSManaged public var id: String
     @NSManaged private(set) var selectionRaw: Int
@@ -103,5 +123,11 @@ final class CourseSyncStateProgressEntity: NSManagedObject, Comparable {
         dbEntity.state = state
 
         return dbEntity
+    }
+}
+
+extension Array where Element == CourseSyncStateProgressEntity {
+    func makeItems() -> [CourseSyncStateProgress] {
+        map { CourseSyncStateProgress.init(from: $0) }
     }
 }

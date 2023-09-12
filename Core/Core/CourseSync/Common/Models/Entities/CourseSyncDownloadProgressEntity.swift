@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 public struct CourseSyncDownloadProgress {
     var bytesToDownload: Int
@@ -28,7 +28,7 @@ public struct CourseSyncDownloadProgress {
     var progress: Float {
         Float(bytesDownloaded) / Float(bytesToDownload)
     }
-    
+
     init(
         bytesToDownload: Int,
         bytesDownloaded: Int,
@@ -42,10 +42,10 @@ public struct CourseSyncDownloadProgress {
     }
 
     init(from entity: CourseSyncDownloadProgressEntity) {
-        self.bytesToDownload = entity.bytesToDownload
-        self.bytesDownloaded = entity.bytesDownloaded
-        self.isFinished = entity.isFinished
-        self.error = entity.error
+        bytesToDownload = entity.bytesToDownload
+        bytesDownloaded = entity.bytesDownloaded
+        isFinished = entity.isFinished
+        error = entity.error
     }
 }
 
@@ -54,10 +54,6 @@ public final class CourseSyncDownloadProgressEntity: NSManagedObject {
     @NSManaged public var bytesDownloaded: Int
     @NSManaged public var isFinished: Bool
     @NSManaged public var error: String?
-
-    var progress: Float {
-        Float(bytesDownloaded) / Float(bytesToDownload)
-    }
 }
 
 public extension CourseSyncDownloadProgressEntity {
@@ -75,18 +71,5 @@ public extension CourseSyncDownloadProgressEntity {
         model.isFinished = isFinished
         model.error = error
         return model
-    }
-
-    @discardableResult
-    func update(
-        with model: CourseSyncDownloadProgress,
-        in context: NSManagedObjectContext
-    ) -> CourseSyncDownloadProgressEntity {
-        let entity: CourseSyncDownloadProgressEntity = context.first(scope: .all) ?? context.insert()
-        entity.bytesToDownload = model.bytesToDownload
-        entity.bytesDownloaded = model.bytesDownloaded
-        entity.isFinished = model.isFinished
-        entity.error = model.error
-        return entity
     }
 }
