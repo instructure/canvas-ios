@@ -48,13 +48,13 @@ class CourseSyncSettingsInteractorLiveTests: XCTestCase {
 
         XCTAssertNil(defaults.offlineSyncFrequency)
         XCTAssertFinish(testee.setSyncFrequency(.weekly))
-        XCTAssertEqual(defaults.offlineSyncFrequency, CourseSyncFrequency.weekly.rawValue)
+        XCTAssertEqual(defaults.offlineSyncFrequency, .weekly)
     }
 
     func testReadsValuesFromStorage() {
         defaults.isOfflineAutoSyncEnabled = true
         defaults.isOfflineWifiOnlySyncEnabled = false
-        defaults.offlineSyncFrequency = CourseSyncFrequency.weekly.rawValue
+        defaults.offlineSyncFrequency = .weekly
 
         let testee = CourseSyncSettingsInteractorLive(storage: defaults)
         XCTAssertCompletableSingleOutputEquals(testee.getStoredPreferences(), .init(isAutoSyncEnabled: true,

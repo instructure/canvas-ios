@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-enum CourseSyncFrequency: Int, CaseIterable {
+public enum CourseSyncFrequency: Int, CaseIterable {
     #if DEBUG
     case osBased
     #endif

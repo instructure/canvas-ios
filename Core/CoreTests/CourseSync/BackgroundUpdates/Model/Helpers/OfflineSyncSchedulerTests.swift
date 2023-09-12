@@ -25,7 +25,7 @@ class OfflineSyncSchedulerTests: XCTestCase {
         let now = Date()
         Clock.mockNow(now)
         var defaults = SessionDefaults(sessionID: "test-1")
-        defaults.offlineSyncFrequency = 1 // daily
+        defaults.offlineSyncFrequency = .daily
         let testee = OfflineSyncScheduler()
 
         // WHEN

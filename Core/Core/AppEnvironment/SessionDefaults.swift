@@ -137,9 +137,15 @@ public struct SessionDefaults {
         set { self["isOfflineAutoSyncEnabled"] = newValue }
     }
 
-    public var offlineSyncFrequency: Int? {
-        get { self["offlineSyncFrequency"] as? Int }
-        set { self["offlineSyncFrequency"] = newValue }
+    public var offlineSyncFrequency: CourseSyncFrequency? {
+        get {
+            guard let raw = self["offlineSyncFrequency"] as? Int,
+                  let syncFrequency = CourseSyncFrequency(rawValue: raw) else {
+                return nil
+            }
+            return syncFrequency
+        }
+        set { self["offlineSyncFrequency"] = newValue?.rawValue }
     }
 
     public var offlineSyncNextDate: Date? {
