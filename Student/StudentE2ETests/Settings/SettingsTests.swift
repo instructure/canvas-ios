@@ -265,6 +265,7 @@ class SettingsTests: E2ETestCase {
         XCTAssertTrue(subscribeToCalendarFeed.isVisible)
 
         subscribeToCalendarFeed.hit()
+        CalendarAppHelper.calendarApp.activate()
         let calendarAppRunning = CalendarAppHelper.calendarApp.wait(for: .runningForeground, timeout: 15)
         XCTAssertTrue(calendarAppRunning)
 
