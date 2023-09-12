@@ -21,7 +21,17 @@ import XCTest
 
 class OfflineSyncSchedulerTests: XCTestCase {
 
-    func testUpdateNextSyncDate() {
-        
+    func testUpdatesNextSyncDate() {
+        let now = Date()
+        Clock.mockNow(now)
+        var defaults = SessionDefaults(sessionID: "test-1")
+        defaults.offlineSyncFrequency = 1 // daily
+        let testee = OfflineSyncScheduler()
+
+        // WHEN
+        testee.updateNextSyncDate(sessionUniqueID: "test-1")
+
+        // THEN
+        XCTAssertEqual(defaults.offlineSyncNextDate, now.addingTimeInterval(24 * 60 * 60))
     }
 }

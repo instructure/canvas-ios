@@ -18,6 +18,10 @@
 
 import Foundation
 
+/**
+ This class calculates the date when the app should wake up in the background
+ to perform a background fetch.
+ */
 public class OfflineSyncNextDateCalculator {
 
     /**

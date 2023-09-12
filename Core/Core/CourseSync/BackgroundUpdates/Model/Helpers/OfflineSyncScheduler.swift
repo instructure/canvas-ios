@@ -33,6 +33,11 @@ public class OfflineSyncScheduler {
     }
 
     public func updateNextSyncDate(sessionUniqueID: String) {
+        var defaults = SessionDefaults(sessionID: sessionUniqueID)
+        guard let syncFrequency = CourseSyncFrequency(rawValue: defaults.offlineSyncFrequency ?? 0) else {
+            return
+        }
 
+        defaults.offlineSyncNextDate = syncFrequency.nextSyncDate(from: Clock.now)
     }
 }
