@@ -40,6 +40,61 @@ class OfflineSyncBackgroundTaskTests: CoreTestCase {
         waitForExpectations(timeout: 1)
     }
 
+    // MARK: - Scheduling Related Tests
+
+    func testSchedulesNextBackgroundSyncWhenFinishedCurrentSync() {
+        let mockScheduler = MockSyncScheduler()
+        let testee = OfflineSyncBackgroundTask(syncableAccounts: mockSyncAccountsCalculator,
+                                               sessions: Set<LoginSession>([.make()]),
+                                               syncScheduler: mockScheduler)
+
+        // WHEN
+        testee.start {}
+
+        // THEN
+        XCTAssertTrue(mockScheduler.scheduleNextSyncInvoked)
+    }
+
+    func testSchedulesNextBackgroundSyncWhenCancelled() {
+        let mockScheduler = MockSyncScheduler()
+        let testee = OfflineSyncBackgroundTask(syncableAccounts: mockSyncAccountsCalculator,
+                                               sessions: Set<LoginSession>([.make()]),
+                                               syncScheduler: mockScheduler)
+
+        // WHEN
+        testee.cancel()
+
+        // THEN
+        XCTAssertTrue(mockScheduler.scheduleNextSyncInvoked)
+    }
+
+    func testUpdatesNextSyncDateForSyncCompletedUser() {
+        mockSyncAccountsCalculator.accounts = [.make()]
+        let mockScheduler = MockSyncScheduler()
+        let mockSelectedItems = MockSelectedItemsFactory(mockSyncEntries: Just([mockSyncEntry]).setFailureType(to: Error.self).eraseToAnyPublisher())
+        let mockSyncInteractor = MockCourseSyncInteractor()
+        let testee = OfflineSyncBackgroundTask(syncableAccounts: mockSyncAccountsCalculator,
+                                               sessions: Set<LoginSession>([.make()]),
+                                               syncScheduler: mockScheduler,
+                                               selectedItemsInteractorFactory: { _ in
+                                                   mockSelectedItems
+                                               },
+                                               syncInteractorFactory: {
+                                                    mockSyncInteractor
+                                               })
+        let completed = expectation(description: "Sync completed")
+
+        // WHEN
+        testee.start { completed.fulfill() }
+        mockFinishedDownload()
+
+        // THEN
+        waitForExpectations(timeout: 1)
+        XCTAssertEqual(mockScheduler.syncNextDateSessionUniqueID, "canvas.instructure.com-1")
+    }
+
+    // MARK: -
+
     func testDownloadsSelectedSyncEntries() {
         mockSyncAccountsCalculator.accounts = [.make()]
         let mockSelectedItems = MockSelectedItemsFactory(mockSyncEntries: Just([mockSyncEntry]).setFailureType(to: Error.self).eraseToAnyPublisher())
@@ -164,5 +219,18 @@ private class MockCourseSyncInteractor: CourseSyncInteractor {
 
     func cancel() {
         isCancelCalled = true
+    }
+}
+
+private class MockSyncScheduler: OfflineSyncScheduler {
+    private(set) var scheduleNextSyncInvoked = false
+    private(set) var syncNextDateSessionUniqueID: String?
+
+    override func scheduleNextSync() {
+        scheduleNextSyncInvoked = true
+    }
+
+    override func updateNextSyncDate(sessionUniqueID: String) {
+        syncNextDateSessionUniqueID = sessionUniqueID
     }
 }

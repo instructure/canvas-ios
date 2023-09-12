@@ -155,12 +155,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         BackgroundVideoPlayer.shared.background()
         environment.refreshWidgets()
 
-        if let offlineSyncTask = CourseSyncBackgroundUpdatesAssembly.makeTaskRequest() {
-            BackgroundProcessingAssembly
-                .resolveInteractor()
-                .schedule(task: offlineSyncTask)
-            Logger.shared.log("Scheduled background offline sync.")
-        }
+        OfflineSyncScheduler().scheduleNextSync()
 
         if LocalizationManager.needsRestart {
             exit(EXIT_SUCCESS)

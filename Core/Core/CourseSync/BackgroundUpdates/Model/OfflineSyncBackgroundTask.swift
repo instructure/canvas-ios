@@ -36,6 +36,7 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
     // MARK: - Dependencies
     private let sessionsToSync: [LoginSession]
     private let syncableAccounts: OfflineSyncAccountsCalculator
+    private let syncScheduler: OfflineSyncScheduler
     private let selectedItemsInteractorFactory: SelectedItemsFactory
     private let syncInteractorFactory: SyncInteractorFactory
     // MARK: - Internal State
@@ -48,12 +49,14 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
 
     public init(syncableAccounts: OfflineSyncAccountsCalculator,
                 sessions: Set<LoginSession>,
+                syncScheduler: OfflineSyncScheduler = OfflineSyncScheduler(),
                 selectedItemsInteractorFactory: @escaping SelectedItemsFactory = DefaultSelectedItemsFactory,
                 syncInteractorFactory: @escaping SyncInteractorFactory = DefaultSyncInteractorFactory) {
         self.syncableAccounts = syncableAccounts
         self.sessionsToSync = syncableAccounts.calculate(Array(sessions),
                                                         date: Clock.now)
         self.lastLoggedInUser = LoginSession.mostRecent
+        self.syncScheduler = syncScheduler
         self.selectedItemsInteractorFactory = selectedItemsInteractorFactory
         self.syncInteractorFactory = syncInteractorFactory
     }
@@ -66,6 +69,7 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
         Logger.shared.log()
         isCancelled = true
         subscriptions.removeAll()
+        syncScheduler.scheduleNextSync()
 
         guard let syncingInteractor else {
             return
@@ -100,24 +104,26 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
             }
             .first()
             .flatMap { _ in OfflineSyncWaitToFinish.wait() }
-            .sink(receiveCompletion: { completion in
-                switch completion {
+            .sink(receiveCompletion: { [weak self] streamCompletion in
+                switch streamCompletion {
                 case .finished:
+                    self?.syncScheduler.updateNextSyncDate(sessionUniqueID: session.uniqueID)
                     Logger.shared.log("Sync finished")
                 case .failure(let error):
                     Logger.shared.log("Sync failed with error: \(error.localizedDescription)")
                 }
-            }, receiveValue: { [weak self] _ in
+
                 var updatedSessions = sessions
                 updatedSessions.removeFirst()
                 self?.syncNextAccount(in: updatedSessions, completion: completion)
-            })
+            }, receiveValue: {})
             .store(in: &subscriptions)
     }
 
     private func handleSyncCompleted(completion: () -> Void) {
         Logger.shared.log()
         restoreLastLoggedInUser()
+        syncScheduler.scheduleNextSync()
         completion()
     }
 
