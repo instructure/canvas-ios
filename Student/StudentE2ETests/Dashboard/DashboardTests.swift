@@ -36,7 +36,7 @@ class DashboardTests: E2ETestCase {
 
         // MARK: Check for course1
         seeder.enrollStudent(student, in: course1)
-        pullToRefresh()
+        pullToRefresh(x: 1)
         let courseCard1 = Helper.courseCard(course: course1).waitUntil(.visible)
         XCTAssertTrue(courseCard1.isVisible)
 

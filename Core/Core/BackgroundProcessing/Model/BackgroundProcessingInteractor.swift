@@ -26,8 +26,8 @@ public struct BackgroundProcessingInteractor {
     }
 
     public func register(taskID: String) {
-        let result = scheduler.register(forTaskWithIdentifier: taskID,
-                                        using: nil) { backgroundTask in
+        let isRegistered = scheduler.register(forTaskWithIdentifier: taskID,
+                                              using: nil) { backgroundTask in
             guard let task = BackgroundProcessingAssembly.resolveTask(for: backgroundTask.identifier) else {
                 Logger.shared.error("BackgroundProcessingInteractor: Background task ID \(taskID) couldn't be resolved to a task.")
                 backgroundTask.setTaskCompleted(success: true)
@@ -45,7 +45,7 @@ public struct BackgroundProcessingInteractor {
             }
         }
 
-        if !result {
+        if !isRegistered {
             Logger.shared.error("BackgroundProcessingInteractor: Failed to register background task \(taskID).")
         }
     }

@@ -74,6 +74,9 @@ public class AssignmentsHelper: BaseHelper {
         public static var viewSubmissionButton: XCUIElement { app.find(id: "AssignmentDetails.viewSubmissionButton") }
         public static var published: XCUIElement { app.find(id: "AssignmentDetails.published") }
         public static var unpublished: XCUIElement { app.find(id: "AssignmentDetails.unpublished") }
+        public static var backButton: XCUIElement {
+            app.find(idStartingWith: "Assignment Details", type: .navigationBar).find(label: "Back", type: .button)
+        }
         public static var submissionsButtonLabel: XCUIElement {
             app.find(id: "AssignmentDetails.submissionsButton").find(type: .staticText)
         }
