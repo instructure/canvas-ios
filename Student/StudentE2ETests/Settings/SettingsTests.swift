@@ -272,7 +272,7 @@ class SettingsTests: E2ETestCase {
         let continueButton = CalendarAppHelper.continueButton.waitUntil(.visible, timeout: 5)
         if continueButton.isVisible {
             continueButton.hit()
-            app.hit()
+            CalendarAppHelper.calendarApp.hit()
         }
 
         let calendarNavBar = CalendarAppHelper.navBar.waitUntil(.visible)
