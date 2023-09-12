@@ -52,7 +52,7 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
                                                                router: router,
                                                                scheduler: .immediate)
 
-        let progress: CourseSyncDownloadProgress = databaseClient.insert()
+        let progress: CourseSyncDownloadProgressEntity = databaseClient.insert()
         progress.bytesToDownload = 1000
         progress.bytesDownloaded = 100
         progress.isFinished = false
@@ -212,8 +212,8 @@ private class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserv
     private let downloadProgressPublisher = PassthroughSubject<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never>()
     private let stateProgressPublisher = PassthroughSubject<ReactiveStore<GetCourseSyncStateProgressUseCase>.State, Never>()
 
-    private lazy var downloadProgressMock: CourseSyncDownloadProgress = {
-        let item: CourseSyncDownloadProgress = context.insert()
+    private lazy var downloadProgressMock: CourseSyncDownloadProgressEntity = {
+        let item: CourseSyncDownloadProgressEntity = context.insert()
         item.bytesToDownload = Int(bytesToDownload)
         item.bytesDownloaded = Int(progressToReport * bytesToDownload)
         item.isFinished = false
@@ -221,8 +221,8 @@ private class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserv
         return item
     }()
 
-    private lazy var downloadProgressFinishedMock: CourseSyncDownloadProgress = {
-        let item: CourseSyncDownloadProgress = context.insert()
+    private lazy var downloadProgressFinishedMock: CourseSyncDownloadProgressEntity = {
+        let item: CourseSyncDownloadProgressEntity = context.insert()
         item.bytesToDownload = Int(bytesToDownload)
         item.bytesDownloaded = Int(progressToReport * bytesToDownload)
         item.isFinished = true
@@ -230,8 +230,8 @@ private class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserv
         return item
     }()
 
-    private lazy var downloadProgressErrorMock: CourseSyncDownloadProgress = {
-        let item: CourseSyncDownloadProgress = context.insert()
+    private lazy var downloadProgressErrorMock: CourseSyncDownloadProgressEntity = {
+        let item: CourseSyncDownloadProgressEntity = context.insert()
         item.bytesToDownload = Int(bytesToDownload)
         item.bytesDownloaded = Int(progressToReport * bytesToDownload)
         item.isFinished = true
@@ -239,14 +239,14 @@ private class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserv
         return item
     }()
 
-    private lazy var stateProgressMock: [CourseSyncStateProgress] = {
-        let course: CourseSyncStateProgress = context.insert()
+    private lazy var stateProgressMock: [CourseSyncStateProgressEntity] = {
+        let course: CourseSyncStateProgressEntity = context.insert()
         course.selection = .course("")
-        let fileTab: CourseSyncStateProgress = context.insert()
+        let fileTab: CourseSyncStateProgressEntity = context.insert()
         fileTab.selection = .tab("", "courses/123/tabs/files")
-        let file1: CourseSyncStateProgress = context.insert()
+        let file1: CourseSyncStateProgressEntity = context.insert()
         file1.selection = .file("", "")
-        let file2: CourseSyncStateProgress = context.insert()
+        let file2: CourseSyncStateProgressEntity = context.insert()
         file2.selection = .file("", "")
         return [course, fileTab, file1, file2]
     }()
@@ -270,7 +270,7 @@ private class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserv
         downloadProgressPublisher.send(.data([downloadProgressMock]))
     }
 
-    func mockDownloadProgress(_ progress: CourseSyncDownloadProgress) {
+    func mockDownloadProgress(_ progress: CourseSyncDownloadProgressEntity) {
         downloadProgressPublisher.send(.data([progress]))
     }
 

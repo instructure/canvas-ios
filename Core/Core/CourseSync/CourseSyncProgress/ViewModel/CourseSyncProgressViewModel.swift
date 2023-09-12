@@ -132,7 +132,7 @@ class CourseSyncProgressViewModel: ObservableObject {
             if entryProgressList.count > 0 {
                 state = .data
 
-                if downloadProgress.firstItem?.isFinished ?? false, downloadProgress.firstItem?.error != nil {
+                if downloadProgress.isFinished, downloadProgress.error != nil {
                     state = .dataWithError
                 }
             }

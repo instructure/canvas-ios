@@ -23,7 +23,7 @@ import CoreData
 import Foundation
 
 protocol CourseSyncProgressInteractor: AnyObject {
-    func observeDownloadProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never>
+    func observeDownloadProgress() -> AnyPublisher<CourseSyncDownloadProgress, Never>
     func observeEntries() -> AnyPublisher<[CourseSyncEntry], Error>
     func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool)
     func cancelSync()
@@ -36,13 +36,13 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         var selection: CourseEntrySelection
         var state: CourseSyncEntry.State
 
-        init(from entity: CourseSyncStateProgress) {
+        init(from entity: CourseSyncStateProgressEntity) {
             id = entity.id
             selection = entity.selection
             state = entity.state
         }
 
-        mutating func update(with entity: CourseSyncStateProgress) {
+        mutating func update(with entity: CourseSyncStateProgressEntity) {
             selection = entity.selection
             state = entity.state
         }
@@ -90,7 +90,7 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         context.automaticallyMergesChangesFromParent = true
     }
 
-    func observeDownloadProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never> {
+    func observeDownloadProgress() -> AnyPublisher<CourseSyncDownloadProgress, Never> {
         progressObserverInteractor
             .observeDownloadProgress()
             .receive(on: scheduler)
@@ -123,7 +123,7 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         progressObserverInteractor.observeStateProgress()
             .receive(on: scheduler)
             .throttle(for: .milliseconds(300), scheduler: scheduler, latest: true)
-            .flatMap { state -> AnyPublisher<[CourseSyncStateProgress], Never> in
+            .flatMap { state -> AnyPublisher<[CourseSyncStateProgressEntity], Never> in
                 switch state {
                 case let .data(progressList):
                     guard progressList.count > 0 else {

@@ -185,7 +185,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(entries[0].files[0].state, .loading(nil))
 
         progressObserverInteractorMock.entryProgressSubject.send(.data([
-            CourseSyncStateProgress.save(
+            CourseSyncStateProgressEntity.save(
                 id: "courses/course-id-1",
                 selection: .file("courses/course-id-1", "courses/course-id-1/files/file-1"),
                 state: .loading(0.4),
@@ -195,7 +195,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(entries[0].files[0].state, .loading(0.4))
 
         progressObserverInteractorMock.entryProgressSubject.send(.data([
-            CourseSyncStateProgress.save(
+            CourseSyncStateProgressEntity.save(
                 id: "courses/course-id-1",
                 selection: .file("courses/course-id-1", "courses/course-id-1/files/file-1"),
                 state: .downloaded,
@@ -205,7 +205,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(entries[0].files[0].state, .downloaded)
 
         progressObserverInteractorMock.entryProgressSubject.send(.data([
-            CourseSyncStateProgress.save(
+            CourseSyncStateProgressEntity.save(
                 id: "courses/course-id-1",
                 selection: .tab("courses/course-id-1", "courses/course-id-1/tabs/files"),
                 state: .downloaded,
@@ -215,7 +215,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(entries[0].tabs[0].state, .downloaded)
 
         progressObserverInteractorMock.entryProgressSubject.send(.data([
-            CourseSyncStateProgress.save(
+            CourseSyncStateProgressEntity.save(
                 id: "courses/course-id-1",
                 selection: .course("courses/course-id-1"),
                 state: .downloaded,
@@ -256,7 +256,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(entries[0].tabs[1].state, .loading(nil))
 
         progressObserverInteractorMock.entryProgressSubject.send(.data([
-            CourseSyncStateProgress.save(
+            CourseSyncStateProgressEntity.save(
                 id: "courses/course-id-1",
                 selection: .tab("courses/course-id-1", "courses/course-id-1/tabs/assignments"),
                 state: .error,

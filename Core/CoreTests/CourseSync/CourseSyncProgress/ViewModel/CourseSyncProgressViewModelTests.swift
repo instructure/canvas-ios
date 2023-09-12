@@ -93,7 +93,7 @@ class CourseSyncProgressViewModelTests: CoreTestCase {
                                        files: [])
         mockProgressInteractor.courseSyncEntriesSubject.send([mockItem])
 
-        let mockFileProgress: CourseSyncDownloadProgress = databaseClient.insert()
+        let mockFileProgress: CourseSyncDownloadProgressEntity = databaseClient.insert()
         mockFileProgress.bytesDownloaded = 1
         mockFileProgress.bytesToDownload = 2
         mockFileProgress.error = "File download failed."
@@ -119,7 +119,7 @@ class CourseSyncProgressViewModelTests: CoreTestCase {
                                        files: [])
         mockProgressInteractor.courseSyncEntriesSubject.send([mockItem])
 
-        let mockFileProgress: CourseSyncDownloadProgress = databaseClient.insert()
+        let mockFileProgress: CourseSyncDownloadProgressEntity = databaseClient.insert()
         mockFileProgress.bytesDownloaded = 1
         mockFileProgress.bytesToDownload = 2
         mockFileProgress.error = "File download failed."

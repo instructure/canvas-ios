@@ -40,7 +40,7 @@ class CourseSyncProgressInfoViewModelTests: CoreTestCase {
             interactor: courseSyncProgressInteractorMock,
             scheduler: .immediate
         )
-        let fileProgress = CourseSyncDownloadProgress.save(
+        let fileProgress = CourseSyncDownloadProgressEntity.save(
             bytesToDownload: 1000,
             bytesDownloaded: 500,
             isFinished: false,
@@ -68,7 +68,7 @@ class CourseSyncProgressInfoViewModelTests: CoreTestCase {
             interactor: courseSyncProgressInteractorMock,
             scheduler: .immediate
         )
-        let fileProgress = CourseSyncDownloadProgress.save(
+        let fileProgress = CourseSyncDownloadProgressEntity.save(
             bytesToDownload: 1000,
             bytesDownloaded: 0,
             isFinished: true,
@@ -100,7 +100,7 @@ class CourseSyncProgressInfoViewModelTests: CoreTestCase {
             interactor: courseSyncProgressInteractorMock,
             scheduler: .immediate
         )
-        let fileProgress = CourseSyncDownloadProgress.save(
+        let fileProgress = CourseSyncDownloadProgressEntity.save(
             bytesToDownload: 1000,
             bytesDownloaded: 0,
             isFinished: false,

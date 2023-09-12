@@ -945,7 +945,7 @@
 		9AD6D971F8D54170FD57510B /* DiscussionWebPageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC82E6267AAE012757280993 /* DiscussionWebPageViewModelTests.swift */; };
 		9AE05018DAA07EF0368564A8 /* DiscussionEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C11C65CA5D03E24018FFF /* DiscussionEntry.swift */; };
 		9AFC91A35659B275173E23BD /* fileupload.txt in Resources */ = {isa = PBXBuildFile; fileRef = F3F445022FB1D63AF90C8278 /* fileupload.txt */; };
-		9B080D9D1E88DB50861859D8 /* CourseSyncDownloadProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FD5478A284B6B55971118 /* CourseSyncDownloadProgress.swift */; };
+		9B080D9D1E88DB50861859D8 /* CourseSyncDownloadProgressEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F0FD5478A284B6B55971118 /* CourseSyncDownloadProgressEntity.swift */; };
 		9B0C9A0C1A204CCF24D3CB06 /* DragButtonStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F642EF11CDE7C905C8B0DAE7 /* DragButtonStateViewModel.swift */; };
 		9B77E3DEC0316AEFAF603751 /* DashboardOfflineSyncProgressCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B53A4BBDA82529A3A358BF /* DashboardOfflineSyncProgressCardView.swift */; };
 		9B8BD6CFCAB70CA95013425B /* QuizEditorViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8317DA113A982B5DEF641C98 /* QuizEditorViewModelProtocol.swift */; };
@@ -1570,7 +1570,7 @@
 		FE2692A2B4202CB3F63AF1C9 /* CoreWebViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF9EC92129FA6439FC456A3 /* CoreWebViewTests.swift */; };
 		FE2CB67D55A168F491F47C1C /* Role.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B84DF87627F3B527593C00 /* Role.swift */; };
 		FE4CBE058932078CEB29F352 /* MockFileTextAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB22D9B64EBF2559C21C91E2 /* MockFileTextAnnotation.swift */; };
-		FE7F69D6B59EE3C158D7183D /* CourseSyncStateProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BCDEAD9F0BC5E1937469A4 /* CourseSyncStateProgress.swift */; };
+		FE7F69D6B59EE3C158D7183D /* CourseSyncStateProgressEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02BCDEAD9F0BC5E1937469A4 /* CourseSyncStateProgressEntity.swift */; };
 		FF016730D5E543147879FD80 /* FileProgressItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970A42A0C962B3F39D133FEF /* FileProgressItemViewModel.swift */; };
 		FF2BEC271B5177DF622A132B /* DateSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C11E387DD144E7B7A7D7405 /* DateSection.swift */; };
 		FF3C382D89DC8F0E5CED2FFE /* FloatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F478666E267D84E7CB89A06 /* FloatingButton.swift */; };
@@ -1663,7 +1663,7 @@
 		026306C5D0B6912F2B1FC0C1 /* ViewModelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelState.swift; sourceTree = "<group>"; };
 		02A05573543CD504DA65350D /* AvatarGroupViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarGroupViewTests.swift; sourceTree = "<group>"; };
 		02AC4A482793512AE0211360 /* PageViewSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewSessionTests.swift; sourceTree = "<group>"; };
-		02BCDEAD9F0BC5E1937469A4 /* CourseSyncStateProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncStateProgress.swift; sourceTree = "<group>"; };
+		02BCDEAD9F0BC5E1937469A4 /* CourseSyncStateProgressEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncStateProgressEntity.swift; sourceTree = "<group>"; };
 		0360570966EB35CEC6F76DFA /* FileUploadProgressObserverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadProgressObserverTests.swift; sourceTree = "<group>"; };
 		03CE7996615CA5C57CC97364 /* K5ResourcesApplicationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesApplicationViewModelTests.swift; sourceTree = "<group>"; };
 		03D85F5BFDC15EF2CE3C1B00 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -1872,7 +1872,7 @@
 		1E945D5C85F701E470B467E3 /* AnnouncementListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AnnouncementListViewController.storyboard; sourceTree = "<group>"; };
 		1EBCB2F07412618E6A6FBE37 /* EnrollmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollmentTests.swift; sourceTree = "<group>"; };
 		1F0E987B16D3F12CCAE9AE7A /* FileProgressItemPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProgressItemPreview.swift; sourceTree = "<group>"; };
-		1F0FD5478A284B6B55971118 /* CourseSyncDownloadProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncDownloadProgress.swift; sourceTree = "<group>"; };
+		1F0FD5478A284B6B55971118 /* CourseSyncDownloadProgressEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncDownloadProgressEntity.swift; sourceTree = "<group>"; };
 		1F997652C2C8991C02AAE13C /* CourseSyncEntryComposerInteractorLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncEntryComposerInteractorLiveTests.swift; sourceTree = "<group>"; };
 		1FD7980ADAA92BE3FD7E4C2F /* K5HomeroomSubjectCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomSubjectCardViewModel.swift; sourceTree = "<group>"; };
 		1FE7DF4736597DD70D163327 /* GetCourseListCourses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourseListCourses.swift; sourceTree = "<group>"; };
@@ -4792,13 +4792,13 @@
 			isa = PBXGroup;
 			children = (
 				16076791BA0E504E93B85837 /* CourseEntrySelection.swift */,
-				1F0FD5478A284B6B55971118 /* CourseSyncDownloadProgress.swift */,
+				1F0FD5478A284B6B55971118 /* CourseSyncDownloadProgressEntity.swift */,
 				63E65267ECA879C91DEFBFFF /* CourseSyncEntry.swift */,
 				6D8DD2FEF9B803CDE5C93C8A /* CourseSyncEntry+Array.swift */,
 				5DBDC6F18A76578520F5C427 /* CourseSyncEntryFile.swift */,
 				4726A9C2B95A3F081F7156CC /* CourseSyncEntryTab.swift */,
 				873E5EE326C1E82574FB99B6 /* CourseSyncListFilter.swift */,
-				02BCDEAD9F0BC5E1937469A4 /* CourseSyncStateProgress.swift */,
+				02BCDEAD9F0BC5E1937469A4 /* CourseSyncStateProgressEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -9752,7 +9752,7 @@
 				D65C93B07F6E11C330E378A5 /* CourseSyncDiscussionsInteractor.swift in Sources */,
 				8845403752E1C349262CEDC6 /* CourseSyncDiskSpaceInfoView.swift in Sources */,
 				09047E641010FD12632BFD87 /* CourseSyncDiskSpaceInfoViewModel.swift in Sources */,
-				9B080D9D1E88DB50861859D8 /* CourseSyncDownloadProgress.swift in Sources */,
+				9B080D9D1E88DB50861859D8 /* CourseSyncDownloadProgressEntity.swift in Sources */,
 				AAC2BBACC19ACAB7CECAF036 /* CourseSyncDownloaderAssembly.swift in Sources */,
 				605C7AC5EA892225418D26F5 /* CourseSyncEntry+Array.swift in Sources */,
 				707013B6AB1A9714828B5B7A /* CourseSyncEntry.swift in Sources */,
@@ -9793,7 +9793,7 @@
 				E6848F9D7260549B3D63BB37 /* CourseSyncSettingsInteractor.swift in Sources */,
 				CB1EB108529BA41CFF696413 /* CourseSyncSettingsView.swift in Sources */,
 				94876078067796B619C890C8 /* CourseSyncSettingsViewModel.swift in Sources */,
-				FE7F69D6B59EE3C158D7183D /* CourseSyncStateProgress.swift in Sources */,
+				FE7F69D6B59EE3C158D7183D /* CourseSyncStateProgressEntity.swift in Sources */,
 				44F729ADD8670690D09E4281 /* CourseSyncSyllabusInteractor.swift in Sources */,
 				BBF7387BD0DC0EE94DDE8190 /* CreateConversation.swift in Sources */,
 				AA83EE551264437D8544C621 /* CreatePlannerNote.swift in Sources */,
