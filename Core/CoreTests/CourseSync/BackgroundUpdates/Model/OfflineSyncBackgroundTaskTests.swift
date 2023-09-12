@@ -17,8 +17,152 @@
 //
 
 @testable import Core
+import Combine
+import TestsFoundation
 import XCTest
 
-class OfflineSyncBackgroundTaskTests: XCTestCase {
+class OfflineSyncBackgroundTaskTests: CoreTestCase {
+    private let mockSyncAccountsCalculator = MockOfflineSyncAccountsCalculator()
+    let mockSyncEntry = CourseSyncEntry(name: "",
+                                        id: "",
+                                        tabs: [.init(id: "", name: "", type: .assignments)],
+                                        files: [])
 
+    func testCompletesIfThereAreNoAccountsToSync() {
+        let testee = OfflineSyncBackgroundTask(syncableAccounts: mockSyncAccountsCalculator,
+                                               sessions: Set<LoginSession>([.make()]))
+        let completed = expectation(description: "Task completed")
+
+        // WHEN
+        testee.start { completed.fulfill() }
+
+        // THEN
+        waitForExpectations(timeout: 1)
+    }
+
+    func testDownloadsSelectedSyncEntries() {
+        mockSyncAccountsCalculator.accounts = [.make()]
+        let mockSelectedItems = MockSelectedItemsFactory(mockSyncEntries: Just([mockSyncEntry]).setFailureType(to: Error.self).eraseToAnyPublisher())
+        let mockSyncInteractor = MockCourseSyncInteractor()
+        let testee = OfflineSyncBackgroundTask(syncableAccounts: mockSyncAccountsCalculator,
+                                               sessions: Set<LoginSession>([.make()]),
+                                               selectedItemsInteractorFactory: { _ in
+                                                   mockSelectedItems
+                                               },
+                                               syncInteractorFactory: {
+                                                    mockSyncInteractor
+                                               })
+        let completed = expectation(description: "Sync completed")
+
+        // WHEN
+        testee.start { completed.fulfill() }
+        mockFinishedDownload()
+
+        // THEN
+        XCTAssertEqual(mockSelectedItems.receivedFilter, .all)
+        XCTAssertEqual(mockSyncInteractor.receivedEntries, [mockSyncEntry])
+        waitForExpectations(timeout: 1)
+    }
+
+    /// We simulate that `getCourseSyncEntries` takes a long time so we can interrput the sync with cancel.
+    func testCancelsDownload() {
+        mockSyncAccountsCalculator.accounts = [.make()]
+        let neverPubliser = PassthroughSubject<[CourseSyncEntry], Error>().eraseToAnyPublisher()
+        let mockSelectedItems = MockSelectedItemsFactory(mockSyncEntries: neverPubliser)
+        let mockSyncInteractor = MockCourseSyncInteractor()
+        let testee = OfflineSyncBackgroundTask(syncableAccounts: mockSyncAccountsCalculator,
+                                               sessions: Set<LoginSession>([.make()]),
+                                               selectedItemsInteractorFactory: { _ in
+                                                   mockSelectedItems
+                                               },
+                                               syncInteractorFactory: {
+                                                    mockSyncInteractor
+                                               })
+
+        // WHEN
+        testee.start {}
+        testee.cancel()
+
+        // THEN
+        XCTAssertNil(mockSyncInteractor.receivedEntries)
+    }
+
+    func testIteratesThroughUsersAndRestoresLastLoggedInOneUponFinish() {
+        let user1 = LoginSession.make(userID: "1")
+        let user2 = LoginSession.make(userID: "2")
+        AppEnvironment.shared.userDidLogin(session: user1)
+        mockSyncAccountsCalculator.accounts = [user1, user2]
+        let mockSelectedItems = MockSelectedItemsFactory(mockSyncEntries: Just([mockSyncEntry]).setFailureType(to: Error.self).eraseToAnyPublisher())
+        let mockSyncInteractor = MockCourseSyncInteractor()
+        let testee = OfflineSyncBackgroundTask(syncableAccounts: mockSyncAccountsCalculator,
+                                               sessions: Set<LoginSession>([user1, user2]),
+                                               selectedItemsInteractorFactory: { _ in
+                                                   mockSelectedItems
+                                               },
+                                               syncInteractorFactory: {
+                                                    mockSyncInteractor
+                                               })
+        let completed = expectation(description: "Sync completed")
+
+        // WHEN
+        testee.start { completed.fulfill() }
+
+        // THEN
+        waitUntil {
+            mockSyncInteractor.downloadContentInvocationCount == 1
+        }
+        XCTAssertEqual(AppEnvironment.shared.currentSession, user1)
+        mockFinishedDownload()
+        waitUntil {
+            mockSyncInteractor.downloadContentInvocationCount == 2
+        }
+        XCTAssertEqual(AppEnvironment.shared.currentSession, user2)
+        mockFinishedDownload()
+        XCTAssertEqual(mockSyncInteractor.downloadContentInvocationCount, 2)
+        waitForExpectations(timeout: 1)
+        XCTAssertEqual(AppEnvironment.shared.currentSession, user1)
+    }
+
+    private func mockFinishedDownload() {
+        let progress: CourseSyncDownloadProgress = AppEnvironment.shared.database.viewContext.insert()
+        progress.isFinished = true
+    }
+}
+
+private class MockOfflineSyncAccountsCalculator: OfflineSyncAccountsCalculator {
+    var accounts: [LoginSession] = []
+
+    override func calculate(_ sessions: [LoginSession], date: Date) -> [LoginSession] {
+        accounts
+    }
+}
+
+private class MockSelectedItemsFactory: CourseSyncListInteractor {
+    var mockSyncEntries: AnyPublisher<[CourseSyncEntry], Error>
+    private(set) var receivedFilter: CourseSyncListFilter?
+
+    init(mockSyncEntries: AnyPublisher<[CourseSyncEntry], Error>) {
+        self.mockSyncEntries = mockSyncEntries
+    }
+
+    func getCourseSyncEntries(filter: CourseSyncListFilter) -> AnyPublisher<[CourseSyncEntry], Error> {
+        receivedFilter = filter
+        return mockSyncEntries
+    }
+}
+
+private class MockCourseSyncInteractor: CourseSyncInteractor {
+    private(set) var isCancelCalled = false
+    private(set) var receivedEntries: [CourseSyncEntry]?
+    private(set) var downloadContentInvocationCount = 0
+
+    func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[Core.CourseSyncEntry], Never> {
+        receivedEntries = entries
+        downloadContentInvocationCount += 1
+        return Just([]).eraseToAnyPublisher()
+    }
+
+    func cancel() {
+        isCancelCalled = true
+    }
 }

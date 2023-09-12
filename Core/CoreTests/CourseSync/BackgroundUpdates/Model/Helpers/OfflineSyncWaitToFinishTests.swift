@@ -28,7 +28,8 @@ class OfflineSyncWaitToFinishTests: CoreTestCase {
         let finishExpectation = expectation(description: "Stream finished")
         let publisher = PassthroughRelay<Void>()
         let testee = publisher
-            .waitOfflineSyncToFinish()
+            .flatMap { OfflineSyncWaitToFinish.wait() }
+            .first()
             .sink { completion in
                 switch completion {
                 case .finished: finishExpectation.fulfill()
@@ -37,8 +38,9 @@ class OfflineSyncWaitToFinishTests: CoreTestCase {
             } receiveValue: { _ in
                 valueExpectation.fulfill()
             }
-        let downloadProgressEntity: CourseSyncDownloadProgress = databaseClient.insert()
+        let downloadProgressEntity: CourseSyncDownloadProgress = AppEnvironment.shared.database.viewContext.insert()
         downloadProgressEntity.isFinished = false
+        publisher.accept()
 
         // WHEN
         downloadProgressEntity.isFinished = true

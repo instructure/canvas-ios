@@ -24,9 +24,20 @@ import Combine
  who have this turned on.
  */
 public class OfflineSyncBackgroundTask: BackgroundTask {
+    public typealias SelectedItemsFactory = (SessionDefaults) -> CourseSyncListInteractor
+    public static let DefaultSelectedItemsFactory: SelectedItemsFactory = {
+        CourseSyncListInteractorLive(sessionDefaults: $0)
+    }
+    public typealias SyncInteractorFactory = () -> CourseSyncInteractor
+    public static let DefaultSyncInteractorFactory: SyncInteractorFactory = {
+        CourseSyncDownloaderAssembly.makeInteractor()
+    }
+
     // MARK: - Dependencies
     private let sessionsToSync: [LoginSession]
     private let syncableAccounts: OfflineSyncAccountsCalculator
+    private let selectedItemsInteractorFactory: SelectedItemsFactory
+    private let syncInteractorFactory: SyncInteractorFactory
     // MARK: - Internal State
     private let lastLoggedInUser: LoginSession?
     private var isCancelled = false
@@ -36,11 +47,15 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
     // MARK: - Public Interface
 
     public init(syncableAccounts: OfflineSyncAccountsCalculator,
-                sessions: Set<LoginSession>) {
+                sessions: Set<LoginSession>,
+                selectedItemsInteractorFactory: @escaping SelectedItemsFactory = DefaultSelectedItemsFactory,
+                syncInteractorFactory: @escaping SyncInteractorFactory = DefaultSyncInteractorFactory) {
         self.syncableAccounts = syncableAccounts
         self.sessionsToSync = syncableAccounts.calculate(Array(sessions),
                                                         date: Clock.now)
         self.lastLoggedInUser = LoginSession.mostRecent
+        self.selectedItemsInteractorFactory = selectedItemsInteractorFactory
+        self.syncInteractorFactory = syncInteractorFactory
     }
 
     public func start(completion: @escaping () -> Void) {
@@ -73,15 +88,18 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
         Logger.shared.log()
         AppEnvironment.shared.userDidLogin(session: session, isSilent: true)
         let sessionDefaults = SessionDefaults(sessionID: session.uniqueID)
-        let selectedItemsInteractor = CourseSyncListInteractorLive(sessionDefaults: sessionDefaults)
-        let courseSyncInteractor = CourseSyncDownloaderAssembly.makeInteractor()
-        syncingInteractor = courseSyncInteractor
+        let syncInteractor = syncInteractorFactory()
+        syncingInteractor = syncInteractor
 
-        selectedItemsInteractor
+        selectedItemsInteractorFactory(sessionDefaults)
             .getCourseSyncEntries(filter: .all)
-            .flatMap { courseSyncInteractor.downloadContent(for: $0).setFailureType(to: Error.self) }
+            .flatMap {
+                syncInteractor
+                    .downloadContent(for: $0)
+                    .setFailureType(to: Error.self)
+            }
             .first()
-            .waitOfflineSyncToFinish()
+            .flatMap { _ in OfflineSyncWaitToFinish.wait() }
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .finished:

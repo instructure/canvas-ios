@@ -18,13 +18,13 @@
 
 import Combine
 
-extension Publisher {
+enum OfflineSyncWaitToFinish {
 
     /**
      - returns: A publisher that publishes a value then finishes when the first `CourseSyncDownloadProgress`'s
      `isFinished` property changes to `true` in the database.
      */
-    func waitOfflineSyncToFinish() -> AnyPublisher<Void, Never> {
+    static func wait() -> AnyPublisher<Void, Never> {
         let downloadFinishedPredicate = NSPredicate(key: #keyPath(CourseSyncDownloadProgress.isFinished), equals: true)
         let downloadFinishedScope = Scope(predicate: downloadFinishedPredicate, order: [])
         let useCase = LocalUseCase<CourseSyncDownloadProgress>(scope: downloadFinishedScope)
