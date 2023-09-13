@@ -18,6 +18,7 @@
   },
   "testTargets" : [
     {
+      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:..\/Parent\/Parent.xcodeproj",
         "identifier" : "E80763C723E08DA10085DAFB",
@@ -25,6 +26,7 @@
       }
     },
     {
+      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:Student.xcodeproj",
         "identifier" : "E8C6F4CF23D626220086B865",
@@ -33,6 +35,7 @@
     },
     {
       "enabled" : false,
+      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:..\/rn\/Teacher\/ios\/Teacher.xcodeproj",
         "identifier" : "E841D8A223D6472F00685A63",
