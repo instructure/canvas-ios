@@ -21,7 +21,7 @@ import mobile_offline_downloader_ios
 
 @available(iOSApplicationExtension, unavailable)
 public final class BackgroundTaskProvider {
-
+    @Injected(\.reachability) var reachability: ReachabilityProvider
     // MARK: - Properties -
 
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
@@ -52,7 +52,9 @@ public final class BackgroundTaskProvider {
     @objc
     func didBecomeActiveNotification() {
         endBackgroundTaskIfActive()
-        OfflineDownloadsManager.shared.resumeAllActive()
+        if reachability.isConnected {
+            OfflineDownloadsManager.shared.resumeAllActive()
+        }
     }
 
     // MARK: - Background Task -
