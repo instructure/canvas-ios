@@ -45,7 +45,7 @@ public struct CourseSyncStateProgress {
         self.progress = progress
     }
 
-    init(from entity: CourseSyncStateProgressEntity) {
+    init(from entity: CDCourseSyncStateProgress) {
         id = entity.id
         selection = entity.selection
         state = entity.state

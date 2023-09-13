@@ -207,7 +207,7 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
         entries[0].files[1].state = .downloaded
         helper.saveDownloadProgress(entries: entries)
 
-        let previousProgressEntityList: [CourseSyncDownloadProgressEntity] = databaseClient.fetch(scope: .all)
+        let previousProgressEntityList: [CDCourseSyncDownloadProgress] = databaseClient.fetch(scope: .all)
         XCTAssertEqual(previousProgressEntityList.count, 1)
         let previousProgress = CourseSyncDownloadProgress(from: previousProgressEntityList[0])
         XCTAssertEqual(previousProgress.progress, 1)
@@ -216,7 +216,7 @@ class CourseSyncProgressObserverInteractorLiveTests: CoreTestCase {
         entries[0].files[1].state = .loading(0.5)
         helper.saveDownloadProgress(entries: entries)
 
-        let currentProgressList: [CourseSyncDownloadProgressEntity] = databaseClient.fetch(scope: .all)
+        let currentProgressList: [CDCourseSyncDownloadProgress] = databaseClient.fetch(scope: .all)
         XCTAssertEqual(currentProgressList.count, 1)
         let currentProgress = CourseSyncDownloadProgress(from: currentProgressList[0])
         XCTAssertEqual(currentProgress.progress, 0.75)

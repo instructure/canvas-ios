@@ -35,7 +35,7 @@ final class CourseSyncProgressObserverInteractorLive: CourseSyncProgressObserver
         context: context,
         useCase: GetCourseSyncStateProgressUseCase(
             scope: .all(
-                orderBy: #keyPath(CourseSyncStateProgressEntity.id),
+                orderBy: #keyPath(CDCourseSyncStateProgress.id),
                 ascending: true
             )
         )

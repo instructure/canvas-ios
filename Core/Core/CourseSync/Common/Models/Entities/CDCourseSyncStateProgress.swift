@@ -19,7 +19,7 @@
 import CoreData
 import Foundation
 
-final class CourseSyncStateProgressEntity: NSManagedObject, Comparable {
+final class CDCourseSyncStateProgress: NSManagedObject, Comparable {
     @NSManaged public var id: String
     @NSManaged private(set) var selectionRaw: Int
     @NSManaged private(set) var stateRaw: Int
@@ -82,7 +82,7 @@ final class CourseSyncStateProgressEntity: NSManagedObject, Comparable {
         }
     }
 
-    static func < (lhs: CourseSyncStateProgressEntity, rhs: CourseSyncStateProgressEntity) -> Bool {
+    static func < (lhs: CDCourseSyncStateProgress, rhs: CDCourseSyncStateProgress) -> Bool {
         lhs.selection < rhs.selection
     }
 
@@ -92,9 +92,9 @@ final class CourseSyncStateProgressEntity: NSManagedObject, Comparable {
         selection: CourseEntrySelection,
         state: CourseSyncEntry.State,
         in context: NSManagedObjectContext
-    ) -> CourseSyncStateProgressEntity {
-        let dbEntity: CourseSyncStateProgressEntity = context.first(
-            where: #keyPath(CourseSyncStateProgressEntity.id),
+    ) -> CDCourseSyncStateProgress {
+        let dbEntity: CDCourseSyncStateProgress = context.first(
+            where: #keyPath(CDCourseSyncStateProgress.id),
             equals: id
         ) ?? context.insert()
 
@@ -106,7 +106,7 @@ final class CourseSyncStateProgressEntity: NSManagedObject, Comparable {
     }
 }
 
-extension Array where Element == CourseSyncStateProgressEntity {
+extension Array where Element == CDCourseSyncStateProgress {
     func makeItems() -> [CourseSyncStateProgress] {
         map { CourseSyncStateProgress(from: $0) }
     }

@@ -19,14 +19,14 @@
 import CoreData
 import Foundation
 
-public final class CourseSyncDownloadProgressEntity: NSManagedObject {
+public final class CDCourseSyncDownloadProgress: NSManagedObject {
     @NSManaged public var bytesToDownload: Int
     @NSManaged public var bytesDownloaded: Int
     @NSManaged public var isFinished: Bool
     @NSManaged public var error: String?
 }
 
-public extension CourseSyncDownloadProgressEntity {
+public extension CDCourseSyncDownloadProgress {
     @discardableResult
     static func save(
         bytesToDownload: Int,
@@ -34,8 +34,8 @@ public extension CourseSyncDownloadProgressEntity {
         isFinished: Bool,
         error: String?,
         in context: NSManagedObjectContext
-    ) -> CourseSyncDownloadProgressEntity {
-        let model: CourseSyncDownloadProgressEntity = context.first(scope: .all) ?? context.insert()
+    ) -> CDCourseSyncDownloadProgress {
+        let model: CDCourseSyncDownloadProgress = context.first(scope: .all) ?? context.insert()
         model.bytesToDownload = bytesToDownload
         model.bytesDownloaded = bytesDownloaded
         model.isFinished = isFinished

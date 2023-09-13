@@ -40,7 +40,7 @@ public struct CourseSyncDownloadProgress {
         self.error = error
     }
 
-    init(from entity: CourseSyncDownloadProgressEntity) {
+    init(from entity: CDCourseSyncDownloadProgress) {
         bytesToDownload = entity.bytesToDownload
         bytesDownloaded = entity.bytesDownloaded
         isFinished = entity.isFinished

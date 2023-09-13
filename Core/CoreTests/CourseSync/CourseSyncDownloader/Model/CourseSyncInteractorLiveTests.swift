@@ -425,28 +425,28 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
 
         let subscription = testee.downloadContent(for: entries).sink()
 
-        let courseProgress: CourseSyncStateProgressEntity = databaseClient.fetch(
-            scope: .where(#keyPath(CourseSyncStateProgressEntity.id), equals: "entry-1")
+        let courseProgress: CDCourseSyncStateProgress = databaseClient.fetch(
+            scope: .where(#keyPath(CDCourseSyncStateProgress.id), equals: "entry-1")
         ).first!
         XCTAssertEqual(courseProgress.state, .loading(nil))
 
-        let assignmentsProgress: CourseSyncStateProgressEntity = databaseClient.fetch(
-            scope: .where(#keyPath(CourseSyncStateProgressEntity.id), equals: "tab-assignments")
+        let assignmentsProgress: CDCourseSyncStateProgress = databaseClient.fetch(
+            scope: .where(#keyPath(CDCourseSyncStateProgress.id), equals: "tab-assignments")
         ).first!
         XCTAssertEqual(assignmentsProgress.state, .loading(nil))
 
-        let pagesProgress: CourseSyncStateProgressEntity = databaseClient.fetch(
-            scope: .where(#keyPath(CourseSyncStateProgressEntity.id), equals: "tab-pages")
+        let pagesProgress: CDCourseSyncStateProgress = databaseClient.fetch(
+            scope: .where(#keyPath(CDCourseSyncStateProgress.id), equals: "tab-pages")
         ).first!
         XCTAssertEqual(pagesProgress.state, .loading(nil))
 
-        let file1Progress: CourseSyncStateProgressEntity = databaseClient.fetch(
-            scope: .where(#keyPath(CourseSyncStateProgressEntity.id), equals: "file-1")
+        let file1Progress: CDCourseSyncStateProgress = databaseClient.fetch(
+            scope: .where(#keyPath(CDCourseSyncStateProgress.id), equals: "file-1")
         ).first!
         XCTAssertEqual(file1Progress.state, .loading(nil))
 
-        let file2Progress: CourseSyncStateProgressEntity = databaseClient.fetch(
-            scope: .where(#keyPath(CourseSyncStateProgressEntity.id), equals: "file-1")
+        let file2Progress: CDCourseSyncStateProgress = databaseClient.fetch(
+            scope: .where(#keyPath(CDCourseSyncStateProgress.id), equals: "file-1")
         ).first!
         XCTAssertEqual(file2Progress.state, .loading(nil))
 
@@ -475,8 +475,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         NotificationCenter.default.post(name: .OfflineSyncCancelled, object: nil)
 
         // THEN
-        let fileProgressList: [CourseSyncDownloadProgressEntity] = databaseClient.fetch()
-        let entryProgressList: [CourseSyncStateProgressEntity] = databaseClient.fetch()
+        let fileProgressList: [CDCourseSyncDownloadProgress] = databaseClient.fetch()
+        let entryProgressList: [CDCourseSyncStateProgress] = databaseClient.fetch()
         XCTAssertEqual(fileProgressList.count, 0)
         XCTAssertEqual(entryProgressList.count, 0)
         XCTAssertEqual(testee.downloadSubscription, nil)
@@ -507,8 +507,8 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         testee.cancel()
 
         // THEN
-        let fileProgressList: [CourseSyncDownloadProgressEntity] = databaseClient.fetch()
-        let entryProgressList: [CourseSyncStateProgressEntity] = databaseClient.fetch()
+        let fileProgressList: [CDCourseSyncDownloadProgress] = databaseClient.fetch()
+        let entryProgressList: [CDCourseSyncStateProgress] = databaseClient.fetch()
         XCTAssertEqual(fileProgressList.count, 0)
         XCTAssertEqual(entryProgressList.count, 0)
         XCTAssertEqual(testee.downloadSubscription, nil)
