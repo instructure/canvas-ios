@@ -83,10 +83,8 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
     // MARK: - Private Methods
 
     private func syncNextAccount(in sessions: [LoginSession], completion: @escaping () -> Void) {
-        Logger.shared.log("Offline: Syncing next account.")
-
         if isCancelled {
-            Logger.shared.log("Offline: Sync cancelled aborting next account sync.")
+            Logger.shared.log("Offline: Sync cancelled, aborting next account sync.")
             return
         }
 
@@ -94,6 +92,8 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
             Logger.shared.log("Offline: No more sessions to sync.")
             return handleSyncCompleted(completion: completion)
         }
+
+        Logger.shared.log("Offline: Syncing \(session.uniqueID).")
 
         AppEnvironment.shared.userDidLogin(session: session, isSilent: true)
         let sessionDefaults = SessionDefaults(sessionID: session.uniqueID)
@@ -138,7 +138,7 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
 
     private func restoreLastLoggedInUser() {
         if let lastLoggedInUser {
-            Logger.shared.log("Offline: Restoring last logged in user.")
+            Logger.shared.log("Offline: Restoring last logged in user \(lastLoggedInUser.uniqueID).")
             AppEnvironment.shared.userDidLogin(session: lastLoggedInUser)
         }
     }
