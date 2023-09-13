@@ -59,6 +59,7 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
         self.syncScheduler = syncScheduler
         self.selectedItemsInteractorFactory = selectedItemsInteractorFactory
         self.syncInteractorFactory = syncInteractorFactory
+        Logger.shared.log("Offline: Task created with \(sessionsToSync.count) account(s) in the queue.")
     }
 
     public func start(completion: @escaping () -> Void) {
@@ -66,7 +67,7 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
     }
 
     public func cancel() {
-        Logger.shared.log()
+        Logger.shared.log("Offline: Cancel received.")
         isCancelled = true
         subscriptions.removeAll()
         syncScheduler.scheduleNextSync()
@@ -82,14 +83,18 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
     // MARK: - Private Methods
 
     private func syncNextAccount(in sessions: [LoginSession], completion: @escaping () -> Void) {
+        Logger.shared.log("Offline: Syncing next account.")
+
         if isCancelled {
+            Logger.shared.log("Offline: Sync cancelled aborting next account sync.")
             return
         }
+
         guard let session = sessions.first else {
+            Logger.shared.log("Offline: No more sessions to sync.")
             return handleSyncCompleted(completion: completion)
         }
 
-        Logger.shared.log()
         AppEnvironment.shared.userDidLogin(session: session, isSilent: true)
         let sessionDefaults = SessionDefaults(sessionID: session.uniqueID)
         let syncInteractor = syncInteractorFactory()
@@ -98,19 +103,23 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
         selectedItemsInteractorFactory(sessionDefaults)
             .getCourseSyncEntries(filter: .all)
             .flatMap {
-                syncInteractor
+                Logger.shared.log("Offline: Downloading content.")
+                return syncInteractor
                     .downloadContent(for: $0)
                     .setFailureType(to: Error.self)
             }
             .first()
-            .flatMap { _ in OfflineSyncWaitToFinish.wait() }
+            .flatMap { _ in
+                Logger.shared.log("Offline: Waiting for sync to finish.")
+                return OfflineSyncWaitToFinish.wait()
+            }
             .sink(receiveCompletion: { [weak self] streamCompletion in
                 switch streamCompletion {
                 case .finished:
                     self?.syncScheduler.updateNextSyncDate(sessionUniqueID: session.uniqueID)
-                    Logger.shared.log("Sync finished")
+                    Logger.shared.log("Offline: Sync finished")
                 case .failure(let error):
-                    Logger.shared.log("Sync failed with error: \(error.localizedDescription)")
+                    Logger.shared.log("Offline: Sync failed with error: \(error.localizedDescription)")
                 }
 
                 var updatedSessions = sessions
@@ -121,7 +130,7 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
     }
 
     private func handleSyncCompleted(completion: () -> Void) {
-        Logger.shared.log()
+        Logger.shared.log("Offline: Sync completed.")
         restoreLastLoggedInUser()
         syncScheduler.scheduleNextSync()
         completion()
@@ -129,7 +138,7 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
 
     private func restoreLastLoggedInUser() {
         if let lastLoggedInUser {
-            Logger.shared.log()
+            Logger.shared.log("Offline: Restoring last logged in user.")
             AppEnvironment.shared.userDidLogin(session: lastLoggedInUser)
         }
     }

@@ -23,13 +23,14 @@ public class OfflineSyncScheduler {
 
     public func scheduleNextSync() {
         guard let offlineSyncTask = CourseSyncBackgroundUpdatesAssembly.makeTaskRequest() else {
+            Logger.shared.log("Offline: Skipping background sync schedule: no accounts to sync.")
             return
         }
 
         BackgroundProcessingAssembly
             .resolveInteractor()
             .schedule(task: offlineSyncTask)
-        Logger.shared.log("Scheduled background offline sync.")
+        Logger.shared.log("Offline: Scheduled background offline sync.")
     }
 
     public func updateNextSyncDate(sessionUniqueID: String) {
