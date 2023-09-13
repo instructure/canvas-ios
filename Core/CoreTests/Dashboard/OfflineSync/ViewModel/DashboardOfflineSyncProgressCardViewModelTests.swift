@@ -52,13 +52,6 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
                                                                router: router,
                                                                scheduler: .immediate)
 
-        var progress = CourseSyncDownloadProgress(
-            bytesToDownload: 1000,
-            bytesDownloaded: 100,
-            isFinished: false,
-            error: nil
-        )
-
         // MARK: - WHEN
 
         NotificationCenter.default.post(name: .OfflineSyncTriggered, object: nil)
@@ -66,19 +59,44 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
 
         // MARK: - THEN
 
-        mockInteractor.mockDownloadProgress(progress)
+        mockInteractor.mockDownloadProgress(
+            CourseSyncDownloadProgress(
+                bytesToDownload: 1000,
+                bytesDownloaded: 100,
+                isFinished: false,
+                error: nil
+            )
+        )
         XCTAssertEqual(testee.state, .progress(0.1, "2 items are syncing."))
 
-        progress.bytesDownloaded = 500
-        mockInteractor.mockDownloadProgress(progress)
+        mockInteractor.mockDownloadProgress(
+            CourseSyncDownloadProgress(
+                bytesToDownload: 1000,
+                bytesDownloaded: 500,
+                isFinished: false,
+                error: nil
+            )
+        )
         XCTAssertEqual(testee.state, .progress(0.5, "2 items are syncing."))
 
-        progress.bytesDownloaded = 750
-        mockInteractor.mockDownloadProgress(progress)
+        mockInteractor.mockDownloadProgress(
+            CourseSyncDownloadProgress(
+                bytesToDownload: 1000,
+                bytesDownloaded: 750,
+                isFinished: false,
+                error: nil
+            )
+        )
         XCTAssertEqual(testee.state, .progress(0.75, "2 items are syncing."))
 
-        progress.bytesDownloaded = 1000
-        mockInteractor.mockDownloadProgress(progress)
+        mockInteractor.mockDownloadProgress(
+            CourseSyncDownloadProgress(
+                bytesToDownload: 1000,
+                bytesDownloaded: 1000,
+                isFinished: false,
+                error: nil
+            )
+        )
         XCTAssertEqual(testee.state, .progress(1, "2 items are syncing."))
     }
 
