@@ -19,7 +19,7 @@
 @testable import Core
 import XCTest
 
-class CourseSyncEntryProgressTests: CoreTestCase {
+class CDCourseSyncStateProgressTests: CoreTestCase {
     func testCourseSelectionMapping() {
         let progress: CDCourseSyncStateProgress = databaseClient.insert()
         progress.selection = .course("course-1")
