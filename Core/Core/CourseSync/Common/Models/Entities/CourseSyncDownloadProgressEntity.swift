@@ -19,52 +19,6 @@
 import CoreData
 import Foundation
 
-public struct CourseSyncDownloadProgress {
-    var bytesToDownload: Int
-    var bytesDownloaded: Int
-    var isFinished: Bool
-    var error: String?
-
-    var progress: Float {
-        Float(bytesDownloaded) / Float(bytesToDownload)
-    }
-
-    init(
-        bytesToDownload: Int,
-        bytesDownloaded: Int,
-        isFinished: Bool,
-        error: String?
-    ) {
-        self.bytesToDownload = bytesToDownload
-        self.bytesDownloaded = bytesDownloaded
-        self.isFinished = isFinished
-        self.error = error
-    }
-
-    init(from entity: CourseSyncDownloadProgressEntity) {
-        bytesToDownload = entity.bytesToDownload
-        bytesDownloaded = entity.bytesDownloaded
-        isFinished = entity.isFinished
-        error = entity.error
-    }
-}
-
-extension CourseSyncDownloadProgress {
-    static func make(
-        bytesToDownload: Int = 1000,
-        bytesDownloaded: Int = 100,
-        isFinished: Bool = false,
-        error: String? = nil
-    ) -> CourseSyncDownloadProgress {
-        .init(
-            bytesToDownload: bytesToDownload,
-            bytesDownloaded: bytesDownloaded,
-            isFinished: isFinished,
-            error: error
-        )
-    }
-}
-
 public final class CourseSyncDownloadProgressEntity: NSManagedObject {
     @NSManaged public var bytesToDownload: Int
     @NSManaged public var bytesDownloaded: Int

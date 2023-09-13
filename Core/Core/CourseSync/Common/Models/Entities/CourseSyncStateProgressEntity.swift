@@ -19,66 +19,6 @@
 import CoreData
 import Foundation
 
-public struct CourseSyncStateProgress {
-    var id: String
-    var selection: CourseEntrySelection
-    var state: CourseSyncEntry.State
-    var entryID: String
-    var tabID: String?
-    var fileID: String?
-    var progress: NSNumber?
-
-    init(
-        id: String,
-        selection: CourseEntrySelection,
-        state: CourseSyncEntry.State,
-        entryID: String,
-        tabID: String?,
-        fileID: String?,
-        progress: NSNumber?
-    ) {
-        self.id = id
-        self.selection = selection
-        self.state = state
-        self.entryID = entryID
-        self.tabID = tabID
-        self.fileID = fileID
-        self.progress = progress
-    }
-
-    init(from entity: CourseSyncStateProgressEntity) {
-        id = entity.id
-        selection = entity.selection
-        state = entity.state
-        entryID = entity.entryID
-        tabID = entity.tabID
-        fileID = entity.fileID
-        progress = entity.progress
-    }
-}
-
-extension CourseSyncStateProgress {
-    static func make(
-        id: String = "1",
-        selection: CourseEntrySelection = .course("1"),
-        state: CourseSyncEntry.State = .loading(nil),
-        entryID: String = "1",
-        tabID: String? = nil,
-        fileID: String? = nil,
-        progress: NSNumber? = nil
-    ) -> CourseSyncStateProgress {
-        .init(
-            id: id,
-            selection: selection,
-            state: state,
-            entryID: entryID,
-            tabID: tabID,
-            fileID: fileID,
-            progress: progress
-        )
-    }
-}
-
 final class CourseSyncStateProgressEntity: NSManagedObject, Comparable {
     @NSManaged public var id: String
     @NSManaged private(set) var selectionRaw: Int
@@ -168,6 +108,6 @@ final class CourseSyncStateProgressEntity: NSManagedObject, Comparable {
 
 extension Array where Element == CourseSyncStateProgressEntity {
     func makeItems() -> [CourseSyncStateProgress] {
-        map { CourseSyncStateProgress.init(from: $0) }
+        map { CourseSyncStateProgress(from: $0) }
     }
 }
