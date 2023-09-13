@@ -22,7 +22,7 @@ import TestsFoundation
 import XCTest
 
 class OfflineSyncBackgroundTaskTests: CoreTestCase {
-    private let mockSyncAccountsCalculator = MockOfflineSyncAccountsCalculator()
+    private let mockSyncAccountsCalculator = MockOfflineSyncAccountsInteractor()
     let mockSyncEntry = CourseSyncEntry(name: "",
                                         id: "",
                                         tabs: [.init(id: "", name: "", type: .assignments)],
@@ -184,7 +184,7 @@ class OfflineSyncBackgroundTaskTests: CoreTestCase {
     }
 }
 
-private class MockOfflineSyncAccountsCalculator: OfflineSyncAccountsCalculator {
+private class MockOfflineSyncAccountsInteractor: OfflineSyncAccountsInteractor {
     var accounts: [LoginSession] = []
 
     override func calculate(_ sessions: [LoginSession], date: Date) -> [LoginSession] {
@@ -222,7 +222,7 @@ private class MockCourseSyncInteractor: CourseSyncInteractor {
     }
 }
 
-private class MockSyncScheduler: OfflineSyncScheduler {
+private class MockSyncScheduler: OfflineSyncScheduleInteractor {
     private(set) var scheduleNextSyncInvoked = false
     private(set) var syncNextDateSessionUniqueID: String?
 

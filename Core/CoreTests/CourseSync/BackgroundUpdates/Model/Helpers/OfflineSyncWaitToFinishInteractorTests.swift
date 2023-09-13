@@ -21,14 +21,14 @@ import Combine
 import CombineExt
 import XCTest
 
-class OfflineSyncWaitToFinishTests: CoreTestCase {
+class OfflineSyncWaitToFinishInteractorTests: CoreTestCase {
 
     func testRecognizesSyncFinishEvent() {
         let valueExpectation = expectation(description: "Value was published")
         let finishExpectation = expectation(description: "Stream finished")
         let publisher = PassthroughRelay<Void>()
         let testee = publisher
-            .flatMap { OfflineSyncWaitToFinish.wait() }
+            .flatMap { OfflineSyncWaitToFinishInteractor.wait() }
             .first()
             .sink { completion in
                 switch completion {

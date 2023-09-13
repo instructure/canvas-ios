@@ -26,7 +26,7 @@ class OfflineSyncBackgroundTaskRequestTests: XCTestCase {
                                              userID: "testUser2")
 
     func testProperties() {
-        let nextDateCalculator = MockOfflineSyncNextDate()
+        let nextDateCalculator = MockOfflineSyncNextDateInteractor()
 
         // WHEN
         let testee = OfflineSyncBackgroundTaskRequest(nextSyncDate: nextDateCalculator,
@@ -38,7 +38,7 @@ class OfflineSyncBackgroundTaskRequestTests: XCTestCase {
     }
 
     func testCalculatesEarliestBeginDateFromLoginSessions() {
-        let mockOfflineSyncNextDate = MockOfflineSyncNextDate()
+        let mockOfflineSyncNextDate = MockOfflineSyncNextDateInteractor()
 
         // WHEN
         let testee = OfflineSyncBackgroundTaskRequest(nextSyncDate: mockOfflineSyncNextDate,
@@ -50,7 +50,7 @@ class OfflineSyncBackgroundTaskRequestTests: XCTestCase {
     }
 
     func testNotInitalizesIfThereIsNoBeginDate() {
-        let mockOfflineSyncNextDate = MockOfflineSyncNextDate()
+        let mockOfflineSyncNextDate = MockOfflineSyncNextDateInteractor()
         mockOfflineSyncNextDate.mockedDate = nil
 
         // WHEN
@@ -62,7 +62,7 @@ class OfflineSyncBackgroundTaskRequestTests: XCTestCase {
     }
 }
 
-class MockOfflineSyncNextDate: OfflineSyncNextDateCalculator {
+class MockOfflineSyncNextDateInteractor: OfflineSyncNextDateInteractor {
     var mockedDate: Date? = Date(timeIntervalSince1970: 3456)
     var receivedSessionIDs: [String] = []
 

@@ -18,7 +18,7 @@
 
 import Combine
 
-enum OfflineSyncWaitToFinish {
+enum OfflineSyncWaitToFinishInteractor {
 
     /**
      - returns: A publisher that publishes a value then finishes when the first `CourseSyncDownloadProgress`'s

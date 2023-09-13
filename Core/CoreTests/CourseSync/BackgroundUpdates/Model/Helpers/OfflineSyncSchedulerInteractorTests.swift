@@ -19,14 +19,14 @@
 @testable import Core
 import XCTest
 
-class OfflineSyncSchedulerTests: XCTestCase {
+class OfflineSyncSchedulerInteractorTests: XCTestCase {
 
     func testUpdatesNextSyncDate() {
         let now = Date()
         Clock.mockNow(now)
         var defaults = SessionDefaults(sessionID: "test-1")
         defaults.offlineSyncFrequency = .daily
-        let testee = OfflineSyncScheduler()
+        let testee = OfflineSyncScheduleInteractor()
 
         // WHEN
         testee.updateNextSyncDate(sessionUniqueID: "test-1")

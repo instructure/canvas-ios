@@ -44,7 +44,7 @@
 		06BB9A5DE911CB9B67C8216E /* DueViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F1C849E6FB194387C1E9BA /* DueViewable.swift */; };
 		06C01F98E55467701471E849 /* DragInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B56455E1EE98589994C16F /* DragInfoTests.swift */; };
 		0743DC45F54D3B2D2C2C1EA7 /* FileUploadProgressObserversCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C47BB65A3CC54AFB20E97C /* FileUploadProgressObserversCache.swift */; };
-		07518661B1AF775727C217C9 /* OfflineSyncNextDateCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE039C57079AC687EA9FABE0 /* OfflineSyncNextDateCalculatorTests.swift */; };
+		07518661B1AF775727C217C9 /* OfflineSyncNextDateInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE039C57079AC687EA9FABE0 /* OfflineSyncNextDateInteractorTests.swift */; };
 		075E54F28EC06355A4BC2EE4 /* UITraitCollectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC6FA42D7C4391ECBA3525C /* UITraitCollectionExtensions.swift */; };
 		079FA0F2ED8D8269AF96C452 /* ActAsUserViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 220A50FD6183C7CE131FDEF3 /* ActAsUserViewController.storyboard */; };
 		07ABBB24641EE81AA49D9469 /* UIWindowExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479672AB3209F6CAD09558DD /* UIWindowExtensions.swift */; };
@@ -93,7 +93,7 @@
 		0DB0158F40AD123868D12089 /* DashboardCourseCardListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC252ABCB942A42AF0E2032 /* DashboardCourseCardListInteractor.swift */; };
 		0DBFDC6FE048F46BECE4E7BC /* CreateConversationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A44964B79D19B8DC6F1C29F /* CreateConversationTests.swift */; };
 		0DEFDB53A858763170B9031D /* SubmissionBreakdownViewModelProtocolPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4E59E81DD84AA987347986 /* SubmissionBreakdownViewModelProtocolPreview.swift */; };
-		0EA2E26A949824484897E968 /* OfflineSyncAccountsCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24947AA43D902DBC84AC5BCC /* OfflineSyncAccountsCalculatorTests.swift */; };
+		0EA2E26A949824484897E968 /* OfflineSyncAccountsInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24947AA43D902DBC84AC5BCC /* OfflineSyncAccountsInteractorTests.swift */; };
 		0EA924DCE1C57E35FB7DFDA6 /* LoginStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67AD61608F7BA35C41B3D85 /* LoginStartViewController.swift */; };
 		0EC6263BFC83A9648A51D045 /* RichContentToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA486C4876FCB7C243AAC95 /* RichContentToolbarView.swift */; };
 		0EE25BF09581E5E4AC1669F5 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC623C0CD68A8AB70145B80 /* AppEnvironment.swift */; };
@@ -263,7 +263,7 @@
 		2B7719224F4837F78B538FFD /* CourseSyncQuizzesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5240F79A2B2DD6AD5983C0D5 /* CourseSyncQuizzesInteractor.swift */; };
 		2BC902555C15AD95479E1CF0 /* K5GradesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A1E11BAE258EC133022808 /* K5GradesViewModel.swift */; };
 		2BF5D8C0F10225334CD0D2FD /* CourseSyncDiskSpaceInfoViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D1671C071758F47CB224FF /* CourseSyncDiskSpaceInfoViewModelTests.swift */; };
-		2C1637A02357434FFF1E9747 /* OfflineSyncAccountsCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82F02F41E28A568BD4B6360 /* OfflineSyncAccountsCalculator.swift */; };
+		2C1637A02357434FFF1E9747 /* OfflineSyncAccountsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A82F02F41E28A568BD4B6360 /* OfflineSyncAccountsInteractor.swift */; };
 		2C47F4E69713ECDE9F228538 /* VideoRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84DF62618B2EE1C331CC4F7 /* VideoRecorder.swift */; };
 		2C48C07EF76DA636F7754F8B /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9E9E318154599C9606AD4B /* AudioPlayer.swift */; };
 		2C6B3CD6AC524FAF84AE9EF0 /* ConversationParticipantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557A65FF2D61BF8FE419192D /* ConversationParticipantTests.swift */; };
@@ -406,7 +406,7 @@
 		425BB4FB4231F411906AB3C6 /* GradingSchemeEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A56100B33EF4A4057A33F9 /* GradingSchemeEntryTests.swift */; };
 		427503CB25EB9703BC0134DB /* DocViewerAnnotationToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B62E8A3FF971524AF71C20 /* DocViewerAnnotationToolbar.swift */; };
 		42AB7D5A02DBBEDE4BDA5870 /* FileViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF268BEC79B917199C28F06 /* FileViewer.swift */; };
-		42AE2150B5B2E1F7593FBFAF /* OfflineSyncWaitToFinish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A96586EACB689E2FB6784B /* OfflineSyncWaitToFinish.swift */; };
+		42AE2150B5B2E1F7593FBFAF /* OfflineSyncWaitToFinishInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A96586EACB689E2FB6784B /* OfflineSyncWaitToFinishInteractor.swift */; };
 		42EA12E28B24AFC3D1C0F462 /* AssignmentDueDatesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF0714F1EEA5A8EE7600BCD /* AssignmentDueDatesInteractor.swift */; };
 		42EDD38830520D5C38B13359 /* PlannerOverrideUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933113CEB38757685EE94ADC /* PlannerOverrideUpdater.swift */; };
 		42F74BABA24396DA4E9A8685 /* DashboardViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D28B00534FD2E0AE5E78B29 /* DashboardViewModelTests.swift */; };
@@ -486,7 +486,7 @@
 		4E1C6ED2B0A5835B316FBD9F /* DashboardSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C820F6D12A579DCE9F1A92 /* DashboardSettingsViewModel.swift */; };
 		4E39E04C028229AC103A2DFE /* InboxMessageScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B9B84F7AFA4C7AAA3B0E1B /* InboxMessageScope.swift */; };
 		4E6C33E2AE511E907E745B23 /* APIPlannable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEC67072606D463D1C6486C4 /* APIPlannable.swift */; };
-		4E9EBE5429C318CC3C3AD29C /* OfflineSyncScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC5A0DAA77950F770232E1 /* OfflineSyncScheduler.swift */; };
+		4E9EBE5429C318CC3C3AD29C /* OfflineSyncScheduleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FC5A0DAA77950F770232E1 /* OfflineSyncScheduleInteractor.swift */; };
 		4EABFC8CA64AA17F8064C3DF /* lato_semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 82CAAE0608A70D398549A21E /* lato_semibold.ttf */; };
 		4EC7DFB630005CC441F89342 /* QuizPreviewViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87FF805211B1C8CCA1B4182E /* QuizPreviewViewModelTests.swift */; };
 		4F03CF5C9FA6935E7ACE3AFC /* UploadFileCommentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6C3F0B03C6C31A25D12B33 /* UploadFileCommentTests.swift */; };
@@ -819,7 +819,7 @@
 		81594108B08B5AEC03B01DEE /* GetEnabledFeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055301DF962DB3E959C6B8FF /* GetEnabledFeatureFlags.swift */; };
 		817A0D6AB41E34A88542042E /* FileUploadNotificationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60B82258E03A624350303E1 /* FileUploadNotificationCard.swift */; };
 		8197434610847D74DF0F4955 /* UISegmentedControlExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928DDC91B8AA6CDDB5CCF70C /* UISegmentedControlExtensions.swift */; };
-		81B8ADD16CFF54E009E7A18E /* OfflineSyncNextDateCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB209926B29DC1D8D4EE47E /* OfflineSyncNextDateCalculator.swift */; };
+		81B8ADD16CFF54E009E7A18E /* OfflineSyncNextDateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB209926B29DC1D8D4EE47E /* OfflineSyncNextDateInteractor.swift */; };
 		81C59374785FBB870C8D03BE /* GetQuizSubmissionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499410DFE2D8947CA9CB3019 /* GetQuizSubmissionTests.swift */; };
 		82369D84C18C81A912A19D74 /* ConferenceDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FB7E3BE9351797078B54769 /* ConferenceDetailsViewControllerTests.swift */; };
 		82897188E25232A5647107CB /* CourseSyncSelectorViewModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E25F3BA93FD66FEB9B520 /* CourseSyncSelectorViewModelItem.swift */; };
@@ -1363,7 +1363,7 @@
 		DBB90662F39D562D3D926E75 /* ConversationCoursesActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1650E0401631EE9D92315BEA /* ConversationCoursesActionSheet.swift */; };
 		DBBD4C744A9C71E9A1495303 /* TabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62CA58663C40FF7D4E0EC37 /* TabTests.swift */; };
 		DC406B3C2A38068BAA321042 /* DocViewerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B266521ED44ED77F5E070175 /* DocViewerConstants.swift */; };
-		DC752B113D90FED5D34BDF18 /* OfflineSyncWaitToFinishTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E1CDD13AD3BB13442573CF /* OfflineSyncWaitToFinishTests.swift */; };
+		DC752B113D90FED5D34BDF18 /* OfflineSyncWaitToFinishInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E1CDD13AD3BB13442573CF /* OfflineSyncWaitToFinishInteractorTests.swift */; };
 		DC8DA5B8DFE2A0F8625B766A /* SyllabusTabViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB5217B2EB31D56B02ECAC7 /* SyllabusTabViewControllerTests.swift */; };
 		DC98E59432E0F48D890616F0 /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7DE15F8119BAC967AB03C5 /* Assignment.swift */; };
 		DC9D4F12BCC863A1C040FB39 /* InstColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E312A40F6CDB971CCE4A8D /* InstColorExtensions.swift */; };
@@ -1380,7 +1380,7 @@
 		DDE5077862AE0BF69AE6F5AB /* K5HomeroomDueItemCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731D76252A59191DE05173A8 /* K5HomeroomDueItemCount.swift */; };
 		DE0F9D1E4A381309F77324DA /* APITodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7C7A3970DE5AC8FC052E4A /* APITodoTests.swift */; };
 		DE56520BE9B00B8C23D0BD77 /* FloatingButtonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921EA8E459192FBE6CF23E58 /* FloatingButtonTests.swift */; };
-		DE57ACEE8818D60C47B2AC6E /* OfflineSyncSchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098A255691060AFF05B8FC9B /* OfflineSyncSchedulerTests.swift */; };
+		DE57ACEE8818D60C47B2AC6E /* OfflineSyncSchedulerInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098A255691060AFF05B8FC9B /* OfflineSyncSchedulerInteractorTests.swift */; };
 		DE5F8E29C7946AC062A42AA0 /* FilePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647FAC843BDE1FAFD620DF17 /* FilePickerViewController.swift */; };
 		DEA0016EE961BF0BF0831D75 /* AssignmentDueDatesInteractorLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E0A26B2A7D550032079B6B /* AssignmentDueDatesInteractorLiveTests.swift */; };
 		DEB124F722A6ED8827CCAFF1 /* LatePolicyStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591497DB36DE441C1133EC16 /* LatePolicyStatusTests.swift */; };
@@ -1732,7 +1732,7 @@
 		0961BB732C25685C22F65245 /* AnnouncementListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementListViewController.swift; sourceTree = "<group>"; };
 		097759221E62344F4A85C91C /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0987386575CE425EF9228E67 /* APIPandata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPandata.swift; sourceTree = "<group>"; };
-		098A255691060AFF05B8FC9B /* OfflineSyncSchedulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineSyncSchedulerTests.swift; sourceTree = "<group>"; };
+		098A255691060AFF05B8FC9B /* OfflineSyncSchedulerInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineSyncSchedulerInteractorTests.swift; sourceTree = "<group>"; };
 		09C41E57C513F181F70E45BB /* AnnotationExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationExtensionsTests.swift; sourceTree = "<group>"; };
 		09D5525B54F9B628D42D3476 /* APIFavoriteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFavoriteTests.swift; sourceTree = "<group>"; };
 		0A45091EA16078E6813A65CC /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Main.strings; sourceTree = "<group>"; };
@@ -1928,7 +1928,7 @@
 		23D412CA36C4F3DDFF4DC75C /* XCTestCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCaseTests.swift; sourceTree = "<group>"; };
 		23E6D92AA5DF1BFB5F64A890 /* PagesPanda.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagesPanda.swift; sourceTree = "<group>"; };
 		24584786ED27B4BE4081312F /* DocViewerCommentReplyAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerCommentReplyAnnotation.swift; sourceTree = "<group>"; };
-		24947AA43D902DBC84AC5BCC /* OfflineSyncAccountsCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineSyncAccountsCalculatorTests.swift; sourceTree = "<group>"; };
+		24947AA43D902DBC84AC5BCC /* OfflineSyncAccountsInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineSyncAccountsInteractorTests.swift; sourceTree = "<group>"; };
 		24B4414DD1224A4054E0920C /* APIErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorTests.swift; sourceTree = "<group>"; };
 		24D6DE194D8A93685ABAF470 /* ConversationParticipantNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationParticipantNames.swift; sourceTree = "<group>"; };
 		2504B6EE99A5C037DE5838F7 /* InboxMessageScopeFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageScopeFilter.swift; sourceTree = "<group>"; };
@@ -2132,7 +2132,7 @@
 		40FC2818B3683B03E527EF93 /* FileSubmissionHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionHelpers.swift; sourceTree = "<group>"; };
 		411A473768849DF321B31226 /* GetLatestAnnouncementsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetLatestAnnouncementsTests.swift; sourceTree = "<group>"; };
 		413BE4EB01E73814CD5667EF /* ConversationDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ConversationDetailViewController.storyboard; sourceTree = "<group>"; };
-		41A96586EACB689E2FB6784B /* OfflineSyncWaitToFinish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineSyncWaitToFinish.swift; sourceTree = "<group>"; };
+		41A96586EACB689E2FB6784B /* OfflineSyncWaitToFinishInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineSyncWaitToFinishInteractor.swift; sourceTree = "<group>"; };
 		41C97672C2CD4FD6CDC5B7E1 /* lato_italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_italic.ttf; sourceTree = "<group>"; };
 		41D6CED339FDCB8C85B4A1FB /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		41F22F0503523D60FA197193 /* HelpLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpLink.swift; sourceTree = "<group>"; };
@@ -2227,7 +2227,7 @@
 		4BDF0042C4EC9719269D89FE /* AssignmentDueDatesInteractorLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDueDatesInteractorLive.swift; sourceTree = "<group>"; };
 		4BF8139D888212DC95299155 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4BF91515A5A28F35FBD75E03 /* GetObservedStudents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetObservedStudents.swift; sourceTree = "<group>"; };
-		4C02C87B4FD4AD4D7489EE6D /* TestImage.svg */ = {isa = PBXFileReference; path = TestImage.svg; sourceTree = "<group>"; };
+		4C02C87B4FD4AD4D7489EE6D /* TestImage.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestImage.svg; sourceTree = "<group>"; };
 		4C0C49ADE7F2DE21CE36FB77 /* CourseSyncDiskSpaceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncDiskSpaceInfoView.swift; sourceTree = "<group>"; };
 		4C11E387DD144E7B7A7D7405 /* DateSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSection.swift; sourceTree = "<group>"; };
 		4C310E09D98CD58CE1C3D781 /* AssignmentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentListViewModel.swift; sourceTree = "<group>"; };
@@ -2259,7 +2259,7 @@
 		509FD7FFF9CF519742DA8A75 /* LoginManualOAuthViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginManualOAuthViewController.storyboard; sourceTree = "<group>"; };
 		50B53A4BBDA82529A3A358BF /* DashboardOfflineSyncProgressCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardOfflineSyncProgressCardView.swift; sourceTree = "<group>"; };
 		50BDA44D81991B13FACD0E39 /* APIDashboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDashboardTests.swift; sourceTree = "<group>"; };
-		50E1CDD13AD3BB13442573CF /* OfflineSyncWaitToFinishTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineSyncWaitToFinishTests.swift; sourceTree = "<group>"; };
+		50E1CDD13AD3BB13442573CF /* OfflineSyncWaitToFinishInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineSyncWaitToFinishInteractorTests.swift; sourceTree = "<group>"; };
 		51045D3F63E7DCB1A2286748 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		517BF603DB64E1BA17B2EBF5 /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
 		5189ADD898A153ABAB1E281E /* GradeStatisticGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeStatisticGraphView.swift; sourceTree = "<group>"; };
@@ -2580,7 +2580,7 @@
 		7DA6E41DA5CD8D252E8C08DE /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7DAC0AA4C5F569B5D61B4675 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = vi; path = vi.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		7DAE15712364C96C63887E1B /* DynamicTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicTextField.swift; sourceTree = "<group>"; };
-		7DB209926B29DC1D8D4EE47E /* OfflineSyncNextDateCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineSyncNextDateCalculator.swift; sourceTree = "<group>"; };
+		7DB209926B29DC1D8D4EE47E /* OfflineSyncNextDateInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineSyncNextDateInteractor.swift; sourceTree = "<group>"; };
 		7DF9EC92129FA6439FC456A3 /* CoreWebViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreWebViewTests.swift; sourceTree = "<group>"; };
 		7E2C4A622BC83F56647F10D1 /* DashboardSettingsInteractorPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardSettingsInteractorPreview.swift; sourceTree = "<group>"; };
 		7E4B6227B0695B8AF5705A7D /* UUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UUID.swift; sourceTree = "<group>"; };
@@ -2836,7 +2836,7 @@
 		A3CBD2A123330769319E0D7D /* CourseSettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSettingsTests.swift; sourceTree = "<group>"; };
 		A3EA58F752AE33267DC3D54C /* CourseSyncProgressInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncProgressInfoViewModel.swift; sourceTree = "<group>"; };
 		A3F215916DB26B661EA4FC39 /* APIGradingSchemeEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGradingSchemeEntry.swift; sourceTree = "<group>"; };
-		A42096D6B21359616953C14C /* preview_test.mp4 */ = {isa = PBXFileReference; path = preview_test.mp4; sourceTree = "<group>"; };
+		A42096D6B21359616953C14C /* preview_test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = preview_test.mp4; sourceTree = "<group>"; };
 		A428BBF27D3A0637022B49F2 /* FileListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListViewControllerTests.swift; sourceTree = "<group>"; };
 		A42E6D4DF3963671589B5A3A /* DashboardCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCardTests.swift; sourceTree = "<group>"; };
 		A43DD0C2A830D421979AEF65 /* InboxMessageScopeFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageScopeFilterTests.swift; sourceTree = "<group>"; };
@@ -2878,7 +2878,7 @@
 		A7F6AA2D9C5C50EDA97418D3 /* CalendarDaysViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDaysViewControllerTests.swift; sourceTree = "<group>"; };
 		A7F81B0C7AB81BF512ED15F6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		A80E18DBA57CE0A8B2083E5A /* APILoginWeb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APILoginWeb.swift; sourceTree = "<group>"; };
-		A82F02F41E28A568BD4B6360 /* OfflineSyncAccountsCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineSyncAccountsCalculator.swift; sourceTree = "<group>"; };
+		A82F02F41E28A568BD4B6360 /* OfflineSyncAccountsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineSyncAccountsInteractor.swift; sourceTree = "<group>"; };
 		A84B642B50191BA03BC5A578 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		A8CDD7C2C9B75A598367EB87 /* GenericCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericCellViewModelTests.swift; sourceTree = "<group>"; };
 		A9193DA17C6897AC20A0F645 /* ClosedRangeExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedRangeExtensions.swift; sourceTree = "<group>"; };
@@ -3336,7 +3336,7 @@
 		ED7DA77BE4B1822D6353E592 /* DocViewerAnnotationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationProvider.swift; sourceTree = "<group>"; };
 		ED7F2005AC8D2E533BC3C7A7 /* MasteryPathViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasteryPathViewControllerTests.swift; sourceTree = "<group>"; };
 		EE035220EA1939317865780C /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		EE039C57079AC687EA9FABE0 /* OfflineSyncNextDateCalculatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineSyncNextDateCalculatorTests.swift; sourceTree = "<group>"; };
+		EE039C57079AC687EA9FABE0 /* OfflineSyncNextDateInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineSyncNextDateInteractorTests.swift; sourceTree = "<group>"; };
 		EE4E91C0B616469418E5EB7A /* FileProgressItemViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProgressItemViewModelTests.swift; sourceTree = "<group>"; };
 		EE5C2F18CFBF68C275939767 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		EE651D15B6DEC8842D401109 /* mi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = mi; path = mi.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -3410,7 +3410,7 @@
 		F87AE6E708C5C43037B43713 /* CoreWebViewFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreWebViewFeature.swift; sourceTree = "<group>"; };
 		F88E31090C62EE2CD151388F /* PageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageTests.swift; sourceTree = "<group>"; };
 		F89AE67F0C7319B268950A44 /* SideMenuViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewTests.swift; sourceTree = "<group>"; };
-		F8FC5A0DAA77950F770232E1 /* OfflineSyncScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineSyncScheduler.swift; sourceTree = "<group>"; };
+		F8FC5A0DAA77950F770232E1 /* OfflineSyncScheduleInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineSyncScheduleInteractor.swift; sourceTree = "<group>"; };
 		F9141C253E15B98828EAAC97 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		F94D19A71DAE64D32998FA3B /* URLRequestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestExtensions.swift; sourceTree = "<group>"; };
 		FA09177DD49B46FB2B46FDFF /* APIAssignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAssignment.swift; sourceTree = "<group>"; };
@@ -4362,10 +4362,10 @@
 		2DED50004CA6F20FA771DCC7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				A82F02F41E28A568BD4B6360 /* OfflineSyncAccountsCalculator.swift */,
-				7DB209926B29DC1D8D4EE47E /* OfflineSyncNextDateCalculator.swift */,
-				F8FC5A0DAA77950F770232E1 /* OfflineSyncScheduler.swift */,
-				41A96586EACB689E2FB6784B /* OfflineSyncWaitToFinish.swift */,
+				A82F02F41E28A568BD4B6360 /* OfflineSyncAccountsInteractor.swift */,
+				7DB209926B29DC1D8D4EE47E /* OfflineSyncNextDateInteractor.swift */,
+				F8FC5A0DAA77950F770232E1 /* OfflineSyncScheduleInteractor.swift */,
+				41A96586EACB689E2FB6784B /* OfflineSyncWaitToFinishInteractor.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -4851,10 +4851,10 @@
 		3F1B019AFB551129FDBD68F9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				24947AA43D902DBC84AC5BCC /* OfflineSyncAccountsCalculatorTests.swift */,
-				EE039C57079AC687EA9FABE0 /* OfflineSyncNextDateCalculatorTests.swift */,
-				098A255691060AFF05B8FC9B /* OfflineSyncSchedulerTests.swift */,
-				50E1CDD13AD3BB13442573CF /* OfflineSyncWaitToFinishTests.swift */,
+				24947AA43D902DBC84AC5BCC /* OfflineSyncAccountsInteractorTests.swift */,
+				EE039C57079AC687EA9FABE0 /* OfflineSyncNextDateInteractorTests.swift */,
+				098A255691060AFF05B8FC9B /* OfflineSyncSchedulerInteractorTests.swift */,
+				50E1CDD13AD3BB13442573CF /* OfflineSyncWaitToFinishInteractorTests.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -9528,12 +9528,12 @@
 				ABACC6D11460D467E8CB21A4 /* OfflineBannerViewModelTests.swift in Sources */,
 				28BDE77AD3F0D5E27CEB14B9 /* OfflineModeInteractorTests.swift in Sources */,
 				ABEF4C94F203A79C882FD6D9 /* OfflineModeViewModelTests.swift in Sources */,
-				0EA2E26A949824484897E968 /* OfflineSyncAccountsCalculatorTests.swift in Sources */,
+				0EA2E26A949824484897E968 /* OfflineSyncAccountsInteractorTests.swift in Sources */,
 				A6E70D181E43F4BEC2139FA3 /* OfflineSyncBackgroundTaskRequestTests.swift in Sources */,
 				1326B52D264490D7958690D3 /* OfflineSyncBackgroundTaskTests.swift in Sources */,
-				07518661B1AF775727C217C9 /* OfflineSyncNextDateCalculatorTests.swift in Sources */,
-				DE57ACEE8818D60C47B2AC6E /* OfflineSyncSchedulerTests.swift in Sources */,
-				DC752B113D90FED5D34BDF18 /* OfflineSyncWaitToFinishTests.swift in Sources */,
+				07518661B1AF775727C217C9 /* OfflineSyncNextDateInteractorTests.swift in Sources */,
+				DE57ACEE8818D60C47B2AC6E /* OfflineSyncSchedulerInteractorTests.swift in Sources */,
+				DC752B113D90FED5D34BDF18 /* OfflineSyncWaitToFinishInteractorTests.swift in Sources */,
 				5C9304B5AD56EFF156F8C3A8 /* OnElementAppearTests.swift in Sources */,
 				2911ECDF66416CF9F2624F2E /* PSPDFAnnotationExtensionTests.swift in Sources */,
 				B27B8AA086E654466F1CD444 /* PageDetailsViewControllerTests.swift in Sources */,
@@ -10371,12 +10371,12 @@
 				F43A6AD53D12F296F80C54BD /* OfflineModeAssembly.swift in Sources */,
 				88B8C676C0AFFC04953F57DA /* OfflineModeInteractor.swift in Sources */,
 				55DBE9B3CF856AAFACD73C10 /* OfflineModeViewModel.swift in Sources */,
-				2C1637A02357434FFF1E9747 /* OfflineSyncAccountsCalculator.swift in Sources */,
+				2C1637A02357434FFF1E9747 /* OfflineSyncAccountsInteractor.swift in Sources */,
 				87A240BB21AD1D919C027C9E /* OfflineSyncBackgroundTask.swift in Sources */,
 				505BD90E3F56627E57E496F8 /* OfflineSyncBackgroundTaskRequest.swift in Sources */,
-				81B8ADD16CFF54E009E7A18E /* OfflineSyncNextDateCalculator.swift in Sources */,
-				4E9EBE5429C318CC3C3AD29C /* OfflineSyncScheduler.swift in Sources */,
-				42AE2150B5B2E1F7593FBFAF /* OfflineSyncWaitToFinish.swift in Sources */,
+				81B8ADD16CFF54E009E7A18E /* OfflineSyncNextDateInteractor.swift in Sources */,
+				4E9EBE5429C318CC3C3AD29C /* OfflineSyncScheduleInteractor.swift in Sources */,
+				42AE2150B5B2E1F7593FBFAF /* OfflineSyncWaitToFinishInteractor.swift in Sources */,
 				380910D5984AECF21C4A1A51 /* OnElementAppear.swift in Sources */,
 				394C4760D46A1639B831848C /* OptionalDatePicker.swift in Sources */,
 				A90693D68DADAC27F3F28A85 /* OutputStreamExtensions.swift in Sources */,

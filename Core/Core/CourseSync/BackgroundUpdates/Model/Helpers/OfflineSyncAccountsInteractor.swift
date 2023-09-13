@@ -22,7 +22,7 @@ import Foundation
  This helper returns all accounts that needs offline sync at a given time.
  We use this to determine which accounts need offline sync when the app wakes up in the background.
  */
-public class OfflineSyncAccountsCalculator {
+public class OfflineSyncAccountsInteractor {
 
     public func calculate(_ sessions: [LoginSession], date: Date) -> [LoginSession] {
         sessions.reduce(into: []) { partialResult, session in

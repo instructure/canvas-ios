@@ -155,7 +155,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         BackgroundVideoPlayer.shared.background()
         environment.refreshWidgets()
 
-        OfflineSyncScheduler().scheduleNextSync()
+        OfflineSyncScheduleInteractor().scheduleNextSync()
 
         if LocalizationManager.needsRestart {
             exit(EXIT_SUCCESS)

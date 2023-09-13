@@ -35,8 +35,8 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
 
     // MARK: - Dependencies
     private let sessionsToSync: [LoginSession]
-    private let syncableAccounts: OfflineSyncAccountsCalculator
-    private let syncScheduler: OfflineSyncScheduler
+    private let syncableAccounts: OfflineSyncAccountsInteractor
+    private let syncScheduler: OfflineSyncScheduleInteractor
     private let selectedItemsInteractorFactory: SelectedItemsFactory
     private let syncInteractorFactory: SyncInteractorFactory
     // MARK: - Internal State
@@ -47,9 +47,9 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
 
     // MARK: - Public Interface
 
-    public init(syncableAccounts: OfflineSyncAccountsCalculator,
+    public init(syncableAccounts: OfflineSyncAccountsInteractor,
                 sessions: Set<LoginSession>,
-                syncScheduler: OfflineSyncScheduler = OfflineSyncScheduler(),
+                syncScheduler: OfflineSyncScheduleInteractor = OfflineSyncScheduleInteractor(),
                 selectedItemsInteractorFactory: @escaping SelectedItemsFactory = DefaultSelectedItemsFactory,
                 syncInteractorFactory: @escaping SyncInteractorFactory = DefaultSyncInteractorFactory) {
         self.syncableAccounts = syncableAccounts
@@ -111,7 +111,7 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
             .first()
             .flatMap { _ in
                 Logger.shared.log("Offline: Waiting for sync to finish.")
-                return OfflineSyncWaitToFinish.wait()
+                return OfflineSyncWaitToFinishInteractor.wait()
             }
             .sink(receiveCompletion: { [weak self] streamCompletion in
                 switch streamCompletion {
