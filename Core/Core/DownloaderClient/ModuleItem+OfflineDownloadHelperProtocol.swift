@@ -69,7 +69,7 @@ extension ModuleItem: OfflineDownloadTypeProtocol {
 
     static func preparePage(entry: OfflineDownloaderEntry, url: String, courseID: String) async throws {
         let context = Context(.course, id: courseID)
-        try await withCheckedThrowingContinuation({[weak entry] continuation in
+        return try await withCheckedThrowingContinuation({[weak entry] continuation in
             var pages: Store<GetPage>?
 
             pages = AppEnvironment.shared.subscribe(GetPage(context: context, url: url)) {}
@@ -78,10 +78,17 @@ extension ModuleItem: OfflineDownloadTypeProtocol {
                 guard let entry = entry else { return }
                 DispatchQueue.main.async {
                     if let body = page?.body {
-                        let fullHTML = CoreWebView().html(for: body)
-                        entry.parts.removeAll()
-                        entry.addHtmlPart(fullHTML, baseURL: page?.html_url.absoluteString)
-                        continuation.resume()
+                        if body.isEmpty {
+                            entry.markAsServerError()
+                            continuation.resume(throwing: ModuleItemError.brokenItem(data: entry.dataModel))
+                        } else {
+                            CoreWebView.cookieKeepAliveWebView.configuration.websiteDataStore.httpCookieStore.getAllCookies { cookies in
+                                let fullHTML = CoreWebView().html(for: body)
+                                entry.parts.removeAll()
+                                entry.addHtmlPart(fullHTML, baseURL: page?.html_url.absoluteString, cookieString: cookies.cookieString)
+                                continuation.resume()
+                            }
+                        }
                     } else if let error = pages?.error {
                         if error.isOfflineCancel {
                             continuation.resume(throwing: error)
@@ -187,14 +194,16 @@ extension ModuleItem: OfflineDownloadTypeProtocol {
         guard repeatCount < 3 else {
             throw ModuleItemError.cantPrepareLTI(data: entry.dataModel, error: ModuleItemError.retryCountLimitReached)
         }
+        var extractor: OfflineHTMLDynamicsLinksExtractor?
         do {
             let url: URL = try await getLtiURL(from: entry, toolID: toolID, url: sourceURL)
-            let extractor = await OfflineHTMLDynamicsLinksExtractor(
+            extractor = await OfflineHTMLDynamicsLinksExtractor(
                 url: url,
                 linksHandler: OfflineDownloadsManager.shared.config.linksHandler
             )
-            try await extractor.fetch()
-            if let latestURL = await extractor.latestRedirectURL,
+            try await extractor?.fetch()
+            if let extractor = extractor,
+                let latestURL = await extractor.latestRedirectURL,
                 var html = await extractor.html {
 
                 if shouldRetry(for: html, latestURL: latestURL) {
@@ -205,6 +214,11 @@ extension ModuleItem: OfflineDownloadTypeProtocol {
                     entry.markAsUnsupported()
                     let item = try fromOfflineModel(entry.dataModel)
                     throw ModuleItemError.unsupported(type: item.type?.label ?? "", id: item.id)
+                }
+
+                if isBrokenLTI(with: html, latestURL: latestURL, sourceURL: sourceURL) {
+                    entry.markAsServerError()
+                    throw ModuleItemError.brokenItem(data: entry.dataModel)
                 }
 
                 if isOyster(with: html, latestURL: latestURL) {
@@ -233,8 +247,26 @@ extension ModuleItem: OfflineDownloadTypeProtocol {
             if error.isOfflineCancel {
                 throw error
             }
+            if let latestURL = await extractor?.latestRedirectURL, latestURL.scheme?.lowercased() == "voicethread" {
+                entry.markAsUnsupported()
+                let item = try fromOfflineModel(entry.dataModel)
+                throw ModuleItemError.unsupported(type: item.type?.label ?? "", id: item.id)
+            }
             throw ModuleItemError.cantPrepareLTI(data: entry.dataModel, error: error)
         }
+    }
+
+    static func isBrokenLTI(with html: String, latestURL: URL, sourceURL: URL) -> Bool {
+        if latestURL.absoluteString.lowercased().contains("/error") {
+            return true
+        }
+
+        if latestURL.absoluteString.lowercased().contains("/media-player") &&
+            !isOyster(with: html, latestURL: latestURL) {
+            return true
+        }
+
+        return false
     }
 
     static func isOyster(with html: String, latestURL: URL) -> Bool {
@@ -272,16 +304,10 @@ extension ModuleItem: OfflineDownloadTypeProtocol {
         if isReport(with: html, latestURL: latestURL) {
             return false
         }
-        // Oyster
-//        else  if latestURL.absoluteString.lowercased().contains("/media-player") {
-//            let oysterPattern = "<script[^>]*oyster[^>]*>"
-//            let slidePattern = "<div[^>]*class=\"slide\"[^>]*>"
-//            if let oysterScripts = results(for: oysterPattern, in: html),
-//               let slideContainers = results(for: slidePattern, in: html),
-//               !oysterScripts.isEmpty, !slideContainers.isEmpty {
-//                return false
-//            }
-//        }
+
+        if latestURL.absoluteString.lowercased().contains("/dashboard/") {
+            return false
+        }
         return true
     }
 
@@ -387,6 +413,7 @@ extension ModuleItem: OfflineDownloadTypeProtocol {
             ModuleItemError.cantPrepareLTI,
             ModuleItemError.cantGetPage,
             ModuleItemError.cantGetFile,
+            ModuleItemError.brokenItem,
             OfflineEntryPartDownloaderError.cantDownloadHTMLPart:
             return true
         default:
@@ -409,11 +436,14 @@ extension ModuleItem {
         case cantGetPage(data: OfflineStorageDataModel, error: Error?)
         case cantGetFile(data: OfflineStorageDataModel, error: Error?)
         case retryCountLimitReached
+        case brokenItem(data: OfflineStorageDataModel)
 
         var errorDescription: String? {
             switch self {
             case .wrongSession:
                 return "Can't get sessionless launch."
+            case .brokenItem(let data):
+                return "Item is broken. Data: \(data.json)"
             case let .unsupported(type, id):
                 return "Unsupported type. Type: \(type), id: \(id)"
             case let .cantGetItem(data, error):
