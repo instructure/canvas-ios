@@ -79,6 +79,7 @@
 		7DE062A625126E4D00DB49D4 /* SpeedGraderViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE062A525126E4D00DB49D4 /* SpeedGraderViewControllerTests.swift */; };
 		840CABA038B02116B1BDA3E0 /* Pods_defaults_TeacherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */; };
 		8B086F102AB1F00A0013C15F /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B086F0F2AB1F00A0013C15F /* LoginTests.swift */; };
+		8B086F132AB307260013C15F /* DashboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B086F122AB307260013C15F /* DashboardTests.swift */; };
 		8B175C3D29F6BE8F007B6CFF /* DSPeopleE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B175C3C29F6BE8F007B6CFF /* DSPeopleE2ETests.swift */; };
 		8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D063D27A1B3640208ABF74D4 /* libz.tbd */; };
 		B15CA26D221DDEB40014FB02 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; };
@@ -99,7 +100,6 @@
 		C92796F126772C5B00582AC5 /* SyllabusE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C92796F026772C5B00582AC5 /* SyllabusE2ETests.swift */; };
 		C9279701267C7AFC00582AC5 /* PeopleE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9279700267C7AFC00582AC5 /* PeopleE2ETests.swift */; };
 		C927971326830DA700582AC5 /* DiscussionsE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C927971226830DA700582AC5 /* DiscussionsE2ETests.swift */; };
-		C946A8C026661C2E004BCA4D /* DashboardE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C946A8BF26661C2E004BCA4D /* DashboardE2ETests.swift */; };
 		C956719D266E033B001FEA9B /* ModulesE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C956719C266E033B001FEA9B /* ModulesE2ETests.swift */; };
 		C990D81A2668ADBF00034C90 /* TodosE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C990D8192668ADBF00034C90 /* TodosE2ETests.swift */; };
 		C9A1834B265CEBC800B35D52 /* PagesE2ETest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A1834A265CEBC800B35D52 /* PagesE2ETest.swift */; };
@@ -516,6 +516,7 @@
 		7DE062A525126E4D00DB49D4 /* SpeedGraderViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedGraderViewControllerTests.swift; sourceTree = "<group>"; };
 		862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_TeacherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B086F0F2AB1F00A0013C15F /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
+		8B086F122AB307260013C15F /* DashboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTests.swift; sourceTree = "<group>"; };
 		8B175C3C29F6BE8F007B6CFF /* DSPeopleE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSPeopleE2ETests.swift; sourceTree = "<group>"; };
 		9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.release.xcconfig"; sourceTree = "<group>"; };
 		B15CA25D221DDB820014FB02 /* TeacherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -536,7 +537,6 @@
 		C92796F026772C5B00582AC5 /* SyllabusE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusE2ETests.swift; sourceTree = "<group>"; };
 		C9279700267C7AFC00582AC5 /* PeopleE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleE2ETests.swift; sourceTree = "<group>"; };
 		C927971226830DA700582AC5 /* DiscussionsE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionsE2ETests.swift; sourceTree = "<group>"; };
-		C946A8BF26661C2E004BCA4D /* DashboardE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardE2ETests.swift; sourceTree = "<group>"; };
 		C956719C266E033B001FEA9B /* ModulesE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesE2ETests.swift; sourceTree = "<group>"; };
 		C990D8192668ADBF00034C90 /* TodosE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosE2ETests.swift; sourceTree = "<group>"; };
 		C9A1834A265CEBC800B35D52 /* PagesE2ETest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagesE2ETest.swift; sourceTree = "<group>"; };
@@ -826,6 +826,14 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		8B086F112AB307150013C15F /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				8B086F122AB307260013C15F /* DashboardTests.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
 		B15CA241221DC4DA0014FB02 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -969,13 +977,13 @@
 		E841D8A123D6472200685A63 /* TeacherE2ETests */ = {
 			isa = PBXGroup;
 			children = (
+				8B086F112AB307150013C15F /* Dashboard */,
 				8B086F0E2AB1EFFC0013C15F /* Login */,
 				C9A23D2327A3D8A600A1EE3B /* Assignments */,
 				E841D8BA23D6472F00685A63 /* Info.plist */,
 				E814FC0424993ED900CD208A /* DiscussionEditorE2ETests.swift */,
 				E8F4B66324EEC912003FBAFD /* ContextCardE2ETests.swift */,
 				C9A1834A265CEBC800B35D52 /* PagesE2ETest.swift */,
-				C946A8BF26661C2E004BCA4D /* DashboardE2ETests.swift */,
 				C990D8192668ADBF00034C90 /* TodosE2ETests.swift */,
 				C956719C266E033B001FEA9B /* ModulesE2ETests.swift */,
 				C92796EB2671E6B400582AC5 /* AssignmentsE2ETests.swift */,
@@ -1698,7 +1706,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9270D73286C6F7A00FE4BAD /* DSTeacherAnnouncementsE2ETests.swift in Sources */,
-				C946A8C026661C2E004BCA4D /* DashboardE2ETests.swift in Sources */,
 				E8F4B66424EEC912003FBAFD /* ContextCardE2ETests.swift in Sources */,
 				C9A1834B265CEBC800B35D52 /* PagesE2ETest.swift in Sources */,
 				8B175C3D29F6BE8F007B6CFF /* DSPeopleE2ETests.swift in Sources */,
@@ -1721,6 +1728,7 @@
 				C9A23D2527A3D8BB00A1EE3B /* DSAssignmentsE2ETests.swift in Sources */,
 				C9279701267C7AFC00582AC5 /* PeopleE2ETests.swift in Sources */,
 				C9270D712861A89100FE4BAD /* DSSpeedGraderE2ETests.swift in Sources */,
+				8B086F132AB307260013C15F /* DashboardTests.swift in Sources */,
 				C909F7C527BA7E4A00CB89DE /* DSPagesTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
