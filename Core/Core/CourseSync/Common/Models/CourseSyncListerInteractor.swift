@@ -30,7 +30,6 @@ class CourseSyncListInteractorLive: CourseSyncListInteractor {
     )
     private let entryComposerInteractor: CourseSyncEntryComposerInteractor
     private var sessionDefaults: SessionDefaults
-    private var filter: CourseSyncListFilter!
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     init(
@@ -44,10 +43,7 @@ class CourseSyncListInteractorLive: CourseSyncListInteractor {
     }
 
     func getCourseSyncEntries(filter: CourseSyncListFilter) -> AnyPublisher<[CourseSyncEntry], Error> {
-        self.filter = filter
-
-        unowned let unownedSelf = self
-
+        let filteredToSynced = filter.isLimitedToSyncedOnly
         let publisher: AnyPublisher<[CourseSyncSelectorCourse], Error>
 
         switch filter {
@@ -61,87 +57,71 @@ class CourseSyncListInteractorLive: CourseSyncListInteractor {
 
         return publisher
             .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
-            .flatMap {
-                unownedSelf.entryComposerInteractor.composeEntry(
+            .flatMap { [entryComposerInteractor] in
+                entryComposerInteractor.composeEntry(
                     from: $0,
-                    useCache: unownedSelf.filter.isLimitedToSyncedOnly
+                    useCache: filteredToSynced
                 )
             }
             .collect()
             .replaceEmpty(with: [])
-            .map { unownedSelf.applySelectionsFromPreviousSession($0) }
-            .map {
-                if unownedSelf.filter.isLimitedToSyncedOnly {
-                    return unownedSelf.filterToSelectedCourses($0)
-                } else {
-                    return $0
-                }
-            }
+            .map { [sessionDefaults] in
+                $0.applySelectionsFromPreviousSession(filter: filter,
+                                                      sessionDefaults: sessionDefaults) }
+            .map { filteredToSynced ? $0.selectedEntries() : $0 }
             .receive(on: scheduler)
             .eraseToAnyPublisher()
     }
+}
 
-    // MARK: - Private Methods
+// MARK: - Private Helpers
 
-    private func applySelectionsFromPreviousSession(
-        _ entries: [CourseSyncEntry]
+private extension Array where Element == CourseSyncEntry {
+
+    /// Removes any tab and file that is not selected for syncing and returns the rest in a new array.
+    func selectedEntries() -> [CourseSyncEntry] {
+        filter { $0.selectionState == .selected || $0.selectionState == .partiallySelected }
+        .map { filteredEntries in
+            var entriesCpy = filteredEntries
+            entriesCpy.tabs.removeAll { $0.selectionState == .deselected }
+            entriesCpy.files.removeAll { $0.selectionState == .deselected }
+            return entriesCpy
+        }
+    }
+
+    func setSelected(
+        selection: CourseEntrySelection,
+        filter: CourseSyncListFilter,
+        sessionDefaults: SessionDefaults
     ) -> [CourseSyncEntry] {
-        var entriesCpy = entries
-        let selections = sessionDefaults.offlineSyncSelections
-            .compactMap { $0.toCourseEntrySelection(from: entries) }
+        var sessionDefaults = sessionDefaults
+        var entriesCpy = self
 
-        for selection in selections {
-            let entriesWithSelection = setSelected(entries: entriesCpy, selection: selection, selectionState: .selected)
-            entriesCpy = entriesWithSelection
+        switch selection {
+        case let .course(entryID):
+            entriesCpy[id: entryID]?.selectCourse(selectionState: .selected)
+        case let .tab(entryID, tabID):
+            entriesCpy[id: entryID]?.selectTab(id: tabID, selectionState: .selected)
+        case let .file(entryID, fileID):
+            entriesCpy[id: entryID]?.selectFile(id: fileID, selectionState: .selected)
         }
 
         return entriesCpy
     }
 
-    /// Removes any tab and file that is not selected for syncing.
-    private func filterToSelectedCourses(
-        _ entries: [CourseSyncEntry]
+    func applySelectionsFromPreviousSession(
+        filter: CourseSyncListFilter,
+        sessionDefaults: SessionDefaults
     ) -> [CourseSyncEntry] {
-        entries
-            .filter { $0.selectionState == .selected || $0.selectionState == .partiallySelected }
-            .map { filteredEntries in
-                var entriesCpy = filteredEntries
-                entriesCpy.tabs.removeAll { $0.selectionState == .deselected }
-                entriesCpy.files.removeAll { $0.selectionState == .deselected }
-                return entriesCpy
-            }
-    }
+        var entriesCpy = self
+        let selections = sessionDefaults.offlineSyncSelections
+            .compactMap { $0.toCourseEntrySelection(from: self) }
 
-    private func setSelected(
-        entries: [CourseSyncEntry],
-        selection: CourseEntrySelection,
-        selectionState: ListCellView.SelectionState
-    ) -> [CourseSyncEntry] {
-        var entriesCpy = entries
-
-        switch selection {
-        case let .course(entryID):
-            entriesCpy[id: entryID]?.selectCourse(selectionState: selectionState)
-        case let .tab(entryID, tabID):
-            entriesCpy[id: entryID]?.selectTab(id: tabID, selectionState: selectionState)
-        case let .file(entryID, fileID):
-            entriesCpy[id: entryID]?.selectFile(id: fileID, selectionState: selectionState)
-        }
-
-        switch filter {
-        case let .courseID(courseID):
-            // If we only show one course then we should keep other course selections intact
-            var oldSelections = sessionDefaults.offlineSyncSelections
-            oldSelections.removeAll { $0.hasPrefix("courses/\(courseID)") }
-            let newSelections = CourseSyncItemSelection.make(from: entries)
-            sessionDefaults.offlineSyncSelections = oldSelections + newSelections
-        case .all:
-            // If all courses are visible then it's safe to overwrite all course selections
-            sessionDefaults.offlineSyncSelections = CourseSyncItemSelection.make(from: entries)
-        case .synced:
-            break
-        case .none:
-            break
+        for selection in selections {
+            let entriesWithSelection = entriesCpy.setSelected(selection: selection,
+                                                              filter: filter,
+                                                              sessionDefaults: sessionDefaults)
+            entriesCpy = entriesWithSelection
         }
 
         return entriesCpy

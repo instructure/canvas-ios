@@ -265,6 +265,7 @@ class SettingsTests: E2ETestCase {
         XCTAssertTrue(subscribeToCalendarFeed.isVisible)
 
         subscribeToCalendarFeed.hit()
+        CalendarAppHelper.calendarApp.activate()
         let calendarAppRunning = CalendarAppHelper.calendarApp.wait(for: .runningForeground, timeout: 15)
         XCTAssertTrue(calendarAppRunning)
 
@@ -272,7 +273,7 @@ class SettingsTests: E2ETestCase {
         let continueButton = CalendarAppHelper.continueButton.waitUntil(.visible, timeout: 5)
         if continueButton.isVisible {
             continueButton.hit()
-            app.hit()
+            CalendarAppHelper.calendarApp.hit()
         }
 
         let calendarNavBar = CalendarAppHelper.navBar.waitUntil(.visible)

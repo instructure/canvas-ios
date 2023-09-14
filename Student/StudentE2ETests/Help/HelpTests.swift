@@ -35,7 +35,7 @@ class HelpTests: E2ETestCase {
         XCTAssertTrue(searchTheCanvasGuidesButton.isVisible)
         XCTAssertTrue(searchTheCanvasGuidesButton.label.contains("Search the Canvas Guides"))
         searchTheCanvasGuidesButton.hit()
-        var browserURL = HelpHelper.browserURL
+        var browserURL = SafariAppHelper.browserURL
         XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Canvas-LMS/ct-p/canvaslms"))
         HelpHelper.returnToHelpPage()
 
@@ -62,7 +62,7 @@ class HelpTests: E2ETestCase {
         XCTAssertTrue(submitAFeatureButton.isVisible)
         XCTAssertTrue(submitAFeatureButton.label.contains("Submit a Feature Idea"))
         submitAFeatureButton.hit()
-        browserURL = HelpHelper.browserURL
+        browserURL = SafariAppHelper.browserURL
         XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Canvas-Ideas-and-Themes/ct-p/canvas-ideas-themes"))
         HelpHelper.returnToHelpPage()
 
@@ -71,7 +71,7 @@ class HelpTests: E2ETestCase {
         XCTAssertTrue(covid19Button.isVisible)
         XCTAssertTrue(covid19Button.label.contains("COVID-19 Canvas Resources"))
         covid19Button.hit()
-        browserURL = HelpHelper.browserURL
+        browserURL = SafariAppHelper.browserURL
         XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Contingency-Resources/gh-p/contingency"))
     }
 }

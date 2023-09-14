@@ -25,7 +25,8 @@
     "DocViewer\/ViewModel\/AnnotationDrag\/Gesture",
     "Core\/Files\/FileUploadProgress\/View\/PreviewSupport\/",
     ".*Assembly[.]swift",
-    ".*Preview[.]swift"
+    ".*Preview[.]swift",
+    "Student\/BackgroundProcessing\/CoreTaskSchedulerLive.swift"
   ],
   "ignoreContent": [
     "makeUIViewController(context:",

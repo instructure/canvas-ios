@@ -36,5 +36,6 @@ public class CourseDetailsHelper: BaseHelper {
 
     public static var titleLabel: XCUIElement { app.find(id: "course-details.title-lbl") }
     public static var subtitleLabel: XCUIElement { app.find(id: "course-details.subtitle-lbl") }
-    public static func cell(type: CellType) -> XCUIElement { app.find(id: "courses-details.\(type.rawValue)-cell") }
+
+    public static func cell(type: CellType) -> XCUIElement { return app.find(id: "courses-details.\(type.rawValue)-cell") }
 }

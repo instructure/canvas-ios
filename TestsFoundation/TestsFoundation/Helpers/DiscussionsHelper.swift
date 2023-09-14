@@ -27,15 +27,16 @@ public class DiscussionsHelper: BaseHelper {
     public static var noDiscussionsPandaImage: XCUIElement { app.find(id: "PandaNoDiscussions") }
 
     public static func discussionButton(discussion: DSDiscussionTopic? = nil, discussionId: String? = nil) -> XCUIElement {
-        app.find(id: "DiscussionListCell.\(discussion?.id ?? discussionId!)")
+        return app.find(id: "DiscussionListCell.\(discussion?.id ?? discussionId!)")
     }
 
-    public static func discussionDataLabel(discussion: DSDiscussionTopic, label: DiscussionLabelTypes) -> XCUIElement {
-        discussionButton(discussion: discussion).findAll(type: .staticText, minimumCount: 4)[label.rawValue]
+    public static func discussionDataLabel(discussion: DSDiscussionTopic, label: DiscussionLabelTypes) -> XCUIElement? {
+        let result = discussionButton(discussion: discussion).findAll(type: .staticText, minimumCount: 4)
+        return result.count >= label.rawValue ? result[label.rawValue] : nil
     }
 
     public static func discussionsNavBar(course: DSCourse) -> XCUIElement {
-        app.find(id: "Discussions, \(course.name)")
+        return app.find(id: "Discussions, \(course.name)")
     }
 
     public struct Details {
@@ -59,6 +60,9 @@ public class DiscussionsHelper: BaseHelper {
         }
         public static func replyToThreadButton(threadIndex: Int) -> XCUIElement {
             app.find(id: "DiscussionDetails.body").findAll(labelContaining: "Reply", type: .link)[threadIndex]
+        }
+        public static var backButton: XCUIElement {
+            app.find(idStartingWith: "Discussion Details", type: .navigationBar).find(label: "Back", type: .button)
         }
 
         public struct Reply {

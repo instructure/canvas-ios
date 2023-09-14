@@ -36,7 +36,7 @@ class DashboardTests: E2ETestCase {
 
         // MARK: Check for course1
         seeder.enrollStudent(student, in: course1)
-        pullToRefresh()
+        pullToRefresh(x: 1)
         let courseCard1 = Helper.courseCard(course: course1).waitUntil(.visible)
         XCTAssertTrue(courseCard1.isVisible)
 
@@ -190,7 +190,7 @@ class DashboardTests: E2ETestCase {
 
         // MARK: Get the user logged in, check course card
         logInDSUser(student)
-        var courseCard = Helper.courseCard(course: course).waitUntil(.visible)
+        let courseCard = Helper.courseCard(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Check visibility of Dashboard Settings button

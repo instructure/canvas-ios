@@ -42,14 +42,6 @@ public class HelpHelper: BaseHelper {
         ProfileHelper.helpButton.hit()
     }
 
-    public static var browserURL: String {
-        SafariAppHelper.safariApp.activate()
-        SafariAppHelper.safariApp.find(id: "ReloadButton").waitUntil(.visible)
-        SafariAppHelper.safariApp.find(id: "TabBarItemTitle").hit()
-        let url = SafariAppHelper.safariApp.find(id: "URL").waitUntil(.visible).value as? String ?? ""
-        return url
-    }
-
     public static func closeSafariAndActivateApp() {
         SafariAppHelper.safariApp.terminate()
         app.activate()

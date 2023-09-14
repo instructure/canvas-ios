@@ -81,7 +81,7 @@ class PagesTests: E2ETestCase {
         let assignmentDetailsNavBar = AssignmentsHelper.Details.navBar(course: course).waitUntil(.visible)
         XCTAssertTrue(assignmentDetailsNavBar.isVisible)
 
-        PagesHelper.backButton.hit()
+        AssignmentsHelper.Details.backButton.hit()
 
         // MARK: Check deep link to the discussion
         let discussionDeepLink = app.find(labelContaining: discussion.title).waitUntil(.visible)
@@ -90,7 +90,7 @@ class PagesTests: E2ETestCase {
         let discussionDetailsNavBar = DiscussionsHelper.Details.navBar(course: course).waitUntil(.visible)
         XCTAssertTrue(discussionDetailsNavBar.isVisible)
 
-        PagesHelper.backButton.hit()
+        DiscussionsHelper.Details.backButton.hit()
 
         // MARK: Check deep link to the announcement
         let announcementDeepLink = app.find(labelContaining: announcement.title).waitUntil(.visible)

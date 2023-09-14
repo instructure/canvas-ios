@@ -16,94 +16,188 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-@testable import Core
-import CoreData
 import Combine
 import CombineSchedulers
+@testable import Core
+import CoreData
 import XCTest
 
 class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
-
     func testSubtitleItemCounterIgnoresContainerSelections() {
+        // MARK: - GIVEN
+
         let mockInteractor = CourseSyncProgressObserverInteractorMock(context: databaseClient)
         let testee = DashboardOfflineSyncProgressCardViewModel(interactor: mockInteractor,
+                                                               offlineModeInteractor: MockOfflineModeInteractorEnabled(),
                                                                router: router,
                                                                scheduler: .immediate)
-        XCTAssertEqual(testee.subtitle, "2 items are syncing.")
-    }
-
-    func testAppearsWhenReceivingSyncStartNotification() {
-        // MARK: - GIVEN
-        let mockInteractor = CourseSyncProgressObserverInteractorMock(context: databaseClient)
-        let testee = DashboardOfflineSyncProgressCardViewModel(interactor: mockInteractor,
-                                                               router: router)
-        XCTAssertFalse(testee.isVisible)
 
         // MARK: - WHEN
-        NotificationCenter.default.post(name: .OfflineSyncTriggered,
-                                        object: nil)
+
+        NotificationCenter.default.post(name: .OfflineSyncTriggered, object: nil)
+        mockInteractor.mockDownloadProgress()
+        mockInteractor.mockStateProgress()
 
         // MARK: - THEN
-        XCTAssertTrue(testee.isVisible)
+
+        XCTAssertEqual(testee.state, .progress(0.5, "2 items are syncing."))
     }
 
-    func testDismissesItselfDelayedWhenProgressReaches1() {
+    func testProgressUpdates() {
         // MARK: - GIVEN
+
+        let mockInteractor = CourseSyncProgressObserverInteractorMock(context: databaseClient)
+        let testee = DashboardOfflineSyncProgressCardViewModel(interactor: mockInteractor,
+                                                               offlineModeInteractor: MockOfflineModeInteractorEnabled(),
+                                                               router: router,
+                                                               scheduler: .immediate)
+
+        let progress: CourseSyncDownloadProgress = databaseClient.insert()
+        progress.bytesToDownload = 1000
+        progress.bytesDownloaded = 100
+        progress.isFinished = false
+        progress.error = nil
+
+        // MARK: - WHEN
+
+        NotificationCenter.default.post(name: .OfflineSyncTriggered, object: nil)
+        mockInteractor.mockStateProgress()
+
+        // MARK: - THEN
+
+        mockInteractor.mockDownloadProgress(progress)
+        XCTAssertEqual(testee.state, .progress(0.1, "2 items are syncing."))
+
+        progress.bytesDownloaded = 500
+        mockInteractor.mockDownloadProgress(progress)
+        XCTAssertEqual(testee.state, .progress(0.5, "2 items are syncing."))
+
+        progress.bytesDownloaded = 750
+        mockInteractor.mockDownloadProgress(progress)
+        XCTAssertEqual(testee.state, .progress(0.75, "2 items are syncing."))
+
+        progress.bytesDownloaded = 1000
+        mockInteractor.mockDownloadProgress(progress)
+        XCTAssertEqual(testee.state, .progress(1, "2 items are syncing."))
+    }
+
+    func testErrorState() {
+        // MARK: - GIVEN
+
+        let mockInteractor = CourseSyncProgressObserverInteractorMock(context: databaseClient)
+        let testee = DashboardOfflineSyncProgressCardViewModel(interactor: mockInteractor,
+                                                               offlineModeInteractor: MockOfflineModeInteractorEnabled(),
+                                                               router: router,
+                                                               scheduler: .immediate)
+
+        // MARK: - WHEN
+
+        NotificationCenter.default.post(name: .OfflineSyncTriggered, object: nil)
+        mockInteractor.mockFailedDownloadProgress()
+        mockInteractor.mockStateProgress()
+
+        // MARK: - THEN
+
+        XCTAssertEqual(testee.state, .error)
+    }
+
+    func testAutoDismissOnComplete() {
+        // MARK: - GIVEN
+
         let testScheduler: TestSchedulerOf<DispatchQueue> = DispatchQueue.test
         let mockInteractor = CourseSyncProgressObserverInteractorMock(context: databaseClient,
                                                                       progressToReport: 1)
         let testee = DashboardOfflineSyncProgressCardViewModel(interactor: mockInteractor,
+                                                               offlineModeInteractor: MockOfflineModeInteractorEnabled(),
                                                                router: router,
                                                                scheduler: testScheduler.eraseToAnyScheduler())
-        NotificationCenter.default.post(name: .OfflineSyncTriggered,
-                                        object: nil)
-        XCTAssertTrue(testee.isVisible)
 
         // MARK: - WHEN
-        testScheduler.advance(by: .seconds(0.9))
-        XCTAssertTrue(testee.isVisible)
+
+        NotificationCenter.default.post(
+            name: .OfflineSyncTriggered,
+            object: nil
+        )
+        mockInteractor.mockFinishedDownloadProgress()
+        mockInteractor.mockStateProgress()
+
         testScheduler.advance(by: .seconds(0.1))
+        XCTAssertFalse(testee.state.isHidden)
 
         // MARK: - THEN
-        XCTAssertFalse(testee.isVisible)
+
+        testScheduler.advance(by: .seconds(0.9))
+        XCTAssertTrue(testee.state.isHidden)
     }
 
-    func testUpdatesProgress() {
-        let mockInteractor = CourseSyncProgressObserverInteractorMock(context: databaseClient)
+    func testAutoDismissOnCancellation() {
+        // MARK: - GIVEN
+
+        let mockInteractor = CourseSyncProgressObserverInteractorMock(context: databaseClient,
+                                                                      progressToReport: 1)
         let testee = DashboardOfflineSyncProgressCardViewModel(interactor: mockInteractor,
+                                                               offlineModeInteractor: MockOfflineModeInteractorEnabled(),
                                                                router: router,
                                                                scheduler: .immediate)
 
-        XCTAssertEqual(testee.progress, 0.5)
+        // MARK: - WHEN
+
+        NotificationCenter.default.post(
+            name: .OfflineSyncTriggered,
+            object: nil
+        )
+        mockInteractor.mockDownloadProgress()
+        mockInteractor.mockStateProgress()
+
+        XCTAssertFalse(testee.state.isHidden)
+
+        // MARK: - THEN
+
+        NotificationCenter.default.post(
+            name: .OfflineSyncCancelled,
+            object: nil
+        )
+        XCTAssertTrue(testee.state.isHidden)
     }
 
     func testDismissHidesCard() {
         // MARK: - GIVEN
+
         let mockInteractor = CourseSyncProgressObserverInteractorMock(context: databaseClient)
         let testee = DashboardOfflineSyncProgressCardViewModel(interactor: mockInteractor,
-                                                               router: router)
+                                                               offlineModeInteractor: MockOfflineModeInteractorEnabled(),
+                                                               router: router,
+                                                               scheduler: .immediate)
         NotificationCenter.default.post(name: .OfflineSyncTriggered,
                                         object: nil)
-        XCTAssertTrue(testee.isVisible)
+        mockInteractor.mockDownloadProgress()
+        mockInteractor.mockStateProgress()
+        XCTAssertFalse(testee.state.isHidden)
 
         // MARK: - WHEN
+
         testee.dismissDidTap.accept()
 
         // MARK: - THEN
-        XCTAssertFalse(testee.isVisible)
+
+        XCTAssertTrue(testee.state.isHidden)
     }
 
     func testCardTapRoutesToProgressView() {
         // MARK: - GIVEN
+
         let mockInteractor = CourseSyncProgressObserverInteractorMock(context: databaseClient)
         let testee = DashboardOfflineSyncProgressCardViewModel(interactor: mockInteractor,
+                                                               offlineModeInteractor: MockOfflineModeInteractorEnabled(),
                                                                router: router)
         let source = UIViewController()
 
         // MARK: - WHEN
+
         testee.cardDidTap.accept(.init(source))
 
         // MARK: - THEN
+
         XCTAssertTrue(router.lastRoutedTo("/offline/progress",
                                           withOptions: .modal(isDismissable: false,
                                                               embedInNav: true)))
@@ -115,21 +209,37 @@ private class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserv
     private let progressToReport: Float
     private let bytesToDownload: Float = 10
 
-    init(context: NSManagedObjectContext, progressToReport: Float = 0.5) {
-        self.context = context
-        self.progressToReport = progressToReport
-    }
+    private let downloadProgressPublisher = PassthroughSubject<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never>()
+    private let stateProgressPublisher = PassthroughSubject<ReactiveStore<GetCourseSyncStateProgressUseCase>.State, Never>()
 
-    func observeDownloadProgress()
-    -> AnyPublisher<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never> {
+    private lazy var downloadProgressMock: CourseSyncDownloadProgress = {
         let item: CourseSyncDownloadProgress = context.insert()
         item.bytesToDownload = Int(bytesToDownload)
         item.bytesDownloaded = Int(progressToReport * bytesToDownload)
-        return Just(.data([item])).eraseToAnyPublisher()
-    }
+        item.isFinished = false
+        item.error = nil
+        return item
+    }()
 
-    func observeStateProgress()
-    -> AnyPublisher<ReactiveStore<GetCourseSyncStateProgressUseCase>.State, Never> {
+    private lazy var downloadProgressFinishedMock: CourseSyncDownloadProgress = {
+        let item: CourseSyncDownloadProgress = context.insert()
+        item.bytesToDownload = Int(bytesToDownload)
+        item.bytesDownloaded = Int(progressToReport * bytesToDownload)
+        item.isFinished = true
+        item.error = nil
+        return item
+    }()
+
+    private lazy var downloadProgressErrorMock: CourseSyncDownloadProgress = {
+        let item: CourseSyncDownloadProgress = context.insert()
+        item.bytesToDownload = Int(bytesToDownload)
+        item.bytesDownloaded = Int(progressToReport * bytesToDownload)
+        item.isFinished = true
+        item.error = "Failed."
+        return item
+    }()
+
+    private lazy var stateProgressMock: [CourseSyncStateProgress] = {
         let course: CourseSyncStateProgress = context.insert()
         course.selection = .course("")
         let fileTab: CourseSyncStateProgress = context.insert()
@@ -138,7 +248,61 @@ private class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserv
         file1.selection = .file("", "")
         let file2: CourseSyncStateProgress = context.insert()
         file2.selection = .file("", "")
+        return [course, fileTab, file1, file2]
+    }()
 
-        return Just(.data([course, fileTab, file1, file2])).eraseToAnyPublisher()
+    init(context: NSManagedObjectContext, progressToReport: Float = 0.5) {
+        self.context = context
+        self.progressToReport = progressToReport
     }
+
+    func observeDownloadProgress()
+        -> AnyPublisher<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never> {
+        downloadProgressPublisher.eraseToAnyPublisher()
+    }
+
+    func observeStateProgress()
+        -> AnyPublisher<ReactiveStore<GetCourseSyncStateProgressUseCase>.State, Never> {
+        stateProgressPublisher.eraseToAnyPublisher()
+    }
+
+    func mockDownloadProgress() {
+        downloadProgressPublisher.send(.data([downloadProgressMock]))
+    }
+
+    func mockDownloadProgress(_ progress: CourseSyncDownloadProgress) {
+        downloadProgressPublisher.send(.data([progress]))
+    }
+
+    func mockFinishedDownloadProgress() {
+        downloadProgressPublisher.send(.data([downloadProgressFinishedMock]))
+    }
+
+    func mockFailedDownloadProgress() {
+        downloadProgressPublisher.send(.data([downloadProgressErrorMock]))
+    }
+
+    func mockStateProgress() {
+        stateProgressPublisher.send(.data(stateProgressMock))
+    }
+}
+
+private class MockOfflineModeInteractorEnabled: OfflineModeInteractor {
+    func isFeatureFlagEnabled() -> Bool {
+        true
+    }
+
+    func observeIsFeatureFlagEnabled() -> AnyPublisher<Bool, Never> {
+        Just(true).eraseToAnyPublisher()
+    }
+
+    func observeIsOfflineMode() -> AnyPublisher<Bool, Never> {
+        Just(true).eraseToAnyPublisher()
+    }
+
+    func observeNetworkStatus() -> AnyPublisher<Core.NetworkAvailabilityStatus, Never> {
+        Just(.disconnected).eraseToAnyPublisher()
+    }
+
+    func isOfflineModeEnabled() -> Bool { true }
 }
