@@ -16,6 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
+import SwiftUI
+
 public class CourseDetailsCellViewModel: Equatable, Identifiable, ObservableObject {
     public enum AccessoryType {
         case disclosure
@@ -27,6 +30,8 @@ public class CourseDetailsCellViewModel: Equatable, Identifiable, ObservableObje
     @Published public internal(set) var accessoryIconType: AccessoryType
     @Published public var isHighlighted = false
     @Published public var isSupportedOffline: Bool = false
+    @Published public var isAvailable = true
+
     public let a11yIdentifier: String
     public let courseColor: UIColor
     public let iconImage: UIImage
@@ -35,12 +40,15 @@ public class CourseDetailsCellViewModel: Equatable, Identifiable, ObservableObje
     public let tabID: String
     public let selectedCallback: (() -> Void)?
 
+    private let offlineModeInteractor: OfflineModeInteractor
+
     public init(courseColor: UIColor,
                 iconImage: UIImage,
                 label: String,
                 subtitle: String?,
                 accessoryIconType: AccessoryType,
                 tabID: String,
+                offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make(),
                 selectedCallback: (() -> Void)?) {
         self.a11yIdentifier = "courses-details.\(tabID)-cell"
         self.courseColor = courseColor
@@ -49,7 +57,15 @@ public class CourseDetailsCellViewModel: Equatable, Identifiable, ObservableObje
         self.subtitle = subtitle
         self.accessoryIconType = accessoryIconType
         self.tabID = tabID
+        self.offlineModeInteractor = offlineModeInteractor
         self.selectedCallback = selectedCallback
+
+        offlineModeInteractor
+            .observeIsOfflineMode()
+            .map { [unowned self] isOffline in
+                !isOffline || self.isSupportedOffline
+            }
+            .assign(to: &$isAvailable)
     }
 
     open func selected(router: Router, viewController: WeakViewController) {
