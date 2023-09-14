@@ -42,6 +42,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     private var environmentFeatureFlags: Store<GetEnvironmentFeatureFlags>?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        LoginSession.migrateSessionsToBeAccessibleWhenDeviceIsLocked()
         setupFirebase()
         CacheManager.resetAppIfNecessary()
         #if DEBUG
