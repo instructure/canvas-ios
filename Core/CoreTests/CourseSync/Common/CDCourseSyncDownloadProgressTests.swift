@@ -33,4 +33,21 @@ class CDCourseSyncDownloadProgressTests: CoreTestCase {
         XCTAssertEqual(testee.isFinished, false)
         XCTAssertEqual(testee.error, nil)
     }
+
+    func testSave() {
+        let progress = CDCourseSyncDownloadProgress.save(
+            bytesToDownload: 1000,
+            bytesDownloaded: 500,
+            isFinished: false,
+            error: nil,
+            in: databaseClient
+        )
+
+        let testee: CDCourseSyncDownloadProgress = databaseClient.fetch().first!
+        XCTAssertEqual(testee.bytesToDownload, 1000)
+        XCTAssertEqual(testee.bytesDownloaded, 500)
+        XCTAssertEqual(testee.isFinished, false)
+        XCTAssertEqual(testee.error, nil)
+
+    }
 }
