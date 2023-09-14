@@ -73,7 +73,6 @@ open class AppEnvironment {
         api = API(session)
         currentSession = session
         userDefaults = SessionDefaults(sessionID: session.uniqueID)
-        Logger.shared.database = database
 
         if isSilent {
             return
@@ -91,7 +90,6 @@ open class AppEnvironment {
         k5.userDidLogout()
         currentSession = nil
         userDefaults = nil
-        Logger.shared.database = database
         refreshWidgets()
         deleteUserData(session: session)
     }

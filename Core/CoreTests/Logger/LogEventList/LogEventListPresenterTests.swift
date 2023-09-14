@@ -36,12 +36,18 @@ class LogEventListPresenterTests: CoreTestCase {
     override func setUp() {
         super.setUp()
 
+        Logger.shared.clearAll()
         presenter = LogEventListPresenter(env: environment, view: view)
     }
 
+    override func tearDown() {
+        Logger.shared.clearAll()
+        super.tearDown()
+    }
+
     func testApplyFilter() {
-        LogEvent.make(type: .log)
-        LogEvent.make(type: .error)
+        LogEvent.make(type: .log, in: Logger.shared.database.viewContext)
+        LogEvent.make(type: .error, in: Logger.shared.database.viewContext)
         presenter.viewIsReady()
         XCTAssertEqual(presenter.events.count, 2)
 
@@ -55,8 +61,8 @@ class LogEventListPresenterTests: CoreTestCase {
     }
 
     func testClearFilter() {
-        LogEvent.make(type: .log)
-        LogEvent.make(type: .error)
+        LogEvent.make(type: .log, in: Logger.shared.database.viewContext)
+        LogEvent.make(type: .error, in: Logger.shared.database.viewContext)
         presenter.viewIsReady()
         XCTAssertEqual(presenter.events.count, 2)
 
