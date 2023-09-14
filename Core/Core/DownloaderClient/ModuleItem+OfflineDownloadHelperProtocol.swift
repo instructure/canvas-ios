@@ -371,14 +371,21 @@ extension ModuleItem: OfflineDownloadTypeProtocol {
         }
         // search transcription remove copy button and move it under video
         let transcriptionContainer = Element(Tag("div"), "")
-        try transcriptionContainer.attr("style", "padding:10px;")
+        try transcriptionContainer.attr("style", "padding:20px;")
         let transcriptions = try document.getElementsByClass("oyster-grid-transcript")
         for transcription in transcriptions {
             let buttons = try transcription.getElementsByTag("button")
             for button in buttons {
                 try button.remove()
             }
+
+            let containers = try transcription.getElementsByClass("transcripts-container")
+            for container in containers {
+                try container.attr("class", "")
+            }
+
             try transcriptionContainer.append(try transcription.outerHtml())
+
         }
         try newContent.append(try transcriptionContainer.outerHtml())
         // clean all body
