@@ -26,7 +26,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     private var sections: [Section] = []
     private var onElementaryViewToggleChanged: (() -> Void)?
 
-    private var offlineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
+    private var offlineModeInteractor = OfflineModeAssembly.make()
     private var subscriptions = Set<AnyCancellable>()
 
     private var landingPage: LandingPage {
@@ -81,7 +81,8 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         tableView.separatorColor = .borderMedium
         tableView.separatorInset = .zero
 
-        offlineModeViewModel.$isOffline
+        offlineModeInteractor
+            .observeIsOfflineMode()
             .sink { [weak self] _ in
                 self?.networkStateDidChange()
             }
@@ -190,7 +191,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                                             bundle: .core,
                                             comment: ""),
                           hasDisclosure: false,
-                          isSupportedOffline: true) { [weak self] in
+                          isSupportedOffline: false) { [weak self] in
                 guard let url = self?.profile.first?.calendarURL else { return }
                 self?.env.loginDelegate?.openExternalURL(url)
             }
@@ -331,7 +332,7 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
             cell.textLabel?.text = row.title
             cell.detailTextLabel?.text = row.detail
             cell.accessoryType = row.hasDisclosure ? .disclosureIndicator : .none
-            let isAvailable = !offlineModeViewModel.isOffline || row.isSupportedOffline
+            let isAvailable = !offlineModeInteractor.isOfflineModeEnabled() || row.isSupportedOffline
             cell.contentView.alpha = isAvailable ? 1 : 0.5
             return cell
         } else if let switchRow = row as? Switch {
@@ -342,7 +343,7 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
             }
             cell.backgroundColor = .backgroundLightest
             cell.textLabel?.text = switchRow.title
-            let isAvailable = !offlineModeViewModel.isOffline || switchRow.isSupportedOffline
+            let isAvailable = !offlineModeInteractor.isOfflineModeEnabled() || switchRow.isSupportedOffline
             cell.contentView.alpha = isAvailable ? 1 : 0.5
             return cell
         }
@@ -354,14 +355,14 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
         let row = sections[indexPath.section].rows[indexPath.row]
 
         if let row = row as? Row {
-            guard !offlineModeViewModel.isOffline || row.isSupportedOffline else {
+            guard !offlineModeInteractor.isOfflineModeEnabled() || row.isSupportedOffline else {
                 return UIAlertController.showItemNotAvailableInOfflineAlert {
                     self.tableView.deselectRow(at: indexPath, animated: true)
                 }
             }
             row.onSelect()
         } else if let switchCell = tableView.cellForRow(at: indexPath) as? SwitchTableViewCell, let switchRow = row as? Switch {
-            guard !offlineModeViewModel.isOffline || switchRow.isSupportedOffline else { return UIAlertController.showItemNotAvailableInOfflineAlert() }
+            guard !offlineModeInteractor.isOfflineModeEnabled() || switchRow.isSupportedOffline else { return UIAlertController.showItemNotAvailableInOfflineAlert() }
             let newValue = !switchCell.toggle.isOn
             switchCell.toggle.setOn(newValue, animated: true)
             switchRow.value = newValue
