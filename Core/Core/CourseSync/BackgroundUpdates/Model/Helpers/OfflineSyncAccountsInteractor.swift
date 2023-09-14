@@ -25,14 +25,26 @@ import Foundation
 public class OfflineSyncAccountsInteractor {
 
     public func calculate(_ sessions: [LoginSession], date: Date) -> [LoginSession] {
-        sessions.reduce(into: []) { partialResult, session in
+        Logger.shared.log("Offline: Checking which accounts to sync")
+        return sessions.reduce(into: []) { partialResult, session in
             let defaults = SessionDefaults(sessionID: session.uniqueID)
             guard defaults.isOfflineAutoSyncEnabled == true,
                   let syncDate = defaults.offlineSyncNextDate,
                   syncDate <= date
             else {
+                let reason = {
+                    if defaults.isOfflineAutoSyncEnabled == false {
+                        return "Auto sync disabled"
+                    } else if defaults.offlineSyncNextDate == nil {
+                        return "No sync date set"
+                    } else {
+                        return "Sync date is in the future"
+                    }
+                }()
+                Logger.shared.log("Offline: Skipping account \(session.uniqueID): \(reason)")
                 return
             }
+            Logger.shared.log("Offline: Adding account to sync \(session.uniqueID)")
             partialResult.append(session)
         }
     }
