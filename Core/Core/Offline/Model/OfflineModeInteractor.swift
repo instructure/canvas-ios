@@ -61,24 +61,27 @@ public final class OfflineModeInteractorLive: OfflineModeInteractor {
         isFeatureFlagEnabled() && isNetworkOffline()
     }
 
+    /** Values are published on the main thread. */
     public func observeIsOfflineMode() -> AnyPublisher<Bool, Never> {
         return availabilityService
             .startObservingStatus()
-            .receive(on: DispatchQueue.main)
             .map { _ in self.isOfflineModeEnabled() }
             .removeDuplicates()
+            .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
 
+    /** Values are published on the main thread. */
     public func observeNetworkStatus() -> AnyPublisher<NetworkAvailabilityStatus, Never> {
         return availabilityService
             .startObservingStatus()
-            .receive(on: DispatchQueue.main)
             .map { $0 }
             .removeDuplicates()
+            .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
 
+    /** Values are published on the main thread. */
     public func observeIsFeatureFlagEnabled() -> AnyPublisher<Bool, Never> {
         featureFlagEnabled.eraseToAnyPublisher()
     }

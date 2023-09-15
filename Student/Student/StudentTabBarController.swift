@@ -98,6 +98,7 @@ class StudentTabBarController: UITabBarController {
         split.tabBarItem.image = .calendarTab
         split.tabBarItem.selectedImage = .calendarTabActive
         split.tabBarItem.accessibilityIdentifier = "TabBar.calendarTab"
+        split.tabBarItem.makeUnavailableInOfflineMode()
         split.embedOfflineBanner()
         return split
     }
@@ -113,6 +114,7 @@ class StudentTabBarController: UITabBarController {
         todo.tabBarItem.image = .todoTab
         todo.tabBarItem.selectedImage = .todoTabActive
         todo.tabBarItem.accessibilityIdentifier = "TabBar.todoTab"
+        todo.tabBarItem.makeUnavailableInOfflineMode()
         todo.embedOfflineBanner()
         TabBarBadgeCounts.todoItem = todo.tabBarItem
         todoController.loadViewIfNeeded() // start fetching todos immediately
@@ -129,6 +131,7 @@ class StudentTabBarController: UITabBarController {
         split.tabBarItem.image = .alertsTab
         split.tabBarItem.selectedImage = .alertsTabActive
         split.tabBarItem.accessibilityIdentifier = "TabBar.notificationsTab"
+        split.tabBarItem.makeUnavailableInOfflineMode()
         split.embedOfflineBanner()
         return split
     }
@@ -154,6 +157,7 @@ class StudentTabBarController: UITabBarController {
         let title = NSLocalizedString("Inbox", comment: "Inbox tab title")
         inboxSplit.tabBarItem = UITabBarItem(title: title, image: .inboxTab, selectedImage: .inboxTabActive)
         inboxSplit.tabBarItem.accessibilityIdentifier = "TabBar.inboxTab"
+        inboxSplit.tabBarItem.makeUnavailableInOfflineMode()
         inboxSplit.extendedLayoutIncludesOpaqueBars = true
         inboxSplit.embedOfflineBanner()
         TabBarBadgeCounts.messageItem = inboxSplit.tabBarItem

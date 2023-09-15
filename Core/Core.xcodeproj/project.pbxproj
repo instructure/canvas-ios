@@ -400,6 +400,7 @@
 		422DE90F31788D7B78647A0D /* QuizPreviewInteractorPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3402B4A8CF016A20E4987DB2 /* QuizPreviewInteractorPreview.swift */; };
 		422EBC36E9CFCBC19AC29716 /* APIGraphQLRequestableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D1D67BC091E142BEA2E7D /* APIGraphQLRequestableTests.swift */; };
 		425BB4FB4231F411906AB3C6 /* GradingSchemeEntryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A56100B33EF4A4057A33F9 /* GradingSchemeEntryTests.swift */; };
+		425FB30BCD0CCD03650989CF /* UITabBarItemOfflineSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39DB2B1FD43C6260361A041F /* UITabBarItemOfflineSupport.swift */; };
 		427503CB25EB9703BC0134DB /* DocViewerAnnotationToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B62E8A3FF971524AF71C20 /* DocViewerAnnotationToolbar.swift */; };
 		42AB7D5A02DBBEDE4BDA5870 /* FileViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABF268BEC79B917199C28F06 /* FileViewer.swift */; };
 		42EA12E28B24AFC3D1C0F462 /* AssignmentDueDatesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF0714F1EEA5A8EE7600BCD /* AssignmentDueDatesInteractor.swift */; };
@@ -879,6 +880,7 @@
 		8DDF049879B4EFA6680A326B /* APIBrandVariablesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661B1786CE4FD390B0572C00 /* APIBrandVariablesTests.swift */; };
 		8E223609497D08746634F76A /* ErrorReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4621B0384929A0080A741CB /* ErrorReportViewController.swift */; };
 		8E44734F8D26D951C93716F5 /* AnnouncementListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E945D5C85F701E470B467E3 /* AnnouncementListViewController.storyboard */; };
+		8E4A89641DC242FE5F4FB9A8 /* UITabBarItemOfflineSupportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2041565B370765BAC7A28B3 /* UITabBarItemOfflineSupportTests.swift */; };
 		8E7B332223C8A0D5D03CA42D /* AssignmentPickerListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A942FCC663083CC1D2DD56E /* AssignmentPickerListRequest.swift */; };
 		8EFB21E9705368D4F9789C1E /* GetModules.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB1A0625655D64F9D05DD9B7 /* GetModules.swift */; };
 		8F5220A029A069D2BA513E02 /* CacheManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE21E5F1D76A89B06B9F79C4 /* CacheManagerTests.swift */; };
@@ -2063,6 +2065,7 @@
 		39B71BCCFA0C836F3827FFEE /* GroupContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardViewModel.swift; sourceTree = "<group>"; };
 		39C5D5D7B418FFB255F79EE6 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Main.strings; sourceTree = "<group>"; };
 		39DA29562F6F3DBAC71046EA /* DocViewerAnnotationContextMenuModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationContextMenuModelTests.swift; sourceTree = "<group>"; };
+		39DB2B1FD43C6260361A041F /* UITabBarItemOfflineSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarItemOfflineSupport.swift; sourceTree = "<group>"; };
 		3A001B6CBC3808DD42C98894 /* FileUploadNotificationCardItemViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCardItemViewModelTests.swift; sourceTree = "<group>"; };
 		3A6DD231F60F32B9D16053A4 /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
 		3A942FCC663083CC1D2DD56E /* AssignmentPickerListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPickerListRequest.swift; sourceTree = "<group>"; };
@@ -3238,6 +3241,7 @@
 		E18B3A0E7114DA6657C570E7 /* APIGradingPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGradingPeriod.swift; sourceTree = "<group>"; };
 		E19900217437C0753FAF8379 /* K5ScheduleWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleWeekView.swift; sourceTree = "<group>"; };
 		E1E976A0DF72FDEBB510B418 /* UIColorExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensionsTests.swift; sourceTree = "<group>"; };
+		E2041565B370765BAC7A28B3 /* UITabBarItemOfflineSupportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarItemOfflineSupportTests.swift; sourceTree = "<group>"; };
 		E228F8EAECB90A84D965A186 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E23F1ED595B2275D63659E89 /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
 		E24F0FC90F914A12E2A8A8FB /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
@@ -3969,6 +3973,7 @@
 			isa = PBXGroup;
 			children = (
 				3EBD5F68A6F040D9FE98E0A1 /* NotSupportedInOfflineAlertTests.swift */,
+				E2041565B370765BAC7A28B3 /* UITabBarItemOfflineSupportTests.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -8006,6 +8011,7 @@
 				EEA09018664CBBDB5E1B0EB8 /* OfflineBannerView.xib */,
 				B467615FEB9F47B169A18150 /* PrimaryButton.swift */,
 				AF24CA3BF195770C257DE94B /* UIButtonOfflineSupport.swift */,
+				39DB2B1FD43C6260361A041F /* UITabBarItemOfflineSupport.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -9543,6 +9549,7 @@
 				AE95631D7EF473925DF619E2 /* UIScrollViewExtensionsTests.swift in Sources */,
 				3E16A4D7BF07717AFE9C302B /* UISplitViewControllerExtensionsTests.swift in Sources */,
 				A4217BAEEDFEBA7A3094D7EF /* UITabBarExtensionsTests.swift in Sources */,
+				8E4A89641DC242FE5F4FB9A8 /* UITabBarItemOfflineSupportTests.swift in Sources */,
 				6BC1C4750A04F2F7DA4AA636 /* UITableViewCellExtensionsTests.swift in Sources */,
 				FD28E6A8126405609FEB577A /* UITableViewExtensionsTests.swift in Sources */,
 				775B89270324F26ABA060101 /* UITableViewHeaderFooterViewExtensionsTests.swift in Sources */,
@@ -10459,6 +10466,7 @@
 				8197434610847D74DF0F4955 /* UISegmentedControlExtensions.swift in Sources */,
 				4DF59B6E0195263762DB3332 /* UISplitViewControllerExtensions.swift in Sources */,
 				647DFA616E75C37DF001EB84 /* UITabBarExtensions.swift in Sources */,
+				425FB30BCD0CCD03650989CF /* UITabBarItemOfflineSupport.swift in Sources */,
 				E96E73CEE262CF3031FB57F1 /* UITableViewCellExtensions.swift in Sources */,
 				3F05E6DCD0777CE357135A90 /* UITableViewExtensions.swift in Sources */,
 				51A784AC0519ACB00C35C71E /* UITableViewHeaderFooterViewExtensions.swift in Sources */,
