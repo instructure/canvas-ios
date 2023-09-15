@@ -40,8 +40,7 @@ final class DownloadNotifier: Reachabilitable {
                 guard let self = self else { return }
                 switch event {
                 case .completed(let success):
-                    guard self.canShowBanner, success, self.isConnected else { return }
-                    notifyAboutDownloadCompletion(success: success)
+                    self.completion(success)
                 default:
                     break
                 }
@@ -53,13 +52,27 @@ final class DownloadNotifier: Reachabilitable {
         }
     }
 
-    private func notifyAboutDownloadCompletion(success: Bool) {
+    private func completion(_ success: Bool) {
+        if !success {
+            notificationRequest(
+                body: "An error occured while downloading"
+            )
+            return
+        }
+
+        guard self.canShowBanner, self.isConnected else {
+            return
+        }
+        notificationRequest(
+            body: "Modules have been saved and are available offline."
+        )
+    }
+
+    private func notificationRequest(body: String) {
         DispatchQueue.main.async {
             let content = UNMutableNotificationContent()
             content.title = "Download Finished"
-            content.body = success
-            ? "Modules have been saved and are available offline."
-            : "An error occured while downloading"
+            content.body = body
             content.sound = UNNotificationSound.default
 
             let request = UNNotificationRequest(
@@ -67,7 +80,6 @@ final class DownloadNotifier: Reachabilitable {
                 content: content,
                 trigger: nil
             )
-
             UNUserNotificationCenter.current().add(request)
         }
     }
