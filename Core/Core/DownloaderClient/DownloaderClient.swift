@@ -20,11 +20,18 @@ import Foundation
 import mobile_offline_downloader_ios
 
 public struct DownloaderClient {
-    public static func setup() {
+    public static func setup(with session: LoginSession) {
         let storageConfig = OfflineStorageConfig()
+        storageConfig.containerID = "\(session.baseURL.host ?? "unknownSchool")_\(session.userID)"
         OfflineStorageManager.shared.setConfig(config: storageConfig)
 
+        let path = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true).first ?? NSTemporaryDirectory()
+        var pathComponents = path.components(separatedBy: "/")
+        pathComponents.append(session.baseURL.host ?? "unknownSchool")
+        pathComponents.append(session.userID)
+        
         let downloaderConfig = OfflineDownloaderConfig()
+        downloaderConfig.rootPath = pathComponents.joined(separator: "/")
         downloaderConfig.errorsDescriptionHandler = { errorInfo, isCritical in
             if errorInfo == nil && isCritical == false {
                 // successful downloading
@@ -51,6 +58,7 @@ public struct DownloaderClient {
         DispatchQueue.main.async {
             OfflineHTMLDynamicsLinksExtractor.processPool = CoreWebView.processPool
         }
+        OfflineDownloadsManager.shared.start()
     }
 
     public static func replaceHtml(for tag: String?) async -> String? {
