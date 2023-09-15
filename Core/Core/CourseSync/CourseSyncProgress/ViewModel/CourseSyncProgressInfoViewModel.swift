@@ -48,29 +48,20 @@ class CourseSyncProgressInfoViewModel: ObservableObject {
 
         interactor.observeDownloadProgress()
             .receive(on: scheduler)
-            .sink { state in
-                switch state {
-                case .data(let progressList):
-                    guard progressList.count > 0 else {
-                        return
-                    }
-
+            .sink { progress in
                     let format = NSLocalizedString("Downloading %@ of %@", bundle: .core, comment: "Downloading 42 GB of 64 GB")
                     unownedSelf.progress = String.localizedStringWithFormat(
                         format,
-                        progressList[0].bytesDownloaded.humanReadableFileSize,
-                        progressList[0].bytesToDownload.humanReadableFileSize
+                        progress.bytesDownloaded.humanReadableFileSize,
+                        progress.bytesToDownload.humanReadableFileSize
                     )
-                    unownedSelf.progressPercentage = progressList[0].progress
+                    unownedSelf.progressPercentage = progress.progress
 
-                    if progressList[0].isFinished, progressList[0].error != nil {
+                    if progress.isFinished, progress.error != nil {
                         unownedSelf.syncFailure = true
                     } else {
                         unownedSelf.syncFailure = false
                     }
-                default:
-                    break
-                }
             }
             .store(in: &subscriptions)
     }
