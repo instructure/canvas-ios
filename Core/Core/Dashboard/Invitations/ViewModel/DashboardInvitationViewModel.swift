@@ -37,17 +37,26 @@ public class DashboardInvitationViewModel: Identifiable, ObservableObject {
 
     private let courseId: String
     private let enrollmentId: String
+    private let offlineModeInteractor: OfflineModeInteractor
     private let onDismiss: ((DashboardInvitationViewModel) -> Void)?
     private var stateChangeAnimationStartTime = Date()
 
-    public init(name: String, courseId: String, enrollmentId: String, onDismiss: ((DashboardInvitationViewModel) -> Void)? = nil) {
+    public init(name: String,
+                courseId: String,
+                enrollmentId: String,
+                offlineModeInteractor: OfflineModeInteractor,
+                onDismiss: ((DashboardInvitationViewModel) -> Void)? = nil) {
         self.name = name
         self.courseId = courseId
         self.enrollmentId = enrollmentId
+        self.offlineModeInteractor = offlineModeInteractor
         self.onDismiss = onDismiss
     }
 
     public func accept() {
+        guard offlineModeInteractor.isOfflineModeEnabled() == false else {
+            return UIAlertController.showItemNotAvailableInOfflineAlert()
+        }
         stateChangeAnimationStartTime = Date()
         withAnimation {
             state = .accepted
@@ -56,6 +65,9 @@ public class DashboardInvitationViewModel: Identifiable, ObservableObject {
     }
 
     public func decline() {
+        guard offlineModeInteractor.isOfflineModeEnabled() == false else {
+            return UIAlertController.showItemNotAvailableInOfflineAlert()
+        }
         stateChangeAnimationStartTime = Date()
         withAnimation {
             state = .declined
