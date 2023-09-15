@@ -42,7 +42,7 @@ class UITabBarItemOfflineSupportTests: XCTestCase {
     }
 }
 
-class OfflineModeInteractorMock: OfflineModeInteractor {
+private class OfflineModeInteractorMock: OfflineModeInteractor {
     let mockedIsInOfflineMode = CurrentValueRelay(false)
 
     func isFeatureFlagEnabled() -> Bool {

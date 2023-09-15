@@ -24,7 +24,8 @@ class DashboardInvitationViewModelTests: XCTestCase {
     private let mockOfflineModeInteractor = OfflineModeInteractorMock()
 
     override func setUp() {
-        mockOfflineModeInteractor.mockedIsInOfflineMode.accept(false)
+        super.setUp()
+        mockOfflineModeInteractor.mockIsInOfflineMode.accept(false)
     }
 
     func testInitialState() {
@@ -49,7 +50,7 @@ class DashboardInvitationViewModelTests: XCTestCase {
     }
 
     func testAcceptInOfflineMode() {
-        mockOfflineModeInteractor.mockedIsInOfflineMode.accept(true)
+        mockOfflineModeInteractor.mockIsInOfflineMode.accept(true)
         let testee = DashboardInvitationViewModel(name: "invitation name",
                                                   courseId: "courseId",
                                                   enrollmentId: "enrollmentId",
@@ -70,7 +71,7 @@ class DashboardInvitationViewModelTests: XCTestCase {
     }
 
     func testDeclineInOfflineMode() {
-        mockOfflineModeInteractor.mockedIsInOfflineMode.accept(true)
+        mockOfflineModeInteractor.mockIsInOfflineMode.accept(true)
         let testee = DashboardInvitationViewModel(name: "invitation name",
                                                   courseId: "courseId",
                                                   enrollmentId: "enrollmentId",

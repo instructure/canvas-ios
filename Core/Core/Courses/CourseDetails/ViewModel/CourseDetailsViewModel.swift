@@ -34,8 +34,8 @@ public class CourseDetailsViewModel: ObservableObject {
     @Published public private(set) var homeLabel: String?
     @Published public private(set) var homeSubLabel: String?
     @Published public private(set) var homeRoute: URL?
+    @Published public private(set) var showHome: Bool
 
-    public var showHome: Bool { !isTeacher }
     public var showSettings: Bool { isTeacher }
     public var showStudentView: Bool { isTeacher }
     public var courseName: String { course.first?.name ?? "" }
@@ -65,11 +65,15 @@ public class CourseDetailsViewModel: ObservableObject {
     }
 
     private var subscriptions = Set<AnyCancellable>()
+    private let offlineModeInteractor: OfflineModeInteractor
 
-    public init(context: Context) {
+    public init(context: Context, offlineModeInteractor: OfflineModeInteractor) {
         self.context = context
+        self.offlineModeInteractor = offlineModeInteractor
+        self.showHome = AppEnvironment.shared.app != .teacher
         bindSplitViewModeObserverToSelectionManager()
         bindCellSelectionStateToCellViewModels()
+        hideHomeTabWhenOfflineModeChanges()
     }
 
     // MARK: - Preview Support
@@ -79,6 +83,8 @@ public class CourseDetailsViewModel: ObservableObject {
     init(state: ViewModelState<[CourseDetailsCellViewModel]>) {
         self.state = state
         self.context = .course("1")
+        self.showHome = AppEnvironment.shared.app != .teacher
+        self.offlineModeInteractor = OfflineModeInteractorMock()
     }
 
 #endif
@@ -118,6 +124,17 @@ public class CourseDetailsViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
+    private func hideHomeTabWhenOfflineModeChanges() {
+        // For the teacher app home is always hidden
+        if isTeacher {
+            return
+        }
+        offlineModeInteractor
+            .observeIsOfflineMode()
+            .map { !$0 }
+            .assign(to: &$showHome)
+    }
+
     private func updateCellSelectionStates(on cells: [CourseDetailsCellViewModel], selectedIndex: Int?) {
         for (index, cell) in cells.enumerated() {
             // if home cell is shown we increase the cell index since the home cell is managed outside of this array
@@ -150,7 +167,7 @@ public class CourseDetailsViewModel: ObservableObject {
 
     private func setupHome(course: Course) {
         // Even if there's no home view for the course we still want to reset the split detail view when moving back/to the course details
-        if !showHome {
+        if !showHome || offlineModeInteractor.isOfflineModeEnabled() {
             // We need to drop the # from color otherwise it will be treated as the fragment of the url and not the value of contextColor
             homeRoute = URL(string: "/empty?contextColor=\(courseColor.resolvedColor(with: .light).darkenToEnsureContrast(against: .textLightest).hexString.dropFirst())")
             return

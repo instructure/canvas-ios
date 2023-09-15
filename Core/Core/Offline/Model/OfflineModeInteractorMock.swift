@@ -22,9 +22,9 @@ import Combine
 import CombineExt
 
 public class OfflineModeInteractorMock: OfflineModeInteractor {
-    let mockIsInOfflineMode: CurrentValueRelay<Bool>
-    let mockIsFeatureFlagEnabled: CurrentValueRelay<Bool>
-    let mockNetworkAvailabilityStatus: CurrentValueRelay<NetworkAvailabilityStatus>
+    public let mockIsInOfflineMode: CurrentValueRelay<Bool>
+    public let mockIsFeatureFlagEnabled: CurrentValueRelay<Bool>
+    public let mockNetworkAvailabilityStatus: CurrentValueRelay<NetworkAvailabilityStatus>
 
     public init(mockIsInOfflineMode: Bool = false,
                 mockIsFeatureFlagEnabled: Bool = true,
