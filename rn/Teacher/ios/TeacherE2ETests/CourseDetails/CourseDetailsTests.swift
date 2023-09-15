@@ -17,3 +17,69 @@
 //
 
 import TestsFoundation
+
+class CourseDetailsTests: E2ETestCase {
+    func testCourseDetails() {
+        // MARK: Seed the usual stuff with additional contents
+        let teacher = seeder.createUser()
+        let course = seeder.createCourse()
+        let module = ModulesHelper.createModule(course: course)
+        AssignmentsHelper.createAssignment(course: course)
+        AnnouncementsHelper.createAnnouncements(course: course)
+        DiscussionsHelper.createDiscussion(course: course)
+        PagesHelper.createPage(course: course)
+        ModulesHelper.createModulePage(course: course, module: module)
+        seeder.enrollTeacher(teacher, in: course)
+
+        // MARK: Get the user logged in and navigate to the course
+        logInDSUser(teacher)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+        courseCard.hit()
+
+        // MARK: Check course details
+        let titleLabel = CourseDetailsHelper.titleLabel.waitUntil(.visible)
+        XCTAssertTrue(titleLabel.exists)
+        XCTAssertEqual(titleLabel.label, course.name)
+
+        let subtitleLabel = CourseDetailsHelper.subtitleLabel.waitUntil(.visible)
+        XCTAssertTrue(subtitleLabel.exists)
+        XCTAssertEqual(subtitleLabel.label, "Default Term")
+
+        let announcementsButton = CourseDetailsHelper.cell(type: .announcements).waitUntil(.visible)
+        XCTAssertTrue(announcementsButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))
+
+        let assignmentsButton = CourseDetailsHelper.cell(type: .assignments).waitUntil(.visible)
+        XCTAssertTrue(assignmentsButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))
+
+        let discussionsButton = CourseDetailsHelper.cell(type: .discussions).waitUntil(.visible)
+        XCTAssertTrue(discussionsButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))
+
+        let peopleButton = CourseDetailsHelper.cell(type: .people).waitUntil(.visible)
+        XCTAssertTrue(peopleButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))
+
+        let pagesButton = CourseDetailsHelper.cell(type: .pages).waitUntil(.visible)
+        XCTAssertTrue(pagesButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))
+
+        let filesButton = CourseDetailsHelper.cell(type: .files).waitUntil(.visible)
+        XCTAssertTrue(filesButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))
+
+        let syllabusButton = CourseDetailsHelper.cell(type: .syllabus).waitUntil(.visible)
+        XCTAssertTrue(syllabusButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))
+
+        let quizzesButton = CourseDetailsHelper.cell(type: .quizzes).waitUntil(.visible)
+        XCTAssertTrue(quizzesButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))
+
+        let modulesButton = CourseDetailsHelper.cell(type: .modules).waitUntil(.visible)
+        XCTAssertTrue(modulesButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))
+
+        let studioButton = CourseDetailsHelper.cell(type: .studio).waitUntil(.visible)
+        XCTAssertTrue(studioButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))
+
+        let googleDriveButton = CourseDetailsHelper.cell(type: .googleDrive).waitUntil(.visible)
+        XCTAssertTrue(googleDriveButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))
+
+        let studentViewButton = CourseDetailsHelper.cell(type: .studentView).waitUntil(.visible)
+        XCTAssertTrue(studentViewButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))
+    }
+}
