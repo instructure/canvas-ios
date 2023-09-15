@@ -115,7 +115,7 @@ struct DashboardCourseCardView: View {
     @ViewBuilder
     private var optionsKebabButton: some View {
         PrimaryButton(isAvailable: $isAvailable) {
-            if offlineModeViewModel.isOfflineFeatureEnabled, env.app == .student {
+            if offlineModeViewModel.isOfflineFeatureEnabled {
                 isShowingKebabDialog.toggle()
             } else {
                 openDashboardCardCustomizeSheet()

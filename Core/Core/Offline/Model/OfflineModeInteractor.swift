@@ -40,13 +40,19 @@ public final class OfflineModeInteractorLive: OfflineModeInteractor {
     // MARK: - Public Interface
 
     public init(availabilityService: NetworkAvailabilityService = NetworkAvailabilityServiceLive(),
-                context: NSManagedObjectContext = AppEnvironment.shared.database.viewContext) {
+                context: NSManagedObjectContext = AppEnvironment.shared.database.viewContext,
+                isOfflineModeEnabledForApp: Bool) {
         self.availabilityService = availabilityService
         self.availabilityService.startMonitoring()
         self.offlineFlagStore = ReactiveStore(offlineModeInteractor: nil,
                                               context: context,
                                               useCase: Self.LocalFeatureFlagUseCase)
-        subscribeToOfflineFeatureFlagChanges()
+
+        // If offline mode isn't enabled for the app we just don't
+        // update the flag state and leave it at its default false value
+        if isOfflineModeEnabledForApp {
+            subscribeToOfflineFeatureFlagChanges()
+        }
     }
 
     deinit {
