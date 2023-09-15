@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -185,26 +185,26 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A50D35CB2A7D1BF8006204F1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 19FB565ABEC6EA3620720E25 /* Core */;
-			proxyType = 2;
-			remoteGlobalIDString = 8F6731E780A5363E04E3620A;
-			remoteInfo = CoreTester;
-		};
-		A50D35CD2A7D1BF8006204F1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 19FB565ABEC6EA3620720E25 /* Core */;
-			proxyType = 2;
-			remoteGlobalIDString = DC35484E0C7EE977582AF3AE;
-			remoteInfo = CoreTests;
-		};
 		ADD0BD039DBE20C141DFDF5E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 19FB565ABEC6EA3620720E25 /* Core */;
 			proxyType = 1;
 			remoteGlobalIDString = B90FCF66245CD7327BEE2CBF;
 			remoteInfo = Core;
+		};
+		BAAEDFCE2AA9FD4300CC9B7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19FB565ABEC6EA3620720E25 /* Core */;
+			proxyType = 2;
+			remoteGlobalIDString = 8F6731E780A5363E04E3620A;
+			remoteInfo = CoreTester;
+		};
+		BAAEDFD02AA9FD4300CC9B7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19FB565ABEC6EA3620720E25 /* Core */;
+			proxyType = 2;
+			remoteGlobalIDString = DC35484E0C7EE977582AF3AE;
+			remoteInfo = CoreTests;
 		};
 		C62A32602F4B1A165BCFE80A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -720,8 +720,8 @@
 			isa = PBXGroup;
 			children = (
 				59FDA90639A28B677F0E6B7A /* Core.framework */,
-				A50D35CC2A7D1BF8006204F1 /* CoreTester.app */,
-				A50D35CE2A7D1BF8006204F1 /* CoreTests.xctest */,
+				BAAEDFCF2AA9FD4300CC9B7F /* CoreTester.app */,
+				BAAEDFD12AA9FD4300CC9B7F /* CoreTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -970,7 +970,8 @@
 		10C4E2D558FE442D52798870 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1200;
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					BDDDC5B1E7D6809AA82A8C5C = {
 						DevelopmentTeam = B6333T4PXQ;
@@ -979,7 +980,7 @@
 				};
 			};
 			buildConfigurationList = 0C7270C1129E8A36FE683A6E /* Build configuration list for PBXProject "TestsFoundation" */;
-			compatibilityVersion = "Xcode 11.0";
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -1012,18 +1013,18 @@
 			remoteRef = C62A32602F4B1A165BCFE80A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A50D35CC2A7D1BF8006204F1 /* CoreTester.app */ = {
+		BAAEDFCF2AA9FD4300CC9B7F /* CoreTester.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
 			path = CoreTester.app;
-			remoteRef = A50D35CB2A7D1BF8006204F1 /* PBXContainerItemProxy */;
+			remoteRef = BAAEDFCE2AA9FD4300CC9B7F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A50D35CE2A7D1BF8006204F1 /* CoreTests.xctest */ = {
+		BAAEDFD12AA9FD4300CC9B7F /* CoreTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = CoreTests.xctest;
-			remoteRef = A50D35CD2A7D1BF8006204F1 /* PBXContainerItemProxy */;
+			remoteRef = BAAEDFD02AA9FD4300CC9B7F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */

@@ -1776,7 +1776,6 @@
 		069DDBC33F15A7F63B05C63A /* APICalendarEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalendarEventTests.swift; sourceTree = "<group>"; };
 		06A8F6F82A82598700306E23 /* File+OfflineStorageDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "File+OfflineStorageDataProtocol.swift"; sourceTree = "<group>"; };
 		06A8F6FA2A82599C00306E23 /* File+OfflineDownloadHelperProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "File+OfflineDownloadHelperProtocol.swift"; sourceTree = "<group>"; };
-		06A8F7012A8386EA00306E23 /* mobile-offline-downloader-ios */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "mobile-offline-downloader-ios"; path = "../mobile-offline-downloader-ios"; sourceTree = "<group>"; };
 		06A8F7022A83999E00306E23 /* LTIWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LTIWebViewController.swift; sourceTree = "<group>"; };
 		06A8F7082A83A23200306E23 /* LTIWebViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LTIWebViewController.storyboard; sourceTree = "<group>"; };
 		06B97D724933DE47176D5B65 /* LockStatusViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockStatusViewable.swift; sourceTree = "<group>"; };
@@ -3078,6 +3077,7 @@
 		BAA5F2CE2A83FBE0002508E2 /* DownloadsModulesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsModulesViewModel.swift; sourceTree = "<group>"; };
 		BAA5F2D02A83FC02002508E2 /* DownloadsModulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsModulesView.swift; sourceTree = "<group>"; };
 		BAA5F2D22A83FC27002508E2 /* CustomDisclosureGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDisclosureGroup.swift; sourceTree = "<group>"; };
+		BAAEDFC92AA9FD3400CC9B7F /* mobile-offline-downloader-ios */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "mobile-offline-downloader-ios"; path = "../mobile-offline-downloader-ios"; sourceTree = "<group>"; };
 		BAB674C32A814E8500DF718B /* CoreWebViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreWebViewRepresentable.swift; sourceTree = "<group>"; };
 		BAB674D32A83A0B200DF718B /* FileListCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileListCell+Extensions.swift"; sourceTree = "<group>"; };
 		BAE9980CB6B4D424C27760EA /* GradeListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeListViewControllerTests.swift; sourceTree = "<group>"; };
@@ -3803,14 +3803,6 @@
 				C5582BB43C9CE04867D1D0E6 /* LoginUsePolicyViewModel.swift */,
 			);
 			path = LoginUsePolicy;
-			sourceTree = "<group>";
-		};
-		06A8F7002A8386CF00306E23 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				06A8F7012A8386EA00306E23 /* mobile-offline-downloader-ios */,
-			);
-			name = Packages;
 			sourceTree = "<group>";
 		};
 		07366D79C25F3EDCF5602E22 /* AnnotationTypes */ = {
@@ -5754,7 +5746,7 @@
 		62824534F75515F48E8114A7 = {
 			isa = PBXGroup;
 			children = (
-				06A8F7002A8386CF00306E23 /* Packages */,
+				BAAEDFC82AA9FD3400CC9B7F /* Packages */,
 				FB1D9B989FD980296A1BCE7F /* Core */,
 				D6DA07AD8D44A6BE9FB7A57A /* CoreTester */,
 				9737837A3A471DE4E30BC35B /* CoreTests */,
@@ -7769,6 +7761,14 @@
 				0337203781C420A177F13F1E /* ViewModel */,
 			);
 			path = About;
+			sourceTree = "<group>";
+		};
+		BAAEDFC82AA9FD3400CC9B7F /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				BAAEDFC92AA9FD3400CC9B7F /* mobile-offline-downloader-ios */,
+			);
+			name = Packages;
 			sourceTree = "<group>";
 		};
 		BB347FA76BB9940D2F9AAB7E /* ViewModel */ = {
