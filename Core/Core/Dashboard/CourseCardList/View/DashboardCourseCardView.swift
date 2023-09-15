@@ -178,6 +178,10 @@ struct DashboardCourseCardView: View {
     }
 
     private func openDashboardCardCustomizeSheet() {
+        if offlineModeViewModel.isOffline {
+            return UIAlertController.showItemNotAvailableInOfflineAlert()
+        }
+
         guard let course = courseCard.course else { return }
         env.router.show(
             CoreHostingController(CustomizeCourseView(course: course, hideColorOverlay: hideColorOverlay)),
