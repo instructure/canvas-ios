@@ -38,9 +38,9 @@ public protocol LoggerProtocol {
 
 public class Logger: LoggerProtocol {
 #if DEBUG
-    internal var database: NSPersistentContainer
+    var database: NSPersistentContainer
 #else
-    private let database: NSPersistentContainer
+    let database: NSPersistentContainer
 #endif
 
     public static let shared = Logger()

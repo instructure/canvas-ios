@@ -36,12 +36,12 @@ class LogEventListPresenterTests: CoreTestCase {
     override func setUp() {
         super.setUp()
 
-        Logger.shared.clearAll()
+        cleanUpLogsAndWait()
         presenter = LogEventListPresenter(env: environment, view: view)
     }
 
     override func tearDown() {
-        Logger.shared.clearAll()
+        cleanUpLogsAndWait()
         super.tearDown()
     }
 
@@ -77,5 +77,14 @@ class LogEventListPresenterTests: CoreTestCase {
         presenter.applyFilter(nil)
         wait(for: [view.reloadDataExpectation], timeout: 0.1)
         XCTAssertEqual(presenter.events.count, 2)
+    }
+
+    private func cleanUpLogsAndWait() {
+        let context = Logger.shared.database.viewContext
+        context.performAndWait {
+            let events: [LogEvent] = context.fetch()
+            context.delete(events)
+            try? context.save()
+        }
     }
 }
