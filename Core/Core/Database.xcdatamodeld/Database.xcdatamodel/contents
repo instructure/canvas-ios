@@ -127,6 +127,21 @@
         <attribute name="title" attributeType="String"/>
         <attribute name="typeRaw" attributeType="String"/>
     </entity>
+    <entity name="CDCourseSyncDownloadProgress" representedClassName="Core.CDCourseSyncDownloadProgress" syncable="YES">
+        <attribute name="bytesDownloaded" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="bytesToDownload" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="error" optional="YES" attributeType="String"/>
+        <attribute name="isFinished" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="CDCourseSyncStateProgress" representedClassName="Core.CDCourseSyncStateProgress" syncable="YES">
+        <attribute name="entryID" attributeType="String"/>
+        <attribute name="fileID" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="progress" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="selectionRaw" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="stateRaw" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="tabID" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="CommonCourse" representedClassName="Core.CommonCourse" syncable="YES">
         <attribute name="courseID" attributeType="String"/>
         <attribute name="role" attributeType="String"/>
@@ -272,26 +287,11 @@
         <attribute name="usageRightsRequired" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="settings" inverseEntity="Course"/>
     </entity>
-    <entity name="CourseSyncDownloadProgress" representedClassName="Core.CourseSyncDownloadProgress" syncable="YES">
-        <attribute name="bytesDownloaded" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="bytesToDownload" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="error" optional="YES" attributeType="String"/>
-        <attribute name="isFinished" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-    </entity>
     <entity name="CourseSyncSelectorCourse" representedClassName="Core.CourseSyncSelectorCourse" syncable="YES">
         <attribute name="courseCode" attributeType="String"/>
         <attribute name="courseId" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <relationship name="tabs" toMany="YES" deletionRule="Nullify" destinationEntity="Tab" inverseName="course" inverseEntity="Tab"/>
-    </entity>
-    <entity name="CourseSyncStateProgress" representedClassName="Core.CourseSyncStateProgress" syncable="YES">
-        <attribute name="entryID" attributeType="String"/>
-        <attribute name="fileID" optional="YES" attributeType="String"/>
-        <attribute name="id" attributeType="String"/>
-        <attribute name="progress" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="selectionRaw" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="stateRaw" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="tabID" optional="YES" attributeType="String"/>
     </entity>
     <entity name="DashboardCard" representedClassName="Core.DashboardCard" syncable="YES">
         <attribute name="courseCode" attributeType="String"/>

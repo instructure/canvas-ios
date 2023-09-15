@@ -53,11 +53,12 @@ class CourseSyncProgressWriterInteractorLiveTests: CoreTestCase {
         entries[0].files[1].state = .downloaded
         testee.saveDownloadProgress(entries: entries)
 
-        let progressList: [CourseSyncDownloadProgress] = databaseClient.fetch(scope: .all)
+        let progressList: [CDCourseSyncDownloadProgress] = databaseClient.fetch(scope: .all)
         XCTAssertEqual(progressList.count, 1)
-        XCTAssertEqual(progressList[0].bytesToDownload, 2000)
-        XCTAssertEqual(progressList[0].bytesDownloaded, 2000)
-        XCTAssertEqual(progressList[0].progress, 1)
+        let progress = CourseSyncDownloadProgress(from: progressList[0])
+        XCTAssertEqual(progress.bytesToDownload, 2000)
+        XCTAssertEqual(progress.bytesDownloaded, 2000)
+        XCTAssertEqual(progress.progress, 1)
     }
 
     func testPartiallyDownloadedFileProgress() {
@@ -69,11 +70,12 @@ class CourseSyncProgressWriterInteractorLiveTests: CoreTestCase {
         entries[0].files[1].state = .loading(0.5)
         testee.saveDownloadProgress(entries: entries)
 
-        let progressList: [CourseSyncDownloadProgress] = databaseClient.fetch(scope: .all)
+        let progressList: [CDCourseSyncDownloadProgress] = databaseClient.fetch(scope: .all)
         XCTAssertEqual(progressList.count, 1)
-        XCTAssertEqual(progressList[0].bytesToDownload, 2000)
-        XCTAssertEqual(progressList[0].bytesDownloaded, 1000)
-        XCTAssertEqual(progressList[0].progress, 0.5)
+        let progress = CourseSyncDownloadProgress(from: progressList[0])
+        XCTAssertEqual(progress.bytesToDownload, 2000)
+        XCTAssertEqual(progress.bytesDownloaded, 1000)
+        XCTAssertEqual(progress.progress, 0.5)
     }
 
     func testFailedDownloadFileProgress() {
@@ -85,11 +87,12 @@ class CourseSyncProgressWriterInteractorLiveTests: CoreTestCase {
         entries[0].files[1].state = .loading(0.5)
         testee.saveDownloadProgress(entries: entries)
 
-        let progressList: [CourseSyncDownloadProgress] = databaseClient.fetch(scope: .all)
+        let progressList: [CDCourseSyncDownloadProgress] = databaseClient.fetch(scope: .all)
         XCTAssertEqual(progressList.count, 1)
-        XCTAssertEqual(progressList[0].bytesToDownload, 2000)
-        XCTAssertEqual(progressList[0].bytesDownloaded, 500)
-        XCTAssertEqual(progressList[0].progress, 0.25)
+        let progress = CourseSyncDownloadProgress(from: progressList[0])
+        XCTAssertEqual(progress.bytesToDownload, 2000)
+        XCTAssertEqual(progress.bytesDownloaded, 500)
+        XCTAssertEqual(progress.progress, 0.25)
     }
 
     func testCourseSelectionEntryProgress() {
@@ -98,7 +101,7 @@ class CourseSyncProgressWriterInteractorLiveTests: CoreTestCase {
         testee.saveStateProgress(id: "2", selection: .course("0"), state: .error)
         testee.saveStateProgress(id: "3", selection: .course("0"), state: .loading(nil))
 
-        let progressList: [CourseSyncStateProgress] = databaseClient.fetch(scope: .all)
+        let progressList: [CDCourseSyncStateProgress] = databaseClient.fetch(scope: .all)
         XCTAssertEqual(progressList.count, 3)
 
         XCTAssertEqual(progressList[0].id, "1")
@@ -120,7 +123,7 @@ class CourseSyncProgressWriterInteractorLiveTests: CoreTestCase {
         testee.saveStateProgress(id: "2", selection: .tab("0", "0"), state: .error)
         testee.saveStateProgress(id: "3", selection: .tab("0", "0"), state: .loading(nil))
 
-        let progressList: [CourseSyncStateProgress] = databaseClient.fetch(scope: .all)
+        let progressList: [CDCourseSyncStateProgress] = databaseClient.fetch(scope: .all)
         XCTAssertEqual(progressList.count, 3)
 
         XCTAssertEqual(progressList[0].id, "1")
@@ -142,7 +145,7 @@ class CourseSyncProgressWriterInteractorLiveTests: CoreTestCase {
         testee.saveStateProgress(id: "2", selection: .file("0", "0"), state: .error)
         testee.saveStateProgress(id: "3", selection: .file("0", "0"), state: .loading(nil))
 
-        let progressList: [CourseSyncStateProgress] = databaseClient.fetch(scope: .all)
+        let progressList: [CDCourseSyncStateProgress] = databaseClient.fetch(scope: .all)
         XCTAssertEqual(progressList.count, 3)
 
         XCTAssertEqual(progressList[0].id, "1")
