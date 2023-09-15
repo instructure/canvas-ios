@@ -234,7 +234,8 @@ extension ModuleItem: OfflineDownloadTypeProtocol {
                     let cookieString = await extractor.cookies().cookieString
                     downloader.additionCookies = cookieString
                     let ltiContents = try await downloader.contents(urlString: latestURL.absoluteString)
-                    entry.addHtmlPart(ltiContents, baseURL: latestURL.absoluteString, cookieString: cookieString)
+                    let html = try prepare(html: ltiContents)
+                    entry.addHtmlPart(html, baseURL: latestURL.absoluteString, cookieString: cookieString)
                 } else {
                     let html = try prepare(html: html)
                     let cookieString = await extractor.cookies().cookieString
@@ -344,11 +345,79 @@ extension ModuleItem: OfflineDownloadTypeProtocol {
             try tag.attr("controls", "true")
             try tag.attr("width", "100%")
             try tag.removeAttr("crossorigin")
-            if let app = try document.getElementById("app") {
-                try app.replaceWith(tag)
-            }
         }
         return try document.html()
+    }
+
+    static func coursePlayerTranscriptionScript() -> String {
+        """
+            <script>
+                function onTranscriptClick() {
+                    console.log("asd");
+
+                    var display = document.getElementById("transcript").style.display;
+                    var classList = document.getElementsByClassName("icon")[0].classList;
+
+                    if (display == "none") {
+                        document.getElementById("transcript").style.display = "block";
+                        document.getElementsByTagName("button")[0].style.borderRadius = "0.375rem 0.375rem 0px 0px";
+                        classList.remove("icon--caret-right");
+                        classList.add("icon--caret-down");
+
+                    } else {
+                        document.getElementById("transcript").style.display = "none";
+                        document.getElementsByTagName("button")[0].style.borderRadius = "0.375rem";
+                        classList.remove("icon--caret-down");
+                        classList.add("icon--caret-right");
+                    }
+                }
+            </script>
+        """
+    }
+
+    static func coursePlayerTranscriptionPattern() -> String {
+        """
+            <div style="padding: 1.4375rem;box-sizing: inherit;">
+                <button aria-expanded="true" onclick="onTranscriptClick()"
+                        style="
+                            display: block;
+                            margin-top: 1.4375rem;
+                            border: 0.0625rem solid rgb(204, 204, 204);
+                            border-radius: 0.375rem;
+                            padding: 0px;
+                            width: 100%;
+                            text-align: left;
+                            background-color: transparent;
+                            color: inherit;
+                            font-size: inherit;
+                            line-height: inherit;
+                            font: inherit;
+                            cursor: default;
+                ">
+                    <span style="position: relative;display: inline-block;margin-left: 1rem;width: 0.75rem;top: 0.0625rem;">
+                        <span class="icon icon--caret-right" aria-hidden="true"></span>
+                    </span>
+                    <h5 style="margin: 1rem 0px;display: inline-block;">Transcript</h5>
+                </button>
+
+                <div style="width: 100%;">
+                    <div id="transcript" style="
+                        display: none;
+                        padding-top: 5px;
+                        border-left: 0.0625rem solid rgb(204, 204, 204);
+                        border-right: 0.0625rem solid rgb(204, 204, 204);
+                        border-bottom: 0.0625rem solid rgb(204, 204, 204);
+                        border-radius: 0px 0px 0.375rem 0.375rem;
+                        background: initial;color: rgb(119, 119, 119);
+                        font-size: 0.875rem;
+                    ">
+                        <div style="margin: 1rem;">
+                            ###TRANSCRIPT###
+                        </div>
+                    </div>
+                </div>
+            </div>
+        """
     }
 
     static func changeCoursePlayer(html: String) throws -> String {
@@ -358,6 +427,29 @@ extension ModuleItem: OfflineDownloadTypeProtocol {
         try scripts.forEach {
             try $0.remove()
         }
+
+        let videoTags = try document.getElementsByTag("video")
+        if let video = videoTags.first() {
+            // It's a video card
+            let newContent = Element(Tag("div"), "")
+            let transcriptions = try document.getElementsByClass("p3sdk-interactive-transcript-content")
+            // Add video to new content
+            try newContent.append(try video.outerHtml())
+
+            if let transcription = transcriptions.first() {
+                // Add transcription to content
+                try document.head()?.append(coursePlayerTranscriptionScript())
+                let html = coursePlayerTranscriptionPattern()
+                    .replacingOccurrences(of: "###TRANSCRIPT###", with: try transcription.html())
+                try newContent.append(html)
+            }
+            // clear body
+            try document.body()?.children().forEach {
+                try $0.remove()
+            }
+            try document.body()?.appendChild(newContent)
+        }
+
         return try document.html()
     }
 
