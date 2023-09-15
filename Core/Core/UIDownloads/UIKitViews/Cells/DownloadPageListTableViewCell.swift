@@ -52,6 +52,7 @@ final public class DownloadPageListTableViewCell: UITableViewCell {
     var downloadButtonHelper = DownloadStatusProvider()
     var page: Page?
     var course: Course?
+    var onRetryServerError: ((Page) -> Void)?
 
     // MARK: - Init -
 
@@ -139,33 +140,44 @@ final public class DownloadPageListTableViewCell: UITableViewCell {
         )
         downloadButtonHelper.status(
             for: page,
-            onState: { [weak self] isSupported, state, progress, eventObjectId in
-                guard let self = self, eventObjectId == self.page?.id else {
-                    return
-                }
+            onState: { [weak self] result in
+                result.event.flatMap { event in
+                    guard let self = self, result.eventObjectId == self.page?.id else {
+                        return
+                    }
 
-                downloadButton.isUserInteractionEnabled = isSupported
-                if isSupported {
-                    downloadButton.defaultImageForStates()
-                } else {
-                    downloadButton.currentState = .idle
-                    downloadButton.setImageForAllStates(
-                        uiImage: UIImage(
-                            systemName: "icloud.slash",
-                            withConfiguration: UIImage.SymbolConfiguration(weight: .light)
-                        ) ?? UIImage()
-                    )
-                }
+                    downloadButton.isUserInteractionEnabled = event.isSupported
+                    if event.isSupported {
+                        downloadButton.defaultImageForStates()
+                    } else {
+                        downloadButton.currentState = .idle
+                        downloadButton.setImageForAllStates(
+                            uiImage: UIImage(
+                                systemName: "icloud.slash",
+                                withConfiguration: UIImage.SymbolConfiguration(weight: .light)
+                            ) ?? UIImage()
+                        )
+                    }
 
-                if !isSupported {
-                    return
-                }
+                    if !event.isSupported {
+                        return
+                    }
 
-                debugLog(downloadButton.progress, "downloadButton.progress")
-                downloadButton.progress = Float(progress)
-                downloadButton.currentState = state
-                if state == .waiting {
-                    downloadButton.waitingView.startSpinning()
+                    debugLog(downloadButton.progress, "downloadButton.progress")
+
+                    downloadButton.progress = Float(event.progress)
+                    downloadButton.currentState = result.state
+
+                    if result.state == .retry, event.isServerError {
+                        downloadButton.retryButtonImage = UIImage(
+                            systemName: "autostartstop.trianglebadge.exclamationmark",
+                            withConfiguration: downloadButton.buttonConfiguration
+                        )!
+                    }
+
+                    if result.state == .waiting {
+                        downloadButton.waitingView.startSpinning()
+                    }
                 }
             }
         )
@@ -180,6 +192,10 @@ final public class DownloadPageListTableViewCell: UITableViewCell {
             case .downloading, .waiting:
                 self.downloadButtonHelper.pause(object: page)
             case .retry:
+                if self.downloadButtonHelper.isServerError {
+                    onRetryServerError?(page)
+                    return
+                }
                 self.downloadButtonHelper.resume(object: page)
             case .idle:
                 self.downloadButtonHelper.download(object: page)

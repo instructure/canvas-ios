@@ -41,33 +41,43 @@ extension ModuleItemCell {
         )
         downloadButtonHelper.status(
             for: item,
-            onState: {  [weak self] isSupported, state, progress, eventObjectId in
-                guard let self = self, eventObjectId == self.item?.id else {
-                    return
-                }
+            onState: { [weak self] result in
+                result.event.flatMap { event in
+                    guard let self = self, result.eventObjectId == self.item?.id else {
+                        return
+                    }
 
-                downloadButton.isUserInteractionEnabled = isSupported
-                if isSupported {
-                    downloadButton.defaultImageForStates()
-                } else {
-                    downloadButton.currentState = .idle
-                    downloadButton.setImageForAllStates(
-                        uiImage: UIImage(
-                            systemName: "icloud.slash",
-                            withConfiguration: UIImage.SymbolConfiguration(weight: .light)
-                        ) ?? UIImage()
-                    )
-                }
+                    downloadButton.isUserInteractionEnabled = event.isSupported
+                    if event.isSupported {
+                        downloadButton.defaultImageForStates()
+                    } else {
+                        downloadButton.currentState = .idle
+                        downloadButton.setImageForAllStates(
+                            uiImage: UIImage(
+                                systemName: "icloud.slash",
+                                withConfiguration: UIImage.SymbolConfiguration(weight: .light)
+                            ) ?? UIImage()
+                        )
+                    }
 
-                if !isSupported {
-                    return
-                }
+                    if !event.isSupported {
+                        return
+                    }
 
-                downloadButton.progress = Float(progress)
-                debugLog(downloadButton.progress, "downloadButton.progress")
-                downloadButton.currentState = state
-                if state == .waiting {
-                    downloadButton.waitingView.startSpinning()
+                    debugLog(downloadButton.progress, "downloadButton.progress")
+                    downloadButton.progress = Float(event.progress)
+                    downloadButton.currentState = result.state
+
+                    if result.state == .retry, event.isServerError {
+                        downloadButton.retryButtonImage = UIImage(
+                            systemName: "autostartstop.trianglebadge.exclamationmark",
+                            withConfiguration: downloadButton.buttonConfiguration
+                        )!
+                    }
+
+                    if result.state == .waiting {
+                        downloadButton.waitingView.startSpinning()
+                    }
                 }
             }
         )
@@ -82,6 +92,10 @@ extension ModuleItemCell {
             case .downloading, .waiting:
                 self.downloadButtonHelper.pause(object: item)
             case .retry:
+                if downloadButtonHelper.isServerError {
+                    onRetryServerError?(item)
+                    return
+                }
                 self.downloadButtonHelper.resume(object: item)
             case .idle:
                 self.downloadButtonHelper.download(object: item)
@@ -102,6 +116,7 @@ extension ModuleItemCell {
         }
         downloadButton.translatesAutoresizingMaskIntoConstraints = false
         downloadButton.widthAnchor.constraint(equalToConstant: 35).isActive = true
+        downloadButton.alpha = isUserInteractionEnabled ? 1.0 : 0.5
         return downloadButton
     }
 
