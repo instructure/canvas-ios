@@ -79,7 +79,7 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    private typealias DownloadProgressPublisher = Publisher<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never>
+    private typealias DownloadProgressPublisher = Publisher<CourseSyncDownloadProgress, Never>
 
     private func setupAutoAppearanceOnSyncStart(_ downloadProgressPublisher: some DownloadProgressPublisher) {
         NotificationCenter
@@ -94,8 +94,8 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
         _ downloadProgressPublisher: some DownloadProgressPublisher
     ) -> AnyPublisher<DashboardOfflineSyncProgressCardViewModel.ViewState, Never> {
         Publishers.CombineLatest(
-            interactor.observeStateProgress().compactMap { $0.allItems }.map { $0.ignoreContainerSelections() },
-            downloadProgressPublisher.compactMap { $0.firstItem }
+            interactor.observeStateProgress().map { $0.ignoreContainerSelections() },
+            downloadProgressPublisher
         )
         .receive(on: scheduler)
         .flatMap { stateProgress, downloadProgress -> AnyPublisher<DashboardOfflineSyncProgressCardViewModel.ViewState, Never> in
@@ -116,7 +116,6 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
 
     private func restorePreviousFailedState(_ downloadProgressPublisher: some DownloadProgressPublisher) {
         downloadProgressPublisher
-            .compactMap { $0.firstItem }
             .flatMap { downloadProgress -> AnyPublisher<DashboardOfflineSyncProgressCardViewModel.ViewState, Never> in
                 if downloadProgress.isFinished, downloadProgress.error != nil {
                     return Just(.error).eraseToAnyPublisher()
@@ -140,7 +139,6 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
 
     private func setupAutoDismissUponCompletion(_ downloadProgressPublisher: some DownloadProgressPublisher) {
         downloadProgressPublisher
-            .compactMap { $0.firstItem }
             .filter { $0.isFinished && $0.error == nil }
             .mapToValue(.hidden)
             .delay(for: .seconds(1), scheduler: scheduler)

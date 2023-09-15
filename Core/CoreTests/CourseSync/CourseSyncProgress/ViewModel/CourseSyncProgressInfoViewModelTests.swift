@@ -40,16 +40,15 @@ class CourseSyncProgressInfoViewModelTests: CoreTestCase {
             interactor: courseSyncProgressInteractorMock,
             scheduler: .immediate
         )
-        let fileProgress = CourseSyncDownloadProgress.save(
+        let fileProgress = CourseSyncDownloadProgress.make(
             bytesToDownload: 1000,
             bytesDownloaded: 500,
             isFinished: false,
-            error: nil,
-            in: databaseClient
+            error: nil
         )
 
         // WHEN
-        courseSyncProgressInteractorMock.courseSyncFileProgressSubject.send(.data([fileProgress]))
+        courseSyncProgressInteractorMock.courseSyncFileProgressSubject.send(fileProgress)
 
         // THEN
         XCTAssertSingleOutputEquals(
@@ -68,16 +67,15 @@ class CourseSyncProgressInfoViewModelTests: CoreTestCase {
             interactor: courseSyncProgressInteractorMock,
             scheduler: .immediate
         )
-        let fileProgress = CourseSyncDownloadProgress.save(
+        let fileProgress = CourseSyncDownloadProgress.make(
             bytesToDownload: 1000,
             bytesDownloaded: 0,
             isFinished: true,
-            error: "Download failed.",
-            in: databaseClient
+            error: "Download failed."
         )
 
         // WHEN
-        courseSyncProgressInteractorMock.courseSyncFileProgressSubject.send(.data([fileProgress]))
+        courseSyncProgressInteractorMock.courseSyncFileProgressSubject.send(fileProgress)
 
         // THEN
         XCTAssertSingleOutputEquals(
@@ -100,16 +98,15 @@ class CourseSyncProgressInfoViewModelTests: CoreTestCase {
             interactor: courseSyncProgressInteractorMock,
             scheduler: .immediate
         )
-        let fileProgress = CourseSyncDownloadProgress.save(
+        let fileProgress = CourseSyncDownloadProgress.make(
             bytesToDownload: 1000,
             bytesDownloaded: 0,
             isFinished: false,
-            error: "Download failed.",
-            in: databaseClient
+            error: "Download failed."
         )
 
         // WHEN
-        courseSyncProgressInteractorMock.courseSyncFileProgressSubject.send(.data([fileProgress]))
+        courseSyncProgressInteractorMock.courseSyncFileProgressSubject.send(fileProgress)
 
         // THEN
         XCTAssertSingleOutputEquals(
