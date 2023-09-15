@@ -80,6 +80,7 @@
 		840CABA038B02116B1BDA3E0 /* Pods_defaults_TeacherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */; };
 		8B086F102AB1F00A0013C15F /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B086F0F2AB1F00A0013C15F /* LoginTests.swift */; };
 		8B086F132AB307260013C15F /* DashboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B086F122AB307260013C15F /* DashboardTests.swift */; };
+		8B086F1E2AB48F710013C15F /* CourseDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B086F1D2AB48F710013C15F /* CourseDetailsTests.swift */; };
 		8B175C3D29F6BE8F007B6CFF /* DSPeopleE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B175C3C29F6BE8F007B6CFF /* DSPeopleE2ETests.swift */; };
 		8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D063D27A1B3640208ABF74D4 /* libz.tbd */; };
 		B15CA26D221DDEB40014FB02 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; };
@@ -517,6 +518,7 @@
 		862F1400F211EDA7FFBD70FA /* Pods_defaults_TeacherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_TeacherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B086F0F2AB1F00A0013C15F /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
 		8B086F122AB307260013C15F /* DashboardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTests.swift; sourceTree = "<group>"; };
+		8B086F1D2AB48F710013C15F /* CourseDetailsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailsTests.swift; sourceTree = "<group>"; };
 		8B175C3C29F6BE8F007B6CFF /* DSPeopleE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSPeopleE2ETests.swift; sourceTree = "<group>"; };
 		9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.release.xcconfig"; sourceTree = "<group>"; };
 		B15CA25D221DDB820014FB02 /* TeacherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -834,6 +836,14 @@
 			path = Dashboard;
 			sourceTree = "<group>";
 		};
+		8B086F1C2AB48F710013C15F /* CourseDetails */ = {
+			isa = PBXGroup;
+			children = (
+				8B086F1D2AB48F710013C15F /* CourseDetailsTests.swift */,
+			);
+			path = CourseDetails;
+			sourceTree = "<group>";
+		};
 		B15CA241221DC4DA0014FB02 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -977,6 +987,7 @@
 		E841D8A123D6472200685A63 /* TeacherE2ETests */ = {
 			isa = PBXGroup;
 			children = (
+				8B086F1C2AB48F710013C15F /* CourseDetails */,
 				8B086F112AB307150013C15F /* Dashboard */,
 				8B086F0E2AB1EFFC0013C15F /* Login */,
 				C9A23D2327A3D8A600A1EE3B /* Assignments */,
@@ -1710,6 +1721,7 @@
 				C9A1834B265CEBC800B35D52 /* PagesE2ETest.swift in Sources */,
 				8B175C3D29F6BE8F007B6CFF /* DSPeopleE2ETests.swift in Sources */,
 				C909F7C327B25AC500CB89DE /* DSDashboardTest.swift in Sources */,
+				8B086F1E2AB48F710013C15F /* CourseDetailsTests.swift in Sources */,
 				C92796F126772C5B00582AC5 /* SyllabusE2ETests.swift in Sources */,
 				C91B216B26CA4E28006EE156 /* MessagesE2ETest.swift in Sources */,
 				C9FDE91E26BBBE5500DF0106 /* AnnouncementsE2ETests.swift in Sources */,

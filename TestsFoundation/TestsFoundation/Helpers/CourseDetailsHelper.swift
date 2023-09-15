@@ -32,6 +32,8 @@ public class CourseDetailsHelper: BaseHelper {
         case googleDrive = "context_external_tool_1038049"
         case quizzes = "quizzes"
         case files = "files"
+        case studio = "context_external_tool_955147"
+        case studentView = "student_view"
     }
 
     public static var titleLabel: XCUIElement { app.find(id: "course-details.title-lbl") }
