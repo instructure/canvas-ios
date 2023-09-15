@@ -169,7 +169,11 @@ final class DownloadsModuleCellViewModel: ObservableObject {
         guard eventObjectId == objectId else {
             return
         }
-        isServerError = event.isServerError
+        if event.status == .failed || event.status == .paused {
+            isServerError = event.isServerError
+        } else {
+            isServerError = false
+        }
         downloaderStatus = event.status
         progress = Float(event.progress)
     }
@@ -184,7 +188,11 @@ final class DownloadsModuleCellViewModel: ObservableObject {
             if event.progress == 0.0 {
                 return
             }
-            isServerError = event.isServerError
+            if event.status == .failed || event.status == .paused {
+                isServerError = event.isServerError
+            } else {
+                isServerError = false
+            }
             downloaderStatus = event.status
             progress = Float(event.progress)
             debugLog(eventObjectId, event.progress, "progress")

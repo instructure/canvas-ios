@@ -66,7 +66,7 @@ struct DownloadingCellView: View {
                     debugLog(state)
                 },
                 onTap: { _ in
-                    if viewModel.isServerError {
+                    if viewModel.isServerError, currentState == .retry {
                         onRetryServerError?(viewModel.entry)
                         return
                     }

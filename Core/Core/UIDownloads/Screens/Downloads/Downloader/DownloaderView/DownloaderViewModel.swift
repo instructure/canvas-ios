@@ -138,5 +138,4 @@ final class DownloaderViewModel: ObservableObject, Reachabilitable {
             self.error = error.localizedDescription
         }
     }
-    
 }
