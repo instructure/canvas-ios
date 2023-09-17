@@ -404,7 +404,8 @@ private func syllabus(url: URLComponents, params: [String: String], userInfo: [S
 
 private func courseDetails(url: URLComponents, params: [String: String], userInfo: [String: Any]?) -> UIViewController? {
     guard let context = Context(path: url.path) else { return nil }
-    let viewModel = CourseDetailsViewModel(context: context)
+    let viewModel = CourseDetailsViewModel(context: context,
+                                           offlineModeInteractor: OfflineModeAssembly.make())
     let viewController = CoreHostingController(CourseDetailsView(viewModel: viewModel))
 
     if let contextColor = url.contextColor {
