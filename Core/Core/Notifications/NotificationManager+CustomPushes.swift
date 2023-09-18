@@ -114,63 +114,47 @@ extension NotificationManager {
         }
     }
 
-    func subscribeToUserSNSTopic(deviceToken token: Data, session: LoginSession) {
-        guard subscriptionArn == nil || subscriptionArn?.isEmpty == true else { return }
-        if let requestApp = AWSSNSCreatePlatformEndpointInput(),
-            var appARN = Secret.appArnTemplate.string {
-            requestApp.token = token.hexString
-            #if DEBUG
-            appARN = appARN.replacingOccurrences(of: "{SCHEME}", with: "APNS_SANDBOX")
-            #else
-            appARN = appARN.replacingOccurrences(of: "{SCHEME}", with: "APNS")
-            #endif
-            requestApp.platformApplicationArn = appARN
-            let sns = AWSSNS(forKey: "mySNS")
-            sns.createPlatformEndpoint(requestApp).continueWith(executor: AWSExecutor.mainThread()) { response in
-                if let error = response.error {
-                    print("!!! Create platform endpoint error: " + error.localizedDescription)
-                } else if let endpointArn = response.result?.endpointArn {
-                    if let requestTopic = AWSSNSCreateTopicInput() {
-                        let baseUrlTopic = session.clearDomain.replacingOccurrences(of: ".", with: "_")
-                        requestTopic.name = "icanvas_mobile_\(baseUrlTopic)_\(session.userID)"
-                        sns.createTopic(requestTopic).continueWith(executor: AWSExecutor.mainThread()) { response in
-                            if let error = response.error {
-                                print("!!! Create topic error: " + error.localizedDescription)
-                            } else if let topicARN = response.result?.topicArn {
-                                if let requestSubscribe = AWSSNSSubscribeInput() {
-                                    requestSubscribe.endpoint = endpointArn
-                                    requestSubscribe.protocols = "application"
-                                    requestSubscribe.topicArn = topicARN
-                                    sns.subscribe(requestSubscribe).continueWith(executor: AWSExecutor.mainThread()) { response in
-                                        if let error = response.error {
-                                            print("!!! Topic subscription error: " + error.localizedDescription)
-                                        } else if let subscriptionArn = response.result?.subscriptionArn {
-                                            self.subscriptionArn = subscriptionArn
-                                            print("!!! Successful subscription to arn: \(subscriptionArn)")
-                                        }
-                                        return nil
-                                    }
-                                }
-                            }
-                            return nil
-                        }
-                    }
-                }
-                return nil
+    func createDevicePlatformEndpoint(deviceToken token: Data, session: LoginSession) {
+        deviceTokenString = token.hexString
+        var isReleaseString: String = ""
+        #if DEBUG
+        isReleaseString = "false"
+        #else
+        isReleaseString = "true"
+        #endif
+        if let request = AWSLambdaInvocationRequest() {
+            request.functionName = "createPlatformEndpoint"
+            request.invocationType = .requestResponse
+            let params: [String: Any] = [
+                "userid": session.userID,
+                "domain": session.clearDomain,
+                "osType": "ios",
+                "deviceToken": deviceTokenString ?? token.hexString,
+                "isRelease": isReleaseString,
+            ]
+            if let payload = try? JSONSerialization.data(withJSONObject: params, options: []) {
+                request.payload = payload
+                AWSLambda(forKey: "myLambda").invoke(request) { _, _ in }
             }
         }
     }
 
-    public func unsubscribeFromUserSNSTopic() {
-        guard remoteToken != nil, remoteSession != nil else { return }
-        let sns = AWSSNS(forKey: "mySNS")
-        if let unsubscribeRequest = AWSSNSUnsubscribeInput(),
-            let subscrArn = subscriptionArn,
-            !subscrArn.isEmpty {
-            unsubscribeRequest.subscriptionArn = subscrArn
-            sns.unsubscribe(unsubscribeRequest)
-            print("!!! Sent unsubscribe SNS request for arn: \(subscrArn)")
-            subscriptionArn = ""
+    public func deleteDevicePlatformEndpoint(session: LoginSession) {
+        guard let deviceToken = deviceTokenString else { return }
+        if let request = AWSLambdaInvocationRequest() {
+            request.functionName = "deletePlatformEndpoint"
+            request.invocationType = .requestResponse
+            let params: [String: Any] = [
+                "userid": session.userID,
+                "domain": session.clearDomain,
+                "deviceToken": deviceToken,
+            ]
+            if let payload = try? JSONSerialization.data(withJSONObject: params, options: []) {
+                request.payload = payload
+                AWSLambda(forKey: "myLambda").invoke(request) { _, _ in }
+            }
         }
+        remoteToken = nil
+        remoteSession = nil
     }
 }

@@ -449,7 +449,7 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         guard environment.currentSession == session else { return }
         PageViewEventController.instance.userDidChange()
 //        NotificationManager.shared.unsubscribeFromPushChannel()
-        NotificationManager.shared.unsubscribeFromUserSNSTopic()
+        NotificationManager.shared.deleteDevicePlatformEndpoint(session: session)
         UIApplication.shared.applicationIconBadgeNumber = 0
         environment.userDidLogout(session: session)
         CoreWebView.stopCookieKeepAlive()

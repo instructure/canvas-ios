@@ -29,7 +29,7 @@ public enum Secret {
     case studentPSPDFKitLicense, teacherPSPDFKitLicense
 
     /// AWS keys values
-    case awsAccessKey, awsSecretKey, appArnTemplate
+    case awsAccessKey, awsSecretKey
     case customPushDomain
 
     /// Bugfender key
