@@ -17,33 +17,49 @@
 //
 
 import Foundation
-import CoreData
 
-public final class CourseSyncDownloadProgress: NSManagedObject {
-    @NSManaged public var bytesToDownload: Int
-    @NSManaged public var bytesDownloaded: Int
-    @NSManaged public var isFinished: Bool
-    @NSManaged public var error: String?
+public struct CourseSyncDownloadProgress {
+    let bytesToDownload: Int
+    let bytesDownloaded: Int
+    let isFinished: Bool
+    let error: String?
 
     var progress: Float {
         Float(bytesDownloaded) / Float(bytesToDownload)
     }
-}
 
-public extension CourseSyncDownloadProgress {
-    @discardableResult
-    static func save(
+    init(
         bytesToDownload: Int,
         bytesDownloaded: Int,
         isFinished: Bool,
-        error: String?,
-        in context: NSManagedObjectContext
+        error: String?
+    ) {
+        self.bytesToDownload = bytesToDownload
+        self.bytesDownloaded = bytesDownloaded
+        self.isFinished = isFinished
+        self.error = error
+    }
+
+    init(from entity: CDCourseSyncDownloadProgress) {
+        bytesToDownload = entity.bytesToDownload
+        bytesDownloaded = entity.bytesDownloaded
+        isFinished = entity.isFinished
+        error = entity.error
+    }
+}
+
+extension CourseSyncDownloadProgress {
+    static func make(
+        bytesToDownload: Int = 1000,
+        bytesDownloaded: Int = 100,
+        isFinished: Bool = false,
+        error: String? = nil
     ) -> CourseSyncDownloadProgress {
-        let model: CourseSyncDownloadProgress = context.first(scope: .all) ?? context.insert()
-        model.bytesToDownload = bytesToDownload
-        model.bytesDownloaded = bytesDownloaded
-        model.isFinished = isFinished
-        model.error = error
-        return model
+        .init(
+            bytesToDownload: bytesToDownload,
+            bytesDownloaded: bytesDownloaded,
+            isFinished: isFinished,
+            error: error
+        )
     }
 }

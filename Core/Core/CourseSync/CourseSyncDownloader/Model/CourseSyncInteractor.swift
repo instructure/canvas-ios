@@ -144,7 +144,9 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         unowned let unownedSelf = self
 
         guard let tabIndex = entry.tabs.firstIndex(where: { $0.type == tabName }),
-              entry.tabs[tabIndex].selectionState == .selected else {
+              entry.tabs[tabIndex].selectionState == .selected,
+              entry.tabs[tabIndex].state != .downloaded
+        else {
             return Just(()).eraseToAnyPublisher()
         }
 
@@ -182,7 +184,8 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             let tabIndex = entry.tabs.firstIndex(where: { $0.type == .files }),
             entry.files.count > 0,
             entry.tabs[tabIndex].selectionState == .selected ||
-            entry.tabs[tabIndex].selectionState == .partiallySelected
+            entry.tabs[tabIndex].selectionState == .partiallySelected,
+            entry.tabs[tabIndex].state != .downloaded
         else {
             return Just(()).eraseToAnyPublisher()
         }
@@ -282,17 +285,17 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         entries.map { entry in
             var cpy = entry
             if cpy.state != .downloaded {
-                cpy.state = .loading(nil)
+                cpy.updateCourseState(state: .loading(nil))
             } else {
                 return cpy
             }
 
-            for var tab in cpy.tabs where tab.state != .downloaded {
-                tab.state = .loading(nil)
+            for tab in cpy.tabs where tab.state != .downloaded {
+                cpy.updateTabState(id: tab.id, state: .loading(nil))
             }
 
-            for var file in cpy.files where file.state != .downloaded {
-                file.state = .loading(nil)
+            for file in cpy.files where file.state != .downloaded {
+                cpy.updateFileState(id: file.id, state: .loading(nil))
             }
 
             return cpy

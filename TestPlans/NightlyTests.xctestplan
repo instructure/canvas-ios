@@ -59,6 +59,7 @@
   },
   "testTargets" : [
     {
+      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:..\/Core\/Core.xcodeproj",
         "identifier" : "73B1A2AD90A7970B7DB39CDC",
@@ -66,6 +67,7 @@
       }
     },
     {
+      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:Student.xcodeproj",
         "identifier" : "7DE1160622F8AAB1005BFE98",
@@ -73,6 +75,7 @@
       }
     },
     {
+      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:..\/rn\/Teacher\/ios\/Teacher.xcodeproj",
         "identifier" : "B15CA25C221DDB820014FB02",
@@ -80,6 +83,7 @@
       }
     },
     {
+      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:..\/Parent\/Parent.xcodeproj",
         "identifier" : "3B36A2DE2322C26A00599A1E",
@@ -87,6 +91,7 @@
       }
     },
     {
+      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:Student.xcodeproj",
         "identifier" : "E8C6F4CF23D626220086B865",
@@ -94,6 +99,7 @@
       }
     },
     {
+      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:..\/rn\/Teacher\/ios\/Teacher.xcodeproj",
         "identifier" : "E841D8A223D6472F00685A63",
@@ -101,6 +107,7 @@
       }
     },
     {
+      "parallelizable" : true,
       "skippedTests" : [
         "PlannerTests\/testSwipes()"
       ],

@@ -455,6 +455,9 @@
 "Cancel Submission?" = "Hætta við skil?";
 
 /* No comment provided by engineer. */
+"Cancel Sync?" = "Hætta við samhæfingu?";
+
+/* No comment provided by engineer. */
 "Canvas Guides" = "Canvas leiðarvísar";
 
 /* No comment provided by engineer. */
@@ -864,9 +867,6 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Sleppa %@";
-
-/* No comment provided by engineer. */
-"Dismiss notification" = "Hafna tilkynningu";
 
 /* No comment provided by engineer. */
 "Display As" = "Sýna sem";
@@ -1364,6 +1364,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Þú virðist ekki vera innritaður í nein námskeið sem %@. Eitthvað að hinum öppunum okkar gæti hentað betur. Smelltu á eitt þeirra til að fara í App Store.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "Það mun stöðva samstillingu efnis án nettengingar. Þú getur gert það aftur síðar.";
+
+/* No comment provided by engineer. */
 "Italic" = "Skáletrað";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1497,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Innskráningarvilla";
+
+/* No comment provided by engineer. */
+"Login help." = "Hjálp við innskráningu.";
 
 /* No comment provided by engineer. */
 "Login ID" = "Innskráningarauðkenni";
@@ -1782,6 +1788,9 @@
 
 /* No comment provided by engineer. */
 "Observers" = "Skoðendur";
+
+/* No comment provided by engineer. */
+"Offline" = "Án nettengingar";
 
 /* No comment provided by engineer. */
 "Offline Content" = "Efni án nettengingar";

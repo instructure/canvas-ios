@@ -126,7 +126,7 @@ public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryCompose
                 }
                 return Publishers.Sequence(sequence: folderIDs)
                     .setFailureType(to: Error.self)
-                    .flatMap {
+                    .flatMap(maxPublishers: .max(1)) {
                         unownedSelf.getFiles(
                             folderID: $0,
                             initialArray: result,

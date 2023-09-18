@@ -455,6 +455,9 @@
 "Cancel Submission?" = "Hủy Nộp?";
 
 /* No comment provided by engineer. */
+"Cancel Sync?" = "Hủy Đồng Bộ?";
+
+/* No comment provided by engineer. */
 "Canvas Guides" = "Canvas Guides";
 
 /* No comment provided by engineer. */
@@ -864,9 +867,6 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Bỏ %@";
-
-/* No comment provided by engineer. */
-"Dismiss notification" = "Bỏ qua thông báo";
 
 /* No comment provided by engineer. */
 "Display As" = "Hiển Thị Dưới Dạng";
@@ -1364,6 +1364,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Có vẻ bạn chưa ghi danh bất kỳ khóa học nào với tư cách %@. Một trong các ứng dụng khác có thể thích hợp hơn. Nhấn vào một để truy cập App Store.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "Việc này sẽ ngừng đồng bộ nội dung ngoại tuyến. Bạn có thể thực hiện lại sau.";
+
+/* No comment provided by engineer. */
 "Italic" = "Nghiêng";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1497,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Lỗi Đăng Nhập";
+
+/* No comment provided by engineer. */
+"Login help." = "Trợ giúp đăng nhập.";
 
 /* No comment provided by engineer. */
 "Login ID" = "ID Đăng Nhập";
@@ -1782,6 +1788,9 @@
 
 /* No comment provided by engineer. */
 "Observers" = "Người Quan Sát";
+
+/* No comment provided by engineer. */
+"Offline" = "Ngoại tuyến";
 
 /* No comment provided by engineer. */
 "Offline Content" = "Nội Dung Ngoại Tuyến";
