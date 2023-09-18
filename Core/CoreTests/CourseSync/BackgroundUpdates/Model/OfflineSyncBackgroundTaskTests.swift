@@ -179,7 +179,7 @@ class OfflineSyncBackgroundTaskTests: CoreTestCase {
     }
 
     private func mockFinishedDownload() {
-        let progress: CourseSyncDownloadProgress = AppEnvironment.shared.database.viewContext.insert()
+        let progress: CDCourseSyncDownloadProgress = AppEnvironment.shared.database.viewContext.insert()
         progress.isFinished = true
     }
 }

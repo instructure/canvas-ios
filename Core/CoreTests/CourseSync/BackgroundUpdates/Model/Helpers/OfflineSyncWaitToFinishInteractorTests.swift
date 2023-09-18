@@ -38,7 +38,7 @@ class OfflineSyncWaitToFinishInteractorTests: CoreTestCase {
             } receiveValue: { _ in
                 valueExpectation.fulfill()
             }
-        let downloadProgressEntity: CourseSyncDownloadProgress = AppEnvironment.shared.database.viewContext.insert()
+        let downloadProgressEntity: CDCourseSyncDownloadProgress = AppEnvironment.shared.database.viewContext.insert()
         downloadProgressEntity.isFinished = false
         publisher.accept()
 

@@ -25,9 +25,9 @@ enum OfflineSyncWaitToFinishInteractor {
      `isFinished` property changes to `true` in the database.
      */
     static func wait() -> AnyPublisher<Void, Never> {
-        let downloadFinishedPredicate = NSPredicate(key: #keyPath(CourseSyncDownloadProgress.isFinished), equals: true)
+        let downloadFinishedPredicate = NSPredicate(key: #keyPath(CDCourseSyncDownloadProgress.isFinished), equals: true)
         let downloadFinishedScope = Scope(predicate: downloadFinishedPredicate, order: [])
-        let useCase = LocalUseCase<CourseSyncDownloadProgress>(scope: downloadFinishedScope)
+        let useCase = LocalUseCase<CDCourseSyncDownloadProgress>(scope: downloadFinishedScope)
         let store = ReactiveStore(offlineModeInteractor: nil, useCase: useCase)
 
         return store
