@@ -210,7 +210,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                     selection: .file(entry.id, files[fileIndex].id), state: .loading(nil)
                 )
 
-                return unownedSelf.filesInteractor.getFile(
+                return unownedSelf.filesInteractor.downloadFile(
                     url: element.url,
                     fileID: element.fileId,
                     fileName: element.fileName,

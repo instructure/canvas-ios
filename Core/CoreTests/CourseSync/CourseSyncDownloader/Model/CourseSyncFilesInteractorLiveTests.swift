@@ -40,7 +40,7 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
         mock.suspend()
 
         var progressList: [Float] = []
-        let subscription = testee.getFile(
+        let subscription = testee.downloadFile(
             url: url,
             fileID: "fileID",
             fileName: "fileName",
@@ -102,7 +102,7 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
         folderItem.id = "file-fileID"
         folderItem.file = existingFile
 
-        let subscription = testee.getFile(
+        let subscription = testee.downloadFile(
             url: url,
             fileID: "fileID",
             fileName: "fileName",
@@ -149,7 +149,7 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
         folderItem.id = "file-fileID"
         folderItem.file = existingFile
 
-        let subscription = testee.getFile(
+        let subscription = testee.downloadFile(
             url: url,
             fileID: "fileID",
             fileName: "fileName",
@@ -177,7 +177,7 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
         mock.suspend()
 
         var progressList: [Float] = []
-        let subscription = testee.getFile(
+        let subscription = testee.downloadFile(
             url: url,
             fileID: "1",
             fileName: "fileName",
@@ -217,7 +217,7 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
 
         environment.currentSession = nil
 
-        let subscription = testee.getFile(url: URL(string: "1")!, fileID: "1", fileName: "1", mimeClass: "1", updatedAt: nil)
+        let subscription = testee.downloadFile(url: URL(string: "1")!, fileID: "1", fileName: "1", mimeClass: "1", updatedAt: nil)
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case let .failure(error):

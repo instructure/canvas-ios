@@ -22,7 +22,11 @@ import CoreData
 import Foundation
 
 public protocol CourseSyncFilesInteractor {
-    func getFile(
+    func getFiles(
+        courseId: String,
+        useCache: Bool
+    ) -> AnyPublisher<[File], Error>
+    func downloadFile(
         url: URL,
         fileID: String,
         fileName: String,
@@ -46,7 +50,111 @@ public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, Loc
         self.offlineFileInteractor = offlineFileInteractor
     }
 
-    public func getFile(
+    /// Recursively looks up every file and folder under the specified `courseId` and returns a list of `File`.
+    public func getFiles(
+        courseId: String,
+        useCache: Bool
+    ) -> AnyPublisher<[File], Error> {
+        unowned let unownedSelf = self
+
+        let store = ReactiveStore(
+            useCase: GetFolderByPath(
+                context: .course(courseId)
+            )
+        )
+        let publisher = useCache ? store.getEntitiesFromDatabase() : store.getEntities()
+
+        return publisher
+            .flatMap {
+                Publishers.Sequence(sequence: $0)
+                    .filter { !$0.lockedForUser && !$0.hiddenForUser }
+                    .setFailureType(to: Error.self)
+                    .flatMap { unownedSelf.getFiles(folderID: $0.id, initialArray: [], useCache: useCache) }
+            }
+            .map {
+                $0
+                    .compactMap { $0.file }
+                    .filter { $0.url != nil && $0.mimeClass != nil }
+            }
+            .replaceEmpty(with: [])
+            .eraseToAnyPublisher()
+    }
+
+    private func getFiles(
+        folderID: String,
+        initialArray: [FolderItem],
+        useCache: Bool
+    ) -> AnyPublisher<[FolderItem], Error> {
+        unowned let unownedSelf = self
+
+        var result = initialArray
+
+        return getFolderItems(folderID: folderID, useCache: useCache)
+            .flatMap { files, folderIDs in
+                result.append(contentsOf: files)
+
+                guard folderIDs.count > 0 else {
+                    return Just([result])
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                }
+                return Publishers.Sequence(sequence: folderIDs)
+                    .setFailureType(to: Error.self)
+                    .flatMap(maxPublishers: .max(1)) {
+                        unownedSelf.getFiles(
+                            folderID: $0,
+                            initialArray: result,
+                            useCache: useCache
+                        )
+                        .handleEvents(receiveOutput: { result = $0 })
+                    }
+                    .collect()
+                    .eraseToAnyPublisher()
+            }
+            .first()
+            .map { _ in result }
+            .eraseToAnyPublisher()
+    }
+
+    private func getFolderItems(folderID: String, useCache: Bool) -> AnyPublisher<([FolderItem], [String]), Error> {
+        let store = ReactiveStore(
+            useCase: GetFolderItems(
+                folderID: folderID
+            )
+        )
+        let publisher = useCache ? store.getEntitiesFromDatabase() : store.getEntities()
+
+        return publisher
+            .tryCatch { error -> AnyPublisher<[FolderItem], Error> in
+                if case .unauthorized = error as? Core.APIError {
+                    return Just([])
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                } else {
+                    throw error
+                }
+            }
+            .map {
+                let files = $0
+                    .filter {
+                        if let file = $0.file {
+                            return !file.lockedForUser && !file.hiddenForUser
+                        } else {
+                            return false
+                        }
+                    }
+                let folderIDs = $0
+                    .filter { $0.folder != nil }
+                    .compactMap { $0.folder }
+                    .filter { !$0.lockedForUser && !$0.hiddenForUser }
+                    .map { $0.id }
+
+                return (files, folderIDs)
+            }
+            .eraseToAnyPublisher()
+    }
+
+    public func downloadFile(
         url: URL,
         fileID: String,
         fileName: String,
@@ -72,10 +180,10 @@ public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, Loc
             location: URL.Directories.documents
         )
 
-        if fileManager.fileExists(atPath: localURL.path),                               // File exists on the disk
+        if fileManager.fileExists(atPath: localURL.path), // File exists on the disk
            let fileModificationDate = fileManager.fileModificationDate(url: localURL),
-           let updatedAt = updatedAt,                                                   // and
-           fileModificationDate >= updatedAt {                                          // is up to date
+           let updatedAt = updatedAt, // and
+           fileModificationDate >= updatedAt { // is up to date
             return AnyPublisher<Float, Error>.create { subscriber in
                 subscriber.send(1)
                 subscriber.send(completion: .finished)
