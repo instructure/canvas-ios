@@ -154,6 +154,7 @@ final class DownloadStatusProvider: DownloadsProgressBarHidden {
     func resume(object: OfflineDownloadTypeProtocol) {
         do {
             try downloadsManager.resume(object: object)
+            toggleDownloadingBarView(hidden: false)
         } catch {
             debugLog(error.localizedDescription)
         }
