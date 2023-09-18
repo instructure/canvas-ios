@@ -455,6 +455,9 @@
 "Cancel Submission?" = "取消提交項目？";
 
 /* No comment provided by engineer. */
+"Cancel Sync?" = "取消同步？";
+
+/* No comment provided by engineer. */
 "Canvas Guides" = "Canvas 指南";
 
 /* No comment provided by engineer. */
@@ -864,9 +867,6 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "忽略%@";
-
-/* No comment provided by engineer. */
-"Dismiss notification" = "解除通知";
 
 /* No comment provided by engineer. */
 "Display As" = "顯示為";
@@ -1364,6 +1364,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "您尚未註冊任何課程為 %@。我們的其中一個其他應用程式可能較適合。點選一個以造訪 App Store。";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "系統將停止離線內容同步。您可以稍後再進行。";
+
+/* No comment provided by engineer. */
 "Italic" = "斜體";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1497,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "登入錯誤";
+
+/* No comment provided by engineer. */
+"Login help." = "登入協助。";
 
 /* No comment provided by engineer. */
 "Login ID" = "登入 ID";
@@ -1782,6 +1788,9 @@
 
 /* No comment provided by engineer. */
 "Observers" = "觀察者";
+
+/* No comment provided by engineer. */
+"Offline" = "離線";
 
 /* No comment provided by engineer. */
 "Offline Content" = "離線內容";
