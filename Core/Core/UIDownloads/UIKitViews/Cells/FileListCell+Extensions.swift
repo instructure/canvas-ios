@@ -44,32 +44,34 @@ extension FileListCell {
         )
         downloadButtonHelper.status(
             for: file,
-            onState: { [weak self] isSupported, state, progress, eventObjectId in
-                guard let self = self, eventObjectId == self.file?.id else {
-                    return
-                }
+            onState: { [weak self] result in
+                result.event.flatMap { event in
+                    guard let self = self, result.eventObjectId == self.file?.id else {
+                        return
+                    }
 
-                downloadButton.isUserInteractionEnabled = isSupported
-                if isSupported {
-                    downloadButton.defaultImageForStates()
-                } else {
-                    downloadButton.currentState = .idle
-                    downloadButton.setImageForAllStates(
-                        uiImage: UIImage(
-                            systemName: "icloud.slash",
-                            withConfiguration: UIImage.SymbolConfiguration(weight: .light)
-                        ) ?? UIImage()
-                    )
-                }
+                    downloadButton.isUserInteractionEnabled = event.isSupported
+                    if event.isSupported {
+                        downloadButton.defaultImageForStates()
+                    } else {
+                        downloadButton.currentState = .idle
+                        downloadButton.setImageForAllStates(
+                            uiImage: UIImage(
+                                systemName: "icloud.slash",
+                                withConfiguration: UIImage.SymbolConfiguration(weight: .light)
+                            ) ?? UIImage()
+                        )
+                    }
 
-                if !isSupported {
-                    return
-                }
-                debugLog(downloadButton.progress, "downloadButton.progress")
-                downloadButton.progress = Float(progress)
-                downloadButton.currentState = state
-                if state == .waiting {
-                    downloadButton.waitingView.startSpinning()
+                    if !event.isSupported {
+                        return
+                    }
+                    debugLog(downloadButton.progress, "downloadButton.progress")
+                    downloadButton.progress = Float(event.progress)
+                    downloadButton.currentState = result.state
+                    if result.state == .waiting {
+                        downloadButton.waitingView.startSpinning()
+                    }
                 }
             }
         )
@@ -84,6 +86,10 @@ extension FileListCell {
             case .downloading, .waiting:
                 self.downloadButtonHelper.pause(object: file)
             case .retry:
+                if downloadButtonHelper.isServerError {
+                    onRetryServerError?(file)
+                    return
+                }
                 self.downloadButtonHelper.resume(object: file)
             case .idle:
                 self.downloadButtonHelper.download(object: file)

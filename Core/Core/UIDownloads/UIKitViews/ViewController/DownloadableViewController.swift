@@ -48,6 +48,7 @@ public class DownloadableViewController: UIViewController, ErrorViewController, 
     private var connectionSubscriber: AnyCancellable?
 
     private var willDisappearing: Bool = false
+    private var isServerError: Bool = false
 
     public lazy var downloadButton: DownloadButton = {
         let downloadButton = DownloadButton()
@@ -110,6 +111,10 @@ public class DownloadableViewController: UIViewController, ErrorViewController, 
             case .retry:
                 do {
                     try self.downloadableItem.flatMap {
+                        if self.isServerError {
+                            self.showRetryServerErrorAlert(object: $0.object)
+                            return
+                        }
                         try self.downloadsManager.resume(object: $0.object)
                     }
                 } catch {
@@ -235,6 +240,7 @@ public class DownloadableViewController: UIViewController, ErrorViewController, 
     }
 
     private func statusChanged(_ event: OfflineDownloadsManagerEventObject) {
+        isServerError = false
         guard let object = downloadableItem?.object else {
             return
         }
@@ -283,6 +289,18 @@ public class DownloadableViewController: UIViewController, ErrorViewController, 
             case .failed, .paused:
                 if downloadButton.currentState != .retry {
                     downloadButton.currentState = .retry
+                }
+                isServerError = event.isServerError
+                if isServerError {
+                    downloadButton.retryButtonImage = UIImage(
+                        systemName: "autostartstop.trianglebadge.exclamationmark",
+                        withConfiguration: downloadButton.buttonConfiguration
+                    )!
+                } else {
+                    downloadButton.retryButtonImage = UIImage(
+                        systemName: "arrow.clockwise.circle",
+                        withConfiguration: downloadButton.buttonConfiguration
+                    )!
                 }
             default:
                 downloadButton.currentState = .idle
@@ -357,5 +375,23 @@ public class DownloadableViewController: UIViewController, ErrorViewController, 
         } catch {
             showError(error)
         }
+    }
+
+    private func showRetryServerErrorAlert(object: OfflineDownloadTypeProtocol) {
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        let retry = UIAlertAction(title: "Retry", style: .default) { [weak self]  _ in
+            guard let self = self else {
+                return
+            }
+            do {
+                try self.downloadsManager.resume(object: object)
+            } catch {
+                self.showError(error)
+            }
+        }
+        showAlert(
+            title: "Something went wrong on the server side. Try again or contact support.",
+            actions: [cancel, retry]
+        )
     }
 }

@@ -22,6 +22,12 @@ import mobile_offline_downloader_ios
 
 final class DownloadStatusProvider: DownloadsProgressBarHidden {
 
+    typealias DownloadStatusProviderResult = (
+        event: OfflineDownloadsManagerEventObject?,
+        eventObjectId: String,
+        state: DownloadButton.State
+    )
+
     private let downloadsManager = OfflineDownloadsManager.shared
     private let storageManager = OfflineStorageManager.shared
     private let imageDownloader = ImageDownloader()
@@ -31,6 +37,8 @@ final class DownloadStatusProvider: DownloadsProgressBarHidden {
     private var userInfo: String?
     private var cancellable: AnyCancellable?
 
+    var isServerError: Bool = false
+
     func update(
         object: OfflineDownloadTypeProtocol?,
         course: Course?,
@@ -39,11 +47,12 @@ final class DownloadStatusProvider: DownloadsProgressBarHidden {
         self.object = object
         self.course = course
         self.userInfo = userInfo
+        self.isServerError = false
     }
 
     func status(
         for object: OfflineDownloadTypeProtocol,
-        onState: @escaping ((Bool, DownloadButton.State, Double, String) -> Void)
+        onState: @escaping ((DownloadStatusProviderResult) -> Void)
     ) {
         downloadsManager.eventObject(for: object) { [weak self] result in
             guard let self = self else {
@@ -56,7 +65,7 @@ final class DownloadStatusProvider: DownloadsProgressBarHidden {
                 )
             }
             result.failure {  _ in
-                onState(false, .idle, 0.0, "")
+                onState((nil, "", .idle))
             }
         }
 
@@ -80,7 +89,7 @@ final class DownloadStatusProvider: DownloadsProgressBarHidden {
 
     private func statusChanged(
         event: OfflineDownloadsManagerEventObject,
-        onState: @escaping ((Bool, DownloadButton.State, Double, String) -> Void)
+        onState: @escaping ((DownloadStatusProviderResult) -> Void)
 
     ) {
         guard let object = self.object else {
@@ -92,20 +101,21 @@ final class DownloadStatusProvider: DownloadsProgressBarHidden {
             guard eventObjectId == objectId else {
                 return
             }
+            self.isServerError = event.isServerError
             switch event.status {
             case .initialized, .preparing:
-                onState(event.isSupported, .waiting, event.progress, eventObjectId)
+                onState((event, eventObjectId, .waiting))
             case .active:
-                onState(event.isSupported, .downloading, event.progress, eventObjectId)
+                onState((event, eventObjectId, .downloading))
             case .completed, .partiallyDownloaded:
-                onState(event.isSupported, .downloaded, event.progress, eventObjectId)
+                onState((event, eventObjectId, .downloaded))
             case .failed, .paused:
-                onState(event.isSupported, .retry, event.progress, eventObjectId)
+                onState((event, eventObjectId, .retry))
             default:
-                onState(event.isSupported, .idle, event.progress, eventObjectId)
+                onState((event, eventObjectId, .idle))
             }
         } catch {
-            onState(event.isSupported, .idle, event.progress, "")
+            onState((event, "", .idle))
         }
     }
 
@@ -144,6 +154,7 @@ final class DownloadStatusProvider: DownloadsProgressBarHidden {
     func resume(object: OfflineDownloadTypeProtocol) {
         do {
             try downloadsManager.resume(object: object)
+            toggleDownloadingBarView(hidden: false)
         } catch {
             debugLog(error.localizedDescription)
         }

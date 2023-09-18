@@ -442,6 +442,10 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
             cell.update(item: item, course: course?.first, color: color, isOffline: isOffline, isAvailable: isAvailable)
         }
 
+        cell.onRetryServerError = { [weak cell, weak self] item in
+            self?.showRetryServerErrorAlert(item: item, cell: cell)
+        }
+
         return cell
     }
 
@@ -499,6 +503,19 @@ extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
         }
         env.router.route(to: "/\(context.pathComponent)/files/\(fileID)", from: self, options: .detail)
     }
+
+    private func showRetryServerErrorAlert(item: File, cell: FileListCell?) {
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        let retry = UIAlertAction(title: "Retry", style: .default) { [weak cell, weak item] _ in
+            item.flatMap {
+                cell?.downloadButtonHelper.resume(object: $0)
+            }
+        }
+        showAlert(
+            title: "Something went wrong on the server side. Try again or contact support.",
+            actions: [cancel, retry]
+        )
+    }
 }
 
 class FileListUploadCell: UITableViewCell {
@@ -533,6 +550,7 @@ class FileListCell: UITableViewCell {
     var downloadButtonHelper = DownloadStatusProvider()
     var file: File?
     var course: Course?
+    var onRetryServerError: ((File) -> Void)?
 
     @IBOutlet weak var iconView: AccessIconView!
     @IBOutlet weak var nameLabel: UILabel!

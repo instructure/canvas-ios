@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--External URL Webview Controller-->
+        <scene sceneID="2rZ-E5-cNv">
+            <objects>
+                <viewController storyboardIdentifier="ExternalURLWebviewController" id="bXl-Kh-gzK" customClass="ExternalURLWebviewController" customModule="Core" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XxK-Ww-f41">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fZs-bd-JaN" customClass="CoreWebView" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kt5-SE-c6Y" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
+                                <rect key="frame" x="176.66666666666666" y="418.66666666666669" width="40" height="40"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="6jv-BB-gDQ"/>
+                                    <constraint firstAttribute="width" constant="40" id="TjW-jm-WLu"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="O4X-Ty-fxd"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fZs-bd-JaN" firstAttribute="leading" secondItem="O4X-Ty-fxd" secondAttribute="leading" id="MfU-iA-gP7"/>
+                            <constraint firstItem="fZs-bd-JaN" firstAttribute="top" secondItem="O4X-Ty-fxd" secondAttribute="top" id="PjC-gf-vwn"/>
+                            <constraint firstItem="kt5-SE-c6Y" firstAttribute="centerY" secondItem="O4X-Ty-fxd" secondAttribute="centerY" id="ds7-dv-u0P"/>
+                            <constraint firstItem="O4X-Ty-fxd" firstAttribute="trailing" secondItem="fZs-bd-JaN" secondAttribute="trailing" id="huk-0O-x82"/>
+                            <constraint firstItem="O4X-Ty-fxd" firstAttribute="bottom" secondItem="fZs-bd-JaN" secondAttribute="bottom" id="koZ-GS-ZcA"/>
+                            <constraint firstItem="kt5-SE-c6Y" firstAttribute="centerX" secondItem="O4X-Ty-fxd" secondAttribute="centerX" id="wDU-II-oct"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="spinnerView" destination="kt5-SE-c6Y" id="PoX-7c-Qxx"/>
+                        <outlet property="webView" destination="fZs-bd-JaN" id="ftd-sn-VaK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uFl-UG-5Ex" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-597" y="-40"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

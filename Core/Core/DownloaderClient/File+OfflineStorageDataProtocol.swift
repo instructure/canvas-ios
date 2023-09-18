@@ -68,14 +68,16 @@ extension File: OfflineStorageDataProtocol {
             "similarityURL": similarityURL?.absoluteString,
             "courseID": courseID
         ]
+        let containerId = OfflineStorageManager.shared.config.containerID
         if let id = id, let jsonData = try? JSONSerialization.data(withJSONObject: dictionary),
            let jsonString = String(data: jsonData, encoding: .utf8) {
             return OfflineStorageDataModel(
                 id: id,
                 type: OfflineContentType.file.rawValue,
-                json: jsonString
+                json: jsonString,
+                containerID: containerId
             )
         }
-        return OfflineStorageDataModel(id: "", type: "", json: "")
+        return OfflineStorageDataModel(id: "", type: "", json: "", containerID: containerId)
     }
 }

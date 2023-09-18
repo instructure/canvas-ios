@@ -17,10 +17,22 @@
 //
 
 import SwiftUI
+import mobile_offline_downloader_ios
 
 struct DownloadProgressSectionView: View {
 
     // MARK: - Properties -
+
+    enum AlertType {
+        case error(String)
+        case retryServerError(OfflineDownloaderEntry)
+    }
+    @State var alertType: AlertType = .error("") {
+        didSet {
+            isShowAlert = true
+        }
+    }
+    @State var isShowAlert: Bool = false
 
     @ObservedObject var viewModel: DownloadsViewModel
 
@@ -29,7 +41,12 @@ struct DownloadProgressSectionView: View {
             Array(viewModel.downloadingModules.prefix(3).enumerated()),
             id: \.offset
         ) { _, viewModel in
-            DownloadingCellView(viewModel: viewModel)
+            DownloadingCellView(
+                viewModel: viewModel,
+                onRetryServerError: { entry in
+                    alertType = .retryServerError(entry)
+                }
+            )
         }
         .onDelete { indexSet in
             viewModel.swipeDeleteDownloading(indexSet: indexSet)
@@ -44,6 +61,24 @@ struct DownloadProgressSectionView: View {
                     $0.getCurrentEventObject()
                 }
             }
+        }
+        .alert(isPresented: $isShowAlert, content: alert)
+    }
+
+    private func alert() -> Alert {
+        switch alertType {
+        case .error(let text):
+            return Alert(
+                title: Text(text),
+                dismissButton: .cancel()
+            )
+        case .retryServerError(let entry):
+            return Alert(
+                title: Text("Something went wrong on the server side. Try again or contact support."),
+                primaryButton: .default(Text("Retry")) {
+                    viewModel.resumeIfServerError(entry: entry)
+                },
+                secondaryButton: .cancel())
         }
     }
 

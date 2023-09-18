@@ -37,6 +37,7 @@ class ModuleItemCell: UITableViewCell {
     var course: Course?
     var item: ModuleItem?
     let downloadButtonHelper = DownloadStatusProvider()
+    var onRetryServerError: ((ModuleItem) -> Void)?
 
     func update(_ item: ModuleItem, course: Course?, indexPath: IndexPath, color: UIColor?) {
         self.course = course

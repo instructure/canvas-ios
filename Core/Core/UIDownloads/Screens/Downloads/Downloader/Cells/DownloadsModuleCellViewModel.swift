@@ -34,6 +34,8 @@ final class DownloadsModuleCellViewModel: ObservableObject {
     @Published var progress: Float = 0.0
     @Published var downloaderStatus: OfflineDownloaderStatus = .initialized
 
+    var isServerError: Bool = false
+
     init(entry: OfflineDownloaderEntry) {
         self.entry = entry
         observeDownloadsEvents()
@@ -111,6 +113,7 @@ final class DownloadsModuleCellViewModel: ObservableObject {
 
     func pauseResume() {
         OfflineLogsMananger().logEventForStatus(entry.status, itemURL: entry.userInfo ?? "")
+        isServerError = false
         switch entry.status {
         case .initialized, .active, .preparing:
             downloadsManager.pause(entry: entry)
@@ -166,6 +169,11 @@ final class DownloadsModuleCellViewModel: ObservableObject {
         guard eventObjectId == objectId else {
             return
         }
+        if event.status == .failed || event.status == .paused {
+            isServerError = event.isServerError
+        } else {
+            isServerError = false
+        }
         downloaderStatus = event.status
         progress = Float(event.progress)
     }
@@ -179,6 +187,11 @@ final class DownloadsModuleCellViewModel: ObservableObject {
             }
             if event.progress == 0.0 {
                 return
+            }
+            if event.status == .failed || event.status == .paused {
+                isServerError = event.isServerError
+            } else {
+                isServerError = false
             }
             downloaderStatus = event.status
             progress = Float(event.progress)

@@ -90,14 +90,16 @@ extension Page: OfflineStorageDataProtocol {
             "editingRoles": editingRoles,
             "contextID": contextID
         ]
+        let containerID = OfflineStorageManager.shared.config.containerID
         if let jsonData = try? JSONSerialization.data(withJSONObject: dictionary),
            let jsonString = String(data: jsonData, encoding: .utf8) {
             return OfflineStorageDataModel(
                 id: id,
                 type: OfflineContentType.page.rawValue,
-                json: jsonString
+                json: jsonString,
+                containerID: containerID
             )
         }
-        return OfflineStorageDataModel(id: "", type: "", json: "")
+        return OfflineStorageDataModel(id: "", type: "", json: "", containerID: containerID)
     }
 }

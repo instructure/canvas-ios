@@ -83,6 +83,10 @@ final class DownloaderViewModel: ObservableObject, Reachabilitable {
         }
     }
 
+    func resumeIfServerError(entry: OfflineDownloaderEntry) {
+        downloadsManager.resume(entry: entry)
+    }
+
     private func addObservers() {
         downloadsManager
             .publisher

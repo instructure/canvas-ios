@@ -81,14 +81,13 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             window?.makeKeyAndVisible()
             Analytics.shared.logScreenView(route: "/login", viewController: window?.rootViewController)
         }
-        setupOffline()
         setupAWS()
         setupBugfender()
         return true
     }
 
-    func setupOffline() {
-        DownloaderClient.setup()
+    func setupOffline(for session: LoginSession) {
+        DownloaderClient.setup(with: session)
     }
     func setupAWS() {
         guard let accessKey = Secret.awsAccessKey.string, let secretKey = Secret.awsSecretKey.string else { return }
@@ -441,6 +440,7 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     func userDidLogin(session: LoginSession) {
         LoginSession.add(session)
         setup(session: session)
+        setupOffline(for: session)
     }
 
     func userDidStopActing(as session: LoginSession) {

@@ -18,8 +18,20 @@
 
 import Combine
 import SwiftUI
+import mobile_offline_downloader_ios
 
 struct DownloaderContentView: View {
+
+    enum AlertType {
+        case error(String)
+        case retryServerError(OfflineDownloaderEntry)
+    }
+    @State var alertType: AlertType = .error("") {
+        didSet {
+            isShowAlert = true
+        }
+    }
+    @State var isShowAlert: Bool = false
 
     @ObservedObject var viewModel: DownloaderViewModel
     var onDelete: ((IndexSet) -> Void)
@@ -38,11 +50,16 @@ struct DownloaderContentView: View {
             Array(viewModel.downloadingModules.enumerated()),
             id: \.offset
         ) { _, viewModel in
-            DownloadingCellView(viewModel: viewModel)
-                .listRowInsets(EdgeInsets())
-                .buttonStyle(PlainButtonStyle())
-                .padding(.vertical, 5)
-                .background(Color.backgroundLightest)
+            DownloadingCellView(
+                viewModel: viewModel,
+                onRetryServerError: { entry in
+                    alertType = .retryServerError(entry)
+                }
+            )
+            .listRowInsets(EdgeInsets())
+            .buttonStyle(PlainButtonStyle())
+            .padding(.vertical, 5)
+            .background(Color.backgroundLightest)
         }.onDelete { indexSet in
             onDelete(indexSet)
         }
@@ -59,6 +76,24 @@ struct DownloaderContentView: View {
                     $0.getCurrentEventObject()
                 }
             }
+        }
+        .alert(isPresented: $isShowAlert, content: alert)
+    }
+
+    private func alert() -> Alert {
+        switch alertType {
+        case .error(let text):
+            return Alert(
+                title: Text(text),
+                dismissButton: .cancel()
+            )
+        case .retryServerError(let entry):
+            return Alert(
+                title: Text("Something went wrong on the server side. Try again or contact support."),
+                primaryButton: .default(Text("Retry")) {
+                    viewModel.resumeIfServerError(entry: entry)
+                },
+                secondaryButton: .cancel())
         }
     }
 }

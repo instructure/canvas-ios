@@ -26,6 +26,8 @@ struct DownloadingCellView: View {
     @ObservedObject var viewModel: DownloadsModuleCellViewModel
     @State private var currentState: DownloadButton.State = .idle
 
+    var onRetryServerError: ((OfflineDownloaderEntry) -> Void)?
+
     // MARK: - Views -
 
     var body: some View {
@@ -59,10 +61,15 @@ struct DownloadingCellView: View {
                 progress: .constant(viewModel.progress),
                 currentState: $currentState,
                 mainTintColor: Brand.shared.linkColor,
+                isServerError: viewModel.isServerError,
                 onState: { state in
                     debugLog(state)
                 },
                 onTap: { _ in
+                    if viewModel.isServerError, currentState == .retry {
+                        onRetryServerError?(viewModel.entry)
+                        return
+                    }
                     viewModel.pauseResume()
                 }
             )

@@ -61,6 +61,10 @@ public class DownloadingBarView: UIView, Reachabilitable {
     private let progressView = CustomCircleProgressView(frame: .zero)
     var mustBeHidden: Bool = false
 
+    var activeEntries: [OfflineDownloaderEntry] {
+        downloadsManager.activeEntries
+    }
+
     public convenience init() {
         self.init(frame: .zero)
         NotificationCenter.default.addObserver(
@@ -100,7 +104,7 @@ public class DownloadingBarView: UIView, Reachabilitable {
         if !reachability.isConnected {
             return
         }
-        if downloadsManager.activeEntries.isEmpty || downloadContentOpened || tabSelected != 0 {
+        if activeEntries.isEmpty || downloadContentOpened || tabSelected != 0 {
             return
         }
         mustBeHidden = false
@@ -234,9 +238,9 @@ public class DownloadingBarView: UIView, Reachabilitable {
     }
 
     private func update(_ event: OfflineDownloadsManagerEventObject? = nil) {
-        isHidden = downloadsManager.activeEntries.isEmpty
+        isHidden = activeEntries.isEmpty
         if mustBeHidden { isHidden = true }
-        if let entry = downloadsManager.activeEntries.first {
+        if let entry = activeEntries.first {
             if let page = try? Page.fromOfflineModel(entry.dataModel) {
                 subtitleLabel.text = page.title
             }
@@ -252,7 +256,7 @@ public class DownloadingBarView: UIView, Reachabilitable {
     private func progressChanged(_ event: OfflineDownloadsManagerEventObject) {
         do {
             let eventObjectId = try event.object.toOfflineModel().id
-            let objectId = downloadsManager.activeEntries.first?.dataModel.id
+            let objectId = activeEntries.first?.dataModel.id
             guard eventObjectId == objectId else {
                 return
             }

@@ -25,7 +25,7 @@ extension Page: OfflineDownloadTypeProtocol {
     }
 
     public static func prepareForDownload(entry: OfflineDownloaderEntry) async throws {
-        try await withCheckedThrowingContinuation({[weak entry] continuation in
+        return try await withCheckedThrowingContinuation({[weak entry] continuation in
             guard let entry = entry else { return }
             let env = AppEnvironment.shared
             var pages: Store<GetPage>?
@@ -39,10 +39,18 @@ extension Page: OfflineDownloadTypeProtocol {
                     pages?.refresh(force: true, callback: {[entry, pages] page in
                         DispatchQueue.main.async {
                             if let body = page?.body {
-                                let fullHTML = CoreWebView().html(for: body)
-                                entry.parts.removeAll()
-                                entry.addHtmlPart(fullHTML, baseURL: page?.html_url.absoluteString)
-                                continuation.resume()
+                                if body.isEmpty {
+                                    entry.markAsServerError()
+                                    continuation.resume(throwing: PageError.brokenPage(data: entry.dataModel))
+                                } else {
+                                    CoreWebView.cookieKeepAliveWebView.configuration.websiteDataStore.httpCookieStore.getAllCookies { cookies in
+                                        let fullHTML = CoreWebView().html(for: body)
+                                        entry.parts.removeAll()
+                                        entry.addHtmlPart(fullHTML, baseURL: page?.html_url.absoluteString, cookieString: cookies.cookieString)
+                                        continuation.resume()
+
+                                    }
+                                }
                             } else if let error = pages?.error {
                                 if error.isOfflineCancel {
                                     continuation.resume(throwing: error)
@@ -69,6 +77,7 @@ extension Page: OfflineDownloadTypeProtocol {
     public static func isCritical(error: Error) -> Bool {
         switch error {
         case PageError.cantGetPage,
+            PageError.brokenPage,
             OfflineEntryPartDownloaderError.cantDownloadHTMLPart:
             return true
         default:
@@ -84,6 +93,7 @@ extension Page: OfflineDownloadTypeProtocol {
 extension Page {
     enum PageError: Error, LocalizedError {
         case cantGetPage(data: OfflineStorageDataModel, error: Error?)
+        case brokenPage(data: OfflineStorageDataModel)
 
         var errorDescription: String? {
             switch self {
@@ -92,6 +102,8 @@ extension Page {
                     return "Can't get page: \(data.json). Error: \(error)"
                 }
                 return "Can't get page: \(data.json)."
+            case .brokenPage(let data):
+                return "Item is broken. Data: \(data.json)"
             }
         }
     }

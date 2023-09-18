@@ -151,7 +151,7 @@ public class ModuleItemDetailsViewController: DownloadableViewController, Colore
         guard let item = item else { return nil }
         switch item.type {
         case .externalURL(let url):
-            return ExternalURLViewController.create(name: item.title, url: url, courseID: item.courseID)
+            return ExternalURLWebviewController.create(name: item.title, url: url, courseID: item.courseID)
         case let .externalTool(toolID, url):
             let tools = LTITools(
                 context: .course(courseID),

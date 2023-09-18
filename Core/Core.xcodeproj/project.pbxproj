@@ -43,6 +43,8 @@
 		053F7EB1A384E2BEA503B658 /* APISubmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8634CDF6D6C6D8A081E13FDB /* APISubmission.swift */; };
 		066E60EDF4BCC2E8A947CA99 /* GetCourseSingleUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F5957C6091319417E638E2 /* GetCourseSingleUser.swift */; };
 		069ADE5FFD74EA7C53F5DC39 /* ConversationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5C2BA04CDCAB0E73F111CA /* ConversationTests.swift */; };
+		069B8B542AB389CD00B2C132 /* ExternalURLWebviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069B8B532AB389CD00B2C132 /* ExternalURLWebviewController.swift */; };
+		069B8B562AB38CD800B2C132 /* ExternalURLWebviewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 069B8B552AB38CD800B2C132 /* ExternalURLWebviewController.storyboard */; };
 		06A8F6F92A82598700306E23 /* File+OfflineStorageDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A8F6F82A82598700306E23 /* File+OfflineStorageDataProtocol.swift */; };
 		06A8F6FB2A82599C00306E23 /* File+OfflineDownloadHelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A8F6FA2A82599C00306E23 /* File+OfflineDownloadHelperProtocol.swift */; };
 		06A8F7032A83999E00306E23 /* LTIWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A8F7022A83999E00306E23 /* LTIWebViewController.swift */; };
@@ -1769,6 +1771,8 @@
 		062D98A5A1A0CD68F0BBAFAB /* LoggableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggableCell.swift; sourceTree = "<group>"; };
 		065793EAB0372BF8F2BD9C33 /* FileEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEditorView.swift; sourceTree = "<group>"; };
 		06833482DDB246815816F75B /* AnnotationDragGestureDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationDragGestureDelegate.swift; sourceTree = "<group>"; };
+		069B8B532AB389CD00B2C132 /* ExternalURLWebviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalURLWebviewController.swift; sourceTree = "<group>"; };
+		069B8B552AB38CD800B2C132 /* ExternalURLWebviewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ExternalURLWebviewController.storyboard; sourceTree = "<group>"; };
 		069DDBC33F15A7F63B05C63A /* APICalendarEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICalendarEventTests.swift; sourceTree = "<group>"; };
 		06A8F6F82A82598700306E23 /* File+OfflineStorageDataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "File+OfflineStorageDataProtocol.swift"; sourceTree = "<group>"; };
 		06A8F6FA2A82599C00306E23 /* File+OfflineDownloadHelperProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "File+OfflineDownloadHelperProtocol.swift"; sourceTree = "<group>"; };
@@ -8600,6 +8604,8 @@
 				EE6BCCBA1C4FB22F518346CE /* ModuleItemDetailsViewController.swift */,
 				75A03DFE70D37F0E94D76A44 /* ModuleItemSequenceViewController.storyboard */,
 				80D06DE3203CB3C4793FE4CD /* ModuleItemSequenceViewController.swift */,
+				069B8B532AB389CD00B2C132 /* ExternalURLWebviewController.swift */,
+				069B8B552AB38CD800B2C132 /* ExternalURLWebviewController.storyboard */,
 			);
 			path = ModuleItems;
 			sourceTree = "<group>";
@@ -9270,6 +9276,7 @@
 				4061B82BCF8B18D412CF5E6B /* CalendarDayIconView.xib in Resources */,
 				E2B911513BC4E29F44245188 /* CalendarViewController.storyboard in Resources */,
 				B9960CDECC5BFADCDD81B3B7 /* ChatBubbleView.xib in Resources */,
+				069B8B562AB38CD800B2C132 /* ExternalURLWebviewController.storyboard in Resources */,
 				B4DF4C098A48DF5D8D497B95 /* CommentListViewController.storyboard in Resources */,
 				7148CFE157E5D183CD69CB9B /* ComposeReplyViewController.storyboard in Resources */,
 				A5959DA96F69FA53D44D345B /* ComposeViewController.storyboard in Resources */,
@@ -10843,6 +10850,7 @@
 				373F8638195B949B681ECDC2 /* Tab.swift in Sources */,
 				286026E0C852F037EA896EEC /* TabBarBadgeCounts.swift in Sources */,
 				B62AB99B4A2E916DC1784F1D /* TabBarMessageCountUpdater.swift in Sources */,
+				069B8B542AB389CD00B2C132 /* ExternalURLWebviewController.swift in Sources */,
 				34B620075231C25A1812C3AB /* TabFilter.swift in Sources */,
 				E27CC5FC99EA835AC9C9EB67 /* TabName.swift in Sources */,
 				120F3F605A9C6DABC7E05B38 /* TabToCellViewModelMapping.swift in Sources */,

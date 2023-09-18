@@ -132,8 +132,9 @@ extension CourseStorageDataModel: OfflineStorageDataProtocol {
     }
 
     func toOfflineModel() throws -> OfflineStorageDataModel {
+        let containerId = OfflineStorageManager.shared.config.containerID
         guard let courseJSON = try? course.toOfflineModel().json else {
-            return OfflineStorageDataModel(id: "", type: "", json: "")
+            return OfflineStorageDataModel(id: "", type: "", json: "", containerID: containerId)
         }
         let dictionary: [String: Any] = [
             "course": courseJSON
@@ -143,9 +144,10 @@ extension CourseStorageDataModel: OfflineStorageDataProtocol {
             return OfflineStorageDataModel(
                 id: CourseStorageDataModel.configureId(id: course.id),
                 type: OfflineContentType.downloadcourse.rawValue,
-                json: jsonString
+                json: jsonString,
+                containerID: containerId
             )
         }
-        return OfflineStorageDataModel(id: "", type: "", json: "")
+        return OfflineStorageDataModel(id: "", type: "", json: "", containerID: containerId)
     }
 }

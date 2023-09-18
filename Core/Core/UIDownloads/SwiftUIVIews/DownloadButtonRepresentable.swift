@@ -24,6 +24,7 @@ struct DownloadButtonRepresentable: UIViewRepresentable {
     @Binding public var currentState: DownloadButton.State
 
     public var mainTintColor: UIColor = .blue
+    public var isServerError: Bool = false
     public var onState: ((DownloadButton.State) -> Void)?
     public var onTap: ((DownloadButton.State) -> Void)?
 
@@ -31,12 +32,14 @@ struct DownloadButtonRepresentable: UIViewRepresentable {
         progress: Binding<Float>,
         currentState: Binding<DownloadButton.State>,
         mainTintColor: UIColor = .blue,
+        isServerError: Bool = false,
         onState: ((DownloadButton.State) -> Void)?,
         onTap: ((DownloadButton.State) -> Void)?
     ) {
         self._progress = progress
         self._currentState = currentState
         self.mainTintColor = mainTintColor
+        self.isServerError = isServerError
         self.onState = onState
         self.onTap = onTap
     }
@@ -51,6 +54,13 @@ struct DownloadButtonRepresentable: UIViewRepresentable {
         uiView.currentState = currentState
         uiView.onState = onState
         uiView.onTap = onTap
+
+        if currentState == .retry, isServerError {
+            uiView.retryButtonImage = UIImage(
+                systemName: "autostartstop.trianglebadge.exclamationmark",
+                withConfiguration: uiView.buttonConfiguration
+            )!
+        }
 
         if currentState == .waiting {
             uiView.waitingView.startSpinning()

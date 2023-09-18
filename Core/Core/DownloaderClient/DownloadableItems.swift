@@ -110,7 +110,7 @@ extension DownloadableItems {
                     )
                     completion(item)
                 }
-            } else if assetType == .moduleItem || vc is LTIViewController {
+            } else if assetType == .moduleItem || vc is LTIViewController || vc is LTIWebViewController {
                 if let moduleDetail = moduleDetail {
                     self?.create(moduleDetail: moduleDetail, completion: completion)
                 }

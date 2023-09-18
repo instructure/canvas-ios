@@ -74,8 +74,9 @@ extension ModuleItem: OfflineStorageDataProtocol {
     }
 
     public func toOfflineModel() throws -> OfflineStorageDataModel {
+        let containerId = OfflineStorageManager.shared.config.containerID
         guard let typeRaw = typeRaw else {
-            return OfflineStorageDataModel(id: "", type: "", json: "")
+            return OfflineStorageDataModel(id: "", type: "", json: "", containerID: containerId)
         }
         let dictionary: [String: Any] = [
             "id": id,
@@ -92,10 +93,11 @@ extension ModuleItem: OfflineStorageDataProtocol {
             return OfflineStorageDataModel(
                 id: id,
                 type: OfflineContentType.moduleitem.rawValue,
-                json: jsonString
+                json: jsonString,
+                containerID: containerId
             )
         }
-        return OfflineStorageDataModel(id: "", type: "", json: "")
+        return OfflineStorageDataModel(id: "", type: "", json: "", containerID: containerId)
     }
 
 }

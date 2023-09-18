@@ -69,7 +69,7 @@ extension ModuleItem: OfflineDownloadTypeProtocol {
 
     static func preparePage(entry: OfflineDownloaderEntry, url: String, courseID: String) async throws {
         let context = Context(.course, id: courseID)
-        try await withCheckedThrowingContinuation({[weak entry] continuation in
+        return try await withCheckedThrowingContinuation({[weak entry] continuation in
             var pages: Store<GetPage>?
 
             pages = AppEnvironment.shared.subscribe(GetPage(context: context, url: url)) {}
@@ -78,10 +78,17 @@ extension ModuleItem: OfflineDownloadTypeProtocol {
                 guard let entry = entry else { return }
                 DispatchQueue.main.async {
                     if let body = page?.body {
-                        let fullHTML = CoreWebView().html(for: body)
-                        entry.parts.removeAll()
-                        entry.addHtmlPart(fullHTML, baseURL: page?.html_url.absoluteString)
-                        continuation.resume()
+                        if body.isEmpty {
+                            entry.markAsServerError()
+                            continuation.resume(throwing: ModuleItemError.brokenItem(data: entry.dataModel))
+                        } else {
+                            CoreWebView.cookieKeepAliveWebView.configuration.websiteDataStore.httpCookieStore.getAllCookies { cookies in
+                                let fullHTML = CoreWebView().html(for: body)
+                                entry.parts.removeAll()
+                                entry.addHtmlPart(fullHTML, baseURL: page?.html_url.absoluteString, cookieString: cookies.cookieString)
+                                continuation.resume()
+                            }
+                        }
                     } else if let error = pages?.error {
                         if error.isOfflineCancel {
                             continuation.resume(throwing: error)
@@ -187,14 +194,16 @@ extension ModuleItem: OfflineDownloadTypeProtocol {
         guard repeatCount < 3 else {
             throw ModuleItemError.cantPrepareLTI(data: entry.dataModel, error: ModuleItemError.retryCountLimitReached)
         }
+        var extractor: OfflineHTMLDynamicsLinksExtractor?
         do {
             let url: URL = try await getLtiURL(from: entry, toolID: toolID, url: sourceURL)
-            let extractor = await OfflineHTMLDynamicsLinksExtractor(
+            extractor = await OfflineHTMLDynamicsLinksExtractor(
                 url: url,
                 linksHandler: OfflineDownloadsManager.shared.config.linksHandler
             )
-            try await extractor.fetch()
-            if let latestURL = await extractor.latestRedirectURL,
+            try await extractor?.fetch()
+            if let extractor = extractor,
+                let latestURL = await extractor.latestRedirectURL,
                 var html = await extractor.html {
 
                 if shouldRetry(for: html, latestURL: latestURL) {
@@ -205,6 +214,11 @@ extension ModuleItem: OfflineDownloadTypeProtocol {
                     entry.markAsUnsupported()
                     let item = try fromOfflineModel(entry.dataModel)
                     throw ModuleItemError.unsupported(type: item.type?.label ?? "", id: item.id)
+                }
+
+                if isBrokenLTI(with: html, latestURL: latestURL, sourceURL: sourceURL) {
+                    entry.markAsServerError()
+                    throw ModuleItemError.brokenItem(data: entry.dataModel)
                 }
 
                 if isOyster(with: html, latestURL: latestURL) {
@@ -220,7 +234,8 @@ extension ModuleItem: OfflineDownloadTypeProtocol {
                     let cookieString = await extractor.cookies().cookieString
                     downloader.additionCookies = cookieString
                     let ltiContents = try await downloader.contents(urlString: latestURL.absoluteString)
-                    entry.addHtmlPart(ltiContents, baseURL: latestURL.absoluteString, cookieString: cookieString)
+                    let html = try prepare(html: ltiContents)
+                    entry.addHtmlPart(html, baseURL: latestURL.absoluteString, cookieString: cookieString)
                 } else {
                     let html = try prepare(html: html)
                     let cookieString = await extractor.cookies().cookieString
@@ -233,8 +248,26 @@ extension ModuleItem: OfflineDownloadTypeProtocol {
             if error.isOfflineCancel {
                 throw error
             }
+            if let latestURL = await extractor?.latestRedirectURL, latestURL.scheme?.lowercased() == "voicethread" {
+                entry.markAsUnsupported()
+                let item = try fromOfflineModel(entry.dataModel)
+                throw ModuleItemError.unsupported(type: item.type?.label ?? "", id: item.id)
+            }
             throw ModuleItemError.cantPrepareLTI(data: entry.dataModel, error: error)
         }
+    }
+
+    static func isBrokenLTI(with html: String, latestURL: URL, sourceURL: URL) -> Bool {
+        if latestURL.absoluteString.lowercased().contains("/error") {
+            return true
+        }
+
+        if latestURL.absoluteString.lowercased().contains("/media-player") &&
+            !isOyster(with: html, latestURL: latestURL) {
+            return true
+        }
+
+        return false
     }
 
     static func isOyster(with html: String, latestURL: URL) -> Bool {
@@ -272,16 +305,10 @@ extension ModuleItem: OfflineDownloadTypeProtocol {
         if isReport(with: html, latestURL: latestURL) {
             return false
         }
-        // Oyster
-//        else  if latestURL.absoluteString.lowercased().contains("/media-player") {
-//            let oysterPattern = "<script[^>]*oyster[^>]*>"
-//            let slidePattern = "<div[^>]*class=\"slide\"[^>]*>"
-//            if let oysterScripts = results(for: oysterPattern, in: html),
-//               let slideContainers = results(for: slidePattern, in: html),
-//               !oysterScripts.isEmpty, !slideContainers.isEmpty {
-//                return false
-//            }
-//        }
+
+        if latestURL.absoluteString.lowercased().contains("/dashboard/") {
+            return false
+        }
         return true
     }
 
@@ -318,11 +345,79 @@ extension ModuleItem: OfflineDownloadTypeProtocol {
             try tag.attr("controls", "true")
             try tag.attr("width", "100%")
             try tag.removeAttr("crossorigin")
-            if let app = try document.getElementById("app") {
-                try app.replaceWith(tag)
-            }
         }
         return try document.html()
+    }
+
+    static func coursePlayerTranscriptionScript() -> String {
+        """
+            <script>
+                function onTranscriptClick() {
+                    console.log("asd");
+
+                    var display = document.getElementById("transcript").style.display;
+                    var classList = document.getElementsByClassName("icon")[0].classList;
+
+                    if (display == "none") {
+                        document.getElementById("transcript").style.display = "block";
+                        document.getElementsByTagName("button")[0].style.borderRadius = "0.375rem 0.375rem 0px 0px";
+                        classList.remove("icon--caret-right");
+                        classList.add("icon--caret-down");
+
+                    } else {
+                        document.getElementById("transcript").style.display = "none";
+                        document.getElementsByTagName("button")[0].style.borderRadius = "0.375rem";
+                        classList.remove("icon--caret-down");
+                        classList.add("icon--caret-right");
+                    }
+                }
+            </script>
+        """
+    }
+
+    static func coursePlayerTranscriptionPattern() -> String {
+        """
+            <div style="padding: 1.4375rem;box-sizing: inherit;">
+                <button aria-expanded="true" onclick="onTranscriptClick()"
+                        style="
+                            display: block;
+                            margin-top: 1.4375rem;
+                            border: 0.0625rem solid rgb(204, 204, 204);
+                            border-radius: 0.375rem;
+                            padding: 0px;
+                            width: 100%;
+                            text-align: left;
+                            background-color: transparent;
+                            color: inherit;
+                            font-size: inherit;
+                            line-height: inherit;
+                            font: inherit;
+                            cursor: default;
+                ">
+                    <span style="position: relative;display: inline-block;margin-left: 1rem;width: 0.75rem;top: 0.0625rem;">
+                        <span class="icon icon--caret-right" aria-hidden="true"></span>
+                    </span>
+                    <h5 style="margin: 1rem 0px;display: inline-block;">Transcript</h5>
+                </button>
+
+                <div style="width: 100%;">
+                    <div id="transcript" style="
+                        display: none;
+                        padding-top: 5px;
+                        border-left: 0.0625rem solid rgb(204, 204, 204);
+                        border-right: 0.0625rem solid rgb(204, 204, 204);
+                        border-bottom: 0.0625rem solid rgb(204, 204, 204);
+                        border-radius: 0px 0px 0.375rem 0.375rem;
+                        background: initial;color: rgb(119, 119, 119);
+                        font-size: 0.875rem;
+                    ">
+                        <div style="margin: 1rem;">
+                            ###TRANSCRIPT###
+                        </div>
+                    </div>
+                </div>
+            </div>
+        """
     }
 
     static func changeCoursePlayer(html: String) throws -> String {
@@ -332,6 +427,29 @@ extension ModuleItem: OfflineDownloadTypeProtocol {
         try scripts.forEach {
             try $0.remove()
         }
+
+        let videoTags = try document.getElementsByTag("video")
+        if let video = videoTags.first() {
+            // It's a video card
+            let newContent = Element(Tag("div"), "")
+            let transcriptions = try document.getElementsByClass("p3sdk-interactive-transcript-content")
+            // Add video to new content
+            try newContent.append(try video.outerHtml())
+
+            if let transcription = transcriptions.first() {
+                // Add transcription to content
+                try document.head()?.append(coursePlayerTranscriptionScript())
+                let html = coursePlayerTranscriptionPattern()
+                    .replacingOccurrences(of: "###TRANSCRIPT###", with: try transcription.html())
+                try newContent.append(html)
+            }
+            // clear body
+            try document.body()?.children().forEach {
+                try $0.remove()
+            }
+            try document.body()?.appendChild(newContent)
+        }
+
         return try document.html()
     }
 
@@ -345,14 +463,21 @@ extension ModuleItem: OfflineDownloadTypeProtocol {
         }
         // search transcription remove copy button and move it under video
         let transcriptionContainer = Element(Tag("div"), "")
-        try transcriptionContainer.attr("style", "padding:10px;")
+        try transcriptionContainer.attr("style", "padding:20px;")
         let transcriptions = try document.getElementsByClass("oyster-grid-transcript")
         for transcription in transcriptions {
             let buttons = try transcription.getElementsByTag("button")
             for button in buttons {
                 try button.remove()
             }
+
+            let containers = try transcription.getElementsByClass("transcripts-container")
+            for container in containers {
+                try container.attr("class", "")
+            }
+
             try transcriptionContainer.append(try transcription.outerHtml())
+
         }
         try newContent.append(try transcriptionContainer.outerHtml())
         // clean all body
@@ -387,6 +512,7 @@ extension ModuleItem: OfflineDownloadTypeProtocol {
             ModuleItemError.cantPrepareLTI,
             ModuleItemError.cantGetPage,
             ModuleItemError.cantGetFile,
+            ModuleItemError.brokenItem,
             OfflineEntryPartDownloaderError.cantDownloadHTMLPart:
             return true
         default:
@@ -409,11 +535,14 @@ extension ModuleItem {
         case cantGetPage(data: OfflineStorageDataModel, error: Error?)
         case cantGetFile(data: OfflineStorageDataModel, error: Error?)
         case retryCountLimitReached
+        case brokenItem(data: OfflineStorageDataModel)
 
         var errorDescription: String? {
             switch self {
             case .wrongSession:
                 return "Can't get sessionless launch."
+            case .brokenItem(let data):
+                return "Item is broken. Data: \(data.json)"
             case let .unsupported(type, id):
                 return "Unsupported type. Type: \(type), id: \(id)"
             case let .cantGetItem(data, error):

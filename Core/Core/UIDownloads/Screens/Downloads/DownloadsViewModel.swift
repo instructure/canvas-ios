@@ -74,8 +74,6 @@ final class DownloadsViewModel: ObservableObject, Reachabilitable {
 
     // MARK: - Intents -
 
-    func pauseResume() {}
-
     func deleteAll() {
         state = .deleting
         OfflineLogsMananger().logDeleteAll()
@@ -158,6 +156,7 @@ final class DownloadsViewModel: ObservableObject, Reachabilitable {
             + downloadsManager.waitingEntries
             + downloadsManager.pausedEntries
             + downloadsManager.failedEntries
+            + downloadsManager.serverErrors
         )
         .map { .init(entry: $0) }
     }
@@ -170,6 +169,10 @@ final class DownloadsViewModel: ObservableObject, Reachabilitable {
         categories.removeValue(forKey: courseViewModel.courseId)
         courseViewModels.removeAll(where: {$0.courseId == courseViewModel.courseId})
         state = .updated
+    }
+
+    func resumeIfServerError(entry: OfflineDownloaderEntry) {
+        downloadsManager.resume(entry: entry)
     }
 
     // MARK: - Private methods -
