@@ -455,6 +455,9 @@
 "Cancel Submission?" = "Отменить отправку?";
 
 /* No comment provided by engineer. */
+"Cancel Sync?" = "Отменить синхронизацию?";
+
+/* No comment provided by engineer. */
 "Canvas Guides" = "Руководства Canvas";
 
 /* No comment provided by engineer. */
@@ -864,9 +867,6 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Исключить %@";
-
-/* No comment provided by engineer. */
-"Dismiss notification" = "Пропустить уведомление";
 
 /* No comment provided by engineer. */
 "Display As" = "Отобразить как";
@@ -1364,6 +1364,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Похоже, вы не зачислены ни на какие курсы в качестве %@. Вам может подойти одно из наших других приложений. Нажмите, чтобы посетить App Store.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "Это приведет к остановке синхронизации офлайн-контента. Вы можете сделать это еще раз позднее.";
+
+/* No comment provided by engineer. */
 "Italic" = "Курсив";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1497,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Ошибка входа в систему";
+
+/* No comment provided by engineer. */
+"Login help." = "Справка по входу в систему.";
 
 /* No comment provided by engineer. */
 "Login ID" = "Имя пользователя";
@@ -1782,6 +1788,9 @@
 
 /* No comment provided by engineer. */
 "Observers" = "Наблюдатели";
+
+/* No comment provided by engineer. */
+"Offline" = "Не в сети";
 
 /* No comment provided by engineer. */
 "Offline Content" = "Оффлайн-контент";
