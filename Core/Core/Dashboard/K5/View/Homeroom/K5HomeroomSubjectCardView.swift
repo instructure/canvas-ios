@@ -66,7 +66,6 @@ public struct K5HomeroomSubjectCardView: View {
         ZStack {
             viewModel.color.frame(width: imageSize.width, height: imageSize.height)
             viewModel.imageURL.map { RemoteImage($0, width: imageSize.width, height: imageSize.height) }?
-                .opacity(0.4)
                 .clipped()
                 // Fix big course image consuming tap events.
                 .contentShape(Path(CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height)))
