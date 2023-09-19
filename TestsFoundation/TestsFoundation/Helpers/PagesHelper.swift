@@ -25,16 +25,20 @@ public class PagesHelper: BaseHelper {
 
     public static func page(index: Int) -> XCUIElement { return app.find(id: "PageList.\(index)") }
 
+    public static func titleByText(text: String) -> XCUIElement { return app.find(labelContaining: text) }
+
     public struct Editor {
         public static var done: XCUIElement { app.find(id: "PageEditor.doneButton") }
         public static var title: XCUIElement { app.find(id: "PageEditor.titleField") }
         public static var published: XCUIElement { app.find(id: "PageEditor.publishedToggle") }
         public static var frontPage: XCUIElement { app.find(id: "PageEditor.frontPageToggle") }
         public static var editors: XCUIElement { app.find(id: "PageEditor.editorsButton") }
+        public static var content: XCUIElement { app.find(label: "Page content", type: .textView) }
     }
 
     public struct Details {
         public static var options: XCUIElement { app.find(id: "PageDetails.options") }
+        public static var editButton: XCUIElement { app.find(label: "Edit", type: .button) }
     }
 
     public static func navigateToPages(course: DSCourse) {

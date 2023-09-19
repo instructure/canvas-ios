@@ -82,7 +82,6 @@ public class AssignmentsHelper: BaseHelper {
         public static var viewSubmissionButton: XCUIElement { app.find(id: "AssignmentDetails.viewSubmissionButton") }
         public static var published: XCUIElement { app.find(id: "AssignmentDetails.published") }
         public static var unpublished: XCUIElement { app.find(id: "AssignmentDetails.unpublished") }
-        public static var oneNeedsGradingButton: XCUIElement { viewAllSubmissionsButton.find(label: "1, Needs Grading", type: .button) }
         public static var oneGradedButton: XCUIElement { viewAllSubmissionsButton.find(label: "1, Graded", type: .button) }
         public static var editButton: XCUIElement { app.find(label: "Edit", type: .button) }
 
