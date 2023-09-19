@@ -23,7 +23,8 @@ import XCTest
 class OfflineModeInteractorLiveTests: CoreTestCase {
 
     func testObservesOfflineModeFlagInCoreData() throws {
-        let testee = OfflineModeInteractorLive(context: databaseClient)
+        let testee = OfflineModeInteractorLive(context: databaseClient,
+                                               isOfflineModeEnabledForApp: true)
         let flag = injectFeatureFlagObject()
 
         flag.enabled = true
@@ -39,7 +40,8 @@ class OfflineModeInteractorLiveTests: CoreTestCase {
 
     func testPublishesOfflineModeFlagChangesFromCoreData() {
         let flag = injectFeatureFlagObject()
-        let testee = OfflineModeInteractorLive(context: databaseClient)
+        let testee = OfflineModeInteractorLive(context: databaseClient,
+                                               isOfflineModeEnabledForApp: true)
         let expectation = expectation(description: "Received flag events")
         let subscription = testee
             .observeIsFeatureFlagEnabled()
@@ -60,6 +62,17 @@ class OfflineModeInteractorLiveTests: CoreTestCase {
 
         wait(for: [expectation], timeout: 1)
         subscription.cancel()
+    }
+
+    func testOfflineModeFlagStaysFalseIfNotEnabledForApp() {
+        let flag = injectFeatureFlagObject()
+        flag.enabled = true
+        let testee = OfflineModeInteractorLive(context: databaseClient,
+                                               isOfflineModeEnabledForApp: false)
+
+        RunLoop.main.run(until: .now + 0.5)
+        XCTAssertFalse(testee.isFeatureFlagEnabled())
+        XCTAssertSingleOutputEquals(testee.observeIsFeatureFlagEnabled().first(), false)
     }
 
     private func injectFeatureFlagObject() -> FeatureFlag {

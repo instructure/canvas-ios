@@ -40,13 +40,19 @@ public final class OfflineModeInteractorLive: OfflineModeInteractor {
     // MARK: - Public Interface
 
     public init(availabilityService: NetworkAvailabilityService = NetworkAvailabilityServiceLive(),
-                context: NSManagedObjectContext = AppEnvironment.shared.database.viewContext) {
+                context: NSManagedObjectContext = AppEnvironment.shared.database.viewContext,
+                isOfflineModeEnabledForApp: Bool) {
         self.availabilityService = availabilityService
         self.availabilityService.startMonitoring()
         self.offlineFlagStore = ReactiveStore(offlineModeInteractor: nil,
                                               context: context,
                                               useCase: Self.LocalFeatureFlagUseCase)
-        subscribeToOfflineFeatureFlagChanges()
+
+        // If offline mode isn't enabled for the app we just don't
+        // update the flag state and leave it at its default false value
+        if isOfflineModeEnabledForApp {
+            subscribeToOfflineFeatureFlagChanges()
+        }
     }
 
     deinit {
@@ -61,24 +67,27 @@ public final class OfflineModeInteractorLive: OfflineModeInteractor {
         isFeatureFlagEnabled() && isNetworkOffline()
     }
 
+    /** Values are published on the main thread. */
     public func observeIsOfflineMode() -> AnyPublisher<Bool, Never> {
         return availabilityService
             .startObservingStatus()
-            .receive(on: DispatchQueue.main)
             .map { _ in self.isOfflineModeEnabled() }
             .removeDuplicates()
+            .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
 
+    /** Values are published on the main thread. */
     public func observeNetworkStatus() -> AnyPublisher<NetworkAvailabilityStatus, Never> {
         return availabilityService
             .startObservingStatus()
-            .receive(on: DispatchQueue.main)
             .map { $0 }
             .removeDuplicates()
+            .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
 
+    /** Values are published on the main thread. */
     public func observeIsFeatureFlagEnabled() -> AnyPublisher<Bool, Never> {
         featureFlagEnabled.eraseToAnyPublisher()
     }

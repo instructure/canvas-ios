@@ -25,6 +25,8 @@ struct SideMenuBottomSection: View {
     @ObservedObject var helpLinks: Store<GetAccountHelpLinks>
     @ObservedObject var permissions: Store<GetContextPermissions>
 
+    @StateObject private var offlineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
+
     var dashboard: UIViewController {
         guard var dashboard = controller.value.presentingViewController else {
             return UIViewController()
@@ -77,7 +79,7 @@ struct SideMenuBottomSection: View {
             }
 
             if let root = helpLinks.first, helpLinks.count > 1 {
-                Button {
+                PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline) {
                     showHelpMenu()
                 } label: {
                     SideMenuItem(id: "help", image: .questionLine, title: Text("\(root.text ?? "")", bundle: .core))
@@ -86,7 +88,7 @@ struct SideMenuBottomSection: View {
             }
 
             if canActAsUser {
-                Button {
+                PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline) {
                     self.route(to: "/act-as-user", options: .modal(embedInNav: true))
                 } label: {
                     SideMenuItem(id: "actAsUser", image: .userLine, title: Text("Act as User", bundle: .core))

@@ -115,7 +115,7 @@ struct DashboardCourseCardView: View {
     @ViewBuilder
     private var optionsKebabButton: some View {
         PrimaryButton(isAvailable: $isAvailable) {
-            if offlineModeViewModel.isOfflineFeatureEnabled, env.app == .student {
+            if offlineModeViewModel.isOfflineFeatureEnabled {
                 isShowingKebabDialog.toggle()
             } else {
                 openDashboardCardCustomizeSheet()
@@ -178,6 +178,10 @@ struct DashboardCourseCardView: View {
     }
 
     private func openDashboardCardCustomizeSheet() {
+        if offlineModeViewModel.isOffline {
+            return UIAlertController.showItemNotAvailableInOfflineAlert()
+        }
+
         guard let course = courseCard.course else { return }
         env.router.show(
             CoreHostingController(CustomizeCourseView(course: course, hideColorOverlay: hideColorOverlay)),
