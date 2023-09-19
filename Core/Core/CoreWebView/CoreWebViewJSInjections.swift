@@ -24,7 +24,13 @@ import Foundation
 extension CoreWebView {
 
     public static func jsString(_ string: String?) -> String {
-        guard let string = string else { return "null" }
+        guard var string else { return "null" }
+
+        // These will cause JS syntax errors, removing them will alter character rendering however
+        if let stripped = string.applyingTransform(.stripCombiningMarks, reverse: false) {
+            string = stripped
+        }
+
         let escaped = string
             .replacingOccurrences(of: "\\", with: "\\\\")
             .replacingOccurrences(of: "'", with: "\\'")
