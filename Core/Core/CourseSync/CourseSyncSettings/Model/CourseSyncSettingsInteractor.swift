@@ -54,6 +54,11 @@ class CourseSyncSettingsInteractorLive: CourseSyncSettingsInteractor {
     public func setAutoSyncEnabled(_ isEnabled: Bool) -> AnyPublisher<Bool, Never> {
         Future { [unowned self] promise in
             storage.isOfflineAutoSyncEnabled = isEnabled
+
+            let nextSync = isEnabled ? storedSettings.syncFrequency.nextSyncDate(from: Clock.now)
+                                     : nil
+            storage.offlineSyncNextDate = nextSync
+
             promise(.success(isEnabled))
         }
         .eraseToAnyPublisher()
@@ -69,22 +74,19 @@ class CourseSyncSettingsInteractorLive: CourseSyncSettingsInteractor {
 
     public func setSyncFrequency(_ syncFrequency: CourseSyncFrequency) -> AnyPublisher<CourseSyncFrequency, Never> {
         Future { [unowned self] promise in
-            storage.offlineSyncFrequency = syncFrequency.rawValue
+            storage.offlineSyncFrequency = syncFrequency
+
+            if storedSettings.isAutoSyncEnabled {
+                storage.offlineSyncNextDate = storedSettings.syncFrequency.nextSyncDate(from: Clock.now)
+            }
+
             promise(.success(syncFrequency))
         }
         .eraseToAnyPublisher()
     }
 
     private var storedSettings: CourseSyncSettings {
-        let syncFrequency: CourseSyncFrequency? = {
-            guard let storedSyncFrequencyRaw = storage.offlineSyncFrequency,
-                  let storedSyncFrequency = CourseSyncFrequency(rawValue: storedSyncFrequencyRaw)
-            else {
-                return nil
-            }
-
-            return storedSyncFrequency
-        }()
+        let syncFrequency = storage.offlineSyncFrequency
         return CourseSyncSettings(isAutoSyncEnabled: storage.isOfflineAutoSyncEnabled ?? false,
                                   isWifiOnlySyncEnabled: storage.isOfflineWifiOnlySyncEnabled ?? true,
                                   syncFrequency: syncFrequency ?? .daily)

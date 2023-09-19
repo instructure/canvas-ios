@@ -51,14 +51,13 @@ public struct K5SubjectView: View, ScreenViewTrackable {
                 Divider()
             }
         }
-        .navigationBarStyle(.color(self.viewModel.courseColor))
-        .navigationTitle(self.viewModel.courseTitle ?? "", subtitle: nil)
+        .navigationBarStyle(.color(viewModel.courseColor))
+        .navigationTitle(viewModel.courseTitle ?? "", subtitle: nil)
     }
 
     public init(context: Context, selectedTabId: String? = nil) {
         self.viewModel = K5SubjectViewModel(context: context, selectedTabId: selectedTabId)
         self.screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "\(context.pathComponent)")
-        self.controller.value.navigationController?.navigationBar.tintColor = self.viewModel.courseColor
     }
 }
 

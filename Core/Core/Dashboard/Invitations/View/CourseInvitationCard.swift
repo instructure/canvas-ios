@@ -89,13 +89,13 @@ struct CourseInvitationCard_Previews: PreviewProvider {
 
         init(name: String, state: State) {
             self.mockState = state
-            super.init(name: name, courseId: "", enrollmentId: "")
+            super.init(name: name, courseId: "", enrollmentId: "", offlineModeInteractor: OfflineModeInteractorMock())
         }
     }
 
     static var previews: some View {
         let view = VStack {
-            CourseInvitationCard(invitation: DashboardInvitationViewModel(name: "Primary Course", courseId: "", enrollmentId: ""))
+            CourseInvitationCard(invitation: DashboardInvitationViewModel(name: "Primary Course", courseId: "", enrollmentId: "", offlineModeInteractor: OfflineModeInteractorMock()))
             CourseInvitationCard(invitation: MockViewModel(name: "Primary Course", state: .declined))
             CourseInvitationCard(invitation: MockViewModel(name: "Primary Course", state: .accepted))
         }

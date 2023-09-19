@@ -390,15 +390,28 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         }
         script += "\nloadMathJaxIfNecessary()"
 
-        webView.evaluateJavaScript(script) { [weak self] (_, error) in
-            if let error = error {
-                print(error)
-                self?.showError(error)
-            } else {
-                self?.rendered()
-                self?.focusOnNewReplyIfNecessary()
+        webView.evaluateJavaScript(script) { [weak self] _, error in
+            guard let self else { return }
+
+            if error != nil {
+                self.showFallbackWebView()
+                // TODO: Report render error
+                return
             }
+
+            self.rendered()
+            self.focusOnNewReplyIfNecessary()
         }
+    }
+
+    private func showFallbackWebView() {
+        guard let embedURL = webView.url?.appendingQueryItems(.init(name: "embed", value: "true")) else {
+            return
+        }
+
+        // This is to break the infinite render-error-render-error cycle.
+        webView.configuration.userContentController.removeScriptMessageHandler(forName: "ready")
+        webView.load(URLRequest(url: embedURL))
     }
 
     func rendered() {

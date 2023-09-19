@@ -30,7 +30,8 @@ public enum OfflineModeAssembly {
             }
 
             let instance = OfflineModeInteractorLive(availabilityService: NetworkAvailabilityServiceLive(),
-                                                     context: AppEnvironment.shared.database.viewContext)
+                                                     context: AppEnvironment.shared.database.viewContext,
+                                                     isOfflineModeEnabledForApp: AppEnvironment.shared.app.isOfflineModeEnabled)
             shared = instance
             return instance
         }

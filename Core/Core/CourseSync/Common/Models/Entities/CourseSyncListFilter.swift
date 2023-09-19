@@ -18,7 +18,7 @@
 
 import Foundation
 
-enum CourseSyncListFilter {
+public enum CourseSyncListFilter: Equatable {
     case courseID(String) // A specific course
     case all // All the available courses
     case synced // Synchronized courses
