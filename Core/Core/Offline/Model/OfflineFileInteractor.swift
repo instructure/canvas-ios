@@ -35,10 +35,11 @@ public final class OfflineFileInteractorLive: OfflineFileInteractor {
     }
 
     public func filePath(sessionID: String, courseId: String?, fileID: String, fileName: String) -> String {
+        // Offline synced files are organized by the courseId in a folder.
         if let courseId {
             return "\(sessionID)/Offline/Files/\(courseId)/\(fileID)/\(fileName)"
         } else {
-            return "\(sessionID)/Offline/Files/\(fileID)/\(fileName)"
+            return ""
         }
     }
 

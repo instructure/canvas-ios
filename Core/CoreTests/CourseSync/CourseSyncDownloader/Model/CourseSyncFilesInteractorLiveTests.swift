@@ -41,6 +41,7 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
 
         var progressList: [Float] = []
         let subscription = testee.downloadFile(
+            courseId: "course-1",
             url: url,
             fileID: "fileID",
             fileName: "fileName",
@@ -81,7 +82,7 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
         let testee = CourseSyncFilesInteractorLive()
         let expectation = expectation(description: "Publisher sends value")
         let url = URL(string: "1.jpg")!
-        let folderName = "canvas.instructure.com-1/Offline/Files/fileID"
+        let folderName = "canvas.instructure.com-1/Offline/Files/course-1/fileID"
 
         try? FileManager.default.createDirectory(
             at: URL.Directories.documents.appendingPathComponent(folderName),
@@ -103,6 +104,7 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
         folderItem.file = existingFile
 
         let subscription = testee.downloadFile(
+            courseId: "course-1",
             url: url,
             fileID: "fileID",
             fileName: "fileName",
@@ -150,6 +152,7 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
         folderItem.file = existingFile
 
         let subscription = testee.downloadFile(
+            courseId: "course-1",
             url: url,
             fileID: "fileID",
             fileName: "fileName",
@@ -178,6 +181,7 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
 
         var progressList: [Float] = []
         let subscription = testee.downloadFile(
+            courseId: "course-1",
             url: url,
             fileID: "1",
             fileName: "fileName",
@@ -217,19 +221,98 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
 
         environment.currentSession = nil
 
-        let subscription = testee.downloadFile(url: URL(string: "1")!, fileID: "1", fileName: "1", mimeClass: "1", updatedAt: nil)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case let .failure(error):
-                    if error.localizedDescription == "There was an unexpected error. Please try again." {
-                        expectation.fulfill()
-                    }
-                default:
-                    break
+        let subscription = testee.downloadFile(
+            courseId: "course-1",
+            url: URL(string: "1")!,
+            fileID: "1",
+            fileName: "1",
+            mimeClass: "1",
+            updatedAt: nil
+        )
+        .sink(receiveCompletion: { completion in
+            switch completion {
+            case let .failure(error):
+                if error.localizedDescription == "There was an unexpected error. Please try again." {
+                    expectation.fulfill()
                 }
-            }, receiveValue: { _ in })
+            default:
+                break
+            }
+        }, receiveValue: { _ in })
 
         waitForExpectations(timeout: 0.1)
         subscription.cancel()
+    }
+
+    func testUnavailableFiles() {
+        let testee = CourseSyncFilesInteractorLive()
+
+        let folderName = "canvas.instructure.com-1/Offline/Files/course-1"
+
+        try? FileManager.default.createDirectory(
+            at: URL.Directories.documents.appendingPathComponent(folderName),
+            withIntermediateDirectories: true
+        )
+        FileManager.default.createFile(
+            atPath: URL.Directories.documents.appendingPathComponent(folderName + "/file-1").path,
+            contents: "test".data(using: .utf8)
+        )
+        FileManager.default.createFile(
+            atPath: URL.Directories.documents.appendingPathComponent(folderName + "/file-2").path,
+            contents: "test".data(using: .utf8)
+        )
+
+        let subscription = testee.removeUnavailableFiles(
+            courseId: "course-1",
+            newFileIDs: ["file-1"]
+        )
+        .sink()
+
+        let fileExists = FileManager.default.fileExists(
+            atPath: URL.Directories.documents.appendingPathComponent(folderName + "/file-2").path
+        )
+
+        XCTAssertFalse(fileExists)
+
+        subscription.cancel()
+    }
+
+    func testGetFiles() {
+        let testee = CourseSyncFilesInteractorLive()
+
+        let rootFolder = APIFolder.make(
+            context_type: "Course",
+            context_id: "course-id-1",
+            files_count: 1,
+            id: 0
+        )
+
+        let rootFolderFile = APIFile.make(
+            id: "file-1",
+            folder_id: 0,
+            display_name: "file-displayname-1",
+            filename: "file-name-1",
+            size: 1000
+        )
+
+        api.mock(
+            GetFolderByPath(context: .course("course-id-1")),
+            value: [rootFolder]
+        )
+
+        api.mock(
+            GetFoldersRequest(context: Context(.folder, id: "0")),
+            value: []
+        )
+
+        api.mock(
+            GetFilesRequest(context: Context(.folder, id: "0")),
+            value: [rootFolderFile]
+        )
+
+        XCTAssertSingleOutputEquals(
+            testee.getFiles(courseId: "course-id-1", useCache: false),
+            [File.make(from: rootFolderFile)]
+        )
     }
 }
