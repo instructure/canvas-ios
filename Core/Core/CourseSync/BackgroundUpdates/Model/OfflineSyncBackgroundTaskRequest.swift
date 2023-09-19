@@ -16,17 +16,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import BackgroundTasks
 
-public enum CourseSyncListFilter: Equatable {
-    case courseID(String) // A specific course
-    case all // All the available courses
-    case synced // Synchronized courses
+public class OfflineSyncBackgroundTaskRequest: BGProcessingTaskRequest {
+    public static let ID = "com.instructure.icanvas.offline-sync"
 
-    var isLimitedToSyncedOnly: Bool {
-        switch self {
-        case .synced: return true
-        default: return false
-        }
+    public init?(nextSyncDate: OfflineSyncNextDateInteractor, sessions: Set<LoginSession>) {
+        guard let nextSyncDate = nextSyncDate.calculate(sessionUniqueIDs: sessions.map { $0.uniqueID }) else { return nil }
+        super.init(identifier: Self.ID)
+        requiresExternalPower = false
+        requiresNetworkConnectivity = true
+        earliestBeginDate = nextSyncDate
     }
 }

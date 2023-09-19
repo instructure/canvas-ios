@@ -20,11 +20,11 @@ import Combine
 import CombineSchedulers
 import Foundation
 
-protocol CourseSyncListInteractor {
+public protocol CourseSyncListInteractor {
     func getCourseSyncEntries(filter: CourseSyncListFilter) -> AnyPublisher<[CourseSyncEntry], Error>
 }
 
-class CourseSyncListInteractorLive: CourseSyncListInteractor {
+public class CourseSyncListInteractorLive: CourseSyncListInteractor {
     private let courseListStore = ReactiveStore(
         useCase: GetCourseSyncSelectorCourses()
     )
@@ -42,7 +42,7 @@ class CourseSyncListInteractorLive: CourseSyncListInteractor {
         self.scheduler = scheduler
     }
 
-    func getCourseSyncEntries(filter: CourseSyncListFilter) -> AnyPublisher<[CourseSyncEntry], Error> {
+    public func getCourseSyncEntries(filter: CourseSyncListFilter) -> AnyPublisher<[CourseSyncEntry], Error> {
         let filteredToSynced = filter.isLimitedToSyncedOnly
         let publisher: AnyPublisher<[CourseSyncSelectorCourse], Error>
 

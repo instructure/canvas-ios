@@ -18,15 +18,26 @@
 
 import Foundation
 
-public enum CourseSyncListFilter: Equatable {
-    case courseID(String) // A specific course
-    case all // All the available courses
-    case synced // Synchronized courses
+/**
+ This class calculates the date when the app should wake up in the background
+ to perform a background fetch.
+ */
+public class OfflineSyncNextDateInteractor {
 
-    var isLimitedToSyncedOnly: Bool {
-        switch self {
-        case .synced: return true
-        default: return false
+    /**
+     - parameters:
+        - sessionUniqueIDs: All session uniqueIDs currently logged into the app.
+     */
+    public func calculate(sessionUniqueIDs: [String]) -> Date? {
+        let dates: [Date] = sessionUniqueIDs.compactMap { sessionID in
+            let defaults = SessionDefaults(sessionID: sessionID)
+            guard defaults.isOfflineAutoSyncEnabled == true,
+                  let nextSyncDate = defaults.offlineSyncNextDate
+            else {
+                return nil
+            }
+            return nextSyncDate
         }
+        return dates.min()
     }
 }

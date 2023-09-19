@@ -16,17 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+@testable import Core
+import XCTest
 
-public enum CourseSyncListFilter: Equatable {
-    case courseID(String) // A specific course
-    case all // All the available courses
-    case synced // Synchronized courses
+class OfflineSyncSchedulerInteractorTests: XCTestCase {
 
-    var isLimitedToSyncedOnly: Bool {
-        switch self {
-        case .synced: return true
-        default: return false
-        }
+    func testUpdatesNextSyncDate() {
+        let now = Date()
+        Clock.mockNow(now)
+        var defaults = SessionDefaults(sessionID: "test-1")
+        defaults.offlineSyncFrequency = .daily
+        let testee = OfflineSyncScheduleInteractor()
+
+        // WHEN
+        testee.updateNextSyncDate(sessionUniqueID: "test-1")
+
+        // THEN
+        XCTAssertEqual(defaults.offlineSyncNextDate, now.addingTimeInterval(24 * 60 * 60))
     }
 }

@@ -16,17 +16,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import BackgroundTasks
 
-public enum CourseSyncListFilter: Equatable {
-    case courseID(String) // A specific course
-    case all // All the available courses
-    case synced // Synchronized courses
+public enum CourseSyncBackgroundUpdatesAssembly {
 
-    var isLimitedToSyncedOnly: Bool {
-        switch self {
-        case .synced: return true
-        default: return false
-        }
+    public static func makeOfflineSyncBackgroundTask() -> BackgroundTask {
+        OfflineSyncBackgroundTask(syncableAccounts: OfflineSyncAccountsInteractor(),
+                                  sessions: LoginSession.sessions)
+    }
+
+    public static func makeTaskRequest() -> BGProcessingTaskRequest? {
+        OfflineSyncBackgroundTaskRequest(nextSyncDate: OfflineSyncNextDateInteractor(),
+                                         sessions: LoginSession.sessions)
     }
 }
