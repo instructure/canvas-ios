@@ -52,12 +52,6 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
                                                                router: router,
                                                                scheduler: .immediate)
 
-        let progress: CourseSyncDownloadProgress = databaseClient.insert()
-        progress.bytesToDownload = 1000
-        progress.bytesDownloaded = 100
-        progress.isFinished = false
-        progress.error = nil
-
         // MARK: - WHEN
 
         NotificationCenter.default.post(name: .OfflineSyncTriggered, object: nil)
@@ -65,19 +59,44 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
 
         // MARK: - THEN
 
-        mockInteractor.mockDownloadProgress(progress)
+        mockInteractor.mockDownloadProgress(
+            CourseSyncDownloadProgress(
+                bytesToDownload: 1000,
+                bytesDownloaded: 100,
+                isFinished: false,
+                error: nil
+            )
+        )
         XCTAssertEqual(testee.state, .progress(0.1, "2 items are syncing."))
 
-        progress.bytesDownloaded = 500
-        mockInteractor.mockDownloadProgress(progress)
+        mockInteractor.mockDownloadProgress(
+            CourseSyncDownloadProgress(
+                bytesToDownload: 1000,
+                bytesDownloaded: 500,
+                isFinished: false,
+                error: nil
+            )
+        )
         XCTAssertEqual(testee.state, .progress(0.5, "2 items are syncing."))
 
-        progress.bytesDownloaded = 750
-        mockInteractor.mockDownloadProgress(progress)
+        mockInteractor.mockDownloadProgress(
+            CourseSyncDownloadProgress(
+                bytesToDownload: 1000,
+                bytesDownloaded: 750,
+                isFinished: false,
+                error: nil
+            )
+        )
         XCTAssertEqual(testee.state, .progress(0.75, "2 items are syncing."))
 
-        progress.bytesDownloaded = 1000
-        mockInteractor.mockDownloadProgress(progress)
+        mockInteractor.mockDownloadProgress(
+            CourseSyncDownloadProgress(
+                bytesToDownload: 1000,
+                bytesDownloaded: 1000,
+                isFinished: false,
+                error: nil
+            )
+        )
         XCTAssertEqual(testee.state, .progress(1, "2 items are syncing."))
     }
 
@@ -209,45 +228,35 @@ private class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserv
     private let progressToReport: Float
     private let bytesToDownload: Float = 10
 
-    private let downloadProgressPublisher = PassthroughSubject<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never>()
-    private let stateProgressPublisher = PassthroughSubject<ReactiveStore<GetCourseSyncStateProgressUseCase>.State, Never>()
+    private let downloadProgressPublisher = PassthroughSubject<CourseSyncDownloadProgress, Never>()
+    private let stateProgressPublisher = PassthroughSubject<[CourseSyncStateProgress], Never>()
 
-    private lazy var downloadProgressMock: CourseSyncDownloadProgress = {
-        let item: CourseSyncDownloadProgress = context.insert()
-        item.bytesToDownload = Int(bytesToDownload)
-        item.bytesDownloaded = Int(progressToReport * bytesToDownload)
-        item.isFinished = false
-        item.error = nil
-        return item
-    }()
+    private lazy var downloadProgressMock = CourseSyncDownloadProgress(
+        bytesToDownload: Int(bytesToDownload),
+        bytesDownloaded: Int(progressToReport * bytesToDownload),
+        isFinished: false,
+        error: nil
+    )
 
-    private lazy var downloadProgressFinishedMock: CourseSyncDownloadProgress = {
-        let item: CourseSyncDownloadProgress = context.insert()
-        item.bytesToDownload = Int(bytesToDownload)
-        item.bytesDownloaded = Int(progressToReport * bytesToDownload)
-        item.isFinished = true
-        item.error = nil
-        return item
-    }()
+    private lazy var downloadProgressFinishedMock = CourseSyncDownloadProgress(
+        bytesToDownload: Int(bytesToDownload),
+        bytesDownloaded: Int(progressToReport * bytesToDownload),
+        isFinished: true,
+        error: nil
+    )
 
-    private lazy var downloadProgressErrorMock: CourseSyncDownloadProgress = {
-        let item: CourseSyncDownloadProgress = context.insert()
-        item.bytesToDownload = Int(bytesToDownload)
-        item.bytesDownloaded = Int(progressToReport * bytesToDownload)
-        item.isFinished = true
-        item.error = "Failed."
-        return item
-    }()
+    private lazy var downloadProgressErrorMock = CourseSyncDownloadProgress(
+        bytesToDownload: Int(bytesToDownload),
+        bytesDownloaded: Int(progressToReport * bytesToDownload),
+        isFinished: true,
+        error: "Failed."
+    )
 
     private lazy var stateProgressMock: [CourseSyncStateProgress] = {
-        let course: CourseSyncStateProgress = context.insert()
-        course.selection = .course("")
-        let fileTab: CourseSyncStateProgress = context.insert()
-        fileTab.selection = .tab("", "courses/123/tabs/files")
-        let file1: CourseSyncStateProgress = context.insert()
-        file1.selection = .file("", "")
-        let file2: CourseSyncStateProgress = context.insert()
-        file2.selection = .file("", "")
+        let course = CourseSyncStateProgress.make(selection: .course(""))
+        let fileTab = CourseSyncStateProgress.make(selection: .tab("", "courses/123/tabs/files"))
+        let file1 = CourseSyncStateProgress.make(selection: .file("", ""))
+        let file2 = CourseSyncStateProgress.make(selection: .file("", ""))
         return [course, fileTab, file1, file2]
     }()
 
@@ -256,34 +265,32 @@ private class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserv
         self.progressToReport = progressToReport
     }
 
-    func observeDownloadProgress()
-        -> AnyPublisher<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never> {
+    func observeDownloadProgress() -> AnyPublisher<CourseSyncDownloadProgress, Never> {
         downloadProgressPublisher.eraseToAnyPublisher()
     }
 
-    func observeStateProgress()
-        -> AnyPublisher<ReactiveStore<GetCourseSyncStateProgressUseCase>.State, Never> {
+    func observeStateProgress() -> AnyPublisher<[CourseSyncStateProgress], Never> {
         stateProgressPublisher.eraseToAnyPublisher()
     }
 
     func mockDownloadProgress() {
-        downloadProgressPublisher.send(.data([downloadProgressMock]))
+        downloadProgressPublisher.send(downloadProgressMock)
     }
 
     func mockDownloadProgress(_ progress: CourseSyncDownloadProgress) {
-        downloadProgressPublisher.send(.data([progress]))
+        downloadProgressPublisher.send(progress)
     }
 
     func mockFinishedDownloadProgress() {
-        downloadProgressPublisher.send(.data([downloadProgressFinishedMock]))
+        downloadProgressPublisher.send(downloadProgressFinishedMock)
     }
 
     func mockFailedDownloadProgress() {
-        downloadProgressPublisher.send(.data([downloadProgressErrorMock]))
+        downloadProgressPublisher.send(downloadProgressErrorMock)
     }
 
     func mockStateProgress() {
-        stateProgressPublisher.send(.data(stateProgressMock))
+        stateProgressPublisher.send(stateProgressMock)
     }
 }
 

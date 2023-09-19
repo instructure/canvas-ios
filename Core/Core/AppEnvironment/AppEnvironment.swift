@@ -58,7 +58,13 @@ open class AppEnvironment {
         self.logger = Logger.shared
     }
 
-    public func userDidLogin(session: LoginSession) {
+    /**
+     - parameters:
+        - isSilent: If this parameter is true then the method won't trigger a widget refresh
+     and also won't update the last logged in user data. Useful if we want to do something in
+     the background with a user logged into the app while it's not the currently active user.
+     */
+    public func userDidLogin(session: LoginSession, isSilent: Bool = false) {
         // If the interactor was re-created using the global database
         // we have to reset and re-initialize it to use the session's DB
         OfflineModeAssembly.reset()
@@ -67,7 +73,11 @@ open class AppEnvironment {
         api = API(session)
         currentSession = session
         userDefaults = SessionDefaults(sessionID: session.uniqueID)
-        Logger.shared.database = database
+
+        if isSilent {
+            return
+        }
+
         refreshWidgets()
         saveAccount(for: session)
     }
@@ -80,7 +90,6 @@ open class AppEnvironment {
         k5.userDidLogout()
         currentSession = nil
         userDefaults = nil
-        Logger.shared.database = database
         refreshWidgets()
         deleteUserData(session: session)
     }

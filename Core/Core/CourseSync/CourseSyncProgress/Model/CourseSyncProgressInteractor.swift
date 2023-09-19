@@ -23,7 +23,7 @@ import CoreData
 import Foundation
 
 protocol CourseSyncProgressInteractor: AnyObject {
-    func observeDownloadProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never>
+    func observeDownloadProgress() -> AnyPublisher<CourseSyncDownloadProgress, Never>
     func observeEntries() -> AnyPublisher<[CourseSyncEntry], Error>
     func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool)
     func cancelSync()
@@ -90,7 +90,7 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         context.automaticallyMergesChangesFromParent = true
     }
 
-    func observeDownloadProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never> {
+    func observeDownloadProgress() -> AnyPublisher<CourseSyncDownloadProgress, Never> {
         progressObserverInteractor
             .observeDownloadProgress()
             .receive(on: scheduler)
@@ -123,17 +123,6 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         progressObserverInteractor.observeStateProgress()
             .receive(on: scheduler)
             .throttle(for: .milliseconds(300), scheduler: scheduler, latest: true)
-            .flatMap { state -> AnyPublisher<[CourseSyncStateProgress], Never> in
-                switch state {
-                case let .data(progressList):
-                    guard progressList.count > 0 else {
-                        return Empty(completeImmediately: false).eraseToAnyPublisher()
-                    }
-                    return Just(progressList).eraseToAnyPublisher()
-                default:
-                    return Empty(completeImmediately: false).eraseToAnyPublisher()
-                }
-            }
             .map { $0.map { StateProgress(from: $0) } }
             .map { Set($0) }
             .scan((Set([]), Set([]))) { ($0.1, $1) } // Access previous and current published element

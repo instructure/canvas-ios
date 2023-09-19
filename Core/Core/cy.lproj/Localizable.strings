@@ -455,6 +455,9 @@
 "Cancel Submission?" = "Canslo Cyflwyniad?";
 
 /* No comment provided by engineer. */
+"Cancel Sync?" = "Canslo Cysoni?";
+
+/* No comment provided by engineer. */
 "Canvas Guides" = "Canllawiau Canvas";
 
 /* No comment provided by engineer. */
@@ -864,9 +867,6 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Gwrthod %@";
-
-/* No comment provided by engineer. */
-"Dismiss notification" = "Diystyru hysbysu";
 
 /* No comment provided by engineer. */
 "Display As" = "Dangos Fel";
@@ -1364,6 +1364,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Mae'n ymddangos nad ydych chi wedi ymrestru ar unrhyw gyrsiau fel %@. Efallai y byddai un o'n apiau eraill yn eich siwtio'n well. Tapiwch un i fynd i'r App Store.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "Bydd y stopio cysoni cynnwys all-lein. Gallwch chi ei wneud eto yn nes ymlaen.";
+
+/* No comment provided by engineer. */
 "Italic" = "Italig";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1497,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Gwall Mewngofnodi";
+
+/* No comment provided by engineer. */
+"Login help." = "Cymorth mewngofnodi.";
 
 /* No comment provided by engineer. */
 "Login ID" = "ID Mewngofnodi";
@@ -1782,6 +1788,9 @@
 
 /* No comment provided by engineer. */
 "Observers" = "Arsyllwyr";
+
+/* No comment provided by engineer. */
+"Offline" = "All-lein";
 
 /* No comment provided by engineer. */
 "Offline Content" = "Cynnwys All-lein";
