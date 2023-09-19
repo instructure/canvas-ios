@@ -27,12 +27,17 @@ public protocol CourseSyncFilesInteractor {
         useCache: Bool
     ) -> AnyPublisher<[File], Error>
     func downloadFile(
+        courseId: String,
         url: URL,
         fileID: String,
         fileName: String,
         mimeClass: String,
         updatedAt: Date?
     ) -> AnyPublisher<Float, Error>
+    func removeUnavailableFiles(
+        courseId: String,
+        newFileIDs: [String]
+    ) -> AnyPublisher<Void, Error>
 }
 
 public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, LocalFileURLCreator {
@@ -155,6 +160,7 @@ public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, Loc
     }
 
     public func downloadFile(
+        courseId: String,
         url: URL,
         fileID: String,
         fileName: String,
@@ -175,7 +181,12 @@ public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, Loc
         }
 
         let localURL = prepareLocalURL(
-            fileName: offlineFileInteractor.filePath(sessionID: sessionID, fileID: fileID, fileName: fileName),
+            fileName: offlineFileInteractor.filePath(
+                sessionID: sessionID,
+                courseId: courseId,
+                fileID: fileID,
+                fileName: fileName
+            ),
             mimeClass: mimeClass,
             location: URL.Directories.documents
         )
@@ -201,5 +212,40 @@ public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, Loc
             )
             .eraseToAnyPublisher()
         }
+    }
+
+    public func removeUnavailableFiles(
+        courseId: String,
+        newFileIDs: [String]
+    ) -> AnyPublisher<Void, Error> {
+        guard let sessionID = env.currentSession?.uniqueID else {
+            return Fail(error:
+                NSError.instructureError(
+                    NSLocalizedString(
+                        "There was an unexpected error. Please try again.",
+                        bundle: .core,
+                        comment: ""
+                    )
+                )
+            )
+            .eraseToAnyPublisher()
+        }
+
+        let courseFolderURL = URL.Directories.documents.appendingPathComponent("\(sessionID)/Offline/Files/\(courseId)")
+        let courseFileIDsArr: [String] = (try? fileManager.contentsOfDirectory(atPath: courseFolderURL.path)) ?? []
+        let courseFileIDs = Set(courseFileIDsArr)
+
+        let unavailableFileFolderURLs = courseFileIDs
+            .subtracting(Set(newFileIDs))
+            .map { courseFolderURL.appendingPathComponent($0) }
+
+        unowned let unownedSelf = self
+
+        return unavailableFileFolderURLs
+            .publisher
+            .tryMap { try unownedSelf.fileManager.removeItem(at: $0) }
+            .collect()
+            .map { _ in () }
+            .eraseToAnyPublisher()
     }
 }
