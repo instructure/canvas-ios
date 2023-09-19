@@ -455,6 +455,9 @@
 "Cancel Submission?" = "Annullare l'invio?";
 
 /* No comment provided by engineer. */
+"Cancel Sync?" = "Cancellare sincronizzazione?";
+
+/* No comment provided by engineer. */
 "Canvas Guides" = "Guide Canvas";
 
 /* No comment provided by engineer. */
@@ -864,9 +867,6 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Ignora %@";
-
-/* No comment provided by engineer. */
-"Dismiss notification" = "Elimina notifica";
 
 /* No comment provided by engineer. */
 "Display As" = "Visualizza come";
@@ -1364,6 +1364,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Sembra che non sei iscritto ad alcun corso come %@. Una delle altre nostre app potrebbe essere la scelta migliore. Toccane una per visitare l'App Store.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "Ferma la sincronizzazione del contenuto offline. Puoi rifarlo dopo.";
+
+/* No comment provided by engineer. */
 "Italic" = "Corsivo";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1497,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Errore di login";
+
+/* No comment provided by engineer. */
+"Login help." = "Guida all’accesso.";
 
 /* No comment provided by engineer. */
 "Login ID" = "ID di accesso";
@@ -1782,6 +1788,9 @@
 
 /* No comment provided by engineer. */
 "Observers" = "Osservatori";
+
+/* No comment provided by engineer. */
+"Offline" = "Offline";
 
 /* No comment provided by engineer. */
 "Offline Content" = "Contenuto offline";

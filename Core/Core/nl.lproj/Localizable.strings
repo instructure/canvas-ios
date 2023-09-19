@@ -455,6 +455,9 @@
 "Cancel Submission?" = "Inlevering annuleren?";
 
 /* No comment provided by engineer. */
+"Cancel Sync?" = "Synchronisatie annuleren?";
+
+/* No comment provided by engineer. */
 "Canvas Guides" = "Canvas-handleidingen";
 
 /* No comment provided by engineer. */
@@ -864,9 +867,6 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Afwijzen %@";
-
-/* No comment provided by engineer. */
-"Dismiss notification" = "Melding verwijderen";
 
 /* No comment provided by engineer. */
 "Display As" = "Weergaven als";
@@ -1364,6 +1364,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Het lijkt erop dat je voor geen enkele cursus bent ingeschreven als %@. Wellicht is een van onze andere apps hiervoor beter geschikt. Tik op een ervan om naar de App Store te gaan.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "De offline inhoud wordt dan niet meer gesynchroniseerd. U kunt later opnieuw synchroniseren.";
+
+/* No comment provided by engineer. */
 "Italic" = "Cursief";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1497,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Fout bij aanmelden";
+
+/* No comment provided by engineer. */
+"Login help." = "Hulp bij het aanmelden.";
 
 /* No comment provided by engineer. */
 "Login ID" = "Aanmeldings-ID";
@@ -1782,6 +1788,9 @@
 
 /* No comment provided by engineer. */
 "Observers" = "Waarnemers";
+
+/* No comment provided by engineer. */
+"Offline" = "Offline";
 
 /* No comment provided by engineer. */
 "Offline Content" = "Offline inhoud";
