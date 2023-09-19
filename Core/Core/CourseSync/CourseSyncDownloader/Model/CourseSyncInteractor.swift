@@ -184,15 +184,21 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             let tabIndex = entry.tabs.firstIndex(where: { $0.type == .files }),
             entry.files.count > 0,
             entry.tabs[tabIndex].selectionState == .selected ||
-            entry.tabs[tabIndex].selectionState == .partiallySelected,
-            entry.tabs[tabIndex].state != .downloaded
+            entry.tabs[tabIndex].selectionState == .partiallySelected
         else {
-            return Just(()).eraseToAnyPublisher()
+            return removeUnavailableFiles(courseId: entry.courseId)
+        }
+
+        let files = entry.files.filter { $0.selectionState == .selected }
+
+        guard !files.isEmpty, entry.tabs[tabIndex].state != .downloaded else {
+            return removeUnavailableFiles(
+                courseId: entry.courseId,
+                newFileIDs: files.map { $0.fileId }
+            )
         }
 
         unowned let unownedSelf = self
-
-        let files = entry.files.filter { $0.selectionState == .selected }
 
         unownedSelf.setState(
             selection: .tab(entry.id, entry.tabs[tabIndex].id),
@@ -223,11 +229,10 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                 }
             )
             .flatMap { _ in
-                unownedSelf.filesInteractor.removeUnavailableFiles(
+                unownedSelf.removeUnavailableFiles(
                     courseId: entry.courseId,
                     newFileIDs: files.map { $0.fileId }
                 )
-                .replaceError(with: ())
             }
             .eraseToAnyPublisher()
     }
@@ -278,6 +283,15 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             }
         )
         .catch { _ in Just(0).eraseToAnyPublisher() }
+        .eraseToAnyPublisher()
+    }
+
+    private func removeUnavailableFiles(courseId: String, newFileIDs: [String] = []) -> AnyPublisher<Void, Never> {
+        filesInteractor.removeUnavailableFiles(
+            courseId: courseId,
+            newFileIDs: newFileIDs
+        )
+        .replaceError(with: ())
         .eraseToAnyPublisher()
     }
 
