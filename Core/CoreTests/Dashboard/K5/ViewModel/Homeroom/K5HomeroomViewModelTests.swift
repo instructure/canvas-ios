@@ -109,7 +109,8 @@ class K5HomeroomViewModelTests: CoreTestCase {
         XCTAssertEqual(card.name, "COURSE 1")
         XCTAssertEqual(card.courseRoute, "/courses/1")
         XCTAssertEqual(card.imageURL, URL(string: "https://instructure.com"))
-        XCTAssertEqual(card.color, Color(hexString: "#DEAD00"))
+        XCTAssertEqual(UIColor(card.color).hexString,
+                       UIColor(hexString: "#DEAD00")!.ensureContrast(against: .backgroundLightest).hexString)
 
         guard card.infoLines.count == 2 else { XCTFail("Info line count mismatch"); return }
         XCTAssertEqual(card.infoLines[0], K5HomeroomSubjectCardViewModel.InfoLine(icon: .k5dueToday, route: "/courses/1#schedule", text: "1 due today | ", highlightedText: "2 missing"))
