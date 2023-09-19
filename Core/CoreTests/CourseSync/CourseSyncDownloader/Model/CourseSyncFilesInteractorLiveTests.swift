@@ -129,7 +129,7 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
         shouldntInvokeExpectation.isInverted = true
 
         let url = URL(string: "1.jpg")!
-        let folderName = "canvas.instructure.com-1/Offline/Files/fileID"
+        let folderName = "canvas.instructure.com-1/Offline/Files/course-1/file-fileID"
 
         try? FileManager.default.createDirectory(
             at: URL.Directories.documents.appendingPathComponent(folderName),

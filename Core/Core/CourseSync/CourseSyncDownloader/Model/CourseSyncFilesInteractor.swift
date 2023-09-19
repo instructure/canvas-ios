@@ -231,12 +231,13 @@ public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, Loc
             .eraseToAnyPublisher()
         }
 
-        let courseFolderURL = URL.Directories.documents.appendingPathComponent("\(sessionID)/Offline/Files/\(courseId)")
+        let courseFolderURL = URL.Directories.documents.appendingPathComponent("\(sessionID)/Offline/Files/course-\(courseId)")
         let courseFileIDsArr: [String] = (try? fileManager.contentsOfDirectory(atPath: courseFolderURL.path)) ?? []
         let courseFileIDs = Set(courseFileIDsArr)
+        let mappedNewFileIDs = newFileIDs.map { "file-\($0)" }
 
         let unavailableFileFolderURLs = courseFileIDs
-            .subtracting(Set(newFileIDs))
+            .subtracting(Set(mappedNewFileIDs))
             .map { courseFolderURL.appendingPathComponent($0) }
 
         unowned let unownedSelf = self
