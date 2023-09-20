@@ -31,10 +31,10 @@ class DSLoginE2ETests: E2ETestCase {
 
         logOut()
 
-        let lastLoginBtn = LoginStart.lastLoginButton.waitToExist()
-        XCTAssertEqual(lastLoginBtn.label(), user.host)
+        let lastLoginBtn = LoginHelper.Start.lastLoginButton.waitUntil(.visible)
+        XCTAssertTrue(lastLoginBtn.hasLabel(label: user.host))
 
-        lastLoginBtn.tap()
+        lastLoginBtn.hit()
         loginAfterSchoolFound(teacher)
     }
 }

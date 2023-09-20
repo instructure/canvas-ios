@@ -35,11 +35,18 @@ public class AssignmentsHelper: BaseHelper {
         return app.find(id: "SubmissionListCell.\(user.id)")
     }
 
+    public static func oneNeedsGradingLabel(assignmentItem: XCUIElement) -> XCUIElement {
+        return assignmentItem.find(label: "1 NEEDS GRADING", type: .staticText)
+    }
+
     public struct SpeedGrader {
         public static var userButton: XCUIElement { app.find(id: "SpeedGrader.userButton") }
         public static var drawerGripper: XCUIElement { app.find(id: "SpeedGrader.drawerGripper") }
         public static var doneButton: XCUIElement { app.find(id: "SpeedGrader.doneButton") }
         public static var toolPicker: XCUIElement { app.find(id: "SpeedGrader.toolPicker") }
+        public static var postPolicyButton: XCUIElement { app.find(id: "SpeedGrader.postPolicyButton") }
+        public static var gradeButton: XCUIElement { app.find(id: "SpeedGrader.gradeButton") }
+        public static var gradeSlider: XCUIElement { app.find(label: "Grade Slider", type: .slider) }
 
         public struct Segment {
             public static var grades: XCUIElement { SpeedGrader.toolPicker.find(labelContaining: "Grades") }
@@ -75,9 +82,13 @@ public class AssignmentsHelper: BaseHelper {
         public static var viewSubmissionButton: XCUIElement { app.find(id: "AssignmentDetails.viewSubmissionButton") }
         public static var published: XCUIElement { app.find(id: "AssignmentDetails.published") }
         public static var unpublished: XCUIElement { app.find(id: "AssignmentDetails.unpublished") }
+        public static var oneGradedButton: XCUIElement { viewAllSubmissionsButton.find(label: "1, Graded", type: .button) }
+        public static var editButton: XCUIElement { app.find(label: "Edit", type: .button) }
+
         public static var backButton: XCUIElement {
             app.find(idStartingWith: "Assignment Details", type: .navigationBar).find(label: "Back", type: .button)
         }
+
         public static var submissionsButtonLabel: XCUIElement {
             app.find(id: "AssignmentDetails.submissionsButton").find(type: .staticText)
         }
@@ -95,6 +106,28 @@ public class AssignmentsHelper: BaseHelper {
             public static var body: XCUIElement { app.find(id: "Compose.body") }
 
             public static func recipientName(id: String) -> XCUIElement { return app.find(id: "Compose.recipientName.\(id)") }
+        }
+
+        // Teacher
+        public struct Submissions {
+            public static var needsGradingLabel: XCUIElement { app.find(id: "Needs Grading") }
+            public static var backButton: XCUIElement { app.find(labelContaining: "Assignment Details, ", type: .button) }
+
+            public static func cell(student: DSUser) -> XCUIElement {
+                return app.find(id: "SubmissionListCell.\(student.id)")
+            }
+
+            public static func navBar(assignment: DSAssignment) -> XCUIElement {
+                return app.find(id: "Submissions, \(assignment.name)", type: .navigationBar)
+            }
+        }
+
+        public struct Editor {
+            public static var titleField: XCUIElement { app.find(id: "AssignmentEditor.titleField") }
+            public static var webView: XCUIElement { app.find(id: "RichContentEditor.webView") }
+            public static var pointsField: XCUIElement { app.find(id: "AssignmentEditor.pointsField") }
+            public static var gradingTypeButton: XCUIElement { app.find(id: "AssignmentEditor.gradingTypeButton") }
+            public static var doneButton: XCUIElement { app.find(id: "AssignmentEditor.doneButton") }
         }
     }
 
