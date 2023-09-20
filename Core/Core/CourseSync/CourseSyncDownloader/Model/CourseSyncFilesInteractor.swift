@@ -231,7 +231,9 @@ public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, Loc
             .eraseToAnyPublisher()
         }
 
-        let courseFolderURL = URL.Directories.documents.appendingPathComponent("\(sessionID)/Offline/Files/course-\(courseId)")
+        let courseFolderURL = URL.Directories.documents.appendingPathComponent(
+            URL.Paths.Offline.courseFolder(sessionID: sessionID, courseId: courseId)
+        )
         let courseFileIDsArr: [String] = (try? fileManager.contentsOfDirectory(atPath: courseFolderURL.path)) ?? []
         let courseFileIDs = Set(courseFileIDsArr)
         let mappedNewFileIDs = newFileIDs.map { "file-\($0)" }

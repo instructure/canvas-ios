@@ -36,7 +36,10 @@ public final class OfflineFileInteractorLive: OfflineFileInteractor {
 
     public func filePath(sessionID: String, courseId: String, fileID: String, fileName: String) -> String {
         // Offline synced files are organized by the courseId in a folder.
-        "\(sessionID)/Offline/Files/course-\(courseId)/file-\(fileID)/\(fileName)"
+        URL.Paths.Offline.courseFolder(
+            sessionID: sessionID,
+            courseId: courseId
+        ) + "/file-\(fileID)/\(fileName)"
     }
 
     public func isItemAvailableOffline(courseID: String?, fileID: String?) -> Bool {
