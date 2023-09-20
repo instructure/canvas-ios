@@ -82,7 +82,7 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
         let testee = CourseSyncFilesInteractorLive()
         let expectation = expectation(description: "Publisher sends value")
         let url = URL(string: "1.jpg")!
-        let folderName = "canvas.instructure.com-1/Offline/Files/course-1/fileID"
+        let folderName = "canvas.instructure.com-1/Offline/Files/course-courseID/file-fileID"
 
         try? FileManager.default.createDirectory(
             at: URL.Directories.documents.appendingPathComponent(folderName),
@@ -95,16 +95,16 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
 
         let existingFile: File = databaseClient.insert()
         existingFile.url = url
-        existingFile.id = "file-fileID"
+        existingFile.id = "fileID"
         existingFile.filename = "fileName"
         existingFile.mimeClass = "mimeClass"
         existingFile.updatedAt = Date(timeIntervalSince1970: 1000)
         let folderItem: FolderItem = databaseClient.insert()
-        folderItem.id = "file-fileID"
+        folderItem.id = "fileID"
         folderItem.file = existingFile
 
         let subscription = testee.downloadFile(
-            courseId: "course-1",
+            courseId: "courseID",
             url: url,
             fileID: "fileID",
             fileName: "fileName",
@@ -247,7 +247,7 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
     func testUnavailableFiles() {
         let testee = CourseSyncFilesInteractorLive()
 
-        let folderName = "canvas.instructure.com-1/Offline/Files/course-1"
+        let folderName = "canvas.instructure.com-1/Offline/Files/course-courseID"
 
         try? FileManager.default.createDirectory(
             at: URL.Directories.documents.appendingPathComponent(folderName),
@@ -263,7 +263,7 @@ class CourseSyncFilesInteractorLiveTests: CoreTestCase {
         )
 
         let subscription = testee.removeUnavailableFiles(
-            courseId: "course-1",
+            courseId: "courseID",
             newFileIDs: ["file-1"]
         )
         .sink()
