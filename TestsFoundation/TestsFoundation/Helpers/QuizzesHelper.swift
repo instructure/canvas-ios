@@ -91,6 +91,16 @@ public class QuizzesHelper: BaseHelper {
         }
     }
 
+    public struct TeacherDetails {
+        public static var title: XCUIElement { app.find(id: "QuizDetails.name") }
+        public static var editButton: XCUIElement { app.find(label: "Edit", type: .button) }
+        public static var points: XCUIElement { app.find(id: "QuizDetails.points") }
+        public static var published: XCUIElement { app.find(id: "QuizDetails.published") }
+        public static var unpublished: XCUIElement { app.find(id: "QuizDetails.unpublished") }
+        public static var dateSection: XCUIElement { app.find(id: "QuizDetails.dateSection") }
+        public static var description: XCUIElement { app.find(id: "QuizDetails.description") }
+    }
+
     public static func dueDateLabel(cell: XCUIElement) -> XCUIElement {
         return cell.find(id: "dateLabel", type: .staticText)
     }
