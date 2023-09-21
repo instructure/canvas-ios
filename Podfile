@@ -107,7 +107,8 @@ end
 
 post_install do |installer|
   puts "\nPost Install Hooks"
-  
+  xcode_base_version = `xcodebuild -version | grep 'Xcode' | awk '{print $2}' | cut -d . -f 1`
+
   installer.pod_targets.each do |target|
     silenceWarningsInUmbrellas = %w[ React-Core ]
     next unless silenceWarningsInUmbrellas.include? target.name
@@ -136,6 +137,13 @@ post_install do |installer|
       config.build_settings.delete 'ARCHS'
       # This was added to work around an Xcode 13.3 bug when deploying to iOS 14 devices. https://developer.apple.com/forums/thread/702028?answerId=708408022
       config.build_settings['OTHER_LDFLAGS'] = '$(inherited) -Xlinker -no_fixup_chains'
+      # For xcode 15+ only
+      if config.base_configuration_reference && Integer(xcode_base_version) >= 15
+        xcconfig_path = config.base_configuration_reference.real_path
+        xcconfig = File.read(xcconfig_path)
+        xcconfig_mod = xcconfig.gsub(/DT_TOOLCHAIN_DIR/, "TOOLCHAIN_DIR")
+        File.open(xcconfig_path, "w") { |file| file << xcconfig_mod }
+      end
     end
     usesNonAppExAPI = %w[
       react-native-camera

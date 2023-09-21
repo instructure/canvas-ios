@@ -448,7 +448,7 @@ public final class HelmViewController: ScreenViewTrackableViewController, HelmSc
 }
 
 fileprivate struct Associated {
-    static var barButtonAction = "barButtonAction"
+    static var barButtonAction: Void?
 }
 
 extension UIViewController {
