@@ -94,6 +94,7 @@ private extension Array where Element == CourseSyncEntry {
         filter: CourseSyncListFilter,
         sessionDefaults: SessionDefaults
     ) -> [CourseSyncEntry] {
+        var sessionDefaults = sessionDefaults
         var entriesCpy = self
 
         switch selection {

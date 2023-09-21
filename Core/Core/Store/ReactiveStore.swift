@@ -196,6 +196,7 @@ public class ReactiveStore<U: UseCase> {
         loadAllPages: Bool,
         fetchRequest: NSFetchRequest<T>
     ) -> AnyPublisher<[T], Error> {
+        unowned let unownedSelf = self
 
         return useCase.fetchWithFuture()
             .handleEvents(receiveOutput: { [weak self] urlResponse in
