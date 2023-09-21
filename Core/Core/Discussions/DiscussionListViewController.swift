@@ -146,6 +146,10 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
     }
 
     @objc func add() {
+        if OfflineModeAssembly.make().isOfflineModeEnabled() {
+            return UIAlertController.showItemNotAvailableInOfflineAlert()
+        }
+
         env.router.route(
             to: "\(context.pathComponent)/discussion_topics/new",
             from: self,
