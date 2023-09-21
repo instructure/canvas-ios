@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -817,6 +817,7 @@
 		80540CC06D7EC9A091984999 /* APIGradingPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E18B3A0E7114DA6657C570E7 /* APIGradingPeriod.swift */; };
 		807F97C9357B2839AE6E4CAD /* QuizAttributesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67987E6B67ECD200CF62159A /* QuizAttributesTests.swift */; };
 		80F21EB930CACDCAF91E7D6E /* LoginNavigationControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA148F8FDFC9FAA6E3A4BE3 /* LoginNavigationControllerTests.swift */; };
+		81075CDD1900E13CF08A9F25 /* CoreWebViewLinkDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A3E67849D56DAC06242F18 /* CoreWebViewLinkDelegateTests.swift */; };
 		81594108B08B5AEC03B01DEE /* GetEnabledFeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055301DF962DB3E959C6B8FF /* GetEnabledFeatureFlags.swift */; };
 		817A0D6AB41E34A88542042E /* FileUploadNotificationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60B82258E03A624350303E1 /* FileUploadNotificationCard.swift */; };
 		8197434610847D74DF0F4955 /* UISegmentedControlExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928DDC91B8AA6CDDB5CCF70C /* UISegmentedControlExtensions.swift */; };
@@ -2747,6 +2748,7 @@
 		926621D85132AA8AC7AB11C7 /* GetAssignments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAssignments.swift; sourceTree = "<group>"; };
 		927D2A3BD9315865E85A7ECE /* is */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = is; path = is.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		928DDC91B8AA6CDDB5CCF70C /* UISegmentedControlExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentedControlExtensions.swift; sourceTree = "<group>"; };
+		92A3E67849D56DAC06242F18 /* CoreWebViewLinkDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreWebViewLinkDelegateTests.swift; sourceTree = "<group>"; };
 		930A5CEAE009E77AE79A2101 /* AssignmentSubmissionBreakdownViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentSubmissionBreakdownViewModel.swift; sourceTree = "<group>"; };
 		933113CEB38757685EE94ADC /* PlannerOverrideUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerOverrideUpdater.swift; sourceTree = "<group>"; };
 		935C6F219C3293285371C59E /* DispatchExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchExtensionsTests.swift; sourceTree = "<group>"; };
@@ -7115,6 +7117,14 @@
 			path = QuizSubmissionList;
 			sourceTree = "<group>";
 		};
+		A578E9576755F41842CA5688 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				92A3E67849D56DAC06242F18 /* CoreWebViewLinkDelegateTests.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
 		A643C917DBEF19BF0C2D6093 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -7671,6 +7681,7 @@
 		C2F6233AB51C459BF3A66F2E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A578E9576755F41842CA5688 /* Delegates */,
 				EBE6BB141C3E78FBAECA0F0A /* Features */,
 			);
 			path = Model;
@@ -8966,7 +8977,8 @@
 		83ADD9484DDC11E75E9F182F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1200;
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					3C9856EABA187C2715A3B3E4 = {
 						DevelopmentTeam = B6333T4PXQ;
@@ -8983,7 +8995,7 @@
 				};
 			};
 			buildConfigurationList = 4EBE82DE9849E8F47BAECD7B /* Build configuration list for PBXProject "Core" */;
-			compatibilityVersion = "Xcode 11.0";
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -9353,6 +9365,7 @@
 				4C1B4D6D123049D5987E1102 /* CoreWebViewContentErrorViewEmbedTests.swift in Sources */,
 				1E1054D2DF7225763D9249E2 /* CoreWebViewContentErrorViewModelTests.swift in Sources */,
 				914ECB2B8E2814ED2B8DF25A /* CoreWebViewControllerTests.swift in Sources */,
+				81075CDD1900E13CF08A9F25 /* CoreWebViewLinkDelegateTests.swift in Sources */,
 				902727C4B9F712DEB42853DD /* CoreWebViewTests.swift in Sources */,
 				70E13AC4267A87F1A0360244 /* CourseDetailsHeaderViewModelTests.swift in Sources */,
 				83EEBB3EE02D98388B60C4CC /* CourseDetailsViewModelTests.swift in Sources */,

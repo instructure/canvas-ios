@@ -16,20 +16,29 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public protocol CoreWebViewLinkDelegate: AnyObject {
-    func handleLink(_ url: URL) -> Bool
-    func finishedNavigation()
-    var routeLinksFrom: UIViewController { get }
-}
+@testable import Core
+import XCTest
 
-extension CoreWebViewLinkDelegate {
-    public func finishedNavigation() {}
-}
+class CoreWebViewLinkDelegateTests: CoreTestCase {
 
-extension CoreWebViewLinkDelegate where Self: UIViewController {
-    public func handleLink(_ url: URL) -> Bool {
-        AppEnvironment.shared.router.route(to: url, from: routeLinksFrom)
-        return true
+    func testUIViewControllerDefaultRouteSource() {
+        let testee = TestViewController()
+
+        XCTAssertEqual(testee.routeLinksFrom, testee)
     }
-    public var routeLinksFrom: UIViewController { self }
+
+    func testUIViewControllerDefaultLinkHandler() {
+        let testee = TestViewController()
+        let url = URL(string: "/test")!
+
+        // WHEN
+        let didHandleLink = testee.handleLink(url)
+
+        // THEN
+        XCTAssertTrue(didHandleLink)
+        XCTAssertTrue(router.lastRoutedTo("/test"))
+    }
+}
+
+private class TestViewController: UIViewController, CoreWebViewLinkDelegate {
 }
