@@ -38,7 +38,21 @@ struct DownloaderContentView: View {
 
     var body: some View {
         List {
-            Header(title: "Downloading")
+            HStack {
+                Header(title: "Downloading")
+                Button(
+                    action: {
+                        viewModel.pauseResumeAll()
+                    },
+                    label: {
+                        Text(viewModel.activeEntries.isEmpty ?  "Resume all" : "Pause all")
+                    }
+                )
+                .foregroundColor(.accentColor)
+                .padding(.trailing, 16)
+            }
+            .listRowSeparator(.hidden)
+            .listRowInsets(EdgeInsets())
             content
         }
         .listStyle(.inset)

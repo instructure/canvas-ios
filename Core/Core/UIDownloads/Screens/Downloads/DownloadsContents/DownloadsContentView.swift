@@ -128,7 +128,7 @@ struct DownloadsContentView: View, Navigatable {
     private var deleteAllButton: some View {
         Button("Delete all") {
             let cancelAction = AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in }
-            let deleteAction = AlertAction(NSLocalizedString("Delete", comment: ""), style: .destructive) { _ in
+            let deleteAction = AlertAction(NSLocalizedString("Delete all", comment: ""), style: .destructive) { _ in
                 viewModel.deleteAll()
                 presentationMode.wrappedValue.dismiss()
             }

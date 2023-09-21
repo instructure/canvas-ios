@@ -70,20 +70,7 @@ public struct DownloadsView: View, Navigatable, DownloadsProgressBarHidden {
             case .loaded, .deleting, .updated:
                 VStack {
                     if viewModel.isEmpty {
-                        VStack {
-                            Spacer()
-                            Image.pandaBlocks
-                            Text("No Downloads")
-                                .font(.semibold18)
-                                .foregroundColor(.textDarkest)
-                                .padding(.vertical, 20)
-                            Text("To download content, open a content type and press save. Downloaded modules will appear here")
-                                .font(.regular16)
-                                .foregroundColor(.textDarkest)
-                                .multilineTextAlignment(.center)
-                            Spacer()
-                        }
-                        .background(Color.backgroundLightest)
+                        emptyPlaceholder
                     } else {
                         list
                     }
@@ -105,6 +92,23 @@ public struct DownloadsView: View, Navigatable, DownloadsProgressBarHidden {
             )
             viewModel.error = ""
         }
+    }
+
+    private var emptyPlaceholder: some View {
+        VStack {
+            Spacer()
+            Image.pandaBlocks
+            Text("No Downloads")
+                .font(.semibold18)
+                .foregroundColor(.textDarkest)
+                .padding(.vertical, 20)
+            Text("To download content, open a content type and press save. Downloaded modules will appear here")
+                .font(.regular16)
+                .foregroundColor(.textDarkest)
+                .multilineTextAlignment(.center)
+            Spacer()
+        }
+        .background(Color.backgroundLightest)
     }
 
     private var list: some View {
@@ -132,7 +136,20 @@ public struct DownloadsView: View, Navigatable, DownloadsProgressBarHidden {
                 )
                 .background(Color.backgroundLightest)
             } else {
-                Header(title: "Downloading")
+                HStack {
+                    Header(title: "Downloading")
+                    Button(
+                        action: {
+                            viewModel.pauseResumeAll()
+                        },
+                        label: {
+                            Text(viewModel.activeEntries.isEmpty ?  "Resume all" : "Pause all")
+                        }
+                    )
+                    .foregroundColor(.accentColor)
+                    .padding(.trailing, 16)
+                }
+
             }
             DownloadProgressSectionView(viewModel: viewModel)
         }
@@ -154,7 +171,7 @@ public struct DownloadsView: View, Navigatable, DownloadsProgressBarHidden {
     private var deleteAllButton: some View {
         Button("Delete all") {
             let cancelAction = AlertAction(NSLocalizedString("Cancel", comment: ""), style: .cancel) { _ in }
-            let deleteAction = AlertAction(NSLocalizedString("Delete", comment: ""), style: .destructive) { _ in
+            let deleteAction = AlertAction(NSLocalizedString("Delete all", comment: ""), style: .destructive) { _ in
                 viewModel.deleteAll()
             }
             controller.value.showAlert(

@@ -31,10 +31,18 @@ final class DownloaderViewModel: ObservableObject, Reachabilitable {
 
     // MARK: - Properties -
 
+    enum State {
+        case updated
+    }
+    @Published var state: State = .updated
+
     @Published var downloadingModules: [DownloadsModuleCellViewModel] = [] {
         didSet {
             isEmpty = downloadingModules.isEmpty
         }
+    }
+    var activeEntries: [OfflineDownloaderEntry] {
+        downloadsManager.activeEntries + downloadsManager.waitingEntries
     }
     @Published var error: String = ""
     @Published var deleting: Bool = false
@@ -55,7 +63,18 @@ final class DownloaderViewModel: ObservableObject, Reachabilitable {
         addObservers()
     }
 
-    func pauseResume() {}
+    func pauseResumeAll() {
+        if activeEntries.isEmpty {
+            downloadingModules.forEach { viewModel in
+                downloadsManager.resume(entry: viewModel.entry)
+            }
+        } else {
+            downloadingModules.forEach { viewModel in
+                downloadsManager.pause(entry: viewModel.entry)
+            }
+        }
+        state = .updated
+    }
 
     func deleteAll() {
         deleting = true

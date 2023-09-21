@@ -41,6 +41,10 @@ final class DownloadsViewModel: ObservableObject, Reachabilitable {
             setIsEmpty()
         }
     }
+    var activeEntries: [OfflineDownloaderEntry] {
+        downloadsManager.activeEntries + downloadsManager.waitingEntries
+    }
+
     private(set) var categories: [String: [DownloadsCourseCategoryViewModel]] = [:]
     var cancellables: [AnyCancellable] = []
 
@@ -73,6 +77,19 @@ final class DownloadsViewModel: ObservableObject, Reachabilitable {
     }
 
     // MARK: - Intents -
+
+    func pauseResumeAll() {
+        if activeEntries.isEmpty {
+            downloadingModules.forEach { viewModel in
+                downloadsManager.resume(entry: viewModel.entry)
+            }
+        } else {
+            downloadingModules.forEach { viewModel in
+                downloadsManager.pause(entry: viewModel.entry)
+            }
+        }
+        state = .updated
+    }
 
     func deleteAll() {
         state = .deleting
