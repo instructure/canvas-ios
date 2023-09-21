@@ -86,8 +86,8 @@ class CourseSyncProgressViewModel: ObservableObject {
 
     private func handleCancelButtonTap() {
         cancelButtonDidTap
-            .sink { [weak self] _ in
-                self?.isShowingCancelDialog = true
+            .sink { [unowned self] _ in
+                isShowingCancelDialog = true
             }
             .store(in: &subscriptions)
     }
@@ -96,19 +96,19 @@ class CourseSyncProgressViewModel: ObservableObject {
         unowned let unownedSelf = self
 
         cancelButtonDidTap
-            .flatMap { [confirmAlert] in confirmAlert.userConfirmation() }
-            .flatMap { [viewOnAppear] in viewOnAppear.first().compactMap { $0 }}
-            .sink { [weak self] viewController in
+            .flatMap { unownedSelf.confirmAlert.userConfirmation() }
+            .flatMap { unownedSelf.viewOnAppear.first().compactMap { $0 }}
+            .sink { viewController in
                 interactor.cancelSync()
-                self?.router.dismiss(viewController)
+                unownedSelf.router.dismiss(viewController)
             }
             .store(in: &subscriptions)
     }
 
     private func handleDismissButtonTap(_: CourseSyncProgressInteractor) {
         dismissButtonDidTap
-            .sink { [weak router] viewController in
-                router?.dismiss(viewController)
+            .sink { [unowned router] viewController in
+                router.dismiss(viewController)
             }
             .store(in: &subscriptions)
     }
@@ -128,17 +128,17 @@ class CourseSyncProgressViewModel: ObservableObject {
         )
         .map { ($0.0, $0.1.makeSyncProgressViewModelItems(interactor: interactor)) }
         .receive(on: DispatchQueue.main)
-        .handleEvents(receiveOutput: { [weak self] downloadProgress, entryProgressList in
+        .handleEvents(receiveOutput: { [unowned self] downloadProgress, entryProgressList in
             if entryProgressList.count > 0 {
-                self?.state = .data
+                state = .data
 
                 if downloadProgress.isFinished, downloadProgress.error != nil {
-                    self?.state = .dataWithError
+                    state = .dataWithError
                 }
             }
-        }, receiveCompletion: { [weak self] result in
+        }, receiveCompletion: { [unowned self] result in
             if case .failure = result {
-                self?.state = .error
+                state = .error
             }
         })
         .map { $0.1 }
