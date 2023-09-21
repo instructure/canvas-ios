@@ -85,12 +85,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             Analytics.shared.logScreenView(route: "/login", viewController: window?.rootViewController)
         }
 
-        NSSetUncaughtExceptionHandler { exception in
-            let stack = exception.callStackSymbols
-            for s in stack {
-                Logger.shared.error(s)
-            }
-        }
         return true
     }
 
