@@ -134,9 +134,8 @@ class AssignmentListRequestableTests: XCTestCase {
     func testFormattedDueDate() {
         let isoString = "2037-06-01T05:59:00Z"
         let date = Date(fromISOString: isoString)!
-        let expected = DateFormatter.localizedString(from: date, dateStyle: .medium, timeStyle: .short)
         let aa = APIAssignmentListAssignment.make(dueAt: date )
-        XCTAssertEqual(aa.formattedDueDate, "Due \(expected)")
+        XCTAssertEqual(aa.formattedDueDate, "Due Jun 1, 2037, 7:59 AM")
     }
 
     func testFormattedDueDateNoDueDate() {

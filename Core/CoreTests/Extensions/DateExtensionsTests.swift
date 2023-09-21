@@ -116,8 +116,8 @@ class DateExtensionsTests: XCTestCase {
     }
 
     func testDateTimeString() {
-        XCTAssertEqual(DateComponents(calendar: .current, timeZone: .current, year: 2000, month: 12, day: 25, hour: 11, minute: 45).date?.dateTimeString, "Dec 25, 2000 at 11:45 AM")
-        XCTAssertEqual(DateComponents(calendar: .current, timeZone: .current, year: 2000, month: 12, day: 25, hour: 11, minute: 45).date?.relativeDateTimeString, "Dec 25, 2000 at 11:45 AM")
+        XCTAssertEqual(DateComponents(calendar: .current, timeZone: .current, year: 2000, month: 12, day: 25, hour: 11, minute: 45).date?.dateTimeString, "Dec 25, 2000 at 11:45 AM")
+        XCTAssertEqual(DateComponents(calendar: .current, timeZone: .current, year: 2000, month: 12, day: 25, hour: 11, minute: 45).date?.relativeDateTimeString, "Dec 25, 2000, 11:45 AM")
     }
 
     func testWeekdayFormatting() {

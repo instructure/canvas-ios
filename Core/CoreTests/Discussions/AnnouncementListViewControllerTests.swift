@@ -73,7 +73,7 @@ class AnnouncementListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.iconImageView.icon, .calendarClockLine)
         XCTAssertEqual(cell?.iconImageView.state, nil)
         XCTAssertEqual(cell?.titleLabel.text, "Class Cancelled due to alien invasion")
-        XCTAssertEqual(cell?.dateLabel.text, "Delayed until Nov 3, 2030 at 12:00 AM")
+        XCTAssertEqual(cell?.dateLabel.text, "Delayed until Nov 3, 2030 at 12:00 AM")
 
         let actions = controller.tableView.delegate?.tableView?(controller.tableView, trailingSwipeActionsConfigurationForRowAt: IndexPath(row: 0, section: 0))?.actions
         XCTAssertEqual(actions?.count, 1)
@@ -90,7 +90,7 @@ class AnnouncementListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.iconImageView.icon, .announcementLine)
         XCTAssertEqual(cell?.iconImageView.state, .published)
         XCTAssertEqual(cell?.titleLabel.text, "Class Cancelled due to Covid-19")
-        XCTAssertEqual(cell?.dateLabel.text, "Last post Nov 3, 2020 at 12:00 AM")
+        XCTAssertEqual(cell?.dateLabel.text, "Last post Nov 3, 2020 at 12:00 AM")
 
         XCTAssertNil(controller.tableView.delegate?.tableView?(controller.tableView, trailingSwipeActionsConfigurationForRowAt: IndexPath(row: 1, section: 0)))
 
@@ -98,7 +98,7 @@ class AnnouncementListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.iconImageView.icon, .announcementLine)
         XCTAssertEqual(cell?.iconImageView.state, .published)
         XCTAssertEqual(cell?.titleLabel.text, "Another Announcement")
-        XCTAssertEqual(cell?.dateLabel.text, "Nov 2, 2020 at 12:00 AM")
+        XCTAssertEqual(cell?.dateLabel.text, "Nov 2, 2020 at 12:00 AM")
 
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: IndexPath(row: 2, section: 0))
         XCTAssert(router.lastRoutedTo("courses/1/announcements/3", withOptions: .detail))
@@ -137,7 +137,7 @@ class AnnouncementListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.iconImageView.icon, .announcementLine)
         XCTAssertEqual(cell?.iconImageView.state, nil)
         XCTAssertEqual(cell?.titleLabel.text, "Study group tomorrow")
-        XCTAssertEqual(cell?.dateLabel.text, "Nov 3, 2020 at 12:00 AM")
+        XCTAssertEqual(cell?.dateLabel.text, "Nov 3, 2020 at 12:00 AM")
 
         api.mock(controller.topics, error: NSError.internalError())
         controller.tableView.refreshControl?.sendActions(for: .primaryActionTriggered)

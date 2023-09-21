@@ -143,7 +143,7 @@ class GradeListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell00.nameLabel.text, "Complex Numbers")
         XCTAssertEqual(cell00.gradeLabel.text, "20 / 25")
         XCTAssertEqual(cell00.gradeLabel.accessibilityLabel, "Grade, 20 out of 25")
-        XCTAssertEqual(cell00.dueLabel.text, "Due Jan 1, 2020 at 12:00 AM")
+        XCTAssertEqual(cell00.dueLabel.text, "Due Jan 1, 2020, 12:00 AM")
         XCTAssertEqual(cell00.statusLabel.text, "Late")
 
         controller.tableView.selectRow(at: index00, animated: false, scrollPosition: .none)
@@ -226,7 +226,7 @@ class GradeListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell00.nameLabel.text, "Complex Numbers")
         XCTAssertEqual(cell00.gradeLabel.text, "A")
         XCTAssertEqual(cell00.gradeLabel.accessibilityLabel, "Grade, A")
-        XCTAssertEqual(cell00.dueLabel.text, "Due Jan 1, 2020 at 12:00 AM")
+        XCTAssertEqual(cell00.dueLabel.text, "Due Jan 1, 2020, 12:00 AM")
         XCTAssertEqual(cell00.statusLabel.text, "Late")
 
         controller.tableView.selectRow(at: index00, animated: false, scrollPosition: .none)
