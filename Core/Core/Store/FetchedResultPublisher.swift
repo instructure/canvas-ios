@@ -87,7 +87,6 @@ final class FetchedResultsSubscription
 
         context.perform { [weak self] in
             guard let self = self else { return }
-            self.controller?.delegate = self
 
             do {
                 try self.controller?.performFetch()

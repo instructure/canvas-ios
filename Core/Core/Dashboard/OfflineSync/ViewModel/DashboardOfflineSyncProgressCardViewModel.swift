@@ -85,7 +85,14 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
         NotificationCenter
             .default
             .publisher(for: .OfflineSyncTriggered)
-            .flatMapLatest { [unowned self] _ in setupProgressUpdates(downloadProgressPublisher) }
+            .flatMapLatest { [weak self] _ -> AnyPublisher<DashboardOfflineSyncProgressCardViewModel.ViewState, Never> in
+                guard let self = self else {
+                    return Just(.hidden)
+                        .setFailureType(to: Never.self)
+                        .eraseToAnyPublisher()
+                }
+                return setupProgressUpdates(downloadProgressPublisher)
+            }
             .receive(on: scheduler)
             .assign(to: &$state)
     }
