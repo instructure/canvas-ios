@@ -305,6 +305,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable, DownloadsProgre
                 Text("Something went wrong")
                     .font(.regular16).foregroundColor(.textDanger)
                     .multilineTextAlignment(.center)
+                    .hidden()
             }
             .frame(minWidth: size.width, minHeight: size.height)
         }
