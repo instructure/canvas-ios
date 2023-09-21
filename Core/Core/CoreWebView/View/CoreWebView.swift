@@ -18,32 +18,6 @@
 
 import WebKit
 
-public protocol CoreWebViewLinkDelegate: AnyObject {
-    func handleLink(_ url: URL) -> Bool
-    func finishedNavigation()
-    var routeLinksFrom: UIViewController { get }
-}
-
-extension CoreWebViewLinkDelegate {
-    public func finishedNavigation() {}
-}
-
-extension CoreWebViewLinkDelegate where Self: UIViewController {
-    public func handleLink(_ url: URL) -> Bool {
-        AppEnvironment.shared.router.route(to: url, from: routeLinksFrom)
-        return true
-    }
-    public var routeLinksFrom: UIViewController { return self }
-}
-
-public protocol CoreWebViewSizeDelegate: AnyObject {
-    /**
-     - parameters:
-        - height: The height of the html content. Doesn't include the height of the theme switcher button.
-     */
-    func coreWebView(_ webView: CoreWebView, didChangeContentHeight height: CGFloat)
-}
-
 @IBDesignable
 open class CoreWebView: WKWebView {
     private static var BalsamiqRegularCSSFontFace: String = {
@@ -62,6 +36,7 @@ open class CoreWebView: WKWebView {
     @IBInspectable public var autoresizesHeight: Bool = false
     public weak var linkDelegate: CoreWebViewLinkDelegate?
     public weak var sizeDelegate: CoreWebViewSizeDelegate?
+    public weak var errorDelegate: CoreWebViewErrorDelegate?
     public var isLinkNavigationEnabled = true
     public var contentInputAccessoryView: UIView? {
         didSet {
@@ -120,6 +95,33 @@ open class CoreWebView: WKWebView {
     public func addFeature(_ feature: CoreWebViewFeature) {
         features.append(feature)
         feature.apply(on: self)
+    }
+
+    public func scrollIntoView(fragment: String, then: ((Bool) -> Void)? = nil) {
+        guard autoresizesHeight else { return }
+        let script = """
+            (() => {
+                let fragment = CSS.escape(\(CoreWebView.jsString(fragment)))
+                let target = document.querySelector(`a[name=${fragment}],#${fragment}`)
+                return target && target.getBoundingClientRect().y
+            })()
+        """
+        evaluateJavaScript(script) { (result: Any?, _: Error?) in
+            guard var offset = result as? CGFloat else {
+                then?(false)
+                return
+            }
+            var view: UIView = self
+            while let parent = view.superview {
+                offset += view.frame.minY
+                view = parent
+                guard let scrollView = parent as? UIScrollView, scrollView.isScrollEnabled else { continue }
+                let y = min(offset, scrollView.contentSize.height - scrollView.frame.height)
+                scrollView.setContentOffset(CGPoint(x: scrollView.contentOffset.x, y: y), animated: true)
+                break
+            }
+            then?(true)
+        }
     }
 
     private init(externalConfiguration: WKWebViewConfiguration) {
@@ -374,31 +376,9 @@ extension CoreWebView: WKNavigationDelegate {
         features.forEach { $0.webView(webView, didFinish: navigation) }
     }
 
-    public func scrollIntoView(fragment: String, then: ((Bool) -> Void)? = nil) {
-        guard autoresizesHeight else { return }
-        let script = """
-            (() => {
-                let fragment = CSS.escape(\(CoreWebView.jsString(fragment)))
-                let target = document.querySelector(`a[name=${fragment}],#${fragment}`)
-                return target && target.getBoundingClientRect().y
-            })()
-        """
-        evaluateJavaScript(script) { (result: Any?, _: Error?) in
-            guard var offset = result as? CGFloat else {
-                then?(false)
-                return
-            }
-            var view: UIView = self
-            while let parent = view.superview {
-                offset += view.frame.minY
-                view = parent
-                guard let scrollView = parent as? UIScrollView, scrollView.isScrollEnabled else { continue }
-                let y = min(offset, scrollView.contentSize.height - scrollView.frame.height)
-                scrollView.setContentOffset(CGPoint(x: scrollView.contentOffset.x, y: y), animated: true)
-                break
-            }
-            then?(true)
-        }
+    public func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
+        // TODO: Report Error
+        CoreWebViewContentErrorViewEmbed.embed(errorDelegate: errorDelegate)
     }
 }
 
@@ -572,7 +552,6 @@ extension CoreWebView {
     private var themeSwitchButtonTopPadding: CGFloat { 16 }
 
     public func updateHtmlContentView() {
-
         themeSwitcherButton.setNeedsUpdateConfiguration()
         guard let htmlString = htmlString, let baseURL = baseURL else { return }
         if htmlString.contains("prefers-color-scheme:dark") {
@@ -583,7 +562,8 @@ extension CoreWebView {
     }
 
     open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        isThemeDark = self.viewController?.traitCollection.userInterfaceStyle == .dark
+        super.traitCollectionDidChange(previousTraitCollection)
+        isThemeDark = viewController?.traitCollection.userInterfaceStyle == .dark
     }
 
     /**

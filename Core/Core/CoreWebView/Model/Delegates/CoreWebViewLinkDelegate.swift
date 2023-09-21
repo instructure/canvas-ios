@@ -16,10 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import WebKit
+public protocol CoreWebViewLinkDelegate: AnyObject {
+    func handleLink(_ url: URL) -> Bool
+    func finishedNavigation()
+    var routeLinksFrom: UIViewController { get }
+}
 
-open class CoreWebViewFeature {
-    func apply(on configuration: WKWebViewConfiguration) {}
-    func apply(on webView: CoreWebView) {}
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {}
+extension CoreWebViewLinkDelegate {
+    public func finishedNavigation() {}
+}
+
+extension CoreWebViewLinkDelegate where Self: UIViewController {
+    public func handleLink(_ url: URL) -> Bool {
+        AppEnvironment.shared.router.route(to: url, from: routeLinksFrom)
+        return true
+    }
+    public var routeLinksFrom: UIViewController { return self }
 }

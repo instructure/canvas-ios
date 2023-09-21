@@ -151,6 +151,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         webView.scrollView.alwaysBounceVertical = false
         webView.backgroundColor = .backgroundLightest
         webView.linkDelegate = self
+        webView.errorDelegate = self
         webView.addScript(DiscussionHTML.preact)
         webView.addScript(DiscussionHTML.js)
         webView.handle("like") { [weak self] message in self?.handleLike(message) }
@@ -791,5 +792,16 @@ extension DiscussionDetailsViewController {
         ).fetch { [weak self] _, _, error in
             if let error = error { self?.showError(error) }
         }
+    }
+}
+
+extension DiscussionDetailsViewController: CoreWebViewErrorDelegate {
+
+    public func containerForContentErrorView() -> UIView {
+        view
+    }
+
+    public func urlForExternalBrowser() -> URL? {
+        webView.url
     }
 }
