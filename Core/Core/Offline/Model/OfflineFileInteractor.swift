@@ -19,7 +19,7 @@
 import Combine
 
 public protocol OfflineFileInteractor {
-    func filePath(sessionID: String, fileID: String, fileName: String) -> String
+    func filePath(sessionID: String, courseId: String, fileID: String, fileName: String) -> String
     func isItemAvailableOffline(courseID: String?, fileID: String?) -> Bool
     var isOffline: Bool { get }
 }
@@ -34,8 +34,12 @@ public final class OfflineFileInteractorLive: OfflineFileInteractor {
         self.offlineModeInteractor = offlineModeInteractor
     }
 
-    public func filePath(sessionID: String, fileID: String, fileName: String) -> String {
-        "\(sessionID)/Offline/Files/\(fileID)/\(fileName)"
+    public func filePath(sessionID: String, courseId: String, fileID: String, fileName: String) -> String {
+        // Offline synced files are organized by the courseId in a folder.
+        URL.Paths.Offline.courseFolder(
+            sessionID: sessionID,
+            courseId: courseId
+        ) + "/file-\(fileID)/\(fileName)"
     }
 
     public func isItemAvailableOffline(courseID: String?, fileID: String?) -> Bool {
