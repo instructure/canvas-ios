@@ -204,6 +204,9 @@ class MasteryPathAssignmentSetSelectCell: UIView {
     }
 
     @objc func onSelect(_ sender: UIButton) {
+        if OfflineModeAssembly.make().isOfflineModeEnabled() {
+            return UIAlertController.showItemNotAvailableInOfflineAlert()
+        }
         NotificationCenter.default.post(name: .masteryPathSelected, object: nil, userInfo: ["id": id])
     }
 
