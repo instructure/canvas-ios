@@ -259,10 +259,12 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
                 return
             }
             self.refresh(force: force) { [weak self] response in
-                if let response = response, condition(response) {
-                    self?.exhaustNext(while: condition) {
-                        promise(.success(()))
-                    }
+                guard let response, condition(response) else {
+                    promise(.success(()))
+                    return
+                }
+                self?.exhaustNext(while: condition) {
+                    promise(.success(()))
                 }
             }
         }
