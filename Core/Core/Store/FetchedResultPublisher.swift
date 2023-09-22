@@ -86,15 +86,13 @@ final class FetchedResultsSubscription
         controller?.delegate = self
 
         context.perform { [weak self] in
-            guard let self = self else { return }
-
             do {
-                try self.controller?.performFetch()
+                try self?.controller?.performFetch()
             } catch {
                 subscriber.receive(completion: .failure(NSError.instructureError("Error while reading from Core Data")))
             }
 
-            self.sendElement()
+            self?.sendElement()
         }
     }
 
