@@ -596,9 +596,18 @@ private class CourseSyncAssignmentsInteractorMock: CourseSyncAssignmentsInteract
 
 private class CourseSyncFilesInteractorMock: CourseSyncFilesInteractor {
     let publisher = PassthroughSubject<Float, Error>()
+    let filePublisher = PassthroughSubject<[Core.File], Error>()
 
-    func getFile(url _: URL, fileID _: String, fileName _: String, mimeClass _: String, updatedAt _: Date?) -> AnyPublisher<Float, Error> {
+    func downloadFile(courseId _: String, url _: URL, fileID _: String, fileName _: String, mimeClass _: String, updatedAt _: Date?) -> AnyPublisher<Float, Error> {
         publisher.eraseToAnyPublisher()
+    }
+
+    func getFiles(courseId: String, useCache: Bool) -> AnyPublisher<[Core.File], Error> {
+        filePublisher.eraseToAnyPublisher()
+    }
+
+    func removeUnavailableFiles(courseId: String, newFileIDs: [String]) -> AnyPublisher<Void, Error> {
+        Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 }
 
