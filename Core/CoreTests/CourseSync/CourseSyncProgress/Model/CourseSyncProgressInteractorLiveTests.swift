@@ -346,7 +346,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
             scheduler: .immediate
         )
         var notificationFired = false
-        let _ = NotificationCenter.default
+        let subscription = NotificationCenter.default
             .publisher(for: .OfflineSyncCancelled)
             .sink(receiveValue: { _ in notificationFired = true })
 
@@ -355,6 +355,8 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
 
         // THEN
         XCTAssertTrue(notificationFired)
+
+        subscription.cancel()
     }
 
     private func createAndSaveCourseSyncSelectorCourse() {
