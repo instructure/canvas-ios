@@ -62,7 +62,7 @@ class CalendarEventDetailsViewControllerTests: ParentTestCase {
             all_day: false
         ))
         controller.scrollView.refreshControl?.sendActions(for: .primaryActionTriggered)
-        XCTAssertEqual(controller.dateLabel.text, "Jul 14, 2020, 10:00 AM – 12:00 PM")
+        XCTAssertEqual(controller.dateLabel.text, "Jul 14, 2020, 10:00 AM – 12:00 PM")
         XCTAssertEqual(controller.locationView.isHidden, true)
 
         api.mock(controller.events, value: .make(
@@ -72,7 +72,7 @@ class CalendarEventDetailsViewControllerTests: ParentTestCase {
             all_day: false
         ))
         controller.scrollView.refreshControl?.sendActions(for: .primaryActionTriggered)
-        XCTAssertEqual(controller.dateLabel.text, "Jul 14, 2020 at 10:00 AM")
+        XCTAssertEqual(controller.dateLabel.text, "Jul 14, 2020 at 10:00 AM")
     }
 
     func testReminder() {
