@@ -188,6 +188,7 @@ class MasteryPathAssignmentSetSelectCell: UIView {
         button.contentEdgeInsets.bottom = 14
         button.titleLabel?.font = .scaledNamedFont(.semibold16)
         button.addTarget(self, action: #selector(onSelect(_:)), for: .primaryActionTriggered)
+        button.makeUnavailableInOfflineMode(offlineModeInteractor)
         update(selected: false)
         NotificationCenter.default.addObserver(self, selector: #selector(onMasteryPathSelected(_:)), name: .masteryPathSelected, object: nil)
     }
@@ -206,9 +207,6 @@ class MasteryPathAssignmentSetSelectCell: UIView {
     }
 
     @objc func onSelect(_ sender: UIButton) {
-        if offlineModeInteractor.isOfflineModeEnabled() {
-            return UIAlertController.showItemNotAvailableInOfflineAlert()
-        }
         NotificationCenter.default.post(name: .masteryPathSelected, object: nil, userInfo: ["id": id])
     }
 
