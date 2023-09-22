@@ -99,6 +99,31 @@ public class QuizzesHelper: BaseHelper {
         public static var unpublished: XCUIElement { app.find(id: "QuizDetails.unpublished") }
         public static var dateSection: XCUIElement { app.find(id: "QuizDetails.dateSection") }
         public static var description: XCUIElement { app.find(id: "QuizDetails.description") }
+
+        public struct Editor {
+            public static var cancel: XCUIElement { app.find(label: "Cancel", type: .button) }
+            public static var done: XCUIElement { app.find(label: "Done", type: .button) }
+            public static var title: XCUIElement { app.find(id: "QuizEditor.titleField") }
+            public static var description: XCUIElement { app.find(id: "QuizEditor.description").find(type: .textView) }
+            public static var quizType: XCUIElement { app.find(id: "QuizEditor.quizType") }
+            public static var publish: XCUIElement { app.find(id: "QuizEditor.publish").find(type: .switch) }
+            public static var assignmentGroup: XCUIElement { app.find(id: "QuizEditor.assignmentGroup") }
+            public static var shuffle: XCUIElement { app.find(id: "QuizEditor.shuffle").find(type: .switch) }
+            public static var timeLimit: XCUIElement { app.find(id: "QuizEditor.timeLimit").find(type: .switch) }
+            public static var length: XCUIElement { app.find(id: "QuizEditor.length") }
+            public static var attempts: XCUIElement { app.find(id: "QuizEditor.attemptsSection").find(type: .switch) }
+            public static var scoreToKeep: XCUIElement { app.find(id: "QuizEditor.scoreToKeep") }
+            public static var allowedAttempts: XCUIElement { app.find(id: "QuizEditor.allowedAttempts") }
+            public static var oneQuestion: XCUIElement { app.find(id: "QuizEditor.oneQuestion").find(type: .switch) }
+            public static var lockQuestions: XCUIElement { app.find(id: "QuizEditor.lockQuestions").find(type: .switch) }
+            public static var requireAccessCode: XCUIElement { app.find(id: "QuizEditor.requireAccessCode").find(type: .switch) }
+            public static var accessCode: XCUIElement { app.find(id: "QuizEditor.accessCode") }
+            public static var assignTo: XCUIElement { app.find(labelContaining: "Assign to", type: .button) }
+            public static var due: XCUIElement { app.find(label: "Due", type: .button) }
+            public static var availableFrom: XCUIElement { app.find(label: "Available from", type: .button) }
+            public static var availableUntil: XCUIElement { app.find(label: "Available until", type: .button) }
+            public static var addDueDate: XCUIElement { app.find(label: "Add Due Date", type: .button) }
+        }
     }
 
     public static func dueDateLabel(cell: XCUIElement) -> XCUIElement {

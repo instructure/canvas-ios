@@ -90,6 +90,7 @@
 		8B41E0392ABA00BF001F7458 /* ModulesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B41E0382ABA00BF001F7458 /* ModulesTests.swift */; };
 		8B41E0412ABAEF73001F7458 /* AnnouncementsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B41E0402ABAEF73001F7458 /* AnnouncementsTests.swift */; };
 		8B41E0432ABB1C8A001F7458 /* QuizzesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B41E0422ABB1C8A001F7458 /* QuizzesTests.swift */; };
+		8B4891822ABDD9980015BAB2 /* SyllabusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4891812ABDD9980015BAB2 /* SyllabusTests.swift */; };
 		8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D063D27A1B3640208ABF74D4 /* libz.tbd */; };
 		B15CA26D221DDEB40014FB02 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; };
 		B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA26E221DDF230014FB02 /* TeacherTestCase.swift */; };
@@ -522,6 +523,7 @@
 		8B41E0382ABA00BF001F7458 /* ModulesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesTests.swift; sourceTree = "<group>"; };
 		8B41E0402ABAEF73001F7458 /* AnnouncementsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementsTests.swift; sourceTree = "<group>"; };
 		8B41E0422ABB1C8A001F7458 /* QuizzesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzesTests.swift; sourceTree = "<group>"; };
+		8B4891812ABDD9980015BAB2 /* SyllabusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusTests.swift; sourceTree = "<group>"; };
 		9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.release.xcconfig"; sourceTree = "<group>"; };
 		B15CA25D221DDB820014FB02 /* TeacherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B15CA261221DDB820014FB02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -867,6 +869,7 @@
 		8B41E03E2ABAEF5E001F7458 /* Syllabus */ = {
 			isa = PBXGroup;
 			children = (
+				8B4891812ABDD9980015BAB2 /* SyllabusTests.swift */,
 			);
 			path = Syllabus;
 			sourceTree = "<group>";
@@ -1749,6 +1752,7 @@
 				E8F4B66424EEC912003FBAFD /* ContextCardE2ETests.swift in Sources */,
 				8B175C3D29F6BE8F007B6CFF /* DSPeopleE2ETests.swift in Sources */,
 				8B41E0362AB994C4001F7458 /* PagesTests.swift in Sources */,
+				8B4891822ABDD9980015BAB2 /* SyllabusTests.swift in Sources */,
 				8B086F1E2AB48F710013C15F /* CourseDetailsTests.swift in Sources */,
 				C92796F126772C5B00582AC5 /* SyllabusE2ETests.swift in Sources */,
 				8B21CEFD2AB4B17E000867BD /* DSTodosE2ETests.swift in Sources */,
