@@ -173,9 +173,11 @@ class MasteryPathAssignmentCell: UIView {
 class MasteryPathAssignmentSetSelectCell: UIView {
     let button = UIButton()
     let id: String
+    private let offlineModeInteractor: OfflineModeInteractor
 
-    init(id: String) {
+    init(id: String, offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()) {
         self.id = id
+        self.offlineModeInteractor = offlineModeInteractor
         super.init(frame: .zero)
         backgroundColor = .backgroundLightest
         addSubview(button)
@@ -204,7 +206,7 @@ class MasteryPathAssignmentSetSelectCell: UIView {
     }
 
     @objc func onSelect(_ sender: UIButton) {
-        if OfflineModeAssembly.make().isOfflineModeEnabled() {
+        if offlineModeInteractor.isOfflineModeEnabled() {
             return UIAlertController.showItemNotAvailableInOfflineAlert()
         }
         NotificationCenter.default.post(name: .masteryPathSelected, object: nil, userInfo: ["id": id])

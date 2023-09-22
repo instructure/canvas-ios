@@ -55,10 +55,12 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
     }
     /** This is required for the router to help decide if the hybrid discussion details or the native one should be launched. */
     private lazy var featureFlags = env.subscribe(GetEnabledFeatureFlags(context: context))
+    private var offlineModeInteractor: OfflineModeInteractor?
 
-    public static func create(context: Context) -> DiscussionListViewController {
+    public static func create(context: Context, offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()) -> DiscussionListViewController {
         let controller = loadFromStoryboard()
         controller.context = context
+        controller.offlineModeInteractor = offlineModeInteractor
         return controller
     }
 
@@ -146,7 +148,7 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
     }
 
     @objc func add() {
-        if OfflineModeAssembly.make().isOfflineModeEnabled() {
+        if offlineModeInteractor?.isOfflineModeEnabled() == true {
             return UIAlertController.showItemNotAvailableInOfflineAlert()
         }
 
