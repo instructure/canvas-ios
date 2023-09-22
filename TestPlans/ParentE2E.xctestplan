@@ -26,7 +26,6 @@
   },
   "testTargets" : [
     {
-      "parallelizable" : true,
       "skippedTests" : [
         "PlannerTests\/testSwipes()"
       ],
