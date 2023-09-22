@@ -35,7 +35,7 @@ class CDCourseSyncDownloadProgressTests: CoreTestCase {
     }
 
     func testSave() {
-        let _ = CDCourseSyncDownloadProgress.save(
+        _ = CDCourseSyncDownloadProgress.save(
             bytesToDownload: 1000,
             bytesDownloaded: 500,
             isFinished: false,
