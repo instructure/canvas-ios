@@ -2297,6 +2297,9 @@
 "Show One Question at a Time" = "Näytä yksi kysymys kerrallaan";
 
 /* No comment provided by engineer. */
+"Show sync details" = "Näytä synkronoinnin tiedot";
+
+/* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */

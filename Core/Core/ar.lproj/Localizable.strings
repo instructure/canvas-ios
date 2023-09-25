@@ -2297,6 +2297,9 @@
 "Show One Question at a Time" = "عرض سؤال واحد في كل مرة";
 
 /* No comment provided by engineer. */
+"Show sync details" = "إظهار تفاصيل المزامنة";
+
+/* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
