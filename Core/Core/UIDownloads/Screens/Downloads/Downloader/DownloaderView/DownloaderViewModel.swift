@@ -20,7 +20,7 @@ import Combine
 import SwiftUI
 import mobile_offline_downloader_ios
 
-final class DownloaderViewModel: ObservableObject, Reachabilitable {
+final class DownloaderViewModel: ObservableObject, Reachabilitable, DownloadsProgressBarHidden {
 
     // MARK: - Injection -
 
@@ -74,6 +74,7 @@ final class DownloaderViewModel: ObservableObject, Reachabilitable {
             }
         }
         state = .updated
+        toggleDownloadingBarView(hidden: true)
     }
 
     func deleteAll() {
@@ -104,15 +105,20 @@ final class DownloaderViewModel: ObservableObject, Reachabilitable {
 
     func resumeIfServerError(entry: OfflineDownloaderEntry) {
         downloadsManager.resume(entry: entry)
+        state = .updated
     }
 
     private func addObservers() {
         downloadsManager
             .publisher
             .sink { [weak self] event in
+                guard let self = self else {
+                    return
+                }
                 switch event {
                 case .statusChanged(object: let event):
-                    self?.statusChanged(event)
+                    self.statusChanged(event)
+                    self.state = .updated
                 case .progressChanged:
                     break
                 }
