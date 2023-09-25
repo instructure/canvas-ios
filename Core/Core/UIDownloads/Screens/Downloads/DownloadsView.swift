@@ -143,7 +143,7 @@ public struct DownloadsView: View, Navigatable, DownloadsProgressBarHidden {
                             viewModel.pauseResumeAll()
                         },
                         label: {
-                            Text(viewModel.activeEntries.isEmpty ?  "Resume all" : "Pause all")
+                            Text(viewModel.isActiveEntriesEmpty ?  "Resume all" : "Pause all")
                         }
                     )
                     .foregroundColor(.accentColor)

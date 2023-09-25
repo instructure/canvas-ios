@@ -48,6 +48,12 @@ final class DownloaderViewModel: ObservableObject, Reachabilitable, DownloadsPro
         downloadsManager.activeEntries + downloadsManager.waitingEntries
     }
 
+    private var pausedEntries: [OfflineDownloaderEntry] {
+        downloadsManager.pausedEntries + 
+        downloadsManager.failedEntries +
+        downloadsManager.serverErrors
+    }
+
     init(downloadingModules: [DownloadsModuleCellViewModel]) {
         self.downloadingModules = downloadingModules
         configure()
@@ -58,19 +64,19 @@ final class DownloaderViewModel: ObservableObject, Reachabilitable, DownloadsPro
     func configure() {
         isConnected = reachability.isConnected
         addObservers()
-        isActiveEntriesEmpty = activeEntries.isEmpty
+        updateIsActiveEntriesEmpty()
     }
 
     func pauseResumeAll() {
         if isActiveEntriesEmpty {
             OfflineLogsMananger().logResumedAll()
-            downloadingModules.forEach { viewModel in
-                downloadsManager.resume(entry: viewModel.entry)
+            pausedEntries.forEach {
+                downloadsManager.resume(entry: $0)
             }
         } else {
             OfflineLogsMananger().logPausedAll()
-            downloadingModules.forEach { viewModel in
-                downloadsManager.pause(entry: viewModel.entry)
+            activeEntries.forEach {
+                downloadsManager.pause(entry:$0)
             }
         }
         toggleDownloadingBarView(hidden: true)

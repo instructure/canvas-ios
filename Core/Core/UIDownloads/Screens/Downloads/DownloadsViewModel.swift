@@ -41,8 +41,14 @@ final class DownloadsViewModel: ObservableObject, Reachabilitable {
             setIsEmpty()
         }
     }
-    var activeEntries: [OfflineDownloaderEntry] {
+    private var activeEntries: [OfflineDownloaderEntry] {
         downloadsManager.activeEntries + downloadsManager.waitingEntries
+    }
+
+    private var pausedEntries: [OfflineDownloaderEntry] {
+        downloadsManager.pausedEntries + 
+        downloadsManager.failedEntries +
+        downloadsManager.serverErrors
     }
 
     private(set) var categories: [String: [DownloadsCourseCategoryViewModel]] = [:]
@@ -71,6 +77,7 @@ final class DownloadsViewModel: ObservableObject, Reachabilitable {
     }
 
     @Published var isEmpty: Bool = false
+    @Published var isActiveEntriesEmpty: Bool = false
 
     init() {
         configure()
@@ -79,15 +86,15 @@ final class DownloadsViewModel: ObservableObject, Reachabilitable {
     // MARK: - Intents -
 
     func pauseResumeAll() {
-        if activeEntries.isEmpty {
+        if isActiveEntriesEmpty {
             OfflineLogsMananger().logResumedAll()
-            downloadingModules.forEach { viewModel in
-                downloadsManager.resume(entry: viewModel.entry)
+            pausedEntries.forEach {
+                downloadsManager.resume(entry: $0)
             }
         } else {
             OfflineLogsMananger().logPausedAll()
-            downloadingModules.forEach { viewModel in
-                downloadsManager.pause(entry: viewModel.entry)
+            activeEntries.forEach {
+                downloadsManager.pause(entry: $0)
             }
         }
         state = .updated
@@ -200,6 +207,7 @@ final class DownloadsViewModel: ObservableObject, Reachabilitable {
         fetch()
         isConnected = reachability.isConnected
         addObservers()
+        updateIsActiveEntriesEmpty()
     }
 
     private func configureCourseViewModels(
@@ -223,9 +231,13 @@ final class DownloadsViewModel: ObservableObject, Reachabilitable {
         downloadsManager
             .publisher
             .sink { [weak self] event in
+                guard let self = self else {
+                    return
+                }
                 switch event {
                 case .statusChanged(object: let event):
-                    self?.statusChanged(event)
+                    self.updateIsActiveEntriesEmpty()
+                    self.statusChanged(event)
                 case .progressChanged:
                     break
                 }
@@ -353,5 +365,9 @@ final class DownloadsViewModel: ObservableObject, Reachabilitable {
         courseViewModels.sort {
              $0.name.compare($1.name, options: .numeric) == .orderedAscending
         }
+    }
+
+    private func updateIsActiveEntriesEmpty() {
+        isActiveEntriesEmpty = activeEntries.isEmpty
     }
 }
