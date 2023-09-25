@@ -63,6 +63,12 @@ final class OfflineLogsMananger {
     func logDeleteAll() {
         Analytics.shared.logEvent("offline_mode_deletedAll")
     }
+    func logPausedAll() {
+        Analytics.shared.logEvent("offline_mode_pausedAll")
+    }
+    func logResumedAll() {
+        Analytics.shared.logEvent("offline_mode_resumedAll")
+    }
     func logCompleted() {
         Analytics.shared.logEvent("offline_mode_completed")
     }

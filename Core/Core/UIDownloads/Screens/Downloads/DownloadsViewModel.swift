@@ -80,10 +80,12 @@ final class DownloadsViewModel: ObservableObject, Reachabilitable {
 
     func pauseResumeAll() {
         if activeEntries.isEmpty {
+            OfflineLogsMananger().logResumedAll()
             downloadingModules.forEach { viewModel in
                 downloadsManager.resume(entry: viewModel.entry)
             }
         } else {
+            OfflineLogsMananger().logPausedAll()
             downloadingModules.forEach { viewModel in
                 downloadsManager.pause(entry: viewModel.entry)
             }
