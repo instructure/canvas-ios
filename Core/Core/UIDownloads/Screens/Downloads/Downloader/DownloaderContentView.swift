@@ -45,7 +45,7 @@ struct DownloaderContentView: View {
                         viewModel.pauseResumeAll()
                     },
                     label: {
-                        Text(viewModel.activeEntries.isEmpty ?  "Resume all" : "Pause all")
+                        Text(viewModel.isActiveEntriesEmpty ?  "Resume all" : "Pause all")
                     }
                 )
                 .foregroundColor(.accentColor)

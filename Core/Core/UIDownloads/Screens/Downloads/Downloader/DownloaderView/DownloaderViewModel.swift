@@ -31,25 +31,22 @@ final class DownloaderViewModel: ObservableObject, Reachabilitable, DownloadsPro
 
     // MARK: - Properties -
 
-    enum State {
-        case updated
-    }
-    @Published var state: State = .updated
-
     @Published var downloadingModules: [DownloadsModuleCellViewModel] = [] {
         didSet {
             isEmpty = downloadingModules.isEmpty
         }
     }
-    var activeEntries: [OfflineDownloaderEntry] {
-        downloadsManager.activeEntries + downloadsManager.waitingEntries
-    }
     @Published var error: String = ""
     @Published var deleting: Bool = false
     @Published var isConnected: Bool = true
+    @Published var isActiveEntriesEmpty: Bool = false
     @Published var isEmpty: Bool = true
 
     var cancellables: [AnyCancellable] = []
+
+    private var activeEntries: [OfflineDownloaderEntry] {
+        downloadsManager.activeEntries + downloadsManager.waitingEntries
+    }
 
     init(downloadingModules: [DownloadsModuleCellViewModel]) {
         self.downloadingModules = downloadingModules
@@ -61,10 +58,11 @@ final class DownloaderViewModel: ObservableObject, Reachabilitable, DownloadsPro
     func configure() {
         isConnected = reachability.isConnected
         addObservers()
+        isActiveEntriesEmpty = activeEntries.isEmpty
     }
 
     func pauseResumeAll() {
-        if activeEntries.isEmpty {
+        if isActiveEntriesEmpty {
             OfflineLogsMananger().logResumedAll()
             downloadingModules.forEach { viewModel in
                 downloadsManager.resume(entry: viewModel.entry)
@@ -75,7 +73,6 @@ final class DownloaderViewModel: ObservableObject, Reachabilitable, DownloadsPro
                 downloadsManager.pause(entry: viewModel.entry)
             }
         }
-        state = .updated
         toggleDownloadingBarView(hidden: true)
     }
 
@@ -107,7 +104,6 @@ final class DownloaderViewModel: ObservableObject, Reachabilitable, DownloadsPro
 
     func resumeIfServerError(entry: OfflineDownloaderEntry) {
         downloadsManager.resume(entry: entry)
-        state = .updated
     }
 
     private func addObservers() {
@@ -119,8 +115,8 @@ final class DownloaderViewModel: ObservableObject, Reachabilitable, DownloadsPro
                 }
                 switch event {
                 case .statusChanged(object: let event):
+                    self.updateIsActiveEntriesEmpty()
                     self.statusChanged(event)
-                    self.state = .updated
                 case .progressChanged:
                     break
                 }
@@ -164,5 +160,9 @@ final class DownloaderViewModel: ObservableObject, Reachabilitable, DownloadsPro
         } catch {
             self.error = error.localizedDescription
         }
+    }
+
+    private func updateIsActiveEntriesEmpty() {
+        isActiveEntriesEmpty = activeEntries.isEmpty
     }
 }

@@ -47,10 +47,7 @@ struct DownloaderView: View, Navigatable {
         ZStack {
             Color.backgroundLight
                 .ignoresSafeArea()
-            switch viewModel.state {
-            case .updated:
-                content
-            }
+            content
             if viewModel.deleting {
                 LoadingDarkView()
             }
