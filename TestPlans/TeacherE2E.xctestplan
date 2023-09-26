@@ -26,7 +26,6 @@
   },
   "testTargets" : [
     {
-      "parallelizable" : true,
       "skippedTests" : [
         "ContextCardE2ETests",
         "DSPagesTests\/testDeletePage()",

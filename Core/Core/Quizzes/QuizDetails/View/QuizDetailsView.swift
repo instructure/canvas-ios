@@ -74,22 +74,26 @@ public struct QuizDetailsView<ViewModel: QuizDetailsViewModelProtocol>: View {
     @ViewBuilder func details() -> some View {
         QuizDetailsSection {
             Text(viewModel.quizTitle)
-                .font(.heavy24).foregroundColor(.textDarkest).accessibility(identifier: "QuizDetails.name")
+                .font(.heavy24).foregroundColor(.textDarkest)
+                .accessibility(identifier: "QuizDetails.name")
             HStack(spacing: 0) {
                 Text(viewModel.pointsPossibleText)
                     .font(.medium16).foregroundColor(.textDark)
                     .padding(.trailing, 12)
+                    .accessibility(identifier: "QuizDetails.points")
                 HStack {
                     if viewModel.published {
                         Image.publishSolid.foregroundColor(.textSuccess)
                             .padding(.trailing, 4)
                         Text("Published", bundle: .core)
                             .font(.medium16).foregroundColor(.textSuccess)
+                            .accessibility(identifier: "QuizDetails.published")
                     } else {
                         Image.noSolid.foregroundColor(.textDark)
                             .padding(.trailing, 4)
                         Text("Unpublished", bundle: .core)
-                            .font(.medium16).foregroundColor(.textDark).accessibility(identifier: "QuizDetails.unpublished")
+                            .font(.medium16).foregroundColor(.textDark)
+                            .accessibility(identifier: "QuizDetails.unpublished")
                     }
                 }
                     .accessibilityElement(children: .combine)
@@ -102,9 +106,11 @@ public struct QuizDetailsView<ViewModel: QuizDetailsViewModelProtocol>: View {
 
         if let assDateSectionViewModel = viewModel.assignmentDateSectionViewModel {
             DateSection(viewModel: assDateSectionViewModel)
+                .accessibility(identifier: "QuizDetails.dateSection")
             Divider().padding(.horizontal, 16)
         } else if let quizDateSectionViewModel = viewModel.quizDateSectionViewModel {
             DateSection(viewModel: quizDateSectionViewModel)
+                .accessibility(identifier: "QuizDetails.dateSection")
             Divider().padding(.horizontal, 16)
         }
 
@@ -120,7 +126,7 @@ public struct QuizDetailsView<ViewModel: QuizDetailsViewModelProtocol>: View {
         if let html = viewModel.quizDetailsHTML, !html.isEmpty {
             Text("Description", bundle: .core)
                 .font(.medium16).foregroundColor(.textDark)
-                .padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16))
+                .padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16)).accessibility(identifier: "QuizDetails.description")
             WebView(html: html, canToggleTheme: true)
                 .frameToFit()
         } else {
@@ -128,7 +134,7 @@ public struct QuizDetailsView<ViewModel: QuizDetailsViewModelProtocol>: View {
                 HStack {
                     Text("Help your students with this assignment by adding instructions.", bundle: .core)
                         .font(.regular14).foregroundColor(.textDark)
-                        .fixedSize(horizontal: false, vertical: true)
+                        .fixedSize(horizontal: false, vertical: true).accessibility(identifier: "QuizDetails.description")
                     Spacer()
                 }
                     .padding(.horizontal, 12).padding(.vertical, 8)
