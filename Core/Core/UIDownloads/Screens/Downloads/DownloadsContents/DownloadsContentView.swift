@@ -133,7 +133,7 @@ struct DownloadsContentView: View, Navigatable {
                 presentationMode.wrappedValue.dismiss()
             }
             navigationController?.showAlert(
-                title: NSLocalizedString("Are you sure you want to remove content?", comment: ""),
+                title: NSLocalizedString("Are you sure you want to remove all content?", comment: ""),
                 actions: [cancelAction, deleteAction],
                 style: UIDevice.current.userInterfaceIdiom == .pad ? .alert : .actionSheet
             )
