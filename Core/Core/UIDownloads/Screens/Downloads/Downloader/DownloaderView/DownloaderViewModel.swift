@@ -20,7 +20,7 @@ import Combine
 import SwiftUI
 import mobile_offline_downloader_ios
 
-final class DownloaderViewModel: ObservableObject, Reachabilitable {
+final class DownloaderViewModel: ObservableObject, Reachabilitable, DownloadsProgressBarHidden {
 
     // MARK: - Injection -
 
@@ -39,9 +39,20 @@ final class DownloaderViewModel: ObservableObject, Reachabilitable {
     @Published var error: String = ""
     @Published var deleting: Bool = false
     @Published var isConnected: Bool = true
+    @Published var isActiveEntriesEmpty: Bool = false
     @Published var isEmpty: Bool = true
 
     var cancellables: [AnyCancellable] = []
+
+    private var activeEntries: [OfflineDownloaderEntry] {
+        downloadsManager.activeEntries + downloadsManager.waitingEntries
+    }
+
+    private var pausedEntries: [OfflineDownloaderEntry] {
+        downloadsManager.pausedEntries + 
+        downloadsManager.failedEntries +
+        downloadsManager.serverErrors
+    }
 
     init(downloadingModules: [DownloadsModuleCellViewModel]) {
         self.downloadingModules = downloadingModules
@@ -53,9 +64,23 @@ final class DownloaderViewModel: ObservableObject, Reachabilitable {
     func configure() {
         isConnected = reachability.isConnected
         addObservers()
+        updateIsActiveEntriesEmpty()
     }
 
-    func pauseResume() {}
+    func pauseResumeAll() {
+        if isActiveEntriesEmpty {
+            OfflineLogsMananger().logResumedAll()
+            pausedEntries.forEach {
+                downloadsManager.resume(entry: $0)
+            }
+        } else {
+            OfflineLogsMananger().logPausedAll()
+            activeEntries.forEach {
+                downloadsManager.pause(entry:$0)
+            }
+        }
+        toggleDownloadingBarView(hidden: true)
+    }
 
     func deleteAll() {
         deleting = true
@@ -91,9 +116,13 @@ final class DownloaderViewModel: ObservableObject, Reachabilitable {
         downloadsManager
             .publisher
             .sink { [weak self] event in
+                guard let self = self else {
+                    return
+                }
                 switch event {
                 case .statusChanged(object: let event):
-                    self?.statusChanged(event)
+                    self.updateIsActiveEntriesEmpty()
+                    self.statusChanged(event)
                 case .progressChanged:
                     break
                 }
@@ -137,5 +166,9 @@ final class DownloaderViewModel: ObservableObject, Reachabilitable {
         } catch {
             self.error = error.localizedDescription
         }
+    }
+
+    private func updateIsActiveEntriesEmpty() {
+        isActiveEntriesEmpty = activeEntries.isEmpty
     }
 }
