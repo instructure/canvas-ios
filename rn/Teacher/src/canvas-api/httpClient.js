@@ -21,6 +21,7 @@
 
 import AsyncStorage from '@react-native-community/async-storage'
 import { getSession } from './session'
+import { logEvent } from '../common/CanvasAnalytics'
 
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE'
 type Body = null | void | string | Object | FormData | Blob | ArrayBuffer
@@ -67,6 +68,7 @@ function xhr (method: Method, url: string, data: Body, config: ApiConfig = {}) {
   const query = serializeParams(params)
 
   let fullUrl = resolveUrl(url, config)
+  logEvent('react http call', { url })
   if (query) fullUrl += (fullUrl.includes('?') ? '&' : '?') + query
 
   const key = `${method} ${fullUrl}`
@@ -126,6 +128,7 @@ function xhr (method: Method, url: string, data: Body, config: ApiConfig = {}) {
             resolve(response)
             break
           case 'error':
+            logEvent('request failed', { url })
             throw new TypeError('Network request failed')
           case 'timeout':
             throw new TypeError('Network request timed out')
