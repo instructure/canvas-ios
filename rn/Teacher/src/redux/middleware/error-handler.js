@@ -25,6 +25,12 @@ import loginVerify from '../../common/login-verify'
 import { NativeModules } from 'react-native'
 
 export function alertError (error: any, alertTitle?: string, callback?: Function): void {
+  if (error instanceof Error) {
+    console.warn(`Error: ${error.message}.  Stack:\n${error.stack}`)
+  } else {
+    console.warn(`Error: `, error)
+  }
+
   NativeModules.OfflineState.isInOfflineMode().then(isInOfflineMode => {
     if (isInOfflineMode) {
       if (callback) {
@@ -37,12 +43,6 @@ export function alertError (error: any, alertTitle?: string, callback?: Function
     const message = parseErrorMessage(error)
     let buttons = [{ text: i18n('Dismiss'), onPress: () => { if (callback) callback() } }]
     Alert.alert(title, message, buttons)
-
-    if (error instanceof Error) {
-      console.warn(`Error: ${error.message}.  Stack:\n${error.stack}`)
-    } else {
-      console.warn(`Error: `, error)
-    }
   })
 }
 
