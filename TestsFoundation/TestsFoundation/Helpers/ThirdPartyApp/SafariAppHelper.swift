@@ -33,7 +33,7 @@ public class SafariAppHelper: BaseHelper {
         if addressLabel.isVisible {
             addressLabel.hit()
         } else {
-            tabBarItemTitle.hit()
+            tabBarItemTitle.actionUntilElementCondition(action: .tap, element: URL, condition: .visible)
             addressLabel = URL.waitUntil(.visible)
         }
         let url = addressLabel.value as? String ?? ""

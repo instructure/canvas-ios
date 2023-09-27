@@ -16,15 +16,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public enum SettingsMenuItem: Int {
-    case landingPage = 0
-    case appearance = 1
-    case pairWithObserver = 2
-    case subscribeToCalendarFeed = 3
-    case about = 4
-    case privacyPolicy = 5
-    case termsOfUse = 6
-    case canvasOnGitHub = 7
+public enum SettingsMenuItem: String {
+    case landingPage = "Landing Page"
+    case appearance = "Appearance"
+    case pairWithObserver = "Pair with Observer"
+    case subscribeToCalendarFeed = "Subscribe to Calendar Feed"
+    case about = "About"
+    case synchronization = "Synchronization"
+    case privacyPolicy = "Privacy Policy"
+    case termsOfUse = "Terms of Use"
+    case canvasOnGitHub = "Canvas on GitHub"
 }
 
 public enum LandingPageMenuItem: Int {
@@ -47,11 +48,7 @@ public class SettingsHelper: BaseHelper {
     public static var preferencesLabel: XCUIElement { app.find(id: "Preferences") }
 
     public static func menuItem(item: SettingsMenuItem) -> XCUIElement {
-        return app.find(id: "settings.tableView").findAll(type: .cell, minimumCount: 8)[item.rawValue]
-    }
-
-    public static func labelOfMenuItem(menuItem: XCUIElement) -> XCUIElement {
-        return menuItem.find(type: .staticText)
+        return app.find(id: "settings.tableView").find(label: item.rawValue, type: .staticText)
     }
 
     public static func navigateToSettings() {

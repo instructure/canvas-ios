@@ -40,52 +40,28 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Check menu items of Settings
         let landingPage = Helper.menuItem(item: .landingPage).waitUntil(.visible)
-        let landingPageLabel = Helper.labelOfMenuItem(menuItem: landingPage).waitUntil(.visible)
         XCTAssertTrue(landingPage.isVisible)
-        XCTAssertTrue(landingPageLabel.isVisible)
-        XCTAssertEqual(landingPageLabel.label, "Landing Page")
 
         let appearance = Helper.menuItem(item: .appearance).waitUntil(.visible)
-        let appearanceLabel = Helper.labelOfMenuItem(menuItem: appearance).waitUntil(.visible)
         XCTAssertTrue(appearance.isVisible)
-        XCTAssertTrue(appearanceLabel.isVisible)
-        XCTAssertEqual(appearanceLabel.label, "Appearance")
 
         let pairWithObserver = Helper.menuItem(item: .pairWithObserver).waitUntil(.visible)
-        let pairWithObserverLabel = Helper.labelOfMenuItem(menuItem: pairWithObserver).waitUntil(.visible)
         XCTAssertTrue(pairWithObserver.isVisible)
-        XCTAssertTrue(pairWithObserverLabel.isVisible)
-        XCTAssertEqual(pairWithObserverLabel.label, "Pair with Observer")
 
         let subscribeToCalendarFeed = Helper.menuItem(item: .subscribeToCalendarFeed).waitUntil(.visible)
-        let subscribeToCalendarFeedLabel = Helper.labelOfMenuItem(menuItem: subscribeToCalendarFeed).waitUntil(.visible)
         XCTAssertTrue(subscribeToCalendarFeed.isVisible)
-        XCTAssertTrue(subscribeToCalendarFeedLabel.isVisible)
-        XCTAssertEqual(subscribeToCalendarFeedLabel.label, "Subscribe to Calendar Feed")
 
         let about = Helper.menuItem(item: .about).waitUntil(.visible)
-        let aboutLabel = Helper.labelOfMenuItem(menuItem: about).waitUntil(.visible)
         XCTAssertTrue(about.isVisible)
-        XCTAssertTrue(aboutLabel.isVisible)
-        XCTAssertEqual(aboutLabel.label, "About")
 
         let privacyPolicy = Helper.menuItem(item: .privacyPolicy).waitUntil(.visible)
-        let privacyPolicyLabel = Helper.labelOfMenuItem(menuItem: privacyPolicy).waitUntil(.visible)
         XCTAssertTrue(privacyPolicy.isVisible)
-        XCTAssertTrue(privacyPolicyLabel.isVisible)
-        XCTAssertEqual(privacyPolicyLabel.label, "Privacy Policy")
 
         let termsOfUse = Helper.menuItem(item: .termsOfUse).waitUntil(.visible)
-        let termsOfUseLabel = Helper.labelOfMenuItem(menuItem: termsOfUse).waitUntil(.visible)
         XCTAssertTrue(termsOfUse.isVisible)
-        XCTAssertTrue(termsOfUseLabel.isVisible)
-        XCTAssertEqual(termsOfUseLabel.label, "Terms of Use")
 
         let canvasOnGitHub = Helper.menuItem(item: .canvasOnGitHub).waitUntil(.visible)
-        let canvasOnGitHubLabel = Helper.labelOfMenuItem(menuItem: canvasOnGitHub).waitUntil(.visible)
         XCTAssertTrue(canvasOnGitHub.isVisible)
-        XCTAssertTrue(canvasOnGitHubLabel.isVisible)
-        XCTAssertEqual(canvasOnGitHubLabel.label, "Canvas on GitHub")
     }
 
     func testLandingPageSetting() {

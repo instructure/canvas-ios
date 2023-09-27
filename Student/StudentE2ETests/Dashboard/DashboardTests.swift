@@ -193,12 +193,17 @@ class DashboardTests: E2ETestCase {
         let courseCard = Helper.courseCard(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCard.isVisible)
 
-        // MARK: Check visibility of Dashboard Settings button
-        var dashboardSettingsButton = Helper.dashboardSettings.waitUntil(.visible)
-        XCTAssertTrue(dashboardSettingsButton.isVisible)
+        // MARK: Check visibility of Dashboard Options button
+        var dashboardOptionsButton = Helper.optionsButton.waitUntil(.visible)
+        XCTAssertTrue(dashboardOptionsButton.isVisible)
 
-        // MARK: Tap Dashboard Settings button then check visibility and value of Show Grade toggle
-        dashboardSettingsButton.hit()
+        // MARK: Check visibility of Edit Dashboard button
+        dashboardOptionsButton.hit()
+        var editDashboardButton = Helper.editDashboardButton.waitUntil(.visible)
+        XCTAssertTrue(editDashboardButton.isVisible)
+
+        // MARK: Tap Edit Dashboard button then check visibility and value of Show Grade toggle
+        editDashboardButton.hit()
         var showGradeToggle = Helper.dashboardSettingsShowGradeToggle.waitUntil(.visible)
         XCTAssertTrue(showGradeToggle.isVisible)
         XCTAssertTrue(showGradeToggle.hasValue(value: "0"))
@@ -222,10 +227,14 @@ class DashboardTests: E2ETestCase {
         XCTAssertTrue(courseCardGradeLabel.actionUntilElementCondition(action: .pullToRefresh, condition: .label(expected: totalGrade)))
 
         // MARK: Unselect Show Grades toggle then check Course Card label again
-        dashboardSettingsButton = Helper.dashboardSettings.waitUntil(.visible)
-        XCTAssertTrue(dashboardSettingsButton.isVisible)
+        dashboardOptionsButton.waitUntil(.visible)
+        XCTAssertTrue(dashboardOptionsButton.isVisible)
 
-        dashboardSettingsButton.hit()
+        dashboardOptionsButton.hit()
+        editDashboardButton.waitUntil(.visible)
+        XCTAssertTrue(editDashboardButton.isVisible)
+
+        editDashboardButton.hit()
         showGradeToggle = Helper.dashboardSettingsShowGradeToggle.waitUntil(.visible)
         XCTAssertTrue(showGradeToggle.isVisible)
 
