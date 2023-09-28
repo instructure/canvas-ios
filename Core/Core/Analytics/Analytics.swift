@@ -29,7 +29,6 @@ public class Analytics: NSObject {
 
     @objc
     public func logEvent(_ name: String, parameters: [String: Any]? = nil) {
-        Logger.shared.log("\(name) \(String(describing: parameters))")
         handler?.handleEvent(name, parameters: parameters)
     }
 
