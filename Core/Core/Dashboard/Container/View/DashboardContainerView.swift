@@ -181,7 +181,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                 }
                 viewModel.settingsButtonTapped.send()
             } label: {
-                Text("Edit Dashboard", bundle: .core)
+                Text("Dashboard Settings", bundle: .core)
             }
         }
     }

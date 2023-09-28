@@ -22,6 +22,7 @@ struct CourseSyncSelectorView: View {
     @Environment(\.viewController) var viewController
     @StateObject var viewModel: CourseSyncSelectorViewModel
     @StateObject var diskSpaceViewModel: CourseSyncDiskSpaceInfoViewModel
+    @StateObject var offlineModeViewModel: OfflineModeViewModel
 
     var body: some View {
         content
@@ -136,7 +137,7 @@ struct CourseSyncSelectorView: View {
     }
 
     private var syncButton: some View {
-        Button {
+        PrimaryButton(isUnavailable: $offlineModeViewModel.isOffline) {
             viewModel.syncButtonDidTap.accept(viewController)
         } label: {
             Text("Sync", bundle: .core)
@@ -148,6 +149,7 @@ struct CourseSyncSelectorView: View {
                 .opacity(viewModel.syncButtonDisabled ? 0.42 : 1)
         }
         .disabled(viewModel.syncButtonDisabled)
+        .animation(.default, value: offlineModeViewModel.isOffline)
     }
 
     @ViewBuilder

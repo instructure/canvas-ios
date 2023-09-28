@@ -140,7 +140,7 @@ struct DashboardCourseCardView: View {
             } label: {
                 Text("Manage Offline Content", bundle: .core)
             }
-            PrimaryButton {
+            Button {
                 openDashboardCardCustomizeSheet()
             } label: {
                 Text("Customize Course", bundle: .core)

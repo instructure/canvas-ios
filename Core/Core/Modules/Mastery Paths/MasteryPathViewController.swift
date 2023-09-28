@@ -173,9 +173,11 @@ class MasteryPathAssignmentCell: UIView {
 class MasteryPathAssignmentSetSelectCell: UIView {
     let button = UIButton()
     let id: String
+    private let offlineModeInteractor: OfflineModeInteractor
 
-    init(id: String) {
+    init(id: String, offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()) {
         self.id = id
+        self.offlineModeInteractor = offlineModeInteractor
         super.init(frame: .zero)
         backgroundColor = .backgroundLightest
         addSubview(button)
@@ -186,6 +188,7 @@ class MasteryPathAssignmentSetSelectCell: UIView {
         button.contentEdgeInsets.bottom = 14
         button.titleLabel?.font = .scaledNamedFont(.semibold16)
         button.addTarget(self, action: #selector(onSelect(_:)), for: .primaryActionTriggered)
+        button.makeUnavailableInOfflineMode(offlineModeInteractor)
         update(selected: false)
         NotificationCenter.default.addObserver(self, selector: #selector(onMasteryPathSelected(_:)), name: .masteryPathSelected, object: nil)
     }
