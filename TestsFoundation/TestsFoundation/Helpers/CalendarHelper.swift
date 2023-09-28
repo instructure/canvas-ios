@@ -58,7 +58,7 @@ public class CalendarHelper: BaseHelper {
     }
 
     public static func formatDateForDateLabel(event: DSCalendarEvent) -> String {
-        dateFormatter.dateFormat = "MMM d, yyyy 'at' h:mm a"
+        dateFormatter.dateFormat = "MMM d, yyyy 'at' h:mm a"
         let formattedDate = dateFormatter.string(from: event.start_at)
         return formattedDate
     }
@@ -153,7 +153,7 @@ public class CalendarHelper: BaseHelper {
         }
 
         public static func formatDateForDateLabel(event: DSCalendarEvent) -> String {
-            dateFormatter.dateFormat = "MMM d, yyyy 'at' h:mm a"
+            dateFormatter.dateFormat = "MMM d, yyyy 'at' h:mm a"
             let formattedDate = dateFormatter.string(from: event.start_at)
             return formattedDate
         }
