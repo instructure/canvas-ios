@@ -21,48 +21,46 @@ import Combine
 import CombineSchedulers
 
 class CourseSyncProgressInfoViewModel: ObservableObject {
-    @Published private(set) var progress: String = "" // Downloading 42 GB of 64 GB
-    @Published private(set) var progressPercentage: Float = 0
-    @Published private(set) var syncFailure: Bool = false
-    @Published private(set) var syncFailureTitle: String
-    @Published private(set) var syncFailureSubtitle: String
+    enum State: Equatable {
+        // progress is always 1 here, this is just for convenience
+        case finishedSuccessfully(message: String, progress: Float)
+        case finishedWithError(title: String, subtitle: String)
+        case downloadStarting(message: String)
+        case downloadInProgress(message: String, progress: Float)
+    }
 
-    private var subscriptions = Set<AnyCancellable>()
+    @Published private(set) var state: State = .downloadStarting(message: "")
 
     init(
         interactor: CourseSyncProgressInteractor,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
-        syncFailureTitle = NSLocalizedString(
-            "Offline Content Sync Failed",
-            bundle: .core,
-            comment: ""
-        )
-        syncFailureSubtitle = NSLocalizedString(
-            "One or more files failed to sync. Check your internet connection and retry to submit.",
-            bundle: .core,
-            comment: ""
-        )
-
-        unowned let unownedSelf = self
-
         interactor.observeDownloadProgress()
             .receive(on: scheduler)
-            .sink { progress in
-                    let format = NSLocalizedString("Downloading %@ of %@", bundle: .core, comment: "Downloading 42 GB of 64 GB")
-                    unownedSelf.progress = String.localizedStringWithFormat(
-                        format,
-                        progress.bytesDownloaded.humanReadableFileSize,
-                        progress.bytesToDownload.humanReadableFileSize
-                    )
-                    unownedSelf.progressPercentage = progress.progress
-
-                    if progress.isFinished, progress.error != nil {
-                        unownedSelf.syncFailure = true
+            .map { progress in
+                if progress.isFinished {
+                    if progress.error != nil {
+                        return .finishedWithError(title: NSLocalizedString("Offline Content Sync Failed", comment: ""),
+                                                  subtitle: NSLocalizedString("One or more files failed to sync. Check your internet connection and retry to submit.", comment: ""))
                     } else {
-                        unownedSelf.syncFailure = false
+                        let format = NSLocalizedString("Success! Downloaded %@ of %@", comment: "")
+                        let message = String.localizedStringWithFormat(format,
+                                                                       progress.bytesDownloaded.humanReadableFileSize,
+                                                                       progress.bytesToDownload.humanReadableFileSize)
+                        return .finishedSuccessfully(message: message, progress: 1)
                     }
+                } else {
+                    let format = NSLocalizedString("Downloading %@ of %@", bundle: .core, comment: "Downloading 42 GB of 64 GB")
+                    let message = String.localizedStringWithFormat(format,
+                                                                   progress.bytesDownloaded.humanReadableFileSize,
+                                                                   progress.bytesToDownload.humanReadableFileSize)
+                    if progress.progress == 0 {
+                        return .downloadStarting(message: message)
+                    } else {
+                        return .downloadInProgress(message: message, progress: progress.progress)
+                    }
+                }
             }
-            .store(in: &subscriptions)
+            .assign(to: &$state)
     }
 }
