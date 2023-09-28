@@ -2297,6 +2297,9 @@
 "Show One Question at a Time" = "一度に1つの質問を表示する";
 
 /* No comment provided by engineer. */
+"Show sync details" = "同期詳細を表示する";
+
+/* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */

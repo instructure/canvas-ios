@@ -16,25 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import TestsFoundation
+public protocol CoreWebViewLinkDelegate: AnyObject {
+    func handleLink(_ url: URL) -> Bool
+    func finishedNavigation()
+    var routeLinksFrom: UIViewController { get }
+}
 
-class DSLoginE2ETests: E2ETestCase {
-    // Follow-up of MBL-14653
-    func testLoginWithLastUser() {
-        let users = seeder.createUsers(1)
-        let course = seeder.createCourse()
-        let teacher = users[0]
-        seeder.enrollTeacher(teacher, in: course)
+extension CoreWebViewLinkDelegate {
+    public func finishedNavigation() {}
+}
 
-        logInDSUser(teacher, lastLogin: false)
-
-        logOut()
-
-        let lastLoginBtn = LoginHelper.Start.lastLoginButton.waitUntil(.visible)
-        XCTAssertTrue(lastLoginBtn.hasLabel(label: user.host))
-
-        lastLoginBtn.hit()
-        loginAfterSchoolFound(teacher)
+extension CoreWebViewLinkDelegate where Self: UIViewController {
+    public func handleLink(_ url: URL) -> Bool {
+        AppEnvironment.shared.router.route(to: url, from: routeLinksFrom)
+        return true
     }
+    public var routeLinksFrom: UIViewController { self }
 }

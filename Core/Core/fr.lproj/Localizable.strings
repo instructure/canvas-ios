@@ -2297,6 +2297,9 @@
 "Show One Question at a Time" = "Montrer une question à la fois";
 
 /* No comment provided by engineer. */
+"Show sync details" = "Afficher les détails de synchronisation";
+
+/* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */

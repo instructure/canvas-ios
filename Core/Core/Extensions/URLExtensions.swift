@@ -83,6 +83,14 @@ public extension URL {
         }
     }
 
+    enum Paths {
+        public enum Offline {
+            public static func courseFolder(sessionID: String, courseId: String) -> String {
+                "\(sessionID)/Offline/Files/course-\(courseId)"
+            }
+        }
+    }
+
     func lookupFileSize() -> Int {
         guard self.isFileURL else { return 0 }
         let attributes = try? FileManager.default.attributesOfItem(atPath: path)

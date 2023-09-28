@@ -16,10 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import WebKit
+/**
+ This delegate is used to communicate a rendering failure when the underlying web process terminates.
+ */
+public protocol CoreWebViewErrorDelegate: AnyObject {
 
-open class CoreWebViewFeature {
-    func apply(on configuration: WKWebViewConfiguration) {}
-    func apply(on webView: CoreWebView) {}
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {}
+    /** This method should return a view to where the error view can be placed blocking it completely. */
+    func containerForContentErrorView() -> UIView
+    /** If a URL is returned here then the error view will also display a "Open In Browser" button that forwards this URL to the system browser. */
+    func urlForExternalBrowser() -> URL?
 }

@@ -51,13 +51,14 @@ public struct SyllabusEditorView: View {
                     env.router.dismiss(controller)
                 }, label: {
                     Text("Cancel", bundle: .core)
-                })
-                    .identifier("screen.dismiss"),
+                        .accessibilityIdentifier("SyllabusEditor.cancel")
+                }),
                 trailing: Button(action: save, label: {
-                    Text("Done", bundle: .core).bold()
+                    Text("Done", bundle: .core)
+                        .bold()
+                        .accessibilityIdentifier("SyllabusEditor.done")
                 })
                     .disabled(isLoading || isSaving)
-                    .identifier("SyllabusEditor.doneButton")
             )
 
             .alert(isPresented: $showError) {

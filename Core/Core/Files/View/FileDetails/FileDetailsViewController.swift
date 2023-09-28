@@ -267,9 +267,19 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
     }
 
     var filePathComponent: String? {
-        guard let sessionID = env.currentSession?.uniqueID, let name = files.first?.filename else { return nil }
-        if offlineFileInteractor?.isOffline == true {
-            return offlineFileInteractor?.filePath(sessionID: sessionID, fileID: fileID, fileName: name)
+        guard
+            let sessionID = env.currentSession?.uniqueID,
+            let name = files.first?.filename
+        else {
+            return nil
+        }
+        if offlineFileInteractor?.isOffline == true, let contextId = context?.id {
+            return offlineFileInteractor?.filePath(
+                sessionID: sessionID,
+                courseId: contextId,
+                fileID: fileID,
+                fileName: name
+            )
         }
         return "\(sessionID)/\(fileID)/\(name)"
     }
