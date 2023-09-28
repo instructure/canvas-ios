@@ -86,6 +86,10 @@ global.fetch = require('jest-fetch-mock')
 
 global.requestIdleCallback = jest.fn(cb => cb())
 
+NativeModules.OfflineState = {
+  isInOfflineMode: jest.fn(() => Promise.resolve(false)),
+}
+
 NativeModules.NativeAccessibility = {
   focusElement: jest.fn(),
   refresh: jest.fn(),

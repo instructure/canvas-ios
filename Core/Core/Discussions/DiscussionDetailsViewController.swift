@@ -515,13 +515,13 @@ extension DiscussionDetailsViewController: CoreWebViewLinkDelegate {
             url.host == env.currentSession?.baseURL.host,
             url.path.hasPrefix("/\(context.pathComponent)/discussion_topics/\(topicID)/")
         else {
+            if offlineModeInteractor?.isOfflineModeEnabled() == true {
+                UIAlertController.showItemNotAvailableInOfflineAlert()
+                return true
+            }
+
             if url.pathComponents.contains("files") {
-                if offlineModeInteractor?.isOfflineModeEnabled() == true {
-                    UIAlertController.showItemNotAvailableInOfflineAlert()
-                    return true
-                } else {
-                    env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
-                }
+                env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
             } else {
                 env.router.route(to: url, from: self)
             }

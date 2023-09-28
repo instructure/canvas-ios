@@ -283,13 +283,19 @@ extension StudentAppDelegate: Core.AnalyticsHandler {
 
 extension StudentAppDelegate {
     func setupDefaultErrorHandling() {
-        environment.errorHandler = { error, controller in performUIUpdate {
-            let error = error as NSError
-            error.showAlert(from: controller)
-            if error.shouldRecordInCrashlytics {
-                Firebase.Crashlytics.crashlytics().record(error: error)
+        environment.errorHandler = { error, controller in
+            if OfflineModeAssembly.make().isOfflineModeEnabled() {
+                return
             }
-        } }
+
+            performUIUpdate {
+                let error = error as NSError
+                error.showAlert(from: controller)
+                if error.shouldRecordInCrashlytics {
+                    Firebase.Crashlytics.crashlytics().record(error: error)
+                }
+            }
+        }
     }
 }
 

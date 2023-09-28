@@ -30,6 +30,10 @@ public class DiscussionsHelper: BaseHelper {
         return app.find(id: "DiscussionListCell.\(discussion?.id ?? discussionId!)")
     }
 
+    public static func discussionButtonByLabel(label: String) -> XCUIElement {
+        return app.find(labelContaining: label, type: .cell)
+    }
+
     public static func discussionDataLabel(discussion: DSDiscussionTopic, label: DiscussionLabelTypes) -> XCUIElement? {
         let result = discussionButton(discussion: discussion).findAll(type: .staticText, minimumCount: 4)
         return result.count >= label.rawValue ? result[label.rawValue] : nil
@@ -80,7 +84,7 @@ public class DiscussionsHelper: BaseHelper {
     }
 
     public struct Editor {
-        public static var allowRatingToggle: XCUIElement { app.find(id: "DiscussionEditor.allowRatingToggle") }
+        public static var allowRatingToggle: XCUIElement { app.find(id: "DiscussionEditor.allowRatingToggle").find(type: .switch) }
         public static var attachmentButton: XCUIElement { app.find(id: "DiscussionEditor.attachmentButton") }
         public static var delayedPostAtToggle: XCUIElement { app.find(id: "DiscussionEditor.delayedPostAtToggle") }
         public static var delayedPostAtPicker: XCUIElement { app.find(id: "DiscussionEditor.delayedPostAtPicker") }
@@ -90,12 +94,15 @@ public class DiscussionsHelper: BaseHelper {
         public static var lockedToggle: XCUIElement { app.find(id: "DiscussionEditor.lockedToggle") }
         public static var onlyGradersCanRateToggle: XCUIElement { app.find(id: "DiscussionEditor.onlyGradersCanRateToggle") }
         public static var pointsField: XCUIElement { app.find(id: "DiscussionEditor.pointsField") }
-        public static var publishedToggle: XCUIElement { app.find(id: "DiscussionEditor.publishedToggle") }
-        public static var requireInitialPostToggle: XCUIElement { app.find(id: "DiscussionEditor.requireInitialPostToggle") }
+        public static var publishedToggle: XCUIElement { app.find(id: "DiscussionEditor.publishedToggle").find(type: .switch) }
+        public static var requireInitialPostToggle: XCUIElement { app.find(id: "DiscussionEditor.requireInitialPostToggle").find(type: .switch) }
         public static var sectionsButton: XCUIElement { app.find(id: "DiscussionEditor.sectionsButton") }
         public static var sortByRatingToggle: XCUIElement { app.find(id: "DiscussionEditor.sortByRatingToggle") }
-        public static var threadedToggle: XCUIElement { app.find(id: "DiscussionEditor.threadedToggle") }
+        public static var threadedToggle: XCUIElement { app.find(id: "DiscussionEditor.threadedToggle").find(type: .switch) }
         public static var titleField: XCUIElement { app.find(id: "DiscussionEditor.titleField") }
+        public static var availableFromButton: XCUIElement { app.find(label: "Available from", type: .button) }
+        public static var availableUntilButton: XCUIElement { app.find(label: "Available until", type: .button) }
+        public static var descriptionField: XCUIElement { richContentEditorWebView.find(type: .textView) }
 
         public static var richContentEditorWebView: XCUIElement { app.find(id: "RichContentEditor.webView") }
     }
