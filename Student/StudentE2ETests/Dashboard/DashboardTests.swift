@@ -197,13 +197,13 @@ class DashboardTests: E2ETestCase {
         var dashboardOptionsButton = Helper.optionsButton.waitUntil(.visible)
         XCTAssertTrue(dashboardOptionsButton.isVisible)
 
-        // MARK: Check visibility of Edit Dashboard button
+        // MARK: Check visibility of Dashboard Settings button
         dashboardOptionsButton.hit()
-        var editDashboardButton = Helper.editDashboardButton.waitUntil(.visible)
-        XCTAssertTrue(editDashboardButton.isVisible)
+        var dashboardSettingsButton = Helper.dashboardSettingsButton.waitUntil(.visible)
+        XCTAssertTrue(dashboardSettingsButton.isVisible)
 
         // MARK: Tap Edit Dashboard button then check visibility and value of Show Grade toggle
-        editDashboardButton.hit()
+        dashboardSettingsButton.hit()
         var showGradeToggle = Helper.dashboardSettingsShowGradeToggle.waitUntil(.visible)
         XCTAssertTrue(showGradeToggle.isVisible)
         XCTAssertTrue(showGradeToggle.hasValue(value: "0"))
@@ -231,10 +231,10 @@ class DashboardTests: E2ETestCase {
         XCTAssertTrue(dashboardOptionsButton.isVisible)
 
         dashboardOptionsButton.hit()
-        editDashboardButton.waitUntil(.visible)
-        XCTAssertTrue(editDashboardButton.isVisible)
+        dashboardSettingsButton.waitUntil(.visible)
+        XCTAssertTrue(dashboardSettingsButton.isVisible)
 
-        editDashboardButton.hit()
+        dashboardSettingsButton.hit()
         showGradeToggle = Helper.dashboardSettingsShowGradeToggle.waitUntil(.visible)
         XCTAssertTrue(showGradeToggle.isVisible)
 
