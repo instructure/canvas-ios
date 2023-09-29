@@ -41,4 +41,12 @@ public extension NotificationManager {
         let body = NSString.localizedUserNotificationString(forKey: "Something went wrong with uploading files.", arguments: nil)
         notify(identifier: "upload-manager", title: title, body: body, route: nil)
     }
+
+    func sendOfflineSyncCompletedSuccessfullyNotification(syncedItemsCount: Int) {
+        let title = NSString.localizedUserNotificationString(forKey: "Offline Content Sync Success", arguments: nil)
+        let bodyFormat = NSLocalizedString("offline_sync_finished", comment: "")
+        let body = String.localizedStringWithFormat(bodyFormat, syncedItemsCount, syncedItemsCount)
+
+        notify(identifier: "OfflineSyncCompletedSuccessfully", title: title, body: body, route: nil)
+    }
 }
