@@ -48,6 +48,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         attributes: .concurrent
     )
     private let fileErrorMessage = NSLocalizedString("File download failed.", comment: "")
+    private let successNotification: CourseSyncSuccessNotificationInteractor
     internal private(set) var downloadSubscription: AnyCancellable?
     private var subscriptions = Set<AnyCancellable>()
 
@@ -55,11 +56,13 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         contentInteractors: [CourseSyncContentInteractor],
         filesInteractor: CourseSyncFilesInteractor,
         progressWriterInteractor: CourseSyncProgressWriterInteractor,
+        successNotification: CourseSyncSuccessNotificationInteractor,
         scheduler: AnySchedulerOf<DispatchQueue>
     ) {
         self.contentInteractors = contentInteractors
         self.filesInteractor = filesInteractor
         self.progressWriterInteractor = progressWriterInteractor
+        self.successNotification = successNotification
         self.scheduler = scheduler
 
         listenToCancellationEvent()
@@ -95,6 +98,11 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                         isFinished: true,
                         error: hasError ? unownedSelf.fileErrorMessage : nil
                     )
+                    unownedSelf
+                        .successNotification
+                        .send()
+                        .sink()
+                        .store(in: &unownedSelf.subscriptions)
                 },
                 receiveValue: { _ in }
             )
