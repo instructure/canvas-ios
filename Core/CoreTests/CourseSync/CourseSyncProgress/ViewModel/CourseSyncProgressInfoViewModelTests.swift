@@ -52,12 +52,8 @@ class CourseSyncProgressInfoViewModelTests: CoreTestCase {
 
         // THEN
         XCTAssertSingleOutputEquals(
-            testee.$progress,
-            "Downloading 500 bytes of 1 KB"
-        )
-        XCTAssertSingleOutputEquals(
-            testee.$progressPercentage,
-            0.5
+            testee.$state,
+            .downloadInProgress(message: "Downloading 500 bytes of 1 KB", progress: 0.5)
         )
     }
 
@@ -79,16 +75,32 @@ class CourseSyncProgressInfoViewModelTests: CoreTestCase {
 
         // THEN
         XCTAssertSingleOutputEquals(
-            testee.$syncFailure,
-            true
+            testee.$state,
+            .finishedWithError(title: "Offline Content Sync Failed",
+                               subtitle: "One or more files failed to sync. Check your internet connection and retry to submit.")
         )
-        XCTAssertSingleOutputEquals(
-            testee.$syncFailureTitle,
-            "Offline Content Sync Failed"
+    }
+
+    func testSuccessfullyFinishedState() {
+        // GIVEN
+        let testee = CourseSyncProgressInfoViewModel(
+            interactor: courseSyncProgressInteractorMock,
+            scheduler: .immediate
         )
+        let fileProgress = CourseSyncDownloadProgress.make(
+            bytesToDownload: 1000,
+            bytesDownloaded: 1000,
+            isFinished: true,
+            error: nil
+        )
+
+        // WHEN
+        courseSyncProgressInteractorMock.courseSyncFileProgressSubject.send(fileProgress)
+
+        // THEN
         XCTAssertSingleOutputEquals(
-            testee.$syncFailureSubtitle,
-            "One or more files failed to sync. Check your internet connection and retry to submit."
+            testee.$state,
+            .finishedSuccessfully(message: "Success! Downloaded 1 KB of 1 KB", progress: 1)
         )
     }
 
@@ -110,8 +122,8 @@ class CourseSyncProgressInfoViewModelTests: CoreTestCase {
 
         // THEN
         XCTAssertSingleOutputEquals(
-            testee.$syncFailure,
-            false
+            testee.$state,
+            .downloadStarting(message: "Downloading Zero KB of 1 KB")
         )
     }
 }

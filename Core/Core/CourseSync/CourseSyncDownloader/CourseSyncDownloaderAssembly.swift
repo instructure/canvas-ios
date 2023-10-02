@@ -36,10 +36,13 @@ public enum CourseSyncDownloaderAssembly {
         let scheduler = DispatchQueue(
             label: "com.instructure.icanvas.core.course-sync-download"
         ).eraseToAnyScheduler()
+        let progressInteractor = CourseSyncProgressObserverInteractorLive()
 
         return CourseSyncInteractorLive(contentInteractors: contentInteractors,
                                         filesInteractor: CourseSyncFilesInteractorLive(),
                                         progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
+                                        successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: .shared,
+                                                                                                     progressInteractor: progressInteractor),
                                         scheduler: scheduler)
     }
 }
