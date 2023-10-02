@@ -194,7 +194,7 @@ class DashboardTests: E2ETestCase {
         XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Check visibility of Dashboard Options button
-        var dashboardOptionsButton = Helper.optionsButton.waitUntil(.visible)
+        let dashboardOptionsButton = Helper.optionsButton.waitUntil(.visible)
         XCTAssertTrue(dashboardOptionsButton.isVisible)
 
         // MARK: Check visibility of Dashboard Settings button
