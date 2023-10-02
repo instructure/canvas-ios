@@ -50,11 +50,11 @@ class APIMediaCommentTests: XCTestCase {
         let request = PostMediaIDRequest(ks: "k", token: "t", type: .audio)
         XCTAssertEqual(
             String(data: try request.encode(request.body!), encoding: .utf8),
-            "{\"mediaEntry:name\":\"Media Comment\",\"mediaEntry:mediaType\":\"5\"}"
+            "{\"mediaEntry:mediaType\":\"5\",\"mediaEntry:name\":\"Media Comment\"}"
         )
         XCTAssertEqual(
             String(data: try request.encode(.init(mediaType: .video)), encoding: .utf8),
-            "{\"mediaEntry:name\":\"Media Comment\",\"mediaEntry:mediaType\":\"1\"}"
+            "{\"mediaEntry:mediaType\":\"1\",\"mediaEntry:name\":\"Media Comment\"}"
         )
     }
 
