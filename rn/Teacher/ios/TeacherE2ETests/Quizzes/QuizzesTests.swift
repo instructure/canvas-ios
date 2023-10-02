@@ -76,15 +76,13 @@ class QuizzesTests: E2ETestCase {
         // MARK: Seed the usual stuff with a test quiz containing 2 questions
         let teacher = seeder.createUser()
         let course = seeder.createCourse()
-        let newTitle = "New Title of Old Quiz"
-        let newDescription = "New Description of Old Quiz"
         seeder.enrollTeacher(teacher, in: course)
         Helper.createTestQuizWith2Questions(course: course)
 
         // MARK: Get the user logged in, navigate to the quiz
         logInDSUser(teacher)
         Helper.navigateToQuizzes(course: course)
-        let quizCell = Helper.cell(index: 0).hit()
+        _ = Helper.cell(index: 0).hit()
 
         // MARK: Check elements of Quiz Editor
         DetailsHelper.editButton.hit()
