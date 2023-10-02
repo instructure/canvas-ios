@@ -184,8 +184,16 @@ class MasteryPathAssignmentSetSelectCell: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.pin(inside: self, leading: 16, trailing: 16, top: 16, bottom: 16)
         button.layer.cornerRadius = 4
-        button.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 14.0, leading: 0.0, bottom: 14.0, trailing: 0.0)
-        button.titleLabel?.font = .scaledNamedFont(.semibold16)
+
+        var config = UIButton.Configuration.plain()
+        config.contentInsets = NSDirectionalEdgeInsets(top: 14, leading: 0, bottom: 14, trailing: 0)
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var outcoming = incoming
+            outcoming.font = UIFont.scaledNamedFont(.semibold16)
+            return outcoming
+        }
+        button.configuration = config
+
         button.addTarget(self, action: #selector(onSelect(_:)), for: .primaryActionTriggered)
         button.makeUnavailableInOfflineMode(offlineModeInteractor)
         update(selected: false)
