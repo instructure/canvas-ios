@@ -19,7 +19,7 @@
 public class DashboardHelper: BaseHelper {
     public static var dashboardSettings: XCUIElement { app.find(id: "Dashboard.settingsButton", type: .other) }
     public static var optionsButton: XCUIElement { app.find(label: "Dashboard Options", type: .button) }
-    public static var editDashboardButton: XCUIElement { app.find(label: "Dashboard Settings", type: .button) }
+    public static var dashboardSettingsButton: XCUIElement { app.find(label: "Dashboard Settings", type: .button) }
     public static var profileButton: XCUIElement { app.find(id: "Dashboard.profileButton", type: .button) }
     public static var editButton: XCUIElement { app.find(id: "Dashboard.editButton") }
     public static var doneButton: XCUIElement { app.find(id: "screen.dismiss", type: .button) }
@@ -42,7 +42,7 @@ public class DashboardHelper: BaseHelper {
 
     public static func turnOnShowGrades() {
         optionsButton.hit()
-        editDashboardButton.hit()
+        dashboardSettingsButton.hit()
         dashboardSettingsShowGradeToggle.forceTap()
         doneButton.hit()
     }

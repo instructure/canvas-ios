@@ -95,6 +95,7 @@
 		8B4891912AC465BD0015BAB2 /* ProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4891902AC465BD0015BAB2 /* ProfileTests.swift */; };
 		8B4891942AC467070015BAB2 /* DiscussionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4891932AC467070015BAB2 /* DiscussionsTests.swift */; };
 		8B4891972AC48D6A0015BAB2 /* FilesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4891962AC48D6A0015BAB2 /* FilesTests.swift */; };
+		8B48919E2AC6F64C0015BAB2 /* ToDoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B48919D2AC6F64C0015BAB2 /* ToDoTests.swift */; };
 		8C2F55972B1A4A3EBFAEEBBD /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D063D27A1B3640208ABF74D4 /* libz.tbd */; };
 		B15CA26D221DDEB40014FB02 /* TestsFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B15CA26C221DDEB40014FB02 /* TestsFoundation.framework */; };
 		B15CA26F221DDF230014FB02 /* TeacherTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B15CA26E221DDF230014FB02 /* TeacherTestCase.swift */; };
@@ -528,6 +529,7 @@
 		8B4891902AC465BD0015BAB2 /* ProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTests.swift; sourceTree = "<group>"; };
 		8B4891932AC467070015BAB2 /* DiscussionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionsTests.swift; sourceTree = "<group>"; };
 		8B4891962AC48D6A0015BAB2 /* FilesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesTests.swift; sourceTree = "<group>"; };
+		8B48919D2AC6F64C0015BAB2 /* ToDoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTests.swift; sourceTree = "<group>"; };
 		9210A7D2CE7CB864C8337310 /* Pods-defaults-Teacher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Teacher.release.xcconfig"; path = "../../../Pods/Target Support Files/Pods-defaults-Teacher/Pods-defaults-Teacher.release.xcconfig"; sourceTree = "<group>"; };
 		B15CA25D221DDB820014FB02 /* TeacherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TeacherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B15CA261221DDB820014FB02 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -914,6 +916,14 @@
 			path = Files;
 			sourceTree = "<group>";
 		};
+		8B4891992AC6F19C0015BAB2 /* ToDo */ = {
+			isa = PBXGroup;
+			children = (
+				8B48919D2AC6F64C0015BAB2 /* ToDoTests.swift */,
+			);
+			path = ToDo;
+			sourceTree = "<group>";
+		};
 		B15CA241221DC4DA0014FB02 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1051,6 +1061,7 @@
 		E841D8A123D6472200685A63 /* TeacherE2ETests */ = {
 			isa = PBXGroup;
 			children = (
+				8B4891992AC6F19C0015BAB2 /* ToDo */,
 				E841D8BA23D6472F00685A63 /* Info.plist */,
 				E8F4B66324EEC912003FBAFD /* ContextCardE2ETests.swift */,
 				8B21CEF12AB4B17E000867BD /* DSDashboardTest.swift */,
@@ -1790,6 +1801,7 @@
 				8B21CEFD2AB4B17E000867BD /* DSTodosE2ETests.swift in Sources */,
 				C91B216B26CA4E28006EE156 /* MessagesE2ETest.swift in Sources */,
 				8B21CEF02AB4AFA2000867BD /* AssignmentsTests.swift in Sources */,
+				8B48919E2AC6F64C0015BAB2 /* ToDoTests.swift in Sources */,
 				8B4891942AC467070015BAB2 /* DiscussionsTests.swift in Sources */,
 				8B4891972AC48D6A0015BAB2 /* FilesTests.swift in Sources */,
 				C990D81A2668ADBF00034C90 /* TodosE2ETests.swift in Sources */,

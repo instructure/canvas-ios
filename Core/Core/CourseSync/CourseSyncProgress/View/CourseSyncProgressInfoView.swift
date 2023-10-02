@@ -22,45 +22,58 @@ struct CourseSyncProgressInfoView: View {
     @ObservedObject var viewModel: CourseSyncProgressInfoViewModel
 
     var body: some View {
-        VStack(spacing: viewModel.syncFailure ? 4 : 8) {
-            if viewModel.syncFailure {
-                Text(viewModel.syncFailureTitle)
+        VStack(spacing: 0) {
+            switch viewModel.state {
+            case let .finishedWithError(title, subtitle):
+                Text(title)
                     .font(.semibold16)
-                    .foregroundColor(.textDarkest)
-                    .padding(.top, 24)
-                    .multilineTextAlignment(.center)
-                Text(viewModel.syncFailureSubtitle)
+                    .padding(.bottom, 4)
+                Text(subtitle)
                     .font(.regular14)
-                    .foregroundColor(.textDarkest)
-                    .padding(.top, 24)
-                    .multilineTextAlignment(.center)
-            } else {
-                Text(viewModel.progress)
+            case let .downloadStarting(message),
+                 let .downloadInProgress(message, _),
+                 let .finishedSuccessfully(message, _):
+                Text(message)
                     .font(.regular14)
-                    .foregroundColor(.textDarkest)
-                    .padding(.top, 24)
-
-                if viewModel.progressPercentage > 0 {
-                    ProgressView(value: viewModel.progressPercentage)
-                        .progressViewStyle(
-                            .determinateBar(
-                                foregroundColor: .backgroundInfo,
-                                backgroundColor: .backgroundInfo.opacity(0.24)
-                            )
-                        )
-                        .padding(.bottom, 32)
-                } else {
-                    ProgressView()
-                        .progressViewStyle(
-                            .indeterminateBar(
-                                foregroundColor: .backgroundInfo,
-                                backgroundColor: .backgroundInfo.opacity(0.24)
-                            )
-                        )
-                        .padding(.bottom, 32)
-                }
+                    .padding(.bottom, 8)
             }
-        }.padding(.horizontal, 16)
+
+            switch viewModel.state {
+            case .finishedWithError:
+                SwiftUI.EmptyView()
+            case .downloadStarting:
+                ProgressView(value: progress)
+                    .progressViewStyle(.indeterminateBar(foregroundColor: progressColor,
+                                                         backgroundColor: progressColor.opacity(0.24)))
+            case let .finishedSuccessfully(_, progress),
+                 let .downloadInProgress(_, progress):
+                ProgressView(value: progress)
+                    .progressViewStyle(.determinateBar(foregroundColor: progressColor,
+                                                       backgroundColor: progressColor.opacity(0.24)))
+
+            }
+        }
+        .foregroundColor(.textDarkest)
+        .multilineTextAlignment(.center)
+        .padding(.horizontal, 16)
+        .padding(.bottom, 32)
+        .padding(.top, 24)
+    }
+
+    private var progressColor: Color {
+        if case .finishedSuccessfully = viewModel.state {
+            return .textSuccess
+        } else {
+            return .backgroundInfo
+        }
+    }
+
+    private var progress: Float? {
+        switch viewModel.state {
+        case let .downloadInProgress(_, progress): return progress
+        case .finishedSuccessfully: return 1
+        default: return nil
+        }
     }
 }
 
@@ -70,7 +83,13 @@ struct CourseSyncProgressInfoView_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: 0) {
             Divider()
-            CourseSyncProgressInfoView(viewModel: .init(interactor: CourseSyncProgressInteractorPreview()))
+            CourseSyncProgressInfoView(viewModel: .init(interactor: CourseSyncProgressInteractorPreview(state: .downloadStarting)))
+            Divider()
+            CourseSyncProgressInfoView(viewModel: .init(interactor: CourseSyncProgressInteractorPreview(state: .downloadInProgress)))
+            Divider()
+            CourseSyncProgressInfoView(viewModel: .init(interactor: CourseSyncProgressInteractorPreview(state: .finishedSuccessfully)))
+            Divider()
+            CourseSyncProgressInfoView(viewModel: .init(interactor: CourseSyncProgressInteractorPreview(state: .finishedWithError)))
             Divider()
             Spacer()
         }
