@@ -1377,7 +1377,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\ncd ..\n./node_modules/react-native/scripts/react-native-xcode.sh\n";
+			shellScript = "# Make sure build step sees watchman directory\nexport PATH=/opt/homebrew/bin:$PATH\nwatchman --version\n\nexport NODE_OPTIONS=--openssl-legacy-provider\n\nexport NODE_BINARY=node\ncd ..\n./node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		5AB2BCD6CC4B25C00B73A429 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
