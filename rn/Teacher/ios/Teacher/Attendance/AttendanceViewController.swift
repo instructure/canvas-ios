@@ -36,6 +36,7 @@ class AttendanceViewController: ScreenViewTrackableViewController, ColoredNavVie
     let env = AppEnvironment.shared
     let session: RollCallSession
     var statuses: [AttendanceStatusController] = []
+    private var isFirstAppear = true
 
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
         eventName: "/\(context.pathComponent)/attendence"
@@ -120,7 +121,6 @@ class AttendanceViewController: ScreenViewTrackableViewController, ColoredNavVie
 
         tableView.refreshControl = CircleRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        tableView.refreshControl?.beginRefreshing()
 
         markAllButton.backgroundColor = Brand.shared.buttonPrimaryBackground
         markAllButton.tintColor = Brand.shared.buttonPrimaryText
@@ -177,6 +177,16 @@ class AttendanceViewController: ScreenViewTrackableViewController, ColoredNavVie
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.useContextColor(color)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if isFirstAppear, let refreshControl = tableView.refreshControl {
+            refreshControl.beginRefreshing()
+            tableView.contentOffset = CGPoint(x: 0, y: -refreshControl.frame.height)
+            isFirstAppear = false
+        }
     }
 
     @objc func markRemainingPresent(_ sender: Any?) {

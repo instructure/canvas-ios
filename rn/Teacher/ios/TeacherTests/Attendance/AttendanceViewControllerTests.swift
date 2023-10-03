@@ -60,11 +60,10 @@ class AttendanceViewControllerTests: TeacherTestCase {
     }
 
     func testStatusDisplay() {
-        controller.view.layoutIfNeeded()
-        controller.viewWillAppear(false)
-        XCTAssertEqual(controller.navigationController?.navigationBar.barTintColor!.hexString, UIColor(hexString: "#008EE2")!.ensureContrast(against: .backgroundLightest).hexString)
+        loadView()
+        XCTAssertEqual(controller.navigationController?.navigationBar.barTintColor?.hexString, UIColor(hexString: "#008EE2")!.ensureContrast(against: .backgroundLightest).hexString)
         XCTAssertEqual(controller.view.backgroundColor, .backgroundLightest)
-        // XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, true)
+        XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, true)
         RunLoop.main.run(until: Date() + 1)
         XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, false)
 
@@ -101,21 +100,21 @@ class AttendanceViewControllerTests: TeacherTestCase {
     }
 
     func testSessionStartError() {
-        controller.view.layoutIfNeeded()
+        loadView()
         controller.session.state = .error(NSError.instructureError("doh"))
         XCTAssertEqual((router.presented as? UIAlertController)?.message, "doh")
-        // XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, true)
+        XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, true)
         waitUntil(shouldFail: true) {
             controller.tableView.refreshControl?.isRefreshing == false
         }
     }
 
     func testCourseError() {
-        controller.view.layoutIfNeeded()
+        loadView()
         api.mock(GetCourseRequest(courseID: context.id), error: NSError.instructureError("oops"))
         controller.tableView.refreshControl?.sendActions(for: .valueChanged)
         XCTAssertEqual((router.presented as? UIAlertController)?.message, "oops")
-        // XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, true)
+        XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, true)
         RunLoop.main.run(until: Date() + 1)
         waitUntil(shouldFail: true) {
             controller.tableView.refreshControl?.isRefreshing == false
@@ -123,11 +122,11 @@ class AttendanceViewControllerTests: TeacherTestCase {
     }
 
     func testSectionsError() {
-        controller.view.layoutIfNeeded()
+        loadView()
         api.mock(GetCourseSectionsRequest(courseID: context.id, perPage: 100), error: NSError.instructureError("ded"))
         controller.tableView.refreshControl?.sendActions(for: .valueChanged)
         XCTAssertEqual((router.presented as? UIAlertController)?.message, "ded")
-        // XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, true)
+        XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, true)
         waitUntil(shouldFail: true) {
             controller.tableView.refreshControl?.isRefreshing == false
         }
@@ -136,16 +135,16 @@ class AttendanceViewControllerTests: TeacherTestCase {
     func testStatusesError() {
         let url = URL(string: "/statuses?section_id=1&class_date=2019-10-31", relativeTo: controller.session.baseURL)!
         api.mock(URLRequest(url: url), data: nil)
-        controller.view.layoutIfNeeded()
+        loadView()
         XCTAssertEqual((router.presented as? UIAlertController)?.message, "Error: No data returned from the rollcall api.")
-        // XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, true)
+        XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, true)
         waitUntil(shouldFail: true) {
             controller.tableView.refreshControl?.isRefreshing == false
         }
     }
 
     func testChangeDate() {
-        controller.view.layoutIfNeeded()
+        loadView()
         let dateButton = controller.navigationItem.rightBarButtonItem?.customView as? UIButton
         dateButton?.sendActions(for: .primaryActionTriggered)
 
@@ -155,8 +154,15 @@ class AttendanceViewControllerTests: TeacherTestCase {
     }
 
     func testChangeSection() {
-        controller.view.layoutIfNeeded()
+        loadView()
         controller.changeSectionButton.sendActions(for: .primaryActionTriggered)
         XCTAssert(router.presented is UIAlertController)
+    }
+
+    private func loadView() {
+        window.rootViewController = navigation
+        waitUntil(shouldFail: true) {
+            controller.view.superview != nil
+        }
     }
 }
