@@ -209,6 +209,7 @@ class MasteryPathAssignmentSetSelectCell: UIView {
         button.layer.borderWidth = selected ? 1 : 0
         button.backgroundColor = selected ? .clear : Brand.shared.buttonPrimaryBackground
         button.setTitleColor(selected ? .textDark : Brand.shared.buttonPrimaryText, for: .normal)
+        button.setTitleColor(.textDark, for: .highlighted)
         let title = selected ? NSLocalizedString("Selected!", bundle: .core, comment: "") : NSLocalizedString("Select", bundle: .core, comment: "")
         button.setTitle(title, for: .normal)
     }
