@@ -24,6 +24,7 @@ public class DashboardHelper: BaseHelper {
     public static var editButton: XCUIElement { app.find(id: "Dashboard.editButton") }
     public static var doneButton: XCUIElement { app.find(id: "screen.dismiss", type: .button) }
     public static var coursesLabel: XCUIElement { app.find(id: "dashboard.courses.heading-lbl") }
+    public static var offlineLine: XCUIElement { app.find(id: "offlineLine") }
     public static var dashboardSettingsShowGradeToggle: XCUIElement {
         return app.find(id: "DashboardSettings.showGradesToggle", type: .switch).find(type: .switch)
     }

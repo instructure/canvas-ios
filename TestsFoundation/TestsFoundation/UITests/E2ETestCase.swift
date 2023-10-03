@@ -71,4 +71,14 @@ open class E2ETestCase: CoreUITestCase {
             systemSettingsButton.actionUntilElementCondition(action: .tap, element: canvasThemePromptTitle, condition: .vanish)
         }
     }
+
+    open func goOffline() -> Bool {
+        CommandLine.setConnection(state: .off)
+        return CommandLine.isOffline
+    }
+
+    open func goOnline() -> Bool {
+        CommandLine.setConnection(state: .on)
+        return CommandLine.isOnline
+    }
 }
