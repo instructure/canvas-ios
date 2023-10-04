@@ -32,6 +32,8 @@
     "jsdom": "^15.1.0",
     "mkdirp": "^1.0.4",
     "pdfkit": "^0.9.1",
-    "express": "^4.18.2"
+  },
+  "dependencies": {
+      "express": "^4.18.2"
   }
 }
