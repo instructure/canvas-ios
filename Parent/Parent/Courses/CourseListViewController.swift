@@ -148,7 +148,7 @@ class CourseListCell: UITableViewCell {
         if course.hideQuantitativeData == true {
             if let grade {
                 return grade
-            } else if let score {
+            } else if score != nil {
                 return enrollment.convertedLetterGrade(gradingPeriodID: enrollment.currentGradingPeriodID,
                                                        gradingScheme: course.gradingScheme)
             } else {
