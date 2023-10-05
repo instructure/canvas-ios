@@ -128,6 +128,10 @@ struct DashboardCourseCardView: View {
         .identifier("DashboardCourseCell.\(courseCard.id).optionsButton")
         .confirmationDialog("", isPresented: $isShowingKebabDialog) {
             Button {
+                if offlineModeViewModel.isOffline {
+                    return UIAlertController.showItemNotAvailableInOfflineAlert()
+                }
+
                 var route = "/offline/sync_picker"
 
                 if let courseID = courseCard.course?.id {
