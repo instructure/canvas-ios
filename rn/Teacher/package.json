@@ -70,8 +70,7 @@
     "redux-actions": "^1.2.2",
     "striptags": "^3.0.1",
     "url-parse": "^1.4.7",
-    "uuid": "^3.1.0",
-    "express": "^4.18.2"
+    "uuid": "^3.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
@@ -104,8 +103,7 @@
     "redux-logger": "^3.0.6",
     "redux-mock-store": "^1.2.3",
     "timezone-mock": "^0.0.4",
-    "trace": "^3.1.0",
-    "express": "^4.18.2"
+    "trace": "^3.1.0"
   },
   "jest": {
     "preset": "react-native",
