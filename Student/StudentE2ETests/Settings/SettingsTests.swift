@@ -57,6 +57,9 @@ class SettingsTests: E2ETestCase {
         let privacyPolicy = Helper.menuItem(item: .privacyPolicy).waitUntil(.visible)
         XCTAssertTrue(privacyPolicy.isVisible)
 
+        let offlineSync = Helper.menuItem(item: .synchronization).waitUntil(.visible)
+        XCTAssertTrue(offlineSync.isVisible)
+
         let termsOfUse = Helper.menuItem(item: .termsOfUse).waitUntil(.visible)
         XCTAssertTrue(termsOfUse.isVisible)
 
@@ -381,5 +384,80 @@ class SettingsTests: E2ETestCase {
         // MARK: Check URL
         let url = SafariAppHelper.browserURL
         XCTAssertEqual(url, "https://github.com/instructure/canvas-ios")
+    }
+
+    func testOfflineSynchronizationSetting() {
+        // MARK: Seed the usual stuff
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+
+        // MARK: Get the user logged in, navigate to Settings
+        logInDSUser(student)
+        Helper.navigateToSettings()
+        let navBar = Helper.navBar.waitUntil(.visible)
+        let doneButton = Helper.doneButton.waitUntil(.visible)
+        XCTAssertTrue(navBar.isVisible)
+        XCTAssertTrue(doneButton.isVisible)
+
+        // MARK: Select Synchronization, check elements
+        let offlineSync = Helper.menuItem(item: .synchronization).waitUntil(.visible)
+        let valueOfOfflineSync = Helper.valueOfMenuItem(item: .synchronization)!.waitUntil(.visible)
+        XCTAssertTrue(offlineSync.isVisible)
+        XCTAssertTrue(valueOfOfflineSync.isVisible)
+        XCTAssertTrue(valueOfOfflineSync.hasLabel(label: "Manual"))
+
+        offlineSync.hit()
+
+        let autoContentSyncSwitch = Helper.OfflineSync.autoContentSyncSwitch.waitUntil(.visible)
+        let backButton = Helper.OfflineSync.backButton.waitUntil(.visible)
+        XCTAssertTrue(autoContentSyncSwitch.isVisible)
+        XCTAssertTrue(autoContentSyncSwitch.hasValue(value: "0"))
+        XCTAssertTrue(backButton.isVisible)
+
+        // MARK: Turn on "Auto Content Sync", check the changes
+        autoContentSyncSwitch.hit()
+        let syncFrequencyButton = Helper.OfflineSync.syncFrequencyButton.waitUntil(.visible)
+        let syncContentOverWifiOnlySwitch = Helper.OfflineSync.wifiOnlySwitch.waitUntil(.visible)
+        XCTAssertTrue(autoContentSyncSwitch.hasValue(value: "1"))
+        XCTAssertTrue(syncFrequencyButton.isVisible)
+        XCTAssertTrue(syncFrequencyButton.hasLabel(label: "Daily", strict: false))
+        XCTAssertTrue(syncContentOverWifiOnlySwitch.isVisible)
+        XCTAssertTrue(syncContentOverWifiOnlySwitch.hasValue(value: "1"))
+
+        // MARK: Change "Sync Frequency" from "Daily" to "Weekly"
+        syncFrequencyButton.hit()
+        let asOsAllows = Helper.OfflineSync.SyncFrequency.asTheOsAllows.waitUntil(.visible)
+        let daily = Helper.OfflineSync.SyncFrequency.daily.waitUntil(.visible)
+        let weekly = Helper.OfflineSync.SyncFrequency.weekly.waitUntil(.visible)
+        XCTAssertTrue(asOsAllows.isVisible)
+        XCTAssertTrue(daily.isVisible)
+        XCTAssertTrue(weekly.isVisible)
+
+        weekly.hit()
+        syncFrequencyButton.waitUntil(.visible)
+        XCTAssertTrue(syncFrequencyButton.isVisible)
+        XCTAssertTrue(syncFrequencyButton.hasLabel(label: "Weekly", strict: false))
+        XCTAssertTrue(syncContentOverWifiOnlySwitch.isVisible)
+        XCTAssertTrue(syncContentOverWifiOnlySwitch.hasValue(value: "1"))
+
+        // MARK: Turn off "Sync Content Over Wifi Only"
+        syncContentOverWifiOnlySwitch.hit()
+        let turnOffWifiOnlySyncQuestion = Helper.OfflineSync.turnOffWifiOnlySyncStaticText.waitUntil(.visible)
+        let turnOffButton = Helper.OfflineSync.turnOffButton.waitUntil(.visible)
+        XCTAssertTrue(turnOffWifiOnlySyncQuestion.isVisible)
+        XCTAssertTrue(turnOffButton.isVisible)
+
+        turnOffButton.hit()
+        syncContentOverWifiOnlySwitch.waitUntil(.value(expected: "0"))
+        XCTAssertTrue(syncContentOverWifiOnlySwitch.hasValue(value: "0"))
+        XCTAssertTrue(backButton.isVisible)
+
+        backButton.hit()
+        offlineSync.waitUntil(.visible)
+        valueOfOfflineSync.waitUntil(.visible)
+        XCTAssertTrue(offlineSync.isVisible)
+        XCTAssertTrue(valueOfOfflineSync.isVisible)
+        XCTAssertTrue(valueOfOfflineSync.hasLabel(label: "Weekly Auto"))
     }
 }

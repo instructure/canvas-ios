@@ -19,6 +19,11 @@
 import TestsFoundation
 
 class OfflineTests: E2ETestCase {
+    override func tearDown() {
+        // In case the tests fail at a point where the internet connection is turned off
+        goOnline()
+    }
+
     func testNetworkConnectionLose() {
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
