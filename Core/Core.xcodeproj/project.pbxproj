@@ -95,7 +95,6 @@
 		0EA924DCE1C57E35FB7DFDA6 /* LoginStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67AD61608F7BA35C41B3D85 /* LoginStartViewController.swift */; };
 		0EC6263BFC83A9648A51D045 /* RichContentToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA486C4876FCB7C243AAC95 /* RichContentToolbarView.swift */; };
 		0EE25BF09581E5E4AC1669F5 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC623C0CD68A8AB70145B80 /* AppEnvironment.swift */; };
-		0F135BC82678085E16914FAC /* MockAnalyticsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15154DB2F9F5F7C5F78DF5EB /* MockAnalyticsHandler.swift */; };
 		0F1A5F57D5D63FB688D9CD9F /* GetContextPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8290AAED7BA52A7C4D099C74 /* GetContextPermissions.swift */; };
 		0F1EB64D08AA16B83FC72ABC /* MotionModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9160E6FF32D199E6BF4310F /* MotionModifier.swift */; };
 		0F2793DCC1F46D1064D32110 /* MessageDetailsInteratorLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11FCB88AFB1B140BF0FB8EC /* MessageDetailsInteratorLive.swift */; };
@@ -233,6 +232,7 @@
 		245C9DB44886418467A2A5AE /* FileUploadTargetRequesterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AEB50CAF7EBB10B51D6062D /* FileUploadTargetRequesterTests.swift */; };
 		246B4B0D8AE27AA8BA4EFC0A /* FileProgressItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FF688B43191518E8C02434 /* FileProgressItemView.swift */; };
 		248B95D3107374D23924B067 /* DocumentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35BFFAB9ADA0ED5BB3AD4C67 /* DocumentExtensions.swift */; };
+		249B7B296D54E66F4BDCEEBF /* MockAnalyticsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74AB56326B9303CD57F83F4 /* MockAnalyticsHandler.swift */; };
 		24AA3689F8728BE8850B8458 /* UsageRights.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6A40B05A66159F069CA28F /* UsageRights.swift */; };
 		24C6F4267B962AA856EB4A37 /* K5ResourcesHomeroomInfoViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CBFCE1A8422B3EA36F10F5 /* K5ResourcesHomeroomInfoViewModelTests.swift */; };
 		24F706D72564DAF087039280 /* FileProgressListViewModelProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5084A9AE3290EDF87E9643B /* FileProgressListViewModelProtocolTests.swift */; };
@@ -1832,7 +1832,6 @@
 		14CD0262DAB15588F58F27D0 /* Plannable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plannable.swift; sourceTree = "<group>"; };
 		14D574E5B2EB2CB4D19C4F92 /* CourseListItemSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListItemSearchTests.swift; sourceTree = "<group>"; };
 		15095DAA95E4095036F53C1F /* PublisherExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherExtensionsTests.swift; sourceTree = "<group>"; };
-		15154DB2F9F5F7C5F78DF5EB /* MockAnalyticsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAnalyticsHandler.swift; sourceTree = "<group>"; };
 		154AFFC414CC0A0C52B7A557 /* confetti.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = confetti.json; sourceTree = "<group>"; };
 		15E13D146F040A7DB7964CB8 /* ModuleItemDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ModuleItemDetailsViewController.storyboard; sourceTree = "<group>"; };
 		15E57158A8C15D99A7CF15F3 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -3109,6 +3108,7 @@
 		C72CA7693A90E9118256E989 /* UploadAvatarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAvatarTests.swift; sourceTree = "<group>"; };
 		C73B072DD0FA0F9DC78BC7AE /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = da; path = da.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		C74853D7E3A4FAF817AD060D /* RichContentEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichContentEditor.swift; sourceTree = "<group>"; };
+		C74AB56326B9303CD57F83F4 /* MockAnalyticsHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAnalyticsHandler.swift; sourceTree = "<group>"; };
 		C752AA67F76F20E878F36C18 /* VideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
 		C7F6E9917DB4EF3D8EDA4A59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C7F958F95B1993A5CB69F6AE /* ContextTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextTests.swift; sourceTree = "<group>"; };
@@ -5658,6 +5658,7 @@
 			isa = PBXGroup;
 			children = (
 				1CE185592F73E6B146559A86 /* AnalyticsTests.swift */,
+				C74AB56326B9303CD57F83F4 /* MockAnalyticsHandler.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -5665,7 +5666,6 @@
 		62703D070FFE3DFF7152CC6A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				15154DB2F9F5F7C5F78DF5EB /* MockAnalyticsHandler.swift */,
 				CE282BDD1EFE56BE1CF9E3B6 /* TestOperationQueue.swift */,
 			);
 			path = Utils;
@@ -9648,7 +9648,7 @@
 				F1DF39627B5C9F790B8B5AFA /* MessageDetailsInteractorLiveTests.swift in Sources */,
 				A352A8DCE7424D749356BE6B /* MessageDetailsViewModelTests.swift in Sources */,
 				CA5D1B4FF43103705D699684 /* MessageListStateUpdaterTests.swift in Sources */,
-				0F135BC82678085E16914FAC /* MockAnalyticsHandler.swift in Sources */,
+				249B7B296D54E66F4BDCEEBF /* MockAnalyticsHandler.swift in Sources */,
 				62CD9A6D62A254F9AE845FA1 /* MockCoreWebViewLinkDelegate.swift in Sources */,
 				EBDA7E91903AA086D89A0DB5 /* MockDocViewerAnnotationProvider.swift in Sources */,
 				15A59E9BFA318AE396DD9700 /* MockDocViewerAnnotationProviderDelegate.swift in Sources */,

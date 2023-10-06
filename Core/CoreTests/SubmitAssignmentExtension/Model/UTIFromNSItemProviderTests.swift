@@ -31,9 +31,9 @@ class UTIFromNSItemProviderTests: XCTestCase {
 
         _ = MockNSItemProvider(isSupported: true).uti
 
-        XCTAssertEqual(mockAnalyticsHandler.loggedEventCount, 0)
-        XCTAssertNil(mockAnalyticsHandler.lastEventName)
-        XCTAssertNil(mockAnalyticsHandler.lastEventParameters)
+        XCTAssertEqual(mockAnalyticsHandler.totalErrorCount, 0)
+        XCTAssertNil(mockAnalyticsHandler.lastErrorName)
+        XCTAssertNil(mockAnalyticsHandler.lastErrorReason)
     }
 
     func testInvalidUTI() {
@@ -46,9 +46,9 @@ class UTIFromNSItemProviderTests: XCTestCase {
 
         _ = MockNSItemProvider(isSupported: false).uti
 
-        XCTAssertEqual(mockAnalyticsHandler.loggedEventCount, 1)
-        XCTAssertEqual(mockAnalyticsHandler.lastEventName, "error_unsupported_file_type")
-        XCTAssertEqual(mockAnalyticsHandler.lastEventParameters as? [String: String], ["error": "test.pcx"])
+        XCTAssertEqual(mockAnalyticsHandler.totalErrorCount, 1)
+        XCTAssertEqual(mockAnalyticsHandler.lastErrorName, "Unsupported file type")
+        XCTAssertEqual(mockAnalyticsHandler.lastErrorReason, "test.pcx")
     }
 }
 
