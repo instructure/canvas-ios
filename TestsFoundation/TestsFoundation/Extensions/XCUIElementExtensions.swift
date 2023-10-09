@@ -29,6 +29,7 @@ public extension XCUIElement {
         case value(expected: String)
         case label(expected: String)
         case enabled
+        case disabled
         case selected
         case unselected
         case hittable
@@ -62,6 +63,7 @@ public extension XCUIElement {
     // MARK: Private vars
     var isVisible: Bool { exists }
     var isVanished: Bool { !(exists && isHittable) }
+    var isDisabled: Bool { !isEnabled }
 
     // MARK: Functions
     func tacticalSleep(_ seconds: TimeInterval = 0.5) { usleep(UInt32(seconds*1000000)) }
@@ -120,6 +122,8 @@ public extension XCUIElement {
                 result = hasLabel(label: expected)
             case .enabled:
                 result = exists && isEnabled
+            case .disabled:
+                result = isDisabled
             case .selected:
                 result = exists && isSelected
             case .unselected:
@@ -173,6 +177,8 @@ public extension XCUIElement {
                 result = actualElement.hasLabel(label: expected)
             case .enabled:
                 result = actualElement.exists && actualElement.isEnabled
+            case .disabled:
+                result = actualElement.isDisabled
             case .selected:
                 result = actualElement.exists && actualElement.isSelected
             case .unselected:
