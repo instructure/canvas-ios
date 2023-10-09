@@ -33,7 +33,7 @@ class OnElementAppearTests: XCTestCase {
         webView.loadHTMLString("<div id=\"testElement\"></div>")
 
         // MARK: - THEN
-        waitForExpectations(timeout: 5)
+        waitForExpectations(timeout: 2)
     }
 
     func testNoCallbackOnMismatchingElement() {
@@ -49,6 +49,6 @@ class OnElementAppearTests: XCTestCase {
         webView.loadHTMLString("<div id=\"noTestElement\"></div>")
 
         // MARK: - THEN
-        waitForExpectations(timeout: 5)
+        waitForExpectations(timeout: 2)
     }
 }
