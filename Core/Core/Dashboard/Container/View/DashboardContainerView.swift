@@ -302,8 +302,8 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                 .accessibility(identifier: "dashboard.courses.heading-lbl")
                 .accessibility(addTraits: .isHeader)
             Spacer()
-            PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline, action: showAllCourses) {
-                Text("Edit Dashboard", bundle: .core)
+            Button(action: showAllCourses) {
+                Text("All Courses", bundle: .core)
                     .font(.semibold16).foregroundColor(Color(Brand.shared.linkColor))
             }.identifier("Dashboard.editButton")
         }
