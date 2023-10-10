@@ -23,6 +23,12 @@ struct CourseSyncSelectorView: View {
     @StateObject var viewModel: CourseSyncSelectorViewModel
     @StateObject var diskSpaceViewModel: CourseSyncDiskSpaceInfoViewModel
     @StateObject var offlineModeViewModel: OfflineModeViewModel
+    @State var animatedDots = "."
+    @State private var animationTimer = Timer.publish(
+        every: 1.0,
+        on: .main,
+        in: .common
+    ).autoconnect()
 
     var body: some View {
         content
@@ -41,9 +47,36 @@ struct CourseSyncSelectorView: View {
                              subtitle: Text(viewModel.labels.error.message))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         case .loading:
-            ProgressView()
-                .progressViewStyle(.indeterminateCircle())
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            VStack(spacing: 12) {
+                Image("LoadingPanda", bundle: .core)
+                    .accessibilityHidden(true)
+                HStack(spacing: 0) {
+                    Text("Loading", bundle: .core)
+                    Text(verbatim: "...")
+                        .opacity(0)
+                        .overlay(alignment: .leadingFirstTextBaseline) {
+                            Text(animatedDots)
+                                .animation(.default, value: animatedDots)
+                        }
+                        .accessibilityHidden(true)
+                }
+                .font(.regular23)
+                Text("Hang tight, we're getting things ready for you.", bundle: .core)
+                    .font(.regular16, lineHeight: .fit)
+            }
+            .foregroundColor(.textDarkest)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .onReceive(animationTimer) { _ in
+                if animatedDots == "..." {
+                    animatedDots = ""
+                } else {
+                    animatedDots = animatedDots.appending(".")
+                }
+            }
+            .onDisappear {
+                animationTimer.upstream.connect().cancel()
+            }
+            .accessibilityElement(children: .combine)
         case .data:
             VStack(spacing: 0) {
                 CourseSyncDiskSpaceInfoView(viewModel: diskSpaceViewModel)
@@ -183,11 +216,20 @@ struct SeparatorView: View {
 struct CourseSyncSelectorView_Previews: PreviewProvider {
     static var previews: some View {
         CourseSyncSelectorAssembly
-            .makePreview(env: AppEnvironment.shared, isEmpty: false)
+            .makePreview(env: AppEnvironment.shared,
+                         isEmpty: false,
+                         isLoading: false)
             .previewDisplayName("Data")
         CourseSyncSelectorAssembly
-            .makePreview(env: AppEnvironment.shared, isEmpty: true)
+            .makePreview(env: AppEnvironment.shared,
+                         isEmpty: true,
+                         isLoading: false)
             .previewDisplayName("Empty List")
+        CourseSyncSelectorAssembly
+            .makePreview(env: AppEnvironment.shared,
+                         isEmpty: true,
+                         isLoading: true)
+            .previewDisplayName("Loading State")
     }
 }
 
