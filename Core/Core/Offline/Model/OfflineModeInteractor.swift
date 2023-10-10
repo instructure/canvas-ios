@@ -23,9 +23,16 @@ import CoreData
 public protocol OfflineModeInteractor {
     func isFeatureFlagEnabled() -> Bool
     func isOfflineModeEnabled() -> Bool
+    func isNetworkOffline() -> Bool
     func observeIsFeatureFlagEnabled() -> AnyPublisher<Bool, Never>
     func observeIsOfflineMode() -> AnyPublisher<Bool, Never>
     func observeNetworkStatus() -> AnyPublisher<NetworkAvailabilityStatus, Never>
+}
+
+public extension OfflineModeInteractor {
+    func isNetworkOffline() -> Bool {
+        false
+    }
 }
 
 public final class OfflineModeInteractorLive: OfflineModeInteractor {
@@ -67,6 +74,10 @@ public final class OfflineModeInteractorLive: OfflineModeInteractor {
         isFeatureFlagEnabled() && isNetworkOffline()
     }
 
+    public func isNetworkOffline() -> Bool {
+        !availabilityService.status.isConnected
+    }
+
     /** Values are published on the main thread. */
     public func observeIsOfflineMode() -> AnyPublisher<Bool, Never> {
         return availabilityService
@@ -93,10 +104,6 @@ public final class OfflineModeInteractorLive: OfflineModeInteractor {
     }
 
     // MARK: - Private Methods
-
-    private func isNetworkOffline() -> Bool {
-        !availabilityService.status.isConnected
-    }
 
     private func subscribeToOfflineFeatureFlagChanges() {
         offlineFlagStore

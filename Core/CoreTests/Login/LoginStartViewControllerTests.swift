@@ -28,7 +28,7 @@ class LoginStartViewControllerTests: CoreTestCase {
     var helpURL: URL?
     var whatsNewURL = URL(string: "whats-new")
 
-    lazy var controller = LoginStartViewController.create(loginDelegate: self, fromLaunch: false, app: .student)
+    lazy var controller = LoginStartViewController.create(loginDelegate: self, fromLaunch: false, app: .student, offlineModeInteractor: OfflineModeInteractorMock())
 
     override func setUp() {
         super.setUp()
@@ -47,7 +47,7 @@ class LoginStartViewControllerTests: CoreTestCase {
             }
         }
 
-        controller = LoginStartViewController.create(loginDelegate: self, fromLaunch: true, app: .student)
+        controller = LoginStartViewController.create(loginDelegate: self, fromLaunch: true, app: .student, offlineModeInteractor: OfflineModeInteractorMock())
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
         XCTAssertEqual(controller.animatableLogo.alpha, 1)
@@ -209,6 +209,28 @@ class LoginStartViewControllerTests: CoreTestCase {
         XCTAssertTrue(controller.canvasNetworkButton.isHidden)
         XCTAssertFalse(controller.useQRCodeButton.isHidden)
         XCTAssertTrue(controller.useQRCodeDivider.isHidden)
+    }
+
+    func testDisabledButtonsWhenOffline() throws {
+        controller = LoginStartViewController.create(loginDelegate: self, fromLaunch: true, app: .student, offlineModeInteractor: OfflineModeInteractorMock(mockIsInOfflineMode: true))
+        controller.view.layoutIfNeeded()
+
+        controller.canvasNetworkButton.sendActions(for: .primaryActionTriggered)
+        XCTAssert(router.viewControllerCalls.last?.0 is UIAlertController)
+        var alert = try XCTUnwrap(router.presented as? UIAlertController)
+        XCTAssertEqual(alert.title, "Offline mode")
+
+        controller.findSchoolButton.sendActions(for: .primaryActionTriggered)
+        alert = try XCTUnwrap(router.presented as? UIAlertController)
+        XCTAssertEqual(alert.title, "Offline mode")
+
+        controller.lastLoginButton.sendActions(for: .primaryActionTriggered)
+        alert = try XCTUnwrap(router.presented as? UIAlertController)
+        XCTAssertEqual(alert.title, "Offline mode")
+
+        controller.useQRCodeButton.sendActions(for: .primaryActionTriggered)
+        alert = try XCTUnwrap(router.presented as? UIAlertController)
+        XCTAssertEqual(alert.title, "Offline mode")
     }
 }
 
