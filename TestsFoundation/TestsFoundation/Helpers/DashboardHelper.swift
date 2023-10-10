@@ -75,6 +75,14 @@ public class DashboardHelper: BaseHelper {
             public static var storageInfoLabel: XCUIElement { app.find(labelContaining: "Storage Info", type: .other) }
             public static var syncButton: XCUIElement { app.find(label: "Sync", type: .button) }
 
+            // Alert
+            public static var alertSyncButton: XCUIElement { app.find(type: .alert).find(label: "Sync", type: .button) }
+            public static var alertCancelButton: XCUIElement { app.find(label: "Cancel", type: .button) }
+            public static var alertSyncOfflineContentLabel: XCUIElement { app.find(label: "Sync Offline Content?", type: .staticText) }
+
+            // Syncing offline content
+            public static var syncingOfflineContentLabel: XCUIElement { app.find(label: "Syncing Offline Content") }
+
             // Course content selection
             public static var discussionsButton: XCUIElement { app.find(labelContaining: "Discussions", type: .button) }
             public static var gradesButton: XCUIElement { app.find(labelContaining: "Grades", type: .button) }
