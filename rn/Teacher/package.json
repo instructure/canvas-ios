@@ -22,8 +22,7 @@
     "danger": "danger",
     "packager:kill": "react-native-kill-packager",
     "postinstall": "./rn-mods.sh",
-    "prepush": "yarn test --coverage && yarn lint:fix && yarn flow",
-    "network-conditioner": "screen -dm node scripts/server.js"
+    "prepush": "yarn test --coverage && yarn lint:fix && yarn flow"
   },
   "optionalDependencies": {
     "fsevents": "^1.2.4"
@@ -71,8 +70,7 @@
     "redux-actions": "^1.2.2",
     "striptags": "^3.0.1",
     "url-parse": "^1.4.7",
-    "uuid": "^3.1.0",
-    "express": "^4.18.2"
+    "uuid": "^3.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

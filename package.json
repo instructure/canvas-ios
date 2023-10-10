@@ -16,7 +16,8 @@
     "released": "./scripts/update-jira-issues.js released",
     "svg2pdf": "./scripts/svg2pdf.js",
     "test": "./scripts/coverage/coverage.js --test",
-    "update-headers": "./scripts/update-headers.js"
+    "update-headers": "./scripts/update-headers.js",
+    "network-conditioner": "screen -dm node scripts/server.js"
   },
   "devDependencies": {
     "aws-sdk": "^2.178.0",
