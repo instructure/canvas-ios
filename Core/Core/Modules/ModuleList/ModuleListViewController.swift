@@ -315,3 +315,12 @@ extension ModuleListViewController: MasteryPathDelegate {
         } }
     }
 }
+
+extension ModuleListViewController: DefaultViewProvider {
+
+    public var defaultViewRoute: String? {
+        get { "/empty" }
+        // swiftlint:disable:next unused_setter_value
+        set {}
+    }
+}

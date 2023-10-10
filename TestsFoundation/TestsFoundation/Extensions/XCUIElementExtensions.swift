@@ -62,6 +62,8 @@ public extension XCUIElement {
 
     // MARK: Private vars
     var isVisible: Bool { exists }
+    var isDisabled: Bool { !isEnabled }
+    var isUnselected: Bool { !isSelected }
     var isVanished: Bool { !(exists && isHittable) }
     var isDisabled: Bool { !isEnabled }
 
