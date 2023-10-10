@@ -214,7 +214,7 @@ class OfflineTests: E2ETestCase {
     }
 
     func testSyncOfflineContent() {
-        // MARK: Seed the usual stuff with page, discussion, syllabus
+        // MARK: Seed the usual stuff with page, discussion, syllabus contents
         let student = seeder.createUser()
         let course = SyllabusHelper.createCourseWithSyllabus()
         let discussion = DiscussionsHelper.createDiscussion(course: course)
