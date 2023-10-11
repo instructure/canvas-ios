@@ -36,9 +36,13 @@ class StudentTabBarController: UITabBarController {
             viewControllers?.append(inboxTab())
         }
 
-        let paths = [ "/", "/calendar", "/to-do", "/notifications", "/conversations" ]
-        selectedIndex = AppEnvironment.shared.userDefaults?.landingPath
-            .flatMap { paths.firstIndex(of: $0) } ?? 0
+        if OfflineModeAssembly.make().isOfflineModeEnabled() {
+            selectedIndex = 0
+        } else {
+            let paths = [ "/", "/calendar", "/to-do", "/notifications", "/conversations" ]
+            selectedIndex = AppEnvironment.shared.userDefaults?.landingPath
+                .flatMap { paths.firstIndex(of: $0) } ?? 0
+        }
         tabBar.useGlobalNavStyle()
         NotificationCenter.default.addObserver(self, selector: #selector(checkForPolicyChanges), name: UIApplication.didBecomeActiveNotification, object: nil)
         reportScreenView(for: selectedIndex, viewController: viewControllers![selectedIndex])
