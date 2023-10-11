@@ -28,12 +28,13 @@ public enum SettingsMenuItem: String {
     case canvasOnGitHub = "Canvas on GitHub"
 }
 
-public enum LandingPageMenuItem: Int {
-    case dashboard = 0
-    case calendar = 1
-    case toDo = 2
-    case notifications = 3
-    case inbox = 4
+public enum LandingPageMenuItem: String {
+    case dashboard = "Dashboard"
+    case calendar = "Calendar"
+    case toDo = "To Do"
+    case notifications = "Notifications"
+    case inbox = "Inbox"
+    case courses = "Courses"
 }
 
 public enum AppearanceMenuItem: Int {
@@ -64,15 +65,11 @@ public class SettingsHelper: BaseHelper {
         public static var QRCodeImage: XCUIElement { app.find(id: "QRCodeImage") }
 
         public static func landingPageMenuItem(item: LandingPageMenuItem) -> XCUIElement {
-            return app.find(id: "ItemPickerItem.0-\(item.rawValue)")
+            return app.find(type: .table).find(label: item.rawValue, type: .staticText)
         }
 
         public static func appearanceMenuItem(item: AppearanceMenuItem) -> XCUIElement {
             return app.find(id: "ItemPickerItem.0-\(item.rawValue)")
-        }
-
-        public static func labelOfMenuItem(menuItem: XCUIElement) -> XCUIElement {
-            return menuItem.find(type: .staticText)
         }
 
         public static var backButton: XCUIElement { app.find(label: "Settings", type: .button) }
