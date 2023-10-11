@@ -35,6 +35,7 @@ class CourseListInteractorLiveTests: CoreTestCase {
         api.mock(futureCourseRequest, value: [.make(id: "3", name: "ABC")])
 
         testee = CourseListInteractorLive(env: environment)
+        testee.loadAsync()
         waitForState(.data)
     }
 
