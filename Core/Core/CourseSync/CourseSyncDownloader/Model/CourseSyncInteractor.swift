@@ -53,6 +53,12 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     private var subscriptions = Set<AnyCancellable>()
     private let courseListInteractor: CourseListInteractor
 
+    /**
+     - parameters:
+        - courseListInteractor: This is used to download data for the "All Courses" screen opened from the dashboard.
+     The reason is that the user can select courses for offline availability which are not on the dashboard so we have to make sure that
+     when they access the "All Courses" screen the courses are listed.
+     */
     public init(
         contentInteractors: [CourseSyncContentInteractor],
         filesInteractor: CourseSyncFilesInteractor,
