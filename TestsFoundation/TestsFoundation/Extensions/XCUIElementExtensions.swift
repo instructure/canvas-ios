@@ -65,7 +65,6 @@ public extension XCUIElement {
     var isDisabled: Bool { !isEnabled }
     var isUnselected: Bool { !isSelected }
     var isVanished: Bool { !(exists && isHittable) }
-    var isDisabled: Bool { !isEnabled }
 
     // MARK: Functions
     func tacticalSleep(_ seconds: TimeInterval = 0.5) { usleep(UInt32(seconds*1000000)) }
