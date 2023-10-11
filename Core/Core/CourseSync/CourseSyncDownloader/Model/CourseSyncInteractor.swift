@@ -51,17 +51,20 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     private let successNotification: CourseSyncSuccessNotificationInteractor
     internal private(set) var downloadSubscription: AnyCancellable?
     private var subscriptions = Set<AnyCancellable>()
+    private let courseListInteractor: CourseListInteractor
 
     public init(
         contentInteractors: [CourseSyncContentInteractor],
         filesInteractor: CourseSyncFilesInteractor,
         progressWriterInteractor: CourseSyncProgressWriterInteractor,
         successNotification: CourseSyncSuccessNotificationInteractor,
+        courseListInteractor: CourseListInteractor,
         scheduler: AnySchedulerOf<DispatchQueue>
     ) {
         self.contentInteractors = contentInteractors
         self.filesInteractor = filesInteractor
         self.progressWriterInteractor = progressWriterInteractor
+        self.courseListInteractor = courseListInteractor
         self.successNotification = successNotification
         self.scheduler = scheduler
 
@@ -91,6 +94,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             .receive(on: scheduler)
             .flatMap(maxPublishers: .max(3)) { unownedSelf.downloadCourseDetails($0) }
             .collect()
+            .flatMap { _ in unownedSelf.downloadCourseList() }
             .sink(
                 receiveCompletion: { _ in
                     let hasError = unownedSelf.safeCourseSyncEntriesValue.hasError
@@ -117,6 +121,22 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     }
 
     // MARK: - Private Methods
+
+    private func downloadCourseList() -> AnyPublisher<Void, Never> {
+        let result = courseListInteractor
+            .state
+            .first { state in
+                state != .loading
+            }
+            .mapToVoid()
+            .eraseToAnyPublisher()
+
+        if courseListInteractor.state.value == .loading {
+            courseListInteractor.loadAsync()
+        }
+
+        return result
+    }
 
     private func downloadCourseDetails(_ entry: CourseSyncEntry) -> AnyPublisher<Void, Never> {
         unowned let unownedSelf = self

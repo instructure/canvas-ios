@@ -70,6 +70,7 @@ class CourseListInteractorMock: CourseListInteractor {
     var courseList = CurrentValueSubject<CourseListSections, Never>(.init())
 
     private(set) var refreshCalled = false
+    private(set) var loadAsyncCalled = false
     private(set) var filter = ""
 
     // MARK: - Inputs
@@ -81,5 +82,10 @@ class CourseListInteractorMock: CourseListInteractor {
     func setFilter(_ filter: String) -> Future<Void, Never> {
         self.filter = filter
         return Future { $0(.success(())) }
+    }
+
+    func loadAsync() {
+        loadAsyncCalled = true
+        state.send(.data)
     }
 }
