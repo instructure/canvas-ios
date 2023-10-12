@@ -51,7 +51,9 @@ public class CourseListInteractorLive: CourseListInteractor {
                            futureCoursesListStore.statePublisher)
             .subscribe(state)
             .store(in: &subscriptions)
+    }
 
+    public func loadAsync() {
         activeCoursesListStore.exhaust()
         pastCoursesListStore.exhaust()
         futureCoursesListStore.exhaust()

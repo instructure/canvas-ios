@@ -79,8 +79,8 @@ class AssignmentPickerListServiceTests: CoreTestCase {
         testee.courseID = "successID"
         waitForExpectations(timeout: 0.1)
 
-        XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
-        XCTAssertEqual(analyticsHandler.lastEventName, "assignments_loaded")
+        XCTAssertEqual(analyticsHandler.totalEventCount, 1)
+        XCTAssertEqual(analyticsHandler.lastEvent, "assignments_loaded")
         XCTAssertEqual(analyticsHandler.lastEventParameters as? [String: Int], ["count": 2])
     }
 
@@ -92,8 +92,8 @@ class AssignmentPickerListServiceTests: CoreTestCase {
         testee.courseID = "failureID"
         waitForExpectations(timeout: 0.1)
 
-        XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
-        XCTAssertEqual(analyticsHandler.lastEventName, "error_loading_assignments")
+        XCTAssertEqual(analyticsHandler.totalEventCount, 1)
+        XCTAssertEqual(analyticsHandler.lastEvent, "error_loading_assignments")
         XCTAssertEqual(analyticsHandler.lastEventParameters as? [String: String], ["error": "custom error"])
     }
 

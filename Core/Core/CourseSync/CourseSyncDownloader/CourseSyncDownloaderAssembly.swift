@@ -43,6 +43,7 @@ public enum CourseSyncDownloaderAssembly {
                                         progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
                                         successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: .shared,
                                                                                                      progressInteractor: progressInteractor),
+                                        courseListInteractor: CourseListAssembly.makeInteractor(),
                                         scheduler: scheduler)
     }
 }

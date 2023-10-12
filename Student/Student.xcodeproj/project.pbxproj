@@ -110,6 +110,7 @@
 		8B086EEC2A9F49750013C15F /* FilesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B086EEB2A9F49750013C15F /* FilesTests.swift */; };
 		8B086EF52AA632670013C15F /* CollaborationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B086EF42AA632670013C15F /* CollaborationsTests.swift */; };
 		8B19F65B2A137E33007AA43F /* AssignmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B19F65A2A137E33007AA43F /* AssignmentsTests.swift */; };
+		8B4891AC2ACC214C0015BAB2 /* OfflineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4891AB2ACC214C0015BAB2 /* OfflineTests.swift */; };
 		8B70DAFF2A52B603007D3ED4 /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DAFE2A52B603007D3ED4 /* LoginTests.swift */; };
 		8B70DBA82A559BF6007D3ED4 /* CourseDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBA62A559BF6007D3ED4 /* CourseDetailsTests.swift */; };
 		8B70DBD92A571893007D3ED4 /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBD72A571893007D3ED4 /* InboxTests.swift */; };
@@ -580,6 +581,7 @@
 		8B086EEB2A9F49750013C15F /* FilesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesTests.swift; sourceTree = "<group>"; };
 		8B086EF42AA632670013C15F /* CollaborationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollaborationsTests.swift; sourceTree = "<group>"; };
 		8B19F65A2A137E33007AA43F /* AssignmentsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AssignmentsTests.swift; path = StudentE2ETests/Assignments/AssignmentsTests.swift; sourceTree = SOURCE_ROOT; };
+		8B4891AB2ACC214C0015BAB2 /* OfflineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineTests.swift; sourceTree = "<group>"; };
 		8B70DAFE2A52B603007D3ED4 /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
 		8B70DBA62A559BF6007D3ED4 /* CourseDetailsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailsTests.swift; sourceTree = "<group>"; };
 		8B70DBD72A571893007D3ED4 /* InboxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxTests.swift; sourceTree = "<group>"; };
@@ -1278,6 +1280,7 @@
 		7DCF0F7622F8A0A0000AACCE /* StudentE2ETests */ = {
 			isa = PBXGroup;
 			children = (
+				8B4891AA2ACC21320015BAB2 /* Offline */,
 				8B086EF32AA632590013C15F /* Collaborations */,
 				8B086EEA2A9F49670013C15F /* Files */,
 				8B9846832A935F9B003E1E9F /* Conferences */,
@@ -1321,6 +1324,14 @@
 				8B086EF42AA632670013C15F /* CollaborationsTests.swift */,
 			);
 			path = Collaborations;
+			sourceTree = "<group>";
+		};
+		8B4891AA2ACC21320015BAB2 /* Offline */ = {
+			isa = PBXGroup;
+			children = (
+				8B4891AB2ACC214C0015BAB2 /* OfflineTests.swift */,
+			);
+			path = Offline;
 			sourceTree = "<group>";
 		};
 		8B70DBA52A559BF6007D3ED4 /* CourseDetails */ = {
@@ -2540,6 +2551,7 @@
 				E80936E124C24CBE00D15E9A /* ActAsUserTests.swift in Sources */,
 				8B086EEC2A9F49750013C15F /* FilesTests.swift in Sources */,
 				C99425E2284096300078A3BD /* GradeTotalsTests.swift in Sources */,
+				8B4891AC2ACC214C0015BAB2 /* OfflineTests.swift in Sources */,
 				8B95EEC92A4EE33900ADCDB4 /* PeopleTests.swift in Sources */,
 				8B98462B2A7A6AFE003E1E9F /* CalendarTests.swift in Sources */,
 				8B70DBD92A571893007D3ED4 /* InboxTests.swift in Sources */,

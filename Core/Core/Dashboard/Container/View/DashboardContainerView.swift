@@ -170,7 +170,11 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         .accessibilityLabel(Text("Dashboard Options", bundle: .core))
         .confirmationDialog("", isPresented: $isShowingKebabDialog) {
             Button {
-                env.router.route(to: "/offline/sync_picker", from: controller, options: .modal(isDismissable: false, embedInNav: true))
+                if offlineModeViewModel.isOffline {
+                    UIAlertController.showItemNotAvailableInOfflineAlert()
+                } else {
+                    env.router.route(to: "/offline/sync_picker", from: controller, options: .modal(isDismissable: false, embedInNav: true))
+                }
             } label: {
                 Text("Manage Offline Content", bundle: .core)
             }
@@ -302,8 +306,8 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                 .accessibility(identifier: "dashboard.courses.heading-lbl")
                 .accessibility(addTraits: .isHeader)
             Spacer()
-            PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline, action: showAllCourses) {
-                Text("Edit Dashboard", bundle: .core)
+            Button(action: showAllCourses) {
+                Text("All Courses", bundle: .core)
                     .font(.semibold16).foregroundColor(Color(Brand.shared.linkColor))
             }.identifier("Dashboard.editButton")
         }

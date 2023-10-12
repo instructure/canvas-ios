@@ -56,6 +56,9 @@ class SettingsTests: E2ETestCase {
         let privacyPolicy = Helper.menuItem(item: .privacyPolicy).waitUntil(.visible)
         XCTAssertTrue(privacyPolicy.isVisible)
 
+        let offlineSync = Helper.menuItem(item: .synchronization).waitUntil(.visible)
+        XCTAssertTrue(offlineSync.isVisible)
+
         let termsOfUse = Helper.menuItem(item: .termsOfUse).waitUntil(.visible)
         XCTAssertTrue(termsOfUse.isVisible)
 

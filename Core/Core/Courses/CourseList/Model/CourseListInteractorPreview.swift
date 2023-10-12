@@ -51,6 +51,9 @@ class CourseListInteractorPreview: CourseListInteractor {
             promise(.success(()))
         }
     }
+
+    func loadAsync() {
+    }
 }
 
 #endif

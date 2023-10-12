@@ -79,12 +79,12 @@ class CoursePickerViewModelTests: CoreTestCase {
         let analyticsHandler = MockAnalyticsHandler()
         Analytics.shared.handler = analyticsHandler
         let testee = CoursePickerViewModel()
-        XCTAssertEqual(analyticsHandler.loggedEventCount, 1) // courses loaded event
+        XCTAssertEqual(analyticsHandler.totalEventCount, 1) // courses loaded event
 
         testee.courseSelected(.init(id: "", name: ""))
 
-        XCTAssertEqual(analyticsHandler.loggedEventCount, 2)
-        XCTAssertEqual(analyticsHandler.lastEventName, "course_selected")
+        XCTAssertEqual(analyticsHandler.totalEventCount, 2)
+        XCTAssertEqual(analyticsHandler.lastEvent, "course_selected")
         XCTAssertNil(analyticsHandler.lastEventParameters)
     }
 
@@ -98,8 +98,8 @@ class CoursePickerViewModelTests: CoreTestCase {
 
         _ = CoursePickerViewModel()
 
-        XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
-        XCTAssertEqual(analyticsHandler.lastEventName, "courses_loaded")
+        XCTAssertEqual(analyticsHandler.totalEventCount, 1)
+        XCTAssertEqual(analyticsHandler.lastEvent, "courses_loaded")
         XCTAssertEqual(analyticsHandler.lastEventParameters as? [String: Int], ["count": 2])
     }
 
@@ -111,8 +111,8 @@ class CoursePickerViewModelTests: CoreTestCase {
 
         _ = CoursePickerViewModel()
 
-        XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
-        XCTAssertEqual(analyticsHandler.lastEventName, "error_loading_courses")
+        XCTAssertEqual(analyticsHandler.totalEventCount, 1)
+        XCTAssertEqual(analyticsHandler.lastEvent, "error_loading_courses")
         XCTAssertEqual(analyticsHandler.lastEventParameters as? [String: String], ["error": "custom error"])
     }
 }

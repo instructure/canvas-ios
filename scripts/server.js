@@ -16,15 +16,29 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
+// This script starts a local web server that listens for POST calls
+// on the /terminal path and executes the body of the request
+// as a command line statement.
 
-public protocol CourseListInteractor {
-    // MARK: - Outputs
-    var state: CurrentValueSubject<StoreState, Never> { get }
-    var courseList: CurrentValueSubject<CourseListSections, Never> { get }
+const process = require("child_process");
+const express = require("express");
+const app = express();
+const port = 4567;
 
-    // MARK: - Inputs
-    func loadAsync()
-    func refresh() -> Future<Void, Never>
-    func setFilter(_ filter: String) -> Future<Void, Never>
+app.use(express.json());
+
+app.listen(port);
+
+app.post("/terminal", (req, res) => {
+    const output = exec(req.body.command, req.query.async).toString("utf8").trim();
+    res.send(output);
+});
+
+function exec(command, async) {
+    if (async === "true") {
+        return process.exec(command);
+    } else {
+        return process.execSync(command);
+    }
 }
+
