@@ -16,7 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-// server.js
+// This script starts a local web server that listens for POST calls
+// on the /terminal path and executes the body of the request
+// as a command line statement.
 
 const process = require("child_process");
 const express = require("express");
@@ -33,10 +35,10 @@ app.post("/terminal", (req, res) => {
 });
 
 function exec(command, async) {
-if (async === "true") {
-    return process.exec(command);
-} else {
-    return process.execSync(command);
-}
+    if (async === "true") {
+        return process.exec(command);
+    } else {
+        return process.execSync(command);
+    }
 }
 
