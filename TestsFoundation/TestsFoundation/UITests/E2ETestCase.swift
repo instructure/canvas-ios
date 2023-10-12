@@ -73,13 +73,13 @@ open class E2ETestCase: CoreUITestCase {
     }
 
     @discardableResult
-    open func goOffline() -> Bool {
+    open func setNetworkStateOffline() -> Bool {
         CommandLine.setConnection(state: .off)
         return CommandLine.isOffline
     }
 
     @discardableResult
-    open func goOnline() -> Bool {
+    open func setNetworkStateOnline() -> Bool {
         CommandLine.setConnection(state: .on)
         return CommandLine.isOnline
     }

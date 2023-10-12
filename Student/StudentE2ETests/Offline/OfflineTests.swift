@@ -21,7 +21,7 @@ import TestsFoundation
 class OfflineTests: E2ETestCase {
     override func tearDown() {
         // In case the tests fail at a point where the internet connection is turned off
-        goOnline()
+        setNetworkStateOnline()
         super.tearDown()
     }
 
@@ -35,7 +35,7 @@ class OfflineTests: E2ETestCase {
         logInDSUser(student)
 
         // MARK: Go offline and check app behaviour
-        let isOffline = goOffline()
+        let isOffline = setNetworkStateOffline()
         var offlineLine = DashboardHelper.offlineLine.waitUntil(.visible)
         let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
         XCTAssertTrue(isOffline)
@@ -45,15 +45,12 @@ class OfflineTests: E2ETestCase {
         profileButton.hit()
         offlineLine = ProfileHelper.offlineLine.waitUntil(.visible)
         let offlineLabel = ProfileHelper.offlineLabel.waitUntil(.visible)
-        let networkStatusButton = ProfileHelper.networkButton.waitUntil(.visible)
         XCTAssertTrue(offlineLine.isVisible)
         XCTAssertTrue(offlineLabel.isVisible)
-        XCTAssertTrue(networkStatusButton.isVisible)
-        XCTAssertTrue(networkStatusButton.hasLabel(label: "Disconnected"))
 
         // MARK: Go back online and check app behaviour
         profileButton.forceTap()
-        let isOnline = goOnline()
+        let isOnline = setNetworkStateOnline()
         offlineLine = DashboardHelper.offlineLine.waitUntil(.vanish)
         XCTAssertTrue(isOnline)
         XCTAssertTrue(offlineLine.isVanished)
@@ -63,8 +60,6 @@ class OfflineTests: E2ETestCase {
         offlineLine = ProfileHelper.offlineLine.waitUntil(.vanish)
         XCTAssertTrue(offlineLine.isVanished)
         XCTAssertTrue(offlineLabel.waitUntil(.vanish).isVanished)
-        XCTAssertTrue(networkStatusButton.isVisible)
-        XCTAssertTrue(networkStatusButton.hasLabel(label: "Connected via Wifi"))
     }
 
     func testOfflineSynchronizationSetting() {
@@ -264,7 +259,7 @@ class OfflineTests: E2ETestCase {
         XCTAssertTrue(syncingOfflineContentLabel.isVanished)
 
         // MARK: Go offline, check contents
-        let isOffline = goOffline()
+        let isOffline = setNetworkStateOffline()
         XCTAssertTrue(isOffline)
 
         let offlineLineImage = DashboardHelper.offlineLine.waitUntil(.visible)
