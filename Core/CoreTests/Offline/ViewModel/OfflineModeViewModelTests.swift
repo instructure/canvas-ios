@@ -79,4 +79,6 @@ private class MockOfflineModeInteractor: OfflineModeInteractor {
         Just(.disconnected)
             .eraseToAnyPublisher()
     }
+
+    func isNetworkOffline() -> Bool { true }
 }

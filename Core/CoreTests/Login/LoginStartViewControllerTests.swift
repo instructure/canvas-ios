@@ -219,18 +219,22 @@ class LoginStartViewControllerTests: CoreTestCase {
         XCTAssert(router.viewControllerCalls.last?.0 is UIAlertController)
         var alert = try XCTUnwrap(router.presented as? UIAlertController)
         XCTAssertEqual(alert.title, "Offline mode")
+        router.dismiss()
 
         controller.findSchoolButton.sendActions(for: .primaryActionTriggered)
         alert = try XCTUnwrap(router.presented as? UIAlertController)
         XCTAssertEqual(alert.title, "Offline mode")
+        router.dismiss()
 
         controller.lastLoginButton.sendActions(for: .primaryActionTriggered)
         alert = try XCTUnwrap(router.presented as? UIAlertController)
         XCTAssertEqual(alert.title, "Offline mode")
+        router.dismiss()
 
         controller.useQRCodeButton.sendActions(for: .primaryActionTriggered)
         alert = try XCTUnwrap(router.presented as? UIAlertController)
         XCTAssertEqual(alert.title, "Offline mode")
+        router.dismiss()
     }
 }
 

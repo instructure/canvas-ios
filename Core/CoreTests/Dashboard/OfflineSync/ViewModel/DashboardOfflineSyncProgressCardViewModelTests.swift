@@ -312,4 +312,6 @@ private class MockOfflineModeInteractorEnabled: OfflineModeInteractor {
     }
 
     func isOfflineModeEnabled() -> Bool { true }
+
+    func isNetworkOffline() -> Bool { true }
 }
