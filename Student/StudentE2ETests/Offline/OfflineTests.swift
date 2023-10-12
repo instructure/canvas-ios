@@ -22,6 +22,7 @@ class OfflineTests: E2ETestCase {
     override func tearDown() {
         // In case the tests fail at a point where the internet connection is turned off
         goOnline()
+        super.tearDown()
     }
 
     func testNetworkConnectionLose() {
