@@ -38,11 +38,15 @@ public enum CourseSyncSelectorAssembly {
 
 #if DEBUG
 
-    static func makePreview(env: AppEnvironment, isEmpty: Bool) -> CourseSyncSelectorView {
+    static func makePreview(env: AppEnvironment, isEmpty: Bool, isLoading: Bool) -> CourseSyncSelectorView {
         let selectorInteractor = CourseSyncSelectorInteractorPreview(sessionDefaults: .fallback)
 
         if isEmpty {
             selectorInteractor.mockEmptyState()
+        }
+
+        if isLoading {
+            selectorInteractor.mockLoadingState()
         }
 
         let syncInteractor = CourseSyncInteractorPreview()
