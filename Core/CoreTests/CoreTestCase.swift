@@ -33,7 +33,7 @@ class CoreTestCase: XCTestCase {
     var api: API { environment.api }
     var router: TestRouter!
     var logger: TestLogger!
-    var analytics = TestAnalyticsHandler()
+    var analytics = MockAnalyticsHandler()
 
     lazy var environment = TestEnvironment()
     var currentSession: LoginSession!
@@ -85,18 +85,6 @@ class CoreTestCase: XCTestCase {
         let main = expectation(description: "main.async")
         DispatchQueue.main.async { main.fulfill() }
         wait(for: [main], timeout: 1)
-    }
-}
-
-class TestAnalyticsHandler: AnalyticsHandler {
-    struct Event {
-        let name: String
-        let parameters: [String: Any]?
-    }
-    var events = [Event]()
-
-    func handleEvent(_ name: String, parameters: [String: Any]?) {
-        events.append(.init(name: name, parameters: parameters))
     }
 }
 

@@ -49,7 +49,6 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             UITestHelpers.setup(self)
         #endif
         setupDefaultErrorHandling()
-        Analytics.shared.handler = self
         NotificationManager.shared.notificationCenter.delegate = self
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
         UITableView.setupDefaultSectionHeaderTopPadding()
@@ -264,21 +263,26 @@ extension ParentAppDelegate {
 extension ParentAppDelegate {
     @objc func setupFirebase() {
         guard !testing else { return }
-        if FirebaseOptions.defaultOptions()?.apiKey != nil { FirebaseApp.configure() }
+        if FirebaseOptions.defaultOptions()?.apiKey != nil {
+            FirebaseApp.configure()
+            Analytics.shared.handler = self
+        }
         configureRemoteConfig()
     }
 }
 
 extension ParentAppDelegate: AnalyticsHandler {
-    func handleEvent(_ name: String, parameters: [String: Any]?) {
-        guard FirebaseOptions.defaultOptions()?.apiKey != nil else {
-            return
-        }
 
-        if let screenName = parameters?["screen_name"] as? String,
-           let screenClass = parameters?["screen_class"] as? String {
-            Firebase.Crashlytics.crashlytics().log("\(screenName) (\(screenClass))")
-        }
+    func handleScreenView(screenName: String, screenClass: String, application: String) {
+        Firebase.Crashlytics.crashlytics().log("\(screenName) (\(screenClass))")
+    }
+
+    func handleError(_ name: String, reason: String) {
+        let model = ExceptionModel(name: name, reason: reason)
+        Firebase.Crashlytics.crashlytics().record(exceptionModel: model)
+    }
+
+    func handleEvent(_ name: String, parameters: [String: Any]?) {
     }
 
     private func initializeTracking() {

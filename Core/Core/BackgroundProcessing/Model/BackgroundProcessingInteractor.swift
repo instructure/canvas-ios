@@ -20,6 +20,13 @@ import BackgroundTasks
 
 public struct BackgroundProcessingInteractor {
     private let scheduler: CoreBGTaskScheduler
+    private static var ElapsedTimeFormatter = {
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .abbreviated
+        formatter.zeroFormattingBehavior = .pad
+        formatter.allowedUnits = [.hour, .minute, .second]
+        return formatter
+    }()
 
     public init(scheduler: CoreBGTaskScheduler) {
         self.scheduler = scheduler
@@ -29,13 +36,16 @@ public struct BackgroundProcessingInteractor {
         let isRegistered = scheduler.register(forTaskWithIdentifier: taskID,
                                               using: nil) { backgroundTask in
             guard let task = BackgroundProcessingAssembly.resolveTask(for: backgroundTask.identifier) else {
-                Logger.shared.error("BackgroundProcessingInteractor: Background task ID \(taskID) couldn't be resolved to a task.")
+                Analytics.shared.logError(name: "Background task ID \(taskID) couldn't be resolved to a task.")
                 backgroundTask.setTaskCompleted(success: true)
                 return
             }
 
+            let startTime = Date()
+
             backgroundTask.expirationHandler = {
-                Logger.shared.error("BackgroundProcessingInteractor: Background task \(taskID) will be cancelled.")
+                Analytics.shared.logError(name: "Background task \(taskID) expired.",
+                                          reason: "Sync time: \(Self.ElapsedTimeFormatter.string(from: startTime, to: Date()) ?? "unknown")")
                 task.cancel()
                 backgroundTask.setTaskCompleted(success: false)
             }
@@ -46,7 +56,7 @@ public struct BackgroundProcessingInteractor {
         }
 
         if !isRegistered {
-            Logger.shared.error("BackgroundProcessingInteractor: Failed to register background task \(taskID).")
+            Analytics.shared.logError(name: "Failed to register background task \(taskID).")
         }
     }
 
@@ -54,7 +64,7 @@ public struct BackgroundProcessingInteractor {
         do {
             try scheduler.submit(task)
         } catch(let error) {
-            Logger.shared.error("BackgroundProcessingInteractor: Error scheduling task \(task.identifier): \(error.localizedDescription)")
+            Analytics.shared.logError(name: "Failed to schedule background task \(task.identifier).", reason: error.localizedDescription)
         }
     }
 

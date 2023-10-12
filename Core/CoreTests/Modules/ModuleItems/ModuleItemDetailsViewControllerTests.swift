@@ -255,8 +255,7 @@ class ModuleItemDetailsViewControllerTests: CoreTestCase {
         )
         controller.view.layoutIfNeeded()
 
-        XCTAssertEqual(mockAnalyticsHandler.lastEventName, "screen_view")
-        XCTAssertEqual(mockAnalyticsHandler.lastEventParameters?["screen_name"] as? String, "/courses/:courseId")
-        XCTAssertEqual(mockAnalyticsHandler.lastEventParameters?["screen_class"] as? String, "DetailViewController")
+        XCTAssertEqual(mockAnalyticsHandler.lastScreenName, "/courses/:courseId")
+        XCTAssertEqual(mockAnalyticsHandler.lastScreenClass, "DetailViewController")
     }
 }

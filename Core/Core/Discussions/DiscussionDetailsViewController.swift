@@ -396,7 +396,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
 
             if error != nil {
                 self.showFallbackWebView()
-                // TODO: Report render error
+                Analytics.shared.logError(name: "Javascript evaluation failed", reason: error?.localizedDescription)
                 return
             }
 

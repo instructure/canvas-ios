@@ -46,7 +46,6 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         if NSClassFromString("XCTestCase") != nil { return true }
         LoginSession.migrateSessionsToBeAccessibleWhenDeviceIsLocked()
         setupFirebase()
-        Core.Analytics.shared.handler = self
         CacheManager.resetAppIfNecessary()
         #if DEBUG
             UITestHelpers.setup(self)
@@ -251,15 +250,17 @@ extension TeacherAppDelegate {
 }
 
 extension TeacherAppDelegate: AnalyticsHandler {
-    func handleEvent(_ name: String, parameters: [String: Any]?) {
-        guard FirebaseOptions.defaultOptions()?.apiKey != nil else {
-            return
-        }
 
-        if let screenName = parameters?["screen_name"] as? String,
-           let screenClass = parameters?["screen_class"] as? String {
-            Firebase.Crashlytics.crashlytics().log("\(screenName) (\(screenClass))")
-        }
+    func handleScreenView(screenName: String, screenClass: String, application: String) {
+        Firebase.Crashlytics.crashlytics().log("\(screenName) (\(screenClass))")
+    }
+
+    func handleError(_ name: String, reason: String) {
+        let model = ExceptionModel(name: name, reason: reason)
+        Firebase.Crashlytics.crashlytics().record(exceptionModel: model)
+    }
+
+    func handleEvent(_ name: String, parameters: [String: Any]?) {
     }
 
     private func initializeTracking() {
@@ -416,7 +417,10 @@ extension TeacherAppDelegate {
     @objc func setupFirebase() {
         guard !testing else { return }
 
-        if FirebaseOptions.defaultOptions()?.apiKey != nil { FirebaseApp.configure() }
+        if FirebaseOptions.defaultOptions()?.apiKey != nil {
+            FirebaseApp.configure()
+            Core.Analytics.shared.handler = self
+        }
         CanvasCrashlytics.setupForReactNative()
         configureRemoteConfig()
     }
