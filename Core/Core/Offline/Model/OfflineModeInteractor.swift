@@ -29,12 +29,6 @@ public protocol OfflineModeInteractor {
     func observeNetworkStatus() -> AnyPublisher<NetworkAvailabilityStatus, Never>
 }
 
-public extension OfflineModeInteractor {
-    func isNetworkOffline() -> Bool {
-        false
-    }
-}
-
 public final class OfflineModeInteractorLive: OfflineModeInteractor {
     // MARK: - Dependencies
     private let availabilityService: NetworkAvailabilityService
