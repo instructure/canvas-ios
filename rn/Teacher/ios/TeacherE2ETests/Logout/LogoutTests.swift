@@ -21,12 +21,12 @@ import TestsFoundation
 class LogoutTests: E2ETestCase {
     func testLogout() {
         // MARK: Seed the usual stuff
-        let student = seeder.createUser()
+        let teacher = seeder.createUser()
         let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
+        seeder.enrollTeacher(teacher, in: course)
 
         // MARK: Get the user logged in
-        logInDSUser(student)
+        logInDSUser(teacher)
 
         // MARK: Start logout process
         let profileButton = DashboardHelper.profileButton.waitUntil(.visible)

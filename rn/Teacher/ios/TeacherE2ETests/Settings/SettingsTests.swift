@@ -25,12 +25,12 @@ class SettingsTests: E2ETestCase {
 
     func testSettingsMenuItems() {
         // MARK: Seed the usual stuff
-        let student = seeder.createUser()
+        let teacher = seeder.createUser()
         let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
+        seeder.enrollTeacher(teacher, in: course)
 
         // MARK: Get the user logged in, navigate to Settings
-        logInDSUser(student)
+        logInDSUser(teacher)
         Helper.navigateToSettings()
         let navBar = Helper.navBar.waitUntil(.visible)
         let doneButton = Helper.doneButton.waitUntil(.visible)
@@ -44,20 +44,11 @@ class SettingsTests: E2ETestCase {
         let appearance = Helper.menuItem(item: .appearance).waitUntil(.visible)
         XCTAssertTrue(appearance.isVisible)
 
-        let pairWithObserver = Helper.menuItem(item: .pairWithObserver).waitUntil(.visible)
-        XCTAssertTrue(pairWithObserver.isVisible)
-
-        let subscribeToCalendarFeed = Helper.menuItem(item: .subscribeToCalendarFeed).waitUntil(.visible)
-        XCTAssertTrue(subscribeToCalendarFeed.isVisible)
-
         let about = Helper.menuItem(item: .about).waitUntil(.visible)
         XCTAssertTrue(about.isVisible)
 
         let privacyPolicy = Helper.menuItem(item: .privacyPolicy).waitUntil(.visible)
         XCTAssertTrue(privacyPolicy.isVisible)
-
-        let offlineSync = Helper.menuItem(item: .synchronization).waitUntil(.visible)
-        XCTAssertTrue(offlineSync.isVisible)
 
         let termsOfUse = Helper.menuItem(item: .termsOfUse).waitUntil(.visible)
         XCTAssertTrue(termsOfUse.isVisible)
@@ -68,12 +59,12 @@ class SettingsTests: E2ETestCase {
 
     func testLandingPageSetting() {
         // MARK: Seed the usual stuff
-        let student = seeder.createUser()
+        let teacher = seeder.createUser()
         let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
+        seeder.enrollTeacher(teacher, in: course)
 
         // MARK: Get the user logged in, navigate to Settings
-        logInDSUser(student)
+        logInDSUser(teacher)
         Helper.navigateToSettings()
         let navBar = Helper.navBar.waitUntil(.visible)
         let doneButton = Helper.doneButton.waitUntil(.visible)
@@ -85,19 +76,14 @@ class SettingsTests: E2ETestCase {
         XCTAssertTrue(landingPage.isVisible)
 
         landingPage.hit()
-
         let landingPageNavBar = SubSettingsHelper.landingPageNavBar.waitUntil(.visible)
-        let dashboard = SubSettingsHelper.landingPageMenuItem(item: .dashboard).waitUntil(.visible)
-        let calendar = SubSettingsHelper.landingPageMenuItem(item: .calendar).waitUntil(.visible)
+        let courses = SubSettingsHelper.landingPageMenuItem(item: .courses).waitUntil(.visible)
         let toDo = SubSettingsHelper.landingPageMenuItem(item: .toDo).waitUntil(.visible)
-        let notifications = SubSettingsHelper.landingPageMenuItem(item: .notifications).waitUntil(.visible)
         let inbox = SubSettingsHelper.landingPageMenuItem(item: .inbox).waitUntil(.visible)
         let backButton = SubSettingsHelper.backButton.waitUntil(.visible)
         XCTAssertTrue(landingPageNavBar.isVisible)
-        XCTAssertTrue(dashboard.isVisible)
-        XCTAssertTrue(calendar.isVisible)
+        XCTAssertTrue(courses.isVisible)
         XCTAssertTrue(toDo.isVisible)
-        XCTAssertTrue(notifications.isVisible)
         XCTAssertTrue(inbox.isVisible)
         XCTAssertTrue(backButton.isVisible)
 
@@ -108,19 +94,19 @@ class SettingsTests: E2ETestCase {
         backButton.hit()
         doneButton.hit()
         logOut()
-        logInDSUser(student)
+        logInDSUser(teacher)
         let inboxNavBar = InboxHelper.navBar.waitUntil(.visible)
         XCTAssertTrue(inboxNavBar.isVisible)
     }
 
     func testAppearanceSetting() {
         // MARK: Seed the usual stuff
-        let student = seeder.createUser()
+        let teacher = seeder.createUser()
         let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
+        seeder.enrollTeacher(teacher, in: course)
 
         // MARK: Get the user logged in, navigate to Settings
-        logInDSUser(student)
+        logInDSUser(teacher)
         Helper.navigateToSettings()
         let navBar = Helper.navBar.waitUntil(.visible)
         let doneButton = Helper.doneButton.waitUntil(.visible)
@@ -132,10 +118,10 @@ class SettingsTests: E2ETestCase {
         XCTAssertTrue(appearance.isVisible)
 
         appearance.hit()
-        let appearanceNavBar = SubSettingsHelper.appearanceNavBar.waitUntil(.visible)
-        let system = SubSettingsHelper.appearanceMenuItem(item: .system).waitUntil(.visible)
-        let light = SubSettingsHelper.appearanceMenuItem(item: .light).waitUntil(.visible)
         let dark = SubSettingsHelper.appearanceMenuItem(item: .dark).waitUntil(.visible)
+        let light = SubSettingsHelper.appearanceMenuItem(item: .light).waitUntil(.visible)
+        let system = SubSettingsHelper.appearanceMenuItem(item: .system).waitUntil(.visible)
+        let appearanceNavBar = SubSettingsHelper.appearanceNavBar.waitUntil(.visible)
         XCTAssertTrue(appearanceNavBar.isVisible)
         XCTAssertTrue(system.isVisible)
         XCTAssertTrue(light.isVisible)
@@ -149,85 +135,14 @@ class SettingsTests: E2ETestCase {
         XCTAssertTrue(light.waitUntil(.selected).isSelected)
     }
 
-    func testPairWithObserverQRAppearance() {
-        // MARK: Seed the usual stuff
-        let student = seeder.createUser()
-        let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
-
-        // MARK: Get the user logged in, navigate to Settings
-        logInDSUser(student)
-        Helper.navigateToSettings()
-        let navBar = Helper.navBar.waitUntil(.visible)
-        var doneButton = Helper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
-
-        // MARK: Select "Pair with Observer", check elements
-        let pairWithObserver = Helper.menuItem(item: .pairWithObserver).waitUntil(.visible)
-        XCTAssertTrue(pairWithObserver.isVisible)
-
-        pairWithObserver.hit()
-
-        let pairWithObserverNavBar = SubSettingsHelper.pairWithObserverNavBar.waitUntil(.visible)
-        XCTAssertTrue(pairWithObserverNavBar.isVisible)
-
-        doneButton = SubSettingsHelper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(doneButton.isVisible)
-
-        let shareButton = SubSettingsHelper.shareButton.waitUntil(.visible)
-        XCTAssertTrue(shareButton.isVisible)
-
-        let QRCodeImage = SubSettingsHelper.QRCodeImage.waitUntil(.visible)
-        XCTAssertTrue(QRCodeImage.isVisible)
-    }
-
-    func testSubscribeToCalendarFeed() {
-        // MARK: Seed the usual stuff
-        let student = seeder.createUser()
-        let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
-
-        // MARK: Get the user logged in, navigate to Settings
-        logInDSUser(student)
-        Helper.navigateToSettings()
-        let navBar = Helper.navBar.waitUntil(.visible)
-        let doneButton = Helper.doneButton.waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
-        XCTAssertTrue(doneButton.isVisible)
-
-        // MARK: Select "Subscribe to Calendar Feed", check if Calendar app opens
-        let subscribeToCalendarFeed = Helper.menuItem(item: .subscribeToCalendarFeed).waitUntil(.visible)
-        XCTAssertTrue(subscribeToCalendarFeed.isVisible)
-
-        subscribeToCalendarFeed.hit()
-        CalendarAppHelper.calendarApp.activate()
-        let calendarAppRunning = CalendarAppHelper.calendarApp.wait(for: .runningForeground, timeout: 15)
-        XCTAssertTrue(calendarAppRunning)
-
-        // MARK: Handle first start of Calendar App, check subscription URL
-        let continueButton = CalendarAppHelper.continueButton.waitUntil(.visible, timeout: 5)
-        if continueButton.isVisible {
-            continueButton.hit()
-            CalendarAppHelper.calendarApp.hit()
-        }
-
-        let calendarNavBar = CalendarAppHelper.navBar.waitUntil(.visible)
-        XCTAssertTrue(calendarNavBar.isVisible)
-
-        let subscriptionUrlElement = CalendarAppHelper.subscriptionUrl.waitUntil(.visible)
-        XCTAssertTrue(subscriptionUrlElement.isVisible)
-        XCTAssertTrue(subscriptionUrlElement.hasValue(value: user.host, strict: false))
-    }
-
     func testAbout() {
         // MARK: Seed the usual stuff
-        let student = seeder.createUser()
+        let teacher = seeder.createUser()
         let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
+        seeder.enrollTeacher(teacher, in: course)
 
         // MARK: Get the user logged in, navigate to Settings
-        logInDSUser(student)
+        logInDSUser(teacher)
         Helper.navigateToSettings()
         let navBar = Helper.navBar.waitUntil(.visible)
         let doneButton = Helper.doneButton.waitUntil(.visible)
@@ -245,7 +160,7 @@ class SettingsTests: E2ETestCase {
 
         let appLabel = AboutHelper.appLabel.waitUntil(.visible)
         XCTAssertTrue(appLabel.isVisible)
-        XCTAssertEqual(appLabel.label, "Canvas Student")
+        XCTAssertEqual(appLabel.label, "Canvas Teacher")
 
         let domainLabel = AboutHelper.domainLabel.waitUntil(.visible)
         XCTAssertTrue(domainLabel.isVisible)
@@ -253,7 +168,7 @@ class SettingsTests: E2ETestCase {
 
         let loginIdLabel = AboutHelper.loginIdLabel.waitUntil(.visible)
         XCTAssertTrue(loginIdLabel.isVisible)
-        XCTAssertEqual(loginIdLabel.label, student.id)
+        XCTAssertEqual(loginIdLabel.label, teacher.id)
 
         let emailLabel = AboutHelper.emailLabel.waitUntil(.visible)
         XCTAssertTrue(emailLabel.isVisible)
@@ -265,12 +180,12 @@ class SettingsTests: E2ETestCase {
 
     func testPrivacyPolicy() {
         // MARK: Seed the usual stuff
-        let student = seeder.createUser()
+        let teacher = seeder.createUser()
         let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
+        seeder.enrollTeacher(teacher, in: course)
 
         // MARK: Get the user logged in, navigate to Settings
-        logInDSUser(student)
+        logInDSUser(teacher)
         Helper.navigateToSettings()
         let navBar = Helper.navBar.waitUntil(.visible)
         let doneButton = Helper.doneButton.waitUntil(.visible)
@@ -282,6 +197,10 @@ class SettingsTests: E2ETestCase {
         XCTAssertTrue(privacyPolicy.isVisible)
 
         privacyPolicy.hit()
+        let openInSafariButton = Helper.openInSafariButton.waitUntil(.visible)
+        XCTAssertTrue(openInSafariButton.isVisible)
+
+        openInSafariButton.hit()
         XCTAssertTrue(SafariAppHelper.safariApp.wait(for: .runningForeground, timeout: 15))
 
         // MARK: Check URL
@@ -291,12 +210,12 @@ class SettingsTests: E2ETestCase {
 
     func testTermsOfUse() {
         // MARK: Seed the usual stuff
-        let student = seeder.createUser()
+        let teacher = seeder.createUser()
         let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
+        seeder.enrollTeacher(teacher, in: course)
 
         // MARK: Get the user logged in, navigate to Settings
-        logInDSUser(student)
+        logInDSUser(teacher)
         Helper.navigateToSettings()
         let navBar = Helper.navBar.waitUntil(.visible)
         let doneButton = Helper.doneButton.waitUntil(.visible)
@@ -314,12 +233,12 @@ class SettingsTests: E2ETestCase {
 
     func testCanvasOnGitHub() {
         // MARK: Seed the usual stuff
-        let student = seeder.createUser()
+        let teacher = seeder.createUser()
         let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
+        seeder.enrollTeacher(teacher, in: course)
 
         // MARK: Get the user logged in, navigate to Settings
-        logInDSUser(student)
+        logInDSUser(teacher)
         Helper.navigateToSettings()
         let navBar = Helper.navBar.waitUntil(.visible)
         let doneButton = Helper.doneButton.waitUntil(.visible)
@@ -331,6 +250,10 @@ class SettingsTests: E2ETestCase {
         XCTAssertTrue(canvasOnGitHub.isVisible)
 
         canvasOnGitHub.hit()
+        let openInSafariButton = Helper.openInSafariButton.waitUntil(.visible)
+        XCTAssertTrue(openInSafariButton.isVisible)
+
+        openInSafariButton.hit()
         XCTAssertTrue(SafariAppHelper.safariApp.wait(for: .runningForeground, timeout: 15))
 
         // MARK: Check URL
