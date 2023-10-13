@@ -394,6 +394,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     private func handleSyncInterruptByOS() {
         downloadSubscription?.cancel()
         downloadSubscription = nil
+        progressWriterInteractor.markInProgressDownloadsAsFailed()
         progressWriterInteractor.saveDownloadResult(isFinished: true,
                                                     error: NSLocalizedString("Offline sync was interrupted by the operating system", comment: ""))
     }

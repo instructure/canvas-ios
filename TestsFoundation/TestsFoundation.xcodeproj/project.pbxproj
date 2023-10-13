@@ -110,7 +110,6 @@
 		8917C1628DAFDC52287BF98D /* ModuleItemFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B59FD3B1D002FA5E94E1C6 /* ModuleItemFixture.swift */; };
 		8A07DBDCA9A16E7CA4119BA8 /* SafariAppHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88031258B44C726398315548 /* SafariAppHelper.swift */; };
 		8AAB7EC58190ABB57E0F40AD /* MiniCanvasServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A98E1BAD9BED63BDEAD29 /* MiniCanvasServer.swift */; };
-		8B4891AE2ACC24E50015BAB2 /* CommandLineHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4891AD2ACC24E50015BAB2 /* CommandLineHelper.swift */; };
 		8C02370D294ADC5E03166916 /* CreateDSQuizQuestionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFA2EB914E415CCFACDB /* CreateDSQuizQuestionRequest.swift */; };
 		8CE7A795708CBCF4AF7A2674 /* DSModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69E1EBE6B486730AE73F45 /* DSModuleItem.swift */; };
 		8CEEA54DE127851FF426490F /* CreateDSDiscussionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D6E99369534DE2260DD4EB /* CreateDSDiscussionRequest.swift */; };
@@ -170,6 +169,7 @@
 		E6069C48343F3A89A0AACF06 /* CreateDSSubmissionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0802341FC04F9C6AD34B8D /* CreateDSSubmissionRequest.swift */; };
 		E634B330B91086EF34452772 /* ActAsUserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277A35F90288F094545F846C /* ActAsUserHelper.swift */; };
 		E6F7ECD7C962156372F2EF30 /* ConferenceFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDDE761FC87592203DC32D14 /* ConferenceFixture.swift */; };
+		E93FC12BAF025BACF053EE8C /* CommandLineHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BACE13D3A0EEBE90FCA0993 /* CommandLineHelper.swift */; };
 		EE0131667C22EB6DFEE6BE74 /* DSUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF23850042CD551D7DF85779 /* DSUser.swift */; };
 		EE5667413AE1D36643986207 /* DataSeeder+DSQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2E233390F6F43020E31217 /* DataSeeder+DSQuiz.swift */; };
 		EF5AA536F33A0E6BCA1484A1 /* Swifter in Frameworks */ = {isa = PBXBuildFile; productRef = 94AE2F7697F364E263431847 /* Swifter */; };
@@ -315,7 +315,7 @@
 		8A068B0E01FE8DF60B7EB29C /* DataSeeder+DSCalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSCalendarEvent.swift"; sourceTree = "<group>"; };
 		8A620771B1587A67246AE4EC /* DataSeeder+DSNewQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSNewQuiz.swift"; sourceTree = "<group>"; };
 		8A786B4F2BC2E643D0EA58C0 /* SetDSFeatureFlagRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDSFeatureFlagRequest.swift; sourceTree = "<group>"; };
-		8B4891AD2ACC24E50015BAB2 /* CommandLineHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandLineHelper.swift; sourceTree = "<group>"; };
+		8BACE13D3A0EEBE90FCA0993 /* CommandLineHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandLineHelper.swift; sourceTree = "<group>"; };
 		8E046239E00E2F114C950D3A /* ModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFixture.swift; sourceTree = "<group>"; };
 		8E52A6F60DF961A9FB652399 /* DSSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSubmission.swift; sourceTree = "<group>"; };
 		8EB01A67D620697DB09B6F61 /* CreateDSAccountNotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSAccountNotificationRequest.swift; sourceTree = "<group>"; };
@@ -649,6 +649,7 @@
 				E89F21CB0826337C08AC625D /* BaseHelper.swift */,
 				F977FFE5F9AC9D07BBCA00AF /* CalendarHelper.swift */,
 				218651481971AB40D5D80C79 /* CombineTestExtensions.swift */,
+				8BACE13D3A0EEBE90FCA0993 /* CommandLineHelper.swift */,
 				74CF416EAE3CDFD5353CCAE0 /* ConferencesHelper.swift */,
 				2515B27EFA373C6641925E4C /* CoreTestsHelper.swift */,
 				A89C0F1624F8C6E95C75657E /* CourseDetailsHelper.swift */,
@@ -670,7 +671,6 @@
 				E3082D82899B24F24065BA56 /* SyllabusHelper.swift */,
 				234C525F478ED716FA9FF1FC /* TestEnvironment.swift */,
 				CDA38CF6C749C9868FB12487 /* ToDoHelper.swift */,
-				8B4891AD2ACC24E50015BAB2 /* CommandLineHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1072,11 +1072,11 @@
 				514A398F69F9B43A8B00002A /* AssignmentGroupsFixture.swift in Sources */,
 				A4683443CC2FC40D51266A48 /* AssignmentsHelper.swift in Sources */,
 				2B1D0A68906A45E0D9F9F4D8 /* BaseHelper.swift in Sources */,
-				8B4891AE2ACC24E50015BAB2 /* CommandLineHelper.swift in Sources */,
 				1DC23C766D4E344FA95AB420 /* CalendarAppHelper.swift in Sources */,
 				54923FEE77B2BB32BBCC2504 /* CalendarEventFixture.swift in Sources */,
 				E51BFAE3D731667AEF71B3A4 /* CalendarHelper.swift in Sources */,
 				509F3D8EDAAAF7425C36BE80 /* CombineTestExtensions.swift in Sources */,
+				E93FC12BAF025BACF053EE8C /* CommandLineHelper.swift in Sources */,
 				5D760DD0639FCD95BA6290AB /* CommunicationChannelFixture.swift in Sources */,
 				E6F7ECD7C962156372F2EF30 /* ConferenceFixture.swift in Sources */,
 				CE877C70E8E390A81B531D3C /* ConferencesHelper.swift in Sources */,
