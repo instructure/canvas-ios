@@ -46,7 +46,6 @@ public class BackgroundActivity {
     }
 
     public func start(abortHandler: @escaping () -> Void) -> Future<Void, Never> {
-        Logger.shared.log()
         self.abortHandler = abortHandler
         return Future<Void, Never> { [self] promise in
             if isStarted {
@@ -68,7 +67,6 @@ public class BackgroundActivity {
      Stops the background activity synchronously.
      */
     public func stopAndWait() {
-        Logger.shared.log()
         semaphore?.signal()
         semaphore = nil
     }
