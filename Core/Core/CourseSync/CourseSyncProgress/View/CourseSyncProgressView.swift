@@ -23,6 +23,7 @@ struct CourseSyncProgressView: View {
     @Environment(\.viewController) var viewController
     @StateObject var viewModel: CourseSyncProgressViewModel
     @StateObject var courseSyncProgressInfoViewModel: CourseSyncProgressInfoViewModel
+    @StateObject private var offlineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
 
     var body: some View {
         content
@@ -109,6 +110,8 @@ struct CourseSyncProgressView: View {
                 .font(.regular16)
                 .foregroundColor(.textDarkest)
         }
+        .disabled(viewModel.isSyncFinished)
+        .opacity(viewModel.isSyncFinished ? 0.5 : 1)
     }
 
     private var dismissButton: some View {
@@ -123,6 +126,10 @@ struct CourseSyncProgressView: View {
 
     private var retryButton: some View {
         Button {
+            if offlineModeViewModel.isOffline {
+                return UIAlertController.showItemNotAvailableInOfflineAlert()
+            }
+
             viewModel.retryButtonDidTap.accept(())
         } label: {
             Text("Retry", bundle: .core)

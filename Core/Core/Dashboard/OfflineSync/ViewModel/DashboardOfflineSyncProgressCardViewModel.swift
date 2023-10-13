@@ -101,7 +101,7 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
         _ downloadProgressPublisher: some DownloadProgressPublisher
     ) -> AnyPublisher<DashboardOfflineSyncProgressCardViewModel.ViewState, Never> {
         Publishers.CombineLatest(
-            interactor.observeStateProgress().map { $0.courses() },
+            interactor.observeStateProgress().map { $0.filterToCourses() },
             downloadProgressPublisher
         )
         .receive(on: scheduler)
