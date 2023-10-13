@@ -106,4 +106,6 @@ class AlwaysOfflineModeInteractor: OfflineModeInteractor {
     func observeNetworkStatus() -> AnyPublisher<NetworkAvailabilityStatus, Never> {
         Just(NetworkAvailabilityStatus.disconnected).eraseToAnyPublisher()
     }
+
+    func isNetworkOffline() -> Bool { true }
 }
