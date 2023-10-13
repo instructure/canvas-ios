@@ -115,7 +115,7 @@ struct DashboardCourseCardView: View {
     @ViewBuilder
     private var optionsKebabButton: some View {
         PrimaryButton(isAvailable: $isAvailable) {
-            if offlineModeViewModel.isOfflineFeatureEnabled, env.app == .student {
+            if offlineModeViewModel.isOfflineFeatureEnabled {
                 isShowingKebabDialog.toggle()
             } else {
                 openDashboardCardCustomizeSheet()
@@ -128,6 +128,10 @@ struct DashboardCourseCardView: View {
         .identifier("DashboardCourseCell.\(courseCard.id).optionsButton")
         .confirmationDialog("", isPresented: $isShowingKebabDialog) {
             Button {
+                if offlineModeViewModel.isOffline {
+                    return UIAlertController.showItemNotAvailableInOfflineAlert()
+                }
+
                 var route = "/offline/sync_picker"
 
                 if let courseID = courseCard.course?.id {
@@ -140,7 +144,7 @@ struct DashboardCourseCardView: View {
             } label: {
                 Text("Manage Offline Content", bundle: .core)
             }
-            PrimaryButton {
+            Button {
                 openDashboardCardCustomizeSheet()
             } label: {
                 Text("Customize Course", bundle: .core)
@@ -173,10 +177,15 @@ struct DashboardCourseCardView: View {
             .padding(.horizontal, 6).frame(height: 20)
             .background(RoundedRectangle(cornerRadius: 10).fill(Color.backgroundLightest))
             .frame(maxWidth: 120, alignment: .leading)
+            .accessibilityIdentifier("DashboardCourseCell.\(courseCard.id).gradePill")
         }
     }
 
     private func openDashboardCardCustomizeSheet() {
+        if offlineModeViewModel.isOffline {
+            return UIAlertController.showItemNotAvailableInOfflineAlert()
+        }
+
         guard let course = courseCard.course else { return }
         env.router.show(
             CoreHostingController(CustomizeCourseView(course: course, hideColorOverlay: hideColorOverlay)),

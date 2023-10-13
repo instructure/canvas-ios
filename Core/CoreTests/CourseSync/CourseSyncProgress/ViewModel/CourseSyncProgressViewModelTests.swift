@@ -73,7 +73,7 @@ class CourseSyncProgressViewModelTests: CoreTestCase {
                                        tabs: [],
                                        files: [])
         mockProgressInteractor.courseSyncEntriesSubject.send([mockItem])
-        mockProgressInteractor.courseSyncFileProgressSubject.send(.data([]))
+        mockProgressInteractor.courseSyncFileProgressSubject.send(.make())
         waitUntil(shouldFail: true) {
             testee.state == .data
         }
@@ -93,12 +93,13 @@ class CourseSyncProgressViewModelTests: CoreTestCase {
                                        files: [])
         mockProgressInteractor.courseSyncEntriesSubject.send([mockItem])
 
-        let mockFileProgress: CourseSyncDownloadProgress = databaseClient.insert()
-        mockFileProgress.bytesDownloaded = 1
-        mockFileProgress.bytesToDownload = 2
-        mockFileProgress.error = "File download failed."
-        mockFileProgress.isFinished = true
-        mockProgressInteractor.courseSyncFileProgressSubject.send(.data([mockFileProgress]))
+        let mockFileProgress = CourseSyncDownloadProgress.make(
+            bytesToDownload: 2,
+            bytesDownloaded: 1,
+            isFinished: true,
+            error: "File download failed."
+        )
+        mockProgressInteractor.courseSyncFileProgressSubject.send(mockFileProgress)
 
         waitUntil(shouldFail: true) {
             testee.state == .dataWithError
@@ -119,12 +120,13 @@ class CourseSyncProgressViewModelTests: CoreTestCase {
                                        files: [])
         mockProgressInteractor.courseSyncEntriesSubject.send([mockItem])
 
-        let mockFileProgress: CourseSyncDownloadProgress = databaseClient.insert()
-        mockFileProgress.bytesDownloaded = 1
-        mockFileProgress.bytesToDownload = 2
-        mockFileProgress.error = "File download failed."
-        mockFileProgress.isFinished = false
-        mockProgressInteractor.courseSyncFileProgressSubject.send(.data([mockFileProgress]))
+        let mockFileProgress = CourseSyncDownloadProgress.make(
+            bytesToDownload: 2,
+            bytesDownloaded: 1,
+            isFinished: false,
+            error: "File download failed."
+        )
+        mockProgressInteractor.courseSyncFileProgressSubject.send(mockFileProgress)
 
         waitUntil(shouldFail: true) {
             testee.state == .data

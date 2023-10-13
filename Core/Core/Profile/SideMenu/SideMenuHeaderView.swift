@@ -35,7 +35,9 @@ struct SideMenuHeaderView: View {
             let avatarLabel = userModel.canUpdateAvatar ? Text("Profile avatar, double tap to change", bundle: .core) : Text("Profile avatar", bundle: .core)
             Avatar(name: userModel.userName, url: userModel.avatarURL, size: 72, isAccessible: true)
                 .padding(.bottom, 12).onTapGesture {
-                    if userModel.canUpdateAvatar {
+                    if offlineModeViewModel.isOffline {
+                        return UIAlertController.showItemNotAvailableInOfflineAlert()
+                    } else if userModel.canUpdateAvatar {
                         isShowingActionSheet = true
                     }
                 }

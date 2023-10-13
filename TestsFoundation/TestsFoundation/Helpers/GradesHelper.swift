@@ -25,6 +25,10 @@ public class GradesHelper: BaseHelper {
         return app.find(id: "GradeListCell.\(assignment?.id ?? assignmentId!)")
     }
 
+    public static func gradeLabel(assignmentCell: XCUIElement) -> XCUIElement {
+        return assignmentCell.find(labelContaining: "Grade")
+    }
+
     public static func gradeOutOf(assignment: DSAssignment? = nil,
                                   assignmentId: String? = nil,
                                   actualPoints: String,
@@ -48,12 +52,10 @@ public class GradesHelper: BaseHelper {
         return totalGrade.waitUntil(.label(expected: value)).isVisible
     }
 
-    public static func submitAssignment(course: DSCourse, student: DSUser, assignment: DSAssignment) {
-        seeder.createSubmission(courseId: course.id,
-                                assignmentId: assignment.id,
-                                requestBody: .init(submission_type: .online_text_entry,
-                                                   body: "This is a submission body",
-                                                   user_id: student.id))
+    @discardableResult
+    public static func submitAssignment(course: DSCourse, student: DSUser, assignment: DSAssignment) -> DSSubmission {
+        return seeder.createSubmission(courseId: course.id, assignmentId: assignment.id, requestBody: .init(
+            submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
     }
 
     public static func createSubmissionsForAssignments(course: DSCourse, student: DSUser, assignments: [DSAssignment]) {

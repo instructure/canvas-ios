@@ -326,7 +326,10 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
             .make(id: "2", name: "course 2", tabs: []),
         ])
 
-        let testee = CourseSyncSelectorInteractorLive(sessionDefaults: session)
+        let testee = CourseSyncSelectorInteractorLive(
+            courseSyncListInteractor: CourseSyncListInteractorLive(sessionDefaults: session),
+            sessionDefaults: session
+        )
 
         // MARK: - WHEN
         let selectedItemID = testee

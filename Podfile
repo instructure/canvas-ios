@@ -107,7 +107,8 @@ end
 
 post_install do |installer|
   puts "\nPost Install Hooks"
-  
+  xcode_base_version = `xcodebuild -version | grep 'Xcode' | awk '{print $2}' | cut -d . -f 1`
+
   installer.pod_targets.each do |target|
     silenceWarningsInUmbrellas = %w[ React-Core ]
     next unless silenceWarningsInUmbrellas.include? target.name
@@ -136,6 +137,13 @@ post_install do |installer|
       config.build_settings.delete 'ARCHS'
       # This was added to work around an Xcode 13.3 bug when deploying to iOS 14 devices. https://developer.apple.com/forums/thread/702028?answerId=708408022
       config.build_settings['OTHER_LDFLAGS'] = '$(inherited) -Xlinker -no_fixup_chains'
+      # For xcode 15+ only
+      if config.base_configuration_reference && Integer(xcode_base_version) >= 15
+        xcconfig_path = config.base_configuration_reference.real_path
+        xcconfig = File.read(xcconfig_path)
+        xcconfig_mod = xcconfig.gsub(/DT_TOOLCHAIN_DIR/, "TOOLCHAIN_DIR")
+        File.open(xcconfig_path, "w") { |file| file << xcconfig_mod }
+      end
     end
     usesNonAppExAPI = %w[
       react-native-camera
@@ -149,20 +157,15 @@ post_install do |installer|
       config.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'NO'
     end
   end
-
-  # Xcode 13 CODE_SIGNING_ALLOWED was set to NO by default. In Xcode 14 it defaults to YES. 
+  
+  # Non-executable bundles shouldn't be code signed
   installer.pods_project.targets.each do |target|
     if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"
       target.build_configurations.each do |config|
-          config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
+        puts "- Disable CODE_SIGNING_ALLOWED on #{target} (#{config})"
+        config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'
       end
     end
-  end
-  
-  # Work around the issue: Cannot code sign because the target does not have an Info.plist file and one is not being generated automatically.
-  installer.pods_project.build_configurations.each do |config|
-    puts "- Enable GENERATE_INFOPLIST_FILE on Pods Project (#{config})"
-    config.build_settings['GENERATE_INFOPLIST_FILE'] = 'YES'
   end
   
   puts "\n"

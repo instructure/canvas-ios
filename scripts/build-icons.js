@@ -56,6 +56,7 @@ const whitelist = [
   'calendar-clock',
   'calendar-month',
   'check',
+  'circle-arrow-down',
   'clock',
   'cloud-lock',
   'comment',

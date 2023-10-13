@@ -22,10 +22,18 @@ import Combine
 import CombineExt
 
 class CourseSyncProgressInteractorPreview: CourseSyncProgressInteractor {
+    enum State {
+        case finishedSuccessfully
+        case finishedWithError
+        case downloadStarting
+        case downloadInProgress
+    }
 
+    private let state: State
     private let mockData: CurrentValueRelay<[CourseSyncEntry]>
 
-    init() {
+    init(state: State) {
+        self.state = state
         mockData = CurrentValueRelay<[CourseSyncEntry]>([
             .init(name: "Black Hole",
                   id: "0",
@@ -58,8 +66,21 @@ class CourseSyncProgressInteractorPreview: CourseSyncProgressInteractor {
 
     func retrySync() {}
 
-    func observeDownloadProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never> {
-        Empty(completeImmediately: false).eraseToAnyPublisher()
+    func observeDownloadProgress() -> AnyPublisher<CourseSyncDownloadProgress, Never> {
+        let data: CourseSyncDownloadProgress
+
+        switch state {
+        case .finishedSuccessfully:
+            data = CourseSyncDownloadProgress(bytesToDownload: 2, bytesDownloaded: 2, isFinished: true, error: nil)
+        case .finishedWithError:
+            data = CourseSyncDownloadProgress(bytesToDownload: 2, bytesDownloaded: 1, isFinished: true, error: "failed")
+        case .downloadStarting:
+            data = CourseSyncDownloadProgress(bytesToDownload: 2, bytesDownloaded: 0, isFinished: false, error: nil)
+        case .downloadInProgress:
+            data = CourseSyncDownloadProgress(bytesToDownload: 2, bytesDownloaded: 1, isFinished: false, error: nil)
+        }
+
+        return Just(data).eraseToAnyPublisher()
     }
 }
 

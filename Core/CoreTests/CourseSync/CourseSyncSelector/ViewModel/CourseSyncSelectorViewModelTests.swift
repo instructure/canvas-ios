@@ -25,14 +25,14 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
     var testee: CourseSyncSelectorViewModel!
     var mockSelectorInteractor: CourseSyncSelectorInteractorMock!
     var mockSyncInteractor: CourseSyncInteractorMock!
-    var mockEntryComposerInteractor: CourseSyncEntryComposerInteractorMock!
+    var mockListInteractor: CourseSyncListInteractorMock!
     var router: TestRouter!
 
     override func setUp() {
         super.setUp()
-        mockEntryComposerInteractor = CourseSyncEntryComposerInteractorMock()
+        mockListInteractor = CourseSyncListInteractorMock()
         mockSelectorInteractor = CourseSyncSelectorInteractorMock(
-            entryComposerInteractor: mockEntryComposerInteractor,
+            courseSyncListInteractor: mockListInteractor,
             sessionDefaults: .fallback
         )
         mockSyncInteractor = CourseSyncInteractorMock()
@@ -136,7 +136,7 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
 class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
     required init(
         courseID: String? = nil,
-        entryComposerInteractor: CourseSyncEntryComposerInteractor,
+        courseSyncListInteractor: CourseSyncListInteractor,
         sessionDefaults: SessionDefaults
     ) {}
 
@@ -178,6 +178,16 @@ class CourseSyncInteractorMock: CourseSyncInteractor {
 
     func downloadContent(for _: [Core.CourseSyncEntry]) -> AnyPublisher<[Core.CourseSyncEntry], Never> {
         courseSyncEntriesSubject.eraseToAnyPublisher()
+    }
+
+    func cancel() {}
+}
+
+class CourseSyncListInteractorMock: CourseSyncListInteractor {
+    let courseSyncEntrySubject = PassthroughSubject<[CourseSyncEntry], Error>()
+
+    func getCourseSyncEntries(filter: CourseSyncListFilter) -> AnyPublisher<[CourseSyncEntry], Error> {
+        courseSyncEntrySubject.eraseToAnyPublisher()
     }
 }
 

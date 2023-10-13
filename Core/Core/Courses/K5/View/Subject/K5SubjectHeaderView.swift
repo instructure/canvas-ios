@@ -19,32 +19,32 @@
 import SwiftUI
 
 struct K5SubjectHeaderView: View {
-
     let title: String?
     let imageUrl: URL?
     let backgroundColor: Color?
 
     var body: some View {
         ZStack(alignment: .bottom) {
-
-            if let imageUrl = imageUrl {
+            backgroundColor
+            if let imageUrl {
                 GeometryReader { geometry in
                     RemoteImage(imageUrl, width: geometry.size.width, height: 113)
                         .clipped()
                         .contentShape(Path(CGRect(x: 0, y: 0, width: geometry.size.width, height: geometry.size.height)))
                 }
             }
-            Rectangle().foregroundColor(backgroundColor).opacity(imageUrl == nil ? 1 : 0.75)
-            Rectangle().fill(
-                LinearGradient(gradient: Gradient(colors: [.black, .clear]), startPoint: .leading, endPoint: .trailing)
-            ).frame(height: 38).opacity(0.60)
             if let title = title {
-                HStack {
-                    Text(title.uppercased()).foregroundColor(.textLightest).font(.regular17).padding(.leading, 16)
-                    Spacer()
-                }.padding(.bottom, 8)
+                Text(title.uppercased())
+                    .foregroundColor(.textLightest)
+                    .font(.regular17)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(Color.black.opacity(0.60))
             }
-        }.frame(height: 113).cornerRadius(4)
+        }
+        .frame(height: 113)
+        .cornerRadius(4)
     }
 }
 

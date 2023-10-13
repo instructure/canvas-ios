@@ -124,7 +124,7 @@ class CourseListCellGradesTests: ParentTestCase {
             computed_current_grade: nil,
             multiple_grading_periods_enabled: false),
         ], settings: .make(restrict_quantitative_data: true)))
-        XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "")
+        XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "N/A")
     }
 
     func testScoreWithGrade() {

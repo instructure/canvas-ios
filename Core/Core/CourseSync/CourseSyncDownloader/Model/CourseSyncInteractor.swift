@@ -23,6 +23,7 @@ import Foundation
 
 public protocol CourseSyncInteractor {
     func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Never>
+    func cancel()
 }
 
 public protocol CourseSyncContentInteractor {
@@ -47,23 +48,38 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         attributes: .concurrent
     )
     private let fileErrorMessage = NSLocalizedString("File download failed.", comment: "")
+    private let successNotification: CourseSyncSuccessNotificationInteractor
     internal private(set) var downloadSubscription: AnyCancellable?
     private var subscriptions = Set<AnyCancellable>()
+    private let courseListInteractor: CourseListInteractor
 
+    /**
+     - parameters:
+        - courseListInteractor: This is used to download data for the "All Courses" screen opened from the dashboard.
+     The reason is that the user can select courses for offline availability which are not on the dashboard so we have to make sure that
+     when they access the "All Courses" screen the courses are listed.
+     */
     public init(
         contentInteractors: [CourseSyncContentInteractor],
         filesInteractor: CourseSyncFilesInteractor,
         progressWriterInteractor: CourseSyncProgressWriterInteractor,
+        successNotification: CourseSyncSuccessNotificationInteractor,
+        courseListInteractor: CourseListInteractor,
         scheduler: AnySchedulerOf<DispatchQueue>
     ) {
         self.contentInteractors = contentInteractors
         self.filesInteractor = filesInteractor
         self.progressWriterInteractor = progressWriterInteractor
+        self.courseListInteractor = courseListInteractor
+        self.successNotification = successNotification
         self.scheduler = scheduler
 
         listenToCancellationEvent()
     }
 
+    /**
+      **Warning!** While the download is in progress the interactor must not be released otherwise it will crash!
+     */
     public func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Never> {
         downloadSubscription?.cancel()
         downloadSubscription = nil
@@ -84,6 +100,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             .receive(on: scheduler)
             .flatMap(maxPublishers: .max(3)) { unownedSelf.downloadCourseDetails($0) }
             .collect()
+            .flatMap { _ in unownedSelf.downloadCourseList() }
             .sink(
                 receiveCompletion: { _ in
                     let hasError = unownedSelf.safeCourseSyncEntriesValue.hasError
@@ -91,11 +108,40 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                         isFinished: true,
                         error: hasError ? unownedSelf.fileErrorMessage : nil
                     )
+                    unownedSelf
+                        .successNotification
+                        .send()
+                        .sink()
+                        .store(in: &unownedSelf.subscriptions)
                 },
                 receiveValue: { _ in }
             )
 
         return courseSyncEntries.eraseToAnyPublisher()
+    }
+
+    public func cancel() {
+        downloadSubscription?.cancel()
+        downloadSubscription = nil
+        progressWriterInteractor.cleanUpPreviousDownloadProgress()
+    }
+
+    // MARK: - Private Methods
+
+    private func downloadCourseList() -> AnyPublisher<Void, Never> {
+        let result = courseListInteractor
+            .state
+            .first { state in
+                state != .loading
+            }
+            .mapToVoid()
+            .eraseToAnyPublisher()
+
+        if courseListInteractor.state.value == .loading {
+            courseListInteractor.loadAsync()
+        }
+
+        return result
     }
 
     private func downloadCourseDetails(_ entry: CourseSyncEntry) -> AnyPublisher<Void, Never> {
@@ -132,7 +178,9 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         unowned let unownedSelf = self
 
         guard let tabIndex = entry.tabs.firstIndex(where: { $0.type == tabName }),
-              entry.tabs[tabIndex].selectionState == .selected else {
+              entry.tabs[tabIndex].selectionState == .selected,
+              entry.tabs[tabIndex].state != .downloaded
+        else {
             return Just(()).eraseToAnyPublisher()
         }
 
@@ -172,12 +220,19 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             entry.tabs[tabIndex].selectionState == .selected ||
             entry.tabs[tabIndex].selectionState == .partiallySelected
         else {
-            return Just(()).eraseToAnyPublisher()
+            return removeUnavailableFiles(courseId: entry.courseId)
+        }
+
+        let files = entry.files.filter { $0.selectionState == .selected }
+
+        guard !files.isEmpty, entry.tabs[tabIndex].state != .downloaded else {
+            return removeUnavailableFiles(
+                courseId: entry.courseId,
+                newFileIDs: files.map { $0.fileId }
+            )
         }
 
         unowned let unownedSelf = self
-
-        let files = entry.files.filter { $0.selectionState == .selected }
 
         unownedSelf.setState(
             selection: .tab(entry.id, entry.tabs[tabIndex].id),
@@ -187,47 +242,14 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         return files.publisher
             .eraseToAnyPublisher()
             .buffer(size: .max, prefetch: .byRequest, whenFull: .dropOldest)
-            .receive(on: scheduler)
-            .flatMap(maxPublishers: .max(6)) { element in
-                let fileIndex = files.firstIndex(of: element)!
-
-                unownedSelf.setState(
-                    selection: .file(entry.id, files[fileIndex].id), state: .loading(nil)
+            .receive(on: unownedSelf.scheduler)
+            .flatMap(maxPublishers: .max(6)) { file in
+                unownedSelf.downloadSingleFile(
+                    entry: entry,
+                    file: file,
+                    tabIndex: tabIndex,
+                    files: files
                 )
-
-                return unownedSelf.filesInteractor.getFile(
-                    url: element.url,
-                    fileID: element.fileId,
-                    fileName: element.fileName,
-                    mimeClass: element.mimeClass,
-                    updatedAt: element.updatedAt
-                )
-                .throttle(for: .milliseconds(300), scheduler: unownedSelf.scheduler, latest: true)
-                .handleEvents(
-                    receiveOutput: { progress in
-                        unownedSelf.setState(
-                            selection: .file(entry.id, files[fileIndex].id), state: .loading(progress)
-                        )
-                        unownedSelf.setState(
-                            selection: .tab(entry.id, entry.tabs[tabIndex].id),
-                            state: .loading(unownedSelf.safeCourseSyncEntriesValue[id: entry.id]?.progress)
-                        )
-                    },
-                    receiveCompletion: { completion in
-                        switch completion {
-                        case .finished:
-                            unownedSelf.setState(
-                                selection: .file(entry.id, files[fileIndex].id), state: .downloaded
-                            )
-                        case .failure:
-                            unownedSelf.setState(
-                                selection: .file(entry.id, files[fileIndex].id), state: .error
-                            )
-                        }
-                    }
-                )
-                .catch { _ in Just(0).eraseToAnyPublisher() }
-                .eraseToAnyPublisher()
             }
             .collect()
             .handleEvents(
@@ -240,8 +262,71 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                     )
                 }
             )
-            .map { _ in () }
+            .flatMap { _ in
+                unownedSelf.removeUnavailableFiles(
+                    courseId: entry.courseId,
+                    newFileIDs: files.map { $0.fileId }
+                )
+            }
             .eraseToAnyPublisher()
+    }
+
+    private func downloadSingleFile(
+        entry: CourseSyncEntry,
+        file: CourseSyncEntry.File,
+        tabIndex: Array<CourseSyncEntry.Tab>.Index,
+        files: [CourseSyncEntry.File]
+    ) -> AnyPublisher<Float, Never> {
+        let fileIndex = files.firstIndex(of: file)!
+        unowned let unownedSelf = self
+
+        setState(
+            selection: .file(entry.id, files[fileIndex].id), state: .loading(nil)
+        )
+
+        return filesInteractor.downloadFile(
+            courseId: entry.courseId,
+            url: file.url,
+            fileID: file.fileId,
+            fileName: file.fileName,
+            mimeClass: file.mimeClass,
+            updatedAt: file.updatedAt
+        )
+        .throttle(for: .milliseconds(300), scheduler: unownedSelf.scheduler, latest: true)
+        .handleEvents(
+            receiveOutput: { progress in
+                unownedSelf.setState(
+                    selection: .file(entry.id, files[fileIndex].id), state: .loading(progress)
+                )
+                unownedSelf.setState(
+                    selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                    state: .loading(unownedSelf.safeCourseSyncEntriesValue[id: entry.id]?.progress)
+                )
+            },
+            receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    unownedSelf.setState(
+                        selection: .file(entry.id, files[fileIndex].id), state: .downloaded
+                    )
+                case .failure:
+                    unownedSelf.setState(
+                        selection: .file(entry.id, files[fileIndex].id), state: .error
+                    )
+                }
+            }
+        )
+        .catch { _ in Just(0).eraseToAnyPublisher() }
+        .eraseToAnyPublisher()
+    }
+
+    private func removeUnavailableFiles(courseId: String, newFileIDs: [String] = []) -> AnyPublisher<Void, Never> {
+        filesInteractor.removeUnavailableFiles(
+            courseId: courseId,
+            newFileIDs: newFileIDs
+        )
+        .replaceError(with: ())
+        .eraseToAnyPublisher()
     }
 
     /// Updates entry state in memory and writes it to Core Data. In addition it also writes file progress to Core Data.
@@ -270,17 +355,17 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         entries.map { entry in
             var cpy = entry
             if cpy.state != .downloaded {
-                cpy.state = .loading(nil)
+                cpy.updateCourseState(state: .loading(nil))
             } else {
                 return cpy
             }
 
-            for var tab in cpy.tabs where tab.state != .downloaded {
-                tab.state = .loading(nil)
+            for tab in cpy.tabs where tab.state != .downloaded {
+                cpy.updateTabState(id: tab.id, state: .loading(nil))
             }
 
-            for var file in cpy.files where file.state != .downloaded {
-                file.state = .loading(nil)
+            for file in cpy.files where file.state != .downloaded {
+                cpy.updateFileState(id: file.id, state: .loading(nil))
             }
 
             return cpy
@@ -289,10 +374,8 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
 
     private func listenToCancellationEvent() {
         NotificationCenter.default.publisher(for: .OfflineSyncCancelled)
-            .sink(receiveValue: { [unowned self] _ in
-                downloadSubscription?.cancel()
-                downloadSubscription = nil
-                progressWriterInteractor.cleanUpPreviousDownloadProgress()
+            .sink(receiveCompletion: { _ in }, receiveValue: { [unowned self] _ in
+                self.cancel()
             })
             .store(in: &subscriptions)
     }

@@ -59,6 +59,9 @@ struct ConferenceCard: View {
     }
 
     func join() {
+        guard OfflineModeAssembly.make().isOfflineModeEnabled() == false else {
+            return UIAlertController.showItemNotAvailableInOfflineAlert()
+        }
         env.router.route(to: "\(conference.context.pathComponent)/conferences/\(conference.id)/join", from: controller, options: .modal())
     }
 

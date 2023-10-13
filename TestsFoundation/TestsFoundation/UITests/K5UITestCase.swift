@@ -28,10 +28,6 @@ open class K5UITestCase: CoreUITestCase {
         sleep(5)
     }
 
-    open override func setUp() {
-        super.setUp()
-    }
-
     open override var user: UITestUser? {
         .readStudentK5
     }

@@ -23,6 +23,7 @@ import TestsFoundation
 import XCTest
 
 class CourseSyncProgressInteractorLiveTests: CoreTestCase {
+    private var listInteractor: CourseSyncListInteractor!
     private var entryComposerInteractorMock: CourseSyncEntryComposerInteractorMock!
     private var progressObserverInteractorMock: CourseSyncProgressObserverInteractorMock!
     private var sesssionDefaults: SessionDefaults!
@@ -32,9 +33,15 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
         entryComposerInteractorMock = CourseSyncEntryComposerInteractorMock()
         progressObserverInteractorMock = CourseSyncProgressObserverInteractorMock()
         sesssionDefaults = SessionDefaults(sessionID: "uniqueID")
+        listInteractor = CourseSyncListInteractorLive(
+            entryComposerInteractor: entryComposerInteractorMock,
+            sessionDefaults: sesssionDefaults,
+            scheduler: .immediate
+        )
     }
 
     override func tearDown() {
+        listInteractor = nil
         entryComposerInteractorMock = nil
         progressObserverInteractorMock = nil
         sesssionDefaults = nil
@@ -44,7 +51,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
     func testCourseSelection() {
         // GIVEN
         let testee = CourseSyncProgressInteractorLive(
-            entryComposerInteractor: entryComposerInteractorMock,
+            courseSyncListInteractor: listInteractor,
             progressObserverInteractor: progressObserverInteractorMock,
             sessionDefaults: sesssionDefaults
         )
@@ -80,7 +87,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
     func testPartialSelection() {
         // GIVEN
         let testee = CourseSyncProgressInteractorLive(
-            entryComposerInteractor: entryComposerInteractorMock,
+            courseSyncListInteractor: listInteractor,
             progressObserverInteractor: progressObserverInteractorMock,
             sessionDefaults: sesssionDefaults
         )
@@ -117,7 +124,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
     func testNoPreviousSelection() {
         // GIVEN
         let testee = CourseSyncProgressInteractorLive(
-            entryComposerInteractor: entryComposerInteractorMock,
+            courseSyncListInteractor: listInteractor,
             progressObserverInteractor: progressObserverInteractorMock,
             sessionDefaults: sesssionDefaults
         )
@@ -149,7 +156,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
     func testDownloadedEntryProgress() {
         // GIVEN
         let testee = CourseSyncProgressInteractorLive(
-            entryComposerInteractor: entryComposerInteractorMock,
+            courseSyncListInteractor: listInteractor,
             progressObserverInteractor: progressObserverInteractorMock,
             sessionDefaults: sesssionDefaults,
             scheduler: .immediate
@@ -177,44 +184,40 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(entries[0].tabs[1].state, .loading(nil))
         XCTAssertEqual(entries[0].files[0].state, .loading(nil))
 
-        progressObserverInteractorMock.entryProgressSubject.send(.data([
-            CourseSyncStateProgress.save(
+        progressObserverInteractorMock.entryProgressSubject.send([
+            CourseSyncStateProgress.make(
                 id: "courses/course-id-1",
                 selection: .file("courses/course-id-1", "courses/course-id-1/files/file-1"),
-                state: .loading(0.4),
-                in: databaseClient
+                state: .loading(0.4)
             ),
-        ]))
+        ])
         XCTAssertEqual(entries[0].files[0].state, .loading(0.4))
 
-        progressObserverInteractorMock.entryProgressSubject.send(.data([
-            CourseSyncStateProgress.save(
+        progressObserverInteractorMock.entryProgressSubject.send([
+            CourseSyncStateProgress.make(
                 id: "courses/course-id-1",
                 selection: .file("courses/course-id-1", "courses/course-id-1/files/file-1"),
-                state: .downloaded,
-                in: databaseClient
+                state: .downloaded
             ),
-        ]))
+        ])
         XCTAssertEqual(entries[0].files[0].state, .downloaded)
 
-        progressObserverInteractorMock.entryProgressSubject.send(.data([
-            CourseSyncStateProgress.save(
+        progressObserverInteractorMock.entryProgressSubject.send([
+            CourseSyncStateProgress.make(
                 id: "courses/course-id-1",
                 selection: .tab("courses/course-id-1", "courses/course-id-1/tabs/files"),
-                state: .downloaded,
-                in: databaseClient
+                state: .downloaded
             ),
-        ]))
+        ])
         XCTAssertEqual(entries[0].tabs[0].state, .downloaded)
 
-        progressObserverInteractorMock.entryProgressSubject.send(.data([
-            CourseSyncStateProgress.save(
+        progressObserverInteractorMock.entryProgressSubject.send([
+            CourseSyncStateProgress.make(
                 id: "courses/course-id-1",
                 selection: .course("courses/course-id-1"),
-                state: .downloaded,
-                in: databaseClient
+                state: .downloaded
             ),
-        ]))
+        ])
         XCTAssertEqual(entries[0].state, .downloaded)
         subscription.cancel()
     }
@@ -222,7 +225,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
     func testFailedEntryProgress() {
         // GIVEN
         let testee = CourseSyncProgressInteractorLive(
-            entryComposerInteractor: entryComposerInteractorMock,
+            courseSyncListInteractor: listInteractor,
             progressObserverInteractor: progressObserverInteractorMock,
             sessionDefaults: sesssionDefaults,
             scheduler: .immediate
@@ -248,14 +251,13 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(entries[0].state, .loading(nil))
         XCTAssertEqual(entries[0].tabs[1].state, .loading(nil))
 
-        progressObserverInteractorMock.entryProgressSubject.send(.data([
-            CourseSyncStateProgress.save(
+        progressObserverInteractorMock.entryProgressSubject.send([
+            CourseSyncStateProgress.make(
                 id: "courses/course-id-1",
                 selection: .tab("courses/course-id-1", "courses/course-id-1/tabs/assignments"),
-                state: .error,
-                in: databaseClient
+                state: .error
             ),
-        ]))
+        ])
         XCTAssertEqual(entries[0].tabs[1].state, .error)
         subscription.cancel()
     }
@@ -263,7 +265,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
     func testRetry() {
         // GIVEN
         let testee = CourseSyncProgressInteractorLive(
-            entryComposerInteractor: entryComposerInteractorMock,
+            courseSyncListInteractor: listInteractor,
             progressObserverInteractor: progressObserverInteractorMock,
             sessionDefaults: sesssionDefaults,
             scheduler: .immediate
@@ -338,7 +340,7 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
     func testCancel() {
         // GIVEN
         let testee = CourseSyncProgressInteractorLive(
-            entryComposerInteractor: entryComposerInteractorMock,
+            courseSyncListInteractor: listInteractor,
             progressObserverInteractor: progressObserverInteractorMock,
             sessionDefaults: sesssionDefaults,
             scheduler: .immediate
@@ -353,6 +355,8 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
 
         // THEN
         XCTAssertTrue(notificationFired)
+
+        subscription.cancel()
     }
 
     private func createAndSaveCourseSyncSelectorCourse() {
@@ -397,14 +401,13 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
 }
 
 private class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserverInteractor {
-    let entryProgressSubject = PassthroughSubject<ReactiveStore<Core.GetCourseSyncStateProgressUseCase>.State, Never>()
+    let entryProgressSubject = PassthroughSubject<[CourseSyncStateProgress], Never>()
 
-    func observeDownloadProgress() -> AnyPublisher<Core.ReactiveStore<Core.GetCourseSyncDownloadProgressUseCase>.State, Never> {
-        Just(ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State.data([]))
-            .eraseToAnyPublisher()
+    func observeDownloadProgress() -> AnyPublisher<CourseSyncDownloadProgress, Never> {
+        Empty(completeImmediately: false).eraseToAnyPublisher()
     }
 
-    func observeStateProgress() -> AnyPublisher<Core.ReactiveStore<Core.GetCourseSyncStateProgressUseCase>.State, Never> {
+    func observeStateProgress() -> AnyPublisher<[CourseSyncStateProgress], Never> {
         entryProgressSubject.eraseToAnyPublisher()
     }
 }

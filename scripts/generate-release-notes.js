@@ -163,7 +163,7 @@ function getReleaseNote (commit) {
   }
 
   let note = releaseNotes[1].trim()
-  if (note === 'none') return null
+  if (note.toLowerCase().startsWith('none') && note.length <= 5) return null
   return note
 }
 

@@ -94,12 +94,12 @@ class SubmitAssignmentExtensionViewModelTests: CoreTestCase {
     func testReportsCancelToAnalytics() {
         let analyticsHandler = MockAnalyticsHandler()
         Analytics.shared.handler = analyticsHandler
-        XCTAssertEqual(analyticsHandler.loggedEventCount, 0)
+        XCTAssertEqual(analyticsHandler.totalEventCount, 0)
 
         testee.cancelTapped()
 
-        XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
-        XCTAssertEqual(analyticsHandler.lastEventName, "share_cancelled")
+        XCTAssertEqual(analyticsHandler.totalEventCount, 1)
+        XCTAssertEqual(analyticsHandler.lastEvent, "share_cancelled")
         XCTAssertNil(analyticsHandler.lastEventParameters)
     }
 
@@ -108,12 +108,12 @@ class SubmitAssignmentExtensionViewModelTests: CoreTestCase {
         testee.assignmentPickerViewModel.assignmentSelected(.init(id: "", name: ""))
         let analyticsHandler = MockAnalyticsHandler()
         Analytics.shared.handler = analyticsHandler
-        XCTAssertEqual(analyticsHandler.loggedEventCount, 0)
+        XCTAssertEqual(analyticsHandler.totalEventCount, 0)
 
         testee.submitTapped()
 
-        XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
-        XCTAssertEqual(analyticsHandler.lastEventName, "submit_tapped")
+        XCTAssertEqual(analyticsHandler.totalEventCount, 1)
+        XCTAssertEqual(analyticsHandler.lastEvent, "submit_tapped")
         XCTAssertNil(analyticsHandler.lastEventParameters)
     }
 

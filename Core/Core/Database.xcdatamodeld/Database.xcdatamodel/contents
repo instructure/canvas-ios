@@ -127,6 +127,21 @@
         <attribute name="title" attributeType="String"/>
         <attribute name="typeRaw" attributeType="String"/>
     </entity>
+    <entity name="CDCourseSyncDownloadProgress" representedClassName="Core.CDCourseSyncDownloadProgress" syncable="YES">
+        <attribute name="bytesDownloaded" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="bytesToDownload" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="error" optional="YES" attributeType="String"/>
+        <attribute name="isFinished" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="CDCourseSyncStateProgress" representedClassName="Core.CDCourseSyncStateProgress" syncable="YES">
+        <attribute name="entryID" attributeType="String"/>
+        <attribute name="fileID" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="progress" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="selectionRaw" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="stateRaw" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="tabID" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="CommonCourse" representedClassName="Core.CommonCourse" syncable="YES">
         <attribute name="courseID" attributeType="String"/>
         <attribute name="role" attributeType="String"/>
@@ -237,6 +252,7 @@
         <relationship name="dashboardCards" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DashboardCard" inverseName="course" inverseEntity="DashboardCard"/>
         <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Enrollment" inverseName="course" inverseEntity="Enrollment"/>
         <relationship name="gradingPeriods" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GradingPeriod" inverseName="course" inverseEntity="GradingPeriod"/>
+        <relationship name="gradingSchemeRaw" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="GradingSchemeEntry" inverseName="course" inverseEntity="GradingSchemeEntry"/>
         <relationship name="groups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Group" inverseName="course" inverseEntity="Group"/>
         <relationship name="sections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CourseSection" inverseName="course" inverseEntity="CourseSection"/>
         <relationship name="settings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CourseSettings" inverseName="course" inverseEntity="CourseSettings"/>
@@ -271,26 +287,11 @@
         <attribute name="usageRightsRequired" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="settings" inverseEntity="Course"/>
     </entity>
-    <entity name="CourseSyncDownloadProgress" representedClassName="Core.CourseSyncDownloadProgress" syncable="YES">
-        <attribute name="bytesDownloaded" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="bytesToDownload" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="error" optional="YES" attributeType="String"/>
-        <attribute name="isFinished" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-    </entity>
     <entity name="CourseSyncSelectorCourse" representedClassName="Core.CourseSyncSelectorCourse" syncable="YES">
         <attribute name="courseCode" attributeType="String"/>
         <attribute name="courseId" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <relationship name="tabs" toMany="YES" deletionRule="Nullify" destinationEntity="Tab" inverseName="course" inverseEntity="Tab"/>
-    </entity>
-    <entity name="CourseSyncStateProgress" representedClassName="Core.CourseSyncStateProgress" syncable="YES">
-        <attribute name="entryID" attributeType="String"/>
-        <attribute name="fileID" optional="YES" attributeType="String"/>
-        <attribute name="id" attributeType="String"/>
-        <attribute name="progress" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="selectionRaw" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="stateRaw" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="tabID" optional="YES" attributeType="String"/>
     </entity>
     <entity name="DashboardCard" representedClassName="Core.DashboardCard" syncable="YES">
         <attribute name="courseCode" attributeType="String"/>
@@ -540,6 +541,11 @@
         <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Assignment" inverseName="gradingPeriod" inverseEntity="Assignment"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="gradingPeriods" inverseEntity="Course"/>
     </entity>
+    <entity name="GradingSchemeEntry" representedClassName="Core.GradingSchemeEntry" syncable="YES">
+        <attribute name="name" attributeType="String"/>
+        <attribute name="value" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="gradingSchemeRaw" inverseEntity="Course"/>
+    </entity>
     <entity name="Group" representedClassName="Core.Group" syncable="YES">
         <attribute name="avatarURL" optional="YES" attributeType="URI"/>
         <attribute name="canCreateAnnouncement" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
@@ -712,6 +718,25 @@
         <attribute name="published" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="title" attributeType="String"/>
         <attribute name="url" attributeType="String"/>
+    </entity>
+    <entity name="PeopleListEnrollment" representedClassName="Core.PeopleListEnrollment" syncable="YES">
+        <attribute name="canvasContextID" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="role" optional="YES" attributeType="String"/>
+        <attribute name="userID" optional="YES" attributeType="String"/>
+        <relationship name="enrolledUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PeopleListUser" inverseName="enrollments" inverseEntity="PeopleListUser"/>
+    </entity>
+    <entity name="PeopleListUser" representedClassName="Core.PeopleListUser" syncable="YES">
+        <attribute name="avatarURL" optional="YES" attributeType="URI"/>
+        <attribute name="courseID" optional="YES" attributeType="String"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="groupID" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="pronouns" optional="YES" attributeType="String"/>
+        <attribute name="shortName" attributeType="String"/>
+        <attribute name="sortableName" attributeType="String"/>
+        <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PeopleListEnrollment" inverseName="enrolledUser" inverseEntity="PeopleListEnrollment"/>
     </entity>
     <entity name="Permissions" representedClassName="Core.Permissions" syncable="YES">
         <attribute name="becomeUser" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>

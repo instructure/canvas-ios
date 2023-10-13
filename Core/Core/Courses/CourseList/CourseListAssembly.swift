@@ -20,8 +20,13 @@ import Foundation
 
 public enum CourseListAssembly {
 
+    public static func makeInteractor() -> CourseListInteractor {
+        CourseListInteractorLive(env: AppEnvironment.shared)
+    }
+
     public static func makeCourseListViewController() -> UIViewController {
-        let interactor = CourseListInteractorLive(env: AppEnvironment.shared)
+        let interactor = makeInteractor()
+        interactor.loadAsync()
         let viewModel = CourseListViewModel(interactor)
         return CoreHostingController(CourseListView(viewModel: viewModel))
     }

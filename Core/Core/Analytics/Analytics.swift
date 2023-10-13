@@ -19,6 +19,8 @@
 import Foundation
 
 public protocol AnalyticsHandler: AnyObject {
+    func handleScreenView(screenName: String, screenClass: String, application: String)
+    func handleError(_ name: String, reason: String)
     func handleEvent(_ name: String, parameters: [String: Any]?)
 }
 
@@ -27,22 +29,35 @@ public class Analytics: NSObject {
     @objc public static var shared: Analytics = Analytics()
     public weak var handler: AnalyticsHandler?
 
+    /**
+     Use this method to collect screen view events which will be uploaded when a crash happens
+     so we'll be better be able to locate and reproduce the crash.
+     */
+    @objc(logScreenView:viewController:)
+    public func logScreenView(route: String, viewController: UIViewController? = nil) {
+        handler?.handleScreenView(screenName: route,
+                                  screenClass: Self.analyticsClassName(for: viewController),
+                                  application: Self.analyticsAppName)
+    }
+
+    /**
+     Use this method to report errors to Crashlytics.
+
+     - parameters:
+        - name: The name of the error type. Errors with the same name will be grouped on Crashlytics to a single error entry.
+        - reason: The arbitrary error reason.
+     */
+    public func logError(name: String, reason: String? = nil) {
+        handler?.handleError(name, reason: reason ?? "Unknown reason.")
+    }
+
+    /**
+     This method is mainly used to track user and application actions for usage statistics.
+     Currently, events sent using this method aren't forwarded anywhere.
+     */
     @objc
     public func logEvent(_ name: String, parameters: [String: Any]? = nil) {
         handler?.handleEvent(name, parameters: parameters)
-    }
-
-    public func logError(_ name: String, description: String? = nil) {
-        handler?.handleEvent(name, parameters: ["error": description ?? ""])
-    }
-
-    @objc(logScreenView:viewController:)
-    public func logScreenView(route: String, viewController: UIViewController? = nil) {
-        handler?.handleEvent("screen_view", parameters: [
-            "application": Self.analyticsAppName,
-            "screen_name": route,
-            "screen_class": Self.analyticsClassName(for: viewController),
-        ])
     }
 
     public func logSession(_ session: LoginSession) {

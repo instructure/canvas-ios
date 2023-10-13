@@ -455,6 +455,9 @@
 "Cancel Submission?" = "Whakakorea te Tukunga?";
 
 /* No comment provided by engineer. */
+"Cancel Sync?" = "Whakakore Tukutahi?";
+
+/* No comment provided by engineer. */
 "Canvas Guides" = "Canvas Kaiārahi";
 
 /* No comment provided by engineer. */
@@ -864,9 +867,6 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Pana %@";
-
-/* No comment provided by engineer. */
-"Dismiss notification" = "Whakakorehia te panui";
 
 /* No comment provided by engineer. */
 "Display As" = "Whakaatu Hei";
@@ -1364,6 +1364,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Ko te titiro kaore koe i whakaurutis ki rot o ngā akoranga hei %@. Ko tētahi o a mātau taupānga he pai ake pea.n Pāt tētahi ki te haere ki te Toa Taupānga.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "Ka mutu te tukutahi ihirangi tuimotu. Ka taea e koe te mahi ano i muri mai.";
+
+/* No comment provided by engineer. */
 "Italic" = "Tuhinga";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1497,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Hapa Takiuru";
+
+/* No comment provided by engineer. */
+"Login help." = "Awhina takiuru.";
 
 /* No comment provided by engineer. */
 "Login ID" = "Takiuru ID";
@@ -1782,6 +1788,9 @@
 
 /* No comment provided by engineer. */
 "Observers" = "Kaitirotiro";
+
+/* No comment provided by engineer. */
+"Offline" = "Tuimotu";
 
 /* No comment provided by engineer. */
 "Offline Content" = "Ihirangi tuimotu";
@@ -2286,6 +2295,9 @@
 
 /* No comment provided by engineer. */
 "Show One Question at a Time" = "Whakātu kotahi pātai ia wā";
+
+/* No comment provided by engineer. */
+"Show sync details" = "Whakaatuhia te tukutahi taipitopito";
 
 /* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";

@@ -79,12 +79,12 @@ class FilePreviewProviderTests: XCTestCase {
     func testMP4Preview() {
         let testee = FilePreviewProvider(url: url(fileExtension: "mp4"))
         let dataExpectation = expectation(description: "Preview data should be received")
-        let errorExpectation = expectation(description: "No error received")
-        errorExpectation.isInverted = true
+        let finishExpectation = expectation(description: "Stream finished")
         let subscription = testee.result.sink { completion in
             if case .failure = completion {
-                errorExpectation.fulfill()
+                XCTFail("Stream should have finished successfully.")
             }
+            finishExpectation.fulfill()
         } receiveValue: { data in
             dataExpectation.fulfill()
             XCTAssertEqual(data.duration ?? 0, 4.5, accuracy: 0.1)

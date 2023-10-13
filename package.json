@@ -16,12 +16,14 @@
     "released": "./scripts/update-jira-issues.js released",
     "svg2pdf": "./scripts/svg2pdf.js",
     "test": "./scripts/coverage/coverage.js --test",
-    "update-headers": "./scripts/update-headers.js"
+    "update-headers": "./scripts/update-headers.js",
+    "terminal-service": "screen -dm node scripts/server.js"
   },
   "devDependencies": {
     "aws-sdk": "^2.178.0",
     "chalk": "^2.4.1",
     "commander": "^2.19.0",
+    "d3": "^5.16.0",
     "danger": "^11.2.6",
     "format-message": "^5.2.0",
     "format-message-parse": "^5.1.2",
@@ -31,6 +33,6 @@
     "jsdom": "^15.1.0",
     "mkdirp": "^1.0.4",
     "pdfkit": "^0.9.1",
-    "d3": "^5.16.0"
+    "express": "^4.18.2"
   }
 }

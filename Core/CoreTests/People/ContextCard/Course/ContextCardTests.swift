@@ -82,7 +82,7 @@ class ContextCardTests: CoreTestCase {
         testee.viewAppeared()
 
         // Then
-        XCTAssertEqual(testee.shouldHideScore, true)
+        XCTAssertEqual(testee.hideQuantitativeData, true)
     }
 
     func testGradesViewWhenQuantitativeDataDisabled() {
@@ -94,7 +94,7 @@ class ContextCardTests: CoreTestCase {
         testee.viewAppeared()
 
         // Then
-        XCTAssertEqual(testee.shouldHideScore, false)
+        XCTAssertEqual(testee.hideQuantitativeData, false)
     }
 
     func testGradesViewWhenQuantitativeDataNotSpecified() {
@@ -106,7 +106,7 @@ class ContextCardTests: CoreTestCase {
         testee.viewAppeared()
 
         // Then
-        XCTAssertEqual(testee.shouldHideScore, false)
+        XCTAssertEqual(testee.hideQuantitativeData, false)
     }
 
     private func mockCourseAndAssignmentWith(restrict_quantitative_data: Bool?) {

@@ -455,6 +455,9 @@
 "Cancel Submission?" = "Voleu cancel·lar l'entrega?";
 
 /* No comment provided by engineer. */
+"Cancel Sync?" = "Voleu cancel·lar la sincronització?";
+
+/* No comment provided by engineer. */
 "Canvas Guides" = "Guies del Canvas";
 
 /* No comment provided by engineer. */
@@ -864,9 +867,6 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Descarta %@";
-
-/* No comment provided by engineer. */
-"Dismiss notification" = "Rebutgeu la notificació";
 
 /* No comment provided by engineer. */
 "Display As" = "Mostra com a";
@@ -1364,6 +1364,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Sembla que no us heu inscrit en cap assignatura com a %@. És possible que alguna de les altres aplicacions nostres us sigui més útil. Toqueu-ne una per anar a App Store.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "Amb aquesta acció s’aturarà la sincronització del contingut sense connexió. Podeu tornar-ho a fer més endavant.";
+
+/* No comment provided by engineer. */
 "Italic" = "Cursiva";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1497,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Error d'inici de sessió";
+
+/* No comment provided by engineer. */
+"Login help." = "Ajuda per iniciar la sessió.";
 
 /* No comment provided by engineer. */
 "Login ID" = "ID d'inici de sessió";
@@ -1782,6 +1788,9 @@
 
 /* No comment provided by engineer. */
 "Observers" = "Observadors";
+
+/* No comment provided by engineer. */
+"Offline" = "Sense connexió";
 
 /* No comment provided by engineer. */
 "Offline Content" = "Contingut sense connexió";
@@ -2286,6 +2295,9 @@
 
 /* No comment provided by engineer. */
 "Show One Question at a Time" = "Mostra una pregunta cada vegada";
+
+/* No comment provided by engineer. */
+"Show sync details" = "Mostreu la informació de sincronització";
 
 /* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";

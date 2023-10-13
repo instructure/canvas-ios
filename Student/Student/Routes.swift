@@ -545,7 +545,7 @@ private func courseDetails(url: URLComponents, params: [String: String], userInf
     guard let context = Context(path: url.path) else { return nil }
 
     let regularCourseDetails: () -> UIViewController = {
-        let viewModel = CourseDetailsViewModel(context: context)
+        let viewModel = CourseDetailsViewModel(context: context, offlineModeInteractor: OfflineModeAssembly.make())
         let viewController = CoreHostingController(CourseDetailsView(viewModel: viewModel))
 
         if let contextColor = url.contextColor {

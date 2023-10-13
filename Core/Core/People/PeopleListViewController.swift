@@ -52,14 +52,16 @@ public class PeopleListViewController: ScreenViewTrackableViewController, Colore
     lazy var group = env.subscribe(GetGroup(groupID: context.id)) { [weak self] in
         self?.updateNavBar()
     }
-    lazy var users = env.subscribe(GetContextUsers(context: context)) { [weak self] in
+    lazy var users = env.subscribe(GetPeopleListUsers(context: context)) { [weak self] in
         self?.update()
     }
     private weak var accessibilityFocusAfterReload: UIView?
+    private var offlineModelInteractor: OfflineModeInteractor?
 
-    public static func create(context: Context) -> PeopleListViewController {
+    public static func create(context: Context, offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()) -> PeopleListViewController {
         let controller = loadFromStoryboard()
         controller.context = context
+        controller.offlineModelInteractor = offlineModeInteractor
         return controller
     }
 
@@ -167,6 +169,11 @@ public class PeopleListViewController: ScreenViewTrackableViewController, Colore
 
 extension PeopleListViewController: UISearchBarDelegate {
     public func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        if offlineModelInteractor?.isOfflineModeEnabled() == true {
+            UIAlertController.showItemNotAvailableInOfflineAlert {
+                self.searchBarCancelButtonClicked(searchBar)
+            }
+        }
         searchBar.setShowsCancelButton(true, animated: true)
     }
 
@@ -194,7 +201,7 @@ extension PeopleListViewController: UISearchBarDelegate {
     }
 
     func updateUsers() {
-        users = env.subscribe(GetContextUsers(context: context, type: enrollmentType, search: search)) { [weak self] in
+        users = env.subscribe(GetPeopleListUsers(context: context, type: enrollmentType, search: search)) { [weak self] in
             self?.update()
         }
         users.refresh()
@@ -212,6 +219,7 @@ extension PeopleListViewController: UITableViewDataSource, UITableViewDelegate {
             ? NSLocalizedString("Filter", bundle: .core, comment: "")
             : NSLocalizedString("Clear filter", bundle: .core, comment: ""), for: .normal)
         header.filterButton.setTitleColor(Brand.shared.linkColor, for: .normal)
+        header.filterButton.makeUnavailableInOfflineMode()
         accessibilityFocusAfterReload = (enrollmentType != nil ? header.filterButton : nil)
         return header
     }
@@ -231,12 +239,17 @@ extension PeopleListViewController: UITableViewDataSource, UITableViewDelegate {
         }
         let cell = tableView.dequeue(PeopleListCell.self, for: indexPath)
         cell.accessibilityIdentifier = "people-list-cell-row-\(indexPath.row)"
-        cell.update(user: users[indexPath.row], color: color)
+        cell.update(user: users[indexPath.row], color: color, isOffline: offlineModelInteractor?.isOfflineModeEnabled() == true)
         return cell
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let user = users[indexPath.row] else { return }
+        guard offlineModelInteractor?.isOfflineModeEnabled() == false else {
+            return UIAlertController.showItemNotAvailableInOfflineAlert {
+                tableView.deselectRow(at: indexPath, animated: true)
+            }
+        }
         env.router.route(to: "/\(context.pathComponent)/users/\(user.id)", from: self, options: .detail)
     }
 
@@ -256,11 +269,11 @@ class PeopleListCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var rolesLabel: UILabel!
 
-    func update(user: User?, color: UIColor?) {
+    func update(user: PeopleListUser?, color: UIColor?, isOffline: Bool) {
         backgroundColor = .backgroundLightest
         selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         avatarView.name = user?.name ?? ""
-        avatarView.url = user?.avatarURL
+        avatarView.url = isOffline ? nil : user?.avatarURL
         let nameText = user.flatMap { User.displayName($0.name, pronouns: $0.pronouns) }
         nameLabel.setText(nameText, style: .textCellTitle)
         nameLabel.accessibilityIdentifier = "\(self.accessibilityIdentifier ?? "").name-label"

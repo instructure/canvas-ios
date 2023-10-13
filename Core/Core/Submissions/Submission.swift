@@ -109,6 +109,16 @@ final public class Submission: NSManagedObject, Identifiable {
         set { scoreRaw = NSNumber(value: newValue) }
     }
 
+    /** Returns a score between 1.0 and 0.0 by dividing the submission's score by the assignments total score. */
+    public var normalizedScore: Double? {
+        guard let pointsPossible = assignment?.pointsPossible,
+              let score else {
+            return nil
+        }
+
+        return score / pointsPossible
+    }
+
     public var type: SubmissionType? {
         get { return SubmissionType(rawValue: typeRaw ?? "") }
         set { typeRaw = newValue?.rawValue }

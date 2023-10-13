@@ -455,6 +455,9 @@
 "Cancel Submission?" = "Avbryte innlevering?";
 
 /* No comment provided by engineer. */
+"Cancel Sync?" = "Avbryte synkronisering?";
+
+/* No comment provided by engineer. */
 "Canvas Guides" = "Canvas-guider";
 
 /* No comment provided by engineer. */
@@ -864,9 +867,6 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Avvise %@";
-
-/* No comment provided by engineer. */
-"Dismiss notification" = "Avvis varsling";
 
 /* No comment provided by engineer. */
 "Display As" = "Vis som";
@@ -1364,6 +1364,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Det virker som du ikke er registrert i noen emner for %@. En av våre andre applikasjoner kan være mer tilpasset. Trykk en for å gå til App Store.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "Det vil stoppe synkronisering av frakoblet emneinnhold Du kan gjøre det igjen senere.";
+
+/* No comment provided by engineer. */
 "Italic" = "Kursiv";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1497,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Innloggingsfeil";
+
+/* No comment provided by engineer. */
+"Login help." = "Innloggingshjelp.";
 
 /* No comment provided by engineer. */
 "Login ID" = "Innloggings-ID";
@@ -1782,6 +1788,9 @@
 
 /* No comment provided by engineer. */
 "Observers" = "Observatører";
+
+/* No comment provided by engineer. */
+"Offline" = "Frakoblet";
 
 /* No comment provided by engineer. */
 "Offline Content" = "Frakoblet emneinnhold";
@@ -2286,6 +2295,9 @@
 
 /* No comment provided by engineer. */
 "Show One Question at a Time" = "Vis ett spørsmål om gangen";
+
+/* No comment provided by engineer. */
+"Show sync details" = "Vis synkroniseringsdetaljer";
 
 /* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";

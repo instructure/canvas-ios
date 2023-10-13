@@ -71,6 +71,7 @@
 		7DF398C924BE1736003FBA7F /* CalendarEventDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DF398C824BE1735003FBA7F /* CalendarEventDetailsViewController.storyboard */; };
 		7DF398CB24BE1752003FBA7F /* CalendarEventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF398CA24BE1752003FBA7F /* CalendarEventDetailsViewController.swift */; };
 		7DFDB43223A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFDB43123A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift */; };
+		8B7CF40F2A9D156700229CD3 /* GradesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7CF40E2A9D156700229CD3 /* GradesTests.swift */; };
 		8BEBB64E29FA750000364C4C /* DSLoginE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBB64D29FA750000364C4C /* DSLoginE2ETests.swift */; };
 		97043EDF23E8D4D400E52436 /* DashboardViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97043EDE23E8D4D400E52436 /* DashboardViewControllerTests.swift */; };
 		97523A8723C9375A0086D825 /* AssignmentDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97523A8623C9375A0086D825 /* AssignmentDetailsViewControllerTests.swift */; };
@@ -312,6 +313,7 @@
 		7DF398CA24BE1752003FBA7F /* CalendarEventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventDetailsViewController.swift; sourceTree = "<group>"; };
 		7DFDB43123A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentConversationListViewControllerTests.swift; sourceTree = "<group>"; };
 		837B3D69221692A813A08E1E /* Pods-defaults-ParentUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-ParentUnitTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-ParentUnitTests/Pods-defaults-ParentUnitTests.release.xcconfig"; sourceTree = "<group>"; };
+		8B7CF40E2A9D156700229CD3 /* GradesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesTests.swift; sourceTree = "<group>"; };
 		8BEBB64D29FA750000364C4C /* DSLoginE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSLoginE2ETests.swift; sourceTree = "<group>"; };
 		8DD07CB9DEEBA35A0324E7CC /* Pods_needs_pspdfkit_ParentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_needs_pspdfkit_ParentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90AFEB4A273EE752196BC769 /* Pods-Parent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parent.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Parent/Pods-Parent.debug.xcconfig"; sourceTree = "<group>"; };
@@ -669,6 +671,14 @@
 			path = Conversations;
 			sourceTree = "<group>";
 		};
+		8B7CF40D2A9D155700229CD3 /* Grades */ = {
+			isa = PBXGroup;
+			children = (
+				8B7CF40E2A9D156700229CD3 /* GradesTests.swift */,
+			);
+			path = Grades;
+			sourceTree = "<group>";
+		};
 		97043EDD23E8D4BA00E52436 /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -743,6 +753,7 @@
 		E80763D723E08DC80085DAFB /* ParentE2ETests */ = {
 			isa = PBXGroup;
 			children = (
+				8B7CF40D2A9D155700229CD3 /* Grades */,
 				E80763D623E08DA10085DAFB /* Info.plist */,
 				E80763E123E08F420085DAFB /* InboxTests.swift */,
 				E81B573823E1EEC5002A0C38 /* GradeListTests.swift */,
@@ -827,7 +838,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1120;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1500;
 				ORGANIZATIONNAME = "Instructure Inc";
 				TargetAttributes = {
 					3B36A2DE2322C26A00599A1E = {
@@ -1211,6 +1222,7 @@
 				E81B573923E1EEC5002A0C38 /* GradeListTests.swift in Sources */,
 				8BEBB64E29FA750000364C4C /* DSLoginE2ETests.swift in Sources */,
 				E80763E223E08F420085DAFB /* InboxTests.swift in Sources */,
+				8B7CF40F2A9D156700229CD3 /* GradesTests.swift in Sources */,
 				B1497D2424F03A0000B70B35 /* LoginTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

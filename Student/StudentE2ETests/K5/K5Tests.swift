@@ -45,15 +45,13 @@ class K5Tests: K5E2ETestCase {
         let scheduleButton = Helper.schedule.waitUntil(.visible)
         let gradesButton = Helper.grades.waitUntil(.visible)
         let resourcesButton = Helper.resources.waitUntil(.visible)
-        let importantDatesButton = Helper.importantDates.waitUntil(.visible)
         XCTAssertTrue(homeroomButton.waitUntil(.hittable).isHittable)
         XCTAssertTrue(homeroomButton.isSelected)
         XCTAssertTrue(scheduleButton.waitUntil(.hittable).isHittable)
 
-        scheduleButton.actionUntilElementCondition(action: .swipeLeft(.onElement), element: importantDatesButton, condition: .hittable)
+        scheduleButton.actionUntilElementCondition(action: .swipeLeft(.onElement), element: resourcesButton, condition: .hittable)
         XCTAssertTrue(gradesButton.waitUntil(.hittable).isHittable)
         XCTAssertTrue(resourcesButton.waitUntil(.hittable).isHittable)
-        XCTAssertTrue(importantDatesButton.waitUntil(.hittable).isHittable)
     }
 
     func testK5Schedule() {
@@ -80,7 +78,7 @@ class K5Tests: K5E2ETestCase {
         let assignmentItemButton = ScheduleHelper.assignmentItemButton(assignment: todaysAssignment).waitUntil(.hittable)
         XCTAssertTrue(assignmentItemButton.isHittable)
 
-        let quizItemButton = ScheduleHelper.quizItemButton(quiz: tomorrowsQuiz).waitUntil(.visible)
+        let quizItemButton = ScheduleHelper.quizItemButton(quiz: tomorrowsQuiz).waitUntil(.hittable)
         XCTAssertTrue(quizItemButton.isHittable)
     }
 

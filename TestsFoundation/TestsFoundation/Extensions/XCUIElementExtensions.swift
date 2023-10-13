@@ -29,6 +29,7 @@ public extension XCUIElement {
         case value(expected: String)
         case label(expected: String)
         case enabled
+        case disabled
         case selected
         case unselected
         case hittable
@@ -51,6 +52,8 @@ public extension XCUIElement {
         case showKeyboard
         case hideKeyboard
         case pullToRefresh
+        case forceTap
+        case longTap
     }
 
     // MARK: Static vars
@@ -59,6 +62,8 @@ public extension XCUIElement {
 
     // MARK: Private vars
     var isVisible: Bool { exists }
+    var isDisabled: Bool { !isEnabled }
+    var isUnselected: Bool { !isSelected }
     var isVanished: Bool { !(exists && isHittable) }
 
     // MARK: Functions
@@ -75,11 +80,17 @@ public extension XCUIElement {
         return strict ? label == expectedLabel : label.contains(expectedLabel)
     }
 
+    func hasPlaceholderValue(placeholderValue expectedPlaceholderValue: String, strict: Bool = true) -> Bool {
+        let elementPlaceholderValue = placeholderValue ?? ""
+        return strict ? elementPlaceholderValue == expectedPlaceholderValue : elementPlaceholderValue.contains(expectedPlaceholderValue)
+    }
+
     @discardableResult
     func hit() -> XCUIElement {
-        waitUntil(.visible)
+        waitUntil(.visible).waitUntil(.hittable, timeout: 5)
         if !isHittable { actionUntilElementCondition(action: .swipeUp(), condition: .hittable, timeout: 5) }
         tap()
+        tacticalSleep(1)
         return self
     }
 
@@ -112,6 +123,8 @@ public extension XCUIElement {
                 result = hasLabel(label: expected)
             case .enabled:
                 result = exists && isEnabled
+            case .disabled:
+                result = isDisabled
             case .selected:
                 result = exists && isSelected
             case .unselected:
@@ -165,6 +178,8 @@ public extension XCUIElement {
                 result = actualElement.hasLabel(label: expected)
             case .enabled:
                 result = actualElement.exists && actualElement.isEnabled
+            case .disabled:
+                result = actualElement.isDisabled
             case .selected:
                 result = actualElement.exists && actualElement.isSelected
             case .unselected:
@@ -182,30 +197,32 @@ public extension XCUIElement {
             if result { return true }
 
             switch action {
-            case .tap: tap()
+            case .tap: hit()
             case .showKeyboard: CoreUITestCase.currentTestCase?.send(.showKeyboard, ignoreErrors: true)
             case .hideKeyboard: CoreUITestCase.currentTestCase?.send(.hideKeyboard, ignoreErrors: true)
             case .pullToRefresh: app.pullToRefresh()
             case .swipeUp(let target):
                 switch target {
                 case .onApp: app.swipeUp()
-                case .onElement: actualElement.swipeUp()
+                case .onElement: swipeUp()
                 }
             case .swipeDown(let target):
                 switch target {
                 case .onApp: app.swipeDown()
-                case .onElement: actualElement.swipeDown()
+                case .onElement: swipeDown()
                 }
             case .swipeRight(let target):
                 switch target {
                 case .onApp: app.swipeRight()
-                case .onElement: actualElement.swipeRight()
+                case .onElement: swipeRight()
                 }
             case .swipeLeft(let target):
                 switch target {
                 case .onApp: app.swipeLeft()
-                case .onElement: actualElement.swipeLeft()
+                case .onElement: swipeLeft()
                 }
+            case .forceTap: forceTap()
+            case .longTap: longTap()
             }
 
             tacticalSleep(gracePeriod)
@@ -214,13 +231,18 @@ public extension XCUIElement {
     }
 
     @discardableResult
-    func writeText(text: String) -> XCUIElement {
+    func writeText(text: String, hitGo: Bool = false, customApp: XCUIApplication? = nil) -> XCUIElement {
+        let appInUse = customApp ?? app
         hit()
-        let keyboard = app.find(type: .keyboard)
+        let keyboard = appInUse.find(type: .keyboard)
         keyboard.actionUntilElementCondition(action: .showKeyboard, condition: .visible)
         waitUntil(.visible)
         typeText(text)
-        keyboard.actionUntilElementCondition(action: .hideKeyboard, condition: .vanish)
+        if hitGo {
+            keyboard.find(id: "Go", type: .button).hit()
+        } else {
+            keyboard.actionUntilElementCondition(action: .hideKeyboard, condition: .vanish)
+        }
         return self
     }
 
@@ -255,6 +277,16 @@ public extension XCUIElement {
         coordinate(withNormalizedOffset: .zero).withOffset(CGVector(dx: point.x, dy: point.y)).tap()
     }
 
+    func forceTap() {
+        waitUntil(.visible)
+        let coordinatesToTap = CGPoint(x: frame.midX, y: frame.midY)
+        app.tapAt(coordinatesToTap)
+    }
+
+    func longTap() {
+        press(forDuration: 2)
+    }
+
     // MARK: Find functions
     func find(label: String, type: ElementType = .any) -> XCUIElement {
         return descendants(matching: type).matching(label: label).firstMatch
@@ -276,7 +308,7 @@ public extension XCUIElement {
         return descendants(matching: type).matching(value: value).firstMatch
     }
 
-    func find(type: ElementType = .any) -> XCUIElement {
+    func find(type: ElementType) -> XCUIElement {
         return descendants(matching: type).firstMatch
     }
 

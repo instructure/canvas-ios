@@ -31,7 +31,7 @@ public enum CourseSyncProgressAssembly {
 #if DEBUG
 
     static func makePreview(router: Router) -> CourseSyncProgressView {
-        let interactor = CourseSyncProgressInteractorPreview()
+        let interactor = CourseSyncProgressInteractorPreview(state: .downloadStarting)
         let viewModel = CourseSyncProgressViewModel(interactor: interactor, router: router)
         let infoViewModel = CourseSyncProgressInfoViewModel(interactor: interactor)
         return CourseSyncProgressView(viewModel: viewModel, courseSyncProgressInfoViewModel: infoViewModel)

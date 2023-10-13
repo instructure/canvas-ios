@@ -455,6 +455,9 @@
 "Cancel Submission?" = "提出をキャンセルしますか？";
 
 /* No comment provided by engineer. */
+"Cancel Sync?" = "同期をキャンセルしますか？";
+
+/* No comment provided by engineer. */
 "Canvas Guides" = "Canvas ガイド";
 
 /* No comment provided by engineer. */
@@ -864,9 +867,6 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "取り下げる%@";
-
-/* No comment provided by engineer. */
-"Dismiss notification" = "通知を閉じる";
 
 /* No comment provided by engineer. */
 "Display As" = "表示方法";
@@ -1364,6 +1364,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "あなたは %@ としてコースに在籍していないようです。他に適したアプリがある可能性があります。1つをタップして、App Store をご覧ください。";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "オフラインコンテンツの同期が中止されます。後でやり直すことができます。";
+
+/* No comment provided by engineer. */
 "Italic" = "イタリック体";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1497,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "ログインエラー";
+
+/* No comment provided by engineer. */
+"Login help." = "ログインのヘルプ。";
 
 /* No comment provided by engineer. */
 "Login ID" = "ログイン ID";
@@ -1782,6 +1788,9 @@
 
 /* No comment provided by engineer. */
 "Observers" = "オブザーバー";
+
+/* No comment provided by engineer. */
+"Offline" = "オフライン";
 
 /* No comment provided by engineer. */
 "Offline Content" = "オフラインコンテンツ";
@@ -2286,6 +2295,9 @@
 
 /* No comment provided by engineer. */
 "Show One Question at a Time" = "一度に1つの質問を表示する";
+
+/* No comment provided by engineer. */
+"Show sync details" = "同期詳細を表示する";
 
 /* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";

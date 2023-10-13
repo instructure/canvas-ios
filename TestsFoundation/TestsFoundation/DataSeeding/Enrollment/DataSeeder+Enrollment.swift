@@ -41,8 +41,8 @@ extension DataSeeder {
     }
 
     @discardableResult
-    public func enrollParent(_ parent: DSUser, in course: DSCourse, state: EnrollmentState = .active) -> DSEnrollment {
-        self.enrollUser(parent, in: course, type: .ObserverEnrollment, state: state)
+    public func enrollParent(_ parent: DSUser, in course: DSCourse, state: EnrollmentState = .active, student: DSUser? = nil) -> DSEnrollment {
+        self.enrollUser(parent, in: course, type: .ObserverEnrollment, state: state, student: student)
     }
 
     @discardableResult
@@ -51,8 +51,12 @@ extension DataSeeder {
     }
 
     @discardableResult
-    public func enrollUser(_ user: DSUser, in course: DSCourse, type: DSEnrollmentType, state: EnrollmentState = .active) -> DSEnrollment {
-        let requestedEnrollment = EnrollRequest.RequestedEnrollment(enrollment_state: state, user_id: user.id, type: type)
+    public func enrollUser(_ user: DSUser,
+                           in course: DSCourse,
+                           type: DSEnrollmentType,
+                           state: EnrollmentState = .active,
+                           student: DSUser? = nil) -> DSEnrollment {
+        let requestedEnrollment = EnrollRequest.RequestedEnrollment(enrollment_state: state, user_id: user.id, type: type, associated_user_id: student?.id)
         let request = EnrollRequest(courseID: course.id, body: requestedEnrollment)
         return makeRequest(request)
     }

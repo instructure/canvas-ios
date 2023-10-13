@@ -285,12 +285,18 @@ class StudentButton: UIButton {
         self.init(type: .system)
         accessibilityIdentifier = "StudentButton.\(student.id)"
 
-        contentEdgeInsets.top = 16 + 48 + 8
-        contentEdgeInsets.bottom = 16
+        var config = UIButton.Configuration.plain()
+        config.contentInsets = NSDirectionalEdgeInsets(top: 16 + 48 + 8, leading: 0, bottom: 16, trailing: 0)
+        config.titleLineBreakMode = .byTruncatingTail
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var outcoming = incoming
+            outcoming.font = UIFont.scaledNamedFont(.semibold12)
+            return outcoming
+        }
+        configuration = config
+
         setTitle(Core.User.displayName(student.shortName, pronouns: student.pronouns), for: .normal)
         setTitleColor(.textDarkest, for: .normal)
-        titleLabel?.font = UIFont.scaledNamedFont(.semibold12)
-        titleLabel?.lineBreakMode = .byTruncatingTail
         titleLabel?.numberOfLines = 1
 
         avatarView.isUserInteractionEnabled = false
@@ -314,12 +320,19 @@ class StudentButton: UIButton {
 class AddStudentButton: UIButton {
     convenience init() {
         self.init(type: .system)
-        contentEdgeInsets.top = 16 + 48 + 8
-        contentEdgeInsets.bottom = 16
+
+        var config = UIButton.Configuration.plain()
+        config.contentInsets = NSDirectionalEdgeInsets(top: 16 + 48 + 8, leading: 0, bottom: 16, trailing: 0)
+        config.titleLineBreakMode = .byTruncatingTail
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var outcoming = incoming
+            outcoming.font = UIFont.scaledNamedFont(.semibold12)
+            return outcoming
+        }
+        configuration = config
+
         setTitle(NSLocalizedString("Add Student", comment: ""), for: .normal)
         setTitleColor(.textDarkest, for: .normal)
-        titleLabel?.font = UIFont.scaledNamedFont(.semibold12)
-        titleLabel?.lineBreakMode = .byTruncatingTail
         titleLabel?.numberOfLines = 1
 
         let circle = UIView()

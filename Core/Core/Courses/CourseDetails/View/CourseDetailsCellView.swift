@@ -30,7 +30,7 @@ public struct CourseDetailsCellView: View {
     }
 
     public var body: some View {
-        Button {
+        PrimaryButton(isAvailable: $viewModel.isAvailable) {
             viewModel.selected(router: env.router, viewController: controller)
         } label: {
             HStack(spacing: 12) {

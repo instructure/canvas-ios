@@ -24,7 +24,7 @@ import CombineExt
 class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
     required init(
         courseID: String? = nil,
-        entryComposerInteractor: CourseSyncEntryComposerInteractor = CourseSyncEntryComposerInteractorLive(),
+        courseSyncListInteractor: CourseSyncListInteractor = CourseSyncListInteractorLive(),
         sessionDefaults: SessionDefaults
     ) {
         mockData = CurrentValueRelay<[CourseSyncEntry]>([
@@ -48,15 +48,24 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
     }
 
     private let mockData: CurrentValueRelay<[CourseSyncEntry]>
+    private var shouldNeverPublish = false
 
     func mockEmptyState() {
         mockData.accept([])
     }
 
+    func mockLoadingState() {
+        shouldNeverPublish = true
+    }
+
     func getCourseSyncEntries() -> AnyPublisher<[CourseSyncEntry], Error> {
-        mockData
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+        if shouldNeverPublish {
+            return Empty().eraseToAnyPublisher()
+        } else {
+            return mockData
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
     }
 
     func observeSelectedCount() -> AnyPublisher<Int, Never> {

@@ -455,6 +455,9 @@
 "Cancel Submission?" = "Peruutetaanko lähetys?";
 
 /* No comment provided by engineer. */
+"Cancel Sync?" = "Peruutetaanko synkronisointi?";
+
+/* No comment provided by engineer. */
 "Canvas Guides" = "Canvas-oppaat";
 
 /* No comment provided by engineer. */
@@ -864,9 +867,6 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Ohita %@";
-
-/* No comment provided by engineer. */
-"Dismiss notification" = "Ohita ilmoitus";
 
 /* No comment provided by engineer. */
 "Display As" = "Näytä muodossa";
@@ -1364,6 +1364,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Näyttää siltä, että et ole rekisteröitynyt millekään kurssille nimellä %@. Yksi sovelluksistamme saattaa sopia paremmin. Käy App Storessa napauttamalla.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "Se keskeyttää verkon ulkopuolisen sisällön synkronoinnin. Voit tehdä sen uudelleen myöhemmin.";
+
+/* No comment provided by engineer. */
 "Italic" = "Kursiivi";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1497,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Kirjautumisvirhe";
+
+/* No comment provided by engineer. */
+"Login help." = "Sisäänkirjautumisohje.";
 
 /* No comment provided by engineer. */
 "Login ID" = "Käyttäjätunnus";
@@ -1782,6 +1788,9 @@
 
 /* No comment provided by engineer. */
 "Observers" = "Tarkkailijat";
+
+/* No comment provided by engineer. */
+"Offline" = "Ei verkkoyhteyttä";
 
 /* No comment provided by engineer. */
 "Offline Content" = "Verkon ulkopuolinen sisältö";
@@ -2286,6 +2295,9 @@
 
 /* No comment provided by engineer. */
 "Show One Question at a Time" = "Näytä yksi kysymys kerrallaan";
+
+/* No comment provided by engineer. */
+"Show sync details" = "Näytä synkronoinnin tiedot";
 
 /* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";

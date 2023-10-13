@@ -28,6 +28,9 @@ class CoreActivityViewControllerTests: CoreTestCase {
         let testee = CoreActivityViewController(activityItems: [""], applicationActivities: nil)
         window.rootViewController = host
         host.present(testee, animated: false)
+        waitUntil(shouldFail: true) {
+            testee.view.superview != nil
+        }
         XCTAssertEqual(host.presentedViewController, testee)
 
         // MARK: - WHEN
@@ -46,6 +49,9 @@ class CoreActivityViewControllerTests: CoreTestCase {
         let presentedOnTestee = UIViewController()
         window.rootViewController = host
         host.present(testee, animated: false)
+        waitUntil(shouldFail: true) {
+            testee.view.superview != nil
+        }
         testee.present(presentedOnTestee, animated: false)
         XCTAssertEqual(host.presentedViewController, testee)
         waitUntil(shouldFail: true) {

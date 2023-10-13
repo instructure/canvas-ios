@@ -23,11 +23,14 @@ class LogEventListPresenter {
     weak var view: LogEventListViewProtocol?
     private(set) var currentFilter: LoggableType?
 
-    lazy var events: Store<LocalUseCase<LogEvent>> = env.subscribe(scope: LogEvent.scope(forType: nil)) { [weak self] in
+    lazy var events: Store<LocalUseCase<LogEvent>> = Store(env: env,
+                                                           database: Logger.shared.database,
+                                                           useCase: LocalUseCase(scope: LogEvent.scope(forType: nil))) { [weak self] in
         self?.view?.reloadData()
     }
 
     init(env: AppEnvironment = .shared, view: LogEventListViewProtocol) {
+
         self.env = env
         self.view = view
     }
@@ -39,7 +42,9 @@ class LogEventListPresenter {
 
     func applyFilter(_ type: LoggableType?) {
         currentFilter = type
-        events = env.subscribe(scope: LogEvent.scope(forType: type)) { [weak self] in
+        events = Store(env: env,
+                       database: Logger.shared.database,
+                       useCase: LocalUseCase(scope: LogEvent.scope(forType: type))) { [weak self] in
             self?.view?.reloadData()
         }
         events.refresh()

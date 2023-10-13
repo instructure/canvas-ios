@@ -455,6 +455,9 @@
 "Cancel Submission?" = "ยกเลิกการจัดส่งหรือไม่";
 
 /* No comment provided by engineer. */
+"Cancel Sync?" = "ยกเลิกการซิงค์หรือไม่";
+
+/* No comment provided by engineer. */
 "Canvas Guides" = "คู่มือ Canvas";
 
 /* No comment provided by engineer. */
@@ -714,6 +717,9 @@
 
 /* No comment provided by engineer. */
 "d_items" = "d_items";
+
+/* No comment provided by engineer. */
+"d_items_syncing" = "d_items_syncing";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -1058,6 +1064,9 @@
 "File Details" = "รายละเอียดไฟล์";
 
 /* No comment provided by engineer. */
+"File download failed." = "ดาวน์โหลดไฟล์ล้มเหลว";
+
+/* No comment provided by engineer. */
 "File No Longer Exists" = "ไฟล์ไม่มีอยู่อีกต่อไป";
 
 /* No comment provided by engineer. */
@@ -1355,6 +1364,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "ดูเหมือนคุณจะไม่ได้ลงทะเบียนในบทเรียนใด ๆ ในฐาน %@ แอพอื่น ๆ บางส่วนของเราอาจเหมาะสมมากกว่า กดเลือกหนึ่งรายการเพื่อไปยัง App Store";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "การซิงค์ข้อมูลออฟไลน์จะหยุดลง คุณสามารถดำเนินการได้อีกครั้งในภายหลัง";
+
+/* No comment provided by engineer. */
 "Italic" = "ตัวเอียง";
 
 /* No comment provided by engineer. */
@@ -1485,6 +1497,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "ข้อผิดพลาดในการล็อกอิน";
+
+/* No comment provided by engineer. */
+"Login help." = "ความช่วยเหลือในการล็อกอิน";
 
 /* No comment provided by engineer. */
 "Login ID" = "ID ล็อกอิน";
@@ -1773,6 +1788,9 @@
 
 /* No comment provided by engineer. */
 "Observers" = "ผู้สังเกตการณ์";
+
+/* No comment provided by engineer. */
+"Offline" = "ออฟไลน์";
 
 /* No comment provided by engineer. */
 "Offline Content" = "เนื้อหาออฟไลน์";
@@ -2279,6 +2297,9 @@
 "Show One Question at a Time" = "แสดงทีละคำถาม";
 
 /* No comment provided by engineer. */
+"Show sync details" = "แสดงรายละเอียดการซิงค์";
+
+/* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
@@ -2454,6 +2475,9 @@
 
 /* No comment provided by engineer. */
 "Synchronization" = "การซิงค์ข้อมูล";
+
+/* No comment provided by engineer. */
+"Syncing Offline Content" = "กำลังซิงค์ข้อมูลออฟไลน์";
 
 /* No comment provided by engineer. */
 "System settings" = "ค่าปรับตั้งระบบ";

@@ -422,12 +422,9 @@ class RouterTests: CoreTestCase {
 
         router.route(to: URLComponents(string: "/courses/1234/assignments")!, from: mockView, options: .modal())
 
-        XCTAssertEqual(analyticsHandler.lastEventName, "screen_view")
-        XCTAssertEqual(analyticsHandler.lastEventParameters as? [String: String], [
-            "application": "teacher",
-            "screen_name": "/courses/:courseId/assignments",
-            "screen_class": "UIViewController",
-        ])
+        XCTAssertEqual(analyticsHandler.lastScreenName, "/courses/:courseId/assignments")
+        XCTAssertEqual(analyticsHandler.lastScreenClass, "UIViewController")
+        XCTAssertEqual(analyticsHandler.lastScreenViewApp, "teacher")
     }
 
     func testAnalyticsReportOnShow() {
@@ -439,13 +436,10 @@ class RouterTests: CoreTestCase {
 
         router.show(mockView, from: UIViewController(), analyticsRoute: "/courses/:courseId/assignments")
 
-        XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
-        XCTAssertEqual(analyticsHandler.lastEventName, "screen_view")
-        XCTAssertEqual(analyticsHandler.lastEventParameters as? [String: String], [
-            "application": "parent",
-            "screen_name": "/courses/:courseId/assignments",
-            "screen_class": "MockViewController",
-        ])
+        XCTAssertEqual(analyticsHandler.totalScreenViewCount, 1)
+        XCTAssertEqual(analyticsHandler.lastScreenName, "/courses/:courseId/assignments")
+        XCTAssertEqual(analyticsHandler.lastScreenClass, "MockViewController")
+        XCTAssertEqual(analyticsHandler.lastScreenViewApp, "parent")
     }
 
     func testRouteTemplate() {
@@ -514,12 +508,9 @@ class RouterTests: CoreTestCase {
 
         testee.route(to: externalURL, from: mockViewController)
 
-        XCTAssertEqual(analyticsHandler.loggedEventCount, 1)
-        XCTAssertEqual(analyticsHandler.lastEventName, "screen_view")
-        XCTAssertEqual(analyticsHandler.lastEventParameters as? [String: String], [
-            "application": "student",
-            "screen_name": "/external_url",
-            "screen_class": "unknown",
-        ])
+        XCTAssertEqual(analyticsHandler.totalScreenViewCount, 1)
+        XCTAssertEqual(analyticsHandler.lastScreenName, "/external_url")
+        XCTAssertEqual(analyticsHandler.lastScreenClass, "unknown")
+        XCTAssertEqual(analyticsHandler.lastScreenViewApp, "student")
     }
 }

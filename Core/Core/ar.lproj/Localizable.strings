@@ -455,6 +455,9 @@
 "Cancel Submission?" = "هل تريد إلغاء الإرسال؟";
 
 /* No comment provided by engineer. */
+"Cancel Sync?" = "هل تريد إلغاء المزامنة؟";
+
+/* No comment provided by engineer. */
 "Canvas Guides" = "Canvas Guides";
 
 /* No comment provided by engineer. */
@@ -864,9 +867,6 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "تجاهل %@";
-
-/* No comment provided by engineer. */
-"Dismiss notification" = "تجاهل الإعلام";
 
 /* No comment provided by engineer. */
 "Display As" = "عرض كـ";
@@ -1364,6 +1364,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "يبدو أنك غير مسجل في أي مساقات بصفة %@. قد يكون أحد تطبيقاتنا الأخرى ملائمة لك بشكل أكبر. اضغط على أحد التطبيقات لزيارة App Store.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "سيؤدي إلى إيقاف مزامنة المحتوى دون اتصال. يمكنك القيام بهذا مرة أخرى لاحقًا.";
+
+/* No comment provided by engineer. */
 "Italic" = "مائل";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1497,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "خطأ في تسجيل الدخول";
+
+/* No comment provided by engineer. */
+"Login help." = "تعليمات تسجيل الدخول.";
 
 /* No comment provided by engineer. */
 "Login ID" = "معرف تسجيل الدخول";
@@ -1782,6 +1788,9 @@
 
 /* No comment provided by engineer. */
 "Observers" = "المراقبون";
+
+/* No comment provided by engineer. */
+"Offline" = "غير متصل";
 
 /* No comment provided by engineer. */
 "Offline Content" = "المحتوى دون اتصال";
@@ -2286,6 +2295,9 @@
 
 /* No comment provided by engineer. */
 "Show One Question at a Time" = "عرض سؤال واحد في كل مرة";
+
+/* No comment provided by engineer. */
+"Show sync details" = "إظهار تفاصيل المزامنة";
 
 /* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";

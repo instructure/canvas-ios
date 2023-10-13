@@ -82,7 +82,11 @@ public class DashboardInvitationsViewModel: ObservableObject {
             guard let course = courses.first(where: { $0.id == enrollmentItem.courseId}) else { return }
 
             let displayName = String.dashboardInvitationName(courseName: course.name, sectionName: course.sections?.first { $0.id == enrollmentItem.sectionId }?.name)
-            let invitation = DashboardInvitationViewModel(name: displayName, courseId: course.id.value, enrollmentId: enrollmentItem.enrollmentId.value, onDismiss: onDismiss)
+            let invitation = DashboardInvitationViewModel(name: displayName,
+                                                          courseId: course.id.value,
+                                                          enrollmentId: enrollmentItem.enrollmentId.value,
+                                                          offlineModeInteractor: OfflineModeAssembly.make(),
+                                                          onDismiss: onDismiss)
             partialResult.append(invitation)
         }
         return invitations

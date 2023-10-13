@@ -455,6 +455,9 @@
 "Cancel Submission?" = "Batalkan Serahan?";
 
 /* No comment provided by engineer. */
+"Cancel Sync?" = "Batal Penyegerakan?";
+
+/* No comment provided by engineer. */
 "Canvas Guides" = "Panduan Canvas";
 
 /* No comment provided by engineer. */
@@ -864,9 +867,6 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Tolak %@";
-
-/* No comment provided by engineer. */
-"Dismiss notification" = "Tolak pemberitahuan";
 
 /* No comment provided by engineer. */
 "Display As" = "Paparkan Sebagai";
@@ -1364,6 +1364,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Nampaknya anda belum mendaftar dalam mana-mana sebagai %@. Salah satu apl kami yang lain mungkin lebih sesuai. Ketik satu untuk melawati App Store.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "Tindakan ini akan memberhentikan penyegerakan kandungan luar talian. Anda boleh melakukan penyegerakan lagi kemudian.";
+
+/* No comment provided by engineer. */
 "Italic" = "Huruf condong";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1497,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Ralat Log Masuk";
+
+/* No comment provided by engineer. */
+"Login help." = "Bantuan log masuk.";
 
 /* No comment provided by engineer. */
 "Login ID" = "ID Log Masuk";
@@ -1782,6 +1788,9 @@
 
 /* No comment provided by engineer. */
 "Observers" = "Pemerhati";
+
+/* No comment provided by engineer. */
+"Offline" = "Luar talian";
 
 /* No comment provided by engineer. */
 "Offline Content" = "Kandungan Luar Talian";
@@ -2286,6 +2295,9 @@
 
 /* No comment provided by engineer. */
 "Show One Question at a Time" = "Tunjuk Satu Soalan pada Satu Masa";
+
+/* No comment provided by engineer. */
+"Show sync details" = "Tunjukkan butiran segerakan";
 
 /* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";

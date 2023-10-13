@@ -455,6 +455,9 @@
 "Cancel Submission?" = "Annuler l’envoi?";
 
 /* No comment provided by engineer. */
+"Cancel Sync?" = "Annuler la synchronisation?";
+
+/* No comment provided by engineer. */
 "Canvas Guides" = "Guides de Canvas";
 
 /* No comment provided by engineer. */
@@ -864,9 +867,6 @@
 
 /* No comment provided by engineer. */
 "Dismiss %@" = "Ignorer %@";
-
-/* No comment provided by engineer. */
-"Dismiss notification" = "Ignorer la notification";
 
 /* No comment provided by engineer. */
 "Display As" = "Afficher comme";
@@ -1364,6 +1364,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Il semblerait que vous ne soyez inscrit à aucun cours sous %@. L'une de nos autres applis pourrait mieux convenir.Appuyez sur l'une d'entre elles pour vous rendre sur l'App Store.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "Cela arrêtera la synchronisation du contenu hors ligne. Vous pourrez le refaire plus tard.";
+
+/* No comment provided by engineer. */
 "Italic" = "Italique";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1497,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Erreur de connexion";
+
+/* No comment provided by engineer. */
+"Login help." = "Aide à la connexion.";
 
 /* No comment provided by engineer. */
 "Login ID" = "Identifiant de connexion";
@@ -1782,6 +1788,9 @@
 
 /* No comment provided by engineer. */
 "Observers" = "Observateur";
+
+/* No comment provided by engineer. */
+"Offline" = "Hors ligne";
 
 /* No comment provided by engineer. */
 "Offline Content" = "Contenu hors ligne";
@@ -2286,6 +2295,9 @@
 
 /* No comment provided by engineer. */
 "Show One Question at a Time" = "Montrer une question à la fois";
+
+/* No comment provided by engineer. */
+"Show sync details" = "Afficher les détails en cours de synchronisation";
 
 /* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";

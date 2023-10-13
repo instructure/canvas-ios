@@ -19,6 +19,7 @@
 public class AnnouncementsHelper: BaseHelper {
     public static var addNewAnnouncement: XCUIElement { app.find(label: "Create Announcement") }
     public static var emptyAnnouncements: XCUIElement { app.find(label: "No Announcements") }
+    public static var createAnnouncementButton: XCUIElement { app.find(label: "Create Announcement", type: .button) }
     public static func cell(index: Int) -> XCUIElement {
         return app.find(id: "announcements.list.announcement.row-\(index)")
     }
@@ -36,6 +37,18 @@ public class AnnouncementsHelper: BaseHelper {
         public static func navBar(course: DSCourse) -> XCUIElement {
             app.find(id: "Announcement Details, \(course.name)")
         }
+    }
+
+    public struct Editor {
+        public static var navBar: XCUIElement { app.find(id: "New Announcement") }
+        public static var attachment: XCUIElement { app.find(id: "DiscussionEditor.attachmentButton", type: .button) }
+        public static var done: XCUIElement { app.find(id: "DiscussionEditor.doneButton") }
+        public static var title: XCUIElement { app.find(id: "DiscussionEditor.titleField") }
+        public static var description: XCUIElement { app.find(label: "Description", type: .textView) }
+        public static var sections: XCUIElement { app.find(id: "DiscussionEditor.sectionsButton") }
+        public static var delayed: XCUIElement { app.find(id: "DiscussionEditor.delayedPostAtToggle").find(type: .switch) }
+        public static var locked: XCUIElement { app.find(id: "DiscussionEditor.lockedToggle").find(type: .switch) }
+        public static var allowRating: XCUIElement { app.find(id: "DiscussionEditor.allowRatingToggle").find(type: .switch) }
     }
 
     public static func notificationTitle(announcement: DSAccountNotification) -> XCUIElement {
