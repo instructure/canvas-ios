@@ -67,7 +67,7 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
                 error: nil
             )
         )
-        XCTAssertEqual(testee.state, .progress(0.1, "2 courses are syncing."))
+        XCTAssertEqual(testee.state, .progress(0.1, "1 course is syncing."))
 
         mockInteractor.mockDownloadProgress(
             CourseSyncDownloadProgress(
@@ -77,7 +77,7 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
                 error: nil
             )
         )
-        XCTAssertEqual(testee.state, .progress(0.5, "2 courses are syncing."))
+        XCTAssertEqual(testee.state, .progress(0.5, "1 course is syncing."))
 
         mockInteractor.mockDownloadProgress(
             CourseSyncDownloadProgress(
@@ -87,7 +87,7 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
                 error: nil
             )
         )
-        XCTAssertEqual(testee.state, .progress(0.75, "2 courses are syncing."))
+        XCTAssertEqual(testee.state, .progress(0.75, "1 course is syncing."))
 
         mockInteractor.mockDownloadProgress(
             CourseSyncDownloadProgress(
@@ -97,7 +97,7 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
                 error: nil
             )
         )
-        XCTAssertEqual(testee.state, .progress(1, "2 courses are syncing."))
+        XCTAssertEqual(testee.state, .progress(1, "1 course is syncing."))
     }
 
     func testErrorState() {
