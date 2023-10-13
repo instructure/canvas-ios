@@ -55,10 +55,10 @@ public struct CourseListView: View, ScreenViewTrackable {
                                     placeholder: NSLocalizedString("Search", comment: ""),
                                     onCancel: { withAnimation { scrollView.scrollTo(0, anchor: .bottom) } }
                                 )
-                                Divider().id(0) // target to scroll passed search
                                 list(height, sections: viewModel.sections)
+                                    .id(0)
                             }
-                            .onAppear { scrollView.scrollTo(0, anchor: .bottom) }
+                            .onAppear { scrollView.scrollTo(0, anchor: .top) }
                         }
                     case .empty:
                         EmptyPanda(.Teacher,
@@ -111,7 +111,7 @@ public struct CourseListView: View, ScreenViewTrackable {
 
         var body: some View {
             if !courses.isEmpty {
-                Section(header: ListSectionHeader { header }) {
+                Section(header: ListSectionHeader(isLarge: true) { header }) {
                     ForEach(courses, id: \.courseId) { course in
                         if course.courseId != courses.first?.courseId { Divider() }
                         CourseListCell(course: course)

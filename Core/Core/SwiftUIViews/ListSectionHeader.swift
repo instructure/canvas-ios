@@ -20,20 +20,24 @@ import SwiftUI
 
 public struct ListSectionHeader<Content: View>: View {
     public let content: Content
+    private let isLarge: Bool
 
-    public init(@ViewBuilder content: () -> Content) {
+    public init(isLarge: Bool = false, @ViewBuilder content: () -> Content) {
         self.content = content()
+        self.isLarge = isLarge
     }
 
     public var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Divider()
-            HStack(spacing: 0) { content }
-                .font(.semibold14).foregroundColor(.textDark)
-                .padding(.horizontal, 16).padding(.vertical, 4)
+            content
+                .font(.semibold14)
+                .foregroundColor(.textDark)
+                .padding(16)
+                .padding(.vertical, isLarge ? 0 : -12)
             Divider()
         }
-            .background(Color.backgroundGrouped)
+        .background(Color.backgroundGrouped)
     }
 }
 

@@ -31,20 +31,22 @@ public enum CourseSyncSelectorAssembly {
             router: env.router
         )
         let diskSpaceViewModel = CourseSyncDiskSpaceInfoViewModel(interactor: diskSpaceInteractor, app: env.app ?? .student)
-        let offlineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
         let view = CourseSyncSelectorView(viewModel: viewModel,
-                                          diskSpaceViewModel: diskSpaceViewModel,
-                                          offlineModeViewModel: offlineModeViewModel)
+                                          diskSpaceViewModel: diskSpaceViewModel)
         return CoreHostingController(view)
     }
 
 #if DEBUG
 
-    static func makePreview(env: AppEnvironment, isEmpty: Bool) -> CourseSyncSelectorView {
+    static func makePreview(env: AppEnvironment, isEmpty: Bool, isLoading: Bool) -> CourseSyncSelectorView {
         let selectorInteractor = CourseSyncSelectorInteractorPreview(sessionDefaults: .fallback)
 
         if isEmpty {
             selectorInteractor.mockEmptyState()
+        }
+
+        if isLoading {
+            selectorInteractor.mockLoadingState()
         }
 
         let syncInteractor = CourseSyncInteractorPreview()
@@ -55,10 +57,8 @@ public enum CourseSyncSelectorAssembly {
             router: env.router
         )
         let diskSpaceViewModel = CourseSyncDiskSpaceInfoViewModel(interactor: diskSpaceInteractor, app: env.app ?? .student)
-        let offlineModeViewModel = OfflineModeViewModel(interactor: OfflineModeInteractorMock())
         return CourseSyncSelectorView(viewModel: viewModel,
-                                      diskSpaceViewModel: diskSpaceViewModel,
-                                      offlineModeViewModel: offlineModeViewModel)
+                                      diskSpaceViewModel: diskSpaceViewModel)
     }
 
 #endif

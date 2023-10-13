@@ -24,6 +24,7 @@ public protocol CourseListInteractor {
     var courseList: CurrentValueSubject<CourseListSections, Never> { get }
 
     // MARK: - Inputs
+    func loadAsync()
     func refresh() -> Future<Void, Never>
     func setFilter(_ filter: String) -> Future<Void, Never>
 }

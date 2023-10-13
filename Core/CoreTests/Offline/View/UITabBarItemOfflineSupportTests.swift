@@ -64,4 +64,8 @@ private class OfflineModeInteractorMock: OfflineModeInteractor {
     func observeNetworkStatus() -> AnyPublisher<NetworkAvailabilityStatus, Never> {
         Just(NetworkAvailabilityStatus.connected(.wifi)).eraseToAnyPublisher()
     }
+
+    func isNetworkOffline() -> Bool {
+        mockedIsInOfflineMode.value
+    }
 }

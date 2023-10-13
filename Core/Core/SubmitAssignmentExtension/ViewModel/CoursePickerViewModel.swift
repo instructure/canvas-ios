@@ -54,6 +54,7 @@ public class CoursePickerViewModel: ObservableObject {
             } else {
                 let errorMessage = error?.localizedDescription ?? NSLocalizedString("Something went wrong", comment: "")
                 Analytics.shared.logEvent("error_loading_courses", parameters: ["error": errorMessage])
+                Analytics.shared.logError(name: "Course list loading failed", reason: error?.localizedDescription)
                 newState = .error(errorMessage)
             }
 

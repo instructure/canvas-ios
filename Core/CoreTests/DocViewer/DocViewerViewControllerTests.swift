@@ -67,6 +67,8 @@ class DocViewerViewControllerTests: CoreTestCase {
         }
 
         func isOfflineModeEnabled() -> Bool { false }
+
+        func isNetworkOffline() -> Bool { false }
     }
 
     class MockOfflineModeInteractorEnabled: OfflineModeInteractor {
@@ -87,6 +89,8 @@ class DocViewerViewControllerTests: CoreTestCase {
         }
 
         func isOfflineModeEnabled() -> Bool { true }
+
+        func isNetworkOffline() -> Bool { true }
     }
 
     lazy var session: MockSession = {

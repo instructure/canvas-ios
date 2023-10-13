@@ -17,26 +17,42 @@
 //
 
 public class HelpHelper: BaseHelper {
+    public static var doneButton: XCUIElement { app.find(label: "Done", type: .button) }
+
     public static var searchTheCanvasGuides: XCUIElement {
-        return app.find(id: "helpItems").findAll(type: .button)[0]
+        return app.find(id: "helpItems").find(labelContaining: "Search the Canvas Guides", type: .button)
     }
 
     public static var askYourInstructor: XCUIElement {
-        return app.find(id: "helpItems").findAll(type: .button, minimumCount: 2)[1]
+        return app.find(id: "helpItems").find(labelContaining: "Ask Your Instructor", type: .button)
     }
 
     public static var reportAProblem: XCUIElement {
-        return app.find(id: "helpItems").findAll(type: .button, minimumCount: 3)[2]
+        return app.find(id: "helpItems").find(labelContaining: "Report a Problem", type: .button)
     }
 
     public static var submitAFeatureIdea: XCUIElement {
-        return app.find(id: "helpItems").findAll(type: .button, minimumCount: 4)[3]
+        return app.find(id: "helpItems").find(labelContaining: "Submit a Feature Idea", type: .button)
     }
 
     public static var covid19: XCUIElement {
-        return app.find(id: "helpItems").findAll(type: .button, minimumCount: 5)[4]
+        return app.find(id: "helpItems").find(labelContaining: "COVID-19 Canvas Resources", type: .button)
     }
 
+    // Teacher only
+    public static var conferenceGuides: XCUIElement {
+        return app.find(id: "helpItems").find(labelContaining: "Conference Guides", type: .button)
+    }
+
+    public static var askTheCommunity: XCUIElement {
+        return app.find(id: "helpItems").find(labelContaining: "Ask the Community", type: .button)
+    }
+
+    public static var trainingServices: XCUIElement {
+        return app.find(id: "helpItems").find(labelContaining: "Training Services Portal", type: .button)
+    }
+
+    // Functions
     public static func navigateToHelpPage() {
         DashboardHelper.profileButton.hit()
         ProfileHelper.helpButton.hit()
@@ -47,8 +63,9 @@ public class HelpHelper: BaseHelper {
         app.activate()
     }
 
-    public static func returnToHelpPage() {
+    public static func returnToHelpPage(teacher: Bool = false) {
         closeSafariAndActivateApp()
+        if teacher { doneButton.hit() }
         navigateToHelpPage()
     }
 }

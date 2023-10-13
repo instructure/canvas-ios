@@ -42,6 +42,10 @@ public class OfflineModeInteractorMock: OfflineModeInteractor {
         mockIsInOfflineMode.value
     }
 
+    public func isNetworkOffline() -> Bool {
+        mockIsInOfflineMode.value
+    }
+
     public func observeIsFeatureFlagEnabled() -> AnyPublisher<Bool, Never> {
         mockIsFeatureFlagEnabled.eraseToAnyPublisher()
     }

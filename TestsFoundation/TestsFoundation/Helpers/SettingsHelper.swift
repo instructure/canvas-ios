@@ -28,12 +28,13 @@ public enum SettingsMenuItem: String {
     case canvasOnGitHub = "Canvas on GitHub"
 }
 
-public enum LandingPageMenuItem: Int {
-    case dashboard = 0
-    case calendar = 1
-    case toDo = 2
-    case notifications = 3
-    case inbox = 4
+public enum LandingPageMenuItem: String {
+    case dashboard = "Dashboard"
+    case calendar = "Calendar"
+    case toDo = "To Do"
+    case notifications = "Notifications"
+    case inbox = "Inbox"
+    case courses = "Courses"
 }
 
 public enum AppearanceMenuItem: Int {
@@ -51,6 +52,17 @@ public class SettingsHelper: BaseHelper {
         return app.find(id: "settings.tableView").find(label: item.rawValue, type: .staticText)
     }
 
+    public static func valueOfMenuItem(item: SettingsMenuItem) -> XCUIElement? {
+        let cells = app.find(id: "settings.tableView").findAll(type: .cell)
+        for cell in cells {
+            let staticTexts = cell.findAll(type: .staticText)
+            for staticText in staticTexts where staticText.label == item.rawValue {
+                return staticTexts[1]
+            }
+        }
+        return nil
+    }
+
     public static func navigateToSettings() {
         DashboardHelper.profileButton.hit()
         ProfileHelper.settingsButton.hit()
@@ -64,15 +76,11 @@ public class SettingsHelper: BaseHelper {
         public static var QRCodeImage: XCUIElement { app.find(id: "QRCodeImage") }
 
         public static func landingPageMenuItem(item: LandingPageMenuItem) -> XCUIElement {
-            return app.find(id: "ItemPickerItem.0-\(item.rawValue)")
+            return app.find(type: .table).find(label: item.rawValue, type: .staticText)
         }
 
         public static func appearanceMenuItem(item: AppearanceMenuItem) -> XCUIElement {
             return app.find(id: "ItemPickerItem.0-\(item.rawValue)")
-        }
-
-        public static func labelOfMenuItem(menuItem: XCUIElement) -> XCUIElement {
-            return menuItem.find(type: .staticText)
         }
 
         public static var backButton: XCUIElement { app.find(label: "Settings", type: .button) }
@@ -87,5 +95,21 @@ public class SettingsHelper: BaseHelper {
         public static var loginIdLabel: XCUIElement { app.find(id: "Login ID")}
         public static var emailLabel: XCUIElement { app.find(id: "Email")}
         public static var versionLabel: XCUIElement { app.find(id: "Version")}
+    }
+
+    public struct OfflineSync {
+        public static var autoContentSyncSwitch: XCUIElement { app.find(label: "Auto Content Sync", type: .switch).find(type: .switch) }
+        public static var syncFrequencyButton: XCUIElement { app.find(labelContaining: "Sync Frequency", type: .button) }
+        public static var wifiOnlySwitch: XCUIElement { app.find(label: "Sync Content Over Wi-Fi Only", type: .switch).find(type: .switch) }
+        public static var backButton: XCUIElement { app.find(label: "Settings", type: .button) }
+
+        public static var turnOffWifiOnlySyncStaticText: XCUIElement { app.find(label: "Turn Off Wi-Fi Only Sync?", type: .staticText) }
+        public static var turnOffButton: XCUIElement { app.find(label: "Turn Off", type: .button) }
+
+        public struct SyncFrequency {
+            public static var asTheOsAllows: XCUIElement { app.find(labelContaining: "as the OS allows", type: .staticText) }
+            public static var daily: XCUIElement { app.find(label: "Daily", type: .staticText) }
+            public static var weekly: XCUIElement { app.find(label: "Weekly", type: .staticText) }
+        }
     }
 }

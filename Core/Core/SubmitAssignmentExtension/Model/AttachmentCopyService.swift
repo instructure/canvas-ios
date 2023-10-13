@@ -73,7 +73,7 @@ public class AttachmentCopyService {
         }
         attachment.loadItem(forTypeIdentifier: uti.rawValue, options: nil) { data, error in
             guard let coding = data, error == nil else {
-                Analytics.shared.logError("error_getting_encoded_attachment_data", description: error?.localizedDescription)
+                Analytics.shared.logError(name: "Failed to get encoded attachment data", reason: error?.localizedDescription)
                 callback(.failure(error ?? NSError.internalError()))
                 return
             }
@@ -104,7 +104,7 @@ public class AttachmentCopyService {
                 }
                 callback(.success(newURL))
             } catch {
-                Analytics.shared.logError("error_getting_file_data", description: error.localizedDescription)
+                Analytics.shared.logError(name: "Failed to get file data", reason: error.localizedDescription)
                 callback(.failure(error))
             }
         }

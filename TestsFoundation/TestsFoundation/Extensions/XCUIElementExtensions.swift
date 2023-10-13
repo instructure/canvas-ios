@@ -29,6 +29,7 @@ public extension XCUIElement {
         case value(expected: String)
         case label(expected: String)
         case enabled
+        case disabled
         case selected
         case unselected
         case hittable
@@ -61,6 +62,8 @@ public extension XCUIElement {
 
     // MARK: Private vars
     var isVisible: Bool { exists }
+    var isDisabled: Bool { !isEnabled }
+    var isUnselected: Bool { !isSelected }
     var isVanished: Bool { !(exists && isHittable) }
 
     // MARK: Functions
@@ -120,6 +123,8 @@ public extension XCUIElement {
                 result = hasLabel(label: expected)
             case .enabled:
                 result = exists && isEnabled
+            case .disabled:
+                result = isDisabled
             case .selected:
                 result = exists && isSelected
             case .unselected:
@@ -173,6 +178,8 @@ public extension XCUIElement {
                 result = actualElement.hasLabel(label: expected)
             case .enabled:
                 result = actualElement.exists && actualElement.isEnabled
+            case .disabled:
+                result = actualElement.isDisabled
             case .selected:
                 result = actualElement.exists && actualElement.isSelected
             case .unselected:

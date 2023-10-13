@@ -71,4 +71,16 @@ open class E2ETestCase: CoreUITestCase {
             systemSettingsButton.actionUntilElementCondition(action: .tap, element: canvasThemePromptTitle, condition: .vanish)
         }
     }
+
+    @discardableResult
+    open func setNetworkStateOffline() -> Bool {
+        CommandLine.setConnection(state: .off)
+        return CommandLine.isOffline
+    }
+
+    @discardableResult
+    open func setNetworkStateOnline() -> Bool {
+        CommandLine.setConnection(state: .on)
+        return CommandLine.isOnline
+    }
 }
