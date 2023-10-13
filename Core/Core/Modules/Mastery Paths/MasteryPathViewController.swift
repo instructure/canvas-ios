@@ -184,9 +184,16 @@ class MasteryPathAssignmentSetSelectCell: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.pin(inside: self, leading: 16, trailing: 16, top: 16, bottom: 16)
         button.layer.cornerRadius = 4
-        button.contentEdgeInsets.top = 14
-        button.contentEdgeInsets.bottom = 14
-        button.titleLabel?.font = .scaledNamedFont(.semibold16)
+
+        var config = UIButton.Configuration.plain()
+        config.contentInsets = NSDirectionalEdgeInsets(top: 14, leading: 0, bottom: 14, trailing: 0)
+        config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+            var outcoming = incoming
+            outcoming.font = UIFont.scaledNamedFont(.semibold16)
+            return outcoming
+        }
+        button.configuration = config
+
         button.addTarget(self, action: #selector(onSelect(_:)), for: .primaryActionTriggered)
         button.makeUnavailableInOfflineMode(offlineModeInteractor)
         update(selected: false)
@@ -202,6 +209,7 @@ class MasteryPathAssignmentSetSelectCell: UIView {
         button.layer.borderWidth = selected ? 1 : 0
         button.backgroundColor = selected ? .clear : Brand.shared.buttonPrimaryBackground
         button.setTitleColor(selected ? .textDark : Brand.shared.buttonPrimaryText, for: .normal)
+        button.setTitleColor(.textDark, for: .highlighted)
         let title = selected ? NSLocalizedString("Selected!", bundle: .core, comment: "") : NSLocalizedString("Select", bundle: .core, comment: "")
         button.setTitle(title, for: .normal)
     }

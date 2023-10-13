@@ -355,6 +355,8 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
 
         // THEN
         XCTAssertTrue(notificationFired)
+
+        subscription.cancel()
     }
 
     private func createAndSaveCourseSyncSelectorCourse() {

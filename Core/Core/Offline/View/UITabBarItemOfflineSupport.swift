@@ -34,12 +34,9 @@ public extension UITabBarItem {
             .map { !$0 }
             .assign(to: \.isEnabled, on: self, ownership: .weak)
 
-        objc_setAssociatedObject(
-            self,
-            &AssociatedObjectKeys.OfflineStateObservation,
-            observation,
-            .OBJC_ASSOCIATION_RETAIN
-        )
+        withUnsafePointer(to: &AssociatedObjectKeys.OfflineStateObservation) {
+            objc_setAssociatedObject(self, $0, observation, .OBJC_ASSOCIATION_RETAIN)
+        }
     }
 
     // MARK: - Private Methods

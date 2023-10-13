@@ -194,12 +194,12 @@ class DashboardTests: E2ETestCase {
         XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Check visibility of Dashboard Options button
-        var dashboardOptionsButton = Helper.optionsButton.waitUntil(.visible)
+        let dashboardOptionsButton = Helper.optionsButton.waitUntil(.visible)
         XCTAssertTrue(dashboardOptionsButton.isVisible)
 
         // MARK: Check visibility of Dashboard Settings button
         dashboardOptionsButton.hit()
-        var dashboardSettingsButton = Helper.dashboardSettingsButton.waitUntil(.visible)
+        let dashboardSettingsButton = Helper.dashboardSettingsButton.waitUntil(.visible)
         XCTAssertTrue(dashboardSettingsButton.isVisible)
 
         // MARK: Tap Edit Dashboard button then check visibility and value of Show Grade toggle
