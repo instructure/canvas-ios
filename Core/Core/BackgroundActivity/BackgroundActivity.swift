@@ -19,14 +19,11 @@
 import Combine
 
 public class BackgroundActivity {
-    public enum ActivityError: Error, Equatable {
-        case failedToStartBackgroundActivity
-    }
-
     private let processManager: ProcessManager
-    private let abortHandler: () -> Void
+    private let activityName: String
     // This is to make the background block wait until we finish
     private var semaphore: DispatchSemaphore?
+    private var abortHandler: (() -> Void)?
     private var isStarted: Bool { semaphore != nil }
 
     /**
@@ -34,16 +31,29 @@ public class BackgroundActivity {
         - abortHandler: The block to be executed if the background activity is terminated by the OS.
                         All ongoing work must be stopped synchronously as fast as possible.
      */
-    public init(processManager: ProcessManager, abortHandler: @escaping () -> Void) {
+    public init(processManager: ProcessManager,
+                activityName: String) {
         self.processManager = processManager
-        self.abortHandler = abortHandler
+        self.activityName = activityName
     }
 
-    public func start() -> Future<Void, ActivityError> {
-        if isStarted {
-            return Future<Void, ActivityError> { $0(.success(())) }
-        } else {
-            return Future<Void, ActivityError> { self.requestBackgroundActivity($0) }
+    deinit {
+        // If the instance was released and stop wasn't called, we call it to prevent
+        // the leaking background activity from crashing the app.
+        if semaphore != nil {
+            stopAndWait()
+        }
+    }
+
+    public func start(abortHandler: @escaping () -> Void) -> Future<Void, Never> {
+        Logger.shared.log()
+        self.abortHandler = abortHandler
+        return Future<Void, Never> { [self] promise in
+            if isStarted {
+                promise(.success(()))
+            } else {
+                requestBackgroundActivity(promise)
+            }
         }
     }
 
@@ -58,19 +68,24 @@ public class BackgroundActivity {
      Stops the background activity synchronously.
      */
     public func stopAndWait() {
+        Logger.shared.log()
         semaphore?.signal()
         semaphore = nil
     }
 
-    private func requestBackgroundActivity(_ promise: @escaping Future<Void, ActivityError>.Promise) {
-        processManager.performExpiringActivity(reason: "File Submission") { [self] expired in
+    private func requestBackgroundActivity(_ promise: @escaping Future<Void, Never>.Promise) {
+        processManager.performExpiringActivity(reason: activityName) { [self] expired in
             if expired {
                 if isStarted {
-                    abortHandler()
+                    Logger.shared.error("performExpiringActivity was aborted by the OS")
+                    Analytics.shared.logError(name: "performExpiringActivity was aborted by the OS")
+                    abortHandler?()
                     semaphore?.signal()
                     semaphore = nil
                 } else {
-                    promise(.failure(.failedToStartBackgroundActivity))
+                    Logger.shared.error("performExpiringActivity failed to start")
+                    Analytics.shared.logError(name: "performExpiringActivity failed to start")
+                    promise(.success(()))
                 }
             } else {
                 semaphore = DispatchSemaphore(value: 0)

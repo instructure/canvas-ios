@@ -82,6 +82,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
                                                                          progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[0].selectionState = .selected
@@ -133,6 +134,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
                                                                progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[2].selectionState = .selected
@@ -172,6 +174,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
                                                                progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].selectionState = .partiallySelected
@@ -212,6 +215,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
                                                                progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[2].selectionState = .partiallySelected
@@ -251,6 +255,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
                                                                progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[0].selectionState = .selected
@@ -281,6 +286,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
                                                                progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[1].selectionState = .selected
@@ -311,6 +317,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
                                                                progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[2].selectionState = .selected
@@ -345,6 +352,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
                                                                progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[3].selectionState = .selected
@@ -365,6 +373,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
                                                                progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[4].selectionState = .selected
@@ -389,6 +398,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
                                                                progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[5].selectionState = .selected
@@ -413,6 +423,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
                                                                progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[6].selectionState = .selected
@@ -437,6 +448,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
                                                                progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[7].selectionState = .selected
@@ -455,6 +467,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
                                                                progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[0].selectionState = .selected
@@ -505,6 +518,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
                                                                progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[0].selectionState = .selected
@@ -538,6 +552,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
                                                                progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[0].selectionState = .selected
@@ -572,6 +587,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(container: database),
             successNotification: courseSyncSuccessNotificationMock,
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[0].selectionState = .selected
@@ -590,14 +606,14 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
 
     func testDownloadCourseListData() {
         let listInteractorMock = CourseListInteractorMock()
-        let courseSyncSuccessNotificationMock = CourseSyncSuccessNotificationMock(notificationManager: notificationManager,
-                                                                                  progressInteractor: CourseSyncProgressObserverInteractorMock())
         let testee = CourseSyncInteractorLive(
             contentInteractors: [],
             filesInteractor: filesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(container: database),
-            successNotification: courseSyncSuccessNotificationMock,
+            successNotification: CourseSyncSuccessNotificationMock(notificationManager: notificationManager,
+                                                                   progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: listInteractorMock,
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
 
@@ -608,6 +624,39 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
 
         // THEN
         XCTAssertTrue(listInteractorMock.loadAsyncCalled)
+        subscription.cancel()
+    }
+
+    func testHandlesBackgroundSyncInterruption() {
+        let backgroundActivityMock = BackgroundActivityMock()
+        let testee = CourseSyncInteractorLive(
+            contentInteractors: [
+                assignmentsInteractor,
+            ],
+            filesInteractor: filesInteractor,
+            progressWriterInteractor: CourseSyncProgressWriterInteractorLive(container: database),
+            successNotification: CourseSyncSuccessNotificationMock(notificationManager: notificationManager,
+                                                                   progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: backgroundActivityMock,
+            scheduler: .immediate
+        )
+        entries[0].tabs[0].selectionState = .selected
+
+        let subscription = testee
+            .downloadContent(for: entries)
+            .sink()
+
+        // WHEN
+        // assignmentsInteractor didn't complete sync
+        backgroundActivityMock.abortHandler?()
+
+        // THEN
+        let downloadProgresses: [CDCourseSyncDownloadProgress] = databaseClient.fetch()
+        XCTAssertEqual(downloadProgresses.count, 1)
+        guard let downloadProgress = downloadProgresses.first else { return XCTFail() }
+        XCTAssertTrue(downloadProgress.isFinished)
+        XCTAssertEqual(downloadProgress.error, "Offline sync was interrupted by the operating system")
         subscription.cancel()
     }
 }
