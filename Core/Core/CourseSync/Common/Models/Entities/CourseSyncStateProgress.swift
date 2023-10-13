@@ -77,3 +77,15 @@ extension CourseSyncStateProgress {
         )
     }
 }
+
+extension Array where Element == CourseSyncStateProgress {
+    /// Courses and file tabs are not syncable items so we should'n count them.
+    func filterToCourses() -> Self {
+        filter { entry in
+            switch entry.selection {
+            case .course: return true
+            default: return false
+            }
+        }
+    }
+}
