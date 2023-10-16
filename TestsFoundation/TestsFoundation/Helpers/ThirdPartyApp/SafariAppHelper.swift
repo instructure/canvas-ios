@@ -49,7 +49,7 @@ public class SafariAppHelper: BaseHelper {
         public static var saveButton: XCUIElement { SafariAppHelper.safariApp.find(label: "Save", type: .button) }
 
         public static func titleLabel(title: String) -> XCUIElement {
-            return SafariAppHelper.safariApp.find(label: title, type: .staticText)
+            return SafariAppHelper.safariApp.find(label: title)
         }
     }
 }
