@@ -27,7 +27,7 @@ packages:
     exactVersion: 3.5.0
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
-    exactVersion: 12.3.0
+    exactVersion: 13.0.1
 projectReferences:
   TestsFoundation:
     path: ../TestsFoundation/TestsFoundation.xcodeproj
