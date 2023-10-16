@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Foundation
 import UserNotifications
 
@@ -51,7 +52,13 @@ public class NotificationManager {
         notificationCenter.requestAuthorization(options: options, completionHandler: completionHandler)
     }
 
-    public func notify(identifier: String, title: String, body: String, route: String?) {
+    public func notify(
+        identifier: String,
+        title: String,
+        body: String,
+        route: String?,
+        completion: ((Error?) -> Void)? = nil
+    ) {
         let content = UNMutableNotificationContent()
         content.title = title
         content.body = body
@@ -67,6 +74,21 @@ public class NotificationManager {
         notificationCenter.add(request) { [weak self] error in
             if let error = error {
                 self?.logger.error(error.localizedDescription)
+                Analytics.shared.logError(name: "Failed to schedule local notification",
+                                          reason: error.localizedDescription)
+            }
+            completion?(error)
+        }
+    }
+
+    public func notify(identifier: String, title: String, body: String, route: String?) -> Future<Void, Error> {
+        Future<Void, Error> { [self] promise in
+            self.notify(identifier: identifier, title: title, body: body, route: route) { error in
+                if let error {
+                    promise(.failure(error))
+                } else {
+                    promise(.success(()))
+                }
             }
         }
     }

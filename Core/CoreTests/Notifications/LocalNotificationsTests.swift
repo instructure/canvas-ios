@@ -22,7 +22,7 @@ import XCTest
 class LocalNotificationsTests: CoreTestCase {
 
     func testOfflineSyncCompletedSuccessfullyNotificationSingular() {
-        notificationManager.sendOfflineSyncCompletedSuccessfullyNotification(syncedItemsCount: 1)
+        XCTAssertFinish(notificationManager.sendOfflineSyncCompletedSuccessfullyNotification(syncedItemsCount: 1))
 
         guard let firstNotification = notificationCenter.requests.first else {
             return XCTFail()
@@ -33,7 +33,7 @@ class LocalNotificationsTests: CoreTestCase {
     }
 
     func testOfflineSyncCompletedSuccessfullyNotificationPlural() {
-        notificationManager.sendOfflineSyncCompletedSuccessfullyNotification(syncedItemsCount: 2)
+        XCTAssertFinish(notificationManager.sendOfflineSyncCompletedSuccessfullyNotification(syncedItemsCount: 2))
 
         guard let firstNotification = notificationCenter.requests.first else {
             return XCTFail()
@@ -41,5 +41,16 @@ class LocalNotificationsTests: CoreTestCase {
 
         XCTAssertEqual(firstNotification.content.title, "Offline Content Sync Success")
         XCTAssertEqual(firstNotification.content.body, "2 courses have been synced.")
+    }
+
+    func testOfflineSyncFailed() {
+        XCTAssertFinish(notificationManager.sendOfflineSyncFailedNotification())
+
+        guard let firstNotification = notificationCenter.requests.first else {
+            return XCTFail()
+        }
+
+        XCTAssertEqual(firstNotification.content.title, "Offline Content Sync Failed")
+        XCTAssertEqual(firstNotification.content.body, "One or more items failed to sync.")
     }
 }
