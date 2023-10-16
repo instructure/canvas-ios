@@ -104,13 +104,17 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         Bugfender.activateLogger(bugfenderKey)
     }
     func setupIntercom() {
-        Intercom.setApiKey("{ApiKey}", forAppId: "{AppId}")
+        if let apiKey = Secret.intercomApiKey.string,
+            let appId = Secret.intercomAppId.string,
+            !apiKey.isEmpty && !appId.isEmpty {
+            Intercom.setApiKey(apiKey, forAppId: appId)
+        }
     }
     func setIntercomUser(session: LoginSession) {
         let attributes = ICMUserAttributes()
         if let email = session.userEmail,
             !email.isEmpty {
-            attributes.email = email
+            attributes.email = email // ToDo: Found a way to get email
         }
         if !session.userName.isEmpty {
             attributes.name = session.userName
@@ -118,6 +122,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         if !session.userID.isEmpty {
             attributes.userId = session.userID
         }
+        print("Intercom try to login with: \(attributes)")
         Intercom.loginUser(with: attributes) { result in
             switch result {
             case .success:

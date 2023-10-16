@@ -81,7 +81,7 @@ struct SideMenuMainSection: View {
                 Button {
                     Intercom.presentMessageComposer("Message")
                 } label: {
-                    SideMenuItem(id: "intercom", image: Image(systemName: "questionmark.bubble"), title: Text("Help and Support", bundle: .core))
+                    SideMenuItem(id: "intercom", image: Image(systemName: "questionmark.bubble"), title: Text("Live Chat", bundle: .core))
                 }
                 .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
 
