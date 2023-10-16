@@ -128,7 +128,7 @@ class CourseSyncSelectorViewModel: ObservableObject {
         interactor
             .observeSelectedCount()
             .map { itemCount in
-                let format = NSLocalizedString("There are %d items selected for offline availability. The selected content will be downloaded to the device.", bundle: .core, comment: "")
+                let format = NSLocalizedString("There are %d courses selected for offline availability. The selected content will be downloaded to the device.", bundle: .core, comment: "")
                 return String.localizedStringWithFormat(format, itemCount)
             }
             .assign(to: \.message, on: confirmAlert, ownership: .weak)

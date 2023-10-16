@@ -34,6 +34,7 @@ class CourseSyncProgressViewModel: ObservableObject {
     @Published public private(set) var cells: [Cell] = []
     @Published public private(set) var showRetryButton = false
     @Published public var isShowingCancelDialog = false
+    @Published public private(set) var isSyncFinished = false
 
     public let labels = (
         noCourses: (
@@ -115,7 +116,8 @@ class CourseSyncProgressViewModel: ObservableObject {
 
     private func handleRetryButtonTap(_ interactor: CourseSyncProgressInteractor, router: Router) {
         retryButtonDidTap
-            .sink { _ in
+            .sink { [weak self] _ in
+                self?.isSyncFinished = false
                 interactor.retrySync()
             }
             .store(in: &subscriptions)
@@ -134,6 +136,8 @@ class CourseSyncProgressViewModel: ObservableObject {
 
                 if downloadProgress.isFinished, downloadProgress.error != nil {
                     state = .dataWithError
+                } else if downloadProgress.isFinished, downloadProgress.error == nil {
+                    isSyncFinished = true
                 }
             }
         }, receiveCompletion: { [unowned self] result in

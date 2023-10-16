@@ -77,7 +77,7 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
 
     func testUpdateConfirmationDialogMessage() {
         mockSelectorInteractor.selectedCountSubject.send(3)
-        XCTAssertEqual(testee.confirmAlert.message, "There are 3 items selected for offline availability. The selected content will be downloaded to the device.")
+        XCTAssertEqual(testee.confirmAlert.message, "There are 3 courses selected for offline availability. The selected content will be downloaded to the device.")
     }
 
     func testLeftNavBarTap() {

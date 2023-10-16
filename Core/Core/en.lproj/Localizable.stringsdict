@@ -13,9 +13,9 @@
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>item has</string>
+			<string>course has</string>
 			<key>other</key>
-			<string>items have</string>
+			<string>courses have</string>
 		</dict>
 	</dict>
 	<key>submission_failed_for_files</key>
@@ -98,20 +98,20 @@
 			<string>Hide %d missing items</string>
 		</dict>
 	</dict>
-	<key>d_items_syncing</key>
+	<key>d_courses_syncing</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>%#@items_syncing@</string>
-		<key>items_syncing</key>
+		<string>%#@courses_syncing@</string>
+		<key>courses_syncing</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>
 			<string>NSStringPluralRuleType</string>
 			<key>NSStringFormatValueTypeKey</key>
 			<string>d</string>
 			<key>one</key>
-			<string>%d item is syncing.</string>
+			<string>%d course is syncing.</string>
 			<key>other</key>
-			<string>%d items are syncing.</string>
+			<string>%d courses are syncing.</string>
 		</dict>
 	</dict>
 	<key>d_items</key>
