@@ -593,6 +593,9 @@
 "Content" = "ข้อมูล";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "ไม่สามารถแสดงเนื้อหาได้";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "ข้อผิดพลาดในการเชื่อมโยงเนื้อหา";
 
 /* No comment provided by engineer. */
@@ -930,9 +933,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "แก้ไขค่าปรับตั้งบทเรียน";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "แก้ไขแผงข้อมูล";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "แก้ไขการพูดคุย";
@@ -1844,6 +1844,9 @@
 "Open course details" = "เปิดรายละเอียดบทเรียน";
 
 /* No comment provided by engineer. */
+"Open In Browser" = "เปิดในเบราเซอร์";
+
+/* No comment provided by engineer. */
 "Open item details" = "เปิดรายละเอียดรายการ";
 
 /* No comment provided by engineer. */
@@ -2334,6 +2337,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "มีบางอย่างผิดปกติ";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "มีบางอย่างผิดพลาดที่นอกเหนือการควบคุมของเรา";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "เรียงจากไลค์";
@@ -2922,6 +2928,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "คุณไม่ได้รับอนุญาตให้ดำเนินการในส่วนนี้";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "คุณสามารถลองเปิดเพจในเบราเซอร์";
 
 /* No comment provided by engineer. */
 "You have been invited" = "คุณได้รับเชิญ";
