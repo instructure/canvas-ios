@@ -24,6 +24,7 @@ public protocol CourseSyncProgressWriterInteractor {
     func saveDownloadProgress(entries: [CourseSyncEntry])
     func saveDownloadResult(isFinished: Bool, error: String?)
     func cleanUpPreviousDownloadProgress()
+    func markInProgressDownloadsAsFailed()
     func setInitialLoadingState(entries: [CourseSyncEntry])
     func saveStateProgress(id: String, selection: CourseEntrySelection, state: CourseSyncEntry.State)
 }
@@ -61,6 +62,17 @@ public final class CourseSyncProgressWriterInteractorLive: CourseSyncProgressWri
         context.performAndWait {
             context.delete(context.fetch(scope: .all) as [CDCourseSyncStateProgress])
             context.delete(context.fetch(scope: .all) as [CDCourseSyncDownloadProgress])
+            try? context.save()
+        }
+    }
+
+    public func markInProgressDownloadsAsFailed() {
+        let inProgressDownloadScope: Scope = .where(#keyPath(CDCourseSyncStateProgress.stateRaw),
+                                                    equals: 0,
+                                                    sortDescriptors: [])
+        context.performAndWait {
+            let progresses = context.fetch(scope: inProgressDownloadScope) as [CDCourseSyncStateProgress]
+            progresses.forEach { $0.state = .error }
             try? context.save()
         }
     }
