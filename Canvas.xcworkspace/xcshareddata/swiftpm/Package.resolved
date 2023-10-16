@@ -127,6 +127,15 @@
       }
     },
     {
+      "identity" : "intercom-ios-sp",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/intercom/intercom-ios-sp",
+      "state" : {
+        "revision" : "b88721e565c6b32ff12d7ffc99e09da30ebe6380",
+        "version" : "16.1.1"
+      }
+    },
+    {
       "identity" : "leveldb",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/leveldb.git",
