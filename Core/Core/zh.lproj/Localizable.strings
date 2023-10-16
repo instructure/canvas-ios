@@ -593,6 +593,9 @@
 "Content" = "内容";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "无法显示内容";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "内容链接错误";
 
 /* No comment provided by engineer. */
@@ -930,9 +933,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "编辑课程设置";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "编辑控制面板";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "编辑讨论";
@@ -1844,6 +1844,9 @@
 "Open course details" = "打开课程详情";
 
 /* No comment provided by engineer. */
+"Open In Browser" = "在浏览器里打开";
+
+/* No comment provided by engineer. */
 "Open item details" = "打开项目详情";
 
 /* No comment provided by engineer. */
@@ -2334,6 +2337,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "遇到错误";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "出现我们无法控制的问题。";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "按赞数排序";
@@ -2922,6 +2928,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "您未获得执行此操作的授权";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "您可以尝试在浏览器中打开页面。";
 
 /* No comment provided by engineer. */
 "You have been invited" = "您已获得邀请";

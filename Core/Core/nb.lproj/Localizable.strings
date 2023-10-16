@@ -593,6 +593,9 @@
 "Content" = "Innhold";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Innhold kan ikke vises";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Feil på innholdslenke";
 
 /* No comment provided by engineer. */
@@ -930,9 +933,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Rediger emne-innstillinger";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Rediger dashbord";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Rediger diskusjon";
@@ -1844,6 +1844,9 @@
 "Open course details" = "Åpne emnedetaljer";
 
 /* No comment provided by engineer. */
+"Open In Browser" = "Åpne i nettleser";
+
+/* No comment provided by engineer. */
 "Open item details" = "Åpne elementdetaljer";
 
 /* No comment provided by engineer. */
@@ -2334,6 +2337,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "Noe gikk galt";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Noe gikk galt utenfor vår kontroll.";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Sorter etter likes";
@@ -2922,6 +2928,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "Du har ikke tillatelse til å utføre denne handlingen";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Du kan prøve å åpne siden i en nettleser.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Du har blitt invitert";

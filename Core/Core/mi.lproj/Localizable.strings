@@ -593,6 +593,9 @@
 "Content" = "Ihirangi";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Kaore e taea te Whakaatu Ihirangi";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Ihirangi Hono Hapa";
 
 /* No comment provided by engineer. */
@@ -930,9 +933,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Whakatika akoranga tautuhinga";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Whakatika Papatohu";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Whakatika kōrerorero";
@@ -1844,6 +1844,9 @@
 "Open course details" = "Huaki taipitopito akoranga";
 
 /* No comment provided by engineer. */
+"Open In Browser" = "Tuwhera I roto i te Pūtirotiro";
+
+/* No comment provided by engineer. */
 "Open item details" = "Huaki ngā taipitopito tūemi";
 
 /* No comment provided by engineer. */
@@ -2334,6 +2337,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "I raruraru tētahi mea";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "I he tetahi mea i tua atu i to maatau mana.";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Kōmaka mā te momo";
@@ -2922,6 +2928,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "Kaore koe e whakamanahia ki te whakamahi i tēnei mahi";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Ka taea e koe te ngana ki te whakatuwhera i te whaarangi i roto i te tirotiro.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Kua tonoa koe";

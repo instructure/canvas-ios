@@ -593,6 +593,9 @@
 "Content" = "Indhold";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Indhold kan ikke vises";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Indholdslinkfejl";
 
 /* No comment provided by engineer. */
@@ -930,9 +933,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Rediger fagindstillinger";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Rediger oversigt";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Rediger diskussion";
@@ -1844,6 +1844,9 @@
 "Open course details" = "Åbn fagoplysninger";
 
 /* No comment provided by engineer. */
+"Open In Browser" = "Åbn i browser";
+
+/* No comment provided by engineer. */
 "Open item details" = "Åbn elementoplysninger";
 
 /* No comment provided by engineer. */
@@ -2334,6 +2337,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "Noget gik galt";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Noget uden for vores kontrol gik galt.";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Sorter efter 'synes godt om'";
@@ -2922,6 +2928,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "Du er ikke autoriseret til at foretage denne handling";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Du kan prøve at åbne siden i en browser.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Du er blevet inviteret";
