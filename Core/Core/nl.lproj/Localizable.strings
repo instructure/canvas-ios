@@ -593,6 +593,9 @@
 "Content" = "Inhoud";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "De inhoud kan niet worden weergegeven";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Fout met inhoudslink";
 
 /* No comment provided by engineer. */
@@ -930,9 +933,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Cursusinstellingen bewerken";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Dashboard bewerken";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Discussie bewerken";
@@ -1844,6 +1844,9 @@
 "Open course details" = "Cursusdetails openen";
 
 /* No comment provided by engineer. */
+"Open In Browser" = "Openen in browser";
+
+/* No comment provided by engineer. */
 "Open item details" = "Itemdetails openen";
 
 /* No comment provided by engineer. */
@@ -2334,6 +2337,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "Er is iets misgegaan";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Er is iets misgegaan waar we geen invloed op hebben.";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Op likes sorteren";
@@ -2922,6 +2928,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "Je hebt geen toestemming om deze actie uit te voeren";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Je kunt proberen de pagina te openen in een browser.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Je bent uitgenodigd";

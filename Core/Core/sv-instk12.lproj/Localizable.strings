@@ -593,6 +593,9 @@
 "Content" = "Innehåll";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Det går inte att visa innehållet";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Fel på innehållslänk";
 
 /* No comment provided by engineer. */
@@ -930,9 +933,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Redigera kursinställningar";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Redigera översikt";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Redigera diskussion";
@@ -1844,6 +1844,9 @@
 "Open course details" = "Öppna kursinformation";
 
 /* No comment provided by engineer. */
+"Open In Browser" = "Öppna i webbläsare";
+
+/* No comment provided by engineer. */
 "Open item details" = "Öppna objektinformation";
 
 /* No comment provided by engineer. */
@@ -2334,6 +2337,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "Något gick fel";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Ett fel uppstod utanför vår kontroll.";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Sortera efter antal ”gilla”";
@@ -2922,6 +2928,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "Du har inte behörighet att utföra den här åtgärden";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Du kan försöka öppna sidan i ett webbläsarfönster.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Du har blivit inbjuden";

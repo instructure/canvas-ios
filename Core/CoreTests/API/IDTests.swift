@@ -20,9 +20,6 @@ import XCTest
 @testable import Core
 
 class IDTests: XCTestCase {
-    override func setUp() {
-        super.setUp()
-    }
 
     func testStringLiteral() {
         let two: ID = "2"

@@ -19,6 +19,7 @@
 import XCTest
 @testable import Core
 import WebKit
+import TestsFoundation
 
 class PageDetailsViewControllerTests: CoreTestCase {
     lazy var controller = PageDetailsViewController.create(context: context, pageURL: pageURL, app: .student)
@@ -45,8 +46,10 @@ class PageDetailsViewControllerTests: CoreTestCase {
 
     func testLayout() {
         let nav = UINavigationController(rootViewController: controller)
-        controller.view.layoutIfNeeded()
-        controller.viewWillAppear(false)
+        window.rootViewController = nav
+        waitUntil(shouldFail: true) {
+            controller.view.superview != nil
+        }
 
         XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#008800")
         XCTAssertEqual(controller.titleSubtitleView.title, "Test Page")

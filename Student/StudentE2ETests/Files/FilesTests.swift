@@ -38,7 +38,7 @@ class FilesTests: E2ETestCase {
             addressLabel = SafariAppHelper.URL.waitUntil(.visible)
         }
         let clearTextButton = SafariAppHelper.clearTextButton.waitUntil(.visible, timeout: 5)
-        if clearTextButton.isVisible { clearTextButton.hit() }
+        if clearTextButton.isVisible, clearTextButton.isHittable { clearTextButton.hit() }
         addressLabel.waitUntil(.visible)
         XCTAssertTrue(addressLabel.isVisible)
 

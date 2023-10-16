@@ -593,6 +593,9 @@
 "Content" = "Content";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Content Cannot Be Displayed";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Content Link Error";
 
 /* No comment provided by engineer. */
@@ -930,9 +933,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Edit course settings";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Edit Dashboard";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Edit Discussion";
@@ -1844,6 +1844,9 @@
 "Open course details" = "Open course details";
 
 /* No comment provided by engineer. */
+"Open In Browser" = "Open In Browser";
+
+/* No comment provided by engineer. */
 "Open item details" = "Open item details";
 
 /* No comment provided by engineer. */
@@ -2334,6 +2337,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "Something Went Wrong";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Something went wrong beyond our control.";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Sort by likes";
@@ -2922,6 +2928,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "You are not authorised to perform this action";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "You can try to open the page in a browser.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "You have been invited";

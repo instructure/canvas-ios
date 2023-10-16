@@ -78,7 +78,7 @@ class TodoTests: CoreTestCase {
 
     func testNearFutureDueDateString() {
         let todo = Todo.make(from: .make(assignment: .make(due_at: Date().addDays(1)), course_id: "1", group_id: nil))
-        XCTAssertTrue(todo.dueText.hasPrefix("Due Tomorrow at "))
+        XCTAssertTrue(todo.dueText.hasPrefix("Due Tomorrow, "))
     }
 
     func testDistantDueDateString() {

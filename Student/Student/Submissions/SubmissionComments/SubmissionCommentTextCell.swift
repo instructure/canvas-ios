@@ -51,15 +51,23 @@ class SubmissionCommentTextCell: UITableViewCell {
         comment.attachments?.sorted(by: File.idCompare).enumerated().forEach { index, attachment in
             let color = Brand.shared.linkColor
             let button = UIButton(type: .system)
+            var config = UIButton.Configuration.plain()
+            config.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 8)
+            config.imagePadding = 4
+            config.titleLineBreakMode = .byTruncatingTail
+            config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+                var outcoming = incoming
+                outcoming.font = UIFont.scaledNamedFont(.medium14)
+                return outcoming
+            }
+            button.configuration = config
+
             button.setImage(UIImage.paperclipLine.withRenderingMode(.alwaysTemplate), for: .normal)
             button.tintColor = color
             button.imageView?.contentMode = .scaleAspectFit
             button.setTitle(attachment.displayName, for: .normal)
-            button.titleLabel?.font = UIFont.scaledNamedFont(.medium14)
-            button.titleLabel?.lineBreakMode = .byTruncatingTail
             button.setTitleColor(color, for: .normal)
-            button.contentEdgeInsets = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 8)
-            button.imageEdgeInsets = UIEdgeInsets(top: 4, left: -8, bottom: 4, right: 0)
+
             button.layer.cornerRadius = 4
             button.layer.borderColor = UIColor.borderMedium.ensureContrast(against: .white).cgColor
             button.layer.borderWidth = 1

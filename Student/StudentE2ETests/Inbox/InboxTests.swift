@@ -311,7 +311,7 @@ class InboxTests: E2ETestCase {
 
         // On iPhone: There is a cancel button to hit
         // On iPad: No cancel button, need to tap somewhere outside the box
-        var cancelOption = OptionsHelper.cancelButton.waitUntil(.visible, timeout: 5)
+        let cancelOption = OptionsHelper.cancelButton.waitUntil(.visible, timeout: 5)
         if cancelOption.isVisible {
             cancelOption.hit()
         } else {
