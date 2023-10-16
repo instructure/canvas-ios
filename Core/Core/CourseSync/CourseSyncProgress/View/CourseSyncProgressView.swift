@@ -125,11 +125,7 @@ struct CourseSyncProgressView: View {
     }
 
     private var retryButton: some View {
-        Button {
-            if offlineModeViewModel.isOffline {
-                return UIAlertController.showItemNotAvailableInOfflineAlert()
-            }
-
+        PrimaryButton(isUnavailable: $offlineModeViewModel.isOffline) {
             viewModel.retryButtonDidTap.accept(())
         } label: {
             Text("Retry", bundle: .core)
