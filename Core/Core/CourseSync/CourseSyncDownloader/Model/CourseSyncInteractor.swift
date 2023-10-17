@@ -48,7 +48,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         attributes: .concurrent
     )
     private let fileErrorMessage = NSLocalizedString("File download failed.", comment: "")
-    private let notification: CourseSyncNotificationInteractor
+    private let notificationInteractor: CourseSyncNotificationInteractor
     internal private(set) var downloadSubscription: AnyCancellable?
     private var subscriptions = Set<AnyCancellable>()
     private let courseListInteractor: CourseListInteractor
@@ -64,7 +64,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         contentInteractors: [CourseSyncContentInteractor],
         filesInteractor: CourseSyncFilesInteractor,
         progressWriterInteractor: CourseSyncProgressWriterInteractor,
-        notification: CourseSyncNotificationInteractor,
+        notificationInteractor: CourseSyncNotificationInteractor,
         courseListInteractor: CourseListInteractor,
         backgroundActivity: BackgroundActivity,
         scheduler: AnySchedulerOf<DispatchQueue>
@@ -73,7 +73,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         self.filesInteractor = filesInteractor
         self.progressWriterInteractor = progressWriterInteractor
         self.courseListInteractor = courseListInteractor
-        self.notification = notification
+        self.notificationInteractor = notificationInteractor
         self.backgroundActivity = backgroundActivity
         self.scheduler = scheduler
 
@@ -106,14 +106,14 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             .buffer(size: .max, prefetch: .byRequest, whenFull: .dropOldest)
             .flatMap(maxPublishers: .max(3)) { unownedSelf.downloadCourseDetails($0) }
             .collect()
-            .flatMap { [notification] _ in
+            .flatMap { [notificationInteractor] _ in
                 let hasError = unownedSelf.safeCourseSyncEntriesValue.hasError
                 unownedSelf.progressWriterInteractor.saveDownloadResult(
                     isFinished: true,
                     error: hasError ? unownedSelf.fileErrorMessage : nil
                 )
 
-                return notification.send()
+                return notificationInteractor.send()
             }
             .sink(
                 receiveCompletion: { _ in
@@ -391,7 +391,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         progressWriterInteractor.markInProgressDownloadsAsFailed()
         progressWriterInteractor.saveDownloadResult(isFinished: true,
                                                     error: NSLocalizedString("Offline sync was interrupted by the operating system", comment: ""))
-        notification.sendFailedNotification()
+        notificationInteractor.sendFailedNotification()
     }
 }
 
