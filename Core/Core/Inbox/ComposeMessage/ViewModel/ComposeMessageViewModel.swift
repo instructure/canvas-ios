@@ -74,7 +74,10 @@ class ComposeMessageViewModel: ObservableObject {
             title: NSLocalizedString("Select Course", comment: ""),
             sections: sections,
             selected: selected,
-            didSelect: { self.selectedCourse = options[$0.row] }
+            didSelect: {
+                self.selectedCourse = options[$0.row]
+                self.recipients.removeAll()
+            }
         ), from: viewController)
     }
 
@@ -96,7 +99,10 @@ class ComposeMessageViewModel: ObservableObject {
         selectedRecipient
             .compactMap { $0 }
             .sink { [weak self] in
-                self?.recipients.append($0)
+                print(self?.recipients)
+                if (self?.recipients.map{$0.id}.contains($0.id) == false) {
+                    self?.recipients.append($0)
+                }
             }
             .store(in: &subscriptions)
     }

@@ -31,15 +31,17 @@ public struct RecipientPillView: View {
     public var body: some View {
         HStack(spacing: 0) {
             Avatar(name: recipient.name, url: recipient.avatarURL, size: 26)
+                .padding(.trailing, 10)
             Text(recipient.name)
                 .font(.regular14)
                 .foregroundColor(.textDark)
-                .padding(.leading, 2)
+                .padding(.trailing, 10)
             removeButton
+                .padding(.trailing, 10)
         }
-        .padding(1)
+        .padding(5)
         .overlay(
-            RoundedRectangle(cornerRadius: 16)
+            RoundedRectangle(cornerRadius: 100)
                 .stroke(Color.textDark, lineWidth: 0.5)
         )
     }

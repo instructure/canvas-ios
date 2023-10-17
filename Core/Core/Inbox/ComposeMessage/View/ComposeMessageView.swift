@@ -58,10 +58,14 @@ public struct ComposeMessageView: View {
         Button(action: {
             model.sendButtonDidTap.accept(controller)
         }, label: {
-            Image.send
-                .frame(width: 20, height: 20)
+            sendButtonImage
         })
         .accessibility(label: Text("Send", bundle: .core))
+        .disabled(!model.sendButtonActive)
+    }
+    
+    private var sendButtonImage: some View {
+        Image.send.grayscale(model.sendButtonActive ? 0 : 0.8).opacity(model.sendButtonActive ? 1 : 0.5).frame(width: 20, height: 20)
     }
 
     private var addRecipientButton: some View {
@@ -91,8 +95,10 @@ public struct ComposeMessageView: View {
         VStack(spacing: 0) {
             courseView
             Divider()
-            toView
-            Divider()
+            if (model.selectedCourse != nil) {
+                toView
+                Divider()
+            }
             subjectView
             Divider()
             individualView
@@ -135,20 +141,22 @@ public struct ComposeMessageView: View {
     }
 
     private var recipientsView: some View {
-        HStack {
-            ForEach(model.recipients, id: \.id) { recipient in
-                RecipientPillView(recipient: recipient, removeDidTap: { recipient in model.removeRecipientButtonDidTap(recipient: recipient)
-                })
-            }
+        WrappingHStack(models: model.recipients) { recipient in
+            RecipientPillView(recipient: recipient, removeDidTap: { recipient in model.removeRecipientButtonDidTap(recipient: recipient) })
         }
     }
 
     private var subjectView: some View {
-        TextFieldRow(
-            label: Text("Subject", bundle: .core),
-            placeholder: "",
-            text: $model.subject
-        )
+        HStack {
+            Text("Subject", bundle: .core)
+                .font(.medium16)
+                .foregroundColor(.textDark)
+            TextField("", text: $model.subject)
+                .multilineTextAlignment(.leading)
+                .font(.regular16).foregroundColor(.textDarkest)
+                .accessibility(label: Text("Subject", bundle: .core))
+        }
+        .padding(.horizontal, 16).padding(.vertical, 12)
     }
 
     private var individualView: some View {
@@ -161,7 +169,7 @@ public struct ComposeMessageView: View {
     }
 
     private var bodyView: some View {
-        DynamicHeightTextEditor(text: $model.bodyText, placeholder: NSLocalizedString("Compose message", bundle: .core, comment: ""))
+        DynamicHeightTextEditor(text: $model.bodyText, placeholder: NSLocalizedString("Message", bundle: .core, comment: ""))
             .font(.regular16)
             .padding(.horizontal, 16).padding(.vertical, 12)
     }
