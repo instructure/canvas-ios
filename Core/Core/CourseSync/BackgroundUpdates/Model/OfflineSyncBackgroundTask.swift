@@ -24,9 +24,11 @@ import Combine
  who have this turned on.
  */
 public class OfflineSyncBackgroundTask: BackgroundTask {
-    public typealias SelectedItemsFactory = (SessionDefaults) -> CourseSyncListInteractor
-    public static let DefaultSelectedItemsFactory: SelectedItemsFactory = {
-        CourseSyncListInteractorLive(sessionDefaults: $0)
+    public typealias SelectedItemsFactory = (SessionDefaults) -> CourseSyncSelectorInteractor
+    public static let DefaultSelectedItemsFactory: SelectedItemsFactory = { sessionDefaults in
+        let courseSyncListInteractor = CourseSyncListInteractorLive(sessionDefaults: sessionDefaults)
+        return CourseSyncSelectorInteractorLive(courseSyncListInteractor: courseSyncListInteractor,
+                                         sessionDefaults: sessionDefaults)
     }
     public typealias SyncInteractorFactory = () -> CourseSyncInteractor
     public static let DefaultSyncInteractorFactory: SyncInteractorFactory = {
@@ -100,8 +102,10 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
         let syncInteractor = syncInteractorFactory()
         syncingInteractor = syncInteractor
 
-        selectedItemsInteractorFactory(sessionDefaults)
-            .getCourseSyncEntries(filter: .all)
+        let selectedItemsInteractor = selectedItemsInteractorFactory(sessionDefaults)
+        selectedItemsInteractor
+            .getCourseSyncEntries() // Build up the internal state of the interactor
+            .flatMap { _ in selectedItemsInteractor.getSelectedCourseEntries() } // Actually get what is selected to sync
             .flatMap {
                 Logger.shared.log("Offline: Downloading content.")
                 return syncInteractor
