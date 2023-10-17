@@ -195,14 +195,14 @@
 			remoteGlobalIDString = B90FCF66245CD7327BEE2CBF;
 			remoteInfo = Core;
 		};
-		B43EDDE22ADD2E0500B9C64A /* PBXContainerItemProxy */ = {
+		B474DC102ADD640C00F5AF64 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 19FB565ABEC6EA3620720E25 /* Core */;
 			proxyType = 2;
 			remoteGlobalIDString = 8F6731E780A5363E04E3620A;
 			remoteInfo = CoreTester;
 		};
-		B43EDDE42ADD2E0500B9C64A /* PBXContainerItemProxy */ = {
+		B474DC122ADD640C00F5AF64 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 19FB565ABEC6EA3620720E25 /* Core */;
 			proxyType = 2;
@@ -729,8 +729,8 @@
 			isa = PBXGroup;
 			children = (
 				59FDA90639A28B677F0E6B7A /* Core.framework */,
-				B43EDDE32ADD2E0500B9C64A /* CoreTester.app */,
-				B43EDDE52ADD2E0500B9C64A /* CoreTests.xctest */,
+				B474DC112ADD640C00F5AF64 /* CoreTester.app */,
+				B474DC132ADD640C00F5AF64 /* CoreTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1022,18 +1022,18 @@
 			remoteRef = C62A32602F4B1A165BCFE80A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		B43EDDE32ADD2E0500B9C64A /* CoreTester.app */ = {
+		B474DC112ADD640C00F5AF64 /* CoreTester.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
 			path = CoreTester.app;
-			remoteRef = B43EDDE22ADD2E0500B9C64A /* PBXContainerItemProxy */;
+			remoteRef = B474DC102ADD640C00F5AF64 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		B43EDDE52ADD2E0500B9C64A /* CoreTests.xctest */ = {
+		B474DC132ADD640C00F5AF64 /* CoreTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = CoreTests.xctest;
-			remoteRef = B43EDDE42ADD2E0500B9C64A /* PBXContainerItemProxy */;
+			remoteRef = B474DC122ADD640C00F5AF64 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
