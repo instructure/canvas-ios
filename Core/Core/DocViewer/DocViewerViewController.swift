@@ -97,6 +97,10 @@ public class DocViewerViewController: UIViewController {
         let dragGestureRecognizer = UIPanGestureRecognizer()
         pdf.view.addGestureRecognizer(dragGestureRecognizer)
 
+        let pencilInteraction = UIPencilInteraction()
+        pencilInteraction.delegate = self
+        pdf.view.addInteraction(pencilInteraction)
+        
         let dragGestureViewModel = AnnotationDragGestureViewModel(pdf: pdf, gestureRecognizer: dragGestureRecognizer)
         self.dragGestureViewModel = dragGestureViewModel
 
@@ -303,4 +307,17 @@ extension DocViewerViewController: DocViewerAnnotationProviderDelegate {
             : NSLocalizedString("All annotations saved.", bundle: .core, comment: ""),
         for: .normal)
     } }
+}
+
+extension DocViewerViewController: UIPencilInteractionDelegate {
+    public func pencilInteractionDidTap(_ interaction: UIPencilInteraction) {
+        switch UIPencilInteraction.preferredTapAction {
+        case .switchEraser:
+            pdf.annotationStateManager.toggleState(.eraser)
+        case .showColorPalette, .showInkAttributes:
+            pdf.annotationStateManager.toggleState(.ink)
+        default:
+            break
+        }
+    }
 }
