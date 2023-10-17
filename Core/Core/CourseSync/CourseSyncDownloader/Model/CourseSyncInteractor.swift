@@ -115,9 +115,10 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
 
                 return notificationInteractor.send()
             }
+            .flatMap { unownedSelf.backgroundActivity.stop() }
             .sink(
                 receiveCompletion: { _ in
-                    unownedSelf.backgroundActivity.stopAndWait()
+                    NotificationCenter.default.post(name: .OfflineSyncCompleted, object: nil)
                 },
                 receiveValue: { _ in }
             )
@@ -129,6 +130,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         downloadSubscription?.cancel()
         downloadSubscription = nil
         progressWriterInteractor.cleanUpPreviousDownloadProgress()
+        backgroundActivity.stopAndWait()
     }
 
     // MARK: - Private Methods

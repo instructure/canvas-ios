@@ -111,7 +111,9 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
             .first()
             .flatMap { _ in
                 Logger.shared.log("Offline: Waiting for sync to finish.")
-                return OfflineSyncWaitToFinishInteractor.wait()
+                return NotificationCenter.default.publisher(for: .OfflineSyncCompleted)
+                    .mapToVoid()
+                    .first()
             }
             .sink(receiveCompletion: { [weak self] streamCompletion in
                 switch streamCompletion {
