@@ -42,7 +42,7 @@ public enum CourseSyncDownloaderAssembly {
         return CourseSyncInteractorLive(contentInteractors: contentInteractors,
                                         filesInteractor: CourseSyncFilesInteractorLive(),
                                         progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-                                        successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: .shared,
+                                        notificationInteractor: CourseSyncNotificationInteractor(notificationManager: .shared,
                                                                                                      progressInteractor: progressInteractor),
                                         courseListInteractor: CourseListAssembly.makeInteractor(),
                                         backgroundActivity: backgroundActivity,

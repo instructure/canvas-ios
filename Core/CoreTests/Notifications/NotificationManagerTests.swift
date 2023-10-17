@@ -16,14 +16,33 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Combine
 import XCTest
 @testable import Core
 import UserNotifications
 
 class NotificationManagerTests: CoreTestCase {
+
     func testNotify() {
-        notificationManager.notify(identifier: "one", title: "Title", body: "Body", route: "/courses")
+        notificationManager.notify(identifier: "one", title: "Title", body: "Body", route: "/courses") as Void
+        let request = notificationCenter.requests.last
+        XCTAssertNotNil(request)
+        XCTAssertEqual(request?.content.title, "Title")
+        XCTAssertEqual(request?.content.body, "Body")
+        XCTAssertEqual(request?.identifier, "one")
+        XCTAssert(request?.trigger is UNTimeIntervalNotificationTrigger)
+        XCTAssertEqual((request?.trigger as? UNTimeIntervalNotificationTrigger)?.timeInterval, 1)
+        XCTAssertEqual((request?.trigger as? UNTimeIntervalNotificationTrigger)?.repeats, false)
+        XCTAssertEqual(request?.content.userInfo[NotificationManager.RouteURLKey] as? String, "/courses")
+    }
+
+    func testNotifyWithFuture() {
+        let publisher: Future<Void, Error> = notificationManager.notify(identifier: "one",
+                                                                        title: "Title",
+                                                                        body: "Body",
+                                                                        route: "/courses")
+        XCTAssertFinish(publisher)
+
         let request = notificationCenter.requests.last
         XCTAssertNotNil(request)
         XCTAssertEqual(request?.content.title, "Title")
@@ -37,7 +56,7 @@ class NotificationManagerTests: CoreTestCase {
 
     func testNotifyLogsError() {
         notificationCenter.error = NSError.instructureError("error")
-        notificationManager.notify(identifier: "one", title: "Title", body: "Body", route: nil)
+        notificationManager.notify(identifier: "one", title: "Title", body: "Body", route: nil) as Void
         let log = logger.errors.last
         XCTAssertNotNil(log)
         XCTAssertEqual(log, "error")

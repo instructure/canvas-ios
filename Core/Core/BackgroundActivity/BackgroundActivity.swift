@@ -69,6 +69,7 @@ public class BackgroundActivity {
     public func stopAndWait() {
         semaphore?.signal()
         semaphore = nil
+        abortHandler = nil
     }
 
     private func requestBackgroundActivity(_ promise: @escaping Future<Void, Never>.Promise) {

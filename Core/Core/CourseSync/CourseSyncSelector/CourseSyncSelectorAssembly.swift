@@ -31,8 +31,10 @@ public enum CourseSyncSelectorAssembly {
             router: env.router
         )
         let diskSpaceViewModel = CourseSyncDiskSpaceInfoViewModel(interactor: diskSpaceInteractor, app: env.app ?? .student)
+        let offlineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
         let view = CourseSyncSelectorView(viewModel: viewModel,
-                                          diskSpaceViewModel: diskSpaceViewModel)
+                                          diskSpaceViewModel: diskSpaceViewModel,
+                                          offlineModeViewModel: offlineModeViewModel)
         return CoreHostingController(view)
     }
 
@@ -57,8 +59,11 @@ public enum CourseSyncSelectorAssembly {
             router: env.router
         )
         let diskSpaceViewModel = CourseSyncDiskSpaceInfoViewModel(interactor: diskSpaceInteractor, app: env.app ?? .student)
+        let offlineModeViewModel = OfflineModeViewModel(interactor: OfflineModeInteractorMock())
+
         return CourseSyncSelectorView(viewModel: viewModel,
-                                      diskSpaceViewModel: diskSpaceViewModel)
+                                      diskSpaceViewModel: diskSpaceViewModel,
+                                      offlineModeViewModel: offlineModeViewModel)
     }
 
 #endif
