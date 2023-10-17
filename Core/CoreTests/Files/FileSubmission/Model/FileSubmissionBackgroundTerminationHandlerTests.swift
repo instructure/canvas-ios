@@ -20,11 +20,11 @@
 import TestsFoundation
 import XCTest
 
-class BackgroundActivityTerminationHandlerTests: CoreTestCase {
+class FileSubmissionBackgroundTerminationHandlerTests: CoreTestCase {
     private lazy var notificationsSender = SubmissionCompletedNotificationsSender(context: databaseClient,
                                                                                   notificationManager: notificationManager)
-    private lazy var testee = BackgroundActivityTerminationHandler(context: databaseClient,
-                                                                   notificationsSender: notificationsSender)
+    private lazy var testee = FileSubmissionBackgroundTerminationHandler(context: databaseClient,
+                                                                         notificationsSender: notificationsSender)
 
     // MARK: - Error Messages
 

@@ -29,7 +29,7 @@ class LocalNotificationsTests: CoreTestCase {
         }
 
         XCTAssertEqual(firstNotification.content.title, "Offline Content Sync Success")
-        XCTAssertEqual(firstNotification.content.body, "1 item has been synced.")
+        XCTAssertEqual(firstNotification.content.body, "1 course has been synced.")
     }
 
     func testOfflineSyncCompletedSuccessfullyNotificationPlural() {
@@ -40,6 +40,6 @@ class LocalNotificationsTests: CoreTestCase {
         }
 
         XCTAssertEqual(firstNotification.content.title, "Offline Content Sync Success")
-        XCTAssertEqual(firstNotification.content.body, "2 items have been synced.")
+        XCTAssertEqual(firstNotification.content.body, "2 courses have been synced.")
     }
 }

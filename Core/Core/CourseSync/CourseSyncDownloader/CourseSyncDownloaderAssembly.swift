@@ -37,6 +37,7 @@ public enum CourseSyncDownloaderAssembly {
             label: "com.instructure.icanvas.core.course-sync-download"
         ).eraseToAnyScheduler()
         let progressInteractor = CourseSyncProgressObserverInteractorLive()
+        let backgroundActivity = BackgroundActivity(processManager: ProcessInfo.processInfo, activityName: "Offline Sync")
 
         return CourseSyncInteractorLive(contentInteractors: contentInteractors,
                                         filesInteractor: CourseSyncFilesInteractorLive(),
@@ -44,6 +45,7 @@ public enum CourseSyncDownloaderAssembly {
                                         successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: .shared,
                                                                                                      progressInteractor: progressInteractor),
                                         courseListInteractor: CourseListAssembly.makeInteractor(),
+                                        backgroundActivity: backgroundActivity,
                                         scheduler: scheduler)
     }
 }

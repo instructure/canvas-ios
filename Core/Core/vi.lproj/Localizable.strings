@@ -593,6 +593,9 @@
 "Content" = "Nội Dung";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Không Thể Hiển Thị Nội Dung";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Lỗi Liên Kết Nội Dung";
 
 /* No comment provided by engineer. */
@@ -930,9 +933,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Chỉnh sửa cài đặt khóa học";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Chỉnh Sửa Bảng Điều Khiển";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Chỉnh Sửa Thảo Luận";
@@ -1844,6 +1844,9 @@
 "Open course details" = "Mở thông tin chi tiết khóa học";
 
 /* No comment provided by engineer. */
+"Open In Browser" = "Mở Trong Trình Duyệt";
+
+/* No comment provided by engineer. */
 "Open item details" = "Mở thông tin chi tiết mục";
 
 /* No comment provided by engineer. */
@@ -2334,6 +2337,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "Đã Xảy Ra Vấn Đề";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Đã xảy ra vấn đề nằm ngoài kiểm soát của chúng tôi.";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Sắp xếp theo lượt thích";
@@ -2922,6 +2928,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "Bạn không được phép thực hiện thao tác này.";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Bạn có thể thử mở trang trong một trình duyệt.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Bạn đã được mời";

@@ -34,7 +34,7 @@ public class CourseSyncSuccessNotificationInteractor {
             .first()
             .receive(on: RunLoop.main)
             .filter { _ in window.isSyncProgressNotOnScreen() }
-            .map { $0.count }
+            .map { $0.filterToCourses().count }
             .handleEvents(receiveOutput: { [notificationManager] in
                 notificationManager.sendOfflineSyncCompletedSuccessfullyNotification(syncedItemsCount: $0)
             })

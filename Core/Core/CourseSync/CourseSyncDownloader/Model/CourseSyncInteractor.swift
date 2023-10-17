@@ -52,6 +52,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     internal private(set) var downloadSubscription: AnyCancellable?
     private var subscriptions = Set<AnyCancellable>()
     private let courseListInteractor: CourseListInteractor
+    private let backgroundActivity: BackgroundActivity
 
     /**
      - parameters:
@@ -65,6 +66,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         progressWriterInteractor: CourseSyncProgressWriterInteractor,
         successNotification: CourseSyncSuccessNotificationInteractor,
         courseListInteractor: CourseListInteractor,
+        backgroundActivity: BackgroundActivity,
         scheduler: AnySchedulerOf<DispatchQueue>
     ) {
         self.contentInteractors = contentInteractors
@@ -72,6 +74,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         self.progressWriterInteractor = progressWriterInteractor
         self.courseListInteractor = courseListInteractor
         self.successNotification = successNotification
+        self.backgroundActivity = backgroundActivity
         self.scheduler = scheduler
 
         listenToCancellationEvent()
@@ -95,24 +98,32 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         progressWriterInteractor.cleanUpPreviousDownloadProgress()
         progressWriterInteractor.setInitialLoadingState(entries: entriesWithInitialLoadingState)
 
-        downloadSubscription = Publishers.Sequence(sequence: entriesWithInitialLoadingState)
-            .buffer(size: .max, prefetch: .byRequest, whenFull: .dropOldest)
+        downloadSubscription = backgroundActivity
+            .start { unownedSelf.handleSyncInterruptByOS() }
             .receive(on: scheduler)
+            .flatMap { _ in unownedSelf.downloadCourseList() }
+            .flatMap { Publishers.Sequence(sequence: entriesWithInitialLoadingState) }
+            .buffer(size: .max, prefetch: .byRequest, whenFull: .dropOldest)
             .flatMap(maxPublishers: .max(3)) { unownedSelf.downloadCourseDetails($0) }
             .collect()
-            .flatMap { _ in unownedSelf.downloadCourseList() }
-            .sink(
-                receiveCompletion: { _ in
-                    let hasError = unownedSelf.safeCourseSyncEntriesValue.hasError
-                    unownedSelf.progressWriterInteractor.saveDownloadResult(
-                        isFinished: true,
-                        error: hasError ? unownedSelf.fileErrorMessage : nil
-                    )
-                    unownedSelf
+            .flatMap { _ in
+                let hasError = unownedSelf.safeCourseSyncEntriesValue.hasError
+                unownedSelf.progressWriterInteractor.saveDownloadResult(
+                    isFinished: true,
+                    error: hasError ? unownedSelf.fileErrorMessage : nil
+                )
+
+                if hasError {
+                    return Just(()).eraseToAnyPublisher()
+                } else {
+                    return unownedSelf
                         .successNotification
                         .send()
-                        .sink()
-                        .store(in: &unownedSelf.subscriptions)
+                }
+            }
+            .sink(
+                receiveCompletion: { _ in
+                    unownedSelf.backgroundActivity.stopAndWait()
                 },
                 receiveValue: { _ in }
             )
@@ -378,6 +389,14 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                 self.cancel()
             })
             .store(in: &subscriptions)
+    }
+
+    private func handleSyncInterruptByOS() {
+        downloadSubscription?.cancel()
+        downloadSubscription = nil
+        progressWriterInteractor.markInProgressDownloadsAsFailed()
+        progressWriterInteractor.saveDownloadResult(isFinished: true,
+                                                    error: NSLocalizedString("Offline sync was interrupted by the operating system", comment: ""))
     }
 }
 

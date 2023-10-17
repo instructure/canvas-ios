@@ -35,13 +35,14 @@ class BackgroundActivityTests: XCTestCase {
         super.tearDown()
     }
 
-    func testFailedToStartBackgroundActivity() {
+    func testFutureCompletesWhenBackgroundActivityFailsToStart() {
         // MARK: - GIVEN
-        let testee = BackgroundActivity(processManager: mockProcessManager, abortHandler: {})
+        let testee = BackgroundActivity(processManager: mockProcessManager,
+                                        activityName: "test")
         let futureFinished = expectation(description: "Future finished")
-        var result: Subscribers.Completion<BackgroundActivity.ActivityError>?
+        var result: Subscribers.Completion<Never>?
         testee
-            .start()
+            .start(abortHandler: {})
             .sink { completion in
                 futureFinished.fulfill()
                 result = completion
@@ -53,16 +54,17 @@ class BackgroundActivityTests: XCTestCase {
 
         // MARK: - THEN
         waitForExpectations(timeout: 1)
-        XCTAssertEqual(result, .failure(.failedToStartBackgroundActivity))
+        XCTAssertEqual(result, .finished)
     }
 
     func testStartsBackgroundActivity() {
         // MARK: - GIVEN
-        let testee = BackgroundActivity(processManager: mockProcessManager, abortHandler: {})
+        let testee = BackgroundActivity(processManager: mockProcessManager,
+                                        activityName: "test")
         let futureFinished = expectation(description: "Future finished")
-        var result: Subscribers.Completion<BackgroundActivity.ActivityError>?
+        var result: Subscribers.Completion<Never>?
         testee
-            .start()
+            .start(abortHandler: {})
             .sink { completion in
                 futureFinished.fulfill()
                 result = completion
@@ -76,14 +78,16 @@ class BackgroundActivityTests: XCTestCase {
         waitForExpectations(timeout: 1)
         XCTAssertEqual(result, .finished)
         XCTAssertTrue(mockProcessManager.isExecutingBackgroundBlock)
+        XCTAssertEqual(mockProcessManager.reason, "test")
     }
 
     func testBlocksBackgroundBlockUntilItExpires() {
         // MARK: - GIVEN
-        let testee = BackgroundActivity(processManager: mockProcessManager, abortHandler: {})
+        let testee = BackgroundActivity(processManager: mockProcessManager,
+                                        activityName: "test")
         let futureFinished = expectation(description: "Future finished")
         testee
-            .start()
+            .start(abortHandler: {})
             .sink { _ in
                 futureFinished.fulfill()
             }
@@ -104,10 +108,11 @@ class BackgroundActivityTests: XCTestCase {
 
     func testBlocksBackgroundBlockUntilFinish() {
         // MARK: - GIVEN
-        let testee = BackgroundActivity(processManager: mockProcessManager, abortHandler: {})
+        let testee = BackgroundActivity(processManager: mockProcessManager,
+                                        activityName: "test")
         let startFinished = expectation(description: "Future finished")
         testee
-            .start()
+            .start(abortHandler: {})
             .sink { _ in
                 startFinished.fulfill()
             }
@@ -136,13 +141,14 @@ class BackgroundActivityTests: XCTestCase {
 
     func testMultipleStartRequestOnlyOneBackgroundSession() {
         // MARK: - GIVEN
-        let testee = BackgroundActivity(processManager: mockProcessManager, abortHandler: {})
+        let testee = BackgroundActivity(processManager: mockProcessManager,
+                                        activityName: "test")
         let start1Finished = expectation(description: "Future finished")
         let start2Finished = expectation(description: "Future finished")
 
         // MARK: - WHEN
         testee
-            .start()
+            .start(abortHandler: {})
             .sink { _ in
                 start1Finished.fulfill()
             }
@@ -150,7 +156,7 @@ class BackgroundActivityTests: XCTestCase {
         mockProcessManager.startActivity()
         wait(for: [start1Finished], timeout: 1)
         testee
-            .start()
+            .start(abortHandler: {})
             .sink { _ in
                 start2Finished.fulfill()
             }
@@ -164,12 +170,11 @@ class BackgroundActivityTests: XCTestCase {
     func testAbortHandlerCalledWhenSessionIsTerminated() {
         // MARK: - GIVEN
         let abortHandlerInvoked = expectation(description: "Abort handle block called")
-        let testee = BackgroundActivity(processManager: mockProcessManager, abortHandler: {
-            abortHandlerInvoked.fulfill()
-        })
+        let testee = BackgroundActivity(processManager: mockProcessManager,
+                                        activityName: "test")
         let startFinished = expectation(description: "Future finished")
         testee
-            .start()
+            .start { abortHandlerInvoked.fulfill() }
             .sink { _ in
                 startFinished.fulfill()
             }
@@ -187,15 +192,18 @@ class MockProcessManager: ProcessManager {
     private var activityBlock: ((Bool) -> Void)?
     public private(set) var isExecutingBackgroundBlock = false
     public private(set) var backgroundActivityRequestCount = 0
+    public private(set) var reason: String?
 
     func performExpiringActivity(reason: String, completion: @escaping (Bool) -> Void) {
         activityBlock = completion
         backgroundActivityRequestCount += 1
+        self.reason = reason
     }
 
     func reset() {
         activityBlock = nil
         backgroundActivityRequestCount = 0
+        reason = nil
     }
 
     func expireActivity() {

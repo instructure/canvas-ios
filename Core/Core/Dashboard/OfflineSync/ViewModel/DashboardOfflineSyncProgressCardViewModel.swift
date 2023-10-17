@@ -101,7 +101,7 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
         _ downloadProgressPublisher: some DownloadProgressPublisher
     ) -> AnyPublisher<DashboardOfflineSyncProgressCardViewModel.ViewState, Never> {
         Publishers.CombineLatest(
-            interactor.observeStateProgress().map { $0.ignoreContainerSelections() },
+            interactor.observeStateProgress().map { $0.filterToCourses() },
             downloadProgressPublisher
         )
         .receive(on: scheduler)
@@ -113,7 +113,7 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
             if downloadProgress.isFinished, downloadProgress.error != nil {
                 return Just(.error).eraseToAnyPublisher()
             } else {
-                let format = NSLocalizedString("d_items_syncing", comment: "")
+                let format = NSLocalizedString("d_courses_syncing", comment: "")
                 let formattedText = String.localizedStringWithFormat(format, stateProgress.count)
                 return Just(.progress(downloadProgress.progress, formattedText)).eraseToAnyPublisher()
             }
@@ -167,18 +167,5 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
                              options: .modal(isDismissable: false, embedInNav: true))
             }
             .store(in: &subscriptions)
-    }
-}
-
-private extension Array where Element == CourseSyncStateProgress {
-    /// Courses and file tabs are not syncable items so we should'n count them.
-    func ignoreContainerSelections() -> Self {
-        filter { entry in
-            switch entry.selection {
-            case .course: return false
-            case let .tab(_, tabID) where tabID.contains("/tabs/files"): return false
-            default: return true
-            }
-        }
     }
 }

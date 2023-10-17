@@ -593,6 +593,9 @@
 "Content" = "Sisältö";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Sisällön näyttäminen ei onnistunut";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Sisällön linkin virhe";
 
 /* No comment provided by engineer. */
@@ -930,9 +933,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Muokkaa kurssin asetuksia";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Muokkaa koontinäyttöä";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Muokkaa keskustelu";
@@ -1844,6 +1844,9 @@
 "Open course details" = "Avaa kurssitiedot";
 
 /* No comment provided by engineer. */
+"Open In Browser" = "Avaa selaimessa";
+
+/* No comment provided by engineer. */
 "Open item details" = "Avaa kohteen tiedot";
 
 /* No comment provided by engineer. */
@@ -2334,6 +2337,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "Jotakin meni pieleen";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Jotakin kontrollimme ulkopuolella olevaa meni pieleen meidän päässämme.";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Lajittele tykkäysten perusteella";
@@ -2922,6 +2928,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "Sinulla ei ole valtuuksia suorittaa tätä toimintoa";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Voit nyt yrittää avata sivun selaimessa.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Sinut on kutsuttu";

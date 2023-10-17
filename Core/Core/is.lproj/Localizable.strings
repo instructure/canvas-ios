@@ -593,6 +593,9 @@
 "Content" = "Efni";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Ekki er hægt að birta efni";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Efnishlekksvilla";
 
 /* No comment provided by engineer. */
@@ -930,9 +933,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Breyta námskeiðsstillingum";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Breyta skjáborði";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Breyta umræðu";
@@ -1844,6 +1844,9 @@
 "Open course details" = "Opnið upplýsingar um námskeið";
 
 /* No comment provided by engineer. */
+"Open In Browser" = "Opna í vafra";
+
+/* No comment provided by engineer. */
 "Open item details" = "Opnið upplýsingar um atriði";
 
 /* No comment provided by engineer. */
@@ -2334,6 +2337,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "Eitthvað fór úrskeiðis";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Eitthvað fór úrskeiðis utan okkar stjórnar.";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Raða eftir „líkar við“";
@@ -2922,6 +2928,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "Þú hefur ekki heimild til að gera þessa aðgerð";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Þú getur reynt að opna síðuna í vafra.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Þér var boðið";

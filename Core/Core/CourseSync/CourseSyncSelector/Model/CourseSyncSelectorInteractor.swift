@@ -83,10 +83,13 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     func observeSelectedCount() -> AnyPublisher<Int, Never> {
         courseSyncEntries
             .replaceError(with: [])
-            .map {
-                $0.reduce(0) { partialResult, entry in
-                    partialResult + entry.selectionCount
-                }
+            .map { entries in
+                entries
+                    .filter {
+                        $0.selectionState == .selected ||
+                        $0.selectionState == .partiallySelected
+                    }
+                    .count
             }
             .replaceEmpty(with: 0)
             .eraseToAnyPublisher()

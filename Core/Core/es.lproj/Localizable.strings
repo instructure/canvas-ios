@@ -593,6 +593,9 @@
 "Content" = "Contenido";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "No se puede mostrar el contenido";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Error de vínculo de contenido";
 
 /* No comment provided by engineer. */
@@ -930,9 +933,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Editar configuraciones del curso";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Editar Tablero";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Editar foro de discusión";
@@ -1844,6 +1844,9 @@
 "Open course details" = "Abrir detalles del curso";
 
 /* No comment provided by engineer. */
+"Open In Browser" = "Abrir en el navegador";
+
+/* No comment provided by engineer. */
 "Open item details" = "Abrir detalles del ítem";
 
 /* No comment provided by engineer. */
@@ -2334,6 +2337,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "Algo salió mal";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Algo que excede nuestro control salió mal.";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Ordenar por \"me gusta\"";
@@ -2922,6 +2928,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "No tiene autorización para realizar esta acción";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Puede intentar abrir la página en un navegador.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Ha recibido una invitación";
