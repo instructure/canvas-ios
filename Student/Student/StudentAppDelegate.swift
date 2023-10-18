@@ -110,11 +110,14 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             Intercom.setApiKey(apiKey, forAppId: appId)
         }
     }
-    func setIntercomUser(session: LoginSession) {
+    func setIntercomUser(session: LoginSession, userEmail: String?) {
         let attributes = ICMUserAttributes()
-        if let email = session.userEmail,
+        if let email = userEmail,
             !email.isEmpty {
-            attributes.email = email // ToDo: Found a way to get email
+            attributes.email = email
+        } else if let email = session.userEmail,
+            !email.isEmpty {
+            attributes.email = email
         }
         if !session.userName.isEmpty {
             attributes.name = session.userName
@@ -158,7 +161,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             self.updateInterfaceStyle(for: self.window)
             CoreWebView.keepCookieAlive(for: self.environment)
             NotificationManager.shared.subscribeToPushChannel()
-            self.setIntercomUser(session: session)
+            self.setIntercomUser(session: session, userEmail: apiProfile?.primary_email)
 
             let isK5StudentView = self.environment.userDefaults?.isK5StudentView ?? false
             if isK5StudentView {
