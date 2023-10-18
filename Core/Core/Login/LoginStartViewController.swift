@@ -44,6 +44,8 @@ class LoginStartViewController: UIViewController {
     @IBOutlet weak var buttonStackViewCenterYConstraint: NSLayoutConstraint!
     private var originalButtonStackViewCenterYConstraint: NSLayoutConstraint!
 
+    private var digitalcampusHost: String = "digitalcampus.instructure.com"
+
     let env = AppEnvironment.shared
     weak var loginDelegate: LoginDelegate?
     var mdmObservation: NSKeyValueObservation?
@@ -77,6 +79,7 @@ class LoginStartViewController: UIViewController {
         if let findSchoolButtonTitle = loginDelegate?.findSchoolButtonTitle {
             findSchoolButton.setTitle(findSchoolButtonTitle, for: .normal)
         }
+        findSchoolButton.setTitle(NSLocalizedString("Log In", bundle: .core, comment: ""), for: .normal)
         authenticationMethodLabel.isHidden = true
         logoView.tintColor = .currentLogoColor()
         wordmark.tintColor = .currentLogoColor()
@@ -140,7 +143,8 @@ class LoginStartViewController: UIViewController {
 
     func configureButtons() {
         canvasNetworkButton.setTitle(NSLocalizedString("Canvas Network", bundle: .core, comment: ""), for: .normal)
-        canvasNetworkButton.isHidden = loginDelegate?.supportsCanvasNetwork == false || MDMManager.shared.host != nil
+//        canvasNetworkButton.isHidden = loginDelegate?.supportsCanvasNetwork == false || MDMManager.shared.host != nil
+        canvasNetworkButton.isHidden = true
         useQRCodeDivider.isHidden = canvasNetworkButton.isHidden
     }
 
@@ -239,8 +243,12 @@ class LoginStartViewController: UIViewController {
     }
 
     @IBAction func findTapped(_ sender: UIButton) {
-        let controller: UIViewController = LoginFindSchoolViewController.create(loginDelegate: loginDelegate, method: method)
-        env.router.show(controller, from: self, analyticsRoute: "/login/find")
+        let controller = LoginWebViewController.create(
+            host: digitalcampusHost,
+            loginDelegate: loginDelegate,
+            method: method
+        )
+        env.router.show(controller, from: self, analyticsRoute: "/login/weblogin")
     }
 
     @IBAction func lastLoginTapped(_ sender: UIButton) {
@@ -459,10 +467,17 @@ extension LoginStartViewController: UITableViewDataSource, UITableViewDelegate, 
 extension LoginStartViewController: ScannerDelegate, ErrorViewController {
     func scanner(_ scanner: ScannerViewController, didScanCode code: String) {
         env.router.dismiss(scanner) {
-            if let url = URL(string: code),
-                let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
-                let host = components.host,
-                components.path == "/pair",
+            guard let url = URL(string: code),
+                  let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+                  let host = components.host else {
+                return
+            }
+
+            guard let queryItem = components.queryItems?.first(where: {$0.name == "domain"}), queryItem.value?.lowercased() == self.digitalcampusHost.lowercased() else {
+                return
+            }
+
+            if  components.path == "/pair",
                 let code = components.queryItems?.first(where: { $0.name == "code" })?.value {
                 self.createAccount(host: host, pairingCode: code)
             } else {

@@ -1203,6 +1203,7 @@
 		BAA5F2D32A83FC27002508E2 /* CustomDisclosureGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA5F2D22A83FC27002508E2 /* CustomDisclosureGroup.swift */; };
 		BAB674C42A814E8500DF718B /* CoreWebViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB674C32A814E8500DF718B /* CoreWebViewRepresentable.swift */; };
 		BAB674D42A83A0B200DF718B /* FileListCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB674D32A83A0B200DF718B /* FileListCell+Extensions.swift */; };
+		BAD667D02AE006E6007375BB /* edx_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = BAD667CF2AE006E6007375BB /* edx_logo.png */; };
 		BAF4758F2A93A5D100A951D0 /* BackgroundTaskProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4758E2A93A5D100A951D0 /* BackgroundTaskProvider.swift */; };
 		BAF4759C2A978C9500A951D0 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = BAF4759B2A978C9500A951D0 /* Introspect */; };
 		BAF4759E2A9791AD00A951D0 /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = BAF4759D2A9791AD00A951D0 /* SwiftUIIntrospect */; };
@@ -3080,6 +3081,7 @@
 		BAAEDFC92AA9FD3400CC9B7F /* mobile-offline-downloader-ios */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "mobile-offline-downloader-ios"; path = "../mobile-offline-downloader-ios"; sourceTree = "<group>"; };
 		BAB674C32A814E8500DF718B /* CoreWebViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreWebViewRepresentable.swift; sourceTree = "<group>"; };
 		BAB674D32A83A0B200DF718B /* FileListCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileListCell+Extensions.swift"; sourceTree = "<group>"; };
+		BAD667CF2AE006E6007375BB /* edx_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edx_logo.png; sourceTree = "<group>"; };
 		BAE9980CB6B4D424C27760EA /* GradeListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeListViewControllerTests.swift; sourceTree = "<group>"; };
 		BAF17BF402BA72B5DAE1972C /* CoreActivityViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreActivityViewControllerTests.swift; sourceTree = "<group>"; };
 		BAF4758E2A93A5D100A951D0 /* BackgroundTaskProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTaskProvider.swift; sourceTree = "<group>"; };
@@ -5912,6 +5914,7 @@
 			children = (
 				B93949D5CAD36EF43399EDF9 /* Fonts */,
 				8E5D3EAD5E2135988C032705 /* defaultHeaderImage.png */,
+				BAD667CF2AE006E6007375BB /* edx_logo.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -9352,6 +9355,7 @@
 				13C2D35FB354D7573DE6A110 /* lato_regular.ttf in Resources */,
 				4EABFC8CA64AA17F8064C3DF /* lato_semibold.ttf in Resources */,
 				4E129EFE7209B6553657B866 /* lato_semibolditalic.ttf in Resources */,
+				BAD667D02AE006E6007375BB /* edx_logo.png in Resources */,
 				3A1FEFCC34D508B358943CED /* preact.min.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

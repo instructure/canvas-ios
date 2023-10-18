@@ -45,6 +45,7 @@ public struct Brand: Equatable {
     }
     public var navBackground: UIColor {
         UIColor.getColor(dark: navBackgroundDark, light: navBackgroundLight)
+
     }
     public var navBadgeBackground: UIColor {
         UIColor.getColor(dark: navBadgeBackgroundDark, light: navBadgeBackgroundLight)
@@ -121,16 +122,18 @@ public struct Brand: Equatable {
         navTextColorActive: UIColor?,
         primary: UIColor?
     ) {
-        self.headerImageUrl = headerImageUrl ?? Bundle.core.url(forResource: "defaultHeaderImage", withExtension: "png")
+        self.headerImageUrl = Bundle.core.url(forResource: "edx_logo", withExtension: "png")
+        var edxColor: UIColor = UIColor(red: 0.00, green: 0.15, blue: 0.17, alpha: 1.00)
 
         self.buttonPrimaryBackgroundLight = buttonPrimaryBackground ?? .electric
         self.buttonPrimaryTextLight = buttonPrimaryText != nil ? buttonPrimaryText!.ensureContrast(against: self.buttonPrimaryBackgroundLight) : .white
         self.buttonSecondaryBackgroundLight = buttonSecondaryBackground ?? .licorice
         self.buttonSecondaryTextLight = buttonSecondaryText != nil ? buttonSecondaryText!.ensureContrast(against: self.buttonSecondaryBackgroundLight) : .white
         self.fontColorDarkLight = fontColorDark ?? .licorice
-        self.headerImageBackgroundLight = headerImageBackground ?? .oxford
+        self.headerImageBackgroundLight = edxColor
         self.linkColorLight = linkColor ?? .electric
-        self.navBackgroundLight = navBackground ?? .oxford
+        self.navBackgroundLight = edxColor
+
         self.navBadgeBackgroundLight = navBadgeBackground ?? .electric
         self.navBadgeTextLight = navBadgeText ?? .white
         self.navIconFillLight = navIconFill ?? .white
@@ -144,9 +147,9 @@ public struct Brand: Equatable {
         self.buttonSecondaryBackgroundDark = buttonSecondaryBackground != nil ? buttonSecondaryBackground!.ensureContrast(against: .backgroundLightest) : .licorice
         self.buttonSecondaryTextDark = buttonSecondaryText != nil ? buttonSecondaryText!.ensureContrast(against: self.buttonSecondaryBackgroundDark) : .white
         self.fontColorDarkDark = fontColorDark != nil ? fontColorDark!.ensureContrast(against: .backgroundLightest) : .licorice
-        self.headerImageBackgroundDark = headerImageBackground ?? .oxford
+        self.headerImageBackgroundDark = edxColor
         self.linkColorDark = linkColor != nil ? linkColor!.ensureContrast(against: .backgroundLightest) : .electric
-        self.navBackgroundDark = navBackground ?? .oxford
+        self.navBackgroundDark = edxColor
         self.navBadgeBackgroundDark = navBadgeBackground != nil ? navBadgeBackground!.ensureContrast(against: self.navBackgroundDark) : .electric
         self.navBadgeTextDark = navBadgeText != nil ? navBadgeText!.ensureContrast(against: self.navBadgeBackgroundDark) : .white
         self.navIconFillDark = navIconFill != nil ? navIconFill!.ensureContrast(against: self.navBackgroundDark) : .white
