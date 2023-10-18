@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Intercom
 import SwiftUI
 
 struct SideMenuMainSection: View {
@@ -74,6 +75,13 @@ struct SideMenuMainSection: View {
                     route(to: "/users/self/files")
                 } label: {
                     SideMenuItem(id: "files", image: .folderLine, title: Text("Files", bundle: .core))
+                }
+                .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
+
+                Button {
+                    Intercom.presentMessageComposer("Message")
+                } label: {
+                    SideMenuItem(id: "intercom", image: Image(systemName: "questionmark.bubble"), title: Text("Live Chat", bundle: .core))
                 }
                 .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
 

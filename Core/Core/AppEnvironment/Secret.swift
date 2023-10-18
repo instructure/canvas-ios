@@ -35,6 +35,10 @@ public enum Secret {
     /// Bugfender key
     case bugfenderKey
 
+    /// Intercom
+    case intercomApiKey
+    case intercomAppId
+
     /// The value passed to `Heap.initialize`
     case heapID
 
