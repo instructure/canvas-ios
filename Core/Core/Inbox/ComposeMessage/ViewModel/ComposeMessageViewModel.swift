@@ -86,6 +86,10 @@ class ComposeMessageViewModel: ObservableObject {
         let addressbook = AddressBookAssembly.makeAddressbookViewController(courseID: courseID, recipientDidSelect: selectedRecipient)
         router.show(addressbook, from: viewController)
     }
+    
+    public func attachmentbuttonDidTap(viewController: WeakViewController) {
+        
+    }
 
     public func removeRecipientButtonDidTap(recipient: SearchRecipient) {
         recipients.removeAll { $0 == recipient}

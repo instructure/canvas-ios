@@ -169,9 +169,24 @@ public struct ComposeMessageView: View {
     }
 
     private var bodyView: some View {
-        DynamicHeightTextEditor(text: $model.bodyText, placeholder: NSLocalizedString("Message", bundle: .core, comment: ""))
-            .font(.regular16)
-            .padding(.horizontal, 16).padding(.vertical, 12)
+        VStack {
+            HStack {
+                Text("Message")
+                    .font(.medium16)
+                    .foregroundColor(.textDark)
+                Spacer()
+                Button(action: {
+                    model.attachmentbuttonDidTap(viewController: controller)
+                }, label: {
+                    Image.paperclipLine.frame(width: 20, height: 20)
+                })
+                .accessibility(label: Text("Attachment", bundle: .core))
+            }
+            .padding(.top, 16).padding(.horizontal, 12)
+            DynamicHeightTextEditor(text: $model.bodyText, placeholder: NSLocalizedString("", bundle: .core, comment: ""))
+                .font(.regular16)
+                .padding(.horizontal, 16).padding(.bottom, 12)
+        }
     }
 }
 
