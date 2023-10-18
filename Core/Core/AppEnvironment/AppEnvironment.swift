@@ -19,6 +19,7 @@
 import Foundation
 import Combine
 import CoreData
+import Intercom
 import SwiftUI
 import WidgetKit
 
@@ -83,6 +84,7 @@ open class AppEnvironment {
         Logger.shared.database = database
         refreshWidgets()
         deleteUserData(session: session)
+        Intercom.logout()
     }
 
     private func deleteUserData(session: LoginSession) {
