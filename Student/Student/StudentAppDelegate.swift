@@ -125,7 +125,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         if !session.userID.isEmpty {
             attributes.userId = session.userID
         }
-        print("Intercom try to login with: \(attributes)")
         Intercom.loginUser(with: attributes) { result in
             switch result {
             case .success:
