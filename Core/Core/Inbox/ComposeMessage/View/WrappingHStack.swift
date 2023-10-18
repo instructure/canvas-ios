@@ -88,7 +88,13 @@ struct WrappingHStack_Previews: PreviewProvider {
     static let context = PreviewEnvironment().globalDatabase.viewContext
     
     static var previews: some View {
-        WrappingHStack(models: [SearchRecipient.make(in: context), SearchRecipient.make(in: context)]) { recipient in
+        WrappingHStack(models: [
+            .make(name: "Alice", in: context),
+            .make(name: "Bob", in: context),
+            .make(name: "AAAAAAAAA BBBBBBBBBBB CCCCCCCCCC DDDDDDDDDD EEEEEE", in: context),
+            .make(name: "Alice 2", in: context),
+            .make(name: "Bob 2", in: context)
+        ]) { recipient in
             RecipientPillView(recipient: recipient, removeDidTap: { _ in  })
         }
     }

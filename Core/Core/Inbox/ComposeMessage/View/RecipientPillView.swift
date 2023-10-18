@@ -36,6 +36,8 @@ public struct RecipientPillView: View {
                 .font(.regular14)
                 .foregroundColor(.textDark)
                 .padding(.trailing, 10)
+                .truncationMode(.tail)
+                .lineLimit(1)
             removeButton
                 .padding(.trailing, 10)
         }
@@ -65,7 +67,8 @@ struct RecipientPillView_Previews: PreviewProvider {
     static let context = PreviewEnvironment().globalDatabase.viewContext
 
     static var previews: some View {
-        RecipientPillView(recipient: SearchRecipient.make(in: context), removeDidTap: {_ in })
+        RecipientPillView(recipient:
+                .make(name: "Student With Extremely Long FirstName and Surname To Check TextFields", in: context), removeDidTap: {_ in })
     }
 }
 

@@ -111,11 +111,11 @@ public struct ComposeMessageView: View {
         }, label: {
             HStack {
                 Text("Course")
-                    .font(.medium16)
+                    .font(.regular16)
                     .foregroundColor(.textDark)
                 if let course = model.selectedCourse {
                     Text(course.name)
-                        .font(.medium16)
+                        .font(.regular16)
                         .foregroundColor(.textDark)
                 }
                 Spacer()
@@ -129,7 +129,7 @@ public struct ComposeMessageView: View {
     private var toView: some View {
         HStack {
             Text("To")
-                .font(.medium16)
+                .font(.regular16)
                 .foregroundColor(.textDark)
             if !model.recipients.isEmpty {
                 recipientsView
@@ -149,7 +149,7 @@ public struct ComposeMessageView: View {
     private var subjectView: some View {
         HStack {
             Text("Subject", bundle: .core)
-                .font(.medium16)
+                .font(.regular16)
                 .foregroundColor(.textDark)
             TextField("", text: $model.subject)
                 .multilineTextAlignment(.leading)
@@ -162,7 +162,7 @@ public struct ComposeMessageView: View {
     private var individualView: some View {
         Toggle(isOn: $model.sendIndividual, label: {
             Text("Send individual message to each recipient")
-                .font(.medium16)
+                .font(.regular16)
                 .foregroundColor(.textDark)
         })
         .padding(.horizontal, 16).padding(.vertical, 12)
@@ -172,7 +172,7 @@ public struct ComposeMessageView: View {
         VStack {
             HStack {
                 Text("Message")
-                    .font(.medium16)
+                    .font(.regular16)
                     .foregroundColor(.textDark)
                 Spacer()
                 Button(action: {
@@ -183,9 +183,10 @@ public struct ComposeMessageView: View {
                 .accessibility(label: Text("Attachment", bundle: .core))
             }
             .padding(.top, 16).padding(.horizontal, 12)
-            DynamicHeightTextEditor(text: $model.bodyText, placeholder: NSLocalizedString("", bundle: .core, comment: ""))
+            DynamicHeightTextEditor(text: $model.bodyText, placeholder: NSLocalizedString("", comment: ""))
                 .font(.regular16)
-                .padding(.horizontal, 16).padding(.bottom, 12)
+                .foregroundColor(.textDarkest)
+                .padding(.horizontal, 12).padding(.bottom, 12)
         }
     }
 }

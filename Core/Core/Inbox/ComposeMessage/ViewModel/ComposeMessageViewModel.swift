@@ -77,6 +77,7 @@ class ComposeMessageViewModel: ObservableObject {
             didSelect: {
                 self.selectedCourse = options[$0.row]
                 self.recipients.removeAll()
+                self.router.pop(from: viewController)
             }
         ), from: viewController)
     }
