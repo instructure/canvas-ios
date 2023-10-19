@@ -82,7 +82,7 @@ public struct ComposeMessageView: View {
         HStack {
             Text(model.subject.isEmpty ? model.title : model.subject)
                 .multilineTextAlignment(.leading)
-                .font(.bold22)
+                .font(.semibold22)
                 .foregroundColor(.textDarkest)
             Spacer()
             sendButton
@@ -116,7 +116,7 @@ public struct ComposeMessageView: View {
                 if let course = model.selectedCourse {
                     Text(course.name)
                         .font(.regular16)
-                        .foregroundColor(.textDark)
+                        .foregroundColor(.textDarkest)
                 }
                 Spacer()
                 DisclosureIndicator()
@@ -163,7 +163,7 @@ public struct ComposeMessageView: View {
         Toggle(isOn: $model.sendIndividual, label: {
             Text("Send individual message to each recipient")
                 .font(.regular16)
-                .foregroundColor(.textDark)
+                .foregroundColor(.textDarkest)
         })
         .padding(.horizontal, 16).padding(.vertical, 12)
     }
@@ -174,6 +174,7 @@ public struct ComposeMessageView: View {
                 Text("Message")
                     .font(.regular16)
                     .foregroundColor(.textDark)
+                    
                 Spacer()
                 Button(action: {
                     model.attachmentbuttonDidTap(viewController: controller)
@@ -182,7 +183,7 @@ public struct ComposeMessageView: View {
                 })
                 .accessibility(label: Text("Attachment", bundle: .core))
             }
-            .padding(.top, 16).padding(.horizontal, 12)
+            .padding(.top, 16).padding(.horizontal, 16)
             DynamicHeightTextEditor(text: $model.bodyText, placeholder: NSLocalizedString("", comment: ""))
                 .font(.regular16)
                 .foregroundColor(.textDarkest)
