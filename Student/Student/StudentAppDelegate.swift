@@ -45,6 +45,8 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     private var shouldSetK5StudentView = false
     private var backgroundFileSubmissionAssembly: FileSubmissionAssembly?
 
+    static public var orientationLock = UIInterfaceOrientationMask.portrait
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupFirebase()
         Core.Analytics.shared.handler = self
@@ -78,6 +80,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             window?.makeKeyAndVisible()
             userDidLogin(session: session)
         } else {
+            StudentAppDelegate.orientationLock = .portrait
             window?.rootViewController = LoginNavigationController.create(loginDelegate: self, fromLaunch: true, app: .student)
             window?.makeKeyAndVisible()
             Analytics.shared.logScreenView(route: "/login", viewController: window?.rootViewController)
@@ -254,6 +257,13 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
                 }
             }
         }
+    }
+
+    func application(
+        _ application: UIApplication,
+        supportedInterfaceOrientationsFor window: UIWindow?
+    ) -> UIInterfaceOrientationMask {
+        StudentAppDelegate.orientationLock
     }
 }
 
@@ -474,6 +484,7 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     }
 
     func userDidLogin(session: LoginSession) {
+        StudentAppDelegate.orientationLock = .all
         LoginSession.add(session)
         setup(session: session)
         setupOffline(for: session)
@@ -492,6 +503,7 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     }
 
     func userDidLogout(session: LoginSession) {
+        StudentAppDelegate.orientationLock = .portrait
         disableTracking()
         shouldSetK5StudentView = false
         let wasCurrent = environment.currentSession == session

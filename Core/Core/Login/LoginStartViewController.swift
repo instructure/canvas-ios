@@ -73,9 +73,7 @@ class LoginStartViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = .backgroundLightest
-
 //        if let findSchoolButtonTitle = loginDelegate?.findSchoolButtonTitle {
 //            findSchoolButton.setTitle(findSchoolButtonTitle, for: .normal)
 //        }
@@ -140,7 +138,7 @@ class LoginStartViewController: UIViewController {
     }
 
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
-        updateButtonStackViewLayout()
+        //updateButtonStackViewLayout()
     }
 
     // Center Buttons Vertically when orientation is landscape
