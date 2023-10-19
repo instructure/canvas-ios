@@ -24,8 +24,8 @@ public protocol NetworkAvailabilityService {
     func startMonitoring()
     func stopMonitoring()
 
-    func startObservingStatus() -> CurrentValueSubject<NetworkAvailabilityStatus, Never>
-    var status: NetworkAvailabilityStatus { get }
+    func startObservingStatus() -> CurrentValueSubject<NetworkAvailabilityStatus?, Never>
+    var status: NetworkAvailabilityStatus? { get }
 }
 
 public final class NetworkAvailabilityServiceLive: NetworkAvailabilityService {
@@ -35,13 +35,13 @@ public final class NetworkAvailabilityServiceLive: NetworkAvailabilityService {
 
     // MARK: - Properties
 
-    public private(set) var status: NetworkAvailabilityStatus = .disconnected {
+    public private(set) var status: NetworkAvailabilityStatus? {
         didSet {
             statusSubject.send(status)
         }
     }
 
-    private let statusSubject = CurrentValueSubject<NetworkAvailabilityStatus, Never>(.disconnected)
+    private let statusSubject = CurrentValueSubject<NetworkAvailabilityStatus?, Never>(nil)
     private var isMonitoring = false
     private let queue = DispatchQueue(label: "\(Bundle.main.appBundleIdentifier).network-availability")
 
@@ -84,7 +84,7 @@ public final class NetworkAvailabilityServiceLive: NetworkAvailabilityService {
         monitor.cancel()
     }
 
-    public func startObservingStatus() -> CurrentValueSubject<NetworkAvailabilityStatus, Never> {
+    public func startObservingStatus() -> CurrentValueSubject<NetworkAvailabilityStatus?, Never> {
         statusSubject
     }
 }

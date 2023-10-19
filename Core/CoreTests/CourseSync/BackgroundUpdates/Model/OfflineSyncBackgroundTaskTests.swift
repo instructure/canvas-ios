@@ -28,25 +28,14 @@ class OfflineSyncBackgroundTaskTests: CoreTestCase {
                                         tabs: [.init(id: "", name: "", type: .assignments)],
                                         files: [])
 
-    func testCompletesIfThereAreNoAccountsToSync() {
-        let testee = OfflineSyncBackgroundTask(syncableAccounts: mockSyncAccountsCalculator,
-                                               sessions: Set<LoginSession>([.make()]))
-        let completed = expectation(description: "Task completed")
-
-        // WHEN
-        testee.start { completed.fulfill() }
-
-        // THEN
-        waitForExpectations(timeout: 1)
-    }
-
     // MARK: - Scheduling Related Tests
 
     func testSchedulesNextBackgroundSyncWhenFinishedCurrentSync() {
         let mockScheduler = MockSyncScheduler()
         let testee = OfflineSyncBackgroundTask(syncableAccounts: mockSyncAccountsCalculator,
                                                sessions: Set<LoginSession>([.make()]),
-                                               syncScheduler: mockScheduler)
+                                               syncScheduler: mockScheduler,
+                                               networkAvailabilityService: networkAvailabilityMock(.connected(.wifi)))
 
         // WHEN
         testee.start {}
@@ -59,7 +48,8 @@ class OfflineSyncBackgroundTaskTests: CoreTestCase {
         let mockScheduler = MockSyncScheduler()
         let testee = OfflineSyncBackgroundTask(syncableAccounts: mockSyncAccountsCalculator,
                                                sessions: Set<LoginSession>([.make()]),
-                                               syncScheduler: mockScheduler)
+                                               syncScheduler: mockScheduler,
+                                               networkAvailabilityService: networkAvailabilityMock(.connected(.wifi)))
 
         // WHEN
         testee.cancel()
@@ -76,6 +66,7 @@ class OfflineSyncBackgroundTaskTests: CoreTestCase {
         let testee = OfflineSyncBackgroundTask(syncableAccounts: mockSyncAccountsCalculator,
                                                sessions: Set<LoginSession>([.make()]),
                                                syncScheduler: mockScheduler,
+                                               networkAvailabilityService: networkAvailabilityMock(.connected(.wifi)),
                                                selectedItemsInteractorFactory: { _ in
                                                    mockSelectedItems
                                                },
@@ -101,6 +92,7 @@ class OfflineSyncBackgroundTaskTests: CoreTestCase {
         let mockSyncInteractor = MockCourseSyncInteractor()
         let testee = OfflineSyncBackgroundTask(syncableAccounts: mockSyncAccountsCalculator,
                                                sessions: Set<LoginSession>([.make()]),
+                                               networkAvailabilityService: networkAvailabilityMock(.connected(.wifi)),
                                                selectedItemsInteractorFactory: { _ in
                                                    mockSelectedItems
                                                },
@@ -127,6 +119,7 @@ class OfflineSyncBackgroundTaskTests: CoreTestCase {
         let mockSyncInteractor = MockCourseSyncInteractor()
         let testee = OfflineSyncBackgroundTask(syncableAccounts: mockSyncAccountsCalculator,
                                                sessions: Set<LoginSession>([.make()]),
+                                               networkAvailabilityService: networkAvailabilityMock(.connected(.wifi)),
                                                selectedItemsInteractorFactory: { _ in
                                                    mockSelectedItems
                                                },
@@ -142,6 +135,18 @@ class OfflineSyncBackgroundTaskTests: CoreTestCase {
         XCTAssertNil(mockSyncInteractor.receivedEntries)
     }
 
+    func testCompletesIfThereAreNoAccountsToSync() {
+        let testee = OfflineSyncBackgroundTask(syncableAccounts: mockSyncAccountsCalculator,
+                                               sessions: Set<LoginSession>([.make()]))
+        let completed = expectation(description: "Task completed")
+
+        // WHEN
+        testee.start { completed.fulfill() }
+
+        // THEN
+        waitForExpectations(timeout: 1)
+    }
+
     func testIteratesThroughUsersAndRestoresLastLoggedInOneUponFinish() {
         let user1 = LoginSession.make(userID: "1")
         let user2 = LoginSession.make(userID: "2")
@@ -151,6 +156,7 @@ class OfflineSyncBackgroundTaskTests: CoreTestCase {
         let mockSyncInteractor = MockCourseSyncInteractor()
         let testee = OfflineSyncBackgroundTask(syncableAccounts: mockSyncAccountsCalculator,
                                                sessions: Set<LoginSession>([user1, user2]),
+                                               networkAvailabilityService: networkAvailabilityMock(.connected(.wifi)),
                                                selectedItemsInteractorFactory: { _ in
                                                    mockSelectedItems
                                                },
@@ -178,8 +184,53 @@ class OfflineSyncBackgroundTaskTests: CoreTestCase {
         XCTAssertEqual(AppEnvironment.shared.currentSession, user1)
     }
 
+    func testSkipsSyncIfWifiOnlySelectedButNoWifiAvailable() {
+        mockSyncAccountsCalculator.accounts = [.make()]
+        let session: LoginSession = .make()
+        var sessionDefaults = SessionDefaults(sessionID: session.uniqueID)
+        sessionDefaults.isOfflineWifiOnlySyncEnabled = true
+        let mockSelectedItems = MockSelectedItemsFactory(mockSyncEntries: Just([mockSyncEntry]).eraseToAnyPublisher())
+        let mockSyncInteractor = MockCourseSyncInteractor()
+        let testee = OfflineSyncBackgroundTask(syncableAccounts: mockSyncAccountsCalculator,
+                                               sessions: Set<LoginSession>([session]),
+                                               networkAvailabilityService: networkAvailabilityMock(.connected(.cellular)),
+                                               selectedItemsInteractorFactory: { _ in
+                                                   mockSelectedItems
+                                               },
+                                               syncInteractorFactory: {
+                                                    mockSyncInteractor
+                                               })
+        let completed = expectation(description: "Sync completed")
+
+        // WHEN
+        testee.start { completed.fulfill() }
+
+        // THEN
+        XCTAssertFalse(mockSelectedItems.getCelectedCourseEntriesInvoked)
+        XCTAssertNil(mockSyncInteractor.receivedEntries)
+        XCTAssertEqual(mockSyncInteractor.downloadContentInvocationCount, 0)
+        waitForExpectations(timeout: 1)
+    }
+
+    // MARK: - Private Helpers
+
     private func mockFinishedDownload() {
         NotificationCenter.default.post(name: .OfflineSyncCompleted, object: nil)
+    }
+
+    private func networkAvailabilityMock(_ status: NetworkAvailabilityStatus) -> NetworkAvailabilityService {
+        let monitor = NWPathMonitorWrapper(start: { _ in () }, cancel: {})
+        let networkAvailabilityService = NetworkAvailabilityServiceLive(monitor: monitor)
+        let path: NWPathWrapper
+
+        switch status {
+        case .connected(let connectionType):
+            path = NWPathWrapper(status: .satisfied, isExpensive: connectionType == .cellular ? true : false)
+        case .disconnected:
+            path = NWPathWrapper(status: .unsatisfied, isExpensive: false)
+        }
+        monitor.updateHandler?(path)
+        return networkAvailabilityService
     }
 }
 
@@ -194,6 +245,7 @@ private class MockOfflineSyncAccountsInteractor: OfflineSyncAccountsInteractor {
 private class MockSelectedItemsFactory: CourseSyncSelectorInteractorMock {
     var mockSyncEntries: AnyPublisher<[CourseSyncEntry], Never>
     private(set) var receivedCourseID: String?
+    private(set) var getCelectedCourseEntriesInvoked = false
 
     init(mockSyncEntries: AnyPublisher<[CourseSyncEntry], Never>) {
         self.mockSyncEntries = mockSyncEntries
@@ -216,7 +268,8 @@ private class MockSelectedItemsFactory: CourseSyncSelectorInteractorMock {
     }
 
     override func getSelectedCourseEntries() -> AnyPublisher<[Core.CourseSyncEntry], Never> {
-        mockSyncEntries
+        getCelectedCourseEntriesInvoked = true
+        return mockSyncEntries
     }
 }
 
