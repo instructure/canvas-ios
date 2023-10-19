@@ -69,7 +69,7 @@ public struct Brand: Equatable {
         UIColor.getColor(dark: primaryDark, light: primaryLight)
     }
     public var tabBarHighlightColor: UIColor {
-        primary.darkenToEnsureContrast(against: .backgroundLightest)
+        Brand.shared.linkColor
     }
 
     private var buttonPrimaryBackgroundDark: UIColor = .black

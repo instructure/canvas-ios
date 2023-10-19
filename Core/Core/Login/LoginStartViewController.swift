@@ -53,15 +53,15 @@ class LoginStartViewController: UIViewController {
     var sessions: [LoginSession] = []
     var shouldAnimateFromLaunchScreen = false
     var app: App = .student
-    var lastLoginAccount: APIAccountResult? {
-        didSet {
-            lastLoginButton.isHidden = true //lastLoginAccount == nil
-            guard let lastLoginAccount = lastLoginAccount else { return }
-            let buttonTitle = lastLoginAccount.name.isEmpty ? lastLoginAccount.domain : lastLoginAccount.name
-            lastLoginButton.setTitle(NSLocalizedString(buttonTitle, bundle: .core, comment: ""), for: .normal)
-            alternateFindSchoolButton()
-        }
-    }
+//    var lastLoginAccount: APIAccountResult? {
+//        didSet {
+//            lastLoginButton.isHidden = true //lastLoginAccount == nil
+//            guard let lastLoginAccount = lastLoginAccount else { return }
+//            let buttonTitle = lastLoginAccount.name.isEmpty ? lastLoginAccount.domain : lastLoginAccount.name
+//            lastLoginButton.setTitle(NSLocalizedString(buttonTitle, bundle: .core, comment: ""), for: .normal)
+//            alternateFindSchoolButton()
+//        }
+//    }
 
     static func create(loginDelegate: LoginDelegate?, fromLaunch: Bool, app: App) -> LoginStartViewController {
         let controller = loadFromStoryboard()
@@ -90,7 +90,7 @@ class LoginStartViewController: UIViewController {
         wordmark.tintColor = .currentLogoColor()
         animatableLogo.tintColor = logoView.tintColor
         previousLoginsView.isHidden = true
-        self.lastLoginAccount = nil
+        //self.lastLoginAccount = nil
         previousLoginsLabel.text = NSLocalizedString("Previous Logins", bundle: .core, comment: "")
         whatsNewLabel.text = NSLocalizedString("We've made a few changes.", bundle: .core, comment: "")
         whatsNewLink.setTitle(NSLocalizedString("See what's new.", bundle: .core, comment: ""), for: .normal)
@@ -107,10 +107,11 @@ class LoginStartViewController: UIViewController {
             findSchoolButton.isHidden = true
             lastLoginButton.setTitle(loginText, for: .normal)
             lastLoginButton.isHidden = true
-        } else if let data = UserDefaults.standard.data(forKey: "lastLoginAccount"),
-                    let savedAccount = try? APIJSONDecoder().decode(APIAccountResult.self, from: data) {
-            lastLoginAccount = savedAccount
-        }
+        } 
+//        else if let data = UserDefaults.standard.data(forKey: "lastLoginAccount"),
+//                    let savedAccount = try? APIJSONDecoder().decode(APIAccountResult.self, from: data) {
+//            lastLoginAccount = savedAccount
+//        }
 
         mdmObservation = MDMManager.shared.observe(\.loginsRaw, changeHandler: { [weak self] _, _ in
             self?.update()
@@ -135,6 +136,7 @@ class LoginStartViewController: UIViewController {
         whatsNewLabel.isHidden = true
         whatsNewLink.isHidden = true
         wordmarkLabel.isHidden = true
+        lastLoginButton.isHidden = true
     }
 
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
@@ -285,15 +287,16 @@ class LoginStartViewController: UIViewController {
                 )
                 analyticsRoute = "/login/weblogin"
             }
-        } else if let host = lastLoginAccount?.domain {
-            controller = LoginWebViewController.create(
-                authenticationProvider: lastLoginAccount?.authentication_provider,
-                host: host,
-                loginDelegate: loginDelegate,
-                method: method
-            )
-            analyticsRoute = "/login/weblogin"
-        }
+        } 
+//        else if let host = lastLoginAccount?.domain {
+//            controller = LoginWebViewController.create(
+//                authenticationProvider: lastLoginAccount?.authentication_provider,
+//                host: host,
+//                loginDelegate: loginDelegate,
+//                method: method
+//            )
+//            analyticsRoute = "/login/weblogin"
+//        }
 
         env.router.show(controller, from: self, analyticsRoute: analyticsRoute)
     }

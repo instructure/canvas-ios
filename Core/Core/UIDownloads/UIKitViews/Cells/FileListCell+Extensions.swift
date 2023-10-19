@@ -99,7 +99,7 @@ extension FileListCell {
 
     func addDownloadButton() -> DownloadButton {
         let downloadButton: DownloadButton = .init(frame: .zero)
-        downloadButton.mainTintColor = Brand.shared.linkColor
+        downloadButton.mainTintColor = course?.color ?? Brand.shared.linkColor
         downloadButton.currentState = .idle
         downloadButton.backgroundColor = .backgroundLightest
         contentView.addSubview(downloadButton)

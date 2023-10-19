@@ -51,7 +51,7 @@ public struct DownloadsContentCellView: View {
             DownloadButtonRepresentable(
                 progress: .constant(0),
                 currentState: .constant(.downloaded),
-                mainTintColor: Brand.shared.linkColor,
+                mainTintColor: UIColor(color),
                 onState: { state in
                     debugLog(state)
                 },
