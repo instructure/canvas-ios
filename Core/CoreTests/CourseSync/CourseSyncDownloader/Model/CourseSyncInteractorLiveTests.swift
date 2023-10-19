@@ -659,6 +659,35 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(downloadProgress.error, "Offline sync was interrupted by the operating system")
         subscription.cancel()
     }
+
+    func testCancelsBackgroundActivityOnCancel() {
+        let backgroundActivityMock = BackgroundActivityMock()
+        let testee = CourseSyncInteractorLive(
+            contentInteractors: [
+                assignmentsInteractor,
+            ],
+            filesInteractor: filesInteractor,
+            progressWriterInteractor: CourseSyncProgressWriterInteractorLive(container: database),
+            notificationInteractor: CourseSyncNotificationMock(notificationManager: notificationManager,
+                                                                   progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: backgroundActivityMock,
+            scheduler: .immediate
+        )
+        entries[0].tabs[0].selectionState = .selected
+
+        let subscription = testee
+            .downloadContent(for: entries)
+            .sink()
+
+        // WHEN
+        // assignmentsInteractor didn't complete sync
+        testee.cancel()
+
+        // THEN
+        XCTAssertTrue(backgroundActivityMock.stopInvoked)
+        subscription.cancel()
+    }
 }
 
 // MARK: - Mocks

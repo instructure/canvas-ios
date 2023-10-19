@@ -20,7 +20,7 @@ import Combine
 import CombineExt
 import Foundation
 
-protocol CourseSyncSelectorInteractor: AnyObject {
+public protocol CourseSyncSelectorInteractor: AnyObject {
     /**
      - parameters:
         - sessionDefaults: The storage from where the selection states are read and written to.
