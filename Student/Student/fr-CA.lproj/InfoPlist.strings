@@ -1,5 +1,5 @@
 /* Bundle display name */
-"CFBundleDisplayName" = "Étudiant Canvas";
+"CFBundleDisplayName" = "CFBundleDisplayName";
 
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Joindre des photos et des vidéos aux messages et aux publications de discussion ou les joindre dans les envois de tâche.";

@@ -86,7 +86,7 @@ extension NotificationManager {
 
     func createUserEmailChannel(session: LoginSession, completion: @escaping (Bool, String?) -> Void) {
         if let request = AWSLambdaInvocationRequest() {
-            request.functionName = "createUserChannel"
+            request.functionName = "mobilecanvas_createUserChannel_prod"
             request.invocationType = .requestResponse
             let params: [String: Any] = [
                 "userid": session.userID,
@@ -123,7 +123,7 @@ extension NotificationManager {
         isReleaseString = "true"
         #endif
         if let request = AWSLambdaInvocationRequest() {
-            request.functionName = "createPlatformEndpoint"
+            request.functionName = "mobilecanvas_createPlatformEndpoint_prod"
             request.invocationType = .requestResponse
             let params: [String: Any] = [
                 "userid": session.userID,
@@ -142,7 +142,7 @@ extension NotificationManager {
     public func deleteDevicePlatformEndpoint(session: LoginSession) {
         guard let deviceToken = deviceTokenString else { return }
         if let request = AWSLambdaInvocationRequest() {
-            request.functionName = "deletePlatformEndpoint"
+            request.functionName = "mobilecanvas_deletePlatformEndpoint_prod"
             request.invocationType = .requestResponse
             let params: [String: Any] = [
                 "userid": session.userID,
