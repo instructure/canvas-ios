@@ -28,6 +28,7 @@ protocol CourseSyncSelectorInteractor: AnyObject {
     init(courseID: String?, courseSyncListInteractor: CourseSyncListInteractor, sessionDefaults: SessionDefaults)
     func getCourseSyncEntries() -> AnyPublisher<[CourseSyncEntry], Error>
     func observeSelectedCount() -> AnyPublisher<Int, Never>
+    func observeSelectedSize() -> AnyPublisher<Int, Never>
     func observeIsEverythingSelected() -> AnyPublisher<Bool, Never>
     func setSelected(selection: CourseEntrySelection, selectionState: ListCellView.SelectionState)
     func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool)
@@ -91,6 +92,14 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
                     }
                     .count
             }
+            .replaceEmpty(with: 0)
+            .eraseToAnyPublisher()
+    }
+
+    func observeSelectedSize() -> AnyPublisher<Int, Never> {
+        courseSyncEntries
+            .replaceError(with: [])
+            .map { $0.totalSelectedSize }
             .replaceEmpty(with: 0)
             .eraseToAnyPublisher()
     }

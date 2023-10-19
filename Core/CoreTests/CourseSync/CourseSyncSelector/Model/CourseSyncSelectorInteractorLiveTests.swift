@@ -261,6 +261,49 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         subscription1.cancel()
     }
 
+    func testSelectedSize() {
+        let testee = CourseSyncSelectorInteractorLive(sessionDefaults: defaults)
+        let expectation = expectation(description: "Publisher sends value")
+        expectation.expectedFulfillmentCount = 2
+
+        mockCourseList(
+            courseList: [
+                .make(id: "1", name: "course 1", tabs: [.make(id: "files", label: "Files")]),
+                .make(id: "2", name: "course 2", tabs: []),
+            ]
+        )
+
+        let rootFolder = APIFolder.make(context_type: "Course", context_id: 1, files_count: 2, id: 0)
+        let rootFolderFile1 = APIFile.make(id: 0, folder_id: 0, display_name: "root-file-1")
+        let rootFolderFile2 = APIFile.make(id: 1, folder_id: 0, display_name: "root-file-2")
+
+        mockRootFolders(folders: [rootFolder])
+        mockFolderItems(for: "0", folders: [], files: [rootFolderFile1, rootFolderFile2])
+
+        var selectedSize = 0
+        let subscription = testee.getCourseSyncEntries()
+            .first()
+            .handleEvents(receiveOutput: { _ in
+                testee.setSelected(selection: .course("courses/1"), selectionState: .selected)
+                testee.setSelected(selection: .file("1", "root-file-1"), selectionState: .selected)
+                testee.setSelected(selection: .file("2", "root-file-2"), selectionState: .selected)
+                expectation.fulfill()
+            })
+            .flatMap { _ in testee.observeSelectedSize() }
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: {
+                    selectedSize = $0
+                    expectation.fulfill()
+                }
+            )
+
+        waitForExpectations(timeout: 0.1)
+        XCTAssertEqual(selectedSize, 2048)
+        subscription.cancel()
+    }
+
+
     func testCourseNameWithoutCourseFilter() {
         let testee = CourseSyncSelectorInteractorLive(sessionDefaults: defaults)
         var subscriptions = Set<AnyCancellable>()
