@@ -94,7 +94,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     func setupAWS() {
         guard let accessKey = Secret.awsAccessKey.string, let secretKey = Secret.awsSecretKey.string else { return }
         let credProvider = AWSStaticCredentialsProvider(accessKey: accessKey, secretKey: secretKey)
-        if let awsConfiguration = AWSServiceConfiguration(region: .USEast1, credentialsProvider: credProvider) {
+        if let awsConfiguration = AWSServiceConfiguration(region: .USWest2, credentialsProvider: credProvider) {
             AWSSNS.register(with: awsConfiguration, forKey: "mySNS")
             AWSLambda.register(with: awsConfiguration, forKey: "myLambda")
         }
