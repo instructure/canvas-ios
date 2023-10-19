@@ -123,16 +123,15 @@ public struct Brand: Equatable {
         primary: UIColor?
     ) {
         self.headerImageUrl = Bundle.core.url(forResource: "edx_logo", withExtension: "png")
-        var edxColor: UIColor = UIColor(red: 0.00, green: 0.15, blue: 0.17, alpha: 1.00)
 
         self.buttonPrimaryBackgroundLight = buttonPrimaryBackground ?? .electric
         self.buttonPrimaryTextLight = buttonPrimaryText != nil ? buttonPrimaryText!.ensureContrast(against: self.buttonPrimaryBackgroundLight) : .white
         self.buttonSecondaryBackgroundLight = buttonSecondaryBackground ?? .licorice
         self.buttonSecondaryTextLight = buttonSecondaryText != nil ? buttonSecondaryText!.ensureContrast(against: self.buttonSecondaryBackgroundLight) : .white
         self.fontColorDarkLight = fontColorDark ?? .licorice
-        self.headerImageBackgroundLight = edxColor
+        self.headerImageBackgroundLight = .edxColor
         self.linkColorLight = linkColor ?? .electric
-        self.navBackgroundLight = edxColor
+        self.navBackgroundLight = .edxColor
 
         self.navBadgeBackgroundLight = navBadgeBackground ?? .electric
         self.navBadgeTextLight = navBadgeText ?? .white
@@ -147,9 +146,9 @@ public struct Brand: Equatable {
         self.buttonSecondaryBackgroundDark = buttonSecondaryBackground != nil ? buttonSecondaryBackground!.ensureContrast(against: .backgroundLightest) : .licorice
         self.buttonSecondaryTextDark = buttonSecondaryText != nil ? buttonSecondaryText!.ensureContrast(against: self.buttonSecondaryBackgroundDark) : .white
         self.fontColorDarkDark = fontColorDark != nil ? fontColorDark!.ensureContrast(against: .backgroundLightest) : .licorice
-        self.headerImageBackgroundDark = edxColor
+        self.headerImageBackgroundDark = .edxColor
         self.linkColorDark = linkColor != nil ? linkColor!.ensureContrast(against: .backgroundLightest) : .electric
-        self.navBackgroundDark = edxColor
+        self.navBackgroundDark = .edxColor
         self.navBadgeBackgroundDark = navBadgeBackground != nil ? navBadgeBackground!.ensureContrast(against: self.navBackgroundDark) : .electric
         self.navBadgeTextDark = navBadgeText != nil ? navBadgeText!.ensureContrast(against: self.navBadgeBackgroundDark) : .white
         self.navIconFillDark = navIconFill != nil ? navIconFill!.ensureContrast(against: self.navBackgroundDark) : .white

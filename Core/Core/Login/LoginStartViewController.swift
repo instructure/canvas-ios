@@ -55,7 +55,7 @@ class LoginStartViewController: UIViewController {
     var app: App = .student
     var lastLoginAccount: APIAccountResult? {
         didSet {
-            lastLoginButton.isHidden = lastLoginAccount == nil
+            lastLoginButton.isHidden = true //lastLoginAccount == nil
             guard let lastLoginAccount = lastLoginAccount else { return }
             let buttonTitle = lastLoginAccount.name.isEmpty ? lastLoginAccount.domain : lastLoginAccount.name
             lastLoginButton.setTitle(NSLocalizedString(buttonTitle, bundle: .core, comment: ""), for: .normal)
@@ -76,10 +76,17 @@ class LoginStartViewController: UIViewController {
 
         view.backgroundColor = .backgroundLightest
 
-        if let findSchoolButtonTitle = loginDelegate?.findSchoolButtonTitle {
-            findSchoolButton.setTitle(findSchoolButtonTitle, for: .normal)
-        }
+//        if let findSchoolButtonTitle = loginDelegate?.findSchoolButtonTitle {
+//            findSchoolButton.setTitle(findSchoolButtonTitle, for: .normal)
+//        }
         findSchoolButton.setTitle(NSLocalizedString("Log In", bundle: .core, comment: ""), for: .normal)
+        findSchoolButton.backgroundColor = UIColor(red: 0.88, green: 0.87, blue: 0.83, alpha: 1.00)
+        findSchoolButton.setTitleColor(
+            UIColor(red: 0.00, green: 0.15, blue: 0.17, alpha: 1.00),
+            for: .normal
+        )
+        useQRCodeButton.tintColor = UIColor(red: 0.88, green: 0.87, blue: 0.83, alpha: 1.00)
+        useQRCodeButton.setTitleColor(UIColor(red: 0.88, green: 0.87, blue: 0.83, alpha: 1.00), for: .normal)
         authenticationMethodLabel.isHidden = true
         logoView.tintColor = .currentLogoColor()
         wordmark.tintColor = .currentLogoColor()
@@ -101,7 +108,7 @@ class LoginStartViewController: UIViewController {
         if MDMManager.shared.host != nil {
             findSchoolButton.isHidden = true
             lastLoginButton.setTitle(loginText, for: .normal)
-            lastLoginButton.isHidden = false
+            lastLoginButton.isHidden = true
         } else if let data = UserDefaults.standard.data(forKey: "lastLoginAccount"),
                     let savedAccount = try? APIJSONDecoder().decode(APIAccountResult.self, from: data) {
             lastLoginAccount = savedAccount
@@ -124,6 +131,12 @@ class LoginStartViewController: UIViewController {
 
         update()
         refreshLogins()
+
+        logoView.isHidden = true
+        wordmark.isHidden = true
+        whatsNewLabel.isHidden = true
+        whatsNewLink.isHidden = true
+        wordmarkLabel.isHidden = true
     }
 
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
@@ -184,7 +197,8 @@ class LoginStartViewController: UIViewController {
 
     func update() {
         sessions = LoginSession.sessions.sorted { a, b in a.lastUsedAt > b.lastUsedAt }
-        previousLoginsView.isHidden = sessions.isEmpty && MDMManager.shared.logins.isEmpty
+        previousLoginsView.isHidden = true  //sessions.isEmpty && MDMManager.shared.logins.isEmpty
+        previousLoginsTableView.isHidden = true
         previousLoginsTableView.reloadData()
         configureButtons()
     }
@@ -192,12 +206,12 @@ class LoginStartViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
-        prepareForAnimation()
+        //prepareForAnimation()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        animateLogoFromCenterToFinalPosition()
+        //animateLogoFromCenterToFinalPosition()
     }
 
     // MARK: - Animation
@@ -325,7 +339,7 @@ class LoginStartViewController: UIViewController {
             method = .normalLogin
             authenticationMethodLabel.text = nil
         }
-        authenticationMethodLabel.isHidden = authenticationMethodLabel.text == nil
+        authenticationMethodLabel.isHidden = true //authenticationMethodLabel.text == nil
     }
 
     // MARK: - Private Methods

@@ -28,18 +28,19 @@ public class LoadingViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .backgroundLightest
-        logoView?.tintColor = .currentLogoColor()
+        view.backgroundColor = .edxColor
+        logoView?.image = UIImage(named: "edx_logo")
+        logoView?.contentMode = .scaleAspectFit
     }
 
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let animation = CABasicAnimation(keyPath: "transform.rotation.z")
-        animation.fromValue = 0
-        animation.toValue = 2 * Float.pi
-        animation.repeatCount = Float.infinity
-        animation.duration = 10.0
-        logoView?.layer.add(animation, forKey: "spin")
+//        let animation = CABasicAnimation(keyPath: "transform.rotation.z")
+//        animation.fromValue = 0
+//        animation.toValue = 2 * Float.pi
+//        animation.repeatCount = Float.infinity
+//        animation.duration = 10.0
+//        logoView?.layer.add(animation, forKey: "spin")
     }
 
     public override func viewWillAppear(_ animated: Bool) {
