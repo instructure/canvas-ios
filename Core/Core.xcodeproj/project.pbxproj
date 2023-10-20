@@ -1196,6 +1196,7 @@
 		BA3E36262C43A9629722478C /* APIHelpLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675E43BF3E8EDABCB6408820 /* APIHelpLinks.swift */; };
 		BA5419F816E27C21071C3207 /* UITestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB895C3AEEA85C6EFC4D563 /* UITestHelpers.swift */; };
 		BA5E98F4FC647FD448488431 /* RichContentEditor.js in Resources */ = {isa = PBXBuildFile; fileRef = 7CD06BD85946FE58878B9134 /* RichContentEditor.js */; };
+		BA6FF3A32AE2C6AD008B82D7 /* EDXLoginStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6FF3A22AE2C6AD008B82D7 /* EDXLoginStartViewController.swift */; };
 		BA812AAEDDC344B2F1273FF4 /* APICommentLibraryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38294A8FA8F588332BF0C2E0 /* APICommentLibraryRequest.swift */; };
 		BA8A9DF74B4427F649B17E64 /* CourseSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CBD2A123330769319E0D7D /* CourseSettingsTests.swift */; };
 		BAA5F2CF2A83FBE0002508E2 /* DownloadsModulesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA5F2CE2A83FBE0002508E2 /* DownloadsModulesViewModel.swift */; };
@@ -3074,6 +3075,7 @@
 		B9F59BA311FE64B3ACC60351 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		BA1AB994171E07385A3C840D /* CourseSyncSelectorViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncSelectorViewModelTests.swift; sourceTree = "<group>"; };
 		BA392AE7CE716F9D5DF3E4FE /* SideMenuSubHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuSubHeaderView.swift; sourceTree = "<group>"; };
+		BA6FF3A22AE2C6AD008B82D7 /* EDXLoginStartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDXLoginStartViewController.swift; sourceTree = "<group>"; };
 		BA98A219C0118BC1617B8616 /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
 		BAA5F2CE2A83FBE0002508E2 /* DownloadsModulesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsModulesViewModel.swift; sourceTree = "<group>"; };
 		BAA5F2D02A83FC02002508E2 /* DownloadsModulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsModulesView.swift; sourceTree = "<group>"; };
@@ -7449,6 +7451,7 @@
 				1733D95843193B753797D3B2 /* LoginWebViewController.swift */,
 				D9E7E9A48DA0928791BB51E9 /* PairWithStudentQRCodeTutorialViewController.storyboard */,
 				1B30F0A5FF24A16E638535AB /* PairWithStudentQRCodeTutorialViewController.swift */,
+				BA6FF3A22AE2C6AD008B82D7 /* EDXLoginStartViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -10561,6 +10564,7 @@
 				F231310AB410ED67D77D29DB /* K5HomeroomMySubjectsView.swift in Sources */,
 				F5D13FB3397F54869F3638AC /* K5HomeroomSubjectCardView.swift in Sources */,
 				E87827D70E9063BD735EE2C4 /* K5HomeroomSubjectCardViewModel.swift in Sources */,
+				BA6FF3A32AE2C6AD008B82D7 /* EDXLoginStartViewController.swift in Sources */,
 				9A1F13BBEAA42BF25ED4A824 /* K5HomeroomView.swift in Sources */,
 				2455859ED40B1F74E4A75301 /* K5HomeroomViewModel.swift in Sources */,
 				E866CEAE2F9281A498A02743 /* K5ImportantDateCell.swift in Sources */,
