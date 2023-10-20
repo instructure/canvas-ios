@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-@testable import Core
 import Combine
+@testable import Core
 import Foundation
 import TestsFoundation
 import XCTest
@@ -303,7 +303,6 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         subscription.cancel()
     }
 
-
     func testCourseNameWithoutCourseFilter() {
         let testee = CourseSyncSelectorInteractorLive(sessionDefaults: defaults)
         var subscriptions = Set<AnyCancellable>()
@@ -361,6 +360,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
 
     func testAppliesPreviousSelection() {
         // MARK: - GIVEN
+
         var session = SessionDefaults(sessionID: "oldSession")
         session.offlineSyncSelections = ["courses/2"]
 
@@ -375,6 +375,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         )
 
         // MARK: - WHEN
+
         let selectedItemID = testee
             .getCourseSyncEntries()
             .map { entries in
@@ -384,12 +385,14 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
             .first()
 
         // MARK: - THEN
+
         XCTAssertCompletableSingleOutputEquals(selectedItemID, "courses/2")
         session.reset()
     }
 
     func testSavesSelectionState() {
         // MARK: - GIVEN
+
         mockCourseList(courseList: [
             .make(id: "1", name: "course 1", tabs: []),
             .make(id: "2", name: "course 2", tabs: []),
@@ -399,14 +402,17 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         XCTAssertFinish(testee.getCourseSyncEntries().first())
 
         // MARK: - WHEN
+
         testee.setSelected(selection: .course("courses/2"), selectionState: .selected)
 
         // MARK: - THEN
+
         XCTAssertEqual(defaults.offlineSyncSelections, ["courses/2"])
     }
 
     func testFilterSaveWithCourseFilterDontOverwriteOtherSelections() {
         // MARK: - GIVEN
+
         defaults.offlineSyncSelections = ["courses/2", "courses/1/tabs/1"]
 
         mockCourseList(courseList: [
@@ -418,9 +424,11 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
         XCTAssertFinish(testee.getCourseSyncEntries().first())
 
         // MARK: - WHEN
+
         testee.setSelected(selection: .course("courses/1"), selectionState: .selected)
 
         // MARK: - THEN
+
         XCTAssertEqual(defaults.offlineSyncSelections, ["courses/2", "courses/1"])
     }
 
