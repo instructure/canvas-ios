@@ -120,7 +120,7 @@ class PeopleTests: E2ETestCase {
         XCTAssertTrue(person1NameLabel.isVisible)
         XCTAssertEqual(person1NameLabel.label, teachers[0].name)
 
-        var person2 = PeopleHelper.peopleCell(index: 1).waitUntil(.visible)
+        let person2 = PeopleHelper.peopleCell(index: 1).waitUntil(.visible)
         XCTAssertTrue(person2.isVisible)
         let person2RoleLabel = PeopleHelper.roleLabelOfPeopleCell(index: 1).waitUntil(.visible)
         XCTAssertTrue(person2RoleLabel.isVisible)
