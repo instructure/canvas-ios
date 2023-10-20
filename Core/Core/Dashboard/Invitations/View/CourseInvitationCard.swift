@@ -56,6 +56,7 @@ struct CourseInvitationCard: View {
                 .font(.semibold16).foregroundColor(.textDark)
                 .frame(maxWidth: .infinity, minHeight: 40)
                 .frame(height: invitation.state == .active ? nil : 0)
+                .clipped()
                 .background(RoundedRectangle(cornerRadius: 4).stroke(Color.borderDark, lineWidth: 1 / UIScreen.main.scale))
                 .background(RoundedRectangle(cornerRadius: 4).fill(Color.backgroundLightest))
         }
