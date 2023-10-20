@@ -301,7 +301,7 @@ class OfflineTests: E2ETestCase {
         let student = seeder.createUser()
         let offlineCourse = SyllabusHelper.createCourseWithSyllabus()
         let onlineCourse = seeder.createCourse()
-        let discussion = DiscussionsHelper.createDiscussion(course: offlineCourse)
+        DiscussionsHelper.createDiscussion(course: offlineCourse)
         PagesHelper.createPage(course: offlineCourse)
         seeder.enrollStudent(student, in: offlineCourse)
         seeder.enrollStudent(student, in: onlineCourse)
