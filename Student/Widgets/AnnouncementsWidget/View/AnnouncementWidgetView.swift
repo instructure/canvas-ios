@@ -24,19 +24,22 @@ struct AnnouncementsWidgetView: View {
     @Environment(\.widgetFamily) var family
 
     var body: some View {
-        if let firstAnnouncement = entry.announcements.first {
-            switch family {
-            case .systemSmall:
-                SmallAnnouncementsView(announcement: firstAnnouncement)
-            default:
-                let announcementsToShow = Array(entry.announcements.prefix((family == .systemMedium) ? 1 : 3))
-                MediumLargeAnnouncementsView(announcements: announcementsToShow)
+        VStack {
+            if let firstAnnouncement = entry.announcements.first {
+                switch family {
+                case .systemSmall:
+                    SmallAnnouncementsView(announcement: firstAnnouncement)
+                default:
+                    let announcementsToShow = Array(entry.announcements.prefix((family == .systemMedium) ? 1 : 3))
+                    MediumLargeAnnouncementsView(announcements: announcementsToShow)
+                }
+            } else if entry.isLoggedIn {
+                EmptyView(title: Text("Announcements"), message: Text("No Announcements"))
+            } else {
+                EmptyView(title: Text("Announcements"), message: Text("Please log in via the application"))
             }
-        } else if entry.isLoggedIn {
-            EmptyView(title: Text("Announcements"), message: Text("No Announcements"))
-        } else {
-            EmptyView(title: Text("Announcements"), message: Text("Please log in via the application"))
         }
+        .widgetBackground(backgroundView: Color.clear)
     }
 }
 
