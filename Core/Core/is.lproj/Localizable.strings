@@ -722,9 +722,6 @@
 "d_items" = "d_items";
 
 /* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
-
-/* No comment provided by engineer. */
 "d_likes" = "d_likes";
 
 /* No comment provided by engineer. */
@@ -2556,9 +2553,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Skilaferlinu var hætt af stýrikerfinu.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Það eru %d atriði sem eru valin fyrir tiltækileika án nettengingar. Valið efni verður hlaðið niður í tækið.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Það eru engin virk verkefni í þessu námskeiði.";
