@@ -81,6 +81,10 @@ public struct DashboardContainerView: View, ScreenViewTrackable, DownloadsProgre
                 .padding(.horizontal, verticalSpacing)
             }
             refreshAction: { onComplete in
+                if !reachability.isConnected {
+                    onComplete()
+                    return 
+                }
                 refresh(force: true, onComplete: onComplete)
             }
         }
