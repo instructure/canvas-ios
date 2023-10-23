@@ -57,21 +57,6 @@ public class DashboardCourseCardListViewModel: ObservableObject {
         interactor.courseCardList
             .map { !$0.isEmpty }
             .assign(to: &$shouldShowSettingsButton)
-
-        reachability.newtorkReachabilityPublisher
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] isConnected in
-                guard let self = self else {
-                    return
-                }
-                if isConnected {
-                    self.refresh()
-                } else {
-                    self.clear()
-                    self.state = .error
-                }
-            }
-            .store(in: &cancellables)
     }
 
     public func refresh(onComplete: (() -> Void)? = nil) {
