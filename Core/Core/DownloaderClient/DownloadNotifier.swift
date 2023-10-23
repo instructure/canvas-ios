@@ -25,7 +25,7 @@ final class DownloadNotifier: Reachabilitable {
     @Injected(\.reachability) var reachability: ReachabilityProvider
 
     private var downloadsManager: OfflineDownloadsManager = .shared
-    var cancellables: [AnyCancellable] = []
+    var cancellables: Set<AnyCancellable> = Set<AnyCancellable>()
 
     var canShowBanner: Bool = true
     var isConnected: Bool = true

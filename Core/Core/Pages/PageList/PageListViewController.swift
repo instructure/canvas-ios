@@ -30,7 +30,7 @@ public class PageListViewController: ScreenViewTrackableViewController, ColoredN
     }
 
     @Injected(\.reachability) var reachability: ReachabilityProvider
-    var cancellables: [AnyCancellable] = []
+    var cancellables: Set<AnyCancellable> = Set<AnyCancellable>()
 
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!

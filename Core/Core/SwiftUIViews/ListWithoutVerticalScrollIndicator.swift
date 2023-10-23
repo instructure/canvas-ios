@@ -43,7 +43,7 @@ public struct ListWithoutVerticalScrollIndicator<Content: View>: View {
 final class NoConnectionViewModel: ObservableObject, Reachabilitable {
 
     @Injected(\.reachability) var reachability: ReachabilityProvider
-    var cancellables: [AnyCancellable] = []
+    var cancellables: Set<AnyCancellable> = Set<AnyCancellable>()
 
     @Published var isConnected: Bool = false
 

@@ -20,15 +20,19 @@ import Combine
 import SwiftUI
 
 public class DashboardCourseCardListViewModel: ObservableObject {
+
     // MARK: - Dependencies
 
     private let interactor: DashboardCourseCardListInteractor
+    @Injected(\.reachability) var reachability: ReachabilityProvider
 
     // MARK: - Outputs
 
     @Published public private(set) var shouldShowSettingsButton = false
     @Published public private(set) var courseCardList = [DashboardCard]()
     @Published public private(set) var state = StoreState.loading
+
+    private var cancellables: Set<AnyCancellable> = Set<AnyCancellable>()
 
     // MARK: - Private properties
 
@@ -53,6 +57,21 @@ public class DashboardCourseCardListViewModel: ObservableObject {
         interactor.courseCardList
             .map { !$0.isEmpty }
             .assign(to: &$shouldShowSettingsButton)
+
+        reachability.newtorkReachabilityPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isConnected in
+                guard let self = self else {
+                    return
+                }
+                if isConnected {
+                    self.refresh()
+                } else {
+                    self.clear()
+                    self.state = .error
+                }
+            }
+            .store(in: &cancellables)
     }
 
     public func refresh(onComplete: (() -> Void)? = nil) {
@@ -62,5 +81,9 @@ public class DashboardCourseCardListViewModel: ObservableObject {
                 onComplete?()
             }
             .store(in: &subscriptions)
+    }
+
+    public func clear() {
+        courseCardList = []
     }
 }

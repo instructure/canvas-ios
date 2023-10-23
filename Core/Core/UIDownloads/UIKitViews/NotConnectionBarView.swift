@@ -23,7 +23,7 @@ import mobile_offline_downloader_ios
 public class NotConnectionBarView: UIView, Reachabilitable {
 
     @Injected(\.reachability) var reachability: ReachabilityProvider
-    var cancellables: [AnyCancellable] = []
+    var cancellables: Set<AnyCancellable> = Set<AnyCancellable>()
 
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()

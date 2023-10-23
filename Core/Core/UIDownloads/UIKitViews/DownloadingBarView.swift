@@ -35,7 +35,7 @@ public class DownloadingBarView: UIView, Reachabilitable {
         }
     }
 
-    var cancellables: [AnyCancellable] = []
+    var cancellables: Set<AnyCancellable> = Set<AnyCancellable>()
 
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
