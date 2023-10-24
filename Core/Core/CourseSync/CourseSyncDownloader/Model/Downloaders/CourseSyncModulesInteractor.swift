@@ -19,15 +19,19 @@
 import Combine
 import Foundation
 
-public protocol CourseSyncModulesInteractor: CourseSyncContentInteractor {}
-public extension CourseSyncModulesInteractor {
-    var associatedTabType: TabName { .modules }
+public protocol CourseSyncModulesInteractor {
+    func getContent(courseId: String) -> AnyPublisher<[ModuleItem], Error>
+    func getAssociatedModuleItems(courseId: String, moduleItemTypes: [TabName], moduleItems: [ModuleItem]) -> AnyPublisher<Void, Error>
 }
 
-public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor, CourseSyncContentInteractor {
-    public init() {}
+public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor {
+    private let filesInteractor: CourseSyncFilesInteractor
 
-    public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
+    public init(filesInteractor: CourseSyncFilesInteractor = CourseSyncFilesInteractorLive()) {
+        self.filesInteractor = filesInteractor
+    }
+
+    public func getContent(courseId: String) -> AnyPublisher<[ModuleItem], Error> {
         ReactiveStore(
             useCase: GetModules(courseID: courseId)
         )
@@ -35,14 +39,14 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor,
         .flatMap { $0.publisher }
         .flatMap { Self.getModuleItemSequence(courseID: $0.courseID, moduleItems: $0.items) }
         .collect()
-        .mapToVoid()
+        .map { $0.flatMap { $0 } }
         .eraseToAnyPublisher()
     }
 
     private static func getModuleItemSequence(
         courseID: String,
         moduleItems: [ModuleItem]
-    ) -> AnyPublisher<Void, Error> {
+    ) -> AnyPublisher<[ModuleItem], Error> {
         moduleItems.publisher
             .flatMap {
                 ReactiveStore(
@@ -55,7 +59,132 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor,
                 .getEntities()
             }
             .collect()
+            .map { _ in moduleItems }
+            .eraseToAnyPublisher()
+    }
+
+    public func getAssociatedModuleItems(
+        courseId: String,
+        moduleItemTypes: [TabName],
+        moduleItems: [ModuleItem]
+    ) -> AnyPublisher<Void, Error> {
+        var downloaders: [AnyPublisher<Void, Error>] = []
+
+        for type in moduleItemTypes {
+            if type == .pages {
+                downloaders.append(getModulePages(courseId: courseId, moduleItems: moduleItems))
+            }
+
+            if type == .quizzes {
+                downloaders.append(getModuleQuizzes(courseId: courseId, moduleItems: moduleItems))
+            }
+
+            if type == .files {
+                downloaders.append(getModuleFiles(filesInteractor: filesInteractor, courseId: courseId, moduleItems: moduleItems))
+            }
+        }
+
+        return downloaders.zip()
             .mapToVoid()
             .eraseToAnyPublisher()
+    }
+
+    private func getModulePages(
+        courseId: String,
+        moduleItems: [ModuleItem]
+    ) -> AnyPublisher<Void, Error> {
+        let urls = moduleItems.compactMap { $0.type?.pageUrl }
+
+        return urls.publisher
+            .flatMap {
+                ReactiveStore(
+                    useCase: GetPage(context: .course(courseId), url: $0)
+                )
+                .getEntities()
+            }
+            .collect()
+            .mapToVoid()
+            .eraseToAnyPublisher()
+    }
+
+    private func getModuleQuizzes(
+        courseId: String,
+        moduleItems: [ModuleItem]
+    ) -> AnyPublisher<Void, Error> {
+        let ids = moduleItems.compactMap { $0.type?.quizzId }
+
+        return ids.publisher
+            .flatMap {
+                ReactiveStore(
+                    useCase: GetQuiz(courseID: courseId, quizID: $0)
+                )
+                .getEntities()
+            }
+            .collect()
+            .mapToVoid()
+            .eraseToAnyPublisher()
+    }
+
+    private func getModuleFiles(
+        filesInteractor: CourseSyncFilesInteractor,
+        courseId: String,
+        moduleItems: [ModuleItem]
+    ) -> AnyPublisher<Void, Error> {
+        let ids = moduleItems.compactMap { $0.type?.fileId }
+
+        return ids.publisher
+            .flatMap {
+                ReactiveStore(
+                    useCase: GetFile(context: .course(courseId), fileID: $0)
+                )
+                .getEntities()
+                .flatMap { [filesInteractor] files -> AnyPublisher<Void, Error> in
+                    guard let file = files.first, let url = file.url, let fileID = file.id, let mimeClass = file.mimeClass else {
+                        return Empty(completeImmediately: false)
+                            .setFailureType(to: Error.self)
+                            .eraseToAnyPublisher()
+                    }
+                    return filesInteractor.downloadFile(
+                        courseId: courseId,
+                        url: url,
+                        fileID: fileID,
+                        fileName: file.filename,
+                        mimeClass: mimeClass,
+                        updatedAt: file.updatedAt
+                    )
+                    .collect()
+                    .mapToVoid()
+                    .eraseToAnyPublisher()
+                }
+            }
+            .collect()
+            .mapToVoid()
+            .eraseToAnyPublisher()
+    }
+}
+
+private extension ModuleItemType {
+    var pageUrl: String? {
+        if case let .page(url) = self {
+            return url
+        } else {
+            return nil
+        }
+    }
+
+    var quizzId: String? {
+        if case let .quiz(id) = self {
+            return id
+        } else {
+            return nil
+        }
+    }
+
+    var fileId: String? {
+        if case let .file(id) = self {
+            return id
+        } else {
+            return nil
+        }
     }
 }

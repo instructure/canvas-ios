@@ -34,6 +34,7 @@ public protocol CourseSyncContentInteractor {
 public final class CourseSyncInteractorLive: CourseSyncInteractor {
     private let contentInteractors: [CourseSyncContentInteractor]
     private let filesInteractor: CourseSyncFilesInteractor
+    private let modulesInteractor: CourseSyncModulesInteractor
     private let progressWriterInteractor: CourseSyncProgressWriterInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var courseSyncEntries = CurrentValueSubject<[CourseSyncEntry], Never>.init([])
@@ -63,6 +64,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     public init(
         contentInteractors: [CourseSyncContentInteractor],
         filesInteractor: CourseSyncFilesInteractor,
+        modulesInteractor: CourseSyncModulesInteractor,
         progressWriterInteractor: CourseSyncProgressWriterInteractor,
         notificationInteractor: CourseSyncNotificationInteractor,
         courseListInteractor: CourseListInteractor,
@@ -71,6 +73,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     ) {
         self.contentInteractors = contentInteractors
         self.filesInteractor = filesInteractor
+        self.modulesInteractor = modulesInteractor
         self.progressWriterInteractor = progressWriterInteractor
         self.courseListInteractor = courseListInteractor
         self.notificationInteractor = notificationInteractor
@@ -161,13 +164,14 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
 
         var downloaders = TabName
             .OfflineSyncableTabs
-            .filter { $0 != .files } // files are handled separately
+            .filter { $0 != .files && $0 != .modules } // files are handled separately
             .map { downloadTabContent(for: entry, tabName: $0) }
 
         downloaders.append(downloadFiles(for: entry))
 
         return downloaders
             .zip()
+            .flatMap { _ in unownedSelf.downloadModules(for: entry) }
             .receive(on: scheduler)
             .updateDownloadedState {
                 let hasError = unownedSelf.safeCourseSyncEntriesValue[id: entry.id]?.hasError ?? false
@@ -327,6 +331,70 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         .eraseToAnyPublisher()
     }
 
+    private func downloadModules(for entry: CourseSyncEntry) -> AnyPublisher<Void, Never> {
+        unowned let unownedSelf = self
+
+        guard let tabIndex = entry.tabs.firstIndex(where: { $0.type == .modules }),
+              entry.tabs[tabIndex].selectionState == .selected,
+              entry.tabs[tabIndex].state != .downloaded
+        else {
+            return Just(()).eraseToAnyPublisher()
+        }
+
+        return modulesInteractor.getContent(courseId: entry.courseId)
+            .flatMap {
+                unownedSelf.getModuleSubItems(entry: entry, moduleItems: $0)
+                    .zip()
+                    .mapToVoid()
+            }
+            .receive(on: scheduler)
+            .updateLoadingState {
+                unownedSelf.setState(
+                    selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                    state: .loading(nil)
+                )
+            }
+            .updateDownloadedState {
+                unownedSelf.setState(
+                    selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                    state: .downloaded
+                )
+            }
+            .catch { _ in
+                unownedSelf.setState(
+                    selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                    state: .error
+                )
+                return Just(()).eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+    }
+
+    private func getModuleSubItems(entry: CourseSyncEntry, moduleItems: [ModuleItem]) -> [AnyPublisher<Void, Error>] {
+        let tabsForRegularDownload = Set(moduleItems.tabItemsToRequestByList).subtracting(Set(entry.selectedTabs))
+        let tabsForModuleItemDownload = moduleItems.tabItemsToRequestByID
+
+        let interactors = tabsForRegularDownload.compactMap { tabName in
+            if let interactor = contentInteractors.first(where: { $0.associatedTabType == tabName }) {
+                return interactor
+            } else {
+                return nil
+            }
+        }
+
+        var downloaders = interactors.map { $0.getContent(courseId: entry.courseId) }
+
+        let modulesDownloaders = modulesInteractor.getAssociatedModuleItems(
+            courseId: entry.courseId,
+            moduleItemTypes: tabsForModuleItemDownload,
+            moduleItems: moduleItems
+        )
+
+        downloaders.append(modulesDownloaders)
+
+        return downloaders
+    }
+
     private func removeUnavailableFiles(courseId: String, newFileIDs: [String] = []) -> AnyPublisher<Void, Never> {
         filesInteractor.removeUnavailableFiles(
             courseId: courseId,
@@ -414,5 +482,55 @@ private extension Publisher {
             }
         )
         .eraseToAnyPublisher()
+    }
+}
+
+private extension Collection where Element == ModuleItem {
+    var tabItemsToRequestByList: [TabName] {
+        filter {
+            switch $0.type {
+            case .assignment:
+                return true
+            case .discussion:
+                return true
+            default:
+                return false
+            }
+        }
+        .compactMap { $0.associatedOfflineTab }
+    }
+
+    var tabItemsToRequestByID: [TabName] {
+        filter {
+            switch $0.type {
+            case .assignment:
+                return false
+            case .discussion:
+                return false
+            default:
+                return true
+            }
+        }
+        .compactMap { $0.associatedOfflineTab }
+    }
+}
+
+extension ModuleItem {
+    /// Certain courses have their tabs hidden except Modules. In that case we need to iterate through each module item and download its' content from the appropiate API. This property gives back a `TabName` if the API accepts requests when the tab is hidden.
+    var associatedOfflineTab: TabName? {
+        switch type {
+        case .file:
+            return .files
+        case .discussion:
+            return .discussions
+        case .assignment:
+            return .assignments
+        case .quiz:
+            return .quizzes
+        case .page:
+            return .pages
+        default:
+            return nil
+        }
     }
 }
