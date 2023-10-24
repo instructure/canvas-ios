@@ -38,14 +38,13 @@ public struct Brand: Equatable {
         UIColor.getColor(dark: fontColorDarkDark, light: fontColorDarkLight)
     }
     public var headerImageBackground: UIColor {
-        UIColor.getColor(dark: headerImageBackgroundDark, light: headerImageBackgroundLight)
+        .clear
     }
     public var linkColor: UIColor {
         UIColor.getColor(dark: linkColorDark, light: linkColorLight)
     }
     public var navBackground: UIColor {
         UIColor.getColor(dark: navBackgroundDark, light: navBackgroundLight)
-
     }
     public var navBadgeBackground: UIColor {
         UIColor.getColor(dark: navBadgeBackgroundDark, light: navBadgeBackgroundLight)
@@ -146,7 +145,7 @@ public struct Brand: Equatable {
         self.buttonSecondaryBackgroundDark = buttonSecondaryBackground != nil ? buttonSecondaryBackground!.ensureContrast(against: .backgroundLightest) : .licorice
         self.buttonSecondaryTextDark = buttonSecondaryText != nil ? buttonSecondaryText!.ensureContrast(against: self.buttonSecondaryBackgroundDark) : .white
         self.fontColorDarkDark = fontColorDark != nil ? fontColorDark!.ensureContrast(against: .backgroundLightest) : .licorice
-        self.headerImageBackgroundDark = .edxColor
+        self.headerImageBackgroundDark = .clear
         self.linkColorDark = linkColor != nil ? linkColor!.ensureContrast(against: .backgroundLightest) : .electric
         self.navBackgroundDark = .edxColor
         self.navBadgeBackgroundDark = navBadgeBackground != nil ? navBadgeBackground!.ensureContrast(against: self.navBackgroundDark) : .electric

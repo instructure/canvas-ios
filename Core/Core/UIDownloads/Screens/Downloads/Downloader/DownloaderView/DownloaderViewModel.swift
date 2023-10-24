@@ -76,7 +76,7 @@ final class DownloaderViewModel: ObservableObject, Reachabilitable, DownloadsPro
         } else {
             OfflineLogsMananger().logPausedAll()
             activeEntries.forEach {
-                downloadsManager.pause(entry:$0)
+                downloadsManager.pause(entry: $0)
             }
         }
         toggleDownloadingBarView(hidden: true)
