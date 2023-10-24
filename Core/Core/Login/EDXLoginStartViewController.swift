@@ -223,7 +223,13 @@ final class EDXLoginStartViewController: UIViewController {
         Analytics.shared.logEvent("qr_code_login_failure")
         showAlert(
             title: NSLocalizedString("Login Error", bundle: .core, comment: ""),
-            message: NSLocalizedString("Please generate another QR Code and try again.", bundle: .core, comment: "")
+            message: NSLocalizedString("Please generate another QR Code and try again.", bundle: .core, comment: ""),
+            actions: [
+                UIAlertAction(
+                    title: NSLocalizedString("Cancel", bundle: .core, comment: ""),
+                    style: .cancel
+                )
+            ]
         )
     }
 
@@ -247,14 +253,19 @@ extension EDXLoginStartViewController: PairWithStudentQRCodeTutorialDelegate {
 
 extension EDXLoginStartViewController: ScannerDelegate, ErrorViewController {
     func scanner(_ scanner: ScannerViewController, didScanCode code: String) {
-        env.router.dismiss(scanner) {
+        env.router.dismiss(scanner) { [weak self] in
+            guard let self = self else {
+                return
+            }
             guard let url = URL(string: code),
                   let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
                   let host = components.host else {
+                self.showQRCodeError()
                 return
             }
 
             guard let queryItem = components.queryItems?.first(where: {$0.name == "domain"}), queryItem.value?.lowercased() == self.digitalcampusHost.lowercased() else {
+                self.showQRCodeError()
                 return
             }
 
