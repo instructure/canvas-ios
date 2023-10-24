@@ -71,6 +71,8 @@
 		7DF398C924BE1736003FBA7F /* CalendarEventDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DF398C824BE1735003FBA7F /* CalendarEventDetailsViewController.storyboard */; };
 		7DF398CB24BE1752003FBA7F /* CalendarEventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF398CA24BE1752003FBA7F /* CalendarEventDetailsViewController.swift */; };
 		7DFDB43223A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFDB43123A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift */; };
+		8B4C566E2AE7EDEE00B5AC89 /* AboutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C566D2AE7EDEE00B5AC89 /* AboutTests.swift */; };
+		8B4C56702AE7EDF800B5AC89 /* HelpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C566F2AE7EDF800B5AC89 /* HelpTests.swift */; };
 		8B7CF40F2A9D156700229CD3 /* GradesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7CF40E2A9D156700229CD3 /* GradesTests.swift */; };
 		8BEBB64E29FA750000364C4C /* DSLoginE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEBB64D29FA750000364C4C /* DSLoginE2ETests.swift */; };
 		97043EDF23E8D4D400E52436 /* DashboardViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97043EDE23E8D4D400E52436 /* DashboardViewControllerTests.swift */; };
@@ -312,6 +314,8 @@
 		7DF398CA24BE1752003FBA7F /* CalendarEventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventDetailsViewController.swift; sourceTree = "<group>"; };
 		7DFDB43123A3EDFB00B28DED /* ParentConversationListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentConversationListViewControllerTests.swift; sourceTree = "<group>"; };
 		837B3D69221692A813A08E1E /* Pods-defaults-ParentUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-ParentUnitTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-ParentUnitTests/Pods-defaults-ParentUnitTests.release.xcconfig"; sourceTree = "<group>"; };
+		8B4C566D2AE7EDEE00B5AC89 /* AboutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutTests.swift; sourceTree = "<group>"; };
+		8B4C566F2AE7EDF800B5AC89 /* HelpTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpTests.swift; sourceTree = "<group>"; };
 		8B7CF40E2A9D156700229CD3 /* GradesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesTests.swift; sourceTree = "<group>"; };
 		8BEBB64D29FA750000364C4C /* DSLoginE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSLoginE2ETests.swift; sourceTree = "<group>"; };
 		8DD07CB9DEEBA35A0324E7CC /* Pods_needs_pspdfkit_ParentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_needs_pspdfkit_ParentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -667,6 +671,22 @@
 			path = Conversations;
 			sourceTree = "<group>";
 		};
+		8B4C566B2AE7EDBB00B5AC89 /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				8B4C566F2AE7EDF800B5AC89 /* HelpTests.swift */,
+			);
+			path = Help;
+			sourceTree = "<group>";
+		};
+		8B4C566C2AE7EDC000B5AC89 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				8B4C566D2AE7EDEE00B5AC89 /* AboutTests.swift */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
 		8B7CF40D2A9D155700229CD3 /* Grades */ = {
 			isa = PBXGroup;
 			children = (
@@ -747,6 +767,8 @@
 		E80763D723E08DC80085DAFB /* ParentE2ETests */ = {
 			isa = PBXGroup;
 			children = (
+				8B4C566C2AE7EDC000B5AC89 /* About */,
+				8B4C566B2AE7EDBB00B5AC89 /* Help */,
 				8B7CF40D2A9D155700229CD3 /* Grades */,
 				E80763D623E08DA10085DAFB /* Info.plist */,
 				E80763E123E08F420085DAFB /* InboxTests.swift */,
@@ -1164,6 +1186,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E81B573923E1EEC5002A0C38 /* GradeListTests.swift in Sources */,
+				8B4C566E2AE7EDEE00B5AC89 /* AboutTests.swift in Sources */,
+				8B4C56702AE7EDF800B5AC89 /* HelpTests.swift in Sources */,
 				8BEBB64E29FA750000364C4C /* DSLoginE2ETests.swift in Sources */,
 				E80763E223E08F420085DAFB /* InboxTests.swift in Sources */,
 				8B7CF40F2A9D156700229CD3 /* GradesTests.swift in Sources */,
