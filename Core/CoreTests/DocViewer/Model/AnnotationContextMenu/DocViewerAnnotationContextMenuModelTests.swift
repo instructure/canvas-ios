@@ -146,6 +146,20 @@ class DocViewerAnnotationContextMenuModelTests: CoreTestCase {
         XCTAssertEqual(menu[3].title, "Remove")
     }
 
+    func testMenuForTextAnnotationByPSPDFKit() {
+        let testee = makeTestee(isAnnotatingEnabledInApp: true, isAPIEnabledAnnotations: true)
+        let menu = testee.menu(for: [FreeTextAnnotation()],
+                               pageView: pageView,
+                               basedOn: UIMenu(children: [editTextAction]),
+                               container: container)
+            .children
+        XCTAssertEqual(menu.count, 4)
+        XCTAssertEqual(menu[0].title, "Comments")
+        XCTAssertEqual(menu[1].title, "Style")
+        XCTAssertEqual(menu[2].title, "Edit Text")
+        XCTAssertEqual(menu[3].title, "Remove")
+    }
+
     func testMenuForTextStrikeoutAnnotation() {
         let testee = makeTestee(isAnnotatingEnabledInApp: true, isAPIEnabledAnnotations: true)
         let menu = testee.menu(for: [DocViewerStrikeOutAnnotation()],

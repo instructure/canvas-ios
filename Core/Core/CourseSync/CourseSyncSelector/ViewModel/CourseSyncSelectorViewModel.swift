@@ -36,11 +36,15 @@ class CourseSyncSelectorViewModel: ObservableObject {
     @Published public private(set) var leftNavBarTitle = ""
     @Published public private(set) var leftNavBarButtonVisible = false
     @Published public var isShowingConfirmationDialog = false
-    public let confirmAlert = ConfirmationAlertViewModel(title: NSLocalizedString("Sync Offline Content?", comment: ""),
-                                                         message: "", // Updated when selected item count changes
-                                                         cancelButtonTitle: NSLocalizedString("Cancel", comment: ""),
-                                                         confirmButtonTitle: NSLocalizedString("Sync", comment: ""),
-                                                         isDestructive: false)
+
+    public let confirmAlert = ConfirmationAlertViewModel(
+        title: NSLocalizedString("Sync Offline Content?", comment: ""),
+        message: "", // Updated when selected item count changes
+        cancelButtonTitle: NSLocalizedString("Cancel", comment: ""),
+        confirmButtonTitle: NSLocalizedString("Sync", comment: ""),
+        isDestructive: false
+    )
+
     public let labels = (
         noCourses: (
             title: NSLocalizedString("No Courses", comment: ""),
@@ -84,16 +88,15 @@ class CourseSyncSelectorViewModel: ObservableObject {
         updateSelectAllButtonTitle(selectorInteractor)
         updateNavBarSubtitle(selectorInteractor)
 
-        handleCancelButtonTap(selectorInteractor)
+        handleCancelButtonTap()
         handleLeftNavBarTap(selectorInteractor)
         handleSyncButtonTap(
             selectorInteractor: selectorInteractor,
-            syncInteractor: syncInteractor,
             confirmAlert: confirmAlert
         )
     }
 
-    private func handleCancelButtonTap(_ interactor: CourseSyncSelectorInteractor) {
+    private func handleCancelButtonTap() {
         cancelButtonDidTap
             .sink { [unowned router] viewController in
                 router.dismiss(viewController)
@@ -126,10 +129,13 @@ class CourseSyncSelectorViewModel: ObservableObject {
 
     private func updateConfirmationDialogMessage(_ interactor: CourseSyncSelectorInteractor) {
         interactor
-            .observeSelectedCount()
-            .map { itemCount in
-                let format = NSLocalizedString("There are %d courses selected for offline availability. The selected content will be downloaded to the device.", bundle: .core, comment: "")
-                return String.localizedStringWithFormat(format, itemCount)
+            .observeSelectedSize()
+            .map {
+                NSLocalizedString(
+                    "This will sync ~\($0.humanReadableFileSize) content. It may result in additional charges from your data provider if you are not connected to a Wi-Fi network.",
+                    bundle: .core,
+                    comment: ""
+                )
             }
             .assign(to: \.message, on: confirmAlert, ownership: .weak)
             .store(in: &subscriptions)
@@ -145,7 +151,6 @@ class CourseSyncSelectorViewModel: ObservableObject {
 
     private func handleSyncButtonTap(
         selectorInteractor: CourseSyncSelectorInteractor,
-        syncInteractor: CourseSyncInteractor,
         confirmAlert: ConfirmationAlertViewModel
     ) {
         syncButtonDidTap
@@ -190,4 +195,5 @@ class CourseSyncSelectorViewModel: ObservableObject {
 extension Notification.Name {
     static let OfflineSyncTriggered = Notification.Name(rawValue: "com.instructure.core.notification.OfflineSyncTriggered")
     static let OfflineSyncCancelled = Notification.Name(rawValue: "com.instructure.core.notification.OfflineSyncCancelled")
+    static let OfflineSyncCompleted = Notification.Name(rawValue: "com.instructure.core.notification.OfflineSyncCompleted")
 }

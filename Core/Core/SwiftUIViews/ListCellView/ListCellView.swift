@@ -18,14 +18,14 @@
 
 import SwiftUI
 
-struct ListCellView: View {
+public struct ListCellView: View {
     enum ListCellStyle {
         case mainAccordionHeader
         case listAccordionHeader
         case listItem
     }
 
-    enum SelectionState: Equatable {
+    public enum SelectionState: Equatable {
         case deselected
         case selected
         case partiallySelected
@@ -173,7 +173,7 @@ struct ListCellView: View {
         }
     }
 
-    var body: some View {
+    public var body: some View {
         Button {
             withAnimation {
                 if viewModel.cellStyle == .listItem || viewModel.isCollapsed == nil {

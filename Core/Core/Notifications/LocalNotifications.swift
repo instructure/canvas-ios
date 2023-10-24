@@ -33,13 +33,13 @@ public extension NotificationManager {
         let route = "/courses/\(courseID)/assignments/\(assignmentID)"
         let title = NSString.localizedUserNotificationString(forKey: "Assignment submitted!", arguments: nil)
         let body = NSString.localizedUserNotificationString(forKey: "Your files were uploaded and the assignment was submitted successfully.", arguments: nil)
-        return notify(identifier: identifier, title: title, body: body, route: route) as Void
+        return notify(identifier: identifier, title: title, body: body, route: route)
     }
 
     func sendFailedNotification() {
         let title = NSString.localizedUserNotificationString(forKey: "Failed to send files!", arguments: nil)
         let body = NSString.localizedUserNotificationString(forKey: "Something went wrong with uploading files.", arguments: nil)
-        return notify(identifier: "upload-manager", title: title, body: body, route: nil) as Void
+        return notify(identifier: "upload-manager", title: title, body: body, route: nil)
     }
 
     func sendOfflineSyncCompletedSuccessfullyNotification(syncedItemsCount: Int) -> Future<Void, Error> {

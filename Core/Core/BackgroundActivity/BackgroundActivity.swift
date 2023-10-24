@@ -68,7 +68,6 @@ public class BackgroundActivity {
      */
     public func stopAndWait() {
         semaphore?.signal()
-        semaphore = nil
         abortHandler = nil
     }
 
@@ -80,16 +79,18 @@ public class BackgroundActivity {
                     Analytics.shared.logError(name: "performExpiringActivity was aborted by the OS")
                     abortHandler?()
                     semaphore?.signal()
-                    semaphore = nil
                 } else {
                     Logger.shared.error("performExpiringActivity failed to start")
                     Analytics.shared.logError(name: "performExpiringActivity failed to start")
                     promise(.success(()))
                 }
+                abortHandler = nil
             } else {
                 semaphore = DispatchSemaphore(value: 0)
                 promise(.success(()))
                 semaphore?.wait()
+                semaphore = nil
+                abortHandler = nil
             }
         }
     }

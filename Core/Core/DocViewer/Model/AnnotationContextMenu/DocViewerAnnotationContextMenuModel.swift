@@ -62,7 +62,7 @@ struct DocViewerAnnotationContextMenuModel {
             newMenuElements.appendUnwrapped(commentMenu)
 
             switch annotation {
-            case is DocViewerFreeTextAnnotation:
+            case is DocViewerFreeTextAnnotation, is FreeTextAnnotation:
                 newMenuElements.append(UIAction.style(annotation: annotation, pageView: pageView))
                 newMenuElements.appendUnwrapped(oldMenu.firstAction(with: .PSPDFKit.editFreeText))
             case is DocViewerInkAnnotation, is DocViewerSquareAnnotation, is DocViewerPointAnnotation:

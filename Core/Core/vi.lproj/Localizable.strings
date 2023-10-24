@@ -722,9 +722,6 @@
 "d_items" = "d_items";
 
 /* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
-
-/* No comment provided by engineer. */
 "d_likes" = "d_likes";
 
 /* No comment provided by engineer. */
@@ -2556,9 +2553,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Quá trình nộp bị hệ điều hành chấm dứt.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Có %d mục được chọn để có thể sử dụng ngoại tuyến. Nội dung được chọn sẽ được tải về thiết bị.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Không có bài tập đang hoạt động nào trong khóa học này.";
