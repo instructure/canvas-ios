@@ -69,7 +69,7 @@ public final class OfflineModeInteractorLive: OfflineModeInteractor {
     }
 
     public func isNetworkOffline() -> Bool {
-        !availabilityService.status.isConnected
+        availabilityService.status == nil || availabilityService.status == .disconnected
     }
 
     /** Values are published on the main thread. */
@@ -86,7 +86,7 @@ public final class OfflineModeInteractorLive: OfflineModeInteractor {
     public func observeNetworkStatus() -> AnyPublisher<NetworkAvailabilityStatus, Never> {
         return availabilityService
             .startObservingStatus()
-            .map { $0 }
+            .compactMap { $0 }
             .removeDuplicates()
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
