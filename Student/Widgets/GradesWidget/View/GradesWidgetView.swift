@@ -34,18 +34,21 @@ struct GradesWidgetView: View {
     }()
 
     var body: some View {
-        if let firstGrade = firstGrade {
-            switch family {
-            case .systemSmall:
-                SmallGradeView(gradeItem: firstGrade)
-            default:
-                MediumLargeGradesView(model: model, lineCount: lineCountByFamily[family]!)
+        VStack {
+            if let firstGrade = firstGrade {
+                switch family {
+                case .systemSmall:
+                    SmallGradeView(gradeItem: firstGrade)
+                default:
+                    MediumLargeGradesView(model: model, lineCount: lineCountByFamily[family]!)
+                }
+            } else if model.isLoggedIn {
+                EmptyView(title: Text("Grades"), message: Text("No Grades To Display"))
+            } else {
+                EmptyView(title: Text("Grades"), message: Text("Please log in via the application"))
             }
-        } else if model.isLoggedIn {
-            EmptyView(title: Text("Grades"), message: Text("No Grades To Display"))
-        } else {
-            EmptyView(title: Text("Grades"), message: Text("Please log in via the application"))
         }
+        .widgetBackground(backgroundView: Color.clear)
     }
 
     init(model: GradeModel) {

@@ -28,5 +28,6 @@ struct AnnouncementsWidget: Widget {
         }
         .configurationDisplayName(NSLocalizedString("Announcements", comment: "Name of the announcements widget"))
         .description(NSLocalizedString("View the latest announcements from your courses.", comment: "Description of the announcements widget"))
+        .contentMarginsDisabled()
     }
 }
