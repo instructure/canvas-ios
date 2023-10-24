@@ -54,12 +54,14 @@ struct AnnouncementItemView: View {
                         .foregroundColor(.textDark)
                     Spacer()
                 }
-            }.background(Color.backgroundLightest)
+            }
+            .compatibleContainerBackground(Color.backgroundLightest)
         }
     }
 }
 
 #if DEBUG
+
 struct AnnouncementItemView_Previews: PreviewProvider {
     static var previews: some View {
         let item = AnnouncementItem(
@@ -72,4 +74,5 @@ struct AnnouncementItemView_Previews: PreviewProvider {
         AnnouncementItemView(announcementItem: item).previewContext(WidgetPreviewContext(family: .systemMedium))
     }
 }
+
 #endif

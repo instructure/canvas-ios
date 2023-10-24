@@ -36,7 +36,10 @@ struct SmallGradeView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .minimumScaleFactor(0.5)
             Spacer(minLength: 0)
-        }.padding(.top).padding(.leading).padding(.trailing).widgetURL(gradeItem.route)
+        }
+        .compatibleContentMargins()
+        .compatibleContainerBackground()
+        .widgetURL(gradeItem.route)
     }
 
     private let gradeItem: GradeItem
@@ -47,14 +50,14 @@ struct SmallGradeView: View {
 }
 
 #if DEBUG
+
 struct SmallGradeViewPreviews: PreviewProvider {
     static var previews: some View {
-        ForEach(PreviewSimulator.allCases, id: \.self) { device in
-            SmallGradeView(gradeItem: GradeItem(name: "Earth: The Pale Blue Dot on two lines or more since it's very long", grade: "95.50 / 100", color: .crimson))
+            SmallGradeView(gradeItem: GradeItem(name: "Earth: The Pale Blue Dot on two lines or more since it's very long",
+                                                grade: "95.50 / 100",
+                                                color: .crimson))
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
-                .previewDevice(device)
-                .previewDisplayName(device.rawValue)
-        }
     }
 }
+
 #endif

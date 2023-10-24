@@ -26,7 +26,8 @@ class CommonWidgetProvider<Model: WidgetModel> {
     private let loggedOutModel: Model
     /** We store the last state of the widget and display it in case a refresh is requested when the device is locked and we have no access to the session in keychain. */
     private var cachedModel: Model?
-    /** This is the completion block received from iOS. Invoked from `updateWidget(model:)`, when data fetch is ready. After one invocation this property is set to nil because subsequent invocations on the same completion handler causes a crash in WidgetKit. */
+    /** This is the completion block received from iOS. Invoked from `updateWidget(model:)`, when data fetch is ready.
+     After one invocation this property is set to nil because subsequent invocations on the same completion handler causes a crash in WidgetKit. */
     private var completion: ((Timeline<Model>) -> Void)?
     private let timeout: TimeInterval
     private var isLoggedIn: Bool { LoginSession.mostRecent != nil }
@@ -66,9 +67,12 @@ class CommonWidgetProvider<Model: WidgetModel> {
     }
 
     /**
-     This method should be called at the end of the `fetchData()`method when data is ready. This method calls the saved `completion` block (if any) with the given `model` and `timeout`. Also sets this property to nil and saves the received `model` to the `cachedModel` property.
+     This method should be called at the end of the `fetchData()`method when data is ready. 
+     This method calls the saved `completion` block (if any) with the given `model` and `timeout`.
+     Also sets this property to nil and saves the received `model` to the `cachedModel` property.
      */
     final func updateWidget(model: Model) {
+        Logger.shared.log()
         completion?(Timeline(entries: [model], policy: .after(Date().addingTimeInterval(timeout))))
         self.completion = nil
         cachedModel = model
@@ -105,7 +109,7 @@ extension CommonWidgetProvider: TimelineProvider {
 
     func placeholder(in context: TimelineProvider.Context) -> Entry {
         // swiftlint:disable:next force_cast
-        Model.publicPreview as! Model
+        return Model.publicPreview as! Model
     }
 
     func getSnapshot(in context: TimelineProvider.Context, completion: @escaping (Entry) -> Void) {
