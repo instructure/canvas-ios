@@ -20,7 +20,7 @@ import Combine
 import Foundation
 
 public protocol CourseSyncModulesInteractor {
-    func getContent(courseId: String) -> AnyPublisher<[ModuleItem], Error>
+    func getModuleItems(courseId: String) -> AnyPublisher<[ModuleItem], Error>
     func getAssociatedModuleItems(courseId: String, moduleItemTypes: [TabName], moduleItems: [ModuleItem]) -> AnyPublisher<Void, Error>
 }
 
@@ -31,7 +31,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
         self.filesInteractor = filesInteractor
     }
 
-    public func getContent(courseId: String) -> AnyPublisher<[ModuleItem], Error> {
+    public func getModuleItems(courseId: String) -> AnyPublisher<[ModuleItem], Error> {
         ReactiveStore(
             useCase: GetModules(courseID: courseId)
         )

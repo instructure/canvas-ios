@@ -164,14 +164,14 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
 
         var downloaders = TabName
             .OfflineSyncableTabs
-            .filter { $0 != .files && $0 != .modules } // files are handled separately
+            .filter { $0 != .files && $0 != .modules } // files and modules are handled separately
             .map { downloadTabContent(for: entry, tabName: $0) }
 
         downloaders.append(downloadFiles(for: entry))
+        downloaders.append(downloadModules(for: entry))
 
         return downloaders
             .zip()
-            .flatMap { _ in unownedSelf.downloadModules(for: entry) }
             .receive(on: scheduler)
             .updateDownloadedState {
                 let hasError = unownedSelf.safeCourseSyncEntriesValue[id: entry.id]?.hasError ?? false
@@ -341,7 +341,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             return Just(()).eraseToAnyPublisher()
         }
 
-        return modulesInteractor.getContent(courseId: entry.courseId)
+        return modulesInteractor.getModuleItems(courseId: entry.courseId)
             .flatMap {
                 unownedSelf.getModuleSubItems(entry: entry, moduleItems: $0)
                     .zip()
@@ -384,13 +384,14 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
 
         var downloaders = interactors.map { $0.getContent(courseId: entry.courseId) }
 
-        let modulesDownloaders = modulesInteractor.getAssociatedModuleItems(
-            courseId: entry.courseId,
-            moduleItemTypes: tabsForModuleItemDownload,
-            moduleItems: moduleItems
-        )
-
-        downloaders.append(modulesDownloaders)
+        if tabsForModuleItemDownload.count > 0 {
+            let modulesDownloaders = modulesInteractor.getAssociatedModuleItems(
+                courseId: entry.courseId,
+                moduleItemTypes: tabsForModuleItemDownload,
+                moduleItems: moduleItems
+            )
+            downloaders.append(modulesDownloaders)
+        }
 
         return downloaders
     }
