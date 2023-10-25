@@ -16,4 +16,46 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import TestsFoundation
+
+class AboutTests: E2ETestCase {
+    func testAbout() {
+        // MARK: Seed the usual stuff
+        let parent = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollParent(parent, in: course)
+
+        // MARK: Get the user logged in, navigate to About
+        logInDSUser(parent)
+        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
+        XCTAssertTrue(profileButton.isVisible)
+
+        profileButton.hit()
+        let aboutButton = ProfileHelper.aboutButton.waitUntil(.visible)
+        XCTAssertTrue(aboutButton.isVisible)
+
+        // MARK: Check elements of About
+        aboutButton.hit()
+        let aboutView = SettingsHelper.About.aboutView.waitUntil(.visible)
+        XCTAssertTrue(aboutView.isVisible)
+
+        let appLabel = SettingsHelper.About.appLabel.waitUntil(.visible)
+        XCTAssertTrue(appLabel.isVisible)
+        XCTAssertEqual(appLabel.label, "Canvas Parent")
+
+        let domainLabel = SettingsHelper.About.domainLabel.waitUntil(.visible)
+        XCTAssertTrue(domainLabel.isVisible)
+        XCTAssertEqual(domainLabel.label, "https://\(user.host)")
+
+        let loginIdLabel = SettingsHelper.About.loginIdLabel.waitUntil(.visible)
+        XCTAssertTrue(loginIdLabel.isVisible)
+        XCTAssertEqual(loginIdLabel.label, parent.id)
+
+        let emailLabel = SettingsHelper.About.emailLabel.waitUntil(.visible)
+        XCTAssertTrue(emailLabel.isVisible)
+        XCTAssertEqual(emailLabel.label, "-")
+
+        let versionLabel = SettingsHelper.About.versionLabel.waitUntil(.visible)
+        XCTAssertTrue(versionLabel.isVisible)
+    }
+}

@@ -110,6 +110,8 @@
 		8917C1628DAFDC52287BF98D /* ModuleItemFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B59FD3B1D002FA5E94E1C6 /* ModuleItemFixture.swift */; };
 		8A07DBDCA9A16E7CA4119BA8 /* SafariAppHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88031258B44C726398315548 /* SafariAppHelper.swift */; };
 		8AAB7EC58190ABB57E0F40AD /* MiniCanvasServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A98E1BAD9BED63BDEAD29 /* MiniCanvasServer.swift */; };
+		8B4C56782AE94DB100B5AC89 /* CreateDSObserveeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C56772AE94DB100B5AC89 /* CreateDSObserveeRequest.swift */; };
+		8B4C567F2AE975CD00B5AC89 /* ManageStudentsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C567E2AE975CD00B5AC89 /* ManageStudentsHelper.swift */; };
 		8C02370D294ADC5E03166916 /* CreateDSQuizQuestionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFA2EB914E415CCFACDB /* CreateDSQuizQuestionRequest.swift */; };
 		8CE7A795708CBCF4AF7A2674 /* DSModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69E1EBE6B486730AE73F45 /* DSModuleItem.swift */; };
 		8CEEA54DE127851FF426490F /* CreateDSDiscussionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D6E99369534DE2260DD4EB /* CreateDSDiscussionRequest.swift */; };
@@ -315,6 +317,8 @@
 		8A068B0E01FE8DF60B7EB29C /* DataSeeder+DSCalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSCalendarEvent.swift"; sourceTree = "<group>"; };
 		8A620771B1587A67246AE4EC /* DataSeeder+DSNewQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSNewQuiz.swift"; sourceTree = "<group>"; };
 		8A786B4F2BC2E643D0EA58C0 /* SetDSFeatureFlagRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDSFeatureFlagRequest.swift; sourceTree = "<group>"; };
+		8B4C56772AE94DB100B5AC89 /* CreateDSObserveeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSObserveeRequest.swift; sourceTree = "<group>"; };
+		8B4C567E2AE975CD00B5AC89 /* ManageStudentsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageStudentsHelper.swift; sourceTree = "<group>"; };
 		8BACE13D3A0EEBE90FCA0993 /* CommandLineHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandLineHelper.swift; sourceTree = "<group>"; };
 		8E046239E00E2F114C950D3A /* ModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFixture.swift; sourceTree = "<group>"; };
 		8E52A6F60DF961A9FB652399 /* DSSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSubmission.swift; sourceTree = "<group>"; };
@@ -495,6 +499,7 @@
 				3F33C4DD360C44A1B0C15A45 /* DataSeeder+DSUser.swift */,
 				DCAA7389044959C4A472A443 /* DSAdmin.swift */,
 				FF23850042CD551D7DF85779 /* DSUser.swift */,
+				8B4C56772AE94DB100B5AC89 /* CreateDSObserveeRequest.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -661,6 +666,7 @@
 				A02184D496B640EBD20AA73F /* InboxHelper.swift */,
 				A26BE2105FAF6DC35379378C /* K5Helper.swift */,
 				9F6BD71926CBC7899DBED383 /* LoginHelper.swift */,
+				8B4C567E2AE975CD00B5AC89 /* ManageStudentsHelper.swift */,
 				27217B6D9BC6C343339FA0E8 /* ModulesHelper.swift */,
 				E31FF550E5D9265099819090 /* NewQuizzesHelper.swift */,
 				266205FEF6E3B8F07A985F9B /* PagesHelper.swift */,
@@ -1166,6 +1172,7 @@
 				69C34E78717F6C85DDF399A8 /* FilesHelper.swift in Sources */,
 				CB1F323336229DCF025587F7 /* GradesHelper.swift in Sources */,
 				1D4A01CB676468A90CF777A3 /* GradingPeriodFixture.swift in Sources */,
+				8B4C56782AE94DB100B5AC89 /* CreateDSObserveeRequest.swift in Sources */,
 				5ED5C3A68E82A55A45209810 /* GroupFixture.swift in Sources */,
 				61BD60E72184E0F4FD7370F3 /* HelpHelper.swift in Sources */,
 				725E9BF8E41C6A616B1AA541 /* HttpResponseExtensions.swift in Sources */,
@@ -1184,6 +1191,7 @@
 				113B16010F4632F524284678 /* MiniCanvasState.swift in Sources */,
 				FBCBC5F2006F22BE66184CB7 /* MiniCanvasUITestCase.swift in Sources */,
 				8EAB580E1AA52D9C4E437F8A /* MiniCourse.swift in Sources */,
+				8B4C567F2AE975CD00B5AC89 /* ManageStudentsHelper.swift in Sources */,
 				5BA634F31078CDB99C215329 /* MiniDiscussion.swift in Sources */,
 				868A57148129505EFB5582E5 /* MiniFile.swift in Sources */,
 				FFADD7DD68993B1380C05405 /* MiniFolder.swift in Sources */,
