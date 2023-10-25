@@ -44,8 +44,11 @@ public struct AboutView: View {
                     .accessibilityLabel(entry.a11yLabel)
                     Color.borderMedium.frame(height: 1 / scale)
                 }
-                Image("instructure", bundle: .core)
-                    .padding(.vertical, 36)
+                Image("green_edx_log", bundle: .core)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 35)
+                    .padding(.vertical, 20)
                     .accessibilityHidden(true)
             }
         }
