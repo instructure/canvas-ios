@@ -65,6 +65,10 @@ public extension UIColor {
     static let textSuccess = UIColor(named: "textSuccess", in: .core, compatibleWith: nil)!
     static let textWarning = UIColor(named: "textWarning", in: .core, compatibleWith: nil)!
     static let tiara = UIColor(named: "tiara", in: .core, compatibleWith: nil)!
+
+    static var edxColor: UIColor = UIColor(red: 0.00, green: 0.15, blue: 0.17, alpha: 1.00)
+    static var edxAcceptColor: UIColor =  UIColor(red: 0.88, green: 0.87, blue: 0.83, alpha: 1.00)
+
 }
 
 public extension Color {

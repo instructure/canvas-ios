@@ -1196,6 +1196,7 @@
 		BA3E36262C43A9629722478C /* APIHelpLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675E43BF3E8EDABCB6408820 /* APIHelpLinks.swift */; };
 		BA5419F816E27C21071C3207 /* UITestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB895C3AEEA85C6EFC4D563 /* UITestHelpers.swift */; };
 		BA5E98F4FC647FD448488431 /* RichContentEditor.js in Resources */ = {isa = PBXBuildFile; fileRef = 7CD06BD85946FE58878B9134 /* RichContentEditor.js */; };
+		BA6FF3A32AE2C6AD008B82D7 /* EDXLoginStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA6FF3A22AE2C6AD008B82D7 /* EDXLoginStartViewController.swift */; };
 		BA812AAEDDC344B2F1273FF4 /* APICommentLibraryRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38294A8FA8F588332BF0C2E0 /* APICommentLibraryRequest.swift */; };
 		BA8A9DF74B4427F649B17E64 /* CourseSettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CBD2A123330769319E0D7D /* CourseSettingsTests.swift */; };
 		BAA5F2CF2A83FBE0002508E2 /* DownloadsModulesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA5F2CE2A83FBE0002508E2 /* DownloadsModulesViewModel.swift */; };
@@ -1203,6 +1204,7 @@
 		BAA5F2D32A83FC27002508E2 /* CustomDisclosureGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA5F2D22A83FC27002508E2 /* CustomDisclosureGroup.swift */; };
 		BAB674C42A814E8500DF718B /* CoreWebViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB674C32A814E8500DF718B /* CoreWebViewRepresentable.swift */; };
 		BAB674D42A83A0B200DF718B /* FileListCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB674D32A83A0B200DF718B /* FileListCell+Extensions.swift */; };
+		BAD667D02AE006E6007375BB /* edx_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = BAD667CF2AE006E6007375BB /* edx_logo.png */; };
 		BAF4758F2A93A5D100A951D0 /* BackgroundTaskProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4758E2A93A5D100A951D0 /* BackgroundTaskProvider.swift */; };
 		BAF4759C2A978C9500A951D0 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = BAF4759B2A978C9500A951D0 /* Introspect */; };
 		BAF4759E2A9791AD00A951D0 /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = BAF4759D2A9791AD00A951D0 /* SwiftUIIntrospect */; };
@@ -3073,6 +3075,7 @@
 		B9F59BA311FE64B3ACC60351 /* en-AU */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-AU"; path = "en-AU.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		BA1AB994171E07385A3C840D /* CourseSyncSelectorViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncSelectorViewModelTests.swift; sourceTree = "<group>"; };
 		BA392AE7CE716F9D5DF3E4FE /* SideMenuSubHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuSubHeaderView.swift; sourceTree = "<group>"; };
+		BA6FF3A22AE2C6AD008B82D7 /* EDXLoginStartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EDXLoginStartViewController.swift; sourceTree = "<group>"; };
 		BA98A219C0118BC1617B8616 /* EmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyView.xib; sourceTree = "<group>"; };
 		BAA5F2CE2A83FBE0002508E2 /* DownloadsModulesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsModulesViewModel.swift; sourceTree = "<group>"; };
 		BAA5F2D02A83FC02002508E2 /* DownloadsModulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsModulesView.swift; sourceTree = "<group>"; };
@@ -3080,6 +3083,7 @@
 		BAAEDFC92AA9FD3400CC9B7F /* mobile-offline-downloader-ios */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "mobile-offline-downloader-ios"; path = "../mobile-offline-downloader-ios"; sourceTree = "<group>"; };
 		BAB674C32A814E8500DF718B /* CoreWebViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreWebViewRepresentable.swift; sourceTree = "<group>"; };
 		BAB674D32A83A0B200DF718B /* FileListCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileListCell+Extensions.swift"; sourceTree = "<group>"; };
+		BAD667CF2AE006E6007375BB /* edx_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edx_logo.png; sourceTree = "<group>"; };
 		BAE9980CB6B4D424C27760EA /* GradeListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeListViewControllerTests.swift; sourceTree = "<group>"; };
 		BAF17BF402BA72B5DAE1972C /* CoreActivityViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreActivityViewControllerTests.swift; sourceTree = "<group>"; };
 		BAF4758E2A93A5D100A951D0 /* BackgroundTaskProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTaskProvider.swift; sourceTree = "<group>"; };
@@ -5912,6 +5916,7 @@
 			children = (
 				B93949D5CAD36EF43399EDF9 /* Fonts */,
 				8E5D3EAD5E2135988C032705 /* defaultHeaderImage.png */,
+				BAD667CF2AE006E6007375BB /* edx_logo.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -7446,6 +7451,7 @@
 				1733D95843193B753797D3B2 /* LoginWebViewController.swift */,
 				D9E7E9A48DA0928791BB51E9 /* PairWithStudentQRCodeTutorialViewController.storyboard */,
 				1B30F0A5FF24A16E638535AB /* PairWithStudentQRCodeTutorialViewController.swift */,
+				BA6FF3A22AE2C6AD008B82D7 /* EDXLoginStartViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -9352,6 +9358,7 @@
 				13C2D35FB354D7573DE6A110 /* lato_regular.ttf in Resources */,
 				4EABFC8CA64AA17F8064C3DF /* lato_semibold.ttf in Resources */,
 				4E129EFE7209B6553657B866 /* lato_semibolditalic.ttf in Resources */,
+				BAD667D02AE006E6007375BB /* edx_logo.png in Resources */,
 				3A1FEFCC34D508B358943CED /* preact.min.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -10557,6 +10564,7 @@
 				F231310AB410ED67D77D29DB /* K5HomeroomMySubjectsView.swift in Sources */,
 				F5D13FB3397F54869F3638AC /* K5HomeroomSubjectCardView.swift in Sources */,
 				E87827D70E9063BD735EE2C4 /* K5HomeroomSubjectCardViewModel.swift in Sources */,
+				BA6FF3A32AE2C6AD008B82D7 /* EDXLoginStartViewController.swift in Sources */,
 				9A1F13BBEAA42BF25ED4A824 /* K5HomeroomView.swift in Sources */,
 				2455859ED40B1F74E4A75301 /* K5HomeroomViewModel.swift in Sources */,
 				E866CEAE2F9281A498A02743 /* K5ImportantDateCell.swift in Sources */,

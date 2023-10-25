@@ -48,6 +48,9 @@ struct DownloaderView: View, Navigatable {
             Color.backgroundLight
                 .ignoresSafeArea()
             content
+                .onAppear {
+                viewModel.toggleDownloadingBarView(hidden: true)
+            }
             if viewModel.deleting {
                 LoadingDarkView()
             }

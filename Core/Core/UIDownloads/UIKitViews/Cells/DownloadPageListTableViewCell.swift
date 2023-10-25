@@ -206,7 +206,7 @@ final public class DownloadPageListTableViewCell: UITableViewCell {
     func addDownloadButton() -> DownloadButton {
         removeDownloadButton()
         let downloadButton: DownloadButton = .init(frame: .zero)
-        downloadButton.mainTintColor = Brand.shared.linkColor
+        downloadButton.mainTintColor = course?.color ?? Brand.shared.linkColor
         downloadButton.currentState = .idle
         contentView.addSubview(downloadButton)
         downloadButton.translatesAutoresizingMaskIntoConstraints = false

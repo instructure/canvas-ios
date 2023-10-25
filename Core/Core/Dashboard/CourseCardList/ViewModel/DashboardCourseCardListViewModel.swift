@@ -20,15 +20,19 @@ import Combine
 import SwiftUI
 
 public class DashboardCourseCardListViewModel: ObservableObject {
+
     // MARK: - Dependencies
 
     private let interactor: DashboardCourseCardListInteractor
+    @Injected(\.reachability) var reachability: ReachabilityProvider
 
     // MARK: - Outputs
 
     @Published public private(set) var shouldShowSettingsButton = false
     @Published public private(set) var courseCardList = [DashboardCard]()
     @Published public private(set) var state = StoreState.loading
+
+    private var cancellables: Set<AnyCancellable> = Set<AnyCancellable>()
 
     // MARK: - Private properties
 
@@ -62,5 +66,9 @@ public class DashboardCourseCardListViewModel: ObservableObject {
                 onComplete?()
             }
             .store(in: &subscriptions)
+    }
+
+    public func clear() {
+        courseCardList = []
     }
 }

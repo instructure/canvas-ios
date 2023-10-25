@@ -20,7 +20,7 @@ import Combine
 
 protocol Reachabilitable: AnyObject {
     var reachability: ReachabilityProvider { get }
-    var cancellables: [AnyCancellable] { get set }
+    var cancellables: Set<AnyCancellable> { get set }
     func connection(on: ((Bool) -> Void)?)
 }
 

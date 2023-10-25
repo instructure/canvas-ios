@@ -106,7 +106,7 @@ extension ModuleItemCell {
     private func addDownloadButton() -> DownloadButton {
         removeDownloadButton()
         let downloadButton: DownloadButton = .init(frame: .zero)
-        downloadButton.mainTintColor = Brand.shared.linkColor
+        downloadButton.mainTintColor = course?.color ?? Brand.shared.linkColor
         downloadButton.currentState = .idle
         hStackView.addArrangedSubview(downloadButton)
         if let index = hStackView.arrangedSubviews.firstIndex(where: {$0 == completedStatusView}) {

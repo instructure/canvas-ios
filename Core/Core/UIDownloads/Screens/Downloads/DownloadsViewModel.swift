@@ -52,7 +52,7 @@ final class DownloadsViewModel: ObservableObject, Reachabilitable {
     }
 
     private(set) var categories: [String: [DownloadsCourseCategoryViewModel]] = [:]
-    var cancellables: [AnyCancellable] = []
+    var cancellables: Set<AnyCancellable> = Set<AnyCancellable>()
 
     enum State {
         case none // init

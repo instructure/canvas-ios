@@ -19,7 +19,7 @@
 import UIKit
 
 public class EmptyViewController: UIViewController {
-    let logoImageView = UIImageView(image: .instructureLine)
+    let logoImageView = UIImageView(image: UIImage(named: "edx_placeholder"))
     public var navBarStyle: UINavigationBar.Style = .global
 
     public override func viewDidLoad() {
@@ -28,6 +28,7 @@ public class EmptyViewController: UIViewController {
 
         view.addSubview(logoImageView)
         logoImageView.tintColor = .textDark
+        logoImageView.contentMode = .scaleAspectFit
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),

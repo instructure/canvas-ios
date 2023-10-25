@@ -23,7 +23,10 @@ public class LoginNavigationController: UINavigationController {
     var app: App = .student
 
     public static func create(loginDelegate: LoginDelegate, fromLaunch: Bool = false, app: App) -> LoginNavigationController {
-        let startView = LoginStartViewController.create(loginDelegate: loginDelegate, fromLaunch: fromLaunch, app: app)
+        let startView = EDXLoginStartViewController()
+        startView.loginDelegate = loginDelegate
+        startView.app = app
+//        LoginStartViewController.create(loginDelegate: loginDelegate, fromLaunch: fromLaunch, app: app)
         let controller = LoginNavigationController(rootViewController: startView)
         controller.app = app
         controller.loginDelegate = loginDelegate
@@ -37,8 +40,11 @@ public class LoginNavigationController: UINavigationController {
     }
 
     public func login(host: String) {
+        let startView = EDXLoginStartViewController()
+        startView.loginDelegate = loginDelegate
+        startView.app = app
         viewControllers = [
-            LoginStartViewController.create(loginDelegate: loginDelegate, fromLaunch: false, app: app),
+            startView,
             LoginFindSchoolViewController.create(loginDelegate: loginDelegate, method: .normalLogin),
             LoginWebViewController.create(host: host, loginDelegate: loginDelegate, method: .normalLogin),
         ]

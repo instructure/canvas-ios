@@ -39,7 +39,7 @@ public extension AboutInfoEntry {
         var appName = UnknownLabel
 
         if let app {
-            appName = "Canvas \(app.rawValue.capitalized)"
+            appName = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String ?? "Degrees edX"
         }
 
         return Self(title: NSLocalizedString("App", comment: ""),

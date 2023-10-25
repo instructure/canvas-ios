@@ -31,7 +31,7 @@ public class ModuleListViewController: ScreenViewTrackableViewController, Colore
     }
 
     @Injected(\.reachability) var reachability: ReachabilityProvider
-    var cancellables: [AnyCancellable] = []
+    var cancellables: Set<AnyCancellable> = Set<AnyCancellable>()
 
     let refreshControl = CircleRefreshControl()
     @IBOutlet weak var emptyMessageLabel: UILabel!

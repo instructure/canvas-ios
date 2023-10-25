@@ -44,6 +44,8 @@ class LoginStartViewController: UIViewController {
     @IBOutlet weak var buttonStackViewCenterYConstraint: NSLayoutConstraint!
     private var originalButtonStackViewCenterYConstraint: NSLayoutConstraint!
 
+    private var digitalcampusHost: String = "digitalcampus.instructure.com"
+
     let env = AppEnvironment.shared
     weak var loginDelegate: LoginDelegate?
     var mdmObservation: NSKeyValueObservation?
@@ -51,15 +53,15 @@ class LoginStartViewController: UIViewController {
     var sessions: [LoginSession] = []
     var shouldAnimateFromLaunchScreen = false
     var app: App = .student
-    var lastLoginAccount: APIAccountResult? {
-        didSet {
-            lastLoginButton.isHidden = lastLoginAccount == nil
-            guard let lastLoginAccount = lastLoginAccount else { return }
-            let buttonTitle = lastLoginAccount.name.isEmpty ? lastLoginAccount.domain : lastLoginAccount.name
-            lastLoginButton.setTitle(NSLocalizedString(buttonTitle, bundle: .core, comment: ""), for: .normal)
-            alternateFindSchoolButton()
-        }
-    }
+//    var lastLoginAccount: APIAccountResult? {
+//        didSet {
+//            lastLoginButton.isHidden = true //lastLoginAccount == nil
+//            guard let lastLoginAccount = lastLoginAccount else { return }
+//            let buttonTitle = lastLoginAccount.name.isEmpty ? lastLoginAccount.domain : lastLoginAccount.name
+//            lastLoginButton.setTitle(NSLocalizedString(buttonTitle, bundle: .core, comment: ""), for: .normal)
+//            alternateFindSchoolButton()
+//        }
+//    }
 
     static func create(loginDelegate: LoginDelegate?, fromLaunch: Bool, app: App) -> LoginStartViewController {
         let controller = loadFromStoryboard()
@@ -71,18 +73,24 @@ class LoginStartViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = .backgroundLightest
-
-        if let findSchoolButtonTitle = loginDelegate?.findSchoolButtonTitle {
-            findSchoolButton.setTitle(findSchoolButtonTitle, for: .normal)
-        }
+//        if let findSchoolButtonTitle = loginDelegate?.findSchoolButtonTitle {
+//            findSchoolButton.setTitle(findSchoolButtonTitle, for: .normal)
+//        }
+        findSchoolButton.setTitle(NSLocalizedString("Log In", bundle: .core, comment: ""), for: .normal)
+        findSchoolButton.backgroundColor = UIColor(red: 0.88, green: 0.87, blue: 0.83, alpha: 1.00)
+        findSchoolButton.setTitleColor(
+            UIColor(red: 0.00, green: 0.15, blue: 0.17, alpha: 1.00),
+            for: .normal
+        )
+        useQRCodeButton.tintColor = UIColor(red: 0.88, green: 0.87, blue: 0.83, alpha: 1.00)
+        useQRCodeButton.setTitleColor(UIColor(red: 0.88, green: 0.87, blue: 0.83, alpha: 1.00), for: .normal)
         authenticationMethodLabel.isHidden = true
         logoView.tintColor = .currentLogoColor()
         wordmark.tintColor = .currentLogoColor()
         animatableLogo.tintColor = logoView.tintColor
         previousLoginsView.isHidden = true
-        self.lastLoginAccount = nil
+        //self.lastLoginAccount = nil
         previousLoginsLabel.text = NSLocalizedString("Previous Logins", bundle: .core, comment: "")
         whatsNewLabel.text = NSLocalizedString("We've made a few changes.", bundle: .core, comment: "")
         whatsNewLink.setTitle(NSLocalizedString("See what's new.", bundle: .core, comment: ""), for: .normal)
@@ -98,11 +106,12 @@ class LoginStartViewController: UIViewController {
         if MDMManager.shared.host != nil {
             findSchoolButton.isHidden = true
             lastLoginButton.setTitle(loginText, for: .normal)
-            lastLoginButton.isHidden = false
-        } else if let data = UserDefaults.standard.data(forKey: "lastLoginAccount"),
-                    let savedAccount = try? APIJSONDecoder().decode(APIAccountResult.self, from: data) {
-            lastLoginAccount = savedAccount
-        }
+            lastLoginButton.isHidden = true
+        } 
+//        else if let data = UserDefaults.standard.data(forKey: "lastLoginAccount"),
+//                    let savedAccount = try? APIJSONDecoder().decode(APIAccountResult.self, from: data) {
+//            lastLoginAccount = savedAccount
+//        }
 
         mdmObservation = MDMManager.shared.observe(\.loginsRaw, changeHandler: { [weak self] _, _ in
             self?.update()
@@ -121,10 +130,17 @@ class LoginStartViewController: UIViewController {
 
         update()
         refreshLogins()
+
+        logoView.isHidden = true
+        wordmark.isHidden = true
+        whatsNewLabel.isHidden = true
+        whatsNewLink.isHidden = true
+        wordmarkLabel.isHidden = true
+        lastLoginButton.isHidden = true
     }
 
     override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
-        updateButtonStackViewLayout()
+        //updateButtonStackViewLayout()
     }
 
     // Center Buttons Vertically when orientation is landscape
@@ -140,7 +156,8 @@ class LoginStartViewController: UIViewController {
 
     func configureButtons() {
         canvasNetworkButton.setTitle(NSLocalizedString("Canvas Network", bundle: .core, comment: ""), for: .normal)
-        canvasNetworkButton.isHidden = loginDelegate?.supportsCanvasNetwork == false || MDMManager.shared.host != nil
+//        canvasNetworkButton.isHidden = loginDelegate?.supportsCanvasNetwork == false || MDMManager.shared.host != nil
+        canvasNetworkButton.isHidden = true
         useQRCodeDivider.isHidden = canvasNetworkButton.isHidden
     }
 
@@ -180,7 +197,8 @@ class LoginStartViewController: UIViewController {
 
     func update() {
         sessions = LoginSession.sessions.sorted { a, b in a.lastUsedAt > b.lastUsedAt }
-        previousLoginsView.isHidden = sessions.isEmpty && MDMManager.shared.logins.isEmpty
+        previousLoginsView.isHidden = true  //sessions.isEmpty && MDMManager.shared.logins.isEmpty
+        previousLoginsTableView.isHidden = true
         previousLoginsTableView.reloadData()
         configureButtons()
     }
@@ -188,12 +206,12 @@ class LoginStartViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
-        prepareForAnimation()
+        //prepareForAnimation()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        animateLogoFromCenterToFinalPosition()
+        //animateLogoFromCenterToFinalPosition()
     }
 
     // MARK: - Animation
@@ -239,8 +257,12 @@ class LoginStartViewController: UIViewController {
     }
 
     @IBAction func findTapped(_ sender: UIButton) {
-        let controller: UIViewController = LoginFindSchoolViewController.create(loginDelegate: loginDelegate, method: method)
-        env.router.show(controller, from: self, analyticsRoute: "/login/find")
+        let controller = LoginWebViewController.create(
+            host: digitalcampusHost,
+            loginDelegate: loginDelegate,
+            method: method
+        )
+        env.router.show(controller, from: self, analyticsRoute: "/login/weblogin")
     }
 
     @IBAction func lastLoginTapped(_ sender: UIButton) {
@@ -265,15 +287,16 @@ class LoginStartViewController: UIViewController {
                 )
                 analyticsRoute = "/login/weblogin"
             }
-        } else if let host = lastLoginAccount?.domain {
-            controller = LoginWebViewController.create(
-                authenticationProvider: lastLoginAccount?.authentication_provider,
-                host: host,
-                loginDelegate: loginDelegate,
-                method: method
-            )
-            analyticsRoute = "/login/weblogin"
-        }
+        } 
+//        else if let host = lastLoginAccount?.domain {
+//            controller = LoginWebViewController.create(
+//                authenticationProvider: lastLoginAccount?.authentication_provider,
+//                host: host,
+//                loginDelegate: loginDelegate,
+//                method: method
+//            )
+//            analyticsRoute = "/login/weblogin"
+//        }
 
         env.router.show(controller, from: self, analyticsRoute: analyticsRoute)
     }
@@ -317,7 +340,7 @@ class LoginStartViewController: UIViewController {
             method = .normalLogin
             authenticationMethodLabel.text = nil
         }
-        authenticationMethodLabel.isHidden = authenticationMethodLabel.text == nil
+        authenticationMethodLabel.isHidden = true //authenticationMethodLabel.text == nil
     }
 
     // MARK: - Private Methods
@@ -459,10 +482,17 @@ extension LoginStartViewController: UITableViewDataSource, UITableViewDelegate, 
 extension LoginStartViewController: ScannerDelegate, ErrorViewController {
     func scanner(_ scanner: ScannerViewController, didScanCode code: String) {
         env.router.dismiss(scanner) {
-            if let url = URL(string: code),
-                let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
-                let host = components.host,
-                components.path == "/pair",
+            guard let url = URL(string: code),
+                  let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+                  let host = components.host else {
+                return
+            }
+
+            guard let queryItem = components.queryItems?.first(where: {$0.name == "domain"}), queryItem.value?.lowercased() == self.digitalcampusHost.lowercased() else {
+                return
+            }
+
+            if  components.path == "/pair",
                 let code = components.queryItems?.first(where: { $0.name == "code" })?.value {
                 self.createAccount(host: host, pairingCode: code)
             } else {

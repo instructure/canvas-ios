@@ -42,7 +42,7 @@ final class DownloaderViewModel: ObservableObject, Reachabilitable, DownloadsPro
     @Published var isActiveEntriesEmpty: Bool = false
     @Published var isEmpty: Bool = true
 
-    var cancellables: [AnyCancellable] = []
+    var cancellables: Set<AnyCancellable> = Set<AnyCancellable>()
 
     private var activeEntries: [OfflineDownloaderEntry] {
         downloadsManager.activeEntries + downloadsManager.waitingEntries
@@ -76,7 +76,7 @@ final class DownloaderViewModel: ObservableObject, Reachabilitable, DownloadsPro
         } else {
             OfflineLogsMananger().logPausedAll()
             activeEntries.forEach {
-                downloadsManager.pause(entry:$0)
+                downloadsManager.pause(entry: $0)
             }
         }
         toggleDownloadingBarView(hidden: true)

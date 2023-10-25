@@ -20,8 +20,6 @@ import SwiftUI
 
 public struct DashboardContainerView: View, ScreenViewTrackable, DownloadsProgressBarHidden {
 
-    @Injected(\.reachability) var reachability: ReachabilityProvider
-
     @StateObject var viewModel: DashboardContainerViewModel
     @ObservedObject var courseCardListViewModel: DashboardCourseCardListViewModel
     @ObservedObject var colors: Store<GetCustomColors>
@@ -70,7 +68,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable, DownloadsProgre
                 VStack(spacing: 0) {
                     DashboardOfflineSyncProgressCardView(viewModel: offlineSyncCardViewModel)
                     fileUploadNotificationCards()
-                    if !reachability.isConnected {
+                    if !courseCardListViewModel.reachability.isConnected {
                         DownloadedContentCellView {
                             showDownloads()
                         }
@@ -81,6 +79,10 @@ public struct DashboardContainerView: View, ScreenViewTrackable, DownloadsProgre
                 .padding(.horizontal, verticalSpacing)
             }
             refreshAction: { onComplete in
+                if !courseCardListViewModel.reachability.isConnected {
+                    onComplete()
+                    return
+                }
                 refresh(force: true, onComplete: onComplete)
             }
         }
