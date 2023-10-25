@@ -735,6 +735,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                 assignmentsInteractor,
             ],
             filesInteractor: filesInteractor,
+            modulesInteractor: CourseSyncModulesInteractorMock(),
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(container: database),
             notificationInteractor: CourseSyncNotificationMock(notificationManager: notificationManager,
                                                                    progressInteractor: CourseSyncProgressObserverInteractorMock()),
