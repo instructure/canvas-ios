@@ -38,7 +38,10 @@ public class CourseListInteractorLive: CourseListInteractor {
         Publishers
             .CombineLatest3(activeCoursesListStore.allObjects.filter(with: searchQuery),
                             pastCoursesListStore.allObjects.filter(with: searchQuery),
-                            futureCoursesListStore.allObjects.filter(with: searchQuery))
+                            futureCoursesListStore.allObjects
+                                .filter(with: searchQuery)
+                                .map { $0.filter { $0.isPublished }}
+            )
             .map {
                 CourseListSections(current: $0.0, past: $0.1, future: $0.2)
             }
