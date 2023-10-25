@@ -290,7 +290,7 @@ class QuizEditorViewModelTests: CoreTestCase {
             }
             return (nil, nil, nil)
         }
-        
+
         testee.doneTapped(router: router, viewController: WeakViewController(UIViewController()))
 
         waitForExpectations(timeout: 1)
