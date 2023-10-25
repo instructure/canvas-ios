@@ -49,12 +49,11 @@ class ComposeMessageViewModel: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: ComposeMessageInteractor
     private let router: Router
-    private var isCourseSelectorClosed = true
 
     public init(router: Router, interactor: ComposeMessageInteractor) {
         self.interactor = interactor
         self.router = router
-        
+
         setupOutputBindings()
         setupInputBindings(router: router)
     }
@@ -71,24 +70,28 @@ class ComposeMessageViewModel: ObservableObject {
             ItemPickerItem(title: $0.name)
         }), ]
 
-        self.isCourseSelectorClosed = false
         router.show(ItemPickerViewController.create(
             title: NSLocalizedString("Select Course", comment: ""),
             sections: sections,
             selected: selected,
-            didSelect: {
-                self.selectedCourse = options[$0.row]
-                self.recipients.removeAll()
-
-                self.closeCourseSelector(viewController)
+            didSelect: { [weak self] in
+                self?.courseDidSelect(course: options[$0.row], viewController: viewController)
             }
         ), from: viewController)
     }
-    
-    private func closeCourseSelector(_ viewController: WeakViewController) {
+
+    private func courseDidSelect(course: InboxCourse?, viewController: WeakViewController) {
+        selectedCourse = course
+        recipients.removeAll()
+
+        closeCourseSelectorDelayed(viewController)
+    }
+
+    private func closeCourseSelectorDelayed(_ viewController: WeakViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            if (!self.isCourseSelectorClosed) {
-                self.router.pop(from: viewController)
+            if let navController = viewController.value.navigationController,
+               navController.visibleViewController is ItemPickerViewController {
+                navController.popViewController(animated: true)
             }
         }
     }
@@ -139,7 +142,6 @@ class ComposeMessageViewModel: ObservableObject {
         cancelButtonDidTap
             .sink { [router] viewController in
                 router.dismiss(viewController)
-                self.isCourseSelectorClosed = true
             }
             .store(in: &subscriptions)
         sendButtonDidTap
