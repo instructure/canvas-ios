@@ -140,13 +140,17 @@ public struct ComposeMessageView: View {
             Text("To")
                 .font(.regular16, lineHeight: .condensed)
                 .foregroundColor(.textDark)
+                .accessibilitySortPriority(2)
             if !model.recipients.isEmpty {
                 recipientsView
+                    .accessibilitySortPriority(0)
             }
             Spacer()
             addRecipientButton
+                .accessibilitySortPriority(1)
         }
         .padding(.horizontal, 16).padding(.vertical, 12)
+        .accessibilityElement(children: .contain)
     }
 
     private var recipientsView: some View {
@@ -196,7 +200,7 @@ public struct ComposeMessageView: View {
                         .padding(.horizontal, 16)
                         .padding(.vertical, 12)
                 })
-                .accessibility(label: Text("Attachment", bundle: .core))
+                .accessibility(label: Text("Add attachment", bundle: .core))
             }
             .padding(.leading, 16)
             TextEditor(text: $model.bodyText)

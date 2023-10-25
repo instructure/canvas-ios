@@ -46,6 +46,11 @@ public struct RecipientPillView: View {
             RoundedRectangle(cornerRadius: 100)
                 .stroke(Color.textDark, lineWidth: 0.5)
         )
+        .accessibilityElement(children: .ignore)
+        .accessibility(label: Text(recipient.name))
+        .accessibilityAction(named: Text("Remove recipient", bundle: .core)) {
+            removeDidTap(recipient)
+        }
     }
 
     private var removeButton: some View {
@@ -57,7 +62,6 @@ public struct RecipientPillView: View {
                 .foregroundColor(.textDark)
                 .padding(.horizontal, 2)
         })
-        .accessibility(label: Text("Remove recipient", bundle: .core))
     }
 }
 
