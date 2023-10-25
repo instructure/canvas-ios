@@ -884,7 +884,7 @@ private class CourseSyncModulesInteractorMock: CourseSyncModulesInteractor {
         Just([]).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 
-    func getAssociatedModuleItems(courseId _: String, moduleItemTypes _: [Core.TabName], moduleItems _: [Core.ModuleItem]) -> AnyPublisher<Void, Error> {
+    func getAssociatedModuleItems(courseId _: String, moduleItemTypes _: Set<Core.TabName>, moduleItems _: [Core.ModuleItem]) -> AnyPublisher<Void, Error> {
         Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 }
@@ -897,7 +897,7 @@ private class CourseSyncModulesInteractorMock2: CourseSyncModulesInteractor {
         moduleItemsPublisher.eraseToAnyPublisher()
     }
 
-    func getAssociatedModuleItems(courseId _: String, moduleItemTypes _: [Core.TabName], moduleItems _: [Core.ModuleItem]) -> AnyPublisher<Void, Error> {
+    func getAssociatedModuleItems(courseId _: String, moduleItemTypes _: Set<Core.TabName>, moduleItems _: [Core.ModuleItem]) -> AnyPublisher<Void, Error> {
         associatedModuleItemsPublisher.eraseToAnyPublisher()
     }
 }

@@ -372,7 +372,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
 
     private func getModuleSubItems(entry: CourseSyncEntry, moduleItems: [ModuleItem]) -> [AnyPublisher<Void, Error>] {
         let tabsForRegularDownload = Set(moduleItems.tabItemsToRequestByList).subtracting(Set(entry.selectedTabs))
-        let tabsForModuleItemDownload = moduleItems.tabItemsToRequestByID
+        let tabsForModuleItemDownload = Set(moduleItems.tabItemsToRequestByID)
 
         let interactors = tabsForRegularDownload.compactMap { tabName in
             if let interactor = contentInteractors.first(where: { $0.associatedTabType == tabName }) {

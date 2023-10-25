@@ -21,7 +21,7 @@ import Foundation
 
 public protocol CourseSyncModulesInteractor {
     func getModuleItems(courseId: String) -> AnyPublisher<[ModuleItem], Error>
-    func getAssociatedModuleItems(courseId: String, moduleItemTypes: [TabName], moduleItems: [ModuleItem]) -> AnyPublisher<Void, Error>
+    func getAssociatedModuleItems(courseId: String, moduleItemTypes: Set<TabName>, moduleItems: [ModuleItem]) -> AnyPublisher<Void, Error>
 }
 
 public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor {
@@ -65,7 +65,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
 
     public func getAssociatedModuleItems(
         courseId: String,
-        moduleItemTypes: [TabName],
+        moduleItemTypes: Set<TabName>,
         moduleItems: [ModuleItem]
     ) -> AnyPublisher<Void, Error> {
         var downloaders: [AnyPublisher<Void, Error>] = []
