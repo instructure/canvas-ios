@@ -32,7 +32,7 @@ class CourseListInteractorLiveTests: CoreTestCase {
         let pastCourseRequest = GetCourseListCourses(enrollmentState: .completed)
         api.mock(pastCourseRequest, value: [.make(id: "2", name: "AB")])
         let futureCourseRequest = GetCourseListCourses(enrollmentState: .invited_or_pending)
-        api.mock(futureCourseRequest, value: [.make(id: "3", name: "ABC")])
+        api.mock(futureCourseRequest, value: [.make(id: "3", name: "ABC", workflow_state: .available)])
 
         testee = CourseListInteractorLive(env: environment)
         testee.loadAsync()
