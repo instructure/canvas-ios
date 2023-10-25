@@ -80,14 +80,32 @@ class CourseListInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(testee.courseList.value.future.map { $0.courseId }, ["3"])
     }
 
-    func testFutureUnpublishedCourses() {
+    func testFutureUnpublishedCoursesAreHiddenForStudents() {
         let futureCourseRequest = GetCourseListCourses(enrollmentState: .invited_or_pending)
         api.mock(futureCourseRequest, value: [
             .make(id: "3", name: "ABC"),
             .make(id: "4", name: "unpublished", workflow_state: .unpublished),
         ])
 
-        XCTAssertFalse(testee.courseList.value.future.contains { $0.courseId == "4" })
+        performRefresh()
+        waitForState(.data)
+
+        XCTAssertEqual(testee.courseList.value.future.map { $0.courseId }, ["3"])
+    }
+
+    func testFutureUnpublishedCoursesAreShownForTeachers() {
+        environment.app = .teacher
+
+        let futureCourseRequest = GetCourseListCourses(enrollmentState: .invited_or_pending)
+        api.mock(futureCourseRequest, value: [
+            .make(id: "3", name: "ABC"),
+            .make(id: "4", name: "unpublished", workflow_state: .unpublished),
+        ])
+
+        performRefresh()
+        waitForState(.data)
+
+        XCTAssertEqual(testee.courseList.value.future.map { $0.courseId }, ["3", "4"])
     }
 
     private func performRefresh() {
