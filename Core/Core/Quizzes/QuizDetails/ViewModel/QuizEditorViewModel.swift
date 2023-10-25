@@ -177,7 +177,7 @@ public class QuizEditorViewModel: QuizEditorViewModelProtocol {
                 allowedAttempts = -1 // default is unlimited (-1)
             }
         } else {
-            allowedAttempts = 0
+            allowedAttempts = 1
         }
 
         let quizParams = APIQuizParameters(

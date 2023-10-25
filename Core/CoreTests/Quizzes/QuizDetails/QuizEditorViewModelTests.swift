@@ -259,6 +259,43 @@ class QuizEditorViewModelTests: CoreTestCase {
         router.viewControllerCalls.removeAll()
     }
 
+    func testAllowedAttempts() {
+        mockData()
+        let expectedBody = PutQuizRequest.Body(quiz: APIQuizParameters(
+            access_code: "TrustNo1",
+            allowed_attempts: 1,
+            assignment_group_id: nil,
+            cant_go_back: nil,
+            description: "test description",
+            one_question_at_a_time: false,
+            published: true,
+            quiz_type: .survey,
+            scoring_policy: nil,
+            shuffle_answers: false,
+            time_limit: 10.0,
+            title: "test quiz"
+        ))
+        let apiExpectation = expectation(description: "Quiz Updated")
+        let testee = QuizEditorViewModel(courseID: courseID, quizID: quizID)
+        drainMainQueue()
+
+        testee.allowMultipleAttempts = false
+
+        let request = PutQuizRequest(courseID: courseID, quizID: quizID, body: nil)
+        api.mock(request) { urlRequest in
+            if let httpBody = urlRequest.httpBody {
+                let body = try? JSONDecoder().decode(PutQuizRequest.Body.self, from: httpBody)
+                XCTAssertEqual(expectedBody, body)
+                apiExpectation.fulfill()
+            }
+            return (nil, nil, nil)
+        }
+        
+        testee.doneTapped(router: router, viewController: WeakViewController(UIViewController()))
+
+        waitForExpectations(timeout: 1)
+    }
+
     private func mockData() {
         let apiQuiz = APIQuiz.make(
             access_code: "TrustNo1",
