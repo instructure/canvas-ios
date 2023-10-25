@@ -22,6 +22,8 @@ public struct ComposeMessageView: View {
     @ObservedObject private var model: ComposeMessageViewModel
     @Environment(\.viewController) private var controller
 
+    @FocusState private var subjectTextFieldFocus: Bool
+
     init(model: ComposeMessageViewModel) {
         self.model = model
     }
@@ -164,9 +166,13 @@ public struct ComposeMessageView: View {
             Text("Subject", bundle: .core)
                 .font(.regular16, lineHeight: .condensed)
                 .foregroundColor(.textDark)
+                .onTapGesture {
+                    self.subjectTextFieldFocus = true
+                }
             TextField("", text: $model.subject)
                 .multilineTextAlignment(.leading)
                 .font(.regular16, lineHeight: .condensed).foregroundColor(.textDarkest)
+                .focused($subjectTextFieldFocus)
                 .accessibility(label: Text("Subject", bundle: .core))
         }
         .padding(.horizontal, 16).padding(.vertical, 12)
