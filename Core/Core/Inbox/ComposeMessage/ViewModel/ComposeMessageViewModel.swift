@@ -49,11 +49,12 @@ class ComposeMessageViewModel: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: ComposeMessageInteractor
     private let router: Router
+    private var isCourseSelectorClosed = true
 
     public init(router: Router, interactor: ComposeMessageInteractor) {
         self.interactor = interactor
         self.router = router
-
+        
         setupOutputBindings()
         setupInputBindings(router: router)
     }
@@ -70,6 +71,7 @@ class ComposeMessageViewModel: ObservableObject {
             ItemPickerItem(title: $0.name)
         }), ]
 
+        self.isCourseSelectorClosed = false
         router.show(ItemPickerViewController.create(
             title: NSLocalizedString("Select Course", comment: ""),
             sections: sections,
@@ -77,9 +79,18 @@ class ComposeMessageViewModel: ObservableObject {
             didSelect: {
                 self.selectedCourse = options[$0.row]
                 self.recipients.removeAll()
-                self.router.pop(from: viewController)
+
+                self.closeCourseSelector(viewController)
             }
         ), from: viewController)
+    }
+    
+    private func closeCourseSelector(_ viewController: WeakViewController) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            if (!self.isCourseSelectorClosed) {
+                self.router.pop(from: viewController)
+            }
+        }
     }
 
     public func addRecipientButtonDidTap(viewController: WeakViewController) {
@@ -87,7 +98,7 @@ class ComposeMessageViewModel: ObservableObject {
         let addressbook = AddressBookAssembly.makeAddressbookViewController(courseID: courseID, recipientDidSelect: selectedRecipient)
         router.show(addressbook, from: viewController)
     }
-    
+
     public func attachmentbuttonDidTap(viewController: WeakViewController) {
         
     }
@@ -128,6 +139,7 @@ class ComposeMessageViewModel: ObservableObject {
         cancelButtonDidTap
             .sink { [router] viewController in
                 router.dismiss(viewController)
+                self.isCourseSelectorClosed = true
             }
             .store(in: &subscriptions)
         sendButtonDidTap
