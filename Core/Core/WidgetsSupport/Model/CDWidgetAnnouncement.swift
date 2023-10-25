@@ -27,13 +27,21 @@ public final class CDWidgetAnnouncement: NSManagedObject {
     @NSManaged public var url: URL
 
     @NSManaged public var authorName: String
-    @NSManaged public var avatarURL: URL?
+    @NSManaged public var avatarRaw: Data?
 
     @NSManaged public var courseName: String
     @NSManaged public var courseColorHex: String
 
     public var courseColor: UIColor {
         UIColor(hexString: courseColorHex) ?? .textDarkest
+    }
+
+    public var avatar: UIImage? {
+        if let avatarRaw {
+            return UIImage(data: avatarRaw)
+        } else {
+            return nil
+        }
     }
 
     @discardableResult
@@ -55,7 +63,14 @@ public final class CDWidgetAnnouncement: NSManagedObject {
         dbItem.date = date
         dbItem.url = url
         dbItem.authorName = authorName
-        dbItem.avatarURL = item.author?.avatar_image_url?.rawValue
+
+        if let avatarURL = item.author?.avatar_image_url?.rawValue,
+           dbItem.avatarRaw == nil,
+           let avatarData = try? Data(contentsOf: avatarURL),
+           let avatarImage = UIImage(data: avatarData)?.scaleTo(CGSize(width: 16, height: 16)),
+           let resizedImageData = avatarImage.jpegData(compressionQuality: 0.9) {
+            dbItem.avatarRaw = resizedImageData
+        }
 
         if  let announcementContextCode = item.context_code,
             let announcementCourseID = Context(canvasContextID: announcementContextCode)?.id,

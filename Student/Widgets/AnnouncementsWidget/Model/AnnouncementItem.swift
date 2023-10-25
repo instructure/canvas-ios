@@ -26,7 +26,7 @@ struct AnnouncementItem: Identifiable, Equatable {
     let url: URL
 
     let authorName: String
-    let avatarURL: URL?
+    let avatar: UIImage?
 
     let courseName: String
     let courseColor: Color
@@ -39,7 +39,7 @@ struct AnnouncementItem: Identifiable, Equatable {
         self.authorName = dbEntity.authorName
         self.courseName = dbEntity.courseName
         self.courseColor = Color(dbEntity.courseColor)
-        self.avatarURL = dbEntity.avatarURL
+        self.avatar = dbEntity.avatar
     }
 
     init(
@@ -57,6 +57,6 @@ struct AnnouncementItem: Identifiable, Equatable {
         self.authorName = authorName
         self.courseName = courseName
         self.courseColor = courseColor
-        self.avatarURL = nil
+        self.avatar = nil
     }
 }

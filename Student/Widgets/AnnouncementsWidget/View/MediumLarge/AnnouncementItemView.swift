@@ -41,12 +41,11 @@ struct AnnouncementItemView: View {
                     .foregroundColor(.textDarkest)
                     .lineLimit(2)
                 HStack {
-                    if let imageURL = announcementItem.avatarURL {
-                        AsyncImage(url: imageURL) { image in
-                            image.image?.resizable()
-                        }
-                        .frame(width: 16, height: 16, alignment: .center)
-                        .cornerRadius(8)
+                    if let avatar = announcementItem.avatar {
+                        Image(uiImage: avatar)
+                            .resizable()
+                            .frame(width: 16, height: 16, alignment: .center)
+                            .cornerRadius(8)
                     } else {
                         Avatar(name: announcementItem.authorName, url: nil, size: 16)
                     }
