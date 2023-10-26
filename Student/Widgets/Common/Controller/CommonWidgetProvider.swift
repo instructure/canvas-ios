@@ -74,7 +74,7 @@ extension CommonWidgetProvider: TimelineProvider {
 
     func placeholder(in context: TimelineProvider.Context) -> Entry {
         // swiftlint:disable:next force_cast
-        return Model.publicPreview as! Model
+        Model.publicPreview as! Model
     }
 
     func getSnapshot(in context: TimelineProvider.Context, completion: @escaping (Entry) -> Void) {
