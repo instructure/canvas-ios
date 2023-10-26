@@ -72,7 +72,6 @@ class CommonWidgetProvider<Model: WidgetModel> {
      Also sets this property to nil and saves the received `model` to the `cachedModel` property.
      */
     final func updateWidget(model: Model) {
-        Logger.shared.log()
         completion?(Timeline(entries: [model], policy: .after(Date().addingTimeInterval(timeout))))
         self.completion = nil
         cachedModel = model

@@ -20,35 +20,47 @@ import Core
 import SwiftUI
 import WidgetKit
 
-struct GradeItem: Hashable {
+/** Widgets need the Encodable protocol but since Color is not Encodable we store its hex value as a string. */
+struct GradeItem: Hashable, Encodable {
     let name: String
     let grade: String
-    let color: Color
+    let colorHex: String
     let route: URL
 
-    init(assignment: Assignment, color: Color) {
-        self.name = assignment.name
-        // Formatter returns nil in case of ungraded assignments, at this point we should only have graded assignments here.
-        self.grade = GradeFormatter.string(from: assignment, style: .medium) ?? ""
-        self.color = color
-        self.route = assignment.route
+    var color: Color {
+        Color(hexString: colorHex) ?? .textDarkest
     }
 
     init(assignment: Assignment, color: UIColor) {
-        self.init(assignment: assignment, color: Color(color))
+        self.name = assignment.name
+        // Formatter returns nil in case of ungraded assignments, at this point we should only have graded assignments here.
+        self.grade = GradeFormatter.string(from: assignment, style: .medium) ?? ""
+        self.colorHex = color.hexString
+        self.route = assignment.route
+    }
+
+    init(assignment: Assignment, color: Color) {
+        self.init(assignment: assignment, color: UIColor(color))
     }
 
     init(course: Course) {
         self.name = course.name ?? ""
         self.grade = course.displayGrade
-        self.color = Color(course.color)
+        self.colorHex = course.color.hexString
         self.route = course.route
     }
+}
+
+#if DEBUG
+
+extension GradeItem {
 
     init(name: String = "Test Assignment", grade: String = "87 / 100", color: Color = .textDarkest, route: URL = URL(string: "canvas-courses://")!) {
         self.name = name
         self.grade = grade
-        self.color = color
+        self.colorHex = UIColor(color).hexString
         self.route = route
     }
 }
+
+#endif
