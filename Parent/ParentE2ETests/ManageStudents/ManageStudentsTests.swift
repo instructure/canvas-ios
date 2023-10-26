@@ -25,8 +25,8 @@ class ManageStudentsTests: E2ETestCase {
         let student2 = seeder.createUser()
         let parent = seeder.createUser()
         let course = seeder.createCourse()
-        let subject = "Sample Subject of \(parent.name)"
-        let message = "Sample Message of \(parent.name)"
+        let highPercent = "80"
+        let lowPercent = "20"
         seeder.enrollStudent(student1, in: course)
         seeder.enrollStudent(student2, in: course)
         seeder.enrollParent(parent, in: course)
@@ -68,29 +68,29 @@ class ManageStudentsTests: E2ETestCase {
         XCTAssertTrue(courseAnnouncements.isVisible)
         XCTAssertTrue(institutionAnnouncements.isVisible)
 
-        courseGradeAbove.writeText(text: "80")
-        courseGradeBelow.writeText(text: "20")
+        courseGradeAbove.writeText(text: highPercent)
+        courseGradeBelow.writeText(text: lowPercent)
         assignmentMissing.hit()
-        assignmentGradeAbove.writeText(text: "80")
-        assignmentGradeBelow.writeText(text: "20")
+        assignmentGradeAbove.writeText(text: highPercent)
+        assignmentGradeBelow.writeText(text: lowPercent)
         courseAnnouncements.hit()
         institutionAnnouncements.hit()
-        XCTAssertTrue(courseGradeAbove.waitUntil(.value(expected: "80")).hasValue(value: "80"))
-        XCTAssertTrue(courseGradeBelow.waitUntil(.value(expected: "20")).hasValue(value: "20"))
+        XCTAssertTrue(courseGradeAbove.waitUntil(.value(expected: highPercent)).hasValue(value: highPercent))
+        XCTAssertTrue(courseGradeBelow.waitUntil(.value(expected: lowPercent)).hasValue(value: lowPercent))
         XCTAssertTrue(assignmentMissing.waitUntil(.value(expected: "1")).hasValue(value: "1"))
-        XCTAssertTrue(assignmentGradeAbove.waitUntil(.value(expected: "80")).hasValue(value: "80"))
-        XCTAssertTrue(assignmentGradeBelow.waitUntil(.value(expected: "20")).hasValue(value: "20"))
+        XCTAssertTrue(assignmentGradeAbove.waitUntil(.value(expected: highPercent)).hasValue(value: highPercent))
+        XCTAssertTrue(assignmentGradeBelow.waitUntil(.value(expected: lowPercent)).hasValue(value: lowPercent))
         XCTAssertTrue(courseAnnouncements.waitUntil(.value(expected: "1")).hasValue(value: "1"))
         XCTAssertTrue(institutionAnnouncements.waitUntil(.value(expected: "1")).hasValue(value: "1"))
 
         // MARK: Go back, then open details and check if the new values got saved
         backButton.hit()
         student1cell.hit()
-        XCTAssertTrue(courseGradeAbove.waitUntil(.visible).hasValue(value: "80"))
-        XCTAssertTrue(courseGradeBelow.waitUntil(.visible).hasValue(value: "20"))
+        XCTAssertTrue(courseGradeAbove.waitUntil(.visible).hasValue(value: highPercent))
+        XCTAssertTrue(courseGradeBelow.waitUntil(.visible).hasValue(value: lowPercent))
         XCTAssertTrue(assignmentMissing.waitUntil(.visible).hasValue(value: "1"))
-        XCTAssertTrue(assignmentGradeAbove.waitUntil(.visible).hasValue(value: "80"))
-        XCTAssertTrue(assignmentGradeBelow.waitUntil(.visible).hasValue(value: "20"))
+        XCTAssertTrue(assignmentGradeAbove.waitUntil(.visible).hasValue(value: highPercent))
+        XCTAssertTrue(assignmentGradeBelow.waitUntil(.visible).hasValue(value: lowPercent))
         XCTAssertTrue(courseAnnouncements.waitUntil(.visible).hasValue(value: "1"))
         XCTAssertTrue(institutionAnnouncements.waitUntil(.visible).hasValue(value: "1"))
     }
