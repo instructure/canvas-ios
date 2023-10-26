@@ -31,10 +31,8 @@ public class ManageStudentsHelper: BaseHelper {
 
     public static func studentCell(student: DSUser) -> XCUIElement? {
         let studentCells = app.findAll(idStartingWith: "StudentListCell", type: .cell)
-        for studentCell in studentCells {
-            if studentCell.find(label: student.name).isVisible {
-                return studentCell
-            }
+        for studentCell in studentCells where studentCell.find(label: student.name).isVisible {
+            return studentCell
         }
         return nil
     }
