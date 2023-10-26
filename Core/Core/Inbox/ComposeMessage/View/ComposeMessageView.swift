@@ -31,27 +31,19 @@ public struct ComposeMessageView: View {
 
     public var body: some View {
         GeometryReader { geometry in
-            VStack(spacing: 0) {
-                ScrollView {
-                    VStack(spacing: 0) {
-                        headerView
-                        Divider()
-                        propertiesView
-                    }
-                    .background(
-                        GeometryReader { proxy in
-                            Color.clear.onAppear { scrollViewContentHeight = proxy.size.height }
-                        }
-                    )
+            ScrollView {
+                VStack(spacing: 0) {
+                    headerView
+                    Divider()
+                    propertiesView
+                    Divider()
+                    bodyView
+                        .frame(height: geometry.size.height)
+                    Spacer()
                 }
-                .frame(maxHeight: scrollViewContentHeight)
-                Divider()
-                bodyView
-                Spacer()
+                .background(Color.backgroundLightest)
+                .navigationBarItems(leading: cancelButton)
             }
-            .frame(minHeight: geometry.size.height)
-            .background(Color.backgroundLightest)
-            .navigationBarItems(leading: cancelButton)
         }
     }
 
