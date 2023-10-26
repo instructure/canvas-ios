@@ -593,6 +593,9 @@
 "Content" = "Efni";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Ekki er hægt að birta efni";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Efnishlekksvilla";
 
 /* No comment provided by engineer. */
@@ -717,9 +720,6 @@
 
 /* No comment provided by engineer. */
 "d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -930,9 +930,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Breyta námskeiðsstillingum";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Breyta skjáborði";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Breyta umræðu";
@@ -1844,6 +1841,9 @@
 "Open course details" = "Opnið upplýsingar um námskeið";
 
 /* No comment provided by engineer. */
+"Open In Browser" = "Opna í vafra";
+
+/* No comment provided by engineer. */
 "Open item details" = "Opnið upplýsingar um atriði";
 
 /* No comment provided by engineer. */
@@ -2336,6 +2336,9 @@
 "Something Went Wrong" = "Eitthvað fór úrskeiðis";
 
 /* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Eitthvað fór úrskeiðis utan okkar stjórnar.";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Raða eftir „líkar við“";
 
 /* No comment provided by engineer. */
@@ -2550,9 +2553,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Skilaferlinu var hætt af stýrikerfinu.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Það eru %d atriði sem eru valin fyrir tiltækileika án nettengingar. Valið efni verður hlaðið niður í tækið.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Það eru engin virk verkefni í þessu námskeiði.";
@@ -2922,6 +2922,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "Þú hefur ekki heimild til að gera þessa aðgerð";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Þú getur reynt að opna síðuna í vafra.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Þér var boðið";

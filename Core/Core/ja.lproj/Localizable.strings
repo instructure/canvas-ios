@@ -593,6 +593,9 @@
 "Content" = "コンテンツ";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "コンテンツを表示できません";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "コンテンツリンクエラー";
 
 /* No comment provided by engineer. */
@@ -717,9 +720,6 @@
 
 /* No comment provided by engineer. */
 "d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -930,9 +930,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "コース設定を編集";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "ダッシュボードを編集する";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "ディスカッションを編集";
@@ -1844,6 +1841,9 @@
 "Open course details" = "コース詳細を開く";
 
 /* No comment provided by engineer. */
+"Open In Browser" = "ブラウザで開く";
+
+/* No comment provided by engineer. */
 "Open item details" = "アイテム 詳細を開く";
 
 /* No comment provided by engineer. */
@@ -2336,6 +2336,9 @@
 "Something Went Wrong" = "なにかが失敗しました";
 
 /* No comment provided by engineer. */
+"Something went wrong beyond our control." = "こちらで制御できない問題が起こりました。";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "いいね順";
 
 /* No comment provided by engineer. */
@@ -2550,9 +2553,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "OSにより提出プロセスが中止されました。";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "オフラインで利用できるように選択された項目が%dあります。選択されたコンテンツは端末にダウンロードされます。";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "このグループには、アクティブな課題はありません。";
@@ -2922,6 +2922,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "あなたにはこのアクションを行う権限がありません";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "ページをブラウザで開いてみてください。";
 
 /* No comment provided by engineer. */
 "You have been invited" = "あなたは招待されています";

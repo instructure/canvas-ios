@@ -593,6 +593,9 @@
 "Content" = "內容";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "無法顯示內容";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "內容連結錯誤";
 
 /* No comment provided by engineer. */
@@ -717,9 +720,6 @@
 
 /* No comment provided by engineer. */
 "d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -930,9 +930,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "編輯課程設定";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "編輯控制面板";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "編輯討論區";
@@ -1844,6 +1841,9 @@
 "Open course details" = "開啟課程詳細資料";
 
 /* No comment provided by engineer. */
+"Open In Browser" = "在瀏覽器中打開";
+
+/* No comment provided by engineer. */
 "Open item details" = "開啟項目詳細資料";
 
 /* No comment provided by engineer. */
@@ -2336,6 +2336,9 @@
 "Something Went Wrong" = "發生問題";
 
 /* No comment provided by engineer. */
+"Something went wrong beyond our control." = "出現我們無法控制的問題。";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "按點讚分類";
 
 /* No comment provided by engineer. */
@@ -2550,9 +2553,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "提交程序由作業系統終止。";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "已選取 %d 個項目供離線使用。選取的內容將下載到裝置中。";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "此課程中沒有啟用的作業列表。";
@@ -2922,6 +2922,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "您沒有權限進行此操作";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "您可以嘗試在瀏覽器中打開頁面。";
 
 /* No comment provided by engineer. */
 "You have been invited" = "您已被邀請";

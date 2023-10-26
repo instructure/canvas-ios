@@ -25,6 +25,7 @@ public class DashboardHelper: BaseHelper {
     public static var doneButton: XCUIElement { app.find(id: "screen.dismiss", type: .button) }
     public static var coursesLabel: XCUIElement { app.find(id: "dashboard.courses.heading-lbl") }
     public static var offlineLine: XCUIElement { app.find(id: "offlineLine") }
+    public static var favoriteButton: XCUIElement { app.find(label: "favorite", type: .button) }
     public static var dashboardSettingsShowGradeToggle: XCUIElement {
         return app.find(id: "DashboardSettings.showGradesToggle", type: .switch).find(type: .switch)
     }
@@ -74,11 +75,13 @@ public class DashboardHelper: BaseHelper {
             public static var headerLabel: XCUIElement { app.find(label: "Offline Content", type: .staticText) }
             public static var storageInfoLabel: XCUIElement { app.find(labelContaining: "Storage Info", type: .other) }
             public static var syncButton: XCUIElement { app.find(label: "Sync", type: .button) }
+            public static var okButton: XCUIElement { app.find(label: "OK", type: .button) }
 
             // Alert
             public static var alertSyncButton: XCUIElement { app.find(type: .alert).find(label: "Sync", type: .button) }
             public static var alertCancelButton: XCUIElement { app.find(label: "Cancel", type: .button) }
             public static var alertSyncOfflineContentLabel: XCUIElement { app.find(label: "Sync Offline Content?", type: .staticText) }
+            public static var notAvailableOfflineLabel: XCUIElement { app.find(labelContaining: "not available offline", type: .staticText) }
 
             // Syncing offline content
             public static var syncingOfflineContentLabel: XCUIElement { app.find(label: "Syncing Offline Content") }
@@ -87,6 +90,7 @@ public class DashboardHelper: BaseHelper {
             public static var discussionsButton: XCUIElement { app.find(labelContaining: "Discussions", type: .button) }
             public static var gradesButton: XCUIElement { app.find(labelContaining: "Grades", type: .button) }
             public static var peopleButton: XCUIElement { app.find(labelContaining: "People", type: .button) }
+            public static var pagesButton: XCUIElement { app.find(labelContaining: "Pages", type: .button) }
             public static var syllabusButton: XCUIElement { app.find(labelContaining: "Syllabus", type: .button) }
             public static var bigBlueButtonButton: XCUIElement { app.find(labelContaining: "BigBlueButton", type: .button) }
 

@@ -593,6 +593,9 @@
 "Content" = "Contingut";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "No es pot mostrar el contingut";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Error d'enllaç de contingut";
 
 /* No comment provided by engineer. */
@@ -717,9 +720,6 @@
 
 /* No comment provided by engineer. */
 "d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -930,9 +930,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Edita la configuració de l'assignatura";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Edita el panell de control";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Edita el fòrum";
@@ -1844,6 +1841,9 @@
 "Open course details" = "Obre els detalls de l'assignatura";
 
 /* No comment provided by engineer. */
+"Open In Browser" = "Obre'l al navegador";
+
+/* No comment provided by engineer. */
 "Open item details" = "Obre els detalls de l'element";
 
 /* No comment provided by engineer. */
@@ -2336,6 +2336,9 @@
 "Something Went Wrong" = "S’ha produït un error";
 
 /* No comment provided by engineer. */
+"Something went wrong beyond our control." = "S’ha produït un error que s’escapa al nostre control.";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Ordena per número de M'agrada";
 
 /* No comment provided by engineer. */
@@ -2550,9 +2553,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "El sistema operatiu ha finalitzat el procés d'entrega.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "S’han seleccionat %d elements perquè estiguin disponibles sense connexió. El contingut seleccionat es baixarà al dispositiu.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "No hi ha cap activitat activa en aquesta assignatura.";
@@ -2922,6 +2922,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "No teniu autorització per dur a terme aquesta acció.";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Podeu provar d’obrir la pàgina en un navegador.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Heu estat convidat";

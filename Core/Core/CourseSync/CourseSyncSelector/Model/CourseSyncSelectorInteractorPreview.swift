@@ -74,6 +74,12 @@ class CourseSyncSelectorInteractorPreview: CourseSyncSelectorInteractor {
         }.eraseToAnyPublisher()
     }
 
+    func observeSelectedSize() -> AnyPublisher<Int, Never> {
+        Future<Int, Never> { promise in
+            promise(.success(1))
+        }.eraseToAnyPublisher()
+    }
+
     func observeIsEverythingSelected() -> AnyPublisher<Bool, Never> {
         mockData
             .replaceError(with: [])

@@ -593,6 +593,9 @@
 "Content" = "内容";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "无法显示内容";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "内容链接错误";
 
 /* No comment provided by engineer. */
@@ -717,9 +720,6 @@
 
 /* No comment provided by engineer. */
 "d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -930,9 +930,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "编辑课程设置";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "编辑控制面板";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "编辑讨论";
@@ -1844,6 +1841,9 @@
 "Open course details" = "打开课程详情";
 
 /* No comment provided by engineer. */
+"Open In Browser" = "在浏览器里打开";
+
+/* No comment provided by engineer. */
 "Open item details" = "打开项目详情";
 
 /* No comment provided by engineer. */
@@ -2336,6 +2336,9 @@
 "Something Went Wrong" = "遇到错误";
 
 /* No comment provided by engineer. */
+"Something went wrong beyond our control." = "出现我们无法控制的问题。";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "按赞数排序";
 
 /* No comment provided by engineer. */
@@ -2550,9 +2553,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "提交过程已经被操作系统终止。";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "已选择 %d 个项目离线可用。所选内容将下载到设备。";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "此课程中没有有效的作业。";
@@ -2922,6 +2922,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "您未获得执行此操作的授权";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "您可以尝试在浏览器中打开页面。";
 
 /* No comment provided by engineer. */
 "You have been invited" = "您已获得邀请";

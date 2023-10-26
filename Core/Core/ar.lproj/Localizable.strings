@@ -593,6 +593,9 @@
 "Content" = "المحتوى";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "يتعذر عرض المحتوى";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "خطأ في ارتباط المحتوى";
 
 /* No comment provided by engineer. */
@@ -717,9 +720,6 @@
 
 /* No comment provided by engineer. */
 "d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -930,9 +930,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "تحرير إعدادات المساق";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "تحرير لوحة المعلومات";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "تحرير النقاش";
@@ -1844,6 +1841,9 @@
 "Open course details" = "فتح تفاصيل المساق";
 
 /* No comment provided by engineer. */
+"Open In Browser" = "الفتح في المستعرض";
+
+/* No comment provided by engineer. */
 "Open item details" = "فتح تفاصيل العنصر";
 
 /* No comment provided by engineer. */
@@ -2336,6 +2336,9 @@
 "Something Went Wrong" = "حدث خطأ ما";
 
 /* No comment provided by engineer. */
+"Something went wrong beyond our control." = "حدثت مشكلة خارج تحكمنا.";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "الترتيب حسب الإعجابات";
 
 /* No comment provided by engineer. */
@@ -2550,9 +2553,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "تم إيقاف عملية الإرسال بواسطة نظام التشغيل.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "توجد %d من العناصر محددة للإتاحة دون اتصال. سيتم تنزيل المحتوى المحدد للجهاز.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "لا توجد أي مهام نشطة في هذا المساق.";
@@ -2922,6 +2922,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "لست معتمدًا لتنفيذ هذا الإجراء";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "يمكنك محاولة فتح الصفحة في مستعرض.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "تمت دعوتك";

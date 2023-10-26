@@ -593,6 +593,9 @@
 "Content" = "Indhold";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Indhold kan ikke vises";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Indholdslinkfejl";
 
 /* No comment provided by engineer. */
@@ -717,9 +720,6 @@
 
 /* No comment provided by engineer. */
 "d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -930,9 +930,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Rediger fagindstillinger";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Rediger oversigt";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Rediger diskussion";
@@ -1844,6 +1841,9 @@
 "Open course details" = "Åbn fagoplysninger";
 
 /* No comment provided by engineer. */
+"Open In Browser" = "Åbn i browser";
+
+/* No comment provided by engineer. */
 "Open item details" = "Åbn elementoplysninger";
 
 /* No comment provided by engineer. */
@@ -2336,6 +2336,9 @@
 "Something Went Wrong" = "Noget gik galt";
 
 /* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Noget uden for vores kontrol gik galt.";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Sorter efter 'synes godt om'";
 
 /* No comment provided by engineer. */
@@ -2550,9 +2553,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Indsendelsesprocessen blev afsluttet af operativsystemet.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Der er %d elementer valgt til offline tilgængelighed. Det valgte indhold vil blive downloadet til enheden.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Der er ingen aktive opgaver for dette fag";
@@ -2922,6 +2922,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "Du er ikke autoriseret til at foretage denne handling";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Du kan prøve at åbne siden i en browser.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Du er blevet inviteret";

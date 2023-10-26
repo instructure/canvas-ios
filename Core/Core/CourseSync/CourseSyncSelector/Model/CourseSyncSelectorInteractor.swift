@@ -20,7 +20,7 @@ import Combine
 import CombineExt
 import Foundation
 
-protocol CourseSyncSelectorInteractor: AnyObject {
+public protocol CourseSyncSelectorInteractor: AnyObject {
     /**
      - parameters:
         - sessionDefaults: The storage from where the selection states are read and written to.
@@ -28,6 +28,7 @@ protocol CourseSyncSelectorInteractor: AnyObject {
     init(courseID: String?, courseSyncListInteractor: CourseSyncListInteractor, sessionDefaults: SessionDefaults)
     func getCourseSyncEntries() -> AnyPublisher<[CourseSyncEntry], Error>
     func observeSelectedCount() -> AnyPublisher<Int, Never>
+    func observeSelectedSize() -> AnyPublisher<Int, Never>
     func observeIsEverythingSelected() -> AnyPublisher<Bool, Never>
     func setSelected(selection: CourseEntrySelection, selectionState: ListCellView.SelectionState)
     func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool)
@@ -83,11 +84,22 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
     func observeSelectedCount() -> AnyPublisher<Int, Never> {
         courseSyncEntries
             .replaceError(with: [])
-            .map {
-                $0.reduce(0) { partialResult, entry in
-                    partialResult + entry.selectionCount
-                }
+            .map { entries in
+                entries
+                    .filter {
+                        $0.selectionState == .selected ||
+                        $0.selectionState == .partiallySelected
+                    }
+                    .count
             }
+            .replaceEmpty(with: 0)
+            .eraseToAnyPublisher()
+    }
+
+    func observeSelectedSize() -> AnyPublisher<Int, Never> {
+        courseSyncEntries
+            .replaceError(with: [])
+            .map { $0.totalSelectedSize }
             .replaceEmpty(with: 0)
             .eraseToAnyPublisher()
     }

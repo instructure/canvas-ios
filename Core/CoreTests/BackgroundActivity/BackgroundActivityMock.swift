@@ -16,27 +16,35 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Combine
+@testable import Core
 
-public enum NetworkAvailabilityStatus: Equatable {
-    case connected(ConnectionType)
-    case disconnected
+class BackgroundActivityMock: BackgroundActivity {
+    var startInvoked = false
+    var stopInvoked = false
+    var abortHandler: (() -> Void)?
 
-    public enum ConnectionType: String {
-        case cellular, wifi
+    init() {
+        super.init(processManager: ProcessInfo.processInfo, activityName: "test activity")
     }
 
-    var isConnected: Bool {
-        switch self {
-        case .connected: return true
-        case .disconnected: return false
-        }
+    override func start(abortHandler: @escaping () -> Void) -> Future<Void, Never> {
+        self.abortHandler = abortHandler
+        startInvoked = true
+        return Future { $0(.success(())) }
     }
 
-    var isConnectedViaWifi: Bool {
-        switch self {
-        case let .connected(connectionType): return connectionType == .wifi
-        case .disconnected: return false
-        }
+    override func stop() -> Future<Void, Never> {
+        stopInvoked = true
+        return Future { $0(.success(())) }
+    }
+
+    override func stopAndWait() {
+        stopInvoked = true
+    }
+
+    func resetMock() {
+        startInvoked = false
+        stopInvoked = false
     }
 }

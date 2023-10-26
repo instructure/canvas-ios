@@ -37,13 +37,11 @@ class FilesTests: E2ETestCase {
             SafariAppHelper.tabBarItemTitle.hit()
             addressLabel = SafariAppHelper.URL.waitUntil(.visible)
         }
-        let clearTextButton = SafariAppHelper.clearTextButton.waitUntil(.visible, timeout: 5)
-        if clearTextButton.isVisible { clearTextButton.hit() }
-        addressLabel.waitUntil(.visible)
         XCTAssertTrue(addressLabel.isVisible)
 
-        addressLabel.writeText(text: FilesHelper.TestPDF.url, hitGo: true, customApp: SafariAppHelper.safariApp)
-
+        addressLabel.cutText(tapSelectAll: false, customApp: SafariAppHelper.safariApp)
+        addressLabel.pasteText(text: FilesHelper.TestPDF.url, customApp: SafariAppHelper.safariApp, pasteAndGo: true)
+        // addressLabel.writeText(text: FilesHelper.TestPDF.url, hitGo: true, customApp: SafariAppHelper.safariApp)
         let shareButton = SafariAppHelper.shareButton.waitUntil(.visible)
         XCTAssertTrue(shareButton.isVisible)
 

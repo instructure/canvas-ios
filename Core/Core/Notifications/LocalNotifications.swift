@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Combine
 
 public extension NotificationManager {
 
@@ -25,7 +25,7 @@ public extension NotificationManager {
         let route = "/courses/\(courseID)/assignments/\(assignmentID)"
         let title = NSString.localizedUserNotificationString(forKey: "Assignment submission failed!", arguments: nil)
         let body = NSString.localizedUserNotificationString(forKey: "Something went wrong with an assignment submission.", arguments: nil)
-        notify(identifier: identifier, title: title, body: body, route: route)
+        return notify(identifier: identifier, title: title, body: body, route: route)
     }
 
     func sendCompletedNotification(courseID: String, assignmentID: String) {
@@ -33,20 +33,44 @@ public extension NotificationManager {
         let route = "/courses/\(courseID)/assignments/\(assignmentID)"
         let title = NSString.localizedUserNotificationString(forKey: "Assignment submitted!", arguments: nil)
         let body = NSString.localizedUserNotificationString(forKey: "Your files were uploaded and the assignment was submitted successfully.", arguments: nil)
-        notify(identifier: identifier, title: title, body: body, route: route)
+        return notify(identifier: identifier, title: title, body: body, route: route)
     }
 
     func sendFailedNotification() {
         let title = NSString.localizedUserNotificationString(forKey: "Failed to send files!", arguments: nil)
         let body = NSString.localizedUserNotificationString(forKey: "Something went wrong with uploading files.", arguments: nil)
-        notify(identifier: "upload-manager", title: title, body: body, route: nil)
+        return notify(identifier: "upload-manager", title: title, body: body, route: nil)
     }
 
-    func sendOfflineSyncCompletedSuccessfullyNotification(syncedItemsCount: Int) {
-        let title = NSString.localizedUserNotificationString(forKey: "Offline Content Sync Success", arguments: nil)
+    func sendOfflineSyncCompletedSuccessfullyNotification(syncedItemsCount: Int) -> Future<Void, Error> {
+        let title = NSLocalizedString("Offline Content Sync Success", comment: "")
         let bodyFormat = NSLocalizedString("offline_sync_finished", comment: "")
         let body = String.localizedStringWithFormat(bodyFormat, syncedItemsCount, syncedItemsCount)
 
-        notify(identifier: "OfflineSyncCompletedSuccessfully", title: title, body: body, route: nil)
+        return notify(identifier: "OfflineSyncCompletedSuccessfully", title: title, body: body, route: nil)
+    }
+
+    /**
+     - returns: True is the notification was scheduled successfully.
+     */
+    @discardableResult
+    func sendOfflineSyncFailedNotificationAndWait() -> Bool {
+        let title = NSLocalizedString("Offline Content Sync Failed", comment: "")
+        let body = NSLocalizedString("One or more items failed to sync.", comment: "")
+        let semaphore = DispatchSemaphore(value: 0)
+        var isScheduled = false
+        notify(identifier: "OfflineSyncFailed", title: title, body: body, route: nil) { error in
+            semaphore.signal()
+            isScheduled = (error == nil)
+        }
+        semaphore.wait()
+        return isScheduled
+    }
+
+    func sendOfflineSyncFailedNotification() -> Future<Void, Error> {
+        Future<Void, Error> { [self] promise in
+            let isScheduled = sendOfflineSyncFailedNotificationAndWait()
+            promise(isScheduled ? .success(()) : .failure(""))
+        }
     }
 }

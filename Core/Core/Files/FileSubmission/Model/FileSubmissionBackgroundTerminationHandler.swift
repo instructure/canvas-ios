@@ -18,7 +18,7 @@
 
 import CoreData
 
-public struct BackgroundActivityTerminationHandler {
+public struct FileSubmissionBackgroundTerminationHandler {
     private let context: NSManagedObjectContext
     private let notificationsSender: SubmissionCompletedNotificationsSender
 

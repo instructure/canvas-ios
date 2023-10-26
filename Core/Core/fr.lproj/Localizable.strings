@@ -593,6 +593,9 @@
 "Content" = "Contenu";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Impossible d'afficher le contenu";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Erreur de lien de contenu";
 
 /* No comment provided by engineer. */
@@ -717,9 +720,6 @@
 
 /* No comment provided by engineer. */
 "d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -930,9 +930,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Modifier paramètres du cours";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Modifier le tableau de bord";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Modifier discussion";
@@ -1844,6 +1841,9 @@
 "Open course details" = "Ouvrir les détails du cours";
 
 /* No comment provided by engineer. */
+"Open In Browser" = "Ouvrir dans le navigateur";
+
+/* No comment provided by engineer. */
 "Open item details" = "Ouvrir les détails de l’élément";
 
 /* No comment provided by engineer. */
@@ -2336,6 +2336,9 @@
 "Something Went Wrong" = "Un problème est survenu";
 
 /* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Un problème échappant à notre contrôle est survenu.";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Classer par nombre de rétroactions de type « J'aime »";
 
 /* No comment provided by engineer. */
@@ -2550,9 +2553,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Le processus de soumission a été fermé par le système d’exploitation.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "%d éléments sont sélectionnés pour être disponibles hors ligne. Le contenu sélectionné sera téléchargé sur l'appareil.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Il n'y a pas de travaux actifs dans ce groupe.";
@@ -2922,6 +2922,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "Vous n'êtes pas autorisé à effectuer cette action";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Vous pouvez essayer d'ouvrir la page dans un navigateur.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Vous êtes invité.";

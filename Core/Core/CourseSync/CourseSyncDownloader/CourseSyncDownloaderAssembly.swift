@@ -31,19 +31,21 @@ public enum CourseSyncDownloaderAssembly {
             CourseSyncAnnouncementsInteractorLive(),
             CourseSyncQuizzesInteractorLive(),
             CourseSyncDiscussionsInteractorLive(),
-            CourseSyncModulesInteractorLive(),
         ]
         let scheduler = DispatchQueue(
             label: "com.instructure.icanvas.core.course-sync-download"
         ).eraseToAnyScheduler()
         let progressInteractor = CourseSyncProgressObserverInteractorLive()
+        let backgroundActivity = BackgroundActivity(processManager: ProcessInfo.processInfo, activityName: "Offline Sync")
 
         return CourseSyncInteractorLive(contentInteractors: contentInteractors,
                                         filesInteractor: CourseSyncFilesInteractorLive(),
+                                        modulesInteractor: CourseSyncModulesInteractorLive(),
                                         progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-                                        successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: .shared,
+                                        notificationInteractor: CourseSyncNotificationInteractor(notificationManager: .shared,
                                                                                                      progressInteractor: progressInteractor),
                                         courseListInteractor: CourseListAssembly.makeInteractor(),
+                                        backgroundActivity: backgroundActivity,
                                         scheduler: scheduler)
     }
 }

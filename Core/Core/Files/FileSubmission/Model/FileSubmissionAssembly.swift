@@ -53,18 +53,19 @@ public class FileSubmissionAssembly {
         let uploadProgressObserversCache = FileUploadProgressObserversCache(context: backgroundContext) { fileSubmissionID, fileUploadItemID in
             let observer = FileUploadProgressObserver(context: backgroundContext, fileUploadItemID: fileUploadItemID)
             var subscription: AnyCancellable?
-
-            let backgroundActivity = BackgroundActivity(processManager: ProcessInfo.processInfo, abortHandler: {
+            let abortHandler = {
                 subscription?.cancel()
                 subscription = nil
-                BackgroundActivityTerminationHandler(context: backgroundContext, notificationsSender: notificationsSender)
+                FileSubmissionBackgroundTerminationHandler(context: backgroundContext, notificationsSender: notificationsSender)
                     .handleTermination(fileUploadItemID: fileUploadItemID)
-            })
+            }
+            let backgroundActivity = BackgroundActivity(processManager: ProcessInfo.processInfo,
+                                                        activityName: "File Submission")
 
             subscription = observer
                 .uploadCompleted.mapError { $0 as Error }
                 .flatMap { AllFileUploadFinishedCheck(context: backgroundContext, fileSubmissionID: fileSubmissionID).isAllUploadFinished().mapError { $0 as Error } }
-                .flatMap { backgroundActivity.start().mapError { $0 as Error } }
+                .flatMap { backgroundActivity.start(abortHandler: abortHandler) }
                 .flatMap { fileSubmissionSubmitter.submitFiles(fileSubmissionID: fileSubmissionID).mapError { $0 as Error } }
                 .flatMap { apiSubmission in notificationsSender.sendSuccessNofitications(fileSubmissionID: fileSubmissionID, apiSubmission: apiSubmission) }
                 .flatMap { cleaner.clean(fileSubmissionID: fileSubmissionID) }

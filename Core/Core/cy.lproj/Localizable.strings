@@ -593,6 +593,9 @@
 "Content" = "Cynnwys";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Does dim modd dangos y cynnwys";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Gwall Dolen Gynnwys";
 
 /* No comment provided by engineer. */
@@ -717,9 +720,6 @@
 
 /* No comment provided by engineer. */
 "d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -930,9 +930,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Golygu gosodiadau’r cwrs";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Golygu’r Dangosfwrdd";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Golygu Trafodaeth";
@@ -1844,6 +1841,9 @@
 "Open course details" = "Agor manylion cwrs";
 
 /* No comment provided by engineer. */
+"Open In Browser" = "Agor mewn Porwr";
+
+/* No comment provided by engineer. */
 "Open item details" = "Agor manylion eitem";
 
 /* No comment provided by engineer. */
@@ -2336,6 +2336,9 @@
 "Something Went Wrong" = "Aeth rhywbeth o’i le";
 
 /* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Aeth rhywbeth o’i le y tu hwnt i’n rheolaeth";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Trefnu yn ôl y nifer sydd wedi’i hoffi";
 
 /* No comment provided by engineer. */
@@ -2550,9 +2553,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Cafodd y broses gyflwyno ei therfynu gan y system weithredu.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Mae %d eitem wedi’u dewis i fod ar gael all-lein. Bydd y cynnwys sydd wedi’i ddewis yn cael ei lwytho i lawr i’r ddyfais.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Does dim aseiniadau gweithredol yn y cwrs hwn.";
@@ -2922,6 +2922,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "Does gennych chi ddim hawl i wneud hyn";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Gallwch chi geisio agor y dudalen mewn porwr.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Rydych chi wedi cael gwahoddiad";

@@ -593,6 +593,9 @@
 "Content" = "Zawartość";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Nie można wyświetlić zawartości";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Błąd łącza do zawartości";
 
 /* No comment provided by engineer. */
@@ -717,9 +720,6 @@
 
 /* No comment provided by engineer. */
 "d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -930,9 +930,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Edytuj ustawienia kursu";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Edytuj panel nawigacyjny";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Edytuj dyskusję";
@@ -1844,6 +1841,9 @@
 "Open course details" = "Otwórz szczegóły kursu";
 
 /* No comment provided by engineer. */
+"Open In Browser" = "Otwórz w przeglądarce";
+
+/* No comment provided by engineer. */
 "Open item details" = "Otwórz szczegóły elementu";
 
 /* No comment provided by engineer. */
@@ -2336,6 +2336,9 @@
 "Something Went Wrong" = "Coś poszło nie tak";
 
 /* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Wystąpiła sytuacja poza naszą kontrolą.";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Sortuj według polubień";
 
 /* No comment provided by engineer. */
@@ -2550,9 +2553,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Przesyłanie zostało przerwane przez system operacyjny.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Wybrane elementy dla dostępności offline: %d. Wybrana zawartość zostanie pobrana na urządzenie.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Obecnie nie ma aktywnych zadań w tym kursie.";
@@ -2922,6 +2922,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "Nie masz uprawnień potrzebnych do wykonania tej czynności.";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Można spróbować otworzyć stronę w przeglądarce.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Otrzymałeś zaproszenie";

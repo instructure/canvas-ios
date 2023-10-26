@@ -18,7 +18,7 @@
 
 import Combine
 
-public class CourseSyncSuccessNotificationInteractor {
+public class CourseSyncNotificationInteractor {
     private let notificationManager: NotificationManager
     private let progressInteractor: CourseSyncProgressObserverInteractor
 
@@ -29,17 +29,32 @@ public class CourseSyncSuccessNotificationInteractor {
     }
 
     func send(window: UIWindow? = AppEnvironment.shared.window) -> AnyPublisher<Void, Never> {
-        progressInteractor
+        let itemCountPublisher = progressInteractor
             .observeStateProgress()
             .first()
+            .map { $0.filterToCourses().count }
+        let isSuccessfulSyncPublisher = progressInteractor
+            .observeDownloadProgress()
+            .first()
+            .map { $0.error == nil }
+
+        return Publishers
+            .CombineLatest(itemCountPublisher, isSuccessfulSyncPublisher)
             .receive(on: RunLoop.main)
             .filter { _ in window.isSyncProgressNotOnScreen() }
-            .map { $0.count }
-            .handleEvents(receiveOutput: { [notificationManager] in
-                notificationManager.sendOfflineSyncCompletedSuccessfullyNotification(syncedItemsCount: $0)
-            })
-            .mapToVoid()
+            .flatMap { [notificationManager] (itemCount, isSuccessful) in
+                if isSuccessful {
+                    return notificationManager.sendOfflineSyncCompletedSuccessfullyNotification(syncedItemsCount: itemCount)
+                } else {
+                    return notificationManager.sendOfflineSyncFailedNotification()
+                }
+            }
+            .ignoreFailure()
             .eraseToAnyPublisher()
+    }
+
+    func sendFailedNotification() {
+        notificationManager.sendOfflineSyncFailedNotificationAndWait()
     }
 }
 

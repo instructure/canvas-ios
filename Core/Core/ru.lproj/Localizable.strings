@@ -593,6 +593,9 @@
 "Content" = "Содержимое";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Отображение поля Содержимое невозможно";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Ошибка ссылки на содержимое";
 
 /* No comment provided by engineer. */
@@ -717,9 +720,6 @@
 
 /* No comment provided by engineer. */
 "d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -930,9 +930,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Редактировать настройки курса";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Редактировать информационную панель";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Редактировать дискуссию";
@@ -1844,6 +1841,9 @@
 "Open course details" = "Открыть подробную информацию о курсе";
 
 /* No comment provided by engineer. */
+"Open In Browser" = "Открыть в браузере";
+
+/* No comment provided by engineer. */
 "Open item details" = "Открыть подробную информацию об элементе";
 
 /* No comment provided by engineer. */
@@ -2336,6 +2336,9 @@
 "Something Went Wrong" = "Что-то пошло не так";
 
 /* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Что-то вышло из-под нашего контроля.";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Сортировать по лайкам";
 
 /* No comment provided by engineer. */
@@ -2550,9 +2553,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Процесс отправки был прерван операционной системой.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Имеется %d выбранных позиций, которые будут доступны в режиме офлайн. Выбранный контент будет загружен на устройство.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "В этом курсе нет активных заданий.";
@@ -2922,6 +2922,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "У вас нет прав для выполнения этого действия";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Можно попробовать открыть страницу в браузере.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Вам поступило приглашение";

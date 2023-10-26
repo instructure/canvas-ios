@@ -593,6 +593,9 @@
 "Content" = "Kontni";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Konti yo Paka Afiche";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Erè Lyen Kontni";
 
 /* No comment provided by engineer. */
@@ -717,9 +720,6 @@
 
 /* No comment provided by engineer. */
 "d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -930,9 +930,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Modifye paramèt kou";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Modifye Tablo";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Modifye Diskisyon";
@@ -1844,6 +1841,9 @@
 "Open course details" = "Ouvri detay kou";
 
 /* No comment provided by engineer. */
+"Open In Browser" = "Ouvri nan Navigatè";
+
+/* No comment provided by engineer. */
 "Open item details" = "Ouvri detay eleman";
 
 /* No comment provided by engineer. */
@@ -2336,6 +2336,9 @@
 "Something Went Wrong" = "Gen yon Bagay ki Pase Mal";
 
 /* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Gen yon bagay ki mal fèt nou pa gen kontwòl li.";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Klase pa Jèm";
 
 /* No comment provided by engineer. */
@@ -2550,9 +2553,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Sistèm eksplwatasyon an te entèwonp pwosesis soumisyon an.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Gen %d atik ki seleksyone pou disponibilite san koneksyon. Kontni seleksyone a ap telechaje sou aparèy la.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Pa gen devwa aktif nan kou sa a.";
@@ -2922,6 +2922,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "Ou pa gen otorizasyon pou fè aksyon sa a.";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Ou ka eseye ouvri paj la nan yon navigatè.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Ou jwenn envitasyon";

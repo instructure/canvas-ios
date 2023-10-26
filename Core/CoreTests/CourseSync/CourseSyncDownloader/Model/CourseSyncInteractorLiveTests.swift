@@ -26,7 +26,9 @@ import XCTest
 class CourseSyncInteractorLiveTests: CoreTestCase {
     private var assignmentsInteractor: CourseSyncAssignmentsInteractorMock!
     private var pagesInteractor: CourseSyncPagesInteractorMock!
+    private var discussionsInteractor: CourseSyncDiscussionsInteractorMock!
     private var filesInteractor: CourseSyncFilesInteractorMock!
+    private var modulesInteractor: CourseSyncModulesInteractorMock!
     private var progressWriterInteractor: CourseSyncProgressWriterInteractor!
     private var progressObserverInteractor: CourseSyncProgressObserverInteractor!
     private var entries: [CourseSyncEntry]!
@@ -37,6 +39,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         assignmentsInteractor = CourseSyncAssignmentsInteractorMock()
         pagesInteractor = CourseSyncPagesInteractorMock()
         filesInteractor = CourseSyncFilesInteractorMock()
+        modulesInteractor = CourseSyncModulesInteractorMock()
         progressWriterInteractor = CourseSyncProgressWriterInteractorLive(container: database)
         progressObserverInteractor = CourseSyncProgressObserverInteractorLive(container: database)
         testScheduler = DispatchQueue.test
@@ -78,10 +81,12 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         let testee = CourseSyncInteractorLive(
             contentInteractors: [pagesInteractor, assignmentsInteractor],
             filesInteractor: filesInteractor,
+            modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-            successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
-                                                                         progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
+                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[0].selectionState = .selected
@@ -129,10 +134,12 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         let testee = CourseSyncInteractorLive(
             contentInteractors: [],
             filesInteractor: filesInteractor,
+            modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-            successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
-                                                               progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
+                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[2].selectionState = .selected
@@ -168,10 +175,12 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         let testee = CourseSyncInteractorLive(
             contentInteractors: [],
             filesInteractor: filesInteractor,
+            modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-            successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
-                                                               progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
+                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].selectionState = .partiallySelected
@@ -208,10 +217,12 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         let testee = CourseSyncInteractorLive(
             contentInteractors: [],
             filesInteractor: filesInteractor,
+            modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-            successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
-                                                               progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
+                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[2].selectionState = .partiallySelected
@@ -247,10 +258,13 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         let testee = CourseSyncInteractorLive(
             contentInteractors: [assignmentsInteractor],
             filesInteractor: filesInteractor,
+            modulesInteractor: modulesInteractor,
+
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-            successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
-                                                               progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
+                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[0].selectionState = .selected
@@ -277,10 +291,13 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         let testee = CourseSyncInteractorLive(
             contentInteractors: [pagesInteractor],
             filesInteractor: filesInteractor,
+            modulesInteractor: modulesInteractor,
+
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-            successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
-                                                               progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
+                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[1].selectionState = .selected
@@ -307,10 +324,13 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         let testee = CourseSyncInteractorLive(
             contentInteractors: [],
             filesInteractor: filesInteractor,
+            modulesInteractor: modulesInteractor,
+
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-            successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
-                                                               progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
+                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[2].selectionState = .selected
@@ -341,10 +361,13 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         let testee = CourseSyncInteractorLive(
             contentInteractors: [mockSyllabusInteractor],
             filesInteractor: filesInteractor,
+            modulesInteractor: modulesInteractor,
+
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-            successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
-                                                               progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
+                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[3].selectionState = .selected
@@ -361,10 +384,12 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         let testee = CourseSyncInteractorLive(
             contentInteractors: [mockConferencesInteractor],
             filesInteractor: filesInteractor,
+            modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-            successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
-                                                               progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
+                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[4].selectionState = .selected
@@ -385,10 +410,12 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                 mockQuizzesInteractor,
             ],
             filesInteractor: filesInteractor,
+            modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-            successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
-                                                               progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
+                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[5].selectionState = .selected
@@ -409,10 +436,12 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                 mockDiscussionsInteractor,
             ],
             filesInteractor: filesInteractor,
+            modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-            successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
-                                                               progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
+                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[6].selectionState = .selected
@@ -424,26 +453,71 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
     }
 
     func testStartsModulesDownload() {
-        let expectation = expectation(description: "Modules download started")
-        let mockModulesInteractor = CourseSyncModulesInteractorMock(expectation: expectation)
         let testee = CourseSyncInteractorLive(
             contentInteractors: [
                 pagesInteractor,
                 assignmentsInteractor,
-                mockModulesInteractor,
             ],
             filesInteractor: filesInteractor,
+            modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
-            successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
-                                                               progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
+                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[7].selectionState = .selected
 
         let subscription = testee.downloadContent(for: entries).sink()
 
-        wait(for: [expectation], timeout: 1)
+        subscription.cancel()
+    }
+
+    func testAssociatedModuleItemsWithDisabledTabs() {
+        let modulesInteractor = CourseSyncModulesInteractorMock2()
+        let testee = CourseSyncInteractorLive(
+            contentInteractors: [
+                pagesInteractor,
+                assignmentsInteractor,
+                CourseSyncDiscussionsInteractorPublisherMock(),
+            ],
+            filesInteractor: filesInteractor,
+            modulesInteractor: modulesInteractor,
+            progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
+            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
+                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
+            scheduler: .immediate
+        )
+
+        entries[0].tabs.removeAll()
+        entries[0].files.removeAll()
+
+        entries[0].tabs.append(.init(id: "tab-modules", name: "Modules", type: .modules))
+        entries[0].tabs[0].selectionState = .selected
+
+        let subscription = testee.downloadContent(for: entries)
+            .sink { entries in
+                self.entries = entries
+            }
+
+        modulesInteractor.moduleItemsPublisher.send([
+            .make(from: .make(id: "assignment-id", content: .assignment("assignment-id"))),
+            .make(from: .make(id: "discussion-id", content: .discussion("discussion-id"))),
+            .make(from: .make(id: "file-id", content: .file("file-id"))),
+            .make(from: .make(id: "quiz-id", content: .discussion("quiz-id"))),
+            .make(from: .make(id: "pages-id", content: .discussion("pages-id"))),
+
+        ])
+
+        modulesInteractor.associatedModuleItemsPublisher.send(())
+        assignmentsInteractor.publisher.send(())
+
+        XCTAssertEqual(entries[0].state, .downloaded)
+        XCTAssertEqual(entries[0].tabs[0].state, .downloaded)
+
         subscription.cancel()
     }
 
@@ -451,10 +525,12 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         let testee = CourseSyncInteractorLive(
             contentInteractors: [pagesInteractor, assignmentsInteractor],
             filesInteractor: filesInteractor,
+            modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(container: database),
-            successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
-                                                               progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
+                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[0].selectionState = .selected
@@ -501,10 +577,12 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                 assignmentsInteractor,
             ],
             filesInteractor: filesInteractor,
+            modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(container: database),
-            successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
-                                                               progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
+                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[0].selectionState = .selected
@@ -534,10 +612,12 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
                 assignmentsInteractor,
             ],
             filesInteractor: filesInteractor,
+            modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(container: database),
-            successNotification: CourseSyncSuccessNotificationInteractor(notificationManager: notificationManager,
-                                                               progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            notificationInteractor: CourseSyncNotificationInteractor(notificationManager: notificationManager,
+                                                                     progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[0].selectionState = .selected
@@ -562,16 +642,18 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
     }
 
     func testSendsSuccessNotificationOnFinish() {
-        let courseSyncSuccessNotificationMock = CourseSyncSuccessNotificationMock(notificationManager: notificationManager,
-                                                                                  progressInteractor: CourseSyncProgressObserverInteractorMock())
+        let courseSyncNotificationMock = CourseSyncNotificationMock(notificationManager: notificationManager,
+                                                                    progressInteractor: CourseSyncProgressObserverInteractorMock())
         let testee = CourseSyncInteractorLive(
             contentInteractors: [
                 assignmentsInteractor,
             ],
             filesInteractor: filesInteractor,
+            modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(container: database),
-            successNotification: courseSyncSuccessNotificationMock,
+            notificationInteractor: courseSyncNotificationMock,
             courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
         entries[0].tabs[0].selectionState = .selected
@@ -584,20 +666,21 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         assignmentsInteractor.publisher.send(())
 
         // THEN
-        XCTAssertTrue(courseSyncSuccessNotificationMock.sendCalled)
+        XCTAssertTrue(courseSyncNotificationMock.sendCalled)
         subscription.cancel()
     }
 
     func testDownloadCourseListData() {
         let listInteractorMock = CourseListInteractorMock()
-        let courseSyncSuccessNotificationMock = CourseSyncSuccessNotificationMock(notificationManager: notificationManager,
-                                                                                  progressInteractor: CourseSyncProgressObserverInteractorMock())
         let testee = CourseSyncInteractorLive(
             contentInteractors: [],
             filesInteractor: filesInteractor,
+            modulesInteractor: modulesInteractor,
             progressWriterInteractor: CourseSyncProgressWriterInteractorLive(container: database),
-            successNotification: courseSyncSuccessNotificationMock,
+            notificationInteractor: CourseSyncNotificationMock(notificationManager: notificationManager,
+                                                               progressInteractor: CourseSyncProgressObserverInteractorMock()),
             courseListInteractor: listInteractorMock,
+            backgroundActivity: BackgroundActivityMock(),
             scheduler: .immediate
         )
 
@@ -608,6 +691,70 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
 
         // THEN
         XCTAssertTrue(listInteractorMock.loadAsyncCalled)
+        subscription.cancel()
+    }
+
+    func testHandlesBackgroundSyncInterruption() {
+        let backgroundActivityMock = BackgroundActivityMock()
+        let testee = CourseSyncInteractorLive(
+            contentInteractors: [
+                assignmentsInteractor,
+            ],
+            filesInteractor: filesInteractor,
+            modulesInteractor: modulesInteractor,
+            progressWriterInteractor: CourseSyncProgressWriterInteractorLive(container: database),
+            notificationInteractor: CourseSyncNotificationMock(notificationManager: notificationManager,
+                                                               progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: backgroundActivityMock,
+            scheduler: .immediate
+        )
+        entries[0].tabs[0].selectionState = .selected
+
+        let subscription = testee
+            .downloadContent(for: entries)
+            .sink()
+
+        // WHEN
+        // assignmentsInteractor didn't complete sync
+        backgroundActivityMock.abortHandler?()
+
+        // THEN
+        let downloadProgresses: [CDCourseSyncDownloadProgress] = databaseClient.fetch()
+        XCTAssertEqual(downloadProgresses.count, 1)
+        guard let downloadProgress = downloadProgresses.first else { return XCTFail() }
+        XCTAssertTrue(downloadProgress.isFinished)
+        XCTAssertEqual(downloadProgress.error, "Offline sync was interrupted by the operating system")
+        subscription.cancel()
+    }
+
+    func testCancelsBackgroundActivityOnCancel() {
+        let backgroundActivityMock = BackgroundActivityMock()
+        let testee = CourseSyncInteractorLive(
+            contentInteractors: [
+                assignmentsInteractor,
+            ],
+            filesInteractor: filesInteractor,
+            modulesInteractor: CourseSyncModulesInteractorMock(),
+            progressWriterInteractor: CourseSyncProgressWriterInteractorLive(container: database),
+            notificationInteractor: CourseSyncNotificationMock(notificationManager: notificationManager,
+                                                                   progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            courseListInteractor: CourseListInteractorMock(),
+            backgroundActivity: backgroundActivityMock,
+            scheduler: .immediate
+        )
+        entries[0].tabs[0].selectionState = .selected
+
+        let subscription = testee
+            .downloadContent(for: entries)
+            .sink()
+
+        // WHEN
+        // assignmentsInteractor didn't complete sync
+        testee.cancel()
+
+        // THEN
+        XCTAssertTrue(backgroundActivityMock.stopInvoked)
         subscription.cancel()
     }
 }
@@ -624,10 +771,10 @@ private class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserv
     }
 }
 
-private class CourseSyncSuccessNotificationMock: CourseSyncSuccessNotificationInteractor {
+private class CourseSyncNotificationMock: CourseSyncNotificationInteractor {
     private(set) var sendCalled = false
 
-    override func send(window: UIWindow? = AppEnvironment.shared.window) -> AnyPublisher<Void, Never> {
+    override func send(window _: UIWindow? = AppEnvironment.shared.window) -> AnyPublisher<Void, Never> {
         sendCalled = true
         return Empty(completeImmediately: true).eraseToAnyPublisher()
     }
@@ -693,6 +840,12 @@ private class CourseSyncDiscussionsInteractorMock: CourseSyncDiscussionsInteract
     }
 }
 
+private class CourseSyncDiscussionsInteractorPublisherMock: CourseSyncDiscussionsInteractor {
+    func getContent(courseId _: String) -> AnyPublisher<Void, Error> {
+        Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+    }
+}
+
 private class CourseSyncPagesInteractorMock: CourseSyncPagesInteractor {
     let publisher = PassthroughSubject<Void, Error>()
 
@@ -717,26 +870,34 @@ private class CourseSyncFilesInteractorMock: CourseSyncFilesInteractor {
         publisher.eraseToAnyPublisher()
     }
 
-    func getFiles(courseId: String, useCache: Bool) -> AnyPublisher<[Core.File], Error> {
+    func getFiles(courseId _: String, useCache _: Bool) -> AnyPublisher<[Core.File], Error> {
         filePublisher.eraseToAnyPublisher()
     }
 
-    func removeUnavailableFiles(courseId: String, newFileIDs: [String]) -> AnyPublisher<Void, Error> {
+    func removeUnavailableFiles(courseId _: String, newFileIDs _: [String]) -> AnyPublisher<Void, Error> {
         Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 }
 
 private class CourseSyncModulesInteractorMock: CourseSyncModulesInteractor {
-    let expectation: XCTestExpectation
-
-    init(expectation: XCTestExpectation) {
-        self.expectation = expectation
+    func getModuleItems(courseId _: String) -> AnyPublisher<[Core.ModuleItem], Error> {
+        Just([]).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 
-    func getContent(courseId _: String) -> AnyPublisher<Void, Error> {
-        expectation.fulfill()
-        return Just(())
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+    func getAssociatedModuleItems(courseId _: String, moduleItemTypes _: Set<Core.TabName>, moduleItems _: [Core.ModuleItem]) -> AnyPublisher<Void, Error> {
+        Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+    }
+}
+
+private class CourseSyncModulesInteractorMock2: CourseSyncModulesInteractor {
+    let moduleItemsPublisher = PassthroughSubject<[ModuleItem], Error>()
+    let associatedModuleItemsPublisher = PassthroughSubject<Void, Error>()
+
+    func getModuleItems(courseId _: String) -> AnyPublisher<[Core.ModuleItem], Error> {
+        moduleItemsPublisher.eraseToAnyPublisher()
+    }
+
+    func getAssociatedModuleItems(courseId _: String, moduleItemTypes _: Set<Core.TabName>, moduleItems _: [Core.ModuleItem]) -> AnyPublisher<Void, Error> {
+        associatedModuleItemsPublisher.eraseToAnyPublisher()
     }
 }

@@ -593,6 +593,9 @@
 "Content" = "Inhalt";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Inhalt kann nicht angezeigt werden";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Inhalt-Link-Fehler";
 
 /* No comment provided by engineer. */
@@ -717,9 +720,6 @@
 
 /* No comment provided by engineer. */
 "d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -930,9 +930,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Kurseinstellungen ändern";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Dashboard bearbeiten";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Diskussion bearbeiten";
@@ -1844,6 +1841,9 @@
 "Open course details" = "Kursdetails öffnen";
 
 /* No comment provided by engineer. */
+"Open In Browser" = "Im Browser öffnen";
+
+/* No comment provided by engineer. */
 "Open item details" = "Objektdetails öffnen";
 
 /* No comment provided by engineer. */
@@ -2336,6 +2336,9 @@
 "Something Went Wrong" = "Etwas ging schief";
 
 /* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Etwas ist schief gelaufen und außerhalb unserer Kontrolle.";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Nach Likes sortieren";
 
 /* No comment provided by engineer. */
@@ -2550,9 +2553,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Der Abgabeprozess wurde vom Betriebssystem abgebrochen.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Es sind %d Elemente für die Offline-Verfügbarkeit ausgewählt. Die ausgewählten Inhalte werden auf das Gerät heruntergeladen.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Es gibt keine aktiven Aufgaben in diesem Kurs.";
@@ -2922,6 +2922,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "Sie sind nicht berechtigt, diese Aktion auszuführen.";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Sie können versuchen, die Seite in einem Browser zu öffnen.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Sie wurden eingeladen.";

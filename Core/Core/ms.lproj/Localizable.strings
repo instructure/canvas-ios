@@ -593,6 +593,9 @@
 "Content" = "Kandungan";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Kandungan Tidak Dapat Dipaparkan";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Ralat Pautan Kandungan";
 
 /* No comment provided by engineer. */
@@ -717,9 +720,6 @@
 
 /* No comment provided by engineer. */
 "d_items" = "d_items";
-
-/* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -930,9 +930,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Edit tetapan kursus";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Edit Papan Pemuka";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Edit Perbincangan";
@@ -1844,6 +1841,9 @@
 "Open course details" = "Buka butiran kursus";
 
 /* No comment provided by engineer. */
+"Open In Browser" = "Buka dalam Pelayar";
+
+/* No comment provided by engineer. */
 "Open item details" = "Buka butiran item";
 
 /* No comment provided by engineer. */
@@ -2336,6 +2336,9 @@
 "Something Went Wrong" = "Sesuatu Tidak Kena";
 
 /* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Sesuatu tidak kena di luar kawalan kami.";
+
+/* No comment provided by engineer. */
 "Sort by likes" = "Isih mengikut like";
 
 /* No comment provided by engineer. */
@@ -2550,9 +2553,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Proses serahan telah ditamatkan oleh sistem operasi.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Sebanyak %d item dipilih untuk ketersediaan luar talian. Kandungan terpilih akan dimuat turun ke peranti.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Tiada tugasan aktif dalam kursus ini.";
@@ -2922,6 +2922,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "Anda tidak dibenarkan untuk melaksanakan tindakan ini";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Anda boleh cuba membuka halaman dalam pelayar.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Anda telah dijemput";

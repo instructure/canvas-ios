@@ -247,20 +247,26 @@ public extension XCUIElement {
     }
 
     @discardableResult
-    func pasteText(text: String) -> XCUIElement {
+    func pasteText(text: String, customApp: XCUIApplication? = nil, pasteAndGo: Bool = false) -> XCUIElement {
+        let appInUse = customApp ?? app
         UIPasteboard.general.string = text
-        let paste = app.find(label: "Paste", type: .menuItem)
+        let paste = pasteAndGo ? appInUse.find(label: "Paste and Go", type: .menuItem) : appInUse.find(label: "Paste", type: .menuItem)
         actionUntilElementCondition(action: .tap, element: paste, condition: .visible)
         paste.hit()
         return self
     }
 
     @discardableResult
-    func cutText() -> XCUIElement {
-        let selectAll = app.find(label: "Select All")
-        actionUntilElementCondition(action: .tap, element: selectAll, condition: .visible)
-        selectAll.hit()
-        app.find(label: "Cut").hit()
+    func cutText(tapSelectAll: Bool = true, customApp: XCUIApplication? = nil) -> XCUIElement {
+        let appInUse = customApp ?? app
+        if tapSelectAll {
+            let selectAll = appInUse.find(label: "Select All")
+            actionUntilElementCondition(action: .tap, element: selectAll, condition: .visible)
+            selectAll.hit()
+        }
+        let cutButton = appInUse.find(label: "Cut")
+        let cutVisible = actionUntilElementCondition(action: .tap, element: cutButton, condition: .visible, timeout: 5)
+        if cutVisible { cutButton.hit() }
         return self
     }
 
