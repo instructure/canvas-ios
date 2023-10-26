@@ -144,8 +144,10 @@ class ComposeMessageViewModel: ObservableObject {
             .store(in: &subscriptions)
         sendButtonDidTap
             //TODO: refactor
-            .sink { [interactor, router] viewController in
+            .sink { [interactor, router, weak self] viewController in
+                guard let self = self else { return }
                 guard let parameters = self.messageParameters() else { return }
+
                     interactor
                     .send(parameters: parameters)
                     .sink { completion in

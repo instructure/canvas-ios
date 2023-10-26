@@ -179,7 +179,7 @@ public struct ComposeMessageView: View {
                 .onTapGesture {
                     self.subjectTextFieldFocus = true
                 }
-                .accessibilityHidden(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                .accessibilityHidden(true)
             TextField("", text: $model.subject)
                 .multilineTextAlignment(.leading)
                 .font(.regular16, lineHeight: .condensed).foregroundColor(.textDarkest)
@@ -206,7 +206,7 @@ public struct ComposeMessageView: View {
                 Text("Message", bundle: .core)
                     .font(.regular16, lineHeight: .condensed)
                     .foregroundColor(.textDark)
-                    .accessibilityHidden(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
+                    .accessibilityHidden(true)
                 Spacer()
                 Button {
                     model.attachmentbuttonDidTap(viewController: controller)
