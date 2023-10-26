@@ -49,18 +49,16 @@ struct GradeItem: Hashable, Encodable {
         self.colorHex = course.color.hexString
         self.route = course.route
     }
-}
 
-#if DEBUG
-
-extension GradeItem {
-
-    init(name: String = "Test Assignment", grade: String = "87 / 100", color: Color = .textDarkest, route: URL = URL(string: "canvas-courses://")!) {
+    init(
+        name: String = "Test Assignment",
+        grade: String = "87 / 100",
+        color: Color = .textDarkest,
+        route: URL = URL(string: "canvas-courses://")!
+    ) {
         self.name = name
         self.grade = grade
         self.colorHex = UIColor(color).hexString
         self.route = route
     }
 }
-
-#endif
