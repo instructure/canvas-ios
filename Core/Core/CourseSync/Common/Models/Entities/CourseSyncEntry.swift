@@ -37,6 +37,12 @@ public struct CourseSyncEntry: Equatable {
     var courseId: String { String(id.split(separator: "/").last ?? "") }
 
     var tabs: [CourseSyncEntry.Tab]
+    var selectedTabs: [TabName] {
+        tabs
+            .filter { $0.selectionState == .selected || $0.selectionState == .partiallySelected }
+            .map { $0.type }
+    }
+
     var selectedTabsCount: Int {
         tabs.reduce(0) { partialResult, tab in
             partialResult + (tab.selectionState == .selected || tab.selectionState == .partiallySelected ? 1 : 0)
@@ -182,16 +188,16 @@ public struct CourseSyncEntry: Equatable {
             files.indices.forEach { files[$0].selectionState = selectionState }
         }
 
-        // Selecting modules or grades will select every other tab because they are needed to compose modules/grades. 
+        // Selecting modules or grades will select every other tab because they are needed to compose modules/grades.
         if selectionState == .selected {
             if tabs[id: id]?.type == .modules || tabs[id: id]?.type == .grades {
                 for (index, tab) in tabs.enumerated() where tab.type != .modules && tab.type != .grades {
                     tabs[index].selectionState = .selected
                 }
             }
-        // Deselecting a tab other than modules or grades will deselect modules and grades.
+            // Deselecting a tab other than modules or grades will deselect modules and grades.
         } else if selectionState == .deselected {
-            if tabs[id: id]?.type != .modules && tabs[id: id]?.type != .grades {
+            if tabs[id: id]?.type != .modules, tabs[id: id]?.type != .grades {
                 for (index, tab) in tabs.enumerated() where tab.type == .modules || tab.type == .grades {
                     tabs[index].selectionState = .deselected
                 }
