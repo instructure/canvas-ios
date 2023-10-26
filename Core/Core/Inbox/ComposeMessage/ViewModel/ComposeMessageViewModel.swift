@@ -117,11 +117,9 @@ class ComposeMessageViewModel: ObservableObject {
             .assign(to: &$courses)
         selectedRecipient
             .compactMap { $0 }
+            .filter { !self.recipients.map{$0.id}.contains($0.id) }
             .sink { [weak self] in
-                print(self?.recipients)
-                if (self?.recipients.map{$0.id}.contains($0.id) == false) {
-                    self?.recipients.append($0)
-                }
+                self?.recipients.append($0)
             }
             .store(in: &subscriptions)
     }
@@ -147,20 +145,19 @@ class ComposeMessageViewModel: ObservableObject {
         sendButtonDidTap
             //TODO: refactor
             .sink { [interactor, router] viewController in
-                if let parameters = self.messageParameters() {
+                guard let parameters = self.messageParameters() else { return }
                     interactor
-                        .send(parameters: parameters)
-                        .sink { completion in
-                            if case .failure(let error) = completion {
-                                // error
-                            } else {
-                                performUIUpdate {
-                                    router.dismiss(viewController)
-                                }
+                    .send(parameters: parameters)
+                    .sink { completion in
+                        if case .failure(let error) = completion {
+                            // error
+                        } else {
+                            performUIUpdate {
+                                router.dismiss(viewController)
                             }
                         }
-                        .store(in: &self.subscriptions)
-                }
+                    }
+                    .store(in: &self.subscriptions)
             }
             .store(in: &subscriptions)
     }

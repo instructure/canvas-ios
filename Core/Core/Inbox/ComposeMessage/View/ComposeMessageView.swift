@@ -23,6 +23,7 @@ public struct ComposeMessageView: View {
     @Environment(\.viewController) private var controller
 
     @FocusState private var subjectTextFieldFocus: Bool
+    @State private var scrollViewContentHeight: CGFloat = .infinity
 
     init(model: ComposeMessageViewModel) {
         self.model = model
@@ -30,17 +31,25 @@ public struct ComposeMessageView: View {
 
     public var body: some View {
         GeometryReader { geometry in
-            ScrollView {
-                VStack(spacing: 0) {
-                    headerView
-                    Divider()
-                    propertiesView
-                    Divider()
-                    bodyView
-                    Spacer()
+            VStack(spacing: 0) {
+                ScrollView {
+                    VStack(spacing: 0) {
+                        headerView
+                        Divider()
+                        propertiesView
+                    }
+                    .background(
+                        GeometryReader { proxy in
+                            Color.clear.onAppear { scrollViewContentHeight = proxy.size.height }
+                        }
+                    )
                 }
-                .frame(minHeight: geometry.size.height)
+                .frame(maxHeight: scrollViewContentHeight)
+                Divider()
+                bodyView
+                Spacer()
             }
+            .frame(minHeight: geometry.size.height)
             .background(Color.backgroundLightest)
             .navigationBarItems(leading: cancelButton)
         }
@@ -62,11 +71,11 @@ public struct ComposeMessageView: View {
     }
 
     private var sendButton: some View {
-        Button(action: {
+        Button{
             model.sendButtonDidTap.accept(controller)
-        }, label: {
+        } label: {
             sendButtonImage
-        })
+        }
         .accessibility(label: Text("Send", bundle: .core))
         .disabled(!model.sendButtonActive)
         .frame(width: 35, height: 35)
@@ -80,12 +89,12 @@ public struct ComposeMessageView: View {
     }
 
     private var addRecipientButton: some View {
-        Button(action: {
+        Button {
             model.addRecipientButtonDidTap(viewController: controller)
-        }, label: {
+        } label: {
             Image.addLine
                 .foregroundColor(Color.textDarkest)
-        })
+        }
         .accessibility(label: Text("Add recipient", bundle: .core))
     }
 
@@ -106,7 +115,7 @@ public struct ComposeMessageView: View {
         VStack(spacing: 0) {
             courseView
             Divider()
-            if (model.selectedCourse != nil) {
+            if model.selectedCourse != nil {
                 toView
                 Divider()
             }
@@ -117,11 +126,11 @@ public struct ComposeMessageView: View {
     }
 
     private var courseView: some View {
-        Button(action: {
+        Button {
             model.courseSelectButtonDidTap(viewController: controller)
-        }, label: {
+        } label: {
             HStack {
-                Text("Course")
+                Text("Course", bundle: .core)
                     .font(.regular16, lineHeight: .condensed)
                     .foregroundColor(.textDark)
                 if let course = model.selectedCourse {
@@ -132,14 +141,14 @@ public struct ComposeMessageView: View {
                 Spacer()
                 DisclosureIndicator()
             }
-        })
+        }
         .padding(.horizontal, 16).padding(.vertical, 12)
         .accessibility(label: Text("Select course", bundle: .core))
     }
 
     private var toView: some View {
         HStack {
-            Text("To")
+            Text("To", bundle: .core)
                 .font(.regular16, lineHeight: .condensed)
                 .foregroundColor(.textDark)
                 .accessibilitySortPriority(2)
@@ -159,6 +168,7 @@ public struct ComposeMessageView: View {
         WrappingHStack(models: model.recipients) { recipient in
             RecipientPillView(recipient: recipient, removeDidTap: { recipient in model.removeRecipientButtonDidTap(recipient: recipient) })
         }
+        .animation(.default, value: model.recipients)
     }
 
     private var subjectView: some View {
@@ -169,6 +179,7 @@ public struct ComposeMessageView: View {
                 .onTapGesture {
                     self.subjectTextFieldFocus = true
                 }
+                .accessibilityHidden(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
             TextField("", text: $model.subject)
                 .multilineTextAlignment(.leading)
                 .font(.regular16, lineHeight: .condensed).foregroundColor(.textDarkest)
@@ -179,25 +190,27 @@ public struct ComposeMessageView: View {
     }
 
     private var individualView: some View {
-        Toggle(isOn: $model.sendIndividual, label: {
-            Text("Send individual message to each recipient")
+        Toggle(isOn: $model.sendIndividual) {
+            Text("Send individual message to each recipient", bundle: .core)
                 .font(.regular16, lineHeight: .condensed)
                 .foregroundColor(.textDarkest)
-        }).tint(.accentColor)
-        .padding(.horizontal, 16).padding(.vertical, 12)
+        }
+        .tint(.accentColor)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
     }
 
     private var bodyView: some View {
         VStack(spacing: 0) {
             HStack {
-                Text("Message")
+                Text("Message", bundle: .core)
                     .font(.regular16, lineHeight: .condensed)
                     .foregroundColor(.textDark)
-                    
+                    .accessibilityHidden(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
                 Spacer()
-                Button(action: {
+                Button {
                     model.attachmentbuttonDidTap(viewController: controller)
-                }, label: {
+                } label: {
                     Image.paperclipLine
                         .resizable()
                         .renderingMode(.template)
@@ -205,14 +218,17 @@ public struct ComposeMessageView: View {
                         .frame(width: 24, height: 24)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 12)
-                })
+                }
                 .accessibility(label: Text("Add attachment", bundle: .core))
             }
             .padding(.leading, 16)
             TextEditor(text: $model.bodyText)
+                .iOS16HideListScrollContentBackground()
                 .font(.regular16, lineHeight: .condensed)
                 .foregroundColor(.textDarkest)
                 .padding(.horizontal, 12)
+                .frame(minHeight: 60)
+                .accessibility(label: Text("Message", bundle: .core))
         }
     }
 }
