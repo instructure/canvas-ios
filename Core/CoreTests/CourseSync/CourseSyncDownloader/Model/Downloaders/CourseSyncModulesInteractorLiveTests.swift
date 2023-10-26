@@ -33,15 +33,11 @@ class CourseSyncModulesInteractorLiveTests: CoreTestCase {
         super.tearDown()
     }
 
-    func testAssociatedTabType() {
-        XCTAssertEqual(testee.associatedTabType, .modules)
-    }
-
     func testSuccess() {
         mockModules()
         mockModuleItemSequence()
         mockModuleItems()
-        XCTAssertFinish(testee.getContent(courseId: "course-1"))
+        XCTAssertFinish(testee.getModuleItems(courseId: "course-1"))
 
         let modules: [Module] = databaseClient.fetch()
         XCTAssertEqual(modules.count, 1)
@@ -52,21 +48,69 @@ class CourseSyncModulesInteractorLiveTests: CoreTestCase {
         mockModulesError()
         mockModuleItemSequence()
         mockModuleItems()
-        XCTAssertFailure(testee.getContent(courseId: "course-1"))
+        XCTAssertFailure(testee.getModuleItems(courseId: "course-1"))
     }
 
     func testModuleItemSequenceFailure() {
         mockModules()
         mockModuleItemSequenceError()
         mockModuleItems()
-        XCTAssertFailure(testee.getContent(courseId: "course-1"))
+        XCTAssertFailure(testee.getModuleItems(courseId: "course-1"))
     }
 
     func testModuleItemsFailure() {
         mockModules()
         mockModuleItemSequence()
         mockModuleItemsError()
-        XCTAssertFailure(testee.getContent(courseId: "course-1"))
+        XCTAssertFailure(testee.getModuleItems(courseId: "course-1"))
+    }
+
+    func testAssociatedModuleItems() {
+        api.mock(
+            GetPageRequest(context: .course("course-1"), url: "page-1"),
+            value: .make(page_id: "page-1", url: "page-1")
+        )
+
+        api.mock(
+            GetQuizRequest(courseID: "course-1", quizID: "quiz-1"),
+            value: .make(id: "quiz-1")
+        )
+
+        api.mock(
+            GetFileRequest(context: .course("course-1"), fileID: "file-1", include: []),
+            value: .make(id: "file-1")
+        )
+
+        let folderName = "canvas.instructure.com-1/Offline/Files/course-1/file-1"
+
+        try? FileManager.default.createDirectory(
+            at: URL.Directories.documents.appendingPathComponent(folderName),
+            withIntermediateDirectories: true
+        )
+        FileManager.default.createFile(
+            atPath: URL.Directories.documents.appendingPathComponent(folderName + "/fileName").path,
+            contents: "test".data(using: .utf8)
+        )
+
+        let subscription = testee.getAssociatedModuleItems(
+            courseId: "course-1",
+            moduleItemTypes: [.pages, .quizzes, .files],
+            moduleItems: [
+                .make(from: .make(id: "file-1", content: .file("file-1"))),
+                .make(from: .make(id: "quiz-1", content: .quiz("quiz-1"))),
+                .make(from: .make(id: "pages-1", content: .page("page-1"))),
+            ]
+        ).sink()
+
+        let pages: [Page] = databaseClient.fetch()
+        let quizzes: [Quiz] = databaseClient.fetch()
+        let files: [File] = databaseClient.fetch()
+
+        XCTAssertEqual(pages[0].id, "page-1")
+        XCTAssertEqual(quizzes[0].id, "quiz-1")
+        XCTAssertEqual(files[0].id, "file-1")
+
+        subscription.cancel()
     }
 
     private func mockModules() {
