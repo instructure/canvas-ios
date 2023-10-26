@@ -20,6 +20,7 @@ import Core
 import CoreData
 
 public class GetWidgetAnnouncements: CollectionUseCase {
+    public static let Timeout: TimeInterval = 15 * 60 // 15 minutes
     public typealias Model = CDWidgetAnnouncement
     public var cacheKey: String? {
         "announcements?courses=[\(courseContextCodes.joined(separator: ","))]"
@@ -29,6 +30,9 @@ public class GetWidgetAnnouncements: CollectionUseCase {
     }
     public var scope: Scope {
         .all(orderBy: #keyPath(CDWidgetAnnouncement.date))
+    }
+    public var ttl: TimeInterval {
+        Self.Timeout
     }
 
     private let courseContextCodes: [String]

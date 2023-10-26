@@ -25,7 +25,7 @@ class AnnouncementsProvider: CommonWidgetProvider<AnnouncementsEntry> {
     private var announcements: Store<GetWidgetAnnouncements>?
 
     init() {
-        super.init(loggedOutModel: AnnouncementsEntry(isLoggedIn: false), timeout: 15 * 60)
+        super.init(loggedOutModel: AnnouncementsEntry(isLoggedIn: false), timeout: GetWidgetAnnouncements.Timeout)
     }
 
     override func fetchData() {
