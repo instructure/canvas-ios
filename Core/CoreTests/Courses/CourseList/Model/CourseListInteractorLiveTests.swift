@@ -16,8 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-@testable import Core
 import Combine
+@testable import Core
+import TestsFoundation
 import XCTest
 
 class CourseListInteractorLiveTests: CoreTestCase {
@@ -41,6 +42,7 @@ class CourseListInteractorLiveTests: CoreTestCase {
 
     override func tearDown() {
         subscriptions.removeAll()
+        testee = nil
         super.tearDown()
     }
 
@@ -83,14 +85,14 @@ class CourseListInteractorLiveTests: CoreTestCase {
     func testFutureUnpublishedCoursesAreHiddenForStudents() {
         let futureCourseRequest = GetCourseListCourses(enrollmentState: .invited_or_pending)
         api.mock(futureCourseRequest, value: [
-            .make(id: "3", name: "ABC"),
+            .make(id: "3", name: "ABC", workflow_state: .available),
             .make(id: "4", name: "unpublished", workflow_state: .unpublished),
         ])
 
         performRefresh()
-        waitForState(.data)
-
-        XCTAssertEqual(testee.courseList.value.future.map { $0.courseId }, ["3"])
+        waitUntil(shouldFail: true) {
+            testee.courseList.value.future.map { $0.courseId } == ["3"]
+        }
     }
 
     func testFutureUnpublishedCoursesAreShownForTeachers() {
@@ -98,14 +100,14 @@ class CourseListInteractorLiveTests: CoreTestCase {
 
         let futureCourseRequest = GetCourseListCourses(enrollmentState: .invited_or_pending)
         api.mock(futureCourseRequest, value: [
-            .make(id: "3", name: "ABC"),
+            .make(id: "3", name: "ABC", workflow_state: .available),
             .make(id: "4", name: "unpublished", workflow_state: .unpublished),
         ])
 
         performRefresh()
-        waitForState(.data)
-
-        XCTAssertEqual(testee.courseList.value.future.map { $0.courseId }, ["3", "4"])
+        waitUntil(shouldFail: true) {
+            testee.courseList.value.future.map { $0.courseId } == ["3", "4"]
+        }
     }
 
     private func performRefresh() {

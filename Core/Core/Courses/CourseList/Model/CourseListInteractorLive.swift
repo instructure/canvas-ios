@@ -44,11 +44,11 @@ public class CourseListInteractorLive: CourseListInteractor {
         }
 
         Publishers
-            .Zip3(activeCoursesListStore.allObjects.filter(with: searchQuery).print("🟪"),
-                            pastCoursesListStore.allObjects.filter(with: searchQuery).print("✅"),
+            .CombineLatest3(activeCoursesListStore.allObjects.filter(with: searchQuery),
+                            pastCoursesListStore.allObjects.filter(with: searchQuery),
                             futureCoursesListStore.allObjects
                                 .filter(with: searchQuery)
-                                .map { filterUnpublishedCoursesForStudents(env.app, $0) }.print("💎")
+                                .map { filterUnpublishedCoursesForStudents(env.app, $0) }
             )
             .map {
                 CourseListSections(current: $0.0, past: $0.1, future: $0.2)
