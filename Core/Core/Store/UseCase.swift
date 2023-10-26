@@ -91,7 +91,10 @@ public extension UseCase {
                         self.updateTTL(in: context)
                         try context.save()
                         callback?(response, urlResponse, error)
-                    } catch {
+                    } catch let error {
+                        Logger.shared.error(error.localizedDescription)
+                        Analytics.shared.logError(name: "CoreData save failed",
+                                                  reason: error.localizedDescription)
                         callback?(response, urlResponse, error)
                     }
                 }
@@ -122,6 +125,9 @@ public extension UseCase {
                             try context.save()
                             promise(.success(urlResponse))
                         } catch let dbError {
+                            Logger.shared.error(dbError.localizedDescription)
+                            Analytics.shared.logError(name: "CoreData save failed",
+                                                      reason: dbError.localizedDescription)
                             promise(.failure(dbError))
                         }
                     }

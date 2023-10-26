@@ -80,7 +80,7 @@ public final class CDWidgetAnnouncement: NSManagedObject {
             dbItem.courseColorHex = course.color.hexString
         } else {
             dbItem.courseName = ""
-            dbItem.courseColorHex = UIColor.cyan.hexString
+            dbItem.courseColorHex = UIColor.textDarkest.hexString
         }
 
         return dbItem

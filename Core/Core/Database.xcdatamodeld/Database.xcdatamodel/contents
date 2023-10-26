@@ -151,6 +151,11 @@
         <attribute name="id" attributeType="String"/>
         <attribute name="title" attributeType="String"/>
         <attribute name="url" attributeType="URI"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="CommonCourse" representedClassName="Core.CommonCourse" syncable="YES">
         <attribute name="courseID" attributeType="String"/>
