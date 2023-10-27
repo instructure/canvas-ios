@@ -27,7 +27,7 @@ class CourseListItemTests: CoreTestCase {
             .make(role: "StudentEnrollment"),
             .make(role: "StudentEnrollment"),
         ])
-        let testee = CourseListItem.save(apiCourse,
+        let testee = CDAllCoursesCourseItem.save(apiCourse,
                                          enrollmentState: .active,
                                          in: databaseClient)
         XCTAssertEqual(testee.roles, "Student, Teacher")
@@ -35,7 +35,7 @@ class CourseListItemTests: CoreTestCase {
 
     func testCourseDetailsNotAvailableForUnpublishedCoursesInStudentApp() {
         let apiCourse = APICourse.make(workflow_state: .unpublished)
-        let testee = CourseListItem.save(apiCourse,
+        let testee = CDAllCoursesCourseItem.save(apiCourse,
                                          enrollmentState: .active,
                                          app: .student,
                                          in: databaseClient)
@@ -75,7 +75,7 @@ class CourseListItemTests: CoreTestCase {
     private func visibility(_ enrollmentState: GetCoursesRequest.EnrollmentState,
                             _ app: AppEnvironment.App?,
                             _ workflowState: CourseWorkflowState?) -> Bool {
-        CourseListItem.isFavoriteButtonVisible(enrollmentState: enrollmentState,
+        CDAllCoursesCourseItem.isFavoriteButtonVisible(enrollmentState: enrollmentState,
                                                app: app,
                                                workflowState: workflowState)
     }

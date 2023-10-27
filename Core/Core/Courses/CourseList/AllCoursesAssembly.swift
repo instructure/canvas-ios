@@ -18,24 +18,28 @@
 
 import Foundation
 
-public enum CourseListAssembly {
+public enum AllCoursesAssembly {
 
-    public static func makeInteractor() -> CourseListInteractor {
-        CourseListInteractorLive(env: AppEnvironment.shared)
+    public static func makeInteractor() -> AllCoursesInteractor {
+        AllCoursesInteractorLive()
+    }
+
+    public static func makeCourseListInteractor() -> CourseListInteractor {
+        CourseListInteractorLive()
     }
 
     public static func makeCourseListViewController() -> UIViewController {
         let interactor = makeInteractor()
         interactor.loadAsync()
-        let viewModel = CourseListViewModel(interactor)
-        return CoreHostingController(CourseListView(viewModel: viewModel))
+        let viewModel = AllCoursesViewModel(interactor)
+        return CoreHostingController(AllCoursesView(viewModel: viewModel))
     }
 
 #if DEBUG
     private static let environment = PreviewEnvironment()
     private static let viewContext = environment.database.viewContext
 
-    static func makePreview() -> CourseListView {
+    static func makePreview() -> AllCoursesView {
         let currentAPICourse = APICourse.make(id: "1", term: .make(name: "Fall 2020"), is_favorite: true)
         let pastAPICourse = APICourse.make(id: "3",
                                            enrollments: [.make(id: "6",
@@ -48,15 +52,21 @@ public enum CourseListAssembly {
         )
         let futureAPICourse = APICourse.make(id: "4", name: nil, course_code: "course_code")
 
-        let currentDBCourse = CourseListItem.save(currentAPICourse, enrollmentState: .active, in: environment.database.viewContext)
-        let pastDBCourse = CourseListItem.save(pastAPICourse, enrollmentState: .completed, in: environment.database.viewContext)
-        let futureDBCourse = CourseListItem.save(futureAPICourse, enrollmentState: .invited_or_pending, in: environment.database.viewContext)
+        let currentDBCourse = AllCoursesCourseItem(
+            from: CDAllCoursesCourseItem.save(currentAPICourse, enrollmentState: .active, in: environment.database.viewContext)
+        )
+        let pastDBCourse = AllCoursesCourseItem(
+            from: CDAllCoursesCourseItem.save(pastAPICourse, enrollmentState: .completed, in: environment.database.viewContext)
+        )
+        let futureDBCourse = AllCoursesCourseItem(
+            from: CDAllCoursesCourseItem.save(futureAPICourse, enrollmentState: .invited_or_pending, in: environment.database.viewContext)
+        )
 
-        let selectorInteractor = CourseListInteractorPreview(past: [pastDBCourse],
+        let selectorInteractor = AllCoursesInteractorPreview(past: [pastDBCourse],
                                                      current: [currentDBCourse],
                                                      future: [futureDBCourse])
-        let viewModel = CourseListViewModel(selectorInteractor)
-        let view = CourseListView(viewModel: viewModel)
+        let viewModel = AllCoursesViewModel(selectorInteractor)
+        let view = AllCoursesView(viewModel: viewModel)
         return view
     }
 

@@ -18,16 +18,24 @@
 
 import Foundation
 
-public struct CourseListSections: Equatable {
-    public let current: [CourseListItem]
-    public let past: [CourseListItem]
-    public let future: [CourseListItem]
+public struct AllCoursesGroupItem: Equatable {
+    public let id: String
+    public let name: String
 
-    public init(current: [CourseListItem] = [],
-                past: [CourseListItem] = [],
-                future: [CourseListItem] = []) {
-        self.current = current
-        self.past = past
-        self.future = future
+    public let courseID: String?
+    public let courseName: String?
+    public let courseTermName: String?
+
+    public let concluded: Bool
+    public let isFavorite: Bool
+
+    init(from entity: CDAllCoursesGroupItem) {
+        self.id = entity.id
+        self.name = entity.name
+        self.courseID = entity.courseID
+        self.courseName = entity.courseName
+        self.courseTermName = entity.courseTermName
+        self.concluded = entity.concluded
+        self.isFavorite = entity.isFavorite
     }
 }

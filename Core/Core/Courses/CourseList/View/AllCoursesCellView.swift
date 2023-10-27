@@ -18,8 +18,8 @@
 
 import SwiftUI
 
-struct CourseListCell: View {
-    @ObservedObject var course: CourseListItem
+struct AllCoursesCellView: View {
+    let course: AllCoursesCourseItem
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
@@ -31,11 +31,11 @@ struct CourseListCell: View {
         !course.isCourseDetailsAvailable || !offlineStateViewModel.isCourseEnabled
     }
 
-    init(course: CourseListItem) {
+    init(course: AllCoursesCourseItem) {
         self.course = course
-        self._offlineStateViewModel = StateObject(wrappedValue: .init(courseId: course.courseId,
-                                                                      offlineModeInteractor: OfflineModeAssembly.make(),
-                                                                      sessionDefaults: AppEnvironment.shared.userDefaults ?? .fallback))
+        _offlineStateViewModel = StateObject(wrappedValue: .init(courseId: course.courseId,
+                                                                 offlineModeInteractor: OfflineModeAssembly.make(),
+                                                                 sessionDefaults: AppEnvironment.shared.userDefaults ?? .fallback))
     }
 
     var body: some View {
@@ -48,12 +48,12 @@ struct CourseListCell: View {
                     .frame(width: 20, height: 20)
                     .padding(.trailing, 18)
             }
-                .buttonStyle(PlainButtonStyle())
-                .accessibility(label: pending ? Text("Updating", bundle: .core) : Text("favorite", bundle: .core))
-                .accessibilityIdentifier("DashboardCourseCell.\(course.courseId).favoriteButton")
-                .accessibility(addTraits: (course.isFavorite && !pending) ? .isSelected : [])
-                .hidden(!course.isFavoriteButtonVisible)
-                .disabled(offlineStateViewModel.isFavoriteStarDisabled)
+            .buttonStyle(PlainButtonStyle())
+            .accessibility(label: pending ? Text("Updating", bundle: .core) : Text("favorite", bundle: .core))
+            .accessibilityIdentifier("DashboardCourseCell.\(course.courseId).favoriteButton")
+            .accessibility(addTraits: (course.isFavorite && !pending) ? .isSelected : [])
+            .hidden(!course.isFavoriteButtonVisible)
+            .disabled(offlineStateViewModel.isFavoriteStarDisabled)
 
             Button {
                 env.router.route(to: "/courses/\(course.courseId)", from: controller)
@@ -90,7 +90,7 @@ struct CourseListCell: View {
 
                     if AppEnvironment.shared.app == .teacher {
                         let icon = course.isPublished ? Image.completeSolid.foregroundColor(.textSuccess) :
-                        Image.noSolid.foregroundColor(.textDark)
+                            Image.noSolid.foregroundColor(.textDark)
                         icon.padding(.trailing, 16)
                     } else {
                         InstDisclosureIndicator()
@@ -112,7 +112,7 @@ struct CourseListCell: View {
 
     var accessibilityLabel: Text {
         let offlineLabel = offlineStateViewModel.isOfflineIndicatorVisible ? NSLocalizedString("Available offline", comment: "")
-        : nil
+            : nil
         return Text([
             course.name,
             course.termName,
@@ -142,15 +142,27 @@ struct CourseListCell_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: 0) {
             Divider()
-            CourseListCell(course: CourseListItem.save(.make(id: "1", workflow_state: .available),
-                                                       enrollmentState: .active,
-                                                       app: .student,
-                                                       in: context))
+            AllCoursesCellView(
+                course: AllCoursesCourseItem(
+                    from: CDAllCoursesCourseItem.save(
+                        .make(id: "1", workflow_state: .available),
+                        enrollmentState: .active,
+                        app: .student,
+                        in: context
+                    )
+                )
+            )
             Divider()
-            CourseListCell(course: CourseListItem.save(.make(id: "2", workflow_state: .unpublished),
-                                                       enrollmentState: .active,
-                                                       app: .student,
-                                                       in: context))
+            AllCoursesCellView(
+                course: AllCoursesCourseItem(
+                    from: CDAllCoursesCourseItem.save(
+                        .make(id: "2", workflow_state: .unpublished),
+                        enrollmentState: .active,
+                        app: .student,
+                        in: context
+                    )
+                )
+            )
             Divider()
         }
         .previewLayout(.sizeThatFits)

@@ -22,12 +22,12 @@ import Combine
 
 class CourseListViewModelTests: CoreTestCase {
     var mockInteractor: CourseListInteractorMock!
-    var testee: CourseListViewModel!
+    var testee: AllCoursesViewModel!
 
     override func setUp() {
         super.setUp()
         mockInteractor = CourseListInteractorMock()
-        testee = CourseListViewModel(mockInteractor)
+        testee = AllCoursesViewModel(mockInteractor)
     }
 
     func testReadsInteractorState() {
@@ -37,10 +37,10 @@ class CourseListViewModelTests: CoreTestCase {
     }
 
     func testReadsInteractorData() {
-        let data = CourseListSections(future: [
-            CourseListItem.save(.make(name: "future"), enrollmentState: .invited_or_pending, in: databaseClient),
+        let data = AllCoursesSections(future: [
+            CDAllCoursesCourseItem.save(.make(name: "future"), enrollmentState: .invited_or_pending, in: databaseClient),
         ])
-        mockInteractor.courseList.send(data)
+        mockInteractor.sections.send(data)
 
         XCTAssertEqual(testee.sections.current, [])
         XCTAssertEqual(testee.sections.past, [])
@@ -64,10 +64,10 @@ class CourseListViewModelTests: CoreTestCase {
     }
 }
 
-class CourseListInteractorMock: CourseListInteractor {
+class CourseListInteractorMock: AllCoursesInteractor {
     // MARK: - Outputs
     var state = CurrentValueSubject<StoreState, Never>(.loading)
-    var courseList = CurrentValueSubject<CourseListSections, Never>(.init())
+    var sections = CurrentValueSubject<AllCoursesSections, Never>(.init())
 
     private(set) var refreshCalled = false
     private(set) var loadAsyncCalled = false

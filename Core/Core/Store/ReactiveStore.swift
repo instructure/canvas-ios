@@ -62,6 +62,10 @@ public class ReactiveStore<U: UseCase> {
     private let forceRefreshRelay = PassthroughRelay<Void>()
     private let stateRelay = CurrentValueRelay<State>(.loading)
 
+    public private(set) lazy var statePublisher: AnyPublisher<State, Never> = stateRelay
+        .receive(on: DispatchQueue.main)
+        .eraseToAnyPublisher()
+
     private var cancellable: AnyCancellable?
     private var subscriptions = Set<AnyCancellable>()
 
@@ -91,7 +95,7 @@ public class ReactiveStore<U: UseCase> {
 
     public func forceFetchEntities() -> AnyPublisher<Void, Never> {
         forceRefreshRelay.accept(())
-        return Empty(completeImmediately: false)
+        return Just(())
             .setFailureType(to: Never.self)
             .eraseToAnyPublisher()
     }
@@ -135,6 +139,25 @@ public class ReactiveStore<U: UseCase> {
             )
 
         return stateRelay.eraseToAnyPublisher()
+    }
+
+    public func observeEntitiesWithError(forceFetch: Bool = false, loadAllPages: Bool = false) -> AnyPublisher<[U.Model], Error> {
+        let scope = useCase.scope
+        let request = NSFetchRequest<U.Model>(entityName: String(describing: U.Model.self))
+        request.predicate = scope.predicate
+        request.sortDescriptors = scope.order
+
+        let entitiesPublisher: AnyPublisher<[U.Model], Error>
+
+        if offlineModeInteractor?.isOfflineModeEnabled() == true {
+            entitiesPublisher = fetchEntitiesFromDatabase(fetchRequest: request)
+        } else {
+            entitiesPublisher = forceFetch ?
+                fetchEntitiesFromAPI(useCase: useCase, loadAllPages: loadAllPages, fetchRequest: request) :
+                fetchEntitiesFromCache(fetchRequest: request)
+        }
+
+        return entitiesPublisher
     }
 
     /**

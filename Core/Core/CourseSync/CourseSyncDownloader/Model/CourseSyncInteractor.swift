@@ -140,16 +140,14 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
 
     private func downloadCourseList() -> AnyPublisher<Void, Never> {
         let result = courseListInteractor
-            .state
-            .first { state in
-                state != .loading
-            }
+            .getCourses()
             .mapToVoid()
+            .replaceError(with: ())
             .eraseToAnyPublisher()
 
-        if courseListInteractor.state.value == .loading {
-            courseListInteractor.loadAsync()
-        }
+//        if courseListInteractor.state.value == .loading {
+//            courseListInteractor.loadAsync()
+//        }
 
         return result
     }

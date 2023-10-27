@@ -109,6 +109,16 @@ public struct GetGroupsRequest: APIRequestable {
     }
 }
 
+// https://canvas.instructure.com/doc/api/favorites.html#method.favorites.list_favorite_groups
+public struct GetFavoriteGroupsRequest: APIRequestable {
+    public typealias Response = [APIGroup]
+
+    let context: Context
+
+    public var path: String { "\(context.pathComponent)/favorites/groups" }
+    public var query: [APIQueryItem] { [.perPage(100) ]}
+}
+
 // https://canvas.instructure.com/doc/api/groups.html#method.groups.users
 struct GetGroupUsersRequest: APIRequestable {
     typealias Response = [APIUser]

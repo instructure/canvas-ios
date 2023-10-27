@@ -65,8 +65,8 @@ public class GetGroup: APIUseCase {
 public class GetDashboardGroups: CollectionUseCase {
     public typealias Model = Group
 
-    public var cacheKey: String? { "users/self/groups" }
-    public var request: GetGroupsRequest { GetGroupsRequest(context: .currentUser) }
+    public var cacheKey: String? { "users/self/favorites/groups" }
+    public var request: GetFavoriteGroupsRequest { GetFavoriteGroupsRequest(context: .currentUser) }
     public var scope: Scope {
         let showOnDashboard = NSPredicate(key: #keyPath(Group.showOnDashboard), equals: true)
         let accessRestrictedByDate = NSCompoundPredicate(orPredicateWithSubpredicates: [

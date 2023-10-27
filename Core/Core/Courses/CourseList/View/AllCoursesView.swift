@@ -16,15 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
 import Combine
+import SwiftUI
 
-public struct CourseListView: View, ScreenViewTrackable {
-    @ObservedObject private var viewModel: CourseListViewModel
+public struct AllCoursesView: View, ScreenViewTrackable {
+    @ObservedObject private var viewModel: AllCoursesViewModel
     public let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/courses")
     static var searchBarHeight: CGFloat = UISearchBar().sizeThatFits(.zero).height
 
-    public init(viewModel: CourseListViewModel) {
+    public init(viewModel: AllCoursesViewModel) {
         self.viewModel = viewModel
     }
 
@@ -41,9 +41,9 @@ public struct CourseListView: View, ScreenViewTrackable {
                                 .progressViewStyle(.indeterminateCircle())
                         }
                         .frame(minWidth: width, minHeight: height)
-                    case .data:
+                    case let .data(sections):
                         ScrollViewReader { scrollView in
-                            LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
+                            LazyVStack(alignment: .leading, spacing: 0, pinnedViews: .sectionHeaders) {
                                 let binding = Binding {
                                     viewModel.filter.value
                                 } set: { newValue, _ in
@@ -55,8 +55,15 @@ public struct CourseListView: View, ScreenViewTrackable {
                                     placeholder: NSLocalizedString("Search", comment: ""),
                                     onCancel: { withAnimation { scrollView.scrollTo(0, anchor: .bottom) } }
                                 )
-                                list(height, sections: viewModel.sections)
-                                    .id(0)
+
+                                Spacer()
+                                Text("Courses", bundle: .core)
+                                    .font(.heavy24).foregroundColor(.textDarkest)
+                                    .accessibility(addTraits: .isHeader)
+                                    .padding(.leading, 16)
+                                Spacer()
+
+                                list(height, sections: sections).id(0)
                             }
                             .onAppear { scrollView.scrollTo(0, anchor: .top) }
                         }
@@ -64,7 +71,7 @@ public struct CourseListView: View, ScreenViewTrackable {
                         EmptyPanda(.Teacher,
                                    title: Text("No Courses", bundle: .core),
                                    message: Text("It looks like there aren’t any courses associated with this account. Visit the web to create a course today.", bundle: .core))
-                        .frame(minWidth: width, minHeight: height)
+                            .frame(minWidth: width, minHeight: height)
                     case .error:
                         ZStack {
                             Text("Something went wrong", bundle: .core)
@@ -86,16 +93,15 @@ public struct CourseListView: View, ScreenViewTrackable {
     }
 
     @ViewBuilder
-    func list(_ height: CGFloat, sections: CourseListSections) -> some View {
-        let current = sections.current
-        let past = sections.past
-        let future = sections.future
+    func list(_ height: CGFloat, sections: AllCoursesSections) -> some View {
+        let current = sections.courses.current
+        let past = sections.courses.past
+        let future = sections.courses.future
 
         if current.isEmpty, past.isEmpty, future.isEmpty {
             EmptyPanda(.NoResults,
-                title: Text("No Results", bundle: .core),
-                message: Text("We couldn't find any courses like that.", bundle: .core)
-            )
+                       title: Text("No Results", bundle: .core),
+                       message: Text("We couldn't find any courses like that.", bundle: .core))
                 .frame(minHeight: height - Self.searchBarHeight)
         } else {
             CourseListSection(header: Text("Current Enrollments", bundle: .core), courses: current)
@@ -107,14 +113,14 @@ public struct CourseListView: View, ScreenViewTrackable {
 
     struct CourseListSection: View {
         let header: Text
-        let courses: [CourseListItem]
+        let courses: [AllCoursesCourseItem]
 
         var body: some View {
             if !courses.isEmpty {
                 Section(header: ListSectionHeader(isLarge: true) { header }) {
                     ForEach(courses, id: \.courseId) { course in
                         if course.courseId != courses.first?.courseId { Divider() }
-                        CourseListCell(course: course)
+                        AllCoursesCellView(course: course)
                     }
                 }
             }
@@ -126,7 +132,7 @@ public struct CourseListView: View, ScreenViewTrackable {
 
 struct CourseListView_Previews: PreviewProvider {
     static var previews: some View {
-        CourseListAssembly.makePreview()
+        AllCoursesAssembly.makePreview()
     }
 }
 

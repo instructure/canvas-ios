@@ -63,7 +63,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         }
     },
 
-    "/courses": { _, _, _ in CourseListAssembly.makeCourseListViewController() },
+    "/courses": { _, _, _ in AllCoursesAssembly.makeCourseListViewController() },
 
     "/courses/:courseID": courseDetails,
     "/courses/:courseID/tabs": courseDetails,

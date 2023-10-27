@@ -19,27 +19,36 @@
 import Combine
 import SwiftUI
 
-public class CourseListViewModel: ObservableObject {
+public class AllCoursesViewModel: ObservableObject {
+    public enum ViewState {
+        case loading
+        case error
+        case data(AllCoursesSections)
+        case empty
+    }
+
     // MARK: - Outputs
-    @Published public private(set) var sections: CourseListSections = CourseListSections()
-    @Published public private(set) var state = StoreState.loading
+
+    @Published public private(set) var state: ViewState = .loading
 
     // MARK: - Inputs
+
     public let filter = CurrentValueSubject<String, Never>("")
 
     // MARK: - Private State
-    private let interactor: CourseListInteractor
+
+    private let interactor: AllCoursesInteractor
     private var subscriptions = Set<AnyCancellable>()
 
-    public init(_ interactor: CourseListInteractor) {
+    public init(_ interactor: AllCoursesInteractor) {
         self.interactor = interactor
 
         interactor
-            .state
+            .sections
+            .map { $0.isEmpty ? ViewState.empty : ViewState.data($0) }
+            .replaceError(with: .error)
             .assign(to: &$state)
-        interactor
-            .courseList
-            .assign(to: &$sections)
+
         filter
             .map { interactor.setFilter($0) }
             .sink()
@@ -50,6 +59,7 @@ public class CourseListViewModel: ObservableObject {
         interactor
             .refresh()
             .sink { _ in
+
                 completion()
             }
             .store(in: &subscriptions)

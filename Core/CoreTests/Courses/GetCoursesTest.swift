@@ -189,7 +189,7 @@ class GetCoursesTest: CoreTestCase {
 
     func testMarkFavoriteCourse() {
         let course = Course.make(from: .make(id: "1", is_favorite: false))
-        let courseListItem = CourseListItem.save(.make(id: "1", is_favorite: false),
+        let courseListItem = CDAllCoursesCourseItem.save(.make(id: "1", is_favorite: false),
                                                  enrollmentState: .active,
                                                  in: databaseClient)
 

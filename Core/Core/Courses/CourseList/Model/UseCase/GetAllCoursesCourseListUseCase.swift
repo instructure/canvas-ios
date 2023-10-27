@@ -18,10 +18,10 @@
 
 import CoreData
 
-public class GetCourseListCourses: CollectionUseCase {
-    public typealias Model = CourseListItem
+public class GetAllCoursesCourseListUseCase: CollectionUseCase {
+    public typealias Model = CDAllCoursesCourseItem
 
-    public var cacheKey: String? { "courseListCourses-\(enrollmentState)" }
+    public var cacheKey: String? { "allCoursesCourses-\(enrollmentState)" }
     public let request: GetCurrentUserCoursesRequest
     public let scope: Scope
     private let enrollmentState: GetCoursesRequest.EnrollmentState
@@ -38,7 +38,7 @@ public class GetCourseListCourses: CollectionUseCase {
             let order = [
                 NSSortDescriptor(key: #keyPath(InboxCourse.name), ascending: true),
             ]
-            return .where(#keyPath(CourseListItem.enrollmentState),
+            return .where(#keyPath(CDAllCoursesCourseItem.enrollmentState),
                           equals: enrollmentState.rawValue,
                           sortDescriptors: order)
         }()
@@ -47,7 +47,7 @@ public class GetCourseListCourses: CollectionUseCase {
     public func write(response: [APICourse]?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response else { return }
         response.forEach {
-            CourseListItem.save($0,
+            CDAllCoursesCourseItem.save($0,
                                 enrollmentState: enrollmentState,
                                 in: client)
         }

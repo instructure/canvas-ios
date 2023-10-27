@@ -21,20 +21,20 @@ import Core
 import XCTest
 
 class CourseListItemSearchTests: CoreTestCase {
-    var testee: CurrentValueSubject<[CourseListItem], Never>!
+    var testee: CurrentValueSubject<[CDAllCoursesCourseItem], Never>!
     var query: PassthroughSubject<String, Never>!
 
     override func setUp() {
         super.setUp()
 
-        let item1: CourseListItem = databaseClient.insert()
+        let item1: CDAllCoursesCourseItem = databaseClient.insert()
         item1.name = "abC"
         item1.courseCode = "item1"
-        let item2: CourseListItem = databaseClient.insert()
+        let item2: CDAllCoursesCourseItem = databaseClient.insert()
         item2.name = "def"
         item2.courseCode = "item2"
 
-        testee = CurrentValueSubject<[CourseListItem], Never>([item1, item2])
+        testee = CurrentValueSubject<[CDAllCoursesCourseItem], Never>([item1, item2])
         query = PassthroughSubject<String, Never>()
     }
 
