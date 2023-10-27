@@ -376,6 +376,7 @@
 		3D3685CC46DF1A97077600EC /* K5SubjectViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEAC885DDE53DE619FC25CE /* K5SubjectViewModelTests.swift */; };
 		3D373025380359F4BE48902F /* AssignmentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C310E09D98CD58CE1C3D781 /* AssignmentListViewModel.swift */; };
 		3D43762BA37F032AF34969B5 /* NotificationCenterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF72AECBC292830A643A739E /* NotificationCenterExtensions.swift */; };
+		3D9C8D6B210901AE94F4D92D /* CDWidgetAnnouncementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA7DCA6804390EA80A684EF /* CDWidgetAnnouncementTests.swift */; };
 		3DDC2120BCDE0241AE697B9F /* DiscussionParticipantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C001415298DBE1491BAFD2A /* DiscussionParticipantTests.swift */; };
 		3DF54F2F7C05D3D566DA541B /* iOS16HideListScrollContentBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692E6906F12BB75FFC911812 /* iOS16HideListScrollContentBackground.swift */; };
 		3E024E72BD4E9A21A8D96A90 /* LoginFindSchoolViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9328E630A8C08D6995EDCC8 /* LoginFindSchoolViewControllerTests.swift */; };
@@ -1791,6 +1792,7 @@
 		0E821CE4F59F1235642B3595 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		0E87A628C9CE1C20136001E4 /* APIAssignmentGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAssignmentGroup.swift; sourceTree = "<group>"; };
 		0E9191889C8A6EAEA16FAD97 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		0EA7DCA6804390EA80A684EF /* CDWidgetAnnouncementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDWidgetAnnouncementTests.swift; sourceTree = "<group>"; };
 		0EF6599425A23530CBA35A7A /* UTIFromNSItemProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UTIFromNSItemProviderTests.swift; sourceTree = "<group>"; };
 		0F0FCD93C55B3F2702004006 /* NSPersistentContainerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPersistentContainerExtensions.swift; sourceTree = "<group>"; };
 		0F1121B718EEE6F7DF197EB6 /* RightDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightDetailTableViewCell.swift; sourceTree = "<group>"; };
@@ -6241,6 +6243,14 @@
 			path = Grades;
 			sourceTree = "<group>";
 		};
+		81B5D9C3B0D9151DDE9446AC /* WidgetsSupport */ = {
+			isa = PBXGroup;
+			children = (
+				F415BFF6B7456A647A7B7627 /* Model */,
+			);
+			path = WidgetsSupport;
+			sourceTree = "<group>";
+		};
 		81DC2E96AD7CC08AD4C6F79C /* SubmitAssignmentExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -6830,6 +6840,7 @@
 				62703D070FFE3DFF7152CC6A /* Utils */,
 				F473AF6201069F4002356826 /* ViewModel */,
 				263BED8208E959FA6ED31A07 /* ViewModifiers */,
+				81B5D9C3B0D9151DDE9446AC /* WidgetsSupport */,
 				13FCF13DF2AC3D5312FA82A4 /* .swiftlint.yml */,
 				2ABB9E672FB356DE26A0DC75 /* CoreTestCase.swift */,
 				D275488A717F022056172B8A /* Info.plist */,
@@ -8685,6 +8696,14 @@
 			path = CourseCardList;
 			sourceTree = "<group>";
 		};
+		F415BFF6B7456A647A7B7627 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0EA7DCA6804390EA80A684EF /* CDWidgetAnnouncementTests.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		F473AF6201069F4002356826 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -9393,6 +9412,7 @@
 				46C82F85D716900838D9AF24 /* BundleExtensionsTests.swift in Sources */,
 				57CCBEB2A56D971D9726C075 /* CDCourseSyncDownloadProgressTests.swift in Sources */,
 				509A436F93A6E198ACA4D67D /* CDCourseSyncStateProgressTests.swift in Sources */,
+				3D9C8D6B210901AE94F4D92D /* CDWidgetAnnouncementTests.swift in Sources */,
 				B9444E1C8AD29E2F6C887540 /* CGFloatExtensionsTests.swift in Sources */,
 				8F5220A029A069D2BA513E02 /* CacheManagerTests.swift in Sources */,
 				B9E87F64AEBE05EF9B41E26E /* CalendarDayIconViewTests.swift in Sources */,
