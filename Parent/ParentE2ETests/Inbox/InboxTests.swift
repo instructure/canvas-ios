@@ -69,7 +69,7 @@ class InboxTests: E2ETestCase {
         XCTAssertTrue(sendButton.isVisible)
         XCTAssertTrue(sendButton.isDisabled)
 
-        var recipientsButton = ComposeHelper.recipientsButton.waitUntil(.visible)
+        let recipientsButton = ComposeHelper.recipientsButton.waitUntil(.visible)
         XCTAssertTrue(recipientsButton.isVisible)
 
         let subjectInput = ComposeHelper.subjectInput.waitUntil(.visible)
@@ -102,7 +102,6 @@ class InboxTests: E2ETestCase {
         seeder.enrollParent(parent, in: course)
 
         let conversation = InboxHelper.createConversation(course: course, recipients: [parent.id])
-        let replyMessage = "This is my reply for \(conversation.id)"
 
         // MARK: Get the user logged in, navigate to Inbox
         logInDSUser(parent)
