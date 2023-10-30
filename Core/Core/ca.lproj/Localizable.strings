@@ -1799,6 +1799,9 @@
 "Offline mode" = "Mode fora de línia";
 
 /* No comment provided by engineer. */
+"offline_sync_finished" = "offline_sync_finished";
+
+/* No comment provided by engineer. */
 "OK" = "D'acord";
 
 /* No comment provided by engineer. */
@@ -2442,6 +2445,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "Operació correcta!";
+
+/* No comment provided by engineer. */
+"Success! Downloaded %@ of %@" = "Operació correcta! S’han baixat %1$@ de %2$@";
 
 /* No comment provided by engineer. */
 "Summary" = "Resum";
