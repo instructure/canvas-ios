@@ -85,7 +85,7 @@ class SettingsTests: E2ETestCase {
         let canvasOnGitHubLabel = Helper.labelOfMenuItem(menuItem: canvasOnGitHub).waitUntil(.visible)
         XCTAssertTrue(canvasOnGitHub.isVisible)
         XCTAssertTrue(canvasOnGitHubLabel.isVisible)
-        XCTAssertEqual(canvasOnGitHubLabel.label, "Canvas on GitHub")
+        XCTAssertEqual(canvasOnGitHubLabel.label, "Degrees edX on GitHub")
     }
 
     func testLandingPageSetting() {
@@ -392,7 +392,7 @@ class SettingsTests: E2ETestCase {
         XCTAssertTrue(navBar.isVisible)
         XCTAssertTrue(doneButton.isVisible)
 
-        // MARK: Select "Canvas on GitHub", check if Safari opens
+        // MARK: Select "Degrees edX on GitHub", check if Safari opens
         let canvasOnGitHub = Helper.menuItem(item: .canvasOnGitHub).waitUntil(.visible)
         XCTAssertTrue(canvasOnGitHub.isVisible)
 
@@ -403,6 +403,6 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Check URL
         let url = SafariAppHelper.browserURL
-        XCTAssertEqual(url, "https://github.com/instructure/canvas-ios")
+        XCTAssertEqual(url, "https://github.com/2uinc/canvas-ios")
     }
 }
