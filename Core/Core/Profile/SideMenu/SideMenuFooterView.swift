@@ -24,7 +24,7 @@ struct SideMenuFooterView: View {
     var body: some View {
         if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
             HStack {
-                Text(verbatim: "Canvas \(env.app?.rawValue.capitalized ?? "") V. \(version)")
+                Text(verbatim: "Degrees edX V. \(version)")
                     .padding(.leading, 10)
                     .font(.regular14)
                     .foregroundColor(.textDark)

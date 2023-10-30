@@ -467,13 +467,13 @@
 "Canvas Network" = "Canvas Nettverk";
 
 /* No comment provided by engineer. */
-"Canvas on GitHub" = "Degrees edX på GitHub";
+"Degrees edX on GitHub" = "Degrees edX på GitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Canvas Parent";
 
 /* No comment provided by engineer. */
-"Canvas Student" = "Degrees edX";
+"Degrees edX" = "Degrees edX";
 
 /* No comment provided by engineer. */
 "Canvas Teacher" = "Canvas Teacher";
@@ -1841,7 +1841,7 @@
 "Open section" = "Åpne seksjon";
 
 /* No comment provided by engineer. */
-"Opens in Canvas Student" = "Åpnes i Canvas Student";
+"Opens in Degrees edX" = "Åpnes i Degrees edX";
 
 /* No comment provided by engineer. */
 "Options" = "Valg";
@@ -2672,7 +2672,7 @@
 "to %@" = "til %@";
 
 /* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "For å opprette en konto, må studenten opprette en sammenkoblingskode for deg fra Innstillinger-delen av Canvas Student-appen som vist nedenfor, og deretter skanne koden herfra.\nHvis studenten ikke ser alternativet for å opprette en sammenkoblingskode, må du kontakte skolen din for å opprette kontoen din.";
+"To create an account, have your student create a pairing code for you from the Settings section of the Degrees edX app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "For å opprette en konto, må studenten opprette en sammenkoblingskode for deg fra Innstillinger-delen av Degrees edX-appen som vist nedenfor, og deretter skanne koden herfra.\nHvis studenten ikke ser alternativet for å opprette en sammenkoblingskode, må du kontakte skolen din for å opprette kontoen din.";
 
 /* No comment provided by engineer. */
 "To Do" = "Gjøremål";

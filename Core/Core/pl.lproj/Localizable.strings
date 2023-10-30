@@ -467,13 +467,13 @@
 "Canvas Network" = "Canvas Network";
 
 /* No comment provided by engineer. */
-"Canvas on GitHub" = "Degrees edX na GitHub";
+"Degrees edX on GitHub" = "Degrees edX na GitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Canvas Parent";
 
 /* No comment provided by engineer. */
-"Canvas Student" = "Degrees edX";
+"Degrees edX" = "Degrees edX";
 
 /* No comment provided by engineer. */
 "Canvas Teacher" = "Canvas Teacher";
@@ -1841,7 +1841,7 @@
 "Open section" = "Otwórz sekcję";
 
 /* No comment provided by engineer. */
-"Opens in Canvas Student" = "Otwiera się w Canvas Student";
+"Opens in Degrees edX" = "Otwiera się w Degrees edX";
 
 /* No comment provided by engineer. */
 "Options" = "Opcje";
@@ -2672,7 +2672,7 @@
 "to %@" = "do %@";
 
 /* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Aby utworzyć konto, poproś uczestnika o utworzenie kodu parowania w sekcji Ustawienia aplikacji Canvas Student, jak pokazano poniżej, a następnie zeskanuj udostępniony kod.\nJeśli uczestnik nie widzi opcji tworzenia kodu parowania, należy skontaktować się ze szkoła w celu utworzenia konta.";
+"To create an account, have your student create a pairing code for you from the Settings section of the Degrees edX app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Aby utworzyć konto, poproś uczestnika o utworzenie kodu parowania w sekcji Ustawienia aplikacji Degrees edX, jak pokazano poniżej, a następnie zeskanuj udostępniony kod.\nJeśli uczestnik nie widzi opcji tworzenia kodu parowania, należy skontaktować się ze szkoła w celu utworzenia konta.";
 
 /* No comment provided by engineer. */
 "To Do" = "Lista zadań";

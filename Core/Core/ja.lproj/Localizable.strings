@@ -467,13 +467,13 @@
 "Canvas Network" = "Canvas Network";
 
 /* No comment provided by engineer. */
-"Canvas on GitHub" = "（）のDegrees edXGitHub";
+"Degrees edX on GitHub" = "（）のDegrees edXGitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Canvas 親";
 
 /* No comment provided by engineer. */
-"Canvas Student" = "Degrees edX";
+"Degrees edX" = "Degrees edX";
 
 /* No comment provided by engineer. */
 "Canvas Teacher" = "Canvas 教員";
@@ -1841,7 +1841,7 @@
 "Open section" = "セクションを開く";
 
 /* No comment provided by engineer. */
-"Opens in Canvas Student" = "Canvas受講者内で開く";
+"Opens in Degrees edX" = "Degrees edX受講者内で開く";
 
 /* No comment provided by engineer. */
 "Options" = "オプション";
@@ -2672,7 +2672,7 @@
 "to %@" = "～へ%@";
 
 /* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "アカウントを作成するには、下に示すように受講者にCanvas Studentアプリの[設定]セクションからペアリングコードを作成してもらい、ここからそのコードをスキャンします。\nペアリングコードを作成するオプションが受講者に表示されない場合は、学校に連絡してアカウントを作成する必要があります。";
+"To create an account, have your student create a pairing code for you from the Settings section of the Degrees edX app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "アカウントを作成するには、下に示すように受講者にDegrees edXアプリの[設定]セクションからペアリングコードを作成してもらい、ここからそのコードをスキャンします。\nペアリングコードを作成するオプションが受講者に表示されない場合は、学校に連絡してアカウントを作成する必要があります。";
 
 /* No comment provided by engineer. */
 "To Do" = "タスク";

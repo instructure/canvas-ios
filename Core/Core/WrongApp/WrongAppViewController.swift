@@ -54,7 +54,7 @@ public class WrongAppViewController: UIViewController {
         parentButton?.accessibilityLabel = NSLocalizedString("Canvas Parent", bundle: .core, comment: "")
 
         studentButton?.isHidden = Bundle.main.isStudentApp
-        studentButton?.accessibilityLabel = NSLocalizedString("Canvas Student", bundle: .core, comment: "")
+        studentButton?.accessibilityLabel = NSLocalizedString("Degrees edX", bundle: .core, comment: "")
 
         teacherButton?.isHidden = Bundle.main.isTeacherApp
         teacherButton?.accessibilityLabel = NSLocalizedString("Canvas Teacher", bundle: .core, comment: "")

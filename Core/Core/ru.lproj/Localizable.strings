@@ -467,13 +467,13 @@
 "Canvas Network" = "Canvas Network";
 
 /* No comment provided by engineer. */
-"Canvas on GitHub" = "Degrees edX GitHub";
+"Degrees edX on GitHub" = "Degrees edX GitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Canvas Parent";
 
 /* No comment provided by engineer. */
-"Canvas Student" = "Degrees edX";
+"Degrees edX" = "Degrees edX";
 
 /* No comment provided by engineer. */
 "Canvas Teacher" = "Преподаватель Canvas";
@@ -1841,7 +1841,7 @@
 "Open section" = "Открыть раздел";
 
 /* No comment provided by engineer. */
-"Opens in Canvas Student" = "Открыть в Canvas Student";
+"Opens in Degrees edX" = "Открыть в Degrees edX";
 
 /* No comment provided by engineer. */
 "Options" = "Опции";
@@ -2672,7 +2672,7 @@
 "to %@" = "к %@";
 
 /* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Чтобы создать учетную запись, ваш учащийся должен создать для вас код соединения в разделе «Настройки» приложения Canvas Student, как показано ниже, а затем — отсканированный данный код отсюда.\nЕсли ваш студент не видит опцию создания кода соединения, вы должны обратиться в ваше учебное заведение, чтобы создать вашу учетную запись.";
+"To create an account, have your student create a pairing code for you from the Settings section of the Degrees edX app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Чтобы создать учетную запись, ваш учащийся должен создать для вас код соединения в разделе «Настройки» приложения Degrees edX, как показано ниже, а затем — отсканированный данный код отсюда.\nЕсли ваш студент не видит опцию создания кода соединения, вы должны обратиться в ваше учебное заведение, чтобы создать вашу учетную запись.";
 
 /* No comment provided by engineer. */
 "To Do" = "Задачи";

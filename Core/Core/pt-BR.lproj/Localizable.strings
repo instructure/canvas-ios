@@ -467,13 +467,13 @@
 "Canvas Network" = "Canvas Network";
 
 /* No comment provided by engineer. */
-"Canvas on GitHub" = "Degrees edX em GitHub";
+"Degrees edX on GitHub" = "Degrees edX em GitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Canvas Parent";
 
 /* No comment provided by engineer. */
-"Canvas Student" = "Degrees edX";
+"Degrees edX" = "Degrees edX";
 
 /* No comment provided by engineer. */
 "Canvas Teacher" = "Canvas Teacher";
@@ -1841,7 +1841,7 @@
 "Open section" = "Abrir seção";
 
 /* No comment provided by engineer. */
-"Opens in Canvas Student" = "Abrir no Canvas Student";
+"Opens in Degrees edX" = "Abrir no Degrees edX";
 
 /* No comment provided by engineer. */
 "Options" = "Opções";
@@ -2672,7 +2672,7 @@
 "to %@" = "a %@";
 
 /* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Para criar uma conta, peça ao aluno que crie um código de emparelhamento para você na seção Configurações do aplicativo Canvas Student, como mostrado abaixo, e depois faça a leitura desse código aqui.\nSe o aluno não encontrar a opção de criar um código de emparelhamento, entre em contato com sua escola para criar sua conta.";
+"To create an account, have your student create a pairing code for you from the Settings section of the Degrees edX app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Para criar uma conta, peça ao aluno que crie um código de emparelhamento para você na seção Configurações do aplicativo Degrees edX, como mostrado abaixo, e depois faça a leitura desse código aqui.\nSe o aluno não encontrar a opção de criar um código de emparelhamento, entre em contato com sua escola para criar sua conta.";
 
 /* No comment provided by engineer. */
 "To Do" = "Lista de Tarefas";

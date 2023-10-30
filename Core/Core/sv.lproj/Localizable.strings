@@ -467,13 +467,13 @@
 "Canvas Network" = "Canvas-nätverk";
 
 /* No comment provided by engineer. */
-"Canvas on GitHub" = "Degrees edX på GitHub";
+"Degrees edX on GitHub" = "Degrees edX på GitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Canvas Parent";
 
 /* No comment provided by engineer. */
-"Canvas Student" = "Degrees edX";
+"Degrees edX" = "Degrees edX";
 
 /* No comment provided by engineer. */
 "Canvas Teacher" = "Canvas-lärare";
@@ -1841,7 +1841,7 @@
 "Open section" = "Öppna sektionen";
 
 /* No comment provided by engineer. */
-"Opens in Canvas Student" = "Öppnas i Canvas Student";
+"Opens in Degrees edX" = "Öppnas i Degrees edX";
 
 /* No comment provided by engineer. */
 "Options" = "Alternativ";
@@ -2672,7 +2672,7 @@
 "to %@" = "till %@";
 
 /* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "För att skapa ett konto ska du be din student att skapa en parkopplingskod till dig från sektionen Inställningar i Canvas-studentappen som visas nedan. Skanna sedan koden därifrån.\nOm din student inte ser alternativet att skapa en parkopplingskod måste du kontakta din skola för att skapa kontot.";
+"To create an account, have your student create a pairing code for you from the Settings section of the Degrees edX app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "För att skapa ett konto ska du be din student att skapa en parkopplingskod till dig från sektionen Inställningar i Degrees edX appen som visas nedan. Skanna sedan koden därifrån.\nOm din student inte ser alternativet att skapa en parkopplingskod måste du kontakta din skola för att skapa kontot.";
 
 /* No comment provided by engineer. */
 "To Do" = "Att göra";

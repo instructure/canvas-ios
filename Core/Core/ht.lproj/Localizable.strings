@@ -467,13 +467,13 @@
 "Canvas Network" = "Canvas Network";
 
 /* No comment provided by engineer. */
-"Canvas on GitHub" = "Degrees edX ouvri GitHub";
+"Degrees edX on GitHub" = "Degrees edX ouvri GitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Canvas Parent";
 
 /* No comment provided by engineer. */
-"Canvas Student" = "Degrees edX";
+"Degrees edX" = "Degrees edX";
 
 /* No comment provided by engineer. */
 "Canvas Teacher" = "Pwofesè Canvas";
@@ -1841,7 +1841,7 @@
 "Open section" = "Ouvri seksyon";
 
 /* No comment provided by engineer. */
-"Opens in Canvas Student" = "Ouvri nan Canvas Student";
+"Opens in Degrees edX" = "Ouvri nan Degrees edX";
 
 /* No comment provided by engineer. */
 "Options" = "Opsyon";
@@ -2672,7 +2672,7 @@
 "to %@" = "pou %@";
 
 /* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Pou kreye yon kont, fè elèv ou a kreye yon kòd kouplaj pou ou nan seksyon Paramèt ki nan aplikasyon Canvas Student la jan sa parèt pi ba a, epi eskane kòd la isit la.\nSi elèv ou a pa wè opsyon pou kreye kòd kouplaj la, ou oblije ale lekòl la pou yo ka kreye kont la pou ou.";
+"To create an account, have your student create a pairing code for you from the Settings section of the Degrees edX app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Pou kreye yon kont, fè elèv ou a kreye yon kòd kouplaj pou ou nan seksyon Paramèt ki nan aplikasyon Degrees edX la jan sa parèt pi ba a, epi eskane kòd la isit la.\nSi elèv ou a pa wè opsyon pou kreye kòd kouplaj la, ou oblije ale lekòl la pou yo ka kreye kont la pou ou.";
 
 /* No comment provided by engineer. */
 "To Do" = "Pou Fè";

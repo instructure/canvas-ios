@@ -467,13 +467,13 @@
 "Canvas Network" = "Canvas Network";
 
 /* No comment provided by engineer. */
-"Canvas on GitHub" = "Degrees edX op GitHub";
+"Degrees edX on GitHub" = "Degrees edX op GitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Canvas Parent";
 
 /* No comment provided by engineer. */
-"Canvas Student" = "Degrees edX";
+"Degrees edX" = "Degrees edX";
 
 /* No comment provided by engineer. */
 "Canvas Teacher" = "Canvas Teacher";
@@ -1841,7 +1841,7 @@
 "Open section" = "Sectie openen";
 
 /* No comment provided by engineer. */
-"Opens in Canvas Student" = "Opent in Canvas Student";
+"Opens in Degrees edX" = "Opent in Degrees edX";
 
 /* No comment provided by engineer. */
 "Options" = "Opties";
@@ -2672,7 +2672,7 @@
 "to %@" = "tot %@";
 
 /* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Om een account te maken, moet je je cursist een koppelingscode voor je laten maken in de sectie Instellingen van de Canvas Student-app zoals hieronder aangegeven en daarna scan je die code hier.\nAls je cursist de optie om een koppelingscode te maken niet ziet, moet je je school vragen om een account voor je te maken.";
+"To create an account, have your student create a pairing code for you from the Settings section of the Degrees edX app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Om een account te maken, moet je je cursist een koppelingscode voor je laten maken in de sectie Instellingen van de Degrees edX-app zoals hieronder aangegeven en daarna scan je die code hier.\nAls je cursist de optie om een koppelingscode te maken niet ziet, moet je je school vragen om een account voor je te maken.";
 
 /* No comment provided by engineer. */
 "To Do" = "Opdrachtenlijst";

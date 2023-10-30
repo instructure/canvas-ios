@@ -467,13 +467,13 @@
 "Canvas Network" = "Xarxa Canvas";
 
 /* No comment provided by engineer. */
-"Canvas on GitHub" = "Degrees edX actiu GitHub";
+"Degrees edX on GitHub" = "Degrees edX actiu GitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Canvas Parent";
 
 /* No comment provided by engineer. */
-"Canvas Student" = "Degrees edX";
+"Degrees edX" = "Degrees edX";
 
 /* No comment provided by engineer. */
 "Canvas Teacher" = "Canvas Teacher";
@@ -1841,7 +1841,7 @@
 "Open section" = "Obre la secció";
 
 /* No comment provided by engineer. */
-"Opens in Canvas Student" = "S'obre al Canvas Student";
+"Opens in Degrees edX" = "S'obre al Degrees edX";
 
 /* No comment provided by engineer. */
 "Options" = "Opcions";
@@ -2672,7 +2672,7 @@
 "to %@" = "per a %@";
 
 /* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Per crear un usuari, feu que l'estudiant us creï un codi d'emparellament des de la secció Configuració de l'aplicació Canvas Student, com es mostra a continuació, i després escanegeu el codi des d'aquí.\nSi l'estudiant no veu l'opció per crear un codi d'emparellament, poseu-vos en contacte amb l'escola perquè creïn el vostre usuari.";
+"To create an account, have your student create a pairing code for you from the Settings section of the Degrees edX app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Per crear un usuari, feu que l'estudiant us creï un codi d'emparellament des de la secció Configuració de l'aplicació Degrees edX, com es mostra a continuació, i després escanegeu el codi des d'aquí.\nSi l'estudiant no veu l'opció per crear un codi d'emparellament, poseu-vos en contacte amb l'escola perquè creïn el vostre usuari.";
 
 /* No comment provided by engineer. */
 "To Do" = "Tasques pendents";

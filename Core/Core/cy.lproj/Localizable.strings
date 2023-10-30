@@ -467,13 +467,13 @@
 "Canvas Network" = "Canvas Network";
 
 /* No comment provided by engineer. */
-"Canvas on GitHub" = "Degrees edX ymlaen GitHub";
+"Degrees edX on GitHub" = "Degrees edX ymlaen GitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Canvas Parent";
 
 /* No comment provided by engineer. */
-"Canvas Student" = "Degrees edX";
+"Degrees edX" = "Degrees edX";
 
 /* No comment provided by engineer. */
 "Canvas Teacher" = "Canvas Teacher";
@@ -1841,7 +1841,7 @@
 "Open section" = "Agor adran";
 
 /* No comment provided by engineer. */
-"Opens in Canvas Student" = "Yn agor yn Canvas Student";
+"Opens in Degrees edX" = "Yn agor yn Degrees edX";
 
 /* No comment provided by engineer. */
 "Options" = "Opsiynau";
@@ -2672,7 +2672,7 @@
 "to %@" = "i %@";
 
 /* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "I greu cyfrif, bydd angen i’ch myfyriwr greu cod paru ar eich cyfer o adran Gosodiadau ap Myfyriwr Canvas a ddangosir isod, ac yna sganio’r cod o fan hyn.\nOs nad yw eich myfyriwr yn gweld yr opsiwn i greu cod paru, bydd nagen i chi ofyn i’ch ysgol greu cyfrif.";
+"To create an account, have your student create a pairing code for you from the Settings section of the Degrees edX app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "I greu cyfrif, bydd angen i’ch myfyriwr greu cod paru ar eich cyfer o adran Gosodiadau ap Degrees edX a ddangosir isod, ac yna sganio’r cod o fan hyn.\nOs nad yw eich myfyriwr yn gweld yr opsiwn i greu cod paru, bydd nagen i chi ofyn i’ch ysgol greu cyfrif.";
 
 /* No comment provided by engineer. */
 "To Do" = "Tasgau i’w Gwneud";

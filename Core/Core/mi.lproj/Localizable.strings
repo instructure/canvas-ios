@@ -467,13 +467,13 @@
 "Canvas Network" = "Canvas Whatunga";
 
 /* No comment provided by engineer. */
-"Canvas on GitHub" = "I runga Degrees edX GitHub";
+"Degrees edX on GitHub" = "I runga Degrees edX GitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Canvas Matua";
 
 /* No comment provided by engineer. */
-"Canvas Student" = "Degrees edX";
+"Degrees edX" = "Degrees edX";
 
 /* No comment provided by engineer. */
 "Canvas Teacher" = "Canvas Kaiako";
@@ -1841,7 +1841,7 @@
 "Open section" = "Tuwhera te waahanga";
 
 /* No comment provided by engineer. */
-"Opens in Canvas Student" = "Huaki ai i roto i Canvas Ākonga";
+"Opens in Degrees edX" = "Huaki ai i roto i Degrees edX";
 
 /* No comment provided by engineer. */
 "Options" = "Ngā kōwhiringa";
@@ -2672,7 +2672,7 @@
 "to %@" = "kī %@";
 
 /* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Hei hanga he pūkete, me mahi tō ākonga ki te hanga he waihere hono mōū mai i te wāhanga Tautuhinga o te Canvas Ākonga Taupanga e whakātuhia nei i raro, ana ka matawai i taua waehere mai konei.\nMehemea ka kore tō ākonga i kite i te kōwhiringa ki te hanga he waihere hono, me toro atu kioe ki tō kura ki te hanga i tō pūkete.";
+"To create an account, have your student create a pairing code for you from the Settings section of the Degrees edX app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Hei hanga he pūkete, me mahi tō ākonga ki te hanga he waihere hono mōū mai i te wāhanga Tautuhinga o te Degrees edX Taupanga e whakātuhia nei i raro, ana ka matawai i taua waehere mai konei.\nMehemea ka kore tō ākonga i kite i te kōwhiringa ki te hanga he waihere hono, me toro atu kioe ki tō kura ki te hanga i tō pūkete.";
 
 /* No comment provided by engineer. */
 "To Do" = "Hei mahi";

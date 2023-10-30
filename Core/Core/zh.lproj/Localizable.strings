@@ -467,13 +467,13 @@
 "Canvas Network" = "Canvas 网络";
 
 /* No comment provided by engineer. */
-"Canvas on GitHub" = "Degrees edX启动GitHub";
+"Degrees edX on GitHub" = "Degrees edX启动GitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Canvas Parent";
 
 /* No comment provided by engineer. */
-"Canvas Student" = "Degrees edX";
+"Degrees edX" = "Degrees edX";
 
 /* No comment provided by engineer. */
 "Canvas Teacher" = "Canvas 教师";
@@ -1841,7 +1841,7 @@
 "Open section" = "打开班次";
 
 /* No comment provided by engineer. */
-"Opens in Canvas Student" = "在 Canvas 学生版中打开";
+"Opens in Degrees edX" = "在 Degrees edX 学生版中打开";
 
 /* No comment provided by engineer. */
 "Options" = "选项";
@@ -2672,7 +2672,7 @@
 "to %@" = "至%@";
 
 /* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "要创建帐户，请要求学生从 Canvas 学生版应用程序的“设置”部分为您创建一个配对码，如下所示，然后从这里扫描该配对码。\n如果学生没有看到创建配对码的选项，请您联系学校为您创建帐户。";
+"To create an account, have your student create a pairing code for you from the Settings section of the Degrees edX app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "要创建帐户，请要求学生从 Degrees edX 学生版应用程序的“设置”部分为您创建一个配对码，如下所示，然后从这里扫描该配对码。\n如果学生没有看到创建配对码的选项，请您联系学校为您创建帐户。";
 
 /* No comment provided by engineer. */
 "To Do" = "待办事项";

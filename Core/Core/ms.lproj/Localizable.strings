@@ -467,13 +467,13 @@
 "Canvas Network" = "Jaringan Canvas";
 
 /* No comment provided by engineer. */
-"Canvas on GitHub" = "Degrees edX di GitHub";
+"Degrees edX on GitHub" = "Degrees edX di GitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Canvas Parent";
 
 /* No comment provided by engineer. */
-"Canvas Student" = "Degrees edX";
+"Degrees edX" = "Degrees edX";
 
 /* No comment provided by engineer. */
 "Canvas Teacher" = "Canvas Teacher";
@@ -1841,7 +1841,7 @@
 "Open section" = "Buka seksyen";
 
 /* No comment provided by engineer. */
-"Opens in Canvas Student" = "Terbuka dalam Canvas Student";
+"Opens in Degrees edX" = "Terbuka dalam Degrees edX";
 
 /* No comment provided by engineer. */
 "Options" = "Pilihan";
@@ -2672,7 +2672,7 @@
 "to %@" = "untuk %@";
 
 /* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Pelajar anda harus mencipta kod berpasangan untuk anda dari seksyen Tetapan pada apl Canvas Student seperti ditunjukkan di bawah untuk mencipta akaun, kemudian imbas kod tersebut dari sini.\nJika pelajar anda tidak melihat pilihan untuk mencipta kod berpasangan, anda perlu menghubungi sekolah anda untuk mencipta akaun anda.";
+"To create an account, have your student create a pairing code for you from the Settings section of the Degrees edX app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Pelajar anda harus mencipta kod berpasangan untuk anda dari seksyen Tetapan pada apl Degrees edX seperti ditunjukkan di bawah untuk mencipta akaun, kemudian imbas kod tersebut dari sini.\nJika pelajar anda tidak melihat pilihan untuk mencipta kod berpasangan, anda perlu menghubungi sekolah anda untuk mencipta akaun anda.";
 
 /* No comment provided by engineer. */
 "To Do" = "Untuk Dilakukan";

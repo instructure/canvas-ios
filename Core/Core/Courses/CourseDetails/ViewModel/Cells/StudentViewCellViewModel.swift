@@ -28,7 +28,7 @@ class StudentViewCellViewModel: CourseDetailsCellViewModel {
         super.init(courseColor: course.color,
                    iconImage: .userLine,
                    label: NSLocalizedString("Student View", comment: ""),
-                   subtitle: NSLocalizedString("Opens in Canvas Student", comment: ""),
+                   subtitle: NSLocalizedString("Opens in Degrees edX", comment: ""),
                    accessoryIconType: .externalLink,
                    tabID: "student_view",
                    selectedCallback: nil)
