@@ -59,7 +59,7 @@ public extension Array where Element == InboxCourse {
                      in context: NSManagedObjectContext)
     -> [InboxCourse] {
         (0..<count).reduce(into: [], { partialResult, index in
-            partialResult.append(.make(name : name, courseId: "\(index)", in: context))
+            partialResult.append(.make(name: name, courseId: "\(index)", in: context))
         })
     }
 }

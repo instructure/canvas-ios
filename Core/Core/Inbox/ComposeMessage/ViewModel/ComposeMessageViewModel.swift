@@ -31,7 +31,7 @@ class ComposeMessageViewModel: ObservableObject {
         !bodyText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
         !subject.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
         !recipients.isEmpty
-        //&& (attachments.isEmpty || attachments.allSatisfy({ $0.isUploaded }))
+        // && (attachments.isEmpty || attachments.allSatisfy({ $0.isUploaded }))
 
     }
 
@@ -105,7 +105,7 @@ class ComposeMessageViewModel: ObservableObject {
     }
 
     public func attachmentbuttonDidTap(viewController: WeakViewController) {
-        
+
     }
 
     public func removeRecipientButtonDidTap(recipient: SearchRecipient) {
@@ -119,7 +119,7 @@ class ComposeMessageViewModel: ObservableObject {
             .assign(to: &$courses)
         selectedRecipient
             .compactMap { $0 }
-            .filter { !self.recipients.map{$0.id}.contains($0.id) }
+            .filter { !self.recipients.map { $0.id }.contains($0.id) }
             .sink { [weak self] in
                 self?.recipients.append($0)
             }
@@ -164,7 +164,7 @@ class ComposeMessageViewModel: ObservableObject {
                 guard let self = self, let params = self.messageParameters() else { return nil }
                 return (viewController, params)
             }
-            .handleEvents(receiveOutput: { [weak self] (viewController, params) in
+            .handleEvents(receiveOutput: { [weak self] (viewController, _) in
                 self?.isSendingMessage = true
                 self?.router.dismiss(viewController)
             })
@@ -183,7 +183,7 @@ class ComposeMessageViewModel: ObservableObject {
                     self.showResultDialog(title: title, message: message)
                     self.isSendingMessage = false
                 }
-            }, receiveValue: { [weak self] viewController in
+            }, receiveValue: { [weak self] _ in
                 self?.isSendingMessage = false
             })
             .store(in: &subscriptions)

@@ -56,5 +56,5 @@ private class ComposeMessageInteractorMock: ComposeMessageInteractor {
         Future<Void, Error> { promise in
             promise(.success(()))
         }
-    } 
+    }
 }
