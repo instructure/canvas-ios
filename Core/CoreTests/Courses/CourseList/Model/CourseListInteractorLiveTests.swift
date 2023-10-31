@@ -16,8 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-@testable import Core
 import Combine
+@testable import Core
+import TestsFoundation
 import XCTest
 
 class CourseListInteractorLiveTests: CoreTestCase {
@@ -32,7 +33,7 @@ class CourseListInteractorLiveTests: CoreTestCase {
         let pastCourseRequest = GetCourseListCourses(enrollmentState: .completed)
         api.mock(pastCourseRequest, value: [.make(id: "2", name: "AB")])
         let futureCourseRequest = GetCourseListCourses(enrollmentState: .invited_or_pending)
-        api.mock(futureCourseRequest, value: [.make(id: "3", name: "ABC")])
+        api.mock(futureCourseRequest, value: [.make(id: "3", name: "ABC", workflow_state: .available)])
 
         testee = CourseListInteractorLive(env: environment)
         testee.loadAsync()
@@ -41,6 +42,7 @@ class CourseListInteractorLiveTests: CoreTestCase {
 
     override func tearDown() {
         subscriptions.removeAll()
+        testee = nil
         super.tearDown()
     }
 
@@ -78,6 +80,34 @@ class CourseListInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(testee.courseList.value.current.map { $0.courseId }, ["4"])
         XCTAssertEqual(testee.courseList.value.past.map { $0.courseId }, ["2"])
         XCTAssertEqual(testee.courseList.value.future.map { $0.courseId }, ["3"])
+    }
+
+    func testFutureUnpublishedCoursesAreHiddenForStudents() {
+        let futureCourseRequest = GetCourseListCourses(enrollmentState: .invited_or_pending)
+        api.mock(futureCourseRequest, value: [
+            .make(id: "3", name: "ABC", workflow_state: .available),
+            .make(id: "4", name: "unpublished", workflow_state: .unpublished),
+        ])
+
+        performRefresh()
+        waitUntil(shouldFail: true) {
+            testee.courseList.value.future.map { $0.courseId } == ["3"]
+        }
+    }
+
+    func testFutureUnpublishedCoursesAreShownForTeachers() {
+        environment.app = .teacher
+
+        let futureCourseRequest = GetCourseListCourses(enrollmentState: .invited_or_pending)
+        api.mock(futureCourseRequest, value: [
+            .make(id: "3", name: "ABC", workflow_state: .available),
+            .make(id: "4", name: "unpublished", workflow_state: .unpublished),
+        ])
+
+        performRefresh()
+        waitUntil(shouldFail: true) {
+            testee.courseList.value.future.map { $0.courseId } == ["3", "4"]
+        }
     }
 
     private func performRefresh() {

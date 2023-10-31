@@ -35,10 +35,21 @@ public class CourseListInteractorLive: CourseListInteractor {
         pastCoursesListStore = env.subscribe(GetCourseListCourses(enrollmentState: .completed))
         futureCoursesListStore = env.subscribe(GetCourseListCourses(enrollmentState: .invited_or_pending))
 
+        let filterUnpublishedCoursesForStudents: (AppEnvironment.App?, [CourseListItem]) -> [CourseListItem] = { app, items in
+            if case .student = app {
+                return items.filter { $0.isPublished }
+            } else {
+                return items
+            }
+        }
+
         Publishers
             .CombineLatest3(activeCoursesListStore.allObjects.filter(with: searchQuery),
                             pastCoursesListStore.allObjects.filter(with: searchQuery),
-                            futureCoursesListStore.allObjects.filter(with: searchQuery))
+                            futureCoursesListStore.allObjects
+                                .filter(with: searchQuery)
+                                .map { filterUnpublishedCoursesForStudents(env.app, $0) }
+            )
             .map {
                 CourseListSections(current: $0.0, past: $0.1, future: $0.2)
             }
