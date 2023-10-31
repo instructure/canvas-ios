@@ -31,7 +31,12 @@ class GetAllCoursesGroupListUseCase: CollectionUseCase {
         self.context = context
         cacheKey = "allCoursesCourses-\(context.pathComponent)/groups"
         request = GetGroupsRequest(context: context)
-        scope = .where(#keyPath(CDAllCoursesGroupItem.contextRaw), equals: context.canvasContextID)
+        scope = .where(
+            #keyPath(CDAllCoursesGroupItem.contextRaw),
+            equals: context.canvasContextID,
+            orderBy: #keyPath(CDAllCoursesGroupItem.name),
+            naturally: true
+        )
     }
 
     func write(response: [APIGroup]?, urlResponse _: URLResponse?, to client: NSManagedObjectContext) {

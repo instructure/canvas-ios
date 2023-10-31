@@ -83,7 +83,7 @@ public class ReactiveStore<U: UseCase> {
         unowned let unownedSelf = self
 
         forceRefreshRelay
-            .flatMap { _ in unownedSelf.observeEntities(forceFetch: true) }
+            .flatMap { _ in unownedSelf.getEntities().replaceError(with: []) }
             .sink()
             .store(in: &subscriptions)
     }
