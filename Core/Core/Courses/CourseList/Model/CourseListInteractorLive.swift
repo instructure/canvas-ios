@@ -70,14 +70,6 @@ public class CourseListInteractorLive: CourseListInteractor {
         futureCoursesListStore.exhaust()
     }
 
-    private func filterUnpublishedCoursesForStudents(env: AppEnvironment, _ items: [CourseListItem]) -> [CourseListItem] {
-        if case .student = env.app {
-            return items.filter { $0.isPublished }
-        } else {
-            return items
-        }
-    }
-
     // MARK: - Inputs
 
     public func refresh() -> Future<Void, Never> {
