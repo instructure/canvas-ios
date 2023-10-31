@@ -18,26 +18,33 @@
 
 import Combine
 
-class CourseListCellOfflineStateViewModel: ObservableObject {
-    @Published public private(set) var isCourseEnabled: Bool
+class AllCoursesCellOfflineStateViewModel: ObservableObject {
+    @Published public private(set) var isItemEnabled: Bool
     @Published public private(set) var isFavoriteStarDisabled: Bool
     public let isOfflineIndicatorVisible: Bool
 
     private let offlineModeInteractor: OfflineModeInteractor
 
     init(
-        courseId: String,
+        item: AllCoursesCellView.Item,
         offlineModeInteractor: OfflineModeInteractor,
         sessionDefaults: SessionDefaults
     ) {
-        let isCourseAvailableOffline = sessionDefaults.offlineSyncSelections.contains {
-            $0.contains("courses/\(courseId)")
+        let isItemAvailableOffline: Bool
+        switch item {
+        case let .course(course):
+            isItemAvailableOffline = sessionDefaults.offlineSyncSelections.contains {
+                $0.contains("courses/\(course.courseId)")
+            }
+        case .group:
+            isItemAvailableOffline = false
         }
+
         let calculateIsCourseEnabled: (_ isInOfflineMode: Bool) -> Bool = { isInOfflineMode in
-            isInOfflineMode ? isCourseAvailableOffline : true
+            isInOfflineMode ? isItemAvailableOffline : true
         }
-        self.isCourseEnabled = calculateIsCourseEnabled(offlineModeInteractor.isOfflineModeEnabled())
-        self.isOfflineIndicatorVisible = isCourseAvailableOffline
+        self.isItemEnabled = calculateIsCourseEnabled(offlineModeInteractor.isOfflineModeEnabled())
+        self.isOfflineIndicatorVisible = isItemAvailableOffline
         self.offlineModeInteractor = offlineModeInteractor
         self.isFavoriteStarDisabled = offlineModeInteractor.isOfflineModeEnabled()
 
@@ -48,6 +55,6 @@ class CourseListCellOfflineStateViewModel: ObservableObject {
         offlineModeInteractor
             .observeIsOfflineMode()
             .map { calculateIsCourseEnabled($0) }
-            .assign(to: &$isCourseEnabled)
+            .assign(to: &$isItemEnabled)
     }
 }

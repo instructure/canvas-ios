@@ -38,7 +38,7 @@ class CourseListCellOfflineStateViewModelTests: XCTestCase {
         sessionDefaults.offlineSyncSelections = []
 
         // WHEN
-        let testee = CourseListCellOfflineStateViewModel(courseId: "1",
+        let testee = AllCoursesCellOfflineStateViewModel(courseId: "1",
                                                          offlineModeInteractor: mockOfflineModeInteractor,
                                                          sessionDefaults: sessionDefaults)
 
@@ -51,7 +51,7 @@ class CourseListCellOfflineStateViewModelTests: XCTestCase {
         sessionDefaults.offlineSyncSelections = ["courses/1"]
 
         // WHEN
-        let testee = CourseListCellOfflineStateViewModel(courseId: "1",
+        let testee = AllCoursesCellOfflineStateViewModel(courseId: "1",
                                                      offlineModeInteractor: mockOfflineModeInteractor,
                                                      sessionDefaults: sessionDefaults)
         // THEN
@@ -60,7 +60,7 @@ class CourseListCellOfflineStateViewModelTests: XCTestCase {
 
     func testFavoriteStarVisibility() {
         // GIVEN
-        let testee = CourseListCellOfflineStateViewModel(courseId: "1",
+        let testee = AllCoursesCellOfflineStateViewModel(courseId: "1",
                                                      offlineModeInteractor: mockOfflineModeInteractor,
                                                      sessionDefaults: sessionDefaults)
 
@@ -80,7 +80,7 @@ class CourseListCellOfflineStateViewModelTests: XCTestCase {
     func testCourseEnabledStatesWhenCourseIsAvailableInOffline() {
         // GIVEN
         sessionDefaults.offlineSyncSelections = ["courses/1"]
-        let testee = CourseListCellOfflineStateViewModel(courseId: "1",
+        let testee = AllCoursesCellOfflineStateViewModel(courseId: "1",
                                                      offlineModeInteractor: mockOfflineModeInteractor,
                                                      sessionDefaults: sessionDefaults)
 
@@ -88,19 +88,19 @@ class CourseListCellOfflineStateViewModelTests: XCTestCase {
         mockOfflineModeInteractor.mockIsInOfflineMode.accept(false)
 
         // THEN
-        XCTAssertTrue(testee.isCourseEnabled)
+        XCTAssertTrue(testee.isItemEnabled)
 
         // WHEN
         mockOfflineModeInteractor.mockIsInOfflineMode.accept(true)
 
         // THEN
-        XCTAssertTrue(testee.isCourseEnabled)
+        XCTAssertTrue(testee.isItemEnabled)
     }
 
     func testCourseEnabledStatesWhenCourseNotAvailableInOffline() {
         // GIVEN
         sessionDefaults.offlineSyncSelections = []
-        let testee = CourseListCellOfflineStateViewModel(courseId: "1",
+        let testee = AllCoursesCellOfflineStateViewModel(courseId: "1",
                                                      offlineModeInteractor: mockOfflineModeInteractor,
                                                      sessionDefaults: sessionDefaults)
 
@@ -108,12 +108,12 @@ class CourseListCellOfflineStateViewModelTests: XCTestCase {
         mockOfflineModeInteractor.mockIsInOfflineMode.accept(false)
 
         // THEN
-        XCTAssertTrue(testee.isCourseEnabled)
+        XCTAssertTrue(testee.isItemEnabled)
 
         // WHEN
         mockOfflineModeInteractor.mockIsInOfflineMode.accept(true)
 
         // THEN
-        XCTAssertFalse(testee.isCourseEnabled)
+        XCTAssertFalse(testee.isItemEnabled)
     }
 }

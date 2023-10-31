@@ -22,141 +22,46 @@ struct AllCoursesCellView: View {
     enum Item {
         case course(AllCoursesCourseItem)
         case group(AllCoursesGroupItem)
-
-        var id: String {
-            switch self {
-            case let .course(course): return course.courseId
-            case let .group(group): return group.id
-            }
-        }
-
-        var name: String {
-            switch self {
-            case let .course(course): return course.name
-            case let .group(group): return group.name
-            }
-        }
-
-        var isFavourite: Bool {
-            switch self {
-            case let .course(course): return course.isFavorite
-            case let .group(group): return group.isFavorite
-            }
-        }
-
-        var path: String {
-            switch self {
-            case let .course(course): return "/courses/\(course.courseId)"
-            case let .group(group): return "/groups/\(group.id)"
-            }
-        }
-
-        var termName: String? {
-            switch self {
-            case let .course(course): return course.termName
-            case let .group(group): return group.courseTermName
-            }
-        }
-
-        var roles: String? {
-            switch self {
-            case let .course(course): return course.roles
-            case let .group(group): return group.courseRoles
-            }
-        }
-
-        var isPublished: Bool {
-            switch self {
-            case let .course(course): return course.isPublished
-            case .group: return true
-            }
-        }
     }
 
-    let item: Item
+    // MARK: - Dependencies
 
-    @Environment(\.appEnvironment) var env
-    @Environment(\.viewController) var controller
+    @Environment(\.appEnvironment) private var env
+    @Environment(\.viewController) private var controller
+    private let item: Item
 
-    @State var pending: Bool = false
-    @StateObject private var offlineStateViewModel: CourseListCellOfflineStateViewModel
+    // MARK: - Private properties
+
+    @State private var pending: Bool = false
+    @StateObject private var offlineStateViewModel: AllCoursesCellOfflineStateViewModel
 
     private var isCellDisabled: Bool {
-        false
-        // TODO: Revise group logic
-        // !course.isCourseDetailsAvailable || !offlineStateViewModel.isCourseEnabled
+        !item.isDetailsAvailable || !offlineStateViewModel.isItemEnabled
     }
+
+    // MARK: - Init
 
     init(item: Item) {
         self.item = item
-        _offlineStateViewModel = StateObject(wrappedValue: .init(courseId: item.id,
-                                                                 offlineModeInteractor: OfflineModeAssembly.make(),
-                                                                 sessionDefaults: AppEnvironment.shared.userDefaults ?? .fallback))
+        _offlineStateViewModel = StateObject(
+            wrappedValue: .init(
+                item: item,
+                offlineModeInteractor: OfflineModeAssembly.make(),
+                sessionDefaults: AppEnvironment.shared.userDefaults ?? .fallback
+            )
+        )
     }
 
     var body: some View {
-        HStack(alignment: .top, spacing: 0) {
-            Button(action: toggleFavorite) {
-                let icon = pending ? Image.starSolid.foregroundColor(.textDark) :
-                    item.isFavourite ? Image.starSolid.foregroundColor(.textInfo) :
-                    Image.starLine.foregroundColor(.textDark)
-                icon
-                    .frame(width: 20, height: 20)
-                    .padding(.trailing, 18)
-            }
-            .buttonStyle(PlainButtonStyle())
-            .accessibility(label: pending ? Text("Updating", bundle: .core) : Text("favorite", bundle: .core))
-            .accessibilityIdentifier("DashboardCourseCell.\(item.id).favoriteButton")
-            .accessibility(addTraits: (item.isFavourite && !pending) ? .isSelected : [])
-            // TODO: Revise group logic
-            // .hidden(!item.isFavoriteButtonVisible)
-            .hidden(false)
-            .disabled(offlineStateViewModel.isFavoriteStarDisabled)
-
+        HStack(alignment: .center, spacing: 0) {
+            favoriteButton
             Button {
                 env.router.route(to: item.path, from: controller)
             } label: {
                 HStack(spacing: 0) {
-                    VStack(alignment: .leading, spacing: 0) {
-                        Text(item.name)
-                            .font(.semibold16, lineHeight: .fit)
-                            .foregroundColor(isCellDisabled ? .textDark : .textDarkest)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .lineLimit(2)
-                            .multilineTextAlignment(.leading)
-                        HStack(spacing: 8) {
-                            item.termName.map { Text($0) }
-                            if let roles = item.roles {
-                                if item.termName != nil, !roles.isEmpty {
-                                    Text(verbatim: "|")
-                                }
-                                Text(roles)
-                                Spacer()
-                            }
-                        }
-                        .style(.textCellSupportingText)
-                        .foregroundColor(.textDark)
-                    }
-                    .padding(.trailing, 16)
-
-                    if offlineStateViewModel.isOfflineIndicatorVisible {
-                        Image.circleArrowDownSolid
-                            .resizable()
-                            .frame(width: 18, height: 18)
-                            .foregroundColor(.textDark)
-                            .padding(3)
-                            .padding(.trailing, 8)
-                    }
-
-                    if AppEnvironment.shared.app == .teacher {
-                        let icon = item.isPublished ? Image.completeSolid.foregroundColor(.textSuccess) :
-                            Image.noSolid.foregroundColor(.textDark)
-                        icon.padding(.trailing, 16)
-                    } else {
-                        InstDisclosureIndicator()
-                            .padding(.trailing, 16)
-                            .hidden(isCellDisabled)
-                    }
+                    itemDetailsView
+                    offlineButton
+                    disclosureView
                 }
             }
             .accessibilityElement(children: .ignore)
@@ -170,10 +75,80 @@ struct AllCoursesCellView: View {
         .frame(minHeight: 72)
     }
 
+    @ViewBuilder
+    var favoriteButton: some View {
+        Button(action: toggleFavorite) {
+            let icon = pending ? Image.starSolid.foregroundColor(.textDark) :
+                item.isFavourite ? Image.starSolid.foregroundColor(.textInfo) :
+                Image.starLine.foregroundColor(.textDark)
+            icon
+                .frame(width: 20, height: 20)
+                .padding(.trailing, 18)
+        }
+        .buttonStyle(PlainButtonStyle())
+        .accessibility(label: pending ? Text("Updating", bundle: .core) : Text("favorite", bundle: .core))
+        .accessibilityIdentifier("DashboardCourseCell.\(item.id).favoriteButton")
+        .accessibility(addTraits: (item.isFavourite && !pending) ? .isSelected : [])
+        .hidden(!item.isFavoriteButtonVisible)
+        .disabled(offlineStateViewModel.isFavoriteStarDisabled)
+    }
+
+    @ViewBuilder
+    var itemDetailsView: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text(item.name)
+                .font(.semibold16, lineHeight: .fit)
+                .foregroundColor(isCellDisabled ? .textDark : .textDarkest)
+                .fixedSize(horizontal: false, vertical: true)
+                .lineLimit(2)
+                .multilineTextAlignment(.leading)
+
+            if let termName = item.termName {
+                HStack(spacing: 8) {
+                    Text(termName)
+                    if let roles = item.roles, !roles.isEmpty {
+                        Text(verbatim: "|")
+                        Text(roles)
+                        Spacer()
+                    }
+                }
+                .style(.textCellSupportingText)
+                .foregroundColor(.textDark)
+            }
+        }
+        .padding(.trailing, 16)
+    }
+
+    @ViewBuilder
+    var offlineButton: some View {
+        if offlineStateViewModel.isOfflineIndicatorVisible {
+            Image.circleArrowDownSolid
+                .resizable()
+                .frame(width: 18, height: 18)
+                .foregroundColor(.textDark)
+                .padding(3)
+                .padding(.trailing, 8)
+        }
+    }
+
+    @ViewBuilder
+    var disclosureView: some View {
+        if AppEnvironment.shared.app == .teacher {
+            let icon = item.isPublished ? Image.completeSolid.foregroundColor(.textSuccess) :
+                Image.noSolid.foregroundColor(.textDark)
+            icon.padding(.trailing, 16)
+        } else {
+            InstDisclosureIndicator()
+                .padding(.trailing, 16)
+                .hidden(isCellDisabled)
+        }
+    }
+
+    @ViewBuilder
     var accessibilityLabel: Text {
         let offlineLabel = offlineStateViewModel.isOfflineIndicatorVisible ? NSLocalizedString("Available offline", comment: "")
             : nil
-        return Text([
+        Text([
             item.name,
             item.termName,
             item.roles,
@@ -237,3 +212,68 @@ struct AllCoursesCellView: View {
 // }
 //
 // #endif
+
+extension AllCoursesCellView.Item {
+    var id: String {
+        switch self {
+        case let .course(course): return course.courseId
+        case let .group(group): return group.id
+        }
+    }
+
+    var name: String {
+        switch self {
+        case let .course(course): return course.name
+        case let .group(group): return group.name
+        }
+    }
+
+    var isFavourite: Bool {
+        switch self {
+        case let .course(course): return course.isFavorite
+        case let .group(group): return group.isFavorite
+        }
+    }
+
+    var path: String {
+        switch self {
+        case let .course(course): return "/courses/\(course.courseId)"
+        case let .group(group): return "/groups/\(group.id)"
+        }
+    }
+
+    var termName: String? {
+        switch self {
+        case let .course(course): return course.termName
+        case let .group(group): return group.courseTermName
+        }
+    }
+
+    var roles: String? {
+        switch self {
+        case let .course(course): return course.roles
+        case let .group(group): return group.courseRoles
+        }
+    }
+
+    var isPublished: Bool {
+        switch self {
+        case let .course(course): return course.isPublished
+        case .group: return true
+        }
+    }
+
+    var isFavoriteButtonVisible: Bool {
+        switch self {
+        case let .course(course): return course.isFavoriteButtonVisible
+        case .group: return true
+        }
+    }
+
+    var isDetailsAvailable: Bool {
+        switch self {
+        case let .course(course): return course.isCourseDetailsAvailable
+        case .group: return true
+        }
+    }
+}
