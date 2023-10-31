@@ -56,22 +56,28 @@ public struct AllCoursesView: View, ScreenViewTrackable {
                                     onCancel: { withAnimation { scrollView.scrollTo(0, anchor: .bottom) } }
                                 )
 
-                                Spacer()
-                                Text("Courses", bundle: .core)
-                                    .font(.heavy24).foregroundColor(.textDarkest)
-                                    .accessibility(addTraits: .isHeader)
-                                    .padding(.leading, 16)
-                                Spacer()
-
-                                list(height, sections: sections).id(0)
+                                if sections.isEmpty {
+                                    EmptyPanda(
+                                        .NoResults,
+                                        title: Text("No Results", bundle: .core),
+                                        message: Text("We couldn't find any courses like that.", bundle: .core)
+                                    )
+                                } else {
+                                    courseAndGroupList(sections: sections).id(0)
+                                }
                             }
                             .onAppear { scrollView.scrollTo(0, anchor: .top) }
                         }
                     case .empty:
-                        EmptyPanda(.Teacher,
-                                   title: Text("No Courses", bundle: .core),
-                                   message: Text("It looks like there aren’t any courses associated with this account. Visit the web to create a course today.", bundle: .core))
-                            .frame(minWidth: width, minHeight: height)
+                        EmptyPanda(
+                            .Teacher,
+                            title: Text("No Courses", bundle: .core),
+                            message: Text(
+                                "It looks like there aren’t any courses associated with this account. Visit the web to create a course today.",
+                                bundle: .core
+                            )
+                        )
+                        .frame(minWidth: width, minHeight: height)
                     case .error:
                         ZStack {
                             Text("Something went wrong", bundle: .core)
@@ -93,21 +99,70 @@ public struct AllCoursesView: View, ScreenViewTrackable {
     }
 
     @ViewBuilder
-    func list(_ height: CGFloat, sections: AllCoursesSections) -> some View {
-        let current = sections.courses.current
-        let past = sections.courses.past
-        let future = sections.courses.future
-
-        if current.isEmpty, past.isEmpty, future.isEmpty {
-            EmptyPanda(.NoResults,
-                       title: Text("No Results", bundle: .core),
-                       message: Text("We couldn't find any courses like that.", bundle: .core))
-                .frame(minHeight: height - Self.searchBarHeight)
-        } else {
-            CourseListSection(header: Text("Current Enrollments", bundle: .core), courses: current)
-            CourseListSection(header: Text("Past Enrollments", bundle: .core), courses: past)
-            CourseListSection(header: Text("Future Enrollments", bundle: .core), courses: future)
+    func courseAndGroupList(sections: AllCoursesSections) -> some View {
+        if !sections.courses.isEmpty {
+            Spacer()
+            Text("Courses", bundle: .core)
+                .font(.heavy24).foregroundColor(.textDarkest)
+                .accessibility(addTraits: .isHeader)
+                .padding(.leading, 16)
+            Spacer()
             Divider()
+            Spacer()
+            Text("Select courses for Dashboard or navigate to course details.", bundle: .core)
+                .font(.regular16).foregroundColor(.textDarkest)
+                .accessibility(addTraits: .isHeader)
+                .padding(.leading, 16)
+            Spacer()
+            CourseListSection(
+                header: Text("Current Enrollments", bundle: .core),
+                courses: sections.courses.current
+            )
+            CourseListSection(
+                header: Text("Past Enrollments", bundle: .core),
+                courses: sections.courses.past
+            )
+            CourseListSection(
+                header: Text("Future Enrollments", bundle: .core),
+                courses: sections.courses.future
+            )
+        }
+
+        if !sections.groups.isEmpty {
+            Spacer()
+            Divider()
+            Spacer()
+            Text("Groups", bundle: .core)
+                .font(.heavy24).foregroundColor(.textDarkest)
+                .accessibility(addTraits: .isHeader)
+                .padding(.leading, 16)
+            Spacer()
+            Divider()
+            Spacer()
+            Text("Select groups for Dashboard or navigate to course details.", bundle: .core)
+                .font(.regular16).foregroundColor(.textDarkest)
+                .accessibility(addTraits: .isHeader)
+                .padding(.leading, 16)
+            Spacer()
+            CourseListSection2(
+                header: Text("Current groups"),
+                groups: sections.groups
+            )
+            Divider()
+        }
+    }
+
+    struct CourseListSection2: View {
+        let header: Text
+        let groups: [AllCoursesGroupItem]
+
+        var body: some View {
+            if !groups.isEmpty {
+                ForEach(groups, id: \.id) { group in
+                    if group.id != groups.first?.id { Divider() }
+                    AllCoursesCellView(item: .group(group))
+                }
+            }
         }
     }
 
@@ -120,7 +175,7 @@ public struct AllCoursesView: View, ScreenViewTrackable {
                 Section(header: ListSectionHeader(isLarge: true) { header }) {
                     ForEach(courses, id: \.courseId) { course in
                         if course.courseId != courses.first?.courseId { Divider() }
-                        AllCoursesCellView(course: course)
+                        AllCoursesCellView(item: .course(course))
                     }
                 }
             }

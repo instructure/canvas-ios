@@ -67,7 +67,7 @@ public final class Group: NSManagedObject, WriteableModel {
         model.id = item.id.value
         model.name = item.name
         model.showOnDashboard = !item.concluded
-        model.isFavourite = item.is_favorite
+        model.isFavourite = item.is_favorite ?? true
 
         if let contextColor: ContextColor = context.fetch(scope: .where(#keyPath(ContextColor.canvasContextID), equals: model.canvasContextID)).first {
             model.contextColor = contextColor

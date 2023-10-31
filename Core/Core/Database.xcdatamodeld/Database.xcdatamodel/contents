@@ -144,6 +144,7 @@
         <attribute name="contextRaw" optional="YES" attributeType="String"/>
         <attribute name="courseID" optional="YES" attributeType="String"/>
         <attribute name="courseName" optional="YES" attributeType="String"/>
+        <attribute name="courseRoles" optional="YES" attributeType="String"/>
         <attribute name="courseTermName" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -268,6 +269,7 @@
         <attribute name="isPastEnrollment" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="isPublished" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="roles" optional="YES" attributeType="String"/>
         <attribute name="syllabusBody" optional="YES" attributeType="String"/>
         <attribute name="termName" optional="YES" attributeType="String"/>
         <relationship name="contextColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ContextColor" inverseName="course" inverseEntity="ContextColor"/>

@@ -107,7 +107,7 @@ struct AssignmentCellView_Previews: PreviewProvider {
     ]
 
     static var previews: some View {
-        let list = VStack(spacing: 0) {
+        let courseAndGroupList = VStack(spacing: 0) {
             Divider()
             ForEach(assignments, id: \.id) {
                 let assignment = Assignment.save($0, in: context, updateSubmission: false, updateScoreStatistics: false)
@@ -117,8 +117,8 @@ struct AssignmentCellView_Previews: PreviewProvider {
             }
         }.previewLayout(.sizeThatFits)
 
-        list
-        list.preferredColorScheme(.dark)
+        courseAndGroupList
+        courseAndGroupList.preferredColorScheme(.dark)
     }
 }
 

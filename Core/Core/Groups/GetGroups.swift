@@ -109,3 +109,35 @@ class GetGroupsInCategory: CollectionUseCase {
         }
     }
 }
+
+public class MarkFavoriteGroup: APIUseCase {
+    let groupID: String
+    let markAsFavorite: Bool
+
+    public var cacheKey: String? { nil }
+    public var request: MarkFavoriteRequest {
+        MarkFavoriteRequest(context: .group(groupID), markAsFavorite: markAsFavorite)
+    }
+
+    public init(groupID: String, markAsFavorite: Bool) {
+        self.groupID = groupID
+        self.markAsFavorite = markAsFavorite
+    }
+
+    public var scope: Scope {
+        .where(#keyPath(Group.id), equals: groupID)
+    }
+
+    public func write(response: APIFavorite?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let item = response else {
+            return
+        }
+
+        if let group: CDAllCoursesGroupItem = client.first(where: #keyPath(CDAllCoursesGroupItem.id),
+                                                     equals: item.context_id.value) {
+            group.isFavorite = markAsFavorite
+        }
+
+        NotificationCenter.default.post(name: .favoritesDidChange, object: nil, userInfo: [:])
+    }
+}

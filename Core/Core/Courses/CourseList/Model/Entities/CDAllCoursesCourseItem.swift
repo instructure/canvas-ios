@@ -74,7 +74,7 @@ public final class CDAllCoursesCourseItem: NSManagedObject {
     }
 }
 
-private extension Optional where Wrapped == [APIEnrollment] {
+extension Optional where Wrapped == [APIEnrollment] {
     var roles: String {
         var roles = (self ?? [])
             .filter {

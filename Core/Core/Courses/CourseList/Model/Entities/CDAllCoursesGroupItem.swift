@@ -29,6 +29,7 @@ public final class CDAllCoursesGroupItem: NSManagedObject, WriteableModel {
     @NSManaged public var courseID: String?
     @NSManaged public var courseName: String?
     @NSManaged public var courseTermName: String?
+    @NSManaged public var courseRoles: String?
 
     @NSManaged public var concluded: Bool
     @NSManaged public var isFavorite: Bool
@@ -54,10 +55,11 @@ public final class CDAllCoursesGroupItem: NSManagedObject, WriteableModel {
             model.courseID = item.course_id?.value
             model.courseID = course.name
             model.courseTermName = course.termName
+            model.courseRoles = course.roles
         }
 
         model.concluded = item.concluded
-        model.isFavorite = item.is_favorite
+        model.isFavorite = item.is_favorite ?? true
 
         return model
     }

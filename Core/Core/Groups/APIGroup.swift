@@ -37,7 +37,7 @@ public struct APIGroup: Codable, Equatable {
     // let sis_import_id: String?
     // let storage_quota_mb: String
     let permissions: Permissions?
-    let is_favorite: Bool
+    let is_favorite: Bool?
 
     public struct Permissions: Codable, Equatable {
         let create_announcement: Bool
@@ -56,7 +56,7 @@ extension APIGroup {
         course_id: ID? = nil,
         group_category_id: ID = "1",
         permissions: Permissions? = nil,
-        is_favorite: Bool = true
+        is_favorite: Bool? = true
     ) -> APIGroup {
         return APIGroup(
             id: id,

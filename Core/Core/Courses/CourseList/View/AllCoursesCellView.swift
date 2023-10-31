@@ -19,7 +19,61 @@
 import SwiftUI
 
 struct AllCoursesCellView: View {
-    let course: AllCoursesCourseItem
+    enum Item {
+        case course(AllCoursesCourseItem)
+        case group(AllCoursesGroupItem)
+
+        var id: String {
+            switch self {
+            case let .course(course): return course.courseId
+            case let .group(group): return group.id
+            }
+        }
+
+        var name: String {
+            switch self {
+            case let .course(course): return course.name
+            case let .group(group): return group.name
+            }
+        }
+
+        var isFavourite: Bool {
+            switch self {
+            case let .course(course): return course.isFavorite
+            case let .group(group): return group.isFavorite
+            }
+        }
+
+        var path: String {
+            switch self {
+            case let .course(course): return "/courses/\(course.courseId)"
+            case let .group(group): return "/groups/\(group.id)"
+            }
+        }
+
+        var termName: String? {
+            switch self {
+            case let .course(course): return course.termName
+            case let .group(group): return group.courseTermName
+            }
+        }
+
+        var roles: String? {
+            switch self {
+            case let .course(course): return course.roles
+            case let .group(group): return group.courseRoles
+            }
+        }
+
+        var isPublished: Bool {
+            switch self {
+            case let .course(course): return course.isPublished
+            case .group: return true
+            }
+        }
+    }
+
+    let item: Item
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
@@ -28,12 +82,14 @@ struct AllCoursesCellView: View {
     @StateObject private var offlineStateViewModel: CourseListCellOfflineStateViewModel
 
     private var isCellDisabled: Bool {
-        !course.isCourseDetailsAvailable || !offlineStateViewModel.isCourseEnabled
+        false
+        // TODO: Revise group logic
+        // !course.isCourseDetailsAvailable || !offlineStateViewModel.isCourseEnabled
     }
 
-    init(course: AllCoursesCourseItem) {
-        self.course = course
-        _offlineStateViewModel = StateObject(wrappedValue: .init(courseId: course.courseId,
+    init(item: Item) {
+        self.item = item
+        _offlineStateViewModel = StateObject(wrappedValue: .init(courseId: item.id,
                                                                  offlineModeInteractor: OfflineModeAssembly.make(),
                                                                  sessionDefaults: AppEnvironment.shared.userDefaults ?? .fallback))
     }
@@ -42,7 +98,7 @@ struct AllCoursesCellView: View {
         HStack(alignment: .top, spacing: 0) {
             Button(action: toggleFavorite) {
                 let icon = pending ? Image.starSolid.foregroundColor(.textDark) :
-                    course.isFavorite ? Image.starSolid.foregroundColor(.textInfo) :
+                    item.isFavourite ? Image.starSolid.foregroundColor(.textInfo) :
                     Image.starLine.foregroundColor(.textDark)
                 icon
                     .frame(width: 20, height: 20)
@@ -50,29 +106,33 @@ struct AllCoursesCellView: View {
             }
             .buttonStyle(PlainButtonStyle())
             .accessibility(label: pending ? Text("Updating", bundle: .core) : Text("favorite", bundle: .core))
-            .accessibilityIdentifier("DashboardCourseCell.\(course.courseId).favoriteButton")
-            .accessibility(addTraits: (course.isFavorite && !pending) ? .isSelected : [])
-            .hidden(!course.isFavoriteButtonVisible)
+            .accessibilityIdentifier("DashboardCourseCell.\(item.id).favoriteButton")
+            .accessibility(addTraits: (item.isFavourite && !pending) ? .isSelected : [])
+            // TODO: Revise group logic
+            // .hidden(!item.isFavoriteButtonVisible)
+            .hidden(false)
             .disabled(offlineStateViewModel.isFavoriteStarDisabled)
 
             Button {
-                env.router.route(to: "/courses/\(course.courseId)", from: controller)
+                env.router.route(to: item.path, from: controller)
             } label: {
                 HStack(spacing: 0) {
                     VStack(alignment: .leading, spacing: 0) {
-                        Text(course.name)
+                        Text(item.name)
                             .font(.semibold16, lineHeight: .fit)
                             .foregroundColor(isCellDisabled ? .textDark : .textDarkest)
                             .fixedSize(horizontal: false, vertical: true)
                             .lineLimit(2)
                             .multilineTextAlignment(.leading)
                         HStack(spacing: 8) {
-                            course.termName.map { Text($0) }
-                            if course.termName != nil, !course.roles.isEmpty {
-                                Text(verbatim: "|")
+                            item.termName.map { Text($0) }
+                            if let roles = item.roles {
+                                if item.termName != nil, !roles.isEmpty {
+                                    Text(verbatim: "|")
+                                }
+                                Text(roles)
+                                Spacer()
                             }
-                            Text(course.roles)
-                            Spacer()
                         }
                         .style(.textCellSupportingText)
                         .foregroundColor(.textDark)
@@ -89,7 +149,7 @@ struct AllCoursesCellView: View {
                     }
 
                     if AppEnvironment.shared.app == .teacher {
-                        let icon = course.isPublished ? Image.completeSolid.foregroundColor(.textSuccess) :
+                        let icon = item.isPublished ? Image.completeSolid.foregroundColor(.textSuccess) :
                             Image.noSolid.foregroundColor(.textDark)
                         icon.padding(.trailing, 16)
                     } else {
@@ -101,7 +161,7 @@ struct AllCoursesCellView: View {
             }
             .accessibilityElement(children: .ignore)
             .accessibility(label: accessibilityLabel)
-            .accessibilityIdentifier("DashboardCourseCell.\(course.courseId)")
+            .accessibilityIdentifier("DashboardCourseCell.\(item.id)")
             .disabled(isCellDisabled)
         }
         .padding(.leading, 22)
@@ -114,11 +174,11 @@ struct AllCoursesCellView: View {
         let offlineLabel = offlineStateViewModel.isOfflineIndicatorVisible ? NSLocalizedString("Available offline", comment: "")
             : nil
         return Text([
-            course.name,
-            course.termName,
-            course.roles,
+            item.name,
+            item.termName,
+            item.roles,
             offlineLabel,
-            !(AppEnvironment.shared.app == .teacher) ? nil : course.isPublished ?
+            !(AppEnvironment.shared.app == .teacher) ? nil : item.isPublished ?
                 NSLocalizedString("published", comment: "") :
                 NSLocalizedString("unpublished", comment: ""),
         ].compactMap { $0 }.joined(separator: ", "))
@@ -127,46 +187,53 @@ struct AllCoursesCellView: View {
     func toggleFavorite() {
         guard !pending else { return }
         withAnimation { pending = true }
-        MarkFavoriteCourse(courseID: course.courseId, markAsFavorite: !course.isFavorite).fetch { _, _, _ in
-            withAnimation { pending = false }
+        switch item {
+        case .group:
+            MarkFavoriteGroup(groupID: item.id, markAsFavorite: !item.isFavourite).fetch { _, _, _ in
+                withAnimation { pending = false }
+            }
+        case .course:
+            MarkFavoriteCourse(courseID: item.id, markAsFavorite: !item.isFavourite).fetch { _, _, _ in
+                withAnimation { pending = false }
+            }
         }
     }
 }
 
-#if DEBUG
-
-struct CourseListCell_Previews: PreviewProvider {
-    private static let env = PreviewEnvironment()
-    private static let context = env.globalDatabase.viewContext
-
-    static var previews: some View {
-        VStack(spacing: 0) {
-            Divider()
-            AllCoursesCellView(
-                course: AllCoursesCourseItem(
-                    from: CDAllCoursesCourseItem.save(
-                        .make(id: "1", workflow_state: .available),
-                        enrollmentState: .active,
-                        app: .student,
-                        in: context
-                    )
-                )
-            )
-            Divider()
-            AllCoursesCellView(
-                course: AllCoursesCourseItem(
-                    from: CDAllCoursesCourseItem.save(
-                        .make(id: "2", workflow_state: .unpublished),
-                        enrollmentState: .active,
-                        app: .student,
-                        in: context
-                    )
-                )
-            )
-            Divider()
-        }
-        .previewLayout(.sizeThatFits)
-    }
-}
-
-#endif
+// #if DEBUG
+//
+// struct CourseListCell_Previews: PreviewProvider {
+//    private static let env = PreviewEnvironment()
+//    private static let context = env.globalDatabase.viewContext
+//
+//    static var previews: some View {
+//        VStack(spacing: 0) {
+//            Divider()
+//            AllCoursesCellView(
+//                course: AllCoursesCourseItem(
+//                    from: CDAllCoursesCourseItem.save(
+//                        .make(id: "1", workflow_state: .available),
+//                        enrollmentState: .active,
+//                        app: .student,
+//                        in: context
+//                    )
+//                )
+//            )
+//            Divider()
+//            AllCoursesCellView(
+//                course: AllCoursesCourseItem(
+//                    from: CDAllCoursesCourseItem.save(
+//                        .make(id: "2", workflow_state: .unpublished),
+//                        enrollmentState: .active,
+//                        app: .student,
+//                        in: context
+//                    )
+//                )
+//            )
+//            Divider()
+//        }
+//        .previewLayout(.sizeThatFits)
+//    }
+// }
+//
+// #endif

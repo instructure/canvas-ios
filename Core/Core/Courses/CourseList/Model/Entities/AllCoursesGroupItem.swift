@@ -25,6 +25,7 @@ public struct AllCoursesGroupItem: Equatable {
     public let courseID: String?
     public let courseName: String?
     public let courseTermName: String?
+    public let courseRoles: String?
 
     public let concluded: Bool
     public let isFavorite: Bool
@@ -35,6 +36,7 @@ public struct AllCoursesGroupItem: Equatable {
         self.courseID = entity.courseID
         self.courseName = entity.courseName
         self.courseTermName = entity.courseTermName
+        self.courseRoles = entity.courseRoles
         self.concluded = entity.concluded
         self.isFavorite = entity.isFavorite
     }
