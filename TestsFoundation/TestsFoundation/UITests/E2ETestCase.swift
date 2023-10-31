@@ -44,7 +44,7 @@ open class E2ETestCase: CoreUITestCase {
 
     open func loginAfterSchoolFound(_ dsUser: DSUser, password: String = "password") {
         LoginHelper.Login.emailField.waitUntil(.visible, timeout: 60)
-        LoginHelper.Login.emailField.writeText(text: dsUser.login_id)
+        LoginHelper.Login.emailField.writeText(text: dsUser.login_id!)
         LoginHelper.Login.passwordField.writeText(text: password)
         LoginHelper.Login.loginButton.hit()
 

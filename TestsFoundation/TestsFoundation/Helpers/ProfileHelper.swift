@@ -35,4 +35,8 @@ public class ProfileHelper: BaseHelper {
     public static var networkButton: XCUIElement { app.find(id: "Profile.networkAvailabilityStatusButton") }
     public static var offlineLine: XCUIElement { app.find(label: "offlineLine", type: .image) }
     public static var offlineLabel: XCUIElement { app.find(label: "Offline", type: .staticText) }
+
+    // Parent
+    public static var aboutButton: XCUIElement { app.find(id: "Profile.aboutButton") }
+    public static var manageStudentsButton: XCUIElement { app.find(id: "Profile.manageChildrenButton") }
 }
