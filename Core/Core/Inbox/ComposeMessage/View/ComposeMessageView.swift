@@ -44,7 +44,21 @@ public struct ComposeMessageView: View {
                 .background(Color.backgroundLightest)
                 .navigationBarItems(leading: cancelButton)
             }
+            .onAppear(perform: {
+                hideNavigationBarSeparator()
+            })
         }
+    }
+
+    private func hideNavigationBarSeparator() {
+        let navigationBar = controller.value.navigationController?.navigationBar
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.configureWithOpaqueBackground()
+        navigationBarAppearance.shadowColor = .clear
+        navigationBarAppearance.shadowImage = UIImage()
+        navigationBar?.standardAppearance = navigationBarAppearance
+        navigationBar?.scrollEdgeAppearance = navigationBarAppearance
+        navigationBar?.isTranslucent = true
     }
 
     private var separator: some View {
@@ -63,14 +77,16 @@ public struct ComposeMessageView: View {
     }
 
     private var sendButton: some View {
-        Button{
+        Button {
             model.sendButtonDidTap.accept(controller)
         } label: {
             sendButtonImage
+                .frame(width: 35, height: 35)
         }
         .accessibility(label: Text("Send", bundle: .core))
         .disabled(!model.sendButtonActive)
-        .frame(width: 35, height: 35)
+        .frame(maxHeight: .infinity, alignment: .top)
+
     }
 
     private var sendButtonImage: some View {
@@ -91,7 +107,7 @@ public struct ComposeMessageView: View {
     }
 
     private var headerView: some View {
-        HStack(alignment: .top) {
+        HStack(alignment: .center) {
             Text(model.subject.isEmpty ? model.title : model.subject)
                 .multilineTextAlignment(.leading)
                 .font(.semibold22)
@@ -160,7 +176,6 @@ public struct ComposeMessageView: View {
         WrappingHStack(models: model.recipients) { recipient in
             RecipientPillView(recipient: recipient, removeDidTap: { recipient in model.removeRecipientButtonDidTap(recipient: recipient) })
         }
-        .animation(.default, value: model.recipients)
     }
 
     private var subjectView: some View {

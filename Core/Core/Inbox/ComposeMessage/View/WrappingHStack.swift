@@ -20,14 +20,12 @@ import SwiftUI
 
 struct WrappingHStack<Model, V>: View where Model: Hashable, V: View {
     typealias ViewGenerator = (Model) -> V
-    
     var models: [Model]
     var viewGenerator: ViewGenerator
     var horizontalSpacing: CGFloat = 5
     var verticalSpacing: CGFloat = 5
 
-    @State private var totalHeight
-          = CGFloat.zero
+    @State private var totalHeight = CGFloat.zero
 
     var body: some View {
         VStack {
@@ -60,7 +58,7 @@ struct WrappingHStack<Model, V>: View where Model: Hashable, V: View {
                         }
                         return result
                     })
-                    .alignmentGuide(.top, computeValue: { _dimension in
+                    .alignmentGuide(.top, computeValue: { _ in
                         let result = height
                         if models == self.models.last! {
                             height = 0 // last item
@@ -86,14 +84,14 @@ struct WrappingHStack<Model, V>: View where Model: Hashable, V: View {
 
 struct WrappingHStack_Previews: PreviewProvider {
     static let context = PreviewEnvironment().globalDatabase.viewContext
-    
+
     static var previews: some View {
         WrappingHStack(models: [
             .make(name: "Alice", in: context),
             .make(name: "Bob", in: context),
             .make(name: "AAAAAAAAA BBBBBBBBBBB CCCCCCCCCC DDDDDDDDDD EEEEEE", in: context),
             .make(name: "Alice 2", in: context),
-            .make(name: "Bob 2", in: context)
+            .make(name: "Bob 2", in: context),
         ]) { recipient in
             RecipientPillView(recipient: recipient, removeDidTap: { _ in  })
         }

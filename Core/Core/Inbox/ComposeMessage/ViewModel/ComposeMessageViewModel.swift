@@ -24,11 +24,7 @@ class ComposeMessageViewModel: ObservableObject {
     @Published public private(set) var state: StoreState = .loading
     @Published public private(set) var courses: [InboxCourse] = []
     @Published public private(set) var recipients: [SearchRecipient] = []
-
-    @Published public var sendIndividual: Bool = false
-    @Published public var bodyText: String = ""
-    @Published public var subject: String = ""
-    @Published public var selectedCourse: InboxCourse?
+    @Published public private(set) var isSendingMessage: Bool = false
 
     public let title = NSLocalizedString("New Message", bundle: .core, comment: "")
     public var sendButtonActive: Bool {
@@ -44,6 +40,12 @@ class ComposeMessageViewModel: ObservableObject {
     public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
     public let addRecipientButtonDidTap = PassthroughRelay<WeakViewController>()
     public let selectedRecipient = CurrentValueRelay<SearchRecipient?>(nil)
+
+    // MARK: - Inputs / Outputs
+    @Published public var sendIndividual: Bool = false
+    @Published public var bodyText: String = ""
+    @Published public var subject: String = ""
+    @Published public var selectedCourse: InboxCourse?
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
@@ -136,6 +138,21 @@ class ComposeMessageViewModel: ObservableObject {
         )
     }
 
+    private func showResultDialog(title: String, message: String, completion: (() -> Void)? = nil) {
+        let title = NSLocalizedString(title, comment: "")
+        let message = NSLocalizedString(message, comment: "")
+        let actionTitle = NSLocalizedString("OK", comment: "")
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: actionTitle, style: .default) { _ in
+            completion?()
+        }
+        alert.addAction(action)
+
+        if let top = AppEnvironment.shared.topViewController {
+            AppEnvironment.shared.router.show(alert, from: top, options: .modal())
+        }
+    }
+
     private func setupInputBindings(router: Router) {
         cancelButtonDidTap
             .sink { [router] viewController in
@@ -143,24 +160,32 @@ class ComposeMessageViewModel: ObservableObject {
             }
             .store(in: &subscriptions)
         sendButtonDidTap
-            //TODO: refactor
-            .sink { [interactor, router, weak self] viewController in
-                guard let self = self else { return }
-                guard let parameters = self.messageParameters() else { return }
-
-                    interactor
-                    .send(parameters: parameters)
-                    .sink { completion in
-                        if case .failure(let error) = completion {
-                            // error
-                        } else {
-                            performUIUpdate {
-                                router.dismiss(viewController)
-                            }
-                        }
-                    }
-                    .store(in: &self.subscriptions)
+            .compactMap { [weak self] viewController -> (WeakViewController, MessageParameters)? in
+                guard let self = self, let params = self.messageParameters() else { return nil }
+                return (viewController, params)
             }
+            .handleEvents(receiveOutput: { [weak self] (viewController, params) in
+                self?.isSendingMessage = true
+                self?.router.dismiss(viewController)
+            })
+            .flatMap { [interactor] (viewController, params) in
+                interactor
+                    .send(parameters: params)
+                    .map {
+                        viewController
+                    }
+            }
+            .receive(on: RunLoop.main)
+            .sink(receiveCompletion: { completion in
+                if case .failure(let error) = completion {
+                    let title = NSLocalizedString("Failure", comment: "")
+                    let message = NSLocalizedString("The email cannot be sent: \(error.localizedDescription)!", comment: "")
+                    self.showResultDialog(title: title, message: message)
+                    self.isSendingMessage = false
+                }
+            }, receiveValue: { [weak self] viewController in
+                self?.isSendingMessage = false
+            })
             .store(in: &subscriptions)
     }
 }
