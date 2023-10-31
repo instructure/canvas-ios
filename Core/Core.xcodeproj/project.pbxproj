@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -1331,6 +1331,7 @@
 		D2D5C96EE222080DEA01F7D6 /* GradingSchemeEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D31ECE60022F3F0880DE4A5 /* GradingSchemeEntry.swift */; };
 		D2DA38634A2821C1C71B7DD2 /* DragButtonStateViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DBCA7D161FF8B591AFE784 /* DragButtonStateViewModelTests.swift */; };
 		D2FD9F0CE35154CDA63EB588 /* APIAssignmentPickerListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C977681048E778C187FD119 /* APIAssignmentPickerListItem.swift */; };
+		D312612E2AF0FFDC00BAE76C /* ComposeMessageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D312612D2AF0FFDC00BAE76C /* ComposeMessageViewModelTests.swift */; };
 		D31E83925422BBA1373AB854 /* ContextCardGradesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9B361985FD0F05D7C61646 /* ContextCardGradesView.swift */; };
 		D3325F79CCA32071098A7DA9 /* GetQuizSubmissionUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DFFDB020E0A5A5ED8973F0 /* GetQuizSubmissionUsers.swift */; };
 		D3F2C000008898A8049AFEF7 /* CourseSyncItemSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B3812EED19B5A501744522 /* CourseSyncItemSelection.swift */; };
@@ -2265,7 +2266,7 @@
 		4BDF0042C4EC9719269D89FE /* AssignmentDueDatesInteractorLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDueDatesInteractorLive.swift; sourceTree = "<group>"; };
 		4BF8139D888212DC95299155 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4BF91515A5A28F35FBD75E03 /* GetObservedStudents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetObservedStudents.swift; sourceTree = "<group>"; };
-		4C02C87B4FD4AD4D7489EE6D /* TestImage.svg */ = {isa = PBXFileReference; path = TestImage.svg; sourceTree = "<group>"; };
+		4C02C87B4FD4AD4D7489EE6D /* TestImage.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestImage.svg; sourceTree = "<group>"; };
 		4C0C49ADE7F2DE21CE36FB77 /* CourseSyncDiskSpaceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncDiskSpaceInfoView.swift; sourceTree = "<group>"; };
 		4C11E387DD144E7B7A7D7405 /* DateSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSection.swift; sourceTree = "<group>"; };
 		4C310E09D98CD58CE1C3D781 /* AssignmentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentListViewModel.swift; sourceTree = "<group>"; };
@@ -2889,7 +2890,7 @@
 		A3CBD2A123330769319E0D7D /* CourseSettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSettingsTests.swift; sourceTree = "<group>"; };
 		A3EA58F752AE33267DC3D54C /* CourseSyncProgressInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncProgressInfoViewModel.swift; sourceTree = "<group>"; };
 		A3F215916DB26B661EA4FC39 /* APIGradingSchemeEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGradingSchemeEntry.swift; sourceTree = "<group>"; };
-		A42096D6B21359616953C14C /* preview_test.mp4 */ = {isa = PBXFileReference; path = preview_test.mp4; sourceTree = "<group>"; };
+		A42096D6B21359616953C14C /* preview_test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = preview_test.mp4; sourceTree = "<group>"; };
 		A428BBF27D3A0637022B49F2 /* FileListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListViewControllerTests.swift; sourceTree = "<group>"; };
 		A42E6D4DF3963671589B5A3A /* DashboardCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCardTests.swift; sourceTree = "<group>"; };
 		A43DD0C2A830D421979AEF65 /* InboxMessageScopeFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageScopeFilterTests.swift; sourceTree = "<group>"; };
@@ -3214,6 +3215,7 @@
 		D28C5442AE5762F62033B501 /* UIFontExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtensionsTests.swift; sourceTree = "<group>"; };
 		D2A10B77E9E886A71F13AAB6 /* EditComposeRecipientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditComposeRecipientsViewController.swift; sourceTree = "<group>"; };
 		D2AACFCF7807BA84FAA8BB9D /* K5SubjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewModel.swift; sourceTree = "<group>"; };
+		D312612D2AF0FFDC00BAE76C /* ComposeMessageViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMessageViewModelTests.swift; sourceTree = "<group>"; };
 		D31E93E5AD00DF5469ED4CBC /* UISearchTextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchTextFieldExtensions.swift; sourceTree = "<group>"; };
 		D353A6609F8E219A19862AE0 /* ExperimentalFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentalFeature.swift; sourceTree = "<group>"; };
 		D36C5027996C9F24362419DA /* AttachmentCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCardsView.swift; sourceTree = "<group>"; };
@@ -4488,6 +4490,7 @@
 		2F99C1102518F74471883328 /* Inbox */ = {
 			isa = PBXGroup;
 			children = (
+				D312612C2AF0FFB700BAE76C /* ComposeMessage */,
 				11DBA6BF31CAA9F45A2037C5 /* MessageDetails */,
 				6CC4EAEBA4D4A408ABB0AB6C /* Model */,
 				CDB5F7D1405E4134E18B711A /* ViewModel */,
@@ -8049,6 +8052,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		D312612C2AF0FFB700BAE76C /* ComposeMessage */ = {
+			isa = PBXGroup;
+			children = (
+				D312612D2AF0FFDC00BAE76C /* ComposeMessageViewModelTests.swift */,
+			);
+			path = ComposeMessage;
+			sourceTree = "<group>";
+		};
 		D342A034E85BF8D0FA3C3F11 /* AnnotationContextMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -9579,6 +9590,7 @@
 				BFFD8E13C94C99566A9E4EBA /* DashboardSettingsViewTests.swift in Sources */,
 				42F74BABA24396DA4E9A8685 /* DashboardViewModelTests.swift in Sources */,
 				8CCAE2BA092F86B06D969F50 /* DateExtensionsTests.swift in Sources */,
+				D312612E2AF0FFDC00BAE76C /* ComposeMessageViewModelTests.swift in Sources */,
 				7C4C0238CA86358BFF179247 /* DefaultViewProviderTests.swift in Sources */,
 				337A46D1F4B5F0F8DBC92050 /* DisableZoomTests.swift in Sources */,
 				60B0BE335DB5CECB27196380 /* DiscussionDetailsViewControllerTests.swift in Sources */,
