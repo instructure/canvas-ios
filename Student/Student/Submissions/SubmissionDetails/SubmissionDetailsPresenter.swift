@@ -230,7 +230,8 @@ class SubmissionDetailsPresenter {
                     let controller = UIViewController()
                     controller.view = imageView
                     return controller
-                } else if let previewURL = attachment.previewURL {
+                } else if let previewURL = attachment.previewURL,
+                    DocViewerViewController.hasPSPDFKitLicense {
                     return DocViewerViewController.create(
                         filename: attachment.filename,
                         previewURL: previewURL,
