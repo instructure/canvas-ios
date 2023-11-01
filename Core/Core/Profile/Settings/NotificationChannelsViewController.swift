@@ -67,7 +67,11 @@ class NotificationChannelsViewController: UIViewController {
     }
 
     func reloadData() {
-        rows = channels.filter { $0.type == channelType } .sorted { $0.address < $1.address }
+        rows = channels.filter {
+            $0.type == channelType &&
+            ((channelType == .email && $0.id != NotificationManager.shared.emailAsPushChannelID) ||
+             channelType != .email)
+        } .sorted { $0.address < $1.address }
         if !channels.pending {
             tableView.refreshControl?.endRefreshing()
         }
