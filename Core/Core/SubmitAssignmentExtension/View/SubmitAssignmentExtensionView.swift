@@ -79,7 +79,7 @@ public struct SubmitAssignmentExtensionView: View {
     }
 
     private var title: Text {
-        Text("Canvas Student", bundle: .core).font(.semibold17).foregroundColor(.textDarkest)
+        Text("Degrees edX", bundle: .core).font(.semibold17).foregroundColor(.textDarkest)
     }
 
     @ViewBuilder

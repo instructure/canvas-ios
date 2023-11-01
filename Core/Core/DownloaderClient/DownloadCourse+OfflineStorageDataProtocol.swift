@@ -32,7 +32,7 @@ final class CourseStorageDataModel {
     }
 
     static func configureId(id: String) -> String {
-        "\(id)_download_course"
+        id
     }
 }
 

@@ -458,7 +458,7 @@
 "Canvas Guides" = "Canvas-Leitfäden";
 
 /* No comment provided by engineer. */
-"Canvas is now available in dark theme" = "Canvas ist jetzt in dunklem Design verfügbar";
+"Degrees edX is now available in dark theme" = "Degrees edX ist jetzt in dunklem Design verfügbar";
 
 /* No comment provided by engineer. */
 "Canvas Login" = "Anmeldung bei Canvas";
@@ -467,13 +467,13 @@
 "Canvas Network" = "Canvas-Netzwerk";
 
 /* No comment provided by engineer. */
-"Canvas on GitHub" = "Canvas an GitHub";
+"Degrees edX on GitHub" = "Degrees edX an GitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Canvas Parent";
 
 /* No comment provided by engineer. */
-"Canvas Student" = "Canvas-Studierende*r";
+"Degrees edX" = "Degrees edX";
 
 /* No comment provided by engineer. */
 "Canvas Teacher" = "Canvas-Lehrende*r";
@@ -1841,7 +1841,7 @@
 "Open section" = "Abschnitt öffnen";
 
 /* No comment provided by engineer. */
-"Opens in Canvas Student" = "Öffnet in Canvas Studierenden";
+"Opens in Degrees edX" = "Öffnet in Degrees edX";
 
 /* No comment provided by engineer. */
 "Options" = "Optionen";
@@ -2672,7 +2672,7 @@
 "to %@" = "bis %@";
 
 /* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Um ein Konto zu erstellen, lassen Sie Ihre/n Studierende*n einen Pairing-Code für Sie im Abschnitt „Einstellungen“ der Canvas-Studierenden-App erstellen (siehe unten), und scannen Sie diesen Code dann von hier aus.\nWenn Ihr/e Studierende*r die Option zum Erstellen eines Pairing-Codes nicht sieht, müssen Sie sich an Ihre Schule wenden, um Ihr Konto zu erstellen.";
+"To create an account, have your student create a pairing code for you from the Settings section of the Degrees edX app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Um ein Konto zu erstellen, lassen Sie Ihre/n Studierende*n einen Pairing-Code für Sie im Abschnitt „Einstellungen“ der Degrees edX App erstellen (siehe unten), und scannen Sie diesen Code dann von hier aus.\nWenn Ihr/e Studierende*r die Option zum Erstellen eines Pairing-Codes nicht sieht, müssen Sie sich an Ihre Schule wenden, um Ihr Konto zu erstellen.";
 
 /* No comment provided by engineer. */
 "To Do" = "Zu erledigen";

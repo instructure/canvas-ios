@@ -458,7 +458,7 @@
 "Canvas Guides" = "Canvas Guides";
 
 /* No comment provided by engineer. */
-"Canvas is now available in dark theme" = "Canvas متاح الآن في النسق الداكن";
+"Degrees edX is now available in dark theme" = "Degrees edX متاح الآن في النسق الداكن";
 
 /* No comment provided by engineer. */
 "Canvas Login" = "تسجيل الدخول إلى Canvas";
@@ -467,13 +467,13 @@
 "Canvas Network" = "Canvas Network";
 
 /* No comment provided by engineer. */
-"Canvas on GitHub" = "Canvas على GitHub";
+"Degrees edX on GitHub" = "Degrees edX على GitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Canvas Parent";
 
 /* No comment provided by engineer. */
-"Canvas Student" = "Canvas Student";
+"Degrees edX" = "Degrees edX";
 
 /* No comment provided by engineer. */
 "Canvas Teacher" = "Canvas Teacher";
@@ -1841,7 +1841,7 @@
 "Open section" = "فتح القسم";
 
 /* No comment provided by engineer. */
-"Opens in Canvas Student" = "يفتح في Canvas Student";
+"Opens in Degrees edX" = "يفتح في Degrees edX";
 
 /* No comment provided by engineer. */
 "Options" = "الخيارات";
@@ -2672,7 +2672,7 @@
 "to %@" = "إلى %@";
 
 /* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "لإنشاء حساب، اجعل طالبك ينشئ رمز إقران لك من قسم الإعدادات بتطبيق Canvas Student كما يظهر أدناه، ثم امسح الرمز من هنا.\nإذا لم ير الطالب خيار إنشاء رمز إقران، فستحتاج إلى الوصول إلى مدرستك لإنشاء حسابك.";
+"To create an account, have your student create a pairing code for you from the Settings section of the Degrees edX app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "لإنشاء حساب، اجعل طالبك ينشئ رمز إقران لك من قسم الإعدادات بتطبيق Degrees edX كما يظهر أدناه، ثم امسح الرمز من هنا.\nإذا لم ير الطالب خيار إنشاء رمز إقران، فستحتاج إلى الوصول إلى مدرستك لإنشاء حسابك.";
 
 /* No comment provided by engineer. */
 "To Do" = "قائمة المهام";

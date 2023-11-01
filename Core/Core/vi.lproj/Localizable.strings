@@ -458,7 +458,7 @@
 "Canvas Guides" = "Canvas Guides";
 
 /* No comment provided by engineer. */
-"Canvas is now available in dark theme" = "Canvas hiện nay đã có sẵn ở chủ đề tối";
+"Degrees edX is now available in dark theme" = "Degrees edX hiện nay đã có sẵn ở chủ đề tối";
 
 /* No comment provided by engineer. */
 "Canvas Login" = "Thông Tin Đăng Nhập Canvas";
@@ -467,13 +467,13 @@
 "Canvas Network" = "Mạng Lưới Canvas";
 
 /* No comment provided by engineer. */
-"Canvas on GitHub" = "Canvas trên GitHub";
+"Degrees edX on GitHub" = "Degrees edX trên GitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Canvas Parent";
 
 /* No comment provided by engineer. */
-"Canvas Student" = "Canvas Student";
+"Degrees edX" = "Degrees edX";
 
 /* No comment provided by engineer. */
 "Canvas Teacher" = "Canvas Teacher";
@@ -1841,7 +1841,7 @@
 "Open section" = "Mở phần";
 
 /* No comment provided by engineer. */
-"Opens in Canvas Student" = "Mở Trong Canvas Student";
+"Opens in Degrees edX" = "Mở Trong Degrees edX";
 
 /* No comment provided by engineer. */
 "Options" = "Tùy Chọn";
@@ -2672,7 +2672,7 @@
 "to %@" = "đến %@";
 
 /* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Để tạo tài khoản, hãy yêu cầu sinh viên của bạn tạo mã ghép cặp cho bạn từ phần Cài Đặt trong ứng dụng Canvas Student như minh họa bên dưới rồi quét mã này từ đó.\nNếu sinh viên của bạn không thấy tùy chọn tạo mã ghép cặp thì bạn sẽ cần liên hệ trường của bạn để tạo tài khoản cho bạn.";
+"To create an account, have your student create a pairing code for you from the Settings section of the Degrees edX app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Để tạo tài khoản, hãy yêu cầu sinh viên của bạn tạo mã ghép cặp cho bạn từ phần Cài Đặt trong ứng dụng Degrees edX như minh họa bên dưới rồi quét mã này từ đó.\nNếu sinh viên của bạn không thấy tùy chọn tạo mã ghép cặp thì bạn sẽ cần liên hệ trường của bạn để tạo tài khoản cho bạn.";
 
 /* No comment provided by engineer. */
 "To Do" = "Việc Cần Làm";

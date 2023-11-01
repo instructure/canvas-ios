@@ -458,7 +458,7 @@
 "Canvas Guides" = "Guides de Canvas";
 
 /* No comment provided by engineer. */
-"Canvas is now available in dark theme" = "Canvas est désormais disponible en thème sombre";
+"Degrees edX is now available in dark theme" = "Degrees edX est désormais disponible en thème sombre";
 
 /* No comment provided by engineer. */
 "Canvas Login" = "Connexion Canvas";
@@ -467,13 +467,13 @@
 "Canvas Network" = "Canvas Network";
 
 /* No comment provided by engineer. */
-"Canvas on GitHub" = "Canvas sur GitHub";
+"Degrees edX on GitHub" = "Degrees edX sur GitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Canvas Parent";
 
 /* No comment provided by engineer. */
-"Canvas Student" = "Canvas Élève";
+"Degrees edX" = "Degrees edX";
 
 /* No comment provided by engineer. */
 "Canvas Teacher" = "Canvas Enseignant";
@@ -1841,7 +1841,7 @@
 "Open section" = "Ouvrir la section";
 
 /* No comment provided by engineer. */
-"Opens in Canvas Student" = "S’ouvre dans Canvas Student";
+"Opens in Degrees edX" = "S’ouvre dans Degrees edX";
 
 /* No comment provided by engineer. */
 "Options" = "Options";
@@ -2672,7 +2672,7 @@
 "to %@" = "à %@";
 
 /* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Pour créer un compte, demandez à l'élève de créer un code de jumelage pour vous depuis la section Paramètres de l’application Canvas Student, comme présenté ci-dessous. Puis, scannez le code à partir d’ici.\nSi l’élève ne voit pas l'option de création d'un code de jumelage, vous devrez contacter l’école pour créer votre compte.";
+"To create an account, have your student create a pairing code for you from the Settings section of the Degrees edX app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Pour créer un compte, demandez à l'élève de créer un code de jumelage pour vous depuis la section Paramètres de l’application Degrees edX, comme présenté ci-dessous. Puis, scannez le code à partir d’ici.\nSi l’élève ne voit pas l'option de création d'un code de jumelage, vous devrez contacter l’école pour créer votre compte.";
 
 /* No comment provided by engineer. */
 "To Do" = "À faire";

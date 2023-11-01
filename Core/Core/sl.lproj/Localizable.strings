@@ -458,7 +458,7 @@
 "Canvas Guides" = "Vodniki po sistemu Canvas";
 
 /* No comment provided by engineer. */
-"Canvas is now available in dark theme" = "Sistem Canvas je zdaj na voljo v temni preobleki";
+"Degrees edX is now available in dark theme" = "Sistem Degrees edX je zdaj na voljo v temni preobleki";
 
 /* No comment provided by engineer. */
 "Canvas Login" = "Prijava v sistem Canvas";
@@ -467,13 +467,13 @@
 "Canvas Network" = "Omrežje Canvas Network";
 
 /* No comment provided by engineer. */
-"Canvas on GitHub" = "Sistem Canvas na GitHub";
+"Degrees edX on GitHub" = "Sistem Degrees edX na GitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Aplikacija Canvas Parent";
 
 /* No comment provided by engineer. */
-"Canvas Student" = "Študent v sistemu Canvas";
+"Degrees edX" = "Degrees edX";
 
 /* No comment provided by engineer. */
 "Canvas Teacher" = "Izvajalec v sistemu Canvas";
@@ -1841,7 +1841,7 @@
 "Open section" = "Odpri sekcijo";
 
 /* No comment provided by engineer. */
-"Opens in Canvas Student" = "Odpiranje v Canvas Student";
+"Opens in Degrees edX" = "Odpiranje v Degrees edX";
 
 /* No comment provided by engineer. */
 "Options" = "Možnosti";
@@ -2672,7 +2672,7 @@
 "to %@" = "naslovnik %@";
 
 /* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Če želite ustvariti račun, mora študent za vas ustvariti kodo za seznanitev v razdelku Nastavitve aplikacije Canvas Student, kot je prikazano spodaj, nato pa kodo odčitate tam.\nČe študent ne vidi možnosti za ustvarjanje kode za seznanitev, boste se morali za ustvarjanje računa obrniti na šolo.";
+"To create an account, have your student create a pairing code for you from the Settings section of the Degrees edX app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Če želite ustvariti račun, mora študent za vas ustvariti kodo za seznanitev v razdelku Nastavitve aplikacije Degrees edX, kot je prikazano spodaj, nato pa kodo odčitate tam.\nČe študent ne vidi možnosti za ustvarjanje kode za seznanitev, boste se morali za ustvarjanje računa obrniti na šolo.";
 
 /* No comment provided by engineer. */
 "To Do" = "Čakajoča opravila";

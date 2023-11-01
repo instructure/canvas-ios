@@ -67,7 +67,7 @@ public extension Bundle {
     var pandataAppName: String {
         switch bundleIdentifier {
         case Bundle.studentBundleID:
-            return "Canvas Student for iOS"
+            return "Degrees edX for iOS"
         case Bundle.teacherBundleID:
             return "Canvas Teacher for iOS"
         default:

@@ -458,7 +458,7 @@
 "Canvas Guides" = "Canvas 指南";
 
 /* No comment provided by engineer. */
-"Canvas is now available in dark theme" = "Canvas 現在可在暗色主題中使用";
+"Degrees edX is now available in dark theme" = "Degrees edX 現在可在暗色主題中使用";
 
 /* No comment provided by engineer. */
 "Canvas Login" = "Canvas 登入";
@@ -467,13 +467,13 @@
 "Canvas Network" = "Canvas Network";
 
 /* No comment provided by engineer. */
-"Canvas on GitHub" = "Canvas：GitHub";
+"Degrees edX on GitHub" = "Degrees edX：GitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Canvas Parent";
 
 /* No comment provided by engineer. */
-"Canvas Student" = "Canvas Student";
+"Degrees edX" = "Degrees edX";
 
 /* No comment provided by engineer. */
 "Canvas Teacher" = "Canvas Teacher";
@@ -1841,7 +1841,7 @@
 "Open section" = "開啟分班";
 
 /* No comment provided by engineer. */
-"Opens in Canvas Student" = "在 Canvas Student 中開啟";
+"Opens in Degrees edX" = "在 Degrees edX 中開啟";
 
 /* No comment provided by engineer. */
 "Options" = "選項";
@@ -2672,7 +2672,7 @@
 "to %@" = "至%@";
 
 /* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "如要建立帳戶，請讓您的學生在 Cavnas 學生應用程式內的設定（見下圖）為您建立配對碼，然後在此處掃描該條碼。\n如果學生未看見建立配對碼的選項，您需要聯絡所屬學校以建立帳戶。";
+"To create an account, have your student create a pairing code for you from the Settings section of the Degrees edX app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "如要建立帳戶，請讓您的學生在 Degrees edX 學生應用程式內的設定（見下圖）為您建立配對碼，然後在此處掃描該條碼。\n如果學生未看見建立配對碼的選項，您需要聯絡所屬學校以建立帳戶。";
 
 /* No comment provided by engineer. */
 "To Do" = "待辦事項";

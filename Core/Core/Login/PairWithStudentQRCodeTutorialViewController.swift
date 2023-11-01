@@ -36,7 +36,7 @@ public class PairWithStudentQRCodeTutorialViewController: UIViewController {
         title = NSLocalizedString("Create Account", comment: "")
         headerLabel.text = NSLocalizedString(
         """
-        To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.
+        To create an account, have your student create a pairing code for you from the Settings section of the Degrees edX app as shown below, and then scan that code from here.
         If your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account.
         """, comment: "")
         headerLabel.accessibilityIdentifier = "PairWithStudentQRCodeTutorial.headerLabel"

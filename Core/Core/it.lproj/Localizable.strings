@@ -458,7 +458,7 @@
 "Canvas Guides" = "Guide Canvas";
 
 /* No comment provided by engineer. */
-"Canvas is now available in dark theme" = "Canvas è ora disponibile in tema scuso";
+"Degrees edX is now available in dark theme" = "Degrees edX è ora disponibile in tema scuso";
 
 /* No comment provided by engineer. */
 "Canvas Login" = "Login Canvas";
@@ -467,13 +467,13 @@
 "Canvas Network" = "Canvas Network";
 
 /* No comment provided by engineer. */
-"Canvas on GitHub" = "Canvas attivo GitHub";
+"Degrees edX on GitHub" = "Degrees edX attivo GitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Canvas Parent";
 
 /* No comment provided by engineer. */
-"Canvas Student" = "Studente Canvas";
+"Degrees edX" = "Degrees edX";
 
 /* No comment provided by engineer. */
 "Canvas Teacher" = "Insegnante Canvas";
@@ -1841,7 +1841,7 @@
 "Open section" = "Apri sezione";
 
 /* No comment provided by engineer. */
-"Opens in Canvas Student" = "Si apre in Canvas Student";
+"Opens in Degrees edX" = "Si apre in Degrees edX";
 
 /* No comment provided by engineer. */
 "Options" = "Opzioni";
@@ -2672,7 +2672,7 @@
 "to %@" = "a %@";
 
 /* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Per creare un account, lo studente deve creare un codice di abbinamento nella sezione Impostazioni dell’app Studente Canvas, come mostrato in basso, poi deve scansionarlo.\nSe lo studente non vede l’opzione per creare un codice di abbinamento, devi contattare la scuola per creare l’account.";
+"To create an account, have your student create a pairing code for you from the Settings section of the Degrees edX app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Per creare un account, lo studente deve creare un codice di abbinamento nella sezione Impostazioni dell’app Degrees edX, come mostrato in basso, poi deve scansionarlo.\nSe lo studente non vede l’opzione per creare un codice di abbinamento, devi contattare la scuola per creare l’account.";
 
 /* No comment provided by engineer. */
 "To Do" = "Elenco attività";

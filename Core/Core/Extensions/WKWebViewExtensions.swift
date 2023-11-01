@@ -22,7 +22,7 @@ public typealias MessageHandler = (WKScriptMessage) -> Void
 
 extension WKWebView {
     public func addScript(_ js: String, injectionTime: WKUserScriptInjectionTime = .atDocumentEnd) {
-        let script = WKUserScript(source: js, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+        let script = WKUserScript(source: js, injectionTime: injectionTime, forMainFrameOnly: true)
         configuration.userContentController.addUserScript(script)
     }
 

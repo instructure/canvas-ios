@@ -27,7 +27,7 @@ class StudentViewCellViewModelTests: CoreTestCase {
 
         XCTAssertEqual(testee.iconImage, .userLine)
         XCTAssertEqual(testee.label, NSLocalizedString("Student View", comment: ""))
-        XCTAssertEqual(testee.subtitle, NSLocalizedString("Opens in Canvas Student", comment: ""))
+        XCTAssertEqual(testee.subtitle, NSLocalizedString("Opens in Degrees edX", comment: ""))
         XCTAssertEqual(testee.accessoryIconType, .externalLink)
         XCTAssertEqual(testee.tabID, "student_view")
     }

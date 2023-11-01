@@ -458,7 +458,7 @@
 "Canvas Guides" = "คู่มือ Canvas";
 
 /* No comment provided by engineer. */
-"Canvas is now available in dark theme" = "Canvas พร้อมใช้งานในธีมมืดแล้ว";
+"Degrees edX is now available in dark theme" = "Degrees edX พร้อมใช้งานในธีมมืดแล้ว";
 
 /* No comment provided by engineer. */
 "Canvas Login" = "ล็อกอินไปยัง Canvas";
@@ -467,13 +467,13 @@
 "Canvas Network" = "Canvas Network";
 
 /* No comment provided by engineer. */
-"Canvas on GitHub" = "Canvas เปิด GitHub";
+"Degrees edX on GitHub" = "Degrees edX เปิด GitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Canvas Parent";
 
 /* No comment provided by engineer. */
-"Canvas Student" = "Canvas Student";
+"Degrees edX" = "Degrees edX";
 
 /* No comment provided by engineer. */
 "Canvas Teacher" = "Canvas Teacher";
@@ -1832,7 +1832,7 @@
 "Open section" = "เปิดกลุ่มย่อย";
 
 /* No comment provided by engineer. */
-"Opens in Canvas Student" = "เปิดในผู้เรียนของ Canvas";
+"Opens in Degrees edX" = "เปิดในผู้เรียนของ Degrees edX";
 
 /* No comment provided by engineer. */
 "Options" = "ตัวเลือก";
@@ -2660,7 +2660,7 @@
 "to %@" = "ถึง %@";
 
 /* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "จัดทำบัญชีผู้ใช้โดยให้ผู้เรียนจัดทำรหัสเข้าคู่สำหรับคุณจากหัวข้อ ค่าปรับตั้ง ของแอพ Canvas Student ตามที่แสดงด้านล่าง จากนั้นสแกนรหัสจากที่นี่\nหากผู้เรียนไม่พบตัวเลือกดังกล่าวในการจัดทำรหัสเข้าคู่ คุณจะต้องติดต่อกับสถานศึกษาของคุณเพื่อจัดทำบัญชีผู้ใช้ของคุณ";
+"To create an account, have your student create a pairing code for you from the Settings section of the Degrees edX app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "จัดทำบัญชีผู้ใช้โดยให้ผู้เรียนจัดทำรหัสเข้าคู่สำหรับคุณจากหัวข้อ ค่าปรับตั้ง ของแอพ Degrees edX ตามที่แสดงด้านล่าง จากนั้นสแกนรหัสจากที่นี่\nหากผู้เรียนไม่พบตัวเลือกดังกล่าวในการจัดทำรหัสเข้าคู่ คุณจะต้องติดต่อกับสถานศึกษาของคุณเพื่อจัดทำบัญชีผู้ใช้ของคุณ";
 
 /* No comment provided by engineer. */
 "To Do" = "สิ่งที่ต้องดำเนินการ";

@@ -57,9 +57,9 @@ extension Course: OfflineStorageDataProtocol {
                 course.hideFinalGrades = hideFinalGrades
             }
 
-            if let id = dictionary["id"] as? String {
-                course.id = id
-            }
+//            if let id = dictionary["id"] as? String {
+//                course.id = id
+//            }
 
             if let imageDownloadURL = dictionary["imageDownloadURL"] as? String {
                 course.imageDownloadURL = URL(string: imageDownloadURL)

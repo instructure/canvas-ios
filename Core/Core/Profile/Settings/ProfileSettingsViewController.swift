@@ -133,9 +133,9 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                     guard let self = self else { return }
                     self.env.router.route(to: "/accounts/self/terms_of_service", from: self)
                 },
-                Row(NSLocalizedString("Canvas on GitHub", bundle: .core, comment: "")) { [weak self] in
+                Row(NSLocalizedString("Degrees edX on GitHub", bundle: .core, comment: "")) { [weak self] in
                     guard let self = self else { return }
-                    self.env.router.route(to: "https://github.com/instructure/canvas-ios", from: self)
+                    self.env.router.route(to: "https://github.com/2uinc/canvas-ios", from: self)
                 },
             ])
         )
