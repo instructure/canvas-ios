@@ -175,43 +175,52 @@ struct AllCoursesCellView: View {
     }
 }
 
-// #if DEBUG
-//
-// struct CourseListCell_Previews: PreviewProvider {
-//    private static let env = PreviewEnvironment()
-//    private static let context = env.globalDatabase.viewContext
-//
-//    static var previews: some View {
-//        VStack(spacing: 0) {
-//            Divider()
-//            AllCoursesCellView(
-//                course: AllCoursesCourseItem(
-//                    from: CDAllCoursesCourseItem.save(
-//                        .make(id: "1", workflow_state: .available),
-//                        enrollmentState: .active,
-//                        app: .student,
-//                        in: context
-//                    )
-//                )
-//            )
-//            Divider()
-//            AllCoursesCellView(
-//                course: AllCoursesCourseItem(
-//                    from: CDAllCoursesCourseItem.save(
-//                        .make(id: "2", workflow_state: .unpublished),
-//                        enrollmentState: .active,
-//                        app: .student,
-//                        in: context
-//                    )
-//                )
-//            )
-//            Divider()
-//        }
-//        .previewLayout(.sizeThatFits)
-//    }
-// }
-//
-// #endif
+ #if DEBUG
+
+ struct CourseListCell_Previews: PreviewProvider {
+    private static let env = PreviewEnvironment()
+    private static let context = env.globalDatabase.viewContext
+
+    static var previews: some View {
+        VStack(spacing: 0) {
+            Divider()
+            AllCoursesCellView(
+                item: .course(AllCoursesCourseItem(
+                    from: CDAllCoursesCourseItem.save(
+                        .make(id: "1", workflow_state: .available),
+                        enrollmentState: .active,
+                        app: .student,
+                        in: context
+                    )
+                )
+            ))
+            Divider()
+            AllCoursesCellView(
+                item: .course(AllCoursesCourseItem(
+                    from: CDAllCoursesCourseItem.save(
+                        .make(id: "2", workflow_state: .unpublished),
+                        enrollmentState: .active,
+                        app: .student,
+                        in: context
+                    )
+                )
+            ))
+            Divider()
+            AllCoursesCellView(
+                item: .group(AllCoursesGroupItem(
+                    from: CDAllCoursesGroupItem.save(
+                        .make(id: "1"),
+                        in: context
+                    )
+                )
+            ))
+            Divider()
+        }
+        .previewLayout(.sizeThatFits)
+    }
+ }
+
+ #endif
 
 extension AllCoursesCellView.Item {
     var id: String {

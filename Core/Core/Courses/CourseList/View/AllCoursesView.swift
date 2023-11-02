@@ -36,55 +36,13 @@ public struct AllCoursesView: View, ScreenViewTrackable {
                     let height = geometry.size.height
                     switch viewModel.state {
                     case .loading:
-                        ZStack {
-                            ProgressView()
-                                .progressViewStyle(.indeterminateCircle())
-                        }
-                        .frame(minWidth: width, minHeight: height)
+                        loadingView(minWidth: width, minHeight: height)
                     case let .data(sections):
-                        ScrollViewReader { scrollView in
-                            LazyVStack(alignment: .leading, spacing: 0, pinnedViews: .sectionHeaders) {
-                                let binding = Binding {
-                                    viewModel.filter.value
-                                } set: { newValue, _ in
-                                    viewModel.filter.send(newValue)
-                                }
-
-                                SearchBar(
-                                    text: binding,
-                                    placeholder: NSLocalizedString("Search", comment: ""),
-                                    onCancel: { withAnimation { scrollView.scrollTo(0, anchor: .bottom) } }
-                                )
-
-                                if sections.isEmpty {
-                                    EmptyPanda(
-                                        .NoResults,
-                                        title: Text("No Results", bundle: .core),
-                                        message: Text("We couldn't find any courses like that.", bundle: .core)
-                                    )
-                                } else {
-                                    courseAndGroupList(sections: sections).id(0)
-                                }
-                            }
-                            .onAppear { scrollView.scrollTo(0, anchor: .top) }
-                        }
+                        sectionsView(sections: sections)
                     case .empty:
-                        EmptyPanda(
-                            .Teacher,
-                            title: Text("No Courses", bundle: .core),
-                            message: Text(
-                                "It looks like there aren’t any courses associated with this account. Visit the web to create a course today.",
-                                bundle: .core
-                            )
-                        )
-                        .frame(minWidth: width, minHeight: height)
+                        emptyView(width: width, height: height)
                     case .error:
-                        ZStack {
-                            Text("Something went wrong", bundle: .core)
-                                .font(.regular16).foregroundColor(.textDanger)
-                                .multilineTextAlignment(.center)
-                        }
-                        .frame(minWidth: width, minHeight: height)
+                        errorView(width: width, height: height)
                     }
                 }
             } refreshAction: { endRefreshing in
@@ -93,9 +51,70 @@ public struct AllCoursesView: View, ScreenViewTrackable {
         }
         .avoidKeyboardArea()
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
-
         .navigationBarStyle(.global)
         .navigationTitle(NSLocalizedString("All Courses", comment: ""), subtitle: nil)
+    }
+
+    @ViewBuilder
+    func loadingView(minWidth: CGFloat, minHeight: CGFloat) -> some View {
+        ZStack {
+            ProgressView()
+                .progressViewStyle(.indeterminateCircle())
+        }
+        .frame(minWidth: minWidth, minHeight: minHeight)
+    }
+
+    @ViewBuilder
+    func sectionsView(sections: AllCoursesSections) -> some View {
+        ScrollViewReader { scrollView in
+            LazyVStack(alignment: .leading, spacing: 0, pinnedViews: .sectionHeaders) {
+                let binding = Binding {
+                    viewModel.filter.value
+                } set: { newValue, _ in
+                    viewModel.filter.send(newValue)
+                }
+
+                SearchBar(
+                    text: binding,
+                    placeholder: NSLocalizedString("Search", comment: ""),
+                    onCancel: { withAnimation { scrollView.scrollTo(0, anchor: .bottom) } }
+                )
+
+                if sections.isEmpty {
+                    EmptyPanda(
+                        .NoResults,
+                        title: Text("No Results", bundle: .core),
+                        message: Text("We couldn't find any courses like that.", bundle: .core)
+                    )
+                } else {
+                    courseAndGroupList(sections: sections).id(0)
+                }
+            }
+            .onAppear { scrollView.scrollTo(0, anchor: .top) }
+        }
+    }
+
+    @ViewBuilder
+    func emptyView(width: CGFloat, height: CGFloat) -> some View {
+        EmptyPanda(
+            .Teacher,
+            title: Text("No Courses", bundle: .core),
+            message: Text(
+                "It looks like there aren’t any courses associated with this account. Visit the web to create a course today.",
+                bundle: .core
+            )
+        )
+        .frame(minWidth: width, minHeight: height)
+    }
+
+    @ViewBuilder
+    func errorView(width: CGFloat, height: CGFloat) -> some View {
+        ZStack {
+            Text("Something went wrong", bundle: .core)
+                .font(.regular16).foregroundColor(.textDanger)
+                .multilineTextAlignment(.center)
+        }
+        .frame(minWidth: width, minHeight: height)
     }
 
     @ViewBuilder
@@ -114,16 +133,16 @@ public struct AllCoursesView: View, ScreenViewTrackable {
                 .accessibility(addTraits: .isHeader)
                 .padding(.leading, 16)
             Spacer()
-            CourseListSection(
-                header: Text("Current Enrollments", bundle: .core),
+            courseSection(
+                title: "Current Enrollments",
                 courses: sections.courses.current
             )
-            CourseListSection(
-                header: Text("Past Enrollments", bundle: .core),
+            courseSection(
+                title: "Past Enrollments",
                 courses: sections.courses.past
             )
-            CourseListSection(
-                header: Text("Future Enrollments", bundle: .core),
+            courseSection(
+                title: "Future Enrollments",
                 courses: sections.courses.future
             )
         }
@@ -144,39 +163,28 @@ public struct AllCoursesView: View, ScreenViewTrackable {
                 .accessibility(addTraits: .isHeader)
                 .padding(.leading, 16)
             Spacer()
-            CourseListSection2(
-                header: Text("Current groups"),
-                groups: sections.groups
-            )
+            groupSection(sections.groups)
             Divider()
         }
     }
 
-    struct CourseListSection2: View {
-        let header: Text
-        let groups: [AllCoursesGroupItem]
-
-        var body: some View {
-            if !groups.isEmpty {
-                ForEach(groups, id: \.id) { group in
-                    if group.id != groups.first?.id { Divider() }
-                    AllCoursesCellView(item: .group(group))
-                }
+    @ViewBuilder
+    func groupSection(_ groups: [AllCoursesGroupItem]) -> some View {
+        if !groups.isEmpty {
+            ForEach(groups, id: \.id) { group in
+                if group.id != groups.first?.id { Divider() }
+                AllCoursesCellView(item: .group(group))
             }
         }
     }
 
-    struct CourseListSection: View {
-        let header: Text
-        let courses: [AllCoursesCourseItem]
-
-        var body: some View {
-            if !courses.isEmpty {
-                Section(header: ListSectionHeader(isLarge: true) { header }) {
-                    ForEach(courses, id: \.courseId) { course in
-                        if course.courseId != courses.first?.courseId { Divider() }
-                        AllCoursesCellView(item: .course(course))
-                    }
+    @ViewBuilder
+    func courseSection(title: LocalizedStringKey, courses: [AllCoursesCourseItem]) -> some View {
+        if !courses.isEmpty {
+            Section(header: ListSectionHeader(isLarge: true) { Text(title, bundle: .core) }) {
+                ForEach(courses, id: \.courseId) { course in
+                    if course.courseId != courses.first?.courseId { Divider() }
+                    AllCoursesCellView(item: .course(course))
                 }
             }
         }
