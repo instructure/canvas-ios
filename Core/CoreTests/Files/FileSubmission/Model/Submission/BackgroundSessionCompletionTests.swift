@@ -29,39 +29,20 @@ class BackgroundSessionCompletionTests: XCTestCase {
             callbackExpectation.fulfill()
             XCTAssertEqual(Thread.main, Thread.current)
         }
-        let completionExpectation = expectation(description: "Future completed")
-        let valueExpectation = expectation(description: "Future sent value")
 
-        // MARK: - GIVEN
-        let subscription = testee.backgroundOperationsFinished().sink { _ in
-            completionExpectation.fulfill()
-        } receiveValue: { _ in
-            valueExpectation.fulfill()
-        }
+        // MARK: - WHEN
+        testee.backgroundOperationsFinished()
 
         // MARK: - THEN
         waitForExpectations(timeout: 0.1)
         XCTAssertNil(testee.callback)
-
-        subscription.cancel()
     }
 
-    func testFutureCompletesWhenNoCallbackAvailable() {
+    func testMethodReturnsWhenNoCallbackAvailable() {
         // MARK: - GIVEN
         let testee = BackgroundSessionCompletion()
-        let completionExpectation = expectation(description: "Future completed")
-        let valueExpectation = expectation(description: "Future sent value")
-
-        // MARK: - GIVEN
-        let subscription = testee.backgroundOperationsFinished().sink { _ in
-            completionExpectation.fulfill()
-        } receiveValue: { _ in
-            valueExpectation.fulfill()
-        }
 
         // MARK: - THEN
-        waitForExpectations(timeout: 0.1)
-
-        subscription.cancel()
+        testee.backgroundOperationsFinished()
     }
 }
