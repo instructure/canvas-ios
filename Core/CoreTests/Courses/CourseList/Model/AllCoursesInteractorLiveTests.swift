@@ -93,6 +93,7 @@ class CourseListInteractorMock: CourseListInteractor {
         future: [Core.AllCoursesCourseItem]
     ), Error>()
 
+    private(set) var getCoursesCalled = false
     private(set) var refreshCalled = false
     private(set) var loadAsyncCalled = false
     private(set) var filter = ""
@@ -100,7 +101,8 @@ class CourseListInteractorMock: CourseListInteractor {
     // MARK: - Outputs
 
     func getCourses() -> AnyPublisher<(active: [Core.AllCoursesCourseItem], past: [Core.AllCoursesCourseItem], future: [Core.AllCoursesCourseItem]), Error> {
-        coursesSubject.prepend((active: [], past: [], future: [])).eraseToAnyPublisher()
+        getCoursesCalled = true
+        return coursesSubject.prepend((active: [], past: [], future: [])).eraseToAnyPublisher()
     }
 
     // MARK: - Inputs

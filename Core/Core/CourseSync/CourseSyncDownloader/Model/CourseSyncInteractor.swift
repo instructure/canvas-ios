@@ -139,17 +139,12 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     // MARK: - Private Methods
 
     private func downloadCourseList() -> AnyPublisher<Void, Never> {
-        let result = courseListInteractor
+        courseListInteractor
             .getCourses()
+            .first()
             .mapToVoid()
             .replaceError(with: ())
             .eraseToAnyPublisher()
-
-//        if courseListInteractor.state.value == .loading {
-//            courseListInteractor.loadAsync()
-//        }
-
-        return result
     }
 
     private func downloadCourseDetails(_ entry: CourseSyncEntry) -> AnyPublisher<Void, Never> {
