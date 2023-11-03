@@ -142,4 +142,15 @@ class GetDashboardGroupsTest: CoreTestCase {
         XCTAssertEqual(groups.first, group)
         XCTAssertNil(groups.first?.course)
     }
+
+    func testMarkFavoriteGroup() {
+        let group = Group.make()
+        let groupItem = CDAllCoursesGroupItem.save(.make(), in: databaseClient)
+
+        let testee = MarkFavoriteGroup(groupID: "1", markAsFavorite: true)
+        testee.write(response: APIFavorite(context_id: ID("1"), context_type: "group"), urlResponse: nil, to: databaseClient)
+
+        XCTAssertTrue(group.isFavorite)
+        XCTAssertTrue(groupItem.isFavorite)
+    }
 }

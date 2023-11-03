@@ -567,7 +567,7 @@
         <attribute name="courseID" optional="YES" attributeType="String"/>
         <attribute name="groupCategoryID" attributeType="String" defaultValueString=""/>
         <attribute name="id" attributeType="String"/>
-        <attribute name="isFavourite" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="isFavorite" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="showOnDashboard" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <relationship name="contextColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ContextColor" inverseName="groups" inverseEntity="ContextColor"/>
