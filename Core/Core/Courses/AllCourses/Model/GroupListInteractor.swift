@@ -33,7 +33,7 @@ public protocol GroupListInteractor {
 public class GroupListInteractorLive: GroupListInteractor {
     // MARK: - Dependencies
 
-    private let env: AppEnvironment
+    private var app: AppEnvironment.App?
 
     // MARK: - Private properties
 
@@ -44,7 +44,7 @@ public class GroupListInteractorLive: GroupListInteractor {
     // MARK: - Init
 
     public init(env: AppEnvironment = .shared) {
-        self.env = env
+        app = env.app
 
         groupListStore = ReactiveStore(
             useCase: GetAllCoursesGroupListUseCase()
@@ -54,16 +54,24 @@ public class GroupListInteractorLive: GroupListInteractor {
     // MARK: - Outputs
 
     public func getGroups() -> AnyPublisher<[AllCoursesGroupItem], Error> {
-        groupListStore
+        guard let app, app == .student else {
+            return Just([])
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+        return groupListStore
             .observeEntitiesWithError()
             .filter(with: searchQuery)
-            .map { $0.map { AllCoursesGroupItem(from: $0 )}}
+            .map { $0.map { AllCoursesGroupItem(from: $0) }}
             .eraseToAnyPublisher()
     }
 
     // MARK: - Inputs
 
     public func loadAsync() {
+        guard let app, app == .student else {
+            return
+        }
         groupListStore
             .getEntities()
             .sink()
@@ -71,10 +79,16 @@ public class GroupListInteractorLive: GroupListInteractor {
     }
 
     public func refresh() -> AnyPublisher<Void, Never> {
-        groupListStore.forceFetchEntities()
+        guard let app, app == .student else {
+            return Just(()).eraseToAnyPublisher()
+        }
+        return groupListStore.forceFetchEntities()
     }
 
     public func setFilter(_ filter: String) -> AnyPublisher<Void, Never> {
+        guard let app, app == .student else {
+            return Just(()).eraseToAnyPublisher()
+        }
         searchQuery.send(filter)
         return Just(()).eraseToAnyPublisher()
     }

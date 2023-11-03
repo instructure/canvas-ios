@@ -34,6 +34,7 @@ class GroupListInteractorLiveTests: CoreTestCase {
                 .make(id: "2", name: "foe"),
             ]
         )
+        environment.app = .student
         testee = GroupListInteractorLive(env: environment)
     }
 
@@ -92,5 +93,18 @@ class GroupListInteractorLiveTests: CoreTestCase {
 
         drainMainQueue()
         XCTAssertEqual(list.map { $0.id }, ["3"])
+    }
+
+    func testTeacherReturnsEmptyList() {
+        environment.app = .teacher
+        testee = GroupListInteractorLive(env: environment)
+        testee.getGroups()
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { list in
+                    XCTAssertEqual(list.map { $0.id }, [])
+                }
+            )
+            .store(in: &subscriptions)
     }
 }
