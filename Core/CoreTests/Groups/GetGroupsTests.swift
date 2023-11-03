@@ -66,9 +66,16 @@ class GetGroupsTest: CoreTestCase {
     }
 }
 
+class GetGroupTests: CoreTestCase {
+    func testGetGroup() {
+        XCTAssertEqual(GetGroup(groupID: "1").cacheKey, "get-group-1")
+        XCTAssertEqual(GetGroup(groupID: "1").scope, Scope(predicate: NSPredicate(format: "%K == %@", #keyPath(Group.id), "1"), order: []))
+    }
+}
+
 class GetDashboardGroupsTest: CoreTestCase {
     func testItSavesUserGroups() {
-        let request = GetGroupsRequest(context: .currentUser)
+        let request = GetFavoriteGroupsRequest(context: .currentUser)
         let group = APIGroup.make(id: "1", name: "Group One", members_count: 2)
         api.mock(request, value: [group])
 
@@ -83,7 +90,7 @@ class GetDashboardGroupsTest: CoreTestCase {
 
     func testItDeletesOldUserGroups() {
         let old = Group.make(showOnDashboard: true)
-        let request = GetGroupsRequest(context: .currentUser)
+        let request = GetFavoriteGroupsRequest(context: .currentUser)
         api.mock(request, value: [])
 
         let expectation = XCTestExpectation(description: "fetch")
@@ -101,7 +108,7 @@ class GetDashboardGroupsTest: CoreTestCase {
 
     func testItDoesNotDeleteNonUserGroups() {
         let notMember = Group.make(showOnDashboard: false)
-        let request = GetGroupsRequest(context: .currentUser)
+        let request = GetFavoriteGroupsRequest(context: .currentUser)
         api.mock(request, value: [])
 
         let expectation = XCTestExpectation(description: "fetch")

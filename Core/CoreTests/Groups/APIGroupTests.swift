@@ -29,6 +29,13 @@ class APIGroupTests: XCTestCase {
         ])
     }
 
+    func testFavoriteGroupsRequest() {
+        XCTAssertEqual(GetFavoriteGroupsRequest(context: .user("1")).path, "users/1/favorites/groups")
+        XCTAssertEqual(GetFavoriteGroupsRequest(context: .user("1")).queryItems, [
+            URLQueryItem(name: "per_page", value: "100"),
+        ])
+    }
+
     func testGetGroupUsersRequest() {
         XCTAssertEqual(GetGroupUsersRequest(groupID: "2").path, "groups/2/users")
         XCTAssertEqual(GetGroupUsersRequest(groupID: "2").queryItems, [
