@@ -23,6 +23,8 @@ class APIGroupTests: XCTestCase {
     func testGetGroupsRequest() {
         XCTAssertEqual(GetGroupsRequest(context: .course("2")).path, "courses/2/groups")
         XCTAssertEqual(GetGroupsRequest(context: .course("2")).queryItems, [
+            URLQueryItem(name: "include[]", value: "favorites"),
+            URLQueryItem(name: "include[]", value: "can_access"),
             URLQueryItem(name: "per_page", value: "100"),
         ])
     }
