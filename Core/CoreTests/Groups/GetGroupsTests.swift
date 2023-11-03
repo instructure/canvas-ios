@@ -142,8 +142,18 @@ class GetDashboardGroupsTest: CoreTestCase {
         XCTAssertEqual(groups.first, group)
         XCTAssertNil(groups.first?.course)
     }
+}
 
-    func testMarkFavoriteGroup() {
+class MarkFavoriteGroupTests: CoreTestCase {
+    func testCacheKey() {
+        XCTAssertEqual(MarkFavoriteGroup(groupID: "1", markAsFavorite: true).cacheKey, nil)
+    }
+
+    func testScope() {
+        XCTAssertEqual(MarkFavoriteGroup(groupID: "1", markAsFavorite: true).scope, .where(#keyPath(Group.id), equals: "1"))
+    }
+
+    func testItWritesData() {
         let group = Group.make()
         let groupItem = CDAllCoursesGroupItem.save(.make(), in: databaseClient)
 
