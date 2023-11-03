@@ -46,10 +46,12 @@ public class NotConnectionBarView: UIView, Reachabilitable {
 
         connection { [weak self] isConnected in
             self?.isHidden = isConnected
-            if isConnected {
-                OfflineDownloadsManager.shared.resumeAllActive()
-            } else {
-                OfflineDownloadsManager.shared.pauseAllActive()
+            performUIUpdate {
+                if isConnected {
+                    OfflineDownloadsManager.shared.resumeAllActive()
+                } else {
+                    OfflineDownloadsManager.shared.pauseAllActive()
+                }
             }
         }
     }

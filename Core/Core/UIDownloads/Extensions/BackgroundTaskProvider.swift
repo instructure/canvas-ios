@@ -46,14 +46,18 @@ public final class BackgroundTaskProvider {
     @objc
     func didEnterBackgroundNotification() {
         registerBackgroundTask()
-        OfflineDownloadsManager.shared.pauseAllActive()
+        performUIUpdate {
+            OfflineDownloadsManager.shared.pauseAllActive()
+        }
     }
 
     @objc
     func didBecomeActiveNotification() {
         endBackgroundTaskIfActive()
         if reachability.isConnected {
-            OfflineDownloadsManager.shared.resumeAllActive()
+            performUIUpdate {
+                OfflineDownloadsManager.shared.resumeAllActive()
+            }
         }
     }
 
