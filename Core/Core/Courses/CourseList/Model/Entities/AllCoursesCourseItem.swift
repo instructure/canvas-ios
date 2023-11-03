@@ -31,16 +31,16 @@ public struct AllCoursesCourseItem: Equatable, Hashable {
     public let termName: String?
 
     init(
-        courseId: String = "1",
-        courseCode: String = "1",
-        enrollmentState: String = "active",
-        isFavorite: Bool = true,
-        isPublished: Bool = true,
-        isFavoriteButtonVisible: Bool = true,
-        isCourseDetailsAvailable: Bool = true,
-        name: String = "course-1",
-        roles: String = "",
-        termName: String? = nil
+        courseId: String,
+        courseCode: String,
+        enrollmentState: String,
+        isFavorite: Bool,
+        isPublished: Bool,
+        isFavoriteButtonVisible: Bool,
+        isCourseDetailsAvailable: Bool,
+        name: String,
+        roles: String,
+        termName: String?
     ) {
         self.courseId = courseId
         self.courseCode = courseCode
@@ -55,16 +55,16 @@ public struct AllCoursesCourseItem: Equatable, Hashable {
     }
 
     init(from entity: CDAllCoursesCourseItem) {
-        self.courseId = entity.courseId
-        self.courseCode = entity.courseCode
-        self.enrollmentState = entity.enrollmentState
-        self.isFavorite = entity.isFavorite
-        self.isPublished = entity.isPublished
-        self.isFavoriteButtonVisible = entity.isFavoriteButtonVisible
-        self.isCourseDetailsAvailable = entity.isCourseDetailsAvailable
-        self.name = entity.name
-        self.roles = entity.roles
-        self.termName = entity.termName
+        courseId = entity.courseId
+        courseCode = entity.courseCode
+        enrollmentState = entity.enrollmentState
+        isFavorite = entity.isFavorite
+        isPublished = entity.isPublished
+        isFavoriteButtonVisible = entity.isFavoriteButtonVisible
+        isCourseDetailsAvailable = entity.isCourseDetailsAvailable
+        name = entity.name
+        roles = entity.roles
+        termName = entity.termName
     }
 }
 

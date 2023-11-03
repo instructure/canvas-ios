@@ -21,11 +21,18 @@ import Foundation
 public enum AllCoursesAssembly {
 
     public static func makeInteractor() -> AllCoursesInteractor {
-        AllCoursesInteractorLive()
+        AllCoursesInteractorLive(
+            courseListInteractor: makeCourseListInteractor(),
+            groupListInteractor: makeGroupListInteractor()
+        )
     }
 
     public static func makeCourseListInteractor() -> CourseListInteractor {
         CourseListInteractorLive()
+    }
+
+    public static func makeGroupListInteractor() -> GroupListInteractor {
+        GroupListInteractorLive()
     }
 
     public static func makeCourseListViewController() -> UIViewController {

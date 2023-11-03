@@ -31,6 +31,11 @@ public protocol AllCoursesInteractor {
 }
 
 public class AllCoursesInteractorLive: AllCoursesInteractor {
+    // MARK: - Dependencies
+
+    private let courseListInteractor: CourseListInteractor
+    private let groupListInteractor: GroupListInteractor
+
     // MARK: - Outputs
 
     public let sections = PassthroughSubject<AllCoursesSections, Error>()
@@ -40,8 +45,7 @@ public class AllCoursesInteractorLive: AllCoursesInteractor {
     private let searchQuery = CurrentValueSubject<String, Never>("")
     private var subscriptions = Set<AnyCancellable>()
 
-    private let courseListInteractor: CourseListInteractor
-    private let groupListInteractor: GroupListInteractor
+    // MARK: - Init
 
     public init(
         courseListInteractor: CourseListInteractor = CourseListInteractorLive(),
@@ -68,12 +72,12 @@ public class AllCoursesInteractorLive: AllCoursesInteractor {
         .store(in: &subscriptions)
     }
 
+    // MARK: - Inputs
+
     public func loadAsync() {
         courseListInteractor.loadAsync()
         groupListInteractor.loadAsync()
     }
-
-    // MARK: - Inputs
 
     public func refresh() -> AnyPublisher<Void, Never> {
         Publishers.Zip(

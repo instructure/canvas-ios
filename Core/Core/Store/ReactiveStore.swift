@@ -62,10 +62,6 @@ public class ReactiveStore<U: UseCase> {
     private let forceRefreshRelay = PassthroughRelay<Void>()
     private let stateRelay = CurrentValueRelay<State>(.loading)
 
-    public private(set) lazy var statePublisher: AnyPublisher<State, Never> = stateRelay
-        .receive(on: DispatchQueue.main)
-        .eraseToAnyPublisher()
-
     private var cancellable: AnyCancellable?
     private var subscriptions = Set<AnyCancellable>()
 
