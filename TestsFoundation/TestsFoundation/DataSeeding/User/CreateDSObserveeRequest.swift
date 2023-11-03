@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,10 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct DSUser: Codable {
-    public let id: String
-    /** Use this as username when loggin in. */
-    public let login_id: String?
-    public let name: String
-    public var password: String?
+import Core
+
+struct CreateDSObserveeRequest: APIRequestable {
+    public typealias Response = DSUser
+
+    public let method = APIMethod.put
+    public let path: String
+
+    public init(parent: DSUser, student: DSUser) {
+        self.path = "users/\(parent.id)/observees/\(student.id)"
+    }
 }

@@ -40,6 +40,7 @@ class CourseListInteractorLiveTests: CoreTestCase {
     override func tearDown() {
         testee = nil
         subscriptions.removeAll()
+        testee = nil
         super.tearDown()
     }
 

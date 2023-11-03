@@ -52,4 +52,10 @@ extension DataSeeder {
         let result = makeRequest(request)
         return result.user
     }
+
+    @discardableResult
+    public func addObservee(parent: DSUser, student: DSUser) -> DSUser {
+        let request = CreateDSObserveeRequest(parent: parent, student: student)
+        return makeRequest(request)
+    }
 }

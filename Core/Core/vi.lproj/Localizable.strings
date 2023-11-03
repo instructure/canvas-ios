@@ -1799,6 +1799,9 @@
 "Offline mode" = "Chế độ ngoại tuyến";
 
 /* No comment provided by engineer. */
+"offline_sync_finished" = "offline_sync_finished";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -2442,6 +2445,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "Thành công!";
+
+/* No comment provided by engineer. */
+"Success! Downloaded %@ of %@" = "Thành công! Đã tải xuống %1$@ / %2$@";
 
 /* No comment provided by engineer. */
 "Summary" = "Tóm Tắt";
