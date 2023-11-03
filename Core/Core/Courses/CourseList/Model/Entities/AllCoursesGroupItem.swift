@@ -30,14 +30,58 @@ public struct AllCoursesGroupItem: Equatable {
     public let concluded: Bool
     public let isFavorite: Bool
 
+    init(
+        id: String,
+        name: String,
+        courseID: String?,
+        courseName: String?,
+        courseTermName: String?,
+        courseRoles: String?,
+        concluded: Bool,
+        isFavorite: Bool
+    ) {
+        self.id = id
+        self.name = name
+        self.courseID = courseID
+        self.courseName = courseName
+        self.courseTermName = courseTermName
+        self.courseRoles = courseRoles
+        self.concluded = concluded
+        self.isFavorite = isFavorite
+    }
+
     init(from entity: CDAllCoursesGroupItem) {
-        self.id = entity.id
-        self.name = entity.name
-        self.courseID = entity.courseID
-        self.courseName = entity.courseName
-        self.courseTermName = entity.courseTermName
-        self.courseRoles = entity.courseRoles
-        self.concluded = entity.concluded
-        self.isFavorite = entity.isFavorite
+        id = entity.id
+        name = entity.name
+        courseID = entity.courseID
+        courseName = entity.courseName
+        courseTermName = entity.courseTermName
+        courseRoles = entity.courseRoles
+        concluded = entity.concluded
+        isFavorite = entity.isFavorite
+    }
+}
+
+public extension AllCoursesGroupItem {
+    static func make(
+        id: String = "1",
+        name: String = "group-1",
+        courseID: String? = "course-id",
+        courseName: String? = "course-name",
+        courseTermName: String? = "course-term",
+        courseRoles: String? = "student",
+        concluded: Bool = false,
+        isFavorite: Bool = true
+    ) -> AllCoursesGroupItem {
+        AllCoursesGroupItem(
+            id: id,
+            name: name,
+            courseID: courseID,
+            courseName: courseName,
+            courseTermName: courseTermName,
+            courseRoles: courseRoles,
+            concluded: concluded,
+            isFavorite: isFavorite
+        )
     }
 }

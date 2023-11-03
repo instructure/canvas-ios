@@ -17,6 +17,7 @@
 //
 
 import CoreData
+import Combine
 
 public final class CDAllCoursesGroupItem: NSManagedObject, WriteableModel {
     public typealias JSON = APIGroup
@@ -62,5 +63,34 @@ public final class CDAllCoursesGroupItem: NSManagedObject, WriteableModel {
         model.isFavorite = item.is_favorite ?? true
 
         return model
+    }
+}
+
+public extension Array where Element == CDAllCoursesGroupItem {
+
+    func filter(query: String) -> Future<[CDAllCoursesGroupItem], Error> {
+        Future<[CDAllCoursesGroupItem], Error> { promise in
+            if query.isEmpty {
+                return promise(.success(self))
+            }
+
+            let filteredItems = filter {
+                $0.name.lowercased().contains(query) || $0.courseName?.lowercased().contains(query) ?? false
+            }
+            promise(.success(filteredItems))
+        }
+    }
+}
+
+public extension Publisher where Output == [CDAllCoursesGroupItem], Failure == Error {
+
+    func filter<Query: Publisher>(with query: Query) -> AnyPublisher<Output, Failure>
+        where Query.Output == String, Query.Failure == Failure {
+        Publishers
+            .CombineLatest(self, query.map { $0.lowercased() })
+            .flatMap { (items, searchQuery) in
+                items.filter(query: searchQuery)
+            }
+            .eraseToAnyPublisher()
     }
 }

@@ -229,7 +229,7 @@ public class ReactiveStore<U: UseCase> {
                 }
             })
             .flatMap { _ in self.fetchAllPagesIfNeeded(loadAllPages, fetchRequest: fetchRequest) }
-            .flatMap { _ in self.fetchEntitiesFromDatabase(fetchRequest: fetchRequest) }
+            .flatMap { _ in self.fetchEntitiesFromDatabase(fetchRequest: fetchRequest).print("🧽🧽🧽 ") }
             .eraseToAnyPublisher()
     }
 

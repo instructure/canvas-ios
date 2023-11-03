@@ -17,25 +17,26 @@
 //
 
 import Combine
-import Core
+@testable import Core
+import CoreData
 import XCTest
 
-class CourseListItemSearchTests: CoreTestCase {
-    var testee: CurrentValueSubject<[CDAllCoursesCourseItem], Never>!
-    var query: PassthroughSubject<String, Never>!
+class CDAllCoursesGroupItemSearchTests: CoreTestCase {
+    var testee: CurrentValueSubject<[CDAllCoursesGroupItem], Error>!
+    var query: PassthroughSubject<String, Error>!
 
     override func setUp() {
         super.setUp()
 
-        let item1: CDAllCoursesCourseItem = databaseClient.insert()
+        let item1: CDAllCoursesGroupItem = databaseClient.insert()
         item1.name = "abC"
-        item1.courseCode = "item1"
-        let item2: CDAllCoursesCourseItem = databaseClient.insert()
+        item1.courseName = "item1"
+        let item2: CDAllCoursesGroupItem = databaseClient.insert()
         item2.name = "def"
-        item2.courseCode = "item2"
+        item2.courseName = "item2"
 
-        testee = CurrentValueSubject<[CDAllCoursesCourseItem], Never>([item1, item2])
-        query = PassthroughSubject<String, Never>()
+        testee = CurrentValueSubject<[CDAllCoursesGroupItem], Error>([item1, item2])
+        query = PassthroughSubject<String, Error>()
     }
 
     public func testCaseInsensitiveSearch() {
@@ -68,10 +69,13 @@ class CourseListItemSearchTests: CoreTestCase {
                     item.name
                 }
             }
-            .sink { itemNames in
-                valueReceived.fulfill()
-                XCTAssertEqual(itemNames, expectedResult)
-            }
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { itemNames in
+                    valueReceived.fulfill()
+                    XCTAssertEqual(itemNames, expectedResult)
+                }
+            )
         query.send(queryString)
         waitForExpectations(timeout: 1)
         subscription.cancel()

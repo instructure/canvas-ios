@@ -36,7 +36,7 @@ public class GetAllCoursesCourseListUseCase: CollectionUseCase {
                                                     ])
         self.scope = {
             let order = [
-                NSSortDescriptor(key: #keyPath(InboxCourse.name), ascending: true),
+                NSSortDescriptor(key: #keyPath(CDAllCoursesCourseItem.name), ascending: true),
             ]
             return .where(#keyPath(CDAllCoursesCourseItem.enrollmentState),
                           equals: enrollmentState.rawValue,

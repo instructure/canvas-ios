@@ -35,7 +35,7 @@ public final class Group: NSManagedObject, WriteableModel {
     @NSManaged public var name: String
     @NSManaged public var showOnDashboard: Bool
     @NSManaged public var isFavourite: Bool
-    
+
     public var context: Context? {
         get { contextRaw.flatMap { Context(canvasContextID: $0) } }
         set { contextRaw = newValue?.canvasContextID }

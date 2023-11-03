@@ -16,11 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+@testable import Core
 import XCTest
 
 class CourseListItemTests: CoreTestCase {
-
     func testRoles() {
         let apiCourse = APICourse.make(enrollments: [
             .make(role: "TeacherEnrollment"),
@@ -28,17 +27,17 @@ class CourseListItemTests: CoreTestCase {
             .make(role: "StudentEnrollment"),
         ])
         let testee = CDAllCoursesCourseItem.save(apiCourse,
-                                         enrollmentState: .active,
-                                         in: databaseClient)
+                                                 enrollmentState: .active,
+                                                 in: databaseClient)
         XCTAssertEqual(testee.roles, "Student, Teacher")
     }
 
     func testCourseDetailsNotAvailableForUnpublishedCoursesInStudentApp() {
         let apiCourse = APICourse.make(workflow_state: .unpublished)
         let testee = CDAllCoursesCourseItem.save(apiCourse,
-                                         enrollmentState: .active,
-                                         app: .student,
-                                         in: databaseClient)
+                                                 enrollmentState: .active,
+                                                 app: .student,
+                                                 in: databaseClient)
         XCTAssertFalse(testee.isCourseDetailsAvailable)
     }
 
@@ -69,14 +68,13 @@ class CourseListItemTests: CoreTestCase {
         XCTAssertFalse(visibility(.completed, .teacher, .completed))
         XCTAssertFalse(visibility(.completed, .teacher, .unpublished))
         XCTAssertFalse(visibility(.completed, .teacher, .deleted))
-
     }
 
     private func visibility(_ enrollmentState: GetCoursesRequest.EnrollmentState,
                             _ app: AppEnvironment.App?,
                             _ workflowState: CourseWorkflowState?) -> Bool {
         CDAllCoursesCourseItem.isFavoriteButtonVisible(enrollmentState: enrollmentState,
-                                               app: app,
-                                               workflowState: workflowState)
+                                                       app: app,
+                                                       workflowState: workflowState)
     }
 }

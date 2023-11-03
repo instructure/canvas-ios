@@ -1,0 +1,166 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2023-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+@testable import Core
+import XCTest
+
+class AllCoursesCellOfflineStateViewModelTests: XCTestCase {
+    private var sessionDefaults = SessionDefaults.fallback
+    private let mockOfflineModeInteractor = OfflineModeInteractorMock()
+
+    override func setUp() {
+        super.setUp()
+        sessionDefaults.reset()
+    }
+
+    override func tearDown() {
+        sessionDefaults.reset()
+        super.tearDown()
+    }
+
+    func testOfflineIndicatorHiddenWhenCourseNotSelectedForOfflineMode() {
+        // GIVEN
+        sessionDefaults.offlineSyncSelections = []
+
+        // WHEN
+        let testee = AllCoursesCellOfflineStateViewModel(item: .course(.make(courseId: "1")),
+                                                         offlineModeInteractor: mockOfflineModeInteractor,
+                                                         sessionDefaults: sessionDefaults)
+
+        // THEN
+        XCTAssertFalse(testee.isOfflineIndicatorVisible)
+    }
+
+    func testOfflineIndicatorVisibileWhenCourseIsSelectedForOfflineMode() {
+        // GIVEN
+        sessionDefaults.offlineSyncSelections = ["courses/1"]
+
+        // WHEN
+        let testee = AllCoursesCellOfflineStateViewModel(item: .course(.make(courseId: "1")),
+                                                         offlineModeInteractor: mockOfflineModeInteractor,
+                                                         sessionDefaults: sessionDefaults)
+        // THEN
+        XCTAssertTrue(testee.isOfflineIndicatorVisible)
+    }
+
+    func testOfflineIndicatorHiddenForGroups() {
+        // WHEN
+        let testee = AllCoursesCellOfflineStateViewModel(item: .group(.make(id: "1")),
+                                                         offlineModeInteractor: mockOfflineModeInteractor,
+                                                         sessionDefaults: sessionDefaults)
+        // THEN
+        XCTAssertFalse(testee.isOfflineIndicatorVisible)
+    }
+
+    func testCourseFavoriteStarVisibility() {
+        // GIVEN
+        let testee = AllCoursesCellOfflineStateViewModel(item: .course(.make(courseId: "1")),
+                                                         offlineModeInteractor: mockOfflineModeInteractor,
+                                                         sessionDefaults: sessionDefaults)
+
+        // WHEN
+        mockOfflineModeInteractor.mockIsInOfflineMode.accept(false)
+
+        // THEN
+        XCTAssertFalse(testee.isFavoriteStarDisabled)
+
+        // WHEN
+        mockOfflineModeInteractor.mockIsInOfflineMode.accept(true)
+
+        // THEN
+        XCTAssertTrue(testee.isFavoriteStarDisabled)
+    }
+
+    func testGroupFavoriteStarVisibility() {
+        // GIVEN
+        let testee = AllCoursesCellOfflineStateViewModel(item: .group(.make(id: "1")),
+                                                         offlineModeInteractor: mockOfflineModeInteractor,
+                                                         sessionDefaults: sessionDefaults)
+
+        // WHEN
+        mockOfflineModeInteractor.mockIsInOfflineMode.accept(false)
+
+        // THEN
+        XCTAssertFalse(testee.isFavoriteStarDisabled)
+
+        // WHEN
+        mockOfflineModeInteractor.mockIsInOfflineMode.accept(true)
+
+        // THEN
+        XCTAssertTrue(testee.isFavoriteStarDisabled)
+    }
+
+    func testCourseEnabledStatesWhenCourseIsAvailableInOffline() {
+        // GIVEN
+        sessionDefaults.offlineSyncSelections = ["courses/1"]
+        let testee = AllCoursesCellOfflineStateViewModel(item: .course(.make(courseId: "1")),
+                                                         offlineModeInteractor: mockOfflineModeInteractor,
+                                                         sessionDefaults: sessionDefaults)
+
+        // WHEN
+        mockOfflineModeInteractor.mockIsInOfflineMode.accept(false)
+
+        // THEN
+        XCTAssertTrue(testee.isItemEnabled)
+
+        // WHEN
+        mockOfflineModeInteractor.mockIsInOfflineMode.accept(true)
+
+        // THEN
+        XCTAssertTrue(testee.isItemEnabled)
+    }
+
+    func testGroupEnabledStatesWhenOffline() {
+        // GIVEN
+        let testee = AllCoursesCellOfflineStateViewModel(item: .group(.make(id: "1")),
+                                                         offlineModeInteractor: mockOfflineModeInteractor,
+                                                         sessionDefaults: sessionDefaults)
+
+        // WHEN
+        mockOfflineModeInteractor.mockIsInOfflineMode.accept(false)
+
+        // THEN
+        XCTAssertTrue(testee.isItemEnabled)
+
+        // WHEN
+        mockOfflineModeInteractor.mockIsInOfflineMode.accept(true)
+
+        // THEN
+        XCTAssertFalse(testee.isItemEnabled)
+    }
+
+    func testCourseEnabledStatesWhenCourseNotAvailableInOffline() {
+        // GIVEN
+        sessionDefaults.offlineSyncSelections = []
+        let testee = AllCoursesCellOfflineStateViewModel(item: .course(.make(courseId: "1")),
+                                                         offlineModeInteractor: mockOfflineModeInteractor,
+                                                         sessionDefaults: sessionDefaults)
+
+        // WHEN
+        mockOfflineModeInteractor.mockIsInOfflineMode.accept(false)
+
+        // THEN
+        XCTAssertTrue(testee.isItemEnabled)
+
+        // WHEN
+        mockOfflineModeInteractor.mockIsInOfflineMode.accept(true)
+
+        // THEN
+        XCTAssertFalse(testee.isItemEnabled)
+    }
+}

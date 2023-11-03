@@ -16,36 +16,49 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 @testable import Core
 import XCTest
-import Combine
 
-class CourseListViewModelTests: CoreTestCase {
-    var mockInteractor: CourseListInteractorMock!
+class AllCoursesViewModelTests: CoreTestCase {
+    var mockInteractor: AllCoursesInteractorMock!
     var testee: AllCoursesViewModel!
 
     override func setUp() {
         super.setUp()
-        mockInteractor = CourseListInteractorMock()
+        mockInteractor = AllCoursesInteractorMock()
         testee = AllCoursesViewModel(mockInteractor)
     }
 
-    func testReadsInteractorState() {
-        mockInteractor.state.send(.error)
+    func testInitialLoadingState() {
+        XCTAssertEqual(testee.state, .loading)
+    }
 
+    func testEmptyState() {
+        mockInteractor.sections.send(AllCoursesSections())
+        XCTAssertEqual(testee.state, .empty)
+    }
+
+    func testErrorState() {
+        mockInteractor.sections.send(completion: .failure(NSError.instructureError("failed")))
         XCTAssertEqual(testee.state, .error)
     }
 
-    func testReadsInteractorData() {
-        let data = AllCoursesSections(future: [
-            CDAllCoursesCourseItem.save(.make(name: "future"), enrollmentState: .invited_or_pending, in: databaseClient),
-        ])
+    func testDataState() {
+        let data = AllCoursesSections(
+            courses: .init(future: [.make(courseId: "future", enrollmentState: "future")]),
+            groups: [.make(id: "1")]
+        )
         mockInteractor.sections.send(data)
-
-        XCTAssertEqual(testee.sections.current, [])
-        XCTAssertEqual(testee.sections.past, [])
-        XCTAssertEqual(testee.sections.future.map { $0.name }, ["future"])
-
+        let state = testee.state
+        if case let .data(allCoursesSections) = state {
+            XCTAssertEqual(allCoursesSections.courses.current, [])
+            XCTAssertEqual(allCoursesSections.courses.past, [])
+            XCTAssertEqual(allCoursesSections.courses.future.map { $0.courseId }, ["future"])
+            XCTAssertEqual(allCoursesSections.groups.map { $0.id }, ["1"])
+        } else {
+            XCTFail("Expected data state")
+        }
     }
 
     func testForwardsRefreshEventToInteractor() {
@@ -64,28 +77,26 @@ class CourseListViewModelTests: CoreTestCase {
     }
 }
 
-class CourseListInteractorMock: AllCoursesInteractor {
-    // MARK: - Outputs
-    var state = CurrentValueSubject<StoreState, Never>(.loading)
-    var sections = CurrentValueSubject<AllCoursesSections, Never>(.init())
-
+class AllCoursesInteractorMock: AllCoursesInteractor {
     private(set) var refreshCalled = false
     private(set) var loadAsyncCalled = false
     private(set) var filter = ""
 
-    // MARK: - Inputs
-    func refresh() -> Future<Void, Never> {
-        refreshCalled = true
-        return Future { $0(.success(())) }
-    }
+    var sections = PassthroughSubject<Core.AllCoursesSections, Error>()
 
-    func setFilter(_ filter: String) -> Future<Void, Never> {
-        self.filter = filter
-        return Future { $0(.success(())) }
-    }
+    // MARK: - Inputs
 
     func loadAsync() {
         loadAsyncCalled = true
-        state.send(.data)
+    }
+
+    func refresh() -> AnyPublisher<Void, Never> {
+        refreshCalled = true
+        return Just(()).eraseToAnyPublisher()
+    }
+
+    func setFilter(_ filter: String) -> AnyPublisher<Void, Never> {
+        self.filter = filter
+        return Just(()).eraseToAnyPublisher()
     }
 }

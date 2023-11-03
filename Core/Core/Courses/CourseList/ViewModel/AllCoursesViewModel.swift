@@ -20,7 +20,7 @@ import Combine
 import SwiftUI
 
 public class AllCoursesViewModel: ObservableObject {
-    public enum ViewState {
+    public enum ViewState: Equatable {
         case loading
         case error
         case data(AllCoursesSections)
@@ -59,7 +59,6 @@ public class AllCoursesViewModel: ObservableObject {
         interactor
             .refresh()
             .sink { _ in
-
                 completion()
             }
             .store(in: &subscriptions)

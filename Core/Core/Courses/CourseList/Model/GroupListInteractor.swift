@@ -56,6 +56,7 @@ public class GroupListInteractorLive: GroupListInteractor {
     public func getGroups() -> AnyPublisher<[AllCoursesGroupItem], Error> {
         groupListStore
             .observeEntitiesWithError()
+            .filter(with: searchQuery)
             .map { $0.map { AllCoursesGroupItem(from: $0 )}}
             .eraseToAnyPublisher()
     }
