@@ -43,7 +43,7 @@ public struct ComposeMessageView: View {
                 .background(Color.backgroundLightest)
                 .navigationBarItems(leading: cancelButton)
             }
-            .onAppear{
+            .onAppear {
                 hideNavigationBarSeparator()
             }
         }

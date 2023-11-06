@@ -67,7 +67,7 @@ class MessageDetailsViewModel: ObservableObject {
 
         sheet.addAction(
             image: .archiveLine,
-            title: NSLocalizedString("Archive",  comment: ""),
+            title: NSLocalizedString("Archive", comment: ""),
             accessibilityIdentifier: "MessageDetails.archive"
         ) {}
 

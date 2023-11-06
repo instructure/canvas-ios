@@ -177,7 +177,7 @@ class ComposeMessageViewModel: ObservableObject {
             }
             .receive(on: RunLoop.main)
             .sink(receiveCompletion: { completion in
-                if case .failure(let error) = completion {
+                if case .failure = completion {
                     Logger.shared.error("ComposeMessageView message failure")
                     let title = NSLocalizedString("Failure", comment: "")
                     let message = NSLocalizedString("Please try again!", comment: "")
