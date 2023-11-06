@@ -90,6 +90,7 @@ public struct AllCoursesView: View, ScreenViewTrackable {
                     Spacer()
                 } else {
                     courseAndGroupList(sections: sections).id(0)
+                    Spacer()
                 }
             }
             .frame(maxWidth: .infinity)
@@ -151,7 +152,6 @@ public struct AllCoursesView: View, ScreenViewTrackable {
         }
 
         if !sections.groups.isEmpty {
-            Spacer()
             Divider()
             Spacer()
             Text("Groups", bundle: .core)
