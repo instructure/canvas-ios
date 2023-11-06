@@ -398,6 +398,9 @@
 "Available From:" = "Tiltækt frá:";
 
 /* No comment provided by engineer. */
+"Available offline" = "Fáanlegt án nettengingar";
+
+/* No comment provided by engineer. */
 "Available until" = "Tiltækt til";
 
 /* No comment provided by engineer. */
@@ -717,6 +720,9 @@
 
 /* No comment provided by engineer. */
 "Cyan" = "Blágrænn";
+
+/* No comment provided by engineer. */
+"d_courses_syncing" = "d_courses_syncing";
 
 /* No comment provided by engineer. */
 "d_items" = "d_items";
@@ -1215,6 +1221,9 @@
 
 /* No comment provided by engineer. */
 "Groups" = "Hópar";
+
+/* No comment provided by engineer. */
+"Hang tight, we're getting things ready for you." = "Haltu fast, við erum að gera hlutina tilbúna fyrir þig.";
 
 /* No comment provided by engineer. */
 "Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Láttu foreldra þína skanna þennan QR-kóða úr Canvas foreldra appinu til að para við þig.";
@@ -1796,7 +1805,13 @@
 "Offline Content Sync Failed" = "Samstilling efnis án nettengingar mistókst";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Success" = "Samstilling efnis án nettengingar tókst";
+
+/* No comment provided by engineer. */
 "Offline mode" = "Utan nets hamur";
+
+/* No comment provided by engineer. */
+"Offline sync was interrupted by the operating system" = "Samstilling án nettengingar var rofin af stýrikerfinu";
 
 /* No comment provided by engineer. */
 "offline_sync_finished" = "offline_sync_finished";
@@ -1818,6 +1833,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "Ekki tókst að hlaða upp einni eða fleiri skrám. Athugaðu nettenginguna þína og reyndu aftur að skila.";
+
+/* No comment provided by engineer. */
+"One or more items failed to sync." = "Ekki tókst að samstilla eitt eða fleiri atriði.";
 
 /* No comment provided by engineer. */
 "One Question at a Time:" = "Ein spurning í einu:";
@@ -2667,6 +2685,9 @@
 
 /* No comment provided by engineer. */
 "This will remove the due date and all of the associated assignees." = "Þetta fjarlægir skiladag og alla tengda viðtakendur.";
+
+/* No comment provided by engineer. */
+"This will sync ~($0.humanReadableFileSize) content. It may result in additional charges from your data provider if you are not connected to a Wi-Fi network." = "Þetta mun samstilla ~ ($0,humanReadableFileSize) innihald. Það getur leitt til viðbótargjalda frá gagnaveitunni þinni ef þú ert ekki tengdur við Wi-Fi net.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Liðinn tími";

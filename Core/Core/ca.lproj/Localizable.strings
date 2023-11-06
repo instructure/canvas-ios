@@ -398,6 +398,9 @@
 "Available From:" = "Disponible de:";
 
 /* No comment provided by engineer. */
+"Available offline" = "Està disponible sense connexió";
+
+/* No comment provided by engineer. */
 "Available until" = "Disponible fins al";
 
 /* No comment provided by engineer. */
@@ -717,6 +720,9 @@
 
 /* No comment provided by engineer. */
 "Cyan" = "Cian";
+
+/* No comment provided by engineer. */
+"d_courses_syncing" = "d_courses_syncing";
 
 /* No comment provided by engineer. */
 "d_items" = "d_items";
@@ -1215,6 +1221,9 @@
 
 /* No comment provided by engineer. */
 "Groups" = "Grups";
+
+/* No comment provided by engineer. */
+"Hang tight, we're getting things ready for you." = "Un moment, us ho estem preparant.";
 
 /* No comment provided by engineer. */
 "Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Feu que el vostre progenitor escanegi aquest codi QR de l'aplicació Canvas Parent per emparellar-vos-hi.";
@@ -1796,7 +1805,13 @@
 "Offline Content Sync Failed" = "No s’ha pogut sincronitzar el contingut sense connexió";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Success" = "S’ha sincronitzat correctament el contingut sense connexió";
+
+/* No comment provided by engineer. */
 "Offline mode" = "Mode fora de línia";
+
+/* No comment provided by engineer. */
+"Offline sync was interrupted by the operating system" = "El sistema operatiu ha interromput la sincronització sense connexió";
 
 /* No comment provided by engineer. */
 "offline_sync_finished" = "offline_sync_finished";
@@ -1818,6 +1833,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "No s'han pogut penjar un o més fitxers. Reviseu la connexió a Internet i torneu a provar de fer l'entrega.";
+
+/* No comment provided by engineer. */
+"One or more items failed to sync." = "No s'han pogut sincronitzar un o més elements.";
 
 /* No comment provided by engineer. */
 "One Question at a Time:" = "Una pregunta cada vegada:";
@@ -2667,6 +2685,9 @@
 
 /* No comment provided by engineer. */
 "This will remove the due date and all of the associated assignees." = "Amb aquesta acció s'eliminaran la data de lliurament i tots els beneficiaris associats.";
+
+/* No comment provided by engineer. */
+"This will sync ~($0.humanReadableFileSize) content. It may result in additional charges from your data provider if you are not connected to a Wi-Fi network." = "Amb aquesta operació se sincronitzarà el contingut de ~($0.humanReadableFileSize). Si no us heu connectat a cap xarxa Wi-Fi, és possible que el proveïdor de dades us cobri algun import addicional.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Temps transcorregut";

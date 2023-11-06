@@ -398,6 +398,9 @@
 "Available From:" = "可用起始日期：";
 
 /* No comment provided by engineer. */
+"Available offline" = "可離線使用";
+
+/* No comment provided by engineer. */
 "Available until" = "可用截止時間：";
 
 /* No comment provided by engineer. */
@@ -717,6 +720,9 @@
 
 /* No comment provided by engineer. */
 "Cyan" = "青色";
+
+/* No comment provided by engineer. */
+"d_courses_syncing" = "d_courses_syncing";
 
 /* No comment provided by engineer. */
 "d_items" = "d_items";
@@ -1215,6 +1221,9 @@
 
 /* No comment provided by engineer. */
 "Groups" = "群組";
+
+/* No comment provided by engineer. */
+"Hang tight, we're getting things ready for you." = "請稍等，我們已經為您準備好了。";
 
 /* No comment provided by engineer. */
 "Have your parent scan this QR code from the Canvas Parent app to pair with you." = "讓您的父母在 Canvas Parent 應用程式掃描此二維碼與您配對。";
@@ -1796,7 +1805,13 @@
 "Offline Content Sync Failed" = "離線內容同步失敗";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Success" = "離線內容同步成功";
+
+/* No comment provided by engineer. */
 "Offline mode" = "離線模式";
+
+/* No comment provided by engineer. */
+"Offline sync was interrupted by the operating system" = "離線同步遭到作業系統中斷";
 
 /* No comment provided by engineer. */
 "offline_sync_finished" = "offline_sync_finished";
@@ -1818,6 +1833,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "上傳一個或多個檔案失敗。檢查您的網際網路連線並重試提交。";
+
+/* No comment provided by engineer. */
+"One or more items failed to sync." = "無法同步一個或多個項目。";
 
 /* No comment provided by engineer. */
 "One Question at a Time:" = "每次一個問題：";
@@ -2667,6 +2685,9 @@
 
 /* No comment provided by engineer. */
 "This will remove the due date and all of the associated assignees." = "這會移除截止日期和所有相關獲配人。";
+
+/* No comment provided by engineer. */
+"This will sync ~($0.humanReadableFileSize) content. It may result in additional charges from your data provider if you are not connected to a Wi-Fi network." = "這將同步 ~($0.humanReadableFileSize) 內容。如果您未連線到 Wi-Fi 網路，則可能會導致您的資料提供者收取額外費用。";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "已用時間";
