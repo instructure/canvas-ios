@@ -163,6 +163,7 @@ public struct AllCoursesView: View, ScreenViewTrackable {
                 .accessibility(addTraits: .isHeader)
                 .padding(.leading, 16)
             Spacer()
+            Divider()
             groupSection(sections.groups)
             Divider()
         }
