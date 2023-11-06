@@ -124,12 +124,12 @@ public struct AllCoursesView: View, ScreenViewTrackable {
     @ViewBuilder
     func courseAndGroupList(sections: AllCoursesSections) -> some View {
         if !sections.courses.isEmpty {
-            Spacer()
+            Spacer(minLength: 16)
             Text("Courses", bundle: .core)
                 .font(.heavy24).foregroundColor(.textDarkest)
                 .accessibility(addTraits: .isHeader)
                 .padding(.leading, 16)
-            Spacer()
+            Spacer(minLength: 16)
             Divider()
             Spacer()
             Text("Select courses for Dashboard or navigate to course details.", bundle: .core)
@@ -153,13 +153,13 @@ public struct AllCoursesView: View, ScreenViewTrackable {
 
         if !sections.groups.isEmpty {
             Divider()
-            Spacer()
+            Spacer(minLength: 16)
             Text("Groups", bundle: .core)
                 .font(.heavy24).foregroundColor(.textDarkest)
                 .accessibility(addTraits: .isHeader)
                 .padding(.leading, 16)
                 .padding(.trailing, 16)
-            Spacer()
+            Spacer(minLength: 16)
             Divider()
             Spacer()
             Text("Select groups for Dashboard or navigate to course details.", bundle: .core)
