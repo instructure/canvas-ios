@@ -48,8 +48,8 @@ public class AllCoursesInteractorLive: AllCoursesInteractor {
     // MARK: - Init
 
     public init(
-        courseListInteractor: CourseListInteractor = CourseListInteractorLive(),
-        groupListInteractor: GroupListInteractor = GroupListInteractorLive()
+        courseListInteractor: CourseListInteractor,
+        groupListInteractor: GroupListInteractor
     ) {
         self.courseListInteractor = courseListInteractor
         self.groupListInteractor = groupListInteractor

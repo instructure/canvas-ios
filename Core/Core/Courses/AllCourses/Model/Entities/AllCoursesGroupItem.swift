@@ -62,6 +62,8 @@ public struct AllCoursesGroupItem: Equatable {
     }
 }
 
+#if DEBUG
+
 public extension AllCoursesGroupItem {
     static func make(
         id: String = "1",
@@ -85,3 +87,5 @@ public extension AllCoursesGroupItem {
         )
     }
 }
+
+#endif

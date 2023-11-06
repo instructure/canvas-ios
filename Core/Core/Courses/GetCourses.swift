@@ -189,7 +189,7 @@ public class MarkFavoriteCourse: APIUseCase {
         }
 
         if let course: CDAllCoursesCourseItem = client.first(where: #keyPath(CDAllCoursesCourseItem.courseId),
-                                                     equals: item.context_id.value) {
+                                                             equals: item.context_id.value) {
             course.isFavorite = markAsFavorite
         }
 

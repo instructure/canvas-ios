@@ -68,6 +68,8 @@ public struct AllCoursesCourseItem: Equatable, Hashable {
     }
 }
 
+#if DEBUG
+
 public extension AllCoursesCourseItem {
     static func make(
         courseId: String = "1",
@@ -95,3 +97,5 @@ public extension AllCoursesCourseItem {
         )
     }
 }
+
+#endif

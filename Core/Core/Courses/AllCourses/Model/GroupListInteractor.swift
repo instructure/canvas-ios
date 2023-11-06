@@ -32,7 +32,7 @@ public protocol GroupListInteractor {
 
 public class GroupListInteractorLive: GroupListInteractor {
     // MARK: - Dependencies
-
+    private var shouldListGroups: Bool
     private var app: AppEnvironment.App?
 
     // MARK: - Private properties
@@ -43,8 +43,8 @@ public class GroupListInteractorLive: GroupListInteractor {
 
     // MARK: - Init
 
-    public init(env: AppEnvironment = .shared) {
-        app = env.app
+    public init(shouldListGroups: Bool) {
+        self.shouldListGroups = shouldListGroups
 
         groupListStore = ReactiveStore(
             useCase: GetAllCoursesGroupListUseCase()
@@ -54,7 +54,7 @@ public class GroupListInteractorLive: GroupListInteractor {
     // MARK: - Outputs
 
     public func getGroups() -> AnyPublisher<[AllCoursesGroupItem], Error> {
-        guard let app, app == .student else {
+        guard shouldListGroups else {
             return Just([])
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
@@ -69,7 +69,7 @@ public class GroupListInteractorLive: GroupListInteractor {
     // MARK: - Inputs
 
     public func loadAsync() {
-        guard let app, app == .student else {
+        guard shouldListGroups else {
             return
         }
         groupListStore
@@ -79,14 +79,14 @@ public class GroupListInteractorLive: GroupListInteractor {
     }
 
     public func refresh() -> AnyPublisher<Void, Never> {
-        guard let app, app == .student else {
+        guard shouldListGroups else {
             return Just(()).eraseToAnyPublisher()
         }
         return groupListStore.forceFetchEntities()
     }
 
     public func setFilter(_ filter: String) -> AnyPublisher<Void, Never> {
-        guard let app, app == .student else {
+        guard shouldListGroups else {
             return Just(()).eraseToAnyPublisher()
         }
         searchQuery.send(filter)

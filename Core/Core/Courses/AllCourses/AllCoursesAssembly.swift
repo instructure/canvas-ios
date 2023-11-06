@@ -20,10 +20,10 @@ import Foundation
 
 public enum AllCoursesAssembly {
 
-    public static func makeInteractor() -> AllCoursesInteractor {
+    public static func makeInteractor(env: AppEnvironment) -> AllCoursesInteractor {
         AllCoursesInteractorLive(
             courseListInteractor: makeCourseListInteractor(),
-            groupListInteractor: makeGroupListInteractor()
+            groupListInteractor: makeGroupListInteractor(env: env)
         )
     }
 
@@ -31,12 +31,19 @@ public enum AllCoursesAssembly {
         CourseListInteractorLive()
     }
 
-    public static func makeGroupListInteractor() -> GroupListInteractor {
-        GroupListInteractorLive()
+    public static func makeGroupListInteractor(env: AppEnvironment) -> GroupListInteractor {
+        let shouldListGroups = {
+            if let app = env.app {
+                return app == .student
+            } else {
+                return false
+            }
+        }()
+        return GroupListInteractorLive(shouldListGroups: shouldListGroups)
     }
 
-    public static func makeCourseListViewController() -> UIViewController {
-        let interactor = makeInteractor()
+    public static func makeCourseListViewController(env: AppEnvironment) -> UIViewController {
+        let interactor = makeInteractor(env: env)
         interactor.loadAsync()
         let viewModel = AllCoursesViewModel(interactor)
         return CoreHostingController(AllCoursesView(viewModel: viewModel))

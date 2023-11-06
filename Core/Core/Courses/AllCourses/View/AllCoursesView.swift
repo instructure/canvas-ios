@@ -49,7 +49,6 @@ public struct AllCoursesView: View, ScreenViewTrackable {
                 viewModel.refresh(completion: endRefreshing)
             }
         }
-        .avoidKeyboardArea()
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
         .navigationBarStyle(.global)
         .navigationTitle(NSLocalizedString("All Courses", comment: ""), subtitle: nil)
@@ -90,7 +89,6 @@ public struct AllCoursesView: View, ScreenViewTrackable {
                     Spacer()
                 } else {
                     courseAndGroupList(sections: sections).id(0)
-                    Spacer()
                 }
             }
             .frame(maxWidth: .infinity)
@@ -162,7 +160,7 @@ public struct AllCoursesView: View, ScreenViewTrackable {
             Spacer(minLength: 16)
             Divider()
             Spacer()
-            Text("Select groups for Dashboard or navigate to course details.", bundle: .core)
+            Text("Select groups for Dashboard or navigate to group details.", bundle: .core)
                 .font(.regular16).foregroundColor(.textDarkest)
                 .accessibility(addTraits: .isHeader)
                 .padding(.leading, 16)
