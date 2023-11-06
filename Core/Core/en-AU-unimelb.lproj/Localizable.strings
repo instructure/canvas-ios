@@ -398,6 +398,9 @@
 "Available From:" = "Available From:";
 
 /* No comment provided by engineer. */
+"Available offline" = "Available offline";
+
+/* No comment provided by engineer. */
 "Available until" = "Available until";
 
 /* No comment provided by engineer. */
@@ -717,6 +720,9 @@
 
 /* No comment provided by engineer. */
 "Cyan" = "Cyan";
+
+/* No comment provided by engineer. */
+"d_courses_syncing" = "d_courses_syncing";
 
 /* No comment provided by engineer. */
 "d_items" = "d_items";
@@ -1215,6 +1221,9 @@
 
 /* No comment provided by engineer. */
 "Groups" = "Groups";
+
+/* No comment provided by engineer. */
+"Hang tight, we're getting things ready for you." = "Hang tight, we're getting things ready for you.";
 
 /* No comment provided by engineer. */
 "Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Have your parent scan this QR code from the Canvas Parent app to pair with you.";
@@ -1796,7 +1805,13 @@
 "Offline Content Sync Failed" = "Offline Content Sync Failed";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Success" = "Offline Content Sync Success";
+
+/* No comment provided by engineer. */
 "Offline mode" = "Offline mode";
+
+/* No comment provided by engineer. */
+"Offline sync was interrupted by the operating system" = "Offline sync was interrupted by the operating system";
 
 /* No comment provided by engineer. */
 "offline_sync_finished" = "offline_sync_finished";
@@ -1818,6 +1833,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "One or more files failed to upload. Check your internet connection and retry to submit.";
+
+/* No comment provided by engineer. */
+"One or more items failed to sync." = "One or more items failed to sync.";
 
 /* No comment provided by engineer. */
 "One Question at a Time:" = "One Question at a Time:";
@@ -2667,6 +2685,9 @@
 
 /* No comment provided by engineer. */
 "This will remove the due date and all of the associated assignees." = "This will remove the due date and all of the associated assignees.";
+
+/* No comment provided by engineer. */
+"This will sync ~($0.humanReadableFileSize) content. It may result in additional charges from your data provider if you are not connected to a Wi-Fi network." = "This will sync ~($0.humanReadableFileSize) content. It may result in additional charges from your data provider if you are not connected to a Wi-Fi network.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Time elapsed";
