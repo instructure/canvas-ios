@@ -60,6 +60,7 @@ struct AllCoursesCellView: View {
             } label: {
                 HStack(spacing: 0) {
                     itemDetailsView
+                    Spacer()
                     offlineButton
                     disclosureView
                 }
