@@ -131,11 +131,11 @@ class CourseSyncSelectorViewModel: ObservableObject {
         interactor
             .observeSelectedSize()
             .map {
-                NSLocalizedString(
-                    "This will sync ~\($0.humanReadableFileSize) content. It may result in additional charges from your data provider if you are not connected to a Wi-Fi network.",
-                    bundle: .core,
+                let template = NSLocalizedString(
+                    "This will sync ~%@ content. It may result in additional charges from your data provider if you are not connected to a Wi-Fi network.",
                     comment: ""
                 )
+                return String.localizedStringWithFormat(template, $0.humanReadableFileSize)
             }
             .assign(to: \.message, on: confirmAlert, ownership: .weak)
             .store(in: &subscriptions)
