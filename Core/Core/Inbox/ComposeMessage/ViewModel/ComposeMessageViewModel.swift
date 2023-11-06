@@ -151,8 +151,8 @@ class ComposeMessageViewModel: ObservableObject {
         }
         alert.addAction(action)
 
-        if let top = AppEnvironment.shared.topViewController {
-            AppEnvironment.shared.router.show(alert, from: top, options: .modal())
+        if let top = AppEnvironment.shared.window?.rootViewController {
+            router.show(alert, from: top, options: .modal())
         }
     }
 
@@ -182,7 +182,7 @@ class ComposeMessageViewModel: ObservableObject {
             .sink(receiveCompletion: { completion in
                 if case .failure = completion {
                     Logger.shared.error("ComposeMessageView message failure")
-                    let title = NSLocalizedString("Failure", comment: "")
+                    let title = NSLocalizedString("Message could not be sent", comment: "")
                     let message = NSLocalizedString("Please try again!", comment: "")
                     self.showResultDialog(title: title, message: message)
                     self.isSendingMessage = false
