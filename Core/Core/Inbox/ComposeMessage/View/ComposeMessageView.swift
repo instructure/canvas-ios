@@ -23,6 +23,7 @@ public struct ComposeMessageView: View {
     @Environment(\.viewController) private var controller
 
     @FocusState private var subjectTextFieldFocus: Bool
+    @FocusState private var messageTextFieldFocus: Bool
 
     init(model: ComposeMessageViewModel) {
         self.model = model
@@ -157,6 +158,9 @@ public struct ComposeMessageView: View {
             Text("To", bundle: .core)
                 .font(.regular16, lineHeight: .condensed)
                 .foregroundColor(.textDark)
+                .onTapGesture {
+                    model.addRecipientButtonDidTap(viewController: controller)
+                }
                 .accessibilitySortPriority(2)
             if !model.recipients.isEmpty {
                 recipientsView
@@ -213,6 +217,9 @@ public struct ComposeMessageView: View {
                 Text("Message", bundle: .core)
                     .font(.regular16, lineHeight: .condensed)
                     .foregroundColor(.textDark)
+                    .onTapGesture {
+                        self.messageTextFieldFocus = true
+                    }
                     .accessibilityHidden(true)
                 Spacer()
                 Button {
@@ -232,6 +239,7 @@ public struct ComposeMessageView: View {
             TextEditor(text: $model.bodyText)
                 .iOS16HideListScrollContentBackground()
                 .font(.regular16, lineHeight: .condensed)
+                .focused($messageTextFieldFocus)
                 .foregroundColor(.textDarkest)
                 .padding(.horizontal, 12)
                 .frame(minHeight: 60)

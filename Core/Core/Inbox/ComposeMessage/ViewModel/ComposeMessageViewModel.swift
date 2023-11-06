@@ -18,6 +18,7 @@
 
 import Combine
 import CombineExt
+import CombineSchedulers
 
 class ComposeMessageViewModel: ObservableObject {
     // MARK: - Outputs
@@ -51,10 +52,12 @@ class ComposeMessageViewModel: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: ComposeMessageInteractor
     private let router: Router
+    private let scheduler: AnySchedulerOf<DispatchQueue>
 
-    public init(router: Router, interactor: ComposeMessageInteractor) {
+    public init(router: Router, interactor: ComposeMessageInteractor, scheduler: AnySchedulerOf<DispatchQueue> = .main) {
         self.interactor = interactor
         self.router = router
+        self.scheduler = scheduler
 
         setupOutputBindings()
         setupInputBindings(router: router)
@@ -175,7 +178,7 @@ class ComposeMessageViewModel: ObservableObject {
                         viewController
                     }
             }
-            .receive(on: RunLoop.main)
+            .receive(on: scheduler)
             .sink(receiveCompletion: { completion in
                 if case .failure = completion {
                     Logger.shared.error("ComposeMessageView message failure")
