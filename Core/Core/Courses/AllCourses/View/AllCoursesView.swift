@@ -67,7 +67,7 @@ public struct AllCoursesView: View, ScreenViewTrackable {
     @ViewBuilder
     func sectionsView(sections: AllCoursesSections) -> some View {
         ScrollViewReader { scrollView in
-            LazyVStack(alignment: .leading, spacing: 0, pinnedViews: .sectionHeaders) {
+            LazyVStack(alignment: sections.isEmpty ? .center : .leading, spacing: 0, pinnedViews: .sectionHeaders) {
                 let binding = Binding {
                     viewModel.filter.value
                 } set: { newValue, _ in
@@ -77,19 +77,22 @@ public struct AllCoursesView: View, ScreenViewTrackable {
                 SearchBar(
                     text: binding,
                     placeholder: NSLocalizedString("Search", comment: ""),
-                    onCancel: { withAnimation { scrollView.scrollTo(0, anchor: .bottom) } }
+                    onCancel: { withAnimation { scrollView.scrollTo(0, anchor: .top) } }
                 )
 
                 if sections.isEmpty {
+                    Spacer()
                     EmptyPanda(
                         .NoResults,
                         title: Text("No Results", bundle: .core),
                         message: Text("We couldn't find any courses like that.", bundle: .core)
                     )
+                    Spacer()
                 } else {
                     courseAndGroupList(sections: sections).id(0)
                 }
             }
+            .frame(maxWidth: .infinity)
             .onFirstAppear { scrollView.scrollTo(0, anchor: .top) }
         }
     }

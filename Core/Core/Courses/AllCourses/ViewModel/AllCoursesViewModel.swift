@@ -45,7 +45,13 @@ public class AllCoursesViewModel: ObservableObject {
 
         interactor
             .sections
-            .map { $0.isEmpty ? ViewState.empty : ViewState.data($0) }
+            .map { [filter] in
+                if filter.value.isEmpty {
+                    return $0.isEmpty ? ViewState.empty : ViewState.data($0)
+                } else {
+                    return ViewState.data($0)
+                }
+            }
             .replaceError(with: .error)
             .assign(to: &$state)
 
