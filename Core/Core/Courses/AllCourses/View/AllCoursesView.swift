@@ -90,7 +90,7 @@ public struct AllCoursesView: View, ScreenViewTrackable {
                     courseAndGroupList(sections: sections).id(0)
                 }
             }
-            .onAppear { scrollView.scrollTo(0, anchor: .top) }
+            .onFirstAppear { scrollView.scrollTo(0, anchor: .top) }
         }
     }
 
