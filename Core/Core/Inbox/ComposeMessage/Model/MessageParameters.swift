@@ -23,10 +23,10 @@ public struct MessageParameters {
     public let subject: String
     public let body: String
     public let recipientIDs: [String]
-    public let attachmentIDs: [String]?
+    public let attachmentIDs: [String]
     public let context: Context
 
-    public init(subject: String, body: String, recipientIDs: [String], attachmentIDs: [String]? = nil, context: Context) {
+    public init(subject: String, body: String, recipientIDs: [String], attachmentIDs: [String] = [], context: Context) {
         self.subject = subject
         self.body = body
         self.recipientIDs = recipientIDs

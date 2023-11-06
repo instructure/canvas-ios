@@ -26,12 +26,10 @@ public class AddressbookInteractorLive: AddressbookInteractor {
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
     private let env: AppEnvironment
-    private let courseID: String
     private let recipientStore: Store<GetSearchRecipients>
 
     public init(env: AppEnvironment, courseID: String) {
         self.env = env
-        self.courseID = courseID
         self.recipientStore = env.subscribe(GetSearchRecipients(context: .course(courseID)))
 
         recipientStore

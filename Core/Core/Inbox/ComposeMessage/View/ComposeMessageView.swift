@@ -23,7 +23,6 @@ public struct ComposeMessageView: View {
     @Environment(\.viewController) private var controller
 
     @FocusState private var subjectTextFieldFocus: Bool
-    @State private var scrollViewContentHeight: CGFloat = .infinity
 
     init(model: ComposeMessageViewModel) {
         self.model = model
@@ -44,9 +43,9 @@ public struct ComposeMessageView: View {
                 .background(Color.backgroundLightest)
                 .navigationBarItems(leading: cancelButton)
             }
-            .onAppear(perform: {
+            .onAppear{
                 hideNavigationBarSeparator()
-            })
+            }
         }
     }
 
@@ -81,7 +80,6 @@ public struct ComposeMessageView: View {
             model.sendButtonDidTap.accept(controller)
         } label: {
             sendButtonImage
-                .frame(width: 35, height: 35)
         }
         .accessibility(label: Text("Send", bundle: .core))
         .disabled(!model.sendButtonActive)
@@ -90,10 +88,10 @@ public struct ComposeMessageView: View {
     }
 
     private var sendButtonImage: some View {
-        Image.send
+        Image.circleArrowUpSolid
             .resizable()
-            .grayscale(model.sendButtonActive ? 0 : 0.8)
-            .opacity(model.sendButtonActive ? 1 : 0.5)
+            .frame(width: 35, height: 35)
+            .foregroundStyle(model.sendButtonActive ? .accentColor : Color.backgroundMedium)
     }
 
     private var addRecipientButton: some View {
@@ -174,7 +172,9 @@ public struct ComposeMessageView: View {
 
     private var recipientsView: some View {
         WrappingHStack(models: model.recipients) { recipient in
-            RecipientPillView(recipient: recipient, removeDidTap: { recipient in model.removeRecipientButtonDidTap(recipient: recipient) })
+            RecipientPillView(recipient: recipient, removeDidTap: { recipient in
+                model.removeRecipientButtonDidTap(recipient: recipient)
+            })
         }
     }
 

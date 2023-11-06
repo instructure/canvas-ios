@@ -36,7 +36,6 @@ class ComposeMessageViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, mockInteractor.state.value)
         XCTAssertEqual(testee.courses, mockInteractor.courses.value)
     }
-
 }
 
 private class ComposeMessageInteractorMock: ComposeMessageInteractor {

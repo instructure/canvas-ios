@@ -26,12 +26,9 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
-    private let env: AppEnvironment
     private let courseListStore: Store<GetInboxCourseList>
-    private let selectedContext = CurrentValueRelay<Context?>(nil)
 
     public init(env: AppEnvironment) {
-        self.env = env
         self.courseListStore = env.subscribe(GetInboxCourseList())
 
         courseListStore

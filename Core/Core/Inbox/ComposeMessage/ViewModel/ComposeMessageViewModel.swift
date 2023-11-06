@@ -26,7 +26,7 @@ class ComposeMessageViewModel: ObservableObject {
     @Published public private(set) var recipients: [SearchRecipient] = []
     @Published public private(set) var isSendingMessage: Bool = false
 
-    public let title = NSLocalizedString("New Message", bundle: .core, comment: "")
+    public let title = NSLocalizedString("New Message", comment: "")
     public var sendButtonActive: Bool {
         !bodyText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
         !subject.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
@@ -114,7 +114,7 @@ class ComposeMessageViewModel: ObservableObject {
 
     private func setupOutputBindings() {
         interactor.state
-                .assign(to: &$state)
+            .assign(to: &$state)
         interactor.courses
             .assign(to: &$courses)
         selectedRecipient
@@ -178,8 +178,9 @@ class ComposeMessageViewModel: ObservableObject {
             .receive(on: RunLoop.main)
             .sink(receiveCompletion: { completion in
                 if case .failure(let error) = completion {
+                    Logger.shared.error("ComposeMessageView message failure")
                     let title = NSLocalizedString("Failure", comment: "")
-                    let message = NSLocalizedString("The email cannot be sent: \(error.localizedDescription)!", comment: "")
+                    let message = NSLocalizedString("Please try again!", comment: "")
                     self.showResultDialog(title: title, message: message)
                     self.isSendingMessage = false
                 }

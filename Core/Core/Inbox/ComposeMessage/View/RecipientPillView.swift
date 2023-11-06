@@ -54,14 +54,14 @@ public struct RecipientPillView: View {
     }
 
     private var removeButton: some View {
-        Button(action: {
+        Button {
             removeDidTap(recipient)
-        }, label: {
+        } label: {
             Image.xLine
                 .frame(width: 9, height: 9)
                 .foregroundColor(.textDark)
                 .padding(.horizontal, 2)
-        })
+        }
     }
 }
 
@@ -72,7 +72,7 @@ struct RecipientPillView_Previews: PreviewProvider {
 
     static var previews: some View {
         RecipientPillView(recipient:
-                .make(name: "Student With Extremely Long FirstName and Surname To Check TextFields", in: context), removeDidTap: {_ in })
+                .make(name: "Student With Extremely Long FirstName and Surname To Check TextFields", in: context), removeDidTap: { _ in })
     }
 }
 
