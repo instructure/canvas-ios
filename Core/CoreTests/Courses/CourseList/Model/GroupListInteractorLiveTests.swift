@@ -35,7 +35,7 @@ class GroupListInteractorLiveTests: CoreTestCase {
             ]
         )
         environment.app = .student
-        testee = GroupListInteractorLive(shouldListGroups: false)
+        testee = GroupListInteractorLive(shouldListGroups: true)
     }
 
     override func tearDown() {

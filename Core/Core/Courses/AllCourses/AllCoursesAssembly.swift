@@ -58,19 +58,23 @@ public enum AllCoursesAssembly {
         )
     }
 
-#if DEBUG
+    #if DEBUG
     private static let environment = PreviewEnvironment()
     private static let viewContext = environment.database.viewContext
 
     static func makePreview() -> AllCoursesView {
         let currentAPICourse = APICourse.make(id: "1", term: .make(name: "Fall 2020"), is_favorite: true)
-        let pastAPICourse = APICourse.make(id: "3",
-                                           enrollments: [.make(id: "6",
-                                                               course_id: "3",
-                                                               enrollment_state: .completed,
-                                                               type: "TeacherEnrollment",
-                                                               user_id: "1",
-                                                               role: "TeacherEnrollment")])
+        let pastAPICourse = APICourse.make(
+            id: "3",
+            enrollments: [
+                .make(id: "6",
+                      course_id: "3",
+                      enrollment_state: .completed,
+                      type: "TeacherEnrollment",
+                      user_id: "1",
+                      role: "TeacherEnrollment"),
+            ]
+        )
         let futureAPICourse = APICourse.make(id: "4", name: nil, course_code: "course_code")
 
         let currentDBCourse = AllCoursesCourseItem(
