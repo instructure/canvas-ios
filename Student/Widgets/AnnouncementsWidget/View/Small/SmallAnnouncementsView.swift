@@ -34,7 +34,8 @@ struct SmallAnnouncementsView: View {
             Spacer(minLength: 0)
         }
         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .leading)
-        .padding(16)
+        .compatibleContentMargins()
+        .compatibleContainerBackground()
         .widgetURL(announcement.url)
     }
 
@@ -46,14 +47,12 @@ struct SmallAnnouncementsView: View {
 }
 
 #if DEBUG
+
 struct SmallAnnouncementViewPreviews: PreviewProvider {
     static var previews: some View {
-        ForEach(PreviewSimulator.allCases, id: \.self) { simulator in
-            AnnouncementsWidgetView(entry: .make())
-                .previewContext(WidgetPreviewContext(family: .systemSmall))
-                .previewDevice(simulator)
-                .previewDisplayName(simulator.rawValue)
-        }
+        AnnouncementsWidgetView(entry: .make())
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }
+
 #endif

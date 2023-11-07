@@ -398,6 +398,9 @@
 "Available From:" = "Khả Dụng Từ:";
 
 /* No comment provided by engineer. */
+"Available offline" = "Khả dụng ngoại tuyến";
+
+/* No comment provided by engineer. */
 "Available until" = "Khả dụng đến";
 
 /* No comment provided by engineer. */
@@ -717,6 +720,9 @@
 
 /* No comment provided by engineer. */
 "Cyan" = "Xanh Lá Mạ";
+
+/* No comment provided by engineer. */
+"d_courses_syncing" = "d_courses_syncing";
 
 /* No comment provided by engineer. */
 "d_items" = "d_items";
@@ -1215,6 +1221,9 @@
 
 /* No comment provided by engineer. */
 "Groups" = "Nhóm";
+
+/* No comment provided by engineer. */
+"Hang tight, we're getting things ready for you." = "Hãy chờ nhé, chúng tôi đang chuẩn bị mọi thứ cho bạn.";
 
 /* No comment provided by engineer. */
 "Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Hãy nhờ phụ huynh của bạn quét mã QR này từ ứng dụng Canvas Parent để ghép cặp với bạn.";
@@ -1796,7 +1805,13 @@
 "Offline Content Sync Failed" = "Đồng Bộ Nội Dung Ngoại Tuyến Không Thành Công";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Success" = "Đồng Bộ Nội Dung Ngoại Tuyến Thành Công";
+
+/* No comment provided by engineer. */
 "Offline mode" = "Chế độ ngoại tuyến";
+
+/* No comment provided by engineer. */
+"Offline sync was interrupted by the operating system" = "Đồng bộ ngoại tuyến bị gián đoạn do hệ điều hành";
 
 /* No comment provided by engineer. */
 "offline_sync_finished" = "offline_sync_finished";
@@ -1818,6 +1833,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "Tải lên một hoặc nhiều tập tin thất bại. Hãy kiểm tra kết nối internet của bạn rồi thử lại để nộp.";
+
+/* No comment provided by engineer. */
+"One or more items failed to sync." = "Một hoặc nhiều mục không đồng bộ thành công.";
 
 /* No comment provided by engineer. */
 "One Question at a Time:" = "Từng Câu Hỏi Một:";
@@ -2667,6 +2685,9 @@
 
 /* No comment provided by engineer. */
 "This will remove the due date and all of the associated assignees." = "Thao tác này sẽ xóa ngày đến hạn và toàn bộ người được giao bài tập liên quan";
+
+/* No comment provided by engineer. */
+"This will sync ~($0.humanReadableFileSize) content. It may result in additional charges from your data provider if you are not connected to a Wi-Fi network." = "Thao tác này sẽ đồng bộ ~($0,humanReadableFileSize) nội dung. Điều này có thể khiến bạn bị tính thêm phí từ nhà cung cấp dữ liệu của bạn nếu bạn không kết nối với mạng Wi-Fi.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Thời gian đã qua";

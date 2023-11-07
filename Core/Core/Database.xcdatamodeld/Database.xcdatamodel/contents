@@ -165,6 +165,21 @@
         <attribute name="stateRaw" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="tabID" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="CDWidgetAnnouncement" representedClassName="Core.CDWidgetAnnouncement" syncable="YES">
+        <attribute name="authorName" attributeType="String"/>
+        <attribute name="avatarRaw" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="courseColorHex" attributeType="String"/>
+        <attribute name="courseName" attributeType="String"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="url" attributeType="URI"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
     <entity name="CommonCourse" representedClassName="Core.CommonCourse" syncable="YES">
         <attribute name="courseID" attributeType="String"/>
         <attribute name="role" attributeType="String"/>

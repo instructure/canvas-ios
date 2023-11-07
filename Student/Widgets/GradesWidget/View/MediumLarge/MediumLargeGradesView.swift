@@ -55,7 +55,9 @@ struct MediumLargeGradesView: View {
 
                 Spacer()
             }.padding(.top, 4) // This is to vertically center the first header with the logo
-        }.padding()
+        }
+        .compatibleContainerBackground()
+        .compatibleContentMargins()
     }
 
     private let model: GradeModel
@@ -68,44 +70,14 @@ struct MediumLargeGradesView: View {
 }
 
 #if DEBUG
-private enum PreviewConfig {
-    struct Config: Hashable {
-        let lineCount: Int
-        let family: WidgetFamily
-        let device: PreviewSimulator
+
+struct MediumLargeGradesViewPreviews: PreviewProvider {
+    static var previews: some View {
+        MediumLargeGradesView(model: .make(), lineCount: 2)
+            .previewContext(WidgetPreviewContext(family: .systemMedium))
+        MediumLargeGradesView(model: .make(), lineCount: 5)
+            .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
-
-    static var previewConfigs: [Config] = {
-        var previewConfigs: [Config] = []
-        PreviewSimulator.allCases.forEach {
-            previewConfigs += [
-                Config(lineCount: 2, family: .systemMedium, device: $0),
-                Config(lineCount: 5, family: .systemLarge, device: $0),
-            ]
-        }
-        return previewConfigs
-    }()
-
-    static func preview(for model: GradeModel) -> some View {
-        ForEach(PreviewConfig.previewConfigs, id: \.self) { config in
-            MediumLargeGradesView(model: model, lineCount: config.lineCount)
-                .previewContext(WidgetPreviewContext(family: config.family))
-                .previewDevice(config.device)
-                .previewDisplayName(config.device.rawValue)
-        }
-    }
-}
-
-struct AssignmentAndCourseGrades: PreviewProvider {
-    static var previews: some View { PreviewConfig.preview(for: GradeModel.make()) }
-}
-
-struct CourseGrades: PreviewProvider {
-    static var previews: some View { PreviewConfig.preview(for: GradeModel.makeWithOneCourse()) }
-}
-
-struct AssignmentGrades: PreviewProvider {
-    static var previews: some View { PreviewConfig.preview(for: GradeModel.makeWithOneAssigmnent()) }
 }
 
 #endif

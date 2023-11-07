@@ -39,7 +39,9 @@ struct EmptyView: View {
                 .foregroundColor(.textDark)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-        }.padding()
+        }
+        .compatibleContentMargins()
+        .compatibleContainerBackground()
     }
 
     private let title: Text
@@ -54,18 +56,14 @@ struct EmptyView: View {
 #if DEBUG
 struct EmptyView_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyView(title: Text("Announcements"), message: Text("Please log in via the application"))
+        EmptyView(title: Text("Announcements"),
+                  message: Text("Please log in via the application"))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
-            .previewDevice(PreviewDevice(.allCases[0]))
-        EmptyView(title: Text("Grades"), message: Text("Please log in via the application"))
-            .previewContext(WidgetPreviewContext(family: .systemMedium))
-            .previewDevice(PreviewDevice(.allCases[0]))
-        EmptyView(title: Text("Grades"), message: Text("Please log in via the application"))
-            .previewContext(WidgetPreviewContext(family: .systemLarge))
-            .previewDevice(PreviewDevice(.allCases[0]))
-        EmptyView(title: Text("Grades"), message: Text("Please log in via the application"))
-            .previewContext(WidgetPreviewContext(family: .systemExtraLarge))
-            .previewDevice(PreviewDevice(.iPadPro_9_7))
+            .previewDisplayName("Empty Announcements")
+        EmptyView(title: Text("Grades"),
+                  message: Text("Please log in via the application"))
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
+            .previewDisplayName("Empty Grades")
     }
 }
 #endif
