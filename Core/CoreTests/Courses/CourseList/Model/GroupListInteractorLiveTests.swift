@@ -35,7 +35,7 @@ class GroupListInteractorLiveTests: CoreTestCase {
             ]
         )
         environment.app = .student
-        testee = GroupListInteractorLive(env: environment)
+        testee = GroupListInteractorLive(shouldListGroups: false)
     }
 
     override func tearDown() {
@@ -97,7 +97,7 @@ class GroupListInteractorLiveTests: CoreTestCase {
 
     func testTeacherReturnsEmptyList() {
         environment.app = .teacher
-        testee = GroupListInteractorLive(env: environment)
+        testee = GroupListInteractorLive(shouldListGroups: false)
         testee.getGroups()
             .sink(
                 receiveCompletion: { _ in },

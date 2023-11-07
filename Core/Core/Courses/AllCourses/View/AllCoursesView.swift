@@ -177,7 +177,9 @@ public struct AllCoursesView: View, ScreenViewTrackable {
         if !groups.isEmpty {
             ForEach(groups, id: \.id) { group in
                 if group.id != groups.first?.id { Divider() }
-                AllCoursesCellView(item: .group(group))
+                AllCoursesCellView(
+                    viewModel: AllCoursesAssembly.makeCourseCellViewModel(with: .group(group), env: .shared)
+                )
             }
         }
     }
@@ -188,7 +190,9 @@ public struct AllCoursesView: View, ScreenViewTrackable {
             Section(header: ListSectionHeader(isLarge: true) { Text(title, bundle: .core) }) {
                 ForEach(courses, id: \.courseId) { course in
                     if course.courseId != courses.first?.courseId { Divider() }
-                    AllCoursesCellView(item: .course(course))
+                    AllCoursesCellView(
+                        viewModel: AllCoursesAssembly.makeCourseCellViewModel(with: .course(course), env: .shared)
+                    )
                 }
             }
         }

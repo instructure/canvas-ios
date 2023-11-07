@@ -1053,7 +1053,7 @@
 		A906998282C2BE38BDE41116 /* StaffContactInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DA5CDD21811EFE2BA3C9C5 /* StaffContactInfoService.swift */; };
 		A96EA2CEF81958ADC9A74209 /* EmbeddedWebPageViewModelLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6658F94C33A3DCE5DF6D6601 /* EmbeddedWebPageViewModelLive.swift */; };
 		A9A4FB6E3C1EC033E582D356 /* AssignmentPickerListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0484E4E4398902F6B77B8C7A /* AssignmentPickerListResponse.swift */; };
-		A9B20DC10643790529751036 /* AllCoursesCellOfflineStateViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A6803200D178A23A59B7F3 /* AllCoursesCellOfflineStateViewModelTests.swift */; };
+		A9B20DC10643790529751036 /* AllCoursesCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A6803200D178A23A59B7F3 /* AllCoursesCellViewModelTests.swift */; };
 		A9CAB844D18D55647704F3F9 /* K5ScheduleWeekViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B1578C843F6AE5832ABCF8 /* K5ScheduleWeekViewModel.swift */; };
 		A9DDA08E9516826EC18F8AE3 /* SubmitAssignmentExtensionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DBF2B3E7EF48020152EE9D /* SubmitAssignmentExtensionViewModel.swift */; };
 		A9E6661D30F0FEE8BF5A812F /* Rubric.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022DC592BCA1B525BC1A0115 /* Rubric.swift */; };
@@ -1281,7 +1281,7 @@
 		CBBE859FA5F666A5A33D1543 /* UIViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3217DEF207BEF7647DAAED /* UIViewExtensionsTests.swift */; };
 		CBC8970803289BA88C524EAB /* FileUploadContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895C09C90724F895C32A921F /* FileUploadContext.swift */; };
 		CBD032FB0DC0AA6FBF74B752 /* RubricTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6947DDE7E7694FBEBD5A9CD1 /* RubricTests.swift */; };
-		CC0371BC77F397C78709C159 /* AllCoursesCellOfflineStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF382F98923E7935555FE93 /* AllCoursesCellOfflineStateViewModel.swift */; };
+		CC0371BC77F397C78709C159 /* AllCoursesCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFF382F98923E7935555FE93 /* AllCoursesCellViewModel.swift */; };
 		CC13D8AFB61938306B134D9D /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F01BA81FC2C2E390D99EFB /* LoadingViewController.swift */; };
 		CC4EC03F563FE5E7EFD9EF1A /* GetPages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670EFDAF6B4C2AC91F74FAE3 /* GetPages.swift */; };
 		CC5AD79DCBAE367D8CB4367F /* APIQuiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E9CFF037904B4BA8C774E8 /* APIQuiz.swift */; };
@@ -3305,7 +3305,7 @@
 		DF8A63FDF10CB4B231FD5B36 /* AttendanceCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceCellViewModel.swift; sourceTree = "<group>"; };
 		DF8D80B0540ED8EA9F0AF0DC /* APIAlertThreshold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIAlertThreshold.swift; sourceTree = "<group>"; };
 		DFD8A89E08CC0FE622C25E3C /* GetQuizSubmissionUsersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetQuizSubmissionUsersTests.swift; sourceTree = "<group>"; };
-		DFF382F98923E7935555FE93 /* AllCoursesCellOfflineStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCoursesCellOfflineStateViewModel.swift; sourceTree = "<group>"; };
+		DFF382F98923E7935555FE93 /* AllCoursesCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCoursesCellViewModel.swift; sourceTree = "<group>"; };
 		E00C11C65CA5D03E24018FFF /* DiscussionEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionEntry.swift; sourceTree = "<group>"; };
 		E04DA4482E1C1CBBCFE1C91F /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		E09BAB2EAF3F958753E051C8 /* DocViewerPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerPointAnnotation.swift; sourceTree = "<group>"; };
@@ -3439,7 +3439,7 @@
 		F514A0908B751C8F0BF695BB /* DashboardOfflineSyncProgressCardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardOfflineSyncProgressCardViewModelTests.swift; sourceTree = "<group>"; };
 		F55C8713C2B0D598859635BB /* AttachmentSubmissionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentSubmissionService.swift; sourceTree = "<group>"; };
 		F572605E7E4EE86D44172635 /* K5ResourcesApplicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesApplicationView.swift; sourceTree = "<group>"; };
-		F5A6803200D178A23A59B7F3 /* AllCoursesCellOfflineStateViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCoursesCellOfflineStateViewModelTests.swift; sourceTree = "<group>"; };
+		F5A6803200D178A23A59B7F3 /* AllCoursesCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCoursesCellViewModelTests.swift; sourceTree = "<group>"; };
 		F5CFF01F714E29EC63D4679F /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "da-instk12"; path = "da-instk12.lproj/Main.strings"; sourceTree = "<group>"; };
 		F5D892DF353E5291ED4BE3C7 /* LoginStartSessionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStartSessionCell.swift; sourceTree = "<group>"; };
 		F5DE7DA045FCA3379A4BCF3E /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Main.strings; sourceTree = "<group>"; };
@@ -4053,7 +4053,7 @@
 		19343670F4685C9DB0FC3D6C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				DFF382F98923E7935555FE93 /* AllCoursesCellOfflineStateViewModel.swift */,
+				DFF382F98923E7935555FE93 /* AllCoursesCellViewModel.swift */,
 				FD0C7341652D59C8217924A5 /* AllCoursesViewModel.swift */,
 			);
 			path = ViewModel;
@@ -7860,7 +7860,7 @@
 		CA044DB8C8CEA21D4491FF28 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				F5A6803200D178A23A59B7F3 /* AllCoursesCellOfflineStateViewModelTests.swift */,
+				F5A6803200D178A23A59B7F3 /* AllCoursesCellViewModelTests.swift */,
 				6149222D8607E6D4204A225A /* AllCoursesViewModelTests.swift */,
 			);
 			path = ViewModel;
@@ -9362,7 +9362,7 @@
 				BFDFB6B5D5DB560D86723CBD /* ActivityTests.swift in Sources */,
 				9A26371E6BE5C9909FA66FC2 /* AddMessageTests.swift in Sources */,
 				D9107C7E69986EC49B3A5298 /* AlertThresholdTests.swift in Sources */,
-				A9B20DC10643790529751036 /* AllCoursesCellOfflineStateViewModelTests.swift in Sources */,
+				A9B20DC10643790529751036 /* AllCoursesCellViewModelTests.swift in Sources */,
 				CF3596045A31EF9F0F47070E /* AllCoursesCellViewItemTests.swift in Sources */,
 				9020C080C50748A0A5EB84EB /* AllCoursesInteractorLiveTests.swift in Sources */,
 				13AFDCFBC1A9D155D7E93EDB /* AllCoursesViewModelTests.swift in Sources */,
@@ -9941,7 +9941,7 @@
 				5CFE89A939B340C4E7DB6A28 /* AlertAction.swift in Sources */,
 				EAC984D81B72E3A40B4C31B3 /* AlertThreshold.swift in Sources */,
 				AD7AAB4FFE15E71B0A9F2421 /* AllCoursesAssembly.swift in Sources */,
-				CC0371BC77F397C78709C159 /* AllCoursesCellOfflineStateViewModel.swift in Sources */,
+				CC0371BC77F397C78709C159 /* AllCoursesCellViewModel.swift in Sources */,
 				F9D668128DBC4D4C64059EB2 /* AllCoursesCellView.swift in Sources */,
 				BC8EC62FA03AB2C2CAB59674 /* AllCoursesCourseItem.swift in Sources */,
 				199C4FF96500D1C2878A01A0 /* AllCoursesGroupItem.swift in Sources */,

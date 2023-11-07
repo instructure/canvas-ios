@@ -21,7 +21,7 @@ import Combine
 import XCTest
 
 class AllCoursesCellViewItemTests: CoreTestCase {
-    var testee: AllCoursesCellView.Item!
+    var testee: AllCoursesCellViewModel.Item!
     var group: AllCoursesGroupItem!
 
     override func tearDown() {

@@ -19,7 +19,6 @@
 import Foundation
 
 public enum AllCoursesAssembly {
-
     public static func makeInteractor(env: AppEnvironment) -> AllCoursesInteractor {
         AllCoursesInteractorLive(
             courseListInteractor: makeCourseListInteractor(),
@@ -49,6 +48,16 @@ public enum AllCoursesAssembly {
         return CoreHostingController(AllCoursesView(viewModel: viewModel))
     }
 
+    public static func makeCourseCellViewModel(with item: AllCoursesCellViewModel.Item, env: AppEnvironment) -> AllCoursesCellViewModel {
+        AllCoursesCellViewModel(
+            item: item,
+            offlineModeInteractor: OfflineModeAssembly.make(),
+            sessionDefaults: env.userDefaults ?? .fallback,
+            app: env.app,
+            router: env.router
+        )
+    }
+
 #if DEBUG
     private static let environment = PreviewEnvironment()
     private static let viewContext = environment.database.viewContext
@@ -61,9 +70,7 @@ public enum AllCoursesAssembly {
                                                                enrollment_state: .completed,
                                                                type: "TeacherEnrollment",
                                                                user_id: "1",
-                                                               role: "TeacherEnrollment"),
-                                           ]
-        )
+                                                               role: "TeacherEnrollment")])
         let futureAPICourse = APICourse.make(id: "4", name: nil, course_code: "course_code")
 
         let currentDBCourse = AllCoursesCourseItem(
@@ -77,12 +84,12 @@ public enum AllCoursesAssembly {
         )
 
         let selectorInteractor = AllCoursesInteractorPreview(past: [pastDBCourse],
-                                                     current: [currentDBCourse],
-                                                     future: [futureDBCourse])
+                                                             current: [currentDBCourse],
+                                                             future: [futureDBCourse])
         let viewModel = AllCoursesViewModel(selectorInteractor)
         let view = AllCoursesView(viewModel: viewModel)
         return view
     }
 
-#endif
+    #endif
 }
