@@ -18,6 +18,7 @@
 
 @testable import Core
 import XCTest
+import TestsFoundation
 
 class AllCoursesCellViewModelTests: CoreTestCase {
     private var sessionDefaults = SessionDefaults.fallback
@@ -218,5 +219,19 @@ class AllCoursesCellViewModelTests: CoreTestCase {
                                              scheduler: .immediate)
 
         XCTAssertEqual(testee.favoritButtonAccessilibtyText, NSLocalizedString("Favorite", comment: ""))
+    }
+
+    func testDetailsRoute() {
+        let testee = AllCoursesCellViewModel(item: .course(.make(courseId: "1")),
+                                             offlineModeInteractor: mockOfflineModeInteractor,
+                                             sessionDefaults: sessionDefaults,
+                                             app: environment.app,
+                                             router: environment.router,
+                                             scheduler: .immediate)
+
+        testee.cellDidTap.accept((WeakViewController()))
+
+        let testRouter = environment.router as! TestRouter
+        XCTAssertEqual(testRouter.calls.count, 1)
     }
 }
