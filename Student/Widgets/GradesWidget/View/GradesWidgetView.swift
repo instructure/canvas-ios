@@ -54,14 +54,12 @@ struct GradesWidgetView: View {
 }
 
 #if DEBUG
+
 struct GradesWidgetPreviews: PreviewProvider {
     static var previews: some View {
         let data = GradeModel.make()
         GradesWidgetView(model: data).previewContext(WidgetPreviewContext(family: .systemSmall))
-        GradesWidgetView(model: data).previewContext(WidgetPreviewContext(family: .systemMedium))
-        GradesWidgetView(model: data).previewContext(WidgetPreviewContext(family: .systemLarge))
-        GradesWidgetView(model: data).previewContext(WidgetPreviewContext(family: .systemExtraLarge))
-            .previewDevice(.iPadPro_9_7)
     }
 }
+
 #endif

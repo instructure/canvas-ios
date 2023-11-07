@@ -26,31 +26,30 @@ struct AnnouncementItem: Identifiable, Equatable {
     let url: URL
 
     let authorName: String
-    let avatarImage: UIImage?
+    let avatar: UIImage?
 
     let courseName: String
     let courseColor: Color
 
-    init?(discussionTopic: APIDiscussionTopic, course: Course, avatarImage: UIImage?) {
-        guard
-            let title = discussionTopic.title,
-            let date = discussionTopic.posted_at,
-            let authorName = discussionTopic.author?.display_name,
-            let courseName = course.name,
-            let url = discussionTopic.html_url
-        else { return nil }
-
-        self.id = discussionTopic.id.value
-        self.title = title
-        self.date = date
-        self.url = url
-        self.authorName = authorName
-        self.courseName = courseName
-        self.courseColor = Color(course.color)
-        self.avatarImage = avatarImage
+    init(dbEntity: CDWidgetAnnouncement) {
+        self.id = dbEntity.id
+        self.title = dbEntity.title
+        self.date = dbEntity.date
+        self.url = dbEntity.url
+        self.authorName = dbEntity.authorName
+        self.courseName = dbEntity.courseName
+        self.courseColor = Color(dbEntity.courseColor)
+        self.avatar = dbEntity.avatar
     }
 
-    init(title: String, date: Date, url: URL, authorName: String, avatarImage: UIImage? = nil, courseName: String, courseColor: Color) {
+    init(
+        title: String,
+        date: Date,
+        url: URL,
+        authorName: String,
+        courseName: String,
+        courseColor: Color
+    ) {
         self.id = UUID().uuidString
         self.title = title
         self.date = date
@@ -58,6 +57,6 @@ struct AnnouncementItem: Identifiable, Equatable {
         self.authorName = authorName
         self.courseName = courseName
         self.courseColor = courseColor
-        self.avatarImage = avatarImage
+        self.avatar = nil
     }
 }
