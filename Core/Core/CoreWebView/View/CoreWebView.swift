@@ -90,6 +90,7 @@ open class CoreWebView: WKWebView {
 
     deinit {
         configuration.userContentController.removeAllScriptMessageHandlers()
+        configuration.userContentController.removeAllUserScripts()
     }
 
     /**
