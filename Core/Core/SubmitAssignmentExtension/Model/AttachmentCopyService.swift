@@ -104,7 +104,7 @@ public class AttachmentCopyService {
                 }
                 callback(.success(newURL))
             } catch {
-                Analytics.shared.logError(name: "Failed to get file data", reason: error.localizedDescription)
+                Analytics.shared.logError(name: "Failed to copy shared file to container folder", reason: error.localizedDescription)
                 callback(.failure(error))
             }
         }

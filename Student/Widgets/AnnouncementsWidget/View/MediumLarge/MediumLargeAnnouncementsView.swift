@@ -20,6 +20,12 @@ import WidgetKit
 import SwiftUI
 
 struct MediumLargeAnnouncementsView: View {
+    private let announcements: [AnnouncementItem]
+
+    init(announcements: [AnnouncementItem]) {
+        self.announcements = announcements
+    }
+
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)) {
             HStack {
@@ -43,29 +49,18 @@ struct MediumLargeAnnouncementsView: View {
                     EmptyView(title: Text("Announcements"), message: Text("No Announcements"))
                 }
             }.padding(.top, 40) // This is to move the first entry below the header
-        }.padding()
-    }
-
-    private let announcements: [AnnouncementItem]
-
-    init(announcements: [AnnouncementItem]) {
-        self.announcements = announcements
+        }
+        .compatibleContentMargins()
     }
 }
 
 #if DEBUG
+
 struct MediumLargeAnnouncementViewPreviews: PreviewProvider {
     static var previews: some View {
-        ForEach(PreviewSimulator.allCases, id: \.self) { simulator in
-            AnnouncementsWidgetView(entry: .make())
-                .previewContext(WidgetPreviewContext(family: .systemMedium))
-                .previewDevice(simulator)
-                .previewDisplayName(simulator.rawValue)
-            AnnouncementsWidgetView(entry: .make())
-                .previewContext(WidgetPreviewContext(family: .systemLarge))
-                .previewDevice(simulator)
-                .previewDisplayName(simulator.rawValue)
-        }
+        AnnouncementsWidgetView(entry: .make())
+            .previewContext(WidgetPreviewContext(family: .systemMedium))
     }
 }
+
 #endif

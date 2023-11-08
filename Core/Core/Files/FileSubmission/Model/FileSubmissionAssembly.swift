@@ -69,7 +69,6 @@ public class FileSubmissionAssembly {
                 .flatMap { fileSubmissionSubmitter.submitFiles(fileSubmissionID: fileSubmissionID).mapError { $0 as Error } }
                 .flatMap { apiSubmission in notificationsSender.sendSuccessNofitications(fileSubmissionID: fileSubmissionID, apiSubmission: apiSubmission) }
                 .flatMap { cleaner.clean(fileSubmissionID: fileSubmissionID) }
-                .flatMap { backgroundSessionCompletion.backgroundOperationsFinished() }
                 .mapError { error -> Error in
                     if error.shouldSendFailedNotification {
                         notificationsSender.sendFailedNotification(fileSubmissionID: fileSubmissionID)
@@ -77,6 +76,7 @@ public class FileSubmissionAssembly {
                     return error
                 }
                 .sink { _ in
+                    backgroundSessionCompletion.backgroundOperationsFinished()
                     backgroundActivity.stopAndWait()
                     subscription?.cancel()
                     subscription = nil
@@ -120,7 +120,7 @@ public class FileSubmissionAssembly {
      Use this method to pass he completion block received in handleEventsForBackgroundURLSession appdelegate method when the share extension
      is doing background uploading. This method also creates the necessary `URLSession` object that receives delegate method updates.
      */
-    public func handleBackgroundUpload(_ completion: @escaping () -> Void) {
+    public func connectToBackgroundURLSession(_ completion: @escaping () -> Void) {
         backgroundSessionCompletion.callback = completion
         // This will create the background URLSession
         _ = backgroundURLSessionProvider.session

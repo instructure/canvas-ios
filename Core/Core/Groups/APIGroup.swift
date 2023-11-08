@@ -37,6 +37,7 @@ public struct APIGroup: Codable, Equatable {
     // let sis_import_id: String?
     // let storage_quota_mb: String
     let permissions: Permissions?
+    let is_favorite: Bool?
 
     public struct Permissions: Codable, Equatable {
         let create_announcement: Bool
@@ -54,7 +55,8 @@ extension APIGroup {
         avatar_url: URL? = nil,
         course_id: ID? = nil,
         group_category_id: ID = "1",
-        permissions: Permissions? = nil
+        permissions: Permissions? = nil,
+        is_favorite: Bool? = true
     ) -> APIGroup {
         return APIGroup(
             id: id,
@@ -64,7 +66,8 @@ extension APIGroup {
             avatar_url: avatar_url,
             course_id: course_id,
             group_category_id: group_category_id,
-            permissions: permissions
+            permissions: permissions,
+            is_favorite: is_favorite
         )
     }
 }
@@ -87,10 +90,33 @@ extension APIGroup.Permissions {
 public struct GetGroupsRequest: APIRequestable {
     public typealias Response = [APIGroup]
 
+    public enum Include: String, CaseIterable {
+        case favorites, can_access
+    }
+
     let context: Context
+    let include: [Include]
 
     public var path: String { "\(context.pathComponent)/groups" }
-    public var query: [APIQueryItem] { [ .perPage(100) ] }
+    public var query: [APIQueryItem] { [
+        .include(include.map { $0.rawValue }),
+        .perPage(100),
+    ] }
+
+    public init(context: Context, include: [Include] = Self.Include.allCases) {
+        self.context = context
+        self.include = include
+    }
+}
+
+// https://canvas.instructure.com/doc/api/favorites.html#method.favorites.list_favorite_groups
+public struct GetFavoriteGroupsRequest: APIRequestable {
+    public typealias Response = [APIGroup]
+
+    let context: Context
+
+    public var path: String { "\(context.pathComponent)/favorites/groups" }
+    public var query: [APIQueryItem] { [.perPage(100) ]}
 }
 
 // https://canvas.instructure.com/doc/api/groups.html#method.groups.users

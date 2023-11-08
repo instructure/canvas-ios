@@ -79,7 +79,7 @@ public class ReactiveStore<U: UseCase> {
         unowned let unownedSelf = self
 
         forceRefreshRelay
-            .flatMap { _ in unownedSelf.observeEntities(forceFetch: true) }
+            .flatMap { _ in unownedSelf.getEntities().replaceError(with: []) }
             .sink()
             .store(in: &subscriptions)
     }
@@ -91,7 +91,7 @@ public class ReactiveStore<U: UseCase> {
 
     public func forceFetchEntities() -> AnyPublisher<Void, Never> {
         forceRefreshRelay.accept(())
-        return Empty(completeImmediately: false)
+        return Just(())
             .setFailureType(to: Never.self)
             .eraseToAnyPublisher()
     }
@@ -135,6 +135,25 @@ public class ReactiveStore<U: UseCase> {
             )
 
         return stateRelay.eraseToAnyPublisher()
+    }
+
+    public func observeEntitiesWithError(forceFetch: Bool = false, loadAllPages: Bool = false) -> AnyPublisher<[U.Model], Error> {
+        let scope = useCase.scope
+        let request = NSFetchRequest<U.Model>(entityName: String(describing: U.Model.self))
+        request.predicate = scope.predicate
+        request.sortDescriptors = scope.order
+
+        let entitiesPublisher: AnyPublisher<[U.Model], Error>
+
+        if offlineModeInteractor?.isOfflineModeEnabled() == true {
+            entitiesPublisher = fetchEntitiesFromDatabase(fetchRequest: request)
+        } else {
+            entitiesPublisher = forceFetch ?
+                fetchEntitiesFromAPI(useCase: useCase, loadAllPages: loadAllPages, fetchRequest: request) :
+                fetchEntitiesFromCache(fetchRequest: request)
+        }
+
+        return entitiesPublisher
     }
 
     /**

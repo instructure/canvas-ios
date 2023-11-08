@@ -41,37 +41,24 @@ struct AnnouncementsWidgetView: View {
 }
 
 #if DEBUG
-private enum PreviewConfig {
+
+struct AnnouncementWidgetViewPreviews: PreviewProvider {
     private static let data = [
         AnnouncementsEntry(isLoggedIn: false),
         AnnouncementsEntry(announcementItems: []),
         .make(),
     ]
 
-    static func preview(for family: WidgetFamily, device: PreviewDevice = PreviewDevice(PreviewSimulator.allCases[0])) -> some View {
-        ForEach(data) { entry in
-            AnnouncementsWidgetView(entry: entry)
-                .previewContext(WidgetPreviewContext(family: family))
-                .previewDevice(device)
-        }
-    }
-}
-
-struct SmallWidgets: PreviewProvider {
-    static var previews: some View { PreviewConfig.preview(for: .systemSmall) }
-}
-
-struct MediumWidgets: PreviewProvider {
-    static var previews: some View { PreviewConfig.preview(for: .systemMedium) }
-}
-
-struct LargeWidgets: PreviewProvider {
-    static var previews: some View { PreviewConfig.preview(for: .systemLarge) }
-}
-
-struct ExtraLargeWidgets: PreviewProvider {
     static var previews: some View {
-        PreviewConfig.preview(for: .systemExtraLarge, device: PreviewDevice(.iPadPro_9_7))
+        AnnouncementsWidgetView(entry: data[0])
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
+            .previewDisplayName("Logged Out")
+        AnnouncementsWidgetView(entry: data[1])
+            .previewDisplayName("No Announcements")
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
+        AnnouncementsWidgetView(entry: data[2])
+            .previewDisplayName("Single Announcement")
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }
 

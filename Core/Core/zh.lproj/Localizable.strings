@@ -398,6 +398,9 @@
 "Available From:" = "起始可用日期：";
 
 /* No comment provided by engineer. */
+"Available offline" = "离线可用";
+
+/* No comment provided by engineer. */
 "Available until" = "可供使用的截止日期";
 
 /* No comment provided by engineer. */
@@ -717,6 +720,9 @@
 
 /* No comment provided by engineer. */
 "Cyan" = "青色";
+
+/* No comment provided by engineer. */
+"d_courses_syncing" = "d_courses_syncing";
 
 /* No comment provided by engineer. */
 "d_items" = "d_items";
@@ -1215,6 +1221,9 @@
 
 /* No comment provided by engineer. */
 "Groups" = "小组";
+
+/* No comment provided by engineer. */
+"Hang tight, we're getting things ready for you." = "请稍等，我们正在准备。";
 
 /* No comment provided by engineer. */
 "Have your parent scan this QR code from the Canvas Parent app to pair with you." = "您的父母是否已从 Canvas Parent 应用程序扫描此二维码与您配对？";
@@ -1796,7 +1805,13 @@
 "Offline Content Sync Failed" = "离线同步内容失败";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Success" = "离线同步内容成功";
+
+/* No comment provided by engineer. */
 "Offline mode" = "离线模式";
+
+/* No comment provided by engineer. */
+"Offline sync was interrupted by the operating system" = "离线同步被操作系统中断";
 
 /* No comment provided by engineer. */
 "offline_sync_finished" = "offline_sync_finished";
@@ -1818,6 +1833,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "一份或多个文件上传失败。请检查网络连接，并再次尝试提交。";
+
+/* No comment provided by engineer. */
+"One or more items failed to sync." = "一个或多个项目同步失败。";
 
 /* No comment provided by engineer. */
 "One Question at a Time:" = "一次一个问题：";
@@ -2667,6 +2685,9 @@
 
 /* No comment provided by engineer. */
 "This will remove the due date and all of the associated assignees." = "这将删除截止日期和所有关联的指定人员。";
+
+/* No comment provided by engineer. */
+"This will sync ~($0.humanReadableFileSize) content. It may result in additional charges from your data provider if you are not connected to a Wi-Fi network." = "将同步大约 ($0.humanReadableFileSize) 项内容。如果没有连接到无线网络，数据流量提供商可能会额外收取费用。";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "经过的时间";

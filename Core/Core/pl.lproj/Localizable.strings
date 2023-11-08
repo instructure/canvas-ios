@@ -398,6 +398,9 @@
 "Available From:" = "Dostępne od:";
 
 /* No comment provided by engineer. */
+"Available offline" = "Dostępne offline";
+
+/* No comment provided by engineer. */
 "Available until" = "Dostępny do";
 
 /* No comment provided by engineer. */
@@ -717,6 +720,9 @@
 
 /* No comment provided by engineer. */
 "Cyan" = "Cyjan";
+
+/* No comment provided by engineer. */
+"d_courses_syncing" = "d_courses_syncing";
 
 /* No comment provided by engineer. */
 "d_items" = "d_items";
@@ -1215,6 +1221,9 @@
 
 /* No comment provided by engineer. */
 "Groups" = "Grupy";
+
+/* No comment provided by engineer. */
+"Hang tight, we're getting things ready for you." = "Poczekaj, właśnie przygotowujemy wszystko dla Ciebie.";
 
 /* No comment provided by engineer. */
 "Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Poproś rodzica o zeskanowanie tego kodu QR w aplikacji Canvas Parent w celu sparowania.";
@@ -1796,7 +1805,13 @@
 "Offline Content Sync Failed" = "Niepowodzenie synchronizacji zawartości offline";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Success" = "Synchronizacja treści offline zakończona pomyślnie";
+
+/* No comment provided by engineer. */
 "Offline mode" = "Tryb offline";
+
+/* No comment provided by engineer. */
+"Offline sync was interrupted by the operating system" = "Synchronizacja offline została przerwana przez system operacyjny";
 
 /* No comment provided by engineer. */
 "offline_sync_finished" = "offline_sync_finished";
@@ -1818,6 +1833,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "Nie udało się przesłać co najmniej jednego pliku. Sprawdź połączenie internetowe i ponów przesyłanie.";
+
+/* No comment provided by engineer. */
+"One or more items failed to sync." = "Nie udało się zsynchronizować co najmniej jednego elementu.";
 
 /* No comment provided by engineer. */
 "One Question at a Time:" = "Jedno pytanie na raz:";
@@ -2667,6 +2685,9 @@
 
 /* No comment provided by engineer. */
 "This will remove the due date and all of the associated assignees." = "Czynność ta spowoduje usunięcie terminu i wszystkich uczestników, którym został przypisany.";
+
+/* No comment provided by engineer. */
+"This will sync ~($0.humanReadableFileSize) content. It may result in additional charges from your data provider if you are not connected to a Wi-Fi network." = "Spowoduje to zsynchronizowanie ok. (0,humanReadableFileSize USD) treści. Może to prowadzić do naliczenia dodatkowych opłat przez Twojego dostawcę transmisji danych, jeśli nie masz połączenia z siecią Wi-Fi.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Czas do tej pory";
