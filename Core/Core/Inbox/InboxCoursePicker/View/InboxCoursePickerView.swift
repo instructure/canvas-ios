@@ -38,6 +38,7 @@ public struct InboxCoursePickerView: View {
             case .loading:
                 ProgressView()
                     .progressViewStyle(.indeterminateCircle())
+                    .padding(12)
             case .data:
                 VStack(spacing: 0) {
                     courses(courses: viewModel.courses)
