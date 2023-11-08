@@ -138,15 +138,15 @@ public struct AllCoursesView: View, ScreenViewTrackable {
                 .padding(.trailing, 16)
             Spacer()
             courseSection(
-                title: "Current Enrollments",
+                header: Text("Current Enrollments", bundle: .core),
                 courses: sections.courses.current
             )
             courseSection(
-                title: "Past Enrollments",
+                header: Text("Past Enrollments", bundle: .core),
                 courses: sections.courses.past
             )
             courseSection(
-                title: "Future Enrollments",
+                header: Text("Future Enrollments", bundle: .core),
                 courses: sections.courses.future
             )
         }
@@ -187,9 +187,9 @@ public struct AllCoursesView: View, ScreenViewTrackable {
     }
 
     @ViewBuilder
-    func courseSection(title: LocalizedStringKey, courses: [AllCoursesCourseItem]) -> some View {
+    func courseSection(header: Text, courses: [AllCoursesCourseItem]) -> some View {
         if !courses.isEmpty {
-            Section(header: ListSectionHeader(isLarge: true) { Text(title, bundle: .core) }) {
+            Section(header: ListSectionHeader(isLarge: true) { header }) {
                 ForEach(courses, id: \.courseId) { course in
                     if course.courseId != courses.first?.courseId { Divider() }
                     AllCoursesCellView(
