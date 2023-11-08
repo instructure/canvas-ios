@@ -89,6 +89,10 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
 
     func setup(session: LoginSession) {
         environment.userDidLogin(session: session)
+        // This is to handle the case where the app is force closed while a background upload was in progress.
+        // In this case the upload is canceled and app is not launched with `handleEventsForBackgroundURLSession`
+        // so we manually re-connect to the background url session to check if there are any failed uploads.
+        setupFileSubmissionAssemblyForBackgroundUploads()
 
         GetUserProfile().fetch(environment: environment, force: true) { apiProfile, urlResponse, _ in performUIUpdate {
             PageViewEventController.instance.userDidChange()
@@ -170,14 +174,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         Logger.shared.log()
 
         if identifier == FileSubmissionAssembly.ShareExtensionSessionID {
-            let backgroundAssembly = FileSubmissionAssembly.makeShareExtensionAssembly()
-            backgroundAssembly.handleBackgroundUpload {
-                DispatchQueue.main.async { [weak self] in
-                    completionHandler()
-                    self?.backgroundFileSubmissionAssembly = nil
-                }
-            }
-            backgroundFileSubmissionAssembly = backgroundAssembly
+            setupFileSubmissionAssemblyForBackgroundUploads(completion: completionHandler)
         } else {
             let manager = UploadManager(identifier: identifier)
             manager.completionHandler = {
@@ -187,6 +184,17 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             }
             manager.createSession()
         }
+    }
+
+    private func setupFileSubmissionAssemblyForBackgroundUploads(completion: (() -> Void)? = nil) {
+        let backgroundAssembly = FileSubmissionAssembly.makeShareExtensionAssembly()
+        backgroundAssembly.connectToBackgroundURLSession {
+            DispatchQueue.main.async { [weak self] in
+                completion?()
+                self?.backgroundFileSubmissionAssembly = nil
+            }
+        }
+        backgroundFileSubmissionAssembly = backgroundAssembly
     }
 
     // similar methods exist in all other app delegates

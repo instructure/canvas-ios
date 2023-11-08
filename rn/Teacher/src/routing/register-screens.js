@@ -33,7 +33,7 @@ import { isTeacher, isStudent } from '../modules/app'
 export function registerScreens (store: Store): void {
   registerScreen('/courses/:courseID/address-book', AddressBook, store)
   registerScreen('/conversations', Inbox, store, { canBecomeMaster: true, deepLink: true })
-  registerScreen('/conversations/compose', Compose, store)
+  registerScreen('/conversations/compose', ExperimentalFeature.nativeStudentInbox.isEnabled ? null : Compose, store)
   registerScreen('/conversations/:conversationID/add_message', Compose, store)
   registerScreen('/conversations/course-select', CourseSelect, store)
   registerScreen('/conversations/:conversationID', ExperimentalFeature.nativeStudentInbox.isEnabled ? null : ConversationDetails, store, { deepLink: true })
