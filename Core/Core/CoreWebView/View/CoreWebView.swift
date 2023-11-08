@@ -88,6 +88,10 @@ open class CoreWebView: WKWebView {
         setup()
     }
 
+    deinit {
+        configuration.userContentController.removeAllScriptMessageHandlers()
+    }
+
     /**
      This method is to add support for CanvasCore project. Can be removed when that project is removed
      as this method isn't safe for features modifying `WKWebViewConfiguration`.
