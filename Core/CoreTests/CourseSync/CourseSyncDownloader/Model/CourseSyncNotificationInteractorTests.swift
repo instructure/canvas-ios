@@ -90,7 +90,8 @@ private class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserv
         let progress = CourseSyncDownloadProgress(bytesToDownload: 0,
                                                   bytesDownloaded: 0,
                                                   isFinished: true,
-                                                  error: isSyncFailed ? "error" : nil)
+                                                  error: isSyncFailed ? "error" : nil, 
+                                                  courseIds: [])
         return Just(progress).eraseToAnyPublisher()
     }
 
