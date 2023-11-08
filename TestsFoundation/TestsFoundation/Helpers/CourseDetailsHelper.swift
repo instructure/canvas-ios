@@ -41,3 +41,16 @@ public class CourseDetailsHelper: BaseHelper {
 
     public static func cell(type: CellType) -> XCUIElement { return app.find(id: "courses-details.\(type.rawValue)-cell") }
 }
+
+public class CourseDetailsHelperParent: BaseHelper {
+    public static var totalGradeLabel: XCUIElement { app.find(id: "CourseTotalGrade") }
+    public static var pandaSpaceImage: XCUIElement { app.find(id: "PandaSpace", type: .image) }
+
+    public static func assignmentCell(assignment: DSAssignment) -> XCUIElement {
+        return app.find(id: "GradeListCell.\(assignment.id)")
+    }
+
+    public static func letterGradeLabelOfAssignmentCell(assignment: DSAssignment, letterGrade: String) -> XCUIElement {
+        return assignmentCell(assignment: assignment).find(labelContaining: "(\(letterGrade))")
+    }
+}

@@ -135,8 +135,8 @@ public class CalendarHelper: BaseHelper {
             return app.find(label: event.title, type: .staticText)
         }
 
-        public static func dateLabel(event: DSCalendarEvent) -> XCUIElement {
-            let dateString = formatDateForDateLabel(event: event)
+        public static func dateLabel(event: DSCalendarEvent, parent: Bool = false) -> XCUIElement {
+            let dateString = parent ? formatDateForDateLabelParent(event: event) : formatDateForDateLabel(event: event)
             return app.find(labelContaining: dateString)
         }
 
@@ -154,6 +154,12 @@ public class CalendarHelper: BaseHelper {
 
         public static func formatDateForDateLabel(event: DSCalendarEvent) -> String {
             dateFormatter.dateFormat = "MMM d, yyyy 'at' h:mm a"
+            let formattedDate = dateFormatter.string(from: event.start_at)
+            return formattedDate
+        }
+
+        public static func formatDateForDateLabelParent(event: DSCalendarEvent) -> String {
+            dateFormatter.dateFormat = "MMM d, yyyy, h:mm"
             let formattedDate = dateFormatter.string(from: event.start_at)
             return formattedDate
         }
