@@ -218,7 +218,7 @@ class AllCoursesCellViewModelTests: CoreTestCase {
                                              router: environment.router,
                                              scheduler: .immediate)
 
-        XCTAssertEqual(testee.favoritButtonAccessilibtyText, NSLocalizedString("Favorite", comment: ""))
+        XCTAssertEqual(testee.favoritButtonAccessibilityText, NSLocalizedString("Favorite", comment: ""))
     }
 
     func testDetailsRoute() {

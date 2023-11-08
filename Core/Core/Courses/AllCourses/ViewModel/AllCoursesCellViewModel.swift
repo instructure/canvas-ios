@@ -40,7 +40,7 @@ public class AllCoursesCellViewModel: ObservableObject {
     @Published public private(set) var isCellDisabled = false
     @Published public private(set) var isFavoriteStarDisabled: Bool = false
     @Published public private(set) var pending = false
-    @Published public private(set) var favoritButtonAccessilibtyText: String = ""
+    @Published public private(set) var favoritButtonAccessibilityText: String = ""
     @Published public private(set) var favoriteButtonTraits: AccessibilityTraits = []
 
     public private(set) var isOfflineIndicatorVisible: Bool = false
@@ -101,7 +101,7 @@ public class AllCoursesCellViewModel: ObservableObject {
         ]
         .compactMap { $0 }.joined(separator: ", ")
 
-        favoritButtonAccessilibtyText = pending ? NSLocalizedString("Updating", comment: "") : NSLocalizedString("Favorite", comment: "")
+        favoritButtonAccessibilityText = pending ? NSLocalizedString("Updating", comment: "") : NSLocalizedString("Favorite", comment: "")
         favoriteButtonTraits = (item.isFavourite && !pending) ? .isSelected : []
     }
 

@@ -71,7 +71,7 @@ struct AllCoursesCellView: View {
                 .padding(.trailing, 18)
         }
         .buttonStyle(PlainButtonStyle())
-        .accessibility(label: Text(viewModel.favoritButtonAccessilibtyText))
+        .accessibility(label: Text(viewModel.favoritButtonAccessibilityText))
         .accessibilityIdentifier("DashboardCourseCell.\(viewModel.item.id).favoriteButton")
         .accessibility(addTraits: viewModel.favoriteButtonTraits)
         .hidden(!viewModel.item.isFavoriteButtonVisible)
