@@ -127,6 +127,7 @@ public struct AllCoursesView: View, ScreenViewTrackable {
                 .font(.heavy24).foregroundColor(.textDarkest)
                 .accessibility(addTraits: .isHeader)
                 .padding(.leading, 16)
+                .padding(.trailing, 16)
             Spacer(minLength: 16)
             Divider()
             Spacer()
@@ -134,6 +135,7 @@ public struct AllCoursesView: View, ScreenViewTrackable {
                 .font(.regular16).foregroundColor(.textDarkest)
                 .accessibility(addTraits: .isHeader)
                 .padding(.leading, 16)
+                .padding(.trailing, 16)
             Spacer()
             courseSection(
                 title: "Current Enrollments",
