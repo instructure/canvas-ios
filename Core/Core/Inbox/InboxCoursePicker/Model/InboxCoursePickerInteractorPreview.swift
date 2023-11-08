@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+#if DEBUG
+
 import Foundation
 import Combine
 
@@ -31,3 +33,5 @@ class InboxCoursePickerInteractorPreview: InboxCoursePickerInteractor {
         ])
     }
 }
+
+#endif
