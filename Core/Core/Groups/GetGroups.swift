@@ -65,8 +65,8 @@ public class GetGroup: APIUseCase {
 public class GetDashboardGroups: CollectionUseCase {
     public typealias Model = Group
 
-    public var cacheKey: String? { "users/self/groups" }
-    public var request: GetGroupsRequest { GetGroupsRequest(context: .currentUser) }
+    public var cacheKey: String? { "users/self/favorites/groups" }
+    public var request: GetFavoriteGroupsRequest { GetFavoriteGroupsRequest(context: .currentUser) }
     public var scope: Scope {
         let showOnDashboard = NSPredicate(key: #keyPath(Group.showOnDashboard), equals: true)
         let accessRestrictedByDate = NSCompoundPredicate(orPredicateWithSubpredicates: [
@@ -107,5 +107,37 @@ class GetGroupsInCategory: CollectionUseCase {
         response?.forEach { item in
             Group.save(item, in: client)
         }
+    }
+}
+
+public class MarkFavoriteGroup: APIUseCase {
+    let groupID: String
+    let markAsFavorite: Bool
+
+    public var cacheKey: String? { nil }
+    public var request: MarkFavoriteRequest {
+        MarkFavoriteRequest(context: .group(groupID), markAsFavorite: markAsFavorite)
+    }
+
+    public init(groupID: String, markAsFavorite: Bool) {
+        self.groupID = groupID
+        self.markAsFavorite = markAsFavorite
+    }
+
+    public var scope: Scope {
+        .where(#keyPath(Group.id), equals: groupID)
+    }
+
+    public func write(response: APIFavorite?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let item = response else {
+            return
+        }
+
+        if let group: CDAllCoursesGroupItem = client.first(where: #keyPath(CDAllCoursesGroupItem.id),
+                                                     equals: item.context_id.value) {
+            group.isFavorite = markAsFavorite
+        }
+
+        NotificationCenter.default.post(name: .favoritesDidChange, object: nil, userInfo: [:])
     }
 }

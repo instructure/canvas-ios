@@ -22,7 +22,6 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
     @StateObject var viewModel: DashboardContainerViewModel
     @ObservedObject var courseCardListViewModel: DashboardCourseCardListViewModel
     @ObservedObject var colors: Store<GetCustomColors>
-    @ObservedObject var groups: Store<GetDashboardGroups>
     @ObservedObject var notifications: Store<GetAccountNotifications>
     @ObservedObject var settings: Store<GetUserSettings>
     @ObservedObject var conferencesViewModel = DashboardConferencesViewModel()
@@ -41,7 +40,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
     @State var showGrade = AppEnvironment.shared.userDefaults?.showGradesOnDashboard == true
     @StateObject private var offlineSyncCardViewModel = DashboardOfflineSyncProgressCardAssembly.makeViewModel()
 
-    private var activeGroups: [Group] { groups.all.filter { $0.isActive } }
+    private var activeGroups: [Group] { viewModel.groups.filter { $0.isActive } }
     private var isGroupSectionActive: Bool { !activeGroups.isEmpty && shouldShowGroupList }
     private let shouldShowGroupList: Bool
     private let verticalSpacing: CGFloat = 16
@@ -54,7 +53,6 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         let env = AppEnvironment.shared
         layoutViewModel = DashboardLayoutViewModel(interactor: DashboardSettingsInteractorLive(environment: env, defaults: env.userDefaults))
         colors = env.subscribe(GetCustomColors())
-        groups = env.subscribe(GetDashboardGroups())
         notifications = env.subscribe(GetAccountNotifications())
         settings = env.subscribe(GetUserSettings(userID: "self"))
         _viewModel = StateObject(wrappedValue: DashboardContainerViewModel(environment: env))
@@ -338,7 +336,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         invitationsViewModel.refresh()
         colors.refresh(force: force)
         conferencesViewModel.refresh(force: force)
-        groups.exhaust(force: force)
+        viewModel.refreshGroups(onComplete: onComplete)
         notifications.exhaust(force: force)
         settings.refresh(force: force)
         courseCardListViewModel.refresh(onComplete: onComplete)

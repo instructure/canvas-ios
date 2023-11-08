@@ -20,40 +20,43 @@
 
 import Combine
 
-class CourseListInteractorPreview: CourseListInteractor {
+class AllCoursesInteractorPreview: AllCoursesInteractor {
     // MARK: - Outputs
-    public let state = CurrentValueSubject<StoreState, Never>(.loading)
-    public let courseList = CurrentValueSubject<CourseListSections, Never>(.init())
 
-    private let mockedInput: CourseListSections
+    public let sections = PassthroughSubject<AllCoursesSections, Error>()
+
+    private let mockedInput: AllCoursesSections
 
     // MARK: - Inputs
 
-    public init(past: [CourseListItem], current: [CourseListItem], future: [CourseListItem]) {
-        self.mockedInput = CourseListSections(current: current, past: past, future: future)
+    public init(past: [AllCoursesCourseItem], current: [AllCoursesCourseItem], future: [AllCoursesCourseItem]) {
+        mockedInput = AllCoursesSections(
+            courses: .init(current: current, past: past, future: future),
+            groups: []
+        )
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [self] in
-            courseList.send(mockedInput)
-            state.send(.data)
+            sections.send(mockedInput)
         }
     }
 
-    public func refresh() -> Future<Void, Never> {
+    public func refresh() -> AnyPublisher<Void, Never> {
         Future { promise in
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 promise(.success(()))
             }
         }
+        .eraseToAnyPublisher()
     }
 
-    public func setFilter(_ filter: String) -> Future<Void, Never> {
+    public func setFilter(_: String) -> AnyPublisher<Void, Never> {
         Future { promise in
             promise(.success(()))
         }
+        .eraseToAnyPublisher()
     }
 
-    func loadAsync() {
-    }
+    func loadAsync() {}
 }
 
 #endif

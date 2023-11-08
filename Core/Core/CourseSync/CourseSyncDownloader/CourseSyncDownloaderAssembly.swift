@@ -44,7 +44,7 @@ public enum CourseSyncDownloaderAssembly {
                                         progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
                                         notificationInteractor: CourseSyncNotificationInteractor(notificationManager: .shared,
                                                                                                      progressInteractor: progressInteractor),
-                                        courseListInteractor: CourseListAssembly.makeInteractor(),
+                                        courseListInteractor: AllCoursesAssembly.makeCourseListInteractor(),
                                         backgroundActivity: backgroundActivity,
                                         scheduler: scheduler)
     }

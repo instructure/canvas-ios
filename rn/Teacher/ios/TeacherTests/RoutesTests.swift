@@ -45,7 +45,7 @@ class RoutesTests: XCTestCase {
 
     func testRoutes() {
         XCTAssert(router.match("/courses/2/attendance/5") is AttendanceViewController)
-        XCTAssert(router.match("/courses") is CoreHostingController<CourseListView>)
+        XCTAssert(router.match("/courses") is CoreHostingController<AllCoursesView>)
         XCTAssert(router.match("/courses/2/modules") is ModuleListViewController)
         XCTAssert(router.match("/courses/2/modules/2") is ModuleListViewController)
         XCTAssert(router.match("/courses/3/pages") is PageListViewController)

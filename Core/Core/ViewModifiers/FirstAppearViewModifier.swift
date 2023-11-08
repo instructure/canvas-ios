@@ -16,15 +16,29 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
+import SwiftUI
 
-public protocol CourseListInteractor {
-    // MARK: - Outputs
-    var state: CurrentValueSubject<StoreState, Never> { get }
-    var courseList: CurrentValueSubject<CourseListSections, Never> { get }
+extension View {
+    func onFirstAppear(perform action: (() -> Void)? = nil) -> some View {
+        modifier(FirstAppearViewModifier(action: action))
+    }
+}
 
-    // MARK: - Inputs
-    func loadAsync()
-    func refresh() -> Future<Void, Never>
-    func setFilter(_ filter: String) -> Future<Void, Never>
+struct FirstAppearViewModifier: ViewModifier {
+    @State private var didAppearOnce = false
+    private let action: (() -> Void)?
+
+    init(action: (() -> Void)? = nil) {
+        self.action = action
+    }
+
+    func body(content: Content) -> some View {
+        content.onAppear {
+            guard !didAppearOnce else {
+                return
+            }
+            didAppearOnce = true
+            action?()
+        }
+    }
 }
