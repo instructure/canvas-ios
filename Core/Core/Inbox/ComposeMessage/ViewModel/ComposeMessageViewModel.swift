@@ -46,7 +46,7 @@ class ComposeMessageViewModel: ObservableObject {
     @Published public var sendIndividual: Bool = false
     @Published public var bodyText: String = ""
     @Published public var subject: String = ""
-    @Published public var selectedCourse: InboxCourse?
+    @Published public var selectedContext: RecipientContext?
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
@@ -64,29 +64,14 @@ class ComposeMessageViewModel: ObservableObject {
     }
 
     public func courseSelectButtonDidTap(viewController: WeakViewController) {
-        let options = courses
-        var selected: IndexPath?
-        if let selectedCourse = selectedCourse {
-            selected = options.firstIndex(of: selectedCourse).flatMap {
-                IndexPath(row: $0, section: 0)
-            }
-        }
-        let sections = [ ItemPickerSection(items: options.map {
-            ItemPickerItem(title: $0.name)
-        }), ]
 
-        router.show(ItemPickerViewController.create(
-            title: NSLocalizedString("Select Course", comment: ""),
-            sections: sections,
-            selected: selected,
-            didSelect: { [weak self] in
-                self?.courseDidSelect(course: options[$0.row], viewController: viewController)
-            }
-        ), from: viewController)
+        router.show(InboxCoursePickerAssembly.makeInboxCoursePickerViewController(selected: selectedContext) { [weak self] course in
+            self?.courseDidSelect(selectedContext: course, viewController: viewController)
+        }, from: viewController)
     }
 
-    private func courseDidSelect(course: InboxCourse?, viewController: WeakViewController) {
-        selectedCourse = course
+    private func courseDidSelect(selectedContext: RecipientContext?, viewController: WeakViewController) {
+        self.selectedContext = selectedContext
         recipients.removeAll()
 
         closeCourseSelectorDelayed(viewController)
@@ -94,16 +79,15 @@ class ComposeMessageViewModel: ObservableObject {
 
     private func closeCourseSelectorDelayed(_ viewController: WeakViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            if let navController = viewController.value.navigationController,
-               navController.visibleViewController is ItemPickerViewController {
+            if let navController = viewController.value.navigationController {
                 navController.popViewController(animated: true)
             }
         }
     }
 
     public func addRecipientButtonDidTap(viewController: WeakViewController) {
-        guard let courseID = selectedCourse?.courseId else { return }
-        let addressbook = AddressBookAssembly.makeAddressbookViewController(courseID: courseID, recipientDidSelect: selectedRecipient)
+        guard let id = selectedContext?.id else { return }
+        let addressbook = AddressBookAssembly.makeAddressbookViewController(courseID: id, recipientDidSelect: selectedRecipient)
         router.show(addressbook, from: viewController)
     }
 
@@ -130,14 +114,14 @@ class ComposeMessageViewModel: ObservableObject {
     }
 
     private func messageParameters() -> MessageParameters? {
-        guard let courseID = selectedCourse?.courseId else { return nil }
+        guard let context = selectedContext else { return nil }
         let recipientIDs = recipients.map { $0.id }
 
         return MessageParameters(
             subject: subject,
             body: bodyText,
             recipientIDs: recipientIDs,
-            context: .course(courseID)
+            context: context.getContext()
         )
     }
 

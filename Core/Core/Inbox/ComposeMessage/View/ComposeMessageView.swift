@@ -122,7 +122,7 @@ public struct ComposeMessageView: View {
         VStack(spacing: 0) {
             courseView
             Divider()
-            if model.selectedCourse != nil {
+            if model.selectedContext != nil {
                 toView
                 Divider()
             }
@@ -140,8 +140,8 @@ public struct ComposeMessageView: View {
                 Text("Course", bundle: .core)
                     .font(.regular16, lineHeight: .condensed)
                     .foregroundColor(.textDark)
-                if let course = model.selectedCourse {
-                    Text(course.name)
+                if let context = model.selectedContext {
+                    Text(context.name)
                         .font(.regular16, lineHeight: .condensed)
                         .foregroundColor(.textDarkest)
                 }
