@@ -690,7 +690,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
             .sink()
 
         // THEN
-        XCTAssertTrue(listInteractorMock.loadAsyncCalled)
+        XCTAssertTrue(listInteractorMock.getCoursesCalled)
         subscription.cancel()
     }
 

@@ -17,8 +17,9 @@
 //
 
 import CoreData
+import Combine
 
-public final class CourseListItem: NSManagedObject {
+public final class CDAllCoursesCourseItem: NSManagedObject {
     @NSManaged public var courseId: String
     @NSManaged public var courseCode: String
     /** The enrollment state which was passed to the API when this entity was returned. Used to group courses into past, current and future sections. */
@@ -37,8 +38,8 @@ public final class CourseListItem: NSManagedObject {
     public static func save(_ apiEntity: APICourse,
                             enrollmentState: GetCoursesRequest.EnrollmentState,
                             app: AppEnvironment.App? = AppEnvironment.shared.app,
-                            in context: NSManagedObjectContext) -> CourseListItem {
-        let dbEntity: CourseListItem = context.first(where: #keyPath(CourseListItem.courseId),
+                            in context: NSManagedObjectContext) -> CDAllCoursesCourseItem {
+        let dbEntity: CDAllCoursesCourseItem = context.first(where: #keyPath(CDAllCoursesCourseItem.courseId),
                                                      equals: apiEntity.id.value)
                                        ?? context.insert()
         dbEntity.courseId = apiEntity.id.value
@@ -73,7 +74,7 @@ public final class CourseListItem: NSManagedObject {
     }
 }
 
-private extension Optional where Wrapped == [APIEnrollment] {
+extension Optional where Wrapped == [APIEnrollment] {
     var roles: String {
         var roles = (self ?? [])
             .filter {
@@ -84,5 +85,34 @@ private extension Optional where Wrapped == [APIEnrollment] {
             }
         roles = Array(Set(roles)).sorted()
         return roles.joined(separator: ", ")
+    }
+}
+
+public extension Array where Element == CDAllCoursesCourseItem {
+
+    func filter(query: String) -> Future<[CDAllCoursesCourseItem], Error> {
+        Future<[CDAllCoursesCourseItem], Error> { promise in
+            if query.isEmpty {
+                return promise(.success(self))
+            }
+
+            let filteredItems = filter {
+                $0.name.lowercased().contains(query) || $0.courseCode.lowercased().contains(query)
+            }
+            promise(.success(filteredItems))
+        }
+    }
+}
+
+public extension Publisher where Output == [CDAllCoursesCourseItem], Failure == Error {
+
+    func filter<Query: Publisher>(with query: Query) -> AnyPublisher<Output, Failure>
+        where Query.Output == String, Query.Failure == Failure {
+        Publishers
+            .CombineLatest(self, query.map { $0.lowercased() })
+            .flatMap { (items, searchQuery) in
+                items.filter(query: searchQuery)
+            }
+            .eraseToAnyPublisher()
     }
 }
