@@ -58,6 +58,8 @@ public extension UIImage {
     static var checkSolid: UIImage { UIImage(named: "checkSolid", in: .core, compatibleWith: nil)! }
     static var circleArrowDownLine: UIImage { UIImage(named: "circleArrowDownLine", in: .core, compatibleWith: nil)! }
     static var circleArrowDownSolid: UIImage { UIImage(named: "circleArrowDownSolid", in: .core, compatibleWith: nil)! }
+    static var circleArrowUpLine: UIImage { UIImage(named: "circleArrowUpLine", in: .core, compatibleWith: nil)! }
+    static var circleArrowUpSolid: UIImage { UIImage(named: "circleArrowUpSolid", in: .core, compatibleWith: nil)! }
     static var clockLine: UIImage { UIImage(named: "clockLine", in: .core, compatibleWith: nil)! }
     static var clockSolid: UIImage { UIImage(named: "clockSolid", in: .core, compatibleWith: nil)! }
     static var cloudLockLine: UIImage { UIImage(named: "cloudLockLine", in: .core, compatibleWith: nil)! }
@@ -287,6 +289,8 @@ public extension Image {
     static var checkSolid: Image { Image("checkSolid", bundle: .core) }
     static var circleArrowDownLine: Image { Image("circleArrowDownLine", bundle: .core) }
     static var circleArrowDownSolid: Image { Image("circleArrowDownSolid", bundle: .core) }
+    static var circleArrowUpLine: Image { Image("circleArrowUpLine", bundle: .core) }
+    static var circleArrowUpSolid: Image { Image("circleArrowUpSolid", bundle: .core) }
     static var clockLine: Image { Image("clockLine", bundle: .core) }
     static var clockSolid: Image { Image("clockSolid", bundle: .core) }
     static var cloudLockLine: Image { Image("cloudLockLine", bundle: .core) }

@@ -53,7 +53,14 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     },
 
     "/conversations": nil,
-    "/conversations/compose": nil,
+    "/conversations/compose": { url, params, userInfo in
+        if ExperimentalFeature.nativeStudentInbox.isEnabled {
+            return ComposeMessageAssembly.makeNewMessageViewController(env: AppEnvironment.shared)
+        } else {
+            return HelmViewController(moduleName: "/conversations/compose", url: url, params: params, userInfo: userInfo)
+        }
+    },
+
     "/conversations/:conversationID": { url, params, userInfo in
         if ExperimentalFeature.nativeStudentInbox.isEnabled {
             guard let conversationID = params["conversationID"] else { return nil }
