@@ -31,13 +31,7 @@ public enum AllCoursesAssembly {
     }
 
     public static func makeGroupListInteractor(env: AppEnvironment) -> GroupListInteractor {
-        let shouldListGroups = {
-            if let app = env.app {
-                return app == .student
-            } else {
-                return false
-            }
-        }()
+        let shouldListGroups = (env.app == .student)
         return GroupListInteractorLive(shouldListGroups: shouldListGroups)
     }
 
