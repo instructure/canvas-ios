@@ -30,26 +30,14 @@ class InboxCoursePickerInteractorLive: InboxCoursePickerInteractor {
     private var subscriptions = Set<AnyCancellable>()
     private let courseListStore: Store<GetCourses>
     private let groupListStore: Store<GetGroups>
-    private let selectedContext = CurrentValueRelay<Context?>(nil)
 
     public init(env: AppEnvironment) {
         self.courseListStore = env.subscribe(GetCourses())
         self.groupListStore = env.subscribe(GetGroups())
 
-        courseListStore.statePublisher.merge(with: groupListStore.statePublisher)
+        StoreState.combineLatest(courseListStore.statePublisher, groupListStore.statePublisher)
             .subscribe(state)
             .store(in: &subscriptions)
-
-//        If the code snippet above is correct, this can be deleted
-//        courseListStore
-//            .statePublisher
-//            .subscribe(state)
-//            .store(in: &subscriptions)
-//
-//        groupListStore
-//            .statePublisher
-//            .subscribe(state)
-//            .store(in: &subscriptions)
 
         courseListStore
             .allObjects

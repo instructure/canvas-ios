@@ -143,6 +143,7 @@ public struct ComposeMessageView: View {
                 if let context = model.selectedContext {
                     Text(context.name)
                         .font(.regular16, lineHeight: .condensed)
+                        .multilineTextAlignment(.leading)
                         .foregroundColor(.textDarkest)
                 }
                 Spacer()

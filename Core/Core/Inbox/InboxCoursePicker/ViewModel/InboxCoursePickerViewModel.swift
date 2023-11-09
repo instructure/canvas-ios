@@ -23,22 +23,23 @@ class InboxCoursePickerViewModel: ObservableObject {
     // MARK: - Outputs
     @Published public private(set) var courses: [Course] = []
     @Published public private(set) var groups: [Group] = []
-    @Published public var selectedRecipientContext: RecipientContext?
     @Published public private(set) var state: StoreState = .loading
+
+    // MARK: - Input / Output
+    @Published public var selectedRecipientContext: RecipientContext?
+
+    // MARK: - Inputs
     public private(set) var dismissViewDidTrigger = PassthroughSubject<Void, Never>()
     var didSelect: ((RecipientContext) -> Void)?
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: InboxCoursePickerInteractor
-    private let router: Router
 
-    public init(router: Router,
-                interactor: InboxCoursePickerInteractor,
+    public init(interactor: InboxCoursePickerInteractor,
                 selected: RecipientContext? = nil,
                 didSelect: ((RecipientContext) -> Void)? = nil) {
         self.interactor = interactor
-        self.router = router
         self.selectedRecipientContext = selected
         self.didSelect = didSelect
 

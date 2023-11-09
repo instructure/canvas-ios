@@ -86,7 +86,7 @@ class ComposeMessageViewModel: ObservableObject {
     }
 
     public func addRecipientButtonDidTap(viewController: WeakViewController) {
-        guard let id = selectedContext?.id else { return }
+        guard let id = selectedContext?.context.id else { return }
         let addressbook = AddressBookAssembly.makeAddressbookViewController(courseID: id, recipientDidSelect: selectedRecipient)
         router.show(addressbook, from: viewController)
     }
@@ -121,7 +121,7 @@ class ComposeMessageViewModel: ObservableObject {
             subject: subject,
             body: bodyText,
             recipientIDs: recipientIDs,
-            context: context.getContext()
+            context: context.context
         )
     }
 

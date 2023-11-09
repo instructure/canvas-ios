@@ -21,7 +21,7 @@ import Foundation
 public enum InboxCoursePickerAssembly {
     public static func makeInboxCoursePickerViewController(selected: RecipientContext?, didSelect: ((RecipientContext) -> Void)? = nil, env: AppEnvironment = .shared) -> UIViewController {
         let interactor = InboxCoursePickerInteractorLive(env: env)
-        let viewModel = InboxCoursePickerViewModel(router: env.router, interactor: interactor, selected: selected, didSelect: didSelect)
+        let viewModel = InboxCoursePickerViewModel(interactor: interactor, selected: selected, didSelect: didSelect)
         let view = InboxCoursePickerView(viewModel: viewModel)
         return CoreHostingController(view)
     }
@@ -30,7 +30,7 @@ public enum InboxCoursePickerAssembly {
 
     public static func makePreview(env: AppEnvironment) -> InboxCoursePickerView {
         let interactor = InboxCoursePickerInteractorPreview(env: env)
-        let viewModel = InboxCoursePickerViewModel(router: env.router, interactor: interactor)
+        let viewModel = InboxCoursePickerViewModel(interactor: interactor)
         return InboxCoursePickerView(viewModel: viewModel)
     }
 

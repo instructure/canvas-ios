@@ -19,30 +19,16 @@
 import Foundation
 
 public class RecipientContext {
-    let id: String
     let name: String
-    let contextType: ContextType
+    let context: Context
 
     init(_ course: Course) {
-        self.id = course.id
         self.name = course.name ?? course.courseCode ?? ""
-        self.contextType = .course
+        self.context = Context.course(course.id)
     }
 
     init(_ group: Group) {
-        self.id = group.id
         self.name = group.name
-        self.contextType = .group
-    }
-
-    func getContext() -> Context {
-        return switch contextType {
-        case .course:
-            Context.course(id)
-        case .group:
-            Context.group(id)
-        default:
-            Context.course(id)
-        }
+        self.context = Context.group(group.id)
     }
 }
