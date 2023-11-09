@@ -135,10 +135,11 @@ class CourseSyncListInteractorLiveTests: CoreTestCase {
 }
 
 class MockCourseSyncEntryComposerInteractor: CourseSyncEntryComposerInteractor {
-    var subject = CurrentValueSubject<CourseSyncEntry, Error>(.make())
     func composeEntry(from _: CourseSyncSelectorCourse,
                       useCache _: Bool)
         -> AnyPublisher<CourseSyncEntry, Error> {
-        subject.eraseToAnyPublisher()
+        Just(.make())
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
 }
