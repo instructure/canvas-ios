@@ -25,9 +25,6 @@ public protocol CourseSyncListInteractor {
 }
 
 public class CourseSyncListInteractorLive: CourseSyncListInteractor {
-//    private let courseListStore = ReactiveStore(
-//        useCase: GetCourseSyncSelectorCourses()
-//    )
     private let entryComposerInteractor: CourseSyncEntryComposerInteractor
     private var sessionDefaults: SessionDefaults
     private let scheduler: AnySchedulerOf<DispatchQueue>
