@@ -137,4 +137,12 @@ public class DashboardHelperParent: BaseHelper {
     public static func courseCard(course: DSCourse? = nil, courseId: String? = nil) -> XCUIElement {
         return app.find(id: "course_cell_\(course?.id ?? courseId!)")
     }
+
+    public static func courseTitleLabel(course: DSCourse? = nil, courseId: String? = nil) -> XCUIElement {
+        return app.find(id: "course_title_\(course?.id ?? courseId!)")
+    }
+
+    public static func courseGradeLabel(course: DSCourse? = nil, courseId: String? = nil) -> XCUIElement {
+        return app.find(id: "course_grade_\(course?.id ?? courseId!)")
+    }
 }
