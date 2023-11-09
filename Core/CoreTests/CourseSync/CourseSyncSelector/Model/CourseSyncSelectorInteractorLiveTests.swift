@@ -206,6 +206,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
                 }
             )
 
+        drainMainQueue()
         waitForExpectations(timeout: 0.1)
         XCTAssertFalse(entries[0].selectionState == .selected)
         XCTAssertTrue(entries[0].isCollapsed)
@@ -252,6 +253,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
                 }
             )
 
+        drainMainQueue()
         waitForExpectations(timeout: 0.1)
 
         XCTAssertEqual(entries.count, 1)
@@ -400,6 +402,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
 
         let testee = CourseSyncSelectorInteractorLive(sessionDefaults: defaults)
         XCTAssertFinish(testee.getCourseSyncEntries().first())
+        drainMainQueue()
 
         // MARK: - WHEN
 
