@@ -16,13 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-@testable import Core
 import Combine
-import XCTest
+@testable import Core
 import TestsFoundation
+import XCTest
 
 class CourseSyncNotificationInteractorTests: CoreTestCase {
-
     func testSendsSuccessNotificationWithItemCount() {
         let testee = CourseSyncNotificationInteractor(notificationManager: notificationManager,
                                                       progressInteractor: CourseSyncProgressObserverInteractorMock())
@@ -90,13 +89,13 @@ private class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserv
         let progress = CourseSyncDownloadProgress(bytesToDownload: 0,
                                                   bytesDownloaded: 0,
                                                   isFinished: true,
-                                                  error: isSyncFailed ? "error" : nil, 
+                                                  error: isSyncFailed ? "error" : nil,
                                                   courseIds: [])
         return Just(progress).eraseToAnyPublisher()
     }
 
     func observeStateProgress() -> AnyPublisher<[CourseSyncStateProgress], Never> {
-        let progresses = (0..<13).map { _ in
+        let progresses = (0 ..< 13).map { _ in
             CourseSyncStateProgress(id: "", selection: .course("1"), state: .downloaded, entryID: "", tabID: "", fileID: "", progress: nil)
         }
         return Just(progresses).eraseToAnyPublisher()
