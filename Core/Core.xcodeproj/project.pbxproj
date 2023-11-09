@@ -1349,6 +1349,8 @@
 		D2D5C96EE222080DEA01F7D6 /* GradingSchemeEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D31ECE60022F3F0880DE4A5 /* GradingSchemeEntry.swift */; };
 		D2DA38634A2821C1C71B7DD2 /* DragButtonStateViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DBCA7D161FF8B591AFE784 /* DragButtonStateViewModelTests.swift */; };
 		D2FD9F0CE35154CDA63EB588 /* APIAssignmentPickerListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C977681048E778C187FD119 /* APIAssignmentPickerListItem.swift */; };
+		D30DFB0A2AFCE2D40051FEF3 /* InboxCoursePickerInteractorLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30DFB092AFCE2D40051FEF3 /* InboxCoursePickerInteractorLiveTests.swift */; };
+		D30DFB0C2AFCE2E80051FEF3 /* InboxCoursePickerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30DFB0B2AFCE2E80051FEF3 /* InboxCoursePickerViewModelTests.swift */; };
 		D31E83925422BBA1373AB854 /* ContextCardGradesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9B361985FD0F05D7C61646 /* ContextCardGradesView.swift */; };
 		D3325F79CCA32071098A7DA9 /* GetQuizSubmissionUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DFFDB020E0A5A5ED8973F0 /* GetQuizSubmissionUsers.swift */; };
 		D3F2C000008898A8049AFEF7 /* CourseSyncItemSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B3812EED19B5A501744522 /* CourseSyncItemSelection.swift */; };
@@ -3249,6 +3251,8 @@
 		D28C5442AE5762F62033B501 /* UIFontExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtensionsTests.swift; sourceTree = "<group>"; };
 		D2A10B77E9E886A71F13AAB6 /* EditComposeRecipientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditComposeRecipientsViewController.swift; sourceTree = "<group>"; };
 		D2AACFCF7807BA84FAA8BB9D /* K5SubjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewModel.swift; sourceTree = "<group>"; };
+		D30DFB092AFCE2D40051FEF3 /* InboxCoursePickerInteractorLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxCoursePickerInteractorLiveTests.swift; sourceTree = "<group>"; };
+		D30DFB0B2AFCE2E80051FEF3 /* InboxCoursePickerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxCoursePickerViewModelTests.swift; sourceTree = "<group>"; };
 		D31E93E5AD00DF5469ED4CBC /* UISearchTextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchTextFieldExtensions.swift; sourceTree = "<group>"; };
 		D353A6609F8E219A19862AE0 /* ExperimentalFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentalFeature.swift; sourceTree = "<group>"; };
 		D36C5027996C9F24362419DA /* AttachmentCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCardsView.swift; sourceTree = "<group>"; };
@@ -4561,6 +4565,7 @@
 		2F99C1102518F74471883328 /* Inbox */ = {
 			isa = PBXGroup;
 			children = (
+				D30DFB082AFCE1B40051FEF3 /* InboxCoursePicker */,
 				108A7036F1B887F565E37A2B /* ComposeMessage */,
 				11DBA6BF31CAA9F45A2037C5 /* MessageDetails */,
 				6CC4EAEBA4D4A408ABB0AB6C /* Model */,
@@ -8155,6 +8160,15 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		D30DFB082AFCE1B40051FEF3 /* InboxCoursePicker */ = {
+			isa = PBXGroup;
+			children = (
+				D30DFB092AFCE2D40051FEF3 /* InboxCoursePickerInteractorLiveTests.swift */,
+				D30DFB0B2AFCE2E80051FEF3 /* InboxCoursePickerViewModelTests.swift */,
+			);
+			path = InboxCoursePicker;
+			sourceTree = "<group>";
+		};
 		D342A034E85BF8D0FA3C3F11 /* AnnotationContextMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -9647,6 +9661,7 @@
 				069ADE5FFD74EA7C53F5DC39 /* ConversationTests.swift in Sources */,
 				A07909ACCFE8D0A2672477F6 /* CoreActivityViewControllerTests.swift in Sources */,
 				2125CC8971DC97F01C6C0A78 /* CoreDatePickerTests.swift in Sources */,
+				D30DFB0A2AFCE2D40051FEF3 /* InboxCoursePickerInteractorLiveTests.swift in Sources */,
 				6458A12D3683BA1C26B4515A /* CoreHostingControllerTests.swift in Sources */,
 				6E3D818F435076EE7E6792B0 /* CoreTestCase.swift in Sources */,
 				4C1B4D6D123049D5987E1102 /* CoreWebViewContentErrorViewEmbedTests.swift in Sources */,
@@ -9676,6 +9691,7 @@
 				E59DCA8BE287DF662AAD3E62 /* CourseSyncGradesInteractorLiveTests.swift in Sources */,
 				E612373CABC74630F99BAAF5 /* CourseSyncInteractorLiveTests.swift in Sources */,
 				D4BDF1EE353A18DF24F5E7E3 /* CourseSyncItemSelectionTests.swift in Sources */,
+				D30DFB0C2AFCE2E80051FEF3 /* InboxCoursePickerViewModelTests.swift in Sources */,
 				E621270C3F071D97B183E04B /* CourseSyncListInteractorLiveTests.swift in Sources */,
 				FC4667FFFAF0F8B7A36B6F2C /* CourseSyncModulesInteractorLiveTests.swift in Sources */,
 				4DF9F4D87F2FEA34919E9B3E /* CourseSyncNotificationInteractorTests.swift in Sources */,

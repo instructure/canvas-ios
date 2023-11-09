@@ -16,13 +16,31 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#if DEBUG
-
-import Foundation
+@testable import Core
+import CoreData
+import XCTest
 import Combine
 
-class InboxCoursePickerInteractorPreview: InboxCoursePickerInteractor {
-    // MARK: - Outputs
+class InboxCoursePickerViewModelTests: CoreTestCase {
+    private var mockInteractor: InboxCoursePickerInteractorMock!
+    var testee: InboxCoursePickerViewModel!
+
+    override func setUp() {
+        super.setUp()
+        mockInteractor = InboxCoursePickerInteractorMock(env: AppEnvironment())
+        testee = InboxCoursePickerViewModel(interactor: mockInteractor)
+    }
+
+    func testInteractorStateMappedToViewModel() {
+        XCTAssertEqual(testee.state, mockInteractor.state.value)
+        XCTAssertEqual(testee.courses.count, 2)
+        XCTAssertEqual(testee.groups.count, 1)
+        XCTAssertEqual(testee.courses.first?.name, "Course 1")
+        XCTAssertEqual(testee.groups.first?.name, "Group 1")
+    }
+}
+
+private class InboxCoursePickerInteractorMock: InboxCoursePickerInteractor {
     public var state = CurrentValueSubject<StoreState, Never>(.data)
     public var courses = CurrentValueSubject<[Course], Never>([])
     public var groups = CurrentValueSubject<[Group], Never>([])
@@ -36,6 +54,5 @@ class InboxCoursePickerInteractorPreview: InboxCoursePickerInteractor {
             .save(.make(id: "1", name: "Group 1"), in: env.database.viewContext),
         ])
     }
-}
 
-#endif
+}

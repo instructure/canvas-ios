@@ -51,7 +51,6 @@ public struct InboxCoursePickerView: View {
             }
         }
         .frame(maxWidth: .infinity)
-        .background(Color.backgroundLight)
     }
 
     private var separator: some View {
@@ -61,23 +60,21 @@ public struct InboxCoursePickerView: View {
 
     private func courses(courses: [Course]) -> some View {
         VStack(spacing: 0) {
-            separator
-            Section(header:
-                Text("Courses")
-                    .font(.regular14)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundStyle(Color.textDark)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 16)
-                    .background(Color.backgroundLight)
-                    .accessibilityHeading(.h1)
-            ) {
-                separator
-                if courses.isEmpty {
-                    Text("There are no available courses", bundle: .core)
-                        .foregroundStyle(Color.textDark)
-                        .padding(12)
-                } else {
+            if !courses.isEmpty {
+                Section(header:
+                        VStack(spacing: 0) {
+                    separator
+                            Text("Courses")
+                                .font(.regular14)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .foregroundStyle(Color.textDark)
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 16)
+                                .background(Color.backgroundLight)
+                                .accessibilityHeading(.h1)
+                    separator
+                    }
+                ) {
                     ForEach(courses, id: \.id) { course in
                         courseRow(course)
                     }
@@ -88,25 +85,24 @@ public struct InboxCoursePickerView: View {
 
     private func groups(groups: [Group]) -> some View {
         VStack(spacing: 0) {
-            separator
-            Section(header:
-                Text("Groups")
-                    .font(.regular14)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundStyle(Color.textDark)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 16)
-                    .background(Color.backgroundLight)
-                    .accessibilityHeading(.h1)
-            ) {
-                separator
-                if groups.isEmpty {
-                    Text("There are no available groups", bundle: .core)
-                        .foregroundStyle(Color.textDark)
-                        .padding(12)
-                } else {
-                    ForEach(groups, id: \.id) { group in
-                        groupRow(group)
+            if !groups.isEmpty {
+                Section(header:
+                        VStack(spacing: 0) {
+                            Text("Groups")
+                                .font(.regular14)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .foregroundStyle(Color.textDark)
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 16)
+                                .background(Color.backgroundLight)
+                                .accessibilityHeading(.h1)
+                    separator
+                    }
+                ) {
+                    VStack(spacing: 0) {
+                        ForEach(groups, id: \.id) { group in
+                            groupRow(group)
+                        }
                     }
                 }
             }
@@ -123,7 +119,6 @@ public struct InboxCoursePickerView: View {
 
     private func headerView(_ header: String) -> some View {
         VStack(spacing: 0) {
-            separator
             Text(header)
                 .font(.regular14)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -131,7 +126,6 @@ public struct InboxCoursePickerView: View {
                 .padding(.horizontal, 12)
                 .padding(.vertical, 16)
                 .background(Color.backgroundLight)
-            separator
         }
     }
 
@@ -162,6 +156,7 @@ public struct InboxCoursePickerView: View {
             .padding(.vertical, 16)
             .background(.background)
             .accessibilityLabel(Text(accessibilityLabel))
+
             separator
         }
     }
@@ -192,6 +187,7 @@ public struct InboxCoursePickerView: View {
             .padding(.vertical, 16)
             .background(.background)
             .accessibilityLabel(Text(accessibilityLabel))
+
             separator
         }
     }
