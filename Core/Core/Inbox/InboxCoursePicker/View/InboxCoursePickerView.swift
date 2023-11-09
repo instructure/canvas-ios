@@ -160,7 +160,7 @@ public struct InboxCoursePickerView: View {
                 .foregroundStyle(Color.textDarkest)
             }
             .padding(.vertical, 16)
-            .background(Color.white)
+            .background(.background)
             .accessibilityLabel(Text(accessibilityLabel))
             separator
         }
@@ -190,7 +190,7 @@ public struct InboxCoursePickerView: View {
                 .foregroundStyle(Color.textDarkest)
             }
             .padding(.vertical, 16)
-            .background(Color.white)
+            .background(.background)
             .accessibilityLabel(Text(accessibilityLabel))
             separator
         }
