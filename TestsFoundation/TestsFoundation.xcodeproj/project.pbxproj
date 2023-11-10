@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -111,6 +111,8 @@
 		8917C1628DAFDC52287BF98D /* ModuleItemFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B59FD3B1D002FA5E94E1C6 /* ModuleItemFixture.swift */; };
 		8A07DBDCA9A16E7CA4119BA8 /* SafariAppHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88031258B44C726398315548 /* SafariAppHelper.swift */; };
 		8AAB7EC58190ABB57E0F40AD /* MiniCanvasServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9A98E1BAD9BED63BDEAD29 /* MiniCanvasServer.swift */; };
+		8B4C56A22AFE9AF600B5AC89 /* CreateDSObserverPairingCodeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C56A12AFE9AF600B5AC89 /* CreateDSObserverPairingCodeRequest.swift */; };
+		8B4C56AA2AFE9B7800B5AC89 /* DSPairingCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C56A92AFE9B7800B5AC89 /* DSPairingCode.swift */; };
 		8C02370D294ADC5E03166916 /* CreateDSQuizQuestionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFA2EB914E415CCFACDB /* CreateDSQuizQuestionRequest.swift */; };
 		8CE7A795708CBCF4AF7A2674 /* DSModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F69E1EBE6B486730AE73F45 /* DSModuleItem.swift */; };
 		8CEEA54DE127851FF426490F /* CreateDSDiscussionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D6E99369534DE2260DD4EB /* CreateDSDiscussionRequest.swift */; };
@@ -190,6 +192,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8B4C56A52AFE9AF700B5AC89 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19FB565ABEC6EA3620720E25 /* Core */;
+			proxyType = 2;
+			remoteGlobalIDString = 8F6731E780A5363E04E3620A;
+			remoteInfo = CoreTester;
+		};
+		8B4C56A72AFE9AF700B5AC89 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19FB565ABEC6EA3620720E25 /* Core */;
+			proxyType = 2;
+			remoteGlobalIDString = DC35484E0C7EE977582AF3AE;
+			remoteInfo = CoreTests;
+		};
 		ADD0BD039DBE20C141DFDF5E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 19FB565ABEC6EA3620720E25 /* Core */;
@@ -303,6 +319,8 @@
 		8A068B0E01FE8DF60B7EB29C /* DataSeeder+DSCalendarEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSCalendarEvent.swift"; sourceTree = "<group>"; };
 		8A620771B1587A67246AE4EC /* DataSeeder+DSNewQuiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSeeder+DSNewQuiz.swift"; sourceTree = "<group>"; };
 		8A786B4F2BC2E643D0EA58C0 /* SetDSFeatureFlagRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDSFeatureFlagRequest.swift; sourceTree = "<group>"; };
+		8B4C56A12AFE9AF600B5AC89 /* CreateDSObserverPairingCodeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateDSObserverPairingCodeRequest.swift; sourceTree = "<group>"; };
+		8B4C56A92AFE9B7800B5AC89 /* DSPairingCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSPairingCode.swift; sourceTree = "<group>"; };
 		8BACE13D3A0EEBE90FCA0993 /* CommandLineHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandLineHelper.swift; sourceTree = "<group>"; };
 		8E046239E00E2F114C950D3A /* ModuleFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFixture.swift; sourceTree = "<group>"; };
 		8E52A6F60DF961A9FB652399 /* DSSubmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSSubmission.swift; sourceTree = "<group>"; };
@@ -486,6 +504,8 @@
 				3F33C4DD360C44A1B0C15A45 /* DataSeeder+DSUser.swift */,
 				DCAA7389044959C4A472A443 /* DSAdmin.swift */,
 				FF23850042CD551D7DF85779 /* DSUser.swift */,
+				8B4C56A12AFE9AF600B5AC89 /* CreateDSObserverPairingCodeRequest.swift */,
+				8B4C56A92AFE9B7800B5AC89 /* DSPairingCode.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -721,6 +741,8 @@
 			isa = PBXGroup;
 			children = (
 				59FDA90639A28B677F0E6B7A /* Core.framework */,
+				8B4C56A62AFE9AF700B5AC89 /* CoreTester.app */,
+				8B4C56A82AFE9AF700B5AC89 /* CoreTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1012,6 +1034,20 @@
 			remoteRef = C62A32602F4B1A165BCFE80A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		8B4C56A62AFE9AF700B5AC89 /* CoreTester.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = CoreTester.app;
+			remoteRef = 8B4C56A52AFE9AF700B5AC89 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8B4C56A82AFE9AF700B5AC89 /* CoreTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = CoreTests.xctest;
+			remoteRef = 8B4C56A72AFE9AF700B5AC89 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -1059,6 +1095,7 @@
 				FA9954E150F63661C57C4DB0 /* ContextColorFixture.swift in Sources */,
 				1CDED784002866FD6FF16FAE /* ConversationFixture.swift in Sources */,
 				D1EEE3A0670DFBA90E0D2CC0 /* CoreTestsHelper.swift in Sources */,
+				8B4C56AA2AFE9B7800B5AC89 /* DSPairingCode.swift in Sources */,
 				552DF6C0381499EAD5EA0D16 /* CoreUITestCase.swift in Sources */,
 				0A652D3EE2A27FAF7D63DD9C /* CourseDetailsHelper.swift in Sources */,
 				B51F704B105B606DBB15C5D2 /* CourseFixture.swift in Sources */,
@@ -1166,6 +1203,7 @@
 				868A57148129505EFB5582E5 /* MiniFile.swift in Sources */,
 				FFADD7DD68993B1380C05405 /* MiniFolder.swift in Sources */,
 				941B1FE74075EFFD013C1F1D /* MiniQuiz.swift in Sources */,
+				8B4C56A22AFE9AF600B5AC89 /* CreateDSObserverPairingCodeRequest.swift in Sources */,
 				6B41215EDE3C46E1FEDA6BF8 /* MiniSubmission.swift in Sources */,
 				B0B15E631B9125348B385E2E /* MockNotificationManager.swift in Sources */,
 				98295FB98C426A789A07658C /* MockUploadManager.swift in Sources */,

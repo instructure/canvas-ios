@@ -80,6 +80,8 @@
 		8B4C568E2AF9070A00B5AC89 /* CoursesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C568D2AF9070A00B5AC89 /* CoursesTests.swift */; };
 		8B4C56912AFBC8E600B5AC89 /* CalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C56902AFBC8E600B5AC89 /* CalendarTests.swift */; };
 		8B4C569A2AFD44ED00B5AC89 /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C56992AFD44ED00B5AC89 /* LoginTests.swift */; };
+		8B4C569D2AFE97DE00B5AC89 /* ProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C569C2AFE97DE00B5AC89 /* ProfileTests.swift */; };
+		8B4C56A02AFE99CF00B5AC89 /* AddStudentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4C569F2AFE99CF00B5AC89 /* AddStudentTests.swift */; };
 		8B7CF40F2A9D156700229CD3 /* GradesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7CF40E2A9D156700229CD3 /* GradesTests.swift */; };
 		97043EDF23E8D4D400E52436 /* DashboardViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97043EDE23E8D4D400E52436 /* DashboardViewControllerTests.swift */; };
 		97523A8723C9375A0086D825 /* AssignmentDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97523A8623C9375A0086D825 /* AssignmentDetailsViewControllerTests.swift */; };
@@ -326,6 +328,8 @@
 		8B4C568D2AF9070A00B5AC89 /* CoursesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesTests.swift; sourceTree = "<group>"; };
 		8B4C56902AFBC8E600B5AC89 /* CalendarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTests.swift; sourceTree = "<group>"; };
 		8B4C56992AFD44ED00B5AC89 /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
+		8B4C569C2AFE97DE00B5AC89 /* ProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTests.swift; sourceTree = "<group>"; };
+		8B4C569F2AFE99CF00B5AC89 /* AddStudentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStudentTests.swift; sourceTree = "<group>"; };
 		8B7CF40E2A9D156700229CD3 /* GradesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesTests.swift; sourceTree = "<group>"; };
 		8DD07CB9DEEBA35A0324E7CC /* Pods_needs_pspdfkit_ParentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_needs_pspdfkit_ParentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90AFEB4A273EE752196BC769 /* Pods-Parent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parent.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Parent/Pods-Parent.debug.xcconfig"; sourceTree = "<group>"; };
@@ -749,6 +753,22 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		8B4C569B2AFE97CF00B5AC89 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				8B4C569C2AFE97DE00B5AC89 /* ProfileTests.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		8B4C569E2AFE99BD00B5AC89 /* AddStudent */ = {
+			isa = PBXGroup;
+			children = (
+				8B4C569F2AFE99CF00B5AC89 /* AddStudentTests.swift */,
+			);
+			path = AddStudent;
+			sourceTree = "<group>";
+		};
 		8B7CF40D2A9D155700229CD3 /* Grades */ = {
 			isa = PBXGroup;
 			children = (
@@ -829,6 +849,8 @@
 		E80763D723E08DC80085DAFB /* ParentE2ETests */ = {
 			isa = PBXGroup;
 			children = (
+				8B4C569E2AFE99BD00B5AC89 /* AddStudent */,
+				8B4C569B2AFE97CF00B5AC89 /* Profile */,
 				8B4C56982AFD44DF00B5AC89 /* Login */,
 				8B4C568F2AFBC8DA00B5AC89 /* Calendar */,
 				8B4C568C2AF906FD00B5AC89 /* Courses */,
@@ -1256,10 +1278,12 @@
 				8B4C567D2AE9743400B5AC89 /* ManageStudentsTests.swift in Sources */,
 				8B4C56732AE941A100B5AC89 /* AboutTests.swift in Sources */,
 				8B7CF40F2A9D156700229CD3 /* GradesTests.swift in Sources */,
+				8B4C569D2AFE97DE00B5AC89 /* ProfileTests.swift in Sources */,
 				8B4C56912AFBC8E600B5AC89 /* CalendarTests.swift in Sources */,
 				8B4C568B2AF904CA00B5AC89 /* LogoutTests.swift in Sources */,
 				8B4C56762AE9444100B5AC89 /* InboxTests.swift in Sources */,
 				8B4C568E2AF9070A00B5AC89 /* CoursesTests.swift in Sources */,
+				8B4C56A02AFE99CF00B5AC89 /* AddStudentTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
