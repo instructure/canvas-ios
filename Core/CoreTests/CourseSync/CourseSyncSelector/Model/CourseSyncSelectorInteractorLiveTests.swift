@@ -196,7 +196,10 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
     }
 
     func testDefaultSelection() {
-        let testee = CourseSyncSelectorInteractorLive(sessionDefaults: defaults)
+        let testee = CourseSyncSelectorInteractorLive(
+            courseSyncListInteractor: CourseSyncListInteractorLive(sessionDefaults: defaults),
+            sessionDefaults: defaults
+        )
         let expectation = expectation(description: "Publisher sends value")
 
         mockCourseList(
@@ -235,7 +238,10 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
     }
 
     func testSelectedEntries() {
-        let testee = CourseSyncSelectorInteractorLive(sessionDefaults: defaults)
+        let testee = CourseSyncSelectorInteractorLive(
+            courseSyncListInteractor: CourseSyncListInteractorLive(sessionDefaults: defaults),
+            sessionDefaults: defaults
+        )
         let expectation = expectation(description: "Publisher sends value")
         expectation.expectedFulfillmentCount = 2
 
@@ -420,7 +426,10 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
             .make(id: "2", name: "course 2", tabs: []),
         ])
 
-        let testee = CourseSyncSelectorInteractorLive(sessionDefaults: defaults)
+        let testee = CourseSyncSelectorInteractorLive(
+            courseSyncListInteractor: CourseSyncListInteractorLive(sessionDefaults: defaults),
+            sessionDefaults: defaults
+        )
         XCTAssertFinish(testee.getCourseSyncEntries().first())
         drainMainQueue()
 
