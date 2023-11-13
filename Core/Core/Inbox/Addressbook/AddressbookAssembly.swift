@@ -20,8 +20,8 @@ import CombineExt
 
 public enum AddressBookAssembly {
 
-    public static func makeAddressbookViewController(env: AppEnvironment = .shared, courseID: String, recipientDidSelect: CurrentValueRelay<SearchRecipient?>) -> UIViewController {
-        let interactor = AddressbookInteractorLive(env: env, courseID: courseID)
+    public static func makeAddressbookViewController(env: AppEnvironment = .shared, recipientContext: RecipientContext, recipientDidSelect: CurrentValueRelay<SearchRecipient?>) -> UIViewController {
+        let interactor = AddressbookInteractorLive(env: env, recipientContext: recipientContext)
         let viewModel = AddressbookViewModel(router: env.router, interactor: interactor, recipientDidSelect: recipientDidSelect)
         let view = AddressbookView(model: viewModel)
         return CoreHostingController(view)

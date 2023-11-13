@@ -27,8 +27,8 @@ public class AddressbookInteractorLive: AddressbookInteractor {
     private var subscriptions = Set<AnyCancellable>()
     private let recipientStore: Store<GetSearchRecipients>
 
-    public init(env: AppEnvironment, courseID: String) {
-        self.recipientStore = env.subscribe(GetSearchRecipients(context: .course(courseID)))
+    public init(env: AppEnvironment, recipientContext: RecipientContext) {
+        self.recipientStore = env.subscribe(GetSearchRecipients(context: recipientContext.context))
 
         recipientStore
             .statePublisher

@@ -23,11 +23,15 @@ class AddressbookViewModel: ObservableObject {
     // MARK: - Outputs
     @Published public private(set) var state: StoreState = .loading
     @Published public private(set) var recipients: [SearchRecipient] = []
+    @Published public private(set) var roles: [String: [SearchRecipient]] = [:]
 
     public let title = NSLocalizedString("Select Recipients", bundle: .core, comment: "")
 
     // MARK: - Inputs
     public let recipientDidTap = PassthroughSubject<(recipient: SearchRecipient, controller: WeakViewController), Never>()
+
+    // MARK: - Inputs / Outputs
+    @Published public private(set) var selectedRole: String? = nil
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
@@ -45,6 +49,22 @@ class AddressbookViewModel: ObservableObject {
                 .assign(to: &$state)
         interactor.recipients
             .assign(to: &$recipients)
+
+        interactor.recipients
+            .compactMap { recipients in
+                return recipients.flatMap { recipient in
+                    Array(recipient.commonCourses).compactMap { commonCourse in
+                        (recipient, commonCourse.role)
+                    }
+                }
+            }
+            .compactMap { roleRecipients -> [String: [(SearchRecipient, String)]] in
+                return Dictionary(grouping: roleRecipients, by: { $0.1 })
+            }
+            .compactMap { roleRecipients -> [String: [SearchRecipient]] in
+                return Dictionary(uniqueKeysWithValues: roleRecipients.map { key, value in (key, Array(Set(value.map { $0.0 })) ) })
+            }
+            .assign(to: &$roles)
     }
 
     private func setupInputBindings(router: Router, recipientDidSelect: CurrentValueRelay<SearchRecipient?>) {
