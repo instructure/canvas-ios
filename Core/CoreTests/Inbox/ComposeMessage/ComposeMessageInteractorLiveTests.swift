@@ -1,0 +1,74 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2023-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import Combine
+@testable import Core
+import XCTest
+
+class ComposeMessageInteractorLiveTests: CoreTestCase {
+    private var testee: ComposeMessageInteractorLive!
+    private var subscriptions = Set<AnyCancellable>()
+
+    override func setUp() {
+        super.setUp()
+        mockData()
+
+        testee = ComposeMessageInteractorLive(env: environment)
+
+        waitForState(.data)
+    }
+
+    func testPopulatesListItems() {
+        XCTAssertEqual(testee.state.value, .data)
+        XCTAssertEqual(testee.courses.value.count, 2)
+        XCTAssertEqual(testee.courses.value.first?.name, "Course 1")
+    }
+
+    override func tearDown() {
+        subscriptions.removeAll()
+        super.tearDown()
+    }
+
+    private func mockData() {
+        let course1 = APICourse.make(
+            id: "1",
+            name: "Course 1"
+        )
+        let course2 = APICourse.make(
+            id: "2",
+            name: "Course 2"
+        )
+        let courses = [course1, course2]
+
+        api.mock(GetInboxCourseList(), value: courses)
+    }
+
+    private func waitForState(_ state: StoreState) {
+        let stateUpdate = expectation(description: "Expected state reached")
+        stateUpdate.assertForOverFulfill = false
+        let subscription = testee
+            .state
+            .sink {
+                if $0 == state {
+                    stateUpdate.fulfill()
+                }
+            }
+        wait(for: [stateUpdate], timeout: 1)
+        subscription.cancel()
+    }
+}

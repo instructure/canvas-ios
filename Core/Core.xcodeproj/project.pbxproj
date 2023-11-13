@@ -1351,6 +1351,7 @@
 		D2FD9F0CE35154CDA63EB588 /* APIAssignmentPickerListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C977681048E778C187FD119 /* APIAssignmentPickerListItem.swift */; };
 		D30DFB0A2AFCE2D40051FEF3 /* InboxCoursePickerInteractorLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30DFB092AFCE2D40051FEF3 /* InboxCoursePickerInteractorLiveTests.swift */; };
 		D30DFB0C2AFCE2E80051FEF3 /* InboxCoursePickerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30DFB0B2AFCE2E80051FEF3 /* InboxCoursePickerViewModelTests.swift */; };
+		D30DFB0E2AFD07300051FEF3 /* ComposeMessageInteractorLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30DFB0D2AFD07300051FEF3 /* ComposeMessageInteractorLiveTests.swift */; };
 		D31E83925422BBA1373AB854 /* ContextCardGradesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9B361985FD0F05D7C61646 /* ContextCardGradesView.swift */; };
 		D3325F79CCA32071098A7DA9 /* GetQuizSubmissionUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DFFDB020E0A5A5ED8973F0 /* GetQuizSubmissionUsers.swift */; };
 		D3F2C000008898A8049AFEF7 /* CourseSyncItemSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B3812EED19B5A501744522 /* CourseSyncItemSelection.swift */; };
@@ -3253,6 +3254,7 @@
 		D2AACFCF7807BA84FAA8BB9D /* K5SubjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewModel.swift; sourceTree = "<group>"; };
 		D30DFB092AFCE2D40051FEF3 /* InboxCoursePickerInteractorLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxCoursePickerInteractorLiveTests.swift; sourceTree = "<group>"; };
 		D30DFB0B2AFCE2E80051FEF3 /* InboxCoursePickerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxCoursePickerViewModelTests.swift; sourceTree = "<group>"; };
+		D30DFB0D2AFD07300051FEF3 /* ComposeMessageInteractorLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMessageInteractorLiveTests.swift; sourceTree = "<group>"; };
 		D31E93E5AD00DF5469ED4CBC /* UISearchTextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchTextFieldExtensions.swift; sourceTree = "<group>"; };
 		D353A6609F8E219A19862AE0 /* ExperimentalFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentalFeature.swift; sourceTree = "<group>"; };
 		D36C5027996C9F24362419DA /* AttachmentCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCardsView.swift; sourceTree = "<group>"; };
@@ -3979,6 +3981,7 @@
 			isa = PBXGroup;
 			children = (
 				93F29F0201803F6A55FE737D /* ComposeMessageViewModelTests.swift */,
+				D30DFB0D2AFD07300051FEF3 /* ComposeMessageInteractorLiveTests.swift */,
 			);
 			path = ComposeMessage;
 			sourceTree = "<group>";
@@ -10002,6 +10005,7 @@
 				4476D8F5D2F12C52F3785DE3 /* RichContentEditorViewControllerTests.swift in Sources */,
 				82D430256E6355B06FEDC024 /* RoleTests.swift in Sources */,
 				95ADB0781255C02BAAAD22F3 /* RouteHandlerTests.swift in Sources */,
+				D30DFB0E2AFD07300051FEF3 /* ComposeMessageInteractorLiveTests.swift in Sources */,
 				11B85858274FD54869B45C5C /* RouterTests.swift in Sources */,
 				CBD032FB0DC0AA6FBF74B752 /* RubricTests.swift in Sources */,
 				493672BABB3793FED1A4EC19 /* SafeURLTests.swift in Sources */,
