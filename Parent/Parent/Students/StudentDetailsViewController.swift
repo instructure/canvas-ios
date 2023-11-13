@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import UIKit
 import Core
+import UIKit
 
 class StudentDetailsViewController: ScreenViewTrackableViewController, ErrorViewController {
     @IBOutlet var alertFields: [UITextField]!
@@ -55,6 +55,8 @@ class StudentDetailsViewController: ScreenViewTrackableViewController, ErrorView
     lazy var thresholds = env.subscribe(GetAlertThresholds(studentID: studentID)) { [weak self] in
         self?.updateThresholds()
     }
+
+    private let semaphore = DispatchSemaphore(value: 0)
 
     func threshold(for type: AlertThresholdType) -> AlertThreshold? {
         return thresholds.first { $0.type == type }
@@ -130,6 +132,10 @@ class StudentDetailsViewController: ScreenViewTrackableViewController, ErrorView
     }
 
     @IBAction func switchChanged(_ sender: UISwitch) {
+        for field in alertFields where field.isEditing {
+            field.endEditing(true)
+        }
+
         let type = AlertThresholdType.allCases[sender.tag]
         let alert = threshold(for: type)
         if sender.isOn, alert == nil {
@@ -194,13 +200,18 @@ class StudentDetailsViewController: ScreenViewTrackableViewController, ErrorView
 
     func fetch<U: UseCase>(_ useCase: U) {
         loadingCount += 1
-        useCase.fetch(force: true) { [weak self] _, _, error in performUIUpdate {
-            self?.loadingCount -= 1
-            if let error = error {
-                self?.updateThresholds()
-                self?.showError(error)
+        useCase.fetch(force: true) { [weak self] _, _, error in
+            self?.semaphore.signal()
+
+            performUIUpdate {
+                self?.loadingCount -= 1
+                if let error = error {
+                    self?.updateThresholds()
+                    self?.showError(error)
+                }
             }
-        } }
+        }
+        semaphore.wait()
     }
 
     func updateLoading() {
