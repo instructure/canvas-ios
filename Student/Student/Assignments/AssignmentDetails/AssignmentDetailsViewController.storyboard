@@ -172,7 +172,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </button>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="haT-9w-5d7" firstAttribute="leading" relation="lessThanOrEqual" secondItem="CDm-Ca-2nK" secondAttribute="trailing" constant="16" id="2oy-BJ-J4e"/>
                                                             <constraint firstItem="5ai-Uj-QdL" firstAttribute="centerX" secondItem="nww-it-yxh" secondAttribute="centerX" id="Brg-0i-Wow"/>
@@ -200,7 +200,7 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                         <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
                                                                             <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold16"/>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </label>
@@ -283,7 +283,7 @@
                                                     </stackView>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2dw-BH-GAc" userLabel="Spacer - 32pt">
                                                         <rect key="frame" x="32" y="605" width="311" height="32"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="32" id="yAM-hn-3HI"/>
                                                         </constraints>
@@ -300,7 +300,7 @@
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Upl-ga-ug3" userLabel="Spacer - 16pt">
                                                         <rect key="frame" x="32" y="638" width="311" height="24"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="8nb-8g-EbL"/>
                                                         </constraints>
@@ -563,7 +563,7 @@
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="NUD-Zm-lzB" firstAttribute="leading" secondItem="G3G-xF-An6" secondAttribute="leading" constant="16" id="2aF-PR-6hN"/>
                                                             <constraint firstItem="NUD-Zm-lzB" firstAttribute="top" secondItem="SXw-qc-FaX" secondAttribute="bottom" constant="24" id="7aA-Im-Pb0"/>
@@ -726,6 +726,9 @@
         </designable>
         <designable name="8uM-VY-XfU">
             <size key="intrinsicContentSize" width="10" height="19.5"/>
+        </designable>
+        <designable name="CDm-Ca-2nK">
+            <size key="intrinsicContentSize" width="65" height="17"/>
         </designable>
         <designable name="EkA-bh-wFX">
             <size key="intrinsicContentSize" width="68.5" height="19.5"/>

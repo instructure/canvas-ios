@@ -53,6 +53,7 @@ public class GradeCircleView: UIView {
     @IBOutlet weak var outOfLabel: UILabel!
     @IBOutlet weak var latePenaltyLabel: UILabel!
     @IBOutlet weak var finalGradeLabel: UILabel!
+    @IBOutlet weak var displayGradeSpacerToCenterWithCircleGrade: NSLayoutConstraint!
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -153,5 +154,10 @@ public class GradeCircleView: UIView {
             gradeCircle?.progress = 1
             gradeCircle.accessibilityLabel = gradeCircle.accessibilityLabel?.containsNumber == true ? nil : gradeCircle.accessibilityLabel
         }
+
+        let shouldCenterDisplayGradeWithCircleGrade = displayGrade.isHidden == false &&
+                                                      latePenaltyLabel.isHidden &&
+                                                      finalGradeLabel.isHidden
+        displayGradeSpacerToCenterWithCircleGrade.constant = shouldCenterDisplayGradeWithCircleGrade ? 3 : 0
     }
 }

@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,6 +14,7 @@
                 <outlet property="circleLabel" destination="KI8-2i-uqZ" id="RJr-ST-Dil"/>
                 <outlet property="circlePoints" destination="P8C-hL-0Cd" id="zHU-rd-v18"/>
                 <outlet property="displayGrade" destination="Fxf-TO-3Q1" id="y4r-1Y-aat"/>
+                <outlet property="displayGradeSpacerToCenterWithCircleGrade" destination="Ybx-cc-uBz" id="3dz-HS-jXd"/>
                 <outlet property="finalGradeLabel" destination="oWd-RI-URi" id="sHW-TI-Y3e"/>
                 <outlet property="gradeCircle" destination="d3s-vX-ZXP" id="X7c-nA-tp0"/>
                 <outlet property="latePenaltyLabel" destination="rSi-PH-pMr" id="mjp-DT-fBY"/>
@@ -27,7 +27,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kaf-Zs-zpC">
-                    <rect key="frame" x="72.5" y="15" width="317" height="128"/>
+                    <rect key="frame" x="19" y="15" width="424" height="128"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d3s-vX-ZXP" userLabel="Grade Circle" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
                             <rect key="frame" x="16" y="0.0" width="128" height="128"/>
@@ -47,7 +47,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="89" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P8C-hL-0Cd" userLabel="Points Label" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                    <rect key="frame" x="43" y="41" width="42.5" height="38.5"/>
+                                    <rect key="frame" x="43" y="27" width="42.5" height="38.5"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <bool key="isElement" value="NO"/>
                                     </accessibility>
@@ -56,10 +56,11 @@
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold38"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Points" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KI8-2i-uqZ" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                    <rect key="frame" x="44" y="81.5" width="40" height="17"/>
+                                    <rect key="frame" x="44" y="69.5" width="40" height="17"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <bool key="isElement" value="NO"/>
                                     </accessibility>
@@ -67,7 +68,8 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                             </subviews>
@@ -80,17 +82,16 @@
                                 <constraint firstAttribute="width" constant="128" id="AHI-qs-uJV"/>
                                 <constraint firstItem="52w-3L-qip" firstAttribute="centerY" secondItem="d3s-vX-ZXP" secondAttribute="centerY" id="VU0-Oq-lqX"/>
                                 <constraint firstItem="KI8-2i-uqZ" firstAttribute="centerX" secondItem="d3s-vX-ZXP" secondAttribute="centerX" id="Xtw-ud-YL0"/>
-                                <constraint firstItem="KI8-2i-uqZ" firstAttribute="top" secondItem="P8C-hL-0Cd" secondAttribute="bottom" constant="2" id="c7S-Ik-Le4"/>
+                                <constraint firstItem="KI8-2i-uqZ" firstAttribute="top" secondItem="P8C-hL-0Cd" secondAttribute="bottom" constant="4" id="c7S-Ik-Le4"/>
                                 <constraint firstItem="52w-3L-qip" firstAttribute="centerX" secondItem="d3s-vX-ZXP" secondAttribute="centerX" id="gP4-wL-zDM"/>
                                 <constraint firstItem="P8C-hL-0Cd" firstAttribute="centerX" secondItem="d3s-vX-ZXP" secondAttribute="centerX" id="kb6-00-LfM"/>
-                                <constraint firstItem="KI8-2i-uqZ" firstAttribute="top" secondItem="P8C-hL-0Cd" secondAttribute="bottom" constant="2" id="khz-8L-mVJ"/>
-                                <constraint firstItem="P8C-hL-0Cd" firstAttribute="top" secondItem="d3s-vX-ZXP" secondAttribute="top" constant="41" id="tgV-7m-Va4"/>
+                                <constraint firstItem="P8C-hL-0Cd" firstAttribute="top" secondItem="d3s-vX-ZXP" secondAttribute="top" constant="27" id="tgV-7m-Va4"/>
                             </constraints>
                         </view>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="bRI-an-Yox">
-                            <rect key="frame" x="160" y="18" width="141" height="92.5"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="bRI-an-Yox">
+                            <rect key="frame" x="168" y="10" width="240" height="108.5"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="89%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fxf-TO-3Q1" userLabel="Display Grade" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="89%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fxf-TO-3Q1" userLabel="Display Grade" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="54" height="29"/>
                                     <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.gradeDisplayGrade"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
@@ -98,11 +99,11 @@
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="heavy24"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold38"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Out of 100 pts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pnP-jG-o81" userLabel="Out Of" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="29" width="92.5" height="17"/>
+                                    <rect key="frame" x="0.0" y="33" width="92.5" height="17"/>
                                     <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.gradeCircleOutOf">
                                         <bool key="isElement" value="NO"/>
                                     </accessibility>
@@ -110,23 +111,23 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
                                         <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Late Penatly (-2pts)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSi-PH-pMr" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="46" width="118.5" height="14.5"/>
+                                    <rect key="frame" x="0.0" y="54" width="118.5" height="14.5"/>
                                     <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.gradeLatePenalty"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textWarning"/>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold12"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Final Grade: 89%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWd-RI-URi" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="60.5" width="141" height="32"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Final Grade: 89%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oWd-RI-URi" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="72.5" width="141" height="32"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <bool key="isElement" value="NO"/>
                                     </accessibility>
@@ -138,17 +139,24 @@
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDarkest"/>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="bold17"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="semibold28"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4fS-aN-CTB" userLabel="SpacerToCenterDisplayGradeWithCircleGrade">
+                                    <rect key="frame" x="0.0" y="108.5" width="240" height="0.0"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" id="Ybx-cc-uBz"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <viewLayoutGuide key="safeArea" id="bAJ-lB-7Ek"/>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="d3s-vX-ZXP" firstAttribute="top" secondItem="kaf-Zs-zpC" secondAttribute="top" id="YZj-hQ-0l9"/>
-                        <constraint firstItem="bRI-an-Yox" firstAttribute="leading" secondItem="d3s-vX-ZXP" secondAttribute="trailing" constant="16" id="aPW-TD-VaU"/>
+                        <constraint firstItem="bRI-an-Yox" firstAttribute="leading" secondItem="d3s-vX-ZXP" secondAttribute="trailing" constant="24" id="aPW-TD-VaU"/>
                         <constraint firstItem="bRI-an-Yox" firstAttribute="centerY" secondItem="kaf-Zs-zpC" secondAttribute="centerY" id="cVJ-JP-dik"/>
                         <constraint firstItem="d3s-vX-ZXP" firstAttribute="leading" secondItem="kaf-Zs-zpC" secondAttribute="leading" constant="16" id="crp-yt-GjL"/>
                         <constraint firstItem="d3s-vX-ZXP" firstAttribute="centerY" secondItem="kaf-Zs-zpC" secondAttribute="centerY" id="fB1-X8-LGm"/>
@@ -186,9 +194,4 @@
             <size key="intrinsicContentSize" width="118.5" height="14.5"/>
         </designable>
     </designables>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>
