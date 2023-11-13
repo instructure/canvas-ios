@@ -226,6 +226,8 @@
 		49952C3B1F7477C300A11404 /* CanvasCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CanvasCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49ED5A4C1DBFD02E009E2896 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4AE1D28B6DAB087E0F5A1127 /* Pods-defaults-ParentUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-ParentUnitTests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-ParentUnitTests/Pods-defaults-ParentUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5B1901C72B02027C0049AAB3 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		5B1901C82B02027C0049AAB3 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B1D4EFF22BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5B1D4F0022BD6E560082F8F0 /* sl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sl; path = sl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5B2C64852689AC5E005B6639 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -996,6 +998,7 @@
 				"es-ES",
 				vi,
 				ms,
+				id,
 			);
 			mainGroup = 5E64417E1C3EE2E0003D7397;
 			packageReferences = (
@@ -1322,6 +1325,7 @@
 				5B5DADAC272FC96300D1F964 /* es-ES */,
 				5B3FCDB327B0FCC40051DAB9 /* vi */,
 				5B39892C293DD04F00813E62 /* ms */,
+				5B1901C82B02027C0049AAB3 /* id */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1369,6 +1373,7 @@
 				5B5DADAB272FC96300D1F964 /* es-ES */,
 				5B3FCDB227B0FCC40051DAB9 /* vi */,
 				5B39892B293DD04F00813E62 /* ms */,
+				5B1901C72B02027C0049AAB3 /* id */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";

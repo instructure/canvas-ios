@@ -1049,9 +1049,6 @@
 "Failed. Tap for options" = "Échec. Appuyez pour les options";
 
 /* No comment provided by engineer. */
-"favorite" = "favoris";
-
-/* No comment provided by engineer. */
 "Feedback" = "Commentaire";
 
 /* No comment provided by engineer. */
@@ -2685,9 +2682,6 @@
 
 /* No comment provided by engineer. */
 "This will remove the due date and all of the associated assignees." = "Cela supprimera la date limite de rendu ainsi que toutes les personnes assignées associées.";
-
-/* No comment provided by engineer. */
-"This will sync ~($0.humanReadableFileSize) content. It may result in additional charges from your data provider if you are not connected to a Wi-Fi network." = "Le contenu de ~($0.humanReadableFileSize) sera synchronisé. Si vous n’êtes pas connecté à un réseau Wifi, votre fournisseur de données peut vous facturer des frais supplémentaires.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Temps écoulé";

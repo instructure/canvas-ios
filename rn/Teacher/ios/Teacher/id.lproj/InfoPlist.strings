@@ -1,0 +1,15 @@
+/* Privacy - Camera Usage Description */
+"NSCameraUsageDescription" = "Lampirkan foto dan video ke komentar penyerahan.";
+
+/* Privacy - Location When In Use Usage Description */
+"NSLocationWhenInUseUsageDescription" = "";
+
+/* Privacy - Microphone Usage Description */
+"NSMicrophoneUsageDescription" = "Lampirkan rekaman audio ke komentar penyerahan.";
+
+/* Privacy - Photo Library Additions Usage Description */
+"NSPhotoLibraryAddUsageDescription" = "Lampirkan foto dan video ke komentar penyerahan.";
+
+/* Privacy - Photo Library Usage Description */
+"NSPhotoLibraryUsageDescription" = "Unggah konten ke kursus.";
+
