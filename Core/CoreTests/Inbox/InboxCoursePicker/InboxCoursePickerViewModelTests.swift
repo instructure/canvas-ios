@@ -38,6 +38,20 @@ class InboxCoursePickerViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.courses.first?.name, "Course 1")
         XCTAssertEqual(testee.groups.first?.name, "Group 1")
     }
+
+    func testCourseSelection() {
+        let context = testee.courses.first!
+        testee.onSelect(selected: context)
+        XCTAssertEqual(testee.selectedRecipientContext?.context.id, context.id)
+
+    }
+
+    func testGroupSelection() {
+        let context = testee.groups.first!
+        testee.onSelect(selected: context)
+        XCTAssertEqual(testee.selectedRecipientContext?.context.id, context.id)
+
+    }
 }
 
 private class InboxCoursePickerInteractorMock: InboxCoursePickerInteractor {

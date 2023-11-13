@@ -134,9 +134,7 @@ public struct InboxCoursePickerView: View {
         let accessibilityLabel = isSelected(course) ? NSLocalizedString("Selected: \(courseName)", comment: "") : courseName
         return VStack(spacing: 0) {
             Button {
-                let recipientContext = RecipientContext(course)
-                viewModel.selectedRecipientContext = recipientContext
-                viewModel.didSelect?(recipientContext)
+                viewModel.onSelect(selected: course)
             } label: {
                 HStack {
                     Circle().fill(Color(course.color)).frame(width: 20, height: 20)
@@ -166,9 +164,7 @@ public struct InboxCoursePickerView: View {
         let accessibilityLabel = isSelected(group) ? NSLocalizedString("Selected: \(groupName)", comment: "") : groupName
         return VStack(spacing: 0) {
             Button {
-                let recipientContext = RecipientContext(group)
-                viewModel.selectedRecipientContext = recipientContext
-                viewModel.didSelect?(recipientContext)
+                viewModel.onSelect(selected: group)
             } label: {
                 HStack {
                     Circle().fill(Color(group.color)).frame(width: 20, height: 20)

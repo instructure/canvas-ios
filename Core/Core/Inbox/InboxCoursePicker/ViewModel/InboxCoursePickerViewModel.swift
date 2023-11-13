@@ -46,6 +46,21 @@ class InboxCoursePickerViewModel: ObservableObject {
         setupOutputBindings()
     }
 
+    public func onSelect(selected: Course) {
+        let context = RecipientContext(selected)
+        onSelect(selected: context)
+    }
+
+    public func onSelect(selected: Group) {
+        let context = RecipientContext(selected)
+        onSelect(selected: context)
+    }
+
+    public func onSelect(selected: RecipientContext) {
+        self.selectedRecipientContext = selected
+        didSelect?(selected)
+    }
+
     private func setupOutputBindings() {
         interactor.state
             .assign(to: &$state)
