@@ -47,8 +47,17 @@ public class SplitViewModeObserver {
     }
 
     private func subscribeToSplitViewChanges(_ splitViewController: UISplitViewController) {
-        NotificationCenter.default.publisher(for: UIViewController.showDetailTargetDidChangeNotification, object: splitViewController)
-            .compactMap { $0.object as? UISplitViewController }
+        NotificationCenter
+            .default
+            .publisher(for: UIViewController.showDetailTargetDidChangeNotification, object: nil)
+            .compactMap { [weak splitViewController] (notificationObject) -> UISplitViewController? in
+                guard let changedSplitView = notificationObject.object as? UISplitViewController,
+                      let splitViewController,
+                      splitViewController == changedSplitView
+                else { return nil }
+
+                return splitViewController
+            }
             .map { $0.isCollapsed }
             .subscribe(isCollapsedStateChange)
             .store(in: &subscriptions)
