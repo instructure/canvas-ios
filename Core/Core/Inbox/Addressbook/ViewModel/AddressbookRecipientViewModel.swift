@@ -41,9 +41,9 @@ class AddressbookRecipientViewModel: ObservableObject {
         recipientDidTap
             .sink { [router] (recipients, viewController) in
                 recipientDidSelect.accept(recipients)
-//                router.pop(from: viewController)
-//                router.pop(from: viewController)
-                
+                router.pop(from: viewController)
+                router.pop(from: viewController)
+
             }
             .store(in: &subscriptions)
 
