@@ -20,10 +20,25 @@ import CombineExt
 
 public enum AddressBookAssembly {
 
-    public static func makeAddressbookViewController(env: AppEnvironment = .shared, recipientContext: RecipientContext, recipientDidSelect: CurrentValueRelay<SearchRecipient?>) -> UIViewController {
+    public static func makeAddressbookRecipientViewController(env: AppEnvironment = .shared,
+      recipientContext: RecipientContext,
+      recipients: [SearchRecipient],
+      recipientDidSelect: CurrentValueRelay<[SearchRecipient]>
+    ) -> UIViewController {
         let interactor = AddressbookInteractorLive(env: env, recipientContext: recipientContext)
-        let viewModel = AddressbookViewModel(router: env.router, interactor: interactor, recipientDidSelect: recipientDidSelect)
-        let view = AddressbookView(model: viewModel)
+        let viewModel = AddressbookRecipientViewModel(router: env.router, recipients: recipients, recipientDidSelect: recipientDidSelect)
+        let view = AddressbookRecipientView(model: viewModel)
+        return CoreHostingController(view)
+    }
+
+    public static func makeAddressbookRoleViewController(
+        env: AppEnvironment = .shared,
+        recipientContext: RecipientContext,
+        recipientDidSelect: CurrentValueRelay<[SearchRecipient]>
+    ) -> UIViewController {
+        let interactor = AddressbookInteractorLive(env: env, recipientContext: recipientContext)
+        let viewModel = AddressbookRoleViewModel(router: env.router, recipientContext: recipientContext, interactor: interactor, recipientDidSelect: recipientDidSelect)
+        let view = AddressbookRoleView(model: viewModel)
         return CoreHostingController(view)
     }
 }

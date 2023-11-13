@@ -18,49 +18,31 @@
 
 import SwiftUI
 
-public struct AddressbookView: View {
-    @ObservedObject private var model: AddressbookViewModel
+public struct AddressbookRecipientView: View {
+    @ObservedObject private var model: AddressbookRecipientViewModel
     @Environment(\.viewController) private var controller
 
-    init(model: AddressbookViewModel) {
+    init(model: AddressbookRecipientViewModel) {
         self.model = model
     }
 
     public var body: some View {
         ScrollView {
-            switch model.state {
-            case .loading:
-                loadingIndicator
-            case .data:
-                peopleView
-            case .empty, .error:
-                Text("There was an error loading recipients.", bundle: .core)
+            ForEach(model.recipients, id: \.id) { recipient in
+                VStack(spacing: 0) {
+                    Color.borderMedium
+                        .frame(height: 0.5)
+                    Button(action: {
+                        model.recipientDidTap.send((recipient: [recipient], controller: controller))
+                    }, label: {
+                        peopleRowView(recipient)
+                    })
+                    .padding(16)
+                }
             }
         }
         .background(Color.backgroundLightest)
         .navigationTitle(model.title)
-    }
-
-    private var loadingIndicator: some View {
-        ProgressView()
-            .progressViewStyle(.indeterminateCircle())
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .accentColor(Color(Brand.shared.primary))
-    }
-
-    private var peopleView: some View {
-        ForEach(model.recipients, id: \.id) { recipient in
-            VStack(spacing: 0) {
-                Color.borderMedium
-                    .frame(height: 0.5)
-                Button(action: {
-                    model.recipientDidTap.send((recipient: recipient, controller: controller))
-                }, label: {
-                    peopleRowView(recipient)
-                })
-                .padding(16)
-            }
-        }
     }
 
     @ViewBuilder
