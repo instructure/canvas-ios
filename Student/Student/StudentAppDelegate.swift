@@ -92,7 +92,10 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         // This is to handle the case where the app is force closed while a background upload was in progress.
         // In this case the upload is canceled and app is not launched with `handleEventsForBackgroundURLSession`
         // so we manually re-connect to the background url session to check if there are any failed uploads.
-        setupFileSubmissionAssemblyForBackgroundUploads()
+        // If a debugger is attached to the app, the upload will fail with a `Could not communicate with background transfer service` error.
+        if !testing {
+            setupFileSubmissionAssemblyForBackgroundUploads()
+        }
 
         GetUserProfile().fetch(environment: environment, force: true) { apiProfile, urlResponse, _ in performUIUpdate {
             PageViewEventController.instance.userDidChange()
