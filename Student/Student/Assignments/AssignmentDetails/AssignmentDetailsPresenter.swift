@@ -60,6 +60,7 @@ class AssignmentDetailsPresenter {
     lazy var features = env.subscribe(GetEnabledFeatureFlags(context: .course(courseID))) { [weak self] in
         self?.update()
     }
+    public private(set) var isAttemptPickerButtonActive = false
 
     var quizzes: Store<GetQuiz>?
 

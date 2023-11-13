@@ -24,23 +24,25 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     @IBOutlet weak var pointsLabel: UILabel?
     @IBOutlet weak var statusIconView: UIImageView?
     @IBOutlet weak var statusLabel: UILabel?
+    @IBOutlet weak var attemptPickerSection: UIView?
+    @IBOutlet weak var attemptLabel: UILabel?
+    @IBOutlet weak var attemptDateButton: DynamicButton?
     @IBOutlet weak var gradeHeadingLabel: UILabel?
-    @IBOutlet weak var descriptionHeadingLabel: UILabel?
-    @IBOutlet weak var descriptionView: UIView?
     @IBOutlet weak var scrollView: UIScrollView?
     @IBOutlet weak var scrollViewBottom: NSLayoutConstraint!
     @IBOutlet weak var loadingView: CircleProgressView!
-    @IBOutlet weak var submissionButtonView: UIView?
     @IBOutlet weak var submissionButton: DynamicButton?
-    @IBOutlet weak var submissionButtonIcon: UIImageView?
-    @IBOutlet weak var submissionButtonDivider: DividerView?
     @IBOutlet weak var fileSubmissionButton: DynamicButton?
+
+    /** Container for the description title and the divider above it */
+    @IBOutlet weak var descriptionHeader: UIView?
+    @IBOutlet weak var descriptionHeadingLabel: UILabel?
+    @IBOutlet weak var descriptionView: UIView?
 
     @IBOutlet weak var gradeCell: UIView?
     @IBOutlet weak var gradeCellDivider: DividerView?
     @IBOutlet weak var gradedView: GradeCircleView?
     @IBOutlet weak var gradeStatisticGraphView: GradeStatisticGraphView?
-    @IBOutlet weak var gradeCircleBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var submittedView: UIView?
     @IBOutlet weak var submittedLabel: UILabel?
     @IBOutlet weak var submittedDetailsLabel: UILabel?
@@ -57,7 +59,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
 
     @IBOutlet weak var lockedSection: UIView?
     @IBOutlet weak var gradeSection: UIStackView?
-    @IBOutlet weak var submissionButtonSection: UIStackView?
+    @IBOutlet weak var gradeSectionBottomSpacer: UIView?
     @IBOutlet weak var fileTypesSection: AssignmentDetailsSectionContainerView?
     @IBOutlet weak var submissionTypesSection: AssignmentDetailsSectionContainerView?
     @IBOutlet weak var dueSection: AssignmentDetailsSectionContainerView?
@@ -90,6 +92,8 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     let titleSubtitleView = TitleSubtitleView.create()
     var presenter: AssignmentDetailsPresenter?
     private let webView = CoreWebView()
+    private let isLeftToRightLayout: Bool = UIApplication.shared.userInterfaceLayoutDirection == .leftToRight
+    private weak var gradeBorderLayer: CAShapeLayer?
 
     static func create(courseID: String, assignmentID: String, fragment: String? = nil) -> AssignmentDetailsViewController {
         let controller = loadFromStoryboard()
@@ -163,6 +167,35 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         fileSubmissionButton?.makeUnavailableInOfflineMode()
         submissionButton?.makeUnavailableInOfflineMode()
 
+        var buttonConfig = UIButton.Configuration.plain()
+        buttonConfig.imagePlacement = .trailing
+        buttonConfig.image = .arrowOpenRightSolid
+            .scaleTo(.init(width: 14, height: 14))
+            .withRenderingMode(.alwaysTemplate)
+        buttonConfig.contentInsets = {
+            var result = buttonConfig.contentInsets
+            result.trailing = 0
+            return result
+        }()
+        buttonConfig.titleTextAttributesTransformer = .init { attributes in
+            var result = attributes
+            result.font = UIFont.scaledNamedFont(.regular16)
+            return result
+        }
+        submissionButton?.configuration = buttonConfig
+
+        let border = CAShapeLayer()
+        border.strokeColor = UIColor.borderDark.cgColor
+        border.lineWidth = 0.5
+        border.fillColor = nil
+        gradeSection?.layer.addSublayer(border)
+        // Since rounded corners are rendered 1 cycle after the view has been rendered
+        // we draw a regular border so only the rendering of the rounding will lag behind
+        // and not the whole border
+        gradeSection?.layer.borderColor = UIColor.borderDark.cgColor
+        gradeSection?.layer.borderWidth = 0.5
+        gradeBorderLayer = border
+
         presenter?.viewIsReady()
     }
 
@@ -174,6 +207,19 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         AppStoreReview.handleNavigateToAssignment()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        // Without async the border will have invalid height despite bounds is correct
+        DispatchQueue.main.async { [gradeBorderLayer, gradeSection] in
+            gradeBorderLayer?.frame = gradeSection!.bounds
+            gradeBorderLayer?.path = UIBezierPath(roundedRect: gradeSection!.bounds,
+                                                  cornerRadius: 6).cgPath
+            // Remove the placeholder border
+            gradeSection?.layer.borderColor = nil
+            gradeSection?.layer.borderWidth = 0
+        }
     }
 
     deinit {
@@ -225,6 +271,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
 
         if let onlineUploadState = presenter?.onlineUploadState {
             gradeSection?.isHidden = false
+            gradeSectionBottomSpacer?.isHidden = false
             gradeCellDivider?.isHidden = false
             gradedView?.isHidden = true
             submittedView?.isHidden = false
@@ -239,12 +286,10 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         }
 
         if submission.needsGrading, submission.score == nil {
-            gradeCircleBottomConstraint?.isActive = false
             submittedView?.isHidden = false
             return
         }
 
-        gradeCircleBottomConstraint?.isActive = true
         submittedView?.isHidden = presenter?.onlineUploadState == nil
     }
 
@@ -282,12 +327,15 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         let hideScores = assignment.hideQuantitativeData
         nameLabel?.text = assignment.name
         pointsLabel?.text = hideScores ? nil : assignment.pointsPossibleText
+        pointsLabel?.isHidden = pointsLabel?.text == nil
         statusIconView?.isHidden = assignment.submissionStatusIsHidden
         statusIconView?.image = assignment.submissionStatusIcon
         statusIconView?.tintColor = assignment.submissionStatusColor
         statusLabel?.isHidden = assignment.submissionStatusIsHidden
         statusLabel?.textColor = assignment.submissionStatusColor
         statusLabel?.text = assignment.submissionStatusText
+        attemptLabel?.text = assignment.submissionAttemptNumberText
+        attemptDateButton?.setTitle(assignment.submissionDateText, for: .normal)
         dueSection?.subHeader.text = assignment.dueAt.flatMap {
             $0.dateTimeString
         } ?? NSLocalizedString("No Due Date", bundle: .core, comment: "")
@@ -318,9 +366,19 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         if assignment.hideQuantitativeData, (gradeText ?? "").isEmpty == true {
             showGradeSection = false
         }
+        attemptDateButton?.isEnabled = presenter.isAttemptPickerButtonActive
+
+        if presenter.isAttemptPickerButtonActive {
+            // These will make the icon to display at the end of the label
+            attemptDateButton?.semanticContentAttribute = isLeftToRightLayout ? .forceRightToLeft : .forceLeftToRight
+            attemptDateButton?.setImage(.arrowOpenDownSolid.scaleTo(.init(width: 14, height: 14)), for: .normal)
+            // TODO: Add text <-> image padding when business logic is completed
+        }
+
         attemptsView.isHidden = presenter.attemptsIsHidden()
         gradeSection?.isHidden = !showGradeSection
-        submissionButtonSection?.isHidden = presenter.viewSubmissionButtonSectionIsHidden()
+        gradeSectionBottomSpacer?.isHidden = !showGradeSection
+        submissionButton?.isHidden = presenter.viewSubmissionButtonSectionIsHidden()
         showDescription(!presenter.descriptionIsHidden())
 
         submitAssignmentButton.isHidden = presenter.submitAssignmentButtonIsHidden()
@@ -384,11 +442,13 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
 
     func showDescription(_ show: Bool = true) {
         descriptionView?.isHidden = !show
-        descriptionHeadingLabel?.isHidden = !show
+        descriptionHeader?.isHidden = !show
     }
 
     func hideGradeCell() {
+        attemptPickerSection?.isHidden = true
         gradeSection?.isHidden = true
+        gradeSectionBottomSpacer?.isHidden = true
     }
 }
 
