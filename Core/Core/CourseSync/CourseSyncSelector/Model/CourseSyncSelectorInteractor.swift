@@ -60,7 +60,7 @@ final class CourseSyncSelectorInteractorLive: CourseSyncSelectorInteractor {
         let publisher: AnyPublisher<[CourseSyncEntry], Error>
 
         if let courseID {
-            publisher = courseSyncListInteractor.getCourseSyncEntries(filter: .courseID(courseID))
+            publisher = courseSyncListInteractor.getCourseSyncEntries(filter: .courseId(courseID))
         } else {
             publisher = courseSyncListInteractor.getCourseSyncEntries(filter: .all)
         }

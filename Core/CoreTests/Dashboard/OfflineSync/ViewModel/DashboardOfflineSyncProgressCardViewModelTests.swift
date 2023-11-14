@@ -64,7 +64,8 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
                 bytesToDownload: 1000,
                 bytesDownloaded: 100,
                 isFinished: false,
-                error: nil
+                error: nil,
+                courseIds: []
             )
         )
         XCTAssertEqual(testee.state, .progress(0.1, "1 course is syncing."))
@@ -74,7 +75,8 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
                 bytesToDownload: 1000,
                 bytesDownloaded: 500,
                 isFinished: false,
-                error: nil
+                error: nil,
+                courseIds: []
             )
         )
         XCTAssertEqual(testee.state, .progress(0.5, "1 course is syncing."))
@@ -84,7 +86,8 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
                 bytesToDownload: 1000,
                 bytesDownloaded: 750,
                 isFinished: false,
-                error: nil
+                error: nil,
+                courseIds: []
             )
         )
         XCTAssertEqual(testee.state, .progress(0.75, "1 course is syncing."))
@@ -94,7 +97,8 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
                 bytesToDownload: 1000,
                 bytesDownloaded: 1000,
                 isFinished: false,
-                error: nil
+                error: nil,
+                courseIds: []
             )
         )
         XCTAssertEqual(testee.state, .progress(1, "1 course is syncing."))
@@ -235,21 +239,24 @@ private class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserv
         bytesToDownload: Int(bytesToDownload),
         bytesDownloaded: Int(progressToReport * bytesToDownload),
         isFinished: false,
-        error: nil
+        error: nil,
+        courseIds: []
     )
 
     private lazy var downloadProgressFinishedMock = CourseSyncDownloadProgress(
         bytesToDownload: Int(bytesToDownload),
         bytesDownloaded: Int(progressToReport * bytesToDownload),
         isFinished: true,
-        error: nil
+        error: nil,
+        courseIds: []
     )
 
     private lazy var downloadProgressErrorMock = CourseSyncDownloadProgress(
         bytesToDownload: Int(bytesToDownload),
         bytesDownloaded: Int(progressToReport * bytesToDownload),
         isFinished: true,
-        error: "Failed."
+        error: "Failed.",
+        courseIds: []
     )
 
     private lazy var stateProgressMock: [CourseSyncStateProgress] = {

@@ -95,6 +95,33 @@ class CourseSyncProgressWriterInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(progress.progress, 0.25)
     }
 
+    func testSavedCourseIds() {
+        let testee = CourseSyncProgressWriterInteractorLive(container: database)
+
+        entries[0].files[0].selectionState = .selected
+        entries[0].files[1].selectionState = .selected
+        entries[0].files[0].state = .loading(0.5)
+        entries[0].files[1].state = .loading(0.5)
+        testee.saveDownloadProgress(entries: entries)
+
+        let progressList: [CDCourseSyncDownloadProgress] = databaseClient.fetch(scope: .all)
+        XCTAssertEqual(progressList.count, 1)
+        let progress = CourseSyncDownloadProgress(from: progressList[0])
+        XCTAssertEqual(progress.courseIds, ["course-1"])
+
+        entries.append(CourseSyncEntry(
+            name: "course-2",
+            id: "course-2",
+            tabs: [],
+            files: []
+        ))
+
+        testee.saveDownloadProgress(entries: entries)
+        let updatedProgressList: [CDCourseSyncDownloadProgress] = databaseClient.fetch(scope: .all)
+        let updatedProgress = CourseSyncDownloadProgress(from: updatedProgressList[0])
+        XCTAssertEqual(updatedProgress.courseIds, ["course-1", "course-2"])
+    }
+
     func testCourseSelectionEntryProgress() {
         let testee = CourseSyncProgressWriterInteractorLive(container: database)
         testee.saveStateProgress(id: "1", selection: .course("0"), state: .downloaded)
