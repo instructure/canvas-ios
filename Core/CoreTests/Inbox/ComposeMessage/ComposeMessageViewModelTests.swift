@@ -36,11 +36,71 @@ class ComposeMessageViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, mockInteractor.state.value)
         XCTAssertEqual(testee.courses, mockInteractor.courses.value)
     }
+
+    func testValidationForSubject() {
+        XCTAssertEqual(testee.sendButtonActive, false)
+        testee.selectedContext = RecipientContext(Course.make())
+        testee.selectedRecipient.accept(SearchRecipient.make())
+        testee.subject = "Test subject"
+        testee.bodyText = "Test body"
+        XCTAssertEqual(testee.sendButtonActive, true)
+        testee.subject = ""
+        XCTAssertEqual(testee.sendButtonActive, false)
+    }
+
+    func testValidationForBody() {
+        XCTAssertEqual(testee.sendButtonActive, false)
+        testee.selectedContext = RecipientContext(Course.make())
+        testee.selectedRecipient.accept(SearchRecipient.make())
+        testee.subject = "Test subject"
+        testee.bodyText = "Test body"
+        XCTAssertEqual(testee.sendButtonActive, true)
+        testee.bodyText = ""
+        XCTAssertEqual(testee.sendButtonActive, false)
+    }
+
+    func testValidationForRecipients() {
+        XCTAssertEqual(testee.sendButtonActive, false)
+        testee.selectedContext = RecipientContext(Course.make())
+        let recipient = SearchRecipient.make()
+        testee.selectedRecipient.accept(recipient)
+        testee.subject = "Test subject"
+        testee.bodyText = "Test body"
+        XCTAssertEqual(testee.sendButtonActive, true)
+        testee.removeRecipientButtonDidTap(recipient: recipient)
+        XCTAssertEqual(testee.sendButtonActive, false)
+    }
+
+    func testSuccesfulSend() {
+        testee.selectedContext = RecipientContext(Course.make())
+        let sourceView = UIViewController()
+        XCTAssertEqual(mockInteractor.isMessageSent, false)
+        testee.sendButtonDidTap.accept(WeakViewController(sourceView))
+        XCTAssertEqual(mockInteractor.isMessageSent, true)
+    }
+
+    func testFailedSend() {
+        mockInteractor.isSuccessfulMockFuture = false
+        testee.selectedContext = RecipientContext(Course.make())
+        let sourceView = UIViewController()
+        testee.sendButtonDidTap.accept(WeakViewController(sourceView))
+
+        wait(for: [router.showExpectation], timeout: 1)
+        let dialog = router.presented as? UIAlertController
+        XCTAssertNotNil(dialog)
+        XCTAssertEqual(dialog?.title, "Message could not be sent")
+        XCTAssertEqual(dialog?.message, "Please try again!")
+        XCTAssertEqual(dialog?.actions.count, 1)
+        XCTAssertEqual(dialog?.actions.first?.title, "OK")
+    }
 }
 
 private class ComposeMessageInteractorMock: ComposeMessageInteractor {
     var state: CurrentValueSubject<Core.StoreState, Never>
     var courses: CurrentValueSubject<[Core.InboxCourse], Never>
+
+    var isSuccessfulMockFuture = true
+    var isMessageSent = false
 
     init(context: NSManagedObjectContext) {
         self.state = .init(.data)
@@ -48,10 +108,21 @@ private class ComposeMessageInteractorMock: ComposeMessageInteractor {
     }
 
     func send(parameters: MessageParameters) -> Future<Void, Error> {
+        isMessageSent = true
         return mockFuture
     }
 
     private var mockFuture: Future<Void, Error> {
+        isSuccessfulMockFuture ? mockSuccessFuture : mockFailedFuture
+    }
+
+    private var mockFailedFuture: Future<Void, Error> {
+        Future<Void, Error> { promise in
+            promise(.failure("Fail"))
+        }
+    }
+
+    private var mockSuccessFuture: Future<Void, Error> {
         Future<Void, Error> { promise in
             promise(.success(()))
         }
