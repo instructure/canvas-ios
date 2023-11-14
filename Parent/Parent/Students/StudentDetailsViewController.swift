@@ -207,6 +207,8 @@ class StudentDetailsViewController: ScreenViewTrackableViewController, ErrorView
                 if let error = error {
                     self?.updateThresholds()
                     self?.showError(error)
+                } else if self?.loadingCount == 0 {
+                    self?.updateThresholds()
                 }
             }
         }
