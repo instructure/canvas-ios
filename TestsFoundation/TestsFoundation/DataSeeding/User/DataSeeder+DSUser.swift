@@ -58,4 +58,10 @@ extension DataSeeder {
         let request = CreateDSObserveeRequest(parent: parent, student: student)
         return makeRequest(request)
     }
+
+    @discardableResult
+    public func getPairingCode(student: DSUser) -> DSPairingCode {
+        let request = CreateDSObserverPairingCodeRequest(student: student)
+        return makeRequest(request)
+    }
 }

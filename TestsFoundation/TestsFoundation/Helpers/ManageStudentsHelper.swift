@@ -29,11 +29,26 @@ public class ManageStudentsHelper: BaseHelper {
         public static var institutionAnnouncements: XCUIElement { app.find(id: "AlertThreshold.institution_announcement") }
     }
 
+    public struct AddStudent {
+        public static var qrCodeButton: XCUIElement { app.find(id: "DashboardViewController.addStudent.qrCode") }
+        public static var pairingCodeButton: XCUIElement { app.find(id: "DashboardViewController.addStudent.pairingCode") }
+        public static var pairingCodeInput: XCUIElement { app.find(type: .textField) }
+        public static var cancelButton: XCUIElement { app.find(label: "Cancel", type: .button) }
+        public static var addButton: XCUIElement { app.find(label: "Add", type: .button) }
+    }
+
+    public static var addStudentButton: XCUIElement { app.find(label: "addSolid", type: .button) }
+
     public static func studentCell(student: DSUser) -> XCUIElement? {
         let studentCells = app.findAll(idStartingWith: "StudentListCell", type: .cell)
         for studentCell in studentCells where studentCell.find(label: student.name).isVisible {
             return studentCell
         }
         return nil
+    }
+
+    public static func nameLabelOfStudentCell(student: DSUser) -> XCUIElement {
+        let cell = studentCell(student: student)!
+        return cell.find(label: student.name, type: .staticText)
     }
 }
