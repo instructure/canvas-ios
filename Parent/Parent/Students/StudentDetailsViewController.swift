@@ -53,10 +53,11 @@ class StudentDetailsViewController: ScreenViewTrackableViewController, ErrorView
     }
 
     lazy var thresholds = env.subscribe(GetAlertThresholds(studentID: studentID)) { [weak self] in
+        guard self?.loadingCount == 0 else {
+            return
+        }
         self?.updateThresholds()
     }
-
-    private let semaphore = DispatchSemaphore(value: 0)
 
     func threshold(for type: AlertThresholdType) -> AlertThreshold? {
         return thresholds.first { $0.type == type }
@@ -201,8 +202,6 @@ class StudentDetailsViewController: ScreenViewTrackableViewController, ErrorView
     func fetch<U: UseCase>(_ useCase: U) {
         loadingCount += 1
         useCase.fetch(force: true) { [weak self] _, _, error in
-            self?.semaphore.signal()
-
             performUIUpdate {
                 self?.loadingCount -= 1
                 if let error = error {
@@ -211,7 +210,6 @@ class StudentDetailsViewController: ScreenViewTrackableViewController, ErrorView
                 }
             }
         }
-        semaphore.wait()
     }
 
     func updateLoading() {
