@@ -1354,6 +1354,7 @@
 		D30DFB0E2AFD07300051FEF3 /* ComposeMessageInteractorLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30DFB0D2AFD07300051FEF3 /* ComposeMessageInteractorLiveTests.swift */; };
 		D30DFB142B0249B70051FEF3 /* AddressbookRoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30DFB132B0249B70051FEF3 /* AddressbookRoleView.swift */; };
 		D30DFB162B0249FC0051FEF3 /* AddressbookRoleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30DFB152B0249FC0051FEF3 /* AddressbookRoleViewModel.swift */; };
+		D30DFB272B03BED20051FEF3 /* AddressbookInteractorPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30DFB262B03BED20051FEF3 /* AddressbookInteractorPreview.swift */; };
 		D31E83925422BBA1373AB854 /* ContextCardGradesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9B361985FD0F05D7C61646 /* ContextCardGradesView.swift */; };
 		D3325F79CCA32071098A7DA9 /* GetQuizSubmissionUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DFFDB020E0A5A5ED8973F0 /* GetQuizSubmissionUsers.swift */; };
 		D3F2C000008898A8049AFEF7 /* CourseSyncItemSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B3812EED19B5A501744522 /* CourseSyncItemSelection.swift */; };
@@ -3259,6 +3260,7 @@
 		D30DFB0D2AFD07300051FEF3 /* ComposeMessageInteractorLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMessageInteractorLiveTests.swift; sourceTree = "<group>"; };
 		D30DFB132B0249B70051FEF3 /* AddressbookRoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressbookRoleView.swift; sourceTree = "<group>"; };
 		D30DFB152B0249FC0051FEF3 /* AddressbookRoleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressbookRoleViewModel.swift; sourceTree = "<group>"; };
+		D30DFB262B03BED20051FEF3 /* AddressbookInteractorPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressbookInteractorPreview.swift; sourceTree = "<group>"; };
 		D31E93E5AD00DF5469ED4CBC /* UISearchTextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchTextFieldExtensions.swift; sourceTree = "<group>"; };
 		D353A6609F8E219A19862AE0 /* ExperimentalFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentalFeature.swift; sourceTree = "<group>"; };
 		D36C5027996C9F24362419DA /* AttachmentCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCardsView.swift; sourceTree = "<group>"; };
@@ -4229,6 +4231,7 @@
 			children = (
 				8F2BA49F86AF2FFEF831C35A /* AddressbookInteractor.swift */,
 				2AEE4B7BAE9610D854FC2526 /* AddressbookInteractorLive.swift */,
+				D30DFB262B03BED20051FEF3 /* AddressbookInteractorPreview.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -10494,6 +10497,7 @@
 				A6A01B72E99A9B91FBBD4C70 /* EmbeddedWebPageViewModel.swift in Sources */,
 				A96EA2CEF81958ADC9A74209 /* EmbeddedWebPageViewModelLive.swift in Sources */,
 				AFF77248410F04B2DBC66B87 /* EmptyPanda.swift in Sources */,
+				D30DFB272B03BED20051FEF3 /* AddressbookInteractorPreview.swift in Sources */,
 				EC8A8B4FA8A7B587E18C9FEA /* EmptyView.swift in Sources */,
 				4891EF6D79336A59585382A4 /* EmptyViewController.swift in Sources */,
 				5E4953FC49BE673A254F420F /* Enrollment.swift in Sources */,

@@ -57,3 +57,15 @@ public struct AddressbookRecipientView: View {
         }
     }
 }
+
+#if DEBUG
+
+struct AddressbookRecipientView_Previews: PreviewProvider {
+    static let env = PreviewEnvironment()
+
+    static var previews: some View {
+        AddressBookAssembly.makePreview(env: env)
+    }
+}
+
+#endif
