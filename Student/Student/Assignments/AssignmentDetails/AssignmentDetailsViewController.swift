@@ -46,6 +46,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     @IBOutlet weak var submittedView: UIView?
     @IBOutlet weak var submittedLabel: UILabel?
     @IBOutlet weak var submittedDetailsLabel: UILabel?
+    @IBOutlet weak var submittedIcon: UIImageView?
     @IBOutlet weak var submitAssignmentButton: DynamicButton!
 
     @IBOutlet weak var quizAttemptsLabel: UILabel?
@@ -196,6 +197,8 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         gradeSection?.layer.borderWidth = 0.5
         gradeBorderLayer = border
 
+        submittedIcon?.image = .completeLine
+
         presenter?.viewIsReady()
     }
 
@@ -260,7 +263,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             return
         }
 
-        submittedLabel?.textColor = UIColor.textSuccess.ensureContrast(against: .white)
+        submittedLabel?.textColor = .textDarkest
         submittedLabel?.text = NSLocalizedString("Successfully submitted!", bundle: .student, comment: "")
 
         fileSubmissionButton?.isHidden = true
@@ -307,12 +310,12 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             return
         case .uploading:
             submittedLabel?.text = NSLocalizedString("Submission Uploading...", bundle: .core, comment: "")
-            submittedLabel?.textColor = UIColor.textSuccess.ensureContrast(against: .white)
+            submittedLabel?.textColor = .textDarkest
             fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view progress", bundle: .core, comment: ""), for: .normal)
             return
         case .staged:
             submittedLabel?.text = NSLocalizedString("Submission In Progress...", bundle: .core, comment: "")
-            submittedLabel?.textColor = UIColor.textSuccess.ensureContrast(against: .white)
+            submittedLabel?.textColor = .textDarkest
             fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view progress", bundle: .core, comment: ""), for: .normal)
             return
         case .completed:
