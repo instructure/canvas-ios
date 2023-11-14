@@ -289,6 +289,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
     }
 
     @objc func refresh() {
+        spinnerView.isHidden = true
         if context.contextType == .course {
             course.refresh(force: true)
         } else {
