@@ -146,6 +146,7 @@ struct SubmissionCommentFile: View {
                 VStack(alignment: .leading, spacing: 0) {
                     Text(file.displayName ?? file.filename)
                         .font(.semibold14).foregroundColor(.textDarkest)
+                        .multilineTextAlignment(.leading)
                     Text(file.size.humanReadableFileSize)
                         .font(.medium12).foregroundColor(.textDark)
                 }
