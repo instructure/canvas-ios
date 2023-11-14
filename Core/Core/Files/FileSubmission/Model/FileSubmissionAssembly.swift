@@ -124,6 +124,15 @@ public class FileSubmissionAssembly {
         backgroundSessionCompletion.callback = completion
         // This will create the background URLSession
         _ = backgroundURLSessionProvider.session
+
+        backgroundURLSessionProvider.session.getAllTasks(completionHandler: { [weak backgroundURLSessionProvider] tasks in
+            if tasks.isEmpty {
+                backgroundURLSessionProvider?.session.finishTasksAndInvalidate()
+                backgroundURLSessionProvider?.completionHandler?()
+                backgroundURLSessionProvider?.completionHandler = nil
+                completion()
+            }
+        })
     }
 
     /**
