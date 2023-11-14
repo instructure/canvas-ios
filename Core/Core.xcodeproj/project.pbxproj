@@ -2394,6 +2394,7 @@
 		5A847BF87F9446B396ACF335 /* LoginUsePolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsePolicyView.swift; sourceTree = "<group>"; };
 		5A9E85C54A983278D52A5A96 /* URLExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
 		5AC12055E7A888AB7B466E46 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		5B6B984F2B020224005555C1 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Main.strings; sourceTree = "<group>"; };
 		5B740A30860F05FB71C525A0 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5B878EA66F93E010B99D7726 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5BBA61A24C07738AF6A0906F /* TopBarSelectionShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarSelectionShape.swift; sourceTree = "<group>"; };
@@ -9336,6 +9337,7 @@
 				"zh-HK",
 				"zh-Hans",
 				"zh-Hant",
+				id,
 			);
 			mainGroup = 62824534F75515F48E8114A7;
 			packageReferences = (
@@ -11170,6 +11172,7 @@
 				DD081280C71F302B0F05C32B /* zh-Hans */,
 				51045D3F63E7DCB1A2286748 /* zh-Hant */,
 				E5D30D22D78389C9DC53574E /* zh-HK */,
+				5B6B984F2B020224005555C1 /* id */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

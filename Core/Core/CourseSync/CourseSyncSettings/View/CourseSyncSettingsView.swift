@@ -74,7 +74,7 @@ struct CourseSyncSettingsView: View {
         VStack(spacing: 0) {
             Divider().padding(.horizontal, -16)
             Button {
-                viewModel.syncFrequencyDidTap.accept(viewController)
+                viewModel.syncFrequencyDidTap.send(viewController)
             } label: {
                 HStack(spacing: 0) {
                     Text("Sync Frequency", bundle: .core)
