@@ -60,6 +60,10 @@ extension SubmissionViewable {
             return NSLocalizedString("Not Submitted", bundle: .core, comment: "")
         }
 
+        if submission?.workflowState == .graded {
+            return NSLocalizedString("Graded", bundle: .core, comment: "")
+        }
+
         return NSLocalizedString("Submitted", bundle: .core, comment: "")
     }
     public var submissionDateText: String? {
