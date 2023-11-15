@@ -134,7 +134,7 @@ public class DiscussionsHelper: BaseHelper {
     public static func replyToDiscussion(replyText: String = "Test replying to discussion", shouldPullToRefresh: Bool = false) -> Bool {
         Details.replyButton.hit()
         let textEntry = Details.Reply.textField.waitUntil(.visible)
-        textEntry.pasteText(text: replyText)
+        textEntry.writeText(text: replyText)
         Details.Reply.sendButton.hit()
         sleep(3)
         if shouldPullToRefresh {
