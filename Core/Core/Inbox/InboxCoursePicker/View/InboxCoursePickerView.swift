@@ -35,7 +35,7 @@ public struct InboxCoursePickerView: View {
             await viewModel.refresh()
         }
         .frame(maxWidth: .infinity)
-}
+    }
 
     @ViewBuilder
     private var content: some View {

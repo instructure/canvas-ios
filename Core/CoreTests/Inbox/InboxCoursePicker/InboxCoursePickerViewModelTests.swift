@@ -55,7 +55,6 @@ class InboxCoursePickerViewModelTests: CoreTestCase {
 }
 
 private class InboxCoursePickerInteractorMock: InboxCoursePickerInteractor {
-    
     public var state = CurrentValueSubject<StoreState, Never>(.data)
     public var courses = CurrentValueSubject<[Course], Never>([])
     public var groups = CurrentValueSubject<[Group], Never>([])
@@ -71,7 +70,7 @@ private class InboxCoursePickerInteractorMock: InboxCoursePickerInteractor {
     }
 
     func refresh() -> AnyPublisher<[Void], Never> {
-        return Future<[Void], Never>{ _ in }.eraseToAnyPublisher()
+        return Future<[Void], Never> { _ in }.eraseToAnyPublisher()
     }
 
 }
