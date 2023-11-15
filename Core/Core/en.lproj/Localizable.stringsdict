@@ -228,10 +228,32 @@
 			<string>%g pts</string>
 		</dict>
 	</dict>
+	<key>your_grade_g_pts</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Your Grade: %#@points@</string>
+		<key>points</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>g</string>
+			<key>one</key>
+			<string>%g pt</string>
+			<key>two</key>
+			<string></string>
+			<key>few</key>
+			<string></string>
+			<key>many</key>
+			<string></string>
+			<key>other</key>
+			<string>%g pts</string>
+		</dict>
+	</dict>
 	<key>late_penalty_g_pts</key>
 	<dict>
 		<key>NSStringLocalizedFormatKey</key>
-		<string>Late penalty (%#@points@)</string>
+		<string>Late Penalty: %#@points@</string>
 		<key>points</key>
 		<dict>
 			<key>NSStringFormatSpecTypeKey</key>

@@ -18,6 +18,7 @@
                 <outlet property="finalGradeLabel" destination="oWd-RI-URi" id="sHW-TI-Y3e"/>
                 <outlet property="gradeCircle" destination="d3s-vX-ZXP" id="X7c-nA-tp0"/>
                 <outlet property="latePenaltyLabel" destination="rSi-PH-pMr" id="mjp-DT-fBY"/>
+                <outlet property="originalScoreLabel" destination="Pyy-qe-18S" id="c2V-tg-t9Z"/>
                 <outlet property="outOfLabel" destination="pnP-jG-o81" id="75Y-3u-CpQ"/>
             </connections>
         </placeholder>
@@ -27,7 +28,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kaf-Zs-zpC">
-                    <rect key="frame" x="19" y="15" width="424" height="128"/>
+                    <rect key="frame" x="20" y="15" width="422" height="128"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d3s-vX-ZXP" userLabel="Grade Circle" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
                             <rect key="frame" x="16" y="0.0" width="128" height="128"/>
@@ -89,7 +90,7 @@
                             </constraints>
                         </view>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="bRI-an-Yox">
-                            <rect key="frame" x="168" y="10" width="240" height="108.5"/>
+                            <rect key="frame" x="168" y="-0.5" width="238" height="129.5"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="89%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fxf-TO-3Q1" userLabel="Display Grade" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="54" height="29"/>
@@ -115,8 +116,18 @@
                                         <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Grade: X pts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pyy-qe-18S" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="54" width="114" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Late Penatly (-2pts)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSi-PH-pMr" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="54" width="118.5" height="14.5"/>
+                                    <rect key="frame" x="0.0" y="75" width="118.5" height="14.5"/>
                                     <accessibility key="accessibilityConfiguration" identifier="AssignmentDetails.gradeLatePenalty"/>
                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                     <nil key="textColor"/>
@@ -127,7 +138,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Final Grade: 89%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oWd-RI-URi" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="72.5" width="141" height="32"/>
+                                    <rect key="frame" x="0.0" y="93.5" width="141" height="32"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <bool key="isElement" value="NO"/>
                                     </accessibility>
@@ -143,7 +154,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4fS-aN-CTB" userLabel="SpacerToCenterDisplayGradeWithCircleGrade">
-                                    <rect key="frame" x="0.0" y="108.5" width="240" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="129.5" width="238" height="0.0"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" id="Ybx-cc-uBz"/>
@@ -168,6 +179,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <constraints>
                 <constraint firstItem="kaf-Zs-zpC" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="ZR0-4B-kHr"/>
+                <constraint firstItem="kaf-Zs-zpC" firstAttribute="width" relation="lessThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="width" id="Zrp-5s-25L"/>
                 <constraint firstItem="kaf-Zs-zpC" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="zBE-3e-3Mb"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

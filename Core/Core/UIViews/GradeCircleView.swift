@@ -51,6 +51,8 @@ public class GradeCircleView: UIView {
     @IBOutlet weak var gradeCircle: CircleProgressView!
     @IBOutlet weak var displayGrade: UILabel!
     @IBOutlet weak var outOfLabel: UILabel!
+    /** This is the score that was given by the teacher. Late penalty is deducted from this. */
+    @IBOutlet weak var originalScoreLabel: UILabel!
     @IBOutlet weak var latePenaltyLabel: UILabel!
     @IBOutlet weak var finalGradeLabel: UILabel!
     @IBOutlet weak var displayGradeSpacerToCenterWithCircleGrade: NSLayoutConstraint!
@@ -124,12 +126,16 @@ public class GradeCircleView: UIView {
         // Update the Late penalty and Final Grade
         latePenaltyLabel.isHidden = true
         finalGradeLabel.isHidden = true
+        originalScoreLabel.isHidden = true
+
         if assignment.hasLatePenalty {
             latePenaltyLabel.isHidden = false
             finalGradeLabel.isHidden = false
+            originalScoreLabel.isHidden = false
 
             latePenaltyLabel.text = assignment.latePenaltyText
             finalGradeLabel.text = assignment.finalGradeText
+            originalScoreLabel.text = assignment.enteredGradeText
         }
 
         // Update for excused
