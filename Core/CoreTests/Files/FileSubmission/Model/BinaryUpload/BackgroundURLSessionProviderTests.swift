@@ -50,16 +50,6 @@ class BackgroundURLSessionProviderTests: CoreTestCase {
         XCTAssertEqual(session1, session2)
     }
 
-    func testCallesCompletionHandlerWhenSessionFinishes() {
-        let completionCalled = expectation(description: "completion handler called")
-        testee.completionHandler = {
-            completionCalled.fulfill()
-        }
-        let session = testee.session
-        testee.urlSessionDidFinishEvents(forBackgroundURLSession: session)
-        waitForExpectations(timeout: 0.1)
-    }
-
     func testCreatesNewSessionIfSessionBecameInvalid() {
         let oldSession = testee.session
         oldSession.invalidateAndCancel()

@@ -31,7 +31,6 @@ public class BackgroundURLSessionProvider: NSObject {
         activeSession = session
         return session
     }
-    public var completionHandler: (() -> Void)?
 
     private var activeSession: URLSession?
     private let sessionID: String
@@ -71,8 +70,6 @@ extension BackgroundURLSessionProvider: URLSessionDelegate {
      */
     public func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
         session.finishTasksAndInvalidate()
-        completionHandler?()
-        completionHandler = nil
     }
 }
 

@@ -128,8 +128,6 @@ public class FileSubmissionAssembly {
         backgroundURLSessionProvider.session.getAllTasks(completionHandler: { [weak backgroundURLSessionProvider] tasks in
             if tasks.isEmpty {
                 backgroundURLSessionProvider?.session.finishTasksAndInvalidate()
-                backgroundURLSessionProvider?.completionHandler?()
-                backgroundURLSessionProvider?.completionHandler = nil
                 completion()
             }
         })
