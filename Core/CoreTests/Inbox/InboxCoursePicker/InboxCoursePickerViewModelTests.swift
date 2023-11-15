@@ -28,7 +28,7 @@ class InboxCoursePickerViewModelTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         mockInteractor = InboxCoursePickerInteractorMock(env: AppEnvironment())
-        testee = InboxCoursePickerViewModel(interactor: mockInteractor)
+        testee = InboxCoursePickerViewModel(interactor: mockInteractor, didSelect: { _ in })
     }
 
     func testInteractorStateMappedToViewModel() {
@@ -55,6 +55,7 @@ class InboxCoursePickerViewModelTests: CoreTestCase {
 }
 
 private class InboxCoursePickerInteractorMock: InboxCoursePickerInteractor {
+    
     public var state = CurrentValueSubject<StoreState, Never>(.data)
     public var courses = CurrentValueSubject<[Course], Never>([])
     public var groups = CurrentValueSubject<[Group], Never>([])
@@ -67,6 +68,10 @@ private class InboxCoursePickerInteractorMock: InboxCoursePickerInteractor {
         self.groups = CurrentValueSubject<[Group], Never>([
             .save(.make(id: "1", name: "Group 1"), in: env.database.viewContext),
         ])
+    }
+
+    func refresh() -> AnyPublisher<[Void], Never> {
+        return Future<[Void], Never>{ _ in }.eraseToAnyPublisher()
     }
 
 }
