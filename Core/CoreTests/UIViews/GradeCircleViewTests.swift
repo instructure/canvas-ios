@@ -143,7 +143,7 @@ class GradeCircleViewTests: CoreTestCase {
         view.update(a)
         XCTAssertFalse(view.latePenaltyLabel.isHidden)
         XCTAssertFalse(view.finalGradeLabel.isHidden)
-        XCTAssertEqual(view.latePenaltyLabel.text, "Late penalty (-10 pts)")
+        XCTAssertEqual(view.latePenaltyLabel.text, "Late Penalty: -10 pts")
         XCTAssertEqual(view.finalGradeLabel.text, "Final Grade: 80 pts")
     }
 

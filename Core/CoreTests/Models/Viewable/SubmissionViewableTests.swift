@@ -78,7 +78,13 @@ class SubmissionViewableTests: XCTestCase {
     func testStatusText() {
         XCTAssertEqual(Model(submission: nil).submissionStatusText, "Not Submitted")
         let submittedAt = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 1).date!
-        XCTAssertEqual(Model(submission: Submission.make(from: .make(submitted_at: submittedAt))).submissionStatusText, "Submitted Oct 1, 2018 at 12:00 AM")
+        XCTAssertEqual(Model(submission: Submission.make(from: .make(submitted_at: submittedAt))).submissionStatusText, "Submitted")
+    }
+
+    func testSubmissionDateText() {
+        XCTAssertNil(Model(submission: nil).submissionDateText)
+        let submittedAt = DateComponents(calendar: Calendar.current, year: 2018, month: 10, day: 1).date!
+        XCTAssertEqual(Model(submission: Submission.make(from: .make(submitted_at: submittedAt))).submissionDateText, "Oct 1, 2018 at 12:00 AM")
     }
 
     func testHasLatePenalty() {
@@ -92,8 +98,8 @@ class SubmissionViewableTests: XCTestCase {
         XCTAssertNil(Model(submission: nil).latePenaltyText)
         XCTAssertNil(Model(submission: Submission.make(from: .make(late: false))).latePenaltyText)
         XCTAssertNil(Model(submission: Submission.make(from: .make(late: true))).latePenaltyText)
-        XCTAssertEqual(Model(submission: Submission.make(from: .make(late: true, points_deducted: 10 ))).latePenaltyText, "Late penalty (-10 pts)")
-        XCTAssertEqual(Model(submission: Submission.make(from: .make(late: true, points_deducted: 1 ))).latePenaltyText, "Late penalty (-1 pt)")
+        XCTAssertEqual(Model(submission: Submission.make(from: .make(late: true, points_deducted: 10 ))).latePenaltyText, "Late Penalty: -10 pts")
+        XCTAssertEqual(Model(submission: Submission.make(from: .make(late: true, points_deducted: 1 ))).latePenaltyText, "Late Penalty: -1 pt")
     }
 
     func testIsSubmittable() {

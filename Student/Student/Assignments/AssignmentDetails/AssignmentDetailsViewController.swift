@@ -39,8 +39,6 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     @IBOutlet weak var descriptionHeadingLabel: UILabel?
     @IBOutlet weak var descriptionView: UIView?
 
-    @IBOutlet weak var gradeCell: UIView?
-    @IBOutlet weak var gradeCellDivider: DividerView?
     @IBOutlet weak var gradedView: GradeCircleView?
     @IBOutlet weak var gradeStatisticGraphView: GradeStatisticGraphView?
     @IBOutlet weak var submittedView: UIView?
@@ -278,7 +276,6 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         if let onlineUploadState = presenter?.onlineUploadState {
             gradeSection?.isHidden = false
             gradeSectionBottomSpacer?.isHidden = false
-            gradeCellDivider?.isHidden = false
             gradedView?.isHidden = true
             submittedView?.isHidden = false
             fileSubmissionButton?.isHidden = false
