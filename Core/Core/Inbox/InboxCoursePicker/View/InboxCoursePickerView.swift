@@ -26,14 +26,20 @@ public struct InboxCoursePickerView: View {
     }
 
     public var body: some View {
-        content
-            .navigationTitleStyled(Text("Select Course", bundle: .core).font(.semibold17).foregroundColor(.textDarkest))
-            .navigationBarTitleDisplayMode(.inline)
-    }
+        ScrollView {
+            content
+                .navigationTitleStyled(Text("Select Course", bundle: .core).font(.semibold17).foregroundColor(.textDarkest))
+                .navigationBarTitleDisplayMode(.inline)
+        }
+        .refreshable {
+            await viewModel.refresh()
+        }
+        .frame(maxWidth: .infinity)
+}
 
     @ViewBuilder
     private var content: some View {
-        ScrollView {
+
             switch viewModel.state {
             case .loading:
                 ProgressView()
@@ -50,8 +56,6 @@ public struct InboxCoursePickerView: View {
                     .foregroundColor(.textDarkest)
             }
         }
-        .frame(maxWidth: .infinity)
-    }
 
     private var separator: some View {
         Color.borderMedium
@@ -64,14 +68,14 @@ public struct InboxCoursePickerView: View {
                 Section(header:
                         VStack(spacing: 0) {
                     separator
-                            Text("Courses")
-                                .font(.regular14)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .foregroundStyle(Color.textDark)
-                                .padding(.horizontal, 12)
-                                .padding(.vertical, 16)
-                                .background(Color.backgroundLight)
-                                .accessibilityHeading(.h1)
+                    Text("Courses", bundle: .core)
+                        .font(.regular14)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .foregroundStyle(Color.textDark)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 16)
+                        .background(Color.backgroundLight)
+                        .accessibilityHeading(.h1)
                     separator
                     }
                 ) {
@@ -87,15 +91,15 @@ public struct InboxCoursePickerView: View {
         VStack(spacing: 0) {
             if !groups.isEmpty {
                 Section(header:
-                        VStack(spacing: 0) {
-                            Text("Groups")
-                                .font(.regular14)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .foregroundStyle(Color.textDark)
-                                .padding(.horizontal, 12)
-                                .padding(.vertical, 16)
-                                .background(Color.backgroundLight)
-                                .accessibilityHeading(.h1)
+                    VStack(spacing: 0) {
+                    Text("Groups", bundle: .core)
+                        .font(.regular14)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .foregroundStyle(Color.textDark)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 16)
+                        .background(Color.backgroundLight)
+                        .accessibilityHeading(.h1)
                     separator
                     }
                 ) {
@@ -141,6 +145,7 @@ public struct InboxCoursePickerView: View {
                         .padding(.leading, 22).padding(.trailing, 12)
                     Text(courseName)
                         .font(.regular16)
+                        .multilineTextAlignment(.leading)
                     Spacer()
                     Image.checkSolid
                         .resizable()
@@ -171,6 +176,7 @@ public struct InboxCoursePickerView: View {
                         .padding(.leading, 22).padding(.trailing, 12)
                     Text(groupName)
                         .font(.regular16)
+                        .multilineTextAlignment(.leading)
                     Spacer()
                     Image.checkSolid
                         .resizable()

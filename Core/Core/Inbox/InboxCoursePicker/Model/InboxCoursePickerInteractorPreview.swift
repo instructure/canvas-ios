@@ -36,6 +36,10 @@ class InboxCoursePickerInteractorPreview: InboxCoursePickerInteractor {
             .save(.make(id: "1", name: "Group 1"), in: env.database.viewContext),
         ])
     }
+
+    func refresh() -> AnyPublisher<[Void], Never> {
+        Future<[Void], Never> {_ in }.eraseToAnyPublisher()
+    }
 }
 
 #endif

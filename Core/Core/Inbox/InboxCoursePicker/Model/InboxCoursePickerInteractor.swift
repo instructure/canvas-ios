@@ -24,4 +24,6 @@ public protocol InboxCoursePickerInteractor {
     var state: CurrentValueSubject<StoreState, Never> { get }
     var courses: CurrentValueSubject<[Course], Never> { get }
     var groups: CurrentValueSubject<[Group], Never> { get }
+
+    func refresh() -> AnyPublisher<[Void], Never>
 }

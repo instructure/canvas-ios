@@ -22,7 +22,6 @@ import XCTest
 
 class ComposeMessageInteractorLiveTests: CoreTestCase {
     private var testee: ComposeMessageInteractorLive!
-    private var subscriptions = Set<AnyCancellable>()
 
     override func setUp() {
         super.setUp()
@@ -79,11 +78,6 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         XCTAssertFinish(testee.send(parameters: parameters))
 
         waitForState(.data)
-    }
-
-    override func tearDown() {
-        subscriptions.removeAll()
-        super.tearDown()
     }
 
     private func mockData() {
