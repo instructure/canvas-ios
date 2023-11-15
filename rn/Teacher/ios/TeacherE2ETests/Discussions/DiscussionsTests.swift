@@ -162,6 +162,7 @@ class DiscussionsTests: E2ETestCase {
         XCTAssertTrue(threadReplyLabel.isVisible)
     }
 
+    // Disabled because there is no assignment ID in the API response and it crashes
     func testAssignmentDiscussion() {
         // MARK: Seed the usual stuff with an assignment discussion
         let teacher = seeder.createUser()
