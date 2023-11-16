@@ -35,11 +35,11 @@ public struct InboxCoursePickerView: View {
             await viewModel.refresh()
         }
         .frame(maxWidth: .infinity)
+        .navigationBarStyle(.modal)
     }
 
     @ViewBuilder
     private var content: some View {
-
             switch viewModel.state {
             case .loading:
                 ProgressView()

@@ -43,6 +43,7 @@ public struct ComposeMessageView: View {
                 }
                 .background(Color.backgroundLightest)
                 .navigationBarItems(leading: cancelButton)
+                .navigationBarStyle(.modal)
             }
             .onAppear {
                 hideNavigationBarSeparator()
@@ -72,7 +73,7 @@ public struct ComposeMessageView: View {
         } label: {
             Text("Cancel", bundle: .core)
                 .font(.regular16)
-                .foregroundColor(.textDarkest)
+                .foregroundColor(.accentColor)
         }
     }
 
