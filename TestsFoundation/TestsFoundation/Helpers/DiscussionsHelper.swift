@@ -117,7 +117,7 @@ public class DiscussionsHelper: BaseHelper {
                                         isAssignment: Bool = false,
                                         dueDate: Date? = nil) -> DSDiscussionTopic {
         let discussionAssignment = isAssignment ? CreateDSAssignmentRequest.RequestedDSAssignment(
-            name: title, description: message + title, published: published, submission_types: [.online_text_entry], due_at: dueDate) : nil
+            name: title, description: message + title, published: published, submission_types: [.discussion_topic], due_at: dueDate) : nil
 
         let discussionBody = CreateDSDiscussionRequest.RequestedDSDiscussion(
             title: title, message: message + title, is_announcement: isAnnouncement,

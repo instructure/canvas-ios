@@ -30,7 +30,6 @@
         "ContextCardE2ETests",
         "DSPagesTests\/testDeletePage()",
         "DashboardE2ETests\/testDashboardE2E()",
-        "DiscussionsTests\/testAssignmentDiscussion()",
         "PagesE2ETests\/testCreateAndDeletePage()",
         "PeopleE2ETests\/testPeopleE2E()",
         "SubmissionsE2ETests\/testSubmissionsE2E()",
