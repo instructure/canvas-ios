@@ -49,15 +49,15 @@ class ParentConversationListViewControllerTests: ParentTestCase {
         XCTAssertTrue(controller.errorView.isHidden)
 
         let first = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ConversationListCell
-        XCTAssertEqual(first?.dateLabel.text, "Dec 25, 2019 at 12:00 AM")
+        XCTAssertEqual(first?.dateLabel.text, "Dec 25, 2019, 12:00 AM")
         XCTAssertEqual(first?.contextLabel.text, "Canvas 101")
         XCTAssertEqual(first?.subjectLabel.text, "Subject One")
         XCTAssertEqual(first?.unreadView.isHidden, false)
-        XCTAssertEqual(first?.accessibilityLabel, "Subject One, in Canvas 101, the last message was on Dec 25, 2019 at 12:00 AM Last Message One, unread")
+        XCTAssertEqual(first?.accessibilityLabel, "Subject One, in Canvas 101, the last message was on Dec 25, 2019 at 12:00 AM Last Message One, unread")
 
         let last = controller.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? ConversationListCell
         XCTAssertEqual(last?.unreadView.isHidden, true)
-        XCTAssertEqual(last?.accessibilityLabel, "(No subject), in CTX, the last message was on Dec 25, 2018 at 12:00 AM last")
+        XCTAssertEqual(last?.accessibilityLabel, "(No subject), in CTX, the last message was on Dec 25, 2018 at 12:00 AM last")
 
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
         XCTAssert(router.lastRoutedTo("/conversations/1"))

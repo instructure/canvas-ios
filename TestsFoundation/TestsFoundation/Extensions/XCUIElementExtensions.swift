@@ -29,6 +29,7 @@ public extension XCUIElement {
         case value(expected: String)
         case label(expected: String)
         case enabled
+        case disabled
         case selected
         case unselected
         case hittable
@@ -61,6 +62,8 @@ public extension XCUIElement {
 
     // MARK: Private vars
     var isVisible: Bool { exists }
+    var isDisabled: Bool { !isEnabled }
+    var isUnselected: Bool { !isSelected }
     var isVanished: Bool { !(exists && isHittable) }
 
     // MARK: Functions
@@ -75,6 +78,11 @@ public extension XCUIElement {
 
     func hasLabel(label expectedLabel: String, strict: Bool = true) -> Bool {
         return strict ? label == expectedLabel : label.contains(expectedLabel)
+    }
+
+    func hasPlaceholderValue(placeholderValue expectedPlaceholderValue: String, strict: Bool = true) -> Bool {
+        let elementPlaceholderValue = placeholderValue ?? ""
+        return strict ? elementPlaceholderValue == expectedPlaceholderValue : elementPlaceholderValue.contains(expectedPlaceholderValue)
     }
 
     @discardableResult
@@ -115,6 +123,8 @@ public extension XCUIElement {
                 result = hasLabel(label: expected)
             case .enabled:
                 result = exists && isEnabled
+            case .disabled:
+                result = isDisabled
             case .selected:
                 result = exists && isSelected
             case .unselected:
@@ -168,6 +178,8 @@ public extension XCUIElement {
                 result = actualElement.hasLabel(label: expected)
             case .enabled:
                 result = actualElement.exists && actualElement.isEnabled
+            case .disabled:
+                result = actualElement.isDisabled
             case .selected:
                 result = actualElement.exists && actualElement.isSelected
             case .unselected:
@@ -230,20 +242,26 @@ public extension XCUIElement {
     }
 
     @discardableResult
-    func pasteText(text: String) -> XCUIElement {
+    func pasteText(text: String, customApp: XCUIApplication? = nil, pasteAndGo: Bool = false) -> XCUIElement {
+        let appInUse = customApp ?? app
         UIPasteboard.general.string = text
-        let paste = app.find(label: "Paste", type: .menuItem)
+        let paste = pasteAndGo ? appInUse.find(label: "Paste and Go", type: .menuItem) : appInUse.find(label: "Paste", type: .menuItem)
         actionUntilElementCondition(action: .tap, element: paste, condition: .visible)
         paste.hit()
         return self
     }
 
     @discardableResult
-    func cutText() -> XCUIElement {
-        let selectAll = app.find(label: "Select All")
-        actionUntilElementCondition(action: .tap, element: selectAll, condition: .visible)
-        selectAll.hit()
-        app.find(label: "Cut").hit()
+    func cutText(tapSelectAll: Bool = true, customApp: XCUIApplication? = nil) -> XCUIElement {
+        let appInUse = customApp ?? app
+        if tapSelectAll {
+            let selectAll = appInUse.find(label: "Select All")
+            actionUntilElementCondition(action: .tap, element: selectAll, condition: .visible)
+            selectAll.hit()
+        }
+        let cutButton = appInUse.find(label: "Cut")
+        let cutVisible = actionUntilElementCondition(action: .tap, element: cutButton, condition: .visible, timeout: 5)
+        if cutVisible { cutButton.hit() }
         return self
     }
 

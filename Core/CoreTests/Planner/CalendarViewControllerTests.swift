@@ -54,7 +54,7 @@ class CalendarViewControllerTests: CoreTestCase, CalendarViewControllerDelegate 
         environment.mockStore = true
         controller.view.layoutIfNeeded()
 
-        XCTAssertEqual(controller.monthButton.contentEdgeInsets.right, 28)
+        XCTAssertEqual(controller.monthButton.configuration?.contentInsets.trailing, 28)
         XCTAssertEqual(controller.weekdayRow.arrangedSubviews.map { ($0 as? UILabel)?.text }, [
             "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat",
         ])

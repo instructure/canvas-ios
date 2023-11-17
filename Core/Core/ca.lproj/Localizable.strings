@@ -398,6 +398,9 @@
 "Available From:" = "Disponible de:";
 
 /* No comment provided by engineer. */
+"Available offline" = "Està disponible sense connexió";
+
+/* No comment provided by engineer. */
 "Available until" = "Disponible fins al";
 
 /* No comment provided by engineer. */
@@ -453,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Cancel Submission?" = "Voleu cancel·lar l'entrega?";
+
+/* No comment provided by engineer. */
+"Cancel Sync?" = "Voleu cancel·lar la sincronització?";
 
 /* No comment provided by engineer. */
 "Canvas Guides" = "Guies del Canvas";
@@ -590,6 +596,9 @@
 "Content" = "Contingut";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "No es pot mostrar el contingut";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Error d'enllaç de contingut";
 
 /* No comment provided by engineer. */
@@ -713,10 +722,10 @@
 "Cyan" = "Cian";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
+"d_courses_syncing" = "d_courses_syncing";
 
 /* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
+"d_items" = "d_items";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -866,9 +875,6 @@
 "Dismiss %@" = "Descarta %@";
 
 /* No comment provided by engineer. */
-"Dismiss notification" = "Rebutgeu la notificació";
-
-/* No comment provided by engineer. */
 "Display As" = "Mostra com a";
 
 /* No comment provided by engineer. */
@@ -930,9 +936,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Edita la configuració de l'assignatura";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Edita el panell de control";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Edita el fòrum";
@@ -1044,9 +1047,6 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "S'ha produït un error. Toqueu per veure les opcions";
-
-/* No comment provided by engineer. */
-"favorite" = "preferit";
 
 /* No comment provided by engineer. */
 "Feedback" = "Suggeriments";
@@ -1220,6 +1220,9 @@
 "Groups" = "Grups";
 
 /* No comment provided by engineer. */
+"Hang tight, we're getting things ready for you." = "Un moment, us ho estem preparant.";
+
+/* No comment provided by engineer. */
 "Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Feu que el vostre progenitor escanegi aquest codi QR de l'aplicació Canvas Parent per emparellar-vos-hi.";
 
 /* No comment provided by engineer. */
@@ -1364,6 +1367,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Sembla que no us heu inscrit en cap assignatura com a %@. És possible que alguna de les altres aplicacions nostres us sigui més útil. Toqueu-ne una per anar a App Store.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "Amb aquesta acció s’aturarà la sincronització del contingut sense connexió. Podeu tornar-ho a fer més endavant.";
+
+/* No comment provided by engineer. */
 "Italic" = "Cursiva";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Error d'inici de sessió";
+
+/* No comment provided by engineer. */
+"Login help." = "Ajuda per iniciar la sessió.";
 
 /* No comment provided by engineer. */
 "Login ID" = "ID d'inici de sessió";
@@ -1784,13 +1793,25 @@
 "Observers" = "Observadors";
 
 /* No comment provided by engineer. */
+"Offline" = "Sense connexió";
+
+/* No comment provided by engineer. */
 "Offline Content" = "Contingut sense connexió";
 
 /* No comment provided by engineer. */
 "Offline Content Sync Failed" = "No s’ha pogut sincronitzar el contingut sense connexió";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Success" = "S’ha sincronitzat correctament el contingut sense connexió";
+
+/* No comment provided by engineer. */
 "Offline mode" = "Mode fora de línia";
+
+/* No comment provided by engineer. */
+"Offline sync was interrupted by the operating system" = "El sistema operatiu ha interromput la sincronització sense connexió";
+
+/* No comment provided by engineer. */
+"offline_sync_finished" = "offline_sync_finished";
 
 /* No comment provided by engineer. */
 "OK" = "D'acord";
@@ -1809,6 +1830,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "No s'han pogut penjar un o més fitxers. Reviseu la connexió a Internet i torneu a provar de fer l'entrega.";
+
+/* No comment provided by engineer. */
+"One or more items failed to sync." = "No s'han pogut sincronitzar un o més elements.";
 
 /* No comment provided by engineer. */
 "One Question at a Time:" = "Una pregunta cada vegada:";
@@ -1833,6 +1857,9 @@
 
 /* No comment provided by engineer. */
 "Open course details" = "Obre els detalls de l'assignatura";
+
+/* No comment provided by engineer. */
+"Open In Browser" = "Obre'l al navegador";
 
 /* No comment provided by engineer. */
 "Open item details" = "Obre els detalls de l'element";
@@ -2288,6 +2315,9 @@
 "Show One Question at a Time" = "Mostra una pregunta cada vegada";
 
 /* No comment provided by engineer. */
+"Show sync details" = "Mostreu la informació de sincronització";
+
+/* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2352,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "S’ha produït un error";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "S’ha produït un error que s’escapa al nostre control.";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Ordena per número de M'agrada";
@@ -2427,6 +2460,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "Operació correcta!";
+
+/* No comment provided by engineer. */
+"Success! Downloaded %@ of %@" = "Operació correcta! S’han baixat %1$@ de %2$@";
 
 /* No comment provided by engineer. */
 "Summary" = "Resum";
@@ -2538,9 +2574,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "El sistema operatiu ha finalitzat el procés d'entrega.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "S’han seleccionat %d elements perquè estiguin disponibles sense connexió. El contingut seleccionat es baixarà al dispositiu.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "No hi ha cap activitat activa en aquesta assignatura.";
@@ -2910,6 +2943,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "No teniu autorització per dur a terme aquesta acció.";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Podeu provar d’obrir la pàgina en un navegador.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Heu estat convidat";

@@ -398,6 +398,9 @@
 "Available From:" = "Khả Dụng Từ:";
 
 /* No comment provided by engineer. */
+"Available offline" = "Khả dụng ngoại tuyến";
+
+/* No comment provided by engineer. */
 "Available until" = "Khả dụng đến";
 
 /* No comment provided by engineer. */
@@ -453,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Cancel Submission?" = "Hủy Nộp?";
+
+/* No comment provided by engineer. */
+"Cancel Sync?" = "Hủy Đồng Bộ?";
 
 /* No comment provided by engineer. */
 "Canvas Guides" = "Canvas Guides";
@@ -590,6 +596,9 @@
 "Content" = "Nội Dung";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Không Thể Hiển Thị Nội Dung";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Lỗi Liên Kết Nội Dung";
 
 /* No comment provided by engineer. */
@@ -713,10 +722,10 @@
 "Cyan" = "Xanh Lá Mạ";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
+"d_courses_syncing" = "d_courses_syncing";
 
 /* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
+"d_items" = "d_items";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -866,9 +875,6 @@
 "Dismiss %@" = "Bỏ %@";
 
 /* No comment provided by engineer. */
-"Dismiss notification" = "Bỏ qua thông báo";
-
-/* No comment provided by engineer. */
 "Display As" = "Hiển Thị Dưới Dạng";
 
 /* No comment provided by engineer. */
@@ -930,9 +936,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Chỉnh sửa cài đặt khóa học";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Chỉnh Sửa Bảng Điều Khiển";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Chỉnh Sửa Thảo Luận";
@@ -1044,9 +1047,6 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Thất bại Nhấn để xem tùy chọn";
-
-/* No comment provided by engineer. */
-"favorite" = "ưa thích";
 
 /* No comment provided by engineer. */
 "Feedback" = "Ý Kiến Phản Hồi";
@@ -1220,6 +1220,9 @@
 "Groups" = "Nhóm";
 
 /* No comment provided by engineer. */
+"Hang tight, we're getting things ready for you." = "Hãy chờ nhé, chúng tôi đang chuẩn bị mọi thứ cho bạn.";
+
+/* No comment provided by engineer. */
 "Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Hãy nhờ phụ huynh của bạn quét mã QR này từ ứng dụng Canvas Parent để ghép cặp với bạn.";
 
 /* No comment provided by engineer. */
@@ -1364,6 +1367,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Có vẻ bạn chưa ghi danh bất kỳ khóa học nào với tư cách %@. Một trong các ứng dụng khác có thể thích hợp hơn. Nhấn vào một để truy cập App Store.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "Việc này sẽ ngừng đồng bộ nội dung ngoại tuyến. Bạn có thể thực hiện lại sau.";
+
+/* No comment provided by engineer. */
 "Italic" = "Nghiêng";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Lỗi Đăng Nhập";
+
+/* No comment provided by engineer. */
+"Login help." = "Trợ giúp đăng nhập.";
 
 /* No comment provided by engineer. */
 "Login ID" = "ID Đăng Nhập";
@@ -1784,13 +1793,25 @@
 "Observers" = "Người Quan Sát";
 
 /* No comment provided by engineer. */
+"Offline" = "Ngoại tuyến";
+
+/* No comment provided by engineer. */
 "Offline Content" = "Nội Dung Ngoại Tuyến";
 
 /* No comment provided by engineer. */
 "Offline Content Sync Failed" = "Đồng Bộ Nội Dung Ngoại Tuyến Không Thành Công";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Success" = "Đồng Bộ Nội Dung Ngoại Tuyến Thành Công";
+
+/* No comment provided by engineer. */
 "Offline mode" = "Chế độ ngoại tuyến";
+
+/* No comment provided by engineer. */
+"Offline sync was interrupted by the operating system" = "Đồng bộ ngoại tuyến bị gián đoạn do hệ điều hành";
+
+/* No comment provided by engineer. */
+"offline_sync_finished" = "offline_sync_finished";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -1809,6 +1830,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "Tải lên một hoặc nhiều tập tin thất bại. Hãy kiểm tra kết nối internet của bạn rồi thử lại để nộp.";
+
+/* No comment provided by engineer. */
+"One or more items failed to sync." = "Một hoặc nhiều mục không đồng bộ thành công.";
 
 /* No comment provided by engineer. */
 "One Question at a Time:" = "Từng Câu Hỏi Một:";
@@ -1833,6 +1857,9 @@
 
 /* No comment provided by engineer. */
 "Open course details" = "Mở thông tin chi tiết khóa học";
+
+/* No comment provided by engineer. */
+"Open In Browser" = "Mở Trong Trình Duyệt";
 
 /* No comment provided by engineer. */
 "Open item details" = "Mở thông tin chi tiết mục";
@@ -2288,6 +2315,9 @@
 "Show One Question at a Time" = "Hiển Thị Từng Câu Hỏi Một";
 
 /* No comment provided by engineer. */
+"Show sync details" = "Hiển thị chi tiết đồng bộ";
+
+/* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2352,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "Đã Xảy Ra Vấn Đề";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Đã xảy ra vấn đề nằm ngoài kiểm soát của chúng tôi.";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Sắp xếp theo lượt thích";
@@ -2427,6 +2460,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "Thành công!";
+
+/* No comment provided by engineer. */
+"Success! Downloaded %@ of %@" = "Thành công! Đã tải xuống %1$@ / %2$@";
 
 /* No comment provided by engineer. */
 "Summary" = "Tóm Tắt";
@@ -2538,9 +2574,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Quá trình nộp bị hệ điều hành chấm dứt.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Có %d mục được chọn để có thể sử dụng ngoại tuyến. Nội dung được chọn sẽ được tải về thiết bị.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Không có bài tập đang hoạt động nào trong khóa học này.";
@@ -2910,6 +2943,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "Bạn không được phép thực hiện thao tác này.";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Bạn có thể thử mở trang trong một trình duyệt.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Bạn đã được mời";

@@ -398,6 +398,9 @@
 "Available From:" = "Wātea mai:";
 
 /* No comment provided by engineer. */
+"Available offline" = "Kei te waatea tuimotu";
+
+/* No comment provided by engineer. */
 "Available until" = "wātea noa";
 
 /* No comment provided by engineer. */
@@ -453,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Cancel Submission?" = "Whakakorea te Tukunga?";
+
+/* No comment provided by engineer. */
+"Cancel Sync?" = "Whakakore Tukutahi?";
 
 /* No comment provided by engineer. */
 "Canvas Guides" = "Canvas Kaiārahi";
@@ -590,6 +596,9 @@
 "Content" = "Ihirangi";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Kaore e taea te Whakaatu Ihirangi";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Ihirangi Hono Hapa";
 
 /* No comment provided by engineer. */
@@ -713,10 +722,10 @@
 "Cyan" = "Kawariki";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
+"d_courses_syncing" = "d_courses_syncing";
 
 /* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
+"d_items" = "d_items";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -866,9 +875,6 @@
 "Dismiss %@" = "Pana %@";
 
 /* No comment provided by engineer. */
-"Dismiss notification" = "Whakakorehia te panui";
-
-/* No comment provided by engineer. */
 "Display As" = "Whakaatu Hei";
 
 /* No comment provided by engineer. */
@@ -930,9 +936,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Whakatika akoranga tautuhinga";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Whakatika Papatohu";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Whakatika kōrerorero";
@@ -1044,9 +1047,6 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "I hapa. Pātō mo ngā kōwhiringa";
-
-/* No comment provided by engineer. */
-"favorite" = "makau";
 
 /* No comment provided by engineer. */
 "Feedback" = "Urupare";
@@ -1220,6 +1220,9 @@
 "Groups" = "Rōpū";
 
 /* No comment provided by engineer. */
+"Hang tight, we're getting things ready for you." = "Kia mau, kei te whakareri matou i nga mea mo koe.";
+
+/* No comment provided by engineer. */
 "Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Ma ō matua e matawai tēnei QR waehere mai i te Canvas Matua Taupanga ki te takirua ki ā koe.";
 
 /* No comment provided by engineer. */
@@ -1364,6 +1367,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Ko te titiro kaore koe i whakaurutis ki rot o ngā akoranga hei %@. Ko tētahi o a mātau taupānga he pai ake pea.n Pāt tētahi ki te haere ki te Toa Taupānga.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "Ka mutu te tukutahi ihirangi tuimotu. Ka taea e koe te mahi ano i muri mai.";
+
+/* No comment provided by engineer. */
 "Italic" = "Tuhinga";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Hapa Takiuru";
+
+/* No comment provided by engineer. */
+"Login help." = "Awhina takiuru.";
 
 /* No comment provided by engineer. */
 "Login ID" = "Takiuru ID";
@@ -1784,13 +1793,25 @@
 "Observers" = "Kaitirotiro";
 
 /* No comment provided by engineer. */
+"Offline" = "Tuimotu";
+
+/* No comment provided by engineer. */
 "Offline Content" = "Ihirangi tuimotu";
 
 /* No comment provided by engineer. */
 "Offline Content Sync Failed" = "I Rahua te Tukutahi Ihirangi Tuimotu";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Success" = "Angitu Tukutahi Ihirangi Tuimotu";
+
+/* No comment provided by engineer. */
 "Offline mode" = "Aratau tuimotu";
+
+/* No comment provided by engineer. */
+"Offline sync was interrupted by the operating system" = "I haukotia te tukutahi tuimotu e te punaha whakahaere";
+
+/* No comment provided by engineer. */
+"offline_sync_finished" = "offline_sync_finished";
 
 /* No comment provided by engineer. */
 "OK" = "Ae";
@@ -1809,6 +1830,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "Kotahi me te nui atu o ngā kōnae i hapa te tukuake. Āta titro ki to hono ipurangi ka ngana anō ki te tuku.";
+
+/* No comment provided by engineer. */
+"One or more items failed to sync." = "Kotahi neke atu ranei nga tuemi i rahua ki te tukutahi.";
 
 /* No comment provided by engineer. */
 "One Question at a Time:" = "Kotahi te patai i te wa kotahi:";
@@ -1833,6 +1857,9 @@
 
 /* No comment provided by engineer. */
 "Open course details" = "Huaki taipitopito akoranga";
+
+/* No comment provided by engineer. */
+"Open In Browser" = "Tuwhera I roto i te Pūtirotiro";
 
 /* No comment provided by engineer. */
 "Open item details" = "Huaki ngā taipitopito tūemi";
@@ -2288,6 +2315,9 @@
 "Show One Question at a Time" = "Whakātu kotahi pātai ia wā";
 
 /* No comment provided by engineer. */
+"Show sync details" = "Whakaatuhia te tukutahi taipitopito";
+
+/* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2352,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "I raruraru tētahi mea";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "I he tetahi mea i tua atu i to maatau mana.";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Kōmaka mā te momo";
@@ -2427,6 +2460,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "Angitu!";
+
+/* No comment provided by engineer. */
+"Success! Downloaded %@ of %@" = "Angitu! Kua tikiakehia %1$@ o %2$@";
 
 /* No comment provided by engineer. */
 "Summary" = "Whakarāpopototanga";
@@ -2538,9 +2574,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "I whakamutua te tukanga tuku e te punaha whakahaere.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "He %d nga mea kua tohua mo te waatea tuimotu. Putanga kua tohua ki te whakatutuki i nga whakaritenga.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Karekau he whakataunga e ora ana i roto i tēnei akoranga.";
@@ -2910,6 +2943,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "Kaore koe e whakamanahia ki te whakamahi i tēnei mahi";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Ka taea e koe te ngana ki te whakatuwhera i te whaarangi i roto i te tirotiro.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Kua tonoa koe";

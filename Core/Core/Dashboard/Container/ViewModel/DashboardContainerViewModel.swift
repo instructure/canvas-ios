@@ -25,11 +25,13 @@ public class DashboardContainerViewModel: ObservableObject {
 
     // MARK: - Outputs
 
+    @Published var groups = [Group]()
     public let showSettings = PassthroughSubject<(view: UIViewController, viewSize: CGSize), Never>()
 
     // MARK: - Private Variables
 
     private var subscriptions = Set<AnyCancellable>()
+    private let groupListStore: ReactiveStore<GetDashboardGroups>
 
     public init(
         environment: AppEnvironment,
@@ -48,8 +50,31 @@ public class DashboardContainerViewModel: ObservableObject {
 
         NotificationCenter.default.publisher(for: .OfflineSyncTriggered)
             .compactMap { $0.object as? [CourseSyncEntry] }
-            .flatMap { courseSyncInteractor.downloadContent(for: $0 )}
+            .flatMap { courseSyncInteractor.downloadContent(for: $0) }
             .sink()
+            .store(in: &subscriptions)
+
+        groupListStore = ReactiveStore(
+            useCase: GetDashboardGroups()
+        )
+
+        groupListStore.observeEntitiesWithError()
+            .replaceError(with: [])
+            .assign(to: &$groups)
+
+        NotificationCenter.default.publisher(for: .favoritesDidChange)
+            .sink { [weak self] _ in
+                self?.refreshGroups()
+            }
+            .store(in: &subscriptions)
+    }
+
+    public func refreshGroups(onComplete: (() -> Void)? = nil) {
+        groupListStore
+            .forceFetchEntities()
+            .sink { _ in
+                onComplete?()
+            }
             .store(in: &subscriptions)
     }
 }

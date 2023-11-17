@@ -96,3 +96,13 @@ extension K5ImportantDateItem: Hashable {
         hasher.combine(title)
     }
 }
+
+extension K5ImportantDateItem: Equatable {
+    public static func == (lhs: K5ImportantDateItem, rhs: K5ImportantDateItem) -> Bool {
+        return lhs.subject == rhs.subject &&
+        lhs.title == rhs.title &&
+        lhs.date == rhs.date &&
+        lhs.route == rhs.route &&
+        lhs.type == rhs.type
+    }
+}

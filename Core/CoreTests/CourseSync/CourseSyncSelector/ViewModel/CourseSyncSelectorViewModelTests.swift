@@ -76,8 +76,8 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
     }
 
     func testUpdateConfirmationDialogMessage() {
-        mockSelectorInteractor.selectedCountSubject.send(3)
-        XCTAssertEqual(testee.confirmAlert.message, "There are 3 items selected for offline availability. The selected content will be downloaded to the device.")
+        mockSelectorInteractor.selectedSizeSubject.send(1024)
+        XCTAssertEqual(testee.confirmAlert.message, "This will sync ~1 KB content. It may result in additional charges from your data provider if you are not connected to a Wi-Fi network.")
     }
 
     func testLeftNavBarTap() {
@@ -160,6 +160,11 @@ class CourseSyncSelectorInteractorMock: CourseSyncSelectorInteractor {
         selectedCountSubject.eraseToAnyPublisher()
     }
 
+    let selectedSizeSubject = PassthroughSubject<Int, Never>()
+    func observeSelectedSize() -> AnyPublisher<Int, Never> {
+        selectedSizeSubject.eraseToAnyPublisher()
+    }
+
     func setSelected(selection _: Core.CourseEntrySelection, selectionState _: ListCellView.SelectionState) {}
     func setCollapsed(selection _: Core.CourseEntrySelection, isCollapsed _: Bool) {}
 
@@ -179,6 +184,8 @@ class CourseSyncInteractorMock: CourseSyncInteractor {
     func downloadContent(for _: [Core.CourseSyncEntry]) -> AnyPublisher<[Core.CourseSyncEntry], Never> {
         courseSyncEntriesSubject.eraseToAnyPublisher()
     }
+
+    func cancel() {}
 }
 
 class CourseSyncListInteractorMock: CourseSyncListInteractor {

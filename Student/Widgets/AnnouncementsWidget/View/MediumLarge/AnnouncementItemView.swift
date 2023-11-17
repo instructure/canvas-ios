@@ -41,8 +41,8 @@ struct AnnouncementItemView: View {
                     .foregroundColor(.textDarkest)
                     .lineLimit(2)
                 HStack {
-                    if let image = announcementItem.avatarImage {
-                        Image(uiImage: image)
+                    if let avatar = announcementItem.avatar {
+                        Image(uiImage: avatar)
                             .resizable()
                             .frame(width: 16, height: 16, alignment: .center)
                             .cornerRadius(8)
@@ -54,12 +54,14 @@ struct AnnouncementItemView: View {
                         .foregroundColor(.textDark)
                     Spacer()
                 }
-            }.background(Color.backgroundLightest)
+            }
+            .compatibleContainerBackground(Color.backgroundLightest)
         }
     }
 }
 
 #if DEBUG
+
 struct AnnouncementItemView_Previews: PreviewProvider {
     static var previews: some View {
         let item = AnnouncementItem(
@@ -72,4 +74,5 @@ struct AnnouncementItemView_Previews: PreviewProvider {
         AnnouncementItemView(announcementItem: item).previewContext(WidgetPreviewContext(family: .systemMedium))
     }
 }
+
 #endif

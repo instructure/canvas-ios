@@ -43,7 +43,9 @@ extension UIButton {
                     uSelf.setAvailableState()
                 }
             }
-        objc_setAssociatedObject(self, &AssociatedObjectKeys.OfflineStateObservation, observation, .OBJC_ASSOCIATION_RETAIN)
+        withUnsafePointer(to: &AssociatedObjectKeys.OfflineStateObservation) {
+            objc_setAssociatedObject(self, $0, observation, .OBJC_ASSOCIATION_RETAIN)
+        }
     }
 
     // MARK: - Private Methods
@@ -59,14 +61,21 @@ extension UIButton {
         }
 
         // Extra safety not to add any more tap recognizers if one is already in place
-        guard objc_getAssociatedObject(self, &AssociatedObjectKeys.TapGestureRecognizer) == nil else {
+        let unsafeTapRecognizer = withUnsafePointer(to: &AssociatedObjectKeys.TapGestureRecognizer) {
+            objc_getAssociatedObject(self, $0)
+        }
+
+        guard unsafeTapRecognizer == nil else {
             return
         }
 
         let tapRecognizer = UITapGestureRecognizer(target: UIAlertController.self,
                                                    action: #selector(UIAlertController.showItemNotAvailableInOfflineAlert(sender:)))
         addGestureRecognizer(tapRecognizer)
-        objc_setAssociatedObject(self, &AssociatedObjectKeys.TapGestureRecognizer, tapRecognizer, .OBJC_ASSOCIATION_RETAIN)
+
+        withUnsafePointer(to: &AssociatedObjectKeys.TapGestureRecognizer) {
+            objc_setAssociatedObject(self, $0, tapRecognizer, .OBJC_ASSOCIATION_RETAIN)
+        }
     }
 
     private func setAvailableState() {
@@ -74,11 +83,18 @@ extension UIButton {
             self.alpha = 1.0
         }
 
-        guard let tapRecognizer = objc_getAssociatedObject(self, &AssociatedObjectKeys.TapGestureRecognizer) as? UIGestureRecognizer else {
+        let unsafeTapRecognizer = withUnsafePointer(to: &AssociatedObjectKeys.TapGestureRecognizer) {
+            objc_getAssociatedObject(self, $0)
+        }
+
+        guard let tapRecognizer = unsafeTapRecognizer as? UIGestureRecognizer else {
             return
         }
 
         removeGestureRecognizer(tapRecognizer)
-        objc_setAssociatedObject(self, &AssociatedObjectKeys.TapGestureRecognizer, nil, .OBJC_ASSOCIATION_ASSIGN)
+
+        withUnsafePointer(to: &AssociatedObjectKeys.TapGestureRecognizer) {
+            objc_setAssociatedObject(self, $0, nil, .OBJC_ASSOCIATION_ASSIGN)
+        }
     }
 }

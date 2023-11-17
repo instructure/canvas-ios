@@ -34,6 +34,7 @@ public final class Group: NSManagedObject, WriteableModel {
     @NSManaged public var id: String
     @NSManaged public var name: String
     @NSManaged public var showOnDashboard: Bool
+    @NSManaged public var isFavorite: Bool
 
     public var context: Context? {
         get { contextRaw.flatMap { Context(canvasContextID: $0) } }
@@ -66,6 +67,8 @@ public final class Group: NSManagedObject, WriteableModel {
         model.id = item.id.value
         model.name = item.name
         model.showOnDashboard = !item.concluded
+        model.isFavorite = item.is_favorite ?? true
+
         if let contextColor: ContextColor = context.fetch(scope: .where(#keyPath(ContextColor.canvasContextID), equals: model.canvasContextID)).first {
             model.contextColor = contextColor
         } else if let courseID = model.courseID,

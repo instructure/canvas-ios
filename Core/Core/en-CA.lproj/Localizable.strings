@@ -398,6 +398,9 @@
 "Available From:" = "Available From:";
 
 /* No comment provided by engineer. */
+"Available offline" = "Available offline";
+
+/* No comment provided by engineer. */
 "Available until" = "Available until";
 
 /* No comment provided by engineer. */
@@ -453,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Cancel Submission?" = "Cancel Submission?";
+
+/* No comment provided by engineer. */
+"Cancel Sync?" = "Cancel Sync?";
 
 /* No comment provided by engineer. */
 "Canvas Guides" = "Canvas Guides";
@@ -590,6 +596,9 @@
 "Content" = "Content";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Content Cannot Be Displayed";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Content Link Error";
 
 /* No comment provided by engineer. */
@@ -713,10 +722,10 @@
 "Cyan" = "Cyan";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
+"d_courses_syncing" = "d_courses_syncing";
 
 /* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
+"d_items" = "d_items";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -866,9 +875,6 @@
 "Dismiss %@" = "Dismiss %@";
 
 /* No comment provided by engineer. */
-"Dismiss notification" = "Dismiss notification";
-
-/* No comment provided by engineer. */
 "Display As" = "Display As";
 
 /* No comment provided by engineer. */
@@ -930,9 +936,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Edit course settings";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Edit Dashboard";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Edit Discussion";
@@ -1044,9 +1047,6 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Failed. Tap for options";
-
-/* No comment provided by engineer. */
-"favorite" = "favorite";
 
 /* No comment provided by engineer. */
 "Feedback" = "Feedback";
@@ -1220,6 +1220,9 @@
 "Groups" = "Groups";
 
 /* No comment provided by engineer. */
+"Hang tight, we're getting things ready for you." = "Hang tight, we're getting things ready for you.";
+
+/* No comment provided by engineer. */
 "Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Have your parent scan this QR code from the Canvas Parent app to pair with you.";
 
 /* No comment provided by engineer. */
@@ -1364,6 +1367,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "It will stop offline content sync. You can do it again later.";
+
+/* No comment provided by engineer. */
 "Italic" = "Italic";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Login Error";
+
+/* No comment provided by engineer. */
+"Login help." = "Login help.";
 
 /* No comment provided by engineer. */
 "Login ID" = "Login ID";
@@ -1784,13 +1793,25 @@
 "Observers" = "Observers";
 
 /* No comment provided by engineer. */
+"Offline" = "Offline";
+
+/* No comment provided by engineer. */
 "Offline Content" = "Offline Content";
 
 /* No comment provided by engineer. */
 "Offline Content Sync Failed" = "Offline Content Sync Failed";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Success" = "Offline Content Sync Success";
+
+/* No comment provided by engineer. */
 "Offline mode" = "Offline mode";
+
+/* No comment provided by engineer. */
+"Offline sync was interrupted by the operating system" = "Offline sync was interrupted by the operating system";
+
+/* No comment provided by engineer. */
+"offline_sync_finished" = "offline_sync_finished";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -1809,6 +1830,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "One or more files failed to upload. Check your internet connection and retry to submit.";
+
+/* No comment provided by engineer. */
+"One or more items failed to sync." = "One or more items failed to sync.";
 
 /* No comment provided by engineer. */
 "One Question at a Time:" = "One Question at a Time:";
@@ -1833,6 +1857,9 @@
 
 /* No comment provided by engineer. */
 "Open course details" = "Open course details";
+
+/* No comment provided by engineer. */
+"Open In Browser" = "Open In Browser";
 
 /* No comment provided by engineer. */
 "Open item details" = "Open item details";
@@ -2288,6 +2315,9 @@
 "Show One Question at a Time" = "Show One Question at a Time";
 
 /* No comment provided by engineer. */
+"Show sync details" = "Show sync details";
+
+/* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2352,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "Something Went Wrong";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Something went wrong beyond our control.";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Sort by likes";
@@ -2427,6 +2460,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "Success!";
+
+/* No comment provided by engineer. */
+"Success! Downloaded %@ of %@" = "Success! Downloaded %1$@ of %2$@";
 
 /* No comment provided by engineer. */
 "Summary" = "Summary";
@@ -2538,9 +2574,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "The submission process was terminated by the operating system.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "There are %d items selected for offline availability. The selected content will be downloaded to the device.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "There are no active assignments in this course.";
@@ -2910,6 +2943,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "You are not authorized to perform this action";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "You can try to open the page in a browser.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "You have been invited";

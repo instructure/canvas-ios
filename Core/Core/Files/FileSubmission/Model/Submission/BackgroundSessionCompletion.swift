@@ -19,28 +19,26 @@
 import Combine
 
 /**
- The purposes of this class are
- - Allow the task of calling the background completion block in a reactive environment.
- - Make possible to lazy init the upload chain in `FileSubmissionAssembly` and setup the background callback after the assembly has been created.
- - Make sure the callback block is executed on the main thread.
+ This class stores the completion block received from the system when it wakes up the app via the application delegate because a background url session is completed.
+ This entity also makes possible to lazy init the upload chain in `FileSubmissionAssembly` and setup the background callback after the assembly has been created
+ and ensures that the callback block is executed on the main thread.
  */
 public class BackgroundSessionCompletion {
     public var callback: (() -> Void)?
 
     public init() {}
 
-    public func backgroundOperationsFinished() -> Future<Void, Never> {
-        Future<Void, Never> { [weak self] promise in
-            guard let callback = self?.callback else {
-                promise(.success(()))
-                return
-            }
-
-            DispatchQueue.main.async {
-                callback()
-                self?.callback = nil
-                promise(.success(()))
-            }
+    public func backgroundOperationsFinished() {
+        guard let callback else {
+            return
         }
+
+        let semaphore = DispatchSemaphore(value: 0)
+        performUIUpdate { [weak self] in
+            callback()
+            self?.callback = nil
+            semaphore.signal()
+        }
+        semaphore.wait()
     }
 }

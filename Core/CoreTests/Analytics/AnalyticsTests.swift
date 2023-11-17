@@ -21,13 +21,12 @@ import XCTest
 import TestsFoundation
 
 class AnalyticsTests: XCTestCase {
-
-    var loggedEvent: String?
-    var loggedParameters: [String: Any]?
+    private var testAnalyticsHandler: MockAnalyticsHandler!
 
     override func setUp() {
         super.setUp()
-        Analytics.shared.handler = self
+        testAnalyticsHandler = MockAnalyticsHandler()
+        Analytics.shared.handler = testAnalyticsHandler
     }
 
     func testLogEvent() {
@@ -35,14 +34,14 @@ class AnalyticsTests: XCTestCase {
         let params = ["bar": "foo"]
         Analytics.shared.logEvent(name, parameters: params)
 
-        XCTAssertEqual(loggedEvent, name)
-        XCTAssertEqual(loggedParameters?["bar"] as? String, "foo")
+        XCTAssertEqual(testAnalyticsHandler.lastEvent, name)
+        XCTAssertEqual(testAnalyticsHandler.lastEventParameters?["bar"] as? String, "foo")
     }
 
     func testLogError() {
-        Analytics.shared.logError("test_error", description: "this is a test error")
-        XCTAssertEqual(loggedEvent, "test_error")
-        XCTAssertEqual(loggedParameters as? [String: String], ["error": "this is a test error"])
+        Analytics.shared.logError(name: "test_error", reason: "this is a test error")
+        XCTAssertEqual(testAnalyticsHandler.lastErrorName, "test_error")
+        XCTAssertEqual(testAnalyticsHandler.lastErrorReason, "this is a test error")
     }
 
     func testLogSession() {
@@ -51,15 +50,15 @@ class AnalyticsTests: XCTestCase {
         defaults.reset()
 
         Analytics.shared.logSession(session)
-        XCTAssertEqual(loggedEvent, "auth_forever_token")
+        XCTAssertEqual(testAnalyticsHandler.lastEvent, "auth_forever_token")
 
-        loggedEvent = nil
+        testAnalyticsHandler.lastEvent = nil
         Analytics.shared.logSession(session)
-        XCTAssertNil(loggedEvent)
+        XCTAssertNil(testAnalyticsHandler.lastEvent)
 
         session = LoginSession.make(expiresAt: Date())
         Analytics.shared.logSession(session)
-        XCTAssertEqual(loggedEvent, "auth_expiring_token")
+        XCTAssertEqual(testAnalyticsHandler.lastEvent, "auth_expiring_token")
 
         defaults.reset()
     }
@@ -67,12 +66,9 @@ class AnalyticsTests: XCTestCase {
     func testScreenView() {
         AppEnvironment.shared.app = .student
         Analytics.shared.logScreenView(route: "/testRoute", viewController: ProfileSettingsViewController())
-        XCTAssertEqual(loggedEvent, "screen_view")
-        XCTAssertEqual(loggedParameters as? [String: String], [
-            "application": "student",
-            "screen_name": "/testRoute",
-            "screen_class": "ProfileSettingsViewController",
-        ])
+        XCTAssertEqual(testAnalyticsHandler.lastScreenName, "/testRoute")
+        XCTAssertEqual(testAnalyticsHandler.lastScreenClass, "ProfileSettingsViewController")
+        XCTAssertEqual(testAnalyticsHandler.lastScreenViewApp, "student")
     }
 
     func testAnalyticsClassName() {
@@ -100,12 +96,5 @@ class AnalyticsTests: XCTestCase {
 
         AppEnvironment.shared.app = .teacher
         XCTAssertEqual(Analytics.analyticsAppName, "teacher")
-    }
-}
-
-extension AnalyticsTests: AnalyticsHandler {
-    func handleEvent(_ name: String, parameters: [String: Any]?) {
-        loggedEvent = name
-        loggedParameters = parameters
     }
 }

@@ -24,10 +24,6 @@ import TestsFoundation
 class DashboardViewControllerTests: ParentTestCase {
     lazy var vc = Parent.DashboardViewController.create()
 
-    override class func setUp() {
-        super.setUp()
-    }
-
     func testLayoutMenu() {
         let students: [APIEnrollment] = [
             .make(observed_user: .make(

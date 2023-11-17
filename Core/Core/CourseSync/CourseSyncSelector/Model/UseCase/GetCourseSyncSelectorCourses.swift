@@ -23,9 +23,10 @@ public class GetCourseSyncSelectorCourses: CollectionUseCase {
 
     public var cacheKey: String? { "courseSyncSelectorCourse" }
     public let request: GetCurrentUserCoursesRequest
-    public let scope: Scope = .all(orderBy: #keyPath(CourseSyncSelectorCourse.name))
+    public let scope: Scope
 
-    public init() {
+    public init(scope: Scope = .all(orderBy: #keyPath(CourseSyncSelectorCourse.name))) {
+        self.scope = scope
         request = GetCurrentUserCoursesRequest(
             enrollmentState: .active,
             state: [.current_and_concluded],

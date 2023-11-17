@@ -78,7 +78,6 @@ public struct APIDiscussionEntry: Codable, Equatable {
     let created_at: Date?
     let updated_at: Date?
     var message: String?
-    let rating_count: Int?
     let rating_sum: Int?
     let replies: [APIDiscussionEntry]?
     let attachment: APIFile?
@@ -241,14 +240,14 @@ extension APIDiscussionView {
         entry_ratings: [String: Int] = ["3": 1, "5": 1],
         forced_entries: [ID] = [1],
         view: [APIDiscussionEntry] = [
-            .make(id: 1, message: "m1", rating_count: 1, replies: [
-                .make(id: 2, user_id: 2, parent_id: 1, message: "m2", rating_count: 0, replies: [
-                    .make(id: 3, parent_id: 2, message: "m3", rating_count: 3, replies: [
+            .make(id: 1, message: "m1", rating_sum: 1, replies: [
+                .make(id: 2, user_id: 2, parent_id: 1, message: "m2", rating_sum: 0, replies: [
+                    .make(id: 3, parent_id: 2, message: "m3", rating_sum: 3, replies: [
                         .make(id: 4, parent_id: 3, message: "m4 (deep)"),
                     ]),
                 ]),
             ]),
-            .make(id: 5, message: "m5", rating_count: 1),
+            .make(id: 5, message: "m5", rating_sum: 1),
         ],
         new_entries: [APIDiscussionEntry]? = nil
     ) -> APIDiscussionView {
@@ -271,7 +270,6 @@ extension APIDiscussionEntry {
         created_at: Date? = nil,
         updated_at: Date = Date(timeIntervalSinceReferenceDate: 0),
         message: String = "message",
-        rating_count: Int? = nil,
         rating_sum: Int? = nil,
         replies: [APIDiscussionEntry]? = nil,
         attachment: APIFile? = nil,
@@ -285,8 +283,7 @@ extension APIDiscussionEntry {
             created_at: created_at,
             updated_at: updated_at,
             message: message,
-            rating_count: rating_count,
-            rating_sum: rating_sum ?? rating_count,
+            rating_sum: rating_sum,
             replies: replies,
             attachment: attachment,
             deleted: deleted

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22E261" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22225" systemVersion="22G120" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="iconRaw" attributeType="String"/>
@@ -127,6 +127,60 @@
         <attribute name="title" attributeType="String"/>
         <attribute name="typeRaw" attributeType="String"/>
     </entity>
+    <entity name="CDAllCoursesCourseItem" representedClassName="Core.CDAllCoursesCourseItem" syncable="YES">
+        <attribute name="courseCode" attributeType="String"/>
+        <attribute name="courseId" attributeType="String"/>
+        <attribute name="enrollmentState" attributeType="String"/>
+        <attribute name="isCourseDetailsAvailable" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isFavorite" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isFavoriteButtonVisible" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isPublished" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="roles" attributeType="String"/>
+        <attribute name="termName" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="CDAllCoursesGroupItem" representedClassName="Core.CDAllCoursesGroupItem" syncable="YES">
+        <attribute name="concluded" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="contextRaw" optional="YES" attributeType="String"/>
+        <attribute name="courseID" optional="YES" attributeType="String"/>
+        <attribute name="courseName" optional="YES" attributeType="String"/>
+        <attribute name="courseRoles" optional="YES" attributeType="String"/>
+        <attribute name="courseTermName" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+    </entity>
+    <entity name="CDCourseSyncDownloadProgress" representedClassName="Core.CDCourseSyncDownloadProgress" syncable="YES">
+        <attribute name="bytesDownloaded" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="bytesToDownload" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="courseIds" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <attribute name="error" optional="YES" attributeType="String"/>
+        <attribute name="isFinished" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="CDCourseSyncStateProgress" representedClassName="Core.CDCourseSyncStateProgress" syncable="YES">
+        <attribute name="entryID" attributeType="String"/>
+        <attribute name="fileID" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="progress" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="selectionRaw" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="stateRaw" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="tabID" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="CDWidgetAnnouncement" representedClassName="Core.CDWidgetAnnouncement" syncable="YES">
+        <attribute name="authorName" attributeType="String"/>
+        <attribute name="avatarRaw" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="courseColorHex" attributeType="String"/>
+        <attribute name="courseName" attributeType="String"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="url" attributeType="URI"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
     <entity name="CommonCourse" representedClassName="Core.CommonCourse" syncable="YES">
         <attribute name="courseID" attributeType="String"/>
         <attribute name="role" attributeType="String"/>
@@ -231,6 +285,7 @@
         <attribute name="isPastEnrollment" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="isPublished" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="roles" optional="YES" attributeType="String"/>
         <attribute name="syllabusBody" optional="YES" attributeType="String"/>
         <attribute name="termName" optional="YES" attributeType="String"/>
         <relationship name="contextColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ContextColor" inverseName="course" inverseEntity="ContextColor"/>
@@ -242,18 +297,6 @@
         <relationship name="sections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CourseSection" inverseName="course" inverseEntity="CourseSection"/>
         <relationship name="settings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CourseSettings" inverseName="course" inverseEntity="CourseSettings"/>
         <relationship name="todos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Todo" inverseName="course" inverseEntity="Todo"/>
-    </entity>
-    <entity name="CourseListItem" representedClassName="Core.CourseListItem" syncable="YES">
-        <attribute name="courseCode" attributeType="String"/>
-        <attribute name="courseId" attributeType="String"/>
-        <attribute name="enrollmentState" attributeType="String"/>
-        <attribute name="isCourseDetailsAvailable" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="isFavorite" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="isFavoriteButtonVisible" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="isPublished" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="name" attributeType="String"/>
-        <attribute name="roles" attributeType="String"/>
-        <attribute name="termName" optional="YES" attributeType="String"/>
     </entity>
     <entity name="CourseSection" representedClassName="Core.CourseSection" syncable="YES">
         <attribute name="courseID" attributeType="String"/>
@@ -272,26 +315,11 @@
         <attribute name="usageRightsRequired" attributeType="Boolean" usesScalarValueType="YES"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="settings" inverseEntity="Course"/>
     </entity>
-    <entity name="CourseSyncDownloadProgress" representedClassName="Core.CourseSyncDownloadProgress" syncable="YES">
-        <attribute name="bytesDownloaded" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="bytesToDownload" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="error" optional="YES" attributeType="String"/>
-        <attribute name="isFinished" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
-    </entity>
     <entity name="CourseSyncSelectorCourse" representedClassName="Core.CourseSyncSelectorCourse" syncable="YES">
         <attribute name="courseCode" attributeType="String"/>
         <attribute name="courseId" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <relationship name="tabs" toMany="YES" deletionRule="Nullify" destinationEntity="Tab" inverseName="course" inverseEntity="Tab"/>
-    </entity>
-    <entity name="CourseSyncStateProgress" representedClassName="Core.CourseSyncStateProgress" syncable="YES">
-        <attribute name="entryID" attributeType="String"/>
-        <attribute name="fileID" optional="YES" attributeType="String"/>
-        <attribute name="id" attributeType="String"/>
-        <attribute name="progress" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="selectionRaw" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="stateRaw" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="tabID" optional="YES" attributeType="String"/>
     </entity>
     <entity name="DashboardCard" representedClassName="Core.DashboardCard" syncable="YES">
         <attribute name="courseCode" attributeType="String"/>
@@ -555,6 +583,7 @@
         <attribute name="courseID" optional="YES" attributeType="String"/>
         <attribute name="groupCategoryID" attributeType="String" defaultValueString=""/>
         <attribute name="id" attributeType="String"/>
+        <attribute name="isFavorite" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="showOnDashboard" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <relationship name="contextColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ContextColor" inverseName="groups" inverseEntity="ContextColor"/>
@@ -718,6 +747,25 @@
         <attribute name="published" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="title" attributeType="String"/>
         <attribute name="url" attributeType="String"/>
+    </entity>
+    <entity name="PeopleListEnrollment" representedClassName="Core.PeopleListEnrollment" syncable="YES">
+        <attribute name="canvasContextID" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="role" optional="YES" attributeType="String"/>
+        <attribute name="userID" optional="YES" attributeType="String"/>
+        <relationship name="enrolledUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PeopleListUser" inverseName="enrollments" inverseEntity="PeopleListUser"/>
+    </entity>
+    <entity name="PeopleListUser" representedClassName="Core.PeopleListUser" syncable="YES">
+        <attribute name="avatarURL" optional="YES" attributeType="URI"/>
+        <attribute name="courseID" optional="YES" attributeType="String"/>
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="groupID" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="pronouns" optional="YES" attributeType="String"/>
+        <attribute name="shortName" attributeType="String"/>
+        <attribute name="sortableName" attributeType="String"/>
+        <relationship name="enrollments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PeopleListEnrollment" inverseName="enrolledUser" inverseEntity="PeopleListEnrollment"/>
     </entity>
     <entity name="Permissions" representedClassName="Core.Permissions" syncable="YES">
         <attribute name="becomeUser" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>

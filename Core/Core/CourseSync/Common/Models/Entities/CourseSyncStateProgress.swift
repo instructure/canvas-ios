@@ -16,92 +16,76 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import CoreData
 import Foundation
 
-final class CourseSyncStateProgress: NSManagedObject, Comparable {
-    @NSManaged public var id: String
-    @NSManaged private(set) var selectionRaw: Int
-    @NSManaged private(set) var stateRaw: Int
-    @NSManaged private(set) var entryID: String
-    @NSManaged private(set) var tabID: String?
-    @NSManaged private(set) var fileID: String?
-    @NSManaged private(set) var progress: NSNumber?
+public struct CourseSyncStateProgress {
+    let id: String
+    let selection: CourseEntrySelection
+    let state: CourseSyncEntry.State
+    let entryID: String
+    let tabID: String?
+    let fileID: String?
+    let progress: NSNumber?
 
-    var selection: CourseEntrySelection {
-        get {
-            switch selectionRaw {
-            case 0: return .course(entryID)
-            case 1: return .tab(entryID, tabID!)
-            case 2: return .file(entryID, fileID!)
-            default:
-                fatalError("CourseSyncEntryProgress.CourseEntrySelection incorrect data.")
-            }
-        }
-        set {
-            switch newValue {
-            case let .course(entryID):
-                self.entryID = entryID
-                selectionRaw = 0
-            case let .tab(entryID, tabID):
-                self.entryID = entryID
-                self.tabID = tabID
-                selectionRaw = 1
-            case let .file(entryID, fileID):
-                self.entryID = entryID
-                self.fileID = fileID
-                selectionRaw = 2
-            }
-        }
-    }
-
-    var state: CourseSyncEntry.State {
-        get {
-            switch stateRaw {
-            case 0: return .loading(progress?.floatValue)
-            case 1: return .error
-            case 2: return .downloaded
-            default:
-                fatalError("CourseSyncEntryProgress.State incorrect data.")
-            }
-        }
-        set {
-            switch newValue {
-            case let .loading(progress):
-                stateRaw = 0
-                if let progress {
-                    self.progress = NSNumber(value: progress)
-                } else {
-                    self.progress = nil
-                }
-            case .error:
-                stateRaw = 1
-            case .downloaded:
-                stateRaw = 2
-            }
-        }
-    }
-
-    static func < (lhs: CourseSyncStateProgress, rhs: CourseSyncStateProgress) -> Bool {
-        lhs.selection < rhs.selection
-    }
-
-    @discardableResult
-    public static func save(
+    init(
         id: String,
         selection: CourseEntrySelection,
         state: CourseSyncEntry.State,
-        in context: NSManagedObjectContext
+        entryID: String,
+        tabID: String?,
+        fileID: String?,
+        progress: NSNumber?
+    ) {
+        self.id = id
+        self.selection = selection
+        self.state = state
+        self.entryID = entryID
+        self.tabID = tabID
+        self.fileID = fileID
+        self.progress = progress
+    }
+
+    init(from entity: CDCourseSyncStateProgress) {
+        id = entity.id
+        selection = entity.selection
+        state = entity.state
+        entryID = entity.entryID
+        tabID = entity.tabID
+        fileID = entity.fileID
+        progress = entity.progress
+    }
+}
+
+extension CourseSyncStateProgress {
+    static func make(
+        id: String = "1",
+        selection: CourseEntrySelection = .course("1"),
+        state: CourseSyncEntry.State = .loading(nil),
+        entryID: String = "1",
+        tabID: String? = nil,
+        fileID: String? = nil,
+        progress: NSNumber? = nil
     ) -> CourseSyncStateProgress {
-        let dbEntity: CourseSyncStateProgress = context.first(
-            where: #keyPath(CourseSyncStateProgress.id),
-            equals: id
-        ) ?? context.insert()
+        .init(
+            id: id,
+            selection: selection,
+            state: state,
+            entryID: entryID,
+            tabID: tabID,
+            fileID: fileID,
+            progress: progress
+        )
+    }
+}
 
-        dbEntity.id = id
-        dbEntity.selection = selection
-        dbEntity.state = state
-
-        return dbEntity
+extension Array where Element == CourseSyncStateProgress {
+    /// Courses and file tabs are not syncable items so we should'n count them.
+    func filterToCourses() -> Self {
+        filter { entry in
+            switch entry.selection {
+            case .course: return true
+            default: return false
+            }
+        }
     }
 }

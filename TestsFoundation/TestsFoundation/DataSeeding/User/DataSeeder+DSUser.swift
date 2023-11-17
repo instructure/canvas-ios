@@ -44,4 +44,24 @@ extension DataSeeder {
     public func createK5User() -> DSUser {
         return createUser(isK5: true)
     }
+
+    public func createAdminUser() -> DSUser {
+        let user = createUser()
+        let requestBody = CreateDSAdminRequest.Body(user: user)
+        let request = CreateDSAdminRequest(body: requestBody)
+        let result = makeRequest(request)
+        return result.user
+    }
+
+    @discardableResult
+    public func addObservee(parent: DSUser, student: DSUser) -> DSUser {
+        let request = CreateDSObserveeRequest(parent: parent, student: student)
+        return makeRequest(request)
+    }
+
+    @discardableResult
+    public func getPairingCode(student: DSUser) -> DSPairingCode {
+        let request = CreateDSObserverPairingCodeRequest(student: student)
+        return makeRequest(request)
+    }
 }

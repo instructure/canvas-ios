@@ -189,9 +189,9 @@ class GetCoursesTest: CoreTestCase {
 
     func testMarkFavoriteCourse() {
         let course = Course.make(from: .make(id: "1", is_favorite: false))
-        let courseListItem = CourseListItem.save(.make(id: "1", is_favorite: false),
-                                                 enrollmentState: .active,
-                                                 in: databaseClient)
+        let courseListItem = CDAllCoursesCourseItem.save(.make(id: "1", is_favorite: false),
+                                                         enrollmentState: .active,
+                                                         in: databaseClient)
 
         let testee = MarkFavoriteCourse(courseID: "1", markAsFavorite: true)
         testee.write(response: APIFavorite(context_id: ID("1"), context_type: "course"), urlResponse: nil, to: databaseClient)

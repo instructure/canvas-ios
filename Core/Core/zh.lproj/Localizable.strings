@@ -398,6 +398,9 @@
 "Available From:" = "起始可用日期：";
 
 /* No comment provided by engineer. */
+"Available offline" = "离线可用";
+
+/* No comment provided by engineer. */
 "Available until" = "可供使用的截止日期";
 
 /* No comment provided by engineer. */
@@ -453,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Cancel Submission?" = "是否取消提交？";
+
+/* No comment provided by engineer. */
+"Cancel Sync?" = "是否取消同步？";
 
 /* No comment provided by engineer. */
 "Canvas Guides" = "Canvas 指南";
@@ -590,6 +596,9 @@
 "Content" = "内容";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "无法显示内容";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "内容链接错误";
 
 /* No comment provided by engineer. */
@@ -713,10 +722,10 @@
 "Cyan" = "青色";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
+"d_courses_syncing" = "d_courses_syncing";
 
 /* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
+"d_items" = "d_items";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -866,9 +875,6 @@
 "Dismiss %@" = "撤销%@";
 
 /* No comment provided by engineer. */
-"Dismiss notification" = "解散通知";
-
-/* No comment provided by engineer. */
 "Display As" = "显示为";
 
 /* No comment provided by engineer. */
@@ -930,9 +936,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "编辑课程设置";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "编辑控制面板";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "编辑讨论";
@@ -1044,9 +1047,6 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "失败。点击以获取选项";
-
-/* No comment provided by engineer. */
-"favorite" = "收藏";
 
 /* No comment provided by engineer. */
 "Feedback" = "反馈";
@@ -1220,6 +1220,9 @@
 "Groups" = "小组";
 
 /* No comment provided by engineer. */
+"Hang tight, we're getting things ready for you." = "请稍等，我们正在准备。";
+
+/* No comment provided by engineer. */
 "Have your parent scan this QR code from the Canvas Parent app to pair with you." = "您的父母是否已从 Canvas Parent 应用程序扫描此二维码与您配对？";
 
 /* No comment provided by engineer. */
@@ -1364,6 +1367,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "您似乎没有以%@身份注册任何课程。我们的其他应用程序可能更合适。单击任一应用程序可访问应用商店。";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "将停止离线同步内容。您可以稍后再次操作。";
+
+/* No comment provided by engineer. */
 "Italic" = "斜体";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "登录错误";
+
+/* No comment provided by engineer. */
+"Login help." = "登录帮助。";
 
 /* No comment provided by engineer. */
 "Login ID" = "登录 ID";
@@ -1784,13 +1793,25 @@
 "Observers" = "观察员";
 
 /* No comment provided by engineer. */
+"Offline" = "离线";
+
+/* No comment provided by engineer. */
 "Offline Content" = "离线内容";
 
 /* No comment provided by engineer. */
 "Offline Content Sync Failed" = "离线同步内容失败";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Success" = "离线同步内容成功";
+
+/* No comment provided by engineer. */
 "Offline mode" = "离线模式";
+
+/* No comment provided by engineer. */
+"Offline sync was interrupted by the operating system" = "离线同步被操作系统中断";
+
+/* No comment provided by engineer. */
+"offline_sync_finished" = "offline_sync_finished";
 
 /* No comment provided by engineer. */
 "OK" = "确定";
@@ -1809,6 +1830,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "一份或多个文件上传失败。请检查网络连接，并再次尝试提交。";
+
+/* No comment provided by engineer. */
+"One or more items failed to sync." = "一个或多个项目同步失败。";
 
 /* No comment provided by engineer. */
 "One Question at a Time:" = "一次一个问题：";
@@ -1833,6 +1857,9 @@
 
 /* No comment provided by engineer. */
 "Open course details" = "打开课程详情";
+
+/* No comment provided by engineer. */
+"Open In Browser" = "在浏览器里打开";
 
 /* No comment provided by engineer. */
 "Open item details" = "打开项目详情";
@@ -2288,6 +2315,9 @@
 "Show One Question at a Time" = "一次显示一个问题";
 
 /* No comment provided by engineer. */
+"Show sync details" = "显示同步详情";
+
+/* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2352,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "遇到错误";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "出现我们无法控制的问题。";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "按赞数排序";
@@ -2427,6 +2460,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "成功！";
+
+/* No comment provided by engineer. */
+"Success! Downloaded %@ of %@" = "成功！已下载 %1$@/%2$@";
 
 /* No comment provided by engineer. */
 "Summary" = "摘要";
@@ -2538,9 +2574,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "提交过程已经被操作系统终止。";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "已选择 %d 个项目离线可用。所选内容将下载到设备。";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "此课程中没有有效的作业。";
@@ -2910,6 +2943,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "您未获得执行此操作的授权";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "您可以尝试在浏览器中打开页面。";
 
 /* No comment provided by engineer. */
 "You have been invited" = "您已获得邀请";

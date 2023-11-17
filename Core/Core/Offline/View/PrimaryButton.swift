@@ -19,14 +19,24 @@
 import SwiftUI
 
 public struct PrimaryButton<Label>: View where Label: View {
+    private let action: () -> Void
+    private let label: Label
+    @Binding private var isAvailable: Bool
 
-    let action: () -> Void
-    let label: Label
-    @Binding var isAvailable: Bool
-
-    public init(isAvailable: Binding<Bool> = .constant(true),
-                action: @escaping () -> Void, @ViewBuilder label: @escaping () -> Label) {
+    public init(isAvailable: Binding<Bool>,
+                action: @escaping () -> Void,
+                @ViewBuilder label: @escaping () -> Label) {
         _isAvailable = isAvailable
+        self.action = action
+        self.label = label()
+    }
+
+    public init(isUnavailable: Binding<Bool>,
+                action: @escaping () -> Void,
+                @ViewBuilder label: @escaping () -> Label) {
+        _isAvailable = Binding {
+            !isUnavailable.wrappedValue
+        } set: { _ in }
         self.action = action
         self.label = label()
     }

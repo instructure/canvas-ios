@@ -15,3 +15,8 @@ gen: ## xproj file generation
 	@echo 🟡 Running xcodegen
 	@cd Core; xcodegen
 	@cd TestsFoundation; xcodegen
+
+unexport INFOPLIST_FILE
+unexport INFOPLIST_PATH
+pod: ## runs pod install without some environment variables to fix code signing issues
+	@pod install

@@ -47,11 +47,11 @@ public class PhotosAppHelper: BaseHelper {
     public static func tapCanvasButton() {
         let elements = photosApp
             .descendants(matching: .any)
-            .matching(NSPredicate(format: "label == 'XCElementSnapshotPrivilegedValuePlaceholder'"))
+            .matching(NSPredicate(format: "label == 'Canvas Student'"))
             .allElementsBoundByIndex
 
-        if elements[3].waitForExistence(timeout: defaultTimeout) {
-            elements[3].hit()
+        if elements[0].waitForExistence(timeout: defaultTimeout) {
+            elements[0].hit()
         }
     }
 

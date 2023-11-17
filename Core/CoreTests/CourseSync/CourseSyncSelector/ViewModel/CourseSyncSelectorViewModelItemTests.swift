@@ -277,6 +277,10 @@ private class MockCourseSyncSelectorInteractor: CourseSyncSelectorInteractor {
             .eraseToAnyPublisher()
     }
 
+    func observeSelectedSize() -> AnyPublisher<Int, Never> {
+        Just(0).eraseToAnyPublisher()
+    }
+
     func observeIsEverythingSelected() -> AnyPublisher<Bool, Never> {
         Just(false).eraseToAnyPublisher()
     }

@@ -398,6 +398,9 @@
 "Available From:" = "Tiltækt frá:";
 
 /* No comment provided by engineer. */
+"Available offline" = "Fáanlegt án nettengingar";
+
+/* No comment provided by engineer. */
 "Available until" = "Tiltækt til";
 
 /* No comment provided by engineer. */
@@ -453,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Cancel Submission?" = "Hætta við skil?";
+
+/* No comment provided by engineer. */
+"Cancel Sync?" = "Hætta við samhæfingu?";
 
 /* No comment provided by engineer. */
 "Canvas Guides" = "Canvas leiðarvísar";
@@ -590,6 +596,9 @@
 "Content" = "Efni";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Ekki er hægt að birta efni";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Efnishlekksvilla";
 
 /* No comment provided by engineer. */
@@ -713,10 +722,10 @@
 "Cyan" = "Blágrænn";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
+"d_courses_syncing" = "d_courses_syncing";
 
 /* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
+"d_items" = "d_items";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -866,9 +875,6 @@
 "Dismiss %@" = "Sleppa %@";
 
 /* No comment provided by engineer. */
-"Dismiss notification" = "Hafna tilkynningu";
-
-/* No comment provided by engineer. */
 "Display As" = "Sýna sem";
 
 /* No comment provided by engineer. */
@@ -930,9 +936,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Breyta námskeiðsstillingum";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Breyta skjáborði";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Breyta umræðu";
@@ -1044,9 +1047,6 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Tókst ekki. Smelltu fyrir valkosti";
-
-/* No comment provided by engineer. */
-"favorite" = "eftirlæti";
 
 /* No comment provided by engineer. */
 "Feedback" = "Endurgjöf";
@@ -1220,6 +1220,9 @@
 "Groups" = "Hópar";
 
 /* No comment provided by engineer. */
+"Hang tight, we're getting things ready for you." = "Haltu fast, við erum að gera hlutina tilbúna fyrir þig.";
+
+/* No comment provided by engineer. */
 "Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Láttu foreldra þína skanna þennan QR-kóða úr Canvas foreldra appinu til að para við þig.";
 
 /* No comment provided by engineer. */
@@ -1364,6 +1367,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Þú virðist ekki vera innritaður í nein námskeið sem %@. Eitthvað að hinum öppunum okkar gæti hentað betur. Smelltu á eitt þeirra til að fara í App Store.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "Það mun stöðva samstillingu efnis án nettengingar. Þú getur gert það aftur síðar.";
+
+/* No comment provided by engineer. */
 "Italic" = "Skáletrað";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Innskráningarvilla";
+
+/* No comment provided by engineer. */
+"Login help." = "Hjálp við innskráningu.";
 
 /* No comment provided by engineer. */
 "Login ID" = "Innskráningarauðkenni";
@@ -1784,13 +1793,25 @@
 "Observers" = "Skoðendur";
 
 /* No comment provided by engineer. */
+"Offline" = "Án nettengingar";
+
+/* No comment provided by engineer. */
 "Offline Content" = "Efni án nettengingar";
 
 /* No comment provided by engineer. */
 "Offline Content Sync Failed" = "Samstilling efnis án nettengingar mistókst";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Success" = "Samstilling efnis án nettengingar tókst";
+
+/* No comment provided by engineer. */
 "Offline mode" = "Utan nets hamur";
+
+/* No comment provided by engineer. */
+"Offline sync was interrupted by the operating system" = "Samstilling án nettengingar var rofin af stýrikerfinu";
+
+/* No comment provided by engineer. */
+"offline_sync_finished" = "offline_sync_finished";
 
 /* No comment provided by engineer. */
 "OK" = "Í lagi";
@@ -1809,6 +1830,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "Ekki tókst að hlaða upp einni eða fleiri skrám. Athugaðu nettenginguna þína og reyndu aftur að skila.";
+
+/* No comment provided by engineer. */
+"One or more items failed to sync." = "Ekki tókst að samstilla eitt eða fleiri atriði.";
 
 /* No comment provided by engineer. */
 "One Question at a Time:" = "Ein spurning í einu:";
@@ -1833,6 +1857,9 @@
 
 /* No comment provided by engineer. */
 "Open course details" = "Opnið upplýsingar um námskeið";
+
+/* No comment provided by engineer. */
+"Open In Browser" = "Opna í vafra";
 
 /* No comment provided by engineer. */
 "Open item details" = "Opnið upplýsingar um atriði";
@@ -2288,6 +2315,9 @@
 "Show One Question at a Time" = "Sýna eina spurningu í einu";
 
 /* No comment provided by engineer. */
+"Show sync details" = "Sýna upplýsingar um samstillingu";
+
+/* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2352,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "Eitthvað fór úrskeiðis";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Eitthvað fór úrskeiðis utan okkar stjórnar.";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Raða eftir „líkar við“";
@@ -2427,6 +2460,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "Árangur!";
+
+/* No comment provided by engineer. */
+"Success! Downloaded %@ of %@" = "Tókst! Sótt %1$@ af %2$@";
 
 /* No comment provided by engineer. */
 "Summary" = "Samantekt";
@@ -2538,9 +2574,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Skilaferlinu var hætt af stýrikerfinu.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Það eru %d atriði sem eru valin fyrir tiltækileika án nettengingar. Valið efni verður hlaðið niður í tækið.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Það eru engin virk verkefni í þessu námskeiði.";
@@ -2910,6 +2943,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "Þú hefur ekki heimild til að gera þessa aðgerð";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Þú getur reynt að opna síðuna í vafra.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Þér var boðið";
