@@ -35,32 +35,46 @@ public class BackgroundURLSessionProvider: NSObject {
     private var activeSession: URLSession?
     private let sessionID: String
     private let sharedContainerID: String
+    private let sessionConfigurationProtocolClasses: [AnyClass]?
     private let uploadProgressObserversCache: FileUploadProgressObserversCache
 
     /**
      - parameters:
         - sessionID: The background session identifier. Must be unique for each process (app / share extension).
         - sharedContainerID: The container identifier shared between the app and its extensions. Background URLSession read/write this directory.
+        - sessionConfigurationProtocolClasses: Protocol handler configurations. Used for unit test targets only. 
      */
-    public init(sessionID: String, sharedContainerID: String, uploadProgressObserversCache: FileUploadProgressObserversCache) {
+    public init(
+        sessionID: String,
+        sharedContainerID: String,
+        sessionConfigurationProtocolClasses: [AnyClass]? = nil,
+        uploadProgressObserversCache: FileUploadProgressObserversCache
+    ) {
         self.sessionID = sessionID
         self.sharedContainerID = sharedContainerID
+        self.sessionConfigurationProtocolClasses = sessionConfigurationProtocolClasses
         self.uploadProgressObserversCache = uploadProgressObserversCache
     }
 
     private func createSession() -> URLSession {
-        let configuration = URLSessionConfiguration.background(withIdentifier: sessionID)
+        let configuration: URLSessionConfiguration
+
+        if let sessionConfigurationProtocolClasses {
+            configuration = URLSessionConfiguration.ephemeral
+            configuration.protocolClasses = sessionConfigurationProtocolClasses
+        } else {
+            configuration = URLSessionConfiguration.background(withIdentifier: sessionID)
+        }
         configuration.sharedContainerIdentifier = sharedContainerID
         return URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
     }
 }
 
 extension BackgroundURLSessionProvider: URLSessionDelegate {
-
     /**
      The session became invalid and it's no longer safe to use. We clear up the cached instance so next time a new session will be created.
      */
-    public func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
+    public func urlSession(_: URLSession, didBecomeInvalidWithError _: Error?) {
         activeSession = nil
     }
 
@@ -74,7 +88,6 @@ extension BackgroundURLSessionProvider: URLSessionDelegate {
 }
 
 extension BackgroundURLSessionProvider: URLSessionTaskDelegate {
-
     public func urlSession(_ session: URLSession, task: URLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
         uploadProgressObserversCache.urlSession(session, task: task, didSendBodyData: bytesSent, totalBytesSent: totalBytesSent, totalBytesExpectedToSend: totalBytesExpectedToSend)
     }
@@ -85,7 +98,6 @@ extension BackgroundURLSessionProvider: URLSessionTaskDelegate {
 }
 
 extension BackgroundURLSessionProvider: URLSessionDataDelegate {
-
     public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         uploadProgressObserversCache.urlSession(session, dataTask: dataTask, didReceive: data)
     }
