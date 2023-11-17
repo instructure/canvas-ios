@@ -120,7 +120,7 @@ public class FileSubmissionAssembly {
      Use this method to pass he completion block received in handleEventsForBackgroundURLSession appdelegate method when the share extension
      is doing background uploading. This method also creates the necessary `URLSession` object that receives delegate method updates.
      */
-    public func connectToBackgroundURLSession(_ completion: @escaping () -> Void) {
+    public func connectToBackgroundURLSession(_ completion: (() -> Void)?) {
         backgroundSessionCompletion.callback = completion
         // This will create the background URLSession
         _ = backgroundURLSessionProvider.session
@@ -128,7 +128,7 @@ public class FileSubmissionAssembly {
         backgroundURLSessionProvider.session.getAllTasks(completionHandler: { [weak backgroundURLSessionProvider] tasks in
             if tasks.isEmpty {
                 backgroundURLSessionProvider?.session.finishTasksAndInvalidate()
-                completion()
+                completion?()
             }
         })
     }

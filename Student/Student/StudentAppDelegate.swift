@@ -94,7 +94,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         // so we manually re-connect to the background url session to check if there are any failed uploads.
         // If a debugger is attached to the app, the upload will fail with a `Could not communicate with background transfer service` error.
         if !testing {
-            setupFileSubmissionAssemblyForBackgroundUploads()
+            setupFileSubmissionAssemblyForBackgroundUploads(completion: nil)
         }
 
         GetUserProfile().fetch(environment: environment, force: true) { apiProfile, urlResponse, _ in performUIUpdate {
@@ -189,7 +189,9 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         }
     }
 
-    private func setupFileSubmissionAssemblyForBackgroundUploads(completion: (() -> Void)? = nil) {
+    // If the application is launched from the background, we pass the completion from the `handleEventsForBackgroundURLSession` function.
+    // If the application is launched normally, we don't need to pass system completion, the url session will tear down when it's finished. 
+    private func setupFileSubmissionAssemblyForBackgroundUploads(completion: (() -> Void)?) {
         let backgroundAssembly = FileSubmissionAssembly.makeShareExtensionAssembly()
         backgroundAssembly.connectToBackgroundURLSession {
             DispatchQueue.main.async { [weak self] in
