@@ -24,15 +24,17 @@ public enum DashboardOfflineSyncProgressCardAssembly {
     static func makeViewModel(container: NSPersistentContainer = AppEnvironment.shared.database,
                               router: Router = AppEnvironment.shared.router)
     -> DashboardOfflineSyncProgressCardViewModel {
+        let offlineModeInteractor = OfflineModeAssembly.make()
         let interactor = CourseSyncProgressObserverInteractorLive(container: container)
-        return DashboardOfflineSyncProgressCardViewModel(interactor: interactor, router: router)
+        return DashboardOfflineSyncProgressCardViewModel(interactor: interactor, offlineModeInteractor: offlineModeInteractor, router: router)
     }
 
 #if DEBUG
 
     static func makePreview() -> some View {
+        let offlineModeInteractor = OfflineModeAssembly.make()
         let interactor = DashboardOfflineSyncInteractorPreview()
-        let viewModel = DashboardOfflineSyncProgressCardViewModel(interactor: interactor,
+        let viewModel = DashboardOfflineSyncProgressCardViewModel(interactor: interactor, offlineModeInteractor: offlineModeInteractor,
                                                                   router: AppEnvironment.shared.router)
         return DashboardOfflineSyncProgressCardView(viewModel: viewModel)
     }

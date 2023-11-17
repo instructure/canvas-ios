@@ -47,7 +47,13 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
 
+    /**
+     - parameters:
+        - offlineModeInteractor: This is used to determine if the feature flag is turned on. If it's off then
+     we don't subscribe to CoreData updates to save some CPU time.
+     */
     public init(interactor: CourseSyncProgressObserverInteractor,
+                offlineModeInteractor: OfflineModeInteractor,
                 router: Router,
                 scheduler: AnySchedulerOf<DispatchQueue> = .main) {
         self.interactor = interactor
@@ -67,6 +73,10 @@ class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
         setupAutoDismissUponCompletion(downloadProgressPublisher)
         handleDismissTap()
         handleCardTap()
+
+        downloadProgressPublisher
+            .connect()
+            .store(in: &subscriptions)
     }
 
     private typealias DownloadProgressPublisher = Publisher<CourseSyncDownloadProgress, Never>
