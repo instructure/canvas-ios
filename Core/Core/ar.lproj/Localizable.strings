@@ -398,6 +398,9 @@
 "Available From:" = "متوفر من:";
 
 /* No comment provided by engineer. */
+"Available offline" = "متاح دون اتصال";
+
+/* No comment provided by engineer. */
 "Available until" = "متوفر حتى";
 
 /* No comment provided by engineer. */
@@ -453,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Cancel Submission?" = "هل تريد إلغاء الإرسال؟";
+
+/* No comment provided by engineer. */
+"Cancel Sync?" = "هل تريد إلغاء المزامنة؟";
 
 /* No comment provided by engineer. */
 "Canvas Guides" = "Canvas Guides";
@@ -590,6 +596,9 @@
 "Content" = "المحتوى";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "يتعذر عرض المحتوى";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "خطأ في ارتباط المحتوى";
 
 /* No comment provided by engineer. */
@@ -713,10 +722,10 @@
 "Cyan" = "سماوي";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
+"d_courses_syncing" = "d_courses_syncing";
 
 /* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
+"d_items" = "d_items";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -866,9 +875,6 @@
 "Dismiss %@" = "تجاهل %@";
 
 /* No comment provided by engineer. */
-"Dismiss notification" = "تجاهل الإعلام";
-
-/* No comment provided by engineer. */
 "Display As" = "عرض كـ";
 
 /* No comment provided by engineer. */
@@ -930,9 +936,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "تحرير إعدادات المساق";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "تحرير لوحة المعلومات";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "تحرير النقاش";
@@ -1044,9 +1047,6 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "فشل. اضغط للوصول إلى الخيارات.";
-
-/* No comment provided by engineer. */
-"favorite" = "مفضلة";
 
 /* No comment provided by engineer. */
 "Feedback" = "الملاحظات";
@@ -1220,6 +1220,9 @@
 "Groups" = "المجموعات";
 
 /* No comment provided by engineer. */
+"Hang tight, we're getting things ready for you." = "مهلاً، نحن نجهز لك الأشياء.";
+
+/* No comment provided by engineer. */
 "Have your parent scan this QR code from the Canvas Parent app to pair with you." = "اطلب من أحد الوالدين مسح رمز QR من تطبيق Canvas Parent لإقرانه بك.";
 
 /* No comment provided by engineer. */
@@ -1364,6 +1367,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "يبدو أنك غير مسجل في أي مساقات بصفة %@. قد يكون أحد تطبيقاتنا الأخرى ملائمة لك بشكل أكبر. اضغط على أحد التطبيقات لزيارة App Store.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "سيؤدي إلى إيقاف مزامنة المحتوى دون اتصال. يمكنك القيام بهذا مرة أخرى لاحقًا.";
+
+/* No comment provided by engineer. */
 "Italic" = "مائل";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "خطأ في تسجيل الدخول";
+
+/* No comment provided by engineer. */
+"Login help." = "تعليمات تسجيل الدخول.";
 
 /* No comment provided by engineer. */
 "Login ID" = "معرف تسجيل الدخول";
@@ -1784,13 +1793,25 @@
 "Observers" = "المراقبون";
 
 /* No comment provided by engineer. */
+"Offline" = "غير متصل";
+
+/* No comment provided by engineer. */
 "Offline Content" = "المحتوى دون اتصال";
 
 /* No comment provided by engineer. */
 "Offline Content Sync Failed" = "تعذرت مزامنة المحتوى دون اتصال";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Success" = "نجحت مزامنة المحتوى دون اتصال";
+
+/* No comment provided by engineer. */
 "Offline mode" = "وضع غير متصل";
+
+/* No comment provided by engineer. */
+"Offline sync was interrupted by the operating system" = "توقفت المزامنة دون اتصال بواسطة نظام التشغيل";
+
+/* No comment provided by engineer. */
+"offline_sync_finished" = "offline_sync_finished";
 
 /* No comment provided by engineer. */
 "OK" = "موافق";
@@ -1809,6 +1830,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "تعذر تحميل ملف أو أكثر. تحقق من اتصالك بالإنترنت وأعد محاولة الإرسال.";
+
+/* No comment provided by engineer. */
+"One or more items failed to sync." = "تعذرت مزامنة عنصر واحد أو أكثر.";
 
 /* No comment provided by engineer. */
 "One Question at a Time:" = "سؤال واحد في كل مرة:";
@@ -1833,6 +1857,9 @@
 
 /* No comment provided by engineer. */
 "Open course details" = "فتح تفاصيل المساق";
+
+/* No comment provided by engineer. */
+"Open In Browser" = "الفتح في المستعرض";
 
 /* No comment provided by engineer. */
 "Open item details" = "فتح تفاصيل العنصر";
@@ -2288,6 +2315,9 @@
 "Show One Question at a Time" = "عرض سؤال واحد في كل مرة";
 
 /* No comment provided by engineer. */
+"Show sync details" = "إظهار تفاصيل المزامنة";
+
+/* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2352,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "حدث خطأ ما";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "حدثت مشكلة خارج تحكمنا.";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "الترتيب حسب الإعجابات";
@@ -2427,6 +2460,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "نجاح!";
+
+/* No comment provided by engineer. */
+"Success! Downloaded %@ of %@" = "نجحت العملية! تم تنزيل %1$@ من %2$@";
 
 /* No comment provided by engineer. */
 "Summary" = "الملخص";
@@ -2538,9 +2574,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "تم إيقاف عملية الإرسال بواسطة نظام التشغيل.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "توجد %d من العناصر محددة للإتاحة دون اتصال. سيتم تنزيل المحتوى المحدد للجهاز.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "لا توجد أي مهام نشطة في هذا المساق.";
@@ -2910,6 +2943,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "لست معتمدًا لتنفيذ هذا الإجراء";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "يمكنك محاولة فتح الصفحة في مستعرض.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "تمت دعوتك";

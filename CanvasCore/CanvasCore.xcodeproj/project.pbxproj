@@ -54,6 +54,8 @@
 		B1CA05071FE448F300B7D5AA /* NativeNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */; };
 		B1ED11942040CD5F00C3C580 /* CoreWebViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B1ED11932040CD5F00C3C580 /* CoreWebViewManager.m */; };
 		B1F4E8CC206179CC0056074A /* NativeFileSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = B1F4E8CB206179CC0056074A /* NativeFileSystem.m */; };
+		CFDBF5952AC4640900A31BEA /* OfflineStateReact.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDBF5942AC4640900A31BEA /* OfflineStateReact.m */; };
+		CFDBF5972AC4669900A31BEA /* OfflineStateWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDBF5962AC4669900A31BEA /* OfflineStateWrapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +104,7 @@
 		5B8DA45D243086A800231494 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5BAAF8AB24308633005A9D81 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5BC3E60B292B5F7B006C5DE7 /* ms */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ms; path = ms.lproj/Localizable.strings; sourceTree = "<group>"; };
+		5BCF3AF12B020480004BEB99 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5BDF109421BCFCB700664A58 /* en-CY */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en-CY"; path = "en-CY.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		5BE703DD2689AD34009CC235 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5BFDE318272FCA570013C5E3 /* es-ES */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-ES"; path = "es-ES.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -172,6 +175,8 @@
 		B1ED11932040CD5F00C3C580 /* CoreWebViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreWebViewManager.m; sourceTree = "<group>"; };
 		B1F4E8CB206179CC0056074A /* NativeFileSystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NativeFileSystem.m; sourceTree = "<group>"; };
 		B2DEC606EFF5FA548C530DCD /* Pods-defaults-CanvasCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCore.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCore/Pods-defaults-CanvasCore.release.xcconfig"; sourceTree = "<group>"; };
+		CFDBF5942AC4640900A31BEA /* OfflineStateReact.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OfflineStateReact.m; sourceTree = "<group>"; };
+		CFDBF5962AC4669900A31BEA /* OfflineStateWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineStateWrapper.swift; sourceTree = "<group>"; };
 		D7D0C4CF2FDEC11C263CE767 /* Pods-defaults-CanvasCoreTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-CanvasCoreTests.release.xcconfig"; path = "../Pods/Target Support Files/Pods-defaults-CanvasCoreTests/Pods-defaults-CanvasCoreTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -275,6 +280,8 @@
 				B1CA05051FE448F300B7D5AA /* NativeNotificationCenter.m */,
 				B1C316FE2463348700CA368C /* NativeUserDefaults.m */,
 				B1C317002463371300CA368C /* NativeUserDefaults.swift */,
+				CFDBF5942AC4640900A31BEA /* OfflineStateReact.m */,
+				CFDBF5962AC4669900A31BEA /* OfflineStateWrapper.swift */,
 				3B158C8F22E12E2F0039A568 /* PageViewEventLogger.m */,
 				494AE0931F843A02001A8F31 /* PushNotifications.h */,
 				494AE0941F843A03001A8F31 /* PushNotifications.m */,
@@ -349,7 +356,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1500;
 				ORGANIZATIONNAME = "Instructure, Inc";
 				TargetAttributes = {
 					2CAF1B131F72AEDB007225DF = {
@@ -405,6 +412,7 @@
 				"es-ES",
 				vi,
 				ms,
+				id,
 			);
 			mainGroup = 2CAF1B0A1F72AEDB007225DF;
 			packageReferences = (
@@ -481,6 +489,7 @@
 				B1C317012463371300CA368C /* NativeUserDefaults.swift in Sources */,
 				3B158C9022E12E2F0039A568 /* PageViewEventLogger.m in Sources */,
 				2C195F52201948DB003B0D7D /* HelmScreenConfig.swift in Sources */,
+				CFDBF5952AC4640900A31BEA /* OfflineStateReact.m in Sources */,
 				497CA7741F82D19600501613 /* HelmViewController.swift in Sources */,
 				3BDE87761FD76BE600912CB3 /* UISplitViewControllerExtensions.swift in Sources */,
 				B1F4E8CC206179CC0056074A /* NativeFileSystem.m in Sources */,
@@ -489,6 +498,7 @@
 				78C610CD21CA022400913B93 /* CanvasCrashlytics.m in Sources */,
 				494AE0AE1F843AAC001A8F31 /* VideoContainerManager.m in Sources */,
 				2CFAFBD11FD21B3800F22C7F /* WindowTraits.swift in Sources */,
+				CFDBF5972AC4669900A31BEA /* OfflineStateWrapper.swift in Sources */,
 				497CA7731F82D19600501613 /* HelmSplitViewController.swift in Sources */,
 				2CD6B5711FD20A9800C7DE15 /* WindowTraitsManager.m in Sources */,
 				497CA7701F82D19600501613 /* HelmConstants.swift in Sources */,
@@ -575,6 +585,7 @@
 				5BFDE318272FCA570013C5E3 /* es-ES */,
 				5B419F6827B0FDB000A7603B /* vi */,
 				5BC3E60B292B5F7B006C5DE7 /* ms */,
+				5BCF3AF12B020480004BEB99 /* id */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

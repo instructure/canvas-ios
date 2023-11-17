@@ -74,7 +74,7 @@ class QuizListViewControllerTests: CoreTestCase {
         XCTAssertEqual(header?.titleLabel.text, "Assignments")
         var cell = controller.tableView.cellForRow(at: index) as? QuizListCell
         XCTAssertEqual(cell?.titleLabel.text, "A")
-        XCTAssertEqual(cell?.dateLabel.text, "Due Jul 20, 2020 at 2:00 PM")
+        XCTAssertEqual(cell?.dateLabel.text, "Due Jul 20, 2020, 2:00 PM")
         XCTAssertEqual(cell?.pointsLabel.text, "111 pts")
         XCTAssertEqual(cell?.questionsLabel.text, "111 Questions")
         XCTAssertEqual(cell?.statusLabel.isHidden, true)
@@ -85,7 +85,7 @@ class QuizListViewControllerTests: CoreTestCase {
         XCTAssertEqual(header?.titleLabel.text, "Practice Quizzes")
         cell = controller.tableView.cellForRow(at: index) as? QuizListCell
         XCTAssertEqual(cell?.titleLabel.text, "B")
-        XCTAssertEqual(cell?.dateLabel.text, "Due Mar 15, 2020 at 12:00 AM")
+        XCTAssertEqual(cell?.dateLabel.text, "Due Mar 15, 2020, 12:00 AM")
         XCTAssertEqual(cell?.pointsLabel.text, "Not Graded")
         XCTAssertEqual(cell?.statusLabel.text, "Closed")
         XCTAssertEqual(cell?.statusDot.isHidden, false)

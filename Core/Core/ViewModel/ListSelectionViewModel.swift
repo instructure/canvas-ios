@@ -57,7 +57,10 @@ public class ListSelectionViewModel: ObservableObject {
     private func bindSplitViewStateToInternalState() {
         isSplitViewCollapsed
             .map { [weak self] in $0 ? nil : self?.defaultSelection }
-            .subscribe(selectedCellIndexChanged)
+            .sink(receiveValue: { [weak selectedCellIndexChanged] value in
+                // .subscribe(selectedCellIndexChanged) caused a leak so we weakified it
+                selectedCellIndexChanged?.send(value)
+            })
             .store(in: &subscriptions)
     }
 }

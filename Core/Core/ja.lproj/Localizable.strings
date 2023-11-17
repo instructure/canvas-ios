@@ -398,6 +398,9 @@
 "Available From:" = "利用可能となる日：";
 
 /* No comment provided by engineer. */
+"Available offline" = "オフラインで利用可能";
+
+/* No comment provided by engineer. */
 "Available until" = "次の日付まで利用可能";
 
 /* No comment provided by engineer. */
@@ -453,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Cancel Submission?" = "提出をキャンセルしますか？";
+
+/* No comment provided by engineer. */
+"Cancel Sync?" = "同期をキャンセルしますか？";
 
 /* No comment provided by engineer. */
 "Canvas Guides" = "Canvas ガイド";
@@ -590,6 +596,9 @@
 "Content" = "コンテンツ";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "コンテンツを表示できません";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "コンテンツリンクエラー";
 
 /* No comment provided by engineer. */
@@ -713,10 +722,10 @@
 "Cyan" = "シアン";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
+"d_courses_syncing" = "d_courses_syncing";
 
 /* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
+"d_items" = "d_items";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -866,9 +875,6 @@
 "Dismiss %@" = "取り下げる%@";
 
 /* No comment provided by engineer. */
-"Dismiss notification" = "通知を閉じる";
-
-/* No comment provided by engineer. */
 "Display As" = "表示方法";
 
 /* No comment provided by engineer. */
@@ -930,9 +936,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "コース設定を編集";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "ダッシュボードを編集する";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "ディスカッションを編集";
@@ -1044,9 +1047,6 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "失敗しました。タップしてオプションを表示";
-
-/* No comment provided by engineer. */
-"favorite" = "お気に入り";
 
 /* No comment provided by engineer. */
 "Feedback" = "フィードバック";
@@ -1220,6 +1220,9 @@
 "Groups" = "グループ";
 
 /* No comment provided by engineer. */
+"Hang tight, we're getting things ready for you." = "少々お待ちください。今、準備をしています。";
+
+/* No comment provided by engineer. */
 "Have your parent scan this QR code from the Canvas Parent app to pair with you." = "あなたとペアリングするために、親にCanvas ParentアプリからこのQRコードをスキャンしてもらいます。";
 
 /* No comment provided by engineer. */
@@ -1364,6 +1367,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "あなたは %@ としてコースに在籍していないようです。他に適したアプリがある可能性があります。1つをタップして、App Store をご覧ください。";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "オフラインコンテンツの同期が中止されます。後でやり直すことができます。";
+
+/* No comment provided by engineer. */
 "Italic" = "イタリック体";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "ログインエラー";
+
+/* No comment provided by engineer. */
+"Login help." = "ログインのヘルプ。";
 
 /* No comment provided by engineer. */
 "Login ID" = "ログイン ID";
@@ -1784,13 +1793,25 @@
 "Observers" = "オブザーバー";
 
 /* No comment provided by engineer. */
+"Offline" = "オフライン";
+
+/* No comment provided by engineer. */
 "Offline Content" = "オフラインコンテンツ";
 
 /* No comment provided by engineer. */
 "Offline Content Sync Failed" = "オフラインコンテンツの同期に失敗しました";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Success" = "オフラインコンテンツ同が成功";
+
+/* No comment provided by engineer. */
 "Offline mode" = "オフラインモード";
+
+/* No comment provided by engineer. */
+"Offline sync was interrupted by the operating system" = "オフライン同期がオペレーティングシステムによって中断されました";
+
+/* No comment provided by engineer. */
+"offline_sync_finished" = "offline_sync_finished";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -1809,6 +1830,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "1つ以上のファイルのアップロードに失敗しました。インターネット接続をチェックしてから、提出を再試行してください。";
+
+/* No comment provided by engineer. */
+"One or more items failed to sync." = "1つ以上の項目の同期に失敗しました。";
 
 /* No comment provided by engineer. */
 "One Question at a Time:" = "一度に1つの質問：";
@@ -1833,6 +1857,9 @@
 
 /* No comment provided by engineer. */
 "Open course details" = "コース詳細を開く";
+
+/* No comment provided by engineer. */
+"Open In Browser" = "ブラウザで開く";
 
 /* No comment provided by engineer. */
 "Open item details" = "アイテム 詳細を開く";
@@ -2288,6 +2315,9 @@
 "Show One Question at a Time" = "一度に1つの質問を表示する";
 
 /* No comment provided by engineer. */
+"Show sync details" = "同期詳細を表示する";
+
+/* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2352,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "なにかが失敗しました";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "こちらで制御できない問題が起こりました。";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "いいね順";
@@ -2427,6 +2460,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "成功です！";
+
+/* No comment provided by engineer. */
+"Success! Downloaded %@ of %@" = "成功！%1$@ / をダウンロード完了%2$@";
 
 /* No comment provided by engineer. */
 "Summary" = "概要";
@@ -2538,9 +2574,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "OSにより提出プロセスが中止されました。";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "オフラインで利用できるように選択された項目が%dあります。選択されたコンテンツは端末にダウンロードされます。";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "このグループには、アクティブな課題はありません。";
@@ -2910,6 +2943,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "あなたにはこのアクションを行う権限がありません";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "ページをブラウザで開いてみてください。";
 
 /* No comment provided by engineer. */
 "You have been invited" = "あなたは招待されています";

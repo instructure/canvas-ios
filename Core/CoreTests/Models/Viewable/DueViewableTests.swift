@@ -36,14 +36,14 @@ class DueViewableTests: XCTestCase {
     func testDueFuture() {
         Clock.mockNow(DateComponents(calendar: Calendar.current, year: 2018, month: 12, day: 24).date!)
         let dueAt = DateComponents(calendar: Calendar.current, year: 2018, month: 12, day: 25).date
-        XCTAssertEqual(Model(dueAt: dueAt).dueText, "Due Dec 25, 2018 at 12:00 AM")
+        XCTAssertEqual(Model(dueAt: dueAt).dueText, "Due Dec 25, 2018, 12:00 AM")
         XCTAssert(Model(dueAt: dueAt).assignmentDueByText.hasPrefix("This assignment is due by "))
     }
 
     func testDuePast() {
         Clock.mockNow(DateComponents(calendar: Calendar.current, year: 2018, month: 12, day: 26).date!)
         let dueAt = DateComponents(calendar: Calendar.current, year: 2018, month: 12, day: 25).date
-        XCTAssertEqual(Model(dueAt: dueAt).dueText, "Due Dec 25, 2018 at 12:00 AM")
+        XCTAssertEqual(Model(dueAt: dueAt).dueText, "Due Dec 25, 2018, 12:00 AM")
         XCTAssert(Model(dueAt: dueAt).assignmentDueByText.hasPrefix("This assignment was due by "))
     }
 }

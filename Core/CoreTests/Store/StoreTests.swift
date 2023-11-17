@@ -206,7 +206,8 @@ class StoreTests: CoreTestCase {
     private func createOfflineModeInteractor() -> OfflineModeInteractor {
         let monitor = NWPathMonitorWrapper(start: { _ in () }, cancel: {})
         let availabilityService = NetworkAvailabilityServiceLive(monitor: monitor)
-        let result = OfflineModeInteractorLive(availabilityService: availabilityService)
+        let result = OfflineModeInteractorLive(availabilityService: availabilityService,
+                                               isOfflineModeEnabledForApp: true)
         drainMainQueue()
         return result
     }

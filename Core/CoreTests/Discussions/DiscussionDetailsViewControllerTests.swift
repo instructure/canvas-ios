@@ -134,7 +134,7 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.maxDepth, controller.view.traitCollection.horizontalSizeClass == .compact ? 2 : 4)
         let html = getBodyHTML()
         XCTAssert(html.contains("Instructor (she/her)"))
-        XCTAssert(html.contains("May 7, 2020 at 8:35 AM"))
+        XCTAssert(html.contains("May 7, 2020 at 8:35 AM"))
         XCTAssert(html.contains("Is the cube rule of food valid?"))
         XCTAssert(html.contains("Bob"))
         XCTAssert(html.contains("Oreos are sandwiches."))

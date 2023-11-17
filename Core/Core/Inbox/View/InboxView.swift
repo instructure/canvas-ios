@@ -65,7 +65,7 @@ public struct InboxView: View {
             }
         }
         .background(Color.backgroundLightest)
-        .navigationBarItems(leading: menuButton)
+        .navigationBarItems(leading: menuButton, trailing: newMessageButton)
     }
 
     private var messagesList: some View {
@@ -167,6 +167,18 @@ public struct InboxView: View {
         .frame(width: 44, height: 44).padding(.leading, -6)
         .identifier("inbox.profileButton")
         .accessibility(label: Text("Profile Menu", bundle: .core))
+    }
+
+    private var newMessageButton: some View {
+        Button {
+            model.newMessageDidTap.send(controller)
+        } label: {
+            Image.addSolid
+                .foregroundColor(Color(Brand.shared.navTextColor.ensureContrast(against: Brand.shared.navBackground)))
+        }
+        .frame(width: 44, height: 44).padding(.trailing, -6)
+        .identifier("inbox.newMessageButton")
+        .accessibility(label: Text("New Message", bundle: .core))
     }
 
     @ViewBuilder

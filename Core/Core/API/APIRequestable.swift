@@ -87,6 +87,7 @@ public class APIJSONEncoder: JSONEncoder {
     public override init() {
         super.init()
         dateEncodingStrategy = .iso8601
+        outputFormatting = .sortedKeys
     }
 }
 

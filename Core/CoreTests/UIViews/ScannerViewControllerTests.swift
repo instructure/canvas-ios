@@ -25,9 +25,6 @@ class ScannerViewControllerTests: XCTestCase {
     lazy var controller = ScannerViewController()
     var code: String?
 
-    override func setUp() {
-        super.setUp()
-    }
 /*
     func testLayout() {
         controller.delegate = self

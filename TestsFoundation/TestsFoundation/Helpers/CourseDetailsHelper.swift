@@ -32,9 +32,25 @@ public class CourseDetailsHelper: BaseHelper {
         case googleDrive = "context_external_tool_1038049"
         case quizzes = "quizzes"
         case files = "files"
+        case studio = "context_external_tool_955147"
+        case studentView = "student_view"
     }
 
     public static var titleLabel: XCUIElement { app.find(id: "course-details.title-lbl") }
     public static var subtitleLabel: XCUIElement { app.find(id: "course-details.subtitle-lbl") }
-    public static func cell(type: CellType) -> XCUIElement { app.find(id: "courses-details.\(type.rawValue)-cell") }
+
+    public static func cell(type: CellType) -> XCUIElement { return app.find(id: "courses-details.\(type.rawValue)-cell") }
+}
+
+public class CourseDetailsHelperParent: BaseHelper {
+    public static var totalGradeLabel: XCUIElement { app.find(id: "CourseTotalGrade") }
+    public static var pandaSpaceImage: XCUIElement { app.find(id: "PandaSpace", type: .image) }
+
+    public static func assignmentCell(assignment: DSAssignment) -> XCUIElement {
+        return app.find(id: "GradeListCell.\(assignment.id)")
+    }
+
+    public static func letterGradeLabelOfAssignmentCell(assignment: DSAssignment, letterGrade: String) -> XCUIElement {
+        return assignmentCell(assignment: assignment).find(labelContaining: "(\(letterGrade))")
+    }
 }

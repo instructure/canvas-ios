@@ -398,6 +398,9 @@
 "Available From:" = "Dostępne od:";
 
 /* No comment provided by engineer. */
+"Available offline" = "Dostępne offline";
+
+/* No comment provided by engineer. */
 "Available until" = "Dostępny do";
 
 /* No comment provided by engineer. */
@@ -453,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Cancel Submission?" = "Anulować przesyłkę?";
+
+/* No comment provided by engineer. */
+"Cancel Sync?" = "Anulować synchronizację?";
 
 /* No comment provided by engineer. */
 "Canvas Guides" = "Przewodniki Canvas";
@@ -590,6 +596,9 @@
 "Content" = "Zawartość";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Nie można wyświetlić zawartości";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Błąd łącza do zawartości";
 
 /* No comment provided by engineer. */
@@ -713,10 +722,10 @@
 "Cyan" = "Cyjan";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
+"d_courses_syncing" = "d_courses_syncing";
 
 /* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
+"d_items" = "d_items";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -866,9 +875,6 @@
 "Dismiss %@" = "Odrzuć %@";
 
 /* No comment provided by engineer. */
-"Dismiss notification" = "Odrzuć powiadomienie";
-
-/* No comment provided by engineer. */
 "Display As" = "Wyświetl jako";
 
 /* No comment provided by engineer. */
@@ -930,9 +936,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Edytuj ustawienia kursu";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Edytuj panel nawigacyjny";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Edytuj dyskusję";
@@ -1044,9 +1047,6 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Nie powiodło się. Stuknij, aby wyświetlić opcje";
-
-/* No comment provided by engineer. */
-"favorite" = "dodano do ulubionych";
 
 /* No comment provided by engineer. */
 "Feedback" = "Informacje zwrotne";
@@ -1220,6 +1220,9 @@
 "Groups" = "Grupy";
 
 /* No comment provided by engineer. */
+"Hang tight, we're getting things ready for you." = "Poczekaj, właśnie przygotowujemy wszystko dla Ciebie.";
+
+/* No comment provided by engineer. */
 "Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Poproś rodzica o zeskanowanie tego kodu QR w aplikacji Canvas Parent w celu sparowania.";
 
 /* No comment provided by engineer. */
@@ -1364,6 +1367,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Wygląda na to, że nie jesteś zapisany w żadnym kursie jako %@. Być może inna z naszych aplikacji będzie Ci bardziej pasować. Stuknij ją, aby odwiedzić App Store.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "Zatrzyma synchronizację zawartości offline. Można to zrobić ponownie później.";
+
+/* No comment provided by engineer. */
 "Italic" = "Kursywa";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Błąd logowania";
+
+/* No comment provided by engineer. */
+"Login help." = "Pomoc przy logowaniu";
 
 /* No comment provided by engineer. */
 "Login ID" = "Nazwa użytkownika";
@@ -1784,13 +1793,25 @@
 "Observers" = "Obserwatorzy";
 
 /* No comment provided by engineer. */
+"Offline" = "Offline";
+
+/* No comment provided by engineer. */
 "Offline Content" = "Zawartość offline";
 
 /* No comment provided by engineer. */
 "Offline Content Sync Failed" = "Niepowodzenie synchronizacji zawartości offline";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Success" = "Synchronizacja treści offline zakończona pomyślnie";
+
+/* No comment provided by engineer. */
 "Offline mode" = "Tryb offline";
+
+/* No comment provided by engineer. */
+"Offline sync was interrupted by the operating system" = "Synchronizacja offline została przerwana przez system operacyjny";
+
+/* No comment provided by engineer. */
+"offline_sync_finished" = "offline_sync_finished";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -1809,6 +1830,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "Nie udało się przesłać co najmniej jednego pliku. Sprawdź połączenie internetowe i ponów przesyłanie.";
+
+/* No comment provided by engineer. */
+"One or more items failed to sync." = "Nie udało się zsynchronizować co najmniej jednego elementu.";
 
 /* No comment provided by engineer. */
 "One Question at a Time:" = "Jedno pytanie na raz:";
@@ -1833,6 +1857,9 @@
 
 /* No comment provided by engineer. */
 "Open course details" = "Otwórz szczegóły kursu";
+
+/* No comment provided by engineer. */
+"Open In Browser" = "Otwórz w przeglądarce";
 
 /* No comment provided by engineer. */
 "Open item details" = "Otwórz szczegóły elementu";
@@ -2288,6 +2315,9 @@
 "Show One Question at a Time" = "Pokaż tylko jedno pytanie na raz";
 
 /* No comment provided by engineer. */
+"Show sync details" = "Pokaż szczegóły synchronizacji";
+
+/* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2352,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "Coś poszło nie tak";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Wystąpiła sytuacja poza naszą kontrolą.";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Sortuj według polubień";
@@ -2427,6 +2460,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "Zakończono powodzeniem!";
+
+/* No comment provided by engineer. */
+"Success! Downloaded %@ of %@" = "Zakończono powodzeniem! Pobrano %1$@ z %2$@";
 
 /* No comment provided by engineer. */
 "Summary" = "Podsumowanie";
@@ -2538,9 +2574,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Przesyłanie zostało przerwane przez system operacyjny.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Wybrane elementy dla dostępności offline: %d. Wybrana zawartość zostanie pobrana na urządzenie.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Obecnie nie ma aktywnych zadań w tym kursie.";
@@ -2910,6 +2943,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "Nie masz uprawnień potrzebnych do wykonania tej czynności.";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Można spróbować otworzyć stronę w przeglądarce.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Otrzymałeś zaproszenie";

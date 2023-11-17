@@ -169,7 +169,8 @@ class InboxTests: E2ETestCase {
 
         // MARK: Tap on message and check if it becomes read
         readMessageButton.hit()
-        Helper.backButton.hit()
+        let backButton = Helper.backButton.waitUntil(.visible, timeout: 5)
+        if backButton.isVisible { backButton.hit() }
         readMessageButton = Helper.conversation(conversation: readConversation).waitUntil(.visible)
         XCTAssertTrue(readMessageButton.isVisible)
         XCTAssertNotEqual(readMessageButton.label.suffix(6), "Unread")
@@ -196,7 +197,8 @@ class InboxTests: E2ETestCase {
         XCTAssertTrue(starMessageButton.isVisible)
 
         starMessageButton.hit()
-        Helper.backButton.hit()
+        backButton.waitUntil(.visible, timeout: 5)
+        if backButton.isVisible { backButton.hit() }
 
         // MARK: Check "Starred" filter button
         let starredButton = FilterHelper.starred.waitUntil(.visible)
@@ -307,10 +309,14 @@ class InboxTests: E2ETestCase {
         var deleteOption = OptionsHelper.deleteButton.waitUntil(.visible)
         XCTAssertTrue(deleteOption.isVisible)
 
-        var cancelOption = OptionsHelper.cancelButton.waitUntil(.visible)
-        XCTAssertTrue(cancelOption.isVisible)
-
-        cancelOption.hit()
+        // On iPhone: There is a cancel button to hit
+        // On iPad: No cancel button, need to tap somewhere outside the box
+        let cancelOption = OptionsHelper.cancelButton.waitUntil(.visible, timeout: 5)
+        if cancelOption.isVisible {
+            cancelOption.hit()
+        } else {
+            optionsButton.forceTap()
+        }
 
         // MARK: Check message options
         let messageOptions = DetailsHelper.messageOptions(conversation: conversation).waitUntil(.visible)
@@ -329,9 +335,13 @@ class InboxTests: E2ETestCase {
         deleteOption = OptionsHelper.deleteButton.waitUntil(.visible)
         XCTAssertTrue(deleteOption.isVisible)
 
-        cancelOption = OptionsHelper.cancelButton.waitUntil(.visible)
-        XCTAssertTrue(cancelOption.isVisible)
-
-        cancelOption.hit()
+        // On iPhone: There is a cancel button to hit
+        // On iPad: No cancel button, need to tap somewhere outside the box
+        cancelOption.waitUntil(.visible, timeout: 5)
+        if cancelOption.isVisible {
+            cancelOption.hit()
+        } else {
+            optionsButton.forceTap()
+        }
     }
 }

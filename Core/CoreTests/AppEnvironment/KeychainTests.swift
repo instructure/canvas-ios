@@ -57,7 +57,8 @@ class KeychainTests: XCTestCase {
         keychain.setData(data, for: key)
 
         let newInstance = Keychain(serviceName: serviceName, accessGroup: nil)
-        if let data = newInstance.getData(for: key), let result =  try! NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [String: Any] {
+        let allowedClasses = [NSDictionary.self, NSString.self, NSDate.self]
+        if let data = newInstance.getData(for: key), let result =  try! NSKeyedUnarchiver.unarchivedObject(ofClasses: allowedClasses, from: data) as? [String: Any] {
             XCTAssertEqual(result["foo"] as! String, dict["foo"] as! String)
             XCTAssertEqual(result["date"] as! Date, dict["date"] as! Date)
         } else {

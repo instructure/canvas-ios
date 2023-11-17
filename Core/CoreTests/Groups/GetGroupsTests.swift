@@ -16,9 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+@testable import Core
 import Foundation
 import XCTest
-@testable import Core
 
 class GetGroupsTest: CoreTestCase {
     func testItCreatesGroup() {
@@ -66,9 +66,16 @@ class GetGroupsTest: CoreTestCase {
     }
 }
 
+class GetGroupTests: CoreTestCase {
+    func testGetGroup() {
+        XCTAssertEqual(GetGroup(groupID: "1").cacheKey, "get-group-1")
+        XCTAssertEqual(GetGroup(groupID: "1").scope, Scope(predicate: NSPredicate(format: "%K == %@", #keyPath(Group.id), "1"), order: []))
+    }
+}
+
 class GetDashboardGroupsTest: CoreTestCase {
     func testItSavesUserGroups() {
-        let request = GetGroupsRequest(context: .currentUser)
+        let request = GetFavoriteGroupsRequest(context: .currentUser)
         let group = APIGroup.make(id: "1", name: "Group One", members_count: 2)
         api.mock(request, value: [group])
 
@@ -83,7 +90,7 @@ class GetDashboardGroupsTest: CoreTestCase {
 
     func testItDeletesOldUserGroups() {
         let old = Group.make(showOnDashboard: true)
-        let request = GetGroupsRequest(context: .currentUser)
+        let request = GetFavoriteGroupsRequest(context: .currentUser)
         api.mock(request, value: [])
 
         let expectation = XCTestExpectation(description: "fetch")
@@ -101,7 +108,7 @@ class GetDashboardGroupsTest: CoreTestCase {
 
     func testItDoesNotDeleteNonUserGroups() {
         let notMember = Group.make(showOnDashboard: false)
-        let request = GetGroupsRequest(context: .currentUser)
+        let request = GetFavoriteGroupsRequest(context: .currentUser)
         api.mock(request, value: [])
 
         let expectation = XCTestExpectation(description: "fetch")
@@ -134,5 +141,26 @@ class GetDashboardGroupsTest: CoreTestCase {
         XCTAssertEqual(groups.count, 1)
         XCTAssertEqual(groups.first, group)
         XCTAssertNil(groups.first?.course)
+    }
+}
+
+class MarkFavoriteGroupTests: CoreTestCase {
+    func testCacheKey() {
+        XCTAssertEqual(MarkFavoriteGroup(groupID: "1", markAsFavorite: true).cacheKey, nil)
+    }
+
+    func testScope() {
+        XCTAssertEqual(MarkFavoriteGroup(groupID: "1", markAsFavorite: true).scope, .where(#keyPath(Group.id), equals: "1"))
+    }
+
+    func testItWritesData() {
+        let group = Group.make()
+        let groupItem = CDAllCoursesGroupItem.save(.make(), in: databaseClient)
+
+        let testee = MarkFavoriteGroup(groupID: "1", markAsFavorite: true)
+        testee.write(response: APIFavorite(context_id: ID("1"), context_type: "group"), urlResponse: nil, to: databaseClient)
+
+        XCTAssertTrue(group.isFavorite)
+        XCTAssertTrue(groupItem.isFavorite)
     }
 }

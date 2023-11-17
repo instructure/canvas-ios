@@ -42,8 +42,13 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     private var backgroundFileSubmissionAssembly: FileSubmissionAssembly?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        LoginSession.migrateSessionsToBeAccessibleWhenDeviceIsLocked()
+        BackgroundProcessingAssembly.register(scheduler: CoreTaskSchedulerLive(taskScheduler: .shared))
+        BackgroundProcessingAssembly.register(taskID: OfflineSyncBackgroundTaskRequest.ID) {
+            CourseSyncBackgroundUpdatesAssembly.makeOfflineSyncBackgroundTask()
+        }
+        BackgroundProcessingAssembly.resolveInteractor().register(taskID: OfflineSyncBackgroundTaskRequest.ID)
         setupFirebase()
-        Core.Analytics.shared.handler = self
         CacheManager.resetAppIfNecessary()
 
         #if DEBUG
@@ -84,6 +89,10 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
 
     func setup(session: LoginSession) {
         environment.userDidLogin(session: session)
+        // This is to handle the case where the app is force closed while a background upload was in progress.
+        // In this case the upload is canceled and app is not launched with `handleEventsForBackgroundURLSession`
+        // so we manually re-connect to the background url session to check if there are any failed uploads.
+        setupFileSubmissionAssemblyForBackgroundUploads()
 
         GetUserProfile().fetch(environment: environment, force: true) { apiProfile, urlResponse, _ in performUIUpdate {
             PageViewEventController.instance.userDidChange()
@@ -149,6 +158,9 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         CoreWebView.stopCookieKeepAlive()
         BackgroundVideoPlayer.shared.background()
         environment.refreshWidgets()
+
+        OfflineSyncScheduleInteractor().scheduleNextSync()
+
         if LocalizationManager.needsRestart {
             exit(EXIT_SUCCESS)
         }
@@ -162,14 +174,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         Logger.shared.log()
 
         if identifier == FileSubmissionAssembly.ShareExtensionSessionID {
-            let backgroundAssembly = FileSubmissionAssembly.makeShareExtensionAssembly()
-            backgroundAssembly.handleBackgroundUpload {
-                DispatchQueue.main.async { [weak self] in
-                    completionHandler()
-                    self?.backgroundFileSubmissionAssembly = nil
-                }
-            }
-            backgroundFileSubmissionAssembly = backgroundAssembly
+            setupFileSubmissionAssemblyForBackgroundUploads(completion: completionHandler)
         } else {
             let manager = UploadManager(identifier: identifier)
             manager.completionHandler = {
@@ -179,6 +184,17 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             }
             manager.createSession()
         }
+    }
+
+    private func setupFileSubmissionAssemblyForBackgroundUploads(completion: (() -> Void)? = nil) {
+        let backgroundAssembly = FileSubmissionAssembly.makeShareExtensionAssembly()
+        backgroundAssembly.connectToBackgroundURLSession {
+            DispatchQueue.main.async { [weak self] in
+                completion?()
+                self?.backgroundFileSubmissionAssembly = nil
+            }
+        }
+        backgroundFileSubmissionAssembly = backgroundAssembly
     }
 
     // similar methods exist in all other app delegates
@@ -237,15 +253,17 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
 }
 
 extension StudentAppDelegate: Core.AnalyticsHandler {
-    func handleEvent(_ name: String, parameters: [String: Any]?) {
-        guard FirebaseOptions.defaultOptions()?.apiKey != nil else {
-            return
-        }
 
-        if let screenName = parameters?["screen_name"] as? String,
-           let screenClass = parameters?["screen_class"] as? String {
-            Firebase.Crashlytics.crashlytics().log("\(screenName) (\(screenClass))")
-        }
+    func handleScreenView(screenName: String, screenClass: String, application: String) {
+        Firebase.Crashlytics.crashlytics().log("\(screenName) (\(screenClass))")
+    }
+
+    func handleError(_ name: String, reason: String) {
+        let model = ExceptionModel(name: name, reason: reason)
+        Firebase.Crashlytics.crashlytics().record(exceptionModel: model)
+    }
+
+    func handleEvent(_ name: String, parameters: [String: Any]?) {
     }
 
     private func initializeTracking() {
@@ -274,13 +292,19 @@ extension StudentAppDelegate: Core.AnalyticsHandler {
 
 extension StudentAppDelegate {
     func setupDefaultErrorHandling() {
-        environment.errorHandler = { error, controller in performUIUpdate {
-            let error = error as NSError
-            error.showAlert(from: controller)
-            if error.shouldRecordInCrashlytics {
-                Firebase.Crashlytics.crashlytics().record(error: error)
+        environment.errorHandler = { error, controller in
+            if OfflineModeAssembly.make().isOfflineModeEnabled() {
+                return
             }
-        } }
+
+            performUIUpdate {
+                let error = error as NSError
+                error.showAlert(from: controller)
+                if error.shouldRecordInCrashlytics {
+                    Firebase.Crashlytics.crashlytics().record(error: error)
+                }
+            }
+        }
     }
 }
 
@@ -294,7 +318,10 @@ extension StudentAppDelegate {
             return
         }
 
-        if FirebaseOptions.defaultOptions()?.apiKey != nil { FirebaseApp.configure() }
+        if FirebaseOptions.defaultOptions()?.apiKey != nil {
+            FirebaseApp.configure()
+            Core.Analytics.shared.handler = self
+        }
         CanvasCrashlytics.setupForReactNative()
         configureRemoteConfig()
     }

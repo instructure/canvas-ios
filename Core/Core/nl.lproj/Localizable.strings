@@ -398,6 +398,9 @@
 "Available From:" = "Beschikbaar vanaf:";
 
 /* No comment provided by engineer. */
+"Available offline" = "Offline beschikbaar";
+
+/* No comment provided by engineer. */
 "Available until" = "Beschikbaar tot";
 
 /* No comment provided by engineer. */
@@ -453,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Cancel Submission?" = "Inlevering annuleren?";
+
+/* No comment provided by engineer. */
+"Cancel Sync?" = "Synchronisatie annuleren?";
 
 /* No comment provided by engineer. */
 "Canvas Guides" = "Canvas-handleidingen";
@@ -590,6 +596,9 @@
 "Content" = "Inhoud";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "De inhoud kan niet worden weergegeven";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Fout met inhoudslink";
 
 /* No comment provided by engineer. */
@@ -713,10 +722,10 @@
 "Cyan" = "Cyaan";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
+"d_courses_syncing" = "d_courses_syncing";
 
 /* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
+"d_items" = "d_items";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -866,9 +875,6 @@
 "Dismiss %@" = "Afwijzen %@";
 
 /* No comment provided by engineer. */
-"Dismiss notification" = "Melding verwijderen";
-
-/* No comment provided by engineer. */
 "Display As" = "Weergaven als";
 
 /* No comment provided by engineer. */
@@ -930,9 +936,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Cursusinstellingen bewerken";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Dashboard bewerken";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Discussie bewerken";
@@ -1044,9 +1047,6 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Mislukt. Tik voor opties";
-
-/* No comment provided by engineer. */
-"favorite" = "favoriet";
 
 /* No comment provided by engineer. */
 "Feedback" = "Feedback";
@@ -1220,6 +1220,9 @@
 "Groups" = "Groepen";
 
 /* No comment provided by engineer. */
+"Hang tight, we're getting things ready for you." = "Even geduld, alles wordt voorbereid.";
+
+/* No comment provided by engineer. */
 "Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Laat je ouder deze QR-code scannen van de Canvas Parent-app om met jou te koppelen.";
 
 /* No comment provided by engineer. */
@@ -1364,6 +1367,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Het lijkt erop dat je voor geen enkele cursus bent ingeschreven als %@. Wellicht is een van onze andere apps hiervoor beter geschikt. Tik op een ervan om naar de App Store te gaan.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "De offline inhoud wordt dan niet meer gesynchroniseerd. U kunt later opnieuw synchroniseren.";
+
+/* No comment provided by engineer. */
 "Italic" = "Cursief";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Fout bij aanmelden";
+
+/* No comment provided by engineer. */
+"Login help." = "Hulp bij het aanmelden.";
 
 /* No comment provided by engineer. */
 "Login ID" = "Aanmeldings-ID";
@@ -1784,13 +1793,25 @@
 "Observers" = "Waarnemers";
 
 /* No comment provided by engineer. */
+"Offline" = "Offline";
+
+/* No comment provided by engineer. */
 "Offline Content" = "Offline inhoud";
 
 /* No comment provided by engineer. */
 "Offline Content Sync Failed" = "Offline contentsynchronisatie mislukt";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Success" = "Offline contentsynchronisatie geslaagd";
+
+/* No comment provided by engineer. */
 "Offline mode" = "Offline modus";
+
+/* No comment provided by engineer. */
+"Offline sync was interrupted by the operating system" = "Offline synchroniseren is onderbroken door het besturingssysteem";
+
+/* No comment provided by engineer. */
+"offline_sync_finished" = "offline_sync_finished";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -1809,6 +1830,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "Er kunnen een of meer bestanden niet worden geüpload. Controleer je internetverbinding en probeer opnieuw in te leveren.";
+
+/* No comment provided by engineer. */
+"One or more items failed to sync." = "Een of meer items kunnen niet worden gesynchroniseerd.";
 
 /* No comment provided by engineer. */
 "One Question at a Time:" = "Eén vraag tegelijk:";
@@ -1833,6 +1857,9 @@
 
 /* No comment provided by engineer. */
 "Open course details" = "Cursusdetails openen";
+
+/* No comment provided by engineer. */
+"Open In Browser" = "Openen in browser";
 
 /* No comment provided by engineer. */
 "Open item details" = "Itemdetails openen";
@@ -2288,6 +2315,9 @@
 "Show One Question at a Time" = "Een antwoord per keer tonen";
 
 /* No comment provided by engineer. */
+"Show sync details" = "Synchronisatiegegevens weergeven";
+
+/* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2352,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "Er is iets misgegaan";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Er is iets misgegaan waar we geen invloed op hebben.";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Op likes sorteren";
@@ -2427,6 +2460,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "Gelukt!";
+
+/* No comment provided by engineer. */
+"Success! Downloaded %@ of %@" = "Gelukt! %1$@ van gedownload %2$@";
 
 /* No comment provided by engineer. */
 "Summary" = "Samenvatting";
@@ -2538,9 +2574,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Het inleveringsproces werd beëindigd door het besturingssysteem.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Er zijn %d items geselecteerd voor beschikbaarheid offline. De geselecteerde inhoud wordt naar het apparaat gedownload.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Er zijn geen actieve opdrachten in deze cursus.";
@@ -2910,6 +2943,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "Je hebt geen toestemming om deze actie uit te voeren";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Je kunt proberen de pagina te openen in een browser.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Je bent uitgenodigd";

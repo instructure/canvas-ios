@@ -398,6 +398,9 @@
 "Available From:" = "Tillgänglig från och med:";
 
 /* No comment provided by engineer. */
+"Available offline" = "Tillgänglig online";
+
+/* No comment provided by engineer. */
 "Available until" = "Tillgänglig till";
 
 /* No comment provided by engineer. */
@@ -453,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Cancel Submission?" = "Vill du avbryta inlämningen?";
+
+/* No comment provided by engineer. */
+"Cancel Sync?" = "Avbryta synkroniseringen?";
 
 /* No comment provided by engineer. */
 "Canvas Guides" = "Canvas-guider";
@@ -590,6 +596,9 @@
 "Content" = "Innehåll";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Det går inte att visa innehållet";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Fel på innehållslänk";
 
 /* No comment provided by engineer. */
@@ -713,10 +722,10 @@
 "Cyan" = "Cyan";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
+"d_courses_syncing" = "d_courses_syncing";
 
 /* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
+"d_items" = "d_items";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -866,9 +875,6 @@
 "Dismiss %@" = "Avvisa %@";
 
 /* No comment provided by engineer. */
-"Dismiss notification" = "Avvisa aviseringen";
-
-/* No comment provided by engineer. */
 "Display As" = "Visa som";
 
 /* No comment provided by engineer. */
@@ -930,9 +936,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Redigera kursinställningar";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Redigera översikt";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Redigera diskussion";
@@ -1044,9 +1047,6 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Misslyckades. Flik för alternativ";
-
-/* No comment provided by engineer. */
-"favorite" = "favorit";
 
 /* No comment provided by engineer. */
 "Feedback" = "Återkoppling";
@@ -1220,6 +1220,9 @@
 "Groups" = "Grupper";
 
 /* No comment provided by engineer. */
+"Hang tight, we're getting things ready for you." = "Vänta, vi förbereder åt dig.";
+
+/* No comment provided by engineer. */
 "Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Be din förälder scanna QR-koden från Canvas Parent-appen för att parkopplas med dig.";
 
 /* No comment provided by engineer. */
@@ -1364,6 +1367,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Du verkar inte vara registrerad för några kurser som %@. Någon av våra andra appar kan vara bättre lämpade. Tryck på en för att gå till App Store.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "Det stoppar synkronisering av offlineinnehåll. Du kan göra detta vid ett senare tillfälle.";
+
+/* No comment provided by engineer. */
 "Italic" = "Kursiv";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Inloggningsfel";
+
+/* No comment provided by engineer. */
+"Login help." = "Inloggningshjälp.";
 
 /* No comment provided by engineer. */
 "Login ID" = "Inloggnings-ID";
@@ -1784,13 +1793,25 @@
 "Observers" = "Observatörer";
 
 /* No comment provided by engineer. */
+"Offline" = "Offline";
+
+/* No comment provided by engineer. */
 "Offline Content" = "Offlineinnehåll";
 
 /* No comment provided by engineer. */
 "Offline Content Sync Failed" = "Innehållssynkronisering offline misslyckades";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Success" = "Offlineinnehåll har synkroniserats";
+
+/* No comment provided by engineer. */
 "Offline mode" = "Offlineläge";
+
+/* No comment provided by engineer. */
+"Offline sync was interrupted by the operating system" = "Offlinesynkroniseringen avbröts av operativsystemet";
+
+/* No comment provided by engineer. */
+"offline_sync_finished" = "offline_sync_finished";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -1809,6 +1830,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "En eller fler filer laddades inte upp. Kontrollera din internetanslutning och försök lämna in igen.";
+
+/* No comment provided by engineer. */
+"One or more items failed to sync." = "Det gick inte att synkronisera en eller fler objekt.";
 
 /* No comment provided by engineer. */
 "One Question at a Time:" = "En fråga åt gången:";
@@ -1833,6 +1857,9 @@
 
 /* No comment provided by engineer. */
 "Open course details" = "Öppna kursinformation";
+
+/* No comment provided by engineer. */
+"Open In Browser" = "Öppna i webbläsare";
 
 /* No comment provided by engineer. */
 "Open item details" = "Öppna objektinformation";
@@ -2288,6 +2315,9 @@
 "Show One Question at a Time" = "Visa en fråga åt gången";
 
 /* No comment provided by engineer. */
+"Show sync details" = "Visa synkroniseringsinformation";
+
+/* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2352,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "Något gick fel";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Ett fel uppstod utanför vår kontroll.";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Sortera efter antal ”gilla”";
@@ -2427,6 +2460,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "Klar!";
+
+/* No comment provided by engineer. */
+"Success! Downloaded %@ of %@" = "Framgång! Laddade ned %1$@ av %2$@";
 
 /* No comment provided by engineer. */
 "Summary" = "Sammanfattning";
@@ -2538,9 +2574,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Inlämningsprocessen avbröts av operativsystemet.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Det finns %d objekt valda för offlinetillgänglighet. Det valda innehållet kommer att laddas ner till enheten.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Det finns inga aktiva uppgifter i den här kursen.";
@@ -2910,6 +2943,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "Du har inte behörighet att utföra den här åtgärden";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Du kan försöka öppna sidan i ett webbläsarfönster.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Du har blivit inbjuden";

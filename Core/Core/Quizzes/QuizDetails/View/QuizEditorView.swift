@@ -38,7 +38,8 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
             .navigationBarTitle(Text("Edit Quiz Details", bundle: .core), displayMode: .inline)
             .navBarItems(leading: cancelButton, trailing: {
                 Button(action: doneTapped, label: {
-                    Text("Done", bundle: .core).bold()
+                    Text("Done", bundle: .core)
+                        .bold()
                 })
                 .disabled(viewModel.state != .ready)
             })
@@ -93,7 +94,8 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
             Button(action: {
                 router.dismiss(controller)
             }, label: {
-                Text("Cancel", bundle: .core).fontWeight(.regular)
+                Text("Cancel", bundle: .core)
+                    .fontWeight(.regular)
             })
         }
     }
@@ -124,6 +126,7 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
                 })
             )
                 .frame(height: max(200, rceHeight))
+                .accessibilityIdentifier("QuizEditor.description")
         }
     }
 
@@ -136,6 +139,7 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
                 ToggleRow(
                     label: Text("Publish", bundle: .core),
                     value: $viewModel.published)
+                .accessibilityIdentifier("QuizEditor.publish")
             }
             if viewModel.assignmentGroup != nil {
                 Divider()
@@ -145,17 +149,18 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
             ToggleRow(
                 label: Text("Shuffle Answers", bundle: .core),
                 value: $viewModel.shuffleAnswers)
+            .accessibilityIdentifier("QuizEditor.shuffle")
             Divider()
             ToggleRow(
                 label: Text("Time Limit", bundle: .core),
-                value: $viewModel.timeLimit)
+                value: $viewModel.timeLimit).accessibilityIdentifier("QuizEditor.timeLimit")
             if viewModel.timeLimit {
                 Divider()
                 DoubleFieldRow(
                     label: Text("Length in minutes", bundle: .core),
                     placeholder: "--",
                     value: $viewModel.lengthInMinutes
-                )
+                ).accessibilityIdentifier("QuizEditor.length")
             }
         }
     }
@@ -166,6 +171,7 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
             ToggleRow(
                 label: Text("Allow Multiple Attempts", bundle: .core),
                 value: $viewModel.allowMultipleAttempts)
+            .accessibilityIdentifier("QuizEditor.attemptsSection")
 
             if viewModel.allowMultipleAttempts {
                 Divider()
@@ -176,6 +182,7 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
                     placeholder: NSLocalizedString("Unlimited", bundle: .core, comment: ""),
                     value: $viewModel.allowedAttempts
                 )
+                .accessibilityIdentifier("QuizEditor.allowedAttempts")
             }
         }
     }
@@ -185,12 +192,12 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
         EditorSection {
             ToggleRow(
                 label: Text("Show One Question at a Time", bundle: .core),
-                value: $viewModel.oneQuestionAtaTime)
+                value: $viewModel.oneQuestionAtaTime).accessibilityIdentifier("QuizEditor.oneQuestion")
             if viewModel.oneQuestionAtaTime {
                 Divider()
                 ToggleRow(
                     label: Text("Lock Questions After Answering", bundle: .core),
-                    value: $viewModel.lockQuestionAfterViewing)
+                    value: $viewModel.lockQuestionAfterViewing).accessibilityIdentifier("QuizEditor.lockQuestions")
             }
         }
     }
@@ -201,6 +208,7 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
             ToggleRow(
                 label: Text("Require an Access Code", bundle: .core),
                 value: $viewModel.requireAccessCode)
+            .accessibilityIdentifier("QuizEditor.requireAccessCode")
             if viewModel.requireAccessCode {
                 Divider()
                 TextFieldRow(
@@ -208,6 +216,7 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
                     placeholder: NSLocalizedString("Enter code", comment: ""),
                     text: $viewModel.accessCode
                 )
+                .accessibilityIdentifier("QuizEditor.accessCode")
             }
         }
     }
@@ -241,6 +250,7 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
             Spacer().frame(width: 16)
             DisclosureIndicator()
         })
+        .accessibilityIdentifier("QuizEditor.quizType")
     }
 
     @ViewBuilder
@@ -255,6 +265,7 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
             Spacer().frame(width: 16)
             DisclosureIndicator()
         })
+        .accessibilityIdentifier("QuizEditor.assignmentGroup")
     }
 
     @ViewBuilder
@@ -269,6 +280,7 @@ public struct QuizEditorView<ViewModel: QuizEditorViewModelProtocol>: View {
             Spacer().frame(width: 16)
             DisclosureIndicator()
         })
+        .accessibilityIdentifier("QuizEditor.scoreToKeep")
     }
 
     func doneTapped() {

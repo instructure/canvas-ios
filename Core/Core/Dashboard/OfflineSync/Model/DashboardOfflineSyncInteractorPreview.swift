@@ -22,28 +22,27 @@ import Combine
 
 class DashboardOfflineSyncInteractorPreview: CourseSyncProgressObserverInteractor {
     private let env = PreviewEnvironment()
-    private lazy var context = env.database.viewContext
 
-    func observeDownloadProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never> {
+    func observeDownloadProgress() -> AnyPublisher<CourseSyncDownloadProgress, Never> {
         let bytesToDownload = 10_000_000
         let progressUpdates = stride(from: 0, to: bytesToDownload + 1, by: 1_000_000).map { $0 }
         return Publishers
             .Sequence<[Int], Never>(sequence: progressUpdates)
             .flatMap(maxPublishers: .max(1)) { Just($0).delay(for: 0.5, scheduler: RunLoop.main) }
-            .map { [context] in
-                let entity: CourseSyncDownloadProgress = context.insert()
-                entity.bytesToDownload = bytesToDownload
-                entity.bytesDownloaded = $0
-                return entity
-            }
             .map {
-                ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State.data([$0])
+                CourseSyncDownloadProgress(
+                    bytesToDownload: bytesToDownload,
+                    bytesDownloaded: $0,
+                    isFinished: false,
+                    error: nil,
+                    courseIds: []
+                )
             }
             .eraseToAnyPublisher()
     }
 
-    func observeStateProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncStateProgressUseCase>.State, Never> {
-        Just(.data([])).eraseToAnyPublisher()
+    func observeStateProgress() -> AnyPublisher<[CourseSyncStateProgress], Never> {
+        Just([]).eraseToAnyPublisher()
     }
 }
 

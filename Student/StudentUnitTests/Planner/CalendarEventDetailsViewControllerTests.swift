@@ -60,7 +60,7 @@ class CalendarEventDetailsViewControllerTests: StudentTestCase {
         XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, UIColor(hexString: "#ff0000")!.darkenToEnsureContrast(against: .white).hexString)
         XCTAssertEqual(controller.titleSubtitleView.subtitle, "Bob")
         XCTAssertEqual(controller.locationView.isHidden, false)
-        XCTAssertEqual(controller.dateLabel.text, "Jun 24, 2020, 11:00 AM – 1:00 PM")
+        XCTAssertEqual(controller.dateLabel.text, "Jun 24, 2020, 11:00 AM – 1:00 PM")
         XCTAssertEqual(controller.locationNameLabel.text, "School")
         XCTAssertEqual(controller.locationAddressLabel.text, "place")
 
@@ -71,6 +71,6 @@ class CalendarEventDetailsViewControllerTests: StudentTestCase {
         ))
         controller.scrollView.refreshControl?.sendActions(for: .primaryActionTriggered)
         XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, UIColor.ash.darkenToEnsureContrast(against: .white).hexString)
-        XCTAssertEqual(controller.dateLabel.text, "Jun 24, 2020 at 11:00 AM")
+        XCTAssertEqual(controller.dateLabel.text, "Jun 24, 2020 at 11:00 AM")
     }
 }

@@ -16,30 +16,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 @testable import Core
 import Foundation
 import TestsFoundation
 import XCTest
 
 class CourseSyncEntryComposerInteractorLiveTests: CoreTestCase {
-    private lazy var updatedAt = Date.init(timeIntervalSince1970: 1000)
-    private let rootFolder = APIFolder.make(
-        context_type: "Course",
-        context_id: "course-id-1",
-        files_count: 1,
-        id: 0
-    )
-    private lazy var rootFolderFile = APIFile.make(
-        id: "file-1",
-        folder_id: 0,
-        display_name: "file-displayname-1",
-        filename: "file-name-1",
-        size: 1000,
-        updated_at: updatedAt
-    )
-
     func testFileTabAndFilesAreMapped() {
-        let testee = CourseSyncEntryComposerInteractorLive()
+        let mock = CourseSyncFilesInteractorMock()
+        let testee = CourseSyncEntryComposerInteractorLive(filesInteractor: mock)
         let course = CourseSyncSelectorCourse.save(
             .make(
                 id: "course-id-1",
@@ -50,9 +36,6 @@ class CourseSyncEntryComposerInteractorLiveTests: CoreTestCase {
             ),
             in: databaseClient
         )
-
-        mockRootFolders(folders: [rootFolder])
-        mockFolderItems(for: "0", folders: [], files: [rootFolderFile])
 
         XCTAssertSingleOutputEquals(
             testee.composeEntry(from: course, useCache: false),
@@ -69,7 +52,7 @@ class CourseSyncEntryComposerInteractorLiveTests: CoreTestCase {
                         fileName: "file-name-1",
                         url: URL(string: "https://canvas.instructure.com/files/1/download")!,
                         mimeClass: "image",
-                        updatedAt: updatedAt,
+                        updatedAt: Date(timeIntervalSince1970: 1000),
                         bytesToDownload: 1000
                     ),
                 ]
@@ -78,7 +61,8 @@ class CourseSyncEntryComposerInteractorLiveTests: CoreTestCase {
     }
 
     func testFilesNotMappedWithoutFilesTab() {
-        let testee = CourseSyncEntryComposerInteractorLive()
+        let mock = CourseSyncFilesInteractorMock()
+        let testee = CourseSyncEntryComposerInteractorLive(filesInteractor: mock)
         let course = CourseSyncSelectorCourse.save(
             .make(
                 id: "course-id-1",
@@ -87,9 +71,6 @@ class CourseSyncEntryComposerInteractorLiveTests: CoreTestCase {
             ),
             in: databaseClient
         )
-
-        mockRootFolders(folders: [rootFolder])
-        mockFolderItems(for: "0", folders: [], files: [rootFolderFile])
 
         XCTAssertSingleOutputEquals(
             testee.composeEntry(from: course, useCache: false),
@@ -101,17 +82,29 @@ class CourseSyncEntryComposerInteractorLiveTests: CoreTestCase {
             )
         )
     }
+}
 
-    private func mockRootFolders(courseID: String = "course-id-1", folders: [APIFolder]) {
-        let foldersUseCase = GetFolderByPath(context: .course(courseID))
-        api.mock(foldersUseCase, value: folders)
+private class CourseSyncFilesInteractorMock: CourseSyncFilesInteractor {
+    let filePublisher = PassthroughSubject<[Core.File], Error>()
+
+    func downloadFile(courseId _: String, url _: URL, fileID _: String, fileName _: String, mimeClass _: String, updatedAt _: Date?) -> AnyPublisher<Float, Error> {
+        Empty(completeImmediately: false).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 
-    private func mockFolderItems(for folderID: String, folders: [APIFolder], files: [APIFile]) {
-        let foldersUseCase = GetFoldersRequest(context: Context(.folder, id: folderID))
-        api.mock(foldersUseCase, value: folders)
+    func getFiles(courseId _: String, useCache _: Bool) -> AnyPublisher<[Core.File], Error> {
+        Just([
+            .make(from: APIFile.make(
+                id: "file-1",
+                folder_id: 0,
+                display_name: "file-displayname-1",
+                filename: "file-name-1",
+                size: 1000,
+                updated_at: Date(timeIntervalSince1970: 1000)
+            )),
+        ]).setFailureType(to: Error.self).eraseToAnyPublisher()
+    }
 
-        let filesUseCase = GetFilesRequest(context: Context(.folder, id: folderID))
-        api.mock(filesUseCase, value: files)
+    func removeUnavailableFiles(courseId _: String, newFileIDs _: [String]) -> AnyPublisher<Void, Error> {
+        Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 }

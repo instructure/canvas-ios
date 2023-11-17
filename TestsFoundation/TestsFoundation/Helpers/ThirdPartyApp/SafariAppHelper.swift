@@ -24,12 +24,19 @@ public class SafariAppHelper: BaseHelper {
     public static var shareButton: XCUIElement { safariApp.find(id: "ShareButton") }
     public static var clearTextButton: XCUIElement { safariApp.find(id: "ClearTextButton") }
     public static var replaceButton: XCUIElement { safariApp.find(label: "Replace", type: .button) }
+    public static var addressLabelIpad: XCUIElement { safariApp.find(id: "UnifiedTabBarItemView?isSelected=true") }
 
     public static var browserURL: String {
         safariApp.activate()
         reloadButton.waitUntil(.visible)
-        tabBarItemTitle.hit()
-        let url = URL.waitUntil(.visible).value as? String ?? ""
+        var addressLabel = addressLabelIpad.waitUntil(.visible, timeout: 5)
+        if addressLabel.isVisible {
+            addressLabel.hit()
+        } else {
+            tabBarItemTitle.actionUntilElementCondition(action: .tap, element: URL, condition: .visible)
+            addressLabel = URL.waitUntil(.visible)
+        }
+        let url = addressLabel.value as? String ?? ""
         return url
     }
 
@@ -37,11 +44,12 @@ public class SafariAppHelper: BaseHelper {
         public static var copyButton: XCUIElement { SafariAppHelper.safariApp.find(label: "Copy", type: .cell) }
         public static var saveToFiles: XCUIElement { SafariAppHelper.safariApp.findAll(type: .cell, minimumCount: 6)[6] }
         public static var onMyIphoneButton: XCUIElement { SafariAppHelper.safariApp.find(label: "On My iPhone", type: .button) }
-        public static var onMyIphoneLabel: XCUIElement { SafariAppHelper.safariApp.find(label: "On My iPhone", type: .staticText) }
+        public static var onMyIpadCell: XCUIElement { SafariAppHelper.safariApp.find(id: "DOC.sidebar.item.On My iPad", type: .cell) }
+        public static var onMyLabel: XCUIElement { SafariAppHelper.safariApp.find(labelContaining: "On My iP", type: .staticText) }
         public static var saveButton: XCUIElement { SafariAppHelper.safariApp.find(label: "Save", type: .button) }
 
         public static func titleLabel(title: String) -> XCUIElement {
-            return SafariAppHelper.safariApp.find(label: title, type: .staticText)
+            return SafariAppHelper.safariApp.find(label: title)
         }
     }
 }

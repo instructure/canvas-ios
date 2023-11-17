@@ -398,6 +398,9 @@
 "Available From:" = "Доступно с:";
 
 /* No comment provided by engineer. */
+"Available offline" = "Доступно в автономном режиме";
+
+/* No comment provided by engineer. */
 "Available until" = "Доступно до";
 
 /* No comment provided by engineer. */
@@ -453,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Cancel Submission?" = "Отменить отправку?";
+
+/* No comment provided by engineer. */
+"Cancel Sync?" = "Отменить синхронизацию?";
 
 /* No comment provided by engineer. */
 "Canvas Guides" = "Руководства Canvas";
@@ -590,6 +596,9 @@
 "Content" = "Содержимое";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Отображение поля Содержимое невозможно";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Ошибка ссылки на содержимое";
 
 /* No comment provided by engineer. */
@@ -713,10 +722,10 @@
 "Cyan" = "Голубой";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
+"d_courses_syncing" = "d_courses_syncing";
 
 /* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
+"d_items" = "d_items";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -866,9 +875,6 @@
 "Dismiss %@" = "Исключить %@";
 
 /* No comment provided by engineer. */
-"Dismiss notification" = "Пропустить уведомление";
-
-/* No comment provided by engineer. */
 "Display As" = "Отобразить как";
 
 /* No comment provided by engineer. */
@@ -930,9 +936,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Редактировать настройки курса";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Редактировать информационную панель";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Редактировать дискуссию";
@@ -1044,9 +1047,6 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Сбой. Коснитесь для просмотра опций";
-
-/* No comment provided by engineer. */
-"favorite" = "предпочтительный";
 
 /* No comment provided by engineer. */
 "Feedback" = "Оценка";
@@ -1220,6 +1220,9 @@
 "Groups" = "Группы";
 
 /* No comment provided by engineer. */
+"Hang tight, we're getting things ready for you." = "Спокойно, мы готовим все для вас.";
+
+/* No comment provided by engineer. */
 "Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Отсканировал ли ваш родитель этот QR-код из приложения Canvas Parent для сопряжения с вами.";
 
 /* No comment provided by engineer. */
@@ -1364,6 +1367,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Похоже, вы не зачислены ни на какие курсы в качестве %@. Вам может подойти одно из наших других приложений. Нажмите, чтобы посетить App Store.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "Это приведет к остановке синхронизации офлайн-контента. Вы можете сделать это еще раз позднее.";
+
+/* No comment provided by engineer. */
 "Italic" = "Курсив";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Ошибка входа в систему";
+
+/* No comment provided by engineer. */
+"Login help." = "Справка по входу в систему.";
 
 /* No comment provided by engineer. */
 "Login ID" = "Имя пользователя";
@@ -1784,13 +1793,25 @@
 "Observers" = "Наблюдатели";
 
 /* No comment provided by engineer. */
+"Offline" = "Не в сети";
+
+/* No comment provided by engineer. */
 "Offline Content" = "Оффлайн-контент";
 
 /* No comment provided by engineer. */
 "Offline Content Sync Failed" = "Сбой синхронизации автономного содержимого";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Success" = "Синхронизация автономного содержимого успешно выполнена";
+
+/* No comment provided by engineer. */
 "Offline mode" = "Режим офлайн";
+
+/* No comment provided by engineer. */
+"Offline sync was interrupted by the operating system" = "Автономная синхронизация была прервана операционной системой";
+
+/* No comment provided by engineer. */
+"offline_sync_finished" = "offline_sync_finished";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -1809,6 +1830,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "Не удалось загрузить один или несколько файлов. Проверьте подключение к Интернету и повторите отправку.";
+
+/* No comment provided by engineer. */
+"One or more items failed to sync." = "Не удалось синхронизировать один или более элементов.";
 
 /* No comment provided by engineer. */
 "One Question at a Time:" = "По одному вопросу за раз:";
@@ -1833,6 +1857,9 @@
 
 /* No comment provided by engineer. */
 "Open course details" = "Открыть подробную информацию о курсе";
+
+/* No comment provided by engineer. */
+"Open In Browser" = "Открыть в браузере";
 
 /* No comment provided by engineer. */
 "Open item details" = "Открыть подробную информацию об элементе";
@@ -2288,6 +2315,9 @@
 "Show One Question at a Time" = "Показывать по одному вопросу за раз";
 
 /* No comment provided by engineer. */
+"Show sync details" = "Показать детали синхронизации";
+
+/* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2352,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "Что-то пошло не так";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Что-то вышло из-под нашего контроля.";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Сортировать по лайкам";
@@ -2427,6 +2460,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "Успешно!";
+
+/* No comment provided by engineer. */
+"Success! Downloaded %@ of %@" = "Успешно! Скачано %1$@ из %2$@";
 
 /* No comment provided by engineer. */
 "Summary" = "Сводные данные";
@@ -2538,9 +2574,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Процесс отправки был прерван операционной системой.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Имеется %d выбранных позиций, которые будут доступны в режиме офлайн. Выбранный контент будет загружен на устройство.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "В этом курсе нет активных заданий.";
@@ -2910,6 +2943,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "У вас нет прав для выполнения этого действия";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Можно попробовать открыть страницу в браузере.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Вам поступило приглашение";

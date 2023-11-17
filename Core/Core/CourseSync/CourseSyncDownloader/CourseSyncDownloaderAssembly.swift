@@ -23,6 +23,7 @@ public enum CourseSyncDownloaderAssembly {
     public static func makeInteractor() -> CourseSyncInteractor {
         let contentInteractors: [CourseSyncContentInteractor] = [
             CourseSyncPagesInteractorLive(),
+            CourseSyncPeopleInteractorLive(),
             CourseSyncAssignmentsInteractorLive(),
             CourseSyncGradesInteractorLive(userId: AppEnvironment.shared.currentSession?.userID ?? "self"),
             CourseSyncSyllabusInteractorLive(),
@@ -34,10 +35,17 @@ public enum CourseSyncDownloaderAssembly {
         let scheduler = DispatchQueue(
             label: "com.instructure.icanvas.core.course-sync-download"
         ).eraseToAnyScheduler()
+        let progressInteractor = CourseSyncProgressObserverInteractorLive()
+        let backgroundActivity = BackgroundActivity(processManager: ProcessInfo.processInfo, activityName: "Offline Sync")
 
         return CourseSyncInteractorLive(contentInteractors: contentInteractors,
                                         filesInteractor: CourseSyncFilesInteractorLive(),
+                                        modulesInteractor: CourseSyncModulesInteractorLive(),
                                         progressWriterInteractor: CourseSyncProgressWriterInteractorLive(),
+                                        notificationInteractor: CourseSyncNotificationInteractor(notificationManager: .shared,
+                                                                                                     progressInteractor: progressInteractor),
+                                        courseListInteractor: AllCoursesAssembly.makeCourseListInteractor(),
+                                        backgroundActivity: backgroundActivity,
                                         scheduler: scheduler)
     }
 }

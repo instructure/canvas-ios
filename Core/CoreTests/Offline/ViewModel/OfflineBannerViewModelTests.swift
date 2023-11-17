@@ -114,4 +114,8 @@ private class MockOfflineModeInteractor: OfflineModeInteractor {
             .map { $0 ? NetworkAvailabilityStatus.disconnected : .connected(.wifi)}
             .eraseToAnyPublisher()
     }
+
+    func isNetworkOffline() -> Bool {
+        offlineMode.value
+    }
 }

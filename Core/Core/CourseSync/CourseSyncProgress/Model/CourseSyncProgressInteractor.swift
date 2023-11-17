@@ -23,7 +23,7 @@ import CoreData
 import Foundation
 
 protocol CourseSyncProgressInteractor: AnyObject {
-    func observeDownloadProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never>
+    func observeDownloadProgress() -> AnyPublisher<CourseSyncDownloadProgress, Never>
     func observeEntries() -> AnyPublisher<[CourseSyncEntry], Error>
     func setCollapsed(selection: CourseEntrySelection, isCollapsed: Bool)
     func cancelSync()
@@ -90,7 +90,7 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         context.automaticallyMergesChangesFromParent = true
     }
 
-    func observeDownloadProgress() -> AnyPublisher<ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State, Never> {
+    func observeDownloadProgress() -> AnyPublisher<CourseSyncDownloadProgress, Never> {
         progressObserverInteractor
             .observeDownloadProgress()
             .receive(on: scheduler)
@@ -100,22 +100,28 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
     func observeEntries() -> AnyPublisher<[CourseSyncEntry], Error> {
         unowned let unownedSelf = self
 
-        return courseSyncListInteractor.getCourseSyncEntries(filter: .synced)
-            .handleEvents(
-                receiveOutput: {
-                    unownedSelf.courseSyncEntries.send($0)
-                    unownedSelf.observeEntryProgress()
-                },
-                receiveCompletion: { completion in
-                    switch completion {
-                    case let .failure(error):
-                        unownedSelf.courseSyncEntries.send(completion: .failure(error))
-                    default:
-                        break
-                    }
-                }
-            )
-            .flatMap { _ in unownedSelf.courseSyncEntries.eraseToAnyPublisher() }
+        return progressObserverInteractor
+            .observeDownloadProgress()
+            .first()
+            .flatMap {
+                unownedSelf.courseSyncListInteractor.getCourseSyncEntries(filter: .courseIds($0.courseIds))
+                    .handleEvents(
+                        receiveOutput: {
+                            unownedSelf.courseSyncEntries.send($0)
+                            unownedSelf.observeEntryProgress()
+                        },
+                        receiveCompletion: { completion in
+                            switch completion {
+                            case let .failure(error):
+                                unownedSelf.courseSyncEntries.send(completion: .failure(error))
+                            default:
+                                break
+                            }
+                        }
+                    )
+                    .flatMap { _ in unownedSelf.courseSyncEntries.eraseToAnyPublisher() }
+                    .eraseToAnyPublisher()
+            }
             .eraseToAnyPublisher()
     }
 
@@ -123,17 +129,6 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         progressObserverInteractor.observeStateProgress()
             .receive(on: scheduler)
             .throttle(for: .milliseconds(300), scheduler: scheduler, latest: true)
-            .flatMap { state -> AnyPublisher<[CourseSyncStateProgress], Never> in
-                switch state {
-                case let .data(progressList):
-                    guard progressList.count > 0 else {
-                        return Empty(completeImmediately: false).eraseToAnyPublisher()
-                    }
-                    return Just(progressList).eraseToAnyPublisher()
-                default:
-                    return Empty(completeImmediately: false).eraseToAnyPublisher()
-                }
-            }
             .map { $0.map { StateProgress(from: $0) } }
             .map { Set($0) }
             .scan((Set([]), Set([]))) { ($0.1, $1) } // Access previous and current published element

@@ -58,6 +58,7 @@ public class FilesHelper: BaseHelper {
         public static var uploadImageButton: XCUIElement { app.find(label: "Photo Library", type: .button) }
         public static var imageItem: XCUIElement { app.find(labelContaining: "Photo", type: .image) }
         public static var browseButton: XCUIElement { app.find(label: "Browse", type: .button) }
+        public static var onMyIpadButton: XCUIElement { app.find(id: "DOC.sidebar.item.On My iPad", type: .cell) }
 
         // Deleting file
         public static var deleteButton: XCUIElement { app.find(label: "Delete", type: .button) }

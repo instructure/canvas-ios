@@ -20,17 +20,13 @@ import Combine
 import CombineSchedulers
 import Foundation
 
-protocol CourseSyncListInteractor {
+public protocol CourseSyncListInteractor {
     func getCourseSyncEntries(filter: CourseSyncListFilter) -> AnyPublisher<[CourseSyncEntry], Error>
 }
 
-class CourseSyncListInteractorLive: CourseSyncListInteractor {
-    private let courseListStore = ReactiveStore(
-        useCase: GetCourseSyncSelectorCourses()
-    )
+public class CourseSyncListInteractorLive: CourseSyncListInteractor {
     private let entryComposerInteractor: CourseSyncEntryComposerInteractor
     private var sessionDefaults: SessionDefaults
-    private var filter: CourseSyncListFilter!
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     init(
@@ -43,67 +39,64 @@ class CourseSyncListInteractorLive: CourseSyncListInteractor {
         self.scheduler = scheduler
     }
 
-    func getCourseSyncEntries(filter: CourseSyncListFilter) -> AnyPublisher<[CourseSyncEntry], Error> {
-        self.filter = filter
+    public func getCourseSyncEntries(filter: CourseSyncListFilter) -> AnyPublisher<[CourseSyncEntry], Error> {
+        let courseListStore: ReactiveStore<GetCourseSyncSelectorCourses>
 
-        unowned let unownedSelf = self
-
+        let shouldLimitResultsToCacheOnly = filter.shouldUseCache
         let publisher: AnyPublisher<[CourseSyncSelectorCourse], Error>
 
         switch filter {
-        case let .courseID(courseID):
-            publisher = courseListStore.getEntities().filterToCourseID(courseID)
-        case .all:
+        case let .courseId(courseId):
+            courseListStore = ReactiveStore(
+                useCase: GetCourseSyncSelectorCourses(
+                    scope: .where(#keyPath(CourseSyncSelectorCourse.courseId), equals: courseId)
+                )
+            )
             publisher = courseListStore.getEntities()
-        case .synced:
+        case .all:
+            courseListStore = ReactiveStore(
+                useCase: GetCourseSyncSelectorCourses()
+            )
+            publisher = courseListStore.getEntities()
+        case let .courseIds(courseIds):
+            let predicate = NSPredicate(format: "courseId IN %@", courseIds)
+            courseListStore = ReactiveStore(
+                useCase: GetCourseSyncSelectorCourses(
+                    scope: Scope(
+                        predicate: predicate,
+                        order: [NSSortDescriptor(key: #keyPath(CourseSyncSelectorCourse.name), ascending: true)]
+                    )
+                )
+            )
             publisher = courseListStore.getEntitiesFromDatabase()
         }
 
         return publisher
             .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
-            .flatMap {
-                unownedSelf.entryComposerInteractor.composeEntry(
+            .flatMap { [entryComposerInteractor] in
+                entryComposerInteractor.composeEntry(
                     from: $0,
-                    useCache: unownedSelf.filter.isLimitedToSyncedOnly
+                    useCache: shouldLimitResultsToCacheOnly
                 )
             }
             .collect()
             .replaceEmpty(with: [])
-            .map { unownedSelf.applySelectionsFromPreviousSession($0) }
-            .map {
-                if unownedSelf.filter.isLimitedToSyncedOnly {
-                    return unownedSelf.filterToSelectedCourses($0)
-                } else {
-                    return $0
-                }
+            .map { [sessionDefaults] in
+                $0.applySelectionsFromPreviousSession(filter: filter,
+                                                      sessionDefaults: sessionDefaults)
             }
+            .map { shouldLimitResultsToCacheOnly ? $0.selectedEntries() : $0 }
             .receive(on: scheduler)
             .eraseToAnyPublisher()
     }
+}
 
-    // MARK: - Private Methods
+// MARK: - Private Helpers
 
-    private func applySelectionsFromPreviousSession(
-        _ entries: [CourseSyncEntry]
-    ) -> [CourseSyncEntry] {
-        var entriesCpy = entries
-        let selections = sessionDefaults.offlineSyncSelections
-            .compactMap { $0.toCourseEntrySelection(from: entries) }
-
-        for selection in selections {
-            let entriesWithSelection = setSelected(entries: entriesCpy, selection: selection, selectionState: .selected)
-            entriesCpy = entriesWithSelection
-        }
-
-        return entriesCpy
-    }
-
-    /// Removes any tab and file that is not selected for syncing.
-    private func filterToSelectedCourses(
-        _ entries: [CourseSyncEntry]
-    ) -> [CourseSyncEntry] {
-        entries
-            .filter { $0.selectionState == .selected || $0.selectionState == .partiallySelected }
+private extension Array where Element == CourseSyncEntry {
+    /// Removes any tab and file that is not selected for syncing and returns the rest in a new array.
+    func selectedEntries() -> [CourseSyncEntry] {
+        filter { $0.selectionState == .selected || $0.selectionState == .partiallySelected }
             .map { filteredEntries in
                 var entriesCpy = filteredEntries
                 entriesCpy.tabs.removeAll { $0.selectionState == .deselected }
@@ -112,36 +105,38 @@ class CourseSyncListInteractorLive: CourseSyncListInteractor {
             }
     }
 
-    private func setSelected(
-        entries: [CourseSyncEntry],
+    func setSelected(
         selection: CourseEntrySelection,
-        selectionState: ListCellView.SelectionState
+        filter _: CourseSyncListFilter,
+        sessionDefaults _: SessionDefaults
     ) -> [CourseSyncEntry] {
-        var entriesCpy = entries
+        var entriesCpy = self
 
         switch selection {
         case let .course(entryID):
-            entriesCpy[id: entryID]?.selectCourse(selectionState: selectionState)
+            entriesCpy[id: entryID]?.selectCourse(selectionState: .selected)
         case let .tab(entryID, tabID):
-            entriesCpy[id: entryID]?.selectTab(id: tabID, selectionState: selectionState)
+            entriesCpy[id: entryID]?.selectTab(id: tabID, selectionState: .selected)
         case let .file(entryID, fileID):
-            entriesCpy[id: entryID]?.selectFile(id: fileID, selectionState: selectionState)
+            entriesCpy[id: entryID]?.selectFile(id: fileID, selectionState: .selected)
         }
 
-        switch filter {
-        case let .courseID(courseID):
-            // If we only show one course then we should keep other course selections intact
-            var oldSelections = sessionDefaults.offlineSyncSelections
-            oldSelections.removeAll { $0.hasPrefix("courses/\(courseID)") }
-            let newSelections = CourseSyncItemSelection.make(from: entries)
-            sessionDefaults.offlineSyncSelections = oldSelections + newSelections
-        case .all:
-            // If all courses are visible then it's safe to overwrite all course selections
-            sessionDefaults.offlineSyncSelections = CourseSyncItemSelection.make(from: entries)
-        case .synced:
-            break
-        case .none:
-            break
+        return entriesCpy
+    }
+
+    func applySelectionsFromPreviousSession(
+        filter: CourseSyncListFilter,
+        sessionDefaults: SessionDefaults
+    ) -> [CourseSyncEntry] {
+        var entriesCpy = self
+        let selections = sessionDefaults.offlineSyncSelections
+            .compactMap { $0.toCourseEntrySelection(from: self) }
+
+        for selection in selections {
+            let entriesWithSelection = entriesCpy.setSelected(selection: selection,
+                                                              filter: filter,
+                                                              sessionDefaults: sessionDefaults)
+            entriesCpy = entriesWithSelection
         }
 
         return entriesCpy

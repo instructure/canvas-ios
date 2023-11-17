@@ -398,6 +398,9 @@
 "Available From:" = "ใช้ได้จาก:";
 
 /* No comment provided by engineer. */
+"Available offline" = "รายการออฟไลน์ที่มี";
+
+/* No comment provided by engineer. */
 "Available until" = "ใช้ได้จนถึง";
 
 /* No comment provided by engineer. */
@@ -453,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Cancel Submission?" = "ยกเลิกการจัดส่งหรือไม่";
+
+/* No comment provided by engineer. */
+"Cancel Sync?" = "ยกเลิกการซิงค์หรือไม่";
 
 /* No comment provided by engineer. */
 "Canvas Guides" = "คู่มือ Canvas";
@@ -590,6 +596,9 @@
 "Content" = "ข้อมูล";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "ไม่สามารถแสดงเนื้อหาได้";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "ข้อผิดพลาดในการเชื่อมโยงเนื้อหา";
 
 /* No comment provided by engineer. */
@@ -711,6 +720,9 @@
 
 /* No comment provided by engineer. */
 "Cyan" = "ฟ้า";
+
+/* No comment provided by engineer. */
+"d_courses_syncing" = "d_courses_syncing";
 
 /* No comment provided by engineer. */
 "d_items" = "d_items";
@@ -926,9 +938,6 @@
 "Edit course settings" = "แก้ไขค่าปรับตั้งบทเรียน";
 
 /* No comment provided by engineer. */
-"Edit Dashboard" = "แก้ไขแผงข้อมูล";
-
-/* No comment provided by engineer. */
 "Edit Discussion" = "แก้ไขการพูดคุย";
 
 /* No comment provided by engineer. */
@@ -1040,9 +1049,6 @@
 "Failed. Tap for options" = "ล้มเหลว กดเพื่อดูตัวเลือก";
 
 /* No comment provided by engineer. */
-"favorite" = "รายการโปรด";
-
-/* No comment provided by engineer. */
 "Feedback" = "ผลตอบรับ";
 
 /* No comment provided by engineer. */
@@ -1056,6 +1062,9 @@
 
 /* No comment provided by engineer. */
 "File Details" = "รายละเอียดไฟล์";
+
+/* No comment provided by engineer. */
+"File download failed." = "ดาวน์โหลดไฟล์ล้มเหลว";
 
 /* No comment provided by engineer. */
 "File No Longer Exists" = "ไฟล์ไม่มีอยู่อีกต่อไป";
@@ -1211,6 +1220,9 @@
 "Groups" = "กลุ่ม";
 
 /* No comment provided by engineer. */
+"Hang tight, we're getting things ready for you." = "อดทนไว้ เรากำลังเตรียมการให้กับคุณ";
+
+/* No comment provided by engineer. */
 "Have your parent scan this QR code from the Canvas Parent app to pair with you." = "พ่อแม่ผู้ปกครองของคุณสแกนรหัส QR นี้จากแอพ Canvas Parent เพื่อเข้าคู่กับคุณแล้วหรือยัง";
 
 /* No comment provided by engineer. */
@@ -1355,6 +1367,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "ดูเหมือนคุณจะไม่ได้ลงทะเบียนในบทเรียนใด ๆ ในฐาน %@ แอพอื่น ๆ บางส่วนของเราอาจเหมาะสมมากกว่า กดเลือกหนึ่งรายการเพื่อไปยัง App Store";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "การซิงค์ข้อมูลออฟไลน์จะหยุดลง คุณสามารถดำเนินการได้อีกครั้งในภายหลัง";
+
+/* No comment provided by engineer. */
 "Italic" = "ตัวเอียง";
 
 /* No comment provided by engineer. */
@@ -1485,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "ข้อผิดพลาดในการล็อกอิน";
+
+/* No comment provided by engineer. */
+"Login help." = "ความช่วยเหลือในการล็อกอิน";
 
 /* No comment provided by engineer. */
 "Login ID" = "ID ล็อกอิน";
@@ -1775,13 +1793,25 @@
 "Observers" = "ผู้สังเกตการณ์";
 
 /* No comment provided by engineer. */
+"Offline" = "ออฟไลน์";
+
+/* No comment provided by engineer. */
 "Offline Content" = "เนื้อหาออฟไลน์";
 
 /* No comment provided by engineer. */
 "Offline Content Sync Failed" = "ซิงค์เนื้อหาออฟไลน์ล้มเหลว";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Success" = "ซิงค์เนื้อหาออฟไลน์เสร็จสิ้น";
+
+/* No comment provided by engineer. */
 "Offline mode" = "โหมดออฟไลน์";
+
+/* No comment provided by engineer. */
+"Offline sync was interrupted by the operating system" = "การซิงค์ออฟไลน์ถูกแทรกแซงโดยระบบปฏิบัติการ";
+
+/* No comment provided by engineer. */
+"offline_sync_finished" = "offline_sync_finished";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -1800,6 +1830,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "ไฟล์บางส่วนไม่สามารถอัพโหลดได้ ตรวจสอบการเชื่อมต่ออินเทอร์เน็ตของคุณแล้วลองส่งใหม่อีกครั้ง";
+
+/* No comment provided by engineer. */
+"One or more items failed to sync." = "มีบางรายการไม่สามารถซิงค์ได้";
 
 /* No comment provided by engineer. */
 "One Question at a Time:" = "ทีละคำถาม:";
@@ -1824,6 +1857,9 @@
 
 /* No comment provided by engineer. */
 "Open course details" = "เปิดรายละเอียดบทเรียน";
+
+/* No comment provided by engineer. */
+"Open In Browser" = "เปิดในเบราเซอร์";
 
 /* No comment provided by engineer. */
 "Open item details" = "เปิดรายละเอียดรายการ";
@@ -2279,6 +2315,9 @@
 "Show One Question at a Time" = "แสดงทีละคำถาม";
 
 /* No comment provided by engineer. */
+"Show sync details" = "แสดงรายละเอียดการซิงค์";
+
+/* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
@@ -2313,6 +2352,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "มีบางอย่างผิดปกติ";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "มีบางอย่างผิดพลาดที่นอกเหนือการควบคุมของเรา";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "เรียงจากไลค์";
@@ -2420,6 +2462,9 @@
 "Success!" = "สำเร็จ!";
 
 /* No comment provided by engineer. */
+"Success! Downloaded %@ of %@" = "เสร็จสิ้น! ดาวน์โหลด %1$@ จาก %2$@";
+
+/* No comment provided by engineer. */
 "Summary" = "สรุป";
 
 /* No comment provided by engineer. */
@@ -2454,6 +2499,9 @@
 
 /* No comment provided by engineer. */
 "Synchronization" = "การซิงค์ข้อมูล";
+
+/* No comment provided by engineer. */
+"Syncing Offline Content" = "กำลังซิงค์ข้อมูลออฟไลน์";
 
 /* No comment provided by engineer. */
 "System settings" = "ค่าปรับตั้งระบบ";
@@ -2526,9 +2574,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "กระบวนการจัดส่งถูกยกเลิกโดยระบบปฏิบัติการ";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "มี %d รายการที่เลือกสำหรับใช้งานแบบออฟไลน์ เนื้อหาที่เลือกจะถูกดาวน์โหลดไปยังอุปกรณ์";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "ไม่มีภารกิจที่เปิดใช้อยู่ในบทเรียนนี้";
@@ -2898,6 +2943,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "คุณไม่ได้รับอนุญาตให้ดำเนินการในส่วนนี้";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "คุณสามารถลองเปิดเพจในเบราเซอร์";
 
 /* No comment provided by engineer. */
 "You have been invited" = "คุณได้รับเชิญ";

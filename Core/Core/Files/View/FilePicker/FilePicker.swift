@@ -145,7 +145,7 @@ extension FilePicker: UIImagePickerControllerDelegate, UINavigationControllerDel
 
 extension FilePicker: UIDocumentPickerDelegate {
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        guard let session = env.currentSession else { return }
+        guard env.currentSession != nil else { return }
 
         Publishers
             .Sequence<[URL], Never>(sequence: urls)

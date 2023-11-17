@@ -398,6 +398,9 @@
 "Available From:" = "Ar gael o:";
 
 /* No comment provided by engineer. */
+"Available offline" = "Ar gael all-lein";
+
+/* No comment provided by engineer. */
 "Available until" = "Ar gael tan";
 
 /* No comment provided by engineer. */
@@ -453,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Cancel Submission?" = "Canslo Cyflwyniad?";
+
+/* No comment provided by engineer. */
+"Cancel Sync?" = "Canslo Cysoni?";
 
 /* No comment provided by engineer. */
 "Canvas Guides" = "Canllawiau Canvas";
@@ -590,6 +596,9 @@
 "Content" = "Cynnwys";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Does dim modd dangos y cynnwys";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Gwall Dolen Gynnwys";
 
 /* No comment provided by engineer. */
@@ -713,10 +722,10 @@
 "Cyan" = "Cyan";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
+"d_courses_syncing" = "d_courses_syncing";
 
 /* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
+"d_items" = "d_items";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -866,9 +875,6 @@
 "Dismiss %@" = "Gwrthod %@";
 
 /* No comment provided by engineer. */
-"Dismiss notification" = "Diystyru hysbysu";
-
-/* No comment provided by engineer. */
 "Display As" = "Dangos Fel";
 
 /* No comment provided by engineer. */
@@ -930,9 +936,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Golygu gosodiadau’r cwrs";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Golygu’r Dangosfwrdd";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Golygu Trafodaeth";
@@ -1044,9 +1047,6 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Wedi methu. Tapiwch i gael opsiynau";
-
-/* No comment provided by engineer. */
-"favorite" = "ffefryn";
 
 /* No comment provided by engineer. */
 "Feedback" = "Adborth";
@@ -1220,6 +1220,9 @@
 "Groups" = "Grwpiau";
 
 /* No comment provided by engineer. */
+"Hang tight, we're getting things ready for you." = "Arhoswch, rydym ni’n cael pethau’n barod i chi.";
+
+/* No comment provided by engineer. */
 "Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Cael eich rhiant i sganio’r cod QR hwn o ap Canvas Parent i baru â chi.";
 
 /* No comment provided by engineer. */
@@ -1364,6 +1367,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Mae'n ymddangos nad ydych chi wedi ymrestru ar unrhyw gyrsiau fel %@. Efallai y byddai un o'n apiau eraill yn eich siwtio'n well. Tapiwch un i fynd i'r App Store.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "Bydd y stopio cysoni cynnwys all-lein. Gallwch chi ei wneud eto yn nes ymlaen.";
+
+/* No comment provided by engineer. */
 "Italic" = "Italig";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Gwall Mewngofnodi";
+
+/* No comment provided by engineer. */
+"Login help." = "Cymorth mewngofnodi.";
 
 /* No comment provided by engineer. */
 "Login ID" = "ID Mewngofnodi";
@@ -1784,13 +1793,25 @@
 "Observers" = "Arsyllwyr";
 
 /* No comment provided by engineer. */
+"Offline" = "All-lein";
+
+/* No comment provided by engineer. */
 "Offline Content" = "Cynnwys All-lein";
 
 /* No comment provided by engineer. */
 "Offline Content Sync Failed" = "Cysoni Cynnwys All-lein wedi Methu";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Success" = "Cysoni Cynnwys All-lein wedi Llwyddo";
+
+/* No comment provided by engineer. */
 "Offline mode" = "Modd all-lein";
+
+/* No comment provided by engineer. */
+"Offline sync was interrupted by the operating system" = "Cysoni all-lein wedi’i amharu gan y system weithredu";
+
+/* No comment provided by engineer. */
+"offline_sync_finished" = "offline_sync_finished";
 
 /* No comment provided by engineer. */
 "OK" = "Iawn";
@@ -1809,6 +1830,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "Wedi methu llwytho un neu ragor o ffeiliau i fyny. Gwiriwch eich cysylltiad rhyngrwyd a rhoi cynnig arall ar gyflwyno.";
+
+/* No comment provided by engineer. */
+"One or more items failed to sync." = "Wedi methu cysoni un neu ragor o eitemau.";
 
 /* No comment provided by engineer. */
 "One Question at a Time:" = "Un Cwestiwn ar y Tro:";
@@ -1833,6 +1857,9 @@
 
 /* No comment provided by engineer. */
 "Open course details" = "Agor manylion cwrs";
+
+/* No comment provided by engineer. */
+"Open In Browser" = "Agor mewn Porwr";
 
 /* No comment provided by engineer. */
 "Open item details" = "Agor manylion eitem";
@@ -2288,6 +2315,9 @@
 "Show One Question at a Time" = "Dangos un cwestiwn ar y tro";
 
 /* No comment provided by engineer. */
+"Show sync details" = "Dangos manylion cysoni";
+
+/* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2352,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "Aeth rhywbeth o’i le";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Aeth rhywbeth o’i le y tu hwnt i’n rheolaeth";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Trefnu yn ôl y nifer sydd wedi’i hoffi";
@@ -2427,6 +2460,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "Wedi llwyddo!";
+
+/* No comment provided by engineer. */
+"Success! Downloaded %@ of %@" = "Wedi llwyddo! Wedi llwytho %1$@ i lawr %2$@";
 
 /* No comment provided by engineer. */
 "Summary" = "Crynodeb";
@@ -2538,9 +2574,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Cafodd y broses gyflwyno ei therfynu gan y system weithredu.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Mae %d eitem wedi’u dewis i fod ar gael all-lein. Bydd y cynnwys sydd wedi’i ddewis yn cael ei lwytho i lawr i’r ddyfais.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Does dim aseiniadau gweithredol yn y cwrs hwn.";
@@ -2910,6 +2943,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "Does gennych chi ddim hawl i wneud hyn";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Gallwch chi geisio agor y dudalen mewn porwr.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Rydych chi wedi cael gwahoddiad";

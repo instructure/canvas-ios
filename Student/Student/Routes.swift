@@ -53,7 +53,14 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     },
 
     "/conversations": nil,
-    "/conversations/compose": nil,
+    "/conversations/compose": { url, params, userInfo in
+        if ExperimentalFeature.nativeStudentInbox.isEnabled {
+            return ComposeMessageAssembly.makeNewMessageViewController(env: AppEnvironment.shared)
+        } else {
+            return HelmViewController(moduleName: "/conversations/compose", url: url, params: params, userInfo: userInfo)
+        }
+    },
+
     "/conversations/:conversationID": { url, params, userInfo in
         if ExperimentalFeature.nativeStudentInbox.isEnabled {
             guard let conversationID = params["conversationID"] else { return nil }
@@ -63,7 +70,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         }
     },
 
-    "/courses": { _, _, _ in CourseListAssembly.makeCourseListViewController() },
+    "/courses": { _, _, _ in AllCoursesAssembly.makeCourseListViewController(env: .shared) },
 
     "/courses/:courseID": courseDetails,
     "/courses/:courseID/tabs": courseDetails,
@@ -538,7 +545,7 @@ private func courseDetails(url: URLComponents, params: [String: String], userInf
     guard let context = Context(path: url.path) else { return nil }
 
     let regularCourseDetails: () -> UIViewController = {
-        let viewModel = CourseDetailsViewModel(context: context)
+        let viewModel = CourseDetailsViewModel(context: context, offlineModeInteractor: OfflineModeAssembly.make())
         let viewController = CoreHostingController(CourseDetailsView(viewModel: viewModel))
 
         if let contextColor = url.contextColor {

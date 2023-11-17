@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import UIKit
 import SwiftUI
+import UIKit
 
 public struct SearchBar: UIViewRepresentable {
     let onCancel: () -> Void
@@ -27,15 +27,20 @@ public struct SearchBar: UIViewRepresentable {
     public init(text: Binding<String>, placeholder: String, onCancel: @escaping () -> Void = {}) {
         self.onCancel = onCancel
         self.placeholder = placeholder
-        self._text = text
+        _text = text
     }
 
-    public func makeUIView(context: Self.Context) -> UISearchBar { UISearchBar() }
+    public func makeUIView(context: Self.Context) -> UISearchBar {
+        let searchBar = UISearchBar(frame: .zero)
+        searchBar.delegate = context.coordinator
+        searchBar.autocapitalizationType = .none
+        searchBar.barTintColor = .backgroundLightest
+        searchBar.placeholder = placeholder
 
-    public func updateUIView(_ uiView: UISearchBar, context: Self.Context) {
-        uiView.barTintColor = .backgroundLightest
-        uiView.delegate = context.coordinator
-        uiView.placeholder = placeholder
+        return searchBar
+    }
+
+    public func updateUIView(_ uiView: UISearchBar, context _: Self.Context) {
         uiView.text = text
     }
 
@@ -48,7 +53,7 @@ public struct SearchBar: UIViewRepresentable {
             self.view = view
         }
 
-        public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        public func searchBar(_: UISearchBar, textDidChange searchText: String) {
             view.text = searchText
         }
 

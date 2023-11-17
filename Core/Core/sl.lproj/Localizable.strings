@@ -398,6 +398,9 @@
 "Available From:" = "Na voljo od:";
 
 /* No comment provided by engineer. */
+"Available offline" = "Na voljo brez povezave";
+
+/* No comment provided by engineer. */
 "Available until" = "Na voljo do";
 
 /* No comment provided by engineer. */
@@ -453,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Cancel Submission?" = "Želite preklicati oddajo?";
+
+/* No comment provided by engineer. */
+"Cancel Sync?" = "Želite preklicati sinhronizacijo?";
 
 /* No comment provided by engineer. */
 "Canvas Guides" = "Vodniki po sistemu Canvas";
@@ -590,6 +596,9 @@
 "Content" = "Vsebina";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Vsebine ni mogoče prikazati";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Napake pri referencah";
 
 /* No comment provided by engineer. */
@@ -713,10 +722,10 @@
 "Cyan" = "Cijan";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
+"d_courses_syncing" = "d_courses_syncing";
 
 /* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
+"d_items" = "d_items";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -866,9 +875,6 @@
 "Dismiss %@" = "Opusti %@";
 
 /* No comment provided by engineer. */
-"Dismiss notification" = "Opusti obvestilo";
-
-/* No comment provided by engineer. */
 "Display As" = "Prikaži kot";
 
 /* No comment provided by engineer. */
@@ -930,9 +936,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Uredi nastavitve predmeta";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Uredi preglednico";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Uredi razpravo";
@@ -1044,9 +1047,6 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Ni uspelo. Tapnite za možnosti";
-
-/* No comment provided by engineer. */
-"favorite" = "priljubljeno";
 
 /* No comment provided by engineer. */
 "Feedback" = "Povratne informacije";
@@ -1220,6 +1220,9 @@
 "Groups" = "Skupine";
 
 /* No comment provided by engineer. */
+"Hang tight, we're getting things ready for you." = "Počakajte, za vas pripravljamo stvari.";
+
+/* No comment provided by engineer. */
 "Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Starši se lahko z vami povežejo, tako da preberejo to kodo QR v aplikaciji Canvas Parent.";
 
 /* No comment provided by engineer. */
@@ -1364,6 +1367,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Videti je, da v noben predmet niste vpisani kot %@. Morda bo primernejša ena od naših drugih aplikacij. Tapnite za obisk trgovine App Store.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "S tem boste zaustavili sinhronizacijo vsebine brez povezave. To lahko pozneje ponovite.";
+
+/* No comment provided by engineer. */
 "Italic" = "Poševno";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Napaka pri vpisovanju";
+
+/* No comment provided by engineer. */
+"Login help." = "Pomoč pri prijavi.";
 
 /* No comment provided by engineer. */
 "Login ID" = "ID prijave";
@@ -1784,13 +1793,25 @@
 "Observers" = "Skriti bralci";
 
 /* No comment provided by engineer. */
+"Offline" = "Brez povezave";
+
+/* No comment provided by engineer. */
 "Offline Content" = "Vsebina brez povezave";
 
 /* No comment provided by engineer. */
 "Offline Content Sync Failed" = "Sinhronizacija vsebine brez povezave ni uspela";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Success" = "Sinhronizacija vsebine brez povezave je uspela";
+
+/* No comment provided by engineer. */
 "Offline mode" = "Način brez povezave";
+
+/* No comment provided by engineer. */
+"Offline sync was interrupted by the operating system" = "Sinhronizacijo brez povezave je prekinil operacijski sistem";
+
+/* No comment provided by engineer. */
+"offline_sync_finished" = "offline_sync_finished";
 
 /* No comment provided by engineer. */
 "OK" = "V redu";
@@ -1809,6 +1830,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "Nalaganje ene ali več datotek ni uspelo. Preverite internetno povezavo in poskusite poslati znova.";
+
+/* No comment provided by engineer. */
+"One or more items failed to sync." = "Sinhronizacija enega ali več elementov ni uspela.";
 
 /* No comment provided by engineer. */
 "One Question at a Time:" = "Eno vprašanje naenkrat:";
@@ -1833,6 +1857,9 @@
 
 /* No comment provided by engineer. */
 "Open course details" = "Odpri podrobnosti o predmetu";
+
+/* No comment provided by engineer. */
+"Open In Browser" = "Odpri v brskalniku";
 
 /* No comment provided by engineer. */
 "Open item details" = "Odpri podrobnosti o elementu";
@@ -2288,6 +2315,9 @@
 "Show One Question at a Time" = "Prikaži po eno vprašanje naenkrat";
 
 /* No comment provided by engineer. */
+"Show sync details" = "Prikaži podrobnosti sinhronizacije";
+
+/* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2352,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "Prišlo je do težav";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Prišlo je do težav zunaj našega nadzora.";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Razvrsti po všečkih";
@@ -2427,6 +2460,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "Uspešno!";
+
+/* No comment provided by engineer. */
+"Success! Downloaded %@ of %@" = "Uspešno! Preneseno %1$@ od %2$@";
 
 /* No comment provided by engineer. */
 "Summary" = "Povzetek";
@@ -2538,9 +2574,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Postopek oddaje je prekinil operacijski sistem.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Obstaja(ta/jo) %d elementov(-a/i), izbrani(-a/-ih) za uporabo brez povezave. Izbrana vsebina bo prenesena na napravo.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Pri tem predmetu ni aktivnih nalog.";
@@ -2910,6 +2943,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "Nimate dovoljenja za izvedbo tega dejanja.";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Stran lahko poskusite odpreti v brskalniku.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Povabljeni ste.";

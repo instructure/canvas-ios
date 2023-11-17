@@ -398,6 +398,9 @@
 "Available From:" = "Tilgjengelig fra:";
 
 /* No comment provided by engineer. */
+"Available offline" = "Tilgjengelig i frakoblet modus";
+
+/* No comment provided by engineer. */
 "Available until" = "Tilgjengelig til";
 
 /* No comment provided by engineer. */
@@ -453,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Cancel Submission?" = "Avbryte innlevering?";
+
+/* No comment provided by engineer. */
+"Cancel Sync?" = "Avbryte synkronisering?";
 
 /* No comment provided by engineer. */
 "Canvas Guides" = "Canvas-guider";
@@ -590,6 +596,9 @@
 "Content" = "Innhold";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Innhold kan ikke vises";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Feil på innholdslenke";
 
 /* No comment provided by engineer. */
@@ -713,10 +722,10 @@
 "Cyan" = "Cyan";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
+"d_courses_syncing" = "d_courses_syncing";
 
 /* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
+"d_items" = "d_items";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -866,9 +875,6 @@
 "Dismiss %@" = "Avvise %@";
 
 /* No comment provided by engineer. */
-"Dismiss notification" = "Avvis varsling";
-
-/* No comment provided by engineer. */
 "Display As" = "Vis som";
 
 /* No comment provided by engineer. */
@@ -930,9 +936,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Rediger fag-innstillinger";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Rediger oversikt";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Rediger diskusjon";
@@ -1044,9 +1047,6 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Mislyktes. Trykk for alternativer";
-
-/* No comment provided by engineer. */
-"favorite" = "favoritt";
 
 /* No comment provided by engineer. */
 "Feedback" = "Tilbakemelding";
@@ -1220,6 +1220,9 @@
 "Groups" = "Grupper";
 
 /* No comment provided by engineer. */
+"Hang tight, we're getting things ready for you." = "Vent litt, vi gjør alt klart for deg.";
+
+/* No comment provided by engineer. */
 "Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Få en forelder til å skanne denne QR-koden fra Canvas foreldreapplikasjonen for å pare med deg.";
 
 /* No comment provided by engineer. */
@@ -1364,6 +1367,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Det virker som du ikke er registrert i noen fag for %@. En av våre andre applikasjoner kan være mer tilpasset. Trykk en for å gå til App Store.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "Det vil stoppe synkronisering av frakoblet emneinnhold Du kan gjøre det igjen senere.";
+
+/* No comment provided by engineer. */
 "Italic" = "Kursiv";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Innloggingsfeil";
+
+/* No comment provided by engineer. */
+"Login help." = "Innloggingshjelp.";
 
 /* No comment provided by engineer. */
 "Login ID" = "Innloggings-ID";
@@ -1784,13 +1793,25 @@
 "Observers" = "Observatører";
 
 /* No comment provided by engineer. */
+"Offline" = "Frakoblet";
+
+/* No comment provided by engineer. */
 "Offline Content" = "Frakoblet emneinnhold";
 
 /* No comment provided by engineer. */
 "Offline Content Sync Failed" = "Synkronisering av frakoblet emneinnhold mislyktes";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Success" = "Synkronisering av frakoblet emneinnhold vellykket";
+
+/* No comment provided by engineer. */
 "Offline mode" = "Frakoblet modus";
+
+/* No comment provided by engineer. */
+"Offline sync was interrupted by the operating system" = "Synkronisering i frakoblet modus ble avbrutt av operativsystemet";
+
+/* No comment provided by engineer. */
+"offline_sync_finished" = "offline_sync_finished";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -1809,6 +1830,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "En eller flere filer kunne ikke lastes opp. Sjekk internettforbindelsen din og prøv å lever på nytt.";
+
+/* No comment provided by engineer. */
+"One or more items failed to sync." = "Én eller flere elementer kunne ikke synkroniseres.";
 
 /* No comment provided by engineer. */
 "One Question at a Time:" = "Ett spørsmål av gangen:";
@@ -1833,6 +1857,9 @@
 
 /* No comment provided by engineer. */
 "Open course details" = "Åpne fagdetaljer";
+
+/* No comment provided by engineer. */
+"Open In Browser" = "Åpne i nettleser";
 
 /* No comment provided by engineer. */
 "Open item details" = "Åpne elementdetaljer";
@@ -2288,6 +2315,9 @@
 "Show One Question at a Time" = "Vis ett spørsmål om gangen";
 
 /* No comment provided by engineer. */
+"Show sync details" = "Vis synkroniseringsdetaljer";
+
+/* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2352,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "Noe gikk galt";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Noe gikk galt utenfor vår kontroll.";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Sorter etter likes";
@@ -2427,6 +2460,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "Vellykket!";
+
+/* No comment provided by engineer. */
+"Success! Downloaded %@ of %@" = "Vellykket! Lastet ned %1$@ av %2$@";
 
 /* No comment provided by engineer. */
 "Summary" = "Sammendrag";
@@ -2538,9 +2574,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Innleveringsprosessen ble avsluttet av operativsystemet.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Det er %d elementer valgt for å være tilgjengelig frakoblet. Det valgte innholdet vil bli lastet ned på enheten.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Det er ingen aktive oppgaver i dette faget.";
@@ -2910,6 +2943,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "Du har ikke tillatelse til å utføre denne handlingen";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Du kan prøve å åpne siden i en nettleser.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Du har blitt invitert";

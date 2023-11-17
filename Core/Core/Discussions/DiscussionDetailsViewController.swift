@@ -151,6 +151,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         webView.scrollView.alwaysBounceVertical = false
         webView.backgroundColor = .backgroundLightest
         webView.linkDelegate = self
+        webView.errorDelegate = self
         webView.addScript(DiscussionHTML.preact)
         webView.addScript(DiscussionHTML.js)
         webView.handle("like") { [weak self] message in self?.handleLike(message) }
@@ -288,6 +289,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
     }
 
     @objc func refresh() {
+        spinnerView.isHidden = true
         if context.contextType == .course {
             course.refresh(force: true)
         } else {
@@ -390,15 +392,28 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         }
         script += "\nloadMathJaxIfNecessary()"
 
-        webView.evaluateJavaScript(script) { [weak self] (_, error) in
-            if let error = error {
-                print(error)
-                self?.showError(error)
-            } else {
-                self?.rendered()
-                self?.focusOnNewReplyIfNecessary()
+        webView.evaluateJavaScript(script) { [weak self] _, error in
+            guard let self else { return }
+
+            if error != nil {
+                self.showFallbackWebView()
+                Analytics.shared.logError(name: "Javascript evaluation failed", reason: error?.localizedDescription)
+                return
             }
+
+            self.rendered()
+            self.focusOnNewReplyIfNecessary()
         }
+    }
+
+    private func showFallbackWebView() {
+        guard let embedURL = webView.url?.appendingQueryItems(.init(name: "embed", value: "true")) else {
+            return
+        }
+
+        // This is to break the infinite render-error-render-error cycle.
+        webView.configuration.userContentController.removeScriptMessageHandler(forName: "ready")
+        webView.load(URLRequest(url: embedURL))
     }
 
     func rendered() {
@@ -501,13 +516,13 @@ extension DiscussionDetailsViewController: CoreWebViewLinkDelegate {
             url.host == env.currentSession?.baseURL.host,
             url.path.hasPrefix("/\(context.pathComponent)/discussion_topics/\(topicID)/")
         else {
+            if offlineModeInteractor?.isOfflineModeEnabled() == true {
+                UIAlertController.showItemNotAvailableInOfflineAlert()
+                return true
+            }
+
             if url.pathComponents.contains("files") {
-                if offlineModeInteractor?.isOfflineModeEnabled() == true {
-                    UIAlertController.showItemNotAvailableInOfflineAlert()
-                    return true
-                } else {
-                    env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
-                }
+                env.router.route(to: url, from: self, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
             } else {
                 env.router.route(to: url, from: self)
             }
@@ -778,5 +793,16 @@ extension DiscussionDetailsViewController {
         ).fetch { [weak self] _, _, error in
             if let error = error { self?.showError(error) }
         }
+    }
+}
+
+extension DiscussionDetailsViewController: CoreWebViewErrorDelegate {
+
+    public func containerForContentErrorView() -> UIView {
+        view
+    }
+
+    public func urlForExternalBrowser() -> URL? {
+        webView.url
     }
 }

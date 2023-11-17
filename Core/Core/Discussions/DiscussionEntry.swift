@@ -71,7 +71,7 @@ public final class DiscussionEntry: NSManagedObject {
         model.isForcedRead = forcedIDs?.contains(model.id) ?? model.isForcedRead
         model.isRead = unreadIDs.map { !$0.contains(model.id) } ?? model.isRead
         model.isRemoved = item.deleted == true
-        model.likeCount = item.rating_count ?? 0
+        model.likeCount = item.rating_sum ?? 0
         model.message = item.message
         model.parent = parent ?? model.parent
         model.parentID = item.parent_id?.value

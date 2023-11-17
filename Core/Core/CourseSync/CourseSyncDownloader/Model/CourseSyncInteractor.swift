@@ -23,6 +23,7 @@ import Foundation
 
 public protocol CourseSyncInteractor {
     func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Never>
+    func cancel()
 }
 
 public protocol CourseSyncContentInteractor {
@@ -33,6 +34,7 @@ public protocol CourseSyncContentInteractor {
 public final class CourseSyncInteractorLive: CourseSyncInteractor {
     private let contentInteractors: [CourseSyncContentInteractor]
     private let filesInteractor: CourseSyncFilesInteractor
+    private let modulesInteractor: CourseSyncModulesInteractor
     private let progressWriterInteractor: CourseSyncProgressWriterInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var courseSyncEntries = CurrentValueSubject<[CourseSyncEntry], Never>.init([])
@@ -47,23 +49,43 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         attributes: .concurrent
     )
     private let fileErrorMessage = NSLocalizedString("File download failed.", comment: "")
+    private let notificationInteractor: CourseSyncNotificationInteractor
     internal private(set) var downloadSubscription: AnyCancellable?
     private var subscriptions = Set<AnyCancellable>()
+    private let courseListInteractor: CourseListInteractor
+    private let backgroundActivity: BackgroundActivity
 
+    /**
+     - parameters:
+        - courseListInteractor: This is used to download data for the "All Courses" screen opened from the dashboard.
+     The reason is that the user can select courses for offline availability which are not on the dashboard so we have to make sure that
+     when they access the "All Courses" screen the courses are listed.
+     */
     public init(
         contentInteractors: [CourseSyncContentInteractor],
         filesInteractor: CourseSyncFilesInteractor,
+        modulesInteractor: CourseSyncModulesInteractor,
         progressWriterInteractor: CourseSyncProgressWriterInteractor,
+        notificationInteractor: CourseSyncNotificationInteractor,
+        courseListInteractor: CourseListInteractor,
+        backgroundActivity: BackgroundActivity,
         scheduler: AnySchedulerOf<DispatchQueue>
     ) {
         self.contentInteractors = contentInteractors
         self.filesInteractor = filesInteractor
+        self.modulesInteractor = modulesInteractor
         self.progressWriterInteractor = progressWriterInteractor
+        self.courseListInteractor = courseListInteractor
+        self.notificationInteractor = notificationInteractor
+        self.backgroundActivity = backgroundActivity
         self.scheduler = scheduler
 
         listenToCancellationEvent()
     }
 
+    /**
+      **Warning!** While the download is in progress the interactor must not be released otherwise it will crash!
+     */
     public func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Never> {
         downloadSubscription?.cancel()
         downloadSubscription = nil
@@ -79,23 +101,50 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         progressWriterInteractor.cleanUpPreviousDownloadProgress()
         progressWriterInteractor.setInitialLoadingState(entries: entriesWithInitialLoadingState)
 
-        downloadSubscription = Publishers.Sequence(sequence: entriesWithInitialLoadingState)
-            .buffer(size: .max, prefetch: .byRequest, whenFull: .dropOldest)
+        downloadSubscription = backgroundActivity
+            .start { unownedSelf.handleSyncInterruptByOS() }
             .receive(on: scheduler)
+            .flatMap { _ in unownedSelf.downloadCourseList() }
+            .flatMap { Publishers.Sequence(sequence: entriesWithInitialLoadingState) }
+            .buffer(size: .max, prefetch: .byRequest, whenFull: .dropOldest)
             .flatMap(maxPublishers: .max(3)) { unownedSelf.downloadCourseDetails($0) }
             .collect()
+            .flatMap { [notificationInteractor] _ in
+                let hasError = unownedSelf.safeCourseSyncEntriesValue.hasError
+                unownedSelf.progressWriterInteractor.saveDownloadResult(
+                    isFinished: true,
+                    error: hasError ? unownedSelf.fileErrorMessage : nil
+                )
+
+                return notificationInteractor.send()
+            }
+            .flatMap { unownedSelf.backgroundActivity.stop() }
             .sink(
                 receiveCompletion: { _ in
-                    let hasError = unownedSelf.safeCourseSyncEntriesValue.hasError
-                    unownedSelf.progressWriterInteractor.saveDownloadResult(
-                        isFinished: true,
-                        error: hasError ? unownedSelf.fileErrorMessage : nil
-                    )
+                    NotificationCenter.default.post(name: .OfflineSyncCompleted, object: nil)
                 },
                 receiveValue: { _ in }
             )
 
         return courseSyncEntries.eraseToAnyPublisher()
+    }
+
+    public func cancel() {
+        downloadSubscription?.cancel()
+        downloadSubscription = nil
+        progressWriterInteractor.cleanUpPreviousDownloadProgress()
+        backgroundActivity.stopAndWait()
+    }
+
+    // MARK: - Private Methods
+
+    private func downloadCourseList() -> AnyPublisher<Void, Never> {
+        courseListInteractor
+            .getCourses()
+            .first()
+            .mapToVoid()
+            .replaceError(with: ())
+            .eraseToAnyPublisher()
     }
 
     private func downloadCourseDetails(_ entry: CourseSyncEntry) -> AnyPublisher<Void, Never> {
@@ -108,10 +157,11 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
 
         var downloaders = TabName
             .OfflineSyncableTabs
-            .filter { $0 != .files } // files are handled separately
+            .filter { $0 != .files && $0 != .modules } // files and modules are handled separately
             .map { downloadTabContent(for: entry, tabName: $0) }
 
         downloaders.append(downloadFiles(for: entry))
+        downloaders.append(downloadModules(for: entry))
 
         return downloaders
             .zip()
@@ -132,7 +182,9 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         unowned let unownedSelf = self
 
         guard let tabIndex = entry.tabs.firstIndex(where: { $0.type == tabName }),
-              entry.tabs[tabIndex].selectionState == .selected else {
+              entry.tabs[tabIndex].selectionState == .selected,
+              entry.tabs[tabIndex].state != .downloaded
+        else {
             return Just(()).eraseToAnyPublisher()
         }
 
@@ -172,12 +224,19 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             entry.tabs[tabIndex].selectionState == .selected ||
             entry.tabs[tabIndex].selectionState == .partiallySelected
         else {
-            return Just(()).eraseToAnyPublisher()
+            return removeUnavailableFiles(courseId: entry.courseId)
+        }
+
+        let files = entry.files.filter { $0.selectionState == .selected }
+
+        guard !files.isEmpty, entry.tabs[tabIndex].state != .downloaded else {
+            return removeUnavailableFiles(
+                courseId: entry.courseId,
+                newFileIDs: files.map { $0.fileId }
+            )
         }
 
         unowned let unownedSelf = self
-
-        let files = entry.files.filter { $0.selectionState == .selected }
 
         unownedSelf.setState(
             selection: .tab(entry.id, entry.tabs[tabIndex].id),
@@ -187,47 +246,14 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         return files.publisher
             .eraseToAnyPublisher()
             .buffer(size: .max, prefetch: .byRequest, whenFull: .dropOldest)
-            .receive(on: scheduler)
-            .flatMap(maxPublishers: .max(6)) { element in
-                let fileIndex = files.firstIndex(of: element)!
-
-                unownedSelf.setState(
-                    selection: .file(entry.id, files[fileIndex].id), state: .loading(nil)
+            .receive(on: unownedSelf.scheduler)
+            .flatMap(maxPublishers: .max(6)) { file in
+                unownedSelf.downloadSingleFile(
+                    entry: entry,
+                    file: file,
+                    tabIndex: tabIndex,
+                    files: files
                 )
-
-                return unownedSelf.filesInteractor.getFile(
-                    url: element.url,
-                    fileID: element.fileId,
-                    fileName: element.fileName,
-                    mimeClass: element.mimeClass,
-                    updatedAt: element.updatedAt
-                )
-                .throttle(for: .milliseconds(300), scheduler: unownedSelf.scheduler, latest: true)
-                .handleEvents(
-                    receiveOutput: { progress in
-                        unownedSelf.setState(
-                            selection: .file(entry.id, files[fileIndex].id), state: .loading(progress)
-                        )
-                        unownedSelf.setState(
-                            selection: .tab(entry.id, entry.tabs[tabIndex].id),
-                            state: .loading(unownedSelf.safeCourseSyncEntriesValue[id: entry.id]?.progress)
-                        )
-                    },
-                    receiveCompletion: { completion in
-                        switch completion {
-                        case .finished:
-                            unownedSelf.setState(
-                                selection: .file(entry.id, files[fileIndex].id), state: .downloaded
-                            )
-                        case .failure:
-                            unownedSelf.setState(
-                                selection: .file(entry.id, files[fileIndex].id), state: .error
-                            )
-                        }
-                    }
-                )
-                .catch { _ in Just(0).eraseToAnyPublisher() }
-                .eraseToAnyPublisher()
             }
             .collect()
             .handleEvents(
@@ -240,8 +266,137 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                     )
                 }
             )
-            .map { _ in () }
+            .flatMap { _ in
+                unownedSelf.removeUnavailableFiles(
+                    courseId: entry.courseId,
+                    newFileIDs: files.map { $0.fileId }
+                )
+            }
             .eraseToAnyPublisher()
+    }
+
+    private func downloadSingleFile(
+        entry: CourseSyncEntry,
+        file: CourseSyncEntry.File,
+        tabIndex: Array<CourseSyncEntry.Tab>.Index,
+        files: [CourseSyncEntry.File]
+    ) -> AnyPublisher<Float, Never> {
+        let fileIndex = files.firstIndex(of: file)!
+        unowned let unownedSelf = self
+
+        setState(
+            selection: .file(entry.id, files[fileIndex].id), state: .loading(nil)
+        )
+
+        return filesInteractor.downloadFile(
+            courseId: entry.courseId,
+            url: file.url,
+            fileID: file.fileId,
+            fileName: file.fileName,
+            mimeClass: file.mimeClass,
+            updatedAt: file.updatedAt
+        )
+        .throttle(for: .milliseconds(300), scheduler: unownedSelf.scheduler, latest: true)
+        .handleEvents(
+            receiveOutput: { progress in
+                unownedSelf.setState(
+                    selection: .file(entry.id, files[fileIndex].id), state: .loading(progress)
+                )
+                unownedSelf.setState(
+                    selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                    state: .loading(unownedSelf.safeCourseSyncEntriesValue[id: entry.id]?.progress)
+                )
+            },
+            receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    unownedSelf.setState(
+                        selection: .file(entry.id, files[fileIndex].id), state: .downloaded
+                    )
+                case .failure:
+                    unownedSelf.setState(
+                        selection: .file(entry.id, files[fileIndex].id), state: .error
+                    )
+                }
+            }
+        )
+        .catch { _ in Just(0).eraseToAnyPublisher() }
+        .eraseToAnyPublisher()
+    }
+
+    private func downloadModules(for entry: CourseSyncEntry) -> AnyPublisher<Void, Never> {
+        unowned let unownedSelf = self
+
+        guard let tabIndex = entry.tabs.firstIndex(where: { $0.type == .modules }),
+              entry.tabs[tabIndex].selectionState == .selected,
+              entry.tabs[tabIndex].state != .downloaded
+        else {
+            return Just(()).eraseToAnyPublisher()
+        }
+
+        return modulesInteractor.getModuleItems(courseId: entry.courseId)
+            .flatMap {
+                unownedSelf.getModuleSubItems(entry: entry, moduleItems: $0)
+                    .zip()
+                    .mapToVoid()
+            }
+            .receive(on: scheduler)
+            .replaceEmpty(with: ())
+            .updateLoadingState {
+                unownedSelf.setState(
+                    selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                    state: .loading(nil)
+                )
+            }
+            .updateDownloadedState {
+                unownedSelf.setState(
+                    selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                    state: .downloaded
+                )
+            }
+            .catch { _ in
+                unownedSelf.setState(
+                    selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                    state: .error
+                )
+                return Just(()).eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+    }
+
+    private func getModuleSubItems(entry: CourseSyncEntry, moduleItems: [ModuleItem]) -> [AnyPublisher<Void, Error>] {
+        let tabsForRegularDownload = Set(moduleItems.tabItemsToRequestByList).subtracting(Set(entry.selectedTabs))
+        let tabsForModuleItemDownload = Set(moduleItems.tabItemsToRequestByID)
+
+        let interactors = tabsForRegularDownload.compactMap { tabName in
+            if let interactor = contentInteractors.first(where: { $0.associatedTabType == tabName }) {
+                return interactor
+            } else {
+                return nil
+            }
+        }
+
+        var downloaders = interactors.map { $0.getContent(courseId: entry.courseId) }
+
+        if tabsForModuleItemDownload.count > 0 {
+            let modulesDownloaders = modulesInteractor.getAssociatedModuleItems(
+                courseId: entry.courseId,
+                moduleItemTypes: tabsForModuleItemDownload,
+                moduleItems: moduleItems
+            )
+            downloaders.append(modulesDownloaders)
+        }
+
+        return downloaders
+    }
+
+    private func removeUnavailableFiles(courseId: String, newFileIDs: [String] = []) -> AnyPublisher<Void, Never> {
+        filesInteractor.removeUnavailableFiles(
+            courseId: courseId,
+            newFileIDs: newFileIDs
+        )
+        .replaceError(with: ())
+        .eraseToAnyPublisher()
     }
 
     /// Updates entry state in memory and writes it to Core Data. In addition it also writes file progress to Core Data.
@@ -270,17 +425,17 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         entries.map { entry in
             var cpy = entry
             if cpy.state != .downloaded {
-                cpy.state = .loading(nil)
+                cpy.updateCourseState(state: .loading(nil))
             } else {
                 return cpy
             }
 
-            for var tab in cpy.tabs where tab.state != .downloaded {
-                tab.state = .loading(nil)
+            for tab in cpy.tabs where tab.state != .downloaded {
+                cpy.updateTabState(id: tab.id, state: .loading(nil))
             }
 
-            for var file in cpy.files where file.state != .downloaded {
-                file.state = .loading(nil)
+            for file in cpy.files where file.state != .downloaded {
+                cpy.updateFileState(id: file.id, state: .loading(nil))
             }
 
             return cpy
@@ -289,12 +444,19 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
 
     private func listenToCancellationEvent() {
         NotificationCenter.default.publisher(for: .OfflineSyncCancelled)
-            .sink(receiveValue: { [unowned self] _ in
-                downloadSubscription?.cancel()
-                downloadSubscription = nil
-                progressWriterInteractor.cleanUpPreviousDownloadProgress()
+            .sink(receiveCompletion: { _ in }, receiveValue: { [unowned self] _ in
+                self.cancel()
             })
             .store(in: &subscriptions)
+    }
+
+    private func handleSyncInterruptByOS() {
+        downloadSubscription?.cancel()
+        downloadSubscription = nil
+        progressWriterInteractor.markInProgressDownloadsAsFailed()
+        progressWriterInteractor.saveDownloadResult(isFinished: true,
+                                                    error: NSLocalizedString("Offline sync was interrupted by the operating system", comment: ""))
+        notificationInteractor.sendFailedNotification()
     }
 }
 
@@ -315,5 +477,55 @@ private extension Publisher {
             }
         )
         .eraseToAnyPublisher()
+    }
+}
+
+private extension Collection where Element == ModuleItem {
+    var tabItemsToRequestByList: [TabName] {
+        filter {
+            switch $0.type {
+            case .assignment:
+                return true
+            case .discussion:
+                return true
+            default:
+                return false
+            }
+        }
+        .compactMap { $0.associatedOfflineTab }
+    }
+
+    var tabItemsToRequestByID: [TabName] {
+        filter {
+            switch $0.type {
+            case .assignment:
+                return false
+            case .discussion:
+                return false
+            default:
+                return true
+            }
+        }
+        .compactMap { $0.associatedOfflineTab }
+    }
+}
+
+extension ModuleItem {
+    /// Certain courses have their tabs hidden except Modules. In that case we need to iterate through each module item and download its' content from the appropiate API. This property gives back a `TabName` if the API accepts requests when the tab is hidden.
+    var associatedOfflineTab: TabName? {
+        switch type {
+        case .file:
+            return .files
+        case .discussion:
+            return .discussions
+        case .assignment:
+            return .assignments
+        case .quiz:
+            return .quizzes
+        case .page:
+            return .pages
+        default:
+            return nil
+        }
     }
 }

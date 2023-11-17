@@ -30,16 +30,19 @@ class FilesTests: E2ETestCase {
 
     func downloadTestPDF() {
         SafariAppHelper.safariApp.launch()
-        let tabBarItemTitle = SafariAppHelper.tabBarItemTitle.waitUntil(.visible)
-        XCTAssertTrue(tabBarItemTitle.isVisible)
-
-        tabBarItemTitle.hit()
+        var addressLabel = SafariAppHelper.addressLabelIpad.waitUntil(.visible, timeout: 5)
+        if addressLabel.isVisible {
+            addressLabel.hit()
+        } else {
+            SafariAppHelper.tabBarItemTitle.hit()
+            addressLabel = SafariAppHelper.URL.waitUntil(.visible)
+        }
         let clearTextButton = SafariAppHelper.clearTextButton.waitUntil(.visible, timeout: 5)
-        if clearTextButton.isVisible { clearTextButton.hit() }
-        let UrlField = SafariAppHelper.URL.waitUntil(.visible)
-        XCTAssertTrue(UrlField.isVisible)
+        if clearTextButton.isVisible, clearTextButton.isHittable { clearTextButton.hit() }
+        addressLabel.waitUntil(.visible)
+        XCTAssertTrue(addressLabel.isVisible)
 
-        UrlField.writeText(text: FilesHelper.TestPDF.url, hitGo: true, customApp: SafariAppHelper.safariApp)
+        addressLabel.writeText(text: FilesHelper.TestPDF.url, hitGo: true, customApp: SafariAppHelper.safariApp)
 
         let shareButton = SafariAppHelper.shareButton.waitUntil(.visible)
         XCTAssertTrue(shareButton.isVisible)
@@ -48,17 +51,22 @@ class FilesTests: E2ETestCase {
         let titleOfFile = SafariAppHelper.Share.titleLabel(title: FilesHelper.TestPDF.title).waitUntil(.visible)
         XCTAssertTrue(titleOfFile.isVisible)
 
-        SafariAppHelper.safariApp.swipeUp()
+        // On iPad: Title label is not visible, swipeUp only works with Copy button
+        // On iPhone: Title label is visible, swipeUp only works as "safariApp.swipeUp"
+        let copyButton = SafariAppHelper.Share.copyButton.waitUntil(.visible)
+        let titleLabel = SafariAppHelper.Share.titleLabel(title: FilesHelper.TestPDF.title).waitUntil(.visible, timeout: 5)
+        if titleLabel.isVisible { SafariAppHelper.safariApp.swipeUp() } else { copyButton.swipeUp() }
         let saveToFilesButton = SafariAppHelper.Share.saveToFiles.waitUntil(.visible)
         XCTAssertTrue(saveToFilesButton.isVisible)
 
         saveToFilesButton.hit()
-        let onMyIphoneButton = SafariAppHelper.Share.onMyIphoneButton.waitUntil(.visible)
-        XCTAssertTrue(onMyIphoneButton.isVisible)
+        var onMyButton = SafariAppHelper.Share.onMyIpadCell.waitUntil(.visible, timeout: 5)
+        if onMyButton.isVanished { onMyButton = SafariAppHelper.Share.onMyIphoneButton.waitUntil(.visible) }
+        XCTAssertTrue(onMyButton.isVisible)
 
-        onMyIphoneButton.hit()
-        let onMyIphoneLabel = SafariAppHelper.Share.onMyIphoneLabel.waitUntil(.visible)
-        XCTAssertTrue(onMyIphoneLabel.isVisible)
+        onMyButton.hit()
+        let onMyLabel = SafariAppHelper.Share.onMyLabel.waitUntil(.visible)
+        XCTAssertTrue(onMyLabel.isVisible)
 
         let saveButton = SafariAppHelper.Share.saveButton.waitUntil(.visible)
         XCTAssertTrue(saveButton.isVisible)
@@ -132,10 +140,11 @@ class FilesTests: E2ETestCase {
         uploadFileButton.hit()
         XCTAssertTrue(uploadFileButton.waitUntil(.vanish).isVanished)
 
-        let browseButton = FileList.browseButton.waitUntil(.visible)
-        XCTAssertTrue(browseButton.isVisible)
+        var buttonToBeSelected = FileList.onMyIpadButton.waitUntil(.visible, timeout: 5)
+        if buttonToBeSelected.isVanished { buttonToBeSelected = FileList.browseButton.waitUntil(.visible) }
+        XCTAssertTrue(buttonToBeSelected.isVisible)
 
-        if !browseButton.isSelected { browseButton.hit() }
+        if !buttonToBeSelected.isSelected { buttonToBeSelected.hit() }
 
         let testPDFButton = FileList.testPDFButton.waitUntil(.visible)
         XCTAssertTrue(testPDFButton.isVisible)
@@ -162,8 +171,8 @@ class FilesTests: E2ETestCase {
         let backButton = Helper.backButton.waitUntil(.visible)
         XCTAssertTrue(backButton.isVisible)
 
-        // MARK: Tap back button, delete the file
-        backButton.hit()
+        // MARK: Delete the file
+        if uploadedFileListItem.isVanished { backButton.hit() }
         uploadedFileListItem.actionUntilElementCondition(action: .swipeLeft(.onElement), element: FileList.deleteButton, condition: .visible)
         let deleteButton = FileList.deleteButton.waitUntil(.visible)
         XCTAssertTrue(deleteButton.isVisible)
