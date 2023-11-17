@@ -31,6 +31,12 @@ packages:
   CombineReachability:
     url: https://github.com/istvan-kreisz/CombineReachability.git
     branch: master
+  MobileDownloader:
+    url: https://github.com/2uinc/mobile-offline-downloader-ios.git
+    branch: develop
+  Introspect:
+    url: https://github.com/siteline/swiftui-introspect.git
+    exactVersion: 1.1.1
 projectReferences:
   TestsFoundation:
     path: ../TestsFoundation/TestsFoundation.xcodeproj
@@ -46,6 +52,8 @@ targets:
       - package: Lottie
       - package: PSPDFKit
       - package: CombineReachability
+      - package: MobileDownloader
+      - package: Introspect
     preBuildScripts:
       - path: ../scripts/swiftLint.sh
         name: SwiftLint
