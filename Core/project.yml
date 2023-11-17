@@ -34,7 +34,7 @@ packages:
   mobile-offline-downloader-ios:
     url: https://github.com/2uinc/mobile-offline-downloader-ios.git
     branch: develop
-  swiftui-introspect:
+  SwiftUIIntrospect:
     url: https://github.com/siteline/swiftui-introspect.git
     exactVersion: 1.1.1
 projectReferences:
@@ -53,7 +53,7 @@ targets:
       - package: PSPDFKit
       - package: CombineReachability
       - package: mobile-offline-downloader-ios
-      - package: swiftui-introspect
+      - package: SwiftUIIntrospect
     preBuildScripts:
       - path: ../scripts/swiftLint.sh
         name: SwiftLint
