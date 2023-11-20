@@ -2384,7 +2384,6 @@
 		5A847BF87F9446B396ACF335 /* LoginUsePolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUsePolicyView.swift; sourceTree = "<group>"; };
 		5A9E85C54A983278D52A5A96 /* URLExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
 		5AC12055E7A888AB7B466E46 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
-		5B6B984F2B020224005555C1 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Main.strings; sourceTree = "<group>"; };
 		5B740A30860F05FB71C525A0 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		5B878EA66F93E010B99D7726 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		5BBA61A24C07738AF6A0906F /* TopBarSelectionShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarSelectionShape.swift; sourceTree = "<group>"; };
@@ -3410,6 +3409,7 @@
 		E9E145AFE0E25E06C21924F3 /* LoginSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSession.swift; sourceTree = "<group>"; };
 		E9E189AFC87279DA88F2F592 /* AssignmentPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentPickerView.swift; sourceTree = "<group>"; };
 		EA383B82377A796427C47AB1 /* DiscussionHTMLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionHTMLTests.swift; sourceTree = "<group>"; };
+		EA90BFDA2181CC0394FF32EF /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Main.strings; sourceTree = "<group>"; };
 		EA9B3FA83C0BF7A85A1DDCBB /* CourseSyncDiskSpaceInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncDiskSpaceInfoViewModel.swift; sourceTree = "<group>"; };
 		EADB0EC7A95CD6A02F814942 /* ListBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListBackgroundView.swift; sourceTree = "<group>"; };
 		EB1F17518E5A0ED0FB823AA0 /* APIUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUser.swift; sourceTree = "<group>"; };
@@ -9246,6 +9246,7 @@
 				fr,
 				"fr-CA",
 				ht,
+				id,
 				is,
 				it,
 				ja,
@@ -9267,7 +9268,6 @@
 				"zh-HK",
 				"zh-Hans",
 				"zh-Hant",
-				id,
 			);
 			mainGroup = 62824534F75515F48E8114A7;
 			packageReferences = (
@@ -11071,6 +11071,7 @@
 				D79DED85089A5498BCC7F89B /* fr */,
 				52BE785AFD680C0F7A2C0BD2 /* fr-CA */,
 				B66D57AB4627EF948A75CC1B /* ht */,
+				EA90BFDA2181CC0394FF32EF /* id */,
 				3B02E5A8F4C4B82A5B653458 /* is */,
 				CB23EFD393644CA3B1E13177 /* it */,
 				643BC3C11AC4ECEBE62140AC /* ja */,
@@ -11092,7 +11093,6 @@
 				DD081280C71F302B0F05C32B /* zh-Hans */,
 				51045D3F63E7DCB1A2286748 /* zh-Hant */,
 				E5D30D22D78389C9DC53574E /* zh-HK */,
-				5B6B984F2B020224005555C1 /* id */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
