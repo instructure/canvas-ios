@@ -48,12 +48,12 @@ class InboxCoursePickerViewModel: ObservableObject {
     }
 
     public func onSelect(selected: Course) {
-        let context = RecipientContext(selected)
+        let context = RecipientContext(course: selected)
         onSelect(selected: context)
     }
 
     public func onSelect(selected: Group) {
-        let context = RecipientContext(selected)
+        let context = RecipientContext(group: selected)
         onSelect(selected: context)
     }
 

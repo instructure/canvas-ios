@@ -45,21 +45,7 @@ public struct ComposeMessageView: View {
                 .navigationBarItems(leading: cancelButton)
                 .navigationBarStyle(.modal)
             }
-            .onAppear {
-                hideNavigationBarSeparator()
-            }
         }
-    }
-
-    private func hideNavigationBarSeparator() {
-        let navigationBar = controller.value.navigationController?.navigationBar
-        let navigationBarAppearance = UINavigationBarAppearance()
-        navigationBarAppearance.configureWithOpaqueBackground()
-        navigationBarAppearance.shadowColor = .clear
-        navigationBarAppearance.shadowImage = UIImage()
-        navigationBar?.standardAppearance = navigationBarAppearance
-        navigationBar?.scrollEdgeAppearance = navigationBarAppearance
-        navigationBar?.isTranslucent = true
     }
 
     private var separator: some View {
