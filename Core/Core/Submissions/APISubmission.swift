@@ -63,6 +63,7 @@ public struct APISubmissionGroup: Codable, Equatable {
 // https://canvas.instructure.com/doc/api/submissions.html#SubmissionComment
 public struct APISubmissionComment: Codable, Equatable {
     let id: String
+    let attempt: Int?
     let author_id: ID?
     let author_name: String
     let author: APISubmissionCommentAuthor
@@ -213,6 +214,7 @@ extension APISubmission {
 extension APISubmissionComment {
     public static func make(
         id: String = "1",
+        attempt: Int? = 0,
         author_id: ID? = "1",
         author_name: String = "Steve",
         author: APISubmissionCommentAuthor = .make(),
@@ -224,6 +226,7 @@ extension APISubmissionComment {
     ) -> APISubmissionComment {
         return APISubmissionComment(
             id: id,
+            attempt: attempt,
             author_id: author_id,
             author_name: author_name,
             author: author,

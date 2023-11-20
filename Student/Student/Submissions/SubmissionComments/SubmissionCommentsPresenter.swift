@@ -20,27 +20,32 @@ import Foundation
 import Core
 import CoreData
 
+protocol SubmissionCommentAttemptDelegate: AnyObject {
+    func updateComments(for attempt: Int?)
+}
+
 protocol SubmissionCommentsViewProtocol: AnyObject {
     func reload()
     func showError(_ error: Error)
 }
 
-class SubmissionCommentsPresenter {
+class SubmissionCommentsPresenter: SubmissionCommentAttemptDelegate {
     let assignmentID: String
     let context: Context
     let env: AppEnvironment
     let submissionID: String
     weak var view: SubmissionCommentsViewProtocol?
     let userID: String
-
-    lazy var comments = env.subscribe(GetSubmissionComments(
+    
+    var comments = [SubmissionComment]()
+    lazy var commentsStore = env.subscribe(GetSubmissionComments(
         context: context,
         assignmentID: assignmentID,
         userID: userID
     )) { [weak self] in
         self?.update()
     }
-
+    private var attempt: Int?
     lazy var assignment = env.subscribe(GetAssignment(courseID: context.id, assignmentID: assignmentID)) {}
 
     init(env: AppEnvironment = .shared, view: SubmissionCommentsViewProtocol, context: Context, assignmentID: String, userID: String, submissionID: String) {
@@ -54,12 +59,20 @@ class SubmissionCommentsPresenter {
 
     func viewIsReady() {
         assignment.refresh()
-        comments.refresh()
+        commentsStore.refresh()
         view?.reload()
     }
 
     func update() {
+        comments = commentsStore.all.filter {
+            $0.attemptFromAPI == nil || $0.attemptFromAPI?.intValue == attempt
+        }
         view?.reload()
+    }
+
+    func updateComments(for attempt: Int?) {
+        self.attempt = attempt
+        update()
     }
 
     func addComment(text: String) {

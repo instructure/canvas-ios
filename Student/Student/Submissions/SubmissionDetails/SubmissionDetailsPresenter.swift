@@ -34,6 +34,7 @@ class SubmissionDetailsPresenter {
     let userID: String
     let env: AppEnvironment
     weak var view: SubmissionDetailsViewProtocol?
+    weak var commentAttemptDelegate: SubmissionCommentAttemptDelegate?
     let submissionButtonPresenter: SubmissionButtonPresenter
     var submissionButtonText: String? {
         guard let course = course.first, let assignment = assignment.first else { return nil }
@@ -137,6 +138,7 @@ class SubmissionDetailsPresenter {
         }
         view?.reload()
         view?.reloadNavBar()
+        commentAttemptDelegate?.updateComments(for: selectedAttempt)
     }
 
     func updateArc() {
@@ -170,6 +172,7 @@ class SubmissionDetailsPresenter {
     func select(attempt: Int, fileID: String? = nil) {
         selectedAttempt = attempt
         selectedFileID = fileID
+        commentAttemptDelegate?.updateComments(for: attempt)
         update()
     }
 
@@ -286,7 +289,7 @@ class SubmissionDetailsPresenter {
         guard let submission = currentSubmission else { return nil }
         switch (selectedDrawerTab) {
         case .comments:
-            return SubmissionCommentsViewController.create(
+            let vc = SubmissionCommentsViewController.create(
                 env: env,
                 context: context,
                 assignmentID: assignmentID,
@@ -294,6 +297,8 @@ class SubmissionDetailsPresenter {
                 submissionID: submission.id,
                 submissionPresenter: self
             )
+            self.commentAttemptDelegate = vc.presenter
+            return vc
         case .files:
             return SubmissionFilesViewController.create(
                 files: submission.attachments?.sorted(by: File.idCompare),

@@ -22,6 +22,7 @@ import CoreData
 final public class SubmissionComment: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var assignmentID: String
+    @NSManaged public var attemptFromAPI: NSNumber?
     @NSManaged public var authorAvatarURL: URL?
     @NSManaged public var authorID: String?
     @NSManaged public var authorName: String
@@ -68,6 +69,9 @@ final public class SubmissionComment: NSManagedObject {
         let model: SubmissionComment = client.first(where: #keyPath(SubmissionComment.id), equals: id ?? item.id) ?? client.insert()
         model.id = item.id
         model.assignmentID = submission.assignment_id.value
+        if let attempt = item.attempt {
+            model.attemptFromAPI = NSNumber(integerLiteral: attempt)
+        }
         model.authorAvatarURL = item.author.avatar_image_url?.rawValue
         model.authorID = item.author_id?.value
         model.authorName = item.author.display_name ?? item.author_name
@@ -94,6 +98,7 @@ final public class SubmissionComment: NSManagedObject {
         let model: SubmissionComment = client.fetch(predicate).first ?? client.insert()
         model.id = id
         model.assignmentID = item.assignment_id.value
+        model.attemptFromAPI = NSNumber(integerLiteral: attempt)
         model.authorAvatarURL = item.user?.avatar_url?.rawValue
         model.authorID = item.user_id.value
         model.authorName = item.user?.short_name ?? ""

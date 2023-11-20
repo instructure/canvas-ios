@@ -201,7 +201,7 @@ extension SubmissionCommentsViewController: UIImagePickerControllerDelegate, UIN
 extension SubmissionCommentsViewController: SubmissionCommentsViewProtocol {
     func reload() {
         emptyContainer.isHidden = presenter?.comments.isEmpty == false
-        guard let changes = presenter?.comments.changes, changes.count == 1 else {
+        guard let changes = presenter?.commentsStore.changes, changes.count == 1 else {
             tableView.reloadData()
             return
         }
@@ -229,6 +229,10 @@ extension SubmissionCommentsViewController: UITableViewDataSource, UITableViewDe
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let comment = presenter?.comments[indexPath.row / 2] else { return UITableViewCell() }
+
+        print("✅ comment: \(comment.comment)")
+        print("🟨 attempt from api: \(comment.attemptFromAPI)")
+        print("🟪 attempt calculated: \(comment.attempt)")
 
         if indexPath.row % 2 == 1 {
             let reuseID = currentUserID == comment.authorID ? "myHeader" : "theirHeader"
