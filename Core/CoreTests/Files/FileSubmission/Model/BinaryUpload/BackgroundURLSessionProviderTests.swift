@@ -54,6 +54,7 @@ class BackgroundURLSessionProviderTests: CoreTestCase {
         let oldSession = testee.session
         oldSession.invalidateAndCancel()
         RunLoop.main.run(until: Date() + 1)
+        drainMainQueue()
         let newSession = testee.session
         XCTAssertNotEqual(oldSession, newSession)
     }
