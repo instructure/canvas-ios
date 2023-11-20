@@ -49,6 +49,6 @@ class ChangeUserTests: E2ETestCase {
 
         profileButton.hit()
         XCTAssertTrue(usernameLabel.waitUntil(.visible).isVisible)
-        XCTAssertTrue(usernameLabel.hasLabel(label: parent1.name))
+        XCTAssertTrue(usernameLabel.hasLabel(label: parent2.name))
     }
 }

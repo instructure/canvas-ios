@@ -24,6 +24,7 @@ public final class CDCourseSyncDownloadProgress: NSManagedObject {
     @NSManaged public var bytesDownloaded: Int
     @NSManaged public var isFinished: Bool
     @NSManaged public var error: String?
+    @NSManaged public var courseIds: [String]
 }
 
 public extension CDCourseSyncDownloadProgress {
@@ -33,6 +34,7 @@ public extension CDCourseSyncDownloadProgress {
         bytesDownloaded: Int,
         isFinished: Bool,
         error: String?,
+        courseIds: [String],
         in context: NSManagedObjectContext
     ) -> CDCourseSyncDownloadProgress {
         let model: CDCourseSyncDownloadProgress = context.first(scope: .all) ?? context.insert()
@@ -40,6 +42,7 @@ public extension CDCourseSyncDownloadProgress {
         model.bytesDownloaded = bytesDownloaded
         model.isFinished = isFinished
         model.error = error
+        model.courseIds = courseIds
         return model
     }
 }

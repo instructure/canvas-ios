@@ -32,6 +32,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
 
     override func tearDown() {
         defaults.reset()
+        API.resetMocks()
         super.tearDown()
     }
 
@@ -51,6 +52,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
                 }
             )
 
+        drainMainQueue()
         waitForExpectations(timeout: 0.1)
         XCTAssertEqual(entries.count, 1)
         subscription.cancel()
@@ -75,6 +77,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
                 }
             )
 
+        drainMainQueue()
         waitForExpectations(timeout: 0.1)
         XCTAssertEqual(entries.count, 1)
         XCTAssertEqual(entries.first?.id, "courses/2")
@@ -84,6 +87,16 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
     func testTabList() {
         let testee = CourseSyncSelectorInteractorLive(sessionDefaults: defaults)
         let expectation = expectation(description: "Publisher sends value")
+
+        let rootFolder = APIFolder.make(context_type: "Course", context_id: 1, files_count: 1, id: 0)
+        let rootFolderFile = APIFile.make(id: 0, folder_id: 0, display_name: "root-file-1")
+
+        let folder1 = APIFolder.make(id: 1, parent_folder_id: 0)
+        let folder1File = APIFile.make(id: 1, folder_id: 1, display_name: "folder-1-file")
+
+        mockRootFolders(folders: [rootFolder])
+        mockFolderItems(for: "0", folders: [folder1], files: [rootFolderFile])
+        mockFolderItems(for: "1", folders: [], files: [folder1File])
 
         mockCourseList(
             courseList: [
@@ -109,6 +122,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
                 }
             )
 
+        drainMainQueue()
         waitForExpectations(timeout: 0.1)
         XCTAssertEqual(entries.count, 1)
         XCTAssertEqual(entries[0].tabs.count, 4)
@@ -143,6 +157,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
                 }
             )
 
+        drainMainQueue()
         waitForExpectations(timeout: 0.1)
         XCTAssertEqual(entries.count, 1)
         XCTAssertEqual(entries[0].files.count, 2)
@@ -172,6 +187,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
                 }
             )
 
+        drainMainQueue()
         waitForExpectations(timeout: 0.1)
         XCTAssertEqual(entries.count, 1)
         XCTAssertEqual(entries[0].tabs.count, 0)
@@ -180,7 +196,10 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
     }
 
     func testDefaultSelection() {
-        let testee = CourseSyncSelectorInteractorLive(sessionDefaults: defaults)
+        let testee = CourseSyncSelectorInteractorLive(
+            courseSyncListInteractor: CourseSyncListInteractorLive(sessionDefaults: defaults),
+            sessionDefaults: defaults
+        )
         let expectation = expectation(description: "Publisher sends value")
 
         mockCourseList(
@@ -206,6 +225,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
                 }
             )
 
+        drainMainQueue()
         waitForExpectations(timeout: 0.1)
         XCTAssertFalse(entries[0].selectionState == .selected)
         XCTAssertTrue(entries[0].isCollapsed)
@@ -218,7 +238,10 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
     }
 
     func testSelectedEntries() {
-        let testee = CourseSyncSelectorInteractorLive(sessionDefaults: defaults)
+        let testee = CourseSyncSelectorInteractorLive(
+            courseSyncListInteractor: CourseSyncListInteractorLive(sessionDefaults: defaults),
+            sessionDefaults: defaults
+        )
         let expectation = expectation(description: "Publisher sends value")
         expectation.expectedFulfillmentCount = 2
 
@@ -252,6 +275,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
                 }
             )
 
+        drainMainQueue()
         waitForExpectations(timeout: 0.1)
 
         XCTAssertEqual(entries.count, 1)
@@ -298,6 +322,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
                 }
             )
 
+        drainMainQueue()
         waitForExpectations(timeout: 0.1)
         XCTAssertEqual(selectedSize, 2048)
         subscription.cancel()
@@ -326,6 +351,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
             .sink()
             .store(in: &subscriptions)
 
+        drainMainQueue()
         waitForExpectations(timeout: 0.1)
         subscriptions.removeAll()
     }
@@ -352,6 +378,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
             .sink()
             .store(in: &subscriptions)
 
+        drainMainQueue()
         waitForExpectations(timeout: 0.1)
         subscriptions.removeAll()
     }
@@ -386,6 +413,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
 
         // MARK: - THEN
 
+        drainMainQueue()
         XCTAssertCompletableSingleOutputEquals(selectedItemID, "courses/2")
         session.reset()
     }
@@ -398,8 +426,12 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
             .make(id: "2", name: "course 2", tabs: []),
         ])
 
-        let testee = CourseSyncSelectorInteractorLive(sessionDefaults: defaults)
+        let testee = CourseSyncSelectorInteractorLive(
+            courseSyncListInteractor: CourseSyncListInteractorLive(sessionDefaults: defaults),
+            sessionDefaults: defaults
+        )
         XCTAssertFinish(testee.getCourseSyncEntries().first())
+        drainMainQueue()
 
         // MARK: - WHEN
 
@@ -407,6 +439,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
 
         // MARK: - THEN
 
+        drainMainQueue()
         XCTAssertEqual(defaults.offlineSyncSelections, ["courses/2"])
     }
 
@@ -429,6 +462,7 @@ class CourseSyncSelectorInteractorLiveTests: CoreTestCase {
 
         // MARK: - THEN
 
+        drainMainQueue()
         XCTAssertEqual(defaults.offlineSyncSelections, ["courses/2", "courses/1"])
     }
 

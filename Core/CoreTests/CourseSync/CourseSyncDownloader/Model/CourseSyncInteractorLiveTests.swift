@@ -763,7 +763,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
 
 private class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserverInteractor {
     func observeDownloadProgress() -> AnyPublisher<CourseSyncDownloadProgress, Never> {
-        Just(CourseSyncDownloadProgress(bytesToDownload: 0, bytesDownloaded: 0, isFinished: false, error: nil)).eraseToAnyPublisher()
+        Just(CourseSyncDownloadProgress(bytesToDownload: 0, bytesDownloaded: 0, isFinished: false, error: nil, courseIds: [])).eraseToAnyPublisher()
     }
 
     func observeStateProgress() -> AnyPublisher<[CourseSyncStateProgress], Never> {
