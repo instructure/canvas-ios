@@ -82,7 +82,7 @@ public class AnnouncementsHelper: BaseHelper {
             subject: String? = nil, message: String? = nil, isK5: Bool = false, durationMinutes: Int = 2) -> DSAccountNotification {
         let globalAnnouncementSubject = subject ?? "This is not a drill!"
         let globalAnnouncementMessage = message ?? "This is an account notification! Will disappear in \(durationMinutes) minutes"
-                let globalAnnouncementStartAt = Date.now
+        let globalAnnouncementStartAt = Date.now
         let globalAnnouncementEndAt = Date.now.addMinutes(durationMinutes)
 
         return seeder.postAccountNotifications(
