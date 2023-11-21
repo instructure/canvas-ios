@@ -52,11 +52,16 @@ class BackgroundURLSessionProviderTests: CoreTestCase {
     }
 
     func testCreatesNewSessionIfSessionBecameInvalid() {
+        testee = BackgroundURLSessionProvider(
+            sessionID: "testSession",
+            sharedContainerID: "testContainer",
+            sessionConfigurationProtocolClasses: [URLProtocolMock.self],
+            uploadProgressObserversCache: mockUploadProgressObserversCache
+        )
+
         let oldSession = testee.session
         oldSession.invalidateAndCancel()
-        waitUntil(shouldFail: true) {
-            oldSession != testee.session
-        }
+        XCTAssertNotEqual(oldSession, testee.session)
     }
 
     // MARK: - Event Forwarding To Upload Observer Tests
@@ -105,4 +110,18 @@ class MockFileUploadProgressObserversCache: FileUploadProgressObserversCache {
     public override func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         receivedData = data
     }
+}
+
+private class URLProtocolMock: URLProtocol {
+    override class func canInit(with _: URLRequest) -> Bool {
+        return true
+    }
+
+    override class func canonicalRequest(for request: URLRequest) -> URLRequest {
+        return request
+    }
+
+    override func startLoading() {}
+
+    override func stopLoading() {}
 }
