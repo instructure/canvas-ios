@@ -85,7 +85,7 @@ class LoginStartViewController: UIViewController {
         }
         authenticationMethodLabel.isHidden = true
         logoView.tintColor = .currentLogoColor()
-        wordmark.tintColor = .ash
+        wordmark.tintColor = .textDark
         animatableLogo.tintColor = logoView.tintColor
         previousLoginsView.isHidden = true
         self.lastLoginAccount = nil
@@ -98,7 +98,7 @@ class LoginStartViewController: UIViewController {
             : Bundle.main.isTeacherApp ? "TEACHER"
             : "STUDENT"
         ), attributes: [.kern: 2])
-        wordmarkLabel.textColor = .currentLogoColor()
+        wordmarkLabel.textColor = .textDark
         logoView.superview?.accessibilityLabel = "Canvas " + (wordmarkLabel.text ?? "")
         let loginText = NSLocalizedString("Log In", bundle: .core, comment: "")
         if MDMManager.shared.host != nil {
