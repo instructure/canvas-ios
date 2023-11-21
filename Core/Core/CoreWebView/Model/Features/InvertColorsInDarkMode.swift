@@ -31,9 +31,11 @@ private class InvertColorsInDarkMode: CoreWebViewFeature {
 
         let cssString = darkCss.components(separatedBy: .newlines).joined()
         return """
+        window.addEventListener("load", () => {
            var element = document.createElement('style');
            element.innerHTML = '\(cssString)';
            document.head.appendChild(element);
+        })
         """
     }()
 
