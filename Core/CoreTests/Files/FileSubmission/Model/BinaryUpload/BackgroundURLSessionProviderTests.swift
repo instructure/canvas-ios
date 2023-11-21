@@ -18,6 +18,7 @@
 
 @testable import Core
 import CoreData
+import TestsFoundation
 import XCTest
 
 class BackgroundURLSessionProviderTests: CoreTestCase {
@@ -53,10 +54,9 @@ class BackgroundURLSessionProviderTests: CoreTestCase {
     func testCreatesNewSessionIfSessionBecameInvalid() {
         let oldSession = testee.session
         oldSession.invalidateAndCancel()
-        RunLoop.main.run(until: Date() + 3)
-        let newSession = testee.session
-        print(oldSession, newSession)
-        XCTAssertNotEqual(oldSession, newSession)
+        waitUntil(shouldFail: true) {
+            oldSession != testee.session
+        }
     }
 
     // MARK: - Event Forwarding To Upload Observer Tests
