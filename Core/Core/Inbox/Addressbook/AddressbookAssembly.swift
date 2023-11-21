@@ -23,10 +23,11 @@ public enum AddressBookAssembly {
     public static func makeAddressbookRecipientViewController(
         env: AppEnvironment = .shared,
         recipientContext: RecipientContext,
+        roleName: String,
         recipients: [SearchRecipient],
         recipientDidSelect: CurrentValueRelay<[SearchRecipient]>
     ) -> UIViewController {
-        let viewModel = AddressbookRecipientViewModel(router: env.router, recipients: recipients, recipientDidSelect: recipientDidSelect)
+        let viewModel = AddressbookRecipientViewModel(router: env.router, roleName: roleName, recipients: recipients, recipientDidSelect: recipientDidSelect)
         let view = AddressbookRecipientView(model: viewModel)
         return CoreHostingController(view)
     }
@@ -46,7 +47,12 @@ public enum AddressBookAssembly {
 
     public static func makePreview(env: AppEnvironment) -> AddressbookRecipientView {
         let interactor = AddressbookInteractorPreview(env: env)
-        let viewModel = AddressbookRecipientViewModel(router: env.router, recipients: interactor.recipients.value, recipientDidSelect: CurrentValueRelay<[SearchRecipient]>([SearchRecipient()]))
+        let viewModel = AddressbookRecipientViewModel(
+            router: env.router,
+            roleName: "Students",
+            recipients: interactor.recipients.value,
+            recipientDidSelect: CurrentValueRelay<[SearchRecipient]>([SearchRecipient()])
+        )
         return AddressbookRecipientView(model: viewModel)
     }
 

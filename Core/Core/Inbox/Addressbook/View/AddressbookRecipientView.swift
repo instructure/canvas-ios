@@ -19,41 +19,75 @@
 import SwiftUI
 
 public struct AddressbookRecipientView: View {
-    @ObservedObject private var model: AddressbookRecipientViewModel
+    @ObservedObject private var viewModel: AddressbookRecipientViewModel
     @Environment(\.viewController) private var controller
 
     init(model: AddressbookRecipientViewModel) {
-        self.model = model
+        self.viewModel = model
     }
 
     public var body: some View {
         ScrollView {
-            ForEach(model.recipients, id: \.id) { recipient in
-                VStack(spacing: 0) {
-                    Color.borderMedium
-                        .frame(height: 0.5)
-                    Button(action: {
-                        model.recipientDidTap.send((recipient: [recipient], controller: controller))
-                    }, label: {
-                        peopleRowView(recipient)
-                    })
-                    .padding(16)
-                }
-            }
+            peopleView
         }
         .background(Color.backgroundLightest)
-        .navigationTitle(model.title)
+        .navigationTitle(viewModel.title)
     }
 
-    @ViewBuilder
-    private func peopleRowView(_ recipient: SearchRecipient) -> some View {
-        HStack(alignment: .center, spacing: 16) {
-            Avatar(name: recipient.name, url: recipient.avatarURL, size: 36, isAccessible: false)
-            Text(recipient.displayName ?? recipient.name)
-                    .font(.regular16)
-                    .foregroundColor(.textDarkest)
-                    .lineLimit(1)
-            Spacer()
+    private var separator: some View {
+        Color.borderMedium
+            .frame(height: 0.5)
+    }
+
+    private var peopleView: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            separator
+            allRecipient
+            ForEach(viewModel.recipients, id: \.self) { user in
+                personRowView(user)
+            }
+        }
+    }
+
+    private func personRowView(_ recipient: SearchRecipient) -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Button(action: {
+                viewModel.recipientDidTap.send((recipient: [recipient], controller: controller))
+            }, label: {
+                HStack(alignment: .center, spacing: 16) {
+                    Avatar(name: recipient.displayName, url: recipient.avatarURL, size: 36, isAccessible: false)
+                    Text(recipient.displayName ?? recipient.fullName)
+                        .font(.regular16)
+                        .foregroundColor(.textDarkest)
+                        .lineLimit(1)
+                }
+            })
+            .padding(16)
+            separator
+        }
+    }
+
+    private var allRecipient: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Button(action: {
+                viewModel.allRecipientDidTap.send((recipient: viewModel.recipients, controller: controller))
+            }, label: {
+                HStack(alignment: .center, spacing: 16) {
+                    Avatar(name: NSLocalizedString("All", comment: ""), url: nil, size: 36, isAccessible: false)
+                    VStack(alignment: .leading) {
+                        Text("All in \(viewModel.roleName)", bundle: .core)
+                            .font(.regular16)
+                            .foregroundColor(.textDarkest)
+                            .lineLimit(1)
+                        Text("\(viewModel.recipients.count) People", bundle: .core)
+                            .font(.regular14)
+                            .foregroundColor(.textDark)
+                            .lineLimit(1)
+                    }
+                }
+            })
+            .padding(16)
+            separator
         }
     }
 }

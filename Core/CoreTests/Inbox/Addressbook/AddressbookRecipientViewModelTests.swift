@@ -16,19 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+@testable import Core
+import CoreData
+import XCTest
+import Combine
+import CombineExt
 
-public class RecipientContext {
-    let name: String
-    let context: Context
+class AddressbookRecipientViewModelTests: CoreTestCase {
+    var testee: AddressbookRecipientViewModel!
+    private var selected = CurrentValueRelay<[SearchRecipient]>([])
 
-    init(course: Course) {
-        self.name = course.name ?? course.courseCode ?? ""
-        self.context = Context.course(course.id)
-    }
-
-    init(group: Group) {
-        self.name = group.name
-        self.context = Context.group(group.id)
+    override func setUp() {
+        super.setUp()
+        testee = AddressbookRecipientViewModel(router: environment.router, recipients: [.make()], recipientDidSelect: selected)
     }
 }

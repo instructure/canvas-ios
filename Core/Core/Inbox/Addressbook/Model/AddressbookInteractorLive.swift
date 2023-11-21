@@ -21,6 +21,7 @@ import Combine
 public class AddressbookInteractorLive: AddressbookInteractor {
     // MARK: - Outputs
     public var state = CurrentValueSubject<StoreState, Never>(.loading)
+
     public var recipients = CurrentValueSubject<[SearchRecipient], Never>([])
 
     // MARK: - Private

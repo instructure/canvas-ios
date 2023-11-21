@@ -28,15 +28,16 @@ class AddressbookRoleViewModel: ObservableObject {
     @Published public private(set) var roleRecipients: [String: [SearchRecipient]] = [:]
 
     public let title = NSLocalizedString("Select Recipients", bundle: .core, comment: "")
+    public let recipientContext: RecipientContext
 
     // MARK: - Inputs
-    public let recipientDidTap = PassthroughSubject<(recipient: [SearchRecipient], controller: WeakViewController), Never>()
+    public let recipientDidTap = PassthroughSubject<(roleName: String, recipient: [SearchRecipient], controller: WeakViewController), Never>()
     public let allRecipientDidTap = PassthroughSubject<(recipient: [SearchRecipient], controller: WeakViewController), Never>()
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: AddressbookInteractor
-    private let recipientContext: RecipientContext
+
 
     public init(router: Router, recipientContext: RecipientContext, interactor: AddressbookInteractor, recipientDidSelect: CurrentValueRelay<[SearchRecipient]>) {
         self.interactor = interactor
@@ -64,20 +65,39 @@ class AddressbookRoleViewModel: ObservableObject {
                 return Dictionary(grouping: roleRecipients, by: { $0.1 })
             }
             .compactMap { roleRecipients -> [String: [SearchRecipient]] in
-                return Dictionary(uniqueKeysWithValues: roleRecipients.map { key, value in (key, Array(Set(value.map { $0.0 })) ) })
+                return Dictionary(uniqueKeysWithValues: roleRecipients.map {[weak self] key, value in
+                    (
+                        self?.getRoleName(roleType: key) ?? "",
+                        Array(Set(value.map { $0.0 }))
+                    )
+                })
             }
             .handleEvents(receiveOutput: { [weak self] roleRecepients in
-                self?.roles = Array(roleRecepients.keys)
+                self?.roles = Array(roleRecepients.keys).sorted()
             })
             .assign(to: &$roleRecipients)
     }
 
+    private func getRoleName(roleType: String) -> String {
+        switch roleType {
+        case "TeacherEnrollment":
+            return NSLocalizedString("Teachers", comment: "")
+        case "StudentEnrollment":
+            return NSLocalizedString("Students", comment: "")
+        case "ObserverEnrollment":
+            return NSLocalizedString("Observers", comment: "")
+        default:
+            return NSLocalizedString("Others", comment: "")
+        }
+    }
+
     private func setupInputBindings(router: Router, recipientDidSelect: CurrentValueRelay<[SearchRecipient]>) {
         recipientDidTap
-            .sink { [router] (recipients, viewController) in
+            .sink { [router] (roleName, recipients, viewController) in
                 router.show(
                     AddressBookAssembly.makeAddressbookRecipientViewController(
                         recipientContext: self.recipientContext,
+                        roleName: roleName,
                         recipients: recipients,
                         recipientDidSelect: recipientDidSelect),
                     from: viewController)

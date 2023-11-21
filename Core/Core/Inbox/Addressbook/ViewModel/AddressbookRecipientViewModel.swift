@@ -24,6 +24,7 @@ class AddressbookRecipientViewModel: ObservableObject {
     @Published public private(set) var recipients: [SearchRecipient]
 
     public let title = NSLocalizedString("Select Recipients", bundle: .core, comment: "")
+    public let roleName: String
 
     // MARK: - Inputs
     public let recipientDidTap = PassthroughSubject<(recipient: [SearchRecipient], controller: WeakViewController), Never>()
@@ -32,8 +33,9 @@ class AddressbookRecipientViewModel: ObservableObject {
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
 
-    public init(router: Router, recipients: [SearchRecipient], recipientDidSelect: CurrentValueRelay<[SearchRecipient]>) {
+    public init(router: Router, roleName: String, recipients: [SearchRecipient], recipientDidSelect: CurrentValueRelay<[SearchRecipient]>) {
         self.recipients = recipients
+        self.roleName = roleName
         setupInputBindings(router: router, recipientDidSelect: recipientDidSelect)
     }
 

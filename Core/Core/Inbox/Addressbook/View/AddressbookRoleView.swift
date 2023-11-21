@@ -19,26 +19,27 @@
 import SwiftUI
 
 struct AddressbookRoleView: View {
-    @ObservedObject private var model: AddressbookRoleViewModel
+    @ObservedObject private var viewModel: AddressbookRoleViewModel
     @Environment(\.viewController) private var controller
 
     init(model: AddressbookRoleViewModel) {
-        self.model = model
+        self.viewModel = model
     }
 
     public var body: some View {
         ScrollView {
-            switch model.state {
+            switch viewModel.state {
             case .loading:
                 loadingIndicator
             case .data:
-                peopleView
+                rolesView
             case .empty, .error:
                 Text("There was an error loading recipients.", bundle: .core)
+                    .frame(maxWidth: .infinity)
             }
         }
         .background(Color.backgroundLightest)
-        .navigationTitle(model.title)
+        .navigationTitle(viewModel.title)
     }
 
     private var loadingIndicator: some View {
@@ -48,30 +49,66 @@ struct AddressbookRoleView: View {
             .accentColor(Color(Brand.shared.primary))
     }
 
-    private var peopleView: some View {
-        ForEach(model.roles, id: \.self) { role in
-            VStack(spacing: 0) {
-                Color.borderMedium
-                    .frame(height: 0.5)
-                Button(action: {
-                    model.recipientDidTap.send((recipient: model.roleRecipients[role] ?? [], controller: controller))
-                }, label: {
-                    roleRowView(role)
-                })
-                .padding(16)
+    private var separator: some View {
+        Color.borderMedium
+            .frame(height: 0.5)
+    }
+
+    private var rolesView: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            separator
+            allRecipient
+            ForEach(viewModel.roles, id: \.self) { role in
+                roleRowView(role)
             }
         }
     }
 
-    @ViewBuilder
     private func roleRowView(_ role: String) -> some View {
-        HStack(alignment: .center, spacing: 16) {
-            Avatar(name: role, url: nil, size: 36, isAccessible: false)
-            Text(role)
-                .font(.regular16)
-                .foregroundColor(.textDarkest)
-                .lineLimit(1)
-            Spacer()
+        VStack(alignment: .leading, spacing: 0) {
+            Button(action: {
+                viewModel.recipientDidTap.send((roleName: role, recipient: viewModel.roleRecipients[role] ?? [], controller: controller))
+            }, label: {
+                HStack(alignment: .center, spacing: 16) {
+                    Avatar(name: role, url: nil, size: 36, isAccessible: false)
+                    VStack(alignment: .leading) {
+                        Text(role)
+                            .font(.regular16)
+                            .foregroundColor(.textDarkest)
+                            .lineLimit(1)
+                        Text("\(viewModel.roleRecipients[role]?.count ?? 0) People", bundle: .core)
+                            .font(.regular14)
+                            .foregroundColor(.textDark)
+                            .lineLimit(1)
+                    }
+                }
+            })
+            .padding(16)
+            separator
+        }
+    }
+
+    private var allRecipient: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Button(action: {
+                viewModel.allRecipientDidTap.send((recipient: viewModel.recipients, controller: controller))
+            }, label: {
+                HStack(alignment: .center, spacing: 16) {
+                    Avatar(name: NSLocalizedString("All", comment: ""), url: nil, size: 36, isAccessible: false)
+                    VStack(alignment: .leading) {
+                        Text("All in \(viewModel.recipientContext.name)", bundle: .core)
+                            .font(.regular16)
+                            .foregroundColor(.textDarkest)
+                            .lineLimit(1)
+                        Text("\(viewModel.recipients.count) People", bundle: .core)
+                            .font(.regular14)
+                            .foregroundColor(.textDark)
+                            .lineLimit(1)
+                    }
+                }
+            })
+            .padding(16)
+            separator
         }
     }
 }
