@@ -85,7 +85,7 @@ class LoginStartViewController: UIViewController {
         }
         authenticationMethodLabel.isHidden = true
         logoView.tintColor = .currentLogoColor()
-        wordmark.tintColor = .currentLogoColor()
+        wordmark.tintColor = .textDarkest
         animatableLogo.tintColor = logoView.tintColor
         previousLoginsView.isHidden = true
         self.lastLoginAccount = nil
