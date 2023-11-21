@@ -20,6 +20,10 @@ import Foundation
 import CoreData
 
 public struct APIFeatureFlag {
+    public enum Key: String {
+        case discussionRedesign = "react_discussions_post"
+        case assignmentEnhancements = "assignments_2_student"
+    }
     public let key: String
     public let isEnabled: Bool
     public let canvasContextID: String
@@ -37,10 +41,6 @@ public final class FeatureFlag: NSManagedObject, WriteableModel {
     public var context: Context? {
         get { return canvasContextID.flatMap { Context(canvasContextID: $0) } }
         set { canvasContextID = newValue?.canvasContextID }
-    }
-
-    public var isDiscussionAndAnnouncementRedesign: Bool {
-        name == "react_discussions_post"
     }
 
     @discardableResult
