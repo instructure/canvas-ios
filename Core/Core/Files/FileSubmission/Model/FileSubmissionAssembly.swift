@@ -37,8 +37,15 @@ public class FileSubmissionAssembly {
         - container: The CoreData database.
         - sessionID: The background session identifier. Must be unique for each process (app / share extension).
         - sharedContainerID: The container identifier shared between the app and its extensions. Background URLSession read/write this directory.
+        - sessionConfigurationProtocolClasses: Protocol handler configurations. Not needed by default, used for unit test targets only.
      */
-    public init(container: NSPersistentContainer, sessionID: String, sharedContainerID: String, api: API) {
+    public init(
+        container: NSPersistentContainer,
+        sessionID: String,
+        sharedContainerID: String,
+        sessionConfigurationProtocolClasses: [AnyClass]?,
+        api: API
+    ) {
         /** A background context so we can work with it from any background thread. */
         let backgroundContext = container.newBackgroundContext()
         // If the app takes control of the upload respect what it does in CoreData and discard our context's changes
@@ -83,7 +90,12 @@ public class FileSubmissionAssembly {
                 } receiveValue: { _ in }
             return observer
         }
-        let backgroundURLSessionProvider = BackgroundURLSessionProvider(sessionID: sessionID, sharedContainerID: sharedContainerID, uploadProgressObserversCache: uploadProgressObserversCache)
+        let backgroundURLSessionProvider = BackgroundURLSessionProvider(
+            sessionID: sessionID,
+            sharedContainerID: sharedContainerID,
+            sessionConfigurationProtocolClasses: sessionConfigurationProtocolClasses,
+            uploadProgressObserversCache: uploadProgressObserversCache
+        )
 
         self.submissionPreparation = FileSubmissionPreparation(context: backgroundContext)
         self.backgroundContext = backgroundContext
@@ -120,10 +132,17 @@ public class FileSubmissionAssembly {
      Use this method to pass he completion block received in handleEventsForBackgroundURLSession appdelegate method when the share extension
      is doing background uploading. This method also creates the necessary `URLSession` object that receives delegate method updates.
      */
-    public func connectToBackgroundURLSession(_ completion: @escaping () -> Void) {
+    public func connectToBackgroundURLSession(_ completion: (() -> Void)?) {
         backgroundSessionCompletion.callback = completion
         // This will create the background URLSession
         _ = backgroundURLSessionProvider.session
+
+        backgroundURLSessionProvider.session.getAllTasks(completionHandler: { [weak backgroundURLSessionProvider] tasks in
+            if tasks.isEmpty {
+                backgroundURLSessionProvider?.session.finishTasksAndInvalidate()
+                completion?()
+            }
+        })
     }
 
     /**
@@ -148,13 +167,14 @@ public class FileSubmissionAssembly {
     }
 }
 
-extension FileSubmissionAssembly {
-    public static let ShareExtensionSessionID = "com.instructure.icanvas.SubmitAssignment.file-uploads"
+public extension FileSubmissionAssembly {
+    static let ShareExtensionSessionID = "com.instructure.icanvas.SubmitAssignment.file-uploads"
 
-    public static func makeShareExtensionAssembly() -> FileSubmissionAssembly {
+    static func makeShareExtensionAssembly(sessionConfigurationProtocolClasses: [AnyClass]? = nil) -> FileSubmissionAssembly {
         FileSubmissionAssembly(container: AppEnvironment.shared.database,
                                sessionID: ShareExtensionSessionID,
                                sharedContainerID: "group.instructure.shared",
+                               sessionConfigurationProtocolClasses: sessionConfigurationProtocolClasses,
                                api: AppEnvironment.shared.api)
     }
 }
