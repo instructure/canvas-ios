@@ -53,9 +53,9 @@ class BackgroundURLSessionProviderTests: CoreTestCase {
     func testCreatesNewSessionIfSessionBecameInvalid() {
         let oldSession = testee.session
         oldSession.invalidateAndCancel()
-        RunLoop.main.run(until: Date() + 1)
-        drainMainQueue()
+        RunLoop.main.run(until: Date() + 3)
         let newSession = testee.session
+        print(oldSession, newSession)
         XCTAssertNotEqual(oldSession, newSession)
     }
 
