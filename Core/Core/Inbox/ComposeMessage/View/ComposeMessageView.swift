@@ -43,22 +43,9 @@ public struct ComposeMessageView: View {
                 }
                 .background(Color.backgroundLightest)
                 .navigationBarItems(leading: cancelButton)
-            }
-            .onAppear {
-                hideNavigationBarSeparator()
+                .navigationBarStyle(.modal)
             }
         }
-    }
-
-    private func hideNavigationBarSeparator() {
-        let navigationBar = controller.value.navigationController?.navigationBar
-        let navigationBarAppearance = UINavigationBarAppearance()
-        navigationBarAppearance.configureWithOpaqueBackground()
-        navigationBarAppearance.shadowColor = .clear
-        navigationBarAppearance.shadowImage = UIImage()
-        navigationBar?.standardAppearance = navigationBarAppearance
-        navigationBar?.scrollEdgeAppearance = navigationBarAppearance
-        navigationBar?.isTranslucent = true
     }
 
     private var separator: some View {
@@ -72,7 +59,7 @@ public struct ComposeMessageView: View {
         } label: {
             Text("Cancel", bundle: .core)
                 .font(.regular16)
-                .foregroundColor(.textDarkest)
+                .foregroundColor(.accentColor)
         }
     }
 
@@ -122,7 +109,7 @@ public struct ComposeMessageView: View {
         VStack(spacing: 0) {
             courseView
             Divider()
-            if model.selectedCourse != nil {
+            if model.selectedContext != nil {
                 toView
                 Divider()
             }
@@ -140,9 +127,10 @@ public struct ComposeMessageView: View {
                 Text("Course", bundle: .core)
                     .font(.regular16, lineHeight: .condensed)
                     .foregroundColor(.textDark)
-                if let course = model.selectedCourse {
-                    Text(course.name)
+                if let context = model.selectedContext {
+                    Text(context.name)
                         .font(.regular16, lineHeight: .condensed)
+                        .multilineTextAlignment(.leading)
                         .foregroundColor(.textDarkest)
                 }
                 Spacer()
@@ -194,6 +182,7 @@ public struct ComposeMessageView: View {
             TextField("", text: $model.subject)
                 .multilineTextAlignment(.leading)
                 .font(.regular16, lineHeight: .condensed).foregroundColor(.textDarkest)
+                .textInputAutocapitalization(.sentences)
                 .focused($subjectTextFieldFocus)
                 .accessibility(label: Text("Subject", bundle: .core))
         }
@@ -239,6 +228,7 @@ public struct ComposeMessageView: View {
             TextEditor(text: $model.bodyText)
                 .iOS16HideListScrollContentBackground()
                 .font(.regular16, lineHeight: .condensed)
+                .textInputAutocapitalization(.sentences)
                 .focused($messageTextFieldFocus)
                 .foregroundColor(.textDarkest)
                 .padding(.horizontal, 12)
