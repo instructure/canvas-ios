@@ -28,6 +28,37 @@ class AddressbookRecipientViewModelTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        testee = AddressbookRecipientViewModel(router: environment.router, recipients: [.make()], recipientDidSelect: selected)
+        let recipients: [SearchRecipient] = [
+            .save(.make(id: "1", name: "Recipient 1", common_courses: ["Course 1": ["TeacherEnrollment"]]), filter: "", in: environment.database.viewContext),
+            .save(.make(id: "2", name: "Recipient 2", common_courses: ["Course 1": ["StudentEnrollment"]]), filter: "", in: environment.database.viewContext),
+            .save(.make(id: "3", name: "Recipient 3", common_courses: ["Course 1": ["ObserverEnrollment"]]), filter: "", in: environment.database.viewContext),
+        ]
+        testee = AddressbookRecipientViewModel(router: environment.router, roleName: "Students", recipients: recipients, recipientDidSelect: selected)
+    }
+
+    func testInitState() {
+        XCTAssertEqual(testee.recipients.count, 3)
+        XCTAssertEqual(testee.roleName, "Students")
+    }
+
+    func testListFiltering() {
+        testee.searchText = ""
+        XCTAssertEqual(testee.filteredRecipients().count, 3)
+        testee.searchText = "Recipient"
+        XCTAssertEqual(testee.filteredRecipients().count, 3)
+        testee.searchText = "Recipient 1"
+        XCTAssertEqual(testee.filteredRecipients().count, 1)
+    }
+
+    func testRecipientSelection() {
+        let sourceView = UIViewController()
+        testee.recipientDidTap.send((recipient: [testee.recipients.first!], controller: WeakViewController(sourceView)))
+        XCTAssertNotNil(router.dismissed)
+    }
+
+    func testAllRecipientSelection() {
+        let sourceView = UIViewController()
+        testee.allRecipientDidTap.send((recipient: [testee.recipients.first!], controller: WeakViewController(sourceView)))
+        XCTAssertNotNil(router.dismissed)
     }
 }

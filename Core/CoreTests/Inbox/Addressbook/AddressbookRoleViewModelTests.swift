@@ -37,15 +37,49 @@ class AddressbookRoleViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, mockInteractor.state.value)
         XCTAssertEqual(testee.recipients.count, 3)
         XCTAssertEqual(testee.roles.count, 3)
-        XCTAssertEqual(testee.roleRecipients["Teacher"]?.first?.name, "Recipient 1")
-        XCTAssertEqual(testee.roleRecipients["Student"]?.first?.name, "Recipient 2")
-        XCTAssertEqual(testee.roleRecipients["Observer"]?.first?.name, "Recipient 3")
+        XCTAssertEqual(testee.roleRecipients["Teachers"]?.first?.name, "Recipient 1")
+        XCTAssertEqual(testee.roleRecipients["Students"]?.first?.name, "Recipient 2")
+        XCTAssertEqual(testee.roleRecipients["Observers"]?.first?.name, "Recipient 3")
+    }
+
+    func testListFiltering() {
+        testee.searchText = ""
+        XCTAssertEqual(testee.filteredRecipients().count, 3)
+        testee.searchText = "Recipient"
+        XCTAssertEqual(testee.filteredRecipients().count, 3)
+        testee.searchText = "Recipient 1"
+        XCTAssertEqual(testee.filteredRecipients().count, 1)
+    }
+
+    func testRecipientSelection() {
+        let sourceView = UIViewController()
+        testee.recipientDidTap.send((recipient: [testee.recipients.first!], controller: WeakViewController(sourceView)))
+        XCTAssertNotNil(router.dismissed)
+    }
+
+    func testAllRecipientSelection() {
+        let sourceView = UIViewController()
+        testee.cancelButtonDidTap.accept(WeakViewController(sourceView))
+        XCTAssertNotNil(router.dismissed)
+    }
+
+    func testRoleSelection() {
+        let sourceView = UIViewController()
+        testee.roleDidTap.send((roleName: "Students", recipient: testee.recipients, controller: WeakViewController(sourceView)))
+        XCTAssertNotNil(router.showExpectation)
+    }
+
+    func testRefresh() async {
+        XCTAssertFalse(mockInteractor.isRefreshCalled)
+        await testee.refresh()
+        XCTAssertTrue(mockInteractor.isRefreshCalled)
     }
 }
 
 private class AddressbookInteractorMock: AddressbookInteractor {
     public var state = CurrentValueSubject<StoreState, Never>(.data)
     public var recipients: CurrentValueSubject<[SearchRecipient], Never>
+    public private(set) var isRefreshCalled = false
 
     public init(env: AppEnvironment) {
         self.recipients = CurrentValueSubject<[SearchRecipient], Never>([
@@ -56,4 +90,10 @@ private class AddressbookInteractorMock: AddressbookInteractor {
 
     }
 
+    func refresh() -> Future<Void, Never> {
+        isRefreshCalled = true
+        return Future<Void, Never> { promise in
+            promise(.success(()))
+        }
+    }
 }
