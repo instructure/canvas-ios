@@ -32,12 +32,17 @@ struct AddressbookRoleView: View {
             case .loading:
                 loadingIndicator
             case .data:
-                rolesView
+                if viewModel.searchText.isEmpty {
+                    rolesView
+                } else {
+                    peopleView
+                }
             case .empty, .error:
                 Text("There was an error loading recipients.", bundle: .core)
                     .frame(maxWidth: .infinity)
             }
         }
+        .searchable(text: $viewModel.searchText)
         .refreshable {
             await viewModel.refresh()
         }
@@ -69,6 +74,35 @@ struct AddressbookRoleView: View {
         }
     }
 
+    private var peopleView: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            separator
+            if viewModel.searchText.isEmpty { allRecipient }
+            ForEach(viewModel.filteredRecipients(), id: \.self) { user in
+                personRowView(user)
+            }
+        }
+    }
+
+    private func personRowView(_ recipient: SearchRecipient) -> some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Button(action: {
+                viewModel.recipientDidTap.send((recipient: [recipient], controller: controller))
+            }, label: {
+                HStack(alignment: .center, spacing: 16) {
+                    Avatar(name: recipient.displayName, url: recipient.avatarURL, size: 36, isAccessible: false)
+                    Text(recipient.displayName ?? recipient.fullName)
+                        .font(.regular16)
+                        .foregroundColor(.textDarkest)
+                        .lineLimit(1)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            })
+            .padding(16)
+            separator
+        }
+    }
+
     private var rolesView: some View {
         VStack(alignment: .leading, spacing: 0) {
             separator
@@ -82,7 +116,7 @@ struct AddressbookRoleView: View {
     private func roleRowView(_ role: String) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Button(action: {
-                viewModel.recipientDidTap.send((roleName: role, recipient: viewModel.roleRecipients[role] ?? [], controller: controller))
+                viewModel.roleDidTap.send((roleName: role, recipient: viewModel.roleRecipients[role] ?? [], controller: controller))
             }, label: {
                 HStack(alignment: .center, spacing: 16) {
                     Avatar(name: role, url: nil, size: 36, isAccessible: false)
@@ -107,7 +141,7 @@ struct AddressbookRoleView: View {
     private var allRecipient: some View {
         VStack(alignment: .leading, spacing: 0) {
             Button(action: {
-                viewModel.allRecipientDidTap.send((recipient: viewModel.recipients, controller: controller))
+                viewModel.recipientDidTap.send((recipient: viewModel.recipients, controller: controller))
             }, label: {
                 HStack(alignment: .center, spacing: 16) {
                     Avatar(name: NSLocalizedString("All", comment: ""), url: nil, size: 36, isAccessible: false)

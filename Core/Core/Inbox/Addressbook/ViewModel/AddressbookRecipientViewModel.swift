@@ -52,6 +52,8 @@ class AddressbookRecipientViewModel: ObservableObject {
     }
 
     private func closeDialog(_ viewController: WeakViewController) {
+        // Double dismiss is neccessary due to the searchable view
+        router.dismiss(viewController)
         router.dismiss(viewController)
     }
 
