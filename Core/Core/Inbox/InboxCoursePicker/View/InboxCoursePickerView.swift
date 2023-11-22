@@ -26,19 +26,27 @@ public struct InboxCoursePickerView: View {
     }
 
     public var body: some View {
-        content
-            .navigationTitleStyled(Text("Select Course", bundle: .core).font(.semibold17).foregroundColor(.textDarkest))
-            .navigationBarTitleDisplayMode(.inline)
+        ScrollView {
+            content
+                .navigationTitleStyled(Text("Select Course", bundle: .core).font(.semibold17).foregroundColor(.textDarkest))
+                .navigationBarTitleDisplayMode(.inline)
+        }
+        .refreshable {
+            await viewModel.refresh()
+        }
+        .frame(maxWidth: .infinity)
+        .navigationBarStyle(.modal)
     }
 
     @ViewBuilder
     private var content: some View {
-        ScrollView {
             switch viewModel.state {
             case .loading:
-                ProgressView()
-                    .progressViewStyle(.indeterminateCircle())
-                    .padding(12)
+                VStack {
+                    ProgressView()
+                        .progressViewStyle(.indeterminateCircle())
+                        .padding(12)
+                }
             case .data:
                 VStack(spacing: 0) {
                     courses(courses: viewModel.courses)
@@ -50,8 +58,6 @@ public struct InboxCoursePickerView: View {
                     .foregroundColor(.textDarkest)
             }
         }
-        .frame(maxWidth: .infinity)
-    }
 
     private var separator: some View {
         Color.borderMedium
@@ -64,14 +70,14 @@ public struct InboxCoursePickerView: View {
                 Section(header:
                         VStack(spacing: 0) {
                     separator
-                            Text("Courses")
-                                .font(.regular14)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .foregroundStyle(Color.textDark)
-                                .padding(.horizontal, 12)
-                                .padding(.vertical, 16)
-                                .background(Color.backgroundLight)
-                                .accessibilityHeading(.h1)
+                    Text("Courses", bundle: .core)
+                        .font(.regular14)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .foregroundStyle(Color.textDark)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 16)
+                        .background(Color.backgroundLight)
+                        .accessibilityHeading(.h1)
                     separator
                     }
                 ) {
@@ -87,15 +93,15 @@ public struct InboxCoursePickerView: View {
         VStack(spacing: 0) {
             if !groups.isEmpty {
                 Section(header:
-                        VStack(spacing: 0) {
-                            Text("Groups")
-                                .font(.regular14)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .foregroundStyle(Color.textDark)
-                                .padding(.horizontal, 12)
-                                .padding(.vertical, 16)
-                                .background(Color.backgroundLight)
-                                .accessibilityHeading(.h1)
+                    VStack(spacing: 0) {
+                    Text("Groups", bundle: .core)
+                        .font(.regular14)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .foregroundStyle(Color.textDark)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 16)
+                        .background(Color.backgroundLight)
+                        .accessibilityHeading(.h1)
                     separator
                     }
                 ) {
@@ -134,15 +140,14 @@ public struct InboxCoursePickerView: View {
         let accessibilityLabel = isSelected(course) ? NSLocalizedString("Selected: \(courseName)", comment: "") : courseName
         return VStack(spacing: 0) {
             Button {
-                let recipientContext = RecipientContext(course: course)
-                viewModel.selectedRecipientContext = recipientContext
-                viewModel.didSelect?(recipientContext)
+                viewModel.onSelect(selected: course)
             } label: {
                 HStack {
                     Circle().fill(Color(course.color)).frame(width: 20, height: 20)
                         .padding(.leading, 22).padding(.trailing, 12)
                     Text(courseName)
                         .font(.regular16)
+                        .multilineTextAlignment(.leading)
                     Spacer()
                     Image.checkSolid
                         .resizable()
@@ -166,15 +171,14 @@ public struct InboxCoursePickerView: View {
         let accessibilityLabel = isSelected(group) ? NSLocalizedString("Selected: \(groupName)", comment: "") : groupName
         return VStack(spacing: 0) {
             Button {
-                let recipientContext = RecipientContext(group: group)
-                viewModel.selectedRecipientContext = recipientContext
-                viewModel.didSelect?(recipientContext)
+                viewModel.onSelect(selected: group)
             } label: {
                 HStack {
                     Circle().fill(Color(group.color)).frame(width: 20, height: 20)
                         .padding(.leading, 22).padding(.trailing, 12)
                     Text(groupName)
                         .font(.regular16)
+                        .multilineTextAlignment(.leading)
                     Spacer()
                     Image.checkSolid
                         .resizable()

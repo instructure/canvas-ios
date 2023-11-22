@@ -22,7 +22,6 @@ import XCTest
 
 class ComposeMessageInteractorLiveTests: CoreTestCase {
     private var testee: ComposeMessageInteractorLive!
-    private var subscriptions = Set<AnyCancellable>()
 
     override func setUp() {
         super.setUp()
@@ -39,9 +38,46 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(testee.courses.value.first?.name, "Course 1")
     }
 
-    override func tearDown() {
-        subscriptions.removeAll()
-        super.tearDown()
+    func testFailedSend() {
+        let subject = "Test subject"
+        let body = "Test body"
+        let recipients = ["1", "2"]
+        let canvasContext = "1"
+        let attachments: [String]? = nil
+        let createConversationRequest = CreateConversation(
+            subject: subject,
+            body: body,
+            recipientIDs: recipients,
+            canvasContextID: canvasContext,
+            attachmentIDs: attachments
+        ).request
+
+        let parameters = MessageParameters(subject: subject, body: body, recipientIDs: recipients, context: Context.course(canvasContext))
+        api.mock(createConversationRequest, value: nil, response: nil, error: NSError.instructureError("Failure"))
+
+        XCTAssertFailure(testee.send(parameters: parameters))
+    }
+
+    func testSuccessfulSend() {
+        let subject = "Test subject"
+        let body = "Test body"
+        let recipients = ["1", "2"]
+        let canvasContext = "1"
+        let attachments: [String]? = nil
+        let createConversationRequest = CreateConversation(
+            subject: subject,
+            body: body,
+            recipientIDs: recipients,
+            canvasContextID: canvasContext,
+            attachmentIDs: attachments
+        ).request
+        let value = [APIConversation.make(id: "1")]
+        let parameters = MessageParameters(subject: subject, body: body, recipientIDs: recipients, context: Context.course(canvasContext))
+        api.mock(createConversationRequest, value: value)
+
+        XCTAssertFinish(testee.send(parameters: parameters))
+
+        waitForState(.data)
     }
 
     private func mockData() {

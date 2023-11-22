@@ -240,7 +240,9 @@ extension RichContentEditorViewController {
 
     func setupScriptMessaging() {
         for message in Message.allCases {
-            webView.handle(message.rawValue, handler: handleScriptMessage)
+            webView.handle(message.rawValue) { [weak self] message in
+                self?.handleScriptMessage(message)
+            }
         }
         if let url = Bundle.core.url(forResource: "RichContentEditor", withExtension: "js"), let source = try? String(contentsOf: url, encoding: .utf8) {
             webView.addScript(source)

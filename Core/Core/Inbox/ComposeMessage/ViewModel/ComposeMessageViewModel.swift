@@ -64,7 +64,6 @@ class ComposeMessageViewModel: ObservableObject {
     }
 
     public func courseSelectButtonDidTap(viewController: WeakViewController) {
-
         router.show(InboxCoursePickerAssembly.makeInboxCoursePickerViewController(selected: selectedContext) { [weak self] course in
             self?.courseDidSelect(selectedContext: course, viewController: viewController)
         }, from: viewController)

@@ -1049,9 +1049,6 @@
 "Failed. Tap for options" = "Mislyktes. Trykk for alternativer";
 
 /* No comment provided by engineer. */
-"favorite" = "favoritt";
-
-/* No comment provided by engineer. */
 "Feedback" = "Tilbakemelding";
 
 /* No comment provided by engineer. */
@@ -2685,9 +2682,6 @@
 
 /* No comment provided by engineer. */
 "This will remove the due date and all of the associated assignees." = "Dette vil fjerne forfallsdatoen og alle tilknyttede stedfortredere.";
-
-/* No comment provided by engineer. */
-"This will sync ~($0.humanReadableFileSize) content. It may result in additional charges from your data provider if you are not connected to a Wi-Fi network." = "Dette vil synkronisere ~($0.humanReadableFileSize) innhold. Dette kan føre til ekstra kostnader fra din datatilbyder hvis du ikke er koblet til et Wi-Fi-nettverk.";
 
 /* No comment provided by engineer. */
 "Time elapsed" = "Brukt tid";

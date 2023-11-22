@@ -18,6 +18,7 @@
 
 import Foundation
 import Combine
+import CombineExt
 
 class InboxCoursePickerViewModel: ObservableObject {
     // MARK: - Outputs
@@ -30,7 +31,8 @@ class InboxCoursePickerViewModel: ObservableObject {
 
     // MARK: - Inputs
     public private(set) var dismissViewDidTrigger = PassthroughSubject<Void, Never>()
-    var didSelect: ((RecipientContext) -> Void)?
+    public private(set) var refreshDidTrigger = PassthroughSubject<() -> Void, Never>()
+    var didSelect: ((RecipientContext) -> Void)
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
@@ -38,12 +40,38 @@ class InboxCoursePickerViewModel: ObservableObject {
 
     public init(interactor: InboxCoursePickerInteractor,
                 selected: RecipientContext? = nil,
-                didSelect: ((RecipientContext) -> Void)? = nil) {
+                didSelect: @escaping ((RecipientContext) -> Void)) {
         self.interactor = interactor
         self.selectedRecipientContext = selected
         self.didSelect = didSelect
 
         setupOutputBindings()
+    }
+
+    public func onSelect(selected: Course) {
+        let context = RecipientContext(course: selected)
+        onSelect(selected: context)
+    }
+
+    public func onSelect(selected: Group) {
+        let context = RecipientContext(group: selected)
+        onSelect(selected: context)
+    }
+
+    public func onSelect(selected: RecipientContext) {
+        self.selectedRecipientContext = selected
+        didSelect(selected)
+    }
+
+    public func refresh() async {
+        return await withCheckedContinuation { continuation in
+            interactor.refresh().sink(
+                receiveCompletion: {_ in
+                    continuation.resume()
+                }, receiveValue: { _ in }
+            )
+            .store(in: &subscriptions)
+        }
     }
 
     private func setupOutputBindings() {

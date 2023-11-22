@@ -404,7 +404,7 @@ private class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserv
     let entryProgressSubject = PassthroughSubject<[CourseSyncStateProgress], Never>()
 
     func observeDownloadProgress() -> AnyPublisher<CourseSyncDownloadProgress, Never> {
-        Empty(completeImmediately: false).eraseToAnyPublisher()
+        Just(CourseSyncDownloadProgress.make(courseIds: ["course-id-1"])).eraseToAnyPublisher()
     }
 
     func observeStateProgress() -> AnyPublisher<[CourseSyncStateProgress], Never> {

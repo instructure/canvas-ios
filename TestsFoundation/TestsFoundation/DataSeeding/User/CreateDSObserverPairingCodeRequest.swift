@@ -16,22 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import TestsFoundation
+import Core
 
-class DSLoginE2ETests: E2ETestCase {
-    // Follow-up of MBL-14653
-    func testLoginWithLastUser() {
-        let parent = seeder.createUser()
-        let course = seeder.createCourse()
-        seeder.enrollParent(parent, in: course)
-        logInDSUser(parent, lastLogin: false)
-        logOut()
-        let lastLoginBtn = LoginHelper.Start.lastLoginButton.waitUntil(.visible)
-        XCTAssertEqual(lastLoginBtn.label, user.host)
+struct CreateDSObserverPairingCodeRequest: APIRequestable {
+    public typealias Response = DSPairingCode
 
-        lastLoginBtn.hit()
-        loginAfterSchoolFound(parent)
-        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
-        XCTAssertTrue(profileButton.isVisible)
+    public let method = APIMethod.post
+    public let path: String
+
+    public init(student: DSUser) {
+        self.path = "users/\(student.id)/observer_pairing_codes"
     }
 }

@@ -53,7 +53,7 @@ class CourseSyncSettingsViewModel: ObservableObject {
     )
 
     // MARK: - Input
-    public let syncFrequencyDidTap = PassthroughRelay<WeakViewController>()
+    public let syncFrequencyDidTap = PassthroughSubject<WeakViewController, Never>()
 
     // MARK: - Private
     private let interactor: CourseSyncSettingsInteractor

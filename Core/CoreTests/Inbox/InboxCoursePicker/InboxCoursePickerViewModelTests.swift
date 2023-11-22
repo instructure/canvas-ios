@@ -28,7 +28,7 @@ class InboxCoursePickerViewModelTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         mockInteractor = InboxCoursePickerInteractorMock(env: AppEnvironment())
-        testee = InboxCoursePickerViewModel(interactor: mockInteractor)
+        testee = InboxCoursePickerViewModel(interactor: mockInteractor, didSelect: { _ in })
     }
 
     func testInteractorStateMappedToViewModel() {
@@ -37,6 +37,20 @@ class InboxCoursePickerViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.groups.count, 1)
         XCTAssertEqual(testee.courses.first?.name, "Course 1")
         XCTAssertEqual(testee.groups.first?.name, "Group 1")
+    }
+
+    func testCourseSelection() {
+        let context = testee.courses.first!
+        testee.onSelect(selected: context)
+        XCTAssertEqual(testee.selectedRecipientContext?.context.id, context.id)
+
+    }
+
+    func testGroupSelection() {
+        let context = testee.groups.first!
+        testee.onSelect(selected: context)
+        XCTAssertEqual(testee.selectedRecipientContext?.context.id, context.id)
+
     }
 }
 
@@ -53,6 +67,10 @@ private class InboxCoursePickerInteractorMock: InboxCoursePickerInteractor {
         self.groups = CurrentValueSubject<[Group], Never>([
             .save(.make(id: "1", name: "Group 1"), in: env.database.viewContext),
         ])
+    }
+
+    func refresh() -> AnyPublisher<[Void], Never> {
+        return Future<[Void], Never> { _ in }.eraseToAnyPublisher()
     }
 
 }

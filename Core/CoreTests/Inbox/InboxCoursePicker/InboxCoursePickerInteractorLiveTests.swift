@@ -22,7 +22,6 @@ import XCTest
 
 class InboxCoursePickerInteractorLiveTests: CoreTestCase {
     private var testee: InboxCoursePickerInteractorLive!
-    private var subscriptions = Set<AnyCancellable>()
 
     override func setUp() {
         super.setUp()
@@ -39,11 +38,6 @@ class InboxCoursePickerInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(testee.groups.value.count, 1)
         XCTAssertEqual(testee.courses.value.first?.name, "Course 1")
         XCTAssertEqual(testee.groups.value.first?.name, "Group 1")
-    }
-
-    override func tearDown() {
-        subscriptions.removeAll()
-        super.tearDown()
     }
 
     private func mockData() {

@@ -34,7 +34,8 @@ class DashboardOfflineSyncInteractorPreview: CourseSyncProgressObserverInteracto
                     bytesToDownload: bytesToDownload,
                     bytesDownloaded: $0,
                     isFinished: false,
-                    error: nil
+                    error: nil,
+                    courseIds: []
                 )
             }
             .eraseToAnyPublisher()

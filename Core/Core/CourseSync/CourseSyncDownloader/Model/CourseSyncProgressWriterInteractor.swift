@@ -40,11 +40,13 @@ public final class CourseSyncProgressWriterInteractorLive: CourseSyncProgressWri
     public func saveDownloadProgress(entries: [CourseSyncEntry]) {
         let bytesDownloaded = entries.totalDownloadedSize
         let bytesToDownloaded = entries.totalSelectedSize
+        let courseIds = entries.map { $0.courseId }
 
         context.performAndWait {
             let progress: CDCourseSyncDownloadProgress = context.fetch(scope: .all).first ?? context.insert()
             progress.bytesDownloaded = bytesDownloaded
             progress.bytesToDownload = bytesToDownloaded
+            progress.courseIds = courseIds
             try? context.save()
         }
     }

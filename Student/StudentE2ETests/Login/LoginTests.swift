@@ -99,7 +99,7 @@ class LoginTests: E2ETestCase {
         XCTAssertTrue(needAccountButton.isVisible)
         XCTAssertEqual(needAccountButton.label, "Need a Canvas Account? Click Here, It's Free!")
 
-        emailInput.writeText(text: student.login_id)
+        emailInput.writeText(text: student.login_id!)
         passwordInput.writeText(text: student.password!)
         loginButton.hit()
 
@@ -186,7 +186,7 @@ class LoginTests: E2ETestCase {
         let emailInput = LoginHelper.Login.emailField.waitUntil(.visible)
         XCTAssertTrue(emailInput.isVisible)
 
-        emailInput.writeText(text: student.login_id)
+        emailInput.writeText(text: student.login_id!)
         loginButton.hit()
 
         noPasswordLabel.waitUntil(.visible)
@@ -259,7 +259,7 @@ class LoginTests: E2ETestCase {
         XCTAssertTrue(invalidUsernameOrPasswordLabel.isVisible)
 
         // MARK: Correct username with wrong password
-        emailInput.writeText(text: student.login_id)
+        emailInput.writeText(text: student.login_id!)
         passwordInput.writeText(text: "wrong password")
         loginButton.hit()
 

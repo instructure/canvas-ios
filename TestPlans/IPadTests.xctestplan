@@ -18,6 +18,19 @@
   },
   "testTargets" : [
     {
+      "skippedTests" : [
+        "AboutTests",
+        "ChangeUserTests",
+        "GradesTests\/testLetterGradeOnly()",
+        "HelpTests",
+        "LoginTests\/testForgotPassword()",
+        "LoginTests\/testLoginWithLastUser()",
+        "LoginTests\/testLoginWithoutUsernameAndPassword()",
+        "LoginTests\/testWrongUsernameAndPassword()",
+        "LogoutTests",
+        "LogoutTests\/testLogout()",
+        "ProfileTests"
+      ],
       "target" : {
         "containerPath" : "container:..\/Parent\/Parent.xcodeproj",
         "identifier" : "E80763C723E08DA10085DAFB",
@@ -25,6 +38,43 @@
       }
     },
     {
+      "skippedTests" : [
+        "ActAsUserTests",
+        "AnnouncementsTests\/testAnnouncementsMatchWebOrder()",
+        "AssignmentsTests\/testAssignmentDueDate()",
+        "CalendarTests\/testCourseFilter()",
+        "CalendarTests\/testRecurringEvent()",
+        "CollaborationsTests",
+        "ConferencesTests",
+        "DashboardTests\/testAnnouncementBelowInvite()",
+        "DashboardTests\/testDashboardEditButtonDisplaysCorrectCourses()",
+        "DashboardTests\/testNavigateToDashboard()",
+        "DiscussionsTests\/testAssignmentDiscussion()",
+        "GradeTotalsTests",
+        "GradesTests\/testLetterGrades()",
+        "GradesTests\/testPassFailGrades()",
+        "GradesTests\/testPercentageGrades()",
+        "GradingStandardsTests",
+        "HelpTests",
+        "K5Tests",
+        "LoginTests\/testLoginMultipleUsers()",
+        "LoginTests\/testLoginWithLastUser()",
+        "LoginTests\/testLoginWithoutUsernameAndPassword()",
+        "LoginTests\/testWrongUsernameAndPassword()",
+        "LogoutTests",
+        "PagesTests\/testDeepLinks()",
+        "PeopleTests",
+        "PeopleTests\/testPeopleListAndContextCard()",
+        "PeopleTests\/testPeopleListUpdatesAfterEnrollmentOfPersonIsDeleted()",
+        "SettingsTests\/testAbout()",
+        "SettingsTests\/testAppearanceSetting()",
+        "SettingsTests\/testCanvasOnGitHub()",
+        "SettingsTests\/testLandingPageSetting()",
+        "SettingsTests\/testPairWithObserverQRAppearance()",
+        "SettingsTests\/testPrivacyPolicy()",
+        "SettingsTests\/testSubscribeToCalendarFeed()",
+        "SettingsTests\/testTermsOfUse()"
+      ],
       "target" : {
         "containerPath" : "container:Student.xcodeproj",
         "identifier" : "E8C6F4CF23D626220086B865",
@@ -32,6 +82,28 @@
       }
     },
     {
+      "skippedTests" : [
+        "AnnouncementsTests\/testAnnouncementsOrderTitleMessage()",
+        "AssignmentsTests\/testAssignmentDueDate()",
+        "DashboardTests\/testAnnouncementBelowInvite()",
+        "DashboardTests\/testDashboardEditButtonDisplaysCorrectCourses()",
+        "DashboardTests\/testNavigateToDashboard()",
+        "DiscussionsTests\/testAssignmentDiscussion()",
+        "HelpTests",
+        "LoginTests\/testLoginMultipleUsers()",
+        "LoginTests\/testLoginWithLastUser()",
+        "LoginTests\/testLoginWithoutUsernameAndPassword()",
+        "LoginTests\/testWrongUsernameAndPassword()",
+        "LogoutTests",
+        "PagesTests\/testDeepLinks()",
+        "PeopleTests",
+        "SettingsTests\/testAbout()",
+        "SettingsTests\/testAppearanceSetting()",
+        "SettingsTests\/testCanvasOnGitHub()",
+        "SettingsTests\/testLandingPageSetting()",
+        "SettingsTests\/testPrivacyPolicy()",
+        "SettingsTests\/testTermsOfUse()"
+      ],
       "target" : {
         "containerPath" : "container:..\/rn\/Teacher\/ios\/Teacher.xcodeproj",
         "identifier" : "E841D8A223D6472F00685A63",

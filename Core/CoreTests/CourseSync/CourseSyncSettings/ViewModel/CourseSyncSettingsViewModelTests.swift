@@ -27,7 +27,7 @@ class CourseSyncSettingsViewModelTests: XCTestCase {
         let presenter = UIViewController()
         let navigation = UINavigationController(rootViewController: presenter)
 
-        testee.syncFrequencyDidTap.accept(WeakViewController(presenter))
+        testee.syncFrequencyDidTap.send(WeakViewController(presenter))
 
         drainMainQueue()
         XCTAssertEqual(navigation.children.count, 2)

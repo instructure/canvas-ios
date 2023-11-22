@@ -43,22 +43,9 @@ public struct ComposeMessageView: View {
                 }
                 .background(Color.backgroundLightest)
                 .navigationBarItems(leading: cancelButton)
-            }
-            .onAppear {
-                hideNavigationBarSeparator()
+                .navigationBarStyle(.modal)
             }
         }
-    }
-
-    private func hideNavigationBarSeparator() {
-        let navigationBar = controller.value.navigationController?.navigationBar
-        let navigationBarAppearance = UINavigationBarAppearance()
-        navigationBarAppearance.configureWithOpaqueBackground()
-        navigationBarAppearance.shadowColor = .clear
-        navigationBarAppearance.shadowImage = UIImage()
-        navigationBar?.standardAppearance = navigationBarAppearance
-        navigationBar?.scrollEdgeAppearance = navigationBarAppearance
-        navigationBar?.isTranslucent = true
     }
 
     private var separator: some View {
@@ -72,7 +59,7 @@ public struct ComposeMessageView: View {
         } label: {
             Text("Cancel", bundle: .core)
                 .font(.regular16)
-                .foregroundColor(.textDarkest)
+                .foregroundColor(.accentColor)
         }
     }
 
@@ -195,6 +182,7 @@ public struct ComposeMessageView: View {
             TextField("", text: $model.subject)
                 .multilineTextAlignment(.leading)
                 .font(.regular16, lineHeight: .condensed).foregroundColor(.textDarkest)
+                .textInputAutocapitalization(.sentences)
                 .focused($subjectTextFieldFocus)
                 .accessibility(label: Text("Subject", bundle: .core))
         }
@@ -240,6 +228,7 @@ public struct ComposeMessageView: View {
             TextEditor(text: $model.bodyText)
                 .iOS16HideListScrollContentBackground()
                 .font(.regular16, lineHeight: .condensed)
+                .textInputAutocapitalization(.sentences)
                 .focused($messageTextFieldFocus)
                 .foregroundColor(.textDarkest)
                 .padding(.horizontal, 12)

@@ -51,4 +51,10 @@ class InboxCoursePickerInteractorLive: InboxCoursePickerInteractor {
             .store(in: &subscriptions)
         groupListStore.exhaust()
     }
+
+    // MARK: - Inputs
+    public func refresh() -> AnyPublisher<[Void], Never> {
+        courseListStore.refreshWithFuture(force: true).combineLatest(with: groupListStore.refreshWithFuture(force: true))
+
+    }
 }

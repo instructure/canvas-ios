@@ -71,13 +71,13 @@ class CourseSyncProgressInteractorPreview: CourseSyncProgressInteractor {
 
         switch state {
         case .finishedSuccessfully:
-            data = CourseSyncDownloadProgress(bytesToDownload: 2, bytesDownloaded: 2, isFinished: true, error: nil)
+            data = CourseSyncDownloadProgress(bytesToDownload: 2, bytesDownloaded: 2, isFinished: true, error: nil, courseIds: [])
         case .finishedWithError:
-            data = CourseSyncDownloadProgress(bytesToDownload: 2, bytesDownloaded: 1, isFinished: true, error: "failed")
+            data = CourseSyncDownloadProgress(bytesToDownload: 2, bytesDownloaded: 1, isFinished: true, error: "failed", courseIds: [])
         case .downloadStarting:
-            data = CourseSyncDownloadProgress(bytesToDownload: 2, bytesDownloaded: 0, isFinished: false, error: nil)
+            data = CourseSyncDownloadProgress(bytesToDownload: 2, bytesDownloaded: 0, isFinished: false, error: nil, courseIds: [])
         case .downloadInProgress:
-            data = CourseSyncDownloadProgress(bytesToDownload: 2, bytesDownloaded: 1, isFinished: false, error: nil)
+            data = CourseSyncDownloadProgress(bytesToDownload: 2, bytesDownloaded: 1, isFinished: false, error: nil, courseIds: [])
         }
 
         return Just(data).eraseToAnyPublisher()

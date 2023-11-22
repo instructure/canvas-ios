@@ -341,6 +341,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                     .mapToVoid()
             }
             .receive(on: scheduler)
+            .replaceEmpty(with: ())
             .updateLoadingState {
                 unownedSelf.setState(
                     selection: .tab(entry.id, entry.tabs[tabIndex].id),
