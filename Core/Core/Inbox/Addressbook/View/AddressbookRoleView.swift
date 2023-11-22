@@ -42,7 +42,7 @@ struct AddressbookRoleView: View {
                     .frame(maxWidth: .infinity)
             }
         }
-        .searchable(text: $viewModel.searchText)
+        .searchable(text: $viewModel.searchText, placement: .navigationBarDrawer(displayMode: .always))
         .refreshable {
             await viewModel.refresh()
         }

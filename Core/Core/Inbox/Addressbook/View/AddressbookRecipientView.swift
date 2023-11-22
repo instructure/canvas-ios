@@ -30,7 +30,7 @@ public struct AddressbookRecipientView: View {
         ScrollView {
             peopleView
         }
-        .searchable(text: $viewModel.searchText)
+        .searchable(text: $viewModel.searchText, placement: .navigationBarDrawer(displayMode: .always))
         .background(Color.backgroundLightest)
         .navigationTitle(viewModel.title)
     }
