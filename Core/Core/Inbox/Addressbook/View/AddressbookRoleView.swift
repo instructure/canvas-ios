@@ -32,7 +32,7 @@ struct AddressbookRoleView: View {
             case .loading:
                 loadingIndicator
             case .data:
-                if viewModel.searchText.isEmpty {
+                if viewModel.searchText.isEmpty && !viewModel.roles.isEmpty {
                     rolesView
                 } else {
                     peopleView

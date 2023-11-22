@@ -74,6 +74,13 @@ class AddressbookRoleViewModel: ObservableObject {
         interactor.state
                 .assign(to: &$state)
         interactor.recipients
+            .handleEvents(receiveOutput: { recipients in
+                recipients.forEach { recipient in
+                    print(recipient.name)
+                    print(recipient.commonCourses.map { $0.role })
+                    print("\n")
+                }
+            })
             .assign(to: &$recipients)
 
         interactor.recipients
@@ -95,8 +102,8 @@ class AddressbookRoleViewModel: ObservableObject {
                     )
                 })
             }
-            .handleEvents(receiveOutput: { [weak self] roleRecepients in
-                self?.roles = Array(roleRecepients.keys).sorted()
+            .handleEvents(receiveOutput: { [weak self] roleRecipients in
+                self?.roles = Array(roleRecipients.keys).sorted()
             })
             .assign(to: &$roleRecipients)
     }
@@ -109,6 +116,10 @@ class AddressbookRoleViewModel: ObservableObject {
             return NSLocalizedString("Students", comment: "")
         case "ObserverEnrollment":
             return NSLocalizedString("Observers", comment: "")
+        case "TaEnrollment":
+            return NSLocalizedString("Teaching assistants", comment: "")
+        case "DesignerEnrollment":
+            return NSLocalizedString("Course designers", comment: "")
         default:
             return NSLocalizedString("Others", comment: "")
         }
