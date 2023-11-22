@@ -43,7 +43,7 @@ public struct AddressbookRecipientView: View {
     private var peopleView: some View {
         VStack(alignment: .leading, spacing: 0) {
             separator
-            allRecipient
+            if viewModel.searchText.isEmpty { allRecipient }
             ForEach(viewModel.filteredRecipients(), id: \.self) { user in
                 personRowView(user)
             }

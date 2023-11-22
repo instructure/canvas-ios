@@ -87,7 +87,7 @@ class ComposeMessageViewModel: ObservableObject {
     public func addRecipientButtonDidTap(viewController: WeakViewController) {
         guard let context = selectedContext else { return }
         let addressbook = AddressBookAssembly.makeAddressbookRoleViewController(recipientContext: context, recipientDidSelect: selectedRecipient)
-        router.show(addressbook, from: viewController, options: .modal(.automatic, isDismissable: true, embedInNav: true, addDoneButton: false, animated: true))
+        router.show(addressbook, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true))
     }
 
     public func attachmentbuttonDidTap(viewController: WeakViewController) {

@@ -47,7 +47,7 @@ class AddressbookRecipientViewModel: ObservableObject {
     public func filteredRecipients() -> [SearchRecipient] {
         guard !searchText.isEmpty else { return recipients }
         return recipients.filter { user in
-            (user.displayName ?? user.fullName).contains(searchText)
+            (user.displayName ?? user.fullName).lowercased().contains(searchText.lowercased())
         }
     }
 
