@@ -83,4 +83,18 @@ class GetEnabledFeatureFlagsTests: CoreTestCase {
         databaseClient.refresh(other, mergeChanges: true)
         XCTAssertFalse(other.enabled)
     }
+
+    func testStoreHelper() {
+        // GIVEN
+        let flag: FeatureFlag = databaseClient.insert()
+        flag.name = "assignments_2_student"
+        flag.enabled = true
+        flag.context = .course("1")
+
+        // WHEN
+        let store = environment.subscribe(GetEnabledFeatureFlags(context: .course("1")))
+
+        // THEN
+        XCTAssertTrue(store.isFeatureFlagEnabled(.assignmentEnhancements))
+    }
 }
