@@ -38,8 +38,12 @@ struct AddressbookRoleView: View {
                     .frame(maxWidth: .infinity)
             }
         }
+        .refreshable {
+            await viewModel.refresh()
+        }
         .background(Color.backgroundLightest)
         .navigationTitle(viewModel.title)
+        .navigationBarItems(leading: cancelButton)
     }
 
     private var loadingIndicator: some View {
@@ -47,11 +51,22 @@ struct AddressbookRoleView: View {
             .progressViewStyle(.indeterminateCircle())
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .accentColor(Color(Brand.shared.primary))
+            .padding()
     }
 
     private var separator: some View {
         Color.borderMedium
             .frame(height: 0.5)
+    }
+
+    private var cancelButton: some View {
+        Button {
+            viewModel.cancelButtonDidTap.accept(controller)
+        } label: {
+            Text("Cancel", bundle: .core)
+                .font(.regular16)
+                .foregroundColor(.accentColor)
+        }
     }
 
     private var rolesView: some View {
@@ -81,6 +96,7 @@ struct AddressbookRoleView: View {
                             .foregroundColor(.textDark)
                             .lineLimit(1)
                     }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
             })
             .padding(16)
@@ -105,6 +121,7 @@ struct AddressbookRoleView: View {
                             .foregroundColor(.textDark)
                             .lineLimit(1)
                     }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
             })
             .padding(16)

@@ -33,18 +33,31 @@ class AddressbookRoleViewModel: ObservableObject {
     // MARK: - Inputs
     public let recipientDidTap = PassthroughSubject<(roleName: String, recipient: [SearchRecipient], controller: WeakViewController), Never>()
     public let allRecipientDidTap = PassthroughSubject<(recipient: [SearchRecipient], controller: WeakViewController), Never>()
+    public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: AddressbookInteractor
-
+    private let router: Router
 
     public init(router: Router, recipientContext: RecipientContext, interactor: AddressbookInteractor, recipientDidSelect: CurrentValueRelay<[SearchRecipient]>) {
         self.interactor = interactor
         self.recipientContext = recipientContext
+        self.router = router
 
         setupOutputBindings()
         setupInputBindings(router: router, recipientDidSelect: recipientDidSelect)
+    }
+
+    public func refresh() async {
+        return await withCheckedContinuation { continuation in
+            interactor.refresh().sink(
+                receiveCompletion: {_ in
+                    continuation.resume()
+                }, receiveValue: { _ in }
+            )
+            .store(in: &subscriptions)
+        }
     }
 
     private func setupOutputBindings() {
@@ -91,7 +104,17 @@ class AddressbookRoleViewModel: ObservableObject {
         }
     }
 
+    private func closeDialog(_ viewcontroller: WeakViewController) {
+        router.dismiss(viewcontroller)
+    }
+
     private func setupInputBindings(router: Router, recipientDidSelect: CurrentValueRelay<[SearchRecipient]>) {
+        cancelButtonDidTap
+            .sink { [router] viewController in
+                router.dismiss(viewController)
+            }
+            .store(in: &subscriptions)
+
         recipientDidTap
             .sink { [router] (roleName, recipients, viewController) in
                 router.show(
@@ -105,9 +128,9 @@ class AddressbookRoleViewModel: ObservableObject {
             .store(in: &subscriptions)
 
         allRecipientDidTap
-            .sink { [router] (recipient, viewController) in
+            .sink { [weak self] (recipient, viewController) in
                 recipientDidSelect.accept(recipient)
-                router.pop(from: viewController)
+                self?.closeDialog(viewController)
             }
             .store(in: &subscriptions)
     }

@@ -32,28 +32,32 @@ class AddressbookRecipientViewModel: ObservableObject {
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
+    private var router: Router
 
     public init(router: Router, roleName: String, recipients: [SearchRecipient], recipientDidSelect: CurrentValueRelay<[SearchRecipient]>) {
         self.recipients = recipients
         self.roleName = roleName
-        setupInputBindings(router: router, recipientDidSelect: recipientDidSelect)
+        self.router = router
+        setupInputBindings(recipientDidSelect: recipientDidSelect)
     }
 
-    private func setupInputBindings(router: Router, recipientDidSelect: CurrentValueRelay<[SearchRecipient]>) {
+    private func closeDialog(_ viewController: WeakViewController) {
+        router.dismiss(viewController)
+    }
+
+    private func setupInputBindings(recipientDidSelect: CurrentValueRelay<[SearchRecipient]>) {
         recipientDidTap
-            .sink { [router] (recipients, viewController) in
+            .sink { [weak self] (recipients, viewController) in
                 recipientDidSelect.accept(recipients)
-                router.pop(from: viewController)
-                router.pop(from: viewController)
+                self?.closeDialog(viewController)
 
             }
             .store(in: &subscriptions)
 
         allRecipientDidTap
-            .sink { [router] (recipients, viewController) in
+            .sink { [weak self] (recipients, viewController) in
                 recipientDidSelect.accept(recipients)
-                router.pop(from: viewController)
-                router.pop(from: viewController)
+                self?.closeDialog(viewController)
             }
             .store(in: &subscriptions)
     }

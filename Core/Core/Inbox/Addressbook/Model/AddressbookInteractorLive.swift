@@ -42,4 +42,8 @@ public class AddressbookInteractorLive: AddressbookInteractor {
             .store(in: &subscriptions)
         recipientStore.exhaust()
     }
+
+    public func refresh() -> Future<Void, Never> {
+        recipientStore.refreshWithFuture(force: true)
+    }
 }

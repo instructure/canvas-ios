@@ -32,6 +32,10 @@ class AddressbookInteractorPreview: AddressbookInteractor {
         ])
     }
 
+    func refresh() -> Future<Void, Never> {
+        Future<Void, Never> {_ in }
+    }
+
 }
 
 #endif

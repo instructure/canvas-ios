@@ -60,6 +60,7 @@ public struct AddressbookRecipientView: View {
                         .font(.regular16)
                         .foregroundColor(.textDarkest)
                         .lineLimit(1)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
             })
             .padding(16)
@@ -84,6 +85,7 @@ public struct AddressbookRecipientView: View {
                             .foregroundColor(.textDark)
                             .lineLimit(1)
                     }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
             })
             .padding(16)
