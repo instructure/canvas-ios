@@ -230,10 +230,6 @@ extension SubmissionCommentsViewController: UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let comment = presenter?.comments[indexPath.row / 2] else { return UITableViewCell() }
 
-        print("✅ comment: \(comment.comment)")
-        print("🟨 attempt from api: \(comment.attemptFromAPI)")
-        print("🟪 attempt calculated: \(comment.attempt)")
-
         if indexPath.row % 2 == 1 {
             let reuseID = currentUserID == comment.authorID ? "myHeader" : "theirHeader"
             let cell: SubmissionCommentHeaderCell = tableView.dequeue(withID: reuseID, for: indexPath)

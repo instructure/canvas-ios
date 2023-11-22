@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,9 +24,9 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yhc-Hf-2mW" userLabel="DrawerControls">
-                    <rect key="frame" x="0.0" y="0.0" width="413" height="461"/>
+                    <rect key="frame" x="0.0" y="0.0" width="413" height="52"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zQw-tB-yGY" userLabel="Gripper">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zQw-tB-yGY" userLabel="Gripper">
                             <rect key="frame" x="188.5" y="4" width="36" height="4"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <accessibility key="accessibilityConfiguration" identifier="SubmissionDetails.drawerGripper"/>
@@ -39,15 +39,18 @@
                             </connections>
                         </button>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="RnZ-Eu-Ple">
-                            <rect key="frame" x="16" y="16" width="381" height="438"/>
+                            <rect key="frame" x="16" y="16" width="381" height="29"/>
                             <constraints>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="kDR-tw-Pus"/>
+                                <constraint firstAttribute="height" constant="28" id="kDR-tw-Pus"/>
                             </constraints>
                             <segments>
                                 <segment title="Comments"/>
                                 <segment title="Files"/>
                                 <segment title="Rubric"/>
                             </segments>
+                            <connections>
+                                <action selector="segmentedControlDidChange:" destination="-1" eventType="valueChanged" id="dBY-gS-4X3"/>
+                            </connections>
                         </segmentedControl>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -65,7 +68,7 @@
                     </connections>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NiS-Q8-E9V" userLabel="Border" customClass="DividerView" customModule="Student" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="460" width="413" height="1"/>
+                    <rect key="frame" x="0.0" y="51" width="413" height="1"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="fb3-3f-fZ5"/>
@@ -75,13 +78,14 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zvd-Vb-YDD" userLabel="ContentView">
-                    <rect key="frame" x="0.0" y="461" width="413" height="0.0"/>
+                    <rect key="frame" x="0.0" y="52" width="413" height="409"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" priority="999" id="y8L-1T-xAL"/>
                     </constraints>
                 </view>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <gestureRecognizers/>
             <constraints>
@@ -99,7 +103,6 @@
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="84" y="-44.527736131934034"/>
         </view>
         <panGestureRecognizer minimumNumberOfTouches="1" id="8Cv-db-Q3F">

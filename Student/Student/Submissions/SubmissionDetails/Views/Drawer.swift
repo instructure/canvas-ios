@@ -78,13 +78,9 @@ class Drawer: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        // the subviews at this point haven't always been laid out completely
-        // This caused only one corner to be rounded and not the other
-        // This fixes that issue
         DispatchQueue.main.async { [weak self] in
-            self?.drawerControls?.roundCorners(corners: [.topLeft, .topRight], radius: 10)
+            self?.tabs?.addUnderlineForSelectedSegment()
         }
-        addDropShadow()
     }
 
     func addDropShadow() {
@@ -104,6 +100,10 @@ class Drawer: UIView {
         } else if height == maxDrawerHeight {
             gripper?.accessibilityLabel = NSLocalizedString("Drawer fully open", bundle: .student, comment: "")
         }
+    }
+
+    @IBAction func segmentedControlDidChange(_ sender: UISegmentedControl) {
+        tabs?.changeUnderlinePosition()
     }
 }
 
@@ -179,5 +179,84 @@ extension Drawer {
         updateGripperLabel(height: midDrawerHeight)
         contentViewHeight?.constant = midDrawerHeight
         self.height = midDrawerHeight
+    }
+}
+
+extension UISegmentedControl {
+
+    private func imageWithColor(color: UIColor) -> UIImage {
+        let rect = CGRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()
+        context!.setFillColor(color.cgColor)
+        context!.fill(rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image!
+    }
+
+    func removeBorders() {
+        setBackgroundImage(
+            imageWithColor(color: UIColor.clear),
+            for: .normal,
+            barMetrics: .default
+        )
+        setBackgroundImage(
+            imageWithColor(color: UIColor.clear),
+            for: .selected,
+            barMetrics: .default
+        )
+        setDividerImage(
+            imageWithColor(color: UIColor.clear),
+            forLeftSegmentState: .normal,
+            rightSegmentState: .normal,
+            barMetrics: .default
+        )
+    }
+
+    func setFontStyle() {
+        setTitleTextAttributes(
+            [NSAttributedString.Key.font: UIFont.scaledNamedFont(.semibold14)],
+            for: .normal
+        )
+        setTitleTextAttributes(
+            [NSAttributedString.Key.font: UIFont.scaledNamedFont(.semibold14)],
+            for: .selected
+        )
+        setTitleTextAttributes(
+            [NSAttributedString.Key.foregroundColor: UIColor.textDarkest],
+            for: .normal
+        )
+        setTitleTextAttributes(
+            [NSAttributedString.Key.foregroundColor: UIColor.textDarkest],
+            for: .selected
+        )
+    }
+
+    func addUnderlineForSelectedSegment() {
+        guard viewWithTag(1) == nil else { return }
+        removeBorders()
+        setFontStyle()
+        let underlineWidth: CGFloat = self.bounds.size.width / CGFloat(self.numberOfSegments)
+        let underlineHeight: CGFloat = 2.0
+        let underlineXPosition = CGFloat(selectedSegmentIndex * Int(underlineWidth))
+        let underLineYPosition = self.bounds.size.height - 1.0
+        let underlineFrame = CGRect(x: underlineXPosition, y: underLineYPosition, width: underlineWidth, height: underlineHeight)
+        let underline = UIView(frame: underlineFrame)
+        underline.translatesAutoresizingMaskIntoConstraints = false
+
+        // TODO: change it to #0374B5
+        underline.backgroundColor = .blue
+        underline.tag = 1
+        self.addSubview(underline)
+        self.layoutSubviews()
+    }
+
+    func changeUnderlinePosition() {
+        guard let underline = self.viewWithTag(1) else {return}
+        UIView.animate(withDuration: 0.3) {
+            underline.frame.origin.x = (self.frame.width / CGFloat(self.numberOfSegments)) * CGFloat(self.selectedSegmentIndex)
+        }
+
     }
 }
