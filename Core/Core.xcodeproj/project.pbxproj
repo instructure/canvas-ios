@@ -323,6 +323,7 @@
 		304585FFAF87E0963AC01B1A /* TypeSafeCodableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562A0E1BA178E4D5780B67CD /* TypeSafeCodableTests.swift */; };
 		30BD8417CCF44CD155156400 /* K5DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28F48CD2C4DC6C13761C9F9 /* K5DashboardView.swift */; };
 		30C4B82B04F006CC82B01950 /* CourseSyncAssignmentsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD98ECD6FCD0646746D53E3 /* CourseSyncAssignmentsInteractor.swift */; };
+		30C7D52FC1E5E321063EA932 /* mobile-offline-downloader-ios in Frameworks */ = {isa = PBXBuildFile; productRef = 0D03BCC4E71170051271FA52 /* mobile-offline-downloader-ios */; };
 		30DB441AB62A03139E9680F7 /* K5ResourcesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E957D065AF0E3D1295B9F40 /* K5ResourcesView.swift */; };
 		310C4045ACE1E23F3E91779B /* ComposeBatchUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786C013FED907B33E80DF4B0 /* ComposeBatchUpload.swift */; };
 		31B63EB379993E2E9299B4D5 /* ConversationParticipant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A938C507337C7A77C47494D /* ConversationParticipant.swift */; };
@@ -1396,6 +1397,7 @@
 		CEC97448F930BB18B9BE614A /* GetCourseSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DA8B03B9279BBBDBCF285F /* GetCourseSections.swift */; };
 		CEEB69AC4E74B054E4F61BAB /* PageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88E31090C62EE2CD151388F /* PageTests.swift */; };
 		CF3596045A31EF9F0F47070E /* AllCoursesCellViewItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59E59C0AE8781FD42484E7A /* AllCoursesCellViewItemTests.swift */; };
+		CF6DE07A76CB5F62890075C1 /* SwiftUIIntrospect in Frameworks */ = {isa = PBXBuildFile; productRef = 824AADAC3E38E8F7D1B15C52 /* SwiftUIIntrospect */; };
 		CF77186DABC99EF4A2704BD3 /* APIEnrollmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ED41813910F1C973820502 /* APIEnrollmentTests.swift */; };
 		CF78BC37E1EF05678E6831F1 /* UIFontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C87806EF88EDE9BB02134F7 /* UIFontExtensions.swift */; };
 		CF848A454985D319B862329B /* InboxCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534C5973089478FB911C2D40 /* InboxCourse.swift */; };
@@ -3063,7 +3065,6 @@
 		A56C8EAEDD96E8716CB5A484 /* FileUploadProgressObserversCacheTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadProgressObserversCacheTests.swift; sourceTree = "<group>"; };
 		A571497F76E9694BCC7A70D8 /* DynamicLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicLabelTests.swift; sourceTree = "<group>"; };
 		A59435E04AD83E555BDE51AE /* NSManagedObjectContextExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectContextExtensions.swift; sourceTree = "<group>"; };
-		A5B75F042B07BF7300947108 /* CoreAudioTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudioTypes.framework; path = System/Library/Frameworks/CoreAudioTypes.framework; sourceTree = SDKROOT; };
 		A61580548942CC239D28BAC5 /* PeopleListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListViewControllerTests.swift; sourceTree = "<group>"; };
 		A62284448F06E5517B5E4864 /* CourseSyncSelectorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncSelectorViewModel.swift; sourceTree = "<group>"; };
 		A636EC448C789BE602EB0940 /* MessageDetailsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDetailsAssembly.swift; sourceTree = "<group>"; };
@@ -3710,6 +3711,8 @@
 				25C534647B7B805047B8E0C3 /* Lottie in Frameworks */,
 				0AC02ED0AAB62CEEF21FAACA /* PSPDFKit in Frameworks */,
 				AF3D4F61CDFF74B5749B35F1 /* CombineReachability in Frameworks */,
+				30C7D52FC1E5E321063EA932 /* mobile-offline-downloader-ios in Frameworks */,
+				CF6DE07A76CB5F62890075C1 /* SwiftUIIntrospect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6040,7 +6043,6 @@
 				9737837A3A471DE4E30BC35B /* CoreTests */,
 				250C62EE12DB56ECEBB473C3 /* Products */,
 				86FCAF8C0765226E13BD7339 /* Projects */,
-				A5B75F012B07BEB600947108 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -7653,14 +7655,6 @@
 				92A3E67849D56DAC06242F18 /* CoreWebViewLinkDelegateTests.swift */,
 			);
 			path = Delegates;
-			sourceTree = "<group>";
-		};
-		A5B75F012B07BEB600947108 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				A5B75F042B07BF7300947108 /* CoreAudioTypes.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		A643C917DBEF19BF0C2D6093 /* View */ = {
@@ -9629,6 +9623,8 @@
 				D784E9A4895EC777BDAD4BAD /* Lottie */,
 				8C5ECF283C56CEE5DC624958 /* PSPDFKit */,
 				06824168802A23727C271167 /* CombineReachability */,
+				0D03BCC4E71170051271FA52 /* mobile-offline-downloader-ios */,
+				824AADAC3E38E8F7D1B15C52 /* SwiftUIIntrospect */,
 			);
 			productName = Core;
 			productReference = 4E249DD6423E938E1DE581C9 /* Core.framework */;
@@ -9707,6 +9703,8 @@
 				0123E127313854C775556360 /* XCRemoteSwiftPackageReference "combine-schedulers" */,
 				120AFC94F64412AA3A0FC3A7 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				C0C21C0C6F0179DCECB057F3 /* XCRemoteSwiftPackageReference "PSPDFKit-SP" */,
+				274A481876C3B961C09D0D0A /* XCRemoteSwiftPackageReference "swiftui-introspect" */,
+				4EE212C9CDC0BA5982FDF373 /* XCRemoteSwiftPackageReference "mobile-offline-downloader-ios" */,
 			);
 			projectDirPath = "";
 			projectReferences = (
@@ -12070,11 +12068,27 @@
 				version = 3.5.0;
 			};
 		};
+		274A481876C3B961C09D0D0A /* XCRemoteSwiftPackageReference "swiftui-introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/swiftui-introspect.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.1.1;
+			};
+		};
 		4EA524DFC5519849A16211D0 /* XCRemoteSwiftPackageReference "CombineReachability" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/istvan-kreisz/CombineReachability.git";
 			requirement = {
 				branch = master;
+				kind = branch;
+			};
+		};
+		4EE212C9CDC0BA5982FDF373 /* XCRemoteSwiftPackageReference "mobile-offline-downloader-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/2uinc/mobile-offline-downloader-ios.git";
+			requirement = {
+				branch = develop;
 				kind = branch;
 			};
 		};
@@ -12102,10 +12116,20 @@
 			package = 4EA524DFC5519849A16211D0 /* XCRemoteSwiftPackageReference "CombineReachability" */;
 			productName = CombineReachability;
 		};
+		0D03BCC4E71170051271FA52 /* mobile-offline-downloader-ios */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4EE212C9CDC0BA5982FDF373 /* XCRemoteSwiftPackageReference "mobile-offline-downloader-ios" */;
+			productName = "mobile-offline-downloader-ios";
+		};
 		2373F3530A3FD2B901730D89 /* CombineExt */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = FCD1D04FD946BB6C6C264E50 /* XCRemoteSwiftPackageReference "CombineExt" */;
 			productName = CombineExt;
+		};
+		824AADAC3E38E8F7D1B15C52 /* SwiftUIIntrospect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 274A481876C3B961C09D0D0A /* XCRemoteSwiftPackageReference "swiftui-introspect" */;
+			productName = SwiftUIIntrospect;
 		};
 		8C5ECF283C56CEE5DC624958 /* PSPDFKit */ = {
 			isa = XCSwiftPackageProductDependency;
