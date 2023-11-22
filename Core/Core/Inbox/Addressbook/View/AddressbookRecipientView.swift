@@ -30,6 +30,7 @@ public struct AddressbookRecipientView: View {
         ScrollView {
             peopleView
         }
+        .searchable(text: $viewModel.searchText)
         .background(Color.backgroundLightest)
         .navigationTitle(viewModel.title)
     }
@@ -43,7 +44,7 @@ public struct AddressbookRecipientView: View {
         VStack(alignment: .leading, spacing: 0) {
             separator
             allRecipient
-            ForEach(viewModel.recipients, id: \.self) { user in
+            ForEach(viewModel.filteredRecipients(), id: \.self) { user in
                 personRowView(user)
             }
         }

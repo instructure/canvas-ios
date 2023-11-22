@@ -30,6 +30,9 @@ class AddressbookRecipientViewModel: ObservableObject {
     public let recipientDidTap = PassthroughSubject<(recipient: [SearchRecipient], controller: WeakViewController), Never>()
     public let allRecipientDidTap = PassthroughSubject<(recipient: [SearchRecipient], controller: WeakViewController), Never>()
 
+    // MARK: - Input / Output
+    @Published public var searchText: String = ""
+
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
     private var router: Router
@@ -39,6 +42,13 @@ class AddressbookRecipientViewModel: ObservableObject {
         self.roleName = roleName
         self.router = router
         setupInputBindings(recipientDidSelect: recipientDidSelect)
+    }
+
+    public func filteredRecipients() -> [SearchRecipient] {
+        guard !searchText.isEmpty else { return recipients }
+        return recipients.filter { user in
+            (user.displayName ?? user.fullName).contains(searchText)
+        }
     }
 
     private func closeDialog(_ viewController: WeakViewController) {
