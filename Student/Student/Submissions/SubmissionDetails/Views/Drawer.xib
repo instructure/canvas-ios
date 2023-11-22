@@ -24,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yhc-Hf-2mW" userLabel="DrawerControls">
-                    <rect key="frame" x="0.0" y="0.0" width="413" height="52"/>
+                    <rect key="frame" x="0.0" y="0.0" width="413" height="58"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zQw-tB-yGY" userLabel="Gripper">
                             <rect key="frame" x="188.5" y="4" width="36" height="4"/>
@@ -39,9 +39,9 @@
                             </connections>
                         </button>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="RnZ-Eu-Ple">
-                            <rect key="frame" x="16" y="16" width="381" height="29"/>
+                            <rect key="frame" x="16" y="16" width="381" height="35"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="28" id="kDR-tw-Pus"/>
+                                <constraint firstAttribute="height" constant="34" id="kDR-tw-Pus"/>
                             </constraints>
                             <segments>
                                 <segment title="Comments"/>
@@ -68,7 +68,7 @@
                     </connections>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NiS-Q8-E9V" userLabel="Border" customClass="DividerView" customModule="Student" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="51" width="413" height="1"/>
+                    <rect key="frame" x="0.0" y="57" width="413" height="1"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="fb3-3f-fZ5"/>
@@ -78,7 +78,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zvd-Vb-YDD" userLabel="ContentView">
-                    <rect key="frame" x="0.0" y="52" width="413" height="409"/>
+                    <rect key="frame" x="0.0" y="58" width="413" height="403"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" priority="999" id="y8L-1T-xAL"/>
