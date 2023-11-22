@@ -42,11 +42,12 @@ public class SafariAppHelper: BaseHelper {
 
     public struct Share {
         public static var copyButton: XCUIElement { SafariAppHelper.safariApp.find(label: "Copy", type: .cell) }
-        public static var saveToFiles: XCUIElement { SafariAppHelper.safariApp.findAll(type: .cell, minimumCount: 6)[6] }
+        public static var saveToFiles: XCUIElement { SafariAppHelper.safariApp.find(label: "Save to Files", type: .cell) }
         public static var onMyIphoneButton: XCUIElement { SafariAppHelper.safariApp.find(label: "On My iPhone", type: .button) }
         public static var onMyIpadCell: XCUIElement { SafariAppHelper.safariApp.find(id: "DOC.sidebar.item.On My iPad", type: .cell) }
         public static var onMyLabel: XCUIElement { SafariAppHelper.safariApp.find(labelContaining: "On My iP", type: .staticText) }
         public static var saveButton: XCUIElement { SafariAppHelper.safariApp.find(label: "Save", type: .button) }
+        public static var moreButton: XCUIElement { SafariAppHelper.safariApp.find(label: "More", type: .cell) }
 
         public static func titleLabel(title: String) -> XCUIElement {
             return SafariAppHelper.safariApp.find(label: title)

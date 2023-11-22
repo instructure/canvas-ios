@@ -25,7 +25,7 @@ public class DashboardHelper: BaseHelper {
     public static var doneButton: XCUIElement { app.find(id: "screen.dismiss", type: .button) }
     public static var coursesLabel: XCUIElement { app.find(id: "dashboard.courses.heading-lbl") }
     public static var offlineLine: XCUIElement { app.find(id: "offlineLine") }
-    public static var favoriteButton: XCUIElement { app.find(label: "favorite", type: .button) }
+    public static var favoriteButton: XCUIElement { app.find(label: "Favorite", type: .button) }
     public static var dashboardSettingsShowGradeToggle: XCUIElement {
         return app.find(id: "DashboardSettings.showGradesToggle", type: .switch).find(type: .switch)
     }
@@ -95,24 +95,24 @@ public class DashboardHelper: BaseHelper {
             public static var bigBlueButtonButton: XCUIElement { app.find(labelContaining: "BigBlueButton", type: .button) }
 
             // Functions
-            public static func courseButton(course: DSCourse) -> XCUIElement {
-                return app.find(type: .scrollView).find(labelContaining: "\(course.name)", type: .button)
+            public static func courseButton(course: DSCourse) -> XCUIElement? {
+                let courseButtons = app.findAll(labelContaining: course.name, type: .button)
+                for b in courseButtons where b.hasLabel(label: "elected", strict: false) {
+                    return b
+                }
+                return nil
             }
 
             public static func unselectedTickerOfCourseButton(course: DSCourse) -> XCUIElement {
-                return courseButton(course: course).waitUntil(.visible).find(label: "emptyLine")
+                return courseButton(course: course)!.waitUntil(.visible).find(label: "emptyLine")
             }
 
             public static func selectedTickerOfCourseButton(course: DSCourse) -> XCUIElement {
-                return courseButton(course: course).waitUntil(.visible).find(label: "completeSolid")
+                return courseButton(course: course)!.waitUntil(.visible).find(label: "completeSolid")
             }
 
             public static func partiallySelectedTickerOfCourseButton(course: DSCourse) -> XCUIElement {
-                return courseButton(course: course).waitUntil(.visible).find(label: "partialSolid")
-            }
-
-            public static func courseLabel(course: DSCourse) -> XCUIElement {
-                return app.find(type: .scrollView).find(label: course.name, type: .staticText)
+                return courseButton(course: course)!.waitUntil(.visible).find(label: "partialSolid")
             }
         }
     }

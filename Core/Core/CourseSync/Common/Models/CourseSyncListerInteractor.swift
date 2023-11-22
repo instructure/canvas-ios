@@ -25,9 +25,6 @@ public protocol CourseSyncListInteractor {
 }
 
 public class CourseSyncListInteractorLive: CourseSyncListInteractor {
-    private let courseListStore = ReactiveStore(
-        useCase: GetCourseSyncSelectorCourses()
-    )
     private let entryComposerInteractor: CourseSyncEntryComposerInteractor
     private var sessionDefaults: SessionDefaults
     private let scheduler: AnySchedulerOf<DispatchQueue>
@@ -43,15 +40,34 @@ public class CourseSyncListInteractorLive: CourseSyncListInteractor {
     }
 
     public func getCourseSyncEntries(filter: CourseSyncListFilter) -> AnyPublisher<[CourseSyncEntry], Error> {
-        let filteredToSynced = filter.isLimitedToSyncedOnly
+        let courseListStore: ReactiveStore<GetCourseSyncSelectorCourses>
+
+        let shouldLimitResultsToCacheOnly = filter.shouldUseCache
         let publisher: AnyPublisher<[CourseSyncSelectorCourse], Error>
 
         switch filter {
-        case let .courseID(courseID):
-            publisher = courseListStore.getEntities().filterToCourseID(courseID)
-        case .all:
+        case let .courseId(courseId):
+            courseListStore = ReactiveStore(
+                useCase: GetCourseSyncSelectorCourses(
+                    scope: .where(#keyPath(CourseSyncSelectorCourse.courseId), equals: courseId)
+                )
+            )
             publisher = courseListStore.getEntities()
-        case .synced:
+        case .all:
+            courseListStore = ReactiveStore(
+                useCase: GetCourseSyncSelectorCourses()
+            )
+            publisher = courseListStore.getEntities()
+        case let .courseIds(courseIds):
+            let predicate = NSPredicate(format: "courseId IN %@", courseIds)
+            courseListStore = ReactiveStore(
+                useCase: GetCourseSyncSelectorCourses(
+                    scope: Scope(
+                        predicate: predicate,
+                        order: [NSSortDescriptor(key: #keyPath(CourseSyncSelectorCourse.name), ascending: true)]
+                    )
+                )
+            )
             publisher = courseListStore.getEntitiesFromDatabase()
         }
 
@@ -60,15 +76,16 @@ public class CourseSyncListInteractorLive: CourseSyncListInteractor {
             .flatMap { [entryComposerInteractor] in
                 entryComposerInteractor.composeEntry(
                     from: $0,
-                    useCache: filteredToSynced
+                    useCache: shouldLimitResultsToCacheOnly
                 )
             }
             .collect()
             .replaceEmpty(with: [])
             .map { [sessionDefaults] in
                 $0.applySelectionsFromPreviousSession(filter: filter,
-                                                      sessionDefaults: sessionDefaults) }
-            .map { filteredToSynced ? $0.selectedEntries() : $0 }
+                                                      sessionDefaults: sessionDefaults)
+            }
+            .map { shouldLimitResultsToCacheOnly ? $0.selectedEntries() : $0 }
             .receive(on: scheduler)
             .eraseToAnyPublisher()
     }
@@ -77,22 +94,21 @@ public class CourseSyncListInteractorLive: CourseSyncListInteractor {
 // MARK: - Private Helpers
 
 private extension Array where Element == CourseSyncEntry {
-
     /// Removes any tab and file that is not selected for syncing and returns the rest in a new array.
     func selectedEntries() -> [CourseSyncEntry] {
         filter { $0.selectionState == .selected || $0.selectionState == .partiallySelected }
-        .map { filteredEntries in
-            var entriesCpy = filteredEntries
-            entriesCpy.tabs.removeAll { $0.selectionState == .deselected }
-            entriesCpy.files.removeAll { $0.selectionState == .deselected }
-            return entriesCpy
-        }
+            .map { filteredEntries in
+                var entriesCpy = filteredEntries
+                entriesCpy.tabs.removeAll { $0.selectionState == .deselected }
+                entriesCpy.files.removeAll { $0.selectionState == .deselected }
+                return entriesCpy
+            }
     }
 
     func setSelected(
         selection: CourseEntrySelection,
-        filter: CourseSyncListFilter,
-        sessionDefaults: SessionDefaults
+        filter _: CourseSyncListFilter,
+        sessionDefaults _: SessionDefaults
     ) -> [CourseSyncEntry] {
         var entriesCpy = self
 

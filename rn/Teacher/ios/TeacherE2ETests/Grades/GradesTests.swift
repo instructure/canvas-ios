@@ -68,15 +68,18 @@ class GradesTests: E2ETestCase {
         let speedGraderPostPolicyButton = SpeedGraderHelper.postPolicyButton.waitUntil(.visible)
         let speedGraderDoneButton = SpeedGraderHelper.doneButton.waitUntil(.visible)
         let speedGraderDrawerGripper = SpeedGraderHelper.drawerGripper.waitUntil(.visible)
+        let speedGraderGradeSlider = SpeedGraderHelper.gradeSlider.waitUntil(.visible, timeout: 5)
         XCTAssertTrue(speedGraderUserButton.isVisible)
         XCTAssertTrue(speedGraderPostPolicyButton.isVisible)
         XCTAssertTrue(speedGraderDoneButton.isVisible)
-        XCTAssertTrue(speedGraderDrawerGripper.isVisible)
 
-        speedGraderDrawerGripper.swipeUp()
+        if speedGraderGradeSlider.isVanished {
+            XCTAssertTrue(speedGraderDrawerGripper.isVisible)
+            speedGraderDrawerGripper.swipeUp()
+        }
 
         let speedGraderGradeButton = SpeedGraderHelper.gradeButton.waitUntil(.visible)
-        let speedGraderGradeSlider = SpeedGraderHelper.gradeSlider.waitUntil(.visible)
+        speedGraderGradeSlider.waitUntil(.visible)
         XCTAssertTrue(speedGraderGradeButton.isVisible)
         XCTAssertTrue(speedGraderGradeSlider.isVisible)
         XCTAssertTrue(speedGraderGradeSlider.hasValue(value: "0"))
@@ -87,7 +90,7 @@ class GradesTests: E2ETestCase {
 
         speedGraderDoneButton.hit()
         submissionItem.waitUntil(.vanish)
-        let backButton = SubmissionsHelper.backButton.waitUntil(.visible)
+        let backButton = SubmissionsHelper.backButton.waitUntil(.visible, timeout: 5)
         XCTAssertTrue(submissionItem.isVanished)
         XCTAssertTrue(backButton.isVisible)
 

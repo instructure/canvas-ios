@@ -31,6 +31,9 @@ public class EmbeddedWebPageViewModelLive: EmbeddedWebPageViewModel {
         }
     }
 
+    /**
+     This method assumes that feature flags for the given context are already in CoreData.
+     */
     public static func isRedesignEnabled(in context: Context) -> Bool {
         var featureFlagContext = context
 
@@ -40,7 +43,7 @@ public class EmbeddedWebPageViewModelLive: EmbeddedWebPageViewModel {
                 featureFlagContext = Context.course(courseID)
             }
         }
-        return AppEnvironment.shared.subscribe(GetEnabledFeatureFlags(context: featureFlagContext)).first { $0.isDiscussionAndAnnouncementRedesign }?.enabled ?? false
+        return AppEnvironment.shared.subscribe(GetEnabledFeatureFlags(context: featureFlagContext)).isFeatureFlagEnabled(.discussionRedesign)
     }
     @Published public private(set) var subTitle: String?
     @Published public private(set) var contextColor: UIColor?

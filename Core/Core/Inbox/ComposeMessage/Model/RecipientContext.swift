@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,17 +16,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import TestsFoundation
+import Foundation
 
-class GradeListTests: CoreUITestCase {
-    func testAssignmentDetailsCompose() {
-        DashboardHelperParent.courseCard(courseId: "263").hit()
-        GradesHelper.cell(assignmentId: "1831").hit()
-        XCTAssertTrue(app.find(labelContaining: "This is assignment one.").waitUntil(.visible).isVisible)
+public class RecipientContext {
+    let name: String
+    let context: Context
 
-        AssignmentsHelper.Details.replyButton.hit()
-        XCTAssertEqual(AssignmentsHelper.Details.Reply.recipientName(id: "837").waitUntil(.visible).label, "Teacher One")
-        XCTAssertTrue(AssignmentsHelper.Details.Reply.subject.waitUntil(.visible)
-            .hasValue(value: "Regarding: Student One, Assignment - Assignment One"))
+    init(course: Course) {
+        self.name = course.name ?? course.courseCode ?? ""
+        self.context = Context.course(course.id)
+    }
+
+    init(group: Group) {
+        self.name = group.name
+        self.context = Context.group(group.id)
     }
 }

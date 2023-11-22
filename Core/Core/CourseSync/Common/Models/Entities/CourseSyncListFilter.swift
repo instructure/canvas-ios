@@ -19,13 +19,14 @@
 import Foundation
 
 public enum CourseSyncListFilter: Equatable {
-    case courseID(String) // A specific course
+    case courseId(String) // A specific course
+    case courseIds([String]) // A list of courses
     case all // All the available courses
-    case synced // Synchronized courses
 
-    var isLimitedToSyncedOnly: Bool {
+    // We currently only use cache for the CourseSyncProgress screen. 
+    var shouldUseCache: Bool {
         switch self {
-        case .synced: return true
+        case .courseIds: return true
         default: return false
         }
     }

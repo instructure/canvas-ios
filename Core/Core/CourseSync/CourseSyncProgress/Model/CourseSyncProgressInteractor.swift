@@ -100,22 +100,28 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
     func observeEntries() -> AnyPublisher<[CourseSyncEntry], Error> {
         unowned let unownedSelf = self
 
-        return courseSyncListInteractor.getCourseSyncEntries(filter: .synced)
-            .handleEvents(
-                receiveOutput: {
-                    unownedSelf.courseSyncEntries.send($0)
-                    unownedSelf.observeEntryProgress()
-                },
-                receiveCompletion: { completion in
-                    switch completion {
-                    case let .failure(error):
-                        unownedSelf.courseSyncEntries.send(completion: .failure(error))
-                    default:
-                        break
-                    }
-                }
-            )
-            .flatMap { _ in unownedSelf.courseSyncEntries.eraseToAnyPublisher() }
+        return progressObserverInteractor
+            .observeDownloadProgress()
+            .first()
+            .flatMap {
+                unownedSelf.courseSyncListInteractor.getCourseSyncEntries(filter: .courseIds($0.courseIds))
+                    .handleEvents(
+                        receiveOutput: {
+                            unownedSelf.courseSyncEntries.send($0)
+                            unownedSelf.observeEntryProgress()
+                        },
+                        receiveCompletion: { completion in
+                            switch completion {
+                            case let .failure(error):
+                                unownedSelf.courseSyncEntries.send(completion: .failure(error))
+                            default:
+                                break
+                            }
+                        }
+                    )
+                    .flatMap { _ in unownedSelf.courseSyncEntries.eraseToAnyPublisher() }
+                    .eraseToAnyPublisher()
+            }
             .eraseToAnyPublisher()
     }
 

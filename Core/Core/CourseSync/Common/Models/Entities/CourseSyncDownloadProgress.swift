@@ -23,6 +23,7 @@ public struct CourseSyncDownloadProgress {
     let bytesDownloaded: Int
     let isFinished: Bool
     let error: String?
+    let courseIds: [String]
 
     var progress: Float {
         Float(bytesDownloaded) / Float(bytesToDownload)
@@ -32,12 +33,14 @@ public struct CourseSyncDownloadProgress {
         bytesToDownload: Int,
         bytesDownloaded: Int,
         isFinished: Bool,
-        error: String?
+        error: String?,
+        courseIds: [String]
     ) {
         self.bytesToDownload = bytesToDownload
         self.bytesDownloaded = bytesDownloaded
         self.isFinished = isFinished
         self.error = error
+        self.courseIds = courseIds
     }
 
     init(from entity: CDCourseSyncDownloadProgress) {
@@ -45,6 +48,7 @@ public struct CourseSyncDownloadProgress {
         bytesDownloaded = entity.bytesDownloaded
         isFinished = entity.isFinished
         error = entity.error
+        courseIds = Array(entity.courseIds)
     }
 }
 
@@ -53,13 +57,15 @@ extension CourseSyncDownloadProgress {
         bytesToDownload: Int = 1000,
         bytesDownloaded: Int = 100,
         isFinished: Bool = false,
-        error: String? = nil
+        error: String? = nil,
+        courseIds: [String] = []
     ) -> CourseSyncDownloadProgress {
         .init(
             bytesToDownload: bytesToDownload,
             bytesDownloaded: bytesDownloaded,
             isFinished: isFinished,
-            error: error
+            error: error,
+            courseIds: courseIds
         )
     }
 }

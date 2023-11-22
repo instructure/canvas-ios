@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import UIKit
 import Core
+import UIKit
 
 class StudentDetailsViewController: ScreenViewTrackableViewController, ErrorViewController {
     @IBOutlet var alertFields: [UITextField]!
@@ -53,6 +53,9 @@ class StudentDetailsViewController: ScreenViewTrackableViewController, ErrorView
     }
 
     lazy var thresholds = env.subscribe(GetAlertThresholds(studentID: studentID)) { [weak self] in
+        guard self?.loadingCount == 0 else {
+            return
+        }
         self?.updateThresholds()
     }
 
@@ -130,6 +133,10 @@ class StudentDetailsViewController: ScreenViewTrackableViewController, ErrorView
     }
 
     @IBAction func switchChanged(_ sender: UISwitch) {
+        for field in alertFields where field.isEditing {
+            field.endEditing(true)
+        }
+
         let type = AlertThresholdType.allCases[sender.tag]
         let alert = threshold(for: type)
         if sender.isOn, alert == nil {
@@ -194,13 +201,17 @@ class StudentDetailsViewController: ScreenViewTrackableViewController, ErrorView
 
     func fetch<U: UseCase>(_ useCase: U) {
         loadingCount += 1
-        useCase.fetch(force: true) { [weak self] _, _, error in performUIUpdate {
-            self?.loadingCount -= 1
-            if let error = error {
-                self?.updateThresholds()
-                self?.showError(error)
+        useCase.fetch(force: true) { [weak self] _, _, error in
+            performUIUpdate {
+                self?.loadingCount -= 1
+                if let error = error {
+                    self?.updateThresholds()
+                    self?.showError(error)
+                } else if self?.loadingCount == 0 {
+                    self?.updateThresholds()
+                }
             }
-        } }
+        }
     }
 
     func updateLoading() {

@@ -241,6 +241,22 @@ public struct CourseSyncEntry: Equatable {
 
 #if DEBUG
 
+extension CourseSyncEntry {
+    static func make(
+        name: String = "entry",
+        id: String = "entry-1",
+        tabs: [CourseSyncEntry.Tab] = [],
+        files: [CourseSyncEntry.File] = []
+    ) -> CourseSyncEntry {
+        CourseSyncEntry(
+            name: name,
+            id: id,
+            tabs: tabs,
+            files: files
+        )
+    }
+}
+
 extension CourseSyncEntry.File {
     static func make(
         id: String,

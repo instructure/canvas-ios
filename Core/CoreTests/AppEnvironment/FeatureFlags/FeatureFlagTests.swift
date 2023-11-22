@@ -19,11 +19,10 @@
 import Core
 import XCTest
 
-class FeatureFlagTests: CoreTestCase {
+class FeatureFlagTests: XCTestCase {
 
-    func testIsDiscussionAndAnnouncementRedesignFlag() {
-        let flag = FeatureFlag(context: databaseClient)
-        flag.name = "react_discussions_post"
-        XCTAssertTrue(flag.isDiscussionAndAnnouncementRedesign)
+    func testFeatureFlagKeys() {
+        XCTAssertEqual(APIFeatureFlag.Key.assignmentEnhancements.rawValue, "assignments_2_student")
+        XCTAssertEqual(APIFeatureFlag.Key.discussionRedesign.rawValue, "react_discussions_post")
     }
 }
