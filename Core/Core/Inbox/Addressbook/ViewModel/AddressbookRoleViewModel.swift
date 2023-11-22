@@ -74,13 +74,6 @@ class AddressbookRoleViewModel: ObservableObject {
         interactor.state
                 .assign(to: &$state)
         interactor.recipients
-            .handleEvents(receiveOutput: { recipients in
-                recipients.forEach { recipient in
-                    print(recipient.name)
-                    print(recipient.commonCourses.map { $0.role })
-                    print("\n")
-                }
-            })
             .assign(to: &$recipients)
 
         interactor.recipients
