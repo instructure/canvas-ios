@@ -22,8 +22,6 @@ import XCTest
 
 class AddressbookInteractorLiveTests: CoreTestCase {
     private var testee: AddressbookInteractorLive!
-    private var subscriptions = Set<AnyCancellable>()
-
     private var context = RecipientContext(course: Course.make())
 
     override func setUp() {
@@ -39,11 +37,6 @@ class AddressbookInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(testee.state.value, .data)
         XCTAssertEqual(testee.recipients.value.count, 2)
         XCTAssertEqual(testee.recipients.value.first?.name, "Recipient 1")
-    }
-
-    override func tearDown() {
-        subscriptions.removeAll()
-        super.tearDown()
     }
 
     private func mockData() {
