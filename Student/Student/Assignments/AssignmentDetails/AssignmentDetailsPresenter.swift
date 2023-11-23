@@ -32,11 +32,12 @@ enum OnlineUploadState {
 
 protocol AssignmentDetailsViewProtocol: SubmissionButtonViewProtocol {
     func updateNavBar(subtitle: String?, backgroundColor: UIColor?)
-    func update(assignment: Assignment, quiz: Quiz?, baseURL: URL?)
+    func update(assignment: Assignment, quiz: Quiz?, submission: Submission?, baseURL: URL?)
     func showSubmitAssignmentButton(title: String?)
     func updateAttemptPickerButton(isActive: Bool,
                                    attemptDate: String,
                                    items: [UIAction])
+    func updateGradeCell(_ assignment: Assignment, submission: Submission?)
     func updateAttemptInfo(attemptNumber: String)
 }
 
@@ -58,6 +59,7 @@ class AssignmentDetailsPresenter {
     lazy var submissions = env.subscribe(GetSubmission(context: .course(courseID), assignmentID: assignmentID, userID: userID)) { [weak self] in
         self?.updateSubmissionPickerButton()
         self?.selectLatestAttemptIfNecessary()
+        self?.update()
     }
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.update()
@@ -137,6 +139,9 @@ class AssignmentDetailsPresenter {
     }
 
     func update() {
+        if submissions.requested == false || submissions.pending {
+            return
+        }
         if quizzes?.useCase.quizID != assignment?.quizID {
             quizzes = assignment?.quizID.flatMap { quizID in env.subscribe(GetQuiz(courseID: courseID, quizID: quizID)) { [weak self] in
                 self?.update()
@@ -156,7 +161,7 @@ class AssignmentDetailsPresenter {
         let title = submissionButtonPresenter.buttonText(course: course, assignment: assignment, quiz: quizzes?.first, onlineUpload: onlineUploadState)
         view?.showSubmitAssignmentButton(title: title)
         view?.updateNavBar(subtitle: course.name, backgroundColor: course.color)
-        view?.update(assignment: assignment, quiz: quizzes?.first, baseURL: baseURL)
+        view?.update(assignment: assignment, quiz: quizzes?.first, submission: selectedAttempt, baseURL: baseURL)
     }
 
     func updateArc() {
@@ -200,6 +205,10 @@ class AssignmentDetailsPresenter {
         didSet {
             if let selectedAttempt {
                 updateAttemptInfo(submission: selectedAttempt)
+            }
+
+            if let assignment {
+                view?.updateGradeCell(assignment, submission: selectedAttempt)
             }
         }
     }

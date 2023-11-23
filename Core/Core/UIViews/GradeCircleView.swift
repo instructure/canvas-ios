@@ -69,9 +69,10 @@ public class GradeCircleView: UIView {
 
     /**
      - parameters:
+       - submission: If there's no submission the view will become hidden.
        - circleColor: The color of the grade circle. If not specified it will use the default color specified in `CircleProgressView`.
      */
-    public func update(_ assignment: Assignment, circleColor: UIColor? = nil) {
+    public func update(_ assignment: Assignment, submission: Submission?, circleColor: UIColor? = nil) {
         gradeCircle.progress = 1 // make sure it's never spinning
 
         if let circleColor = circleColor {
@@ -81,7 +82,7 @@ public class GradeCircleView: UIView {
         circleComplete.isAccessibilityElement = true
         // in this case the submission should always be there because canvas generates
         // submissions for every user for every assignment but just in case
-        guard let submission = assignment.submission, submission.workflowState != .unsubmitted else {
+        guard let submission, submission.workflowState != .unsubmitted else {
             isHidden = true
             return
         }
@@ -117,7 +118,7 @@ public class GradeCircleView: UIView {
 
         // Update the display grade
         displayGrade.isHidden = assignment.gradingType == .points || submission.late == true
-        let gradeText = GradeFormatter.string(from: assignment, style: .short) ?? ""
+        let gradeText = GradeFormatter.string(from: assignment, submission: submission, style: .short) ?? ""
         displayGrade.attributedText = NSAttributedString(string: gradeText, attributes: [NSAttributedString.Key.accessibilitySpeechPunctuation: true])
 
         // Update the outOf label

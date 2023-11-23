@@ -242,8 +242,8 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         navigationController?.navigationBar.useContextColor(backgroundColor)
     }
 
-    func updateGradeCell(_ assignment: Assignment) {
-        self.gradedView?.update(assignment, circleColor: presenter?.courses.first?.color)
+    func updateGradeCell(_ assignment: Assignment, submission: Submission?) {
+        self.gradedView?.update(assignment, submission: submission, circleColor: presenter?.courses.first?.color)
 
         // Update grade statistics view
         if let presenter = presenter {
@@ -256,7 +256,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
 
         // in this case the submission should always be there because canvas generates
         // submissions for every user for every assignment but just in case
-        guard let submission = assignment.submission else {
+        guard let submission else {
             hideGradeCell()
             return
         }
@@ -326,7 +326,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         }
     }
 
-    func update(assignment: Assignment, quiz: Quiz?, baseURL: URL?) {
+    func update(assignment: Assignment, quiz: Quiz?, submission: Submission?, baseURL: URL?) {
         let hideScores = assignment.hideQuantitativeData
         nameLabel?.text = assignment.name
         pointsLabel?.text = hideScores ? nil : assignment.pointsPossibleText
@@ -351,7 +351,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             ? NSLocalizedString("Description", bundle: .student, comment: "")
             : NSLocalizedString("Instructions", bundle: .student, comment: "")
         webView.loadHTMLString(presenter?.assignmentDescription() ?? "", baseURL: baseURL)
-        updateGradeCell(assignment)
+        updateGradeCell(assignment, submission: submission)
 
         guard let presenter = presenter else { return }
 
