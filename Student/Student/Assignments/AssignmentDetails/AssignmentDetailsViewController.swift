@@ -26,7 +26,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     @IBOutlet weak var statusLabel: UILabel?
     @IBOutlet weak var attemptPickerSection: UIView?
     @IBOutlet weak var attemptLabel: UILabel?
-    @IBOutlet weak var attemptDateButton: DynamicButton?
+    @IBOutlet weak var attemptDateButton: DynamicButton!
     @IBOutlet weak var gradeHeadingLabel: UILabel?
     @IBOutlet weak var scrollView: UIScrollView?
     @IBOutlet weak var scrollViewBottom: NSLayoutConstraint!
@@ -337,8 +337,6 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         statusLabel?.isHidden = assignment.submissionStatusIsHidden
         statusLabel?.textColor = assignment.submissionStatusColor
         statusLabel?.text = assignment.submissionStatusText
-        attemptLabel?.text = assignment.submissionAttemptNumberText
-        attemptDateButton?.setTitle(assignment.submissionDateText, for: .normal)
         dueSection?.subHeader.text = assignment.dueAt.flatMap {
             $0.dateTimeString
         } ?? NSLocalizedString("No Due Date", bundle: .core, comment: "")
@@ -369,14 +367,6 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         if assignment.hideQuantitativeData, (gradeText ?? "").isEmpty == true {
             showGradeSection = false
         }
-        attemptDateButton?.isEnabled = presenter.isAttemptPickerButtonActive
-
-        if presenter.isAttemptPickerButtonActive {
-            // These will make the icon to display at the end of the label
-            attemptDateButton?.semanticContentAttribute = isLeftToRightLayout ? .forceRightToLeft : .forceLeftToRight
-            attemptDateButton?.setImage(.arrowOpenDownSolid.scaleTo(.init(width: 14, height: 14)), for: .normal)
-            // TODO: Add text <-> image padding when business logic is completed
-        }
 
         attemptsView.isHidden = presenter.attemptsIsHidden()
         gradeSection?.isHidden = !showGradeSection
@@ -395,6 +385,30 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         loadingView.stopAnimating()
         refreshControl?.endRefreshing()
         UIAccessibility.post(notification: .screenChanged, argument: view)
+    }
+
+    func updateAttemptInfo(attemptNumber: String) {
+        attemptLabel?.text = attemptNumber
+    }
+
+    func updateAttemptPickerButton(isActive: Bool,
+                                   attemptDate: String,
+                                   items: [UIAction]) {
+        attemptDateButton.isEnabled = isActive
+        attemptDateButton.setTitle(attemptDate, for: .normal)
+
+        // Since submissions can't be deleted we don't have to handle the case of
+        // turning the active picker to inactive
+        if isActive {
+            // These will make the icon to display at the end of the label
+            attemptDateButton.semanticContentAttribute = isLeftToRightLayout ? .forceRightToLeft : .forceLeftToRight
+            attemptDateButton.setImage(.arrowOpenDownSolid.scaleTo(.init(width: 14, height: 14)), for: .normal)
+            attemptDateButton.changesSelectionAsPrimaryAction = true
+            attemptDateButton.showsMenuAsPrimaryAction = true
+            // TODO: Add text <-> image padding when business logic is completed
+
+            attemptDateButton.menu = UIMenu(children: items)
+        }
     }
 
     func centerLockedIconContainerView() {

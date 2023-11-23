@@ -163,7 +163,7 @@
                                                                     <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="haT-9w-5d7" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="haT-9w-5d7" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
                                                                 <rect key="frame" x="97" y="16.5" width="262" height="34"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                 <state key="normal" title="Button"/>
