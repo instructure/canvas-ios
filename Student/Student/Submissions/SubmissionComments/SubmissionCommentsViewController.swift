@@ -70,7 +70,7 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
         addCommentTextView.font(.scaledNamedFont(.regular16), lineHeight: .body)
         addCommentTextView.adjustsFontForContentSizeCategory = true
         addCommentTextView.textColor = .textDarkest
-        addCommentView.backgroundColor = .backgroundLight
+        addCommentView.backgroundColor = .backgroundLightest
         emptyContainer.isHidden = true
         emptyLabel.text = NSLocalizedString("Have questions about your assignment?\nMessage your instructor.", bundle: .student, comment: "")
         emptyImageView.image = UIImage(named: Panda.NoComments.name, in: .core, compatibleWith: nil)

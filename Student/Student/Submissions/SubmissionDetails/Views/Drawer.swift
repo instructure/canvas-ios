@@ -79,8 +79,10 @@ class Drawer: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         DispatchQueue.main.async { [weak self] in
+            self?.drawerControls?.roundCorners(corners: [.topLeft, .topRight], radius: 10)
             self?.tabs?.addUnderlineForSelectedSegment()
         }
+        addDropShadow()
     }
 
     func addDropShadow() {
