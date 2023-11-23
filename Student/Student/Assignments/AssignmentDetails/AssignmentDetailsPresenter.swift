@@ -58,7 +58,7 @@ class AssignmentDetailsPresenter {
     }
     lazy var submissions = env.subscribe(GetSubmission(context: .course(courseID), assignmentID: assignmentID, userID: userID)) { [weak self] in
         self?.updateSubmissionPickerButton()
-        self?.selectLatestAttemptIfNecessary()
+        self?.selectLatestSubmissionIfNecessary()
         self?.update()
     }
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
@@ -161,7 +161,7 @@ class AssignmentDetailsPresenter {
         let title = submissionButtonPresenter.buttonText(course: course, assignment: assignment, quiz: quizzes?.first, onlineUpload: onlineUploadState)
         view?.showSubmitAssignmentButton(title: title)
         view?.updateNavBar(subtitle: course.name, backgroundColor: course.color)
-        view?.update(assignment: assignment, quiz: quizzes?.first, submission: selectedAttempt, baseURL: baseURL)
+        view?.update(assignment: assignment, quiz: quizzes?.first, submission: selectedSubmission, baseURL: baseURL)
     }
 
     func updateArc() {
@@ -201,14 +201,14 @@ class AssignmentDetailsPresenter {
     var validSubmissions: [Submission] {
         submissions.all.filter { $0.submittedAt != nil }
     }
-    var selectedAttempt: Submission? {
+    var selectedSubmission: Submission? {
         didSet {
-            if let selectedAttempt {
-                updateAttemptInfo(submission: selectedAttempt)
+            if let selectedSubmission {
+                updateAttemptInfo(submission: selectedSubmission)
             }
 
             if let assignment {
-                view?.updateGradeCell(assignment, submission: selectedAttempt)
+                view?.updateGradeCell(assignment, submission: selectedSubmission)
             }
         }
     }
@@ -224,7 +224,7 @@ class AssignmentDetailsPresenter {
                 )
                 let date = submission.submittedAt?.dateTimeString ?? ""
                 return UIAction(title: date, subtitle: attemptNumber) { [weak self] _ in
-                    self?.selectedAttempt = submission
+                    self?.selectedSubmission = submission
                 }
             }
         }()
@@ -242,9 +242,14 @@ class AssignmentDetailsPresenter {
         view?.updateAttemptInfo(attemptNumber: attemptNumber)
     }
 
-    private func selectLatestAttemptIfNecessary() {
-        if selectedAttempt == nil, let latestSubmission = validSubmissions.first {
-            selectedAttempt = latestSubmission
+    private func selectLatestSubmissionIfNecessary() {
+        if let selectedSubmission {
+            if let latestSubmission = validSubmissions.first, latestSubmission.attempt > selectedSubmission.attempt {
+                // A new attempt arrived possibly from a new submission, switch to that
+                self.selectedSubmission = latestSubmission
+            }
+        } else {
+            selectedSubmission = validSubmissions.first
         }
     }
 
