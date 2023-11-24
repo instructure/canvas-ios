@@ -44,8 +44,9 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
     @IBOutlet weak var drawer: Drawer?
     @IBOutlet weak var emptyView: SubmissionDetailsEmptyView?
     @IBOutlet weak var lockedEmptyView: SubmissionDetailsLockedEmptyView?
+    @IBOutlet weak var attemptLabel: UILabel!
     @IBOutlet weak var pickerButton: DynamicButton?
-    @IBOutlet weak var pickerButtonArrow: IconView?
+//    @IBOutlet weak var pickerButtonArrow: IconView?
     @IBOutlet weak var pickerButtonDivider: DividerView?
     @IBOutlet weak var picker: UIPickerView?
 
@@ -69,8 +70,10 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
         picker?.delegate = self
         picker?.backgroundColor = .backgroundLightest
         pickerButton?.setTitleColor(.textDark, for: .disabled)
-
-        pickerButtonArrow?.isHidden = true
+        pickerButton?.titleLabel?.baselineAdjustment = .alignCenters
+        pickerButton?.isEnabled = false
+//        pickerButtonArrow?.image = UIImage(systemName: "chevron.down")
+//        pickerButtonArrow?.isHidden = true
         pickerButtonDivider?.isHidden = true
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -103,11 +106,14 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
         emptyView?.dueText = assignment.assignmentDueByText
         emptyView?.submitButtonTitle = title
         pickerButton?.isHidden = !isSubmitted
-        if let submittedAt = submission?.submittedAt {
-            pickerButton?.setTitle(DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short), for: .normal)
+        attemptLabel?.isHidden = !isSubmitted
+        if let submittedAt = submission?.submittedAt, let attempt = submission?.attempt {
+            let title = DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short)
+            pickerButton?.setTitle(title, for: .normal)
+            attemptLabel?.text = "Attempt \(attempt)"
         }
         pickerButton?.isEnabled = presenter.pickerSubmissions.count > 1
-        pickerButtonArrow?.isHidden = !isSubmitted || presenter.pickerSubmissions.count <= 1
+//        pickerButtonArrow?.isEnabled = !isSubmitted || presenter.pickerSubmissions.count <= 1
         pickerButtonDivider?.isHidden = !isSubmitted
         if presenter.pickerSubmissions.count <= 1 || assignment.isExternalToolAssignment {
             picker?.isHidden = true
@@ -164,12 +170,12 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
         picker?.isHidden = picker?.isHidden == false
         if picker?.isHidden == true {
             pickerButton?.tintColor = .textDark
-            pickerButtonArrow?.tintColor = .textDark
-            pickerButtonArrow?.image = .miniArrowDownSolid
+            pickerButton?.tintColor = .textDark
+            pickerButton?.setImage(UIImage(systemName: "chevron.down"), for: .normal)
         } else {
             pickerButton?.tintColor = Brand.shared.buttonPrimaryBackground
-            pickerButtonArrow?.tintColor = Brand.shared.buttonPrimaryBackground
-            pickerButtonArrow?.image = .miniArrowUpSolid
+            pickerButton?.tintColor = Brand.shared.buttonPrimaryBackground
+            pickerButton?.setImage(UIImage(systemName: "chevron.up"), for: .normal)
         }
     }
 }

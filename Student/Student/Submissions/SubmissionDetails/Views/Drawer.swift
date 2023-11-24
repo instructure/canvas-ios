@@ -248,7 +248,7 @@ extension UISegmentedControl {
         underline.translatesAutoresizingMaskIntoConstraints = false
 
         // TODO: change it to #0374B5
-        underline.backgroundColor = .blue
+        underline.backgroundColor = .electric
         underline.tag = 1
         self.addSubview(underline)
         self.layoutSubviews()
