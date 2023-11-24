@@ -26,7 +26,7 @@ public class LoginNavigationController: UINavigationController {
         let startView = EDXLoginStartViewController()
         startView.loginDelegate = loginDelegate
         startView.app = app
-//        LoginStartViewController.create(loginDelegate: loginDelegate, fromLaunch: fromLaunch, app: app)
+//        let startView = LoginStartViewController.create(loginDelegate: loginDelegate, fromLaunch: fromLaunch, app: app, offlineModeInteractor: OfflineModeAssembly.make())
         let controller = LoginNavigationController(rootViewController: startView)
         controller.app = app
         controller.loginDelegate = loginDelegate
@@ -45,6 +45,7 @@ public class LoginNavigationController: UINavigationController {
         startView.app = app
         viewControllers = [
             startView,
+//            LoginStartViewController.create(loginDelegate: loginDelegate, fromLaunch: false, app: app, offlineModeInteractor: OfflineModeAssembly.make()),
             LoginFindSchoolViewController.create(loginDelegate: loginDelegate, method: .normalLogin),
             LoginWebViewController.create(host: host, loginDelegate: loginDelegate, method: .normalLogin),
         ]

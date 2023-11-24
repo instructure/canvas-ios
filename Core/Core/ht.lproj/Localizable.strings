@@ -398,6 +398,9 @@
 "Available From:" = "Disponib Depi:";
 
 /* No comment provided by engineer. */
+"Available offline" = "Disponib san koneksyon";
+
+/* No comment provided by engineer. */
 "Available until" = "Disponib jiska";
 
 /* No comment provided by engineer. */
@@ -453,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Cancel Submission?" = "Anile Soumisyon?";
+
+/* No comment provided by engineer. */
+"Cancel Sync?" = "Anile Senkwonizasyon?";
 
 /* No comment provided by engineer. */
 "Canvas Guides" = "Gid Canvas";
@@ -590,6 +596,9 @@
 "Content" = "Kontni";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Konti yo Paka Afiche";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Erè Lyen Kontni";
 
 /* No comment provided by engineer. */
@@ -713,10 +722,10 @@
 "Cyan" = "Blesyèl";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
+"d_courses_syncing" = "d_courses_syncing";
 
 /* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
+"d_items" = "d_items";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -866,9 +875,6 @@
 "Dismiss %@" = "Rejte %@";
 
 /* No comment provided by engineer. */
-"Dismiss notification" = "Rejte notifikasyon";
-
-/* No comment provided by engineer. */
 "Display As" = "Afiche Tankou";
 
 /* No comment provided by engineer. */
@@ -930,9 +936,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Modifye paramèt kou";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Modifye Tablo";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Modifye Diskisyon";
@@ -1044,9 +1047,6 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Echwe. Tape pou opsyon yo";
-
-/* No comment provided by engineer. */
-"favorite" = "prefere";
 
 /* No comment provided by engineer. */
 "Feedback" = "Kòmantè";
@@ -1220,6 +1220,9 @@
 "Groups" = "Gwoup";
 
 /* No comment provided by engineer. */
+"Hang tight, we're getting things ready for you." = "Tann, n ap prepare bagay yo pou ou.";
+
+/* No comment provided by engineer. */
 "Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Fè paran w eskane Kòd QR sa a ak app Canvas Parent lan pou li kapab asosye ak ou.";
 
 /* No comment provided by engineer. */
@@ -1364,6 +1367,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Ta sanble w pa enskri nan okenn kou antan ke %@. Yonn nan lòt app nou yo kapab pi byen adapte. Tape sou yonn pou w ka vizite App Store la.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "L ap kanpe senkwonizasyn kontni san koneksyon W ap fè l ankò pita.";
+
+/* No comment provided by engineer. */
 "Italic" = "Italik";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Erè Koneksyon";
+
+/* No comment provided by engineer. */
+"Login help." = "Èd koneksyon.";
 
 /* No comment provided by engineer. */
 "Login ID" = "ID Koneksyon";
@@ -1784,13 +1793,25 @@
 "Observers" = "Obsèvatè";
 
 /* No comment provided by engineer. */
+"Offline" = "San koneksyon";
+
+/* No comment provided by engineer. */
 "Offline Content" = "Kontni San Koneksyon";
 
 /* No comment provided by engineer. */
 "Offline Content Sync Failed" = "Senkwonizasyon Kontni san Koneksyon an Echwe";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Success" = "Senkwonizasyon Kontni san Koneksyon an Reyisi";
+
+/* No comment provided by engineer. */
 "Offline mode" = "Mòd san koneksyon";
+
+/* No comment provided by engineer. */
+"Offline sync was interrupted by the operating system" = "Senkwonizasyon san koneksyon an te entèwonp pa sistèm eksplwatasyon an";
+
+/* No comment provided by engineer. */
+"offline_sync_finished" = "offline_sync_finished";
 
 /* No comment provided by engineer. */
 "OK" = "DAKO";
@@ -1809,6 +1830,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "Gen yonn oswa plizyè fichye pa rive transfere. Verifye koneksyon entènèt ou a epi eseye re voye yo ankò";
+
+/* No comment provided by engineer. */
+"One or more items failed to sync." = "Yon oswa plizyè eleman echwe nan senkwonizasyon an.";
 
 /* No comment provided by engineer. */
 "One Question at a Time:" = "Yon Kesyon apre Lòt:";
@@ -1833,6 +1857,9 @@
 
 /* No comment provided by engineer. */
 "Open course details" = "Ouvri detay kou";
+
+/* No comment provided by engineer. */
+"Open In Browser" = "Ouvri nan Navigatè";
 
 /* No comment provided by engineer. */
 "Open item details" = "Ouvri detay eleman";
@@ -2288,6 +2315,9 @@
 "Show One Question at a Time" = "Afiche Kesyon Yonn pa Yonn";
 
 /* No comment provided by engineer. */
+"Show sync details" = "Monte detay senkwonizasyon yo";
+
+/* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2352,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "Gen yon Bagay ki Pase Mal";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Gen yon bagay ki mal fèt nou pa gen kontwòl li.";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Klase pa Jèm";
@@ -2427,6 +2460,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "Reyisi!";
+
+/* No comment provided by engineer. */
+"Success! Downloaded %@ of %@" = "Reyisi! Telechaje %1$@ sou %2$@";
 
 /* No comment provided by engineer. */
 "Summary" = "Rezime";
@@ -2538,9 +2574,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Sistèm eksplwatasyon an te entèwonp pwosesis soumisyon an.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Gen %d atik ki seleksyone pou disponibilite san koneksyon. Kontni seleksyone a ap telechaje sou aparèy la.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Pa gen devwa aktif nan kou sa a.";
@@ -2910,6 +2943,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "Ou pa gen otorizasyon pou fè aksyon sa a.";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Ou ka eseye ouvri paj la nan yon navigatè.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Ou jwenn envitasyon";

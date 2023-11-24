@@ -16,8 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-@testable import Core
 import Combine
+@testable import Core
 import XCTest
 
 class CourseListInteractorLiveTests: CoreTestCase {
@@ -27,27 +27,31 @@ class CourseListInteractorLiveTests: CoreTestCase {
     override func setUp() {
         super.setUp()
 
-        let activeCourseRequest = GetCourseListCourses(enrollmentState: .active)
+        let activeCourseRequest = GetAllCoursesCourseListUseCase(enrollmentState: .active)
         api.mock(activeCourseRequest, value: [.make(id: "1", name: "A")])
-        let pastCourseRequest = GetCourseListCourses(enrollmentState: .completed)
+        let pastCourseRequest = GetAllCoursesCourseListUseCase(enrollmentState: .completed)
         api.mock(pastCourseRequest, value: [.make(id: "2", name: "AB")])
-        let futureCourseRequest = GetCourseListCourses(enrollmentState: .invited_or_pending)
-        api.mock(futureCourseRequest, value: [.make(id: "3", name: "ABC")])
+        let futureCourseRequest = GetAllCoursesCourseListUseCase(enrollmentState: .invited_or_pending)
+        api.mock(futureCourseRequest, value: [.make(id: "3", name: "ABC", workflow_state: .available)])
 
         testee = CourseListInteractorLive(env: environment)
-        waitForState(.data)
     }
 
     override func tearDown() {
+        testee = nil
         subscriptions.removeAll()
+        testee = nil
         super.tearDown()
     }
 
     func testPopulatesListItems() {
-        XCTAssertEqual(testee.state.value, .data)
-        XCTAssertEqual(testee.courseList.value.current.map { $0.courseId }, ["1"])
-        XCTAssertEqual(testee.courseList.value.past.map { $0.courseId }, ["2"])
-        XCTAssertEqual(testee.courseList.value.future.map { $0.courseId }, ["3"])
+        testee.getCourses()
+            .sink(receiveCompletion: { _ in }) { current, past, future in
+                XCTAssertEqual(current.map { $0.courseId }, ["1"])
+                XCTAssertEqual(past.map { $0.courseId }, ["2"])
+                XCTAssertEqual(future.map { $0.courseId }, ["3"])
+            }
+            .store(in: &subscriptions)
     }
 
     func testFilter() {
@@ -56,49 +60,67 @@ class CourseListInteractorLiveTests: CoreTestCase {
             .sink()
             .store(in: &subscriptions)
 
-        XCTAssertEqual(testee.state.value, .data)
-        XCTAssertEqual(testee.courseList.value.current.map { $0.courseId }, [])
-        XCTAssertEqual(testee.courseList.value.past.map { $0.courseId }, ["2"])
-        XCTAssertEqual(testee.courseList.value.future.map { $0.courseId }, ["3"])
+        testee.getCourses()
+            .sink(receiveCompletion: { _ in }) { current, past, future in
+                XCTAssertEqual(current.map { $0.courseId }, [])
+                XCTAssertEqual(past.map { $0.courseId }, ["2"])
+                XCTAssertEqual(future.map { $0.courseId }, ["3"])
+            }
+            .store(in: &subscriptions)
     }
 
     func testRefresh() {
-        let activeCourseRequest = GetCourseListCourses(enrollmentState: .active)
-
-        api.mock(activeCourseRequest, value: nil, response: nil, error: NSError.instructureError("Failed"))
-        performRefresh()
-        waitForState(.error)
-
-        api.mock(activeCourseRequest, value: [.make(id: "4", name: "ABCD")])
-        performRefresh()
-        waitForState(.data)
-
-        XCTAssertEqual(testee.state.value, .data)
-        XCTAssertEqual(testee.courseList.value.current.map { $0.courseId }, ["4"])
-        XCTAssertEqual(testee.courseList.value.past.map { $0.courseId }, ["2"])
-        XCTAssertEqual(testee.courseList.value.future.map { $0.courseId }, ["3"])
-    }
-
-    private func performRefresh() {
-        let refreshed = expectation(description: "Expected state reached")
-        testee
-            .refresh()
-            .sink { refreshed.fulfill() }
-            .store(in: &subscriptions)
-        wait(for: [refreshed], timeout: 1)
-    }
-
-    private func waitForState(_ state: StoreState) {
-        let stateUpdate = expectation(description: "Expected state reached")
-        stateUpdate.assertForOverFulfill = false
-        let subscription = testee
-            .state
-            .sink {
-                if $0 == state {
-                    stateUpdate.fulfill()
-                }
+        var list: (active: [AllCoursesCourseItem], past: [AllCoursesCourseItem], future: [AllCoursesCourseItem]) = ([], [], [])
+        testee.getCourses()
+            .sink { _ in } receiveValue: { val in
+                list = val
             }
-        wait(for: [stateUpdate], timeout: 1)
-        subscription.cancel()
+            .store(in: &subscriptions)
+
+        drainMainQueue()
+        XCTAssertEqual(list.active.map { $0.courseId }, ["1"])
+        XCTAssertEqual(list.past.map { $0.courseId }, ["2"])
+        XCTAssertEqual(list.future.map { $0.courseId }, ["3"])
+
+        let activeCourseRequest = GetAllCoursesCourseListUseCase(enrollmentState: .active)
+        api.mock(activeCourseRequest, value: [.make(id: "4", name: "ABCD")])
+        testee.refresh()
+            .sink()
+            .store(in: &subscriptions)
+
+        drainMainQueue()
+        XCTAssertEqual(list.active.map { $0.courseId }, ["4"])
+        XCTAssertEqual(list.past.map { $0.courseId }, ["2"])
+        XCTAssertEqual(list.future.map { $0.courseId }, ["3"])
+    }
+
+    func testFutureUnpublishedCoursesAreHiddenForStudents() {
+        let futureCourseRequest = GetAllCoursesCourseListUseCase(enrollmentState: .invited_or_pending)
+        api.mock(futureCourseRequest, value: [
+            .make(id: "3", name: "ABC", workflow_state: .available),
+            .make(id: "4", name: "unpublished", workflow_state: .unpublished),
+        ])
+
+        testee.getCourses()
+            .sink(receiveCompletion: { _ in }) { _, _, future in
+                XCTAssertEqual(future.map { $0.courseId }, ["3"])
+            }
+            .store(in: &subscriptions)
+    }
+
+    func testFutureUnpublishedCoursesAreShownForTeachers() {
+        environment.app = .teacher
+
+        let futureCourseRequest = GetAllCoursesCourseListUseCase(enrollmentState: .invited_or_pending)
+        api.mock(futureCourseRequest, value: [
+            .make(id: "3", name: "ABC", workflow_state: .available),
+            .make(id: "4", name: "unpublished", workflow_state: .unpublished),
+        ])
+
+        testee.getCourses()
+            .sink(receiveCompletion: { _ in }) { _, _, future in
+                XCTAssertEqual(future.map { $0.courseId }, ["3", "4"])
+            }
+            .store(in: &subscriptions)
     }
 }

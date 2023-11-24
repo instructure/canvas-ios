@@ -61,7 +61,7 @@ class ConferenceListViewControllerTests: CoreTestCase {
         XCTAssertEqual(cell?.statusLabel.textColor, .textDark)
 
         cell = controller.tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? ConferenceListCell
-        XCTAssertEqual(cell?.statusLabel.text, "Concluded Mar 14, 2020 at 12:00 AM")
+        XCTAssertEqual(cell?.statusLabel.text, "Concluded Mar 14, 2020 at 12:00 AM")
         XCTAssertEqual(cell?.statusLabel.textColor, .textDark)
 
         api.mock(controller.conferences, value: .init(conferences: [ .make(title: "Pandemic playthrough") ]))

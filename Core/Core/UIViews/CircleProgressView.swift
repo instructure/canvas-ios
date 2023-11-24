@@ -128,10 +128,6 @@ public class CircleProgressView: UIView {
         fill.strokeColor = color?.cgColor ?? tintColor.cgColor
     }
 
-    public override func didMoveToWindow() {
-        super.didMoveToWindow()
-    }
-
     public func startAnimating() {
         progress = nil
     }

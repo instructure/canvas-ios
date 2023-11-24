@@ -4,7 +4,6 @@ workspace 'Canvas.xcworkspace'
 inhibit_all_warnings!
 platform :ios, '15.0'
 require_relative './rn/Teacher/node_modules/react-native/scripts/react_native_pods'
-# require_relative './rn/Teacher/node_modules/@react-native-community/cli-platform-ios/native_modules'
 
 def firebase_pods
   pod 'GoogleUtilities', '~> 7.6'
@@ -16,10 +15,6 @@ end
 def canvas_crashlytics_rn_firebase_pods
   pod 'GoogleUtilities', '~> 7.6'
   pod 'Firebase/Crashlytics', '~> 8.12.1'
-end
-
-def pspdfkit
-  pod 'PSPDFKit', podspec: 'https://customers.pspdfkit.com/pspdfkit-ios/12.3.0.podspec'
 end
 
 def react_native_pods
@@ -43,19 +38,10 @@ def react_native_pods
   pod 'RNSound', :path => './rn/Teacher/node_modules/react-native-sound'
 end
 
-abstract_target 'needs-pspdfkit' do
-  use_frameworks!
-  pspdfkit
-  target 'StudentE2ETests' do project 'Student/Student.xcodeproj' end
-  target 'TeacherE2ETests' do project 'rn/Teacher/ios/Teacher.xcodeproj' end
-  target 'ParentE2ETests' do project 'Parent/Parent.xcodeproj' end
-end
-
 abstract_target 'defaults' do
   use_frameworks!
 
   react_native_pods
-  pspdfkit
 
   target 'Teacher' do
     project 'rn/Teacher/ios/Teacher.xcodeproj'
@@ -86,7 +72,6 @@ end
 abstract_target 'parent_defaults' do
   use_frameworks!
 
-  pspdfkit
   firebase_pods
 
   target 'Parent' do
@@ -95,14 +80,6 @@ abstract_target 'parent_defaults' do
 
   target 'ParentUnitTests' do
     project 'Parent/Parent.xcodeproj'
-  end
-end
-
-pre_install do |installer|
-  # dSYMs cause problems, will be fixed in cocoapods 1.10
-  # https://github.com/CocoaPods/CocoaPods/pull/9547
-  installer.pod_targets.detect { |s| s.name == "PSPDFKit" }.framework_paths["PSPDFKit/Core"].map! do |framework_paths|
-    Xcode::FrameworkPaths.new(framework_paths.source_path)
   end
 end
 
@@ -124,7 +101,8 @@ post_install do |installer|
   end
 
   puts "\nPost Install Hooks"
-  
+  xcode_base_version = `xcodebuild -version | grep 'Xcode' | awk '{print $2}' | cut -d . -f 1`
+
   installer.pod_targets.each do |target|
     silenceWarningsInUmbrellas = %w[ React-Core ]
     next unless silenceWarningsInUmbrellas.include? target.name
@@ -153,6 +131,13 @@ post_install do |installer|
       config.build_settings.delete 'ARCHS'
       # This was added to work around an Xcode 13.3 bug when deploying to iOS 14 devices. https://developer.apple.com/forums/thread/702028?answerId=708408022
       config.build_settings['OTHER_LDFLAGS'] = '$(inherited) -Xlinker -no_fixup_chains'
+      # For xcode 15+ only
+      if config.base_configuration_reference && Integer(xcode_base_version) >= 15
+        xcconfig_path = config.base_configuration_reference.real_path
+        xcconfig = File.read(xcconfig_path)
+        xcconfig_mod = xcconfig.gsub(/DT_TOOLCHAIN_DIR/, "TOOLCHAIN_DIR")
+        File.open(xcconfig_path, "w") { |file| file << xcconfig_mod }
+      end
     end
     usesNonAppExAPI = %w[
       react-native-camera

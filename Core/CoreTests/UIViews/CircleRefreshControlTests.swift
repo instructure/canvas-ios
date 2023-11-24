@@ -35,6 +35,12 @@ class CircleRefreshControlTests: CoreTestCase {
         scrollView.refreshControl = refreshControl
         refreshControl.didMoveToSuperview()
 
+        let testViewController = UIViewController()
+        testViewController.view = scrollView
+
+        window.rootViewController = testViewController
+        scrollView.contentOffset = .zero
+
         XCTAssertEqual(refreshControl.progressView.alpha, 0)
         XCTAssertEqual(refreshControl.isRefreshing, false)
         XCTAssertEqual(refreshControl.isAnimating, false)

@@ -17,33 +17,55 @@
 //
 
 import Foundation
-import CoreData
 
-public final class CourseSyncDownloadProgress: NSManagedObject {
-    @NSManaged public var bytesToDownload: Int
-    @NSManaged public var bytesDownloaded: Int
-    @NSManaged public var isFinished: Bool
-    @NSManaged public var error: String?
+public struct CourseSyncDownloadProgress {
+    let bytesToDownload: Int
+    let bytesDownloaded: Int
+    let isFinished: Bool
+    let error: String?
+    let courseIds: [String]
 
     var progress: Float {
         Float(bytesDownloaded) / Float(bytesToDownload)
     }
-}
 
-public extension CourseSyncDownloadProgress {
-    @discardableResult
-    static func save(
+    init(
         bytesToDownload: Int,
         bytesDownloaded: Int,
         isFinished: Bool,
         error: String?,
-        in context: NSManagedObjectContext
+        courseIds: [String]
+    ) {
+        self.bytesToDownload = bytesToDownload
+        self.bytesDownloaded = bytesDownloaded
+        self.isFinished = isFinished
+        self.error = error
+        self.courseIds = courseIds
+    }
+
+    init(from entity: CDCourseSyncDownloadProgress) {
+        bytesToDownload = entity.bytesToDownload
+        bytesDownloaded = entity.bytesDownloaded
+        isFinished = entity.isFinished
+        error = entity.error
+        courseIds = Array(entity.courseIds)
+    }
+}
+
+extension CourseSyncDownloadProgress {
+    static func make(
+        bytesToDownload: Int = 1000,
+        bytesDownloaded: Int = 100,
+        isFinished: Bool = false,
+        error: String? = nil,
+        courseIds: [String] = []
     ) -> CourseSyncDownloadProgress {
-        let model: CourseSyncDownloadProgress = context.first(scope: .all) ?? context.insert()
-        model.bytesToDownload = bytesToDownload
-        model.bytesDownloaded = bytesDownloaded
-        model.isFinished = isFinished
-        model.error = error
-        return model
+        .init(
+            bytesToDownload: bytesToDownload,
+            bytesDownloaded: bytesDownloaded,
+            isFinished: isFinished,
+            error: error,
+            courseIds: courseIds
+        )
     }
 }

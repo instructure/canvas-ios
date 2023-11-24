@@ -44,7 +44,7 @@ open class E2ETestCase: CoreUITestCase {
 
     open func loginAfterSchoolFound(_ dsUser: DSUser, password: String = "password") {
         LoginHelper.Login.emailField.waitUntil(.visible, timeout: 60)
-        LoginHelper.Login.emailField.writeText(text: dsUser.login_id)
+        LoginHelper.Login.emailField.writeText(text: dsUser.login_id!)
         LoginHelper.Login.passwordField.writeText(text: password)
         LoginHelper.Login.loginButton.hit()
 
@@ -70,5 +70,17 @@ open class E2ETestCase: CoreUITestCase {
         if canvasThemePromptTitle.waitUntil(.visible, timeout: 5).exists {
             systemSettingsButton.actionUntilElementCondition(action: .tap, element: canvasThemePromptTitle, condition: .vanish)
         }
+    }
+
+    @discardableResult
+    open func setNetworkStateOffline() -> Bool {
+        CommandLine.setConnection(state: .off)
+        return CommandLine.isOffline
+    }
+
+    @discardableResult
+    open func setNetworkStateOnline() -> Bool {
+        CommandLine.setConnection(state: .on)
+        return CommandLine.isOnline
     }
 }

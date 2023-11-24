@@ -42,6 +42,23 @@ public class FilesHelper: BaseHelper {
         public static var addFileButton: XCUIElement { app.find(id: "FileList.addFileButton") }
         public static var addFolderButton: XCUIElement { app.find(id: "FileList.addFolderButton") }
 
+        // Upload file
+        public static var uploadFileButton: XCUIElement { app.find(label: "Upload File", type: .button) }
+        public static var testPDFButton: XCUIElement { app.find(id: "\(FilesHelper.TestPDF.title), pdf") }
+        public static var uploadImageButton: XCUIElement { app.find(label: "Photo Library", type: .button) }
+        public static var imageItem: XCUIElement { app.find(labelContaining: "Photo", type: .image) }
+        public static var browseButton: XCUIElement { app.find(label: "Browse", type: .button) }
+        public static var onMyIpadButton: XCUIElement { app.find(id: "DOC.sidebar.item.On My iPad", type: .cell) }
+
+        // Deleting file
+        public static var deleteButton: XCUIElement { app.find(label: "Delete", type: .button) }
+        public static var areYouSureLabel: XCUIElement { app.find(labelContaining: "Are you sure", type: .staticText) }
+
+        // Folder creation
+        public static var folderNameInput: XCUIElement { app.find(label: "Folder Name", type: .textField) }
+        public static var okButton: XCUIElement { app.find(label: "OK", type: .button) }
+
+        // File list item
         public static func file(index: Int) -> XCUIElement {
             return app.find(id: "FileList.\(index)")
         }

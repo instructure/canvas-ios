@@ -44,6 +44,7 @@ public class CalendarHelper: BaseHelper {
     public static var monthButton: XCUIElement { app.find(id: "PlannerCalendar.monthButton") }
     public static var monthLabel: XCUIElement { app.find(id: "PlannerCalendar.monthButton").find(type: .staticText) }
     public static var filterButton: XCUIElement { app.find(id: "PlannerCalendar.filterButton") }
+    public static var firstDayButtonOfView: XCUIElement { app.find(idStartingWith: "PlannerCalendar.dayButton.") }
 
     public static func dayButton(event: DSCalendarEvent) -> XCUIElement {
         let dateString = formatDateForDayButton(event: event)
@@ -57,7 +58,7 @@ public class CalendarHelper: BaseHelper {
     }
 
     public static func formatDateForDateLabel(event: DSCalendarEvent) -> String {
-        dateFormatter.dateFormat = "MMM d, yyyy 'at' h:mm a"
+        dateFormatter.dateFormat = "MMM d, yyyy 'at' h:mm a"
         let formattedDate = dateFormatter.string(from: event.start_at)
         return formattedDate
     }
@@ -95,14 +96,15 @@ public class CalendarHelper: BaseHelper {
         // Finding the year
         let yearOfEvent = Int(dateArray[0])!
         var yearLabelElement = yearLabel.waitUntil(.visible)
-        var yearLabelText = Int(yearLabelElement.label)!
+        var yearLabelText = Int(yearLabelElement.label.filter("0123456789".contains))!
         let monthSwipeDirection = yearOfEvent < yearLabelText ? "right" : "left"
 
         if yearOfEvent != yearLabelText {
             for _ in 1...12*abs(yearOfEvent-yearLabelText) {
-                if yearOfEvent < yearLabelText { app.swipeRight() } else { app.swipeLeft() }
+                let buttonToSwipe = firstDayButtonOfView.waitUntil(.visible)
+                if yearOfEvent < yearLabelText { buttonToSwipe.swipeRight() } else { buttonToSwipe.swipeLeft() }
                 yearLabelElement = yearLabel.waitUntil(.visible)
-                yearLabelText = Int(yearLabelElement.label)!
+                yearLabelText = Int(yearLabelElement.label.filter("0123456789".contains))!
                 if yearOfEvent == yearLabelText { break }
             }
         }
@@ -114,7 +116,8 @@ public class CalendarHelper: BaseHelper {
 
         if monthOfEvent != monthLabelText {
             for _ in 1...12 {
-                if monthSwipeDirection == "right" { app.swipeRight() } else { app.swipeLeft() }
+                let buttonToSwipe = firstDayButtonOfView.waitUntil(.visible)
+                if monthSwipeDirection == "right" { buttonToSwipe.swipeRight() } else { buttonToSwipe.swipeLeft() }
                 monthLabelElement = monthLabel.waitUntil(.visible)
                 monthLabelText = monthLabelElement.label
                 if monthOfEvent == monthLabelText { break }
@@ -132,8 +135,8 @@ public class CalendarHelper: BaseHelper {
             return app.find(label: event.title, type: .staticText)
         }
 
-        public static func dateLabel(event: DSCalendarEvent) -> XCUIElement {
-            let dateString = formatDateForDateLabel(event: event)
+        public static func dateLabel(event: DSCalendarEvent, parent: Bool = false) -> XCUIElement {
+            let dateString = parent ? formatDateForDateLabelParent(event: event) : formatDateForDateLabel(event: event)
             return app.find(labelContaining: dateString)
         }
 
@@ -150,7 +153,13 @@ public class CalendarHelper: BaseHelper {
         }
 
         public static func formatDateForDateLabel(event: DSCalendarEvent) -> String {
-            dateFormatter.dateFormat = "MMM d, yyyy 'at' h:mm a"
+            dateFormatter.dateFormat = "MMM d, yyyy 'at' h:mm a"
+            let formattedDate = dateFormatter.string(from: event.start_at)
+            return formattedDate
+        }
+
+        public static func formatDateForDateLabelParent(event: DSCalendarEvent) -> String {
+            dateFormatter.dateFormat = "MMM d, yyyy, h:mm"
             let formattedDate = dateFormatter.string(from: event.start_at)
             return formattedDate
         }

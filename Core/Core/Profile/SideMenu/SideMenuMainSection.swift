@@ -52,7 +52,7 @@ struct SideMenuMainSection: View {
     var body: some View {
         VStack(spacing: 0) {
             if enrollment == .observer {
-                Button {
+                PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline) {
                     route(to: "/conversations")
                 } label: {
                     SideMenuItem(id: "inbox", image: .emailLine, title: Text("Inbox", bundle: .core), badgeValue: $unreadCount).onAppear {
@@ -63,7 +63,7 @@ struct SideMenuMainSection: View {
                 }
                 .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
 
-                Button {
+                PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline) {
                     route(to: "/profile/observees")
                 } label: {
                     SideMenuItem(id: "manageChildren", image: .groupLine, title: Text("Manage Students", bundle: .core))
@@ -85,7 +85,7 @@ struct SideMenuMainSection: View {
                 .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
 
                 ForEach(Array(tools), id: \.self) { tool in
-                    Button {
+                    PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline) {
                         launchLTI(url: tool.url)
                     } label: {
                         SideMenuItem(id: "lti.\(tool.domain ?? "").\(tool.definitionID)", image: imageForDomain(tool.domain),

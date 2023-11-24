@@ -18,4 +18,4 @@
 
 import Foundation
 
-class GetCourseSyncDownloadProgressUseCase: LocalUseCase<CourseSyncDownloadProgress> {}
+class GetCourseSyncDownloadProgressUseCase: LocalUseCase<CDCourseSyncDownloadProgress> {}

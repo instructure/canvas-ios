@@ -398,6 +398,9 @@
 "Available From:" = "Saatavissa alkaen:";
 
 /* No comment provided by engineer. */
+"Available offline" = "Saatavilla verkon ulkopuolella";
+
+/* No comment provided by engineer. */
 "Available until" = "Saatavissa tähän asti";
 
 /* No comment provided by engineer. */
@@ -453,6 +456,9 @@
 
 /* No comment provided by engineer. */
 "Cancel Submission?" = "Peruutetaanko lähetys?";
+
+/* No comment provided by engineer. */
+"Cancel Sync?" = "Peruutetaanko synkronisointi?";
 
 /* No comment provided by engineer. */
 "Canvas Guides" = "Canvas-oppaat";
@@ -590,6 +596,9 @@
 "Content" = "Sisältö";
 
 /* No comment provided by engineer. */
+"Content Cannot Be Displayed" = "Sisällön näyttäminen ei onnistunut";
+
+/* No comment provided by engineer. */
 "Content Link Error" = "Sisällön linkin virhe";
 
 /* No comment provided by engineer. */
@@ -713,10 +722,10 @@
 "Cyan" = "Syaani";
 
 /* No comment provided by engineer. */
-"d_items" = "d_items";
+"d_courses_syncing" = "d_courses_syncing";
 
 /* No comment provided by engineer. */
-"d_items_syncing" = "d_items_syncing";
+"d_items" = "d_items";
 
 /* No comment provided by engineer. */
 "d_likes" = "d_likes";
@@ -866,9 +875,6 @@
 "Dismiss %@" = "Ohita %@";
 
 /* No comment provided by engineer. */
-"Dismiss notification" = "Ohita ilmoitus";
-
-/* No comment provided by engineer. */
 "Display As" = "Näytä muodossa";
 
 /* No comment provided by engineer. */
@@ -930,9 +936,6 @@
 
 /* No comment provided by engineer. */
 "Edit course settings" = "Muokkaa kurssin asetuksia";
-
-/* No comment provided by engineer. */
-"Edit Dashboard" = "Muokkaa koontinäyttöä";
 
 /* No comment provided by engineer. */
 "Edit Discussion" = "Muokkaa keskustelu";
@@ -1044,9 +1047,6 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Epäonnistui. Asetukset napauttamalla";
-
-/* No comment provided by engineer. */
-"favorite" = "suosikki";
 
 /* No comment provided by engineer. */
 "Feedback" = "Palaute";
@@ -1220,6 +1220,9 @@
 "Groups" = "Ryhmät";
 
 /* No comment provided by engineer. */
+"Hang tight, we're getting things ready for you." = "Älä luovuta, teemme kaikki sinulle valmiiksi.";
+
+/* No comment provided by engineer. */
 "Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Pyydä vanhempiasi skannaamaan tämä viivakoodi Canvas Parent -sovelluksesta, jotta he saavat yhteyden sovellukseen.";
 
 /* No comment provided by engineer. */
@@ -1364,6 +1367,9 @@
 "It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Näyttää siltä, että et ole rekisteröitynyt millekään kurssille nimellä %@. Yksi sovelluksistamme saattaa sopia paremmin. Käy App Storessa napauttamalla.";
 
 /* No comment provided by engineer. */
+"It will stop offline content sync. You can do it again later." = "Se keskeyttää verkon ulkopuolisen sisällön synkronoinnin. Voit tehdä sen uudelleen myöhemmin.";
+
+/* No comment provided by engineer. */
 "Italic" = "Kursiivi";
 
 /* No comment provided by engineer. */
@@ -1494,6 +1500,9 @@
 
 /* No comment provided by engineer. */
 "Login Error" = "Kirjautumisvirhe";
+
+/* No comment provided by engineer. */
+"Login help." = "Sisäänkirjautumisohje.";
 
 /* No comment provided by engineer. */
 "Login ID" = "Käyttäjätunnus";
@@ -1784,13 +1793,25 @@
 "Observers" = "Tarkkailijat";
 
 /* No comment provided by engineer. */
+"Offline" = "Ei verkkoyhteyttä";
+
+/* No comment provided by engineer. */
 "Offline Content" = "Verkon ulkopuolinen sisältö";
 
 /* No comment provided by engineer. */
 "Offline Content Sync Failed" = "Verkon ulkopuolisen sisällön synkronisointi epäonnistui.";
 
 /* No comment provided by engineer. */
+"Offline Content Sync Success" = "Verkon ulkopuolisen sisällön synkronointi onnistui";
+
+/* No comment provided by engineer. */
 "Offline mode" = "Offline-tila";
+
+/* No comment provided by engineer. */
+"Offline sync was interrupted by the operating system" = "Käyttöjärjestelmä keskeytti verkon ulkopuolisen synkronoinnin.";
+
+/* No comment provided by engineer. */
+"offline_sync_finished" = "offline_sync_finished";
 
 /* No comment provided by engineer. */
 "OK" = "OK";
@@ -1809,6 +1830,9 @@
 
 /* No comment provided by engineer. */
 "One or more files failed to upload. Check your internet connection and retry to submit." = "Yksi tai useampi tiedosto ei latautunut. Tarkista Internet-yhteytesi ja yritä lähettää uudelleen.";
+
+/* No comment provided by engineer. */
+"One or more items failed to sync." = "Yhden tai useamman kohteen synkronisointi ei onnistunut.";
 
 /* No comment provided by engineer. */
 "One Question at a Time:" = "Yksi kysymys kerrallaan:";
@@ -1833,6 +1857,9 @@
 
 /* No comment provided by engineer. */
 "Open course details" = "Avaa kurssitiedot";
+
+/* No comment provided by engineer. */
+"Open In Browser" = "Avaa selaimessa";
 
 /* No comment provided by engineer. */
 "Open item details" = "Avaa kohteen tiedot";
@@ -2288,6 +2315,9 @@
 "Show One Question at a Time" = "Näytä yksi kysymys kerrallaan";
 
 /* No comment provided by engineer. */
+"Show sync details" = "Näytä synkronoinnin tiedot";
+
+/* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
@@ -2322,6 +2352,9 @@
 
 /* No comment provided by engineer. */
 "Something Went Wrong" = "Jotakin meni pieleen";
+
+/* No comment provided by engineer. */
+"Something went wrong beyond our control." = "Jotakin kontrollimme ulkopuolella olevaa meni pieleen meidän päässämme.";
 
 /* No comment provided by engineer. */
 "Sort by likes" = "Lajittele tykkäysten perusteella";
@@ -2427,6 +2460,9 @@
 
 /* No comment provided by engineer. */
 "Success!" = "Onnistui!";
+
+/* No comment provided by engineer. */
+"Success! Downloaded %@ of %@" = "Onnistui! Latasi %1$@ / %2$@";
 
 /* No comment provided by engineer. */
 "Summary" = "Yhteenveto";
@@ -2538,9 +2574,6 @@
 
 /* No comment provided by engineer. */
 "The submission process was terminated by the operating system." = "Käyttöjärjestelmä keskeytti tehtävänpalautuksen.";
-
-/* No comment provided by engineer. */
-"There are %d items selected for offline availability. The selected content will be downloaded to the device." = "Verkon ulkopuoliseen käyttöön on saatavilla %d kohdetta. Valittu sisältöä ladataan laitteeseen.";
 
 /* No comment provided by engineer. */
 "There are no active assignments in this course." = "Tällä kurssilla ei ole aktiivisia tehtäviä.";
@@ -2910,6 +2943,9 @@
 
 /* User is missing a necessary permission */
 "You are not authorized to perform this action" = "Sinulla ei ole valtuuksia suorittaa tätä toimintoa";
+
+/* No comment provided by engineer. */
+"You can try to open the page in a browser." = "Voit nyt yrittää avata sivun selaimessa.";
 
 /* No comment provided by engineer. */
 "You have been invited" = "Sinut on kutsuttu";

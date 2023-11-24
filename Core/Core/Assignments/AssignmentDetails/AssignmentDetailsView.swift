@@ -86,7 +86,7 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
                 .font(.heavy24).foregroundColor(.textDarkest).accessibility(identifier: "AssignmentDetails.name")
             HStack(spacing: 0) {
                 Text(assignment.pointsPossibleText)
-                    .font(.medium16).foregroundColor(.textDark)
+                    .font(.medium16).foregroundColor(.textDark).accessibility(identifier: "AssignmentDetails.points")
                     .padding(.trailing, 12)
                 HStack {
                     if assignment.published {
@@ -109,7 +109,7 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
 
         Divider().padding(.horizontal, 16)
 
-        DateSection(viewModel: AssignmentDateSectionViewModel(assignment: assignment))
+        DateSection(viewModel: AssignmentDateSectionViewModel(assignment: assignment)).accessibility(identifier: "AssignmentDetails.due")
 
         Divider().padding(.horizontal, 16)
 
@@ -120,6 +120,7 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
             ))
                 .font(.regular16).foregroundColor(.textDarkest)
                 .multilineTextAlignment(.leading)
+                .accessibility(identifier: "AssignmentDetails.submissionTypes")
         }
         if assignment.isLTIAssignment {
             Button(action: launchLTITool, label: { HStack {

@@ -40,16 +40,16 @@ class DiscussionsTests: E2ETestCase {
         XCTAssertTrue(discussionButton.isVisible)
         XCTAssertTrue(discussionButton.label.contains(discussion.title))
 
-        let discussionLastPostLabel = Helper.discussionDataLabel(discussion: discussion, label: .lastPost)
+        let discussionLastPostLabel = Helper.discussionDataLabel(discussion: discussion, label: .lastPost)!
             .waitUntil(.visible)
         XCTAssertTrue(discussionLastPostLabel.isVisible)
 
-        let discussionRepliesLabel = Helper.discussionDataLabel(discussion: discussion, label: .replies)
+        let discussionRepliesLabel = Helper.discussionDataLabel(discussion: discussion, label: .replies)!
             .waitUntil(.visible)
         XCTAssertTrue(discussionRepliesLabel.isVisible)
         XCTAssertEqual(discussionRepliesLabel.label, "\(discussion.discussion_subentry_count) Replies")
 
-        let discussionUnreadLabel = Helper.discussionDataLabel(discussion: discussion, label: .unread)
+        let discussionUnreadLabel = Helper.discussionDataLabel(discussion: discussion, label: .unread)!
             .waitUntil(.visible)
         XCTAssertTrue(discussionUnreadLabel.isVisible)
         XCTAssertEqual(discussionUnreadLabel.label, "\(discussion.unread_count) Unread")
@@ -211,10 +211,13 @@ class DiscussionsTests: E2ETestCase {
         let repliesSection = DetailsHelper.repliesSection.waitUntil(.visible)
         XCTAssertTrue(repliesSection.isVisible)
 
-        Helper.backButton.hit()
-        let discussionDataLabelReplies = Helper.discussionDataLabel(discussion: assignmentDiscussion, label: .replies)
-            .waitUntil(.visible)
-        XCTAssertEqual(discussionDataLabelReplies.label, "1 Reply")
+        // On iPad: Discussion replies label is visible right after the reply is sent
+        // On iPhone: Back button needs to be tapped for the label to get visible
+        var discussionDataLabelReplies = Helper.discussionDataLabel(discussion: assignmentDiscussion, label: .replies)
+        if discussionDataLabelReplies == nil { Helper.backButton.hit() }
+        discussionDataLabelReplies = Helper.discussionDataLabel(discussion: assignmentDiscussion, label: .replies)!.waitUntil(.visible)
+
+        XCTAssertEqual(discussionDataLabelReplies!.label, "1 Reply")
 
         Helper.backButton.hit()
         Helper.backButton.hit()

@@ -23,6 +23,7 @@ open class BaseHelper {
     public static var user: UITestUser {.dataSeedAdmin}
     public static var backButton: XCUIElement { app.find(label: "Back", type: .button) }
     public static var nextButton: XCUIElement { app.find(id: "nextButton", type: .button) }
+    public static var openInSafariButton: XCUIElement { app.find(id: "OpenInSafariButton") }
     public static func pullToRefresh() {
         let window = app.find(type: .window)
         window.relativeCoordinate(x: 0.5, y: 0.2)

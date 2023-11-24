@@ -23,7 +23,6 @@ public struct DashboardContainerView: View, ScreenViewTrackable, DownloadsProgre
     @StateObject var viewModel: DashboardContainerViewModel
     @ObservedObject var courseCardListViewModel: DashboardCourseCardListViewModel
     @ObservedObject var colors: Store<GetCustomColors>
-    @ObservedObject var groups: Store<GetDashboardGroups>
     @ObservedObject var notifications: Store<GetAccountNotifications>
     @ObservedObject var settings: Store<GetUserSettings>
     @ObservedObject var conferencesViewModel = DashboardConferencesViewModel()
@@ -42,7 +41,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable, DownloadsProgre
     @State var showGrade = AppEnvironment.shared.userDefaults?.showGradesOnDashboard == true
     @StateObject private var offlineSyncCardViewModel = DashboardOfflineSyncProgressCardAssembly.makeViewModel()
 
-    private var activeGroups: [Group] { groups.all.filter { $0.isActive } }
+    private var activeGroups: [Group] { viewModel.groups.filter { $0.isActive } }
     private var isGroupSectionActive: Bool { !activeGroups.isEmpty && shouldShowGroupList }
     private let shouldShowGroupList: Bool
     private let verticalSpacing: CGFloat = 16
@@ -55,7 +54,6 @@ public struct DashboardContainerView: View, ScreenViewTrackable, DownloadsProgre
         let env = AppEnvironment.shared
         layoutViewModel = DashboardLayoutViewModel(interactor: DashboardSettingsInteractorLive(environment: env, defaults: env.userDefaults))
         colors = env.subscribe(GetCustomColors())
-        groups = env.subscribe(GetDashboardGroups())
         notifications = env.subscribe(GetAccountNotifications())
         settings = env.subscribe(GetUserSettings(userID: "self"))
         _viewModel = StateObject(wrappedValue: DashboardContainerViewModel(environment: env))
@@ -75,7 +73,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable, DownloadsProgre
                     }
                     list(CGSize(width: geometry.size.width - 32, height: geometry.size.height))
                 }
-                .animation(.default, value: offlineSyncCardViewModel.isVisible)
+                .animation(.default, value: offlineSyncCardViewModel.state)
                 .padding(.horizontal, verticalSpacing)
             }
             refreshAction: { onComplete in
@@ -187,7 +185,11 @@ public struct DashboardContainerView: View, ScreenViewTrackable, DownloadsProgre
         .accessibilityLabel(Text("Dashboard Options", bundle: .core))
         .confirmationDialog("", isPresented: $isShowingKebabDialog) {
             Button {
-                env.router.route(to: "/offline/sync_picker", from: controller, options: .modal(isDismissable: false, embedInNav: true))
+                if offlineModeViewModel.isOffline {
+                    UIAlertController.showItemNotAvailableInOfflineAlert()
+                } else {
+                    env.router.route(to: "/offline/sync_picker", from: controller, options: .modal(isDismissable: false, embedInNav: true))
+                }
             } label: {
                 Text("Manage Offline Content", bundle: .core)
             }
@@ -198,7 +200,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable, DownloadsProgre
                 }
                 viewModel.settingsButtonTapped.send()
             } label: {
-                Text("Edit Dashboard", bundle: .core)
+                Text("Dashboard Settings", bundle: .core)
             }
         }
     }
@@ -320,8 +322,8 @@ public struct DashboardContainerView: View, ScreenViewTrackable, DownloadsProgre
                 .accessibility(identifier: "dashboard.courses.heading-lbl")
                 .accessibility(addTraits: .isHeader)
             Spacer()
-            PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline, action: showAllCourses) {
-                Text("Edit Dashboard", bundle: .core)
+            Button(action: showAllCourses) {
+                Text("All Courses", bundle: .core)
                     .font(.semibold16).foregroundColor(Color(Brand.shared.linkColor))
             }.identifier("Dashboard.editButton")
         }
@@ -352,7 +354,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable, DownloadsProgre
         invitationsViewModel.refresh()
         colors.refresh(force: force)
         conferencesViewModel.refresh(force: force)
-        groups.exhaust(force: force)
+        viewModel.refreshGroups(onComplete: onComplete)
         notifications.exhaust(force: force)
         settings.refresh(force: force)
         courseCardListViewModel.refresh(onComplete: onComplete)

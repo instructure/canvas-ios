@@ -184,44 +184,40 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(entries[0].tabs[1].state, .loading(nil))
         XCTAssertEqual(entries[0].files[0].state, .loading(nil))
 
-        progressObserverInteractorMock.entryProgressSubject.send(.data([
-            CourseSyncStateProgress.save(
+        progressObserverInteractorMock.entryProgressSubject.send([
+            CourseSyncStateProgress.make(
                 id: "courses/course-id-1",
                 selection: .file("courses/course-id-1", "courses/course-id-1/files/file-1"),
-                state: .loading(0.4),
-                in: databaseClient
+                state: .loading(0.4)
             ),
-        ]))
+        ])
         XCTAssertEqual(entries[0].files[0].state, .loading(0.4))
 
-        progressObserverInteractorMock.entryProgressSubject.send(.data([
-            CourseSyncStateProgress.save(
+        progressObserverInteractorMock.entryProgressSubject.send([
+            CourseSyncStateProgress.make(
                 id: "courses/course-id-1",
                 selection: .file("courses/course-id-1", "courses/course-id-1/files/file-1"),
-                state: .downloaded,
-                in: databaseClient
+                state: .downloaded
             ),
-        ]))
+        ])
         XCTAssertEqual(entries[0].files[0].state, .downloaded)
 
-        progressObserverInteractorMock.entryProgressSubject.send(.data([
-            CourseSyncStateProgress.save(
+        progressObserverInteractorMock.entryProgressSubject.send([
+            CourseSyncStateProgress.make(
                 id: "courses/course-id-1",
                 selection: .tab("courses/course-id-1", "courses/course-id-1/tabs/files"),
-                state: .downloaded,
-                in: databaseClient
+                state: .downloaded
             ),
-        ]))
+        ])
         XCTAssertEqual(entries[0].tabs[0].state, .downloaded)
 
-        progressObserverInteractorMock.entryProgressSubject.send(.data([
-            CourseSyncStateProgress.save(
+        progressObserverInteractorMock.entryProgressSubject.send([
+            CourseSyncStateProgress.make(
                 id: "courses/course-id-1",
                 selection: .course("courses/course-id-1"),
-                state: .downloaded,
-                in: databaseClient
+                state: .downloaded
             ),
-        ]))
+        ])
         XCTAssertEqual(entries[0].state, .downloaded)
         subscription.cancel()
     }
@@ -255,14 +251,13 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(entries[0].state, .loading(nil))
         XCTAssertEqual(entries[0].tabs[1].state, .loading(nil))
 
-        progressObserverInteractorMock.entryProgressSubject.send(.data([
-            CourseSyncStateProgress.save(
+        progressObserverInteractorMock.entryProgressSubject.send([
+            CourseSyncStateProgress.make(
                 id: "courses/course-id-1",
                 selection: .tab("courses/course-id-1", "courses/course-id-1/tabs/assignments"),
-                state: .error,
-                in: databaseClient
+                state: .error
             ),
-        ]))
+        ])
         XCTAssertEqual(entries[0].tabs[1].state, .error)
         subscription.cancel()
     }
@@ -360,6 +355,8 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
 
         // THEN
         XCTAssertTrue(notificationFired)
+
+        subscription.cancel()
     }
 
     private func createAndSaveCourseSyncSelectorCourse() {
@@ -404,14 +401,13 @@ class CourseSyncProgressInteractorLiveTests: CoreTestCase {
 }
 
 private class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserverInteractor {
-    let entryProgressSubject = PassthroughSubject<ReactiveStore<Core.GetCourseSyncStateProgressUseCase>.State, Never>()
+    let entryProgressSubject = PassthroughSubject<[CourseSyncStateProgress], Never>()
 
-    func observeDownloadProgress() -> AnyPublisher<Core.ReactiveStore<Core.GetCourseSyncDownloadProgressUseCase>.State, Never> {
-        Just(ReactiveStore<GetCourseSyncDownloadProgressUseCase>.State.data([]))
-            .eraseToAnyPublisher()
+    func observeDownloadProgress() -> AnyPublisher<CourseSyncDownloadProgress, Never> {
+        Just(CourseSyncDownloadProgress.make(courseIds: ["course-id-1"])).eraseToAnyPublisher()
     }
 
-    func observeStateProgress() -> AnyPublisher<Core.ReactiveStore<Core.GetCourseSyncStateProgressUseCase>.State, Never> {
+    func observeStateProgress() -> AnyPublisher<[CourseSyncStateProgress], Never> {
         entryProgressSubject.eraseToAnyPublisher()
     }
 }

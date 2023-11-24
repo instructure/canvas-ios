@@ -16,14 +16,30 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-enum CourseSyncFrequency: Int, CaseIterable {
+public enum CourseSyncFrequency: Int, CaseIterable {
+    #if DEBUG
+    case osBased
+    #endif
     case daily
     case weekly
 
     var stringValue: String {
         switch self {
+        #if DEBUG
+        case .osBased: return "As frequent as the OS allows (DEBUG)"
+        #endif
         case .daily: return NSLocalizedString("Daily", comment: "")
         case .weekly: return NSLocalizedString("Weekly", comment: "")
+        }
+    }
+
+    func nextSyncDate(from date: Date) -> Date {
+        switch self {
+        #if DEBUG
+        case .osBased: return date
+        #endif
+        case .daily: return date.addingTimeInterval(24 * 60 * 60)
+        case .weekly: return date.addingTimeInterval(7 * 24 * 60 * 60)
         }
     }
 

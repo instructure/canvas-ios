@@ -21,9 +21,18 @@ import SwiftUI
 import XCTest
 
 class DashboardInvitationViewModelTests: XCTestCase {
+    private let mockOfflineModeInteractor = OfflineModeInteractorMock()
+
+    override func setUp() {
+        super.setUp()
+        mockOfflineModeInteractor.mockIsInOfflineMode.accept(false)
+    }
 
     func testInitialState() {
-        let testee = DashboardInvitationViewModel(name: "invitation name", courseId: "courseId", enrollmentId: "enrollmentId")
+        let testee = DashboardInvitationViewModel(name: "invitation name",
+                                                  courseId: "courseId",
+                                                  enrollmentId: "enrollmentId",
+                                                  offlineModeInteractor: mockOfflineModeInteractor)
         XCTAssertEqual(testee.state, .active)
         XCTAssertEqual(testee.id, "enrollmentId")
         XCTAssertEqual(testee.name, "invitation name")
@@ -31,22 +40,53 @@ class DashboardInvitationViewModelTests: XCTestCase {
     }
 
     func testAccept() {
-        let testee = DashboardInvitationViewModel(name: "invitation name", courseId: "courseId", enrollmentId: "enrollmentId")
+        let testee = DashboardInvitationViewModel(name: "invitation name",
+                                                  courseId: "courseId",
+                                                  enrollmentId: "enrollmentId",
+                                                  offlineModeInteractor: mockOfflineModeInteractor)
         testee.accept()
         XCTAssertEqual(testee.state, .accepted)
         XCTAssertEqual(testee.stateText, Text("Invite accepted!", bundle: .core))
     }
 
+    func testAcceptInOfflineMode() {
+        mockOfflineModeInteractor.mockIsInOfflineMode.accept(true)
+        let testee = DashboardInvitationViewModel(name: "invitation name",
+                                                  courseId: "courseId",
+                                                  enrollmentId: "enrollmentId",
+                                                  offlineModeInteractor: mockOfflineModeInteractor)
+        testee.accept()
+        XCTAssertEqual(testee.state, .active)
+        XCTAssertEqual(testee.stateText, Text("You have been invited", bundle: .core))
+    }
+
     func testDecline() {
-        let testee = DashboardInvitationViewModel(name: "invitation name", courseId: "courseId", enrollmentId: "enrollmentId")
+        let testee = DashboardInvitationViewModel(name: "invitation name",
+                                                  courseId: "courseId",
+                                                  enrollmentId: "enrollmentId",
+                                                  offlineModeInteractor: mockOfflineModeInteractor)
         testee.decline()
         XCTAssertEqual(testee.state, .declined)
         XCTAssertEqual(testee.stateText, Text("Invite declined!", bundle: .core))
     }
 
+    func testDeclineInOfflineMode() {
+        mockOfflineModeInteractor.mockIsInOfflineMode.accept(true)
+        let testee = DashboardInvitationViewModel(name: "invitation name",
+                                                  courseId: "courseId",
+                                                  enrollmentId: "enrollmentId",
+                                                  offlineModeInteractor: mockOfflineModeInteractor)
+        testee.decline()
+        XCTAssertEqual(testee.state, .active)
+        XCTAssertEqual(testee.stateText, Text("You have been invited", bundle: .core))
+    }
+
     func testDismissCallback() {
         let dismissExpectation = expectation(description: "dismiss callback invoked")
-        let testee = DashboardInvitationViewModel(name: "invitation name", courseId: "courseId", enrollmentId: "enrollmentId") { model in
+        let testee = DashboardInvitationViewModel(name: "invitation name",
+                                                  courseId: "courseId",
+                                                  enrollmentId: "enrollmentId",
+                                                  offlineModeInteractor: mockOfflineModeInteractor) { model in
             XCTAssertEqual(model.name, "invitation name")
             XCTAssertEqual(model.id, "enrollmentId")
             XCTAssertEqual(model.state, .accepted)

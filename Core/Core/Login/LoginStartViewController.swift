@@ -43,6 +43,7 @@ class LoginStartViewController: UIViewController {
     @IBOutlet weak var qrLoginStackViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var buttonStackViewCenterYConstraint: NSLayoutConstraint!
     private var originalButtonStackViewCenterYConstraint: NSLayoutConstraint!
+    private var offlineModeInteractor: OfflineModeInteractor?
 
     private var digitalcampusHost: String = "digitalcampus.instructure.com"
 
@@ -63,11 +64,16 @@ class LoginStartViewController: UIViewController {
 //        }
 //    }
 
-    static func create(loginDelegate: LoginDelegate?, fromLaunch: Bool, app: App) -> LoginStartViewController {
+    static func create(loginDelegate: LoginDelegate?,
+                       fromLaunch: Bool,
+                       app: App,
+                       offlineModeInteractor: OfflineModeInteractor
+    ) -> LoginStartViewController {
         let controller = loadFromStoryboard()
         controller.loginDelegate = loginDelegate
         controller.shouldAnimateFromLaunchScreen = fromLaunch
         controller.app = app
+        controller.offlineModeInteractor = offlineModeInteractor
         return controller
     }
 
@@ -252,11 +258,13 @@ class LoginStartViewController: UIViewController {
     // MARK: - User Actions
 
     @IBAction func canvasNetworkTapped(_ sender: UIButton) {
+        guard isNetworkOnline() else { return }
         let controller = LoginWebViewController.create(host: "learn.canvas.net", loginDelegate: loginDelegate, method: method)
         env.router.show(controller, from: self)
     }
 
     @IBAction func findTapped(_ sender: UIButton) {
+        guard isNetworkOnline() else { return }
         let controller = LoginWebViewController.create(
             host: digitalcampusHost,
             loginDelegate: loginDelegate,
@@ -266,6 +274,7 @@ class LoginStartViewController: UIViewController {
     }
 
     @IBAction func lastLoginTapped(_ sender: UIButton) {
+        guard isNetworkOnline() else { return }
         var controller: UIViewController = LoginFindSchoolViewController.create(loginDelegate: loginDelegate, method: method)
         var analyticsRoute = "/login/find"
 
@@ -302,6 +311,7 @@ class LoginStartViewController: UIViewController {
     }
 
     @IBAction func scanQRCode(_ sender: UIButton) {
+        guard isNetworkOnline() else { return }
         if app == .parent {
             let sheet = BottomSheetPickerViewController.create()
             sheet.addAction(image: nil, title: NSLocalizedString("I have a Canvas account", comment: "")) { [weak self] in
@@ -321,7 +331,7 @@ class LoginStartViewController: UIViewController {
     }
 
     @IBAction func whatsNewTapped(_ sender: UIButton) {
-        guard let url = loginDelegate?.whatsNewURL else { return }
+        guard let url = loginDelegate?.whatsNewURL, isNetworkOnline() else { return }
         loginDelegate?.openExternalURL(url)
     }
 
@@ -386,6 +396,7 @@ class LoginStartViewController: UIViewController {
                 guard let session = session, error == nil else {
                     loading?.dismiss(animated: true) {
                         self?.showQRCodeError()
+                        Analytics.shared.logError(name: "QR code login failed", reason: error?.localizedDescription)
                     }
                     return
                 }
@@ -426,6 +437,12 @@ class LoginStartViewController: UIViewController {
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
+    }
+
+    private func isNetworkOnline() -> Bool {
+        guard let offlineModeInteractor = offlineModeInteractor, offlineModeInteractor.isNetworkOffline() else { return true }
+        UIAlertController.showItemNotAvailableInOfflineAlert()
+        return false
     }
 }
 

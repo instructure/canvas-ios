@@ -96,10 +96,6 @@ public class AnnouncementListViewController: ScreenViewTrackableViewController, 
         navigationController?.navigationBar.useContextColor(color)
     }
 
-    public override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-
     @objc func refresh() {
         selectedFirstTopic = false
         colors.refresh(force: true)

@@ -152,19 +152,11 @@ public struct LoginSession: Codable, Hashable {
         )
     }
 
-    // MARK: Persistence into keychain
+    // MARK: - Persistence into keychain
 
     public enum Key: String, CaseIterable {
         case users = "CanvasUsers"
         case fakeStudents = "FakeStudents"
-    }
-
-    private static func getSessions(in keychain: Keychain = .app, forKey key: Key = .users) -> Set<LoginSession> {
-        return keychain.getJSON(for: key.rawValue) ?? []
-    }
-
-    private static func setSessions(_ sessions: Set<LoginSession>, in keychain: Keychain = .app, forKey key: Key = .users) {
-        _ = try? keychain.setJSON(sessions, for: key.rawValue)
     }
 
     public static var sessions: Set<LoginSession> {
@@ -202,5 +194,26 @@ public struct LoginSession: Codable, Hashable {
         for key in Key.allCases {
             keychain.removeData(for: key.rawValue)
         }
+    }
+
+    /**
+     In the past login session were saved in the keychain in a way that they were only accessible when the device was unlocked.
+     With the introduction of background sync we need to access sessions while the device is locked. This method deletes the old
+     sessions and re-saves them with the proper keychain accessibility value.
+     */
+    public static func migrateSessionsToBeAccessibleWhenDeviceIsLocked() {
+        let sessions = getSessions()
+        Keychain.app.removeData(for: Key.users.rawValue)
+        setSessions(sessions)
+    }
+
+    // MARK: Private Helpers
+
+    private static func getSessions(in keychain: Keychain = .app, forKey key: Key = .users) -> Set<LoginSession> {
+        return keychain.getJSON(for: key.rawValue) ?? []
+    }
+
+    private static func setSessions(_ sessions: Set<LoginSession>, in keychain: Keychain = .app, forKey key: Key = .users) {
+        _ = try? keychain.setJSON(sessions, for: key.rawValue)
     }
 }

@@ -49,6 +49,7 @@ final public class Course: NSManagedObject, WriteableModel {
     @NSManaged public var termName: String?
     @NSManaged public var settings: CourseSettings?
     @NSManaged public var gradingSchemeRaw: NSOrderedSet?
+    @NSManaged public var roles: String?
 
     public var gradingScheme: [GradingSchemeEntry] {
         get { gradingSchemeRaw?.array as? [GradingSchemeEntry] ?? [] }
@@ -155,6 +156,8 @@ final public class Course: NSManagedObject, WriteableModel {
                 return GradingSchemeEntry.save(apiEntry, in: context)
             }
         }
+
+        model.roles = item.enrollments.roles
 
         return model
     }

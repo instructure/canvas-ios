@@ -19,7 +19,7 @@
 public struct DSUser: Codable {
     public let id: String
     /** Use this as username when loggin in. */
-    public let login_id: String
+    public let login_id: String?
     public let name: String
     public var password: String?
 }

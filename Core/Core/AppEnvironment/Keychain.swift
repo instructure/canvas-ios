@@ -46,7 +46,7 @@ public class Keychain {
         if exists {
             status = SecItemUpdate(query as CFDictionary, [kSecValueData: data] as CFDictionary)
         } else {
-            query[kSecAttrAccessible] = kSecAttrAccessibleWhenUnlocked
+            query[kSecAttrAccessible] = kSecAttrAccessibleAfterFirstUnlock
             query[kSecValueData] = data
             status = SecItemAdd(query as CFDictionary, nil)
         }

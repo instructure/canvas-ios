@@ -17,6 +17,7 @@
 //
 
 import UIKit
+import Combine
 
 public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     let env = AppEnvironment.shared
@@ -24,6 +25,9 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
 
     private var sections: [Section] = []
     private var onElementaryViewToggleChanged: (() -> Void)?
+
+    private var offlineModeInteractor = OfflineModeAssembly.make()
+    private var subscriptions = Set<AnyCancellable>()
 
     private var landingPage: LandingPage {
         get { return LandingPage(rawValue: env.userDefaults?.landingPath ?? "/") ?? .dashboard }
@@ -76,6 +80,13 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         tableView.sectionFooterHeight = 0
         tableView.separatorColor = .borderMedium
         tableView.separatorInset = .zero
+
+        offlineModeInteractor
+            .observeIsOfflineMode()
+            .sink { [weak self] _ in
+                self?.networkStateDidChange()
+            }
+            .store(in: &subscriptions)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -101,7 +112,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         }
 
         channelTypeRows = channelTypes.values.map({ channels -> Row in
-            Row(channels[0].type.name) { [weak self] in
+            Row(channels[0].type.name, isSupportedOffline: false) { [weak self] in
                 guard let self = self else { return }
                 if channels.count == 1, let channel = channels.first {
                     let vc = NotificationCategoriesViewController.create(
@@ -125,15 +136,15 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
 
         sections.append(
             Section(NSLocalizedString("Legal", bundle: .core, comment: ""), rows: [
-                Row(NSLocalizedString("Privacy Policy", bundle: .core, comment: "")) { [weak self] in
+                Row(NSLocalizedString("Privacy Policy", bundle: .core, comment: ""), isSupportedOffline: false) { [weak self] in
                     guard let self = self else { return }
                     self.env.router.route(to: "https://essential.2u.com/privacy-policy", from: self)
                 },
-                Row(NSLocalizedString("Terms of Use", bundle: .core, comment: "")) { [weak self] in
+                Row(NSLocalizedString("Terms of Use", bundle: .core, comment: ""), isSupportedOffline: false) { [weak self] in
                     guard let self = self else { return }
                     self.env.router.route(to: "https://essential.2u.com/terms-of-use", from: self)
                 },
-                Row(NSLocalizedString("Degrees edX on GitHub", bundle: .core, comment: "")) { [weak self] in
+                Row(NSLocalizedString("Degrees edX on GitHub", bundle: .core, comment: ""), isSupportedOffline: false) { [weak self] in
                     guard let self = self else { return }
                     self.env.router.route(to: "https://github.com/2uinc/canvas-ios", from: self)
                 },
@@ -157,7 +168,8 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         }()
         return Section(NSLocalizedString("Offline Content", comment: ""), rows: [
                 Row(NSLocalizedString("Synchronization", comment: ""),
-                    detail: detailLabel) { [weak self] in
+                    detail: detailLabel,
+                    isSupportedOffline: true) { [weak self] in
                         guard let self = self else { return }
                         self.env.router.route(to: "/offline/settings", from: self)
                     },
@@ -180,7 +192,8 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
             let row = Row(NSLocalizedString("Subscribe to Calendar Feed",
                                             bundle: .core,
                                             comment: ""),
-                          hasDisclosure: false) { [weak self] in
+                          hasDisclosure: false,
+                          isSupportedOffline: false) { [weak self] in
                 guard let url = self?.profile.first?.calendarURL else { return }
                 self?.env.loginDelegate?.openExternalURL(url)
             }
@@ -201,7 +214,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         let selectedStyleIndex = env.userDefaults?.interfaceStyle?.rawValue ?? 0
 
         return [
-            Row(NSLocalizedString("Appearance", bundle: .core, comment: ""), detail: options[selectedStyleIndex].title) { [weak self] in
+            Row(NSLocalizedString("Appearance", bundle: .core, comment: ""), detail: options[selectedStyleIndex].title, isSupportedOffline: true) { [weak self] in
                 guard let self = self else { return }
 
                 let pickerVC = ItemPickerViewController.create(title: NSLocalizedString("Appearance", bundle: .core, comment: ""),
@@ -219,7 +232,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
 
     private var landingPageRow: [Row] {
         return [
-            Row(NSLocalizedString("Landing Page", bundle: .core, comment: ""), detail: landingPage.name) { [weak self] in
+            Row(NSLocalizedString("Landing Page", bundle: .core, comment: ""), detail: landingPage.name, isSupportedOffline: true) { [weak self] in
                 guard let self = self else { return }
                 self.show(ItemPickerViewController.create(
                     title: NSLocalizedString("Landing Page", bundle: .core, comment: ""),
@@ -239,7 +252,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         guard isPairingWithObserverAllowed else { return [] }
 
         return [
-            Row(NSLocalizedString("Pair with Observer", bundle: .core, comment: "")) { [weak self] in
+            Row(NSLocalizedString("Pair with Observer", bundle: .core, comment: ""), isSupportedOffline: false) { [weak self] in
                 guard let self = self else { return }
                 let vc = PairWithObserverViewController.create()
                 self.env.router.show(vc, from: self, options: .modal(.formSheet, isDismissable: true, embedInNav: true, addDoneButton: true))
@@ -249,7 +262,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
 
     private var aboutRow: [Row] {
         return [
-            Row(NSLocalizedString("About", comment: "")) { [weak self] in
+            Row(NSLocalizedString("About", comment: ""), isSupportedOffline: true) { [weak self] in
                 guard let self else { return }
                 self.env.router.route(to: "/about", from: self)
             },
@@ -259,7 +272,9 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     private var k5DashboardSwitch: [Any] {
         guard AppEnvironment.shared.k5.isK5Account, AppEnvironment.shared.k5.isRemoteFeatureFlagEnabled else { return [] }
 
-        let row = Switch(NSLocalizedString("Homeroom View", bundle: .core, comment: ""), initialValue: AppEnvironment.shared.userDefaults?.isElementaryViewEnabled ?? false) { [weak self] isOn in
+        let row = Switch(NSLocalizedString("Homeroom View", bundle: .core, comment: ""),
+                         initialValue: AppEnvironment.shared.userDefaults?.isElementaryViewEnabled ?? false,
+                         isSupportedOffline: true) { [weak self] isOn in
             AppEnvironment.shared.userDefaults?.isElementaryViewEnabled = isOn
             self?.onElementaryViewToggleChanged?()
         }
@@ -289,6 +304,10 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
             }
         }
     }
+
+    private func networkStateDidChange() {
+        tableView.reloadData()
+    }
 }
 
 extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDelegate {
@@ -315,6 +334,8 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
             cell.textLabel?.text = row.title
             cell.detailTextLabel?.text = row.detail
             cell.accessoryType = row.hasDisclosure ? .disclosureIndicator : .none
+            let isAvailable = !offlineModeInteractor.isOfflineModeEnabled() || row.isSupportedOffline
+            cell.contentView.alpha = isAvailable ? 1 : 0.5
             return cell
         } else if let switchRow = row as? Switch {
             let cell: SwitchTableViewCell = tableView.dequeue(for: indexPath)
@@ -324,6 +345,8 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
             }
             cell.backgroundColor = .backgroundLightest
             cell.textLabel?.text = switchRow.title
+            let isAvailable = !offlineModeInteractor.isOfflineModeEnabled() || switchRow.isSupportedOffline
+            cell.contentView.alpha = isAvailable ? 1 : 0.5
             return cell
         }
 
@@ -334,8 +357,14 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
         let row = sections[indexPath.section].rows[indexPath.row]
 
         if let row = row as? Row {
+            guard !offlineModeInteractor.isOfflineModeEnabled() || row.isSupportedOffline else {
+                return UIAlertController.showItemNotAvailableInOfflineAlert {
+                    self.tableView.deselectRow(at: indexPath, animated: true)
+                }
+            }
             row.onSelect()
         } else if let switchCell = tableView.cellForRow(at: indexPath) as? SwitchTableViewCell, let switchRow = row as? Switch {
+            guard !offlineModeInteractor.isOfflineModeEnabled() || switchRow.isSupportedOffline else { return UIAlertController.showItemNotAvailableInOfflineAlert() }
             let newValue = !switchCell.toggle.isOn
             switchCell.toggle.setOn(newValue, animated: true)
             switchRow.value = newValue
@@ -367,12 +396,14 @@ private struct Row {
     let detail: String?
     let style: UITableViewCell.CellStyle
     let hasDisclosure: Bool
+    let isSupportedOffline: Bool
     let onSelect: () -> Void
 
-    init(_ title: String, detail: String? = nil, style: UITableViewCell.CellStyle = .value1, hasDisclosure: Bool = true, onSelect: @escaping () -> Void) {
+    init(_ title: String, detail: String? = nil, style: UITableViewCell.CellStyle = .value1, hasDisclosure: Bool = true, isSupportedOffline: Bool, onSelect: @escaping () -> Void) {
         self.title = title
         self.detail = detail
         self.style = style
+        self.isSupportedOffline = isSupportedOffline
         self.hasDisclosure = hasDisclosure
         self.onSelect = onSelect
     }
@@ -385,11 +416,13 @@ private class Switch {
             onSelect(value)
         }
     }
+    let isSupportedOffline: Bool
     private let onSelect: (_ value: Bool) -> Void
 
-    init(_ title: String, initialValue: Bool = false, onSelect: @escaping (_ value: Bool) -> Void) {
+    init(_ title: String, initialValue: Bool = false, isSupportedOffline: Bool, onSelect: @escaping (_ value: Bool) -> Void) {
         self.title = title
         self.value = initialValue
+        self.isSupportedOffline = isSupportedOffline
         self.onSelect = onSelect
     }
 }

@@ -53,7 +53,7 @@ class RoutesTests: XCTestCase {
 
         XCTAssertEqual((router.match("/conversations/1") as? HelmViewController)?.moduleName, "/conversations/:conversationID")
 
-        XCTAssert(router.match("/courses") is CoreHostingController<CourseListView>)
+        XCTAssert(router.match("/courses") is CoreHostingController<AllCoursesView>)
 
         XCTAssert(router.match("/courses/2/announcements") is AnnouncementListViewController)
         XCTAssert(router.match("/courses/2/announcements/new") is CoreHostingController<DiscussionEditorView>)

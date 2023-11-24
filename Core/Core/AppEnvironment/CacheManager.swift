@@ -93,7 +93,10 @@ public class CacheManager {
         let fs = FileManager.default
         let urls = (try? fs.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil)) ?? []
         for url in urls {
-            try? fs.removeItem(at: url)
+            if !url.absoluteString.contains("Application%20Support") &&
+                !url.absoluteString.contains("Application Support") {
+                try? fs.removeItem(at: url)
+            }
         }
     }
 }

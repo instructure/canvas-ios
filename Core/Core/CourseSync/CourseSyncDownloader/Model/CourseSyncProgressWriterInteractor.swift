@@ -24,6 +24,7 @@ public protocol CourseSyncProgressWriterInteractor {
     func saveDownloadProgress(entries: [CourseSyncEntry])
     func saveDownloadResult(isFinished: Bool, error: String?)
     func cleanUpPreviousDownloadProgress()
+    func markInProgressDownloadsAsFailed()
     func setInitialLoadingState(entries: [CourseSyncEntry])
     func saveStateProgress(id: String, selection: CourseEntrySelection, state: CourseSyncEntry.State)
 }
@@ -39,18 +40,20 @@ public final class CourseSyncProgressWriterInteractorLive: CourseSyncProgressWri
     public func saveDownloadProgress(entries: [CourseSyncEntry]) {
         let bytesDownloaded = entries.totalDownloadedSize
         let bytesToDownloaded = entries.totalSelectedSize
+        let courseIds = entries.map { $0.courseId }
 
         context.performAndWait {
-            let progress: CourseSyncDownloadProgress = context.fetch(scope: .all).first ?? context.insert()
+            let progress: CDCourseSyncDownloadProgress = context.fetch(scope: .all).first ?? context.insert()
             progress.bytesDownloaded = bytesDownloaded
             progress.bytesToDownload = bytesToDownloaded
+            progress.courseIds = courseIds
             try? context.save()
         }
     }
 
     public func saveDownloadResult(isFinished: Bool, error: String?) {
         context.performAndWait {
-            let progress: CourseSyncDownloadProgress = context.fetch(scope: .all).first ?? context.insert()
+            let progress: CDCourseSyncDownloadProgress = context.fetch(scope: .all).first ?? context.insert()
             progress.isFinished = isFinished
             progress.error = error
             try? context.save()
@@ -59,31 +62,42 @@ public final class CourseSyncProgressWriterInteractorLive: CourseSyncProgressWri
 
     public func cleanUpPreviousDownloadProgress() {
         context.performAndWait {
-            context.delete(context.fetch(scope: .all) as [CourseSyncStateProgress])
-            context.delete(context.fetch(scope: .all) as [CourseSyncDownloadProgress])
+            context.delete(context.fetch(scope: .all) as [CDCourseSyncStateProgress])
+            context.delete(context.fetch(scope: .all) as [CDCourseSyncDownloadProgress])
+            try? context.save()
+        }
+    }
+
+    public func markInProgressDownloadsAsFailed() {
+        let inProgressDownloadScope: Scope = .where(#keyPath(CDCourseSyncStateProgress.stateRaw),
+                                                    equals: 0,
+                                                    sortDescriptors: [])
+        context.performAndWait {
+            let progresses = context.fetch(scope: inProgressDownloadScope) as [CDCourseSyncStateProgress]
+            progresses.forEach { $0.state = .error }
             try? context.save()
         }
     }
 
     public func setInitialLoadingState(entries: [CourseSyncEntry]) {
         for entry in entries {
-            saveStateProgress(id: entry.id, selection: .course(entry.id), state: .loading(nil))
+            saveStateProgress(id: entry.id, selection: .course(entry.id), state: entry.state)
 
             for tab in entry.tabs {
-                saveStateProgress(id: tab.id, selection: .tab(entry.id, tab.id), state: .loading(nil))
+                saveStateProgress(id: tab.id, selection: .tab(entry.id, tab.id), state: tab.state)
             }
 
             for file in entry.files {
-                saveStateProgress(id: file.id, selection: .file(entry.id, file.id), state: .loading(nil))
+                saveStateProgress(id: file.id, selection: .file(entry.id, file.id), state: file.state)
             }
         }
     }
 
     public func saveStateProgress(id: String, selection: CourseEntrySelection, state: CourseSyncEntry.State) {
         context.performAndWait {
-            let progress: CourseSyncStateProgress = context.fetch(
+            let progress: CDCourseSyncStateProgress = context.fetch(
                 scope: .where(
-                    #keyPath(CourseSyncStateProgress.id),
+                    #keyPath(CDCourseSyncStateProgress.id),
                     equals: id,
                     sortDescriptors: []
                 )

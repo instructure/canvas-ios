@@ -50,30 +50,30 @@ class MessageDetailsViewModel: ObservableObject {
         let sheet = BottomSheetPickerViewController.create()
         sheet.addAction(
             image: .replyLine,
-            title: NSLocalizedString("Reply", bundle: .core, comment: ""),
+            title: NSLocalizedString("Reply", comment: ""),
             accessibilityIdentifier: "MessageDetails.reply"
         ) {}
         sheet.addAction(
             image: .replyAllLine,
-            title: NSLocalizedString("Reply All", bundle: .core, comment: ""),
+            title: NSLocalizedString("Reply All", comment: ""),
             accessibilityIdentifier: "MessageDetails.replyAll"
         ) {}
 
         sheet.addAction(
             image: .forwardLine,
-            title: NSLocalizedString("Forward", bundle: .core, comment: ""),
+            title: NSLocalizedString("Forward", comment: ""),
             accessibilityIdentifier: "MessageDetails.markAllRead"
         ) {}
 
         sheet.addAction(
             image: .archiveLine,
-            title: NSLocalizedString("Archive", bundle: .core, comment: ""),
+            title: NSLocalizedString("Archive", comment: ""),
             accessibilityIdentifier: "MessageDetails.archive"
         ) {}
 
         sheet.addAction(
             image: .trashLine,
-            title: NSLocalizedString("Delete", bundle: .core, comment: ""),
+            title: NSLocalizedString("Delete", comment: ""),
             accessibilityIdentifier: "MessageDetails.delete"
         ) {}
         router.show(sheet, from: viewController, options: .modal())

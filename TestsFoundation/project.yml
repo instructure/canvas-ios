@@ -1,5 +1,8 @@
 ---
 name: TestsFoundation
+attributes: {
+  LastUpgradeCheck: "1500"
+}
 options:
   groupSortPosition: top
   bundleIdPrefix: com.instructure

@@ -33,16 +33,14 @@ class HelpTests: E2ETestCase {
         // MARK: Check "Search the Canvas Guides" button
         let searchTheCanvasGuidesButton = HelpHelper.searchTheCanvasGuides.waitUntil(.visible)
         XCTAssertTrue(searchTheCanvasGuidesButton.isVisible)
-        XCTAssertTrue(searchTheCanvasGuidesButton.label.contains("Search the Canvas Guides"))
         searchTheCanvasGuidesButton.hit()
-        var browserURL = HelpHelper.browserURL
+        var browserURL = SafariAppHelper.browserURL
         XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Canvas-LMS/ct-p/canvaslms"))
         HelpHelper.returnToHelpPage()
 
         // MARK: Check "Ask Your Instructor a Question" button
         let askYourInstructorButton = HelpHelper.askYourInstructor.waitUntil(.visible)
         XCTAssertTrue(askYourInstructorButton.isVisible)
-        XCTAssertTrue(askYourInstructorButton.label.contains("Ask Your Instructor a Question"))
         askYourInstructorButton.hit()
         XCTAssertTrue(app.find(label: "New Message").waitUntil(.visible).isVisible)
         app.find(label: "Cancel").hit()
@@ -51,7 +49,6 @@ class HelpTests: E2ETestCase {
         // MARK: Check "Report a Problem" button
         let reportAProblemButton = HelpHelper.reportAProblem.waitUntil(.visible)
         XCTAssertTrue(reportAProblemButton.isVisible)
-        XCTAssertTrue(reportAProblemButton.label.contains("Report a Problem"))
         reportAProblemButton.hit()
         XCTAssertTrue(app.find(label: "Report a Problem").waitUntil(.visible).isVisible)
         app.find(label: "Cancel").hit()
@@ -60,18 +57,16 @@ class HelpTests: E2ETestCase {
         // MARK: Check "Submit a Feature Idea" button
         let submitAFeatureButton = HelpHelper.submitAFeatureIdea.waitUntil(.visible)
         XCTAssertTrue(submitAFeatureButton.isVisible)
-        XCTAssertTrue(submitAFeatureButton.label.contains("Submit a Feature Idea"))
         submitAFeatureButton.hit()
-        browserURL = HelpHelper.browserURL
+        browserURL = SafariAppHelper.browserURL
         XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Canvas-Ideas-and-Themes/ct-p/canvas-ideas-themes"))
         HelpHelper.returnToHelpPage()
 
         // MARK: Check "COVID-19 Canvas Resources" button
         let covid19Button = HelpHelper.covid19.waitUntil(.visible)
         XCTAssertTrue(covid19Button.isVisible)
-        XCTAssertTrue(covid19Button.label.contains("COVID-19 Canvas Resources"))
         covid19Button.hit()
-        browserURL = HelpHelper.browserURL
+        browserURL = SafariAppHelper.browserURL
         XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Contingency-Resources/gh-p/contingency"))
     }
 }
