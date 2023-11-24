@@ -214,7 +214,7 @@ class AssignmentDetailsPresenter {
     }
 
     private func updateSubmissionPickerButton() {
-        let isActive = validSubmissions.count > 1
+        let isActive = validSubmissions.count > 1 && features.isFeatureFlagEnabled(.assignmentEnhancements)
         let items: [UIAction] = {
             guard isActive else { return [] }
             return validSubmissions.map { submission in
