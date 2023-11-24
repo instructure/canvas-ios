@@ -192,14 +192,14 @@ public struct CourseSyncEntry: Equatable {
         if selectionState == .selected {
             if tabs[id: id]?.type == .modules || tabs[id: id]?.type == .grades {
                 for (index, tab) in tabs.enumerated() where tab.type != .modules && tab.type != .grades {
-                    tabs[index].selectionState = .selected
+                    selectTab(id: tab.id, selectionState: .selected)
                 }
             }
             // Deselecting a tab other than modules or grades will deselect modules and grades.
         } else if selectionState == .deselected {
             if tabs[id: id]?.type != .modules, tabs[id: id]?.type != .grades {
                 for (index, tab) in tabs.enumerated() where tab.type == .modules || tab.type == .grades {
-                    tabs[index].selectionState = .deselected
+                    selectTab(id: tab.id, selectionState: .deselected)
                 }
             }
         }
