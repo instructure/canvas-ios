@@ -115,6 +115,20 @@ class AssignmentDetailsPresenter {
     }
     private var fileCleanupPending = true
     private var submissionFinishedNotification: NSObjectProtocol?
+    private var validSubmissions: [Submission] {
+        submissions.all.filter { $0.submittedAt != nil }
+    }
+    private var selectedSubmission: Submission? {
+        didSet {
+            if let selectedSubmission {
+                updateAttemptInfo(submission: selectedSubmission)
+            }
+
+            if let assignment {
+                view?.updateGradeCell(assignment, submission: selectedSubmission)
+            }
+        }
+    }
 
     init(view: AssignmentDetailsViewProtocol, courseID: String, assignmentID: String, fragment: String? = nil) {
         self.view = view
@@ -161,7 +175,7 @@ class AssignmentDetailsPresenter {
         let title = submissionButtonPresenter.buttonText(course: course, assignment: assignment, quiz: quizzes?.first, onlineUpload: onlineUploadState)
         view?.showSubmitAssignmentButton(title: title)
         view?.updateNavBar(subtitle: course.name, backgroundColor: course.color)
-        view?.update(assignment: assignment, quiz: quizzes?.first, submission: selectedSubmission, baseURL: baseURL)
+        view?.update(assignment: assignment, quiz: quizzes?.first, submission: selectedSubmission ?? assignment.submission, baseURL: baseURL)
     }
 
     func updateArc() {
@@ -195,21 +209,6 @@ class AssignmentDetailsPresenter {
             onlineUploadState = .uploading
         } else {
             onlineUploadState = .staged
-        }
-    }
-
-    var validSubmissions: [Submission] {
-        submissions.all.filter { $0.submittedAt != nil }
-    }
-    var selectedSubmission: Submission? {
-        didSet {
-            if let selectedSubmission {
-                updateAttemptInfo(submission: selectedSubmission)
-            }
-
-            if let assignment {
-                view?.updateGradeCell(assignment, submission: selectedSubmission)
-            }
         }
     }
 

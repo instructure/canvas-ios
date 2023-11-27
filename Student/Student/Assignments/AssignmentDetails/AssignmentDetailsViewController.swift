@@ -45,6 +45,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     @IBOutlet weak var submittedLabel: UILabel?
     @IBOutlet weak var submittedDetailsLabel: UILabel?
     @IBOutlet weak var submittedIcon: UIImageView?
+    @IBOutlet private var submittedIconHiddenConstraints: [NSLayoutConstraint]!
     @IBOutlet weak var submitAssignmentButton: DynamicButton!
 
     @IBOutlet weak var quizAttemptsLabel: UILabel?
@@ -269,6 +270,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
 
         submittedLabel?.textColor = .textDarkest
         submittedLabel?.text = NSLocalizedString("Successfully submitted!", bundle: .student, comment: "")
+        changeSubmittedIconVisibility(to: true)
 
         fileSubmissionButton?.isHidden = true
 
@@ -308,21 +310,25 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             submittedLabel?.text = NSLocalizedString("Resubmission Failed", bundle: .core, comment: "")
             submittedLabel?.textColor = UIColor.textDanger.ensureContrast(against: .white)
             fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view details", bundle: .core, comment: ""), for: .normal)
+            changeSubmittedIconVisibility(to: false)
             return
         case .failed:
             submittedLabel?.text = NSLocalizedString("Submission Failed", bundle: .core, comment: "")
             submittedLabel?.textColor = UIColor.textDanger.ensureContrast(against: .white)
             fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view details", bundle: .core, comment: ""), for: .normal)
+            changeSubmittedIconVisibility(to: false)
             return
         case .uploading:
             submittedLabel?.text = NSLocalizedString("Submission Uploading...", bundle: .core, comment: "")
             submittedLabel?.textColor = .textDarkest
             fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view progress", bundle: .core, comment: ""), for: .normal)
+            changeSubmittedIconVisibility(to: false)
             return
         case .staged:
             submittedLabel?.text = NSLocalizedString("Submission In Progress...", bundle: .core, comment: "")
             submittedLabel?.textColor = .textDarkest
             fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view progress", bundle: .core, comment: ""), for: .normal)
+            changeSubmittedIconVisibility(to: false)
             return
         case .completed:
             fileSubmissionButton?.isHidden = true
@@ -330,6 +336,10 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
                 filePicker.dismiss(animated: true, completion: nil)
             }
         }
+    }
+
+    private func changeSubmittedIconVisibility(to visible: Bool) {
+        submittedIconHiddenConstraints.forEach { $0.isActive = !visible }
     }
 
     func update(assignment: Assignment, quiz: Quiz?, submission: Submission?, baseURL: URL?) {

@@ -29,7 +29,11 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
     var resultingBaseURL: URL?
     var resultingSubtitle: String?
     var resultingBackgroundColor: UIColor?
-    var presenter: AssignmentDetailsPresenter!
+    var presenter: AssignmentDetailsPresenter! {
+        didSet {
+            (presenter.submissions as! TestStore).overrideRequested = true
+        }
+    }
     var presentedView: UIViewController?
     var resultingButtonTitle: String?
     var navigationController: UINavigationController?
@@ -82,7 +86,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         ContextColor.make(canvasContextID: c.canvasContextID)
 
         presenter.colors.eventHandler()
-        XCTAssertEqual(resultingBackgroundColor!.hexString, UIColor.red.ensureContrast(against: .backgroundLightest).hexString)
+        XCTAssertEqual(resultingBackgroundColor?.hexString, UIColor.red.ensureContrast(against: .backgroundLightest).hexString)
     }
 
     func testLoadAssignment() {
@@ -92,7 +96,7 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         presenter.assignments.eventHandler()
 
         XCTAssertEqual(resultingAssignment, expected)
-        XCTAssertEqual(presenter!.userID!, expected.submission!.userID)
+        XCTAssertEqual(presenter!.userID, expected.submission!.userID)
     }
 
     func testLoadQuiz() {
@@ -559,7 +563,7 @@ class MockView: UIViewController, AssignmentDetailsViewProtocol {
         test?.resultingButtonTitle = title
     }
 
-    func update(assignment: Assignment, quiz: Quiz?, baseURL: URL?) {
+    func update(assignment: Assignment, quiz: Quiz?, submission: Submission?, baseURL: URL?) {
         test?.resultingAssignment = assignment
         test?.resultingBaseURL = baseURL
         test?.resultingQuiz = quiz
@@ -575,5 +579,17 @@ class MockView: UIViewController, AssignmentDetailsViewProtocol {
     func updateNavBar(subtitle: String?, backgroundColor: UIColor?) {
         test?.resultingSubtitle = subtitle
         test?.resultingBackgroundColor = backgroundColor
+    }
+
+    func updateAttemptPickerButton(isActive: Bool, attemptDate: String, items: [UIAction]) {
+
+    }
+
+    func updateGradeCell(_ assignment: Core.Assignment, submission: Core.Submission?) {
+
+    }
+
+    func updateAttemptInfo(attemptNumber: String) {
+
     }
 }
