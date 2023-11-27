@@ -22,9 +22,7 @@ import CombineSchedulers
 
 class ComposeMessageViewModel: ObservableObject {
     // MARK: - Outputs
-    @Published public private(set) var state: StoreState = .loading
-    @Published public private(set) var courses: [InboxCourse] = []
-    @Published public private(set) var recipients: [SearchRecipient] = []
+    @Published public private(set) var recipients: [Recipient] = []
     @Published public private(set) var isSendingMessage: Bool = false
 
     public let title = NSLocalizedString("New Message", comment: "")
@@ -40,13 +38,14 @@ class ComposeMessageViewModel: ObservableObject {
     public let sendButtonDidTap = PassthroughRelay<WeakViewController>()
     public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
     public let addRecipientButtonDidTap = PassthroughRelay<WeakViewController>()
-    public let selectedRecipient = CurrentValueRelay<SearchRecipient?>(nil)
+    public let selectedRecipient = CurrentValueRelay<Recipient?>(nil)
 
     // MARK: - Inputs / Outputs
     @Published public var sendIndividual: Bool = false
     @Published public var bodyText: String = ""
     @Published public var subject: String = ""
     @Published public var selectedContext: RecipientContext?
+    @Published public var conversation: Conversation?
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
@@ -54,10 +53,33 @@ class ComposeMessageViewModel: ObservableObject {
     private let router: Router
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
-    public init(router: Router, interactor: ComposeMessageInteractor, scheduler: AnySchedulerOf<DispatchQueue> = .main) {
+    public init(router: Router, conversation: Conversation? = nil, author: String? = nil, interactor: ComposeMessageInteractor, scheduler: AnySchedulerOf<DispatchQueue> = .main) {
         self.interactor = interactor
         self.router = router
         self.scheduler = scheduler
+        self.conversation = conversation
+
+        if let conversation {
+            self.subject = conversation.subject
+            let rawContext = conversation.contextCode?.split(separator: "_") ?? []
+            switch rawContext[0] {
+            case "course":
+                self.selectedContext = RecipientContext(name: conversation.contextName ?? "", context: Context.course(String(rawContext[1])))
+            case "group":
+                self.selectedContext = RecipientContext(name: conversation.contextName ?? "", context: Context.group(String(rawContext[1])))
+            default:
+                self.selectedContext = RecipientContext(name: conversation.contextName ?? "", context: Context.course(String(rawContext[1])))
+            }
+            if let author {
+                self.recipients = conversation.audience.filter { $0.id == author }.map { Recipient(conversationParticipant: $0) }
+
+                if self.recipients.isEmpty {
+                    self.recipients = conversation.audience.map { Recipient(conversationParticipant: $0) }
+                }
+            } else {
+                self.recipients = conversation.audience.map { Recipient(conversationParticipant: $0) }
+            }
+        }
 
         setupOutputBindings()
         setupInputBindings(router: router)
@@ -94,15 +116,11 @@ class ComposeMessageViewModel: ObservableObject {
 
     }
 
-    public func removeRecipientButtonDidTap(recipient: SearchRecipient) {
+    public func removeRecipientButtonDidTap(recipient: Recipient) {
         recipients.removeAll { $0 == recipient}
     }
 
     private func setupOutputBindings() {
-        interactor.state
-            .assign(to: &$state)
-        interactor.courses
-            .assign(to: &$courses)
         selectedRecipient
             .compactMap { $0 }
             .filter { !self.recipients.map { $0.id }.contains($0.id) }
@@ -120,7 +138,8 @@ class ComposeMessageViewModel: ObservableObject {
             subject: subject,
             body: bodyText,
             recipientIDs: recipientIDs,
-            context: context.context
+            context: context.context,
+            conversationID: conversation?.id
         )
     }
 

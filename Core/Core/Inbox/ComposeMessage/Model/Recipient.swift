@@ -18,21 +18,27 @@
 
 import Foundation
 
-public struct MessageParameters {
+public struct Recipient: Equatable, Hashable {
 
-    public let subject: String
-    public let body: String
-    public let recipientIDs: [String]
-    public let attachmentIDs: [String]
-    public let context: Context
-    public let conversationID: String?
+    let id: String
+    let name: String
+    let avatarURL: URL?
 
-    public init(subject: String, body: String, recipientIDs: [String], attachmentIDs: [String] = [], context: Context, conversationID: String? = nil) {
-        self.subject = subject
-        self.body = body
-        self.recipientIDs = recipientIDs
-        self.attachmentIDs = attachmentIDs
-        self.context = context
-        self.conversationID = conversationID
+    init(id: String, name: String, avatarURL: URL?) {
+        self.id = id
+        self.name = name
+        self.avatarURL = avatarURL
+    }
+
+    init(searchRecipient: SearchRecipient) {
+        self.id = searchRecipient.id
+        self.name = searchRecipient.name
+        self.avatarURL = searchRecipient.avatarURL
+    }
+
+    init(conversationParticipant: ConversationParticipant) {
+        self.id = conversationParticipant.id
+        self.name = conversationParticipant.name
+        self.avatarURL = conversationParticipant.avatarURL
     }
 }

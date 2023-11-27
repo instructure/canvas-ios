@@ -20,29 +20,6 @@ import Combine
 import CombineExt
 
 public class ComposeMessageInteractorLive: ComposeMessageInteractor {
-    // MARK: - Outputs
-    public var state = CurrentValueSubject<StoreState, Never>(.loading)
-    public var courses = CurrentValueSubject<[InboxCourse], Never>([])
-
-    // MARK: - Private
-    private var subscriptions = Set<AnyCancellable>()
-    private let courseListStore: Store<GetInboxCourseList>
-
-    public init(env: AppEnvironment) {
-        self.courseListStore = env.subscribe(GetInboxCourseList())
-
-        courseListStore
-            .statePublisher
-            .subscribe(state)
-            .store(in: &subscriptions)
-
-        courseListStore
-            .allObjects
-            .subscribe(courses)
-            .store(in: &subscriptions)
-        courseListStore.exhaust()
-    }
-
     public func send(parameters: MessageParameters) -> Future<Void, Error> {
         Future<Void, Error> { promise in
             CreateConversation(

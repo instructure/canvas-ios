@@ -64,10 +64,10 @@ public struct AddressbookView: View {
     }
 
     @ViewBuilder
-    private func peopleRowView(_ recipient: SearchRecipient) -> some View {
+    private func peopleRowView(_ recipient: Recipient) -> some View {
         HStack(alignment: .center, spacing: 16) {
             Avatar(name: recipient.name, url: recipient.avatarURL, size: 36, isAccessible: false)
-            Text(recipient.displayName ?? recipient.name)
+            Text(recipient.name)
                     .font(.regular16)
                     .foregroundColor(.textDarkest)
                     .lineLimit(1)

@@ -23,6 +23,7 @@ public class MessageDetailsInteractorLive: MessageDetailsInteractor {
     public var state = CurrentValueSubject<StoreState, Never>(.loading)
     public var subject = CurrentValueSubject<String, Never>("")
     public var messages = CurrentValueSubject<[ConversationMessage], Never>([])
+    public var conversation = CurrentValueSubject<[Conversation], Never>([])
     public var starred = CurrentValueSubject<Bool, Never>(false)
     public var userMap: [String: ConversationParticipant] = [:]
 
@@ -44,6 +45,9 @@ public class MessageDetailsInteractorLive: MessageDetailsInteractor {
 
         conversationStore
             .allObjects
+            .handleEvents(receiveOutput: { conversation in
+                self.conversation.value = conversation
+            })
             .map {
                 $0.first?.subject ?? NSLocalizedString("No Subject", comment: "")
             }

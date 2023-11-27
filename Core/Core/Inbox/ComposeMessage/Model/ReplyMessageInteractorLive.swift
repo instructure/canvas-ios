@@ -17,22 +17,19 @@
 //
 
 import Foundation
+import Combine
 
-public struct MessageParameters {
-
-    public let subject: String
-    public let body: String
-    public let recipientIDs: [String]
-    public let attachmentIDs: [String]
-    public let context: Context
-    public let conversationID: String?
-
-    public init(subject: String, body: String, recipientIDs: [String], attachmentIDs: [String] = [], context: Context, conversationID: String? = nil) {
-        self.subject = subject
-        self.body = body
-        self.recipientIDs = recipientIDs
-        self.attachmentIDs = attachmentIDs
-        self.context = context
-        self.conversationID = conversationID
+public class ReplyMessageInteractorLive: ComposeMessageInteractor {
+    public func send(parameters: MessageParameters) -> Future<Void, Error> {
+        Future<Void, Error> { promise in
+            AddMessage(conversationID: parameters.conversationID!, body: parameters.body)
+            .fetch { _, _, error in
+                if let error = error {
+                    promise(.failure(error))
+                } else {
+                    promise(.success(()))
+                }
+            }
+        }
     }
 }

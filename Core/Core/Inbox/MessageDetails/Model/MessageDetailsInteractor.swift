@@ -23,6 +23,7 @@ public protocol MessageDetailsInteractor {
     var state: CurrentValueSubject<StoreState, Never> { get }
     var subject: CurrentValueSubject<String, Never> { get }
     var messages: CurrentValueSubject<[ConversationMessage], Never> { get }
+    var conversation: CurrentValueSubject<[Conversation], Never> { get }
     var starred: CurrentValueSubject<Bool, Never> { get }
     // This is an ID-Participant map, reused from the parent implementation
     var userMap: [String: ConversationParticipant] { get }

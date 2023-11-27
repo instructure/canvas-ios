@@ -22,18 +22,18 @@ import CombineExt
 class AddressbookViewModel: ObservableObject {
     // MARK: - Outputs
     @Published public private(set) var state: StoreState = .loading
-    @Published public private(set) var recipients: [SearchRecipient] = []
+    @Published public private(set) var recipients: [Recipient] = []
 
     public let title = NSLocalizedString("Select Recipients", bundle: .core, comment: "")
 
     // MARK: - Inputs
-    public let recipientDidTap = PassthroughSubject<(recipient: SearchRecipient, controller: WeakViewController), Never>()
+    public let recipientDidTap = PassthroughSubject<(recipient: Recipient, controller: WeakViewController), Never>()
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: AddressbookInteractor
 
-    public init(router: Router, interactor: AddressbookInteractor, recipientDidSelect: CurrentValueRelay<SearchRecipient?>) {
+    public init(router: Router, interactor: AddressbookInteractor, recipientDidSelect: CurrentValueRelay<Recipient?>) {
         self.interactor = interactor
 
         setupOutputBindings()
@@ -44,10 +44,15 @@ class AddressbookViewModel: ObservableObject {
         interactor.state
                 .assign(to: &$state)
         interactor.recipients
+            .map {
+                $0.map { recipient in
+                    Recipient(searchRecipient: recipient)
+                }
+            }
             .assign(to: &$recipients)
     }
 
-    private func setupInputBindings(router: Router, recipientDidSelect: CurrentValueRelay<SearchRecipient?>) {
+    private func setupInputBindings(router: Router, recipientDidSelect: CurrentValueRelay<Recipient?>) {
         recipientDidTap
             .sink { [router] (recipient, viewController) in
                 recipientDidSelect.accept(recipient)

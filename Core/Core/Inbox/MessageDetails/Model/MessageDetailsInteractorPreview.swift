@@ -26,6 +26,7 @@ public class MessageDetailsInteractorPreview: MessageDetailsInteractor {
     public var state = CurrentValueSubject<StoreState, Never>(.loading)
     public var subject = CurrentValueSubject<String, Never>("")
     public var messages = CurrentValueSubject<[ConversationMessage], Never>([])
+    public var conversation = CurrentValueSubject<[Conversation], Never>([])
     public var starred = CurrentValueSubject<Bool, Never>(true)
     public var userMap: [String: ConversationParticipant] = [:]
 

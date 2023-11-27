@@ -137,6 +137,7 @@ public struct ComposeMessageView: View {
                 DisclosureIndicator()
             }
         }
+        .disabled(model.conversation != nil)
         .padding(.horizontal, 16).padding(.vertical, 12)
         .accessibility(label: Text("Select course", bundle: .core))
     }
@@ -184,6 +185,7 @@ public struct ComposeMessageView: View {
                 .font(.regular16, lineHeight: .condensed).foregroundColor(.textDarkest)
                 .textInputAutocapitalization(.sentences)
                 .focused($subjectTextFieldFocus)
+                .disabled(model.conversation != nil)
                 .accessibility(label: Text("Subject", bundle: .core))
         }
         .padding(.horizontal, 16).padding(.vertical, 12)
