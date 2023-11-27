@@ -59,10 +59,8 @@ class K5Tests: K5E2ETestCase {
         let student = seeder.createK5User()
         let homeroom = seeder.createK5Course()
         let course = seeder.createCourse()
-        let todaysAssignment = AssignmentsHelper.createAssignment(
-            course: course, dueDate: Date.now.addMinutes(30))
-        let tomorrowsQuiz = QuizzesHelper.createTestQuizWith2Questions(
-            course: course, due_at: Date.now.addDays(1))
+        let todaysAssignment = AssignmentsHelper.createAssignment(course: course, dueDate: Date.now.addMinutes(30))
+        let tomorrowsQuiz = QuizzesHelper.createTestQuizWith2Questions(course: course, due_at: Date.now.addDays(1))
         seeder.enrollStudent(student, in: homeroom)
         seeder.enrollStudent(student, in: course)
 
@@ -105,7 +103,7 @@ class K5Tests: K5E2ETestCase {
 
         let selectGradingPeriodButton = Helper.Grades.selectGradingPeriodButton.waitUntil(.visible)
         XCTAssertTrue(selectGradingPeriodButton.isVisible)
-        XCTAssertTrue(selectGradingPeriodButton.label.hasSuffix("Closed"))
+        XCTAssertTrue(selectGradingPeriodButton.labelHasSuffix("Closed"))
 
         selectGradingPeriodButton.hit()
         let currentGradingPeriodButton = Helper.Grades.currentGradingPeriodButton.waitUntil(.visible)
@@ -115,7 +113,7 @@ class K5Tests: K5E2ETestCase {
 
         let courseProgressCard = Helper.Grades.courseProgressCard(course: course).waitUntil(.visible)
         XCTAssertTrue(courseProgressCard.isVisible)
-        XCTAssertTrue(courseProgressCard.label.hasSuffix("100%"))
+        XCTAssertTrue(courseProgressCard.labelHasSuffix("100%"))
 
         courseProgressCard.hit()
 

@@ -31,6 +31,9 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(student)
+        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
+        XCTAssertTrue(profileButton.isVisible)
+
         Helper.navigateToSettings()
         let navBar = Helper.navBar.waitUntil(.visible)
         let doneButton = Helper.doneButton.waitUntil(.visible)
@@ -74,6 +77,9 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(student)
+        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
+        XCTAssertTrue(profileButton.isVisible)
+
         Helper.navigateToSettings()
         let navBar = Helper.navBar.waitUntil(.visible)
         let doneButton = Helper.doneButton.waitUntil(.visible)
@@ -121,6 +127,9 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(student)
+        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
+        XCTAssertTrue(profileButton.isVisible)
+
         Helper.navigateToSettings()
         let navBar = Helper.navBar.waitUntil(.visible)
         let doneButton = Helper.doneButton.waitUntil(.visible)
@@ -157,6 +166,9 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(student)
+        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
+        XCTAssertTrue(profileButton.isVisible)
+
         Helper.navigateToSettings()
         let navBar = Helper.navBar.waitUntil(.visible)
         var doneButton = Helper.doneButton.waitUntil(.visible)
@@ -190,6 +202,9 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(student)
+        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
+        XCTAssertTrue(profileButton.isVisible)
+
         Helper.navigateToSettings()
         let navBar = Helper.navBar.waitUntil(.visible)
         let doneButton = Helper.doneButton.waitUntil(.visible)
@@ -228,6 +243,9 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(student)
+        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
+        XCTAssertTrue(profileButton.isVisible)
+
         Helper.navigateToSettings()
         let navBar = Helper.navBar.waitUntil(.visible)
         let doneButton = Helper.doneButton.waitUntil(.visible)
@@ -245,19 +263,19 @@ class SettingsTests: E2ETestCase {
 
         let appLabel = AboutHelper.appLabel.waitUntil(.visible)
         XCTAssertTrue(appLabel.isVisible)
-        XCTAssertEqual(appLabel.label, "Canvas Student")
+        XCTAssertTrue(appLabel.hasLabel(label: "Canvas Student"))
 
         let domainLabel = AboutHelper.domainLabel.waitUntil(.visible)
         XCTAssertTrue(domainLabel.isVisible)
-        XCTAssertEqual(domainLabel.label, "https://\(user.host)")
+        XCTAssertTrue(domainLabel.hasLabel(label: "https://\(user.host)"))
 
         let loginIdLabel = AboutHelper.loginIdLabel.waitUntil(.visible)
         XCTAssertTrue(loginIdLabel.isVisible)
-        XCTAssertEqual(loginIdLabel.label, student.id)
+        XCTAssertTrue(loginIdLabel.hasLabel(label: student.id))
 
         let emailLabel = AboutHelper.emailLabel.waitUntil(.visible)
         XCTAssertTrue(emailLabel.isVisible)
-        XCTAssertEqual(emailLabel.label, "-")
+        XCTAssertTrue(emailLabel.hasLabel(label: "-"))
 
         let versionLabel = AboutHelper.versionLabel.waitUntil(.visible)
         XCTAssertTrue(versionLabel.isVisible)
@@ -271,6 +289,9 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(student)
+        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
+        XCTAssertTrue(profileButton.isVisible)
+
         Helper.navigateToSettings()
         let navBar = Helper.navBar.waitUntil(.visible)
         let doneButton = Helper.doneButton.waitUntil(.visible)
@@ -297,6 +318,9 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(student)
+        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
+        XCTAssertTrue(profileButton.isVisible)
+
         Helper.navigateToSettings()
         let navBar = Helper.navBar.waitUntil(.visible)
         let doneButton = Helper.doneButton.waitUntil(.visible)
@@ -320,6 +344,9 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(student)
+        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
+        XCTAssertTrue(profileButton.isVisible)
+
         Helper.navigateToSettings()
         let navBar = Helper.navBar.waitUntil(.visible)
         let doneButton = Helper.doneButton.waitUntil(.visible)

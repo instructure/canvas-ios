@@ -27,9 +27,14 @@ class CollaborationsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Collaborations
         logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
 
-        DashboardHelper.courseCard(course: course).hit()
-        CourseDetailsHelper.cell(type: .collaborations).hit()
+        courseCard.hit()
+        let collaborationsButton = CourseDetailsHelper.cell(type: .collaborations).waitUntil(.visible)
+        XCTAssertTrue(collaborationsButton.isVisible)
+
+        collaborationsButton.hit()
 
         // MARK: Check if browser opens with the correct URL
         XCTAssertTrue(SafariAppHelper.safariApp.wait(for: .runningForeground, timeout: 10))

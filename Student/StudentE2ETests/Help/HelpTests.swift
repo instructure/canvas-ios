@@ -25,7 +25,10 @@ class HelpTests: E2ETestCase {
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
 
+        // MARK: Get the user logged in
         logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Navigate to Help page
         HelpHelper.navigateToHelpPage()
@@ -41,30 +44,40 @@ class HelpTests: E2ETestCase {
         // MARK: Check "Ask Your Instructor a Question" button
         let askYourInstructorButton = HelpHelper.askYourInstructor.waitUntil(.visible)
         XCTAssertTrue(askYourInstructorButton.isVisible)
+
         askYourInstructorButton.hit()
-        XCTAssertTrue(app.find(label: "New Message").waitUntil(.visible).isVisible)
-        app.find(label: "Cancel").hit()
-        HelpHelper.navigateToHelpPage()
+        let newMessageLabel = app.find(label: "New Message").waitUntil(.visible)
+        let cancelButton = app.find(label: "Cancel").waitUntil(.visible)
+        XCTAssertTrue(newMessageLabel.isVisible)
+        XCTAssertTrue(cancelButton.isVisible)
 
         // MARK: Check "Report a Problem" button
+        cancelButton.hit()
+        HelpHelper.navigateToHelpPage()
         let reportAProblemButton = HelpHelper.reportAProblem.waitUntil(.visible)
         XCTAssertTrue(reportAProblemButton.isVisible)
+
         reportAProblemButton.hit()
-        XCTAssertTrue(app.find(label: "Report a Problem").waitUntil(.visible).isVisible)
-        app.find(label: "Cancel").hit()
-        HelpHelper.navigateToHelpPage()
+        cancelButton.waitUntil(.visible)
+        let reportAProblemLabel = app.find(label: "Report a Problem").waitUntil(.visible)
+        XCTAssertTrue(reportAProblemLabel.isVisible)
+        XCTAssertTrue(cancelButton.isVisible)
 
         // MARK: Check "Submit a Feature Idea" button
+        cancelButton.hit()
+        HelpHelper.navigateToHelpPage()
         let submitAFeatureButton = HelpHelper.submitAFeatureIdea.waitUntil(.visible)
         XCTAssertTrue(submitAFeatureButton.isVisible)
+
         submitAFeatureButton.hit()
         browserURL = SafariAppHelper.browserURL
         XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Canvas-Ideas-and-Themes/ct-p/canvas-ideas-themes"))
-        HelpHelper.returnToHelpPage()
 
         // MARK: Check "COVID-19 Canvas Resources" button
+        HelpHelper.returnToHelpPage()
         let covid19Button = HelpHelper.covid19.waitUntil(.visible)
         XCTAssertTrue(covid19Button.isVisible)
+
         covid19Button.hit()
         browserURL = SafariAppHelper.browserURL
         XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Contingency-Resources/gh-p/contingency"))

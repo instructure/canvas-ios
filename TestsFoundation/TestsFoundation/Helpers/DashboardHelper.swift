@@ -26,8 +26,9 @@ public class DashboardHelper: BaseHelper {
     public static var coursesLabel: XCUIElement { app.find(id: "dashboard.courses.heading-lbl") }
     public static var offlineLine: XCUIElement { app.find(id: "offlineLine") }
     public static var favoriteButton: XCUIElement { app.find(label: "Favorite", type: .button) }
+    public static var noCoursesLabel: XCUIElement { app.find(label: "No Courses") }
     public static var dashboardSettingsShowGradeToggle: XCUIElement {
-        return app.find(id: "DashboardSettings.showGradesToggle", type: .switch).find(type: .switch)
+        app.find(id: "DashboardSettings.showGradesToggle", type: .switch).find(type: .switch)
     }
 
     public static func courseCard(course: DSCourse? = nil, courseId: String? = nil) -> XCUIElement {
