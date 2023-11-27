@@ -31,7 +31,27 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     @IBOutlet weak var scrollView: UIScrollView?
     @IBOutlet weak var scrollViewBottom: NSLayoutConstraint!
     @IBOutlet weak var loadingView: CircleProgressView!
-    @IBOutlet weak var submissionButton: DynamicButton?
+    @IBOutlet weak var submissionButton: DynamicButton! {
+        didSet {
+            var buttonConfig = UIButton.Configuration.plain()
+            buttonConfig.imagePlacement = .trailing
+            buttonConfig.imagePadding = 4
+            buttonConfig.image = .arrowOpenRightSolid
+                .scaleTo(.init(width: 14, height: 14))
+                .withRenderingMode(.alwaysTemplate)
+            buttonConfig.contentInsets = {
+                var result = buttonConfig.contentInsets
+                result.trailing = 0
+                return result
+            }()
+            buttonConfig.titleTextAttributesTransformer = .init { attributes in
+                var result = attributes
+                result.font = UIFont.scaledNamedFont(.regular16)
+                return result
+            }
+            submissionButton?.configuration = buttonConfig
+        }
+    }
     @IBOutlet weak var fileSubmissionButton: DynamicButton?
 
     /** Container for the description title and the divider above it */
@@ -173,23 +193,6 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         fileSubmissionButton?.makeUnavailableInOfflineMode()
         submissionButton?.makeUnavailableInOfflineMode()
 
-        var buttonConfig = UIButton.Configuration.plain()
-        buttonConfig.imagePlacement = .trailing
-        buttonConfig.image = .arrowOpenRightSolid
-            .scaleTo(.init(width: 14, height: 14))
-            .withRenderingMode(.alwaysTemplate)
-        buttonConfig.contentInsets = {
-            var result = buttonConfig.contentInsets
-            result.trailing = 0
-            return result
-        }()
-        buttonConfig.titleTextAttributesTransformer = .init { attributes in
-            var result = attributes
-            result.font = UIFont.scaledNamedFont(.regular16)
-            return result
-        }
-        submissionButton?.configuration = buttonConfig
-
         let border = CAShapeLayer()
         border.strokeColor = UIColor.borderDark.cgColor
         border.lineWidth = 0.5
@@ -270,6 +273,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
 
         submittedLabel?.textColor = .textDarkest
         submittedLabel?.text = NSLocalizedString("Successfully submitted!", bundle: .student, comment: "")
+        submittedDetailsLabel?.isHidden = false
         changeSubmittedIconVisibility(to: true)
 
         fileSubmissionButton?.isHidden = true
@@ -309,24 +313,28 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         case .reSubmissionFailed:
             submittedLabel?.text = NSLocalizedString("Resubmission Failed", bundle: .core, comment: "")
             submittedLabel?.textColor = UIColor.textDanger.ensureContrast(against: .white)
+            submittedDetailsLabel?.isHidden = true
             fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view details", bundle: .core, comment: ""), for: .normal)
             changeSubmittedIconVisibility(to: false)
             return
         case .failed:
             submittedLabel?.text = NSLocalizedString("Submission Failed", bundle: .core, comment: "")
             submittedLabel?.textColor = UIColor.textDanger.ensureContrast(against: .white)
+            submittedDetailsLabel?.isHidden = true
             fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view details", bundle: .core, comment: ""), for: .normal)
             changeSubmittedIconVisibility(to: false)
             return
         case .uploading:
             submittedLabel?.text = NSLocalizedString("Submission Uploading...", bundle: .core, comment: "")
             submittedLabel?.textColor = .textDarkest
+            submittedDetailsLabel?.isHidden = true
             fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view progress", bundle: .core, comment: ""), for: .normal)
             changeSubmittedIconVisibility(to: false)
             return
         case .staged:
             submittedLabel?.text = NSLocalizedString("Submission In Progress...", bundle: .core, comment: "")
             submittedLabel?.textColor = .textDarkest
+            submittedDetailsLabel?.isHidden = true
             fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view progress", bundle: .core, comment: ""), for: .normal)
             changeSubmittedIconVisibility(to: false)
             return
@@ -416,13 +424,29 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         // Since submissions can't be deleted we don't have to handle the case of
         // turning the active picker to inactive
         if isActive {
-            // These will make the icon to display at the end of the label
-            attemptDateButton.semanticContentAttribute = isLeftToRightLayout ? .forceRightToLeft : .forceLeftToRight
-            attemptDateButton.setImage(.arrowOpenDownSolid.scaleTo(.init(width: 14, height: 14)), for: .normal)
+            var buttonConfig = UIButton.Configuration.plain()
+            buttonConfig.imagePlacement = .trailing
+            buttonConfig.imagePadding = 6
+            buttonConfig.image = .arrowOpenDownSolid
+                .scaleTo(.init(width: 14, height: 14))
+                .withRenderingMode(.alwaysTemplate)
+            buttonConfig.contentInsets = {
+                var result = buttonConfig.contentInsets
+                result.trailing = 0
+                return result
+            }()
+            if #available(iOS 16.0, *) {
+                buttonConfig.indicator = .none
+            }
+            buttonConfig.titleTextAttributesTransformer = .init { attributes in
+                var result = attributes
+                result.font = UIFont.scaledNamedFont(.regular14)
+                return result
+            }
+            attemptDateButton?.configuration = buttonConfig
+
             attemptDateButton.changesSelectionAsPrimaryAction = true
             attemptDateButton.showsMenuAsPrimaryAction = true
-            // TODO: Add text <-> image padding when business logic is completed
-
             attemptDateButton.menu = UIMenu(children: items)
         }
     }
