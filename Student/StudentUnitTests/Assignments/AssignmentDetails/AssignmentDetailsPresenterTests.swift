@@ -29,6 +29,11 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
     var resultingBaseURL: URL?
     var resultingSubtitle: String?
     var resultingBackgroundColor: UIColor?
+    var resultingAttemptPickerActiveState: Bool?
+    var resultingAttemptPickerItems: [UIAction]?
+    var resultingAttemptNumber: String?
+    var resultingGradeCellSubmission: Submission?
+
     var presenter: AssignmentDetailsPresenter! {
         didSet {
             (presenter.submissions as! TestStore).overrideRequested = true
@@ -60,6 +65,10 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         presenter.submissionButtonPresenter = mockButton
         viewController = AssignmentDetailsViewController.create(courseID: "1", assignmentID: "1")
         viewController.presenter = presenter
+        resultingAttemptPickerActiveState = nil
+        resultingAttemptPickerItems = nil
+        resultingAttemptNumber = nil
+        resultingGradeCellSubmission = nil
     }
 
     func testUseCasesSetupProperly() {
@@ -550,6 +559,53 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         ))
         XCTAssertEqual(presenter.lockExplanation, "This assignment is part of an unpublished module and is not available yet.")
     }
+
+    func testAttemptPickerActiveOnMultipleSubmissionsWhenFlagIsActive() {
+        Submission.make(from: .make(attempt: 1, id: "1"))
+        Submission.make(from: .make(attempt: 2, id: "2"))
+        FeatureFlag.make(name: APIFeatureFlag.Key.assignmentEnhancements.rawValue, enabled: true)
+
+        waitUntil(shouldFail: true) {
+            resultingAttemptPickerActiveState == true
+        }
+    }
+
+    func testAttemptPickerDisabledOnMultipleSubmissionsWhenFlagIsInactive() {
+        Submission.make(from: .make(attempt: 1, id: "1"))
+        Submission.make(from: .make(attempt: 2, id: "2"))
+        FeatureFlag.make(name: APIFeatureFlag.Key.assignmentEnhancements.rawValue, enabled: false)
+
+        XCTAssertEqual(resultingAttemptPickerActiveState, false)
+    }
+
+    func testAttemptPickerDisabledOnSingleSubmissionWhenFlagIsActive() {
+        Submission.make(from: .make(attempt: 1, id: "1"))
+        FeatureFlag.make(name: APIFeatureFlag.Key.assignmentEnhancements.rawValue, enabled: true)
+
+        XCTAssertEqual(resultingAttemptPickerActiveState, false)
+    }
+
+    @available(iOS 16.0, *)
+    func testAttemptPicker() {
+        Assignment.make()
+        let submission1 = Submission.make(from: .make(attempt: 1, id: "1", score: 1))
+        let submission2 = Submission.make(from: .make(attempt: 2, id: "2", score: 2))
+        FeatureFlag.make(name: APIFeatureFlag.Key.assignmentEnhancements.rawValue, enabled: true)
+
+        waitUntil(shouldFail: true) {
+            resultingAttemptPickerItems?.count == 2
+        }
+
+        resultingAttemptPickerItems?.first?.performWithSender(self, target: self)
+
+        XCTAssertEqual(resultingAttemptNumber, "Attempt 2")
+        XCTAssertEqual(resultingGradeCellSubmission, submission2)
+
+        resultingAttemptPickerItems?.last?.performWithSender(self, target: self)
+
+        XCTAssertEqual(resultingAttemptNumber, "Attempt 1")
+        XCTAssertEqual(resultingGradeCellSubmission, submission1)
+    }
 }
 
 class MockView: UIViewController, AssignmentDetailsViewProtocol {
@@ -582,14 +638,15 @@ class MockView: UIViewController, AssignmentDetailsViewProtocol {
     }
 
     func updateAttemptPickerButton(isActive: Bool, attemptDate: String, items: [UIAction]) {
-
+        test?.resultingAttemptPickerActiveState = isActive
+        test?.resultingAttemptPickerItems = items
     }
 
-    func updateGradeCell(_ assignment: Core.Assignment, submission: Core.Submission?) {
-
+    func updateGradeCell(_ assignment: Assignment, submission: Submission?) {
+        test?.resultingGradeCellSubmission = submission
     }
 
     func updateAttemptInfo(attemptNumber: String) {
-
+        test?.resultingAttemptNumber = attemptNumber
     }
 }

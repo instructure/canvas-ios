@@ -68,6 +68,7 @@ class AssignmentDetailsPresenter {
         self?.update()
     }
     lazy var features = env.subscribe(GetEnabledFeatureFlags(context: .course(courseID))) { [weak self] in
+        self?.updateSubmissionPickerButton()
         self?.update()
     }
 
