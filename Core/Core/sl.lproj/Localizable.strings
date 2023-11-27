@@ -134,6 +134,9 @@
 "Add Assignee" = "Dodaj prevzemnika";
 
 /* No comment provided by engineer. */
+"Add attachment" = "Dodaj prilogo";
+
+/* No comment provided by engineer. */
 "Add Attachment" = "Dodaj prilogo";
 
 /* No comment provided by engineer. */
@@ -174,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Add Planner Note" = "Dodaj opombo orodja Planner";
+
+/* No comment provided by engineer. */
+"Add recipient" = "Dodaj prejemnika";
 
 /* No comment provided by engineer. */
 "Add Title" = "Dodaj naslov";
@@ -647,6 +653,9 @@
 "Couldn't save the file." = "Datoteke ni bilo mogoče shraniti.";
 
 /* No comment provided by engineer. */
+"Course" = "Predmet";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "Predmet (izbirni)";
 
 /* No comment provided by engineer. */
@@ -1047,6 +1056,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Ni uspelo. Tapnite za možnosti";
+
+/* No comment provided by engineer. */
+"Favorite" = "Priljubljeni";
 
 /* No comment provided by engineer. */
 "Feedback" = "Povratne informacije";
@@ -1583,6 +1595,9 @@
 "Message" = "Sporočilo";
 
 /* No comment provided by engineer. */
+"Message could not be sent" = "Sporočila ni bilo mogoče poslati";
+
+/* No comment provided by engineer. */
 "Message Details" = "Podrobnosti o sporočilu";
 
 /* No comment provided by engineer. */
@@ -1964,6 +1979,9 @@
 "Please log in via the application" = "Prijavite se prek aplikacije";
 
 /* No comment provided by engineer. */
+"Please try again!" = "Poskusite znova!";
+
+/* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Počakajte, to lahko traja kakšno minuto.";
 
 /* No comment provided by engineer. */
@@ -2117,6 +2135,9 @@
 "Remove item" = "Odstrani element";
 
 /* No comment provided by engineer. */
+"Remove recipient" = "Odstrani prejemnika";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Odstranjeno %1$@";
 
 /* No comment provided by engineer. */
@@ -2243,7 +2264,13 @@
 "Select Course" = "Izberi predmet";
 
 /* No comment provided by engineer. */
+"Select courses for Dashboard or navigate to course details." = "Izberite predmete za nadzorno ploščo ali pa se pomaknite na podrobnosti o predmetu.";
+
+/* No comment provided by engineer. */
 "Select Grading Period" = "Izberi ocenjevalno obdobje";
+
+/* No comment provided by engineer. */
+"Select groups for Dashboard or navigate to group details." = "Izberite skupine za nadzorno ploščo ali pa se pomaknite na podrobnosti skupine.";
 
 /* No comment provided by engineer. */
 "Select Impact" = "Izberi vpliv";
@@ -2253,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "Select One" = "Izberi eno";
+
+/* No comment provided by engineer. */
+"Select Recipients" = "Izberi prejemnike";
 
 /* No comment provided by engineer. */
 "Selected" = "Izbrano";
@@ -2271,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "Pošlji dnevni povzetek";
+
+/* No comment provided by engineer. */
+"Send individual message to each recipient" = "Vsakemu prejemniku pošlji individualno sporočilo.";
 
 /* No comment provided by engineer. */
 "Send message" = "Pošlji sporočilo";
@@ -2631,6 +2664,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "Pri nalaganju kvizov je prišlo do napake. Povlecite za osvežitev, da poskusite znova.";
+
+/* No comment provided by engineer. */
+"There was an error loading recipients." = "Pri nalaganju prejemnikov je prišlo do napake.";
 
 /* No comment provided by engineer. */
 "There was an error loading the message. Pull to refresh to try again." = "Prišlo je do napake pri nalaganju sporočila. Povlecite za osvežitev, da poskusite znova.";

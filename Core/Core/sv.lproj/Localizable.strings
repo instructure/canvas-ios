@@ -134,6 +134,9 @@
 "Add Assignee" = "Lägg till tilldelad person";
 
 /* No comment provided by engineer. */
+"Add attachment" = "Lägg till bilaga";
+
+/* No comment provided by engineer. */
 "Add Attachment" = "Lägg till bilaga";
 
 /* No comment provided by engineer. */
@@ -174,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Add Planner Note" = "Lägg till planeraranteckning";
+
+/* No comment provided by engineer. */
+"Add recipient" = "Lägg till mottagare";
 
 /* No comment provided by engineer. */
 "Add Title" = "Lägg till titel";
@@ -647,6 +653,9 @@
 "Couldn't save the file." = "Det gick inte att spara filen.";
 
 /* No comment provided by engineer. */
+"Course" = "Kurs";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "Kurs (valfri)";
 
 /* No comment provided by engineer. */
@@ -1047,6 +1056,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Misslyckades. Flik för alternativ";
+
+/* No comment provided by engineer. */
+"Favorite" = "Favorit";
 
 /* No comment provided by engineer. */
 "Feedback" = "Feedback";
@@ -1583,6 +1595,9 @@
 "Message" = "Meddelande";
 
 /* No comment provided by engineer. */
+"Message could not be sent" = "Det gick inte att skicka meddelandet";
+
+/* No comment provided by engineer. */
 "Message Details" = "Meddelandedetaljer";
 
 /* No comment provided by engineer. */
@@ -1964,6 +1979,9 @@
 "Please log in via the application" = "Logga in via programmet";
 
 /* No comment provided by engineer. */
+"Please try again!" = "Försök igen!";
+
+/* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Vänta, detta kan ta en minut.";
 
 /* No comment provided by engineer. */
@@ -2117,6 +2135,9 @@
 "Remove item" = "Ta bort objekt";
 
 /* No comment provided by engineer. */
+"Remove recipient" = "Ta bort mottagare";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Tog bort %1$@";
 
 /* No comment provided by engineer. */
@@ -2243,7 +2264,13 @@
 "Select Course" = "Välj kurs";
 
 /* No comment provided by engineer. */
+"Select courses for Dashboard or navigate to course details." = "Välj kurser för översikten eller navigera till kursinformationen.";
+
+/* No comment provided by engineer. */
 "Select Grading Period" = "Välj omdömesperiod";
+
+/* No comment provided by engineer. */
+"Select groups for Dashboard or navigate to group details." = "Välj grupper för översikten eller navigera till gruppinformationen.";
 
 /* No comment provided by engineer. */
 "Select Impact" = "Välj påverkan";
@@ -2253,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "Select One" = "Välj en";
+
+/* No comment provided by engineer. */
+"Select Recipients" = "Välj mottagare";
 
 /* No comment provided by engineer. */
 "Selected" = "Valda";
@@ -2271,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "Skicka daglig sammanfattning";
+
+/* No comment provided by engineer. */
+"Send individual message to each recipient" = "Skicka individuella meddelanden till varje mottagare";
 
 /* No comment provided by engineer. */
 "Send message" = "Skicka meddelandet";
@@ -2631,6 +2664,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "Det gick inte att läsa in quiz. Dra för att uppdatera och försöka igen.";
+
+/* No comment provided by engineer. */
+"There was an error loading recipients." = "Det gick inte att läsa in mottagare.";
 
 /* No comment provided by engineer. */
 "There was an error loading the message. Pull to refresh to try again." = "Ett fel inträffade vid inläsning av meddelandet. Dra för att uppdatera och försöka igen.";

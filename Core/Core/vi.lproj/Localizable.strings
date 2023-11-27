@@ -134,6 +134,9 @@
 "Add Assignee" = "Thêm Người Được Giao Bài Tập";
 
 /* No comment provided by engineer. */
+"Add attachment" = "Thêm tập tin đính kèm";
+
+/* No comment provided by engineer. */
 "Add Attachment" = "Thêm Tập Tin Đính Kèm";
 
 /* No comment provided by engineer. */
@@ -174,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Add Planner Note" = "Thêm Ghi Chú Trình Hoạch Định";
+
+/* No comment provided by engineer. */
+"Add recipient" = "Thêm người nhận";
 
 /* No comment provided by engineer. */
 "Add Title" = "Thêm Tiêu Đề";
@@ -647,6 +653,9 @@
 "Couldn't save the file." = "Không thể lưu tập tin.";
 
 /* No comment provided by engineer. */
+"Course" = "Khóa Học";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "Khóa Học (không bắt buộc)";
 
 /* No comment provided by engineer. */
@@ -1047,6 +1056,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Thất bại Nhấn để xem tùy chọn";
+
+/* No comment provided by engineer. */
+"Favorite" = "Yêu thích";
 
 /* No comment provided by engineer. */
 "Feedback" = "Ý Kiến Phản Hồi";
@@ -1583,6 +1595,9 @@
 "Message" = "Tin Nhắn";
 
 /* No comment provided by engineer. */
+"Message could not be sent" = "Không thể gửi tin nhắn";
+
+/* No comment provided by engineer. */
 "Message Details" = "Chi Tiết Tin Nhắn";
 
 /* No comment provided by engineer. */
@@ -1964,6 +1979,9 @@
 "Please log in via the application" = "Vui lòng đăng nhập thông qua ứng dụng";
 
 /* No comment provided by engineer. */
+"Please try again!" = "Vui lòng thử lại!";
+
+/* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Vui lòng chờ, quá trình này có thể mất một phút.";
 
 /* No comment provided by engineer. */
@@ -2117,6 +2135,9 @@
 "Remove item" = "Gỡ mục";
 
 /* No comment provided by engineer. */
+"Remove recipient" = "Gỡ người nhận";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "%1$@ đã bị gỡ";
 
 /* No comment provided by engineer. */
@@ -2243,7 +2264,13 @@
 "Select Course" = "Chọn Khóa Học";
 
 /* No comment provided by engineer. */
+"Select courses for Dashboard or navigate to course details." = "Chọn khóa học cho Bảng Điều Khiển hoặc điều hướng thông tin chi tiết khóa học.";
+
+/* No comment provided by engineer. */
 "Select Grading Period" = "Chọn Thời Gian Phân Loại Điểm";
+
+/* No comment provided by engineer. */
+"Select groups for Dashboard or navigate to group details." = "Chọn nhóm cho Bảng Điều Khiển hoặc điều hướng thông tin chi tiết nhóm.";
 
 /* No comment provided by engineer. */
 "Select Impact" = "Chọn Tác Động";
@@ -2253,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "Select One" = "Chọn Một";
+
+/* No comment provided by engineer. */
+"Select Recipients" = "Chọn Người Nhận";
 
 /* No comment provided by engineer. */
 "Selected" = "Đã Chọn";
@@ -2271,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "Gửi tổng kết hằng ngày";
+
+/* No comment provided by engineer. */
+"Send individual message to each recipient" = "Gửi tin nhắn riêng đến từng người nhận";
 
 /* No comment provided by engineer. */
 "Send message" = "Gửi tin nhắn";
@@ -2631,6 +2664,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "Đã xảy ra lỗi khi tải các câu hỏi kiểm tra. Hãy kéo để làm mới rồi thử lại.";
+
+/* No comment provided by engineer. */
+"There was an error loading recipients." = "Đã xảy ra lỗi khi tải người nhận.";
 
 /* No comment provided by engineer. */
 "There was an error loading the message. Pull to refresh to try again." = "Đã xảy ra lỗi khi tải tin nhắn. Hãy kéo để làm mới rồi thử lại.";

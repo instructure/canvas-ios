@@ -134,6 +134,9 @@
 "Add Assignee" = "Afegeix el beneficiari";
 
 /* No comment provided by engineer. */
+"Add attachment" = "Afegeix un fitxer adjunt";
+
+/* No comment provided by engineer. */
 "Add Attachment" = "Afegeix un fitxer adjunt";
 
 /* No comment provided by engineer. */
@@ -174,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Add Planner Note" = "Afegeix una nota al planificador";
+
+/* No comment provided by engineer. */
+"Add recipient" = "Afegeix un destinatari";
 
 /* No comment provided by engineer. */
 "Add Title" = "Afegeix el títol";
@@ -647,6 +653,9 @@
 "Couldn't save the file." = "No s’ha pogut desar el fitxer.";
 
 /* No comment provided by engineer. */
+"Course" = "Assignatura";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "Assignatura (opcional)";
 
 /* No comment provided by engineer. */
@@ -1047,6 +1056,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "S'ha produït un error. Toqueu per veure les opcions";
+
+/* No comment provided by engineer. */
+"Favorite" = "Preferit";
 
 /* No comment provided by engineer. */
 "Feedback" = "Suggeriments";
@@ -1583,6 +1595,9 @@
 "Message" = "Missatge";
 
 /* No comment provided by engineer. */
+"Message could not be sent" = "No s'ha pogut enviar el missatge";
+
+/* No comment provided by engineer. */
 "Message Details" = "Detalls del missatge";
 
 /* No comment provided by engineer. */
@@ -1964,6 +1979,9 @@
 "Please log in via the application" = "Inicieu la sessió a través de l’aplicació";
 
 /* No comment provided by engineer. */
+"Please try again!" = "Torneu-ho a provar";
+
+/* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Espereu, pot ser que trigui un minut.";
 
 /* No comment provided by engineer. */
@@ -2117,6 +2135,9 @@
 "Remove item" = "Suprimeix l'element";
 
 /* No comment provided by engineer. */
+"Remove recipient" = "Suprimeix el destinatari ";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Eliminat el %1$@";
 
 /* No comment provided by engineer. */
@@ -2243,7 +2264,13 @@
 "Select Course" = "Selecciona l'assignatura";
 
 /* No comment provided by engineer. */
+"Select courses for Dashboard or navigate to course details." = "Seleccioneu assignatures per al panell de control o navegueu als detalls de l'assignatura.";
+
+/* No comment provided by engineer. */
 "Select Grading Period" = "Selecciona el període de qualificació";
+
+/* No comment provided by engineer. */
+"Select groups for Dashboard or navigate to group details." = "Seleccioneu grups per al panell de control o navegueu als detalls del grup.";
 
 /* No comment provided by engineer. */
 "Select Impact" = "Selecciona l’impacte";
@@ -2253,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "Select One" = "Selecciona'n un";
+
+/* No comment provided by engineer. */
+"Select Recipients" = "Selecciona els destinataris";
 
 /* No comment provided by engineer. */
 "Selected" = "Seleccionat";
@@ -2271,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "Envia un resum diari";
+
+/* No comment provided by engineer. */
+"Send individual message to each recipient" = "Envieu un missatge individual a cada destinatari";
 
 /* No comment provided by engineer. */
 "Send message" = "Envia el missatge";
@@ -2631,6 +2664,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "S'ha produït un error en carregar les proves. Estireu per actualitzar per tornar-ho a provar.";
+
+/* No comment provided by engineer. */
+"There was an error loading recipients." = "S'ha produït un error en carregar els destinataris.";
 
 /* No comment provided by engineer. */
 "There was an error loading the message. Pull to refresh to try again." = "S’ha produït un error en carregar el missatge. Estireu per actualitzar per tornar-ho a provar.";

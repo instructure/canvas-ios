@@ -134,6 +134,9 @@
 "Add Assignee" = "Toegewezen persoon toevoegen";
 
 /* No comment provided by engineer. */
+"Add attachment" = "Bijlage toevoegen";
+
+/* No comment provided by engineer. */
 "Add Attachment" = "Bijlage toevoegen";
 
 /* No comment provided by engineer. */
@@ -174,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Add Planner Note" = "Planneraantekening toevoegen";
+
+/* No comment provided by engineer. */
+"Add recipient" = "Ontvanger toevoegen";
 
 /* No comment provided by engineer. */
 "Add Title" = "Titel toevoegen";
@@ -647,6 +653,9 @@
 "Couldn't save the file." = "Kan het bestand niet opslaan.";
 
 /* No comment provided by engineer. */
+"Course" = "Cursus";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "Cursus (optioneel)";
 
 /* No comment provided by engineer. */
@@ -1047,6 +1056,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Mislukt. Tik voor opties";
+
+/* No comment provided by engineer. */
+"Favorite" = "Favoriet";
 
 /* No comment provided by engineer. */
 "Feedback" = "Feedback";
@@ -1583,6 +1595,9 @@
 "Message" = "Bericht";
 
 /* No comment provided by engineer. */
+"Message could not be sent" = "Bericht kan niet worden verzonden";
+
+/* No comment provided by engineer. */
 "Message Details" = "Berichtdetails";
 
 /* No comment provided by engineer. */
@@ -1964,6 +1979,9 @@
 "Please log in via the application" = "Log in via de applicatie";
 
 /* No comment provided by engineer. */
+"Please try again!" = "Probeer het opnieuw.";
+
+/* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Een ogenblik geduld...";
 
 /* No comment provided by engineer. */
@@ -2117,6 +2135,9 @@
 "Remove item" = "Item verwijderen";
 
 /* No comment provided by engineer. */
+"Remove recipient" = "Ontvanger verwijderen";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Verwijderd %1$@";
 
 /* No comment provided by engineer. */
@@ -2243,7 +2264,13 @@
 "Select Course" = "Cursus selecteren";
 
 /* No comment provided by engineer. */
+"Select courses for Dashboard or navigate to course details." = "Selecteer cursussen voor Dashboard of navigeer naar cursusdetails.";
+
+/* No comment provided by engineer. */
 "Select Grading Period" = "Beoordelingsperiode selecteren";
+
+/* No comment provided by engineer. */
+"Select groups for Dashboard or navigate to group details." = "Selecteer groepen voor Dashboard of ga naar groepdetails.";
 
 /* No comment provided by engineer. */
 "Select Impact" = "Impact selecteren";
@@ -2253,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "Select One" = "Eén selecteren";
+
+/* No comment provided by engineer. */
+"Select Recipients" = "Ontvangers selecteren";
 
 /* No comment provided by engineer. */
 "Selected" = "Geselecteerd";
@@ -2271,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "Dagelijkse samenvatting versturen";
+
+/* No comment provided by engineer. */
+"Send individual message to each recipient" = "Persoonlijk bericht naar elke geadresseerde verzenden";
 
 /* No comment provided by engineer. */
 "Send message" = "Bericht versturen";
@@ -2631,6 +2664,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "Er is een fout opgetreden bij het laden van toetsen. Ophalen om te vernieuwen en het nogmaals te proberen.";
+
+/* No comment provided by engineer. */
+"There was an error loading recipients." = "Er is een fout opgetreden bij het laden van ontvangers.";
 
 /* No comment provided by engineer. */
 "There was an error loading the message. Pull to refresh to try again." = "Er is een fout opgetreden bij het laden van het bericht. Ophalen om te vernieuwen en het nogmaals te proberen.";

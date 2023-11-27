@@ -134,6 +134,9 @@
 "Add Assignee" = "Tilføj assignatar";
 
 /* No comment provided by engineer. */
+"Add attachment" = "Tilføj vedhæftet fil";
+
+/* No comment provided by engineer. */
 "Add Attachment" = "Tilføj vedhæftet fil";
 
 /* No comment provided by engineer. */
@@ -174,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Add Planner Note" = "Tilføj en planlægger-note";
+
+/* No comment provided by engineer. */
+"Add recipient" = "Tilføj modtager";
 
 /* No comment provided by engineer. */
 "Add Title" = "Tilføj titel";
@@ -647,6 +653,9 @@
 "Couldn't save the file." = "Kunne ikke gemme filen.";
 
 /* No comment provided by engineer. */
+"Course" = "Fag";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "Fag (valgfrit)";
 
 /* No comment provided by engineer. */
@@ -1047,6 +1056,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Mislykkedes. Tryk for indstillinger";
+
+/* No comment provided by engineer. */
+"Favorite" = "Favorit";
 
 /* No comment provided by engineer. */
 "Feedback" = "Feedback";
@@ -1583,6 +1595,9 @@
 "Message" = "Besked";
 
 /* No comment provided by engineer. */
+"Message could not be sent" = "Beskeden kunne ikke sendes";
+
+/* No comment provided by engineer. */
 "Message Details" = "Beskeddetaljer";
 
 /* No comment provided by engineer. */
@@ -1964,6 +1979,9 @@
 "Please log in via the application" = "Log ind via applikationen";
 
 /* No comment provided by engineer. */
+"Please try again!" = "Prøv igen!";
+
+/* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Vent venligst, dette kan tage et minut.";
 
 /* No comment provided by engineer. */
@@ -2117,6 +2135,9 @@
 "Remove item" = "Fjern element";
 
 /* No comment provided by engineer. */
+"Remove recipient" = "Fjern modtager";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Fjernet %1$@";
 
 /* No comment provided by engineer. */
@@ -2243,7 +2264,13 @@
 "Select Course" = "Vælg fag";
 
 /* No comment provided by engineer. */
+"Select courses for Dashboard or navigate to course details." = "Vælg fag til oversigten, eller naviger til fagoplysninger.";
+
+/* No comment provided by engineer. */
 "Select Grading Period" = "Vælg karakterperiode";
+
+/* No comment provided by engineer. */
+"Select groups for Dashboard or navigate to group details." = "Vælg grupper til oversigten, eller naviger til gruppedetaljer.";
 
 /* No comment provided by engineer. */
 "Select Impact" = "Vælg virkning";
@@ -2253,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "Select One" = "Vælg en";
+
+/* No comment provided by engineer. */
+"Select Recipients" = "Vælg modtagere";
 
 /* No comment provided by engineer. */
 "Selected" = "Valgt";
@@ -2271,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "Send dagligt sammendrag";
+
+/* No comment provided by engineer. */
+"Send individual message to each recipient" = "Send individuel besked til hver modtager";
 
 /* No comment provided by engineer. */
 "Send message" = "Send besked";
@@ -2631,6 +2664,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "Der opstod en fejl under indlæsning af test. Træk for at opdatere for at prøve igen.";
+
+/* No comment provided by engineer. */
+"There was an error loading recipients." = "Der opstod en fejl under indlæsning af modtagere.";
 
 /* No comment provided by engineer. */
 "There was an error loading the message. Pull to refresh to try again." = "Der opstod en fejl under indlæsning af beskeden. Træk for at opdatere for at prøve igen.";

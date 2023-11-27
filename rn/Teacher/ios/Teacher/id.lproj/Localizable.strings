@@ -11,7 +11,7 @@
 "Add Attachment" = "Tambah Lampiran";
 
 /* No comment provided by engineer. */
-"Add Comment" = "Tambahkan Komentar";
+"Add Comment" = "Tambah Komentar";
 
 /* No comment provided by engineer. */
 "All grades are currently hidden." = "Semua nilai saat ini tersembunyi.";
@@ -27,6 +27,9 @@
 
 /* No comment provided by engineer. */
 "All submissions" = "Semua penyerahan";
+
+/* No comment provided by engineer. */
+"All Submissions" = "Semua Penyerahan";
 
 /* No comment provided by engineer. */
 "Attendance" = "Kehadiran";
@@ -131,6 +134,9 @@
 "Filter by" = "Filter menurut";
 
 /* No comment provided by engineer. */
+"Filter submissions" = "Filter penyerahan";
+
+/* No comment provided by engineer. */
 "Final Grade" = "Filter Nilai";
 
 /* No comment provided by engineer. */
@@ -206,6 +212,9 @@
 "Not Graded" = "Tidak Dinilai";
 
 /* No comment provided by engineer. */
+"Not Submitted" = "Belum Diserahkan";
+
+/* No comment provided by engineer. */
 "OK" = "OK";
 
 /* No comment provided by engineer. */
@@ -240,6 +249,9 @@
 
 /* No comment provided by engineer. */
 "Post to..." = "Posting ke...";
+
+/* No comment provided by engineer. */
+"Practice quizzes & surveys do not have detail views." = "Kuis & survei latihan tidak memiliki tampilan detail.";
 
 /* No comment provided by engineer. */
 "Present" = "Hadir";
@@ -278,7 +290,7 @@
 "Send" = "Kirim";
 
 /* No comment provided by engineer. */
-"Send message to users" = "Kirim pesan kepada pengguna ";
+"Send message to users" = "Kirim pesan kepada pengguna";
 
 /* No comment provided by engineer. */
 "Similarity Score" = "Skor Kemiripan";
@@ -291,6 +303,9 @@
 
 /* No comment provided by engineer. */
 "Submissions" = "Penyerahan";
+
+/* No comment provided by engineer. */
+"Submitted" = "Diserahkan";
 
 /* No comment provided by engineer. */
 "Test Student" = "Siswa Tes";
@@ -326,7 +341,7 @@
 "This submission is a URL to an external page. We've included a snapshot of what the page looked like when it was submitted." = "Penyerahan ini adalah URL ke halaman eksternal. Kami telah menyertakan cuplikan tampilan halaman saat dikirim.";
 
 /* No comment provided by engineer. */
-"To Do" = "Harus Dilakukan";
+"To Do" = "To Do";
 
 /* No comment provided by engineer. */
 "Unknown Error" = "Kesalahan Tidak Diketahui";

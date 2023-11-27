@@ -134,6 +134,9 @@
 "Add Assignee" = "Lisää tehtävänsaaja";
 
 /* No comment provided by engineer. */
+"Add attachment" = "Lisää liite";
+
+/* No comment provided by engineer. */
 "Add Attachment" = "Lisää liite";
 
 /* No comment provided by engineer. */
@@ -174,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Add Planner Note" = "Lisää muistokirjoituksen merkintä";
+
+/* No comment provided by engineer. */
+"Add recipient" = "Lisää vastaanottaja";
 
 /* No comment provided by engineer. */
 "Add Title" = "Lisää otsikko";
@@ -647,6 +653,9 @@
 "Couldn't save the file." = "Tiedoston tallennus epäonnistui.";
 
 /* No comment provided by engineer. */
+"Course" = "Kurssi";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "Kurssi (valinnainen)";
 
 /* No comment provided by engineer. */
@@ -1047,6 +1056,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Epäonnistui. Asetukset napauttamalla";
+
+/* No comment provided by engineer. */
+"Favorite" = "Suosikki";
 
 /* No comment provided by engineer. */
 "Feedback" = "Palaute";
@@ -1583,6 +1595,9 @@
 "Message" = "Viesti";
 
 /* No comment provided by engineer. */
+"Message could not be sent" = "Viestin lähettäminen epäonnistui";
+
+/* No comment provided by engineer. */
 "Message Details" = "Viestin tiedot";
 
 /* No comment provided by engineer. */
@@ -1964,6 +1979,9 @@
 "Please log in via the application" = "Kirjaudu sisään sovelluksen kautta";
 
 /* No comment provided by engineer. */
+"Please try again!" = "Yritä uudelleen!";
+
+/* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Odota, tämä voi kestää hetken.";
 
 /* No comment provided by engineer. */
@@ -2117,6 +2135,9 @@
 "Remove item" = "Poista kohde";
 
 /* No comment provided by engineer. */
+"Remove recipient" = "Poista vastaanottaja ";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Poistettu %1$@";
 
 /* No comment provided by engineer. */
@@ -2243,7 +2264,13 @@
 "Select Course" = "Valitse kurssi";
 
 /* No comment provided by engineer. */
+"Select courses for Dashboard or navigate to course details." = "Valitse kurssit koontinäyttöön tai siirry kurssin tietoihin.";
+
+/* No comment provided by engineer. */
 "Select Grading Period" = "Valitse arvosanojen antojakso";
+
+/* No comment provided by engineer. */
+"Select groups for Dashboard or navigate to group details." = "Valitse ryhmät koontinäyttöön tai siirry ryhmän tietoihin.";
 
 /* No comment provided by engineer. */
 "Select Impact" = "Valitse vaikutus";
@@ -2253,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "Select One" = "Valitse yksi";
+
+/* No comment provided by engineer. */
+"Select Recipients" = "Valitse vastaanottajat";
 
 /* No comment provided by engineer. */
 "Selected" = "Valittu";
@@ -2271,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "Lähetä päivittäinen yhteenveto";
+
+/* No comment provided by engineer. */
+"Send individual message to each recipient" = "Lähetä yksilöllinen viesti jokaiselle vastaanottajalle";
 
 /* No comment provided by engineer. */
 "Send message" = "Lähetä viesti";
@@ -2631,6 +2664,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "Kyselyiden latauksessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";
+
+/* No comment provided by engineer. */
+"There was an error loading recipients." = "Vastaanottajien latauksessa ilmeni virhe.";
 
 /* No comment provided by engineer. */
 "There was an error loading the message. Pull to refresh to try again." = "Viestin lataamisessa ilmeni virhe. Yritä uudelleen ja vedä päivittääksesi.";

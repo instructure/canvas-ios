@@ -134,6 +134,9 @@
 "Add Assignee" = "Add Assignee";
 
 /* No comment provided by engineer. */
+"Add attachment" = "Add attachment";
+
+/* No comment provided by engineer. */
 "Add Attachment" = "Add Attachment";
 
 /* No comment provided by engineer. */
@@ -174,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Add Planner Note" = "Add Planner Note";
+
+/* No comment provided by engineer. */
+"Add recipient" = "Add recipient";
 
 /* No comment provided by engineer. */
 "Add Title" = "Add Title";
@@ -647,6 +653,9 @@
 "Couldn't save the file." = "Couldn't save the file.";
 
 /* No comment provided by engineer. */
+"Course" = "Subject";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "Subject (optional)";
 
 /* No comment provided by engineer. */
@@ -1047,6 +1056,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Failed. Tap for options";
+
+/* No comment provided by engineer. */
+"Favorite" = "Favourite";
 
 /* No comment provided by engineer. */
 "Feedback" = "Feedback";
@@ -1583,6 +1595,9 @@
 "Message" = "Message";
 
 /* No comment provided by engineer. */
+"Message could not be sent" = "Message could not be sent";
+
+/* No comment provided by engineer. */
 "Message Details" = "Message Details";
 
 /* No comment provided by engineer. */
@@ -1964,6 +1979,9 @@
 "Please log in via the application" = "Please log in via the application";
 
 /* No comment provided by engineer. */
+"Please try again!" = "Please try again!";
+
+/* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Please wait, this might take a minute.";
 
 /* No comment provided by engineer. */
@@ -2117,6 +2135,9 @@
 "Remove item" = "Remove item";
 
 /* No comment provided by engineer. */
+"Remove recipient" = "Remove recipient";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Removed %1$@";
 
 /* No comment provided by engineer. */
@@ -2243,7 +2264,13 @@
 "Select Course" = "Select Subject";
 
 /* No comment provided by engineer. */
+"Select courses for Dashboard or navigate to course details." = "Select subjects for Dashboard or navigate to subject details.";
+
+/* No comment provided by engineer. */
 "Select Grading Period" = "Select Grading Period";
+
+/* No comment provided by engineer. */
+"Select groups for Dashboard or navigate to group details." = "Select groups for Dashboard or navigate to group details.";
 
 /* No comment provided by engineer. */
 "Select Impact" = "Select Impact";
@@ -2253,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "Select One" = "Select One";
+
+/* No comment provided by engineer. */
+"Select Recipients" = "Select Recipients";
 
 /* No comment provided by engineer. */
 "Selected" = "Selected";
@@ -2271,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "Send daily summary";
+
+/* No comment provided by engineer. */
+"Send individual message to each recipient" = "Send individual message to each recipient";
 
 /* No comment provided by engineer. */
 "Send message" = "Send message";
@@ -2631,6 +2664,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "There was an error loading quizzes. Pull to refresh to try again.";
+
+/* No comment provided by engineer. */
+"There was an error loading recipients." = "There was an error loading recipients.";
 
 /* No comment provided by engineer. */
 "There was an error loading the message. Pull to refresh to try again." = "There was an error loading the message. Pull to refresh to try again.";

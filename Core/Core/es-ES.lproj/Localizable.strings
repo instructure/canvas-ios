@@ -134,6 +134,9 @@
 "Add Assignee" = "Añadir persona asignada";
 
 /* No comment provided by engineer. */
+"Add attachment" = "Añadir adjunto";
+
+/* No comment provided by engineer. */
 "Add Attachment" = "Añadir adjunto";
 
 /* No comment provided by engineer. */
@@ -174,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Add Planner Note" = "Añadir nota de planificador";
+
+/* No comment provided by engineer. */
+"Add recipient" = "Añadir destinatario";
 
 /* No comment provided by engineer. */
 "Add Title" = "Añadir título";
@@ -647,6 +653,9 @@
 "Couldn't save the file." = "No se ha podido guardar el archivo.";
 
 /* No comment provided by engineer. */
+"Course" = "Curso";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "Asignatura (opcional)";
 
 /* No comment provided by engineer. */
@@ -1047,6 +1056,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Ha habido un error. Toca para ver las opciones";
+
+/* No comment provided by engineer. */
+"Favorite" = "Favorito";
 
 /* No comment provided by engineer. */
 "Feedback" = "Comentarios";
@@ -1583,6 +1595,9 @@
 "Message" = "Mensaje";
 
 /* No comment provided by engineer. */
+"Message could not be sent" = "El mensaje no ha podido enviarse";
+
+/* No comment provided by engineer. */
 "Message Details" = "Detalles del mensaje";
 
 /* No comment provided by engineer. */
@@ -1964,6 +1979,9 @@
 "Please log in via the application" = "Inicia sesión a través de la aplicación";
 
 /* No comment provided by engineer. */
+"Please try again!" = "Inténtalo de nuevo.";
+
+/* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Espera, esta acción puede tardar algo de tiempo.";
 
 /* No comment provided by engineer. */
@@ -2117,6 +2135,9 @@
 "Remove item" = "Eliminar ítem";
 
 /* No comment provided by engineer. */
+"Remove recipient" = "Eliminar destinatario";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Eliminado %1$@";
 
 /* No comment provided by engineer. */
@@ -2243,7 +2264,13 @@
 "Select Course" = "Seleccionar asignatura";
 
 /* No comment provided by engineer. */
+"Select courses for Dashboard or navigate to course details." = "Selecciona cursos para el panel de control, o desplázate hasta la información del curso.";
+
+/* No comment provided by engineer. */
 "Select Grading Period" = "Seleccionar período de evaluación";
+
+/* No comment provided by engineer. */
+"Select groups for Dashboard or navigate to group details." = "Selecciona grupos para el panel de control, o desplázate hasta la información del grupo.";
 
 /* No comment provided by engineer. */
 "Select Impact" = "Seleccionar el impacto";
@@ -2253,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "Select One" = "Seleccionar uno";
+
+/* No comment provided by engineer. */
+"Select Recipients" = "Seleccionar destinatarios";
 
 /* No comment provided by engineer. */
 "Selected" = "Seleccionado";
@@ -2271,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "Enviar el resumen diario";
+
+/* No comment provided by engineer. */
+"Send individual message to each recipient" = "Enviar un mensaje individual a cada destinatario";
 
 /* No comment provided by engineer. */
 "Send message" = "Enviar mensaje";
@@ -2631,6 +2664,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "Ha habido un error al cargar las pruebas. Pulsa actualizar para volver a intentarlo.";
+
+/* No comment provided by engineer. */
+"There was an error loading recipients." = "Ha habido un error al cargar los destinatarios.";
 
 /* No comment provided by engineer. */
 "There was an error loading the message. Pull to refresh to try again." = "Ha habido un error al cargar el mensaje. Pulsa actualizar para volver a intentarlo.";

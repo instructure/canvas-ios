@@ -5,16 +5,16 @@
 "--:--" = "--:--";
 
 /* No comment provided by engineer. */
-"\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "\"Bertindak sebagai\" pada asasnya ialah log masuk sebagai pengguna ini tanpa kata laluan. Anda akan dapat mengambil tindakan seolah-olah anda pengguna ini, dan dari sudut pandang pengguna lain, seolah-olah pengguna ini yang melaksanakan tindakan tersebut. Namun begitu, log audit merekodkan bahawa anda ialah orang yang melaksanakan tindakan bagi pihak pengguna ini.";
+"\"Act as\" is essentially logging in as this user without a password. You will be able to take any action as if you were this user, and from other users' points of view, as if this user performed them. However, audit logs record that you were the one who performed the actions on behalf of this user." = "“Act as\" pada dasarnya adalah melakukan login sebagai pengguna ini tanpa kata sandi. Anda akan dapat melakukan tindakan apa pun jika Anda adalah pengguna ini, dan dari sudut pandang pengguna lain, ini seakan-akan pengguna ini melakukannya. Namun, log audit mencatat bahwa Anda lah orang yang melakukan tindakan atas nama pengguna ini.";
 
 /* number of likes next to the like button */
 "(%d)" = "(%d)";
 
 /* No comment provided by engineer. */
-"(No subject)" = "(Tiada subjek)";
+"(No subject)" = "(Tanpa subjek)";
 
 /* (Alice, Bob) + (2) more */
-"(sampledNames) + (remainingNamesCount) more" = "(sampledNames) + (remainingNamesCount) yang lain";
+"(sampledNames) + (remainingNamesCount) more" = "(sampledNames) + (remainingNamesCount) lainnya";
 
 /* No comment provided by engineer. */
 "%@" = "%@";
@@ -23,34 +23,34 @@
 "%@ %@" = "%1$@ %2$@";
 
 /* Weekly Auto / Daily Auto Synchronization Frequency */
-"%@ Auto" = "%@ Automatik";
+"%@ Auto" = "%@ Auto";
 
 /* No comment provided by engineer. */
-"%@ GPA" = "%@ GPA";
+"%@ GPA" = "%@ IPK";
 
 /* No comment provided by engineer. */
-"%@ late" = "%@ lewat";
+"%@ late" = "%@ terlambat";
 
 /* No comment provided by engineer. */
-"%@ missing" = "%@ tiada";
+"%@ missing" = "%@ tidak ada";
 
 /* 42 GB of 64 GB Used */
-"%@ of %@ Used" = "%1$@ daripada %2$@ Digunakan";
+"%@ of %@ Used" = "%1$@ dari %2$@ Digunakan";
 
 /* No comment provided by engineer. */
-"%@ pts" = "%@ mata";
+"%@ pts" = "%@ poin";
 
 /* No comment provided by engineer. */
-"%@ sections" = "%@ seksyen";
+"%@ sections" = "%@ bagian";
 
 /* No comment provided by engineer. */
 "%@ submitted" = "%@ diserahkan";
 
 /* e.g 01.02.2022 to 01.03.2022 */
-"%@ to %@" = "%1$@ hingga %2$@";
+"%@ to %@" = "%1$@ kepada %2$@";
 
 /* label for conversation row with context, subject, & last message date & text */
-"%@, in %@, the last message was on %@ %@" = "%1$@, dalam %2$@, mesej terakhir adalah pada %3$@ %4$@";
+"%@, in %@, the last message was on %@ %@" = "%1$@, pada %2$@, pesan terakhir pada %3$@ %4$@";
 
 /* added to conversation label when unread */
 "%@, unread" = "%@, belum dibaca.";
@@ -62,22 +62,22 @@
 "%@/%@ (%@)" = "%1$@/%2$@ (%3$@)";
 
 /* Number of assignments due today */
-"%d due today" = "%d cukup tempoh hari ini";
+"%d due today" = "%d tanggal batas hari ini";
 
 /* No comment provided by engineer. */
 "%d items" = "%d item";
 
 /* No comment provided by engineer. */
-"%d Minutes" = "%d Minit";
+"%d Minutes" = "%d Menit";
 
 /* Number of missing submissions */
-"%d missing" = "%d tiada";
+"%d missing" = "%d tidak ada";
 
 /* No comment provided by engineer. */
 "%d Replies" = "%d Balasan";
 
 /* No comment provided by engineer. */
-"%d students" = "%d pelajar";
+"%d students" = "%d siswa";
 
 /* No comment provided by engineer. */
 "%d Unread" = "%d Belum dibaca";
@@ -92,49 +92,49 @@
 "86,5%" = "86,5%";
 
 /* No comment provided by engineer. */
-"A description is required" = "Penerangan diperlukan";
+"A description is required" = "Deskripsi harus ada";
 
 /* Embedded in 'enrolled in any courses as %@' */
-"a parent" = "ibu bapa";
+"a parent" = "orang tua";
 
 /* Embedded in 'enrolled in any courses as %@' */
-"a student" = "pelajar";
+"a student" = "siswa";
 
 /* Embedded in 'enrolled in any courses as %@' */
 "a teacher" = "guru";
 
 /* No comment provided by engineer. */
-"A title is required" = "Tajuk diperlukan";
+"A title is required" = "Judul dibutuhkan";
 
 /* No comment provided by engineer. */
-"About" = "Perihal";
+"About" = "Tentang";
 
 /* No comment provided by engineer. */
 "Accept" = "Terima";
 
 /* No comment provided by engineer. */
-"Acceptable Use Policy" = "Dasar Penggunaan Boleh Diterima";
+"Acceptable Use Policy" = "Kebijakan Penggunaan yang Dapat Diterima";
 
 /* No comment provided by engineer. */
 "Access" = "Akses";
 
 /* No comment provided by engineer. */
-"Access Code" = "Kod Akses";
+"Access Code" = "Kode Akses";
 
 /* No comment provided by engineer. */
-"Access Code:" = "Kod Akses:";
+"Access Code:" = "Kode Akses:";
 
 /* No comment provided by engineer. */
-"Account Group" = "Kumpulan Akaun";
+"Account Group" = "Grup Akun";
 
 /* No comment provided by engineer. */
 "Act as User" = "Bertindak sebagai Pengguna";
 
 /* No comment provided by engineer. */
-"Add Assignee" = "Tambah Penerima Tugasan";
+"Add Assignee" = "Tambah Penerima Penetapan";
 
 /* No comment provided by engineer. */
-"Add attachment" = "Tambah kepilan";
+"Add attachment" = "Tambah lampiran";
 
 /* No comment provided by engineer. */
 "Add Attachment" = "Tambah Lampiran";
@@ -143,10 +143,10 @@
 "Add Attachments" = "Tambah Lampiran";
 
 /* No comment provided by engineer. */
-"Add comment (optional)" = "Tambah komen (pilihan)";
+"Add comment (optional)" = "Tambah komentar (opsional)";
 
 /* No comment provided by engineer. */
-"Add content" = "Tambah kandungan";
+"Add content" = "Tambah konten";
 
 /* No comment provided by engineer. */
 "Add Course Name" = "Tambah Nama Kursus";
@@ -155,13 +155,13 @@
 "Add Course Nickname" = "Tambah Nama Panggilan Kursus";
 
 /* No comment provided by engineer. */
-"Add description" = "Tambah penerangan";
+"Add description" = "Tambah deskripsi";
 
 /* No comment provided by engineer. */
-"Add Due Date" = "Tambah Tarikh Siap";
+"Add Due Date" = "Tambah Batas Waktu";
 
 /* No comment provided by engineer. */
-"Add File" = "Tambah Fail";
+"Add File" = "Tambah File";
 
 /* No comment provided by engineer. */
 "Add Folder" = "Tambah Folder";
@@ -170,34 +170,34 @@
 "Add Item" = "Tambah Item";
 
 /* No comment provided by engineer. */
-"Add message" = "Tambah mesej";
+"Add message" = "Beri pesan";
 
 /* No comment provided by engineer. */
-"Add optional comment" = "Tambah komen pilihan";
+"Add optional comment" = "Tambah komentar opsional";
 
 /* No comment provided by engineer. */
-"Add Planner Note" = "Tambah Nota Perancang";
+"Add Planner Note" = "Tambah Note Planner";
 
 /* No comment provided by engineer. */
 "Add recipient" = "Tambah penerima";
 
 /* No comment provided by engineer. */
-"Add Title" = "Tambah Tajuk";
+"Add Title" = "Tambah Judul";
 
 /* No comment provided by engineer. */
-"Added To Conversation" = "Ditambah Pada Perbualan";
+"Added To Conversation" = "Ditambah ke Percakapan";
 
 /* No comment provided by engineer. */
-"Administrative Notifications" = "Pemberitahuan Pentadbiran";
+"Administrative Notifications" = "Notifikasi Administratif";
 
 /* e.g. After 01.02.2022 */
-"After %@" = "Selepas %@";
+"After %@" = "Setelah %@";
 
 /* No comment provided by engineer. */
-"After Last Attempt" = "Selepas Percubaan Terakhir";
+"After Last Attempt" = "Setelah Upaya Terakhir";
 
 /* No comment provided by engineer. */
-"Alerts" = "Isyarat";
+"Alerts" = "Peringatan";
 
 /* No comment provided by engineer. */
 "All" = "Semua";
@@ -215,37 +215,37 @@
 "All People" = "Semua Orang";
 
 /* No comment provided by engineer. */
-"All Submissions" = "Semua Serahan";
+"All Submissions" = "Semua Penyerahan";
 
 /* No comment provided by engineer. */
-"Allow liking" = "Benarkan menyukai siaran";
+"Allow liking" = "Izinkan menyukai";
 
 /* No comment provided by engineer. */
-"Allow Multiple Attempts" = "Benarkan Berbilang Percubaan";
+"Allow Multiple Attempts" = "Izinkan Banyak Upaya";
 
 /* No comment provided by engineer. */
-"Allow threaded replies" = "Benarkan balasan berbebenang";
+"Allow threaded replies" = "Izinkan balasan berutas";
 
 /* No comment provided by engineer. */
-"Allow users to comment" = "Benarkan pengguna untuk memberikan komen";
+"Allow users to comment" = "Izinkan pengguna berkomentar";
 
 /* No comment provided by engineer. */
-"Allowed Attempts" = "Percubaan Dibenarkan";
+"Allowed Attempts" = "Upaya Diizinkan";
 
 /* No comment provided by engineer. */
-"Allowed Attempts:" = "Percubaan Dibenarkan:";
+"Allowed Attempts:" = "Upaya Diizinkan:";
 
 /* No comment provided by engineer. */
-"Always" = "Sentiasa";
+"Always" = "Selalu";
 
 /* No comment provided by engineer. */
 "Announcement" = "Pengumuman";
 
 /* No comment provided by engineer. */
-"Announcement Created By You" = "Pengumuman Yang Dibuat Oleh Anda";
+"Announcement Created By You" = "Pengumuman yang Anda Buat";
 
 /* No comment provided by engineer. */
-"Announcement Details" = "Butiran Pengumuman";
+"Announcement Details" = "Detail Pengumuman";
 
 /* No comment provided by engineer. */
 "Announcement Replies" = "Balasan Pengumuman";
@@ -254,13 +254,13 @@
 "Announcements" = "Pengumuman";
 
 /* No comment provided by engineer. */
-"Anyone" = "Sesiapa sahaja";
+"Anyone" = "Siapa Saja";
 
 /* No comment provided by engineer. */
-"App" = "Apl";
+"App" = "App";
 
 /* No comment provided by engineer. */
-"Appearance" = "Penampilan";
+"Appearance" = "Tampilan";
 
 /* No comment provided by engineer. */
 "Appointment Availability" = "Ketersediaan Janji Temu";
@@ -272,31 +272,31 @@
 "Appointment Signups" = "Pendaftaran Janji Temu";
 
 /* No comment provided by engineer. */
-"Archive" = "Arkib";
+"Archive" = "Arsipkan";
 
 /* No comment provided by engineer. */
-"Archived" = "Diarkibkan";
+"Archived" = "Diarsipkan";
 
 /* No comment provided by engineer. */
-"Are you sure you want to delete %@?" = "Adakah anda pasti anda ingin memadamkan %@?";
+"Are you sure you want to delete %@?" = "Anda yakin mau menghapus %@?";
 
 /* No comment provided by engineer. */
-"Are you sure you want to delete this page?" = "Adakah anda pasti anda ingin memadamkan halaman ini?";
+"Are you sure you want to delete this page?" = "Anda yakin mau menghapus halaman ini?";
 
 /* No comment provided by engineer. */
-"Are you sure you want to exit Student View?" = "Adakah anda pasti anda ingin keluar dari Pandangan Pelajar?";
+"Are you sure you want to exit Student View?" = "Anda yakin mau keluar dari Tampilan Siswa?";
 
 /* No comment provided by engineer. */
-"Are you sure you want to remove this file?" = "Adakah anda pasti anda ingin mengalih keluar fail ini?";
+"Are you sure you want to remove this file?" = "Anda yakin mau menghapus file ini?";
 
 /* No comment provided by engineer. */
-"Are you sure you would like to delete this announcement?" = "Adakah anda pasti anda ingin memadamkan pengumuman ini?";
+"Are you sure you would like to delete this announcement?" = "Anda yakin mau menghapus pengumuman ini?";
 
 /* No comment provided by engineer. */
-"Are you sure you would like to delete this comment?" = "Adakah anda pasti anda ingin memadamkan komen ini?";
+"Are you sure you would like to delete this comment?" = "Anda yakin mau menghapus komentar ini?";
 
 /* No comment provided by engineer. */
-"Are you sure you would like to delete this discussion?" = "Adakah anda pasti anda ingin memadamkan perbincangan ini?";
+"Are you sure you would like to delete this discussion?" = "Anda yakin mau menghapus diskusi ini?";
 
 /* No comment provided by engineer. */
 "Assign" = "Tetapkan";
@@ -305,85 +305,85 @@
 "Assign to" = "Tetapkan kepada";
 
 /* No comment provided by engineer. */
-"assignment" = "tugasan";
+"assignment" = "tugas";
 
 /* No comment provided by engineer. */
-"Assignment Details" = "Butiran Tugasan";
+"Assignment Details" = "Detail Tugas";
 
 /* No comment provided by engineer. */
-"Assignment grade above" = "Gred tugasan atas";
+"Assignment grade above" = "Nilai tugas di atas";
 
 /* No comment provided by engineer. */
-"Assignment Grade Above %d" = "Gred Tugasan Atas %d";
+"Assignment Grade Above %d" = "Nilai Atas Penilaian %d";
 
 /* No comment provided by engineer. */
-"Assignment grade below" = "Gred tugasan bawah";
+"Assignment grade below" = "Nilai tugas di bawah";
 
 /* No comment provided by engineer. */
-"Assignment Grade Below %d" = "Gred Tugasan Bawah %d";
+"Assignment Grade Below %d" = "Nilai Bawah Penilaian %d";
 
 /* No comment provided by engineer. */
-"Assignment Group" = "Kumpulan Tugasan";
+"Assignment Group" = "Grup Tugas";
 
 /* No comment provided by engineer. */
-"Assignment Group:" = "Kumpulan Tugasan:";
+"Assignment Group:" = "Grup Tugas:";
 
 /* No comment provided by engineer. */
-"Assignment missing" = "Tugasan tiada";
+"Assignment missing" = "Tugas tidak ada";
 
 /* No comment provided by engineer. */
-"Assignment Missing" = "Tugasan Tiada:";
+"Assignment Missing" = "Penilaian Tidak Ada";
 
 /* No comment provided by engineer. */
-"Assignments" = "Tugasan";
+"Assignments" = "Tugas";
 
 /* No comment provided by engineer. */
-"Assignments List" = "Senarai Tugasan";
+"Assignments List" = "Daftar Tugas";
 
 /* No comment provided by engineer. */
-"Attach files by tapping an option below." = "Kepilkan fail dengan mengetik pilihan di bawah.";
+"Attach files by tapping an option below." = "Lampirkan file dengan mengetuk satu opsi di bawah ini.";
 
 /* No comment provided by engineer. */
-"Attach files to your submission by tapping an option below." = "Kepilkan fail pada serahan anda dengan mengetik pilihan di bawah.";
+"Attach files to your submission by tapping an option below." = "Lampirkan file ke penyerahan Anda dengan mengetuk satu opsi di bawah ini.";
 
 /* No comment provided by engineer. */
 "Attachments" = "Lampiran";
 
 /* No comment provided by engineer. */
-"Attachments available" = "Kepilan tersedia";
+"Attachments available" = "Lampiran tersedia";
 
 /* No comment provided by engineer. */
-"Attempt %d" = "Percubaan %d";
+"Attempt %d" = "Upaya %d";
 
 /* No comment provided by engineer. */
 "Attribution" = "Atribusi";
 
 /* No comment provided by engineer. */
-"Attribution No Derivatives" = "Atribusi Tanpa Terbitan";
+"Attribution No Derivatives" = "Atribusi Tanpa Derivatif";
 
 /* No comment provided by engineer. */
-"Attribution Non-Commercial" = "Atribusi Bukan Komersial";
+"Attribution Non-Commercial" = "Atribusi Non-Komersial";
 
 /* No comment provided by engineer. */
-"Attribution Non-Commercial No Derivatives" = "Atribusi Bukan Komersial Tanpa Terbitan";
+"Attribution Non-Commercial No Derivatives" = "Atribusi Non-Komersial Tanpa Derivatif";
 
 /* No comment provided by engineer. */
-"Attribution Non-Commercial Share Alike" = "Atribusi Bukan Komersial Berkongsi Sama";
+"Attribution Non-Commercial Share Alike" = "Atribusi Non-Komersial Bagikan Sejenis";
 
 /* No comment provided by engineer. */
-"Attribution Share Alike" = "Atribusi Berkongsi Sama";
+"Attribution Share Alike" = "Atribusi Bagikan Sejenis";
 
 /* No comment provided by engineer. */
 "Audio" = "Audio";
 
 /* No comment provided by engineer. */
-"Augment Reality" = "Realiti Imbuh";
+"Augment Reality" = "Augment Reality";
 
 /* No comment provided by engineer. */
-"Authentication failed. Most likely the user denied the request for access." = "Pengesahan gagal. Pengguna mungkin telah menafikan permintaan untuk akses.";
+"Authentication failed. Most likely the user denied the request for access." = "Autentikasi gagal. Sepertinya pengguna menolak permintaan akses.";
 
 /* No comment provided by engineer. */
-"Auto Content Sync" = "Segerakan Kandungan Automatik";
+"Auto Content Sync" = "Sinkronisasi Konten Otomatis";
 
 /* No comment provided by engineer. */
 "Availability" = "Ketersediaan";
@@ -398,13 +398,13 @@
 "Available from" = "Tersedia dari";
 
 /* No comment provided by engineer. */
-"Available From" = "Tersedia Dari";
+"Available From" = "Tersedia Mulai";
 
 /* No comment provided by engineer. */
-"Available From:" = "Tersedia Dari:";
+"Available From:" = "Tersedia Mulai:";
 
 /* No comment provided by engineer. */
-"Available offline" = "Tersedia di luar talian";
+"Available offline" = "Tersedia offline";
 
 /* No comment provided by engineer. */
 "Available until" = "Tersedia hingga";
@@ -416,7 +416,7 @@
 "Available Until:" = "Tersedia Hingga:";
 
 /* No comment provided by engineer. */
-"Average" = "Purata";
+"Average" = "Rata-Rata";
 
 /* No comment provided by engineer. */
 "Back" = "Kembali";
@@ -425,7 +425,7 @@
 "black" = "hitam";
 
 /* No comment provided by engineer. */
-"Blocking" = "Menyekat";
+"Blocking" = "Memblokir";
 
 /* No comment provided by engineer. */
 "blue" = "biru";
@@ -437,49 +437,49 @@
 "Bold" = "Tebal";
 
 /* No comment provided by engineer. */
-"Brick" = "Batu bata";
+"Brick" = "Batu Bata";
 
 /* No comment provided by engineer. */
-"Calendar" = "Kalendar";
+"Calendar" = "Kalender";
 
 /* No comment provided by engineer. */
-"Calendars" = "Kalendar";
+"Calendars" = "Kalender";
 
 /* No comment provided by engineer. */
-"Calendars (%d)" = "Kalendar (%d)";
+"Calendars (%d)" = "Kalender (%d)";
 
 /* No comment provided by engineer. */
 "Camera" = "Kamera";
 
 /* No comment provided by engineer. */
-"Can Edit" = "Boleh Diedit";
+"Can Edit" = "Dapat Mengedit";
 
 /* No comment provided by engineer. */
-"Can’t find your school? Try typing the full school URL." = "Tidak menemui sekolah anda? Cuba taip URL sekolah yang penuh.";
+"Can’t find your school? Try typing the full school URL." = "Tidak dapat menemukan sekolah Anda? Coba ketikkan URL sekolah lengkap.";
 
 /* No comment provided by engineer. */
 "Cancel" = "Batal";
 
 /* No comment provided by engineer. */
-"Cancel Submission?" = "Batalkan Serahan?";
+"Cancel Submission?" = "Batalkan Penyerahan?";
 
 /* No comment provided by engineer. */
-"Cancel Sync?" = "Batal Penyegerakan?";
+"Cancel Sync?" = "Batalkan Sinkronisasi?";
 
 /* No comment provided by engineer. */
 "Canvas Guides" = "Panduan Canvas";
 
 /* No comment provided by engineer. */
-"Canvas is now available in dark theme" = "Canvas tidak tersedia dalam tema gelap";
+"Canvas is now available in dark theme" = "Canvas sekarang tersedia dalam tema gelap";
 
 /* No comment provided by engineer. */
-"Canvas Login" = "Log Masuk Canvas";
+"Canvas Login" = "Login Canvas";
 
 /* No comment provided by engineer. */
 "Canvas Network" = "Jaringan Canvas";
 
 /* No comment provided by engineer. */
-"Canvas on GitHub" = "Canvas di GitHub";
+"Canvas on GitHub" = "Canvas aktif GitHub";
 
 /* No comment provided by engineer. */
 "Canvas Parent" = "Canvas Parent";
@@ -491,22 +491,22 @@
 "Canvas Teacher" = "Canvas Teacher";
 
 /* No comment provided by engineer. */
-"Casual question or suggestion" = "Soalan atau cadangan kasual";
+"Casual question or suggestion" = "Pertanyaan atau saran kasual";
 
 /* No comment provided by engineer. */
-"Change User" = "Tukar Pengguna";
+"Change User" = "Ubah Pengguna";
 
 /* Description for Chat communication channel */
-"Chat Notifications" = "Pemberitahuan Sembang";
+"Chat Notifications" = "Notifikasi Obrolan";
 
 /* No comment provided by engineer. */
-"Check network and try again!" = "Periksa rangkaian dan cuba semula!";
+"Check network and try again!" = "Periksa jaringan dan coba lagi!";
 
 /* No comment provided by engineer. */
-"Choose a course to message" = "Pilih kursus untuk dihantar mesej";
+"Choose a course to message" = "Pilih kursus ke pesan";
 
 /* No comment provided by engineer. */
-"Choose a File" = "Pilih Fail";
+"Choose a File" = "Pilih File";
 
 /* No comment provided by engineer. */
 "Choose a subject" = "Pilih subjek";
@@ -515,115 +515,115 @@
 "Choose Photo" = "Pilih Foto";
 
 /* No comment provided by engineer. */
-"Choose Profile Picture" = "Pilih Gambar Profil";
+"Choose Profile Picture" = "Pilih Foto Profil";
 
 /* No comment provided by engineer. */
-"Choose your app appearance!\nYou can change it later in the settings menu." = "Pilih penampilan apl anda!\nAnda boleh menukarnya kemudian dalam tetapan menu.";
+"Choose your app appearance!\nYou can change it later in the settings menu." = "Pilih tampilan app Anda!\nAnda dapat mengubahnya nanti di menu pengaturan.";
 
 /* No comment provided by engineer. */
-"Clear Course" = "Buang Kursus";
+"Clear Course" = "Bersihkan Kursus";
 
 /* No comment provided by engineer. */
-"Clear filter" = "Buang penapis";
+"Clear filter" = "Bersihkan filter";
 
 /* No comment provided by engineer. */
-"Clear Filter" = "Buang Penapis";
+"Clear Filter" = "Bersihkan Filter";
 
 /* No comment provided by engineer. */
-"Clear recording" = "Buang rakaman";
+"Clear recording" = "Bersihkan rekaman";
 
 /* No comment provided by engineer. */
 "Close" = "Tutup";
 
 /* No comment provided by engineer. */
-"Close App" = "Tutup Apl";
+"Close App" = "Tutup App";
 
 /* No comment provided by engineer. */
-"Close section" = "Tutup seksyen";
+"Close section" = "Tutup bagian";
 
 /* No comment provided by engineer. */
 "Closed" = "Ditutup";
 
 /* No comment provided by engineer. */
-"Closed for Comments" = "Ditutup untuk Komen";
+"Closed for Comments" = "Ditutup untuk Komentar";
 
 /* No comment provided by engineer. */
-"Closed section" = "Seksyen yang ditutup";
+"Closed section" = "Menutup bagian";
 
 /* No comment provided by engineer. */
-"Collapse" = "Kuncupkan";
+"Collapse" = "Perkecil";
 
 /* No comment provided by engineer. */
-"collapsed" = "dikuncupkan";
+"collapsed" = "diperkecil";
 
 /* No comment provided by engineer. */
 "Color" = "Warna";
 
 /* No comment provided by engineer. */
-"Color Overlay" = "Tindihan Warna";
+"Color Overlay" = "Overlay Warna";
 
 /* No comment provided by engineer. */
-"Comment" = "Komen";
+"Comment" = "Komentar";
 
 /* No comment provided by engineer. */
-"Comments" = "Komen";
+"Comments" = "Komentar";
 
 /* No comment provided by engineer. */
 "Complete" = "Lengkap";
 
 /* No comment provided by engineer. */
-"Complete/Incomplete" = "Lengkap/Tidak Lengkap";
+"Complete/Incomplete" = "Selesai/Belum Selesai";
 
 /* concluded datetime */
-"Concluded %@" = "Telah Selesai %@";
+"Concluded %@" = "Dirampungkan %@";
 
 /* No comment provided by engineer. */
-"Concluded Conferences" = "Persidangan Yang Telah Selesai";
+"Concluded Conferences" = "Merampungkan Konferensi";
 
 /* No comment provided by engineer. */
-"Conference %@ is in progress, tap to view details" = "Persidangan %@ masih berjalan, ketik untuk melihat butiran";
+"Conference %@ is in progress, tap to view details" = "Konferensi %@ masih berlangsung, ketuk untuk melihat detail";
 
 /* No comment provided by engineer. */
-"Conference Details" = "Butiran Persidangan";
+"Conference Details" = "Detail Konferensi";
 
 /* No comment provided by engineer. */
-"Conference in progress" = "Persidangan Sedang Berjalan";
+"Conference in progress" = "Konferensi sedang berlangsung";
 
 /* No comment provided by engineer. */
-"Conferences" = "Persidangan";
+"Conferences" = "Konferensi";
 
 /* No comment provided by engineer. */
-"Connected via %@" = "Bersambung melalui %@";
+"Connected via %@" = "Tersambung melalui %@";
 
 /* No comment provided by engineer. */
-"Contact your school to create an account." = "Hubungi sekolah anda untuk mencipta akaun.";
+"Contact your school to create an account." = "Hubungi sekolah Anda untuk membuat akun.";
 
 /* No comment provided by engineer. */
-"Content" = "Kandungan";
+"Content" = "Konten";
 
 /* No comment provided by engineer. */
-"Content Cannot Be Displayed" = "Kandungan Tidak Dapat Dipaparkan";
+"Content Cannot Be Displayed" = "Konten Tidak Dapat Ditampilkan";
 
 /* No comment provided by engineer. */
-"Content Link Error" = "Ralat Pautan Kandungan";
+"Content Link Error" = "Kesalahan Tautan Konten";
 
 /* No comment provided by engineer. */
-"Content sync might use cellular data which may result in extra fees from your data provider." = "Segerakan kandungan mungkin menggunakan data selular yang boleh menyebabkan adanya bayaran tambahan daripada penyedia data anda.";
+"Content sync might use cellular data which may result in extra fees from your data provider." = "Sinkronisasi konten dapat menggunakan data seluler yang dapat menimbulkan biaya ekstra dari operator seluler Anda.";
 
 /* No comment provided by engineer. */
-"Contribute" = "Buat Sumbangan";
+"Contribute" = "Berkontribusi";
 
 /* No comment provided by engineer. */
-"Contributed" = "Telah Menyumbang";
+"Contributed" = "Berkontribusi";
 
 /* No comment provided by engineer. */
-"Conversation Created By Me" = "Perbualan Yang Dicipta Oleh Saya";
+"Conversation Created By Me" = "Percakapan yang Saya Buat";
 
 /* No comment provided by engineer. */
-"Conversation Message" = "Mesej Perbualan";
+"Conversation Message" = "Pesan Percakapan";
 
 /* No comment provided by engineer. */
-"Conversation options" = "Pilihan perbualan";
+"Conversation options" = "Opsi percakapan";
 
 /* No comment provided by engineer. */
 "conversation_recipients_to" = "conversation_recipients_to";
@@ -632,37 +632,37 @@
 "conversation_unread_messages" = "conversation_unread_messages";
 
 /* No comment provided by engineer. */
-"Conversations" = "Perbualan";
+"Conversations" = "Percakapan";
 
 /* No comment provided by engineer. */
 "Copied!" = "Disalin!";
 
 /* No comment provided by engineer. */
-"Copy Link" = "Salin Pautan";
+"Copy Link" = "Salin Tautan";
 
 /* No comment provided by engineer. */
 "Copyright Holder" = "Pemegang Hak Cipta";
 
 /* No comment provided by engineer. */
-"Could not launch tool. Please try again." = "Tidak dapat melancarkan alat. Sila cuba semula.";
+"Could not launch tool. Please try again." = "Tidak dapat meluncurkan alat. Silakan coba lagi.";
 
 /* No comment provided by engineer. */
-"Could not save notification preference" = "Tidak dapat menyimpan keutamaan pemberitahuan ";
+"Could not save notification preference" = "Tidak dapat menyimpan preferensi notifikasi ";
 
 /* No comment provided by engineer. */
-"Couldn't save the file." = "Tidak dapat menyimpan fail.";
+"Couldn't save the file." = "Tidak dapat menyimpan file.";
 
 /* No comment provided by engineer. */
 "Course" = "Kursus";
 
 /* No comment provided by engineer. */
-"Course (optional)" = "Kursus (pilihan)";
+"Course (optional)" = "Kursus (opsional)";
 
 /* No comment provided by engineer. */
-"Course Activities" = "Aktiviti Kursus";
+"Course Activities" = "Aktivitas Kursus";
 
 /* No comment provided by engineer. */
-"Course Activity Stream" = "Strim Aktiviti Kursus";
+"Course Activity Stream" = "Stream Aktivitas Kursus";
 
 /* No comment provided by engineer. */
 "Course Announcement" = "Pengumuman Kursus";
@@ -671,61 +671,61 @@
 "Course announcements" = "Pengumuman kursus";
 
 /* No comment provided by engineer. */
-"Course Card Options" = "Pilihan Kad Kursus";
+"Course Card Options" = "Opsi Kartu Kursus";
 
 /* No comment provided by engineer. */
-"Course Content" = "Kandungan Kursus";
+"Course Content" = "Konten Kursus";
 
 /* No comment provided by engineer. */
-"Course grade above" = "Gred kursus atas";
+"Course grade above" = "Nilai kursus di atas";
 
 /* No comment provided by engineer. */
-"Course Grade Above %d" = "Gred Kursus Atas %d";
+"Course Grade Above %d" = "Nilai Atas Kursus %d";
 
 /* No comment provided by engineer. */
-"Course grade below" = "Gred kursus bawah";
+"Course grade below" = "Nilai kursus di bawah";
 
 /* No comment provided by engineer. */
-"Course Grade Below %d" = "Gred Kursus Bawah %d";
+"Course Grade Below %d" = "Nilai Bawah Kursus %d";
 
 /* No comment provided by engineer. */
 "Course Modules" = "Modul Kursus";
 
 /* No comment provided by engineer. */
-"Course Sections" = "Seksyen Kursus";
+"Course Sections" = "Bagian Kursus";
 
 /* No comment provided by engineer. */
-"Course Syllabus" = "Silibus Kursus";
+"Course Syllabus" = "Silabus Kursus";
 
 /* No comment provided by engineer. */
 "Courses" = "Kursus";
 
 /* No comment provided by engineer. */
-"Create Account" = "Cipta Akaun";
+"Create Account" = "Buat Akun";
 
 /* No comment provided by engineer. */
-"Create Announcement" = "Cipta Pengumuman";
+"Create Announcement" = "Buat Pengumuman";
 
 /* No comment provided by engineer. */
-"Create Discussion" = "Cipta Perbincangan";
+"Create Discussion" = "Buat Diskusi";
 
 /* No comment provided by engineer. */
-"Creative Commons License" = "Lesen Creative Commons";
+"Creative Commons License" = "Lisensi Creative Commons";
 
 /* No comment provided by engineer. */
-"Current Enrollments" = "Pendaftaran Semasa";
+"Current Enrollments" = "Pendaftaran Saat Ini";
 
 /* No comment provided by engineer. */
-"Current Grade" = "Gred Semasa";
+"Current Grade" = "Nilai Saat Ini";
 
 /* No comment provided by engineer. */
-"Current Grading Period" = "Tambah Tempoh Semasa";
+"Current Grading Period" = "Periode Penilaian Saat Ini";
 
 /* No comment provided by engineer. */
-"Current position" = "Kedudukan semasa";
+"Current position" = "Posisi saat ini";
 
 /* No comment provided by engineer. */
-"Customize Course" = "Sesuaikan Kursus";
+"Customize Course" = "Kustomisasikan Kursus";
 
 /* No comment provided by engineer. */
 "Cyan" = "Sian";
@@ -749,10 +749,10 @@
 "d_questions" = "d_questions";
 
 /* No comment provided by engineer. */
-"Daily" = "Harian";
+"Daily" = "Setiap Hari";
 
 /* No comment provided by engineer. */
-"Dark Mode" = "Mod Gelap";
+"Dark Mode" = "Mode Gelap";
 
 /* No comment provided by engineer. */
 "Dark theme" = "Tema gelap";
@@ -761,19 +761,19 @@
 "Dark Theme" = "Tema Gelap";
 
 /* No comment provided by engineer. */
-"Dashboard" = "Papan Pemuka";
+"Dashboard" = "Dasboard";
 
 /* No comment provided by engineer. */
-"Dashboard Options" = "Pilihan Papan Pemuka";
+"Dashboard Options" = "Opsi Dashboard";
 
 /* No comment provided by engineer. */
-"Dashboard settings" = "Tetapan papan pemuka";
+"Dashboard settings" = "Pengaturan dashboard";
 
 /* No comment provided by engineer. */
-"Dashboard Settings" = "Tetapan Papan Pemuka";
+"Dashboard Settings" = "Pengaturan Dashboard";
 
 /* No comment provided by engineer. */
-"Date" = "Tarikh";
+"Date" = "Tanggal";
 
 /* No comment provided by engineer. */
 "date_d_events" = "date_d_events";
@@ -785,148 +785,148 @@
 "Deep Purple" = "Ungu Gelap";
 
 /* No comment provided by engineer. */
-"Delay posting" = "Tunda penyiaran";
+"Delay posting" = "Tunda posting";
 
 /* No comment provided by engineer. */
-"Delayed until %@" = "Ditunda sehingga %@";
+"Delayed until %@" = "Ditunda hingga %@";
 
 /* No comment provided by engineer. */
-"Delete" = "Padam";
+"Delete" = "Hapus";
 
 /* No comment provided by engineer. */
-"Delete Announcement" = "Padam Pengumuman ";
+"Delete Announcement" = "Hapus Pengumuman";
 
 /* No comment provided by engineer. */
-"Delete comment" = "Padam komen";
+"Delete comment" = "Hapus komentar";
 
 /* No comment provided by engineer. */
-"Delete Comment" = "Padam Komen";
+"Delete Comment" = "Hapus Komentar";
 
 /* No comment provided by engineer. */
-"Delete Discussion" = "Padam Perbincangan";
+"Delete Discussion" = "Hapus Diskusi";
 
 /* No comment provided by engineer. */
-"Delete File" = "Padam Fail ";
+"Delete File" = "Hapus File";
 
 /* No comment provided by engineer. */
-"Delete Folder" = "Padam Folder";
+"Delete Folder" = "Hapus Folder";
 
 /* No comment provided by engineer. */
-"Deleted this reply." = "Balasan ini dipadamkan.";
+"Deleted this reply." = "Menghapus balasan ini.";
 
 /* No comment provided by engineer. */
-"Deleting this folder will also delete all of the files inside the folder." = "Memadamkan folder ini juga akan memadamkan semua fail dalam folder.";
+"Deleting this folder will also delete all of the files inside the folder." = "Menghapus folder ini juga akan menghapus semua file di dalam folder itu.";
 
 /* No comment provided by engineer. */
-"Describe the feature" = "Terangkan ciri";
+"Describe the feature" = "Deskripsikan fitur";
 
 /* No comment provided by engineer. */
-"Describe the problem" = "Terangkan masalah";
+"Describe the problem" = "Deskripsikan masalah";
 
 /* No comment provided by engineer. */
-"Description" = "Penerangan";
+"Description" = "Deskripsi";
 
 /* No comment provided by engineer. */
-"Deselect All" = "Nyahpilih Semua";
+"Deselect All" = "Hapus pilihan semua";
 
 /* No comment provided by engineer. */
-"Deselect item" = "Nyahpilih item";
+"Deselect item" = "Hapus pilihan item";
 
 /* No comment provided by engineer. */
-"Deselected" = "Dinyahpilih";
+"Deselected" = "Menghapus pilihan";
 
 /* No comment provided by engineer. */
-"Designer" = "Pereka bentuk";
+"Designer" = "Desainer";
 
 /* No comment provided by engineer. */
-"Designers" = "Pereka bentuk";
+"Designers" = "Desainer";
 
 /* No comment provided by engineer. */
-"Details" = "Butiran";
+"Details" = "Detail";
 
 /* No comment provided by engineer. */
-"DEVELOPER" = "PEMBANGUN";
+"DEVELOPER" = "PENGEMBANG";
 
 /* No comment provided by engineer. */
-"Developer menu" = "Menu pembangun";
+"Developer menu" = "Menu pengembang";
 
 /* No comment provided by engineer. */
-"Disconnected" = "Dinyahsambung";
+"Disconnected" = "Terputus";
 
 /* No comment provided by engineer. */
-"discussion" = "perbincangan";
+"discussion" = "diskusi";
 
 /* No comment provided by engineer. */
-"Discussion" = "Perbincangan";
+"Discussion" = "Diskusi";
 
 /* No comment provided by engineer. */
-"Discussion Comment" = "Komen Perbincangan";
+"Discussion Comment" = "Komentar Diskusi";
 
 /* No comment provided by engineer. */
-"Discussion Details" = "Butiran Perbincangan";
+"Discussion Details" = "Detail Diskusi";
 
 /* No comment provided by engineer. */
-"Discussion Post" = "Siaran Perbincangan";
+"Discussion Post" = "Posting Diskusi";
 
 /* No comment provided by engineer. */
-"Discussion Replies" = "Balasan Perbincangan";
+"Discussion Replies" = "Balasan Diskusi";
 
 /* No comment provided by engineer. */
-"Discussions" = "Perbincangan";
+"Discussions" = "Diskusi";
 
 /* No comment provided by engineer. */
-"Disk Error" = "Ralat Cakera";
+"Disk Error" = "Kesalahan Disk";
 
 /* Dismiss button for error messages */
-"Dismiss" = "Tolak";
+"Dismiss" = "Singkirkan";
 
 /* No comment provided by engineer. */
-"Dismiss %@" = "Tolak %@";
+"Dismiss %@" = "Singkirkan %@";
 
 /* No comment provided by engineer. */
-"Display As" = "Paparkan Sebagai";
+"Display As" = "Tampilkan Sebagai";
 
 /* No comment provided by engineer. */
-"Display Grade as" = "Paparkan Gred sebagai";
+"Display Grade as" = "Tampilkan Nilai sebagai";
 
 /* No comment provided by engineer. */
-"Do not send me anything" = "Jangan hantar apa-apa kepada saya";
+"Do not send me anything" = "Jangan kirimi saya apa pun";
 
 /* No comment provided by engineer. */
 "Domain" = "Domain";
 
 /* No comment provided by engineer. */
-"Done" = "Siap";
+"Done" = "Selesai";
 
 /* No comment provided by engineer. */
-"Download complete" = "Muat turun lengkap";
+"Download complete" = "Pengunduhan selesai";
 
 /* No comment provided by engineer. */
-"Downloading" = "Memuat turun";
+"Downloading" = "Mengunduh";
 
 /* Downloading 42 GB of 64 GB */
-"Downloading %@ of %@" = "Memuat turun %1$@ daripada %2$@";
+"Downloading %@ of %@" = "Mengunduh %1$@ dari %2$@";
 
 /* No comment provided by engineer. */
-"Due" = "Cukup tempoh";
+"Due" = "Batas";
 
 /* i.e. Due <Jan 10, 2020 at 9:00 PM> */
-"Due %@" = "Cukup tempoh %@";
+"Due %@" = "Batas %@";
 
 /* No comment provided by engineer. */
-"Due Date" = "Tarikh Siap";
+"Due Date" = "Batas Waktu";
 
 /* No comment provided by engineer. */
-"Due Dates" = "Tarikh Siap";
+"Due Dates" = "Tanggal Batas";
 
 /* No comment provided by engineer. */
-"Due Dates, Double tap for details." = "Tarikh Siap, Ketik dua kali untuk melihat butiran.";
+"Due Dates, Double tap for details." = "Tanggal Batas, Ketuk Dua Kali untuk detail.";
 
 /* No comment provided by engineer. */
-"Due:" = "Cukup tempoh:";
+"Due:" = "Batas waktu:";
 
 /* No comment provided by engineer. */
-"Due: %@" = "Cukup tempoh: %@";
+"Due: %@" = "Batas waktu: %@";
 
 /* No comment provided by engineer. */
 "Edit" = "Edit";
@@ -935,22 +935,22 @@
 "Edit Announcement" = "Edit Pengumuman";
 
 /* No comment provided by engineer. */
-"Edit Assignment" = "Edit Tugasan";
+"Edit Assignment" = "Edit Tugas";
 
 /* No comment provided by engineer. */
-"Edit attachment (1)" = "Edit Kepilan (1)";
+"Edit attachment (1)" = "Edit lampiran (1)";
 
 /* No comment provided by engineer. */
-"Edit attachment (none)" = "Edit kepilan (tiada)";
+"Edit attachment (none)" = "Edit Lampiran (tidak ada)";
 
 /* No comment provided by engineer. */
-"Edit course settings" = "Edit tetapan kursus";
+"Edit course settings" = "Edit pengaturan kursus";
 
 /* No comment provided by engineer. */
-"Edit Discussion" = "Edit Perbincangan";
+"Edit Discussion" = "Edit Diskusi";
 
 /* No comment provided by engineer. */
-"Edit File" = "Edit Fail";
+"Edit File" = "Edit File";
 
 /* No comment provided by engineer. */
 "Edit Folder" = "Edit Folder";
@@ -959,178 +959,178 @@
 "Edit Page" = "Edit Halaman";
 
 /* No comment provided by engineer. */
-"Edit Quiz Details" = "Edit Butiran Kuiz";
+"Edit Quiz Details" = "Edit Detail Kuis";
 
 /* No comment provided by engineer. */
 "Edit Recipients" = "Edit Penerima";
 
 /* No comment provided by engineer. */
-"Edit Syllabus" = "Edit Silibus";
+"Edit Syllabus" = "Edit Silabus";
 
 /* No comment provided by engineer. */
-"Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue." = "Sama ada anda pengguna baharu atau Dasar Penggunaan Boleh Diterima telah berubah sejak anda kali terakhir menyatakan persetujuan berkenaannya. Sila nyatakan persetujuan anda dengan Dasar Penggunaan Boleh Diterima sebelum anda meneruskan.";
+"Either you're a new user or the Acceptable Use Policy has changed since you last agreed to it. Please agree to the Acceptable Use Policy before you continue." = "Anda pengguna baru atau Kebijakan Penggunaan yang Dapat Diterima telah berubah sejak Anda terakhir kali menyetujuinya. Silakan setujui Kebijakan Penggunaan yang Dapat Diterima sebelum Anda melanjutkan.";
 
 /* No comment provided by engineer. */
-"Email" = "E-mel";
+"Email" = "Email";
 
 /* No comment provided by engineer. */
-"Email address" = "Alamat e-mel";
+"Email address" = "Alamat email";
 
 /* Description for email communication channel */
-"Email Notifications" = "Pemberitahuan E-mel";
+"Email Notifications" = "Notifikasi Email";
 
 /* No comment provided by engineer. */
-"Emergency" = "Kecemasan";
+"Emergency" = "Keadaan Darurat";
 
 /* No comment provided by engineer. */
-"Enable Push Notifications" = "Dayakan Pemberitahuan Tolak";
+"Enable Push Notifications" = "Aktifkan Notifikasi Push";
 
 /* No comment provided by engineer. */
-"Enabling the Auto Content Sync will take care of downloading the selected content based on the below settings. The content synchronization will happen even if the application is not running. If the setting is switched off then no synchronization will happen. The already downloaded content will not be deleted." = "Mendayakan Segerakan Kandungan Automatik akan mengurus muat turun kandungan yang dipilih berdasarkan tetapan di bawah. Penyegerakan kandungan akan etap berlaku walaupun aplikasi tidak berjalan. Jika tetapan dimatikan maka tiada penyegerakan akan berlaku. Kandungan yang sudah dimuat turun tidak akan dipadamkan.";
+"Enabling the Auto Content Sync will take care of downloading the selected content based on the below settings. The content synchronization will happen even if the application is not running. If the setting is switched off then no synchronization will happen. The already downloaded content will not be deleted." = "Mengaktifkan Sinkronisasi Konten Otomatis akan menangani pengunduhan dari konten yang dipilih berdasarkan pengaturan di bawah. Sinkronisasi konten akan terjadi walaupun aplikasi tidak berjalan. Jika pengaturan dimatikan, sinkronisasi tidak akan terjadi. Konten yang sudah diunduh tidak akan dihapus.";
 
 /* No comment provided by engineer. */
-"End Act as User" = "Berhenti Bertindak sebagai Pengguna";
+"End Act as User" = "Akhiri Bertindak sebagai Pengguna";
 
 /* No comment provided by engineer. */
-"Enter code" = "Masukkan kod";
+"Enter code" = "Masukkan kode";
 
 /* No comment provided by engineer. */
-"Error" = "Ralat";
+"Error" = "Kesalahan";
 
 /* No comment provided by engineer. */
-"Error Details" = "Butiran Ralat";
+"Error Details" = "Detail Kesalahan";
 
 /* No comment provided by engineer. */
-"Error Saving. Tap to retry." = "Ralat Menyimpan. Ketik untuk mencuba semula.";
+"Error Saving. Tap to retry." = "Kesalahan Penyimpanan. Ketuk untuk mencoba lagi.";
 
 /* No comment provided by engineer. */
-"Everyone" = "Semua orang";
+"Everyone" = "Semua Orang";
 
 /* No comment provided by engineer. */
-"Everyone else" = "Semua orang";
+"Everyone else" = "Semua orang lain";
 
 /* No comment provided by engineer. */
-"Excused" = "Dimaafkan";
+"Excused" = "Dibolehkan";
 
 /* No comment provided by engineer. */
-"Expand" = "Kembangkan";
+"Expand" = "Perbesar";
 
 /* No comment provided by engineer. */
-"expanded" = "dikembangkan";
+"expanded" = "diperbesar";
 
 /* No comment provided by engineer. */
-"Experimental Features" = "Ciri Eksperimental";
+"Experimental Features" = "Fitur Eksperimental";
 
 /* No comment provided by engineer. */
-"external tool" = "alat luar";
+"external tool" = "alat eksternal";
 
 /* No comment provided by engineer. */
-"External Tool" = "Alat Luar";
+"External Tool" = "Alat Eksternal";
 
 /* No comment provided by engineer. */
-"external URL" = "URL luar";
+"external URL" = "URL eksternal";
 
 /* No comment provided by engineer. */
-"External URL" = "URL Luar";
+"External URL" = "URL Eksternal";
 
 /* No comment provided by engineer. */
-"Extremely critical emergency" = "Kecemasan kritikal melampau";
+"Extremely critical emergency" = "Darurat kritis ekstrem";
 
 /* No comment provided by engineer. */
 "Fail" = "Gagal";
 
 /* No comment provided by engineer. */
-"Failed to Load Login Page" = "Gagal Memuatkan Halaman Log Masuk";
+"Failed to Load Login Page" = "Gagal Memuat Halaman Login";
 
 /* No comment provided by engineer. */
-"Failed to save image" = "Gagal menyimpan imej";
+"Failed to save image" = "Gagal menyimpan gambar";
 
 /* No comment provided by engineer. */
-"Failed to start upload." = "Gagal memulakan muat naik.";
+"Failed to start upload." = "Gagal memulai unggahan.";
 
 /* No comment provided by engineer. */
-"Failed upload" = "Muat naik gagal";
+"Failed upload" = "Gagal mengunggah";
 
 /* No comment provided by engineer. */
-"Failed Upload" = "Muat Naik Gagal";
+"Failed Upload" = "Gagal Mengunggah";
 
 /* No comment provided by engineer. */
-"Failed. Tap for options" = "Gagal. Ketik untuk melihat pilihan";
+"Failed. Tap for options" = "Gagal. Ketuk untuk opsi";
 
 /* No comment provided by engineer. */
-"Favorite" = "Kegemaran";
+"Favorite" = "Favorit";
 
 /* No comment provided by engineer. */
-"Feedback" = "Maklum balas";
+"Feedback" = "Umpan Balik";
 
 /* No comment provided by engineer. */
-"file" = "fail";
+"file" = "file";
 
 /* No comment provided by engineer. */
-"File" = "Fail";
+"File" = "File";
 
 /* No comment provided by engineer. */
-"File (fileName) size (size)." = "Fail (fileName) saiz (saiz).";
+"File (fileName) size (size)." = "File (fileName) berukuran (ukuran).";
 
 /* No comment provided by engineer. */
-"File Details" = "Butiran Fail";
+"File Details" = "Detail File";
 
 /* No comment provided by engineer. */
-"File download failed." = "Muat turun fail gagal.";
+"File download failed." = "Unduhan file gagal.";
 
 /* No comment provided by engineer. */
-"File No Longer Exists" = "Fail Tidak Lagi Wujud";
+"File No Longer Exists" = "File Tidak Lagi Ada.";
 
 /* No comment provided by engineer. */
-"File Upload" = "Muat Naik Fail";
+"File Upload" = "Unggahan File";
 
 /* No comment provided by engineer. */
-"File upload failed. Please cancel your submission and try uploading again." = "Muat naik fail gagal. Sila batalkan serahan anda dan cuba muat naik semula.";
+"File upload failed. Please cancel your submission and try uploading again." = "Unggahan file gagal. Silakan batalkan penyerahan Anda dan coba mengunggah lagi.";
 
 /* No comment provided by engineer. */
-"Files" = "Fail";
+"Files" = "File";
 
 /* No comment provided by engineer. */
-"Filter" = "Tapis";
+"Filter" = "Filter";
 
 /* No comment provided by engineer. */
-"Filter by" = "Tapis mengikut";
+"Filter by" = "Filter menurut";
 
 /* No comment provided by engineer. */
-"Filter by:" = "Tapis mengikut:";
+"Filter by:" = "Filter menurut:";
 
 /* No comment provided by engineer. */
-"Filter events" = "Tapis acara";
+"Filter events" = "Filter acara";
 
 /* No comment provided by engineer. */
-"Filter messages by course" = "Tapis mesej mengikut kursus";
+"Filter messages by course" = "Filter pesan menurut kursus";
 
 /* No comment provided by engineer. */
-"Filter messages by type" = "Tapis mesej mengikut jenis";
+"Filter messages by type" = "Filter pesan menurut jenis";
 
 /* No comment provided by engineer. */
 "filter_events_d_calendars_selected" = "filter_events_d_calendars_selected";
 
 /* No comment provided by engineer. */
-"Final Grade: %@" = "Gred Akhir: %@";
+"Final Grade: %@" = "Filter Nilai: %@";
 
 /* No comment provided by engineer. */
 "final_grade_g_pts" = "final_grade_g_pts";
 
 /* No comment provided by engineer. */
-"Find a code to scan" = "Cari kod untuk mengimbas";
+"Find a code to scan" = "Temukan kode untuk discan";
 
 /* No comment provided by engineer. */
-"Find another school" = "Cari sekolah lain";
+"Find another school" = "Temukan sekolah lain";
 
 /* No comment provided by engineer. */
-"Find my school" = "Cari sekolah anda";
+"Find my school" = "Temukan sekolah saya";
 
 /* No comment provided by engineer. */
-"Find School" = "Cari Sekolah";
+"Find School" = "Temukan Sekolah";
 
 /* No comment provided by engineer. */
-"Find your school or district" = "Cari sekolah atau daerah anda";
+"Find your school or district" = "Temukan sekolah atau distrik Anda";
 
 /* No comment provided by engineer. */
 "Folder Name" = "Nama Folder";
@@ -1145,19 +1145,19 @@
 "For:" = "Untuk:";
 
 /* No comment provided by engineer. */
-"Forget %@" = "Lupakan %@";
+"Forget %@" = "Lupa %@";
 
 /* No comment provided by engineer. */
-"Format not supported" = "Format tidak disokong";
+"Format not supported" = "Format tidak didukung";
 
 /* No comment provided by engineer. */
-"Forward" = "Majukan";
+"Forward" = "Maju";
 
 /* No comment provided by engineer. */
 "Front Page" = "Halaman Depan";
 
 /* No comment provided by engineer. */
-"Future Enrollments" = "Pendaftaran Akan Datang";
+"Future Enrollments" = "Pendaftaran Mendatang";
 
 /* No comment provided by engineer. */
 "g_out_of_g_points_possible" = "g_out_of_g_points_possible";
@@ -1169,52 +1169,52 @@
 "g_pts" = "g_pts";
 
 /* No comment provided by engineer. */
-"Go back and make sure you entered a valid institution name." = "Kembali semula dan pastikan anda memasukkan nama institusi yang sah.";
+"Go back and make sure you entered a valid institution name." = "Kembalilah dan pastikan Anda memasukkan nama institusi yang valid.";
 
 /* No comment provided by engineer. */
-"Go to today" = "Terus ke hari ini";
+"Go to today" = "Pergi ke hari ini";
 
 /* No comment provided by engineer. */
-"GPA Scale" = "Skala GPA";
+"GPA Scale" = "Skala IPK";
 
 /* No comment provided by engineer. */
-"grade" = "gred";
+"grade" = "nilai";
 
 /* No comment provided by engineer. */
-"Grade" = "Gred";
+"Grade" = "Kelas";
 
 /* No comment provided by engineer. */
-"Grade after posting" = "Gred selepas disiarkan";
+"Grade after posting" = "Nilai setelah posting";
 
 /* No comment provided by engineer. */
-"Grade before posting" = "Gred sebelum disiarkan";
+"Grade before posting" = "Nilai sebelum posting";
 
 /* No comment provided by engineer. */
-"Grade override" = "Gantian gred";
+"Grade override" = "Override nilai";
 
 /* No comment provided by engineer. */
-"Grade Override" = "Gantian Gred";
+"Grade Override" = "Override Nilai";
 
 /* No comment provided by engineer. */
-"Graded" = "Digredkan";
+"Graded" = "Dinilai";
 
 /* No comment provided by engineer. */
-"Graded Quiz" = "Kuiz Bergred";
+"Graded Quiz" = "Kuis Dinilai";
 
 /* No comment provided by engineer. */
-"Graded Survey" = "Tinjauan Bergred";
+"Graded Survey" = "Survei Dinilai";
 
 /* No comment provided by engineer. */
-"Graded Surveys" = "Tinjauan Bergred";
+"Graded Surveys" = "Survei Dinilai";
 
 /* No comment provided by engineer. */
-"Grades" = "Gred";
+"Grades" = "Nilai";
 
 /* No comment provided by engineer. */
-"Grading" = "Penggredan";
+"Grading" = "Penilaian";
 
 /* No comment provided by engineer. */
-"Grading Policies" = "Dasar Penggredan";
+"Grading Policies" = "Kebijakan Penilaian";
 
 /* No comment provided by engineer. */
 "green" = "hijau";
@@ -1223,28 +1223,28 @@
 "Green" = "Hijau";
 
 /* No comment provided by engineer. */
-"grey" = "kelabu";
+"grey" = "abu-abu";
 
 /* No comment provided by engineer. */
 "Grid" = "Grid";
 
 /* No comment provided by engineer. */
-"Groups" = "Kumpulan";
+"Groups" = "Grup";
 
 /* No comment provided by engineer. */
-"Hang tight, we're getting things ready for you." = "Sila tunggu, kami sedang menyediakan beberapa perkara untuk anda.";
+"Hang tight, we're getting things ready for you." = "Jangan ke mana-mana, kami sedang menyiapkannya untuk Anda.";
 
 /* No comment provided by engineer. */
-"Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Sudahkan ibu bapa anda mengimbas kod QR daripada apl Canvas Parent untuk dipasangkan denan anda.";
+"Have your parent scan this QR code from the Canvas Parent app to pair with you." = "Minta orang tua Anda memindai kode QR ini dari app Canvas Parent untuk pairing dengan Anda.";
 
 /* No comment provided by engineer. */
-"Help your students with this assignment by adding instructions." = "Permudahkan pelajar anda untuk membuat tugasan ini dengan menambah arahan.";
+"Help your students with this assignment by adding instructions." = "Bantu siswa Anda dengan tugas ini dengan menambah instruktur.";
 
 /* No comment provided by engineer. */
 "Hide" = "Sembunyikan";
 
 /* No comment provided by engineer. */
-"Hide content for %@" = "Sembunyikan kandungan untuk %@";
+"Hide content for %@" = "Sembunyikan konten untuk %@";
 
 /* No comment provided by engineer. */
 "hide_%d_missing_items" = "hide_%d_missing_items";
@@ -1256,64 +1256,64 @@
 "Highest" = "Tertinggi";
 
 /* No comment provided by engineer. */
-"Homeroom" = "Kelas Umum";
+"Homeroom" = "Homeroom";
 
 /* No comment provided by engineer. */
-"Homeroom View" = "Pandangan Kelas Umum";
+"Homeroom View" = "Tampilan Homeroom";
 
 /* No comment provided by engineer. */
-"How do I find my school?" = "Bagaimanakah cara mencari sekolah saya?";
+"How do I find my school?" = "Bagaimana cara menemukan sekolah saya?";
 
 /* No comment provided by engineer. */
-"I agree to the Acceptable Use Policy." = "Anda mesti memberikan persetujuan untuk Dasar Penggunaan Boleh Diterima.";
+"I agree to the Acceptable Use Policy." = "Saya menyetujui Kebijakan Penggunaan yang Dapat Diterima.";
 
 /* No comment provided by engineer. */
-"I can't get things done until I hear back from you" = "Saya tidak dapat menyelesaikan perkara ini sehingga saya menerima maklum balas daripada anda";
+"I can't get things done until I hear back from you" = "Saya tidak bisa melakukan apa pun sampai saya mendapat info dari Anda";
 
 /* No comment provided by engineer. */
-"I don't have a Canvas account" = "Saya tidak memiliki akaun Canvas";
+"I don't have a Canvas account" = "Saya tidak punya akun Canvas";
 
 /* No comment provided by engineer. */
-"I have a Canvas account" = "Saya sudah mempunyai akaun Canvas";
+"I have a Canvas account" = "Saya punya akun Canvas";
 
 /* No comment provided by engineer. */
-"I hold the copyright" = "Saya memegang hak cipta";
+"I hold the copyright" = "Saya memiliki hak cipta";
 
 /* No comment provided by engineer. */
-"I need help but it's not urgent" = "Saya perlukan sedikit bantuan tetapi ia tidak mendesak";
+"I need help but it's not urgent" = "Saya butuh bantuan tetapi tidak mendesak";
 
 /* No comment provided by engineer. */
-"I obtained permission" = "Saya telah mendapatkan keizinan";
+"I obtained permission" = "Saya punya izin";
 
 /* No comment provided by engineer. */
-"If this setting is enabled the content synchronization will only happen if the device connects to a Wi-Fi network, otherwise it will be postponed until a Wi-Fi network is available." = "Jika tetapan ini didayakan penyegerakan kandungan hanya akan berlaku jika peranti terhubung dengan rangkaian Wi-Fi, jika tidak, ia akan ditangguhkan sehingga rangkaian Wi-Fi tersedia.";
+"If this setting is enabled the content synchronization will only happen if the device connects to a Wi-Fi network, otherwise it will be postponed until a Wi-Fi network is available." = "Jika pengaturan ini diaktifkan, sinkronisasi konten hanya akan terjadi jika perangkat tersambung ke jaringan Wi-Fi; jika tidak, akan ditunda hingga jaringan Wi-Fi tersedia.";
 
 /* No comment provided by engineer. */
-"Image" = "Imej";
+"Image" = "Gambar";
 
 /* No comment provided by engineer. */
-"Immediately" = "Dengan Segera";
+"Immediately" = "Segera";
 
 /* No comment provided by engineer. */
-"Impact" = "Impak";
+"Impact" = "Dampak";
 
 /* No comment provided by engineer. */
-"Impact Level" = "Tahap Impak";
+"Impact Level" = "Level Dampak";
 
 /* No comment provided by engineer. */
-"Important Dates" = "Tarikh Penting";
+"Important Dates" = "Tanggal Penting";
 
 /* No comment provided by engineer. */
-"Important Info" = "Maklumat Penting";
+"Important Info" = "Info Penting";
 
 /* No comment provided by engineer. */
-"In Progress" = "Sedang Berjalan";
+"In Progress" = "Sedang Berlangsung";
 
 /* No comment provided by engineer. */
-"Inbox" = "Peti masuk";
+"Inbox" = "Kotak Masuk";
 
 /* No comment provided by engineer. */
-"Incompatible File Type" = "Jenis Fail Tidak Serasi";
+"Incompatible File Type" = "Jenis File Tidak Kompatibel";
 
 /* No comment provided by engineer. */
 "incompatible_files_for_assignment" = "incompatible_files_for_assignment";
@@ -1322,133 +1322,133 @@
 "Incomplete" = "Tidak lengkap";
 
 /* No comment provided by engineer. */
-"Indigo" = "Biru Nila";
+"Indigo" = "Indigo";
 
 /* No comment provided by engineer. */
 "Institution Announcement" = "Pengumuman Institusi";
 
 /* No comment provided by engineer. */
-"Institution announcements" = "Pengumuman institusi";
+"Institution announcements" = "Pengumuman Institusi";
 
 /* No comment provided by engineer. */
-"Interactions on this page are limited by your institution." = "Interaksi pada halaman ini dihadkan oleh institusi anda.";
+"Interactions on this page are limited by your institution." = "Interaksi di halaman ini dibatasi oleh institusi Anda.";
 
 /* No comment provided by engineer. */
-"Invitation" = "Jemputan";
+"Invitation" = "Undangan";
 
 /* No comment provided by engineer. */
-"Invitation pending" = "Jemputan belum selesai";
+"Invitation pending" = "Undangan menunggu";
 
 /* No comment provided by engineer. */
-"Invite accepted!" = "Jemputan diterima!";
+"Invite accepted!" = "Undangan diterima!";
 
 /* No comment provided by engineer. */
-"Invite declined!" = "Jemputan ditolak!";
+"Invite declined!" = "Undangan ditolak!";
 
 /* No comment provided by engineer. */
-"It is a fair use or similar exception" = "Bahan berada bawah penggunaan adil atau pengecualian serupa";
+"It is a fair use or similar exception" = "Ini adalah penggunaan wajar atau pengecualian sejenis";
 
 /* No comment provided by engineer. */
-"It is in the public domain" = "Bahan berada dalam domain awam";
+"It is in the public domain" = "Ini ada di dalam domain publik";
 
 /* No comment provided by engineer. */
-"It is licensed under Creative Commons" = "Bahan dilesenkan bawah Creative Commons";
+"It is licensed under Creative Commons" = "Ini dilisensikan sesuai dengan Creative Commons";
 
 /* No comment provided by engineer. */
-"It looks like a great day to rest, relax, and recharge." = "Nampaknya ini hari yang baik untuk berehat, bersantai dan merawat diri.";
+"It looks like a great day to rest, relax, and recharge." = "Sepertinya hari ini sangat cocok untuk beristirahat, santai, dan menyegarkan diri.";
 
 /* No comment provided by engineer. */
-"It looks like announcements haven’t been created in this space yet." = "Nampaknya pengumuman belum dicipta dalam ruang ini.";
+"It looks like announcements haven’t been created in this space yet." = "Sepertinya pengumuman belum dibuat di ruang ini.";
 
 /* No comment provided by engineer. */
-"It looks like assignments haven’t been created in this space yet." = "Nampaknya tugasan belum dicipta dalam ruang ini.";
+"It looks like assignments haven’t been created in this space yet." = "Sepertinya tugas belum dibuat di ruang ini.";
 
 /* No comment provided by engineer. */
-"It looks like discussions haven’t been created in this space yet." = "Nampaknya perbincangan belum dicipta dalam ruang ini.";
+"It looks like discussions haven’t been created in this space yet." = "Sepertinya diskusi belum dibuat di ruang ini.";
 
 /* No comment provided by engineer. */
-"It looks like quizzes haven’t been created in this space yet." = "Nampaknya kuiz belum dicipta dalam ruang ini.";
+"It looks like quizzes haven’t been created in this space yet." = "Sepertinya kuis belum dibuat di ruang ini.";
 
 /* No comment provided by engineer. */
-"It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Nampaknya tidak terdapat apa-apa kursus yang dikaitkan dengan akaun ini. Lawati laman web untuk mencipta kursus hari ini.";
+"It looks like there aren’t any courses associated with this account. Visit the web to create a course today." = "Sepertinya tidak ada kursus yang diasosiasikan dengan akun ini. Kunjungi web untuk membuat kursus hari ini.";
 
 /* No comment provided by engineer. */
-"It looks like you aren't enrolled in any courses." = "Nampaknya anda belum mendaftar dalam mana-mana kursus.";
+"It looks like you aren't enrolled in any courses." = "Sepertinya Anda tidak terdaftar dalam kursus apa pun.";
 
 /* No comment provided by engineer. */
-"It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Nampaknya anda belum mendaftar dalam mana-mana sebagai %@. Salah satu apl kami yang lain mungkin lebih sesuai. Ketik satu untuk melawati App Store.";
+"It looks like you aren’t enrolled in any courses as %@. One of our other apps might be a better fit. Tap one to visit the App Store." = "Sepertinya Anda tidak terdaftar dalam kursus apa pun sebagai %@. Salah satu app lain mungkin lebih cocok. Ketuk untuk membuka App Store.";
 
 /* No comment provided by engineer. */
-"It will stop offline content sync. You can do it again later." = "Tindakan ini akan memberhentikan penyegerakan kandungan luar talian. Anda boleh melakukan penyegerakan lagi kemudian.";
+"It will stop offline content sync. You can do it again later." = "Akan menghentikan sinkronisasi konten offline. Anda dapat melakukannya lagi nanti.";
 
 /* No comment provided by engineer. */
-"Italic" = "Huruf condong";
+"Italic" = "Huruf Miring";
 
 /* No comment provided by engineer. */
-"Join" = "Sertai";
+"Join" = "Gabung";
 
 /* No comment provided by engineer. */
-"Landing Page" = "Halaman Pendaratan";
+"Landing Page" = "Halaman Awal";
 
 /* No comment provided by engineer. */
-"Last activity on %@" = "Aktiviti terakhir pada %@";
+"Last activity on %@" = "Aktivitas terakhir pada %@";
 
 /* No comment provided by engineer. */
-"Last post %@" = "Siaran terakhir %@";
+"Last post %@" = "Posting terakhir %@";
 
 /* No comment provided by engineer. */
-"Late" = "Lewat";
+"Late" = "Terlambat";
 
 /* No comment provided by engineer. */
-"Late Grading" = "Penggredan Lewat";
+"Late Grading" = "Penilaian Terlambat";
 
 /* No comment provided by engineer. */
 "late_penalty_g_pts" = "late_penalty_g_pts";
 
 /* No comment provided by engineer. */
-"Latest" = "Terakhir";
+"Latest" = "Terbaru";
 
 /* No comment provided by engineer. */
-"Launch External Tool" = "Lancarkan Alat Luar";
+"Launch External Tool" = "Luncurkan Alat Eksternal";
 
 /* No comment provided by engineer. */
-"Leave Student View" = "Tinggalkan Pandangan Pelajar";
+"Leave Student View" = "Tinggalkan Tampilan Siswa";
 
 /* No comment provided by engineer. */
-"Legal" = "Undang-undang";
+"Legal" = "Hukum";
 
 /* No comment provided by engineer. */
-"Length in minutes" = "Panjang dalam minit";
+"Length in minutes" = "Panjang dalam menit";
 
 /* No comment provided by engineer. */
-"Letter Grade" = "Gred Huruf";
+"Letter Grade" = "Nilai Dalam Huruf";
 
 /* No comment provided by engineer. */
 "Library" = "Pustaka";
 
 /* No comment provided by engineer. */
-"Light Blue" = "Biru Muda";
+"Light Blue" = "Biru Mudah";
 
 /* No comment provided by engineer. */
-"Light theme" = "Tema Cerah";
+"Light theme" = "Tema terang";
 
 /* No comment provided by engineer. */
-"Light Theme" = "Tema Cerah";
+"Light Theme" = "Tema Terang";
 
 /* like action */
-"Like" = "Like";
+"Like" = "Suka";
 
 /* No comment provided by engineer. */
-"Link" = "Pautan";
+"Link" = "Tautan";
 
 /* No comment provided by engineer. */
-"Link to Website URL" = "Pautan ke URL Laman Web";
+"Link to Website URL" = "Tautkan ke URL Situs Web";
 
 /* No comment provided by engineer. */
-"List" = "Senarai";
+"List" = "Daftar";
 
 /* end of and list pattern */
-"list_and_end" = "%1$@ dan %2$@";
+"list_and_end" = "%1$@, dan %2$@";
 
 /* middle of and list pattern */
 "list_and_middle" = "%1$@, %2$@";
@@ -1460,7 +1460,7 @@
 "list_and_two" = "%1$@ dan %2$@";
 
 /* end of or list pattern */
-"list_or_end" = "%1$@ atau %2$@";
+"list_or_end" = "%1$@, atau %2$@";
 
 /* middle of or list pattern */
 "list_or_middle" = "%1$@, %2$@";
@@ -1472,52 +1472,52 @@
 "list_or_two" = "%1$@ atau %2$@";
 
 /* No comment provided by engineer. */
-"Loading" = "Memuatkan";
+"Loading" = "Memuat";
 
 /* No comment provided by engineer. */
-"Loading more modules..." = "Muatkan lebih banyak modul...";
+"Loading more modules..." = "Memuat modul lain...";
 
 /* No comment provided by engineer. */
-"Locate QR Code" = "Kesan Kod QR";
+"Locate QR Code" = "Temukan Kode QR";
 
 /* No comment provided by engineer. */
-"Lock Questions After Answering" = "Kunci Soalan Selepas Jawapan Diberikan";
+"Lock Questions After Answering" = "Kunci Pertanyaan Setelah Menjawab";
 
 /* No comment provided by engineer. */
-"Lock Questions After Answering:" = "Kunci Soalan Selepas Jawapan Diberikan:";
+"Lock Questions After Answering:" = "Kunci Pertanyaan Setelah Menjawab:";
 
 /* No comment provided by engineer. */
-"locked" = "berkunci";
+"locked" = "terkunci";
 
 /* No comment provided by engineer. */
-"Locked" = "Berkunci";
+"Locked" = "Terkunci";
 
 /* No comment provided by engineer. */
-"Locked until \"%@\" is graded" = "Berkunci sehingga \"%@\" digredkan";
+"Locked until \"%@\" is graded" = "Terkunci hingga \"%@\" dinilai";
 
 /* No comment provided by engineer. */
-"Log In" = "Log Masuk";
+"Log In" = "Login";
 
 /* No comment provided by engineer. */
-"Log In Again" = "Log Masuk Semula";
+"Log In Again" = "Login Sebagai";
 
 /* No comment provided by engineer. */
-"Log Out" = "Log Keluar";
+"Log Out" = "Logout";
 
 /* No comment provided by engineer. */
-"Logging you in" = "Mengelog masuk";
+"Logging you in" = "Memasukkan Anda dalam";
 
 /* No comment provided by engineer. */
-"Login" = "Log masuk";
+"Login" = "Login";
 
 /* No comment provided by engineer. */
-"Login Error" = "Ralat Log Masuk";
+"Login Error" = "Kesalahan Login";
 
 /* No comment provided by engineer. */
-"Login help." = "Bantuan log masuk.";
+"Login help." = "Bantuan login.";
 
 /* No comment provided by engineer. */
-"Login ID" = "ID Log Masuk";
+"Login ID" = "ID Login";
 
 /* No comment provided by engineer. */
 "Low: %@" = "Rendah: %@";
@@ -1529,52 +1529,52 @@
 "Magenta" = "Magenta";
 
 /* No comment provided by engineer. */
-"Make sure you enable camera permissions in Settings" = "Pastikan anda mendayakan keizinan kamera dalam Tetapan";
+"Make sure you enable camera permissions in Settings" = "Pastikan Anda mengaktifkan izin kamera di Pengaturan";
 
 /* No comment provided by engineer. */
-"Manage Offline Content" = "Urus Kandungan Luar Talian";
+"Manage Offline Content" = "Kelola Konten Offline";
 
 /* No comment provided by engineer. */
-"Manage Students" = "Urus Pelajar";
+"Manage Students" = "Kelola Siswa";
 
 /* No comment provided by engineer. */
 "Manual" = "Manual";
 
 /* No comment provided by engineer. */
-"Manual OAuth Login" = "Log Masuk OAuth Manual";
+"Manual OAuth Login" = "Login OAuth Manual";
 
 /* No comment provided by engineer. */
-"Mark All as Read" = "Tandakan Semua sebagai Telah Dibaca";
+"Mark All as Read" = "Tandai Semua sebagai Dibaca";
 
 /* No comment provided by engineer. */
-"Mark All as Unread" = "Tandakan Semua sebagai Belum Dibaca";
+"Mark All as Unread" = "Tandai Semua sebagai Belum Dibaca";
 
 /* No comment provided by engineer. */
-"Mark as Done" = "Tanda sebagai Siap";
+"Mark as Done" = "Tandai sebagai Selesai";
 
 /* No comment provided by engineer. */
-"Mark as read" = "Tandakan sebagai telah dibaca";
+"Mark as read" = "Tandai sudah dibaca";
 
 /* No comment provided by engineer. */
-"Mark as Read" = "Tanda sebagai Telah Dibaca";
+"Mark as Read" = "Tandai Sudah Dibaca";
 
 /* No comment provided by engineer. */
-"Mark as Undone" = "Tanda sebagai Belum Siap";
+"Mark as Undone" = "Tandai sebagai Belum Selesai";
 
 /* No comment provided by engineer. */
-"Mark as unread" = "Tandakan sebagai belum dibaca";
+"Mark as unread" = "Tandai belum dibaca";
 
 /* No comment provided by engineer. */
-"Mark as Unread" = "Tanda sebagai Belum Dibaca";
+"Mark as Unread" = "Tandai Belum Dibaca";
 
 /* No comment provided by engineer. */
-"Mark done" = "Tanda siap";
+"Mark done" = "Tandai selesai";
 
 /* No comment provided by engineer. */
-"Mark item as done" = "Tanda item sebagai siap";
+"Mark item as done" = "Tandai item sebagai selesai";
 
 /* No comment provided by engineer. */
-"Marked done" = "Ditandakan siap";
+"Marked done" = "Ditandai selesai";
 
 /* No comment provided by engineer. */
 "me" = "saya";
@@ -1583,28 +1583,28 @@
 "me & %@" = "saya & %@";
 
 /* No comment provided by engineer. */
-"Mean: %@" = "Min: %@";
+"Mean: %@" = "Rata-Rata: %@";
 
 /* No comment provided by engineer. */
-"Media Recording" = "Rakaman Media";
+"Media Recording" = "Rekaman Media";
 
 /* No comment provided by engineer. */
-"Membership Update" = "Kemas Kini Keahlian";
+"Membership Update" = "Pembaruan Keanggotaan";
 
 /* No comment provided by engineer. */
-"Message" = "Mesej";
+"Message" = "Pesan";
 
 /* No comment provided by engineer. */
-"Message could not be sent" = "Mesej tidak dapat dihantar";
+"Message could not be sent" = "Pesan ini tidak dapat dikirim";
 
 /* No comment provided by engineer. */
-"Message Details" = "Butiran Mesej";
+"Message Details" = "Detail Pesan";
 
 /* No comment provided by engineer. */
-"Message from %@, %@, on %@, %@" = "Mesej daripada %1$@, %2$@, pada %3$@, %4$@";
+"Message from %@, %@, on %@, %@" = "Pesan dari %1$@, %2$@, pada %3$@, %4$@";
 
 /* No comment provided by engineer. */
-"Missing" = "Tiada";
+"Missing" = "Tidak Ada";
 
 /* No comment provided by engineer. */
 "Module Item" = "Item Modul";
@@ -1613,64 +1613,64 @@
 "Modules" = "Modul";
 
 /* No comment provided by engineer. */
-"More options" = "Lebih banyak pilihan";
+"More options" = "Opsi lain";
 
 /* No comment provided by engineer. */
-"Move Annotation" = "Alih Anotasi";
+"Move Annotation" = "Pindah Anotasi";
 
 /* No comment provided by engineer. */
-"Multiple Due Dates" = "Berbilang Tarikh Siap";
+"Multiple Due Dates" = "Tanggal Batas Berganda";
 
 /* No comment provided by engineer. */
 "My Subjects" = "Subjek Saya";
 
 /* No comment provided by engineer. */
-"N/A" = "T/B";
+"N/A" = "T/A";
 
 /* No comment provided by engineer. */
 "Name" = "Nama";
 
 /* No comment provided by engineer. */
-"Needs Grading" = "Memerlukan Penggredan";
+"Needs Grading" = "Membutuhkan Penilaian";
 
 /* No comment provided by engineer. */
-"NEEDS GRADING" = "MEMERLUKAN PENGGREDAN";
+"NEEDS GRADING" = "MEMBUTUHKAN PENILAIAN";
 
 /* No comment provided by engineer. */
-"Network Error" = "Ralat Rangkaian";
+"Network Error" = "Kesalahan Jaringan";
 
 /* No comment provided by engineer. */
 "Never" = "Tidak Pernah";
 
 /* No comment provided by engineer. */
-"New Announcement" = "Pengumuman Baharu";
+"New Announcement" = "Pengumuman Baru";
 
 /* No comment provided by engineer. */
-"New Conferences" = "Persidangan Baharu";
+"New Conferences" = "Konferensi Baru";
 
 /* No comment provided by engineer. */
-"New Discussion" = "Perbincangan Baharu";
+"New Discussion" = "Diskusi Baru";
 
 /* No comment provided by engineer. */
-"New Message" = "Mesej Baharu";
+"New Message" = "Pesan Baru";
 
 /* No comment provided by engineer. */
-"New Page" = "Halaman Baharu";
+"New Page" = "Halaman Baru";
 
 /* No comment provided by engineer. */
-"New Quiz" = "Kuiz Baharu";
+"New Quiz" = "Kuis Baru";
 
 /* No comment provided by engineer. */
-"New Quizzes" = "Kuiz Baharu";
+"New Quizzes" = "Kuis Baru";
 
 /* No comment provided by engineer. */
-"New To Do" = "Senarai Untuk Dilakukan Baharu";
+"New To Do" = "To Do Baru";
 
 /* No comment provided by engineer. */
-"Next" = "Seterusnya";
+"Next" = "Berikutnya";
 
 /* No comment provided by engineer. */
-"Next Week" = "Minggu Seterusnya";
+"Next Week" = "Minggu Depan";
 
 /* No comment provided by engineer. */
 "Nickname" = "Nama panggilan";
@@ -1679,151 +1679,151 @@
 "No" = "Tidak";
 
 /* No comment provided by engineer. */
-"No Announcements" = "Tiada Pengumuman";
+"No Announcements" = "Tidak Ada Pengumuman";
 
 /* No comment provided by engineer. */
-"No Assignments" = "Tiada Tugasan ";
+"No Assignments" = "Tidak Ada Tugas";
 
 /* No comment provided by engineer. */
-"No available from date set." = "Tiada yang tersedia dari tarikh ditetapkan.";
+"No available from date set." = "Tidak tersedia dari tanggal yang diatur.";
 
 /* No comment provided by engineer. */
-"No available until date set." = "Tiada yang tersedia hingga tarikh ditetapkan.";
+"No available until date set." = "Tidak tersedia hingga tanggal yang diatur.";
 
 /* No comment provided by engineer. */
-"No Conferences" = "Tiada Persidangan";
+"No Conferences" = "Tidak Ada Konferensi";
 
 /* No comment provided by engineer. */
-"No Content" = "Tiada Kandungan";
+"No Content" = "Tidak Ada Konten";
 
 /* No comment provided by engineer. */
-"No Course Content" = "Tiada Kandungan Kursus";
+"No Course Content" = "Tidak Ada Konten Kursus";
 
 /* No comment provided by engineer. */
-"No Courses" = "Tiada Kursus";
+"No Courses" = "Tidak Ada Kursus";
 
 /* No comment provided by engineer. */
-"No date selected" = "Tiada tarikh dipilih";
+"No date selected" = "Tanggal tidak dipilih";
 
 /* No comment provided by engineer. */
-"No description" = "Tiada penerangan";
+"No description" = "Tanpa deskripsi";
 
 /* No comment provided by engineer. */
-"No Discussions" = "Tiada Perbincangan";
+"No Discussions" = "Tidak Ada Diskusi";
 
 /* No comment provided by engineer. */
-"No Due Date" = "Tiada Tarikh Siap";
+"No Due Date" = "Tidak Ada Batas Waktu";
 
 /* No comment provided by engineer. */
-"No due date set." = "Tiada tarikh siap ditetapkan.";
+"No due date set." = "Tanpa tanggal batas yang diatur.";
 
 /* No comment provided by engineer. */
-"No Events Today!" = "Tiada Acara Hari Ini!";
+"No Events Today!" = "Tidak Ada Acara Hari Ini!";
 
 /* No comment provided by engineer. */
-"No Files" = "Tiada Fail";
+"No Files" = "Tidak Ada File";
 
 /* No comment provided by engineer. */
-"No image found from image picker" = "Tiada imej ditemui dari pemilih imej";
+"No image found from image picker" = "Gambar tidak ditemukan dari pemilih gambar";
 
 /* No comment provided by engineer. */
-"No Messages" = "Tiada Mesej";
+"No Messages" = "Tidak Ada Pesan";
 
 /* No comment provided by engineer. */
-"No Modules" = "Tiada Modul";
+"No Modules" = "Tidak Ada Modul";
 
 /* No comment provided by engineer. */
-"No Pages" = "Tiada Halaman";
+"No Pages" = "Tidak Ada Halaman";
 
 /* No comment provided by engineer. */
-"No preview available" = "Tiada pratonton tersedia";
+"No preview available" = "Tinjauan tidak tersedia";
 
 /* No comment provided by engineer. */
-"No Quizzes" = "Tiada Kuiz";
+"No Quizzes" = "Tidak Ada Kuis";
 
 /* No comment provided by engineer. */
-"No Results" = "Tiada Keputusan";
+"No Results" = "Tidak Ada Hasil";
 
 /* No comment provided by engineer. */
-"No Sections" = "Tiada Seksyen";
+"No Sections" = "Tidak Ada Bagian";
 
 /* No comment provided by engineer. */
-"No Subject" = "Tiada Subjek";
+"No Subject" = "Tanpa Subjek";
 
 /* No comment provided by engineer. */
-"No Submission" = "Tiada Serahan";
+"No Submission" = "Tidak Ada Penyerahan";
 
 /* No comment provided by engineer. */
-"No supported files to submit" = "Tiada fail disokong untuk serahan";
+"No supported files to submit" = "Tidak ada file untuk diserahkan";
 
 /* No comment provided by engineer. */
-"No time Limit" = "Tiada Had masa";
+"No time Limit" = "Tanpa batas waktu";
 
 /* No comment provided by engineer. */
-"None" = "Tiada";
+"None" = "Tidak ada";
 
 /* No comment provided by engineer. */
-"Not enrolled" = "Tidak didaftarkan";
+"Not enrolled" = "Tidak terdaftar";
 
 /* No comment provided by engineer. */
-"Not Graded" = "Tidak Bergred";
+"Not Graded" = "Tidak Dinilai";
 
 /* No comment provided by engineer. */
 "Not Published" = "Tidak Diterbitkan";
 
 /* No comment provided by engineer. */
-"Not Started" = "Tidak Dimulakan";
+"Not Started" = "Tidak Dimulai";
 
 /* No comment provided by engineer. */
-"Not Submitted" = "Tidak Diserahkan";
+"Not Submitted" = "Belum Diserahkan";
 
 /* No comment provided by engineer. */
-"Not supported" = "Tidak disokong";
+"Not supported" = "Tidak didukung";
 
 /* No comment provided by engineer. */
 "Not Urgent" = "Tidak Mendesak";
 
 /* No due assignments for today */
-"Nothing Due Today" = "Tiada Yang Cukup Tempoh Hari Ini";
+"Nothing Due Today" = "Tidak Batas Waktu Hari Ini";
 
 /* No comment provided by engineer. */
-"Nothing planned yet" = "Belum ada apa-apa dirancang";
+"Nothing planned yet" = "Belum direncanakan";
 
 /* No comment provided by engineer. */
-"Notification Error" = "Ralat Pemberitahuan";
+"Notification Error" = "Kesalahan Notifikasi";
 
 /* No comment provided by engineer. */
-"Notifications" = "Pemberitahuan";
+"Notifications" = "Notifikasi";
 
 /* No comment provided by engineer. */
-"Notifications are currently disabled in Settings. Tap to enable them again." = "Pemberitahuan Ketik untuk mendayakannya semula.";
+"Notifications are currently disabled in Settings. Tap to enable them again." = "Notifikasi saat ini dinonaktifkan di Pengaturan. Ketuk untuk mengaktifkan lagi.";
 
 /* No comment provided by engineer. */
-"Notify me right away" = "Beritahu saya serta-merta";
+"Notify me right away" = "Segera beri tahu saya";
 
 /* No comment provided by engineer. */
-"Observer" = "Pemerhati";
+"Observer" = "Pengamat";
 
 /* No comment provided by engineer. */
-"Observers" = "Pemerhati";
+"Observers" = "Pengamat";
 
 /* No comment provided by engineer. */
-"Offline" = "Luar talian";
+"Offline" = "Offline";
 
 /* No comment provided by engineer. */
-"Offline Content" = "Kandungan Luar Talian";
+"Offline Content" = "Konten Offline";
 
 /* No comment provided by engineer. */
-"Offline Content Sync Failed" = "Penyegerakan Kandungan Luar Talian Gagal";
+"Offline Content Sync Failed" = "Sinkronisasi Konten Offline Gagal";
 
 /* No comment provided by engineer. */
-"Offline Content Sync Success" = "Berjaya Menyegerakkan Kandungan Luar Talian";
+"Offline Content Sync Success" = "Sinkronisasi Konten Offline Berhasil";
 
 /* No comment provided by engineer. */
-"Offline mode" = "Mod luar talian";
+"Offline mode" = "Mode offline";
 
 /* No comment provided by engineer. */
-"Offline sync was interrupted by the operating system" = "Penyegerakan luar talian terganggu oleh sistem pengendalian";
+"Offline sync was interrupted by the operating system" = "Sinkronisasi offline dihentikan oleh sistem operasi";
 
 /* No comment provided by engineer. */
 "offline_sync_finished" = "offline_sync_finished";
@@ -1835,34 +1835,34 @@
 "Olive" = "Zaitun";
 
 /* No comment provided by engineer. */
-"On Paper" = "Atas Kertas";
+"On Paper" = "Di Atas Kertas";
 
 /* No comment provided by engineer. */
-"One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "Salah satu serahan anda masih dalam proses muat naik. Mengelog keluar mungkin menjejaskannya.\nAdakah anda pasti anda ingin log keluar?";
+"One of your submissions is still being uploaded. Logging out might interrupt it.\nAre you sure you want to log out?" = "Salah satu penyerahan Anda masih diunggah. Logout dapat menghentikannya.\nAnda yakin mau logout?";
 
 /* No comment provided by engineer. */
-"One or more files failed to sync. Check your internet connection and retry to submit." = "Satu atau lebih fail gagal disegerakkan. Semak sambungan Internet anda dan cuba semula untuk membuat serahan.";
+"One or more files failed to sync. Check your internet connection and retry to submit." = "Satu atau lebih file gagal disinkronkan. Periksa sambungan internet Anda dan coba serahkan lagi.";
 
 /* No comment provided by engineer. */
-"One or more files failed to upload. Check your internet connection and retry to submit." = "Satu atau lebih fail gagal dimuat naik. Semak sambungan Internet anda dan cuba semula untuk membuat serahan.";
+"One or more files failed to upload. Check your internet connection and retry to submit." = "Satu atau lebih file gagal diunggah. Periksa sambungan internet Anda dan coba serahkan lagi.";
 
 /* No comment provided by engineer. */
-"One or more items failed to sync." = "Satu atau lebih item gagal disegerakkan.";
+"One or more items failed to sync." = "Satu atau lebih file gagal disinkronkan.";
 
 /* No comment provided by engineer. */
-"One Question at a Time:" = "Satu Soalan pada satu Masa:";
+"One Question at a Time:" = "Satu Pertanyaan pada Satu Waktu:";
 
 /* No comment provided by engineer. */
-"Only available to students with link" = "Hanya tersedia untuk pelajar dengan pautan";
+"Only available to students with link" = "Hanya tersedia untuk siswa dengan tautan";
 
 /* No comment provided by engineer. */
-"Only graders can like" = "Hanya penggred boleh menyukai";
+"Only graders can like" = "Hanya penilai bisa menyukai";
 
 /* No comment provided by engineer. */
-"Only members" = "Hanya ahli";
+"Only members" = "Khusus anggota";
 
 /* No comment provided by engineer. */
-"Only teachers" = "Hanya guru";
+"Only teachers" = "Khusus guru";
 
 /* No comment provided by engineer. */
 "Open" = "Buka";
@@ -1871,160 +1871,160 @@
 "Open application" = "Buka aplikasi";
 
 /* No comment provided by engineer. */
-"Open course details" = "Buka butiran kursus";
+"Open course details" = "Buka detail kursus";
 
 /* No comment provided by engineer. */
-"Open In Browser" = "Buka dalam Pelayar";
+"Open In Browser" = "Buka di Browser";
 
 /* No comment provided by engineer. */
-"Open item details" = "Buka butiran item";
+"Open item details" = "Buka detail item";
 
 /* No comment provided by engineer. */
-"Open section" = "Buka seksyen";
+"Open section" = "Bukan bagian";
 
 /* No comment provided by engineer. */
-"Opens in Canvas Student" = "Terbuka dalam Canvas Student";
+"Opens in Canvas Student" = "Membuka di Canvas Student";
 
 /* No comment provided by engineer. */
-"Options" = "Pilihan";
+"Options" = "Opsi";
 
 /* No comment provided by engineer. */
-"OPTIONS" = "PILIHAN";
+"OPTIONS" = "OPSI";
 
 /* No comment provided by engineer. */
-"orange" = "oren";
+"orange" = "oranye";
 
 /* No comment provided by engineer. */
-"Orange" = "Oren";
+"Orange" = "Oranye";
 
 /* No comment provided by engineer. */
-"Ordered List" = "Senarai Bernombor";
+"Ordered List" = "Daftar Diurutkan";
 
 /* No comment provided by engineer. */
 "Other Apps" = "Aplikasi Lain";
 
 /* 5 out of 10 */
-"out of" = "daripada";
+"out of" = "dari";
 
 /* No comment provided by engineer. */
 "out_of_g_pts" = "out_of_g_pts";
 
 /* No comment provided by engineer. */
-"page" = "halaman";
+"page" = "hal.";
 
 /* No comment provided by engineer. */
 "Page" = "Halaman";
 
 /* No comment provided by engineer. */
-"Page content" = "Kandungan halaman";
+"Page content" = "Konten halaman";
 
 /* No comment provided by engineer. */
-"Page Details" = "Butiran Halaman";
+"Page Details" = "Detail Halaman";
 
 /* No comment provided by engineer. */
 "Pages" = "Halaman";
 
 /* No comment provided by engineer. */
-"Pages Front Page" = "Muka Depan Halaman";
+"Pages Front Page" = "Halaman Depan Halaman";
 
 /* No comment provided by engineer. */
-"Pair with Observer" = "Pasangkan dengan Pemerhati";
+"Pair with Observer" = "Pasangkan dengan Pengamat";
 
 /* No comment provided by engineer. */
-"Pairing Code: " = "Kod Berpasangan: ";
+"Pairing Code: " = "Kode Pairing: ";
 
 /* No comment provided by engineer. */
-"Partially selected" = "Dipilih sebahagian sahaja";
+"Partially selected" = "Dipilih secara parsial";
 
 /* No comment provided by engineer. */
 "Pass" = "Lulus";
 
 /* No comment provided by engineer. */
-"Password" = "Kata Laluan";
+"Password" = "Kata sandi";
 
 /* No comment provided by engineer. */
-"Past Enrollments" = "Pendaftaran Lepas";
+"Past Enrollments" = "Pendaftaran Terdahulu";
 
 /* No comment provided by engineer. */
-"Pause" = "Jedakan";
+"Pause" = "Jeda";
 
 /* No comment provided by engineer. */
 "People" = "Orang";
 
 /* No comment provided by engineer. */
-"Percentage" = "Peratusan";
+"Percentage" = "Persentase";
 
 /* No comment provided by engineer. */
-"Permission Needed" = "Keizinan Diperlukan";
+"Permission Needed" = "Izin Dibutuhkan";
 
 /* No comment provided by engineer. */
 "Photo Library" = "Pustaka Foto";
 
 /* No comment provided by engineer. */
-"Pin" = "Pinkan";
+"Pin" = "Pin";
 
 /* No comment provided by engineer. */
-"Pink" = "Merah jambu";
+"Pink" = "Merah Muda";
 
 /* No comment provided by engineer. */
-"Pinned Discussions" = "Perbincangan yang dipinkan";
+"Pinned Discussions" = "Diskusi Dipin";
 
 /* No comment provided by engineer. */
-"Play" = "Mainkan";
+"Play" = "Putar";
 
 /* No comment provided by engineer. */
-"Please generate another QR Code and try again." = "Sila jana Kod QR yang lain dan cuba semula.";
+"Please generate another QR Code and try again." = "Silakan buat Kode QR lain dan coba lagi.";
 
 /* No comment provided by engineer. */
-"Please log in via the application" = "Sila log masuk melalui aplikasi";
+"Please log in via the application" = "Silakan login melalui aplikasi";
 
 /* No comment provided by engineer. */
-"Please try again!" = "Sila cuba semula!";
+"Please try again!" = "Silakan coba lagi!";
 
 /* No comment provided by engineer. */
-"Please wait, this might take a minute." = "Sila tunggu, ini mungkin mengambil masa beberapa minit";
+"Please wait, this might take a minute." = "Mohon menunggu, ini dapat membutuhkan beberapa saat.";
 
 /* No comment provided by engineer. */
 "plural_points" = "plural_points";
 
 /* No comment provided by engineer. */
-"Points" = "Mata";
+"Points" = "Poin";
 
 /* No comment provided by engineer. */
-"Post at" = "Siarkan pada";
+"Post at" = "Posting di";
 
 /* No comment provided by engineer. */
-"Practice Quiz" = "Berlatih Kuiz";
+"Practice Quiz" = "Kuis Latihan";
 
 /* No comment provided by engineer. */
-"Practice Quizzes" = "Kuiz Latihan";
+"Practice Quizzes" = "Kuis Latihan";
 
 /* No comment provided by engineer. */
-"Preferences" = "Keutamaan";
+"Preferences" = "Preferensi";
 
 /* No comment provided by engineer. */
-"Preparing Files For Upload" = "Menyediakan Fail Untuk Muat Naik";
+"Preparing Files For Upload" = "Menyiapkan File Untuk Unggahan";
 
 /* No comment provided by engineer. */
 "Prerequisite: %@" = "Prasyarat: %@";
 
 /* No comment provided by engineer. */
-"Preview Quiz" = "Pratonton Kuiz";
+"Preview Quiz" = "Pratinjau Kuis";
 
 /* No comment provided by engineer. */
-"Previous Logins" = "Log Masuk Sebelumnya";
+"Previous Logins" = "Login Sebelumnya";
 
 /* No comment provided by engineer. */
 "Previous Week" = "Minggu Sebelumnya";
 
 /* No comment provided by engineer. */
-"Privacy Policy" = "Dasar Privasi";
+"Privacy Policy" = "Kebijakan Privasi";
 
 /* No comment provided by engineer. */
 "Profile avatar" = "Avatar profil";
 
 /* No comment provided by engineer. */
-"Profile avatar, double tap to change" = "Avatar profil, ketik dua kali untuk menukar";
+"Profile avatar, double tap to change" = "Avatar profil, ketuk dua kali untuk mengubah";
 
 /* No comment provided by engineer. */
 "Profile Menu" = "Menu Profil";
@@ -2033,16 +2033,16 @@
 "Publish" = "Terbitkan";
 
 /* No comment provided by engineer. */
-"published" = "telah diterbitkan";
+"published" = "diterbitkan";
 
 /* No comment provided by engineer. */
-"Published" = "Telah diterbitkan";
+"Published" = "Diterbitkan";
 
 /* No comment provided by engineer. */
-"Pull to refresh to try again" = "Tarik untuk segar semula bagi mencuba semula";
+"Pull to refresh to try again" = "Tarik untuk menyegarkan atau mencoba lagi";
 
 /* No comment provided by engineer. */
-"Pumpkin" = "Labu";
+"Pumpkin" = "LabuPumpkin";
 
 /* No comment provided by engineer. */
 "purple" = "ungu";
@@ -2051,43 +2051,43 @@
 "Purple" = "Ungu";
 
 /* Description for Push Notification channel */
-"Push Notifications" = "Pemberitahuan Tolak";
+"Push Notifications" = "Notifikasi Push";
 
 /* No comment provided by engineer. */
-"quiz" = "kuiz";
+"quiz" = "kuis";
 
 /* No comment provided by engineer. */
-"Quiz" = "Kuiz";
+"Quiz" = "Kuis";
 
 /* No comment provided by engineer. */
-"Quiz Details" = "Butiran Kuiz";
+"Quiz Details" = "Detail Kuis";
 
 /* No comment provided by engineer. */
-"Quiz Preview" = "Pratonton Kuiz";
+"Quiz Preview" = "Pratinjau Kuis";
 
 /* No comment provided by engineer. */
-"Quiz Score to Keep" = "Skor Kuiz untuk Disimpan";
+"Quiz Score to Keep" = "Skor Kuis untuk Disimpan";
 
 /* No comment provided by engineer. */
-"Quiz Type" = "Jenis Kuiz";
+"Quiz Type" = "Jenis Kuis";
 
 /* No comment provided by engineer. */
-"Quiz Type:" = "Jenis Kuiz:";
+"Quiz Type:" = "Jenis Kuis:";
 
 /* No comment provided by engineer. */
-"Quizzes" = "Kuiz";
+"Quizzes" = "Kuis";
 
 /* No comment provided by engineer. */
-"Recent Activity" = "Aktiviti Terkini";
+"Recent Activity" = "Aktivitas Terkini";
 
 /* No comment provided by engineer. */
 "Recipients" = "Penerima";
 
 /* No comment provided by engineer. */
-"Record Audio" = "Rakam Audio";
+"Record Audio" = "Rekam Audio";
 
 /* No comment provided by engineer. */
-"Recordings" = "Rakaman";
+"Recordings" = "Rekaman";
 
 /* No comment provided by engineer. */
 "red" = "merah";
@@ -2096,52 +2096,52 @@
 "Red" = "Merah";
 
 /* No comment provided by engineer. */
-"Redo" = "Buat semula";
+"Redo" = "Ulangi";
 
 /* Downloading new content has started */
-"Refreshing" = "Segar semula";
+"Refreshing" = "Memuat ulang";
 
 /* No comment provided by engineer. */
-"Remaining" = "Berbaki";
+"Remaining" = "Tersisa";
 
 /* No comment provided by engineer. */
-"Remove" = "Alih Keluar";
+"Remove" = "Hapus";
 
 /* No comment provided by engineer. */
-"Remove %@" = "Alih keluar %@";
+"Remove %@" = "Hapus %@";
 
 /* No comment provided by engineer. */
-"Remove Attachment" = "Alih Keluar Lampiran";
+"Remove Attachment" = "Hapus Lampiran";
 
 /* No comment provided by engineer. */
-"Remove Attachment?" = "Alih Keluar Lampiran?";
+"Remove Attachment?" = "Hapus Lampiran?";
 
 /* No comment provided by engineer. */
-"Remove date" = "Alih keluar tarikh";
+"Remove date" = "Hapus tanggal";
 
 /* No comment provided by engineer. */
-"Remove Due Date?" = "Alih Keluar Tarikh Siap?";
+"Remove Due Date?" = "Hapus Tanggal Batas?";
 
 /* No comment provided by engineer. */
-"Remove File" = "Alih Keluar Fail";
+"Remove File" = "Hapus File";
 
 /* No comment provided by engineer. */
-"Remove file from submission." = "Alih keluar fail daripada serahan.";
+"Remove file from submission." = "Hapus file dari penyerahan.";
 
 /* No comment provided by engineer. */
-"Remove From List?" = "Alih keluar daripada Senarai?";
+"Remove From List?" = "Hapus dari Daftar?";
 
 /* No comment provided by engineer. */
-"Remove item" = "Alih keluar item";
+"Remove item" = "Hapus item";
 
 /* No comment provided by engineer. */
-"Remove recipient" = "Alih keluar penerima";
+"Remove recipient" = "Hapus penerima";
 
 /* No comment provided by engineer. */
-"Removed %1$@" = "%1$@ dialih keluar";
+"Removed %1$@" = "Dihapus %1$@";
 
 /* No comment provided by engineer. */
-"Removed %1$@ by %2$@" = "%1$@ dialih keluar oleh %2$@";
+"Removed %1$@ by %2$@" = "%1$@ dihapus oleh %2$@";
 
 /* No comment provided by engineer. */
 "Replies" = "Balasan";
@@ -2153,109 +2153,109 @@
 "Reply All" = "Balas Semua";
 
 /* VoiceOver announcement after a reply was successfully posted. */
-"Reply sent" = "Balasan dihantar";
+"Reply sent" = "Balasan dikirim";
 
 /* No comment provided by engineer. */
-"Reply to main discussion" = "Balas pada perbincangan utama";
+"Reply to main discussion" = "Balas ke diskusi utama";
 
 /* No comment provided by engineer. */
-"Reply to the annotation or previous comments" = "Balas pada anotasi atau komen sebelumnya";
+"Reply to the annotation or previous comments" = "Balas ke anotasi atau komentar sebelumnya";
 
 /* No comment provided by engineer. */
-"Reply to thread" = "Balas di bebenang";
+"Reply to thread" = "Balas ke utas";
 
 /* Button to report an error */
-"Report" = "Laporkan";
+"Report" = "Laporan";
 
 /* No comment provided by engineer. */
-"Report a Problem" = "Laporkan Masalah";
+"Report a Problem" = "Laporkan masalah";
 
 /* No comment provided by engineer. */
-"Request a Feature" = "Minta Ciri";
+"Request a Feature" = "Minta Fitur";
 
 /* No comment provided by engineer. */
 "Request Failed!" = "Permintaan Gagal!";
 
 /* No comment provided by engineer. */
-"Require an Access Code" = "Perlu Kod Akses";
+"Require an Access Code" = "Membutuhkan Kode Akses";
 
 /* No comment provided by engineer. */
-"Resources" = "Sumber";
+"Resources" = "Sumber Daya";
 
 /* No comment provided by engineer. */
-"Restricted" = "Disekat";
+"Restricted" = "Dibatasi";
 
 /* No comment provided by engineer. */
-"Retry" = "Cuba semula";
+"Retry" = "Coba lagi";
 
 /* No comment provided by engineer. */
 "Saving..." = "Menyimpan...";
 
 /* No comment provided by engineer. */
-"Scanner" = "Pengimbas";
+"Scanner" = "Pemindai";
 
 /* No comment provided by engineer. */
-"Scanning not supported" = "Pengimbasan tidak disokong";
+"Scanning not supported" = "Pemindaian tidak didukung";
 
 /* No comment provided by engineer. */
-"Schedule" = "Jadualkan";
+"Schedule" = "Jadwalkan";
 
 /* No comment provided by engineer. */
-"Schedule student availability" = "Jadualkan ketersediaan pelajar";
+"Schedule student availability" = "Jadwalkan ketersediaan siswa";
 
 /* No comment provided by engineer. */
-"Scheduling" = "Penjadualan";
+"Scheduling" = "Menjadwalkan";
 
 /* No comment provided by engineer. */
 "School’s name" = "Nama sekolah";
 
 /* No comment provided by engineer. */
-"Score at least %@" = "Dapatkan skor sekurang-kurangnya %@";
+"Score at least %@" = "Mendapat skor setidaknya %@";
 
 /* No comment provided by engineer. */
 "Score to Keep:" = "Skor untuk Disimpan:";
 
 /* No comment provided by engineer. */
-"Scored above %g" = "Telah memperoleh skor atas %g";
+"Scored above %g" = "Mendapat skor di atas %g";
 
 /* No comment provided by engineer. */
-"Scored at least %@" = "Telah memperoleh skor sekurang-kurangnya %@";
+"Scored at least %@" = "Mendapat skor setidaknya %@";
 
 /* No comment provided by engineer. */
-"Scored below %g" = "Telah memperoleh skor bawah %g";
+"Scored below %g" = "Mendapat skor di bawah %g";
 
 /* No comment provided by engineer. */
 "Search" = "Cari";
 
 /* No comment provided by engineer. */
-"Section: %@" = "Seksyen: %@";
+"Section: %@" = "Bagian: %@";
 
 /* No comment provided by engineer. */
-"Sections" = "Seksyen";
+"Sections" = "Bagian";
 
 /* No comment provided by engineer. */
-"Sections: %@" = "Seksyen: %@";
+"Sections: %@" = "Bagian: %@";
 
 /* No comment provided by engineer. */
-"See attached files." = "Lihat fail yang dikepilkan.";
+"See attached files." = "Lihat file terlampir.";
 
 /* No comment provided by engineer. */
-"See what's new." = "Lihat apa yang baharu.";
+"See what's new." = "Lihat apa yang baru.";
 
 /* No comment provided by engineer. */
 "Select" = "Pilih";
 
 /* No comment provided by engineer. */
-"Select a Path" = "Pilih Laluan";
+"Select a Path" = "Pilih Jalur";
 
 /* No comment provided by engineer. */
 "Select All" = "Pilih Semua";
 
 /* No comment provided by engineer. */
-"Select assignment" = "Pilih tugasan";
+"Select assignment" = "Pilih tugas";
 
 /* No comment provided by engineer. */
-"Select Assignment" = "Pilih Tugasan";
+"Select Assignment" = "Pilih Tugas";
 
 /* No comment provided by engineer. */
 "Select course" = "Pilih kursus";
@@ -2264,16 +2264,16 @@
 "Select Course" = "Pilih Kursus";
 
 /* No comment provided by engineer. */
-"Select courses for Dashboard or navigate to course details." = "Pilih kursus untuk Papan Pemuka atau navigasi ke butiran kursus.";
+"Select courses for Dashboard or navigate to course details." = "Pilih kursus untuk Dashboard atau navigasikan ke detail kursus.";
 
 /* No comment provided by engineer. */
-"Select Grading Period" = "Pilih Tempoh Penggredan";
+"Select Grading Period" = "Pilih Periode Penilaian";
 
 /* No comment provided by engineer. */
-"Select groups for Dashboard or navigate to group details." = "Pilih kumpulan untuk Papan Pemuka atau navigasi ke butiran kursus.";
+"Select groups for Dashboard or navigate to group details." = "Pilih grup untuk Dashboard atau navigasikan ke detail grup.";
 
 /* No comment provided by engineer. */
-"Select Impact" = "Pilih Impak";
+"Select Impact" = "Pilih Dampak";
 
 /* No comment provided by engineer. */
 "Select item" = "Pilih item";
@@ -2285,160 +2285,160 @@
 "Select Recipients" = "Pilih Penerima";
 
 /* No comment provided by engineer. */
-"Selected" = "Dipilih";
+"Selected" = "Memilih";
 
 /* No comment provided by engineer. */
-"Selected!" = "Dipilih!";
+"Selected!" = "Terpilih!";
 
 /* No comment provided by engineer. */
-"Self Registration Not Allowed" = "Pendaftaran Kendiri Tidak Dibenarkan";
+"Self Registration Not Allowed" = "Pendaftaran Mandiri Tidak Diizinkan";
 
 /* No comment provided by engineer. */
-"Send" = "Hantar";
+"Send" = "Kirim";
 
 /* No comment provided by engineer. */
-"Send comment" = "Hantar komen";
+"Send comment" = "Kirim komentar";
 
 /* No comment provided by engineer. */
-"Send daily summary" = "Hantar ringkasan harian";
+"Send daily summary" = "Kirim rangkuman harian";
 
 /* No comment provided by engineer. */
-"Send individual message to each recipient" = "Hantar mesej perseorangan kepada setiap penerima";
+"Send individual message to each recipient" = "Kirim pesan individu ke setiap penerima";
 
 /* No comment provided by engineer. */
-"Send message" = "Hantar mesej";
+"Send message" = "Kirim pesan";
 
 /* No comment provided by engineer. */
-"Send weekly summary" = "Hantar ringkasan mingguan";
+"Send weekly summary" = "Kirim rangkuman mingguan";
 
 /* No comment provided by engineer. */
-"Sent" = "Telah dihantar";
+"Sent" = "Terkirim";
 
 /* No comment provided by engineer. */
-"Set \"Home\" to..." = "Tetapkan \"Laman Utama\" untuk...";
+"Set \"Home\" to..." = "Atur ''Home'' ke...";
 
 /* No comment provided by engineer. */
-"Set as Front Page" = "Tetapkan sebagai Halaman Depan";
+"Set as Front Page" = "Atur sebagai Halaman Depan";
 
 /* No comment provided by engineer. */
-"Set text color" = "Tetapkan warna teks";
+"Set text color" = "Atur warna teks";
 
 /* No comment provided by engineer. */
-"Settings" = "Tetapan";
+"Settings" = "Pengaturan";
 
 /* No comment provided by engineer. */
-"Show a month at a time" = "Tunjuk satu bulan pada satu masa";
+"Show a month at a time" = "Tampilkan satu bulan pada satu waktu";
 
 /* No comment provided by engineer. */
-"Show Correct Answers:" = "Tunjuk Jawapan Betul:";
+"Show Correct Answers:" = "Tampilkan Jawaban Benar:";
 
 /* No comment provided by engineer. */
-"Show Course Summary" = "Paparkan Ringkasan Kursus";
+"Show Course Summary" = "Tampilkan Rangkuman Kursus";
 
 /* No comment provided by engineer. */
-"Show dialog" = "Tunjuk dialog";
+"Show dialog" = "Tampilkan dialog";
 
 /* No comment provided by engineer. */
-"Show Grades" = "Tunjuk Gred";
+"Show Grades" = "Tampilkan Nilai";
 
 /* No comment provided by engineer. */
-"Show more options" = "Tunjuk lebih banyak pilihan";
+"Show more options" = "Tampilkan opsi lain";
 
 /* No comment provided by engineer. */
-"Show One Question at a Time" = "Tunjuk Satu Soalan pada Satu Masa";
+"Show One Question at a Time" = "Tampilkan Satu Pertanyaan pada Satu Waktu";
 
 /* No comment provided by engineer. */
-"Show sync details" = "Tunjukkan butiran segerakan";
+"Show sync details" = "Tampilkan detail sinkronisasi";
 
 /* No comment provided by engineer. */
 "show_%d_missing_items" = "show_%d_missing_items";
 
 /* No comment provided by engineer. */
-"Shuffle Answers" = "Kocok Jawapan";
+"Shuffle Answers" = "Kocok Jawaban";
 
 /* No comment provided by engineer. */
-"Shuffle Answers:" = "Kocok Jawapan:";
+"Shuffle Answers:" = "Kocok Jawaban:";
 
 /* No comment provided by engineer. */
-"Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Oleh sebab ini ialah perbincangan kumpulan, setiap kumpulan mempunyai perbualan sendiri untuk topik ini. Ini ialah perbincangan yang boleh anda akses.";
+"Since this is a group discussion, each group has its own conversation for this topic. Here are the discussions you have access to." = "Karena ini adalah grup diskusi, setiap grup memiliki percakapannya sendiri untuk topik ini. Berikut ini adalah diskusi yang Anda memiliki akses kepadanya:";
 
 /* No comment provided by engineer. */
-"Site Admin Login" = "Log Masuk Pentadbir Laman Web";
+"Site Admin Login" = "Login Admin Situs";
 
 /* Description for Slack communication channel */
-"Slack Notifications" = "Pemberitahuan Slack";
+"Slack Notifications" = "Notifikasi Slack";
 
 /* Description for SMS communication channel */
-"SMS Notifications" = "Pemberitahuan SMS";
+"SMS Notifications" = "Notifikasi SMS";
 
 /* No comment provided by engineer. */
-"Something is broken but I can work around it" = "Sesuatu tidak kena tetapi saya masih boleh mengatasinya pada masa ini";
+"Something is broken but I can work around it" = "Ada yang terputus, tapi saya bisa mengatasinya";
 
 /* No comment provided by engineer. */
-"Something is Missing" = "Sesuatu Tidak Ditemui";
+"Something is Missing" = "Ada yang Hilang";
 
 /* No comment provided by engineer. */
-"Something is Wrong" = "Sesuatu Tidak Kena";
+"Something is Wrong" = "Ada yang Salah";
 
 /* No comment provided by engineer. */
-"Something went wrong" = "Sesuatu tidak kena";
+"Something went wrong" = "Ada sesuatu yang salah";
 
 /* No comment provided by engineer. */
-"Something Went Wrong" = "Sesuatu Tidak Kena";
+"Something Went Wrong" = "Ada Sesuatu yang Salah";
 
 /* No comment provided by engineer. */
-"Something went wrong beyond our control." = "Sesuatu tidak kena di luar kawalan kami.";
+"Something went wrong beyond our control." = "Terjadi kesalahan di luar kendali kami.";
 
 /* No comment provided by engineer. */
-"Sort by likes" = "Isih mengikut like";
+"Sort by likes" = "Sortir berdasarkan sukai";
 
 /* No comment provided by engineer. */
-"Specify the recurrence of the content synchronization. The system will download the selected content based on the frequency specified here." = "Tentukan ulangan penyegerakan kandungan Sistem akan memuat turun kandungan yang dipilih berdasarkan kekerapan yang ditentukan di sini.";
+"Specify the recurrence of the content synchronization. The system will download the selected content based on the frequency specified here." = "Spesifikasikan kemunculan ulang sinkronisasi konten. Sistem akan mengunduh konten yang dipilih berdasarkan frekuensi yang ditetapkan di sini.";
 
 /* No comment provided by engineer. */
-"Staff Contact Info" = "Maklumat Hubungan Kakitangan";
+"Staff Contact Info" = "Info Kontak Staf";
 
 /* No comment provided by engineer. */
-"Starred" = "Dibintangkan";
+"Starred" = "Membintangi";
 
 /* No comment provided by engineer. */
-"Start recording" = "Mulakan rakaman";
+"Start recording" = "Mulai rekaman";
 
 /* started datetime */
-"Started %@" = "Telah bermula %@";
+"Started %@" = "Dimulai %@";
 
 /* No comment provided by engineer. */
-"Stop Act as User" = "Berhenti Bertindak sebagai Pengguna";
+"Stop Act as User" = "Stop Bertindak sebagai Pengguna";
 
 /* No comment provided by engineer. */
-"Stop acting as..." = "Berhenti bertindak sebagai...";
+"Stop acting as..." = "Stop bertindak sebagai...";
 
 /* No comment provided by engineer. */
-"Stop recording" = "Berhenti merakam";
+"Stop recording" = "Stop rekaman";
 
 /* No comment provided by engineer. */
-"Storage" = "Storan";
+"Storage" = "Penyimpanan";
 
 /* No comment provided by engineer. */
-"Storage Info" = "Info Storan";
+"Storage Info" = "Informasi Penyimpanan";
 
 /* No comment provided by engineer. */
-"Student" = "Pelajar";
+"Student" = "Siswa";
 
 /* No comment provided by engineer. */
-"Student Annotation" = "Anotasi Pelajar";
+"Student Annotation" = "Anotasi Siswa";
 
 /* No comment provided by engineer. */
-"Student Applications" = "Permohonan Pelajar";
+"Student Applications" = "Aplikasi Siswa";
 
 /* No comment provided by engineer. */
-"Student Appointment Signups" = "Pendaftaran Janji Temu Pelajar";
+"Student Appointment Signups" = "Pendaftaran Janji Temu Siswa";
 
 /* No comment provided by engineer. */
-"Student View" = "Pandangan Pelajar";
+"Student View" = "Tampilan Siswa";
 
 /* No comment provided by engineer. */
-"Students" = "Pelajar";
+"Students" = "Siswa";
 
 /* No comment provided by engineer. */
 "Style" = "Gaya";
@@ -2447,34 +2447,34 @@
 "Subject" = "Subjek";
 
 /* No comment provided by engineer. */
-"Submission" = "Serahan";
+"Submission" = "Penyerahan";
 
 /* No comment provided by engineer. */
-"Submission %@, %@, %@" = "Serahan %1$@, %2$@, %3$@";
+"Submission %@, %@, %@" = "Penyerahan %1$@, %2$@, %3$@";
 
 /* No comment provided by engineer. */
-"Submission Comment" = "Komen Serahan";
+"Submission Comment" = "Komentar Penyerahan";
 
 /* No comment provided by engineer. */
-"Submission Failed" = "Serahan Gagal";
+"Submission Failed" = "Penyerahan Gagal";
 
 /* No comment provided by engineer. */
-"Submission failed due to unknown error." = "Serahan gagal kerana ralat tidak diketahui.";
+"Submission failed due to unknown error." = "Penyerahan gagal karena kesalahan yang tidak diketahui.";
 
 /* No comment provided by engineer. */
-"Submission Success!" = "Serahan Berjaya!";
+"Submission Success!" = "Penyerahan Sukses!";
 
 /* No comment provided by engineer. */
-"Submission Types" = "Jenis Serahan";
+"Submission Types" = "Jenis Penyerahan";
 
 /* No comment provided by engineer. */
-"Submission Uploaded" = "Serahan Dimuat Naik";
+"Submission Uploaded" = "Penyerahan Diunggah";
 
 /* No comment provided by engineer. */
 "submission_failed_for_files" = "submission_failed_for_files";
 
 /* No comment provided by engineer. */
-"Submissions" = "Serahan";
+"Submissions" = "Penyerahan";
 
 /* No comment provided by engineer. */
 "Submit" = "Serahkan";
@@ -2486,103 +2486,103 @@
 "Submitted %@" = "Diserahkan %@";
 
 /* No comment provided by engineer. */
-"Subscribe" = "Langgan";
+"Subscribe" = "Berlangganan";
 
 /* No comment provided by engineer. */
-"Subscribe to Calendar Feed" = "Langgan Suapan Kalendar";
+"Subscribe to Calendar Feed" = "Berlangganan ke Umpan Kalender";
 
 /* No comment provided by engineer. */
-"Success!" = "Berjaya!";
+"Success!" = "Sukses!";
 
 /* No comment provided by engineer. */
-"Success! Downloaded %@ of %@" = "Berjaya! Memuat turun %1$@ daripada %2$@";
+"Success! Downloaded %@ of %@" = "Sukses! Mengunduh %1$@ dari %2$@";
 
 /* No comment provided by engineer. */
-"Summary" = "Rumusan";
+"Summary" = "Rangkuman";
 
 /* No comment provided by engineer. */
-"Surveys" = "Tinjauan";
+"Surveys" = "Survei";
 
 /* No comment provided by engineer. */
-"Switch To Dark Mode" = "Tukar kepada Mod Gelap";
+"Switch To Dark Mode" = "Alihkan ke Mode Gelap";
 
 /* No comment provided by engineer. */
-"Switch To Light Mode" = "Tukar kepada Mod Terang";
+"Switch To Light Mode" = "Alihkan ke Mode Terang";
 
 /* No comment provided by engineer. */
-"Syllabus" = "Silibus";
+"Syllabus" = "Silabus";
 
 /* No comment provided by engineer. */
-"Syllabus content" = "Kandungan silibus";
+"Syllabus content" = "Konten silabus";
 
 /* No comment provided by engineer. */
-"Sync" = "Segerakkan";
+"Sync" = "Sinkronkan";
 
 /* No comment provided by engineer. */
-"Sync Content Over Wi-Fi Only" = "Segerakkan Kandungan Menerusi Wi-Fi Sahaja";
+"Sync Content Over Wi-Fi Only" = "Hanya Sinkronisasikan Konten Melalui Wi-Fi";
 
 /* No comment provided by engineer. */
-"Sync Failed" = "Penyegerakan Gagal";
+"Sync Failed" = "Sinkronisasi Gagal";
 
 /* No comment provided by engineer. */
-"Sync Frequency" = "Kekerapan Penyegerakan";
+"Sync Frequency" = "Frekuensi Sinkronisasi";
 
 /* No comment provided by engineer. */
-"Sync Offline Content?" = "Segerakkan Kandungan Luar Talian?";
+"Sync Offline Content?" = "Sinkronisasikan Konten Offline?";
 
 /* No comment provided by engineer. */
-"Synchronization" = "Penyegerakan";
+"Synchronization" = "Sinkronisasi";
 
 /* No comment provided by engineer. */
-"Syncing Offline Content" = "Menyegerakkan Kandungan Luar Talian";
+"Syncing Offline Content" = "Menyinkronisasikan Konten Offline?";
 
 /* No comment provided by engineer. */
-"System settings" = "Tetapan sistem";
+"System settings" = "Pengaturan sistem";
 
 /* No comment provided by engineer. */
-"System Settings" = "Tetapan Sistem";
+"System Settings" = "Pengaturan Sistem";
 
 /* Teacher's Assistant (abbreviated) */
-"TA" = "PP";
+"TA" = "TA";
 
 /* No comment provided by engineer. */
-"Take Photo" = "Ambil Foto";
+"Take Photo" = "Potret";
 
 /* No comment provided by engineer. */
-"Tap here for details" = "Ketik di sini untuk mendapatkan butiran";
+"Tap here for details" = "Ketuk di sini untuk detail";
 
 /* No comment provided by engineer. */
-"Tap the \"+\" to create a new conversation" = "Ketik \"+\" untuk mencipta perbualan baharu";
+"Tap the \"+\" to create a new conversation" = "Ketuk \"+\" untuk membuat percakapan baru";
 
 /* No comment provided by engineer. */
-"Tap to select the courses you want to see on the calendar." = "Ketik untuk memilih kursus yang ingin anda lihat pada kalendar.";
+"Tap to select the courses you want to see on the calendar." = "Ketuk untuk memilih kursus yang Anda ingin lihat di kalender.";
 
 /* No comment provided by engineer. */
-"Tap to view announcement" = "Ketik untuk melihat pengumuman";
+"Tap to view announcement" = "Ketuk untuk melihat pengumuman";
 
 /* No comment provided by engineer. */
-"Tap to view submissions list." = "Ketik untuk melihat senarai serahan";
+"Tap to view submissions list." = "Ketuk untuk melihat daftar penyerahan.";
 
 /* No comment provided by engineer. */
 "Teacher" = "Guru";
 
 /* No comment provided by engineer. */
-"Teacher's Assistant" = "Pembantu Pengajaran";
+"Teacher's Assistant" = "Asisten Guru";
 
 /* No comment provided by engineer. */
 "Teachers" = "Guru";
 
 /* No comment provided by engineer. */
-"Teachers and students" = "Guru dan pelajar";
+"Teachers and students" = "Guru dan siswa";
 
 /* No comment provided by engineer. */
-"Teaching Assistants" = "Pembantu Pengajaran";
+"Teaching Assistants" = "Asisten Guru";
 
 /* No comment provided by engineer. */
 "Teal" = "Teal";
 
 /* No comment provided by engineer. */
-"Terms of Use" = "Terma Penggunaan";
+"Terms of Use" = "Ketentuan Penggunaan";
 
 /* No comment provided by engineer. */
 "Text" = "Teks";
@@ -2591,265 +2591,265 @@
 "Text Color" = "Warna Teks";
 
 /* No comment provided by engineer. */
-"Text Entry" = "Masukan Teks";
+"Text Entry" = "Entri Teks";
 
 /* No comment provided by engineer. */
-"Thanks, your request was received!" = "Terima kasih, permintaan anda selamat diterima!";
+"Thanks, your request was received!" = "Terima kasih, permintaan Anda sudah diterima!";
 
 /* No comment provided by engineer. */
-"The app needs to restart to use the new language settings. Please relaunch the app." = "Apl ini perlu dimulakan semula untuk menggunakan tetapan bahasa yang baharu. Sila lancarkan semula apl.";
+"The app needs to restart to use the new language settings. Please relaunch the app." = "App perlu dimulai ulang untuk menggunakan pengaturan bahasa baru. Silakan jalankan ulang app.";
 
 /* No comment provided by engineer. */
-"The course content will be listed here, and then you can make them available for offline usage." = "Kandungan kursus akan disenaraikan di sini, kemudian anda boleh menyediakannya untuk kegunaan luar talian.";
+"The course content will be listed here, and then you can make them available for offline usage." = "Konten kursus akan tertera di sini, lalu Anda dapat menyediakannya untuk penggunaan offline.";
 
 /* No comment provided by engineer. */
-"The file has been deleted by the author." = "Fail telah dipadamkan oleh pengarang.";
+"The file has been deleted by the author." = "File ini telah dihapus oleh penulis.";
 
 /* No comment provided by engineer. */
-"The submission process was terminated by the operating system." = "Proses serahan telah ditamatkan oleh sistem operasi.";
+"The submission process was terminated by the operating system." = "Proses penyerahan diakhiri oleh sistem operasi.";
 
 /* No comment provided by engineer. */
-"There are no active assignments in this course." = "Tiada tugasan aktif dalam kursus ini.";
+"There are no active assignments in this course." = "Tidak ada tugas aktif pada kursus ini.";
 
 /* No comment provided by engineer. */
-"There are no assignments to display." = "Tiada tugasan untuk dipaparkan.";
+"There are no assignments to display." = "Tidak ada tugas untuk ditampilkan.";
 
 /* No comment provided by engineer. */
-"There are no conferences to display yet." = "Belum ada persidangan untuk dipaparkan.";
+"There are no conferences to display yet." = "Belum ada konferensi untuk ditampilkan.";
 
 /* No comment provided by engineer. */
-"There are no modules to display yet." = "Belum ada modul untuk dipaparkan.";
+"There are no modules to display yet." = "Belum ada modul untuk ditampilkan.";
 
 /* No comment provided by engineer. */
-"There are no pages to display yet." = "Belum ada halaman untuk dipaparkan.";
+"There are no pages to display yet." = "Belum ada halaman untuk ditampilkan";
 
 /* No comment provided by engineer. */
-"There was a problem registering your device for push notifications." = "Terdapat masalah untuk mendaftarkan peranti anda untuk pemberitahuan tolak.";
+"There was a problem registering your device for push notifications." = "Ada masalah saat mendaftarkan perangkat Anda untuk notifikasi Push.";
 
 /* No comment provided by engineer. */
-"There was a problem retrieving the Terms of Use." = "Terdapat masalah untuk mendapatkan semula Terma Penggunaan.";
+"There was a problem retrieving the Terms of Use." = "Ada masalah saat mengambil Ketentuan Penggunaan.";
 
 /* No comment provided by engineer. */
-"There was an error loading announcements. Pull to refresh to try again." = "Terdapat ralat untuk memuatkan pengumuman. Tarik untuk segar semula untuk mencuba lagi.";
+"There was an error loading announcements. Pull to refresh to try again." = "Terjadi kesalahan saat memuat pengumuman. Tarik untuk menyegarkan atau mencoba lagi.";
 
 /* No comment provided by engineer. */
-"There was an error loading conferences. Pull to refresh to try again." = "Terdapat ralat untuk memuatkan persidangan. Tarik untuk segar semula untuk mencuba lagi.";
+"There was an error loading conferences. Pull to refresh to try again." = "Terjadi kesalahan saat memuat konferensi. Tarik untuk menyegarkan atau mencoba lagi.";
 
 /* No comment provided by engineer. */
-"There was an error loading courses. Pull to refresh to try again." = "Terdapat ralat untuk memuatkan kursus. Tarik untuk segar semula untuk mencuba lagi.";
+"There was an error loading courses. Pull to refresh to try again." = "Terjadi kesalahan saat memuat kursus. Tarik untuk menyegarkan atau mencoba lagi.";
 
 /* No comment provided by engineer. */
-"There was an error loading discussions. Pull to refresh to try again." = "Terdapat ralat untuk memuatkan perbincangan. Tarik untuk segar semula untuk mencuba lagi.";
+"There was an error loading discussions. Pull to refresh to try again." = "Terjadi kesalahan saat memuat diskusi. Tarik untuk menyegarkan atau mencoba lagi.";
 
 /* No comment provided by engineer. */
-"There was an error loading events. Pull to refresh to try again." = "Terdapat ralat untuk memuatkan acara. Tarik untuk segar semula untuk mencuba lagi.";
+"There was an error loading events. Pull to refresh to try again." = "Terjadi kesalahan saat memuat acara. Tarik untuk menyegarkan atau mencoba lagi.";
 
 /* No comment provided by engineer. */
-"There was an error loading files. Pull to refresh to try again." = "Terdapat ralat untuk memuatkan fail. Tarik untuk segar semula untuk mencuba lagi.";
+"There was an error loading files. Pull to refresh to try again." = "Terjadi kesalahan saat memuat file. Tarik untuk menyegarkan atau mencoba lagi.";
 
 /* No comment provided by engineer. */
-"There was an error loading grades. Pull to refresh to try again." = "Terdapat ralat untuk memuatkan gred. Tarik untuk segar semula untuk mencuba lagi.";
+"There was an error loading grades. Pull to refresh to try again." = "Terjadi kesalahan saat memuat nilai. Tarik untuk menyegarkan atau mencoba lagi.";
 
 /* No comment provided by engineer. */
-"There was an error loading items to do. Pull to refresh to try again." = "Terdapat ralat untuk memuatkan item untuk dilakukan. Tarik untuk segar semula untuk mencuba lagi.";
+"There was an error loading items to do. Pull to refresh to try again." = "Terjadi kesalahan saat memuat item untuk dilakukan. Tarik untuk menyegarkan untuk mencoba lagi.";
 
 /* No comment provided by engineer. */
-"There was an error loading modules." = "Terdapat ralat untuk memuatkan modul.";
+"There was an error loading modules." = "Terjadi kesalahan saat memuat modul.";
 
 /* No comment provided by engineer. */
-"There was an error loading pages. Pull to refresh to try again." = "Terdapat ralat untuk memuatkan halaman. Tarik untuk segar semula untuk mencuba lagi.";
+"There was an error loading pages. Pull to refresh to try again." = "Terjadi kesalahan saat memuat halaman. Tarik untuk menyegarkan atau mencoba lagi.";
 
 /* No comment provided by engineer. */
-"There was an error loading people. Pull to refresh to try again." = "Terdapat ralat untuk memuatkan orang. Tarik untuk segar semula untuk mencuba lagi.";
+"There was an error loading people. Pull to refresh to try again." = "Terjadi kesalahan saat memuat orang. Tarik untuk menyegarkan atau mencoba lagi.";
 
 /* No comment provided by engineer. */
-"There was an error loading quizzes. Pull to refresh to try again." = "Terdapat ralat untuk memuatkan kuiz. Tarik untuk segar semula untuk mencuba lagi.";
+"There was an error loading quizzes. Pull to refresh to try again." = "Terjadi kesalahan saat memuat kuis. Tarik untuk menyegarkan atau mencoba lagi.";
 
 /* No comment provided by engineer. */
-"There was an error loading recipients." = "Terdapat ralat memuatkan penerima.";
+"There was an error loading recipients." = "Terjadi kesalahan saat memuat penerima.";
 
 /* No comment provided by engineer. */
-"There was an error loading the message. Pull to refresh to try again." = "Terdapat ralat memuatkan mesej ini. Tarik untuk segar semula untuk mencuba lagi.";
+"There was an error loading the message. Pull to refresh to try again." = "Terjadi kesalahan saat memuat pesan. Tarik untuk menyegarkan atau mencoba lagi.";
 
 /* No comment provided by engineer. */
-"There was an error while communicating with the server" = "Terdapat ralat semasa berkomunikasi dengan pelayan";
+"There was an error while communicating with the server" = "Terjadi kesalahan saat berkomunikasi dengan server.";
 
 /* No comment provided by engineer. */
-"There was an error with Act as User. Please try again later." = "Terdapat ralat dengan Bertindak sebagai Pengguna. Sila cuba semula kemudian.";
+"There was an error with Act as User. Please try again later." = "Terjadi kesalahan dengan Bertindak sebagai Pengguna! Silakan coba lagi nanti.";
 
 /* No comment provided by engineer. */
-"There was an unexpected error." = "Terdapat ralat tidak dijangka.";
+"There was an unexpected error." = "Terjadi kesalahan tak terduga.";
 
 /* No comment provided by engineer. */
-"There was an unexpected error. Please try again." = "Terdapat ralat tidak dijangka. Sila cuba semula.";
+"There was an unexpected error. Please try again." = "Terjadi kesalahan tak terduga. Silakan coba lagi.";
 
 /* No comment provided by engineer. */
 "there_are_d_assignees_without_grades" = "there_are_d_assignees_without_grades";
 
 /* No comment provided by engineer. */
-"This assignment is due by %@" = "Tugasan ini cukup tempoh pada %@";
+"This assignment is due by %@" = "Tugas ini jatuh tempo pada %@";
 
 /* No comment provided by engineer. */
-"This assignment was due by %@" = "Tugasan ini cukup tempoh pada %@";
+"This assignment was due by %@" = "Tugas ini jatuh tempo pada %@";
 
 /* No comment provided by engineer. */
-"This course does not have any sections." = "Kursus ini tidak mempunyai sebarang seksyen.";
+"This course does not have any sections." = "Kursus ini tidak memiliki bagian apa pun.";
 
 /* No comment provided by engineer. */
 "This folder is empty." = "Folder ini kosong.";
 
 /* No comment provided by engineer. */
-"This is a media comment" = "Ini ialah komen media";
+"This is a media comment" = "Ini adalah komentar media";
 
 /* No comment provided by engineer. */
-"This is your personal color setting. Only you will see this color for the course." = "Ini ialah tetapan warna peribadi anda. Hanya anda sahaja akan melihat warna ini untuk kursus ini.";
+"This is your personal color setting. Only you will see this color for the course." = "Ini adalah pengaturan warna pribadi Anda. Hanya Anda yang bisa melihat warna ini untuk kursus.";
 
 /* No comment provided by engineer. */
-"This item is not available offline." = "Item ini tidak tersedia di luar talian.";
+"This item is not available offline." = "Item ini tidak tersedia offline.";
 
 /* No comment provided by engineer. */
 "This module is empty." = "Modul ini kosong.";
 
 /* No comment provided by engineer. */
-"This page has been disabled for this course." = "Halaman ini telah dinyahdayakan untuk kursus ini.";
+"This page has been disabled for this course." = "Halaman ini sudah dinonaktifkan untuk kursus ini.";
 
 /* No comment provided by engineer. */
-"This will cancel and delete your upload." = "Ini akan membatalkan dan memadamkan muat naik anda.";
+"This will cancel and delete your upload." = "Ini akan membatalkan dan menghapus unggahan Anda.";
 
 /* No comment provided by engineer. */
-"This will remove the due date and all of the associated assignees." = "Ini akan mengalih keluar tarikh siap dan semua penerima tugasan berkaitan.";
+"This will remove the due date and all of the associated assignees." = "Ini akan menghapus tanggal batas dan semua penerima penetapan terkait.";
 
 /* No comment provided by engineer. */
-"Time elapsed" = "Masa berlalu";
+"Time elapsed" = "Waktu dihabiskan";
 
 /* No comment provided by engineer. */
-"Time Limit" = "Had Masa";
+"Time Limit" = "Batas Waktu";
 
 /* No comment provided by engineer. */
-"Time Limit:" = "Had Masa:";
+"Time Limit:" = "Batas Waktu:";
 
 /* No comment provided by engineer. */
-"Title" = "Tajuk";
+"Title" = "Judul";
 
 /* No comment provided by engineer. */
-"Title..." = "Tajuk...";
+"Title..." = "Judul...";
 
 /* No comment provided by engineer. */
 "To" = "Kepada";
 
 /* No comment provided by engineer. */
-"to %@" = "untuk %@";
+"to %@" = "kepada %@";
 
 /* No comment provided by engineer. */
-"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Pelajar anda harus mencipta kod berpasangan untuk anda dari seksyen Tetapan pada apl Canvas Student seperti ditunjukkan di bawah untuk mencipta akaun, kemudian imbas kod tersebut dari sini.\nJika pelajar anda tidak melihat pilihan untuk mencipta kod berpasangan, anda perlu menghubungi sekolah anda untuk mencipta akaun anda.";
+"To create an account, have your student create a pairing code for you from the Settings section of the Canvas Student app as shown below, and then scan that code from here.\nIf your student doesn't see the option to create a pairing code, you'll need to reach out to your school to create your account." = "Untuk membuat akun, minta siswa Anda membuat kode pairing untuk Anda dari bagian Pengaturan app Canvas Student seperti di bawah ini, lalu pindai kode itu dari sini.\nJika siswa Anda tidak melihat opsi untuk membuat kode pairing, Anda harus menghubungi sekolah Anda untuk membuat akun Anda.";
 
 /* No comment provided by engineer. */
-"To Do" = "Untuk Dilakukan";
+"To Do" = "Harus Dilakukan";
 
 /* No comment provided by engineer. */
 "Today" = "Hari Ini";
 
 /* No comment provided by engineer. */
-"Tomorrow" = "Esok";
+"Tomorrow" = "Besok";
 
 /* No comment provided by engineer. */
-"Total Grade" = "Jumlah Gred";
+"Total Grade" = "Nilai Total";
 
 /* No comment provided by engineer. */
-"Total time" = "Jumlah masa";
+"Total time" = "Waktu total";
 
 /* No comment provided by engineer. */
 "Turn Off" = "Matikan";
 
 /* No comment provided by engineer. */
-"Turn Off Wi-Fi Only Sync?" = "Matikan Segerakan Wi-Fi Sahaja?";
+"Turn Off Wi-Fi Only Sync?" = "Matikan Hanya Sinkronisasikan Melalui Wi-Fi?";
 
 /* Description for Twitter communication channel */
-"Twitter Notifications" = "Pemberitahuan Twitter";
+"Twitter Notifications" = "Notifikasi Twitter";
 
 /* No comment provided by engineer. */
-"Un-starred" = "dinyahbintangkan";
+"Un-starred" = "Hapus bintang";
 
 /* No comment provided by engineer. */
-"Undo" = "Buat asal";
+"Undo" = "Urungkan";
 
 /* No comment provided by engineer. */
-"Ungraded Survey" = "Tinjauan Tidak Bergred";
+"Ungraded Survey" = "Survei Tidak Dinilai";
 
 /* No comment provided by engineer. */
-"Unknown" = "Tidak diketahui";
+"Unknown" = "Tidak dikenal";
 
 /* No comment provided by engineer. */
-"Unknown Error" = "Ralat tidak diketahui";
+"Unknown Error" = "Kesalahan Tidak Diketahui";
 
 /* No comment provided by engineer. */
-"Unknown file" = "Fail tidak diketahui";
+"Unknown file" = "File tidak dikenal";
 
 /* No comment provided by engineer. */
-"Unlimited" = "Tiada Had";
+"Unlimited" = "Tanpa batas";
 
 /* No comment provided by engineer. */
-"Unordered List" = "Senarai Tidak Bernombor";
+"Unordered List" = "Daftar Tanpa Urutan";
 
 /* No comment provided by engineer. */
-"Unpin" = "Nyahpin";
+"Unpin" = "Hapus pin";
 
 /* No comment provided by engineer. */
-"Unpublish" = "Nyahterbit";
+"Unpublish" = "Batalkan Terbit";
 
 /* No comment provided by engineer. */
-"unpublished" = "dinyahterbitkan";
+"unpublished" = "batalkan terbit";
 
 /* No comment provided by engineer. */
-"Unpublished" = "Dinyahterbitkan";
+"Unpublished" = "Belum Diterbitkan";
 
 /* No comment provided by engineer. */
 "Unread" = "Belum dibaca";
 
 /* No comment provided by engineer. */
-"Unsubscribe" = "Nyahlanggan";
+"Unsubscribe" = "Hapus subskripsi";
 
 /* No comment provided by engineer. */
-"Unsupported Item" = "Item Tidak Disokong";
+"Unsupported Item" = "Item Tidak Didukung";
 
 /* e.g. Until 01.02.2022 */
-"Until %@" = "Sehingga %@";
+"Until %@" = "Hingga %@";
 
 /* No comment provided by engineer. */
-"Updated Language Settings" = "Tetapan Bahasa Dikemas Kini";
+"Updated Language Settings" = "Pengaturan Bahasa Diperbarui";
 
 /* No comment provided by engineer. */
-"Updating" = "Mengemas kini...";
+"Updating" = "Memperbarui";
 
 /* No comment provided by engineer. */
-"Upload completed." = "Muat naik dilengkapkan.";
+"Upload completed." = "Unggahan selesai.";
 
 /* No comment provided by engineer. */
-"Upload failed due to unknown reason." = "Muat naik gagal kerana sebab tidak diketahui.";
+"Upload failed due to unknown reason." = "Pengunggahan gagal karena alasan yang tidak diketahui.";
 
 /* No comment provided by engineer. */
-"Upload failed." = "Muat naik gagal.";
+"Upload failed." = "Unggahan gagal.";
 
 /* No comment provided by engineer. */
-"Upload File" = "Muat Naik Fail";
+"Upload File" = "Unggah File";
 
 /* No comment provided by engineer. */
-"Upload in progress" = "Muat naik sedang berjalan";
+"Upload in progress" = "Unggahan sedang berlangsung";
 
 /* No comment provided by engineer. */
-"Upload in progress (Int(100 * progress))%" = "Muat Naik Sedang Berjalan (Int(100 * selesai))%";
+"Upload in progress (Int(100 * progress))%" = "Unggahan sedang berlangsung (Int(100 * progres))%";
 
 /* No comment provided by engineer. */
-"Uploading %@ is at %@" = "Memuat naik %1$@ adalah pada %2$@";
+"Uploading %@ is at %@" = "Mengunggah %1$@ pada %2$@";
 
 /* Uploading X KB of Y MB */
-"Uploading %@ of %@" = "Memuat naik %1$@ daripada %2$@";
+"Uploading %@ of %@" = "Mengunggah %1$@ dari %2$@";
 
 /* No comment provided by engineer. */
-"Uploading Submission" = "Memuat Naik Serahan";
+"Uploading Submission" = "Mengunggah Penyerahan";
 
 /* No comment provided by engineer. */
-"Uploading..." = "Memuat naik...";
+"Uploading..." = "Mengunggah...";
 
 /* No comment provided by engineer. */
 "URL" = "URL";
@@ -2864,7 +2864,7 @@
 "Use Camera" = "Gunakan Kamera";
 
 /* No comment provided by engineer. */
-"Use this code to pair with me in Canvas Parent: %@" = "Gunakan kod ini untuk berpasangan dengan saya dalam Canvas Parent: %@";
+"Use this code to pair with me in Canvas Parent: %@" = "Gunakan kode ini untuk pairing dengan saya di Canvas Parent: %@";
 
 /* No comment provided by engineer. */
 "use_file_extension" = "use_file_extension";
@@ -2876,10 +2876,10 @@
 "User.displayName" = "%1$@ (%2$@)";
 
 /* No comment provided by engineer. */
-"Username" = "Nama Pengguna";
+"Username" = "Nama pengguna";
 
 /* No comment provided by engineer. */
-"Users must post before seeing replies" = "Pengguna mesti membuat siaran sebelum melihat balasan";
+"Users must post before seeing replies" = "Pengguna harus posting sebelum melihat balasan";
 
 /* No comment provided by engineer. */
 "Version" = "Versi";
@@ -2891,55 +2891,55 @@
 "View" = "Lihat";
 
 /* No comment provided by engineer. */
-"View all submissions" = "Lihat semua serahan";
+"View all submissions" = "Lihat semua penyerahan";
 
 /* No comment provided by engineer. */
-"View Less" = "Lihat Kurang";
+"View Less" = "Lihat Lebih Sedikit";
 
 /* No comment provided by engineer. */
 "View Modules" = "Lihat Modul";
 
 /* No comment provided by engineer. */
-"View More" = "Lihat Lagi";
+"View More" = "Lihat Lainnya";
 
 /* No comment provided by engineer. */
-"View more replies" = "Lihat lebih banyak balasan";
+"View more replies" = "Lihat balasan lain";
 
 /* No comment provided by engineer. */
 "View Previous Announcements" = "Lihat Pengumuman Sebelumnya";
 
 /* No comment provided by engineer. */
-"View Responses:" = "Lihat Maklum Balas:";
+"View Responses:" = "Lihat Respons:";
 
 /* No comment provided by engineer. */
 "Viewed" = "Dilihat";
 
 /* No comment provided by engineer. */
-"Waiting for important things to happen." = "Menunggu hingga perkara penting berlaku";
+"Waiting for important things to happen." = "Menunggu terjadinya hal penting.";
 
 /* No comment provided by engineer. */
-"We couldn't find any courses like that." = "Kami tidak menemui apa-apa kursus yang sedemikian.";
+"We couldn't find any courses like that." = "Kami tidak dapat menemukan kursus apa pun seperti itu.";
 
 /* No comment provided by engineer. */
-"We couldn't load the quiz preview.\nPlease try again later." = "Kami tidak memuat naik pratonton kuiz.\nSila cuba semula kemudian.";
+"We couldn't load the quiz preview.\nPlease try again later." = "Kami tidak dapat memuat pratinjau kuis.\nSilakan coba lagi nanti.";
 
 /* No comment provided by engineer. */
-"We couldn’t find any files like that." = "Kami tidak menemui apa-apa fail yang sedemikian.";
+"We couldn’t find any files like that." = "Kami tidak dapat menemukan file apa pun seperti itu.";
 
 /* No comment provided by engineer. */
-"We couldn’t find somebody like that." = "Kami tidak menemui apa-apa sesiapa yang sedemikian.";
+"We couldn’t find somebody like that." = "Kami tidak dapat menemukan siapa pun seperti itu.";
 
 /* No comment provided by engineer. */
-"We received no response from the institution.\nGo back and make sure you entered a valid institution name." = "Kami tidak menerima maklum balas daripada institusi.\nKembali semula dan pastikan anda memasukkan nama institusi yang sah.";
+"We received no response from the institution.\nGo back and make sure you entered a valid institution name." = "Kami tidak menerima respons dari institusi.\nKembalilah dan pastikan Anda memasukkan nama institusi yang valid.";
 
 /* No comment provided by engineer. */
 "We've made a few changes." = "Kami telah membuat beberapa perubahan.";
 
 /* No comment provided by engineer. */
-"Website URL" = "URL Laman Web";
+"Website URL" = "URL Situs Web";
 
 /* No comment provided by engineer. */
-"Week of %@" = "Minggu %@";
+"Week of %@" = "Minggu dari %@";
 
 /* No comment provided by engineer. */
 "Weekly" = "Mingguan";
@@ -2951,22 +2951,22 @@
 "Welcome!" = "Selamat datang!";
 
 /* No comment provided by engineer. */
-"Well Done!" = "Bagus!";
+"Well Done!" = "Luar Biasa!";
 
 /* No comment provided by engineer. */
-"What’s your school’s name?" = "Apakah nama sekolah anda?";
+"What’s your school’s name?" = "Apa nama sekolah Anda?";
 
 /* No comment provided by engineer. */
 "white" = "putih";
 
 /* No comment provided by engineer. */
-"Whoops!" = "Op...";
+"Whoops!" = "Ups!";
 
 /* No comment provided by engineer. */
-"Will unlock %@" = "Akan menyahkunci %@";
+"Will unlock %@" = "Akan membuka  %@";
 
 /* No comment provided by engineer. */
-"Workaround" = "Alternatif";
+"Workaround" = "Solusi";
 
 /* No comment provided by engineer. */
 "yellow" = "kuning";
@@ -2975,53 +2975,53 @@
 "Yes" = "Ya";
 
 /* Description for Yo communication channel */
-"Yo Notifications" = "Pemberitahuan Yo";
+"Yo Notifications" = "Notifikasi Yo";
 
 /* User is missing a necessary permission */
-"You are not authorized to perform this action" = "Anda tidak dibenarkan untuk melaksanakan tindakan ini";
+"You are not authorized to perform this action" = "Anda tidak berwenang melakukan tindakan ini";
 
 /* No comment provided by engineer. */
-"You can try to open the page in a browser." = "Anda boleh cuba membuka halaman dalam pelayar.";
+"You can try to open the page in a browser." = "Anda bisa mencoba halaman di browser.";
 
 /* No comment provided by engineer. */
-"You have been invited" = "Anda telah dijemput";
+"You have been invited" = "Anda telah diundang";
 
 /* No comment provided by engineer. */
-"You must allow notifications in Settings to set reminders." = "Anda mesti membenarkan pemberitahuan dalam Tetapan untuk menetapkan peringatan.";
+"You must allow notifications in Settings to set reminders." = "Anda harus mengizinkan notifikasi dalam Pengaturan untuk mengatur pengingat.";
 
 /* No comment provided by engineer. */
-"You must enable Camera permissions in Settings." = "Anda mesti mendayakan keizinan kamera dalam Tetapan";
+"You must enable Camera permissions in Settings." = "Anda harus mengaktifkan izin Kamera dalam Pengaturan.";
 
 /* No comment provided by engineer. */
-"You must enable Microphone permissions in Settings." = "Anda mesti mendayakan keizinan Mikrofon dalam Tetapan.";
+"You must enable Microphone permissions in Settings." = "Anda harus mengaktifkan izin Mikrofon dalam Pengaturan.";
 
 /* No comment provided by engineer. */
-"You must enter an access code" = "Anda mesti memasukkan kod akses";
+"You must enter an access code" = "Anda harus memasukkan kode akses";
 
 /* No comment provided by engineer. */
-"You will stop acting as %@ and return to your account." = "Anda akan berhenti bertindak sebagai %@ dan kembali ke akaun anda.";
+"You will stop acting as %@ and return to your account." = "Anda akan berhenti bertindak sebagai %@ dan kembali ke akun Anda.";
 
 /* No comment provided by engineer. */
-"You will stop acting as this user and return to your account." = "Anda akan berhenti bertindak sebagai pengguna ini dan kembali ke akaun anda.";
+"You will stop acting as this user and return to your account." = "Anda akan berhenti bertindak sebagai pengguna ini dan kembali ke akun Anda.";
 
 /* No comment provided by engineer. */
-"You've marked it as done." = "Anda telah menandanya sebagai siap.";
+"You've marked it as done." = "Anda telah menandainya sebagai selesai.";
 
 /* No comment provided by engineer. */
-"Your child's courses might not be published yet." = "Kursus anak anda mungkin belum diterbitkan.";
+"Your child's courses might not be published yet." = "Kursus anak Anda mungkin belum diterbitkan.";
 
 /* No comment provided by engineer. */
-"Your courses will be listed here, and then you can make them available for offline usage." = "kursus anda akan disenaraikan di sini, kemudian anda boleh menyediakannya untuk kegunaan luar talian.";
+"Your courses will be listed here, and then you can make them available for offline usage." = "Kursus Anda akan tertera di sini, lalu Anda dapat menyediakannya untuk penggunaan offline.";
 
 /* No comment provided by engineer. */
-"Your device is out of storage space. Please free up space and try again." = "Peranti anda kehabisan ruang storan. Sila kosongkan ruang pada peranti anda dan cuba semula.";
+"Your device is out of storage space. Please free up space and try again." = "Perangkat Anda kehabisan ruang penyimpanan. Silakan bebaskan ruang dan coba lagi.";
 
 /* No comment provided by engineer. */
-"Your Email" = "E-mel Anda";
+"Your Email" = "Email Anda";
 
 /* No comment provided by engineer. */
-"Your file was successfully submitted.\nEnjoy your day!" = "Fail anda berjaya diserahkan.\nNikmati hari anda!";
+"Your file was successfully submitted.\nEnjoy your day!" = "File Anda berhasil diserahkan.\nSemoga harimu menyenangkan!";
 
 /* No comment provided by engineer. */
-"Your to do list is empty. Time to recharge." = "Senarai untuk dilakukan anda kosong. Masa untuk berehat.";
+"Your to do list is empty. Time to recharge." = "Daftar to do Anda kosong. Waktunya mengisi ulang.";
 
