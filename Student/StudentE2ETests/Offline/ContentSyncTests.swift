@@ -18,7 +18,7 @@
 
 import TestsFoundation
 
-class ContentSyncTests: OfflineE2ETest {
+class OfflineContentSyncTests: OfflineE2ETest {
     typealias Dashboard = DashboardHelper
     typealias Offline = Dashboard.Options.OfflineContent
 
