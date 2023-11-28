@@ -30,7 +30,12 @@ class AddressbookRoleViewModelTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         mockInteractor = AddressbookInteractorMock(env: AppEnvironment())
-        testee = AddressbookRoleViewModel(router: environment.router, recipientContext: .init(course: Course.make()), interactor: mockInteractor, recipientDidSelect: selected)
+        testee = AddressbookRoleViewModel(
+            router: environment.router,
+            recipientContext: .init(course: Course.make()),
+            interactor: mockInteractor,
+            recipientDidSelect: selected
+        )
     }
 
     func testInteractorStateMappedToViewModel() {
