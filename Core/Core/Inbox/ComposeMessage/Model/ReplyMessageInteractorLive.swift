@@ -22,13 +22,18 @@ import Combine
 public class ReplyMessageInteractorLive: ComposeMessageInteractor {
     public func send(parameters: MessageParameters) -> Future<Void, Error> {
         Future<Void, Error> { promise in
-            AddMessage(conversationID: parameters.conversationID!, body: parameters.body)
-            .fetch { _, _, error in
-                if let error = error {
-                    promise(.failure(error))
-                } else {
-                    promise(.success(()))
+            if let conversationId = parameters.conversationID {
+                AddMessage(conversationID: conversationId, body: parameters.body)
+                .fetch { _, _, error in
+                    if let error = error {
+                        promise(.failure(error))
+                    } else {
+                        promise(.success(()))
+                    }
                 }
+            }
+            else {
+                promise(.failure("Conversation id is nil"))
             }
         }
     }

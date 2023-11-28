@@ -20,14 +20,14 @@ import Combine
 @testable import Core
 import XCTest
 
-class ComposeMessageInteractorLiveTests: CoreTestCase {
-    private var testee: ComposeMessageInteractorLive!
+class ReplyMessageInteractorLiveTests: CoreTestCase {
+    private var testee: ReplyMessageInteractorLive!
 
     override func setUp() {
         super.setUp()
         mockData()
 
-        testee = ComposeMessageInteractorLive()
+        testee = ReplyMessageInteractorLive()
 
         waitForState(.data)
     }
@@ -66,7 +66,7 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
             attachmentIDs: attachments
         ).request
         let value = [APIConversation.make(id: "1")]
-        let parameters = MessageParameters(subject: subject, body: body, recipientIDs: recipients, context: Context.course(canvasContext))
+        let parameters = MessageParameters(subject: subject, body: body, recipientIDs: recipients, context: Context.course(canvasContext), conversationID: "1")
         api.mock(createConversationRequest, value: value)
 
         XCTAssertFinish(testee.send(parameters: parameters))

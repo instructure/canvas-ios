@@ -33,6 +33,9 @@ class ComposeMessageViewModel: ObservableObject {
         // && (attachments.isEmpty || attachments.allSatisfy({ $0.isUploaded }))
 
     }
+    public var isReply: Bool {
+        conversation != nil
+    }
 
     // MARK: - Inputs
     public let sendButtonDidTap = PassthroughRelay<WeakViewController>()
