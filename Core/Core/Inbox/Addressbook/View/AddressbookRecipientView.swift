@@ -30,7 +30,10 @@ public struct AddressbookRecipientView: View {
         ScrollView {
             peopleView
         }
-        .searchable(text: $viewModel.searchText, placement: .navigationBarDrawer(displayMode: .always))
+        .searchable(
+            text: Binding { viewModel.searchText.value } set: { viewModel.searchText.send($0) },
+            placement: .navigationBarDrawer(displayMode: .always)
+        )
         .background(Color.backgroundLightest)
         .navigationTitle(viewModel.title)
     }
@@ -43,8 +46,8 @@ public struct AddressbookRecipientView: View {
     private var peopleView: some View {
         VStack(alignment: .leading, spacing: 0) {
             separator
-            if viewModel.searchText.isEmpty { allRecipient }
-            ForEach(viewModel.filteredRecipients(), id: \.self) { user in
+            if viewModel.isAllRecipientButtonVisible { allRecipient }
+            ForEach(viewModel.recipients, id: \.self) { user in
                 personRowView(user)
             }
         }

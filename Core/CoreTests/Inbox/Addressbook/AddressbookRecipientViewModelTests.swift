@@ -41,12 +41,12 @@ class AddressbookRecipientViewModelTests: CoreTestCase {
     }
 
     func testListFiltering() {
-        testee.searchText = ""
-        XCTAssertEqual(testee.filteredRecipients().count, 3)
-        testee.searchText = "Recipient"
-        XCTAssertEqual(testee.filteredRecipients().count, 3)
-        testee.searchText = "Recipient 1"
-        XCTAssertEqual(testee.filteredRecipients().count, 1)
+        testee.searchText.value = ""
+        XCTAssertEqual(testee.recipients.count, 3)
+        testee.searchText.value = "Recipient"
+        XCTAssertEqual(testee.recipients.count, 3)
+        testee.searchText.value = "Recipient 1"
+        XCTAssertEqual(testee.recipients.count, 1)
     }
 
     func testRecipientSelection() {

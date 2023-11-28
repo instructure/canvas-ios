@@ -43,12 +43,12 @@ class AddressbookRoleViewModelTests: CoreTestCase {
     }
 
     func testListFiltering() {
-        testee.searchText = ""
-        XCTAssertEqual(testee.filteredRecipients().count, 3)
-        testee.searchText = "Recipient"
-        XCTAssertEqual(testee.filteredRecipients().count, 3)
-        testee.searchText = "Recipient 1"
-        XCTAssertEqual(testee.filteredRecipients().count, 1)
+        testee.searchText.value = ""
+        XCTAssertEqual(testee.recipients.count, 3)
+        testee.searchText.value = "Recipient"
+        XCTAssertEqual(testee.recipients.count, 3)
+        testee.searchText.value = "Recipient 1"
+        XCTAssertEqual(testee.recipients.count, 1)
     }
 
     func testRecipientSelection() {
@@ -76,18 +76,18 @@ class AddressbookRoleViewModelTests: CoreTestCase {
     }
 
     func testRolesViewVisible() {
-        testee.searchText = ""
+        testee.searchText.value = ""
         XCTAssertTrue(testee.isRolesViewVisible)
 
-        testee.searchText = "Test"
+        testee.searchText.value = "Test"
         XCTAssertFalse(testee.isRolesViewVisible)
     }
 
     func testAllRecipientButtonVisible() {
-        testee.searchText = ""
+        testee.searchText.value = ""
         XCTAssertTrue(testee.isAllRecipientButtonVisible)
 
-        testee.searchText = "Test"
+        testee.searchText.value = "Test"
         XCTAssertFalse(testee.isAllRecipientButtonVisible)
     }
 }

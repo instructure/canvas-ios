@@ -23,6 +23,10 @@ class AddressbookRecipientViewModel: ObservableObject {
     // MARK: - Outputs
     @Published public private(set) var recipients: [SearchRecipient]
 
+    public var isAllRecipientButtonVisible: Bool {
+        searchText.value.isEmpty
+    }
+
     public let title = NSLocalizedString("Select Recipients", bundle: .core, comment: "")
     public let roleName: String
 
@@ -31,7 +35,7 @@ class AddressbookRecipientViewModel: ObservableObject {
     public let allRecipientDidTap = PassthroughSubject<(recipient: [SearchRecipient], controller: WeakViewController), Never>()
 
     // MARK: - Input / Output
-    @Published public var searchText: String = ""
+    @Published public var searchText = CurrentValueSubject<String, Never>("")
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
@@ -41,20 +45,30 @@ class AddressbookRecipientViewModel: ObservableObject {
         self.recipients = recipients
         self.roleName = roleName
         self.router = router
-        setupInputBindings(recipientDidSelect: recipientDidSelect)
-    }
 
-    public func filteredRecipients() -> [SearchRecipient] {
-        guard !searchText.isEmpty else { return recipients }
-        return recipients.filter { user in
-            (user.displayName ?? user.fullName).lowercased().contains(searchText.lowercased())
-        }
+        setupInputBindings(recipientDidSelect: recipientDidSelect)
+        setupOutputBindings(allRecipient: recipients)
     }
 
     private func closeDialog(_ viewController: WeakViewController) {
         // Double dismiss is neccessary due to the searchable view
         router.dismiss(viewController)
         router.dismiss(viewController)
+    }
+
+    private func setupOutputBindings(allRecipient: [SearchRecipient]) {
+        Just(allRecipient)
+            .combineLatest(searchText)
+            .map { (recipients, searchText) in
+                recipients.filter { recipient in
+                    if searchText.isEmpty {
+                        true
+                    } else {
+                        recipient.name.lowercased().contains(searchText.lowercased())
+                    }
+                }
+            }
+            .assign(to: &$recipients)
     }
 
     private func setupInputBindings(recipientDidSelect: CurrentValueRelay<[SearchRecipient]>) {
