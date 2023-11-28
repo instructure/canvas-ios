@@ -74,6 +74,22 @@ class AddressbookRoleViewModelTests: CoreTestCase {
         await testee.refresh()
         XCTAssertTrue(mockInteractor.isRefreshCalled)
     }
+
+    func testRolesViewVisible() {
+        testee.searchText = ""
+        XCTAssertTrue(testee.isRolesViewVisible)
+
+        testee.searchText = "Test"
+        XCTAssertFalse(testee.isRolesViewVisible)
+    }
+
+    func testAllRecipientButtonVisible() {
+        testee.searchText = ""
+        XCTAssertTrue(testee.isAllRecipientButtonVisible)
+
+        testee.searchText = "Test"
+        XCTAssertFalse(testee.isAllRecipientButtonVisible)
+    }
 }
 
 private class AddressbookInteractorMock: AddressbookInteractor {

@@ -27,6 +27,13 @@ class AddressbookRoleViewModel: ObservableObject {
     @Published public private(set) var roles: [String] = []
     @Published public private(set) var roleRecipients: [String: [SearchRecipient]] = [:]
 
+    public var isRolesViewVisible: Bool {
+        searchText.value.isEmpty && !roles.isEmpty
+    }
+    public var isAllRecipientButtonVisible: Bool {
+        searchText.value.isEmpty
+    }
+
     public let title = NSLocalizedString("Select Recipients", bundle: .core, comment: "")
     public let recipientContext: RecipientContext
 
@@ -36,7 +43,7 @@ class AddressbookRoleViewModel: ObservableObject {
     public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
 
     // MARK: - Input / Output
-    @Published public var searchText: String = ""
+    @Published public var searchText = CurrentValueSubject<String, Never>("")
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
@@ -63,17 +70,20 @@ class AddressbookRoleViewModel: ObservableObject {
         }
     }
 
-    public func filteredRecipients() -> [SearchRecipient] {
-        guard !searchText.isEmpty else { return recipients }
-        return recipients.filter { user in
-            (user.displayName ?? user.fullName).lowercased().contains(searchText.lowercased())
-        }
-    }
-
     private func setupOutputBindings() {
         interactor.state
                 .assign(to: &$state)
         interactor.recipients
+            .combineLatest(searchText)
+            .map { (recipients, searchText) in
+                recipients.filter { recipient in
+                    if searchText.isEmpty {
+                        true
+                    } else {
+                        recipient.name.lowercased().contains(searchText.lowercased())
+                    }
+                }
+            }
             .assign(to: &$recipients)
 
         interactor.recipients

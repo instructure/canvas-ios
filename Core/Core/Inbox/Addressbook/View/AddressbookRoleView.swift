@@ -32,7 +32,7 @@ struct AddressbookRoleView: View {
             case .loading:
                 loadingIndicator
             case .data:
-                if viewModel.searchText.isEmpty && !viewModel.roles.isEmpty {
+                if viewModel.isRolesViewVisible {
                     rolesView
                 } else {
                     peopleView
@@ -42,7 +42,10 @@ struct AddressbookRoleView: View {
                     .frame(maxWidth: .infinity)
             }
         }
-        .searchable(text: $viewModel.searchText, placement: .navigationBarDrawer(displayMode: .always))
+        .searchable(
+            text: Binding { viewModel.searchText.value } set: { viewModel.searchText.send($0) },
+            placement: .navigationBarDrawer(displayMode: .always)
+        )
         .refreshable {
             await viewModel.refresh()
         }
@@ -77,8 +80,8 @@ struct AddressbookRoleView: View {
     private var peopleView: some View {
         VStack(alignment: .leading, spacing: 0) {
             separator
-            if viewModel.searchText.isEmpty { allRecipient }
-            ForEach(viewModel.filteredRecipients(), id: \.self) { user in
+            if viewModel.isAllRecipientButtonVisible { allRecipient }
+            ForEach(viewModel.recipients, id: \.self) { user in
                 personRowView(user)
             }
         }
