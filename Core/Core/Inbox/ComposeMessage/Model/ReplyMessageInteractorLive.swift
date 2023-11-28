@@ -23,7 +23,7 @@ public class ReplyMessageInteractorLive: ComposeMessageInteractor {
     public func send(parameters: MessageParameters) -> Future<Void, Error> {
         Future<Void, Error> { promise in
             if let conversationId = parameters.conversationID {
-                AddMessage(conversationID: conversationId, body: parameters.body)
+                AddMessage(conversationID: conversationId, attachmentIDs: parameters.attachmentIDs, body: parameters.body, recipientIDs: parameters.recipientIDs)
                 .fetch { _, _, error in
                     if let error = error {
                         promise(.failure(error))
@@ -31,8 +31,7 @@ public class ReplyMessageInteractorLive: ComposeMessageInteractor {
                         promise(.success(()))
                     }
                 }
-            }
-            else {
+            } else {
                 promise(.failure("Conversation id is nil"))
             }
         }
