@@ -76,7 +76,6 @@ class AddressbookRecipientViewModel: ObservableObject {
             .sink { [weak self] (recipients, viewController) in
                 recipientDidSelect.accept(recipients)
                 self?.closeDialog(viewController)
-
             }
             .store(in: &subscriptions)
 

@@ -38,8 +38,10 @@ struct AddressbookRoleView: View {
                     peopleView
                 }
             case .empty, .error:
-                Text("There was an error loading recipients.", bundle: .core)
-                    .frame(maxWidth: .infinity)
+                Text("There was an error loading recipients.\nPull to refresh to try again.", bundle: .core)
+                    .foregroundColor(.textDark)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding()
             }
         }
         .searchable(
@@ -79,7 +81,6 @@ struct AddressbookRoleView: View {
 
     private var peopleView: some View {
         VStack(alignment: .leading, spacing: 0) {
-            separator
             if viewModel.isAllRecipientButtonVisible { allRecipient }
             ForEach(viewModel.recipients, id: \.self) { user in
                 personRowView(user)
@@ -123,7 +124,7 @@ struct AddressbookRoleView: View {
             }, label: {
                 HStack(alignment: .center, spacing: 16) {
                     Avatar(name: role, url: nil, size: 36, isAccessible: false)
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: 8) {
                         Text(role)
                             .font(.regular16)
                             .foregroundColor(.textDarkest)

@@ -45,7 +45,6 @@ public struct AddressbookRecipientView: View {
 
     private var peopleView: some View {
         VStack(alignment: .leading, spacing: 0) {
-            separator
             if viewModel.isAllRecipientButtonVisible { allRecipient }
             ForEach(viewModel.recipients, id: \.self) { user in
                 personRowView(user)

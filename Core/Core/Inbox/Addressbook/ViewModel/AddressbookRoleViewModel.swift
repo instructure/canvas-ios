@@ -56,7 +56,7 @@ class AddressbookRoleViewModel: ObservableObject {
         self.router = router
 
         setupOutputBindings()
-        setupInputBindings(router: router, recipientDidSelect: recipientDidSelect)
+        setupInputBindings(recipientDidSelect: recipientDidSelect)
     }
 
     public func refresh() async {
@@ -72,7 +72,7 @@ class AddressbookRoleViewModel: ObservableObject {
 
     private func setupOutputBindings() {
         interactor.state
-                .assign(to: &$state)
+            .assign(to: &$state)
         interactor.recipients
             .combineLatest(searchText)
             .map { (recipients, searchText) in
@@ -86,32 +86,33 @@ class AddressbookRoleViewModel: ObservableObject {
             }
             .assign(to: &$recipients)
 
-        interactor.recipients
-            .compactMap { recipients in
-                return recipients.flatMap { recipient in
+        _ = interactor.recipients
+            .map { recipients in
+                recipients.flatMap { recipient in
                     Array(recipient.commonCourses).compactMap { commonCourse in
                         (recipient, commonCourse.role)
                     }
                 }
             }
-            .compactMap { roleRecipients -> [String: [(SearchRecipient, String)]] in
-                return Dictionary(grouping: roleRecipients, by: { $0.1 })
+            .map { roleRecipients -> [String: [(SearchRecipient, String)]] in
+                Dictionary(grouping: roleRecipients, by: { $0.1 })
             }
-            .compactMap { roleRecipients -> [String: [SearchRecipient]] in
-                return Dictionary(uniqueKeysWithValues: roleRecipients.map {[weak self] key, value in
+            .map { roleRecipients -> [String: [SearchRecipient]] in
+                Dictionary(uniqueKeysWithValues: roleRecipients.map {[weak self] key, value in
                     (
-                        self?.getRoleName(roleType: key) ?? "",
+                        self?.roleName(for: key) ?? "",
                         Array(Set(value.map { $0.0 }))
                     )
                 })
             }
-            .handleEvents(receiveOutput: { [weak self] roleRecipients in
+            .sink { [weak self] roleRecipients in
                 self?.roles = Array(roleRecipients.keys).sorted()
-            })
-            .assign(to: &$roleRecipients)
+                self?.roleRecipients = roleRecipients
+            }
+            .store(in: &subscriptions)
     }
 
-    private func getRoleName(roleType: String) -> String {
+    private func roleName(for roleType: String) -> String {
         switch roleType {
         case "TeacherEnrollment":
             return NSLocalizedString("Teachers", comment: "")
@@ -134,7 +135,7 @@ class AddressbookRoleViewModel: ObservableObject {
         router.dismiss(viewController)
     }
 
-    private func setupInputBindings(router: Router, recipientDidSelect: CurrentValueRelay<[SearchRecipient]>) {
+    private func setupInputBindings(recipientDidSelect: CurrentValueRelay<[SearchRecipient]>) {
         cancelButtonDidTap
             .sink { [router] viewController in
                 router.dismiss(viewController)
@@ -142,14 +143,18 @@ class AddressbookRoleViewModel: ObservableObject {
             .store(in: &subscriptions)
 
         roleDidTap
-            .sink { [router] (roleName, recipients, viewController) in
-                router.show(
-                    AddressBookAssembly.makeAddressbookRecipientViewController(
-                        recipientContext: self.recipientContext,
-                        roleName: roleName,
-                        recipients: recipients,
-                        recipientDidSelect: recipientDidSelect),
-                    from: viewController)
+            .sink { [weak self] (roleName, recipients, viewController) in
+                if let self {
+                    self.router.show(
+                        AddressBookAssembly.makeAddressbookRecipientViewController(
+                            recipientContext: self.recipientContext,
+                            roleName: roleName,
+                            recipients: recipients,
+                            recipientDidSelect: recipientDidSelect
+                        ),
+                        from: viewController
+                    )
+                }
             }
             .store(in: &subscriptions)
 
