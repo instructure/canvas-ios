@@ -78,7 +78,7 @@ public struct AddressbookRecipientView: View {
             }, label: {
                 HStack(alignment: .center, spacing: 16) {
                     Avatar(name: NSLocalizedString("All", comment: ""), url: nil, size: 36, isAccessible: false)
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: 8) {
                         Text("All in \(viewModel.roleName)", bundle: .core)
                             .font(.regular16)
                             .foregroundColor(.textDarkest)
