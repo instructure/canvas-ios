@@ -87,46 +87,24 @@ class AddressbookRoleViewModel: ObservableObject {
             .assign(to: &$recipients)
 
         interactor.recipients
-            .map { recipients in
-                recipients.flatMap { recipient in
-                    Array(recipient.commonCourses).map { commonCourse in
-                        (recipient, commonCourse.role)
+            .map { recipients -> [String: [SearchRecipient]] in
+                var recipientsByRole: [String: [SearchRecipient]] = [:]
+
+                for recipient in recipients {
+                    for role in recipient.roleNames {
+                        var recipientsForRole = recipientsByRole[role] ?? []
+                        recipientsForRole.append(recipient)
+                        recipientsByRole[role] = recipientsForRole
                     }
                 }
+
+                return recipientsByRole
             }
-            .map { roleRecipients -> [String: [(SearchRecipient, String)]] in
-                Dictionary(grouping: roleRecipients, by: { $0.1 })
-            }
-            .map { roleRecipients -> [String: [SearchRecipient]] in
-                Dictionary(uniqueKeysWithValues: roleRecipients.map { [weak self] key, value in
-                    (
-                        self?.roleName(for: key) ?? "",
-                        Array(Set(value.map { $0.0 }))
-                    )
-                })
-            }
-            .sink { [weak self] roleRecipients in
-                self?.roles = Array(roleRecipients.keys).sorted()
-                self?.roleRecipients = roleRecipients
+            .sink { [weak self] recipientsByRoles in
+                self?.roles = Array(recipientsByRoles.keys).sorted()
+                self?.roleRecipients = recipientsByRoles
             }
             .store(in: &subscriptions)
-    }
-
-    private func roleName(for roleType: String) -> String {
-        switch roleType {
-        case "TeacherEnrollment":
-            return NSLocalizedString("Teachers", comment: "")
-        case "StudentEnrollment":
-            return NSLocalizedString("Students", comment: "")
-        case "ObserverEnrollment":
-            return NSLocalizedString("Observers", comment: "")
-        case "TaEnrollment":
-            return NSLocalizedString("Teaching assistants", comment: "")
-        case "DesignerEnrollment":
-            return NSLocalizedString("Course designers", comment: "")
-        default:
-            return NSLocalizedString("Others", comment: "")
-        }
     }
 
     private func closeDialog(_ viewController: WeakViewController) {
@@ -164,5 +142,29 @@ class AddressbookRoleViewModel: ObservableObject {
                 self?.closeDialog(viewController)
             }
             .store(in: &subscriptions)
+    }
+}
+
+private extension SearchRecipient {
+
+    var roleNames: Set<String> {
+        Set(commonCourses.map { Self.roleName(from: $0.role) })
+    }
+
+    static func roleName(from enrollmentName: String) -> String {
+        switch enrollmentName {
+        case "TeacherEnrollment":
+            return NSLocalizedString("Teachers", comment: "")
+        case "StudentEnrollment":
+            return NSLocalizedString("Students", comment: "")
+        case "ObserverEnrollment":
+            return NSLocalizedString("Observers", comment: "")
+        case "TaEnrollment":
+            return NSLocalizedString("Teaching assistants", comment: "")
+        case "DesignerEnrollment":
+            return NSLocalizedString("Course designers", comment: "")
+        default:
+            return NSLocalizedString("Others", comment: "")
+        }
     }
 }

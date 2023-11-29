@@ -40,18 +40,20 @@ class AddressbookRoleViewModelTests: CoreTestCase {
 
     func testInteractorStateMappedToViewModel() {
         XCTAssertEqual(testee.state, mockInteractor.state.value)
-        XCTAssertEqual(testee.recipients.count, 3)
-        XCTAssertEqual(testee.roles.count, 3)
+        XCTAssertEqual(testee.recipients.count, 5)
+        XCTAssertEqual(testee.roles.count, 5)
         XCTAssertEqual(testee.roleRecipients["Teachers"]?.first?.name, "Recipient 1")
         XCTAssertEqual(testee.roleRecipients["Students"]?.first?.name, "Recipient 2")
-        XCTAssertEqual(testee.roleRecipients["Observers"]?.first?.name, "Recipient 3")
+        XCTAssertEqual(testee.roleRecipients["Course designers"]?.first?.name, "Recipient 4")
+        XCTAssertEqual(testee.roleRecipients["Teaching assistants"]?[0].name, "Recipient 4")
+        XCTAssertEqual(testee.roleRecipients["Teaching assistants"]?[1].name, "Recipient 5")
     }
 
     func testListFiltering() {
         testee.searchText.value = ""
-        XCTAssertEqual(testee.recipients.count, 3)
+        XCTAssertEqual(testee.recipients.count, 5)
         testee.searchText.value = "Recipient"
-        XCTAssertEqual(testee.recipients.count, 3)
+        XCTAssertEqual(testee.recipients.count, 5)
         testee.searchText.value = "Recipient 1"
         XCTAssertEqual(testee.recipients.count, 1)
     }
@@ -107,8 +109,9 @@ private class AddressbookInteractorMock: AddressbookInteractor {
             .save(.make(id: "1", name: "Recipient 1", common_courses: ["Course 1": ["TeacherEnrollment"]]), filter: "", in: env.database.viewContext),
             .save(.make(id: "2", name: "Recipient 2", common_courses: ["Course 1": ["StudentEnrollment"]]), filter: "", in: env.database.viewContext),
             .save(.make(id: "3", name: "Recipient 3", common_courses: ["Course 1": ["ObserverEnrollment"]]), filter: "", in: env.database.viewContext),
+            .save(.make(id: "4", name: "Recipient 4", common_courses: ["Course 1": ["TaEnrollment", "DesignerEnrollment"]]), filter: "", in: env.database.viewContext),
+            .save(.make(id: "5", name: "Recipient 5", common_courses: ["Course 1": ["TaEnrollment"]]), filter: "", in: env.database.viewContext),
         ])
-
     }
 
     func refresh() -> Future<Void, Never> {
