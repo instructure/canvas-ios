@@ -60,7 +60,7 @@ public final class SearchRecipient: NSManagedObject {
 
     public func hasRole(_ role: Role, in context: Context) -> Bool {
         guard context.contextType == .course else { return false }
-        return commonCourses.first { $0.courseID == context.id && Role(rawValue: $0.role) == role } != nil
+        return commonCourses.contains { $0.courseID == context.id && Role(rawValue: $0.role) == role }
     }
 }
 
