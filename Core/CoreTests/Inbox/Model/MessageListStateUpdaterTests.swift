@@ -27,7 +27,7 @@ class MessageListStateUpdaterTests: CoreTestCase {
     // MARK: Moving To/From Archive
 
     func testMessageInAllScopeGetsRemovedOnArchive() {
-        let message = makeMessage(scopeFilter: .all)
+        let message = makeMessage(scopeFilter: .inbox)
         testee.update(message: message, newState: .archived)
         XCTAssertTrue(databaseClient.registeredObjects.isEmpty)
     }
@@ -67,7 +67,7 @@ class MessageListStateUpdaterTests: CoreTestCase {
     // MARK: - State Updates
 
     func testMessageWorkflowStateUpdates() {
-        let message = makeMessage(scopeFilter: .all, messageState: .read)
+        let message = makeMessage(scopeFilter: .inbox, messageState: .read)
         testee.update(message: message, newState: .unread)
         XCTAssertEqual(message.state, .unread)
     }

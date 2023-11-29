@@ -60,7 +60,7 @@ class MessageDetailsViewModelTests: CoreTestCase {
     func testMoreTapped() {
         let sourceView = UIViewController()
 
-        testee.moreTapped(message: .make(in: environment.database.viewContext), viewController: WeakViewController(sourceView))
+        testee.moreTapped(message: .init(), viewController: WeakViewController(sourceView))
 
         let sheet = router.presented as? BottomSheetPickerViewController
         XCTAssertNotNil(sheet)
@@ -70,7 +70,7 @@ class MessageDetailsViewModelTests: CoreTestCase {
 
 private class MessageDetailsInteractorMock: MessageDetailsInteractor {
     var conversation: CurrentValueSubject<[Core.Conversation], Never>
-    
+
     var state = CurrentValueSubject<StoreState, Never>(.data)
     var subject = CurrentValueSubject<String, Never>("Test")
     var messages: CurrentValueSubject<[ConversationMessage], Never>
