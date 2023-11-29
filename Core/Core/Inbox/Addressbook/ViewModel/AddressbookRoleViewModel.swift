@@ -86,10 +86,10 @@ class AddressbookRoleViewModel: ObservableObject {
             }
             .assign(to: &$recipients)
 
-        _ = interactor.recipients
+        interactor.recipients
             .map { recipients in
                 recipients.flatMap { recipient in
-                    Array(recipient.commonCourses).compactMap { commonCourse in
+                    Array(recipient.commonCourses).map { commonCourse in
                         (recipient, commonCourse.role)
                     }
                 }
@@ -98,7 +98,7 @@ class AddressbookRoleViewModel: ObservableObject {
                 Dictionary(grouping: roleRecipients, by: { $0.1 })
             }
             .map { roleRecipients -> [String: [SearchRecipient]] in
-                Dictionary(uniqueKeysWithValues: roleRecipients.map {[weak self] key, value in
+                Dictionary(uniqueKeysWithValues: roleRecipients.map { [weak self] key, value in
                     (
                         self?.roleName(for: key) ?? "",
                         Array(Set(value.map { $0.0 }))
