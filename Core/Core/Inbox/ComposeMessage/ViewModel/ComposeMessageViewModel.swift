@@ -142,7 +142,8 @@ class ComposeMessageViewModel: ObservableObject {
             body: bodyText,
             recipientIDs: recipientIDs,
             context: context.context,
-            conversationID: conversation?.id
+            conversationID: conversation?.id,
+            groupConversation: !sendIndividual
         )
     }
 

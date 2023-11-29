@@ -27,7 +27,9 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
                 body: parameters.body,
                 recipientIDs: parameters.recipientIDs,
                 canvasContextID: parameters.context.canvasContextID,
-                attachmentIDs: parameters.attachmentIDs)
+                attachmentIDs: parameters.attachmentIDs,
+                groupConversation: parameters.groupConversation
+            )
             .fetch { _, _, error in
                 if let error = error {
                     promise(.failure(error))
