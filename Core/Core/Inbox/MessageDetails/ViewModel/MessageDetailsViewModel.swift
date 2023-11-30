@@ -47,14 +47,16 @@ class MessageDetailsViewModel: ObservableObject {
         setupInputBindings(router: router)
     }
 
-    public func moreTapped(message: ConversationMessage, viewController: WeakViewController) {
+    public func moreTapped(message: ConversationMessage?, viewController: WeakViewController) {
         let sheet = BottomSheetPickerViewController.create()
         sheet.addAction(
             image: .replyLine,
             title: NSLocalizedString("Reply", comment: ""),
             accessibilityIdentifier: "MessageDetails.reply"
         ) {
-            self.replyTapped(message: message, viewController: viewController)
+            if let message {
+                self.replyTapped(message: message, viewController: viewController)
+            }
         }
         sheet.addAction(
             image: .replyAllLine,

@@ -36,6 +36,9 @@ class ComposeMessageViewModel: ObservableObject {
     public var isReply: Bool {
         conversation != nil
     }
+    public var courseSelectorAccessibilityLabel: String {
+        selectedContext == nil ? NSLocalizedString("Select course", comment: "") : NSLocalizedString("Selected course: \(selectedContext!.name)", comment: "")
+    }
 
     // MARK: - Inputs
     public let sendButtonDidTap = PassthroughRelay<WeakViewController>()
@@ -64,14 +67,8 @@ class ComposeMessageViewModel: ObservableObject {
 
         if let conversation {
             self.subject = conversation.subject
-            let rawContext = conversation.contextCode?.split(separator: "_") ?? []
-            switch rawContext[0] {
-            case "course":
-                self.selectedContext = RecipientContext(name: conversation.contextName ?? "", context: Context.course(String(rawContext[1])))
-            case "group":
-                self.selectedContext = RecipientContext(name: conversation.contextName ?? "", context: Context.group(String(rawContext[1])))
-            default:
-                self.selectedContext = RecipientContext(name: conversation.contextName ?? "", context: Context.course(String(rawContext[1])))
+            if let context = Context(canvasContextID: conversation.contextCode ?? "") {
+                self.selectedContext = .init(name: conversation.contextName ?? "", context: context)
             }
             if let author {
                 self.recipients = conversation.audience.filter { $0.id == author }.map { Recipient(conversationParticipant: $0) }

@@ -140,10 +140,7 @@ public struct ComposeMessageView: View {
         .disabled(model.isReply)
         .opacity(model.isReply ? 0.6 : 1)
         .padding(.horizontal, 16).padding(.vertical, 12)
-        .accessibility(label: Text(
-            model.selectedContext == nil ? "Select course" : "Selected course: \(model.selectedContext!.name)",
-            bundle: .core
-        ))
+        .accessibilityLabel(Text(model.courseSelectorAccessibilityLabel))
     }
 
     private var toView: some View {

@@ -45,9 +45,11 @@ public class MessageDetailsInteractorLive: MessageDetailsInteractor {
 
         conversationStore
             .allObjects
-            .handleEvents(receiveOutput: { conversation in
-                self.conversation.value = conversation
-            })
+            .subscribe(conversation)
+            .store(in: &subscriptions)
+
+        conversationStore
+            .allObjects
             .map {
                 $0.first?.subject ?? NSLocalizedString("No Subject", comment: "")
             }
