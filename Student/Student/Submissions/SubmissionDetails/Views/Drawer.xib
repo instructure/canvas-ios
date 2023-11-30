@@ -24,10 +24,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yhc-Hf-2mW" userLabel="DrawerControls">
-                    <rect key="frame" x="0.0" y="0.0" width="413" height="58"/>
+                    <rect key="frame" x="0.0" y="0.0" width="413" height="56"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zQw-tB-yGY" userLabel="Gripper">
-                            <rect key="frame" x="188.5" y="4" width="36" height="4"/>
+                            <rect key="frame" x="188.5" y="8" width="36" height="4"/>
                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <accessibility key="accessibilityConfiguration" identifier="SubmissionDetails.drawerGripper"/>
                             <constraints>
@@ -39,7 +39,7 @@
                             </connections>
                         </button>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="RnZ-Eu-Ple">
-                            <rect key="frame" x="16" y="16" width="381" height="35"/>
+                            <rect key="frame" x="16" y="20" width="381" height="35"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="kDR-tw-Pus"/>
                             </constraints>
@@ -60,15 +60,15 @@
                         <constraint firstItem="RnZ-Eu-Ple" firstAttribute="top" secondItem="zQw-tB-yGY" secondAttribute="bottom" constant="8" id="J1x-lU-6Kk"/>
                         <constraint firstAttribute="trailing" secondItem="RnZ-Eu-Ple" secondAttribute="trailing" constant="16" id="Uhy-cl-hY2"/>
                         <constraint firstItem="RnZ-Eu-Ple" firstAttribute="leading" secondItem="yhc-Hf-2mW" secondAttribute="leading" constant="16" id="XQM-dk-Gyz"/>
-                        <constraint firstAttribute="bottom" secondItem="RnZ-Eu-Ple" secondAttribute="bottom" constant="8" id="lfw-js-Mkf"/>
-                        <constraint firstItem="zQw-tB-yGY" firstAttribute="top" secondItem="yhc-Hf-2mW" secondAttribute="top" constant="4" id="sfX-gz-adx"/>
+                        <constraint firstAttribute="bottom" secondItem="RnZ-Eu-Ple" secondAttribute="bottom" constant="2" id="lfw-js-Mkf"/>
+                        <constraint firstItem="zQw-tB-yGY" firstAttribute="top" secondItem="yhc-Hf-2mW" secondAttribute="top" constant="8" id="sfX-gz-adx"/>
                     </constraints>
                     <connections>
                         <outletCollection property="gestureRecognizers" destination="8Cv-db-Q3F" appends="YES" id="Qlk-sd-TIH"/>
                     </connections>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NiS-Q8-E9V" userLabel="Border" customClass="DividerView" customModule="Student" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="57" width="413" height="1"/>
+                    <rect key="frame" x="0.0" y="55" width="413" height="1"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="fb3-3f-fZ5"/>
@@ -78,7 +78,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zvd-Vb-YDD" userLabel="ContentView">
-                    <rect key="frame" x="0.0" y="58" width="413" height="403"/>
+                    <rect key="frame" x="0.0" y="56" width="413" height="405"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" priority="999" id="y8L-1T-xAL"/>

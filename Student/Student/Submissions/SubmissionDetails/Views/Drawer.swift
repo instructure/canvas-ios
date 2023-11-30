@@ -218,11 +218,11 @@ extension UISegmentedControl {
 
     func setFontStyle() {
         setTitleTextAttributes(
-            [NSAttributedString.Key.font: UIFont.scaledNamedFont(.semibold14)],
+            [NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular14)],
             for: .normal
         )
         setTitleTextAttributes(
-            [NSAttributedString.Key.font: UIFont.scaledNamedFont(.semibold14)],
+            [NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular14)],
             for: .selected
         )
         setTitleTextAttributes(
@@ -246,8 +246,6 @@ extension UISegmentedControl {
         let underlineFrame = CGRect(x: underlineXPosition, y: underLineYPosition, width: underlineWidth, height: underlineHeight)
         let underline = UIView(frame: underlineFrame)
         underline.translatesAutoresizingMaskIntoConstraints = false
-
-        // TODO: change it to #0374B5
         underline.backgroundColor = .electric
         underline.tag = 1
         self.addSubview(underline)

@@ -32,32 +32,31 @@
                                 <rect key="frame" x="0.0" y="60" width="375" height="493"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="c1S-ft-Bsw">
-                                <rect key="frame" x="16" y="8" width="343" height="51"/>
+                                <rect key="frame" x="16" y="0.0" width="343" height="59"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5h3-p7-4c5">
-                                        <rect key="frame" x="0.0" y="17" width="33.5" height="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5h3-p7-4c5">
+                                        <rect key="frame" x="0.0" y="4.5" width="50" height="50"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                         <color key="textColor" name="textDarkest"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="trailing" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Iq-2N-D4G" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
-                                        <rect key="frame" x="133.5" y="17" width="209.5" height="17"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Iq-2N-D4G" customClass="DynamicButton" customModule="Student" customModuleProvider="target">
+                                        <rect key="frame" x="313" y="15" width="30" height="29"/>
                                         <accessibility key="accessibilityConfiguration" identifier="SubmissionDetails.attemptPickerToggle"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                        <color key="tintColor" name="textDarkest"/>
                                         <inset key="titleEdgeInsets" minX="-8" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="4" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="Nov 15, 2023.01.01 at 2:34 PM" image="chevron.down" catalog="system"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="textColorName" value="textDark"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="textStyle" value="regular14"/>
-                                        </userDefinedRuntimeAttributes>
+                                        <state key="normal">
+                                            <color key="titleColor" name="textDarkest"/>
+                                        </state>
                                         <connections>
                                             <action selector="pickerButtonTapped:" destination="l3A-rq-KxF" eventType="touchUpInside" id="Q9L-ki-qe4"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="51" id="ksX-K9-tbO"/>
+                                    <constraint firstAttribute="height" constant="59" id="ksX-K9-tbO"/>
                                 </constraints>
                             </stackView>
                             <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z8l-gf-K01">
@@ -83,7 +82,7 @@
                         <constraints>
                             <constraint firstItem="Bea-4p-X3b" firstAttribute="trailing" secondItem="c1S-ft-Bsw" secondAttribute="trailing" constant="16" id="3jU-tz-mQi"/>
                             <constraint firstItem="FS1-GB-kdN" firstAttribute="leading" secondItem="bcu-XY-Y5h" secondAttribute="leading" constant="16" id="7rg-jZ-IMg"/>
-                            <constraint firstItem="c1S-ft-Bsw" firstAttribute="top" secondItem="Bea-4p-X3b" secondAttribute="top" constant="8" id="9Z3-e2-afK"/>
+                            <constraint firstItem="c1S-ft-Bsw" firstAttribute="top" secondItem="Bea-4p-X3b" secondAttribute="top" id="9Z3-e2-afK"/>
                             <constraint firstItem="ac8-45-rao" firstAttribute="bottom" secondItem="Bea-4p-X3b" secondAttribute="bottom" constant="2" id="DNT-bc-RmK"/>
                             <constraint firstItem="Bea-4p-X3b" firstAttribute="bottom" secondItem="pNE-3D-zl2" secondAttribute="bottom" id="FAL-2f-Lut"/>
                             <constraint firstItem="Bea-4p-X3b" firstAttribute="trailing" secondItem="ac8-45-rao" secondAttribute="trailing" id="Fvv-Fw-X8e"/>
@@ -127,11 +126,10 @@
     </scenes>
     <designables>
         <designable name="9Iq-2N-D4G">
-            <size key="intrinsicContentSize" width="209.5" height="17"/>
+            <size key="intrinsicContentSize" width="30" height="29"/>
         </designable>
     </designables>
     <resources>
-        <image name="chevron.down" catalog="system" width="128" height="70"/>
         <namedColor name="textDarkest">
             <color red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
