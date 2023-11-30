@@ -1,1954 +1,1591 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "Back" : {
+    "Assignment" : {
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "عودة"
+            "value" : "المهمة"
           }
         },
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Enrere"
+            "value" : "Tasca"
           }
         },
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Yn ôl"
+            "value" : "Aseiniad"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tilbage"
+            "value" : "Opgave"
           }
         },
         "da-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tilbage"
+            "value" : "Opgave"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zurück"
+            "value" : "Aufgabe"
           }
         },
         "en-AU" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Back"
+            "value" : "Assignment"
           }
         },
         "en-AU-unimelb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Back"
+            "value" : "Assignment"
           }
         },
         "en-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Back"
+            "value" : "Assignment"
           }
         },
         "en-CY" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Back"
+            "value" : "Assignment"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Back"
+            "value" : "Assignment"
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Back"
+            "value" : "Assignment"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Volver"
+            "value" : "Tarea"
           }
         },
         "es-ES" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Volver"
+            "value" : "Actividad"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Takaisin"
+            "value" : "Tehtävä"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Retour"
+            "value" : "Travaux"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Retour"
+            "value" : "Tâche"
           }
         },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Retounen"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kembali"
+            "value" : "Sesyon"
           }
         },
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Til baka"
+            "value" : "Verkefni"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Indietro"
+            "value" : "Compito"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "戻る"
+            "value" : "課題"
           }
         },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hoki"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kembali"
+            "value" : "Whakataunga"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tilbake"
+            "value" : "Oppgave"
           }
         },
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tilbake"
+            "value" : "Oppgave"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Terug"
+            "value" : "Opdracht"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wstecz"
+            "value" : "Zadanie"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Voltar"
+            "value" : "Tarefa"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Voltar"
+            "value" : "Tarefa"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Назад"
+            "value" : "Задание"
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nazaj"
+            "value" : "Naloga"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tillbaka"
+            "value" : "Uppgift"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tillbaka"
+            "value" : "Uppgift"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ย้อนกลับ"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Quay lại"
+            "value" : "ภารกิจ"
           }
         },
         "zh" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "返回"
+            "value" : "作业"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "返回"
+            "value" : "作业"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "返回"
+            "value" : "作業"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "返回"
+            "value" : "作業"
           }
         }
       }
     },
-    "Back on detailed view" : {
+    "Assignments" : {
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "العودة إلى طريقة العرض التفصيلية"
+            "value" : "المهام"
           }
         },
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Torna a la visualització detallada"
+            "value" : "Tasques"
           }
         },
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Yn ôl i’r wedd fanwl"
+            "value" : "Aseiniadau"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tilbage til detaljeret visning"
+            "value" : "Opgaver"
           }
         },
         "da-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tilbage til detaljeret visning"
+            "value" : "Opgaver"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zurück zur Detailansicht"
+            "value" : "Aufgaben"
           }
         },
         "en-AU" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Back on detailed view"
+            "value" : "Assignments"
           }
         },
         "en-AU-unimelb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Back on detailed view"
+            "value" : "Assignments"
           }
         },
         "en-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Back on detailed view"
+            "value" : "Assignments"
           }
         },
         "en-CY" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Back on detailed view"
+            "value" : "Assignments"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Back on detailed view"
+            "value" : "Assignments"
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Back on detailed view"
+            "value" : "Assignments"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Volver a vista detallada"
+            "value" : "Tareas"
           }
         },
         "es-ES" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Volver a vista detallada"
+            "value" : "Actividades"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Takaisin yksityiskohtaiseen näkymään"
+            "value" : "Tehtävät"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Revenir à la vue détaillée"
+            "value" : "Devoirs"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Retour à la vue détaillée"
+            "value" : "Tâches"
           }
         },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Retounen nan afichaj detaye"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kembali ke tampilan terperinci"
+            "value" : "Sesyon"
           }
         },
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Til baka á ítarlegt yfirlit"
+            "value" : "Verkefni"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Torna alla visualizzazione dettagliata"
+            "value" : "Compiti"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "詳細ビューに戻る"
+            "value" : "課題"
           }
         },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hoki i runga i te taipitopito tirohanga"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kembali ke pandangan butiran"
+            "value" : "Ngā whakataunga"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tilbake i detaljert visning"
+            "value" : "Oppgaver"
           }
         },
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tilbake i detaljert visning"
+            "value" : "Oppgaver"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Terug op gedetailleerde weergave"
+            "value" : "Opdrachten"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wstecz do widoku szczegółowego"
+            "value" : "Zadania"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Voltar à vista detalhada"
+            "value" : "Tarefas"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Voltar à exibição detalhada"
+            "value" : "Tarefas"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Вернуться к подробному представлению"
+            "value" : "Задания"
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nazaj na podroben pogled"
+            "value" : "Naloge"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tillbaka till detaljerad vy"
+            "value" : "Uppgifter"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tillbaka till detaljerad vy"
+            "value" : "Uppgifter"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "กลับไปที่มุมมองอย่างละเอียด"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Quay lại dạng xem chi tiết"
+            "value" : "ภารกิจ"
           }
         },
         "zh" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "返回至详细视图"
+            "value" : "作业"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "返回至详细视图"
+            "value" : "作业"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "返回詳細檢視"
+            "value" : "作業列表"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "返回詳細檢視"
+            "value" : "作業列表"
           }
         }
       }
     },
-    "Collapse detail view" : {
+    "Comments..." : {
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "طي عرض التفاصيل"
+            "value" : "تعليقات..."
           }
         },
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Redueix la visualització detallada"
+            "value" : "Comentaris…"
           }
         },
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Crebachu gwedd fanwl"
+            "value" : "Sylwadau..."
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Skjul detaljeret visning"
+            "value" : "Kommentarer ..."
           }
         },
         "da-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Skjul detaljeret visning"
+            "value" : "Kommentarer ..."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Detailansicht ausblenden"
+            "value" : "Kommentare ..."
           }
         },
         "en-AU" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Collapse detail view"
+            "value" : "Comments..."
           }
         },
         "en-AU-unimelb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Collapse detail view"
+            "value" : "Comments..."
           }
         },
         "en-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Collapse detail view"
+            "value" : "Comments..."
           }
         },
         "en-CY" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Collapse detail view"
+            "value" : "Comments..."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Collapse detail view"
+            "value" : "Comments..."
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Collapse detail view"
+            "value" : "Comments..."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Colapsar vista detallada"
+            "value" : "Comentarios..."
           }
         },
         "es-ES" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Colapsar vista detallada"
+            "value" : "Comentarios..."
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kutista yksityiskohtainen näkymä"
+            "value" : "Kommentit..."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Réduire la vue détaillée"
+            "value" : "Commentaires..."
           }
         },
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Réduire la vue détaillée"
+            "value" : "Commentaires..."
           }
         },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ratresi afichaj detaye"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Perkecil tampilan terperinci"
+            "value" : "Kòmantè..."
           }
         },
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fella saman ítarlegt yfirlit"
+            "value" : "Athugasemdir..."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Comprimi visualizzazione dettagliata"
+            "value" : "Commenti..."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "詳細ビューを折りたたむ"
+            "value" : "コメント..."
           }
         },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hinga taipitopito tirohanga"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kuncupkan pandangan butiran"
+            "value" : "Ngā kōrero"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Skjul detaljert visning"
+            "value" : "Kommentarer..."
           }
         },
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Skjul detaljert visning"
+            "value" : "Kommentarer..."
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Detailweergave samenvouwen"
+            "value" : "Opmerkingen..."
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zwiń widok szczegółowy"
+            "value" : "Komentarze..."
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Recolher vista detalhada"
+            "value" : "Comentários..."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Recolher exibição de detalhes"
+            "value" : "Comentários..."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Свернуть подробное представление"
+            "value" : "Комментарии..."
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Strni podroben pogled"
+            "value" : "Komentarji ..."
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dölj detaljerad vy"
+            "value" : "Kommentarer ..."
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dölj detaljerad vy"
+            "value" : "Kommentarer ..."
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ย่อมุมมองอย่างละเอียด"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Thu gọn dạng xem chi tiết"
+            "value" : "ความเห็น..."
           }
         },
         "zh" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "折叠详细视图"
+            "value" : "评论..."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "折叠详细视图"
+            "value" : "评论..."
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "收起詳細資料檢視"
+            "value" : "評論…"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "收起詳細資料檢視"
+            "value" : "評論…"
           }
         }
       }
     },
-    "Done" : {
+    "Course" : {
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "تم"
+            "value" : "المساق"
           }
         },
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fet"
+            "value" : "Curs"
           }
         },
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wedi gorffen"
+            "value" : "Cwrs"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Udført"
+            "value" : "Fag"
           }
         },
         "da-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Udført"
+            "value" : "Fag"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fertig"
+            "value" : "Kurs"
           }
         },
         "en-AU" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Done"
+            "value" : "Course"
           }
         },
         "en-AU-unimelb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Done"
+            "value" : "Subject"
           }
         },
         "en-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Done"
+            "value" : "Course"
           }
         },
         "en-CY" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Done"
+            "value" : "Module"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Done"
+            "value" : "Course"
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Done"
+            "value" : "Module"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Listo"
+            "value" : "Curso"
           }
         },
         "es-ES" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hecho"
+            "value" : "Curso"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Valmis"
+            "value" : "Kurssi"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Terminé"
+            "value" : "Cours"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Terminé"
+            "value" : "Cours"
           }
         },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fini"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Selesai"
+            "value" : "Kou"
           }
         },
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lokið"
+            "value" : "Námskeið"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fatto"
+            "value" : "Corso"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "完了"
+            "value" : "コース"
           }
         },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kua mahia"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Siap"
+            "value" : "Akoranga"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ferdig"
+            "value" : "Emne"
           }
         },
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ferdig"
+            "value" : "Fag"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gereed"
+            "value" : "Cursus"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gotowe"
+            "value" : "Kurs"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Feito"
+            "value" : "Disciplina"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Feito"
+            "value" : "Curso"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Готово"
+            "value" : "Курс"
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dokončano"
+            "value" : "Predmet"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Klar"
+            "value" : "Kurs"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Klar"
+            "value" : "Kurs"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "เสร็จสิ้น"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Đã xong"
+            "value" : "บทเรียน"
           }
         },
         "zh" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "完成"
+            "value" : "课程"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "完成"
+            "value" : "课程"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已完成"
+            "value" : "課程"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已完成"
+            "value" : "課程"
           }
         }
       }
     },
-    "Expand detail view" : {
+    "Courses" : {
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "توسيع عرض التفاصيل"
+            "value" : "المساقات"
           }
         },
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Desplega la visualització detallada"
+            "value" : "Cursos"
           }
         },
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ehangu gwedd fanwl"
+            "value" : "Cyrsiau"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Udvid detaljeret visning"
+            "value" : "Fag"
           }
         },
         "da-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Udvid detaljeret visning"
+            "value" : "Fag"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Detailansicht einblenden"
+            "value" : "Kurse"
           }
         },
         "en-AU" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Expand detail view"
+            "value" : "Courses"
           }
         },
         "en-AU-unimelb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Expand detail view"
+            "value" : "Subjects"
           }
         },
         "en-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Expand detail view"
+            "value" : "Courses"
           }
         },
         "en-CY" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Expand detail view"
+            "value" : "Modules"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Expand detail view"
+            "value" : "Courses"
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Expand detail view"
+            "value" : "Modules"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Expandir vista detallada"
+            "value" : "Cursos"
           }
         },
         "es-ES" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Expandir vista detallada"
+            "value" : "Cursos"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Laajenna yksityiskohtainen näkymä"
+            "value" : "Kurssit"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Agrandir la vue détaillée"
+            "value" : "Cours"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Développer la vue détaillée"
+            "value" : "Cours"
           }
         },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Elaji afichaj detaye"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Perbesar tampilan terperinci"
+            "value" : "Kou"
           }
         },
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Stækka ítarlegt yfirlit"
+            "value" : "Námskeið"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Espandi visualizzazione dettagliata"
+            "value" : "Corsi"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "詳細ビューを展開する"
+            "value" : "コース"
           }
         },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Whānui taipitopito tirohanga"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kuncupkan pandangan butiran"
+            "value" : "Ngā Akoranga"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Utvid detaljert visning"
+            "value" : "Emner"
           }
         },
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Utvid detaljert visning"
+            "value" : "Fag"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Detailweergave uitvouwen"
+            "value" : "Cursussen"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rozwiń widok szczegółowy"
+            "value" : "Kursy"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Expandir vista detalhada"
+            "value" : "Disciplinas"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Expandir exibição de detalhes"
+            "value" : "Cursos"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Развернуть подробное представление"
+            "value" : "Курсы"
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Razširi podroben pogled"
+            "value" : "Predmeti"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Visa detaljerad vy"
+            "value" : "Kurser"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Visa detaljerad vy"
+            "value" : "Kurser"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ขยายมุมมองอย่างละเอียด"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mở rộng dạng xem chi tiết"
+            "value" : "บทเรียน"
           }
         },
         "zh" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "展开详细视图"
+            "value" : "课程"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "展开详细视图"
+            "value" : "课程"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "展開詳細資料檢視"
+            "value" : "課程"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "展開詳細資料檢視"
+            "value" : "課程"
           }
         }
       }
     },
-    "Failed to find image at path" : {
+    "Format not supported" : {
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "فشل العثور على صورة في المسار"
+            "value" : "التنسيق غير مدعوم"
           }
         },
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No s'ha pogut trobar la imatge al camí"
+            "value" : "Format no admès"
           }
         },
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wedi methu dod o hyd i'r ddelwedd yn y llwybr"
+            "value" : "Does dim modd delio â'r fformat"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kunne ikke finde billedet på stien"
+            "value" : "Format understøttes ikke"
           }
         },
         "da-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kunne ikke finde billedet på stien"
+            "value" : "Format understøttes ikke"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bild mit dem Pfad konnte nicht gefunden werden."
+            "value" : "Format nicht unterstützt"
           }
         },
         "en-AU" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Failed to find image at path"
+            "value" : "Format not supported"
           }
         },
         "en-AU-unimelb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Failed to find image at path"
+            "value" : "Format not supported"
           }
         },
         "en-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Failed to find image at path"
+            "value" : "Format not supported"
           }
         },
         "en-CY" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Failed to find image at path"
+            "value" : "Format not supported"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Failed to find image at path"
+            "value" : "Format not supported"
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Failed to find image at path"
+            "value" : "Format not supported"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se pudo encontrar la imagen en la ruta"
+            "value" : "Formato no admitido"
           }
         },
         "es-ES" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se ha podido encontrar la imagen en la ruta"
+            "value" : "Formato no compatible"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kuvaa ei löytynyt polulla"
+            "value" : "Muotoa ei tueta"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Impossible de trouver l'image au chemin d'accès"
+            "value" : "Format non pris en charge"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Impossible de trouver l'image au chemin d'accès"
+            "value" : "Format non pris en charge"
           }
         },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Echwe pou jwenn imaj sou pakou"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gagal menemukan gambar di jalur"
+            "value" : "Fòma pa sipòte"
           }
         },
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ekki tókst að finna mynd á slóð"
+            "value" : "Snið ekki stutt"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Impossibile trovare immagine nel percorso"
+            "value" : "Formato non supportato"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "パスで画像を見つけることができませんでした"
+            "value" : "サポートされていないフォーマット"
           }
         },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "I rahua te kite i te āhua i te huarahi"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gagal menemui imej pada laluan"
+            "value" : "Hōputu kaore e tautokotia"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kunne ikke finne bilde i sti"
+            "value" : "Støtter ikke formatet"
           }
         },
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kunne ikke finne bilde i sti"
+            "value" : "Støtter ikke formatet"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kan afbeelding niet vinden op pad"
+            "value" : "Indeling niet ondersteund"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nie udało się odnaleźć obrazu w ścieżce"
+            "value" : "Format nie obsługiwany"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não foi possível encontrar a imagem no caminho"
+            "value" : "Formato não suportado"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Falhou em encontrar imagem no caminho"
+            "value" : "Formato não suportado"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Не удалось найти изображение по пути"
+            "value" : "Формат не поддерживается"
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Iskanje slike pri poti ni uspelo."
+            "value" : "Oblika zapisa ni podprta"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Det gick inte att hitta bilden på sökvägen"
+            "value" : "Formatet stöds inte"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Det gick inte att hitta bilden på sökvägen"
+            "value" : "Formatet stöds inte"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ไม่สามารถค้นหาภาพในเส้นทางที่ระบุ"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tìm hình ảnh ở đường dẫn thất bại"
+            "value" : "ฟอร์แมตไม่รองรับ"
           }
         },
         "zh" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在路径中查找图像失败"
+            "value" : "格式不支持"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在路径中查找图像失败"
+            "value" : "格式不支持"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無法在路徑中找到圖像"
+            "value" : "不支援的格式"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無法在路徑中找到圖像"
+            "value" : "不支援的格式"
           }
         }
       }
     },
-    "Failed to write image" : {
+    "Submit" : {
+      "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "فشل كتابة صورة"
+            "value" : "إرسال"
           }
         },
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No s'ha pogut escriure la imatge"
+            "value" : "Entrega"
           }
         },
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wedi methu ysgrifennu delwedd"
+            "value" : "Cyflwyno"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kunne ikke skrive billedet"
+            "value" : "Aflever"
           }
         },
         "da-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kunne ikke skrive billedet"
+            "value" : "Aflever"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fehler beim Schreiben des Bilds"
+            "value" : "Abgeben"
           }
         },
         "en-AU" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Failed to write image"
+            "value" : "Submit"
           }
         },
         "en-AU-unimelb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Failed to write image"
+            "value" : "Submit"
           }
         },
         "en-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Failed to write image"
+            "value" : "Submit"
           }
         },
         "en-CY" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Failed to write image"
+            "value" : "Submit"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Failed to write image"
+            "value" : "Submit"
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Failed to write image"
+            "value" : "Submit"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se pudo escribir la imagen"
+            "value" : "Entregar"
           }
         },
         "es-ES" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se ha podido escribir la imagen"
+            "value" : "Entregar"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ei voi kirjoittaa kuvaa"
+            "value" : "Lähetä"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Échec de l'écriture de l'image"
+            "value" : "Soumettre"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Impossible d’écrire l’image"
+            "value" : "Envoyer"
           }
         },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Echwe pou ekri imaj"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gagal menulis gambar"
+            "value" : "Soumèt"
           }
         },
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ekki tókst að skrifa mynd"
+            "value" : "Leggja fram"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Impossibile scrivere immagine"
+            "value" : "Invia"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "画像の書き込みに失敗しました"
+            "value" : "提出"
           }
         },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "I rahua ki te tuhi āhua"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gagal menulis imej"
+            "value" : "Tuku"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kunne ikke skrive bilde"
+            "value" : "Send inn"
           }
         },
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kunne ikke skrive bilde"
+            "value" : "Send inn"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kan afbeelding niet schrijven"
+            "value" : "Inleveren"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nie udało się zapisać obrazu"
+            "value" : "Prześlij"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não foi possível gravar imagem"
+            "value" : "Submeter"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Falhou em gravar imagem"
+            "value" : "Enviar"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Не удалось записать изображение"
+            "value" : "Отправить"
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zapisovanje slike ni uspelo."
+            "value" : "Pošlji"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Det gick inte att skriva bilden"
+            "value" : "Lämna in"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Det gick inte att skriva bilden"
+            "value" : "Spara"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ไม่สามารถเขียนข้อมูลภาพ"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ghi hình ảnh thất bại"
+            "value" : "ส่ง"
           }
         },
         "zh" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "写入图像失败"
+            "value" : "提交"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "写入图像失败"
+            "value" : "提交"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無法寫入圖像"
+            "value" : "提交"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無法寫入圖像"
-          }
-        }
-      }
-    },
-    "Get Grades for" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "احصل على درجات"
-          }
-        },
-        "ca" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Obtén notes per a"
-          }
-        },
-        "cy" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nôl Graddau ar gyfer"
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Få karakterer for"
-          }
-        },
-        "da-instk12" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Få vurderinger for"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Noten erhalten für"
-          }
-        },
-        "en-AU" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Get Marks for"
-          }
-        },
-        "en-AU-unimelb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Get Grades for"
-          }
-        },
-        "en-CA" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Get Grades for"
-          }
-        },
-        "en-CY" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Get Grades for"
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Get Grades for"
-          }
-        },
-        "en-GB-instukhe" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Get Grades for"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Obtener calificaciones para"
-          }
-        },
-        "es-ES" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Obtener notas para"
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hae arvosanat kohteesta"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Obtenir des notes pour"
-          }
-        },
-        "fr-CA" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Obtenir les notes pour"
-          }
-        },
-        "ht" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jwenn Nòt pou"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dapatkan Tampilan untuk"
-          }
-        },
-        "is" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fá einkunnir fyrir"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Richiedi voti per"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "（）の評定を取得する"
-          }
-        },
-        "mi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tikina ngā koeke mō"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dapatkan Gred untuk"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Få vurderinger for"
-          }
-        },
-        "nb-instk12" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Få vurderinger for"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cijfers ophalen voor"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pobierz oceny dla"
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Obter classificações para"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Obter notas para"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Получить оценки за"
-          }
-        },
-        "sl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pridobi ocene za"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hämta omdömen för"
-          }
-        },
-        "sv-instk12" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hämta omdömen för"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "สืบค้นเกรดสำหรับ"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lấy Điểm cho"
-          }
-        },
-        "zh" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "获取以下评分："
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "获取以下评分："
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "取得成績"
-          }
-        },
-        "zh-HK" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "取得成績"
+            "value" : "提交"
           }
         }
       }
