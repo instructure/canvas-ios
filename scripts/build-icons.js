@@ -47,6 +47,7 @@ const whitelist = [
   'arrow-open-down',
   'arrow-open-left',
   'arrow-open-right',
+  'arrow-open-up',
   'assignment',
   'audio',
   'bold',

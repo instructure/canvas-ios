@@ -199,7 +199,7 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
                 .scaleTo(.init(width: 14, height: 14))
                 .withRenderingMode(.alwaysTemplate)
         } else {
-            pickerButton?.configuration?.image = .arrowOpenDownSolid
+            pickerButton?.configuration?.image = .arrowOpenUpSolid
                 .scaleTo(.init(width: 14, height: 14))
                 .withRenderingMode(.alwaysTemplate)
         }

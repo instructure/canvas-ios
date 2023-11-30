@@ -36,7 +36,7 @@ class SubmissionCommentsPresenter: SubmissionCommentAttemptDelegate {
     let submissionID: String
     weak var view: SubmissionCommentsViewProtocol?
     let userID: String
-    
+
     var comments = [SubmissionComment]()
     lazy var commentsStore = env.subscribe(GetSubmissionComments(
         context: context,
@@ -44,6 +44,9 @@ class SubmissionCommentsPresenter: SubmissionCommentAttemptDelegate {
         userID: userID
     )) { [weak self] in
         self?.update()
+    }
+    lazy var features = env.subscribe(GetEnabledFeatureFlags(context: .course(context.id))) { [weak self] in
+         self?.update()
     }
     private var attempt: Int?
     lazy var assignment = env.subscribe(GetAssignment(courseID: context.id, assignmentID: assignmentID)) {}
@@ -64,8 +67,10 @@ class SubmissionCommentsPresenter: SubmissionCommentAttemptDelegate {
     }
 
     func update() {
-        comments = commentsStore.all.filter {
-            $0.attemptFromAPI == nil || $0.attemptFromAPI?.intValue == attempt
+        if features.isFeatureFlagEnabled(.assignmentEnhancements) {
+            comments = commentsStore.all.filter {
+                $0.attemptFromAPI == nil || $0.attemptFromAPI?.intValue == attempt
+            }
         }
         view?.reload()
     }
