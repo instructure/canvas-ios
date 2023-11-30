@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -3062,6 +3062,8 @@
 		CED26037996232D09E927A44 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		CF3B1A2B2EEDE4847384B3ED /* NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
 		CF50AAD392DC03765A4F4C9E /* ErrorExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorExtensionsTests.swift; sourceTree = "<group>"; };
+		CF67D0122B18F10E009D826A /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/LaunchScreen.xcstrings; sourceTree = "<group>"; };
+		CF67D0132B18F10E009D826A /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/Main.xcstrings; sourceTree = "<group>"; };
 		CF76AA92A0745A9D16189BB8 /* GetDiscussionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDiscussionsTests.swift; sourceTree = "<group>"; };
 		CF94466A2B18C4B100333993 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		CFAD2AE1CF6B4872E30170B5 /* FileEditorViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEditorViewTests.swift; sourceTree = "<group>"; };
@@ -10882,6 +10884,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				268E2B0799616F62392B4369 /* Base */,
+				CF67D0122B18F10E009D826A /* mul */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -10890,6 +10893,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				6793A8BAEBA2359A6EBA3EA6 /* Base */,
+				CF67D0132B18F10E009D826A /* mul */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -10910,6 +10914,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CoreTester;
 				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -11121,6 +11126,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.CoreTester;
 				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
