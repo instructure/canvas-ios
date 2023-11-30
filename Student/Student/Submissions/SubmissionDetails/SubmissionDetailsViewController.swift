@@ -71,7 +71,7 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
         pickerButton?.isEnabled = false
         attemptLabel.isEnabled = false
         attemptLabel.font = .scaledNamedFont(.regular14)
-        
+
         pickerButtonDivider?.isHidden = true
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -126,11 +126,17 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
 
         var buttonConfig = UIButton.Configuration.plain()
         if isActive {
+            if picker?.isHidden == true {
+                buttonConfig.image = .arrowOpenDownSolid
+                    .scaleTo(.init(width: 14, height: 14))
+                    .withRenderingMode(.alwaysTemplate)
+            } else {
+                buttonConfig.image = .arrowOpenUpSolid
+                    .scaleTo(.init(width: 14, height: 14))
+                    .withRenderingMode(.alwaysTemplate)
+            }
             buttonConfig.imagePlacement = .trailing
             buttonConfig.imagePadding = 6
-            buttonConfig.image = .arrowOpenDownSolid
-                .scaleTo(.init(width: 14, height: 14))
-                .withRenderingMode(.alwaysTemplate)
         }
 
         buttonConfig.contentInsets = {
