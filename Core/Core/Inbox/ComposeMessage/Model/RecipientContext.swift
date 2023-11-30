@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,13 +16,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import XCTest
+import Foundation
 
-class FeatureFlagTests: XCTestCase {
+public class RecipientContext {
+    let name: String
+    let context: Context
 
-    func testFeatureFlagKeys() {
-        XCTAssertEqual(APIFeatureFlag.Key.assignmentEnhancements.rawValue, "assignments_2_student")
-        XCTAssertEqual(APIFeatureFlag.Key.discussionRedesign.rawValue, "react_discussions_post")
+    init(course: Course) {
+        self.name = course.name ?? course.courseCode ?? ""
+        self.context = Context.course(course.id)
+    }
+
+    init(group: Group) {
+        self.name = group.name
+        self.context = Context.group(group.id)
     }
 }

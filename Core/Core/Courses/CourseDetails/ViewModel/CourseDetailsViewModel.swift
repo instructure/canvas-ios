@@ -70,7 +70,7 @@ public class CourseDetailsViewModel: ObservableObject {
     public init(context: Context, offlineModeInteractor: OfflineModeInteractor) {
         self.context = context
         self.offlineModeInteractor = offlineModeInteractor
-        self.showHome = AppEnvironment.shared.app != .teacher
+        self.showHome = false
         bindSplitViewModeObserverToSelectionManager()
         bindCellSelectionStateToCellViewModels()
         hideHomeTabWhenOfflineModeChanges()

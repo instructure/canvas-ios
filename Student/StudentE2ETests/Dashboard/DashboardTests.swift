@@ -59,7 +59,7 @@ class DashboardTests: E2ETestCase {
         navBarBackButton.hit()
         pullToRefresh()
         XCTAssertTrue(courseCard2.waitUntil(.visible).isVisible)
-        XCTAssertFalse(courseCard1.waitUntil(.visible).isVisible)
+        XCTAssertTrue(courseCard1.waitUntil(.vanish).isVanished)
     }
 
     func testAnnouncementBelowInvite() {
@@ -74,7 +74,7 @@ class DashboardTests: E2ETestCase {
         // MARK: Create an enrollment and an announcement
         let enrollment = seeder.enrollStudent(student, in: course, state: .invited)
         let announcement = AnnouncementsHelper.postAccountNotification()
-        Helper.pullToRefresh()
+        pullToRefresh(x: 1)
 
         // MARK: Check visibility and order of the enrollment and the announcement
         let courseAcceptButton = CourseInvitations.acceptButton(enrollment: enrollment).waitUntil(.visible)

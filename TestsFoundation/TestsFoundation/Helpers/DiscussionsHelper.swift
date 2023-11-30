@@ -117,7 +117,7 @@ public class DiscussionsHelper: BaseHelper {
                                         isAssignment: Bool = false,
                                         dueDate: Date? = nil) -> DSDiscussionTopic {
         let discussionAssignment = isAssignment ? CreateDSAssignmentRequest.RequestedDSAssignment(
-            name: title, description: message + title, published: published, submission_types: [.online_text_entry], due_at: dueDate) : nil
+            name: title, description: message + title, published: published, submission_types: [.discussion_topic], due_at: dueDate) : nil
 
         let discussionBody = CreateDSDiscussionRequest.RequestedDSDiscussion(
             title: title, message: message + title, is_announcement: isAnnouncement,
@@ -134,7 +134,7 @@ public class DiscussionsHelper: BaseHelper {
     public static func replyToDiscussion(replyText: String = "Test replying to discussion", shouldPullToRefresh: Bool = false) -> Bool {
         Details.replyButton.hit()
         let textEntry = Details.Reply.textField.waitUntil(.visible)
-        textEntry.pasteText(text: replyText)
+        textEntry.writeText(text: replyText)
         Details.Reply.sendButton.hit()
         sleep(3)
         if shouldPullToRefresh {

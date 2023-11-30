@@ -120,6 +120,7 @@ class BackgroundActivityTests: XCTestCase {
 
         // MARK: - WHEN
         mockProcessManager.startActivity()
+        drainMainQueue()
         waitForExpectations(timeout: 1)
 
         waitUntil(shouldFail: true) {
@@ -136,6 +137,7 @@ class BackgroundActivityTests: XCTestCase {
 
         // MARK: - THEN
         waitForExpectations(timeout: 1)
+        drainMainQueue()
         XCTAssertFalse(mockProcessManager.isExecutingBackgroundBlock)
     }
 

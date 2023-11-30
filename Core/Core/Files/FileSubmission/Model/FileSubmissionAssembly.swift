@@ -37,6 +37,7 @@ public class FileSubmissionAssembly {
         - container: The CoreData database.
         - sessionID: The background session identifier. Must be unique for each process (app / share extension).
         - sharedContainerID: The container identifier shared between the app and its extensions. Background URLSession read/write this directory.
+        - sessionConfigurationProtocolClasses: Protocol handler configurations. Not needed by default, used for unit test targets only.
      */
     public init(
         container: NSPersistentContainer,

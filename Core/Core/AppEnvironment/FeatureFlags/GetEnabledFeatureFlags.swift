@@ -62,3 +62,12 @@ public class GetEnabledFeatureFlags: CollectionUseCase {
         }
     }
 }
+
+extension Store where U == GetEnabledFeatureFlags {
+
+    func isFeatureFlagEnabled(_ key: APIFeatureFlag.Key) -> Bool {
+        all.contains { flag in
+            flag.name == key.rawValue && flag.enabled
+        }
+    }
+}

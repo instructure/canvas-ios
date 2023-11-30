@@ -90,13 +90,19 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     let titleSubtitleView = TitleSubtitleView.create()
     var presenter: AssignmentDetailsPresenter?
     private let webView = CoreWebView()
+    private var offlineModeInteractor: OfflineModeInteractor?
 
-    static func create(courseID: String, assignmentID: String, fragment: String? = nil) -> AssignmentDetailsViewController {
+    static func create(courseID: String,
+                       assignmentID: String,
+                       fragment: String? = nil,
+                       offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
+    ) -> AssignmentDetailsViewController {
         let controller = loadFromStoryboard()
         controller.assignmentID = assignmentID
         controller.courseID = courseID
         controller.fragment = fragment
         controller.presenter = AssignmentDetailsPresenter(view: controller, courseID: courseID, assignmentID: assignmentID, fragment: fragment)
+        controller.offlineModeInteractor = offlineModeInteractor
         return controller
     }
 
@@ -408,6 +414,10 @@ extension AssignmentDetailsViewController {
     }
 
     @IBAction func didTapSubmission(_ sender: UIButton) {
-        presenter?.routeToSubmission(view: self)
+        if offlineModeInteractor?.isOfflineModeEnabled() == true {
+            UIAlertController.showItemNotAvailableInOfflineAlert()
+        } else {
+            presenter?.routeToSubmission(view: self)
+        }
     }
 }
