@@ -16,12 +16,27 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+#if DEBUG
+
 import Combine
+import Foundation
 
-public protocol AddressbookInteractor {
-    // MARK: - Outputs
-    var state: CurrentValueSubject<StoreState, Never> { get }
-    var recipients: CurrentValueSubject<[SearchRecipient], Never> { get }
+class AddressbookInteractorPreview: AddressbookInteractor {
+    var state: CurrentValueSubject<StoreState, Never> = CurrentValueSubject<StoreState, Never>(.loading)
 
-    func refresh() -> Future<Void, Never>
+    var recipients: CurrentValueSubject<[SearchRecipient], Never>
+
+    init(env: AppEnvironment) {
+        self.recipients = CurrentValueSubject<[SearchRecipient], Never>([
+            .make(id: "1", name: "Test user 1", in: env.database.viewContext),
+            .make(id: "2", name: "Test user 2", in: env.database.viewContext),
+        ])
+    }
+
+    func refresh() -> Future<Void, Never> {
+        Future<Void, Never> {_ in }
+    }
+
 }
+
+#endif

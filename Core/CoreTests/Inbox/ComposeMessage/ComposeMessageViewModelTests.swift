@@ -40,7 +40,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
     func testValidationForSubject() {
         XCTAssertEqual(testee.sendButtonActive, false)
         testee.selectedContext = RecipientContext(course: Course.make())
-        testee.selectedRecipient.accept(SearchRecipient.make())
+        testee.selectedRecipient.accept([SearchRecipient.make()])
         testee.subject = "Test subject"
         testee.bodyText = "Test body"
         XCTAssertEqual(testee.sendButtonActive, true)
@@ -51,7 +51,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
     func testValidationForBody() {
         XCTAssertEqual(testee.sendButtonActive, false)
         testee.selectedContext = RecipientContext(course: Course.make())
-        testee.selectedRecipient.accept(SearchRecipient.make())
+        testee.selectedRecipient.accept([SearchRecipient.make()])
         testee.subject = "Test subject"
         testee.bodyText = "Test body"
         XCTAssertEqual(testee.sendButtonActive, true)
@@ -63,7 +63,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.sendButtonActive, false)
         testee.selectedContext = RecipientContext(course: Course.make())
         let recipient = SearchRecipient.make()
-        testee.selectedRecipient.accept(recipient)
+        testee.selectedRecipient.accept([recipient])
         testee.subject = "Test subject"
         testee.bodyText = "Test body"
         XCTAssertEqual(testee.sendButtonActive, true)
