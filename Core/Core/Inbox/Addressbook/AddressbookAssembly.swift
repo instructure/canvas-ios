@@ -24,8 +24,8 @@ public enum AddressBookAssembly {
         env: AppEnvironment = .shared,
         recipientContext: RecipientContext,
         roleName: String,
-        recipients: [SearchRecipient],
-        recipientDidSelect: CurrentValueRelay<[SearchRecipient]>
+        recipients: [Recipient],
+        recipientDidSelect: PassthroughRelay<Recipient>
     ) -> UIViewController {
         let viewModel = AddressbookRecipientViewModel(router: env.router, roleName: roleName, recipients: recipients, recipientDidSelect: recipientDidSelect)
         let view = AddressbookRecipientView(model: viewModel)
@@ -35,7 +35,7 @@ public enum AddressBookAssembly {
     public static func makeAddressbookRoleViewController(
         env: AppEnvironment = .shared,
         recipientContext: RecipientContext,
-        recipientDidSelect: CurrentValueRelay<[SearchRecipient]>
+        recipientDidSelect: PassthroughRelay<Recipient>
     ) -> UIViewController {
         let interactor = AddressbookInteractorLive(env: env, recipientContext: recipientContext)
         let viewModel = AddressbookRoleViewModel(router: env.router, recipientContext: recipientContext, interactor: interactor, recipientDidSelect: recipientDidSelect)
@@ -50,8 +50,8 @@ public enum AddressBookAssembly {
         let viewModel = AddressbookRecipientViewModel(
             router: env.router,
             roleName: "Students",
-            recipients: interactor.recipients.value,
-            recipientDidSelect: CurrentValueRelay<[SearchRecipient]>([SearchRecipient()])
+            recipients: interactor.recipients.value.map { Recipient(searchRecipient: $0) },
+            recipientDidSelect: PassthroughRelay<Recipient>()
         )
         return AddressbookRecipientView(model: viewModel)
     }

@@ -20,25 +20,44 @@ import Foundation
 
 public struct Recipient: Equatable, Hashable {
 
-    let id: String
-    let name: String
+    let displayName: String
     let avatarURL: URL?
+    let ids: [String]
 
     init(id: String, name: String, avatarURL: URL?) {
-        self.id = id
-        self.name = name
+        self.ids = [id]
+        self.displayName = name
+        self.avatarURL = avatarURL
+    }
+
+    init(ids: [String], name: String, avatarURL: URL?) {
+        self.ids = ids
+        self.displayName = name
         self.avatarURL = avatarURL
     }
 
     init(searchRecipient: SearchRecipient) {
-        self.id = searchRecipient.id
-        self.name = searchRecipient.name
+        self.ids = [searchRecipient.id]
+        self.displayName = searchRecipient.name
         self.avatarURL = searchRecipient.avatarURL
     }
 
+    init(searchRecipients: [SearchRecipient], displayName: String, avatarURL: URL? = nil) {
+        self.ids = searchRecipients.map { $0.id }
+        self.displayName = displayName
+        self.avatarURL = avatarURL
+    }
+
     init(conversationParticipant: ConversationParticipant) {
-        self.id = conversationParticipant.id
-        self.name = conversationParticipant.name
+        self.ids = [conversationParticipant.id]
+        self.displayName = conversationParticipant.name
         self.avatarURL = conversationParticipant.avatarURL
     }
+
+    init(conversationParticipants: [ConversationParticipant], displayName: String, avatarURL: URL? = nil) {
+        self.ids = conversationParticipants.map { $0.id }
+        self.displayName = displayName
+        self.avatarURL = avatarURL
+    }
+
 }

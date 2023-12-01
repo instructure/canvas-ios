@@ -23,9 +23,9 @@ import CombineExt
 class AddressbookRoleViewModel: ObservableObject {
     // MARK: - Outputs
     @Published public private(set) var state: StoreState = .loading
-    @Published public private(set) var recipients: [SearchRecipient] = []
+    @Published public private(set) var recipients: [Recipient] = []
     @Published public private(set) var roles: [String] = []
-    @Published public private(set) var roleRecipients: [String: [SearchRecipient]] = [:]
+    @Published public private(set) var roleRecipients: [String: [Recipient]] = [:]
 
     public var isRolesViewVisible: Bool {
         searchText.value.isEmpty && !roles.isEmpty
@@ -33,13 +33,16 @@ class AddressbookRoleViewModel: ObservableObject {
     public var isAllRecipientButtonVisible: Bool {
         searchText.value.isEmpty
     }
+    public var allRecipient: Recipient {
+        Recipient(ids: recipients.flatMap { $0.ids }, name: "All in \(recipientContext.name)", avatarURL: nil)
+    }
 
     public let title = NSLocalizedString("Select Recipients", bundle: .core, comment: "")
     public let recipientContext: RecipientContext
 
     // MARK: - Inputs
-    public let roleDidTap = PassthroughSubject<(roleName: String, recipient: [SearchRecipient], controller: WeakViewController), Never>()
-    public let recipientDidTap = PassthroughSubject<(recipient: [SearchRecipient], controller: WeakViewController), Never>()
+    public let roleDidTap = PassthroughSubject<(roleName: String, recipients: [Recipient], controller: WeakViewController), Never>()
+    public let recipientDidTap = PassthroughSubject<(recipient: Recipient, controller: WeakViewController), Never>()
     public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
 
     // MARK: - Input / Output
@@ -50,7 +53,7 @@ class AddressbookRoleViewModel: ObservableObject {
     private let interactor: AddressbookInteractor
     private let router: Router
 
-    public init(router: Router, recipientContext: RecipientContext, interactor: AddressbookInteractor, recipientDidSelect: CurrentValueRelay<[SearchRecipient]>) {
+    public init(router: Router, recipientContext: RecipientContext, interactor: AddressbookInteractor, recipientDidSelect: PassthroughRelay<Recipient>) {
         self.interactor = interactor
         self.recipientContext = recipientContext
         self.router = router
@@ -74,26 +77,29 @@ class AddressbookRoleViewModel: ObservableObject {
         interactor.state
             .assign(to: &$state)
         interactor.recipients
+            .map { searchRecipients in
+                searchRecipients.map { Recipient(searchRecipient: $0) }
+            }
             .combineLatest(searchText)
             .map { (recipients, searchText) in
                 recipients.filter { recipient in
                     if searchText.isEmpty {
                         true
                     } else {
-                        recipient.name.lowercased().contains(searchText.lowercased())
+                        recipient.displayName.lowercased().contains(searchText.lowercased())
                     }
                 }
             }
             .assign(to: &$recipients)
 
         interactor.recipients
-            .map { recipients -> [String: [SearchRecipient]] in
-                var recipientsByRole: [String: [SearchRecipient]] = [:]
+            .map { recipients -> [String: [Recipient]] in
+                var recipientsByRole: [String: [Recipient]] = [:]
 
                 for recipient in recipients {
                     for role in recipient.roleNames {
                         var recipientsForRole = recipientsByRole[role] ?? []
-                        recipientsForRole.append(recipient)
+                        recipientsForRole.append(Recipient(searchRecipient: recipient))
                         recipientsByRole[role] = recipientsForRole
                     }
                 }
@@ -113,7 +119,7 @@ class AddressbookRoleViewModel: ObservableObject {
         router.dismiss(viewController)
     }
 
-    private func setupInputBindings(recipientDidSelect: CurrentValueRelay<[SearchRecipient]>) {
+    private func setupInputBindings(recipientDidSelect: PassthroughRelay<Recipient>) {
         cancelButtonDidTap
             .sink { [router] viewController in
                 router.dismiss(viewController)

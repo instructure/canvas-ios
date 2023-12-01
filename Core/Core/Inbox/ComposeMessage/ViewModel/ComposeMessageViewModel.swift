@@ -44,7 +44,7 @@ class ComposeMessageViewModel: ObservableObject {
     public let sendButtonDidTap = PassthroughRelay<WeakViewController>()
     public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
     public let addRecipientButtonDidTap = PassthroughRelay<WeakViewController>()
-    public let selectedRecipient = CurrentValueRelay<[SearchRecipient]>([])
+    public let selectedRecipient = PassthroughRelay<Recipient>()
 
     // MARK: - Inputs / Outputs
     @Published public var sendIndividual: Bool = false
@@ -122,11 +122,11 @@ class ComposeMessageViewModel: ObservableObject {
 
     private func setupOutputBindings() {
         selectedRecipient
-            .sink { [weak self] in
-                let ids = self?.recipients.map { $0.id } ?? []
-                $0.forEach { recipient in
-                    if !ids.contains(recipient.id) {
-                        self?.recipients.append(Recipient(searchRecipient: recipient))
+            .sink { [weak self] recipient in
+                let ids = self?.recipients.flatMap { $0.ids }
+                recipient.ids.forEach { id in
+                    if ids?.contains(id) == false {
+                        self?.recipients.append(recipient)
                     }
                 }
             }
@@ -135,7 +135,7 @@ class ComposeMessageViewModel: ObservableObject {
 
     private func messageParameters() -> MessageParameters? {
         guard let context = selectedContext else { return nil }
-        let recipientIDs = recipients.map { $0.id }
+        let recipientIDs = recipients.flatMap { $0.ids }
 
         return MessageParameters(
             subject: subject,

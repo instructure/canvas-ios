@@ -21,7 +21,7 @@ import CombineExt
 
 class AddressbookRecipientViewModel: ObservableObject {
     // MARK: - Outputs
-    @Published public private(set) var recipients: [SearchRecipient]
+    @Published public private(set) var recipients: [Recipient]
 
     public var isAllRecipientButtonVisible: Bool {
         searchText.value.isEmpty
@@ -31,8 +31,7 @@ class AddressbookRecipientViewModel: ObservableObject {
     public let roleName: String
 
     // MARK: - Inputs
-    public let recipientDidTap = PassthroughSubject<(recipient: [SearchRecipient], controller: WeakViewController), Never>()
-    public let allRecipientDidTap = PassthroughSubject<(recipient: [SearchRecipient], controller: WeakViewController), Never>()
+    public let recipientDidTap = PassthroughSubject<(recipient: Recipient, controller: WeakViewController), Never>()
 
     // MARK: - Input / Output
     @Published public var searchText = CurrentValueSubject<String, Never>("")
@@ -41,7 +40,7 @@ class AddressbookRecipientViewModel: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
     private var router: Router
 
-    public init(router: Router, roleName: String, recipients: [SearchRecipient], recipientDidSelect: CurrentValueRelay<[SearchRecipient]>) {
+    public init(router: Router, roleName: String, recipients: [Recipient], recipientDidSelect: PassthroughRelay<Recipient>) {
         self.recipients = recipients
         self.roleName = roleName
         self.router = router
@@ -56,7 +55,7 @@ class AddressbookRecipientViewModel: ObservableObject {
         router.dismiss(viewController)
     }
 
-    private func setupOutputBindings(allRecipient: [SearchRecipient]) {
+    private func setupOutputBindings(allRecipient: [Recipient]) {
         Just(allRecipient)
             .combineLatest(searchText)
             .map { (recipients, searchText) in
@@ -64,24 +63,29 @@ class AddressbookRecipientViewModel: ObservableObject {
                     if searchText.isEmpty {
                         true
                     } else {
-                        recipient.name.lowercased().contains(searchText.lowercased())
+                        recipient.displayName.lowercased().contains(searchText.lowercased())
                     }
                 }
+            }
+            .map { [weak self] recipients in
+                self?.addAllRecipient(recipients: recipients) ?? []
             }
             .assign(to: &$recipients)
     }
 
-    private func setupInputBindings(recipientDidSelect: CurrentValueRelay<[SearchRecipient]>) {
-        recipientDidTap
-            .sink { [weak self] (recipients, viewController) in
-                recipientDidSelect.accept(recipients)
-                self?.closeDialog(viewController)
-            }
-            .store(in: &subscriptions)
+    private func addAllRecipient(recipients: [Recipient]) -> [Recipient] {
+        var allRecipient = recipients
+        allRecipient.insert(
+            Recipient(ids: recipients.flatMap { $0.ids }, name: "All in \(self.roleName)", avatarURL: nil),
+            at: 0
+        )
+        return allRecipient
+    }
 
-        allRecipientDidTap
-            .sink { [weak self] (recipients, viewController) in
-                recipientDidSelect.accept(recipients)
+    private func setupInputBindings(recipientDidSelect: PassthroughRelay<Recipient>) {
+        recipientDidTap
+            .sink { [weak self] (recipient, viewController) in
+                recipientDidSelect.accept(recipient)
                 self?.closeDialog(viewController)
             }
             .store(in: &subscriptions)

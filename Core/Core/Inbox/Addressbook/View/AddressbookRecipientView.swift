@@ -45,50 +45,24 @@ public struct AddressbookRecipientView: View {
 
     private var peopleView: some View {
         VStack(alignment: .leading, spacing: 0) {
-            if viewModel.isAllRecipientButtonVisible { allRecipient }
             ForEach(viewModel.recipients, id: \.self) { user in
                 personRowView(user)
             }
         }
     }
 
-    private func personRowView(_ recipient: SearchRecipient) -> some View {
+    private func personRowView(_ recipient: Recipient) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Button(action: {
-                viewModel.recipientDidTap.send((recipient: [recipient], controller: controller))
+                viewModel.recipientDidTap.send((recipient: recipient, controller: controller))
             }, label: {
                 HStack(alignment: .center, spacing: 16) {
                     Avatar(name: recipient.displayName, url: recipient.avatarURL, size: 36, isAccessible: false)
-                    Text(recipient.displayName ?? recipient.fullName)
+                    Text(recipient.displayName)
                         .font(.regular16)
                         .foregroundColor(.textDarkest)
                         .lineLimit(1)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                }
-            })
-            .padding(16)
-            separator
-        }
-    }
-
-    private var allRecipient: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Button(action: {
-                viewModel.allRecipientDidTap.send((recipient: viewModel.recipients, controller: controller))
-            }, label: {
-                HStack(alignment: .center, spacing: 16) {
-                    Avatar(name: NSLocalizedString("All", comment: ""), url: nil, size: 36, isAccessible: false)
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("All in \(viewModel.roleName)", bundle: .core)
-                            .font(.regular16)
-                            .foregroundColor(.textDarkest)
-                            .lineLimit(1)
-                        Text("\(viewModel.recipients.count) People", bundle: .core)
-                            .font(.regular14)
-                            .foregroundColor(.textDark)
-                            .lineLimit(1)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
             })
             .padding(16)
