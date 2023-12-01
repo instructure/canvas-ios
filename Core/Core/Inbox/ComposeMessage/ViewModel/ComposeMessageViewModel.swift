@@ -22,9 +22,7 @@ import CombineSchedulers
 
 class ComposeMessageViewModel: ObservableObject {
     // MARK: - Outputs
-    @Published public private(set) var state: StoreState = .loading
-    @Published public private(set) var courses: [InboxCourse] = []
-    @Published public private(set) var recipients: [SearchRecipient] = []
+    @Published public private(set) var recipients: [Recipient] = []
     @Published public private(set) var isSendingMessage: Bool = false
 
     public let title = NSLocalizedString("New Message", comment: "")
@@ -34,6 +32,12 @@ class ComposeMessageViewModel: ObservableObject {
         !recipients.isEmpty
         // && (attachments.isEmpty || attachments.allSatisfy({ $0.isUploaded }))
 
+    }
+    public var isReply: Bool {
+        conversation != nil
+    }
+    public var courseSelectorAccessibilityLabel: String {
+        selectedContext == nil ? NSLocalizedString("Select course", comment: "") : NSLocalizedString("Selected course: \(selectedContext!.name)", comment: "")
     }
 
     // MARK: - Inputs
@@ -47,6 +51,7 @@ class ComposeMessageViewModel: ObservableObject {
     @Published public var bodyText: String = ""
     @Published public var subject: String = ""
     @Published public var selectedContext: RecipientContext?
+    @Published public var conversation: Conversation?
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
@@ -54,10 +59,27 @@ class ComposeMessageViewModel: ObservableObject {
     private let router: Router
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
-    public init(router: Router, interactor: ComposeMessageInteractor, scheduler: AnySchedulerOf<DispatchQueue> = .main) {
+    public init(router: Router, conversation: Conversation? = nil, author: String? = nil, interactor: ComposeMessageInteractor, scheduler: AnySchedulerOf<DispatchQueue> = .main) {
         self.interactor = interactor
         self.router = router
         self.scheduler = scheduler
+        self.conversation = conversation
+
+        if let conversation {
+            self.subject = conversation.subject
+            if let context = Context(canvasContextID: conversation.contextCode ?? "") {
+                self.selectedContext = .init(name: conversation.contextName ?? "", context: context)
+            }
+            if let author {
+                self.recipients = conversation.audience.filter { $0.id == author }.map { Recipient(conversationParticipant: $0) }
+
+                if self.recipients.isEmpty {
+                    self.recipients = conversation.audience.map { Recipient(conversationParticipant: $0) }
+                }
+            } else {
+                self.recipients = conversation.audience.map { Recipient(conversationParticipant: $0) }
+            }
+        }
 
         setupOutputBindings()
         setupInputBindings(router: router)
@@ -94,21 +116,17 @@ class ComposeMessageViewModel: ObservableObject {
 
     }
 
-    public func removeRecipientButtonDidTap(recipient: SearchRecipient) {
+    public func removeRecipientButtonDidTap(recipient: Recipient) {
         recipients.removeAll { $0 == recipient}
     }
 
     private func setupOutputBindings() {
-        interactor.state
-            .assign(to: &$state)
-        interactor.courses
-            .assign(to: &$courses)
         selectedRecipient
             .sink { [weak self] in
                 let ids = self?.recipients.map { $0.id } ?? []
                 $0.forEach { recipient in
                     if !ids.contains(recipient.id) {
-                        self?.recipients.append(recipient)
+                        self?.recipients.append(Recipient(searchRecipient: recipient))
                     }
                 }
             }
@@ -123,13 +141,13 @@ class ComposeMessageViewModel: ObservableObject {
             subject: subject,
             body: bodyText,
             recipientIDs: recipientIDs,
-            context: context.context
+            context: context.context,
+            conversationID: conversation?.id,
+            groupConversation: !sendIndividual
         )
     }
 
     private func showResultDialog(title: String, message: String, completion: (() -> Void)? = nil) {
-        let title = NSLocalizedString(title, comment: "")
-        let message = NSLocalizedString(message, comment: "")
         let actionTitle = NSLocalizedString("OK", comment: "")
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: actionTitle, style: .default) { _ in

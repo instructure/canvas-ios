@@ -134,11 +134,13 @@ public struct ComposeMessageView: View {
                         .foregroundColor(.textDarkest)
                 }
                 Spacer()
-                DisclosureIndicator()
+                if !model.isReply { DisclosureIndicator() }
             }
         }
+        .disabled(model.isReply)
+        .opacity(model.isReply ? 0.6 : 1)
         .padding(.horizontal, 16).padding(.vertical, 12)
-        .accessibility(label: Text("Select course", bundle: .core))
+        .accessibilityLabel(Text(model.courseSelectorAccessibilityLabel))
     }
 
     private var toView: some View {
@@ -181,11 +183,14 @@ public struct ComposeMessageView: View {
                 .accessibilityHidden(true)
             TextField("", text: $model.subject)
                 .multilineTextAlignment(.leading)
-                .font(.regular16, lineHeight: .condensed).foregroundColor(.textDarkest)
+                .font(.regular16, lineHeight: .condensed)
+                .foregroundColor(.textDarkest)
                 .textInputAutocapitalization(.sentences)
                 .focused($subjectTextFieldFocus)
+                .disabled(model.isReply)
                 .accessibility(label: Text("Subject", bundle: .core))
         }
+        .opacity(model.isReply ? 0.6 : 1)
         .padding(.horizontal, 16).padding(.vertical, 12)
     }
 

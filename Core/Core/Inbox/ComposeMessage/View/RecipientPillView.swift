@@ -20,10 +20,10 @@ import SwiftUI
 
 public struct RecipientPillView: View {
 
-    private let recipient: SearchRecipient
-    private var removeDidTap: (SearchRecipient) -> Void
+    private let recipient: Recipient
+    private var removeDidTap: (Recipient) -> Void
 
-    public init(recipient: SearchRecipient, removeDidTap: @escaping (SearchRecipient) -> Void) {
+    public init(recipient: Recipient, removeDidTap: @escaping (Recipient) -> Void) {
         self.recipient = recipient
         self.removeDidTap = removeDidTap
     }
@@ -72,7 +72,7 @@ struct RecipientPillView_Previews: PreviewProvider {
 
     static var previews: some View {
         RecipientPillView(recipient:
-                .make(name: "Student With Extremely Long FirstName and Surname To Check TextFields", in: context), removeDidTap: { _ in })
+                .init(id: "1", name: "Student With Extremely Long FirstName and Surname To Check TextFields", avatarURL: nil), removeDidTap: { _ in })
     }
 }
 

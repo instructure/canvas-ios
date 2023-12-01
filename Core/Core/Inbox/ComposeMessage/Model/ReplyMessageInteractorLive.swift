@@ -16,26 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
 import Combine
-import CombineExt
 
-public class ComposeMessageInteractorLive: ComposeMessageInteractor {
+public class ReplyMessageInteractorLive: ComposeMessageInteractor {
     public func send(parameters: MessageParameters) -> Future<Void, Error> {
         Future<Void, Error> { promise in
-            CreateConversation(
-                subject: parameters.subject,
-                body: parameters.body,
-                recipientIDs: parameters.recipientIDs,
-                canvasContextID: parameters.context.canvasContextID,
-                attachmentIDs: parameters.attachmentIDs,
-                groupConversation: parameters.groupConversation
-            )
-            .fetch { _, _, error in
-                if let error = error {
-                    promise(.failure(error))
-                } else {
-                    promise(.success(()))
+            if let conversationId = parameters.conversationID {
+                AddMessage(conversationID: conversationId, attachmentIDs: parameters.attachmentIDs, body: parameters.body, recipientIDs: parameters.recipientIDs)
+                .fetch { _, _, error in
+                    if let error = error {
+                        promise(.failure(error))
+                    } else {
+                        promise(.success(()))
+                    }
                 }
+            } else {
+                promise(.failure("Conversation id is nil"))
             }
         }
     }

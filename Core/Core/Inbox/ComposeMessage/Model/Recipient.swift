@@ -16,19 +16,29 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
+import Foundation
 
-public protocol MessageDetailsInteractor {
-    // MARK: - Outputs
-    var state: CurrentValueSubject<StoreState, Never> { get }
-    var subject: CurrentValueSubject<String, Never> { get }
-    var messages: CurrentValueSubject<[ConversationMessage], Never> { get }
-    var conversation: CurrentValueSubject<[Conversation], Never> { get }
-    var starred: CurrentValueSubject<Bool, Never> { get }
-    // This is an ID-Participant map, reused from the parent implementation
-    var userMap: [String: ConversationParticipant] { get }
+public struct Recipient: Equatable, Hashable {
 
-    // MARK: - Inputs
-    func refresh() -> Future<Void, Never>
-    func updateStarred(starred: Bool) -> Future<Void, Never>
+    let id: String
+    let name: String
+    let avatarURL: URL?
+
+    init(id: String, name: String, avatarURL: URL?) {
+        self.id = id
+        self.name = name
+        self.avatarURL = avatarURL
+    }
+
+    init(searchRecipient: SearchRecipient) {
+        self.id = searchRecipient.id
+        self.name = searchRecipient.name
+        self.avatarURL = searchRecipient.avatarURL
+    }
+
+    init(conversationParticipant: ConversationParticipant) {
+        self.id = conversationParticipant.id
+        self.name = conversationParticipant.name
+        self.avatarURL = conversationParticipant.avatarURL
+    }
 }

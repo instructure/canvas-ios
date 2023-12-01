@@ -28,6 +28,7 @@ public struct MessageViewModel: Identifiable, Equatable {
     public let attachments: [File]
     public let mediaComment: MediaComment?
     public let showAttachments: Bool
+    public let conversationMessage: ConversationMessage
 
     public init(item: ConversationMessage, myID: String, userMap: [String: ConversationParticipant]) {
         self.id = item.id
@@ -44,5 +45,7 @@ public struct MessageViewModel: Identifiable, Equatable {
         self.attachments = item.attachments
         self.mediaComment = item.mediaComment
         self.showAttachments = !attachments.isEmpty || mediaComment != nil
+
+        self.conversationMessage = item
     }
 }
