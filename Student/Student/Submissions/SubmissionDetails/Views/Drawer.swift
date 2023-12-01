@@ -178,6 +178,7 @@ extension Drawer {
     func setMiddle() {
         layoutIfNeeded()
         tabs?.selectedSegmentIndex = 0
+        tabs?.changeUnderlinePosition()
         updateGripperLabel(height: midDrawerHeight)
         contentViewHeight?.constant = midDrawerHeight
         self.height = midDrawerHeight
@@ -236,7 +237,9 @@ extension UISegmentedControl {
     }
 
     func addUnderlineForSelectedSegment() {
-        guard viewWithTag(1) == nil else { return }
+        if let view = viewWithTag(1) {
+            view.removeFromSuperview()
+        }
         removeBorders()
         setFontStyle()
         let underlineWidth: CGFloat = self.bounds.size.width / CGFloat(self.numberOfSegments)
@@ -249,7 +252,6 @@ extension UISegmentedControl {
         underline.backgroundColor = .electric
         underline.tag = 1
         self.addSubview(underline)
-        self.layoutSubviews()
     }
 
     func changeUnderlinePosition() {
