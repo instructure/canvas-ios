@@ -20,10 +20,41 @@ import CombineExt
 
 public enum AddressBookAssembly {
 
-    public static func makeAddressbookViewController(env: AppEnvironment = .shared, courseID: String, recipientDidSelect: CurrentValueRelay<Recipient?>) -> UIViewController {
-        let interactor = AddressbookInteractorLive(env: env, courseID: courseID)
-        let viewModel = AddressbookViewModel(router: env.router, interactor: interactor, recipientDidSelect: recipientDidSelect)
-        let view = AddressbookView(model: viewModel)
+    public static func makeAddressbookRecipientViewController(
+        env: AppEnvironment = .shared,
+        recipientContext: RecipientContext,
+        roleName: String,
+        recipients: [SearchRecipient],
+        recipientDidSelect: CurrentValueRelay<[SearchRecipient]>
+    ) -> UIViewController {
+        let viewModel = AddressbookRecipientViewModel(router: env.router, roleName: roleName, recipients: recipients, recipientDidSelect: recipientDidSelect)
+        let view = AddressbookRecipientView(model: viewModel)
         return CoreHostingController(view)
     }
+
+    public static func makeAddressbookRoleViewController(
+        env: AppEnvironment = .shared,
+        recipientContext: RecipientContext,
+        recipientDidSelect: CurrentValueRelay<[SearchRecipient]>
+    ) -> UIViewController {
+        let interactor = AddressbookInteractorLive(env: env, recipientContext: recipientContext)
+        let viewModel = AddressbookRoleViewModel(router: env.router, recipientContext: recipientContext, interactor: interactor, recipientDidSelect: recipientDidSelect)
+        let view = AddressbookRoleView(model: viewModel)
+        return CoreHostingController(view)
+    }
+
+#if DEBUG
+
+    public static func makePreview(env: AppEnvironment) -> AddressbookRecipientView {
+        let interactor = AddressbookInteractorPreview(env: env)
+        let viewModel = AddressbookRecipientViewModel(
+            router: env.router,
+            roleName: "Students",
+            recipients: interactor.recipients.value,
+            recipientDidSelect: CurrentValueRelay<[SearchRecipient]>([SearchRecipient()])
+        )
+        return AddressbookRecipientView(model: viewModel)
+    }
+
+#endif
 }

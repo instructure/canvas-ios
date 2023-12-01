@@ -107,9 +107,9 @@ class ComposeMessageViewModel: ObservableObject {
     }
 
     public func addRecipientButtonDidTap(viewController: WeakViewController) {
-        guard let id = selectedContext?.context.id else { return }
-        let addressbook = AddressBookAssembly.makeAddressbookViewController(courseID: id, recipientDidSelect: selectedRecipient)
-        router.show(addressbook, from: viewController)
+        guard let context = selectedContext else { return }
+        let addressbook = AddressBookAssembly.makeAddressbookRoleViewController(recipientContext: context, recipientDidSelect: selectedRecipient)
+        router.show(addressbook, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true))
     }
 
     public func attachmentbuttonDidTap(viewController: WeakViewController) {
@@ -122,10 +122,13 @@ class ComposeMessageViewModel: ObservableObject {
 
     private func setupOutputBindings() {
         selectedRecipient
-            .compactMap { $0 }
-            .filter { !self.recipients.map { $0.id }.contains($0.id) }
             .sink { [weak self] in
-                self?.recipients.append($0)
+                let ids = self?.recipients.map { $0.id } ?? []
+                $0.forEach { recipient in
+                    if !ids.contains(recipient.id) {
+                        self?.recipients.append(recipient)
+                    }
+                }
             }
             .store(in: &subscriptions)
     }
