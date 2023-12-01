@@ -231,7 +231,7 @@ extension SubmissionDetailsViewController: UIPickerViewDataSource, UIPickerViewD
         }
 
         let label = UILabel()
-        label.textColor = .textDarkest
+        label.textColor = .textDark
         label.text = text
         label.font = .scaledNamedFont(.regular23)
         label.textAlignment = .center

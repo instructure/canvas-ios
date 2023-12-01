@@ -227,11 +227,11 @@ extension UISegmentedControl {
             for: .selected
         )
         setTitleTextAttributes(
-            [NSAttributedString.Key.foregroundColor: UIColor.textDarkest],
+            [NSAttributedString.Key.foregroundColor: UIColor.textDark],
             for: .normal
         )
         setTitleTextAttributes(
-            [NSAttributedString.Key.foregroundColor: UIColor.textDarkest],
+            [NSAttributedString.Key.foregroundColor: UIColor.textDark],
             for: .selected
         )
     }

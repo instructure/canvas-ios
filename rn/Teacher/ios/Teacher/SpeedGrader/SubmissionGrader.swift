@@ -16,14 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
 import Core
+import SwiftUI
 
 struct SubmissionGrader: View {
     private enum Layout {
         case portrait
         case landscape // only on iPads no matter the iPhone screen size
     }
+
     let index: Int
     private let assignment: Assignment
     private let submission: Submission
@@ -44,6 +45,7 @@ struct SubmissionGrader: View {
             }
         }
     }
+
     @State var drawerState: DrawerState = .min
     @State var fileID: String?
     @State var showAttempts = false
@@ -59,7 +61,7 @@ struct SubmissionGrader: View {
     private var selected: Submission { attempts.first { attempt == $0.attempt } ?? submission }
     private var file: File? {
         selected.attachments?.first { fileID == $0.id } ??
-        selected.attachments?.sorted(by: File.idCompare).first
+            selected.attachments?.sorted(by: File.idCompare).first
     }
 
     init(
@@ -71,7 +73,7 @@ struct SubmissionGrader: View {
         self.index = index
         self.assignment = assignment
         self.submission = submission
-        self.attempts = AppEnvironment.shared.subscribe(scope: Scope(
+        attempts = AppEnvironment.shared.subscribe(scope: Scope(
             predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
                 NSPredicate(key: #keyPath(Submission.assignmentID), equals: assignment.id),
                 NSPredicate(key: #keyPath(Submission.userID), equals: submission.userID),
@@ -80,7 +82,7 @@ struct SubmissionGrader: View {
             orderBy: #keyPath(Submission.attempt)
         ))
         self.handleRefresh = handleRefresh
-        self.studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: submission)
+        studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: submission)
     }
 
     var body: some View {
@@ -114,28 +116,28 @@ struct SubmissionGrader: View {
                                         handleRefresh: handleRefresh
                                     )
                                 }
-                                    // Disable submission content interaction in case attempt picker is above it
-                                    .accessibilityElement(children: showAttempts ? .ignore : .contain)
-                                    .accessibility(hidden: showAttempts)
+                                // Disable submission content interaction in case attempt picker is above it
+                                .accessibilityElement(children: showAttempts ? .ignore : .contain)
+                                .accessibility(hidden: showAttempts)
                                 attemptPicker
                             }
                             Spacer().frame(height: bottomInset)
                         }
-                            .zIndex(1)
-                            .accessibility(sortPriority: 1)
+                        .zIndex(1)
+                        .accessibility(sortPriority: 1)
                         Divider()
                         VStack(spacing: 0) {
                             tools(bottomInset: bottomInset, isDrawer: false)
                         }
-                            .padding(.top, 16)
-                            .frame(width: 375)
+                        .padding(.top, 16)
+                        .frame(width: 375)
                     }
                 }
-                    .background(Color.backgroundLightest)
-                    .cornerRadius(cornerRadius)
-                    .scaleEffect(scale)
-                    .edgesIgnoringSafeArea(.bottom)
-                    .onAppear { didChangeLayout(to: .landscape) }
+                .background(Color.backgroundLightest)
+                .cornerRadius(cornerRadius)
+                .scaleEffect(scale)
+                .edgesIgnoringSafeArea(.bottom)
+                .onAppear { didChangeLayout(to: .landscape) }
             case .portrait:
                 ZStack(alignment: .bottom) {
                     VStack(alignment: .leading, spacing: 0) {
@@ -155,8 +157,8 @@ struct SubmissionGrader: View {
                                     handleRefresh: handleRefresh
                                 )
                             }
-                                .accessibilityElement(children: isSubmissionContentHiddenFromA11y ? .ignore : .contain)
-                                .accessibility(hidden: isSubmissionContentHiddenFromA11y)
+                            .accessibilityElement(children: isSubmissionContentHiddenFromA11y ? .ignore : .contain)
+                            .accessibility(hidden: isSubmissionContentHiddenFromA11y)
                             attemptPicker
                         }
                         Spacer().frame(height: drawerState == .min ? minHeight : (minHeight + maxHeight) / 2)
@@ -165,35 +167,46 @@ struct SubmissionGrader: View {
                         tools(bottomInset: bottomInset, isDrawer: true)
                     }
                 }
-                    .background(Color.backgroundLightest)
-                    .cornerRadius(cornerRadius)
-                    .scaleEffect(scale)
-                    .edgesIgnoringSafeArea(.bottom)
-                    .onAppear { didChangeLayout(to: .portrait) }
+                .background(Color.backgroundLightest)
+                .cornerRadius(cornerRadius)
+                .scaleEffect(scale)
+                .edgesIgnoringSafeArea(.bottom)
+                .onAppear { didChangeLayout(to: .portrait) }
             }
         }
-            .avoidKeyboardArea(force: true)
+        .avoidKeyboardArea(force: true)
     }
 
     @ViewBuilder
     var attemptToggle: some View {
         if let first = attempts.first, attempts.count == 1 {
-            Text(first.submittedAt?.dateTimeString ?? "")
-                .font(.medium14).foregroundColor(.textDark)
-                .frame(minHeight: 24)
-                .padding(EdgeInsets(top: 8, leading: 16, bottom: 4, trailing: 8))
+            HStack {
+                Text("Attempt \(attempt ?? 1)").font(.regular14)
+                Spacer()
+                Text(first.submittedAt?.dateTimeString ?? "")
+                    .font(.regular14)
+                    .frame(minHeight: 24)
+            }
+            .foregroundColor(.textDark)
+            .padding(EdgeInsets(top: 8, leading: 16, bottom: 4, trailing: 16))
+
         } else if let selected = attempts.first(where: { attempt == $0.attempt }) ?? attempts.last {
             Button(action: {
                 showAttempts.toggle()
             }, label: {
                 HStack {
-                    Text(selected.submittedAt?.dateTimeString ?? "")
-                        .font(.medium14)
+                    Text("Attempt \(attempt ?? 1)").font(.regular14)
                     Spacer()
-                    Image.miniArrowDownSolid.rotationEffect(.degrees(showAttempts ? 180 : 0))
+                    Text(selected.submittedAt?.dateTimeString ?? "")
+                        .font(.regular14)
+                        .frame(minHeight: 24)
+                    Image.arrowOpenDownLine
+                        .resizable()
+                        .frame(width: 14, height: 14)
+                        .rotationEffect(.degrees(showAttempts ? 180 : 0))
                 }
-                    .foregroundColor(.textDark)
-                    .padding(EdgeInsets(top: 8, leading: 16, bottom: 4, trailing: 8))
+                .foregroundColor(.textDark)
+                .padding(EdgeInsets(top: 8, leading: 16, bottom: 4, trailing: 16))
             })
         }
     }
@@ -214,11 +227,11 @@ struct SubmissionGrader: View {
                             .tag(Optional(attempt.attempt))
                     }
                 }
-                    .labelsHidden()
-                    .pickerStyle(WheelPickerStyle())
+                .labelsHidden()
+                .pickerStyle(WheelPickerStyle())
                 Divider()
             }
-                .background(Color.backgroundLightest)
+            .background(Color.backgroundLightest)
         }
     }
 
@@ -261,7 +274,7 @@ struct SubmissionGrader: View {
             content: { item, isSelected in
                 Text(item)
                     .font(.regular14)
-                    .foregroundColor(isSelected ? .textDarkest : .textDarkest)
+                    .foregroundColor(isSelected ? .textDark : .textDark)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 8)
             }
