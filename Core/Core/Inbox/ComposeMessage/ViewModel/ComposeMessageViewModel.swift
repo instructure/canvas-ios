@@ -44,7 +44,7 @@ class ComposeMessageViewModel: ObservableObject {
     public let sendButtonDidTap = PassthroughRelay<WeakViewController>()
     public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
     public let addRecipientButtonDidTap = PassthroughRelay<WeakViewController>()
-    public let selectedRecipient = CurrentValueRelay<Recipient?>(nil)
+    public let selectedRecipient = CurrentValueRelay<[SearchRecipient]>([])
 
     // MARK: - Inputs / Outputs
     @Published public var sendIndividual: Bool = false
@@ -126,7 +126,7 @@ class ComposeMessageViewModel: ObservableObject {
                 let ids = self?.recipients.map { $0.id } ?? []
                 $0.forEach { recipient in
                     if !ids.contains(recipient.id) {
-                        self?.recipients.append(recipient)
+                        self?.recipients.append(Recipient(searchRecipient: recipient))
                     }
                 }
             }
@@ -148,8 +148,6 @@ class ComposeMessageViewModel: ObservableObject {
     }
 
     private func showResultDialog(title: String, message: String, completion: (() -> Void)? = nil) {
-        let title = NSLocalizedString(title, comment: "")
-        let message = NSLocalizedString(message, comment: "")
         let actionTitle = NSLocalizedString("OK", comment: "")
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: actionTitle, style: .default) { _ in
