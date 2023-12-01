@@ -174,7 +174,8 @@ struct SubmissionCommentList: View {
             assignmentID: assignment.id,
             userID: submission.userID,
             isGroup: assignment.gradedIndividually == false,
-            text: text
+            text: text,
+            attempt: nil
         ).fetch { comment, error in
             if error != nil || comment == nil {
                 self.comment = text
@@ -217,7 +218,8 @@ struct SubmissionCommentList: View {
             userID: submission.userID,
             isGroup: assignment.gradedIndividually == false,
             type: type,
-            url: url
+            url: url,
+            attempt: nil
         ).fetch { comment, error in
             if error != nil || comment == nil {
                 self.error = error.map { Text($0.localizedDescription) } ?? Text("Could not save the comment.")
@@ -237,7 +239,8 @@ struct SubmissionCommentList: View {
             assignmentID: assignment.id,
             userID: submission.userID,
             isGroup: assignment.gradedIndividually == false,
-            batchID: batchID
+            batchID: batchID,
+            attempt: nil
         ).fetch { comment, error in
             if error != nil || comment == nil {
                 self.error = error.map { Text($0.localizedDescription) } ?? Text("Could not save the comment.")

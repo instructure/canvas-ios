@@ -54,6 +54,7 @@ struct SubmissionGrader: View {
     /** Used to work around an issue which caused the page to re-load after putting the app into background. See `layoutForWidth()` method for more. */
     @State private var lastPresentedLayout: Layout = .portrait
     @State private var studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel
+    @State private var selectedIndex = 0
 
     private var selected: Submission { attempts.first { attempt == $0.attempt } ?? submission }
     private var file: File? {
@@ -223,29 +224,52 @@ struct SubmissionGrader: View {
 
     enum GraderTab: Int, CaseIterable { case grades, comments, files }
 
+    private func segmentedTitles() -> [String] {
+        let filesString: String!
+        if selected.type == .online_upload, let count = selected.attachments?.count, count > 0 {
+            filesString = NSLocalizedString("Files (\(count))", comment: "")
+        } else {
+            filesString = NSLocalizedString("Files", comment: "")
+        }
+
+        return [
+            NSLocalizedString("Grades", comment: ""),
+            NSLocalizedString("Comments", comment: ""),
+            filesString,
+        ]
+    }
+
     @ViewBuilder
     func tools(bottomInset: CGFloat, isDrawer: Bool) -> some View {
-        Picker(selection: Binding(get: { isDrawer && drawerState == .min ? nil : tab }, set: { newValue in
-            guard let newValue = newValue else { return }
-            if drawerState == .min {
-                snapDrawerTo(.mid)
+        SegmentedPicker(
+            segmentedTitles(),
+            selectedIndex: Binding(
+                get: { selectedIndex },
+                set: { newValue in
+
+                    selectedIndex = newValue ?? 0
+                    if drawerState == .min {
+                        snapDrawerTo(.mid)
+                    }
+                    withAnimation(.default) {
+                        tab = SubmissionGrader.GraderTab(rawValue: newValue ?? 0)!
+                    }
+                    controller.view.endEditing(true)
+                }
+            ),
+            selectionAlignment: .bottom,
+            content: { item, isSelected in
+                Text(item)
+                    .font(.regular14)
+                    .foregroundColor(isSelected ? .textDarkest : .textDarkest)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
             }
-            withAnimation(.default) {
-                tab = newValue
-            }
-            controller.view.endEditing(true)
-        }), label: Text(verbatim: "")) {
-            Text("Grades").tag(Optional(GraderTab.grades))
-            Text("Comments").tag(Optional(GraderTab.comments))
-            if selected.type == .online_upload, let count = selected.attachments?.count, count > 0 {
-                Text("Files (\(count))").tag(Optional(GraderTab.files))
-            } else {
-                Text("Files").tag(Optional(GraderTab.files))
-            }
+        )
+        .onAppear {
+            selectedIndex = 0
         }
-            .pickerStyle(SegmentedPickerStyle())
-            .identifier("SpeedGrader.toolPicker")
-            .padding(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
+        .identifier("SpeedGrader.toolPicker")
         Divider()
         GeometryReader { geometry in
             HStack(spacing: 0) {
@@ -264,9 +288,9 @@ struct SubmissionGrader: View {
                         .clipped()
                     Spacer().frame(height: bottomInset)
                 }
-                    .frame(width: geometry.size.width, height: geometry.size.height)
-                    .accessibilityElement(children: isGradesOnScreen ? .contain : .ignore)
-                    .accessibility(hidden: !isGradesOnScreen)
+                .frame(width: geometry.size.width, height: geometry.size.height)
+                .accessibilityElement(children: isGradesOnScreen ? .contain : .ignore)
+                .accessibility(hidden: !isGradesOnScreen)
                 let isCommentsOnScreen = isGraderTabOnScreen(.comments, isDrawer: isDrawer)
                 VStack(spacing: 0) {
                     SubmissionCommentList(
@@ -279,30 +303,30 @@ struct SubmissionGrader: View {
                         enteredComment: $enteredComment,
                         commentLibrary: commentLibrary
                     )
-                        .clipped()
+                    .clipped()
                     if showRecorder != .video || drawerState == .min {
                         Spacer().frame(height: bottomInset)
                     }
                 }
-                    .frame(width: geometry.size.width, height: geometry.size.height)
-                    .background(Color.backgroundLight)
-                    .accessibilityElement(children: isCommentsOnScreen ? .contain : .ignore)
-                    .accessibility(hidden: !isCommentsOnScreen)
+                .frame(width: geometry.size.width, height: geometry.size.height)
+                .background(Color.backgroundLight)
+                .accessibilityElement(children: isCommentsOnScreen ? .contain : .ignore)
+                .accessibility(hidden: !isCommentsOnScreen)
                 let isFilesOnScreen = isGraderTabOnScreen(.files, isDrawer: isDrawer)
                 VStack(spacing: 0) {
                     SubmissionFileList(submission: selected, fileID: drawerFileID)
                         .clipped()
                     Spacer().frame(height: bottomInset)
                 }
-                    .frame(width: geometry.size.width, height: geometry.size.height)
-                    .accessibilityElement(children: isFilesOnScreen ? .contain : .ignore)
-                    .accessibility(hidden: !isFilesOnScreen)
+                .frame(width: geometry.size.width, height: geometry.size.height)
+                .accessibilityElement(children: isFilesOnScreen ? .contain : .ignore)
+                .accessibility(hidden: !isFilesOnScreen)
             }
-                .frame(width: geometry.size.width, alignment: .leading)
-                .background(Color.backgroundLightest)
-                .offset(x: -CGFloat(tab.rawValue) * geometry.size.width)
+            .frame(width: geometry.size.width, alignment: .leading)
+            .background(Color.backgroundLightest)
+            .offset(x: -CGFloat(tab.rawValue) * geometry.size.width)
         }
-            .clipped()
+        .clipped()
     }
 
     private func snapDrawerTo(_ state: DrawerState) {
