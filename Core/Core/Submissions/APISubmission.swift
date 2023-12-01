@@ -470,29 +470,33 @@ public struct PutSubmissionGradeRequest: APIRequestable {
             let media_comment_type: MediaCommentType?
             let text_comment: String?
             let file_ids: [String]?
+            let attempt: Int?
 
-            public init(text: String, forGroup: Bool = false) {
+            public init(text: String, forGroup: Bool = false, attempt: Int?) {
                 group_comment = forGroup
                 media_comment_id = nil
                 media_comment_type = nil
                 file_ids = nil
                 text_comment = text
+                self.attempt = attempt
             }
 
-            public init(mediaID: String, type: MediaCommentType, forGroup: Bool = false) {
+            public init(mediaID: String, type: MediaCommentType, forGroup: Bool = false, attempt: Int?) {
                 group_comment = forGroup
                 media_comment_id = mediaID
                 media_comment_type = type
                 text_comment = forGroup ? NSLocalizedString("This is a media comment", bundle: .core, comment: "") : ""
                 file_ids = nil
+                self.attempt = attempt
             }
 
-            public init(fileIDs: [String], forGroup: Bool = false) {
+            public init(fileIDs: [String], forGroup: Bool = false, attempt: Int?) {
                 group_comment = forGroup
                 file_ids = fileIDs
                 media_comment_id = nil
                 media_comment_type = nil
                 text_comment = ""
+                self.attempt = attempt
             }
         }
         public struct Submission: Codable, Equatable {

@@ -79,7 +79,9 @@ class SubmissionCommentsPresenter: SubmissionCommentAttemptDelegate {
     }
 
     func updateComments(for attempt: Int?) {
-        self.attempt = attempt
+        if featuresStore.isFeatureFlagEnabled(.assignmentEnhancements) {
+            self.attempt = attempt
+        }
         update()
     }
 
@@ -89,7 +91,8 @@ class SubmissionCommentsPresenter: SubmissionCommentAttemptDelegate {
             assignmentID: assignmentID,
             userID: userID,
             isGroup: assignment.first?.gradedIndividually == false,
-            text: text
+            text: text,
+            attempt: attempt
         ).fetch { [weak self] comment, error in
             if error != nil || comment == nil {
                 self?.view?.showError(error ?? NSError.instructureError(NSLocalizedString("Could not save the comment", bundle: .student, comment: "")))
@@ -104,7 +107,8 @@ class SubmissionCommentsPresenter: SubmissionCommentAttemptDelegate {
             userID: userID,
             isGroup: assignment.first?.gradedIndividually == false,
             type: type,
-            url: url
+            url: url,
+            attempt: attempt
         ).fetch { [weak self] comment, error in
             if error != nil || comment == nil {
                 self?.view?.showError(error ?? NSError.instructureError(NSLocalizedString("Could not save the comment", bundle: .student, comment: "")))
@@ -118,7 +122,8 @@ class SubmissionCommentsPresenter: SubmissionCommentAttemptDelegate {
             assignmentID: assignmentID,
             userID: userID,
             isGroup: assignment.first?.gradedIndividually == false,
-            batchID: batchID
+            batchID: batchID,
+            attempt: attempt
         ).fetch { [weak self] comment, error in
             if error != nil || comment == nil {
                 self?.view?.showError(error ?? NSError.instructureError(NSLocalizedString("Could not save the comment", bundle: .student, comment: "")))
