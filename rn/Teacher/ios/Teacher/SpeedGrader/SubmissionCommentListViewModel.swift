@@ -40,7 +40,8 @@ class SubmissionCommentListViewModel: ObservableObject {
     private var comments: [SubmissionComment] = []
 
     // MARK: - Private variables
-
+    private let submissionCommentsStore: ReactiveStore<GetSubmissionComments>
+    private let featureFlagsStore: ReactiveStore<GetEnabledFeatureFlags>
     private(set) var isAssignmentEnhancementsFeatureFlagEnabled = false
     private var subscriptions = Set<AnyCancellable>()
 
@@ -50,19 +51,22 @@ class SubmissionCommentListViewModel: ObservableObject {
         assignmentID: String,
         userID: String
     ) {
+        submissionCommentsStore = ReactiveStore(
+            useCase: GetSubmissionComments(
+                context: .course(courseID),
+                assignmentID: assignmentID,
+                userID: userID
+            )
+        )
+        featureFlagsStore = ReactiveStore(
+            useCase: GetEnabledFeatureFlags(context: .course(courseID))
+        )
+
         unowned let unownedSelf = self
 
         Publishers.CombineLatest(
-            ReactiveStore(
-                useCase: GetSubmissionComments(
-                    context: .course(courseID),
-                    assignmentID: assignmentID,
-                    userID: userID
-                )
-            ).getEntities(),
-            ReactiveStore(
-                useCase: GetEnabledFeatureFlags(context: .course(courseID))
-            ).getEntities()
+            submissionCommentsStore.observeEntitiesWithError(),
+            featureFlagsStore.observeEntitiesWithError()
         )
         .eraseToAnyPublisher()
         .map { comments, featureFlags in
