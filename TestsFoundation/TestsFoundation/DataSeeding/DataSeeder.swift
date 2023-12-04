@@ -21,9 +21,6 @@ import Core
 public class DataSeeder {
     public struct Retry {
         public static let standard = Retry(count: 10, gracePeriod: 8)
-        public static let longerGrace = Retry(count: 10, gracePeriod: 13)
-        public static let evenLongerGrace = Retry(count: 10, gracePeriod: 21)
-        public static let submissionsApiGrace = Retry(count: 10, gracePeriod: 34)
 
         /** The number of times the request to be retried in case of a failure. The total API call count will be 1 + `count`. */
         public let count: Int
@@ -45,7 +42,7 @@ public class DataSeeder {
     }
 
     @discardableResult
-    public func makeRequest<Request: APIRequestable>(_ requestable: Request, retry: Retry? = nil) -> Request.Response {
+    public func makeRequest<Request: APIRequestable>(_ requestable: Request, retry: Retry? = .standard) -> Request.Response {
         let requestCount: Int =  {
             guard let retry = retry else {
                 return 1
