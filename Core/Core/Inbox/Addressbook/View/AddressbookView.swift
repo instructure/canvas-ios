@@ -49,7 +49,7 @@ public struct AddressbookView: View {
     }
 
     private var peopleView: some View {
-        ForEach(model.recipients, id: \.id) { recipient in
+        ForEach(model.recipients, id: \.self) { recipient in
             VStack(spacing: 0) {
                 Color.borderMedium
                     .frame(height: 0.5)
@@ -66,8 +66,8 @@ public struct AddressbookView: View {
     @ViewBuilder
     private func peopleRowView(_ recipient: Recipient) -> some View {
         HStack(alignment: .center, spacing: 16) {
-            Avatar(name: recipient.name, url: recipient.avatarURL, size: 36, isAccessible: false)
-            Text(recipient.name)
+            Avatar(name: recipient.displayName, url: recipient.avatarURL, size: 36, isAccessible: false)
+            Text(recipient.displayName)
                     .font(.regular16)
                     .foregroundColor(.textDarkest)
                     .lineLimit(1)

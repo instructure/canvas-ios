@@ -123,19 +123,14 @@ class ComposeMessageViewModel: ObservableObject {
     private func setupOutputBindings() {
         selectedRecipient
             .sink { [weak self] recipient in
-                let ids = self?.recipients.flatMap { $0.ids }
-                recipient.ids.forEach { id in
-                    if ids?.contains(id) == false {
-                        self?.recipients.append(recipient)
-                    }
-                }
+                self?.recipients.append(recipient)
             }
             .store(in: &subscriptions)
     }
 
     private func messageParameters() -> MessageParameters? {
         guard let context = selectedContext else { return nil }
-        let recipientIDs = recipients.flatMap { $0.ids }
+        let recipientIDs = Array(Set(recipients.flatMap { $0.ids }))
 
         return MessageParameters(
             subject: subject,
