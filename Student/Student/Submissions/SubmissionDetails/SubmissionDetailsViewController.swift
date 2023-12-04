@@ -68,9 +68,11 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
         picker?.dataSource = self
         picker?.delegate = self
         picker?.backgroundColor = .backgroundLightest
+        pickerButton?.textColorName = "textDark"
         pickerButton?.isEnabled = false
         attemptLabel.isEnabled = false
         attemptLabel.font = .scaledNamedFont(.regular14)
+        attemptLabel.textColor = .textDark
 
         pickerButtonDivider?.isHidden = true
 
