@@ -167,7 +167,7 @@ public struct ComposeMessageView: View {
     private var recipientsView: some View {
         WrappingHStack(models: model.recipients) { recipient in
             RecipientPillView(recipient: recipient, removeDidTap: { recipient in
-                model.removeRecipientButtonDidTap(recipient: recipient)
+                model.recipientDidRemove.accept(recipient)
             })
         }
     }

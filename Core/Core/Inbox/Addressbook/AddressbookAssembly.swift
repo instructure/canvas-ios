@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import CombineExt
 
 public enum AddressBookAssembly {
@@ -25,9 +26,16 @@ public enum AddressBookAssembly {
         recipientContext: RecipientContext,
         roleName: String,
         recipients: [Recipient],
-        recipientDidSelect: PassthroughRelay<Recipient>
+        recipientDidSelect: PassthroughRelay<Recipient>,
+        selectedRecipients: CurrentValueSubject<[Recipient], Never>
     ) -> UIViewController {
-        let viewModel = AddressbookRecipientViewModel(router: env.router, roleName: roleName, recipients: recipients, recipientDidSelect: recipientDidSelect)
+        let viewModel = AddressbookRecipientViewModel(
+            router: env.router,
+            roleName: roleName,
+            recipients: recipients,
+            recipientDidSelect: recipientDidSelect,
+            selectedRecipients: selectedRecipients
+        )
         let view = AddressbookRecipientView(model: viewModel)
         return CoreHostingController(view)
     }
@@ -35,10 +43,17 @@ public enum AddressBookAssembly {
     public static func makeAddressbookRoleViewController(
         env: AppEnvironment = .shared,
         recipientContext: RecipientContext,
-        recipientDidSelect: PassthroughRelay<Recipient>
+        recipientDidSelect: PassthroughRelay<Recipient>,
+        selectedRecipients: CurrentValueSubject<[Recipient], Never>
     ) -> UIViewController {
         let interactor = AddressbookInteractorLive(env: env, recipientContext: recipientContext)
-        let viewModel = AddressbookRoleViewModel(router: env.router, recipientContext: recipientContext, interactor: interactor, recipientDidSelect: recipientDidSelect)
+        let viewModel = AddressbookRoleViewModel(
+            router: env.router,
+            recipientContext: recipientContext,
+            interactor: interactor,
+            recipientDidSelect: recipientDidSelect,
+            selectedRecipients: selectedRecipients
+        )
         let view = AddressbookRoleView(model: viewModel)
         return CoreHostingController(view)
     }
@@ -51,7 +66,8 @@ public enum AddressBookAssembly {
             router: env.router,
             roleName: "Students",
             recipients: interactor.recipients.value.map { Recipient(searchRecipient: $0) },
-            recipientDidSelect: PassthroughRelay<Recipient>()
+            recipientDidSelect: PassthroughRelay<Recipient>(),
+            selectedRecipients: CurrentValueSubject<[Recipient], Never>([])
         )
         return AddressbookRecipientView(model: viewModel)
     }

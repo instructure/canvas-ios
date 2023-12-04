@@ -36,7 +36,8 @@ class AddressbookRecipientViewModelTests: CoreTestCase {
             router: environment.router,
             roleName: "Students",
             recipients: recipients.map { Recipient(searchRecipient: $0) },
-            recipientDidSelect: PassthroughRelay<Recipient>()
+            recipientDidSelect: PassthroughRelay<Recipient>(),
+            selectedRecipients: CurrentValueSubject<[Recipient], Never>([])
         )
     }
 
@@ -53,17 +54,5 @@ class AddressbookRecipientViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.recipients.count, 3)
         testee.searchText.value = "Recipient 1"
         XCTAssertEqual(testee.recipients.count, 1)
-    }
-
-    func testRecipientSelection() {
-        let sourceView = UIViewController()
-        testee.recipientDidTap.send((recipient: testee.recipients.last!, controller: WeakViewController(sourceView)))
-        XCTAssertNotNil(router.dismissed)
-    }
-
-    func testAllRecipientSelection() {
-        let sourceView = UIViewController()
-        testee.recipientDidTap.send((recipient: testee.recipients.first!, controller: WeakViewController(sourceView)))
-        XCTAssertNotNil(router.dismissed)
     }
 }

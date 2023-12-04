@@ -24,6 +24,7 @@ class AddressbookRoleViewModel: ObservableObject {
     // MARK: - Outputs
     @Published public private(set) var state: StoreState = .loading
     @Published public private(set) var recipients: [Recipient] = []
+    @Published public private(set) var selectedRecipients: [Recipient] = []
     @Published public private(set) var roles: [String] = []
     @Published public private(set) var roleRecipients: [String: [Recipient]] = [:]
 
@@ -53,13 +54,19 @@ class AddressbookRoleViewModel: ObservableObject {
     private let interactor: AddressbookInteractor
     private let router: Router
 
-    public init(router: Router, recipientContext: RecipientContext, interactor: AddressbookInteractor, recipientDidSelect: PassthroughRelay<Recipient>) {
+    public init(
+        router: Router,
+        recipientContext: RecipientContext,
+        interactor: AddressbookInteractor,
+        recipientDidSelect: PassthroughRelay<Recipient>,
+        selectedRecipients: CurrentValueSubject<[Recipient], Never>
+    ) {
         self.interactor = interactor
         self.recipientContext = recipientContext
         self.router = router
 
-        setupOutputBindings()
-        setupInputBindings(recipientDidSelect: recipientDidSelect)
+        setupOutputBindings(selectedRecipients: selectedRecipients)
+        setupInputBindings(recipientDidSelect: recipientDidSelect, selectedRecipients: selectedRecipients)
     }
 
     public func refresh() async {
@@ -73,7 +80,7 @@ class AddressbookRoleViewModel: ObservableObject {
         }
     }
 
-    private func setupOutputBindings() {
+    private func setupOutputBindings(selectedRecipients: CurrentValueSubject<[Recipient], Never>) {
         interactor.state
             .assign(to: &$state)
         interactor.recipients
@@ -111,6 +118,9 @@ class AddressbookRoleViewModel: ObservableObject {
                 self?.roleRecipients = recipientsByRoles
             }
             .store(in: &subscriptions)
+
+        selectedRecipients
+            .assign(to: &$selectedRecipients)
     }
 
     private func closeDialog(_ viewController: WeakViewController) {
@@ -119,7 +129,7 @@ class AddressbookRoleViewModel: ObservableObject {
         router.dismiss(viewController)
     }
 
-    private func setupInputBindings(recipientDidSelect: PassthroughRelay<Recipient>) {
+    private func setupInputBindings(recipientDidSelect: PassthroughRelay<Recipient>, selectedRecipients: CurrentValueSubject<[Recipient], Never>) {
         cancelButtonDidTap
             .sink { [router] viewController in
                 router.dismiss(viewController)
@@ -134,7 +144,8 @@ class AddressbookRoleViewModel: ObservableObject {
                             recipientContext: self.recipientContext,
                             roleName: roleName,
                             recipients: recipients,
-                            recipientDidSelect: recipientDidSelect
+                            recipientDidSelect: recipientDidSelect,
+                            selectedRecipients: selectedRecipients
                         ),
                         from: viewController
                     )
@@ -143,9 +154,9 @@ class AddressbookRoleViewModel: ObservableObject {
             .store(in: &subscriptions)
 
         recipientDidTap
-            .sink { [weak self] (recipient, viewController) in
+            .sink { (recipient, viewController) in
                 recipientDidSelect.accept(recipient)
-                self?.closeDialog(viewController)
+//                self?.closeDialog(viewController)
             }
             .store(in: &subscriptions)
     }

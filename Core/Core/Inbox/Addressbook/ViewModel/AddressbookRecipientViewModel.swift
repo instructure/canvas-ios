@@ -22,6 +22,7 @@ import CombineExt
 class AddressbookRecipientViewModel: ObservableObject {
     // MARK: - Outputs
     @Published public private(set) var recipients: [Recipient]
+    @Published public private(set) var selectedRecipients: [Recipient] = []
 
     public var isAllRecipientButtonVisible: Bool {
         searchText.value.isEmpty
@@ -40,13 +41,19 @@ class AddressbookRecipientViewModel: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
     private var router: Router
 
-    public init(router: Router, roleName: String, recipients: [Recipient], recipientDidSelect: PassthroughRelay<Recipient>) {
+    public init(
+        router: Router,
+        roleName: String,
+        recipients: [Recipient],
+        recipientDidSelect: PassthroughRelay<Recipient>,
+        selectedRecipients: CurrentValueSubject<[Recipient], Never>
+    ) {
         self.recipients = recipients
         self.roleName = roleName
         self.router = router
 
         setupInputBindings(recipientDidSelect: recipientDidSelect)
-        setupOutputBindings(allRecipient: recipients)
+        setupOutputBindings(allRecipient: recipients, selectedRecipients: selectedRecipients)
     }
 
     private func closeDialog(_ viewController: WeakViewController) {
@@ -55,7 +62,7 @@ class AddressbookRecipientViewModel: ObservableObject {
         router.dismiss(viewController)
     }
 
-    private func setupOutputBindings(allRecipient: [Recipient]) {
+    private func setupOutputBindings(allRecipient: [Recipient], selectedRecipients: CurrentValueSubject<[Recipient], Never>) {
         Just(allRecipient)
             .combineLatest(searchText)
             .map { (recipients, searchText) in
@@ -72,6 +79,9 @@ class AddressbookRecipientViewModel: ObservableObject {
                 searchText.isEmpty ? self?.addAllRecipient(recipients: recipients) ?? [] : recipients
             }
             .assign(to: &$recipients)
+
+        selectedRecipients
+            .assign(to: &$selectedRecipients)
     }
 
     private func addAllRecipient(recipients: [Recipient]) -> [Recipient] {
@@ -85,9 +95,9 @@ class AddressbookRecipientViewModel: ObservableObject {
 
     private func setupInputBindings(recipientDidSelect: PassthroughRelay<Recipient>) {
         recipientDidTap
-            .sink { [weak self] (recipient, viewController) in
+            .sink { (recipient, viewController) in
                 recipientDidSelect.accept(recipient)
-                self?.closeDialog(viewController)
+//                self?.closeDialog(viewController)
             }
             .store(in: &subscriptions)
     }

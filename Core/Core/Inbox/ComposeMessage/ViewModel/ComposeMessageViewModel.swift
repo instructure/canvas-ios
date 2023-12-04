@@ -44,7 +44,9 @@ class ComposeMessageViewModel: ObservableObject {
     public let sendButtonDidTap = PassthroughRelay<WeakViewController>()
     public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
     public let addRecipientButtonDidTap = PassthroughRelay<WeakViewController>()
-    public let selectedRecipient = PassthroughRelay<Recipient>()
+    public let recipientDidSelect = PassthroughRelay<Recipient>()
+    public let recipientDidRemove = PassthroughRelay<Recipient>()
+    public var selectedRecipients = CurrentValueSubject<[Recipient], Never>([])
 
     // MARK: - Inputs / Outputs
     @Published public var sendIndividual: Bool = false
@@ -108,7 +110,7 @@ class ComposeMessageViewModel: ObservableObject {
 
     public func addRecipientButtonDidTap(viewController: WeakViewController) {
         guard let context = selectedContext else { return }
-        let addressbook = AddressBookAssembly.makeAddressbookRoleViewController(recipientContext: context, recipientDidSelect: selectedRecipient)
+        let addressbook = AddressBookAssembly.makeAddressbookRoleViewController(recipientContext: context, recipientDidSelect: recipientDidSelect, selectedRecipients: selectedRecipients)
         router.show(addressbook, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true))
     }
 
@@ -116,14 +118,22 @@ class ComposeMessageViewModel: ObservableObject {
 
     }
 
-    public func removeRecipientButtonDidTap(recipient: Recipient) {
-        recipients.removeAll { $0 == recipient}
-    }
-
     private func setupOutputBindings() {
-        selectedRecipient
+        recipientDidSelect
             .sink { [weak self] recipient in
-                self?.recipients.append(recipient)
+                if self?.selectedRecipients.value.contains(recipient) == true {
+                    self?.recipientDidRemove.accept(recipient)
+                } else {
+                    self?.recipients.append(recipient)
+                    self?.selectedRecipients.value.append(recipient)
+                }
+            }
+            .store(in: &subscriptions)
+
+        recipientDidRemove
+            .sink { [weak self] recipient in
+                self?.recipients.removeAll { $0 == recipient }
+                self?.selectedRecipients.value.removeAll { $0 == recipient }
             }
             .store(in: &subscriptions)
     }

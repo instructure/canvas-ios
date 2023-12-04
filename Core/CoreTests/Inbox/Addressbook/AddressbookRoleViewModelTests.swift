@@ -25,7 +25,9 @@ import CombineExt
 class AddressbookRoleViewModelTests: CoreTestCase {
     private var mockInteractor: AddressbookInteractorMock!
     var testee: AddressbookRoleViewModel!
+
     private var selected = PassthroughRelay<Recipient>()
+    private var selectedRecipients = CurrentValueSubject<[Recipient], Never>([])
 
     override func setUp() {
         super.setUp()
@@ -34,7 +36,8 @@ class AddressbookRoleViewModelTests: CoreTestCase {
             router: environment.router,
             recipientContext: .init(course: Course.make()),
             interactor: mockInteractor,
-            recipientDidSelect: selected
+            recipientDidSelect: selected,
+            selectedRecipients: selectedRecipients
         )
     }
 
@@ -58,13 +61,7 @@ class AddressbookRoleViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.recipients.count, 1)
     }
 
-    func testRecipientSelection() {
-        let sourceView = UIViewController()
-        testee.recipientDidTap.send((recipient: testee.recipients.first!, controller: WeakViewController(sourceView)))
-        XCTAssertNotNil(router.dismissed)
-    }
-
-    func testAllRecipientSelection() {
+    func testCancelButton() {
         let sourceView = UIViewController()
         testee.cancelButtonDidTap.accept(WeakViewController(sourceView))
         XCTAssertNotNil(router.dismissed)
