@@ -38,6 +38,6 @@ class SubmissionCommentHeaderCell: UITableViewCell {
         authorAvatarView?.url = comment.authorAvatarURL
         authorNameLabel?.text = User.displayName(comment.authorName, pronouns: comment.authorPronouns)
         createdAtLabel?.text = comment.createdAtLocalizedString
-        chatBubbleView?.isHidden = comment.attemptFromAPI != nil || comment.mediaURL != nil
+        chatBubbleView?.isHidden = comment.attempt != nil || comment.mediaURL != nil
     }
 }

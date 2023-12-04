@@ -38,10 +38,13 @@ final public class SubmissionComment: NSManagedObject {
     @NSManaged public var userID: String
     @NSManaged public var attachments: Set<File>?
 
+    /// If set, this comment represents an actual submission attempt
+    ///
+    /// In the case of these syntesized comments, the id is `"submission-[submissionID]-[attempt]"`
     public var attempt: Int? {
-        get {
-            attemptFromAPI?.intValue
-        }
+        let parts = id.split(separator: "-", maxSplits: 3, omittingEmptySubsequences: false)
+        guard parts.count == 3 else { return nil }
+        return Int(parts[2])
     }
 
     public var mediaLocalOrRemoteURL: URL? {

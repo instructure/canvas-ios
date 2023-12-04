@@ -81,13 +81,13 @@ class SubmissionCommentListViewModel: ObservableObject {
     }
 
     private func filterComments(comments: [SubmissionComment], attempt: Int?) -> [SubmissionComment] {
-//        if isAssignmentEnhancementsFeatureFlagEnabled {
-//            return comments.filter {
-//                $0.attemptFromAPI == nil || $0.attemptFromAPI?.intValue == attempt
-//            }
-//        } else {
+        if isAssignmentEnhancementsFeatureFlagEnabled {
+            return comments.filter {
+                $0.attemptFromAPI == nil || $0.attemptFromAPI?.intValue == attempt
+            }
+        } else {
             return comments
-//        }
+        }
     }
 
     private func updateComments(attempt: Int?) {
