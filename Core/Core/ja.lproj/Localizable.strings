@@ -134,6 +134,9 @@
 "Add Assignee" = "課題対象者を追加する";
 
 /* No comment provided by engineer. */
+"Add attachment" = "添付ファイルを追加する";
+
+/* No comment provided by engineer. */
 "Add Attachment" = "添付を追加";
 
 /* No comment provided by engineer. */
@@ -174,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Add Planner Note" = "プランナーメモを追加する";
+
+/* No comment provided by engineer. */
+"Add recipient" = "受信者を追加";
 
 /* No comment provided by engineer. */
 "Add Title" = "タイトルを追加";
@@ -647,6 +653,9 @@
 "Couldn't save the file." = "ファイルを保存できませんでした";
 
 /* No comment provided by engineer. */
+"Course" = "コース";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "コース（オプション）";
 
 /* No comment provided by engineer. */
@@ -1047,6 +1056,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "失敗しました。タップしてオプションを表示";
+
+/* No comment provided by engineer. */
+"Favorite" = "お気に入り";
 
 /* No comment provided by engineer. */
 "Feedback" = "フィードバック";
@@ -1583,6 +1595,9 @@
 "Message" = "メッセージ";
 
 /* No comment provided by engineer. */
+"Message could not be sent" = "メッセージを送信できませんでした";
+
+/* No comment provided by engineer. */
 "Message Details" = "メッセージの詳細";
 
 /* No comment provided by engineer. */
@@ -1964,6 +1979,9 @@
 "Please log in via the application" = "アプリケーションからログインしてください";
 
 /* No comment provided by engineer. */
+"Please try again!" = "もういちど試してください！";
+
+/* No comment provided by engineer. */
 "Please wait, this might take a minute." = "お待ちください。これには少し時間がかかる場合があります。";
 
 /* No comment provided by engineer. */
@@ -2117,6 +2135,9 @@
 "Remove item" = "品目を消去する";
 
 /* No comment provided by engineer. */
+"Remove recipient" = "受取人を削除する";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "除去済%1$@";
 
 /* No comment provided by engineer. */
@@ -2243,7 +2264,13 @@
 "Select Course" = "コースの選択";
 
 /* No comment provided by engineer. */
+"Select courses for Dashboard or navigate to course details." = "ダッシュボードのコースを選択するか、コース詳細に移動します。";
+
+/* No comment provided by engineer. */
 "Select Grading Period" = "採点期間を選択";
+
+/* No comment provided by engineer. */
+"Select groups for Dashboard or navigate to group details." = "ダッシュボードのグループを選択するか、グループ詳細に移動します。";
 
 /* No comment provided by engineer. */
 "Select Impact" = "深刻度をお選びください";
@@ -2253,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "Select One" = "1 つを選択";
+
+/* No comment provided by engineer. */
+"Select Recipients" = "受取人を選択する";
 
 /* No comment provided by engineer. */
 "Selected" = "選択されました";
@@ -2271,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "毎日のサマリを送信する";
+
+/* No comment provided by engineer. */
+"Send individual message to each recipient" = "各受信者に個別のメッセージを送信する";
 
 /* No comment provided by engineer. */
 "Send message" = "メッセージを送信する";
@@ -2631,6 +2664,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "小テストの読み込み中にエラーが発生しました。プルして更新し、再試行してください。";
+
+/* No comment provided by engineer. */
+"There was an error loading recipients." = "受取人の読み込み中にエラーが発生しました。";
 
 /* No comment provided by engineer. */
 "There was an error loading the message. Pull to refresh to try again." = "メッセージの読み込み中にエラーが発生しました。プルして更新し、再試行してください。";

@@ -1,3 +1,6 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "Canvas Teacher";
+
 /* Privacy - Camera Usage Description */
 "NSCameraUsageDescription" = "Lampirkan foto dan video ke komentar penyerahan.";
 

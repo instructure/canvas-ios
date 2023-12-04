@@ -134,6 +134,9 @@
 "Add Assignee" = "Ychwanegu Aseinî";
 
 /* No comment provided by engineer. */
+"Add attachment" = "Ychwanegu atodiad";
+
+/* No comment provided by engineer. */
 "Add Attachment" = "Ychwanegu Atodiad";
 
 /* No comment provided by engineer. */
@@ -174,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Add Planner Note" = "Ychwanegu Nodyn gan y Trefnydd";
+
+/* No comment provided by engineer. */
+"Add recipient" = "Ychwanegu derbynnydd";
 
 /* No comment provided by engineer. */
 "Add Title" = "Ychwanegu Teitl";
@@ -647,6 +653,9 @@
 "Couldn't save the file." = "Doedd dim modd cadw’r ffeil.";
 
 /* No comment provided by engineer. */
+"Course" = "Cwrs";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "Cwrs (dewisol)";
 
 /* No comment provided by engineer. */
@@ -1047,6 +1056,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Wedi methu. Tapiwch i gael opsiynau";
+
+/* No comment provided by engineer. */
+"Favorite" = "Ffefryn";
 
 /* No comment provided by engineer. */
 "Feedback" = "Adborth";
@@ -1583,6 +1595,9 @@
 "Message" = "Neges";
 
 /* No comment provided by engineer. */
+"Message could not be sent" = "Doedd dim modd anfon y neges";
+
+/* No comment provided by engineer. */
 "Message Details" = "Manylion y Neges";
 
 /* No comment provided by engineer. */
@@ -1964,6 +1979,9 @@
 "Please log in via the application" = "Mewngofnodwch gan ddefnyddio’r rhaglen";
 
 /* No comment provided by engineer. */
+"Please try again!" = "Rhowch gynnig arall arni!";
+
+/* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Arhoswch funud, gall hyn gymryd ychydig funudau.";
 
 /* No comment provided by engineer. */
@@ -2117,6 +2135,9 @@
 "Remove item" = "Tynnu eitem";
 
 /* No comment provided by engineer. */
+"Remove recipient" = "Tynnu derbynnydd";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Wedi tynnu %1$@";
 
 /* No comment provided by engineer. */
@@ -2243,7 +2264,13 @@
 "Select Course" = "Dewis Cwrs";
 
 /* No comment provided by engineer. */
+"Select courses for Dashboard or navigate to course details." = "Dewis cyrsiau ar gyfer y Dangosfwrdd neu grwydro i fanylion y cwrs.";
+
+/* No comment provided by engineer. */
 "Select Grading Period" = "Dewis Cyfnod Graddio";
+
+/* No comment provided by engineer. */
+"Select groups for Dashboard or navigate to group details." = "Dewis grwpiau ar gyfer y Dangosfwrdd neu grwydro i fanylion y grŵp.";
 
 /* No comment provided by engineer. */
 "Select Impact" = "Dewiswch Effaith";
@@ -2253,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "Select One" = "Dewiswch Un";
+
+/* No comment provided by engineer. */
+"Select Recipients" = "Dewis Derbynwyr";
 
 /* No comment provided by engineer. */
 "Selected" = "Wedi dewis";
@@ -2271,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "Anfon crynodeb dyddiol";
+
+/* No comment provided by engineer. */
+"Send individual message to each recipient" = "Anfon neges unigol at bob derbynnydd";
 
 /* No comment provided by engineer. */
 "Send message" = "Anfon neges";
@@ -2631,6 +2664,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "Gwall wrth lwytho cwisiau. Tynnwch i adnewyddu a rhoi cynnig arall arni.";
+
+/* No comment provided by engineer. */
+"There was an error loading recipients." = "Gwall wrth lwytho derbynwyr.";
 
 /* No comment provided by engineer. */
 "There was an error loading the message. Pull to refresh to try again." = "Gwall wrth lwytho'r neges. Tynnwch i adnewyddu a rhoi cynnig arall arni.";

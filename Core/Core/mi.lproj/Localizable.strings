@@ -134,6 +134,9 @@
 "Add Assignee" = "Tāpiri rīwhi";
 
 /* No comment provided by engineer. */
+"Add attachment" = "Tāpiri āpitihanga";
+
+/* No comment provided by engineer. */
 "Add Attachment" = "Tāpiri Āpitihanga";
 
 /* No comment provided by engineer. */
@@ -174,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Add Planner Note" = "Tāpiri Mahere Tuhipoka";
+
+/* No comment provided by engineer. */
+"Add recipient" = "Tāpiri kaiwhiwhi";
 
 /* No comment provided by engineer. */
 "Add Title" = "Tāpiri Taitara";
@@ -647,6 +653,9 @@
 "Couldn't save the file." = "Kaore e taea te tiaki i te konae.";
 
 /* No comment provided by engineer. */
+"Course" = "Akoranga";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "Akoranga (kāre herea)";
 
 /* No comment provided by engineer. */
@@ -1047,6 +1056,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "I hapa. Pātō mo ngā kōwhiringa";
+
+/* No comment provided by engineer. */
+"Favorite" = "Makau";
 
 /* No comment provided by engineer. */
 "Feedback" = "Urupare";
@@ -1583,6 +1595,9 @@
 "Message" = "Karere";
 
 /* No comment provided by engineer. */
+"Message could not be sent" = "Kāore i taea te tuku karere";
+
+/* No comment provided by engineer. */
 "Message Details" = "Ngā taipitopito karere";
 
 /* No comment provided by engineer. */
@@ -1964,6 +1979,9 @@
 "Please log in via the application" = "Tēnā koa takiuru mā te puka tono";
 
 /* No comment provided by engineer. */
+"Please try again!" = "Me ngana ano!";
+
+/* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Tēnā koa, tatari ka roa pea he meneti.";
 
 /* No comment provided by engineer. */
@@ -2117,6 +2135,9 @@
 "Remove item" = "Tango tūemi";
 
 /* No comment provided by engineer. */
+"Remove recipient" = "Tangohia te kaiwhiwhi";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Kua tangohia %1$@";
 
 /* No comment provided by engineer. */
@@ -2243,7 +2264,13 @@
 "Select Course" = "Tīpako akoranga";
 
 /* No comment provided by engineer. */
+"Select courses for Dashboard or navigate to course details." = "Tīpako ngā akoranga mo Papatohu ara whakatere rānei ki akoranga taipitopito.";
+
+/* No comment provided by engineer. */
 "Select Grading Period" = "Tīpakohia te Kōeke Wā";
+
+/* No comment provided by engineer. */
+"Select groups for Dashboard or navigate to group details." = "Tīpakohia nga roopu mo te Papatohu, whakatere ranei ki nga taipitopito roopu.";
 
 /* No comment provided by engineer. */
 "Select Impact" = "Tīpako Pānga";
@@ -2253,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "Select One" = "Tīpakohia";
+
+/* No comment provided by engineer. */
+"Select Recipients" = "Tīpako ngā kaiwhiwhi";
 
 /* No comment provided by engineer. */
 "Selected" = "Kua tīpakohia";
@@ -2271,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "Tukua whakarāpopototanga ia rā";
+
+/* No comment provided by engineer. */
+"Send individual message to each recipient" = "Tukua te karere takitahi ki ia kaiwhiwhi";
 
 /* No comment provided by engineer. */
 "Send message" = "Tuku karere";
@@ -2631,6 +2664,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "He hapa i te wā e uta ana ngā quizzes. Kumea ki te whakahou ki te ngana anō.";
+
+/* No comment provided by engineer. */
+"There was an error loading recipients." = "I hapa te uta i nga kaiwhiwhi.";
 
 /* No comment provided by engineer. */
 "There was an error loading the message. Pull to refresh to try again." = "He hapa i te utaina o te korerorero. Kumea ki te whakahou ki te ngana anō.";

@@ -134,6 +134,9 @@
 "Add Assignee" = "เพิ่มผู้รับมอบหมาย";
 
 /* No comment provided by engineer. */
+"Add attachment" = "เพิ่มเอกสารแนบ";
+
+/* No comment provided by engineer. */
 "Add Attachment" = "เพิ่มเอกสารแนบ";
 
 /* No comment provided by engineer. */
@@ -174,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Add Planner Note" = "เพิ่มหมายเหตุแผนงาน";
+
+/* No comment provided by engineer. */
+"Add recipient" = "เพิ่มผู้รับ";
 
 /* No comment provided by engineer. */
 "Add Title" = "เพิ่มชื่อ";
@@ -647,6 +653,9 @@
 "Couldn't save the file." = "ไม่สามารถบันทึกไฟล์ได้";
 
 /* No comment provided by engineer. */
+"Course" = "บทเรียน";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "บทเรียน (เผื่อเลือก)";
 
 /* No comment provided by engineer. */
@@ -1047,6 +1056,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "ล้มเหลว กดเพื่อดูตัวเลือก";
+
+/* No comment provided by engineer. */
+"Favorite" = "รายการโปรด";
 
 /* No comment provided by engineer. */
 "Feedback" = "ผลตอบรับ";
@@ -1583,6 +1595,9 @@
 "Message" = "ข้อความ";
 
 /* No comment provided by engineer. */
+"Message could not be sent" = "ไม่สามารถส่งข้อความได้";
+
+/* No comment provided by engineer. */
 "Message Details" = "รายละเอียดข้อความ";
 
 /* No comment provided by engineer. */
@@ -1964,6 +1979,9 @@
 "Please log in via the application" = "กรุณาล็อกอินผ่านแอพพลิเคชั่น";
 
 /* No comment provided by engineer. */
+"Please try again!" = "กรุณาลองใหม่อีกครั้ง!";
+
+/* No comment provided by engineer. */
 "Please wait, this might take a minute." = "กรุณารอสักครู่ อาจต้องใช้เวลาครู่หนึ่ง";
 
 /* No comment provided by engineer. */
@@ -2117,6 +2135,9 @@
 "Remove item" = "ลบรายการ";
 
 /* No comment provided by engineer. */
+"Remove recipient" = "ลบผู้รับ ";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "ลบแล้ว %1$@";
 
 /* No comment provided by engineer. */
@@ -2243,7 +2264,13 @@
 "Select Course" = "เลือกบทเรียน";
 
 /* No comment provided by engineer. */
+"Select courses for Dashboard or navigate to course details." = "เลือกบทเรียนสำหรับแผงข้อมูลหรือสืบค้นรายละเอียดบทเรียน";
+
+/* No comment provided by engineer. */
 "Select Grading Period" = "เลือกระยะเวลาการให้เกรด";
+
+/* No comment provided by engineer. */
+"Select groups for Dashboard or navigate to group details." = "เลือกกลุ่มสำหรับแผงข้อมูลหรือสืบค้นรายละเอียดกลุ่ม";
 
 /* No comment provided by engineer. */
 "Select Impact" = "เลือกผลกระทบ";
@@ -2253,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "Select One" = "เลือกหนึ่งรายการ";
+
+/* No comment provided by engineer. */
+"Select Recipients" = "เลือกผู้รับ";
 
 /* No comment provided by engineer. */
 "Selected" = "เลือกแล้ว";
@@ -2271,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "ส่งข้อมูลสรุปประจำวัน";
+
+/* No comment provided by engineer. */
+"Send individual message to each recipient" = "ส่งข้อความเฉพาะรายไปยังผู้รับแต่ละคน";
 
 /* No comment provided by engineer. */
 "Send message" = "ส่งข้อความ";
@@ -2631,6 +2664,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "มีข้อผิดพลาดในการโหลดแบบทดสอบ ดึงเพื่อรีเฟรชเพื่อลองใหม่อีกครั้ง";
+
+/* No comment provided by engineer. */
+"There was an error loading recipients." = "มีข้อผิดพลาดในการโหลดผู้รับ";
 
 /* No comment provided by engineer. */
 "There was an error loading the message. Pull to refresh to try again." = "มีข้อผิดพลาดในการโหลดข้อความ ดึงเพื่อรีเฟรชเพื่อลองใหม่อีกครั้ง";

@@ -134,6 +134,9 @@
 "Add Assignee" = "添加獲配人";
 
 /* No comment provided by engineer. */
+"Add attachment" = "添加附件";
+
+/* No comment provided by engineer. */
 "Add Attachment" = "添加附件";
 
 /* No comment provided by engineer. */
@@ -174,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Add Planner Note" = "添加規劃筆記";
+
+/* No comment provided by engineer. */
+"Add recipient" = "添加收件者";
 
 /* No comment provided by engineer. */
 "Add Title" = "添加標題";
@@ -647,6 +653,9 @@
 "Couldn't save the file." = "無法儲存檔案。";
 
 /* No comment provided by engineer. */
+"Course" = "課程";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "課程（可選）";
 
 /* No comment provided by engineer. */
@@ -1047,6 +1056,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "失敗。點選選項";
+
+/* No comment provided by engineer. */
+"Favorite" = "我的最愛";
 
 /* No comment provided by engineer. */
 "Feedback" = "反饋";
@@ -1583,6 +1595,9 @@
 "Message" = "訊息";
 
 /* No comment provided by engineer. */
+"Message could not be sent" = "無法傳送訊息";
+
+/* No comment provided by engineer. */
 "Message Details" = "訊息詳細資料";
 
 /* No comment provided by engineer. */
@@ -1964,6 +1979,9 @@
 "Please log in via the application" = "請透過應用程式登入";
 
 /* No comment provided by engineer. */
+"Please try again!" = "請重試！！";
+
+/* No comment provided by engineer. */
 "Please wait, this might take a minute." = "請稍候，需時約一分鐘。";
 
 /* No comment provided by engineer. */
@@ -2117,6 +2135,9 @@
 "Remove item" = "移除項目";
 
 /* No comment provided by engineer. */
+"Remove recipient" = "移除收件人 ";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "已移除%1$@";
 
 /* No comment provided by engineer. */
@@ -2243,7 +2264,13 @@
 "Select Course" = "選擇課程";
 
 /* No comment provided by engineer. */
+"Select courses for Dashboard or navigate to course details." = "選擇控制面板的課程或導航到課程詳細資料。";
+
+/* No comment provided by engineer. */
 "Select Grading Period" = "選擇評分期";
+
+/* No comment provided by engineer. */
+"Select groups for Dashboard or navigate to group details." = "選取控制面板的群組或導航到群組詳細資料。";
 
 /* No comment provided by engineer. */
 "Select Impact" = "選擇影響的種類";
@@ -2253,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "Select One" = "選擇一個";
+
+/* No comment provided by engineer. */
+"Select Recipients" = "選擇收件人";
 
 /* No comment provided by engineer. */
 "Selected" = "已選擇";
@@ -2271,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "發送每日摘要";
+
+/* No comment provided by engineer. */
+"Send individual message to each recipient" = "給每個收件人發送一份個人訊息";
 
 /* No comment provided by engineer. */
 "Send message" = "傳送訊息";
@@ -2631,6 +2664,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "載入測驗時發生錯誤。提取以進行重新整理以再試一次。";
+
+/* No comment provided by engineer. */
+"There was an error loading recipients." = "載入收件人時發生錯誤。";
 
 /* No comment provided by engineer. */
 "There was an error loading the message. Pull to refresh to try again." = "載入訊息時發生錯誤。提取以進行重新整理以再試一次。";

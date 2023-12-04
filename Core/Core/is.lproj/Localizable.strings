@@ -134,6 +134,9 @@
 "Add Assignee" = "Bæta við viðtakanda";
 
 /* No comment provided by engineer. */
+"Add attachment" = "Bæta við viðhengi";
+
+/* No comment provided by engineer. */
 "Add Attachment" = "Bæta við viðhengi";
 
 /* No comment provided by engineer. */
@@ -174,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Add Planner Note" = "Bæta við skipuleggjara athugasemd";
+
+/* No comment provided by engineer. */
+"Add recipient" = "Bæta við móttakanda";
 
 /* No comment provided by engineer. */
 "Add Title" = "Bæta við titli";
@@ -647,6 +653,9 @@
 "Couldn't save the file." = "Ekki tókst að vista skrána.";
 
 /* No comment provided by engineer. */
+"Course" = "Námskeið";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "Námskeið (valfrjálst)";
 
 /* No comment provided by engineer. */
@@ -1047,6 +1056,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Tókst ekki. Smelltu fyrir valkosti";
+
+/* No comment provided by engineer. */
+"Favorite" = "Eftirlæti";
 
 /* No comment provided by engineer. */
 "Feedback" = "Endurgjöf";
@@ -1583,6 +1595,9 @@
 "Message" = "Skilaboð";
 
 /* No comment provided by engineer. */
+"Message could not be sent" = "Ekki var hægt að senda skilaboð";
+
+/* No comment provided by engineer. */
 "Message Details" = "Upplýsingar skilaboða";
 
 /* No comment provided by engineer. */
@@ -1964,6 +1979,9 @@
 "Please log in via the application" = "Skráðu þig inn í gegnum smáforritið";
 
 /* No comment provided by engineer. */
+"Please try again!" = "Reyndu aftur!";
+
+/* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Hinkraðu þetta gæti tekið mínútu.";
 
 /* No comment provided by engineer. */
@@ -2117,6 +2135,9 @@
 "Remove item" = "Fjarlægja atriði";
 
 /* No comment provided by engineer. */
+"Remove recipient" = "Fjarlægja móttakanda";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Fjarlægt %1$@";
 
 /* No comment provided by engineer. */
@@ -2243,7 +2264,13 @@
 "Select Course" = "Velja námskeið";
 
 /* No comment provided by engineer. */
+"Select courses for Dashboard or navigate to course details." = "Veldu námskeið fyrir stjórnborðið eða farðu að upplýsingum námskeiðs.";
+
+/* No comment provided by engineer. */
 "Select Grading Period" = "Velja einkunnatímabil";
+
+/* No comment provided by engineer. */
+"Select groups for Dashboard or navigate to group details." = "Veldu hópa fyrir stjórnborðið eða farðu að upplýsingum námskeiðs.";
 
 /* No comment provided by engineer. */
 "Select Impact" = "Velja áhrif";
@@ -2253,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "Select One" = "Velja einn";
+
+/* No comment provided by engineer. */
+"Select Recipients" = "Velja móttakendur";
 
 /* No comment provided by engineer. */
 "Selected" = "Valið";
@@ -2271,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "Senda daglega samantekt";
+
+/* No comment provided by engineer. */
+"Send individual message to each recipient" = "Senda hverjum viðtakanda sér skilaboð";
 
 /* No comment provided by engineer. */
 "Send message" = "Senda skilaboð";
@@ -2631,6 +2664,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "Villa kom upp við að hlaða prófum. Dragðu til að endurglæða til að reyna aftur.";
+
+/* No comment provided by engineer. */
+"There was an error loading recipients." = "Villa við að hlaða móttakendum.";
 
 /* No comment provided by engineer. */
 "There was an error loading the message. Pull to refresh to try again." = "Villa við að hlaða skilaboðunum. Dragðu til að endurglæða til að reyna aftur.";

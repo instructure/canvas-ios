@@ -134,6 +134,9 @@
 "Add Assignee" = "Ajoute Asiyen";
 
 /* No comment provided by engineer. */
+"Add attachment" = "Ajoute atachman";
+
+/* No comment provided by engineer. */
 "Add Attachment" = "Ajoute Atachman";
 
 /* No comment provided by engineer. */
@@ -174,6 +177,9 @@
 
 /* No comment provided by engineer. */
 "Add Planner Note" = "Ajoute Mòd Panifikatè";
+
+/* No comment provided by engineer. */
+"Add recipient" = "Ajoute destinatè";
 
 /* No comment provided by engineer. */
 "Add Title" = "Ajoute Tit";
@@ -647,6 +653,9 @@
 "Couldn't save the file." = "Pat ka sovgade fichye a.";
 
 /* No comment provided by engineer. */
+"Course" = "Kou";
+
+/* No comment provided by engineer. */
 "Course (optional)" = "Kou (opsyonèl)";
 
 /* No comment provided by engineer. */
@@ -1047,6 +1056,9 @@
 
 /* No comment provided by engineer. */
 "Failed. Tap for options" = "Echwe. Tape pou opsyon yo";
+
+/* No comment provided by engineer. */
+"Favorite" = "Prefere";
 
 /* No comment provided by engineer. */
 "Feedback" = "Kòmantè";
@@ -1583,6 +1595,9 @@
 "Message" = "Mesaj";
 
 /* No comment provided by engineer. */
+"Message could not be sent" = "Mesaj la paka ale";
+
+/* No comment provided by engineer. */
 "Message Details" = "Detay Mesaj";
 
 /* No comment provided by engineer. */
@@ -1964,6 +1979,9 @@
 "Please log in via the application" = "Tanpri konekte atravè aplikasyon an";
 
 /* No comment provided by engineer. */
+"Please try again!" = "Tanpri, eseye ankò!";
+
+/* No comment provided by engineer. */
 "Please wait, this might take a minute." = "Tann, Sa kapab pran yon ti tan.";
 
 /* No comment provided by engineer. */
@@ -2117,6 +2135,9 @@
 "Remove item" = "Elimine atik";
 
 /* No comment provided by engineer. */
+"Remove recipient" = "Retire destinatè";
+
+/* No comment provided by engineer. */
 "Removed %1$@" = "Elimine %1$@";
 
 /* No comment provided by engineer. */
@@ -2243,7 +2264,13 @@
 "Select Course" = "Seleksyone Kou";
 
 /* No comment provided by engineer. */
+"Select courses for Dashboard or navigate to course details." = "Seleksyone kou pou Tablo a oswa navige nan detay kou yo.";
+
+/* No comment provided by engineer. */
 "Select Grading Period" = "Seleksyone Peryòd Klasman";
+
+/* No comment provided by engineer. */
+"Select groups for Dashboard or navigate to group details." = "Seleksyone gwoup pou Tablo a oswa navige nan detay gwoup yo.";
 
 /* No comment provided by engineer. */
 "Select Impact" = "Seleksyone Enpak";
@@ -2253,6 +2280,9 @@
 
 /* No comment provided by engineer. */
 "Select One" = "Seleksyone Yonn";
+
+/* No comment provided by engineer. */
+"Select Recipients" = "Seleksyone Destinatè";
 
 /* No comment provided by engineer. */
 "Selected" = "Seleksyone";
@@ -2271,6 +2301,9 @@
 
 /* No comment provided by engineer. */
 "Send daily summary" = "Voye rezime chak jou";
+
+/* No comment provided by engineer. */
+"Send individual message to each recipient" = "Voye mesaj pèsonèl bay chak destinatè";
 
 /* No comment provided by engineer. */
 "Send message" = "Voye mesaj";
@@ -2631,6 +2664,9 @@
 
 /* No comment provided by engineer. */
 "There was an error loading quizzes. Pull to refresh to try again." = "Te gen yon erè nan chajman quiz yo. Rale pou aktyalize pou ka eseye ankò.";
+
+/* No comment provided by engineer. */
+"There was an error loading recipients." = "Te gen yon erè nan chajman destinatè yo.";
 
 /* No comment provided by engineer. */
 "There was an error loading the message. Pull to refresh to try again." = "Te gen yon erè nan chajman mesaj la. Rale pou aktyalize pou ka eseye ankò.";
