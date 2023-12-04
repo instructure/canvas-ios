@@ -81,6 +81,9 @@ public class UploadMediaComment {
             placeholder.mediaType = self.type
             placeholder.mediaURL = self.url
             placeholder.userID = self.userID
+            if let attempt = self.attempt {
+                placeholder.attemptFromAPI = NSNumber(value: attempt)
+            }
             do {
                 try client.save()
                 self.placeholderID = placeholder.id

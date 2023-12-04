@@ -45,7 +45,7 @@ class SubmissionCommentsViewControllerTests: StudentTestCase {
 
     func testLayout() {
         Clock.mockNow(Date())
-        api.mock(controller.presenter!.comments, value: .make(
+        api.mock(controller.presenter!.commentsStore, value: .make(
             assignment_id: assignmentID,
             attempt: 1,
             id: submissionID,

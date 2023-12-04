@@ -71,6 +71,9 @@ public class CreateTextComment {
             placeholder.createdAt = Date()
             placeholder.id = "placeholder-\(CreateTextComment.placeholderSuffix)"
             placeholder.userID = self.userID
+            if let attempt = self.attempt {
+                placeholder.attemptFromAPI = NSNumber(value: attempt)
+            }
             do {
                 try client.save()
                 self.placeholderID = placeholder.id

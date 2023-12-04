@@ -93,6 +93,9 @@ public class UploadFileComment {
             placeholder.createdAt = Date()
             placeholder.id = "placeholder-\(UploadFileComment.placeholderSuffix)"
             placeholder.userID = self.userID
+            if let attempt = self.attempt {
+                placeholder.attemptFromAPI = NSNumber(value: attempt)
+            }
             do {
                 try self.context.save()
                 self.placeholderID = placeholder.id

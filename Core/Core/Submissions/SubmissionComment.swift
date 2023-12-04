@@ -98,7 +98,6 @@ final public class SubmissionComment: NSManagedObject {
         let model: SubmissionComment = client.fetch(predicate).first ?? client.insert()
         model.id = id
         model.assignmentID = item.assignment_id.value
-        model.attemptFromAPI = NSNumber(value: attempt)
         model.authorAvatarURL = item.user?.avatar_url?.rawValue
         model.authorID = item.user_id.value
         model.authorName = item.user?.short_name ?? ""
