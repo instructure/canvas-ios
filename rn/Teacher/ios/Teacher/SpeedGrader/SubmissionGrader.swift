@@ -81,6 +81,7 @@ struct SubmissionGrader: View {
             ]),
             orderBy: #keyPath(Submission.attempt)
         ))
+        attempt = submission.attempt
         self.handleRefresh = handleRefresh
         studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: submission)
     }
@@ -217,6 +218,7 @@ struct SubmissionGrader: View {
             VStack(spacing: 0) {
                 Picker(selection: Binding(get: { selected.attempt }, set: { newValue in
                     withTransaction(.exclusive()) {
+                        NotificationCenter.default.post(name: .SpeedGraderAttemptPickerChanged, object: newValue)
                         attempt = newValue
                         fileID = nil
                     }
@@ -380,4 +382,8 @@ struct SubmissionGrader: View {
 private func interpolate(value: CGFloat, fromMin: CGFloat, fromMax: CGFloat, toMin: CGFloat, toMax: CGFloat) -> CGFloat {
     let bounded = max(fromMin, min(value, fromMax))
     return (((toMax - toMin) / (fromMax - fromMin)) * (bounded - fromMin)) + toMin
+}
+
+extension NSNotification.Name {
+    public static var SpeedGraderAttemptPickerChanged = NSNotification.Name("com.instructure.core.speedgrader-attempt-changed")
 }

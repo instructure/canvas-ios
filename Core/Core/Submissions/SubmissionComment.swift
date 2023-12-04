@@ -38,6 +38,12 @@ final public class SubmissionComment: NSManagedObject {
     @NSManaged public var userID: String
     @NSManaged public var attachments: Set<File>?
 
+    public var attempt: Int? {
+        get {
+            attemptFromAPI?.intValue
+        }
+    }
+
     public var mediaLocalOrRemoteURL: URL? {
         if let url = mediaLocalURL, FileManager.default.fileExists(atPath: url.path) {
             return url
@@ -55,22 +61,13 @@ final public class SubmissionComment: NSManagedObject {
         return DateFormatter.localizedString(from: createdAt, dateStyle: .long, timeStyle: .short)
     }
 
-    /// If set, this comment represents an actual submission attempt
-    ///
-    /// In the case of these syntesized comments, the id is `"submission-[submissionID]-[attempt]"`
-    public var attempt: Int? {
-        let parts = id.split(separator: "-", maxSplits: 3, omittingEmptySubsequences: false)
-        guard parts.count == 3 else { return nil }
-        return Int(parts[2])
-    }
-
     @discardableResult
     static public func save(_ item: APISubmissionComment, for submission: APISubmission, replacing id: String? = nil, in client: NSManagedObjectContext) -> SubmissionComment {
         let model: SubmissionComment = client.first(where: #keyPath(SubmissionComment.id), equals: id ?? item.id) ?? client.insert()
         model.id = item.id
         model.assignmentID = submission.assignment_id.value
         if let attempt = item.attempt {
-            model.attemptFromAPI = NSNumber(integerLiteral: attempt)
+            model.attemptFromAPI = NSNumber(value: attempt)
         }
         model.authorAvatarURL = item.author.avatar_image_url?.rawValue
         model.authorID = item.author_id?.value
@@ -98,7 +95,7 @@ final public class SubmissionComment: NSManagedObject {
         let model: SubmissionComment = client.fetch(predicate).first ?? client.insert()
         model.id = id
         model.assignmentID = item.assignment_id.value
-        model.attemptFromAPI = NSNumber(integerLiteral: attempt)
+        model.attemptFromAPI = NSNumber(value: attempt)
         model.authorAvatarURL = item.user?.avatar_url?.rawValue
         model.authorID = item.user_id.value
         model.authorName = item.user?.short_name ?? ""
