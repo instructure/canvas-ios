@@ -32,17 +32,23 @@ class AddressbookRecipientViewModelTests: CoreTestCase {
             .save(.make(id: "2", name: "Recipient 2", common_courses: ["Course 1": ["StudentEnrollment"]]), filter: "", in: environment.database.viewContext),
             .save(.make(id: "3", name: "Recipient 3", common_courses: ["Course 1": ["ObserverEnrollment"]]), filter: "", in: environment.database.viewContext),
         ]
-        testee = AddressbookRecipientViewModel(router: environment.router, roleName: "Students", recipients: recipients, recipientDidSelect: CurrentValueRelay<[SearchRecipient]>([]))
+        testee = AddressbookRecipientViewModel(
+            router: environment.router,
+            roleName: "Students",
+            recipients: recipients.map { Recipient(searchRecipient: $0) },
+            recipientDidSelect: PassthroughRelay<Recipient>()
+        )
     }
 
     func testInitState() {
-        XCTAssertEqual(testee.recipients.count, 3)
+        XCTAssertEqual(testee.recipients.count, 4)
         XCTAssertEqual(testee.roleName, "Students")
     }
 
     func testListFiltering() {
+        print(testee.recipients)
         testee.searchText.value = ""
-        XCTAssertEqual(testee.recipients.count, 3)
+        XCTAssertEqual(testee.recipients.count, 4)
         testee.searchText.value = "Recipient"
         XCTAssertEqual(testee.recipients.count, 3)
         testee.searchText.value = "Recipient 1"
@@ -51,13 +57,13 @@ class AddressbookRecipientViewModelTests: CoreTestCase {
 
     func testRecipientSelection() {
         let sourceView = UIViewController()
-        testee.recipientDidTap.send((recipient: [testee.recipients.first!], controller: WeakViewController(sourceView)))
+        testee.recipientDidTap.send((recipient: testee.recipients.last!, controller: WeakViewController(sourceView)))
         XCTAssertNotNil(router.dismissed)
     }
 
     func testAllRecipientSelection() {
         let sourceView = UIViewController()
-        testee.allRecipientDidTap.send((recipient: [testee.recipients.first!], controller: WeakViewController(sourceView)))
+        testee.recipientDidTap.send((recipient: testee.recipients.first!, controller: WeakViewController(sourceView)))
         XCTAssertNotNil(router.dismissed)
     }
 }

@@ -59,16 +59,17 @@ class AddressbookRecipientViewModel: ObservableObject {
         Just(allRecipient)
             .combineLatest(searchText)
             .map { (recipients, searchText) in
-                recipients.filter { recipient in
+                (recipients.filter { recipient in
                     if searchText.isEmpty {
                         true
                     } else {
                         recipient.displayName.lowercased().contains(searchText.lowercased())
                     }
-                }
+                },
+                searchText)
             }
-            .map { [weak self] recipients in
-                self?.addAllRecipient(recipients: recipients) ?? []
+            .map { [weak self] (recipients, searchText) in
+                searchText.isEmpty ? self?.addAllRecipient(recipients: recipients) ?? [] : recipients
             }
             .assign(to: &$recipients)
     }

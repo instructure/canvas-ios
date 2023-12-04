@@ -25,7 +25,7 @@ import CombineExt
 class AddressbookRoleViewModelTests: CoreTestCase {
     private var mockInteractor: AddressbookInteractorMock!
     var testee: AddressbookRoleViewModel!
-    private var selected = CurrentValueRelay<[SearchRecipient]>([])
+    private var selected = PassthroughRelay<Recipient>()
 
     override func setUp() {
         super.setUp()
@@ -42,11 +42,11 @@ class AddressbookRoleViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, mockInteractor.state.value)
         XCTAssertEqual(testee.recipients.count, 5)
         XCTAssertEqual(testee.roles.count, 5)
-        XCTAssertEqual(testee.roleRecipients["Teachers"]?.first?.name, "Recipient 1")
-        XCTAssertEqual(testee.roleRecipients["Students"]?.first?.name, "Recipient 2")
-        XCTAssertEqual(testee.roleRecipients["Course designers"]?.first?.name, "Recipient 4")
-        XCTAssertEqual(testee.roleRecipients["Teaching assistants"]?[0].name, "Recipient 4")
-        XCTAssertEqual(testee.roleRecipients["Teaching assistants"]?[1].name, "Recipient 5")
+        XCTAssertEqual(testee.roleRecipients["Teachers"]?.first?.displayName, "Recipient 1")
+        XCTAssertEqual(testee.roleRecipients["Students"]?.first?.displayName, "Recipient 2")
+        XCTAssertEqual(testee.roleRecipients["Course designers"]?.first?.displayName, "Recipient 4")
+        XCTAssertEqual(testee.roleRecipients["Teaching assistants"]?[0].displayName, "Recipient 4")
+        XCTAssertEqual(testee.roleRecipients["Teaching assistants"]?[1].displayName, "Recipient 5")
     }
 
     func testListFiltering() {
@@ -60,7 +60,7 @@ class AddressbookRoleViewModelTests: CoreTestCase {
 
     func testRecipientSelection() {
         let sourceView = UIViewController()
-        testee.recipientDidTap.send((recipient: [testee.recipients.first!], controller: WeakViewController(sourceView)))
+        testee.recipientDidTap.send((recipient: testee.recipients.first!, controller: WeakViewController(sourceView)))
         XCTAssertNotNil(router.dismissed)
     }
 
@@ -72,7 +72,7 @@ class AddressbookRoleViewModelTests: CoreTestCase {
 
     func testRoleSelection() {
         let sourceView = UIViewController()
-        testee.roleDidTap.send((roleName: "Students", recipient: testee.recipients, controller: WeakViewController(sourceView)))
+        testee.roleDidTap.send((roleName: "Students", recipients: testee.recipients, controller: WeakViewController(sourceView)))
         XCTAssertNotNil(router.showExpectation)
     }
 
