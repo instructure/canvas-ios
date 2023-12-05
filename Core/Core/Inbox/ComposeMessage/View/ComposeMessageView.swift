@@ -151,6 +151,7 @@ public struct ComposeMessageView: View {
                 .onTapGesture {
                     model.addRecipientButtonDidTap(viewController: controller)
                 }
+                .padding(.vertical, 12)
                 .accessibilitySortPriority(2)
             if !model.recipients.isEmpty {
                 recipientsView
@@ -158,9 +159,10 @@ public struct ComposeMessageView: View {
             }
             Spacer()
             addRecipientButton
+                .padding(.vertical, 12)
                 .accessibilitySortPriority(1)
         }
-        .padding(.horizontal, 16).padding(.vertical, 12)
+        .padding(.horizontal, 16)
         .accessibilityElement(children: .contain)
     }
 

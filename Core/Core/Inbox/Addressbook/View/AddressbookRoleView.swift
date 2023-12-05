@@ -99,6 +99,14 @@ struct AddressbookRoleView: View {
                         .foregroundColor(.textDarkest)
                         .lineLimit(1)
                         .frame(maxWidth: .infinity, alignment: .leading)
+                    Spacer()
+                    Image.checkSolid
+                        .resizable()
+                        .foregroundColor(.textDarkest)
+                        .frame(width: 24, height: 24)
+                        .padding(.horizontal, 12)
+                        .accessibilityLabel(Text("Selected", bundle: .core))
+                        .hidden(!viewModel.selectedRecipients.contains(recipient))
                 }
             })
             .padding(16)

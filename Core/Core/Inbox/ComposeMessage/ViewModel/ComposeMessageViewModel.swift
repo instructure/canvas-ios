@@ -95,7 +95,7 @@ class ComposeMessageViewModel: ObservableObject {
 
     private func courseDidSelect(selectedContext: RecipientContext?, viewController: WeakViewController) {
         self.selectedContext = selectedContext
-        recipients.removeAll()
+        selectedRecipients.value.removeAll()
 
         closeCourseSelectorDelayed(viewController)
     }
@@ -124,7 +124,6 @@ class ComposeMessageViewModel: ObservableObject {
                 if self?.selectedRecipients.value.contains(recipient) == true {
                     self?.recipientDidRemove.accept(recipient)
                 } else {
-                    self?.recipients.append(recipient)
                     self?.selectedRecipients.value.append(recipient)
                 }
             }
@@ -132,10 +131,12 @@ class ComposeMessageViewModel: ObservableObject {
 
         recipientDidRemove
             .sink { [weak self] recipient in
-                self?.recipients.removeAll { $0 == recipient }
                 self?.selectedRecipients.value.removeAll { $0 == recipient }
             }
             .store(in: &subscriptions)
+
+        selectedRecipients
+            .assign(to: &$recipients)
     }
 
     private func messageParameters() -> MessageParameters? {

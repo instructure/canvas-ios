@@ -33,7 +33,7 @@ struct WrappingHStack<Model, V>: View where Model: Hashable, V: View {
                 self.generateContent(in: geometry)
             }
         }
-        .frame(height: totalHeight)// << variant for ScrollView/List
+        .frame(height: totalHeight)
     }
 
     private func generateContent(in geometry: GeometryProxy) -> some View {
