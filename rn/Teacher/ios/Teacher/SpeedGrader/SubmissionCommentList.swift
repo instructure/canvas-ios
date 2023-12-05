@@ -147,7 +147,7 @@ struct SubmissionCommentList: View {
     func toolbar(containerHeight: CGFloat) -> some View {
         HStack(spacing: 0) {
             Button(action: { showMediaOptions = true }, label: {
-                Image.addSolid.size(18)
+                Image.paperclipLine.size(18)
                     .foregroundColor(.textDark)
                     .padding(EdgeInsets(top: 11, leading: 11, bottom: 11, trailing: 11))
             })
