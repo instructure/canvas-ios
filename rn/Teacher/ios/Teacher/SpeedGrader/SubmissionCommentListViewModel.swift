@@ -20,6 +20,7 @@ import Combine
 import Core
 import Foundation
 import SwiftUI
+import CombineSchedulers
 
 class SubmissionCommentListViewModel: ObservableObject {
     enum ViewState: Equatable {
@@ -40,6 +41,7 @@ class SubmissionCommentListViewModel: ObservableObject {
     private var comments: [SubmissionComment] = []
 
     // MARK: - Private variables
+
     private let submissionCommentsStore: ReactiveStore<GetSubmissionComments>
     private let featureFlagsStore: ReactiveStore<GetEnabledFeatureFlags>
     private(set) var isAssignmentEnhancementsFeatureFlagEnabled = false
@@ -49,7 +51,8 @@ class SubmissionCommentListViewModel: ObservableObject {
         attempt: Int?,
         courseID: String,
         assignmentID: String,
-        userID: String
+        userID: String,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         submissionCommentsStore = ReactiveStore(
             useCase: GetSubmissionComments(
@@ -65,8 +68,9 @@ class SubmissionCommentListViewModel: ObservableObject {
         unowned let unownedSelf = self
 
         Publishers.CombineLatest(
-            submissionCommentsStore.observeEntitiesWithError(),
-            featureFlagsStore.observeEntitiesWithError()
+            submissionCommentsStore.observeEntitiesWithError().print(),
+            featureFlagsStore.observeEntitiesWithError().print()
+
         )
         .eraseToAnyPublisher()
         .map { comments, featureFlags in
@@ -74,6 +78,7 @@ class SubmissionCommentListViewModel: ObservableObject {
             unownedSelf.isAssignmentEnhancementsFeatureFlagEnabled = featureFlags.isFeatureFlagEnabled(.assignmentEnhancements)
             return unownedSelf.filterComments(comments: comments, attempt: attempt)
         }
+        .receive(on: scheduler)
         .map { $0.isEmpty ? ViewState.empty : ViewState.data($0) }
         .replaceError(with: .error)
         .assign(to: &$state)

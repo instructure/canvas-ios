@@ -297,7 +297,10 @@ class SubmissionDetailsPresenter {
                 submissionID: submission.id,
                 submissionPresenter: self
             )
-            self.commentAttemptDelegate = vc.presenter
+            // Some tests in SubmissionDetailsPresenterTests would invoke SubmissionCommentsViewController lifecycle methods if delegate is set. 
+            if !testing {
+                self.commentAttemptDelegate = vc.presenter
+            }
             return vc
         case .files:
             return SubmissionFilesViewController.create(
