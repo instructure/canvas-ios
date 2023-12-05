@@ -76,9 +76,9 @@ function run(cmd, args, opts) {
 
 async function exportTranslations() {
   const toUpload = []
+  await processReactLocalizations(toUpload)
   await run('make', ['pod'])
   await processNativeLocalizations(toUpload)
-  await processReactLocalizations(toUpload)
   await pushToS3(toUpload)
   console.log('Finished!')
 }
