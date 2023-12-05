@@ -69,6 +69,7 @@ public struct AddressbookRecipientView: View {
                         .foregroundColor(.textDarkest)
                         .frame(width: 24, height: 24)
                         .padding(.horizontal, 12)
+                        .accessibilityLabel(Text("Selected", bundle: .core))
                         .hidden(!viewModel.selectedRecipients.contains(recipient))
                 }
             })
