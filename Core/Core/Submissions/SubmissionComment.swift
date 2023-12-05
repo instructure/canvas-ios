@@ -22,6 +22,7 @@ import CoreData
 final public class SubmissionComment: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var assignmentID: String
+    /// If `assignments_2_student` feature flag is enabled, comments are segmented based on which attempt they belong to. 
     @NSManaged public var attemptFromAPI: NSNumber?
     @NSManaged public var authorAvatarURL: URL?
     @NSManaged public var authorID: String?

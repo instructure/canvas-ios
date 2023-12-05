@@ -36,7 +36,6 @@ struct SubmissionCommentList: View {
     @ObservedObject var commentLibrary: SubmissionCommentLibraryViewModel
 
     @StateObject private var viewModel: SubmissionCommentListViewModel
-    @State var comments: [SubmissionComment] = []
     @State var error: Text?
     @State var showMediaOptions = false
     @State var showCommentLibrary = false

@@ -37,15 +37,6 @@ open class IconView: UIImageView {
     }
 
     @IBInspectable
-    public var systemImageName: String = "" {
-        didSet {
-            if let icon = UIImage(systemName: systemImageName) {
-                image = icon
-            }
-        }
-    }
-
-    @IBInspectable
     public var mirrorX: Bool = false {
         didSet {
             transform = CGAffineTransform(scaleX: -1, y: 1)
