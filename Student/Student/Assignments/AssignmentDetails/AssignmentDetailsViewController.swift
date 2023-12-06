@@ -206,7 +206,8 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         gradeSection?.layer.borderWidth = 0.5
         gradeBorderLayer = border
 
-        submittedIcon?.image = .completeLine
+        submittedIcon?.image = .completeLine.withRenderingMode(.alwaysTemplate)
+        submittedIcon?.tintColor = .textDarkest
 
         gradeSectionBoundsObservation = gradeSection?.observe(\.bounds) { [weak gradeBorderLayer] gradeSection, _ in
             gradeBorderLayer?.frame = gradeSection.bounds
