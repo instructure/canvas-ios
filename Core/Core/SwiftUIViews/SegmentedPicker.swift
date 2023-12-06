@@ -66,7 +66,7 @@ public struct SegmentedPicker<Element, Content>: View where Content: View {
                             label: { content(data[index], selectedIndex == index) }
                         )
                         .buttonStyle(PlainButtonStyle())
-                        .frame(maxWidth: .infinity)
+                        .frame(maxWidth: .infinity, minHeight: 33)
                         .background(GeometryReader { proxy in
                             Color.clear.onAppear { frames[index] = proxy.frame(in: .global) }
                         })

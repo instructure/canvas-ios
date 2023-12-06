@@ -17,10 +17,10 @@
 //
 
 import Combine
+import CombineSchedulers
 import Core
 import Foundation
 import SwiftUI
-import CombineSchedulers
 
 class SubmissionCommentListViewModel: ObservableObject {
     enum ViewState: Equatable {
@@ -38,14 +38,14 @@ class SubmissionCommentListViewModel: ObservableObject {
     // MARK: - Outputs
 
     @Published private(set) var state: ViewState = .loading
-    private var comments: [SubmissionComment] = []
 
     // MARK: - Private variables
 
     private let submissionCommentsStore: ReactiveStore<GetSubmissionComments>
     private let featureFlagsStore: ReactiveStore<GetEnabledFeatureFlags>
+    private var comments: [SubmissionComment] = []
     private var attempt: Int?
-    private(set) var isAssignmentEnhancementsFeatureFlagEnabled = false
+    public private(set) var isAssignmentEnhancementsFeatureFlagEnabled = false
     private var subscriptions = Set<AnyCancellable>()
 
     init(
@@ -71,9 +71,8 @@ class SubmissionCommentListViewModel: ObservableObject {
         unowned let unownedSelf = self
 
         Publishers.CombineLatest(
-            submissionCommentsStore.observeEntitiesWithError().print(),
-            featureFlagsStore.observeEntitiesWithError().print()
-
+            submissionCommentsStore.observeEntitiesWithError(),
+            featureFlagsStore.observeEntitiesWithError()
         )
         .eraseToAnyPublisher()
         .map { comments, featureFlags in

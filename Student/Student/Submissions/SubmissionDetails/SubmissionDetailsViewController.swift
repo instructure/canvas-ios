@@ -45,7 +45,7 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
     @IBOutlet weak var emptyView: SubmissionDetailsEmptyView?
     @IBOutlet weak var lockedEmptyView: SubmissionDetailsLockedEmptyView?
     @IBOutlet weak var attemptLabel: UILabel!
-    @IBOutlet var pickerButton: DynamicButton?
+    @IBOutlet weak var pickerButton: DynamicButton?
     @IBOutlet weak var pickerButtonDivider: DividerView?
     @IBOutlet weak var picker: UIPickerView?
 
@@ -112,7 +112,8 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
             let title = DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short)
             updateAttemptPickerButton(isActive: presenter.pickerSubmissions.count > 1, title: title)
             attemptLabel.isEnabled = presenter.pickerSubmissions.count > 1
-            attemptLabel?.text = "Attempt \(attempt)"
+            let format = NSLocalizedString("Attempt %d", bundle: .core, comment: "")            
+            attemptLabel?.text = String.localizedStringWithFormat(format, attempt)
         }
         if presenter.pickerSubmissions.count <= 1 || assignment.isExternalToolAssignment {
             picker?.isHidden = true
