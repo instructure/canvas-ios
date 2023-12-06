@@ -584,6 +584,7 @@
 		59F0DECEB1E8D2E16644539A /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A7CC4829ACDE419C6B19F47 /* HelpView.swift */; };
 		5A0BA4280F3E44A7AA7FD630 /* ListErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C2AD7009B6D2E62D925BEC5 /* ListErrorView.xib */; };
 		5A2DC11F55A2AE09BCA4FEB8 /* UserAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6B7233D6E932755EAEFF16 /* UserAgent.swift */; };
+		5A905524E2B87ECA0CE847E1 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A9860AECF67572B989503005 /* InfoPlist.xcstrings */; };
 		5A980325FEE33A7AD5AA00F6 /* PushNotificationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A051BB78C43832BD876D89C /* PushNotificationError.swift */; };
 		5A9EAD596F74BD4DDCEBC76B /* FilePickerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F47D6E256B7BED26AEAE3B1 /* FilePickerViewController.storyboard */; };
 		5B0BD0E022A54965121B5528 /* UIScrollViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CA85BD5F98188F0B02970D9 /* UIScrollViewExtensions.swift */; };
@@ -2826,6 +2827,7 @@
 		A9193DA17C6897AC20A0F645 /* ClosedRangeExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedRangeExtensions.swift; sourceTree = "<group>"; };
 		A92489739FA867834EE67DA3 /* APIBrandVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBrandVariables.swift; sourceTree = "<group>"; };
 		A9328E630A8C08D6995EDCC8 /* LoginFindSchoolViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFindSchoolViewControllerTests.swift; sourceTree = "<group>"; };
+		A9860AECF67572B989503005 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		A9AFA4DDC9F66EFAFE5795E0 /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
 		A9F8E88E51C265BD7A6ADED7 /* PageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageListViewController.swift; sourceTree = "<group>"; };
 		AA233A607AC160DF923CE1D7 /* K5StateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5StateTests.swift; sourceTree = "<group>"; };
@@ -8045,6 +8047,7 @@
 				E50764AD9696D5FA90B3904E /* Assets.xcassets */,
 				6E723604B2E372EEC1CF6547 /* CoreTester.entitlements */,
 				C7F6E9917DB4EF3D8EDA4A59 /* Info.plist */,
+				A9860AECF67572B989503005 /* InfoPlist.xcstrings */,
 				57FF82EE5B547FBF0A9BD307 /* LaunchScreen.storyboard */,
 				F2B0D5EAB78986A6B84A789D /* Main.storyboard */,
 			);
@@ -9272,6 +9275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A78BD605A77DDFF55707490 /* Assets.xcassets in Resources */,
+				5A905524E2B87ECA0CE847E1 /* InfoPlist.xcstrings in Resources */,
 				CE79567D4EC57F78BA2931BF /* LaunchScreen.storyboard in Resources */,
 				7FF2098C025D98279382F091 /* Main.storyboard in Resources */,
 			);
