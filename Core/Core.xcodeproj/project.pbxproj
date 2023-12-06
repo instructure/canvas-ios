@@ -533,7 +533,6 @@
 		523D8AF614F4882D8CEB30CD /* PageViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91956458E65DEC161379670F /* PageViewEvent.swift */; };
 		5244A61E96BEDB72BCF11B7B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEF028266741629EAFE921A /* AppDelegate.swift */; };
 		5269B3FBE2388D2AB642929F /* preview_test.pdf in Resources */ = {isa = PBXBuildFile; fileRef = B0B5F4F932EAC4447DF4B2B2 /* preview_test.pdf */; };
-		5284304FDCCA1A31DF149C84 /* AddressbookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B072D1F3235A6068CBE1FD13 /* AddressbookViewModel.swift */; };
 		52B4CB27807627AD142713E6 /* FileSubmissionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C406AFB27E249C6DB3BEA1 /* FileSubmissionState.swift */; };
 		52C85C303972F2BA2977A629 /* CourseSyncModulesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FE7DB2FAD492A1D58A397F /* CourseSyncModulesInteractor.swift */; };
 		52E8FA015AD29EE3F0E442E1 /* SubmissionBreakdownViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0920367FB90AE9D60CE342 /* SubmissionBreakdownViewModelProtocol.swift */; };
@@ -740,7 +739,6 @@
 		717594D762D9BD20E6279683 /* K5ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CA24370EB34677FCF7CF45 /* K5ScheduleView.swift */; };
 		719BD314CFD58B8C46CD7DB8 /* AllCoursesCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7BB01316FC18D8D3E8729F /* AllCoursesCellViewModel.swift */; };
 		71EA7B70DFA81F53627648E4 /* K5ImportantDatesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1215A854CF74D536518C189E /* K5ImportantDatesViewModelTests.swift */; };
-		721304ACAFA1C8FDB4321F5F /* AddressbookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FC2A86C268CEC40E7073BD /* AddressbookView.swift */; };
 		72208FEF82AFDE77E1DF78BE /* GetCurrentUserCoursesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E4477A4226932C2FF75897 /* GetCurrentUserCoursesRequest.swift */; };
 		72532EDCEF9DEAE842D93066 /* PeopleListViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A3003E41696A93E29556594 /* PeopleListViewController.storyboard */; };
 		725351D9BCFFAC6C45E52F7A /* OfflineBannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EEA09018664CBBDB5E1B0EB8 /* OfflineBannerView.xib */; };
@@ -2866,7 +2864,6 @@
 		998E09CB665E22AD5F56E45C /* CoreActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreActivityViewController.swift; sourceTree = "<group>"; };
 		999ECD2E73E5DF4EBB5457C2 /* MockPDFPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPDFPageView.swift; sourceTree = "<group>"; };
 		99FAD6B08A83AAC551D5DE18 /* da-instk12 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = "da-instk12"; path = "da-instk12.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
-		99FC2A86C268CEC40E7073BD /* AddressbookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressbookView.swift; sourceTree = "<group>"; };
 		9A051BB78C43832BD876D89C /* PushNotificationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationError.swift; sourceTree = "<group>"; };
 		9A1DDE9B2E607CBB410A0A90 /* UITableViewCellExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtensionsTests.swift; sourceTree = "<group>"; };
 		9A417B8725ADFEF6B2BC06FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = Base; path = Base.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
@@ -3021,7 +3018,6 @@
 		AFBC5C713B2F768ED448FD74 /* FileListViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FileListViewController.storyboard; sourceTree = "<group>"; };
 		AFD483C88B9790DF9AC6824B /* K5ResourcesHomeroomInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesHomeroomInfoViewModel.swift; sourceTree = "<group>"; };
 		B04A42A33AD2BD7C0C3AEF01 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B072D1F3235A6068CBE1FD13 /* AddressbookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressbookViewModel.swift; sourceTree = "<group>"; };
 		B093091F6D011A8596EE68A4 /* CourseSyncProgressViewModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncProgressViewModelItem.swift; sourceTree = "<group>"; };
 		B0B1B23CFF23F829CBF56F02 /* NotificationCategoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCategoryTests.swift; sourceTree = "<group>"; };
 		B0B2D0A62349B00B6B531DB4 /* UICollectionViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtensions.swift; sourceTree = "<group>"; };
@@ -6925,7 +6921,6 @@
 			children = (
 				0803ADB760E52027E4DDEDE8 /* AddressbookRecipientView.swift */,
 				8084C53142281E5E5ACE3615 /* AddressbookRoleView.swift */,
-				99FC2A86C268CEC40E7073BD /* AddressbookView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -8599,7 +8594,6 @@
 			children = (
 				F0E1BD167EDB768868FB93E8 /* AddressbookRecipientViewModel.swift */,
 				09E6A294C7F270215403FD83 /* AddressbookRoleViewModel.swift */,
-				B072D1F3235A6068CBE1FD13 /* AddressbookViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -10223,8 +10217,6 @@
 				AD04434B0C122060EDD83A26 /* AddressbookRecipientViewModel.swift in Sources */,
 				42523744D15463530DB6735F /* AddressbookRoleView.swift in Sources */,
 				B44AFAA0F085185B286E6687 /* AddressbookRoleViewModel.swift in Sources */,
-				721304ACAFA1C8FDB4321F5F /* AddressbookView.swift in Sources */,
-				5284304FDCCA1A31DF149C84 /* AddressbookViewModel.swift in Sources */,
 				5CFE89A939B340C4E7DB6A28 /* AlertAction.swift in Sources */,
 				EAC984D81B72E3A40B4C31B3 /* AlertThreshold.swift in Sources */,
 				AD7AAB4FFE15E71B0A9F2421 /* AllCoursesAssembly.swift in Sources */,

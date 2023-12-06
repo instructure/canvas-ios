@@ -43,7 +43,6 @@ class ComposeMessageViewModel: ObservableObject {
     // MARK: - Inputs
     public let sendButtonDidTap = PassthroughRelay<WeakViewController>()
     public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
-    public let addRecipientButtonDidTap = PassthroughRelay<WeakViewController>()
     public let recipientDidSelect = PassthroughRelay<Recipient>()
     public let recipientDidRemove = PassthroughRelay<Recipient>()
     public var selectedRecipients = CurrentValueSubject<[Recipient], Never>([])
@@ -73,13 +72,13 @@ class ComposeMessageViewModel: ObservableObject {
                 self.selectedContext = .init(name: conversation.contextName ?? "", context: context)
             }
             if let author {
-                self.recipients = conversation.audience.filter { $0.id == author }.map { Recipient(conversationParticipant: $0) }
+                self.selectedRecipients.value = conversation.audience.filter { $0.id == author }.map { Recipient(conversationParticipant: $0) }
 
-                if self.recipients.isEmpty {
-                    self.recipients = conversation.audience.map { Recipient(conversationParticipant: $0) }
+                if self.selectedRecipients.value.isEmpty {
+                    self.selectedRecipients.value = conversation.audience.map { Recipient(conversationParticipant: $0) }
                 }
             } else {
-                self.recipients = conversation.audience.map { Recipient(conversationParticipant: $0) }
+                self.selectedRecipients.value = conversation.audience.map { Recipient(conversationParticipant: $0) }
             }
         }
 
@@ -93,7 +92,7 @@ class ComposeMessageViewModel: ObservableObject {
         }, from: viewController)
     }
 
-    private func courseDidSelect(selectedContext: RecipientContext?, viewController: WeakViewController) {
+    public func courseDidSelect(selectedContext: RecipientContext?, viewController: WeakViewController) {
         self.selectedContext = selectedContext
         selectedRecipients.value.removeAll()
 

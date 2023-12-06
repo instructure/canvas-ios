@@ -35,7 +35,7 @@ class AddressbookRecipientViewModel: ObservableObject {
     public let roleName: String
 
     // MARK: - Inputs
-    public let recipientDidTap = PassthroughSubject<(recipient: Recipient, controller: WeakViewController), Never>()
+    public let recipientDidTap = PassthroughSubject<Recipient, Never>()
 
     // MARK: - Input / Output
     @Published public var searchText = CurrentValueSubject<String, Never>("")
@@ -62,12 +62,6 @@ class AddressbookRecipientViewModel: ObservableObject {
         setupOutputBindings(allRecipient: recipients, selectedRecipients: selectedRecipients)
     }
 
-    private func closeDialog(_ viewController: WeakViewController) {
-        // Double dismiss is neccessary due to the searchable view
-        router.dismiss(viewController)
-        router.dismiss(viewController)
-    }
-
     private func setupOutputBindings(allRecipient: [Recipient], selectedRecipients: CurrentValueSubject<[Recipient], Never>) {
         Just(allRecipient)
             .combineLatest(searchText)
@@ -88,9 +82,8 @@ class AddressbookRecipientViewModel: ObservableObject {
 
     private func setupInputBindings(recipientDidSelect: PassthroughRelay<Recipient>) {
         recipientDidTap
-            .sink { (recipient, viewController) in
+            .sink { recipient in
                 recipientDidSelect.accept(recipient)
-//                self?.closeDialog(viewController)
             }
             .store(in: &subscriptions)
     }

@@ -90,7 +90,7 @@ struct AddressbookRoleView: View {
     private func personRowView(_ recipient: Recipient) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Button(action: {
-                viewModel.recipientDidTap.send((recipient: recipient, controller: controller))
+                viewModel.recipientDidTap.send(recipient)
             }, label: {
                 HStack(alignment: .center, spacing: 16) {
                     Avatar(name: recipient.displayName, url: recipient.avatarURL, size: 36, isAccessible: false)
@@ -152,7 +152,7 @@ struct AddressbookRoleView: View {
     private var allRecipient: some View {
             VStack(alignment: .leading, spacing: 0) {
                 Button(action: {
-                    viewModel.recipientDidTap.send((recipient: viewModel.allRecipient, controller: controller))
+                    viewModel.recipientDidTap.send(viewModel.allRecipient)
                 }, label: {
                     HStack(alignment: .center, spacing: 16) {
                         Avatar(name: NSLocalizedString("All", comment: ""), url: nil, size: 36, isAccessible: false)

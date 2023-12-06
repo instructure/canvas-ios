@@ -36,20 +36,21 @@ class AddressbookRecipientViewModelTests: CoreTestCase {
             router: environment.router,
             roleName: "Students",
             recipients: recipients.map { Recipient(searchRecipient: $0) },
+            canSelectAllRecipient: true,
             recipientDidSelect: PassthroughRelay<Recipient>(),
             selectedRecipients: CurrentValueSubject<[Recipient], Never>([])
         )
     }
 
     func testInitState() {
-        XCTAssertEqual(testee.recipients.count, 4)
+        XCTAssertEqual(testee.recipients.count, 3)
         XCTAssertEqual(testee.roleName, "Students")
     }
 
     func testListFiltering() {
         print(testee.recipients)
         testee.searchText.value = ""
-        XCTAssertEqual(testee.recipients.count, 4)
+        XCTAssertEqual(testee.recipients.count, 3)
         testee.searchText.value = "Recipient"
         XCTAssertEqual(testee.recipients.count, 3)
         testee.searchText.value = "Recipient 1"

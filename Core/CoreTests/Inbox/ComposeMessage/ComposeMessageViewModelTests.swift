@@ -90,11 +90,36 @@ class ComposeMessageViewModelTests: CoreTestCase {
         XCTAssertEqual(dialog?.actions.first?.title, "OK")
     }
 
+    func testShowCourseSelector() {
+        let sourceView = UIViewController()
+        let viewController = WeakViewController(sourceView)
+        testee.courseSelectButtonDidTap(viewController: viewController)
+        wait(for: [router.showExpectation], timeout: 1)
+
+        testee.recipientDidSelect.accept(Recipient(searchRecipient: .make()))
+        XCTAssertEqual(testee.selectedRecipients.value.count, 1)
+
+        testee.courseDidSelect(selectedContext: .init(course: .make()), viewController: viewController)
+
+        XCTAssertEqual(testee.selectedRecipients.value.count, 0)
+    }
+
+    func testShowRecipientSelector() {
+        let sourceView = UIViewController()
+        let viewController = WeakViewController(sourceView)
+        testee.selectedContext = RecipientContext(course: Course.make())
+        testee.addRecipientButtonDidTap(viewController: viewController)
+
+        wait(for: [router.showExpectation], timeout: 1)
+        XCTAssertNotNil(router.presented)
+    }
+
     func testReplyInit() {
         testee = ComposeMessageViewModel(router: router, conversation: .make(), author: "2", interactor: mockInteractor)
 
         XCTAssertEqual(testee.selectedContext?.context.id, "1")
         XCTAssertEqual(testee.recipients.count, 1)
+        XCTAssertTrue(testee.isReply)
     }
 }
 

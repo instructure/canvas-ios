@@ -33,6 +33,7 @@ class AddressbookRoleViewModelTests: CoreTestCase {
         super.setUp()
         mockInteractor = AddressbookInteractorMock(env: AppEnvironment())
         testee = AddressbookRoleViewModel(
+            env: environment,
             router: environment.router,
             recipientContext: .init(course: Course.make()),
             interactor: mockInteractor,
