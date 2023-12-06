@@ -23,9 +23,12 @@ class AddressbookRecipientViewModel: ObservableObject {
     // MARK: - Outputs
     @Published public private(set) var recipients: [Recipient]
     @Published public private(set) var selectedRecipients: [Recipient] = []
+    public var allRecipient: Recipient {
+        Recipient(ids: recipients.flatMap { $0.ids }, name: "All in \(roleName)", avatarURL: nil)
+    }
 
     public var isAllRecipientButtonVisible: Bool {
-        searchText.value.isEmpty
+        searchText.value.isEmpty && canSelectAllRecipient
     }
 
     public let title = NSLocalizedString("Select Recipients", bundle: .core, comment: "")
@@ -40,17 +43,20 @@ class AddressbookRecipientViewModel: ObservableObject {
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
     private var router: Router
+    private var canSelectAllRecipient: Bool
 
     public init(
         router: Router,
         roleName: String,
         recipients: [Recipient],
+        canSelectAllRecipient: Bool,
         recipientDidSelect: PassthroughRelay<Recipient>,
         selectedRecipients: CurrentValueSubject<[Recipient], Never>
     ) {
         self.recipients = recipients
         self.roleName = roleName
         self.router = router
+        self.canSelectAllRecipient = canSelectAllRecipient
 
         setupInputBindings(recipientDidSelect: recipientDidSelect)
         setupOutputBindings(allRecipient: recipients, selectedRecipients: selectedRecipients)
@@ -66,31 +72,18 @@ class AddressbookRecipientViewModel: ObservableObject {
         Just(allRecipient)
             .combineLatest(searchText)
             .map { (recipients, searchText) in
-                (recipients.filter { recipient in
+                recipients.filter { recipient in
                     if searchText.isEmpty {
                         true
                     } else {
                         recipient.displayName.lowercased().contains(searchText.lowercased())
                     }
-                },
-                searchText)
-            }
-            .map { [weak self] (recipients, searchText) in
-                searchText.isEmpty ? self?.addAllRecipient(recipients: recipients) ?? [] : recipients
+                }
             }
             .assign(to: &$recipients)
 
         selectedRecipients
             .assign(to: &$selectedRecipients)
-    }
-
-    private func addAllRecipient(recipients: [Recipient]) -> [Recipient] {
-        var allRecipient = recipients
-        allRecipient.insert(
-            Recipient(ids: recipients.flatMap { $0.ids }, name: "All in \(self.roleName)", avatarURL: nil),
-            at: 0
-        )
-        return allRecipient
     }
 
     private func setupInputBindings(recipientDidSelect: PassthroughRelay<Recipient>) {

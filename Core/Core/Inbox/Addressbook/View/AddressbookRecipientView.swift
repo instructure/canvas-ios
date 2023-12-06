@@ -45,6 +45,7 @@ public struct AddressbookRecipientView: View {
 
     private var peopleView: some View {
         VStack(alignment: .leading, spacing: 0) {
+            if viewModel.isAllRecipientButtonVisible { allRecipient }
             ForEach(viewModel.recipients, id: \.self) { user in
                 personRowView(user)
             }
@@ -75,6 +76,39 @@ public struct AddressbookRecipientView: View {
             })
             .padding(16)
             separator
+        }
+    }
+
+    private var allRecipient: some View {
+            VStack(alignment: .leading, spacing: 0) {
+                Button(action: {
+                    viewModel.recipientDidTap.send((recipient: viewModel.allRecipient, controller: controller))
+                }, label: {
+                    HStack(alignment: .center, spacing: 16) {
+                        Avatar(name: NSLocalizedString("All", comment: ""), url: nil, size: 36, isAccessible: false)
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text(viewModel.allRecipient.displayName)
+                                .font(.regular16)
+                                .foregroundColor(.textDarkest)
+                                .lineLimit(1)
+                            Text("\(viewModel.allRecipient.ids.count) People", bundle: .core)
+                                .font(.regular14)
+                                .foregroundColor(.textDark)
+                                .lineLimit(1)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        Spacer()
+                        Image.checkSolid
+                            .resizable()
+                            .foregroundColor(.textDarkest)
+                            .frame(width: 24, height: 24)
+                            .padding(.horizontal, 12)
+                            .accessibilityLabel(Text("Selected", bundle: .core))
+                            .hidden(!viewModel.selectedRecipients.contains(viewModel.allRecipient))
+                    }
+                })
+                .padding(16)
+                separator
         }
     }
 }

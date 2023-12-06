@@ -31,9 +31,11 @@ class AddressbookRoleViewModel: ObservableObject {
     public var isRolesViewVisible: Bool {
         searchText.value.isEmpty && !roles.isEmpty
     }
+
     public var isAllRecipientButtonVisible: Bool {
-        searchText.value.isEmpty
+        searchText.value.isEmpty && canSelectAllRecipient
     }
+
     public var allRecipient: Recipient {
         Recipient(ids: recipients.flatMap { $0.ids }, name: "All in \(recipientContext.name)", avatarURL: nil)
     }
@@ -53,8 +55,23 @@ class AddressbookRoleViewModel: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: AddressbookInteractor
     private let router: Router
+    private var env: AppEnvironment
+    private var canSelectAllRecipient: Bool {
+        var isNotStudent = false
+        if let userId = env.currentSession?.userID {
+            roleRecipients.forEach { (roleName, recipeients) in
+                print(roleName)
+                if roleName != NSLocalizedString("Students", comment: "") && recipeients.flatMap({ $0.ids }).contains(userId) {
+                    isNotStudent = true
+                    return
+                }
+            }
+        }
+        return isNotStudent
+    }
 
     public init(
+        env: AppEnvironment,
         router: Router,
         recipientContext: RecipientContext,
         interactor: AddressbookInteractor,
@@ -64,6 +81,7 @@ class AddressbookRoleViewModel: ObservableObject {
         self.interactor = interactor
         self.recipientContext = recipientContext
         self.router = router
+        self.env = env
 
         setupOutputBindings(selectedRecipients: selectedRecipients)
         setupInputBindings(recipientDidSelect: recipientDidSelect, selectedRecipients: selectedRecipients)
@@ -144,6 +162,7 @@ class AddressbookRoleViewModel: ObservableObject {
                             recipientContext: self.recipientContext,
                             roleName: roleName,
                             recipients: recipients,
+                            canSelectAllRecipient: self.canSelectAllRecipient,
                             recipientDidSelect: recipientDidSelect,
                             selectedRecipients: selectedRecipients
                         ),

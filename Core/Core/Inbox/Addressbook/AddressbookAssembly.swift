@@ -26,6 +26,7 @@ public enum AddressBookAssembly {
         recipientContext: RecipientContext,
         roleName: String,
         recipients: [Recipient],
+        canSelectAllRecipient: Bool,
         recipientDidSelect: PassthroughRelay<Recipient>,
         selectedRecipients: CurrentValueSubject<[Recipient], Never>
     ) -> UIViewController {
@@ -33,6 +34,7 @@ public enum AddressBookAssembly {
             router: env.router,
             roleName: roleName,
             recipients: recipients,
+            canSelectAllRecipient: canSelectAllRecipient,
             recipientDidSelect: recipientDidSelect,
             selectedRecipients: selectedRecipients
         )
@@ -48,6 +50,7 @@ public enum AddressBookAssembly {
     ) -> UIViewController {
         let interactor = AddressbookInteractorLive(env: env, recipientContext: recipientContext)
         let viewModel = AddressbookRoleViewModel(
+            env: env,
             router: env.router,
             recipientContext: recipientContext,
             interactor: interactor,
@@ -66,6 +69,7 @@ public enum AddressBookAssembly {
             router: env.router,
             roleName: "Students",
             recipients: interactor.recipients.value.map { Recipient(searchRecipient: $0) },
+            canSelectAllRecipient: true,
             recipientDidSelect: PassthroughRelay<Recipient>(),
             selectedRecipients: CurrentValueSubject<[Recipient], Never>([])
         )

@@ -117,7 +117,7 @@ struct AddressbookRoleView: View {
     private var rolesView: some View {
         VStack(alignment: .leading, spacing: 0) {
             separator
-            allRecipient
+            if viewModel.isAllRecipientButtonVisible { allRecipient }
             ForEach(viewModel.roles, id: \.self) { role in
                 roleRowView(role)
             }
@@ -179,6 +179,6 @@ struct AddressbookRoleView: View {
                 })
                 .padding(16)
                 separator
-            }
         }
+    }
 }
