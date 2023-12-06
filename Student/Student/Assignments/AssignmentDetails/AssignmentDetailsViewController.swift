@@ -115,6 +115,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     private let isLeftToRightLayout: Bool = UIApplication.shared.userInterfaceLayoutDirection == .leftToRight
     private weak var gradeBorderLayer: CAShapeLayer?
     private var offlineModeInteractor: OfflineModeInteractor?
+    private var gradeSectionBoundsObservation: NSKeyValueObservation?
 
     static func create(courseID: String,
                        assignmentID: String,
@@ -207,6 +208,14 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
 
         submittedIcon?.image = .completeLine
 
+        gradeSectionBoundsObservation = gradeSection?.observe(\.bounds) { [weak gradeBorderLayer] gradeSection, _ in
+            gradeBorderLayer?.frame = gradeSection.bounds
+            gradeBorderLayer?.path = UIBezierPath(roundedRect: gradeSection.bounds,
+                                                  cornerRadius: 6).cgPath
+            // Remove the placeholder border
+            gradeSection.layer.borderColor = nil
+            gradeSection.layer.borderWidth = 0
+        }
         presenter?.viewIsReady()
     }
 
@@ -218,19 +227,6 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         AppStoreReview.handleNavigateToAssignment()
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        // Without async the border will have invalid height despite bounds is correct
-        DispatchQueue.main.async { [gradeBorderLayer, gradeSection] in
-            gradeBorderLayer?.frame = gradeSection!.bounds
-            gradeBorderLayer?.path = UIBezierPath(roundedRect: gradeSection!.bounds,
-                                                  cornerRadius: 6).cgPath
-            // Remove the placeholder border
-            gradeSection?.layer.borderColor = nil
-            gradeSection?.layer.borderWidth = 0
-        }
     }
 
     deinit {
