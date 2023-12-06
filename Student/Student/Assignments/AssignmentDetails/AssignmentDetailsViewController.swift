@@ -26,12 +26,32 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     @IBOutlet weak var statusLabel: UILabel?
     @IBOutlet weak var attemptPickerSection: UIView?
     @IBOutlet weak var attemptLabel: UILabel?
-    @IBOutlet weak var attemptDateButton: DynamicButton?
+    @IBOutlet weak var attemptDateButton: DynamicButton!
     @IBOutlet weak var gradeHeadingLabel: UILabel?
     @IBOutlet weak var scrollView: UIScrollView?
     @IBOutlet weak var scrollViewBottom: NSLayoutConstraint!
     @IBOutlet weak var loadingView: CircleProgressView!
-    @IBOutlet weak var submissionButton: DynamicButton?
+    @IBOutlet weak var submissionButton: DynamicButton! {
+        didSet {
+            var buttonConfig = UIButton.Configuration.plain()
+            buttonConfig.imagePlacement = .trailing
+            buttonConfig.imagePadding = 4
+            buttonConfig.image = .arrowOpenRightSolid
+                .scaleTo(.init(width: 14, height: 14))
+                .withRenderingMode(.alwaysTemplate)
+            buttonConfig.contentInsets = {
+                var result = buttonConfig.contentInsets
+                result.trailing = 0
+                return result
+            }()
+            buttonConfig.titleTextAttributesTransformer = .init { attributes in
+                var result = attributes
+                result.font = UIFont.scaledNamedFont(.regular16)
+                return result
+            }
+            submissionButton?.configuration = buttonConfig
+        }
+    }
     @IBOutlet weak var fileSubmissionButton: DynamicButton?
 
     /** Container for the description title and the divider above it */
@@ -45,6 +65,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     @IBOutlet weak var submittedLabel: UILabel?
     @IBOutlet weak var submittedDetailsLabel: UILabel?
     @IBOutlet weak var submittedIcon: UIImageView?
+    @IBOutlet private var submittedIconHiddenConstraints: [NSLayoutConstraint]!
     @IBOutlet weak var submitAssignmentButton: DynamicButton!
 
     @IBOutlet weak var quizAttemptsLabel: UILabel?
@@ -172,23 +193,6 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         fileSubmissionButton?.makeUnavailableInOfflineMode()
         submissionButton?.makeUnavailableInOfflineMode()
 
-        var buttonConfig = UIButton.Configuration.plain()
-        buttonConfig.imagePlacement = .trailing
-        buttonConfig.image = .arrowOpenRightSolid
-            .scaleTo(.init(width: 14, height: 14))
-            .withRenderingMode(.alwaysTemplate)
-        buttonConfig.contentInsets = {
-            var result = buttonConfig.contentInsets
-            result.trailing = 0
-            return result
-        }()
-        buttonConfig.titleTextAttributesTransformer = .init { attributes in
-            var result = attributes
-            result.font = UIFont.scaledNamedFont(.regular16)
-            return result
-        }
-        submissionButton?.configuration = buttonConfig
-
         let border = CAShapeLayer()
         border.strokeColor = UIColor.borderDark.cgColor
         border.lineWidth = 0.5
@@ -248,8 +252,8 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         navigationController?.navigationBar.useContextColor(backgroundColor)
     }
 
-    func updateGradeCell(_ assignment: Assignment) {
-        self.gradedView?.update(assignment, circleColor: presenter?.courses.first?.color)
+    func updateGradeCell(_ assignment: Assignment, submission: Submission?) {
+        self.gradedView?.update(assignment, submission: submission, circleColor: presenter?.courses.first?.color)
 
         // Update grade statistics view
         if let presenter = presenter {
@@ -262,13 +266,15 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
 
         // in this case the submission should always be there because canvas generates
         // submissions for every user for every assignment but just in case
-        guard let submission = assignment.submission else {
+        guard let submission else {
             hideGradeCell()
             return
         }
 
         submittedLabel?.textColor = .textDarkest
         submittedLabel?.text = NSLocalizedString("Successfully submitted!", bundle: .student, comment: "")
+        submittedDetailsLabel?.isHidden = false
+        changeSubmittedIconVisibility(to: true)
 
         fileSubmissionButton?.isHidden = true
 
@@ -307,22 +313,30 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         case .reSubmissionFailed:
             submittedLabel?.text = NSLocalizedString("Resubmission Failed", bundle: .core, comment: "")
             submittedLabel?.textColor = UIColor.textDanger.ensureContrast(against: .white)
+            submittedDetailsLabel?.isHidden = true
             fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view details", bundle: .core, comment: ""), for: .normal)
+            changeSubmittedIconVisibility(to: false)
             return
         case .failed:
             submittedLabel?.text = NSLocalizedString("Submission Failed", bundle: .core, comment: "")
             submittedLabel?.textColor = UIColor.textDanger.ensureContrast(against: .white)
+            submittedDetailsLabel?.isHidden = true
             fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view details", bundle: .core, comment: ""), for: .normal)
+            changeSubmittedIconVisibility(to: false)
             return
         case .uploading:
             submittedLabel?.text = NSLocalizedString("Submission Uploading...", bundle: .core, comment: "")
             submittedLabel?.textColor = .textDarkest
+            submittedDetailsLabel?.isHidden = true
             fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view progress", bundle: .core, comment: ""), for: .normal)
+            changeSubmittedIconVisibility(to: false)
             return
         case .staged:
             submittedLabel?.text = NSLocalizedString("Submission In Progress...", bundle: .core, comment: "")
             submittedLabel?.textColor = .textDarkest
+            submittedDetailsLabel?.isHidden = true
             fileSubmissionButton?.setTitle(NSLocalizedString("Tap to view progress", bundle: .core, comment: ""), for: .normal)
+            changeSubmittedIconVisibility(to: false)
             return
         case .completed:
             fileSubmissionButton?.isHidden = true
@@ -332,7 +346,11 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         }
     }
 
-    func update(assignment: Assignment, quiz: Quiz?, baseURL: URL?) {
+    private func changeSubmittedIconVisibility(to visible: Bool) {
+        submittedIconHiddenConstraints.forEach { $0.isActive = !visible }
+    }
+
+    func update(assignment: Assignment, quiz: Quiz?, submission: Submission?, baseURL: URL?) {
         let hideScores = assignment.hideQuantitativeData
         nameLabel?.text = assignment.name
         pointsLabel?.text = hideScores ? nil : assignment.pointsPossibleText
@@ -343,8 +361,6 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         statusLabel?.isHidden = assignment.submissionStatusIsHidden
         statusLabel?.textColor = assignment.submissionStatusColor
         statusLabel?.text = assignment.submissionStatusText
-        attemptLabel?.text = assignment.submissionAttemptNumberText
-        attemptDateButton?.setTitle(assignment.submissionDateText, for: .normal)
         dueSection?.subHeader.text = assignment.dueAt.flatMap {
             $0.dateTimeString
         } ?? NSLocalizedString("No Due Date", bundle: .core, comment: "")
@@ -359,7 +375,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             ? NSLocalizedString("Description", bundle: .student, comment: "")
             : NSLocalizedString("Instructions", bundle: .student, comment: "")
         webView.loadHTMLString(presenter?.assignmentDescription() ?? "", baseURL: baseURL)
-        updateGradeCell(assignment)
+        updateGradeCell(assignment, submission: submission)
 
         guard let presenter = presenter else { return }
 
@@ -374,14 +390,6 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         let gradeText = GradeFormatter.string(from: assignment, style: .short)
         if assignment.hideQuantitativeData, (gradeText ?? "").isEmpty == true {
             showGradeSection = false
-        }
-        attemptDateButton?.isEnabled = presenter.isAttemptPickerButtonActive
-
-        if presenter.isAttemptPickerButtonActive {
-            // These will make the icon to display at the end of the label
-            attemptDateButton?.semanticContentAttribute = isLeftToRightLayout ? .forceRightToLeft : .forceLeftToRight
-            attemptDateButton?.setImage(.arrowOpenDownSolid.scaleTo(.init(width: 14, height: 14)), for: .normal)
-            // TODO: Add text <-> image padding when business logic is completed
         }
 
         attemptsView.isHidden = presenter.attemptsIsHidden()
@@ -401,6 +409,46 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         loadingView.stopAnimating()
         refreshControl?.endRefreshing()
         UIAccessibility.post(notification: .screenChanged, argument: view)
+    }
+
+    func updateAttemptInfo(attemptNumber: String) {
+        attemptLabel?.text = attemptNumber
+    }
+
+    func updateAttemptPickerButton(isActive: Bool,
+                                   attemptDate: String,
+                                   items: [UIAction]) {
+        attemptDateButton.isEnabled = isActive
+        attemptDateButton.setTitle(attemptDate, for: .normal)
+
+        // Since submissions can't be deleted we don't have to handle the case of
+        // turning the active picker to inactive
+        if isActive {
+            var buttonConfig = UIButton.Configuration.plain()
+            buttonConfig.imagePlacement = .trailing
+            buttonConfig.imagePadding = 6
+            buttonConfig.image = .arrowOpenDownSolid
+                .scaleTo(.init(width: 14, height: 14))
+                .withRenderingMode(.alwaysTemplate)
+            buttonConfig.contentInsets = {
+                var result = buttonConfig.contentInsets
+                result.trailing = 0
+                return result
+            }()
+            if #available(iOS 16.0, *) {
+                buttonConfig.indicator = .none
+            }
+            buttonConfig.titleTextAttributesTransformer = .init { attributes in
+                var result = attributes
+                result.font = UIFont.scaledNamedFont(.regular14)
+                return result
+            }
+            attemptDateButton?.configuration = buttonConfig
+
+            attemptDateButton.changesSelectionAsPrimaryAction = true
+            attemptDateButton.showsMenuAsPrimaryAction = true
+            attemptDateButton.menu = UIMenu(children: items)
+        }
     }
 
     func centerLockedIconContainerView() {
