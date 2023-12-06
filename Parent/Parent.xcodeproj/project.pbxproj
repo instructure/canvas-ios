@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -88,6 +88,7 @@
 		B18F80E423463A060001A666 /* RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18F80E323463A060001A666 /* RoutesTests.swift */; };
 		B1AA55D0235785A200DFD184 /* StudentListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1AA55CF235785A200DFD184 /* StudentListViewControllerTests.swift */; };
 		B49725D3290C06050067B91E /* Heap in Frameworks */ = {isa = PBXBuildFile; productRef = B49725D2290C06050067B91E /* Heap */; };
+		CF20B5C42B1F9D5700C00B39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF20B5C32B1F9D5700C00B39 /* LaunchScreen.storyboard */; };
 		CFAA401D2AE26302002C7AAE /* PSPDFKit in Frameworks */ = {isa = PBXBuildFile; productRef = CFAA401C2AE26302002C7AAE /* PSPDFKit */; };
 		CFEE68D82B1A24ED00A04E43 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFEE68D72B1A24ED00A04E43 /* InfoPlist.xcstrings */; };
 		CFEE68DB2B1A251C00A04E43 /* LaunchScreen.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CFEE68D92B1A251C00A04E43 /* LaunchScreen.xcstrings */; };
@@ -240,6 +241,7 @@
 		B1AA55CF235785A200DFD184 /* StudentListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentListViewControllerTests.swift; sourceTree = "<group>"; };
 		B38F4CDA7FBACEC7F04FB4BB /* Pods_Parent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Parent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B59561D7E9F8B8ACA930A4E9 /* Pods-needs-pspdfkit-ParentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-needs-pspdfkit-ParentUITests.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-needs-pspdfkit-ParentUITests/Pods-needs-pspdfkit-ParentUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		CF20B5C32B1F9D5700C00B39 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CFEE68D72B1A24ED00A04E43 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		CFEE68D92B1A251C00A04E43 /* LaunchScreen.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = LaunchScreen.xcstrings; sourceTree = "<group>"; };
 		CFEE68DA2B1A251C00A04E43 /* Localizable.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -413,6 +415,7 @@
 				78AD913221C8184F0075FBCF /* GoogleService-Info.plist */,
 				5E6441961C3EE2E0003D7397 /* Info.plist */,
 				CFEE68D72B1A24ED00A04E43 /* InfoPlist.xcstrings */,
+				CF20B5C32B1F9D5700C00B39 /* LaunchScreen.storyboard */,
 				CFEE68D92B1A251C00A04E43 /* LaunchScreen.xcstrings */,
 				CFEE68DA2B1A251C00A04E43 /* Localizable.xcstrings */,
 				5E6442331C3F1C9C003D7397 /* Parent-Bridging-Header.h */,
@@ -956,6 +959,7 @@
 				7DC7046724AA9F0F00CD1C46 /* ObserverAlertListViewController.storyboard in Resources */,
 				7DB92CA724C5FD32004A6C16 /* AccountNotificationDetailsViewController.storyboard in Resources */,
 				CFEE68D82B1A24ED00A04E43 /* InfoPlist.xcstrings in Resources */,
+				CF20B5C42B1F9D5700C00B39 /* LaunchScreen.storyboard in Resources */,
 				78AD913321C8184F0075FBCF /* GoogleService-Info.plist in Resources */,
 				5E6441921C3EE2E0003D7397 /* Assets.xcassets in Resources */,
 				7DC804D22444D01C001AB80C /* DashboardViewController.storyboard in Resources */,
