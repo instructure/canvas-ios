@@ -99,7 +99,7 @@ public class GradeCircleView: UIView {
         circleLabel.isHidden = isPassFail
         let isFail = isPassFail && submission.grade == "incomplete"
         circleComplete.image = isFail ? .xLine : .checkSolid
-        circleComplete.tintColor = isFail ? .borderLight : circleColor
+        circleComplete.tintColor = isFail ? .textDark : circleColor
         circleComplete.isHidden = !isPassFail
 
         // Update grade circle
