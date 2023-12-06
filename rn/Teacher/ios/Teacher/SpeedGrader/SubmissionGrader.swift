@@ -89,7 +89,7 @@ struct SubmissionGrader: View {
     var body: some View {
         GeometryReader { geometry in
             let bottomInset = geometry.safeAreaInsets.bottom
-            let minHeight = bottomInset + 49
+            let minHeight = bottomInset + 58
             let maxHeight = bottomInset + geometry.size.height - 64
             // At 1/4 of a screen offset, scale to 90% and round corners to 20
             let delta = abs(geometry.frame(in: .global).minX / max(1, geometry.size.width))
