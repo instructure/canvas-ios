@@ -44,6 +44,7 @@ class SubmissionCommentListViewModel: ObservableObject {
 
     private let submissionCommentsStore: ReactiveStore<GetSubmissionComments>
     private let featureFlagsStore: ReactiveStore<GetEnabledFeatureFlags>
+    private var attempt: Int?
     private(set) var isAssignmentEnhancementsFeatureFlagEnabled = false
     private var subscriptions = Set<AnyCancellable>()
 
@@ -54,6 +55,8 @@ class SubmissionCommentListViewModel: ObservableObject {
         userID: String,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
+        self.attempt = attempt
+
         submissionCommentsStore = ReactiveStore(
             useCase: GetSubmissionComments(
                 context: .course(courseID),
@@ -76,7 +79,7 @@ class SubmissionCommentListViewModel: ObservableObject {
         .map { comments, featureFlags in
             unownedSelf.comments = comments
             unownedSelf.isAssignmentEnhancementsFeatureFlagEnabled = featureFlags.isFeatureFlagEnabled(.assignmentEnhancements)
-            return unownedSelf.filterComments(comments: comments, attempt: attempt)
+            return unownedSelf.filterComments(comments: comments, attempt: unownedSelf.attempt)
         }
         .receive(on: scheduler)
         .map { $0.isEmpty ? ViewState.empty : ViewState.data($0) }
@@ -100,6 +103,7 @@ class SubmissionCommentListViewModel: ObservableObject {
     }
 
     private func updateComments(attempt: Int?) {
+        self.attempt = attempt
         guard state.isData else { return }
         state = .data(filterComments(comments: comments, attempt: attempt))
     }
