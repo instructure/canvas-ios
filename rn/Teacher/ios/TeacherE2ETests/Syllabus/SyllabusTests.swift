@@ -34,6 +34,9 @@ class SyllabusTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Syllabus, check "Syllabus" tab
         logInDSUser(teacher)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+
         Helper.navigateToSyllabus(course: course)
         let navBar = Helper.navBar(course: course).waitUntil(.visible)
         let syllabusTab = Helper.syllabusTab.waitUntil(.visible)
@@ -68,6 +71,9 @@ class SyllabusTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Syllabus
         logInDSUser(teacher)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+
         Helper.navigateToSyllabus(course: course)
         let syllabusTab = Helper.syllabusTab.waitUntil(.visible)
         let summaryTab = Helper.summaryTab.waitUntil(.visible)
