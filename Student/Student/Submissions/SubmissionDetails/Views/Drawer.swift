@@ -63,8 +63,8 @@ class Drawer: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        backgroundColor = UIColor.clear
-        drawer?.backgroundColor = UIColor.clear
+        backgroundColor = .backgroundLightest
+        drawer?.backgroundColor = .backgroundLightest
         drawerControls?.backgroundColor = .backgroundLightest
         contentView?.backgroundColor = .backgroundLightest
         gripper?.backgroundColor = .backgroundMedium
@@ -74,6 +74,8 @@ class Drawer: UIView {
         tabs?.setTitle(NSLocalizedString("Comments", bundle: .student, comment: ""), forSegmentAt: Tab.comments.rawValue)
         tabs?.setTitle(NSLocalizedString("Files", bundle: .student, comment: ""), forSegmentAt: Tab.files.rawValue)
         tabs?.setTitle(NSLocalizedString("Rubric", bundle: .student, comment: ""), forSegmentAt: Tab.rubric.rawValue)
+        tabs?.layer.cornerRadius = 0
+        tabs?.layer.masksToBounds = false
     }
 
     override func layoutSubviews() {
@@ -157,18 +159,12 @@ extension Drawer {
     }
 
     func moveTo(height: CGFloat, velocity: CGFloat) {
-        guard let currentHeight = contentViewHeight?.constant else {
+        guard contentViewHeight?.constant != nil else {
             return
         }
-        let distance = height - currentHeight
-        // moving too fast made the spring effect weird
-        // moving too slow made it too long before it snapped
-        let duration = max(0.3, min(0.7, abs(Double(distance / velocity))))
-
         updateGripperLabel(height: height)
 
-        self.superview?.layoutIfNeeded()
-        UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: velocity / distance, options: [], animations: { [weak self] in
+        UIView.animate(withDuration: 0.325, delay: 0, options: [.curveEaseInOut], animations: { [weak self] in
             self?.contentViewHeight?.constant = height
             self?.height = height
             self?.superview?.layoutIfNeeded()

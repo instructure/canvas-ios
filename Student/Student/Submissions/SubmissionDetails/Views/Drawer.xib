@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -68,8 +69,8 @@
                     </connections>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NiS-Q8-E9V" userLabel="Border" customClass="DividerView" customModule="Student" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="55" width="413" height="1"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <rect key="frame" x="0.0" y="56" width="413" height="1"/>
+                    <color key="backgroundColor" name="borderMedium"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="fb3-3f-fZ5"/>
                     </constraints>
@@ -78,7 +79,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zvd-Vb-YDD" userLabel="ContentView">
-                    <rect key="frame" x="0.0" y="56" width="413" height="405"/>
+                    <rect key="frame" x="0.0" y="57" width="413" height="404"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" priority="999" id="y8L-1T-xAL"/>
@@ -87,6 +88,7 @@
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="tintColor" name="white"/>
             <gestureRecognizers/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="yhc-Hf-2mW" secondAttribute="trailing" id="64l-Jw-jmc"/>
@@ -95,7 +97,7 @@
                 <constraint firstAttribute="bottom" secondItem="zvd-Vb-YDD" secondAttribute="bottom" id="FJ2-ar-mYl"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="NiS-Q8-E9V" secondAttribute="trailing" id="KIn-5b-LU2"/>
                 <constraint firstAttribute="trailing" secondItem="zvd-Vb-YDD" secondAttribute="trailing" id="WIx-Xa-2a0"/>
-                <constraint firstItem="NiS-Q8-E9V" firstAttribute="top" secondItem="yhc-Hf-2mW" secondAttribute="bottom" constant="-1" id="dtm-r0-lOf"/>
+                <constraint firstItem="NiS-Q8-E9V" firstAttribute="top" secondItem="yhc-Hf-2mW" secondAttribute="bottom" id="dtm-r0-lOf"/>
                 <constraint firstItem="NiS-Q8-E9V" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="dyq-A6-Y8w"/>
                 <constraint firstItem="yhc-Hf-2mW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ifu-KH-LSA"/>
                 <constraint firstItem="yhc-Hf-2mW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="nMF-Og-j0i"/>
@@ -111,4 +113,12 @@
             </connections>
         </panGestureRecognizer>
     </objects>
+    <resources>
+        <namedColor name="borderMedium">
+            <color red="0.7803921568627451" green="0.80392156862745101" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

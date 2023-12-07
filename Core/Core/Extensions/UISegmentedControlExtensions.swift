@@ -72,15 +72,13 @@ public extension UISegmentedControl {
     }
 
     func addUnderlineForSelectedSegment() {
-        if let view = viewWithTag(1) {
-            view.removeFromSuperview()
-        }
+        guard viewWithTag(1) == nil else { return }
         removeBorders()
         setFontStyle()
         let underlineWidth: CGFloat = bounds.size.width / CGFloat(numberOfSegments)
-        let underlineHeight: CGFloat = 2.0
+        let underlineHeight: CGFloat = 1.5
         let underlineXPosition = CGFloat(selectedSegmentIndex * Int(underlineWidth))
-        let underLineYPosition = bounds.size.height - 1.0
+        let underLineYPosition = bounds.size.height - 0.5
         let underlineFrame = CGRect(x: underlineXPosition, y: underLineYPosition, width: underlineWidth, height: underlineHeight)
         let underline = UIView(frame: underlineFrame)
         underline.translatesAutoresizingMaskIntoConstraints = false
