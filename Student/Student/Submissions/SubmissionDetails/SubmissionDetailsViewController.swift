@@ -112,7 +112,7 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
             let title = DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short)
             updateAttemptPickerButton(isActive: presenter.pickerSubmissions.count > 1, title: title)
             attemptLabel.isEnabled = presenter.pickerSubmissions.count > 1
-            let format = NSLocalizedString("Attempt %d", bundle: .core, comment: "")            
+            let format = NSLocalizedString("Attempt %d", bundle: .core, comment: "")
             attemptLabel?.text = String.localizedStringWithFormat(format, attempt)
         }
         if presenter.pickerSubmissions.count <= 1 || assignment.isExternalToolAssignment {
