@@ -13,7 +13,6 @@
             <connections>
                 <outlet property="contentView" destination="zvd-Vb-YDD" id="iFr-8N-zmB"/>
                 <outlet property="contentViewHeight" destination="y8L-1T-xAL" id="Wbd-9y-8tw"/>
-                <outlet property="contentViewTopConstraint" destination="8Tk-et-0Qf" id="PFC-Nh-4i5"/>
                 <outlet property="drawer" destination="iN0-l3-epB" id="xuh-ct-0jb"/>
                 <outlet property="drawerControls" destination="yhc-Hf-2mW" id="uPW-ro-P14"/>
                 <outlet property="gripper" destination="zQw-tB-yGY" id="PXj-wl-gyE"/>

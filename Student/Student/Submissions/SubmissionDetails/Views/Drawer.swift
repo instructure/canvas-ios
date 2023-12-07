@@ -33,8 +33,7 @@ class Drawer: UIView {
     @IBOutlet weak var tabs: UISegmentedControl?
     @IBOutlet weak var contentView: UIView?
     @IBOutlet weak var contentViewHeight: NSLayoutConstraint?
-    @IBOutlet weak var contentViewTopConstraint: NSLayoutConstraint!
-    
+
     var height: CGFloat = 0
     // this number doesnt seem to be accurate all the time, especially on iphones with a notch
     // Thus this number is more of a starting place. There is a constraint on the drawer to prevent
@@ -64,8 +63,8 @@ class Drawer: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        backgroundColor = .backgroundLightest
-        drawer?.backgroundColor = .backgroundLightest
+        backgroundColor = .clear
+        drawer?.backgroundColor = .clear
         drawerControls?.backgroundColor = .backgroundLightest
         contentView?.backgroundColor = .backgroundLightest
         gripper?.backgroundColor = .backgroundMedium
@@ -116,9 +115,6 @@ class Drawer: UIView {
 
 extension Drawer {
     @IBAction func gripperPressed(_ sender: UIButton) {
-        if tabs?.selectedSegmentIndex == UISegmentedControl.noSegment {
-            tabs?.selectedSegmentIndex = 0
-        }
         if height < midDrawerHeight {
             moveTo(height: midDrawerHeight, velocity: 100)
         } else if height == midDrawerHeight {
@@ -131,9 +127,6 @@ extension Drawer {
     @IBAction func handlePan(_ gestureRecognizer: UIPanGestureRecognizer) {
         guard let currentHeight = contentViewHeight?.constant else {
             return
-        }
-        if tabs?.selectedSegmentIndex == UISegmentedControl.noSegment {
-            tabs?.selectedSegmentIndex = 0
         }
         if gestureRecognizer.state == .ended {
             let velocity = gestureRecognizer.velocity(in: self).y
@@ -168,11 +161,6 @@ extension Drawer {
         UIView.animate(withDuration: 0.325, delay: 0, options: [.curveEaseInOut], animations: { [weak self] in
             self?.contentViewHeight?.constant = height
             self?.height = height
-
-            switch self?.tabs?.selectedSegmentIndex {
-            case 0: self?.contentViewTopConstraint.constant = -1
-            default: self?.contentViewTopConstraint.constant = 1
-            }
             self?.superview?.layoutIfNeeded()
         }, completion: nil)
     }
