@@ -51,8 +51,11 @@ public class GradeCircleView: UIView {
     @IBOutlet weak var gradeCircle: CircleProgressView!
     @IBOutlet weak var displayGrade: UILabel!
     @IBOutlet weak var outOfLabel: UILabel!
+    /** This is the score that was given by the teacher. Late penalty is deducted from this. */
+    @IBOutlet weak var originalScoreLabel: UILabel!
     @IBOutlet weak var latePenaltyLabel: UILabel!
     @IBOutlet weak var finalGradeLabel: UILabel!
+    @IBOutlet weak var displayGradeSpacerToCenterWithCircleGrade: NSLayoutConstraint!
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -66,9 +69,10 @@ public class GradeCircleView: UIView {
 
     /**
      - parameters:
+       - submission: If there's no submission the view will become hidden.
        - circleColor: The color of the grade circle. If not specified it will use the default color specified in `CircleProgressView`.
      */
-    public func update(_ assignment: Assignment, circleColor: UIColor? = nil) {
+    public func update(_ assignment: Assignment, submission: Submission?, circleColor: UIColor? = nil) {
         gradeCircle.progress = 1 // make sure it's never spinning
 
         if let circleColor = circleColor {
@@ -78,7 +82,7 @@ public class GradeCircleView: UIView {
         circleComplete.isAccessibilityElement = true
         // in this case the submission should always be there because canvas generates
         // submissions for every user for every assignment but just in case
-        guard let submission = assignment.submission, submission.workflowState != .unsubmitted else {
+        guard let submission, submission.workflowState != .unsubmitted else {
             isHidden = true
             return
         }
@@ -95,7 +99,7 @@ public class GradeCircleView: UIView {
         circleLabel.isHidden = isPassFail
         let isFail = isPassFail && submission.grade == "incomplete"
         circleComplete.image = isFail ? .xLine : .checkSolid
-        circleComplete.tintColor = isFail ? .borderLight : circleColor
+        circleComplete.tintColor = isFail ? .textDark : circleColor
         circleComplete.isHidden = !isPassFail
 
         // Update grade circle
@@ -114,7 +118,7 @@ public class GradeCircleView: UIView {
 
         // Update the display grade
         displayGrade.isHidden = assignment.gradingType == .points || submission.late == true
-        let gradeText = GradeFormatter.string(from: assignment, style: .short) ?? ""
+        let gradeText = GradeFormatter.string(from: assignment, submission: submission, style: .short) ?? ""
         displayGrade.attributedText = NSAttributedString(string: gradeText, attributes: [NSAttributedString.Key.accessibilitySpeechPunctuation: true])
 
         // Update the outOf label
@@ -123,12 +127,16 @@ public class GradeCircleView: UIView {
         // Update the Late penalty and Final Grade
         latePenaltyLabel.isHidden = true
         finalGradeLabel.isHidden = true
+        originalScoreLabel.isHidden = true
+
         if assignment.hasLatePenalty {
             latePenaltyLabel.isHidden = false
             finalGradeLabel.isHidden = false
+            originalScoreLabel.isHidden = false
 
             latePenaltyLabel.text = assignment.latePenaltyText
             finalGradeLabel.text = assignment.finalGradeText
+            originalScoreLabel.text = assignment.enteredGradeText
         }
 
         // Update for excused
@@ -153,5 +161,10 @@ public class GradeCircleView: UIView {
             gradeCircle?.progress = 1
             gradeCircle.accessibilityLabel = gradeCircle.accessibilityLabel?.containsNumber == true ? nil : gradeCircle.accessibilityLabel
         }
+
+        let shouldCenterDisplayGradeWithCircleGrade = displayGrade.isHidden == false &&
+                                                      latePenaltyLabel.isHidden &&
+                                                      finalGradeLabel.isHidden
+        displayGradeSpacerToCenterWithCircleGrade.constant = shouldCenterDisplayGradeWithCircleGrade ? 3 : 0
     }
 }
