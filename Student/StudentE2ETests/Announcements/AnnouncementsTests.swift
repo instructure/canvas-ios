@@ -38,15 +38,15 @@ class AnnouncementsTests: E2ETestCase {
 
         let firstAnnouncement = AnnouncementsHelper.cell(index: 0).waitUntil(.visible)
         XCTAssertTrue(firstAnnouncement.isVisible)
-        XCTAssertTrue(firstAnnouncement.label.contains(announcements[2].title))
+        XCTAssertTrue(firstAnnouncement.hasLabel(label: announcements[2].title, strict: false))
 
         let secondAnnouncement = AnnouncementsHelper.cell(index: 1).waitUntil(.visible)
         XCTAssertTrue(secondAnnouncement.isVisible)
-        XCTAssertTrue(secondAnnouncement.label.contains(announcements[1].title))
+        XCTAssertTrue(secondAnnouncement.hasLabel(label: announcements[1].title, strict: false))
 
         let thirdAnnouncement = AnnouncementsHelper.cell(index: 2).waitUntil(.visible)
         XCTAssertTrue(thirdAnnouncement.isVisible)
-        XCTAssertTrue(thirdAnnouncement.label.contains(announcements[0].title))
+        XCTAssertTrue(thirdAnnouncement.hasLabel(label: announcements[0].title, strict: false))
     }
 
     func testAnnouncementsTitleAndMessage() {
@@ -69,11 +69,11 @@ class AnnouncementsTests: E2ETestCase {
         firstAnnouncement.hit()
         let announcementTitle = DetailsHelper.title.waitUntil(.visible)
         XCTAssertTrue(announcementTitle.isVisible)
-        XCTAssertEqual(announcementTitle.label, announcement.title)
+        XCTAssertTrue(announcementTitle.hasLabel(label: announcement.title))
 
         let announcementMessage = DetailsHelper.message.waitUntil(.visible)
         XCTAssertTrue(announcementMessage.isVisible)
-        XCTAssertEqual(announcementMessage.label, announcement.message)
+        XCTAssertTrue(announcementMessage.hasLabel(label: announcement.message))
     }
 
     func testAnnouncementToggle() {
@@ -94,12 +94,10 @@ class AnnouncementsTests: E2ETestCase {
         XCTAssertTrue(announcementTitle.isVisible)
 
         // MARK: Check visibility toggle and dismiss button of the announcement notificaiton
-        let toggleButton = AccountNotifications.toggleButton(notification: globalAnnouncement)
-            .waitUntil(.visible)
+        let toggleButton = AccountNotifications.toggleButton(notification: globalAnnouncement).waitUntil(.visible)
         XCTAssertTrue(toggleButton.isVisible)
-        var dismissButton = AccountNotifications.dismissButton(notification: globalAnnouncement)
-            .waitUntil(.vanish)
-        XCTAssertFalse(dismissButton.isVisible)
+        var dismissButton = AccountNotifications.dismissButton(notification: globalAnnouncement).waitUntil(.vanish)
+        XCTAssertTrue(dismissButton.isVanished)
 
         // MARK: Tap the toggle button and check visibility of dismiss button again
         toggleButton.hit()
@@ -109,11 +107,11 @@ class AnnouncementsTests: E2ETestCase {
         // MARK: Check the message of the announcement
         let announcementMessage = Helper.notificationMessage(announcement: globalAnnouncement).waitUntil(.visible)
         XCTAssertTrue(announcementMessage.isVisible)
-        XCTAssertEqual(announcementMessage.label, globalAnnouncement.message)
+        XCTAssertTrue(announcementMessage.hasLabel(label: globalAnnouncement.message))
 
         // MARK: Tap dismiss button and check the visibility
         dismissButton.hit()
         dismissButton = dismissButton.waitUntil(.vanish)
-        XCTAssertFalse(dismissButton.isVisible)
+        XCTAssertTrue(dismissButton.isVanished)
     }
 }

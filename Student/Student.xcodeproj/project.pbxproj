@@ -114,6 +114,7 @@
 		8B70DBA82A559BF6007D3ED4 /* CourseDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBA62A559BF6007D3ED4 /* CourseDetailsTests.swift */; };
 		8B70DBD92A571893007D3ED4 /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DBD72A571893007D3ED4 /* InboxTests.swift */; };
 		8B70DC312A5EAC25007D3ED4 /* QuizzesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B70DC302A5EAC25007D3ED4 /* QuizzesTests.swift */; };
+		8B8E371E2B148EF000A12163 /* ContentSyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8E371D2B148EF000A12163 /* ContentSyncTests.swift */; };
 		8B95EEC92A4EE33900ADCDB4 /* PeopleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B95EEC72A4EE33900ADCDB4 /* PeopleTests.swift */; };
 		8B9846192A77CF08003E1E9F /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9846172A77CF08003E1E9F /* SettingsTests.swift */; };
 		8B9846262A7A444F003E1E9F /* LogoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9846252A7A444F003E1E9F /* LogoutTests.swift */; };
@@ -593,6 +594,7 @@
 		8B70DBA62A559BF6007D3ED4 /* CourseDetailsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailsTests.swift; sourceTree = "<group>"; };
 		8B70DBD72A571893007D3ED4 /* InboxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxTests.swift; sourceTree = "<group>"; };
 		8B70DC302A5EAC25007D3ED4 /* QuizzesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizzesTests.swift; sourceTree = "<group>"; };
+		8B8E371D2B148EF000A12163 /* ContentSyncTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSyncTests.swift; sourceTree = "<group>"; };
 		8B95EEC72A4EE33900ADCDB4 /* PeopleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleTests.swift; sourceTree = "<group>"; };
 		8B9846172A77CF08003E1E9F /* SettingsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
 		8B9846252A7A444F003E1E9F /* LogoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutTests.swift; sourceTree = "<group>"; };
@@ -1333,6 +1335,7 @@
 			isa = PBXGroup;
 			children = (
 				8B4891AB2ACC214C0015BAB2 /* OfflineTests.swift */,
+				8B8E371D2B148EF000A12163 /* ContentSyncTests.swift */,
 			);
 			path = Offline;
 			sourceTree = "<group>";
@@ -2511,6 +2514,7 @@
 				C99425E2284096300078A3BD /* GradeTotalsTests.swift in Sources */,
 				8B4891AC2ACC214C0015BAB2 /* OfflineTests.swift in Sources */,
 				8B95EEC92A4EE33900ADCDB4 /* PeopleTests.swift in Sources */,
+				8B8E371E2B148EF000A12163 /* ContentSyncTests.swift in Sources */,
 				8B98462B2A7A6AFE003E1E9F /* CalendarTests.swift in Sources */,
 				8B70DBD92A571893007D3ED4 /* InboxTests.swift in Sources */,
 				8B086EF52AA632670013C15F /* CollaborationsTests.swift in Sources */,
