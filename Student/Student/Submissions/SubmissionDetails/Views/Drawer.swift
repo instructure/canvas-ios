@@ -33,7 +33,8 @@ class Drawer: UIView {
     @IBOutlet weak var tabs: UISegmentedControl?
     @IBOutlet weak var contentView: UIView?
     @IBOutlet weak var contentViewHeight: NSLayoutConstraint?
-
+    @IBOutlet weak var contentViewTopConstraint: NSLayoutConstraint!
+    
     var height: CGFloat = 0
     // this number doesnt seem to be accurate all the time, especially on iphones with a notch
     // Thus this number is more of a starting place. There is a constraint on the drawer to prevent
@@ -167,6 +168,11 @@ extension Drawer {
         UIView.animate(withDuration: 0.325, delay: 0, options: [.curveEaseInOut], animations: { [weak self] in
             self?.contentViewHeight?.constant = height
             self?.height = height
+
+            switch self?.tabs?.selectedSegmentIndex {
+            case 0: self?.contentViewTopConstraint.constant = -1
+            default: self?.contentViewTopConstraint.constant = 1
+            }
             self?.superview?.layoutIfNeeded()
         }, completion: nil)
     }
