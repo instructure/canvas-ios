@@ -21,7 +21,7 @@ import Core
 
 enum DrawerState {
     case min, mid, max
-    static let transaction = Transaction.exclusive(.spring(response: 0.5, dampingFraction: 0.7))
+    static let transaction = Transaction.exclusive(.easeInOut)
 }
 
 // Place after the main content in a ZStack(alignment: .bottom)
