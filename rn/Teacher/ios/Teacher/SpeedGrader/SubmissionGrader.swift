@@ -272,12 +272,14 @@ struct SubmissionGrader: View {
                 }
             ),
             selectionAlignment: .bottom,
-            content: { item, isSelected in
+            content: { item, _ in
                 Text(item)
                     .font(.regular14)
-                    .foregroundColor(isSelected ? .textDark : .textDark)
+                    .foregroundColor(.textDark)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 8)
+                    .frame(maxWidth: .infinity)
+                    .contentShape(Rectangle())
             }
         )
         .onAppear {
