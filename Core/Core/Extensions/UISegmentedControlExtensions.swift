@@ -53,22 +53,13 @@ public extension UISegmentedControl {
     }
 
     func setFontStyle() {
-        setTitleTextAttributes(
-            [NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular14)],
-            for: .normal
-        )
-        setTitleTextAttributes(
-            [NSAttributedString.Key.font: UIFont.scaledNamedFont(.regular14)],
-            for: .selected
-        )
-        setTitleTextAttributes(
-            [NSAttributedString.Key.foregroundColor: UIColor.textDark],
-            for: .normal
-        )
-        setTitleTextAttributes(
-            [NSAttributedString.Key.foregroundColor: UIColor.textDark],
-            for: .selected
-        )
+        let style: [NSAttributedString.Key: Any] = [
+            .font: UIFont.scaledNamedFont(.regular14),
+            .foregroundColor: UIColor.textDark,
+        ]
+
+        setTitleTextAttributes(style, for: .normal)
+        setTitleTextAttributes(style, for: .selected)
     }
 
     func addUnderlineForSelectedSegment() {
