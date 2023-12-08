@@ -95,15 +95,21 @@ extension SubmissionCommentLibraryViewModel: Refreshable {
     }
 
     public func refresh() async {
-        state = .loading
+        performUIUpdate { [weak self] in
+            self?.state = .loading
+        }
         let userId = env.currentSession?.userID ?? ""
         let requestable = APICommentLibraryRequest(userId: userId)
-        return await withCheckedContinuation { continuation in
-            env.api.makeRequest(requestable) { response, _, _  in
+        return await withCheckedContinuation { [weak self] continuation in
+            guard let self else {
+                continuation.resume()
+                return
+            }
+            env.api.makeRequest(requestable) { [weak self] response, _, _  in
                 performUIUpdate {
-                    guard let response1 = response else { return }
-                    self.comments = response1.comments.map { LibraryComment(id: $0.id, text: $0.comment)}
-                    continuation.resume()
+                    defer { continuation.resume() }
+                    guard let response, let self else { return }
+                    self.comments = response.comments.map { LibraryComment(id: $0.id, text: $0.comment)}
                 }
             }
         }
