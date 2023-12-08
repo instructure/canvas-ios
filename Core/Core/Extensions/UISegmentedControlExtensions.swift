@@ -72,7 +72,11 @@ public extension UISegmentedControl {
     }
 
     func addUnderlineForSelectedSegment() {
-        guard viewWithTag(1) == nil else { return }
+        if let existingView = viewWithTag(1) {
+            existingView.frame.size.width = self.bounds.size.width / CGFloat(self.numberOfSegments)
+            existingView.frame.origin.x = selectedSegmentOriginX
+            return
+        }
         removeBorders()
         setFontStyle()
         let underlineWidth: CGFloat = bounds.size.width / CGFloat(numberOfSegments)
@@ -90,7 +94,11 @@ public extension UISegmentedControl {
     func changeUnderlinePosition() {
         guard let underline = viewWithTag(1) else { return }
         UIView.animate(withDuration: 0.3) {
-            underline.frame.origin.x = (self.frame.width / CGFloat(self.numberOfSegments)) * CGFloat(self.selectedSegmentIndex)
+            underline.frame.origin.x = self.selectedSegmentOriginX
         }
+    }
+
+    private var selectedSegmentOriginX: Double {
+        (frame.width / CGFloat(numberOfSegments)) * CGFloat(selectedSegmentIndex)
     }
 }
