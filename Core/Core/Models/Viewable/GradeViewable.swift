@@ -57,8 +57,8 @@ extension GradeViewable {
     /** This is used to communicate the original score received before late penalty is deducted. */
     public var enteredGradeText: String? {
         if let score = viewableEnteredScore {
-            let format = NSLocalizedString("your_grade_g_pts", bundle: .core, comment: "")
-            return String.localizedStringWithFormat(format, score)
+            return String(localized: "Your Grade: \(score, specifier: "%.0f") pt",
+                          bundle: .core)
         }
         return nil
     }

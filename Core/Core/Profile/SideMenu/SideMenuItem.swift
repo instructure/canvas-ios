@@ -26,7 +26,7 @@ struct SideMenuItem: View {
     let image: Image
     let title: Text
     var accessibilityHint: Text {
-        guard badgeValue > 0 else { return Text("") }
+        guard badgeValue > 0 else { return Text(verbatim: "") }
         return Text(String.localizedStringWithFormat(
             NSLocalizedString("conversation_unread_messages", bundle: .core, comment: ""),
             badgeValue))
