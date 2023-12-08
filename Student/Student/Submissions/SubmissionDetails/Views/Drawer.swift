@@ -97,7 +97,7 @@ class Drawer: UIView {
     }
 
     func updateGripperLabel(height: CGFloat) {
-        if height == 0 {
+        if height == 2 {
             gripper?.accessibilityLabel = NSLocalizedString("Drawer closed", bundle: .student, comment: "")
         } else if height == midDrawerHeight {
             gripper?.accessibilityLabel = NSLocalizedString("Drawer partially opened", bundle: .student, comment: "")
@@ -108,6 +108,9 @@ class Drawer: UIView {
 
     @IBAction func segmentedControlDidChange(_ sender: UISegmentedControl) {
         tabs?.changeUnderlinePosition()
+        if height < midDrawerHeight {
+            moveTo(height: midDrawerHeight, velocity: 100)
+        }
     }
 }
 
@@ -120,7 +123,7 @@ extension Drawer {
         } else if height == midDrawerHeight {
             moveTo(height: maxDrawerHeight, velocity: 100)
         } else if height > midDrawerHeight {
-            moveTo(height: 0, velocity: 100)
+            moveTo(height: 2, velocity: 100)
         }
     }
 
@@ -142,14 +145,14 @@ extension Drawer {
         if currentHeight < midDrawerHeight && velocity < 0 {
             return midDrawerHeight
         } else if currentHeight < midDrawerHeight && velocity > 0 {
-            return 0
+            return 2
         } else if currentHeight > midDrawerHeight && velocity < 0 {
             return maxDrawerHeight
         } else if currentHeight > midDrawerHeight && velocity > 0 {
             return midDrawerHeight
         }
 
-        return 0
+        return 2
     }
 
     func moveTo(height: CGFloat, velocity: CGFloat) {
