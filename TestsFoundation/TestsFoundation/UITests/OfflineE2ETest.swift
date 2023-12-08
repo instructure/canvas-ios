@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,12 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-extension DataSeeder {
-
-    @discardableResult
-    public func createSubmission(courseId: String, assignmentId: String, requestBody: CreateDSSubmissionRequest.RequestedDSSubmission) -> DSSubmission {
-        let requestedBody = CreateDSSubmissionRequest.Body(submission: requestBody)
-        let request = CreateDSSubmissionRequest(body: requestedBody, courseId: courseId, assignmentId: assignmentId)
-        return makeRequest(request)
+open class OfflineE2ETest: E2ETestCase {
+    open override func tearDown() {
+        // In case the tests fail at a point where the internet connection is turned off
+        setNetworkStateOnline()
+        sleep(10) // Give it some time to fully regain internet connection
+        super.tearDown()
     }
 }

@@ -18,13 +18,7 @@
 
 import TestsFoundation
 
-class OfflineTests: E2ETestCase {
-    override func tearDown() {
-        // In case the tests fail at a point where the internet connection is turned off
-        setNetworkStateOnline()
-        super.tearDown()
-    }
-
+class OfflineTests: OfflineE2ETest {
     func testNetworkConnectionLose() {
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
@@ -207,7 +201,7 @@ class OfflineTests: E2ETestCase {
         XCTAssertTrue(syncButton.waitUntil(.enabled).isEnabled)
     }
 
-    func testSyncOfflineContent() {
+    func testOfflineContentSync() {
         // MARK: Seed the usual stuff with page, discussion, syllabus contents
         let student = seeder.createUser()
         let course = SyllabusHelper.createCourseWithSyllabus()

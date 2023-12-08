@@ -1,0 +1,51 @@
+{
+  "configurations" : [
+    {
+      "id" : "F222A9EC-9C71-4E01-9FC5-A202C673E0E5",
+      "name" : "Default",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Student.xcodeproj",
+      "identifier" : "492704721CF4AF7100C631C6",
+      "name" : "Student"
+    }
+  },
+  "testTargets" : [
+    {
+      "skippedTests" : [
+        "AnnouncementsTests\/testAnnouncementsOrderTitleMessage()",
+        "AssignmentsTests\/testAssignmentDueDate()",
+        "DashboardTests\/testAnnouncementBelowInvite()",
+        "DashboardTests\/testDashboardEditButtonDisplaysCorrectCourses()",
+        "DashboardTests\/testNavigateToDashboard()",
+        "DiscussionsTests\/testAssignmentDiscussion()",
+        "HelpTests",
+        "LoginTests\/testLoginMultipleUsers()",
+        "LoginTests\/testLoginWithLastUser()",
+        "LoginTests\/testLoginWithoutUsernameAndPassword()",
+        "LoginTests\/testWrongUsernameAndPassword()",
+        "LogoutTests",
+        "PagesTests\/testDeepLinks()",
+        "PeopleTests",
+        "SettingsTests\/testAbout()",
+        "SettingsTests\/testAppearanceSetting()",
+        "SettingsTests\/testCanvasOnGitHub()",
+        "SettingsTests\/testLandingPageSetting()",
+        "SettingsTests\/testPrivacyPolicy()",
+        "SettingsTests\/testTermsOfUse()"
+      ],
+      "target" : {
+        "containerPath" : "container:..\/rn\/Teacher\/ios\/Teacher.xcodeproj",
+        "identifier" : "E841D8A223D6472F00685A63",
+        "name" : "TeacherE2ETests"
+      }
+    }
+  ],
+  "version" : 1
+}

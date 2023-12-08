@@ -31,6 +31,9 @@ class SyllabusTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Syllabus, check "Syllabus" tab
         logInDSUser(student)
+        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
+        XCTAssertTrue(profileButton.isVisible)
+
         SyllabusHelper.navigateToSyllabus(course: course)
 
         let navBar = SyllabusHelper.navBar(course: course).waitUntil(.visible)
@@ -44,26 +47,22 @@ class SyllabusTests: E2ETestCase {
 
         let syllabusBodyLabel = SyllabusHelper.syllabusBody.waitUntil(.visible)
         XCTAssertTrue(syllabusBodyLabel.isVisible)
-        XCTAssertEqual(syllabusBodyLabel.label, course.syllabus_body!)
-
-        summaryTab.hit()
+        XCTAssertTrue(syllabusBodyLabel.hasLabel(label: course.syllabus_body!))
 
         // MARK: Check "Summary" tab
-        let summaryAssignmentItem = SyllabusHelper.summaryAssignmentCell(assignment: assignment)
-            .waitUntil(.visible)
+        summaryTab.hit()
+        let summaryAssignmentItem = SyllabusHelper.summaryAssignmentCell(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(summaryAssignmentItem.isVisible)
 
-        let summaryAssignmentTitle = SyllabusHelper.summaryAssignmentTitle(assignment: assignment)
-            .waitUntil(.visible)
+        let summaryAssignmentTitle = SyllabusHelper.summaryAssignmentTitle(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(summaryAssignmentTitle.isVisible)
-        XCTAssertEqual(summaryAssignmentTitle.label, assignment.name)
+        XCTAssertTrue(summaryAssignmentTitle.hasLabel(label: assignment.name))
 
         let summaryCalendarEventItem = SyllabusHelper.summaryCalendarEventCell(calendarEvent: calendarEvent).waitUntil(.visible)
         XCTAssertTrue(summaryCalendarEventItem.isVisible)
 
-        let summaryCalendarEventTitle = SyllabusHelper.summaryCalendarEventTitle(calendarEvent: calendarEvent)
-            .waitUntil(.visible)
+        let summaryCalendarEventTitle = SyllabusHelper.summaryCalendarEventTitle(calendarEvent: calendarEvent).waitUntil(.visible)
         XCTAssertTrue(summaryCalendarEventTitle.isVisible)
-        XCTAssertEqual(summaryCalendarEventTitle.label, calendarEvent.title)
+        XCTAssertTrue(summaryCalendarEventTitle.hasLabel(label: calendarEvent.title))
     }
 }

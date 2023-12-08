@@ -56,23 +56,23 @@ class InboxTests: E2ETestCase {
 
         var sendButton = ComposerHelper.sendButton.waitUntil(.visible)
         XCTAssertTrue(sendButton.isVisible)
-        XCTAssertFalse(sendButton.isEnabled)
+        XCTAssertTrue(sendButton.isDisabled)
 
         let courseSelectButton = ComposerHelper.courseSelectButton.waitUntil(.visible)
         XCTAssertTrue(courseSelectButton.isVisible)
 
         var recipientsLabel = ComposerHelper.recipientsLabel.waitUntil(.vanish)
-        XCTAssertFalse(recipientsLabel.isVisible)
+        XCTAssertTrue(recipientsLabel.isVanished)
 
         var addRecipientButton = ComposerHelper.addRecipientButton.waitUntil(.vanish)
-        XCTAssertFalse(addRecipientButton.isVisible)
+        XCTAssertTrue(addRecipientButton.isVanished)
 
         let subjectInput = ComposerHelper.subjectInput.waitUntil(.visible)
         XCTAssertTrue(subjectInput.isVisible)
 
         let individualSwitch = ComposerHelper.individualSwitch.waitUntil(.visible)
         XCTAssertTrue(individualSwitch.isVisible)
-        XCTAssertEqual(individualSwitch.label.suffix(3), "Off")
+        XCTAssertTrue(individualSwitch.labelHasSuffix("Off"))
 
         let messageInput = ComposerHelper.messageInput.waitUntil(.visible)
         XCTAssertTrue(messageInput.isVisible)
@@ -161,11 +161,11 @@ class InboxTests: E2ETestCase {
         var unreadMessageButton = Helper.conversation(conversation: unreadConversation).waitUntil(.visible)
         var starredMessageButton = Helper.conversation(conversation: starredConversation).waitUntil(.visible)
         XCTAssertTrue(readMessageButton.isVisible)
-        XCTAssertEqual(readMessageButton.label.suffix(6), "Unread")
+        XCTAssertTrue(readMessageButton.labelHasSuffix("Unread"))
         XCTAssertTrue(unreadMessageButton.isVisible)
-        XCTAssertEqual(unreadMessageButton.label.suffix(6), "Unread")
+        XCTAssertTrue(unreadMessageButton.labelHasSuffix("Unread"))
         XCTAssertTrue(starredMessageButton.isVisible)
-        XCTAssertEqual(starredMessageButton.label.suffix(6), "Unread")
+        XCTAssertTrue(starredMessageButton.labelHasSuffix("Unread"))
 
         // MARK: Tap on message and check if it becomes read
         readMessageButton.hit()
@@ -173,12 +173,12 @@ class InboxTests: E2ETestCase {
         if backButton.isVisible { backButton.hit() }
         readMessageButton = Helper.conversation(conversation: readConversation).waitUntil(.visible)
         XCTAssertTrue(readMessageButton.isVisible)
-        XCTAssertNotEqual(readMessageButton.label.suffix(6), "Unread")
+        XCTAssertFalse(readMessageButton.labelHasSuffix("Unread"))
 
         // MARK: Check "Unread" filter button
         let unreadButton = FilterHelper.unread.waitUntil(.visible)
         XCTAssertTrue(unreadButton.isVisible)
-        XCTAssertFalse(unreadButton.isSelected)
+        XCTAssertTrue(unreadButton.isUnselected)
 
         // MARK: Tap "Unread" filter button and check messages again
         unreadButton.hit()
@@ -187,7 +187,7 @@ class InboxTests: E2ETestCase {
         readMessageButton = Helper.conversation(conversation: readConversation).waitUntil(.vanish)
         unreadMessageButton = Helper.conversation(conversation: unreadConversation).waitUntil(.visible)
         starredMessageButton = Helper.conversation(conversation: starredConversation).waitUntil(.visible)
-        XCTAssertFalse(readMessageButton.isVisible)
+        XCTAssertTrue(readMessageButton.isVanished)
         XCTAssertTrue(unreadMessageButton.isVisible)
         XCTAssertTrue(starredMessageButton.isVisible)
 
@@ -203,7 +203,7 @@ class InboxTests: E2ETestCase {
         // MARK: Check "Starred" filter button
         let starredButton = FilterHelper.starred.waitUntil(.visible)
         XCTAssertTrue(starredButton.isVisible)
-        XCTAssertFalse(starredButton.isSelected)
+        XCTAssertTrue(starredButton.isUnselected)
 
         // MARK: Tap "Starred" filter button and check messages again
         starredButton.hit()
@@ -212,14 +212,14 @@ class InboxTests: E2ETestCase {
         readMessageButton = Helper.conversation(conversation: readConversation).waitUntil(.vanish)
         unreadMessageButton = Helper.conversation(conversation: unreadConversation).waitUntil(.vanish)
         starredMessageButton = Helper.conversation(conversation: starredConversation).waitUntil(.visible)
-        XCTAssertFalse(readMessageButton.isVisible)
-        XCTAssertFalse(unreadMessageButton.isVisible)
+        XCTAssertTrue(readMessageButton.isVanished)
+        XCTAssertTrue(unreadMessageButton.isVanished)
         XCTAssertTrue(starredMessageButton.isVisible)
 
         // MARK: Check "Sent" filter button
         let sentButton = FilterHelper.sent.waitUntil(.visible)
         XCTAssertTrue(sentButton.isVisible)
-        XCTAssertFalse(sentButton.isSelected)
+        XCTAssertTrue(sentButton.isUnselected)
 
         // MARK: Tap "Sent" filter button and check messages again
         sentButton.hit()
@@ -228,14 +228,14 @@ class InboxTests: E2ETestCase {
         readMessageButton = Helper.conversation(conversation: readConversation).waitUntil(.vanish)
         unreadMessageButton = Helper.conversation(conversation: unreadConversation).waitUntil(.vanish)
         starredMessageButton = Helper.conversation(conversation: starredConversation).waitUntil(.vanish)
-        XCTAssertFalse(readMessageButton.isVisible)
-        XCTAssertFalse(unreadMessageButton.isVisible)
-        XCTAssertFalse(starredMessageButton.isVisible)
+        XCTAssertTrue(readMessageButton.isVanished)
+        XCTAssertTrue(unreadMessageButton.isVanished)
+        XCTAssertTrue(starredMessageButton.isVanished)
 
         // MARK: Check "Archived" filter button
         let archivedButton = FilterHelper.archived.waitUntil(.visible)
         XCTAssertTrue(archivedButton.isVisible)
-        XCTAssertFalse(archivedButton.isSelected)
+        XCTAssertTrue(archivedButton.isUnselected)
 
         // MARK: Tap "Archived" filter button and check messages again
         archivedButton.hit()
@@ -244,9 +244,9 @@ class InboxTests: E2ETestCase {
         readMessageButton = Helper.conversation(conversation: readConversation).waitUntil(.vanish)
         unreadMessageButton = Helper.conversation(conversation: unreadConversation).waitUntil(.vanish)
         starredMessageButton = Helper.conversation(conversation: starredConversation).waitUntil(.vanish)
-        XCTAssertFalse(readMessageButton.isVisible)
-        XCTAssertFalse(unreadMessageButton.isVisible)
-        XCTAssertFalse(starredMessageButton.isVisible)
+        XCTAssertTrue(readMessageButton.isVanished)
+        XCTAssertTrue(unreadMessageButton.isVanished)
+        XCTAssertTrue(starredMessageButton.isVanished)
     }
 
     func testMessageDetails() {
@@ -269,7 +269,7 @@ class InboxTests: E2ETestCase {
         // MARK: Check message item
         let messageButton = Helper.conversation(conversation: conversation).waitUntil(.visible)
         XCTAssertTrue(messageButton.isVisible)
-        XCTAssertEqual(messageButton.label, Helper.addDateToSubject(subject: conversation.subject, unread: true))
+        XCTAssertTrue(messageButton.hasLabel(label: Helper.addDateToSubject(subject: conversation.subject, unread: true)))
 
         messageButton.hit()
 

@@ -30,10 +30,12 @@ class ToDoTests: E2ETestCase {
 
         // MARK: Get the user logged in and check ToDo tab bar
         logInDSUser(student)
+        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
+        XCTAssertTrue(profileButton.isVisible)
 
         let toDoTab = ToDoHelper.TabBar.todoTab.waitUntil(.visible)
         XCTAssertTrue(toDoTab.isVisible)
-        XCTAssertTrue(toDoTab.waitUntil(.value(expected: "2 items")).hasValue(value: "2 items"))
+        XCTAssertTrue(toDoTab.hasValue(value: "2 items"))
 
         // MARK: Tap ToDo button and check the 3 items
         toDoTab.hit()
