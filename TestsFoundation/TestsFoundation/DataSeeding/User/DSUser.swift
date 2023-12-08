@@ -22,4 +22,12 @@ public struct DSUser: Codable {
     public let login_id: String?
     public let name: String
     public var password: String?
+    public var type: String?
+    public var enrollmentId: String?
+}
+
+public enum DSUserType: String {
+    case student = "Student"
+    case teacher = "Teacher"
+    case parent = "Parent"
 }

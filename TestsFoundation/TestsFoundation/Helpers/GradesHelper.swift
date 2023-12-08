@@ -49,7 +49,7 @@ public class GradesHelper: BaseHelper {
 
     public static func checkForTotalGrade(value: String) -> Bool {
         pullToRefresh()
-        return totalGrade.waitUntil(.label(expected: value)).isVisible
+        return totalGrade.waitUntil(.visible).waitUntil(.label(expected: value)).isVisible
     }
 
     @discardableResult

@@ -126,6 +126,7 @@ public class CircleProgressView: UIView {
     public override func tintColorDidChange() {
         super.tintColorDidChange()
         fill.strokeColor = color?.cgColor ?? tintColor.cgColor
+        track.strokeColor = (color?.cgColor ?? tintColor.cgColor).copy(alpha: 0.2)
     }
 
     public func startAnimating() {

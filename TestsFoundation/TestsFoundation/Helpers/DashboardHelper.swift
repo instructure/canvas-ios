@@ -26,8 +26,9 @@ public class DashboardHelper: BaseHelper {
     public static var coursesLabel: XCUIElement { app.find(id: "dashboard.courses.heading-lbl") }
     public static var offlineLine: XCUIElement { app.find(id: "offlineLine") }
     public static var favoriteButton: XCUIElement { app.find(label: "Favorite", type: .button) }
+    public static var noCoursesLabel: XCUIElement { app.find(label: "No Courses") }
     public static var dashboardSettingsShowGradeToggle: XCUIElement {
-        return app.find(id: "DashboardSettings.showGradesToggle", type: .switch).find(type: .switch)
+        app.find(id: "DashboardSettings.showGradesToggle", type: .switch).find(type: .switch)
     }
 
     public static func courseCard(course: DSCourse? = nil, courseId: String? = nil) -> XCUIElement {
@@ -87,12 +88,12 @@ public class DashboardHelper: BaseHelper {
             public static var syncingOfflineContentLabel: XCUIElement { app.find(label: "Syncing Offline Content") }
 
             // Course content selection
-            public static var discussionsButton: XCUIElement { app.find(labelContaining: "Discussions", type: .button) }
-            public static var gradesButton: XCUIElement { app.find(labelContaining: "Grades", type: .button) }
-            public static var peopleButton: XCUIElement { app.find(labelContaining: "People", type: .button) }
-            public static var pagesButton: XCUIElement { app.find(labelContaining: "Pages", type: .button) }
-            public static var syllabusButton: XCUIElement { app.find(labelContaining: "Syllabus", type: .button) }
-            public static var bigBlueButtonButton: XCUIElement { app.find(labelContaining: "BigBlueButton", type: .button) }
+            public static var discussionsButton: XCUIElement { app.find(label: "Discussions", type: .staticText) }
+            public static var gradesButton: XCUIElement { app.find(label: "Grades", type: .staticText) }
+            public static var peopleButton: XCUIElement { app.find(label: "People", type: .staticText) }
+            public static var pagesButton: XCUIElement { app.find(label: "Pages", type: .staticText) }
+            public static var syllabusButton: XCUIElement { app.find(label: "Syllabus", type: .staticText) }
+            public static var bigBlueButtonButton: XCUIElement { app.find(label: "BigBlueButton", type: .staticText) }
 
             // Functions
             public static func courseButton(course: DSCourse) -> XCUIElement? {
@@ -101,6 +102,11 @@ public class DashboardHelper: BaseHelper {
                     return b
                 }
                 return nil
+            }
+
+            public static func arrowButtonOfCourse(course: DSCourse) -> XCUIElement {
+                let courseItem = courseButton(course: course)!.waitUntil(.visible)
+                return courseItem.find(label: "arrowOpenDownLine", type: .image)
             }
 
             public static func unselectedTickerOfCourseButton(course: DSCourse) -> XCUIElement {

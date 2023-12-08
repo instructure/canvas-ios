@@ -35,16 +35,16 @@ class CourseDetailsTests: E2ETestCase {
         logInDSUser(student)
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCard.isVisible)
-        courseCard.hit()
 
         // MARK: Check course details
+        courseCard.hit()
         let titleLabel = CourseDetailsHelper.titleLabel.waitUntil(.visible)
-        XCTAssertTrue(titleLabel.exists)
-        XCTAssertEqual(titleLabel.label, course.name)
+        XCTAssertTrue(titleLabel.isVisible)
+        XCTAssertTrue(titleLabel.hasLabel(label: course.name))
 
         let subtitleLabel = CourseDetailsHelper.subtitleLabel.waitUntil(.visible)
-        XCTAssertTrue(subtitleLabel.exists)
-        XCTAssertEqual(subtitleLabel.label, "Default Term")
+        XCTAssertTrue(subtitleLabel.isVisible)
+        XCTAssertTrue(subtitleLabel.hasLabel(label: "Default Term"))
 
         let homeButton = CourseDetailsHelper.cell(type: .home).waitUntil(.visible)
         XCTAssertTrue(homeButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))
