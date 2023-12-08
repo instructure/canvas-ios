@@ -25,17 +25,20 @@ class GradeViewableTests: XCTestCase {
         let pointsPossible: Double?
         let viewableGrade: String?
         let viewableScore: Double?
+        let viewableEnteredScore: Double?
 
         init(
             gradingType: GradingType = .points,
             pointsPossible: Double? = 100.0,
             viewableGrade: String? = nil,
-            viewableScore: Double? = nil
+            viewableScore: Double? = nil,
+            viewableEnteredScore: Double? = nil
         ) {
             self.gradingType = gradingType
             self.pointsPossible = pointsPossible
             self.viewableGrade = viewableGrade
             self.viewableScore = viewableScore
+            self.viewableEnteredScore = viewableEnteredScore
         }
     }
 
@@ -69,5 +72,11 @@ class GradeViewableTests: XCTestCase {
         XCTAssertEqual(Model(gradingType: .points, viewableScore: 5).finalGradeText, "Final Grade: 5 pts")
         XCTAssertEqual(Model(gradingType: .gpa_scale, viewableGrade: "A").finalGradeText, "Final Grade: A")
         XCTAssertNil(Model(gradingType: .gpa_scale).finalGradeText)
+    }
+
+    func testEnteredGradeText() {
+        XCTAssertNil(Model(viewableEnteredScore: nil).enteredGradeText)
+        XCTAssertEqual(Model(viewableEnteredScore: 1).enteredGradeText, "Your Grade: 1 pt")
+        XCTAssertEqual(Model(viewableEnteredScore: 99).enteredGradeText, "Your Grade: 99 pts")
     }
 }

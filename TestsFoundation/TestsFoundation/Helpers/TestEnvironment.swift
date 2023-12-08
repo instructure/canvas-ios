@@ -67,4 +67,9 @@ public class TestStore<U: UseCase>: Store<U> {
     public override var pending: Bool {
         overridePending ?? super.pending
     }
+
+    public var overrideRequested: Bool?
+    public override var requested: Bool {
+        overrideRequested ?? super.requested
+    }
 }

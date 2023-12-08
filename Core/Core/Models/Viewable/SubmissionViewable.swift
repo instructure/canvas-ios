@@ -59,11 +59,21 @@ extension SubmissionViewable {
         if !isSubmitted {
             return NSLocalizedString("Not Submitted", bundle: .core, comment: "")
         }
-        guard let date = submission?.submittedAt else {
-            return NSLocalizedString("Submitted", bundle: .core, comment: "")
+
+        if submission?.workflowState == .graded {
+            return NSLocalizedString("Graded", bundle: .core, comment: "")
         }
-        let format = NSLocalizedString("Submitted %@", bundle: .core, comment: "Submitted date")
-        return String.localizedStringWithFormat(format, date.dateTimeString)
+
+        return NSLocalizedString("Submitted", bundle: .core, comment: "")
+    }
+    public var submissionDateText: String? {
+        submission?.submittedAt?.dateTimeString
+    }
+    public var submissionAttemptNumberText: String? {
+        guard let attempt = submission?.attempt else { return nil }
+
+        let format = NSLocalizedString("Attempt %d", bundle: .core, comment: "")
+        return String.localizedStringWithFormat(format, attempt)
     }
 
     public var hasLatePenalty: Bool {
