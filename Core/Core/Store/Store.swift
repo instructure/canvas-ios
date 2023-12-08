@@ -277,6 +277,12 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
     // MARK: - Private Methods
 
     private func notify() {
+        #if DEBUG
+        if isDebugLoggingEnabled {
+            logDebugInfo(controller: frc)
+        }
+        #endif
+
         performUIUpdate {
             self.eventHandler()
             self.changes = []
@@ -376,12 +382,6 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
 
     @objc
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        #if DEBUG
-        if isDebugLoggingEnabled {
-            logDebugInfo(controller: controller)
-        }
-        #endif
-
         notify()
         allObjectsSubject.send(all)
         publishState()
@@ -389,7 +389,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
 
     #if DEBUG
 
-    private func logDebugInfo(controller: NSFetchedResultsController<NSFetchRequestResult>) {
+    private func logDebugInfo(controller: NSFetchedResultsController<U.Model>) {
         let objectsInContext = controller.managedObjectContext.registeredObjects.filter { $0 is U.Model }
         print("====================")
         print("\(type(of: self)) controllerDidChangeContent")
