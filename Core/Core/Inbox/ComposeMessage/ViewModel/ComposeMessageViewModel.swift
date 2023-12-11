@@ -36,9 +36,6 @@ class ComposeMessageViewModel: ObservableObject {
     public var isReply: Bool {
         conversation != nil
     }
-    public var courseSelectorAccessibilityLabel: String {
-        selectedContext == nil ? String(localized: "Select course", bundle: .core) : String(localized: "Selected course: \(selectedContext!.name)", bundle: .core)
-    }
 
     // MARK: - Inputs
     public let sendButtonDidTap = PassthroughRelay<WeakViewController>()

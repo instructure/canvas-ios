@@ -119,6 +119,10 @@ public struct ComposeMessageView: View {
         }
     }
 
+    private var courseSelectorAccessibilityLabel: Text {
+        model.selectedContext == nil ? Text("Select course", bundle: .core) : Text("Selected course: \(model.selectedContext!.name)", bundle: .core)
+    }
+
     private var courseView: some View {
         Button {
             model.courseSelectButtonDidTap(viewController: controller)
@@ -140,7 +144,7 @@ public struct ComposeMessageView: View {
         .disabled(model.isReply)
         .opacity(model.isReply ? 0.6 : 1)
         .padding(.horizontal, 16).padding(.vertical, 12)
-        .accessibilityLabel(Text(model.courseSelectorAccessibilityLabel))
+        .accessibilityLabel(courseSelectorAccessibilityLabel)
     }
 
     private var toView: some View {

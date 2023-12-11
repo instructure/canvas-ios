@@ -137,7 +137,7 @@ public struct InboxCoursePickerView: View {
 
     private func courseRow(_ course: Course) -> some View {
         let courseName = course.name ?? course.courseCode ?? ""
-        let accessibilityLabel = isSelected(course) ? NSLocalizedString("Selected: \(courseName)", comment: "") : courseName
+        let accessibilityLabel = isSelected(course) ? Text("Selected: \(courseName)", bundle: .core) : Text(courseName)
         return VStack(spacing: 0) {
             Button {
                 viewModel.onSelect(selected: course)
@@ -160,7 +160,7 @@ public struct InboxCoursePickerView: View {
             }
             .padding(.vertical, 16)
             .background(.background)
-            .accessibilityLabel(Text(accessibilityLabel))
+            .accessibilityLabel(accessibilityLabel)
 
             separator
         }
@@ -168,7 +168,7 @@ public struct InboxCoursePickerView: View {
 
     private func groupRow(_ group: Group) -> some View {
         let groupName = group.name
-        let accessibilityLabel = isSelected(group) ? NSLocalizedString("Selected: \(groupName)", comment: "") : groupName
+        let accessibilityLabel = isSelected(group) ? Text("Selected: \(groupName)", bundle:. core) : Text(groupName)
         return VStack(spacing: 0) {
             Button {
                 viewModel.onSelect(selected: group)
@@ -190,7 +190,7 @@ public struct InboxCoursePickerView: View {
             }
             .padding(.vertical, 16)
             .background(.background)
-            .accessibilityLabel(Text(accessibilityLabel))
+            .accessibilityLabel(accessibilityLabel)
 
             separator
         }
