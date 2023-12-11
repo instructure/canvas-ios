@@ -29,7 +29,7 @@ public struct GetPage: UseCase {
 
     init(context: Context, url: String) {
         self.context = context
-        self.url =  url.removingPercentEncoding ?? ""
+        self.url = url.removingPercentEncoding ?? ""
     }
 
     public var cacheKey: String? {
@@ -66,6 +66,23 @@ public struct GetPage: UseCase {
         } else {
             environment.api.makeRequest(GetPageRequest(context: context, url: url), callback: completionHandler)
         }
+    }
+
+    public func write(response: APIPage?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let response else { return }
+        // If a page is renamed its url changes as well. When we request the old url the API will return
+        // a page object with the new url and the CoreData predicate won't find the entity. To work around this
+        // we save the page object with the originally requested url.
+        let modifiedResponse = APIPage(url: url,
+                                       updated_at: response.updated_at,
+                                       front_page: response.front_page,
+                                       page_id: response.page_id,
+                                       title: response.title,
+                                       html_url: response.html_url,
+                                       published: response.published,
+                                       body: response.body,
+                                       editing_roles: response.editing_roles)
+        Page.save(modifiedResponse, in: client)
     }
 }
 
