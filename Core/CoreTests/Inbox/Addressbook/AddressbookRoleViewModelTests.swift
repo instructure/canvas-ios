@@ -64,7 +64,7 @@ class AddressbookRoleViewModelTests: CoreTestCase {
 
     func testCancelButton() {
         let sourceView = UIViewController()
-        testee.cancelButtonDidTap.accept(WeakViewController(sourceView))
+        testee.doneButtonDidTap.accept(WeakViewController(sourceView))
         XCTAssertNotNil(router.dismissed)
     }
 

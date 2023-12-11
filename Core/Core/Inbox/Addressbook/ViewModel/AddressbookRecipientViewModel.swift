@@ -42,8 +42,8 @@ class AddressbookRecipientViewModel: ObservableObject {
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
-    private var router: Router
-    private var canSelectAllRecipient: Bool
+    private let router: Router
+    private let canSelectAllRecipient: Bool
 
     public init(
         router: Router,

@@ -53,7 +53,7 @@ struct AddressbookRoleView: View {
         }
         .background(Color.backgroundLightest)
         .navigationTitle(viewModel.title)
-        .navigationBarItems(leading: cancelButton)
+        .navigationBarItems(leading: doneButton)
     }
 
     private var loadingIndicator: some View {
@@ -69,11 +69,11 @@ struct AddressbookRoleView: View {
             .frame(height: 0.5)
     }
 
-    private var cancelButton: some View {
+    private var doneButton: some View {
         Button {
-            viewModel.cancelButtonDidTap.accept(controller)
+            viewModel.doneButtonDidTap.accept(controller)
         } label: {
-            Text("Cancel", bundle: .core)
+            Text("Done", bundle: .core)
                 .font(.regular16)
                 .foregroundColor(.accentColor)
         }

@@ -48,7 +48,6 @@ class AddressbookRecipientViewModelTests: CoreTestCase {
     }
 
     func testListFiltering() {
-        print(testee.recipients)
         testee.searchText.value = ""
         XCTAssertEqual(testee.recipients.count, 3)
         testee.searchText.value = "Recipient"

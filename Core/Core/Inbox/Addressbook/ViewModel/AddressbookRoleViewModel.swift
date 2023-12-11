@@ -46,7 +46,7 @@ class AddressbookRoleViewModel: ObservableObject {
     // MARK: - Inputs
     public let roleDidTap = PassthroughSubject<(roleName: String, recipients: [Recipient], controller: WeakViewController), Never>()
     public let recipientDidTap = PassthroughSubject<Recipient, Never>()
-    public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
+    public let doneButtonDidTap = PassthroughRelay<WeakViewController>()
 
     // MARK: - Input / Output
     @Published public var searchText = CurrentValueSubject<String, Never>("")
@@ -59,8 +59,8 @@ class AddressbookRoleViewModel: ObservableObject {
     private var canSelectAllRecipient: Bool {
         var isNotStudent = false
         if let userId = env.currentSession?.userID {
-            roleRecipients.forEach { (roleName, recipeients) in
-                if roleName != NSLocalizedString("Students", comment: "") && recipeients.flatMap({ $0.ids }).contains(userId) {
+            roleRecipients.forEach { (roleName, recipients) in
+                if roleName != NSLocalizedString("Students", comment: "") && recipients.flatMap({ $0.ids }).contains(userId) {
                     isNotStudent = true
                     return
                 }
@@ -141,7 +141,7 @@ class AddressbookRoleViewModel: ObservableObject {
     }
 
     private func setupInputBindings(recipientDidSelect: PassthroughRelay<Recipient>, selectedRecipients: CurrentValueSubject<[Recipient], Never>) {
-        cancelButtonDidTap
+        doneButtonDidTap
             .sink { [router] viewController in
                 router.dismiss(viewController)
             }
