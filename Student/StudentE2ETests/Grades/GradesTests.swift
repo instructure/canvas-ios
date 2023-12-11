@@ -24,25 +24,25 @@ class GradesTests: E2ETestCase {
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
-
         let pointsPossible = [Float(10), Float(100)]
         let assignments = GradesHelper.createAssignments(course: course, count: 2, points_possible: pointsPossible)
 
+        // MARK: Get the user logged in
         logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
 
-        // MARK: Create submissions for both
+        // MARK: Create submissions for both assignments
         GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
 
         // MARK: Navigate to an assignment detail and check if grade updates
         GradesHelper.navigateToAssignments(course: course)
-
         let assignmentOne = AssignmentsHelper.assignmentButton(assignment: assignments[0]).waitUntil(.visible)
         XCTAssertTrue(assignmentOne.isVisible)
-        assignmentOne.hit()
 
+        assignmentOne.hit()
         let grades = ["5", "100"]
         GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
-
         pullToRefresh()
         let assignmentGrade = AssignmentsHelper.pointsOutOf(actualScore: "5", maxScore: "10").waitUntil(.visible)
         XCTAssertTrue(assignmentGrade.isVisible)
@@ -50,13 +50,20 @@ class GradesTests: E2ETestCase {
         // MARK: Navigate to Grades Page and check there too
         GradesHelper.TabBar.dashboardTab.hit()
         GradesHelper.navigateToGrades(course: course)
-
-        XCTAssertTrue(app.find(label: "Total Grade").waitUntil(.visible).isVisible)
-        XCTAssertTrue(GradesHelper.cell(assignment: assignments[0]).waitUntil(.visible, timeout: 5).isVisible)
-        XCTAssertTrue(GradesHelper.cell(assignment: assignments[1]).waitUntil(.visible, timeout: 5).isVisible)
-        XCTAssertTrue(GradesHelper.gradeOutOf(assignment: assignments[0], actualPoints: "5", maxPoints: "10").waitUntil(.visible, timeout: 5).isVisible)
-        XCTAssertTrue(GradesHelper.gradeOutOf(assignment: assignments[1], actualPoints: "100", maxPoints: "100").waitUntil(.visible, timeout: 5).isVisible)
-        XCTAssertTrue(GradesHelper.totalGrade.waitUntil(.label(expected: "95.45%"), timeout: 5).isVisible)
+        let totalGradeLabel = app.find(label: "Total Grade").waitUntil(.visible)
+        let gradeCell1 = GradesHelper.cell(assignment: assignments[0]).waitUntil(.visible, timeout: 5)
+        let gradeCell2 = GradesHelper.cell(assignment: assignments[1]).waitUntil(.visible, timeout: 5)
+        let gradeOutOfLabel1 = GradesHelper.gradeOutOf(assignment: assignments[0], actualPoints: "5", maxPoints: "10")
+            .waitUntil(.visible, timeout: 5)
+        let gradeOutOfLabel2 = GradesHelper.gradeOutOf(assignment: assignments[1], actualPoints: "100", maxPoints: "100")
+            .waitUntil(.visible, timeout: 5)
+        let totalGrade = GradesHelper.totalGrade.waitUntil(.label(expected: "95.45%"), timeout: 5)
+        XCTAssertTrue(totalGradeLabel.isVisible)
+        XCTAssertTrue(gradeCell1.isVisible)
+        XCTAssertTrue(gradeCell2.isVisible)
+        XCTAssertTrue(gradeOutOfLabel1.isVisible)
+        XCTAssertTrue(gradeOutOfLabel2.isVisible)
+        XCTAssertTrue(totalGrade.isVisible)
     }
 
     func testLetterGrades() {
@@ -64,17 +71,18 @@ class GradesTests: E2ETestCase {
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
-
         let assignments = GradesHelper.createAssignments(course: course, count: 3, grading_type: .letter_grade)
 
+        // MARK: Get the user logged in
         logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Create submissions for all
         GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
 
         // MARK: Navigate to assignments
         GradesHelper.navigateToAssignments(course: course)
-
         pullToRefresh()
         let firstAssignment = AssignmentsHelper.assignmentButton(assignment: assignments[0]).waitUntil(.visible)
         XCTAssertTrue(firstAssignment.isVisible)
@@ -85,18 +93,19 @@ class GradesTests: E2ETestCase {
         pullToRefresh()
 
         firstAssignment.hit()
-        XCTAssertEqual(AssignmentsHelper.Details.gradeCircle.label, "Scored \(grades[0]) out of 100 points possible")
-        XCTAssertEqual(AssignmentsHelper.Details.gradeDisplayGrade.label, "F")
+        let gradeCircle = AssignmentsHelper.Details.gradeCircle.waitUntil(.visible)
+        let gradeLabel = AssignmentsHelper.Details.gradeDisplayGrade.waitUntil(.visible)
+        XCTAssertTrue(gradeCircle.hasLabel(label: "Scored \(grades[0]) out of 100 points possible"))
+        XCTAssertTrue(gradeLabel.hasLabel(label: "F"))
 
         // On iPhone: Back button needs to be tapped
         // On iPad: No button tap needed to see other assignments
         let assignment1 = AssignmentsHelper.assignmentButton(assignment: assignments[1]).waitUntil(.visible, timeout: 5)
         if assignment1.isVanished { GradesHelper.backButton.hit() }
-
         assignment1.hit()
         AssignmentsHelper.Details.navBar(course: course).waitUntil(.visible)
-        XCTAssertEqual(AssignmentsHelper.Details.gradeCircle.label, "Scored \(grades[1]) out of 100 points possible")
-        XCTAssertEqual(AssignmentsHelper.Details.gradeDisplayGrade.label, "A")
+        XCTAssertTrue(gradeCircle.waitUntil(.visible).hasLabel(label: "Scored \(grades[1]) out of 100 points possible"))
+        XCTAssertTrue(gradeLabel.waitUntil(.visible).hasLabel(label: "A"))
 
         // On iPhone: Back button needs to be tapped
         // On iPad: No button tap needed to see other assignments
@@ -104,8 +113,8 @@ class GradesTests: E2ETestCase {
         if assignment2.isVanished { GradesHelper.backButton.hit() }
         assignment2.hit()
         AssignmentsHelper.Details.navBar(course: course).waitUntil(.visible)
-        XCTAssertEqual(AssignmentsHelper.Details.gradeCircle.label, "Scored 83 out of 100 points possible")
-        XCTAssertEqual(AssignmentsHelper.Details.gradeDisplayGrade.label, "B-")
+        XCTAssertTrue(gradeCircle.waitUntil(.visible).hasLabel(label: "Scored 83 out of 100 points possible"))
+        XCTAssertTrue(gradeLabel.waitUntil(.visible).hasLabel(label: "B-"))
     }
 
     func testPercentageGrades() {
@@ -113,10 +122,12 @@ class GradesTests: E2ETestCase {
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
-
         let assignments = GradesHelper.createAssignments(course: course, count: 2, grading_type: .percent)
 
+        // MARK: Get the user logged in
         logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Create submissions for both
         GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
@@ -128,14 +139,15 @@ class GradesTests: E2ETestCase {
         let grades = ["1", "100"]
         GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
         pullToRefresh()
-
         let firstAssignment = AssignmentsHelper.assignmentButton(assignment: assignments[0]).waitUntil(.visible)
         XCTAssertTrue(firstAssignment.isVisible)
 
         firstAssignment.hit()
         AssignmentsHelper.Details.navBar(course: course).waitUntil(.visible)
-        XCTAssertEqual(AssignmentsHelper.Details.gradeCircle.label, "Scored \(grades[0]) out of 100 points possible")
-        XCTAssertEqual(AssignmentsHelper.Details.gradeDisplayGrade.label, "\(grades[0])%")
+        let gradeCircle = AssignmentsHelper.Details.gradeCircle.waitUntil(.visible)
+        let gradeLabel = AssignmentsHelper.Details.gradeDisplayGrade.waitUntil(.visible)
+        XCTAssertTrue(gradeCircle.hasLabel(label: "Scored \(grades[0]) out of 100 points possible"))
+        XCTAssertTrue(gradeLabel.hasLabel(label: "\(grades[0])%"))
 
         let secondAssignment = AssignmentsHelper.assignmentButton(assignment: assignments[1]).waitUntil(.visible, timeout: 5)
         if secondAssignment.isVanished { GradesHelper.backButton.hit() }
@@ -143,8 +155,8 @@ class GradesTests: E2ETestCase {
 
         secondAssignment.hit()
         AssignmentsHelper.Details.navBar(course: course).waitUntil(.visible)
-        XCTAssertEqual(AssignmentsHelper.Details.gradeCircle.label, "Scored \(grades[1]) out of 100 points possible")
-        XCTAssertEqual(AssignmentsHelper.Details.gradeDisplayGrade.label, "\(grades[1])%")
+        XCTAssertTrue(gradeCircle.hasLabel(label: "Scored \(grades[1]) out of 100 points possible"))
+        XCTAssertTrue(gradeLabel.hasLabel(label: "\(grades[1])%"))
     }
 
     func testPassFailGrades() {
@@ -152,10 +164,12 @@ class GradesTests: E2ETestCase {
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
-
         let assignments = GradesHelper.createAssignments(course: course, count: 4, grading_type: .pass_fail)
 
+        // MARK: Get the user logged in
         logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Create submissions for both
         GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
@@ -173,8 +187,10 @@ class GradesTests: E2ETestCase {
 
         firstAssignment.hit()
         AssignmentsHelper.Details.navBar(course: course).waitUntil(.visible)
-        XCTAssertEqual(AssignmentsHelper.Details.gradeCircle.label, "Scored 100 out of 100 points possible")
-        XCTAssertEqual(AssignmentsHelper.Details.gradeDisplayGrade.label, "Complete")
+        let gradeCircle = AssignmentsHelper.Details.gradeCircle.waitUntil(.visible)
+        let gradeLabel = AssignmentsHelper.Details.gradeDisplayGrade.waitUntil(.visible)
+        XCTAssertTrue(gradeCircle.hasLabel(label: "Scored 100 out of 100 points possible"))
+        XCTAssertTrue(gradeLabel.hasLabel(label: "Complete"))
 
         let secondAssignment = AssignmentsHelper.assignmentButton(assignment: assignments[1]).waitUntil(.visible, timeout: 5)
         if secondAssignment.isVanished { GradesHelper.backButton.hit() }
@@ -182,8 +198,8 @@ class GradesTests: E2ETestCase {
 
         secondAssignment.hit()
         AssignmentsHelper.Details.navBar(course: course).waitUntil(.visible)
-        XCTAssertEqual(AssignmentsHelper.Details.gradeCircle.label, "Scored 100 out of 100 points possible")
-        XCTAssertEqual(AssignmentsHelper.Details.gradeDisplayGrade.label, "Complete")
+        XCTAssertTrue(gradeCircle.hasLabel(label: "Scored 100 out of 100 points possible"))
+        XCTAssertTrue(gradeLabel.hasLabel(label: "Complete"))
 
         let thirdAssignment = AssignmentsHelper.assignmentButton(assignment: assignments[2]).waitUntil(.visible, timeout: 5)
         if thirdAssignment.isVanished { GradesHelper.backButton.hit() }
@@ -191,8 +207,8 @@ class GradesTests: E2ETestCase {
 
         thirdAssignment.hit()
         AssignmentsHelper.Details.navBar(course: course).waitUntil(.visible)
-        XCTAssertEqual(AssignmentsHelper.Details.gradeCircle.label, "Scored 0 out of 100 points possible")
-        XCTAssertEqual(AssignmentsHelper.Details.gradeDisplayGrade.label, "Incomplete")
+        XCTAssertTrue(gradeCircle.hasLabel(label: "Scored 0 out of 100 points possible"))
+        XCTAssertTrue(gradeLabel.hasLabel(label: "Incomplete"))
 
         let fourthAssignment = AssignmentsHelper.assignmentButton(assignment: assignments[3]).waitUntil(.visible, timeout: 5)
         if fourthAssignment.isVanished { GradesHelper.backButton.hit() }
@@ -200,22 +216,20 @@ class GradesTests: E2ETestCase {
 
         fourthAssignment.hit()
         AssignmentsHelper.Details.navBar(course: course).waitUntil(.visible)
-        XCTAssertEqual(AssignmentsHelper.Details.gradeCircle.label, "Scored 0 out of 100 points possible")
-        XCTAssertEqual(AssignmentsHelper.Details.gradeDisplayGrade.label, "Incomplete")
+        XCTAssertTrue(gradeCircle.hasLabel(label: "Scored 0 out of 100 points possible"))
+        XCTAssertTrue(gradeLabel.hasLabel(label: "Incomplete"))
     }
 
     func testLetterGradeOnly() {
         // MARK: Seed the usual stuff, 3 assignments with submissions
         let student = seeder.createUser()
         let course = seeder.createCourse()
-        seeder.updateCourseSettings(course: course, restrictQuantitativeData: true)
-        seeder.enrollStudent(student, in: course)
-
         let pointsAssignment = AssignmentsHelper.createAssignment(course: course, pointsPossible: 10, gradingType: .points)
         let percentAssignment = AssignmentsHelper.createAssignment(course: course, pointsPossible: 10, gradingType: .percent)
         let passFailAssignment = AssignmentsHelper.createAssignment(course: course, pointsPossible: 10, gradingType: .pass_fail)
         let assignments = [pointsAssignment, percentAssignment, passFailAssignment]
-
+        seeder.updateCourseSettings(course: course, restrictQuantitativeData: true)
+        seeder.enrollStudent(student, in: course)
         GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
 
         // MARK: Grade assignments, get the user logged in, check grade pill
@@ -223,11 +237,13 @@ class GradesTests: E2ETestCase {
         let totalGrade = "D"
         GradesHelper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
 
+        // MARK: Get the user logged in
         logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
 
         DashboardHelper.turnOnShowGrades()
-
-        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        courseCard.waitUntil(.visible)
         XCTAssertTrue(courseCard.isVisible)
 
         let courseCardGradeLabel = DashboardHelper.courseCardGradeLabel(course: course).waitUntil(.visible)
@@ -239,10 +255,10 @@ class GradesTests: E2ETestCase {
         let pointsAssignmentCell = GradesHelper.cell(assignment: pointsAssignment).waitUntil(.visible)
         let percentAssignmentCell = GradesHelper.cell(assignment: percentAssignment).waitUntil(.visible)
         let passFailAssignmentCell = GradesHelper.cell(assignment: passFailAssignment).waitUntil(.visible)
+        let totalGradeLabel = GradesHelper.totalGrade.waitUntil(.visible)
         XCTAssertTrue(pointsAssignmentCell.isVisible)
         XCTAssertTrue(percentAssignmentCell.isVisible)
         XCTAssertTrue(passFailAssignmentCell.isVisible)
-
-        XCTAssertTrue(GradesHelper.totalGrade.waitUntil(.label(expected: totalGrade)).isVisible)
+        XCTAssertTrue(totalGradeLabel.hasLabel(label: totalGrade))
     }
 }

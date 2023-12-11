@@ -1,0 +1,42 @@
+{
+  "configurations" : [
+    {
+      "id" : "F222A9EC-9C71-4E01-9FC5-A202C673E0E5",
+      "name" : "Default",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Student.xcodeproj",
+      "identifier" : "492704721CF4AF7100C631C6",
+      "name" : "Student"
+    }
+  },
+  "testTargets" : [
+    {
+      "skippedTests" : [
+        "AboutTests",
+        "ChangeUserTests",
+        "GradesTests\/testLetterGradeOnly()",
+        "HelpTests",
+        "LoginTests\/testForgotPassword()",
+        "LoginTests\/testLoginWithLastUser()",
+        "LoginTests\/testLoginWithoutUsernameAndPassword()",
+        "LoginTests\/testWrongUsernameAndPassword()",
+        "LogoutTests",
+        "LogoutTests\/testLogout()",
+        "ProfileTests"
+      ],
+      "target" : {
+        "containerPath" : "container:..\/Parent\/Parent.xcodeproj",
+        "identifier" : "E80763C723E08DA10085DAFB",
+        "name" : "ParentE2ETests"
+      }
+    }
+  ],
+  "version" : 1
+}

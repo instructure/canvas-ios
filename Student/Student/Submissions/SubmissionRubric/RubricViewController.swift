@@ -82,7 +82,7 @@ class RubricViewController: UIViewController {
     func addGradeHeader() {
         if let assignment = presenter.assignments.first, showGradeHeader() {
             let gradeCircleView = GradeCircleView(frame: CGRect.zero)
-            gradeCircleView.update(assignment)
+            gradeCircleView.update(assignment, submission: assignment.submission)
             contentStackView.addArrangedSubview(gradeCircleView)
             gradeCircleView.pinToLeftAndRightOfSuperview()
             gradeCircleView.addConstraintsWithVFL("V:[view(156)]")

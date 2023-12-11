@@ -23,6 +23,8 @@ public protocol GradeViewable {
     var pointsPossible: Double? { get }
     var viewableGrade: String? { get }
     var viewableScore: Double? { get }
+    /** The score given by the teacher before late penalty is deducted. */
+    var viewableEnteredScore: Double? { get }
 }
 
 extension GradeViewable {
@@ -50,6 +52,15 @@ extension GradeViewable {
         guard let score = viewableScore, let points = pointsPossible else { return nil }
         let format = NSLocalizedString("g_out_of_g_points_possible", bundle: .core, comment: "")
         return String.localizedStringWithFormat(format, score, points)
+    }
+
+    /** This is used to communicate the original score received before late penalty is deducted. */
+    public var enteredGradeText: String? {
+        if let score = viewableEnteredScore {
+            return String(localized: "Your Grade: \(score, specifier: "%.0f") pt",
+                          bundle: .core)
+        }
+        return nil
     }
 
     public var finalGradeText: String? {

@@ -43,7 +43,6 @@ class FilesTests: E2ETestCase {
         XCTAssertTrue(addressLabel.isVisible)
 
         addressLabel.writeText(text: FilesHelper.TestPDF.url, hitGo: true, customApp: SafariAppHelper.safariApp)
-
         let shareButton = SafariAppHelper.shareButton.waitUntil(.visible)
         XCTAssertTrue(shareButton.isVisible)
 
@@ -86,7 +85,6 @@ class FilesTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Files, create test folder
         logInDSUser(student)
-
         let profileButton = Dashboard.profileButton.waitUntil(.visible)
         XCTAssertTrue(profileButton.isVisible)
 
@@ -102,12 +100,10 @@ class FilesTests: E2ETestCase {
         XCTAssertTrue(addButton.isVisible)
 
         addButton.hit()
-
         let addFolderButton = FileList.addFolderButton.waitUntil(.visible)
         XCTAssertTrue(addFolderButton.isVisible)
 
         addFolderButton.hit()
-
         let folderNameInput = FileList.folderNameInput.waitUntil(.visible)
         let okButton = FileList.okButton.waitUntil(.visible)
         XCTAssertTrue(folderNameInput.isVisible)
@@ -142,7 +138,6 @@ class FilesTests: E2ETestCase {
         XCTAssertTrue(buttonToBeSelected.isVisible)
 
         if !buttonToBeSelected.isSelected { buttonToBeSelected.hit() }
-
         let testPDFButton = FileList.testPDFButton.waitUntil(.visible)
         XCTAssertTrue(testPDFButton.isVisible)
 
@@ -175,7 +170,6 @@ class FilesTests: E2ETestCase {
         XCTAssertTrue(deleteButton.isVisible)
 
         deleteButton.hit()
-
         let areYouSureLabel = FileList.areYouSureLabel.waitUntil(.visible)
         XCTAssertTrue(areYouSureLabel.isVisible)
 
@@ -192,6 +186,8 @@ class FilesTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Files, create test folder
         logInDSUser(student)
+        let profileButton = Dashboard.profileButton.waitUntil(.visible)
+        XCTAssertTrue(profileButton.isVisible)
 
         Helper.navigateToFiles()
         let folderIsCreated = FileList.createFolder(name: testFolderName, shouldOpen: true)
@@ -200,7 +196,6 @@ class FilesTests: E2ETestCase {
         // MARK: Upload test image, check result
         FileList.addButton.hit()
         FileList.addFileButton.hit()
-
         let uploadImageButton = FileList.uploadImageButton.waitUntil(.visible)
         XCTAssertTrue(uploadImageButton.isVisible)
 
@@ -210,20 +205,19 @@ class FilesTests: E2ETestCase {
 
         imageItem.hit()
         imageItem.waitUntil(.vanish)
+        XCTAssertTrue(imageItem.isVanished)
 
         let uploadedImageItem = FileList.file(index: 0).waitUntil(.visible, timeout: 60)
         XCTAssertTrue(uploadedImageItem.isVisible)
 
         uploadedImageItem.hit()
-
         let imageView = Details.imageView.waitUntil(.visible, timeout: 60)
         let backButton = Helper.backButton.waitUntil(.visible)
         XCTAssertTrue(imageView.isVisible)
         XCTAssertTrue(backButton.isVisible)
 
-        backButton.hit()
-
         // MARK: Delete image
+        backButton.hit()
         uploadedImageItem.actionUntilElementCondition(action: .swipeLeft(.onElement), element: FileList.deleteButton, condition: .visible)
         let deleteButton = FileList.deleteButton.waitUntil(.visible)
         XCTAssertTrue(deleteButton.isVisible)

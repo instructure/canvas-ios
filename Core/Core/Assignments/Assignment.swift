@@ -354,6 +354,9 @@ extension Assignment: DueViewable, GradeViewable, SubmissionViewable {
     public var viewableGrade: String? {
         return submission?.grade
     }
+    public var viewableEnteredScore: Double? {
+        return submission?.enteredScore
+    }
 
     public var descriptionHTML: String {
         let fallback = "<i>\(NSLocalizedString("No Content", bundle: .core, comment: ""))</i>"
