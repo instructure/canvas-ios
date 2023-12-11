@@ -38,6 +38,8 @@ public extension UIImage {
     static var arrowOpenLeftSolid: UIImage { UIImage(named: "arrowOpenLeftSolid", in: .core, compatibleWith: nil)! }
     static var arrowOpenRightLine: UIImage { UIImage(named: "arrowOpenRightLine", in: .core, compatibleWith: nil)! }
     static var arrowOpenRightSolid: UIImage { UIImage(named: "arrowOpenRightSolid", in: .core, compatibleWith: nil)! }
+    static var arrowOpenUpLine: UIImage { UIImage(named: "arrowOpenUpLine", in: .core, compatibleWith: nil)! }
+    static var arrowOpenUpSolid: UIImage { UIImage(named: "arrowOpenUpSolid", in: .core, compatibleWith: nil)! }
     static var assignmentLine: UIImage { UIImage(named: "assignmentLine", in: .core, compatibleWith: nil)! }
     static var assignmentSolid: UIImage { UIImage(named: "assignmentSolid", in: .core, compatibleWith: nil)! }
     static var audioLine: UIImage { UIImage(named: "audioLine", in: .core, compatibleWith: nil)! }
@@ -269,6 +271,8 @@ public extension Image {
     static var arrowOpenLeftSolid: Image { Image("arrowOpenLeftSolid", bundle: .core) }
     static var arrowOpenRightLine: Image { Image("arrowOpenRightLine", bundle: .core) }
     static var arrowOpenRightSolid: Image { Image("arrowOpenRightSolid", bundle: .core) }
+    static var arrowOpenUpLine: Image { Image("arrowOpenUpLine", bundle: .core) }
+    static var arrowOpenUpSolid: Image { Image("arrowOpenUpSolid", bundle: .core) }
     static var assignmentLine: Image { Image("assignmentLine", bundle: .core) }
     static var assignmentSolid: Image { Image("assignmentSolid", bundle: .core) }
     static var audioLine: Image { Image("audioLine", bundle: .core) }
@@ -433,7 +437,6 @@ public extension Image {
     static var warningBorderlessSolid: Image { Image("warningBorderlessSolid", bundle: .core) }
     static var xLine: Image { Image("xLine", bundle: .core) }
     static var xSolid: Image { Image("xSolid", bundle: .core) }
-
     static var addAudioLine: Image { Image("addAudioLine", bundle: .core) }
     static var addCameraLine: Image { Image("addCameraLine", bundle: .core) }
     static var addDocumentLine: Image { Image("addDocumentLine", bundle: .core) }

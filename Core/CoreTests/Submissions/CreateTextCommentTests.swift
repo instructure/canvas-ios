@@ -20,7 +20,7 @@ import XCTest
 @testable import Core
 
 class CreateTextCommentTests: CoreTestCase {
-    lazy var create = CreateTextComment(courseID: "1", assignmentID: "2", userID: "3", isGroup: false, text: "comment")
+    lazy var create = CreateTextComment(courseID: "1", assignmentID: "2", userID: "3", isGroup: false, text: "comment", attempt: nil)
     var comment: SubmissionComment?
     var error: Error?
 
@@ -52,7 +52,7 @@ class CreateTextCommentTests: CoreTestCase {
             courseID: create.courseID,
             assignmentID: create.assignmentID,
             userID: create.userID,
-            body: .init(comment: .init(text: "comment", forGroup: create.isGroup), submission: nil)
+            body: .init(comment: .init(text: "comment", forGroup: create.isGroup, attempt: nil), submission: nil)
         ), error: NSError.internalError())
         create.putComment()
         XCTAssertNotNil(error)
@@ -79,7 +79,7 @@ class CreateTextCommentTests: CoreTestCase {
             courseID: create.courseID,
             assignmentID: create.assignmentID,
             userID: create.userID,
-            body: .init(comment: .init(text: "comment", forGroup: create.isGroup), submission: nil)
+            body: .init(comment: .init(text: "comment", forGroup: create.isGroup, attempt: nil), submission: nil)
         ), value: APISubmission.make(
             submission_comments: [ .make() ]
         ))
@@ -91,6 +91,28 @@ class CreateTextCommentTests: CoreTestCase {
         }
         wait(for: [called], timeout: 5)
         XCTAssertNotNil(comment)
+        XCTAssertNil(error)
+    }
+
+    func testSuccessWithAttemptField() {
+        lazy var create = CreateTextComment(courseID: "1", assignmentID: "2", userID: "3", isGroup: false, text: "comment", attempt: 19)
+        api.mock(PutSubmissionGradeRequest(
+            courseID: create.courseID,
+            assignmentID: create.assignmentID,
+            userID: create.userID,
+            body: .init(comment: .init(text: "comment", forGroup: create.isGroup, attempt: 19), submission: nil)
+        ), value: APISubmission.make(
+            submission_comments: [ .make(attempt: 19) ]
+        ))
+        let called = expectation(description: "called")
+        create.fetch { [weak self] comment, error in
+            self?.comment = comment
+            self?.error = error
+            called.fulfill()
+        }
+        wait(for: [called], timeout: 5)
+        XCTAssertNotNil(comment)
+        XCTAssertEqual(comment?.attemptFromAPI, 19)
         XCTAssertNil(error)
     }
 }

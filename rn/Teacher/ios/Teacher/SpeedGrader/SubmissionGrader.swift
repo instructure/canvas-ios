@@ -16,14 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
 import Core
+import SwiftUI
 
 struct SubmissionGrader: View {
     private enum Layout {
         case portrait
         case landscape // only on iPads no matter the iPhone screen size
     }
+
     let index: Int
     private let assignment: Assignment
     private let submission: Submission
@@ -44,6 +45,7 @@ struct SubmissionGrader: View {
             }
         }
     }
+
     @State var drawerState: DrawerState = .min
     @State var fileID: String?
     @State var showAttempts = false
@@ -54,11 +56,12 @@ struct SubmissionGrader: View {
     /** Used to work around an issue which caused the page to re-load after putting the app into background. See `layoutForWidth()` method for more. */
     @State private var lastPresentedLayout: Layout = .portrait
     @State private var studentAnnotationViewModel: StudentAnnotationSubmissionViewerViewModel
+    @State private var selectedIndex = 0
 
     private var selected: Submission { attempts.first { attempt == $0.attempt } ?? submission }
     private var file: File? {
         selected.attachments?.first { fileID == $0.id } ??
-        selected.attachments?.sorted(by: File.idCompare).first
+            selected.attachments?.sorted(by: File.idCompare).first
     }
 
     init(
@@ -70,7 +73,7 @@ struct SubmissionGrader: View {
         self.index = index
         self.assignment = assignment
         self.submission = submission
-        self.attempts = AppEnvironment.shared.subscribe(scope: Scope(
+        attempts = AppEnvironment.shared.subscribe(scope: Scope(
             predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
                 NSPredicate(key: #keyPath(Submission.assignmentID), equals: assignment.id),
                 NSPredicate(key: #keyPath(Submission.userID), equals: submission.userID),
@@ -78,14 +81,15 @@ struct SubmissionGrader: View {
             ]),
             orderBy: #keyPath(Submission.attempt)
         ))
+        attempt = submission.attempt
         self.handleRefresh = handleRefresh
-        self.studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: submission)
+        studentAnnotationViewModel = StudentAnnotationSubmissionViewerViewModel(submission: submission)
     }
 
     var body: some View {
         GeometryReader { geometry in
             let bottomInset = geometry.safeAreaInsets.bottom
-            let minHeight = bottomInset + 55
+            let minHeight = bottomInset + 58
             let maxHeight = bottomInset + geometry.size.height - 64
             // At 1/4 of a screen offset, scale to 90% and round corners to 20
             let delta = abs(geometry.frame(in: .global).minX / max(1, geometry.size.width))
@@ -113,28 +117,28 @@ struct SubmissionGrader: View {
                                         handleRefresh: handleRefresh
                                     )
                                 }
-                                    // Disable submission content interaction in case attempt picker is above it
-                                    .accessibilityElement(children: showAttempts ? .ignore : .contain)
-                                    .accessibility(hidden: showAttempts)
+                                // Disable submission content interaction in case attempt picker is above it
+                                .accessibilityElement(children: showAttempts ? .ignore : .contain)
+                                .accessibility(hidden: showAttempts)
                                 attemptPicker
                             }
                             Spacer().frame(height: bottomInset)
                         }
-                            .zIndex(1)
-                            .accessibility(sortPriority: 1)
+                        .zIndex(1)
+                        .accessibility(sortPriority: 1)
                         Divider()
                         VStack(spacing: 0) {
                             tools(bottomInset: bottomInset, isDrawer: false)
                         }
-                            .padding(.top, 16)
-                            .frame(width: 375)
+                        .padding(.top, 16)
+                        .frame(width: 375)
                     }
                 }
-                    .background(Color.backgroundLightest)
-                    .cornerRadius(cornerRadius)
-                    .scaleEffect(scale)
-                    .edgesIgnoringSafeArea(.bottom)
-                    .onAppear { didChangeLayout(to: .landscape) }
+                .background(Color.backgroundLightest)
+                .cornerRadius(cornerRadius)
+                .scaleEffect(scale)
+                .edgesIgnoringSafeArea(.bottom)
+                .onAppear { didChangeLayout(to: .landscape) }
             case .portrait:
                 ZStack(alignment: .bottom) {
                     VStack(alignment: .leading, spacing: 0) {
@@ -154,8 +158,8 @@ struct SubmissionGrader: View {
                                     handleRefresh: handleRefresh
                                 )
                             }
-                                .accessibilityElement(children: isSubmissionContentHiddenFromA11y ? .ignore : .contain)
-                                .accessibility(hidden: isSubmissionContentHiddenFromA11y)
+                            .accessibilityElement(children: isSubmissionContentHiddenFromA11y ? .ignore : .contain)
+                            .accessibility(hidden: isSubmissionContentHiddenFromA11y)
                             attemptPicker
                         }
                         Spacer().frame(height: drawerState == .min ? minHeight : (minHeight + maxHeight) / 2)
@@ -164,35 +168,46 @@ struct SubmissionGrader: View {
                         tools(bottomInset: bottomInset, isDrawer: true)
                     }
                 }
-                    .background(Color.backgroundLightest)
-                    .cornerRadius(cornerRadius)
-                    .scaleEffect(scale)
-                    .edgesIgnoringSafeArea(.bottom)
-                    .onAppear { didChangeLayout(to: .portrait) }
+                .background(Color.backgroundLightest)
+                .cornerRadius(cornerRadius)
+                .scaleEffect(scale)
+                .edgesIgnoringSafeArea(.bottom)
+                .onAppear { didChangeLayout(to: .portrait) }
             }
         }
-            .avoidKeyboardArea(force: true)
+        .avoidKeyboardArea(force: true)
     }
 
     @ViewBuilder
     var attemptToggle: some View {
         if let first = attempts.first, attempts.count == 1 {
-            Text(first.submittedAt?.dateTimeString ?? "")
-                .font(.medium14).foregroundColor(.textDark)
-                .frame(minHeight: 24)
-                .padding(EdgeInsets(top: 8, leading: 16, bottom: 4, trailing: 8))
+            HStack {
+                Text("Attempt \(attempt ?? 1)").font(.regular14)
+                Spacer()
+                Text(first.submittedAt?.dateTimeString ?? "")
+                    .font(.regular14)
+                    .frame(minHeight: 24)
+            }
+            .foregroundColor(.textDark)
+            .padding(EdgeInsets(top: 8, leading: 16, bottom: 4, trailing: 16))
+
         } else if let selected = attempts.first(where: { attempt == $0.attempt }) ?? attempts.last {
             Button(action: {
                 showAttempts.toggle()
             }, label: {
                 HStack {
-                    Text(selected.submittedAt?.dateTimeString ?? "")
-                        .font(.medium14)
+                    Text("Attempt \(attempt ?? 1)").font(.regular14)
                     Spacer()
-                    Image.miniArrowDownSolid.rotationEffect(.degrees(showAttempts ? 180 : 0))
+                    Text(selected.submittedAt?.dateTimeString ?? "")
+                        .font(.regular14)
+                        .frame(minHeight: 24)
+                    Image.arrowOpenDownLine
+                        .resizable()
+                        .frame(width: 14, height: 14)
+                        .rotationEffect(.degrees(showAttempts ? 180 : 0))
                 }
-                    .foregroundColor(.textDark)
-                    .padding(EdgeInsets(top: 8, leading: 16, bottom: 4, trailing: 8))
+                .foregroundColor(.textDark)
+                .padding(EdgeInsets(top: 8, leading: 16, bottom: 4, trailing: 16))
             })
         }
     }
@@ -203,6 +218,7 @@ struct SubmissionGrader: View {
             VStack(spacing: 0) {
                 Picker(selection: Binding(get: { selected.attempt }, set: { newValue in
                     withTransaction(.exclusive()) {
+                        NotificationCenter.default.post(name: .SpeedGraderAttemptPickerChanged, object: newValue)
                         attempt = newValue
                         fileID = nil
                     }
@@ -213,39 +229,63 @@ struct SubmissionGrader: View {
                             .tag(Optional(attempt.attempt))
                     }
                 }
-                    .labelsHidden()
-                    .pickerStyle(WheelPickerStyle())
+                .labelsHidden()
+                .pickerStyle(WheelPickerStyle())
                 Divider()
             }
-                .background(Color.backgroundLightest)
+            .background(Color.backgroundLightest)
         }
     }
 
     enum GraderTab: Int, CaseIterable { case grades, comments, files }
 
+    private func segmentedTitles() -> [String] {
+        let filesString: String!
+        if selected.type == .online_upload, let count = selected.attachments?.count, count > 0 {
+            filesString = NSLocalizedString("Files (\(count))", comment: "")
+        } else {
+            filesString = NSLocalizedString("Files", comment: "")
+        }
+
+        return [
+            NSLocalizedString("Grades", comment: ""),
+            NSLocalizedString("Comments", comment: ""),
+            filesString,
+        ]
+    }
+
     @ViewBuilder
     func tools(bottomInset: CGFloat, isDrawer: Bool) -> some View {
-        Picker(selection: Binding(get: { isDrawer && drawerState == .min ? nil : tab }, set: { newValue in
-            guard let newValue = newValue else { return }
-            if drawerState == .min {
-                snapDrawerTo(.mid)
+        SegmentedPicker(
+            segmentedTitles(),
+            selectedIndex: Binding(
+                get: { selectedIndex },
+                set: { newValue in
+                    selectedIndex = newValue ?? 0
+                    if drawerState == .min {
+                        snapDrawerTo(.mid)
+                    }
+                    withAnimation(.default) {
+                        tab = SubmissionGrader.GraderTab(rawValue: newValue ?? 0)!
+                    }
+                    controller.view.endEditing(true)
+                }
+            ),
+            selectionAlignment: .bottom,
+            content: { item, _ in
+                Text(item)
+                    .font(.regular14)
+                    .foregroundColor(.textDark)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 8)
+                    .frame(maxWidth: .infinity)
+                    .contentShape(Rectangle())
             }
-            withAnimation(.default) {
-                tab = newValue
-            }
-            controller.view.endEditing(true)
-        }), label: Text(verbatim: "")) {
-            Text("Grades").tag(Optional(GraderTab.grades))
-            Text("Comments").tag(Optional(GraderTab.comments))
-            if selected.type == .online_upload, let count = selected.attachments?.count, count > 0 {
-                Text("Files (\(count))").tag(Optional(GraderTab.files))
-            } else {
-                Text("Files").tag(Optional(GraderTab.files))
-            }
+        )
+        .onAppear {
+            selectedIndex = 0
         }
-            .pickerStyle(SegmentedPickerStyle())
-            .identifier("SpeedGrader.toolPicker")
-            .padding(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
+        .identifier("SpeedGrader.toolPicker")
         Divider()
         GeometryReader { geometry in
             HStack(spacing: 0) {
@@ -264,9 +304,9 @@ struct SubmissionGrader: View {
                         .clipped()
                     Spacer().frame(height: bottomInset)
                 }
-                    .frame(width: geometry.size.width, height: geometry.size.height)
-                    .accessibilityElement(children: isGradesOnScreen ? .contain : .ignore)
-                    .accessibility(hidden: !isGradesOnScreen)
+                .frame(width: geometry.size.width, height: geometry.size.height)
+                .accessibilityElement(children: isGradesOnScreen ? .contain : .ignore)
+                .accessibility(hidden: !isGradesOnScreen)
                 let isCommentsOnScreen = isGraderTabOnScreen(.comments, isDrawer: isDrawer)
                 VStack(spacing: 0) {
                     SubmissionCommentList(
@@ -279,30 +319,30 @@ struct SubmissionGrader: View {
                         enteredComment: $enteredComment,
                         commentLibrary: commentLibrary
                     )
-                        .clipped()
+                    .clipped()
                     if showRecorder != .video || drawerState == .min {
                         Spacer().frame(height: bottomInset)
                     }
                 }
-                    .frame(width: geometry.size.width, height: geometry.size.height)
-                    .background(Color.backgroundLight)
-                    .accessibilityElement(children: isCommentsOnScreen ? .contain : .ignore)
-                    .accessibility(hidden: !isCommentsOnScreen)
+                .frame(width: geometry.size.width, height: geometry.size.height)
+                .background(Color.backgroundLight)
+                .accessibilityElement(children: isCommentsOnScreen ? .contain : .ignore)
+                .accessibility(hidden: !isCommentsOnScreen)
                 let isFilesOnScreen = isGraderTabOnScreen(.files, isDrawer: isDrawer)
                 VStack(spacing: 0) {
                     SubmissionFileList(submission: selected, fileID: drawerFileID)
                         .clipped()
                     Spacer().frame(height: bottomInset)
                 }
-                    .frame(width: geometry.size.width, height: geometry.size.height)
-                    .accessibilityElement(children: isFilesOnScreen ? .contain : .ignore)
-                    .accessibility(hidden: !isFilesOnScreen)
+                .frame(width: geometry.size.width, height: geometry.size.height)
+                .accessibilityElement(children: isFilesOnScreen ? .contain : .ignore)
+                .accessibility(hidden: !isFilesOnScreen)
             }
-                .frame(width: geometry.size.width, alignment: .leading)
-                .background(Color.backgroundLightest)
-                .offset(x: -CGFloat(tab.rawValue) * geometry.size.width)
+            .frame(width: geometry.size.width, alignment: .leading)
+            .background(Color.backgroundLightest)
+            .offset(x: -CGFloat(tab.rawValue) * geometry.size.width)
         }
-            .clipped()
+        .clipped()
     }
 
     private func snapDrawerTo(_ state: DrawerState) {
@@ -343,4 +383,8 @@ struct SubmissionGrader: View {
 private func interpolate(value: CGFloat, fromMin: CGFloat, fromMax: CGFloat, toMin: CGFloat, toMax: CGFloat) -> CGFloat {
     let bounded = max(fromMin, min(value, fromMax))
     return (((toMax - toMin) / (fromMax - fromMin)) * (bounded - fromMin)) + toMin
+}
+
+extension NSNotification.Name {
+    public static var SpeedGraderAttemptPickerChanged = NSNotification.Name("com.instructure.core.speedgrader-attempt-changed")
 }

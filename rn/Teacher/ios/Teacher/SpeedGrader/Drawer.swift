@@ -21,7 +21,7 @@ import Core
 
 enum DrawerState {
     case min, mid, max
-    static let transaction = Transaction.exclusive(.spring(response: 0.5, dampingFraction: 0.7))
+    static let transaction = Transaction.exclusive(.easeInOut)
 }
 
 // Place after the main content in a ZStack(alignment: .bottom)
@@ -63,28 +63,29 @@ struct Drawer<Content: View>: View {
                 RoundedRectangle(cornerRadius: 2)
                     .fill(Color.borderMedium)
                     .frame(width: 36, height: 4)
-                    .padding(EdgeInsets(top: 20, leading: 0, bottom: 8, trailing: 0))
+                    .padding(EdgeInsets(top: 24, leading: 0, bottom: 8, trailing: 0))
                 Spacer()
             } })
-                .padding(.top, -16)
-                .highPriorityGesture(DragGesture(coordinateSpace: .global)
-                    .onChanged { value in translation = -value.translation.height }
-                    .onEnded { value in withTransaction(DrawerState.transaction) {
-                        let y = height - value.predictedEndTranslation.height - minHeight
-                        let dy = maxHeight - minHeight
-                        state = (y < dy * 0.25) ? .min : (y < dy * 0.75) ? .mid : .max
-                        translation = 0
-                    } }
-                )
-                .accessibility(identifier: "SpeedGrader.drawerGripper")
-                .accessibility(label: buttonA11yText)
+            .padding(.top, -16)
+            .highPriorityGesture(DragGesture(coordinateSpace: .global)
+                .onChanged { value in translation = -value.translation.height }
+                .onEnded { value in withTransaction(DrawerState.transaction) {
+                    let y = height - value.predictedEndTranslation.height - minHeight
+                    let dy = maxHeight - minHeight
+                    state = (y < dy * 0.25) ? .min : (y < dy * 0.75) ? .mid : .max
+                    translation = 0
+                } }
+            )
+            .accessibility(identifier: "SpeedGrader.drawerGripper")
+            .accessibility(label: buttonA11yText)
+            Spacer(minLength: 4)
             content
         }
-            .frame(maxWidth: 800, maxHeight: max(minHeight, min(maxHeight, height + translation)))
-            .background(DrawerBackground()
-                .fill(Color.backgroundLightest)
-                .shadow(color: Color.black.opacity(0.3), radius: 3, x: 0, y: 0)
-            )
+        .frame(maxWidth: 800, maxHeight: max(minHeight, min(maxHeight, height + translation)))
+        .background(DrawerBackground()
+            .fill(Color.backgroundLightest)
+            .shadow(color: Color.black.opacity(0.3), radius: 3, x: 0, y: 0)
+        )
     }
 
     func buttonAction() { withTransaction(DrawerState.transaction) {

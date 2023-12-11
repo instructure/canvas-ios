@@ -26,6 +26,7 @@ public class CreateTextComment {
     let isGroup: Bool
     var placeholderID: String?
     let text: String
+    let attempt: Int?
     let userID: String
     var task: APITask?
 
@@ -36,12 +37,14 @@ public class CreateTextComment {
         assignmentID: String,
         userID: String,
         isGroup: Bool,
-        text: String
+        text: String,
+        attempt: Int?
     ) {
         self.assignmentID = assignmentID
         self.courseID = courseID
         self.isGroup = isGroup
         self.text = text
+        self.attempt = attempt
         self.userID = userID
     }
 
@@ -68,6 +71,9 @@ public class CreateTextComment {
             placeholder.createdAt = Date()
             placeholder.id = "placeholder-\(CreateTextComment.placeholderSuffix)"
             placeholder.userID = self.userID
+            if let attempt = self.attempt {
+                placeholder.attemptFromAPI = NSNumber(value: attempt)
+            }
             do {
                 try client.save()
                 self.placeholderID = placeholder.id
@@ -80,7 +86,7 @@ public class CreateTextComment {
     }
 
     func putComment() {
-        let body = PutSubmissionGradeRequest.Body(comment: .init(text: text, forGroup: isGroup))
+        let body = PutSubmissionGradeRequest.Body(comment: .init(text: text, forGroup: isGroup, attempt: attempt))
         task = env.api.makeRequest(PutSubmissionGradeRequest(courseID: courseID, assignmentID: assignmentID, userID: userID, body: body)) { data, _, error in
             self.task = nil
             guard error == nil, let submission = data, let comment = submission.submission_comments?.last else {

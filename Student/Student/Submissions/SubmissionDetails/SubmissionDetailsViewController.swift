@@ -44,8 +44,8 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
     @IBOutlet weak var drawer: Drawer?
     @IBOutlet weak var emptyView: SubmissionDetailsEmptyView?
     @IBOutlet weak var lockedEmptyView: SubmissionDetailsLockedEmptyView?
+    @IBOutlet weak var attemptLabel: UILabel!
     @IBOutlet weak var pickerButton: DynamicButton?
-    @IBOutlet weak var pickerButtonArrow: IconView?
     @IBOutlet weak var pickerButtonDivider: DividerView?
     @IBOutlet weak var picker: UIPickerView?
 
@@ -68,9 +68,12 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
         picker?.dataSource = self
         picker?.delegate = self
         picker?.backgroundColor = .backgroundLightest
-        pickerButton?.setTitleColor(.textDark, for: .disabled)
+        pickerButton?.textColorName = "textDark"
+        pickerButton?.isEnabled = false
+        attemptLabel.isEnabled = false
+        attemptLabel.font = .scaledNamedFont(.regular14)
+        attemptLabel.textColor = .textDark
 
-        pickerButtonArrow?.isHidden = true
         pickerButtonDivider?.isHidden = true
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -103,18 +106,56 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
         emptyView?.dueText = assignment.assignmentDueByText
         emptyView?.submitButtonTitle = title
         pickerButton?.isHidden = !isSubmitted
-        if let submittedAt = submission?.submittedAt {
-            pickerButton?.setTitle(DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short), for: .normal)
-        }
-        pickerButton?.isEnabled = presenter.pickerSubmissions.count > 1
-        pickerButtonArrow?.isHidden = !isSubmitted || presenter.pickerSubmissions.count <= 1
+        attemptLabel?.isHidden = !isSubmitted
         pickerButtonDivider?.isHidden = !isSubmitted
+        if let submittedAt = submission?.submittedAt, let attempt = submission?.attempt {
+            let title = DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short)
+            updateAttemptPickerButton(isActive: presenter.pickerSubmissions.count > 1, title: title)
+            attemptLabel.isEnabled = presenter.pickerSubmissions.count > 1
+            let format = NSLocalizedString("Attempt %d", bundle: .core, comment: "")
+            attemptLabel?.text = String.localizedStringWithFormat(format, attempt)
+        }
         if presenter.pickerSubmissions.count <= 1 || assignment.isExternalToolAssignment {
             picker?.isHidden = true
         }
 
         lockedEmptyView?.isHidden = !isLocked
         lockedEmptyView?.headerLabel.text = presenter.lockedEmptyViewHeader()
+    }
+
+    private func updateAttemptPickerButton(isActive: Bool, title: String) {
+        pickerButton?.isEnabled = isActive
+        pickerButton?.setTitle(title, for: .normal)
+
+        var buttonConfig = UIButton.Configuration.plain()
+        if isActive {
+            if picker?.isHidden == true {
+                buttonConfig.image = .arrowOpenDownSolid
+                    .scaleTo(.init(width: 14, height: 14))
+                    .withRenderingMode(.alwaysTemplate)
+            } else {
+                buttonConfig.image = .arrowOpenUpSolid
+                    .scaleTo(.init(width: 14, height: 14))
+                    .withRenderingMode(.alwaysTemplate)
+            }
+            buttonConfig.imagePlacement = .trailing
+            buttonConfig.imagePadding = 6
+        }
+
+        buttonConfig.contentInsets = {
+            var result = buttonConfig.contentInsets
+            result.trailing = 0
+            return result
+        }()
+        if #available(iOS 16.0, *) {
+            buttonConfig.indicator = .none
+        }
+        buttonConfig.titleTextAttributesTransformer = .init { attributes in
+            var result = attributes
+            result.font = UIFont.scaledNamedFont(.regular14)
+            return result
+        }
+        pickerButton?.configuration = buttonConfig
     }
 
     func reloadNavBar() {
@@ -163,13 +204,13 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
     @IBAction func pickerButtonTapped(_ sender: Any) {
         picker?.isHidden = picker?.isHidden == false
         if picker?.isHidden == true {
-            pickerButton?.tintColor = .textDark
-            pickerButtonArrow?.tintColor = .textDark
-            pickerButtonArrow?.image = .miniArrowDownSolid
+            pickerButton?.configuration?.image = .arrowOpenDownSolid
+                .scaleTo(.init(width: 14, height: 14))
+                .withRenderingMode(.alwaysTemplate)
         } else {
-            pickerButton?.tintColor = Brand.shared.buttonPrimaryBackground
-            pickerButtonArrow?.tintColor = Brand.shared.buttonPrimaryBackground
-            pickerButtonArrow?.image = .miniArrowUpSolid
+            pickerButton?.configuration?.image = .arrowOpenUpSolid
+                .scaleTo(.init(width: 14, height: 14))
+                .withRenderingMode(.alwaysTemplate)
         }
     }
 }
@@ -193,7 +234,7 @@ extension SubmissionDetailsViewController: UIPickerViewDataSource, UIPickerViewD
         }
 
         let label = UILabel()
-        label.textColor = .textDarkest
+        label.textColor = .textDark
         label.text = text
         label.font = .scaledNamedFont(.regular23)
         label.textAlignment = .center

@@ -70,7 +70,7 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
         addCommentTextView.font(.scaledNamedFont(.regular16), lineHeight: .body)
         addCommentTextView.adjustsFontForContentSizeCategory = true
         addCommentTextView.textColor = .textDarkest
-        addCommentView.backgroundColor = .backgroundLight
+        addCommentView.backgroundColor = .backgroundLightest
         emptyContainer.isHidden = true
         emptyLabel.text = NSLocalizedString("Have questions about your assignment?\nMessage your instructor.", bundle: .student, comment: "")
         emptyImageView.image = UIImage(named: Panda.NoComments.name, in: .core, compatibleWith: nil)
@@ -201,7 +201,7 @@ extension SubmissionCommentsViewController: UIImagePickerControllerDelegate, UIN
 extension SubmissionCommentsViewController: SubmissionCommentsViewProtocol {
     func reload() {
         emptyContainer.isHidden = presenter?.comments.isEmpty == false
-        guard let changes = presenter?.comments.changes, changes.count == 1 else {
+        guard let changes = presenter?.commentsStore.changes, changes.count == 1 else {
             tableView.reloadData()
             return
         }

@@ -22,6 +22,8 @@ import CoreData
 final public class SubmissionComment: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var assignmentID: String
+    /// If `assignments_2_student` feature flag is enabled, comments are segmented based on which attempt they belong to. 
+    @NSManaged public var attemptFromAPI: NSNumber?
     @NSManaged public var authorAvatarURL: URL?
     @NSManaged public var authorID: String?
     @NSManaged public var authorName: String
@@ -36,6 +38,15 @@ final public class SubmissionComment: NSManagedObject {
     @NSManaged public var mediaURL: URL?
     @NSManaged public var userID: String
     @NSManaged public var attachments: Set<File>?
+
+    /// If set, this comment represents an actual submission attempt
+    ///
+    /// In the case of these syntesized comments, the id is `"submission-[submissionID]-[attempt]"`
+    public var attempt: Int? {
+        let parts = id.split(separator: "-", maxSplits: 3, omittingEmptySubsequences: false)
+        guard parts.count == 3 else { return nil }
+        return Int(parts[2])
+    }
 
     public var mediaLocalOrRemoteURL: URL? {
         if let url = mediaLocalURL, FileManager.default.fileExists(atPath: url.path) {
@@ -54,20 +65,14 @@ final public class SubmissionComment: NSManagedObject {
         return DateFormatter.localizedString(from: createdAt, dateStyle: .long, timeStyle: .short)
     }
 
-    /// If set, this comment represents an actual submission attempt
-    ///
-    /// In the case of these syntesized comments, the id is `"submission-[submissionID]-[attempt]"`
-    public var attempt: Int? {
-        let parts = id.split(separator: "-", maxSplits: 3, omittingEmptySubsequences: false)
-        guard parts.count == 3 else { return nil }
-        return Int(parts[2])
-    }
-
     @discardableResult
     static public func save(_ item: APISubmissionComment, for submission: APISubmission, replacing id: String? = nil, in client: NSManagedObjectContext) -> SubmissionComment {
         let model: SubmissionComment = client.first(where: #keyPath(SubmissionComment.id), equals: id ?? item.id) ?? client.insert()
         model.id = item.id
         model.assignmentID = submission.assignment_id.value
+        if let attempt = item.attempt {
+            model.attemptFromAPI = NSNumber(value: attempt)
+        }
         model.authorAvatarURL = item.author.avatar_image_url?.rawValue
         model.authorID = item.author_id?.value
         model.authorName = item.author.display_name ?? item.author_name

@@ -99,6 +99,8 @@
 		B1992AAB2264D51200396A1F /* RoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1992AAA2264D51200396A1F /* RoutesTests.swift */; };
 		B1A5CDE62395836600BEA196 /* CanvasCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 497CA7321F82ACF400501613 /* CanvasCore.framework */; };
 		B1FF02D2240435B0004B7B1C /* KeychainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FF02D1240435B0004B7B1C /* KeychainTests.swift */; };
+		B417C2E62B1F169000CD6FA4 /* SubmissionCommentListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B417C2E52B1F169000CD6FA4 /* SubmissionCommentListViewModelTests.swift */; };
+		B4707B052B1DDF7900F67CA8 /* SubmissionCommentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4707B042B1DDF7900F67CA8 /* SubmissionCommentListViewModel.swift */; };
 		B49725D6290C06220067B91E /* Heap in Frameworks */ = {isa = PBXBuildFile; productRef = B49725D5290C06220067B91E /* Heap */; };
 		CF13E54C299D090500F57F69 /* QuizSubmissionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF13E54B299D090500F57F69 /* QuizSubmissionListViewModel.swift */; };
 		CF13E550299D0E0B00F57F69 /* QuizSubmissionListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF13E54F299D0E0B00F57F69 /* QuizSubmissionListInteractor.swift */; };
@@ -311,6 +313,8 @@
 		B15CA29C221F16C90014FB02 /* BundleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtensions.swift; sourceTree = "<group>"; };
 		B1992AAA2264D51200396A1F /* RoutesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTests.swift; sourceTree = "<group>"; };
 		B1FF02D1240435B0004B7B1C /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
+		B417C2E52B1F169000CD6FA4 /* SubmissionCommentListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentListViewModelTests.swift; sourceTree = "<group>"; };
+		B4707B042B1DDF7900F67CA8 /* SubmissionCommentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentListViewModel.swift; sourceTree = "<group>"; };
 		CF13E54B299D090500F57F69 /* QuizSubmissionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListViewModel.swift; sourceTree = "<group>"; };
 		CF13E54F299D0E0B00F57F69 /* QuizSubmissionListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListInteractor.swift; sourceTree = "<group>"; };
 		CF13E551299D0EE100F57F69 /* QuizSubmissionListInteractorLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionListInteractorLive.swift; sourceTree = "<group>"; };
@@ -499,6 +503,7 @@
 				7D7126BB25366DAB000DEDE4 /* SubmissionViewer.swift */,
 				CFD96BA62719A44800A38E66 /* StudentAnnotationSubmissionViewerViewModel.swift */,
 				7DCA320B2541D38F00458651 /* URLSubmissionViewer.swift */,
+				B4707B042B1DDF7900F67CA8 /* SubmissionCommentListViewModel.swift */,
 			);
 			path = SpeedGrader;
 			sourceTree = "<group>";
@@ -511,6 +516,7 @@
 				CFD96BA82719A60600A38E66 /* StudentAnnotationSubmissionViewerViewModelTests.swift */,
 				CF56B71425F68CD3000DD32F /* SubmissionHeaderTests.swift */,
 				EB35BC5327BA4DF500166F0D /* SubmissionCommentLibraryViewModelTests.swift */,
+				B417C2E52B1F169000CD6FA4 /* SubmissionCommentListViewModelTests.swift */,
 			);
 			path = SpeedGrader;
 			sourceTree = "<group>";
@@ -1482,6 +1488,7 @@
 				CF13E557299D1A1100F57F69 /* QuizSubmissionListItem.swift in Sources */,
 				7D64A95E23620A27004EAEDF /* AttendanceViewController.swift in Sources */,
 				D91C051F29AE107B0032BFB1 /* QuizSubmissionListItemViewModel.swift in Sources */,
+				B4707B052B1DDF7900F67CA8 /* SubmissionCommentListViewModel.swift in Sources */,
 				7D264DC72537A6E1007CDD90 /* SimilarityScore.swift in Sources */,
 				D9624A5229B0E90800F5303F /* QuizSubmissionListFilter.swift in Sources */,
 				D9624A5029AF94D000F5303F /* QuizSubmissionListInteractorPreview.swift in Sources */,
@@ -1541,6 +1548,7 @@
 				D900B41A29CA0E230042852D /* QuizSubmissionListItemViewModelTests.swift in Sources */,
 				7D3DC0CB252432ED00B0EBC1 /* SubmissionListViewControllerTests.swift in Sources */,
 				B1FF02D2240435B0004B7B1C /* KeychainTests.swift in Sources */,
+				B417C2E62B1F169000CD6FA4 /* SubmissionCommentListViewModelTests.swift in Sources */,
 				7D64A9872368C6C0004EAEDF /* AttendanceViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

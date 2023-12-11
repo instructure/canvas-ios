@@ -1006,6 +1006,7 @@
     </entity>
     <entity name="SubmissionComment" representedClassName="Core.SubmissionComment" syncable="YES">
         <attribute name="assignmentID" attributeType="String"/>
+        <attribute name="attemptFromAPI" optional="YES" attributeType="Integer 16" usesScalarValueType="YES"/>
         <attribute name="authorAvatarURL" optional="YES" attributeType="URI"/>
         <attribute name="authorID" optional="YES" attributeType="String"/>
         <attribute name="authorName" attributeType="String"/>
