@@ -168,7 +168,7 @@ public struct InboxCoursePickerView: View {
 
     private func groupRow(_ group: Group) -> some View {
         let groupName = group.name
-        let accessibilityLabel = isSelected(group) ? Text("Selected: \(groupName)", bundle:. core) : Text(groupName)
+        let accessibilityLabel = isSelected(group) ? Text("Selected: \(groupName)", bundle: .core) : Text(groupName)
         return VStack(spacing: 0) {
             Button {
                 viewModel.onSelect(selected: group)
