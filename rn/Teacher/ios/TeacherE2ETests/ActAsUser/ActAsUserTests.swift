@@ -65,8 +65,9 @@ class ActAsUserTests: E2ETestCase {
 
         endActAsUserButton.hit()
         ActAsUserHelper.okAlertButton.hit()
-        app.find(label: "No Courses", type: .staticText).waitUntil(.visible)
-        XCTAssertFalse(endActAsUserButton.waitUntil(.vanish).isVisible)
+        let noCoursesLabel = app.find(label: "No Courses", type: .staticText).waitUntil(.visible)
+        XCTAssertTrue(endActAsUserButton.waitUntil(.vanish).isVanished)
+        XCTAssertTrue(noCoursesLabel.isVisible)
 
         profileButton.hit()
         userNameLabel.waitUntil(.visible)

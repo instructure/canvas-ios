@@ -61,9 +61,8 @@ class FilesTests: E2ETestCase {
 
         onMyButton.hit()
         let onMyLabel = SafariAppHelper.Share.onMyLabel.waitUntil(.visible)
-        XCTAssertTrue(onMyLabel.isVisible)
-
         let saveButton = SafariAppHelper.Share.saveButton.waitUntil(.visible)
+        XCTAssertTrue(onMyLabel.isVisible)
         XCTAssertTrue(saveButton.isVisible)
 
         saveButton.hit()
@@ -84,7 +83,6 @@ class FilesTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Files, create test folder
         logInDSUser(teacher)
-
         let profileButton = Dashboard.profileButton.waitUntil(.visible)
         XCTAssertTrue(profileButton.isVisible)
 
@@ -94,9 +92,8 @@ class FilesTests: E2ETestCase {
 
         filesButton.hit()
         let noFilesLabel = Helper.noFilesLabel.waitUntil(.visible)
-        XCTAssertTrue(noFilesLabel.isVisible)
-
         let addButton = FileList.addButton.waitUntil(.visible)
+        XCTAssertTrue(noFilesLabel.isVisible)
         XCTAssertTrue(addButton.isVisible)
 
         addButton.hit()
@@ -190,6 +187,8 @@ class FilesTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Files, create test folder
         logInDSUser(teacher)
+        let profileButton = Dashboard.profileButton.waitUntil(.visible)
+        XCTAssertTrue(profileButton.isVisible)
 
         Helper.navigateToFiles()
         let folderIsCreated = FileList.createFolder(name: testFolderName, shouldOpen: true)

@@ -31,6 +31,9 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(teacher)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+
         Helper.navigateToSettings()
         let navBar = Helper.navBar.waitUntil(.visible)
         let doneButton = Helper.doneButton.waitUntil(.visible)
@@ -39,21 +42,16 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Check menu items of Settings
         let landingPage = Helper.menuItem(item: .landingPage).waitUntil(.visible)
-        XCTAssertTrue(landingPage.isVisible)
-
         let appearance = Helper.menuItem(item: .appearance).waitUntil(.visible)
-        XCTAssertTrue(appearance.isVisible)
-
         let about = Helper.menuItem(item: .about).waitUntil(.visible)
-        XCTAssertTrue(about.isVisible)
-
         let privacyPolicy = Helper.menuItem(item: .privacyPolicy).waitUntil(.visible)
-        XCTAssertTrue(privacyPolicy.isVisible)
-
         let termsOfUse = Helper.menuItem(item: .termsOfUse).waitUntil(.visible)
-        XCTAssertTrue(termsOfUse.isVisible)
-
         let canvasOnGitHub = Helper.menuItem(item: .canvasOnGitHub).waitUntil(.visible)
+        XCTAssertTrue(landingPage.isVisible)
+        XCTAssertTrue(appearance.isVisible)
+        XCTAssertTrue(about.isVisible)
+        XCTAssertTrue(privacyPolicy.isVisible)
+        XCTAssertTrue(termsOfUse.isVisible)
         XCTAssertTrue(canvasOnGitHub.isVisible)
     }
 
@@ -65,6 +63,9 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(teacher)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+
         Helper.navigateToSettings()
         let navBar = Helper.navBar.waitUntil(.visible)
         let doneButton = Helper.doneButton.waitUntil(.visible)
@@ -107,6 +108,9 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(teacher)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+
         Helper.navigateToSettings()
         let navBar = Helper.navBar.waitUntil(.visible)
         let doneButton = Helper.doneButton.waitUntil(.visible)
@@ -143,6 +147,9 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(teacher)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+
         Helper.navigateToSettings()
         let navBar = Helper.navBar.waitUntil(.visible)
         let doneButton = Helper.doneButton.waitUntil(.visible)
@@ -154,27 +161,21 @@ class SettingsTests: E2ETestCase {
         XCTAssertTrue(about.isVisible)
 
         about.hit()
-
         let aboutView = AboutHelper.aboutView.waitUntil(.visible)
-        XCTAssertTrue(aboutView.isVisible)
-
         let appLabel = AboutHelper.appLabel.waitUntil(.visible)
-        XCTAssertTrue(appLabel.isVisible)
-        XCTAssertEqual(appLabel.label, "Canvas Teacher")
-
         let domainLabel = AboutHelper.domainLabel.waitUntil(.visible)
-        XCTAssertTrue(domainLabel.isVisible)
-        XCTAssertEqual(domainLabel.label, "https://\(user.host)")
-
         let loginIdLabel = AboutHelper.loginIdLabel.waitUntil(.visible)
-        XCTAssertTrue(loginIdLabel.isVisible)
-        XCTAssertEqual(loginIdLabel.label, teacher.id)
-
         let emailLabel = AboutHelper.emailLabel.waitUntil(.visible)
-        XCTAssertTrue(emailLabel.isVisible)
-        XCTAssertEqual(emailLabel.label, "-")
-
         let versionLabel = AboutHelper.versionLabel.waitUntil(.visible)
+        XCTAssertTrue(aboutView.isVisible)
+        XCTAssertTrue(appLabel.isVisible)
+        XCTAssertTrue(appLabel.hasLabel(label: "Canvas Teacher"))
+        XCTAssertTrue(domainLabel.isVisible)
+        XCTAssertTrue(domainLabel.hasLabel(label: "https://\(user.host)"))
+        XCTAssertTrue(loginIdLabel.isVisible)
+        XCTAssertTrue(loginIdLabel.hasLabel(label: teacher.id))
+        XCTAssertTrue(emailLabel.isVisible)
+        XCTAssertTrue(emailLabel.hasLabel(label: "-"))
         XCTAssertTrue(versionLabel.isVisible)
     }
 
@@ -186,6 +187,9 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(teacher)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+
         Helper.navigateToSettings()
         let navBar = Helper.navBar.waitUntil(.visible)
         let doneButton = Helper.doneButton.waitUntil(.visible)
@@ -216,6 +220,9 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(teacher)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+
         Helper.navigateToSettings()
         let navBar = Helper.navBar.waitUntil(.visible)
         let doneButton = Helper.doneButton.waitUntil(.visible)
@@ -239,6 +246,9 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Settings
         logInDSUser(teacher)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+
         Helper.navigateToSettings()
         let navBar = Helper.navBar.waitUntil(.visible)
         let doneButton = Helper.doneButton.waitUntil(.visible)

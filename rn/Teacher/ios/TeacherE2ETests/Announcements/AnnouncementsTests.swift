@@ -33,27 +33,29 @@ class AnnouncementsTests: E2ETestCase {
         // MARK: Create some announcements and get the user logged in
         let announcements = Helper.createAnnouncements(course: course, count: 2)
         logInDSUser(teacher)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Navigate to Announcement page and check the order of the announcements
         AnnouncementsHelper.navigateToAnnouncementsPage(course: course)
 
         let firstAnnouncement = AnnouncementsHelper.cell(index: 0).waitUntil(.visible)
         XCTAssertTrue(firstAnnouncement.isVisible)
-        XCTAssertTrue(firstAnnouncement.label.contains(announcements[1].title))
+        XCTAssertTrue(firstAnnouncement.hasLabel(label: announcements[1].title, strict: false))
 
         let secondAnnouncement = AnnouncementsHelper.cell(index: 1).waitUntil(.visible)
         XCTAssertTrue(secondAnnouncement.isVisible)
-        XCTAssertTrue(secondAnnouncement.label.contains(announcements[0].title))
+        XCTAssertTrue(secondAnnouncement.hasLabel(label: announcements[0].title, strict: false))
 
         // MARK: Check title and message
         firstAnnouncement.hit()
         let announcementTitle = DetailsHelper.title.waitUntil(.visible)
         XCTAssertTrue(announcementTitle.isVisible)
-        XCTAssertEqual(announcementTitle.label, announcements[1].title)
+        XCTAssertTrue(announcementTitle.hasLabel(label: announcements[1].title))
 
         let announcementMessage = DetailsHelper.message.waitUntil(.visible)
         XCTAssertTrue(announcementMessage.isVisible)
-        XCTAssertEqual(announcementMessage.label, announcements[1].message)
+        XCTAssertTrue(announcementMessage.hasLabel(label: announcements[1].message))
     }
 
     func testGlobalAnnouncement() {
@@ -69,17 +71,16 @@ class AnnouncementsTests: E2ETestCase {
         // MARK: Check visibility of the course and the announcement notification title
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCard.isVisible)
+
         let announcementTitle = Helper.notificationTitle(announcement: globalAnnouncement)
         announcementTitle.actionUntilElementCondition(action: .pullToRefresh, condition: .visible, timeout: 60, gracePeriod: 3)
         XCTAssertTrue(announcementTitle.isVisible)
 
         // MARK: Check visibility toggle and dismiss button of the announcement notificaiton
-        let toggleButton = AccountNotifications.toggleButton(notification: globalAnnouncement)
-            .waitUntil(.visible)
+        let toggleButton = AccountNotifications.toggleButton(notification: globalAnnouncement).waitUntil(.visible)
+        var dismissButton = AccountNotifications.dismissButton(notification: globalAnnouncement).waitUntil(.vanish)
         XCTAssertTrue(toggleButton.isVisible)
-        var dismissButton = AccountNotifications.dismissButton(notification: globalAnnouncement)
-            .waitUntil(.vanish)
-        XCTAssertFalse(dismissButton.isVisible)
+        XCTAssertTrue(dismissButton.isVanished)
 
         // MARK: Tap the toggle button and check visibility of dismiss button again
         toggleButton.hit()
@@ -89,12 +90,12 @@ class AnnouncementsTests: E2ETestCase {
         // MARK: Check the message of the announcement
         let announcementMessage = Helper.notificationMessage(announcement: globalAnnouncement).waitUntil(.visible)
         XCTAssertTrue(announcementMessage.isVisible)
-        XCTAssertEqual(announcementMessage.label, globalAnnouncement.message)
+        XCTAssertTrue(announcementMessage.hasLabel(label: globalAnnouncement.message))
 
         // MARK: Tap dismiss button and check the visibility
         dismissButton.hit()
         dismissButton = dismissButton.waitUntil(.vanish)
-        XCTAssertFalse(dismissButton.isVisible)
+        XCTAssertTrue(dismissButton.isVanished)
     }
 
     func testCreateNewAnnouncement() {
@@ -107,8 +108,10 @@ class AnnouncementsTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Announcements
         logInDSUser(teacher)
-        AnnouncementsHelper.navigateToAnnouncementsPage(course: course)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
 
+        AnnouncementsHelper.navigateToAnnouncementsPage(course: course)
         let createButton = AnnouncementsHelper.createAnnouncementButton.waitUntil(.visible)
         XCTAssertTrue(createButton.isVisible)
 
