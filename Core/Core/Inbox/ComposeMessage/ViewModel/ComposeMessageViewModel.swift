@@ -37,7 +37,7 @@ class ComposeMessageViewModel: ObservableObject {
         conversation != nil
     }
     public var courseSelectorAccessibilityLabel: String {
-        selectedContext == nil ? NSLocalizedString("Select course", comment: "") : NSLocalizedString("Selected course: \(selectedContext!.name)", comment: "")
+        selectedContext == nil ? String(localized: "Select course", bundle: .core) : String(localized: "Selected course: \(selectedContext!.name)", bundle: .core)
     }
 
     // MARK: - Inputs

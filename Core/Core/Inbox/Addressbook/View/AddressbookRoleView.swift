@@ -53,7 +53,7 @@ struct AddressbookRoleView: View {
         }
         .background(Color.backgroundLightest)
         .navigationTitle(viewModel.title)
-        .navigationBarItems(leading: doneButton)
+        .navigationBarItems(trailing: doneButton)
     }
 
     private var loadingIndicator: some View {

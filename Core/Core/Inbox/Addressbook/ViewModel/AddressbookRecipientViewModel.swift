@@ -36,6 +36,7 @@ class AddressbookRecipientViewModel: ObservableObject {
 
     // MARK: - Inputs
     public let recipientDidTap = PassthroughSubject<Recipient, Never>()
+    public let doneButtonDidTap = PassthroughRelay<WeakViewController>()
 
     // MARK: - Input / Output
     @Published public var searchText = CurrentValueSubject<String, Never>("")
@@ -84,6 +85,12 @@ class AddressbookRecipientViewModel: ObservableObject {
         recipientDidTap
             .sink { recipient in
                 recipientDidSelect.accept(recipient)
+            }
+            .store(in: &subscriptions)
+
+        doneButtonDidTap
+            .sink { [router] viewController in
+                router.dismiss(viewController)
             }
             .store(in: &subscriptions)
     }

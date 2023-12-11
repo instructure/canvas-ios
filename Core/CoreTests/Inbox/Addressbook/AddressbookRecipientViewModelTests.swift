@@ -54,5 +54,8 @@ class AddressbookRecipientViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.recipients.count, 3)
         testee.searchText.value = "Recipient 1"
         XCTAssertEqual(testee.recipients.count, 1)
+        XCTAssertEqual(testee.recipients.first?.displayName, "Recipient 1")
+        XCTAssertEqual(testee.recipients.first?.ids, ["1"])
+        XCTAssertNil(testee.recipients.first?.avatarURL)
     }
 }

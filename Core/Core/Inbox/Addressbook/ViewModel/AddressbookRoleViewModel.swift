@@ -188,9 +188,9 @@ private extension SearchRecipient {
         case "ObserverEnrollment":
             return NSLocalizedString("Observers", comment: "")
         case "TaEnrollment":
-            return NSLocalizedString("Teaching assistants", comment: "")
+            return NSLocalizedString("Teaching Assistants", comment: "")
         case "DesignerEnrollment":
-            return NSLocalizedString("Course designers", comment: "")
+            return NSLocalizedString("Course Designers", comment: "")
         default:
             return NSLocalizedString("Others", comment: "")
         }

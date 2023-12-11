@@ -20,6 +20,7 @@ import SwiftUI
 
 public struct AddressbookRecipientView: View {
     @ObservedObject private var viewModel: AddressbookRecipientViewModel
+    @Environment(\.viewController) private var controller
 
     init(model: AddressbookRecipientViewModel) {
         self.viewModel = model
@@ -35,11 +36,22 @@ public struct AddressbookRecipientView: View {
         )
         .background(Color.backgroundLightest)
         .navigationTitle(viewModel.title)
+        .navigationBarItems(trailing: doneButton)
     }
 
     private var separator: some View {
         Color.borderMedium
             .frame(height: 0.5)
+    }
+
+    private var doneButton: some View {
+        Button {
+            viewModel.doneButtonDidTap.accept(controller)
+        } label: {
+            Text("Done", bundle: .core)
+                .font(.regular16)
+                .foregroundColor(.accentColor)
+        }
     }
 
     private var peopleView: some View {

@@ -48,9 +48,9 @@ class AddressbookRoleViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.roles.count, 5)
         XCTAssertEqual(testee.roleRecipients["Teachers"]?.first?.displayName, "Recipient 1")
         XCTAssertEqual(testee.roleRecipients["Students"]?.first?.displayName, "Recipient 2")
-        XCTAssertEqual(testee.roleRecipients["Course designers"]?.first?.displayName, "Recipient 4")
-        XCTAssertEqual(testee.roleRecipients["Teaching assistants"]?[0].displayName, "Recipient 4")
-        XCTAssertEqual(testee.roleRecipients["Teaching assistants"]?[1].displayName, "Recipient 5")
+        XCTAssertEqual(testee.roleRecipients["Course Designers"]?.first?.displayName, "Recipient 4")
+        XCTAssertEqual(testee.roleRecipients["Teaching Assistants"]?[0].displayName, "Recipient 4")
+        XCTAssertEqual(testee.roleRecipients["Teaching Assistants"]?[1].displayName, "Recipient 5")
     }
 
     func testListFiltering() {
