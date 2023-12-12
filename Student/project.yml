@@ -1,0 +1,124 @@
+---
+name: Student
+options:
+  groupSortPosition: top
+  bundleIdPrefix: com.instructure.icanvas
+  deploymentTarget:
+    iOS: 15.0
+  createIntermediateGroups: true
+settings:
+  CODE_SIGN_STYLE: Automatic
+  DEVELOPMENT_TEAM: B6333T4PXQ
+  # APPLICATION_EXTENSION_API_ONLY: true
+  CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
+  LOCALIZATION_PREFERS_STRING_CATALOGS: true
+  CURRENT_PROJECT_VERSION: 1.0.0
+  MARKETING_VERSION: 1.0.0
+  platform: iOS
+packages:
+  Heap:
+    url: https://github.com/heap/heap-ios-sdk.git
+    exactVersion: 9.0.1
+  Firebase:
+    url: https://github.com/firebase/firebase-ios-sdk.git
+    exactVersion: 8.12.1
+  PSPDFKit:
+    url: https://github.com/PSPDFKit/PSPDFKit-SP
+    exactVersion: 13.0.1
+projectReferences:
+  CanvasCore:
+    path: ../CanvasCore/CanvasCore.xcodeproj
+  TestsFoundation:
+    path: ../TestsFoundation/TestsFoundation.xcodeproj
+  Core:
+    path: ../Core/Core.xcodeproj
+targets:
+  Student:    
+    type: application
+    platform: iOS
+    transitivelyLinkDependencies: false
+    settings:
+      APPLICATION_EXTENSION_API_ONLY: false
+      SWIFT_EMIT_LOC_STRINGS: true
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.instructure.icanvas
+        INFOPLIST_FILE: Student/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Student/Student.entitlements
+        TARGETED_DEVICE_FAMILY: 1
+    sources:
+      - path: Student
+    dependencies:
+      # - package: GoogleUtilities
+      # - package: Firebase
+      #   product: FirebaseCrashlytics
+      # - package: Firebase
+      #   product: FirebaseRemoteConfig
+      - package: PSPDFKit
+      - package: Heap
+      - target: CanvasCore/CanvasCore
+      - target: Core/Core
+    preBuildScripts:
+      - path: ../scripts/startPackager.sh
+        name: Start Packager
+      - path: ../scripts/swiftLint.sh
+        name: SwiftLint
+        basedOnDependencyAnalysis: false
+  SubmitAssignment:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: SubmitAssignment
+    settings:
+      APPLICATION_EXTENSION_API_ONLY: false
+      ENABLE_TESTABILITY: true
+    dependencies:
+      # - package: Firebase
+      - target: Core/Core
+  StudentUnitTests:    
+    type: bundle.unit-test
+    platform: iOS
+    settings:
+      APPLICATION_EXTENSION_API_ONLY: false
+      ENABLE_TESTABILITY: true
+      TEST_HOST: $(BUILT_PRODUCTS_DIR)/Student.app/Student
+    sources:
+      - path: StudentUnitTests
+    #dependencies:
+    #  - target: Core/Core
+    #  - target: TestsFoundation/TestsFoundation
+  StudentE2ETests:    
+    type: bundle.ui-testing
+    platform: iOS
+    settings:
+      APPLICATION_EXTENSION_API_ONLY: false
+      ENABLE_TESTABILITY: true
+      TEST_HOST: $(BUILT_PRODUCTS_DIR)/Student.app/Student
+    sources:
+      - path: StudentE2ETests
+    dependencies:
+      - target: Core/Core
+      - target: TestsFoundation/TestsFoundation
+  Widgets:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Widgets
+    settings:
+      APPLICATION_EXTENSION_API_ONLY: false
+      ENABLE_TESTABILITY: true
+    dependencies:
+      - target: Core/Core
+schemes:
+  Student:
+    build:
+      targets:
+        Student: all
+  # Student:
+  #   build:
+  #     targets:
+  #       Student: all
+    # test:
+    #   targets: [CoreTests, CoreTester]
+    #   testPlans:
+    #     - path: ../TestPlans/CoreTests.xctestplan
+    #       defaultPlan: true
