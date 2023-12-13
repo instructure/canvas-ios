@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2023-present  Instructure, Inc.
+// Copyright (C) 2022-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,19 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
+public struct APIDashboardCardPositions: Codable {
+    public typealias CourseCode = String
+    public typealias Position = Int
 
-public protocol DashboardCourseCardListInteractor {
-    // MARK: - Outputs
-
-    var state: CurrentValueSubject<StoreState, Never> { get }
-    var courseCardList: CurrentValueSubject<[DashboardCard], Never> { get }
-
-    // MARK: - Inputs
-
-    func refresh() -> Future<Void, Never>
-
-    // MARK: - Init
-
-    init(env: AppEnvironment, showOnlyTeacherEnrollment: Bool)
+    public let dashboard_positions: [CourseCode: Position]
 }

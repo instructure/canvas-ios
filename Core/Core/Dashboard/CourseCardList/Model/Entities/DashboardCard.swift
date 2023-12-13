@@ -39,6 +39,7 @@ public final class DashboardCard: NSManagedObject {
     @NSManaged public var subtitle: String
     @NSManaged public var term: String?
 
+    public var context: Context { Context(.course, id: id) }
     public var color: UIColor { contextColor?.color.ensureContrast(against: .backgroundLightest) ?? .ash }
 
     public var isTeacherEnrollment: Bool {

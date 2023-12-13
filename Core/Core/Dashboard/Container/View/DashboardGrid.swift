@@ -18,10 +18,10 @@
 
 import SwiftUI
 
-public struct DashboardGrid<Content: View>: View {
+public struct DashboardGrid<Content: View, ID: Hashable>: View {
     private struct Row {
         let id: String
-        let itemIndexes: [Int]
+        let items: [(index: Int, id: ID)]
     }
 
     private let itemCount: Int
@@ -29,28 +29,31 @@ public struct DashboardGrid<Content: View>: View {
     private let spacing: CGFloat
     private let columnCount: Int
     private let content: (Int) -> Content
+    private let idProvider: (Int) -> ID
 
     private var rows: [Row] {
         stride(from: 0, to: itemCount, by: columnCount).map {
             let itemIndexes = stride(from: $0, to: min($0 + columnCount, itemCount), by: 1).map { $0 }
-            return Row(id: "\($0 / columnCount)", itemIndexes: itemIndexes)
+            let items = itemIndexes.map { (index: $0, id: idProvider($0)) }
+            return Row(id: "\($0 / columnCount)", items: items)
         }
     }
 
-    public init(itemCount: Int, itemWidth: CGFloat, spacing: CGFloat, columnCount: Int, @ViewBuilder content: @escaping (Int) -> Content) {
+    public init(itemCount: Int, itemWidth: CGFloat, spacing: CGFloat, columnCount: Int, @ViewBuilder content: @escaping (Int) -> Content, idProvider: @escaping (Int) -> ID) {
         self.itemCount = itemCount
         self.itemWidth = itemWidth
         self.spacing = spacing
         self.columnCount = columnCount
         self.content = content
+        self.idProvider = idProvider
     }
 
     public var body: some View {
         VStack(alignment: .leading, spacing: spacing) {
             ForEach(rows, id: \.id) { row in
                 HStack(alignment: .top, spacing: spacing) {
-                    ForEach(row.itemIndexes, id: \.self) { itemIndex in
-                        content(itemIndex)
+                    ForEach(row.items, id: \.id) { item in
+                        content(item.index)
                             .frame(width: itemWidth)
                     }
                 }
@@ -63,7 +66,7 @@ public struct DashboardGrid<Content: View>: View {
 struct DashboardGridPreviews: PreviewProvider {
     static var previews: some View {
         let labels = [
-            "1", "2222 2 222222 222222 22 2 2 2222 22 2222 222 22222",
+            "height of this", "should equal to this 2222 2 222222 222222 22 2 2 2222 22 2222 222 \n22222",
             "3333 3 333 33 3333333 3333", "4",
             "5",
         ]
@@ -77,6 +80,8 @@ struct DashboardGridPreviews: PreviewProvider {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .border(Color.black, width: 1)
                     .multilineTextAlignment(.center)
+            } idProvider: { index in
+                index
             }
         }
     }

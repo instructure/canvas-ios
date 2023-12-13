@@ -39,6 +39,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
     @State private var isShowingKebabDialog = false
     @State var showGrade = AppEnvironment.shared.userDefaults?.showGradesOnDashboard == true
     @StateObject private var offlineSyncCardViewModel = DashboardOfflineSyncProgressCardAssembly.makeViewModel()
+    @State private var draggedCourseCardId: String?
 
     private var activeGroups: [Group] { viewModel.groups.filter { $0.isActive } }
     private var isGroupSectionActive: Bool { !activeGroups.isEmpty && shouldShowGroupList }
@@ -279,9 +280,24 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                     isAvailable: availabilityBinding
                 )
                 .frame(minHeight: layoutInfo.cardMinHeight)
+                .onDrag {
+                    // To pass the ID in the item field the app needs to export a custom type identifier via the
+                    // Info.plist file, an easy workaround is just to save it to a variable outside the card view
+                    draggedCourseCardId = card.id
+                    return NSItemProvider(item: nil, typeIdentifier: CourseCardDropToReorderDelegate.DropID)
+                }
+                .onDrop(of: [CourseCardDropToReorderDelegate.DropID],
+                        delegate: CourseCardDropToReorderDelegate(receiverCardId: card.id,
+                                                                  draggedCourseCardId: $draggedCourseCardId,
+                                                                  order: courseCardList.map { $0.id },
+                                                                  delegate: courseCardListViewModel))
+            }
+            idProvider: { cardIndex in
+                courseCardList[cardIndex].id
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.bottom, 2)
+            .animation(.default, value: courseCardListViewModel.courseCardList)
         case .empty:
             coursesHeader(width: size.width)
             InteractivePanda(scene: ConferencesPanda(), title: Text("No Courses", bundle: .core), subtitle: Text("It looks like you aren't enrolled in any courses.", bundle: .core))
