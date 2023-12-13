@@ -44,19 +44,19 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.instructure.icanvas
         INFOPLIST_FILE: Student/Info.plist
         CODE_SIGN_ENTITLEMENTS: Student/Student.entitlements
-        TARGETED_DEVICE_FAMILY: 1
+        TARGETED_DEVICE_FAMILY: 1,2
     sources:
       - path: Student
     dependencies:
       # - package: GoogleUtilities
-      # - package: Firebase
-      #   product: FirebaseCrashlytics
+
       # - package: Firebase
       #   product: FirebaseRemoteConfig
       - package: PSPDFKit
       - package: Heap
       - target: CanvasCore/CanvasCore
       - target: Core/Core
+      - target: SubmitAssignment
     preBuildScripts:
       - path: ../scripts/startPackager.sh
         name: Start Packager
@@ -66,13 +66,21 @@ targets:
   SubmitAssignment:
     type: app-extension
     platform: iOS
+    transitivelyLinkDependencies: true
     sources:
       - path: SubmitAssignment
     settings:
-      APPLICATION_EXTENSION_API_ONLY: false
+      APPLICATION_EXTENSION_API_ONLY: true
       ENABLE_TESTABILITY: true
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.instructure.icanvas.SubmitAssignment
+        INFOPLIST_FILE: SubmitAssignment/Info.plist
+        CODE_SIGN_ENTITLEMENTS: SubmitAssignment/SubmitAssignment.entitlements
+        TARGETED_DEVICE_FAMILY: 1,2
     dependencies:
       # - package: Firebase
+      - package: Firebase
+        product: FirebaseCrashlytics
       - target: Core/Core
   StudentUnitTests:    
     type: bundle.unit-test
@@ -104,7 +112,7 @@ targets:
     sources:
       - path: Widgets
     settings:
-      APPLICATION_EXTENSION_API_ONLY: false
+      APPLICATION_EXTENSION_API_ONLY: true
       ENABLE_TESTABILITY: true
     dependencies:
       - target: Core/Core
@@ -113,10 +121,10 @@ schemes:
     build:
       targets:
         Student: all
-  # Student:
-  #   build:
-  #     targets:
-  #       Student: all
+  SubmitAssignment:
+    build:
+      targets:
+        SubmitAssignment: all
     # test:
     #   targets: [CoreTests, CoreTester]
     #   testPlans:
