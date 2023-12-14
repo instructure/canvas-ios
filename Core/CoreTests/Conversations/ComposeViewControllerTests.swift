@@ -92,7 +92,9 @@ class ComposeViewControllerTests: CoreTestCase {
             context_code: controller.context.canvasContextID,
             media_comment_id: nil,
             media_comment_type: nil,
-            attachment_ids: [])
+            attachment_ids: [],
+            group_conversation: true
+        )
             ), value: [ APIConversation.make() ]
         )
         task.suspend()
@@ -112,7 +114,8 @@ class ComposeViewControllerTests: CoreTestCase {
             context_code: controller.context.canvasContextID,
             media_comment_id: nil,
             media_comment_type: nil,
-            attachment_ids: []
+            attachment_ids: [],
+            group_conversation: true
         )), error: NSError.instructureError("Error")
         )
         let sendButton = controller.sendButton

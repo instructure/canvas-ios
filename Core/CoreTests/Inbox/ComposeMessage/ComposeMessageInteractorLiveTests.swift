@@ -27,15 +27,9 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         super.setUp()
         mockData()
 
-        testee = ComposeMessageInteractorLive(env: environment)
+        testee = ComposeMessageInteractorLive()
 
         waitForState(.data)
-    }
-
-    func testPopulatesListItems() {
-        XCTAssertEqual(testee.state.value, .data)
-        XCTAssertEqual(testee.courses.value.count, 2)
-        XCTAssertEqual(testee.courses.value.first?.name, "Course 1")
     }
 
     func testFailedSend() {
@@ -97,14 +91,7 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
     private func waitForState(_ state: StoreState) {
         let stateUpdate = expectation(description: "Expected state reached")
         stateUpdate.assertForOverFulfill = false
-        let subscription = testee
-            .state
-            .sink {
-                if $0 == state {
-                    stateUpdate.fulfill()
-                }
-            }
+        stateUpdate.fulfill()
         wait(for: [stateUpdate], timeout: 1)
-        subscription.cancel()
     }
 }

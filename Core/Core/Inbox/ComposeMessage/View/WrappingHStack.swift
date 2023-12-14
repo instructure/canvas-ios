@@ -33,7 +33,7 @@ struct WrappingHStack<Model, V>: View where Model: Hashable, V: View {
                 self.generateContent(in: geometry)
             }
         }
-        .frame(height: totalHeight)// << variant for ScrollView/List
+        .frame(height: totalHeight)
     }
 
     private func generateContent(in geometry: GeometryProxy) -> some View {
@@ -87,11 +87,8 @@ struct WrappingHStack_Previews: PreviewProvider {
 
     static var previews: some View {
         WrappingHStack(models: [
-            .make(name: "Alice", in: context),
-            .make(name: "Bob", in: context),
-            .make(name: "AAAAAAAAA BBBBBBBBBBB CCCCCCCCCC DDDDDDDDDD EEEEEE", in: context),
-            .make(name: "Alice 2", in: context),
-            .make(name: "Bob 2", in: context),
+            .init(id: "1", name: "Alice", avatarURL: nil),
+            .init(id: "2", name: "Bob", avatarURL: nil),
         ]) { recipient in
             RecipientPillView(recipient: recipient, removeDidTap: { _ in  })
         }

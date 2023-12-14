@@ -119,6 +119,10 @@ public struct ComposeMessageView: View {
         }
     }
 
+    private var courseSelectorAccessibilityLabel: Text {
+        model.selectedContext == nil ? Text("Select course", bundle: .core) : Text("Selected course: \(model.selectedContext!.name)", bundle: .core)
+    }
+
     private var courseView: some View {
         Button {
             model.courseSelectButtonDidTap(viewController: controller)
@@ -134,11 +138,13 @@ public struct ComposeMessageView: View {
                         .foregroundColor(.textDarkest)
                 }
                 Spacer()
-                DisclosureIndicator()
+                if !model.isReply { DisclosureIndicator() }
             }
         }
+        .disabled(model.isReply)
+        .opacity(model.isReply ? 0.6 : 1)
         .padding(.horizontal, 16).padding(.vertical, 12)
-        .accessibility(label: Text("Select course", bundle: .core))
+        .accessibilityLabel(courseSelectorAccessibilityLabel)
     }
 
     private var toView: some View {
@@ -149,6 +155,7 @@ public struct ComposeMessageView: View {
                 .onTapGesture {
                     model.addRecipientButtonDidTap(viewController: controller)
                 }
+                .padding(.vertical, 12)
                 .accessibilitySortPriority(2)
             if !model.recipients.isEmpty {
                 recipientsView
@@ -156,16 +163,17 @@ public struct ComposeMessageView: View {
             }
             Spacer()
             addRecipientButton
+                .padding(.vertical, 12)
                 .accessibilitySortPriority(1)
         }
-        .padding(.horizontal, 16).padding(.vertical, 12)
+        .padding(.horizontal, 16)
         .accessibilityElement(children: .contain)
     }
 
     private var recipientsView: some View {
         WrappingHStack(models: model.recipients) { recipient in
             RecipientPillView(recipient: recipient, removeDidTap: { recipient in
-                model.removeRecipientButtonDidTap(recipient: recipient)
+                model.recipientDidRemove.accept(recipient)
             })
         }
     }
@@ -181,11 +189,14 @@ public struct ComposeMessageView: View {
                 .accessibilityHidden(true)
             TextField("", text: $model.subject)
                 .multilineTextAlignment(.leading)
-                .font(.regular16, lineHeight: .condensed).foregroundColor(.textDarkest)
+                .font(.regular16, lineHeight: .condensed)
+                .foregroundColor(.textDarkest)
                 .textInputAutocapitalization(.sentences)
                 .focused($subjectTextFieldFocus)
+                .disabled(model.isReply)
                 .accessibility(label: Text("Subject", bundle: .core))
         }
+        .opacity(model.isReply ? 0.6 : 1)
         .padding(.horizontal, 16).padding(.vertical, 12)
     }
 

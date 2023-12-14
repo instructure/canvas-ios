@@ -49,7 +49,7 @@ public class InboxViewModel: ObservableObject {
     public let contentDidScrollToBottom = PassthroughSubject<Void, Never>()
 
     // MARK: - Private State
-    private static let DefaultScope: InboxMessageScope = .all
+    private static let DefaultScope: InboxMessageScope = .inbox
     private let interactor: InboxMessageInteractor
     private var subscriptions = Set<AnyCancellable>()
     private var isLoadingNextPage = CurrentValueSubject<Bool, Never>(false)

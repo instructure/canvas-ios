@@ -19,11 +19,11 @@
 import Foundation
 
 public enum InboxMessageScope: String, CaseIterable, Hashable {
-    case all, unread, starred, sent, archived
+    case inbox, unread, starred, sent, archived
 
     public var localizedName: String {
         switch self {
-        case .all: return NSLocalizedString("All", comment: "")
+        case .inbox: return NSLocalizedString("Inbox", comment: "")
         case .unread: return NSLocalizedString("Unread", comment: "")
         case .starred: return NSLocalizedString("Starred", comment: "")
         case .sent: return NSLocalizedString("Sent", comment: "")
@@ -33,7 +33,7 @@ public enum InboxMessageScope: String, CaseIterable, Hashable {
 
     public var apiScope: GetConversationsRequest.Scope? {
         switch self {
-        case .all: return nil
+        case .inbox: return nil
         case .unread: return .unread
         case .starred: return .starred
         case .sent: return .sent

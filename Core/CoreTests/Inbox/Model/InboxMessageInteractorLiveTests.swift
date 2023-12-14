@@ -71,7 +71,7 @@ class InboxMessageInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(testee.state.value, .loading)
         XCTAssertEqual(testee.messages.value.count, 0)
         mockMessageList(entities: [.make(id: "1")],
-                        scope: .all,
+                        scope: .inbox,
                         context: nil)
 
         testee
@@ -169,7 +169,7 @@ class InboxMessageInteractorLiveTests: CoreTestCase {
     private func mockMessageListWithNextPage() {
         let request = GetConversationsRequest(include: [.participant_avatars],
                                               perPage: 20,
-                                              scope: InboxMessageScope.all.apiScope,
+                                              scope: InboxMessageScope.inbox.apiScope,
                                               filter: nil)
         api.mock(request) { _ in
             let responseHeaders: [String: String] = [
