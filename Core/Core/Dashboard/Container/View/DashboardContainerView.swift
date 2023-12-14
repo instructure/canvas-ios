@@ -260,7 +260,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
             let hideColorOverlay = settings.first?.hideDashcardColorOverlays == true
             let layoutInfo = layoutViewModel.layoutInfo(for: size.width, horizontalSizeClass: horizontalSizeClass)
             DashboardGrid(
-                itemCount: courseCardList.count,
+                itemIDs: courseCardList.map { $0.id },
                 itemWidth: layoutInfo.cardWidth,
                 spacing: layoutInfo.spacing,
                 columnCount: layoutInfo.columns
@@ -291,9 +291,6 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                                                                   draggedCourseCardId: $draggedCourseCardId,
                                                                   order: courseCardList.map { $0.id },
                                                                   delegate: courseCardListViewModel))
-            }
-            idProvider: { cardIndex in
-                courseCardList[cardIndex].id
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.bottom, 2)

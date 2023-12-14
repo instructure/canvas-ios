@@ -24,28 +24,28 @@ public struct DashboardGrid<Content: View, ID: Hashable>: View {
         let items: [(index: Int, id: ID)]
     }
 
+    private let itemIDs: [ID]
     private let itemCount: Int
     private let itemWidth: CGFloat
     private let spacing: CGFloat
     private let columnCount: Int
     private let content: (Int) -> Content
-    private let idProvider: (Int) -> ID
 
     private var rows: [Row] {
         stride(from: 0, to: itemCount, by: columnCount).map {
             let itemIndexes = stride(from: $0, to: min($0 + columnCount, itemCount), by: 1).map { $0 }
-            let items = itemIndexes.map { (index: $0, id: idProvider($0)) }
+            let items = itemIndexes.map { (index: $0, id: itemIDs[$0]) }
             return Row(id: "\($0 / columnCount)", items: items)
         }
     }
 
-    public init(itemCount: Int, itemWidth: CGFloat, spacing: CGFloat, columnCount: Int, @ViewBuilder content: @escaping (Int) -> Content, idProvider: @escaping (Int) -> ID) {
-        self.itemCount = itemCount
+    public init(itemIDs: [ID], itemWidth: CGFloat, spacing: CGFloat, columnCount: Int, @ViewBuilder content: @escaping (Int) -> Content) {
+        self.itemIDs = itemIDs
+        self.itemCount = itemIDs.count
         self.itemWidth = itemWidth
         self.spacing = spacing
         self.columnCount = columnCount
         self.content = content
-        self.idProvider = idProvider
     }
 
     public var body: some View {
@@ -74,14 +74,12 @@ struct DashboardGridPreviews: PreviewProvider {
             let spacing: CGFloat = 8
             let columnCount: CGFloat = 2
             let columnWidth = (geometry.size.width - (((columnCount - 1) * spacing)))  / columnCount
-            DashboardGrid(itemCount: labels.count, itemWidth: columnWidth, spacing: spacing, columnCount: Int(columnCount)) { index in
+            DashboardGrid(itemIDs: [0, 1, 2, 3, 4, 5], itemWidth: columnWidth, spacing: spacing, columnCount: Int(columnCount)) { index in
                 Text(labels[index])
                     .frame(width: columnWidth)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .border(Color.black, width: 1)
                     .multilineTextAlignment(.center)
-            } idProvider: { index in
-                index
             }
         }
     }
