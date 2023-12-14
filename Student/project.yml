@@ -57,12 +57,13 @@ targets:
       - target: CanvasCore/CanvasCore
       - target: Core/Core
       - target: SubmitAssignment
+      - target: Widgets
     preBuildScripts:
-      - path: ../scripts/startPackager.sh
-        name: Start Packager
       - path: ../scripts/swiftLint.sh
         name: SwiftLint
         basedOnDependencyAnalysis: false
+      - path: ../scripts/startPackager.sh
+        name: Start Packager
   SubmitAssignment:
     type: app-extension
     platform: iOS
@@ -81,6 +82,22 @@ targets:
       # - package: Firebase
       - package: Firebase
         product: FirebaseCrashlytics
+      - target: Core/Core
+  Widgets:
+    type: app-extension
+    platform: iOS
+    transitivelyLinkDependencies: true
+    sources:
+      - path: Widgets
+    settings:
+      APPLICATION_EXTENSION_API_ONLY: true
+      ENABLE_TESTABILITY: true
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.instructure.icanvas.widgets
+        INFOPLIST_FILE: Widgets/Resources/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Widgets/Resources/Widgets.entitlements
+        TARGETED_DEVICE_FAMILY: 1,2
+    dependencies:
       - target: Core/Core
   StudentUnitTests:    
     type: bundle.unit-test
@@ -106,16 +123,6 @@ targets:
     dependencies:
       - target: Core/Core
       - target: TestsFoundation/TestsFoundation
-  Widgets:
-    type: app-extension
-    platform: iOS
-    sources:
-      - path: Widgets
-    settings:
-      APPLICATION_EXTENSION_API_ONLY: true
-      ENABLE_TESTABILITY: true
-    dependencies:
-      - target: Core/Core
 schemes:
   Student:
     build:
@@ -125,8 +132,21 @@ schemes:
     build:
       targets:
         SubmitAssignment: all
-    # test:
-    #   targets: [CoreTests, CoreTester]
-    #   testPlans:
-    #     - path: ../TestPlans/CoreTests.xctestplan
-    #       defaultPlan: true
+  Widgets - Announcements:
+    build:
+      targets:
+        Widgets: all
+    run:
+      targets:
+        Widgets: all
+      environmentVariables:
+        _XCWidgetKind: AnnouncementsWidget
+  Widgets - Grades:
+    build:
+      targets:
+        Widgets: all
+    run:
+      targets:
+        Widgets: all
+      environmentVariables:
+        _XCWidgetKind: GradesWidget
