@@ -45,7 +45,7 @@ public class DashboardSettingsViewModel: ObservableObject {
         self.isColorOverlaySwitchVisible = interactor.isColorOverlaySwitchVisible
         self.popoverSize = {
             let largeLayout = interactor.isGradesSwitchVisible && interactor.isColorOverlaySwitchVisible
-            return CGSize(width: 350, height: largeLayout ? 440 : 390)
+            return CGSize(width: 350, height: largeLayout ? 560 : 510)
         }()
         bindInteractorOutputsToSelf()
         bindUserInputsToInteractor()

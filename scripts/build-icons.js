@@ -125,6 +125,7 @@ const whitelist = [
   'trash',
   'trouble', // cancel
   'unlock',
+  'updown',
   'user',
   'video',
   'warning',
