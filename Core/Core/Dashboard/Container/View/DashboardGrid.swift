@@ -50,14 +50,15 @@ public struct DashboardGrid<Content: View, ID: Hashable>: View {
 
     public var body: some View {
         if #available(iOSApplicationExtension 16.0, *) {
-            LazyVGrid(columns: Array(repeating: GridItem(.fixed(itemWidth)), count: columnCount), spacing: spacing, content: {
+            let columns = Array(repeating: GridItem(.fixed(itemWidth)), count: columnCount)
+            LazyVGrid(columns: columns, spacing: spacing) {
                 let items: [(index: Int, id: ID)] = itemIDs.enumerated().map {
                     (index: $0.offset, id: $0.element)
                 }
                 ForEach(items, id: \.id) { item in
                     content(item.index)
                 }
-            })
+            }
         } else {
             VStack(alignment: .leading, spacing: spacing) {
                 ForEach(rows, id: \.id) { row in
