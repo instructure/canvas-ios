@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct APIDashboardCardPositions: Codable {
+public struct APIDashboardCardPositions: Codable, Equatable {
     public typealias CourseCode = String
     public typealias Position = Int
 

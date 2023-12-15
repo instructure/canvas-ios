@@ -27,8 +27,7 @@ public struct PutDashboardCardPositions: APIUseCase {
 
     public init(cards: [DashboardCard]) {
         let payload = cards.reduce(into: [String: Int]()) { dictionary, card in
-            let position = dictionary.count
-            dictionary["course_\(card.id)"] = position
+            dictionary["course_\(card.id)"] = card.position
         }
         let body = APIDashboardCardPositions(dashboard_positions: payload)
         self.request = PutDashboardCardPositionsRequest(body: body)
