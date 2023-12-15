@@ -9,7 +9,6 @@ options:
 settings:
   CODE_SIGN_STYLE: Automatic
   DEVELOPMENT_TEAM: B6333T4PXQ
-  # APPLICATION_EXTENSION_API_ONLY: true
   CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
   LOCALIZATION_PREFERS_STRING_CATALOGS: true
   CURRENT_PROJECT_VERSION: 1.0.0
@@ -32,6 +31,10 @@ projectReferences:
     path: ../TestsFoundation/TestsFoundation.xcodeproj
   Core:
     path: ../Core/Core.xcodeproj
+  Parent:
+    path: ../Parent/Parent.xcodeproj
+  Teacher:
+    path: ../rn/Teacher/ios/Teacher.xcodeproj
 targets:
   Student:    
     type: application
@@ -115,9 +118,9 @@ targets:
     type: bundle.ui-testing
     platform: iOS
     settings:
-      APPLICATION_EXTENSION_API_ONLY: false
+      # APPLICATION_EXTENSION_API_ONLY: false
       ENABLE_TESTABILITY: true
-      TEST_HOST: $(BUILT_PRODUCTS_DIR)/Student.app/Student
+      TEST_TARGET_NAME: Student
     sources:
       - path: StudentE2ETests
     dependencies:
@@ -150,3 +153,53 @@ schemes:
         Widgets: all
       environmentVariables:
         _XCWidgetKind: GradesWidget
+  E2ETests-Calendar:
+    build:
+      targets:
+        Student: all
+    test:
+      targets: StudentE2ETests
+      testPlans:
+        - path: ../TestPlans/CalendarE2E.xctestplan
+          defaultPlan: true
+  E2ETests-iPad-Parent:
+    build:
+      targets:
+        Parent/Parent: all
+    test:
+      targets: ParentE2ETests
+      testPlans:
+        - path: ../TestPlans/IPadParentTests.xctestplan
+          defaultPlan: true
+  E2ETests-iPad-Teacher:
+    build:
+      targets:
+        Teacher/Teacher: all
+    test:
+      targets: TeacherE2ETests
+      testPlans:
+        - path: ../TestPlans/IPadTeacherTests.xctestplan
+          defaultPlan: true
+  E2ETests-iPad-Student:
+    build:
+      targets:
+        Student: all
+    test:
+      targets: StudentE2ETests
+      testPlans:
+        - path: ../TestPlans/IPadStudentTests.xctestplan
+          defaultPlan: true
+  CITests:
+    build:
+      targets:
+        Core/Core: all
+        Core/CoreTester: all
+        Parent/Parent: all
+        Student: all
+        Teacher/Teacher: all
+        Core/CoreTests: test
+        StudentUnitTests: test
+        Teacher/TeacherTests: test
+        Parent/ParentUnitTests: test
+    test:
+      targets: [Core/CoreTests, StudentUnitTests, Teacher/TeacherTests, Parent/ParentUnitTests]
