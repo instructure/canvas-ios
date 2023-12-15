@@ -49,15 +49,26 @@ public struct DashboardGrid<Content: View, ID: Hashable>: View {
     }
 
     public var body: some View {
-        VStack(alignment: .leading, spacing: spacing) {
-            ForEach(rows, id: \.id) { row in
-                HStack(alignment: .top, spacing: spacing) {
-                    ForEach(row.items, id: \.id) { item in
-                        content(item.index)
-                            .frame(width: itemWidth)
-                    }
+        if #available(iOSApplicationExtension 16.0, *) {
+            LazyVGrid(columns: Array(repeating: GridItem(.fixed(itemWidth)), count: columnCount), spacing: spacing, content: {
+                let items: [(index: Int, id: ID)] = itemIDs.enumerated().map {
+                    (index: $0.offset, id: $0.element)
                 }
-                .fixedSize(horizontal: true, vertical: true)
+                ForEach(items, id: \.id) { item in
+                    content(item.index)
+                }
+            })
+        } else {
+            VStack(alignment: .leading, spacing: spacing) {
+                ForEach(rows, id: \.id) { row in
+                    HStack(alignment: .top, spacing: spacing) {
+                        ForEach(row.items, id: \.id) { item in
+                            content(item.index)
+                                .frame(width: itemWidth)
+                        }
+                    }
+                    .fixedSize(horizontal: true, vertical: true)
+                }
             }
         }
     }
@@ -74,7 +85,7 @@ struct DashboardGridPreviews: PreviewProvider {
             let spacing: CGFloat = 8
             let columnCount: CGFloat = 2
             let columnWidth = (geometry.size.width - (((columnCount - 1) * spacing)))  / columnCount
-            DashboardGrid(itemIDs: [0, 1, 2, 3, 4, 5], itemWidth: columnWidth, spacing: spacing, columnCount: Int(columnCount)) { index in
+            DashboardGrid(itemIDs: [0, 1, 2, 3, 4], itemWidth: columnWidth, spacing: spacing, columnCount: Int(columnCount)) { index in
                 Text(labels[index])
                     .frame(width: columnWidth)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
