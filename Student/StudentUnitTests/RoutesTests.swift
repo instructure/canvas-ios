@@ -41,7 +41,11 @@ class RoutesTests: XCTestCase {
         AppEnvironment.shared.currentSession = LoginSession.make()
         AppEnvironment.shared.loginDelegate = login
         AppEnvironment.shared.router = router
+    }
+
+    override func tearDown() {
         try? AppEnvironment.shared.database.clearAllRecords()
+        super.tearDown()
     }
 
     func testRoutes() {
