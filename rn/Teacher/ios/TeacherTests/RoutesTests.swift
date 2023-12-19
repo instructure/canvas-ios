@@ -126,7 +126,6 @@ class RoutesTests: XCTestCase {
     }
 
     func testNativeAnnouncementDiscussionDetailsRoute() throws {
-        try AppEnvironment.shared.database.clearAllRecords()
         XCTAssert(router.match("/courses/2/announcements/3") is DiscussionDetailsViewController)
     }
 
