@@ -43,6 +43,12 @@ class RoutesTests: XCTestCase {
         AppEnvironment.shared.router = router
     }
 
+    override func tearDown() {
+        let flags: [FeatureFlag] = AppEnvironment.shared.database.viewContext.fetch()
+        AppEnvironment.shared.database.viewContext.delete(flags)
+        super.tearDown()
+    }
+
     func testRoutes() {
         XCTAssert(router.match("/act-as-user") is ActAsUserViewController)
         XCTAssertEqual((router.match("/act-as-user/3") as? ActAsUserViewController)?.initialUserID, "3")

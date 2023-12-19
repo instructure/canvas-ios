@@ -44,7 +44,8 @@ class RoutesTests: XCTestCase {
     }
 
     override func tearDown() {
-        try? AppEnvironment.shared.database.clearAllRecords()
+        let flags: [FeatureFlag] = AppEnvironment.shared.database.viewContext.fetch()
+        AppEnvironment.shared.database.viewContext.delete(flags)
         super.tearDown()
     }
 
