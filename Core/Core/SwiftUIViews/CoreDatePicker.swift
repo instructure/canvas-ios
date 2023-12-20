@@ -74,7 +74,7 @@ public struct CoreDatePickerActionSheetCard: View {
             }.ignoresSafeArea()
         }
         .onAppear {
-            grayViewOpacity = 0.5
+            grayViewOpacity = 0.05
         }
     }
 
@@ -86,6 +86,7 @@ public struct CoreDatePickerActionSheetCard: View {
                 } label: {
                     Text("Cancel", bundle: .core)
                         .font(.regular17)
+                        .foregroundStyle(Color.electric)
                 }
                 Spacer()
                 Button {
@@ -94,6 +95,7 @@ public struct CoreDatePickerActionSheetCard: View {
                 } label: {
                     Text("Done", bundle: .core)
                         .font(.regular17)
+                        .foregroundStyle(Color.electric)
                 }
             }
             .padding(.horizontal, 16)
