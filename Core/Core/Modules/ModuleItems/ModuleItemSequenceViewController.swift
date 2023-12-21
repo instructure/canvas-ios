@@ -84,10 +84,8 @@ public class ModuleItemSequenceViewController: UIViewController {
 
     func update(embed: Bool) {
         if store.requested, store.pending {
-            spinnerView.isHidden = false
             return
         }
-        spinnerView.isHidden = true
         if embed, let viewController = currentViewController() {
             setCurrentPage(viewController)
         }

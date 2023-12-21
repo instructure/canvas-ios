@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,18 +18,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mly-3M-vhC">
-                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <rect key="frame" x="0.0" y="50" width="375" height="728"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XQT-Kt-Wb4" customClass="ListErrorView" customModule="Core" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="316" width="375" height="180"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="VGI-Tp-KTF"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MxQ-fQ-fML">
-                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                                <rect key="frame" x="0.0" y="50" width="375" height="728"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6M-ji-lwg" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="16" y="15.999999999999998" width="343" height="20.333333333333329"/>
@@ -41,10 +42,10 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="38x-zT-QXS">
-                                        <rect key="frame" x="0.0" y="52.333333333333314" width="375" height="681.66666666666674"/>
+                                        <rect key="frame" x="0.0" y="52.333333333333314" width="375" height="675.66666666666674"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jLN-IS-S7E">
-                                                <rect key="frame" x="20" y="223.66666666666669" width="335" height="234.33333333333331"/>
+                                                <rect key="frame" x="20" y="220.66666666666669" width="335" height="234.33333333333331"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PandaLocked" translatesAutoresizingMaskIntoConstraints="NO" id="tnM-zH-e8K">
                                                         <rect key="frame" x="47.666666666666686" y="0.0" width="240" height="128"/>
@@ -78,7 +79,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="Sxa-Kx-chO" firstAttribute="leading" secondItem="jLN-IS-S7E" secondAttribute="leading" constant="16" id="CUr-mK-rmP"/>
                                                     <constraint firstAttribute="trailing" secondItem="Sxa-Kx-chO" secondAttribute="trailing" constant="16" id="JL4-Se-7HE"/>
@@ -92,7 +93,7 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="jLN-IS-S7E" firstAttribute="centerY" secondItem="38x-zT-QXS" secondAttribute="centerY" id="O5W-lj-Kmq"/>
                                             <constraint firstItem="jLN-IS-S7E" firstAttribute="leading" secondItem="38x-zT-QXS" secondAttribute="leading" constant="20" id="cmM-ol-Noz"/>
@@ -100,7 +101,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="38x-zT-QXS" firstAttribute="leading" secondItem="MxQ-fQ-fML" secondAttribute="leading" id="2m8-ND-k0c"/>
                                     <constraint firstItem="38x-zT-QXS" firstAttribute="top" secondItem="m6M-ji-lwg" secondAttribute="bottom" constant="16" id="I3E-0g-E65"/>
@@ -113,14 +114,15 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7lp-Bf-m9b" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
                                 <rect key="frame" x="167.66666666666666" y="386" width="40" height="40"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="GvM-VZ-sdh"/>
                                     <constraint firstAttribute="height" constant="40" id="Wv4-ZI-Ydb"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="I0K-eC-1K5"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="XQT-Kt-Wb4" firstAttribute="centerX" secondItem="hUi-aY-MPo" secondAttribute="centerX" id="583-Al-8RN"/>
                             <constraint firstItem="I0K-eC-1K5" firstAttribute="trailing" secondItem="XQT-Kt-Wb4" secondAttribute="trailing" id="5IP-2v-XwL"/>
@@ -137,7 +139,6 @@
                             <constraint firstItem="MxQ-fQ-fML" firstAttribute="top" secondItem="I0K-eC-1K5" secondAttribute="top" id="xIF-g5-UUR"/>
                             <constraint firstItem="I0K-eC-1K5" firstAttribute="trailing" secondItem="Mly-3M-vhC" secondAttribute="trailing" id="zVX-um-M3w"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="I0K-eC-1K5"/>
                     </view>
                     <connections>
                         <outlet property="container" destination="Mly-3M-vhC" id="C5S-v4-MLh"/>
@@ -153,7 +154,18 @@
             <point key="canvasLocation" x="-91" y="93"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="Sxa-Kx-chO">
+            <size key="intrinsicContentSize" width="55.333333333333336" height="20.333333333333332"/>
+        </designable>
+        <designable name="m6M-ji-lwg">
+            <size key="intrinsicContentSize" width="41.333333333333336" height="20.333333333333332"/>
+        </designable>
+    </designables>
     <resources>
         <image name="PandaLocked" width="191" height="153"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
