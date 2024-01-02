@@ -64,7 +64,7 @@ public struct DashboardSettingsView: View {
                     .padding(.top, 32)
                 separator
                 HStack(spacing: 16) {
-                    Image.updownLine
+                    Image.sortLine
                     Text("To re-order your courses tap and hold on a card then drag it to its new position.", bundle: .core)
                         .font(.regular14)
                 }
