@@ -74,7 +74,7 @@ public struct CoreDatePickerActionSheetCard: View {
             }.ignoresSafeArea()
         }
         .onAppear {
-            grayViewOpacity = 0.05
+            grayViewOpacity = 0.5
         }
     }
 
@@ -113,7 +113,7 @@ public struct CoreDatePickerActionSheetCard: View {
         Rectangle()
             .frame(width: .infinity,
                    height: .infinity)
-            .background(Color.clear)
+            .foregroundColor(.black)
             .ignoresSafeArea()
     }
 
