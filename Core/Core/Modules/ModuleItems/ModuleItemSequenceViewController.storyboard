@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,13 +19,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xc1-o8-iDS">
-                                <rect key="frame" x="0.0" y="44" width="414" height="762"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="758"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iGP-7W-vfy">
                                 <rect key="frame" x="0.0" y="806" width="414" height="56"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywu-lr-3Bv" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ywu-lr-3Bv" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="366" y="13" width="32" height="30"/>
                                         <accessibility key="accessibilityConfiguration" identifier="ModuleItemSequence.nextButton"/>
                                         <state key="normal" title="Next"/>
@@ -37,7 +38,7 @@
                                             <action selector="goNext" destination="lhr-LL-71f" eventType="primaryActionTriggered" id="QWF-Gm-VCd"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lE8-Sf-NiN" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lE8-Sf-NiN" customClass="DynamicButton" customModule="Core" customModuleProvider="target">
                                         <rect key="frame" x="16" y="13" width="59" height="30"/>
                                         <accessibility key="accessibilityConfiguration" identifier="ModuleItemSequence.previousButton"/>
                                         <state key="normal" title="Previous"/>
@@ -60,27 +61,18 @@
                                     <constraint firstItem="lE8-Sf-NiN" firstAttribute="leading" secondItem="iGP-7W-vfy" secondAttribute="leading" constant="16" id="xCF-9O-iFD"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sjW-dW-Pel" customClass="CircleProgressView" customModule="Core" customModuleProvider="target">
-                                <rect key="frame" x="187" y="428" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="gza-RI-Dey"/>
-                                    <constraint firstAttribute="width" constant="40" id="t4T-UJ-uI7"/>
-                                </constraints>
-                            </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="97J-8u-P7Y"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="97J-8u-P7Y" firstAttribute="bottom" secondItem="iGP-7W-vfy" secondAttribute="bottom" id="A0v-XR-3s6"/>
                             <constraint firstItem="Xc1-o8-iDS" firstAttribute="top" secondItem="97J-8u-P7Y" secondAttribute="top" id="BTg-7e-Mlo"/>
-                            <constraint firstItem="sjW-dW-Pel" firstAttribute="centerY" secondItem="1Qu-yS-mhO" secondAttribute="centerY" id="FKO-c2-Xem"/>
                             <constraint firstItem="Xc1-o8-iDS" firstAttribute="bottom" secondItem="iGP-7W-vfy" secondAttribute="top" id="VRJ-xc-0QM"/>
                             <constraint firstItem="iGP-7W-vfy" firstAttribute="leading" secondItem="97J-8u-P7Y" secondAttribute="leading" id="dxi-v1-d5O"/>
                             <constraint firstItem="Xc1-o8-iDS" firstAttribute="leading" secondItem="97J-8u-P7Y" secondAttribute="leading" id="eTD-ac-7Zt"/>
                             <constraint firstItem="97J-8u-P7Y" firstAttribute="trailing" secondItem="iGP-7W-vfy" secondAttribute="trailing" id="lBY-cm-82c"/>
-                            <constraint firstItem="sjW-dW-Pel" firstAttribute="centerX" secondItem="1Qu-yS-mhO" secondAttribute="centerX" id="vFq-tD-BdS"/>
                             <constraint firstItem="97J-8u-P7Y" firstAttribute="trailing" secondItem="Xc1-o8-iDS" secondAttribute="trailing" id="ym3-yf-V4C"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="97J-8u-P7Y"/>
                     </view>
                     <connections>
                         <outlet property="buttonsContainer" destination="iGP-7W-vfy" id="lfN-Al-uTZ"/>
@@ -88,7 +80,6 @@
                         <outlet property="nextButton" destination="ywu-lr-3Bv" id="uNj-xQ-3iH"/>
                         <outlet property="pagesContainer" destination="Xc1-o8-iDS" id="pkP-cz-if5"/>
                         <outlet property="previousButton" destination="lE8-Sf-NiN" id="2lH-2E-P0x"/>
-                        <outlet property="spinnerView" destination="sjW-dW-Pel" id="jRz-Uh-TJt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HY3-EV-IdD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -96,9 +87,20 @@
             <point key="canvasLocation" x="-275.36231884057975" y="-218.30357142857142"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="lE8-Sf-NiN">
+            <size key="intrinsicContentSize" width="59" height="30"/>
+        </designable>
+        <designable name="ywu-lr-3Bv">
+            <size key="intrinsicContentSize" width="32" height="30"/>
+        </designable>
+    </designables>
     <resources>
         <namedColor name="backgroundLight">
             <color red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
