@@ -31,7 +31,7 @@ class InboxMessageScopeFilterTests: CoreTestCase {
 
         readMessage = databaseClient.insert() as InboxMessageListItem
         readMessage.messageId = "1"
-        readMessage.scopeFilter = InboxMessageScope.all.rawValue
+        readMessage.scopeFilter = InboxMessageScope.inbox.rawValue
         unreadMessage = databaseClient.insert() as InboxMessageListItem
         unreadMessage.messageId = "2"
         unreadMessage.scopeFilter = InboxMessageScope.unread.rawValue
@@ -47,7 +47,7 @@ class InboxMessageScopeFilterTests: CoreTestCase {
     }
 
     func testMessageFilterAll() {
-        let messageIds = messageIds(for: .all)
+        let messageIds = messageIds(for: .inbox)
         XCTAssertEqual(messageIds, Set([readMessage.messageId]))
     }
 

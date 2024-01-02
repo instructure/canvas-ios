@@ -23,6 +23,7 @@ public class MessageDetailsInteractorLive: MessageDetailsInteractor {
     public var state = CurrentValueSubject<StoreState, Never>(.loading)
     public var subject = CurrentValueSubject<String, Never>("")
     public var messages = CurrentValueSubject<[ConversationMessage], Never>([])
+    public var conversation = CurrentValueSubject<[Conversation], Never>([])
     public var starred = CurrentValueSubject<Bool, Never>(false)
     public var userMap: [String: ConversationParticipant] = [:]
 
@@ -40,6 +41,11 @@ public class MessageDetailsInteractorLive: MessageDetailsInteractor {
         conversationStore
             .statePublisher
             .subscribe(state)
+            .store(in: &subscriptions)
+
+        conversationStore
+            .allObjects
+            .subscribe(conversation)
             .store(in: &subscriptions)
 
         conversationStore

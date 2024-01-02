@@ -2673,6 +2673,9 @@
         }
       }
     },
+    "Attempt %lld" : {
+
+    },
     "Attendance" : {
       "localizations" : {
         "ar" : {

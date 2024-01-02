@@ -23,6 +23,7 @@ class MessageDetailsViewModel: ObservableObject {
     @Published public private(set) var state: StoreState = .loading
     @Published public private(set) var subject: String = ""
     @Published public private(set) var messages: [MessageViewModel] = []
+    @Published public private(set) var conversations: [Conversation] = []
     @Published public private(set) var starred: Bool = false
 
     public let title = NSLocalizedString("Message Details", comment: "")
@@ -46,18 +47,24 @@ class MessageDetailsViewModel: ObservableObject {
         setupInputBindings(router: router)
     }
 
-    public func moreTapped(viewController: WeakViewController) {
+    public func moreTapped(message: ConversationMessage?, viewController: WeakViewController) {
         let sheet = BottomSheetPickerViewController.create()
         sheet.addAction(
             image: .replyLine,
             title: NSLocalizedString("Reply", comment: ""),
             accessibilityIdentifier: "MessageDetails.reply"
-        ) {}
+        ) {
+            if let message {
+                self.replyTapped(message: message, viewController: viewController)
+            }
+        }
         sheet.addAction(
             image: .replyAllLine,
             title: NSLocalizedString("Reply All", comment: ""),
             accessibilityIdentifier: "MessageDetails.replyAll"
-        ) {}
+        ) {
+            self.replyAllTapped(viewController: viewController)
+        }
 
         sheet.addAction(
             image: .forwardLine,
@@ -79,13 +86,34 @@ class MessageDetailsViewModel: ObservableObject {
         router.show(sheet, from: viewController, options: .modal())
     }
 
-    public func replyTapped(viewController: WeakViewController) {}
+    public func replyTapped(message: ConversationMessage, viewController: WeakViewController) {
+        if let conversation = conversations.first {
+            router.show(
+                ComposeMessageAssembly.makeReplyMessageViewController(conversation: conversation, author: message.authorID),
+                from: viewController,
+                options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
+            )
+        }
+    }
+
+    public func replyAllTapped(viewController: WeakViewController) {
+        if let conversation = conversations.first {
+            router.show(
+                ComposeMessageAssembly.makeReplyMessageViewController(conversation: conversation),
+                from: viewController,
+                options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
+            )
+        }
+    }
 
     private func setupOutputBindings() {
         interactor.state
                 .assign(to: &$state)
         interactor.subject
             .assign(to: &$subject)
+
+        interactor.conversation
+            .assign(to: &$conversations)
         interactor.messages
             .map { messages in
                 messages.map {

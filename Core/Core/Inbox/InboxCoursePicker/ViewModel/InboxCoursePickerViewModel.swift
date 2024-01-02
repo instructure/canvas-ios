@@ -30,6 +30,7 @@ class InboxCoursePickerViewModel: ObservableObject {
     @Published public var selectedRecipientContext: RecipientContext?
 
     // MARK: - Inputs
+    public private(set) var dismissViewDidTrigger = PassthroughSubject<Void, Never>()
     public private(set) var refreshDidTrigger = PassthroughSubject<() -> Void, Never>()
     var didSelect: ((RecipientContext) -> Void)
 

@@ -22,6 +22,11 @@ public class RecipientContext {
     let name: String
     let context: Context
 
+    init(name: String, context: Context) {
+        self.name = name
+        self.context = context
+    }
+
     init(course: Course) {
         self.name = course.name ?? course.courseCode ?? ""
         self.context = Context.course(course.id)
