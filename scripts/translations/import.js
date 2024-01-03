@@ -18,7 +18,7 @@
 //
 
 const program = require('commander')
-const { spawnSync } = require('child_process')
+const { spawn } = require('child_process')
 const { createReadStream, readFileSync, writeFileSync, readdir } = require('fs')
 const mkdirp = require('mkdirp')
 const path = require('path')
@@ -29,8 +29,7 @@ program
   .version(require('../../package.json').version)
   .option('-s, --skip-pull', 'Skip pulling from S3')
   .option('-n, --no-import', 'Skip importing downloaded files')
-  .option('-p, --project [name]', 'Import only a specific project')
-  .option('-l, --list', 'List projects that can be imported')
+  .option('-v, --verbose', 'Print xcodebuild output to console')
 
 program.on('--help', () => {
   console.log(`
@@ -41,11 +40,6 @@ program.on('--help', () => {
   \n`)
 })
 program.parse(process.argv)
-
-if (program.list) {
-  console.log(projects.map(({ name }) => name).join('\n'))
-  process.exit(0)
-}
 
 if (
   !program.skipPull &&
@@ -61,11 +55,25 @@ importTranslations().catch(err => {
 })
 
 function run(cmd, args, opts) {
-  const { error, status, stderr } = spawnSync(cmd, args, opts)
-  if (error || status) {
-    console.error(stderr.toString())
-    throw error || status
-  }
+  return new Promise((resolve, reject) => {
+    const command = spawn(cmd, args, opts)
+    // If we don't read these xcodebuild just hangs
+    command.stdout.on('data', (data) => {
+      if (program.verbose) {
+	    console.log(`${data}`)
+      }
+	})
+    command.stderr.on('data', (data) => {
+      if (program.verbose) {
+	    console.log(`${data}`)
+      }
+	})
+    command.on('error', reject)
+    command.on('exit', code => {
+      if (code === 0) return resolve()
+      reject(`${cmd} failed with code ${code}.`)
+    })
+  })
 }
 
 // make it more difficult for translators to accidentally break stuff
@@ -83,8 +91,6 @@ async function importTranslations() {
     const s3 = new S3({ region: 'us-east-1' })
     const listObjects = await s3.listObjectsV2({ Bucket, Prefix: `translations/canvas-ios/` }).promise()
     const keys = listObjects.Contents.map(({ Key }) => Key)
-      .filter(key => !key.includes('/en/'))
-      .filter(key => !program.project || key.includes(`/${program.project}.`))
 
     for (const key of keys) {
       let [ , , locale, basename ] = key.split('/')
@@ -113,29 +119,49 @@ async function importTranslations() {
   }
 
   if (program.import === false) return
-  for (const project of projects) {
-    if (program.project && project.name !== program.project) continue
-    const folder = `scripts/translations/imports/${project.name}`
-    const files = await new Promise(resolve =>
-      readdir(folder, (err, files) => resolve(files || []))
-    )
-    for (const file of files) {
-      if (file.startsWith('.')) continue
-      console.log(`Importing ${file} into ${project.location}`)
-      if (project.location.endsWith('.xcodeproj')) {
-        await run('xcodebuild', [
-          '-importLocalizations',
-          '-localizationPath',
-          `${folder}/${file}`,
-          '-project',
-          project.location
-        ])
-      } else {
-        await run('cp', [
-          `${folder}/${file}`,
-          `${project.location}/${file}`
-        ])
-      }
-    }
+
+  await importXcodeTranslations()
+  await importReactTranslations()
+}
+
+async function importXcodeTranslations() {
+  console.log(`Importing Xcode translations`)
+  
+  await run('make', ['pod'])
+  const folder = 'scripts/translations/imports/all'
+  const files = await new Promise(resolve =>
+    readdir(folder, (err, files) => resolve(files || []))
+  )
+  for (const file of files) {
+    if (file.startsWith('.')) continue
+    console.log(`Importing ${file} into workspace.`)
+
+      await run('xcodebuild', [
+        '-importLocalizations',
+        '-localizationPath',
+        `${folder}/${file}`,
+        '-workspace',
+        'Canvas.xcworkspace',
+      ])
+  }
+}
+
+async function importReactTranslations() {
+  console.log(`Importing React translations`)
+
+  const folder = 'scripts/translations/imports/teacher'
+  const files = await new Promise(resolve =>
+    readdir(folder, (err, files) => resolve(files || []))
+  )
+  const projectLocation = 'rn/Teacher/i18n/locales'
+
+  for (const file of files) {
+    if (file.startsWith('.')) continue
+    console.log(`Importing ${file} into ${projectLocation}`)
+
+    await run('cp', [
+      `${folder}/${file}`,
+      `${projectLocation}/${file}`
+    ])
   }
 }

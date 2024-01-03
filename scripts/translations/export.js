@@ -68,7 +68,6 @@ function run(cmd, args, opts) {
     command.on('error', reject)
     command.on('exit', code => {
       if (code === 0) return resolve()
-      console.error(command.stderr.toString())
       reject(`${cmd} failed with code ${code}.`)
     })
   })
