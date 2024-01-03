@@ -87,7 +87,7 @@ public struct CoreDatePickerActionSheetCard: View {
                     Text("Cancel", bundle: .core)
                         .font(.regular17)
                         .foregroundStyle(
-                            Color(uiColor: .electricHighContrast.ensureContrast(against: .backgroundLightest))
+                            Color(uiColor: Brand.shared.primary.darkenToEnsureContrast(against: .backgroundLightest))
                         )
                 }
                 Spacer()
