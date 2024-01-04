@@ -127,6 +127,9 @@ async function importTranslations() {
 async function importXcodeTranslations() {
   console.log(`Importing Xcode translations`)
   
+  const reactProjectFolder = 'rn/Teacher/i18n/locales'
+  await run('yarn', [], { cwd: `${reactProjectFolder}/../..` }) // install react dependencies
+
   await run('make', ['pod'])
   const folder = 'scripts/translations/imports/all'
   const files = await new Promise(resolve =>
