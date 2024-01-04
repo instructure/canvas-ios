@@ -3,7 +3,7 @@
   "strings" : {
     "CFBundleDisplayName" : {
       "comment" : "Bundle display name",
-      "extractionState" : "migrated",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -39,6 +39,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lehrende*r"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Teacher"
           }
         },
         "en-AU" : {
@@ -243,6 +249,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "教師"
+          }
+        }
+      }
+    },
+    "CFBundleName" : {
+      "comment" : "Bundle name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "TeacherFiles"
           }
         }
       }

@@ -59,6 +59,12 @@
             "value" : "Canvas Instructor"
           }
         },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canvas Teacher"
+          }
+        },
         "en-CY" : {
           "stringUnit" : {
             "state" : "translated",
@@ -80,13 +86,13 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Profesor de Canvas"
+            "value" : "Canvas Teacher"
           }
         },
         "es-ES" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Profesor de Canvas"
+            "value" : "Canvas Teacher"
           }
         },
         "fi" : {
@@ -104,13 +110,19 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Enseignant Canvas"
+            "value" : "Canvas Enseignant"
           }
         },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Pwofesè Canvas"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canvas Teacher"
           }
         },
         "is" : {
@@ -212,7 +224,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Giáo Viên Canvas"
+            "value" : "Canvas Teacher"
           }
         },
         "zh" : {

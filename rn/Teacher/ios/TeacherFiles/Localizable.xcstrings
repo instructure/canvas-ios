@@ -2,7 +2,6 @@
   "sourceLanguage" : "en",
   "strings" : {
     "My Files" : {
-      "extractionState" : "migrated",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
