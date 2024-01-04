@@ -26,7 +26,7 @@ const projects = require('./projects.json')
 program
   .version(require('../../package.json').version)
   .option('-s, --skipPush', 'Skip pushing to S3')
-  .option('-v, --verbose', 'Print xcodebuild output to console')
+  .option('-v, --verbose', 'Print all outputs to console')
 
 program.on('--help', () => {
   console.log(`

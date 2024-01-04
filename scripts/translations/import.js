@@ -29,7 +29,7 @@ program
   .version(require('../../package.json').version)
   .option('-s, --skip-pull', 'Skip pulling from S3')
   .option('-n, --no-import', 'Skip importing downloaded files')
-  .option('-v, --verbose', 'Print xcodebuild output to console')
+  .option('-v, --verbose', 'Print all outputs to console')
 
 program.on('--help', () => {
   console.log(`
@@ -127,8 +127,9 @@ async function importTranslations() {
 async function importXcodeTranslations() {
   console.log(`Importing Xcode translations`)
   
+  // install react dependencies
   const reactProjectFolder = 'rn/Teacher/i18n/locales'
-  await run('yarn', [], { cwd: `${reactProjectFolder}/../..` }) // install react dependencies
+  await run('yarn', [], { cwd: `${reactProjectFolder}/../..` }) 
 
   await run('make', ['pod'])
   const folder = 'scripts/translations/imports/all'
