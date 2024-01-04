@@ -209,7 +209,7 @@ class SettingsTests: E2ETestCase {
 
         // MARK: Check URL
         let url = SafariAppHelper.browserURL
-        XCTAssertEqual(url, "https://www.instructure.com/canvas/privacy")
+        XCTAssertEqual(url, "https://www.instructure.com/privacy-security")
     }
 
     func testTermsOfUse() {

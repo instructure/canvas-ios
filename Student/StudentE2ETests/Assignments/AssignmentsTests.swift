@@ -90,19 +90,24 @@ class AssignmentsTests: E2ETestCase {
         XCTAssertTrue(submissionTypesLabel.isVisible)
         XCTAssertTrue(submissionTypesLabel.hasLabel(label: "Text Entry"))
 
-        let submissionsButton = DetailsHelper.submissionsButton.waitUntil(.visible)
-        XCTAssertTrue(submissionsButton.isVisible)
-
-        let submissionsButtonLabel = DetailsHelper.submissionsButtonLabel.waitUntil(.visible)
-        XCTAssertTrue(submissionsButtonLabel.isVisible)
-        XCTAssertTrue(submissionsButtonLabel.hasLabel(label: "Submission & Rubric"))
-
         let descriptionLabel = DetailsHelper.description(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(descriptionLabel.isVisible)
         XCTAssertTrue(descriptionLabel.hasLabel(label: assignment.description!))
 
         let submitAssignmentButton = DetailsHelper.submitAssignmentButton.waitUntil(.visible)
         XCTAssertTrue(submitAssignmentButton.isVisible)
+        XCTAssertTrue(submitAssignmentButton.hasLabel(label: "Submit Assignment"))
+
+        GradesHelper.submitAssignment(course: course, student: student, assignment: assignment)
+        pullToRefresh()
+        XCTAssertTrue(statusLabel.waitUntil(.visible).hasLabel(label: "Submitted"))
+
+        let submissionButton = DetailsHelper.submissionButton.waitUntil(.visible)
+        XCTAssertTrue(submissionButton.isVisible)
+        XCTAssertTrue(submissionButton.hasLabel(label: "Submission & Rubric"))
+
+        XCTAssertTrue(submitAssignmentButton.waitUntil(.visible).isVisible)
+        XCTAssertTrue(submitAssignmentButton.hasLabel(label: "Resubmit Assignment"))
     }
 
     func testSubmitAssignment() {
