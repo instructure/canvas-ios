@@ -76,6 +76,48 @@ function run(cmd, args, opts) {
   })
 }
 
+async function importTranslations() {
+  if (!program.skipPull) {
+  	await pullTranslationsFromS3()
+  }
+
+  if (program.import) {
+    await importXcodeTranslations()
+  }
+}
+
+async function pullTranslationsFromS3() {
+  const Bucket = 'instructure-translations'
+  const s3 = new S3({ region: 'us-east-1' })
+  const listObjects = await s3.listObjectsV2({ Bucket, Prefix: `translations/canvas-ios/` }).promise()
+  const keys = listObjects.Contents.map(({ Key }) => Key)
+
+  for (const key of keys) {
+    let [ , , locale, basename ] = key.split('/')
+    if (!locale || !basename) continue // skip folders
+    locale = normalizeLocale(locale)
+    const [ projectName, ext ] = basename.split('.')
+    const filename = `scripts/translations/imports/${projectName}/${locale}.${ext}`
+    console.log(`Pulling s3://instructure-translations/${key} to ${filename}`)
+
+    const { Body } = await s3.getObject({ Bucket, Key: key }).promise()
+    let content = Body.toString().replace(/^\uFEFF/, '') // Strip BOM
+    if (key.endsWith('.json')) {
+      content = content.replace(/"message": "(.*)"$/gm, (_, message) => (
+        `"message": "${
+          message.replace(/\\"/g, '"').replace(/"/g, '\\"')
+        }"`
+      ))
+      content = JSON.stringify(JSON.parse(content), null, '  ')
+    } else {
+      content = content.replace(/target-language="[^"]*"/g, `target-language="${locale}"`)
+    }
+
+    mkdirp.sync(path.dirname(filename))
+    writeFileSync(filename, content, 'utf8')
+  }
+}
+
 // make it more difficult for translators to accidentally break stuff
 function normalizeLocale(locale) {
   return locale.replace(/_/g, '-')
@@ -85,48 +127,7 @@ function normalizeLocale(locale) {
     .replace(/-ukhe/, '-instukhe')
 }
 
-async function importTranslations() {
-  if (!program.skipPull) {
-    const Bucket = 'instructure-translations'
-    const s3 = new S3({ region: 'us-east-1' })
-    const listObjects = await s3.listObjectsV2({ Bucket, Prefix: `translations/canvas-ios/` }).promise()
-    const keys = listObjects.Contents.map(({ Key }) => Key)
-
-    for (const key of keys) {
-      let [ , , locale, basename ] = key.split('/')
-      if (!locale || !basename) continue // skip folders
-      locale = normalizeLocale(locale)
-      const [ projectName, ext ] = basename.split('.')
-      const filename = `scripts/translations/imports/${projectName}/${locale}.${ext}`
-      console.log(`Pulling s3://instructure-translations/${key} to ${filename}`)
-
-      const { Body } = await s3.getObject({ Bucket, Key: key }).promise()
-      let content = Body.toString().replace(/^\uFEFF/, '') // Strip BOM
-      if (key.endsWith('.json')) {
-        content = content.replace(/"message": "(.*)"$/gm, (_, message) => (
-          `"message": "${
-            message.replace(/\\"/g, '"').replace(/"/g, '\\"')
-          }"`
-        ))
-        content = JSON.stringify(JSON.parse(content), null, '  ')
-      } else {
-        content = content.replace(/target-language="[^"]*"/g, `target-language="${locale}"`)
-      }
-
-      mkdirp.sync(path.dirname(filename))
-      writeFileSync(filename, content, 'utf8')
-    }
-  }
-
-  if (program.import === false) return
-
-  await importXcodeTranslations()
-  await importReactTranslations()
-}
-
 async function importXcodeTranslations() {
-  console.log(`Importing Xcode translations`)
-  
   // install react dependencies
   const reactProjectFolder = 'rn/Teacher/i18n/locales'
   await run('yarn', [], { cwd: `${reactProjectFolder}/../..` }) 
@@ -147,25 +148,5 @@ async function importXcodeTranslations() {
         '-workspace',
         'Canvas.xcworkspace',
       ])
-  }
-}
-
-async function importReactTranslations() {
-  console.log(`Importing React translations`)
-
-  const folder = 'scripts/translations/imports/teacher'
-  const files = await new Promise(resolve =>
-    readdir(folder, (err, files) => resolve(files || []))
-  )
-  const projectLocation = 'rn/Teacher/i18n/locales'
-
-  for (const file of files) {
-    if (file.startsWith('.')) continue
-    console.log(`Importing ${file} into ${projectLocation}`)
-
-    await run('cp', [
-      `${folder}/${file}`,
-      `${projectLocation}/${file}`
-    ])
   }
 }
