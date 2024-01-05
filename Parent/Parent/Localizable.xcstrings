@@ -6,241 +6,241 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ مستحق في %2$@"
+            "value" : "%@ مستحق في %@"
           }
         },
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ venç a les %2$@"
+            "value" : "%@ venç a les %@"
           }
         },
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ erbyn %2$@"
+            "value" : "%@ erbyn %@"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ forfalder kl. %2$@"
+            "value" : "%@ forfalder kl. %@"
           }
         },
         "da-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ forfalder kl. %2$@"
+            "value" : "%@ forfalder kl. %@"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ ist fällig um %2$@"
+            "value" : "%@ ist fällig um %@"
           }
         },
         "en-AU" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ is due at %2$@"
+            "value" : "%@ is due at %@"
           }
         },
         "en-AU-unimelb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ is due at %2$@"
+            "value" : "%@ is due at %@"
           }
         },
         "en-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ is due at %2$@"
+            "value" : "%@ is due at %@"
           }
         },
         "en-CY" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ is due at %2$@"
+            "value" : "%@ is due at %@"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ is due at %2$@"
+            "value" : "%@ is due at %@"
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ is due at %2$@"
+            "value" : "%@ is due at %@"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ vence el %2$@"
+            "value" : "%@ vence el %@"
           }
         },
         "es-ES" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ vence el %2$@"
+            "value" : "%@ vence el %@"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ määräpäivä on %2$@"
+            "value" : "%@ määräpäivä on %@"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ est due à %2$@"
+            "value" : "%@ est due à %@"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ dû à %2$@"
+            "value" : "%@ dû à %@"
           }
         },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ delè li se %2$@"
+            "value" : "%@ delè li se %@"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ jatuh tempo pada %2$@"
+            "value" : "%@ jatuh tempo pada %@"
           }
         },
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ skiladagur er %2$@"
+            "value" : "%@ skiladagur er %@"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ Scade alle %2$@"
+            "value" : "%@ Scade alle %@"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@の期日は（）です%2$@"
+            "value" : "%@の期日は（）です%@"
           }
         },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ ka tae i te wā ī %2$@"
+            "value" : "%@ ka tika i %@"
           }
         },
         "ms" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ cukup tempoh pada %2$@"
+            "value" : "%@ tamat tempoh pada %@"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ har frist %2$@"
+            "value" : "%@ har frist %@"
           }
         },
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ har frist %2$@"
+            "value" : "%@ har frist %@"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ vervalt op %2$@"
+            "value" : "%@ vervalt op %@"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ mija %2$@"
+            "value" : "%@ mija %@"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ é devido a %2$@"
+            "value" : "%@ é devido a %@"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ vence às %2$@"
+            "value" : "%@ vence às %@"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ необходимо завершить через %2$@"
+            "value" : "%@ необходимо завершить через %@"
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ ima rok ob %2$@"
+            "value" : "%@ ima rok ob %@"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ ska vara klar %2$@"
+            "value" : "%@ förfaller %@"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ ska vara klar %2$@"
+            "value" : "%@ förfaller %@"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ ครบกำหนดเมื่อ %2$@"
+            "value" : "%@ ครบกำหนดเมื่อ %@"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ đến hạn vào %2$@"
+            "value" : "%@ đến hạn vào %@"
           }
         },
         "zh" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@截止日期%2$@"
+            "value" : "%@截止日期%@"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@截止日期%2$@"
+            "value" : "%@截止日期%@"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@截止於%2$@"
+            "value" : "%@截止於%@"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@截止於%2$@"
+            "value" : "%@截止於%@"
           }
         }
       }
@@ -250,241 +250,241 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ سيبدأ في %2$@"
+            "value" : "%@ سيبدأ في %@"
           }
         },
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ començarà a les %2$@"
+            "value" : "%@ començarà a les %@"
           }
         },
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ yn dechrau am %2$@"
+            "value" : "%@ yn dechrau am %@"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ begynder kl. %2$@"
+            "value" : "%@ begynder kl. %@"
           }
         },
         "da-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ begynder kl. %2$@"
+            "value" : "%@ begynder kl. %@"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ beginnt um %2$@"
+            "value" : "%@ beginnt um %@"
           }
         },
         "en-AU" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ will begin at %2$@"
+            "value" : "%@ will begin at %@"
           }
         },
         "en-AU-unimelb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ will begin at %2$@"
+            "value" : "%@ will begin at %@"
           }
         },
         "en-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ will begin at %2$@"
+            "value" : "%@ will begin at %@"
           }
         },
         "en-CY" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ will begin at %2$@"
+            "value" : "%@ will begin at %@"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ will begin at %2$@"
+            "value" : "%@ will begin at %@"
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ will begin at %2$@"
+            "value" : "%@ will begin at %@"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ comenzará el %2$@"
+            "value" : "%@ comenzará el %@"
           }
         },
         "es-ES" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ comenzará el %2$@"
+            "value" : "%@ comenzará el %@"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ alkaa %2$@"
+            "value" : "%@ alkaa %@"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ commencera à %2$@"
+            "value" : "%@ commencera à %@"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ commencera à %2$@"
+            "value" : "%@ commencera à %@"
           }
         },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ ap kòmanse a %2$@"
+            "value" : "%@ ap kòmanse a %@"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ akan dimulai pada %2$@"
+            "value" : "%@ akan dimulai pada %@"
           }
         },
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ mun hefjast þann %2$@"
+            "value" : "%@ mun hefjast þann %@"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ inizierà alle %2$@"
+            "value" : "%@ inizierà alle %@"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@（）に開始します%2$@"
+            "value" : "%@（）に開始します%@"
           }
         },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ ka timata ī %2$@"
+            "value" : "%@ ka timata i %@"
           }
         },
         "ms" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ akan bermula pada %2$@"
+            "value" : "%@ akan bermula pada %@"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ vil begynne %2$@"
+            "value" : "%@ starter %@"
           }
         },
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ vil begynne %2$@"
+            "value" : "%@ starter %@"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ begint op %2$@"
+            "value" : "%@ begint op %@"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ rozpocznie się o %2$@"
+            "value" : "%@ rozpocznie się o %@"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ começará em %2$@"
+            "value" : "%@ começará em %@"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ começará às %2$@"
+            "value" : "%@ começará às %@"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ начнется в %2$@"
+            "value" : "%@ начнется в %@"
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ se začne ob %2$@"
+            "value" : "%@ se začne ob %@"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ börjar %2$@"
+            "value" : "%@ börjar %@"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ börjar %2$@"
+            "value" : "%@ börjar %@"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ จะเริ่มต้นเมื่อ %2$@"
+            "value" : "%@ จะเริ่มต้นเมื่อ %@"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@ sẽ bắt đầu vào %2$@"
+            "value" : "%@ sẽ bắt đầu vào %@"
           }
         },
         "zh" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@开始日期%2$@"
+            "value" : "%@开始日期%@"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@开始日期%2$@"
+            "value" : "%@开始日期%@"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@將開始於%2$@"
+            "value" : "%@將開始於%@"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%1$@將開始於%2$@"
+            "value" : "%@將開始於%@"
           }
         }
       }
@@ -1715,7 +1715,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "تنبيهات"
+            "value" : "التنبيهات"
           }
         },
         "ca" : {
@@ -1847,7 +1847,7 @@
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "He whakamatāra"
+            "value" : "He whakamataara"
           }
         },
         "ms" : {
@@ -1907,13 +1907,13 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Larm"
+            "value" : "Notiser"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Larm"
+            "value" : "Notiser"
           }
         },
         "th" : {
@@ -2133,7 +2133,7 @@
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aviso"
+            "value" : "Anúncio"
           }
         },
         "ru" : {
@@ -2157,7 +2157,7 @@
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Anslag"
+            "value" : "Meddelande"
           }
         },
         "th" : {
@@ -2395,7 +2395,7 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Uppgiftsdetaljer"
+            "value" : "Uppgiftens detaljer"
           }
         },
         "sv-instk12" : {
@@ -2787,7 +2787,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Revenir"
+            "value" : "Retour"
           }
         },
         "ht" : {
@@ -4723,7 +4723,7 @@
         "es-ES" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Asignaturas"
+            "value" : "Cursos"
           }
         },
         "fi" : {
@@ -4777,7 +4777,7 @@
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Akoranga"
+            "value" : "Ngā Akoranga"
           }
         },
         "ms" : {
@@ -4855,7 +4855,7 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Khóa Học"
+            "value" : "Các khóa học"
           }
         },
         "zh" : {
@@ -5771,7 +5771,7 @@
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Avvis"
+            "value" : "Avvise"
           }
         },
         "nl" : {
@@ -5795,7 +5795,7 @@
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Descartar"
+            "value" : "Recusar"
           }
         },
         "ru" : {
@@ -5819,7 +5819,7 @@
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Avvisa"
+            "value" : "Avfärda"
           }
         },
         "th" : {
@@ -6277,7 +6277,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Data limite"
+            "value" : "Limite"
           }
         },
         "pt-BR" : {
@@ -7033,7 +7033,7 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sök skola"
+            "value" : "Sök efter skola"
           }
         },
         "sv-instk12" : {
@@ -7527,7 +7527,7 @@
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Omdömen"
+            "value" : "Bedömningar"
           }
         },
         "th" : {
@@ -7645,7 +7645,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Buzón de entrada"
+            "value" : "Bandeja de entrada"
           }
         },
         "es-ES" : {
@@ -9597,7 +9597,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Administrar alumnos"
+            "value" : "Administrar estudiantes"
           }
         },
         "es-ES" : {
@@ -10085,7 +10085,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "N/A"
+            "value" : "N. a."
           }
         },
         "es-ES" : {
@@ -10205,7 +10205,7 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ej tillämpbart"
+            "value" : "Ej tillämpligt"
           }
         },
         "sv-instk12" : {
@@ -10555,19 +10555,19 @@
         "en-CY" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No Modules"
+            "value" : "No modules"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No Courses"
+            "value" : "No courses"
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No Modules"
+            "value" : "No modules"
           }
         },
         "es" : {
@@ -10627,7 +10627,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "コースなし"
+            "value" : "コースはありません"
           }
         },
         "mi" : {
@@ -10669,7 +10669,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sem Disicplinas"
+            "value" : "Sem Disciplinas"
           }
         },
         "pt-BR" : {
@@ -10687,7 +10687,7 @@
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ni predmetov."
+            "value" : "Ni predmetov"
           }
         },
         "sv" : {
@@ -10841,7 +10841,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aucune date d’échéance"
+            "value" : "Aucune date d'échéance"
           }
         },
         "ht" : {
@@ -10871,13 +10871,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "締切日なし"
+            "value" : "期日なし"
           }
         },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kaore He Rā Tika"
+            "value" : "Kaore he ra tika"
           }
         },
         "ms" : {
@@ -10913,7 +10913,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sem data limite"
+            "value" : "Sem data de limite"
           }
         },
         "pt-BR" : {
@@ -11567,19 +11567,19 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "D'accord"
+            "value" : "OK"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "D'accord"
+            "value" : "OK"
           }
         },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "OK"
+            "value" : "DAKO"
           }
         },
         "id" : {
@@ -11693,25 +11693,25 @@
         "zh" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "OK"
+            "value" : "确定"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "OK"
+            "value" : "确定"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "是"
+            "value" : "確定"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "是"
+            "value" : "確定"
           }
         }
       }
@@ -12454,241 +12454,241 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "بخصوص: %1$@، %2$@"
+            "value" : "بخصوص: %@، %@"
           }
         },
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sobre: %1$@, %2$@"
+            "value" : "Sobre: %@, %@"
           }
         },
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ynghylch: %1$@, %2$@"
+            "value" : "Ynghylch: %@, %@"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vedrørende: %1$@. %2$@"
+            "value" : "Vedrørende: %@. %@"
           }
         },
         "da-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vedrørende: %1$@. %2$@"
+            "value" : "Vedrørende: %@. %@"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Betreffend: %1$@, %2$@"
+            "value" : "Betreffend: %@, %@"
           }
         },
         "en-AU" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Regarding: %1$@, %2$@"
+            "value" : "Regarding: %@, %@"
           }
         },
         "en-AU-unimelb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Regarding: %1$@, %2$@"
+            "value" : "Regarding: %@, %@"
           }
         },
         "en-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Regarding: %1$@, %2$@"
+            "value" : "Regarding: %@, %@"
           }
         },
         "en-CY" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Regarding: %1$@, %2$@"
+            "value" : "Regarding: %@, %@"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Regarding: %1$@, %2$@"
+            "value" : "Regarding: %@, %@"
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Regarding: %1$@, %2$@"
+            "value" : "Regarding: %@, %@"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Asunto: %1$@, %2$@"
+            "value" : "Asunto: %@, %@"
           }
         },
         "es-ES" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Asunto: %1$@, %2$@"
+            "value" : "Asunto: %@, %@"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Koskee: %1$@, %2$@"
+            "value" : "Koskee: %@, %@"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "À propos : %1$@, %2$@"
+            "value" : "À propos : %@, %@"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "En ce qui concerne : %1$@, %2$@"
+            "value" : "En ce qui concerne : %@, %@"
           }
         },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Konsènan: %1$@, %2$@"
+            "value" : "Konsènan: %@, %@"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tentang: %1$@, %2$@"
+            "value" : "Tentang: %@, %@"
           }
         },
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Varðandi: %1$@, %2$@"
+            "value" : "Varðandi: %@, %@"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Su: %1$@, %2$@"
+            "value" : "Su: %@, %@"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "対象：%1$@,%2$@"
+            "value" : "Re：%@,%@"
           }
         },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "E pā ana: %1$@, %2$@"
+            "value" : "E pā ana: %@, %@"
           }
         },
         "ms" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Berkenaan: %1$@, %2$@"
+            "value" : "Berkenaan: %@, %@"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vedrørende: %1$@, %2$@"
+            "value" : "Vedrørende: %@, %@"
           }
         },
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vedrørende: %1$@, %2$@"
+            "value" : "Vedrørende: %@, %@"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Betreffende: %1$@, %2$@"
+            "value" : "Betreffende: %@, %@"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "W odniesieniu do: %1$@, %2$@"
+            "value" : "W odniesieniu do: %@, %@"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Em relação a: %1$@, %2$@"
+            "value" : "Em relação a: %@, %@"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sobre: %1$@, %2$@"
+            "value" : "Sobre: %@, %@"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Касательно: %1$@, %2$@"
+            "value" : "Касательно: %@, %@"
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zadeva: %1$@, %2$@"
+            "value" : "Zadeva: %@, %@"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Angående : %1$@, %2$@"
+            "value" : "Angående : %@, %@"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Angående : %1$@, %2$@"
+            "value" : "Angående : %@, %@"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "เกี่ยวกับ: %1$@, %2$@"
+            "value" : "เกี่ยวกับ: %@, %@"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Về việc: %1$@, %2$@"
+            "value" : "Về việc: %@, %@"
           }
         },
         "zh" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "事由：%1$@，%2$@"
+            "value" : "事由：%@，%@"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "事由：%1$@，%2$@"
+            "value" : "事由：%@，%@"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "關於：%1$@,%2$@"
+            "value" : "關於：%@,%@"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "關於：%1$@,%2$@"
+            "value" : "關於：%@,%@"
           }
         }
       }
@@ -12699,241 +12699,241 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "بخصوص: %1$@، المهمة -  %2$@"
+            "value" : "بخصوص: %@، المهمة - %@"
           }
         },
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sobre: %1$@, activitat - %2$@"
+            "value" : "Sobre: %@, Activitat -  %@"
           }
         },
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ynghylch: %1$@, Aseinaid - %2$@"
+            "value" : "Ynghylch: %@, Aseinaid - %@"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vedrørende: %1$@, Opgave - %2$@"
+            "value" : "Vedrørende: %@, Opgave - %@"
           }
         },
         "da-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vedrørende: %1$@, Opgave - %2$@"
+            "value" : "Vedrørende: %@, Opgave - %@"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Betreffend: %1$@, Aufgabe – %2$@"
+            "value" : "Betreffend: %@, Aufgabe – %@"
           }
         },
         "en-AU" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Regarding: %1$@, Assignment - %2$@"
+            "value" : "Regarding: %@, Assignment - %@"
           }
         },
         "en-AU-unimelb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Regarding: %1$@, Assignment - %2$@"
+            "value" : "Regarding: %@, Assignment - %@"
           }
         },
         "en-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Regarding: %1$@, Assignment - %2$@"
+            "value" : "Regarding: %@, Assignment - %@"
           }
         },
         "en-CY" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Regarding: %1$@, Assignment - %2$@"
+            "value" : "Regarding: %@, Assignment - %@"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Regarding: %1$@, Assignment - %2$@"
+            "value" : "Regarding: %@, Assignment - %@"
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Regarding: %1$@, Assignment - %2$@"
+            "value" : "Regarding: %@, Assignment - %@"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Asunto: %1$@, Tarea:  %2$@"
+            "value" : "Asunto: %@, Tarea - %@"
           }
         },
         "es-ES" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Asunto: %1$@, actividad: %2$@"
+            "value" : "Asunto: %@, actividad:  %@"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Koskee: %1$@, Tehtävä - %2$@"
+            "value" : "Koskee: %@, Tehtävä - %@"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "À propos : %1$@, Travaux -  %2$@"
+            "value" : "À propos : %@, Travaux - %@"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "En ce qui concerne : %1$@, tâche - %2$@"
+            "value" : "En ce qui concerne : %@, tâche — %@"
           }
         },
         "ht" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Konsènan: %1$@, Devwa - %2$@"
+            "value" : "Konsènan: %@, Devwa - %@"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tentang: %1$@, Tugas - %2$@"
+            "value" : "Tentang: %@, Tugas - %@"
           }
         },
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Varðandi: %1$@, verkefni - %2$@"
+            "value" : "Varðandi: %@, verkefni - %@"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Su: %1$@, Compito - %2$@"
+            "value" : "Su: %@, Compito - %@"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Re：%1$@、課題 - %2$@"
+            "value" : "Re：%@、課題 -%@"
           }
         },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "E pā ana: %1$@, Whakataunga: %2$@"
+            "value" : "E pā ana: %@, Whakataunga: %@"
           }
         },
         "ms" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Berkenaan: %1$@, Tugasan - %2$@"
+            "value" : "Berkenaan: %@, Tugasan - %@"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vedrørende: %1$@, Oppgave - %2$@"
+            "value" : "Vedrørende: %@, Oppgave - %@"
           }
         },
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vedrørende: %1$@, Oppgave - %2$@"
+            "value" : "Vedrørende: %@, Oppgave - %@"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Betreffende: %1$@, opdracht -  %2$@"
+            "value" : "Betreffende: %@, opdracht - %@"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "W odniesieniu do: %1$@, zadanie- %2$@"
+            "value" : "W odniesieniu do: %@, zadanie- %@"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Em relação a: %1$@, Tarefa - %2$@"
+            "value" : "Em relação a: %@, Tarefa - %@"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sobre: %1$@, Tarefa - %2$@"
+            "value" : "Sobre: %@, Tarefa - %@"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Касательно: %1$@, задание - %2$@"
+            "value" : "Касательно: %@, задание - %@"
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Zadeva: %1$@, Naloga – %2$@"
+            "value" : "Zadeva: %@, Naloga – %@"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Angående : %1$@, uppgift – %2$@"
+            "value" : "Angående : %@, uppgift – %@"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Angående : %1$@, uppgift – %2$@"
+            "value" : "Angående : %@, uppgift – %@"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "เกี่ยวกับ: %1$@, ภารกิจ -  %2$@"
+            "value" : "เกี่ยวกับ: %@, ภารกิจ - %@"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Về việc: %1$@, Bài Tập - %2$@"
+            "value" : "Về việc: %@, Bài Tập - %@"
           }
         },
         "zh" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "事由：%1$@，作业 -%2$@"
+            "value" : "事由：%@，作业 -%@"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "事由：%1$@，作业 -%2$@"
+            "value" : "事由：%@，作业 -%@"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "關於：%1$@，作業 - %2$@"
+            "value" : "關於：%@，作業 -%@"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "關於：%1$@，作業 - %2$@"
+            "value" : "關於：%@，作業 -%@"
           }
         }
       }
@@ -13919,7 +13919,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ملخص"
+            "value" : "الملخص"
           }
         },
         "ca" : {
@@ -14163,7 +14163,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "المناهج"
+            "value" : "المنهج الدراسي"
           }
         },
         "ca" : {
@@ -14181,7 +14181,7 @@
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pensum"
+            "value" : "Læseplan"
           }
         },
         "da-instk12" : {
@@ -14283,7 +14283,7 @@
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Syllabus"
+            "value" : "Piano di studio"
           }
         },
         "ja" : {
@@ -14325,13 +14325,13 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Konspekt"
+            "value" : "Program"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apontamentos"
+            "value" : "Programa"
           }
         },
         "pt-BR" : {
@@ -14343,7 +14343,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Учебный план"
+            "value" : "Содержание курса"
           }
         },
         "sl" : {
@@ -15539,7 +15539,7 @@
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Er is een fout opgetreden bij het laden van cursussen. Ophalen om te vernieuwen om het opnieuw te proberen."
+            "value" : "Er is een fout opgetreden bij het laden van cursussen. Pull om te vernieuwen om het opnieuw te proberen."
           }
         },
         "pl" : {
@@ -15551,7 +15551,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Houve um erro ao carregar as disciplinas. Puxe para refrescar para tentar novamente."
+            "value" : "Houve um erro ao carregar as disciplinas. Puxe para actualizar para tentar novamente."
           }
         },
         "pt-BR" : {
@@ -16247,7 +16247,7 @@
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "kia pānuitia"
+            "value" : "Kia pānuitia"
           }
         },
         "ms" : {
@@ -16265,7 +16265,7 @@
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ulest"
+            "value" : "Uleste"
           }
         },
         "nl" : {
@@ -16307,7 +16307,7 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Oläst"
+            "value" : "Olästa"
           }
         },
         "sv-instk12" : {
