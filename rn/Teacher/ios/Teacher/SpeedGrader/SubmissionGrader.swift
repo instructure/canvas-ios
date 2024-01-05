@@ -242,7 +242,7 @@ struct SubmissionGrader: View {
     private func segmentedTitles() -> [String] {
         let filesString: String!
         if selected.type == .online_upload, let count = selected.attachments?.count, count > 0 {
-            filesString = NSLocalizedString("Files (\(count))", comment: "")
+            filesString = String(localized: "Files (\(count))")
         } else {
             filesString = NSLocalizedString("Files", comment: "")
         }
