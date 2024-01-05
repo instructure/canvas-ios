@@ -21,7 +21,7 @@ const program = require('commander')
 const { spawn } = require('child_process')
 const { createReadStream, readFileSync, writeFileSync } = require('fs')
 const S3 = require('aws-sdk/clients/s3')
-const projects = require('./projects.json')
+const localizables = require('./localizables.json')
 
 program
   .version(require('../../package.json').version)
@@ -75,7 +75,9 @@ function run(cmd, args, opts) {
 
 async function exportTranslations() {
   const toUpload = []
-  await processReactLocalizations(toUpload)
+  // install react dependencies
+  const reactProjectFolder = 'rn/Teacher/i18n/locales'
+  await run('yarn', [], { cwd: `${reactProjectFolder}/../..` })
   await run('make', ['pod'])
   await processNativeLocalizations(toUpload)
   await pushToS3(toUpload)
@@ -92,13 +94,6 @@ async function processNativeLocalizations(toUpload) {
   xml = removeNonLocalizedKeys(xml)
   writeFileSync(outputFile, xml, 'utf8')
   toUpload.push({ from: outputFile, to: `all.xliff` })
-}
-
-async function processReactLocalizations(toUpload) {
-  const reactProjectFolder = 'rn/Teacher/i18n/locales'
-  await run('yarn', [], { cwd: `${reactProjectFolder}/../..` }) // install dependencies
-  await run('yarn', ['extract-strings'], { cwd: `${reactProjectFolder}/../..` })
-  toUpload.push({ from: `${reactProjectFolder}/en.json`, to: 'teacher.json' })
 }
 
 async function pushToS3(toUpload) {
@@ -131,29 +126,12 @@ async function exportLocalizations(outputPath) {
 }
 
 function removeNonLocalizedFiles(xml) {
-  // Remove files we don't want to localize
-  const filesToLocalize = [
-	'Core/Core/Localizable.xcstrings',
-    'CanvasCore/CanvasCore/Localizable.xcstrings',
-    'Parent/Parent/InfoPlist.xcstrings',
-    'Parent/Parent/Localizable.xcstrings',
-    'rn/Teacher/ios/Teacher/InfoPlist.xcstrings',
-    'rn/Teacher/ios/Teacher/Localizable.xcstrings',
-    'Student/Student/InfoPlist.xcstrings',
-    'Student/Student/Localizable.xcstrings',
-    'Student/SubmitAssignment/InfoPlist.xcstrings',
-    'Student/SubmitAssignment/Localizable.xcstrings',
-    'Student/Widgets/Resources/InfoPlist.xcstrings',
-    'Student/Widgets/Resources/Localizable.xcstrings'
-    // TODO: Add settings bundle strings
-  ]
-
   // Matches file tags with original attribute
   const pattern = new RegExp(`<file\\s+original="([^"]+)"[^>]*>[\\s\\S]*?<\\/file>`, 'g')
 
   // Replace non-matching files with an empty string
   let result = xml.replace(pattern, (match, p1) => {
-    return filesToLocalize.includes(p1) ? match : ''
+    return localizables.includes(p1) ? match : ''
   })
   
   // Remove empty lines
