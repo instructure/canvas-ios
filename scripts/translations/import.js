@@ -18,12 +18,12 @@
 //
 
 const program = require('commander')
-const { spawn } = require('child_process')
+const { execSync, spawn } = require('child_process')
 const { createReadStream, readFileSync, writeFileSync, readdir } = require('fs')
 const mkdirp = require('mkdirp')
 const path = require('path')
 const S3 = require('aws-sdk/clients/s3')
-const projects = require('./projects.json')
+const localizables = require('./localizables.json')
 
 program
   .version(require('../../package.json').version)
@@ -84,6 +84,8 @@ async function importTranslations() {
   if (program.import) {
     await importXcodeTranslations()
   }
+  
+  discardNonTranslatableFileChanges()
 }
 
 async function pullTranslationsFromS3() {
@@ -149,4 +151,16 @@ async function importXcodeTranslations() {
         'Canvas.xcworkspace',
       ])
   }
+}
+
+async function discardNonTranslatableFileChanges() {
+  console.log('Discarding all non translation file changes.')
+  const modifiedFiles = execSync('git diff --name-only', { encoding: 'utf-8' })
+    .trim()
+    .split('\n')
+  const filesToDiscard = modifiedFiles.filter(filePath => !localizables.includes(filePath))
+
+  for (const filePath of filesToDiscard) {
+    execSync(`git checkout -- "${filePath}"`)
+  } 
 }
