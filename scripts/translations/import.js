@@ -78,7 +78,7 @@ function run(cmd, args, opts) {
 
 async function importTranslations() {
   if (!program.skipPull) {
-  	await pullTranslationsFromS3()
+    await pullTranslationsFromS3()
   }
 
   if (program.import) {
