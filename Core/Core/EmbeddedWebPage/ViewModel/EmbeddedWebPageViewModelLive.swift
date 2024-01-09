@@ -35,15 +35,23 @@ public class EmbeddedWebPageViewModelLive: EmbeddedWebPageViewModel {
      This method assumes that feature flags for the given context are already in CoreData.
      */
     public static func isRedesignEnabled(in context: Context) -> Bool {
-        var featureFlagContext = context
-
         if context.contextType == .group {
             let group = AppEnvironment.shared.subscribe(GetGroup(groupID: context.id))
-            if let courseID = group.first?.courseID {
-                featureFlagContext = Context.course(courseID)
+            if let courseID = group.first?.courseID {   // If it's group inside a course
+                return AppEnvironment.shared.subscribe( // return the course's feature flag value
+                    GetEnabledFeatureFlags(context: .course(courseID))
+                ).isFeatureFlagEnabled(.discussionRedesign)
+            } else {
+                return AppEnvironment.shared.subscribe( // If it's not a course group, it must be an account level group
+                    GetEnvironmentFeatureFlags(context: .currentUser) // return the environment flag value
+                ).isFeatureEnabled(.react_discussions_post)
             }
+        } else {
+            return AppEnvironment.shared.subscribe(
+                GetEnabledFeatureFlags(context: context)
+            ).isFeatureFlagEnabled(.discussionRedesign)
         }
-        return AppEnvironment.shared.subscribe(GetEnabledFeatureFlags(context: featureFlagContext)).isFeatureFlagEnabled(.discussionRedesign)
+
     }
     @Published public private(set) var subTitle: String?
     @Published public private(set) var contextColor: UIColor?
