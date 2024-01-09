@@ -114,7 +114,7 @@ public struct GetCalendarEventsRequest: APIRequestable {
     public let importantDates: Bool?
     private static let dateFormatter: DateFormatter = {
         let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd"
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         return df
     }()
 
