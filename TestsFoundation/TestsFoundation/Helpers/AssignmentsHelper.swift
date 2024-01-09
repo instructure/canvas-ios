@@ -61,7 +61,7 @@ public class AssignmentsHelper: BaseHelper {
         public static var status: XCUIElement { app.find(id: "AssignmentDetails.status") }
         public static var due: XCUIElement { app.find(id: "AssignmentDetails.due") }
         public static var submissionTypes: XCUIElement { app.find(id: "AssignmentDetails.submissionTypes") }
-        public static var submissionsButton: XCUIElement { app.find(id: "AssignmentDetails.submissionsButton") }
+        public static var submissionButton: XCUIElement { app.find(id: "AssignmentDetails.viewSubmissionButton") }
         public static var submitAssignmentButton: XCUIElement { app.find(id: "AssignmentDetails.submitAssignmentButton") }
         public static var successfulSubmissionLabel: XCUIElement { app.find(id: "AssignmentDetails.submittedText") }
         public static var allowedExtensions: XCUIElement { app.find(id: "AssignmentDetails.allowedExtensions") }
@@ -87,10 +87,6 @@ public class AssignmentsHelper: BaseHelper {
 
         public static var backButton: XCUIElement {
             app.find(idStartingWith: "Assignment Details", type: .navigationBar).find(label: "Back", type: .button)
-        }
-
-        public static var submissionsButtonLabel: XCUIElement {
-            app.find(id: "AssignmentDetails.submissionsButton").find(type: .staticText)
         }
 
         public static func navBar(course: DSCourse) -> XCUIElement {

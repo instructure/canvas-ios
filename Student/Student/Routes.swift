@@ -509,8 +509,7 @@ private func discussionViewController(url: URLComponents, params: [String: Strin
         )
     }
 
-    if ExperimentalFeature.hybridDiscussionDetails.isEnabled,
-       EmbeddedWebPageViewModelLive.isRedesignEnabled(in: context) {
+    if EmbeddedWebPageViewModelLive.isRedesignEnabled(in: context) {
         let viewModel = EmbeddedWebPageViewModelLive(
             context: context,
             webPageType: webPageType
