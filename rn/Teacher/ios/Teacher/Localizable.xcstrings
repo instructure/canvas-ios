@@ -9997,9 +9997,6 @@
         }
       }
     },
-    "Files ((count))" : {
-
-    },
     "Files (%@)" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -10244,6 +10241,9 @@
           }
         }
       }
+    },
+    "Files (%lld)" : {
+
     },
     "Filter" : {
       "localizations" : {
