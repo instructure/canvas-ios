@@ -86,6 +86,9 @@ public struct CoreDatePickerActionSheetCard: View {
                 } label: {
                     Text("Cancel", bundle: .core)
                         .font(.regular17)
+                        .foregroundStyle(
+                            Color(uiColor: Brand.shared.primary.darkenToEnsureContrast(against: .backgroundLightest))
+                        )
                 }
                 Spacer()
                 Button {
@@ -94,6 +97,9 @@ public struct CoreDatePickerActionSheetCard: View {
                 } label: {
                     Text("Done", bundle: .core)
                         .font(.regular17)
+                        .foregroundStyle(
+                            Color(uiColor: Brand.shared.primary.darkenToEnsureContrast(against: .backgroundLightest))
+                        )
                 }
             }
             .padding(.horizontal, 16)
@@ -111,7 +117,7 @@ public struct CoreDatePickerActionSheetCard: View {
         Rectangle()
             .frame(width: .infinity,
                    height: .infinity)
-            .background(Color.clear)
+            .foregroundColor(.black)
             .ignoresSafeArea()
     }
 

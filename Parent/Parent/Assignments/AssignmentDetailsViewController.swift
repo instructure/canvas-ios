@@ -99,7 +99,10 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
         reminderSwitch.isEnabled = false
         reminderDateButton.isEnabled = false
         reminderDateButton.isHidden = true
-        reminderDateButton.setTitleColor(Brand.shared.primary, for: .normal)
+        reminderDateButton.setTitleColor(
+            Brand.shared.primary.ensureContrast(against: .backgroundLightest),
+            for: .normal
+        )
 
         statusLabel.text = ""
 

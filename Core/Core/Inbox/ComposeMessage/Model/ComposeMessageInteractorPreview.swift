@@ -22,15 +22,6 @@ import Combine
 import CombineExt
 
 public class ComposeMessageInteractorPreview: ComposeMessageInteractor {
-    // MARK: - Outputs
-    public var state = CurrentValueSubject<StoreState, Never>(.loading)
-    public var courses = CurrentValueSubject<[InboxCourse], Never>([])
-
-    public init(env: AppEnvironment) {
-        self.courses = CurrentValueSubject<[InboxCourse], Never>([
-            .save(.make(id: "1", name: "Test Course"), in: env.database.viewContext),
-        ])
-    }
 
     public func send(parameters: MessageParameters) -> Future<Void, Error> {
         Future<Void, Error> { promise in

@@ -20,19 +20,19 @@ import SwiftUI
 
 public struct RecipientPillView: View {
 
-    private let recipient: SearchRecipient
-    private var removeDidTap: (SearchRecipient) -> Void
+    private let recipient: Recipient
+    private var removeDidTap: (Recipient) -> Void
 
-    public init(recipient: SearchRecipient, removeDidTap: @escaping (SearchRecipient) -> Void) {
+    public init(recipient: Recipient, removeDidTap: @escaping (Recipient) -> Void) {
         self.recipient = recipient
         self.removeDidTap = removeDidTap
     }
 
     public var body: some View {
         HStack(spacing: 0) {
-            Avatar(name: recipient.name, url: recipient.avatarURL, size: 26)
+            Avatar(name: recipient.displayName, url: recipient.avatarURL, size: 26)
                 .padding(.trailing, 10)
-            Text(recipient.name)
+            Text(recipient.displayName)
                 .font(.regular14)
                 .foregroundColor(.textDark)
                 .padding(.trailing, 10)
@@ -47,7 +47,7 @@ public struct RecipientPillView: View {
                 .stroke(Color.textDark, lineWidth: 0.5)
         )
         .accessibilityElement(children: .ignore)
-        .accessibility(label: Text(recipient.name))
+        .accessibility(label: Text(recipient.displayName))
         .accessibilityAction(named: Text("Remove recipient", bundle: .core)) {
             removeDidTap(recipient)
         }
@@ -72,7 +72,7 @@ struct RecipientPillView_Previews: PreviewProvider {
 
     static var previews: some View {
         RecipientPillView(recipient:
-                .make(name: "Student With Extremely Long FirstName and Surname To Check TextFields", in: context), removeDidTap: { _ in })
+                .init(id: "1", name: "Student With Extremely Long FirstName and Surname To Check TextFields", avatarURL: nil), removeDidTap: { _ in })
     }
 }
 
