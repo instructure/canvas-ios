@@ -38,15 +38,15 @@ public class EmbeddedWebPageViewModelLive: EmbeddedWebPageViewModel {
         if context.contextType == .group {
             var featureFlagContext = context
             let group = AppEnvironment.shared.subscribe(GetGroup(groupID: context.id))
-            if let courseID = group.first?.courseID {
-                featureFlagContext = Context.course(courseID)
+            if let courseID = group.first?.courseID {   // If it's group inside a course
+                return AppEnvironment.shared.subscribe( // return the course's feature flag value
+                    GetEnabledFeatureFlags(context: .course(courseID))
+                ).isFeatureFlagEnabled(.discussionRedesign)
+            } else {
+                return AppEnvironment.shared.subscribe( // If it's not a course group, it must be an account level group
+                    GetEnvironmentFeatureFlags(context: .currentUser) // return the environment flag value
+                ).isFeatureEnabled(.react_discussions_post)
             }
-            return AppEnvironment.shared.subscribe(
-                GetEnvironmentFeatureFlags(context: .currentUser)
-            ).isFeatureEnabled(.react_discussions_post) ||
-            AppEnvironment.shared.subscribe(
-                GetEnabledFeatureFlags(context: featureFlagContext)
-            ).isFeatureFlagEnabled(.discussionRedesign)
         } else {
             return AppEnvironment.shared.subscribe(
                 GetEnabledFeatureFlags(context: context)

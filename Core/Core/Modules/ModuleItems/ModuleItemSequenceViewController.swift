@@ -27,7 +27,6 @@ public class ModuleItemSequenceViewController: UIViewController {
     @IBOutlet weak var buttonsHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
-    @IBOutlet weak var spinnerView: UIView!
 
     /// These should get set only once in viewDidLoad
     var leftBarButtonItems: [UIBarButtonItem]?
@@ -84,10 +83,8 @@ public class ModuleItemSequenceViewController: UIViewController {
 
     func update(embed: Bool) {
         if store.requested, store.pending {
-            spinnerView.isHidden = false
             return
         }
-        spinnerView.isHidden = true
         if embed, let viewController = currentViewController() {
             setCurrentPage(viewController)
         }
