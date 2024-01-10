@@ -16,19 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
+public struct PutDashboardCardPositionsRequest: APIRequestable {
+    public typealias Response = APIDashboardCardPositions
 
-public protocol DashboardCourseCardListInteractor {
-    // MARK: - Outputs
-
-    var state: CurrentValueSubject<StoreState, Never> { get }
-    var courseCardList: CurrentValueSubject<[DashboardCard], Never> { get }
-
-    // MARK: - Inputs
-
-    func refresh() -> Future<Void, Never>
-
-    // MARK: - Init
-
-    init(env: AppEnvironment, showOnlyTeacherEnrollment: Bool)
+    public var path: String { "users/self/dashboard_positions" }
+    public var method: APIMethod { .put }
+    public let body: APIDashboardCardPositions?
 }
