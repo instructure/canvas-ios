@@ -51,10 +51,6 @@ targets:
     sources:
       - path: Student
     dependencies:
-      # - package: GoogleUtilities
-
-      # - package: Firebase
-      #   product: FirebaseRemoteConfig
       - package: PSPDFKit
       - package: Heap
       - target: CanvasCore/CanvasCore
@@ -82,7 +78,6 @@ targets:
         CODE_SIGN_ENTITLEMENTS: SubmitAssignment/SubmitAssignment.entitlements
         TARGETED_DEVICE_FAMILY: 1,2
     dependencies:
-      # - package: Firebase
       - package: Firebase
         product: FirebaseCrashlytics
       - target: Core/Core
@@ -111,14 +106,10 @@ targets:
       TEST_HOST: $(BUILT_PRODUCTS_DIR)/Student.app/Student
     sources:
       - path: StudentUnitTests
-    #dependencies:
-    #  - target: Core/Core
-    #  - target: TestsFoundation/TestsFoundation
   StudentE2ETests:    
     type: bundle.ui-testing
     platform: iOS
     settings:
-      # APPLICATION_EXTENSION_API_ONLY: false
       ENABLE_TESTABILITY: true
       TEST_TARGET_NAME: Student
     sources:

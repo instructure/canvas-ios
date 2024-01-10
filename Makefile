@@ -15,7 +15,7 @@ gen: ## xproj file generation
 	@echo 🟡 Running xcodegen
 	@cd Core; xcodegen
 	@cd TestsFoundation; xcodegen
-#	@cd Student; xcodegen
+	@cd Student; xcodegen
 
 unexport INFOPLIST_FILE
 unexport INFOPLIST_PATH
