@@ -148,6 +148,7 @@ class RoutesTests: XCTestCase {
             urlResponse: nil,
             to: AppEnvironment.shared.database.viewContext
         )
+
     }
 
     private func mockCourseDiscussionRedesignFlagEnabled(courseId: String = "1") {

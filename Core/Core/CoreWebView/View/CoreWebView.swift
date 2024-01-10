@@ -576,7 +576,8 @@ extension CoreWebView {
 
     open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        isThemeDark = viewController?.traitCollection.userInterfaceStyle == .dark
+        let traitCollection = viewController?.traitCollection ?? traitCollection
+        isThemeDark = traitCollection.userInterfaceStyle == .dark
     }
 
     /**
