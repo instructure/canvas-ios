@@ -178,6 +178,8 @@ public extension UIImage {
     static var rubricSolid: UIImage { UIImage(named: "rubricSolid", in: .core, compatibleWith: nil)! }
     static var settingsLine: UIImage { UIImage(named: "settingsLine", in: .core, compatibleWith: nil)! }
     static var settingsSolid: UIImage { UIImage(named: "settingsSolid", in: .core, compatibleWith: nil)! }
+    static var sortLine: UIImage { UIImage(named: "sortLine", in: .core, compatibleWith: nil)! }
+    static var sortSolid: UIImage { UIImage(named: "sortSolid", in: .core, compatibleWith: nil)! }
     static var starLine: UIImage { UIImage(named: "starLine", in: .core, compatibleWith: nil)! }
     static var starSolid: UIImage { UIImage(named: "starSolid", in: .core, compatibleWith: nil)! }
     static var strikethroughLine: UIImage { UIImage(named: "strikethroughLine", in: .core, compatibleWith: nil)! }
@@ -411,6 +413,8 @@ public extension Image {
     static var rubricSolid: Image { Image("rubricSolid", bundle: .core) }
     static var settingsLine: Image { Image("settingsLine", bundle: .core) }
     static var settingsSolid: Image { Image("settingsSolid", bundle: .core) }
+    static var sortLine: Image { Image("sortLine", bundle: .core) }
+    static var sortSolid: Image { Image("sortSolid", bundle: .core) }
     static var starLine: Image { Image("starLine", bundle: .core) }
     static var starSolid: Image { Image("starSolid", bundle: .core) }
     static var strikethroughLine: Image { Image("strikethroughLine", bundle: .core) }

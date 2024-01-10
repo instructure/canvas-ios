@@ -117,6 +117,7 @@ const whitelist = [
   'reply-all',
   'rubric',
   'settings',
+  'sort',
   'star',
   'strikethrough',
   'studio',
@@ -167,7 +168,8 @@ for (const icon of whitelist) {
     const filepath = `tmp/${name}${type}.svg`
     const folder = `${assetsFolder}/${name}${type}.imageset`
     if (!skipDownload) {
-      run(`curl -sSL https://raw.githubusercontent.com/instructure/instructure-ui/c1c7d673/packages/ui-icons/svg/${type}/${slug}.svg > ${filepath}`)
+      // Commit hash is for instui v8.51.0
+      run(`curl -sSL https://raw.githubusercontent.com/instructure/instructure-ui/cca8263/packages/ui-icons/svg/${type}/${slug}.svg > ${filepath}`)
     }
     run(`mkdir -p ${folder}`)
     // Icons in tab & nav bar need intrinsic size of 24x24 with 2px internal padding

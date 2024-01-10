@@ -4,7 +4,8 @@
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
-      buildImplicitDependencies = "YES">
+      buildImplicitDependencies = "YES"
+      runPostActionsOnFailure = "NO">
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -15,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "Teacher.app"
+               BuildableName = "Hello World.app"
                BlueprintName = "Teacher"
                ReferencedContainer = "container:../rn/Teacher/ios/Teacher.xcodeproj">
             </BuildableReference>
@@ -26,22 +27,27 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      onlyGenerateCoverageForSpecifiedTargets = "NO">
+      <TestPlans>
+         <TestPlanReference
+            default = "YES"
+            reference = "container:../TestPlans/IPadTeacherTests.xctestplan">
+         </TestPlanReference>
+      </TestPlans>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Teacher.app"
+            BuildableName = "Hello World.app"
             BlueprintName = "Teacher"
             ReferencedContainer = "container:../rn/Teacher/ios/Teacher.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <TestPlans>
-         <TestPlanReference
-            reference = "container:../TestPlans/IPadTeacherTests.xctestplan"
-            default = "YES">
-         </TestPlanReference>
-      </TestPlans>
+      <Testables>
+      </Testables>
+      <CommandLineArguments>
+      </CommandLineArguments>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -57,7 +63,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Teacher.app"
+            BuildableName = "Hello World.app"
             BlueprintName = "Teacher"
             ReferencedContainer = "container:../rn/Teacher/ios/Teacher.xcodeproj">
          </BuildableReference>
@@ -73,7 +79,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Teacher.app"
+            BuildableName = "Hello World.app"
             BlueprintName = "Teacher"
             ReferencedContainer = "container:../rn/Teacher/ios/Teacher.xcodeproj">
          </BuildableReference>

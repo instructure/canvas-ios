@@ -43,6 +43,12 @@ class RoutesTests: XCTestCase {
         AppEnvironment.shared.router = router
     }
 
+    override func tearDown() {
+        let flags: [FeatureFlag] = AppEnvironment.shared.database.viewContext.fetch()
+        AppEnvironment.shared.database.viewContext.delete(flags)
+        super.tearDown()
+    }
+
     func testRoutes() {
         XCTAssert(router.match("/courses/2/attendance/5") is AttendanceViewController)
         XCTAssert(router.match("/courses") is CoreHostingController<AllCoursesView>)
@@ -104,13 +110,12 @@ class RoutesTests: XCTestCase {
     }
 
     func testNativeDiscussionDetailsRoute() {
-        ExperimentalFeature.hybridDiscussionDetails.isEnabled = false
         XCTAssert(router.match("/courses/2/discussions/3") is DiscussionDetailsViewController)
         XCTAssert(router.match("/courses/2/discussion_topics/3") is DiscussionDetailsViewController)
     }
 
     func testHybridDiscussionDetailsRoute() {
-        ExperimentalFeature.hybridDiscussionDetails.isEnabled = true
+        mockCourseDiscussionRedesignFlagEnabled(courseId: "2")
         let flag = FeatureFlag(context: AppEnvironment.shared.database.viewContext)
         flag.name = "react_discussions_post"
         flag.enabled = true
@@ -120,18 +125,40 @@ class RoutesTests: XCTestCase {
         XCTAssert(router.match("/courses/2/discussion_topics/3") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
     }
 
-    func testNativeAnnouncementDiscussionDetailsRoute() {
-        ExperimentalFeature.hybridDiscussionDetails.isEnabled = false
+    func testNativeAnnouncementDiscussionDetailsRoute() throws {
         XCTAssert(router.match("/courses/2/announcements/3") is DiscussionDetailsViewController)
     }
 
     func testHybridAnnouncementDiscussionDetailsRoute() {
-        ExperimentalFeature.hybridDiscussionDetails.isEnabled = true
+        mockCourseDiscussionRedesignFlagEnabled(courseId: "2")
         let flag = FeatureFlag(context: AppEnvironment.shared.database.viewContext)
         flag.name = "react_discussions_post"
         flag.enabled = true
         flag.context = .course("2")
 
         XCTAssert(router.match("/courses/2/announcements/3") is CoreHostingController<EmbeddedWebPageView<EmbeddedWebPageViewModelLive>>)
+    }
+
+    private func mockGroupDiscussionRedesignFlagEnabled(groupId: String = "1") {
+        let context = Context(.group, id: groupId)
+        let response = ["react_discussions_post": true]
+        let useCase = GetEnvironmentFeatureFlags(context: context)
+        useCase.write(
+            response: response,
+            urlResponse: nil,
+            to: AppEnvironment.shared.database.viewContext
+        )
+
+    }
+
+    private func mockCourseDiscussionRedesignFlagEnabled(courseId: String = "1") {
+        let context = Context(.course, id: courseId)
+        let response = ["new_discussions", "no_more_html"]
+        let useCase = GetEnabledFeatureFlags(context: context)
+        useCase.write(
+            response: response,
+            urlResponse: nil,
+            to: AppEnvironment.shared.database.viewContext
+        )
     }
 }
