@@ -140,7 +140,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Canvas Parent"
+            "value" : "Canvas 親"
           }
         },
         "mi" : {
@@ -272,7 +272,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "إرفاق صور ومقاطع فيديو بالرسائل ومنشورات النقاش أو تسليمها في صورة إرسالات تعيينات."
+            "value" : "قم بإرفاق صور ومقاطع فيديو بالرسائل ومنشورات النقاش أو تسليمها في صورة إرسالات مهمة."
           }
         },
         "ca" : {
@@ -392,7 +392,7 @@
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bæta myndum og myndböndum við skilaboð og umræðufærslur og skila þeim sem verkefnaskilum."
+            "value" : "Hengja við myndir og myndbönd við skilaboð og umræðufærslur og skila þeim sem verkefnaskilum."
           }
         },
         "it" : {
@@ -428,7 +428,7 @@
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Legg ved bilder og film til meldinger og diskusjonsinnlegg eller lever dem inn som oppgaveinnleveringer."
+            "value" : "Legg ved bilder og film til meldinger og diskusjonsinnlegg eller lever dem inn som oppgaveinnleveringer"
           }
         },
         "nl" : {
@@ -452,7 +452,7 @@
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Anexe fotos e vídeos a mensagens e posts de fóruns ou entregue-as como envios de tarefa."
+            "value" : "Anexe fotos e vídeos a mensagens e posts de discussões ou entregue-as como envios de tarefa."
           }
         },
         "ru" : {
@@ -476,7 +476,7 @@
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bifoga foton och videor till meddelanden och diskussionsinlägg, eller skicka in dem som inlämningsuppgifter."
+            "value" : "Bifoga foton och videoklipp till meddelanden och diskussionsinlägg, eller skicka in dem som inlämningsuppgifter."
           }
         },
         "th" : {
@@ -506,13 +506,13 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "將照片和影片附加到訊息和討論區中，或將他們變成作業提交項目。"
+            "value" : "將照片和視訊附加到訊息和討論帖子中，或將它們變成作業提交項目。"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "將照片和影片附加到訊息和討論區中，或將他們變成作業提交項目。"
+            "value" : "將照片和視訊附加到訊息和討論帖子中，或將它們變成作業提交項目。"
           }
         }
       }
@@ -524,7 +524,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "إرفاق تسجيلات صوتية بالرسائل ومنشورات النقاش أو تسليمها في صورة إرسالات تعيينات."
+            "value" : "قم بإرفاق تسجيلات صوتية بالرسائل ومنشورات النقاش أو تسليمها في صورة إرسالات مهمة."
           }
         },
         "ca" : {
@@ -644,7 +644,7 @@
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bæta hljóðupptökum við skilaboð og umræðufærslur og skila þeim sem verkefnaskilum."
+            "value" : "Hengja við hljóðupptökur við skilaboð og umræðufærslur og skila þeim sem verkefnaskilum."
           }
         },
         "it" : {
@@ -728,7 +728,7 @@
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bifoga ljudinspelningar till meddelanden och diskussionsinlägg, eller skicka in dem som inlämningsuppgifter."
+            "value" : "Anslut ljudinspelningar till meddelanden och diskussionsinställningar, eller skicka in dem som inlämningsuppgifter."
           }
         },
         "th" : {
@@ -758,13 +758,13 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "將錄音附加到訊息和討論區中，或將他們變成作業提交項目。"
+            "value" : "將錄音附加到訊息和討論帖子中，或將它們變成作業提交項目。"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "將錄音附加到訊息和討論區中，或將他們變成作業提交項目。"
+            "value" : "將錄音附加到訊息和討論帖子中，或將它們變成作業提交項目。"
           }
         }
       }
@@ -776,7 +776,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "إرفاق صور ومقاطع فيديو بالرسائل ومنشورات النقاش أو تسليمها في صورة إرسالات تعيينات."
+            "value" : "قم بإرفاق صور ومقاطع فيديو بالرسائل ومنشورات النقاش أو تسليمها في صورة إرسالات مهمة."
           }
         },
         "ca" : {
@@ -896,7 +896,7 @@
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bæta myndum og myndböndum við skilaboð og umræðufærslur og skila þeim sem verkefnaskilum."
+            "value" : "Hengja við myndir og myndbönd við skilaboð og umræðufærslur og skila þeim sem verkefnaskilum."
           }
         },
         "it" : {
@@ -932,7 +932,7 @@
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Legg ved bilder og film til meldinger og diskusjonsinnlegg eller lever dem inn som oppgaveinnleveringer."
+            "value" : "Legg ved bilder og film til meldinger og diskusjonsinnlegg eller lever dem inn som oppgaveinnleveringer"
           }
         },
         "nl" : {
@@ -956,7 +956,7 @@
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Anexe fotos e vídeos a mensagens e posts de fóruns ou entregue-as como envios de tarefa."
+            "value" : "Anexe fotos e vídeos a mensagens e posts de discussões ou entregue-as como envios de tarefa."
           }
         },
         "ru" : {
@@ -980,7 +980,7 @@
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bifoga foton och videor till meddelanden och diskussionsinlägg, eller skicka in dem som inlämningsuppgifter."
+            "value" : "Bifoga foton och videoklipp till meddelanden och diskussionsinlägg, eller skicka in dem som inlämningsuppgifter."
           }
         },
         "th" : {
@@ -1010,13 +1010,13 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "將照片和影片附加到訊息和討論區中，或將他們變成作業提交項目。"
+            "value" : "將照片和視訊附加到訊息和討論帖子中，或將它們變成作業提交項目。"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "將照片和影片附加到訊息和討論區中，或將他們變成作業提交項目。"
+            "value" : "將照片和視訊附加到訊息和討論帖子中，或將它們變成作業提交項目。"
           }
         }
       }
@@ -1028,7 +1028,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "إرفاق صور ومقاطع فيديو بالرسائل ومنشورات النقاش أو تسليمها في صورة إرسالات تعيينات."
+            "value" : "قم بإرفاق صور ومقاطع فيديو بالرسائل ومنشورات النقاش أو تسليمها في صورة إرسالات مهمة."
           }
         },
         "ca" : {
@@ -1148,7 +1148,7 @@
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bæta myndum og myndböndum við skilaboð og umræðufærslur og skila þeim sem verkefnaskilum."
+            "value" : "Hengja við myndir og myndbönd við skilaboð og umræðufærslur og skila þeim sem verkefnaskilum."
           }
         },
         "it" : {
@@ -1184,7 +1184,7 @@
         "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Legg ved bilder og film til meldinger og diskusjonsinnlegg eller lever dem inn som oppgaveinnleveringer."
+            "value" : "Legg ved bilder og film til meldinger og diskusjonsinnlegg eller lever dem inn som oppgaveinnleveringer"
           }
         },
         "nl" : {
@@ -1208,7 +1208,7 @@
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Anexe fotos e vídeos a mensagens e posts de fóruns ou entregue-as como envios de tarefa."
+            "value" : "Anexe fotos e vídeos a mensagens e posts de discussões ou entregue-as como envios de tarefa."
           }
         },
         "ru" : {
@@ -1232,7 +1232,7 @@
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bifoga foton och videor till meddelanden och diskussionsinlägg, eller skicka in dem som inlämningsuppgifter."
+            "value" : "Bifoga foton och videoklipp till meddelanden och diskussionsinlägg, eller skicka in dem som inlämningsuppgifter."
           }
         },
         "th" : {
@@ -1262,13 +1262,13 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "將照片和影片附加到訊息和討論區中，或將他們變成作業提交項目。"
+            "value" : "將照片和視訊附加到訊息和討論帖子中，或將它們變成作業提交項目。"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "將照片和影片附加到訊息和討論區中，或將他們變成作業提交項目。"
+            "value" : "將照片和視訊附加到訊息和討論帖子中，或將它們變成作業提交項目。"
           }
         }
       }
