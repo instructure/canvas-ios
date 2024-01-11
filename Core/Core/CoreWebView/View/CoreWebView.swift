@@ -358,7 +358,7 @@ extension CoreWebView: WKNavigationDelegate {
 
         // Handle "Launch External Tool" button OR 
         // LTI app buttons embedded in K5 WebViews when there's no additional JavaScript
-        // is involved (like Zoom and Microsoft).
+        // involved (like Zoom and Microsoft).
         // When there's additional JavaScript code behind an LTI Button (like DBQ Online), we don't want to
         // handle those cases here, because `createWebViewWith` already opened a new popup window.
         if (action.navigationType == .linkActivated || action.navigationType == .other),
