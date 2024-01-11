@@ -192,4 +192,21 @@ public class AssignmentsHelper: BaseHelper {
         }
         CourseDetailsHelper.cell(type: .assignments).hit()
     }
+
+    public static func createAssignments(in course: DSCourse, count: Int, dueDate: Date? = nil) -> [DSAssignment] {
+        var assignments = [DSAssignment]()
+        for i in 1...count {
+            let name = "Sample Assignment \(i)"
+            let assignmentBody = CreateDSAssignmentRequest.RequestedDSAssignment(
+                name: name,
+                description: "Description of \(name)",
+                published: true,
+                submission_types: [.online_text_entry],
+                points_possible: 1.0,
+                grading_type: .letter_grade,
+                due_at: dueDate)
+            assignments.append(seeder.createAssignment(courseId: course.id, assignementBody: assignmentBody))
+        }
+        return assignments
+    }
 }
