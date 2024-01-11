@@ -18,19 +18,18 @@
 //
 
 const program = require('commander')
-const { spawnSync } = require('child_process')
+const { execSync, spawn } = require('child_process')
 const { createReadStream, readFileSync, writeFileSync, readdir } = require('fs')
 const mkdirp = require('mkdirp')
 const path = require('path')
 const S3 = require('aws-sdk/clients/s3')
-const projects = require('./projects.json')
+const localizables = require('./localizables.json')
 
 program
   .version(require('../../package.json').version)
   .option('-s, --skip-pull', 'Skip pulling from S3')
   .option('-n, --no-import', 'Skip importing downloaded files')
-  .option('-p, --project [name]', 'Import only a specific project')
-  .option('-l, --list', 'List projects that can be imported')
+  .option('-v, --verbose', 'Print all outputs to console')
 
 program.on('--help', () => {
   console.log(`
@@ -41,11 +40,6 @@ program.on('--help', () => {
   \n`)
 })
 program.parse(process.argv)
-
-if (program.list) {
-  console.log(projects.map(({ name }) => name).join('\n'))
-  process.exit(0)
-}
 
 if (
   !program.skipPull &&
@@ -61,10 +55,68 @@ importTranslations().catch(err => {
 })
 
 function run(cmd, args, opts) {
-  const { error, status, stderr } = spawnSync(cmd, args, opts)
-  if (error || status) {
-    console.error(stderr.toString())
-    throw error || status
+  return new Promise((resolve, reject) => {
+    const command = spawn(cmd, args, opts)
+    // If we don't read these xcodebuild just hangs
+    command.stdout.on('data', (data) => {
+      if (program.verbose) {
+	    console.log(`${data}`)
+      }
+	})
+    command.stderr.on('data', (data) => {
+      if (program.verbose) {
+	    console.log(`${data}`)
+      }
+	})
+    command.on('error', reject)
+    command.on('exit', code => {
+      if (code === 0) return resolve()
+      reject(`${cmd} failed with code ${code}.`)
+    })
+  })
+}
+
+async function importTranslations() {
+  if (!program.skipPull) {
+    await pullTranslationsFromS3()
+  }
+
+  if (program.import) {
+    await importXcodeTranslations()
+  }
+  
+  discardNonTranslatableFileChanges()
+}
+
+async function pullTranslationsFromS3() {
+  const Bucket = 'instructure-translations'
+  const s3 = new S3({ region: 'us-east-1' })
+  const listObjects = await s3.listObjectsV2({ Bucket, Prefix: `translations/canvas-ios/` }).promise()
+  const keys = listObjects.Contents.map(({ Key }) => Key)
+
+  for (const key of keys) {
+    let [ , , locale, basename ] = key.split('/')
+    if (!locale || !basename) continue // skip folders
+    locale = normalizeLocale(locale)
+    const [ projectName, ext ] = basename.split('.')
+    const filename = `scripts/translations/imports/${projectName}/${locale}.${ext}`
+    console.log(`Pulling s3://instructure-translations/${key} to ${filename}`)
+
+    const { Body } = await s3.getObject({ Bucket, Key: key }).promise()
+    let content = Body.toString().replace(/^\uFEFF/, '') // Strip BOM
+    if (key.endsWith('.json')) {
+      content = content.replace(/"message": "(.*)"$/gm, (_, message) => (
+        `"message": "${
+          message.replace(/\\"/g, '"').replace(/"/g, '\\"')
+        }"`
+      ))
+      content = JSON.stringify(JSON.parse(content), null, '  ')
+    } else {
+      content = content.replace(/target-language="[^"]*"/g, `target-language="${locale}"`)
+    }
+
+    mkdirp.sync(path.dirname(filename))
+    writeFileSync(filename, content, 'utf8')
   }
 }
 
@@ -77,65 +129,38 @@ function normalizeLocale(locale) {
     .replace(/-ukhe/, '-instukhe')
 }
 
-async function importTranslations() {
-  if (!program.skipPull) {
-    const Bucket = 'instructure-translations'
-    const s3 = new S3({ region: 'us-east-1' })
-    const listObjects = await s3.listObjectsV2({ Bucket, Prefix: `translations/canvas-ios/` }).promise()
-    const keys = listObjects.Contents.map(({ Key }) => Key)
-      .filter(key => !key.includes('/en/'))
-      .filter(key => !program.project || key.includes(`/${program.project}.`))
+async function importXcodeTranslations() {
+  // install react dependencies
+  const reactProjectFolder = 'rn/Teacher/i18n/locales'
+  await run('yarn', [], { cwd: `${reactProjectFolder}/../..` }) 
 
-    for (const key of keys) {
-      let [ , , locale, basename ] = key.split('/')
-      if (!locale || !basename) continue // skip folders
-      locale = normalizeLocale(locale)
-      const [ projectName, ext ] = basename.split('.')
-      const filename = `scripts/translations/imports/${projectName}/${locale}.${ext}`
-      console.log(`Pulling s3://instructure-translations/${key} to ${filename}`)
+  await run('make', ['pod'])
+  const folder = 'scripts/translations/imports/all'
+  const files = await new Promise(resolve =>
+    readdir(folder, (err, files) => resolve(files || []))
+  )
+  for (const file of files) {
+    if (file.startsWith('.')) continue
+    console.log(`Importing ${file} into workspace.`)
 
-      const { Body } = await s3.getObject({ Bucket, Key: key }).promise()
-      let content = Body.toString().replace(/^\uFEFF/, '') // Strip BOM
-      if (key.endsWith('.json')) {
-        content = content.replace(/"message": "(.*)"$/gm, (_, message) => (
-          `"message": "${
-            message.replace(/\\"/g, '"').replace(/"/g, '\\"')
-          }"`
-        ))
-        content = JSON.stringify(JSON.parse(content), null, '  ')
-      } else {
-        content = content.replace(/target-language="[^"]*"/g, `target-language="${locale}"`)
-      }
-
-      mkdirp.sync(path.dirname(filename))
-      writeFileSync(filename, content, 'utf8')
-    }
+      await run('xcodebuild', [
+        '-importLocalizations',
+        '-localizationPath',
+        `${folder}/${file}`,
+        '-workspace',
+        'Canvas.xcworkspace',
+      ])
   }
+}
 
-  if (program.import === false) return
-  for (const project of projects) {
-    if (program.project && project.name !== program.project) continue
-    const folder = `scripts/translations/imports/${project.name}`
-    const files = await new Promise(resolve =>
-      readdir(folder, (err, files) => resolve(files || []))
-    )
-    for (const file of files) {
-      if (file.startsWith('.')) continue
-      console.log(`Importing ${file} into ${project.location}`)
-      if (project.location.endsWith('.xcodeproj')) {
-        await run('xcodebuild', [
-          '-importLocalizations',
-          '-localizationPath',
-          `${folder}/${file}`,
-          '-project',
-          project.location
-        ])
-      } else {
-        await run('cp', [
-          `${folder}/${file}`,
-          `${project.location}/${file}`
-        ])
-      }
-    }
-  }
+async function discardNonTranslatableFileChanges() {
+  console.log('Discarding all non translation file changes.')
+  const modifiedFiles = execSync('git diff --name-only', { encoding: 'utf-8' })
+    .trim()
+    .split('\n')
+  const filesToDiscard = modifiedFiles.filter(filePath => !localizables.includes(filePath))
+
+  for (const filePath of filesToDiscard) {
+    execSync(`git checkout -- "${filePath}"`)
+  } 
 }
