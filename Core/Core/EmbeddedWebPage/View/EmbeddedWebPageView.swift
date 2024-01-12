@@ -20,7 +20,7 @@ import SwiftUI
 
 public struct EmbeddedWebPageView<ViewModel: EmbeddedWebPageViewModel>: View {
     @ObservedObject private var viewModel: ViewModel
-    private var features: [CoreWebViewFeature] = [.disableZoom, .invertColorsInDarkMode]
+    private var features: [CoreWebViewFeature] = [.disableZoom, .invertColorsInDarkMode, .forceDisableHorizontalScroll]
 
     public init(
         viewModel: ViewModel,

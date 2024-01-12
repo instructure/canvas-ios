@@ -1148,6 +1148,7 @@
 		B25A171B20CED00260F4D2EF /* PandaScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFEB22AB89F50EF72FDB695 /* PandaScene.swift */; };
 		B27B8AA086E654466F1CD444 /* PageDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8E0A44CB14E2A704D5364C /* PageDetailsViewControllerTests.swift */; };
 		B2C878ABE87CB1864A6841A2 /* CoreDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B0ECD8F56A853C45B9BD5C /* CoreDatePicker.swift */; };
+		B3001E3EFE6F018D4AC155BF /* ForceDisableHorizontalScrollTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DF4ABB86DA4BBF2AD048E7 /* ForceDisableHorizontalScrollTests.swift */; };
 		B315DF75D1D51A65436FF267 /* APIDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DA06C68894089798C1EDA6B /* APIDashboard.swift */; };
 		B3398C257E5AF711994CEEE8 /* AppEnvironmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2F588163EE891A3EB74237 /* AppEnvironmentTests.swift */; };
 		B33DF1D7D0065E84520209B7 /* LocalNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF9057B798DCEB24417BC77 /* LocalNotifications.swift */; };
@@ -1542,6 +1543,7 @@
 		ECCFFB637A701934877CDF78 /* CourseSyncProgressInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6C4976314A6724E1075659 /* CourseSyncProgressInfoView.swift */; };
 		ED0B97D40DE4A1EB97B89615 /* ModuleItemSequenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D06DE3203CB3C4793FE4CD /* ModuleItemSequenceViewController.swift */; };
 		ED840E241F82A2B843046D51 /* BoolExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B937D29459081C1A86B3B58D /* BoolExtensions.swift */; };
+		ED8C5891696843E6726DF1C9 /* ForceDisableHorizontalScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8B39E1B053FADAAC2CEEA3 /* ForceDisableHorizontalScroll.swift */; };
 		ED8D874175C0D9456DDB4D90 /* GetModulesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680AA3B50BEFC749BDF78CD7 /* GetModulesTests.swift */; };
 		ED93B5AF1E3465B59CCF3C0A /* GetAccountHelpLinksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FB96873E200D9383E1DD9FC /* GetAccountHelpLinksTests.swift */; };
 		EDAB1466C5FBA7F15E548B47 /* NSPredicateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CF059587156151C8DE70944 /* NSPredicateExtensions.swift */; };
@@ -2262,6 +2264,7 @@
 		4F2FC6967F651000742CEB85 /* GetModuleItemSequenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetModuleItemSequenceTests.swift; sourceTree = "<group>"; };
 		4F411DE242FFF39CB742D37F /* K5ScheduleEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleEntryView.swift; sourceTree = "<group>"; };
 		4F7AF71ABFF2EF1758011DD8 /* ConferenceDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConferenceDetailsViewController.swift; sourceTree = "<group>"; };
+		4F8B39E1B053FADAAC2CEEA3 /* ForceDisableHorizontalScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceDisableHorizontalScroll.swift; sourceTree = "<group>"; };
 		50218FA662F6738849BC6426 /* DocViewerViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerViewControllerTests.swift; sourceTree = "<group>"; };
 		50629D8DA380FCC68276D2E6 /* CourseSyncFilesInteractorLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncFilesInteractorLiveTests.swift; sourceTree = "<group>"; };
 		5063A72D0054951E2BA136BC /* GetAlertThresholds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAlertThresholds.swift; sourceTree = "<group>"; };
@@ -3323,6 +3326,7 @@
 		F48DE98C91B4774F4C5E404D /* APIObserverAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIObserverAlert.swift; sourceTree = "<group>"; };
 		F4BB7031E1B4AF7482126585 /* ConversationDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationDetailCell.swift; sourceTree = "<group>"; };
 		F4D17488D0C4506B625E207A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F4DF4ABB86DA4BBF2AD048E7 /* ForceDisableHorizontalScrollTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForceDisableHorizontalScrollTests.swift; sourceTree = "<group>"; };
 		F4E5AEAED2D39CA04B540B4F /* StringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
 		F514A0908B751C8F0BF695BB /* DashboardOfflineSyncProgressCardViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardOfflineSyncProgressCardViewModelTests.swift; sourceTree = "<group>"; };
 		F55C8713C2B0D598859635BB /* AttachmentSubmissionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentSubmissionService.swift; sourceTree = "<group>"; };
@@ -4649,6 +4653,7 @@
 				E71711BCDE6B5F982C4D0DBB /* CoreWebViewFeature.swift */,
 				BDB67A001A1B342EAE93F492 /* CustomUserAgent.swift */,
 				2EC1586998A1017C5AB66345 /* DisableZoom.swift */,
+				4F8B39E1B053FADAAC2CEEA3 /* ForceDisableHorizontalScroll.swift */,
 				DF6D983529870D1DE0D372CB /* InvertColorsInDarkMode.swift */,
 				05CCCBCD26D3C60738D90D91 /* OnElementAppear.swift */,
 				E3A96ECB83773AA6A8F85A96 /* PullToRefresh.swift */,
@@ -8591,6 +8596,7 @@
 			children = (
 				C29BB7879BA492FBDE60514F /* CustomUserAgentTests.swift */,
 				541B64DD5B16491B9B993A8E /* DisableZoomTests.swift */,
+				F4DF4ABB86DA4BBF2AD048E7 /* ForceDisableHorizontalScrollTests.swift */,
 				C8FA3C7541CEB61F71F15060 /* InvertColorsInDarkModeTests.swift */,
 				DDEC8F65D7A4A0CACD763159 /* MockCoreWebViewLinkDelegate.swift */,
 				B9E5D9E92DCEAA838024F6AC /* OnElementAppearTests.swift */,
@@ -9709,6 +9715,7 @@
 				E1DE27821844316BF3BD0526 /* FolderTests.swift in Sources */,
 				D75858B777787518F6486237 /* FontAppearanceTests.swift in Sources */,
 				C21D89E29B9945A863E45F97 /* FontExtensionTests.swift in Sources */,
+				B3001E3EFE6F018D4AC155BF /* ForceDisableHorizontalScrollTests.swift in Sources */,
 				EB3198E16A54D1AE41F95D1F /* FutureExtensionsTests.swift in Sources */,
 				28CA9E1050B8CADBD05BD703 /* GenericCellViewModelTests.swift in Sources */,
 				ED93B5AF1E3465B59CCF3C0A /* GetAccountHelpLinksTests.swift in Sources */,
@@ -10470,6 +10477,7 @@
 				93BB62186F4C4748A6035236 /* FontAppearance.swift in Sources */,
 				BE4460591472C977C20035EA /* FontExtensions.swift in Sources */,
 				6D54A8CBC5F4771F59B55B9B /* FontPreview.swift in Sources */,
+				ED8C5891696843E6726DF1C9 /* ForceDisableHorizontalScroll.swift in Sources */,
 				93D9A3A0E831F0B16964C9D6 /* FutureExtensions.swift in Sources */,
 				C2CED1B50FC998419D6AFDCD /* GenericCellViewModel.swift in Sources */,
 				63E5A84EA60AED03CDD8D583 /* GetAccountHelpLinks.swift in Sources */,
