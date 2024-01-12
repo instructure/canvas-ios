@@ -55,6 +55,48 @@ public enum APIQueryItem: Equatable {
             return APIQueryItem.value(name, value ? "1" : "0").toURLQueryItems()
         }
     }
+
+    func toPercentEncodedURLQueryItems() -> [URLQueryItem] {
+        switch self {
+        case .name(let name):
+            return [URLQueryItem(name: name.urlSafePercentEncoded, value: nil)]
+        case .value(let name, let value):
+            return [URLQueryItem(name: name.urlSafePercentEncoded, value: value.urlSafePercentEncoded)]
+        case .optionalValue(let name, let value):
+            guard let value = value else { return [] }
+            return [URLQueryItem(name: name.urlSafePercentEncoded, value: value.urlSafePercentEncoded)]
+        case .array(let name, let array):
+            return array.map { value in
+                URLQueryItem(
+                    name: "\(name)[]".urlSafePercentEncoded,
+                    value: value.urlSafePercentEncoded
+                )
+            }
+        case .include(let includes):
+            return APIQueryItem.array("include", includes).toPercentEncodedURLQueryItems()
+        case .perPage(let perPage):
+            guard let perPage = perPage else { return [] }
+            return APIQueryItem.value("per_page", String(perPage)).toURLQueryItems()
+        case .bool(let name, let value):
+            return APIQueryItem.value(name, value ? "1" : "0").toURLQueryItems()
+        case .optionalBool(let name, let value):
+            guard let value = value else { return [] }
+            return APIQueryItem.value(name, value ? "1" : "0").toURLQueryItems()
+        }
+    }
+}
+
+extension String {
+    var urlSafePercentEncoded: String {
+        self.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)?
+            .replacingOccurrences(of: "+", with: "%2B") ?? ""
+    }
+}
+
+extension Array where Element == String {
+    var urlSafePercentEncoded: [String] {
+        self.map { $0.urlSafePercentEncoded }
+    }
 }
 
 public class APIJSONDecoder: JSONDecoder {
@@ -120,6 +162,10 @@ public protocol APIRequestable {
      */
     var isBodyFromURL: Bool { get }
 
+    /// If this parameter is set to true, then we will use a custom percent encoding for every `URLQueryItem`  where the `"+"` sign is encoded alongside with the `urlHostAllowed` CharacterSet.
+    /// Some APIs expect Date strings with the time zone attached where we need to encode the `+` sign.
+    var useExtendedPercentEncoding: Bool { get }
+
     func urlRequest(relativeTo: URL, accessToken: String?, actAsUserID: String?) throws -> URLRequest
     func decode(_ data: Data) throws -> Response
     func encode(_ body: Body) throws -> Data
@@ -137,7 +183,10 @@ extension APIRequestable {
         return []
     }
     public var queryItems: [URLQueryItem] {
-        return query.flatMap({ q in q.toURLQueryItems() })
+        return query.flatMap { $0.toURLQueryItems() }
+    }
+    public var percentEncodedQueryItems: [URLQueryItem] {
+        return query.flatMap { $0.toPercentEncodedURLQueryItems() }
     }
     public var form: APIFormData? {
         return nil
@@ -154,6 +203,8 @@ extension APIRequestable {
     }
     public var isBodyFromURL: Bool { false }
 
+    public var useExtendedPercentEncoding: Bool { false }
+
     public func urlRequest(relativeTo baseURL: URL, accessToken: String?, actAsUserID: String?) throws -> URLRequest {
         guard var components = URLComponents(string: path) else { throw APIRequestableError.invalidPath(path) }
 
@@ -161,16 +212,22 @@ extension APIRequestable {
             components.path = "/api/v1/" + components.path
         }
 
-        var queryItems = self.queryItems
+        var componentsQueryItems: [URLQueryItem] = []
+
         if let actAsUserID = actAsUserID {
-            queryItems.append(URLQueryItem(name: "as_user_id", value: actAsUserID))
+            componentsQueryItems.append(URLQueryItem(name: "as_user_id", value: actAsUserID))
         }
-        if !queryItems.isEmpty {
-            components.queryItems = (components.queryItems ?? []) + queryItems
+
+        if !queryItems.isEmpty || !percentEncodedQueryItems.isEmpty {
+            if useExtendedPercentEncoding {
+                components.percentEncodedQueryItems = percentEncodedQueryItems + componentsQueryItems
+            } else {
+                components.queryItems = (components.queryItems ?? []) + componentsQueryItems + self.queryItems
+            }
         }
+
         // The conditional path prefixing *should* have made this impossible to fail
         guard let url = components.url(relativeTo: baseURL) else { throw APIRequestableError.cannotResolve(components, baseURL) }
-
         var request: URLRequest
         request = URLRequest(url: url, cachePolicy: cachePolicy)
         request.httpMethod = method.rawValue.uppercased()

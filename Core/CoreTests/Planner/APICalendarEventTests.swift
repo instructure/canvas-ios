@@ -36,11 +36,11 @@ class APICalendarEventTests: XCTestCase {
     }
 
     func testGetCalendarEvents() {
-        let dateString = GetCalendarEventsRequest.dateFormatter.string(from: Clock.now)
         let requestable = GetCalendarEventsRequest(
             contexts: [ctx],
             startDate: Clock.now,
             endDate: Clock.now,
+            timeZone: .init(identifier: "GMT")!,
             include: [.submission]
         )
         XCTAssertEqual(requestable.path, "calendar_events")
@@ -48,8 +48,8 @@ class APICalendarEventTests: XCTestCase {
             URLQueryItem(name: "type", value: "event"),
             URLQueryItem(name: "per_page", value: "100"),
             URLQueryItem(name: "include[]", value: "submission"),
-            URLQueryItem(name: "start_date", value: dateString),
-            URLQueryItem(name: "end_date", value: dateString),
+            URLQueryItem(name: "start_date", value: "2019-12-25T14:24:37Z"),
+            URLQueryItem(name: "end_date", value: "2019-12-25T14:24:37Z"),
             URLQueryItem(name: "context_codes[]", value: "course_1"),
         ])
     }
