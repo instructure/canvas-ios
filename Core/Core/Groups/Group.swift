@@ -18,6 +18,7 @@
 
 import Foundation
 import CoreData
+import SwiftUI
 
 public final class Group: NSManagedObject, WriteableModel {
     public typealias JSON = APIGroup
@@ -46,6 +47,7 @@ public final class Group: NSManagedObject, WriteableModel {
     }
 
     public var color: UIColor { contextColor?.color ?? .ash }
+    public lazy var dashboardCardColor = Color(color.ensureContrast(against: .white))
 
     public var isActive: Bool {
         if courseID == nil { return true }
