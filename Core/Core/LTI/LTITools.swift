@@ -109,7 +109,6 @@ public class LTITools: NSObject {
         } else {
             return nil
         }
-
     }
 
     private static func parseRegularExternalToolURL(url: URL) -> (
@@ -144,14 +143,13 @@ public class LTITools: NSObject {
     private static func parseQuerylessExternalToolURL(url: URL) -> (courseID: String, toolID: String)? {
         guard url.pathComponents.count == 5 else { return nil }
 
-        if let queryItems =  URLComponents.parse(url).queryItems, !queryItems.isEmpty {
+        if let queryItems = URLComponents.parse(url).queryItems, !queryItems.isEmpty {
             return nil
-        } else {
-            var pathComponents = url.pathComponents
-            pathComponents.removeFirst()
-            guard pathComponents[0] == "courses", pathComponents[2] == "external_tools" else { return nil }
-            return (pathComponents[1], pathComponents[3])
         }
+
+        var components = url.pathComponents
+        guard components[1] == "courses", components[3] == "external_tools" else { return nil }
+        return (components[2], components[4])
     }
 
     public func presentTool(from view: UIViewController, animated: Bool = true, completionHandler: ((Bool) -> Void)? = nil) {
