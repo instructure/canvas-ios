@@ -33,6 +33,9 @@ private class DarkModeForWebDiscussions: CoreWebViewFeature {
                 color: \(textDarkest);
             }
 
+            span[data-testid="mobile-Designer"],
+            span[data-testid="mobile-TA"],
+            span[data-testid="mobile-Teacher"],
             span[data-testid="mobile-Author"] {
                 color: \(textDark);
             }
