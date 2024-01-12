@@ -229,26 +229,69 @@ extension SubmissionDetailsViewController: UIPickerViewDataSource, UIPickerViewD
         return presenter?.pickerSubmissions.count ?? 0
     }
 
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        guard presenter?.pickerSubmissions.isEmpty == false else { return 40 }
+
+        let renderSize = CGSize(width: pickerView.frame.width, height: .infinity)
+        let text = text(forRow: 0)
+        let textHeight = text.boundingRect(with: renderSize,
+                                           options: [.usesLineFragmentOrigin, .usesFontLeading],
+                                           context: nil).height
+        // Increase height to have some top/bottom padding
+        return textHeight + 2 * 8
+    }
+
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        let text: String
-
-        if let submittedAt = presenter?.pickerSubmissions[row].submittedAt {
-            text = DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short)
-        } else {
-            text = NSLocalizedString("No Submission Date", bundle: .student, comment: "")
-        }
-
         let label = UILabel()
-        label.textColor = .textDark
-        label.text = text
-        label.font = .scaledNamedFont(.regular23)
-        label.textAlignment = .center
-
+        label.attributedText = text(forRow: row)
+        label.textAlignment = .right
+        label.numberOfLines = 0
         return label
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         guard let attempt = presenter?.pickerSubmissions[row].attempt else { return }
         presenter?.select(attempt: attempt)
+    }
+
+    private func text(forRow row: Int) -> NSAttributedString {
+        let submissionDateText: String = {
+            guard let submittedAt = presenter?.pickerSubmissions[row].submittedAt else {
+                return NSLocalizedString("No Submission Date", bundle: .student, comment: "")
+            }
+
+            return DateFormatter.localizedString(from: submittedAt, dateStyle: .medium, timeStyle: .short)
+        }()
+        let attemptText: String = {
+            guard let attempt = presenter?.pickerSubmissions[row].attempt else {
+                return ""
+            }
+
+            let format = NSLocalizedString("Attempt %d", bundle: .core, comment: "")
+            return String.localizedStringWithFormat(format, attempt)
+        }()
+
+        let text = NSMutableAttributedString(string: "\(submissionDateText)\n\(attemptText)")
+        let paragraphStyle = NSMutableParagraphStyle()
+        // This visually will match the top/bottom padding cells have
+        paragraphStyle.tailIndent = -12
+        text.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: text.length))
+        let dateRange = text.mutableString.range(of: submissionDateText)
+        let attemptRange = text.mutableString.range(of: attemptText)
+
+        if dateRange.location != NSNotFound, attemptRange.location != NSNotFound {
+            text.addAttributes([
+                                .font: UIFont.scaledNamedFont(.regular20),
+                                .foregroundColor: UIColor.textDarkest,
+                               ],
+                               range: dateRange)
+            text.addAttributes([
+                                .font: UIFont.scaledNamedFont(.regular17),
+                                .foregroundColor: UIColor.textDarkest,
+                                ],
+                               range: attemptRange)
+        }
+
+        return text
     }
 }
