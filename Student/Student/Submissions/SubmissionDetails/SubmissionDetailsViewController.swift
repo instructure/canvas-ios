@@ -49,9 +49,9 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
     @IBOutlet weak var pickerButtonDivider: DividerView?
     @IBOutlet weak var picker: UIPickerView?
 
-    static func create(env: AppEnvironment = .shared, context: Context, assignmentID: String, userID: String) -> SubmissionDetailsViewController {
+    static func create(env: AppEnvironment = .shared, context: Context, assignmentID: String, userID: String, selectedAttempt: Int? = nil) -> SubmissionDetailsViewController {
         let controller = loadFromStoryboard()
-        controller.presenter = SubmissionDetailsPresenter(env: env, view: controller, context: context, assignmentID: assignmentID, userID: userID)
+        controller.presenter = SubmissionDetailsPresenter(env: env, view: controller, context: context, assignmentID: assignmentID, userID: userID, selectedAttempt: selectedAttempt)
         controller.env = env
         return controller
     }
@@ -94,6 +94,11 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
             return
         }
         picker?.reloadAllComponents()
+
+        if let selectedAttempt = presenter.selectedAttempt,
+           let pickerRow = presenter.pickerSubmissions.firstIndex(where: { $0.attempt == selectedAttempt}) {
+            picker?.selectRow(pickerRow, inComponent: 0, animated: false)
+        }
 
         let submission = presenter.currentSubmission
 
