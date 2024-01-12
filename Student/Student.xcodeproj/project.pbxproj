@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		00EFC66B93C6E65AE095CAB6 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 86F36A65C55BACCFB3522361 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0109C43E1CF746AB153CD148 /* RubricCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDB59EF6876F307B07018753 /* RubricCollectionViewCell.xib */; };
+		01F5C0D71AE14F1900C9172F /* Pods_defaults_Student.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F073F30D020302CB494E3AC /* Pods_defaults_Student.framework */; };
 		0221A83F748BE058DB1C8711 /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC278A56606862A2E742180 /* BundleExtensions.swift */; };
 		023A861CC6D77B1C769709CC /* ArcSubmissionPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45760587916E12C13AC5356E /* ArcSubmissionPresenterTests.swift */; };
 		02B7FE698D40C8207F3437AB /* ArcSubmissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8B10159A6CE2E30C1171C /* ArcSubmissionViewController.swift */; };
@@ -21,6 +22,7 @@
 		09EF4609A704E2C7E1370CCD /* AssignmentDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0DCEAFEF22B96B31AD81EEA /* AssignmentDetailsViewController.storyboard */; };
 		0C4DE5F4E3B0E9A5B302A77E /* CalendarEventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C199E70DB71C72D373B0E7B9 /* CalendarEventDetailsViewController.swift */; };
 		0E7EBF2E9CFC40BE1F88ABE1 /* SubmissionButtonAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487CBE449C24CF499E8E652E /* SubmissionButtonAlertView.swift */; };
+		1011A2D939448DF47C0C2C1C /* Pods_defaults_StudentUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D37D998009F973A6A8746B7 /* Pods_defaults_StudentUnitTests.framework */; };
 		10BB6434467284FCB2C4B8C0 /* RubricPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17EED24B81EE7AD5A483E42 /* RubricPresenterTests.swift */; };
 		10CCC0E5A0AEEF0B9063BDC9 /* student-submit-assignment.yml in Resources */ = {isa = PBXBuildFile; fileRef = F2909B4B94747B3CE4A73B97 /* student-submit-assignment.yml */; };
 		1547F90F6C82E634B71EDD9A /* SubmissionCommentTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4712BCD15B0D560025120531 /* SubmissionCommentTextCell.swift */; };
@@ -103,11 +105,9 @@
 		93A750A608349C75B1E60380 /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC01D8D602A46783738DF377 /* InboxTests.swift */; };
 		9568777D7084AEEA39007ED9 /* QuizWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B3EBD9579EC569DDC9CFEC /* QuizWebViewController.swift */; };
 		96787A4071599EAB6AA5251C /* StudentAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AC918BF4649E9B170A9B8B /* StudentAppDelegate.swift */; };
-		97ABC5748F6E3E502AABA01C /* Pods_defaults_StudentUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE7CEF3941A9D65711013BC /* Pods_defaults_StudentUnitTests.framework */; };
 		9B56A1C02C90FD6DF5B51DCE /* GradesWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB284B023A2243EC708BFE5 /* GradesWidget.swift */; };
 		9C97FEA8BE61EF2EA3218660 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86F36A65C55BACCFB3522361 /* Core.framework */; };
 		9E6ABF2BCA87EBE8025BF094 /* ModulesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CCCEB7A5963E48E283ECE5 /* ModulesTests.swift */; };
-		9EE79B974FAE6BED63A6285E /* Pods_defaults_Student.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFCBD9147372BC639EEFF8A8 /* Pods_defaults_Student.framework */; };
 		A04F9A0DA4AB31A469C25ACB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B02CD48EF039CA00540D868 /* GoogleService-Info.plist */; };
 		A25F2ABBAE00E84A3B0CA3FD /* ToDoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1F6228AEE381B0A08A578B /* ToDoTests.swift */; };
 		A63BC24AFC44082A4BF21E49 /* CommonWidgetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E0E192D6C8BD1B726B219 /* CommonWidgetProvider.swift */; };
@@ -318,6 +318,7 @@
 		0D968136F2D7280E15C81397 /* AssignmentDetailsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsPresenterTests.swift; sourceTree = "<group>"; };
 		0EC9437D43747A8A05FD9AF5 /* SubmissionButtonPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionButtonPresenterTests.swift; sourceTree = "<group>"; };
 		0EE1D72657DF7F5CA4ABDD95 /* SubmissionCommentFileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentFileView.swift; sourceTree = "<group>"; };
+		0F073F30D020302CB494E3AC /* Pods_defaults_Student.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Student.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F14239C78B24506773AD36B /* RubricViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricViewControllerTests.swift; sourceTree = "<group>"; };
 		0FEBD6D9F79977CE2C5BF6A5 /* SubmissionCommentAudioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentAudioCell.swift; sourceTree = "<group>"; };
 		15120F42C8D37410A421059B /* SubmissionCommentsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentsPresenterTests.swift; sourceTree = "<group>"; };
@@ -327,6 +328,7 @@
 		185EDBA21BCF37602979D00D /* PeopleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTests.swift; sourceTree = "<group>"; };
 		18D37793B2068B344BC9CD42 /* GradeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeItem.swift; sourceTree = "<group>"; };
 		19D059ADA09A214A715BC993 /* CourseNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseNavigationViewController.swift; sourceTree = "<group>"; };
+		1D37D998009F973A6A8746B7 /* Pods_defaults_StudentUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_StudentUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E1B32C8BF5FB30C19F0CB49 /* TextSubmissionViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TextSubmissionViewController.storyboard; sourceTree = "<group>"; };
 		1F5ED0B8FF5E0F7060796CBD /* CompatibleContainerBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompatibleContainerBackground.swift; sourceTree = "<group>"; };
 		2085069FE2C9A776437A9E87 /* CanvasCore */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CanvasCore; path = ../CanvasCore/CanvasCore.xcodeproj; sourceTree = "<group>"; };
@@ -340,10 +342,10 @@
 		2D91DAB0C75CA665553C0F02 /* SubmissionCommentsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentsViewControllerTests.swift; sourceTree = "<group>"; };
 		2DC03551A66C015536FC2BF7 /* StudentAnnotationSubmissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAnnotationSubmissionView.swift; sourceTree = "<group>"; };
 		2FCC31ECAFE692F67B23ECDF /* ArcSubmissionViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ArcSubmissionViewController.storyboard; sourceTree = "<group>"; };
+		31C7AA41074F92D7D69920D7 /* Pods-defaults-StudentUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-StudentUnitTests.release.xcconfig"; path = "Target Support Files/Pods-defaults-StudentUnitTests/Pods-defaults-StudentUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		33C8440F6F2E382EE687802D /* AssignmentDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsPresenter.swift; sourceTree = "<group>"; };
 		33F6C95F51303F818CBD36AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		376E5C23A7CD59F893ADAA77 /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
-		37DB6107640ED4AD9F8413EF /* Pods-defaults-Student.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Student.debug.xcconfig"; path = "Target Support Files/Pods-defaults-Student/Pods-defaults-Student.debug.xcconfig"; sourceTree = "<group>"; };
 		3B8C86E25B72A68510EF1502 /* MediumLargeGradesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumLargeGradesView.swift; sourceTree = "<group>"; };
 		3C603A9FC88787DF3EFE22FC /* SubmissionFilesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionFilesCell.swift; sourceTree = "<group>"; };
 		3E04ECCA422891325F413556 /* SubmissionDetailsLockedEmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubmissionDetailsLockedEmptyView.xib; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 		4FB0E0256CCBC80683FC8C99 /* AnnouncementWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementWidgetView.swift; sourceTree = "<group>"; };
 		507BF32B88D4E7B31278FACE /* RubricViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricViewController.swift; sourceTree = "<group>"; };
 		523A300602249E2877FC0EBC /* Student.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Student.entitlements; sourceTree = "<group>"; };
+		523C60BC3656C51BBF9B91D6 /* Pods-defaults-Student.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Student.debug.xcconfig"; path = "Target Support Files/Pods-defaults-Student/Pods-defaults-Student.debug.xcconfig"; sourceTree = "<group>"; };
 		532BCD20107678C89422101C /* RubricLongDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricLongDescriptionViewController.swift; sourceTree = "<group>"; };
 		5506E2F3DF0B273D643804A0 /* GroupNavigationViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupNavigationViewControllerTests.swift; sourceTree = "<group>"; };
 		5568E9EA94D53E0D372EB298 /* WidgetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetModel.swift; sourceTree = "<group>"; };
@@ -382,12 +385,10 @@
 		66AC918BF4649E9B170A9B8B /* StudentAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAppDelegate.swift; sourceTree = "<group>"; };
 		66B085E9CE503AF7DA657F0F /* SubmissionDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsViewControllerTests.swift; sourceTree = "<group>"; };
 		675262D1812F31210139846C /* SubmissionDetailsPickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsPickerTests.swift; sourceTree = "<group>"; };
-		67E955C74885B5DEC8DAD2E2 /* Pods-defaults-StudentUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-StudentUnitTests.debug.xcconfig"; path = "Target Support Files/Pods-defaults-StudentUnitTests/Pods-defaults-StudentUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		68B3F6EAB2C7276C577BFAF2 /* SyllabusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyllabusTests.swift; sourceTree = "<group>"; };
 		68CCCEB7A5963E48E283ECE5 /* ModulesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesTests.swift; sourceTree = "<group>"; };
 		68EFED2C984A4A075B51555F /* Widgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Widgets.entitlements; sourceTree = "<group>"; };
 		693107B5649209CECCF44085 /* ActivityStreamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStreamViewController.swift; sourceTree = "<group>"; };
-		6ACBE159B7C246C896497364 /* Pods-defaults-Student.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Student.release.xcconfig"; path = "Target Support Files/Pods-defaults-Student/Pods-defaults-Student.release.xcconfig"; sourceTree = "<group>"; };
 		6D9741251B35B9F5D7C93AD9 /* CalendarEventDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CalendarEventDetailsViewController.storyboard; sourceTree = "<group>"; };
 		6DC31ACB4AF11F0E2A5B7604 /* SubmissionDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmissionDetailsViewController.storyboard; sourceTree = "<group>"; };
 		713F2B952740D4BE0C0446AD /* SettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTests.swift; sourceTree = "<group>"; };
@@ -408,6 +409,7 @@
 		96CA804314D2DD2BDDD5963D /* CollaborationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollaborationsTests.swift; sourceTree = "<group>"; };
 		975F6C28375E1877218626D4 /* OfflineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineTests.swift; sourceTree = "<group>"; };
 		9C74ABEA3154BEC6F16C4E1F /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
+		9C84789F06C9C627F38165DD /* Pods-defaults-Student.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Student.release.xcconfig"; path = "Target Support Files/Pods-defaults-Student/Pods-defaults-Student.release.xcconfig"; sourceTree = "<group>"; };
 		9F9D7B6F140CE3B048DAAC09 /* student-e2e-tests.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = "student-e2e-tests.yml"; sourceTree = "<group>"; };
 		A063266A9CDA770972567188 /* SubmissionCommentsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmissionCommentsViewController.storyboard; sourceTree = "<group>"; };
 		A17EED24B81EE7AD5A483E42 /* RubricPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricPresenterTests.swift; sourceTree = "<group>"; };
@@ -421,7 +423,6 @@
 		AB7E51499058872023D0EF54 /* CalendarEventDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventDetailsViewControllerTests.swift; sourceTree = "<group>"; };
 		ABAA28663504666F25A4F720 /* SubmissionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsViewController.swift; sourceTree = "<group>"; };
 		AC47505A51E749691587C390 /* Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widgets.swift; sourceTree = "<group>"; };
-		ACE7CEF3941A9D65711013BC /* Pods_defaults_StudentUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_StudentUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD9F3D658D1702DD4B43E8BC /* Teacher */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Teacher; path = ../rn/Teacher/ios/Teacher.xcodeproj; sourceTree = "<group>"; };
 		ADB284B023A2243EC708BFE5 /* GradesWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradesWidget.swift; sourceTree = "<group>"; };
 		ADF7A3602402924003C001F8 /* UrlSubmissionContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSubmissionContentViewController.swift; sourceTree = "<group>"; };
@@ -439,6 +440,7 @@
 		C13E5EA03A5EC22C6195F735 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C199E70DB71C72D373B0E7B9 /* CalendarEventDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventDetailsViewController.swift; sourceTree = "<group>"; };
 		C2485DF66123F3AF0F93DC0C /* CoreTaskSchedulerLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreTaskSchedulerLive.swift; sourceTree = "<group>"; };
+		C4B1F85007825B81F23BC44A /* Pods-defaults-StudentUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-StudentUnitTests.debug.xcconfig"; path = "Target Support Files/Pods-defaults-StudentUnitTests/Pods-defaults-StudentUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C6D42862540E3FA8D9F426AF /* RouterDebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterDebugViewController.swift; sourceTree = "<group>"; };
 		C96FCD9A1270509D0B4D13EB /* TestsFoundation */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TestsFoundation; path = ../TestsFoundation/TestsFoundation.xcodeproj; sourceTree = "<group>"; };
 		C9D417F359FDAA3F3BFA2D04 /* SubmissionDetailsEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsEmptyView.swift; sourceTree = "<group>"; };
@@ -449,7 +451,6 @@
 		D4E47008C1196FF7C90AE09A /* CalendarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTests.swift; sourceTree = "<group>"; };
 		D536AB714DF57441E0453845 /* SubmissionCommentsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentsPresenter.swift; sourceTree = "<group>"; };
 		D59D75A73D5CC66FCF25474B /* RubricViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RubricViewController.storyboard; sourceTree = "<group>"; };
-		D64BCBE21378D48824E1D82D /* Pods-defaults-StudentUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-StudentUnitTests.release.xcconfig"; path = "Target Support Files/Pods-defaults-StudentUnitTests/Pods-defaults-StudentUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		D7A3F3C607CB7741112DED34 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		D8F5777EF35C8BC031BC4337 /* SubmissionCommentAttemptCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentAttemptCell.swift; sourceTree = "<group>"; };
 		D946AAB8266B7D3D7896D532 /* QuizzesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizzesTests.swift; sourceTree = "<group>"; };
@@ -470,7 +471,6 @@
 		E9A646F1C742823BB7A15014 /* SubmissionDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsPresenter.swift; sourceTree = "<group>"; };
 		EB3E0E192D6C8BD1B726B219 /* CommonWidgetProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonWidgetProvider.swift; sourceTree = "<group>"; };
 		EC01D8D602A46783738DF377 /* InboxTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxTests.swift; sourceTree = "<group>"; };
-		EFCBD9147372BC639EEFF8A8 /* Pods_defaults_Student.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_Student.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F093F5C92ACCD8E661F90CEE /* SubmitAssignment.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = SubmitAssignment.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2909B4B94747B3CE4A73B97 /* student-submit-assignment.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = "student-submit-assignment.yml"; sourceTree = "<group>"; };
 		F2A68B5D79588B2AC9FC91FB /* student-unit-tests.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = "student-unit-tests.yml"; sourceTree = "<group>"; };
@@ -490,14 +490,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		249973F0B02E91E29F9E7D75 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				97ABC5748F6E3E502AABA01C /* Pods_defaults_StudentUnitTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		27C499D38DB30F143CEBA53E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -506,7 +498,7 @@
 				D752203A6B1E29E431C039B2 /* Heap in Frameworks */,
 				F09BC8F6E14FCEFE1EE8A52A /* CanvasCore.framework in Frameworks */,
 				31A8408342A7F896EF70799A /* Core.framework in Frameworks */,
-				9EE79B974FAE6BED63A6285E /* Pods_defaults_Student.framework in Frameworks */,
+				01F5C0D71AE14F1900C9172F /* Pods_defaults_Student.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +508,14 @@
 			files = (
 				9C97FEA8BE61EF2EA3218660 /* Core.framework in Frameworks */,
 				713CAB6D743EE84B4B145FDC /* FirebaseCrashlytics in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		50B1A8704019B1A2A80A213D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1011A2D939448DF47C0C2C1C /* Pods_defaults_StudentUnitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -752,18 +752,6 @@
 				88B62E328014805A6BC319E1 /* ProfileTests.swift */,
 			);
 			path = Profile;
-			sourceTree = "<group>";
-		};
-		3666D87A07EFFC31917CC995 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				37DB6107640ED4AD9F8413EF /* Pods-defaults-Student.debug.xcconfig */,
-				6ACBE159B7C246C896497364 /* Pods-defaults-Student.release.xcconfig */,
-				67E955C74885B5DEC8DAD2E2 /* Pods-defaults-StudentUnitTests.debug.xcconfig */,
-				D64BCBE21378D48824E1D82D /* Pods-defaults-StudentUnitTests.release.xcconfig */,
-			);
-			name = Pods;
-			path = ../Pods;
 			sourceTree = "<group>";
 		};
 		3B2983F79185732DBDB4983A /* View */ = {
@@ -1030,6 +1018,15 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
+		7D79D63A6F747EFE3D1C3ED9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0F073F30D020302CB494E3AC /* Pods_defaults_Student.framework */,
+				1D37D998009F973A6A8746B7 /* Pods_defaults_StudentUnitTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7F192FDB61442BE5F2FD6964 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1147,6 +1144,18 @@
 			path = TextSubmission;
 			sourceTree = "<group>";
 		};
+		988C2A44F3AC0686F35949EA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				523C60BC3656C51BBF9B91D6 /* Pods-defaults-Student.debug.xcconfig */,
+				9C84789F06C9C627F38165DD /* Pods-defaults-Student.release.xcconfig */,
+				C4B1F85007825B81F23BC44A /* Pods-defaults-StudentUnitTests.debug.xcconfig */,
+				31C7AA41074F92D7D69920D7 /* Pods-defaults-StudentUnitTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = ../Pods;
+			sourceTree = "<group>";
+		};
 		98A52132101D6C186E3E8AFE /* Discussions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1163,15 +1172,6 @@
 				D7A3F3C607CB7741112DED34 /* EmptyView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		9D250FF5052617451CB62C5F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				EFCBD9147372BC639EEFF8A8 /* Pods_defaults_Student.framework */,
-				ACE7CEF3941A9D65711013BC /* Pods_defaults_StudentUnitTests.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		9F14AF8A4C850C1AA5D68087 /* View */ = {
@@ -1443,8 +1443,8 @@
 				B25EEC3DD11D9EFE5FA99037 /* Widgets */,
 				DFBB61F41BF05A3CE62DBDED /* Products */,
 				AC0AC3D8BC44C8E9DC97136F /* Projects */,
-				3666D87A07EFFC31917CC995 /* Pods */,
-				9D250FF5052617451CB62C5F /* Frameworks */,
+				988C2A44F3AC0686F35949EA /* Pods */,
+				7D79D63A6F747EFE3D1C3ED9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1566,11 +1566,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AC62E97CB03DF79EC206F280 /* Build configuration list for PBXNativeTarget "StudentUnitTests" */;
 			buildPhases = (
-				C7AA0C40912FB84AC75B9C0D /* [CP] Check Pods Manifest.lock */,
+				4F013879FEE6328F5237E09F /* [CP] Check Pods Manifest.lock */,
 				33C4679C94ED74E2CAB189DD /* Sources */,
 				79FF9CE469E2735BBADBB16B /* Resources */,
-				249973F0B02E91E29F9E7D75 /* Frameworks */,
-				CEB37A039BFF1D34E36F3BD5 /* [CP] Embed Pods Frameworks */,
+				50B1A8704019B1A2A80A213D /* Frameworks */,
+				B45357E4D256B1B44FD464C3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1585,7 +1585,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E40D7A5A526388B9BEED7CC9 /* Build configuration list for PBXNativeTarget "Student" */;
 			buildPhases = (
-				610AD636795B2574344D6843 /* [CP] Check Pods Manifest.lock */,
+				8D40F7B509FE2899868B0319 /* [CP] Check Pods Manifest.lock */,
 				9DAC3AE20E12496DDA210678 /* SwiftLint */,
 				117F7C7560687B78B64D57FE /* Start Packager */,
 				3D756C8C7FD7F230FBC48FF3 /* Sources */,
@@ -1593,7 +1593,7 @@
 				27C499D38DB30F143CEBA53E /* Frameworks */,
 				0383B1674E8ACED4BA69A2FE /* Embed Foundation Extensions */,
 				BDD2AED46621E4E434B3BF25 /* Embed Frameworks */,
-				6E520B8A85744DF5CC1ED77A /* [CP] Embed Pods Frameworks */,
+				94BFBBD20532D42C0E86C585 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1867,7 +1867,29 @@
 			shellPath = /bin/sh;
 			shellScript = "#\n# This file is part of Canvas.\n# Copyright (C) 2022-present  Instructure, Inc.\n#\n# This program is free software: you can redistribute it and/or modify\n# it under the terms of the GNU Affero General Public License as\n# published by the Free Software Foundation, either version 3 of the\n# License, or (at your option) any later version.\n#\n# This program is distributed in the hope that it will be useful,\n# but WITHOUT ANY WARRANTY; without even the implied warranty of\n# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n# GNU Affero General Public License for more details.\n#\n# You should have received a copy of the GNU Affero General Public License\n# along with this program.  If not, see <https://www.gnu.org/licenses/>.\n#\n\nexport RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open --env \"NODE_OPTIONS=--openssl-legacy-provider\" \"$SRCROOT/../rn/Teacher/node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
 		};
-		610AD636795B2574344D6843 /* [CP] Check Pods Manifest.lock */ = {
+		4F013879FEE6328F5237E09F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-defaults-StudentUnitTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D40F7B509FE2899868B0319 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1889,7 +1911,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6E520B8A85744DF5CC1ED77A /* [CP] Embed Pods Frameworks */ = {
+		94BFBBD20532D42C0E86C585 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1925,29 +1947,7 @@
 			shellPath = /bin/sh;
 			shellScript = "#\n# This file is part of Canvas.\n# Copyright (C) 2022-present  Instructure, Inc.\n#\n# This program is free software: you can redistribute it and/or modify\n# it under the terms of the GNU Affero General Public License as\n# published by the Free Software Foundation, either version 3 of the\n# License, or (at your option) any later version.\n#\n# This program is distributed in the hope that it will be useful,\n# but WITHOUT ANY WARRANTY; without even the implied warranty of\n# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n# GNU Affero General Public License for more details.\n#\n# You should have received a copy of the GNU Affero General Public License\n# along with this program.  If not, see <https://www.gnu.org/licenses/>.\n#\n\nif test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n\tswiftlint;\nelse\n\techo \"warning: SwiftLint not installed\"\nfi";
 		};
-		C7AA0C40912FB84AC75B9C0D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-defaults-StudentUnitTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CEB37A039BFF1D34E36F3BD5 /* [CP] Embed Pods Frameworks */ = {
+		B45357E4D256B1B44FD464C3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2192,7 +2192,7 @@
 		};
 		163D21C341AE12360121B95E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6ACBE159B7C246C896497364 /* Pods-defaults-Student.release.xcconfig */;
+			baseConfigurationReference = 9C84789F06C9C627F38165DD /* Pods-defaults-Student.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Student/Student.entitlements;
@@ -2242,7 +2242,7 @@
 		};
 		3FE02ABE555F6F44296EB473 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 67E955C74885B5DEC8DAD2E2 /* Pods-defaults-StudentUnitTests.debug.xcconfig */;
+			baseConfigurationReference = C4B1F85007825B81F23BC44A /* Pods-defaults-StudentUnitTests.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2343,7 +2343,7 @@
 		};
 		BF934FD6FA1D32B12FFB003E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D64BCBE21378D48824E1D82D /* Pods-defaults-StudentUnitTests.release.xcconfig */;
+			baseConfigurationReference = 31C7AA41074F92D7D69920D7 /* Pods-defaults-StudentUnitTests.release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -2363,7 +2363,7 @@
 		};
 		E14B252A5C05CD1E199FE6D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 37DB6107640ED4AD9F8413EF /* Pods-defaults-Student.debug.xcconfig */;
+			baseConfigurationReference = 523C60BC3656C51BBF9B91D6 /* Pods-defaults-Student.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Student/Student.entitlements;
