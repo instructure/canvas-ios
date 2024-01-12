@@ -42,6 +42,8 @@ class LTIToolsTests: CoreTestCase {
         XCTAssertNil(LTITools(link: URL(string: "/")))
         XCTAssertNil(LTITools(link: URL(string: "https://else.where/external_tools/retrieve?url=/")))
         XCTAssertEqual(LTITools(link: URL(string: "/external_tools/retrieve?url=/", relativeTo: environment.api.baseURL))?.url, URL(string: "/"))
+        XCTAssertEqual(LTITools(link: URL(string: "/courses/1/external_tools/2", relativeTo: environment.api.baseURL))?.id, "2")
+        XCTAssertEqual(LTITools(link: URL(string: "/courses/1/external_tools/2?display=borderless", relativeTo: environment.api.baseURL))?.id, nil)
     }
 
     func testInitLinkContext() {
@@ -56,6 +58,14 @@ class LTIToolsTests: CoreTestCase {
         let account = LTITools(link: URL(string: "/accounts/2/external_tools/retrieve?url=/", relativeTo: environment.api.baseURL))
         XCTAssertEqual(account?.context.contextType, .account)
         XCTAssertEqual(account?.context.id, "2")
+
+        let querylessExternalTool = LTITools(link: URL(string: "/courses/1/external_tools/2", relativeTo: environment.api.baseURL))
+        XCTAssertEqual(querylessExternalTool?.context.contextType, .course)
+        XCTAssertEqual(querylessExternalTool?.context.id, "1")
+        XCTAssertEqual(querylessExternalTool?.launchType, .course_navigation)
+
+        let queriedExternalTool = LTITools(link: URL(string: "/courses/1/external_tools/2?display=borderless", relativeTo: environment.api.baseURL))
+        XCTAssertEqual(queriedExternalTool, nil)
     }
 
     func testGetSessionlessLaunchURL() {
