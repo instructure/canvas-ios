@@ -111,7 +111,8 @@ class ComposeMessageViewModel: ObservableObject {
     }
 
     public func attachmentbuttonDidTap(viewController: WeakViewController) {
-
+        let attachmentList = AttachmentAssembly.makeAttachmentViewController()
+        router.show(attachmentList, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true))
     }
 
     private func setupOutputBindings() {
