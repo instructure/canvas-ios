@@ -29,4 +29,23 @@ class SubmissionDetailsViewControllerTests: StudentTestCase {
         NotificationCenter.default.post(name: UIResponder.keyboardWillShowNotification, object: nil, userInfo: [:])
         XCTAssertEqual(controller.drawer?.height, controller.drawer?.maxDrawerHeight)
     }
+
+    func testSelectsReceivedAttempt() {
+        // GIVEN
+        Assignment.make()
+        Submission.make(from: .make(attempt: 1, id: "1", score: 1))
+        Submission.make(from: .make(attempt: 7, id: "2", score: 2))
+
+        // WHEN
+        let testee = SubmissionDetailsViewController.create(context: .course("1"),
+                                                            assignmentID: "1",
+                                                            userID: "1",
+                                                            selectedAttempt: 1)
+        testee.loadViewIfNeeded()
+
+        // THEN
+        XCTAssertEqual(testee.presenter?.selectedAttempt, 1)
+        XCTAssertEqual(testee.picker?.selectedRow(inComponent: 0), 1)
+        XCTAssertEqual(testee.presenter?.pickerSubmissions[1].attempt, 1)
+    }
 }
