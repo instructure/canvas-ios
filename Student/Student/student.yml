@@ -31,6 +31,8 @@ targets:
         basedOnDependencyAnalysis: false
       - path: ../../scripts/startPackager.sh
         name: Start Packager
+      - path: ../../scripts/build-rn-code-images.sh
+        name: Build React Native Code and Images
 schemes:
   Student:
     build:
