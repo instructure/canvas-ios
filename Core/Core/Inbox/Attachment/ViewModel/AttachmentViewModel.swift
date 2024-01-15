@@ -108,6 +108,10 @@ class AttachmentViewModel: ObservableObject {
         uploadManager.upload(batch: batchId, to: .myFiles)
     }
 
+    func retryUpload() {
+        uploadManager.retry(batchID: batchId)
+    }
+
     private func setupInputBindings(router: Router) {
         cancelButtonDidTap
             .sink { [router] viewController in

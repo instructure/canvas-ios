@@ -129,9 +129,22 @@ struct AttachmentView: View {
 
             VStack {
                 Text("Uploading \(sentBytesWithUnit) of \(totalBytesWithUnit)")
-                ProgressView(value: Float(sentBytes), total: Float(totalBytes))
+                ProgressView(value: Float(sentBytes), total: Float(totalBytes + 1))
             }
             .padding(12)
+            separator
+        }
+    }
+
+    private var errorHeader: some View {
+        VStack {
+            VStack {
+                Text("Upload Failed").font(.headline)
+                Text("One or more files ailed to upload. Check your internet connection and retry to submit.")
+                    .multilineTextAlignment(.center)
+            }
+            .padding(12)
+
             separator
         }
     }
@@ -157,6 +170,16 @@ struct AttachmentView: View {
             viewModel.uploadButtonDidTap.accept(controller)
         } label: {
             Text("Upload", bundle: .core)
+                .font(.regular16)
+                .foregroundColor(.accentColor)
+        }
+    }
+
+    private var retryButton: some View {
+        Button {
+            viewModel.retryUpload()
+        } label: {
+            Text("Retry", bundle: .core)
                 .font(.regular16)
                 .foregroundColor(.accentColor)
         }
