@@ -940,7 +940,7 @@
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Meddelande"
+            "value" : "Meddelanden"
           }
         },
         "th" : {
@@ -1918,7 +1918,7 @@
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kursens bedömningar"
+            "value" : "Kursbedömningar"
           }
         },
         "th" : {
@@ -2455,7 +2455,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "التقديرات"
+            "value" : "الدرجات"
           }
         },
         "ca" : {
@@ -3791,7 +3791,7 @@
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Skráðu þig inn í gegnum smáforritið."
+            "value" : "Skráðu þig inn í gegnum smáforritið"
           }
         },
         "it" : {
