@@ -11,6 +11,10 @@ sync: ## Dependency installation
 	@make gen
 	@cd rn/Teacher; yarn build
 
+sync-ci: ## Dependency installation 
+	@make gen-ci
+	@cd rn/Teacher; yarn build
+
 gen-ci: ## CI specific xproj file generation
 	@echo 🟡 Running xcodegen
 	@cd Core; xcodegen
