@@ -334,6 +334,7 @@
 		343A99579F6D694CB5E8FCE8 /* LoginSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E145AFE0E25E06C21924F3 /* LoginSession.swift */; };
 		34B620075231C25A1812C3AB /* TabFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55753C99A41758BD59B26AD9 /* TabFilter.swift */; };
 		34E9C98C930CBD0535E22DF7 /* CourseSyncSelectorInteractorPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40701F5934FAAF25130677B3 /* CourseSyncSelectorInteractorPreview.swift */; };
+		3526FE9B121C2E03DA595921 /* DarkModeForWebDiscussions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D4185A1CAA7AAA7D948582A /* DarkModeForWebDiscussions.swift */; };
 		354482A755DA87DECDF9B43A /* DeterminateCircleProgressViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5A6601A3A0744DEDCFBCC2 /* DeterminateCircleProgressViewStyle.swift */; };
 		35592A9A9B1477D41DA36BF1 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8402A4E524501E8C4F78256C /* TodoListViewController.swift */; };
 		35A7651A1B0B7D648339F4B9 /* NotificationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA20D44E6F8911D19B4BCC4 /* NotificationManagerTests.swift */; };
@@ -1337,6 +1338,7 @@
 		CEC97448F930BB18B9BE614A /* GetCourseSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DA8B03B9279BBBDBCF285F /* GetCourseSections.swift */; };
 		CEEB69AC4E74B054E4F61BAB /* PageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88E31090C62EE2CD151388F /* PageTests.swift */; };
 		CF3596045A31EF9F0F47070E /* AllCoursesCellViewItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59E59C0AE8781FD42484E7A /* AllCoursesCellViewItemTests.swift */; };
+		CF431F022B501CC1004DAE16 /* DarkModeForWebDiscussionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF431F012B501CC1004DAE16 /* DarkModeForWebDiscussionsTests.swift */; };
 		CF77186DABC99EF4A2704BD3 /* APIEnrollmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79ED41813910F1C973820502 /* APIEnrollmentTests.swift */; };
 		CF78BC37E1EF05678E6831F1 /* UIFontExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C87806EF88EDE9BB02134F7 /* UIFontExtensions.swift */; };
 		CF848A454985D319B862329B /* InboxCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534C5973089478FB911C2D40 /* InboxCourse.swift */; };
@@ -2025,6 +2027,7 @@
 		2C4AC59B0D17F0033EC46B83 /* HelmNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelmNavigationController.swift; sourceTree = "<group>"; };
 		2C57A99E23AA37127B23EE41 /* FilePickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePickerTests.swift; sourceTree = "<group>"; };
 		2C76C18ED1935924343E74C3 /* RouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTests.swift; sourceTree = "<group>"; };
+		2D4185A1CAA7AAA7D948582A /* DarkModeForWebDiscussions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkModeForWebDiscussions.swift; sourceTree = "<group>"; };
 		2D6E49C0D49B041ACF4C5C07 /* FileSubmissionPreparation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSubmissionPreparation.swift; sourceTree = "<group>"; };
 		2E16677AE71E7A605D60C693 /* CourseDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewModel.swift; sourceTree = "<group>"; };
 		2E6DCCEEFE5558075476D113 /* GetAllCoursesCourseListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllCoursesCourseListUseCase.swift; sourceTree = "<group>"; };
@@ -3095,6 +3098,7 @@
 		CE9E0D5012DE444FB93B7661 /* GradeCircleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GradeCircleView.xib; sourceTree = "<group>"; };
 		CED26037996232D09E927A44 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		CF3B1A2B2EEDE4847384B3ED /* NSAttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedString.swift; sourceTree = "<group>"; };
+		CF431F012B501CC1004DAE16 /* DarkModeForWebDiscussionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkModeForWebDiscussionsTests.swift; sourceTree = "<group>"; };
 		CF50AAD392DC03765A4F4C9E /* ErrorExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorExtensionsTests.swift; sourceTree = "<group>"; };
 		CF76AA92A0745A9D16189BB8 /* GetDiscussionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDiscussionsTests.swift; sourceTree = "<group>"; };
 		CFAD2AE1CF6B4872E30170B5 /* FileEditorViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEditorViewTests.swift; sourceTree = "<group>"; };
@@ -4648,6 +4652,7 @@
 			children = (
 				E71711BCDE6B5F982C4D0DBB /* CoreWebViewFeature.swift */,
 				BDB67A001A1B342EAE93F492 /* CustomUserAgent.swift */,
+				2D4185A1CAA7AAA7D948582A /* DarkModeForWebDiscussions.swift */,
 				2EC1586998A1017C5AB66345 /* DisableZoom.swift */,
 				DF6D983529870D1DE0D372CB /* InvertColorsInDarkMode.swift */,
 				05CCCBCD26D3C60738D90D91 /* OnElementAppear.swift */,
@@ -8597,6 +8602,7 @@
 				84A96C427819EEDE0C621AF6 /* PullToRefreshTests.swift */,
 				704CF9439B155059D53DE4DB /* ScriptTests.swift */,
 				A6FE4016AD6D1051A06BFBA0 /* SkipJSInjectionTests.swift */,
+				CF431F012B501CC1004DAE16 /* DarkModeForWebDiscussionsTests.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -9441,6 +9447,7 @@
 				BFF70AC206C15080992D5823 /* APIAccountTests.swift in Sources */,
 				9D6D4F20B23DE6D37E6BB983 /* APIActivityTests.swift in Sources */,
 				5F7DEFE306C63CBB96A2D13A /* APIAssignmentListTests.swift in Sources */,
+				CF431F022B501CC1004DAE16 /* DarkModeForWebDiscussionsTests.swift in Sources */,
 				C8334187E3144139EC05A67B /* APIAssignmentTests.swift in Sources */,
 				8DDF049879B4EFA6680A326B /* APIBrandVariablesTests.swift in Sources */,
 				AC35317432FFBF5A3DB69AB1 /* APICalendarEventTests.swift in Sources */,
@@ -10324,6 +10331,7 @@
 				CD3063B23C70D82DD17D9FFE /* CustomTextField.swift in Sources */,
 				B3C7596F6623F44A159C18BD /* CustomUserAgent.swift in Sources */,
 				6FB4BCF3DE80976ACA7F795C /* CustomizeCourseView.swift in Sources */,
+				3526FE9B121C2E03DA595921 /* DarkModeForWebDiscussions.swift in Sources */,
 				25EF72292D79DFC08C6C9EE0 /* DashboardCard.swift in Sources */,
 				27DECAEF4C07BBB99E307FDD /* DashboardConferencesViewModel.swift in Sources */,
 				C10E2C1F9F86C2AAC29089EE /* DashboardContainerView.swift in Sources */,
