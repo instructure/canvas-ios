@@ -5,6 +5,8 @@ targets:
     platform: iOS
     transitivelyLinkDependencies: false
     settings:
+      CODE_SIGN_STYLE: Automatic
+      DEVELOPMENT_TEAM: B6333T4PXQ
       APPLICATION_EXTENSION_API_ONLY: false
       SWIFT_EMIT_LOC_STRINGS: true
       base:
