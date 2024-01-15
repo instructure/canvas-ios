@@ -606,6 +606,27 @@ class AssignmentDetailsPresenterTests: StudentTestCase {
         XCTAssertEqual(resultingAttemptNumber, "Attempt 1")
         XCTAssertEqual(resultingGradeCellSubmission, submission1)
     }
+
+    @available(iOS 16.0, *)
+    func testForwardsSelectedAttemptToSubmissionDetails() {
+        // GIVEN
+        Assignment.make()
+        Submission.make(from: .make(attempt: 1, id: "1", score: 1))
+        Submission.make(from: .make(attempt: 2, id: "2", score: 2))
+        FeatureFlag.make(name: APIFeatureFlag.Key.assignmentEnhancements.rawValue, enabled: true)
+
+        waitUntil(shouldFail: true) {
+            resultingAttemptPickerItems?.count == 2
+        }
+
+        resultingAttemptPickerItems?.first?.performWithSender(self, target: self)
+
+        // WHEN
+        presenter.routeToSubmission(view: UIViewController())
+
+        // THEN
+        XCTAssertTrue(router.lastRoutedTo("/courses/1/assignments/1/submissions/1?selectedAttempt=2"))
+    }
 }
 
 class MockView: UIViewController, AssignmentDetailsViewProtocol {

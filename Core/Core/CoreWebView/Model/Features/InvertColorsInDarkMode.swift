@@ -23,9 +23,7 @@ private class InvertColorsInDarkMode: CoreWebViewFeature {
             html {
                 filter: invert(100%) hue-rotate(180deg);
             }
-            img:not(.ignore-color-scheme),
-            .ignore-color-scheme,
-            div:not(.LtiEmbeddedPerspective__playerBackdrop):not([class*="inlineBlock-avatar"]):not(.instructure_inline_media_comment) {
+            img:not(.ignore-color-scheme), video:not(.ignore-color-scheme), .ignore-color-scheme {
                 filter: invert(100%) hue-rotate(180deg) !important;
             }
         }

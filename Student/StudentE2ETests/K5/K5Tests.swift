@@ -206,7 +206,7 @@ class K5Tests: K5E2ETestCase {
         seeder.enrollStudent(student, in: homeroom)
         seeder.enrollStudent(student, in: course)
 
-        // MARK: Get the user logged in, navigate to course details
+        // MARK: Get the user logged in, check course card for missing assignments
         logInDSUser(student)
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCard.isVisible)
@@ -214,5 +214,26 @@ class K5Tests: K5E2ETestCase {
         let courseCardAssigmentMissingButton = DashboardHelper.courseCardAssignmentMissingButton(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCardAssigmentMissingButton.isVisible)
         XCTAssertTrue(courseCardAssigmentMissingButton.hasLabel(label: "\(assignmentsCount) missing"))
+    }
+
+    // Covers MBL-15776 bug
+    func testDashboardDoesNotShowInvitedK5Course() {
+        // MARK: Seed the usual stuff with homeroom and an invited state K5 course
+        let student = seeder.createK5User()
+        let homeroom = seeder.createK5Course()
+        let course = seeder.createCourse()
+        let invitedCourse = seeder.createK5Course()
+        seeder.enrollStudent(student, in: homeroom)
+        seeder.enrollStudent(student, in: course)
+        let enrollment = seeder.enrollStudent(student, in: invitedCourse, state: .invited)
+
+        // MARK: Get the user logged in, check if there is no course card for invited course
+        logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        let invitedCourseCard = DashboardHelper.courseCard(course: invitedCourse).waitUntil(.vanish)
+        let courseInvitationAcceptButton = DashboardHelper.CourseInvitations.acceptButton(enrollment: enrollment).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertTrue(invitedCourseCard.isVanished)
+        XCTAssertTrue(courseInvitationAcceptButton.isVisible)
     }
 }
