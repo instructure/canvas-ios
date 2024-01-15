@@ -38,33 +38,48 @@ class LTIToolsTests: CoreTestCase {
     }
 
     func testInitLink() {
-        XCTAssertNil(LTITools(link: nil))
-        XCTAssertNil(LTITools(link: URL(string: "/")))
-        XCTAssertNil(LTITools(link: URL(string: "https://else.where/external_tools/retrieve?url=/")))
-        XCTAssertEqual(LTITools(link: URL(string: "/external_tools/retrieve?url=/", relativeTo: environment.api.baseURL))?.url, URL(string: "/"))
-        XCTAssertEqual(LTITools(link: URL(string: "/courses/1/external_tools/2", relativeTo: environment.api.baseURL))?.id, "2")
-        XCTAssertEqual(LTITools(link: URL(string: "/courses/1/external_tools/2?display=borderless", relativeTo: environment.api.baseURL))?.id, nil)
+        XCTAssertNil(LTITools(link: nil, navigationType: .linkActivated))
+        XCTAssertNil(LTITools(link: URL(string: "/"), navigationType: .linkActivated))
+        XCTAssertNil(LTITools(link: URL(string: "https://else.where/external_tools/retrieve?url=/"), navigationType: .linkActivated))
+        XCTAssertEqual(LTITools(link: URL(string: "/external_tools/retrieve?url=/", relativeTo: environment.api.baseURL), navigationType: .linkActivated)?.url, URL(string: "/"))
+        XCTAssertEqual(LTITools(link: URL(string: "/courses/1/external_tools/2", relativeTo: environment.api.baseURL), navigationType: .other)?.id, "2")
+        XCTAssertEqual(LTITools(link: URL(string: "/courses/1/external_tools/2?display=borderless", relativeTo: environment.api.baseURL), navigationType: .linkActivated)?.id, nil)
     }
 
     func testInitLinkContext() {
-        let defaultContext = LTITools(link: URL(string: "/external_tools/retrieve?url=/", relativeTo: environment.api.baseURL))
+        let defaultContext = LTITools(
+            link: URL(string: "/external_tools/retrieve?url=/", relativeTo: environment.api.baseURL),
+            navigationType: .linkActivated
+        )
         XCTAssertEqual(defaultContext?.context.contextType, .account)
         XCTAssertEqual(defaultContext?.context.id, "self")
 
-        let course = LTITools(link: URL(string: "/courses/1/external_tools/retrieve?url=/", relativeTo: environment.api.baseURL))
+        let course = LTITools(
+            link: URL(string: "/courses/1/external_tools/retrieve?url=/", relativeTo: environment.api.baseURL),
+            navigationType: .linkActivated
+        )
         XCTAssertEqual(course?.context.contextType, .course)
         XCTAssertEqual(course?.context.id, "1")
 
-        let account = LTITools(link: URL(string: "/accounts/2/external_tools/retrieve?url=/", relativeTo: environment.api.baseURL))
+        let account = LTITools(
+            link: URL(string: "/accounts/2/external_tools/retrieve?url=/", relativeTo: environment.api.baseURL),
+            navigationType: .linkActivated
+        )
         XCTAssertEqual(account?.context.contextType, .account)
         XCTAssertEqual(account?.context.id, "2")
 
-        let querylessExternalTool = LTITools(link: URL(string: "/courses/1/external_tools/2", relativeTo: environment.api.baseURL))
+        let querylessExternalTool = LTITools(
+            link: URL(string: "/courses/1/external_tools/2", relativeTo: environment.api.baseURL),
+            navigationType: .other
+        )
         XCTAssertEqual(querylessExternalTool?.context.contextType, .course)
         XCTAssertEqual(querylessExternalTool?.context.id, "1")
         XCTAssertEqual(querylessExternalTool?.launchType, .course_navigation)
 
-        let queriedExternalTool = LTITools(link: URL(string: "/courses/1/external_tools/2?display=borderless", relativeTo: environment.api.baseURL))
+        let queriedExternalTool = LTITools(
+            link: URL(string: "/courses/1/external_tools/2?display=borderless", relativeTo: environment.api.baseURL),
+            navigationType: .linkActivated
+        )
         XCTAssertEqual(queriedExternalTool, nil)
     }
 
@@ -246,7 +261,7 @@ class LTIToolsTests: CoreTestCase {
 
     func testConvenienceInitSucceedingWithResourceLinkLookupUUID() {
         let url = URL(string: "https://canvas.instructure.com/courses/1/external_tools/retrieve?resource_link_lookup_uuid=123")!
-        let testee = LTITools(env: environment, link: url)
+        let testee = LTITools(env: environment, link: url, navigationType: .linkActivated)
 
         guard let testee = testee else {
             return XCTFail()

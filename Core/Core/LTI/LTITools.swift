@@ -18,6 +18,7 @@
 
 import Foundation
 import SafariServices
+import WebKit
 
 @objc
 public class LTITools: NSObject {
@@ -88,17 +89,19 @@ public class LTITools: NSObject {
 
     var openInSafari: Bool { UserDefaults.standard.bool(forKey: "open_lti_safari") }
 
-    public convenience init?(env: AppEnvironment = .shared, link: URL?) {
+    public convenience init?(env: AppEnvironment = .shared, link: URL?, navigationType: WKNavigationType) {
         guard let link, link.host == env.api.baseURL.host else { return nil }
 
-        if let (context, url, resourceLinkUUID) = Self.parseRegularExternalToolURL(url: link) {
+        if let (context, url, resourceLinkUUID) = Self.parseRegularExternalToolURL(url: link),
+           navigationType == .linkActivated {
             self.init(
                 env: env,
                 context: context,
                 url: url,
                 resourceLinkLookupUUID: resourceLinkUUID
             )
-        } else if let (courseID, toolID) = Self.parseQuerylessExternalToolURL(url: link) {
+            return
+        } else if let (courseID, toolID) = Self.parseQuerylessExternalToolURL(url: link), navigationType == .other {
             self.init(
                 env: env,
                 context: .course(courseID),
