@@ -212,11 +212,13 @@ extension APIRequestable {
             components.path = "/api/v1/" + components.path
         }
 
-        var actAsUserQueryItem: [URLQueryItem] = []
-
-        if let actAsUserID = actAsUserID {
-            actAsUserQueryItem.append(URLQueryItem(name: "as_user_id", value: actAsUserID))
-        }
+        let actAsUserQueryItem: [URLQueryItem] = { [actAsUserID] in
+            if let actAsUserID {
+                return [URLQueryItem(name: "as_user_id", value: actAsUserID)]
+            } else {
+                return []
+            }
+        }()
 
         if !queryItems.isEmpty || !percentEncodedQueryItems.isEmpty {
             if useExtendedPercentEncoding {

@@ -106,15 +106,18 @@ public struct GetCalendarEventsRequest: APIRequestable {
     public let contexts: [Context]?
     public let startDate: Date?
     public let endDate: Date?
-    private let calendar: Calendar
-    private let timeZone: TimeZone
     public let type: CalendarEventType
     public let perPage: Int
     public let include: [Include]
     public let allEvents: Bool?
     public let userID: String?
     public let importantDates: Bool?
-    public var useExtendedPercentEncoding: Bool = true
+    public var useExtendedPercentEncoding: Bool { true }
+    private static let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        return formatter
+    }()
 
     public init(
         contexts: [Context]? = nil,
@@ -132,8 +135,8 @@ public struct GetCalendarEventsRequest: APIRequestable {
         self.contexts = contexts
         self.startDate = startDate
         self.endDate = endDate
-        self.calendar = calendar
-        self.timeZone = timeZone
+        Self.dateFormatter.calendar = calendar
+        Self.dateFormatter.timeZone = timeZone
         self.type = type
         self.perPage = perPage
         self.include = include
@@ -163,18 +166,10 @@ public struct GetCalendarEventsRequest: APIRequestable {
 
     private func createDateString(from date: Date?) -> String {
         if let date = date {
-            return dateFormatter().string(from: date)
+            return Self.dateFormatter.string(from: date)
         } else {
             return ""
         }
-    }
-
-    public func dateFormatter() -> DateFormatter {
-        let df = DateFormatter()
-        df.calendar = calendar
-        df.timeZone = timeZone
-        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-        return df
     }
 }
 
