@@ -35,12 +35,14 @@ struct AttachmentView: View {
         }
         .background(Color.backgroundLightest)
         .navigationTitle("Attachments")
-        .navigationBarItems(leading: cancelButton, trailing: uploadButton)
-        .fileImporter(isPresented: $viewModel.isFilePickerVisible, allowedContentTypes: [.item], allowsMultipleSelection: true) { result in
+        .navigationBarItems(leading: cancelButton, trailing: actionButton)
+        .fileImporter(isPresented: $viewModel.isFilePickerVisible, allowedContentTypes: [.item], allowsMultipleSelection: false) { result in
             switch result {
             case .success(let urls):
                 urls.forEach { url in
-                    viewModel.fileSelected(url: url)
+                    if url.startAccessingSecurityScopedResource() {
+                        viewModel.fileSelected(url: url)
+                    }
                 }
             case .failure(let error):
                 print(error.localizedDescription)
@@ -94,10 +96,11 @@ struct AttachmentView: View {
 
     private var headerView: some View {
         VStack {
-            if (viewModel.fileList.contains { file in file.isUploading }) {
+            if viewModel.isUploading {
                 progressHeader
-            }
-            else {
+            } else if viewModel.isError {
+                errorHeader
+            } else {
                 selectionHeader
             }
         }
@@ -165,6 +168,18 @@ struct AttachmentView: View {
             .frame(height: 0.5)
     }
 
+    private var actionButton: some View {
+        VStack {
+            if viewModel.isError {
+                retryButton
+            } else if viewModel.isUploading {
+                uploadButton.disabled(true)
+            } else {
+                uploadButton
+            }
+        }
+    }
+
     private var uploadButton: some View {
         Button {
             viewModel.uploadButtonDidTap.accept(controller)
@@ -196,6 +211,6 @@ struct AttachmentView: View {
     }
 }
 
-//#Preview {
+// #Preview {
 //    AttachmentListView()
-//}
+// }

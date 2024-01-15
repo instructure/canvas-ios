@@ -28,6 +28,18 @@ class AttachmentViewModel: ObservableObject {
     @Published public var isAudioRecordVisible: Bool = false
     @Published public var fileList: [File] = []
 
+    public var isError: Bool {
+        fileList.contains(where: { file in file.uploadError != nil })
+    }
+
+    public var isUploading: Bool {
+        fileList.contains(where: { file in file.isUploading })
+    }
+
+    public var isAllUploaded: Bool {
+        !fileList.contains(where: { file in !file.isUploaded })
+    }
+
     public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
     public let uploadButtonDidTap = PassthroughRelay<WeakViewController>()
     public let addAttachmentButtonDidTap = PassthroughRelay<WeakViewController>()
@@ -97,11 +109,12 @@ class AttachmentViewModel: ObservableObject {
         do {
             try uploadManager.add(url: url, batchID: batchId)
             files.refresh()
-        } catch  { }
+        } catch { }
     }
 
     func fileRemoved(file: File) {
         uploadManager.viewContext.delete(file)
+        files.refresh()
     }
 
     private func uploadAttachments() {
