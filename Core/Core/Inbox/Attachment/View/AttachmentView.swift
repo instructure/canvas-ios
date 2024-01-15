@@ -28,9 +28,9 @@ struct AttachmentView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .center) {
             headerView
-            if (viewModel.selectedFileUrls.isEmpty) { emptyView } else { contentView }
+            if (viewModel.fileList.isEmpty) { emptyView } else { contentView }
             if (viewModel.isAudioRecordVisible) { AudioPicker() }
         }
         .background(Color.backgroundLightest)
@@ -39,46 +39,117 @@ struct AttachmentView: View {
         .fileImporter(isPresented: $viewModel.isFilePickerVisible, allowedContentTypes: [.item], allowsMultipleSelection: true) { result in
             switch result {
             case .success(let urls):
-                viewModel.selectedFileUrls.append(contentsOf: urls)
+                urls.forEach { url in
+                    viewModel.fileSelected(url: url)
+                }
             case .failure(let error):
                 print(error.localizedDescription)
             }
         }
         .sheet(isPresented: $viewModel.isImagePickerVisible, content: {
-            ImagePicker(sourceType: .photoLibrary, imageHandler: viewModel.add)
+            ImagePicker(sourceType: .photoLibrary, imageHandler: viewModel.fileSelected)
         })
         .sheet(isPresented: $viewModel.isTakePhotoVisible, content: {
-            ImagePicker(sourceType: .camera, imageHandler: viewModel.add)
+            ImagePicker(sourceType: .camera, imageHandler: viewModel.fileSelected)
         })
     }
 
-    var contentView: some View {
-        ForEach(viewModel.selectedFileUrls, id: \.absoluteString) { url in
-            Text(url.absoluteString).padding()
+    private var contentView: some View {
+        VStack {
+            ForEach(viewModel.fileList, id: \.self) { file in
+                rowView(for: file)
+            }
+            Spacer()
         }
     }
 
-    var headerView: some View {
-        HStack {
-            Text("\(viewModel.selectedFileUrls.count) Items")
-            Spacer()
-            Button {
-                viewModel.addAttachmentButtonDidTap.accept(controller)
-            } label: {
-                Image.addLine
+    @ViewBuilder
+    private func rowView(for file: File) -> some View {
+        let fileSizeWithUnit = ByteCountFormatter.string(fromByteCount: Int64(file.size), countStyle: .file)
+        VStack {
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(file.displayName ?? file.localFileURL?.lastPathComponent ?? "").font(.headline)
+                    Text(fileSizeWithUnit).foregroundStyle(Color.textDark)
+                }
+                Spacer()
+                if (file.isUploading) {
+                    ProgressView()
+                } else if (file.isUploaded) {
+                    Image.checkLine
+                } else if (file.uploadError != nil) {
+                    Image.warningLine
+                } else {
+                    Button {
+                        viewModel.fileRemoved(file: file)
+                    } label: {
+                        Image.xLine
+                    }
+                }
+            }.padding(.horizontal, 12)
+            separator
+        }
+        .foregroundStyle(Color.textDarkest)
+    }
+
+    private var headerView: some View {
+        VStack {
+            if (viewModel.fileList.contains { file in file.isUploading }) {
+                progressHeader
+            }
+            else {
+                selectionHeader
             }
         }
-        .padding(12)
     }
 
-    var emptyView: some View {
+    private var selectionHeader: some View {
+        VStack {
+            HStack {
+                Text("\(viewModel.fileList.count) Items")
+                Spacer()
+                Button {
+                    viewModel.addAttachmentButtonDidTap.accept(controller)
+                } label: {
+                    Image.addLine
+                }
+                .foregroundStyle(Color.textDarkest)
+            }
+            .padding(12)
+            separator
+        }
+    }
+
+    private var progressHeader: some View {
+        VStack {
+            let totalBytes = viewModel.fileList.map { $0.size }.reduce(0, +)
+            let totalBytesWithUnit = ByteCountFormatter.string(fromByteCount: Int64(totalBytes), countStyle: .file)
+            let sentBytes = viewModel.fileList.map { $0.bytesSent }.reduce(0, +)
+            let sentBytesWithUnit = ByteCountFormatter.string(fromByteCount: Int64(sentBytes), countStyle: .file)
+
+            VStack {
+                Text("Uploading \(sentBytesWithUnit) of \(totalBytesWithUnit)")
+                ProgressView(value: Float(sentBytes), total: Float(totalBytes))
+            }
+            .padding(12)
+            separator
+        }
+    }
+
+    private var emptyView: some View {
         VStack {
             Spacer()
-            Image.paperclipLine
-            Text("No attachment")
+            Image.paperclipLine.resizable().frame(width: 100, height: 100)
+            Text("No attachment").font(.headline)
             Text("Add an attachment by tapping the plus at top right.")
+                .multilineTextAlignment(.center)
             Spacer()
         }
+    }
+
+    private var separator: some View {
+        Color.borderMedium
+            .frame(height: 0.5)
     }
 
     private var uploadButton: some View {

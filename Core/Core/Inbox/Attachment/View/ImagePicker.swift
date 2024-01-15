@@ -20,7 +20,7 @@ import Foundation
 import SwiftUI
 
 struct ImagePicker: UIViewControllerRepresentable {
-    typealias ImagePickedHandler = (UIImage) -> Void
+    typealias ImagePickedHandler = (URL) -> Void
     @Environment(\.presentationMode) private var presentationMode
 
     let sourceType: UIImagePickerController.SourceType
@@ -41,6 +41,9 @@ struct ImagePicker: UIViewControllerRepresentable {
         imagePicker.allowsEditing = false
         imagePicker.sourceType = sourceType
         imagePicker.delegate = context.coordinator
+        if let mediaTypes = UIImagePickerController.availableMediaTypes(for: .camera) {
+            imagePicker.mediaTypes = mediaTypes
+        }
 
         return imagePicker
     }
@@ -62,9 +65,16 @@ struct ImagePicker: UIViewControllerRepresentable {
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
 
             if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-                imageHandler(image)
+                if let url = try? image.write() {
+                    imageHandler(url)
+                    parent.presentationMode.wrappedValue.dismiss()
+                }
             }
 
+            if let url = info[.mediaURL] as? URL {
+                imageHandler(url)
+                parent.presentationMode.wrappedValue.dismiss()
+            }
         }
     }
 }

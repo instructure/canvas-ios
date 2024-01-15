@@ -26,7 +26,7 @@ class AttachmentViewModel: ObservableObject {
     @Published public var isImagePickerVisible: Bool = false
     @Published public var isTakePhotoVisible: Bool = false
     @Published public var isAudioRecordVisible: Bool = false
-    @Published public var selectedFileUrls: [URL] = []
+    @Published public var fileList: [File] = []
 
     public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
     public let uploadButtonDidTap = PassthroughRelay<WeakViewController>()
@@ -36,7 +36,7 @@ class AttachmentViewModel: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
     private let router: Router
     private let batchId = UUID.string
-    public lazy var files = uploadManager.subscribe(batchID: batchId) { [weak self] in
+    private lazy var files = uploadManager.subscribe(batchID: batchId) { [weak self] in
         self?.update()
     }
 
@@ -47,9 +47,7 @@ class AttachmentViewModel: ObservableObject {
     }
 
     func update() {
-        files.all.forEach { file in
-            print("\(file.localFileURL?.absoluteString ?? "") - \(file.url?.absoluteString ?? "")")
-        }
+        fileList = files.all
     }
 
     private func showDialog(viewController: WeakViewController) {
@@ -89,23 +87,24 @@ class AttachmentViewModel: ObservableObject {
     func add(image: UIImage) {
         do {
             let url = try image.write()
-            selectedFileUrls.append(url)
+            fileSelected(url: url)
         } catch {
 
         }
     }
 
+    func fileSelected(url: URL) {
+        do {
+            try uploadManager.add(url: url, batchID: batchId)
+            files.refresh()
+        } catch  { }
+    }
+
+    func fileRemoved(file: File) {
+        uploadManager.viewContext.delete(file)
+    }
+
     private func uploadAttachments() {
-        files.refresh()
-        uploadManager.viewContext.performAndWait {
-            selectedFileUrls.forEach { url in
-                do {
-                    try uploadManager.add(url: url, batchID: batchId)
-                } catch  {
-                    
-                }
-            }
-        }
         uploadManager.upload(batch: batchId, to: .myFiles)
     }
 
