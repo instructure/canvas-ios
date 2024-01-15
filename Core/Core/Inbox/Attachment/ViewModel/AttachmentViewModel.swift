@@ -44,16 +44,18 @@ class AttachmentViewModel: ObservableObject {
     public let uploadButtonDidTap = PassthroughRelay<WeakViewController>()
     public let addAttachmentButtonDidTap = PassthroughRelay<WeakViewController>()
 
-    private let uploadManager = UploadManager(identifier: UUID.string)
+    private let uploadManager: UploadManager
     private var subscriptions = Set<AnyCancellable>()
     private let router: Router
-    private let batchId = UUID.string
+    private let batchId: String
     private lazy var files = uploadManager.subscribe(batchID: batchId) { [weak self] in
         self?.update()
     }
 
-    public init (router: Router) {
+    public init (router: Router, batchId: String, uploadManager: UploadManager = UploadManager(identifier: UUID.string)) {
         self.router = router
+        self.batchId = batchId
+        self.uploadManager = uploadManager
 
         setupInputBindings(router: router)
     }
@@ -133,7 +135,7 @@ class AttachmentViewModel: ObservableObject {
             .store(in: &subscriptions)
 
         uploadButtonDidTap
-            .sink { [weak self] viewController in
+            .sink { [weak self] _ in
                 self?.uploadAttachments()
             }
             .store(in: &subscriptions)

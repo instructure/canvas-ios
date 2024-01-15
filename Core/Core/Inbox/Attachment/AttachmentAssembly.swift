@@ -20,9 +20,11 @@ import Foundation
 
 public enum AttachmentAssembly {
     public static func makeAttachmentViewController(
-        env: AppEnvironment = .shared
+        env: AppEnvironment = .shared,
+        batchId: String,
+        uploadManager: UploadManager
     ) -> UIViewController {
-        let viewModel = AttachmentViewModel(router: env.router)
+        let viewModel = AttachmentViewModel(router: env.router, batchId: batchId, uploadManager: uploadManager)
         let view = AttachmentView(model: viewModel)
         return CoreHostingController(view)
     }
