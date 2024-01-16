@@ -1361,14 +1361,15 @@
 		D2DA38634A2821C1C71B7DD2 /* DragButtonStateViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DBCA7D161FF8B591AFE784 /* DragButtonStateViewModelTests.swift */; };
 		D2FD9F0CE35154CDA63EB588 /* APIAssignmentPickerListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C977681048E778C187FD119 /* APIAssignmentPickerListItem.swift */; };
 		D31E83925422BBA1373AB854 /* ContextCardGradesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9B361985FD0F05D7C61646 /* ContextCardGradesView.swift */; };
-		D32942652B4EA5050003A59F /* AttachmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32942642B4EA5050003A59F /* AttachmentView.swift */; };
-		D32942672B4EA6200003A59F /* AttachmentAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32942662B4EA6200003A59F /* AttachmentAssembly.swift */; };
-		D32942692B4EA69B0003A59F /* AttachmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32942682B4EA69B0003A59F /* AttachmentViewModel.swift */; };
-		D329426D2B4EECA60003A59F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D329426C2B4EECA60003A59F /* ImagePicker.swift */; };
-		D32942712B4FCDD70003A59F /* AudioPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32942702B4FCDD70003A59F /* AudioPicker.swift */; };
+		D32942652B4EA5050003A59F /* AttachmentPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32942642B4EA5050003A59F /* AttachmentPickerView.swift */; };
+		D32942672B4EA6200003A59F /* AttachmentPickerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32942662B4EA6200003A59F /* AttachmentPickerAssembly.swift */; };
+		D32942692B4EA69B0003A59F /* AttachmentPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32942682B4EA69B0003A59F /* AttachmentPickerViewModel.swift */; };
+		D329426D2B4EECA60003A59F /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D329426C2B4EECA60003A59F /* ImagePickerViewController.swift */; };
+		D32942712B4FCDD70003A59F /* AudioPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32942702B4FCDD70003A59F /* AudioPickerViewController.swift */; };
 		D32942732B4FDAEE0003A59F /* BottomSheetDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32942722B4FDAEE0003A59F /* BottomSheetDialog.swift */; };
 		D3325F79CCA32071098A7DA9 /* GetQuizSubmissionUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DFFDB020E0A5A5ED8973F0 /* GetQuizSubmissionUsers.swift */; };
-		D365861B2B55763200F05D21 /* AttachmentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365861A2B55763200F05D21 /* AttachmentCard.swift */; };
+		D365861B2B55763200F05D21 /* ConversationAttachmentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365861A2B55763200F05D21 /* ConversationAttachmentCardView.swift */; };
+		D3E67EB22B56AB27000B9CFE /* AttachmentPickerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E67EB12B56AB27000B9CFE /* AttachmentPickerViewModelTests.swift */; };
 		D3F2C000008898A8049AFEF7 /* CourseSyncItemSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B3812EED19B5A501744522 /* CourseSyncItemSelection.swift */; };
 		D4439C92D9E84E13A1847D51 /* CoreBGTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5698277AF43025DEFA6BE220 /* CoreBGTask.swift */; };
 		D484C74E299214157F4B69BC /* PageDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B36ECA65D3C45F7DE5084 /* PageDetailsViewController.swift */; };
@@ -3118,17 +3119,18 @@
 		D2A10B77E9E886A71F13AAB6 /* EditComposeRecipientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditComposeRecipientsViewController.swift; sourceTree = "<group>"; };
 		D2AACFCF7807BA84FAA8BB9D /* K5SubjectViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5SubjectViewModel.swift; sourceTree = "<group>"; };
 		D31E93E5AD00DF5469ED4CBC /* UISearchTextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISearchTextFieldExtensions.swift; sourceTree = "<group>"; };
-		D32942642B4EA5050003A59F /* AttachmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentView.swift; sourceTree = "<group>"; };
-		D32942662B4EA6200003A59F /* AttachmentAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentAssembly.swift; sourceTree = "<group>"; };
-		D32942682B4EA69B0003A59F /* AttachmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentViewModel.swift; sourceTree = "<group>"; };
-		D329426C2B4EECA60003A59F /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
-		D32942702B4FCDD70003A59F /* AudioPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPicker.swift; sourceTree = "<group>"; };
+		D32942642B4EA5050003A59F /* AttachmentPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentPickerView.swift; sourceTree = "<group>"; };
+		D32942662B4EA6200003A59F /* AttachmentPickerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentPickerAssembly.swift; sourceTree = "<group>"; };
+		D32942682B4EA69B0003A59F /* AttachmentPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentPickerViewModel.swift; sourceTree = "<group>"; };
+		D329426C2B4EECA60003A59F /* ImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
+		D32942702B4FCDD70003A59F /* AudioPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPickerViewController.swift; sourceTree = "<group>"; };
 		D32942722B4FDAEE0003A59F /* BottomSheetDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetDialog.swift; sourceTree = "<group>"; };
 		D353A6609F8E219A19862AE0 /* ExperimentalFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentalFeature.swift; sourceTree = "<group>"; };
-		D365861A2B55763200F05D21 /* AttachmentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCard.swift; sourceTree = "<group>"; };
+		D365861A2B55763200F05D21 /* ConversationAttachmentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationAttachmentCardView.swift; sourceTree = "<group>"; };
 		D36C5027996C9F24362419DA /* AttachmentCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCardsView.swift; sourceTree = "<group>"; };
 		D3ABC68A7725FDFC09EDC581 /* NSPersistentStoreExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPersistentStoreExtensions.swift; sourceTree = "<group>"; };
 		D3B0873C4E11AF89B004B474 /* PermissionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsTests.swift; sourceTree = "<group>"; };
+		D3E67EB12B56AB27000B9CFE /* AttachmentPickerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentPickerViewModelTests.swift; sourceTree = "<group>"; };
 		D3EC7B75FA36FECB82127245 /* GetSearchRecipients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSearchRecipients.swift; sourceTree = "<group>"; };
 		D41D70AB17259CCFBAFF5796 /* K5ResourcesContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesContactViewModel.swift; sourceTree = "<group>"; };
 		D47D7E0F71DA49A7F37CCE38 /* QuizSubmissionUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionUser.swift; sourceTree = "<group>"; };
@@ -4465,6 +4467,7 @@
 		2F99C1102518F74471883328 /* Inbox */ = {
 			isa = PBXGroup;
 			children = (
+				D3E67EB02B56AB11000B9CFE /* AttachmentPicker */,
 				A67FA2BEC62461720DADBBCF /* Addressbook */,
 				108A7036F1B887F565E37A2B /* ComposeMessage */,
 				820810A4AEA415D1EF25D679 /* InboxCoursePicker */,
@@ -5994,7 +5997,7 @@
 		6E8FE6D99B4A2888DAEA58F1 /* Inbox */ = {
 			isa = PBXGroup;
 			children = (
-				D329425E2B4E8C8F0003A59F /* Attachment */,
+				D329425E2B4E8C8F0003A59F /* AttachmentPicker */,
 				481AA5EAFCF724C6F0F8400C /* Addressbook */,
 				CD70E3F7E28C20A1CF0D0ABF /* ComposeMessage */,
 				E8C59D458854271BBA12FD07 /* InboxCoursePicker */,
@@ -8279,40 +8282,32 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		D329425E2B4E8C8F0003A59F /* Attachment */ = {
+		D329425E2B4E8C8F0003A59F /* AttachmentPicker */ = {
 			isa = PBXGroup;
 			children = (
 				D32942612B4EA47A0003A59F /* ViewModel */,
-				D32942602B4EA4720003A59F /* Model */,
 				D329425F2B4EA4620003A59F /* View */,
-				D32942662B4EA6200003A59F /* AttachmentAssembly.swift */,
+				D32942662B4EA6200003A59F /* AttachmentPickerAssembly.swift */,
 			);
-			path = Attachment;
+			path = AttachmentPicker;
 			sourceTree = "<group>";
 		};
 		D329425F2B4EA4620003A59F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D32942642B4EA5050003A59F /* AttachmentView.swift */,
-				D329426C2B4EECA60003A59F /* ImagePicker.swift */,
-				D32942702B4FCDD70003A59F /* AudioPicker.swift */,
+				D32942642B4EA5050003A59F /* AttachmentPickerView.swift */,
+				D329426C2B4EECA60003A59F /* ImagePickerViewController.swift */,
+				D32942702B4FCDD70003A59F /* AudioPickerViewController.swift */,
 				D32942722B4FDAEE0003A59F /* BottomSheetDialog.swift */,
-				D365861A2B55763200F05D21 /* AttachmentCard.swift */,
+				D365861A2B55763200F05D21 /* ConversationAttachmentCardView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		D32942602B4EA4720003A59F /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		D32942612B4EA47A0003A59F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				D32942682B4EA69B0003A59F /* AttachmentViewModel.swift */,
+				D32942682B4EA69B0003A59F /* AttachmentPickerViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -8345,6 +8340,14 @@
 				4457A60E9CC1B6CFB0ECD4B6 /* TypeSafeCodable.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		D3E67EB02B56AB11000B9CFE /* AttachmentPicker */ = {
+			isa = PBXGroup;
+			children = (
+				D3E67EB12B56AB27000B9CFE /* AttachmentPickerViewModelTests.swift */,
+			);
+			path = AttachmentPicker;
 			sourceTree = "<group>";
 		};
 		D56D48E40620F57D59D50F19 /* K5 */ = {
@@ -9757,6 +9760,7 @@
 				B9EA4B6D77A8E24AE5ECECC7 /* AttachmentPreviewViewModelTests.swift in Sources */,
 				8375D916A3EDD69451078216 /* AttachmentSubmissionServiceTests.swift in Sources */,
 				C935C97A75923B85D16F1B3E /* AttendanceCellViewModelTests.swift in Sources */,
+				D3E67EB22B56AB27000B9CFE /* AttachmentPickerViewModelTests.swift in Sources */,
 				46C33DC3BBBF222AE74A0AD2 /* AvatarGroupViewTests.swift in Sources */,
 				62C4CDF355355E46825D8777 /* AvoidKeyboardAreaTests.swift in Sources */,
 				3A8EAB86857E8A9DB80190C6 /* BackgroundActivityMock.swift in Sources */,
@@ -10618,7 +10622,7 @@
 				2379E49DB07E5748CB3ECC9C /* DocViewerSession.swift in Sources */,
 				95F2E4BB05AB9F0E4EE124E6 /* DocViewerViewController.swift in Sources */,
 				248B95D3107374D23924B067 /* DocumentExtensions.swift in Sources */,
-				D32942672B4EA6200003A59F /* AttachmentAssembly.swift in Sources */,
+				D32942672B4EA6200003A59F /* AttachmentPickerAssembly.swift in Sources */,
 				229DB613B3BA88E358C71942 /* DownloadTaskPublisher.swift in Sources */,
 				9B0C9A0C1A204CCF24D3CB06 /* DragButtonStateViewModel.swift in Sources */,
 				2CFF76C47011FF6AAD9C4C48 /* DragInfo.swift in Sources */,
@@ -10791,7 +10795,7 @@
 				716D90866E9BBCA74CD515F6 /* HelpItemView.swift in Sources */,
 				7C0E6B1D97B98D4E692E9ED4 /* HelpLink.swift in Sources */,
 				3E1DB066CF6D86F58FBF3186 /* HelpLinkRoute.swift in Sources */,
-				D32942652B4EA5050003A59F /* AttachmentView.swift in Sources */,
+				D32942652B4EA5050003A59F /* AttachmentPickerView.swift in Sources */,
 				59F0DECEB1E8D2E16644539A /* HelpView.swift in Sources */,
 				D06B1B95D0FF65F7E7761F95 /* Hidden.swift in Sources */,
 				75B907DF425522A89C8BB82A /* HorizontalMenuViewController.swift in Sources */,
@@ -10806,7 +10810,7 @@
 				5428A3941D2AA3F1244D9908 /* ImageBackground.swift in Sources */,
 				BB206552E39A0481AD10261A /* InboxAssembly.swift in Sources */,
 				CF848A454985D319B862329B /* InboxCourse.swift in Sources */,
-				D32942692B4EA69B0003A59F /* AttachmentViewModel.swift in Sources */,
+				D32942692B4EA69B0003A59F /* AttachmentPickerViewModel.swift in Sources */,
 				D2423E64E4DB9359E2E91F47 /* InboxCoursePickerAssembly.swift in Sources */,
 				D57F60D7A73B4A4C30682ECA /* InboxCoursePickerInteractor.swift in Sources */,
 				B7D55E715C61F983FE3D84A7 /* InboxCoursePickerInteractorLive.swift in Sources */,
@@ -10965,7 +10969,7 @@
 				31BEF92CE296A11C6076CCB0 /* NSPersistentContainerExtensions.swift in Sources */,
 				9E9FE87DF2279B6F88F1EEFF /* NSPersistentStoreExtensions.swift in Sources */,
 				EDAB1466C5FBA7F15E548B47 /* NSPredicateExtensions.swift in Sources */,
-				D32942712B4FCDD70003A59F /* AudioPicker.swift in Sources */,
+				D32942712B4FCDD70003A59F /* AudioPickerViewController.swift in Sources */,
 				006D0AE97085E4EAB7AC7052 /* NWPathMonitorWrapper.swift in Sources */,
 				E90FF93D771026D3F9185440 /* NavBarItems.swift in Sources */,
 				A2D9963BAFEEC230FA5AF9DE /* NetworkAvailabilityService.swift in Sources */,
@@ -11079,7 +11083,7 @@
 				A85E9FADEDC8C5F90AAB9670 /* ScannerViewController.swift in Sources */,
 				12C9F3717527699528FEE769 /* Scope.swift in Sources */,
 				1CED9B876B812342E8E1E7B6 /* ScreenViewTrackable.swift in Sources */,
-				D329426D2B4EECA60003A59F /* ImagePicker.swift in Sources */,
+				D329426D2B4EECA60003A59F /* ImagePickerViewController.swift in Sources */,
 				6593446368C93EEFBA9BD7E3 /* ScreenViewTrackableViewController.swift in Sources */,
 				D10513F287E54B3F5FCA98FA /* ScreenViewTracker.swift in Sources */,
 				EF8CEF0D8FFEC24A002128C1 /* Script.swift in Sources */,
@@ -11160,7 +11164,7 @@
 				FF8D98E00FB89FA38F3EBB1D /* TypeSafeCodable.swift in Sources */,
 				E1F961E80F6300AE58E3D784 /* Typography.swift in Sources */,
 				F69685953151151062097481 /* TypographyTestViews.swift in Sources */,
-				D365861B2B55763200F05D21 /* AttachmentCard.swift in Sources */,
+				D365861B2B55763200F05D21 /* ConversationAttachmentCardView.swift in Sources */,
 				1D0CB50857AB33A8383D8B1A /* UIAccessibilityAnnouncement.swift in Sources */,
 				E5F13083096134000E076326 /* UIApplicationDelegateExtensions.swift in Sources */,
 				DD0C03FABD678BF8F8E80503 /* UIBarButtonItemExtensions.swift in Sources */,

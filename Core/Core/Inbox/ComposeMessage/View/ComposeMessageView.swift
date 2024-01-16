@@ -252,7 +252,7 @@ public struct ComposeMessageView: View {
 
     private var attachmentsView: some View {
         ForEach(model.attachments, id: \.self) { file in
-            AttachmentCard(file: file) {
+            ConversationAttachmentCardView(file: file) {
                 model.removeAttachment(file: file)
             }
         }

@@ -122,7 +122,7 @@ class ComposeMessageViewModel: ObservableObject {
 
     public func attachmentbuttonDidTap(viewController: WeakViewController) {
         files.refresh()
-        let attachmentList = AttachmentAssembly.makeAttachmentViewController(batchId: batchId, uploadManager: uploadManager)
+        let attachmentList = AttachmentPickerAssembly.makeAttachmentPickerViewController(batchId: batchId, uploadManager: uploadManager)
         router.show(attachmentList, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true))
     }
 
@@ -160,6 +160,7 @@ class ComposeMessageViewModel: ObservableObject {
             subject: subject,
             body: bodyText,
             recipientIDs: recipientIDs,
+            attachmentIDs: attachments.compactMap { $0.id },
             context: context.context,
             conversationID: conversation?.id,
             groupConversation: !sendIndividual
