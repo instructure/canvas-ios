@@ -11,3 +11,5 @@ targets:
       - path: ./
         excludes:
           - ".swiftlint.yml"
+    dependencies:
+      - target: Student
