@@ -30,7 +30,7 @@ struct AttachmentView: View {
     var body: some View {
         VStack(alignment: .center) {
             headerView
-            if (viewModel.fileList.isEmpty) { emptyView } else { contentView }
+            if (viewModel.fileList.isEmpty) { emptyView } else { ScrollView { contentView } }
             if (viewModel.isAudioRecordVisible) { AudioPicker() }
         }
         .background(Color.backgroundLightest)
@@ -80,7 +80,10 @@ struct AttachmentView: View {
                 } else if (file.isUploaded) {
                     Image.checkLine
                 } else if (file.uploadError != nil) {
-                    Image.warningLine
+                    VStack {
+                        Image.warningLine
+                        Text(file.uploadError!).multilineTextAlignment(.center)
+                    }
                 } else {
                     Button {
                         viewModel.fileRemoved(file: file)
@@ -132,7 +135,7 @@ struct AttachmentView: View {
 
             VStack {
                 Text("Uploading \(sentBytesWithUnit) of \(totalBytesWithUnit)")
-                ProgressView(value: Float(sentBytes), total: Float(totalBytes + 1))
+                ProgressView(value: Float(sentBytes), total: Float(max(totalBytes, sentBytes)))
             }
             .padding(12)
             separator
@@ -143,7 +146,7 @@ struct AttachmentView: View {
         VStack {
             VStack {
                 Text("Upload Failed").font(.headline)
-                Text("One or more files ailed to upload. Check your internet connection and retry to submit.")
+                Text("One or more files failed to upload. Check your internet connection and retry to submit.")
                     .multilineTextAlignment(.center)
             }
             .padding(12)
@@ -174,6 +177,8 @@ struct AttachmentView: View {
                 retryButton
             } else if viewModel.isUploading {
                 uploadButton.disabled(true)
+            } else if viewModel.isAllUploaded {
+                doneButton
             } else {
                 uploadButton
             }
@@ -205,6 +210,16 @@ struct AttachmentView: View {
             viewModel.cancelButtonDidTap.accept(controller)
         } label: {
             Text("Cancel", bundle: .core)
+                .font(.regular16)
+                .foregroundColor(.accentColor)
+        }
+    }
+
+    private var doneButton: some View {
+        Button {
+            viewModel.doneButtonDidTap.accept(controller)
+        } label: {
+            Text("Done", bundle: .core)
                 .font(.regular16)
                 .foregroundColor(.accentColor)
         }

@@ -30,7 +30,7 @@ class ComposeMessageViewModel: ObservableObject {
         !bodyText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
         !subject.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
         !recipients.isEmpty
-        // && (attachments.isEmpty || attachments.allSatisfy({ $0.isUploaded }))
+        && (attachments.isEmpty || attachments.allSatisfy({ $0.isUploaded }))
 
     }
     public var isReply: Bool {

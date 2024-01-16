@@ -41,6 +41,7 @@ class AttachmentViewModel: ObservableObject {
     }
 
     public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
+    public let doneButtonDidTap = PassthroughRelay<WeakViewController>()
     public let uploadButtonDidTap = PassthroughRelay<WeakViewController>()
     public let addAttachmentButtonDidTap = PassthroughRelay<WeakViewController>()
 
@@ -57,6 +58,7 @@ class AttachmentViewModel: ObservableObject {
         self.batchId = batchId
         self.uploadManager = uploadManager
 
+        update()
         setupInputBindings(router: router)
     }
 
@@ -120,15 +122,38 @@ class AttachmentViewModel: ObservableObject {
     }
 
     private func uploadAttachments() {
-        uploadManager.upload(batch: batchId, to: .myFiles)
+//        uploadManager.upload(batch: batchId, to: .myFiles)
+        files.all.forEach { file in
+            if !file.isUploaded {
+                uploadManager.upload(file: file, to: .myFiles, folderPath: "conversation attachments")
+            }
+        }
     }
 
     func retryUpload() {
-        uploadManager.retry(batchID: batchId)
+//        uploadManager.retry(batchID: batchId)
+        files.all.forEach { file in
+            if !file.isUploaded {
+                uploadManager.upload(file: file, to: .myFiles, folderPath: "conversation attachments")
+            }
+        }
+    }
+
+    private func removeAllFiles() {
+        files.all.forEach {file in
+            fileRemoved(file: file)
+        }
     }
 
     private func setupInputBindings(router: Router) {
         cancelButtonDidTap
+            .sink { [weak self, router] viewController in
+                self?.removeAllFiles()
+                router.dismiss(viewController)
+            }
+            .store(in: &subscriptions)
+
+        doneButtonDidTap
             .sink { [router] viewController in
                 router.dismiss(viewController)
             }

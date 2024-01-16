@@ -32,7 +32,7 @@ struct AttachmentCard: View {
 
     var body: some View {
         VStack {
-            AsyncImage(url: file.thumbnailURL)
+            if file.thumbnailURL != nil { AsyncImage(url: file.thumbnailURL) }
             HStack {
                 VStack(alignment: .leading) {
                     Text(file.displayName ?? file.localFileURL?.lastPathComponent ?? file.url?.lastPathComponent ?? "").font(.headline)
@@ -47,7 +47,7 @@ struct AttachmentCard: View {
             }
             .padding(12)
         }
-        .border(Color.textDarkest)
+        .background(RoundedRectangle(cornerRadius: 10).stroke(Color.tiara, lineWidth: 1))
         .padding(12)
     }
 }
