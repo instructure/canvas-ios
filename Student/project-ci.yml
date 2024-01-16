@@ -58,4 +58,5 @@ schemes:
         Parent/ParentUnitTests: test
         TestsFoundation/TestsFoundation: test
     test:
+      gatherCoverageData: true
       targets: [Core/CoreTests, StudentUnitTests, Teacher/TeacherTests, Parent/ParentUnitTests, TestsFoundation/TestsFoundation]
