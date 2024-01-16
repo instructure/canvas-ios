@@ -153,6 +153,9 @@ class AttachmentPickerViewModel: ObservableObject {
         cancelButtonDidTap
             .sink { [weak self, router] viewController in
                 self?.removeUnPublishedFiles()
+                if let batchId = self?.batchId {
+                    self?.uploadManager.cancel(batchID: batchId)
+                }
                 router.dismiss(viewController)
             }
             .store(in: &subscriptions)
