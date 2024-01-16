@@ -150,7 +150,7 @@ public class LTITools: NSObject {
             return nil
         }
 
-        var components = url.pathComponents
+        let components = url.pathComponents
         guard components[1] == "courses", components[3] == "external_tools" else { return nil }
         return (components[2], components[4])
     }

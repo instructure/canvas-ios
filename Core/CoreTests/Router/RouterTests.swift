@@ -159,7 +159,7 @@ class RouterTests: CoreTestCase {
 
     func testRouteDetailNotInSplitViewDoesAShow() {
         let mockView = MockViewController()
-        let nav = UINavigationController(rootViewController: mockView)
+        _ = UINavigationController(rootViewController: mockView)
         let router = Router(routes: [
             RouteHandler("/detail") { _, _, _ in
                 return UIViewController()
