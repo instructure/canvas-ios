@@ -56,5 +56,6 @@ schemes:
         StudentUnitTests: test
         Teacher/TeacherTests: test
         Parent/ParentUnitTests: test
+        TestsFoundation/TestsFoundation: test
     test:
-      targets: [Core/CoreTests, StudentUnitTests, Teacher/TeacherTests, Parent/ParentUnitTests]
+      targets: [Core/CoreTests, StudentUnitTests, Teacher/TeacherTests, Parent/ParentUnitTests, TestsFoundation/TestsFoundation]
