@@ -31,10 +31,6 @@ projectReferences:
     path: ../TestsFoundation/TestsFoundation.xcodeproj
   Core:
     path: ../Core/Core.xcodeproj
-  Parent:
-    path: ../Parent/Parent.xcodeproj
-  Teacher:
-    path: ../rn/Teacher/ios/Teacher.xcodeproj
 packages:
   Heap:
     url: https://github.com/heap/heap-ios-sdk.git
@@ -45,28 +41,3 @@ packages:
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
     exactVersion: 13.0.1
-schemes:
-  CITests:
-    build:
-      targets:
-        Core/Core: all
-        Core/CoreTester: all
-        Parent/Parent: all
-        Student: all
-        Teacher/Teacher: all
-        Core/CoreTests: test
-        StudentUnitTests: test
-        Teacher/TeacherTests: test
-        Parent/ParentUnitTests: test
-        TestsFoundation/TestsFoundation: test
-    test:
-      gatherCoverageData: true
-      coverageTargets:
-        - CanvasCore/CanvasCore
-        - Core/Core
-        - Student
-        - Widgets
-        - SubmitAssignment
-        - Teacher/Teacher
-        - Parent/Parent
-      targets: [Core/CoreTests, StudentUnitTests, Teacher/TeacherTests, Parent/ParentUnitTests, TestsFoundation/TestsFoundation]

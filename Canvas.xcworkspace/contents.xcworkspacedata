@@ -99,6 +99,9 @@
          location = "group:Beta.xctestplan">
       </FileRef>
       <FileRef
+         location = "group:/Users/szabolcs.fuzi/Documents/Xcode/canvas-ios/TestPlans/CITests.xctestplan">
+      </FileRef>
+      <FileRef
          location = "group:IPadTests.xctestplan">
       </FileRef>
    </Group>
