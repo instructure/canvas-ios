@@ -36,6 +36,7 @@ class AttachmentPickerViewModel: ObservableObject {
     public let uploadButtonDidTap = PassthroughRelay<WeakViewController>()
     public let retryButtonDidTap = PassthroughRelay<WeakViewController>()
     public let addAttachmentButtonDidTap = PassthroughRelay<WeakViewController>()
+    public let router: Router
 
     // MARK: Outputs
 
@@ -55,7 +56,6 @@ class AttachmentPickerViewModel: ObservableObject {
 
     private let uploadManager: UploadManager
     private var subscriptions = Set<AnyCancellable>()
-    private let router: Router
     private let batchId: String
     private lazy var files = uploadManager.subscribe(batchID: batchId) { [weak self] in
         self?.update()

@@ -1365,11 +1365,12 @@
 		D32942672B4EA6200003A59F /* AttachmentPickerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32942662B4EA6200003A59F /* AttachmentPickerAssembly.swift */; };
 		D32942692B4EA69B0003A59F /* AttachmentPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32942682B4EA69B0003A59F /* AttachmentPickerViewModel.swift */; };
 		D329426D2B4EECA60003A59F /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D329426C2B4EECA60003A59F /* ImagePickerViewController.swift */; };
-		D32942712B4FCDD70003A59F /* AudioPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32942702B4FCDD70003A59F /* AudioPickerViewController.swift */; };
+		D32942712B4FCDD70003A59F /* AudioPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32942702B4FCDD70003A59F /* AudioPickerView.swift */; };
 		D32942732B4FDAEE0003A59F /* BottomSheetDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32942722B4FDAEE0003A59F /* BottomSheetDialog.swift */; };
 		D3325F79CCA32071098A7DA9 /* GetQuizSubmissionUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DFFDB020E0A5A5ED8973F0 /* GetQuizSubmissionUsers.swift */; };
 		D365861B2B55763200F05D21 /* ConversationAttachmentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365861A2B55763200F05D21 /* ConversationAttachmentCardView.swift */; };
 		D3E67EB22B56AB27000B9CFE /* AttachmentPickerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E67EB12B56AB27000B9CFE /* AttachmentPickerViewModelTests.swift */; };
+		D3E67EB42B57CD4C000B9CFE /* AudioPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E67EB32B57CD4C000B9CFE /* AudioPickerViewModel.swift */; };
 		D3F2C000008898A8049AFEF7 /* CourseSyncItemSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B3812EED19B5A501744522 /* CourseSyncItemSelection.swift */; };
 		D4439C92D9E84E13A1847D51 /* CoreBGTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5698277AF43025DEFA6BE220 /* CoreBGTask.swift */; };
 		D484C74E299214157F4B69BC /* PageDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B36ECA65D3C45F7DE5084 /* PageDetailsViewController.swift */; };
@@ -3123,7 +3124,7 @@
 		D32942662B4EA6200003A59F /* AttachmentPickerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentPickerAssembly.swift; sourceTree = "<group>"; };
 		D32942682B4EA69B0003A59F /* AttachmentPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentPickerViewModel.swift; sourceTree = "<group>"; };
 		D329426C2B4EECA60003A59F /* ImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
-		D32942702B4FCDD70003A59F /* AudioPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPickerViewController.swift; sourceTree = "<group>"; };
+		D32942702B4FCDD70003A59F /* AudioPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPickerView.swift; sourceTree = "<group>"; };
 		D32942722B4FDAEE0003A59F /* BottomSheetDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetDialog.swift; sourceTree = "<group>"; };
 		D353A6609F8E219A19862AE0 /* ExperimentalFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentalFeature.swift; sourceTree = "<group>"; };
 		D365861A2B55763200F05D21 /* ConversationAttachmentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationAttachmentCardView.swift; sourceTree = "<group>"; };
@@ -3131,6 +3132,7 @@
 		D3ABC68A7725FDFC09EDC581 /* NSPersistentStoreExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPersistentStoreExtensions.swift; sourceTree = "<group>"; };
 		D3B0873C4E11AF89B004B474 /* PermissionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsTests.swift; sourceTree = "<group>"; };
 		D3E67EB12B56AB27000B9CFE /* AttachmentPickerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentPickerViewModelTests.swift; sourceTree = "<group>"; };
+		D3E67EB32B57CD4C000B9CFE /* AudioPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPickerViewModel.swift; sourceTree = "<group>"; };
 		D3EC7B75FA36FECB82127245 /* GetSearchRecipients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSearchRecipients.swift; sourceTree = "<group>"; };
 		D41D70AB17259CCFBAFF5796 /* K5ResourcesContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesContactViewModel.swift; sourceTree = "<group>"; };
 		D47D7E0F71DA49A7F37CCE38 /* QuizSubmissionUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionUser.swift; sourceTree = "<group>"; };
@@ -8297,7 +8299,7 @@
 			children = (
 				D32942642B4EA5050003A59F /* AttachmentPickerView.swift */,
 				D329426C2B4EECA60003A59F /* ImagePickerViewController.swift */,
-				D32942702B4FCDD70003A59F /* AudioPickerViewController.swift */,
+				D32942702B4FCDD70003A59F /* AudioPickerView.swift */,
 				D32942722B4FDAEE0003A59F /* BottomSheetDialog.swift */,
 				D365861A2B55763200F05D21 /* ConversationAttachmentCardView.swift */,
 			);
@@ -8308,6 +8310,7 @@
 			isa = PBXGroup;
 			children = (
 				D32942682B4EA69B0003A59F /* AttachmentPickerViewModel.swift */,
+				D3E67EB32B57CD4C000B9CFE /* AudioPickerViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -10637,6 +10640,7 @@
 				5951D1F52B2AF19CA8A2A0EF /* EmbeddedWebPageView.swift in Sources */,
 				A6A01B72E99A9B91FBBD4C70 /* EmbeddedWebPageViewModel.swift in Sources */,
 				A96EA2CEF81958ADC9A74209 /* EmbeddedWebPageViewModelLive.swift in Sources */,
+				D3E67EB42B57CD4C000B9CFE /* AudioPickerViewModel.swift in Sources */,
 				AFF77248410F04B2DBC66B87 /* EmptyPanda.swift in Sources */,
 				EC8A8B4FA8A7B587E18C9FEA /* EmptyView.swift in Sources */,
 				4891EF6D79336A59585382A4 /* EmptyViewController.swift in Sources */,
@@ -10969,7 +10973,7 @@
 				31BEF92CE296A11C6076CCB0 /* NSPersistentContainerExtensions.swift in Sources */,
 				9E9FE87DF2279B6F88F1EEFF /* NSPersistentStoreExtensions.swift in Sources */,
 				EDAB1466C5FBA7F15E548B47 /* NSPredicateExtensions.swift in Sources */,
-				D32942712B4FCDD70003A59F /* AudioPickerViewController.swift in Sources */,
+				D32942712B4FCDD70003A59F /* AudioPickerView.swift in Sources */,
 				006D0AE97085E4EAB7AC7052 /* NWPathMonitorWrapper.swift in Sources */,
 				E90FF93D771026D3F9185440 /* NavBarItems.swift in Sources */,
 				A2D9963BAFEEC230FA5AF9DE /* NetworkAvailabilityService.swift in Sources */,

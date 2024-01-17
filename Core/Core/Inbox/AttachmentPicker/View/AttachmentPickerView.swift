@@ -31,7 +31,6 @@ public struct AttachmentPickerView: View {
         VStack(alignment: .center) {
             headerView
             if (viewModel.fileList.isEmpty) { emptyView } else { ScrollView { contentView } }
-            if (viewModel.isAudioRecordVisible) { AudioPickerViewController() }
         }
         .background(Color.backgroundLightest)
         .navigationTitle(viewModel.title)
@@ -53,6 +52,9 @@ public struct AttachmentPickerView: View {
         })
         .sheet(isPresented: $viewModel.isTakePhotoVisible, content: {
             ImagePickerViewController(sourceType: .camera, imageHandler: viewModel.fileSelected)
+        })
+        .sheet(isPresented: $viewModel.isAudioRecordVisible, content: {
+            AudioPickerView(viewModel: AudioPickerViewModel(router: viewModel.router, onSelect: viewModel.fileSelected))
         })
     }
 
