@@ -122,9 +122,9 @@ public class CourseListInteractorLive: CourseListInteractor {
 
     public func refresh() -> AnyPublisher<Void, Never> {
         Publishers.CombineLatest3(
-            activeCoursesStore.forceFetchEntities(),
-            pastCoursesStore.forceFetchEntities(),
-            futureCoursesStore.forceFetchEntities()
+            activeCoursesStore.forceRefresh(),
+            pastCoursesStore.forceRefresh(),
+            futureCoursesStore.forceRefresh()
         )
         .mapToVoid()
         .eraseToAnyPublisher()

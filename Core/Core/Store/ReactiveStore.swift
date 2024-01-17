@@ -43,13 +43,13 @@ public class ReactiveStore<U: UseCase> {
     /// emitted by the publisher.
     /// When the device is offline, it will read data from Core Data.
     /// - Parameters:
-    ///     - forceFetch: Tells the fetch request if it should get data from the API or from cache. Defaults to **true**.
+    ///     - forceFetch: Tells the fetch request if it should get data from the API or from cache. Defaults to **false**.
     ///     - loadAllPages: Tells the fetch request if it should load all the pages or just the first one. Defaults to **true**.
     ///     - publishDatabaseChanges: Tells the fetch request to keep observing database changes after the API response is downloaded and saved. Defaults to **false**.
     ///
     /// - Returns: A list of entities or an error.
     public func getEntities(
-        forceFetch: Bool = true,
+        forceFetch: Bool = false,
         loadAllPages: Bool = true,
         publishDatabaseChanges: Bool = false
     ) -> AnyPublisher<[U.Model], Error> {
@@ -98,10 +98,10 @@ public class ReactiveStore<U: UseCase> {
             .eraseToAnyPublisher()
     }
 
-    public func forceFetchEntities() -> AnyPublisher<Void, Never> {
+    public func forceRefresh(loadAllPages: Bool = true) -> AnyPublisher<Void, Never> {
         getEntities(
             forceFetch: true,
-            loadAllPages: true,
+            loadAllPages: loadAllPages,
             publishDatabaseChanges: false
         )
         .replaceError(with: [])
@@ -139,8 +139,6 @@ public class ReactiveStore<U: UseCase> {
         fetchRequest: NSFetchRequest<T>,
         context: NSManagedObjectContext
     ) -> AnyPublisher<[T], Error> {
-        var next: GetNextRequest<U.Response>?
-
         let useCaseToFetch: Future<URLResponse?, Error>
 
         if let getNextUseCase {
@@ -150,14 +148,20 @@ public class ReactiveStore<U: UseCase> {
         }
 
         return useCaseToFetch
-            .map { useCase.getNext(from: $0) }
-            .flatMap { _ in
+            .map {
+                if let urlResponse = $0 {
+                    return useCase.getNext(from: urlResponse)
+                } else {
+                    return nil
+                }
+            }
+            .flatMap {
                 Self.fetchAllPagesIfNeeded(
                     useCase: useCase,
                     loadAllPages: loadAllPages,
+                    nextResponse: $0,
                     fetchRequest: fetchRequest,
-                    context: context,
-                    next: next
+                    context: context
                 )
             }
             .flatMap { _ in Self.fetchEntitiesFromDatabase(fetchRequest: fetchRequest, context: context) }
@@ -167,9 +171,9 @@ public class ReactiveStore<U: UseCase> {
     private static func fetchAllPagesIfNeeded<T: NSManagedObject>(
         useCase: U,
         loadAllPages: Bool,
+        nextResponse: GetNextRequest<U.Response>?,
         fetchRequest: NSFetchRequest<T>,
-        context: NSManagedObjectContext,
-        next: GetNextRequest<U.Response>?
+        context: NSManagedObjectContext
     ) -> AnyPublisher<Void, Error> {
         let voidPublisher: () -> AnyPublisher<Void, Error> = {
             Just(())
@@ -181,7 +185,7 @@ public class ReactiveStore<U: UseCase> {
             return voidPublisher()
         }
 
-        return getNextPage(useCase: useCase, next: next)
+        return getNextPage(useCase: useCase, nextResponse: nextResponse)
             .setFailureType(to: Error.self)
             .flatMap { nextPageUseCase -> AnyPublisher<Void, Error> in
                 if let nextPageUseCase {
@@ -201,12 +205,15 @@ public class ReactiveStore<U: UseCase> {
             .eraseToAnyPublisher()
     }
 
-    private static func getNextPage(useCase: U, next: GetNextRequest<U.Response>?) -> AnyPublisher<GetNextUseCase<U>?, Never> {
-        if let next {
+    private static func getNextPage(
+        useCase: U,
+        nextResponse: GetNextRequest<U.Response>?
+    ) -> AnyPublisher<GetNextUseCase<U>?, Never> {
+        if let nextResponse {
             return Just(
                 GetNextUseCase(
                     parent: useCase,
-                    request: next
+                    request: nextResponse
                 )
             ).eraseToAnyPublisher()
         } else {

@@ -82,7 +82,7 @@ public class GroupListInteractorLive: GroupListInteractor {
         guard shouldListGroups else {
             return Just(()).eraseToAnyPublisher()
         }
-        return groupListStore.forceFetchEntities()
+        return groupListStore.forceRefresh()
     }
 
     public func setFilter(_ filter: String) -> AnyPublisher<Void, Never> {

@@ -71,7 +71,7 @@ public class DashboardContainerViewModel: ObservableObject {
 
     public func refreshGroups(onComplete: (() -> Void)? = nil) {
         groupListStore
-            .forceFetchEntities()
+            .forceRefresh()
             .sink { _ in
                 onComplete?()
             }

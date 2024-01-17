@@ -48,8 +48,6 @@ public extension UseCase {
         return nil
     }
 
-    func getNext(from _: URLResponse?) -> GetNextRequest<Response>? { nil }
-
     func reset(context _: NSManagedObjectContext) {
         // no-op
     }

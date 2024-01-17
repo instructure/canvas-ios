@@ -36,7 +36,6 @@ public class EmbeddedWebPageViewModelLive: EmbeddedWebPageViewModel {
      */
     public static func isRedesignEnabled(in context: Context) -> Bool {
         if context.contextType == .group {
-            var featureFlagContext = context
             let group = AppEnvironment.shared.subscribe(GetGroup(groupID: context.id))
             if let courseID = group.first?.courseID {   // If it's group inside a course
                 return AppEnvironment.shared.subscribe( // return the course's feature flag value
