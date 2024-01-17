@@ -130,7 +130,6 @@ class AttachmentPickerViewModel: ObservableObject {
     }
 
     private func uploadAttachments() {
-//        uploadManager.upload(batch: batchId, to: .myFiles)
         files.all.forEach { file in
             if !file.isUploaded {
                 uploadManager.upload(file: file, to: .myFiles, folderPath: "conversation attachments")
@@ -139,23 +138,22 @@ class AttachmentPickerViewModel: ObservableObject {
     }
 
     private func retryUpload() {
-//        uploadManager.retry(batchID: batchId)
         uploadAttachments()
     }
 
-    private func removeUnPublishedFiles() {
+    private func cancelUnPublishedFiles() {
         files.all.forEach {file in
-            if !file.isUploaded { fileRemoved(file: file) }
+            if !file.isUploaded {
+                fileRemoved(file: file)
+                uploadManager.cancel(file: file)
+            }
         }
     }
 
     private func setupInputBindings(router: Router) {
         cancelButtonDidTap
             .sink { [weak self, router] viewController in
-                self?.removeUnPublishedFiles()
-                if let batchId = self?.batchId {
-                    self?.uploadManager.cancel(batchID: batchId)
-                }
+                self?.cancelUnPublishedFiles()
                 router.dismiss(viewController)
             }
             .store(in: &subscriptions)
