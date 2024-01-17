@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "1430"
-   version = "1.7">
+   version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
-      buildImplicitDependencies = "YES"
-      runPostActionsOnFailure = "NO">
+      buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -114,7 +113,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "Hello World.app"
+               BuildableName = "Teacher.app"
                BlueprintName = "Teacher"
                ReferencedContainer = "container:../rn/Teacher/ios/Teacher.xcodeproj">
             </BuildableReference>
@@ -155,7 +154,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       codeCoverageEnabled = "YES"
-      onlyGenerateCoverageForSpecifiedTargets = "NO">
+      onlyGenerateCoverageForSpecifiedTargets = "YES">
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
@@ -165,6 +164,57 @@
             ReferencedContainer = "container:../Core/Core.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+      <CodeCoverageTargets>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "2CAF1B131F72AEDB007225DF"
+            BuildableName = "CanvasCore.framework"
+            BlueprintName = "CanvasCore"
+            ReferencedContainer = "container:../CanvasCore/CanvasCore.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "B90FCF66245CD7327BEE2CBF"
+            BuildableName = "Core.framework"
+            BlueprintName = "Core"
+            ReferencedContainer = "container:../Core/Core.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8FD2A76760D57F6AC5D5C101"
+            BuildableName = "Student.app"
+            BlueprintName = "Student"
+            ReferencedContainer = "container:Student.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "D2CCA6354F04E1FF4DD1485E"
+            BuildableName = "Widgets.appex"
+            BlueprintName = "Widgets"
+            ReferencedContainer = "container:Student.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "CF1908FC2672DCE67A245687"
+            BuildableName = "SubmitAssignment.appex"
+            BlueprintName = "SubmitAssignment"
+            ReferencedContainer = "container:Student.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
+            BuildableName = "Teacher.app"
+            BlueprintName = "Teacher"
+            ReferencedContainer = "container:../rn/Teacher/ios/Teacher.xcodeproj">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "5E6441861C3EE2E0003D7397"
+            BuildableName = "Parent.app"
+            BlueprintName = "Parent"
+            ReferencedContainer = "container:../Parent/Parent.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -217,8 +267,6 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <CommandLineArguments>
-      </CommandLineArguments>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"

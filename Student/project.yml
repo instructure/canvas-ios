@@ -61,4 +61,12 @@ schemes:
         TestsFoundation/TestsFoundation: test
     test:
       gatherCoverageData: true
+      coverageTargets:
+        - CanvasCore/CanvasCore
+        - Core/Core
+        - Student
+        - Widgets
+        - SubmitAssignment
+        - Teacher/Teacher
+        - Parent/Parent
       targets: [Core/CoreTests, StudentUnitTests, Teacher/TeacherTests, Parent/ParentUnitTests, TestsFoundation/TestsFoundation]
