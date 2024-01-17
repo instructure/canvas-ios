@@ -121,7 +121,7 @@ public class DocViewerViewController: UIViewController {
         if let annotationMeta = metadata.annotations {
             document.defaultAnnotationUsername = annotationMeta.user_name
             document.didCreateDocumentProviderBlock = { [weak self] documentProvider in
-                guard 
+                guard
                     let self,
                     let fileAnnotationProvider = documentProvider.annotationManager.fileAnnotationProvider
                 else {
