@@ -14,20 +14,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "73B1A2AD90A7970B7DB39CDC"
-               BuildableName = "CoreTests.xctest"
-               BlueprintName = "CoreTests"
-               ReferencedContainer = "container:Core/Core.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "3B36A2DE2322C26A00599A1E"
                BuildableName = "ParentUnitTests.xctest"
                BlueprintName = "ParentUnitTests"
@@ -86,6 +72,34 @@
                reference = "container:TestPlans/CITests.xctestplan">
             </TestPlanReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3C9856EABA187C2715A3B3E4"
+               BuildableName = "CoreTester.app"
+               BlueprintName = "CoreTester"
+               ReferencedContainer = "container:Core/Core.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "73B1A2AD90A7970B7DB39CDC"
+               BuildableName = "CoreTests.xctest"
+               BlueprintName = "CoreTests"
+               ReferencedContainer = "container:Core/Core.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -120,10 +134,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "73B1A2AD90A7970B7DB39CDC"
-            BuildableName = "CoreTests.xctest"
-            BlueprintName = "CoreTests"
-            ReferencedContainer = "container:Core/Core.xcodeproj">
+            BlueprintIdentifier = "3B36A2DE2322C26A00599A1E"
+            BuildableName = "ParentUnitTests.xctest"
+            BlueprintName = "ParentUnitTests"
+            ReferencedContainer = "container:Parent/Parent.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
