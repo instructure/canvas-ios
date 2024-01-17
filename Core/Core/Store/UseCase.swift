@@ -146,8 +146,6 @@ public extension APIUseCase {
     func getNext(from response: URLResponse) -> GetNextRequest<Request.Response>? {
         return request.getNext(from: response)
     }
-
-    func getNext(from response: URLResponse?) -> GetNextRequest<Request.Response>? { nil }
 }
 
 public extension APIUseCase where Response == Request.Response {

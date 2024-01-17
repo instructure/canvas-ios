@@ -46,11 +46,6 @@ final class CourseSyncProgressObserverInteractorLive: CourseSyncProgressObserver
         context.automaticallyMergesChangesFromParent = true
     }
 
-//    deinit {
-//        fileProgressUseCase.cancel()
-//        entryProgressUseCase.cancel()
-//    }
-
     func observeDownloadProgress() -> AnyPublisher<CourseSyncDownloadProgress, Never> {
         fileProgressUseCase
             .getEntities(publishDatabaseChanges: true)

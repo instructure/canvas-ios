@@ -56,10 +56,6 @@ public final class OfflineModeInteractorLive: OfflineModeInteractor {
         }
     }
 
-//    deinit {
-//        offlineFlagStore.cancel()
-//    }
-
     public func isFeatureFlagEnabled() -> Bool {
         featureFlagEnabled.value
     }
