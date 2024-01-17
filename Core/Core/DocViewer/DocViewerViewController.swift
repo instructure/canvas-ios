@@ -121,7 +121,13 @@ public class DocViewerViewController: UIViewController {
         if let annotationMeta = metadata.annotations {
             document.defaultAnnotationUsername = annotationMeta.user_name
             document.didCreateDocumentProviderBlock = { [weak self] documentProvider in
-                guard let self = self, let fileAnnotationProvider = documentProvider.annotationManager.fileAnnotationProvider else { return }
+                guard 
+                    let self,
+                    let fileAnnotationProvider = documentProvider.annotationManager.fileAnnotationProvider
+                else {
+                    return
+                }
+                documentProvider.applyRotation(from: metadata)
                 let provider = DocViewerAnnotationProvider(documentProvider: documentProvider,
                                                            fileAnnotationProvider: fileAnnotationProvider,
                                                            metadata: metadata,
