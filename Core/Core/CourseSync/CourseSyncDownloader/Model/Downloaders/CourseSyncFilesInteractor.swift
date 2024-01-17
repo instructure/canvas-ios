@@ -67,7 +67,7 @@ public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, Loc
                 context: .course(courseId)
             )
         )
-        let publisher = useCache ? store.getEntitiesFromDatabase() : store.getEntities()
+        let publisher = useCache ? store.getEntitiesFromDatabase() : store.getEntities(forceFetch: true)
 
         return publisher
             .flatMap {
@@ -127,7 +127,7 @@ public final class CourseSyncFilesInteractorLive: CourseSyncFilesInteractor, Loc
                 folderID: folderID
             )
         )
-        let publisher = useCache ? store.getEntitiesFromDatabase() : store.getEntities()
+        let publisher = useCache ? store.getEntitiesFromDatabase() : store.getEntities(forceFetch: true)
 
         return publisher
             .tryCatch { error -> AnyPublisher<[FolderItem], Error> in

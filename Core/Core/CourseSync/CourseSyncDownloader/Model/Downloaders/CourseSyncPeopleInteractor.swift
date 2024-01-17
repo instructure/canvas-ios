@@ -42,28 +42,28 @@ class CourseSyncPeopleInteractorLive: CourseSyncPeopleInteractor {
 
     private static func fetchCourseColors() -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: GetCustomColors())
-            .getEntities()
+            .getEntities(forceFetch: true)
             .mapToVoid()
             .eraseToAnyPublisher()
     }
 
     private static func fetchCourse(context: Context) -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: GetCourse(courseID: context.id))
-            .getEntities()
+            .getEntities(forceFetch: true)
             .mapToVoid()
             .eraseToAnyPublisher()
     }
 
     private static func fetchUsers(context: Context) -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: GetPeopleListUsers(context: context))
-            .getEntities()
+            .getEntities(forceFetch: true)
             .mapToVoid()
             .eraseToAnyPublisher()
     }
 
     private static func fetchSections(courseID: String) -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: GetCourseSections(courseID: courseID))
-            .getEntities()
+            .getEntities(forceFetch: true)
             .mapToVoid()
             .eraseToAnyPublisher()
     }

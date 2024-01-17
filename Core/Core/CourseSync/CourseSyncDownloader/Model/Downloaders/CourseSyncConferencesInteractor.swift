@@ -51,7 +51,7 @@ public final class CourseSyncConferencesInteractorLive: CourseSyncConferencesInt
 
     private func fetchUseCase<U: UseCase>(_ useCase: U) -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: useCase)
-            .getEntities()
+            .getEntities(forceFetch: true)
             .mapToVoid()
             .eraseToAnyPublisher()
     }
