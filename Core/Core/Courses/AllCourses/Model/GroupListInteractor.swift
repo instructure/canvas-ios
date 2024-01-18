@@ -60,7 +60,7 @@ public class GroupListInteractorLive: GroupListInteractor {
                 .eraseToAnyPublisher()
         }
         return groupListStore
-            .getEntities(publishDatabaseChanges: true)
+            .getEntities(keepObservingDatabaseChanges: true)
             .filter(with: searchQuery)
             .map { $0.map { AllCoursesGroupItem(from: $0) }}
             .eraseToAnyPublisher()

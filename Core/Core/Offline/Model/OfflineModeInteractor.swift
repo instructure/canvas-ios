@@ -97,7 +97,7 @@ public final class OfflineModeInteractorLive: OfflineModeInteractor {
 
     private func subscribeToOfflineFeatureFlagChanges() {
         offlineFlagStore
-            .getEntities(publishDatabaseChanges: true)
+            .getEntities(keepObservingDatabaseChanges: true)
             .replaceError(with: [])
             .compactMap { $0.first }
             .map { $0.enabled }

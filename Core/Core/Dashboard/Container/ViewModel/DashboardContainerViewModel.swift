@@ -58,7 +58,7 @@ public class DashboardContainerViewModel: ObservableObject {
             useCase: GetDashboardGroups()
         )
 
-        groupListStore.getEntities(publishDatabaseChanges: true)
+        groupListStore.getEntities(keepObservingDatabaseChanges: true)
             .replaceError(with: [])
             .assign(to: &$groups)
 

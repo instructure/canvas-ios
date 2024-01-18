@@ -147,7 +147,7 @@ class ReactiveStoreTests: CoreTestCase {
         expectation2.expectedFulfillmentCount = 2
         var fulfillmentCount = 0
         let subscription = testee
-            .getEntities(forceFetch: false, publishDatabaseChanges: true)
+            .getEntities(forceFetch: false, keepObservingDatabaseChanges: true)
             .sink(
                 receiveCompletion: { _ in },
                 receiveValue: { courses in
@@ -187,7 +187,7 @@ class ReactiveStoreTests: CoreTestCase {
 
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee
-            .getEntities(publishDatabaseChanges: true)
+            .getEntities(keepObservingDatabaseChanges: true)
             .dropFirst() // Skip the initial empty data as we wait for the new item to be added
             .sink(
                 receiveCompletion: { _ in },
@@ -213,7 +213,7 @@ class ReactiveStoreTests: CoreTestCase {
 
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee
-            .getEntities(forceFetch: false, publishDatabaseChanges: true)
+            .getEntities(forceFetch: false, keepObservingDatabaseChanges: true)
             .dropFirst() // Skip initial data as we wait for the "name" field update
             .sink(
                 receiveCompletion: { _ in },
@@ -237,7 +237,7 @@ class ReactiveStoreTests: CoreTestCase {
         let store = createStore(useCase: TestUseCase())
 
         let expectation1 = expectation(description: "Publisher sends value")
-        let subscription1 = store.getEntities(forceFetch: false, publishDatabaseChanges: true)
+        let subscription1 = store.getEntities(forceFetch: false, keepObservingDatabaseChanges: true)
             .dropFirst() // Skip initial data as we wait for the delete update
             .sink(
                 receiveCompletion: { _ in },
@@ -359,7 +359,7 @@ class ReactiveStoreTests: CoreTestCase {
 
     func testSubscriptionCancellation() {
         let store = createStore(useCase: TestUseCase(courses: [.make(id: "1")]))
-        let interactor = TestInteractor(store: store, publishDatabaseChanges: false)
+        let interactor = TestInteractor(store: store, keepObservingDatabaseChanges: false)
         let expectation1 = expectation(description: "Publisher sends value")
         let expectation2 = expectation(description: "Publisher wont send value")
         expectation2.isInverted = true
@@ -429,10 +429,10 @@ extension ReactiveStoreTests {
 
         private var subscriptions = Set<AnyCancellable>()
 
-        init(store: ReactiveStore<TestUseCase>, publishDatabaseChanges: Bool) {
+        init(store: ReactiveStore<TestUseCase>, keepObservingDatabaseChanges: Bool) {
             self.store = store
 
-            self.store.getEntities(publishDatabaseChanges: publishDatabaseChanges)
+            self.store.getEntities(keepObservingDatabaseChanges: keepObservingDatabaseChanges)
                 .sink(
                     receiveCompletion: { _ in },
                     receiveValue: { [weak self] in

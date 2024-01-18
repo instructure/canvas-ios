@@ -48,7 +48,7 @@ final class CourseSyncProgressObserverInteractorLive: CourseSyncProgressObserver
 
     func observeDownloadProgress() -> AnyPublisher<CourseSyncDownloadProgress, Never> {
         fileProgressUseCase
-            .getEntities(publishDatabaseChanges: true)
+            .getEntities(keepObservingDatabaseChanges: true)
             .replaceError(with: [])
             .compactMap { $0.first }
             .map { CourseSyncDownloadProgress.init(from: $0) }
@@ -57,7 +57,7 @@ final class CourseSyncProgressObserverInteractorLive: CourseSyncProgressObserver
 
     func observeStateProgress() -> AnyPublisher<[CourseSyncStateProgress], Never> {
         entryProgressUseCase
-            .getEntities(publishDatabaseChanges: true)
+            .getEntities(keepObservingDatabaseChanges: true)
             .replaceError(with: [])
             .compactMap { $0 }
             .map { $0.makeItems() }

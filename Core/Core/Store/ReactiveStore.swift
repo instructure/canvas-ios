@@ -45,13 +45,13 @@ public class ReactiveStore<U: UseCase> {
     /// - Parameters:
     ///     - forceFetch: Tells the fetch request if it should get data from the API or from cache. Defaults to **false**.
     ///     - loadAllPages: Tells the fetch request if it should load all the pages or just the first one. Defaults to **true**.
-    ///     - publishDatabaseChanges: Tells the fetch request to keep observing database changes after the API response is downloaded and saved. Defaults to **false**.
+    ///     - keepObservingDatabaseChanges: Tells the fetch request to keep observing database changes after the API response is downloaded and saved. Defaults to **false**.
     ///
     /// - Returns: A list of entities or an error.
     public func getEntities(
         forceFetch: Bool = false,
         loadAllPages: Bool = true,
-        publishDatabaseChanges: Bool = false
+        keepObservingDatabaseChanges: Bool = false
     ) -> AnyPublisher<[U.Model], Error> {
         let scope = useCase.scope
         let request = NSFetchRequest<U.Model>(entityName: String(describing: U.Model.self))
@@ -80,7 +80,7 @@ public class ReactiveStore<U: UseCase> {
                 )
         }
 
-        if !publishDatabaseChanges {
+        if !keepObservingDatabaseChanges {
             entitiesPublisher = entitiesPublisher.first().eraseToAnyPublisher()
         }
 
@@ -102,7 +102,7 @@ public class ReactiveStore<U: UseCase> {
         getEntities(
             forceFetch: true,
             loadAllPages: loadAllPages,
-            publishDatabaseChanges: false
+            keepObservingDatabaseChanges: false
         )
         .replaceError(with: [])
         .setFailureType(to: Never.self)

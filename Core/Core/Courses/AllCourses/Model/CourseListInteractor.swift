@@ -86,15 +86,15 @@ public class CourseListInteractorLive: CourseListInteractor {
 
         return Publishers.CombineLatest3(
             activeCoursesStore
-                .getEntities(publishDatabaseChanges: true)
+                .getEntities(keepObservingDatabaseChanges: true)
                 .filter(with: searchQuery)
                 .map { $0.map { AllCoursesCourseItem.init(from: $0)}},
             pastCoursesStore
-                .getEntities(publishDatabaseChanges: true)
+                .getEntities(keepObservingDatabaseChanges: true)
                 .filter(with: searchQuery)
                 .map { $0.map { AllCoursesCourseItem.init(from: $0)}},
             futureCoursesStore
-                .getEntities(publishDatabaseChanges: true)
+                .getEntities(keepObservingDatabaseChanges: true)
                 .map { [env] in filterUnpublishedCoursesForStudents(env.app, $0) }
                 .filter(with: searchQuery)
                 .map { $0.map { AllCoursesCourseItem.init(from: $0)}}
