@@ -3935,20 +3935,6 @@
 			path = Dashboard;
 			sourceTree = "<group>";
 		};
-		15769FCE677A9C9F5B0A7CA6 /* CoreWebView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CoreWebView;
-			sourceTree = "<group>";
-		};
-		15CFE96D45F44C688F7D05C1 /* SubmitAssignmentExtension */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SubmitAssignmentExtension;
-			sourceTree = "<group>";
-		};
 		16AA6C7702C406B9B5672D4C /* CourseSyncProgress */ = {
 			isa = PBXGroup;
 			children = (
@@ -3975,13 +3961,6 @@
 				FD0C7341652D59C8217924A5 /* AllCoursesViewModel.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		19958B6AD0248B53014070C5 /* Inbox */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Inbox;
 			sourceTree = "<group>";
 		};
 		19A1E69CFC2A77F0C16AE5EE /* View */ = {
@@ -5057,13 +5036,6 @@
 			path = AudioVideo;
 			sourceTree = "<group>";
 		};
-		45AE6AA24575C49F0A193D7F /* Courses */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Courses;
-			sourceTree = "<group>";
-		};
 		45F2AB93913E94E1EB859A8F /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -5093,25 +5065,6 @@
 				61A1E8C4C40ECFEDE96D43D0 /* DocViewerAnnotationUploadResponseHandler.swift */,
 			);
 			path = ResponseHandling;
-			sourceTree = "<group>";
-		};
-		46E180A5270BE50B1BAE6E44 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				15769FCE677A9C9F5B0A7CA6 /* CoreWebView */,
-				45AE6AA24575C49F0A193D7F /* Courses */,
-				5C8063761CEE6EF4856E77C9 /* CourseSync */,
-				71D97A1D591434A33BCB62F5 /* Dashboard */,
-				5693A9621060A98BB2BD6BB6 /* DocViewer */,
-				7ACA639B28690D26E3B4BFB8 /* Files */,
-				19958B6AD0248B53014070C5 /* Inbox */,
-				B2525E0E11159C3FC91DB478 /* People */,
-				6A979E40A3CC558130B78B0F /* Profile */,
-				BE9C131EF7967804F6B514B1 /* Quizzes */,
-				15CFE96D45F44C688F7D05C1 /* SubmitAssignmentExtension */,
-				D28C27753F8FCDC43A393D49 /* SwiftUIViews */,
-			);
-			path = Sources;
 			sourceTree = "<group>";
 		};
 		481AA5EAFCF724C6F0F8400C /* Addressbook */ = {
@@ -5381,13 +5334,6 @@
 			path = ImportantDates;
 			sourceTree = "<group>";
 		};
-		5693A9621060A98BB2BD6BB6 /* DocViewer */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DocViewer;
-			sourceTree = "<group>";
-		};
 		57134DDA24547C9F07DF08CA /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -5645,13 +5591,6 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
-		5C8063761CEE6EF4856E77C9 /* CourseSync */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CourseSync;
-			sourceTree = "<group>";
-		};
 		5CDC7EAC7F9AD4B81A819533 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -5852,13 +5791,6 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		6A979E40A3CC558130B78B0F /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Profile;
-			sourceTree = "<group>";
-		};
 		6B2903A3F8C8721E762E2014 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -6039,13 +5971,6 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		71D97A1D591434A33BCB62F5 /* Dashboard */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Dashboard;
-			sourceTree = "<group>";
-		};
 		71E4B1098694A1A88ECF9D75 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -6218,14 +6143,6 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		7ACA639B28690D26E3B4BFB8 /* Files */ = {
-			isa = PBXGroup;
-			children = (
-				81449C16A62B4EE5455B2EE1 /* View */,
-			);
-			path = Files;
-			sourceTree = "<group>";
-		};
 		7CA17FD2C1EABD309B108A6F /* ContextCard */ = {
 			isa = PBXGroup;
 			children = (
@@ -6333,13 +6250,6 @@
 				30A1E11BAE258EC133022808 /* K5GradesViewModel.swift */,
 			);
 			path = Grades;
-			sourceTree = "<group>";
-		};
-		81449C16A62B4EE5455B2EE1 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		81B5D9C3B0D9151DDE9446AC /* WidgetsSupport */ = {
@@ -6943,7 +6853,6 @@
 				90C4F82791B3B883003B49C5 /* Quizzes */,
 				01AC5166B8C7F12BA9DCBB93 /* RichContentEditor */,
 				7775E906C5B94F5EEF674386 /* Router */,
-				46E180A5270BE50B1BAE6E44 /* Sources */,
 				9C46FAD063BA96A6109A885E /* Store */,
 				D742111A4E51B5683CB6F9E5 /* Submissions */,
 				13BB69D0F5082096DC44486E /* SubmitAssignmentExtension */,
@@ -7596,13 +7505,6 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
-		B2525E0E11159C3FC91DB478 /* People */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = People;
-			sourceTree = "<group>";
-		};
 		B28074855E192D3DD1135F4B /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -7839,13 +7741,6 @@
 				1A6EBA2448D0A3C082CF64F5 /* SideMenuView.swift */,
 			);
 			path = SideMenu;
-			sourceTree = "<group>";
-		};
-		BE9C131EF7967804F6B514B1 /* Quizzes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Quizzes;
 			sourceTree = "<group>";
 		};
 		BEBC6868A9E2321EAE6FE19E /* Model */ = {
@@ -8165,13 +8060,6 @@
 				1824DDDCF5087692F6013995 /* SplitViewModeObserver.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		D28C27753F8FCDC43A393D49 /* SwiftUIViews */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SwiftUIViews;
 			sourceTree = "<group>";
 		};
 		D2B97380463243815383FBA0 /* ViewModel */ = {

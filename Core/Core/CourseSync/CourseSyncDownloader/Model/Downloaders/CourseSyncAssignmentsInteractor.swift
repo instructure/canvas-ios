@@ -31,7 +31,7 @@ public final class CourseSyncAssignmentsInteractorLive: CourseSyncAssignmentsInt
         ReactiveStore(
             useCase: GetAssignmentsByGroup(courseID: courseId)
         )
-        .getEntities(forceFetch: true)
+        .getEntities(ignoreCache: true)
         .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
         .filter { $0.submission != nil }
         .flatMap { Self.getSubmissionComments(courseID: courseId, assignmentID: $0.id, userID: $0.submission!.userID) }
@@ -52,7 +52,7 @@ public final class CourseSyncAssignmentsInteractorLive: CourseSyncAssignmentsInt
                 userID: userID
             )
         )
-        .getEntities(forceFetch: true)
+        .getEntities(ignoreCache: true)
         .map { _ in () }
         .eraseToAnyPublisher()
     }

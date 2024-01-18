@@ -54,21 +54,21 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
     typealias SyllabusSummaryEnabled = Bool
     private func fetchCourseSettingsAndGetSyllabusSummaryState(courseId: String) -> AnyPublisher<SyllabusSummaryEnabled, Error> {
         ReactiveStore(useCase: GetCourseSettings(courseID: courseId))
-            .getEntities(forceFetch: true)
+            .getEntities(ignoreCache: true)
             .map { $0.first?.syllabusCourseSummary == true }
             .eraseToAnyPublisher()
     }
 
     private static func fetchAssignments(courseId: String) -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: GetCalendarEvents(context: .course(courseId), type: .assignment))
-            .getEntities(forceFetch: true)
+            .getEntities(ignoreCache: true)
             .mapToVoid()
             .eraseToAnyPublisher()
     }
 
     private static func fetchEvents(courseId: String) -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: GetCalendarEvents(context: .course(courseId), type: .event))
-            .getEntities(forceFetch: true)
+            .getEntities(ignoreCache: true)
             .mapToVoid()
             .eraseToAnyPublisher()
     }
@@ -85,14 +85,14 @@ public final class CourseSyncSyllabusInteractorLive: CourseSyncSyllabusInteracto
 
     private func fetchCourse(courseId: String) -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: GetCourse(courseID: courseId))
-            .getEntities(forceFetch: true)
+            .getEntities(ignoreCache: true)
             .mapToVoid()
             .eraseToAnyPublisher()
     }
 
     private func fetchColors() -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: GetCustomColors())
-            .getEntities(forceFetch: true)
+            .getEntities(ignoreCache: true)
             .mapToVoid()
             .eraseToAnyPublisher()
     }

@@ -41,7 +41,7 @@ public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor,
         ReactiveStore(
             useCase: GetCustomColors()
         )
-        .getEntities(forceFetch: true)
+        .getEntities(ignoreCache: true)
         .map { _ in () }
         .eraseToAnyPublisher()
     }
@@ -50,7 +50,7 @@ public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor,
         ReactiveStore(
             useCase: GetQuizzes(courseID: courseId)
         )
-        .getEntities(forceFetch: true)
+        .getEntities(ignoreCache: true)
         .flatMap {
             $0.publisher
                 .filter { $0.quizType != .quizzes_next }
@@ -65,7 +65,7 @@ public final class CourseSyncQuizzesInteractorLive: CourseSyncQuizzesInteractor,
         ReactiveStore(
             useCase: GetQuiz(courseID: courseId, quizID: quizId)
         )
-        .getEntities(forceFetch: true)
+        .getEntities(ignoreCache: true)
         .mapToVoid()
         .eraseToAnyPublisher()
     }

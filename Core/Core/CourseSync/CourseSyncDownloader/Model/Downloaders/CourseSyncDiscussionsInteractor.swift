@@ -41,7 +41,7 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
 
     private static func fetchTopics(courseId: String) -> AnyPublisher<[DiscussionTopic], Error> {
         ReactiveStore(useCase: GetDiscussionTopics(context: .course(courseId)))
-            .getEntities(forceFetch: true)
+            .getEntities(ignoreCache: true)
             .eraseToAnyPublisher()
     }
 
@@ -50,7 +50,7 @@ public class CourseSyncDiscussionsInteractorLive: CourseSyncDiscussionsInteracto
         topicId: String
     ) -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: GetDiscussionView(context: .course(courseId), topicID: topicId))
-            .getEntities(forceFetch: true)
+            .getEntities(ignoreCache: true)
             .mapToVoid()
             .eraseToAnyPublisher()
     }

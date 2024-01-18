@@ -66,7 +66,7 @@ class ReactiveStoreTests: CoreTestCase {
 
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee
-            .getEntities(forceFetch: false)
+            .getEntities(ignoreCache: false)
             .sink(
                 receiveCompletion: { _ in },
                 receiveValue: { courses in
@@ -86,7 +86,7 @@ class ReactiveStoreTests: CoreTestCase {
 
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee
-            .getEntities(forceFetch: true)
+            .getEntities(ignoreCache: true)
             .sink(
                 receiveCompletion: { _ in },
                 receiveValue: { courses in
@@ -131,7 +131,7 @@ class ReactiveStoreTests: CoreTestCase {
 
     // MARK: - Force fetch
 
-    func testForceFetch() {
+    func testIgnoreCache() {
         Course.save(.make(id: "0"), in: databaseClient)
         try! databaseClient.save()
         let useCase = TestUseCase(courses: [.make(id: "1")])
@@ -147,7 +147,7 @@ class ReactiveStoreTests: CoreTestCase {
         expectation2.expectedFulfillmentCount = 2
         var fulfillmentCount = 0
         let subscription = testee
-            .getEntities(forceFetch: false, keepObservingDatabaseChanges: true)
+            .getEntities(ignoreCache: false, keepObservingDatabaseChanges: true)
             .sink(
                 receiveCompletion: { _ in },
                 receiveValue: { courses in
@@ -213,7 +213,7 @@ class ReactiveStoreTests: CoreTestCase {
 
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee
-            .getEntities(forceFetch: false, keepObservingDatabaseChanges: true)
+            .getEntities(ignoreCache: false, keepObservingDatabaseChanges: true)
             .dropFirst() // Skip initial data as we wait for the "name" field update
             .sink(
                 receiveCompletion: { _ in },
@@ -237,7 +237,7 @@ class ReactiveStoreTests: CoreTestCase {
         let store = createStore(useCase: TestUseCase())
 
         let expectation1 = expectation(description: "Publisher sends value")
-        let subscription1 = store.getEntities(forceFetch: false, keepObservingDatabaseChanges: true)
+        let subscription1 = store.getEntities(ignoreCache: false, keepObservingDatabaseChanges: true)
             .dropFirst() // Skip initial data as we wait for the delete update
             .sink(
                 receiveCompletion: { _ in },
@@ -270,7 +270,7 @@ class ReactiveStoreTests: CoreTestCase {
         let expectation1 = XCTestExpectation(description: "exhausted")
         let store = createStore(useCase: useCase)
 
-        let subscription1 = store.getEntities(forceFetch: true, loadAllPages: false)
+        let subscription1 = store.getEntities(ignoreCache: true, loadAllPages: false)
             .sink(
                 receiveCompletion: { _ in },
                 receiveValue: { courses in
@@ -283,7 +283,7 @@ class ReactiveStoreTests: CoreTestCase {
         subscription1.cancel()
 
         let expectation2 = XCTestExpectation(description: "Publisher sends value")
-        let subscription2 = store.getEntities(forceFetch: true, loadAllPages: true)
+        let subscription2 = store.getEntities(ignoreCache: true, loadAllPages: true)
             .sink(
                 receiveCompletion: { _ in },
                 receiveValue: { courses in

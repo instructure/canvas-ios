@@ -39,17 +39,20 @@ public class ReactiveStore<U: UseCase> {
     }
 
     /// Produces a list of entities for the given UseCase.
-    /// When the device is connected to the internet, it will fetch data from the API by downloading all pages, unless specificied differently. The result is then cached to the database
-    /// emitted by the publisher.
+    /// When the device is connected to the internet and there's no valid cache, it makes a request to the API and saves the response to the database. If there's valid cache, it returns it.
+    /// By default it downloads all pages, and validates cache unless specificied differently.
     /// When the device is offline, it will read data from Core Data.
     /// - Parameters:
-    ///     - forceFetch: Tells the fetch request if it should get data from the API or from cache. Defaults to **false**.
-    ///     - loadAllPages: Tells the fetch request if it should load all the pages or just the first one. Defaults to **true**.
-    ///     - keepObservingDatabaseChanges: Tells the fetch request to keep observing database changes after the API response is downloaded and saved. Defaults to **false**.
+    ///     - ignoreCache: Indicates if the request should check the available cache first.
+    ///         If it's set to **false**, it will validate the cache's expiration and return it if it's still valid. If the cache has expired it will make a request to the API.
+    ///         If it's set to **true**, it will make a request to the API.
+    ///         Defaults to **false**.
+    ///     - loadAllPages: Tells the request if it should load all the pages or just the first one. Defaults to **true**.
+    ///     - keepObservingDatabaseChanges: Tells the request to keep observing database changes after the API response is downloaded and saved. Defaults to **false**.
     ///
     /// - Returns: A list of entities or an error.
     public func getEntities(
-        forceFetch: Bool = false,
+        ignoreCache: Bool = false,
         loadAllPages: Bool = true,
         keepObservingDatabaseChanges: Bool = false
     ) -> AnyPublisher<[U.Model], Error> {
@@ -66,7 +69,7 @@ public class ReactiveStore<U: UseCase> {
                 context: context
             )
         } else {
-            entitiesPublisher = forceFetch ?
+            entitiesPublisher = ignoreCache ?
                 Self.fetchEntitiesFromAPI(
                     useCase: useCase,
                     loadAllPages: loadAllPages,
@@ -98,9 +101,10 @@ public class ReactiveStore<U: UseCase> {
             .eraseToAnyPublisher()
     }
 
+    /// Refreshes the entities by requesting the latest data from the API. The returned publisher will emit once the refresh has finished, then it completes.
     public func forceRefresh(loadAllPages: Bool = true) -> AnyPublisher<Void, Never> {
         getEntities(
-            forceFetch: true,
+            ignoreCache: true,
             loadAllPages: loadAllPages,
             keepObservingDatabaseChanges: false
         )
