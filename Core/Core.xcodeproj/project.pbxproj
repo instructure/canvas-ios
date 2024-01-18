@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -2238,7 +2238,7 @@
 		4BD5DD42D6197C30DAC5415E /* AssignmentAssigneePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentAssigneePicker.swift; sourceTree = "<group>"; };
 		4BDF0042C4EC9719269D89FE /* AssignmentDueDatesInteractorLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDueDatesInteractorLive.swift; sourceTree = "<group>"; };
 		4BF91515A5A28F35FBD75E03 /* GetObservedStudents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetObservedStudents.swift; sourceTree = "<group>"; };
-		4C02C87B4FD4AD4D7489EE6D /* TestImage.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestImage.svg; sourceTree = "<group>"; };
+		4C02C87B4FD4AD4D7489EE6D /* TestImage.svg */ = {isa = PBXFileReference; path = TestImage.svg; sourceTree = "<group>"; };
 		4C0C49ADE7F2DE21CE36FB77 /* CourseSyncDiskSpaceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncDiskSpaceInfoView.swift; sourceTree = "<group>"; };
 		4C11E387DD144E7B7A7D7405 /* DateSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSection.swift; sourceTree = "<group>"; };
 		4C310E09D98CD58CE1C3D781 /* AssignmentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentListViewModel.swift; sourceTree = "<group>"; };
@@ -2476,7 +2476,7 @@
 		710985C08016CBBD13536D08 /* UISplitViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISplitViewControllerExtensions.swift; sourceTree = "<group>"; };
 		714916675A9B46CCF678AF57 /* GetContextUsersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetContextUsersTests.swift; sourceTree = "<group>"; };
 		716ACC276087D94ABC0767A5 /* TopBarItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBarItemViewModel.swift; sourceTree = "<group>"; };
-		719D01C52A9B62676C43DBA5 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		719D01C52A9B62676C43DBA5 /* Localizable.xcstrings */ = {isa = PBXFileReference; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		71A7FCCB6211DB618DE3501F /* K5ScheduleMissingItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ScheduleMissingItemsView.swift; sourceTree = "<group>"; };
 		71D50565B45B984F260FB78F /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		71EAD005E184B589BAC02E31 /* K5GradesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5GradesView.swift; sourceTree = "<group>"; };
@@ -2816,7 +2816,7 @@
 		A3CBD2A123330769319E0D7D /* CourseSettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSettingsTests.swift; sourceTree = "<group>"; };
 		A3EA58F752AE33267DC3D54C /* CourseSyncProgressInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncProgressInfoViewModel.swift; sourceTree = "<group>"; };
 		A3F215916DB26B661EA4FC39 /* APIGradingSchemeEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGradingSchemeEntry.swift; sourceTree = "<group>"; };
-		A42096D6B21359616953C14C /* preview_test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = preview_test.mp4; sourceTree = "<group>"; };
+		A42096D6B21359616953C14C /* preview_test.mp4 */ = {isa = PBXFileReference; path = preview_test.mp4; sourceTree = "<group>"; };
 		A428BBF27D3A0637022B49F2 /* FileListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListViewControllerTests.swift; sourceTree = "<group>"; };
 		A42E6D4DF3963671589B5A3A /* DashboardCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCardTests.swift; sourceTree = "<group>"; };
 		A43DD0C2A830D421979AEF65 /* InboxMessageScopeFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageScopeFilterTests.swift; sourceTree = "<group>"; };
@@ -2860,7 +2860,7 @@
 		A9193DA17C6897AC20A0F645 /* ClosedRangeExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedRangeExtensions.swift; sourceTree = "<group>"; };
 		A92489739FA867834EE67DA3 /* APIBrandVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBrandVariables.swift; sourceTree = "<group>"; };
 		A9328E630A8C08D6995EDCC8 /* LoginFindSchoolViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFindSchoolViewControllerTests.swift; sourceTree = "<group>"; };
-		A9860AECF67572B989503005 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		A9860AECF67572B989503005 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		A9AFA4DDC9F66EFAFE5795E0 /* ErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
 		A9F8E88E51C265BD7A6ADED7 /* PageListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageListViewController.swift; sourceTree = "<group>"; };
 		AA233A607AC160DF923CE1D7 /* K5StateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5StateTests.swift; sourceTree = "<group>"; };
@@ -3638,13 +3638,6 @@
 			path = LoginUsePolicy;
 			sourceTree = "<group>";
 		};
-		06E316B51DD023288F6F5F2A /* Container */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Container;
-			sourceTree = "<group>";
-		};
 		07366D79C25F3EDCF5602E22 /* AnnotationTypes */ = {
 			isa = PBXGroup;
 			children = (
@@ -4029,13 +4022,6 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
-		1A9F89F6842024B7DC45676B /* Conference */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Conference;
-			sourceTree = "<group>";
-		};
 		1BF94E892CD865E3A2705BC4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -4063,13 +4049,6 @@
 				6947DDE7E7694FBEBD5A9CD1 /* RubricTests.swift */,
 			);
 			path = Assignments;
-			sourceTree = "<group>";
-		};
-		1D548C4AD07209A12F6FCEDE /* FileUploadNotification */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = FileUploadNotification;
 			sourceTree = "<group>";
 		};
 		1F2923A8D008143C233C0A25 /* Logger */ = {
@@ -4121,19 +4100,6 @@
 				12BB118DE8F1D84A956D9291 /* ViewModel */,
 			);
 			path = K5;
-			sourceTree = "<group>";
-		};
-		21207C91941273BDFF517366 /* Dashboard */ = {
-			isa = PBXGroup;
-			children = (
-				1A9F89F6842024B7DC45676B /* Conference */,
-				06E316B51DD023288F6F5F2A /* Container */,
-				1D548C4AD07209A12F6FCEDE /* FileUploadNotification */,
-				5F428018966094C386A045C4 /* Group */,
-				78EBA7B29813A53D5A9AD872 /* K5 */,
-				6A3541D8D144C9A887F17564 /* Notification */,
-			);
-			path = Dashboard;
 			sourceTree = "<group>";
 		};
 		21C9309B7D55C2D368DD2B23 /* Model */ = {
@@ -4280,13 +4246,6 @@
 				3B4FAB8418C8320F79FE2592 /* PutDashboardCardPositionsTests.swift */,
 			);
 			path = UseCase;
-			sourceTree = "<group>";
-		};
-		289119BA945905CEECDC6404 /* DocViewer */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DocViewer;
 			sourceTree = "<group>";
 		};
 		29A681523032C9F0460D13DF /* View */ = {
@@ -5033,13 +4992,6 @@
 			path = Syllabus;
 			sourceTree = "<group>";
 		};
-		433DDC5EFFE3D9FE3809D483 /* Quizzes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Quizzes;
-			sourceTree = "<group>";
-		};
 		436DAF3ABE6692A54F6E1584 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -5365,25 +5317,6 @@
 				67A4BA6AB510EF147B06121E /* AnnotationDrag */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		52B4A01AA5EDF9DB2E435557 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				A7872205234C480312539802 /* Assignments */,
-				F9F236A5D1B6E9EDBAC590BC /* CoreWebView */,
-				B1C027449ED3388ECF692C1F /* Courses */,
-				F5E62DF4F777D9127A8F5103 /* CourseSync */,
-				21207C91941273BDFF517366 /* Dashboard */,
-				289119BA945905CEECDC6404 /* DocViewer */,
-				A0A4835C7FC94C053347D394 /* Files */,
-				6BC8F6F217D27C91CBF0EA9A /* Inbox */,
-				840120F9E6E51BA5C14E5D6C /* People */,
-				8503617909F61F7E3B54C767 /* Profile */,
-				433DDC5EFFE3D9FE3809D483 /* Quizzes */,
-				602E002B0A978C34B1047394 /* SwiftUIViews */,
-			);
-			path = Sources;
 			sourceTree = "<group>";
 		};
 		53032D265BEF6E1A76A57C41 /* ViewModel */ = {
@@ -5762,13 +5695,6 @@
 			path = AudioVideo;
 			sourceTree = "<group>";
 		};
-		5F428018966094C386A045C4 /* Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Group;
-			sourceTree = "<group>";
-		};
 		5F8CE6C5C98643B733EADFB1 /* Enrollments */ = {
 			isa = PBXGroup;
 			children = (
@@ -5778,13 +5704,6 @@
 				E853CACABF36E865C5682822 /* RoleTests.swift */,
 			);
 			path = Enrollments;
-			sourceTree = "<group>";
-		};
-		602E002B0A978C34B1047394 /* SwiftUIViews */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SwiftUIViews;
 			sourceTree = "<group>";
 		};
 		61E04C5F9E5CDDF397B8E840 /* Analytics */ = {
@@ -5933,13 +5852,6 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		6A3541D8D144C9A887F17564 /* Notification */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Notification;
-			sourceTree = "<group>";
-		};
 		6A979E40A3CC558130B78B0F /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -5953,13 +5865,6 @@
 				287547C5CC7374AF99E38731 /* UseCase */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		6BC8F6F217D27C91CBF0EA9A /* Inbox */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Inbox;
 			sourceTree = "<group>";
 		};
 		6BD95991C2010238C37A8D4F /* View */ = {
@@ -6286,14 +6191,6 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		78EBA7B29813A53D5A9AD872 /* K5 */ = {
-			isa = PBXGroup;
-			children = (
-				EE1D34E5E7F6630810F1AA02 /* ViewModel */,
-			);
-			path = K5;
-			sourceTree = "<group>";
-		};
 		792E587F8B67FDCF0560AA5A /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -6518,13 +6415,6 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		840120F9E6E51BA5C14E5D6C /* People */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = People;
-			sourceTree = "<group>";
-		};
 		8418B1360F4D720B0F67277E /* NetworkAvailability */ = {
 			isa = PBXGroup;
 			children = (
@@ -6549,13 +6439,6 @@
 				5C79DD83EC46C1780A24D067 /* ObserverAlertTests.swift */,
 			);
 			path = ObserverAlerts;
-			sourceTree = "<group>";
-		};
-		8503617909F61F7E3B54C767 /* Profile */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Profile;
 			sourceTree = "<group>";
 		};
 		85077BC58E1BBCB5DB69EA98 /* Modules */ = {
@@ -7344,13 +7227,6 @@
 			path = QuizDetails;
 			sourceTree = "<group>";
 		};
-		A0A4835C7FC94C053347D394 /* Files */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Files;
-			sourceTree = "<group>";
-		};
 		A0BB17ACB29B50382F946175 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
@@ -7473,13 +7349,6 @@
 				3C1FF7B151B7D76ED706ACA1 /* Model */,
 			);
 			path = GradingStandard;
-			sourceTree = "<group>";
-		};
-		A7872205234C480312539802 /* Assignments */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Assignments;
 			sourceTree = "<group>";
 		};
 		A7969A53EFE2E8A6649F49D7 /* Announcements */ = {
@@ -7714,14 +7583,6 @@
 				26EE7E2834C85B2C2FC32460 /* PlannerViewControllerTests.swift */,
 			);
 			path = Planner;
-			sourceTree = "<group>";
-		};
-		B1C027449ED3388ECF692C1F /* Courses */ = {
-			isa = PBXGroup;
-			children = (
-				D808C7EBF928E6D6716D675E /* AllCourses */,
-			);
-			path = Courses;
 			sourceTree = "<group>";
 		};
 		B1C34AF4857F4CF312828B87 /* Constants */ = {
@@ -8035,13 +7896,6 @@
 				4C310E09D98CD58CE1C3D781 /* AssignmentListViewModel.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		C1720F7195B92286C9B8EB46 /* CourseSyncDownloader */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CourseSyncDownloader;
 			sourceTree = "<group>";
 		};
 		C2F6233AB51C459BF3A66F2E /* Model */ = {
@@ -8454,13 +8308,6 @@
 				40EE3742920BE5C74E1D7CEB /* CourseSyncProgressViewModelTests.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		D808C7EBF928E6D6716D675E /* AllCourses */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AllCourses;
 			sourceTree = "<group>";
 		};
 		D820AD1E2667F989BE655351 /* CourseDetails */ = {
@@ -8945,13 +8792,6 @@
 			path = Help;
 			sourceTree = "<group>";
 		};
-		EE1D34E5E7F6630810F1AA02 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		EE47A667792D181291BC8D12 /* BackgroundUpdates */ = {
 			isa = PBXGroup;
 			children = (
@@ -9096,14 +8936,6 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
-		F5E62DF4F777D9127A8F5103 /* CourseSync */ = {
-			isa = PBXGroup;
-			children = (
-				C1720F7195B92286C9B8EB46 /* CourseSyncDownloader */,
-			);
-			path = CourseSync;
-			sourceTree = "<group>";
-		};
 		F696335407E9880E6BD3C7EA /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -9171,13 +9003,6 @@
 				C28BD7040645C5AE1ADDA23F /* K5ResourcesViewModelTests.swift */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		F9F236A5D1B6E9EDBAC590BC /* CoreWebView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = CoreWebView;
 			sourceTree = "<group>";
 		};
 		FA5A00EC8BF93DA0E4394AF8 /* AllCourses */ = {
@@ -9254,7 +9079,6 @@
 				4514D62DB85771B622259882 /* RichContentEditor */,
 				5BB8D351610D5E4BEC708D1D /* Router */,
 				461F876D89C3F74044C343B1 /* ScreenViewLogger */,
-				52B4A01AA5EDF9DB2E435557 /* Sources */,
 				2EEBA6D6C1B2CFC32E23E8A8 /* Store */,
 				7CF3349E196B2FB15B5877A7 /* Submissions */,
 				81DC2E96AD7CC08AD4C6F79C /* SubmitAssignmentExtension */,
