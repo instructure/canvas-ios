@@ -9203,6 +9203,7 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				Base,
 				ar,
 				ca,
 				cy,
