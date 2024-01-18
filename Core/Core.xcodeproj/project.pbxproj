@@ -1511,7 +1511,6 @@
 		E8D13CD95C453A5F8ADE0105 /* DashboardInvitationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE4259E5A4C39F116CE07A /* DashboardInvitationViewModel.swift */; };
 		E8D9105EB889AC8D02C4FBCF /* FileSubmissionStateEnumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC8DFF2F9C9DE3128272EA3 /* FileSubmissionStateEnumTests.swift */; };
 		E90FF93D771026D3F9185440 /* NavBarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08EEC4065AFBA4B3184D45A /* NavBarItems.swift */; };
-		E92E3ACDBB298DABF813C847 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39C01BEDACCD811D2E26E465 /* Assets.xcassets */; };
 		E96E73CEE262CF3031FB57F1 /* UITableViewCellExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF940D2EDE1FFDAABED534C /* UITableViewCellExtensions.swift */; };
 		E97625C23463E6E2C5720F0C /* ComposeReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D073364D1D137113E79E7EE /* ComposeReplyViewController.swift */; };
 		E9943F3D5301879352B974C2 /* AnnotationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9B2D4B502A07FB43F83A6C /* AnnotationExtensions.swift */; };
@@ -2100,7 +2099,6 @@
 		398100E89391565EEF55D06E /* InboxFilterBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxFilterBarView.swift; sourceTree = "<group>"; };
 		39A76B2BA67C66D85FFA8C3B /* APIQuizTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIQuizTests.swift; sourceTree = "<group>"; };
 		39B71BCCFA0C836F3827FFEE /* GroupContextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupContextCardViewModel.swift; sourceTree = "<group>"; };
-		39C01BEDACCD811D2E26E465 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		39DA29562F6F3DBAC71046EA /* DocViewerAnnotationContextMenuModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewerAnnotationContextMenuModelTests.swift; sourceTree = "<group>"; };
 		39DB2B1FD43C6260361A041F /* UITabBarItemOfflineSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarItemOfflineSupport.swift; sourceTree = "<group>"; };
 		3A001B6CBC3808DD42C98894 /* FileUploadNotificationCardItemViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadNotificationCardItemViewModelTests.swift; sourceTree = "<group>"; };
@@ -5846,7 +5844,6 @@
 			isa = PBXGroup;
 			children = (
 				B93949D5CAD36EF43399EDF9 /* Fonts */,
-				39C01BEDACCD811D2E26E465 /* Assets.xcassets */,
 				8E5D3EAD5E2135988C032705 /* defaultHeaderImage.png */,
 			);
 			path = Resources;
@@ -9310,7 +9307,6 @@
 				079FA0F2ED8D8269AF96C452 /* ActAsUserViewController.storyboard in Resources */,
 				8E44734F8D26D951C93716F5 /* AnnouncementListViewController.storyboard in Resources */,
 				EAEF98AAC2663BEC33A37127 /* Assets.xcassets in Resources */,
-				E92E3ACDBB298DABF813C847 /* Assets.xcassets in Resources */,
 				C12D2EAC3DC60C738EC8807F /* AudioPlayerViewController.storyboard in Resources */,
 				C406485DE3B48D2D910E34F8 /* AudioRecorderViewController.storyboard in Resources */,
 				4061B82BCF8B18D412CF5E6B /* CalendarDayIconView.xib in Resources */,
