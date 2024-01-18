@@ -42,15 +42,15 @@ struct AudioPickerView: View {
     private var durationView: some View {
         HStack(alignment: .center) {
             if viewModel.isRecording {
-                Text(viewModel.recordingDurationString)
+                Text(viewModel.recordingLengthString)
                     .foregroundStyle(Color.white)
                     .padding(6)
                     .background {
                         RoundedRectangle(cornerSize: .init(width: 12, height: 12))
                             .foregroundStyle(Color.red)
                     }
-            } else if viewModel.availableForPlaying {
-                Text("\(viewModel.playingDurationString) / \(viewModel.playingEndDurationString)")
+            } else if viewModel.isReplay {
+                Text("\(viewModel.audioPlayerPositionString) / \(viewModel.audioPlayerDurationString)")
                     .foregroundStyle(Color.white)
                     .padding(12)
             } else {
@@ -68,7 +68,7 @@ struct AudioPickerView: View {
     private var contentView: some View {
         VStack {
             GeometryReader { geometry in
-                if viewModel.availableForPlaying {
+                if viewModel.isReplay {
                     playbackPlotView(maxSize: geometry.size)
                 } else {
                     recordingPlotView(maxSize: geometry.size)
@@ -109,7 +109,7 @@ struct AudioPickerView: View {
                     HStack(alignment: .center, spacing: spaceWidth) {
                         ForEach(
                             viewModel.audioPlotDataSet
-                                .filter { element in element.timestamp <= viewModel.playingDurationTimestamp }
+                                .filter { element in element.timestamp <= viewModel.audioPlayerPosition }
                                 .suffix(barCount / 2),
                             id: \.timestamp
                         ) { plotData in
@@ -128,7 +128,7 @@ struct AudioPickerView: View {
                     HStack(alignment: .center, spacing: spaceWidth) {
                         ForEach(
                             viewModel.audioPlotDataSet
-                                .filter { element in element.timestamp >= viewModel.playingDurationTimestamp }
+                                .filter { element in element.timestamp >= viewModel.audioPlayerPosition }
                                 .prefix(barCount / 2),
                             id: \.timestamp
                         ) { plotData in
@@ -165,7 +165,7 @@ struct AudioPickerView: View {
 
     private var controlView: some View {
         HStack {
-            if (viewModel.availableForPlaying) {
+            if (viewModel.isReplay) {
                 playBackControlView
             } else {
                 recordControlView
@@ -236,7 +236,7 @@ struct AudioPickerView: View {
             }
             .frame(maxWidth: .infinity)
             VStack(alignment: .center) {
-                if viewModel.isRecordingLoading {
+                if viewModel.isRecorderLoading {
                     loadingIndicator
                 } else if (!viewModel.isRecording) {
                     startRecordButton
@@ -259,7 +259,7 @@ struct AudioPickerView: View {
 
     private var startRecordButton: some View {
         Button {
-            viewModel.isRecordingLoading = true
+            viewModel.isRecorderLoading = true
             viewModel.startRecording()
         } label: {
             ZStack {
@@ -320,11 +320,11 @@ struct AudioPickerView: View {
                 .foregroundStyle(Color.red)
         }
         .frame(width: 50, height: 50, alignment: .center)
-        .rotationEffect(.degrees(viewModel.recordingLoadingRotation))
+        .rotationEffect(.degrees(viewModel.loadingAnimationRotation))
         .onAppear {
             withAnimation(.linear(duration: 0.5)
                 .speed(0.1).repeatForever(autoreverses: false)) {
-                    viewModel.recordingLoadingRotation = 360.0
+                    viewModel.loadingAnimationRotation = 360.0
                 }
         }
     }

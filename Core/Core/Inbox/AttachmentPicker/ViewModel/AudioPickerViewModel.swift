@@ -31,17 +31,15 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     public var onSelect: (URL) -> Void
 
     @Published public var isRecording: Bool = false
-    @Published public var isRecordingLoading: Bool = false
-    @Published public var recordingLoadingRotation = 0.0
+    @Published public var isRecorderLoading: Bool = false
+    @Published public var loadingAnimationRotation = 0.0
     @Published public var isPlaying: Bool = false
-    @Published public var availableForPlaying: Bool = false
+    @Published public var isReplay: Bool = false
     @Published public var url: URL!
-    @Published public var recordingDurationString: String = ""
-    @Published public var playingDurationString: String = ""
-    @Published public var playingDurationTimestamp: Double = 0
-    @Published public var playingEndDurationString: String = ""
-    @Published public var currentPower: Float = 0
-    @Published public var currentAxisValue: Double = 0
+    @Published public var recordingLengthString: String = ""
+    @Published public var audioPlayerPositionString: String = ""
+    @Published public var audioPlayerPosition: Double = 0
+    @Published public var audioPlayerDurationString: String = ""
     @Published public var audioPlotDataSet: [AudioPlotData] = []
     public let defaultDurationString: String
 
@@ -66,7 +64,7 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
 
     private func initRecorder() {
         DispatchQueue.main.async { [weak self] in
-            self?.isRecordingLoading = true
+            self?.isRecorderLoading = true
         }
         let recordingSession = AVAudioSession.sharedInstance()
         do {
@@ -91,7 +89,7 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
             print("Failed to Setup the Recording")
         }
         DispatchQueue.main.async { [weak self] in
-            self?.isRecordingLoading = false
+            self?.isRecorderLoading = false
         }
     }
 
@@ -104,24 +102,23 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     }
 
     func startRecording() {
-        recordingDurationString = ""
+        recordingLengthString = ""
         Task {
             initRecorder()
 
             audioRecorder.record()
             DispatchQueue.main.async { [weak self] in
                 self?.isRecording = true
-                self?.isRecordingLoading = false
+                self?.isRecorderLoading = false
 
-                self?.recordingDurationString = self?.formatter.string(from: self?.audioRecorder.currentTime ?? 0) ?? ""
+                self?.recordingLengthString = self?.formatter.string(from: self?.audioRecorder.currentTime ?? 0) ?? ""
                 self?.startTimer { [weak self] in
                     if let self {
                         let timeValue = self.audioRecorder.currentTime
-                        self.currentAxisValue = timeValue
-                        self.recordingDurationString = self.formatter.string(from: timeValue) ?? ""
+                        self.recordingLengthString = self.formatter.string(from: timeValue) ?? ""
                         self.audioRecorder.updateMeters()
                         let powerValue = audioRecorder.peakPower(forChannel: 0)
-                        self.currentPower = powerValue
+
                         audioPlotDataSet.append(AudioPlotData(timestamp: timeValue, value: powerValue))
                     }
                 }
@@ -146,7 +143,7 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
         isRecording = false
         stopTimer()
 
-        availableForPlaying = true
+        isReplay = true
         initPlaying()
     }
 
@@ -167,12 +164,12 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
         audioPlayer?.delegate = self
         audioPlayer?.prepareToPlay()
 
-        playingEndDurationString = formatter.string(from: audioPlayer.duration) ?? ""
+        audioPlayerDurationString = formatter.string(from: audioPlayer.duration) ?? ""
 
         startTimer { [weak self] in
             if let self {
-                playingDurationTimestamp = audioPlayer.currentTime
-                playingDurationString = formatter.string(from: audioPlayer.currentTime) ?? ""
+                audioPlayerPosition = audioPlayer.currentTime
+                audioPlayerPositionString = formatter.string(from: audioPlayer.currentTime) ?? ""
                 isPlaying = audioPlayer.isPlaying
             }
         }
@@ -180,14 +177,11 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
 
     func seekInAudio(_ value: CGFloat) {
         var newValue = audioPlayer.currentTime - (value * 0.001)
-        print(newValue)
-        print(audioPlayer.duration)
-        print()
         if newValue >= audioPlayer.duration - 0.1 {
             newValue = audioPlayer.duration - 0.1
         }
         audioPlayer.currentTime = newValue
-        playingDurationTimestamp = newValue
+        audioPlayerPosition = newValue
     }
 
     func startPlaying() {
@@ -238,7 +232,7 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
             .sink { [weak self] _ in
                 if let self {
                     self.audioPlayer?.stop()
-                    self.availableForPlaying = false
+                    self.isReplay = false
                     self.audioPlotDataSet = []
                 }
             }
