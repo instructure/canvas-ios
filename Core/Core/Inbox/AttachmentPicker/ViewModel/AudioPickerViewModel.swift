@@ -150,6 +150,11 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
         initPlaying()
     }
 
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        player.currentTime = player.duration
+        player.pause()
+    }
+
     private func initPlaying() {
         do {
             let recordingSession = AVAudioSession.sharedInstance()
@@ -159,6 +164,7 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
         } catch {
             print("Error while playing")
         }
+        audioPlayer?.delegate = self
         audioPlayer?.prepareToPlay()
 
         playingEndDurationString = formatter.string(from: audioPlayer.duration) ?? ""
@@ -167,20 +173,21 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
             if let self {
                 playingDurationTimestamp = audioPlayer.currentTime
                 playingDurationString = formatter.string(from: audioPlayer.currentTime) ?? ""
-                if audioPlayer.currentTime >= audioPlayer.duration {
-                    DispatchQueue.main.async { [weak self] in
-                        self?.isPlaying = false
-                    }
-                    audioPlayer.stop()
-                    audioPlayer.currentTime = 0
-                }
+                isPlaying = audioPlayer.isPlaying
             }
         }
     }
 
     func seekInAudio(_ value: CGFloat) {
-        audioPlayer.currentTime -= value * 0.001
-        playingDurationTimestamp = audioPlayer.currentTime
+        var newValue = audioPlayer.currentTime - (value * 0.001)
+        print(newValue)
+        print(audioPlayer.duration)
+        print()
+        if newValue >= audioPlayer.duration - 0.1 {
+            newValue = audioPlayer.duration - 0.1
+        }
+        audioPlayer.currentTime = newValue
+        playingDurationTimestamp = newValue
     }
 
     func startPlaying() {
