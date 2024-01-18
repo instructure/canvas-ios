@@ -31,15 +31,23 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     public var onSelect: (URL) -> Void
 
     @Published public var isRecording: Bool = false
+    @Published public var isRecordingLoading: Bool = false
+    @Published public var recordingLoadingRotation = 0.0
     @Published public var isPlaying: Bool = false
     @Published public var availableForPlaying: Bool = false
     @Published public var url: URL!
     @Published public var recordingDurationString: String = ""
     @Published public var playingDurationString: String = ""
+    @Published public var playingDurationTimestamp: Double = 0
+    @Published public var playingEndDurationString: String = ""
+    @Published public var currentPower: Float = 0
+    @Published public var currentAxisValue: Double = 0
+    @Published public var audioPlotDataSet: [AudioPlotData] = []
     public let defaultDurationString: String
 
     public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
     public let useAudioButtonDidTap = PassthroughRelay<WeakViewController>()
+    public let retakeButtonDidTap = PassthroughRelay<WeakViewController>()
 
     public init(router: Router, onSelect: @escaping (URL) -> Void = { _ in }) {
         self.router = router
@@ -52,20 +60,22 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
         defaultDurationString = formatter.string(from: 0) ?? ""
 
         super.init()
+
         setupInputBindings(router: router)
     }
 
-    func startRecording() {
-        recordingDurationString = ""
+    private func initRecorder() {
+        DispatchQueue.main.async { [weak self] in
+            self?.isRecordingLoading = true
+        }
         let recordingSession = AVAudioSession.sharedInstance()
         do {
-            try recordingSession.setCategory(.playAndRecord, mode: .default)
+            try recordingSession.setCategory(.record, mode: .default)
             try recordingSession.setActive(true)
         } catch {
             print("Can not setup the Recording")
         }
 
-        url = URL.Directories.temporary.appendingPathComponent("\(UUID.string).m4a")
         let settings = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
             AVSampleRateKey: 12000,
@@ -74,24 +84,53 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
         ]
 
         do {
-            audioRecorder = try AVAudioRecorder(url: url, settings: settings)
+            audioRecorder = try AVAudioRecorder(url: getURL(), settings: settings)
+            audioRecorder.isMeteringEnabled = true
             audioRecorder.prepareToRecord()
-            audioRecorder.record()
-            isRecording = true
-
-            recordingDurationString = formatter.string(from: audioRecorder.currentTime) ?? ""
-            startTimer { [weak self] in
-                if let self {
-                    self.recordingDurationString = self.formatter.string(from: self.audioRecorder.currentTime) ?? ""
-                }
-            }
         } catch {
             print("Failed to Setup the Recording")
+        }
+        DispatchQueue.main.async { [weak self] in
+            self?.isRecordingLoading = false
+        }
+    }
+
+    private func getURL() -> URL {
+        let url = URL.Directories.temporary.appendingPathComponent("\(UUID.string).m4a")
+        DispatchQueue.main.async { [weak self] in
+            self?.url = url
+        }
+        return url
+    }
+
+    func startRecording() {
+        recordingDurationString = ""
+        Task {
+            initRecorder()
+
+            audioRecorder.record()
+            DispatchQueue.main.async { [weak self] in
+                self?.isRecording = true
+                self?.isRecordingLoading = false
+
+                self?.recordingDurationString = self?.formatter.string(from: self?.audioRecorder.currentTime ?? 0) ?? ""
+                self?.startTimer { [weak self] in
+                    if let self {
+                        let timeValue = self.audioRecorder.currentTime
+                        self.currentAxisValue = timeValue
+                        self.recordingDurationString = self.formatter.string(from: timeValue) ?? ""
+                        self.audioRecorder.updateMeters()
+                        let powerValue = audioRecorder.peakPower(forChannel: 0)
+                        self.currentPower = powerValue
+                        audioPlotDataSet.append(AudioPlotData(timestamp: timeValue, value: powerValue))
+                    }
+                }
+            }
         }
     }
 
     private func startTimer(action: @escaping () -> Void) {
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
             DispatchQueue.main.async {
                 action()
             }
@@ -108,23 +147,45 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
         stopTimer()
 
         availableForPlaying = true
+        initPlaying()
     }
 
-    func startPlaying() {
+    private func initPlaying() {
         do {
+            let recordingSession = AVAudioSession.sharedInstance()
+            try recordingSession.setCategory(.playback, mode: .default)
+            try recordingSession.setActive(true)
             audioPlayer = try AVAudioPlayer(contentsOf: url)
         } catch {
             print("Error while playing")
         }
         audioPlayer?.prepareToPlay()
-        audioPlayer?.play()
-        isPlaying = true
+
+        playingEndDurationString = formatter.string(from: audioPlayer.duration) ?? ""
 
         startTimer { [weak self] in
             if let self {
-                self.playingDurationString = self.formatter.string(from: self.audioPlayer.currentTime) ?? ""
+                playingDurationTimestamp = audioPlayer.currentTime
+                playingDurationString = formatter.string(from: audioPlayer.currentTime) ?? ""
+                if audioPlayer.currentTime >= audioPlayer.duration {
+                    DispatchQueue.main.async { [weak self] in
+                        self?.isPlaying = false
+                    }
+                    audioPlayer.stop()
+                    audioPlayer.currentTime = 0
+                }
             }
         }
+    }
+
+    func seekInAudio(_ value: CGFloat) {
+        audioPlayer.currentTime -= value * 0.001
+        playingDurationTimestamp = audioPlayer.currentTime
+    }
+
+    func startPlaying() {
+        audioPlayer?.play()
+        isPlaying = true
     }
 
     func pausePlaying() {
@@ -132,9 +193,27 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
         isPlaying = false
     }
 
+    public func normalizeMeteringValue(rawValue: CGFloat, maxHeight: CGFloat) -> CGFloat {
+        let minValue: CGFloat = -50 // -160
+        let maxValue: CGFloat = 0
+
+        var shiftedRawValue = rawValue
+        if rawValue < minValue {
+            shiftedRawValue = minValue
+        }
+
+        let minBar: CGFloat = 3
+        let maxBar: CGFloat = maxHeight
+
+        let newValue = minBar + (maxBar - minBar) / (maxValue - minValue) * (shiftedRawValue - minValue)
+        return newValue
+    }
+
     private func setupInputBindings(router: Router) {
         cancelButtonDidTap
-            .sink { [router] viewController in
+            .sink { [weak self, router] viewController in
+                self?.audioRecorder?.stop()
+                self?.audioPlayer?.stop()
                 router.dismiss(viewController)
             }
             .store(in: &subscriptions)
@@ -145,6 +224,16 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
                     self?.onSelect(url)
                 }
                 router.dismiss(viewController)
+            }
+            .store(in: &subscriptions)
+
+        retakeButtonDidTap
+            .sink { [weak self] _ in
+                if let self {
+                    self.audioPlayer?.stop()
+                    self.availableForPlaying = false
+                    self.audioPlotDataSet = []
+                }
             }
             .store(in: &subscriptions)
     }

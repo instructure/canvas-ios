@@ -18,6 +18,7 @@
 
 import Foundation
 import SwiftUI
+import Charts
 
 struct AudioPickerView: View {
     @ObservedObject private var viewModel: AudioPickerViewModel
@@ -43,12 +44,19 @@ struct AudioPickerView: View {
             if viewModel.isRecording {
                 Text(viewModel.recordingDurationString)
                     .foregroundStyle(Color.white)
-            } else if viewModel.isPlaying {
-                Text(viewModel.playingDurationString)
+                    .padding(6)
+                    .background {
+                        RoundedRectangle(cornerSize: .init(width: 12, height: 12))
+                            .foregroundStyle(Color.red)
+                    }
+            } else if viewModel.availableForPlaying {
+                Text("\(viewModel.playingDurationString) / \(viewModel.playingEndDurationString)")
                     .foregroundStyle(Color.white)
+                    .padding(12)
             } else {
                 Text(viewModel.defaultDurationString)
                     .foregroundStyle(Color.white)
+                    .padding(12)
             }
         }
         .padding(.vertical, 12)
@@ -59,108 +67,154 @@ struct AudioPickerView: View {
 
     private var contentView: some View {
         VStack {
+            GeometryReader { geometry in
+                if viewModel.availableForPlaying {
+                    playbackPlotView(maxSize: geometry.size)
+                } else {
+                    recordingPlotView(maxSize: geometry.size)
+                }
+            }
+        }
+        .background { Color.red }
+    }
+
+    private func recordingPlotView(maxSize: CGSize) -> some View {
+        let barWidth: CGFloat = 2
+        let spaceWidth: CGFloat = 5
+        return VStack(alignment: .trailing) {
+            HStack(alignment: .center, spacing: spaceWidth) {
+                ForEach(viewModel.audioPlotDataSet.suffix(Int(floor(maxSize.width / (barWidth + spaceWidth)))), id: \.timestamp) { plotData in
+                    Rectangle()
+                        .frame(width: barWidth, height: viewModel.normalizeMeteringValue(rawValue: CGFloat(plotData.value), maxHeight: maxSize.height))
+                        .foregroundStyle(Color.red)
+                }
+            }
             HStack {
                 Spacer()
             }
-            Spacer()
         }
-        .background { Color.red }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background {
+            Color.black
+        }
+    }
+
+    private func playbackPlotView(maxSize: CGSize) -> some View {
+        let barWidth: CGFloat = 2
+        let spaceWidth: CGFloat = 5
+        let barCount = Int(floor(maxSize.width / (barWidth + spaceWidth)))
+        return VStack {
+            HStack {
+                VStack(alignment: .trailing) {
+                    HStack(alignment: .center, spacing: spaceWidth) {
+                        ForEach(
+                            viewModel.audioPlotDataSet
+                                .filter { element in element.timestamp <= viewModel.playingDurationTimestamp }
+                                .suffix(barCount / 2),
+                            id: \.timestamp
+                        ) { plotData in
+                            Rectangle()
+                                .frame(width: barWidth, height: viewModel.normalizeMeteringValue(rawValue: CGFloat(plotData.value), maxHeight: maxSize.height))
+                                .foregroundStyle(Color.red)
+                        }
+                    }
+                    HStack {
+                        Spacer()
+                    }
+                }
+                .frame(maxWidth: .infinity)
+
+                VStack(alignment: .leading) {
+                    HStack(alignment: .center, spacing: spaceWidth) {
+                        ForEach(
+                            viewModel.audioPlotDataSet
+                                .filter { element in element.timestamp >= viewModel.playingDurationTimestamp }
+                                .prefix(barCount / 2),
+                            id: \.timestamp
+                        ) { plotData in
+                            Rectangle()
+                                .frame(width: barWidth, height: viewModel.normalizeMeteringValue(rawValue: CGFloat(plotData.value), maxHeight: maxSize.height))
+                                .foregroundStyle(Color.red)
+                        }
+                    }
+                    HStack {
+                        Spacer()
+                    }
+                }
+                .frame(maxWidth: .infinity)
+            }
+        }
+        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
+            .onChanged({ gesture in
+                viewModel.seekInAudio(gesture.translation.width)
+            })
+        )
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background {
+            Color.black
+        }
+        .overlay(
+            VStack(alignment: .center) {
+                HStack {
+                    Divider()
+                        .overlay(Color.white)
+                }
+            }
+        )
     }
 
     private var controlView: some View {
         HStack {
             if (viewModel.availableForPlaying) {
-                VStack(alignment: .leading) {
-                    Button {
-                        viewModel.availableForPlaying = false
-                    } label: {
-                        Text("Retake", bundle: .core)
-                            .foregroundStyle(Color.white)
-                    }
-                }
-                .frame(maxWidth: .infinity)
-                VStack(alignment: .center) {
-                    if (!viewModel.isPlaying) {
-                        Button {
-                            viewModel.startPlaying()
-                        } label: {
-                            Image.playSolid
-                                .foregroundStyle(Color.white)
-                        }
-                        .frame(width: 50, height: 50, alignment: .center)
-                    } else {
-                        Button {
-                            viewModel.pausePlaying()
-                        } label: {
-                            Image.pauseSolid
-                                .foregroundStyle(Color.white)
-                        }
-                        .frame(width: 50, height: 50, alignment: .center)
-                    }
-                }
-                .frame(maxWidth: .infinity)
-                VStack(alignment: .trailing) {
-                    Button {
-                        viewModel.useAudioButtonDidTap.accept(controller)
-                    } label: {
-                        Text("Use Audio", bundle: .core)
-                            .foregroundStyle(Color.white)
-                    }
-                }
-                .frame(maxWidth: .infinity)
+                playBackControlView
             } else {
-                VStack(alignment: .leading) {
+                recordControlView
+            }
+        }
+    }
+
+    private var playBackControlView: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Button {
+                    viewModel.retakeButtonDidTap.accept(controller)
+                } label: {
+                    Text("Retake", bundle: .core)
+                        .foregroundStyle(Color.white)
+                }
+            }
+            .frame(maxWidth: .infinity)
+
+            VStack(alignment: .center) {
+                if (!viewModel.isPlaying) {
                     Button {
-                        viewModel.cancelButtonDidTap.accept(controller)
+                        viewModel.startPlaying()
                     } label: {
-                        Text("Cancel", bundle: .core)
+                        Image.playSolid
                             .foregroundStyle(Color.white)
                     }
-                }
-                .frame(maxWidth: .infinity)
-                VStack(alignment: .center) {
-                    if (!viewModel.isRecording) {
-                        Button {
-                            viewModel.startRecording()
-                        } label: {
-                            ZStack {
-                                Circle()
-                                    .padding(0)
-                                    .foregroundStyle(Color.white)
-                                Circle()
-                                    .padding(2)
-                                    .foregroundStyle(Color.black)
-                                Circle()
-                                    .padding(5)
-                                    .foregroundStyle(Color.red)
-                            }
-                        }
-                        .frame(width: 50, height: 50, alignment: .center)
-                    } else {
-                        Button {
-                            viewModel.stopRecording()
-                        } label: {
-                            ZStack {
-                                Circle()
-                                    .padding(0)
-                                    .foregroundStyle(Color.white)
-                                Circle()
-                                    .padding(2)
-                                    .foregroundStyle(Color.black)
-                                Rectangle()
-                                    .padding(10)
-                                    .foregroundStyle(Color.red)
-                            }
-                            .animation(.default)
-                        }
-                        .frame(width: 50, height: 50, alignment: .center)
+                    .frame(width: 50, height: 50, alignment: .center)
+                } else {
+                    Button {
+                        viewModel.pausePlaying()
+                    } label: {
+                        Image.pauseSolid
+                            .foregroundStyle(Color.white)
                     }
+                    .frame(width: 50, height: 50, alignment: .center)
                 }
-                .frame(maxWidth: .infinity)
-                VStack(alignment: .trailing) {
-                }
-                .frame(maxWidth: .infinity)
             }
+            .frame(maxWidth: .infinity)
+
+            VStack(alignment: .trailing) {
+                Button {
+                    viewModel.useAudioButtonDidTap.accept(controller)
+                } label: {
+                    Text("Use Audio", bundle: .core)
+                        .foregroundStyle(Color.white)
+                }
+            }
+            .frame(maxWidth: .infinity)
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 12)
@@ -170,6 +224,110 @@ struct AudioPickerView: View {
         }
     }
 
+    private var recordControlView: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Button {
+                    viewModel.cancelButtonDidTap.accept(controller)
+                } label: {
+                    Text("Cancel", bundle: .core)
+                        .foregroundStyle(Color.white)
+                }
+            }
+            .frame(maxWidth: .infinity)
+            VStack(alignment: .center) {
+                if viewModel.isRecordingLoading {
+                    loadingIndicator
+                } else if (!viewModel.isRecording) {
+                    startRecordButton
+                } else {
+                    stopRecordingButton
+                }
+            }
+            .frame(maxWidth: .infinity)
+            VStack(alignment: .trailing) {
+            }
+            .frame(maxWidth: .infinity)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 12)
+        .padding(.horizontal, 12)
+        .background {
+            Color.black
+        }
+    }
+
+    private var startRecordButton: some View {
+        Button {
+            viewModel.isRecordingLoading = true
+            viewModel.startRecording()
+        } label: {
+            ZStack {
+                Circle()
+                    .padding(0)
+                    .foregroundStyle(Color.white)
+                Circle()
+                    .padding(2)
+                    .foregroundStyle(Color.black)
+                Circle()
+                    .padding(5)
+                    .foregroundStyle(Color.red)
+            }
+        }
+        .frame(width: 50, height: 50, alignment: .center)
+    }
+
+    private var stopRecordingButton: some View {
+        Button {
+            viewModel.stopRecording()
+        } label: {
+            ZStack {
+                Circle()
+                    .padding(0)
+                    .foregroundStyle(Color.white)
+                Circle()
+                    .padding(2)
+                    .foregroundStyle(Color.black)
+                Rectangle()
+                    .padding(10)
+                    .foregroundStyle(Color.red)
+            }
+            .animation(.default)
+        }
+        .frame(width: 50, height: 50, alignment: .center)
+    }
+
+    private var loadingIndicator: some View {
+        ZStack {
+            Circle()
+                .padding(0)
+                .foregroundStyle(Color.white)
+            Circle()
+                .padding(2)
+                .foregroundStyle(Color.black)
+            Circle()
+                .fill(
+                    AngularGradient(
+                        colors: [.white, .red],
+                        center: .center,
+                        startAngle: .degrees(0),
+                        endAngle: .degrees(270)
+                    )
+                )
+                .padding(5)
+            Circle()
+                .padding(10)
+                .foregroundStyle(Color.red)
+        }
+        .frame(width: 50, height: 50, alignment: .center)
+        .rotationEffect(.degrees(viewModel.recordingLoadingRotation))
+        .onAppear {
+            withAnimation(.linear(duration: 0.5)
+                .speed(0.1).repeatForever(autoreverses: false)) {
+                    viewModel.recordingLoadingRotation = 360.0
+                }
+        }
+    }
 }
 
 #if DEBUG
