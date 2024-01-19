@@ -36,7 +36,12 @@
     "Student\/Widgets\/AnnouncementsWidget\/Model\/AnnouncementItem.swift",
     "Student\/Widgets\/Common/Controller\/CommonWidgetProvider.swift",
     "Student\/Widgets\/AnnouncementsWidget\/AnnouncementsWidget.swift",
-    "Student\/Widgets\/Common\/Model\/WidgetModel.swift"
+    "Student\/Widgets\/Common\/Model\/WidgetModel.swift",
+    "Student\/Widgets\/Widgets.swift",
+    "Student\/Widgets\/Common\/View\/CompatibleContainerBackground.swift",
+    "Student\/Widgets\/GradesWidget\/Model\/GradeModel.swift",
+    "Student\/Widgets\/AnnouncementsWidget\/Controller\/AnnouncementsProvider.swift",
+    "Student\/Widgets\/Common\/View\/CompatibleContentMargins.swift"
   ],
   "ignoreContent": [
     "makeUIViewController(context:",
