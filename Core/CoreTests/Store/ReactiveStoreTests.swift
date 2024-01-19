@@ -30,57 +30,22 @@ class ReactiveStoreTests: CoreTestCase {
         store = nil
     }
 
-    // MARK: State
-
-    func testLoadingState() {
-        let useCase = TestUseCase(courses: [])
-        let testee = createStore(useCase: useCase)
-
-        let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee
-            .observeEntities()
-            .sink { state in
-                XCTAssertEqual(state, .loading)
-                expectation.fulfill()
-                XCTAssertTrue(Thread.isMainThread)
-            }
-
-        waitForExpectations(timeout: 1)
-        subscription.cancel()
-    }
-
-    func testDataState() {
-        let useCase = TestUseCase(courses: [.make()])
-        let testee = createStore(useCase: useCase)
-
-        let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee
-            .observeEntities()
-            .dropFirst()
-            .sink { state in
-                if case .data = state {
-                    expectation.fulfill()
-                }
-                XCTAssertTrue(Thread.isMainThread)
-            }
-
-        waitForExpectations(timeout: 1)
-        subscription.cancel()
-    }
-
-    func testErrorState() {
+    func testErrorHandling() {
         let useCase = TestUseCase(courses: nil, requestError: NSError.instructureError("TestError"))
         let testee = createStore(useCase: useCase)
 
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee
-            .observeEntities()
-            .sink { state in
-                if case .error = state {
-                    expectation.fulfill()
-                }
-                XCTAssertTrue(Thread.isMainThread)
-            }
+            .getEntities()
+            .sink(
+                receiveCompletion: { completion in
+                    if case .failure = completion {
+                        expectation.fulfill()
+                        XCTAssertTrue(Thread.isMainThread)
+                    }
+                },
+                receiveValue: { _ in }
+            )
 
         waitForExpectations(timeout: 1)
         subscription.cancel()
@@ -101,18 +66,15 @@ class ReactiveStoreTests: CoreTestCase {
 
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee
-            .observeEntities()
-            .dropFirst()
-            .sink { state in
-                switch state {
-                case let .data(courses):
+            .getEntities(ignoreCache: false)
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { courses in
                     XCTAssertEqual(courses.map { $0.id }, ["0"])
-                default:
-                    break
+                    expectation.fulfill()
+                    XCTAssertTrue(Thread.isMainThread)
                 }
-                expectation.fulfill()
-                XCTAssertTrue(Thread.isMainThread)
-            }
+            )
 
         waitForExpectations(timeout: 1)
         subscription.cancel()
@@ -124,20 +86,96 @@ class ReactiveStoreTests: CoreTestCase {
 
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee
-            .observeEntities()
-            .dropFirst()
-            .sink { state in
-                switch state {
-                case let .data(courses):
+            .getEntities(ignoreCache: true)
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { courses in
                     XCTAssertEqual(courses.map { $0.id }, ["1"])
-                default:
-                    break
+                    expectation.fulfill()
+                    XCTAssertTrue(Thread.isMainThread)
                 }
-                expectation.fulfill()
-                XCTAssertTrue(Thread.isMainThread)
-            }
+            )
 
         waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
+    // MARK: - Direct database calling
+
+    func testObjectsAreReturnedFromDatabase() {
+        Course.save(.make(id: "0"), in: databaseClient)
+        try! databaseClient.save()
+        let useCase = TestUseCase()
+        let testee = createStore(useCase: useCase)
+
+        let cache: TTL = databaseClient.insert()
+        cache.key = useCase.cacheKey ?? ""
+        cache.lastRefresh = Date()
+        try! databaseClient.save()
+
+        let expectation = expectation(description: "Publisher sends value")
+        let subscription = testee
+            .getEntitiesFromDatabase()
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { courses in
+                    XCTAssertEqual(courses.map { $0.id }, ["0"])
+                    expectation.fulfill()
+                    XCTAssertTrue(Thread.isMainThread)
+                }
+            )
+
+        waitForExpectations(timeout: 1)
+        subscription.cancel()
+    }
+
+    // MARK: - Force fetch
+
+    func testIgnoreCache() {
+        Course.save(.make(id: "0"), in: databaseClient)
+        try! databaseClient.save()
+        let useCase = TestUseCase(courses: [.make(id: "1")])
+        let testee = createStore(useCase: useCase)
+
+        let cache: TTL = databaseClient.insert()
+        cache.key = useCase.cacheKey ?? ""
+        cache.lastRefresh = Date()
+        try! databaseClient.save()
+
+        let expectation1 = expectation(description: "Publisher sends value")
+        let expectation2 = expectation(description: "Publisher sends value")
+        expectation2.expectedFulfillmentCount = 2
+        var fulfillmentCount = 0
+        let subscription = testee
+            .getEntities(ignoreCache: false, keepObservingDatabaseChanges: true)
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { courses in
+                    fulfillmentCount += 1
+                    if fulfillmentCount == 1 {
+                        XCTAssertEqual(courses.map { $0.id }, ["0"])
+                        expectation1.fulfill()
+                    }
+
+                    if fulfillmentCount == 2 {
+                        XCTAssertEqual(courses.map { $0.id }, ["1", "0"])
+                        expectation2.fulfill()
+                    }
+                    XCTAssertTrue(Thread.isMainThread)
+                }
+            )
+
+        wait(for: [expectation1], timeout: 0.1)
+        let subscription2 = testee.forceRefresh(loadAllPages: true)
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { _ in
+                    expectation2.fulfill()
+                }
+            )
+
+        wait(for: [expectation2], timeout: 0.1)
+        subscription2.cancel()
         subscription.cancel()
     }
 
@@ -149,18 +187,16 @@ class ReactiveStoreTests: CoreTestCase {
 
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee
-            .observeEntities()
-            .dropFirst(2) // drop .loading and initialy .data[]
-            .sink { state in
-                switch state {
-                case let .data(courses):
+            .getEntities(keepObservingDatabaseChanges: true)
+            .dropFirst() // Skip the initial empty data as we wait for the new item to be added
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { courses in
                     XCTAssertEqual(courses.map { $0.id }, ["3rdpartyinsert"])
-                default:
-                    break
+                    expectation.fulfill()
+                    XCTAssertTrue(Thread.isMainThread)
                 }
-                expectation.fulfill()
-                XCTAssertTrue(Thread.isMainThread)
-            }
+            )
 
         drainMainQueue()
         Course.save(.make(id: "3rdpartyinsert"), in: databaseClient)
@@ -172,59 +208,49 @@ class ReactiveStoreTests: CoreTestCase {
     func testDatabaseChangesArePublished() {
         let course = Course.save(.make(id: "1"), in: databaseClient)
         try! databaseClient.save()
-        let useCase = TestUseCase(courses: [.make(id: "1")])
+        let useCase = TestUseCase(courses: [])
         let testee = createStore(useCase: useCase)
 
         let expectation = expectation(description: "Publisher sends value")
         let subscription = testee
-            .observeEntities(forceFetch: false)
-            .dropFirst()
-            .sink { state in
-                switch state {
-                case let .data(courses):
+            .getEntities(ignoreCache: false, keepObservingDatabaseChanges: true)
+            .dropFirst() // Skip initial data as we wait for the "name" field update
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { courses in
                     XCTAssertEqual(courses.map { $0.id }, ["1"])
                     XCTAssertEqual(courses.first?.name, "updatedName")
-                default:
-                    break
+                    expectation.fulfill()
+                    XCTAssertTrue(Thread.isMainThread)
                 }
-                expectation.fulfill()
-                XCTAssertTrue(Thread.isMainThread)
-            }
+            )
 
+        drainMainQueue()
         course.name = "updatedName"
         waitForExpectations(timeout: 1)
         subscription.cancel()
     }
 
     func testDatabaseDeletionsArePublished() {
+        let course = Course.save(.make(id: "1"), in: databaseClient)
+        try! databaseClient.save()
         let store = createStore(useCase: TestUseCase())
-        let course = Course.make()
 
         let expectation1 = expectation(description: "Publisher sends value")
-        let subscription1 = store.observeEntities(forceFetch: false)
-            .sink { state in
-                if case let .data(courses) = state {
-                    XCTAssertEqual(courses.count, 1)
+        let subscription1 = store.getEntities(ignoreCache: false, keepObservingDatabaseChanges: true)
+            .dropFirst() // Skip initial data as we wait for the delete update
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { courses in
+                    XCTAssertEqual(courses.count, 0)
                     expectation1.fulfill()
                 }
-            }
+            )
 
-        wait(for: [expectation1], timeout: 0.1)
-        subscription1.cancel()
-
-        let expectation2 = expectation(description: "Publisher sends value")
-        let subscription2 = store.observeEntities(forceFetch: false)
-            .dropFirst() // Drop previously saved data
-            .sink { state in
-                if case let .data(courses) = state {
-                    XCTAssertEqual(courses.count, 0)
-                    expectation2.fulfill()
-                }
-            }
-
+        drainMainQueue()
         databaseClient.delete(course)
-        wait(for: [expectation2], timeout: 0.1)
-        subscription2.cancel()
+        waitForExpectations(timeout: 0.1)
+        subscription1.cancel()
     }
 
     // MARK: - LoadAllPages
@@ -244,27 +270,27 @@ class ReactiveStoreTests: CoreTestCase {
         let expectation1 = XCTestExpectation(description: "exhausted")
         let store = createStore(useCase: useCase)
 
-        let subscription1 = store.observeEntities(forceFetch: true)
-            .sink { state in
-                if case let .data(courses) = state {
-                    if courses.count == 1 {
-                        expectation1.fulfill()
-                    }
+        let subscription1 = store.getEntities(ignoreCache: true, loadAllPages: false)
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { courses in
+                    XCTAssertEqual(courses.count, 1)
+                    expectation1.fulfill()
                 }
-            }
+            )
 
         wait(for: [expectation1], timeout: 0.1)
         subscription1.cancel()
 
         let expectation2 = XCTestExpectation(description: "Publisher sends value")
-        let subscription2 = store.observeEntities(forceFetch: true, loadAllPages: true)
-            .dropFirst()
-            .sink { state in
-                if case let .data(courses) = state {
+        let subscription2 = store.getEntities(ignoreCache: true, loadAllPages: true)
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { courses in
                     XCTAssertEqual(courses.count, 2)
                     expectation2.fulfill()
                 }
-            }
+            )
 
         wait(for: [expectation2], timeout: 0.1)
         subscription2.cancel()
@@ -272,114 +298,35 @@ class ReactiveStoreTests: CoreTestCase {
 
     // MARK: - Offline
 
-    func test_OfflineModeIsEnabled_ObserveEntitiesCalled_ObjectsAreReturnedFromDatabase() {
-        // Given
-        let course = Course.make(from: .make(id: "0"))
-        injectOfflineFeatureFlag(isEnabled: true)
-
-        // When
-        let expectation = expectation(description: "Refresh callback called")
-        expectation.expectedFulfillmentCount = 2
-        let useCase = TestUseCase(courses: [.make(id: "1")])
-        let store = createStore(useCase: useCase)
-
-        var states = [ReactiveStore<TestUseCase>.State]()
-        let subscription = store.observeEntities(forceFetch: false)
-            .sink { state in
-                expectation.fulfill()
-                states.append(state)
-            }
-
-        // Then
-        waitForExpectations(timeout: 0.3)
-        let ids = states.map {
-            switch $0 {
-            case let .data(course):
-                return course
-            default:
-                return []
-            }
-        }.flatMap { $0.map { $0.id } }
-
-        XCTAssertEqual(states.count, 2)
-        XCTAssertEqual(states[0], .loading)
-        XCTAssertEqual(states[1], .data([course]))
-        XCTAssertEqual(ids.count, 1)
-        XCTAssert(ids.contains("0"))
-        XCTAssert(!ids.contains("1"))
-        subscription.cancel()
-    }
-
-    func test_OfflineModeIsEnabled_GetEntitiesCalled_ObjectsAreReturnedFromDatabase() {
+    func test_OfflineModeIsEnabled_ObjectsAreReturnedFromDatabase() {
         // Given
         Course.make(from: .make(id: "0"))
         injectOfflineFeatureFlag(isEnabled: true)
 
         // When
         let expectation = expectation(description: "Refresh callback called")
-        expectation.expectedFulfillmentCount = 1
         let useCase = TestUseCase(courses: [.make(id: "1")])
         let store = createStore(useCase: useCase)
 
-        var courseList = [Course]()
         let subscription = store.getEntities()
             .sink(
                 receiveCompletion: { _ in },
                 receiveValue: { courses in
+                    XCTAssertEqual(courses.count, 1)
+                    let ids = courses.map { $0.id }
+                    XCTAssertEqual(ids.count, 1)
+                    XCTAssert(ids.contains("0"))
+                    XCTAssert(!ids.contains("1"))
                     expectation.fulfill()
-                    courseList.append(contentsOf: courses)
                 }
             )
 
         // Then
         waitForExpectations(timeout: 0.3)
-        let ids = courseList.map { $0.id }
-
-        XCTAssertEqual(courseList.count, 1)
-        XCTAssertEqual(ids.count, 1)
-        XCTAssert(ids.contains("0"))
-        XCTAssert(!ids.contains("1"))
         subscription.cancel()
     }
 
-    func test_OfflineModeIsNotEnabled_ObserveEntitiesCalled_ObjectsAreReturnedFromNetwork() {
-        // Given
-        Course.make(from: .make(id: "0"))
-        injectOfflineFeatureFlag(isEnabled: false)
-
-        // When
-        let expectation = expectation(description: "Refresh callback called")
-        expectation.expectedFulfillmentCount = 2
-        let useCase = TestUseCase(courses: [.make(id: "1")])
-        let store = createStore(useCase: useCase)
-
-        var states = [ReactiveStore<TestUseCase>.State]()
-        let subscription = store.observeEntities(forceFetch: false)
-            .sink { state in
-                expectation.fulfill()
-                states.append(state)
-            }
-
-        // Then
-        waitForExpectations(timeout: 0.3)
-        let ids = states.map {
-            switch $0 {
-            case let .data(course):
-                return course
-            default:
-                return []
-            }
-        }.flatMap { $0.map { $0.id } }
-
-        XCTAssertEqual(states.count, 2)
-        XCTAssertEqual(states[0], .loading)
-        XCTAssertEqual(ids.count, 2)
-        XCTAssert(ids.contains("0"))
-        XCTAssert(ids.contains("1"))
-        subscription.cancel()
-    }
-
-    func test_OfflineModeIsNotEnabled_GetEntitiesCalled_ObjectsAreReturnedFromNetwork() {
+    func test_OfflineModeIsNotEnabled_ObjectsAreReturnedFromNetwork() {
         // Given
         Course.make(from: .make(id: "0"))
         injectOfflineFeatureFlag(isEnabled: false)
@@ -390,24 +337,21 @@ class ReactiveStoreTests: CoreTestCase {
         let useCase = TestUseCase(courses: [.make(id: "1")])
         let store = createStore(useCase: useCase)
 
-        var courseList = [Course]()
         let subscription = store.getEntities()
             .sink(
                 receiveCompletion: { _ in },
                 receiveValue: { courses in
+                    XCTAssertEqual(courses.count, 2)
+                    let ids = courses.map { $0.id }
+                    XCTAssertEqual(ids.count, 2)
+                    XCTAssert(ids.contains("0"))
+                    XCTAssert(ids.contains("1"))
                     expectation.fulfill()
-                    courseList.append(contentsOf: courses)
                 }
             )
 
         // Then
         waitForExpectations(timeout: 0.3)
-        let ids = courseList.map { $0.id }
-
-        XCTAssertEqual(courseList.count, 2)
-        XCTAssertEqual(ids.count, 2)
-        XCTAssert(ids.contains("0"))
-        XCTAssert(ids.contains("1"))
         subscription.cancel()
     }
 
@@ -415,14 +359,13 @@ class ReactiveStoreTests: CoreTestCase {
 
     func testSubscriptionCancellation() {
         let store = createStore(useCase: TestUseCase(courses: [.make(id: "1")]))
-        let interactor = TestInteractor(store: store)
+        let interactor = TestInteractor(store: store, keepObservingDatabaseChanges: false)
         let expectation1 = expectation(description: "Publisher sends value")
         let expectation2 = expectation(description: "Publisher wont send value")
         expectation2.isInverted = true
         var expectationCount = 0
 
-        let subscription = interactor.state
-            .dropFirst()
+        let subscription = interactor.$entities
             .sink(receiveValue: { _ in
                 if expectationCount == 0 {
                     expectation1.fulfill()
@@ -473,10 +416,10 @@ class ReactiveStoreTests: CoreTestCase {
 }
 
 extension ReactiveStoreTests {
-    struct TestInteractor {
+    class TestInteractor {
         // MARK: - Output
 
-        public let state = CurrentValueSubject<ReactiveStore<TestUseCase>.State, Never>(.loading)
+        @Published public var entities: [Course] = []
 
         // MARK: - Depenencies
 
@@ -486,11 +429,16 @@ extension ReactiveStoreTests {
 
         private var subscriptions = Set<AnyCancellable>()
 
-        init(store: ReactiveStore<TestUseCase>) {
+        init(store: ReactiveStore<TestUseCase>, keepObservingDatabaseChanges: Bool) {
             self.store = store
 
-            self.store.observeEntities()
-                .subscribe(state)
+            self.store.getEntities(keepObservingDatabaseChanges: keepObservingDatabaseChanges)
+                .sink(
+                    receiveCompletion: { _ in },
+                    receiveValue: { [weak self] in
+                        self?.entities = $0
+                    }
+                )
                 .store(in: &subscriptions)
         }
     }

@@ -34,13 +34,13 @@ public final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor, Cou
                     context: .course(courseId)
                 )
             )
-            .getEntities(),
+            .getEntities(ignoreCache: true),
             ReactiveStore(
                 useCase: GetPages(
                     context: .course(courseId)
                 )
             )
-            .getEntities()
+            .getEntities(ignoreCache: true)
         )
         .map { _ in () }
         .eraseToAnyPublisher()

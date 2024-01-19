@@ -35,7 +35,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
         ReactiveStore(
             useCase: GetModules(courseID: courseId)
         )
-        .getEntities()
+        .getEntities(ignoreCache: true)
         .flatMap { $0.publisher }
         .flatMap { Self.getModuleItemSequence(courseID: $0.courseID, moduleItems: $0.items) }
         .collect()
@@ -56,7 +56,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
                         assetID: $0.id
                     )
                 )
-                .getEntities()
+                .getEntities(ignoreCache: true)
             }
             .collect()
             .map { _ in moduleItems }
@@ -100,7 +100,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
                 ReactiveStore(
                     useCase: GetPage(context: .course(courseId), url: $0)
                 )
-                .getEntities()
+                .getEntities(ignoreCache: true)
             }
             .collect()
             .mapToVoid()
@@ -118,7 +118,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
                 ReactiveStore(
                     useCase: GetQuiz(courseID: courseId, quizID: $0)
                 )
-                .getEntities()
+                .getEntities(ignoreCache: true)
             }
             .collect()
             .mapToVoid()
@@ -137,7 +137,7 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
                 ReactiveStore(
                     useCase: GetFile(context: .course(courseId), fileID: $0)
                 )
-                .getEntities()
+                .getEntities(ignoreCache: true)
                 .flatMap { [filesInteractor] files -> AnyPublisher<Void, Error> in
                     guard let file = files.first, let url = file.url, let fileID = file.id, let mimeClass = file.mimeClass else {
                         return Empty(completeImmediately: false)
