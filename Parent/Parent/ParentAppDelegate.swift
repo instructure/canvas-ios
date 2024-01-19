@@ -175,6 +175,7 @@ extension ParentAppDelegate: LoginDelegate {
                 let safari = SFSafariViewController(url: url)
                 safari.modalPresentationStyle = .fullScreen
                 topVC.present(safari, animated: true, completion: nil)
+                Analytics.shared.logScreenView(route: "/external_url")
             }
         } else {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
