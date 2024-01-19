@@ -12,6 +12,8 @@ targets:
         INFOPLIST_FILE: Student/Info.plist
         CODE_SIGN_ENTITLEMENTS: Student/Student.entitlements
         TARGETED_DEVICE_FAMILY: 1,2
+        CURRENT_PROJECT_VERSION: 0.0.1
+        MARKETING_VERSION: 0.0.1
     sources:
       - path: ./
         excludes:
