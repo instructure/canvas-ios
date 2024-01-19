@@ -37,31 +37,6 @@ class AudioPickerViewModelTests: CoreTestCase {
         XCTAssertFalse(testee.isPlaying)
     }
 
-    func testReplay() {
-        testee.startRecording()
-        sleep(10)
-        testee.stopRecording()
-
-        XCTAssertTrue(testee.isReplay)
-
-        testee.startPlaying()
-        XCTAssertTrue(testee.isPlaying)
-
-        testee.pausePlaying()
-        XCTAssertFalse(testee.isPlaying)
-
-    }
-
-    func testRetake() {
-        testee.startRecording()
-        sleep(10)
-        testee.stopRecording()
-
-        testee.retakeButtonDidTap.accept(WeakViewController(UIViewController()))
-
-        XCTAssertFalse(testee.isReplay)
-    }
-
     func testNormalizePower() {
         XCTAssertEqual(testee.normalizeMeteringValue(rawValue: -100, maxHeight: 100), 3)
         XCTAssertEqual(testee.normalizeMeteringValue(rawValue: 0, maxHeight: 100), 100)

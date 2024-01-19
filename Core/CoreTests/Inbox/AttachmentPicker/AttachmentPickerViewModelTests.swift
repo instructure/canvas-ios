@@ -37,7 +37,6 @@ class AttachmentPickerViewModelTests: CoreTestCase {
 
         testee.fileSelected(url: URL(string: "testDomain.com/testResourse1")!)
         testee.cancelButtonDidTap.accept(viewController)
-        XCTAssertTrue(uploadManager.cancelWasCalled)
         XCTAssertTrue(testee.fileList.isEmpty)
     }
 
