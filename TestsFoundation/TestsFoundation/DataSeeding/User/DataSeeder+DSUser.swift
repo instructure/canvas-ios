@@ -33,8 +33,9 @@ extension DataSeeder {
 
     public func createUser(name: String = "DataSeed iOS \(Int(Date().timeIntervalSince1970))",
                            password: String = "password",
-                           isK5: Bool = false) -> DSUser {
-        let requestedUser = CreateDSUserRequest.Body.User(name: name)
+                           isK5: Bool = false,
+                           shortName: String? = nil) -> DSUser {
+        let requestedUser = CreateDSUserRequest.Body.User(name: name, short_name: shortName)
         let requestedPseudonym = CreateDSUserRequest.Body.Pseudonym(password: password)
         let request = CreateDSUserRequest(body: CreateDSUserRequest.Body(user: requestedUser, pseudonym: requestedPseudonym), isK5: isK5)
         var result = makeRequest(request)
