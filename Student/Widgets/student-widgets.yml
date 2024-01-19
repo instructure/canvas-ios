@@ -12,8 +12,6 @@ targets:
         INFOPLIST_FILE: Widgets/Resources/Info.plist
         CODE_SIGN_ENTITLEMENTS: Widgets/Resources/Widgets.entitlements
         TARGETED_DEVICE_FAMILY: 1,2
-        CURRENT_PROJECT_VERSION: 0.0.1
-        MARKETING_VERSION: 0.0.1
     sources:
       - path: ./
         excludes:

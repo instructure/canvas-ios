@@ -11,8 +11,8 @@ settings:
   DEVELOPMENT_TEAM: B6333T4PXQ ## This line is removed in the project-ci.yml file so Bitrise can manage code sign. 
   CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
   LOCALIZATION_PREFERS_STRING_CATALOGS: true
-  CURRENT_PROJECT_VERSION: 1.0.0
-  MARKETING_VERSION: 1.0.0
+  CURRENT_PROJECT_VERSION: 0.0.1
+  MARKETING_VERSION: 0.0.1
   platform: iOS
 sources:
   - path: ./
