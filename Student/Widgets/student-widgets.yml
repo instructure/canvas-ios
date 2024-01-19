@@ -7,6 +7,8 @@ targets:
     settings:
       APPLICATION_EXTENSION_API_ONLY: true
       ENABLE_TESTABILITY: true
+      CURRENT_PROJECT_VERSION: 1.0.0
+      MARKETING_VERSION: 1.0.0
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.instructure.icanvas.widgets
         INFOPLIST_FILE: Widgets/Resources/Info.plist

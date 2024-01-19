@@ -29,10 +29,14 @@ targets:
         basedOnDependencyAnalysis: false
       - path: ../../scripts/startPackager.sh
         name: Start Packager
+        basedOnDependencyAnalysis: false
       - path: ../../scripts/build-rn-code-images.sh
         name: Build React Native Code and Images
+        basedOnDependencyAnalysis: false
 schemes:
   Student:
     build:
       targets:
         Student: all
+    test:
+      targets: [Core/CoreTests, Core/CoreTester, StudentUnitTests]
