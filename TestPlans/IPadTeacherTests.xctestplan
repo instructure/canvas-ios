@@ -30,9 +30,7 @@
         "LoginTests\/testLoginWithLastUser()",
         "LoginTests\/testLoginWithoutUsernameAndPassword()",
         "LoginTests\/testWrongUsernameAndPassword()",
-        "LogoutTests",
         "PagesTests\/testDeepLinks()",
-        "PeopleTests",
         "SettingsTests\/testAbout()",
         "SettingsTests\/testAppearanceSetting()",
         "SettingsTests\/testCanvasOnGitHub()",
@@ -41,7 +39,7 @@
         "SettingsTests\/testTermsOfUse()"
       ],
       "target" : {
-        "containerPath" : "container:..\/rn\/Teacher\/ios\/Teacher.xcodeproj",
+        "containerPath" : "container:Teacher.xcodeproj",
         "identifier" : "E841D8A223D6472F00685A63",
         "name" : "TeacherE2ETests"
       }
