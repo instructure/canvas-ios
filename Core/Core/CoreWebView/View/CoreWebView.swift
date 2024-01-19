@@ -356,8 +356,12 @@ extension CoreWebView: WKNavigationDelegate {
             return decisionHandler(.allow) // let web view scroll to link too, if necessary
         }
 
-        // Handle "Launch External Tool" button
-        if action.navigationType == .linkActivated, let tools = LTITools(link: action.request.url),
+        // Handle "Launch External Tool" button OR 
+        // LTI app buttons embedded in K5 WebViews when there's no additional JavaScript
+        // involved (like Zoom and Microsoft).
+        // When there's additional JavaScript code behind an LTI Button (like DBQ Online), we don't want to
+        // handle those cases here, because `createWebViewWith` already opened a new popup window.
+        if let tools = LTITools(link: action.request.url, navigationType: action.navigationType),
             let from = linkDelegate?.routeLinksFrom {
             tools.presentTool(from: from, animated: true)
             return decisionHandler(.cancel)

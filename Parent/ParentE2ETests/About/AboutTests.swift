@@ -41,19 +41,19 @@ class AboutTests: E2ETestCase {
 
         let appLabel = SettingsHelper.About.appLabel.waitUntil(.visible)
         XCTAssertTrue(appLabel.isVisible)
-        XCTAssertEqual(appLabel.label, "Canvas Parent")
+        XCTAssertTrue(appLabel.hasLabel(label: "Canvas Parent"))
 
         let domainLabel = SettingsHelper.About.domainLabel.waitUntil(.visible)
         XCTAssertTrue(domainLabel.isVisible)
-        XCTAssertEqual(domainLabel.label, "https://\(user.host)")
+        XCTAssertTrue(domainLabel.hasLabel(label: "https://\(user.host)"))
 
         let loginIdLabel = SettingsHelper.About.loginIdLabel.waitUntil(.visible)
         XCTAssertTrue(loginIdLabel.isVisible)
-        XCTAssertEqual(loginIdLabel.label, parent.id)
+        XCTAssertTrue(loginIdLabel.hasLabel(label: parent.id))
 
         let emailLabel = SettingsHelper.About.emailLabel.waitUntil(.visible)
         XCTAssertTrue(emailLabel.isVisible)
-        XCTAssertEqual(emailLabel.label, "-")
+        XCTAssertTrue(emailLabel.hasLabel(label: "-"))
 
         let versionLabel = SettingsHelper.About.versionLabel.waitUntil(.visible)
         XCTAssertTrue(versionLabel.isVisible)

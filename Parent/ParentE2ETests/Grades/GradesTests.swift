@@ -88,8 +88,8 @@ class GradesTests: E2ETestCase {
         Helper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
 
         // MARK: Grade assignments, get the user logged in, tap on course
-        let grades = ["6", "7", "8"]
-        let totalGrade = "D"
+        let grades = ["7.9", "79%", "complete"]
+        let totalGrade = "B"
         Helper.gradeAssignments(grades: grades, course: course, assignments: assignments, user: student)
 
         logInDSUser(parent)

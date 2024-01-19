@@ -302,7 +302,13 @@ class AssignmentDetailsPresenter {
     }
 
     func routeToSubmission(view: UIViewController) {
-        env.router.route(to: "/courses/\(courseID)/assignments/\(assignmentID)/submissions/\(userID)", from: view)
+        var route = "/courses/\(courseID)/assignments/\(assignmentID)/submissions/\(userID)"
+
+        if let selectedSubmission {
+            route += "?selectedAttempt=\(selectedSubmission.attempt)"
+        }
+
+        env.router.route(to: route, from: view)
     }
 
     func route(to url: URL, from view: UIViewController) -> Bool {

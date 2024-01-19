@@ -1,6 +1,0 @@
-[{"name": "core",             "location": "Core/Core.xcodeproj"},
- {"name": "parent",           "location": "Parent/Parent.xcodeproj"},
- {"name": "teacher_native",   "location": "rn/Teacher/ios/Teacher.xcodeproj"},
- {"name": "teacher",          "location": "rn/Teacher/i18n/locales", "json": true},
- {"name": "student",          "location": "Student/Student.xcodeproj"},
- {"name": "canvas_core",      "location": "CanvasCore/CanvasCore.xcodeproj"}]

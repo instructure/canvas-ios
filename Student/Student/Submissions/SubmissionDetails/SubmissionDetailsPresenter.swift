@@ -80,13 +80,14 @@ class SubmissionDetailsPresenter {
     private var docViewerSessionURL: URL?
     private var docViewerSessionRequest: APITask?
 
-    init(env: AppEnvironment = .shared, view: SubmissionDetailsViewProtocol, context: Context, assignmentID: String, userID: String) {
+    init(env: AppEnvironment = .shared, view: SubmissionDetailsViewProtocol, context: Context, assignmentID: String, userID: String, selectedAttempt: Int? = nil) {
         self.context = context
         self.assignmentID = assignmentID
         self.userID = userID
         self.env = env
         self.view = view
         self.submissionButtonPresenter = SubmissionButtonPresenter(view: view, assignmentID: assignmentID)
+        self.selectedAttempt = selectedAttempt
     }
 
     func viewIsReady() {

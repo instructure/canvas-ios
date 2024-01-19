@@ -35,6 +35,10 @@ public class DashboardHelper: BaseHelper {
         return app.find(id: "DashboardCourseCell.\(course?.id ?? courseId!)")
     }
 
+    public static func courseCardAssignmentMissingButton(course: DSCourse) -> XCUIElement {
+        return app.find(id: "DashboardCourseCell.\(course.id)").find(type: .button)
+    }
+
     public static func courseCardGradeLabel(course: DSCourse) -> XCUIElement {
         return app.find(id: "DashboardCourseCell.\(course.id).gradePill")
     }

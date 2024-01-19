@@ -25,6 +25,7 @@ extension DataSeeder {
 
         for _ in 0..<count {
             users.append(createUser())
+            sleep(1) // To avoid creating users with the same name
         }
 
         return users

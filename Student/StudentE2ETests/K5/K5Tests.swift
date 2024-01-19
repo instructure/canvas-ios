@@ -194,4 +194,46 @@ class K5Tests: K5E2ETestCase {
         let googleDriveButton = CourseDetailsHelper.cell(type: .googleDrive).waitUntil(.visible)
         XCTAssertTrue(googleDriveButton.actionUntilElementCondition(action: .swipeUp(), condition: .hittable))
     }
+
+    // Covers MBL-15737 bug
+    func testK5DashboardNotificationLimit() {
+        // MARK: Seed the usual stuff with homeroom and 12 missed assignments
+        let student = seeder.createK5User()
+        let homeroom = seeder.createK5Course()
+        let course = seeder.createCourse()
+        let assignmentsCount = 12
+        let assignments = AssignmentsHelper.createAssignments(in: course, count: assignmentsCount, dueDate: .now.addDays(-1))
+        seeder.enrollStudent(student, in: homeroom)
+        seeder.enrollStudent(student, in: course)
+
+        // MARK: Get the user logged in, check course card for missing assignments
+        logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+
+        let courseCardAssigmentMissingButton = DashboardHelper.courseCardAssignmentMissingButton(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCardAssigmentMissingButton.isVisible)
+        XCTAssertTrue(courseCardAssigmentMissingButton.hasLabel(label: "\(assignmentsCount) missing"))
+    }
+
+    // Covers MBL-15776 bug
+    func testDashboardDoesNotShowInvitedK5Course() {
+        // MARK: Seed the usual stuff with homeroom and an invited state K5 course
+        let student = seeder.createK5User()
+        let homeroom = seeder.createK5Course()
+        let course = seeder.createCourse()
+        let invitedCourse = seeder.createK5Course()
+        seeder.enrollStudent(student, in: homeroom)
+        seeder.enrollStudent(student, in: course)
+        let enrollment = seeder.enrollStudent(student, in: invitedCourse, state: .invited)
+
+        // MARK: Get the user logged in, check if there is no course card for invited course
+        logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        let invitedCourseCard = DashboardHelper.courseCard(course: invitedCourse).waitUntil(.vanish)
+        let courseInvitationAcceptButton = DashboardHelper.CourseInvitations.acceptButton(enrollment: enrollment).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertTrue(invitedCourseCard.isVanished)
+        XCTAssertTrue(courseInvitationAcceptButton.isVisible)
+    }
 }
