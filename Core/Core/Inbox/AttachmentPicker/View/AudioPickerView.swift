@@ -194,6 +194,7 @@ struct AudioPickerView: View {
                             .foregroundStyle(Color.white)
                     }
                     .frame(width: 50, height: 50, alignment: .center)
+                    .accessibilityLabel(Text("Play audio recording", bundle: .core))
                 } else {
                     Button {
                         viewModel.pausePlaying()
@@ -202,6 +203,7 @@ struct AudioPickerView: View {
                             .foregroundStyle(Color.white)
                     }
                     .frame(width: 50, height: 50, alignment: .center)
+                    .accessibilityLabel(Text("Pause audio recording", bundle: .core))
                 }
             }
             .frame(maxWidth: .infinity)
@@ -275,6 +277,7 @@ struct AudioPickerView: View {
             }
         }
         .frame(width: 50, height: 50, alignment: .center)
+        .accessibilityLabel(Text("Start audio recording", bundle: .core))
     }
 
     private var stopRecordingButton: some View {
@@ -295,6 +298,7 @@ struct AudioPickerView: View {
             .animation(.default)
         }
         .frame(width: 50, height: 50, alignment: .center)
+        .accessibilityLabel(Text("Stop audio recording", bundle: .core))
     }
 
     private var loadingIndicator: some View {
@@ -327,6 +331,7 @@ struct AudioPickerView: View {
                     viewModel.loadingAnimationRotation = 360.0
                 }
         }
+        .accessibilityLabel(Text("Audio recorder loading", bundle: .core))
     }
 }
 

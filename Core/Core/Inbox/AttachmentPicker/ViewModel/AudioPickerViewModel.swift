@@ -101,7 +101,9 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
 
     private func getURL() -> URL {
         let newUrl = URL.Directories.temporary.appendingPathComponent("\(UUID.string).m4a")
-        url = newUrl
+        DispatchQueue.main.async { [weak self] in
+            self?.url = newUrl
+        }
         return newUrl
     }
 

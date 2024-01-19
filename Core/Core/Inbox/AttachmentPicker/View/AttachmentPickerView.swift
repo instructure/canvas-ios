@@ -122,6 +122,7 @@ public struct AttachmentPickerView: View {
                     Image.addLine
                 }
                 .foregroundStyle(Color.textDarkest)
+                .accessibilityLabel(Text("Add new attachment", bundle: .core))
             }
             .padding(12)
             separator
