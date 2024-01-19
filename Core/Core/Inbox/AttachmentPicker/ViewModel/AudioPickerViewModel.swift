@@ -22,13 +22,17 @@ import Combine
 import CombineExt
 
 class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
+
+    // MARK: Private
     private var audioRecorder: AVAudioRecorder!
     private var audioPlayer: AVAudioPlayer!
     private var timer: Timer!
     private let formatter: DateComponentsFormatter
     private let router: Router
     private var subscriptions = Set<AnyCancellable>()
-    public var onSelect: (URL) -> Void
+    private var onSelect: (URL) -> Void
+
+    // MARK: Outputs
 
     @Published public var isRecording: Bool = false
     @Published public var isRecorderLoading: Bool = false
@@ -42,6 +46,8 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     @Published public var audioPlayerDurationString: String = ""
     @Published public var audioPlotDataSet: [AudioPlotData] = []
     public let defaultDurationString: String
+
+    // MARK: Inputs / Outputs
 
     public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
     public let useAudioButtonDidTap = PassthroughRelay<WeakViewController>()
@@ -94,11 +100,9 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     }
 
     private func getURL() -> URL {
-        let url = URL.Directories.temporary.appendingPathComponent("\(UUID.string).m4a")
-        DispatchQueue.main.async { [weak self] in
-            self?.url = url
-        }
-        return url
+        let newUrl = URL.Directories.temporary.appendingPathComponent("\(UUID.string).m4a")
+        url = newUrl
+        return newUrl
     }
 
     func startRecording() {
@@ -135,11 +139,11 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     }
 
     private func stopTimer() {
-        timer.invalidate()
+        timer?.invalidate()
     }
 
     func stopRecording() {
-        audioRecorder.stop()
+        audioRecorder?.stop()
         isRecording = false
         stopTimer()
 
