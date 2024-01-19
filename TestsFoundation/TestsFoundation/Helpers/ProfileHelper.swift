@@ -40,4 +40,10 @@ public class ProfileHelper: BaseHelper {
     // Parent
     public static var aboutButton: XCUIElement { app.find(id: "Profile.aboutButton") }
     public static var manageStudentsButton: XCUIElement { app.find(id: "Profile.manageChildrenButton") }
+
+    public struct ChangePicture {
+        public static var choosePhotoButton: XCUIElement { app.find(label: "Choose Photo", type: .button) }
+        public static var firstPhoto: XCUIElement { app.find(labelContaining: "Photo, ", type: .image) }
+        public static var chooseButton: XCUIElement { app.find(id: "Done", type: .button) }
+    }
 }

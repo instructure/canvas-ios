@@ -53,4 +53,55 @@ class ProfileTests: E2ETestCase {
         XCTAssertTrue(changeUserButton.isVisible)
         XCTAssertTrue(logOutButton.isVisible)
     }
+
+    func testProfilePictureChange() {
+        // MARK: Seed the usual stuff
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+
+        // MARK: Get the user logged in, check Profile
+        logInDSUser(student)
+        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
+        XCTAssertTrue(profileButton.isVisible)
+
+        profileButton.hit()
+        let userAvatar = ProfileHelper.avatar.waitUntil(.visible)
+        XCTAssertTrue(userAvatar.isVisible)
+
+        // MARK: Change profile picture
+        userAvatar.hit()
+        let choosePhotoButton = ProfileHelper.ChangePicture.choosePhotoButton.waitUntil(.visible)
+        XCTAssertTrue(choosePhotoButton.isVisible)
+
+        choosePhotoButton.hit()
+        let firstPhoto = ProfileHelper.ChangePicture.firstPhoto.waitUntil(.visible)
+        XCTAssertTrue(firstPhoto.isVisible)
+
+        firstPhoto.hit()
+        let chooseButton = ProfileHelper.ChangePicture.chooseButton.waitUntil(.visible)
+        XCTAssertTrue(chooseButton.isVisible)
+
+        chooseButton.hit()
+        XCTAssertTrue(userAvatar.waitUntil(.visible).isVisible)
+    }
+
+    func testShortNameIsDisplayed() {
+        // MARK: Seed the usual stuff
+        let shortName = "Short Name"
+        let student = seeder.createUser(shortName: shortName)
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+
+        // MARK: Get the user logged in, check Profile
+        logInDSUser(student)
+        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
+        XCTAssertTrue(profileButton.isVisible)
+
+        // MARK: Check username
+        profileButton.hit()
+        let userNameLabel = ProfileHelper.userNameLabel.waitUntil(.visible)
+        XCTAssertTrue(userNameLabel.isVisible)
+        XCTAssertTrue(userNameLabel.hasLabel(label: shortName))
+    }
 }

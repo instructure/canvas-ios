@@ -37,6 +37,7 @@ extension CreateDSUserRequest {
         struct User: Encodable, Equatable {
             let name: String
             let time_zone: String = "Europe/Budapest"
+            let short_name: String?
         }
 
         struct Pseudonym: Encodable, Equatable {
