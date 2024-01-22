@@ -29,8 +29,11 @@ class AttachmentPickerViewModel: ObservableObject {
     @Published public var isImagePickerVisible: Bool = false
     @Published public var isTakePhotoVisible: Bool = false
     @Published public var isAudioRecordVisible: Bool = false
-    @Published public var fileList: [File] = []
+    @Published public private(set) var fileList: [File] = []
+    @Published public var isFileErrorOccured: Bool = false
     public let title = NSLocalizedString("Attachments", comment: "")
+    public let fileErrorTitle = NSLocalizedString("Error", comment: "")
+    public let fileErrorMessage = NSLocalizedString("Failed to add attachment. Please try again!", comment: "")
     public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
     public let doneButtonDidTap = PassthroughRelay<WeakViewController>()
     public let uploadButtonDidTap = PassthroughRelay<WeakViewController>()
@@ -108,20 +111,34 @@ class AttachmentPickerViewModel: ObservableObject {
         router.show(sheet, from: viewController, options: .modal())
     }
 
-    func add(image: UIImage) {
-        do {
-            let url = try image.write()
-            fileSelected(url: url)
-        } catch {
+    func showFileErrorDialog() {
+        let actionTitle = NSLocalizedString("OK", comment: "")
+        let alert = UIAlertController(title: fileErrorTitle, message: fileErrorMessage, preferredStyle: .alert)
+        let action = UIAlertAction(title: actionTitle, style: .default) { [weak self] _ in
+            self?.isImagePickerVisible = false
+            self?.isTakePhotoVisible = false
+            self?.isFilePickerVisible = false
+            self?.isAudioRecordVisible = false
+        }
+        alert.addAction(action)
 
+        if let top = AppEnvironment.shared.window?.rootViewController?.topMostViewController() {
+            router.show(alert, from: top, options: .modal())
         }
     }
 
     func fileSelected(url: URL) {
         do {
+            isImagePickerVisible = false
+            isTakePhotoVisible = false
+            isFilePickerVisible = false
+            isAudioRecordVisible = false
+            
             try uploadManager.add(url: url, batchID: batchId)
             files.refresh()
-        } catch { }
+        } catch {
+            showFileErrorDialog()
+        }
     }
 
     func fileRemoved(file: File) {

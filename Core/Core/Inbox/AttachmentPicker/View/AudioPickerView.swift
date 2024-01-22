@@ -262,7 +262,6 @@ struct AudioPickerView: View {
 
     private var startRecordButton: some View {
         Button {
-            viewModel.isRecorderLoading = true
             viewModel.startRecording()
         } label: {
             ZStack {

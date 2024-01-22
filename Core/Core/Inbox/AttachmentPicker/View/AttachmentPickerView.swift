@@ -43,8 +43,8 @@ public struct AttachmentPickerView: View {
                         viewModel.fileSelected(url: url)
                     }
                 }
-            case .failure(let error):
-                print(error.localizedDescription)
+            case .failure(_):
+                viewModel.showFileErrorDialog()
             }
         }
         .sheet(isPresented: $viewModel.isImagePickerVisible, content: {

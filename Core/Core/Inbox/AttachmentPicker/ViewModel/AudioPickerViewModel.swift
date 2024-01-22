@@ -34,18 +34,20 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
 
     // MARK: Outputs
 
-    @Published public var isRecording: Bool = false
-    @Published public var isRecorderLoading: Bool = false
+    @Published public private(set) var isRecording: Bool = false
+    @Published public private(set) var isRecorderLoading: Bool = false
     @Published public var loadingAnimationRotation = 0.0
-    @Published public var isPlaying: Bool = false
-    @Published public var isReplay: Bool = false
-    @Published public var url: URL!
-    @Published public var recordingLengthString: String = ""
-    @Published public var audioPlayerPositionString: String = ""
-    @Published public var audioPlayerPosition: Double = 0
-    @Published public var audioPlayerDurationString: String = ""
-    @Published public var audioPlotDataSet: [AudioPlotData] = []
+    @Published public private(set) var isPlaying: Bool = false
+    @Published public private(set) var isReplay: Bool = false
+    @Published public private(set) var url: URL!
+    @Published public private(set) var recordingLengthString: String = ""
+    @Published public private(set) var audioPlayerPositionString: String = ""
+    @Published public private(set) var audioPlayerPosition: Double = 0
+    @Published public private(set) var audioPlayerDurationString: String = ""
+    @Published public private(set) var audioPlotDataSet: [AudioPlotData] = []
     public let defaultDurationString: String
+    public let audioRecorderErrorTitle = NSLocalizedString("Error", comment: "")
+    public let audioRecorderErrorMessage = NSLocalizedString("Some error occured with audio recorder. Please try again!", comment: "")
 
     // MARK: Inputs / Outputs
 
@@ -68,6 +70,19 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
         setupInputBindings(router: router)
     }
 
+    private func showAudioErrorDialog() {
+        let actionTitle = NSLocalizedString("OK", comment: "")
+        let alert = UIAlertController(title: audioRecorderErrorTitle, message: audioRecorderErrorMessage, preferredStyle: .alert)
+
+        if let top = AppEnvironment.shared.window?.rootViewController?.topMostViewController() {
+            let action = UIAlertAction(title: actionTitle, style: .default) { _ in
+                top.dismiss(animated: false)
+            }
+            alert.addAction(action)
+            router.show(alert, from: top, options: .modal())
+        }
+    }
+
     private func initRecorder() {
         DispatchQueue.main.async { [weak self] in
             self?.isRecorderLoading = true
@@ -77,7 +92,9 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
             try recordingSession.setCategory(.record, mode: .default)
             try recordingSession.setActive(true)
         } catch {
-            print("Can not setup the Recording")
+            DispatchQueue.main.async { [weak self] in
+                self?.showAudioErrorDialog()
+            }
         }
 
         let settings = [
@@ -92,7 +109,9 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
             audioRecorder.isMeteringEnabled = true
             audioRecorder.prepareToRecord()
         } catch {
-            print("Failed to Setup the Recording")
+            DispatchQueue.main.async { [weak self] in
+                self?.showAudioErrorDialog()
+            }
         }
         DispatchQueue.main.async { [weak self] in
             self?.isRecorderLoading = false
@@ -165,7 +184,9 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
             try recordingSession.setActive(true)
             audioPlayer = try AVAudioPlayer(contentsOf: url)
         } catch {
-            print("Error while playing")
+            DispatchQueue.main.async { [weak self] in
+                self?.showAudioErrorDialog()
+            }
         }
         audioPlayer?.delegate = self
         audioPlayer?.prepareToPlay()

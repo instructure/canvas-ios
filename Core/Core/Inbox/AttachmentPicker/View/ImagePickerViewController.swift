@@ -67,13 +67,11 @@ struct ImagePickerViewController: UIViewControllerRepresentable {
             if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
                 if let url = try? image.write() {
                     imageHandler(url)
-                    parent.presentationMode.wrappedValue.dismiss()
                 }
             }
 
             if let url = info[.mediaURL] as? URL {
                 imageHandler(url)
-                parent.presentationMode.wrappedValue.dismiss()
             }
         }
     }
