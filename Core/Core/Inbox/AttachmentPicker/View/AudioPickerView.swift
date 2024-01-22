@@ -122,7 +122,7 @@ struct AudioPickerView: View {
                         Spacer()
                     }
                 }
-                .frame(maxWidth: .infinity)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
 
                 VStack(alignment: .leading) {
                     HStack(alignment: .center, spacing: spaceWidth) {
@@ -141,15 +141,16 @@ struct AudioPickerView: View {
                         Spacer()
                     }
                 }
-                .frame(maxWidth: .infinity)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .contentShape(Rectangle())
         .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
             .onChanged({ gesture in
                 viewModel.seekInAudio(gesture.translation.width)
             })
         )
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background {
             Color.black
         }
