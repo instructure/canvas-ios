@@ -189,7 +189,7 @@ struct AudioPickerView: View {
             VStack(alignment: .center) {
                 if (!viewModel.isPlaying) {
                     Button {
-                        viewModel.startPlaying()
+                        viewModel.playAudioButtonDidTap.accept(controller)
                     } label: {
                         Image.playSolid
                             .foregroundStyle(Color.white)
@@ -198,7 +198,7 @@ struct AudioPickerView: View {
                     .accessibilityLabel(Text("Play audio recording", bundle: .core))
                 } else {
                     Button {
-                        viewModel.pausePlaying()
+                        viewModel.pauseAudioButtonDidTap.accept(controller)
                     } label: {
                         Image.pauseSolid
                             .foregroundStyle(Color.white)
@@ -262,7 +262,7 @@ struct AudioPickerView: View {
 
     private var startRecordButton: some View {
         Button {
-            viewModel.startRecording()
+            viewModel.recordAudioButtonDidTap.accept(controller)
         } label: {
             ZStack {
                 Circle()
@@ -282,7 +282,7 @@ struct AudioPickerView: View {
 
     private var stopRecordingButton: some View {
         Button {
-            viewModel.stopRecording()
+            viewModel.stopRecordAudioButtonDidTap.accept(controller)
         } label: {
             ZStack {
                 Circle()

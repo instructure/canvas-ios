@@ -43,7 +43,7 @@ public struct AttachmentPickerView: View {
                         viewModel.fileSelected(url: url)
                     }
                 }
-            case .failure(_):
+            case .failure:
                 viewModel.showFileErrorDialog()
             }
         }
