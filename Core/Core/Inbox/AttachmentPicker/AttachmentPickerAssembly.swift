@@ -29,12 +29,27 @@ public enum AttachmentPickerAssembly {
         return CoreHostingController(view)
     }
 
+    public static func makeAudioPickerViewcontroller(
+        router: Router,
+        onSelect: @escaping (URL) -> Void = { _ in }
+    ) -> AudioPickerView {
+        let viewModel = AudioPickerViewModel(router: router, interactor: AudioPickerInteractorLive(), onSelect: onSelect)
+        return AudioPickerView(viewModel: viewModel)
+    }
+
 #if DEBUG
 
     public static func makePreview(env: AppEnvironment)
     -> AttachmentPickerView {
         let viewModel = AttachmentPickerViewModel(router: env.router, batchId: "")
         return AttachmentPickerView(model: viewModel)
+    }
+
+    public static func makeAudioPickerPreview(
+        env: AppEnvironment
+    ) -> AudioPickerView {
+        let viewModel = AudioPickerViewModel(router: env.router, interactor: AudioPickerInteractorPreview(), onSelect: {_ in })
+        return AudioPickerView(viewModel: viewModel)
     }
 
 #endif

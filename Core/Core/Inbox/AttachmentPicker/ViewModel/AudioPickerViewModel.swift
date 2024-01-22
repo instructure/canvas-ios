@@ -24,8 +24,9 @@ import CombineExt
 class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
 
     // MARK: Private
-    private var audioRecorder: AVAudioRecorder!
-    private var audioPlayer: AVAudioPlayer!
+    private let interactor: AudioPickerInteractor
+    private var audioRecorder: CoreAVAudioRecorder!
+    private var audioPlayer: CoreAVAudioPlayer!
     private var timer: Timer!
     private let formatter: DateComponentsFormatter
     private let router: Router
@@ -59,9 +60,10 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     public let playAudioButtonDidTap = PassthroughRelay<WeakViewController>()
     public let pauseAudioButtonDidTap = PassthroughRelay<WeakViewController>()
 
-    public init(router: Router, onSelect: @escaping (URL) -> Void = { _ in }) {
+    public init(router: Router, interactor: AudioPickerInteractor, onSelect: @escaping (URL) -> Void = { _ in }) {
         self.router = router
         self.onSelect = onSelect
+        self.interactor = interactor
 
         formatter = DateComponentsFormatter()
         formatter.allowedUnits = [. hour, .minute, .second]
@@ -71,7 +73,9 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
 
         super.init()
 
-        setupInputBindings(router: router)
+        setupControlBindings(router: router)
+        setupRecordBindings()
+        setupPlaybackBindings()
     }
 
     private func showAudioErrorDialog() {
@@ -125,7 +129,7 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
         return newValue
     }
 
-    private func setupInputBindings(router: Router) {
+    private func setupControlBindings(router: Router) {
         cancelButtonDidTap
             .sink { [weak self, router] viewController in
                 self?.audioRecorder?.stop()
@@ -151,7 +155,9 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
                 }
             }
             .store(in: &subscriptions)
+    }
 
+    private func setupRecordBindings() {
         recordAudioButtonDidTap
             .handleEvents(receiveCompletion: { [weak self] _ in
                 self?.isRecorderLoading = true
@@ -159,19 +165,8 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
             .tryMap { [weak self] _ in
                 let newUrl = URL.Directories.temporary.appendingPathComponent("\(UUID.string).m4a")
 
-                let recordingSession = AVAudioSession.sharedInstance()
 
-                try recordingSession.setCategory(.record, mode: .default)
-                try recordingSession.setActive(true)
-
-                let settings = [
-                            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-                            AVSampleRateKey: 12000,
-                            AVNumberOfChannelsKey: 1,
-                            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue,
-                        ]
-
-                self?.audioRecorder = try AVAudioRecorder(url: newUrl, settings: settings)
+                self?.audioRecorder = try self?.interactor.intializeAudioRecorder(url: newUrl)
                 self?.audioRecorder.isMeteringEnabled = true
                 self?.audioRecorder.prepareToRecord()
 
@@ -204,11 +199,9 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
             .tryMap { [weak self] _ in
                 self?.audioRecorder?.stop()
                 self?.timer?.invalidate()
-                let recordingSession = AVAudioSession.sharedInstance()
-                try recordingSession.setCategory(.playback, mode: .default)
-                try recordingSession.setActive(true)
+
                 if let self {
-                    self.audioPlayer = try AVAudioPlayer(contentsOf: self.url )
+                    self.audioPlayer = try self.interactor.intializeAudioPlayer(url: self.url)
                 }
             }
             .receive(on: DispatchQueue.main)
@@ -228,7 +221,9 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
                 }
             )
             .store(in: &subscriptions)
+    }
 
+    private func setupPlaybackBindings() {
         playAudioButtonDidTap
             .sink { [weak self] _ in
                 self?.audioPlayer?.play()

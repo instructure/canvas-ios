@@ -54,7 +54,7 @@ public struct AttachmentPickerView: View {
             ImagePickerViewController(sourceType: .camera, imageHandler: viewModel.fileSelected)
         })
         .sheet(isPresented: $viewModel.isAudioRecordVisible, content: {
-            AudioPickerView(viewModel: AudioPickerViewModel(router: viewModel.router, onSelect: viewModel.fileSelected))
+            AttachmentPickerAssembly.makeAudioPickerViewcontroller(router: viewModel.router, onSelect: viewModel.fileSelected)
         })
     }
 

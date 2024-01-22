@@ -20,7 +20,7 @@ import Foundation
 import SwiftUI
 import Charts
 
-struct AudioPickerView: View {
+public struct AudioPickerView: View {
     @ObservedObject private var viewModel: AudioPickerViewModel
     @Environment(\.viewController) private var controller
 
@@ -28,7 +28,7 @@ struct AudioPickerView: View {
         self.viewModel = viewModel
     }
 
-    var body: some View {
+    public var body: some View {
         VStack {
             durationView
             contentView
@@ -284,18 +284,19 @@ struct AudioPickerView: View {
         Button {
             viewModel.stopRecordAudioButtonDidTap.accept(controller)
         } label: {
-            ZStack {
-                Circle()
-                    .padding(0)
-                    .foregroundStyle(Color.white)
-                Circle()
-                    .padding(2)
-                    .foregroundStyle(Color.black)
-                Rectangle()
-                    .padding(10)
-                    .foregroundStyle(Color.red)
+            withAnimation {
+                ZStack {
+                    Circle()
+                        .padding(0)
+                        .foregroundStyle(Color.white)
+                    Circle()
+                        .padding(2)
+                        .foregroundStyle(Color.black)
+                    Rectangle()
+                        .padding(10)
+                        .foregroundStyle(Color.red)
+                }
             }
-            .animation(.default)
         }
         .frame(width: 50, height: 50, alignment: .center)
         .accessibilityLabel(Text("Stop audio recording", bundle: .core))
@@ -339,7 +340,7 @@ struct AudioPickerView: View {
 
 struct AudioPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        AudioPickerView(viewModel: AudioPickerViewModel(router: PreviewEnvironment().router))
+        AttachmentPickerAssembly.makeAudioPickerPreview(env: PreviewEnvironment())
     }
 }
 
