@@ -101,9 +101,9 @@ public struct AttachmentPickerView: View {
 
     private var headerView: some View {
         VStack {
-            if viewModel.isUploading {
+            if viewModel.fileList.containsUploading {
                 progressHeader
-            } else if viewModel.isError {
+            } else if viewModel.fileList.containsError {
                 errorHeader
             } else {
                 selectionHeader
@@ -131,14 +131,9 @@ public struct AttachmentPickerView: View {
 
     private var progressHeader: some View {
         VStack {
-            let totalBytes = viewModel.fileList.map { $0.size }.reduce(0, +)
-            let totalBytesWithUnit = ByteCountFormatter.string(fromByteCount: Int64(totalBytes), countStyle: .file)
-            let sentBytes = viewModel.fileList.map { $0.bytesSent }.reduce(0, +)
-            let sentBytesWithUnit = ByteCountFormatter.string(fromByteCount: Int64(sentBytes), countStyle: .file)
-
             VStack {
-                Text("Uploading \(sentBytesWithUnit) of \(totalBytesWithUnit)", bundle: .core)
-                ProgressView(value: Float(sentBytes), total: Float(max(totalBytes, sentBytes)))
+                Text("Uploading \(viewModel.fileList.formattedBytesSent) of \(viewModel.fileList.formattedTotalSize)", bundle: .core)
+                ProgressView(value: Float(viewModel.fileList.totalBytesSent), total: Float(max(viewModel.fileList.totalSize, viewModel.fileList.totalBytesSent)))
             }
             .padding(12)
             separator
@@ -176,11 +171,11 @@ public struct AttachmentPickerView: View {
 
     private var actionButton: some View {
         VStack {
-            if viewModel.isError {
+            if viewModel.fileList.containsError {
                 retryButton
-            } else if viewModel.isUploading {
+            } else if viewModel.fileList.containsUploading {
                 uploadButton.disabled(true)
-            } else if viewModel.isAllUploaded {
+            } else if viewModel.fileList.isAllUploaded {
                 doneButton
             } else {
                 uploadButton

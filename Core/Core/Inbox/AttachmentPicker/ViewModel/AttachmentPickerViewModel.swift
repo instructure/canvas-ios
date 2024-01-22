@@ -41,20 +41,6 @@ class AttachmentPickerViewModel: ObservableObject {
     public let addAttachmentButtonDidTap = PassthroughRelay<WeakViewController>()
     public let router: Router
 
-    // MARK: Outputs
-
-    public var isError: Bool {
-        fileList.contains(where: { file in file.uploadError != nil })
-    }
-
-    public var isUploading: Bool {
-        fileList.contains(where: { file in file.isUploading })
-    }
-
-    public var isAllUploaded: Bool {
-        !fileList.contains(where: { file in !file.isUploaded })
-    }
-
     // MARK: Private
 
     private let uploadManager: UploadManager
@@ -133,7 +119,7 @@ class AttachmentPickerViewModel: ObservableObject {
             isTakePhotoVisible = false
             isFilePickerVisible = false
             isAudioRecordVisible = false
-            
+
             try uploadManager.add(url: url, batchID: batchId)
             files.refresh()
         } catch {
