@@ -25,6 +25,11 @@ class ComposeMessageViewModel: ObservableObject {
     @Published public private(set) var recipients: [Recipient] = []
     @Published public private(set) var isSendingMessage: Bool = false
 
+    @Published public private(set) var isContextDisabled: Bool = false
+    @Published public private(set) var isRecipientsDisabled: Bool = false
+    @Published public private(set) var isSubjectDisabled: Bool = false
+    @Published public private(set) var isMessageDisabled: Bool = false
+
     public let title = NSLocalizedString("New Message", comment: "")
     public var sendButtonActive: Bool {
         !bodyText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
@@ -32,9 +37,6 @@ class ComposeMessageViewModel: ObservableObject {
         !recipients.isEmpty
         // && (attachments.isEmpty || attachments.allSatisfy({ $0.isUploaded }))
 
-    }
-    public var isReply: Bool {
-        conversation != nil
     }
 
     // MARK: - Inputs
@@ -57,30 +59,29 @@ class ComposeMessageViewModel: ObservableObject {
     private let router: Router
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
-    public init(router: Router, conversation: Conversation? = nil, author: String? = nil, interactor: ComposeMessageInteractor, scheduler: AnySchedulerOf<DispatchQueue> = .main) {
+    public init(router: Router, options: ComposeMessageOptions, interactor: ComposeMessageInteractor, scheduler: AnySchedulerOf<DispatchQueue> = .main) {
         self.interactor = interactor
         self.router = router
         self.scheduler = scheduler
-        self.conversation = conversation
 
-        if let conversation {
-            self.subject = conversation.subject
-            if let context = Context(canvasContextID: conversation.contextCode ?? "") {
-                self.selectedContext = .init(name: conversation.contextName ?? "", context: context)
-            }
-            if let author {
-                self.selectedRecipients.value = conversation.audience.filter { $0.id == author }.map { Recipient(conversationParticipant: $0) }
-
-                if self.selectedRecipients.value.isEmpty {
-                    self.selectedRecipients.value = conversation.audience.map { Recipient(conversationParticipant: $0) }
-                }
-            } else {
-                self.selectedRecipients.value = conversation.audience.map { Recipient(conversationParticipant: $0) }
-            }
-        }
+        setOptionItems(options: options)
 
         setupOutputBindings()
         setupInputBindings(router: router)
+    }
+
+    private func setOptionItems(options: ComposeMessageOptions) {
+        let disabledFields = options.disabledFields
+        self.isContextDisabled = disabledFields.contextDisabled
+        self.isRecipientsDisabled = disabledFields.recipientsDisabled
+        self.isSubjectDisabled = disabledFields.subjectDisabled
+        self.isMessageDisabled = disabledFields.messageDisabled
+
+        let fieldContents = options.fieldContents
+        self.selectedContext = fieldContents.selectedContext
+        self.selectedRecipients.value = fieldContents.selectedRecipients
+        self.subject = fieldContents.subjectText
+        self.bodyText = fieldContents.bodyText
     }
 
     public func courseSelectButtonDidTap(viewController: WeakViewController) {

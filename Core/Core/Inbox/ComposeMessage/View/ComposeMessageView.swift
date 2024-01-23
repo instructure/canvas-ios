@@ -138,11 +138,11 @@ public struct ComposeMessageView: View {
                         .foregroundColor(.textDarkest)
                 }
                 Spacer()
-                if !model.isReply { DisclosureIndicator() }
+                if !model.isContextDisabled { DisclosureIndicator() }
             }
         }
-        .disabled(model.isReply)
-        .opacity(model.isReply ? 0.6 : 1)
+        .disabled(model.isContextDisabled)
+        .opacity(model.isContextDisabled ? 0.6 : 1)
         .padding(.horizontal, 16).padding(.vertical, 12)
         .accessibilityLabel(courseSelectorAccessibilityLabel)
     }
@@ -166,6 +166,8 @@ public struct ComposeMessageView: View {
                 .padding(.vertical, 12)
                 .accessibilitySortPriority(1)
         }
+        .disabled(model.isRecipientsDisabled)
+        .opacity(model.isRecipientsDisabled ? 0.6 : 1)
         .padding(.horizontal, 16)
         .accessibilityElement(children: .contain)
     }
@@ -193,10 +195,10 @@ public struct ComposeMessageView: View {
                 .foregroundColor(.textDarkest)
                 .textInputAutocapitalization(.sentences)
                 .focused($subjectTextFieldFocus)
-                .disabled(model.isReply)
                 .accessibility(label: Text("Subject", bundle: .core))
         }
-        .opacity(model.isReply ? 0.6 : 1)
+        .disabled(model.isSubjectDisabled)
+        .opacity(model.isSubjectDisabled ? 0.6 : 1)
         .padding(.horizontal, 16).padding(.vertical, 12)
     }
 
@@ -246,6 +248,8 @@ public struct ComposeMessageView: View {
                 .frame(minHeight: 60)
                 .accessibility(label: Text("Message", bundle: .core))
         }
+        .disabled(model.isMessageDisabled)
+        .opacity(model.isMessageDisabled ? 0.6 : 1)
     }
 }
 

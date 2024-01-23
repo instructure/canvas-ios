@@ -74,7 +74,7 @@ class MessageDetailsViewModel: ObservableObject {
             title: NSLocalizedString("Forward", comment: ""),
             accessibilityIdentifier: "MessageDetails.forward"
         ) {
-            self.updateState.send(.archived)
+            self.forwardTapped(viewController: viewController)
         }
 
         if (conversations.first?.workflowState == .read) {
@@ -139,7 +139,7 @@ class MessageDetailsViewModel: ObservableObject {
             title: NSLocalizedString("Forward", comment: ""),
             accessibilityIdentifier: "MessageDetails.forward"
         ) {
-            self.forwardTapped(viewController: viewController)
+            self.forwardTapped(viewController: viewController, message: message)
         }
 
         sheet.addAction(
@@ -154,10 +154,15 @@ class MessageDetailsViewModel: ObservableObject {
         router.show(sheet, from: viewController, options: .modal())
     }
 
-    public func forwardTapped(viewController: WeakViewController) {
+    public func forwardTapped(viewController: WeakViewController, message: ConversationMessage? = nil) {
+
         if let conversation = conversations.first {
+            var selectedMessage = message
+            if selectedMessage == nil {
+                selectedMessage = conversation.messages.first
+            }
             router.show(
-                ComposeMessageAssembly.makeReplyMessageViewController(conversation: conversation),
+                ComposeMessageAssembly.makeComposeMessageViewController(options: .init(fromType: .forward(conversation: conversation, message: selectedMessage))),
                 from: viewController,
                 options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
             )
@@ -167,7 +172,7 @@ class MessageDetailsViewModel: ObservableObject {
     public func replyTapped(message: ConversationMessage, viewController: WeakViewController) {
         if let conversation = conversations.first {
             router.show(
-                ComposeMessageAssembly.makeReplyMessageViewController(conversation: conversation, author: message.authorID),
+                ComposeMessageAssembly.makeComposeMessageViewController(options: .init(fromType: .reply(conversation: conversation, author: message.authorID))),
                 from: viewController,
                 options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
             )
@@ -177,7 +182,7 @@ class MessageDetailsViewModel: ObservableObject {
     public func replyAllTapped(viewController: WeakViewController) {
         if let conversation = conversations.first {
             router.show(
-                ComposeMessageAssembly.makeReplyMessageViewController(conversation: conversation),
+                ComposeMessageAssembly.makeComposeMessageViewController(options: .init(fromType: .reply(conversation: conversation, author: nil))),
                 from: viewController,
                 options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
             )
