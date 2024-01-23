@@ -33,32 +33,28 @@ class CoreAVAudioRecorderPreview: CoreAVAudioRecorder {
 
     var isMeteringEnabled: Bool = false
 
-    required init(url: URL, settings: [String : Int]) throws {
-        
-    }
+    required init(url: URL, settings: [String: Int]) throws {}
 
     init() {}
 
     func prepareToRecord() {
         isPrepareToRecordCalled = true
     }
-    
+
     func record() {
         isRecordCalled = true
     }
-    
+
     func updateMeters() {
         isUpdateMetersCalled = true
     }
-    
+
     func peakPower(forChannel channelNumber: Int) -> Float {
         isPeakPowerCalled = true
         return 0
     }
-    
+
     func stop() {
         isStopCalled = true
     }
-    
-
 }

@@ -74,7 +74,7 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
         super.init()
 
         setupControlBindings(router: router)
-        setupRecordBindings()
+        setupRecordBindings(interactor: interactor)
         setupPlaybackBindings()
     }
 
@@ -157,23 +157,20 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
             .store(in: &subscriptions)
     }
 
-    private func setupRecordBindings() {
+    private func setupRecordBindings(interactor: AudioPickerInteractor) {
         recordAudioButtonDidTap
             .handleEvents(receiveCompletion: { [weak self] _ in
                 self?.isRecorderLoading = true
             })
-            .tryMap { [weak self] _ in
-                let newUrl = URL.Directories.temporary.appendingPathComponent("\(UUID.string).m4a")
-
+            .tryMap { [weak self, interactor] _ in
+                let newUrl = interactor.getAudioUrl()
 
                 self?.audioRecorder = try self?.interactor.intializeAudioRecorder(url: newUrl)
-                self?.audioRecorder.isMeteringEnabled = true
                 self?.audioRecorder.prepareToRecord()
 
                 return newUrl
             }
-            .tryCatch { _ in Just(URL.Directories.caches) }
-            .receive(on: DispatchQueue.main)
+            .tryCatch { [weak self] _ in return Just(self?.interactor.getAudioUrl() ?? URL.Directories.caches) }
             .sink(
                 receiveCompletion: { [weak self] _ in self?.showAudioErrorDialog() },
                 receiveValue: { [weak self] url in
@@ -204,7 +201,6 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
                     self.audioPlayer = try self.interactor.intializeAudioPlayer(url: self.url)
                 }
             }
-            .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { [weak self] _ in
                     self?.audioRecorder?.stop()

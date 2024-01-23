@@ -32,14 +32,21 @@ class AudioPickerInteractorLive: AudioPickerInteractor {
                     AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue,
                 ]
 
-        return try CoreAVAudioRecorderLive(url: url, settings: settings)
+        let audioRecorder = try CoreAVAudioRecorderLive(url: url, settings: settings)
+        audioRecorder.isMeteringEnabled = true
+
+        return audioRecorder
     }
-    
+
     func intializeAudioPlayer(url: URL) throws -> CoreAVAudioPlayer {
         let recordingSession = AVAudioSession.sharedInstance()
         try recordingSession.setCategory(.playback, mode: .default)
         try recordingSession.setActive(true)
 
         return try CoreAVAudioPlayerLive(contentsOf: url)
+    }
+
+    func getAudioUrl() -> URL {
+        return URL.Directories.temporary.appendingPathComponent("\(UUID.string).m4a")
     }
 }

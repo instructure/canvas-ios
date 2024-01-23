@@ -27,6 +27,7 @@ class CoreAVAudioPlayerPreview: CoreAVAudioPlayer {
     private(set) var isPauseCalled: Bool = false
     private(set) var isStopCalled: Bool = false
 
+
     var duration: TimeInterval {
         0
     }
@@ -44,7 +45,7 @@ class CoreAVAudioPlayerPreview: CoreAVAudioPlayer {
         }
     }
     var isPlaying: Bool {
-        return false
+        return isPrepareToPlayCalled && isPlayCalled && !isPauseCalled && !isStopCalled
     }
 
     required init(contentsOf url: URL) throws {
@@ -67,6 +68,4 @@ class CoreAVAudioPlayerPreview: CoreAVAudioPlayer {
     func stop() {
         isStopCalled = true
     }
-
-
 }

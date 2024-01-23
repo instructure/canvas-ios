@@ -22,4 +22,6 @@ public protocol AudioPickerInteractor {
     func intializeAudioRecorder(url: URL) throws -> CoreAVAudioRecorder
 
     func intializeAudioPlayer(url: URL) throws -> CoreAVAudioPlayer
+
+    func getAudioUrl() -> URL
 }

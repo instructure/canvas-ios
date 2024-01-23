@@ -27,7 +27,7 @@ class AudioPickerViewModelTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        testee = AudioPickerViewModel(router: environment.router)
+        testee = AudioPickerViewModel(router: environment.router, interactor: AudioPickerInteractorPreview())
     }
 
     func testInitialisationState() {
@@ -40,6 +40,47 @@ class AudioPickerViewModelTests: CoreTestCase {
     func testNormalizePower() {
         XCTAssertEqual(testee.normalizeMeteringValue(rawValue: -100, maxHeight: 100), 3)
         XCTAssertEqual(testee.normalizeMeteringValue(rawValue: 0, maxHeight: 100), 100)
+    }
+
+    func testRecording() {
+        testee.recordAudioButtonDidTap.accept(WeakViewController(UIViewController()))
+
+        XCTAssertTrue(testee.isRecording)
+    }
+
+    func testPlayback() {
+        let viewController = WeakViewController(UIViewController())
+        testee.recordAudioButtonDidTap.accept(viewController)
+
+        XCTAssertTrue(testee.isRecording)
+        sleep(10)
+        testee.stopRecordAudioButtonDidTap.accept(viewController)
+
+        XCTAssertFalse(testee.isRecording)
+        XCTAssertTrue(testee.isReplay)
+        XCTAssertFalse(testee.isPlaying)
+
+        testee.playAudioButtonDidTap.accept(viewController)
+        XCTAssertTrue(testee.isPlaying)
+
+        testee.pauseAudioButtonDidTap.accept(viewController)
+        XCTAssertFalse(testee.isPlaying)
+    }
+
+    func testRetakeAudio() {
+        let viewController = WeakViewController(UIViewController())
+        testee.recordAudioButtonDidTap.accept(viewController)
+
+        XCTAssertTrue(testee.isRecording)
+        sleep(10)
+        testee.stopRecordAudioButtonDidTap.accept(viewController)
+
+        XCTAssertFalse(testee.isRecording)
+        XCTAssertTrue(testee.isReplay)
+        XCTAssertFalse(testee.isPlaying)
+
+        testee.retakeButtonDidTap.accept(viewController)
+        XCTAssertFalse(testee.isReplay)
     }
 
 }

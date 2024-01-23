@@ -16,22 +16,30 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#if DEBUG
-
 import Foundation
+import Combine
+@testable import Core
+import CoreData
+import XCTest
 
-public class AudioPickerInteractorPreview: AudioPickerInteractor {
-    public func intializeAudioRecorder(url: URL) throws -> CoreAVAudioRecorder {
-        return CoreAVAudioRecorderPreview()
+class AttachmentPickerInteractorLiveTests: CoreTestCase {
+    var testee: AudioPickerInteractorLive!
+
+    override func setUp() {
+        super.setUp()
+        testee = AudioPickerInteractorLive()
     }
 
-    public func intializeAudioPlayer(url: URL) throws -> CoreAVAudioPlayer {
-        return CoreAVAudioPlayerPreview()
+    func testAudioRecorderConstruction() {
+        let url = testee.getAudioUrl()
+        let recorder: CoreAVAudioRecorder! = try? testee.intializeAudioRecorder(url: url)
+
+        XCTAssertNotNil(recorder)
+        XCTAssertTrue(recorder.isMeteringEnabled)
     }
 
-    public func getAudioUrl() -> URL {
-        return URL(string: "test") ?? URL.Directories.temporary
+    func testGetUrl() {
+        let url = testee.getAudioUrl()
+        XCTAssertTrue(url.isFileURL)
     }
 }
-
-#endif
