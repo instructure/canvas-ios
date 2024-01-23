@@ -92,4 +92,20 @@ public class MessageDetailsInteractorLive: MessageDetailsInteractor {
             })
         }
     }
+
+    public func updateState(messageId: String,
+                            state: ConversationWorkflowState)
+    -> Future<Void, Never> {
+        Future<Void, Never> { promise in
+            self.uploadWorkflowStateToAPI(messageId: messageId, state: state)
+            promise(.success(()))
+        }
+    }
+
+    // MARK: - Private Helpers
+
+    private func uploadWorkflowStateToAPI(messageId: String, state: ConversationWorkflowState) {
+        let request = PutConversationRequest(id: messageId, workflowState: state)
+        env.api.makeRequest(request, callback: { _, _, _ in })
+    }
 }

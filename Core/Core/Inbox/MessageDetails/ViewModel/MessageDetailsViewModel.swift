@@ -31,6 +31,7 @@ class MessageDetailsViewModel: ObservableObject {
     // MARK: - Inputs
     public let refreshDidTrigger = PassthroughSubject<() -> Void, Never>()
     public let starDidTap = PassthroughSubject<Bool, Never>()
+    public let updateState = PassthroughSubject<ConversationWorkflowState, Never>()
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
@@ -70,13 +71,17 @@ class MessageDetailsViewModel: ObservableObject {
             image: .forwardLine,
             title: NSLocalizedString("Forward", comment: ""),
             accessibilityIdentifier: "MessageDetails.markAllRead"
-        ) {}
+        ) {
+            self.updateState.send(.archived)
+        }
 
         sheet.addAction(
             image: .archiveLine,
             title: NSLocalizedString("Archive", comment: ""),
             accessibilityIdentifier: "MessageDetails.archive"
-        ) {}
+        ) {
+            self.updateState.send(.archived)
+        }
 
         sheet.addAction(
             image: .trashLine,
@@ -137,9 +142,22 @@ class MessageDetailsViewModel: ObservableObject {
             }
             .sink()
             .store(in: &subscriptions)
+
         starDidTap
             .map { starred in
                 interactor.updateStarred(starred: starred) }
+            .sink()
+            .store(in: &subscriptions)
+
+        updateState
+            .compactMap { [weak self] state -> (messageId: String, state: ConversationWorkflowState)? in
+                if let messageId = self?.conversations.first?.id {
+                    return (messageId: messageId, state: state)
+                } else {
+                    return nil
+                }
+            }
+            .map { interactor.updateState(messageId: $0.messageId, state: $0.state) }
             .sink()
             .store(in: &subscriptions)
     }

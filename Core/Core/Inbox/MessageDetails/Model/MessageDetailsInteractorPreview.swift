@@ -59,6 +59,14 @@ public class MessageDetailsInteractorPreview: MessageDetailsInteractor {
             }
         }
     }
+
+    public func updateState(messageId: String, state: ConversationWorkflowState) -> Future<Void, Never> {
+        Future<Void, Never> { promise in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                promise(.success(()))
+            }
+        }
+    }
 }
 
 #endif
