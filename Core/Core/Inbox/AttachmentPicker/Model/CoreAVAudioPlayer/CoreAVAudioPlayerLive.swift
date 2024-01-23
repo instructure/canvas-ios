@@ -53,22 +53,20 @@ class CoreAVAudioPlayerLive: CoreAVAudioPlayer {
     required init(contentsOf url: URL) throws {
         audioPlayer = try AVAudioPlayer(contentsOf: url)
     }
-    
+
     func prepareToPlay() {
         audioPlayer.prepareToPlay()
     }
-    
+
     func play() {
         audioPlayer.play()
     }
-    
+
     func pause() {
         audioPlayer.pause()
     }
-    
+
     func stop() {
         audioPlayer.stop()
     }
-    
-
 }

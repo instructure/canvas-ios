@@ -27,9 +27,7 @@ class CoreAVAudioRecorderPreview: CoreAVAudioRecorder {
     private(set) var isUpdateMetersCalled: Bool = false
     private(set) var meteringValue: Bool = false
 
-    var currentTime: TimeInterval {
-        return 0
-    }
+    var currentTime: TimeInterval { 0 }
 
     var isMeteringEnabled: Bool = false
 
