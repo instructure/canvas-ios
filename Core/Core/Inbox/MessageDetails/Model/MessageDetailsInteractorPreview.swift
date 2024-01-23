@@ -62,7 +62,23 @@ public class MessageDetailsInteractorPreview: MessageDetailsInteractor {
 
     public func updateState(messageId: String, state: ConversationWorkflowState) -> Future<Void, Never> {
         Future<Void, Never> { promise in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                promise(.success(()))
+            }
+        }
+    }
+
+    public func deleteConversation(conversationId: String) -> Future<Void, Never> {
+        Future<Void, Never> { promise in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                promise(.success(()))
+            }
+        }
+    }
+
+    public func deleteConversationMessage(conversationId: String, messageId: String) -> Future<Void, Never> {
+        Future<Void, Never> { promise in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 promise(.success(()))
             }
         }

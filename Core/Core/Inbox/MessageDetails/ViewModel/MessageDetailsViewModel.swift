@@ -31,6 +31,8 @@ class MessageDetailsViewModel: ObservableObject {
     // MARK: - Inputs
     public let refreshDidTrigger = PassthroughSubject<() -> Void, Never>()
     public let starDidTap = PassthroughSubject<Bool, Never>()
+    public let deleteConversationDidTap = PassthroughSubject<(conversationId: String, viewController: WeakViewController), Never>()
+    public let deleteConversationMessageDidTap = PassthroughSubject<(conversationId: String, messageId: String), Never>()
     public let updateState = PassthroughSubject<ConversationWorkflowState, Never>()
 
     // MARK: - Private
@@ -48,7 +50,7 @@ class MessageDetailsViewModel: ObservableObject {
         setupInputBindings(router: router)
     }
 
-    public func moreTapped(message: ConversationMessage?, viewController: WeakViewController) {
+    public func conversationMoreTapped(message: ConversationMessage?, viewController: WeakViewController) {
         let sheet = BottomSheetPickerViewController.create()
         sheet.addAction(
             image: .replyLine,
@@ -70,9 +72,27 @@ class MessageDetailsViewModel: ObservableObject {
         sheet.addAction(
             image: .forwardLine,
             title: NSLocalizedString("Forward", comment: ""),
-            accessibilityIdentifier: "MessageDetails.markAllRead"
+            accessibilityIdentifier: "MessageDetails.forward"
         ) {
             self.updateState.send(.archived)
+        }
+
+        if (conversations.first?.workflowState == .read) {
+            sheet.addAction(
+                image: .emailLine,
+                title: NSLocalizedString("Mark as Unread", comment: ""),
+                accessibilityIdentifier: "MessageDetails.markAsUnread"
+            ) {
+                self.updateState.send(.unread)
+            }
+        } else {
+            sheet.addAction(
+                image: .emailLine,
+                title: NSLocalizedString("Mark as Read", comment: ""),
+                accessibilityIdentifier: "MessageDetails.markAsRead"
+            ) {
+                self.updateState.send(.read)
+            }
         }
 
         sheet.addAction(
@@ -85,10 +105,63 @@ class MessageDetailsViewModel: ObservableObject {
 
         sheet.addAction(
             image: .trashLine,
-            title: NSLocalizedString("Delete", comment: ""),
+            title: NSLocalizedString("Delete Conversation", comment: ""),
             accessibilityIdentifier: "MessageDetails.delete"
-        ) {}
+        ) {
+            if let conversationId = self.conversations.first?.id {
+                self.deleteConversationDidTap.send((conversationId, viewController))
+            }
+        }
         router.show(sheet, from: viewController, options: .modal())
+    }
+
+    public func messageMoreTapped(message: ConversationMessage?, viewController: WeakViewController) {
+        let sheet = BottomSheetPickerViewController.create()
+        sheet.addAction(
+            image: .replyLine,
+            title: NSLocalizedString("Reply", comment: ""),
+            accessibilityIdentifier: "MessageDetails.reply"
+        ) {
+            if let message {
+                self.replyTapped(message: message, viewController: viewController)
+            }
+        }
+        sheet.addAction(
+            image: .replyAllLine,
+            title: NSLocalizedString("Reply All", comment: ""),
+            accessibilityIdentifier: "MessageDetails.replyAll"
+        ) {
+            self.replyAllTapped(viewController: viewController)
+        }
+
+        sheet.addAction(
+            image: .forwardLine,
+            title: NSLocalizedString("Forward", comment: ""),
+            accessibilityIdentifier: "MessageDetails.forward"
+        ) {
+            self.forwardTapped(viewController: viewController)
+        }
+
+        sheet.addAction(
+            image: .trashLine,
+            title: NSLocalizedString("Delete Message", comment: ""),
+            accessibilityIdentifier: "MessageDetails.delete"
+        ) {
+            if let conversationId = self.conversations.first?.id, let messageId = message?.id {
+                self.deleteConversationMessageDidTap.send((conversationId: conversationId, messageId: messageId))
+            }
+        }
+        router.show(sheet, from: viewController, options: .modal())
+    }
+
+    public func forwardTapped(viewController: WeakViewController) {
+        if let conversation = conversations.first {
+            router.show(
+                ComposeMessageAssembly.makeReplyMessageViewController(conversation: conversation),
+                from: viewController,
+                options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
+            )
+        }
     }
 
     public func replyTapped(message: ConversationMessage, viewController: WeakViewController) {
@@ -158,6 +231,27 @@ class MessageDetailsViewModel: ObservableObject {
                 }
             }
             .map { interactor.updateState(messageId: $0.messageId, state: $0.state) }
+            .sink()
+            .store(in: &subscriptions)
+
+        deleteConversationDidTap
+            .map { (conversationId, viewController) in
+                _ = interactor.deleteConversation(conversationId: conversationId)
+                return viewController
+            }
+            .map { [weak self] viewController in
+                self?.router.dismiss(viewController)
+            }
+            .sink()
+            .store(in: &subscriptions)
+
+        deleteConversationMessageDidTap
+            .map { (conversationId, messageId) in
+                _ = interactor.deleteConversationMessage(conversationId: conversationId, messageId: messageId)
+            }
+            .map { [weak self] in
+                self?.refreshDidTrigger.send({ })
+            }
             .sink()
             .store(in: &subscriptions)
     }

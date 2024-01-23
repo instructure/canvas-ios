@@ -316,3 +316,26 @@ public struct PostConversationRequest: APIRequestable {
     public var path = "conversations"
     public let method = APIMethod.post
 }
+
+public struct DeleteConversationRequest: APIRequestable {
+    public typealias Response = APIConversation
+
+    public var path: String { "conversations/\(id)" }
+    public let method = APIMethod.delete
+
+    let id: String
+}
+
+public struct DeleteConversationMessageRequest: APIRequestable {
+    public typealias Response = APIConversation
+
+    public var path: String { "conversations/\(id)/remove_messages" }
+    public let method = APIMethod.post
+
+    let id: String
+    let messageIds: [String]
+
+    public var query: [APIQueryItem] {
+        return [ .array("remove", messageIds) ]
+    }
+}

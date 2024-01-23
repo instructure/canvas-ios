@@ -32,4 +32,6 @@ public protocol MessageDetailsInteractor {
     func refresh() -> Future<Void, Never>
     func updateStarred(starred: Bool) -> Future<Void, Never>
     func updateState(messageId: String, state: ConversationWorkflowState) -> Future<Void, Never>
+    func deleteConversation(conversationId: String) -> Future<Void, Never>
+    func deleteConversationMessage(conversationId: String, messageId: String) -> Future<Void, Never>
 }

@@ -102,6 +102,34 @@ public class MessageDetailsInteractorLive: MessageDetailsInteractor {
         }
     }
 
+    public func deleteConversation(conversationId: String) -> Future<Void, Never> {
+        Future { [weak self] promise in
+            guard let self else {
+                return promise(.success(()))
+            }
+            let request = DeleteConversationRequest(id: conversationId)
+            self.env.api.makeRequest(request, callback: { _, _, _ in
+                self.conversationStore.refresh(force: true) { _ in
+                    return promise(.success(()))
+                }
+            })
+        }
+    }
+
+    public func deleteConversationMessage(conversationId: String, messageId: String) -> Future<Void, Never> {
+        Future { [weak self] promise in
+            guard let self else {
+                return promise(.success(()))
+            }
+            let request = DeleteConversationMessageRequest(id: conversationId, messageIds: [messageId])
+            self.env.api.makeRequest(request, callback: { _, _, _ in
+                self.conversationStore.refresh(force: true) { _ in
+                    return promise(.success(()))
+                }
+            })
+        }
+    }
+
     // MARK: - Private Helpers
 
     private func uploadWorkflowStateToAPI(messageId: String, state: ConversationWorkflowState) {
