@@ -36,6 +36,7 @@ public struct AudioPickerView: View {
         }
         .background {
             Color.black
+                .ignoresSafeArea(.all)
         }
     }
 
