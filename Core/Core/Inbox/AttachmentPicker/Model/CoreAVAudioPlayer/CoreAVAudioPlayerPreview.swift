@@ -19,42 +19,42 @@
 import Foundation
 import AVFAudio
 
-class CoreAVAudioPlayerPreview: CoreAVAudioPlayer {
+public class CoreAVAudioPlayerPreview: CoreAVAudioPlayer {
     private(set) var isPrepareToPlayCalled: Bool = false
     private(set) var isPlayCalled: Bool = false
     private(set) var isPauseCalled: Bool = false
     private(set) var isStopCalled: Bool = false
 
-    var duration: TimeInterval { 0 }
-    var currentTime: TimeInterval {
+    public var duration: TimeInterval { 0 }
+    public var currentTime: TimeInterval {
         get { 0 }
         set { _ = newValue }
     }
-    var delegate: AVAudioPlayerDelegate? {
+    public var delegate: AVAudioPlayerDelegate? {
         get { nil }
         set { _ = newValue }
     }
-    var isPlaying: Bool {
+    public var isPlaying: Bool {
         return isPrepareToPlayCalled && isPlayCalled && !isPauseCalled && !isStopCalled
     }
 
-    required init(contentsOf url: URL) throws { }
+    required public init(contentsOf url: URL) throws { }
 
     init() { }
 
-    func prepareToPlay() {
+    public func prepareToPlay() {
         isPrepareToPlayCalled = true
     }
 
-    func play() {
+    public func play() {
         isPlayCalled = true
     }
 
-    func pause() {
+    public func pause() {
         isPauseCalled = true
     }
 
-    func stop() {
+    public func stop() {
         isStopCalled = true
     }
 }

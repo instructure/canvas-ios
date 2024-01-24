@@ -18,7 +18,7 @@
 
 import Foundation
 
-class CoreAVAudioRecorderPreview: CoreAVAudioRecorder {
+public class CoreAVAudioRecorderPreview: CoreAVAudioRecorder {
 
     private(set) var isPrepareToRecordCalled: Bool = false
     private(set) var isRecordCalled: Bool = false
@@ -27,32 +27,32 @@ class CoreAVAudioRecorderPreview: CoreAVAudioRecorder {
     private(set) var isUpdateMetersCalled: Bool = false
     private(set) var meteringValue: Bool = false
 
-    var currentTime: TimeInterval { 0 }
+    public var currentTime: TimeInterval { 0 }
 
-    var isMeteringEnabled: Bool = false
+    public var isMeteringEnabled: Bool = false
 
-    required init(url: URL, settings: [String: Int]) throws {}
+    required public init(url: URL, settings: [String: Int]) throws {}
 
     init() {}
 
-    func prepareToRecord() {
+    public func prepareToRecord() {
         isPrepareToRecordCalled = true
     }
 
-    func record() {
+    public func record() {
         isRecordCalled = true
     }
 
-    func updateMeters() {
+    public func updateMeters() {
         isUpdateMetersCalled = true
     }
 
-    func peakPower(forChannel channelNumber: Int) -> Float {
+    public func peakPower(forChannel channelNumber: Int) -> Float {
         isPeakPowerCalled = true
         return 0
     }
 
-    func stop() {
+    public func stop() {
         isStopCalled = true
     }
 }

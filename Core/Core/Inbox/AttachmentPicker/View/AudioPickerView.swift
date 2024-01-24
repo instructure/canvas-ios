@@ -84,7 +84,7 @@ public struct AudioPickerView: View {
         let spaceWidth: CGFloat = 5
         return VStack(alignment: .trailing) {
             HStack(alignment: .center, spacing: spaceWidth) {
-                ForEach(viewModel.audioPlotDataSet.suffix(Int(floor(maxSize.width / (barWidth + spaceWidth)))), id: \.timestamp) { plotData in
+                ForEach(viewModel.audioChartDataSet.suffix(Int(floor(maxSize.width / (barWidth + spaceWidth)))), id: \.timestamp) { plotData in
                     Rectangle()
                         .frame(width: barWidth, height: viewModel.normalizeMeteringValue(rawValue: CGFloat(plotData.value), maxHeight: maxSize.height))
                         .foregroundStyle(Color.red)
@@ -109,7 +109,7 @@ public struct AudioPickerView: View {
                 VStack(alignment: .trailing) {
                     HStack(alignment: .center, spacing: spaceWidth) {
                         ForEach(
-                            viewModel.audioPlotDataSet
+                            viewModel.audioChartDataSet
                                 .filter { element in element.timestamp <= viewModel.audioPlayerPosition }
                                 .suffix(barCount / 2),
                             id: \.timestamp
@@ -128,7 +128,7 @@ public struct AudioPickerView: View {
                 VStack(alignment: .leading) {
                     HStack(alignment: .center, spacing: spaceWidth) {
                         ForEach(
-                            viewModel.audioPlotDataSet
+                            viewModel.audioChartDataSet
                                 .filter { element in element.timestamp >= viewModel.audioPlayerPosition }
                                 .prefix(barCount / 2),
                             id: \.timestamp

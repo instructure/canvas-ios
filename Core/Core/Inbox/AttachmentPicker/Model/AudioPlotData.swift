@@ -18,7 +18,7 @@
 
 import Foundation
 
-struct AudioPlotData {
+public struct AudioPlotData {
     public var timestamp: Double
     public var value: Float
 }

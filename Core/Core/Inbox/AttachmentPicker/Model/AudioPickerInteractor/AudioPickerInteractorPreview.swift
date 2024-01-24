@@ -19,18 +19,51 @@
 #if DEBUG
 
 import Foundation
+import Combine
 
 public class AudioPickerInteractorPreview: AudioPickerInteractor {
-    public func intializeAudioRecorder(url: URL) throws -> CoreAVAudioRecorder {
-        return CoreAVAudioRecorderPreview()
+
+    public var audioRecorder: CoreAVAudioRecorder? = CoreAVAudioRecorderPreview()
+
+    public var audioPlayer: CoreAVAudioPlayer? = CoreAVAudioPlayerPreview()
+
+    public var url: URL? = URL.Directories.temporary
+
+    public var recorderTimer = PassthroughSubject<AudioPlotData, Never>()
+
+    public var playerTimer = PassthroughSubject<TimeInterval, Never>()
+
+    public func seekInAudio(rawValue value: CGFloat) {}
+
+    public func startRecording() {
+        audioRecorder?.prepareToRecord()
+        audioRecorder?.record()
     }
 
-    public func intializeAudioPlayer(url: URL) throws -> CoreAVAudioPlayer {
-        return CoreAVAudioPlayerPreview()
+    public func stopRecording() {
+        audioRecorder?.stop()
+        audioPlayer?.prepareToPlay()
     }
 
-    public func getAudioUrl() -> URL {
-        return URL(string: "test") ?? URL.Directories.temporary
+    public func playAudio() {
+        audioPlayer?.play()
+    }
+
+    public func pauseAudio() {
+        audioPlayer?.pause()
+    }
+
+    public func stopAudio() {
+        audioPlayer?.stop()
+    }
+
+    public func cancel() {
+        audioPlayer?.stop()
+        audioRecorder?.stop()
+    }
+
+    public func retakeAudio() {
+
     }
 }
 

@@ -18,9 +18,95 @@
 
 import Foundation
 import AVFAudio
+import Combine
 
 class AudioPickerInteractorLive: AudioPickerInteractor {
-    func intializeAudioRecorder(url: URL) throws -> CoreAVAudioRecorder {
+
+    var url: URL?
+    var audioRecorder: CoreAVAudioRecorder?
+    var audioPlayer: CoreAVAudioPlayer?
+    var recorderCancellable: Cancellable?
+    var playerCancellable: Cancellable?
+
+    let recorderTimer = PassthroughSubject<AudioPlotData, Never>()
+    let playerTimer = PassthroughSubject<TimeInterval, Never>()
+
+    func seekInAudio(rawValue value: CGFloat) {
+        let newValue = normalizeSeekValue(rawValue: value)
+        audioPlayer?.currentTime = newValue
+    }
+
+    func startRecording() {
+        url = getAudioUrl()
+
+        if let url, let recorder = try? initializeAudioRecorder(url: url) {
+            audioRecorder = recorder
+            audioRecorder?.prepareToRecord()
+            audioRecorder?.record()
+        }
+
+        recorderCancellable = Timer.publish(every: 0.1, on: .main, in: .common)
+            .autoconnect()
+            .map { [weak self] _ -> AudioPlotData in
+                let timestamp = self?.audioRecorder?.currentTime ?? 0
+
+                self?.audioRecorder?.updateMeters()
+                let peakPower = self?.audioRecorder?.peakPower(forChannel: 0) ?? 0
+
+                return AudioPlotData(timestamp: timestamp, value: peakPower)
+            }
+            .map { [weak self] audioData in
+                self?.recorderTimer.send(audioData)
+            }
+            .sink()
+    }
+
+    func stopRecording() {
+        recorderCancellable?.cancel()
+        audioRecorder?.stop()
+
+        if let url, let player = try? initializeAudioPlayer(url: url) {
+            audioPlayer = player
+            player.prepareToPlay()
+        }
+
+        playerCancellable = Timer.publish(every: 0.1, on: .main, in: .common)
+            .autoconnect()
+            .map { [weak self] _ in
+                return self?.audioPlayer?.currentTime ?? 0
+            }
+            .map { [weak self] time in
+                self?.playerTimer.send(time)
+            }
+            .sink()
+    }
+
+    func playAudio() {
+        audioPlayer?.play()
+    }
+
+    func pauseAudio() {
+        audioPlayer?.pause()
+    }
+
+    func stopAudio() {
+        playerCancellable?.cancel()
+    }
+
+    func cancel() {
+        audioPlayer?.stop()
+        audioRecorder?.stop()
+        playerCancellable?.cancel()
+        recorderCancellable?.cancel()
+    }
+
+    func retakeAudio() {
+        cancel()
+    }
+
+    // MARK: Private helpers
+
+    private func initializeAudioRecorder(url: URL) throws -> CoreAVAudioRecorder {
         let recordingSession = AVAudioSession.sharedInstance()
         try recordingSession.setCategory(.record, mode: .default)
         try recordingSession.setActive(true)
@@ -38,7 +124,7 @@ class AudioPickerInteractorLive: AudioPickerInteractor {
         return audioRecorder
     }
 
-    func intializeAudioPlayer(url: URL) throws -> CoreAVAudioPlayer {
+    private func initializeAudioPlayer(url: URL) throws -> CoreAVAudioPlayer {
         let recordingSession = AVAudioSession.sharedInstance()
         try recordingSession.setCategory(.playback, mode: .default)
         try recordingSession.setActive(true)
@@ -46,7 +132,18 @@ class AudioPickerInteractorLive: AudioPickerInteractor {
         return try CoreAVAudioPlayerLive(contentsOf: url)
     }
 
-    func getAudioUrl() -> URL {
+    private func getAudioUrl() -> URL {
         return URL.Directories.temporary.appendingPathComponent("\(UUID.string).m4a")
+    }
+
+    private func normalizeSeekValue(rawValue value: CGFloat) -> CGFloat {
+        if let audioPlayer {
+            var newValue = audioPlayer.currentTime - (value * 0.001)
+            if newValue >= audioPlayer.duration - 0.1 {
+                newValue = audioPlayer.duration - 0.1
+            }
+            return newValue
+        }
+        return 0
     }
 }

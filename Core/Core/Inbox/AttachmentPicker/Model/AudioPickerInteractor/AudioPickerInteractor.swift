@@ -17,11 +17,28 @@
 //
 
 import Foundation
+import Combine
 
 public protocol AudioPickerInteractor {
-    func intializeAudioRecorder(url: URL) throws -> CoreAVAudioRecorder
+    var audioRecorder: CoreAVAudioRecorder? { get }
+    var audioPlayer: CoreAVAudioPlayer? { get }
+    var url: URL? { get }
+    var recorderTimer: PassthroughSubject<AudioPlotData, Never> { get }
+    var playerTimer: PassthroughSubject<TimeInterval, Never> { get }
 
-    func intializeAudioPlayer(url: URL) throws -> CoreAVAudioPlayer
+    func seekInAudio(rawValue value: CGFloat)
 
-    func getAudioUrl() -> URL
+    func startRecording()
+
+    func stopRecording()
+
+    func playAudio()
+
+    func pauseAudio()
+
+    func stopAudio()
+
+    func cancel()
+
+    func retakeAudio()
 }
