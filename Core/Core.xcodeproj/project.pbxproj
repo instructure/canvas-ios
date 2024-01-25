@@ -1387,6 +1387,9 @@
 		D35BFD672B5EC8FE00A40A43 /* AudioPickerInteractorPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35BFD662B5EC8FE00A40A43 /* AudioPickerInteractorPreview.swift */; };
 		D35BFD692B5ECFDC00A40A43 /* AttachmentPickerInteractorLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35BFD682B5ECFDC00A40A43 /* AttachmentPickerInteractorLiveTests.swift */; };
 		D365861B2B55763200F05D21 /* ConversationAttachmentCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365861A2B55763200F05D21 /* ConversationAttachmentCardView.swift */; };
+		D36F6F722B61318400CF7D9D /* AttachmentPickerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36F6F712B61318400CF7D9D /* AttachmentPickerInteractor.swift */; };
+		D36F6F742B61319500CF7D9D /* AttachmentPickerInteractorLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36F6F732B61319500CF7D9D /* AttachmentPickerInteractorLive.swift */; };
+		D36F6F762B6131A800CF7D9D /* AttachmentPickerInteractorPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36F6F752B6131A800CF7D9D /* AttachmentPickerInteractorPreview.swift */; };
 		D3B194062B580F9300AA75B5 /* AudioPlotData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B194052B580F9300AA75B5 /* AudioPlotData.swift */; };
 		D3E67EB22B56AB27000B9CFE /* AttachmentPickerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E67EB12B56AB27000B9CFE /* AttachmentPickerViewModelTests.swift */; };
 		D3E67EB42B57CD4C000B9CFE /* AudioPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E67EB32B57CD4C000B9CFE /* AudioPickerViewModel.swift */; };
@@ -3168,6 +3171,9 @@
 		D35BFD682B5ECFDC00A40A43 /* AttachmentPickerInteractorLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentPickerInteractorLiveTests.swift; sourceTree = "<group>"; };
 		D365861A2B55763200F05D21 /* ConversationAttachmentCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationAttachmentCardView.swift; sourceTree = "<group>"; };
 		D36C5027996C9F24362419DA /* AttachmentCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCardsView.swift; sourceTree = "<group>"; };
+		D36F6F712B61318400CF7D9D /* AttachmentPickerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentPickerInteractor.swift; sourceTree = "<group>"; };
+		D36F6F732B61319500CF7D9D /* AttachmentPickerInteractorLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentPickerInteractorLive.swift; sourceTree = "<group>"; };
+		D36F6F752B6131A800CF7D9D /* AttachmentPickerInteractorPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentPickerInteractorPreview.swift; sourceTree = "<group>"; };
 		D3ABC68A7725FDFC09EDC581 /* NSPersistentStoreExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPersistentStoreExtensions.swift; sourceTree = "<group>"; };
 		D3B0873C4E11AF89B004B474 /* PermissionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsTests.swift; sourceTree = "<group>"; };
 		D3B194052B580F9300AA75B5 /* AudioPlotData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlotData.swift; sourceTree = "<group>"; };
@@ -8193,9 +8199,20 @@
 			path = AudioPickerInteractor;
 			sourceTree = "<group>";
 		};
+		D36F6F702B61316700CF7D9D /* AttachmentPickerInteractor */ = {
+			isa = PBXGroup;
+			children = (
+				D36F6F712B61318400CF7D9D /* AttachmentPickerInteractor.swift */,
+				D36F6F732B61319500CF7D9D /* AttachmentPickerInteractorLive.swift */,
+				D36F6F752B6131A800CF7D9D /* AttachmentPickerInteractorPreview.swift */,
+			);
+			path = AttachmentPickerInteractor;
+			sourceTree = "<group>";
+		};
 		D3B194042B580F8700AA75B5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D36F6F702B61316700CF7D9D /* AttachmentPickerInteractor */,
 				D35BFD612B5EC8AF00A40A43 /* AudioPickerInteractor */,
 				D35BFD5A2B5EC16300A40A43 /* CoreAVAudioPlayer */,
 				D35BFD552B5EC0F600A40A43 /* CoreAVAudioRecorder */,
@@ -10605,6 +10622,7 @@
 				CC5E5903D8663981D1D70F7C /* FileSubmissionsStatus.swift in Sources */,
 				CBC8970803289BA88C524EAB /* FileUploadContext.swift in Sources */,
 				A9EF5B55A831E9B796D50CF0 /* FileUploadItem.swift in Sources */,
+				D36F6F762B6131A800CF7D9D /* AttachmentPickerInteractorPreview.swift in Sources */,
 				817A0D6AB41E34A88542042E /* FileUploadNotificationCard.swift in Sources */,
 				0146F9EB69F53159F3181BDB /* FileUploadNotificationCardItemViewModel.swift in Sources */,
 				B4FE033171D1FCD00FD1D462 /* FileUploadNotificationCardListViewModel.swift in Sources */,
@@ -10633,6 +10651,7 @@
 				84AAB9C0582D1C9C95B78A6B /* GetAllCoursesCourseListUseCase.swift in Sources */,
 				A052AC2278851F664AA4BFC8 /* GetAllCoursesGroupListUseCase.swift in Sources */,
 				88FE93F62257EEFC0BF87021 /* GetArc.swift in Sources */,
+				D36F6F722B61318400CF7D9D /* AttachmentPickerInteractor.swift in Sources */,
 				57B914DC6567723EF463392F /* GetAssignmentGroups.swift in Sources */,
 				77D6C35B0ED735A42718E05D /* GetAssignments.swift in Sources */,
 				69AC9E284C5B7DEE6D6C8783 /* GetAssignmentsByGroup.swift in Sources */,
@@ -11082,6 +11101,7 @@
 				35592A9A9B1477D41DA36BF1 /* TodoListViewController.swift in Sources */,
 				FC357A8C66BEF6AA9A55EA40 /* TokenLabelView.swift in Sources */,
 				95DD931B9B3653800BA647DD /* TopBarItemView.swift in Sources */,
+				D36F6F742B61319500CF7D9D /* AttachmentPickerInteractorLive.swift in Sources */,
 				A6D5479CCC9403F8CF0EFCB7 /* TopBarItemViewModel.swift in Sources */,
 				1E316CCAA77E8FF04FE7E83C /* TopBarSelectionShape.swift in Sources */,
 				7CE54909E33993904768F9BD /* TopBarView.swift in Sources */,

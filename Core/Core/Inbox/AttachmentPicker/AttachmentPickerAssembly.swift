@@ -24,7 +24,8 @@ public enum AttachmentPickerAssembly {
         batchId: String,
         uploadManager: UploadManager
     ) -> UIViewController {
-        let viewModel = AttachmentPickerViewModel(router: env.router, batchId: batchId, uploadManager: uploadManager)
+        let interactor = AttachmentPickerInteractorLive(batchId: batchId, uploadManager: uploadManager)
+        let viewModel = AttachmentPickerViewModel(router: env.router, interactor: interactor)
         let view = AttachmentPickerView(model: viewModel)
         return CoreHostingController(view)
     }
@@ -41,7 +42,8 @@ public enum AttachmentPickerAssembly {
 
     public static func makePreview(env: AppEnvironment)
     -> AttachmentPickerView {
-        let viewModel = AttachmentPickerViewModel(router: env.router, batchId: "")
+        let interactor = AttachmentPickerInteractorPreview()
+        let viewModel = AttachmentPickerViewModel(router: env.router, interactor: interactor)
         return AttachmentPickerView(model: viewModel)
     }
 

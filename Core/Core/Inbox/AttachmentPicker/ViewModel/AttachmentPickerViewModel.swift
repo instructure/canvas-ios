@@ -34,33 +34,26 @@ class AttachmentPickerViewModel: ObservableObject {
     public let title = NSLocalizedString("Attachments", comment: "")
     public let fileErrorTitle = NSLocalizedString("Error", comment: "")
     public let fileErrorMessage = NSLocalizedString("Failed to add attachment. Please try again!", comment: "")
+
     public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
     public let doneButtonDidTap = PassthroughRelay<WeakViewController>()
     public let uploadButtonDidTap = PassthroughRelay<WeakViewController>()
     public let retryButtonDidTap = PassthroughRelay<WeakViewController>()
     public let addAttachmentButtonDidTap = PassthroughRelay<WeakViewController>()
+    public let removeButtonDidTap = PassthroughRelay<File>()
     public let router: Router
 
     // MARK: Private
 
-    private let uploadManager: UploadManager
+    private let interactor: AttachmentPickerInteractor
     private var subscriptions = Set<AnyCancellable>()
-    private let batchId: String
-    private lazy var files = uploadManager.subscribe(batchID: batchId) { [weak self] in
-        self?.update()
-    }
 
-    public init (router: Router, batchId: String, uploadManager: UploadManager = UploadManager(identifier: UUID.string)) {
+    public init (router: Router, interactor: AttachmentPickerInteractor) {
         self.router = router
-        self.batchId = batchId
-        self.uploadManager = uploadManager
+        self.interactor = interactor
 
-        update()
         setupInputBindings(router: router)
-    }
-
-    private func update() {
-        fileList = files.all
+        setupOutputBindings()
     }
 
     private func showDialog(viewController: WeakViewController) {
@@ -114,49 +107,27 @@ class AttachmentPickerViewModel: ObservableObject {
     }
 
     func fileSelected(url: URL) {
-        do {
-            isImagePickerVisible = false
-            isTakePhotoVisible = false
-            isFilePickerVisible = false
-            isAudioRecordVisible = false
+        isImagePickerVisible = false
+        isTakePhotoVisible = false
+        isFilePickerVisible = false
+        isAudioRecordVisible = false
 
-            try uploadManager.add(url: url, batchID: batchId)
-            files.refresh()
-        } catch {
-            showFileErrorDialog()
-        }
+        interactor.addFile(url: url)
     }
 
-    func fileRemoved(file: File) {
-        uploadManager.viewContext.delete(file)
-        files.refresh()
-    }
-
-    private func uploadAttachments() {
-        files.all.forEach { file in
-            if !file.isUploaded {
-                uploadManager.upload(file: file, to: .myFiles, folderPath: "conversation attachments")
-            }
-        }
-    }
-
-    private func retryUpload() {
-        uploadAttachments()
-    }
-
-    private func cancelUnPublishedFiles() {
-        files.all.forEach {file in
-            if !file.isUploaded {
-                fileRemoved(file: file)
-                uploadManager.cancel(file: file)
-            }
-        }
+    private func setupOutputBindings() {
+        interactor.files.sink(receiveCompletion: { [weak self] _ in
+            self?.showFileErrorDialog()
+        }, receiveValue: { [weak self] files in
+            self?.fileList = files
+        })
+        .store(in: &subscriptions)
     }
 
     private func setupInputBindings(router: Router) {
         cancelButtonDidTap
             .sink { [weak self, router] viewController in
-                self?.cancelUnPublishedFiles()
+                self?.interactor.cancel()
                 router.dismiss(viewController)
             }
             .store(in: &subscriptions)
@@ -169,19 +140,25 @@ class AttachmentPickerViewModel: ObservableObject {
 
         uploadButtonDidTap
             .sink { [weak self] _ in
-                self?.uploadAttachments()
+                self?.interactor.uploadFiles()
             }
             .store(in: &subscriptions)
 
         retryButtonDidTap
             .sink { [weak self] _ in
-                self?.retryUpload()
+                self?.interactor.retry()
             }
             .store(in: &subscriptions)
 
         addAttachmentButtonDidTap
             .sink { [weak self] viewController in
                 self?.showDialog(viewController: viewController)
+            }
+            .store(in: &subscriptions)
+
+        removeButtonDidTap
+            .sink { [weak self] file in
+                self?.interactor.removeFile(file: file)
             }
             .store(in: &subscriptions)
     }

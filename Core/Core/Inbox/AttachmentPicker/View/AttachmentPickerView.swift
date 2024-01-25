@@ -88,7 +88,7 @@ public struct AttachmentPickerView: View {
                     }
                 } else {
                     Button {
-                        viewModel.fileRemoved(file: file)
+                        viewModel.removeButtonDidTap.accept(file)
                     } label: {
                         Image.xLine
                     }
