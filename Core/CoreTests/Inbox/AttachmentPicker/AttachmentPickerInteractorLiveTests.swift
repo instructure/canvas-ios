@@ -19,27 +19,69 @@
 import Foundation
 import Combine
 @testable import Core
+import TestsFoundation
 import CoreData
 import XCTest
 
 class AttachmentPickerInteractorLiveTests: CoreTestCase {
-    var testee: AudioPickerInteractorLive!
+    var testee: AttachmentPickerInteractorLive!
+
+    private let batchId: String = "testBatchId"
+    private let file1 = File.make(from: .make(
+        id: "p1",
+        display_name: "PDF File 1",
+        contentType: "application/pdf",
+        url: URL(string: "/files/d?download=1")!,
+        mime_class: "pdf"
+    ))
+    private let file2 = File.make(from: .make(
+        id: "p2",
+        display_name: "PDF File 2",
+        contentType: "application/pdf",
+        url: URL(string: "/files/d?download=2")!,
+        mime_class: "pdf"
+    ))
 
     override func setUp() {
         super.setUp()
-        testee = AudioPickerInteractorLive()
+        testee = AttachmentPickerInteractorLive(batchId: batchId, uploadManager: uploadManager)
     }
 
-    func testAudioRecorderConstruction() {
-        let url = testee.getAudioUrl()
-        let recorder: CoreAVAudioRecorder! = try? testee.intializeAudioRecorder(url: url)
-
-        XCTAssertNotNil(recorder)
-        XCTAssertTrue(recorder.isMeteringEnabled)
+    func testAddFile() {
+        testee.addFile(url: file1.url!)
+        XCTAssertTrue(uploadManager.addWasCalled)
     }
 
-    func testGetUrl() {
-        let url = testee.getAudioUrl()
-        XCTAssertTrue(url.isFileURL)
+    func testUpload() {
+        testee.addFile(url: file1.url!)
+        testee.uploadFiles()
+        XCTAssertTrue(file1.isUploaded)
+
+        testee.addFile(url: file2.url!)
+        testee.uploadFiles()
+        XCTAssertTrue(file2.isUploaded)
     }
+
+    func testCancel() {
+        testee.addFile(url: file1.url!)
+        testee.uploadFiles()
+        XCTAssertTrue(file1.isUploaded)
+
+        testee.addFile(url: file2.url!)
+
+        testee.cancel()
+
+        XCTAssertTrue(uploadManager.cancelWasCalled)
+    }
+
+    func testRetry() {
+        testee.addFile(url: file1.url!)
+        testee.uploadFiles()
+        XCTAssertTrue(file1.isUploaded)
+
+        testee.addFile(url: file2.url!)
+        testee.retry()
+        XCTAssertTrue(file2.isUploaded)
+    }
+
 }

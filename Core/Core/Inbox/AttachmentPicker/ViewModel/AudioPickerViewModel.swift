@@ -88,13 +88,20 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
         }
     }
 
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        player.currentTime = player.duration
-        player.pause()
+    func seekInAudio(_ value: CGFloat) {
+        let newValue = normalizeSeekValue(rawValue: value)
+        interactor.seekInAudio(newValue: newValue)
     }
 
-    func seekInAudio(_ value: CGFloat) {
-        interactor.seekInAudio(rawValue: value)
+    func normalizeSeekValue(rawValue value: CGFloat) -> CGFloat {
+        if let audioPlayer = interactor.audioPlayer {
+            var newValue = audioPlayer.currentTime - (value * 0.001)
+            if newValue >= audioPlayer.duration - 0.1 {
+                newValue = audioPlayer.duration - 0.1
+            }
+            return newValue
+        }
+        return 0
     }
 
     func normalizeMeteringValue(rawValue: CGFloat, maxHeight: CGFloat) -> CGFloat {
@@ -115,17 +122,22 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
 
     private func setupOutputBindings() {
         interactor.recorderTimer
-            .sink { [weak self] audioData in
-                self?.audioChartDataSet.append(audioData)
-                self?.recordingLengthString = self?.formatTimestamp(timestamp: audioData.timestamp) ?? ""
-            }
+            .sink(receiveCompletion: { [weak self] _ in
+                self?.showAudioErrorDialog()
+            }, receiveValue: { [weak self] audioData in
+                    self?.audioChartDataSet.append(audioData)
+                    self?.recordingLengthString = self?.formatTimestamp(timestamp: audioData.timestamp) ?? ""
+            })
             .store(in: &subscriptions)
 
         interactor.playerTimer
-            .sink { [weak self] timestamp in
+            .sink(receiveCompletion: { [weak self] _ in
+                self?.showAudioErrorDialog()
+            }, receiveValue: { [weak self] timestamp in
                 self?.audioPlayerPosition = timestamp
                 self?.audioPlayerPositionString = self?.formatTimestamp(timestamp: timestamp) ?? ""
-            }
+
+            })
             .store(in: &subscriptions)
     }
 

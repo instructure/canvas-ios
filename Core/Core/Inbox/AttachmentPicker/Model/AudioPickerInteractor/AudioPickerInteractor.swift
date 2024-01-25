@@ -23,10 +23,10 @@ public protocol AudioPickerInteractor {
     var audioRecorder: CoreAVAudioRecorder? { get }
     var audioPlayer: CoreAVAudioPlayer? { get }
     var url: URL? { get }
-    var recorderTimer: PassthroughSubject<AudioPlotData, Never> { get }
-    var playerTimer: PassthroughSubject<TimeInterval, Never> { get }
+    var recorderTimer: PassthroughSubject<AudioPlotData, Error> { get }
+    var playerTimer: PassthroughSubject<TimeInterval, Error> { get }
 
-    func seekInAudio(rawValue value: CGFloat)
+    func seekInAudio(newValue: CGFloat)
 
     func startRecording()
 

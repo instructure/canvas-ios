@@ -25,9 +25,11 @@ import XCTest
 class AudioPickerViewModelTests: CoreTestCase {
     var testee: AudioPickerViewModel!
 
+    private let interactor = AudioPickerInteractorPreview()
+
     override func setUp() {
         super.setUp()
-        testee = AudioPickerViewModel(router: environment.router, interactor: AudioPickerInteractorPreview())
+        testee = AudioPickerViewModel(router: environment.router, interactor: interactor)
     }
 
     func testInitialisationState() {
@@ -81,6 +83,27 @@ class AudioPickerViewModelTests: CoreTestCase {
 
         testee.retakeButtonDidTap.accept(viewController)
         XCTAssertFalse(testee.isReplay)
+    }
+
+    func testSeekinAudio() {
+        testee.seekInAudio(-10)
+        XCTAssertTrue(interactor.seekInAudioCalled)
+    }
+
+    func testRecorderError() {
+        interactor.throwRecorderError()
+
+        wait(for: [router.showExpectation], timeout: 1)
+        let dialog = router.presented as? UIAlertController
+        XCTAssertNotNil(dialog)
+    }
+
+    func testPlayerError() {
+        interactor.throwPlayerError()
+
+        wait(for: [router.showExpectation], timeout: 1)
+        let dialog = router.presented as? UIAlertController
+        XCTAssertNotNil(dialog)
     }
 
 }

@@ -1390,6 +1390,7 @@
 		D36F6F722B61318400CF7D9D /* AttachmentPickerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36F6F712B61318400CF7D9D /* AttachmentPickerInteractor.swift */; };
 		D36F6F742B61319500CF7D9D /* AttachmentPickerInteractorLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36F6F732B61319500CF7D9D /* AttachmentPickerInteractorLive.swift */; };
 		D36F6F762B6131A800CF7D9D /* AttachmentPickerInteractorPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36F6F752B6131A800CF7D9D /* AttachmentPickerInteractorPreview.swift */; };
+		D36F6F7A2B624CC600CF7D9D /* AudioPickerInteractorLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36F6F792B624CC600CF7D9D /* AudioPickerInteractorLiveTests.swift */; };
 		D3B194062B580F9300AA75B5 /* AudioPlotData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B194052B580F9300AA75B5 /* AudioPlotData.swift */; };
 		D3E67EB22B56AB27000B9CFE /* AttachmentPickerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E67EB12B56AB27000B9CFE /* AttachmentPickerViewModelTests.swift */; };
 		D3E67EB42B57CD4C000B9CFE /* AudioPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E67EB32B57CD4C000B9CFE /* AudioPickerViewModel.swift */; };
@@ -3174,6 +3175,7 @@
 		D36F6F712B61318400CF7D9D /* AttachmentPickerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentPickerInteractor.swift; sourceTree = "<group>"; };
 		D36F6F732B61319500CF7D9D /* AttachmentPickerInteractorLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentPickerInteractorLive.swift; sourceTree = "<group>"; };
 		D36F6F752B6131A800CF7D9D /* AttachmentPickerInteractorPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentPickerInteractorPreview.swift; sourceTree = "<group>"; };
+		D36F6F792B624CC600CF7D9D /* AudioPickerInteractorLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPickerInteractorLiveTests.swift; sourceTree = "<group>"; };
 		D3ABC68A7725FDFC09EDC581 /* NSPersistentStoreExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPersistentStoreExtensions.swift; sourceTree = "<group>"; };
 		D3B0873C4E11AF89B004B474 /* PermissionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsTests.swift; sourceTree = "<group>"; };
 		D3B194052B580F9300AA75B5 /* AudioPlotData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlotData.swift; sourceTree = "<group>"; };
@@ -8248,6 +8250,7 @@
 				D3E67EB12B56AB27000B9CFE /* AttachmentPickerViewModelTests.swift */,
 				D352EE642B5A6A8600B9E3E1 /* AudioPickerViewModelTests.swift */,
 				D35BFD682B5ECFDC00A40A43 /* AttachmentPickerInteractorLiveTests.swift */,
+				D36F6F792B624CC600CF7D9D /* AudioPickerInteractorLiveTests.swift */,
 			);
 			path = AttachmentPicker;
 			sourceTree = "<group>";
@@ -10041,6 +10044,7 @@
 				15BC88F44D5EA52F26D3ED14 /* PageListViewControllerTests.swift in Sources */,
 				CEEB69AC4E74B054E4F61BAB /* PageTests.swift in Sources */,
 				4209958C9EC3BB65082075CD /* PageViewEventRequestManagerTests.swift in Sources */,
+				D36F6F7A2B624CC600CF7D9D /* AudioPickerInteractorLiveTests.swift in Sources */,
 				933C8D0D091CB78857F5F3FE /* PageViewEventTests.swift in Sources */,
 				8C05A0EE847A03E2CFC7C316 /* PageViewEventViewControllerLoggingProtocolTests.swift in Sources */,
 				CD96C3E67DE10AEB1F1F7955 /* PageViewSessionTests.swift in Sources */,

@@ -29,11 +29,15 @@ public class AudioPickerInteractorPreview: AudioPickerInteractor {
 
     public var url: URL? = URL.Directories.temporary
 
-    public var recorderTimer = PassthroughSubject<AudioPlotData, Never>()
+    public var recorderTimer = PassthroughSubject<AudioPlotData, Error>()
 
-    public var playerTimer = PassthroughSubject<TimeInterval, Never>()
+    public var playerTimer = PassthroughSubject<TimeInterval, Error>()
 
-    public func seekInAudio(rawValue value: CGFloat) {}
+    public var seekInAudioCalled: Bool = false
+
+    public func seekInAudio(newValue: CGFloat) {
+        seekInAudioCalled = true
+    }
 
     public func startRecording() {
         audioRecorder?.prepareToRecord()
@@ -64,6 +68,14 @@ public class AudioPickerInteractorPreview: AudioPickerInteractor {
 
     public func retakeAudio() {
 
+    }
+
+    public func throwRecorderError() {
+        recorderTimer.send(completion: .failure(NSError.instructureError("Failed to record audio")))
+    }
+
+    public func throwPlayerError() {
+        playerTimer.send(completion: .failure(NSError.instructureError("Failed to play audio")))
     }
 }
 

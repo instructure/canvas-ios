@@ -25,11 +25,11 @@ import XCTest
 class AttachmentPickerViewModelTests: CoreTestCase {
     var testee: AttachmentPickerViewModel!
 
-    private let batchId = "TestBatchId"
+    private let interactor = AttachmentPickerInteractorPreview()
 
     override func setUp() {
         super.setUp()
-        testee = AttachmentPickerViewModel(router: environment.router, batchId: batchId, uploadManager: uploadManager)
+        testee = AttachmentPickerViewModel(router: environment.router, interactor: interactor)
     }
 
     func testCancelButton() {
@@ -45,9 +45,10 @@ class AttachmentPickerViewModelTests: CoreTestCase {
 
         let testFile = File.make()
         testee.fileSelected(url: testFile.localFileURL ?? URL(string: "test")!)
-        XCTAssertTrue(uploadManager.addWasCalled)
+        XCTAssertTrue(interactor.addFileCalled)
 
         testee.uploadButtonDidTap.accept(viewController)
+        XCTAssertTrue(interactor.uploadFilesCalled)
     }
 
     func testRetryButton() {
@@ -55,9 +56,10 @@ class AttachmentPickerViewModelTests: CoreTestCase {
 
         let testFile = File.make()
         testee.fileSelected(url: testFile.localFileURL ?? URL(string: "test")!)
-        XCTAssertTrue(uploadManager.addWasCalled)
+        XCTAssertTrue(interactor.addFileCalled)
 
         testee.retryButtonDidTap.accept(viewController)
+        XCTAssertTrue(interactor.retryCalled)
     }
 
     func testAddAttachmentDialog() {
@@ -67,5 +69,16 @@ class AttachmentPickerViewModelTests: CoreTestCase {
         wait(for: [router.showExpectation], timeout: 1)
         let dialog = router.presented as? BottomSheetPickerViewController
         XCTAssertNotNil(dialog)
+    }
+
+    func testErrorHandling() {
+        interactor.throwError()
+
+        wait(for: [router.showExpectation], timeout: 1)
+        let dialog = router.presented as? UIAlertController
+        XCTAssertNotNil(dialog)
+        XCTAssertEqual(dialog?.title, "Error")
+        XCTAssertEqual(dialog?.message, "Failed to add attachment. Please try again!")
+        XCTAssertEqual(dialog?.actions.count, 1)
     }
 }

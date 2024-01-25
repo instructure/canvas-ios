@@ -28,11 +28,10 @@ class AudioPickerInteractorLive: AudioPickerInteractor {
     var recorderCancellable: Cancellable?
     var playerCancellable: Cancellable?
 
-    let recorderTimer = PassthroughSubject<AudioPlotData, Never>()
-    let playerTimer = PassthroughSubject<TimeInterval, Never>()
+    let recorderTimer = PassthroughSubject<AudioPlotData, Error>()
+    let playerTimer = PassthroughSubject<TimeInterval, Error>()
 
-    func seekInAudio(rawValue value: CGFloat) {
-        let newValue = normalizeSeekValue(rawValue: value)
+    func seekInAudio(newValue: CGFloat) {
         audioPlayer?.currentTime = newValue
     }
 
@@ -43,6 +42,8 @@ class AudioPickerInteractorLive: AudioPickerInteractor {
             audioRecorder = recorder
             audioRecorder?.prepareToRecord()
             audioRecorder?.record()
+        } else {
+            recorderTimer.send(completion: .failure(NSError.instructureError("Failed to record audio")))
         }
 
         recorderCancellable = Timer.publish(every: 0.1, on: .main, in: .common)
@@ -68,6 +69,8 @@ class AudioPickerInteractorLive: AudioPickerInteractor {
         if let url, let player = try? initializeAudioPlayer(url: url) {
             audioPlayer = player
             player.prepareToPlay()
+        } else {
+            recorderTimer.send(completion: .failure(NSError.instructureError("Failed to play audio")))
         }
 
         playerCancellable = Timer.publish(every: 0.1, on: .main, in: .common)
@@ -90,6 +93,7 @@ class AudioPickerInteractorLive: AudioPickerInteractor {
     }
 
     func stopAudio() {
+        audioPlayer?.stop()
         playerCancellable?.cancel()
     }
 
@@ -134,16 +138,5 @@ class AudioPickerInteractorLive: AudioPickerInteractor {
 
     private func getAudioUrl() -> URL {
         return URL.Directories.temporary.appendingPathComponent("\(UUID.string).m4a")
-    }
-
-    private func normalizeSeekValue(rawValue value: CGFloat) -> CGFloat {
-        if let audioPlayer {
-            var newValue = audioPlayer.currentTime - (value * 0.001)
-            if newValue >= audioPlayer.duration - 0.1 {
-                newValue = audioPlayer.duration - 0.1
-            }
-            return newValue
-        }
-        return 0
     }
 }

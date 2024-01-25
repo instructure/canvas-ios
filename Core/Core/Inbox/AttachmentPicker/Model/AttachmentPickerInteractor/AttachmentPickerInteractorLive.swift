@@ -53,7 +53,7 @@ class AttachmentPickerInteractorLive: AttachmentPickerInteractor {
             try uploadManager.add(url: url, batchID: batchId)
             fileStore.refresh()
         } catch {
-            files.send(completion: .failure(NSError()))
+            files.send(completion: .failure(NSError.instructureError("Failed to add file")))
         }
     }
 
@@ -68,6 +68,7 @@ class AttachmentPickerInteractorLive: AttachmentPickerInteractor {
                 uploadManager.cancel(file: file)
             }
         }
+        uploadManager.cancel(batchID: batchId)
     }
 
     func removeFile(file: File) {

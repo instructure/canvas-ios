@@ -23,24 +23,34 @@ import Combine
 class AttachmentPickerInteractorPreview: AttachmentPickerInteractor {
     var files: PassthroughSubject<[File], Error> = PassthroughSubject<[File], Error>()
 
-    func uploadFiles() {
+    public private(set) var uploadFilesCalled: Bool = false
+    public private(set) var addFileCalled: Bool = false
+    public private(set) var retryCalled: Bool = false
+    public private(set) var cancelCalled: Bool = false
+    public private(set) var removeFileCalled: Bool = false
 
+    func uploadFiles() {
+        uploadFilesCalled = true
     }
 
     func addFile(url: URL) {
-
+        addFileCalled = true
     }
 
     func retry() {
-
+        retryCalled = true
     }
 
     func cancel() {
-
+        cancelCalled = true
     }
 
     func removeFile(file: File) {
+        removeFileCalled = true
+    }
 
+    func throwError() {
+        files.send(completion: .failure(NSError.instructureError("Failed to add file")))
     }
 }
 
