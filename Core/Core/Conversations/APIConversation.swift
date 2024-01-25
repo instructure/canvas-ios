@@ -329,13 +329,14 @@ public struct DeleteConversationRequest: APIRequestable {
 public struct DeleteConversationMessageRequest: APIRequestable {
     public typealias Response = APIConversation
 
+    public struct Body: Encodable, Equatable {
+        public let remove: [String]
+    }
+
     public var path: String { "conversations/\(id)/remove_messages" }
     public let method = APIMethod.post
 
     let id: String
-    let messageIds: [String]
 
-    public var query: [APIQueryItem] {
-        return [ .array("remove", messageIds) ]
-    }
+    public let body: Body?
 }

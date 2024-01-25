@@ -121,7 +121,7 @@ public class MessageDetailsInteractorLive: MessageDetailsInteractor {
             guard let self else {
                 return promise(.success(()))
             }
-            let request = DeleteConversationMessageRequest(id: conversationId, messageIds: [messageId])
+            let request = DeleteConversationMessageRequest(id: conversationId, body: .init(remove: [messageId]))
             self.env.api.makeRequest(request, callback: { _, _, _ in
                 self.conversationStore.refresh(force: true) { _ in
                     return promise(.success(()))

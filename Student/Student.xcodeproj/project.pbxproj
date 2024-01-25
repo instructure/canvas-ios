@@ -194,7 +194,7 @@
 		};
 		277DEBB4B49BB6FEB4C5CEAC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DD205FCB93E151C9EB6CB18B /* Core.xcodeproj */;
+			containerPortal = DD205FCB93E151C9EB6CB18B /* Core */;
 			proxyType = 2;
 			remoteGlobalIDString = 4E249DD6423E938E1DE581C9;
 			remoteInfo = Core;
@@ -215,70 +215,70 @@
 		};
 		380AF939B26CD57304C9B6AD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2085069FE2C9A776437A9E87 /* CanvasCore.xcodeproj */;
+			containerPortal = 2085069FE2C9A776437A9E87 /* CanvasCore */;
 			proxyType = 1;
 			remoteGlobalIDString = 2CAF1B131F72AEDB007225DF;
 			remoteInfo = CanvasCore;
 		};
 		43DCDAA6A85E50FE4528B0EC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DD205FCB93E151C9EB6CB18B /* Core.xcodeproj */;
+			containerPortal = DD205FCB93E151C9EB6CB18B /* Core */;
 			proxyType = 1;
 			remoteGlobalIDString = B90FCF66245CD7327BEE2CBF;
 			remoteInfo = Core;
 		};
 		48A5C7418D4C6D1A1583B1BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DD205FCB93E151C9EB6CB18B /* Core.xcodeproj */;
+			containerPortal = DD205FCB93E151C9EB6CB18B /* Core */;
 			proxyType = 1;
 			remoteGlobalIDString = B90FCF66245CD7327BEE2CBF;
 			remoteInfo = Core;
 		};
 		67014024ACB13802AFC19D4E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C96FCD9A1270509D0B4D13EB /* TestsFoundation.xcodeproj */;
+			containerPortal = C96FCD9A1270509D0B4D13EB /* TestsFoundation */;
 			proxyType = 1;
 			remoteGlobalIDString = BDDDC5B1E7D6809AA82A8C5C;
 			remoteInfo = TestsFoundation;
 		};
 		9C6C3A6BE174879BFDFD18EE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 2085069FE2C9A776437A9E87 /* CanvasCore.xcodeproj */;
+			containerPortal = 2085069FE2C9A776437A9E87 /* CanvasCore */;
 			proxyType = 2;
 			remoteGlobalIDString = 2CAF1B141F72AEDB007225DF;
 			remoteInfo = CanvasCore;
 		};
 		AE0AD925392BD4E47DB2626A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DD205FCB93E151C9EB6CB18B /* Core.xcodeproj */;
+			containerPortal = DD205FCB93E151C9EB6CB18B /* Core */;
 			proxyType = 1;
 			remoteGlobalIDString = B90FCF66245CD7327BEE2CBF;
 			remoteInfo = Core;
 		};
 		D35BFD712B5FBF2500A40A43 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DD205FCB93E151C9EB6CB18B /* Core.xcodeproj */;
+			containerPortal = DD205FCB93E151C9EB6CB18B /* Core */;
 			proxyType = 2;
 			remoteGlobalIDString = 8F6731E780A5363E04E3620A;
 			remoteInfo = CoreTester;
 		};
 		D35BFD732B5FBF2500A40A43 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DD205FCB93E151C9EB6CB18B /* Core.xcodeproj */;
+			containerPortal = DD205FCB93E151C9EB6CB18B /* Core */;
 			proxyType = 2;
 			remoteGlobalIDString = DC35484E0C7EE977582AF3AE;
 			remoteInfo = CoreTests;
 		};
 		FA01F656AFE40F7391801322 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DD205FCB93E151C9EB6CB18B /* Core.xcodeproj */;
+			containerPortal = DD205FCB93E151C9EB6CB18B /* Core */;
 			proxyType = 1;
 			remoteGlobalIDString = B90FCF66245CD7327BEE2CBF;
 			remoteInfo = Core;
 		};
 		FDCFC6E6A439EDD8B0EE056C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C96FCD9A1270509D0B4D13EB /* TestsFoundation.xcodeproj */;
+			containerPortal = C96FCD9A1270509D0B4D13EB /* TestsFoundation */;
 			proxyType = 2;
 			remoteGlobalIDString = 0D1BC90CEB2A03E8FEB4313D;
 			remoteInfo = TestsFoundation;
@@ -1672,8 +1672,8 @@
 			);
 			mainGroup = DBC5D720BCDD200A3007416C;
 			packageReferences = (
-				FC028D0C82C118314497D386 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
-				FA5A4BB2117C9369F057B20B /* XCRemoteSwiftPackageReference "heap-ios-sdk.git" */,
+				FC028D0C82C118314497D386 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				FA5A4BB2117C9369F057B20B /* XCRemoteSwiftPackageReference "heap-ios-sdk" */,
 				A76ACB1286D0782B097750FC /* XCRemoteSwiftPackageReference "PSPDFKit-SP" */,
 			);
 			productRefGroup = DFBB61F41BF05A3CE62DBDED /* Products */;
@@ -2539,7 +2539,7 @@
 				version = 13.0.1;
 			};
 		};
-		FA5A4BB2117C9369F057B20B /* XCRemoteSwiftPackageReference "heap-ios-sdk.git" */ = {
+		FA5A4BB2117C9369F057B20B /* XCRemoteSwiftPackageReference "heap-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/heap/heap-ios-sdk.git";
 			requirement = {
@@ -2547,7 +2547,7 @@
 				version = 9.0.1;
 			};
 		};
-		FC028D0C82C118314497D386 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */ = {
+		FC028D0C82C118314497D386 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -2560,7 +2560,7 @@
 /* Begin XCSwiftPackageProductDependency section */
 		2B4E6DE180E1DD3BCE9E54E7 /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FC028D0C82C118314497D386 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */;
+			package = FC028D0C82C118314497D386 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
 		};
 		783AA610EC81ED279E9248B3 /* PSPDFKit */ = {
@@ -2570,7 +2570,7 @@
 		};
 		AD54827E5C4A161BC8362AF7 /* Heap */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FA5A4BB2117C9369F057B20B /* XCRemoteSwiftPackageReference "heap-ios-sdk.git" */;
+			package = FA5A4BB2117C9369F057B20B /* XCRemoteSwiftPackageReference "heap-ios-sdk" */;
 			productName = Heap;
 		};
 /* End XCSwiftPackageProductDependency section */

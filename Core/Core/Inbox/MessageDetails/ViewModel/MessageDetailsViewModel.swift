@@ -155,7 +155,6 @@ class MessageDetailsViewModel: ObservableObject {
     }
 
     public func forwardTapped(viewController: WeakViewController, message: ConversationMessage? = nil) {
-
         if let conversation = conversations.first {
             var selectedMessage = message
             if selectedMessage == nil {

@@ -29,7 +29,7 @@ class ComposeMessageViewModelTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         mockInteractor = ComposeMessageInteractorMock(context: databaseClient)
-        testee = ComposeMessageViewModel(router: router, interactor: mockInteractor)
+        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .new), interactor: mockInteractor)
     }
 
     func testValidationForSubject() {
@@ -112,14 +112,6 @@ class ComposeMessageViewModelTests: CoreTestCase {
 
         wait(for: [router.showExpectation], timeout: 1)
         XCTAssertNotNil(router.presented)
-    }
-
-    func testReplyInit() {
-        testee = ComposeMessageViewModel(router: router, conversation: .make(), author: "2", interactor: mockInteractor)
-
-        XCTAssertEqual(testee.selectedContext?.context.id, "1")
-        XCTAssertEqual(testee.recipients.count, 1)
-        XCTAssertTrue(testee.isReply)
     }
 }
 
