@@ -135,5 +135,6 @@ public class MessageDetailsInteractorLive: MessageDetailsInteractor {
     private func uploadWorkflowStateToAPI(messageId: String, state: ConversationWorkflowState) {
         let request = PutConversationRequest(id: messageId, workflowState: state)
         env.api.makeRequest(request, callback: { _, _, _ in })
+        conversation.value.first?.workflowState = state
     }
 }

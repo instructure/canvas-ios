@@ -37,12 +37,14 @@ public struct DisabledMessageFieldOptions {
     var recipientsDisabled: Bool
     var subjectDisabled: Bool
     var messageDisabled: Bool
+    var individualDisabled: Bool
 
-    public init(contextDisabled: Bool = false, recipientsDisabled: Bool = false, subjectDisabled: Bool = false, messageDisabled: Bool = false) {
+    public init(contextDisabled: Bool = false, recipientsDisabled: Bool = false, subjectDisabled: Bool = false, messageDisabled: Bool = false, individualDisabled: Bool = false) {
         self.contextDisabled = contextDisabled
         self.recipientsDisabled = recipientsDisabled
         self.subjectDisabled = subjectDisabled
         self.messageDisabled = messageDisabled
+        self.individualDisabled = individualDisabled
     }
 }
 
@@ -83,12 +85,13 @@ extension ComposeMessageOptions {
             contextDisabled: true,
             recipientsDisabled: false,
             subjectDisabled: true,
-            messageDisabled: true
+            messageDisabled: true,
+            individualDisabled: true
         )
         var fieldContents = DefaultMessageFieldContents()
 
-        fieldContents.subjectText = conversation.subject
-        fieldContents.bodyText = message?.body ?? ""
+        fieldContents.subjectText = "Fw: \(conversation.subject)"
+        fieldContents.bodyText = "Forwarded Message:\n\(message?.body ?? "")"
 
         if let context = Context(canvasContextID: conversation.contextCode ?? "") {
             fieldContents.selectedContext = .init(name: conversation.contextName ?? "", context: context)
@@ -103,7 +106,8 @@ extension ComposeMessageOptions {
             contextDisabled: true,
             recipientsDisabled: false,
             subjectDisabled: true,
-            messageDisabled: false
+            messageDisabled: false,
+            individualDisabled: true
         )
         var fieldContents = DefaultMessageFieldContents()
 

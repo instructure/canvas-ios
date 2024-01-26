@@ -114,8 +114,10 @@ public struct ComposeMessageView: View {
                 Divider()
             }
             subjectView
-            Divider()
-            individualView
+            if !model.isIndividualDisabled {
+                Divider()
+                individualView
+            }
         }
     }
 

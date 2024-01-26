@@ -29,6 +29,7 @@ class ComposeMessageViewModel: ObservableObject {
     @Published public private(set) var isRecipientsDisabled: Bool = false
     @Published public private(set) var isSubjectDisabled: Bool = false
     @Published public private(set) var isMessageDisabled: Bool = false
+    @Published public private(set) var isIndividualDisabled: Bool = false
 
     public let title = NSLocalizedString("New Message", comment: "")
     public var sendButtonActive: Bool {
@@ -76,6 +77,7 @@ class ComposeMessageViewModel: ObservableObject {
         self.isRecipientsDisabled = disabledFields.recipientsDisabled
         self.isSubjectDisabled = disabledFields.subjectDisabled
         self.isMessageDisabled = disabledFields.messageDisabled
+        self.isIndividualDisabled = disabledFields.individualDisabled
 
         let fieldContents = options.fieldContents
         self.selectedContext = fieldContents.selectedContext
