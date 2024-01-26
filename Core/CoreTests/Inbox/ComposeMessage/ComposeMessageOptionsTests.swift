@@ -67,8 +67,8 @@ class ComposeMessageOptionsTests: CoreTestCase {
         XCTAssertFalse(disabledFields.recipientsDisabled)
 
         let fieldContents = options.fieldContents
-        XCTAssertEqual(fieldContents.subjectText, conversation.subject)
-        XCTAssertEqual(fieldContents.bodyText, message.body)
+        XCTAssertEqual(fieldContents.subjectText, "Fw: \(conversation.subject)")
+        XCTAssertEqual(fieldContents.bodyText, "Forwarded Message:\n\(message.body)")
         XCTAssertEqual(fieldContents.selectedRecipients, [] )
         XCTAssertEqual(fieldContents.selectedContext?.context.canvasContextID, conversation.contextCode)
     }
