@@ -36,7 +36,7 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
     "/conversations": nil,
     "/conversations/compose": { url, params, userInfo in
         if ExperimentalFeature.nativeTeacherInbox.isEnabled {
-            return ComposeMessageAssembly.makeNewMessageViewController(env: AppEnvironment.shared)
+            return ComposeMessageAssembly.makeComposeMessageViewController(env: AppEnvironment.shared)
         } else {
             return HelmViewController(moduleName: "/conversations/compose", url: url, params: params, userInfo: userInfo)
         }
