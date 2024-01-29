@@ -277,6 +277,16 @@ class DashboardTests: E2ETestCase {
         let courseCard2FrameAfter = courseCard2.frame
         XCTAssertEqual(courseCard1FrameAfter, courseCard2FrameBefore)
         XCTAssertEqual(courseCard2FrameAfter, courseCard1FrameBefore)
+
+        // MARK: Logout then login again to test if the changes are stored properly
+        logOut()
+        logInDSUser(student)
+        courseCard1.waitUntil(.visible)
+        courseCard2.waitUntil(.visible)
+        XCTAssertTrue(courseCard1.isVisible)
+        XCTAssertTrue(courseCard2.isVisible)
+        XCTAssertEqual(courseCard1FrameAfter, courseCard2FrameBefore)
+        XCTAssertEqual(courseCard2FrameAfter, courseCard1FrameBefore)
     }
 
     func testCourseNicknameAndColor() {
