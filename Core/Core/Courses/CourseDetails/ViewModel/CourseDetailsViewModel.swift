@@ -147,9 +147,18 @@ public class CourseDetailsViewModel: ObservableObject {
         guard let offlineSelectionsForCourse = env.userDefaults?.offlineSyncSelections else {
             return
         }
-        if offlineSelectionsForCourse.contains(where: { $0 == "courses/\(courseID)" }) {
-            return cells.forEach { $0.isSupportedOffline = true }
+        let wholeCourseSelected = offlineSelectionsForCourse.contains("courses/\(courseID)")
+
+        if wholeCourseSelected {
+            let offlineTabs = TabName.OfflineSyncableTabs.map { $0.rawValue }
+
+            cells.forEach {
+                $0.isSupportedOffline = offlineTabs.contains($0.tabID)
+            }
+
+            return
         }
+
         cells.forEach { cell in
             if offlineSelectionsForCourse.contains("courses/\(courseID)/tabs/\(cell.tabID)") {
                 cell.isSupportedOffline = true
