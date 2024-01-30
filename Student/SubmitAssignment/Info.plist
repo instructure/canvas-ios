@@ -17,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.0.1</string>
+	<string>7.1.1</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>20392</string>
 	<key>FirebaseAutomaticScreenReportingEnabled</key>
 	<false/>
 	<key>NSExtension</key>
