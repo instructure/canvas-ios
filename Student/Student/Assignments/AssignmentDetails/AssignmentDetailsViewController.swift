@@ -17,6 +17,7 @@
 //
 
 import Core
+import SwiftUI
 import UIKit
 
 class AssignmentDetailsViewController: ScreenViewTrackableViewController, AssignmentDetailsViewProtocol {
@@ -189,6 +190,15 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
 
         let tapGradedView = UITapGestureRecognizer(target: self, action: #selector(didTapSubmission(_:)))
         gradedView?.addGestureRecognizer(tapGradedView)
+
+        if let dueSection,
+           let parentStackView = dueSection.superview as? UIStackView,
+           let dueSectionIndex = parentStackView.subviews.firstIndex(of: dueSection) {
+            let reminderSection = UIHostingController(rootView: AssignmentRemindersView())
+            addChild(reminderSection)
+            parentStackView.insertArrangedSubview(reminderSection.view, at: dueSectionIndex + 1)
+            reminderSection.didMove(toParent: self)
+        }
 
         submitAssignmentButton.makeUnavailableInOfflineMode()
         fileSubmissionButton?.makeUnavailableInOfflineMode()

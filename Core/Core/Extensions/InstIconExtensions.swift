@@ -196,6 +196,8 @@ public extension UIImage {
     static var troubleSolid: UIImage { UIImage(named: "troubleSolid", in: .core, compatibleWith: nil)! }
     static var unlockLine: UIImage { UIImage(named: "unlockLine", in: .core, compatibleWith: nil)! }
     static var unlockSolid: UIImage { UIImage(named: "unlockSolid", in: .core, compatibleWith: nil)! }
+    static var unmutedLine: UIImage { UIImage(named: "unmutedLine", in: .core, compatibleWith: nil)! }
+    static var unmutedSolid: UIImage { UIImage(named: "unmutedSolid", in: .core, compatibleWith: nil)! }
     static var userLine: UIImage { UIImage(named: "userLine", in: .core, compatibleWith: nil)! }
     static var userSolid: UIImage { UIImage(named: "userSolid", in: .core, compatibleWith: nil)! }
     static var videoLine: UIImage { UIImage(named: "videoLine", in: .core, compatibleWith: nil)! }
@@ -431,6 +433,8 @@ public extension Image {
     static var troubleSolid: Image { Image("troubleSolid", bundle: .core) }
     static var unlockLine: Image { Image("unlockLine", bundle: .core) }
     static var unlockSolid: Image { Image("unlockSolid", bundle: .core) }
+    static var unmutedLine: Image { Image("unmutedLine", bundle: .core) }
+    static var unmutedSolid: Image { Image("unmutedSolid", bundle: .core) }
     static var userLine: Image { Image("userLine", bundle: .core) }
     static var userSolid: Image { Image("userSolid", bundle: .core) }
     static var videoLine: Image { Image("videoLine", bundle: .core) }
