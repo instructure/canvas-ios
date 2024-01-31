@@ -143,7 +143,8 @@ public class AssignmentsHelper: BaseHelper {
         submissionTypes: [SubmissionType] = [.online_text_entry],
         pointsPossible: Float? = 1.0,
         gradingType: GradingType? = nil,
-        dueDate: Date? = nil) -> DSAssignment {
+        dueDate: Date? = nil,
+        lockAt: Date? = nil) -> DSAssignment {
         let assignmentBody = CreateDSAssignmentRequest.RequestedDSAssignment(
                 name: name,
                 description: description + name,
@@ -151,7 +152,8 @@ public class AssignmentsHelper: BaseHelper {
                 submission_types: submissionTypes,
                 points_possible: pointsPossible,
                 grading_type: gradingType,
-                due_at: dueDate)
+                due_at: dueDate,
+                lock_at: lockAt)
         return seeder.createAssignment(courseId: course.id, assignementBody: assignmentBody)
     }
 

@@ -205,4 +205,37 @@ class AssignmentsTests: E2ETestCase {
         XCTAssertTrue(tomorrowsAssignmentButton.isVisible)
         XCTAssertTrue(tomorrowsAssignmentButton.hasLabel(label: "Due Tomorrow", strict: false))
     }
+
+    func testLockedAssignment() {
+        // MARK: Seed the usual stuff with a locked assignment
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+        let lockedAssignment = Helper.createAssignment(
+            course: course,
+            name: "Locked Assignment",
+            dueDate: Date.now.addDays(-1),
+            lockAt: Date.now)
+
+        // MARK: Get the user logged in
+        logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course)
+        XCTAssertTrue(courseCard.isVisible)
+
+        // MARK: Navigate to Assignments
+        Helper.navigateToAssignments(course: course)
+        let navBar = Helper.navBar(course: course).waitUntil(.visible)
+        XCTAssertTrue(navBar.isVisible)
+
+        // MARK: Check Locked Assignment
+        let lockedAssignmentButton = Helper.assignmentButton(assignment: lockedAssignment).waitUntil(.visible)
+        XCTAssertTrue(lockedAssignmentButton.isVisible)
+        XCTAssertTrue(lockedAssignmentButton.hasLabel(label: "Availability: Closed", strict: false))
+
+        lockedAssignmentButton.hit()
+        let lockSectionElement = DetailsHelper.lockSection.waitUntil(.visible)
+        let submitAssignmentButton = DetailsHelper.submitAssignmentButton.waitUntil(.vanish)
+        XCTAssertTrue(lockSectionElement.isVisible)
+        XCTAssertTrue(submitAssignmentButton.isVanished)
+    }
 }
