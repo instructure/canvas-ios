@@ -20,7 +20,7 @@ import Combine
 import CombineExt
 
 public class ComposeMessageInteractorLive: ComposeMessageInteractor {
-    public func send(parameters: MessageParameters) -> Future<Void, Error> {
+    public func createConversation(parameters: MessageParameters) -> Future<Void, Error> {
         Future<Void, Error> { promise in
             CreateConversation(
                 subject: parameters.subject,
@@ -36,6 +36,29 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
                 } else {
                     promise(.success(()))
                 }
+            }
+        }
+    }
+
+    public func addConversationMessage(parameters: MessageParameters) -> Future<Void, Error> {
+        Future<Void, Error> { promise in
+            if let conversationID = parameters.conversationID {
+                AddMessage(
+                    conversationID: conversationID,
+                    attachmentIDs: parameters.attachmentIDs,
+                    body: parameters.body,
+                    recipientIDs: parameters.recipientIDs,
+                    includedMessages: parameters.includedMessages
+                )
+                .fetch { _, _, error in
+                    if let error = error {
+                        promise(.failure(error))
+                    } else {
+                        promise(.success(()))
+                    }
+                }
+            } else {
+                promise(.failure(NSError.instructureError("Invalid conversation ID")))
             }
         }
     }

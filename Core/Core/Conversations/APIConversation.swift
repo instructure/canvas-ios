@@ -287,6 +287,7 @@ public struct PostAddMessageRequest: APIRequestable {
         let media_comment_id: String?
         let media_comment_type: MediaCommentType?
         let recipients: [String]?
+        let included_messages: [String]?
     }
 
     let conversationID: String

@@ -66,7 +66,9 @@ class MessageDetailsViewModel: ObservableObject {
             title: NSLocalizedString("Reply All", comment: ""),
             accessibilityIdentifier: "MessageDetails.replyAll"
         ) {
-            self.replyAllTapped(viewController: viewController)
+            if let message {
+                self.replyAllTapped(message: message, viewController: viewController)
+            }
         }
 
         sheet.addAction(
@@ -131,7 +133,9 @@ class MessageDetailsViewModel: ObservableObject {
             title: NSLocalizedString("Reply All", comment: ""),
             accessibilityIdentifier: "MessageDetails.replyAll"
         ) {
-            self.replyAllTapped(viewController: viewController)
+            if let message {
+                self.replyAllTapped(message: message, viewController: viewController)
+            }
         }
 
         sheet.addAction(
@@ -171,17 +175,17 @@ class MessageDetailsViewModel: ObservableObject {
     public func replyTapped(message: ConversationMessage, viewController: WeakViewController) {
         if let conversation = conversations.first {
             router.show(
-                ComposeMessageAssembly.makeComposeMessageViewController(options: .init(fromType: .reply(conversation: conversation, author: message.authorID))),
+                ComposeMessageAssembly.makeComposeMessageViewController(options: .init(fromType: .reply(conversation: conversation, message: message))),
                 from: viewController,
                 options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
             )
         }
     }
 
-    public func replyAllTapped(viewController: WeakViewController) {
+    public func replyAllTapped(message: ConversationMessage, viewController: WeakViewController) {
         if let conversation = conversations.first {
             router.show(
-                ComposeMessageAssembly.makeComposeMessageViewController(options: .init(fromType: .reply(conversation: conversation, author: nil))),
+                ComposeMessageAssembly.makeComposeMessageViewController(options: .init(fromType: .replyAll(conversation: conversation, message: message))),
                 from: viewController,
                 options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
             )

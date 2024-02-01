@@ -48,50 +48,63 @@ public struct DisabledMessageFieldOptions {
     }
 }
 
-public struct ComposeMessageOptions {
+public class ComposeMessageOptions {
     var disabledFields: DisabledMessageFieldOptions
     var fieldContents: DefaultMessageFieldContents
+    var messageType: MessageType
 
-    public init(disabledFields: DisabledMessageFieldOptions = DisabledMessageFieldOptions(), fieldsContents: DefaultMessageFieldContents = DefaultMessageFieldContents()) {
+    public init(
+        disabledFields: DisabledMessageFieldOptions = DisabledMessageFieldOptions(),
+        fieldsContents: DefaultMessageFieldContents = DefaultMessageFieldContents(),
+        messageType: MessageType = .new
+    ) {
         self.disabledFields = disabledFields
         self.fieldContents = fieldsContents
+        self.messageType = messageType
     }
 }
 
 extension ComposeMessageOptions {
 
     public enum MessageType {
-        case new, reply(conversation: Conversation, author: String? = nil), forward(conversation: Conversation, message: ConversationMessage?)
+        case new,
+             reply(conversation: Conversation, message: ConversationMessage? = nil),
+             replyAll(conversation: Conversation, message: ConversationMessage? = nil),
+             forward(conversation: Conversation, message: ConversationMessage?)
     }
 
-    public init(fromType type: MessageType) {
+    public convenience init(fromType type: MessageType) {
+        self.init()
+
         switch type {
         case .new:
-            self.init()
+            self.initForNew()
         case .forward(let conversation, let message):
-            self.init(conversation: conversation, message: message)
-        case .reply(let conversation, let author):
-            self.init(conversation: conversation, author: author)
+            self.initForForward(conversation: conversation, message: message)
+        case .reply(let conversation, let message):
+            self.initForReply(conversation: conversation, message: message)
+        case .replyAll(let conversation, let message):
+            self.initForReplyAll(conversation: conversation, message: message)
         }
     }
 
-    private init() {
+    private func initForNew() {
         self.disabledFields = DisabledMessageFieldOptions()
         self.fieldContents = DefaultMessageFieldContents()
+        self.messageType = .new
     }
 
-    private init(conversation: Conversation, message: ConversationMessage?) {
+    private func initForForward(conversation: Conversation, message: ConversationMessage?) {
         let disabledOptions = DisabledMessageFieldOptions(
             contextDisabled: true,
             recipientsDisabled: false,
             subjectDisabled: true,
-            messageDisabled: true,
+            messageDisabled: false,
             individualDisabled: true
         )
         var fieldContents = DefaultMessageFieldContents()
 
         fieldContents.subjectText = "Fw: \(conversation.subject)"
-        fieldContents.bodyText = "Forwarded Message:\n\(message?.body ?? "")"
 
         if let context = Context(canvasContextID: conversation.contextCode ?? "") {
             fieldContents.selectedContext = .init(name: conversation.contextName ?? "", context: context)
@@ -99,9 +112,10 @@ extension ComposeMessageOptions {
 
         self.disabledFields = disabledOptions
         self.fieldContents = fieldContents
+        self.messageType = .forward(conversation: conversation, message: message)
     }
 
-    private init(conversation: Conversation, author: String? = nil) {
+    private func initForReply(conversation: Conversation, message: ConversationMessage? = nil) {
         let disabledOptions = DisabledMessageFieldOptions(
             contextDisabled: true,
             recipientsDisabled: false,
@@ -118,7 +132,7 @@ extension ComposeMessageOptions {
         }
 
         var recipients = [Recipient]()
-        if let author {
+        if let author = message?.authorID {
             recipients = conversation.audience.filter { $0.id == author }.map { Recipient(conversationParticipant: $0) }
 
             if recipients.isEmpty {
@@ -131,5 +145,30 @@ extension ComposeMessageOptions {
 
         self.disabledFields = disabledOptions
         self.fieldContents = fieldContents
+        self.messageType = .reply(conversation: conversation, message: message)
+    }
+
+    private func initForReplyAll(conversation: Conversation, message: ConversationMessage? = nil) {
+        let disabledOptions = DisabledMessageFieldOptions(
+            contextDisabled: true,
+            recipientsDisabled: false,
+            subjectDisabled: true,
+            messageDisabled: false,
+            individualDisabled: true
+        )
+        var fieldContents = DefaultMessageFieldContents()
+
+        fieldContents.subjectText = conversation.subject
+
+        if let context = Context(canvasContextID: conversation.contextCode ?? "") {
+            fieldContents.selectedContext = .init(name: conversation.contextName ?? "", context: context)
+        }
+
+        let recipients = conversation.audience.map { Recipient(conversationParticipant: $0) }
+        fieldContents.selectedRecipients = recipients
+
+        self.disabledFields = disabledOptions
+        self.fieldContents = fieldContents
+        self.messageType = .reply(conversation: conversation, message: message)
     }
 }

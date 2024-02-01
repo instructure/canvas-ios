@@ -20,5 +20,7 @@ import Combine
 
 public protocol ComposeMessageInteractor {
     // MARK: - Inputs
-    func send(parameters: MessageParameters) -> Future<Void, Error>
+    func createConversation(parameters: MessageParameters) -> Future<Void, Error>
+
+    func addConversationMessage(parameters: MessageParameters) -> Future<Void, Error>
 }

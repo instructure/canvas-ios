@@ -915,7 +915,6 @@
 		8CCBC000ED57E3B30185A885 /* CoursePickerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B5319E645CB807A66BC6F6 /* CoursePickerViewModelTests.swift */; };
 		8D199C33734625206A16D9C0 /* font_lato_regular.css in Resources */ = {isa = PBXBuildFile; fileRef = CC7BC20D35B80A106BE85AE8 /* font_lato_regular.css */; };
 		8D261C72E9E58A117494775D /* ContextCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5441301F8C91951543D0A872 /* ContextCardView.swift */; };
-		8D4DC16775CEB10C71FB6FA2 /* ReplyMessageInteractorLive.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC0A0B2AB483C2582075336 /* ReplyMessageInteractorLive.swift */; };
 		8D54E56D7750A396FE118528 /* ContextBaseURLInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CD5B3EB39C46B38BC6E2D68 /* ContextBaseURLInteractor.swift */; };
 		8D6E3575C6A4F8A8289EF87E /* LoggableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062D98A5A1A0CD68F0BBAFAB /* LoggableCell.swift */; };
 		8DDF049879B4EFA6680A326B /* APIBrandVariablesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661B1786CE4FD390B0572C00 /* APIBrandVariablesTests.swift */; };
@@ -3111,7 +3110,6 @@
 		CF50AAD392DC03765A4F4C9E /* ErrorExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorExtensionsTests.swift; sourceTree = "<group>"; };
 		CF76AA92A0745A9D16189BB8 /* GetDiscussionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDiscussionsTests.swift; sourceTree = "<group>"; };
 		CFAD2AE1CF6B4872E30170B5 /* FileEditorViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEditorViewTests.swift; sourceTree = "<group>"; };
-		CFC0A0B2AB483C2582075336 /* ReplyMessageInteractorLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyMessageInteractorLive.swift; sourceTree = "<group>"; };
 		CFDD1E1B04BCE0A3513A061A /* ReactiveStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactiveStore.swift; sourceTree = "<group>"; };
 		CFE760866143E8E9B1CE23ED /* DashboardConferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardConferencesViewModel.swift; sourceTree = "<group>"; };
 		D0654F8E73E24CF21BFD4A29 /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
@@ -9074,7 +9072,6 @@
 				B953FCABE3764807F829338F /* MessageParameters.swift */,
 				9A747CAD103A658B0DAA8FE1 /* Recipient.swift */,
 				BBB49009DEAE7012DBE5032B /* RecipientContext.swift */,
-				CFC0A0B2AB483C2582075336 /* ReplyMessageInteractorLive.swift */,
 				D36F6F6A2B5FF9E700CF7D9D /* ComposeMessageOptions.swift */,
 			);
 			path = Model;
@@ -10825,7 +10822,6 @@
 				57804BC7997535D703E2447C /* Refreshable.swift in Sources */,
 				4ACE4398C5E4A35363563C2B /* RefreshableScrollView.swift in Sources */,
 				9486F242AA2B1E16F9766D0F /* RemoteImage.swift in Sources */,
-				8D4DC16775CEB10C71FB6FA2 /* ReplyMessageInteractorLive.swift in Sources */,
 				BB4203A9042EAF729CC13DB6 /* RichContentEditor.swift in Sources */,
 				D1D8E01EB529C1506D357049 /* RichContentEditorFileUploadContext.swift in Sources */,
 				A52DD3FE31F0D22A7653EA69 /* RichContentEditorViewController.swift in Sources */,

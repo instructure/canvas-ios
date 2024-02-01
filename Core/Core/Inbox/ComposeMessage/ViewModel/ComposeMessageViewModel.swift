@@ -59,12 +59,24 @@ class ComposeMessageViewModel: ObservableObject {
     private let interactor: ComposeMessageInteractor
     private let router: Router
     private let scheduler: AnySchedulerOf<DispatchQueue>
+    private let messageType: ComposeMessageOptions.MessageType
 
     public init(router: Router, options: ComposeMessageOptions, interactor: ComposeMessageInteractor, scheduler: AnySchedulerOf<DispatchQueue> = .main) {
         self.interactor = interactor
         self.router = router
         self.scheduler = scheduler
 
+        self.messageType = options.messageType
+        switch messageType {
+        case .new:
+            conversation = nil
+        case .reply(let conversation, _):
+            self.conversation = conversation
+        case .replyAll(let conversation, _):
+            self.conversation = conversation
+        case .forward(let conversation, _):
+            self.conversation = conversation
+        }
         setOptionItems(options: options)
 
         setupOutputBindings()
@@ -148,7 +160,8 @@ class ComposeMessageViewModel: ObservableObject {
             recipientIDs: recipientIDs,
             context: context.context,
             conversationID: conversation?.id,
-            groupConversation: !sendIndividual
+            groupConversation: !sendIndividual,
+            includedMessages: conversation?.messages.map { $0.id }
         )
     }
 
@@ -172,20 +185,42 @@ class ComposeMessageViewModel: ObservableObject {
             }
             .store(in: &subscriptions)
         sendButtonDidTap
-            .compactMap { [weak self] viewController -> (WeakViewController, MessageParameters)? in
+            .compactMap { [weak self] viewController -> (WeakViewController, MessageParameters, ComposeMessageOptions.MessageType)? in
                 guard let self = self, let params = self.messageParameters() else { return nil }
-                return (viewController, params)
+                return (viewController, params, self.messageType)
             }
-            .handleEvents(receiveOutput: { [weak self] (viewController, _) in
+            .handleEvents(receiveOutput: { [weak self] (viewController, _, _) in
                 self?.isSendingMessage = true
                 self?.router.dismiss(viewController)
             })
-            .flatMap { [interactor] (viewController, params) in
-                interactor
-                    .send(parameters: params)
-                    .map {
-                        viewController
-                    }
+            .flatMap { [interactor] (viewController, params, type) in
+                switch type {
+                case .new:
+                    return interactor
+                        .createConversation(parameters: params)
+                        .map {
+                            viewController
+                        }
+                case .forward:
+                    return interactor
+                        .addConversationMessage(parameters: params)
+                        .map {
+                            viewController
+                        }
+                case .reply:
+                    return interactor
+                        .addConversationMessage(parameters: params)
+                        .map {
+                            viewController
+                        }
+
+                case .replyAll:
+                    return interactor
+                        .addConversationMessage(parameters: params)
+                        .map {
+                            viewController
+                        }
+                }
             }
             .receive(on: scheduler)
             .sink(receiveCompletion: { completion in
