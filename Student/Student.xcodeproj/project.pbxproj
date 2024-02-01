@@ -23,6 +23,7 @@
 		0E7EBF2E9CFC40BE1F88ABE1 /* SubmissionButtonAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487CBE449C24CF499E8E652E /* SubmissionButtonAlertView.swift */; };
 		10BB6434467284FCB2C4B8C0 /* RubricPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17EED24B81EE7AD5A483E42 /* RubricPresenterTests.swift */; };
 		10CCC0E5A0AEEF0B9063BDC9 /* student-submit-assignment.yml in Resources */ = {isa = PBXBuildFile; fileRef = F2909B4B94747B3CE4A73B97 /* student-submit-assignment.yml */; };
+		1157A3E799A6858BF6294333 /* AssignmentRemindersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3DD93759E57BE7408092CF /* AssignmentRemindersViewModel.swift */; };
 		1547F90F6C82E634B71EDD9A /* SubmissionCommentTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4712BCD15B0D560025120531 /* SubmissionCommentTextCell.swift */; };
 		16BB629D167021A14CA1E8AB /* SubmissionDetailsEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D417F359FDAA3F3BFA2D04 /* SubmissionDetailsEmptyView.swift */; };
 		16E2148BB83015ED61525509 /* student-e2e-tests.yml in Resources */ = {isa = PBXBuildFile; fileRef = 9F9D7B6F140CE3B048DAAC09 /* student-e2e-tests.yml */; };
@@ -59,6 +60,7 @@
 		4F8C07A53A637C5A47317E17 /* ActivityStreamViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609C57BFDECD9CD24664C2E6 /* ActivityStreamViewControllerTests.swift */; };
 		505EFB7746D6F74F8F13C970 /* Drawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D8CD3C1198F07799108547 /* Drawer.swift */; };
 		50968A8121ED29A9724ACB63 /* SmallGradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DEC86D41A45B30DC3EE04D /* SmallGradeView.swift */; };
+		50C942D2783F2956A3FB2DF9 /* AssignmentReminderItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C536F17CFC554BD04FC865B /* AssignmentReminderItemViewModel.swift */; };
 		534B8932E221F11FE9E084E6 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8467AD99805700563F56B329 /* InfoPlist.xcstrings */; };
 		53FA47ED4699F4F5262807B3 /* SubmissionDetailsLockedEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27EC4709D55A1308B1DE0F8 /* SubmissionDetailsLockedEmptyView.swift */; };
 		5409DC8729FFA2718A6C9167 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCF04FE779BA84E82898D38F /* Assets.xcassets */; };
@@ -349,6 +351,7 @@
 		185EDBA21BCF37602979D00D /* PeopleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTests.swift; sourceTree = "<group>"; };
 		18D37793B2068B344BC9CD42 /* GradeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeItem.swift; sourceTree = "<group>"; };
 		19D059ADA09A214A715BC993 /* CourseNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseNavigationViewController.swift; sourceTree = "<group>"; };
+		1C536F17CFC554BD04FC865B /* AssignmentReminderItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentReminderItemViewModel.swift; sourceTree = "<group>"; };
 		1E1B32C8BF5FB30C19F0CB49 /* TextSubmissionViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TextSubmissionViewController.storyboard; sourceTree = "<group>"; };
 		1F5ED0B8FF5E0F7060796CBD /* CompatibleContainerBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompatibleContainerBackground.swift; sourceTree = "<group>"; };
 		2085069FE2C9A776437A9E87 /* CanvasCore */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CanvasCore; path = ../CanvasCore/CanvasCore.xcodeproj; sourceTree = "<group>"; };
@@ -399,6 +402,7 @@
 		5E05F853FBF7B54222D527EB /* RoutesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutesTests.swift; sourceTree = "<group>"; };
 		5E556136B79434E571587A06 /* UrlSubmissionContentViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UrlSubmissionContentViewController.storyboard; sourceTree = "<group>"; };
 		5E99EAE151D501DEC0ED62BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		5F3DD93759E57BE7408092CF /* AssignmentRemindersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentRemindersViewModel.swift; sourceTree = "<group>"; };
 		609C57BFDECD9CD24664C2E6 /* ActivityStreamViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStreamViewControllerTests.swift; sourceTree = "<group>"; };
 		621E81ADCABDEBD7E35AB453 /* student-widgets.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = "student-widgets.yml"; sourceTree = "<group>"; };
 		622D88252F90CC9848B9447C /* SubmissionCommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentsViewController.swift; sourceTree = "<group>"; };
@@ -614,6 +618,15 @@
 				19D059ADA09A214A715BC993 /* CourseNavigationViewController.swift */,
 			);
 			path = CourseNavigation;
+			sourceTree = "<group>";
+		};
+		084C6E49BBB3E63DE1685F81 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1C536F17CFC554BD04FC865B /* AssignmentReminderItemViewModel.swift */,
+				5F3DD93759E57BE7408092CF /* AssignmentRemindersViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		0959C7C30C6FA209BD043964 /* Small */ = {
@@ -996,6 +1009,7 @@
 			isa = PBXGroup;
 			children = (
 				03C2B8998DD20960740E03A0 /* View */,
+				084C6E49BBB3E63DE1685F81 /* ViewModel */,
 			);
 			path = Reminders;
 			sourceTree = "<group>";
@@ -2056,7 +2070,9 @@
 				C5FA34F3C7782F13E889EF6C /* AssignmentDetailsSectionContainerView.swift in Sources */,
 				FBCA7B9BE7229D9BC34F652A /* AssignmentDetailsViewController.swift in Sources */,
 				912537469D89E72BD8117C20 /* AssignmentReminderItemView.swift in Sources */,
+				50C942D2783F2956A3FB2DF9 /* AssignmentReminderItemViewModel.swift in Sources */,
 				23B445D1D6321E8A267B9370 /* AssignmentRemindersView.swift in Sources */,
+				1157A3E799A6858BF6294333 /* AssignmentRemindersViewModel.swift in Sources */,
 				0221A83F748BE058DB1C8711 /* BundleExtensions.swift in Sources */,
 				0C4DE5F4E3B0E9A5B302A77E /* CalendarEventDetailsViewController.swift in Sources */,
 				CA83CD0D7049022541FBFD68 /* CoreTaskSchedulerLive.swift in Sources */,

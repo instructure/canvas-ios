@@ -21,7 +21,8 @@ import SwiftUI
 struct AssignmentReminderItemView: View {
     @ScaledMetric private var uiScale: CGFloat = 1
 
-    public let title: String
+    public let viewModel: AssignmentReminderItemViewModel
+    public let deleteDidTap: () -> Void
 
     var body: some View {
         VStack(spacing: 0) {
@@ -49,7 +50,7 @@ struct AssignmentReminderItemView: View {
     }
 
     private var titleView: some View {
-        Text(title)
+        Text(viewModel.title)
             .font(.regular16)
             .padding(.top, 12)
             .padding(.bottom, 14)
@@ -57,7 +58,7 @@ struct AssignmentReminderItemView: View {
 
     private var deleteButton: some View {
         Button {
-
+            deleteDidTap()
         } label: {
             Image.xLine
                 .resizable()
@@ -76,8 +77,10 @@ struct AssignmentReminderItemView_Previews: PreviewProvider {
 
     static var previews: some View {
         VStack(spacing: 0) {
-            AssignmentReminderItemView(title: "1 hour before")
-            AssignmentReminderItemView(title: "1 week before")
+            AssignmentReminderItemView(viewModel: AssignmentReminderItemViewModel(title: "1 hour before"),
+                                       deleteDidTap: {})
+            AssignmentReminderItemView(viewModel: AssignmentReminderItemViewModel(title: "1 week before"),
+                                       deleteDidTap: {})
         }
     }
 }

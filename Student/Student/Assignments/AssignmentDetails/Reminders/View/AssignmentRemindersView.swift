@@ -20,6 +20,11 @@ import SwiftUI
 
 struct AssignmentRemindersView: View {
     @ScaledMetric private var uiScale: CGFloat = 1
+    @StateObject private var viewModel: AssignmentRemindersViewModel
+
+    init(viewModel: (@escaping () -> AssignmentRemindersViewModel)) {
+        self._viewModel = StateObject(wrappedValue: viewModel())
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -28,12 +33,20 @@ struct AssignmentRemindersView: View {
         }
         .padding(.horizontal, 16)
         .frame(maxWidth: .infinity, alignment: .leading)
+        .confirmationAlert(isPresented: $viewModel.showingDeleteConfirmDialog,
+                           presenting: viewModel.confirmAlert)
+        .animation(.default, value: viewModel.reminders)
     }
 
     @ViewBuilder
     private var reminderItemList: some View {
-        AssignmentReminderItemView(title: "1 hour before")
-        AssignmentReminderItemView(title: "1 week before")
+        ForEach(viewModel.reminders) { reminderModel in
+            AssignmentReminderItemView(viewModel: reminderModel,
+                                       deleteDidTap: {
+                                           viewModel.reminderDeleteDidTap(reminderModel)
+                                       })
+            .transition(.asymmetric(insertion: .opacity, removal: .move(edge: .trailing)))
+        }
     }
 
     private var header: some View {
@@ -49,7 +62,7 @@ struct AssignmentRemindersView: View {
             }
             Spacer(minLength: 0)
             Button {
-
+                viewModel.newReminderDidTap()
             } label: {
                 Image.addSolid
                     .resizable()
@@ -71,7 +84,9 @@ struct AssignmentRemindersView: View {
 struct AssignmentRemindersView_Previews: PreviewProvider {
 
     static var previews: some View {
-        AssignmentRemindersView()
+        VStack { // Preview bug, if not embedded into this the insert animation won't play
+            AssignmentRemindersView(viewModel: { AssignmentRemindersViewModel() })
+        }
     }
 }
 

@@ -194,7 +194,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         if let dueSection,
            let parentStackView = dueSection.superview as? UIStackView,
            let dueSectionIndex = parentStackView.subviews.firstIndex(of: dueSection) {
-            let reminderSection = UIHostingController(rootView: AssignmentRemindersView())
+            let reminderSection = UIHostingController(rootView: AssignmentRemindersView(viewModel: { AssignmentRemindersViewModel() }))
             addChild(reminderSection)
             parentStackView.insertArrangedSubview(reminderSection.view, at: dueSectionIndex + 1)
             reminderSection.didMove(toParent: self)

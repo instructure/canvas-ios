@@ -16115,6 +16115,9 @@
         }
       }
     },
+    "Add due date reminder notifications about this assignment on this device." : {
+
+    },
     "Add folder" : {
       "comment" : "Button title for adding a folder to a folder",
       "extractionState" : "manual",
@@ -19869,6 +19872,9 @@
           }
         }
       }
+    },
+    "Are you sure you would like to delete this reminder?" : {
+
     },
     "Ask me later" : {
       "extractionState" : "manual",
@@ -36360,6 +36366,9 @@
           }
         }
       }
+    },
+    "Delete Reminder" : {
+
     },
     "Delete this reply?" : {
       "comment" : "Alert message",
@@ -91198,6 +91207,9 @@
           }
         }
       }
+    },
+    "Reminder" : {
+
     },
     "Remove" : {
       "comment" : "Confirmation for removing a file",
