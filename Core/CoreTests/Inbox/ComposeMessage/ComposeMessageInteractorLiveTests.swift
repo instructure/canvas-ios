@@ -49,7 +49,7 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         let parameters = MessageParameters(subject: subject, body: body, recipientIDs: recipients, context: Context.course(canvasContext))
         api.mock(createConversationRequest, value: nil, response: nil, error: NSError.instructureError("Failure"))
 
-        XCTAssertFailure(testee.send(parameters: parameters))
+        XCTAssertFailure(testee.createConversation(parameters: parameters))
     }
 
     func testSuccessfulSend() {
@@ -69,7 +69,7 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         let parameters = MessageParameters(subject: subject, body: body, recipientIDs: recipients, context: Context.course(canvasContext))
         api.mock(createConversationRequest, value: value)
 
-        XCTAssertFinish(testee.send(parameters: parameters))
+        XCTAssertFinish(testee.createConversation(parameters: parameters))
 
         waitForState(.data)
     }

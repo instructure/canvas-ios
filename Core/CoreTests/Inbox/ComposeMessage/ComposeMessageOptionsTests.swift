@@ -40,7 +40,8 @@ class ComposeMessageOptionsTests: CoreTestCase {
 
     func testReplyMessageOptions() {
         let conversation: Conversation = .make()
-        let options: ComposeMessageOptions = .init(fromType: .reply(conversation: conversation, author: nil))
+        let message: ConversationMessage = .make()
+        let options: ComposeMessageOptions = .init(fromType: .reply(conversation: conversation, message: message))
 
         let disabledFields = options.disabledFields
         XCTAssertTrue(disabledFields.contextDisabled)
@@ -63,12 +64,12 @@ class ComposeMessageOptionsTests: CoreTestCase {
         let disabledFields = options.disabledFields
         XCTAssertTrue(disabledFields.contextDisabled)
         XCTAssertTrue(disabledFields.subjectDisabled)
-        XCTAssertTrue(disabledFields.messageDisabled)
+        XCTAssertFalse(disabledFields.messageDisabled)
         XCTAssertFalse(disabledFields.recipientsDisabled)
 
         let fieldContents = options.fieldContents
         XCTAssertEqual(fieldContents.subjectText, "Fw: \(conversation.subject)")
-        XCTAssertEqual(fieldContents.bodyText, "Forwarded Message:\n\(message.body)")
+        XCTAssertEqual(fieldContents.bodyText, "")
         XCTAssertEqual(fieldContents.selectedRecipients, [] )
         XCTAssertEqual(fieldContents.selectedContext?.context.canvasContextID, conversation.contextCode)
     }

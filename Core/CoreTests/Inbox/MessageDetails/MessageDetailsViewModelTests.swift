@@ -111,7 +111,8 @@ class MessageDetailsViewModelTests: CoreTestCase {
 
     func testReplyAll() {
         let viewController = WeakViewController(UIViewController())
-        testee.replyAllTapped(viewController: viewController)
+        let message: ConversationMessage = .make()
+        testee.replyAllTapped(message: message, viewController: viewController)
 
         wait(for: [router.showExpectation], timeout: 1)
         let dialog = router.presented
