@@ -194,7 +194,12 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         if let dueSection,
            let parentStackView = dueSection.superview as? UIStackView,
            let dueSectionIndex = parentStackView.subviews.firstIndex(of: dueSection) {
-            let reminderSection = UIHostingController(rootView: AssignmentRemindersView(viewModel: { AssignmentRemindersViewModel() }))
+            let reminderSection = CoreHostingController(AssignmentRemindersView(viewModel: { AssignmentRemindersViewModel() }))
+            if #available(iOS 16.0, *) {
+                // When the SwiftUI view size changes we need to update the hosting view's intrinsic size
+                // so the stack view can resize itself and its children
+                reminderSection.sizingOptions = [.intrinsicContentSize]
+            }
             addChild(reminderSection)
             parentStackView.insertArrangedSubview(reminderSection.view, at: dueSectionIndex + 1)
             reminderSection.didMove(toParent: self)

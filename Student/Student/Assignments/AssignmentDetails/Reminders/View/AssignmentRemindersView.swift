@@ -16,11 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import SwiftUI
 
 struct AssignmentRemindersView: View {
     @ScaledMetric private var uiScale: CGFloat = 1
     @StateObject private var viewModel: AssignmentRemindersViewModel
+    @Environment(\.viewController) private var viewController
 
     init(viewModel: (@escaping () -> AssignmentRemindersViewModel)) {
         self._viewModel = StateObject(wrappedValue: viewModel())
@@ -28,7 +30,7 @@ struct AssignmentRemindersView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            header
+            header.animation(.none, value: viewModel.reminders)
             reminderItemList
         }
         .padding(.horizontal, 16)
@@ -36,6 +38,7 @@ struct AssignmentRemindersView: View {
         .confirmationAlert(isPresented: $viewModel.showingDeleteConfirmDialog,
                            presenting: viewModel.confirmAlert)
         .animation(.default, value: viewModel.reminders)
+        .invalidateIntrinsicContentSize(hostController: viewController)
     }
 
     @ViewBuilder
@@ -76,6 +79,34 @@ struct AssignmentRemindersView: View {
         }
         .padding(.bottom, 28)
         .padding(.top, 24)
+    }
+}
+
+extension View {
+
+    /**
+     When the SwiftUI view size changes we need to update the hosting view's intrinsic size
+     so the stack view can resize itself and its children
+     */
+     @ViewBuilder
+    func invalidateIntrinsicContentSize(hostController: WeakViewController) -> some View {
+        if #available(iOS 16.0, *) {
+            self
+        } else {
+            self
+                .background(
+                    GeometryReader { proxy in
+                        Color.clear.preference(key: ViewSizeKey.self, value: proxy.size.height)
+                    })
+                .onPreferenceChange(ViewSizeKey.self) { _ in
+                    UIView.animate(withDuration: 0.3) {
+                        let hostView = hostController.view
+                        hostView.invalidateIntrinsicContentSize()
+                        hostView.superview?.setNeedsLayout()
+                        hostView.superview?.layoutIfNeeded()
+                    }
+                }
+        }
     }
 }
 
