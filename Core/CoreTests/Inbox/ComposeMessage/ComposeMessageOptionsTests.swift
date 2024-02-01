@@ -52,6 +52,24 @@ class ComposeMessageOptionsTests: CoreTestCase {
         let fieldContents = options.fieldContents
         XCTAssertEqual(fieldContents.subjectText, conversation.subject)
         XCTAssertEqual(fieldContents.bodyText, "")
+        XCTAssertEqual(fieldContents.selectedRecipients.first?.ids.first, message.authorID)
+        XCTAssertEqual(fieldContents.selectedContext?.context.canvasContextID, conversation.contextCode)
+    }
+
+    func testReplyAllMessageOptions() {
+        let conversation: Conversation = .make()
+        let message: ConversationMessage = .make()
+        let options: ComposeMessageOptions = .init(fromType: .replyAll(conversation: conversation, message: message))
+
+        let disabledFields = options.disabledFields
+        XCTAssertTrue(disabledFields.contextDisabled)
+        XCTAssertTrue(disabledFields.subjectDisabled)
+        XCTAssertFalse(disabledFields.messageDisabled)
+        XCTAssertFalse(disabledFields.recipientsDisabled)
+
+        let fieldContents = options.fieldContents
+        XCTAssertEqual(fieldContents.subjectText, conversation.subject)
+        XCTAssertEqual(fieldContents.bodyText, "")
         XCTAssertEqual(fieldContents.selectedRecipients, conversation.audience.map { Recipient(conversationParticipant: $0) })
         XCTAssertEqual(fieldContents.selectedContext?.context.canvasContextID, conversation.contextCode)
     }

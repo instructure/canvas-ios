@@ -89,7 +89,6 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
             recipientIDs: recipients,
             includedMessages: includedMessages
         ).request
-        let value = APIConversation.make(id: "1")
         let parameters = MessageParameters(
             subject: subject,
             body: body,
