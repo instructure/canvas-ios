@@ -156,11 +156,9 @@ public class CourseDetailsViewModel: ObservableObject {
         }
 
         if isDiscussionRedesignEnabled() {
-            for (index, element) in offlineSelectionsForCourse.enumerated() {
-                // swiftlint:disable:next for_where
-                if element.contains("courses/\(courseID)/tabs/\(TabName.discussions.rawValue)") {
-                    offlineSelectionsForCourse.remove(at: index)
-                }
+            offlineSelectionsForCourse.removeAll { selection in
+                selection.contains("courses/\(courseID)/tabs/\(TabName.discussions.rawValue)") ||
+                    selection.contains("courses/\(courseID)/tabs/\(TabName.announcements.rawValue)")
             }
         }
 
@@ -170,7 +168,7 @@ public class CourseDetailsViewModel: ObservableObject {
             var offlineTabs = TabName.OfflineSyncableTabs.map { $0.rawValue }
 
             if isDiscussionRedesignEnabled() {
-                offlineTabs = offlineTabs.filter { $0 != TabName.discussions.rawValue }
+                offlineTabs = offlineTabs.filter { $0 != TabName.discussions.rawValue && $0 != TabName.announcements.rawValue }
             }
 
             cells.forEach {
