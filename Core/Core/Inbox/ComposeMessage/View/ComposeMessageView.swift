@@ -39,6 +39,9 @@ public struct ComposeMessageView: View {
                     Divider()
                     bodyView
                         .frame(height: geometry.size.height)
+                    if model.includedMessages != nil && !model.includedMessages!.isEmpty {
+                        includedMessages
+                    }
                     Spacer()
                 }
                 .background(Color.backgroundLightest)
@@ -252,6 +255,38 @@ public struct ComposeMessageView: View {
         }
         .disabled(model.isMessageDisabled)
         .opacity(model.isMessageDisabled ? 0.6 : 1)
+    }
+
+    private var includedMessages: some View {
+        VStack(alignment: .leading) {
+            Text("Included messages", bundle: .core)
+                .font(.bold16)
+            separator
+            ForEach(model.includedMessages ?? [], id: \.id) { conversationMessage in
+                messageView(for: conversationMessage)
+                separator
+            }
+        }
+        .padding(.horizontal, 12)
+    }
+
+    private func messageView(for message: ConversationMessage) -> some View {
+        return VStack(alignment: .leading) {
+            HStack {
+                Text(model.conversation?.participants.first { $0.id == message.authorID }?.name ?? "")
+                    .foregroundStyle(Color.textDarkest)
+                    .lineLimit(1)
+                Spacer()
+                Text(message.createdAt?.dateTimeString ?? "")
+                    .foregroundStyle(Color.textDark)
+                    .lineLimit(1)
+            }
+            Text(message.body)
+                .foregroundStyle(Color.textDark)
+                .lineLimit(1)
+        }
+        .padding(.vertical, 12)
+        .padding(.horizontal, 12)
     }
 }
 

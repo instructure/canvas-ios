@@ -59,7 +59,7 @@ class MessageDetailsViewModelTests: CoreTestCase {
     func testConversationMoreTapped() {
         let sourceView = UIViewController()
 
-        testee.conversationMoreTapped(message: .init(), viewController: WeakViewController(sourceView))
+        testee.conversationMoreTapped(viewController: WeakViewController(sourceView))
 
         let sheet = router.presented as? BottomSheetPickerViewController
         XCTAssertNotNil(sheet)
@@ -91,7 +91,7 @@ class MessageDetailsViewModelTests: CoreTestCase {
 
     func testForward() {
         let viewController = WeakViewController(UIViewController())
-        testee.forwardTapped(viewController: viewController, message: nil)
+        testee.forwardTapped(viewController: viewController)
 
         wait(for: [router.showExpectation], timeout: 1)
         let dialog = router.presented

@@ -113,6 +113,96 @@ class ComposeMessageViewModelTests: CoreTestCase {
         wait(for: [router.showExpectation], timeout: 1)
         XCTAssertNotNil(router.presented)
     }
+
+    func testReplyMessageValues() {
+        let message1: ConversationMessage = .make(from: .make(id: "1", created_at: Date.now))
+        let message2: ConversationMessage = .make(from: .make(id: "2", created_at: Date.now + 2))
+        let message3: ConversationMessage = .make(from: .make(id: "3", created_at: Date.now + 3))
+        let conversation: Conversation = .make()
+        conversation.messages = [message1, message2, message3]
+        conversation.subject = "Test subject"
+        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .reply(conversation: conversation, message: message2)), interactor: mockInteractor)
+
+        XCTAssertEqual(testee.subject, "Test subject")
+        XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
+        XCTAssertEqual(testee.recipients.first?.ids.first, message2.authorID)
+        XCTAssertEqual(testee.includedMessages, [message1, message2])
+    }
+
+    func testReplyConversationValues() {
+        let message1: ConversationMessage = .make(from: .make(id: "1", created_at: Date.now))
+        let message2: ConversationMessage = .make(from: .make(id: "2", created_at: Date.now + 2))
+        let message3: ConversationMessage = .make(from: .make(id: "3", created_at: Date.now + 3))
+        let conversation: Conversation = .make()
+        conversation.messages = [message1, message2, message3]
+        conversation.subject = "Test subject"
+        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .reply(conversation: conversation, message: nil)), interactor: mockInteractor)
+
+        XCTAssertEqual(testee.subject, "Test subject")
+        XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
+        XCTAssertEqual(testee.recipients.first?.ids.first, message2.authorID)
+        XCTAssertEqual(testee.includedMessages, [message1, message2, message3])
+    }
+
+    func testReplyAllMessageValues() {
+        let message1: ConversationMessage = .make(from: .make(id: "1", created_at: Date.now))
+        let message2: ConversationMessage = .make(from: .make(id: "2", created_at: Date.now + 2))
+        let message3: ConversationMessage = .make(from: .make(id: "3", created_at: Date.now + 3))
+        let conversation: Conversation = .make()
+        conversation.messages = [message1, message2, message3]
+        conversation.subject = "Test subject"
+        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .replyAll(conversation: conversation, message: nil)), interactor: mockInteractor)
+
+        XCTAssertEqual(testee.subject, "Test subject")
+        XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
+        XCTAssertEqual(testee.recipients.flatMap { $0.ids }, conversation.participants.map { $0.id })
+        XCTAssertEqual(testee.includedMessages, [message1, message2, message3])
+    }
+
+    func testReplyAllConversationValues() {
+        let message1: ConversationMessage = .make(from: .make(id: "1", created_at: Date.now))
+        let message2: ConversationMessage = .make(from: .make(id: "2", created_at: Date.now + 2))
+        let message3: ConversationMessage = .make(from: .make(id: "3", created_at: Date.now + 3))
+        let conversation: Conversation = .make()
+        conversation.messages = [message1, message2, message3]
+        conversation.subject = "Test subject"
+        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .replyAll(conversation: conversation, message: nil)), interactor: mockInteractor)
+
+        XCTAssertEqual(testee.subject, "Test subject")
+        XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
+        XCTAssertEqual(testee.recipients.flatMap { $0.ids }, conversation.participants.map { $0.id })
+        XCTAssertEqual(testee.includedMessages, [message1, message2, message3])
+    }
+
+    func testForwardMessageValues() {
+        let message1: ConversationMessage = .make(from: .make(id: "1", created_at: Date.now))
+        let message2: ConversationMessage = .make(from: .make(id: "2", created_at: Date.now + 2))
+        let message3: ConversationMessage = .make(from: .make(id: "3", created_at: Date.now + 3))
+        let conversation: Conversation = .make()
+        conversation.messages = [message1, message2, message3]
+        conversation.subject = "Test subject"
+        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .forward(conversation: conversation, message: message2)), interactor: mockInteractor)
+
+        XCTAssertEqual(testee.subject, "Fw: Test subject")
+        XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
+        XCTAssertEqual(testee.recipients.count, 0)
+        XCTAssertEqual(testee.includedMessages, [message2])
+    }
+
+    func testForwardConversationValues() {
+        let message1: ConversationMessage = .make(from: .make(id: "1", created_at: Date.now))
+        let message2: ConversationMessage = .make(from: .make(id: "2", created_at: Date.now + 2))
+        let message3: ConversationMessage = .make(from: .make(id: "3", created_at: Date.now + 3))
+        let conversation: Conversation = .make()
+        conversation.messages = [message1, message2, message3]
+        conversation.subject = "Test subject"
+        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .forward(conversation: conversation, message: nil)), interactor: mockInteractor)
+
+        XCTAssertEqual(testee.subject, "Fw: Test subject")
+        XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
+        XCTAssertEqual(testee.recipients.count, 0)
+        XCTAssertEqual(testee.includedMessages, [message1, message2, message3])
+    }
 }
 
 private class ComposeMessageInteractorMock: ComposeMessageInteractor {

@@ -76,7 +76,7 @@ public struct MessageDetailsView: View {
 
     private var moreButton: some View {
         Button(action: {
-            model.conversationMoreTapped(message: model.messages.first?.conversationMessage, viewController: controller)
+            model.conversationMoreTapped(viewController: controller)
         }, label: {
             Image
                 .moreLine

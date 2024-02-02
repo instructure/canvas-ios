@@ -53,13 +53,14 @@ class ComposeMessageViewModel: ObservableObject {
     @Published public var subject: String = ""
     @Published public var selectedContext: RecipientContext?
     @Published public var conversation: Conversation?
+    @Published public var includedMessages: [ConversationMessage]?
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: ComposeMessageInteractor
     private let router: Router
     private let scheduler: AnySchedulerOf<DispatchQueue>
-    private let messageType: ComposeMessageOptions.MessageType
+    private var messageType: ComposeMessageOptions.MessageType
 
     public init(router: Router, options: ComposeMessageOptions, interactor: ComposeMessageInteractor, scheduler: AnySchedulerOf<DispatchQueue> = .main) {
         self.interactor = interactor
@@ -67,16 +68,7 @@ class ComposeMessageViewModel: ObservableObject {
         self.scheduler = scheduler
 
         self.messageType = options.messageType
-        switch messageType {
-        case .new:
-            conversation = nil
-        case .reply(let conversation, _):
-            self.conversation = conversation
-        case .replyAll(let conversation, _):
-            self.conversation = conversation
-        case .forward(let conversation, _):
-            self.conversation = conversation
-        }
+        setIncludedMessages(messageType: options.messageType)
         setOptionItems(options: options)
 
         setupOutputBindings()
@@ -96,6 +88,36 @@ class ComposeMessageViewModel: ObservableObject {
         self.selectedRecipients.value = fieldContents.selectedRecipients
         self.subject = fieldContents.subjectText
         self.bodyText = fieldContents.bodyText
+    }
+
+    private func setIncludedMessages(messageType: ComposeMessageOptions.MessageType) {
+        switch messageType {
+        case .new:
+            conversation = nil
+        case .reply(let conversation, let message):
+            self.conversation = conversation
+            if let message {
+                includedMessages = conversation.messages
+                    .filter { $0.createdAt ?? Date() <= message.createdAt ?? Date() || $0.id == message.id }
+            } else {
+                includedMessages = conversation.messages
+            }
+        case .replyAll(let conversation, let message):
+            self.conversation = conversation
+            if let message {
+                includedMessages = conversation.messages
+                    .filter { $0.createdAt ?? Date() <= message.createdAt ?? Date() || $0.id == message.id }
+            } else {
+                includedMessages = conversation.messages
+            }
+        case .forward(let conversation, let message):
+            if let message {
+                includedMessages = [message]
+            } else {
+                includedMessages = conversation.messages
+            }
+            self.conversation = conversation
+        }
     }
 
     public func courseSelectButtonDidTap(viewController: WeakViewController) {
@@ -161,7 +183,7 @@ class ComposeMessageViewModel: ObservableObject {
             context: context.context,
             conversationID: conversation?.id,
             groupConversation: !sendIndividual,
-            includedMessages: conversation?.messages.map { $0.id }
+            includedMessages: includedMessages?.map { $0.id }
         )
     }
 

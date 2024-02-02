@@ -36,6 +36,8 @@ class ComposeMessageOptionsTests: CoreTestCase {
         XCTAssertEqual(fieldContents.selectedRecipients, [])
         XCTAssertNil(fieldContents.selectedContext)
 
+        XCTAssertEqual(options.messageType, .new)
+
     }
 
     func testReplyMessageOptions() {
@@ -54,6 +56,8 @@ class ComposeMessageOptionsTests: CoreTestCase {
         XCTAssertEqual(fieldContents.bodyText, "")
         XCTAssertEqual(fieldContents.selectedRecipients.first?.ids.first, message.authorID)
         XCTAssertEqual(fieldContents.selectedContext?.context.canvasContextID, conversation.contextCode)
+
+        XCTAssertEqual(options.messageType, .reply(conversation: conversation, message: message))
     }
 
     func testReplyAllMessageOptions() {
@@ -72,6 +76,8 @@ class ComposeMessageOptionsTests: CoreTestCase {
         XCTAssertEqual(fieldContents.bodyText, "")
         XCTAssertEqual(fieldContents.selectedRecipients, conversation.audience.map { Recipient(conversationParticipant: $0) })
         XCTAssertEqual(fieldContents.selectedContext?.context.canvasContextID, conversation.contextCode)
+
+        XCTAssertEqual(options.messageType, .replyAll(conversation: conversation, message: message))
     }
 
     func testForwardOptions() {
@@ -90,5 +96,7 @@ class ComposeMessageOptionsTests: CoreTestCase {
         XCTAssertEqual(fieldContents.bodyText, "")
         XCTAssertEqual(fieldContents.selectedRecipients, [] )
         XCTAssertEqual(fieldContents.selectedContext?.context.canvasContextID, conversation.contextCode)
+
+        XCTAssertEqual(options.messageType, .forward(conversation: conversation, message: message))
     }
 }

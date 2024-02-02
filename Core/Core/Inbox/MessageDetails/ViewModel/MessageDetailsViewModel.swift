@@ -50,25 +50,21 @@ class MessageDetailsViewModel: ObservableObject {
         setupInputBindings(router: router)
     }
 
-    public func conversationMoreTapped(message: ConversationMessage?, viewController: WeakViewController) {
+    public func conversationMoreTapped(viewController: WeakViewController) {
         let sheet = BottomSheetPickerViewController.create()
         sheet.addAction(
             image: .replyLine,
             title: NSLocalizedString("Reply", comment: ""),
             accessibilityIdentifier: "MessageDetails.reply"
         ) {
-            if let message {
-                self.replyTapped(message: message, viewController: viewController)
-            }
+            self.replyTapped(message: nil, viewController: viewController)
         }
         sheet.addAction(
             image: .replyAllLine,
             title: NSLocalizedString("Reply All", comment: ""),
             accessibilityIdentifier: "MessageDetails.replyAll"
         ) {
-            if let message {
-                self.replyAllTapped(message: message, viewController: viewController)
-            }
+            self.replyAllTapped(message: nil, viewController: viewController)
         }
 
         sheet.addAction(
@@ -76,7 +72,7 @@ class MessageDetailsViewModel: ObservableObject {
             title: NSLocalizedString("Forward", comment: ""),
             accessibilityIdentifier: "MessageDetails.forward"
         ) {
-            self.forwardTapped(viewController: viewController)
+            self.forwardTapped(message: nil, viewController: viewController)
         }
 
         if (conversations.first?.workflowState == .read) {
@@ -143,7 +139,7 @@ class MessageDetailsViewModel: ObservableObject {
             title: NSLocalizedString("Forward", comment: ""),
             accessibilityIdentifier: "MessageDetails.forward"
         ) {
-            self.forwardTapped(viewController: viewController, message: message)
+            self.forwardTapped(message: message, viewController: viewController)
         }
 
         sheet.addAction(
@@ -158,21 +154,17 @@ class MessageDetailsViewModel: ObservableObject {
         router.show(sheet, from: viewController, options: .modal())
     }
 
-    public func forwardTapped(viewController: WeakViewController, message: ConversationMessage? = nil) {
+    public func forwardTapped(message: ConversationMessage? = nil, viewController: WeakViewController) {
         if let conversation = conversations.first {
-            var selectedMessage = message
-            if selectedMessage == nil {
-                selectedMessage = conversation.messages.first
-            }
             router.show(
-                ComposeMessageAssembly.makeComposeMessageViewController(options: .init(fromType: .forward(conversation: conversation, message: selectedMessage))),
+                ComposeMessageAssembly.makeComposeMessageViewController(options: .init(fromType: .forward(conversation: conversation, message: message))),
                 from: viewController,
                 options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true)
             )
         }
     }
 
-    public func replyTapped(message: ConversationMessage, viewController: WeakViewController) {
+    public func replyTapped(message: ConversationMessage?, viewController: WeakViewController) {
         if let conversation = conversations.first {
             router.show(
                 ComposeMessageAssembly.makeComposeMessageViewController(options: .init(fromType: .reply(conversation: conversation, message: message))),
@@ -182,7 +174,7 @@ class MessageDetailsViewModel: ObservableObject {
         }
     }
 
-    public func replyAllTapped(message: ConversationMessage, viewController: WeakViewController) {
+    public func replyAllTapped(message: ConversationMessage?, viewController: WeakViewController) {
         if let conversation = conversations.first {
             router.show(
                 ComposeMessageAssembly.makeComposeMessageViewController(options: .init(fromType: .replyAll(conversation: conversation, message: message))),

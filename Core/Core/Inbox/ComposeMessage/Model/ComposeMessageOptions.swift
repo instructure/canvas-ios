@@ -66,7 +66,7 @@ public class ComposeMessageOptions {
 
 extension ComposeMessageOptions {
 
-    public enum MessageType {
+    public enum MessageType: Equatable {
         case new,
              reply(conversation: Conversation, message: ConversationMessage? = nil),
              replyAll(conversation: Conversation, message: ConversationMessage? = nil),
@@ -169,6 +169,6 @@ extension ComposeMessageOptions {
 
         self.disabledFields = disabledOptions
         self.fieldContents = fieldContents
-        self.messageType = .reply(conversation: conversation, message: message)
+        self.messageType = .replyAll(conversation: conversation, message: message)
     }
 }
