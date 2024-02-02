@@ -16,18 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import Combine
+import Foundation
 
-enum AssignmentRemindersAssembly {
+enum AssignmentReminderTimeMetric: CaseIterable, Identifiable, Hashable {
+    case minutes, hours, days, weeks
 
-    static func makeDatePickerView(
-        assignmentDate: Date,
-        selectedTimeInterval: some Subject<AssignmentReminderTimeInterval, Never>)
-    -> UIViewController {
-        let viewModel = AssignmentReminderDatePickerViewModel(selectedTimeInterval: selectedTimeInterval)
-        let view = AssignmentReminderDatePickerView(viewModel: { viewModel })
-        let host = CoreHostingController(view)
-        return host
+    var id: String { pickerTitle }
+    var pickerTitle: String {
+        switch self {
+        case .minutes: return String(localized: "Minutes Before")
+        case .hours: return String(localized: "Hours Before")
+        case .days: return String(localized: "Days Before")
+        case .weeks: return String(localized: "Weeks Before")
+        }
     }
 }

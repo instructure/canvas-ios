@@ -86,7 +86,7 @@ struct AssignmentReminderDatePickerView: View {
             }
             .pickerStyle(WheelPickerStyle())
             Picker(selection: $viewModel.customMetric) {
-                ForEach(AssignmentReminderDatePickerViewModel.Metric.allCases) {
+                ForEach(AssignmentReminderTimeMetric.allCases) {
                     Text($0.pickerTitle).tag($0)
                 }
             } label: {}
@@ -127,8 +127,7 @@ struct AssignmentReminderDatePickerView_Previews: PreviewProvider {
 
     @ViewBuilder
     static var previews: some View {
-        let viewModel = AssignmentReminderDatePickerViewModel(assignmentDate: .now,
-                                                              selectedReminderDate: PassthroughSubject<Date, Never>())
+        let viewModel = AssignmentReminderDatePickerViewModel(selectedTimeInterval: PassthroughSubject<AssignmentReminderTimeInterval, Never>())
         AssignmentReminderDatePickerView(viewModel: { viewModel })
     }
 }

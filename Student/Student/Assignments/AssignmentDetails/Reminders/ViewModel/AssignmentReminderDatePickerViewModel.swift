@@ -20,50 +20,29 @@ import Combine
 import SwiftUI
 
 class AssignmentReminderDatePickerViewModel: ObservableObject {
-    enum Metric: CaseIterable, Identifiable, Hashable {
-        case minutes, hours, days, weeks
-
-        var id: String { pickerTitle }
-        var pickerTitle: String {
-            switch self {
-            case .minutes: return String(localized: "Minutes Before")
-            case .hours: return String(localized: "Hours Before")
-            case .days: return String(localized: "Days Before")
-            case .weeks: return String(localized: "Weeks Before")
-            }
-        }
-    }
-    struct Interval: CustomStringConvertible, Identifiable {
-        let value: Int
-        let metric: Metric
-        var description: String {
-            "\(value) \(metric.pickerTitle)"
-        }
-        var id: String { description }
-    }
-
-    @Published public var customValue: Int = 1
-    @Published public var customMetric: Metric = .minutes
+    // MARK: - Outputs
     @Published public private(set) var doneButtonActive = false
     @Published public private(set) var selectedButton: String?
     @Published public private(set) var customPickerVisible = false
     public let buttonTitles: [String]
     public let customValues: [Int] = Array(1...59)
 
-    private static let predefinedIntervals = [
-        Interval(value: 5, metric: .minutes),
-        Interval(value: 15, metric: .minutes),
-        Interval(value: 30, metric: .minutes),
-        Interval(value: 1, metric: .hours),
-        Interval(value: 1, metric: .days),
-        Interval(value: 1, metric: .weeks),
-    ]
-    private let assignmentDate: Date
-    private let selectedReminderDateResult: any Subject<Date, Never>
+    // MARK: - Inputs
+    @Published public var customValue: Int = 1
+    @Published public var customMetric: AssignmentReminderTimeMetric = .minutes
 
-    init(assignmentDate: Date, selectedReminderDate: some Subject<Date, Never>) {
-        self.assignmentDate = assignmentDate
-        selectedReminderDateResult = selectedReminderDate
+    private static let predefinedIntervals: [AssignmentReminderTimeInterval] = [
+        .init(value: 5, metric: .minutes),
+        .init(value: 15, metric: .minutes),
+        .init(value: 30, metric: .minutes),
+        .init(value: 1, metric: .hours),
+        .init(value: 1, metric: .days),
+        .init(value: 1, metric: .weeks),
+    ]
+    private let selectedTimeInterval: any Subject<AssignmentReminderTimeInterval, Never>
+
+    init(selectedTimeInterval: some Subject<AssignmentReminderTimeInterval, Never>) {
+        self.selectedTimeInterval = selectedTimeInterval
         buttonTitles = {
             var result = Self.predefinedIntervals.map { $0.description }
             result.append(String(localized: "Custom"))
@@ -81,6 +60,5 @@ class AssignmentReminderDatePickerViewModel: ObservableObject {
     }
 
     public func doneButtonDidTap() {
-        selectedReminderDateResult.send(.now)
     }
 }

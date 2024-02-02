@@ -36,7 +36,7 @@ class AssignmentRemindersViewModel: ObservableObject {
 
     private let router: Router
     private var subscriptions = Set<AnyCancellable>()
-    private let selectedReminderDate = PassthroughSubject<Date, Never>()
+    private let selectedTimeInterval = PassthroughSubject<AssignmentReminderTimeInterval, Never>()
 
     public init(assignmentDate: Date, router: Router) {
         self.assignmentDate = assignmentDate
@@ -45,7 +45,7 @@ class AssignmentRemindersViewModel: ObservableObject {
 
     public func newReminderDidTap(view: UIViewController) {
         let picker = AssignmentRemindersAssembly.makeDatePickerView(assignmentDate: assignmentDate,
-                                                                    selectedReminderDate: selectedReminderDate)
+                                                                    selectedTimeInterval: selectedTimeInterval)
         router.show(picker, from: view, options: .modal(isDismissable: false, embedInNav: true))
     }
 

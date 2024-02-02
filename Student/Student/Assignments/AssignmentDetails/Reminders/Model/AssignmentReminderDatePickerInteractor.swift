@@ -16,18 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import Combine
+import Foundation
 
-enum AssignmentRemindersAssembly {
-
-    static func makeDatePickerView(
-        assignmentDate: Date,
-        selectedTimeInterval: some Subject<AssignmentReminderTimeInterval, Never>)
-    -> UIViewController {
-        let viewModel = AssignmentReminderDatePickerViewModel(selectedTimeInterval: selectedTimeInterval)
-        let view = AssignmentReminderDatePickerView(viewModel: { viewModel })
-        let host = CoreHostingController(view)
-        return host
-    }
+class AssignmentReminderDatePickerInteractor {
 }
