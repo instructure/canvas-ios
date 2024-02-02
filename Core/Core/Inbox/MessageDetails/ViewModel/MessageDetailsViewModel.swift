@@ -195,7 +195,7 @@ class MessageDetailsViewModel: ObservableObject {
         interactor.messages
             .map { messages in
                 messages.map {
-                    MessageViewModel(item: $0, myID: self.myID, userMap: self.interactor.userMap)
+                    MessageViewModel(item: $0, myID: self.myID, userMap: self.interactor.userMap, router: self.router)
                 }
             }
             .assign(to: &$messages)

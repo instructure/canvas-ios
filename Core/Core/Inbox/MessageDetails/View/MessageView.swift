@@ -19,6 +19,8 @@
 import SwiftUI
 
 public struct MessageView: View {
+    @Environment(\.viewController) private var controller
+
     private var model: MessageViewModel
     private var replyDidTap: () -> Void
     private var moreDidTap: () -> Void
@@ -84,12 +86,17 @@ public struct MessageView: View {
 
     private var bodyView: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text(model.body)
+            Text(model.body.toAttributedStringWithLinks())
                 .font(.regular16)
+                .textSelection(.enabled)
             if model.showAttachments {
                 AttachmentCardsView(attachments: model.attachments, mediaComment: model.mediaComment)
                     .frame(height: 104)
             }
         }
+        .onAppear {
+            model.controller = controller
+        }
+        .environment(\.openURL, OpenURLAction(handler: model.handleURL))
     }
 }

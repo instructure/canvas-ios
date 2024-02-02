@@ -119,6 +119,25 @@ class MessageDetailsViewModelTests: CoreTestCase {
 
         XCTAssertNotNil(dialog)
     }
+
+    func testAttributedString() {
+        let rawString = """
+            Test String: https://instructure.com
+            Another link: https://instructure.design
+        """
+        let attributedString = rawString.toAttributedStringWithLinks()
+        XCTAssertEqual(rawString, String(attributedString.characters))
+        var links: [URL] = []
+        NSAttributedString(attributedString).enumerateAttribute(.link, in: NSRange(0..<rawString.count)) { value, _, _ in
+            if let link = value as? URL {
+                links.append(link)
+            }
+        }
+        XCTAssertEqual(rawString, String(attributedString.characters))
+        XCTAssertEqual(links.count, 2)
+        XCTAssertEqual(links[0].absoluteString, "https://instructure.com")
+        XCTAssertEqual(links[1].absoluteString, "https://instructure.design")
+    }
 }
 
 private class MessageDetailsInteractorMock: MessageDetailsInteractor {
