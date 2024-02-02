@@ -35,6 +35,7 @@ struct AssignmentRemindersView: View {
         }
         .padding(.horizontal, 16)
         .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color.backgroundLightest)
         .confirmationAlert(isPresented: $viewModel.showingDeleteConfirmDialog,
                            presenting: viewModel.confirmAlert)
         .animation(.default, value: viewModel.reminders)

@@ -42,6 +42,7 @@ struct AssignmentReminderDatePickerView: View {
             }
             .animation(.default, value: viewModel.customPickerVisible)
         }
+        .background(Color.backgroundLightest)
         .navigationTitle(Text("Reminder"))
         .navBarItems(leading: cancelButton, trailing: doneButton)
     }
