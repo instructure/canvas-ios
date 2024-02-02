@@ -1713,8 +1713,8 @@
 			);
 			mainGroup = DBC5D720BCDD200A3007416C;
 			packageReferences = (
-				FC028D0C82C118314497D386 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
-				FA5A4BB2117C9369F057B20B /* XCRemoteSwiftPackageReference "heap-ios-sdk.git" */,
+				FC028D0C82C118314497D386 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				FA5A4BB2117C9369F057B20B /* XCRemoteSwiftPackageReference "heap-ios-sdk" */,
 				A76ACB1286D0782B097750FC /* XCRemoteSwiftPackageReference "PSPDFKit-SP" */,
 			);
 			productRefGroup = DFBB61F41BF05A3CE62DBDED /* Products */;

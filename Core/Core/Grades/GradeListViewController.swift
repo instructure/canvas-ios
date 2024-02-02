@@ -99,13 +99,17 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
                               userID: String? = nil,
                               colorDelegate: ColorDelegate? = nil,
                               offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make())
-    -> GradeListViewController {
+    -> CoreHostingController<GradeListView> {
         let controller = loadFromStoryboard()
         controller.colorDelegate = colorDelegate
         controller.courseID = courseID
         controller.userID = userID ?? controller.env.currentSession?.userID
         controller.offlineModeInteractor = offlineModeInteractor
-        return controller
+
+        let interactor = GradeListInteractorLive(courseID: courseID, gradingPeriodID: nil, userID: controller.userID)
+        let viewModel = GradeListViewModel(interactor: interactor)
+        let hosting = CoreHostingController(GradeListView(viewModel: viewModel))
+        return hosting
     }
 
     override public func viewDidLoad() {

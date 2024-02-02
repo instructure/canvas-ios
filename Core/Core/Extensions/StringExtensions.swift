@@ -66,7 +66,15 @@ extension String {
             CharacterSet.decimalDigits.contains(char)
         }
     }
+
+
 }
 
 extension String: Error {
+}
+
+extension ReferenceWritableKeyPath {
+    var string: String {
+        NSExpression(forKeyPath: self).keyPath
+    }
 }
