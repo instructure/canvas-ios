@@ -65,7 +65,7 @@ struct AssignmentRemindersView: View {
             }
             Spacer(minLength: 0)
             Button {
-                viewModel.newReminderDidTap()
+                viewModel.newReminderDidTap(view: viewController.value)
             } label: {
                 Image.addSolid
                     .resizable()
@@ -116,7 +116,7 @@ struct AssignmentRemindersView_Previews: PreviewProvider {
 
     static var previews: some View {
         VStack { // Preview bug, if not embedded into this the insert animation won't play
-            AssignmentRemindersView(viewModel: { AssignmentRemindersViewModel() })
+            AssignmentRemindersView(viewModel: { AssignmentRemindersViewModel(assignmentDate: .now, router: AppEnvironment.shared.router) })
         }
     }
 }

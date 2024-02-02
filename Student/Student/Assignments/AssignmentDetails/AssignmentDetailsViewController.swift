@@ -117,6 +117,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     private weak var gradeBorderLayer: CAShapeLayer?
     private var offlineModeInteractor: OfflineModeInteractor?
     private var gradeSectionBoundsObservation: NSKeyValueObservation?
+    private weak var reminderSection: CoreHostingController<AssignmentRemindersView>?
 
     static func create(courseID: String,
                        assignmentID: String,
@@ -190,20 +191,6 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
 
         let tapGradedView = UITapGestureRecognizer(target: self, action: #selector(didTapSubmission(_:)))
         gradedView?.addGestureRecognizer(tapGradedView)
-
-        if let dueSection,
-           let parentStackView = dueSection.superview as? UIStackView,
-           let dueSectionIndex = parentStackView.subviews.firstIndex(of: dueSection) {
-            let reminderSection = CoreHostingController(AssignmentRemindersView(viewModel: { AssignmentRemindersViewModel() }))
-            if #available(iOS 16.0, *) {
-                // When the SwiftUI view size changes we need to update the hosting view's intrinsic size
-                // so the stack view can resize itself and its children
-                reminderSection.sizingOptions = [.intrinsicContentSize]
-            }
-            addChild(reminderSection)
-            parentStackView.insertArrangedSubview(reminderSection.view, at: dueSectionIndex + 1)
-            reminderSection.didMove(toParent: self)
-        }
 
         submitAssignmentButton.makeUnavailableInOfflineMode()
         fileSubmissionButton?.makeUnavailableInOfflineMode()
@@ -416,6 +403,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         centerLockedIconContainerView()
 
         updateQuizSettings(quiz)
+        embedReminderSection(assignment: assignment)
 
         scrollView?.isHidden = false
         loadingView.stopAnimating()
@@ -505,6 +493,28 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             scrollViewBottom.constant = -submitAssignmentButton.bounds.size.height
             submitAssignmentButton.alpha = OfflineModeAssembly.make().isOfflineModeEnabled() ? UIButton.DisabledInOfflineAlpha : 1.0
         }
+    }
+
+    private func embedReminderSection(assignment: Assignment) {
+        guard reminderSection == nil,
+              let dueSection,
+              let parentStackView = dueSection.superview as? UIStackView,
+              let dueSectionIndex = parentStackView.subviews.firstIndex(of: dueSection),
+              let assignmentDueDate = assignment.dueAt
+        else {
+            return
+        }
+
+        let reminderSection = CoreHostingController(AssignmentRemindersView(viewModel: { [env] in AssignmentRemindersViewModel(assignmentDate: assignmentDueDate, router: env.router) }))
+        if #available(iOS 16.0, *) {
+            // When the SwiftUI view size changes we need to update the hosting view's intrinsic size
+            // so the stack view can resize itself and its children
+            reminderSection.sizingOptions = [.intrinsicContentSize]
+        }
+        addChild(reminderSection)
+        parentStackView.insertArrangedSubview(reminderSection.view, at: dueSectionIndex + 1)
+        reminderSection.didMove(toParent: self)
+        self.reminderSection = reminderSection
     }
 
     // MARK: - Show / Hide Sections

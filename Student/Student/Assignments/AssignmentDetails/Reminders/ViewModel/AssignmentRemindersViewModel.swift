@@ -32,11 +32,21 @@ class AssignmentRemindersViewModel: ObservableObject {
         confirmButtonTitle: NSLocalizedString("Yes", comment: ""),
         isDestructive: true
     )
+    public var assignmentDate: Date
 
+    private let router: Router
     private var subscriptions = Set<AnyCancellable>()
+    private let selectedReminderDate = PassthroughSubject<Date, Never>()
 
-    public func newReminderDidTap() {
-        reminders.append(AssignmentReminderItemViewModel(title: "1 hour before"))
+    public init(assignmentDate: Date, router: Router) {
+        self.assignmentDate = assignmentDate
+        self.router = router
+    }
+
+    public func newReminderDidTap(view: UIViewController) {
+        let picker = AssignmentRemindersAssembly.makeDatePickerView(assignmentDate: assignmentDate,
+                                                                    selectedReminderDate: selectedReminderDate)
+        router.show(picker, from: view, options: .modal(isDismissable: false, embedInNav: true))
     }
 
     public func reminderDeleteDidTap(_ reminder: AssignmentReminderItemViewModel) {
