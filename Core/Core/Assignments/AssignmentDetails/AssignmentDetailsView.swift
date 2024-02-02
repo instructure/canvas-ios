@@ -70,6 +70,17 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
                     endRefreshing()
                 }
             }
+            if showDiscussionButton(), let discussionUrl = assignment.discussionTopic?.htmlURL {
+                Button {
+                    env.router.route(to: discussionUrl, from: controller)
+                } label: {
+                    Text("View Discussion", bundle: .core)
+                }
+                .frame(maxWidth: .infinity, minHeight: 50)
+                .background(Color(Brand.shared.buttonPrimaryBackground))
+                .font(.semibold16)
+                .foregroundColor(Color(Brand.shared.buttonPrimaryText))
+            }
         } else if assignment.state == .loading {
             ZStack {
                 ProgressView()
@@ -235,6 +246,15 @@ public struct AssignmentDetailsView: View, ScreenViewTrackable {
     private func refreshCourses() {
         course.refresh { _ in
             isTeacherEnrollment = course.first?.enrollments?.contains(where: { ($0.isTeacher  || $0.isTA) && $0.state == .active }) == true
+        }
+    }
+
+    private func showDiscussionButton() -> Bool {
+        if let url = assignment.first?.discussionTopic?.htmlURL,
+           let context = Context(path: url.path) {
+            return EmbeddedWebPageViewModelLive.isRedesignEnabled(in: context)
+        } else {
+            return false
         }
     }
 
