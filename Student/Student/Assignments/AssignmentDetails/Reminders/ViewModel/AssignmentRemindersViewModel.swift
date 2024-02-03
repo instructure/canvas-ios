@@ -36,7 +36,7 @@ class AssignmentRemindersViewModel: ObservableObject {
 
     private let router: Router
     private var subscriptions = Set<AnyCancellable>()
-    private let selectedTimeInterval = PassthroughSubject<AssignmentReminderTimeInterval, Never>()
+    private let selectedTimeInterval = PassthroughSubject<DateComponents, Never>()
 
     public init(assignmentDate: Date, router: Router) {
         self.assignmentDate = assignmentDate

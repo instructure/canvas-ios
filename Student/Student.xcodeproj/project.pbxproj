@@ -108,6 +108,7 @@
 		912537469D89E72BD8117C20 /* AssignmentReminderItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2611633A31958A2D00AAD504 /* AssignmentReminderItemView.swift */; };
 		93A750A608349C75B1E60380 /* InboxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC01D8D602A46783738DF377 /* InboxTests.swift */; };
 		9568777D7084AEEA39007ED9 /* QuizWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B3EBD9579EC569DDC9CFEC /* QuizWebViewController.swift */; };
+		956C9508A31E96D8AD4E9AB4 /* AssignmentReminderTimeMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FB9EF53A06CDB0818CA536 /* AssignmentReminderTimeMetric.swift */; };
 		96787A4071599EAB6AA5251C /* StudentAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AC918BF4649E9B170A9B8B /* StudentAppDelegate.swift */; };
 		9B56A1C02C90FD6DF5B51DCE /* GradesWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB284B023A2243EC708BFE5 /* GradesWidget.swift */; };
 		9C97FEA8BE61EF2EA3218660 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86F36A65C55BACCFB3522361 /* Core.framework */; };
@@ -189,6 +190,7 @@
 		FA3B5BF916E95E724C8F0D26 /* TextSubmissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE64144F3C920B6E9800808 /* TextSubmissionViewController.swift */; };
 		FBCA7B9BE7229D9BC34F652A /* AssignmentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DEF401DEEA457BC5009CF1 /* AssignmentDetailsViewController.swift */; };
 		FD6E564FFC5A217C33F71019 /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376E5C23A7CD59F893ADAA77 /* LoginTests.swift */; };
+		FE5A9D25940D2CE2E6EAEC60 /* AssignmentReminderDatePickerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42A810EF6FBEC1C9819CA0D /* AssignmentReminderDatePickerInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -461,6 +463,8 @@
 		AFBB9897BC551976687F0EDB /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		B0DCEAFEF22B96B31AD81EEA /* AssignmentDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AssignmentDetailsViewController.storyboard; sourceTree = "<group>"; };
 		B1D32BB4849069B389465382 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		B3FB9EF53A06CDB0818CA536 /* AssignmentReminderTimeMetric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentReminderTimeMetric.swift; sourceTree = "<group>"; };
+		B42A810EF6FBEC1C9819CA0D /* AssignmentReminderDatePickerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentReminderDatePickerInteractor.swift; sourceTree = "<group>"; };
 		B43A2260938A2D274D7BF66E /* AssignmentRemindersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentRemindersView.swift; sourceTree = "<group>"; };
 		B6B15A9240B1F81473B4CC96 /* Drawer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Drawer.xib; sourceTree = "<group>"; };
 		B78A292004C0C229C7F3AE90 /* Widgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = Widgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1016,6 +1020,7 @@
 		6D23AE68E89EE4840036D005 /* Reminders */ = {
 			isa = PBXGroup;
 			children = (
+				861AD5FEDAE338BB8B63E167 /* Model */,
 				03C2B8998DD20960740E03A0 /* View */,
 				084C6E49BBB3E63DE1685F81 /* ViewModel */,
 				019BEA16674EA7CD7ACF9D60 /* AssignmentRemindersAssembly.swift */,
@@ -1071,6 +1076,15 @@
 			isa = PBXGroup;
 			children = (
 				5568E9EA94D53E0D372EB298 /* WidgetModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		861AD5FEDAE338BB8B63E167 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B42A810EF6FBEC1C9819CA0D /* AssignmentReminderDatePickerInteractor.swift */,
+				B3FB9EF53A06CDB0818CA536 /* AssignmentReminderTimeMetric.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

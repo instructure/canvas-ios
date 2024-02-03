@@ -31,20 +31,22 @@ class AssignmentReminderDatePickerViewModel: ObservableObject {
     @Published public var customValue: Int = 1
     @Published public var customMetric: AssignmentReminderTimeMetric = .minutes
 
-    private static let predefinedIntervals: [AssignmentReminderTimeInterval] = [
-        .init(value: 5, metric: .minutes),
-        .init(value: 15, metric: .minutes),
-        .init(value: 30, metric: .minutes),
-        .init(value: 1, metric: .hours),
-        .init(value: 1, metric: .days),
-        .init(value: 1, metric: .weeks),
+    private static let predefinedIntervals: [DateComponents] = [
+        .init(minute: 5),
+        .init(minute: 15),
+        .init(minute: 30),
+        .init(hour: 1),
+        .init(day: 1),
+        .init(weekOfMonth: 1),
     ]
-    private let selectedTimeInterval: any Subject<AssignmentReminderTimeInterval, Never>
+    private let selectedTimeInterval: any Subject<DateComponents, Never>
 
-    init(selectedTimeInterval: some Subject<AssignmentReminderTimeInterval, Never>) {
+    init(selectedTimeInterval: some Subject<DateComponents, Never>) {
         self.selectedTimeInterval = selectedTimeInterval
         buttonTitles = {
-            var result = Self.predefinedIntervals.map { $0.description }
+            let formatter = DateComponentsFormatter()
+            formatter.unitsStyle = .full
+            var result = Self.predefinedIntervals.map { formatter.string(from: $0)?.capitalized ?? "" }
             result.append(String(localized: "Custom"))
             return result
         }()

@@ -23,7 +23,7 @@ enum AssignmentRemindersAssembly {
 
     static func makeDatePickerView(
         assignmentDate: Date,
-        selectedTimeInterval: some Subject<AssignmentReminderTimeInterval, Never>)
+        selectedTimeInterval: some Subject<DateComponents, Never>)
     -> UIViewController {
         let viewModel = AssignmentReminderDatePickerViewModel(selectedTimeInterval: selectedTimeInterval)
         let view = AssignmentReminderDatePickerView(viewModel: { viewModel })

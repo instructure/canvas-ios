@@ -127,7 +127,7 @@ struct AssignmentReminderDatePickerView_Previews: PreviewProvider {
 
     @ViewBuilder
     static var previews: some View {
-        let viewModel = AssignmentReminderDatePickerViewModel(selectedTimeInterval: PassthroughSubject<AssignmentReminderTimeInterval, Never>())
+        let viewModel = AssignmentReminderDatePickerViewModel(selectedTimeInterval: PassthroughSubject<DateComponents, Never>())
         AssignmentReminderDatePickerView(viewModel: { viewModel })
     }
 }
