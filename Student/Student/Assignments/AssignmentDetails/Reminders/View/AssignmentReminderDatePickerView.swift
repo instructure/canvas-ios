@@ -109,7 +109,7 @@ struct AssignmentReminderDatePickerView: View {
 
     private var doneButton: some View {
         Button {
-            viewModel.doneButtonDidTap()
+            viewModel.doneButtonDidTap(host: viewController.value)
         } label: {
             Text("Done")
                 .font(.regular16)
@@ -127,7 +127,8 @@ struct AssignmentReminderDatePickerView_Previews: PreviewProvider {
 
     @ViewBuilder
     static var previews: some View {
-        let viewModel = AssignmentReminderDatePickerViewModel(selectedTimeInterval: PassthroughSubject<DateComponents, Never>())
+        let viewModel = AssignmentReminderDatePickerViewModel(router: AppEnvironment.shared.router,
+                                                              selectedTimeInterval: PassthroughSubject<DateComponents, Never>())
         AssignmentReminderDatePickerView(viewModel: { viewModel })
     }
 }

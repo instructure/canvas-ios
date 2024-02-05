@@ -17,6 +17,7 @@
 //
 
 import Combine
+import Core
 import SwiftUI
 
 class AssignmentReminderDatePickerViewModel: ObservableObject {
@@ -40,12 +41,13 @@ class AssignmentReminderDatePickerViewModel: ObservableObject {
         .init(weekOfMonth: 1),
     ]
     private let selectedTimeInterval: any Subject<DateComponents, Never>
+    private let router: Router
 
-    init(selectedTimeInterval: some Subject<DateComponents, Never>) {
+    init(router: Router, selectedTimeInterval: some Subject<DateComponents, Never>) {
+        self.router = router
         self.selectedTimeInterval = selectedTimeInterval
         buttonTitles = {
-            let formatter = DateComponentsFormatter()
-            formatter.unitsStyle = .full
+            let formatter = AssignmentRemindersAssembly.makeIntervalFormatter()
             var result = Self.predefinedIntervals.map { formatter.string(from: $0)?.capitalized ?? "" }
             result.append(String(localized: "Custom"))
             return result
@@ -61,12 +63,30 @@ class AssignmentReminderDatePickerViewModel: ObservableObject {
         doneButtonActive = true
     }
 
-    public func doneButtonDidTap() {
+    public func doneButtonDidTap(host: UIViewController) {
         guard let selectedButton else { return }
 
-        if let selectedIndex = buttonTitles.firstIndex(of: selectedButton),
-           selectedIndex <= Self.predefinedIntervals.count {
-            selectedTimeInterval.send(Self.predefinedIntervals[selectedIndex])
-        }
+        let selectedInterval = {
+            if let selectedIndex = buttonTitles.firstIndex(of: selectedButton),
+               let selectedInterval = Self.predefinedIntervals[safeIndex: selectedIndex] {
+                return selectedInterval
+            } else {
+                var customInterval = DateComponents()
+                switch customMetric {
+                case .minutes:
+                    customInterval.minute = customValue
+                case .hours:
+                    customInterval.hour = customValue
+                case .days:
+                    customInterval.day = customValue
+                case .weeks:
+                    customInterval.weekOfMonth = customValue
+                }
+                return customInterval
+            }
+        }()
+
+        selectedTimeInterval.send(selectedInterval)
+        router.dismiss(host)
     }
 }

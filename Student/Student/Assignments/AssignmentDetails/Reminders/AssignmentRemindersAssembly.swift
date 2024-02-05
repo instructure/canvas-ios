@@ -25,9 +25,16 @@ enum AssignmentRemindersAssembly {
         assignmentDate: Date,
         selectedTimeInterval: some Subject<DateComponents, Never>)
     -> UIViewController {
-        let viewModel = AssignmentReminderDatePickerViewModel(selectedTimeInterval: selectedTimeInterval)
+        let viewModel = AssignmentReminderDatePickerViewModel(router: AppEnvironment.shared.router,
+                                                              selectedTimeInterval: selectedTimeInterval)
         let view = AssignmentReminderDatePickerView(viewModel: { viewModel })
         let host = CoreHostingController(view)
         return host
+    }
+
+    static func makeIntervalFormatter() -> DateComponentsFormatter {
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .full
+        return formatter
     }
 }

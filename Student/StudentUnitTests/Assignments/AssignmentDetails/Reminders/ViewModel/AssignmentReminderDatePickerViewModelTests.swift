@@ -18,15 +18,18 @@
 
 import Combine
 @testable import Student
+import TestsFoundation
 import XCTest
 
 class AssignmentReminderDatePickerViewModelTests: XCTestCase {
     private var selectedTimeIntervalReceiver: PassthroughSubject<DateComponents, Never>!
     private var subscriptions = Set<AnyCancellable>()
+    private var testRouter: TestRouter!
 
     override func setUp() {
         super.setUp()
         selectedTimeIntervalReceiver = PassthroughSubject()
+        testRouter = TestRouter()
     }
 
     override func tearDown() {
@@ -36,7 +39,8 @@ class AssignmentReminderDatePickerViewModelTests: XCTestCase {
     }
 
     func testPickerOptions() {
-        let testee = AssignmentReminderDatePickerViewModel(selectedTimeInterval: selectedTimeIntervalReceiver)
+        let testee = AssignmentReminderDatePickerViewModel(router: testRouter,
+                                                           selectedTimeInterval: selectedTimeIntervalReceiver)
 
         XCTAssertEqual(testee.buttonTitles, [
             "5 Minutes",
@@ -50,7 +54,8 @@ class AssignmentReminderDatePickerViewModelTests: XCTestCase {
     }
 
     func testInitialState() {
-        let testee = AssignmentReminderDatePickerViewModel(selectedTimeInterval: selectedTimeIntervalReceiver)
+        let testee = AssignmentReminderDatePickerViewModel(router: testRouter,
+                                                           selectedTimeInterval: selectedTimeIntervalReceiver)
 
         XCTAssertFalse(testee.doneButtonActive)
         XCTAssertFalse(testee.customPickerVisible)
@@ -58,7 +63,8 @@ class AssignmentReminderDatePickerViewModelTests: XCTestCase {
     }
 
     func testSelectingAnOptionEnablesDoneButton() {
-        let testee = AssignmentReminderDatePickerViewModel(selectedTimeInterval: selectedTimeIntervalReceiver)
+        let testee = AssignmentReminderDatePickerViewModel(router: testRouter,
+                                                           selectedTimeInterval: selectedTimeIntervalReceiver)
 
         testee.buttonDidTap(title: "5 Minutes")
 
@@ -66,19 +72,20 @@ class AssignmentReminderDatePickerViewModelTests: XCTestCase {
     }
 
     func testSelectingCustomOptionEnablesCustomPicker() {
-        let testee = AssignmentReminderDatePickerViewModel(selectedTimeInterval: selectedTimeIntervalReceiver)
+        let testee = AssignmentReminderDatePickerViewModel(router: testRouter,
+                                                           selectedTimeInterval: selectedTimeIntervalReceiver)
 
         testee.buttonDidTap(title: "Custom")
 
         XCTAssertTrue(testee.customPickerVisible)
     }
 
-    func testDoneTapOnPredefinedTime() {
-        let testee = AssignmentReminderDatePickerViewModel(selectedTimeInterval: selectedTimeIntervalReceiver)
-
+    func testDoneTapOnPredefinedTimes() {
+        let testee = AssignmentReminderDatePickerViewModel(router: testRouter,
+                                                           selectedTimeInterval: selectedTimeIntervalReceiver)
+        let host = UIViewController()
         let selectedTimeReportExpectation = expectation(description: "Time selected")
         selectedTimeIntervalReceiver
-            .print()
             .collect(6)
             .sink { dateComponents in
                 selectedTimeReportExpectation.fulfill()
@@ -95,19 +102,66 @@ class AssignmentReminderDatePickerViewModelTests: XCTestCase {
 
         // WHEN
         testee.buttonDidTap(title: "5 Minutes")
-        testee.doneButtonDidTap()
+        testee.doneButtonDidTap(host: host)
         testee.buttonDidTap(title: "15 Minutes")
-        testee.doneButtonDidTap()
+        testee.doneButtonDidTap(host: host)
         testee.buttonDidTap(title: "30 Minutes")
-        testee.doneButtonDidTap()
+        testee.doneButtonDidTap(host: host)
         testee.buttonDidTap(title: "1 Hour")
-        testee.doneButtonDidTap()
+        testee.doneButtonDidTap(host: host)
         testee.buttonDidTap(title: "1 Day")
-        testee.doneButtonDidTap()
+        testee.doneButtonDidTap(host: host)
         testee.buttonDidTap(title: "1 Week")
-        testee.doneButtonDidTap()
+        testee.doneButtonDidTap(host: host)
 
         // THEN
         waitForExpectations(timeout: 1)
+    }
+
+    func testDoneTapOnCustomIntervals() {
+        let testee = AssignmentReminderDatePickerViewModel(router: testRouter,
+                                                           selectedTimeInterval: selectedTimeIntervalReceiver)
+        let host = UIViewController()
+        let selectedTimeReportExpectation = expectation(description: "Time selected")
+        selectedTimeIntervalReceiver
+            .collect(4)
+            .sink { dateComponents in
+                selectedTimeReportExpectation.fulfill()
+                XCTAssertEqual(dateComponents, [
+                    DateComponents(minute: 66),
+                    DateComponents(hour: 66),
+                    DateComponents(day: 66),
+                    DateComponents(weekOfMonth: 66),
+                ])
+            }
+            .store(in: &subscriptions)
+        testee.buttonDidTap(title: "Custom")
+        testee.customValue = 66
+
+        // WHEN
+        testee.customMetric = .minutes
+        testee.doneButtonDidTap(host: host)
+        testee.customMetric = .hours
+        testee.doneButtonDidTap(host: host)
+        testee.customMetric = .days
+        testee.doneButtonDidTap(host: host)
+        testee.customMetric = .weeks
+        testee.doneButtonDidTap(host: host)
+
+        // THEN
+        waitForExpectations(timeout: 1)
+    }
+
+    func testDismissesViewOnDoneTap() {
+        let testee = AssignmentReminderDatePickerViewModel(router: testRouter,
+                                                           selectedTimeInterval: selectedTimeIntervalReceiver)
+        let host = UIViewController()
+        testee.buttonDidTap(title: "5 Minutes")
+
+        // WHEN
+        testee.doneButtonDidTap(host: host)
+
+        // THEN
+        XCTAssertEqual(testRouter.dismissed, host)
     }
 }
