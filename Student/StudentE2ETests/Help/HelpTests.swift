@@ -38,7 +38,7 @@ class HelpTests: E2ETestCase {
         XCTAssertTrue(searchTheCanvasGuidesButton.isVisible)
         searchTheCanvasGuidesButton.hit()
         var browserURL = SafariAppHelper.browserURL
-        XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Canvas-LMS/ct-p/canvaslms"))
+        XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Canvas/ct-p/canvas"))
         HelpHelper.returnToHelpPage()
 
         // MARK: Check "Ask Your Instructor a Question" button
