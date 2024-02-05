@@ -67,9 +67,9 @@ class AssignmentRemindersViewModel: ObservableObject {
     // MARK: - Private Methods
 
     private func setupNewReminderHandler() {
-        let formatter = AssignmentRemindersAssembly.makeIntervalFormatter()
+        let formatter = AssignmentReminderTimeFormatter()
         newReminder
-            .compactMap { formatter.string(from: $0) }
+            .compactMap { formatter.string(from: $0)?.lowercased() }
             .map { AssignmentReminderItemViewModel(title: $0) }
             .sink { [weak self] in
                 self?.reminders.append($0)

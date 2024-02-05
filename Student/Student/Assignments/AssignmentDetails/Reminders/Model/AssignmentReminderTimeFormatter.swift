@@ -16,19 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import Combine
+import Foundation
 
-enum AssignmentRemindersAssembly {
+class AssignmentReminderTimeFormatter: DateComponentsFormatter {
 
-    static func makeDatePickerView(
-        assignmentDate: Date,
-        selectedTimeInterval: some Subject<DateComponents, Never>)
-    -> UIViewController {
-        let viewModel = AssignmentReminderDatePickerViewModel(router: AppEnvironment.shared.router,
-                                                              selectedTimeInterval: selectedTimeInterval)
-        let view = AssignmentReminderDatePickerView(viewModel: { viewModel })
-        let host = CoreHostingController(view)
-        return host
+    override init() {
+        super.init()
+        unitsStyle = .full
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func string(from components: DateComponents) -> String? {
+        guard let formatted = super.string(from: components) else {
+            return nil
+        }
+
+        return String(localized: "\(formatted) Before", comment: "Event reminder schedule time: 10 Minutes Before")
     }
 }

@@ -43,12 +43,12 @@ class AssignmentReminderDatePickerViewModelTests: XCTestCase {
                                                            selectedTimeInterval: selectedTimeIntervalReceiver)
 
         XCTAssertEqual(testee.buttonTitles, [
-            "5 Minutes",
-            "15 Minutes",
-            "30 Minutes",
-            "1 Hour",
-            "1 Day",
-            "1 Week",
+            "5 Minutes Before",
+            "15 Minutes Before",
+            "30 Minutes Before",
+            "1 Hour Before",
+            "1 Day Before",
+            "1 Week Before",
             "Custom",
         ])
     }
@@ -66,7 +66,7 @@ class AssignmentReminderDatePickerViewModelTests: XCTestCase {
         let testee = AssignmentReminderDatePickerViewModel(router: testRouter,
                                                            selectedTimeInterval: selectedTimeIntervalReceiver)
 
-        testee.buttonDidTap(title: "5 Minutes")
+        testee.buttonDidTap(title: "5 Minutes Before")
 
         XCTAssertTrue(testee.doneButtonActive)
     }
@@ -101,17 +101,17 @@ class AssignmentReminderDatePickerViewModelTests: XCTestCase {
             .store(in: &subscriptions)
 
         // WHEN
-        testee.buttonDidTap(title: "5 Minutes")
+        testee.buttonDidTap(title: "5 Minutes Before")
         testee.doneButtonDidTap(host: host)
-        testee.buttonDidTap(title: "15 Minutes")
+        testee.buttonDidTap(title: "15 Minutes Before")
         testee.doneButtonDidTap(host: host)
-        testee.buttonDidTap(title: "30 Minutes")
+        testee.buttonDidTap(title: "30 Minutes Before")
         testee.doneButtonDidTap(host: host)
-        testee.buttonDidTap(title: "1 Hour")
+        testee.buttonDidTap(title: "1 Hour Before")
         testee.doneButtonDidTap(host: host)
-        testee.buttonDidTap(title: "1 Day")
+        testee.buttonDidTap(title: "1 Day Before")
         testee.doneButtonDidTap(host: host)
-        testee.buttonDidTap(title: "1 Week")
+        testee.buttonDidTap(title: "1 Week Before")
         testee.doneButtonDidTap(host: host)
 
         // THEN
@@ -156,7 +156,7 @@ class AssignmentReminderDatePickerViewModelTests: XCTestCase {
         let testee = AssignmentReminderDatePickerViewModel(router: testRouter,
                                                            selectedTimeInterval: selectedTimeIntervalReceiver)
         let host = UIViewController()
-        testee.buttonDidTap(title: "5 Minutes")
+        testee.buttonDidTap(title: "5 Minutes Before")
 
         // WHEN
         testee.doneButtonDidTap(host: host)

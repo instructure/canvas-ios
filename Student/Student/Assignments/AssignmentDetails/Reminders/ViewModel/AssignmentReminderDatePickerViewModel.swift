@@ -47,7 +47,7 @@ class AssignmentReminderDatePickerViewModel: ObservableObject {
         self.router = router
         self.selectedTimeInterval = selectedTimeInterval
         buttonTitles = {
-            let formatter = AssignmentRemindersAssembly.makeIntervalFormatter()
+            let formatter = AssignmentReminderTimeFormatter()
             var result = Self.predefinedIntervals.map { formatter.string(from: $0)?.capitalized ?? "" }
             result.append(String(localized: "Custom"))
             return result
