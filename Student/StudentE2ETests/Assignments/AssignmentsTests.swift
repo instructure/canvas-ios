@@ -329,7 +329,7 @@ class AssignmentsTests: E2ETestCase {
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(assignmentButton.isVisible)
 
-        // MARK: Check commentsDrawer
+        // MARK: Check ViewSubmissions
         assignmentButton.hit()
         let viewSubmissionButton = DetailsHelper.viewSubmissionButton.waitUntil(.visible)
         XCTAssertTrue(viewSubmissionButton.isVisible)
