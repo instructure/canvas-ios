@@ -30,10 +30,15 @@ struct AssignmentRemindersView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            header.animation(.none, value: viewModel.reminders)
+            divider
+            header
+                .animation(.none, value: viewModel.reminders)
+                .padding(.horizontal, 16)
             reminderItemList
+                .padding(.horizontal, 16)
+            divider
+                .padding(.bottom, 24) // To look nice when embedded into assignment details
         }
-        .padding(.horizontal, 16)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(Color.backgroundLightest)
         .confirmationAlert(isPresented: $viewModel.showingDeleteConfirmDialog,
@@ -80,6 +85,10 @@ struct AssignmentRemindersView: View {
         }
         .padding(.bottom, 28)
         .padding(.top, 24)
+    }
+
+    private var divider: some View {
+        Color.borderMedium.frame(height: 0.5)
     }
 }
 
