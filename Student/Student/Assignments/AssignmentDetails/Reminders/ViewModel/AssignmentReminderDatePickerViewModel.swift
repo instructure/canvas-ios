@@ -62,5 +62,11 @@ class AssignmentReminderDatePickerViewModel: ObservableObject {
     }
 
     public func doneButtonDidTap() {
+        guard let selectedButton else { return }
+
+        if let selectedIndex = buttonTitles.firstIndex(of: selectedButton),
+           selectedIndex <= Self.predefinedIntervals.count {
+            selectedTimeInterval.send(Self.predefinedIntervals[selectedIndex])
+        }
     }
 }
