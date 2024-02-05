@@ -56,7 +56,7 @@ public class MessageViewModel: Identifiable {
 
     public func handleURL(_ url: URL) -> OpenURLAction.Result {
         if let top = controller {
-            router.route(to: url, from: top)
+            router.route(to: url, from: top, options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true))
         }
         return .handled
     }
