@@ -44,6 +44,7 @@ public struct MessageDetailsView: View {
         }
         .background(Color.backgroundLightest)
         .navigationTitle(model.title)
+        .navigationBarStyle(.color(Brand.shared.navBackground))
         .navigationBarItems(trailing: moreButton)
     }
 
