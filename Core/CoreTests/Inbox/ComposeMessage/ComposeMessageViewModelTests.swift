@@ -32,6 +32,21 @@ class ComposeMessageViewModelTests: CoreTestCase {
         testee = ComposeMessageViewModel(router: router, options: .init(fromType: .new), interactor: mockInteractor)
     }
 
+    private func setupForReply() {
+        let conversation: Conversation = .make()
+        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .reply(conversation: conversation, message: nil)), interactor: mockInteractor)
+    }
+
+    private func setupForReplyAll() {
+        let conversation: Conversation = .make()
+        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .replyAll(conversation: conversation, message: nil)), interactor: mockInteractor)
+    }
+
+    private func setupForForward() {
+        let conversation: Conversation = .make()
+        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .forward(conversation: conversation, message: nil)), interactor: mockInteractor)
+    }
+
     func testValidationForSubject() {
         XCTAssertEqual(testee.sendButtonActive, false)
         testee.selectedContext = RecipientContext(course: Course.make())
@@ -67,12 +82,39 @@ class ComposeMessageViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.sendButtonActive, false)
     }
 
-    func testSuccesfulSend() {
+    func testSuccesfulNewSend() {
         testee.selectedContext = RecipientContext(course: Course.make())
         let sourceView = UIViewController()
-        XCTAssertEqual(mockInteractor.isMessageSent, false)
+        XCTAssertEqual(mockInteractor.isConversationAddSent, false)
         testee.sendButtonDidTap.accept(WeakViewController(sourceView))
-        XCTAssertEqual(mockInteractor.isMessageSent, true)
+        XCTAssertEqual(mockInteractor.isConversationAddSent, true)
+    }
+
+    func testSuccesfulReplySend() {
+        setupForReply()
+        testee.selectedContext = RecipientContext(course: Course.make())
+        let sourceView = UIViewController()
+        XCTAssertEqual(mockInteractor.isMessageAddSent, false)
+        testee.sendButtonDidTap.accept(WeakViewController(sourceView))
+        XCTAssertEqual(mockInteractor.isMessageAddSent, true)
+    }
+
+    func testSuccesfulReplyAllSend() {
+        setupForReplyAll()
+        testee.selectedContext = RecipientContext(course: Course.make())
+        let sourceView = UIViewController()
+        XCTAssertEqual(mockInteractor.isMessageAddSent, false)
+        testee.sendButtonDidTap.accept(WeakViewController(sourceView))
+        XCTAssertEqual(mockInteractor.isMessageAddSent, true)
+    }
+
+    func testSuccesfulForwardSend() {
+        setupForForward()
+        testee.selectedContext = RecipientContext(course: Course.make())
+        let sourceView = UIViewController()
+        XCTAssertEqual(mockInteractor.isMessageAddSent, false)
+        testee.sendButtonDidTap.accept(WeakViewController(sourceView))
+        XCTAssertEqual(mockInteractor.isMessageAddSent, true)
     }
 
     func testFailedSend() {
@@ -210,7 +252,8 @@ private class ComposeMessageInteractorMock: ComposeMessageInteractor {
     var courses: CurrentValueSubject<[Core.InboxCourse], Never>
 
     var isSuccessfulMockFuture = true
-    var isMessageSent = false
+    var isMessageAddSent = false
+    var isConversationAddSent = false
 
     init(context: NSManagedObjectContext) {
         self.state = .init(.data)
@@ -218,12 +261,12 @@ private class ComposeMessageInteractorMock: ComposeMessageInteractor {
     }
 
     func createConversation(parameters: MessageParameters) -> Future<Void, Error> {
-        isMessageSent = true
+        isConversationAddSent = true
         return mockFuture
     }
 
     func addConversationMessage(parameters: MessageParameters) -> Future<Void, Error> {
-        isMessageSent = true
+        isMessageAddSent = true
         return mockFuture
     }
 
