@@ -22,6 +22,7 @@ import Combine
 class AssignmentRemindersViewModel: ObservableObject {
     @Published public private(set) var reminders: [AssignmentReminderItemViewModel] = []
     @Published public var showingDeleteConfirmDialog = false
+    @Published public var isReminderSectionVisible = false
     public let confirmAlert = ConfirmationAlertViewModel(
         title: NSLocalizedString("Delete Reminder", comment: ""),
         message: NSLocalizedString(
@@ -32,21 +33,21 @@ class AssignmentRemindersViewModel: ObservableObject {
         confirmButtonTitle: NSLocalizedString("Yes", comment: ""),
         isDestructive: true
     )
-    public var assignmentDate: Date
 
     private let router: Router
     private var subscriptions = Set<AnyCancellable>()
     private let newReminder = PassthroughSubject<DateComponents, Never>()
+    private let interactor: AssignmentRemindersInteractor
 
-    public init(assignmentDate: Date, router: Router) {
-        self.assignmentDate = assignmentDate
+    public init(interactor: AssignmentRemindersInteractor, router: Router) {
+        self.interactor = interactor
         self.router = router
         setupNewReminderHandler()
+        setupInteractorBindings()
     }
 
     public func newReminderDidTap(view: UIViewController) {
-        let picker = AssignmentRemindersAssembly.makeDatePickerView(assignmentDate: assignmentDate,
-                                                                    selectedTimeInterval: newReminder)
+        let picker = AssignmentRemindersAssembly.makeDatePickerView(selectedTimeInterval: newReminder)
         router.show(picker, from: view, options: .modal(isDismissable: false, embedInNav: true))
     }
 
@@ -75,5 +76,11 @@ class AssignmentRemindersViewModel: ObservableObject {
                 self?.reminders.append($0)
             }
             .store(in: &subscriptions)
+    }
+
+    private func setupInteractorBindings() {
+        interactor
+            .isRemindersSectionVisible
+            .assign(to: &$isReminderSectionVisible)
     }
 }

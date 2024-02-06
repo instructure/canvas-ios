@@ -117,7 +117,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     private weak var gradeBorderLayer: CAShapeLayer?
     private var offlineModeInteractor: OfflineModeInteractor?
     private var gradeSectionBoundsObservation: NSKeyValueObservation?
-    private weak var reminderSection: CoreHostingController<AssignmentRemindersView>?
+    private var remindersInteractor = AssignmentRemindersInteractor()
 
     static func create(courseID: String,
                        assignmentID: String,
@@ -195,6 +195,8 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         submitAssignmentButton.makeUnavailableInOfflineMode()
         fileSubmissionButton?.makeUnavailableInOfflineMode()
         submissionButton?.makeUnavailableInOfflineMode()
+
+        embedReminderSection()
 
         let border = CAShapeLayer()
         border.strokeColor = UIColor.borderDark.cgColor
@@ -403,7 +405,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         centerLockedIconContainerView()
 
         updateQuizSettings(quiz)
-        embedReminderSection(assignment: assignment)
+        remindersInteractor.assignmentDidUpdate.send(assignment)
 
         scrollView?.isHidden = false
         loadingView.stopAnimating()
@@ -495,26 +497,18 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         }
     }
 
-    private func embedReminderSection(assignment: Assignment) {
-        guard reminderSection == nil,
-              let dueSection,
+    private func embedReminderSection() {
+        guard let dueSection,
               let parentStackView = dueSection.superview as? UIStackView,
-              let dueSectionIndex = parentStackView.subviews.firstIndex(of: dueSection),
-              let assignmentDueDate = assignment.dueAt
+              let dueSectionIndex = parentStackView.subviews.firstIndex(of: dueSection)
         else {
             return
         }
 
-        let reminderSection = CoreHostingController(AssignmentRemindersView(viewModel: { [env] in AssignmentRemindersViewModel(assignmentDate: assignmentDueDate, router: env.router) }))
-        if #available(iOS 16.0, *) {
-            // When the SwiftUI view size changes we need to update the hosting view's intrinsic size
-            // so the stack view can resize itself and its children
-            reminderSection.sizingOptions = [.intrinsicContentSize]
-        }
+        let reminderSection = AssignmentRemindersAssembly.makeRemindersSectionController(interactor: remindersInteractor)
         addChild(reminderSection)
         parentStackView.insertArrangedSubview(reminderSection.view, at: dueSectionIndex + 1)
         reminderSection.didMove(toParent: self)
-        self.reminderSection = reminderSection
     }
 
     // MARK: - Show / Hide Sections

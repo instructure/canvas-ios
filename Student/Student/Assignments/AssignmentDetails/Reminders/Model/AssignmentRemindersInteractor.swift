@@ -16,7 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Core
+import Combine
 
-class AssignmentReminderDatePickerInteractor {
+class AssignmentRemindersInteractor {
+    // MARK: - Outputs
+    public let isRemindersSectionVisible = CurrentValueSubject<Bool, Never>(false)
+
+    // MARK: - Inputs
+    public let assignmentDidUpdate = PassthroughSubject<Assignment, Never>()
+
+    // MARK: - Private
+    private var subscriptions = Set<AnyCancellable>()
+
+    public init() {
+        assignmentDidUpdate
+            .map { $0.dueAt != nil }
+            .subscribe(isRemindersSectionVisible)
+            .store(in: &subscriptions)
+    }
 }

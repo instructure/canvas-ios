@@ -21,30 +21,33 @@ import SwiftUI
 
 struct AssignmentRemindersView: View {
     @ScaledMetric private var uiScale: CGFloat = 1
-    @StateObject private var viewModel: AssignmentRemindersViewModel
+    @ObservedObject private var viewModel: AssignmentRemindersViewModel
     @Environment(\.viewController) private var viewController
 
-    init(viewModel: (@escaping () -> AssignmentRemindersViewModel)) {
-        self._viewModel = StateObject(wrappedValue: viewModel())
+    init(viewModel: AssignmentRemindersViewModel) {
+        self.viewModel = viewModel
     }
 
+    @ViewBuilder
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            divider
-            header
-                .animation(.none, value: viewModel.reminders)
-                .padding(.horizontal, 16)
-            reminderItemList
-                .padding(.horizontal, 16)
-            divider
-                .padding(.bottom, 24) // To look nice when embedded into assignment details
+        if viewModel.isReminderSectionVisible {
+            VStack(alignment: .leading, spacing: 0) {
+                divider
+                header
+                    .animation(.none, value: viewModel.reminders)
+                    .padding(.horizontal, 16)
+                reminderItemList
+                    .padding(.horizontal, 16)
+                divider
+                    .padding(.bottom, 24) // To look nice when embedded into assignment details
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color.backgroundLightest)
+            .confirmationAlert(isPresented: $viewModel.showingDeleteConfirmDialog,
+                               presenting: viewModel.confirmAlert)
+            .animation(.default, value: viewModel.reminders)
+            .invalidateIntrinsicContentSize(hostController: viewController)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(Color.backgroundLightest)
-        .confirmationAlert(isPresented: $viewModel.showingDeleteConfirmDialog,
-                           presenting: viewModel.confirmAlert)
-        .animation(.default, value: viewModel.reminders)
-        .invalidateIntrinsicContentSize(hostController: viewController)
     }
 
     @ViewBuilder
@@ -126,7 +129,14 @@ struct AssignmentRemindersView_Previews: PreviewProvider {
 
     static var previews: some View {
         VStack { // Preview bug, if not embedded into this the insert animation won't play
-            AssignmentRemindersView(viewModel: { AssignmentRemindersViewModel(assignmentDate: .now, router: AppEnvironment.shared.router) })
+            let interactor: AssignmentRemindersInteractor = {
+                let interactor = AssignmentRemindersInteractor()
+                interactor.isRemindersSectionVisible.send(true)
+                return interactor
+            }()
+            let viewModel = AssignmentRemindersViewModel(interactor: interactor,
+                                                         router: AppEnvironment.shared.router)
+            AssignmentRemindersView(viewModel: viewModel)
         }
     }
 }

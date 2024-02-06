@@ -28,6 +28,7 @@
 		16BB629D167021A14CA1E8AB /* SubmissionDetailsEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D417F359FDAA3F3BFA2D04 /* SubmissionDetailsEmptyView.swift */; };
 		16E2148BB83015ED61525509 /* student-e2e-tests.yml in Resources */ = {isa = PBXBuildFile; fileRef = 9F9D7B6F140CE3B048DAAC09 /* student-e2e-tests.yml */; };
 		18BB85FC1C2613333590F7B6 /* UrlSubmissionPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D31324710F9EE20342F48A /* UrlSubmissionPresenterTests.swift */; };
+		18EEF206923B6049AAEE9619 /* AssignmentRemindersInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CF458A898CBC80292B58F2 /* AssignmentRemindersInteractor.swift */; };
 		19A95C36D7BE1DB7AF0A4383 /* QuizDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC57848CEF809F94668E1D38 /* QuizDetailsViewController.storyboard */; };
 		1C33A89803ADEB76964C20FD /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86F36A65C55BACCFB3522361 /* Core.framework */; };
 		22CC18705F0D2563BA6FA159 /* SubmissionDetailsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC4E34256113B649D65107E /* SubmissionDetailsPresenterTests.swift */; };
@@ -192,7 +193,6 @@
 		FA3B5BF916E95E724C8F0D26 /* TextSubmissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE64144F3C920B6E9800808 /* TextSubmissionViewController.swift */; };
 		FBCA7B9BE7229D9BC34F652A /* AssignmentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DEF401DEEA457BC5009CF1 /* AssignmentDetailsViewController.swift */; };
 		FD6E564FFC5A217C33F71019 /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376E5C23A7CD59F893ADAA77 /* LoginTests.swift */; };
-		FE5A9D25940D2CE2E6EAEC60 /* AssignmentReminderDatePickerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42A810EF6FBEC1C9819CA0D /* AssignmentReminderDatePickerInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -437,6 +437,7 @@
 		8099866E5C961C465BBB7638 /* DiscussionsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscussionsTest.swift; sourceTree = "<group>"; };
 		818F520823D7E519B08BA29A /* Pods-defaults-StudentUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-StudentUnitTests.release.xcconfig"; path = "Target Support Files/Pods-defaults-StudentUnitTests/Pods-defaults-StudentUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		8467AD99805700563F56B329 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		80CF458A898CBC80292B58F2 /* AssignmentRemindersInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentRemindersInteractor.swift; sourceTree = "<group>"; };
 		848366613483AF6DAB9191B6 /* UrlSubmissionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSubmissionPresenter.swift; sourceTree = "<group>"; };
 		88B62E328014805A6BC319E1 /* ProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTests.swift; sourceTree = "<group>"; };
 		8BD10A0380414F8E3A88CF03 /* GetWidgetAnnouncements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetWidgetAnnouncements.swift; sourceTree = "<group>"; };
@@ -468,7 +469,6 @@
 		B0DCEAFEF22B96B31AD81EEA /* AssignmentDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AssignmentDetailsViewController.storyboard; sourceTree = "<group>"; };
 		B1D32BB4849069B389465382 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		B3FB9EF53A06CDB0818CA536 /* AssignmentReminderTimeMetric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentReminderTimeMetric.swift; sourceTree = "<group>"; };
-		B42A810EF6FBEC1C9819CA0D /* AssignmentReminderDatePickerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentReminderDatePickerInteractor.swift; sourceTree = "<group>"; };
 		B43A2260938A2D274D7BF66E /* AssignmentRemindersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentRemindersView.swift; sourceTree = "<group>"; };
 		B6B15A9240B1F81473B4CC96 /* Drawer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Drawer.xib; sourceTree = "<group>"; };
 		B78A292004C0C229C7F3AE90 /* Widgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = Widgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1095,7 +1095,7 @@
 		861AD5FEDAE338BB8B63E167 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B42A810EF6FBEC1C9819CA0D /* AssignmentReminderDatePickerInteractor.swift */,
+				80CF458A898CBC80292B58F2 /* AssignmentRemindersInteractor.swift */,
 				131F39BDF773F2222EB7DBA5 /* AssignmentReminderTimeFormatter.swift */,
 				B3FB9EF53A06CDB0818CA536 /* AssignmentReminderTimeMetric.swift */,
 			);
@@ -2115,7 +2115,6 @@
 				DFD55304243CE02749FD53F4 /* AssignmentDetailsPresenter.swift in Sources */,
 				C5FA34F3C7782F13E889EF6C /* AssignmentDetailsSectionContainerView.swift in Sources */,
 				FBCA7B9BE7229D9BC34F652A /* AssignmentDetailsViewController.swift in Sources */,
-				FE5A9D25940D2CE2E6EAEC60 /* AssignmentReminderDatePickerInteractor.swift in Sources */,
 				61FC59EBC60BFFD8599D3D63 /* AssignmentReminderDatePickerView.swift in Sources */,
 				D5229999F64AC89BFFF90AA5 /* AssignmentReminderDatePickerViewModel.swift in Sources */,
 				912537469D89E72BD8117C20 /* AssignmentReminderItemView.swift in Sources */,
@@ -2123,6 +2122,7 @@
 				D12B1F3E8A49F1993649CCA6 /* AssignmentReminderTimeFormatter.swift in Sources */,
 				956C9508A31E96D8AD4E9AB4 /* AssignmentReminderTimeMetric.swift in Sources */,
 				241C2F7E03DC0EE834BB91AF /* AssignmentRemindersAssembly.swift in Sources */,
+				18EEF206923B6049AAEE9619 /* AssignmentRemindersInteractor.swift in Sources */,
 				23B445D1D6321E8A267B9370 /* AssignmentRemindersView.swift in Sources */,
 				1157A3E799A6858BF6294333 /* AssignmentRemindersViewModel.swift in Sources */,
 				0221A83F748BE058DB1C8711 /* BundleExtensions.swift in Sources */,
