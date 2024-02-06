@@ -19,20 +19,68 @@
 import Core
 import Combine
 
-class AssignmentRemindersInteractor {
+public protocol AssignmentRemindersInteractor: AnyObject {
+    // MARK: - Outputs
+    var isRemindersSectionVisible: CurrentValueSubject<Bool, Never> { get }
+    var reminders: CurrentValueSubject<[AssignmentReminderItem], Never> { get }
+
+    // MARK: - Inputs
+    var assignmentDidUpdate: PassthroughSubject<Assignment, Never> { get }
+    var newReminderDidSelect: PassthroughSubject<DateComponents, Never> { get }
+    var reminderDidDelete: PassthroughSubject<AssignmentReminderItem, Never> { get }
+}
+
+public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
     // MARK: - Outputs
     public let isRemindersSectionVisible = CurrentValueSubject<Bool, Never>(false)
+    public let reminders = CurrentValueSubject<[AssignmentReminderItem], Never>([])
 
     // MARK: - Inputs
     public let assignmentDidUpdate = PassthroughSubject<Assignment, Never>()
+    public let newReminderDidSelect = PassthroughSubject<DateComponents, Never>()
+    public let reminderDidDelete = PassthroughSubject<AssignmentReminderItem, Never>()
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
 
     public init() {
+        setupReminderAvailability()
+        setupNewReminderHandler()
+        setupReminderDeletion()
+    }
+
+    private func setupReminderAvailability() {
         assignmentDidUpdate
-            .map { $0.dueAt != nil }
+            .map {
+                guard let dueAt = $0.dueAt else {
+                    return false
+                }
+                return dueAt > Clock.now
+            }
             .subscribe(isRemindersSectionVisible)
+            .store(in: &subscriptions)
+    }
+
+    private func setupNewReminderHandler() {
+        let formatter = AssignmentReminderTimeFormatter()
+        newReminderDidSelect
+            .compactMap { formatter.string(from: $0)?.lowercased() }
+            .map { AssignmentReminderItem(title: $0) }
+            .map { [reminders] in
+                reminders.value + [$0]
+            }
+            .subscribe(reminders)
+            .store(in: &subscriptions)
+    }
+
+    private func setupReminderDeletion() {
+        reminderDidDelete
+            .map { [reminders] (deleted) in
+                var newList = reminders.value
+                newList.removeAll { $0 == deleted }
+                return newList
+            }
+            .subscribe(reminders)
             .store(in: &subscriptions)
     }
 }

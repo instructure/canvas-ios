@@ -19,7 +19,7 @@
 import Core
 import SwiftUI
 
-struct AssignmentRemindersView: View {
+public struct AssignmentRemindersView: View {
     @ScaledMetric private var uiScale: CGFloat = 1
     @ObservedObject private var viewModel: AssignmentRemindersViewModel
     @Environment(\.viewController) private var viewController
@@ -29,7 +29,7 @@ struct AssignmentRemindersView: View {
     }
 
     @ViewBuilder
-    var body: some View {
+    public var body: some View {
         if viewModel.isReminderSectionVisible {
             VStack(alignment: .leading, spacing: 0) {
                 divider
@@ -130,7 +130,7 @@ struct AssignmentRemindersView_Previews: PreviewProvider {
     static var previews: some View {
         VStack { // Preview bug, if not embedded into this the insert animation won't play
             let interactor: AssignmentRemindersInteractor = {
-                let interactor = AssignmentRemindersInteractor()
+                let interactor = AssignmentRemindersInteractorLive()
                 interactor.isRemindersSectionVisible.send(true)
                 return interactor
             }()

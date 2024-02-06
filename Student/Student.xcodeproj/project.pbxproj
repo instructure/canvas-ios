@@ -60,10 +60,10 @@
 		49A0D4C229CB338BB44EDA83 /* SubmitAssignmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC92671E4C3A22DE9EB05F7F /* SubmitAssignmentViewController.swift */; };
 		4B9765080B265A6E7178717A /* SubmissionCommentsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A063266A9CDA770972567188 /* SubmissionCommentsViewController.storyboard */; };
 		4E53CCBD8B86D05965364D31 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1690D96DBDF1DBBEA460316E /* Routes.swift */; };
+		4F6B224A7D365293E7D4789C /* AssignmentRemindersViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7F7E319ADCBC4DDB723966 /* AssignmentRemindersViewModelTests.swift */; };
 		4F8C07A53A637C5A47317E17 /* ActivityStreamViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 609C57BFDECD9CD24664C2E6 /* ActivityStreamViewControllerTests.swift */; };
 		505EFB7746D6F74F8F13C970 /* Drawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D8CD3C1198F07799108547 /* Drawer.swift */; };
 		50968A8121ED29A9724ACB63 /* SmallGradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DEC86D41A45B30DC3EE04D /* SmallGradeView.swift */; };
-		50C942D2783F2956A3FB2DF9 /* AssignmentReminderItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C536F17CFC554BD04FC865B /* AssignmentReminderItemViewModel.swift */; };
 		534B8932E221F11FE9E084E6 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8467AD99805700563F56B329 /* InfoPlist.xcstrings */; };
 		53FA47ED4699F4F5262807B3 /* SubmissionDetailsLockedEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27EC4709D55A1308B1DE0F8 /* SubmissionDetailsLockedEmptyView.swift */; };
 		5409DC8729FFA2718A6C9167 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCF04FE779BA84E82898D38F /* Assets.xcassets */; };
@@ -72,6 +72,7 @@
 		578ADB99BDFB9ABCF6D5C129 /* RubricPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38E7696ED8CDF66D0B65157 /* RubricPresenter.swift */; };
 		58BF1BD75E39A8DF5A29A008 /* TestsFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2445803ECF5D0EB0A33E742B /* TestsFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5BC143959A54FD26820FE88C /* PeopleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185EDBA21BCF37602979D00D /* PeopleTests.swift */; };
+		5E707FB30848CDC35AF5638D /* AssignmentRemindersInteractorLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2753785620C755F677B93DC /* AssignmentRemindersInteractorLiveTests.swift */; };
 		5FD228D706F844D5B2C476AC /* SubmissionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABAA28663504666F25A4F720 /* SubmissionDetailsViewController.swift */; };
 		610A0C48EEE0A1052A4DA5EA /* ContentSyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3CF1AB57C0047B11E4332B /* ContentSyncTests.swift */; };
 		61FC59EBC60BFFD8599D3D63 /* AssignmentReminderDatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36C477A14DBA945E3DE44F2 /* AssignmentReminderDatePickerView.swift */; };
@@ -88,6 +89,7 @@
 		7810D0F1C532314FB1F8D211 /* SyllabusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B3F6EAB2C7276C577BFAF2 /* SyllabusTests.swift */; };
 		783CCDB119A59CDCE3B836F8 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A7C7E0396DBF55B63078AE25 /* Localizable.xcstrings */; };
 		78CE61CB31B6A2EF919F8DC7 /* CourseDetailsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66682906CFE37B28ED83A412 /* CourseDetailsTests.swift */; };
+		78E07B2CA839F2A02204CFE5 /* AssignmentReminderTimeMetricTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D11D190E38F68CB21A5400D /* AssignmentReminderTimeMetricTests.swift */; };
 		79C955A84B8EF492617996CE /* UrlSubmissionContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF7A3602402924003C001F8 /* UrlSubmissionContentViewController.swift */; };
 		7CC8F96B1E140D516062A763 /* RubricLongDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532BCD20107678C89422101C /* RubricLongDescriptionViewController.swift */; };
 		7D6162F159850B9355CE9A14 /* GradingStandardsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA99BD820CDD0911C788C2A7 /* GradingStandardsTests.swift */; };
@@ -112,6 +114,7 @@
 		9568777D7084AEEA39007ED9 /* QuizWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B3EBD9579EC569DDC9CFEC /* QuizWebViewController.swift */; };
 		956C9508A31E96D8AD4E9AB4 /* AssignmentReminderTimeMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FB9EF53A06CDB0818CA536 /* AssignmentReminderTimeMetric.swift */; };
 		96787A4071599EAB6AA5251C /* StudentAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66AC918BF4649E9B170A9B8B /* StudentAppDelegate.swift */; };
+		998663F6BB9BC50853645149 /* AssignmentReminderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6791C02E9460203C4E19FCC /* AssignmentReminderItem.swift */; };
 		9B56A1C02C90FD6DF5B51DCE /* GradesWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADB284B023A2243EC708BFE5 /* GradesWidget.swift */; };
 		9C97FEA8BE61EF2EA3218660 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86F36A65C55BACCFB3522361 /* Core.framework */; };
 		9E6ABF2BCA87EBE8025BF094 /* ModulesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CCCEB7A5963E48E283ECE5 /* ModulesTests.swift */; };
@@ -360,7 +363,6 @@
 		185EDBA21BCF37602979D00D /* PeopleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTests.swift; sourceTree = "<group>"; };
 		18D37793B2068B344BC9CD42 /* GradeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeItem.swift; sourceTree = "<group>"; };
 		19D059ADA09A214A715BC993 /* CourseNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseNavigationViewController.swift; sourceTree = "<group>"; };
-		1C536F17CFC554BD04FC865B /* AssignmentReminderItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentReminderItemViewModel.swift; sourceTree = "<group>"; };
 		1E1B32C8BF5FB30C19F0CB49 /* TextSubmissionViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TextSubmissionViewController.storyboard; sourceTree = "<group>"; };
 		1F5ED0B8FF5E0F7060796CBD /* CompatibleContainerBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompatibleContainerBackground.swift; sourceTree = "<group>"; };
 		2085069FE2C9A776437A9E87 /* CanvasCore */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CanvasCore; path = ../CanvasCore/CanvasCore.xcodeproj; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 		96CA804314D2DD2BDDD5963D /* CollaborationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollaborationsTests.swift; sourceTree = "<group>"; };
 		975F6C28375E1877218626D4 /* OfflineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineTests.swift; sourceTree = "<group>"; };
 		9C74ABEA3154BEC6F16C4E1F /* KeychainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainTests.swift; sourceTree = "<group>"; };
+		9D11D190E38F68CB21A5400D /* AssignmentReminderTimeMetricTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentReminderTimeMetricTests.swift; sourceTree = "<group>"; };
 		9F9D7B6F140CE3B048DAAC09 /* student-e2e-tests.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = "student-e2e-tests.yml"; sourceTree = "<group>"; };
 		A063266A9CDA770972567188 /* SubmissionCommentsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubmissionCommentsViewController.storyboard; sourceTree = "<group>"; };
 		A17EED24B81EE7AD5A483E42 /* RubricPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricPresenterTests.swift; sourceTree = "<group>"; };
@@ -470,6 +473,7 @@
 		B1D32BB4849069B389465382 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		B3FB9EF53A06CDB0818CA536 /* AssignmentReminderTimeMetric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentReminderTimeMetric.swift; sourceTree = "<group>"; };
 		B43A2260938A2D274D7BF66E /* AssignmentRemindersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentRemindersView.swift; sourceTree = "<group>"; };
+		B6791C02E9460203C4E19FCC /* AssignmentReminderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentReminderItem.swift; sourceTree = "<group>"; };
 		B6B15A9240B1F81473B4CC96 /* Drawer.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Drawer.xib; sourceTree = "<group>"; };
 		B78A292004C0C229C7F3AE90 /* Widgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = Widgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA88183602891659CC9F97EB /* AssignmentDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsViewControllerTests.swift; sourceTree = "<group>"; };
@@ -484,6 +488,7 @@
 		C9D417F359FDAA3F3BFA2D04 /* SubmissionDetailsEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsEmptyView.swift; sourceTree = "<group>"; };
 		CBC4E34256113B649D65107E /* SubmissionDetailsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsPresenterTests.swift; sourceTree = "<group>"; };
 		CCC3D1FDBAD1E10FF45623C2 /* SubmissionCommentVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionCommentVideoCell.swift; sourceTree = "<group>"; };
+		CF7F7E319ADCBC4DDB723966 /* AssignmentRemindersViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentRemindersViewModelTests.swift; sourceTree = "<group>"; };
 		D10A280E3B91E77DF7F46E56 /* AnnouncementsEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementsEntry.swift; sourceTree = "<group>"; };
 		D38E7696ED8CDF66D0B65157 /* RubricPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RubricPresenter.swift; sourceTree = "<group>"; };
 		D4E47008C1196FF7C90AE09A /* CalendarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTests.swift; sourceTree = "<group>"; };
@@ -501,6 +506,7 @@
 		DD3CF1AB57C0047B11E4332B /* ContentSyncTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSyncTests.swift; sourceTree = "<group>"; };
 		DDF100890E3FB5001F041ED0 /* AssignmentDetailsSectionContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDetailsSectionContainerView.swift; sourceTree = "<group>"; };
 		E0DEC86D41A45B30DC3EE04D /* SmallGradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallGradeView.swift; sourceTree = "<group>"; };
+		E2753785620C755F677B93DC /* AssignmentRemindersInteractorLiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentRemindersInteractorLiveTests.swift; sourceTree = "<group>"; };
 		E2C156CE659D5ACAC11069CF /* AnnouncementItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementItem.swift; sourceTree = "<group>"; };
 		E3614CBD35357F4EBC03253F /* AssignmentReminderDatePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentReminderDatePickerViewModel.swift; sourceTree = "<group>"; };
 		E5023F233B848A9FD2235654 /* CourseNavigationPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseNavigationPresenterTests.swift; sourceTree = "<group>"; };
@@ -639,7 +645,6 @@
 			isa = PBXGroup;
 			children = (
 				E3614CBD35357F4EBC03253F /* AssignmentReminderDatePickerViewModel.swift */,
-				1C536F17CFC554BD04FC865B /* AssignmentReminderItemViewModel.swift */,
 				5F3DD93759E57BE7408092CF /* AssignmentRemindersViewModel.swift */,
 			);
 			path = ViewModel;
@@ -984,6 +989,7 @@
 		6599EB48E1AA945B282C5E19 /* Reminders */ = {
 			isa = PBXGroup;
 			children = (
+				BA20FDC31749D5190E6EDF25 /* Model */,
 				FD091D9D5BAD6C6DD048ED8E /* ViewModel */,
 			);
 			path = Reminders;
@@ -1095,6 +1101,7 @@
 		861AD5FEDAE338BB8B63E167 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B6791C02E9460203C4E19FCC /* AssignmentReminderItem.swift */,
 				80CF458A898CBC80292B58F2 /* AssignmentRemindersInteractor.swift */,
 				131F39BDF773F2222EB7DBA5 /* AssignmentReminderTimeFormatter.swift */,
 				B3FB9EF53A06CDB0818CA536 /* AssignmentReminderTimeMetric.swift */,
@@ -1324,6 +1331,15 @@
 				376E5C23A7CD59F893ADAA77 /* LoginTests.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		BA20FDC31749D5190E6EDF25 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E2753785620C755F677B93DC /* AssignmentRemindersInteractorLiveTests.swift */,
+				9D11D190E38F68CB21A5400D /* AssignmentReminderTimeMetricTests.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		BBC7A3063BEFFA1C2E78125B /* urlSubmission */ = {
@@ -1573,6 +1589,7 @@
 			isa = PBXGroup;
 			children = (
 				6A73F226781D998B8EF312D2 /* AssignmentReminderDatePickerViewModelTests.swift */,
+				CF7F7E319ADCBC4DDB723966 /* AssignmentRemindersViewModelTests.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -2083,6 +2100,9 @@
 				D791391B830AC1AE838647FC /* AssignmentDetailsPresenterTests.swift in Sources */,
 				EED93A58DA73255E6A1D58B2 /* AssignmentDetailsViewControllerTests.swift in Sources */,
 				41636EADF5B5581C63B13124 /* AssignmentReminderDatePickerViewModelTests.swift in Sources */,
+				78E07B2CA839F2A02204CFE5 /* AssignmentReminderTimeMetricTests.swift in Sources */,
+				5E707FB30848CDC35AF5638D /* AssignmentRemindersInteractorLiveTests.swift in Sources */,
+				4F6B224A7D365293E7D4789C /* AssignmentRemindersViewModelTests.swift in Sources */,
 				F32E5807B5474609DB6D3B75 /* CalendarEventDetailsViewControllerTests.swift in Sources */,
 				3F73BE5C71B3A8B4CFAA3882 /* CourseNavigationPresenterTests.swift in Sources */,
 				F91151F65E6F545794C30077 /* GroupNavigationViewControllerTests.swift in Sources */,

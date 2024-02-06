@@ -16,18 +16,26 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Core
+import Student
+import XCTest
 
-public enum AssignmentReminderTimeMetric: CaseIterable, Identifiable, Hashable {
-    case minutes, hours, days, weeks
+class AssignmentRemindersViewModelTests: StudentTestCase {
 
-    public var id: String { pickerTitle }
-    public var pickerTitle: String {
-        switch self {
-        case .minutes: return String(localized: "Minutes Before")
-        case .hours: return String(localized: "Hours Before")
-        case .days: return String(localized: "Days Before")
-        case .weeks: return String(localized: "Weeks Before")
+    func testNewReminderTapOpensTimePicker() {
+        let interactor = AssignmentRemindersInteractorLive()
+        let testee = AssignmentRemindersViewModel(interactor: interactor, router: router)
+        let hostView = UIViewController()
+
+        // WHEN
+        testee.newReminderDidTap(view: hostView)
+
+        // THEN
+        guard let lastPresentation = router.viewControllerCalls.last else {
+            return XCTFail()
         }
+        XCTAssertTrue(lastPresentation.0 is CoreHostingController<AssignmentReminderDatePickerView>)
+        XCTAssertEqual(lastPresentation.1, hostView)
+        XCTAssertEqual(lastPresentation.2, .modal(isDismissable: false, embedInNav: true))
     }
 }

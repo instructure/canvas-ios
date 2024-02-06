@@ -19,10 +19,11 @@
 import Core
 import Combine
 
-class AssignmentRemindersViewModel: ObservableObject {
-    @Published public private(set) var reminders: [AssignmentReminderItemViewModel] = []
+public class AssignmentRemindersViewModel: ObservableObject {
+    // MARK: - Outputs
+    @Published public private(set) var reminders: [AssignmentReminderItem] = []
+    @Published public private(set) var isReminderSectionVisible = false
     @Published public var showingDeleteConfirmDialog = false
-    @Published public var isReminderSectionVisible = false
     public let confirmAlert = ConfirmationAlertViewModel(
         title: NSLocalizedString("Delete Reminder", comment: ""),
         message: NSLocalizedString(
@@ -36,51 +37,41 @@ class AssignmentRemindersViewModel: ObservableObject {
 
     private let router: Router
     private var subscriptions = Set<AnyCancellable>()
-    private let newReminder = PassthroughSubject<DateComponents, Never>()
     private let interactor: AssignmentRemindersInteractor
 
     public init(interactor: AssignmentRemindersInteractor, router: Router) {
         self.interactor = interactor
         self.router = router
-        setupNewReminderHandler()
         setupInteractorBindings()
     }
 
     public func newReminderDidTap(view: UIViewController) {
-        let picker = AssignmentRemindersAssembly.makeDatePickerView(selectedTimeInterval: newReminder)
+        let picker = AssignmentRemindersAssembly.makeDatePickerView(selectedTimeInterval: interactor.newReminderDidSelect)
         router.show(picker, from: view, options: .modal(isDismissable: false, embedInNav: true))
     }
 
-    public func reminderDeleteDidTap(_ reminder: AssignmentReminderItemViewModel) {
+    public func reminderDeleteDidTap(_ reminder: AssignmentReminderItem) {
         showingDeleteConfirmDialog = true
 
         confirmAlert
             .userConfirmation()
-            .sink { [weak self] in
-                guard let self else { return }
-                if let index = reminders.firstIndex(of: reminder) {
-                    reminders.remove(at: index)
-                }
+            .sink { [weak interactor] in
+                // We can't use subscribe because userConfirmation() finishes and
+                // the stream would finish the publisher in the interactor as well
+                interactor?.reminderDidDelete.send(reminder)
             }
             .store(in: &subscriptions)
     }
 
     // MARK: - Private Methods
 
-    private func setupNewReminderHandler() {
-        let formatter = AssignmentReminderTimeFormatter()
-        newReminder
-            .compactMap { formatter.string(from: $0)?.lowercased() }
-            .map { AssignmentReminderItemViewModel(title: $0) }
-            .sink { [weak self] in
-                self?.reminders.append($0)
-            }
-            .store(in: &subscriptions)
-    }
-
     private func setupInteractorBindings() {
         interactor
             .isRemindersSectionVisible
             .assign(to: &$isReminderSectionVisible)
+
+        interactor
+            .reminders
+            .assign(to: &$reminders)
     }
 }

@@ -18,7 +18,11 @@
 
 import Foundation
 
-struct AssignmentReminderItemViewModel: Identifiable, Equatable {
-    public var id: String { title }
+public struct AssignmentReminderItem: Identifiable, Equatable {
+    public var id: String = UUID().uuidString
     public let title: String
+
+    public init(title: String) {
+        self.title = title
+    }
 }

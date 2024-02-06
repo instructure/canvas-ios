@@ -20,7 +20,7 @@ import Core
 import Combine
 import SwiftUI
 
-struct AssignmentReminderDatePickerView: View {
+public struct AssignmentReminderDatePickerView: View {
     @Environment(\.viewController) private var viewController
     @StateObject private var viewModel: AssignmentReminderDatePickerViewModel
 
@@ -28,7 +28,7 @@ struct AssignmentReminderDatePickerView: View {
         _viewModel = StateObject(wrappedValue: viewModel())
     }
 
-    var body: some View {
+    public var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 ForEach(viewModel.buttonTitles, id: \.self) {
