@@ -22,11 +22,11 @@ import Combine
 
 class AudioPickerInteractorLive: AudioPickerInteractor {
 
-    var url: URL?
-    var audioRecorder: CoreAVAudioRecorder?
-    var audioPlayer: CoreAVAudioPlayer?
-    var recorderCancellable: Cancellable?
-    var playerCancellable: Cancellable?
+    public private(set) var url: URL?
+    public private(set) var audioRecorder: CoreAVAudioRecorder?
+    public private(set) var audioPlayer: CoreAVAudioPlayer?
+    public private(set) var recorderCancellable: Cancellable?
+    public private(set) var playerCancellable: Cancellable?
 
     let recorderTimer = PassthroughSubject<AudioPlotData, Error>()
     let playerTimer = PassthroughSubject<TimeInterval, Error>()
@@ -46,6 +46,7 @@ class AudioPickerInteractorLive: AudioPickerInteractor {
             recorderTimer.send(completion: .failure(NSError.instructureError("Failed to record audio")))
         }
 
+        recorderCancellable?.cancel()
         recorderCancellable = Timer.publish(every: 0.1, on: .main, in: .common)
             .autoconnect()
             .map { [weak self] _ -> AudioPlotData in
@@ -73,6 +74,7 @@ class AudioPickerInteractorLive: AudioPickerInteractor {
             recorderTimer.send(completion: .failure(NSError.instructureError("Failed to play audio")))
         }
 
+        playerCancellable?.cancel()
         playerCancellable = Timer.publish(every: 0.1, on: .main, in: .common)
             .autoconnect()
             .map { [weak self] _ in

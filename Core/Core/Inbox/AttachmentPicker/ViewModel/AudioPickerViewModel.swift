@@ -122,8 +122,12 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
 
     private func setupOutputBindings() {
         interactor.recorderTimer
-            .sink(receiveCompletion: { [weak self] _ in
-                self?.showAudioErrorDialog()
+            .sink(receiveCompletion: { [weak self] result in
+                switch result {
+                case .failure:
+                    self?.showAudioErrorDialog()
+                case .finished: break
+                }
             }, receiveValue: { [weak self] audioData in
                     self?.audioChartDataSet.append(audioData)
                     self?.recordingLengthString = self?.formatTimestamp(timestamp: audioData.timestamp) ?? ""
@@ -131,8 +135,12 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
             .store(in: &subscriptions)
 
         interactor.playerTimer
-            .sink(receiveCompletion: { [weak self] _ in
-                self?.showAudioErrorDialog()
+            .sink(receiveCompletion: { [weak self] result in
+                switch result {
+                case .failure:
+                    self?.showAudioErrorDialog()
+                case .finished: break
+                }
             }, receiveValue: { [weak self] timestamp in
                 self?.audioPlayerPosition = timestamp
                 self?.audioPlayerPositionString = self?.formatTimestamp(timestamp: timestamp) ?? ""

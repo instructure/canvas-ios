@@ -35,7 +35,11 @@ public struct AttachmentPickerView: View {
         .background(Color.backgroundLightest)
         .navigationTitle(viewModel.title)
         .navigationBarItems(leading: cancelButton, trailing: actionButton)
-        .fileImporter(isPresented: $viewModel.isFilePickerVisible, allowedContentTypes: [.item], allowsMultipleSelection: false) { result in
+        .fileImporter(
+            isPresented: $viewModel.isFilePickerVisible,
+            allowedContentTypes: [.item],
+            allowsMultipleSelection: false
+        ) { result in
             switch result {
             case .success(let urls):
                 urls.forEach { url in
@@ -132,8 +136,14 @@ public struct AttachmentPickerView: View {
     private var progressHeader: some View {
         VStack {
             VStack {
-                Text("Uploading \(viewModel.fileList.formattedBytesSent) of \(viewModel.fileList.formattedTotalSize)", bundle: .core)
-                ProgressView(value: Float(viewModel.fileList.totalBytesSent), total: Float(max(viewModel.fileList.totalSize, viewModel.fileList.totalBytesSent)))
+                Text(
+                    "Uploading \(viewModel.fileList.formattedBytesSent) of \(viewModel.fileList.formattedTotalSize)",
+                    bundle: .core
+                )
+                ProgressView(
+                    value: Float(viewModel.fileList.totalBytesSent),
+                    total: Float(max(viewModel.fileList.totalSize, viewModel.fileList.totalBytesSent))
+                )
             }
             .padding(12)
             separator

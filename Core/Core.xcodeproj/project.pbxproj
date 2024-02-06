@@ -8147,7 +8147,6 @@
 				D32942642B4EA5050003A59F /* AttachmentPickerView.swift */,
 				D329426C2B4EECA60003A59F /* ImagePickerViewController.swift */,
 				D32942702B4FCDD70003A59F /* AudioPickerView.swift */,
-				D32942722B4FDAEE0003A59F /* BottomSheetDialog.swift */,
 				D365861A2B55763200F05D21 /* ConversationAttachmentCardView.swift */,
 			);
 			path = View;
@@ -8541,6 +8540,7 @@
 				AD0DC2DD5206FDA85595D681 /* UIKitSwiftUIBridging */,
 				ADE954EF8FBBD8539E8E77D5 /* ViewPreferences */,
 				CE063D98DE947BC659237F40 /* AccessIcon.swift */,
+				D32942722B4FDAEE0003A59F /* BottomSheetDialog.swift */,
 				A54E2246CD24105513606843 /* Avatar.swift */,
 				E6FB1FDE58D78AC3EFFDB0B4 /* ConfirmationAlert.swift */,
 				17B0ECD8F56A853C45B9BD5C /* CoreDatePicker.swift */,

@@ -116,8 +116,12 @@ class AttachmentPickerViewModel: ObservableObject {
     }
 
     private func setupOutputBindings() {
-        interactor.files.sink(receiveCompletion: { [weak self] _ in
-            self?.showFileErrorDialog()
+        interactor.files.sink(receiveCompletion: { [weak self] result in
+            switch result {
+            case.failure:
+                self?.showFileErrorDialog()
+            case .finished: break
+            }
         }, receiveValue: { [weak self] files in
             self?.fileList = files
         })

@@ -40,7 +40,6 @@ struct BottomSheetDialog<Content: View>: View {
 }
 
 extension View {
-
     func bottomSheetDialog<Content: View>(isPresented: Binding<Bool>, @ViewBuilder content: @escaping () -> Content) -> some View {
         ZStack {
             self
