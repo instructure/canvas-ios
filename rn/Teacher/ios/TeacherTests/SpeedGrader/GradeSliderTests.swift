@@ -26,7 +26,7 @@ class GradeSliderTests: TeacherTestCase {
         let value = 9.0
         let range: ClosedRange<Double> = 0...10.5
         let sliderWidth: CGFloat = 320
-        let gradeSlider = GradeSlider(value: .constant(value), range: range, showTooltip: false, tooltipText: Text(""), score: value, possible: range.upperBound)
+        let gradeSlider = GradeSlider(value: .constant(value), range: range, showTooltip: false, tooltipText: Text(verbatim: ""), score: value, possible: range.upperBound)
         var grade = gradeSlider.grade(for: CGFloat(Double(sliderWidth) / range.upperBound * value), in: sliderWidth)
         XCTAssertEqual(grade, value)
         grade = gradeSlider.grade(for: sliderWidth, in: sliderWidth)
@@ -43,7 +43,7 @@ class GradeSliderTests: TeacherTestCase {
         let value = 5.0
         let range: ClosedRange<Double> = 0...10
         let sliderWidth: CGFloat = 320
-        let gradeSlider = GradeSlider(value: .constant(value), range: range, showTooltip: false, tooltipText: Text(""), score: value, possible: range.upperBound)
+        let gradeSlider = GradeSlider(value: .constant(value), range: range, showTooltip: false, tooltipText: Text(verbatim: ""), score: value, possible: range.upperBound)
         let halfRange = range.upperBound.rounded(.down) / 2
         var grade = gradeSlider.grade(for: sliderWidth/2 + 1, in: sliderWidth)
         XCTAssertEqual(grade, halfRange)

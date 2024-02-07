@@ -28,44 +28,40 @@ class DiscussionsTests: E2ETestCase {
         // MARK: Seed the usual stuff with a discussion
         let teacher = seeder.createUser()
         let course = seeder.createCourse()
-        seeder.enrollTeacher(teacher, in: course)
-
         let discussion = Helper.createDiscussion(course: course)
+        seeder.enrollTeacher(teacher, in: course)
 
         // MARK: Get the user logged in
         logInDSUser(teacher)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Navigate to Discussions and check visibility of buttons and labels
         Helper.navigateToDiscussions(course: course)
         let discussionButton = Helper.discussionButton(discussion: discussion).waitUntil(.visible)
+        let discussionLastPostLabel = Helper.discussionDataLabel(discussion: discussion, label: .lastPost)!.waitUntil(.visible)
+        let discussionRepliesLabel = Helper.discussionDataLabel(discussion: discussion, label: .replies)!.waitUntil(.visible)
+        let discussionUnreadLabel = Helper.discussionDataLabel(discussion: discussion, label: .unread)!.waitUntil(.visible)
         XCTAssertTrue(discussionButton.isVisible)
-        XCTAssertTrue(discussionButton.label.contains(discussion.title))
-
-        let discussionLastPostLabel = Helper.discussionDataLabel(discussion: discussion, label: .lastPost)!
-            .waitUntil(.visible)
+        XCTAssertTrue(discussionButton.hasLabel(label: discussion.title, strict: false))
         XCTAssertTrue(discussionLastPostLabel.isVisible)
-
-        let discussionRepliesLabel = Helper.discussionDataLabel(discussion: discussion, label: .replies)!
-            .waitUntil(.visible)
         XCTAssertTrue(discussionRepliesLabel.isVisible)
-        XCTAssertEqual(discussionRepliesLabel.label, "\(discussion.discussion_subentry_count) Replies")
-
-        let discussionUnreadLabel = Helper.discussionDataLabel(discussion: discussion, label: .unread)!
-            .waitUntil(.visible)
+        XCTAssertTrue(discussionRepliesLabel.hasLabel(label: "\(discussion.discussion_subentry_count) Replies"))
         XCTAssertTrue(discussionUnreadLabel.isVisible)
-        XCTAssertEqual(discussionUnreadLabel.label, "\(discussion.unread_count) Unread")
+        XCTAssertTrue(discussionUnreadLabel.hasLabel(label: "\(discussion.unread_count) Unread"))
     }
 
     func testDiscussionDetails() {
         // MARK: Seed the usual stuff with a discussion
         let teacher = seeder.createUser()
         let course = seeder.createCourse()
-        seeder.enrollTeacher(teacher, in: course)
-
         let discussion = Helper.createDiscussion(course: course)
+        seeder.enrollTeacher(teacher, in: course)
 
         // MARK: Get the user logged in
         logInDSUser(teacher)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Navigate to Discussions, tap on the discussion, check detail page buttons and labels
         Helper.navigateToDiscussions(course: course)
@@ -74,23 +70,18 @@ class DiscussionsTests: E2ETestCase {
 
         discussionButton.hit()
         let detailsNavBar = DetailsHelper.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(detailsNavBar.isVisible)
-
         let detailsOptionsButton = DetailsHelper.optionsButton.waitUntil(.visible)
-        XCTAssertTrue(detailsOptionsButton.isVisible)
-
         let detailsTitleLabel = DetailsHelper.titleLabel.waitUntil(.visible)
-        XCTAssertTrue(detailsTitleLabel.isVisible)
-        XCTAssertEqual(detailsTitleLabel.label, discussion.title)
-
         let detailsLastPostLabel = DetailsHelper.lastPostLabel.waitUntil(.visible)
-        XCTAssertTrue(detailsLastPostLabel.isVisible)
-
         let detailsMessageLabel = DetailsHelper.messageLabel.waitUntil(.visible)
-        XCTAssertTrue(detailsMessageLabel.isVisible)
-        XCTAssertEqual(detailsMessageLabel.label, discussion.message)
-
         let detailsReplyButton = DetailsHelper.replyButton.waitUntil(.visible)
+        XCTAssertTrue(detailsNavBar.isVisible)
+        XCTAssertTrue(detailsOptionsButton.isVisible)
+        XCTAssertTrue(detailsTitleLabel.isVisible)
+        XCTAssertTrue(detailsTitleLabel.hasLabel(label: discussion.title))
+        XCTAssertTrue(detailsLastPostLabel.isVisible)
+        XCTAssertTrue(detailsMessageLabel.isVisible)
+        XCTAssertTrue(detailsMessageLabel.hasLabel(label: discussion.message))
         XCTAssertTrue(detailsReplyButton.isVisible)
     }
 
@@ -98,12 +89,13 @@ class DiscussionsTests: E2ETestCase {
         // MARK: Seed the usual stuff and a discussion
         let teacher = seeder.createUser()
         let course = seeder.createCourse()
-        seeder.enrollTeacher(teacher, in: course)
-
         let discussion = Helper.createDiscussion(course: course)
+        seeder.enrollTeacher(teacher, in: course)
 
         // MARK: Get the user logged in
         logInDSUser(teacher)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Navigate to Discussions
         Helper.navigateToDiscussions(course: course)
@@ -112,24 +104,20 @@ class DiscussionsTests: E2ETestCase {
 
         discussionButton.hit()
         let detailsNavBar = DetailsHelper.navBar(course: course).waitUntil(.visible)
-        XCTAssertTrue(detailsNavBar.isVisible)
-
         let detailsReplyButton = DetailsHelper.replyButton.waitUntil(.visible)
+        XCTAssertTrue(detailsNavBar.isVisible)
         XCTAssertTrue(detailsReplyButton.isVisible)
 
         // MARK: Tap reply button and check buttons and labels of reply screen
         detailsReplyButton.hit()
         let replyNavBar = ReplyHelper.navBar.waitUntil(.visible)
-        XCTAssertTrue(replyNavBar.isVisible)
-
         let replySendButton = ReplyHelper.sendButton.waitUntil(.visible)
-        XCTAssertTrue(replySendButton.isVisible)
-        XCTAssertFalse(replySendButton.isEnabled)
-
         let replyAttachmentButton = ReplyHelper.attachmentButton.waitUntil(.visible)
-        XCTAssertTrue(replyAttachmentButton.isVisible)
-
         let replyTextField = ReplyHelper.textField.waitUntil(.visible)
+        XCTAssertTrue(replyNavBar.isVisible)
+        XCTAssertTrue(replySendButton.isVisible)
+        XCTAssertTrue(replySendButton.isDisabled)
+        XCTAssertTrue(replyAttachmentButton.isVisible)
         XCTAssertTrue(replyTextField.isVisible)
 
         // MARK: Write some text into reply text input and tap Send button
@@ -141,24 +129,22 @@ class DiscussionsTests: E2ETestCase {
 
         // MARK: Check visibility and label of the reply
         let repliesSection = DetailsHelper.repliesSection.waitUntil(.visible)
-        XCTAssertTrue(repliesSection.isVisible)
-
         let replyLabel = app.find(label: replyText).waitUntil(.visible)
+        XCTAssertTrue(repliesSection.isVisible)
         XCTAssertTrue(replyLabel.isVisible)
 
         // MARK: Reply to thread
         let replyToThreadButton = DetailsHelper.replyToThreadButton(threadIndex: 1).waitUntil(.visible)
         let threadReplyText = "Test replying to thread"
         XCTAssertTrue(replyToThreadButton.isVisible)
-        XCTAssertEqual(replyToThreadButton.label, "Reply to thread")
+        XCTAssertTrue(replyToThreadButton.hasLabel(label: "Reply to thread"))
 
         replyToThreadButton.hit()
 
         // MARK: Check visibility and label of the thread reply
         let replyWasSuccessful = Helper.replyToDiscussion(replyText: threadReplyText)
-        XCTAssertTrue(replyWasSuccessful)
-
         let threadReplyLabel = app.find(label: threadReplyText).waitUntil(.visible)
+        XCTAssertTrue(replyWasSuccessful)
         XCTAssertTrue(threadReplyLabel.isVisible)
     }
 
@@ -166,17 +152,17 @@ class DiscussionsTests: E2ETestCase {
         // MARK: Seed the usual stuff with an assignment discussion
         let teacher = seeder.createUser()
         let course = seeder.createCourse()
-        seeder.enrollTeacher(teacher, in: course)
-
         let assignmentDiscussion = Helper.createDiscussion(course: course, isAssignment: true)
+        seeder.enrollTeacher(teacher, in: course)
 
         // MARK: Get the user logged in
         logInDSUser(teacher)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Navigate to Assignments to check visibility of the assignment discussion there
         AssignmentsHelper.navigateToAssignments(course: course)
-        let assignmentButton = AssignmentsHelper.assignmentButton(assignment: assignmentDiscussion.assignment!)
-            .waitUntil(.visible)
+        let assignmentButton = AssignmentsHelper.assignmentButton(assignment: assignmentDiscussion.assignment!).waitUntil(.visible)
         XCTAssertTrue(assignmentButton.isVisible)
     }
 
@@ -190,6 +176,8 @@ class DiscussionsTests: E2ETestCase {
 
         // MARK: Get the user logged in
         logInDSUser(teacher)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Navigate to Discussions
         DiscussionsHelper.navigateToDiscussions(course: course)

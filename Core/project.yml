@@ -14,6 +14,7 @@ settings:
   DEVELOPMENT_TEAM: 58GH9WB284
   APPLICATION_EXTENSION_API_ONLY: true
   CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
+  LOCALIZATION_PREFERS_STRING_CATALOGS: true
   platform: iOS
 packages:
   CombineSchedulers:
@@ -58,6 +59,8 @@ targets:
       - path: ../scripts/swiftLint.sh
         name: SwiftLint
         basedOnDependencyAnalysis: false
+    settings:
+      SWIFT_EMIT_LOC_STRINGS: true
   CoreTests:    
     type: bundle.unit-test
     platform: iOS

@@ -49,11 +49,8 @@ class FilesTests: E2ETestCase {
         let titleOfFile = SafariAppHelper.Share.titleLabel(title: FilesHelper.TestPDF.title).waitUntil(.visible)
         XCTAssertTrue(titleOfFile.isVisible)
 
-        // On iPad: Title label is not visible, swipeUp only works with Copy button
-        // On iPhone: Title label is visible, swipeUp only works as "safariApp.swipeUp"
-        let copyButton = SafariAppHelper.Share.copyButton.waitUntil(.visible)
-        let titleLabel = SafariAppHelper.Share.titleLabel(title: FilesHelper.TestPDF.title).waitUntil(.visible, timeout: 5)
-        if titleLabel.isVisible { SafariAppHelper.safariApp.swipeUp() } else { copyButton.swipeUp() }
+        let moreButton = SafariAppHelper.Share.moreButton.waitUntil(.visible)
+        moreButton.swipeUp()
         let saveToFilesButton = SafariAppHelper.Share.saveToFiles.waitUntil(.visible)
         XCTAssertTrue(saveToFilesButton.isVisible)
 
@@ -64,9 +61,8 @@ class FilesTests: E2ETestCase {
 
         onMyButton.hit()
         let onMyLabel = SafariAppHelper.Share.onMyLabel.waitUntil(.visible)
-        XCTAssertTrue(onMyLabel.isVisible)
-
         let saveButton = SafariAppHelper.Share.saveButton.waitUntil(.visible)
+        XCTAssertTrue(onMyLabel.isVisible)
         XCTAssertTrue(saveButton.isVisible)
 
         saveButton.hit()
@@ -87,7 +83,6 @@ class FilesTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Files, create test folder
         logInDSUser(teacher)
-
         let profileButton = Dashboard.profileButton.waitUntil(.visible)
         XCTAssertTrue(profileButton.isVisible)
 
@@ -97,9 +92,8 @@ class FilesTests: E2ETestCase {
 
         filesButton.hit()
         let noFilesLabel = Helper.noFilesLabel.waitUntil(.visible)
-        XCTAssertTrue(noFilesLabel.isVisible)
-
         let addButton = FileList.addButton.waitUntil(.visible)
+        XCTAssertTrue(noFilesLabel.isVisible)
         XCTAssertTrue(addButton.isVisible)
 
         addButton.hit()
@@ -193,6 +187,8 @@ class FilesTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Files, create test folder
         logInDSUser(teacher)
+        let profileButton = Dashboard.profileButton.waitUntil(.visible)
+        XCTAssertTrue(profileButton.isVisible)
 
         Helper.navigateToFiles()
         let folderIsCreated = FileList.createFolder(name: testFolderName, shouldOpen: true)

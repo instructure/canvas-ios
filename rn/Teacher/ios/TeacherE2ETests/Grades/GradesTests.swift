@@ -30,16 +30,17 @@ class GradesTests: E2ETestCase {
         let student = seeder.createUser()
         let teacher = seeder.createUser()
         let course = seeder.createCourse()
+        let assignment = AssignmentsHelper.createAssignment(course: course)
         seeder.enrollStudent(student, in: course)
         seeder.enrollTeacher(teacher, in: course)
-
-        let assignment = AssignmentsHelper.createAssignment(course: course)
         Helper.submitAssignment(course: course, student: student, assignment: assignment)
 
         // MARK: Get the user logged in, navigate to Assignments
         logInDSUser(teacher)
-        AssignmentsHelper.navigateToAssignments(course: course)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
 
+        AssignmentsHelper.navigateToAssignments(course: course)
         let assignmentItem = AssignmentsHelper.assignmentButton(assignment: assignment).waitUntil(.visible)
         let oneNeedsGradingLabel = AssignmentsHelper.oneNeedsGradingLabel(assignmentItem: assignmentItem).waitUntil(.visible)
         XCTAssertTrue(assignmentItem.isVisible)
@@ -53,7 +54,6 @@ class GradesTests: E2ETestCase {
         XCTAssertTrue(oneNeedsGradingButton.isVisible)
 
         oneNeedsGradingButton.hit()
-
         let submissionsNavBar = SubmissionsHelper.navBar(assignment: assignment).waitUntil(.visible)
         let needsGradingLabel = SubmissionsHelper.needsGradingLabel.waitUntil(.visible)
         let submissionItem = SubmissionsHelper.cell(student: student).waitUntil(.visible)
@@ -61,22 +61,24 @@ class GradesTests: E2ETestCase {
         XCTAssertTrue(needsGradingLabel.isVisible)
         XCTAssertTrue(submissionItem.isVisible)
 
-        submissionItem.hit()
-
         // MARK: Grade the submitted assignment
+        submissionItem.hit()
         let speedGraderUserButton = SpeedGraderHelper.userButton.waitUntil(.visible)
         let speedGraderPostPolicyButton = SpeedGraderHelper.postPolicyButton.waitUntil(.visible)
         let speedGraderDoneButton = SpeedGraderHelper.doneButton.waitUntil(.visible)
         let speedGraderDrawerGripper = SpeedGraderHelper.drawerGripper.waitUntil(.visible)
+        let speedGraderGradeSlider = SpeedGraderHelper.gradeSlider.waitUntil(.visible, timeout: 5)
         XCTAssertTrue(speedGraderUserButton.isVisible)
         XCTAssertTrue(speedGraderPostPolicyButton.isVisible)
         XCTAssertTrue(speedGraderDoneButton.isVisible)
-        XCTAssertTrue(speedGraderDrawerGripper.isVisible)
 
-        speedGraderDrawerGripper.swipeUp()
+        if speedGraderGradeSlider.isVanished {
+            XCTAssertTrue(speedGraderDrawerGripper.isVisible)
+            speedGraderDrawerGripper.swipeUp()
+        }
 
         let speedGraderGradeButton = SpeedGraderHelper.gradeButton.waitUntil(.visible)
-        let speedGraderGradeSlider = SpeedGraderHelper.gradeSlider.waitUntil(.visible)
+        speedGraderGradeSlider.waitUntil(.visible)
         XCTAssertTrue(speedGraderGradeButton.isVisible)
         XCTAssertTrue(speedGraderGradeSlider.isVisible)
         XCTAssertTrue(speedGraderGradeSlider.hasValue(value: "0"))
@@ -87,7 +89,7 @@ class GradesTests: E2ETestCase {
 
         speedGraderDoneButton.hit()
         submissionItem.waitUntil(.vanish)
-        let backButton = SubmissionsHelper.backButton.waitUntil(.visible)
+        let backButton = SubmissionsHelper.backButton.waitUntil(.visible, timeout: 5)
         XCTAssertTrue(submissionItem.isVanished)
         XCTAssertTrue(backButton.isVisible)
 
@@ -104,18 +106,19 @@ class GradesTests: E2ETestCase {
         let student = seeder.createUser()
         let teacher = seeder.createUser()
         let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
-        seeder.enrollTeacher(teacher, in: course)
-
         let assignment = AssignmentsHelper.createAssignment(course: course)
         let score = "1"
+        seeder.enrollStudent(student, in: course)
+        seeder.enrollTeacher(teacher, in: course)
         Helper.submitAssignment(course: course, student: student, assignment: assignment)
         Helper.gradeAssignment(grade: score, course: course, assignment: assignment, user: student)
 
         // MARK: Get the user logged in, navigate to Assignments
         logInDSUser(teacher)
-        AssignmentsHelper.navigateToAssignments(course: course)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
 
+        AssignmentsHelper.navigateToAssignments(course: course)
         let assignmentItem = AssignmentsHelper.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(assignmentItem.isVisible)
 
@@ -145,9 +148,8 @@ class GradesTests: E2ETestCase {
         let doneButton = EditorHelper.doneButton.waitUntil(.visible)
         XCTAssertTrue(doneButton.isVisible)
 
-        doneButton.hit()
-
         // MARK: Check new score
+        doneButton.hit()
         let pointsLabel = DetailsHelper.points.waitUntil(.visible)
         XCTAssertTrue(pointsLabel.isVisible)
         XCTAssertTrue(pointsLabel.hasLabel(label: "\(newScore) pts"))

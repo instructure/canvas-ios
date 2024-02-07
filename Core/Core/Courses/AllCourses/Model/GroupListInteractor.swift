@@ -60,7 +60,7 @@ public class GroupListInteractorLive: GroupListInteractor {
                 .eraseToAnyPublisher()
         }
         return groupListStore
-            .observeEntitiesWithError()
+            .getEntities(keepObservingDatabaseChanges: true)
             .filter(with: searchQuery)
             .map { $0.map { AllCoursesGroupItem(from: $0) }}
             .eraseToAnyPublisher()
@@ -82,7 +82,7 @@ public class GroupListInteractorLive: GroupListInteractor {
         guard shouldListGroups else {
             return Just(()).eraseToAnyPublisher()
         }
-        return groupListStore.forceFetchEntities()
+        return groupListStore.forceRefresh()
     }
 
     public func setFilter(_ filter: String) -> AnyPublisher<Void, Never> {

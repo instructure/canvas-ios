@@ -56,7 +56,7 @@ public final class CourseSyncAnnouncementsInteractorLive: CourseSyncAnnouncement
 
     private func fetchUseCase<U: UseCase>(_ useCase: U) -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: useCase)
-            .getEntities()
+            .getEntities(ignoreCache: true)
             .mapToVoid()
             .eraseToAnyPublisher()
     }

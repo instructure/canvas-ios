@@ -98,8 +98,7 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
 
         load()
 
-        XCTAssertEqual(viewController.descriptionView?.isHidden, true)
-        XCTAssertEqual(viewController.descriptionHeadingLabel?.isHidden, true)
+        XCTAssertEqual(viewController.descriptionHeader?.isHidden, true)
     }
 
     func testShowDescription() {
@@ -211,7 +210,6 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
 
         XCTAssertEqual(viewController.submittedLabel?.text, "Resubmission Failed")
         XCTAssertEqual(viewController.gradeSection?.isHidden, false)
-        XCTAssertEqual(viewController.gradeCellDivider?.isHidden, false)
         XCTAssertEqual(viewController.gradedView?.isHidden, true)
         XCTAssertEqual(viewController.gradeStatisticGraphView?.isHidden, true)
         XCTAssertEqual(viewController.submittedView?.isHidden, false)
@@ -232,7 +230,6 @@ class AssignmentDetailsViewControllerTests: StudentTestCase {
 
         XCTAssertEqual(viewController.submittedLabel?.text, "Submission Failed")
         XCTAssertEqual(viewController.gradeSection?.isHidden, false)
-        XCTAssertEqual(viewController.gradeCellDivider?.isHidden, false)
         XCTAssertEqual(viewController.gradedView?.isHidden, true)
         XCTAssertEqual(viewController.gradeStatisticGraphView?.isHidden, true)
         XCTAssertEqual(viewController.submittedView?.isHidden, false)

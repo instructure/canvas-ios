@@ -43,40 +43,30 @@ class InboxTests: E2ETestCase {
         // MARK: Navigate to Inbox
         inboxTab.hit()
         let navBar = Helper.navBar.waitUntil(.visible)
-        XCTAssertTrue(navBar.isVisible)
-
-        // MARK: Tap on the "New Message" button
         let newMessageButton = Helper.newMessageButton.waitUntil(.visible)
+        XCTAssertTrue(navBar.isVisible)
         XCTAssertTrue(newMessageButton.isVisible)
 
+        // MARK: Tap "New Message" button, Check visibility of elements
         newMessageButton.hit()
-
-        // MARK: Check visibility of elements
         let cancelButton = ComposerHelper.cancelButton.waitUntil(.visible)
-        XCTAssertTrue(cancelButton.isVisible)
-
         let attachButton = ComposerHelper.attachButton.waitUntil(.visible)
-        XCTAssertTrue(attachButton.isVisible)
-
         var sendButton = ComposerHelper.sendButton.waitUntil(.visible)
+        let courseSelectButton = ComposerHelper.courseSelectButton.waitUntil(.visible)
+        var recipientsLabel = ComposerHelper.recipientsLabel.waitUntil(.vanish)
+        var addRecipientButton = ComposerHelper.addRecipientButton.waitUntil(.vanish)
+        let subjectInput = ComposerHelper.subjectInput.waitUntil(.visible)
+        let individualSwitch = ComposerHelper.individualSwitch.waitUntil(.visible)
+        XCTAssertTrue(cancelButton.isVisible)
+        XCTAssertTrue(attachButton.isVisible)
         XCTAssertTrue(sendButton.isVisible)
         XCTAssertTrue(sendButton.isDisabled)
-
-        let courseSelectButton = ComposerHelper.courseSelectButton.waitUntil(.visible)
         XCTAssertTrue(courseSelectButton.isVisible)
-
-        var recipientsLabel = ComposerHelper.recipientsLabel.waitUntil(.vanish)
         XCTAssertTrue(recipientsLabel.isVanished)
-
-        var addRecipientButton = ComposerHelper.addRecipientButton.waitUntil(.vanish)
         XCTAssertTrue(addRecipientButton.isVanished)
-
-        let subjectInput = ComposerHelper.subjectInput.waitUntil(.visible)
         XCTAssertTrue(subjectInput.isVisible)
-
-        let individualSwitch = ComposerHelper.individualSwitch.waitUntil(.visible)
         XCTAssertTrue(individualSwitch.isVisible)
-        XCTAssertTrue(individualSwitch.label.hasSuffix("Off"))
+        XCTAssertTrue(individualSwitch.labelHasSuffix("Off"))
 
         let messageInput = ComposerHelper.messageInput.waitUntil(.visible)
         XCTAssertTrue(messageInput.isVisible)
@@ -89,10 +79,9 @@ class InboxTests: E2ETestCase {
         courseSelectionItem.hit()
 
         // MARK: Check if "Recipients" label and "Add recipients" button appeared
+        addRecipientButton = ComposerHelper.addRecipientButton.waitUntil(.visible)
         recipientsLabel = ComposerHelper.recipientsLabel.waitUntil(.visible)
         XCTAssertTrue(recipientsLabel.isVisible)
-
-        addRecipientButton = ComposerHelper.addRecipientButton.waitUntil(.visible)
         XCTAssertTrue(addRecipientButton.isVisible)
 
         // MARK: Add recipients
@@ -164,11 +153,11 @@ class InboxTests: E2ETestCase {
         var unreadMessageButton = Helper.conversation(conversation: unreadConversation).waitUntil(.visible)
         var starredMessageButton = Helper.conversation(conversation: starredConversation).waitUntil(.visible)
         XCTAssertTrue(readMessageButton.isVisible)
-        XCTAssertTrue(readMessageButton.label.hasSuffix("Unread"))
+        XCTAssertTrue(readMessageButton.labelHasSuffix("Unread"))
         XCTAssertTrue(unreadMessageButton.isVisible)
-        XCTAssertTrue(unreadMessageButton.label.hasSuffix("Unread"))
+        XCTAssertTrue(unreadMessageButton.labelHasSuffix("Unread"))
         XCTAssertTrue(starredMessageButton.isVisible)
-        XCTAssertTrue(starredMessageButton.label.hasSuffix("Unread"))
+        XCTAssertTrue(starredMessageButton.labelHasSuffix("Unread"))
 
         // MARK: Tap on message and check if it becomes read
         readMessageButton.hit()
@@ -176,7 +165,7 @@ class InboxTests: E2ETestCase {
         if backButton.isVisible { backButton.hit() }
         readMessageButton = Helper.conversation(conversation: readConversation).waitUntil(.visible)
         XCTAssertTrue(readMessageButton.isVisible)
-        XCTAssertFalse(readMessageButton.label.hasSuffix("Unread"))
+        XCTAssertFalse(readMessageButton.labelHasSuffix("Unread"))
 
         // MARK: Check "Unread" filter button
         let unreadButton = FilterHelper.unread.waitUntil(.visible)
@@ -242,11 +231,10 @@ class InboxTests: E2ETestCase {
 
         // MARK: Tap "Archived" filter button and check messages again
         archivedButton.hit()
-        XCTAssertTrue(archivedButton.isSelected)
-
         readMessageButton = Helper.conversation(conversation: readConversation).waitUntil(.vanish)
         unreadMessageButton = Helper.conversation(conversation: unreadConversation).waitUntil(.vanish)
         starredMessageButton = Helper.conversation(conversation: starredConversation).waitUntil(.vanish)
+        XCTAssertTrue(archivedButton.isSelected)
         XCTAssertTrue(readMessageButton.isVanished)
         XCTAssertTrue(unreadMessageButton.isVanished)
         XCTAssertTrue(starredMessageButton.isVanished)
@@ -258,7 +246,6 @@ class InboxTests: E2ETestCase {
         let teacher2 = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollTeachers([teacher1, teacher2], in: course)
-
         let conversation = Helper.createConversation(course: course, recipients: [teacher1.id, teacher2.id])
 
         // MARK: Get teacher1 logged in
@@ -266,32 +253,25 @@ class InboxTests: E2ETestCase {
         let inboxTab = Helper.TabBar.inboxTab.waitUntil(.visible)
         XCTAssertTrue(inboxTab.isVisible)
 
-        inboxTab.hit()
-
         // MARK: Check message item
+        inboxTab.hit()
         let messageButton = Helper.conversation(conversation: conversation).waitUntil(.visible)
         XCTAssertTrue(messageButton.isVisible)
         XCTAssertTrue(messageButton.hasLabel(label: Helper.addDateToSubject(subject: conversation.subject, unread: true)))
 
-        messageButton.hit()
-
         // MARK: Check message details
+        messageButton.hit()
         let detailsNavBar = DetailsHelper.navBar.waitUntil(.visible)
-        XCTAssertTrue(detailsNavBar.isVisible)
-
         let starButton = DetailsHelper.starButton.waitUntil(.visible)
-        XCTAssertTrue(starButton.isVisible)
-
         let subjectLabel = DetailsHelper.subjectLabel(conversation: conversation).waitUntil(.visible)
-        XCTAssertTrue(subjectLabel.isVisible)
-
         let messageLabel = DetailsHelper.message(conversation: conversation).waitUntil(.visible)
-        XCTAssertTrue(messageLabel.isVisible)
-
         let messageBody = DetailsHelper.bodyOfMessage(conversation: conversation).waitUntil(.visible)
-        XCTAssertTrue(messageBody.isVisible)
-
         let replyButton = DetailsHelper.replyButton.waitUntil(.visible)
+        XCTAssertTrue(detailsNavBar.isVisible)
+        XCTAssertTrue(starButton.isVisible)
+        XCTAssertTrue(subjectLabel.isVisible)
+        XCTAssertTrue(messageLabel.isVisible)
+        XCTAssertTrue(messageBody.isVisible)
         XCTAssertTrue(replyButton.isVisible)
 
         // MARK: Check options
@@ -300,15 +280,12 @@ class InboxTests: E2ETestCase {
         optionsButton.hit()
 
         var replyOption = OptionsHelper.replyButton.waitUntil(.visible)
-        XCTAssertTrue(replyOption.isVisible)
-
         var replyAllOption = OptionsHelper.replyAllButton.waitUntil(.visible)
-        XCTAssertTrue(replyAllOption.isVisible)
-
         var forwardOption = OptionsHelper.forwardButton.waitUntil(.visible)
-        XCTAssertTrue(forwardOption.isVisible)
-
         var deleteOption = OptionsHelper.deleteButton.waitUntil(.visible)
+        XCTAssertTrue(replyOption.isVisible)
+        XCTAssertTrue(replyAllOption.isVisible)
+        XCTAssertTrue(forwardOption.isVisible)
         XCTAssertTrue(deleteOption.isVisible)
 
         // On iPhone: There is a cancel button to hit
@@ -326,15 +303,12 @@ class InboxTests: E2ETestCase {
 
         messageOptions.hit()
         replyOption = OptionsHelper.replyButton.waitUntil(.visible)
-        XCTAssertTrue(replyOption.isVisible)
-
         replyAllOption = OptionsHelper.replyAllButton.waitUntil(.visible)
-        XCTAssertTrue(replyAllOption.isVisible)
-
         forwardOption = OptionsHelper.forwardButton.waitUntil(.visible)
-        XCTAssertTrue(forwardOption.isVisible)
-
         deleteOption = OptionsHelper.deleteButton.waitUntil(.visible)
+        XCTAssertTrue(replyOption.isVisible)
+        XCTAssertTrue(replyAllOption.isVisible)
+        XCTAssertTrue(forwardOption.isVisible)
         XCTAssertTrue(deleteOption.isVisible)
 
         // On iPhone: There is a cancel button to hit

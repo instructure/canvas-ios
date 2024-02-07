@@ -61,7 +61,7 @@ public class AssignmentsHelper: BaseHelper {
         public static var status: XCUIElement { app.find(id: "AssignmentDetails.status") }
         public static var due: XCUIElement { app.find(id: "AssignmentDetails.due") }
         public static var submissionTypes: XCUIElement { app.find(id: "AssignmentDetails.submissionTypes") }
-        public static var submissionsButton: XCUIElement { app.find(id: "AssignmentDetails.submissionsButton") }
+        public static var submissionButton: XCUIElement { app.find(id: "AssignmentDetails.viewSubmissionButton") }
         public static var submitAssignmentButton: XCUIElement { app.find(id: "AssignmentDetails.submitAssignmentButton") }
         public static var successfulSubmissionLabel: XCUIElement { app.find(id: "AssignmentDetails.submittedText") }
         public static var allowedExtensions: XCUIElement { app.find(id: "AssignmentDetails.allowedExtensions") }
@@ -87,10 +87,6 @@ public class AssignmentsHelper: BaseHelper {
 
         public static var backButton: XCUIElement {
             app.find(idStartingWith: "Assignment Details", type: .navigationBar).find(label: "Back", type: .button)
-        }
-
-        public static var submissionsButtonLabel: XCUIElement {
-            app.find(id: "AssignmentDetails.submissionsButton").find(type: .staticText)
         }
 
         public static func navBar(course: DSCourse) -> XCUIElement {
@@ -195,5 +191,22 @@ public class AssignmentsHelper: BaseHelper {
             pullToRefresh()
         }
         CourseDetailsHelper.cell(type: .assignments).hit()
+    }
+
+    public static func createAssignments(in course: DSCourse, count: Int, dueDate: Date? = nil) -> [DSAssignment] {
+        var assignments = [DSAssignment]()
+        for i in 1...count {
+            let name = "Sample Assignment \(i)"
+            let assignmentBody = CreateDSAssignmentRequest.RequestedDSAssignment(
+                name: name,
+                description: "Description of \(name)",
+                published: true,
+                submission_types: [.online_text_entry],
+                points_possible: 1.0,
+                grading_type: .letter_grade,
+                due_at: dueDate)
+            assignments.append(seeder.createAssignment(courseId: course.id, assignementBody: assignmentBody))
+        }
+        return assignments
     }
 }

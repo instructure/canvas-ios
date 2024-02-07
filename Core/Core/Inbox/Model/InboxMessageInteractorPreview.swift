@@ -28,7 +28,7 @@ class InboxMessageInteractorPreview: InboxMessageInteractor {
     public let hasNextPage = CurrentValueSubject<Bool, Never>(true)
 
     // MARK: - Private State
-    private var scopeValue: InboxMessageScope = .all {
+    private var scopeValue: InboxMessageScope = .inbox {
         didSet { update() }
     }
 
@@ -81,7 +81,7 @@ class InboxMessageInteractorPreview: InboxMessageInteractor {
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
             switch scopeValue {
-            case .all, .sent, .archived:
+            case .inbox, .sent, .archived:
                 if messages.value.isEmpty {
                     state.send(.empty)
                 } else {

@@ -65,11 +65,6 @@ class DocViewerAnnotationProvider: PDFContainerAnnotationProvider {
         for annotation in allAnnotations {
             annotation.hasReplies = hasReplies.contains(annotation.name ?? "")
         }
-        for (pageKey, rawRotation) in metadata.rotations ?? [:] {
-            if let pageIndex = PageIndex(pageKey), let rotation = Rotation(rawValue: rawRotation) {
-                documentProvider.setRotationOffset(rotation, forPageAt: pageIndex)
-            }
-        }
 
         setAnnotations(allAnnotations, append: false)
     }

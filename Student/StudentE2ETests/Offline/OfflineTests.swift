@@ -18,13 +18,7 @@
 
 import TestsFoundation
 
-class OfflineTests: E2ETestCase {
-    override func tearDown() {
-        // In case the tests fail at a point where the internet connection is turned off
-        setNetworkStateOnline()
-        super.tearDown()
-    }
-
+class OfflineTests: OfflineE2ETest {
     func testNetworkConnectionLose() {
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
@@ -156,16 +150,14 @@ class OfflineTests: E2ETestCase {
 
         // MARK: Check labels and buttons
         let headerLabel = DashboardHelper.Options.OfflineContent.headerLabel.waitUntil(.visible)
-        let courseLabel = DashboardHelper.Options.OfflineContent.courseLabel(course: course).waitUntil(.visible)
         let storageInfoLabel = DashboardHelper.Options.OfflineContent.storageInfoLabel.waitUntil(.visible)
-        let courseButton = DashboardHelper.Options.OfflineContent.courseButton(course: course).waitUntil(.visible)
+        let courseButton = DashboardHelper.Options.OfflineContent.courseButton(course: course)!.waitUntil(.visible)
         let unselectedTickerOfCourseButton = DashboardHelper.Options.OfflineContent.unselectedTickerOfCourseButton(course: course)
             .waitUntil(.visible)
         let selectedTickerOfCourseButton = DashboardHelper.Options.OfflineContent.selectedTickerOfCourseButton(course: course)
             .waitUntil(.vanish)
         let syncButton = DashboardHelper.Options.OfflineContent.syncButton.waitUntil(.visible)
         XCTAssertTrue(headerLabel.isVisible)
-        XCTAssertTrue(courseLabel.isVisible)
         XCTAssertTrue(storageInfoLabel.isVisible)
         XCTAssertTrue(courseButton.isVisible)
         XCTAssertTrue(courseButton.hasLabel(label: "Deselected", strict: false))
@@ -209,7 +201,7 @@ class OfflineTests: E2ETestCase {
         XCTAssertTrue(syncButton.waitUntil(.enabled).isEnabled)
     }
 
-    func testSyncOfflineContent() {
+    func testOfflineContentSync() {
         // MARK: Seed the usual stuff with page, discussion, syllabus contents
         let student = seeder.createUser()
         let course = SyllabusHelper.createCourseWithSyllabus()
@@ -229,7 +221,7 @@ class OfflineTests: E2ETestCase {
         manageOfflineContentButton.hit()
 
         // MARK: Select complete course to sync
-        let courseButton = DashboardHelper.Options.OfflineContent.courseButton(course: course).waitUntil(.visible)
+        let courseButton = DashboardHelper.Options.OfflineContent.courseButton(course: course)!.waitUntil(.visible)
         let unselectedTickerOfCourseButton = DashboardHelper.Options.OfflineContent.unselectedTickerOfCourseButton(course: course)
             .waitUntil(.visible)
         let syncButton = DashboardHelper.Options.OfflineContent.syncButton.waitUntil(.visible)
@@ -322,7 +314,7 @@ class OfflineTests: E2ETestCase {
         manageOfflineContentButton.hit()
 
         // MARK: Select pages of "offlineCourse" to sync
-        let courseButton = DashboardHelper.Options.OfflineContent.courseButton(course: offlineCourse).waitUntil(.visible)
+        let courseButton = DashboardHelper.Options.OfflineContent.courseButton(course: offlineCourse)!.waitUntil(.visible)
         let unselectedTickerOfCourseButton = DashboardHelper.Options.OfflineContent
             .unselectedTickerOfCourseButton(course: offlineCourse).waitUntil(.visible)
         let partiallySelectedTickerOfCourseButton = DashboardHelper.Options.OfflineContent

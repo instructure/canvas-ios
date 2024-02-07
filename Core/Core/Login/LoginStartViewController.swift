@@ -93,7 +93,7 @@ class LoginStartViewController: UIViewController {
         useQRCodeButton.setTitleColor(UIColor(red: 0.88, green: 0.87, blue: 0.83, alpha: 1.00), for: .normal)
         authenticationMethodLabel.isHidden = true
         logoView.tintColor = .currentLogoColor()
-        wordmark.tintColor = .currentLogoColor()
+        wordmark.tintColor = .textDarkest
         animatableLogo.tintColor = logoView.tintColor
         previousLoginsView.isHidden = true
         //self.lastLoginAccount = nil

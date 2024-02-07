@@ -333,14 +333,16 @@ extension CoreWebView: WKNavigationDelegate {
             return
         }
 
+        let env = AppEnvironment.shared
+
         if let from = linkDelegate?.routeLinksFrom, let vc = from.presentedViewController,
-           let baseUrl = AppEnvironment.shared.currentSession?.baseURL.absoluteString,
+           let baseUrl = env.currentSession?.baseURL.absoluteString,
            let requestUrl = action.request.url?.absoluteString,
            let webViewUrl = webView.url?.absoluteString,
            requestUrl.contains(baseUrl), !webViewUrl.contains(baseUrl),
            let url = action.request.url?.path {
             vc.dismiss(animated: true) {
-                AppEnvironment.shared.router.route(to: url, from: from)
+                env.router.route(to: url, from: from)
             }
             return decisionHandler(.cancel)
         }
@@ -356,10 +358,26 @@ extension CoreWebView: WKNavigationDelegate {
             return decisionHandler(.allow) // let web view scroll to link too, if necessary
         }
 
-        // Handle "Launch External Tool" button
-        if action.navigationType == .linkActivated, let tools = LTITools(link: action.request.url),
+        // Handle "Launch External Tool" button OR 
+        // LTI app buttons embedded in K5 WebViews when there's no additional JavaScript
+        // involved (like Zoom and Microsoft).
+        // When there's additional JavaScript code behind an LTI Button (like DBQ Online), we don't want to
+        // handle those cases here, because `createWebViewWith` already opened a new popup window.
+        if let tools = LTITools(link: action.request.url, navigationType: action.navigationType),
             let from = linkDelegate?.routeLinksFrom {
             tools.presentTool(from: from, animated: true)
+            return decisionHandler(.cancel)
+        }
+
+        // Handle LTI button taps where the url is not a
+        // canvas LTI launch url but some 3rd party one
+        if action.navigationType == .linkActivated,
+           let url = action.request.url,
+           let from = linkDelegate?.routeLinksFrom,
+           EmbeddedExternalTools.handle(url: url,
+                                        view: from,
+                                        loginDelegate: env.loginDelegate,
+                                        router: env.router) {
             return decisionHandler(.cancel)
         }
 
@@ -576,7 +594,8 @@ extension CoreWebView {
 
     open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        isThemeDark = viewController?.traitCollection.userInterfaceStyle == .dark
+        let traitCollection = viewController?.traitCollection ?? traitCollection
+        isThemeDark = traitCollection.userInterfaceStyle == .dark
     }
 
     /**

@@ -43,22 +43,9 @@ public struct ComposeMessageView: View {
                 }
                 .background(Color.backgroundLightest)
                 .navigationBarItems(leading: cancelButton)
-            }
-            .onAppear {
-                hideNavigationBarSeparator()
+                .navigationBarStyle(.modal)
             }
         }
-    }
-
-    private func hideNavigationBarSeparator() {
-        let navigationBar = controller.value.navigationController?.navigationBar
-        let navigationBarAppearance = UINavigationBarAppearance()
-        navigationBarAppearance.configureWithOpaqueBackground()
-        navigationBarAppearance.shadowColor = .clear
-        navigationBarAppearance.shadowImage = UIImage()
-        navigationBar?.standardAppearance = navigationBarAppearance
-        navigationBar?.scrollEdgeAppearance = navigationBarAppearance
-        navigationBar?.isTranslucent = true
     }
 
     private var separator: some View {
@@ -72,7 +59,7 @@ public struct ComposeMessageView: View {
         } label: {
             Text("Cancel", bundle: .core)
                 .font(.regular16)
-                .foregroundColor(.textDarkest)
+                .foregroundColor(.accentColor)
         }
     }
 
@@ -122,7 +109,7 @@ public struct ComposeMessageView: View {
         VStack(spacing: 0) {
             courseView
             Divider()
-            if model.selectedCourse != nil {
+            if model.selectedContext != nil {
                 toView
                 Divider()
             }
@@ -130,6 +117,10 @@ public struct ComposeMessageView: View {
             Divider()
             individualView
         }
+    }
+
+    private var courseSelectorAccessibilityLabel: Text {
+        model.selectedContext == nil ? Text("Select course", bundle: .core) : Text("Selected course: \(model.selectedContext!.name)", bundle: .core)
     }
 
     private var courseView: some View {
@@ -140,17 +131,20 @@ public struct ComposeMessageView: View {
                 Text("Course", bundle: .core)
                     .font(.regular16, lineHeight: .condensed)
                     .foregroundColor(.textDark)
-                if let course = model.selectedCourse {
-                    Text(course.name)
+                if let context = model.selectedContext {
+                    Text(context.name)
                         .font(.regular16, lineHeight: .condensed)
+                        .multilineTextAlignment(.leading)
                         .foregroundColor(.textDarkest)
                 }
                 Spacer()
-                DisclosureIndicator()
+                if !model.isReply { DisclosureIndicator() }
             }
         }
+        .disabled(model.isReply)
+        .opacity(model.isReply ? 0.6 : 1)
         .padding(.horizontal, 16).padding(.vertical, 12)
-        .accessibility(label: Text("Select course", bundle: .core))
+        .accessibilityLabel(courseSelectorAccessibilityLabel)
     }
 
     private var toView: some View {
@@ -161,6 +155,7 @@ public struct ComposeMessageView: View {
                 .onTapGesture {
                     model.addRecipientButtonDidTap(viewController: controller)
                 }
+                .padding(.vertical, 12)
                 .accessibilitySortPriority(2)
             if !model.recipients.isEmpty {
                 recipientsView
@@ -168,16 +163,17 @@ public struct ComposeMessageView: View {
             }
             Spacer()
             addRecipientButton
+                .padding(.vertical, 12)
                 .accessibilitySortPriority(1)
         }
-        .padding(.horizontal, 16).padding(.vertical, 12)
+        .padding(.horizontal, 16)
         .accessibilityElement(children: .contain)
     }
 
     private var recipientsView: some View {
         WrappingHStack(models: model.recipients) { recipient in
             RecipientPillView(recipient: recipient, removeDidTap: { recipient in
-                model.removeRecipientButtonDidTap(recipient: recipient)
+                model.recipientDidRemove.accept(recipient)
             })
         }
     }
@@ -193,10 +189,14 @@ public struct ComposeMessageView: View {
                 .accessibilityHidden(true)
             TextField("", text: $model.subject)
                 .multilineTextAlignment(.leading)
-                .font(.regular16, lineHeight: .condensed).foregroundColor(.textDarkest)
+                .font(.regular16, lineHeight: .condensed)
+                .foregroundColor(.textDarkest)
+                .textInputAutocapitalization(.sentences)
                 .focused($subjectTextFieldFocus)
+                .disabled(model.isReply)
                 .accessibility(label: Text("Subject", bundle: .core))
         }
+        .opacity(model.isReply ? 0.6 : 1)
         .padding(.horizontal, 16).padding(.vertical, 12)
     }
 
@@ -239,6 +239,7 @@ public struct ComposeMessageView: View {
             TextEditor(text: $model.bodyText)
                 .iOS16HideListScrollContentBackground()
                 .font(.regular16, lineHeight: .condensed)
+                .textInputAutocapitalization(.sentences)
                 .focused($messageTextFieldFocus)
                 .foregroundColor(.textDarkest)
                 .padding(.horizontal, 12)

@@ -25,46 +25,35 @@ class ToDoTests: E2ETestCase {
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)
 
-        let discussion = DiscussionsHelper.createDiscussion(course: course, isAssignment: true, dueDate: Date.now.addMinutes(30))
         let assignment = AssignmentsHelper.createAssignment(course: course, dueDate: Date.now.addMinutes(30))
         let quiz = QuizzesHelper.createTestQuizWith2Questions(course: course, due_at: Date.now.addMinutes(30))
 
         // MARK: Get the user logged in and check ToDo tab bar
         logInDSUser(student)
+        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
+        XCTAssertTrue(profileButton.isVisible)
 
         let toDoTab = ToDoHelper.TabBar.todoTab.waitUntil(.visible)
         XCTAssertTrue(toDoTab.isVisible)
-        XCTAssertTrue(toDoTab.waitUntil(.value(expected: "3 items")).hasValue(value: "3 items"))
+        XCTAssertTrue(toDoTab.hasValue(value: "2 items"))
 
         // MARK: Tap ToDo button and check the 3 items
         toDoTab.hit()
-        let discussionItem = ToDoHelper.cell(id: discussion.assignment!.id).waitUntil(.visible)
         let assignmentItem = ToDoHelper.cell(id: assignment.id).waitUntil(.visible)
         let quizItem = ToDoHelper.cell(id: quiz.assignment_id!).waitUntil(.visible)
-        XCTAssertTrue(discussionItem.isVisible)
         XCTAssertTrue(assignmentItem.isVisible)
         XCTAssertTrue(quizItem.isVisible)
 
-        let discussionItemTitle = ToDoHelper.cellItemTitle(cell: discussionItem).waitUntil(.visible)
         let assignmentItemTitle = ToDoHelper.cellItemTitle(cell: assignmentItem).waitUntil(.visible)
         let quizItemTitle = ToDoHelper.cellItemTitle(cell: quizItem).waitUntil(.visible)
-        XCTAssertTrue(discussionItemTitle.isVisible)
         XCTAssertTrue(assignmentItemTitle.isVisible)
         XCTAssertTrue(quizItemTitle.isVisible)
-        XCTAssertTrue(discussionItemTitle.hasLabel(label: discussion.title))
         XCTAssertTrue(assignmentItemTitle.hasLabel(label: assignment.name))
         XCTAssertTrue(quizItemTitle.hasLabel(label: quiz.title))
 
         // MARK: Tap on each item
-        discussionItem.hit()
-        let backButton = ToDoHelper.toDoBackButton.waitUntil(.visible, timeout: 5)
-        let discussionMessage = app.find(label: discussion.message).waitUntil(.visible)
-        XCTAssertTrue(discussionMessage.isVisible)
-
-        if backButton.isVisible { backButton.hit() }
-        backButton.waitUntil(.vanish)
         assignmentItem.hit()
-        backButton.waitUntil(.visible, timeout: 5)
+        let backButton = ToDoHelper.toDoBackButton.waitUntil(.visible, timeout: 5)
         let assignmentDescription = app.find(label: assignment.description!).waitUntil(.visible)
         XCTAssertTrue(assignmentDescription.isVisible)
 

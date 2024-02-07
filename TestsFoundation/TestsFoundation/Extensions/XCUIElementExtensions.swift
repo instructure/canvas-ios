@@ -35,6 +35,7 @@ public extension XCUIElement {
         case hittable
         case labelContaining(expected: String)
         case labelHasPrefix(expected: String)
+        case labelHasSuffix(expected: String)
         case idContains(expected: String)
     }
 
@@ -78,6 +79,14 @@ public extension XCUIElement {
 
     func hasLabel(label expectedLabel: String, strict: Bool = true) -> Bool {
         return strict ? label == expectedLabel : label.contains(expectedLabel)
+    }
+
+    func labelHasSuffix(_ suffix: String) -> Bool {
+        return label.hasSuffix(suffix)
+    }
+
+    func labelHasPrefix(_ prefix: String) -> Bool {
+        return label.hasPrefix(prefix)
     }
 
     func hasPlaceholderValue(placeholderValue expectedPlaceholderValue: String, strict: Bool = true) -> Bool {
@@ -135,6 +144,8 @@ public extension XCUIElement {
                 result = label.contains(expected)
             case .labelHasPrefix(let expected):
                 result = label.hasPrefix(expected)
+            case .labelHasSuffix(let expected):
+                result = label.hasSuffix(expected)
             case .idContains(let expected):
                 result = idContains(expected: expected)
             }
@@ -190,6 +201,8 @@ public extension XCUIElement {
                 result = label.contains(expected)
             case .labelHasPrefix(let expected):
                 result = label.hasPrefix(expected)
+            case .labelHasSuffix(let expected):
+                result = label.hasSuffix(expected)
             case .idContains(let expected):
                 result = idContains(expected: expected)
             }

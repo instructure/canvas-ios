@@ -1,0 +1,43 @@
+---
+name: Student
+options:
+  groupSortPosition: top
+  bundleIdPrefix: com.instructure.icanvas
+  deploymentTarget:
+    iOS: 15.0
+  createIntermediateGroups: true
+settings:
+  CODE_SIGN_STYLE: Automatic ## This line is removed in the project-ci.yml file so Bitrise can manage code sign. 
+  DEVELOPMENT_TEAM: B6333T4PXQ ## This line is removed in the project-ci.yml file so Bitrise can manage code sign. 
+  CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
+  LOCALIZATION_PREFERS_STRING_CATALOGS: true
+  CURRENT_PROJECT_VERSION: 0.0.1
+  MARKETING_VERSION: 0.0.1
+  platform: iOS
+sources:
+  - path: ./
+    excludes:
+      - ".swiftlint.yml"
+include:
+  - Student/student.yml
+  - SubmitAssignment/student-submit-assignment.yml
+  - Widgets/student-widgets.yml
+  - StudentE2ETests/student-e2e-tests.yml
+  - StudentUnitTests/student-unit-tests.yml
+projectReferences:
+  CanvasCore:
+    path: ../CanvasCore/CanvasCore.xcodeproj
+  TestsFoundation:
+    path: ../TestsFoundation/TestsFoundation.xcodeproj
+  Core:
+    path: ../Core/Core.xcodeproj
+packages:
+  Heap:
+    url: https://github.com/heap/heap-ios-sdk.git
+    exactVersion: 9.0.1
+  Firebase:
+    url: https://github.com/firebase/firebase-ios-sdk.git
+    exactVersion: 9.6.0
+  PSPDFKit:
+    url: https://github.com/PSPDFKit/PSPDFKit-SP
+    exactVersion: 13.0.1

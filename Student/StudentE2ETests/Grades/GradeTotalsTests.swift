@@ -31,7 +31,10 @@ class GradeTotalsTests: E2ETestCase {
         let pg_assignments = GradesHelper.createAssignments(course: course, count: 2, grading_type: .percent)
         let lg_assignments = GradesHelper.createAssignments(course: course, count: 2, grading_type: .letter_grade)
 
+        // MARK: Get the user logged in
         logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Create submissions for all
         GradesHelper.createSubmissionsForAssignments(course: course, student: student, assignments: assignments)
@@ -41,8 +44,10 @@ class GradeTotalsTests: E2ETestCase {
 
         // MARK: See if total grades is N/A
         GradesHelper.navigateToGrades(course: course)
-        XCTAssertTrue(app.find(label: "Total Grade").waitUntil(.visible).isVisible)
-        XCTAssertTrue(GradesHelper.totalGrade.waitUntil(.visible).hasLabel(label: "N/A"))
+        let totalGradeLabel = app.find(label: "Total Grade").waitUntil(.visible)
+        let totalGrade = GradesHelper.totalGrade.waitUntil(.visible)
+        XCTAssertTrue(totalGradeLabel.isVisible)
+        XCTAssertTrue(totalGrade.hasLabel(label: "N/A"))
 
         // MARK: Check if total is updating accordingly
         let grades = ["100", "25"]

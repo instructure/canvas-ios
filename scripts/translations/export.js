@@ -21,12 +21,12 @@ const program = require('commander')
 const { spawn } = require('child_process')
 const { createReadStream, readFileSync, writeFileSync } = require('fs')
 const S3 = require('aws-sdk/clients/s3')
-const projects = require('./projects.json')
+const localizables = require('./localizables.json')
 
 program
   .version(require('../../package.json').version)
   .option('-s, --skipPush', 'Skip pushing to S3')
-  .option('-p, --project [name]', 'Export only a specific project')
+  .option('-v, --verbose', 'Print all outputs to console')
 
 program.on('--help', () => {
   console.log(`
@@ -54,61 +54,98 @@ exportTranslations().catch(err => {
 function run(cmd, args, opts) {
   return new Promise((resolve, reject) => {
     const command = spawn(cmd, args, opts)
+    // If we don't read these xcodebuild just hangs
+    command.stdout.on('data', (data) => {
+      if (program.verbose) {
+	    console.log(`${data}`)
+      }
+	})
+    command.stderr.on('data', (data) => {
+      if (program.verbose) {
+	    console.log(`${data}`)
+      }
+	})
     command.on('error', reject)
     command.on('exit', code => {
       if (code === 0) return resolve()
-      console.error(command.stderr.toString())
       reject(`${cmd} failed with code ${code}.`)
     })
   })
 }
 
 async function exportTranslations() {
-  const keysToSkip = ['CFBundleName']
   const toUpload = []
-  const localizeInfoPlistOfTheseProjects = ['canvas', 'parent', 'teacher_native']
-  for (const project of projects) {
-    if (program.project && project.name !== program.project) continue
-
-    if (project.location.endsWith('.xcodeproj')) {
-      const outputPath = `scripts/translations/source/${project.name}/`
-      console.log(`Exporting ${project.name} at ${project.location} to ${outputPath}`)
-      await run('xcodebuild', [
-        '-exportLocalizations',
-        '-project',
-        project.location,
-        '-localizationPath',
-        outputPath
-      ])
-
-      const file = `${outputPath}en.xcloc/Localized Contents/en.xliff`
-      let xml = readFileSync(file, 'utf8')
-      if(!localizeInfoPlistOfTheseProjects.includes(project.name)) {
-          xml = xml.replace(/<file[^>]*Info\.plist[\s\S]*?<\/file>\s*/g, '')
-      }
-      keysToSkip.forEach((key) => {
-        const regex = new RegExp(`<trans-unit id=\"${key}\"[\\\s\\\S]*?<\/trans-unit>\\s`, 'g')
-        xml = xml.replace(regex, '')
-      })
-      writeFileSync(file, xml, 'utf8')
-      toUpload.push({ from: file, to: `${project.name}.xliff` })
-    } else {
-      console.log(`Exporting ${project.name} at ${project.location}`)
-      await run('yarn', [], { cwd: `${project.location}/../..` }) // install dependencies
-      await run('yarn', ['extract-strings'], { cwd: `${project.location}/../..` })
-      toUpload.push({ from: `${project.location}/en.json`, to: `${project.name}.json` })
-    }
-  }
-
-  if (!program.skipPush) {
-    const Bucket = 'instructure-translations'
-    const s3 = new S3({ region: 'us-east-1' })
-    await Promise.all(toUpload.map(({ from, to }) => {
-      console.log(`Uploading ${from} to s3://instructure-translations/sources/canvas-ios/en/${to}`)
-      return s3.putObject({ Bucket, Key: `sources/canvas-ios/en/${to}`, Body: createReadStream(from) })
-        .promise()
-    }))
-  }
-
+  // install react dependencies
+  const reactProjectFolder = 'rn/Teacher/i18n/locales'
+  await run('yarn', [], { cwd: `${reactProjectFolder}/../..` })
+  await run('make', ['pod'])
+  await processNativeLocalizations(toUpload)
+  await pushToS3(toUpload)
   console.log('Finished!')
+}
+
+async function processNativeLocalizations(toUpload) {
+  const outputPath = 'scripts/translations/source/all/'
+  await exportLocalizations(outputPath)
+  
+  const outputFile = `${outputPath}en.xcloc/Localized Contents/en.xliff`
+  let xml = readFileSync(outputFile, 'utf8')
+  xml = removeNonLocalizedFiles(xml)
+  xml = removeNonLocalizedKeys(xml)
+  writeFileSync(outputFile, xml, 'utf8')
+  toUpload.push({ from: outputFile, to: `all.xliff` })
+}
+
+async function pushToS3(toUpload) {
+  if (program.skipPush) {
+    console.log(`Skipping S3 push of these entries:`)
+    for (const entry of toUpload) {
+	  console.log(`${entry.from} -> ${entry.to}`)
+    }
+    return
+  }
+  
+  const Bucket = 'instructure-translations'
+  const s3 = new S3({ region: 'us-east-1' })
+  await Promise.all(toUpload.map(({ from, to }) => {
+    console.log(`Uploading ${from} to s3://instructure-translations/sources/canvas-ios/en/${to}`)
+    return s3.putObject({ Bucket, Key: `sources/canvas-ios/en/${to}`, Body: createReadStream(from) })
+      .promise()
+  }))
+}
+
+async function exportLocalizations(outputPath) {
+  await run('xcodebuild', [
+  	'-exportLocalizations',
+	'-workspace',
+  	'Canvas.xcworkspace',
+  	'-localizationPath',
+  	outputPath,
+  	'-n'
+  ])
+}
+
+function removeNonLocalizedFiles(xml) {
+  // Matches file tags with original attribute
+  const pattern = new RegExp(`<file\\s+original="([^"]+)"[^>]*>[\\s\\S]*?<\\/file>`, 'g')
+
+  // Replace non-matching files with an empty string
+  let result = xml.replace(pattern, (match, p1) => {
+    return localizables.includes(p1) ? match : ''
+  })
+  
+  // Remove empty lines
+  result = result.replace(/^(?:[\t ]*(?:\r?\n|\r))+/gm, '');
+
+  return result
+}
+
+function removeNonLocalizedKeys(xml) {
+  const keysToSkip = ['CFBundleName']
+  let result = xml
+  keysToSkip.forEach((key) => {
+    const regex = new RegExp(`<trans-unit id=\"${key}\"[\\\s\\\S]*?<\/trans-unit>\\s`, 'g')
+    result = result.replace(regex, '')
+  })
+  return result
 }

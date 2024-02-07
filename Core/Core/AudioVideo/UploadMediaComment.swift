@@ -29,6 +29,7 @@ public class UploadMediaComment {
     let url: URL
     let uploader: UploadMedia
     let userID: String
+    let attempt: Int?
     var task: APITask?
 
     private static var placeholderSuffix = 1
@@ -39,7 +40,8 @@ public class UploadMediaComment {
         userID: String,
         isGroup: Bool,
         type: MediaCommentType,
-        url: URL
+        url: URL,
+        attempt: Int?
     ) {
         self.assignmentID = assignmentID
         self.courseID = courseID
@@ -48,6 +50,7 @@ public class UploadMediaComment {
         self.url = url
         self.uploader = UploadMedia(type: type, url: url)
         self.userID = userID
+        self.attempt = attempt
     }
 
     public func cancel() {
@@ -78,6 +81,9 @@ public class UploadMediaComment {
             placeholder.mediaType = self.type
             placeholder.mediaURL = self.url
             placeholder.userID = self.userID
+            if let attempt = self.attempt {
+                placeholder.attemptFromAPI = NSNumber(value: attempt)
+            }
             do {
                 try client.save()
                 self.placeholderID = placeholder.id
@@ -96,7 +102,7 @@ public class UploadMediaComment {
     }
 
     func putComment(mediaID: String) {
-        let body = PutSubmissionGradeRequest.Body(comment: .init(mediaID: mediaID, type: type, forGroup: isGroup))
+        let body = PutSubmissionGradeRequest.Body(comment: .init(mediaID: mediaID, type: type, forGroup: isGroup, attempt: attempt))
         task = env.api.makeRequest(PutSubmissionGradeRequest(courseID: courseID, assignmentID: assignmentID, userID: userID, body: body)) { data, _, error in
             self.task = nil
             guard error == nil, let submission = data, let comment = submission.submission_comments?.last else {

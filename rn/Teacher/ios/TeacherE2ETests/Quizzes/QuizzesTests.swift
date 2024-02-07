@@ -30,11 +30,13 @@ class QuizzesTests: E2ETestCase {
         seeder.enrollTeacher(teacher, in: course)
         let quiz = Helper.createTestQuizWith2Questions(course: course)
 
-        // MARK: Get the user logged in, navigate to Quizzes
+        // MARK: Get the user logged in
         logInDSUser(teacher)
-        Helper.navigateToQuizzes(course: course)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
 
-        // MARK: Check elements
+        // MARK: Navigate to Quizzes, Check elements
+        Helper.navigateToQuizzes(course: course)
         let navBar = Helper.navBar(course: course).waitUntil(.visible)
         let quizCell = Helper.cell(index: 0).waitUntil(.visible)
         let titleLabel = Helper.titleLabel(cell: quizCell).waitUntil(.visible)
@@ -81,10 +83,15 @@ class QuizzesTests: E2ETestCase {
 
         // MARK: Get the user logged in, navigate to the quiz
         logInDSUser(teacher)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+
         Helper.navigateToQuizzes(course: course)
-        _ = Helper.cell(index: 0).hit()
+        let quizCell = Helper.cell(index: 0).waitUntil(.visible)
+        XCTAssertTrue(quizCell.isVisible)
 
         // MARK: Check elements of Quiz Editor
+        quizCell.hit()
         DetailsHelper.editButton.hit()
         let cancelButton = EditorHelper.cancel.waitUntil(.visible)
         let doneButton = EditorHelper.done.waitUntil(.visible)

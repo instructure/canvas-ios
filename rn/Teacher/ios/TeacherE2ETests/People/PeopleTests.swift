@@ -30,71 +30,69 @@ class PeopleTests: E2ETestCase {
 
         // MARK: Get the user logged in
         logInDSUser(teachers[0])
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
 
-        // MARK: Navigate to People
+        // MARK: Navigate to People, Check visibility and order of the previously created people
         PeopleHelper.navigateToPeople(course: course)
-
-        // MARK: Check visibility and order of the previously created people
         let person1 = PeopleHelper.peopleCell(index: 0).waitUntil(.visible)
-        XCTAssertTrue(person1.isVisible)
         let person1RoleLabel = PeopleHelper.roleLabelOfPeopleCell(index: 0).waitUntil(.visible)
-        XCTAssertTrue(person1RoleLabel.isVisible)
-        XCTAssertEqual(person1RoleLabel.label, "Student")
         let person1NameLabel = PeopleHelper.nameLabelOfPeopleCell(index: 0).waitUntil(.visible)
+        XCTAssertTrue(person1.isVisible)
+        XCTAssertTrue(person1RoleLabel.isVisible)
+        XCTAssertTrue(person1RoleLabel.hasLabel(label: "Student"))
         XCTAssertTrue(person1NameLabel.isVisible)
-        XCTAssertEqual(person1NameLabel.label, students[0].name)
+        XCTAssertTrue(person1NameLabel.hasLabel(label: students[0].name))
 
         let person2 = PeopleHelper.peopleCell(index: 1).waitUntil(.visible)
-        XCTAssertTrue(person2.isVisible)
         let person2RoleLabel = PeopleHelper.roleLabelOfPeopleCell(index: 1).waitUntil(.visible)
-        XCTAssertTrue(person2RoleLabel.isVisible)
-        XCTAssertEqual(person2RoleLabel.label, "Student")
         let person2NameLabel = PeopleHelper.nameLabelOfPeopleCell(index: 1).waitUntil(.visible)
+        XCTAssertTrue(person2.isVisible)
+        XCTAssertTrue(person2RoleLabel.isVisible)
+        XCTAssertTrue(person2RoleLabel.hasLabel(label: "Student"))
         XCTAssertTrue(person2NameLabel.isVisible)
-        XCTAssertEqual(person2NameLabel.label, students[1].name)
+        XCTAssertTrue(person2NameLabel.hasLabel(label: students[1].name))
 
         let person3 = PeopleHelper.peopleCell(index: 2).waitUntil(.visible)
-        XCTAssertTrue(person3.isVisible)
         let person3RoleLabel = PeopleHelper.roleLabelOfPeopleCell(index: 2).waitUntil(.visible)
-        XCTAssertTrue(person3RoleLabel.isVisible)
-        XCTAssertEqual(person3RoleLabel.label, "Student")
         let person3NameLabel = PeopleHelper.nameLabelOfPeopleCell(index: 2).waitUntil(.visible)
+        XCTAssertTrue(person3.isVisible)
+        XCTAssertTrue(person3RoleLabel.isVisible)
+        XCTAssertTrue(person3RoleLabel.hasLabel(label: "Student"))
         XCTAssertTrue(person3NameLabel.isVisible)
-        XCTAssertEqual(person3NameLabel.label, students[2].name)
+        XCTAssertTrue(person3NameLabel.hasLabel(label: students[2].name))
 
         let person4 = PeopleHelper.peopleCell(index: 3).waitUntil(.visible)
-        XCTAssertTrue(person4.isVisible)
         let person4RoleLabel = PeopleHelper.roleLabelOfPeopleCell(index: 3).waitUntil(.visible)
-        XCTAssertTrue(person4RoleLabel.isVisible)
-        XCTAssertEqual(person4RoleLabel.label, "Teacher")
         let person4NameLabel = PeopleHelper.nameLabelOfPeopleCell(index: 3).waitUntil(.visible)
+        XCTAssertTrue(person4.isVisible)
+        XCTAssertTrue(person4RoleLabel.isVisible)
+        XCTAssertTrue(person4RoleLabel.hasLabel(label: "Teacher"))
         XCTAssertTrue(person4NameLabel.isVisible)
-        XCTAssertEqual(person4NameLabel.label, teachers[0].name)
+        XCTAssertTrue(person4NameLabel.hasLabel(label: teachers[0].name))
 
         let person5 = PeopleHelper.peopleCell(index: 4).waitUntil(.visible)
-        XCTAssertTrue(person5.isVisible)
         let person5RoleLabel = PeopleHelper.roleLabelOfPeopleCell(index: 4).waitUntil(.visible)
-        XCTAssertTrue(person5RoleLabel.isVisible)
-        XCTAssertEqual(person5RoleLabel.label, "Teacher")
         let person5NameLabel = PeopleHelper.nameLabelOfPeopleCell(index: 4).waitUntil(.visible)
+        XCTAssertTrue(person5.isVisible)
+        XCTAssertTrue(person5RoleLabel.isVisible)
+        XCTAssertTrue(person5RoleLabel.hasLabel(label: "Teacher"))
         XCTAssertTrue(person5NameLabel.isVisible)
-        XCTAssertEqual(person5NameLabel.label, teachers[1].name)
+        XCTAssertTrue(person5NameLabel.hasLabel(label: teachers[1].name))
 
         // MARK: Tap on one of them and check details on the Context Card
         let randomIndex = Int.random(in: 0...4)
         PeopleHelper.peopleCell(index: randomIndex).hit()
 
         let nameLabel = PeopleHelper.ContextCard.userNameLabel.waitUntil(.visible)
-        XCTAssertTrue(nameLabel.isVisible)
-        XCTAssertEqual(nameLabel.label, users[randomIndex].name)
-
         let courseLabel = PeopleHelper.ContextCard.courseLabel.waitUntil(.visible)
-        XCTAssertTrue(courseLabel.isVisible)
-        XCTAssertEqual(courseLabel.label, course.name)
-
         let sectionLabel = PeopleHelper.ContextCard.sectionLabel.waitUntil(.visible)
+        XCTAssertTrue(nameLabel.isVisible)
+        XCTAssertTrue(nameLabel.hasLabel(label: users[randomIndex].name))
+        XCTAssertTrue(courseLabel.isVisible)
+        XCTAssertTrue(courseLabel.hasLabel(label: course.name))
         XCTAssertTrue(sectionLabel.isVisible)
-        XCTAssertEqual(sectionLabel.label, "Section: \(course.name)")
+        XCTAssertTrue(sectionLabel.hasLabel(label: "Section: \(course.name)"))
     }
 
     func testPeopleListUpdatesAfterEnrollmentOfPersonIsDeleted() {
@@ -106,28 +104,28 @@ class PeopleTests: E2ETestCase {
 
         // MARK: Get the user logged in
         logInDSUser(teachers[0])
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
 
-        // MARK: Navigate to People
+        // MARK: Navigate to People, Check visibility and order of the previously created people
         PeopleHelper.navigateToPeople(course: course)
-
-        // MARK: Check visibility and order of the previously created people
         let person1 = PeopleHelper.peopleCell(index: 0).waitUntil(.visible)
-        XCTAssertTrue(person1.isVisible)
         let person1RoleLabel = PeopleHelper.roleLabelOfPeopleCell(index: 0).waitUntil(.visible)
-        XCTAssertTrue(person1RoleLabel.isVisible)
-        XCTAssertEqual(person1RoleLabel.label, "Teacher")
         let person1NameLabel = PeopleHelper.nameLabelOfPeopleCell(index: 0).waitUntil(.visible)
+        XCTAssertTrue(person1.isVisible)
+        XCTAssertTrue(person1RoleLabel.isVisible)
+        XCTAssertTrue(person1RoleLabel.hasLabel(label: "Teacher"))
         XCTAssertTrue(person1NameLabel.isVisible)
-        XCTAssertEqual(person1NameLabel.label, teachers[0].name)
+        XCTAssertTrue(person1NameLabel.hasLabel(label: teachers[0].name))
 
         let person2 = PeopleHelper.peopleCell(index: 1).waitUntil(.visible)
-        XCTAssertTrue(person2.isVisible)
         let person2RoleLabel = PeopleHelper.roleLabelOfPeopleCell(index: 1).waitUntil(.visible)
-        XCTAssertTrue(person2RoleLabel.isVisible)
-        XCTAssertEqual(person2RoleLabel.label, "Teacher")
         let person2NameLabel = PeopleHelper.nameLabelOfPeopleCell(index: 1).waitUntil(.visible)
+        XCTAssertTrue(person2.isVisible)
+        XCTAssertTrue(person2RoleLabel.isVisible)
+        XCTAssertTrue(person2RoleLabel.hasLabel(label: "Teacher"))
         XCTAssertTrue(person2NameLabel.isVisible)
-        XCTAssertEqual(person2NameLabel.label, teachers[1].name)
+        XCTAssertTrue(person2NameLabel.hasLabel(label: teachers[1].name))
 
         // MARK: Delete enrollment of the other teacher and check if People List gets updated
         seeder.deleteEnrollment(enrollments[1], in: course)

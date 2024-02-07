@@ -128,6 +128,7 @@ extension Quiz: DueViewable, GradeViewable, LockStatusViewable {
     public var gradingType: GradingType { return .points }
     public var viewableGrade: String? { return nil }
     public var viewableScore: Double? { return nil }
+    public var viewableEnteredScore: Double? { return nil }
 
     public var allowedAttemptsText: String {
         if allowedAttempts < 1 {

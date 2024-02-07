@@ -134,7 +134,7 @@ class MockFileSubmissionAssembly: FileSubmissionAssembly {
 
     init(testCase: CoreTestCase) {
         mockComposer = MockFileSubmissionComposer(context: testCase.databaseClient)
-        super.init(container: testCase.database, sessionID: "", sharedContainerID: "", api: testCase.api)
+        super.init(container: testCase.database, sessionID: "", sharedContainerID: "", sessionConfigurationProtocolClasses: nil, api: testCase.api)
     }
 
     public override func cancel(submissionID: NSManagedObjectID) {
