@@ -25,7 +25,7 @@ class HelpTests: E2ETestCase {
         let course = seeder.createCourse()
         seeder.enrollParent(parent, in: course)
 
-        // MARK: Get the user logged in, navigate to Help
+        // MARK: Get the user logged in
         logInDSUser(parent)
         let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
         XCTAssertTrue(profileButton.isVisible)
@@ -34,37 +34,40 @@ class HelpTests: E2ETestCase {
         let helpButton = ProfileHelper.helpButton.waitUntil(.visible)
         XCTAssertTrue(helpButton.isVisible)
 
+        // MARK: Navigate to Help, check "Search the Canvas Guides" button
         helpButton.hit()
-
-        // MARK: Check "Search the Canvas Guides" button
         let searchTheCanvasGuidesButton = HelpHelper.searchTheCanvasGuides.waitUntil(.visible)
         XCTAssertTrue(searchTheCanvasGuidesButton.isVisible)
+
         searchTheCanvasGuidesButton.hit()
         HelpHelper.openInSafariButton.hit()
         var browserURL = SafariAppHelper.browserURL
         XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Canvas-LMS/ct-p/canvaslms"))
-        HelpHelper.returnToHelpPage(teacher: true)
 
         // MARK: Check "Report a Problem" button
+        HelpHelper.returnToHelpPage(teacher: true)
         let reportAProblemButton = HelpHelper.reportAProblem.waitUntil(.visible)
         XCTAssertTrue(reportAProblemButton.isVisible)
+
         reportAProblemButton.hit()
         XCTAssertTrue(app.find(label: "Report a Problem").waitUntil(.visible).isVisible)
-        app.find(label: "Cancel").hit()
-        HelpHelper.navigateToHelpPage()
 
         // MARK: Check "Submit a Feature Idea" button
+        app.find(label: "Cancel").hit()
+        HelpHelper.navigateToHelpPage()
         let submitAFeatureButton = HelpHelper.submitAFeatureIdea.waitUntil(.visible)
         XCTAssertTrue(submitAFeatureButton.isVisible)
+
         submitAFeatureButton.hit()
         HelpHelper.openInSafariButton.hit()
         browserURL = SafariAppHelper.browserURL
         XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Canvas-Ideas-and-Themes/ct-p/canvas-ideas-themes"))
-        HelpHelper.returnToHelpPage(teacher: true)
 
         // MARK: Check "COVID-19 Canvas Resources" button
+        HelpHelper.returnToHelpPage(teacher: true)
         let covid19Button = HelpHelper.covid19.waitUntil(.visible)
         XCTAssertTrue(covid19Button.isVisible)
+
         covid19Button.hit()
         HelpHelper.openInSafariButton.hit()
         browserURL = SafariAppHelper.browserURL

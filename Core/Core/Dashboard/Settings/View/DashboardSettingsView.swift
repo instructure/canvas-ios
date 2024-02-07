@@ -60,6 +60,17 @@ public struct DashboardSettingsView: View {
                     .accessibilityIdentifier("DashboardSettings.colorOverlayToggle")
                     separator
                 }
+                header(label: Text("Hint", bundle: .core))
+                    .padding(.top, 32)
+                separator
+                HStack(spacing: 16) {
+                    Image.sortLine
+                    Text("To re-order your courses tap and hold on a card then drag it to its new position.", bundle: .core)
+                        .font(.regular14)
+                }
+                .foregroundColor(.textDarkest)
+                .padding(.vertical, 16)
+                separator
                 Spacer()
             }
             .padding(.horizontal, horizontalPadding)

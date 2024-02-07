@@ -18,6 +18,7 @@
 
 import SwiftUI
 import Core
+import Combine
 
 struct SubmissionCommentList: View {
     let assignment: Assignment
@@ -32,9 +33,9 @@ struct SubmissionCommentList: View {
     @Environment(\.viewController) var controller
 
     @ObservedObject var attempts: Store<LocalUseCase<Submission>>
-    @ObservedObject var comments: Store<GetSubmissionComments>
     @ObservedObject var commentLibrary: SubmissionCommentLibraryViewModel
 
+    @StateObject private var viewModel: SubmissionCommentListViewModel
     @State var error: Text?
     @State var showMediaOptions = false
     @State var showCommentLibrary = false
@@ -57,8 +58,10 @@ struct SubmissionCommentList: View {
         self._comment = enteredComment
         self.attempts = attempts
         self.commentLibrary = commentLibrary
-        comments = AppEnvironment.shared.subscribe(GetSubmissionComments(
-            context: .course(assignment.courseID),
+
+        _viewModel = StateObject(wrappedValue: SubmissionCommentListViewModel(
+            attempt: attempt.wrappedValue,
+            courseID: assignment.courseID,
             assignmentID: assignment.id,
             userID: submission.userID
         ))
@@ -68,12 +71,12 @@ struct SubmissionCommentList: View {
         GeometryReader { geometry in
             VStack(spacing: 0) {
                 ScrollView {
-                    switch comments.state {
-                    case .data:
+                    switch viewModel.state {
+                    case .data(let comments):
                         if #available(iOS 14, *) {
-                            LazyVStack(alignment: .leading, spacing: 0) { list }
+                            LazyVStack(alignment: .leading, spacing: 0) { list(comments) }
                         } else {
-                            VStack(alignment: .leading, spacing: 0) { list }
+                            VStack(alignment: .leading, spacing: 0) { list(comments) }
                         }
                     // Assume already loaded by parent, so skip loading & error
                     case .loading, .empty, .error:
@@ -82,7 +85,7 @@ struct SubmissionCommentList: View {
                     }
                 }
                     .background(Color.backgroundLightest)
-                    .scaleEffect(y: comments.state == .data ? -1 : 1)
+                    .scaleEffect(y: viewModel.state.isData ? -1 : 1)
                 Divider()
                 switch showRecorder {
                 case .audio:
@@ -124,12 +127,12 @@ struct SubmissionCommentList: View {
     }
 
     @ViewBuilder
-    var list: some View {
+    func list(_ comments: [SubmissionComment]) -> some View {
         error?
             .font(.semibold16).foregroundColor(.textDanger)
             .padding(16)
             .scaleEffect(y: -1)
-        ForEach(comments.all, id: \.id) { comment in
+        ForEach(comments, id: \.id) { comment in
             SubmissionCommentListCell(
                 assignment: assignment,
                 submission: attempts.first(where: { $0.attempt == comment.attempt }) ?? submission,
@@ -144,7 +147,7 @@ struct SubmissionCommentList: View {
     func toolbar(containerHeight: CGFloat) -> some View {
         HStack(spacing: 0) {
             Button(action: { showMediaOptions = true }, label: {
-                Image.addSolid.size(18)
+                Image.paperclipLine.size(18)
                     .foregroundColor(.textDark)
                     .padding(EdgeInsets(top: 11, leading: 11, bottom: 11, trailing: 11))
             })
@@ -169,12 +172,19 @@ struct SubmissionCommentList: View {
         guard !text.isEmpty else { return }
         error = nil
         comment = ""
+        let commentAttempt: Int?
+        if viewModel.isAssignmentEnhancementsFeatureFlagEnabled {
+            commentAttempt = attempt
+        } else {
+            commentAttempt = nil
+        }
         CreateTextComment(
             courseID: assignment.courseID,
             assignmentID: assignment.id,
             userID: submission.userID,
             isGroup: assignment.gradedIndividually == false,
-            text: text
+            text: text,
+            attempt: commentAttempt
         ).fetch { comment, error in
             if error != nil || comment == nil {
                 self.comment = text
@@ -211,13 +221,20 @@ struct SubmissionCommentList: View {
 
     func sendMediaComment(type: MediaCommentType, url: URL?) {
         guard let url = url else { return }
+        let commentAttempt: Int?
+        if viewModel.isAssignmentEnhancementsFeatureFlagEnabled {
+            commentAttempt = attempt
+        } else {
+            commentAttempt = nil
+        }
         UploadMediaComment(
             courseID: assignment.courseID,
             assignmentID: assignment.id,
             userID: submission.userID,
             isGroup: assignment.gradedIndividually == false,
             type: type,
-            url: url
+            url: url,
+            attempt: commentAttempt
         ).fetch { comment, error in
             if error != nil || comment == nil {
                 self.error = error.map { Text($0.localizedDescription) } ?? Text("Could not save the comment.")
@@ -232,12 +249,19 @@ struct SubmissionCommentList: View {
     }
 
     func sendFileComment(batchID: String) {
+        let commentAttempt: Int?
+        if viewModel.isAssignmentEnhancementsFeatureFlagEnabled {
+            commentAttempt = attempt
+        } else {
+            commentAttempt = nil
+        }
         UploadFileComment(
             courseID: assignment.courseID,
             assignmentID: assignment.id,
             userID: submission.userID,
             isGroup: assignment.gradedIndividually == false,
-            batchID: batchID
+            batchID: batchID,
+            attempt: commentAttempt
         ).fetch { comment, error in
             if error != nil || comment == nil {
                 self.error = error.map { Text($0.localizedDescription) } ?? Text("Could not save the comment.")

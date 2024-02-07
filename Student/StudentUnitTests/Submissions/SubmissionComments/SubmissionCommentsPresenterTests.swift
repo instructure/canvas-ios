@@ -90,7 +90,7 @@ class SubmissionCommentsPresenterTests: StudentTestCase {
             courseID: "1",
             assignmentID: "1",
             userID: "1",
-            body: .init(comment: .init(fileIDs: ["1"], forGroup: true), submission: nil)
+            body: .init(comment: .init(fileIDs: ["1"], forGroup: true, attempt: nil), submission: nil)
         ), value: APISubmission.make(
             submission_comments: [ APISubmissionComment.make() ]
         ))
@@ -101,6 +101,49 @@ class SubmissionCommentsPresenterTests: StudentTestCase {
         file.id = "1"
         try UploadManager.shared.viewContext.save()
         wait(for: [view.expectReload!], timeout: 5)
+    }
+
+    func testAddFileCommentSuccessWithAttempFieldFlagEnabled() throws {
+        let file = File.make(batchID: "1", removeID: true, session: currentSession, in: UploadManager.shared.viewContext)
+        api.mock(PutSubmissionGradeRequest(
+            courseID: "1",
+            assignmentID: "1",
+            userID: "1",
+            body: .init(comment: .init(fileIDs: ["1"], forGroup: true, attempt: 19), submission: nil)
+        ), value: APISubmission.make(
+            submission_comments: [ APISubmissionComment.make(attempt: 19) ]
+        ))
+        api.mock(GetEnabledFeatureFlagsRequest(context: .course("1")), value: ["assignments_2_student"])
+        presenter.viewIsReady()
+        presenter.updateComments(for: 19)
+        view.expectReload = self.expectation(description: "reload")
+        view.expectReload?.assertForOverFulfill = false
+        presenter.addFileComment(batchID: "1")
+        file.id = "1"
+        try UploadManager.shared.viewContext.save()
+        wait(for: [view.expectReload!], timeout: 5)
+        XCTAssertEqual(presenter.comments.first?.attemptFromAPI, 19)
+    }
+
+    func testCommentFilteringWithFlagEnabled() throws {
+        SubmissionComment.save(.make(id: "19", attempt: 19), for: .make(), in: databaseClient)
+        SubmissionComment.save(.make(id: "20", attempt: 20), for: .make(), in: databaseClient)
+        try databaseClient.save()
+        api.mock(GetEnabledFeatureFlagsRequest(context: .course("1")), value: ["assignments_2_student"])
+        presenter.viewIsReady()
+        presenter.updateComments(for: 19)
+        XCTAssertEqual(presenter.comments.count, 1)
+        XCTAssertEqual(presenter.comments[0].attemptFromAPI, NSNumber(value: 19))
+    }
+
+    func testCommentFilteringWithFlagDisabled() throws {
+        SubmissionComment.save(.make(id: "19", attempt: 19), for: .make(), in: databaseClient)
+        SubmissionComment.save(.make(id: "20", attempt: 20), for: .make(), in: databaseClient)
+        try databaseClient.save()
+        api.mock(GetEnabledFeatureFlagsRequest(context: .course("1")), value: [])
+        presenter.viewIsReady()
+        presenter.updateComments(for: 19)
+        XCTAssertEqual(presenter.comments.count, 2)
     }
 
     func testShowAttachment() {

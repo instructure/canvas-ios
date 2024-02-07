@@ -86,15 +86,15 @@ public class CourseListInteractorLive: CourseListInteractor {
 
         return Publishers.CombineLatest3(
             activeCoursesStore
-                .observeEntitiesWithError()
+                .getEntities(keepObservingDatabaseChanges: true)
                 .filter(with: searchQuery)
                 .map { $0.map { AllCoursesCourseItem.init(from: $0)}},
             pastCoursesStore
-                .observeEntitiesWithError()
+                .getEntities(keepObservingDatabaseChanges: true)
                 .filter(with: searchQuery)
                 .map { $0.map { AllCoursesCourseItem.init(from: $0)}},
             futureCoursesStore
-                .observeEntitiesWithError()
+                .getEntities(keepObservingDatabaseChanges: true)
                 .map { [env] in filterUnpublishedCoursesForStudents(env.app, $0) }
                 .filter(with: searchQuery)
                 .map { $0.map { AllCoursesCourseItem.init(from: $0)}}
@@ -122,9 +122,9 @@ public class CourseListInteractorLive: CourseListInteractor {
 
     public func refresh() -> AnyPublisher<Void, Never> {
         Publishers.CombineLatest3(
-            activeCoursesStore.forceFetchEntities(),
-            pastCoursesStore.forceFetchEntities(),
-            futureCoursesStore.forceFetchEntities()
+            activeCoursesStore.forceRefresh(),
+            pastCoursesStore.forceRefresh(),
+            futureCoursesStore.forceRefresh()
         )
         .mapToVoid()
         .eraseToAnyPublisher()

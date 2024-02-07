@@ -64,3 +64,19 @@ public class DashboardCourseCardListViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 }
+
+extension DashboardCourseCardListViewModel: CourseCardOrderChangeDelegate {
+
+    func orderDidChange(_ newOrder: [CourseCardDropToReorderDelegate.CardID]) {
+        for card in courseCardList {
+            guard let newIndex = newOrder.firstIndex(of: card.id) else {
+                continue
+            }
+            card.position = newIndex
+        }
+    }
+
+    func reorderDidFinish() {
+        interactor.uploadCardPositions()
+    }
+}

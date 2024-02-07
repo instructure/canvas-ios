@@ -24,10 +24,35 @@ open class BaseHelper {
     public static var backButton: XCUIElement { app.find(label: "Back", type: .button) }
     public static var nextButton: XCUIElement { app.find(id: "nextButton", type: .button) }
     public static var openInSafariButton: XCUIElement { app.find(id: "OpenInSafariButton") }
+
     public static func pullToRefresh() {
         let window = app.find(type: .window)
         window.relativeCoordinate(x: 0.5, y: 0.2)
             .press(forDuration: 0.05, thenDragTo: window.relativeCoordinate(x: 0.5, y: 1.0))
+    }
+
+    public static func createUser(type: DSUserType, enrollIn course: DSCourse) -> DSUser {
+        var user = seeder.createUser()
+        let enrollment: DSEnrollment
+        switch type {
+        case .student:
+            enrollment = seeder.enrollStudent(user, in: course)
+        case .teacher:
+            enrollment = seeder.enrollTeacher(user, in: course)
+        case .parent:
+            enrollment = seeder.enrollParent(user, in: course)
+        }
+        user.type = type.rawValue
+        user.enrollmentId = enrollment.id
+        return user
+    }
+
+    public static func createUsers(_ count: Int, type: DSUserType, enrollIn course: DSCourse) -> [DSUser] {
+        var users: [DSUser] = []
+        for _ in 0 ..< count {
+            users.append(createUser(type: type, enrollIn: course))
+        }
+        return users
     }
 
     public struct TabBar {

@@ -137,12 +137,14 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         )
     },
 
-    "/courses/:courseID/assignments/:assignmentID/submissions": { _, params, _ in
+    "/courses/:courseID/assignments/:assignmentID/submissions": { url, params, _ in
         guard let courseID = params["courseID"], let assignmentID = params["assignmentID"] else { return nil }
+        let selectedAttempt = Int(url.queryValue(for: "selectedAttempt") ?? "")
         return SubmissionDetailsViewController.create(
             context: .course(ID.expandTildeID(courseID)),
             assignmentID: ID.expandTildeID(assignmentID),
-            userID: "self"
+            userID: "self",
+            selectedAttempt: selectedAttempt
         )
     },
 
@@ -155,10 +157,12 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
                 fragment: url.fragment
             )
         } else {
+            let selectedAttempt = Int(url.queryValue(for: "selectedAttempt") ?? "")
             return SubmissionDetailsViewController.create(
                 context: .course(ID.expandTildeID(courseID)),
                 assignmentID: ID.expandTildeID(assignmentID),
-                userID: ID.expandTildeID(userID)
+                userID: ID.expandTildeID(userID),
+                selectedAttempt: selectedAttempt
             )
         }
     },
@@ -509,8 +513,7 @@ private func discussionViewController(url: URLComponents, params: [String: Strin
         )
     }
 
-    if ExperimentalFeature.hybridDiscussionDetails.isEnabled,
-       EmbeddedWebPageViewModelLive.isRedesignEnabled(in: context) {
+    if EmbeddedWebPageViewModelLive.isRedesignEnabled(in: context) {
         let viewModel = EmbeddedWebPageViewModelLive(
             context: context,
             webPageType: webPageType

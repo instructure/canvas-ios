@@ -1,0 +1,27 @@
+---
+targets:
+  SubmitAssignment:
+    type: app-extension
+    platform: iOS
+    transitivelyLinkDependencies: true
+    settings:
+      APPLICATION_EXTENSION_API_ONLY: true
+      ENABLE_TESTABILITY: true
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.instructure.icanvas.SubmitAssignment
+        INFOPLIST_FILE: SubmitAssignment/Info.plist
+        CODE_SIGN_ENTITLEMENTS: SubmitAssignment/SubmitAssignment.entitlements
+        TARGETED_DEVICE_FAMILY: 1,2
+    sources:
+      - path: ./
+        excludes:
+          - ".swiftlint.yml"
+    dependencies:      
+      - package: Firebase
+        product: FirebaseCrashlytics
+      - target: Core/Core
+schemes:
+  SubmitAssignment:
+    build:
+      targets:
+        SubmitAssignment: all

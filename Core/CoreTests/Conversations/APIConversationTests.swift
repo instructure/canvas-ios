@@ -86,7 +86,8 @@ class APIConversationTests: CoreTestCase {
             context_code: "course_5",
             media_comment_id: "1",
             media_comment_type: .audio,
-            attachment_ids: ["1"]
+            attachment_ids: ["1"],
+            group_conversation: true
         )
         let request = PostConversationRequest(body: body)
         XCTAssertEqual(request.path, "conversations")

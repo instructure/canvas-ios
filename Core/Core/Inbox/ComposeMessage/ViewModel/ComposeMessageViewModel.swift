@@ -22,9 +22,7 @@ import CombineSchedulers
 
 class ComposeMessageViewModel: ObservableObject {
     // MARK: - Outputs
-    @Published public private(set) var state: StoreState = .loading
-    @Published public private(set) var courses: [InboxCourse] = []
-    @Published public private(set) var recipients: [SearchRecipient] = []
+    @Published public private(set) var recipients: [Recipient] = []
     @Published public private(set) var isSendingMessage: Bool = false
 
     public let title = NSLocalizedString("New Message", comment: "")
@@ -35,18 +33,23 @@ class ComposeMessageViewModel: ObservableObject {
         // && (attachments.isEmpty || attachments.allSatisfy({ $0.isUploaded }))
 
     }
+    public var isReply: Bool {
+        conversation != nil
+    }
 
     // MARK: - Inputs
     public let sendButtonDidTap = PassthroughRelay<WeakViewController>()
     public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
-    public let addRecipientButtonDidTap = PassthroughRelay<WeakViewController>()
-    public let selectedRecipient = CurrentValueRelay<SearchRecipient?>(nil)
+    public let recipientDidSelect = PassthroughRelay<Recipient>()
+    public let recipientDidRemove = PassthroughRelay<Recipient>()
+    public var selectedRecipients = CurrentValueSubject<[Recipient], Never>([])
 
     // MARK: - Inputs / Outputs
     @Published public var sendIndividual: Bool = false
     @Published public var bodyText: String = ""
     @Published public var subject: String = ""
-    @Published public var selectedCourse: InboxCourse?
+    @Published public var selectedContext: RecipientContext?
+    @Published public var conversation: Conversation?
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
@@ -54,96 +57,99 @@ class ComposeMessageViewModel: ObservableObject {
     private let router: Router
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
-    public init(router: Router, interactor: ComposeMessageInteractor, scheduler: AnySchedulerOf<DispatchQueue> = .main) {
+    public init(router: Router, conversation: Conversation? = nil, author: String? = nil, interactor: ComposeMessageInteractor, scheduler: AnySchedulerOf<DispatchQueue> = .main) {
         self.interactor = interactor
         self.router = router
         self.scheduler = scheduler
+        self.conversation = conversation
+
+        if let conversation {
+            self.subject = conversation.subject
+            if let context = Context(canvasContextID: conversation.contextCode ?? "") {
+                self.selectedContext = .init(name: conversation.contextName ?? "", context: context)
+            }
+            if let author {
+                self.selectedRecipients.value = conversation.audience.filter { $0.id == author }.map { Recipient(conversationParticipant: $0) }
+
+                if self.selectedRecipients.value.isEmpty {
+                    self.selectedRecipients.value = conversation.audience.map { Recipient(conversationParticipant: $0) }
+                }
+            } else {
+                self.selectedRecipients.value = conversation.audience.map { Recipient(conversationParticipant: $0) }
+            }
+        }
 
         setupOutputBindings()
         setupInputBindings(router: router)
     }
 
     public func courseSelectButtonDidTap(viewController: WeakViewController) {
-        let options = courses
-        var selected: IndexPath?
-        if let selectedCourse = selectedCourse {
-            selected = options.firstIndex(of: selectedCourse).flatMap {
-                IndexPath(row: $0, section: 0)
-            }
-        }
-        let sections = [ ItemPickerSection(items: options.map {
-            ItemPickerItem(title: $0.name)
-        }), ]
-
-        router.show(ItemPickerViewController.create(
-            title: NSLocalizedString("Select Course", comment: ""),
-            sections: sections,
-            selected: selected,
-            didSelect: { [weak self] in
-                self?.courseDidSelect(course: options[$0.row], viewController: viewController)
-            }
-        ), from: viewController)
+        router.show(InboxCoursePickerAssembly.makeInboxCoursePickerViewController(selected: selectedContext) { [weak self] course in
+            self?.courseDidSelect(selectedContext: course, viewController: viewController)
+        }, from: viewController)
     }
 
-    private func courseDidSelect(course: InboxCourse?, viewController: WeakViewController) {
-        selectedCourse = course
-        recipients.removeAll()
+    public func courseDidSelect(selectedContext: RecipientContext?, viewController: WeakViewController) {
+        self.selectedContext = selectedContext
+        selectedRecipients.value.removeAll()
 
         closeCourseSelectorDelayed(viewController)
     }
 
     private func closeCourseSelectorDelayed(_ viewController: WeakViewController) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            if let navController = viewController.value.navigationController,
-               navController.visibleViewController is ItemPickerViewController {
+            if let navController = viewController.value.navigationController {
                 navController.popViewController(animated: true)
             }
         }
     }
 
     public func addRecipientButtonDidTap(viewController: WeakViewController) {
-        guard let courseID = selectedCourse?.courseId else { return }
-        let addressbook = AddressBookAssembly.makeAddressbookViewController(courseID: courseID, recipientDidSelect: selectedRecipient)
-        router.show(addressbook, from: viewController)
+        guard let context = selectedContext else { return }
+        let addressbook = AddressBookAssembly.makeAddressbookRoleViewController(recipientContext: context, recipientDidSelect: recipientDidSelect, selectedRecipients: selectedRecipients)
+        router.show(addressbook, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true))
     }
 
     public func attachmentbuttonDidTap(viewController: WeakViewController) {
 
     }
 
-    public func removeRecipientButtonDidTap(recipient: SearchRecipient) {
-        recipients.removeAll { $0 == recipient}
-    }
-
     private func setupOutputBindings() {
-        interactor.state
-            .assign(to: &$state)
-        interactor.courses
-            .assign(to: &$courses)
-        selectedRecipient
-            .compactMap { $0 }
-            .filter { !self.recipients.map { $0.id }.contains($0.id) }
-            .sink { [weak self] in
-                self?.recipients.append($0)
+        recipientDidSelect
+            .sink { [weak self] recipient in
+                if self?.selectedRecipients.value.contains(recipient) == true {
+                    self?.recipientDidRemove.accept(recipient)
+                } else {
+                    self?.selectedRecipients.value.append(recipient)
+                }
             }
             .store(in: &subscriptions)
+
+        recipientDidRemove
+            .sink { [weak self] recipient in
+                self?.selectedRecipients.value.removeAll { $0 == recipient }
+            }
+            .store(in: &subscriptions)
+
+        selectedRecipients
+            .assign(to: &$recipients)
     }
 
     private func messageParameters() -> MessageParameters? {
-        guard let courseID = selectedCourse?.courseId else { return nil }
-        let recipientIDs = recipients.map { $0.id }
+        guard let context = selectedContext else { return nil }
+        let recipientIDs = Array(Set(recipients.flatMap { $0.ids }))
 
         return MessageParameters(
             subject: subject,
             body: bodyText,
             recipientIDs: recipientIDs,
-            context: .course(courseID)
+            context: context.context,
+            conversationID: conversation?.id,
+            groupConversation: !sendIndividual
         )
     }
 
     private func showResultDialog(title: String, message: String, completion: (() -> Void)? = nil) {
-        let title = NSLocalizedString(title, comment: "")
-        let message = NSLocalizedString(message, comment: "")
         let actionTitle = NSLocalizedString("OK", comment: "")
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: actionTitle, style: .default) { _ in

@@ -32,22 +32,21 @@ class PagesTests: E2ETestCase {
 
         // MARK: Get the user logged in and check the course card
         logInDSUser(teacher)
-
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCard.isVisible)
-        courseCard.hit()
 
         // MARK: Check pages button
+        courseCard.hit()
         let pagesButton = CourseDetailsHelper.cell(type: .pages).waitUntil(.visible)
         XCTAssertTrue(pagesButton.isVisible)
-        pagesButton.hit()
 
         // MARK: Check front page button
+        pagesButton.hit()
         let frontPageButton = Helper.frontPage.waitUntil(.visible)
         XCTAssertTrue(frontPageButton.isVisible)
-        frontPageButton.hit()
 
         // MARK: Check title of front page
+        frontPageButton.hit()
         let frontPageTitle = Helper.titleByText(text: frontPage.title).waitUntil(.visible)
         XCTAssertTrue(frontPageTitle.isVisible)
     }
@@ -73,33 +72,33 @@ class PagesTests: E2ETestCase {
 
         // MARK: Enroll user in course, get user logged in
         seeder.enrollTeacher(teacher, in: course)
-
         logInDSUser(teacher)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
 
-        // MARK: Navigate to front page of course
+        // MARK: Navigate to front page of course, Check deep link to assignment
         Helper.navigateToFrontPage(course: course)
-
-        // MARK: Check deep link to assignment
         let assignmentDeepLink = app.find(labelContaining: assignment.name).waitUntil(.visible)
         XCTAssertTrue(assignmentDeepLink.isVisible)
+
         assignmentDeepLink.hit()
         let assignmentDetailsNavBar = AssignmentsHelper.Details.navBar(course: course).waitUntil(.visible)
         XCTAssertTrue(assignmentDetailsNavBar.isVisible)
 
-        AssignmentsHelper.Details.backButton.hit()
-
         // MARK: Check deep link to discussion
+        AssignmentsHelper.Details.backButton.hit()
         let discussionDeepLink = app.find(labelContaining: discussion.title).waitUntil(.visible)
         XCTAssertTrue(discussionDeepLink.isVisible)
+
         discussionDeepLink.hit()
         let discussionDetailsNavBar = DiscussionsHelper.Details.navBar(course: course).waitUntil(.visible)
         XCTAssertTrue(discussionDetailsNavBar.isVisible)
 
-        DiscussionsHelper.Details.backButton.hit()
-
         // MARK: Check deep link to announcement
+        DiscussionsHelper.Details.backButton.hit()
         let announcementDeepLink = app.find(labelContaining: announcement.title).waitUntil(.visible)
         XCTAssertTrue(announcementDeepLink.isVisible)
+
         announcementDeepLink.hit()
         let announcementDetailsNavBar = AnnouncementsHelper.Details.navBar(course: course).waitUntil(.visible)
         XCTAssertTrue(announcementDetailsNavBar.isVisible)
@@ -113,11 +112,13 @@ class PagesTests: E2ETestCase {
         let newPageTitle = "New Test Page"
         let newPageContent = "Content of new test page."
 
-        // MARK: Get the user logged in, navigate to Pages
+        // MARK: Get the user logged in
         logInDSUser(teacher)
-        Helper.navigateToPages(course: course)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
 
-        // MARK: Add new page
+        // MARK: Navigate to Pages, Add new page
+        Helper.navigateToPages(course: course)
         let addButton = Helper.add.waitUntil(.visible)
         XCTAssertTrue(addButton.isVisible)
 
@@ -155,10 +156,11 @@ class PagesTests: E2ETestCase {
         // MARK: Enroll user in course, get user logged in
         seeder.enrollTeacher(teacher, in: course)
         logInDSUser(teacher)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
 
         // MARK: Navigate to front page of course
         Helper.navigateToFrontPage(course: course)
-
         let optionsButton = DetailsHelper.options.waitUntil(.visible)
         XCTAssertTrue(optionsButton.isVisible)
 

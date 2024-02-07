@@ -44,8 +44,13 @@ public class AssignmentListViewModel: ObservableObject {
         self?.courseDidUpdate()
     }
 
+    /** This is required for the router to help decide if the hybrid discussion details or the native one should be launched. */
+    private lazy var featureFlags = env.subscribe(GetEnabledFeatureFlags(context: .course(courseID)))
+
     public init(context: Context) {
         self.courseID = context.id
+
+        featureFlags.refresh()
     }
 
     // MARK: - Preview Support

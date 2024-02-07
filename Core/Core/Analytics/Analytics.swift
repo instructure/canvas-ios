@@ -28,6 +28,9 @@ public protocol AnalyticsHandler: AnyObject {
 public class Analytics: NSObject {
     @objc public static var shared: Analytics = Analytics()
     public weak var handler: AnalyticsHandler?
+    #if DEBUG
+    public var logScreenViewToConsole = false
+    #endif
 
     /**
      Use this method to collect screen view events which will be uploaded when a crash happens
@@ -35,6 +38,11 @@ public class Analytics: NSObject {
      */
     @objc(logScreenView:viewController:)
     public func logScreenView(route: String, viewController: UIViewController? = nil) {
+        #if DEBUG
+        if logScreenViewToConsole {
+            print("ScreenView: \(route) (\(Self.analyticsClassName(for: viewController)))")
+        }
+        #endif
         handler?.handleScreenView(screenName: route,
                                   screenClass: Self.analyticsClassName(for: viewController),
                                   application: Self.analyticsAppName)

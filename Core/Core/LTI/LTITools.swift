@@ -18,6 +18,7 @@
 
 import Foundation
 import SafariServices
+import WebKit
 
 @objc
 public class LTITools: NSObject {
@@ -88,15 +89,42 @@ public class LTITools: NSObject {
 
     var openInSafari: Bool { UserDefaults.standard.bool(forKey: "open_lti_safari") }
 
-    public convenience init?(env: AppEnvironment = .shared, link: URL?) {
-        guard
-            let retrieve = link, retrieve.host == env.api.baseURL.host,
-            retrieve.path.hasSuffix("/external_tools/retrieve")
-        else { return nil }
+    public convenience init?(env: AppEnvironment = .shared, link: URL?, navigationType: WKNavigationType) {
+        guard let link, link.host == env.api.baseURL.host else { return nil }
 
-        let components = URLComponents.parse(retrieve)
+        if let (context, url, resourceLinkUUID) = Self.parseRegularExternalToolURL(url: link),
+           navigationType == .linkActivated {
+            self.init(
+                env: env,
+                context: context,
+                url: url,
+                resourceLinkLookupUUID: resourceLinkUUID
+            )
+            return
+        } else if let (courseID, toolID) = Self.parseQuerylessExternalToolURL(url: link), navigationType == .other {
+            self.init(
+                env: env,
+                context: .course(courseID),
+                id: toolID,
+                launchType: .course_navigation
+            )
+            return
+        } else {
+            return nil
+        }
+    }
 
-        let url: URL? = {
+    private static func parseRegularExternalToolURL(url: URL) -> (
+        context: Context,
+        url: URL?,
+        resourceLinkUUID: String?
+    )? {
+        guard url.path.hasSuffix("/external_tools/retrieve") else {
+            return nil
+        }
+        let components = URLComponents.parse(url)
+
+        let newURL: URL? = {
             guard let urlQueryItem = components.queryValue(for: "url") else {
                 return nil
             }
@@ -104,12 +132,27 @@ public class LTITools: NSObject {
         }()
         let resourceLinkUUID = components.queryValue(for: "resource_link_lookup_uuid")
 
-        if url == nil, resourceLinkUUID == nil {
+        if newURL == nil, resourceLinkUUID == nil {
             return nil
         }
 
-        let context = Context(url: retrieve) ?? .account("self")
-        self.init(env: env, context: context, url: url, resourceLinkLookupUUID: resourceLinkUUID)
+        let context = Context(url: url) ?? .account("self")
+        return (context, newURL, resourceLinkUUID)
+    }
+
+    // Parses LTI button triggered urls opened from K5 WebViews like Zoom and Microsoft LTIs.
+    // Expects a url without any query parameters: `courses/:courseID/external_tools/:toolID`.
+    // URLs with parameters are discarded, because there must be an already opened popup window loading the request.
+    private static func parseQuerylessExternalToolURL(url: URL) -> (courseID: String, toolID: String)? {
+        guard url.pathComponents.count == 5 else { return nil }
+
+        if let queryItems = URLComponents.parse(url).queryItems, !queryItems.isEmpty {
+            return nil
+        }
+
+        let components = url.pathComponents
+        guard components[1] == "courses", components[3] == "external_tools" else { return nil }
+        return (components[2], components[4])
     }
 
     public func presentTool(from view: UIViewController, animated: Bool = true, completionHandler: ((Bool) -> Void)? = nil) {
@@ -131,8 +174,8 @@ public class LTITools: NSObject {
                     completionHandler(true)
                 }
             } else if self.openInSafari {
-                    self.env.loginDelegate?.openExternalURLinSafari(url)
-                    completionHandler(true)
+                self.env.loginDelegate?.openExternalURLinSafari(url)
+                completionHandler(true)
             } else {
                 let safari = SFSafariViewController(url: url)
                 self.env.router.show(safari, from: view, options: .modal(.overFullScreen)) {

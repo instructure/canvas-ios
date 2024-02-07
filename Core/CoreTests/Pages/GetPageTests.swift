@@ -73,4 +73,17 @@ class GetPageTests: CoreTestCase {
         GetPage(context: context, url: "front_page").reset(context: databaseClient)
         XCTAssertFalse(previous.isFrontPage)
     }
+
+    /// We request a page by URL and the response is a renamed page with a different url
+    func testRenamedPage() {
+        let useCase = GetPage(context: .course("42"), url: "original-url")
+        useCase.write(response: .make(url: "renamed-url"), urlResponse: nil, to: databaseClient)
+        let pages: [Page] = databaseClient.fetch(scope: useCase.scope)
+
+        guard pages.count == 1, let page = pages.first else {
+            return XCTFail()
+        }
+
+        XCTAssertEqual(page.url, "original-url")
+    }
 }

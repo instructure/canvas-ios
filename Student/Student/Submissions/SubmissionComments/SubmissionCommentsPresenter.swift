@@ -20,12 +20,16 @@ import Foundation
 import Core
 import CoreData
 
+protocol SubmissionCommentAttemptDelegate: AnyObject {
+    func updateComments(for attempt: Int?)
+}
+
 protocol SubmissionCommentsViewProtocol: AnyObject {
     func reload()
     func showError(_ error: Error)
 }
 
-class SubmissionCommentsPresenter {
+class SubmissionCommentsPresenter: SubmissionCommentAttemptDelegate {
     let assignmentID: String
     let context: Context
     let env: AppEnvironment
@@ -33,14 +37,18 @@ class SubmissionCommentsPresenter {
     weak var view: SubmissionCommentsViewProtocol?
     let userID: String
 
-    lazy var comments = env.subscribe(GetSubmissionComments(
+    var comments = [SubmissionComment]()
+    lazy var commentsStore = env.subscribe(GetSubmissionComments(
         context: context,
         assignmentID: assignmentID,
         userID: userID
     )) { [weak self] in
         self?.update()
     }
-
+    lazy var featuresStore = env.subscribe(GetEnabledFeatureFlags(context: .course(context.id))) { [weak self] in
+         self?.update()
+    }
+    private var attempt: Int?
     lazy var assignment = env.subscribe(GetAssignment(courseID: context.id, assignmentID: assignmentID)) {}
 
     init(env: AppEnvironment = .shared, view: SubmissionCommentsViewProtocol, context: Context, assignmentID: String, userID: String, submissionID: String) {
@@ -54,12 +62,27 @@ class SubmissionCommentsPresenter {
 
     func viewIsReady() {
         assignment.refresh()
-        comments.refresh()
+        featuresStore.refresh()
+        commentsStore.refresh()
         view?.reload()
     }
 
     func update() {
+        if featuresStore.isFeatureFlagEnabled(.assignmentEnhancements) {
+            comments = commentsStore.all.filter {
+                $0.attemptFromAPI == nil || $0.attemptFromAPI?.intValue == attempt
+            }
+        } else {
+            comments = commentsStore.all
+        }
         view?.reload()
+    }
+
+    func updateComments(for attempt: Int?) {
+        if featuresStore.isFeatureFlagEnabled(.assignmentEnhancements) {
+            self.attempt = attempt
+        }
+        update()
     }
 
     func addComment(text: String) {
@@ -68,7 +91,8 @@ class SubmissionCommentsPresenter {
             assignmentID: assignmentID,
             userID: userID,
             isGroup: assignment.first?.gradedIndividually == false,
-            text: text
+            text: text,
+            attempt: attempt
         ).fetch { [weak self] comment, error in
             if error != nil || comment == nil {
                 self?.view?.showError(error ?? NSError.instructureError(NSLocalizedString("Could not save the comment", bundle: .student, comment: "")))
@@ -83,7 +107,8 @@ class SubmissionCommentsPresenter {
             userID: userID,
             isGroup: assignment.first?.gradedIndividually == false,
             type: type,
-            url: url
+            url: url,
+            attempt: attempt
         ).fetch { [weak self] comment, error in
             if error != nil || comment == nil {
                 self?.view?.showError(error ?? NSError.instructureError(NSLocalizedString("Could not save the comment", bundle: .student, comment: "")))
@@ -97,7 +122,8 @@ class SubmissionCommentsPresenter {
             assignmentID: assignmentID,
             userID: userID,
             isGroup: assignment.first?.gradedIndividually == false,
-            batchID: batchID
+            batchID: batchID,
+            attempt: attempt
         ).fetch { [weak self] comment, error in
             if error != nil || comment == nil {
                 self?.view?.showError(error ?? NSError.instructureError(NSLocalizedString("Could not save the comment", bundle: .student, comment: "")))

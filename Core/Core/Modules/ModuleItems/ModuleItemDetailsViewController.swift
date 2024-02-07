@@ -71,6 +71,7 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
         store.refresh(force: true)
         course.refresh()
         colors.refresh()
+        spinnerView.isHidden = true
     }
 
     func update() {
@@ -82,7 +83,6 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
         if let lockExplanation = item?.lockExplanation {
             self.lockExplanation.loadHTMLString("<p class=\"lock-explanation\">\(lockExplanation)</p>")
         }
-        spinnerView.isHidden = true
         errorView.isHidden = itemViewController != nil && store.error == nil
         container.isHidden = !lockedView.isHidden || !errorView.isHidden
         children.forEach { $0.unembed() }
@@ -102,7 +102,9 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
     }
 
     func updateNavBar() {
-        spinnerView.color = course.first?.color
+        // When embedded view controllers adapt course color for their own spinner view,
+        // we should enable this line below.
+//        spinnerView.color = course.first?.color
         updateNavBar(subtitle: course.first?.name, color: course.first?.color)
         let title: String
         switch item?.type {

@@ -16,14 +16,65 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import CombineExt
 
 public enum AddressBookAssembly {
 
-    public static func makeAddressbookViewController(env: AppEnvironment = .shared, courseID: String, recipientDidSelect: CurrentValueRelay<SearchRecipient?>) -> UIViewController {
-        let interactor = AddressbookInteractorLive(env: env, courseID: courseID)
-        let viewModel = AddressbookViewModel(router: env.router, interactor: interactor, recipientDidSelect: recipientDidSelect)
-        let view = AddressbookView(model: viewModel)
+    public static func makeAddressbookRecipientViewController(
+        env: AppEnvironment = .shared,
+        recipientContext: RecipientContext,
+        roleName: String,
+        recipients: [Recipient],
+        canSelectAllRecipient: Bool,
+        recipientDidSelect: PassthroughRelay<Recipient>,
+        selectedRecipients: CurrentValueSubject<[Recipient], Never>
+    ) -> UIViewController {
+        let viewModel = AddressbookRecipientViewModel(
+            router: env.router,
+            roleName: roleName,
+            recipients: recipients,
+            canSelectAllRecipient: canSelectAllRecipient,
+            recipientDidSelect: recipientDidSelect,
+            selectedRecipients: selectedRecipients
+        )
+        let view = AddressbookRecipientView(model: viewModel)
         return CoreHostingController(view)
     }
+
+    public static func makeAddressbookRoleViewController(
+        env: AppEnvironment = .shared,
+        recipientContext: RecipientContext,
+        recipientDidSelect: PassthroughRelay<Recipient>,
+        selectedRecipients: CurrentValueSubject<[Recipient], Never>
+    ) -> UIViewController {
+        let interactor = AddressbookInteractorLive(env: env, recipientContext: recipientContext)
+        let viewModel = AddressbookRoleViewModel(
+            env: env,
+            router: env.router,
+            recipientContext: recipientContext,
+            interactor: interactor,
+            recipientDidSelect: recipientDidSelect,
+            selectedRecipients: selectedRecipients
+        )
+        let view = AddressbookRoleView(model: viewModel)
+        return CoreHostingController(view)
+    }
+
+#if DEBUG
+
+    public static func makePreview(env: AppEnvironment) -> AddressbookRecipientView {
+        let interactor = AddressbookInteractorPreview(env: env)
+        let viewModel = AddressbookRecipientViewModel(
+            router: env.router,
+            roleName: "Students",
+            recipients: interactor.recipients.value.map { Recipient(searchRecipient: $0) },
+            canSelectAllRecipient: true,
+            recipientDidSelect: PassthroughRelay<Recipient>(),
+            selectedRecipients: CurrentValueSubject<[Recipient], Never>([])
+        )
+        return AddressbookRecipientView(model: viewModel)
+    }
+
+#endif
 }

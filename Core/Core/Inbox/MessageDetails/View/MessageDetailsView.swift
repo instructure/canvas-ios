@@ -76,7 +76,7 @@ public struct MessageDetailsView: View {
 
     private var moreButton: some View {
         Button(action: {
-            model.moreTapped(viewController: controller)
+            model.moreTapped(message: model.messages.first?.conversationMessage, viewController: controller)
         }, label: {
             Image
                 .moreLine
@@ -110,8 +110,8 @@ public struct MessageDetailsView: View {
                 Color.borderMedium
                     .frame(height: 0.5)
                 MessageView(model: message,
-                            replyDidTap: { model.replyTapped(viewController: controller) },
-                            moreDidTap: { model.moreTapped(viewController: controller) })
+                            replyDidTap: { model.replyTapped(message: message.conversationMessage, viewController: controller) },
+                            moreDidTap: { model.moreTapped(message: message.conversationMessage, viewController: controller) })
                 .padding(16)
 
             }

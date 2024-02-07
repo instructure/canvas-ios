@@ -63,8 +63,8 @@ class Drawer: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        backgroundColor = UIColor.clear
-        drawer?.backgroundColor = UIColor.clear
+        backgroundColor = .clear
+        drawer?.backgroundColor = .clear
         drawerControls?.backgroundColor = .backgroundLightest
         contentView?.backgroundColor = .backgroundLightest
         gripper?.backgroundColor = .backgroundMedium
@@ -74,15 +74,15 @@ class Drawer: UIView {
         tabs?.setTitle(NSLocalizedString("Comments", bundle: .student, comment: ""), forSegmentAt: Tab.comments.rawValue)
         tabs?.setTitle(NSLocalizedString("Files", bundle: .student, comment: ""), forSegmentAt: Tab.files.rawValue)
         tabs?.setTitle(NSLocalizedString("Rubric", bundle: .student, comment: ""), forSegmentAt: Tab.rubric.rawValue)
+        tabs?.layer.cornerRadius = 0
+        tabs?.layer.masksToBounds = false
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        // the subviews at this point haven't always been laid out completely
-        // This caused only one corner to be rounded and not the other
-        // This fixes that issue
         DispatchQueue.main.async { [weak self] in
             self?.drawerControls?.roundCorners(corners: [.topLeft, .topRight], radius: 10)
+            self?.tabs?.addUnderlineForSelectedSegment()
         }
         addDropShadow()
     }
@@ -97,12 +97,19 @@ class Drawer: UIView {
     }
 
     func updateGripperLabel(height: CGFloat) {
-        if height == 0 {
+        if height == 2 {
             gripper?.accessibilityLabel = NSLocalizedString("Drawer closed", bundle: .student, comment: "")
         } else if height == midDrawerHeight {
             gripper?.accessibilityLabel = NSLocalizedString("Drawer partially opened", bundle: .student, comment: "")
         } else if height == maxDrawerHeight {
             gripper?.accessibilityLabel = NSLocalizedString("Drawer fully open", bundle: .student, comment: "")
+        }
+    }
+
+    @IBAction func segmentedControlDidChange(_ sender: UISegmentedControl) {
+        tabs?.changeUnderlinePosition()
+        if height < midDrawerHeight {
+            moveTo(height: midDrawerHeight, velocity: 100)
         }
     }
 }
@@ -111,24 +118,18 @@ class Drawer: UIView {
 
 extension Drawer {
     @IBAction func gripperPressed(_ sender: UIButton) {
-        if tabs?.selectedSegmentIndex == UISegmentedControl.noSegment {
-            tabs?.selectedSegmentIndex = 0
-        }
         if height < midDrawerHeight {
             moveTo(height: midDrawerHeight, velocity: 100)
         } else if height == midDrawerHeight {
             moveTo(height: maxDrawerHeight, velocity: 100)
         } else if height > midDrawerHeight {
-            moveTo(height: 0, velocity: 100)
+            moveTo(height: 2, velocity: 100)
         }
     }
 
     @IBAction func handlePan(_ gestureRecognizer: UIPanGestureRecognizer) {
         guard let currentHeight = contentViewHeight?.constant else {
             return
-        }
-        if tabs?.selectedSegmentIndex == UISegmentedControl.noSegment {
-            tabs?.selectedSegmentIndex = 0
         }
         if gestureRecognizer.state == .ended {
             let velocity = gestureRecognizer.velocity(in: self).y
@@ -144,29 +145,23 @@ extension Drawer {
         if currentHeight < midDrawerHeight && velocity < 0 {
             return midDrawerHeight
         } else if currentHeight < midDrawerHeight && velocity > 0 {
-            return 0
+            return 2
         } else if currentHeight > midDrawerHeight && velocity < 0 {
             return maxDrawerHeight
         } else if currentHeight > midDrawerHeight && velocity > 0 {
             return midDrawerHeight
         }
 
-        return 0
+        return 2
     }
 
     func moveTo(height: CGFloat, velocity: CGFloat) {
-        guard let currentHeight = contentViewHeight?.constant else {
+        guard contentViewHeight?.constant != nil else {
             return
         }
-        let distance = height - currentHeight
-        // moving too fast made the spring effect weird
-        // moving too slow made it too long before it snapped
-        let duration = max(0.3, min(0.7, abs(Double(distance / velocity))))
-
         updateGripperLabel(height: height)
 
-        self.superview?.layoutIfNeeded()
-        UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: velocity / distance, options: [], animations: { [weak self] in
+        UIView.animate(withDuration: 0.325, delay: 0, options: [.curveEaseInOut], animations: { [weak self] in
             self?.contentViewHeight?.constant = height
             self?.height = height
             self?.superview?.layoutIfNeeded()
@@ -176,6 +171,7 @@ extension Drawer {
     func setMiddle() {
         layoutIfNeeded()
         tabs?.selectedSegmentIndex = 0
+        tabs?.changeUnderlinePosition()
         updateGripperLabel(height: midDrawerHeight)
         contentViewHeight?.constant = midDrawerHeight
         self.height = midDrawerHeight

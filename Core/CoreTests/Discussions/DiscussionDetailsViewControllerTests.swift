@@ -406,16 +406,6 @@ class DiscussionDetailsViewControllerTests: CoreTestCase {
         XCTAssertEqual(sheet?.actions.first?.title, "Mark as Unread")
     }
 
-    func testDeletedAfterShown() throws {
-        controller.view.layoutIfNeeded()
-        controller.viewWillAppear(false)
-
-        databaseClient.delete(controller.topic.all)
-        try databaseClient.save()
-
-        XCTAssert(router.dismissed == controller)
-    }
-
     func testDetectsNewReplyFromUser() {
         controller.view.layoutIfNeeded()
 
