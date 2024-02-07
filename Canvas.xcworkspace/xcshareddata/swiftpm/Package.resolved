@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/aws-amplify/aws-sdk-ios-spm",
       "state" : {
-        "revision" : "4269367873180e7f18a1ded7148c98151732a93f",
-        "version" : "2.33.1"
+        "revision" : "bbffa51f51b918bbb8940a6f67389cbadc04c0d0",
+        "version" : "2.33.8"
       }
     },
     {
@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/bugfender/BugfenderSDK-iOS",
       "state" : {
-        "revision" : "d15edbcd5b3bd8d1ab0c0e3511cc30776a5aad52",
-        "version" : "1.12.1"
+        "revision" : "d79eda587b2718ae60e2978ae610216733c4c5dd",
+        "version" : "1.13.2"
       }
     },
     {
@@ -131,8 +131,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/intercom/intercom-ios-sp",
       "state" : {
-        "revision" : "b88721e565c6b32ff12d7ffc99e09da30ebe6380",
-        "version" : "16.1.1"
+        "revision" : "be671723c070af363c5945031c8b7a65d37619a4",
+        "version" : "16.5.5"
       }
     },
     {

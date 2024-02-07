@@ -108,6 +108,11 @@
 		9E6ABF2BCA87EBE8025BF094 /* ModulesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CCCEB7A5963E48E283ECE5 /* ModulesTests.swift */; };
 		A04F9A0DA4AB31A469C25ACB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B02CD48EF039CA00540D868 /* GoogleService-Info.plist */; };
 		A25F2ABBAE00E84A3B0CA3FD /* ToDoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1F6228AEE381B0A08A578B /* ToDoTests.swift */; };
+		A5DAF60D2B73B30D0002977D /* AWSCore in Frameworks */ = {isa = PBXBuildFile; productRef = A5DAF60C2B73B30D0002977D /* AWSCore */; };
+		A5DAF60F2B73B3130002977D /* AWSLambda in Frameworks */ = {isa = PBXBuildFile; productRef = A5DAF60E2B73B3130002977D /* AWSLambda */; };
+		A5DAF6112B73B3190002977D /* AWSSNS in Frameworks */ = {isa = PBXBuildFile; productRef = A5DAF6102B73B3190002977D /* AWSSNS */; };
+		A5DAF6132B73B3270002977D /* BugfenderLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = A5DAF6122B73B3270002977D /* BugfenderLibrary */; };
+		A5DAF6152B73B33A0002977D /* Intercom in Frameworks */ = {isa = PBXBuildFile; productRef = A5DAF6142B73B33A0002977D /* Intercom */; };
 		A63BC24AFC44082A4BF21E49 /* CommonWidgetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3E0E192D6C8BD1B726B219 /* CommonWidgetProvider.swift */; };
 		A72B46C0C573DD62E2B62B93 /* SubmissionDetailsEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC9102CDFF983E389801865B /* SubmissionDetailsEmptyView.xib */; };
 		A88CF39C7E1AFBE60757FC24 /* SubmissionDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B085E9CE503AF7DA657F0F /* SubmissionDetailsViewControllerTests.swift */; };
@@ -514,8 +519,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC6357104F1D3750386CE29F /* PSPDFKit in Frameworks */,
+				A5DAF6132B73B3270002977D /* BugfenderLibrary in Frameworks */,
 				D752203A6B1E29E431C039B2 /* Heap in Frameworks */,
+				A5DAF60F2B73B3130002977D /* AWSLambda in Frameworks */,
 				F09BC8F6E14FCEFE1EE8A52A /* CanvasCore.framework in Frameworks */,
+				A5DAF60D2B73B30D0002977D /* AWSCore in Frameworks */,
+				A5DAF6112B73B3190002977D /* AWSSNS in Frameworks */,
+				A5DAF6152B73B33A0002977D /* Intercom in Frameworks */,
 				31A8408342A7F896EF70799A /* Core.framework in Frameworks */,
 				CB49F5633111E5D69CADE8F2 /* Pods_defaults_Student.framework in Frameworks */,
 			);
@@ -1566,6 +1576,11 @@
 			packageProductDependencies = (
 				783AA610EC81ED279E9248B3 /* PSPDFKit */,
 				AD54827E5C4A161BC8362AF7 /* Heap */,
+				A5DAF60C2B73B30D0002977D /* AWSCore */,
+				A5DAF60E2B73B3130002977D /* AWSLambda */,
+				A5DAF6102B73B3190002977D /* AWSSNS */,
+				A5DAF6122B73B3270002977D /* BugfenderLibrary */,
+				A5DAF6142B73B33A0002977D /* Intercom */,
 			);
 			productName = Student;
 			productReference = 40C9ECC1E6E5A1DF46E662CB /* Student.app */;
@@ -1713,9 +1728,12 @@
 			);
 			mainGroup = DBC5D720BCDD200A3007416C;
 			packageReferences = (
-				FC028D0C82C118314497D386 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
-				FA5A4BB2117C9369F057B20B /* XCRemoteSwiftPackageReference "heap-ios-sdk.git" */,
+				FC028D0C82C118314497D386 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				FA5A4BB2117C9369F057B20B /* XCRemoteSwiftPackageReference "heap-ios-sdk" */,
 				A76ACB1286D0782B097750FC /* XCRemoteSwiftPackageReference "PSPDFKit-SP" */,
+				A58E7BA62B73AE7C001F802D /* XCRemoteSwiftPackageReference "aws-sdk-ios-spm" */,
+				A58E7BA72B73AEDD001F802D /* XCRemoteSwiftPackageReference "BugfenderSDK-iOS" */,
+				A58E7BA82B73AF36001F802D /* XCRemoteSwiftPackageReference "intercom-ios-sp" */,
 			);
 			productRefGroup = DFBB61F41BF05A3CE62DBDED /* Products */;
 			projectDirPath = "";
@@ -2572,6 +2590,30 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A58E7BA62B73AE7C001F802D /* XCRemoteSwiftPackageReference "aws-sdk-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/aws-amplify/aws-sdk-ios-spm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.33.8;
+			};
+		};
+		A58E7BA72B73AEDD001F802D /* XCRemoteSwiftPackageReference "BugfenderSDK-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bugfender/BugfenderSDK-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.13.2;
+			};
+		};
+		A58E7BA82B73AF36001F802D /* XCRemoteSwiftPackageReference "intercom-ios-sp" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/intercom/intercom-ios-sp";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 16.5.5;
+			};
+		};
 		A76ACB1286D0782B097750FC /* XCRemoteSwiftPackageReference "PSPDFKit-SP" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/PSPDFKit/PSPDFKit-SP";
@@ -2608,6 +2650,31 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A76ACB1286D0782B097750FC /* XCRemoteSwiftPackageReference "PSPDFKit-SP" */;
 			productName = PSPDFKit;
+		};
+		A5DAF60C2B73B30D0002977D /* AWSCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A58E7BA62B73AE7C001F802D /* XCRemoteSwiftPackageReference "aws-sdk-ios-spm" */;
+			productName = AWSCore;
+		};
+		A5DAF60E2B73B3130002977D /* AWSLambda */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A58E7BA62B73AE7C001F802D /* XCRemoteSwiftPackageReference "aws-sdk-ios-spm" */;
+			productName = AWSLambda;
+		};
+		A5DAF6102B73B3190002977D /* AWSSNS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A58E7BA62B73AE7C001F802D /* XCRemoteSwiftPackageReference "aws-sdk-ios-spm" */;
+			productName = AWSSNS;
+		};
+		A5DAF6122B73B3270002977D /* BugfenderLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A58E7BA72B73AEDD001F802D /* XCRemoteSwiftPackageReference "BugfenderSDK-iOS" */;
+			productName = BugfenderLibrary;
+		};
+		A5DAF6142B73B33A0002977D /* Intercom */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A58E7BA82B73AF36001F802D /* XCRemoteSwiftPackageReference "intercom-ios-sp" */;
+			productName = Intercom;
 		};
 		AD54827E5C4A161BC8362AF7 /* Heap */ = {
 			isa = XCSwiftPackageProductDependency;

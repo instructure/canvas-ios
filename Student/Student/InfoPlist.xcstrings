@@ -7,247 +7,247 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas Student"
           }
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas Student"
           }
         },
         "cy" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Myfyriwr Canvas"
           }
         },
         "da" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas-studerende"
           }
         },
         "da-instk12" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas-elev"
           }
         },
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas-Studierende*r"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Canvas Student"
+            "value" : "Degrees edX"
           }
         },
         "en-AU" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas Student"
           }
         },
         "en-AU-unimelb" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas Student"
           }
         },
         "en-CA" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas Student"
           }
         },
         "en-CY" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas student"
           }
         },
         "en-GB" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas student"
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas student"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Estudiante de Canvas"
           }
         },
         "es-ES" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas Student"
           }
         },
         "fi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas-opiskelija"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas Élève"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas Étudiant"
           }
         },
         "ht" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas Student"
           }
         },
         "id" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas Student"
           }
         },
         "is" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas nemandi"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Studente Canvas"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas 受講者"
           }
         },
         "mi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas Ākonga"
           }
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas Student"
           }
         },
         "nb" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas-student"
           }
         },
         "nb-instk12" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas-elev"
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas Student"
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Uczestnik Canvas"
           }
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Aluno Canvas"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas Student"
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas Student"
           }
         },
         "sl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Študent v sistemu Canvas"
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas-student"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas-elev"
           }
         },
         "th" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas Student"
           }
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas Student"
           }
         },
         "zh" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas 学生"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas 学生"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas Student"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Canvas Student"
           }
         }
@@ -271,247 +271,247 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "قم بإرفاق صور ومقاطع فيديو بالرسائل ومنشورات النقاش أو تسليمها في صورة إرسالات مهمة."
           }
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Adjunteu fotografies i vídeos als missatges i a les publicacions sobre els fòrums o entregueu-los com a entregues per a activitats."
           }
         },
         "cy" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Atodwch luniau a fideos ar gyfer negeseuon a phostiadau trafodaeth, neu eu cyflwyno fel aseiniadau."
           }
         },
         "da" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vedhæft billeder og videoer til beskeder og diskussionsposter, eller indsend dem som opgaveafleveringer."
           }
         },
         "da-instk12" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vedhæft billeder og videoer til beskeder og diskussionsposter, eller indsend dem som opgaveafleveringer."
           }
         },
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Fügen Sie Fotos und Videos zu Nachrichten und Diskussionsposts hinzu oder geben Sie sie als Aufgaben ab."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Attach photos and videos to messages and discussion posts or turn them in as assignment submissions."
+            "value" : "Camera is required if you wish to scan a QR code to login or post an avatar to your profile."
           }
         },
         "en-AU" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Attach photos and videos to messages and discussion posts or turn them in as assignment submissions."
           }
         },
         "en-AU-unimelb" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Attach photos and videos to messages and discussion posts or turn them in as assignment submissions."
           }
         },
         "en-CA" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Attach photos and videos to messages and discussion posts or turn them in as assignment submissions."
           }
         },
         "en-CY" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Attach photos and videos to messages and discussion posts, or turn them in as assignment submissions."
           }
         },
         "en-GB" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Attach photos and videos to messages and discussion posts, or turn them in as assignment submissions."
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Attach photos and videos to messages and discussion posts, or turn them in as assignment submissions."
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Adjunte fotografías y videos a los mensajes y publicaciones de los foros de discusión o entréguelos como entregas de tareas."
           }
         },
         "es-ES" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Adjunta fotografías y vídeos a los mensajes y publicaciones de los foros de discusión o entrégalos como entregas de actividades."
           }
         },
         "fi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Liitä valokuvia ja videoita viesteihin ja keskustelua koskeviin lähetyksiin tai luovuta ne tehtävän lähetyksissä."
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Joignez des photos et des vidéos aux messages et aux discussions ou envoyez-les comme soumission de travaux."
           }
         },
         "fr-CA" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Joindre des photos et des vidéos aux messages et aux publications de discussion ou les joindre dans les envois de tâche."
           }
         },
         "ht" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Mete foto ak videyo nan piblikasyon mesaj ak diskisyon yo oswa aktive yo kòm soumisyon sesyon."
           }
         },
         "id" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Lampirkan foto dan video ke pesan dan posting diskusi atau serahkan sebagai penyerahan tugas."
           }
         },
         "is" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Hengja við myndir og myndbönd við skilaboð og umræðufærslur og skila þeim sem verkefnaskilum."
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Allega le foto e i video ai messaggi e ai post di discussione o inseriscili come consegne del compito."
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "写真やビデオをメッセージやディスカッションの投稿に添付するか、課題の提出に入れます。"
           }
         },
         "mi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Tāpiritia ngā whakāhua me ngā ataata ki ngā karere me ngā kōrerorero tuhinga, ki te huri rānei ia rātou hei tukunga whakataunga."
           }
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Kepilkan foto dan video pada mesej dan siaran perbincangan atau hantar sebagai serahan tugasan."
           }
         },
         "nb" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Legg ved bilder og film til meldinger og diskusjonsinnlegg eller lever dem inn som oppgaveinnleveringer."
           }
         },
         "nb-instk12" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Legg ved bilder og film til meldinger og diskusjonsinnlegg eller lever dem inn som oppgaveinnleveringer"
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Koppel foto's en video's aan berichten en gespreksposts of lever ze in als onderdeel van de opdracht."
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Załącz zdjęcia i filmy do wiadomości oraz postów do dyskusji lub przekaż je jako materiały do zadania."
           }
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Anexe fotos e vídeos a mensagens e postagens de discussão ou apresente-as como envio de tarefas."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Anexe fotos e vídeos a mensagens e posts de discussões ou entregue-as como envios de tarefa."
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Прикреплять фотографии и видеоматериалы к сообщениям и постам в дискуссии или преобразовывать как отправки заданий."
           }
         },
         "sl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Fotografije in videoposnetke dodajte sporočilom in objavam v razpravi ali pa jih oddajte v obliki oddaj nalog."
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Bifoga foton och videor till meddelanden och diskussionsinlägg, eller skicka in dem som inlämningsuppgifter."
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Bifoga foton och videoklipp till meddelanden och diskussionsinlägg, eller skicka in dem som inlämningsuppgifter."
           }
         },
         "th" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "แนบภาพและวิดีโอเข้ากับข้อความและโพสต์การพูดคุยหรือเปลี่ยนเป็นผลงานจัดส่งสำหรับภารกิจ"
           }
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Đính kèm ảnh và video vào tin nhắn và bài đăng thảo luận để biến các nội dung này thành mục nộp bài tập."
           }
         },
         "zh" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "把照片和视频附加至消息和讨论贴，或作为作业提交项提交。"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "把照片和视频附加至消息和讨论贴，或作为作业提交项提交。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "將照片和視訊附加到訊息和討論帖子中，或將它們變成作業提交項目。"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "將照片和視訊附加到訊息和討論帖子中，或將它們變成作業提交項目。"
           }
         }
