@@ -196,7 +196,9 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         fileSubmissionButton?.makeUnavailableInOfflineMode()
         submissionButton?.makeUnavailableInOfflineMode()
 
-        embedReminderSection()
+        if ExperimentalFeature.assignment_reminders.isEnabled {
+            embedReminderSection()
+        }
 
         let border = CAShapeLayer()
         border.strokeColor = UIColor.borderDark.cgColor
@@ -405,7 +407,10 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         centerLockedIconContainerView()
 
         updateQuizSettings(quiz)
-        remindersInteractor.assignmentDidUpdate.send(assignment)
+
+        if ExperimentalFeature.assignment_reminders.isEnabled {
+            remindersInteractor.assignmentDidUpdate.send(assignment)
+        }
 
         scrollView?.isHidden = false
         loadingView.stopAnimating()
