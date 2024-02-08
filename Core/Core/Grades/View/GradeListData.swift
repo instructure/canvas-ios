@@ -23,7 +23,6 @@ public struct GradeListData: Identifiable, Equatable {
     let userID: String
     let courseName: String?
     let assignmentSections: [AssignmentSections]
-    let colors: [ContextColor]
     let isGradingPeriodHidden: Bool
     let gradingPeriods: [GradingPeriod]
     let currentGradingPeriod: GradingPeriod?

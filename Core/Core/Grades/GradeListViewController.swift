@@ -22,16 +22,6 @@ public protocol ColorDelegate: AnyObject {
     var iconColor: UIColor? { get }
 }
 
-extension Course {
-
-    func enrollmentForGrades(userId: String?) -> Enrollment? {
-        enrollments?.first {
-            $0.state == .active &&
-            $0.userID == userId &&
-            $0.type.lowercased().contains("student")
-        }
-    }
-}
 
 public class GradeListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
     @IBOutlet weak var emptyMessageLabel: UILabel!
@@ -99,17 +89,13 @@ public class GradeListViewController: ScreenViewTrackableViewController, Colored
                               userID: String? = nil,
                               colorDelegate: ColorDelegate? = nil,
                               offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make())
-    -> CoreHostingController<GradeListView> {
+    -> GradeListViewController {
         let controller = loadFromStoryboard()
         controller.colorDelegate = colorDelegate
         controller.courseID = courseID
         controller.userID = userID ?? controller.env.currentSession?.userID
         controller.offlineModeInteractor = offlineModeInteractor
-
-        let interactor = GradeListInteractorLive(courseID: courseID, gradingPeriodID: nil, userID: controller.userID)
-        let viewModel = GradeListViewModel(interactor: interactor)
-        let hosting = CoreHostingController(GradeListView(viewModel: viewModel))
-        return hosting
+        return controller
     }
 
     override public func viewDidLoad() {

@@ -46,7 +46,6 @@ final class GradeListInteractorPreview: GradeListInteractor {
                         assignments: [.save(.make(), in: context, updateSubmission: false, updateScoreStatistics: false)]
                     ),
                 ],
-                colors: [],
                 isGradingPeriodHidden: false,
                 gradingPeriods: [
                 ],

@@ -50,7 +50,6 @@ class GradesTests: E2ETestCase {
         // MARK: Navigate to Grades Page and check there too
         GradesHelper.TabBar.dashboardTab.hit()
         GradesHelper.navigateToGrades(course: course)
-        let totalGradeLabel = app.find(label: "Total").waitUntil(.visible)
         let gradeCell1 = GradesHelper.cell(assignment: assignments[0]).waitUntil(.visible, timeout: 5)
         let gradeCell2 = GradesHelper.cell(assignment: assignments[1]).waitUntil(.visible, timeout: 5)
         let gradeOutOfLabel1 = GradesHelper.gradeOutOf(assignment: assignments[0], actualPoints: "5", maxPoints: "10")
@@ -58,7 +57,6 @@ class GradesTests: E2ETestCase {
         let gradeOutOfLabel2 = GradesHelper.gradeOutOf(assignment: assignments[1], actualPoints: "100", maxPoints: "100")
             .waitUntil(.visible, timeout: 5)
         let totalGrade = GradesHelper.totalGrade.waitUntil(.label(expected: "95.45%"), timeout: 5)
-        XCTAssertTrue(totalGradeLabel.isVisible)
         XCTAssertTrue(gradeCell1.isVisible)
         XCTAssertTrue(gradeCell2.isVisible)
         XCTAssertTrue(gradeOutOfLabel1.isVisible)

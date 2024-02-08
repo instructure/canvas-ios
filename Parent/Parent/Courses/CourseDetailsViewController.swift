@@ -20,7 +20,7 @@ import UIKit
 import Core
 
 class CourseDetailsViewController: HorizontalMenuViewController {
-    private var gradesViewController: GradeListViewController!
+    private var gradesViewController: UIViewController!
     private var syllabusViewController: Core.SyllabusViewController!
     private var summaryViewController: Core.SyllabusSummaryViewController!
     var courseID: String = ""
@@ -98,12 +98,13 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     }
 
     func configureGrades() {
-        let interactor = GradeListInteractorLive(courseID: courseID, gradingPeriodID: nil, userID: studentID)
-        let viewModel = GradeListViewModel(interactor: interactor)
-        let hosting = CoreHostingController(GradeListView(viewModel: viewModel))
-//        gradesViewController = GradeListViewController.create(courseID: courseID, userID: studentID, colorDelegate: self)
-//        gradesViewController.gradeListCellIconDelegate = self
-        viewControllers.append(hosting)
+        gradesViewController = GradListAssembly.makeGradeListViewController(
+            env: AppEnvironment.shared,
+            courseID: courseID,
+            gradingPeriodID: nil,
+            userID: studentID
+        )
+        viewControllers.append(gradesViewController)
     }
 
     func configureSyllabus() {

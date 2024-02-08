@@ -32,8 +32,8 @@ public struct GradeRowView: View {
             }
             .padding(.vertical, 12)
         }
-        .accessibilityIdentifier("GradeListCell.\(assignment.id)")
         .accessibilityElement(children: .combine)
+        .accessibilityIdentifier("GradeListCell.\(assignment.id)")
     }
 
     private var assignmentIcon: some View {
@@ -72,14 +72,6 @@ public struct GradeRowView: View {
             .font(.regular16)
             .foregroundStyle(Color.textDarkest)
             .padding(.horizontal, 16)
-            .accessibilityIdentifier(
-                GradeFormatter.a11yString(
-                    from: assignment,
-                    userID: userID,
-                    style: .medium
-                )
-                .flatMap { NSLocalizedString("Grade", comment: "") + ", " + $0 } ?? ""
-            )
             .accessibilityLabel(Text(
                 GradeFormatter.a11yString(
                     from: assignment,

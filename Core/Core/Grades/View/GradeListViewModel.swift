@@ -58,7 +58,7 @@ public final class GradeListViewModel: ObservableObject {
 
     public init(
         interactor: GradeListInteractor,
-        router: Router = AppEnvironment.shared.router
+        router: Router
     ) {
         self.interactor = interactor
 

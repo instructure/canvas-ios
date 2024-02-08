@@ -111,7 +111,6 @@ public final class GradeListInteractorLive: GradeListInteractor {
             )
         )
         .flatMap { [unowned self] in
-            let colors = $0.0.0
             let course = $0.0.1
             let gradingPeriods = $0.0.2
             let enrollments = $0.2
@@ -147,7 +146,6 @@ public final class GradeListInteractorLive: GradeListInteractor {
                     userID: userID ?? "",
                     courseName: course.name,
                     assignmentSections: assignmentSections,
-                    colors: colors,
                     isGradingPeriodHidden: isGradingPeriodHidden,
                     gradingPeriods: gradingPeriods,
                     currentGradingPeriod: getGradingPeriod(id: gradingPeriodID, gradingPeriods: gradingPeriods),
