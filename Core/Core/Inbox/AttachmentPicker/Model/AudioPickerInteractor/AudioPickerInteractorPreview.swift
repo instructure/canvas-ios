@@ -24,15 +24,10 @@ import Combine
 public class AudioPickerInteractorPreview: AudioPickerInteractor {
 
     public var audioRecorder: CoreAVAudioRecorder? = CoreAVAudioRecorderPreview()
-
     public var audioPlayer: CoreAVAudioPlayer? = CoreAVAudioPlayerPreview()
-
     public var url: URL? = URL.Directories.temporary
-
     public var recorderTimer = PassthroughSubject<AudioPlotData, Error>()
-
     public var playerTimer = PassthroughSubject<TimeInterval, Error>()
-
     public var seekInAudioCalled: Bool = false
 
     public func seekInAudio(newValue: CGFloat) {

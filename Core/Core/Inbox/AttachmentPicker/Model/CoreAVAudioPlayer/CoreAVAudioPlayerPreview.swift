@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+#if DEBUG
+
 import Foundation
 import AVFAudio
 
@@ -58,3 +60,5 @@ public class CoreAVAudioPlayerPreview: CoreAVAudioPlayer {
         isStopCalled = true
     }
 }
+
+#endif

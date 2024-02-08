@@ -25,11 +25,12 @@ class AudioPickerInteractorLive: AudioPickerInteractor {
     public private(set) var url: URL?
     public private(set) var audioRecorder: CoreAVAudioRecorder?
     public private(set) var audioPlayer: CoreAVAudioPlayer?
-    public private(set) var recorderCancellable: Cancellable?
-    public private(set) var playerCancellable: Cancellable?
 
     let recorderTimer = PassthroughSubject<AudioPlotData, Error>()
     let playerTimer = PassthroughSubject<TimeInterval, Error>()
+
+    private var recorderCancellable: Cancellable?
+    private var playerCancellable: Cancellable?
 
     func seekInAudio(newValue: CGFloat) {
         audioPlayer?.currentTime = newValue

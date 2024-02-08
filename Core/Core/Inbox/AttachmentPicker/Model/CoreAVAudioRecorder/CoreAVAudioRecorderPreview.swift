@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+#if DEBUG
+
 import Foundation
 
 public class CoreAVAudioRecorderPreview: CoreAVAudioRecorder {
@@ -56,3 +58,5 @@ public class CoreAVAudioRecorderPreview: CoreAVAudioRecorder {
         isStopCalled = true
     }
 }
+
+#endif

@@ -24,20 +24,20 @@ class AttachmentPickerInteractorLive: AttachmentPickerInteractor {
     private var uploadManager: UploadManager
     private let batchId: String
 
-    let files = PassthroughSubject<[File], Error>()
-
     private lazy var fileStore = uploadManager.subscribe(batchID: batchId) { [weak self] in
         self?.update()
     }
 
-    private func update() {
-        files.send(fileStore.all)
-    }
+    let files = PassthroughSubject<[File], Error>()
 
     init(batchId: String, uploadManager: UploadManager) {
         self.uploadManager = uploadManager
         self.batchId = batchId
         fileStore.refresh()
+    }
+
+    private func update() {
+        files.send(fileStore.all)
     }
 
     func uploadFiles() {
@@ -68,7 +68,6 @@ class AttachmentPickerInteractorLive: AttachmentPickerInteractor {
                 uploadManager.cancel(file: file)
             }
         }
-        uploadManager.cancel(batchID: batchId)
     }
 
     func removeFile(file: File) {

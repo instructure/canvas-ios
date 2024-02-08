@@ -23,6 +23,8 @@ import Charts
 public struct AudioPickerView: View {
     @ObservedObject private var viewModel: AudioPickerViewModel
     @Environment(\.viewController) private var controller
+    let backgroundColor: Color = .init(hexString: "#111213") ?? Color.black
+    let textColor: Color = .init(hexString: "#F5F5F5") ?? Color.white
 
     init(viewModel: AudioPickerViewModel) {
         self.viewModel = viewModel
@@ -35,7 +37,7 @@ public struct AudioPickerView: View {
             controlView
         }
         .background {
-            Color.black
+            backgroundColor
                 .ignoresSafeArea(.all)
         }
     }
@@ -44,25 +46,25 @@ public struct AudioPickerView: View {
         HStack(alignment: .center) {
             if viewModel.isRecording {
                 Text(viewModel.recordingLengthString)
-                    .foregroundStyle(Color.white)
+                    .foregroundStyle(textColor)
                     .padding(6)
                     .background {
                         RoundedRectangle(cornerSize: .init(width: 12, height: 12))
-                            .foregroundStyle(Color.red)
+                            .foregroundStyle(Color.textWarning)
                     }
             } else if viewModel.isReplay {
-                Text("\(viewModel.audioPlayerPositionString) / \(viewModel.audioPlayerDurationString)")
-                    .foregroundStyle(Color.white)
+                Text(verbatim: "\(viewModel.audioPlayerPositionString) / \(viewModel.audioPlayerDurationString)")
+                    .foregroundStyle(textColor)
                     .padding(12)
             } else {
                 Text(viewModel.defaultDurationString)
-                    .foregroundStyle(Color.white)
+                    .foregroundStyle(textColor)
                     .padding(12)
             }
         }
         .padding(.vertical, 12)
         .background {
-            Color.black
+            backgroundColor
         }
     }
 
@@ -76,27 +78,22 @@ public struct AudioPickerView: View {
                 }
             }
         }
-        .background { Color.red }
+        .background { Color.textWarning }
     }
 
     private func recordingPlotView(maxSize: CGSize) -> some View {
         let barWidth: CGFloat = 2
         let spaceWidth: CGFloat = 5
-        return VStack(alignment: .trailing) {
-            HStack(alignment: .center, spacing: spaceWidth) {
-                ForEach(viewModel.audioChartDataSet.suffix(Int(floor(maxSize.width / (barWidth + spaceWidth)))), id: \.timestamp) { plotData in
-                    Rectangle()
-                        .frame(width: barWidth, height: viewModel.normalizeMeteringValue(rawValue: CGFloat(plotData.value), maxHeight: maxSize.height))
-                        .foregroundStyle(Color.red)
-                }
-            }
-            HStack {
-                Spacer()
+        return HStack(alignment: .center, spacing: spaceWidth) {
+            ForEach(viewModel.audioChartDataSet.suffix(Int(floor(maxSize.width / (barWidth + spaceWidth)))), id: \.timestamp) { plotData in
+                Rectangle()
+                    .frame(width: barWidth, height: viewModel.normalizeMeteringValue(rawValue: CGFloat(plotData.value), maxHeight: maxSize.height))
+                    .foregroundStyle(Color.textWarning)
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
         .background {
-            Color.black
+            backgroundColor
         }
     }
 
@@ -106,72 +103,61 @@ public struct AudioPickerView: View {
         let barCount = Int(floor(maxSize.width / (barWidth + spaceWidth)))
         return VStack {
             HStack {
-                VStack(alignment: .trailing) {
-                    HStack(alignment: .center, spacing: spaceWidth) {
-                        ForEach(
-                            viewModel.audioChartDataSet
-                                .filter { element in element.timestamp <= viewModel.audioPlayerPosition }
-                                .suffix(barCount / 2),
-                            id: \.timestamp
-                        ) { plotData in
-                            Rectangle()
-                                .frame(width: barWidth, height: viewModel.normalizeMeteringValue(rawValue: CGFloat(plotData.value), maxHeight: maxSize.height))
-                                .foregroundStyle(Color.red)
-                        }
-                    }
-                    HStack {
-                        Spacer()
+                HStack(alignment: .center, spacing: spaceWidth) {
+                    ForEach(
+                        viewModel.audioChartDataSet
+                            .filter { element in element.timestamp <= viewModel.audioPlayerPosition }
+                            .suffix(barCount / 2),
+                        id: \.timestamp
+                    ) { plotData in
+                        Rectangle()
+                            .frame(width: barWidth, height: viewModel.normalizeMeteringValue(rawValue: CGFloat(plotData.value), maxHeight: maxSize.height))
+                            .foregroundStyle(Color.textWarning)
                     }
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
 
-                VStack(alignment: .leading) {
-                    HStack(alignment: .center, spacing: spaceWidth) {
-                        ForEach(
-                            viewModel.audioChartDataSet
-                                .filter { element in element.timestamp >= viewModel.audioPlayerPosition }
-                                .prefix(barCount / 2),
-                            id: \.timestamp
-                        ) { plotData in
-                            Rectangle()
-                                .frame(width: barWidth, height: viewModel.normalizeMeteringValue(rawValue: CGFloat(plotData.value), maxHeight: maxSize.height))
-                                .foregroundStyle(Color.red)
-                        }
-                    }
-                    HStack {
-                        Spacer()
+                HStack(alignment: .center, spacing: spaceWidth) {
+                    ForEach(
+                        viewModel.audioChartDataSet
+                            .filter { element in element.timestamp >= viewModel.audioPlayerPosition }
+                            .prefix(barCount / 2),
+                        id: \.timestamp
+                    ) { plotData in
+                        Rectangle()
+                            .frame(width: barWidth, height: viewModel.normalizeMeteringValue(rawValue: CGFloat(plotData.value), maxHeight: maxSize.height))
+                            .foregroundStyle(Color.textWarning)
                     }
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .contentShape(Rectangle())
         .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
-            .onChanged({ gesture in
+            .onChanged { gesture in
                 viewModel.seekInAudio(gesture.translation.width)
-            })
+            }
         )
         .background {
-            Color.black
+            backgroundColor
         }
         .overlay(
             VStack(alignment: .center) {
                 HStack {
                     Divider()
-                        .overlay(Color.white)
+                        .overlay(textColor)
                 }
             }
         )
     }
 
+    @ViewBuilder
     private var controlView: some View {
-        HStack {
-            if (viewModel.isReplay) {
-                playBackControlView
-            } else {
-                recordControlView
-            }
+        if viewModel.isReplay {
+            playBackControlView
+        } else {
+            recordControlView
         }
     }
 
@@ -182,7 +168,7 @@ public struct AudioPickerView: View {
                     viewModel.retakeButtonDidTap.accept(controller)
                 } label: {
                     Text("Retake", bundle: .core)
-                        .foregroundStyle(Color.white)
+                        .foregroundStyle(textColor)
                 }
             }
             .frame(maxWidth: .infinity)
@@ -193,7 +179,7 @@ public struct AudioPickerView: View {
                         viewModel.playAudioButtonDidTap.accept(controller)
                     } label: {
                         Image.playSolid
-                            .foregroundStyle(Color.white)
+                            .foregroundStyle(textColor)
                     }
                     .frame(width: 50, height: 50, alignment: .center)
                     .accessibilityLabel(Text("Play audio recording", bundle: .core))
@@ -202,7 +188,7 @@ public struct AudioPickerView: View {
                         viewModel.pauseAudioButtonDidTap.accept(controller)
                     } label: {
                         Image.pauseSolid
-                            .foregroundStyle(Color.white)
+                            .foregroundStyle(textColor)
                     }
                     .frame(width: 50, height: 50, alignment: .center)
                     .accessibilityLabel(Text("Pause audio recording", bundle: .core))
@@ -215,7 +201,7 @@ public struct AudioPickerView: View {
                     viewModel.useAudioButtonDidTap.accept(controller)
                 } label: {
                     Text("Use Audio", bundle: .core)
-                        .foregroundStyle(Color.white)
+                        .foregroundStyle(textColor)
                 }
             }
             .frame(maxWidth: .infinity)
@@ -224,7 +210,7 @@ public struct AudioPickerView: View {
         .padding(.vertical, 12)
         .padding(.horizontal, 12)
         .background {
-            Color.black
+            backgroundColor
         }
     }
 
@@ -235,7 +221,7 @@ public struct AudioPickerView: View {
                     viewModel.cancelButtonDidTap.accept(controller)
                 } label: {
                     Text("Cancel", bundle: .core)
-                        .foregroundStyle(Color.white)
+                        .foregroundStyle(textColor)
                 }
             }
             .frame(maxWidth: .infinity)
@@ -257,7 +243,7 @@ public struct AudioPickerView: View {
         .padding(.vertical, 12)
         .padding(.horizontal, 12)
         .background {
-            Color.black
+            backgroundColor
         }
     }
 
@@ -268,13 +254,13 @@ public struct AudioPickerView: View {
             ZStack {
                 Circle()
                     .padding(0)
-                    .foregroundStyle(Color.white)
+                    .foregroundStyle(textColor)
                 Circle()
                     .padding(2)
-                    .foregroundStyle(Color.black)
+                    .foregroundStyle(backgroundColor)
                 Circle()
                     .padding(5)
-                    .foregroundStyle(Color.red)
+                    .foregroundStyle(Color.textWarning)
             }
         }
         .frame(width: 50, height: 50, alignment: .center)
@@ -289,13 +275,13 @@ public struct AudioPickerView: View {
                 ZStack {
                     Circle()
                         .padding(0)
-                        .foregroundStyle(Color.white)
+                        .foregroundStyle(textColor)
                     Circle()
                         .padding(2)
-                        .foregroundStyle(Color.black)
+                        .foregroundStyle(backgroundColor)
                     Rectangle()
-                        .padding(10)
-                        .foregroundStyle(Color.red)
+                        .padding(13)
+                        .foregroundStyle(Color.textWarning)
                 }
             }
         }
@@ -307,14 +293,14 @@ public struct AudioPickerView: View {
         ZStack {
             Circle()
                 .padding(0)
-                .foregroundStyle(Color.white)
+                .foregroundStyle(textColor)
             Circle()
                 .padding(2)
-                .foregroundStyle(Color.black)
+                .foregroundStyle(backgroundColor)
             Circle()
                 .fill(
                     AngularGradient(
-                        colors: [.white, .red],
+                        colors: [textColor, .textWarning],
                         center: .center,
                         startAngle: .degrees(0),
                         endAngle: .degrees(270)
@@ -323,7 +309,7 @@ public struct AudioPickerView: View {
                 .padding(5)
             Circle()
                 .padding(10)
-                .foregroundStyle(Color.red)
+                .foregroundStyle(Color.textWarning)
         }
         .frame(width: 50, height: 50, alignment: .center)
         .rotationEffect(.degrees(viewModel.loadingAnimationRotation))

@@ -91,7 +91,7 @@ class AttachmentPickerViewModel: ObservableObject {
     }
 
     func showFileErrorDialog() {
-        let actionTitle = NSLocalizedString("OK", comment: "")
+        let actionTitle = NSLocalizedString("OK", bundle: .core, comment: "")
         let alert = UIAlertController(title: fileErrorTitle, message: fileErrorMessage, preferredStyle: .alert)
         let action = UIAlertAction(title: actionTitle, style: .default) { [weak self] _ in
             self?.isImagePickerVisible = false

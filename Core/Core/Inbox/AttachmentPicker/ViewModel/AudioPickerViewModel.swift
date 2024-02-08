@@ -23,12 +23,6 @@ import CombineExt
 
 class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
 
-    // MARK: Private
-    private let formatter: DateComponentsFormatter
-    private let router: Router
-    private var subscriptions = Set<AnyCancellable>()
-    private var onSelect: (URL) -> Void
-
     // MARK: Outputs
 
     @Published public private(set) var isRecording: Bool = false
@@ -42,8 +36,8 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     @Published public private(set) var audioPlayerDurationString: String = ""
     var audioChartDataSet: [AudioPlotData] = []
     public let defaultDurationString: String
-    public let audioRecorderErrorTitle = NSLocalizedString("Error", comment: "")
-    public let audioRecorderErrorMessage = NSLocalizedString("Some error occured with audio recorder. Please try again!", comment: "")
+    public let audioRecorderErrorTitle = NSLocalizedString("Error", bundle: .core, comment: "")
+    public let audioRecorderErrorMessage = NSLocalizedString("Some error occured with audio recorder. Please try again!", bundle: .core, comment: "")
 
     // MARK: Inputs / Outputs
 
@@ -55,6 +49,13 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     public let playAudioButtonDidTap = PassthroughRelay<WeakViewController>()
     public let pauseAudioButtonDidTap = PassthroughRelay<WeakViewController>()
     public let interactor: AudioPickerInteractor
+
+    // MARK: Private
+
+    private let formatter: DateComponentsFormatter
+    private let router: Router
+    private var subscriptions = Set<AnyCancellable>()
+    private var onSelect: (URL) -> Void
 
     public init(router: Router, interactor: AudioPickerInteractor, onSelect: @escaping (URL) -> Void = { _ in }) {
         self.router = router
@@ -76,7 +77,7 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     }
 
     private func showAudioErrorDialog() {
-        let actionTitle = NSLocalizedString("OK", comment: "")
+        let actionTitle = NSLocalizedString("OK", bundle: .core, comment: "")
         let alert = UIAlertController(title: audioRecorderErrorTitle, message: audioRecorderErrorMessage, preferredStyle: .alert)
 
         if let top = AppEnvironment.shared.window?.rootViewController?.topMostViewController() {
@@ -105,7 +106,10 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     }
 
     func normalizeMeteringValue(rawValue: CGFloat, maxHeight: CGFloat) -> CGFloat {
-        let minValue: CGFloat = -50 // -160
+        // AudioRecorder's peak power can return a value in range [-160, 0].
+        // MinValue is set to -50 to map the values to range [-50, 0]
+        // With that low peak powers won't affect the height of the diagram bars
+        let minValue: CGFloat = -50
         let maxValue: CGFloat = 0
 
         var shiftedRawValue = rawValue

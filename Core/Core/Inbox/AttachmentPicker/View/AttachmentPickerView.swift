@@ -22,6 +22,7 @@ import PhotosUI
 public struct AttachmentPickerView: View {
     @ObservedObject private var viewModel: AttachmentPickerViewModel
     @Environment(\.viewController) private var controller
+    @ScaledMetric private var uiScale: CGFloat = 1
 
     init(model: AttachmentPickerViewModel) {
         self.viewModel = model
@@ -56,9 +57,11 @@ public struct AttachmentPickerView: View {
         })
         .sheet(isPresented: $viewModel.isTakePhotoVisible, content: {
             ImagePickerViewController(sourceType: .camera, imageHandler: viewModel.fileSelected)
+                .interactiveDismissDisabled()
         })
         .sheet(isPresented: $viewModel.isAudioRecordVisible, content: {
             AttachmentPickerAssembly.makeAudioPickerViewcontroller(router: viewModel.router, onSelect: viewModel.fileSelected)
+                .interactiveDismissDisabled()
         })
     }
 
@@ -74,12 +77,13 @@ public struct AttachmentPickerView: View {
     @ViewBuilder
     private func rowView(for file: File) -> some View {
         let fileSizeWithUnit = ByteCountFormatter.string(fromByteCount: Int64(file.size), countStyle: .file)
-        VStack {
-            HStack {
+        VStack(spacing: 0) {
+            HStack(spacing: 0) {
                 VStack(alignment: .leading) {
                     Text(file.displayName ?? file.localFileURL?.lastPathComponent ?? "").font(.headline)
                     Text(fileSizeWithUnit).foregroundStyle(Color.textDark)
                 }
+
                 Spacer()
                 if (file.isUploading) {
                     ProgressView()
@@ -97,14 +101,21 @@ public struct AttachmentPickerView: View {
                         Image.xLine
                     }
                 }
-            }.padding(.horizontal, 12)
+            }
+            .padding(.horizontal, 12)
+
             separator
         }
         .foregroundStyle(Color.textDarkest)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text(verbatim: "\(file.displayName ?? file.localFileURL?.lastPathComponent ?? "") (\(fileSizeWithUnit)"))
+        .accessibilityAction(named: Text("Remove attachment", bundle: .core)) {
+            viewModel.removeButtonDidTap.accept(file)
+        }
     }
 
     private var headerView: some View {
-        VStack {
+        VStack(spacing: 0) {
             if viewModel.fileList.containsUploading {
                 progressHeader
             } else if viewModel.fileList.containsError {
@@ -116,19 +127,25 @@ public struct AttachmentPickerView: View {
     }
 
     private var selectionHeader: some View {
-        VStack {
-            HStack {
+        VStack(spacing: 0) {
+            HStack(spacing: 0) {
                 Text("\(viewModel.fileList.count) Items", bundle: .core)
                 Spacer()
                 Button {
                     viewModel.addAttachmentButtonDidTap.accept(controller)
                 } label: {
                     Image.addLine
+                        .resizable()
+                        .frame(
+                            width: 20 * uiScale.iconScale,
+                            height: 20 * uiScale.iconScale
+                        )
                 }
                 .foregroundStyle(Color.textDarkest)
                 .accessibilityLabel(Text("Add new attachment", bundle: .core))
             }
-            .padding(12)
+            .padding(.vertical, 12)
+            .padding(.horizontal, 12)
             separator
         }
     }
@@ -164,14 +181,29 @@ public struct AttachmentPickerView: View {
     }
 
     private var emptyView: some View {
-        VStack {
+        VStack(spacing: 0) {
             Spacer()
-            Image.paperclipLine.resizable().frame(width: 100, height: 100)
-            Text("No attachments", bundle: .core).font(.headline)
+
+            Image.paperclipLine
+                .resizable()
+                .frame(width: 100, height: 100)
+                .foregroundStyle(Color.textDarkest)
+                .accessibilityHidden(true)
+
+            Text("No attachments", bundle: .core)
+                .font(.headline)
+                .foregroundStyle(Color.textDarkest)
+                .padding(.bottom, 6)
+                .accessibilityHidden(true)
+
             Text("Add an attachment by tapping the plus at top right.", bundle: .core)
                 .multilineTextAlignment(.center)
+                .foregroundStyle(Color.textDarkest)
+                .accessibilityLabel(Text("No attachments, add an attachment by tapping the plus at top right.", bundle: .core))
+
             Spacer()
         }
+        .padding(.horizontal, 12)
     }
 
     private var separator: some View {

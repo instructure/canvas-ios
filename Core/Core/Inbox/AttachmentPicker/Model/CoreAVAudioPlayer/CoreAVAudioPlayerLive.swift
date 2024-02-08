@@ -20,7 +20,7 @@ import Foundation
 import AVFAudio
 
 class CoreAVAudioPlayerLive: CoreAVAudioPlayer {
-    let audioPlayer: AVAudioPlayer
+    private let audioPlayer: AVAudioPlayer
 
     private(set) var isPrepareToPlayCalled: Bool = false
     private(set) var isPlayCalled: Bool = false
