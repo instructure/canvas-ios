@@ -16,11 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+@testable import Core
+import Combine
 import Student
 import XCTest
 
 class AssignmentRemindersViewModelTests: StudentTestCase {
+    private var subscriptions = Set<AnyCancellable>()
+
+    override func tearDown() {
+        subscriptions.removeAll()
+        super.tearDown()
+    }
 
     func testNewReminderTapOpensTimePicker() {
         let interactor = AssignmentRemindersInteractorLive()
@@ -38,4 +45,33 @@ class AssignmentRemindersViewModelTests: StudentTestCase {
         XCTAssertEqual(lastPresentation.1, hostView)
         XCTAssertEqual(lastPresentation.2, .modal(isDismissable: false, embedInNav: true))
     }
+
+    func testReminderDelete() {
+        let interactorMock = AssignmentRemindersInteractorMock()
+        let itemToDelete = AssignmentReminderItem(title: "test")
+        let testee = AssignmentRemindersViewModel(interactor: interactorMock, router: router)
+        let deleteReceived = expectation(description: "Delete event received")
+        interactorMock
+            .reminderDidDelete
+            .sink {
+                deleteReceived.fulfill()
+                XCTAssertEqual($0, itemToDelete)
+            }
+            .store(in: &subscriptions)
+
+        // WHEN
+        testee.reminderDeleteDidTap(itemToDelete)
+        testee.confirmAlert.notifyCompletion(isConfirmed: true)
+
+        // THEN
+        waitForExpectations(timeout: 1)
+    }
+}
+
+class AssignmentRemindersInteractorMock: AssignmentRemindersInteractor {
+    let isRemindersSectionVisible = CurrentValueSubject<Bool, Never>(true)
+    let reminders = CurrentValueSubject<[AssignmentReminderItem], Never>([])
+    let assignmentDidUpdate = PassthroughSubject<Assignment, Never>()
+    let newReminderDidSelect = PassthroughSubject<DateComponents, Never>()
+    let reminderDidDelete = PassthroughSubject<AssignmentReminderItem, Never>()
 }
