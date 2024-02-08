@@ -36,9 +36,9 @@ extension CreateDSRubricRequest {
     public struct RequestedDSRubric: Encodable {
         let title: String
         let points_possible: Float
-        let criteria: [String:RubricCriteria]
+        let criteria: [String: RubricCriteria]
 
-        public init(title: String = "Rubric Title", pointsPossible: Float = 1, criteria: [String:RubricCriteria]) {
+        public init(title: String = "Rubric Title", pointsPossible: Float = 1, criteria: [String: RubricCriteria]) {
             self.title = title
             self.points_possible = pointsPossible
             self.criteria = criteria
@@ -68,7 +68,7 @@ extension CreateDSRubricRequest {
     public struct RubricCriteria: Encodable {
         let description: String
         let points: Float
-        let ratings: [String:RubricCriteriaRating]
+        let ratings: [String: RubricCriteriaRating]
     }
 
     public struct RubricCriteriaRating: Encodable {
