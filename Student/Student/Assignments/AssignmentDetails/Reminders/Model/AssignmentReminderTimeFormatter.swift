@@ -34,6 +34,6 @@ class AssignmentReminderTimeFormatter: DateComponentsFormatter {
             return nil
         }
 
-        return String(localized: "\(formatted) Before", comment: "Event reminder schedule time: 10 Minutes Before")
+        return String(localized: "\(formatted) Before", comment: "10 Minutes Before")
     }
 }

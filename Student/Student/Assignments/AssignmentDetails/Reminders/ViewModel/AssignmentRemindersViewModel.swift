@@ -58,6 +58,7 @@ public class AssignmentRemindersViewModel: ObservableObject {
             .sink { [weak interactor] in
                 // We can't use subscribe because userConfirmation() finishes and
                 // the stream would finish the publisher in the interactor as well
+                UIAccessibility.announce(String(localized: "Reminder Deleted"))
                 interactor?.reminderDidDelete.send(reminder)
             }
             .store(in: &subscriptions)

@@ -505,6 +505,9 @@
         }
       }
     },
+    "%@ Before" : {
+      "comment" : "10 Minutes Before"
+    },
     "%@ is coming soon!" : {
       "comment" : "Message for unsupported tab coming soon",
       "extractionState" : "manual",
@@ -35121,6 +35124,9 @@
         }
       }
     },
+    "Custom" : {
+
+    },
     "Custom Grade" : {
       "comment" : "A custom grade not specified by the rubric.",
       "localizations" : {
@@ -35862,6 +35868,9 @@
           }
         }
       }
+    },
+    "Days Before" : {
+
     },
     "Delete" : {
       "comment" : "Button to confirm deleting folders\n   Button to delete a discussion entry\n   Confirm deletion of discussion entry",
@@ -56408,6 +56417,9 @@
         }
       }
     },
+    "Hours Before" : {
+
+    },
     "How do you like Canvas?" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -66925,6 +66937,9 @@
           }
         }
       }
+    },
+    "Minutes Before" : {
+
     },
     "Mobile Quiz Warning" : {
       "comment" : "Warnging for taking quizzes on a mobile device",
@@ -91209,6 +91224,9 @@
       }
     },
     "Reminder" : {
+
+    },
+    "Reminder Deleted" : {
 
     },
     "Remove" : {
@@ -129136,6 +129154,9 @@
           }
         }
       }
+    },
+    "Weeks Before" : {
+
     },
     "Whoops!" : {
       "comment" : "Error Title",

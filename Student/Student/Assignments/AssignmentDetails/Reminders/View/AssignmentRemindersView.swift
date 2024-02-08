@@ -61,13 +61,16 @@ public struct AssignmentRemindersView: View {
         }
     }
 
+    @ViewBuilder
     private var header: some View {
+        let title = String(localized: "Reminder")
+        let description = String(localized: "Add due date reminder notifications about this assignment on this device.")
         HStack(spacing: 0) {
             VStack(alignment: .leading, spacing: 0) {
-                Text("Reminder")
+                Text(title)
                     .foregroundStyle(Color.textDark)
                     .font(.regular14)
-                Text("Add due date reminder notifications about this assignment on this device.")
+                Text(description)
                     .padding(.top, 4)
                     .foregroundStyle(Color.textDarkest)
                     .font(.regular16)
@@ -88,6 +91,13 @@ public struct AssignmentRemindersView: View {
         }
         .padding(.bottom, 28)
         .padding(.top, 24)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(title)
+        .accessibilityHint(description)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityAction {
+            viewModel.newReminderDidTap(view: viewController.value)
+        }
     }
 
     private var divider: some View {
