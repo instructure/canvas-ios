@@ -47,7 +47,9 @@ public struct AssignmentReminderDatePickerView: View {
         .navBarItems(leading: cancelButton, trailing: doneButton)
     }
 
+    @ViewBuilder
     private func button(title: String) -> some View {
+        let selected = viewModel.selectedButton == title
         Button {
             viewModel.buttonDidTap(title: title)
         } label: {
@@ -55,7 +57,7 @@ public struct AssignmentReminderDatePickerView: View {
                 Text(title)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .font(.regular14)
-                if viewModel.selectedButton == title {
+                if selected {
                     Image.checkLine
                         .resizable()
                         .frame(width: 24, height: 24)
@@ -66,6 +68,7 @@ public struct AssignmentReminderDatePickerView: View {
             .padding(.vertical, 14)
             .frame(minHeight: 52)
             .background(Color.backgroundLightest)
+            .accessibilityAddTraits(selected ? .isSelected : [])
         }
         .animation(.none, value: viewModel.customPickerVisible)
     }
