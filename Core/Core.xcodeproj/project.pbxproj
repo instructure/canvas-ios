@@ -1163,6 +1163,7 @@
 		B3FF7D03970647DC1F58F01D /* DocViewerCommentReplyAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24584786ED27B4BE4081312F /* DocViewerCommentReplyAnnotation.swift */; };
 		B4195EC52B5E7BA5004C7347 /* GradeRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4195EC42B5E7BA5004C7347 /* GradeRowView.swift */; };
 		B4195EC72B5ECD1C004C7347 /* GradeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4195EC62B5ECD1C004C7347 /* GradeListView.swift */; };
+		B44275B42B74E8580048B820 /* GradeListInteractorPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44275B32B74E8580048B820 /* GradeListInteractorPreview.swift */; };
 		B4492D7C2C49652AE55BACBF /* TabViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0605D77DA10FD00F9F9FA5 /* TabViewable.swift */; };
 		B44AFAA0F085185B286E6687 /* AddressbookRoleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E6A294C7F270215403FD83 /* AddressbookRoleViewModel.swift */; };
 		B44BA5BF4459811FC52D1E04 /* FileSubmissionSubmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591C92D040AC7D41D9A0C8D8 /* FileSubmissionSubmitter.swift */; };
@@ -2944,6 +2945,7 @@
 		B408E358BA052F9B08697E7E /* Hidden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hidden.swift; sourceTree = "<group>"; };
 		B4195EC42B5E7BA5004C7347 /* GradeRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeRowView.swift; sourceTree = "<group>"; };
 		B4195EC62B5ECD1C004C7347 /* GradeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeListView.swift; sourceTree = "<group>"; };
+		B44275B32B74E8580048B820 /* GradeListInteractorPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeListInteractorPreview.swift; sourceTree = "<group>"; };
 		B455F8753438D40CC45D5A87 /* QuizDetailsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDetailsViewModelTests.swift; sourceTree = "<group>"; };
 		B462C0102B6BE3C2006F6AA0 /* GradeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeListViewModel.swift; sourceTree = "<group>"; };
 		B462C01D2B6D4AE2006F6AA0 /* GradeListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradeListData.swift; sourceTree = "<group>"; };
@@ -7590,6 +7592,7 @@
 				B4195EC42B5E7BA5004C7347 /* GradeRowView.swift */,
 				B4195EC62B5ECD1C004C7347 /* GradeListView.swift */,
 				B48B59332B5FFDD700055E1E /* GradeListInteractor.swift */,
+				B44275B32B74E8580048B820 /* GradeListInteractorPreview.swift */,
 				B462C0102B6BE3C2006F6AA0 /* GradeListViewModel.swift */,
 				B462C01D2B6D4AE2006F6AA0 /* GradeListData.swift */,
 			);
@@ -10489,6 +10492,7 @@
 				246B4B0D8AE27AA8BA4EFC0A /* FileProgressItemView.swift in Sources */,
 				FF016730D5E543147879FD80 /* FileProgressItemViewModel.swift in Sources */,
 				0A45603F6F2CEBD69714CCFF /* FileProgressListView.swift in Sources */,
+				B44275B42B74E8580048B820 /* GradeListInteractorPreview.swift in Sources */,
 				CFDED43EFD2EFE248E2C0AD3 /* FileProgressListViewModel.swift in Sources */,
 				BCA2F805208158E37653218C /* FileProgressListViewModelProtocol.swift in Sources */,
 				13B4C89698A749D0035AB4D8 /* FileProgressListViewPreview.swift in Sources */,

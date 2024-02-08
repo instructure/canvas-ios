@@ -98,9 +98,12 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     }
 
     func configureGrades() {
-        gradesViewController = GradeListViewController.create(courseID: courseID, userID: studentID, colorDelegate: self)
-        gradesViewController.gradeListCellIconDelegate = self
-        viewControllers.append(gradesViewController)
+        let interactor = GradeListInteractorLive(courseID: courseID, gradingPeriodID: nil, userID: studentID)
+        let viewModel = GradeListViewModel(interactor: interactor)
+        let hosting = CoreHostingController(GradeListView(viewModel: viewModel))
+//        gradesViewController = GradeListViewController.create(courseID: courseID, userID: studentID, colorDelegate: self)
+//        gradesViewController.gradeListCellIconDelegate = self
+        viewControllers.append(hosting)
     }
 
     func configureSyllabus() {

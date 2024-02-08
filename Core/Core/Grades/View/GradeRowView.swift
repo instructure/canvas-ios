@@ -33,6 +33,7 @@ public struct GradeRowView: View {
             .padding(.vertical, 12)
         }
         .accessibilityIdentifier("GradeListCell.\(assignment.id)")
+        .accessibilityElement(children: .combine)
     }
 
     private var assignmentIcon: some View {
@@ -54,7 +55,7 @@ public struct GradeRowView: View {
             let submission = assignment.submissions?.first { $0.userID == userID }
             let status = submission?.status ?? .notSubmitted
 
-            if status != .missing, status != .late, assignment.isOnline {
+            if assignment.isOnline {
                 Text(status.text)
                     .foregroundStyle(Color(status.color))
                     .font(.regular14)
@@ -70,7 +71,7 @@ public struct GradeRowView: View {
         ) ?? "")
             .font(.regular16)
             .foregroundStyle(Color.textDarkest)
-            .padding([.leading, .trailing], 16)
+            .padding(.horizontal, 16)
             .accessibilityIdentifier(
                 GradeFormatter.a11yString(
                     from: assignment,
@@ -79,6 +80,14 @@ public struct GradeRowView: View {
                 )
                 .flatMap { NSLocalizedString("Grade", comment: "") + ", " + $0 } ?? ""
             )
+            .accessibilityLabel(Text(
+                GradeFormatter.a11yString(
+                    from: assignment,
+                    userID: userID,
+                    style: .medium
+                )
+                .flatMap { NSLocalizedString("Grade", comment: "") + ", " + $0 } ?? ""
+            ))
     }
 }
 

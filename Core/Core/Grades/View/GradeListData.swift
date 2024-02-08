@@ -18,7 +18,8 @@
 
 import Foundation
 
-struct GradeListData {
+public struct GradeListData: Identifiable, Equatable {
+    public let id: String
     let userID: String
     let courseName: String?
     let assignmentSections: [AssignmentSections]
@@ -28,7 +29,7 @@ struct GradeListData {
     let currentGradingPeriod: GradingPeriod?
     let totalGradeText: String?
 
-    struct AssignmentSections: Identifiable {
+    struct AssignmentSections: Identifiable, Equatable {
         let id: String
         let title: String?
         var assignments: [Assignment]

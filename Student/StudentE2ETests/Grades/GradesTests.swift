@@ -50,7 +50,7 @@ class GradesTests: E2ETestCase {
         // MARK: Navigate to Grades Page and check there too
         GradesHelper.TabBar.dashboardTab.hit()
         GradesHelper.navigateToGrades(course: course)
-        let totalGradeLabel = app.find(label: "Total Grade").waitUntil(.visible)
+        let totalGradeLabel = app.find(label: "Total").waitUntil(.visible)
         let gradeCell1 = GradesHelper.cell(assignment: assignments[0]).waitUntil(.visible, timeout: 5)
         let gradeCell2 = GradesHelper.cell(assignment: assignments[1]).waitUntil(.visible, timeout: 5)
         let gradeOutOfLabel1 = GradesHelper.gradeOutOf(assignment: assignments[0], actualPoints: "5", maxPoints: "10")

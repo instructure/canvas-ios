@@ -23,6 +23,7 @@ public struct GradeListView: View {
     // MARK: - Dependencies
 
     @ObservedObject private var viewModel: GradeListViewModel
+    @Environment(\.viewController) private var viewController
 
     // MARK: - Private properties
 
@@ -31,7 +32,7 @@ public struct GradeListView: View {
 
     // MARK: - Init
 
-    init(viewModel: GradeListViewModel) {
+    public init(viewModel: GradeListViewModel) {
         self.viewModel = viewModel
     }
 
@@ -47,15 +48,21 @@ public struct GradeListView: View {
                     case .loading:
                         loadingView(minWidth: width, minHeight: height)
                     case let .data(data):
-                        dataView(data)
-                    case .empty:
-                        emptyView(width: width, height: height)
+                        dataView(
+                            data,
+                            isEmpty: false
+                        )
+                    case let .empty(data):
+                        dataView(
+                            data,
+                            isEmpty: true
+                        )
                     case .error:
                         errorView(width: width, height: height)
                     }
                 }
             } refreshAction: { endRefreshing in
-                viewModel.refresh(completion: endRefreshing)
+                viewModel.pullToRefreshDidTrigger.accept(endRefreshing)
             }
         }
         .navigationTitle(NSLocalizedString("Grades", comment: ""))
@@ -71,12 +78,16 @@ public struct GradeListView: View {
     }
 
     @ViewBuilder
-    private func dataView(_ gradeListData: GradeListData) -> some View {
+    private func dataView(
+        _ gradeListData: GradeListData,
+        isEmpty: Bool
+    ) -> some View {
+        let verticalPadding: CGFloat = gradeListData.isGradingPeriodHidden && isEmpty ? 0 : 16
         courseSummaryView(
             courseName: gradeListData.courseName ?? "",
             totalGrade: gradeListData.totalGradeText ?? NSLocalizedString("N/A", comment: "")
         )
-        HStack {
+        HStack(spacing: 8) {
             if !gradeListData.isGradingPeriodHidden {
                 gradingPeriodMenu(
                     gradingPeriods: gradeListData.gradingPeriods,
@@ -84,32 +95,35 @@ public struct GradeListView: View {
                 )
             }
             Spacer()
-//            sortByMenu()
+            if !isEmpty {
+                sortByMenu()
+            }
         }
-        .frame(height: gradeListData.isGradingPeriodHidden ? 0 : 55)
         .padding(.horizontal, 16)
-        .padding(.top, gradeListData.isGradingPeriodHidden ? 0 : -8)
-        .padding(.bottom, 8)
+        .padding(.vertical, verticalPadding)
 
         Divider()
 
-        assignmentListView(
-            assignmentSections: gradeListData.assignmentSections,
-            userID: gradeListData.userID
-        )
+        if isEmpty {
+            emptyView().padding(.top, 16)
+        } else {
+            assignmentListView(
+                assignmentSections: gradeListData.assignmentSections,
+                userID: gradeListData.userID
+            )
+        }
     }
 
     @ViewBuilder
-    private func emptyView(width: CGFloat, height: CGFloat) -> some View {
+    private func emptyView() -> some View {
         EmptyPanda(
-            .Teacher,
-            title: Text("No Courses", bundle: .core),
+            .Space,
+            title: Text("No Assignments", bundle: .core),
             message: Text(
                 "It looks like assignments haven’t been created in this space yet.",
                 bundle: .core
             )
         )
-        .frame(minWidth: width, minHeight: height)
     }
 
     @ViewBuilder
@@ -132,8 +146,8 @@ public struct GradeListView: View {
                 courseName: courseName,
                 totalGrade: totalGrade
             )
-//            Divider()
-//            togglesView()
+            Divider()
+            togglesView()
         }
         .cornerRadius(6)
         .overlay(
@@ -151,23 +165,28 @@ public struct GradeListView: View {
         totalGrade: String
     ) -> some View {
         VStack(spacing: 4) {
-            HStack {
+            HStack(spacing: 4) {
                 Text("Course", bundle: .core)
                     .foregroundStyle(Color.textDark)
                     .font(.regular14)
+                    .accessibilityHidden(true)
                 Spacer()
                 Text("Total", bundle: .core)
                     .foregroundStyle(Color.textDark)
                     .font(.regular14)
+                    .accessibilityHidden(true)
             }
-            HStack {
+            HStack(spacing: 4) {
                 Text(courseName)
                     .foregroundStyle(Color.textDarkest)
                     .font(.semibold28)
+                    .accessibilityLabel(Text("\(courseName) course"))
                 Spacer()
                 Text(totalGrade)
                     .foregroundStyle(Color.textDarkest)
                     .font(.semibold28)
+                    .accessibilityLabel(Text("Total grade is \(totalGrade)", bundle: .core))
+                    .accessibilityIdentifier("CourseTotalGrade")
             }
         }
         .padding(.top, 12)
@@ -178,32 +197,28 @@ public struct GradeListView: View {
     @ViewBuilder
     private func togglesView() -> some View {
         VStack(spacing: 0) {
-            HStack {
-                Toggle(isOn: $isBaseOnGradedToggleOn) {
-                    Text("Base on graded assignments", bundle: .core)
-                        .foregroundStyle(Color.textDarkest)
-                        .font(.regular16)
-                        .fixedSize()
-                        .lineLimit(1)
-                }
-                .toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
-                .frame(height: 51)
+            Toggle(isOn: $isBaseOnGradedToggleOn) {
+                Text("Base on graded assignments", bundle: .core)
+                    .foregroundStyle(Color.textDarkest)
+                    .font(.regular16)
+                    .fixedSize()
+                    .lineLimit(1)
             }
+            .toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
+            .frame(height: 51)
             .padding(.horizontal, 16)
 
             Divider()
 
-            HStack {
-                Toggle(isOn: $isBaseOnGradedToggleOn) {
-                    Text("Show What-if Score", bundle: .core)
-                        .foregroundStyle(Color.textDarkest)
-                        .font(.regular16)
-                        .fixedSize()
-                        .lineLimit(1)
-                }
-                .toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
-                .frame(height: 51)
+            Toggle(isOn: $isBaseOnGradedToggleOn) {
+                Text("Show What-if Score", bundle: .core)
+                    .foregroundStyle(Color.textDarkest)
+                    .font(.regular16)
+                    .fixedSize()
+                    .lineLimit(1)
             }
+            .toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
+            .frame(height: 51)
             .padding(.horizontal, 16)
         }
     }
@@ -217,18 +232,14 @@ public struct GradeListView: View {
             Button {
                 viewModel.selectedGradingPeriod.accept(nil)
             } label: {
-                Text("All", bundle: .core)
-                    .foregroundStyle(Color(Brand.shared.primary))
-                    .font(.regular16)
+                gradingAndArrangeText(title: NSLocalizedString("All", comment: ""))
             }
             ForEach(gradingPeriods) { gradingPeriod in
                 if let title = gradingPeriod.title {
                     Button {
                         viewModel.selectedGradingPeriod.accept(gradingPeriod)
                     } label: {
-                        Text(title)
-                            .foregroundStyle(Color(Brand.shared.primary))
-                            .font(.regular16)
+                        gradingAndArrangeText(title: title)
                     }
                 }
             }
@@ -236,37 +247,53 @@ public struct GradeListView: View {
             Label(
                 title: {
                     if let title = currentGradingPeriod?.title {
-                        Text(title)
+                        gradingAndArrangeText(title: title)
                     } else {
-                        Text("All", bundle: .core)
+                        gradingAndArrangeText(title: NSLocalizedString("All", comment: ""))
                     }
                 },
                 icon: { Image.arrowOpenDownSolid.resizable().frame(width: 12, height: 12) }
-            ).labelStyle(HorizontalRightAligned())
+            ).labelStyle(HorizontalRightAlignedLabelStyle())
         }
+        .accessibilityRemoveTraits(.isButton)
+        .accessibilityElement(children: .combine)
     }
 
     @ViewBuilder
     private func sortByMenu() -> some View {
         Menu {
             Button {
-                viewModel.sortByAscendingOrder.accept(true)
+                viewModel.selectedGroupByOption.accept(.groupName)
             } label: {
-                Text("Ascending", bundle: .core)
+                gradingAndArrangeText(title: NSLocalizedString("By Group", comment: ""))
             }
             Button {
-                viewModel.sortByAscendingOrder.accept(false)
+                viewModel.selectedGroupByOption.accept(.dueDate)
             } label: {
-                Text("Descending", bundle: .core)
+                gradingAndArrangeText(title: NSLocalizedString("By Due Date", comment: ""))
             }
         } label: {
             Label(
                 title: {
-                    Text("Sort By Due Date", bundle: .core)
+                    switch viewModel.selectedGroupByOption.value {
+                    case .dueDate:
+                        gradingAndArrangeText(title: NSLocalizedString("Arrange By Due Date", comment: ""))
+                    case .groupName:
+                        gradingAndArrangeText(title: NSLocalizedString("Arrange By Group", comment: ""))
+                    }
                 },
                 icon: { Image.arrowOpenDownSolid.resizable().frame(width: 12, height: 12) }
-            ).labelStyle(HorizontalRightAligned())
+            ).labelStyle(HorizontalRightAlignedLabelStyle())
         }
+        .accessibilityRemoveTraits(.isButton)
+        .accessibilityElement(children: .combine)
+    }
+
+    @ViewBuilder
+    private func gradingAndArrangeText(title: String) -> some View {
+        Text(title)
+            .foregroundStyle(Color(Brand.shared.primary))
+            .font(.regular16)
     }
 
     @ViewBuilder
@@ -276,7 +303,7 @@ public struct GradeListView: View {
     ) -> some View {
         ForEach(assignmentSections) { section in
             Section(header:
-                HStack {
+                HStack(spacing: 0) {
                     Text(section.title ?? "")
                         .foregroundStyle(Color.textDark)
                         .font(.regular14)
@@ -286,8 +313,14 @@ public struct GradeListView: View {
                 .padding(.horizontal, 16)
             ) {
                 ForEach(section.assignments) { assignment in
-                    GradeRowView(assignment: assignment, userID: userID)
-                    Divider()
+                    Button {
+                        viewModel.didSelectAssignment.accept((viewController, assignment))
+                    } label: {
+                        VStack(spacing: 0) {
+                            GradeRowView(assignment: assignment, userID: userID)
+                            Divider()
+                        }
+                    }
                 }
             }
         }
@@ -297,7 +330,7 @@ public struct GradeListView: View {
 extension Assignment: Identifiable {}
 extension GradingPeriod: Identifiable {}
 
-struct HorizontalRightAligned: LabelStyle {
+struct HorizontalRightAlignedLabelStyle: LabelStyle {
     func makeBody(configuration: Configuration) -> some View {
         HStack(alignment: .center, spacing: 4) {
             configuration.title
@@ -305,3 +338,12 @@ struct HorizontalRightAligned: LabelStyle {
         }
     }
 }
+
+#if DEBUG
+struct GradeListViewPreview: PreviewProvider {
+    static var previews: some View {
+        GradeListView(viewModel: .init(interactor: GradeListInteractorPreview()))
+    }
+}
+
+#endif

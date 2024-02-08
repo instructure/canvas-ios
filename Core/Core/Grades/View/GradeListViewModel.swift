@@ -20,17 +20,24 @@ import Combine
 import CombineExt
 import Foundation
 
-final class GradeListViewModel: ObservableObject {
+public enum GradeArrangementOptions {
+    case groupName
+    case dueDate
+}
+
+public final class GradeListViewModel: ObservableObject {
+    typealias RefreshCompletion = (() -> Void)?
+
     enum ViewState {
         case loading
         case data(GradeListData)
-        case empty
+        case empty(GradeListData)
         case error
     }
 
     // MARK: - Dependencies
 
-    private let interactor: GradeListInteractorLive
+    private let interactor: GradeListInteractor
 
     // MARK: - Output
 
@@ -39,7 +46,9 @@ final class GradeListViewModel: ObservableObject {
     // MARK: - Input
 
     let selectedGradingPeriod = PassthroughRelay<GradingPeriod?>()
-    let sortByAscendingOrder = CurrentValueRelay(true)
+    let selectedGroupByOption = CurrentValueRelay<GradeArrangementOptions>(.groupName)
+    let pullToRefreshDidTrigger = PassthroughRelay<(() -> Void)?>()
+    let didSelectAssignment = PassthroughRelay<(WeakViewController, Assignment)>()
 
     // MARK: - Private properties
 
@@ -47,33 +56,60 @@ final class GradeListViewModel: ObservableObject {
 
     // MARK: - Init
 
-    init(interactor: GradeListInteractorLive) {
+    public init(
+        interactor: GradeListInteractor,
+        router: Router = AppEnvironment.shared.router
+    ) {
         self.interactor = interactor
 
-        sortByAscendingOrder
-            .flatMap {
-                interactor.getGrades(byAscendingOrder: $0).map {
-                    if $0.assignmentSections.count == 0 {
-                        return ViewState.empty
-                    } else {
-                        return ViewState.data($0)
-                    }
-                }
+        let triggerRefresh = PassthroughRelay<(Bool, RefreshCompletion)>()
+
+        pullToRefreshDidTrigger
+            .sink {
+                triggerRefresh.accept((true, $0))
             }
-            .replaceError(with: .error)
-            .assign(to: &$state)
+            .store(in: &subscriptions)
+
+        selectedGroupByOption
+            .sink { _ in
+                triggerRefresh.accept((false, nil))
+            }
+            .store(in: &subscriptions)
 
         selectedGradingPeriod
-            .flatMap { interactor.updateGradingPeriod(id: $0?.id) }
-            .sink()
+            .sink {
+                interactor.updateGradingPeriod(id: $0?.id)
+                triggerRefresh.accept((true, nil))
+            }
             .store(in: &subscriptions)
-    }
 
-    public func refresh(completion: @escaping () -> Void) {
-        interactor
-            .refresh()
-            .sink { _ in
-                completion()
+        triggerRefresh
+            .prepend((false, nil))
+            .flatMap { [unowned selectedGroupByOption] ignoreCache, refreshCompletion in
+                interactor.getGrades(
+                    arrangeBy: selectedGroupByOption.value,
+                    ignoreCache: ignoreCache
+                )
+                .map { listData -> ViewState in
+                    if listData.assignmentSections.count == 0 {
+                        return ViewState.empty(listData)
+                    } else {
+                        return ViewState.data(listData)
+                    }
+                }
+                .replaceError(with: .error)
+                .map {
+                    refreshCompletion?()
+                    return $0
+                }
+                .first()
+            }
+            .receive(on: DispatchQueue.main)
+            .assign(to: &$state)
+
+        didSelectAssignment
+            .sink { vc, assignment in
+                router.route(to: "/courses/\(interactor.courseID)/assignments/\(assignment.id)", from: vc, options: .detail)
             }
             .store(in: &subscriptions)
     }

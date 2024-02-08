@@ -20,27 +20,32 @@ import Combine
 import CombineExt
 import Foundation
 
-protocol GradeListInteractor {
-    func getGrades(byAscendingOrder: Bool) -> AnyPublisher<GradeListData, Error>
-    func refresh() -> AnyPublisher<Void, Never>
-    func updateGradingPeriod(id: String?) -> AnyPublisher<Void, Never>
+public protocol GradeListInteractor {
+    var courseID: String { get }
+    func getGrades(arrangeBy: GradeArrangementOptions, ignoreCache: Bool) -> AnyPublisher<GradeListData, Error>
+    func updateGradingPeriod(id: String?)
 }
 
-final class GradeListInteractorLive: GradeListInteractor {
-    private let courseID: String
+public final class GradeListInteractorLive: GradeListInteractor {
+    // MARK: - Dependencies
+
+    public let courseID: String
     private var gradingPeriodID: String?
     private let userID: String?
     private let offlineInteractor: OfflineModeInteractor
+
+    // MARK: - Private properties
 
     private var assignmentListStore: ReactiveStore<GetAssignmentsByGroup>
     private let colorListStore: ReactiveStore<GetCustomColors>
     private let courseStore: ReactiveStore<GetCourse>
     private var enrollmentListStore: ReactiveStore<GetEnrollments>
     private let gradingPeriodListStore: ReactiveStore<GetGradingPeriods>
+    private var isInitialGradingPeriodSet = false
 
-    private var initialGradingPeriodID: String?
+    // MARK: - Init
 
-    init(
+    public init(
         courseID: String,
         gradingPeriodID: String?,
         userID: String?,
@@ -82,26 +87,54 @@ final class GradeListInteractorLive: GradeListInteractor {
         )
     }
 
-    public func getGrades(byAscendingOrder: Bool) -> AnyPublisher<GradeListData, Error> {
-        Publishers.CombineLatest3(
-            assignmentListStore.getEntities(loadAllPages: true, keepObservingDatabaseChanges: true),
-            colorListStore.getEntities(),
-            courseStore.getEntities(keepObservingDatabaseChanges: true).compactMap { $0.first }
-        )
-        .combineLatest(
-            enrollmentListStore.getEntities(loadAllPages: true, keepObservingDatabaseChanges: true),
-            gradingPeriodListStore.getEntities(loadAllPages: true)
-        )
-        .flatMapLatest { [unowned self] in
-            let assignmentSections = mapAssignmentsBySections(
-                isAscending: byAscendingOrder,
-                assignments: $0.0.0
+    public func getGrades(arrangeBy: GradeArrangementOptions, ignoreCache: Bool) -> AnyPublisher<GradeListData, Error> {
+        Publishers.Zip3(
+            colorListStore.getEntities(
+                ignoreCache: ignoreCache
+            ),
+            courseStore.getEntities(
+                ignoreCache: ignoreCache
+            ).compactMap { $0.first },
+            gradingPeriodListStore.getEntities(
+                ignoreCache: ignoreCache,
+                loadAllPages: true
             )
-            let colors = $0.0.1
-            let course = $0.0.2
-            let enrollments = $0.1
-            let gradingPeriods = $0.2
-            let isGradingPeriodHidden = course.enrollmentForGrades(userId: userID)?.multipleGradingPeriodsEnabled == false
+        )
+        .zip(
+            assignmentListStore.getEntities(
+                ignoreCache: ignoreCache,
+                loadAllPages: true
+            ),
+            enrollmentListStore.getEntities(
+                ignoreCache: ignoreCache,
+                loadAllPages: true
+            )
+        )
+        .flatMap { [unowned self] in
+            let colors = $0.0.0
+            let course = $0.0.1
+            let gradingPeriods = $0.0.2
+            let enrollments = $0.2
+            let courseEnrollment = course.enrollmentForGrades(userId: userID)
+            let isGradingPeriodHidden = courseEnrollment?.multipleGradingPeriodsEnabled == false
+
+            if !isInitialGradingPeriodSet {
+                isInitialGradingPeriodSet = true
+                updateGradingPeriod(id: courseEnrollment?.currentGradingPeriodID)
+                return getGrades(arrangeBy: arrangeBy, ignoreCache: true).eraseToAnyPublisher()
+            }
+
+            let assignmentSections: [GradeListData.AssignmentSections]
+            switch arrangeBy {
+            case .dueDate:
+                assignmentSections = arrangeAssignmentsByDueDate(
+                    assignments: $0.1
+                )
+            case .groupName:
+                assignmentSections = arrangeAssignmentsByGroupNames(
+                    assignments: $0.1
+                )
+            }
 
             return calculateTotalGrade(
                 course: course,
@@ -110,6 +143,7 @@ final class GradeListInteractorLive: GradeListInteractor {
             )
             .map { [unowned self] totalGradeText in
                 GradeListData(
+                    id: UUID.string,
                     userID: userID ?? "",
                     courseName: course.name,
                     assignmentSections: assignmentSections,
@@ -126,12 +160,8 @@ final class GradeListInteractorLive: GradeListInteractor {
         .eraseToAnyPublisher()
     }
 
-    public func updateGradingPeriod(id: String?) -> AnyPublisher<Void, Never> {
+    public func updateGradingPeriod(id: String?) {
         gradingPeriodID = id
-        if initialGradingPeriodID == nil {
-            initialGradingPeriodID = id
-        }
-
         enrollmentListStore = ReactiveStore(
             useCase: GetEnrollments(
                 context: .course(courseID),
@@ -149,36 +179,6 @@ final class GradeListInteractorLive: GradeListInteractor {
                 gradedOnly: true
             )
         )
-
-        return Publishers.CombineLatest(
-            enrollmentListStore.forceRefresh(),
-            assignmentListStore.forceRefresh()
-        )
-        .mapToVoid()
-        .eraseToAnyPublisher()
-
-//        // In offline mode we don't want to delete anything from CoreData
-//        if offlineModeInteractor?.isOfflineModeEnabled() == false {
-//            // Delete assignment groups immediately, to see a spinner again
-//            assignments.useCase.reset(context: env.database.viewContext)
-//            try? env.database.viewContext.save()
-//        }
-//
-//        assignments.refresh(force: true)
-//        enrollments.refresh(force: true)
-    }
-
-    public func refresh() -> AnyPublisher<Void, Never> {
-        [
-            assignmentListStore.forceRefresh(),
-            colorListStore.forceRefresh(),
-            courseStore.forceRefresh(),
-            enrollmentListStore.forceRefresh(),
-            gradingPeriodListStore.forceRefresh(),
-        ]
-        .combineLatest()
-        .mapToVoid()
-        .eraseToAnyPublisher()
     }
 
     private func getGradingPeriod(id: String?, gradingPeriods: [GradingPeriod]) -> GradingPeriod? {
@@ -188,16 +188,11 @@ final class GradeListInteractorLive: GradeListInteractor {
         return gradingPeriods.filter { $0.id == id }.first
     }
 
-    private func mapAssignmentsBySections(
-        isAscending: Bool,
+    private func arrangeAssignmentsByGroupNames(
         assignments: [Assignment]
     ) -> [GradeListData.AssignmentSections] {
         let orderedAssignments = assignments.sorted {
-            if isAscending {
-                $0.dueAtSortNilsAtBottom ?? Date.distantFuture < $1.dueAtSortNilsAtBottom ?? Date.distantFuture
-            } else {
-                $0.dueAtSortNilsAtBottom ?? Date.distantFuture > $1.dueAtSortNilsAtBottom ?? Date.distantFuture
-            }
+            $0.dueAtSortNilsAtBottom ?? Date.distantFuture < $1.dueAtSortNilsAtBottom ?? Date.distantFuture
         }
         var assignmentSections: [GradeListData.AssignmentSections] = []
         orderedAssignments.forEach { assignment in
@@ -218,6 +213,66 @@ final class GradeListInteractorLive: GradeListInteractor {
         return assignmentSections
     }
 
+    private func arrangeAssignmentsByDueDate(
+        assignments: [Assignment]
+    ) -> [GradeListData.AssignmentSections] {
+        let orderedAssignments = assignments.sorted {
+            $0.dueAtSortNilsAtBottom ?? Date.distantFuture < $1.dueAtSortNilsAtBottom ?? Date.distantFuture
+        }
+
+        var assignmentSections: [GradeListData.AssignmentSections] = []
+        var overdueAssignments = GradeListData.AssignmentSections(
+            id: UUID.string,
+            title: NSLocalizedString("Overdue Assignments", comment: ""),
+            assignments: []
+        )
+        var upcomingAssignments = GradeListData.AssignmentSections(
+            id: UUID.string,
+            title: NSLocalizedString("Upcoming Assignments", comment: ""),
+            assignments: []
+        )
+        var pastAssignments = GradeListData.AssignmentSections(
+            id: UUID.string,
+            title: NSLocalizedString("Past Assignments", comment: ""),
+            assignments: []
+        )
+
+        let now = Date()
+
+        orderedAssignments.forEach { assignment in
+            if let dueAt = assignment.dueAtSortNilsAtBottom {
+                if let lockAt = assignment.lockAt {
+                    if lockAt >= now, dueAt <= now {
+                        overdueAssignments.assignments.append(assignment)
+                    } else if lockAt > now, dueAt > now {
+                        upcomingAssignments.assignments.append(assignment)
+                    } else {
+                        pastAssignments.assignments.append(assignment)
+                    }
+                } else if dueAt <= now {
+                    overdueAssignments.assignments.append(assignment)
+                } else if dueAt > now {
+                    upcomingAssignments.assignments.append(assignment)
+                }
+            } else {
+                upcomingAssignments.assignments.append(assignment)
+            }
+        }
+
+        if !overdueAssignments.assignments.isEmpty {
+            assignmentSections.append(overdueAssignments)
+        }
+
+        if !upcomingAssignments.assignments.isEmpty {
+            assignmentSections.append(upcomingAssignments)
+        }
+
+        if !pastAssignments.assignments.isEmpty {
+            assignmentSections.append(pastAssignments)
+        }
+        return assignmentSections
+    }
+
     private func calculateTotalGrade(
         course: Course,
         enrollments: [Enrollment],
@@ -229,13 +284,6 @@ final class GradeListInteractorLive: GradeListInteractor {
                 $0.state == .active &&
                 $0.userID == userID &&
                 $0.type.lowercased().contains("student")
-        }
-        if initialGradingPeriodID != courseEnrollment?.currentGradingPeriodID {
-            return updateGradingPeriod(id: courseEnrollment?.currentGradingPeriodID)
-                .flatMap { _ in
-                    Empty(completeImmediately: false).eraseToAnyPublisher()
-                }
-                .eraseToAnyPublisher()
         }
         let hideQuantitativeData = course.hideQuantitativeData == true
 
