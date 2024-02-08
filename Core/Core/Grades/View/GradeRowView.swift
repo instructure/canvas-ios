@@ -48,9 +48,11 @@ public struct GradeRowView: View {
             Text(assignment.name)
                 .font(.medium16)
                 .foregroundStyle(Color.textDarkest)
+                .multilineTextAlignment(.leading)
             Text(assignment.dueText)
                 .font(.regular14)
                 .foregroundStyle(Color.textDark)
+                .multilineTextAlignment(.leading)
 
             let submission = assignment.submissions?.first { $0.userID == userID }
             let status = submission?.status ?? .notSubmitted

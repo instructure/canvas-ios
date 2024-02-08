@@ -18,6 +18,10 @@
 
 import UIKit
 
+public protocol ColorDelegate: AnyObject {
+    var iconColor: UIColor? { get }
+}
+
 public class SyllabusSummaryViewController: UITableViewController {
     let env = AppEnvironment.shared
     var courseID: String!

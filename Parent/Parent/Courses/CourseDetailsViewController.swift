@@ -261,15 +261,3 @@ extension CourseDetailsViewController: HorizontalPagedMenuDelegate {
         }
     }
 }
-
-extension CourseDetailsViewController: GradeListCellIconDelegate {
-    public func iconImage(for assignment: Assignment?) -> UIImage? {
-        //  all quizzes in parent come back as `lockedForUser` so it's always
-        //  showing the lock icon rather than the quiz icon
-        if assignment?.quizID != nil {
-            return .quizLine
-        } else {
-            return assignment?.icon
-        }
-    }
-}
