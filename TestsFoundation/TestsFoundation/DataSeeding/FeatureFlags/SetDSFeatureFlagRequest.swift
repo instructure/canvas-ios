@@ -20,15 +20,15 @@ import Core
 
 // https://canvas.instructure.com/doc/api/feature_flags.html#method.feature_flags.update
 public struct SetDSFeatureFlagRequest: APIRequestable {
-    public typealias Response = DSFeatureFlag
+    public typealias Response = APINoContent
 
     public let method = APIMethod.put
     public let path: String
     public let body: Body?
 
-    public init(body: Body, courseId: String, feature: DSFeature) {
+    public init(body: Body, featureFlag: DSFeatureFlag) {
         self.body = body
-        self.path = "courses/\(courseId)/features/flags/\(feature.feature)"
+        self.path = "accounts/self/features/flags/\(featureFlag.rawValue)"
     }
 }
 
@@ -57,4 +57,5 @@ public enum DSFeatureFlagState: String {
     case off
     case allowed
     case on
+    case allowedOn = "allowed_on"
 }

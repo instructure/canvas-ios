@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct DSFeatureFlag: Codable {
-    public let feature: String
-    public let state: String
+public enum DSFeatureFlag: String {
+    case newDiscussion = "react_discussions_post"
 }

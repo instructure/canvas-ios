@@ -23,9 +23,9 @@ extension DataSeeder {
         return makeRequest(request)
     }
 
-    public func setFeatureFlag(courseId: String, feature: DSFeature, state: DSFeatureFlagState) -> DSFeatureFlag {
+    public func setFeatureFlag(featureFlag: DSFeatureFlag, state: DSFeatureFlagState) {
         let requestBody = SetDSFeatureFlagRequest.Body(state: state)
-        let request = SetDSFeatureFlagRequest(body: requestBody, courseId: courseId, feature: feature)
-        return makeRequest(request)
+        let request = SetDSFeatureFlagRequest(body: requestBody, featureFlag: featureFlag)
+        makeRequest(request)
     }
 }
