@@ -77,7 +77,8 @@ class MessageDetailsViewModelTests: CoreTestCase {
     }
 
     func testMessageDelete() {
-        testee.deleteConversationMessageDidTap.send((conversationId: "conversationId", messageId: "messageId"))
+        let viewController = WeakViewController(UIViewController())
+        testee.deleteConversationMessageDidTap.send((conversationId: "conversationId", messageId: "messageId", viewController: viewController))
 
         XCTAssertTrue(mockInteractor.deleteMessageCalled)
     }
@@ -165,32 +166,34 @@ private class MessageDetailsInteractorMock: MessageDetailsInteractor {
 
     func refresh() -> Future<Void, Never> {
         refreshCalled = true
-        return mockFuture
+        return Future<Void, Never> { promise in
+            promise(.success(()))
+        }
     }
 
-    func updateStarred(starred: Bool) -> Future<Void, Never> {
+    func updateStarred(starred: Bool) -> Future<URLResponse?, Error> {
         receivedStarred = starred
         return mockFuture
     }
 
-    func updateState(messageId: String, state: Core.ConversationWorkflowState) -> Future<Void, Never> {
+    func updateState(messageId: String, state: Core.ConversationWorkflowState) -> Future<URLResponse?, Error> {
         updateStateCalled = true
         return mockFuture
     }
 
-    func deleteConversation(conversationId: String) -> Future<Void, Never> {
+    func deleteConversation(conversationId: String) -> Future<URLResponse?, Error> {
         deleteConversationCalled = true
         return mockFuture
     }
 
-    func deleteConversationMessage(conversationId: String, messageId: String) -> Future<Void, Never> {
+    func deleteConversationMessage(conversationId: String, messageId: String) -> Future<URLResponse?, Error> {
         deleteMessageCalled = true
         return mockFuture
     }
 
-    private var mockFuture: Future<Void, Never> {
-        Future<Void, Never> { promise in
-            promise(.success(()))
+    private var mockFuture: Future<URLResponse?, Error> {
+        Future<URLResponse?, Error> { promise in
+            promise(.success(nil))
         }
     }
 }

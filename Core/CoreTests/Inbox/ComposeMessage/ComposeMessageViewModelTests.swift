@@ -260,29 +260,29 @@ private class ComposeMessageInteractorMock: ComposeMessageInteractor {
         self.courses = .init(.make(count: 5, in: context))
     }
 
-    func createConversation(parameters: MessageParameters) -> Future<Void, Error> {
+    func createConversation(parameters: MessageParameters) -> Future<URLResponse?, Error> {
         isConversationAddSent = true
         return mockFuture
     }
 
-    func addConversationMessage(parameters: MessageParameters) -> Future<Void, Error> {
+    func addConversationMessage(parameters: MessageParameters) -> Future<URLResponse?, Error> {
         isMessageAddSent = true
         return mockFuture
     }
 
-    private var mockFuture: Future<Void, Error> {
+    private var mockFuture: Future<URLResponse?, Error> {
         isSuccessfulMockFuture ? mockSuccessFuture : mockFailedFuture
     }
 
-    private var mockFailedFuture: Future<Void, Error> {
-        Future<Void, Error> { promise in
+    private var mockFailedFuture: Future<URLResponse?, Error> {
+        Future<URLResponse?, Error> { promise in
             promise(.failure("Fail"))
         }
     }
 
-    private var mockSuccessFuture: Future<Void, Error> {
-        Future<Void, Error> { promise in
-            promise(.success(()))
+    private var mockSuccessFuture: Future<URLResponse?, Error> {
+        Future<URLResponse?, Error> { promise in
+            promise(.success(nil))
         }
     }
 }
