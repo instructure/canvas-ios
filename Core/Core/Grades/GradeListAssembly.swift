@@ -21,26 +21,22 @@ import Foundation
 public enum GradListAssembly {
     public static func makeInteractor(
         courseID: String,
-        userID: String?,
-        offlineInteractor: OfflineModeInteractor
+        userID: String?
     ) -> GradeListInteractor {
         GradeListInteractorLive(
             courseID: courseID,
-            userID: userID,
-            offlineInteractor: offlineInteractor
+            userID: userID
         )
     }
 
     public static func makeGradeListViewController(
         env: AppEnvironment,
         courseID: String,
-        userID: String?,
-        offlineInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
+        userID: String?
     ) -> UIViewController {
         let interactor = makeInteractor(
             courseID: courseID,
-            userID: userID,
-            offlineInteractor: offlineInteractor
+            userID: userID
         )
         let viewModel = GradeListViewModel(interactor: interactor, router: env.router)
         let viewController = CoreHostingController(GradeListView(viewModel: viewModel))

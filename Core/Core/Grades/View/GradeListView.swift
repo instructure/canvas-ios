@@ -23,6 +23,7 @@ public struct GradeListView: View {
     // MARK: - Dependencies
 
     @ObservedObject private var viewModel: GradeListViewModel
+    @ObservedObject private var offlineModeViewModel: OfflineModeViewModel
     @Environment(\.viewController) private var viewController
 
     // MARK: - Private properties
@@ -32,8 +33,12 @@ public struct GradeListView: View {
 
     // MARK: - Init
 
-    public init(viewModel: GradeListViewModel) {
+    public init(
+        viewModel: GradeListViewModel,
+        offlineViewModel: OfflineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
+    ) {
         self.viewModel = viewModel
+        self.offlineModeViewModel = offlineViewModel
     }
 
     // MARK: - Components
@@ -93,6 +98,8 @@ public struct GradeListView: View {
                     gradingPeriods: gradeListData.gradingPeriods,
                     currentGradingPeriod: gradeListData.currentGradingPeriod
                 )
+                .disabled(offlineModeViewModel.isOffline)
+                .opacity(offlineModeViewModel.isOffline ? 0.5 : 1)
             }
             Spacer()
             if !isEmpty {

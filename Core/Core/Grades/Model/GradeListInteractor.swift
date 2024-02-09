@@ -32,7 +32,6 @@ public final class GradeListInteractorLive: GradeListInteractor {
 
     public let courseID: String
     private let userID: String?
-    private let offlineInteractor: OfflineModeInteractor
 
     // MARK: - Private properties
 
@@ -48,12 +47,10 @@ public final class GradeListInteractorLive: GradeListInteractor {
 
     public init(
         courseID: String,
-        userID: String?,
-        offlineInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
+        userID: String?
     ) {
         self.courseID = courseID
         self.userID = userID
-        self.offlineInteractor = offlineInteractor
 
         assignmentListStore = ReactiveStore(
             useCase: GetAssignmentsByGroup(
