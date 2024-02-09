@@ -136,11 +136,15 @@ public struct GradeListView: View {
 
     @ViewBuilder
     private func errorView(width: CGFloat, height: CGFloat) -> some View {
-        ZStack {
-            Text("There was an error loading grades. Pull to refresh to try again.", bundle: .core)
-                .font(.regular16).foregroundColor(.textDanger)
-                .multilineTextAlignment(.center)
-        }
+        EmptyPanda(
+            .NoResults,
+            title: Text("Something Went Wrong", bundle: .core),
+            message: Text(
+                "Pull to refresh to try again.",
+                bundle: .core
+            )
+        )
+        .padding(.horizontal, 16)
         .frame(minWidth: width, minHeight: height)
     }
 
