@@ -19,6 +19,7 @@
 import Combine
 import CombineExt
 import Foundation
+import CombineSchedulers
 
 public enum GradeArrangementOptions {
     case groupName
@@ -28,7 +29,7 @@ public enum GradeArrangementOptions {
 public final class GradeListViewModel: ObservableObject {
     typealias RefreshCompletion = (() -> Void)?
 
-    enum ViewState {
+    enum ViewState: Equatable {
         case loading
         case data(GradeListData)
         case empty(GradeListData)
@@ -58,7 +59,8 @@ public final class GradeListViewModel: ObservableObject {
 
     public init(
         interactor: GradeListInteractor,
-        router: Router
+        router: Router,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.interactor = interactor
 
@@ -104,10 +106,11 @@ public final class GradeListViewModel: ObservableObject {
                 }
                 .first()
             }
-            .receive(on: DispatchQueue.main)
+            .receive(on: scheduler)
             .assign(to: &$state)
 
         didSelectAssignment
+            .receive(on: scheduler)
             .sink { vc, assignment in
                 router.route(to: "/courses/\(interactor.courseID)/assignments/\(assignment.id)", from: vc, options: .detail)
             }
