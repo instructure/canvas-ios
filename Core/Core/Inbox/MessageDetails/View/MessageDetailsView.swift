@@ -39,6 +39,8 @@ public struct MessageDetailsView: View {
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 12)
                 }
+                .padding(.horizontal, 12)
+                .padding(.vertical, 24)
             }
         }
         refreshAction: { onComplete in
