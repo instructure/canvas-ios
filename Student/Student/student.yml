@@ -37,8 +37,11 @@ schemes:
     build:
       targets:
         Student: all
-        Core/CoreTester: [test]
     test:
-      targets: [Core/CoreTests, StudentUnitTests]
+      targets: 
+        - Core/CoreTests
+        - StudentUnitTests
+        - name: Core/CoreTester
+          skipped: true
       gatherCoverageData: true
       coverageTargets: [Core/CoreTests, Student]

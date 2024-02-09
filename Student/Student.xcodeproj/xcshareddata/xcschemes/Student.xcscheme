@@ -8,20 +8,6 @@
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3C9856EABA187C2715A3B3E4"
-               BuildableName = "CoreTester.app"
-               BlueprintName = "CoreTester"
-               ReferencedContainer = "container:../Core/Core.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
             buildForRunning = "YES"
             buildForProfiling = "YES"
             buildForArchiving = "YES"
@@ -87,6 +73,16 @@
                BuildableName = "StudentUnitTests.xctest"
                BlueprintName = "StudentUnitTests"
                ReferencedContainer = "container:Student.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3C9856EABA187C2715A3B3E4"
+               BuildableName = "CoreTester.app"
+               BlueprintName = "CoreTester"
+               ReferencedContainer = "container:../Core/Core.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
