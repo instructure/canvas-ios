@@ -39,7 +39,7 @@ public struct ComposeMessageView: View {
                     Divider()
                     bodyView
                         .frame(height: geometry.size.height)
-                    if model.includedMessages != nil && !model.includedMessages!.isEmpty {
+                    if !model.includedMessages.isEmpty {
                         includedMessages
                     }
                     Spacer()
@@ -262,7 +262,7 @@ public struct ComposeMessageView: View {
             Text("Included messages", bundle: .core)
                 .font(.bold16)
             separator
-            ForEach(model.includedMessages ?? [], id: \.id) { conversationMessage in
+            ForEach(model.includedMessages, id: \.id) { conversationMessage in
                 messageView(for: conversationMessage)
                 separator
             }

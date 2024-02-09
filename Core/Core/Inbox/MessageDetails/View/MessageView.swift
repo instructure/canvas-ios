@@ -20,6 +20,7 @@ import SwiftUI
 
 public struct MessageView: View {
     @Environment(\.viewController) private var controller
+    @ScaledMetric private var uiScale: CGFloat = 1
 
     private var model: MessageViewModel
     private var replyDidTap: () -> Void
@@ -66,7 +67,7 @@ public struct MessageView: View {
             } label: {
                 Image
                     .replyLine
-                    .size(15)
+                    .size(uiScale.iconScale * 20)
                     .foregroundColor(.textDark)
                     .padding(.leading, 6)
                     .accessibilityLabel(NSLocalizedString("Reply", bundle: .core, comment: ""))
@@ -76,9 +77,9 @@ public struct MessageView: View {
             } label: {
                 Image
                     .moreLine
-                    .size(15)
+                    .size(uiScale.iconScale * 20)
                     .foregroundColor(.textDark)
-                    .padding(.leading, 6)
+                    .padding(.horizontal, 6)
                     .accessibilityLabel(NSLocalizedString("Conversation options", bundle: .core, comment: ""))
             }
         }

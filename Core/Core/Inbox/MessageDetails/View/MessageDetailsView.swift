@@ -34,7 +34,11 @@ public struct MessageDetailsView: View {
             case .data:
                 detailsView
             case .empty, .error:
-                Text("There was an error loading the message. Pull to refresh to try again.", bundle: .core)
+                VStack(alignment: .center, spacing: 0) {
+                    Text("There was an error loading the message. Pull to refresh to try again.", bundle: .core)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 12)
+                }
             }
         }
         refreshAction: { onComplete in
@@ -60,10 +64,12 @@ public struct MessageDetailsView: View {
     private var detailsView: some View {
         VStack(spacing: 0) {
             headerView
-                .padding(.horizontal, 16)
-                .padding(.vertical, 24)
             messageList
         }
+        .confirmationAlert(
+            isPresented: $model.isShowingCancelDialog,
+            presenting: model.confirmAlert
+        )
     }
 
     private var headerView: some View {
@@ -73,6 +79,8 @@ public struct MessageDetailsView: View {
             Spacer()
             starButton
         }
+        .frame(height: 81)
+        .padding(.horizontal, 16)
     }
 
     private var moreButton: some View {

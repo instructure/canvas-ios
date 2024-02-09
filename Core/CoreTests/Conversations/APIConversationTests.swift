@@ -73,7 +73,7 @@ class APIConversationTests: CoreTestCase {
             media_comment_id: nil,
             media_comment_type: nil,
             recipients: ["1"],
-             included_messages: nil
+            included_messages: nil
         ))
         XCTAssertEqual(request.path, "conversations/1/add_message")
         XCTAssertEqual(request.method, .post)

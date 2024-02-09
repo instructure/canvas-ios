@@ -97,6 +97,7 @@ const whitelist = [
   'mini-arrow-up',
   'module',
   'more',
+  'next-unread',
   'no',
   'note',
   'numbered-list',

@@ -53,7 +53,7 @@ class ComposeMessageViewModel: ObservableObject {
     @Published public var subject: String = ""
     @Published public var selectedContext: RecipientContext?
     @Published public var conversation: Conversation?
-    @Published public var includedMessages: [ConversationMessage]?
+    @Published public var includedMessages: [ConversationMessage] = []
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
@@ -183,7 +183,7 @@ class ComposeMessageViewModel: ObservableObject {
             context: context.context,
             conversationID: conversation?.id,
             groupConversation: !sendIndividual,
-            includedMessages: includedMessages?.map { $0.id }
+            includedMessages: includedMessages.map { $0.id }
         )
     }
 
@@ -220,26 +220,13 @@ class ComposeMessageViewModel: ObservableObject {
                 case .new:
                     return interactor
                         .createConversation(parameters: params)
-                        .map {
+                        .map { _ in
                             viewController
                         }
-                case .forward:
+                case .forward, .reply, .replyAll:
                     return interactor
                         .addConversationMessage(parameters: params)
-                        .map {
-                            viewController
-                        }
-                case .reply:
-                    return interactor
-                        .addConversationMessage(parameters: params)
-                        .map {
-                            viewController
-                        }
-
-                case .replyAll:
-                    return interactor
-                        .addConversationMessage(parameters: params)
-                        .map {
+                        .map { _ in
                             viewController
                         }
                 }

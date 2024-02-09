@@ -28,11 +28,23 @@ class MessageDetailsViewModel: ObservableObject {
 
     public let title = NSLocalizedString("Message Details", comment: "")
 
+    @Published public var isShowingCancelDialog = false
+    public let confirmAlert = ConfirmationAlertViewModel(
+        title: NSLocalizedString("Are your sure", comment: ""),
+        message: NSLocalizedString(
+           """
+           It will permanently delete this message from your profile.
+           """, comment: ""),
+        cancelButtonTitle: NSLocalizedString("No", comment: ""),
+        confirmButtonTitle: NSLocalizedString("Yes", comment: ""),
+        isDestructive: false
+    )
+
     // MARK: - Inputs
     public let refreshDidTrigger = PassthroughSubject<() -> Void, Never>()
     public let starDidTap = PassthroughSubject<Bool, Never>()
     public let deleteConversationDidTap = PassthroughSubject<(conversationId: String, viewController: WeakViewController), Never>()
-    public let deleteConversationMessageDidTap = PassthroughSubject<(conversationId: String, messageId: String), Never>()
+    public let deleteConversationMessageDidTap = PassthroughSubject<(conversationId: String, messageId: String, viewController: WeakViewController), Never>()
     public let updateState = PassthroughSubject<ConversationWorkflowState, Never>()
 
     // MARK: - Private
@@ -77,7 +89,7 @@ class MessageDetailsViewModel: ObservableObject {
 
         if (conversations.first?.workflowState == .read) {
             sheet.addAction(
-                image: .emailLine,
+                image: .nextUnreadLine,
                 title: NSLocalizedString("Mark as Unread", comment: ""),
                 accessibilityIdentifier: "MessageDetails.markAsUnread"
             ) {
@@ -93,12 +105,14 @@ class MessageDetailsViewModel: ObservableObject {
             }
         }
 
-        sheet.addAction(
-            image: .archiveLine,
-            title: NSLocalizedString("Archive", comment: ""),
-            accessibilityIdentifier: "MessageDetails.archive"
-        ) {
-            self.updateState.send(.archived)
+        if conversations.first?.workflowState != .archived {
+            sheet.addAction(
+                image: .archiveLine,
+                title: NSLocalizedString("Archive", comment: ""),
+                accessibilityIdentifier: "MessageDetails.archive"
+            ) {
+                self.updateState.send(.archived)
+            }
         }
 
         sheet.addAction(
@@ -148,7 +162,7 @@ class MessageDetailsViewModel: ObservableObject {
             accessibilityIdentifier: "MessageDetails.delete"
         ) {
             if let conversationId = self.conversations.first?.id, let messageId = message?.id {
-                self.deleteConversationMessageDidTap.send((conversationId: conversationId, messageId: messageId))
+                self.deleteConversationMessageDidTap.send((conversationId: conversationId, messageId: messageId, viewController: viewController))
             }
         }
         router.show(sheet, from: viewController, options: .modal())
@@ -235,21 +249,31 @@ class MessageDetailsViewModel: ObservableObject {
             .store(in: &subscriptions)
 
         deleteConversationDidTap
-            .map { (conversationId, viewController) in
-                _ = interactor.deleteConversation(conversationId: conversationId)
-                return viewController
+            .handleEvents(receiveOutput: { [weak self] _ in
+                self?.isShowingCancelDialog = true
+            })
+            .flatMap { [unowned self] value in
+                self.confirmAlert.userConfirmation().map { value }
             }
-            .map { [weak self] viewController in
+            .map { [weak self] (conversationId, viewController) in
+                _ = interactor.deleteConversation(conversationId: conversationId)
                 self?.router.dismiss(viewController)
             }
             .sink()
             .store(in: &subscriptions)
 
         deleteConversationMessageDidTap
-            .map { (conversationId, messageId) in
-                _ = interactor.deleteConversationMessage(conversationId: conversationId, messageId: messageId)
+            .handleEvents(receiveOutput: { [weak self] _ in
+                self?.isShowingCancelDialog = true
+            })
+            .flatMap { [unowned self] value in
+                self.confirmAlert.userConfirmation().map { value }
             }
-            .map { [weak self] in
+            .map { [weak self] (conversationId, messageId, viewController) in
+                _ = interactor.deleteConversationMessage(conversationId: conversationId, messageId: messageId)
+                if self?.messages.isEmpty == true {
+                    self?.router.dismiss(viewController)
+                }
                 self?.refreshDidTrigger.send({ })
             }
             .sink()

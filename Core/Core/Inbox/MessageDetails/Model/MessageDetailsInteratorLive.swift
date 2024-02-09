@@ -79,62 +79,19 @@ public class MessageDetailsInteractorLive: MessageDetailsInteractor {
         conversationStore.refreshWithFuture(force: true)
     }
 
-    public func updateStarred(starred: Bool) -> Future<Void, Never> {
-        Future { [weak self] promise in
-            guard let self else {
-                return promise(.success(()))
-            }
-            let request = StarConversationRequest(id: self.conversationID, starred: starred)
-            self.env.api.makeRequest(request, callback: { _, _, _ in
-                self.conversationStore.refresh(force: true) { _ in
-                    return promise(.success(()))
-                }
-            })
-        }
+    public func updateStarred(starred: Bool) -> Future<URLResponse?, Error> {
+        return StarConversation(id: conversationID, starred: starred).fetchWithFuture()
     }
 
-    public func updateState(messageId: String,
-                            state: ConversationWorkflowState)
-    -> Future<Void, Never> {
-        Future<Void, Never> { promise in
-            self.uploadWorkflowStateToAPI(messageId: messageId, state: state)
-            promise(.success(()))
-        }
+    public func updateState(messageId: String, state: ConversationWorkflowState) -> Future<URLResponse?, Error> {
+        return UpdateConversationState(id: messageId, state: state).fetchWithFuture()
     }
 
-    public func deleteConversation(conversationId: String) -> Future<Void, Never> {
-        Future { [weak self] promise in
-            guard let self else {
-                return promise(.success(()))
-            }
-            let request = DeleteConversationRequest(id: conversationId)
-            self.env.api.makeRequest(request, callback: { _, _, _ in
-                self.conversationStore.refresh(force: true) { _ in
-                    return promise(.success(()))
-                }
-            })
-        }
+    public func deleteConversation(conversationId: String) -> Future<URLResponse?, Error> {
+        return DeleteConversation(id: conversationId).fetchWithFuture()
     }
 
-    public func deleteConversationMessage(conversationId: String, messageId: String) -> Future<Void, Never> {
-        Future { [weak self] promise in
-            guard let self else {
-                return promise(.success(()))
-            }
-            let request = DeleteConversationMessageRequest(id: conversationId, body: .init(remove: [messageId]))
-            self.env.api.makeRequest(request, callback: { _, _, _ in
-                self.conversationStore.refresh(force: true) { _ in
-                    return promise(.success(()))
-                }
-            })
-        }
-    }
-
-    // MARK: - Private Helpers
-
-    private func uploadWorkflowStateToAPI(messageId: String, state: ConversationWorkflowState) {
-        let request = PutConversationRequest(id: messageId, workflowState: state)
-        env.api.makeRequest(request, callback: { _, _, _ in })
-        conversation.value.first?.workflowState = state
+    public func deleteConversationMessage(conversationId: String, messageId: String) -> Future<URLResponse?, Error> {
+        return DeleteConversationMessage(id: conversationId, removeIds: [messageId]).fetchWithFuture()
     }
 }

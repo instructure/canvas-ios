@@ -51,35 +51,35 @@ public class MessageDetailsInteractorPreview: MessageDetailsInteractor {
         }
     }
 
-    public func updateStarred(starred: Bool) -> Future<Void, Never> {
-        Future<Void, Never> { promise in
+    public func updateStarred(starred: Bool) -> Future<URLResponse?, Error> {
+        Future<URLResponse?, Error> { promise in
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.starred.send(!starred)
-                promise(.success(()))
+                promise(.success(nil))
             }
         }
     }
 
-    public func updateState(messageId: String, state: ConversationWorkflowState) -> Future<Void, Never> {
-        Future<Void, Never> { promise in
+    public func updateState(messageId: String, state: ConversationWorkflowState) -> Future<URLResponse?, Error> {
+        Future<URLResponse?, Error> { promise in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                promise(.success(()))
+                promise(.success(nil))
             }
         }
     }
 
-    public func deleteConversation(conversationId: String) -> Future<Void, Never> {
-        Future<Void, Never> { promise in
+    public func deleteConversation(conversationId: String) -> Future<URLResponse?, Error> {
+        Future<URLResponse?, Error> { promise in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                promise(.success(()))
+                promise(.success(nil))
             }
         }
     }
 
-    public func deleteConversationMessage(conversationId: String, messageId: String) -> Future<Void, Never> {
-        Future<Void, Never> { promise in
+    public func deleteConversationMessage(conversationId: String, messageId: String) -> Future<URLResponse?, Error> {
+        Future<URLResponse?, Error> { promise in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                promise(.success(()))
+                promise(.success(nil))
             }
         }
     }

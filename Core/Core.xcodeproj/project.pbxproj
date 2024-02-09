@@ -1371,6 +1371,9 @@
 		D36F6F6B2B5FF9E700CF7D9D /* ComposeMessageOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36F6F6A2B5FF9E700CF7D9D /* ComposeMessageOptions.swift */; };
 		D36F6F892B62729300CF7D9D /* ComposeMessageOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36F6F882B62729300CF7D9D /* ComposeMessageOptionsTests.swift */; };
 		D3F2C000008898A8049AFEF7 /* CourseSyncItemSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B3812EED19B5A501744522 /* CourseSyncItemSelection.swift */; };
+		D3F73CC72B764DD300934255 /* DeleteConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F73CC62B764DD300934255 /* DeleteConversation.swift */; };
+		D3F73CCB2B764FD400934255 /* UpdateConversationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F73CCA2B764FD400934255 /* UpdateConversationState.swift */; };
+		D3F73CCD2B76514200934255 /* StarConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F73CCC2B76514200934255 /* StarConversation.swift */; };
 		D4439C92D9E84E13A1847D51 /* CoreBGTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5698277AF43025DEFA6BE220 /* CoreBGTask.swift */; };
 		D484C74E299214157F4B69BC /* PageDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B36ECA65D3C45F7DE5084 /* PageDetailsViewController.swift */; };
 		D499D498B873614658D91549 /* SideMenuToggleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB50F2545E4E672477BD0ADC /* SideMenuToggleItem.swift */; };
@@ -3136,6 +3139,9 @@
 		D3ABC68A7725FDFC09EDC581 /* NSPersistentStoreExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPersistentStoreExtensions.swift; sourceTree = "<group>"; };
 		D3B0873C4E11AF89B004B474 /* PermissionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsTests.swift; sourceTree = "<group>"; };
 		D3EC7B75FA36FECB82127245 /* GetSearchRecipients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSearchRecipients.swift; sourceTree = "<group>"; };
+		D3F73CC62B764DD300934255 /* DeleteConversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteConversation.swift; sourceTree = "<group>"; };
+		D3F73CCA2B764FD400934255 /* UpdateConversationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateConversationState.swift; sourceTree = "<group>"; };
+		D3F73CCC2B76514200934255 /* StarConversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarConversation.swift; sourceTree = "<group>"; };
 		D41D70AB17259CCFBAFF5796 /* K5ResourcesContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesContactViewModel.swift; sourceTree = "<group>"; };
 		D47D7E0F71DA49A7F37CCE38 /* QuizSubmissionUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionUser.swift; sourceTree = "<group>"; };
 		D491E7CDF766D7D8CE20C938 /* NetworkAvailabilityServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkAvailabilityServiceTests.swift; sourceTree = "<group>"; };
@@ -5263,6 +5269,9 @@
 				30DB4F20ADE24F32901CC322 /* GetConversations.swift */,
 				D3EC7B75FA36FECB82127245 /* GetSearchRecipients.swift */,
 				3AE5436C5E394FAA5062ACE7 /* SearchRecipient.swift */,
+				D3F73CC62B764DD300934255 /* DeleteConversation.swift */,
+				D3F73CCA2B764FD400934255 /* UpdateConversationState.swift */,
+				D3F73CCC2B76514200934255 /* StarConversation.swift */,
 			);
 			path = Conversations;
 			sourceTree = "<group>";
@@ -10209,6 +10218,7 @@
 				6CA2F41D512E12E84CA0B467 /* Conversation.swift in Sources */,
 				DBB90662F39D562D3D926E75 /* ConversationCoursesActionSheet.swift in Sources */,
 				967CF0BCB7D845D8B5569B06 /* ConversationDetailCell.swift in Sources */,
+				D3F73CC72B764DD300934255 /* DeleteConversation.swift in Sources */,
 				8C62B01D9AC47DBA25239660 /* ConversationDetailViewController.swift in Sources */,
 				4F55C21042E94DB03B46335D /* ConversationListCell.swift in Sources */,
 				BBE9E03123EC91E51BDA305A /* ConversationMessage.swift in Sources */,
@@ -10373,6 +10383,7 @@
 				2379E49DB07E5748CB3ECC9C /* DocViewerSession.swift in Sources */,
 				95F2E4BB05AB9F0E4EE124E6 /* DocViewerViewController.swift in Sources */,
 				248B95D3107374D23924B067 /* DocumentExtensions.swift in Sources */,
+				D3F73CCD2B76514200934255 /* StarConversation.swift in Sources */,
 				229DB613B3BA88E358C71942 /* DownloadTaskPublisher.swift in Sources */,
 				9B0C9A0C1A204CCF24D3CB06 /* DragButtonStateViewModel.swift in Sources */,
 				2CFF76C47011FF6AAD9C4C48 /* DragInfo.swift in Sources */,
@@ -10731,6 +10742,7 @@
 				7F7AA9C7343A3978ED3080C6 /* NotificationManager.swift in Sources */,
 				A1FC7A2BD8C3AF4D66B39E7F /* NotificationView.swift in Sources */,
 				4B32E4BBA3BBE0BE56294B3E /* ObserverAlert.swift in Sources */,
+				D3F73CCB2B764FD400934255 /* UpdateConversationState.swift in Sources */,
 				7BEB6CE516C9721268284170 /* OfflineBannerView.swift in Sources */,
 				75B9CA497E0527749565675F /* OfflineBannerViewModel.swift in Sources */,
 				78C6DB6653BAB187BE11BA9E /* OfflineFileInteractor.swift in Sources */,
