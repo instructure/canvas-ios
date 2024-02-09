@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+#if DEBUG
+
 import Combine
 import Foundation
 
@@ -59,3 +61,5 @@ final class GradeListInteractorPreview: GradeListInteractor {
 
     func updateGradingPeriod(id _: String?) {}
 }
+
+#endif
