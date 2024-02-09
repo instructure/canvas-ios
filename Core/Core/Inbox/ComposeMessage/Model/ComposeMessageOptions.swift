@@ -104,7 +104,7 @@ extension ComposeMessageOptions {
         )
         var fieldContents = DefaultMessageFieldContents()
 
-        fieldContents.subjectText = "Fw: \(conversation.subject)"
+        fieldContents.subjectText = NSLocalizedString("Fw: \(conversation.subject)", comment: "New conversation subject for forwarded message")
 
         if let context = Context(canvasContextID: conversation.contextCode ?? "") {
             fieldContents.selectedContext = .init(name: conversation.contextName ?? "", context: context)
