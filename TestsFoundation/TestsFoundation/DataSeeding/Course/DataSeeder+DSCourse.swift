@@ -28,6 +28,16 @@ extension DataSeeder {
         return makeRequest(request)
     }
 
+    public func createCourses(count: Int) -> [DSCourse] {
+        var courses = [DSCourse]()
+        for _ in 0..<count {
+            let course = createCourse()
+            courses.append(course)
+            sleep(1) // To avoid courses having the same title
+        }
+        return courses
+    }
+
     public func createK5Course(name: String = "DataSeed iOS K5 \(Int(Date().timeIntervalSince1970))") -> DSCourse {
         let requestedBody = CreateDSCourseRequest.Body(course: .init(name: name))
         let request = CreateDSCourseRequest(body: requestedBody, isK5: true)

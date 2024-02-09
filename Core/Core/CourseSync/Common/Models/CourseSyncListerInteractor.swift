@@ -52,12 +52,12 @@ public class CourseSyncListInteractorLive: CourseSyncListInteractor {
                     scope: .where(#keyPath(CourseSyncSelectorCourse.courseId), equals: courseId)
                 )
             )
-            publisher = courseListStore.getEntities()
+            publisher = courseListStore.getEntities(ignoreCache: true)
         case .all:
             courseListStore = ReactiveStore(
                 useCase: GetCourseSyncSelectorCourses()
             )
-            publisher = courseListStore.getEntities()
+            publisher = courseListStore.getEntities(ignoreCache: true)
         case let .courseIds(courseIds):
             let predicate = NSPredicate(format: "courseId IN %@", courseIds)
             courseListStore = ReactiveStore(
