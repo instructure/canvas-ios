@@ -40,6 +40,7 @@ public struct DSRubricResponse: Codable {
 public struct DSRubricData: Codable {
     public let id: String
     public let ratings: [DSRubricRating]
+    public let long_description: String?
 }
 
 public struct DSRubricRating: Codable {

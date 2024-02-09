@@ -137,12 +137,20 @@ public class AssignmentsHelper: BaseHelper {
                 return app.find(id: "RubricCell.title.\(rubric.data[0].id)")
             }
 
+            public static func rubricDescriptionButton(rubric: DSRubric) -> XCUIElement {
+                return app.find(id: "RubricCell.descButton.\(rubric.data[0].id)")
+            }
+
             public static func rubricRatingButton(rubric: DSRubric, index: Int) -> XCUIElement {
                 return app.find(id: "RubricCell.RatingButton.\(rubric.data[0].id)-\(index).0")
             }
 
             public static func rubricRatingTitle(rubric: DSRubric) -> XCUIElement {
                 return app.find(id: "RubricCell.ratingTitle.\(rubric.data[0].id)")
+            }
+
+            public static func rubricLongDescriptionLabel(rubric: DSRubric) -> XCUIElement {
+                return app.find(label: rubric.data[0].long_description!, type: .staticText)
             }
         }
 
@@ -262,11 +270,14 @@ public class AssignmentsHelper: BaseHelper {
                                     pointsPossible: Float = 1.0) -> DSRubric {
         let rubricCriteriaRating1 = CreateDSRubricRequest.RubricCriteriaRating(points: 0, description: "Rating 0")
         let rubricCriteriaRating2 = CreateDSRubricRequest.RubricCriteriaRating(points: 1, description: "Rating 1")
+        let longDescription = "Not so long description of test criteria of test rubric"
         let rubricCriteria = CreateDSRubricRequest.RubricCriteria(
             description: "Criteria Description",
+            long_description: longDescription,
             points: pointsPossible,
             ratings: ["0": rubricCriteriaRating1, "1": rubricCriteriaRating2])
-        let rubricRequestBody = CreateDSRubricRequest.RequestedDSRubric(criteria: ["0": rubricCriteria])
+        let description = "Test description of test rubric"
+        let rubricRequestBody = CreateDSRubricRequest.RequestedDSRubric(criteria: ["0": rubricCriteria], description: description)
         let rubricAssociationRequestBody = CreateDSRubricRequest.RequestedDSRubricAssociation(
             associationId: rubricAssociationId,
             associationType: rubricAssociationType,

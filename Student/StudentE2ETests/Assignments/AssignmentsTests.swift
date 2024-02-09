@@ -313,6 +313,7 @@ class AssignmentsTests: E2ETestCase {
         let assignment = Helper.createAssignment(course: course)
         let rubric = Helper.createRubric(in: course, rubricAssociationId: assignment.id, rubricAssociationType: .assignment)
         GradesHelper.submitAssignment(course: course, student: student, assignment: assignment)
+        sleep(1)
         GradesHelper.submitAssignment(course: course, student: student, assignment: assignment)
 
         // MARK: Get the user logged in
@@ -380,9 +381,11 @@ class AssignmentsTests: E2ETestCase {
         // MARK: Check rubric
         rubricButton.hit()
         let rubricTitle = DetailsHelper.SubmissionComments.rubricTitle(rubric: rubric).waitUntil(.visible)
+        let rubricDescriptionButton = DetailsHelper.SubmissionComments.rubricDescriptionButton(rubric: rubric).waitUntil(.visible)
         let rubricRatingZero = DetailsHelper.SubmissionComments.rubricRatingButton(rubric: rubric, index: 0).waitUntil(.visible)
         let rubricRatingOne = DetailsHelper.SubmissionComments.rubricRatingButton(rubric: rubric, index: 1).waitUntil(.visible)
         XCTAssertTrue(rubricTitle.isVisible)
+        XCTAssertTrue(rubricDescriptionButton.isVisible)
         XCTAssertTrue(rubricRatingZero.isVisible)
         XCTAssertTrue(rubricRatingOne.isVisible)
         XCTAssertTrue(rubricRatingZero.hasLabel(label: rubric.data[0].ratings[1].description, strict: false))
@@ -396,5 +399,10 @@ class AssignmentsTests: E2ETestCase {
         rubricRatingZero.hit()
         XCTAssertTrue(rubricRatingTitle.waitUntil(.visible).isVisible)
         XCTAssertTrue(rubricRatingTitle.hasLabel(label: rubric.data[0].ratings[1].description))
+
+        rubricDescriptionButton.hit()
+        let rubricLongDescriptionLabel = DetailsHelper.SubmissionComments
+            .rubricLongDescriptionLabel(rubric: rubric).waitUntil(.visible)
+        XCTAssertTrue(rubricLongDescriptionLabel.isVisible)
     }
 }
