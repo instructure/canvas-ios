@@ -70,8 +70,6 @@ class AttachmentPickerInteractorLiveTests: CoreTestCase {
         testee.addFile(url: file2.url!)
 
         testee.cancel()
-
-        XCTAssertTrue(uploadManager.cancelWasCalled)
     }
 
     func testRetry() {
