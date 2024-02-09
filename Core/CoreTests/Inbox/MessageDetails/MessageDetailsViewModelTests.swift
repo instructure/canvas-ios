@@ -76,18 +76,36 @@ class MessageDetailsViewModelTests: CoreTestCase {
         XCTAssertEqual(sheet?.actions.count, 4)
     }
 
-    func testMessageDelete() {
+    func testMessageDeleteConfirmed() {
         let viewController = WeakViewController(UIViewController())
         testee.deleteConversationMessageDidTap.send((conversationId: "conversationId", messageId: "messageId", viewController: viewController))
+        testee.confirmAlert.notifyCompletion(isConfirmed: true)
 
         XCTAssertTrue(mockInteractor.deleteMessageCalled)
     }
 
-    func testConversationDelete() {
+    func testMessageDeleteRejected() {
+        let viewController = WeakViewController(UIViewController())
+        testee.deleteConversationMessageDidTap.send((conversationId: "conversationId", messageId: "messageId", viewController: viewController))
+        testee.confirmAlert.notifyCompletion(isConfirmed: false)
+
+        XCTAssertFalse(mockInteractor.deleteMessageCalled)
+    }
+
+    func testConversationDeleteConfirmed() {
         let viewController = WeakViewController(UIViewController())
         testee.deleteConversationDidTap.send((conversationId: "conversationId", viewController: viewController))
+        testee.confirmAlert.notifyCompletion(isConfirmed: true)
 
         XCTAssertTrue(mockInteractor.deleteConversationCalled)
+    }
+
+    func testConversationDeleteRejected() {
+        let viewController = WeakViewController(UIViewController())
+        testee.deleteConversationDidTap.send((conversationId: "conversationId", viewController: viewController))
+        testee.confirmAlert.notifyCompletion(isConfirmed: false)
+
+        XCTAssertFalse(mockInteractor.deleteConversationCalled)
     }
 
     func testForward() {
