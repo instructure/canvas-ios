@@ -154,8 +154,8 @@ public struct GradeListView: View {
                 courseName: courseName,
                 totalGrade: totalGrade
             )
-            Divider()
-            togglesView()
+//            Divider()
+//            togglesView()
         }
         .cornerRadius(6)
         .overlay(
