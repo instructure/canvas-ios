@@ -249,7 +249,6 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
         return GradListAssembly.makeGradeListViewController(
             env: AppEnvironment.shared,
             courseID: courseID,
-            gradingPeriodID: nil,
             userID: AppEnvironment.shared.currentSession?.userID
         )
     },

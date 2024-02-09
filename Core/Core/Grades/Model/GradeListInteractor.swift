@@ -27,10 +27,10 @@ public protocol GradeListInteractor {
 }
 
 public final class GradeListInteractorLive: GradeListInteractor {
+
     // MARK: - Dependencies
 
     public let courseID: String
-    private var gradingPeriodID: String?
     private let userID: String?
     private let offlineInteractor: OfflineModeInteractor
 
@@ -41,18 +41,17 @@ public final class GradeListInteractorLive: GradeListInteractor {
     private let courseStore: ReactiveStore<GetCourse>
     private var enrollmentListStore: ReactiveStore<GetEnrollments>
     private let gradingPeriodListStore: ReactiveStore<GetGradingPeriods>
+    private var gradingPeriodID: String?
     private var isInitialGradingPeriodSet = false
 
     // MARK: - Init
 
     public init(
         courseID: String,
-        gradingPeriodID: String?,
         userID: String?,
         offlineInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
     ) {
         self.courseID = courseID
-        self.gradingPeriodID = gradingPeriodID
         self.userID = userID
         self.offlineInteractor = offlineInteractor
 
@@ -235,7 +234,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
             assignments: []
         )
 
-        let now = Date()
+        let now = Clock.now
 
         orderedAssignments.forEach { assignment in
             if let dueAt = assignment.dueAtSortNilsAtBottom {

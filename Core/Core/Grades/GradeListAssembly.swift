@@ -21,13 +21,11 @@ import Foundation
 public enum GradListAssembly {
     public static func makeInteractor(
         courseID: String,
-        gradingPeriodID: String?,
         userID: String?,
         offlineInteractor: OfflineModeInteractor
     ) -> GradeListInteractor {
         GradeListInteractorLive(
             courseID: courseID,
-            gradingPeriodID: gradingPeriodID,
             userID: userID,
             offlineInteractor: offlineInteractor
         )
@@ -36,13 +34,11 @@ public enum GradListAssembly {
     public static func makeGradeListViewController(
         env: AppEnvironment,
         courseID: String,
-        gradingPeriodID: String?,
         userID: String?,
         offlineInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
     ) -> UIViewController {
         let interactor = makeInteractor(
             courseID: courseID,
-            gradingPeriodID: gradingPeriodID,
             userID: userID,
             offlineInteractor: offlineInteractor
         )

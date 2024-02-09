@@ -330,25 +330,6 @@ public struct GradeListView: View {
 
 extension Assignment: Identifiable {}
 extension GradingPeriod: Identifiable {}
-extension Course {
-
-    func enrollmentForGrades(userId: String?) -> Enrollment? {
-        enrollments?.first {
-            $0.state == .active &&
-            $0.userID == userId &&
-            $0.type.lowercased().contains("student")
-        }
-    }
-}
-
-struct HorizontalRightAlignedLabelStyle: LabelStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        HStack(alignment: .center, spacing: 4) {
-            configuration.title
-            configuration.icon
-        }
-    }
-}
 
 #if DEBUG
 struct GradeListViewPreview: PreviewProvider {

@@ -101,7 +101,6 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         gradesViewController = GradListAssembly.makeGradeListViewController(
             env: AppEnvironment.shared,
             courseID: courseID,
-            gradingPeriodID: nil,
             userID: studentID
         )
         viewControllers.append(gradesViewController)

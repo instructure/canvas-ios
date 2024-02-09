@@ -86,7 +86,7 @@ class AssignmentTests: CoreTestCase {
         a.update(fromApiModel: api, in: client, updateSubmission: true, updateScoreStatistics: false)
         XCTAssertNil(a.submission)
 
-        let list: [Assignment] = client.fetch(NSPredicate(format: "%K == %@", #keyPath(Assignment.id), a.id))
+        let list: [Assignment] = client.fetch(NSPredicate(format: "%K == %@", (\Assignment.id).string, a.id))
         let result = list.first
         XCTAssertNotNil(result)
         XCTAssertNil(result?.submission)
@@ -140,7 +140,7 @@ class AssignmentTests: CoreTestCase {
         a.update(fromApiModel: api, in: client, updateSubmission: false, updateScoreStatistics: true)
         XCTAssertNil(a.scoreStatistics)
 
-        let list: [Assignment] = client.fetch(NSPredicate(format: "%K == %@", #keyPath(Assignment.id), a.id))
+        let list: [Assignment] = client.fetch(NSPredicate(format: "%K == %@", (\Assignment.id).string, a.id))
         let result = list.first
         XCTAssertNotNil(result)
         XCTAssertNil(result?.scoreStatistics)

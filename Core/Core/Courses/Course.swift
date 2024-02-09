@@ -234,6 +234,14 @@ extension Course {
     public var hasTeacherEnrollment: Bool {
         return enrollments?.contains { $0.isTeacher } == true
     }
+
+    func enrollmentForGrades(userId: String?) -> Enrollment? {
+        enrollments?.first {
+            $0.state == .active &&
+            $0.userID == userId &&
+            $0.type.lowercased().contains("student")
+        }
+    }
 }
 
 final public class CourseSettings: NSManagedObject {

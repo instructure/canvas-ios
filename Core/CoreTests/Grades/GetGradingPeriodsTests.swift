@@ -47,7 +47,7 @@ class GetGradingPeriodsTests: CoreTestCase {
         let b = APIGradingPeriod.make(id: "2", title: "2")
 
         useCase.write(response: [a, b], urlResponse: nil, to: databaseClient)
-        let sort = NSSortDescriptor(key: #keyPath(GradingPeriod.id), ascending: true)
+        let sort = NSSortDescriptor(key: (\GradingPeriod.id).string, ascending: true)
         let gradingPeriods: [GradingPeriod] = databaseClient.fetch(useCase.scope.predicate, sortDescriptors: [sort])
 
         XCTAssertEqual(gradingPeriods.count, 2)
