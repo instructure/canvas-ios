@@ -30,7 +30,7 @@ class MessageDetailsViewModel: ObservableObject {
 
     @Published public var isShowingCancelDialog = false
     public let confirmAlert = ConfirmationAlertViewModel(
-        title: NSLocalizedString("Are your sure", comment: ""),
+        title: NSLocalizedString("Are your sure?", comment: ""),
         message: NSLocalizedString(
            """
            It will permanently delete this message from your profile.
@@ -271,7 +271,7 @@ class MessageDetailsViewModel: ObservableObject {
             }
             .map { [weak self] (conversationId, messageId, viewController) in
                 _ = interactor.deleteConversationMessage(conversationId: conversationId, messageId: messageId)
-                if self?.messages.isEmpty == true {
+                if self?.messages.count ?? 0 <= 1 {
                     self?.router.dismiss(viewController)
                 }
                 self?.refreshDidTrigger.send({ })
