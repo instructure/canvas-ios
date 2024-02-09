@@ -127,6 +127,37 @@ public class DashboardHelper: BaseHelper {
         }
     }
 
+    public struct CourseOptions {
+        public static var manageOfflineContentButton: XCUIElement { app.find(label: "Manage Offline Content", type: .button) }
+        public static var customizeCourseButton: XCUIElement { app.find(label: "Customize Course", type: .button) }
+
+        public struct CustomizeCourse {
+            public enum CourseColor: String, CaseIterable {
+                case brick = "Brick"
+                case red = "Red"
+                case magenta = "Magenta"
+                case purple = "Purple"
+                case deepPurple = "Deep Purple"
+                case indigo = "Indigo"
+                case blue = "Blue"
+                case lightBlue = "Light Blue"
+                case cyan = "Cyan"
+                case teal = "Teal"
+                case green = "Green"
+                case olive = "Olive"
+                case pumpkin = "Pumpkin"
+                case orange = "Orange"
+                case pink = "Pink"
+            }
+
+            public static var nicknameTextField: XCUIElement { app.find(label: "Nickname", type: .textField) }
+            public static var doneButton: XCUIElement { app.find(label: "Done", type: .button) }
+            public static func colorButton(color: CourseColor) -> XCUIElement {
+                return app.find(label: color.rawValue, type: .button)
+            }
+        }
+    }
+
     @discardableResult
     public static func createFrontPageForCourse(course: DSCourse) -> DSPage {
         let pageBody = CreateDSPageRequest.RequestedDSPage(title: "Dashboard Test Page", body: "Dashboard Test Page Body", front_page: true, published: true)

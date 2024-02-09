@@ -174,8 +174,8 @@ public class LTITools: NSObject {
                     completionHandler(true)
                 }
             } else if self.openInSafari {
-                    self.env.loginDelegate?.openExternalURLinSafari(url)
-                    completionHandler(true)
+                self.env.loginDelegate?.openExternalURLinSafari(url)
+                completionHandler(true)
             } else {
                 let safari = SFSafariViewController(url: url)
                 self.env.router.show(safari, from: view, options: .modal(.overFullScreen)) {
