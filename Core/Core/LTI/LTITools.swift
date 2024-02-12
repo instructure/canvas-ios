@@ -150,7 +150,7 @@ public class LTITools: NSObject {
             return nil
         }
 
-        var components = url.pathComponents
+        let components = url.pathComponents
         guard components[1] == "courses", components[3] == "external_tools" else { return nil }
         return (components[2], components[4])
     }
@@ -174,8 +174,8 @@ public class LTITools: NSObject {
                     completionHandler(true)
                 }
             } else if self.openInSafari {
-                    self.env.loginDelegate?.openExternalURLinSafari(url)
-                    completionHandler(true)
+                self.env.loginDelegate?.openExternalURLinSafari(url)
+                completionHandler(true)
             } else {
                 let safari = SFSafariViewController(url: url)
                 self.env.router.show(safari, from: view, options: .modal(.overFullScreen)) {

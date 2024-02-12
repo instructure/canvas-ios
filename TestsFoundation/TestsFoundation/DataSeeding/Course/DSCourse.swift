@@ -25,4 +25,5 @@ public struct DSCourse: Codable {
     public var homeroom_course: Bool = false
     public let start_at: Date?
     public let end_at: Date?
+    public let default_view: String?
 }

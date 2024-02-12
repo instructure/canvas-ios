@@ -254,4 +254,80 @@ class DashboardTests: E2ETestCase {
         XCTAssertTrue(courseCard.isVisible)
         XCTAssertTrue(courseCardGradeLabel.isVanished)
     }
+
+    func testCourseCardReorder() {
+        // MARK: Seed the usual stuff with 2 courses
+        let student = seeder.createUser()
+        let courses = seeder.createCourses(count: 2)
+        seeder.enrollStudent(student, in: courses[0])
+        seeder.enrollStudent(student, in: courses[1])
+
+        // MARK: Get the user logged in, check course cards
+        logInDSUser(student)
+        let courseCard1 = Helper.courseCard(course: courses[0]).waitUntil(.visible)
+        let courseCard2 = Helper.courseCard(course: courses[1]).waitUntil(.visible)
+        XCTAssertTrue(courseCard1.isVisible)
+        XCTAssertTrue(courseCard2.isVisible)
+
+        // MARK: Reorder course cards, check if successful
+        let courseCard1FrameBefore = courseCard1.frame
+        let courseCard2FrameBefore = courseCard2.frame
+        courseCard1.tapAndHoldAndDragToElement(element: courseCard2)
+        let courseCard1FrameAfter = courseCard1.frame
+        let courseCard2FrameAfter = courseCard2.frame
+        XCTAssertEqual(courseCard1FrameAfter, courseCard2FrameBefore)
+        XCTAssertEqual(courseCard2FrameAfter, courseCard1FrameBefore)
+
+        // MARK: Logout then login again to test if the changes are stored properly
+        logOut()
+        logInDSUser(student)
+        courseCard1.waitUntil(.visible)
+        courseCard2.waitUntil(.visible)
+        XCTAssertTrue(courseCard1.isVisible)
+        XCTAssertTrue(courseCard2.isVisible)
+        XCTAssertEqual(courseCard1FrameAfter, courseCard2FrameBefore)
+        XCTAssertEqual(courseCard2FrameAfter, courseCard1FrameBefore)
+    }
+
+    func testCourseNicknameAndColor() {
+        // MARK: Seed the usual stuff
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        let courseNickname = "Course Nickname"
+        seeder.enrollStudent(student, in: course)
+
+        // MARK: Get the user logged in, check course card
+        logInDSUser(student)
+        let courseCard = Helper.courseCard(course: course).waitUntil(.visible)
+        let courseOptionsButton = Helper.courseOptionsButton(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+        XCTAssertTrue(courseOptionsButton.isVisible)
+
+        // MARK: Navigate to Customize Course screen, check options
+        courseOptionsButton.hit()
+        let customizeCourseButton = Helper.CourseOptions.customizeCourseButton.waitUntil(.visible)
+        XCTAssertTrue(customizeCourseButton.isVisible)
+
+        customizeCourseButton.hit()
+        let nicknameTextField = Helper.CourseOptions.CustomizeCourse.nicknameTextField.waitUntil(.visible)
+        let doneButton = Helper.CourseOptions.CustomizeCourse.doneButton.waitUntil(.visible)
+        XCTAssertTrue(nicknameTextField.isVisible)
+        XCTAssertTrue(doneButton.isVisible)
+
+        for courseColor in Helper.CourseOptions.CustomizeCourse.CourseColor.allCases {
+            let colorButton = Helper.CourseOptions.CustomizeCourse.colorButton(color: courseColor).waitUntil(.visible)
+            XCTAssertTrue(colorButton.isVisible)
+        }
+
+        // MARK: Set nickname and color for course
+        nicknameTextField.cutText()
+        nicknameTextField.writeText(text: courseNickname)
+
+        let randomColorButton = Helper.CourseOptions.CustomizeCourse.colorButton(color: .allCases.randomElement()!).waitUntil(.visible)
+        XCTAssertTrue(randomColorButton.isVisible)
+
+        randomColorButton.hit()
+        doneButton.hit()
+        XCTAssertTrue(courseCard.waitUntil(.visible).hasLabel(label: courseNickname, strict: false))
+    }
 }

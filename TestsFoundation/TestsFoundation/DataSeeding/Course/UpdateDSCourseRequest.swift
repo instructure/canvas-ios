@@ -35,10 +35,12 @@ extension UpdateDSCourseRequest {
     public struct UpdatedDSCourse: Encodable {
         let grading_standard_id: Int?
         let homeroom_course: Bool?
+        let default_view: DSDefaultView?
 
-        public init(grading_standard_id: Int? = nil, homeroom_course: Bool? = nil) {
+        public init(grading_standard_id: Int? = nil, homeroom_course: Bool? = nil, default_view: DSDefaultView? = nil) {
             self.grading_standard_id = grading_standard_id
             self.homeroom_course = homeroom_course
+            self.default_view = default_view
         }
     }
 

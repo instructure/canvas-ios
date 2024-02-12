@@ -53,21 +53,21 @@ public class CourseSyncGradesInteractorLive: CourseSyncGradesInteractor {
 
     private static func fetchCourseColors() -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: GetCustomColors())
-            .getEntities()
+            .getEntities(ignoreCache: true)
             .mapToVoid()
             .eraseToAnyPublisher()
     }
 
     private static func fetchGradingPeriods(courseId: String) -> AnyPublisher<Void, Error> {
         ReactiveStore(useCase: GetGradingPeriods(courseID: courseId))
-            .getEntities()
+            .getEntities(ignoreCache: true)
             .mapToVoid()
             .eraseToAnyPublisher()
     }
 
     private static func fetchCourseAndGetGradingPeriodID(courseId: String, userId: String) -> AnyPublisher<CurrentGradingPeriodID?, Error> {
         ReactiveStore(useCase: GetCourse(courseID: courseId))
-            .getEntities()
+            .getEntities(ignoreCache: true)
             .map { $0.first?.enrollmentForGrades(userId: userId)?.currentGradingPeriodID }
             .eraseToAnyPublisher()
     }
@@ -79,7 +79,7 @@ public class CourseSyncGradesInteractorLive: CourseSyncGradesInteractor {
                                      types: ["StudentEnrollment"],
                                      states: [.active])
         return ReactiveStore(useCase: useCase)
-            .getEntities()
+            .getEntities(ignoreCache: true)
             .mapToVoid()
             .eraseToAnyPublisher()
     }
@@ -89,7 +89,7 @@ public class CourseSyncGradesInteractorLive: CourseSyncGradesInteractor {
                                             gradingPeriodID: gradingPeriodID,
                                             gradedOnly: true)
         return ReactiveStore(useCase: useCase)
-            .getEntities()
+            .getEntities(ignoreCache: true)
             .mapToVoid()
             .eraseToAnyPublisher()
     }

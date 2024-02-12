@@ -58,7 +58,7 @@ public class DashboardContainerViewModel: ObservableObject {
             useCase: GetDashboardGroups()
         )
 
-        groupListStore.observeEntitiesWithError()
+        groupListStore.getEntities(keepObservingDatabaseChanges: true)
             .replaceError(with: [])
             .assign(to: &$groups)
 
@@ -71,7 +71,7 @@ public class DashboardContainerViewModel: ObservableObject {
 
     public func refreshGroups(onComplete: (() -> Void)? = nil) {
         groupListStore
-            .forceFetchEntities()
+            .forceRefresh()
             .sink { _ in
                 onComplete?()
             }

@@ -1,0 +1,39 @@
+---
+targets:
+  Widgets:
+    type: app-extension
+    platform: iOS
+    transitivelyLinkDependencies: true
+    settings:
+      APPLICATION_EXTENSION_API_ONLY: true
+      ENABLE_TESTABILITY: true
+      SWIFT_EMIT_LOC_STRINGS: true
+      PRODUCT_BUNDLE_IDENTIFIER: com.instructure.icanvas.widgets
+      INFOPLIST_FILE: Widgets/Resources/Info.plist
+      CODE_SIGN_ENTITLEMENTS: Widgets/Resources/Widgets.entitlements
+      TARGETED_DEVICE_FAMILY: 1,2
+    sources:
+      - path: ./
+        excludes:
+          - ".swiftlint.yml"
+    dependencies:
+      - target: Core/Core
+schemes:
+  Widgets - Announcements:
+    build:
+      targets:
+        Widgets: all
+    run:
+      targets:
+        Widgets: all
+      environmentVariables:
+        _XCWidgetKind: AnnouncementsWidget
+  Widgets - Grades:
+    build:
+      targets:
+        Widgets: all
+    run:
+      targets:
+        Widgets: all
+      environmentVariables:
+        _XCWidgetKind: GradesWidget

@@ -53,37 +53,6 @@ class DocViewerAnnotationProviderTests: CoreTestCase {
         }
     }
 
-    func getProviders(
-        annotations: [APIDocViewerAnnotation] = [ APIDocViewerAnnotation.make() ],
-        enabled: Bool = true,
-        permissions: APIDocViewerPermissions = .readwritemanage,
-        isAnnotationEditingDisabled: Bool = false,
-        useMockFileAnnotationProvider: Bool = false
-    ) -> (annotationProvider: DocViewerAnnotationProvider, documentProvider: PDFDocumentProvider) {
-        let document = Document(url: Bundle(for: DocViewerAnnotationProviderTests.self).url(forResource: "instructure", withExtension: "pdf")!)
-        let metadata = APIDocViewerAnnotationsMetadata(enabled: enabled, user_id: "1", user_name: "a", permissions: permissions)
-        let documentProvider = document.documentProviders.first!
-        let fileAnnotationProvider = useMockFileAnnotationProvider ? MockPDFFileAnnotationProvider(documentProvider: documentProvider) : documentProvider.annotationManager.fileAnnotationProvider!
-        let provider = DocViewerAnnotationProvider(
-            documentProvider: documentProvider,
-            fileAnnotationProvider: fileAnnotationProvider,
-            metadata: APIDocViewerMetadata(
-                annotations: metadata,
-                panda_push: nil,
-                rotations: nil,
-                urls: APIDocViewerURLsMetadata(pdf_download: APIURL.make().rawValue)
-            ),
-            apiAnnotations: annotations,
-            api: environment.api,
-            sessionID: "a",
-            isAnnotationEditingDisabled: isAnnotationEditingDisabled
-        )
-        documentProvider.annotationManager.annotationProviders.append(provider)
-
-        // Annotation provider only keeps a weak reference to the PDFDocumentProvider so we have to return it to be kept alive
-        return (annotationProvider: provider, documentProvider: documentProvider)
-    }
-
     func testInit() {
         XCTAssertEqual(getProviders().annotationProvider.allAnnotations.count, 1)
         XCTAssertEqual(getProviders(enabled: false).annotationProvider.allAnnotations.count, 0)
@@ -245,5 +214,39 @@ class MockPDFFileAnnotationProvider: PDFFileAnnotationProvider {
 
     override func annotationsForPage(at pageIndex: PageIndex) -> [Annotation]? {
         [Annotation.from(.make(), metadata: .make())!]
+    }
+}
+
+extension CoreTestCase {
+
+    func getProviders(
+        annotations: [APIDocViewerAnnotation] = [ APIDocViewerAnnotation.make() ],
+        enabled: Bool = true,
+        permissions: APIDocViewerPermissions = .readwritemanage,
+        isAnnotationEditingDisabled: Bool = false,
+        useMockFileAnnotationProvider: Bool = false
+    ) -> (annotationProvider: DocViewerAnnotationProvider, documentProvider: PDFDocumentProvider) {
+        let document = Document(url: Bundle(for: DocViewerAnnotationProviderTests.self).url(forResource: "instructure", withExtension: "pdf")!)
+        let metadata = APIDocViewerAnnotationsMetadata(enabled: enabled, user_id: "1", user_name: "a", permissions: permissions)
+        let documentProvider = document.documentProviders.first!
+        let fileAnnotationProvider = useMockFileAnnotationProvider ? MockPDFFileAnnotationProvider(documentProvider: documentProvider) : documentProvider.annotationManager.fileAnnotationProvider!
+        let provider = DocViewerAnnotationProvider(
+            documentProvider: documentProvider,
+            fileAnnotationProvider: fileAnnotationProvider,
+            metadata: APIDocViewerMetadata(
+                annotations: metadata,
+                panda_push: nil,
+                rotations: nil,
+                urls: APIDocViewerURLsMetadata(pdf_download: APIURL.make().rawValue)
+            ),
+            apiAnnotations: annotations,
+            api: environment.api,
+            sessionID: "a",
+            isAnnotationEditingDisabled: isAnnotationEditingDisabled
+        )
+        documentProvider.annotationManager.annotationProviders.append(provider)
+
+        // Annotation provider only keeps a weak reference to the PDFDocumentProvider so we have to return it to be kept alive
+        return (annotationProvider: provider, documentProvider: documentProvider)
     }
 }

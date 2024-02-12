@@ -71,8 +71,8 @@ class SubmissionCommentListViewModel: ObservableObject {
         unowned let unownedSelf = self
 
         Publishers.CombineLatest(
-            submissionCommentsStore.observeEntitiesWithError(),
-            featureFlagsStore.observeEntitiesWithError()
+            submissionCommentsStore.getEntities(keepObservingDatabaseChanges: true),
+            featureFlagsStore.getEntities(keepObservingDatabaseChanges: true)
         )
         .eraseToAnyPublisher()
         .map { comments, featureFlags in

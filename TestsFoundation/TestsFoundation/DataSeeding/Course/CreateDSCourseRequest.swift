@@ -40,12 +40,19 @@ extension CreateDSCourseRequest {
         let syllabus_body: String?
         let start_at: Date?
         let end_at: Date?
+        let default_view: DSDefaultView?
 
-        public init(name: String, syllabus_body: String? = nil, start_at: Date? = nil, end_at: Date? = nil) {
+        public init(
+                name: String,
+                syllabus_body: String? = nil,
+                start_at: Date? = nil,
+                end_at: Date? = nil,
+                default_view: DSDefaultView? = nil) {
             self.name = name
             self.syllabus_body = syllabus_body
             self.start_at = start_at
             self.end_at = end_at
+            self.default_view = default_view
         }
     }
 
@@ -57,4 +64,12 @@ extension CreateDSCourseRequest {
             self.course = course
         }
     }
+}
+
+public enum DSDefaultView: String, RawRepresentable, Encodable {
+    case feed
+    case wiki
+    case modules
+    case syllabus
+    case assignments
 }

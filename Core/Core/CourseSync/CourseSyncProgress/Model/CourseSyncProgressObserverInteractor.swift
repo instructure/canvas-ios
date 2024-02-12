@@ -46,23 +46,20 @@ final class CourseSyncProgressObserverInteractorLive: CourseSyncProgressObserver
         context.automaticallyMergesChangesFromParent = true
     }
 
-    deinit {
-        fileProgressUseCase.cancel()
-        entryProgressUseCase.cancel()
-    }
-
     func observeDownloadProgress() -> AnyPublisher<CourseSyncDownloadProgress, Never> {
         fileProgressUseCase
-            .observeEntities()
-            .compactMap { $0.firstItem }
+            .getEntities(keepObservingDatabaseChanges: true)
+            .replaceError(with: [])
+            .compactMap { $0.first }
             .map { CourseSyncDownloadProgress.init(from: $0) }
             .eraseToAnyPublisher()
     }
 
     func observeStateProgress() -> AnyPublisher<[CourseSyncStateProgress], Never> {
         entryProgressUseCase
-            .observeEntities()
-            .compactMap { $0.allItems }
+            .getEntities(keepObservingDatabaseChanges: true)
+            .replaceError(with: [])
+            .compactMap { $0 }
             .map { $0.makeItems() }
             .eraseToAnyPublisher()
     }

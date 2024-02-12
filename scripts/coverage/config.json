@@ -26,7 +26,22 @@
     "Core\/Files\/FileUploadProgress\/View\/PreviewSupport\/",
     ".*Assembly[.]swift",
     ".*Preview[.]swift",
-    "Student\/BackgroundProcessing\/CoreTaskSchedulerLive.swift"
+    "Student\/BackgroundProcessing\/CoreTaskSchedulerLive.swift",
+    "Student\/Widgets\/GradesWidget\/GradesWidget.swift",
+    "Student\/Widgets\/GradesWidget\/Controller\/GradesWidgetProvider.swift",
+    "Student\/Widgets\/GradesWidget\/Model\/Routes.swift",
+    "Student\/Widgets\/AnnouncementsWidget\/Model\/GetWidgetAnnouncements.swift",
+    "Student\/Widgets\/GradesWidget\/Model\/GradeItem.swift",
+    "Student\/Widgets\/AnnouncementsWidget\/Model\/AnnouncementsEntry.swift",
+    "Student\/Widgets\/AnnouncementsWidget\/Model\/AnnouncementItem.swift",
+    "Student\/Widgets\/Common/Controller\/CommonWidgetProvider.swift",
+    "Student\/Widgets\/AnnouncementsWidget\/AnnouncementsWidget.swift",
+    "Student\/Widgets\/Common\/Model\/WidgetModel.swift",
+    "Student\/Widgets\/Widgets.swift",
+    "Student\/Widgets\/Common\/View\/CompatibleContainerBackground.swift",
+    "Student\/Widgets\/GradesWidget\/Model\/GradeModel.swift",
+    "Student\/Widgets\/AnnouncementsWidget\/Controller\/AnnouncementsProvider.swift",
+    "Student\/Widgets\/Common\/View\/CompatibleContentMargins.swift"
   ],
   "ignoreContent": [
     "makeUIViewController(context:",
