@@ -40,6 +40,7 @@ public enum GradListAssembly {
         )
         let viewModel = GradeListViewModel(interactor: interactor, router: env.router)
         let viewController = CoreHostingController(GradeListView(viewModel: viewModel))
+        viewController.defaultViewRoute = "/empty"
         return viewController
     }
 }
