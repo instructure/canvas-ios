@@ -91,7 +91,8 @@ public struct GradeListView: View {
         let verticalPadding: CGFloat = gradeListData.isGradingPeriodHidden && isEmpty ? 0 : 16
         courseSummaryView(
             courseName: gradeListData.courseName ?? "",
-            totalGrade: gradeListData.totalGradeText ?? NSLocalizedString("N/A", comment: "")
+            totalGrade: gradeListData.totalGradeText ?? NSLocalizedString("N/A", comment: ""),
+            isEmpty: isEmpty && gradeListData.isGradingPeriodHidden
         )
         HStack(spacing: 8) {
             if !gradeListData.isGradingPeriodHidden {
@@ -150,7 +151,8 @@ public struct GradeListView: View {
     @ViewBuilder
     private func courseSummaryView(
         courseName: String,
-        totalGrade: String
+        totalGrade: String,
+        isEmpty: Bool
     ) -> some View {
         VStack(spacing: 0) {
             courseDetailsView(
@@ -167,7 +169,7 @@ public struct GradeListView: View {
         )
         .padding(.horizontal, 16)
         .padding(.top, 16)
-        .padding(.bottom, 8)
+        .padding(.bottom, isEmpty ? 16 : 8)
     }
 
     @ViewBuilder
