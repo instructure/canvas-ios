@@ -98,47 +98,39 @@ public struct AudioPickerView: View {
     }
 
     private func playbackPlotView(maxSize: CGSize) -> some View {
-        let barWidth: CGFloat = 2
-        let spaceWidth: CGFloat = 5
-        let barCount = Int(floor(maxSize.width / (barWidth + spaceWidth)))
-        return VStack {
-            HStack {
-                HStack(alignment: .center, spacing: spaceWidth) {
-                    ForEach(
-                        viewModel.audioChartDataSet
-                            .filter { element in element.timestamp <= viewModel.audioPlayerPosition }
-                            .suffix(barCount / 2),
-                        id: \.timestamp
-                    ) { plotData in
-                        Rectangle()
-                            .frame(width: barWidth, height: viewModel.normalizeMeteringValue(rawValue: CGFloat(plotData.value), maxHeight: maxSize.height))
-                            .foregroundStyle(Color.textWarning)
-                    }
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
+        return ScrollViewReader { proxy in
+            ScrollView(.horizontal) {
+                LazyHStack(alignment: .center, spacing: viewModel.spaceWidth) {
+                    Spacer()
+                        .frame(width: maxSize.width / 2)
 
-                HStack(alignment: .center, spacing: spaceWidth) {
                     ForEach(
-                        viewModel.audioChartDataSet
-                            .filter { element in element.timestamp >= viewModel.audioPlayerPosition }
-                            .prefix(barCount / 2),
+                        viewModel.audioChartDataSet,
                         id: \.timestamp
                     ) { plotData in
                         Rectangle()
-                            .frame(width: barWidth, height: viewModel.normalizeMeteringValue(rawValue: CGFloat(plotData.value), maxHeight: maxSize.height))
+                            .frame(width: viewModel.barWidth, height: viewModel.normalizeMeteringValue(rawValue: CGFloat(plotData.value), maxHeight: maxSize.height))
                             .foregroundStyle(Color.textWarning)
+                            .id(plotData.timestamp)
                     }
+
+                    Spacer()
+                        .frame(width: maxSize.width / 2)
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                .background(GeometryReader { geometry in
+                    Color.clear
+                        .preference(key: ViewSizeKey.self, value: geometry.frame(in: .named("scroll")).origin.x)
+                })
+                .onPreferenceChange(ViewSizeKey.self) { value in
+                    viewModel.seekInAudio(value)
+                }
+                .onChange(of: viewModel.audioPlayerPosition) { newValue in
+                    let value = viewModel.audioChartDataSet.prefix(while: { $0.timestamp <= newValue }).last?.timestamp ?? 0
+                    proxy.scrollTo(value, anchor: .top)
+                }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .contentShape(Rectangle())
-        .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
-            .onChanged { gesture in
-                viewModel.seekInAudio(gesture.translation.width)
-            }
-        )
         .background {
             backgroundColor
         }

@@ -49,6 +49,16 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     public let playAudioButtonDidTap = PassthroughRelay<WeakViewController>()
     public let pauseAudioButtonDidTap = PassthroughRelay<WeakViewController>()
     public let interactor: AudioPickerInteractor
+    public let barWidth: CGFloat = 2
+    public let spaceWidth: CGFloat = 5
+
+    public var playerChartId: Int {
+        get {
+            let value = playerChartIdCounter
+            playerChartIdCounter += 1
+            return value
+        }
+    }
 
     // MARK: Private
 
@@ -56,6 +66,7 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     private let router: Router
     private var subscriptions = Set<AnyCancellable>()
     private var onSelect: (URL) -> Void
+    private var playerChartIdCounter = 0
 
     public init(router: Router, interactor: AudioPickerInteractor, onSelect: @escaping (URL) -> Void = { _ in }) {
         self.router = router
@@ -95,14 +106,11 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     }
 
     func normalizeSeekValue(rawValue value: CGFloat) -> CGFloat {
-        if let audioPlayer = interactor.audioPlayer {
-            var newValue = audioPlayer.currentTime - (value * 0.001)
-            if newValue >= audioPlayer.duration - 0.1 {
-                newValue = audioPlayer.duration - 0.1
-            }
-            return newValue
-        }
-        return 0
+        var chartIndex = Int(floor(-value / (barWidth + spaceWidth)))
+        if chartIndex >= audioChartDataSet.count { chartIndex = audioChartDataSet.count - 1 }
+        if chartIndex < 0 { chartIndex = 0 }
+        let chartValue = audioChartDataSet[chartIndex]
+        return chartValue.timestamp
     }
 
     func normalizeMeteringValue(rawValue: CGFloat, maxHeight: CGFloat) -> CGFloat {
