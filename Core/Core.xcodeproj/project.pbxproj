@@ -1458,6 +1458,7 @@
 		DFD0EA812A099A80CB82D667 /* K5ImportantDatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A7A5A46E49E3761398CA93 /* K5ImportantDatesViewModel.swift */; };
 		DFD3AAD755B3F0286737535B /* CourseSettingsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C1305A983D78809F0A7A61E /* CourseSettingsViewModelTests.swift */; };
 		DFE71639E49CA8EE47E62C1D /* ScannerViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23D3ACDB06C1A7CC643BAAB /* ScannerViewControllerTests.swift */; };
+		E02C4B31E17F2369374C2E9C /* CompatibleGeometryGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBB281260B06A334BB249CB3 /* CompatibleGeometryGroup.swift */; };
 		E03B1CC12908E3662628B194 /* TabVisibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC831CC597D3B443819AFFB /* TabVisibility.swift */; };
 		E048EAF019EA678434288875 /* GetCustomColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188104EDF335248D5D9A8701 /* GetCustomColors.swift */; };
 		E07E6D959FAD33B3321079D6 /* FilePreviewProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19EBE5514C1C3CC11D555832 /* FilePreviewProviderTests.swift */; };
@@ -3379,6 +3380,7 @@
 		FB34581D59EF1E9BDDFC064F /* QuizSubmissionBreakdownViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionBreakdownViewModel.swift; sourceTree = "<group>"; };
 		FB50F2545E4E672477BD0ADC /* SideMenuToggleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuToggleItem.swift; sourceTree = "<group>"; };
 		FB600674AEF3720F589F1C80 /* UploadAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAvatar.swift; sourceTree = "<group>"; };
+		FBB281260B06A334BB249CB3 /* CompatibleGeometryGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompatibleGeometryGroup.swift; sourceTree = "<group>"; };
 		FBD13E842360C2D71F7267AC /* K5HomeroomAnnouncementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5HomeroomAnnouncementViewModel.swift; sourceTree = "<group>"; };
 		FC00F6DC10D4E2E20E9110BA /* FileUploadItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploadItemTests.swift; sourceTree = "<group>"; };
 		FC42F2D2C81413BBD24A6300 /* InboxCoursePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxCoursePickerViewModel.swift; sourceTree = "<group>"; };
@@ -3668,6 +3670,7 @@
 				E96A7CB84DA92FF213FF5616 /* Motion */,
 				444EDDA908341096835C7377 /* AvoidKeyboardArea.swift */,
 				842A1901B28B1A21FC9E2F83 /* Badge.swift */,
+				FBB281260B06A334BB249CB3 /* CompatibleGeometryGroup.swift */,
 				966577F17F5946AA95FB6518 /* FirstAppearViewModifier.swift */,
 				B408E358BA052F9B08697E7E /* Hidden.swift */,
 				692E6906F12BB75FFC911812 /* iOS16HideListScrollContentBackground.swift */,
@@ -10223,6 +10226,7 @@
 				228FFDCDC0F440F54F197D2C /* CommentListViewController.swift in Sources */,
 				327293FDB3F6B7C9C6217F96 /* CommonCourse.swift in Sources */,
 				2E49C2D216C0210A348473B2 /* CommunicationChannel.swift in Sources */,
+				E02C4B31E17F2369374C2E9C /* CompatibleGeometryGroup.swift in Sources */,
 				5066BDC7E32C4D48C3A40B7E /* CompletionRequirement.swift in Sources */,
 				310C4045ACE1E23F3E91779B /* ComposeBatchUpload.swift in Sources */,
 				53FCD74EB6E9AC012A688780 /* ComposeMessageAssembly.swift in Sources */,

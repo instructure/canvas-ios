@@ -33,6 +33,7 @@ public struct AssignmentRemindersView: View {
         if viewModel.isReminderSectionVisible {
             VStack(alignment: .leading, spacing: 0) {
                 divider
+                    .animation(.none, value: viewModel.reminders)
                 header
                     .animation(.none, value: viewModel.reminders)
                     .padding(.horizontal, 16)
@@ -40,13 +41,15 @@ public struct AssignmentRemindersView: View {
                     .padding(.horizontal, 16)
                 divider
                     .padding(.bottom, 24) // To look nice when embedded into assignment details
+                    .animation(.none, value: viewModel.reminders)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(Color.backgroundLightest)
             .confirmationAlert(isPresented: $viewModel.showingDeleteConfirmDialog,
                                presenting: viewModel.confirmAlert)
-            .animation(.default, value: viewModel.reminders)
             .invalidateIntrinsicContentSize(hostController: viewController)
+            .animation(.default, value: viewModel.reminders)
+            .compatibleGeometryGroup()
         }
     }
 
@@ -58,6 +61,7 @@ public struct AssignmentRemindersView: View {
                                            viewModel.reminderDeleteDidTap(reminderModel)
                                        })
             .transition(.asymmetric(insertion: .opacity, removal: .move(edge: .trailing)))
+            .compatibleGeometryGroup()
         }
     }
 
@@ -98,6 +102,7 @@ public struct AssignmentRemindersView: View {
         .accessibilityAction {
             viewModel.newReminderDidTap(view: viewController.value)
         }
+        .compatibleGeometryGroup()
     }
 
     private var divider: some View {
