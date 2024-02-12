@@ -2225,6 +2225,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3460847670DE732F3E2E75C3 /* Pods-defaults-Student.release.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Student/Student.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2235,6 +2236,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas;
 				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2242,7 +2244,9 @@
 		2040C91B02B8F58B2D7A48C4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = Widgets/Resources/Widgets.entitlements;
+				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = Widgets/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2251,6 +2255,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.widgets;
 				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2258,7 +2263,9 @@
 		336D58E23F5F1B19BF6D0623 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = Widgets/Resources/Widgets.entitlements;
+				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = Widgets/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2267,6 +2274,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.widgets;
 				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2396,6 +2404,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 49AC1E0F5778EB910A3B5393 /* Pods-defaults-Student.debug.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Student/Student.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2406,6 +2415,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas;
 				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2483,7 +2493,9 @@
 		F970520BE34AF9EFFB43D6D9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = SubmitAssignment/SubmitAssignment.entitlements;
+				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = SubmitAssignment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2492,6 +2504,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.SubmitAssignment;
 				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -2499,7 +2512,9 @@
 		FDCD3F98FAA9833939AEA82B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CODE_SIGN_ENTITLEMENTS = SubmitAssignment/SubmitAssignment.entitlements;
+				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = SubmitAssignment/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2508,6 +2523,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.instructure.icanvas.SubmitAssignment;
 				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
