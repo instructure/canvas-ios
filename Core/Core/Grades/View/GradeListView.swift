@@ -19,12 +19,14 @@
 import Combine
 import SwiftUI
 
-public struct GradeListView: View {
+public struct GradeListView: View, ScreenViewTrackable {
     // MARK: - Dependencies
 
     @ObservedObject private var viewModel: GradeListViewModel
     @ObservedObject private var offlineModeViewModel: OfflineModeViewModel
     @Environment(\.viewController) private var viewController
+
+    public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     // MARK: - Private properties
 
@@ -39,6 +41,9 @@ public struct GradeListView: View {
     ) {
         self.viewModel = viewModel
         self.offlineModeViewModel = offlineViewModel
+        screenViewTrackingParameters = ScreenViewTrackingParameters(
+            eventName: "/courses/\(viewModel.courseID)/grades"
+        )
     }
 
     // MARK: - Components

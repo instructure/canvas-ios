@@ -18,8 +18,8 @@
 
 import Combine
 import CombineExt
-import Foundation
 import CombineSchedulers
+import Foundation
 
 public enum GradeArrangementOptions {
     case groupName
@@ -43,6 +43,7 @@ public final class GradeListViewModel: ObservableObject {
     // MARK: - Output
 
     @Published private(set) var state: ViewState = .loading
+    public var courseID: String { interactor.courseID }
 
     // MARK: - Input
 
