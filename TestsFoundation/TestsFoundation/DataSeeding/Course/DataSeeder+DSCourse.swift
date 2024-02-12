@@ -21,11 +21,21 @@ extension DataSeeder {
                              syllabus_body: String? = nil,
                              start_at: Date? = nil,
                              end_at: Date? = nil,
-                             restrictQuantitativeData: Bool = false) -> DSCourse {
+                             default_view: DSDefaultView? = nil) -> DSCourse {
         let requestedBody = CreateDSCourseRequest.Body(course: .init(
-                name: name, syllabus_body: syllabus_body, start_at: start_at, end_at: end_at))
+                name: name, syllabus_body: syllabus_body, start_at: start_at, end_at: end_at, default_view: default_view))
         let request = CreateDSCourseRequest(body: requestedBody)
         return makeRequest(request)
+    }
+
+    public func createCourses(count: Int) -> [DSCourse] {
+        var courses = [DSCourse]()
+        for _ in 0..<count {
+            let course = createCourse()
+            courses.append(course)
+            sleep(1) // To avoid courses having the same title
+        }
+        return courses
     }
 
     public func createK5Course(name: String = "DataSeed iOS K5 \(Int(Date().timeIntervalSince1970))") -> DSCourse {
@@ -43,14 +53,22 @@ extension DataSeeder {
         makeRequest(request)
     }
 
+    public func updateCourseWithDefaultView(course: DSCourse, default_view: DSDefaultView) {
+        let requestedBody = UpdateDSCourseRequest.Body(course: .init(default_view: default_view))
+        let request = UpdateDSCourseRequest(body: requestedBody, courseId: course.id)
+        makeRequest(request)
+    }
+
     public func updateCourseToHomeroomCourse(course: DSCourse) {
         let requestedBody = UpdateDSCourseRequest.Body(course: .init(homeroom_course: true))
         let request = UpdateDSCourseRequest(body: requestedBody, courseId: course.id)
         makeRequest(request)
     }
 
-    public func updateCourseSettings(course: DSCourse, restrictQuantitativeData: Bool) {
-        let requestBody = UpdateDSCourseSettingsRequest.Body(restrict_quantitative_data: restrictQuantitativeData)
+    public func updateCourseSettings(course: DSCourse, restrictQuantitativeData: Bool? = nil, syllabus_course_summary: Bool? = nil) {
+        let requestBody = UpdateDSCourseSettingsRequest.Body(
+                restrict_quantitative_data: restrictQuantitativeData,
+                syllabus_course_summary: syllabus_course_summary)
         let request = UpdateDSCourseSettingsRequest(body: requestBody, course: course)
         makeRequest(request)
     }
