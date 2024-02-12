@@ -168,6 +168,7 @@ private let emptySections = GradeListData(
     id: "",
     userID: "",
     courseName: "",
+    courseColor: nil,
     assignmentSections: [],
     isGradingPeriodHidden: false,
     gradingPeriods: [],
@@ -179,6 +180,7 @@ private let gradeListData = GradeListData(
     id: "",
     userID: "",
     courseName: "",
+    courseColor: nil,
     assignmentSections: [
         GradeListData.AssignmentSections(id: "1", title: "First group", assignments: [.make()]),
         GradeListData.AssignmentSections(id: "2", title: "Second group", assignments: [.make()]),

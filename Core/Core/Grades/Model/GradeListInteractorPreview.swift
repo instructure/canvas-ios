@@ -31,6 +31,7 @@ final class GradeListInteractorPreview: GradeListInteractor {
                 id: UUID.string,
                 userID: "userID",
                 courseName: "2023 - Math",
+                courseColor: nil,
                 assignmentSections: [
                     .init(
                         id: UUID.string,

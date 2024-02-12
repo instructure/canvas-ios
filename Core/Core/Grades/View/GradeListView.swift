@@ -117,6 +117,7 @@ public struct GradeListView: View {
             emptyView().padding(.top, 16)
         } else {
             assignmentListView(
+                courseColor: gradeListData.courseColor,
                 assignmentSections: gradeListData.assignmentSections,
                 userID: gradeListData.userID
             )
@@ -311,6 +312,7 @@ public struct GradeListView: View {
 
     @ViewBuilder
     private func assignmentListView(
+        courseColor: UIColor?,
         assignmentSections: [GradeListData.AssignmentSections],
         userID: String
     ) -> some View {
@@ -326,13 +328,14 @@ public struct GradeListView: View {
                 .padding(.horizontal, 16)
             ) {
                 ForEach(section.assignments) { assignment in
-                    Button {
-                        viewModel.didSelectAssignment.accept((viewController, assignment))
-                    } label: {
-                        VStack(spacing: 0) {
+                    VStack(spacing: 0) {
+                        Button {
+                            viewModel.didSelectAssignment.accept((viewController, assignment))
+                        } label: {
                             GradeRowView(assignment: assignment, userID: userID)
-                            Divider()
                         }
+                        .buttonStyle(ContextButton(contextColor: courseColor))
+                        Divider()
                     }
                 }
             }

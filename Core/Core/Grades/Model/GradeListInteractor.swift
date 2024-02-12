@@ -141,6 +141,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
                     id: UUID.string,
                     userID: userID ?? "",
                     courseName: course.name,
+                    courseColor: course.color,
                     assignmentSections: assignmentSections,
                     isGradingPeriodHidden: isGradingPeriodHidden,
                     gradingPeriods: gradingPeriods,
