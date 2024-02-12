@@ -68,6 +68,15 @@ public class AnnouncementsHelper: BaseHelper {
     }
 
     @discardableResult
+    public static func createAnnouncement(course: DSCourse, title: String? = nil, message: String? = nil) -> DSDiscussionTopic {
+        let announcementTitle = title ?? "Sample Announcement"
+        let announcementMessage = message ?? "This is the message of \(announcementTitle)"
+        return seeder.createDiscussion(
+            courseId: course.id,
+            requestBody: .init(title: announcementTitle, message: announcementMessage, is_announcement: true, published: true))
+    }
+
+    @discardableResult
     public static func createAnnouncements(course: DSCourse, count: Int = 1, titles: [String]? = nil, messages: [String]? = nil) -> [DSDiscussionTopic] {
         var announcements = [DSDiscussionTopic]()
         for i in 1...count {

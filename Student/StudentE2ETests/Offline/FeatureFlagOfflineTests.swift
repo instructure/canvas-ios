@@ -40,7 +40,7 @@ class FeatureFlagOfflineTests: OfflineE2ETest {
         let student = seeder.createUser()
         let course = seeder.createCourse()
         DiscussionsHelper.createDiscussion(course: course)
-        AnnouncementsHelper.createAnnouncements(course: course)
+        AnnouncementsHelper.createAnnouncement(course: course)
         seeder.enrollStudent(student, in: course)
 
         // MARK: Get the user logged in, open "Course Options", open "Manage Offline Content"

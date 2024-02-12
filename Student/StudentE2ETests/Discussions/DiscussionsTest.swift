@@ -241,7 +241,9 @@ class DiscussionsTests: E2ETestCase {
 
     func testNewDiscussionScreen() {
         // MARK: Seed the usual stuff with a discussion, enable NewDiscussion feature
-        seeder.setFeatureFlag(featureFlag: .newDiscussion, state: .allowedOn)
+        let featureFlagResponse = seeder.setFeatureFlag(featureFlag: .newDiscussion, state: .allowedOn)
+        XCTAssertEqual(featureFlagResponse.state, DSFeatureFlagState.allowedOn.rawValue)
+
         let student = seeder.createUser()
         let course = seeder.createCourse()
         seeder.enrollStudent(student, in: course)

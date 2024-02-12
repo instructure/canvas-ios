@@ -23,6 +23,14 @@ class AnnouncementsTests: E2ETestCase {
     typealias DetailsHelper = Helper.Details
     typealias AccountNotifications = Helper.AccountNotifications
 
+    override func tearDown() {
+        super.tearDown()
+
+        // Disable discussion redesign feature flag
+        let featureFlagResponse = seeder.setFeatureFlag(featureFlag: .newDiscussion, state: .off)
+        XCTAssertEqual(featureFlagResponse.state, DSFeatureFlagState.off.rawValue)
+    }
+
     func testAnnouncementsMatchWebOrder() {
         // MARK: Seed the usual stuff
         let student = seeder.createUser()
@@ -113,5 +121,67 @@ class AnnouncementsTests: E2ETestCase {
         dismissButton.hit()
         dismissButton = dismissButton.waitUntil(.vanish)
         XCTAssertTrue(dismissButton.isVanished)
+    }
+
+    func testAnnouncementWithDiscussionRedesignFeatureFlagEnabled() {
+        typealias NewDiscussion = DiscussionsHelper.NewDetails
+
+        // MARK: Seed the usual stuff with an announcement, enable NewDiscussion feature
+        let featureFlagResponse = seeder.setFeatureFlag(featureFlag: .newDiscussion, state: .allowedOn)
+        XCTAssertEqual(featureFlagResponse.state, DSFeatureFlagState.allowedOn.rawValue)
+
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+        let announcement = Helper.createAnnouncement(course: course)
+
+        // MARK: Get the user logged in
+        logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+
+        // MARK: Navigate to Discussions and check visibility of buttons and labels
+        Helper.navigateToAnnouncementsPage(course: course)
+        let announcementsButton = Helper.cell(index: 0).waitUntil(.visible)
+        XCTAssertTrue(announcementsButton.isVisible)
+        XCTAssertTrue(announcementsButton.hasLabel(label: announcement.title, strict: false))
+
+        announcementsButton.hit()
+        let searchField = NewDiscussion.searchField.waitUntil(.visible)
+        let filterByLabel = NewDiscussion.filterByLabel.waitUntil(.visible)
+        let sortButton = NewDiscussion.sortButton.waitUntil(.visible)
+        let viewSplitScreenButton = NewDiscussion.viewSplitScreenButton.waitUntil(.visible)
+        let subscribeButton = NewDiscussion.subscribeButton.waitUntil(.visible)
+        let manageDiscussionButton = NewDiscussion.manageDiscussionButton.waitUntil(.visible)
+        let announcementTitle = NewDiscussion.discussionTitle(discussion: announcement).waitUntil(.visible)
+        let announcementBody = NewDiscussion.discussionBody(discussion: announcement).waitUntil(.visible)
+        var replyButton = NewDiscussion.replyButton.waitUntil(.vanish)
+        XCTAssertTrue(searchField.isVisible)
+        XCTAssertTrue(searchField.hasValue(value: "Search entries or author..."))
+        XCTAssertTrue(filterByLabel.isVisible)
+        XCTAssertTrue(sortButton.isVisible)
+        XCTAssertTrue(sortButton.hasLabel(label: "Sorted by Descending", strict: false))
+        XCTAssertTrue(viewSplitScreenButton.isVisible)
+        XCTAssertTrue(subscribeButton.isVisible)
+        XCTAssertTrue(manageDiscussionButton.isVisible)
+        XCTAssertTrue(announcementTitle.isVisible)
+        XCTAssertTrue(announcementBody.isVisible)
+        XCTAssertTrue(replyButton.isVanished)
+
+        viewSplitScreenButton.hit()
+        let viewInlineButton = NewDiscussion.viewInlineButton.waitUntil(.visible)
+        XCTAssertTrue(viewSplitScreenButton.isVanished)
+        XCTAssertTrue(viewInlineButton.isVisible)
+
+        subscribeButton.hit()
+        let unsubscribeButton = NewDiscussion.unsubscribeButton.waitUntil(.visible)
+        XCTAssertTrue(subscribeButton.isVanished)
+        XCTAssertTrue(unsubscribeButton.isVisible)
+
+        manageDiscussionButton.hit()
+        let markAllAsReadButton = NewDiscussion.markAllAsRead.waitUntil(.visible)
+        let markAllAsUnreadButton = NewDiscussion.markAllAsUnread.waitUntil(.visible)
+        XCTAssertTrue(markAllAsReadButton.isVisible)
+        XCTAssertTrue(markAllAsUnreadButton.isVisible)
     }
 }
