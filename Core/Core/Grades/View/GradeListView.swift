@@ -66,10 +66,10 @@ public struct GradeListView: View {
                         errorView(width: width, height: height)
                     }
                 }
-                .background(Color.backgroundLightest)
             } refreshAction: { endRefreshing in
                 viewModel.pullToRefreshDidTrigger.accept(endRefreshing)
             }
+            .background(Color.backgroundLightest)
         }
         .navigationTitle(NSLocalizedString("Grades", comment: ""))
     }
@@ -124,29 +124,27 @@ public struct GradeListView: View {
 
     @ViewBuilder
     private func emptyView() -> some View {
-        EmptyPanda(
-            .Space,
-            title: Text("No Assignments", bundle: .core),
-            message: Text(
-                "It looks like assignments haven’t been created in this space yet.",
-                bundle: .core
-            )
+        Spacer()
+        InteractivePanda(
+            scene: SpacePanda(),
+            title: String(localized: "No Assignments"),
+            subtitle: String(localized: "It looks like assignments haven’t been created in this space yet.")
         )
         .padding(.horizontal, 16)
+        Spacer()
     }
 
     @ViewBuilder
     private func errorView(width: CGFloat, height: CGFloat) -> some View {
-        EmptyPanda(
-            .NoResults,
-            title: Text("Something Went Wrong", bundle: .core),
-            message: Text(
-                "Pull to refresh to try again.",
-                bundle: .core
-            )
+        Spacer()
+        InteractivePanda(
+            scene: NoResultsPanda(),
+            title: String(localized: "Something Went Wrong"),
+            subtitle: String(localized: "Pull to refresh to try again.")
         )
         .padding(.horizontal, 16)
         .frame(minWidth: width, minHeight: height)
+        Spacer()
     }
 
     @ViewBuilder
