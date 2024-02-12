@@ -19,3 +19,11 @@
 public enum DSFeatureFlag: String {
     case newDiscussion = "react_discussions_post"
 }
+
+public struct DSFeatureFlagResponse: Codable {
+    public let context_id: String
+    public let context_type: String
+    public let feature: String
+    public let state: String
+    public let locked: Bool
+}

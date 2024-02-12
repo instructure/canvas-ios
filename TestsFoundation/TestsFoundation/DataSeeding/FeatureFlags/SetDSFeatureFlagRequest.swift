@@ -20,7 +20,7 @@ import Core
 
 // https://canvas.instructure.com/doc/api/feature_flags.html#method.feature_flags.update
 public struct SetDSFeatureFlagRequest: APIRequestable {
-    public typealias Response = APINoContent
+    public typealias Response = DSFeatureFlagResponse
 
     public let method = APIMethod.put
     public let path: String

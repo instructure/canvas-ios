@@ -96,6 +96,7 @@
 		867EB673F42DECA991DD141D /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 63C9029292FEB0E9CA38D6E5 /* InfoPlist.xcstrings */; };
 		8A5FBB1EF1FEC82200367375 /* QuizzesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D946AAB8266B7D3D7896D532 /* QuizzesTests.swift */; };
 		8B62541F3CF15E2DCF714981 /* QuizDetailsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2CDE31F1E60F948367769A /* QuizDetailsViewControllerTests.swift */; };
+		8B6348D52B7A30F1005E7EAF /* FeatureFlagOfflineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B6348D42B7A30F1005E7EAF /* FeatureFlagOfflineTests.swift */; };
 		8BB66F69408E9286D5B53253 /* GradeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D37793B2068B344BC9CD42 /* GradeItem.swift */; };
 		8CBCC1B646B7DF2670B6BF74 /* ActivityStreamViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A5BA7A9E2F39BABDED733A7 /* ActivityStreamViewController.storyboard */; };
 		8D1C619DA91601CAC29D9212 /* SubmissionDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DC31ACB4AF11F0E2A5B7604 /* SubmissionDetailsViewController.storyboard */; };
@@ -422,6 +423,7 @@
 		8467AD99805700563F56B329 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		848366613483AF6DAB9191B6 /* UrlSubmissionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSubmissionPresenter.swift; sourceTree = "<group>"; };
 		88B62E328014805A6BC319E1 /* ProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTests.swift; sourceTree = "<group>"; };
+		8B6348D42B7A30F1005E7EAF /* FeatureFlagOfflineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagOfflineTests.swift; sourceTree = "<group>"; };
 		8BD10A0380414F8E3A88CF03 /* GetWidgetAnnouncements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetWidgetAnnouncements.swift; sourceTree = "<group>"; };
 		8CBB564D72AA4FA5E09F508F /* QuizDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDetailsViewController.swift; sourceTree = "<group>"; };
 		8CC612F3CE20C17A870EF1A3 /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
@@ -840,6 +842,7 @@
 			children = (
 				DD3CF1AB57C0047B11E4332B /* ContentSyncTests.swift */,
 				975F6C28375E1877218626D4 /* OfflineTests.swift */,
+				8B6348D42B7A30F1005E7EAF /* FeatureFlagOfflineTests.swift */,
 			);
 			path = Offline;
 			sourceTree = "<group>";
@@ -1713,8 +1716,8 @@
 			);
 			mainGroup = DBC5D720BCDD200A3007416C;
 			packageReferences = (
-				FC028D0C82C118314497D386 /* XCRemoteSwiftPackageReference "firebase-ios-sdk.git" */,
-				FA5A4BB2117C9369F057B20B /* XCRemoteSwiftPackageReference "heap-ios-sdk.git" */,
+				FC028D0C82C118314497D386 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				FA5A4BB2117C9369F057B20B /* XCRemoteSwiftPackageReference "heap-ios-sdk" */,
 				A76ACB1286D0782B097750FC /* XCRemoteSwiftPackageReference "PSPDFKit-SP" */,
 			);
 			productRefGroup = DFBB61F41BF05A3CE62DBDED /* Products */;
@@ -2097,6 +2100,7 @@
 				7D6162F159850B9355CE9A14 /* GradingStandardsTests.swift in Sources */,
 				23BE41334D3268A86B9B1B1F /* HelpTests.swift in Sources */,
 				93A750A608349C75B1E60380 /* InboxTests.swift in Sources */,
+				8B6348D52B7A30F1005E7EAF /* FeatureFlagOfflineTests.swift in Sources */,
 				F115F56FA8232DEECE178315 /* K5Tests.swift in Sources */,
 				FD6E564FFC5A217C33F71019 /* LoginTests.swift in Sources */,
 				AE5F01702664527D566DE4FE /* LogoutTests.swift in Sources */,
