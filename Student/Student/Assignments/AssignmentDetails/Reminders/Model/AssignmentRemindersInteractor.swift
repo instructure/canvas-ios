@@ -19,10 +19,17 @@
 import Core
 import Combine
 
+public typealias NewReminderResult = Result<Void, AssignmentReminderError>
+public enum AssignmentReminderError: Error, Equatable {
+    case noPermission
+}
+
 public protocol AssignmentRemindersInteractor: AnyObject {
+
     // MARK: - Outputs
     var isRemindersSectionVisible: CurrentValueSubject<Bool, Never> { get }
     var reminders: CurrentValueSubject<[AssignmentReminderItem], Never> { get }
+    var newReminderCreationResult: PassthroughSubject<NewReminderResult, Never> { get }
 
     // MARK: - Inputs
     var assignmentDidUpdate: PassthroughSubject<Assignment, Never> { get }
@@ -34,6 +41,7 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
     // MARK: - Outputs
     public let isRemindersSectionVisible = CurrentValueSubject<Bool, Never>(false)
     public let reminders = CurrentValueSubject<[AssignmentReminderItem], Never>([])
+    public let newReminderCreationResult = PassthroughSubject<NewReminderResult, Never>()
 
     // MARK: - Inputs
     public let assignmentDidUpdate = PassthroughSubject<Assignment, Never>()
@@ -42,8 +50,10 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
+    private let notificationManager: NotificationManager
 
-    public init() {
+    public init(notificationManager: NotificationManager) {
+        self.notificationManager = notificationManager
         setupReminderAvailability()
         setupNewReminderHandler()
         setupReminderDeletion()
@@ -62,14 +72,10 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
     }
 
     private func setupNewReminderHandler() {
-        let formatter = AssignmentReminderTimeFormatter()
         newReminderDidSelect
-            .compactMap { formatter.string(from: $0)?.lowercased() }
-            .map { AssignmentReminderItem(title: $0) }
-            .map { [reminders] in
-                reminders.value + [$0]
-            }
-            .subscribe(reminders)
+            .requestNotificationPermission(notificationManager)
+            .scheduleNotification(notificationManager)
+            .subscribe(newReminderCreationResult)
             .store(in: &subscriptions)
     }
 
@@ -82,5 +88,40 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
             }
             .subscribe(reminders)
             .store(in: &subscriptions)
+    }
+}
+
+private extension Publisher where Output == DateComponents,
+                                  Failure == Never {
+
+    func requestNotificationPermission(
+        _ notificationManager: NotificationManager
+    ) -> AnyPublisher<(hasPermission: Bool, time: DateComponents), Never> {
+        flatMap { time in
+            notificationManager
+                .requestAuthorization()
+                .mapToValue(true)
+                .replaceError(with: false)
+                .map { (hasPermission: $0, time: time) }
+        }
+        .eraseToAnyPublisher()
+    }
+}
+
+private extension Publisher where Output == (hasPermission: Bool, time: DateComponents),
+                                  Failure == Never {
+
+    func scheduleNotification(
+        _ notificationManager: NotificationManager
+    ) -> AnyPublisher<NewReminderResult, Never> {
+        flatMap {
+            if $0.hasPermission {
+                // Call noti manager
+                return Just(NewReminderResult.success(()))
+            } else {
+                return Just(NewReminderResult.failure(.noPermission))
+            }
+        }
+        .eraseToAnyPublisher()
     }
 }

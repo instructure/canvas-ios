@@ -38,15 +38,20 @@ public class AssignmentRemindersViewModel: ObservableObject {
     private let router: Router
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: AssignmentRemindersInteractor
+    private weak var newReminderView: UIViewController?
 
     public init(interactor: AssignmentRemindersInteractor, router: Router) {
         self.interactor = interactor
         self.router = router
         setupInteractorBindings()
+
+        dismissTimePickerAfterNewReminderCreation()
+        showErrorAlertOnNewReminderCreationFailure()
     }
 
     public func newReminderDidTap(view: UIViewController) {
         let picker = AssignmentRemindersAssembly.makeDatePickerView(selectedTimeInterval: interactor.newReminderDidSelect)
+        newReminderView = picker
         router.show(picker, from: view, options: .modal(isDismissable: false, embedInNav: true))
     }
 
@@ -74,5 +79,31 @@ public class AssignmentRemindersViewModel: ObservableObject {
         interactor
             .reminders
             .assign(to: &$reminders)
+    }
+
+    private func dismissTimePickerAfterNewReminderCreation() {
+        interactor
+            .newReminderCreationResult
+            .compactMap { try? $0.get() }
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                self?.newReminderView?.dismiss(animated: true)
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func showErrorAlertOnNewReminderCreationFailure() {
+        interactor
+            .newReminderCreationResult
+            .compactMap { $0.error }
+            .receive(on: RunLoop.main)
+            .sink { [weak self] in
+                if $0 == .noPermission {
+                    self?.newReminderView?.showPermissionError(.notifications)
+                } else {
+                    // show unknown error
+                }
+            }
+            .store(in: &subscriptions)
     }
 }

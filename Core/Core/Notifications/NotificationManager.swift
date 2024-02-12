@@ -52,6 +52,18 @@ public class NotificationManager {
         notificationCenter.requestAuthorization(options: options, completionHandler: completionHandler)
     }
 
+    public func requestAuthorization(options: UNAuthorizationOptions = []) -> Future<Void, Error> {
+        Future { [notificationCenter] promise in
+            notificationCenter.requestAuthorization(options: options) { granted, error in
+                if let error {
+                    return promise(.failure(error))
+                }
+
+                promise(granted ? .success(()) : .failure(NSError.instructureError("Denied")))
+            }
+        }
+    }
+
     public func notify(
         identifier: String,
         title: String,

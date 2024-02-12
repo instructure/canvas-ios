@@ -87,6 +87,5 @@ class AssignmentReminderDatePickerViewModel: ObservableObject {
         }()
 
         selectedTimeInterval.send(selectedInterval)
-        router.dismiss(host)
     }
 }
