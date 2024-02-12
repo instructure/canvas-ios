@@ -66,6 +66,7 @@ public struct GradeListView: View {
                         errorView(width: width, height: height)
                     }
                 }
+                .background(Color.backgroundLightest)
             } refreshAction: { endRefreshing in
                 viewModel.pullToRefreshDidTrigger.accept(endRefreshing)
             }
