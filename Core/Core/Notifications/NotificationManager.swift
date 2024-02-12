@@ -93,10 +93,38 @@ public class NotificationManager {
         }
     }
 
-    public func notify(identifier: String, title: String, body: String, route: String?) -> Future<Void, Error> {
+    public func notify(
+        identifier: String,
+        title: String,
+        body: String,
+        route: String?
+    ) -> Future<Void, Error> {
         Future<Void, Error> { [self] promise in
-            self.notify(identifier: identifier, title: title, body: body, route: route) { error in
+            notify(identifier: identifier, title: title, body: body, route: route) { error in
                 if let error {
+                    promise(.failure(error))
+                } else {
+                    promise(.success(()))
+                }
+            }
+        }
+    }
+
+    public func schedule(
+        identifier: String,
+        content: UNNotificationContent,
+        trigger: UNNotificationTrigger
+    ) -> Future<Void, Error> {
+        Future<Void, Error> { [notificationCenter] promise in
+            let request = UNNotificationRequest(
+                identifier: identifier,
+                content: content,
+                trigger: trigger
+            )
+            notificationCenter.add(request) { error in
+                if let error {
+                    Analytics.shared.logError(name: "Failed to schedule local notification",
+                                              reason: error.localizedDescription)
                     promise(.failure(error))
                 } else {
                     promise(.success(()))

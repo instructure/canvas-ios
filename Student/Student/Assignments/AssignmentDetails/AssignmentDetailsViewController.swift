@@ -117,7 +117,10 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     private weak var gradeBorderLayer: CAShapeLayer?
     private var offlineModeInteractor: OfflineModeInteractor?
     private var gradeSectionBoundsObservation: NSKeyValueObservation?
-    private var remindersInteractor = AssignmentRemindersInteractorLive(notificationManager: NotificationManager.shared)
+    private lazy var remindersInteractor = AssignmentRemindersInteractorLive(courseId: courseID,
+                                                                             assignmentId: assignmentID,
+                                                                             userId: env.currentSession?.userID ?? "",
+                                                                             notificationManager: .shared)
 
     static func create(courseID: String,
                        assignmentID: String,

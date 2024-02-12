@@ -22,6 +22,7 @@ import Combine
 public typealias NewReminderResult = Result<Void, AssignmentReminderError>
 public enum AssignmentReminderError: Error, Equatable {
     case noPermission
+    case scheduleFailed
 }
 
 public protocol AssignmentRemindersInteractor: AnyObject {
@@ -51,15 +52,24 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
     private let notificationManager: NotificationManager
+    private let courseId: String
+    private let assignmentId: String
+    private let userId: String
 
-    public init(notificationManager: NotificationManager) {
+    public init(courseId: String,
+                assignmentId: String,
+                userId: String,
+                notificationManager: NotificationManager) {
+        self.courseId = courseId
+        self.assignmentId = assignmentId
+        self.userId = userId
         self.notificationManager = notificationManager
-        setupReminderAvailability()
-        setupNewReminderHandler()
+        showReminderViewIfDueDateIsInFuture()
+        scheduleNotificationOnTimeSelect()
         setupReminderDeletion()
     }
 
-    private func setupReminderAvailability() {
+    private func showReminderViewIfDueDateIsInFuture() {
         assignmentDidUpdate
             .map {
                 guard let dueAt = $0.dueAt else {
@@ -71,10 +81,13 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
             .store(in: &subscriptions)
     }
 
-    private func setupNewReminderHandler() {
-        newReminderDidSelect
+    private func scheduleNotificationOnTimeSelect() {
+        let assignmentDueDate = assignmentDidUpdate.map(\.dueAt).compactMap { $0 }
+        return Publishers.CombineLatest(newReminderDidSelect, assignmentDueDate)
             .requestNotificationPermission(notificationManager)
-            .scheduleNotification(notificationManager)
+            .scheduleNotification(notificationManager, content: .assignmentReminder(courseId: courseId,
+                                                                                    assignmentId: assignmentId,
+                                                                                    userId: userId))
             .subscribe(newReminderCreationResult)
             .store(in: &subscriptions)
     }
@@ -91,35 +104,41 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
     }
 }
 
-private extension Publisher where Output == DateComponents,
+private extension Publisher where Output == (DateComponents, Date),
                                   Failure == Never {
 
     func requestNotificationPermission(
         _ notificationManager: NotificationManager
-    ) -> AnyPublisher<(hasPermission: Bool, time: DateComponents), Never> {
-        flatMap { time in
+    ) -> AnyPublisher<(hasPermission: Bool, time: DateComponents, dueAt: Date), Never> {
+        flatMap { (time, dueAt) in
             notificationManager
                 .requestAuthorization()
                 .mapToValue(true)
                 .replaceError(with: false)
-                .map { (hasPermission: $0, time: time) }
+                .map { (hasPermission: $0, time: time, dueAt: dueAt) }
         }
         .eraseToAnyPublisher()
     }
 }
 
-private extension Publisher where Output == (hasPermission: Bool, time: DateComponents),
+private extension Publisher where Output == (hasPermission: Bool, time: DateComponents, dueAt: Date),
                                   Failure == Never {
 
     func scheduleNotification(
-        _ notificationManager: NotificationManager
+        _ notificationManager: NotificationManager,
+        content: UNNotificationContent
     ) -> AnyPublisher<NewReminderResult, Never> {
-        flatMap {
-            if $0.hasPermission {
-                // Call noti manager
-                return Just(NewReminderResult.success(()))
+        flatMap { (hasPermission, time, dueAt) in
+            if hasPermission {
+                let trigger = UNTimeIntervalNotificationTrigger(assignmentDueDate: dueAt, beforeTime: time)
+                return notificationManager
+                    .schedule(identifier: UUID.string,
+                              content: content,
+                              trigger: trigger)
+                    .mapError { _ in AssignmentReminderError.noPermission }
+                    .mapToResult()
             } else {
-                return Just(NewReminderResult.failure(.noPermission))
+                return Just(NewReminderResult.failure(.noPermission)).eraseToAnyPublisher()
             }
         }
         .eraseToAnyPublisher()
