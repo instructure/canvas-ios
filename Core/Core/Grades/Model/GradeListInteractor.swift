@@ -27,7 +27,6 @@ public protocol GradeListInteractor {
 }
 
 public final class GradeListInteractorLive: GradeListInteractor {
-
     // MARK: - Dependencies
 
     public let courseID: String
@@ -283,7 +282,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
         let hideQuantitativeData = course.hideQuantitativeData == true
 
         if course.hideFinalGrades == true {
-            return Just(String(localized:"N/A")).eraseToAnyPublisher()
+            return Just(String(localized: "N/A")).eraseToAnyPublisher()
         } else if hideQuantitativeData {
             if let gradingPeriodID = gradingPeriodID {
                 if let letterGrade = gradeEnrollment?.currentGrade(gradingPeriodID: gradingPeriodID) ?? gradeEnrollment?.finalGrade(gradingPeriodID: gradingPeriodID) {
