@@ -52,21 +52,12 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     public let barWidth: CGFloat = 2
     public let spaceWidth: CGFloat = 5
 
-    public var playerChartId: Int {
-        get {
-            let value = playerChartIdCounter
-            playerChartIdCounter += 1
-            return value
-        }
-    }
-
     // MARK: Private
 
     private let formatter: DateComponentsFormatter
     private let router: Router
     private var subscriptions = Set<AnyCancellable>()
     private var onSelect: (URL) -> Void
-    private var playerChartIdCounter = 0
 
     public init(router: Router, interactor: AudioPickerInteractor, onSelect: @escaping (URL) -> Void = { _ in }) {
         self.router = router
@@ -130,6 +121,10 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
 
         let newValue = minBar + (maxBar - minBar) / (maxValue - minValue) * (shiftedRawValue - minValue)
         return newValue
+    }
+
+    func normalizeAudioPositionValue(rawValue: TimeInterval) -> TimeInterval {
+        return audioChartDataSet.prefix(while: { $0.timestamp <= rawValue }).last?.timestamp ?? 0
     }
 
     private func setupOutputBindings() {

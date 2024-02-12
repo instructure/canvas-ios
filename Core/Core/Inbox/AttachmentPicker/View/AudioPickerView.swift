@@ -23,6 +23,8 @@ import Charts
 public struct AudioPickerView: View {
     @ObservedObject private var viewModel: AudioPickerViewModel
     @Environment(\.viewController) private var controller
+    @State private var playbackScrollTimer: Timer?
+
     let backgroundColor: Color = .init(hexString: "#111213") ?? Color.black
     let textColor: Color = .init(hexString: "#F5F5F5") ?? Color.white
 
@@ -82,12 +84,10 @@ public struct AudioPickerView: View {
     }
 
     private func recordingPlotView(maxSize: CGSize) -> some View {
-        let barWidth: CGFloat = 2
-        let spaceWidth: CGFloat = 5
-        return HStack(alignment: .center, spacing: spaceWidth) {
-            ForEach(viewModel.audioChartDataSet.suffix(Int(floor(maxSize.width / (barWidth + spaceWidth)))), id: \.timestamp) { plotData in
+        return HStack(alignment: .center, spacing: viewModel.spaceWidth) {
+            ForEach(viewModel.audioChartDataSet.suffix(Int(floor(maxSize.width / (viewModel.barWidth + viewModel.spaceWidth)))), id: \.timestamp) { plotData in
                 Rectangle()
-                    .frame(width: barWidth, height: viewModel.normalizeMeteringValue(rawValue: CGFloat(plotData.value), maxHeight: maxSize.height))
+                    .frame(width: viewModel.barWidth, height: viewModel.normalizeMeteringValue(rawValue: CGFloat(plotData.value), maxHeight: maxSize.height))
                     .foregroundStyle(Color.textWarning)
             }
         }
@@ -125,8 +125,17 @@ public struct AudioPickerView: View {
                     viewModel.seekInAudio(value)
                 }
                 .onChange(of: viewModel.audioPlayerPosition) { newValue in
-                    let value = viewModel.audioChartDataSet.prefix(while: { $0.timestamp <= newValue }).last?.timestamp ?? 0
-                    proxy.scrollTo(value, anchor: .top)
+                    let value = viewModel.normalizeAudioPositionValue(rawValue: newValue)
+                    playbackScrollTimer?.invalidate()
+                    if viewModel.isPlaying {
+                        proxy.scrollTo(value, anchor: .top)
+                    } else {
+                        playbackScrollTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { _ in
+                            DispatchQueue.main.async {
+                                proxy.scrollTo(value, anchor: .top)
+                            }
+                        }
+                    }
                 }
             }
         }
