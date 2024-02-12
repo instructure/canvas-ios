@@ -218,17 +218,17 @@ public final class GradeListInteractorLive: GradeListInteractor {
         var assignmentSections: [GradeListData.AssignmentSections] = []
         var overdueAssignments = GradeListData.AssignmentSections(
             id: UUID.string,
-            title: NSLocalizedString("Overdue Assignments", comment: ""),
+            title: String(localized: "Overdue Assignments"),
             assignments: []
         )
         var upcomingAssignments = GradeListData.AssignmentSections(
             id: UUID.string,
-            title: NSLocalizedString("Upcoming Assignments", comment: ""),
+            title: String(localized: "Upcoming Assignments"),
             assignments: []
         )
         var pastAssignments = GradeListData.AssignmentSections(
             id: UUID.string,
-            title: NSLocalizedString("Past Assignments", comment: ""),
+            title: String(localized: "Past Assignments"),
             assignments: []
         )
 
@@ -283,7 +283,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
         let hideQuantitativeData = course.hideQuantitativeData == true
 
         if course.hideFinalGrades == true {
-            return Just(NSLocalizedString("N/A", bundle: .core, comment: "")).eraseToAnyPublisher()
+            return Just(String(localized:"N/A")).eraseToAnyPublisher()
         } else if hideQuantitativeData {
             if let gradingPeriodID = gradingPeriodID {
                 if let letterGrade = gradeEnrollment?.currentGrade(gradingPeriodID: gradingPeriodID) ?? gradeEnrollment?.finalGrade(gradingPeriodID: gradingPeriodID) {

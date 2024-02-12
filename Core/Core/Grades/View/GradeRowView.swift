@@ -80,7 +80,7 @@ public struct GradeRowView: View {
                     userID: userID,
                     style: .medium
                 )
-                .flatMap { NSLocalizedString("Grade", comment: "") + ", " + $0 } ?? ""
+                .flatMap { String(localized: "Grade") + ", " + $0 } ?? ""
             ))
     }
 }

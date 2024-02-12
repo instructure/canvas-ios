@@ -71,7 +71,7 @@ public struct GradeListView: View {
             }
             .background(Color.backgroundLightest)
         }
-        .navigationTitle(NSLocalizedString("Grades", comment: ""))
+        .navigationTitle(String(localized: "Grades"))
     }
 
     @ViewBuilder
@@ -91,7 +91,7 @@ public struct GradeListView: View {
         let verticalPadding: CGFloat = gradeListData.isGradingPeriodHidden && isEmpty ? 0 : 16
         courseSummaryView(
             courseName: gradeListData.courseName ?? "",
-            totalGrade: gradeListData.totalGradeText ?? NSLocalizedString("N/A", comment: ""),
+            totalGrade: gradeListData.totalGradeText ?? String(localized: "N/A"),
             isEmpty: isEmpty && gradeListData.isGradingPeriodHidden
         )
         HStack(spacing: 8) {
@@ -246,7 +246,7 @@ public struct GradeListView: View {
             Button {
                 viewModel.selectedGradingPeriod.accept(nil)
             } label: {
-                gradingAndArrangeText(title: NSLocalizedString("All", comment: ""))
+                gradingAndArrangeText(title: String(localized: "All"))
             }
             ForEach(gradingPeriods) { gradingPeriod in
                 if let title = gradingPeriod.title {
@@ -263,7 +263,7 @@ public struct GradeListView: View {
                     if let title = currentGradingPeriod?.title {
                         gradingAndArrangeText(title: title)
                     } else {
-                        gradingAndArrangeText(title: NSLocalizedString("All", comment: ""))
+                        gradingAndArrangeText(title: String(localized: "All"))
                     }
                 },
                 icon: { Image.arrowOpenDownSolid.resizable().frame(width: 12, height: 12) }
@@ -279,21 +279,21 @@ public struct GradeListView: View {
             Button {
                 viewModel.selectedGroupByOption.accept(.groupName)
             } label: {
-                gradingAndArrangeText(title: NSLocalizedString("By Group", comment: ""))
+                gradingAndArrangeText(title: String(localized: "By Group"))
             }
             Button {
                 viewModel.selectedGroupByOption.accept(.dueDate)
             } label: {
-                gradingAndArrangeText(title: NSLocalizedString("By Due Date", comment: ""))
+                gradingAndArrangeText(title: String(localized: "By Due Date"))
             }
         } label: {
             Label(
                 title: {
                     switch viewModel.selectedGroupByOption.value {
                     case .dueDate:
-                        gradingAndArrangeText(title: NSLocalizedString("Arrange By Due Date", comment: ""))
+                        gradingAndArrangeText(title: String(localized: "Arrange By Due Date"))
                     case .groupName:
-                        gradingAndArrangeText(title: NSLocalizedString("Arrange By Group", comment: ""))
+                        gradingAndArrangeText(title: String(localized: "Arrange By Group"))
                     }
                 },
                 icon: { Image.arrowOpenDownSolid.resizable().frame(width: 12, height: 12) }

@@ -66,7 +66,6 @@ extension String {
             CharacterSet.decimalDigits.contains(char)
         }
     }
-
 }
 
 extension String: Error {
