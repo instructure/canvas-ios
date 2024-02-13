@@ -155,7 +155,7 @@ class AnnouncementsTests: E2ETestCase {
         let manageDiscussionButton = NewDiscussion.manageDiscussionButton.waitUntil(.visible)
         let announcementTitle = NewDiscussion.discussionTitle(discussion: announcement).waitUntil(.visible)
         let announcementBody = NewDiscussion.discussionBody(discussion: announcement).waitUntil(.visible)
-        var replyButton = NewDiscussion.replyButton.waitUntil(.vanish)
+        let replyButton = NewDiscussion.replyButton.waitUntil(.vanish)
         XCTAssertTrue(searchField.isVisible)
         XCTAssertTrue(searchField.hasValue(value: "Search entries or author..."))
         XCTAssertTrue(filterByLabel.isVisible)

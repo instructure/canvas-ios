@@ -25,7 +25,8 @@ class DiscussionsTests: E2ETestCase {
     typealias NewDiscussion = Helper.NewDetails
 
     override func tearDown() {
-        seeder.setFeatureFlag(featureFlag: .newDiscussion, state: .off)
+        let featureFlagResponse = seeder.setFeatureFlag(featureFlag: .newDiscussion, state: .off)
+        XCTAssertEqual(featureFlagResponse.state, DSFeatureFlagState.off.rawValue)
     }
 
     func testDiscussionLabels() {

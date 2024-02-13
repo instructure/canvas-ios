@@ -193,6 +193,7 @@ public class AssignmentsHelper: BaseHelper {
         CourseDetailsHelper.cell(type: .assignments).hit()
     }
 
+    @discardableResult
     public static func createAssignments(in course: DSCourse, count: Int, dueDate: Date? = nil) -> [DSAssignment] {
         var assignments = [DSAssignment]()
         for i in 1...count {
