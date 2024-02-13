@@ -513,6 +513,10 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         let reminderSection = AssignmentRemindersAssembly.makeRemindersSectionController(interactor: remindersInteractor)
         addChild(reminderSection)
         parentStackView.insertArrangedSubview(reminderSection.view, at: dueSectionIndex + 1)
+        NSLayoutConstraint.activate([
+            reminderSection.view.leadingAnchor.constraint(equalTo: parentStackView.leadingAnchor),
+            reminderSection.view.trailingAnchor.constraint(equalTo: parentStackView.trailingAnchor),
+        ])
         reminderSection.didMove(toParent: self)
     }
 

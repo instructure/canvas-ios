@@ -50,6 +50,9 @@ public struct AssignmentRemindersView: View {
             .invalidateIntrinsicContentSize(hostController: viewController)
             .animation(.default, value: viewModel.reminders)
             .compatibleGeometryGroup()
+            .onAppear {
+                viewController.value.view.backgroundColor = .backgroundLightest
+            }
         }
     }
 
