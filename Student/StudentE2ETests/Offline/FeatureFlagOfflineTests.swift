@@ -28,11 +28,14 @@ class FeatureFlagOfflineTests: OfflineE2ETest {
     }
 
     override func tearDown() {
-        super.tearDown()
+        // In case the tests fail at a point where the internet connection is turned off
+        setNetworkStateOnline()
 
         // Disable discussion redesign feature flag
         let featureFlagResponse = seeder.setFeatureFlag(featureFlag: .newDiscussion, state: .off)
         XCTAssertEqual(featureFlagResponse.state, DSFeatureFlagState.off.rawValue)
+
+        super.tearDown()
     }
 
     func testDiscussionsButtonIsDisabledIfDiscussionRedesignIsEnabled() {
