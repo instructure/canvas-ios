@@ -42130,6 +42130,9 @@
         }
       }
     },
+    "Due Date Reminder" : {
+
+    },
     "due on %1$@ at %2$@" : {
       "comment" : "Assignment is due on a date at a time",
       "extractionState" : "manual",
@@ -115908,6 +115911,9 @@
           }
         }
       }
+    },
+    "This assignment is due in %@" : {
+      "comment" : "Due in 5 minutes"
     },
     "This assignment is locked until %@" : {
       "localizations" : {

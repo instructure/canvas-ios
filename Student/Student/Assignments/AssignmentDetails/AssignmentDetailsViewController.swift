@@ -412,7 +412,11 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         updateQuizSettings(quiz)
 
         if ExperimentalFeature.assignment_reminders.isEnabled {
-            remindersInteractor.assignmentDidUpdate.send(assignment)
+            remindersInteractor.contextDidUpdate.send(.init(courseId: courseID,
+                                                            assignmentId: assignmentID,
+                                                            userId: env.currentSession?.userID ?? "",
+                                                            assignmentName: assignment.name,
+                                                            dueDate: assignment.dueAt))
         }
 
         scrollView?.isHidden = false

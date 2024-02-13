@@ -23,15 +23,19 @@ extension UNNotificationContent {
         case courseId, assignmentId, userId
     }
 
-    static func assignmentReminder(courseId: String, assignmentId: String, userId: String) -> UNNotificationContent {
+    static func assignmentReminder(context: AssignmentReminderContext, beforeTime: DateComponents) -> UNNotificationContent {
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .full
+        let dueText = formatter.string(from: beforeTime) ?? ""
+
         let result = UNMutableNotificationContent()
         result.title = String(localized: "Due Date Reminder")
-        result.body = String(localized: "Notification body goes here")
+        result.body = String(localized: "This assignment is due in \(dueText)", comment: "Due in 5 minutes") + ": \(context.assignmentName)"
         result.userInfo = [
-            Keys.courseId.rawValue: courseId,
-            Keys.assignmentId.rawValue: assignmentId,
-            Keys.userId.rawValue: userId,
-            NotificationManager.RouteURLKey: "courses/\(courseId)/assignments/\(assignmentId)",
+            Keys.courseId.rawValue: context.courseId,
+            Keys.assignmentId.rawValue: context.assignmentId,
+            Keys.userId.rawValue: context.userId,
+            NotificationManager.RouteURLKey: "courses/\(context.courseId)/assignments/\(context.assignmentId)",
         ]
         return result
     }

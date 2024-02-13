@@ -25,6 +25,14 @@ public enum AssignmentReminderError: Error, Equatable {
     case scheduleFailed
 }
 
+public struct AssignmentReminderContext {
+    let courseId: String
+    let assignmentId: String
+    let userId: String
+    let assignmentName: String
+    let dueDate: Date?
+}
+
 public protocol AssignmentRemindersInteractor: AnyObject {
 
     // MARK: - Outputs
@@ -33,7 +41,7 @@ public protocol AssignmentRemindersInteractor: AnyObject {
     var newReminderCreationResult: PassthroughSubject<NewReminderResult, Never> { get }
 
     // MARK: - Inputs
-    var assignmentDidUpdate: PassthroughSubject<Assignment, Never> { get }
+    var contextDidUpdate: CurrentValueSubject<AssignmentReminderContext?, Never> { get }
     var newReminderDidSelect: PassthroughSubject<DateComponents, Never> { get }
     var reminderDidDelete: PassthroughSubject<AssignmentReminderItem, Never> { get }
 }
@@ -45,7 +53,7 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
     public let newReminderCreationResult = PassthroughSubject<NewReminderResult, Never>()
 
     // MARK: - Inputs
-    public let assignmentDidUpdate = PassthroughSubject<Assignment, Never>()
+    public let contextDidUpdate = CurrentValueSubject<AssignmentReminderContext?, Never>(nil)
     public let newReminderDidSelect = PassthroughSubject<DateComponents, Never>()
     public let reminderDidDelete = PassthroughSubject<AssignmentReminderItem, Never>()
 
@@ -70,9 +78,9 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
     }
 
     private func showReminderViewIfDueDateIsInFuture() {
-        assignmentDidUpdate
+        contextDidUpdate
             .map {
-                guard let dueAt = $0.dueAt else {
+                guard let dueAt = $0?.dueDate else {
                     return false
                 }
                 return dueAt > Clock.now
@@ -82,12 +90,34 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
     }
 
     private func scheduleNotificationOnTimeSelect() {
-        let assignmentDueDate = assignmentDidUpdate.map(\.dueAt).compactMap { $0 }
-        return Publishers.CombineLatest(newReminderDidSelect, assignmentDueDate)
-            .requestNotificationPermission(notificationManager)
-            .scheduleNotification(notificationManager, content: .assignmentReminder(courseId: courseId,
-                                                                                    assignmentId: assignmentId,
-                                                                                    userId: userId))
+        newReminderDidSelect
+            .flatMap { [contextDidUpdate] beforeTime in
+                contextDidUpdate
+                    .compactMap { $0 }
+                    .filter { $0.dueDate != nil }
+                    .map { (beforeTime: beforeTime, context: $0) }
+            }
+            .flatMap { [notificationManager] (beforeTime, context) in
+                notificationManager
+                    .requestAuthorization()
+                    .mapToValue(true)
+                    .replaceError(with: false)
+                    .map { (beforeTime: beforeTime, context: context, hasPermission: $0) }
+            }
+            .flatMap { [notificationManager] (beforeTime, context, hasPermission) in
+                if hasPermission {
+                    let content = UNNotificationContent.assignmentReminder(context: context, beforeTime: beforeTime)
+                    let trigger = UNTimeIntervalNotificationTrigger(assignmentDueDate: context.dueDate!, beforeTime: beforeTime)
+                    return notificationManager
+                        .schedule(identifier: UUID.string,
+                                  content: content,
+                                  trigger: trigger)
+                        .mapError { _ in AssignmentReminderError.noPermission }
+                        .mapToResult()
+                } else {
+                    return Just(NewReminderResult.failure(.noPermission)).eraseToAnyPublisher()
+                }
+            }
             .subscribe(newReminderCreationResult)
             .store(in: &subscriptions)
     }
@@ -102,45 +132,12 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
             .subscribe(reminders)
             .store(in: &subscriptions)
     }
-}
 
-private extension Publisher where Output == (DateComponents, Date),
-                                  Failure == Never {
-
-    func requestNotificationPermission(
-        _ notificationManager: NotificationManager
-    ) -> AnyPublisher<(hasPermission: Bool, time: DateComponents, dueAt: Date), Never> {
-        flatMap { (time, dueAt) in
-            notificationManager
-                .requestAuthorization()
-                .mapToValue(true)
-                .replaceError(with: false)
-                .map { (hasPermission: $0, time: time, dueAt: dueAt) }
+    private func readNotificationsForAssignment() {
+        notificationManager.notificationCenter.getPendingNotificationRequests { [courseId, assignmentId, userId] notifications in
+            let assignmentNotifications = notifications.filter(courseId: courseId,
+                                                               assignmentId: assignmentId,
+                                                               userId: userId)
         }
-        .eraseToAnyPublisher()
-    }
-}
-
-private extension Publisher where Output == (hasPermission: Bool, time: DateComponents, dueAt: Date),
-                                  Failure == Never {
-
-    func scheduleNotification(
-        _ notificationManager: NotificationManager,
-        content: UNNotificationContent
-    ) -> AnyPublisher<NewReminderResult, Never> {
-        flatMap { (hasPermission, time, dueAt) in
-            if hasPermission {
-                let trigger = UNTimeIntervalNotificationTrigger(assignmentDueDate: dueAt, beforeTime: time)
-                return notificationManager
-                    .schedule(identifier: UUID.string,
-                              content: content,
-                              trigger: trigger)
-                    .mapError { _ in AssignmentReminderError.noPermission }
-                    .mapToResult()
-            } else {
-                return Just(NewReminderResult.failure(.noPermission)).eraseToAnyPublisher()
-            }
-        }
-        .eraseToAnyPublisher()
     }
 }
