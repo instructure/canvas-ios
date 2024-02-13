@@ -27,3 +27,13 @@ public struct DSFeatureFlagResponse: Codable {
     public let state: String
     public let locked: Bool
 }
+
+public struct DSSetFeatureFlag {
+    let featureFlag: DSFeatureFlag
+    let state: DSFeatureFlagState
+
+    public init(featureFlag: DSFeatureFlag, state: DSFeatureFlagState) {
+        self.featureFlag = featureFlag
+        self.state = state
+    }
+}

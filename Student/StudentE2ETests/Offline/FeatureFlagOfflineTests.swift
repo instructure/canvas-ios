@@ -19,13 +19,7 @@
 import TestsFoundation
 
 class FeatureFlagOfflineTests: OfflineE2ETest {
-    override func setUp() {
-        // Enable discussion redesign feature flag before app start
-        let featureFlagResponse = seeder.setFeatureFlag(featureFlag: .newDiscussion, state: .allowedOn)
-        XCTAssertEqual(featureFlagResponse.state, DSFeatureFlagState.allowedOn.rawValue)
-
-        super.setUp()
-    }
+    open override var setFeatureFlag: DSSetFeatureFlag { DSSetFeatureFlag(featureFlag: .newDiscussion, state: .allowedOn) }
 
     override func tearDown() {
         // In case the tests fail at a point where the internet connection is turned off
