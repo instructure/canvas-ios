@@ -52,11 +52,9 @@ public struct GradeListView: View, ScreenViewTrackable {
         GeometryReader { geometry in
             RefreshableScrollView {
                 VStack(spacing: 0) {
-                    let width = geometry.size.width
-                    let height = geometry.size.height
                     switch viewModel.state {
                     case .loading:
-                        loadingView(minWidth: width, minHeight: height)
+                        loadingView()
                     case let .data(data):
                         dataView(
                             data,
@@ -68,9 +66,11 @@ public struct GradeListView: View, ScreenViewTrackable {
                             isEmpty: true
                         )
                     case .error:
-                        errorView(width: width, height: height)
+                        errorView()
                     }
                 }
+                .frame(width: geometry.size.width)
+                .frame(minHeight: geometry.size.height)
             } refreshAction: { endRefreshing in
                 viewModel.pullToRefreshDidTrigger.accept(endRefreshing)
             }
@@ -80,12 +80,11 @@ public struct GradeListView: View, ScreenViewTrackable {
     }
 
     @ViewBuilder
-    func loadingView(minWidth: CGFloat, minHeight: CGFloat) -> some View {
+    func loadingView() -> some View {
         ZStack {
             ProgressView()
                 .progressViewStyle(.indeterminateCircle())
         }
-        .frame(minWidth: minWidth, minHeight: minHeight)
     }
 
     @ViewBuilder
@@ -119,13 +118,19 @@ public struct GradeListView: View, ScreenViewTrackable {
         Divider()
 
         if isEmpty {
-            emptyView().padding(.top, 16)
+            GeometryReader { proxy in
+                emptyView()
+                    .padding(.top, 16)
+                    .frame(width: proxy.size.width)
+                    .frame(minHeight: proxy.size.height)
+            }
         } else {
             assignmentListView(
                 courseColor: gradeListData.courseColor,
                 assignmentSections: gradeListData.assignmentSections,
                 userID: gradeListData.userID
             )
+            Spacer(minLength: 0)
         }
     }
 
@@ -142,7 +147,7 @@ public struct GradeListView: View, ScreenViewTrackable {
     }
 
     @ViewBuilder
-    private func errorView(width: CGFloat, height: CGFloat) -> some View {
+    private func errorView() -> some View {
         Spacer()
         InteractivePanda(
             scene: NoResultsPanda(),
@@ -150,7 +155,6 @@ public struct GradeListView: View, ScreenViewTrackable {
             subtitle: String(localized: "Pull to refresh to try again.")
         )
         .padding(.horizontal, 16)
-        .frame(minWidth: width, minHeight: height)
         Spacer()
     }
 
