@@ -81,6 +81,7 @@ public struct AssignmentRemindersView: View {
                     .padding(.top, 4)
                     .foregroundStyle(Color.textDarkest)
                     .font(.regular16)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             Spacer(minLength: 0)
             Button {
