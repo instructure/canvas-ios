@@ -24,11 +24,11 @@ class AnnouncementsTests: E2ETestCase {
     typealias AccountNotifications = Helper.AccountNotifications
 
     override func tearDown() {
-        super.tearDown()
-
         // Disable discussion redesign feature flag
         let featureFlagResponse = seeder.setFeatureFlag(featureFlag: .newDiscussion, state: .off)
         XCTAssertEqual(featureFlagResponse.state, DSFeatureFlagState.off.rawValue)
+
+        super.tearDown()
     }
 
     func testAnnouncementsMatchWebOrder() {
