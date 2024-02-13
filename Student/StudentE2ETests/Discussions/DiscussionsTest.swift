@@ -27,6 +27,7 @@ class DiscussionsTests: E2ETestCase {
     override func tearDown() {
         let featureFlagResponse = seeder.setFeatureFlag(featureFlag: .newDiscussion, state: .off)
         XCTAssertEqual(featureFlagResponse.state, DSFeatureFlagState.off.rawValue)
+        super.tearDown()
     }
 
     func testDiscussionLabels() {
