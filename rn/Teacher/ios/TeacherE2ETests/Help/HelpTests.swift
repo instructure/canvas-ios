@@ -38,7 +38,7 @@ class HelpTests: E2ETestCase {
         searchTheCanvasGuidesButton.hit()
         HelpHelper.openInSafariButton.hit()
         var browserURL = SafariAppHelper.browserURL
-        XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Canvas-LMS/ct-p/canvaslms"))
+        XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Canvas/ct-p/canvas"))
 
         // MARK: Check "Conference Guides for Remote Classrooms" button
         HelpHelper.returnToHelpPage(teacher: true)

@@ -205,4 +205,204 @@ class AssignmentsTests: E2ETestCase {
         XCTAssertTrue(tomorrowsAssignmentButton.isVisible)
         XCTAssertTrue(tomorrowsAssignmentButton.hasLabel(label: "Due Tomorrow", strict: false))
     }
+
+    func testLockedAssignment() {
+        // MARK: Seed the usual stuff with a locked assignment
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+        let lockedAssignment = Helper.createAssignment(
+            course: course,
+            name: "Locked Assignment",
+            dueDate: Date.now.addDays(-1),
+            lockAt: Date.now)
+
+        // MARK: Get the user logged in
+        logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course)
+        XCTAssertTrue(courseCard.isVisible)
+
+        // MARK: Navigate to Assignments
+        Helper.navigateToAssignments(course: course)
+        let navBar = Helper.navBar(course: course).waitUntil(.visible)
+        XCTAssertTrue(navBar.isVisible)
+
+        // MARK: Check Locked Assignment
+        let lockedAssignmentButton = Helper.assignmentButton(assignment: lockedAssignment).waitUntil(.visible)
+        XCTAssertTrue(lockedAssignmentButton.isVisible)
+        XCTAssertTrue(lockedAssignmentButton.hasLabel(label: "Availability: Closed", strict: false))
+
+        lockedAssignmentButton.hit()
+        let lockSectionElement = DetailsHelper.lockSection.waitUntil(.visible)
+        let submitAssignmentButton = DetailsHelper.submitAssignmentButton.waitUntil(.vanish)
+        XCTAssertTrue(lockSectionElement.isVisible)
+        XCTAssertTrue(submitAssignmentButton.isVanished)
+    }
+
+    func testFutureAssignment() {
+        // MARK: Seed the usual stuff with a future assignment
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+        let futureAssignment = Helper.createAssignment(
+            course: course,
+            name: "Future Assignment",
+            dueDate: Date.now.addDays(3),
+            unlockAt: Date.now.addDays(1))
+
+        // MARK: Get the user logged in
+        logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course)
+        XCTAssertTrue(courseCard.isVisible)
+
+        // MARK: Navigate to Assignments
+        Helper.navigateToAssignments(course: course)
+        let navBar = Helper.navBar(course: course).waitUntil(.visible)
+        XCTAssertTrue(navBar.isVisible)
+
+        // MARK: Check Future Assignment
+        let futureAssignmentButton = Helper.assignmentButton(assignment: futureAssignment).waitUntil(.visible)
+        XCTAssertTrue(futureAssignmentButton.isVisible)
+
+        futureAssignmentButton.hit()
+        let lockIcon = DetailsHelper.lockIcon.waitUntil(.visible)
+        let lockSectionElement = DetailsHelper.lockSection.waitUntil(.visible)
+        let isLockedLabel = DetailsHelper.isLockedLabel.waitUntil(.visible)
+        let pandaLockedImage = DetailsHelper.pandaLockedImage.waitUntil(.visible)
+        let submitAssignmentButton = DetailsHelper.submitAssignmentButton.waitUntil(.vanish)
+        XCTAssertTrue(lockIcon.isVisible)
+        XCTAssertTrue(lockSectionElement.isVisible)
+        XCTAssertTrue(isLockedLabel.isVisible)
+        XCTAssertTrue(pandaLockedImage.isVisible)
+        XCTAssertTrue(submitAssignmentButton.isVanished)
+    }
+
+    func testExcusedStatus() {
+        // MARK: Seed the usual stuff with an assignment
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+        let assignment = Helper.createAssignment(course: course)
+        GradesHelper.excuseStudentFromAssignment(course: course, assignment: assignment, user: student)
+
+        // MARK: Get the user logged in
+        logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course)
+        XCTAssertTrue(courseCard.isVisible)
+
+        // MARK: Navigate to Assignments
+        Helper.navigateToAssignments(course: course)
+        let navBar = Helper.navBar(course: course).waitUntil(.visible)
+        XCTAssertTrue(navBar.isVisible)
+
+        // MARK: Check Assignment
+        let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
+        XCTAssertTrue(assignmentButton.isVisible)
+
+        assignmentButton.hit()
+        let excusedLabel = DetailsHelper.gradeDisplayGrade.waitUntil(.visible)
+        XCTAssertTrue(excusedLabel.isVisible)
+        XCTAssertTrue(excusedLabel.hasLabel(label: "Excused"))
+    }
+
+    func testAttemptSelectorAndSubmissionAndRubricScreen() {
+        // MARK: Seed the usual stuff with an assignment
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+        let assignment = Helper.createAssignment(course: course)
+        let rubric = Helper.createRubric(in: course, rubricAssociationId: assignment.id, rubricAssociationType: .assignment)
+        GradesHelper.submitAssignment(course: course, student: student, assignment: assignment)
+        sleep(1)
+        GradesHelper.submitAssignment(course: course, student: student, assignment: assignment)
+
+        // MARK: Get the user logged in
+        logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course)
+        XCTAssertTrue(courseCard.isVisible)
+
+        // MARK: Navigate to Assignments
+        Helper.navigateToAssignments(course: course)
+        let navBar = Helper.navBar(course: course).waitUntil(.visible)
+        XCTAssertTrue(navBar.isVisible)
+
+        // MARK: Check Assignment
+        let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
+        XCTAssertTrue(assignmentButton.isVisible)
+
+        // MARK: Check ViewSubmissions
+        assignmentButton.hit()
+        let viewSubmissionButton = DetailsHelper.viewSubmissionButton.waitUntil(.visible)
+        XCTAssertTrue(viewSubmissionButton.isVisible)
+
+        viewSubmissionButton.hit()
+        let commentsButton = DetailsHelper.SubmissionComments.commentsButton.waitUntil(.visible)
+        let filesButton = DetailsHelper.SubmissionComments.filesButton.waitUntil(.visible)
+        let rubricButton = DetailsHelper.SubmissionComments.rubricButton.waitUntil(.visible)
+        let addMediaButton = DetailsHelper.SubmissionComments.addMediaButton.waitUntil(.visible)
+        let addCommentButton = DetailsHelper.SubmissionComments.addCommentButton.waitUntil(.visible)
+        let drawerGripper = DetailsHelper.SubmissionDetails.drawerGripper.waitUntil(.visible)
+        let commentTextView = DetailsHelper.SubmissionComments.commentTextView.waitUntil(.visible)
+        XCTAssertTrue(commentsButton.isVisible)
+        XCTAssertTrue(filesButton.isVisible)
+        XCTAssertTrue(rubricButton.isVisible)
+        XCTAssertTrue(addMediaButton.isVisible)
+        XCTAssertTrue(addCommentButton.isVisible)
+        XCTAssertTrue(addCommentButton.isDisabled)
+        XCTAssertTrue(drawerGripper.isVisible)
+        XCTAssertTrue(commentTextView.isVisible)
+
+        // MARK: Check attemptSelector
+        drawerGripper.tapAndHoldAndDragToElement(element: commentTextView)
+        let attemptPickerToggle = DetailsHelper.SubmissionDetails.attemptPickerToggle.waitUntil(.visible)
+        XCTAssertTrue(attemptPickerToggle.isVisible)
+
+        attemptPickerToggle.hit()
+        let attemptPicker = DetailsHelper.SubmissionDetails.attemptPicker.waitUntil(.visible)
+        let pickerWheel = DetailsHelper.SubmissionDetails.pickerWheel.waitUntil(.visible)
+        XCTAssertTrue(attemptPicker.isVisible)
+        XCTAssertTrue(pickerWheel.isVisible)
+        XCTAssertTrue(pickerWheel.hasValue(value: "Attempt 2", strict: false))
+
+        pickerWheel.tapAndHoldAndDragToElement(element: attemptPickerToggle)
+        XCTAssertTrue(pickerWheel.hasValue(value: "Attempt 1", strict: false))
+
+        // MARK: Check adding a comment
+        attemptPickerToggle.hit()
+        drawerGripper.tapAndHoldAndDragToElement(element: attemptPickerToggle)
+        commentTextView.writeText(text: "Test Comment")
+        XCTAssertTrue(addCommentButton.waitUntil(.visible).isVisible)
+        XCTAssertTrue(addCommentButton.isEnabled)
+
+        addCommentButton.hit()
+        let chatBubble = DetailsHelper.SubmissionComments.chatBubble.waitUntil(.visible)
+        XCTAssertTrue(chatBubble.isVisible)
+
+        // MARK: Check rubric
+        rubricButton.hit()
+        let rubricTitle = DetailsHelper.SubmissionComments.rubricTitle(rubric: rubric).waitUntil(.visible)
+        let rubricDescriptionButton = DetailsHelper.SubmissionComments.rubricDescriptionButton(rubric: rubric).waitUntil(.visible)
+        let rubricRatingZero = DetailsHelper.SubmissionComments.rubricRatingButton(rubric: rubric, index: 0).waitUntil(.visible)
+        let rubricRatingOne = DetailsHelper.SubmissionComments.rubricRatingButton(rubric: rubric, index: 1).waitUntil(.visible)
+        XCTAssertTrue(rubricTitle.isVisible)
+        XCTAssertTrue(rubricDescriptionButton.isVisible)
+        XCTAssertTrue(rubricRatingZero.isVisible)
+        XCTAssertTrue(rubricRatingOne.isVisible)
+        XCTAssertTrue(rubricRatingZero.hasLabel(label: rubric.data[0].ratings[1].description, strict: false))
+        XCTAssertTrue(rubricRatingOne.hasLabel(label: rubric.data[0].ratings[0].description, strict: false))
+
+        rubricRatingOne.hit()
+        let rubricRatingTitle = DetailsHelper.SubmissionComments.rubricRatingTitle(rubric: rubric).waitUntil(.visible)
+        XCTAssertTrue(rubricRatingTitle.isVisible)
+        XCTAssertTrue(rubricRatingTitle.hasLabel(label: rubric.data[0].ratings[0].description))
+
+        rubricRatingZero.hit()
+        XCTAssertTrue(rubricRatingTitle.waitUntil(.visible).isVisible)
+        XCTAssertTrue(rubricRatingTitle.hasLabel(label: rubric.data[0].ratings[1].description))
+
+        rubricDescriptionButton.hit()
+        let rubricLongDescriptionLabel = DetailsHelper.SubmissionComments
+            .rubricLongDescriptionLabel(rubric: rubric).waitUntil(.visible)
+        XCTAssertTrue(rubricLongDescriptionLabel.isVisible)
+    }
 }

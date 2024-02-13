@@ -53,9 +53,9 @@ public class GradesHelper: BaseHelper {
     }
 
     @discardableResult
-    public static func submitAssignment(course: DSCourse, student: DSUser, assignment: DSAssignment) -> DSSubmission {
+    public static func submitAssignment(course: DSCourse, student: DSUser, assignment: DSAssignment, body: String? = nil) -> DSSubmission {
         return seeder.createSubmission(courseId: course.id, assignmentId: assignment.id, requestBody: .init(
-            submission_type: .online_text_entry, body: "This is a submission body", user_id: student.id))
+            submission_type: .online_text_entry, body: body ?? "This is a submission body", user_id: student.id))
     }
 
     public static func createSubmissionsForAssignments(course: DSCourse, student: DSUser, assignments: [DSAssignment]) {
@@ -88,6 +88,14 @@ public class GradesHelper: BaseHelper {
         for i in 0..<assignments.count {
             gradeAssignment(grade: grades[i], course: course, assignment: assignments[i], user: user)
         }
+    }
+
+    public static func excuseStudentFromAssignment(course: DSCourse, assignment: DSAssignment, user: DSUser) {
+        seeder.postGrade(
+            courseId: course.id,
+            assignmentId: assignment.id,
+            userId: user.id,
+            requestBody: .init(excuse: true))
     }
 
     public static func navigateToAssignments(course: DSCourse) {
