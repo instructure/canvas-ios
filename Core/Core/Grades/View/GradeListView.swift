@@ -323,14 +323,18 @@ public struct GradeListView: View, ScreenViewTrackable {
     ) -> some View {
         ForEach(assignmentSections) { section in
             Section(header:
-                HStack(spacing: 0) {
-                    Text(section.title ?? "")
-                        .foregroundStyle(Color.textDark)
-                        .font(.regular14)
-                    Spacer()
+                VStack(spacing: 2) {
+                    HStack(spacing: 0) {
+                        Text(section.title ?? "")
+                            .foregroundStyle(Color.textDark)
+                            .font(.semibold14)
+                            .padding(.horizontal, 16)
+                        Spacer()
+                    }
+                    .frame(height: 51)
+                    .background(Color.backgroundLight)
+                    Divider().padding(.top, -3)
                 }
-                .padding(.top, 8)
-                .padding(.horizontal, 16)
             ) {
                 ForEach(section.assignments) { assignment in
                     VStack(spacing: 0) {
