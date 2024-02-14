@@ -19,7 +19,7 @@
 import TestsFoundation
 
 class FeatureFlagOfflineTests: OfflineE2ETest {
-    open override var canvasFeatureFlag: DSCanvasFeatureFlag { DSCanvasFeatureFlag(featureFlag: .newDiscussion, state: .allowedOn) }
+    open override var canvasFeatureFlags: [DSCanvasFeatureFlag] { [DSCanvasFeatureFlag(featureFlag: .newDiscussion, state: .allowedOn)] }
 
     override func tearDown() {
         // In case the tests fail at a point where the internet connection is turned off
