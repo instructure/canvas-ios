@@ -118,6 +118,11 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
 
     private func setupReminderDeletion() {
         reminderDidDelete
+            .flatMap { [notificationCenter] reminder in
+                notificationCenter
+                    .removePendingNotificationRequests(withIdentifiers: [reminder.id])
+                    .map { reminder }
+            }
             .map { [reminders] (deleted) in
                 var newList = reminders.value
                 newList.removeAll { $0 == deleted }

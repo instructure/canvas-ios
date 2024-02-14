@@ -62,6 +62,13 @@ public extension UserNotificationCenterProtocol {
             }
         }
     }
+
+    func removePendingNotificationRequests(withIdentifiers identifiers: [String]) -> Future<Void, Never> {
+        Future { [self] promise in
+            removePendingNotificationRequests(withIdentifiers: identifiers)
+            promise(.success(()))
+        }
+    }
 }
 
 extension UNUserNotificationCenter: UserNotificationCenterProtocol {}
