@@ -26,16 +26,14 @@ open class E2ETestCase: CoreUITestCase {
     public let seeder = DataSeeder()
     open override var useMocks: Bool {false}
     open override var doLoginAfterSetup: Bool { false }
-    open var canvasFeatureFlags: [DSCanvasFeatureFlag]? { nil }
+    open var canvasFeatureFlags: [DSCanvasFeatureFlag] { [] }
 
     open override func setUp() {
         super.setUp()
 
-        if let canvasFeatureFlags {
-            for canvasFeatureFlag in canvasFeatureFlags {
-                let featureFlagResponse = seeder.setFeatureFlag(featureFlag: canvasFeatureFlag.featureFlag, state: canvasFeatureFlag.state)
-                XCTAssertEqual(featureFlagResponse.state, canvasFeatureFlag.state.rawValue)
-            }
+        for canvasFeatureFlag in canvasFeatureFlags {
+            let featureFlagResponse = seeder.setFeatureFlag(featureFlag: canvasFeatureFlag.featureFlag, state: canvasFeatureFlag.state)
+            XCTAssertEqual(featureFlagResponse.state, canvasFeatureFlag.state.rawValue)
         }
     }
 
