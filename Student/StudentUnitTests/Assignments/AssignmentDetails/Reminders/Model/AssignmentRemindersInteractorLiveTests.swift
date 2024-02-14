@@ -18,12 +18,13 @@
 
 import Core
 @testable import Student
+import TestsFoundation
 import XCTest
 
 class AssignmentRemindersInteractorLiveTests: StudentTestCase {
 
     func testReminderSectionVisibility() {
-        let testee = AssignmentRemindersInteractorLive(notificationManager: .shared)
+        let testee = AssignmentRemindersInteractorLive(notificationCenter: MockUserNotificationCenter())
         Clock.mockNow(Date())
         XCTAssertFalse(testee.isRemindersSectionVisible.value)
 
@@ -38,7 +39,7 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
     }
 
     func testNewReminder() {
-        let testee = AssignmentRemindersInteractorLive(notificationManager: .shared)
+        let testee = AssignmentRemindersInteractorLive(notificationCenter: MockUserNotificationCenter())
 
         testee.newReminderDidSelect.send(DateComponents(minute: 5))
 
@@ -47,7 +48,7 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
     }
 
     func testReminderDeletion() {
-        let testee = AssignmentRemindersInteractorLive(notificationManager: .shared)
+        let testee = AssignmentRemindersInteractorLive(notificationCenter: MockUserNotificationCenter())
         let reminder = AssignmentReminderItem(title: "5 minutes")
         testee.reminders.send([reminder])
 

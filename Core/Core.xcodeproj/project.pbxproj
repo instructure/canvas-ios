@@ -1334,6 +1334,7 @@
 		CD96C3E67DE10AEB1F1F7955 /* PageViewSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AC4A482793512AE0211360 /* PageViewSessionTests.swift */; };
 		CDB360A27C5C8FFB0CDAF113 /* CourseListItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B34332AA1629022F20FBEA6 /* CourseListItemTests.swift */; };
 		CE10BFF1A128704EBD4E20A2 /* GetEnvironmentFeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63BB40BBD718588A9CA4634 /* GetEnvironmentFeatureFlags.swift */; };
+		CE24E6432EEC1B9303A29A76 /* UserNotificationCenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7006162A1974731AEC0FF07 /* UserNotificationCenterProtocol.swift */; };
 		CE4487612FDBB05A6D2E99DE /* ConferenceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F7AF71ABFF2EF1758011DD8 /* ConferenceDetailsViewController.swift */; };
 		CE643DC03312A0867F0F7AAD /* ConferencesPanda.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10E783D9A7E968F54EB8AFAB /* ConferencesPanda.swift */; };
 		CE6959005B017590E1CEB228 /* NotificationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58C85BB7DFDBAAA4DD42E2FE /* NotificationCard.swift */; };
@@ -3275,6 +3276,7 @@
 		E6EF16BAD60332D4C5D28CC5 /* QuizListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizListViewController.swift; sourceTree = "<group>"; };
 		E6FB1FDE58D78AC3EFFDB0B4 /* ConfirmationAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationAlert.swift; sourceTree = "<group>"; };
 		E6FF50829E8BB2D64C2C9ABA /* UIWindowExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIWindowExtensionsTests.swift; sourceTree = "<group>"; };
+		E7006162A1974731AEC0FF07 /* UserNotificationCenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationCenterProtocol.swift; sourceTree = "<group>"; };
 		E71711BCDE6B5F982C4D0DBB /* CoreWebViewFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreWebViewFeature.swift; sourceTree = "<group>"; };
 		E743B7C668F7B90BAD0C2F3A /* DispatchExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchExtensions.swift; sourceTree = "<group>"; };
 		E7AA5BF16FB919BFCDB3012A /* ModuleSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleSectionHeaderView.swift; sourceTree = "<group>"; };
@@ -4227,6 +4229,7 @@
 				57A64ED8A474E0594F364159 /* NotificationCategory.swift */,
 				A18D6CECA93926E3D68A30A0 /* NotificationManager.swift */,
 				9A051BB78C43832BD876D89C /* PushNotificationError.swift */,
+				E7006162A1974731AEC0FF07 /* UserNotificationCenterProtocol.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -11021,6 +11024,7 @@
 				5C5BDC2D04428F514C1042FD /* UseCase.swift in Sources */,
 				47226D718BAD230DCF7E7993 /* User.swift in Sources */,
 				5A2DC11F55A2AE09BCA4FEB8 /* UserAgent.swift in Sources */,
+				CE24E6432EEC1B9303A29A76 /* UserNotificationCenterProtocol.swift in Sources */,
 				551C4A1D7306F3F70B0F4ACA /* UserProfile.swift in Sources */,
 				6CE33BA4202C5FFA0CE201F6 /* UserSettings.swift in Sources */,
 				FBBA6988026E5AC7C5EF0FEF /* VideoPlayer.swift in Sources */,

@@ -19,6 +19,7 @@
 @testable import Core
 import Combine
 import Student
+import TestsFoundation
 import XCTest
 
 class AssignmentRemindersViewModelTests: StudentTestCase {
@@ -30,7 +31,7 @@ class AssignmentRemindersViewModelTests: StudentTestCase {
     }
 
     func testNewReminderTapOpensTimePicker() {
-        let interactor = AssignmentRemindersInteractorLive(notificationManager: .shared)
+        let interactor = AssignmentRemindersInteractorLive(notificationCenter: MockUserNotificationCenter())
         let testee = AssignmentRemindersViewModel(interactor: interactor, router: router)
         let hostView = UIViewController()
 

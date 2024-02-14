@@ -59,10 +59,10 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
-    private let notificationManager: NotificationManager
+    private let notificationCenter: UserNotificationCenterProtocol
 
-    public init(notificationManager: NotificationManager) {
-        self.notificationManager = notificationManager
+    public init(notificationCenter: UserNotificationCenterProtocol) {
+        self.notificationCenter = notificationCenter
         showReminderViewIfDueDateIsInFuture()
         scheduleNotificationOnTimeSelect()
         setupReminderDeletion()
@@ -89,14 +89,14 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
                     .filter { $0.dueDate != nil }
                     .map { (beforeTime: beforeTime, context: $0) }
             }
-            .flatMap { [notificationManager] (beforeTime, context) in
-                notificationManager
+            .flatMap { [notificationCenter] (beforeTime, context) in
+                notificationCenter
                     .requestAuthorization()
                     .mapToValue(true)
                     .replaceError(with: false)
                     .map { (beforeTime: beforeTime, context: context, hasPermission: $0) }
             }
-            .flatMap { [notificationManager] (beforeTime, context, hasPermission) in
+            .flatMap { [notificationCenter] (beforeTime, context, hasPermission) in
                 guard hasPermission else {
                     return Just(NewReminderResult.failure(.noPermission)).eraseToAnyPublisher()
                 }
@@ -104,10 +104,11 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
                     return Just(NewReminderResult.failure(.scheduleFailed)).eraseToAnyPublisher()
                 }
                 let content = UNNotificationContent.assignmentReminder(context: context, beforeTime: beforeTime)
-                return notificationManager
-                    .schedule(identifier: UUID.string,
-                              content: content,
-                              trigger: trigger)
+                let request = UNNotificationRequest(identifier: UUID.string,
+                                                    content: content,
+                                                    trigger: trigger)
+                return notificationCenter
+                    .add(request)
                     .mapError { _ in AssignmentReminderError.noPermission }
                     .mapToResult()
             }
@@ -138,9 +139,8 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
 
         Publishers
             .Merge(reminderCreated, contextLoaded)
-            .flatMap { [notificationManager] context in
-                notificationManager
-                    .notificationCenter
+            .flatMap { [notificationCenter] context in
+                notificationCenter
                     .getPendingNotificationRequests()
                     .map { ($0, context) }
             }
@@ -154,16 +154,5 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
             }
             .subscribe(reminders)
             .store(in: &subscriptions)
-    }
-}
-
-extension UserNotificationCenterProtocol {
-
-    func getPendingNotificationRequests() -> Future<[UNNotificationRequest], Never> {
-        Future { [self] promise in
-            getPendingNotificationRequests { notifications in
-                promise(.success(notifications))
-            }
-        }
     }
 }

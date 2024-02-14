@@ -20,16 +20,6 @@ import Combine
 import Foundation
 import UserNotifications
 
-public protocol UserNotificationCenterProtocol: AnyObject {
-    func requestAuthorization(options: UNAuthorizationOptions, completionHandler: @escaping (Bool, Error?) -> Void)
-    func add(_ request: UNNotificationRequest, withCompletionHandler completionHandler: ((Error?) -> Void)?)
-    func getPendingNotificationRequests(completionHandler: @escaping ([UNNotificationRequest]) -> Void)
-    func removePendingNotificationRequests(withIdentifiers identifiers: [String])
-    var delegate: UNUserNotificationCenterDelegate? { get set }
-}
-
-extension UNUserNotificationCenter: UserNotificationCenterProtocol {}
-
 public class NotificationManager {
     public static let RouteURLKey = "com.instructure.core.router.notification-url"
 
@@ -50,18 +40,6 @@ public class NotificationManager {
 
     public func requestAuthorization(options: UNAuthorizationOptions = [], completionHandler: @escaping (Bool, Error?) -> Void) {
         notificationCenter.requestAuthorization(options: options, completionHandler: completionHandler)
-    }
-
-    public func requestAuthorization(options: UNAuthorizationOptions = []) -> Future<Void, Error> {
-        Future { [notificationCenter] promise in
-            notificationCenter.requestAuthorization(options: options) { granted, error in
-                if let error {
-                    return promise(.failure(error))
-                }
-
-                promise(granted ? .success(()) : .failure(NSError.instructureError("Denied")))
-            }
-        }
     }
 
     public func notify(
@@ -102,29 +80,6 @@ public class NotificationManager {
         Future<Void, Error> { [self] promise in
             notify(identifier: identifier, title: title, body: body, route: route) { error in
                 if let error {
-                    promise(.failure(error))
-                } else {
-                    promise(.success(()))
-                }
-            }
-        }
-    }
-
-    public func schedule(
-        identifier: String,
-        content: UNNotificationContent,
-        trigger: UNNotificationTrigger
-    ) -> Future<Void, Error> {
-        Future<Void, Error> { [notificationCenter] promise in
-            let request = UNNotificationRequest(
-                identifier: identifier,
-                content: content,
-                trigger: trigger
-            )
-            notificationCenter.add(request) { error in
-                if let error {
-                    Analytics.shared.logError(name: "Failed to schedule local notification",
-                                              reason: error.localizedDescription)
                     promise(.failure(error))
                 } else {
                     promise(.success(()))
