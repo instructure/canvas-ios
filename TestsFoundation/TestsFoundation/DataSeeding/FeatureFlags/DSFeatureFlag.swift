@@ -28,7 +28,7 @@ public struct DSFeatureFlagResponse: Codable {
     public let locked: Bool
 }
 
-public struct DSSetFeatureFlag {
+public struct DSCanvasFeatureFlag {
     let featureFlag: DSFeatureFlag
     let state: DSFeatureFlagState
 
