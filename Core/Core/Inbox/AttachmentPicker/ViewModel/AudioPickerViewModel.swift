@@ -98,6 +98,7 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
 
     func normalizeSeekValue(rawValue value: CGFloat) -> CGFloat {
         var chartIndex = Int(floor(-value / (barWidth + spaceWidth)))
+        guard !audioChartDataSet.isEmpty else { return 0 }
         if chartIndex >= audioChartDataSet.count { chartIndex = audioChartDataSet.count - 1 }
         if chartIndex < 0 { chartIndex = 0 }
         let chartValue = audioChartDataSet[chartIndex]
