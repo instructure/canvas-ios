@@ -78,6 +78,7 @@ public class AssignmentRemindersViewModel: ObservableObject {
 
         interactor
             .reminders
+            .receive(on: RunLoop.main)
             .assign(to: &$reminders)
     }
 

@@ -38,8 +38,7 @@ enum AssignmentRemindersAssembly {
     static func makeDatePickerView(
         selectedTimeInterval: some Subject<DateComponents, Never>)
     -> UIViewController {
-        let viewModel = AssignmentReminderDatePickerViewModel(router: AppEnvironment.shared.router,
-                                                              selectedTimeInterval: selectedTimeInterval)
+        let viewModel = AssignmentReminderDatePickerViewModel(selectedTimeInterval: selectedTimeInterval)
         let view = AssignmentReminderDatePickerView(viewModel: { viewModel })
         let host = CoreHostingController(view)
         return host

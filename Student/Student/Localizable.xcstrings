@@ -505,8 +505,8 @@
         }
       }
     },
-    "%@ Before" : {
-      "comment" : "10 Minutes Before"
+    "%@ before" : {
+      "comment" : "10 minutes before"
     },
     "%@ is coming soon!" : {
       "comment" : "Message for unsupported tab coming soon",

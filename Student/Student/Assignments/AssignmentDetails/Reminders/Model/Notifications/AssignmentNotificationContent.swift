@@ -19,8 +19,8 @@
 import Core
 
 extension UNNotificationContent {
-    enum Keys: String {
-        case courseId, assignmentId, userId
+    enum AssignmentReminderKeys: String {
+        case courseId, assignmentId, userId, triggerTimeText
     }
 
     static func assignmentReminder(context: AssignmentReminderContext, beforeTime: DateComponents) -> UNNotificationContent {
@@ -32,9 +32,10 @@ extension UNNotificationContent {
         result.title = String(localized: "Due Date Reminder")
         result.body = String(localized: "This assignment is due in \(dueText)", comment: "Due in 5 minutes") + ": \(context.assignmentName)"
         result.userInfo = [
-            Keys.courseId.rawValue: context.courseId,
-            Keys.assignmentId.rawValue: context.assignmentId,
-            Keys.userId.rawValue: context.userId,
+            AssignmentReminderKeys.courseId.rawValue: context.courseId,
+            AssignmentReminderKeys.assignmentId.rawValue: context.assignmentId,
+            AssignmentReminderKeys.userId.rawValue: context.userId,
+            AssignmentReminderKeys.triggerTimeText.rawValue: AssignmentReminderTimeFormatter().string(from: beforeTime) ?? "",
             NotificationManager.RouteURLKey: "courses/\(context.courseId)/assignments/\(context.assignmentId)",
         ]
         return result

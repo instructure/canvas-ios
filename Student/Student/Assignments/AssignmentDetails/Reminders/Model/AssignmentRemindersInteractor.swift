@@ -60,21 +60,13 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
     private let notificationManager: NotificationManager
-    private let courseId: String
-    private let assignmentId: String
-    private let userId: String
 
-    public init(courseId: String,
-                assignmentId: String,
-                userId: String,
-                notificationManager: NotificationManager) {
-        self.courseId = courseId
-        self.assignmentId = assignmentId
-        self.userId = userId
+    public init(notificationManager: NotificationManager) {
         self.notificationManager = notificationManager
         showReminderViewIfDueDateIsInFuture()
         scheduleNotificationOnTimeSelect()
         setupReminderDeletion()
+        updateRemindersListOnNewReminderCreation()
     }
 
     private func showReminderViewIfDueDateIsInFuture() {
@@ -105,18 +97,19 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
                     .map { (beforeTime: beforeTime, context: context, hasPermission: $0) }
             }
             .flatMap { [notificationManager] (beforeTime, context, hasPermission) in
-                if hasPermission {
-                    let content = UNNotificationContent.assignmentReminder(context: context, beforeTime: beforeTime)
-                    let trigger = UNTimeIntervalNotificationTrigger(assignmentDueDate: context.dueDate!, beforeTime: beforeTime)
-                    return notificationManager
-                        .schedule(identifier: UUID.string,
-                                  content: content,
-                                  trigger: trigger)
-                        .mapError { _ in AssignmentReminderError.noPermission }
-                        .mapToResult()
-                } else {
+                guard hasPermission else {
                     return Just(NewReminderResult.failure(.noPermission)).eraseToAnyPublisher()
                 }
+                guard let trigger = UNTimeIntervalNotificationTrigger(assignmentDueDate: context.dueDate!, beforeTime: beforeTime) else {
+                    return Just(NewReminderResult.failure(.scheduleFailed)).eraseToAnyPublisher()
+                }
+                let content = UNNotificationContent.assignmentReminder(context: context, beforeTime: beforeTime)
+                return notificationManager
+                    .schedule(identifier: UUID.string,
+                              content: content,
+                              trigger: trigger)
+                    .mapError { _ in AssignmentReminderError.noPermission }
+                    .mapToResult()
             }
             .subscribe(newReminderCreationResult)
             .store(in: &subscriptions)
@@ -133,11 +126,44 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
             .store(in: &subscriptions)
     }
 
-    private func readNotificationsForAssignment() {
-        notificationManager.notificationCenter.getPendingNotificationRequests { [courseId, assignmentId, userId] notifications in
-            let assignmentNotifications = notifications.filter(courseId: courseId,
-                                                               assignmentId: assignmentId,
-                                                               userId: userId)
+    private func updateRemindersListOnNewReminderCreation() {
+        let reminderCreated = newReminderCreationResult
+            .filter { (try? $0.get()) != nil }
+            .flatMap { [contextDidUpdate] _ in contextDidUpdate }
+            .compactMap { $0 }
+
+        let contextLoaded = contextDidUpdate
+            .compactMap { $0 }
+            .first()
+
+        Publishers
+            .Merge(reminderCreated, contextLoaded)
+            .flatMap { [notificationManager] context in
+                notificationManager
+                    .notificationCenter
+                    .getPendingNotificationRequests()
+                    .map { ($0, context) }
+            }
+            .map { (notifications, context) in
+                notifications.filter(courseId: context.courseId,
+                                     assignmentId: context.assignmentId,
+                                     userId: context.userId)
+            }
+            .map { notifications in
+                notifications.compactMap { AssignmentReminderItem(notification: $0) }
+            }
+            .subscribe(reminders)
+            .store(in: &subscriptions)
+    }
+}
+
+extension UserNotificationCenterProtocol {
+
+    func getPendingNotificationRequests() -> Future<[UNNotificationRequest], Never> {
+        Future { [self] promise in
+            getPendingNotificationRequests { notifications in
+                promise(.success(notifications))
+            }
         }
     }
 }

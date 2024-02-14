@@ -149,10 +149,7 @@ struct AssignmentRemindersView_Previews: PreviewProvider {
     static var previews: some View {
         VStack { // Preview bug, if not embedded into this the insert animation won't play
             let interactor: AssignmentRemindersInteractor = {
-                let interactor = AssignmentRemindersInteractorLive(courseId: "",
-                                                                   assignmentId: "",
-                                                                   userId: "",
-                                                                   notificationManager: .shared)
+                let interactor = AssignmentRemindersInteractorLive(notificationManager: .shared)
                 interactor.isRemindersSectionVisible.send(true)
                 return interactor
             }()

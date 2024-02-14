@@ -17,32 +17,28 @@
 //
 
 import Core
-import Student
+@testable import Student
 import XCTest
 
 class AssignmentRemindersInteractorLiveTests: StudentTestCase {
 
     func testReminderSectionVisibility() {
-        let testee = AssignmentRemindersInteractorLive()
-        let assignment: Assignment = databaseClient.insert()
+        let testee = AssignmentRemindersInteractorLive(notificationManager: .shared)
         Clock.mockNow(Date())
         XCTAssertFalse(testee.isRemindersSectionVisible.value)
 
-        assignment.dueAt = nil
-        testee.assignmentDidUpdate.send(assignment)
+        testee.contextDidUpdate.send(.init(courseId: "", assignmentId: "", userId: "", assignmentName: "", dueDate: nil))
         XCTAssertFalse(testee.isRemindersSectionVisible.value)
 
-        assignment.dueAt = Clock.now
-        testee.assignmentDidUpdate.send(assignment)
+        testee.contextDidUpdate.send(.init(courseId: "", assignmentId: "", userId: "", assignmentName: "", dueDate: Clock.now))
         XCTAssertFalse(testee.isRemindersSectionVisible.value)
 
-        assignment.dueAt = Clock.now.addSeconds(1)
-        testee.assignmentDidUpdate.send(assignment)
+        testee.contextDidUpdate.send(.init(courseId: "", assignmentId: "", userId: "", assignmentName: "", dueDate: Clock.now.addSeconds(1)))
         XCTAssertTrue(testee.isRemindersSectionVisible.value)
     }
 
     func testNewReminder() {
-        let testee = AssignmentRemindersInteractorLive()
+        let testee = AssignmentRemindersInteractorLive(notificationManager: .shared)
 
         testee.newReminderDidSelect.send(DateComponents(minute: 5))
 
@@ -51,7 +47,7 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
     }
 
     func testReminderDeletion() {
-        let testee = AssignmentRemindersInteractorLive()
+        let testee = AssignmentRemindersInteractorLive(notificationManager: .shared)
         let reminder = AssignmentReminderItem(title: "5 minutes")
         testee.reminders.send([reminder])
 

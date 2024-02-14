@@ -16,13 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import UserNotifications
 
 public struct AssignmentReminderItem: Identifiable, Equatable {
     public var id: String = UUID().uuidString
     public let title: String
 
     public init(title: String) {
+        self.title = title
+    }
+
+    public init?(notification: UNNotificationRequest) {
+        let key = UNNotificationContent.AssignmentReminderKeys.triggerTimeText.rawValue
+        guard let title = notification.content.userInfo[key] as? String else {
+            return nil
+        }
+        id = notification.identifier
         self.title = title
     }
 }

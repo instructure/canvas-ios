@@ -25,9 +25,9 @@ extension Sequence where Element == UNNotificationRequest {
                        userId: String) -> [UNNotificationRequest] {
         filter {
             let userInfo = $0.content.userInfo
-            return userInfo[UNMutableNotificationContent.Keys.courseId.rawValue] as? String == courseId &&
-                   userInfo[UNMutableNotificationContent.Keys.assignmentId.rawValue] as? String == assignmentId &&
-                   userInfo[UNMutableNotificationContent.Keys.userId.rawValue] as? String == userId
+            return userInfo[UNMutableNotificationContent.AssignmentReminderKeys.courseId.rawValue] as? String == courseId &&
+                   userInfo[UNMutableNotificationContent.AssignmentReminderKeys.assignmentId.rawValue] as? String == assignmentId &&
+                   userInfo[UNMutableNotificationContent.AssignmentReminderKeys.userId.rawValue] as? String == userId
         }
     }
 }

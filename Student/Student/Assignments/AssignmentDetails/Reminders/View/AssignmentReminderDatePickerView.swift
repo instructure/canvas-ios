@@ -130,8 +130,7 @@ struct AssignmentReminderDatePickerView_Previews: PreviewProvider {
 
     @ViewBuilder
     static var previews: some View {
-        let viewModel = AssignmentReminderDatePickerViewModel(router: AppEnvironment.shared.router,
-                                                              selectedTimeInterval: PassthroughSubject<DateComponents, Never>())
+        let viewModel = AssignmentReminderDatePickerViewModel(selectedTimeInterval: PassthroughSubject<DateComponents, Never>())
         AssignmentReminderDatePickerView(viewModel: { viewModel })
     }
 }

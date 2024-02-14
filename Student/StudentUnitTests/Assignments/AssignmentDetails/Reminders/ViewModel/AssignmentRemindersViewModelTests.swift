@@ -30,7 +30,7 @@ class AssignmentRemindersViewModelTests: StudentTestCase {
     }
 
     func testNewReminderTapOpensTimePicker() {
-        let interactor = AssignmentRemindersInteractorLive()
+        let interactor = AssignmentRemindersInteractorLive(notificationManager: .shared)
         let testee = AssignmentRemindersViewModel(interactor: interactor, router: router)
         let hostView = UIViewController()
 
@@ -69,9 +69,10 @@ class AssignmentRemindersViewModelTests: StudentTestCase {
 }
 
 class AssignmentRemindersInteractorMock: AssignmentRemindersInteractor {
+    let newReminderCreationResult = PassthroughSubject<Student.NewReminderResult, Never>()
     let isRemindersSectionVisible = CurrentValueSubject<Bool, Never>(true)
     let reminders = CurrentValueSubject<[AssignmentReminderItem], Never>([])
-    let assignmentDidUpdate = PassthroughSubject<Assignment, Never>()
+    let contextDidUpdate = CurrentValueSubject<Student.AssignmentReminderContext?, Never>(nil)
     let newReminderDidSelect = PassthroughSubject<DateComponents, Never>()
     let reminderDidDelete = PassthroughSubject<AssignmentReminderItem, Never>()
 }
