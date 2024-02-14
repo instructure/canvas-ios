@@ -25,15 +25,16 @@ open class E2ETestCase: CoreUITestCase {
     private let isRetry = ProcessInfo.processInfo.environment["CANVAS_TEST_IS_RETRY"] == "YES"
     public let seeder = DataSeeder()
     open override var useMocks: Bool {false}
+    open override var doLoginAfterSetup: Bool { false }
     open var setFeatureFlag: DSSetFeatureFlag? { nil }
 
     open override func setUp() {
+        super.setUp()
+
         if setFeatureFlag != nil {
             let featureFlagResponse = seeder.setFeatureFlag(featureFlag: setFeatureFlag!.featureFlag, state: setFeatureFlag!.state)
             XCTAssertEqual(featureFlagResponse.state, setFeatureFlag!.state.rawValue)
         }
-        doLoginAfterSetup = false
-        super.setUp()
     }
 
     open func findSchool(lastLogin: Bool = false) {
