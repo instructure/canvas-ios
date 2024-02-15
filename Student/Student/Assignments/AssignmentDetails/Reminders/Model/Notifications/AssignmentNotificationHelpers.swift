@@ -18,16 +18,30 @@
 
 import UserNotifications
 
-extension Sequence where Element == UNNotificationRequest {
+public extension Sequence where Element == UNNotificationRequest {
 
-    public func filter(courseId: String,
-                       assignmentId: String,
-                       userId: String) -> [UNNotificationRequest] {
+    func filter(courseId: String,
+                assignmentId: String,
+                userId: String) -> [UNNotificationRequest] {
         filter {
             let userInfo = $0.content.userInfo
             return userInfo[UNMutableNotificationContent.AssignmentReminderKeys.courseId.rawValue] as? String == courseId &&
                    userInfo[UNMutableNotificationContent.AssignmentReminderKeys.assignmentId.rawValue] as? String == assignmentId &&
                    userInfo[UNMutableNotificationContent.AssignmentReminderKeys.userId.rawValue] as? String == userId
+        }
+    }
+
+    func sorted() -> [UNNotificationRequest] {
+        sorted {
+            guard let leftTrigger = $0.trigger as? UNTimeIntervalNotificationTrigger,
+                  let leftDate = leftTrigger.nextTriggerDate(),
+                  let rightTrigger = $1.trigger as? UNTimeIntervalNotificationTrigger,
+                  let rightDate = rightTrigger.nextTriggerDate()
+            else {
+                return true
+            }
+
+            return leftDate.timeIntervalSince1970 > rightDate.timeIntervalSince1970
         }
     }
 }

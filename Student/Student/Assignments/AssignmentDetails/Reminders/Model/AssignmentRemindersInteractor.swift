@@ -66,7 +66,7 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
         showReminderViewIfDueDateIsInFuture()
         scheduleNotificationOnTimeSelect()
         setupReminderDeletion()
-        updateRemindersListOnNewReminderCreation()
+        updateRemindersOnNewReminderAndFirstLoad()
     }
 
     private func showReminderViewIfDueDateIsInFuture() {
@@ -132,7 +132,7 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
             .store(in: &subscriptions)
     }
 
-    private func updateRemindersListOnNewReminderCreation() {
+    private func updateRemindersOnNewReminderAndFirstLoad() {
         let reminderCreated = newReminderCreationResult
             .filter { (try? $0.get()) != nil }
             .flatMap { [contextDidUpdate] _ in contextDidUpdate }
@@ -153,6 +153,9 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
                 notifications.filter(courseId: context.courseId,
                                      assignmentId: context.assignmentId,
                                      userId: context.userId)
+            }
+            .map { notifications in
+                notifications.sorted()
             }
             .map { notifications in
                 notifications.compactMap { AssignmentReminderItem(notification: $0) }

@@ -98,7 +98,6 @@
 		7E5C6309957484425CB2F05A /* ActAsUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBD804BF32A7B20AE3BA926 /* ActAsUserTests.swift */; };
 		7ED3663BB991A164821EBA29 /* StudentAnnotationSubmissionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4FDBAF425E38489AB339F2 /* StudentAnnotationSubmissionViewModelTests.swift */; };
 		7F30451900B18EB55E76E711 /* StudentTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D152B0357F351496681650D /* StudentTabBarController.swift */; };
-		7F6A4995A17D0371AC03E90B /* AssignmentNotificationFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2502F1F5CF9EFB4804C43CA7 /* AssignmentNotificationFilter.swift */; };
 		80604DCC34A0F4D70AAE9353 /* GradesWidgetProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D898D903E4E8963F3B5034A /* GradesWidgetProvider.swift */; };
 		80E207A16748734EB3229B5F /* StudentAnnotationSubmissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2559C418A35A23F3FC16E7B6 /* StudentAnnotationSubmissionViewModel.swift */; };
 		81AB6EB972191C432CB42B66 /* CompatibleContainerBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5ED0B8FF5E0F7060796CBD /* CompatibleContainerBackground.swift */; };
@@ -146,6 +145,7 @@
 		BFF21C432C457525B9FD2938 /* SubmissionCommentVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC3D1FDBAD1E10FF45623C2 /* SubmissionCommentVideoCell.swift */; };
 		C019A038275728DD4D386A2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFB22C7678773015D8BB4821 /* Assets.xcassets */; };
 		C179B1C2017B7B5785FE51E8 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 00376B60D15475C898B1526B /* InfoPlist.xcstrings */; };
+		C223550CE8512927F8F2599A /* AssignmentNotificationHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6CAEF2F02EEC8970060342 /* AssignmentNotificationHelpers.swift */; };
 		C2F06D7F97A02DEDE09F50F0 /* AnnouncementsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1EC70C3CB26D5710FA9075 /* AnnouncementsProvider.swift */; };
 		C3B7C4AE3310B0526977E8F1 /* PagesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0822A6828A7C2FD315A093D7 /* PagesTests.swift */; };
 		C3EC60F9FB73E01DD27297C4 /* StudentTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443E36BD1456E0F6E9BF588 /* StudentTestCase.swift */; };
@@ -372,7 +372,6 @@
 		1F5ED0B8FF5E0F7060796CBD /* CompatibleContainerBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompatibleContainerBackground.swift; sourceTree = "<group>"; };
 		2085069FE2C9A776437A9E87 /* CanvasCore */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CanvasCore; path = ../CanvasCore/CanvasCore.xcodeproj; sourceTree = "<group>"; };
 		20A78AD8C9831DAA6FD8DF5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		2502F1F5CF9EFB4804C43CA7 /* AssignmentNotificationFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentNotificationFilter.swift; sourceTree = "<group>"; };
 		2559C418A35A23F3FC16E7B6 /* StudentAnnotationSubmissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentAnnotationSubmissionViewModel.swift; sourceTree = "<group>"; };
 		2611633A31958A2D00AAD504 /* AssignmentReminderItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentReminderItemView.swift; sourceTree = "<group>"; };
 		27B3EBD9579EC569DDC9CFEC /* QuizWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizWebViewController.swift; sourceTree = "<group>"; };
@@ -468,6 +467,7 @@
 		A7C7E0396DBF55B63078AE25 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		AA4B4C7AF58F1D386C8E2333 /* LogoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutTests.swift; sourceTree = "<group>"; };
 		AB1F6228AEE381B0A08A578B /* ToDoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTests.swift; sourceTree = "<group>"; };
+		AB6CAEF2F02EEC8970060342 /* AssignmentNotificationHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentNotificationHelpers.swift; sourceTree = "<group>"; };
 		AB7E51499058872023D0EF54 /* CalendarEventDetailsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventDetailsViewControllerTests.swift; sourceTree = "<group>"; };
 		ABAA28663504666F25A4F720 /* SubmissionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionDetailsViewController.swift; sourceTree = "<group>"; };
 		AC47505A51E749691587C390 /* Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widgets.swift; sourceTree = "<group>"; };
@@ -1397,7 +1397,7 @@
 			isa = PBXGroup;
 			children = (
 				0F612E4530956A077F3C5D75 /* AssignmentNotificationContent.swift */,
-				2502F1F5CF9EFB4804C43CA7 /* AssignmentNotificationFilter.swift */,
+				AB6CAEF2F02EEC8970060342 /* AssignmentNotificationHelpers.swift */,
 				928F6E8333226E1C3320F61A /* AssignmentNotificationTrigger.swift */,
 			);
 			path = Notifications;
@@ -2165,7 +2165,7 @@
 				C5FA34F3C7782F13E889EF6C /* AssignmentDetailsSectionContainerView.swift in Sources */,
 				FBCA7B9BE7229D9BC34F652A /* AssignmentDetailsViewController.swift in Sources */,
 				6F975AA7993B10DDE494E002 /* AssignmentNotificationContent.swift in Sources */,
-				7F6A4995A17D0371AC03E90B /* AssignmentNotificationFilter.swift in Sources */,
+				C223550CE8512927F8F2599A /* AssignmentNotificationHelpers.swift in Sources */,
 				9D6A9F48A0C0D063AC19A4C5 /* AssignmentNotificationTrigger.swift in Sources */,
 				61FC59EBC60BFFD8599D3D63 /* AssignmentReminderDatePickerView.swift in Sources */,
 				D5229999F64AC89BFFF90AA5 /* AssignmentReminderDatePickerViewModel.swift in Sources */,

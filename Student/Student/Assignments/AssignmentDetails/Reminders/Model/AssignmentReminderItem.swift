@@ -19,10 +19,11 @@
 import UserNotifications
 
 public struct AssignmentReminderItem: Identifiable, Equatable {
-    public var id: String = UUID().uuidString
+    public let id: String
     public let title: String
 
-    public init(title: String) {
+    public init(id: String = UUID().uuidString, title: String) {
+        self.id = id
         self.title = title
     }
 
