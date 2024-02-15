@@ -17,29 +17,17 @@
 //
 
 public class PeopleHelper: BaseHelper {
+    public static var filterButton: XCUIElement {app.find(label: "Filter", type: .button) }
+    public static var clearFilterButton: XCUIElement {app.find(label: "Clear filter", type: .button) }
+
+    public static func navBar(course: DSCourse) -> XCUIElement { return app.find(id: "People, \(course.name)") }
+    public static func peopleCell(index: Int) -> XCUIElement { return app.find(id: "people-list-cell-row-\(index)") }
+    public static func roleLabelOfPeopleCell(index: Int) -> XCUIElement { return app.find(id: "people-list-cell-row-\(index).role-label") }
+    public static func nameLabelOfPeopleCell(index: Int) -> XCUIElement { return app.find(id: "people-list-cell-row-\(index).name-label") }
+
     public static func navigateToPeople(course: DSCourse) {
         DashboardHelper.courseCard(course: course).hit()
         CourseDetailsHelper.cell(type: .people).hit()
-    }
-
-    public static func navBar(course: DSCourse) -> XCUIElement {
-        return app.find(id: "People, \(course.name)")
-    }
-
-    public static var filterButton: XCUIElement {
-        app.find(id: "All People").find(label: "Filter", type: .button)
-    }
-
-    public static func peopleCell(index: Int) -> XCUIElement {
-        return app.find(id: "people-list-cell-row-\(index)")
-    }
-
-    public static func roleLabelOfPeopleCell(index: Int) -> XCUIElement {
-        return app.find(id: "people-list-cell-row-\(index).role-label")
-    }
-
-    public static func nameLabelOfPeopleCell(index: Int) -> XCUIElement {
-        return app.find(id: "people-list-cell-row-\(index).name-label")
     }
 
     public struct ContextCard {
@@ -58,5 +46,11 @@ public class PeopleHelper: BaseHelper {
         public static func submissionCell(assignment: DSAssignment? = nil, assignmentId: String? = nil) -> XCUIElement {
             return app.find(id: "ContextCard.submissionCell(\(assignment?.id ?? assignmentId!))")
         }
+    }
+
+    public struct FilterOptions {
+        public static var observersButton: XCUIElement { app.find(label: "Observers", type: .button) }
+        public static var studentsButton: XCUIElement { app.find(label: "Students", type: .button) }
+        public static var teachersButton: XCUIElement { app.find(label: "Teachers", type: .button) }
     }
 }
