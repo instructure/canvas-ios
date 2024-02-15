@@ -20,5 +20,4 @@ public struct DSFeature: Codable {
     public let feature: String
     public let display_name: String?
     public let applies_to: String?
-    public let feature_flag: DSFeatureFlag?
 }

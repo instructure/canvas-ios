@@ -92,7 +92,7 @@ open class CoreUITestCase: XCTestCase {
     private let isRetry = ProcessInfo.processInfo.environment["CANVAS_TEST_IS_RETRY"] == "YES"
 
     public static var needsLaunch = true
-    public var doLoginAfterSetup: Bool = true
+    open var doLoginAfterSetup: Bool { true }
     open override func setUp() {
         super.setUp()
         LoginSession.clearAll()

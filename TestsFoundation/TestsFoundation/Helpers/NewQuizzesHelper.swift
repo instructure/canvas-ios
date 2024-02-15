@@ -39,13 +39,6 @@ public class NewQuizzesHelper: BaseHelper {
     }
 
     @discardableResult
-    public static func enableFeatureFlagForCourse(course: DSCourse,
-                                                  feature: DSFeature,
-                                                  state: DSFeatureFlagState = .on) -> DSFeatureFlag {
-        return seeder.setFeatureFlag(courseId: course.id, feature: feature, state: state)
-    }
-
-    @discardableResult
     public static func listFeaturesForCourse(course: DSCourse) -> [DSFeature] {
         return seeder.getFeatures(courseId: course.id)
     }
