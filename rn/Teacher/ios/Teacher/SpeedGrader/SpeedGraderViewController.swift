@@ -40,6 +40,9 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
     lazy var submissions = env.subscribe(GetSubmissions(context: context, assignmentID: assignmentID, filter: filter)) { [weak self] in
         self?.update()
     }
+    lazy var enrollments = env.subscribe(GetEnrollments(context: context)) { [weak self] in
+        self?.update()
+    }
 
     init(context: Context, assignmentID: String, userID: String, filter: [GetSubmissions.Filter]) {
         self.assignmentID = assignmentID
@@ -59,6 +62,7 @@ class SpeedGraderViewController: ScreenViewTrackableViewController, PagesViewCon
         embed(loadingView, in: view)
         assignment.refresh()
         submissions.exhaust()
+        enrollments.exhaust()
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
