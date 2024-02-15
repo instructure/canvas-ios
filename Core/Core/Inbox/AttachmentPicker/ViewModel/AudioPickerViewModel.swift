@@ -155,6 +155,13 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
 
             })
             .store(in: &subscriptions)
+
+        interactor.playerFinished
+            .sink { [weak self] in
+                self?.isPlaying = false
+                self?.interactor.seekInAudio(newValue: 0)
+            }
+            .store(in: &subscriptions)
     }
 
     private func formatTimestamp(timestamp: TimeInterval?) -> String {

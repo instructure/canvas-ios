@@ -25,6 +25,7 @@ public protocol AudioPickerInteractor {
     var url: URL? { get }
     var recorderTimer: PassthroughSubject<AudioPlotData, Error> { get }
     var playerTimer: PassthroughSubject<TimeInterval, Error> { get }
+    var playerFinished: PassthroughSubject<Void, Never> { get }
 
     func seekInAudio(newValue: CGFloat)
 

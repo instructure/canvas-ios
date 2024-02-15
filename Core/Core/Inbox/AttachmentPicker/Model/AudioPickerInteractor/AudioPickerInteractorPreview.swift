@@ -28,6 +28,7 @@ public class AudioPickerInteractorPreview: AudioPickerInteractor {
     public var url: URL? = URL.Directories.temporary
     public var recorderTimer = PassthroughSubject<AudioPlotData, Error>()
     public var playerTimer = PassthroughSubject<TimeInterval, Error>()
+    public var playerFinished = PassthroughSubject<Void, Never>()
     public var seekInAudioCalled: Bool = false
 
     public func seekInAudio(newValue: CGFloat) {

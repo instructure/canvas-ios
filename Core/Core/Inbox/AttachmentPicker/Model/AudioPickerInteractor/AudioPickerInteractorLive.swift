@@ -20,7 +20,7 @@ import Foundation
 import AVFAudio
 import Combine
 
-class AudioPickerInteractorLive: AudioPickerInteractor {
+class AudioPickerInteractorLive: NSObject, AudioPickerInteractor {
 
     public private(set) var url: URL?
     public private(set) var audioRecorder: CoreAVAudioRecorder?
@@ -28,6 +28,7 @@ class AudioPickerInteractorLive: AudioPickerInteractor {
 
     let recorderTimer = PassthroughSubject<AudioPlotData, Error>()
     let playerTimer = PassthroughSubject<TimeInterval, Error>()
+    var playerFinished = PassthroughSubject<Void, Never>()
 
     private var recorderCancellable: Cancellable?
     private var playerCancellable: Cancellable?
@@ -68,8 +69,9 @@ class AudioPickerInteractorLive: AudioPickerInteractor {
         recorderCancellable?.cancel()
         audioRecorder?.stop()
 
-        if let url, let player = try? initializeAudioPlayer(url: url) {
+        if let url, var player = try? initializeAudioPlayer(url: url) {
             audioPlayer = player
+            player.delegate = self
             player.prepareToPlay()
         } else {
             recorderTimer.send(completion: .failure(NSError.instructureError("Failed to play audio")))
@@ -141,5 +143,15 @@ class AudioPickerInteractorLive: AudioPickerInteractor {
 
     private func getAudioUrl() -> URL {
         return URL.Directories.temporary.appendingPathComponent("\(UUID.string).m4a")
+    }
+}
+
+extension AudioPickerInteractorLive: AVAudioPlayerDelegate {
+
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        if flag {
+            self.audioPlayer?.stop()
+            self.playerFinished.send(())
+        }
     }
 }
