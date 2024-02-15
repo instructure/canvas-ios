@@ -25,13 +25,11 @@ class AssignmentNotificationTriggerTests: XCTestCase {
         let currentDate = Date()
         let dueDate = currentDate.addDays(2)
         let beforeTime = DateComponents(day: 1)
-        let testee = UNTimeIntervalNotificationTrigger(assignmentDueDate: dueDate,
+        let testee = try! UNTimeIntervalNotificationTrigger(assignmentDueDate: dueDate,
                                                        beforeTime: beforeTime,
                                                        currentDate: currentDate)
 
-        guard let testee,
-              let triggerDate = testee.nextTriggerDate()
-        else {
+        guard let triggerDate = testee.nextTriggerDate() else {
             return XCTFail()
         }
 

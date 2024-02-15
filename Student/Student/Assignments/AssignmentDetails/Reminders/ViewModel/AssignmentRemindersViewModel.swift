@@ -102,7 +102,21 @@ public class AssignmentRemindersViewModel: ObservableObject {
                 if $0 == .noPermission {
                     self?.newReminderView?.showPermissionError(.notifications)
                 } else {
-                    // show unknown error
+                    let message: String
+                    if $0 == .reminderInPast {
+                        message = String(localized: "Reminder cannot be in the past. Please select a date that is in the future.")
+                    } else {
+                        message = String(localized: "An unknown error occurred.")
+                    }
+
+                    let alert = UIAlertController(title: String(localized: "Reminder Creation Failed"),
+                                                  message: message,
+                                                  preferredStyle: .alert)
+                    alert.addAction(.init(title: String(localized: "OK"), style: .default))
+
+                    if let self, let reminderView = self.newReminderView {
+                        self.router.show(alert, from: reminderView)
+                    }
                 }
             }
             .store(in: &subscriptions)

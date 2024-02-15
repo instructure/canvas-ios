@@ -17869,6 +17869,9 @@
         }
       }
     },
+    "An unknown error occurred." : {
+
+    },
     "Announcement" : {
       "comment" : "Title of the new announcement view",
       "extractionState" : "manual",
@@ -91227,6 +91230,12 @@
       }
     },
     "Reminder" : {
+
+    },
+    "Reminder cannot be in the past. Please select a date that is in the future." : {
+
+    },
+    "Reminder Creation Failed" : {
 
     },
     "Reminder Deleted" : {

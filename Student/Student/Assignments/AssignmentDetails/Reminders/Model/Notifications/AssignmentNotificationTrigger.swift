@@ -20,9 +20,11 @@ import UserNotifications
 
 extension UNTimeIntervalNotificationTrigger {
 
-    convenience init?(assignmentDueDate: Date, beforeTime: DateComponents, currentDate: Date = .now) {
+    convenience init(assignmentDueDate: Date,
+                     beforeTime: DateComponents,
+                     currentDate: Date = .now) throws {
         guard let beforeTimeInterval = Calendar.current.date(byAdding: beforeTime, to: assignmentDueDate)?.timeIntervalSince(assignmentDueDate) else {
-            return nil
+            throw AssignmentReminderError.scheduleFailed
         }
 
         let triggerDate = {
@@ -32,6 +34,10 @@ extension UNTimeIntervalNotificationTrigger {
         }()
 
         let timeUntilTrigger = triggerDate.timeIntervalSince1970 - currentDate.timeIntervalSince1970
+
+        if timeUntilTrigger <= 0 {
+            throw AssignmentReminderError.reminderInPast
+        }
         self.init(timeInterval: timeUntilTrigger, repeats: false)
     }
 }

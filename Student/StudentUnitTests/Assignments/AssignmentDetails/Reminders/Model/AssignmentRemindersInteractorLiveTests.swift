@@ -91,12 +91,61 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
     // MARK: - Reminder Creation
 
     func testNewReminder() {
-        let testee = AssignmentRemindersInteractorLive(notificationCenter: MockUserNotificationCenter())
+        let notificationCenter = MockUserNotificationCenter()
+        let testee = AssignmentRemindersInteractorLive(notificationCenter: notificationCenter)
+        testee.contextDidUpdate.send(context)
 
+        // WHEN
         testee.newReminderDidSelect.send(DateComponents(minute: 5))
 
+        // THEN
         XCTAssertEqual(testee.reminders.value.count, 1)
-        XCTAssertEqual(testee.reminders.value.first?.title, "5 minutes before")
+        guard let reminder = testee.reminders.value.first else {
+            return XCTFail()
+        }
+        XCTAssertEqual(reminder.title, "5 minutes before")
+
+        guard let notification = notificationCenter.requests.first else {
+            return XCTFail()
+        }
+        XCTAssertEqual(notification.identifier, reminder.id)
+        XCTAssertEqual(notification.content.title, String(localized: "Due Date Reminder"))
+        let dueText = "5 minutes"
+        XCTAssertEqual(notification.content.body, String(localized: "This assignment is due in \(dueText)") + ": test")
+        typealias Key = UNNotificationContent.AssignmentReminderKeys
+        XCTAssertEqual(notification.content.userInfo[Key.courseId.rawValue] as? String, "1")
+        XCTAssertEqual(notification.content.userInfo[Key.assignmentId.rawValue] as? String, "2")
+        XCTAssertEqual(notification.content.userInfo[Key.userId.rawValue] as? String, "3")
+        XCTAssertEqual(notification.content.userInfo[Key.triggerTimeText.rawValue] as? String, "5 minutes before")
+        XCTAssertEqual(notification.content.userInfo[NotificationManager.RouteURLKey] as? String, "courses/1/assignments/2")
+
+        guard let timeTrigger = notification.trigger as? UNTimeIntervalNotificationTrigger else {
+            return XCTFail()
+        }
+        XCTAssertEqual(timeTrigger.nextTriggerDate()!.timeIntervalSince1970,
+                       context.dueDate!.addMinutes(-5).timeIntervalSince1970,
+                       accuracy: 0.1)
+    }
+
+    func testRemindersForPastDateNotAllowed() {
+        let notificationCenter = MockUserNotificationCenter()
+        let testee = AssignmentRemindersInteractorLive(notificationCenter: notificationCenter)
+        testee.contextDidUpdate.send(context)
+        let newReminderResultReceived = expectation(description: "New reminder result received")
+        let subscription = testee
+            .newReminderCreationResult
+            .sink {
+                newReminderResultReceived.fulfill()
+                XCTAssertEqual($0.error, .reminderInPast)
+            }
+
+        // WHEN
+        testee.newReminderDidSelect.send(DateComponents(day: 2))
+
+        // THEN
+        waitForExpectations(timeout: 0.1)
+        XCTAssertTrue(notificationCenter.requests.isEmpty)
+        subscription.cancel()
     }
 
     func testReminderDeletion() {

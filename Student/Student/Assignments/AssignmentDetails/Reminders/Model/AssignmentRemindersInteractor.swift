@@ -23,6 +23,7 @@ public typealias NewReminderResult = Result<Void, AssignmentReminderError>
 public enum AssignmentReminderError: Error, Equatable {
     case noPermission
     case scheduleFailed
+    case reminderInPast
 }
 
 public struct AssignmentReminderContext {
@@ -100,16 +101,21 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
                 guard hasPermission else {
                     return Just(NewReminderResult.failure(.noPermission)).eraseToAnyPublisher()
                 }
-                guard let trigger = UNTimeIntervalNotificationTrigger(assignmentDueDate: context.dueDate!, beforeTime: beforeTime) else {
-                    return Just(NewReminderResult.failure(.scheduleFailed)).eraseToAnyPublisher()
+                let trigger: UNTimeIntervalNotificationTrigger
+                do {
+                    try trigger = UNTimeIntervalNotificationTrigger(assignmentDueDate: context.dueDate!,
+                                                                    beforeTime: beforeTime)
+                } catch {
+                    return Just(NewReminderResult.failure((error as? AssignmentReminderError) ?? .scheduleFailed)).eraseToAnyPublisher()
                 }
+
                 let content = UNNotificationContent.assignmentReminder(context: context, beforeTime: beforeTime)
                 let request = UNNotificationRequest(identifier: UUID.string,
                                                     content: content,
                                                     trigger: trigger)
                 return notificationCenter
                     .add(request)
-                    .mapError { _ in AssignmentReminderError.noPermission }
+                    .mapError { _ in AssignmentReminderError.scheduleFailed }
                     .mapToResult()
             }
             .subscribe(newReminderCreationResult)
