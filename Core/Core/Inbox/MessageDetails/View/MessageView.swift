@@ -70,7 +70,7 @@ public struct MessageView: View {
                     .size(uiScale.iconScale * 20)
                     .foregroundColor(.textDark)
                     .padding(.leading, 6)
-                    .accessibilityLabel(NSLocalizedString("Reply", bundle: .core, comment: ""))
+                    .accessibilityLabel(Text("Reply"))
             }
             Button {
                 moreDidTap()
@@ -80,7 +80,7 @@ public struct MessageView: View {
                     .size(uiScale.iconScale * 20)
                     .foregroundColor(.textDark)
                     .padding(.horizontal, 6)
-                    .accessibilityLabel(NSLocalizedString("Conversation options", bundle: .core, comment: ""))
+                    .accessibilityLabel(Text("Conversation options"))
             }
         }
     }

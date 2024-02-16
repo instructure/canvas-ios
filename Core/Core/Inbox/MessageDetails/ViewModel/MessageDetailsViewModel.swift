@@ -26,17 +26,17 @@ class MessageDetailsViewModel: ObservableObject {
     @Published public private(set) var conversations: [Conversation] = []
     @Published public private(set) var starred: Bool = false
 
-    public let title = NSLocalizedString("Message Details", comment: "")
+    public let title = String(localized: "Message Details")
 
     @Published public var isShowingCancelDialog = false
     public let confirmAlert = ConfirmationAlertViewModel(
-        title: NSLocalizedString("Are your sure?", comment: ""),
-        message: NSLocalizedString(
+        title: String(localized: "Are your sure?"),
+        message: String(localized:
            """
            It will permanently delete this message from your profile.
-           """, comment: ""),
-        cancelButtonTitle: NSLocalizedString("No", comment: ""),
-        confirmButtonTitle: NSLocalizedString("Yes", comment: ""),
+           """),
+        cancelButtonTitle: String(localized: "No"),
+        confirmButtonTitle: String(localized: "Yes"),
         isDestructive: false
     )
 
@@ -66,14 +66,14 @@ class MessageDetailsViewModel: ObservableObject {
         let sheet = BottomSheetPickerViewController.create()
         sheet.addAction(
             image: .replyLine,
-            title: NSLocalizedString("Reply", comment: ""),
+            title: String(localized: "Reply"),
             accessibilityIdentifier: "MessageDetails.reply"
         ) {
             self.replyTapped(message: nil, viewController: viewController)
         }
         sheet.addAction(
             image: .replyAllLine,
-            title: NSLocalizedString("Reply All", comment: ""),
+            title: String(localized: "Reply All"),
             accessibilityIdentifier: "MessageDetails.replyAll"
         ) {
             self.replyAllTapped(message: nil, viewController: viewController)
@@ -81,7 +81,7 @@ class MessageDetailsViewModel: ObservableObject {
 
         sheet.addAction(
             image: .forwardLine,
-            title: NSLocalizedString("Forward", comment: ""),
+            title: String(localized: "Forward"),
             accessibilityIdentifier: "MessageDetails.forward"
         ) {
             self.forwardTapped(message: nil, viewController: viewController)
@@ -90,7 +90,7 @@ class MessageDetailsViewModel: ObservableObject {
         if (conversations.first?.workflowState == .read) {
             sheet.addAction(
                 image: .nextUnreadLine,
-                title: NSLocalizedString("Mark as Unread", comment: ""),
+                title: String(localized: "Mark as Unread"),
                 accessibilityIdentifier: "MessageDetails.markAsUnread"
             ) {
                 self.updateState.send(.unread)
@@ -98,7 +98,7 @@ class MessageDetailsViewModel: ObservableObject {
         } else {
             sheet.addAction(
                 image: .emailLine,
-                title: NSLocalizedString("Mark as Read", comment: ""),
+                title: String(localized: "Mark as Read"),
                 accessibilityIdentifier: "MessageDetails.markAsRead"
             ) {
                 self.updateState.send(.read)
@@ -108,7 +108,7 @@ class MessageDetailsViewModel: ObservableObject {
         if conversations.first?.workflowState != .archived {
             sheet.addAction(
                 image: .archiveLine,
-                title: NSLocalizedString("Archive", comment: ""),
+                title: String(localized: "Archive"),
                 accessibilityIdentifier: "MessageDetails.archive"
             ) {
                 self.updateState.send(.archived)
@@ -117,7 +117,7 @@ class MessageDetailsViewModel: ObservableObject {
 
         sheet.addAction(
             image: .trashLine,
-            title: NSLocalizedString("Delete Conversation", comment: ""),
+            title: String(localized: "Delete Conversation"),
             accessibilityIdentifier: "MessageDetails.delete"
         ) {
             if let conversationId = self.conversations.first?.id {
@@ -131,7 +131,7 @@ class MessageDetailsViewModel: ObservableObject {
         let sheet = BottomSheetPickerViewController.create()
         sheet.addAction(
             image: .replyLine,
-            title: NSLocalizedString("Reply", comment: ""),
+            title: String(localized: "Reply"),
             accessibilityIdentifier: "MessageDetails.reply"
         ) {
             if let message {
@@ -140,7 +140,7 @@ class MessageDetailsViewModel: ObservableObject {
         }
         sheet.addAction(
             image: .replyAllLine,
-            title: NSLocalizedString("Reply All", comment: ""),
+            title: String(localized: "Reply All"),
             accessibilityIdentifier: "MessageDetails.replyAll"
         ) {
             if let message {
@@ -150,7 +150,7 @@ class MessageDetailsViewModel: ObservableObject {
 
         sheet.addAction(
             image: .forwardLine,
-            title: NSLocalizedString("Forward", comment: ""),
+            title: String(localized: "Forward"),
             accessibilityIdentifier: "MessageDetails.forward"
         ) {
             self.forwardTapped(message: message, viewController: viewController)
@@ -158,7 +158,7 @@ class MessageDetailsViewModel: ObservableObject {
 
         sheet.addAction(
             image: .trashLine,
-            title: NSLocalizedString("Delete Message", comment: ""),
+            title: String(localized: "Delete Message"),
             accessibilityIdentifier: "MessageDetails.delete"
         ) {
             if let conversationId = self.conversations.first?.id, let messageId = message?.id {
@@ -252,31 +252,37 @@ class MessageDetailsViewModel: ObservableObject {
             .handleEvents(receiveOutput: { [weak self] _ in
                 self?.isShowingCancelDialog = true
             })
-            .flatMap { [unowned self] value in
-                self.confirmAlert.userConfirmation().map { value }
+            .flatMap { [confirmAlert] value in
+                confirmAlert.userConfirmation().map { value }
             }
-            .map { [weak self] (conversationId, viewController) in
-                _ = interactor.deleteConversation(conversationId: conversationId)
+            .sink { [weak self] (conversationId, viewController) in
+                if let self {
+                    interactor.deleteConversation(conversationId: conversationId)
+                        .sink()
+                        .store(in: &subscriptions)
+                }
                 self?.router.dismiss(viewController)
             }
-            .sink()
             .store(in: &subscriptions)
 
         deleteConversationMessageDidTap
             .handleEvents(receiveOutput: { [weak self] _ in
                 self?.isShowingCancelDialog = true
             })
-            .flatMap { [unowned self] value in
-                self.confirmAlert.userConfirmation().map { value }
+            .flatMap { [confirmAlert] value in
+                confirmAlert.userConfirmation().map { value }
             }
-            .map { [weak self] (conversationId, messageId, viewController) in
-                _ = interactor.deleteConversationMessage(conversationId: conversationId, messageId: messageId)
+            .sink { [weak self] (conversationId, messageId, viewController) in
+                if let self {
+                    interactor.deleteConversationMessage(conversationId: conversationId, messageId: messageId)
+                        .sink()
+                        .store(in: &subscriptions)
+                }
                 if self?.messages.count ?? 0 <= 1 {
                     self?.router.dismiss(viewController)
                 }
                 self?.refreshDidTrigger.send({ })
             }
-            .sink()
             .store(in: &subscriptions)
     }
 }
