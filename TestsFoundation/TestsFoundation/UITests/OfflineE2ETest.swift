@@ -20,7 +20,6 @@ open class OfflineE2ETest: E2ETestCase {
     open override func tearDown() {
         // In case the tests fail at a point where the internet connection is turned off
         setNetworkStateOnline()
-        sleep(10) // Give it some time to fully regain internet connection
         super.tearDown()
     }
 }

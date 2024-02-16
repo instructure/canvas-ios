@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		00EFC66B93C6E65AE095CAB6 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 86F36A65C55BACCFB3522361 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0109C43E1CF746AB153CD148 /* RubricCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDB59EF6876F307B07018753 /* RubricCollectionViewCell.xib */; };
+		01F31881AD142B91DB7B6FC3 /* FeatureFlagOfflineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EC3E6C1F7287F82E3119CE /* FeatureFlagOfflineTests.swift */; };
 		0221A83F748BE058DB1C8711 /* BundleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC278A56606862A2E742180 /* BundleExtensions.swift */; };
 		023A861CC6D77B1C769709CC /* ArcSubmissionPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45760587916E12C13AC5356E /* ArcSubmissionPresenterTests.swift */; };
 		02B7FE698D40C8207F3437AB /* ArcSubmissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F8B10159A6CE2E30C1171C /* ArcSubmissionViewController.swift */; };

@@ -34,10 +34,12 @@ public struct CreateDSGradesRequest: APIRequestable {
 
 extension CreateDSGradesRequest {
     public struct RequestedDSGrade: Encodable {
-        let posted_grade: String
+        let posted_grade: String?
+        let excuse: Bool?
 
-        public init(posted_grade: String) {
+        public init(posted_grade: String? = nil, excuse: Bool? = nil) {
             self.posted_grade = posted_grade
+            self.excuse = excuse
         }
     }
 

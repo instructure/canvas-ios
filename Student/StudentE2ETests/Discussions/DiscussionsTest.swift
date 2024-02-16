@@ -22,6 +22,13 @@ class DiscussionsTests: E2ETestCase {
     typealias Helper = DiscussionsHelper
     typealias DetailsHelper = Helper.Details
     typealias ReplyHelper = DetailsHelper.Reply
+    typealias NewDiscussion = Helper.NewDetails
+
+    override func tearDown() {
+        let featureFlagResponse = seeder.setFeatureFlag(featureFlag: .newDiscussion, state: .off)
+        XCTAssertEqual(featureFlagResponse.state, DSFeatureFlagState.off.rawValue)
+        super.tearDown()
+    }
 
     func testDiscussionLabels() {
         // MARK: Seed the usual stuff with a discussion
@@ -232,5 +239,80 @@ class DiscussionsTests: E2ETestCase {
 
         gradesAssignmentSubmittedLabel.actionUntilElementCondition(action: .pullToRefresh, condition: .label(expected: "Submitted"))
         XCTAssertTrue(gradesAssignmentSubmittedLabel.hasLabel(label: "Submitted"))
+    }
+
+    func testNewDiscussionScreen() {
+        // MARK: Seed the usual stuff with a discussion, enable NewDiscussion feature
+        let featureFlagResponse = seeder.setFeatureFlag(featureFlag: .newDiscussion, state: .allowedOn)
+        XCTAssertEqual(featureFlagResponse.state, DSFeatureFlagState.allowedOn.rawValue)
+
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+        let discussion = Helper.createDiscussion(course: course)
+
+        // MARK: Get the user logged in
+        logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+
+        // MARK: Navigate to Discussions and check visibility of buttons and labels
+        Helper.navigateToDiscussions(course: course)
+        let discussionButton = Helper.discussionButton(discussion: discussion).waitUntil(.visible)
+        XCTAssertTrue(discussionButton.isVisible)
+        XCTAssertTrue(discussionButton.hasLabel(label: discussion.title, strict: false))
+
+        discussionButton.hit()
+        let searchField = NewDiscussion.searchField.waitUntil(.visible)
+        let filterByLabel = NewDiscussion.filterByLabel.waitUntil(.visible)
+        let sortButton = NewDiscussion.sortButton.waitUntil(.visible)
+        let viewSplitScreenButton = NewDiscussion.viewSplitScreenButton.waitUntil(.visible)
+        let subscribeButton = NewDiscussion.subscribeButton.waitUntil(.visible)
+        let manageDiscussionButton = NewDiscussion.manageDiscussionButton.waitUntil(.visible)
+        let discussionTitle = NewDiscussion.discussionTitle(discussion: discussion).waitUntil(.visible)
+        let discussionBody = NewDiscussion.discussionBody(discussion: discussion).waitUntil(.visible)
+        var replyButton = NewDiscussion.replyButton.waitUntil(.visible)
+        XCTAssertTrue(searchField.isVisible)
+        XCTAssertTrue(searchField.hasValue(value: "Search entries or author..."))
+        XCTAssertTrue(filterByLabel.isVisible)
+        XCTAssertTrue(sortButton.isVisible)
+        XCTAssertTrue(sortButton.hasLabel(label: "Sorted by Descending", strict: false))
+        XCTAssertTrue(viewSplitScreenButton.isVisible)
+        XCTAssertTrue(subscribeButton.isVisible)
+        XCTAssertTrue(manageDiscussionButton.isVisible)
+        XCTAssertTrue(discussionTitle.isVisible)
+        XCTAssertTrue(discussionBody.isVisible)
+        XCTAssertTrue(replyButton.isVisible)
+
+        viewSplitScreenButton.hit()
+        let viewInlineButton = NewDiscussion.viewInlineButton.waitUntil(.visible)
+        XCTAssertTrue(viewSplitScreenButton.isVanished)
+        XCTAssertTrue(viewInlineButton.isVisible)
+
+        subscribeButton.hit()
+        let unsubscribeButton = NewDiscussion.unsubscribeButton.waitUntil(.visible)
+        XCTAssertTrue(subscribeButton.isVanished)
+        XCTAssertTrue(unsubscribeButton.isVisible)
+
+        manageDiscussionButton.hit()
+        let markAllAsReadButton = NewDiscussion.markAllAsRead.waitUntil(.visible)
+        let markAllAsUnreadButton = NewDiscussion.markAllAsUnread.waitUntil(.visible)
+        XCTAssertTrue(markAllAsReadButton.isVisible)
+        XCTAssertTrue(markAllAsUnreadButton.isVisible)
+
+        markAllAsUnreadButton.hit()
+        replyButton.hit()
+        let textInput = NewDiscussion.Reply.textInput.waitUntil(.visible)
+        let attachButton = NewDiscussion.Reply.attachButton.waitUntil(.visible)
+        let cancelButton = NewDiscussion.Reply.cancelButton.waitUntil(.visible)
+        replyButton = NewDiscussion.Reply.replyButton.waitUntil(.visible)
+        XCTAssertTrue(textInput.isVisible)
+        XCTAssertTrue(attachButton.isVisible)
+        XCTAssertTrue(cancelButton.isVisible)
+        XCTAssertTrue(replyButton.isVisible)
+
+        cancelButton.actionUntilElementCondition(action: .swipeUp(.onApp), condition: .hittable)
+        cancelButton.hit()
+        XCTAssertTrue(cancelButton.waitUntil(.vanish).isVanished)
     }
 }

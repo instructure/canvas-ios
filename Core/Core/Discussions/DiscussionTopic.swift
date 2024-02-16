@@ -93,7 +93,7 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
             model.assignment = nil // sever relationship first so assignment doesn't delete me
             model.assignment = Assignment.save(assignment, in: context, updateSubmission: false, updateScoreStatistics: false)
         } else {
-            model.assignment = item.assignment_id.flatMap { context.first(where: #keyPath(Assignment.id), equals: $0.value) }
+            model.assignment = item.assignment_id.flatMap { context.first(where: (\Assignment.id).string, equals: $0.value) }
         }
         model.assignmentID = item.assignment_id?.value
         model.attachments = Set(item.attachments?.map { File.save($0, in: context) } ?? [])

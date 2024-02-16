@@ -16,7 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct DSFeatureFlag: Codable {
+public enum DSFeatureFlag: String {
+    case newDiscussion = "react_discussions_post"
+}
+
+public struct DSFeatureFlagResponse: Codable {
+    public let context_id: String
+    public let context_type: String
     public let feature: String
     public let state: String
+    public let locked: Bool
+}
+
+public struct DSCanvasFeatureFlag {
+    let featureFlag: DSFeatureFlag
+    let state: DSFeatureFlagState
+
+    public init(featureFlag: DSFeatureFlag, state: DSFeatureFlagState) {
+        self.featureFlag = featureFlag
+        self.state = state
+    }
 }

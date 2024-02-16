@@ -25,10 +25,16 @@ open class E2ETestCase: CoreUITestCase {
     private let isRetry = ProcessInfo.processInfo.environment["CANVAS_TEST_IS_RETRY"] == "YES"
     public let seeder = DataSeeder()
     open override var useMocks: Bool {false}
+    open override var doLoginAfterSetup: Bool { false }
+    open var canvasFeatureFlags: [DSCanvasFeatureFlag] { [] }
 
     open override func setUp() {
-        doLoginAfterSetup = false
         super.setUp()
+
+        for canvasFeatureFlag in canvasFeatureFlags {
+            let featureFlagResponse = seeder.setFeatureFlag(featureFlag: canvasFeatureFlag.featureFlag, state: canvasFeatureFlag.state)
+            XCTAssertEqual(featureFlagResponse.state, canvasFeatureFlag.state.rawValue)
+        }
     }
 
     open func findSchool(lastLogin: Bool = false) {
@@ -74,13 +80,20 @@ open class E2ETestCase: CoreUITestCase {
 
     @discardableResult
     open func setNetworkStateOffline() -> Bool {
-        CommandLine.setConnection(state: .off)
+        if CommandLine.isOnline {
+            CommandLine.setConnection(state: .off)
+        }
+
         return CommandLine.isOffline
     }
 
     @discardableResult
     open func setNetworkStateOnline() -> Bool {
-        CommandLine.setConnection(state: .on)
+        if CommandLine.isOffline {
+            CommandLine.setConnection(state: .on)
+            sleep(10) // Give it some time to fully regain internet connection
+        }
+
         return CommandLine.isOnline
     }
 }
