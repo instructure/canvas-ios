@@ -20,14 +20,23 @@ import UserNotifications
 
 public extension Sequence where Element == UNNotificationRequest {
 
-    func filter(courseId: String,
-                assignmentId: String,
+    func filter(courseId: String? = nil,
+                assignmentId: String? = nil,
                 userId: String) -> [UNNotificationRequest] {
-        filter {
+        typealias Keys = UNMutableNotificationContent.AssignmentReminderKeys
+        return filter {
             let userInfo = $0.content.userInfo
-            return userInfo[UNMutableNotificationContent.AssignmentReminderKeys.courseId.rawValue] as? String == courseId &&
-                   userInfo[UNMutableNotificationContent.AssignmentReminderKeys.assignmentId.rawValue] as? String == assignmentId &&
-                   userInfo[UNMutableNotificationContent.AssignmentReminderKeys.userId.rawValue] as? String == userId
+            let hasUserId = userInfo[Keys.userId.rawValue] as? String == userId
+            let hasCourseId = {
+                guard let courseId else { return true }
+                return userInfo[Keys.courseId.rawValue] as? String == courseId
+            }()
+            let hasAssignmentId = {
+                guard let assignmentId else { return true }
+                return userInfo[Keys.assignmentId.rawValue] as? String == assignmentId
+            }()
+            return hasCourseId && hasAssignmentId && hasUserId
+
         }
     }
 

@@ -47,6 +47,7 @@ public protocol AssignmentRemindersInteractor: AnyObject {
     var contextDidUpdate: CurrentValueSubject<AssignmentReminderContext?, Never> { get }
     var newReminderDidSelect: PassthroughSubject<DateComponents, Never> { get }
     var reminderDidDelete: PassthroughSubject<AssignmentReminderItem, Never> { get }
+    func deleteAllReminders(userId: String) -> AnyPublisher<Void, Never>
 }
 
 public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
@@ -70,6 +71,19 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
         scheduleNotificationOnTimeSelect()
         setupReminderDeletion()
         updateRemindersOnNewReminderAndFirstLoad()
+    }
+
+    public func deleteAllReminders(userId: String) -> AnyPublisher<Void, Never> {
+        notificationCenter
+            .getPendingNotificationRequests()
+            .map { $0.filter(userId: userId) }
+            .map { notifications in
+                notifications.map { $0.identifier }
+            }
+            .flatMap { [notificationCenter] in
+                notificationCenter.removePendingNotificationRequests(withIdentifiers: $0)
+            }
+            .eraseToAnyPublisher()
     }
 
     private func showReminderViewIfDueDateIsInFuture() {
