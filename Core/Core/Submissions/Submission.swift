@@ -22,6 +22,7 @@ import MobileCoreServices
 import UIKit
 import CryptoKit
 import UniformTypeIdentifiers
+import SwiftUI
 
 public typealias RubricAssessments = [String: RubricAssessment]
 
@@ -234,7 +235,7 @@ extension Submission: WriteableModel {
             model.isLatest = true
         }
 
-        let assignmentPredicate = NSPredicate(format: "%K == %@", #keyPath(Assignment.id), item.assignment_id.value)
+        let assignmentPredicate = NSPredicate(format: "%K == %@", (\Assignment.id).string, item.assignment_id.value)
         if let apiAssignment = item.assignment {
             let assignment: Assignment = client.fetch(assignmentPredicate).first ?? client.insert()
             assignment.update(fromApiModel: apiAssignment, in: client, updateSubmission: false, updateScoreStatistics: false)

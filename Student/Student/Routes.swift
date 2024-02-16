@@ -246,7 +246,11 @@ let router = Router(routes: HelmManager.shared.routeHandlers([
 
     "/courses/:courseID/grades": { _, params, _ in
         guard let courseID = params["courseID"] else { return nil }
-        return GradeListViewController.create(courseID: courseID)
+        return GradListAssembly.makeGradeListViewController(
+            env: AppEnvironment.shared,
+            courseID: courseID,
+            userID: AppEnvironment.shared.currentSession?.userID
+        )
     },
 
     "/courses/:courseID/modules": { _, params, _ in

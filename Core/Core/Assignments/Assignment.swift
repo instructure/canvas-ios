@@ -18,6 +18,7 @@
 
 import Foundation
 import CoreData
+import SwiftUI
 
 public class Assignment: NSManagedObject {
     @NSManaged public var allDates: Set<AssignmentDate>
@@ -154,7 +155,7 @@ public class Assignment: NSManagedObject {
 
     @discardableResult
     public static func save(_ item: APIAssignment, in context: NSManagedObjectContext, updateSubmission: Bool, updateScoreStatistics: Bool) -> Assignment {
-        let assignment: Assignment = context.first(where: #keyPath(Assignment.id), equals: item.id.value) ?? context.insert()
+        let assignment: Assignment = context.first(where: (\Assignment.id).string, equals: item.id.value) ?? context.insert()
         assignment.update(fromApiModel: item, in: context, updateSubmission: updateSubmission, updateScoreStatistics: updateScoreStatistics)
         return assignment
     }
