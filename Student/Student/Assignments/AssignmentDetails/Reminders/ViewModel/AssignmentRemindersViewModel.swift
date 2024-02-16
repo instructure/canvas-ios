@@ -36,9 +36,10 @@ public class AssignmentRemindersViewModel: ObservableObject {
         isDestructive: true
     )
 
+    let interactor: AssignmentRemindersInteractor
+
     private let router: Router
     private var subscriptions = Set<AnyCancellable>()
-    private let interactor: AssignmentRemindersInteractor
     private weak var newReminderView: UIViewController?
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
