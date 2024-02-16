@@ -447,6 +447,7 @@
 		818F520823D7E519B08BA29A /* Pods-defaults-StudentUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-StudentUnitTests.release.xcconfig"; path = "Target Support Files/Pods-defaults-StudentUnitTests/Pods-defaults-StudentUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		8467AD99805700563F56B329 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		848366613483AF6DAB9191B6 /* UrlSubmissionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSubmissionPresenter.swift; sourceTree = "<group>"; };
+		87EC3E6C1F7287F82E3119CE /* FeatureFlagOfflineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlagOfflineTests.swift; sourceTree = "<group>"; };
 		88B62E328014805A6BC319E1 /* ProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTests.swift; sourceTree = "<group>"; };
 		8BD10A0380414F8E3A88CF03 /* GetWidgetAnnouncements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetWidgetAnnouncements.swift; sourceTree = "<group>"; };
 		8CBB564D72AA4FA5E09F508F /* QuizDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizDetailsViewController.swift; sourceTree = "<group>"; };
@@ -895,6 +896,7 @@
 			isa = PBXGroup;
 			children = (
 				DD3CF1AB57C0047B11E4332B /* ContentSyncTests.swift */,
+				87EC3E6C1F7287F82E3119CE /* FeatureFlagOfflineTests.swift */,
 				975F6C28375E1877218626D4 /* OfflineTests.swift */,
 			);
 			path = Offline;
@@ -2236,6 +2238,7 @@
 				78CE61CB31B6A2EF919F8DC7 /* CourseDetailsTests.swift in Sources */,
 				6799FB7C76140FC05ED4A937 /* DashboardTests.swift in Sources */,
 				E77398F2672CA45D30921A34 /* DiscussionsTest.swift in Sources */,
+				01F31881AD142B91DB7B6FC3 /* FeatureFlagOfflineTests.swift in Sources */,
 				B61BB1FD2F5B05DDC95A44AC /* FilesTests.swift in Sources */,
 				76A21D7C69AACE0BCFA925DF /* GradeTotalsTests.swift in Sources */,
 				ADF4A7C004DE6F95ED661E22 /* GradesTests.swift in Sources */,
