@@ -134,7 +134,7 @@ public class GetAssignment: APIUseCase {
     }
 
     public var scope: Scope {
-        return .where(#keyPath(Assignment.id), equals: assignmentID)
+        return .where((\Assignment.id).string, equals: assignmentID)
     }
 
     public func write(response: APIAssignment?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
