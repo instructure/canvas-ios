@@ -42,6 +42,7 @@ public class PeopleHelper: BaseHelper {
         public static var submissionsMissingLabel: XCUIElement { app.find(id: "ContextCard.submissionsMissingLabel") }
         public static var submissionsTotalLabel: XCUIElement { app.find(id: "ContextCard.submissionsTotalLabel") }
         public static var unpostedGradeLabel: XCUIElement { app.find(id: "ContextCard.unpostedGradeLabel") }
+        public static var sendEmailButton: XCUIElement { app.find(id: "ContextCard.emailContact", type: .button) }
 
         public static func submissionCell(assignment: DSAssignment? = nil, assignmentId: String? = nil) -> XCUIElement {
             return app.find(id: "ContextCard.submissionCell(\(assignment?.id ?? assignmentId!))")
