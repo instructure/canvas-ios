@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2024-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,29 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public extension Array {
+import Foundation
 
-    /**
-     Appends the unwrapped value of the given `element` to the array.
-     Does nothing if `element` is `nil`.
-     */
-    mutating func appendUnwrapped(_ element: Element?) {
-        guard let element = element else { return }
-        append(element)
-    }
+public enum AssignmentReminderTimeMetric: CaseIterable, Identifiable, Hashable {
+    case minutes, hours, days, weeks
 
-    subscript(safeIndex index: Int) -> Element? {
-        guard index < count else {
-            return nil
-        }
-        return self[index]
-    }
-}
-
-extension Array where Element: UIBarButtonItem {
-    func removeDuplicates() -> [Element] {
-        return reduce([]) { result, element in
-            result.contains { $0.action == element.action } ? result : result + [element]
+    public var id: String { pickerTitle }
+    public var pickerTitle: String {
+        switch self {
+        case .minutes: return String(localized: "Minutes Before")
+        case .hours: return String(localized: "Hours Before")
+        case .days: return String(localized: "Days Before")
+        case .weeks: return String(localized: "Weeks Before")
         }
     }
 }

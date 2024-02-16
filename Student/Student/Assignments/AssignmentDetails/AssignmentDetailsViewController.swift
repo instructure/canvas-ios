@@ -17,6 +17,7 @@
 //
 
 import Core
+import SwiftUI
 import UIKit
 
 class AssignmentDetailsViewController: ScreenViewTrackableViewController, AssignmentDetailsViewProtocol {
@@ -116,6 +117,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     private weak var gradeBorderLayer: CAShapeLayer?
     private var offlineModeInteractor: OfflineModeInteractor?
     private var gradeSectionBoundsObservation: NSKeyValueObservation?
+    private var remindersInteractor = AssignmentRemindersInteractorLive()
 
     static func create(courseID: String,
                        assignmentID: String,
@@ -193,6 +195,10 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
         submitAssignmentButton.makeUnavailableInOfflineMode()
         fileSubmissionButton?.makeUnavailableInOfflineMode()
         submissionButton?.makeUnavailableInOfflineMode()
+
+        if ExperimentalFeature.assignment_reminders.isEnabled {
+            embedReminderSection()
+        }
 
         let border = CAShapeLayer()
         border.strokeColor = UIColor.borderDark.cgColor
@@ -402,6 +408,10 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
 
         updateQuizSettings(quiz)
 
+        if ExperimentalFeature.assignment_reminders.isEnabled {
+            remindersInteractor.assignmentDidUpdate.send(assignment)
+        }
+
         scrollView?.isHidden = false
         loadingView.stopAnimating()
         refreshControl?.endRefreshing()
@@ -490,6 +500,24 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             scrollViewBottom.constant = -submitAssignmentButton.bounds.size.height
             submitAssignmentButton.alpha = OfflineModeAssembly.make().isOfflineModeEnabled() ? UIButton.DisabledInOfflineAlpha : 1.0
         }
+    }
+
+    private func embedReminderSection() {
+        guard let dueSection,
+              let parentStackView = dueSection.superview as? UIStackView,
+              let dueSectionIndex = parentStackView.subviews.firstIndex(of: dueSection)
+        else {
+            return
+        }
+
+        let reminderSection = AssignmentRemindersAssembly.makeRemindersSectionController(interactor: remindersInteractor)
+        addChild(reminderSection)
+        parentStackView.insertArrangedSubview(reminderSection.view, at: dueSectionIndex + 1)
+        NSLayoutConstraint.activate([
+            reminderSection.view.leadingAnchor.constraint(equalTo: parentStackView.leadingAnchor),
+            reminderSection.view.trailingAnchor.constraint(equalTo: parentStackView.trailingAnchor),
+        ])
+        reminderSection.didMove(toParent: self)
     }
 
     // MARK: - Show / Hide Sections

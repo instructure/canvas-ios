@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2024-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,29 +16,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public extension Array {
+import SwiftUI
 
-    /**
-     Appends the unwrapped value of the given `element` to the array.
-     Does nothing if `element` is `nil`.
-     */
-    mutating func appendUnwrapped(_ element: Element?) {
-        guard let element = element else { return }
-        append(element)
-    }
+public extension View {
 
-    subscript(safeIndex index: Int) -> Element? {
-        guard index < count else {
-            return nil
-        }
-        return self[index]
-    }
-}
-
-extension Array where Element: UIBarButtonItem {
-    func removeDuplicates() -> [Element] {
-        return reduce([]) { result, element in
-            result.contains { $0.action == element.action } ? result : result + [element]
+    @available(iOSApplicationExtension,
+               obsoleted: 17.0,
+               message: "Use geometryGroup() directly.")
+    @ViewBuilder
+    func compatibleGeometryGroup() -> some View {
+        if #available(iOS 17.0, *) {
+            self.geometryGroup()
+        } else {
+            self
         }
     }
 }
