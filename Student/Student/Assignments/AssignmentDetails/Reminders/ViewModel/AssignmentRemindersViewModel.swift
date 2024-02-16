@@ -104,7 +104,7 @@ public class AssignmentRemindersViewModel: ObservableObject {
                 } else {
                     let message: String
                     if $0 == .reminderInPast {
-                        message = String(localized: "Reminder cannot be in the past. Please select a date that is in the future.")
+                        message = String(localized: "Please choose a future time for your reminder!")
                     } else {
                         message = String(localized: "An unknown error occurred.")
                     }

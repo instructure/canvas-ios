@@ -27,7 +27,7 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
                                                     assignmentId: "2",
                                                     userId: "3",
                                                     assignmentName: "test",
-                                                    dueDate: Date().addDays(1))
+                                                    dueDate: Date().addDays(2))
 
     override func setUp() {
         super.setUp()
@@ -145,6 +145,28 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
         // THEN
         waitForExpectations(timeout: 0.1)
         XCTAssertTrue(notificationCenter.requests.isEmpty)
+        subscription.cancel()
+    }
+
+    func testErrorOnDuplicateReminders() {
+        let notificationCenter = MockUserNotificationCenter()
+        let testee = AssignmentRemindersInteractorLive(notificationCenter: notificationCenter)
+        testee.contextDidUpdate.send(context)
+        testee.newReminderDidSelect.send(DateComponents(day: 1))
+        let newReminderResultReceived = expectation(description: "New reminder result received")
+        let subscription = testee
+            .newReminderCreationResult
+            .sink {
+                newReminderResultReceived.fulfill()
+                XCTAssertEqual($0.error, .duplicate)
+            }
+
+        // WHEN
+        testee.newReminderDidSelect.send(DateComponents(hour: 24))
+
+        // THEN
+        waitForExpectations(timeout: 0.1)
+        XCTAssertEqual(notificationCenter.requests.count, 1)
         subscription.cancel()
     }
 

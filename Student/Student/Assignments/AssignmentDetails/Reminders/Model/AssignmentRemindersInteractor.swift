@@ -24,6 +24,7 @@ public enum AssignmentReminderError: Error, Equatable {
     case noPermission
     case scheduleFailed
     case reminderInPast
+    case duplicate
 }
 
 public struct AssignmentReminderContext {
@@ -84,39 +85,79 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
 
     private func scheduleNotificationOnTimeSelect() {
         newReminderDidSelect
-            .flatMap { [contextDidUpdate] beforeTime in
+            .flatMap { [contextDidUpdate] beforeTime -> AnyPublisher<(DateComponents, AssignmentReminderContext), Never> in
                 contextDidUpdate
                     .compactMap { $0 }
                     .filter { $0.dueDate != nil }
                     .map { (beforeTime: beforeTime, context: $0) }
+                    .eraseToAnyPublisher()
             }
-            .flatMap { [notificationCenter] (beforeTime, context) in
+            .flatMap { [notificationCenter] (beforeTime, context) -> AnyPublisher<(DateComponents, AssignmentReminderContext), Error> in
                 notificationCenter
                     .requestAuthorization()
-                    .mapToValue(true)
-                    .replaceError(with: false)
-                    .map { (beforeTime: beforeTime, context: context, hasPermission: $0) }
+                    .map { (beforeTime, context) }
+                    .mapError { error -> Error in
+                        return error
+                    }
+                    .eraseToAnyPublisher()
             }
-            .flatMap { [notificationCenter] (beforeTime, context, hasPermission) in
-                guard hasPermission else {
-                    return Just(NewReminderResult.failure(.noPermission)).eraseToAnyPublisher()
-                }
+            .flatMap { (beforeTime, context) -> AnyPublisher<(DateComponents, AssignmentReminderContext, UNTimeIntervalNotificationTrigger), Error> in
                 let trigger: UNTimeIntervalNotificationTrigger
                 do {
                     try trigger = UNTimeIntervalNotificationTrigger(assignmentDueDate: context.dueDate!,
                                                                     beforeTime: beforeTime)
                 } catch {
-                    return Just(NewReminderResult.failure((error as? AssignmentReminderError) ?? .scheduleFailed)).eraseToAnyPublisher()
+                    let error = (error as? AssignmentReminderError) ?? .scheduleFailed
+                    return Fail(outputType: (DateComponents, AssignmentReminderContext, UNTimeIntervalNotificationTrigger).self,
+                                failure: error)
+                            .eraseToAnyPublisher()
                 }
 
-                let content = UNNotificationContent.assignmentReminder(context: context, beforeTime: beforeTime)
-                let request = UNNotificationRequest(identifier: UUID.string,
-                                                    content: content,
-                                                    trigger: trigger)
-                return notificationCenter
-                    .add(request)
-                    .mapError { _ in AssignmentReminderError.scheduleFailed }
-                    .mapToResult()
+                return Just((beforeTime, context, trigger)).setFailureType(to: Error.self).eraseToAnyPublisher()
+            }
+            .flatMap { [notificationCenter] (beforeTime, context, trigger) -> AnyPublisher<(DateComponents, AssignmentReminderContext, UNTimeIntervalNotificationTrigger), Error> in
+                notificationCenter
+                    .getPendingNotificationRequests(for: context)
+                    .flatMap { notifications -> AnyPublisher<(DateComponents, AssignmentReminderContext, UNTimeIntervalNotificationTrigger), Error> in
+                        if notifications.hasTriggerForTheSameTime(timeTrigger: trigger) {
+                            return Fail(outputType: (DateComponents, AssignmentReminderContext, UNTimeIntervalNotificationTrigger).self,
+                                        failure: AssignmentReminderError.duplicate as Error)
+                            .eraseToAnyPublisher()
+                        } else {
+                            return Just((beforeTime, context, trigger)).setFailureType(to: Error.self).eraseToAnyPublisher()
+                        }
+                    }
+                    .eraseToAnyPublisher()
+            }
+            .flatMap { [notificationCenter] (beforeTime, context, trigger) in
+                notificationCenter
+                    .getPendingNotificationRequests(for: context)
+                    .map { $0.hasTriggerForTheSameTime(timeTrigger: trigger) }
+                    .flatMap { duplicateReminder -> AnyPublisher<NewReminderResult, Never> in
+                        if duplicateReminder {
+                            return Just(NewReminderResult.failure(.duplicate)).eraseToAnyPublisher()
+                        }
+
+                        let content = UNNotificationContent.assignmentReminder(context: context, beforeTime: beforeTime)
+                        let request = UNNotificationRequest(identifier: UUID.string,
+                                                            content: content,
+                                                            trigger: trigger)
+                        return notificationCenter
+                            .add(request)
+                            .mapError { _ in AssignmentReminderError.scheduleFailed }
+                            .mapToResult()
+                    }
+            }
+            .catch { error -> AnyPublisher<NewReminderResult, Never> in
+                let convertedError: AssignmentReminderError
+
+                switch error {
+                case NotificationCenterError.noPermission: convertedError = .noPermission
+                case let error as AssignmentReminderError: convertedError = error
+                default: convertedError = .scheduleFailed
+                }
+
+                return Just(NewReminderResult.failure(convertedError)).eraseToAnyPublisher()
             }
             .subscribe(newReminderCreationResult)
             .store(in: &subscriptions)
@@ -152,21 +193,28 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
             .Merge(reminderCreated, contextLoaded)
             .flatMap { [notificationCenter] context in
                 notificationCenter
-                    .getPendingNotificationRequests()
-                    .map { ($0, context) }
-            }
-            .map { (notifications, context) in
-                notifications.filter(courseId: context.courseId,
-                                     assignmentId: context.assignmentId,
-                                     userId: context.userId)
-            }
-            .map { notifications in
-                notifications.sorted()
-            }
-            .map { notifications in
-                notifications.compactMap { AssignmentReminderItem(notification: $0) }
+                    .getPendingNotificationRequests(for: context)
+                    .map { $0.sorted() }
+                    .map { notifications in
+                        notifications.compactMap { AssignmentReminderItem(notification: $0) }
+                    }
             }
             .subscribe(reminders)
             .store(in: &subscriptions)
+    }
+}
+
+private extension UserNotificationCenterProtocol {
+
+    func getPendingNotificationRequests(
+        for context: AssignmentReminderContext
+    ) -> AnyPublisher<[UNNotificationRequest], Never> {
+        getPendingNotificationRequests()
+            .map {
+                $0.filter(courseId: context.courseId,
+                          assignmentId: context.assignmentId,
+                          userId: context.userId)
+            }
+            .eraseToAnyPublisher()
     }
 }

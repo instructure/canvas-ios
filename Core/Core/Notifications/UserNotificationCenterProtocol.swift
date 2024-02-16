@@ -27,16 +27,20 @@ public protocol UserNotificationCenterProtocol: AnyObject {
     var delegate: UNUserNotificationCenterDelegate? { get set }
 }
 
+public enum NotificationCenterError: Error, Equatable {
+    case noPermission
+}
+
 public extension UserNotificationCenterProtocol {
 
-    func requestAuthorization(options: UNAuthorizationOptions = []) -> Future<Void, Error> {
+    func requestAuthorization(options: UNAuthorizationOptions = []) -> Future<Void, NotificationCenterError> {
         Future { [self] promise in
             requestAuthorization(options: options) { granted, error in
-                if let error {
-                    return promise(.failure(error))
+                if error != nil {
+                    return promise(.failure(.noPermission))
                 }
 
-                promise(granted ? .success(()) : .failure(NSError.instructureError("Denied")))
+                promise(granted ? .success(()) : .failure(.noPermission))
             }
         }
     }

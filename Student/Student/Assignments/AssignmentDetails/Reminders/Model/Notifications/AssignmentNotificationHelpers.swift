@@ -44,4 +44,19 @@ public extension Sequence where Element == UNNotificationRequest {
             return leftDate.timeIntervalSince1970 > rightDate.timeIntervalSince1970
         }
     }
+
+    func hasTriggerForTheSameTime(timeTrigger: UNTimeIntervalNotificationTrigger) -> Bool {
+        guard let triggerDate = timeTrigger.nextTriggerDate() else {
+            return false
+        }
+
+        return contains {
+            guard let oldTimeTrigger = $0.trigger as? UNTimeIntervalNotificationTrigger,
+                  let oldTriggerDate = oldTimeTrigger.nextTriggerDate()
+            else {
+                return false
+            }
+            return abs(triggerDate.timeIntervalSince1970 - oldTriggerDate.timeIntervalSince1970) < 1
+        }
+    }
 }

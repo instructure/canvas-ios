@@ -84472,6 +84472,9 @@
         }
       }
     },
+    "Please choose a future time for your reminder!" : {
+
+    },
     "Post" : {
       "comment" : "Button to post new discussion topic",
       "extractionState" : "manual",
@@ -91230,9 +91233,6 @@
       }
     },
     "Reminder" : {
-
-    },
-    "Reminder cannot be in the past. Please select a date that is in the future." : {
 
     },
     "Reminder Creation Failed" : {
