@@ -39,7 +39,7 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
         Clock.mockNow(Date())
         XCTAssertFalse(testee.isRemindersSectionVisible.value)
 
-        testee.contextDidUpdate.send(.init(courseId: "", assignmentId: "", userId: "", assignmentName: "", dueDate: nil))
+        testee.contextDidUpdate.send(.init(courseId: "", assignmentId: "", userId: "", assignmentName: "", dueDate: .distantPast))
         XCTAssertFalse(testee.isRemindersSectionVisible.value)
 
         testee.contextDidUpdate.send(.init(courseId: "", assignmentId: "", userId: "", assignmentName: "", dueDate: Clock.now))
@@ -122,7 +122,7 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
         guard let timeTrigger = notification.trigger as? UNCalendarNotificationTrigger else {
             return XCTFail()
         }
-        XCTAssertEqual(timeTrigger.nextTriggerDate(), context.dueDate!.addMinutes(-5))
+        XCTAssertEqual(timeTrigger.nextTriggerDate(), context.dueDate.addMinutes(-5))
     }
 
     func testRemindersForPastDateNotAllowed() {

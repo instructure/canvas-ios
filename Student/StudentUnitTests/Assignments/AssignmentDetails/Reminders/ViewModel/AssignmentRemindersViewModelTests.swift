@@ -73,7 +73,7 @@ class AssignmentRemindersInteractorMock: AssignmentRemindersInteractor {
     let newReminderCreationResult = PassthroughSubject<Student.NewReminderResult, Never>()
     let isRemindersSectionVisible = CurrentValueSubject<Bool, Never>(true)
     let reminders = CurrentValueSubject<[AssignmentReminderItem], Never>([])
-    let contextDidUpdate = CurrentValueSubject<Student.AssignmentReminderContext?, Never>(nil)
+    let contextDidUpdate = CurrentValueSubject<AssignmentReminderContext?, Never>(nil)
     let newReminderDidSelect = PassthroughSubject<DateComponents, Never>()
     let reminderDidDelete = PassthroughSubject<AssignmentReminderItem, Never>()
 

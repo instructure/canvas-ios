@@ -33,7 +33,7 @@ public struct AssignmentReminderContext {
     let assignmentId: String
     let userId: String
     let assignmentName: String
-    let dueDate: Date?
+    let dueDate: Date
 }
 
 public protocol AssignmentRemindersInteractor: AnyObject {
@@ -106,7 +106,6 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
         let waitForAssignmentData: (DateComponents) -> AnyPublisher<(DateComponents, AssignmentReminderContext), Never> = { [contextDidUpdate] beforeTime in
             contextDidUpdate
                 .compactMap { $0 }
-                .filter { $0.dueDate != nil }
                 .map { (beforeTime: beforeTime, context: $0) }
                 .eraseToAnyPublisher()
         }
@@ -122,7 +121,7 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
         let createNotificationTrigger: ((DateComponents, AssignmentReminderContext)) -> AnyPublisher<NotificationData, Error> = {
             let trigger: UNCalendarNotificationTrigger
             do {
-                try trigger = UNCalendarNotificationTrigger(assignmentDueDate: $0.1.dueDate!,
+                try trigger = UNCalendarNotificationTrigger(assignmentDueDate: $0.1.dueDate,
                                                             beforeTime: $0.0)
             } catch {
                 let error = (error as? AssignmentReminderError) ?? .scheduleFailed

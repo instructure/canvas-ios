@@ -410,7 +410,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
                                                         assignmentId: assignmentID,
                                                         userId: env.currentSession?.userID ?? "",
                                                         assignmentName: assignment.name,
-                                                        dueDate: assignment.dueAt))
+                                                        dueDate: assignment.dueAt ?? .distantPast))
 
         scrollView?.isHidden = false
         loadingView.stopAnimating()
