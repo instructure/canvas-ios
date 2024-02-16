@@ -25,6 +25,7 @@ public enum AssignmentReminderError: Error, Equatable {
     case scheduleFailed
     case reminderInPast
     case duplicate
+    case application
 }
 
 public struct AssignmentReminderContext {
@@ -101,26 +102,26 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
                     }
                     .eraseToAnyPublisher()
             }
-            .flatMap { (beforeTime, context) -> AnyPublisher<(DateComponents, AssignmentReminderContext, UNTimeIntervalNotificationTrigger), Error> in
-                let trigger: UNTimeIntervalNotificationTrigger
+            .flatMap { (beforeTime, context) -> AnyPublisher<(DateComponents, AssignmentReminderContext, UNCalendarNotificationTrigger), Error> in
+                let trigger: UNCalendarNotificationTrigger
                 do {
-                    try trigger = UNTimeIntervalNotificationTrigger(assignmentDueDate: context.dueDate!,
-                                                                    beforeTime: beforeTime)
+                    try trigger = UNCalendarNotificationTrigger(assignmentDueDate: context.dueDate!,
+                                                                beforeTime: beforeTime)
                 } catch {
                     let error = (error as? AssignmentReminderError) ?? .scheduleFailed
-                    return Fail(outputType: (DateComponents, AssignmentReminderContext, UNTimeIntervalNotificationTrigger).self,
+                    return Fail(outputType: (DateComponents, AssignmentReminderContext, UNCalendarNotificationTrigger).self,
                                 failure: error)
                             .eraseToAnyPublisher()
                 }
 
                 return Just((beforeTime, context, trigger)).setFailureType(to: Error.self).eraseToAnyPublisher()
             }
-            .flatMap { [notificationCenter] (beforeTime, context, trigger) -> AnyPublisher<(DateComponents, AssignmentReminderContext, UNTimeIntervalNotificationTrigger), Error> in
+            .flatMap { [notificationCenter] (beforeTime, context, trigger) -> AnyPublisher<(DateComponents, AssignmentReminderContext, UNCalendarNotificationTrigger), Error> in
                 notificationCenter
                     .getPendingNotificationRequests(for: context)
-                    .flatMap { notifications -> AnyPublisher<(DateComponents, AssignmentReminderContext, UNTimeIntervalNotificationTrigger), Error> in
+                    .flatMap { notifications -> AnyPublisher<(DateComponents, AssignmentReminderContext, UNCalendarNotificationTrigger), Error> in
                         if notifications.hasTriggerForTheSameTime(timeTrigger: trigger) {
-                            return Fail(outputType: (DateComponents, AssignmentReminderContext, UNTimeIntervalNotificationTrigger).self,
+                            return Fail(outputType: (DateComponents, AssignmentReminderContext, UNCalendarNotificationTrigger).self,
                                         failure: AssignmentReminderError.duplicate as Error)
                             .eraseToAnyPublisher()
                         } else {

@@ -69,9 +69,9 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
 
     func testListsRemindersInChronologicalOrder() {
         mockNotificationCenter.requests = [
-            .make(id: "1", timeText: "3 minutes before", timeUntilFire: 60),
-            .make(id: "2", timeText: "1 minute before", timeUntilFire: 180),
-            .make(id: "3", timeText: "2 minutes before", timeUntilFire: 120),
+            .make(id: "1", timeText: "3 minutes before", trigger: .init(minute: 57)),
+            .make(id: "2", timeText: "1 minute before", trigger: .init(minute: 59)),
+            .make(id: "3", timeText: "2 minutes before", trigger: .init(minute: 58)),
         ]
         let testee = AssignmentRemindersInteractorLive(notificationCenter: mockNotificationCenter)
 
@@ -119,12 +119,10 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
         XCTAssertEqual(notification.content.userInfo[Key.triggerTimeText.rawValue] as? String, "5 minutes before")
         XCTAssertEqual(notification.content.userInfo[NotificationManager.RouteURLKey] as? String, "courses/1/assignments/2")
 
-        guard let timeTrigger = notification.trigger as? UNTimeIntervalNotificationTrigger else {
+        guard let timeTrigger = notification.trigger as? UNCalendarNotificationTrigger else {
             return XCTFail()
         }
-        XCTAssertEqual(timeTrigger.nextTriggerDate()!.timeIntervalSince1970,
-                       context.dueDate!.addMinutes(-5).timeIntervalSince1970,
-                       accuracy: 0.1)
+        XCTAssertEqual(timeTrigger.nextTriggerDate(), context.dueDate!.addMinutes(-5))
     }
 
     func testRemindersForPastDateNotAllowed() {
@@ -189,7 +187,7 @@ extension UNNotificationRequest {
         assignmentId: String = "2",
         userId: String = "3",
         timeText: String = "1 minute before",
-        timeUntilFire: TimeInterval = 60
+        trigger: DateComponents = .init(minute: 60)
     ) -> UNNotificationRequest {
         let content = UNMutableNotificationContent()
         content.userInfo = [
@@ -201,6 +199,6 @@ extension UNNotificationRequest {
         return UNNotificationRequest(
             identifier: id,
             content: content,
-            trigger: UNTimeIntervalNotificationTrigger(timeInterval: timeUntilFire, repeats: false))
+            trigger: UNCalendarNotificationTrigger(dateMatching: trigger, repeats: false))
     }
 }

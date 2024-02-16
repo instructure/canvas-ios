@@ -22,19 +22,22 @@ import XCTest
 class AssignmentNotificationTriggerTests: XCTestCase {
 
     func testNotificationDateCalculation() {
-        let currentDate = Date()
-        let dueDate = currentDate.addDays(2)
-        let beforeTime = DateComponents(day: 1)
-        let testee = try! UNTimeIntervalNotificationTrigger(assignmentDueDate: dueDate,
-                                                       beforeTime: beforeTime,
-                                                       currentDate: currentDate)
+        let dueDate = Date(fromISOString: "3024-02-16T14:00:00Z")!
 
-        guard let triggerDate = testee.nextTriggerDate() else {
-            return XCTFail()
+        let testData: [(beforeTime: DateComponents, expectedTriggerDate: String)] = [
+            (.init(minute: 15), "3024-02-16T13:45:00Z"),
+            (.init(hour: 1), "3024-02-16T13:00:00Z"),
+            (.init(day: 1), "3024-02-15T14:00:00Z"),
+            (.init(weekOfMonth: 1), "3024-02-09T14:00:00Z"),
+            (.init(weekOfMonth: 7), "3023-12-29T14:00:00Z"),
+        ]
+
+        for testEntry in testData {
+            let testee = try! UNCalendarNotificationTrigger(assignmentDueDate: dueDate,
+                                                            beforeTime: testEntry.beforeTime,
+                                                            currentDate: .distantPast)
+            let expectedTriggerDate = Date(fromISOString: testEntry.expectedTriggerDate)!
+            XCTAssertEqual(testee.nextTriggerDate(), expectedTriggerDate, "beforeTime: \(testEntry.beforeTime)")
         }
-
-        let expectedTriggerDate = Date().addDays(1)
-        XCTAssertTrue(expectedTriggerDate.timeIntervalSince(triggerDate) < 1)
-        XCTAssertEqual(testee.timeInterval, 86400)
     }
 }

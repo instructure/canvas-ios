@@ -33,9 +33,9 @@ public extension Sequence where Element == UNNotificationRequest {
 
     func sorted() -> [UNNotificationRequest] {
         sorted {
-            guard let leftTrigger = $0.trigger as? UNTimeIntervalNotificationTrigger,
+            guard let leftTrigger = $0.trigger as? UNCalendarNotificationTrigger,
                   let leftDate = leftTrigger.nextTriggerDate(),
-                  let rightTrigger = $1.trigger as? UNTimeIntervalNotificationTrigger,
+                  let rightTrigger = $1.trigger as? UNCalendarNotificationTrigger,
                   let rightDate = rightTrigger.nextTriggerDate()
             else {
                 return true
@@ -45,13 +45,13 @@ public extension Sequence where Element == UNNotificationRequest {
         }
     }
 
-    func hasTriggerForTheSameTime(timeTrigger: UNTimeIntervalNotificationTrigger) -> Bool {
+    func hasTriggerForTheSameTime(timeTrigger: UNCalendarNotificationTrigger) -> Bool {
         guard let triggerDate = timeTrigger.nextTriggerDate() else {
             return false
         }
 
         return contains {
-            guard let oldTimeTrigger = $0.trigger as? UNTimeIntervalNotificationTrigger,
+            guard let oldTimeTrigger = $0.trigger as? UNCalendarNotificationTrigger,
                   let oldTriggerDate = oldTimeTrigger.nextTriggerDate()
             else {
                 return false

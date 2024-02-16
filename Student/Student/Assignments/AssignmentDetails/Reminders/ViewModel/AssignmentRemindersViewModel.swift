@@ -103,9 +103,13 @@ public class AssignmentRemindersViewModel: ObservableObject {
                     self?.newReminderView?.showPermissionError(.notifications)
                 } else {
                     let message: String
-                    if $0 == .reminderInPast {
+
+                    switch $0 {
+                    case .reminderInPast:
                         message = String(localized: "Please choose a future time for your reminder!")
-                    } else {
+                    case .duplicate:
+                        message = String(localized: "You have already set a reminder for this time.")
+                    case .application, .scheduleFailed, .noPermission:
                         message = String(localized: "An unknown error occurred.")
                     }
 

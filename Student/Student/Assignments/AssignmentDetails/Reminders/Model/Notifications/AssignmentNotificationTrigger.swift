@@ -16,28 +16,34 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import UserNotifications
 
-extension UNTimeIntervalNotificationTrigger {
+extension UNCalendarNotificationTrigger {
 
     convenience init(assignmentDueDate: Date,
                      beforeTime: DateComponents,
                      currentDate: Date = .now) throws {
-        guard let beforeTimeInterval = Calendar.current.date(byAdding: beforeTime, to: assignmentDueDate)?.timeIntervalSince(assignmentDueDate) else {
-            throw AssignmentReminderError.scheduleFailed
-        }
-
-        let triggerDate = {
-            var triggerDate = assignmentDueDate
-            triggerDate.addTimeInterval(-beforeTimeInterval)
-            return triggerDate
+        let negativeBeforeTime: DateComponents = {
+            var result = beforeTime
+            result.minute = result.minute.flatMap { -1 * $0 }
+            result.hour = result.hour.flatMap { -1 * $0 }
+            result.day = result.day.flatMap { -1 * $0 }
+            result.weekOfMonth = result.weekOfMonth.flatMap { -1 * $0 }
+            return result
         }()
 
-        let timeUntilTrigger = triggerDate.timeIntervalSince1970 - currentDate.timeIntervalSince1970
+        guard let triggerDate = Calendar.current.date(byAdding: negativeBeforeTime, to: assignmentDueDate) else {
+            Analytics.shared.logError(name: "Could not create assignment reminder trigger date",
+                                      reason: "negativeBeforeTime: \(negativeBeforeTime)")
+            throw AssignmentReminderError.application
+        }
 
-        if timeUntilTrigger <= 0 {
+        if triggerDate <= currentDate {
             throw AssignmentReminderError.reminderInPast
         }
-        self.init(timeInterval: timeUntilTrigger, repeats: false)
+
+        let triggerComponents = Calendar.current.dateComponents(Set([.year, .month, .day, .hour, .minute, .second, .nanosecond]), from: triggerDate)
+        self.init(dateMatching: triggerComponents, repeats: false)
     }
 }
