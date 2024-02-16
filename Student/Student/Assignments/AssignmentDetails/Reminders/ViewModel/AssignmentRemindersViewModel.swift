@@ -18,6 +18,7 @@
 
 import Core
 import Combine
+import CombineSchedulers
 
 public class AssignmentRemindersViewModel: ObservableObject {
     // MARK: - Outputs
@@ -39,10 +40,16 @@ public class AssignmentRemindersViewModel: ObservableObject {
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: AssignmentRemindersInteractor
     private weak var newReminderView: UIViewController?
+    private let scheduler: AnySchedulerOf<DispatchQueue>
 
-    public init(interactor: AssignmentRemindersInteractor, router: Router) {
+    public init(
+        interactor: AssignmentRemindersInteractor,
+        router: Router,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
+    ) {
         self.interactor = interactor
         self.router = router
+        self.scheduler = scheduler
         setupInteractorBindings()
 
         dismissTimePickerAfterNewReminderCreation()
@@ -78,7 +85,7 @@ public class AssignmentRemindersViewModel: ObservableObject {
 
         interactor
             .reminders
-            .receive(on: RunLoop.main)
+            .receive(on: scheduler)
             .assign(to: &$reminders)
     }
 
@@ -86,9 +93,11 @@ public class AssignmentRemindersViewModel: ObservableObject {
         interactor
             .newReminderCreationResult
             .compactMap { try? $0.get() }
-            .receive(on: RunLoop.main)
-            .sink { [weak self] _ in
-                self?.newReminderView?.dismiss(animated: true)
+            .receive(on: scheduler)
+            .sink { [weak self, router] _ in
+                if let view = self?.newReminderView {
+                    router.dismiss(view)
+                }
             }
             .store(in: &subscriptions)
     }
@@ -97,7 +106,7 @@ public class AssignmentRemindersViewModel: ObservableObject {
         interactor
             .newReminderCreationResult
             .compactMap { $0.error }
-            .receive(on: RunLoop.main)
+            .receive(on: scheduler)
             .sink { [weak self] in
                 if $0 == .noPermission {
                     self?.newReminderView?.showPermissionError(.notifications)

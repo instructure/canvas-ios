@@ -113,9 +113,7 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
             notificationCenter
                 .requestAuthorization()
                 .map { data }
-                .mapError { error -> Error in
-                    return error
-                }
+                .mapError { $0 as Error }
                 .eraseToAnyPublisher()
         }
         let createNotificationTrigger: ((DateComponents, AssignmentReminderContext)) -> AnyPublisher<NotificationData, Error> = {
