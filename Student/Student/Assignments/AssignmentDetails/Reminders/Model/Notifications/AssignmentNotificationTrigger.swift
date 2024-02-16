@@ -26,10 +26,10 @@ extension UNCalendarNotificationTrigger {
                      currentDate: Date = .now) throws {
         let negativeBeforeTime: DateComponents = {
             var result = beforeTime
-            result.minute = result.minute.flatMap { -1 * $0 }
-            result.hour = result.hour.flatMap { -1 * $0 }
-            result.day = result.day.flatMap { -1 * $0 }
-            result.weekOfMonth = result.weekOfMonth.flatMap { -1 * $0 }
+            result.minute = result.minute.flatMap { -$0 }
+            result.hour = result.hour.flatMap { -$0 }
+            result.day = result.day.flatMap { -$0 }
+            result.weekOfMonth = result.weekOfMonth.flatMap { -$0 }
             return result
         }()
 
