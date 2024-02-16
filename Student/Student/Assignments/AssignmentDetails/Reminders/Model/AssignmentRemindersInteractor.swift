@@ -85,6 +85,8 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
     }
 
     private func scheduleNotificationOnTimeSelect() {
+        typealias NotificationData = (DateComponents, AssignmentReminderContext, UNCalendarNotificationTrigger)
+
         newReminderDidSelect
             .flatMap { [contextDidUpdate] beforeTime -> AnyPublisher<(DateComponents, AssignmentReminderContext), Never> in
                 contextDidUpdate
@@ -102,26 +104,26 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
                     }
                     .eraseToAnyPublisher()
             }
-            .flatMap { (beforeTime, context) -> AnyPublisher<(DateComponents, AssignmentReminderContext, UNCalendarNotificationTrigger), Error> in
+            .flatMap { (beforeTime, context) -> AnyPublisher<NotificationData, Error> in
                 let trigger: UNCalendarNotificationTrigger
                 do {
                     try trigger = UNCalendarNotificationTrigger(assignmentDueDate: context.dueDate!,
                                                                 beforeTime: beforeTime)
                 } catch {
                     let error = (error as? AssignmentReminderError) ?? .scheduleFailed
-                    return Fail(outputType: (DateComponents, AssignmentReminderContext, UNCalendarNotificationTrigger).self,
+                    return Fail(outputType: NotificationData.self,
                                 failure: error)
                             .eraseToAnyPublisher()
                 }
 
                 return Just((beforeTime, context, trigger)).setFailureType(to: Error.self).eraseToAnyPublisher()
             }
-            .flatMap { [notificationCenter] (beforeTime, context, trigger) -> AnyPublisher<(DateComponents, AssignmentReminderContext, UNCalendarNotificationTrigger), Error> in
+            .flatMap { [notificationCenter] (beforeTime, context, trigger) -> AnyPublisher<NotificationData, Error> in
                 notificationCenter
                     .getPendingNotificationRequests(for: context)
-                    .flatMap { notifications -> AnyPublisher<(DateComponents, AssignmentReminderContext, UNCalendarNotificationTrigger), Error> in
+                    .flatMap { notifications -> AnyPublisher<NotificationData, Error> in
                         if notifications.hasTriggerForTheSameTime(timeTrigger: trigger) {
-                            return Fail(outputType: (DateComponents, AssignmentReminderContext, UNCalendarNotificationTrigger).self,
+                            return Fail(outputType: NotificationData.self,
                                         failure: AssignmentReminderError.duplicate as Error)
                             .eraseToAnyPublisher()
                         } else {
@@ -160,7 +162,12 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
 
                 return Just(NewReminderResult.failure(convertedError)).eraseToAnyPublisher()
             }
-            .subscribe(newReminderCreationResult)
+            .sink(receiveCompletion: { [weak self] _ in
+                // On error the stream will complete, so we re-create it to process the next selection action
+                self?.scheduleNotificationOnTimeSelect()
+            }, receiveValue: { [newReminderCreationResult] in
+                newReminderCreationResult.send($0)
+            })
             .store(in: &subscriptions)
     }
 
