@@ -76,4 +76,8 @@ class AssignmentRemindersInteractorMock: AssignmentRemindersInteractor {
     let contextDidUpdate = CurrentValueSubject<Student.AssignmentReminderContext?, Never>(nil)
     let newReminderDidSelect = PassthroughSubject<DateComponents, Never>()
     let reminderDidDelete = PassthroughSubject<AssignmentReminderItem, Never>()
+
+    func deleteAllReminders(userId: String) -> AnyPublisher<Void, Never> {
+        Just(()).eraseToAnyPublisher()
+    }
 }
