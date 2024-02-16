@@ -133,23 +133,14 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
                     .eraseToAnyPublisher()
             }
             .flatMap { [notificationCenter] (beforeTime, context, trigger) in
-                notificationCenter
-                    .getPendingNotificationRequests(for: context)
-                    .map { $0.hasTriggerForTheSameTime(timeTrigger: trigger) }
-                    .flatMap { duplicateReminder -> AnyPublisher<NewReminderResult, Never> in
-                        if duplicateReminder {
-                            return Just(NewReminderResult.failure(.duplicate)).eraseToAnyPublisher()
-                        }
-
-                        let content = UNNotificationContent.assignmentReminder(context: context, beforeTime: beforeTime)
-                        let request = UNNotificationRequest(identifier: UUID.string,
-                                                            content: content,
-                                                            trigger: trigger)
-                        return notificationCenter
-                            .add(request)
-                            .mapError { _ in AssignmentReminderError.scheduleFailed }
-                            .mapToResult()
-                    }
+                let content = UNNotificationContent.assignmentReminder(context: context, beforeTime: beforeTime)
+                let request = UNNotificationRequest(identifier: UUID.string,
+                                                    content: content,
+                                                    trigger: trigger)
+                return notificationCenter
+                    .add(request)
+                    .mapError { _ in AssignmentReminderError.scheduleFailed }
+                    .mapToResult()
             }
             .catch { error -> AnyPublisher<NewReminderResult, Never> in
                 let convertedError: AssignmentReminderError
