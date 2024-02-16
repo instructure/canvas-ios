@@ -137,6 +137,9 @@ public struct AudioPickerView: View {
                         }
                     }
                 }
+                .simultaneousGesture(DragGesture().onChanged { _ in
+                    viewModel.pauseAudioButtonDidTap.accept(controller)
+                })
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
