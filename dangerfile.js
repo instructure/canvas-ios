@@ -115,14 +115,20 @@ function handleAffects (message) {
   markdown(`#### Affected Apps: ${description}`)
 }
 
-function handleJira (message) {
-  // Make sure to have jira ticket refs
-  if (!message.match(/refs:/gi)) {
-    fail('Please add a reference to a jira ticket. For example: `refs: MBL-10023`')
+function handleJira(message) {
+  const refsEntries = message.match(/refs:(.+?)\n/gi) || []
+
+  if (refsEntries.length === 0) {
+    fail('Please add a reference to a Jira ticket. For example: `refs: MBL-10023`')
+    return
   }
 
+  // Use the last refs entry
+  const latestRefsEntry = refsEntries[refsEntries.length - 1]
+
   // Add links to the jira tickets in the markdown
-  const issues = message.match(/mbl-\d+/gi) || []
+  const issues = latestRefsEntry.match(/mbl-\d+/gi) || []
+
   if (issues.length) {
     const set = new Set(issues.map(issue => issue.toUpperCase()))
     markdown([ ...set ].map(issue =>
