@@ -29,7 +29,9 @@ extension View {
                 backgroundView
             }
         } else {
-            return background(backgroundView)
+            return background {
+                backgroundView
+            }
         }
     }
 }
