@@ -76,28 +76,30 @@ public extension UseCase {
         let database = environment.database
         database.performWriteTask { client in
             guard force || self.hasExpired(in: client) else {
-                callback?(nil, nil, nil) // FIXME: Return cached data?
-                return
+                return performUIUpdate {
+                    callback?(nil, nil, nil) // FIXME: Return cached data?
+                }
             }
             self.makeRequest(environment: environment) { response, urlResponse, error in
                 if let error = error {
-                    performUIUpdate {
+                    return performUIUpdate {
                         callback?(response, urlResponse, error)
                         return
                     }
-                }
-                database.performWriteTask { context in
-                    do {
-                        self.reset(context: context)
-                        self.write(response: response, urlResponse: urlResponse, to: context)
-                        self.updateTTL(in: context)
-                        try context.save()
-                        callback?(response, urlResponse, error)
-                    } catch let error {
-                        Logger.shared.error(error.localizedDescription)
-                        Analytics.shared.logError(name: "CoreData save failed",
-                                                  reason: error.localizedDescription)
-                        callback?(response, urlResponse, error)
+                } else {
+                    database.performWriteTask { context in
+                        do {
+                            self.reset(context: context)
+                            self.write(response: response, urlResponse: urlResponse, to: context)
+                            self.updateTTL(in: context)
+                            try context.save()
+                            callback?(response, urlResponse, error)
+                        } catch let error {
+                            Logger.shared.error(error.localizedDescription)
+                            Analytics.shared.logError(name: "CoreData save failed",
+                                                      reason: error.localizedDescription)
+                            callback?(response, urlResponse, error)
+                        }
                     }
                 }
             }
@@ -116,7 +118,9 @@ public extension UseCase {
         Future<URLResponse?, Error> { promise in
             self.makeRequest(environment: environment) { response, urlResponse, error in
                 if let error = error {
-                    promise(.failure(error))
+                    performUIUpdate {
+                        promise(.failure(error))
+                    }
                 } else {
                     let database = environment.database
                     database.performWriteTask { context in
@@ -130,7 +134,9 @@ public extension UseCase {
                             Logger.shared.error(dbError.localizedDescription)
                             Analytics.shared.logError(name: "CoreData save failed",
                                                       reason: dbError.localizedDescription)
-                            promise(.failure(dbError))
+                            performUIUpdate {
+                                promise(.failure(dbError))
+                            }
                         }
                     }
                 }
