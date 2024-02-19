@@ -72,15 +72,13 @@ function handleReleaseNotes (message) {
     return
   }
 
-  if (releaseNotes.length > 1) {
-    fail('Please add only one release note.')
-  }
+  const latestReleaseNote = releaseNotes[releaseNotes.length - 1]
+  const releaseNoteText = (latestReleaseNote[1] || '').trim()
 
-  const releaseNoteText = (releaseNotes[0][1] || '').trim()
   if (!releaseNoteText) {
     fail('Trying to be sneaky? You added a release note but left it blank?')
   } else {
-    if (releaseNoteText === 'none') {
+    if (releaseNoteText.toLowerCase() === 'none') {
       warn('This pull request will not generate a release note.')
     } else {
       markdown(`#### Release Note: \n${releaseNoteText}`)
@@ -95,11 +93,9 @@ function handleAffects (message) {
     return
   }
 
-  if (affects.length > 1) {
-    fail('Please add only one affects.')
-  }
+  const latestAffects = affects[affects.length - 1];
+  let apps = latestAffects[1];
 
-  let apps = affects[0][1]
   if (!apps) {
     fail('Did you forget to add app names after `affects:`?')
     return
