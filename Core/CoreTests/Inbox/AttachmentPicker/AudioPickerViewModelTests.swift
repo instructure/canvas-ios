@@ -45,43 +45,41 @@ class AudioPickerViewModelTests: CoreTestCase {
     }
 
     func testRecording() {
-        testee.recordAudioButtonDidTap.accept(WeakViewController(UIViewController()))
+        testee.recordAudioButtonDidTap.accept(())
 
         XCTAssertTrue(testee.isRecording)
     }
 
     func testPlayback() {
-        let viewController = WeakViewController(UIViewController())
-        testee.recordAudioButtonDidTap.accept(viewController)
+        testee.recordAudioButtonDidTap.accept(())
 
         XCTAssertTrue(testee.isRecording)
         sleep(10)
-        testee.stopRecordAudioButtonDidTap.accept(viewController)
+        testee.stopRecordAudioButtonDidTap.accept(())
 
         XCTAssertFalse(testee.isRecording)
         XCTAssertTrue(testee.isReplay)
         XCTAssertFalse(testee.isPlaying)
 
-        testee.playAudioButtonDidTap.accept(viewController)
+        testee.playAudioButtonDidTap.accept(())
         XCTAssertTrue(testee.isPlaying)
 
-        testee.pauseAudioButtonDidTap.accept(viewController)
+        testee.pauseAudioButtonDidTap.accept(())
         XCTAssertFalse(testee.isPlaying)
     }
 
     func testRetakeAudio() {
-        let viewController = WeakViewController(UIViewController())
-        testee.recordAudioButtonDidTap.accept(viewController)
+        testee.recordAudioButtonDidTap.accept(())
 
         XCTAssertTrue(testee.isRecording)
         sleep(10)
-        testee.stopRecordAudioButtonDidTap.accept(viewController)
+        testee.stopRecordAudioButtonDidTap.accept(())
 
         XCTAssertFalse(testee.isRecording)
         XCTAssertTrue(testee.isReplay)
         XCTAssertFalse(testee.isPlaying)
 
-        testee.retakeButtonDidTap.accept(viewController)
+        testee.retakeButtonDidTap.accept(())
         XCTAssertFalse(testee.isReplay)
     }
 
