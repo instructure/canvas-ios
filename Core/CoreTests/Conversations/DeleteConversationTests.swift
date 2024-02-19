@@ -22,8 +22,8 @@ import XCTest
 @testable import Core
 
 class DeleteConversationTests: CoreTestCase {
-    func testDeleteRequest() {
-        let conversationId = "testId"
+    func testDeleteConversationRequest() {
+        let conversationId = "1"
         let useCase = DeleteConversation(id: conversationId)
         let result = APIConversation.make()
         api.mock(useCase.request, value: result)
@@ -36,9 +36,38 @@ class DeleteConversationTests: CoreTestCase {
         wait(for: [expectation], timeout: 0.1)
     }
 
-    func testDeleteRequestError() {
-        let conversationId = "testId"
+    func testDeleteConversationRequestError() {
+        let conversationId = "1"
         let useCase = DeleteConversation(id: conversationId)
+        api.mock(useCase.request, error: NSError.instructureError("Error"))
+
+        let expectation = XCTestExpectation(description: "make request")
+        useCase.makeRequest(environment: environment) { (_, _, error) in
+            expectation.fulfill()
+            XCTAssertNotNil(error)
+        }
+        wait(for: [expectation], timeout: 0.1)
+    }
+
+    func testDeleteConversationMessageRequest() {
+        let conversationId = "1"
+        let removeIds = ["1", "2"]
+        let useCase = DeleteConversationMessage(id: conversationId, removeIds: removeIds)
+        let result = APIConversation.make()
+        api.mock(useCase.request, value: result)
+
+        let expectation = XCTestExpectation(description: "make request")
+        useCase.makeRequest(environment: environment) { (conversation, _, _) in
+            expectation.fulfill()
+            XCTAssertEqual(conversation?.id, result.id)
+        }
+        wait(for: [expectation], timeout: 0.1)
+    }
+
+    func testDeleteConversationMessageRequestError() {
+        let conversationId = "1"
+        let removeIds = ["1", "2"]
+        let useCase = DeleteConversationMessage(id: conversationId, removeIds: removeIds)
         api.mock(useCase.request, error: NSError.instructureError("Error"))
 
         let expectation = XCTestExpectation(description: "make request")
