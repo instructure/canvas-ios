@@ -81,8 +81,10 @@ public extension UseCase {
             }
             self.makeRequest(environment: environment) { response, urlResponse, error in
                 if let error = error {
-                    callback?(response, urlResponse, error)
-                    return
+                    performUIUpdate {
+                        callback?(response, urlResponse, error)
+                        return
+                    }
                 }
                 database.performWriteTask { context in
                     do {
