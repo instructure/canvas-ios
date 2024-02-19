@@ -21,7 +21,7 @@ import AVFoundation
 import Combine
 import CombineExt
 
-class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
+class AudioPickerViewModel: NSObject, ObservableObject {
 
     // MARK: Outputs
 
@@ -43,11 +43,11 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
 
     public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
     public let useAudioButtonDidTap = PassthroughRelay<WeakViewController>()
-    public let retakeButtonDidTap = PassthroughRelay<WeakViewController>()
-    public let recordAudioButtonDidTap = PassthroughRelay<WeakViewController>()
-    public let stopRecordAudioButtonDidTap = PassthroughRelay<WeakViewController>()
-    public let playAudioButtonDidTap = PassthroughRelay<WeakViewController>()
-    public let pauseAudioButtonDidTap = PassthroughRelay<WeakViewController>()
+    public let retakeButtonDidTap = PassthroughRelay<Void>()
+    public let recordAudioButtonDidTap = PassthroughRelay<Void>()
+    public let stopRecordAudioButtonDidTap = PassthroughRelay<Void>()
+    public let playAudioButtonDidTap = PassthroughRelay<Void>()
+    public let pauseAudioButtonDidTap = PassthroughRelay<Void>()
     public let interactor: AudioPickerInteractor
     public let barWidth: CGFloat = 2
     public let spaceWidth: CGFloat = 5
@@ -125,7 +125,7 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
     }
 
     func normalizeAudioPositionValue(rawValue: TimeInterval) -> TimeInterval {
-        return audioChartDataSet.prefix(while: { $0.timestamp <= rawValue }).last?.timestamp ?? 0
+        return audioChartDataSet.filter { $0.timestamp >= rawValue }.first?.timestamp ?? 0
     }
 
     private func setupOutputBindings() {
@@ -158,8 +158,8 @@ class AudioPickerViewModel: NSObject, ObservableObject, AVAudioPlayerDelegate {
 
         interactor.playerFinished
             .sink { [weak self] in
-                self?.isPlaying = false
-                self?.interactor.seekInAudio(newValue: 0)
+                self?.pauseAudioButtonDidTap.accept(())
+                self?.seekInAudio(0)
             }
             .store(in: &subscriptions)
     }

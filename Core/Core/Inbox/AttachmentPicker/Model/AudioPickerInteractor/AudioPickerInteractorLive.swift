@@ -150,7 +150,6 @@ extension AudioPickerInteractorLive: AVAudioPlayerDelegate {
 
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         if flag {
-            self.audioPlayer?.stop()
             self.playerFinished.send(())
         }
     }

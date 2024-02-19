@@ -122,7 +122,9 @@ public struct AudioPickerView: View {
                         .preference(key: ViewSizeKey.self, value: geometry.frame(in: .named("scroll")).origin.x)
                 })
                 .onPreferenceChange(ViewSizeKey.self) { value in
-                    viewModel.seekInAudio(value)
+                    if !viewModel.isPlaying {
+                        viewModel.seekInAudio(value)
+                    }
                 }
                 .onChange(of: viewModel.audioPlayerPosition) { newValue in
                     let value = viewModel.normalizeAudioPositionValue(rawValue: newValue)
@@ -138,7 +140,7 @@ public struct AudioPickerView: View {
                     }
                 }
                 .simultaneousGesture(DragGesture().onChanged { _ in
-                    viewModel.pauseAudioButtonDidTap.accept(controller)
+                    viewModel.pauseAudioButtonDidTap.accept(())
                 })
             }
         }
@@ -169,7 +171,7 @@ public struct AudioPickerView: View {
         HStack {
             VStack(alignment: .leading) {
                 Button {
-                    viewModel.retakeButtonDidTap.accept(controller)
+                    viewModel.retakeButtonDidTap.accept(())
                 } label: {
                     Text("Retake", bundle: .core)
                         .foregroundStyle(textColor)
@@ -180,7 +182,7 @@ public struct AudioPickerView: View {
             VStack(alignment: .center) {
                 if (!viewModel.isPlaying) {
                     Button {
-                        viewModel.playAudioButtonDidTap.accept(controller)
+                        viewModel.playAudioButtonDidTap.accept(())
                     } label: {
                         Image.playSolid
                             .foregroundStyle(textColor)
@@ -189,7 +191,7 @@ public struct AudioPickerView: View {
                     .accessibilityLabel(Text("Play audio recording", bundle: .core))
                 } else {
                     Button {
-                        viewModel.pauseAudioButtonDidTap.accept(controller)
+                        viewModel.pauseAudioButtonDidTap.accept(())
                     } label: {
                         Image.pauseSolid
                             .foregroundStyle(textColor)
@@ -253,7 +255,7 @@ public struct AudioPickerView: View {
 
     private var startRecordButton: some View {
         Button {
-            viewModel.recordAudioButtonDidTap.accept(controller)
+            viewModel.recordAudioButtonDidTap.accept(())
         } label: {
             ZStack {
                 Circle()
@@ -273,7 +275,7 @@ public struct AudioPickerView: View {
 
     private var stopRecordingButton: some View {
         Button {
-            viewModel.stopRecordAudioButtonDidTap.accept(controller)
+            viewModel.stopRecordAudioButtonDidTap.accept(())
         } label: {
             withAnimation {
                 ZStack {
