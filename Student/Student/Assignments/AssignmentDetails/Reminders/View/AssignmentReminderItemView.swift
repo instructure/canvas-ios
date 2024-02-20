@@ -37,10 +37,11 @@ struct AssignmentReminderItemView: View {
             .foregroundStyle(Color.textDarkest)
         }
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel(Text("Reminder") + Text(verbatim: ",\(viewModel.title)"))
-        .accessibilityAction(named: Text("Delete Reminder")) {
+        .accessibilityAction {
             deleteDidTap()
         }
+        .accessibilityLabel(Text("Reminder") + Text(verbatim: ",\(viewModel.title)"))
+        .accessibilityHint(Text("Activate to delete"))
     }
 
     private var bellIcon: some View {

@@ -16,24 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Core
+import XCTest
 
-class AssignmentReminderTimeFormatter: DateComponentsFormatter {
+class ResultExtensionsTests: XCTestCase {
 
-    override init() {
-        super.init()
-        unitsStyle = .full
+    func testError() {
+        let testee: Result<Void, NSError> = .failure(NSError.instructureError("TestError"))
+        XCTAssertEqual(testee.error, NSError.instructureError("TestError"))
     }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    override func string(from components: DateComponents) -> String? {
-        guard let formatted = super.string(from: components) else {
-            return nil
-        }
-
-        return String(localized: "\(formatted) before", comment: "10 minutes before")
+    func testErrorOnSuccess() {
+        let testee: Result<Void, NSError> = .success(())
+        XCTAssertNil(testee.error)
     }
 }

@@ -19,6 +19,7 @@
 @testable import Core
 import Combine
 import Student
+import TestsFoundation
 import XCTest
 
 class AssignmentRemindersViewModelTests: StudentTestCase {
@@ -30,8 +31,7 @@ class AssignmentRemindersViewModelTests: StudentTestCase {
     }
 
     func testNewReminderTapOpensTimePicker() {
-        let interactor = AssignmentRemindersInteractorLive()
-        let testee = AssignmentRemindersViewModel(interactor: interactor, router: router)
+        let testee = AssignmentRemindersViewModel(interactor: AssignmentRemindersInteractorMock(), router: router)
         let hostView = UIViewController()
 
         // WHEN
@@ -66,12 +66,68 @@ class AssignmentRemindersViewModelTests: StudentTestCase {
         // THEN
         waitForExpectations(timeout: 1)
     }
+
+    func testErrorAlerts() {
+        let interactorMock = AssignmentRemindersInteractorMock()
+        let testee = AssignmentRemindersViewModel(interactor: interactorMock, router: router, scheduler: .immediate)
+        let newReminderView = UIViewController()
+        testee.newReminderDidTap(view: newReminderView)
+
+        interactorMock.newReminderCreationResult.send(.failure(.reminderInPast))
+        var alert = router.last as? UIAlertController
+        XCTAssertEqual(alert?.title, String(localized: "Reminder Creation Failed"))
+        XCTAssertEqual(alert?.message, String(localized: "Please choose a future time for your reminder!"))
+
+        interactorMock.newReminderCreationResult.send(.failure(.duplicate))
+        alert = router.last as? UIAlertController
+        XCTAssertEqual(alert?.title, String(localized: "Reminder Creation Failed"))
+        XCTAssertEqual(alert?.message, String(localized: "You have already set a reminder for this time."))
+
+        interactorMock.newReminderCreationResult.send(.failure(.scheduleFailed))
+        alert = router.last as? UIAlertController
+        XCTAssertEqual(alert?.title, String(localized: "Reminder Creation Failed"))
+        XCTAssertEqual(alert?.message, String(localized: "An unknown error occurred."))
+
+        interactorMock.newReminderCreationResult.send(.failure(.application))
+        alert = router.last as? UIAlertController
+        XCTAssertEqual(alert?.title, String(localized: "Reminder Creation Failed"))
+        XCTAssertEqual(alert?.message, String(localized: "An unknown error occurred."))
+
+        interactorMock.newReminderCreationResult.send(.failure(.noPermission))
+        alert = router.last as? UIAlertController
+        XCTAssertEqual(alert?.title, String(localized: "Permission Needed"))
+        XCTAssertEqual(alert?.message, String(localized: "You must allow notifications in Settings to set reminders."))
+        XCTAssertEqual(alert?.actions[0].title, String(localized: "Settings"))
+        XCTAssertEqual(alert?.actions[0].style, .default)
+        XCTAssertEqual(alert?.actions[1].title, String(localized: "Cancel"))
+        XCTAssertEqual(alert?.actions[1].style, .cancel)
+    }
+
+    func testDismissesTimePickerAfterNewReminderCreation() {
+        let interactorMock = AssignmentRemindersInteractorMock()
+        let testee = AssignmentRemindersViewModel(interactor: interactorMock, router: router, scheduler: .immediate)
+        let newReminderView = UIViewController()
+        testee.newReminderDidTap(view: newReminderView)
+        let pickerView = router.lastViewController
+        XCTAssertNotNil(pickerView)
+
+        // WHEN
+        interactorMock.newReminderCreationResult.send(.success(()))
+
+        // THEN
+        XCTAssertEqual(router.dismissed, pickerView)
+    }
 }
 
 class AssignmentRemindersInteractorMock: AssignmentRemindersInteractor {
+    let newReminderCreationResult = PassthroughSubject<Student.NewReminderResult, Never>()
     let isRemindersSectionVisible = CurrentValueSubject<Bool, Never>(true)
     let reminders = CurrentValueSubject<[AssignmentReminderItem], Never>([])
-    let assignmentDidUpdate = PassthroughSubject<Assignment, Never>()
+    let contextDidUpdate = CurrentValueSubject<AssignmentReminderContext?, Never>(nil)
     let newReminderDidSelect = PassthroughSubject<DateComponents, Never>()
     let reminderDidDelete = PassthroughSubject<AssignmentReminderItem, Never>()
+
+    func deleteAllReminders(userId: String) -> AnyPublisher<Void, Never> {
+        Just(()).eraseToAnyPublisher()
+    }
 }

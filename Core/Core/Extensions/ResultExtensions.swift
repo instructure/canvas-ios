@@ -18,22 +18,12 @@
 
 import Foundation
 
-class AssignmentReminderTimeFormatter: DateComponentsFormatter {
+public extension Result {
 
-    override init() {
-        super.init()
-        unitsStyle = .full
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    override func string(from components: DateComponents) -> String? {
-        guard let formatted = super.string(from: components) else {
-            return nil
+    var error: Failure? {
+        if case .failure(let error) = self {
+            return error
         }
-
-        return String(localized: "\(formatted) before", comment: "10 minutes before")
+        return nil
     }
 }

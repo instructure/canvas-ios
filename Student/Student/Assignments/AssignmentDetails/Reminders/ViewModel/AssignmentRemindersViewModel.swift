@@ -18,6 +18,7 @@
 
 import Core
 import Combine
+import CombineSchedulers
 
 public class AssignmentRemindersViewModel: ObservableObject {
     // MARK: - Outputs
@@ -35,18 +36,30 @@ public class AssignmentRemindersViewModel: ObservableObject {
         isDestructive: true
     )
 
+    let interactor: AssignmentRemindersInteractor
+
     private let router: Router
     private var subscriptions = Set<AnyCancellable>()
-    private let interactor: AssignmentRemindersInteractor
+    private weak var newReminderView: UIViewController?
+    private let scheduler: AnySchedulerOf<DispatchQueue>
 
-    public init(interactor: AssignmentRemindersInteractor, router: Router) {
+    public init(
+        interactor: AssignmentRemindersInteractor,
+        router: Router,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
+    ) {
         self.interactor = interactor
         self.router = router
+        self.scheduler = scheduler
         setupInteractorBindings()
+
+        dismissTimePickerAfterNewReminderCreation()
+        showErrorAlertOnNewReminderCreationFailure()
     }
 
     public func newReminderDidTap(view: UIViewController) {
         let picker = AssignmentRemindersAssembly.makeDatePickerView(selectedTimeInterval: interactor.newReminderDidSelect)
+        newReminderView = picker
         router.show(picker, from: view, options: .modal(isDismissable: false, embedInNav: true))
     }
 
@@ -73,6 +86,53 @@ public class AssignmentRemindersViewModel: ObservableObject {
 
         interactor
             .reminders
+            .receive(on: scheduler)
             .assign(to: &$reminders)
+    }
+
+    private func dismissTimePickerAfterNewReminderCreation() {
+        interactor
+            .newReminderCreationResult
+            .compactMap { try? $0.get() }
+            .receive(on: scheduler)
+            .sink { [weak self, router] _ in
+                if let view = self?.newReminderView {
+                    router.dismiss(view)
+                }
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func showErrorAlertOnNewReminderCreationFailure() {
+        interactor
+            .newReminderCreationResult
+            .compactMap { $0.error }
+            .receive(on: scheduler)
+            .sink { [weak self] in
+                if $0 == .noPermission {
+                    self?.newReminderView?.showPermissionError(.notifications)
+                } else {
+                    let message: String
+
+                    switch $0 {
+                    case .reminderInPast:
+                        message = String(localized: "Please choose a future time for your reminder!")
+                    case .duplicate:
+                        message = String(localized: "You have already set a reminder for this time.")
+                    case .application, .scheduleFailed, .noPermission:
+                        message = String(localized: "An unknown error occurred.")
+                    }
+
+                    let alert = UIAlertController(title: String(localized: "Reminder Creation Failed"),
+                                                  message: message,
+                                                  preferredStyle: .alert)
+                    alert.addAction(.init(title: String(localized: "OK"), style: .default))
+
+                    if let self, let reminderView = self.newReminderView {
+                        self.router.show(alert, from: reminderView)
+                    }
+                }
+            }
+            .store(in: &subscriptions)
     }
 }

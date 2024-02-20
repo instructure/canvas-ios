@@ -16,24 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+#if DEBUG
 
-class AssignmentReminderTimeFormatter: DateComponentsFormatter {
+import UIKit
 
-    override init() {
-        super.init()
-        unitsStyle = .full
-    }
+class AssignmentRemindersViewModelPreview: AssignmentRemindersViewModel {
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    override func string(from components: DateComponents) -> String? {
-        guard let formatted = super.string(from: components) else {
-            return nil
-        }
-
-        return String(localized: "\(formatted) before", comment: "10 minutes before")
+    override func newReminderDidTap(view: UIViewController) {
+        interactor.newReminderDidSelect.send(.init(minute: 5))
     }
 }
+
+#endif

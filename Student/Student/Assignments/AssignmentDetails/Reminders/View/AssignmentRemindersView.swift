@@ -83,7 +83,7 @@ public struct AssignmentRemindersView: View {
                     .font(.regular16)
                     .fixedSize(horizontal: false, vertical: true)
             }
-            Spacer(minLength: 0)
+            .frame(maxWidth: .infinity, alignment: .leading)
             Button {
                 viewModel.newReminderDidTap(view: viewController.value)
             } label: {
@@ -148,13 +148,8 @@ struct AssignmentRemindersView_Previews: PreviewProvider {
 
     static var previews: some View {
         VStack { // Preview bug, if not embedded into this the insert animation won't play
-            let interactor: AssignmentRemindersInteractor = {
-                let interactor = AssignmentRemindersInteractorLive()
-                interactor.isRemindersSectionVisible.send(true)
-                return interactor
-            }()
-            let viewModel = AssignmentRemindersViewModel(interactor: interactor,
-                                                         router: AppEnvironment.shared.router)
+            let viewModel = AssignmentRemindersViewModelPreview(interactor: AssignmentRemindersInteractorPreview(),
+                                                                router: AppEnvironment.shared.router)
             AssignmentRemindersView(viewModel: viewModel)
         }
     }

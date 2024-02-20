@@ -18,6 +18,7 @@
 
 import AVKit
 import CanvasCore
+import Combine
 import Core
 import Firebase
 import Heap
@@ -462,6 +463,7 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
         UIApplication.shared.applicationIconBadgeNumber = 0
         environment.userDidLogout(session: session)
         CoreWebView.stopCookieKeepAlive()
+        deleteAssignmentRemindersAsync(userId: session.userID)
     }
 
     func userDidLogout(session: LoginSession) {
@@ -474,6 +476,16 @@ extension StudentAppDelegate: LoginDelegate, NativeLoginManagerDelegate {
     }
 
     func actAsFakeStudent(withID fakeStudentID: String) {}
+
+    private func deleteAssignmentRemindersAsync(userId: String) {
+        var reminderDeleteSubscription: AnyCancellable?
+        reminderDeleteSubscription = AssignmentRemindersInteractorLive(notificationCenter: UNUserNotificationCenter.current())
+            .deleteAllReminders(userId: userId)
+            .sink { _ in
+                reminderDeleteSubscription?.cancel()
+                reminderDeleteSubscription = nil
+            } receiveValue: { _ in }
+    }
 }
 
 // MARK: - Handle siri notifications
