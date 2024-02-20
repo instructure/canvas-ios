@@ -26,6 +26,10 @@ private class InvertColorsInDarkMode: CoreWebViewFeature {
             img:not(.ignore-color-scheme), video:not(.ignore-color-scheme), .ignore-color-scheme {
                 filter: invert(100%) hue-rotate(180deg) !important;
             }
+            /* Invert old graded discussion profile images again to get them back to their original look in SpeedGrader. */
+            a.fs-exclude.avatar {
+                filter: invert(100%) hue-rotate(180deg) !important;
+            }
         }
         """
 

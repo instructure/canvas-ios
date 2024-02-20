@@ -39,7 +39,9 @@ public struct ComposeMessageView: View {
                     Divider()
                     bodyView
                         .frame(height: geometry.size.height)
+                    attachmentsView
                     Spacer()
+
                 }
                 .background(Color.backgroundLightest)
                 .navigationBarItems(leading: cancelButton)
@@ -245,6 +247,14 @@ public struct ComposeMessageView: View {
                 .padding(.horizontal, 12)
                 .frame(minHeight: 60)
                 .accessibility(label: Text("Message", bundle: .core))
+        }
+    }
+
+    private var attachmentsView: some View {
+        ForEach(model.attachments, id: \.self) { file in
+            ConversationAttachmentCardView(file: file) {
+                model.removeAttachment(file: file)
+            }
         }
     }
 }

@@ -85,6 +85,7 @@
 		6A0E68B9D2F333C001977A08 /* CourseNavigationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FF04381602471D8DF20AE5 /* CourseNavigationPresenter.swift */; };
 		6A729701D075033E0061F223 /* MediumLargeGradesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8C86E25B72A68510EF1502 /* MediumLargeGradesView.swift */; };
 		6AB01A0DBBD8C9EA2E7CB7B4 /* AnnouncementWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0E0256CCBC80683FC8C99 /* AnnouncementWidgetView.swift */; };
+		6C7E050B29A71A52AEC7285E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3A6B3484D11C37C7C0CB648D /* Settings.bundle */; };
 		6D105A1775DE484728F4AD96 /* CanvasCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FE7F5624676F16619C871A51 /* CanvasCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6F975AA7993B10DDE494E002 /* AssignmentNotificationContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F612E4530956A077F3C5D75 /* AssignmentNotificationContent.swift */; };
 		70638F68DCFD835B9557EC9D /* SettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 713F2B952740D4BE0C0446AD /* SettingsTests.swift */; };
@@ -391,6 +392,7 @@
 		3460847670DE732F3E2E75C3 /* Pods-defaults-Student.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-defaults-Student.release.xcconfig"; path = "Target Support Files/Pods-defaults-Student/Pods-defaults-Student.release.xcconfig"; sourceTree = "<group>"; };
 		357D08F8FAA5623667CE92B9 /* Pods_defaults_StudentUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_defaults_StudentUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		376E5C23A7CD59F893ADAA77 /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
+		3A6B3484D11C37C7C0CB648D /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = Settings.bundle; sourceTree = "<group>"; };
 		3B8C86E25B72A68510EF1502 /* MediumLargeGradesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumLargeGradesView.swift; sourceTree = "<group>"; };
 		3C603A9FC88787DF3EFE22FC /* SubmissionFilesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmissionFilesCell.swift; sourceTree = "<group>"; };
 		3E04ECCA422891325F413556 /* SubmissionDetailsLockedEmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubmissionDetailsLockedEmptyView.xib; sourceTree = "<group>"; };
@@ -1538,6 +1540,7 @@
 				1CF370DBF5D6E100C56C4252 /* StudentUnitTests */,
 				EDDEC85BE285642E505D6DC9 /* SubmitAssignment */,
 				B25EEC3DD11D9EFE5FA99037 /* Widgets */,
+				3A6B3484D11C37C7C0CB648D /* Settings.bundle */,
 				DFBB61F41BF05A3CE62DBDED /* Products */,
 				AC0AC3D8BC44C8E9DC97136F /* Projects */,
 				CC83D20B196D747D870D4152 /* Pods */,
@@ -1974,6 +1977,7 @@
 				19A95C36D7BE1DB7AF0A4383 /* QuizDetailsViewController.storyboard in Resources */,
 				0109C43E1CF746AB153CD148 /* RubricCollectionViewCell.xib in Resources */,
 				EEBA8BE9EB78A719A0EC0BA1 /* RubricViewController.storyboard in Resources */,
+				6C7E050B29A71A52AEC7285E /* Settings.bundle in Resources */,
 				04FDB422C0595BFAD1D61890 /* SubmissionCommentFileView.xib in Resources */,
 				4B9765080B265A6E7178717A /* SubmissionCommentsViewController.storyboard in Resources */,
 				A72B46C0C573DD62E2B62B93 /* SubmissionDetailsEmptyView.xib in Resources */,

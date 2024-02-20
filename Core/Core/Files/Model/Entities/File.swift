@@ -196,3 +196,29 @@ extension File: WriteableModel {
         return UIImage.documentLine
     }
 }
+
+extension File {
+    static func convertByteToFormattedString(byteCount: Int) -> String {
+        return ByteCountFormatter.string(fromByteCount: Int64(byteCount), countStyle: .file)
+    }
+
+    var formattedSize: String {
+        File.convertByteToFormattedString(byteCount: size)
+    }
+
+    var formattedSentSize: String {
+        File.convertByteToFormattedString(byteCount: bytesSent)
+    }
+}
+
+extension Sequence where Element == File {
+    public var totalSize: Int { map { $0.size }.reduce(0, +) }
+    public var totalBytesSent: Int { map { $0.bytesSent }.reduce(0, +) }
+
+    public var formattedTotalSize: String { File.convertByteToFormattedString(byteCount: totalSize) }
+    public var formattedBytesSent: String { File.convertByteToFormattedString(byteCount: totalBytesSent) }
+
+    public var containsError: Bool { contains(where: { file in file.uploadError != nil }) }
+    public var containsUploading: Bool { contains(where: { file in file.isUploading }) }
+    public var isAllUploaded: Bool { allSatisfy { file in file.isUploaded } }
+}
