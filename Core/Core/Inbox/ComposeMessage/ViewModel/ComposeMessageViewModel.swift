@@ -30,7 +30,7 @@ class ComposeMessageViewModel: ObservableObject {
         !bodyText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
         !subject.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
         !recipients.isEmpty
-        // && (attachments.isEmpty || attachments.allSatisfy({ $0.isUploaded }))
+        && (attachments.isEmpty || attachments.allSatisfy({ $0.isUploaded }))
 
     }
     public var isReply: Bool {
@@ -50,12 +50,18 @@ class ComposeMessageViewModel: ObservableObject {
     @Published public var subject: String = ""
     @Published public var selectedContext: RecipientContext?
     @Published public var conversation: Conversation?
+    @Published public var attachments: [File] = []
 
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: ComposeMessageInteractor
     private let router: Router
     private let scheduler: AnySchedulerOf<DispatchQueue>
+    private let uploadManager = UploadManager(identifier: UUID.string)
+    private let batchId: String = UUID.string
+    private lazy var files = uploadManager.subscribe(batchID: batchId) { [weak self] in
+        self?.update()
+    }
 
     public init(router: Router, conversation: Conversation? = nil, author: String? = nil, interactor: ComposeMessageInteractor, scheduler: AnySchedulerOf<DispatchQueue> = .main) {
         self.interactor = interactor
@@ -81,6 +87,10 @@ class ComposeMessageViewModel: ObservableObject {
 
         setupOutputBindings()
         setupInputBindings(router: router)
+    }
+
+    private func update() {
+        attachments = files.all
     }
 
     public func courseSelectButtonDidTap(viewController: WeakViewController) {
@@ -111,7 +121,14 @@ class ComposeMessageViewModel: ObservableObject {
     }
 
     public func attachmentbuttonDidTap(viewController: WeakViewController) {
+        files.refresh()
+        let attachmentList = AttachmentPickerAssembly.makeAttachmentPickerViewController(batchId: batchId, uploadManager: uploadManager)
+        router.show(attachmentList, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true))
+    }
 
+    public func removeAttachment(file: File) {
+        uploadManager.viewContext.delete(file)
+        files.refresh()
     }
 
     private func setupOutputBindings() {
@@ -143,6 +160,7 @@ class ComposeMessageViewModel: ObservableObject {
             subject: subject,
             body: bodyText,
             recipientIDs: recipientIDs,
+            attachmentIDs: attachments.compactMap { $0.id },
             context: context.context,
             conversationID: conversation?.id,
             groupConversation: !sendIndividual
