@@ -110,6 +110,7 @@ class AssignmentRemindersInteractorLiveTests: StudentTestCase {
         }
         XCTAssertEqual(notification.identifier, reminder.id)
         XCTAssertEqual(notification.content.title, String(localized: "Due Date Reminder"))
+        XCTAssertEqual(notification.content.sound, .default)
         let dueText = "5 minutes"
         XCTAssertEqual(notification.content.body, String(localized: "This assignment is due in \(dueText)") + ": test")
         typealias Key = UNNotificationContent.AssignmentReminderKeys
