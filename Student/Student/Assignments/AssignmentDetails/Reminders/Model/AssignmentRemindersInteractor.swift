@@ -94,7 +94,9 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
                 }
                 return dueAt > Clock.now
             }
-            .subscribe(isRemindersSectionVisible)
+            .sink { [weak isRemindersSectionVisible] in
+                isRemindersSectionVisible?.send($0)
+            }
             .store(in: &subscriptions)
     }
 
@@ -195,7 +197,9 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
                 newList.removeAll { $0 == deleted }
                 return newList
             }
-            .subscribe(reminders)
+            .sink { [weak reminders] in
+                reminders?.send($0)
+            }
             .store(in: &subscriptions)
     }
 
@@ -219,7 +223,9 @@ public class AssignmentRemindersInteractorLive: AssignmentRemindersInteractor {
                         notifications.compactMap { AssignmentReminderItem(notification: $0) }
                     }
             }
-            .subscribe(reminders)
+            .sink { [weak reminders] in
+                reminders?.send($0)
+            }
             .store(in: &subscriptions)
     }
 }
