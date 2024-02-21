@@ -64,6 +64,7 @@ workflows:
             set -euxo pipefail
 
             brew reinstall swiftlint jq
+            brew install xcodegen
 
             rm -rf "$BITRISE_SOURCE_DIR/Pods/Target Support Files/yoga"
     - &yarn-install-root
@@ -74,10 +75,20 @@ workflows:
         inputs:
         - workdir: "$BITRISE_SOURCE_DIR/rn/Teacher"
         title: rn yarn install
-    - &cocoapods
-      cocoapods-install:
+    - &run-make-sync
+      script:
+        title: Run make-sync
         inputs:
-        - verbose: 'false'
+        - runner_bin: "/bin/zsh"
+        - content: |-
+            #!/bin/zsh
+            set -euxo pipefail
+
+            make sync-ci
+    # - &cocoapods
+    #   cocoapods-install:
+    #     inputs:
+    #     - verbose: 'false'
     - &build-citests
       script:
         title: Build CITests
