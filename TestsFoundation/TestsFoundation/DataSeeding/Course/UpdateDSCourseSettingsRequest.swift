@@ -33,10 +33,12 @@ struct UpdateDSCourseSettingsRequest: APIRequestable {
 
 extension UpdateDSCourseSettingsRequest {
     public struct Body: Encodable {
-        let restrict_quantitative_data: Bool
+        let restrict_quantitative_data: Bool?
+        let syllabus_course_summary: Bool?
 
-        public init(restrict_quantitative_data: Bool) {
+        public init(restrict_quantitative_data: Bool? = nil, syllabus_course_summary: Bool? = nil) {
             self.restrict_quantitative_data = restrict_quantitative_data
+            self.syllabus_course_summary = syllabus_course_summary
         }
     }
 }

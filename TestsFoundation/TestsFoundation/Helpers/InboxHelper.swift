@@ -25,6 +25,8 @@ public class InboxHelper: BaseHelper {
         return app.find(id: "inbox.conversation-\(conversation?.id ?? conversationId!)")
     }
 
+    public static var conversations: [XCUIElement] { app.findAll(idStartingWith: "inbox.conversation-") }
+
     public static func addDateToSubject(subject: String, unread: Bool) -> String {
         let date = Date()
         let dateFormatter = DateFormatter()
@@ -94,6 +96,10 @@ public class InboxHelper: BaseHelper {
 
         public static func recipientSelectionItem(course: DSCourse? = nil, courseId: String? = nil) -> XCUIElement {
             return app.find(id: "branch_course_\(course?.id ?? courseId!)")
+        }
+
+        public static func recipientLabel(recipient: DSUser) -> XCUIElement {
+            return app.find(id: "message-recipient.\(recipient.id).label", type: .staticText)
         }
 
         public struct Attachments {

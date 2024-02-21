@@ -43,6 +43,9 @@ public class DeleteConversation: APIUseCase {
             client.delete(message)
             try? client.save()
         }
+
+    public init(id: String) {
+        self.id = id
     }
 }
 

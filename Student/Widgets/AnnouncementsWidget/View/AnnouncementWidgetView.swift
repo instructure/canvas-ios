@@ -24,6 +24,12 @@ struct AnnouncementsWidgetView: View {
     @Environment(\.widgetFamily) var family
 
     var body: some View {
+        buildView()
+            .compatibleContainerBackground(Color.backgroundLightest)
+    }
+
+    @ViewBuilder
+    private func buildView() -> some View {
         if let firstAnnouncement = entry.announcements.first {
             switch family {
             case .systemSmall:

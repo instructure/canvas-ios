@@ -30,6 +30,14 @@ public class AddMessage: APIUseCase {
     private let recipientIDs: [String]?
     private let includedMessages: [String]?
     private let inboxScopeFilter: InboxMessageScope
+    let conversationID: String
+
+    let attachmentIDs: [String]?
+    let body: String
+    let mediaCommentID: String?
+    let mediaCommentType: MediaCommentType?
+    let recipientIDs: [String]?
+    let includedMessages: [String]?
 
     public init(
         conversationID: String,
@@ -40,6 +48,7 @@ public class AddMessage: APIUseCase {
         recipientIDs: [String]? = nil,
         includedMessages: [String]? = nil,
         inboxScopeFilter: InboxMessageScope = .sent
+        includedMessages: [String]? = nil
     ) {
         self.conversationID = conversationID
         self.attachmentIDs = attachmentIDs
@@ -59,7 +68,8 @@ public class AddMessage: APIUseCase {
             body: body,
             media_comment_id: mediaCommentID,
             media_comment_type: mediaCommentType,
-            recipients: recipientIDs
+            recipients: recipientIDs,
+            included_messages: includedMessages
         ))
     }
 

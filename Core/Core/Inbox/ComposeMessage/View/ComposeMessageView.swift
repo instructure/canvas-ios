@@ -39,7 +39,12 @@ public struct ComposeMessageView: View {
                     Divider()
                     bodyView
                         .frame(height: geometry.size.height)
+                    if !model.includedMessages.isEmpty {
+                        includedMessages
+                    }
+                    attachmentsView
                     Spacer()
+
                 }
                 .background(Color.backgroundLightest)
                 .navigationBarItems(leading: cancelButton)
@@ -114,8 +119,10 @@ public struct ComposeMessageView: View {
                 Divider()
             }
             subjectView
-            Divider()
-            individualView
+            if !model.isIndividualDisabled {
+                Divider()
+                individualView
+            }
         }
     }
 
@@ -138,14 +145,13 @@ public struct ComposeMessageView: View {
                         .foregroundColor(.textDarkest)
                 }
                 Spacer()
-                if !model.isReply { DisclosureIndicator() }
+                if !model.isContextDisabled { DisclosureIndicator() }
             }
         }
         .disabled(model.isContextDisabled)
         .opacity(model.isContextDisabled ? 0.6 : 1)
         .padding(.horizontal, 16)
         .padding(.vertical, 12)
-
         .accessibilityLabel(courseSelectorAccessibilityLabel)
     }
 
@@ -170,6 +176,8 @@ public struct ComposeMessageView: View {
             }
             .accessibilityElement(children: .contain)
         }
+        .disabled(model.isRecipientsDisabled)
+        .opacity(model.isRecipientsDisabled ? 0.6 : 1)
         .padding(.horizontal, 16)
         .accessibilityElement(children: .contain)
     }
@@ -197,10 +205,10 @@ public struct ComposeMessageView: View {
                 .foregroundColor(.textDarkest)
                 .textInputAutocapitalization(.sentences)
                 .focused($subjectTextFieldFocus)
-                .disabled(model.isReply)
                 .accessibility(label: Text("Subject", bundle: .core))
         }
-        .opacity(model.isReply ? 0.6 : 1)
+        .disabled(model.isSubjectDisabled)
+        .opacity(model.isSubjectDisabled ? 0.6 : 1)
         .padding(.horizontal, 16).padding(.vertical, 12)
     }
 
@@ -249,6 +257,48 @@ public struct ComposeMessageView: View {
                 .padding(.horizontal, 12)
                 .frame(minHeight: 60)
                 .accessibility(label: Text("Message", bundle: .core))
+        }
+        .disabled(model.isMessageDisabled)
+        .opacity(model.isMessageDisabled ? 0.6 : 1)
+    }
+
+    private var includedMessages: some View {
+        VStack(alignment: .leading) {
+            Text("Included messages", bundle: .core)
+                .font(.bold16)
+            separator
+            ForEach(model.includedMessages, id: \.id) { conversationMessage in
+                messageView(for: conversationMessage)
+                separator
+            }
+        }
+        .padding(.horizontal, 12)
+    }
+
+    private func messageView(for message: ConversationMessage) -> some View {
+        return VStack(alignment: .leading) {
+            HStack {
+                Text(model.conversation?.participants.first { $0.id == message.authorID }?.name ?? "")
+                    .foregroundStyle(Color.textDarkest)
+                    .lineLimit(1)
+                Spacer()
+                Text(message.createdAt?.dateTimeString ?? "")
+                    .foregroundStyle(Color.textDark)
+                    .lineLimit(1)
+            }
+            Text(message.body)
+                .foregroundStyle(Color.textDark)
+                .lineLimit(1)
+        }
+        .padding(.vertical, 12)
+        .padding(.horizontal, 12)
+    }
+
+    private var attachmentsView: some View {
+        ForEach(model.attachments, id: \.self) { file in
+            ConversationAttachmentCardView(file: file) {
+                model.removeAttachment(file: file)
+            }
         }
     }
 }

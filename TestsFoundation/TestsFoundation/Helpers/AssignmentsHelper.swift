@@ -84,6 +84,8 @@ public class AssignmentsHelper: BaseHelper {
         public static var unpublished: XCUIElement { app.find(id: "AssignmentDetails.unpublished") }
         public static var oneGradedButton: XCUIElement { viewAllSubmissionsButton.find(label: "1, Graded", type: .button) }
         public static var editButton: XCUIElement { app.find(label: "Edit", type: .button) }
+        public static var isLockedLabel: XCUIElement { app.find(label: "This assignment is locked", type: .staticText) }
+        public static var pandaLockedImage: XCUIElement { app.find(id: "PandaLocked", type: .image) }
 
         public static var backButton: XCUIElement {
             app.find(idStartingWith: "Assignment Details", type: .navigationBar).find(label: "Back", type: .button)
@@ -102,6 +104,54 @@ public class AssignmentsHelper: BaseHelper {
             public static var body: XCUIElement { app.find(id: "Compose.body") }
 
             public static func recipientName(id: String) -> XCUIElement { return app.find(id: "Compose.recipientName.\(id)") }
+        }
+
+        public struct SubmissionDetails {
+            public static var attemptPickerToggle: XCUIElement { app.find(id: "SubmissionDetails.attemptPickerToggle") }
+            public static var attemptPicker: XCUIElement { app.find(id: "SubmissionDetails.attemptPicker") }
+            public static var pickerWheel: XCUIElement { attemptPicker.find(type: .pickerWheel) }
+            public static var drawerGripper: XCUIElement { app.find(id: "SubmissionDetails.drawerGripper") }
+        }
+
+        public struct SubmissionComments {
+            public static var commentsButton: XCUIElement {
+                app.find(type: .segmentedControl).find(labelContaining: "Comments", type: .button)
+            }
+            public static var filesButton: XCUIElement {
+                app.find(type: .segmentedControl).find(labelContaining: "Files", type: .button)
+            }
+            public static var rubricButton: XCUIElement {
+                app.find(type: .segmentedControl).find(labelContaining: "Rubric", type: .button)
+            }
+
+            public static var addMediaButton: XCUIElement { app.find(id: "SubmissionComments.addMediaButton") }
+            public static var commentTextView: XCUIElement { app.find(id: "SubmissionComments.commentTextView") }
+            public static var addCommentButton: XCUIElement { app.find(id: "SubmissionComments.addCommentButton") }
+            public static var chatBubble: XCUIElement { app.find(id: "chatBubble") }
+
+            public static func attemptView(index: Int) -> XCUIElement {
+                return app.find(id: "SubmissionComments.attemptView.\(index)")
+            }
+
+            public static func rubricTitle(rubric: DSRubric) -> XCUIElement {
+                return app.find(id: "RubricCell.title.\(rubric.data[0].id)")
+            }
+
+            public static func rubricDescriptionButton(rubric: DSRubric) -> XCUIElement {
+                return app.find(id: "RubricCell.descButton.\(rubric.data[0].id)")
+            }
+
+            public static func rubricRatingButton(rubric: DSRubric, index: Int) -> XCUIElement {
+                return app.find(id: "RubricCell.RatingButton.\(rubric.data[0].id)-\(index).0")
+            }
+
+            public static func rubricRatingTitle(rubric: DSRubric) -> XCUIElement {
+                return app.find(id: "RubricCell.ratingTitle.\(rubric.data[0].id)")
+            }
+
+            public static func rubricLongDescriptionLabel(rubric: DSRubric) -> XCUIElement {
+                return app.find(label: rubric.data[0].long_description!, type: .staticText)
+            }
         }
 
         // Teacher
@@ -143,7 +193,9 @@ public class AssignmentsHelper: BaseHelper {
         submissionTypes: [SubmissionType] = [.online_text_entry],
         pointsPossible: Float? = 1.0,
         gradingType: GradingType? = nil,
-        dueDate: Date? = nil) -> DSAssignment {
+        dueDate: Date? = nil,
+        lockAt: Date? = nil,
+        unlockAt: Date? = nil) -> DSAssignment {
         let assignmentBody = CreateDSAssignmentRequest.RequestedDSAssignment(
                 name: name,
                 description: description + name,
@@ -151,7 +203,9 @@ public class AssignmentsHelper: BaseHelper {
                 submission_types: submissionTypes,
                 points_possible: pointsPossible,
                 grading_type: gradingType,
-                due_at: dueDate)
+                due_at: dueDate,
+                lock_at: lockAt,
+                unlock_at: unlockAt)
         return seeder.createAssignment(courseId: course.id, assignementBody: assignmentBody)
     }
 
@@ -193,6 +247,7 @@ public class AssignmentsHelper: BaseHelper {
         CourseDetailsHelper.cell(type: .assignments).hit()
     }
 
+    @discardableResult
     public static func createAssignments(in course: DSCourse, count: Int, dueDate: Date? = nil) -> [DSAssignment] {
         var assignments = [DSAssignment]()
         for i in 1...count {
@@ -208,5 +263,32 @@ public class AssignmentsHelper: BaseHelper {
             assignments.append(seeder.createAssignment(courseId: course.id, assignementBody: assignmentBody))
         }
         return assignments
+    }
+
+    public static func createRubric(in course: DSCourse,
+                                    rubricAssociationId: String,
+                                    rubricAssociationType: DSRubricAssociationType,
+                                    pointsPossible: Float = 1.0) -> DSRubric {
+        let rubricCriteriaRating1 = CreateDSRubricRequest.RubricCriteriaRating(points: 0, description: "Rating 0")
+        let rubricCriteriaRating2 = CreateDSRubricRequest.RubricCriteriaRating(points: 1, description: "Rating 1")
+        let longDescription = "Not so long description of test criteria of test rubric"
+        let rubricCriteria = CreateDSRubricRequest.RubricCriteria(
+            description: "Criteria Description",
+            long_description: longDescription,
+            points: pointsPossible,
+            ratings: ["0": rubricCriteriaRating1, "1": rubricCriteriaRating2])
+        let description = "Test description of test rubric"
+        let rubricRequestBody = CreateDSRubricRequest.RequestedDSRubric(criteria: ["0": rubricCriteria], description: description)
+        let rubricAssociationRequestBody = CreateDSRubricRequest.RequestedDSRubricAssociation(
+            associationId: rubricAssociationId,
+            associationType: rubricAssociationType,
+            purpose: "grading")
+        return seeder.createRubric(
+            course: course,
+            title: "Test Rubric",
+            pointsPossible: pointsPossible,
+            rubricAssociationId: rubricAssociationId,
+            rubricBody: rubricRequestBody,
+            rubricAssociationBody: rubricAssociationRequestBody)
     }
 }

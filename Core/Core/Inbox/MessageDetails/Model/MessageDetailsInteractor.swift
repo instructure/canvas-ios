@@ -30,5 +30,8 @@ public protocol MessageDetailsInteractor {
 
     // MARK: - Inputs
     func refresh() -> Future<Void, Never>
-    func updateStarred(starred: Bool) -> Future<Void, Never>
+    func updateStarred(starred: Bool) -> Future<URLResponse?, Error>
+    func updateState(messageId: String, state: ConversationWorkflowState) -> Future<URLResponse?, Error>
+    func deleteConversation(conversationId: String) -> Future<URLResponse?, Error>
+    func deleteConversationMessage(conversationId: String, messageId: String) -> Future<URLResponse?, Error>
 }

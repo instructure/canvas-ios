@@ -60,7 +60,7 @@ public final class Todo: NSManagedObject, WriteableModel {
 
     public static func save(_ item: APITodo, in context: NSManagedObjectContext) -> Todo {
         let id = item.assignment.id.value
-        let assignment: Assignment = context.first(where: #keyPath(Assignment.id), equals: id) ?? context.insert()
+        let assignment: Assignment = context.first(where: (\Assignment.id).string, equals: id) ?? context.insert()
         assignment.update(fromApiModel: item.assignment, in: context, updateSubmission: false, updateScoreStatistics: false)
 
         let model: Todo = context.first(where: #keyPath(Todo.id), equals: id) ?? context.insert()
