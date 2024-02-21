@@ -34,6 +34,14 @@ public enum ComposeMessageAssembly {
         return CoreHostingController(view)
     }
 
+    public static func makeComposeMessageViewControllerFromParameters(env: AppEnvironment = .shared, queryItems: [URLQueryItem]) -> UIViewController {
+        print(queryItems)
+        let interactor = ComposeMessageInteractorLive()
+        let viewModel = ComposeMessageViewModel(router: env.router, options: ComposeMessageOptions(), interactor: interactor)
+        let view = ComposeMessageView(model: viewModel)
+        return CoreHostingController(view)
+    }
+
 #if DEBUG
 
     public static func makePreview(env: AppEnvironment)

@@ -73,19 +73,23 @@ public class CreateConversation: APIUseCase {
             return
         }
         for conversation in response {
-            let conversation = Conversation.save(conversation, in: client)
+            InboxMessageListItem.save(
+                conversation,
+                currentUserID: AppEnvironment.shared.currentSession?.userID ?? "",
+                isSent: true,
+                contextFilter: .none,
+                scopeFilter: .sent,
+                in: client
+            )
 
-            // attach the context name since it is not part of the api response
-            // a ticket has been created to include the context_name in the api response
-            // https://instructure.atlassian.net/browse/KNO-239
-            guard conversation.contextName == nil,
-                  let canvasContextID = canvasContextID,
-                  let context = Context(canvasContextID: canvasContextID),
-                  let course: Course = client.fetch(scope: .where("id", equals: context.id)).first
-            else {
-                continue
-            }
-            conversation.contextName = course.name
+            InboxMessageListItem.save(
+                conversation,
+                currentUserID: AppEnvironment.shared.currentSession?.userID ?? "",
+                isSent: true,
+                contextFilter: Context(canvasContextID: conversation.context_code ?? ""),
+                scopeFilter: .sent,
+                in: client
+            )
         }
     }
 }

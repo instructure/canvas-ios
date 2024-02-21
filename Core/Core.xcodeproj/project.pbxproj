@@ -1371,6 +1371,8 @@
 		D2FD9F0CE35154CDA63EB588 /* APIAssignmentPickerListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C977681048E778C187FD119 /* APIAssignmentPickerListItem.swift */; };
 		D31E83925422BBA1373AB854 /* ContextCardGradesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9B361985FD0F05D7C61646 /* ContextCardGradesView.swift */; };
 		D3325F79CCA32071098A7DA9 /* GetQuizSubmissionUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58DFFDB020E0A5A5ED8973F0 /* GetQuizSubmissionUsers.swift */; };
+		D3B5FC9E2B8621CC00E29D20 /* DeleteConversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B5FC9D2B8621CC00E29D20 /* DeleteConversation.swift */; };
+		D3B5FCA02B8621F500E29D20 /* UpdateConversationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B5FC9F2B8621F500E29D20 /* UpdateConversationState.swift */; };
 		D3F2C000008898A8049AFEF7 /* CourseSyncItemSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B3812EED19B5A501744522 /* CourseSyncItemSelection.swift */; };
 		D4439C92D9E84E13A1847D51 /* CoreBGTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5698277AF43025DEFA6BE220 /* CoreBGTask.swift */; };
 		D484C74E299214157F4B69BC /* PageDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A2B36ECA65D3C45F7DE5084 /* PageDetailsViewController.swift */; };
@@ -3139,6 +3141,8 @@
 		D36C5027996C9F24362419DA /* AttachmentCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentCardsView.swift; sourceTree = "<group>"; };
 		D3ABC68A7725FDFC09EDC581 /* NSPersistentStoreExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPersistentStoreExtensions.swift; sourceTree = "<group>"; };
 		D3B0873C4E11AF89B004B474 /* PermissionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsTests.swift; sourceTree = "<group>"; };
+		D3B5FC9D2B8621CC00E29D20 /* DeleteConversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteConversation.swift; sourceTree = "<group>"; };
+		D3B5FC9F2B8621F500E29D20 /* UpdateConversationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateConversationState.swift; sourceTree = "<group>"; };
 		D3EC7B75FA36FECB82127245 /* GetSearchRecipients.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSearchRecipients.swift; sourceTree = "<group>"; };
 		D41D70AB17259CCFBAFF5796 /* K5ResourcesContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K5ResourcesContactViewModel.swift; sourceTree = "<group>"; };
 		D47D7E0F71DA49A7F37CCE38 /* QuizSubmissionUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizSubmissionUser.swift; sourceTree = "<group>"; };
@@ -5267,6 +5271,8 @@
 				30DB4F20ADE24F32901CC322 /* GetConversations.swift */,
 				D3EC7B75FA36FECB82127245 /* GetSearchRecipients.swift */,
 				3AE5436C5E394FAA5062ACE7 /* SearchRecipient.swift */,
+				D3B5FC9D2B8621CC00E29D20 /* DeleteConversation.swift */,
+				D3B5FC9F2B8621F500E29D20 /* UpdateConversationState.swift */,
 			);
 			path = Conversations;
 			sourceTree = "<group>";
@@ -10059,6 +10065,7 @@
 				7D86702098C4B249C5273B45 /* APICourse.swift in Sources */,
 				37DB457B78EF83D43D7C110E /* APICourseSection.swift in Sources */,
 				B315DF75D1D51A65436FF267 /* APIDashboard.swift in Sources */,
+				D3B5FC9E2B8621CC00E29D20 /* DeleteConversation.swift in Sources */,
 				2E8A973455DEC6C6AAC92B25 /* APIDashboardCardPositions.swift in Sources */,
 				5C63C5C72D16FFC9A23E8E24 /* APIDate.swift in Sources */,
 				251F5BB67862D0913AB740D4 /* APIDiscussion.swift in Sources */,
@@ -10778,6 +10785,7 @@
 				7F7AA9C7343A3978ED3080C6 /* NotificationManager.swift in Sources */,
 				A1FC7A2BD8C3AF4D66B39E7F /* NotificationView.swift in Sources */,
 				4B32E4BBA3BBE0BE56294B3E /* ObserverAlert.swift in Sources */,
+				D3B5FCA02B8621F500E29D20 /* UpdateConversationState.swift in Sources */,
 				7BEB6CE516C9721268284170 /* OfflineBannerView.swift in Sources */,
 				75B9CA497E0527749565675F /* OfflineBannerViewModel.swift in Sources */,
 				78C6DB6653BAB187BE11BA9E /* OfflineFileInteractor.swift in Sources */,

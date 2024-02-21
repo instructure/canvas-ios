@@ -141,30 +141,34 @@ public struct ComposeMessageView: View {
                 if !model.isReply { DisclosureIndicator() }
             }
         }
-        .disabled(model.isReply)
-        .opacity(model.isReply ? 0.6 : 1)
-        .padding(.horizontal, 16).padding(.vertical, 12)
+        .disabled(model.isContextDisabled)
+        .opacity(model.isContextDisabled ? 0.6 : 1)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 12)
+
         .accessibilityLabel(courseSelectorAccessibilityLabel)
     }
 
     private var toView: some View {
-        HStack {
-            Text("To", bundle: .core)
-                .font(.regular16, lineHeight: .condensed)
-                .foregroundColor(.textDark)
-                .onTapGesture {
-                    model.addRecipientButtonDidTap(viewController: controller)
+        Button {
+            model.addRecipientButtonDidTap(viewController: controller)
+        } label: {
+            HStack {
+                Text("To", bundle: .core)
+                    .font(.regular16, lineHeight: .condensed)
+                    .foregroundColor(.textDark)
+                    .padding(.vertical, 12)
+                    .accessibilitySortPriority(2)
+                if !model.recipients.isEmpty {
+                    recipientsView
+                        .accessibilitySortPriority(0)
                 }
-                .padding(.vertical, 12)
-                .accessibilitySortPriority(2)
-            if !model.recipients.isEmpty {
-                recipientsView
-                    .accessibilitySortPriority(0)
+                Spacer()
+                addRecipientButton
+                    .padding(.vertical, 12)
+                    .accessibilitySortPriority(1)
             }
-            Spacer()
-            addRecipientButton
-                .padding(.vertical, 12)
-                .accessibilitySortPriority(1)
+            .accessibilityElement(children: .contain)
         }
         .padding(.horizontal, 16)
         .accessibilityElement(children: .contain)
