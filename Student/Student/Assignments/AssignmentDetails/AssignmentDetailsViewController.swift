@@ -84,6 +84,36 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
     @IBOutlet weak var fileTypesSection: AssignmentDetailsSectionContainerView?
     @IBOutlet weak var submissionTypesSection: AssignmentDetailsSectionContainerView?
     @IBOutlet weak var dueSection: AssignmentDetailsSectionContainerView?
+    /** This is shown when there are no submissions on the assignment but we still want the user to reach rubrics. */
+    @IBOutlet weak var submissionRubricButton: UIButton? {
+        didSet {
+            var buttonConfig = UIButton.Configuration.plain()
+            buttonConfig.title = String(localized: "Submission & Rubric")
+            buttonConfig.baseForegroundColor = Brand.shared.linkColor
+            buttonConfig.imagePlacement = .trailing
+            buttonConfig.imagePadding = 4
+            buttonConfig.image = .arrowOpenRightSolid
+                .scaleTo(.init(width: 14, height: 14))
+                .withRenderingMode(.alwaysTemplate)
+            buttonConfig.contentInsets = {
+                var result = buttonConfig.contentInsets
+                result.trailing = 0
+                return result
+            }()
+            buttonConfig.titleTextAttributesTransformer = .init { attributes in
+                var result = attributes
+                result.font = UIFont.scaledNamedFont(.regular16)
+                return result
+            }
+            submissionRubricButton?.configuration = buttonConfig
+            submissionRubricButton?.layer.borderColor = UIColor.borderDark.cgColor
+            submissionRubricButton?.layer.borderWidth = 1.0 / UIScreen.main.scale
+            submissionRubricButton?.layer.cornerRadius = 6
+            submissionRubricButton?.makeUnavailableInOfflineMode()
+        }
+    }
+    /** The view containing a separator and the rubruc button. */
+    @IBOutlet weak var submissionRubricButtonSection: UIView?
 
     @IBOutlet weak var lockedIconContainerView: UIView!
     @IBOutlet weak var lockedIconImageView: UIImageView!
@@ -272,6 +302,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
             return
         }
 
+        submissionRubricButtonSection?.isHidden = true
         submittedLabel?.textColor = .textDarkest
         submittedLabel?.text = NSLocalizedString("Successfully submitted!", bundle: .student, comment: "")
         submittedDetailsLabel?.isHidden = false
@@ -298,6 +329,7 @@ class AssignmentDetailsViewController: ScreenViewTrackableViewController, Assign
 
         if submission.workflowState == .unsubmitted {
             hideGradeCell()
+            submissionRubricButtonSection?.isHidden = false
             return
         }
 
