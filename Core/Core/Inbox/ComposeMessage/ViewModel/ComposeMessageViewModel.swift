@@ -124,6 +124,7 @@ class ComposeMessageViewModel: ObservableObject {
             }
             self.conversation = conversation
         }
+    }
 
     private func update() {
         attachments = files.all
