@@ -18,6 +18,7 @@
 
 import XCTest
 import CoreData
+import Combine
 @testable import Core
 
 class UseCaseTests: CoreTestCase {
@@ -150,6 +151,51 @@ class UseCaseTests: CoreTestCase {
         }
         wait(for: [expectation], timeout: 0.1)
         XCTAssertNotNil(error)
+    }
+
+    func testFutureFailureCallbacksOnMain() {
+        class UseCase: TestUseCase {
+            override func makeRequest(environment: AppEnvironment, completionHandler: @escaping UseCaseTests.TestUseCase.RequestCallback) {
+                completionHandler(nil, nil, NSError.instructureError("request failed"))
+            }
+        }
+        let useCase = UseCase()
+        let expectation = expectation(description: "Fetch fails.")
+        var subscription: AnyCancellable?
+
+        DispatchQueue.global().async {
+            subscription = useCase.fetchWithFuture()
+                .sink { completion in
+                    if case .failure = completion {
+                        XCTAssertEqual(Thread.isMainThread, true)
+                        expectation.fulfill()
+                    }
+                } receiveValue: { _ in }
+        }
+        waitForExpectations(timeout: 0.1)
+        subscription?.cancel()
+    }
+
+    func testFailureCallbacksOnMain() {
+        class UseCase: TestUseCase {
+            override func makeRequest(environment _: AppEnvironment, completionHandler: @escaping UseCaseTests.TestUseCase.RequestCallback) {
+                completionHandler(nil, nil, NSError.instructureError("request failed"))
+            }
+        }
+        let useCase = UseCase()
+        let expectation = expectation(description: "Fetch fails.")
+        var subscription: AnyCancellable?
+
+        DispatchQueue.global().async {
+            useCase.fetch { _, _, error in
+                if error != nil {
+                    XCTAssertEqual(Thread.isMainThread, true)
+                    expectation.fulfill()
+                }
+            }
+        }
+        waitForExpectations(timeout: 0.1)
+        subscription?.cancel()
     }
 }
 

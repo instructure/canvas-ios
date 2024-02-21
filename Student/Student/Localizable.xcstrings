@@ -505,6 +505,9 @@
         }
       }
     },
+    "%@ before" : {
+      "comment" : "10 minutes before"
+    },
     "%@ is coming soon!" : {
       "comment" : "Message for unsupported tab coming soon",
       "extractionState" : "manual",
@@ -14362,6 +14365,9 @@
         }
       }
     },
+    "Activate to delete" : {
+
+    },
     "Add a comment or reply to previous comments" : {
       "localizations" : {
         "ar" : {
@@ -16115,6 +16121,9 @@
         }
       }
     },
+    "Add due date reminder notifications about this assignment on this device." : {
+
+    },
     "Add folder" : {
       "comment" : "Button title for adding a folder to a folder",
       "extractionState" : "manual",
@@ -17862,6 +17871,9 @@
           }
         }
       }
+    },
+    "An unknown error occurred." : {
+
     },
     "Announcement" : {
       "comment" : "Title of the new announcement view",
@@ -19869,6 +19881,9 @@
           }
         }
       }
+    },
+    "Are you sure you would like to delete this reminder?" : {
+
     },
     "Ask me later" : {
       "extractionState" : "manual",
@@ -35115,6 +35130,9 @@
         }
       }
     },
+    "Custom" : {
+
+    },
     "Custom Grade" : {
       "comment" : "A custom grade not specified by the rubric.",
       "localizations" : {
@@ -35857,6 +35875,9 @@
         }
       }
     },
+    "Days Before" : {
+
+    },
     "Delete" : {
       "comment" : "Button to confirm deleting folders\n   Button to delete a discussion entry\n   Confirm deletion of discussion entry",
       "extractionState" : "manual",
@@ -36360,6 +36381,9 @@
           }
         }
       }
+    },
+    "Delete Reminder" : {
+
     },
     "Delete this reply?" : {
       "comment" : "Alert message",
@@ -42111,6 +42135,9 @@
           }
         }
       }
+    },
+    "Due Date Reminder" : {
+
     },
     "due on %1$@ at %2$@" : {
       "comment" : "Assignment is due on a date at a time",
@@ -56399,6 +56426,9 @@
         }
       }
     },
+    "Hours Before" : {
+
+    },
     "How do you like Canvas?" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -66916,6 +66946,9 @@
           }
         }
       }
+    },
+    "Minutes Before" : {
+
     },
     "Mobile Quiz Warning" : {
       "comment" : "Warnging for taking quizzes on a mobile device",
@@ -84442,6 +84475,9 @@
         }
       }
     },
+    "Please choose a future time for your reminder!" : {
+
+    },
     "Post" : {
       "comment" : "Button to post new discussion topic",
       "extractionState" : "manual",
@@ -91198,6 +91234,15 @@
           }
         }
       }
+    },
+    "Reminder" : {
+
+    },
+    "Reminder Creation Failed" : {
+
+    },
+    "Reminder Deleted" : {
+
     },
     "Remove" : {
       "comment" : "Confirmation for removing a file",
@@ -115879,6 +115924,9 @@
         }
       }
     },
+    "This assignment is due in %@" : {
+      "comment" : "Due in 5 minutes"
+    },
     "This assignment is locked until %@" : {
       "localizations" : {
         "ar" : {
@@ -129125,6 +129173,9 @@
         }
       }
     },
+    "Weeks Before" : {
+
+    },
     "Whoops!" : {
       "comment" : "Error Title",
       "extractionState" : "manual",
@@ -132390,6 +132441,9 @@
           }
         }
       }
+    },
+    "You have already set a reminder for this time." : {
+
     },
     "You have an unsaved reply. Would you like to discard that reply?" : {
       "extractionState" : "manual",

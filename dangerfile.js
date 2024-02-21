@@ -72,15 +72,13 @@ function handleReleaseNotes (message) {
     return
   }
 
-  if (releaseNotes.length > 1) {
-    fail('Please add only one release note.')
-  }
+  const latestReleaseNote = releaseNotes[releaseNotes.length - 1]
+  const releaseNoteText = (latestReleaseNote[1] || '').trim()
 
-  const releaseNoteText = (releaseNotes[0][1] || '').trim()
   if (!releaseNoteText) {
     fail('Trying to be sneaky? You added a release note but left it blank?')
   } else {
-    if (releaseNoteText === 'none') {
+    if (releaseNoteText.toLowerCase() === 'none') {
       warn('This pull request will not generate a release note.')
     } else {
       markdown(`#### Release Note: \n${releaseNoteText}`)
@@ -95,11 +93,9 @@ function handleAffects (message) {
     return
   }
 
-  if (affects.length > 1) {
-    fail('Please add only one affects.')
-  }
+  const latestAffects = affects[affects.length - 1];
+  let apps = latestAffects[1];
 
-  let apps = affects[0][1]
   if (!apps) {
     fail('Did you forget to add app names after `affects:`?')
     return
@@ -119,14 +115,20 @@ function handleAffects (message) {
   markdown(`#### Affected Apps: ${description}`)
 }
 
-function handleJira (message) {
-  // Make sure to have jira ticket refs
-  if (!message.match(/refs:/gi)) {
-    fail('Please add a reference to a jira ticket. For example: `refs: MBL-10023`')
+function handleJira(message) {
+  const refsEntries = message.match(/refs:(.+?)\n/gi) || []
+
+  if (refsEntries.length === 0) {
+    fail('Please add a reference to a Jira ticket. For example: `refs: MBL-10023`')
+    return
   }
 
+  // Use the last refs entry
+  const latestRefsEntry = refsEntries[refsEntries.length - 1]
+
   // Add links to the jira tickets in the markdown
-  const issues = message.match(/mbl-\d+/gi) || []
+  const issues = latestRefsEntry.match(/mbl-\d+/gi) || []
+
   if (issues.length) {
     const set = new Set(issues.map(issue => issue.toUpperCase()))
     markdown([ ...set ].map(issue =>

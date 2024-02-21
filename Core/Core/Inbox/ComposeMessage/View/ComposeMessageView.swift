@@ -42,7 +42,9 @@ public struct ComposeMessageView: View {
                     if !model.includedMessages.isEmpty {
                         includedMessages
                     }
+                    attachmentsView
                     Spacer()
+
                 }
                 .background(Color.backgroundLightest)
                 .navigationBarItems(leading: cancelButton)
@@ -287,6 +289,14 @@ public struct ComposeMessageView: View {
         }
         .padding(.vertical, 12)
         .padding(.horizontal, 12)
+    }
+
+    private var attachmentsView: some View {
+        ForEach(model.attachments, id: \.self) { file in
+            ConversationAttachmentCardView(file: file) {
+                model.removeAttachment(file: file)
+            }
+        }
     }
 }
 

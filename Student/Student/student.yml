@@ -15,6 +15,7 @@ targets:
       - path: ./
         excludes:
           - ".swiftlint.yml"
+      - path: ../Settings.bundle
     dependencies:
       - package: PSPDFKit
       - package: Heap
