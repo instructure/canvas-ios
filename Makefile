@@ -24,7 +24,6 @@ gen-ci: ## CI specific xproj file generation
 gen: ## xproj file generation
 	@echo 🟡 Running xcodegen
 	@cd Core; xcodegen
-	@cd TestsFoundation; xcodegen
 	@cd Student; xcodegen
 
 unexport INFOPLIST_FILE
