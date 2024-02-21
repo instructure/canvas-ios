@@ -76,7 +76,7 @@ public final class ModuleItemSequenceViewController: UIViewController {
 
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        if let viewController = currentViewController() {
+        if let viewController = pages.currentPage {
             observations = syncNavigationBar(with: viewController)
         }
     }
@@ -85,13 +85,13 @@ public final class ModuleItemSequenceViewController: UIViewController {
         if store.requested, store.pending {
             return
         }
-        if embed, let viewController = currentViewController() {
+        if embed, let viewController = createCurrentViewController() {
             setCurrentPage(viewController)
         }
         showSequenceButtons(prev: sequence?.prev != nil, next: sequence?.next != nil)
     }
 
-    private func currentViewController() -> UIViewController? {
+    private func createCurrentViewController() -> UIViewController? {
         guard let url = url.url else { return nil }
         if let current = sequence?.current {
             return ModuleItemDetailsViewController.create(courseID: courseID, moduleID: current.moduleID, itemID: current.id)
