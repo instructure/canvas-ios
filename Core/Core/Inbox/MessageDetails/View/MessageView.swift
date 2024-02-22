@@ -19,6 +19,9 @@
 import SwiftUI
 
 public struct MessageView: View {
+    @Environment(\.viewController) private var controller
+    @ScaledMetric private var uiScale: CGFloat = 1
+
     private var model: MessageViewModel
     private var replyDidTap: () -> Void
     private var moreDidTap: () -> Void
@@ -64,32 +67,37 @@ public struct MessageView: View {
             } label: {
                 Image
                     .replyLine
-                    .size(15)
+                    .size(uiScale.iconScale * 20)
                     .foregroundColor(.textDark)
                     .padding(.leading, 6)
-                    .accessibilityLabel(NSLocalizedString("Reply", bundle: .core, comment: ""))
+                    .accessibilityLabel(Text("Reply"))
             }
             Button {
                 moreDidTap()
             } label: {
                 Image
                     .moreLine
-                    .size(15)
+                    .size(uiScale.iconScale * 20)
                     .foregroundColor(.textDark)
-                    .padding(.leading, 6)
-                    .accessibilityLabel(NSLocalizedString("Conversation options", bundle: .core, comment: ""))
+                    .padding(.horizontal, 6)
+                    .accessibilityLabel(Text("Conversation options"))
             }
         }
     }
 
     private var bodyView: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text(model.body)
+            Text(model.body.toAttributedStringWithLinks())
                 .font(.regular16)
+                .textSelection(.enabled)
             if model.showAttachments {
                 AttachmentCardsView(attachments: model.attachments, mediaComment: model.mediaComment)
                     .frame(height: 104)
             }
         }
+        .onAppear {
+            model.controller = controller
+        }
+        .environment(\.openURL, OpenURLAction(handler: model.handleURL))
     }
 }
