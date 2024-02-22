@@ -7,38 +7,38 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas Student"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "ca" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas Student"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "cy" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Myfyriwr Canvas"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "da" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas-studerende"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "da-instk12" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas-elev"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas-Studierende*r"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "en" : {
@@ -49,206 +49,206 @@
         },
         "en-AU" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas Student"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "en-AU-unimelb" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas Student"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "en-CA" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas Student"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "en-CY" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas student"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "en-GB" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas student"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "en-GB-instukhe" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas student"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Estudiante de Canvas"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "es-ES" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas Student"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "fi" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas-opiskelija"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas Élève"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas Étudiant"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "ht" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas Student"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "id" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas Student"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "is" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas nemandi"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Studente Canvas"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas 受講者"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "mi" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas Ākonga"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas Student"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "nb" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas-student"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "nb-instk12" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas-elev"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas Student"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Uczestnik Canvas"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "pt" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Aluno Canvas"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas Student"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas Student"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "sl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Študent v sistemu Canvas"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "sv" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas-student"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "sv-instk12" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas-elev"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "th" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas Student"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas Student"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "zh" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas 学生"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas 学生"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas Student"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         },
         "zh-HK" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Canvas Student"
+            "state" : "translated",
+            "value" : "Degrees edX"
           }
         }
       }
