@@ -28,6 +28,11 @@ class ModuleItemCell: UITableViewCell {
     @IBOutlet weak var publishedIconView: PublishedIconView!
     @IBOutlet weak var indentConstraint: NSLayoutConstraint!
     @IBOutlet weak var completedStatusView: UIImageView!
+    @IBOutlet weak var publishMenuButton: UIButton! {
+        didSet {
+            publishMenuButton.isHidden = !ModulePublishInteractor(app: env.app).isPublishActionAvailable
+        }
+    }
 
     let env = AppEnvironment.shared
 
@@ -86,5 +91,9 @@ class ModuleItemCell: UITableViewCell {
         accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row)"
         nameLabel.accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row).nameLabel"
         dueLabel.accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row).dueLabel"
+    }
+
+    @IBAction func publishMenuDidTap() {
+
     }
 }

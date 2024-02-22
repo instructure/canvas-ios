@@ -1378,6 +1378,7 @@
 		CFA8398A890008FC131E5659 /* PairWithStudentQRCodeTutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B30F0A5FF24A16E638535AB /* PairWithStudentQRCodeTutorialViewController.swift */; };
 		CFB4F7D6AA0DFCC12C79CB03 /* DiscussionReplyViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54BAC19414BABEF1BE119505 /* DiscussionReplyViewControllerTests.swift */; };
 		CFDED43EFD2EFE248E2C0AD3 /* FileProgressListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E7A16122D559CDD2F497160 /* FileProgressListViewModel.swift */; };
+		CFF0FD782B87B093007CB144 /* ModulePublishInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF0FD772B87B093007CB144 /* ModulePublishInteractor.swift */; };
 		D01F1A0AB0AAF5643C03EFF1 /* ModuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0C6A481F3EFC1B4F0777CB /* ModuleTests.swift */; };
 		D06B1B95D0FF65F7E7761F95 /* Hidden.swift in Sources */ = {isa = PBXBuildFile; fileRef = B408E358BA052F9B08697E7E /* Hidden.swift */; };
 		D07E0653F6FD55B658AD6711 /* AudioPickerInteractorLiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F0C2259AC14C83279AF436 /* AudioPickerInteractorLiveTests.swift */; };
@@ -3176,6 +3177,7 @@
 		CFC0A0B2AB483C2582075336 /* ReplyMessageInteractorLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyMessageInteractorLive.swift; sourceTree = "<group>"; };
 		CFDD1E1B04BCE0A3513A061A /* ReactiveStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactiveStore.swift; sourceTree = "<group>"; };
 		CFE760866143E8E9B1CE23ED /* DashboardConferencesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardConferencesViewModel.swift; sourceTree = "<group>"; };
+		CFF0FD772B87B093007CB144 /* ModulePublishInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulePublishInteractor.swift; sourceTree = "<group>"; };
 		D0654F8E73E24CF21BFD4A29 /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
 		D0795F7FD2E35FF931C3CEAD /* lato_black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_black.ttf; sourceTree = "<group>"; };
 		D08DFC503F7F8CBD23CB14B4 /* UITableViewHeaderFooterViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewHeaderFooterViewExtensionsTests.swift; sourceTree = "<group>"; };
@@ -8106,6 +8108,7 @@
 				042EF796221BCF7130411ECF /* ModuleListViewController.swift */,
 				E7AA5BF16FB919BFCDB3012A /* ModuleSectionHeaderView.swift */,
 				2559A853508EB11DF8F34037 /* ModuleSectionHeaderView.xib */,
+				CFF0FD772B87B093007CB144 /* ModulePublishInteractor.swift */,
 			);
 			path = ModuleList;
 			sourceTree = "<group>";
@@ -10587,6 +10590,7 @@
 				899C933A5BB540701F0541C1 /* DashboardGrid.swift in Sources */,
 				9ECE13826E7438D8E0058AA9 /* DashboardInvitationAPIItem.swift in Sources */,
 				6610B391B052529B10FA2649 /* DashboardInvitationName.swift in Sources */,
+				CFF0FD782B87B093007CB144 /* ModulePublishInteractor.swift in Sources */,
 				E8D13CD95C453A5F8ADE0105 /* DashboardInvitationViewModel.swift in Sources */,
 				4AD62CDE9F608CB81AC69D09 /* DashboardInvitationsViewModel.swift in Sources */,
 				5D6C9DCE9D674190939F3BD2 /* DashboardLayoutViewModel.swift in Sources */,

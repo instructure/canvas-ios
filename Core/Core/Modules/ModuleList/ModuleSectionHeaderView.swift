@@ -23,6 +23,11 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var publishedIconView: PublishedIconView!
     @IBOutlet weak var collapsableIndicator: UIImageView!
     @IBOutlet weak var lockedButton: UIButton!
+    @IBOutlet weak var publishMenuButton: UIButton! {
+        didSet {
+            publishMenuButton.isHidden = !ModulePublishInteractor(app: AppEnvironment.shared.app).isPublishActionAvailable
+        }
+    }
 
     var isExpanded = true
     var onTap: (() -> Void)?
@@ -70,5 +75,9 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
 
     @IBAction func lockTapped() {
         onLockTap?()
+    }
+
+    @IBAction func publishMenuDidTap() {
+
     }
 }

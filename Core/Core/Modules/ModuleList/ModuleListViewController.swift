@@ -126,7 +126,22 @@ public class ModuleListViewController: ScreenViewTrackableViewController, Colore
         tableView.tableFooterView?.setNeedsLayout()
         tableView.reloadData()
         scrollToModule()
+
+        if spinnerView.isHidden, emptyView.isHidden, errorView.isHidden {
+            setupBulkPublishButtonInNavBar()
+        }
     }
+
+    private func setupBulkPublishButtonInNavBar() {
+        guard navigationItem.rightBarButtonItem == nil else { return }
+        let button = UIBarButtonItem(image: .moreLine,
+                                     style: .plain,
+                                     target: self,
+                                     action: #selector(bulkPublishDidTap))
+        navigationItem.setRightBarButton(button, animated: true)
+    }
+
+    @objc func bulkPublishDidTap() {}
 
     func reloadCourse() {
         updateNavBar(subtitle: courses.first?.name, color: courses.first?.color)
