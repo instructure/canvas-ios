@@ -85,10 +85,6 @@ workflows:
             set -euxo pipefail
 
             make sync-ci
-    # - &cocoapods
-    #   cocoapods-install:
-    #     inputs:
-    #     - verbose: 'false'
     - &build-citests
       script:
         title: Build CITests
