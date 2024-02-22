@@ -154,4 +154,29 @@ class QuizzesTests: E2ETestCase {
         XCTAssertTrue(detailsTakeQuizButton.isVisible)
         XCTAssertTrue(detailsTakeQuizButton.hasLabel(label: "View Results"))
     }
+
+    func testNewQuiz() {
+        // MARK: Seed the usual stuff with a New Quiz
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+        let featureFlagResponse = seeder.setFeatureFlag(featureFlag: .newQuiz, state: .on)
+        XCTAssertEqual(featureFlagResponse.state, DSFeatureFlagState.on.rawValue)
+
+        let teacher = seeder.createUser()
+        seeder.enrollTeacher(teacher, in: course)
+
+        let quiz = NewQuizzesHelper.createNewQuiz(course: course)
+        NewQuizzesHelper.createTrueFalseNewQuizItem(course: course, quiz: quiz)
+
+        // MARK: Get the user logged in
+        logInDSUser(student)
+        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
+        XCTAssertTrue(profileButton.isVisible)
+
+        // MARK: Navigate to quizzes, open quiz and tap "Take Quiz" button
+        Helper.navigateToQuizzes(course: course)
+        let quizCell = Helper.cell(index: 0).waitUntil(.visible)
+        XCTAssertTrue(quizCell.isVisible)
+    }
 }
