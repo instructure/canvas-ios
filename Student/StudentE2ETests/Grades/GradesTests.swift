@@ -257,6 +257,6 @@ class GradesTests: E2ETestCase {
         XCTAssertTrue(pointsAssignmentCell.isVisible)
         XCTAssertTrue(percentAssignmentCell.isVisible)
         XCTAssertTrue(passFailAssignmentCell.isVisible)
-        XCTAssertTrue(totalGradeLabel.hasLabel(label: totalGrade))
+        XCTAssertTrue(totalGradeLabel.hasLabel(label: "Total grade is \(totalGrade)"))
     }
 }
