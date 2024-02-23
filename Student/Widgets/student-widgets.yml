@@ -8,7 +8,7 @@ targets:
       APPLICATION_EXTENSION_API_ONLY: true
       ENABLE_TESTABILITY: true
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.instructure.icanvas.widgets
+        PRODUCT_BUNDLE_IDENTIFIER: com.instructure.icanvas.2u.widgets
         INFOPLIST_FILE: Widgets/Resources/Info.plist
         CODE_SIGN_ENTITLEMENTS: Widgets/Resources/Widgets.entitlements
         TARGETED_DEVICE_FAMILY: 1,2

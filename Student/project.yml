@@ -2,17 +2,17 @@
 name: Student
 options:
   groupSortPosition: top
-  bundleIdPrefix: com.instructure.icanvas
+  bundleIdPrefix: com.instructure.icanvas.2u
   deploymentTarget:
     iOS: 15.0
   createIntermediateGroups: true
 settings:
   CODE_SIGN_STYLE: Automatic ## This line is removed in the project-ci.yml file so Bitrise can manage code sign. 
-  DEVELOPMENT_TEAM: B6333T4PXQ ## This line is removed in the project-ci.yml file so Bitrise can manage code sign. 
+  DEVELOPMENT_TEAM: 58GH9WB284 ## This line is removed in the project-ci.yml file so Bitrise can manage code sign.
   CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
   LOCALIZATION_PREFERS_STRING_CATALOGS: true
-  CURRENT_PROJECT_VERSION: 0.0.1
-  MARKETING_VERSION: 0.0.1
+  CURRENT_PROJECT_VERSION: 11
+  MARKETING_VERSION: 1.2
   platform: iOS
 sources:
   - path: ./
@@ -41,3 +41,12 @@ packages:
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
     exactVersion: 13.0.1
+  BugFender:
+    url: https://github.com/bugfender/BugfenderSDK-iOS
+    exactVersion: 1.13.2
+  AWSSDK:
+    url: https://github.com/aws-amplify/aws-sdk-ios-spm
+    exactVersion: 2.33.10
+  Intercom:
+    url: https://github.com/intercom/intercom-ios-sp
+    exactVersion: 16.5.6
