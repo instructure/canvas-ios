@@ -18,7 +18,6 @@
 
 import Combine
 @testable import Core
-import CoreData
 import XCTest
 
 class MessageDetailsViewModelTests: CoreTestCase {
@@ -27,14 +26,14 @@ class MessageDetailsViewModelTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
-        mockInteractor = MessageDetailsInteractorMock(context: databaseClient)
+        mockInteractor = MessageDetailsInteractorMock()
         testee = MessageDetailsViewModel(router: router, interactor: mockInteractor, myID: "1")
     }
 
     func testInteractorStateMappedToViewModel() {
         XCTAssertEqual(testee.state, mockInteractor.state.value)
         XCTAssertEqual(testee.subject, "Test")
-        XCTAssertEqual(testee.messages.count, 5)
+        XCTAssertEqual(testee.messages.count, 1)
         XCTAssertFalse(testee.starred)
     }
 
@@ -57,18 +56,111 @@ class MessageDetailsViewModelTests: CoreTestCase {
         XCTAssertEqual(mockInteractor.receivedStarred, true)
     }
 
-    func testMoreTapped() {
+    func testConversationMoreTapped() {
         let sourceView = UIViewController()
 
-        testee.moreTapped(message: .init(), viewController: WeakViewController(sourceView))
+        testee.conversationMoreTapped(viewController: WeakViewController(sourceView))
 
         let sheet = router.presented as? BottomSheetPickerViewController
         XCTAssertNotNil(sheet)
-        XCTAssertEqual(sheet?.actions.count, 5)
+        XCTAssertEqual(sheet?.actions.count, 6)
+    }
+
+    func testMessageMoreTapped() {
+        let sourceView = UIViewController()
+
+        testee.messageMoreTapped(message: .init(), viewController: WeakViewController(sourceView))
+
+        let sheet = router.presented as? BottomSheetPickerViewController
+        XCTAssertNotNil(sheet)
+        XCTAssertEqual(sheet?.actions.count, 4)
+    }
+
+    func testMessageDeleteConfirmed() {
+        let viewController = WeakViewController(UIViewController())
+        testee.deleteConversationMessageDidTap.send((conversationId: "conversationId", messageId: "messageId", viewController: viewController))
+        testee.confirmAlert.notifyCompletion(isConfirmed: true)
+
+        XCTAssertTrue(mockInteractor.deleteMessageCalled)
+    }
+
+    func testMessageDeleteRejected() {
+        let viewController = WeakViewController(UIViewController())
+        testee.deleteConversationMessageDidTap.send((conversationId: "conversationId", messageId: "messageId", viewController: viewController))
+        testee.confirmAlert.notifyCompletion(isConfirmed: false)
+
+        XCTAssertFalse(mockInteractor.deleteMessageCalled)
+    }
+
+    func testConversationDeleteConfirmed() {
+        let viewController = WeakViewController(UIViewController())
+        testee.deleteConversationDidTap.send((conversationId: "conversationId", viewController: viewController))
+        testee.confirmAlert.notifyCompletion(isConfirmed: true)
+
+        XCTAssertTrue(mockInteractor.deleteConversationCalled)
+    }
+
+    func testConversationDeleteRejected() {
+        let viewController = WeakViewController(UIViewController())
+        testee.deleteConversationDidTap.send((conversationId: "conversationId", viewController: viewController))
+        testee.confirmAlert.notifyCompletion(isConfirmed: false)
+
+        XCTAssertFalse(mockInteractor.deleteConversationCalled)
+    }
+
+    func testForward() {
+        let viewController = WeakViewController(UIViewController())
+        testee.forwardTapped(viewController: viewController)
+
+        wait(for: [router.showExpectation], timeout: 1)
+        let dialog = router.presented
+
+        XCTAssertNotNil(dialog)
+    }
+
+    func testReply() {
+        let viewController = WeakViewController(UIViewController())
+        testee.replyTapped(message: mockInteractor.messages.value.first!, viewController: viewController)
+
+        wait(for: [router.showExpectation], timeout: 1)
+        let dialog = router.presented
+
+        XCTAssertNotNil(dialog)
+    }
+
+    func testReplyAll() {
+        let viewController = WeakViewController(UIViewController())
+        let message: ConversationMessage = .make()
+        testee.replyAllTapped(message: message, viewController: viewController)
+
+        wait(for: [router.showExpectation], timeout: 1)
+        let dialog = router.presented
+
+        XCTAssertNotNil(dialog)
+    }
+
+    func testAttributedString() {
+        let rawString = """
+            Test String: https://instructure.com
+            Another link: https://instructure.design
+        """
+        let attributedString = rawString.toAttributedStringWithLinks()
+        XCTAssertEqual(rawString, String(attributedString.characters))
+        var links: [URL] = []
+        NSAttributedString(attributedString).enumerateAttribute(.link, in: NSRange(0..<rawString.count)) { value, _, _ in
+            if let link = value as? URL {
+                links.append(link)
+            }
+        }
+        XCTAssertEqual(rawString, String(attributedString.characters))
+        XCTAssertEqual(links.count, 2)
+        XCTAssertEqual(links[0].absoluteString, "https://instructure.com")
+        XCTAssertEqual(links[1].absoluteString, "https://instructure.design")
     }
 }
 
 private class MessageDetailsInteractorMock: MessageDetailsInteractor {
+
     var conversation: CurrentValueSubject<[Core.Conversation], Never>
 
     var state = CurrentValueSubject<StoreState, Never>(.data)
@@ -79,25 +171,47 @@ private class MessageDetailsInteractorMock: MessageDetailsInteractor {
 
     private(set) var refreshCalled = false
     private(set) var receivedStarred: Bool?
+    private(set) var updateStateCalled = false
+    private(set) var deleteConversationCalled = false
+    private(set) var deleteMessageCalled = false
 
-    init(context: NSManagedObjectContext) {
-        self.messages = .init(.make(count: 5, in: context))
-        self.conversation = CurrentValueSubject<[Core.Conversation], Never>(.init())
+    init() {
+        self.messages = .init([ .make() ])
+        self.conversation = CurrentValueSubject<[Core.Conversation], Never>([
+            Conversation.make(from: .make(message_count: 1, messages: [ .make() ]))])
+
     }
 
     func refresh() -> Future<Void, Never> {
         refreshCalled = true
-        return mockFuture
+        return Future<Void, Never> { promise in
+            promise(.success(()))
+        }
     }
 
-    func updateStarred(starred: Bool) -> Future<Void, Never> {
+    func updateStarred(starred: Bool) -> Future<URLResponse?, Error> {
         receivedStarred = starred
         return mockFuture
     }
 
-    private var mockFuture: Future<Void, Never> {
-        Future<Void, Never> { promise in
-            promise(.success(()))
+    func updateState(messageId: String, state: Core.ConversationWorkflowState) -> Future<URLResponse?, Error> {
+        updateStateCalled = true
+        return mockFuture
+    }
+
+    func deleteConversation(conversationId: String) -> Future<URLResponse?, Error> {
+        deleteConversationCalled = true
+        return mockFuture
+    }
+
+    func deleteConversationMessage(conversationId: String, messageId: String) -> Future<URLResponse?, Error> {
+        deleteMessageCalled = true
+        return mockFuture
+    }
+
+    private var mockFuture: Future<URLResponse?, Error> {
+        Future<URLResponse?, Error> { promise in
+            promise(.success(nil))
         }
     }
 }

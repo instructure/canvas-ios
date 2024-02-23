@@ -23,9 +23,15 @@ import CombineExt
 
 public class ComposeMessageInteractorPreview: ComposeMessageInteractor {
 
-    public func send(parameters: MessageParameters) -> Future<Void, Error> {
-        Future<Void, Error> { promise in
-            promise(.success(()))
+    public func createConversation(parameters: MessageParameters) -> Future<URLResponse?, Error> {
+        Future<URLResponse?, Error> { promise in
+            promise(.success(nil))
+        }
+    }
+
+    public func addConversationMessage(parameters: MessageParameters) -> Future<URLResponse?, Error> {
+        Future<URLResponse?, Error> { promise in
+            promise(.success(nil))
         }
     }
 }
