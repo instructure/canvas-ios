@@ -27,8 +27,18 @@ public struct MessageParameters {
     public let context: Context
     public let conversationID: String?
     public let groupConversation: Bool
+    public let includedMessages: [String]?
 
-    public init(subject: String, body: String, recipientIDs: [String], attachmentIDs: [String] = [], context: Context, conversationID: String? = nil, groupConversation: Bool = true) {
+    public init(
+        subject: String,
+        body: String,
+        recipientIDs: [String],
+        attachmentIDs: [String] = [],
+        context: Context,
+        conversationID: String? = nil,
+        groupConversation: Bool = true,
+        includedMessages: [String]? = nil
+    ) {
         self.subject = subject
         self.body = body
         self.recipientIDs = recipientIDs
@@ -36,5 +46,6 @@ public struct MessageParameters {
         self.context = context
         self.conversationID = conversationID
         self.groupConversation = groupConversation
+        self.includedMessages = includedMessages
     }
 }

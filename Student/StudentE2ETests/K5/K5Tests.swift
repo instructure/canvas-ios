@@ -123,7 +123,7 @@ class K5Tests: K5E2ETestCase {
 
         let totalGrade = GradesHelper.totalGrade.waitUntil(.visible)
         XCTAssertTrue(totalGrade.isVisible)
-        XCTAssertTrue(totalGrade.hasLabel(label: "100%"))
+        XCTAssertTrue(totalGrade.hasLabel(label: "Total grade is 100%"))
 
         let assignmentGrade = GradesHelper.cell(assignment: assignment).waitUntil(.visible)
         XCTAssertTrue(assignmentGrade.isVisible)

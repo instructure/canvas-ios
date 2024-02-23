@@ -25,16 +25,19 @@ class ComposeMessageViewModel: ObservableObject {
     @Published public private(set) var recipients: [Recipient] = []
     @Published public private(set) var isSendingMessage: Bool = false
 
-    public let title = NSLocalizedString("New Message", comment: "")
+    @Published public private(set) var isContextDisabled: Bool = false
+    @Published public private(set) var isRecipientsDisabled: Bool = false
+    @Published public private(set) var isSubjectDisabled: Bool = false
+    @Published public private(set) var isMessageDisabled: Bool = false
+    @Published public private(set) var isIndividualDisabled: Bool = false
+
+    public let title = String(localized: "New Message")
     public var sendButtonActive: Bool {
         !bodyText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
         !subject.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty &&
         !recipients.isEmpty
         && (attachments.isEmpty || attachments.allSatisfy({ $0.isUploaded }))
 
-    }
-    public var isReply: Bool {
-        conversation != nil
     }
 
     // MARK: - Inputs
@@ -50,6 +53,7 @@ class ComposeMessageViewModel: ObservableObject {
     @Published public var subject: String = ""
     @Published public var selectedContext: RecipientContext?
     @Published public var conversation: Conversation?
+    @Published public var includedMessages: [ConversationMessage] = []
     @Published public var attachments: [File] = []
 
     // MARK: - Private
@@ -57,36 +61,69 @@ class ComposeMessageViewModel: ObservableObject {
     private let interactor: ComposeMessageInteractor
     private let router: Router
     private let scheduler: AnySchedulerOf<DispatchQueue>
+    private var messageType: ComposeMessageOptions.MessageType
     private let uploadManager = UploadManager(identifier: UUID.string)
     private let batchId: String = UUID.string
     private lazy var files = uploadManager.subscribe(batchID: batchId) { [weak self] in
         self?.update()
     }
 
-    public init(router: Router, conversation: Conversation? = nil, author: String? = nil, interactor: ComposeMessageInteractor, scheduler: AnySchedulerOf<DispatchQueue> = .main) {
+    public init(router: Router, options: ComposeMessageOptions, interactor: ComposeMessageInteractor, scheduler: AnySchedulerOf<DispatchQueue> = .main) {
         self.interactor = interactor
         self.router = router
         self.scheduler = scheduler
-        self.conversation = conversation
 
-        if let conversation {
-            self.subject = conversation.subject
-            if let context = Context(canvasContextID: conversation.contextCode ?? "") {
-                self.selectedContext = .init(name: conversation.contextName ?? "", context: context)
-            }
-            if let author {
-                self.selectedRecipients.value = conversation.audience.filter { $0.id == author }.map { Recipient(conversationParticipant: $0) }
-
-                if self.selectedRecipients.value.isEmpty {
-                    self.selectedRecipients.value = conversation.audience.map { Recipient(conversationParticipant: $0) }
-                }
-            } else {
-                self.selectedRecipients.value = conversation.audience.map { Recipient(conversationParticipant: $0) }
-            }
-        }
+        self.messageType = options.messageType
+        setIncludedMessages(messageType: options.messageType)
+        setOptionItems(options: options)
 
         setupOutputBindings()
         setupInputBindings(router: router)
+    }
+
+    private func setOptionItems(options: ComposeMessageOptions) {
+        let disabledFields = options.disabledFields
+        self.isContextDisabled = disabledFields.contextDisabled
+        self.isRecipientsDisabled = disabledFields.recipientsDisabled
+        self.isSubjectDisabled = disabledFields.subjectDisabled
+        self.isMessageDisabled = disabledFields.messageDisabled
+        self.isIndividualDisabled = disabledFields.individualDisabled
+
+        let fieldContents = options.fieldContents
+        self.selectedContext = fieldContents.selectedContext
+        self.selectedRecipients.value = fieldContents.selectedRecipients
+        self.subject = fieldContents.subjectText
+        self.bodyText = fieldContents.bodyText
+    }
+
+    private func setIncludedMessages(messageType: ComposeMessageOptions.MessageType) {
+        switch messageType {
+        case .new:
+            conversation = nil
+        case .reply(let conversation, let message):
+            self.conversation = conversation
+            if let message {
+                includedMessages = conversation.messages
+                    .filter { $0.createdAt ?? Date() <= message.createdAt ?? Date() || $0.id == message.id }
+            } else {
+                includedMessages = conversation.messages
+            }
+        case .replyAll(let conversation, let message):
+            self.conversation = conversation
+            if let message {
+                includedMessages = conversation.messages
+                    .filter { $0.createdAt ?? Date() <= message.createdAt ?? Date() || $0.id == message.id }
+            } else {
+                includedMessages = conversation.messages
+            }
+        case .forward(let conversation, let message):
+            if let message {
+                includedMessages = [message]
+            } else {
+                includedMessages = conversation.messages
+            }
+            self.conversation = conversation
+        }
     }
 
     private func update() {
@@ -163,7 +200,8 @@ class ComposeMessageViewModel: ObservableObject {
             attachmentIDs: attachments.compactMap { $0.id },
             context: context.context,
             conversationID: conversation?.id,
-            groupConversation: !sendIndividual
+            groupConversation: !sendIndividual,
+            includedMessages: includedMessages.map { $0.id }
         )
     }
 
@@ -187,20 +225,29 @@ class ComposeMessageViewModel: ObservableObject {
             }
             .store(in: &subscriptions)
         sendButtonDidTap
-            .compactMap { [weak self] viewController -> (WeakViewController, MessageParameters)? in
+            .compactMap { [weak self] viewController -> (WeakViewController, MessageParameters, ComposeMessageOptions.MessageType)? in
                 guard let self = self, let params = self.messageParameters() else { return nil }
-                return (viewController, params)
+                return (viewController, params, self.messageType)
             }
-            .handleEvents(receiveOutput: { [weak self] (viewController, _) in
+            .handleEvents(receiveOutput: { [weak self] (viewController, _, _) in
                 self?.isSendingMessage = true
                 self?.router.dismiss(viewController)
             })
-            .flatMap { [interactor] (viewController, params) in
-                interactor
-                    .send(parameters: params)
-                    .map {
-                        viewController
-                    }
+            .flatMap { [interactor] (viewController, params, type) in
+                switch type {
+                case .new:
+                    return interactor
+                        .createConversation(parameters: params)
+                        .map { _ in
+                            viewController
+                        }
+                case .forward, .reply, .replyAll:
+                    return interactor
+                        .addConversationMessage(parameters: params)
+                        .map { _ in
+                            viewController
+                        }
+                }
             }
             .receive(on: scheduler)
             .sink(receiveCompletion: { completion in

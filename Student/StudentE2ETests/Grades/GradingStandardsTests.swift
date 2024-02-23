@@ -40,16 +40,14 @@ class GradingStandardsTests: E2ETestCase {
 
         // MARK: Navigate to grades
         GradesHelper.navigateToGrades(course: course)
-        let totalGradeLabel = app.find(label: "Total Grade").waitUntil(.visible)
         let totalGrade = GradesHelper.totalGrade.waitUntil(.visible)
-        XCTAssertTrue(totalGradeLabel.isVisible)
-        XCTAssertTrue(totalGrade.hasLabel(label: "N/A (F)"))
+        XCTAssertTrue(totalGrade.hasLabel(label: "Total grade is N/A (F)"))
 
         // MARK: Check if total is updating accordingly
         GradesHelper.gradeAssignments(grades: ["100"], course: course, assignments: [assignments[0]], user: student)
-        XCTAssertTrue(GradesHelper.checkForTotalGrade(value: "100% (A)"))
+        XCTAssertTrue(GradesHelper.checkForTotalGrade(value: "Total grade is 100% (A)"))
 
         GradesHelper.gradeAssignments(grades: ["0"], course: course, assignments: [assignments[1]], user: student)
-        XCTAssertTrue(GradesHelper.checkForTotalGrade(value: "50% (F)"))
+        XCTAssertTrue(GradesHelper.checkForTotalGrade(value: "Total grade is 50% (F)"))
     }
 }

@@ -32,7 +32,7 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         waitForState(.data)
     }
 
-    func testFailedSend() {
+    func testFailedCreate() {
         let subject = "Test subject"
         let body = "Test body"
         let recipients = ["1", "2"]
@@ -49,10 +49,10 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         let parameters = MessageParameters(subject: subject, body: body, recipientIDs: recipients, context: Context.course(canvasContext))
         api.mock(createConversationRequest, value: nil, response: nil, error: NSError.instructureError("Failure"))
 
-        XCTAssertFailure(testee.send(parameters: parameters))
+        XCTAssertFailure(testee.createConversation(parameters: parameters))
     }
 
-    func testSuccessfulSend() {
+    func testSuccessfulCreate() {
         let subject = "Test subject"
         let body = "Test body"
         let recipients = ["1", "2"]
@@ -69,7 +69,66 @@ class ComposeMessageInteractorLiveTests: CoreTestCase {
         let parameters = MessageParameters(subject: subject, body: body, recipientIDs: recipients, context: Context.course(canvasContext))
         api.mock(createConversationRequest, value: value)
 
-        XCTAssertFinish(testee.send(parameters: parameters))
+        XCTAssertFinish(testee.createConversation(parameters: parameters))
+
+        waitForState(.data)
+    }
+
+    func testFailedMessageAdd() {
+        let subject = "Test subject"
+        let body = "Test body"
+        let recipients = ["1", "2"]
+        let canvasContext = "1"
+        let conversation = "1"
+        let attachments: [String]? = nil
+        let includedMessages = ["1"]
+        let addConversationMessageRequest = AddMessage(
+            conversationID: canvasContext,
+            attachmentIDs: attachments,
+            body: body,
+            recipientIDs: recipients,
+            includedMessages: includedMessages
+        ).request
+        let parameters = MessageParameters(
+            subject: subject,
+            body: body,
+            recipientIDs: recipients,
+            context: Context.course(canvasContext),
+            conversationID: conversation,
+            includedMessages: includedMessages
+        )
+        api.mock(addConversationMessageRequest, value: nil, response: nil, error: NSError.instructureError("Failure"))
+
+        XCTAssertFailure(testee.addConversationMessage(parameters: parameters))
+    }
+
+    func testSuccessfulMessageAdd() {
+        let subject = "Test subject"
+        let body = "Test body"
+        let recipients = ["1", "2"]
+        let canvasContext = "1"
+        let conversation = "1"
+        let attachments: [String]? = nil
+        let includedMessages = ["1"]
+        let addConversationMessageRequest = AddMessage(
+            conversationID: canvasContext,
+            attachmentIDs: attachments,
+            body: body,
+            recipientIDs: recipients,
+            includedMessages: includedMessages
+        ).request
+        let value = APIConversation.make(id: "1")
+        let parameters = MessageParameters(
+            subject: subject,
+            body: body,
+            recipientIDs: recipients,
+            context: Context.course(canvasContext),
+            conversationID: conversation,
+            includedMessages: includedMessages
+        )
+        api.mock(addConversationMessageRequest, value: value)
+
+        XCTAssertFinish(testee.addConversationMessage(parameters: parameters))
 
         waitForState(.data)
     }
