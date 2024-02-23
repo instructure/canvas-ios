@@ -88,9 +88,6 @@
                             <buttonConfiguration key="configuration" style="plain" image="moreLine">
                                 <color key="baseForegroundColor" name="textDarkest"/>
                             </buttonConfiguration>
-                            <connections>
-                                <action selector="publishMenuDidTap" destination="-1" eventType="primaryActionTriggered" id="qDL-6V-LjB"/>
-                            </connections>
                         </button>
                     </subviews>
                 </stackView>
@@ -133,13 +130,13 @@
     </objects>
     <designables>
         <designable name="4NE-AM-KWx">
-            <size key="intrinsicContentSize" width="129.5" height="24"/>
+            <size key="intrinsicContentSize" width="126" height="24"/>
         </designable>
         <designable name="Cc0-w5-zrP">
             <size key="intrinsicContentSize" width="24" height="24"/>
         </designable>
         <designable name="x61-b5-ndv">
-            <size key="intrinsicContentSize" width="30" height="30"/>
+            <size key="intrinsicContentSize" width="24" height="24"/>
         </designable>
     </designables>
     <resources>

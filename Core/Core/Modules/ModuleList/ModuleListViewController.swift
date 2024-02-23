@@ -133,15 +133,14 @@ public class ModuleListViewController: ScreenViewTrackableViewController, Colore
     }
 
     private func setupBulkPublishButtonInNavBar() {
-        guard navigationItem.rightBarButtonItem == nil else { return }
-        let button = UIBarButtonItem(image: .moreLine,
-                                     style: .plain,
-                                     target: self,
-                                     action: #selector(bulkPublishDidTap))
+        guard navigationItem.rightBarButtonItem == nil,
+              ModulePublishInteractor(app: AppEnvironment.shared.app).isPublishActionAvailable
+        else { return }
+
+        let button = UIBarButtonItem(image: .moreLine)
+        button.menu = .modulePublishOnNavBar()
         navigationItem.setRightBarButton(button, animated: true)
     }
-
-    @objc func bulkPublishDidTap() {}
 
     func reloadCourse() {
         updateNavBar(subtitle: courses.first?.name, color: courses.first?.color)

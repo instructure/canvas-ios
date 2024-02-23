@@ -30,7 +30,8 @@ class ModuleItemCell: UITableViewCell {
     @IBOutlet weak var completedStatusView: UIImageView!
     @IBOutlet weak var publishMenuButton: UIButton! {
         didSet {
-            publishMenuButton.isHidden = !ModulePublishInteractor(app: env.app).isPublishActionAvailable
+            publishMenuButton.isHidden = true
+            publishMenuButton.showsMenuAsPrimaryAction = true
         }
     }
 
@@ -91,9 +92,14 @@ class ModuleItemCell: UITableViewCell {
         accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row)"
         nameLabel.accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row).nameLabel"
         dueLabel.accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row).dueLabel"
-    }
 
-    @IBAction func publishMenuDidTap() {
-
+        let isPublishAvailable = ModulePublishInteractor(app: env.app).isPublishActionAvailable
+        switch item.type {
+        case .file:
+            publishMenuButton.isHidden = true
+        default:
+            publishMenuButton.isHidden = !isPublishAvailable
+            publishMenuButton.menu = .modulePublishOnItem(action: item.published == true ? .unpublish : .publish)
+        }
     }
 }

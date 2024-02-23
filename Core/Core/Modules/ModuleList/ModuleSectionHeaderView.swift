@@ -26,6 +26,8 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var publishMenuButton: UIButton! {
         didSet {
             publishMenuButton.isHidden = !ModulePublishInteractor(app: AppEnvironment.shared.app).isPublishActionAvailable
+            publishMenuButton.showsMenuAsPrimaryAction = true
+            publishMenuButton.menu = .modulePublishOnModule()
         }
     }
 
@@ -75,9 +77,5 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
 
     @IBAction func lockTapped() {
         onLockTap?()
-    }
-
-    @IBAction func publishMenuDidTap() {
-
     }
 }
