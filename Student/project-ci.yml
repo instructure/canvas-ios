@@ -2,7 +2,7 @@
 name: Student
 options:
   groupSortPosition: top
-  bundleIdPrefix: com.instructure.icanvas
+  bundleIdPrefix: com.instructure.icanvas.2u
   deploymentTarget:
     iOS: 15.0
   createIntermediateGroups: true
@@ -39,3 +39,12 @@ packages:
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
     exactVersion: 13.0.1
+  BugfenderLibrary:
+    url: https://github.com/bugfender/BugfenderSDK-iOS
+    exactVersion: 1.13.2
+  AWSSDK:
+    url: https://github.com/aws-amplify/aws-sdk-ios-spm
+    exactVersion: 2.33.10
+  Intercom:
+    url: https://github.com/intercom/intercom-ios-sp
+    exactVersion: 16.5.6

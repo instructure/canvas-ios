@@ -11,7 +11,7 @@ settings:
   DEVELOPMENT_TEAM: 58GH9WB284 ## This line is removed in the project-ci.yml file so Bitrise can manage code sign.
   CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
   LOCALIZATION_PREFERS_STRING_CATALOGS: true
-  CURRENT_PROJECT_VERSION: 11
+  CURRENT_PROJECT_VERSION: 12
   MARKETING_VERSION: 1.2
   platform: iOS
 sources:
@@ -41,7 +41,7 @@ packages:
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
     exactVersion: 13.0.1
-  BugFender:
+  BugfenderLibrary:
     url: https://github.com/bugfender/BugfenderSDK-iOS
     exactVersion: 1.13.2
   AWSSDK:

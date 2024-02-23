@@ -8,7 +8,7 @@ targets:
       APPLICATION_EXTENSION_API_ONLY: false
       SWIFT_EMIT_LOC_STRINGS: true
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.instructure.icanvas
+        PRODUCT_BUNDLE_IDENTIFIER: com.instructure.icanvas.2u
         INFOPLIST_FILE: Student/Info.plist
         CODE_SIGN_ENTITLEMENTS: Student/Student.entitlements
         TARGETED_DEVICE_FAMILY: 1,2
@@ -19,6 +19,14 @@ targets:
     dependencies:
       - package: PSPDFKit
       - package: Heap
+      - package: AWSSDK
+        product: AWSCore
+      - package: AWSSDK
+        product: AWSLambda
+      - package: AWSSDK
+        product: AWSSNS
+      - package: BugfenderLibrary
+      - package: Intercom
       - target: CanvasCore/CanvasCore
       - target: Core/Core
       - target: SubmitAssignment
@@ -32,6 +40,9 @@ targets:
         basedOnDependencyAnalysis: false
       - path: ../../scripts/build-rn-code-images.sh
         name: Build React Native Code and Images
+        basedOnDependencyAnalysis: false
+      - path: ../../scripts/build-check-keys.sh
+        name: Check Required Secret Keys
         basedOnDependencyAnalysis: false
 schemes:
   Student:

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -2366,7 +2366,7 @@
 		4BD5DD42D6197C30DAC5415E /* AssignmentAssigneePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentAssigneePicker.swift; sourceTree = "<group>"; };
 		4BDF0042C4EC9719269D89FE /* AssignmentDueDatesInteractorLive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentDueDatesInteractorLive.swift; sourceTree = "<group>"; };
 		4BF91515A5A28F35FBD75E03 /* GetObservedStudents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetObservedStudents.swift; sourceTree = "<group>"; };
-		4C02C87B4FD4AD4D7489EE6D /* TestImage.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestImage.svg; sourceTree = "<group>"; };
+		4C02C87B4FD4AD4D7489EE6D /* TestImage.svg */ = {isa = PBXFileReference; path = TestImage.svg; sourceTree = "<group>"; };
 		4C0C49ADE7F2DE21CE36FB77 /* CourseSyncDiskSpaceInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncDiskSpaceInfoView.swift; sourceTree = "<group>"; };
 		4C11E387DD144E7B7A7D7405 /* DateSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSection.swift; sourceTree = "<group>"; };
 		4C310E09D98CD58CE1C3D781 /* AssignmentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentListViewModel.swift; sourceTree = "<group>"; };
@@ -2977,7 +2977,7 @@
 		A3CBD2A123330769319E0D7D /* CourseSettingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSettingsTests.swift; sourceTree = "<group>"; };
 		A3EA58F752AE33267DC3D54C /* CourseSyncProgressInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSyncProgressInfoViewModel.swift; sourceTree = "<group>"; };
 		A3F215916DB26B661EA4FC39 /* APIGradingSchemeEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGradingSchemeEntry.swift; sourceTree = "<group>"; };
-		A42096D6B21359616953C14C /* preview_test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = preview_test.mp4; sourceTree = "<group>"; };
+		A42096D6B21359616953C14C /* preview_test.mp4 */ = {isa = PBXFileReference; path = preview_test.mp4; sourceTree = "<group>"; };
 		A428BBF27D3A0637022B49F2 /* FileListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListViewControllerTests.swift; sourceTree = "<group>"; };
 		A42E6D4DF3963671589B5A3A /* DashboardCardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCardTests.swift; sourceTree = "<group>"; };
 		A43DD0C2A830D421979AEF65 /* InboxMessageScopeFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxMessageScopeFilterTests.swift; sourceTree = "<group>"; };
@@ -3673,6 +3673,7 @@
 			isa = PBXGroup;
 			children = (
 				A705727210449FD10D46C8D9 /* GradingStandard */,
+				B072F9E03B74F183F37F703A /* Model */,
 				E18B3A0E7114DA6657C570E7 /* APIGradingPeriod.swift */,
 				74FC3701C62619F494D409C0 /* APIPostPolicyInfo.swift */,
 				ADB1EFF56D34098EFF57575A /* GetAssignmentsByGroup.swift */,
@@ -3898,6 +3899,13 @@
 				E0BC8C15B77DF1F6D5241917 /* PutDashboardCardPositionsRequest.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		0BF2CAB987755A1E4A01AE2A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		0D3193C0654D538D479FB9E9 /* CourseSyncSettings */ = {
@@ -5977,6 +5985,14 @@
 			path = K5;
 			sourceTree = "<group>";
 		};
+		64A0CC5753D4C9FB20F5F70D /* AttachmentPicker */ = {
+			isa = PBXGroup;
+			children = (
+				0BF2CAB987755A1E4A01AE2A /* Model */,
+			);
+			path = AttachmentPicker;
+			sourceTree = "<group>";
+		};
 		64CEC7D0CDEE61D3AF0691EF /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -6151,6 +6167,7 @@
 			isa = PBXGroup;
 			children = (
 				481AA5EAFCF724C6F0F8400C /* Addressbook */,
+				64A0CC5753D4C9FB20F5F70D /* AttachmentPicker */,
 				CD70E3F7E28C20A1CF0D0ABF /* ComposeMessage */,
 				E8C59D458854271BBA12FD07 /* InboxCoursePicker */,
 				C61DA8726619AD804BEB5A1F /* MessageDetails */,
@@ -7905,6 +7922,13 @@
 				26EE7E2834C85B2C2FC32460 /* PlannerViewControllerTests.swift */,
 			);
 			path = Planner;
+			sourceTree = "<group>";
+		};
+		B072F9E03B74F183F37F703A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B1C34AF4857F4CF312828B87 /* Constants */ = {
