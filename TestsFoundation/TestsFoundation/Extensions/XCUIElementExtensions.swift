@@ -26,8 +26,8 @@ public extension XCUIElement {
     enum ElementCondition {
         case visible
         case vanish
-        case value(expected: String)
-        case label(expected: String)
+        case value(expected: String, strict: Bool = true)
+        case label(expected: String, strict: Bool = true)
         case enabled
         case disabled
         case selected
@@ -126,10 +126,10 @@ public extension XCUIElement {
                 result = isVanished
             case .visible:
                 result = isVisible
-            case .value(let expected):
-                result = hasValue(value: expected)
-            case .label(let expected):
-                result = hasLabel(label: expected)
+            case .value(let expected, let strict):
+                result = hasValue(value: expected, strict: strict)
+            case .label(let expected, let strict):
+                result = hasLabel(label: expected, strict: strict)
             case .enabled:
                 result = exists && isEnabled
             case .disabled:
@@ -183,10 +183,10 @@ public extension XCUIElement {
                 result = actualElement.isVanished
             case .visible:
                 result = actualElement.isVisible
-            case .value(let expected):
-                result = actualElement.hasValue(value: expected)
-            case .label(let expected):
-                result = actualElement.hasLabel(label: expected)
+            case .value(let expected, let strict):
+                result = actualElement.hasValue(value: expected, strict: strict)
+            case .label(let expected, let strict):
+                result = actualElement.hasLabel(label: expected, strict: strict)
             case .enabled:
                 result = actualElement.exists && actualElement.isEnabled
             case .disabled:
