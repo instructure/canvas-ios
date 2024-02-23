@@ -27,8 +27,6 @@ include:
 projectReferences:
   CanvasCore:
     path: ../CanvasCore/CanvasCore.xcodeproj
-  TestsFoundation:
-    path: ../TestsFoundation/TestsFoundation.xcodeproj
   Core:
     path: ../Core/Core.xcodeproj
 packages:

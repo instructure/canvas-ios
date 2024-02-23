@@ -12,7 +12,7 @@ targets:
           - ".swiftlint.yml"
     dependencies:
       - target: Core/Core
-      - target: TestsFoundation/TestsFoundation
+      - target: Core/TestsFoundation
 schemes:
   E2ETests-iPad-Student:
     build:
