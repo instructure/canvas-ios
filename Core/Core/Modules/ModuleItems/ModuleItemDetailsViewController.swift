@@ -133,8 +133,8 @@ public class ModuleItemDetailsViewController: DownloadableViewController, Colore
     }
 
     private func addDownloadBarButtonItem() {
-        navigationItem.rightBarButtonItems = []
         if item?.completionRequirementType == .must_mark_done {
+            navigationItem.rightBarButtonItems = []
             navigationItem.rightBarButtonItems?.append(optionsButton)
         }
         guard reachability.isConnected else {
@@ -142,6 +142,7 @@ public class ModuleItemDetailsViewController: DownloadableViewController, Colore
         }
         switch item?.type {
         case .externalTool, .page, .file:
+            navigationItem.rightBarButtonItems = []
             navigationItem.rightBarButtonItems?.append(downloadBarButtonItem)
             downloadButton.isHidden = false
         default:
