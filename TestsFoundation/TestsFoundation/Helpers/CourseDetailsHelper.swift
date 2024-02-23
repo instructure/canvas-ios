@@ -44,7 +44,6 @@ public class CourseDetailsHelper: BaseHelper {
 
 public class CourseDetailsHelperParent: BaseHelper {
     public static var totalGradeLabel: XCUIElement { app.find(id: "CourseTotalGrade") }
-    public static var pandaSpaceImage: XCUIElement { app.find(id: "PandaSpace", type: .image) }
 
     public static func assignmentCell(assignment: DSAssignment) -> XCUIElement {
         return app.find(id: "GradeListCell.\(assignment.id)")
