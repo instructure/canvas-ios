@@ -138,7 +138,7 @@ public class ModuleListViewController: ScreenViewTrackableViewController, Colore
         else { return }
 
         let button = UIBarButtonItem(image: .moreLine)
-        button.menu = .modulePublishOnNavBar()
+        button.menu = .modulePublishOnNavBar(host: self)
         navigationItem.setRightBarButton(button, animated: true)
     }
 
@@ -203,7 +203,7 @@ extension ModuleListViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let module = modules[section] else { return nil }
         let header = tableView.dequeueHeaderFooter(ModuleSectionHeaderView.self)
-        header.update(module, section: section, isExpanded: isSectionExpanded(section)) { [weak self] in
+        header.update(module, section: section, isExpanded: isSectionExpanded(section), host: self) { [weak self] in
             self?.toggleSection(section)
         }
         header.onLockTap = { [weak self] in

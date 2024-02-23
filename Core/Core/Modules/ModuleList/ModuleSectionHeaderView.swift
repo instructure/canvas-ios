@@ -27,7 +27,6 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         didSet {
             publishMenuButton.isHidden = !ModulePublishInteractor(app: AppEnvironment.shared.app).isPublishActionAvailable
             publishMenuButton.showsMenuAsPrimaryAction = true
-            publishMenuButton.menu = .modulePublishOnModule()
         }
     }
 
@@ -45,7 +44,7 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         loadFromXib().backgroundColor = .backgroundLight
     }
 
-    func update(_ module: Module, section: Int, isExpanded: Bool, onTap: @escaping () -> Void) {
+    func update(_ module: Module, section: Int, isExpanded: Bool, host: UIViewController, onTap: @escaping () -> Void) {
         self.isExpanded = isExpanded
         self.onTap = onTap
         titleLabel.text = module.name
@@ -64,6 +63,10 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         ].joined(separator: ", ")
         accessibilityTraits.insert(.button)
         accessibilityIdentifier = "ModuleList.\(section)"
+
+        if publishMenuButton.menu == nil {
+            publishMenuButton.menu = .modulePublishOnModule(host: host)
+        }
     }
 
     @IBAction func handleTap() {

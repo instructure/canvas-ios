@@ -99,7 +99,8 @@ class ModuleItemCell: UITableViewCell {
             publishMenuButton.isHidden = true
         default:
             publishMenuButton.isHidden = !isPublishAvailable
-            publishMenuButton.menu = .modulePublishOnItem(action: item.published == true ? .unpublish : .publish)
+            publishMenuButton.menu = .modulePublishOnItem(action: item.published == true ? .unpublish : .publish,
+                                                          host: viewController ?? UIViewController())
         }
     }
 }

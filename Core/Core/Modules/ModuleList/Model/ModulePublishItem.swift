@@ -25,6 +25,7 @@ struct ModulePublishItem {
     }
 
     let title: String
+    let confirmMessage: String
     let action: Action
     var icon: UIImage {
         switch action {
