@@ -56,7 +56,6 @@ struct MediumLargeGradesView: View {
                 Spacer()
             }.padding(.top, 4) // This is to vertically center the first header with the logo
         }
-        .compatibleContainerBackground()
         .compatibleContentMargins()
     }
 
@@ -74,8 +73,10 @@ struct MediumLargeGradesView: View {
 struct MediumLargeGradesViewPreviews: PreviewProvider {
     static var previews: some View {
         MediumLargeGradesView(model: .make(), lineCount: 2)
+            .compatibleContainerBackground()
             .previewContext(WidgetPreviewContext(family: .systemMedium))
         MediumLargeGradesView(model: .make(), lineCount: 5)
+            .compatibleContainerBackground()
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }

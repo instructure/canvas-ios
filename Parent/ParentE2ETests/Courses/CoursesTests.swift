@@ -65,7 +65,7 @@ class CoursesTests: E2ETestCase {
             .waitUntil(.visible)
         let backButton = DetailsHelper.backButton.waitUntil(.visible)
         XCTAssertTrue(totalGradeLabel.isVisible)
-        XCTAssertTrue(totalGradeLabel.hasLabel(label: "100%"))
+        XCTAssertTrue(totalGradeLabel.hasLabel(label: "Total grade is 100%"))
         XCTAssertTrue(assignmentCell1.isVisible)
         XCTAssertTrue(assignmentCell2.isVisible)
         XCTAssertTrue(letterGradeLabelOfAssignment1.isVisible)
@@ -74,9 +74,7 @@ class CoursesTests: E2ETestCase {
         // MARK: Details of Course 2
         backButton.hit()
         courseCard2.hit()
-        let pandaSpaceImage = DetailsHelper.pandaSpaceImage.waitUntil(.visible)
         XCTAssertTrue(totalGradeLabel.waitUntil(.visible).isVisible)
-        XCTAssertTrue(totalGradeLabel.hasLabel(label: "N/A"))
-        XCTAssertTrue(pandaSpaceImage.isVisible)
+        XCTAssertTrue(totalGradeLabel.hasLabel(label: "Total grade is N/A"))
     }
 }

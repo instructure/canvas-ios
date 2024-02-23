@@ -29,7 +29,22 @@ class ComposeMessageViewModelTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         mockInteractor = ComposeMessageInteractorMock(context: databaseClient)
-        testee = ComposeMessageViewModel(router: router, interactor: mockInteractor)
+        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .new), interactor: mockInteractor)
+    }
+
+    private func setupForReply() {
+        let conversation: Conversation = .make()
+        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .reply(conversation: conversation, message: nil)), interactor: mockInteractor)
+    }
+
+    private func setupForReplyAll() {
+        let conversation: Conversation = .make()
+        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .replyAll(conversation: conversation, message: nil)), interactor: mockInteractor)
+    }
+
+    private func setupForForward() {
+        let conversation: Conversation = .make()
+        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .forward(conversation: conversation, message: nil)), interactor: mockInteractor)
     }
 
     func testValidationForSubject() {
@@ -67,12 +82,39 @@ class ComposeMessageViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.sendButtonActive, false)
     }
 
-    func testSuccesfulSend() {
+    func testSuccesfulNewSend() {
         testee.selectedContext = RecipientContext(course: Course.make())
         let sourceView = UIViewController()
-        XCTAssertEqual(mockInteractor.isMessageSent, false)
+        XCTAssertEqual(mockInteractor.isConversationAddSent, false)
         testee.sendButtonDidTap.accept(WeakViewController(sourceView))
-        XCTAssertEqual(mockInteractor.isMessageSent, true)
+        XCTAssertEqual(mockInteractor.isConversationAddSent, true)
+    }
+
+    func testSuccesfulReplySend() {
+        setupForReply()
+        testee.selectedContext = RecipientContext(course: Course.make())
+        let sourceView = UIViewController()
+        XCTAssertEqual(mockInteractor.isMessageAddSent, false)
+        testee.sendButtonDidTap.accept(WeakViewController(sourceView))
+        XCTAssertEqual(mockInteractor.isMessageAddSent, true)
+    }
+
+    func testSuccesfulReplyAllSend() {
+        setupForReplyAll()
+        testee.selectedContext = RecipientContext(course: Course.make())
+        let sourceView = UIViewController()
+        XCTAssertEqual(mockInteractor.isMessageAddSent, false)
+        testee.sendButtonDidTap.accept(WeakViewController(sourceView))
+        XCTAssertEqual(mockInteractor.isMessageAddSent, true)
+    }
+
+    func testSuccesfulForwardSend() {
+        setupForForward()
+        testee.selectedContext = RecipientContext(course: Course.make())
+        let sourceView = UIViewController()
+        XCTAssertEqual(mockInteractor.isMessageAddSent, false)
+        testee.sendButtonDidTap.accept(WeakViewController(sourceView))
+        XCTAssertEqual(mockInteractor.isMessageAddSent, true)
     }
 
     func testFailedSend() {
@@ -114,12 +156,94 @@ class ComposeMessageViewModelTests: CoreTestCase {
         XCTAssertNotNil(router.presented)
     }
 
-    func testReplyInit() {
-        testee = ComposeMessageViewModel(router: router, conversation: .make(), author: "2", interactor: mockInteractor)
+    func testReplyMessageValues() {
+        let message1: ConversationMessage = .make(from: .make(id: "1", created_at: Date.now))
+        let message2: ConversationMessage = .make(from: .make(id: "2", created_at: Date.now + 2))
+        let message3: ConversationMessage = .make(from: .make(id: "3", created_at: Date.now + 3))
+        let conversation: Conversation = .make()
+        conversation.messages = [message1, message2, message3]
+        conversation.subject = "Test subject"
+        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .reply(conversation: conversation, message: message2)), interactor: mockInteractor)
 
-        XCTAssertEqual(testee.selectedContext?.context.id, "1")
-        XCTAssertEqual(testee.recipients.count, 1)
-        XCTAssertTrue(testee.isReply)
+        XCTAssertEqual(testee.subject, "Test subject")
+        XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
+        XCTAssertEqual(testee.recipients.first?.ids.first, message2.authorID)
+        XCTAssertEqual(testee.includedMessages, [message1, message2])
+    }
+
+    func testReplyConversationValues() {
+        let message1: ConversationMessage = .make(from: .make(id: "1", created_at: Date.now))
+        let message2: ConversationMessage = .make(from: .make(id: "2", created_at: Date.now + 2))
+        let message3: ConversationMessage = .make(from: .make(id: "3", created_at: Date.now + 3))
+        let conversation: Conversation = .make()
+        conversation.messages = [message1, message2, message3]
+        conversation.subject = "Test subject"
+        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .reply(conversation: conversation, message: nil)), interactor: mockInteractor)
+
+        XCTAssertEqual(testee.subject, "Test subject")
+        XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
+        XCTAssertEqual(testee.recipients.first?.ids.first, message2.authorID)
+        XCTAssertEqual(testee.includedMessages, [message1, message2, message3])
+    }
+
+    func testReplyAllMessageValues() {
+        let message1: ConversationMessage = .make(from: .make(id: "1", created_at: Date.now))
+        let message2: ConversationMessage = .make(from: .make(id: "2", created_at: Date.now + 2))
+        let message3: ConversationMessage = .make(from: .make(id: "3", created_at: Date.now + 3))
+        let conversation: Conversation = .make()
+        conversation.messages = [message1, message2, message3]
+        conversation.subject = "Test subject"
+        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .replyAll(conversation: conversation, message: nil)), interactor: mockInteractor)
+
+        XCTAssertEqual(testee.subject, "Test subject")
+        XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
+        XCTAssertEqual(testee.recipients.flatMap { $0.ids }, conversation.participants.map { $0.id })
+        XCTAssertEqual(testee.includedMessages, [message1, message2, message3])
+    }
+
+    func testReplyAllConversationValues() {
+        let message1: ConversationMessage = .make(from: .make(id: "1", created_at: Date.now))
+        let message2: ConversationMessage = .make(from: .make(id: "2", created_at: Date.now + 2))
+        let message3: ConversationMessage = .make(from: .make(id: "3", created_at: Date.now + 3))
+        let conversation: Conversation = .make()
+        conversation.messages = [message1, message2, message3]
+        conversation.subject = "Test subject"
+        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .replyAll(conversation: conversation, message: nil)), interactor: mockInteractor)
+
+        XCTAssertEqual(testee.subject, "Test subject")
+        XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
+        XCTAssertEqual(testee.recipients.flatMap { $0.ids }, conversation.participants.map { $0.id })
+        XCTAssertEqual(testee.includedMessages, [message1, message2, message3])
+    }
+
+    func testForwardMessageValues() {
+        let message1: ConversationMessage = .make(from: .make(id: "1", created_at: Date.now))
+        let message2: ConversationMessage = .make(from: .make(id: "2", created_at: Date.now + 2))
+        let message3: ConversationMessage = .make(from: .make(id: "3", created_at: Date.now + 3))
+        let conversation: Conversation = .make()
+        conversation.messages = [message1, message2, message3]
+        conversation.subject = "Test subject"
+        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .forward(conversation: conversation, message: message2)), interactor: mockInteractor)
+
+        XCTAssertEqual(testee.subject, "Fw: Test subject")
+        XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
+        XCTAssertEqual(testee.recipients.count, 0)
+        XCTAssertEqual(testee.includedMessages, [message2])
+    }
+
+    func testForwardConversationValues() {
+        let message1: ConversationMessage = .make(from: .make(id: "1", created_at: Date.now))
+        let message2: ConversationMessage = .make(from: .make(id: "2", created_at: Date.now + 2))
+        let message3: ConversationMessage = .make(from: .make(id: "3", created_at: Date.now + 3))
+        let conversation: Conversation = .make()
+        conversation.messages = [message1, message2, message3]
+        conversation.subject = "Test subject"
+        testee = ComposeMessageViewModel(router: router, options: .init(fromType: .forward(conversation: conversation, message: nil)), interactor: mockInteractor)
+
+        XCTAssertEqual(testee.subject, "Fw: Test subject")
+        XCTAssertEqual(testee.selectedContext?.name, conversation.contextName)
+        XCTAssertEqual(testee.recipients.count, 0)
+        XCTAssertEqual(testee.includedMessages, [message1, message2, message3])
     }
 }
 
@@ -128,31 +252,37 @@ private class ComposeMessageInteractorMock: ComposeMessageInteractor {
     var courses: CurrentValueSubject<[Core.InboxCourse], Never>
 
     var isSuccessfulMockFuture = true
-    var isMessageSent = false
+    var isMessageAddSent = false
+    var isConversationAddSent = false
 
     init(context: NSManagedObjectContext) {
         self.state = .init(.data)
         self.courses = .init(.make(count: 5, in: context))
     }
 
-    func send(parameters: MessageParameters) -> Future<Void, Error> {
-        isMessageSent = true
+    func createConversation(parameters: MessageParameters) -> Future<URLResponse?, Error> {
+        isConversationAddSent = true
         return mockFuture
     }
 
-    private var mockFuture: Future<Void, Error> {
+    func addConversationMessage(parameters: MessageParameters) -> Future<URLResponse?, Error> {
+        isMessageAddSent = true
+        return mockFuture
+    }
+
+    private var mockFuture: Future<URLResponse?, Error> {
         isSuccessfulMockFuture ? mockSuccessFuture : mockFailedFuture
     }
 
-    private var mockFailedFuture: Future<Void, Error> {
-        Future<Void, Error> { promise in
+    private var mockFailedFuture: Future<URLResponse?, Error> {
+        Future<URLResponse?, Error> { promise in
             promise(.failure("Fail"))
         }
     }
 
-    private var mockSuccessFuture: Future<Void, Error> {
-        Future<Void, Error> { promise in
-            promise(.success(()))
+    private var mockSuccessFuture: Future<URLResponse?, Error> {
+        Future<URLResponse?, Error> { promise in
+            promise(.success(nil))
         }
     }
 }

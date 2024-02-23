@@ -505,8 +505,8 @@
         }
       }
     },
-    "%@ Before" : {
-      "comment" : "10 Minutes Before"
+    "%@ before" : {
+      "comment" : "10 minutes before"
     },
     "%@ is coming soon!" : {
       "comment" : "Message for unsupported tab coming soon",
@@ -14365,6 +14365,9 @@
         }
       }
     },
+    "Activate to delete" : {
+
+    },
     "Add a comment or reply to previous comments" : {
       "localizations" : {
         "ar" : {
@@ -17868,6 +17871,9 @@
           }
         }
       }
+    },
+    "An unknown error occurred." : {
+
     },
     "Announcement" : {
       "comment" : "Title of the new announcement view",
@@ -42129,6 +42135,9 @@
           }
         }
       }
+    },
+    "Due Date Reminder" : {
+
     },
     "due on %1$@ at %2$@" : {
       "comment" : "Assignment is due on a date at a time",
@@ -84466,6 +84475,9 @@
         }
       }
     },
+    "Please choose a future time for your reminder!" : {
+
+    },
     "Post" : {
       "comment" : "Button to post new discussion topic",
       "extractionState" : "manual",
@@ -91224,6 +91236,9 @@
       }
     },
     "Reminder" : {
+
+    },
+    "Reminder Creation Failed" : {
 
     },
     "Reminder Deleted" : {
@@ -115909,6 +115924,9 @@
         }
       }
     },
+    "This assignment is due in %@" : {
+      "comment" : "Due in 5 minutes"
+    },
     "This assignment is locked until %@" : {
       "localizations" : {
         "ar" : {
@@ -132423,6 +132441,9 @@
           }
         }
       }
+    },
+    "You have already set a reminder for this time." : {
+
     },
     "You have an unsaved reply. Would you like to discard that reply?" : {
       "extractionState" : "manual",

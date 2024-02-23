@@ -41,10 +41,8 @@ class AssignmentReminderDatePickerViewModel: ObservableObject {
         .init(weekOfMonth: 1),
     ]
     private let selectedTimeInterval: any Subject<DateComponents, Never>
-    private let router: Router
 
-    init(router: Router, selectedTimeInterval: some Subject<DateComponents, Never>) {
-        self.router = router
+    init(selectedTimeInterval: some Subject<DateComponents, Never>) {
         self.selectedTimeInterval = selectedTimeInterval
         buttonTitles = {
             let formatter = AssignmentReminderTimeFormatter()
@@ -87,6 +85,5 @@ class AssignmentReminderDatePickerViewModel: ObservableObject {
         }()
 
         selectedTimeInterval.send(selectedInterval)
-        router.dismiss(host)
     }
 }

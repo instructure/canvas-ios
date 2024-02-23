@@ -18,13 +18,11 @@ sync-ci: ## Dependency installation
 gen-ci: ## CI specific xproj file generation
 	@echo 🟡 Running xcodegen
 	@cd Core; xcodegen
-	@cd TestsFoundation; xcodegen
 	@cd Student; xcodegen --spec "project-ci.yml"
 
 gen: ## xproj file generation
 	@echo 🟡 Running xcodegen
 	@cd Core; xcodegen
-	@cd TestsFoundation; xcodegen
 	@cd Student; xcodegen
 
 unexport INFOPLIST_FILE

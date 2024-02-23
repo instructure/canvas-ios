@@ -24,22 +24,25 @@ struct GradesWidgetView: View {
     private var firstGrade: GradeItem? { model.assignmentGrades.first ?? model.courseGrades.first }
     @Environment(\.widgetFamily)
     private var family
-    private var lineCountByFamily: [WidgetFamily: Int] = {
-        var values: [WidgetFamily: Int] = [
-            .systemMedium: 2,
-            .systemLarge: 5,
-            .systemExtraLarge: 5,
-        ]
-        return values
-    }()
+    private let lineCountByFamily: [WidgetFamily: Int] = [
+        .systemMedium: 2,
+        .systemLarge: 5,
+        .systemExtraLarge: 5,
+    ]
 
     var body: some View {
-        if let firstGrade = firstGrade {
+        buildView()
+            .compatibleContainerBackground(Color.backgroundLightest)
+    }
+
+    @ViewBuilder
+    private func buildView() -> some View {
+        if let firstGrade {
             switch family {
             case .systemSmall:
                 SmallGradeView(gradeItem: firstGrade)
             default:
-                MediumLargeGradesView(model: model, lineCount: lineCountByFamily[family]!)
+                MediumLargeGradesView(model: model, lineCount: lineCountByFamily[family] ?? 1)
             }
         } else if model.isLoggedIn {
             EmptyView(title: Text("Grades"), message: Text("No Grades To Display"))
