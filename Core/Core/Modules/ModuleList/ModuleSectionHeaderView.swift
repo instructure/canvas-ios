@@ -63,6 +63,7 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         ].joined(separator: ", ")
         accessibilityTraits.insert(.button)
         accessibilityIdentifier = "ModuleList.\(section)"
+        accessibilityCustomActions = publishMenuButton.isHidden ? [] : .modulePublishActionsOnModule(host: host)
 
         if publishMenuButton.menu == nil {
             publishMenuButton.menu = .modulePublishOnModule(host: host)

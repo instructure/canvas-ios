@@ -148,6 +148,9 @@
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TY1-wH-TOK">
                                                             <rect key="frame" x="317" y="52" width="24" height="24"/>
+                                                            <accessibility key="accessibilityConfiguration">
+                                                                <bool key="isElement" value="NO"/>
+                                                            </accessibility>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="24" id="c21-iO-u6y"/>
                                                                 <constraint firstAttribute="width" constant="24" id="fHH-IK-aP5"/>
@@ -274,10 +277,10 @@
     </scenes>
     <designables>
         <designable name="ECd-PX-fxS">
-            <size key="intrinsicContentSize" width="250" height="19.5"/>
+            <size key="intrinsicContentSize" width="263" height="19.5"/>
         </designable>
         <designable name="GQS-7c-kQa">
-            <size key="intrinsicContentSize" width="108" height="24"/>
+            <size key="intrinsicContentSize" width="111.5" height="24"/>
         </designable>
         <designable name="SK2-Ab-F0Z">
             <size key="intrinsicContentSize" width="156.5" height="17"/>
@@ -289,7 +292,7 @@
             <size key="intrinsicContentSize" width="157" height="169"/>
         </designable>
         <designable name="oQS-d3-6zu">
-            <size key="intrinsicContentSize" width="108" height="19.5"/>
+            <size key="intrinsicContentSize" width="117" height="19.5"/>
         </designable>
     </designables>
     <resources>

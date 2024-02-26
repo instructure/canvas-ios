@@ -31,6 +31,8 @@ class ModulePublishMenuTests: XCTestCase {
         router = TestRouter()
     }
 
+    // MARK: - Nav Bar Actions
+
     func testPublishAllModulesAndItems() {
         let testee = UIMenu.modulePublishOnNavBar(host: hostView, router: router)
         let publishMenu = testee.children[0] as! UIMenu
@@ -40,18 +42,9 @@ class ModulePublishMenuTests: XCTestCase {
 
         XCTAssertEqual(publishAll.image, .completeLine)
         XCTAssertEqual(publishAll.title, "Publish All Modules And Items")
-        let alert = router.lastViewController as! UIAlertController
-        let routerCall = router.viewControllerCalls.last!
-        XCTAssertEqual(routerCall.0, alert)
-        XCTAssertEqual(routerCall.1, hostView)
-        XCTAssertEqual(routerCall.2, .modal())
-        XCTAssertEqual(alert.title, "Publish?")
-        XCTAssertEqual(alert.message, "This will make all modules and items visible to students.")
-        XCTAssertEqual(alert.actions.count, 2)
-        XCTAssertEqual(alert.actions[0].title, "Publish")
-        XCTAssertEqual(alert.actions[0].style, .default)
-        XCTAssertEqual(alert.actions[1].title, "Cancel")
-        XCTAssertEqual(alert.actions[1].style, .cancel)
+        checkAlert(title: "Publish?",
+                   message: "This will make all modules and items visible to students.",
+                   defaultActionTitle: "Publish")
     }
 
     func testPublishModulesOnly() {
@@ -63,18 +56,9 @@ class ModulePublishMenuTests: XCTestCase {
 
         XCTAssertEqual(publishModules.image, .completeLine)
         XCTAssertEqual(publishModules.title, "Publish Modules Only")
-        let alert = router.lastViewController as! UIAlertController
-        let routerCall = router.viewControllerCalls.last!
-        XCTAssertEqual(routerCall.0, alert)
-        XCTAssertEqual(routerCall.1, hostView)
-        XCTAssertEqual(routerCall.2, .modal())
-        XCTAssertEqual(alert.title, "Publish?")
-        XCTAssertEqual(alert.message, "This will make only the modules visible to students.")
-        XCTAssertEqual(alert.actions.count, 2)
-        XCTAssertEqual(alert.actions[0].title, "Publish")
-        XCTAssertEqual(alert.actions[0].style, .default)
-        XCTAssertEqual(alert.actions[1].title, "Cancel")
-        XCTAssertEqual(alert.actions[1].style, .cancel)
+        checkAlert(title: "Publish?",
+                   message: "This will make only the modules visible to students.",
+                   defaultActionTitle: "Publish")
     }
 
     func testUnpublishAllModulesAndItems() {
@@ -86,19 +70,12 @@ class ModulePublishMenuTests: XCTestCase {
 
         XCTAssertEqual(unpublishAll.image, .noLine)
         XCTAssertEqual(unpublishAll.title, "Unpublish All Modules And Items")
-        let alert = router.lastViewController as! UIAlertController
-        let routerCall = router.viewControllerCalls.last!
-        XCTAssertEqual(routerCall.0, alert)
-        XCTAssertEqual(routerCall.1, hostView)
-        XCTAssertEqual(routerCall.2, .modal())
-        XCTAssertEqual(alert.title, "Unpublish?")
-        XCTAssertEqual(alert.message, "This will make all modules and items invisible to students.")
-        XCTAssertEqual(alert.actions.count, 2)
-        XCTAssertEqual(alert.actions[0].title, "Unpublish")
-        XCTAssertEqual(alert.actions[0].style, .default)
-        XCTAssertEqual(alert.actions[1].title, "Cancel")
-        XCTAssertEqual(alert.actions[1].style, .cancel)
+        checkAlert(title: "Unpublish?",
+                   message: "This will make all modules and items invisible to students.",
+                   defaultActionTitle: "Unpublish")
     }
+
+    // MARK: - Module Actions
 
     func testPublishModuleAndAllItems() {
         let testee = UIMenu.modulePublishOnModule(host: hostView, router: router)
@@ -109,18 +86,21 @@ class ModulePublishMenuTests: XCTestCase {
 
         XCTAssertEqual(publishModule.image, .completeLine)
         XCTAssertEqual(publishModule.title, "Publish Module And All Items")
-        let alert = router.lastViewController as! UIAlertController
-        let routerCall = router.viewControllerCalls.last!
-        XCTAssertEqual(routerCall.0, alert)
-        XCTAssertEqual(routerCall.1, hostView)
-        XCTAssertEqual(routerCall.2, .modal())
-        XCTAssertEqual(alert.title, "Publish?")
-        XCTAssertEqual(alert.message, "This will make the module and all items visible to students.")
-        XCTAssertEqual(alert.actions.count, 2)
-        XCTAssertEqual(alert.actions[0].title, "Publish")
-        XCTAssertEqual(alert.actions[0].style, .default)
-        XCTAssertEqual(alert.actions[1].title, "Cancel")
-        XCTAssertEqual(alert.actions[1].style, .cancel)
+        checkAlert(title: "Publish?",
+                   message: "This will make the module and all items visible to students.",
+                   defaultActionTitle: "Publish")
+    }
+
+    func testPublishModuleAndAllItemsA11yAction() {
+        let testee = [UIAccessibilityCustomAction].modulePublishActionsOnModule(host: hostView,
+                                                                                router: router)[0]
+
+        _ = testee.actionHandler!(testee)
+
+        XCTAssertEqual(testee.name, "Publish Module And All Items")
+        checkAlert(title: "Publish?",
+                   message: "This will make the module and all items visible to students.",
+                   defaultActionTitle: "Publish")
     }
 
     func testPublishModuleOnly() {
@@ -132,18 +112,21 @@ class ModulePublishMenuTests: XCTestCase {
 
         XCTAssertEqual(publishModule.image, .completeLine)
         XCTAssertEqual(publishModule.title, "Publish Module Only")
-        let alert = router.lastViewController as! UIAlertController
-        let routerCall = router.viewControllerCalls.last!
-        XCTAssertEqual(routerCall.0, alert)
-        XCTAssertEqual(routerCall.1, hostView)
-        XCTAssertEqual(routerCall.2, .modal())
-        XCTAssertEqual(alert.title, "Publish?")
-        XCTAssertEqual(alert.message, "This will make only the module visible to students.")
-        XCTAssertEqual(alert.actions.count, 2)
-        XCTAssertEqual(alert.actions[0].title, "Publish")
-        XCTAssertEqual(alert.actions[0].style, .default)
-        XCTAssertEqual(alert.actions[1].title, "Cancel")
-        XCTAssertEqual(alert.actions[1].style, .cancel)
+        checkAlert(title: "Publish?",
+                   message: "This will make only the module visible to students.",
+                   defaultActionTitle: "Publish")
+    }
+
+    func testPublishModuleOnlyA11yAction() {
+        let testee = [UIAccessibilityCustomAction].modulePublishActionsOnModule(host: hostView,
+                                                                                router: router)[1]
+
+        _ = testee.actionHandler!(testee)
+
+        XCTAssertEqual(testee.name, "Publish Module Only")
+        checkAlert(title: "Publish?",
+                   message: "This will make only the module visible to students.",
+                   defaultActionTitle: "Publish")
     }
 
     func testUnpublishModule() {
@@ -155,19 +138,24 @@ class ModulePublishMenuTests: XCTestCase {
 
         XCTAssertEqual(publishModule.image, .noLine)
         XCTAssertEqual(publishModule.title, "Unpublish Module And All Items")
-        let alert = router.lastViewController as! UIAlertController
-        let routerCall = router.viewControllerCalls.last!
-        XCTAssertEqual(routerCall.0, alert)
-        XCTAssertEqual(routerCall.1, hostView)
-        XCTAssertEqual(routerCall.2, .modal())
-        XCTAssertEqual(alert.title, "Unpublish?")
-        XCTAssertEqual(alert.message, "This will make the module and all items invisible to students.")
-        XCTAssertEqual(alert.actions.count, 2)
-        XCTAssertEqual(alert.actions[0].title, "Unpublish")
-        XCTAssertEqual(alert.actions[0].style, .default)
-        XCTAssertEqual(alert.actions[1].title, "Cancel")
-        XCTAssertEqual(alert.actions[1].style, .cancel)
+        checkAlert(title: "Unpublish?",
+                   message: "This will make the module and all items invisible to students.",
+                   defaultActionTitle: "Unpublish")
     }
+
+    func testUnpublishModuleA11yAction() {
+        let testee = [UIAccessibilityCustomAction].modulePublishActionsOnModule(host: hostView,
+                                                                                router: router)[2]
+
+        _ = testee.actionHandler!(testee)
+
+        XCTAssertEqual(testee.name, "Unpublish Module And All Items")
+        checkAlert(title: "Unpublish?",
+                   message: "This will make the module and all items invisible to students.",
+                   defaultActionTitle: "Unpublish")
+    }
+
+    // MARK: - Item Actions
 
     func testPublishItem() {
         let testee = UIMenu.modulePublishOnItem(action: .publish, host: hostView, router: router)
@@ -177,18 +165,22 @@ class ModulePublishMenuTests: XCTestCase {
 
         XCTAssertEqual(publishItem.image, .completeLine)
         XCTAssertEqual(publishItem.title, "Publish")
-        let alert = router.lastViewController as! UIAlertController
-        let routerCall = router.viewControllerCalls.last!
-        XCTAssertEqual(routerCall.0, alert)
-        XCTAssertEqual(routerCall.1, hostView)
-        XCTAssertEqual(routerCall.2, .modal())
-        XCTAssertEqual(alert.title, "Publish?")
-        XCTAssertEqual(alert.message, "This will make only this item visible to students.")
-        XCTAssertEqual(alert.actions.count, 2)
-        XCTAssertEqual(alert.actions[0].title, "Publish")
-        XCTAssertEqual(alert.actions[0].style, .default)
-        XCTAssertEqual(alert.actions[1].title, "Cancel")
-        XCTAssertEqual(alert.actions[1].style, .cancel)
+        checkAlert(title: "Publish?",
+                   message: "This will make only this item visible to students.",
+                   defaultActionTitle: "Publish")
+    }
+
+    func testPublishItemA11yAction() {
+        let testee = [UIAccessibilityCustomAction].modulePublishActionsOnItem(action: .publish,
+                                                                              host: hostView,
+                                                                              router: router)[0]
+
+        _ = testee.actionHandler!(testee)
+
+        XCTAssertEqual(testee.name, "Publish")
+        checkAlert(title: "Publish?",
+                   message: "This will make only this item visible to students.",
+                   defaultActionTitle: "Publish")
     }
 
     func testUnpublishItem() {
@@ -199,15 +191,38 @@ class ModulePublishMenuTests: XCTestCase {
 
         XCTAssertEqual(publishItem.image, .noLine)
         XCTAssertEqual(publishItem.title, "Unpublish")
+        checkAlert(title: "Unpublish?",
+                   message: "This will make only this item invisible to students.",
+                   defaultActionTitle: "Unpublish")
+    }
+
+    func testUnpublishItemA11yAction() {
+        let testee = [UIAccessibilityCustomAction].modulePublishActionsOnItem(action: .unpublish,
+                                                                              host: hostView,
+                                                                              router: router)[0]
+
+        _ = testee.actionHandler!(testee)
+
+        XCTAssertEqual(testee.name, "Unpublish")
+        checkAlert(title: "Unpublish?",
+                   message: "This will make only this item invisible to students.",
+                   defaultActionTitle: "Unpublish")
+    }
+
+    func checkAlert(
+        title: String,
+        message: String,
+        defaultActionTitle: String
+    ) {
         let alert = router.lastViewController as! UIAlertController
         let routerCall = router.viewControllerCalls.last!
         XCTAssertEqual(routerCall.0, alert)
         XCTAssertEqual(routerCall.1, hostView)
         XCTAssertEqual(routerCall.2, .modal())
-        XCTAssertEqual(alert.title, "Unpublish?")
-        XCTAssertEqual(alert.message, "This will make only this item invisible to students.")
+        XCTAssertEqual(alert.title, title)
+        XCTAssertEqual(alert.message, message)
         XCTAssertEqual(alert.actions.count, 2)
-        XCTAssertEqual(alert.actions[0].title, "Unpublish")
+        XCTAssertEqual(alert.actions[0].title, defaultActionTitle)
         XCTAssertEqual(alert.actions[0].style, .default)
         XCTAssertEqual(alert.actions[1].title, "Cancel")
         XCTAssertEqual(alert.actions[1].style, .cancel)

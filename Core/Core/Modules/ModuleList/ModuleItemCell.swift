@@ -97,10 +97,15 @@ class ModuleItemCell: UITableViewCell {
         switch item.type {
         case .file:
             publishMenuButton.isHidden = true
+            accessibilityCustomActions = []
         default:
+            let action: ModulePublishItem.Action = item.published == true ? .unpublish : .publish
+            let host = viewController ?? UIViewController()
             publishMenuButton.isHidden = !isPublishAvailable
-            publishMenuButton.menu = .modulePublishOnItem(action: item.published == true ? .unpublish : .publish,
-                                                          host: viewController ?? UIViewController())
+            publishMenuButton.menu = .modulePublishOnItem(action: action,
+                                                          host: host)
+            accessibilityCustomActions = .modulePublishActionsOnItem(action: action, host: host)
         }
+
     }
 }
