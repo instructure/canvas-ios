@@ -19,8 +19,8 @@
 import Foundation
 import UIKit
 
-public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
-    let env = AppEnvironment.shared
+public final class ModuleItemDetailsViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
+    private let env = AppEnvironment.shared
     var courseID: String!
     var moduleID: String!
     var itemID: String!
@@ -32,7 +32,7 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
     @IBOutlet weak var lockedTitleLabel: UILabel!
     @IBOutlet weak var spinnerView: CircleProgressView!
 
-    lazy var optionsButton = UIBarButtonItem(image: UIImage.moreLine, style: .plain, target: self, action: #selector(optionsButtonPressed))
+    private lazy var optionsButton = UIBarButtonItem(image: UIImage.moreLine, style: .plain, target: self, action: #selector(optionsButtonPressed))
 
     lazy var store = env.subscribe(GetModuleItem(courseID: courseID, moduleID: moduleID, itemID: itemID)) { [weak self] in
         self?.update()
@@ -47,8 +47,8 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
         self?.updateNavBar()
     }
 
-    var item: ModuleItem? { store.first }
-    var observations: [NSKeyValueObservation]?
+    private var item: ModuleItem? { store.first }
+    private var observations: [NSKeyValueObservation]?
     private var isMarkingModule = false
 
     public static func create(courseID: String, moduleID: String, itemID: String) -> Self {
@@ -59,7 +59,7 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
         return controller
     }
 
-    override public func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
         setupTitleViewInNavbar(title: NSLocalizedString("Module Item", bundle: .core, comment: ""))
@@ -74,7 +74,7 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
         spinnerView.isHidden = true
     }
 
-    func update() {
+    private func update() {
         guard store.requested, !store.pending, !isMarkingModule else { return }
         let itemViewController = self.itemViewController()
         let showLocked = env.app != .teacher && item?.visibleWhenLocked != true && item?.lockedForUser == true
@@ -101,7 +101,7 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
         updateNavBar()
     }
 
-    func updateNavBar() {
+    private func updateNavBar() {
         // When embedded view controllers adapt course color for their own spinner view,
         // we should enable this line below.
 //        spinnerView.color = course.first?.color
@@ -132,7 +132,7 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
         }
     }
 
-    func itemViewController() -> UIViewController? {
+    private func itemViewController() -> UIViewController? {
         guard let item = item else { return nil }
         switch item.type {
         case .externalURL(let url):
@@ -160,11 +160,11 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
         }
     }
 
-    @objc func retryButtonPressed() {
+    @objc private func retryButtonPressed() {
         store.refresh(force: true)
     }
 
-    @objc func optionsButtonPressed(_ sender: UIBarButtonItem) {
+    @objc private func optionsButtonPressed(_ sender: UIBarButtonItem) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(AlertAction(
             item?.completed == true
@@ -179,7 +179,7 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
         env.router.show(alert, from: self, options: .modal())
     }
 
-    func markAsDone() {
+    private func markAsDone() {
         spinnerView.isHidden = false
         let request = PutMarkModuleItemDone(courseID: courseID, moduleID: moduleID, moduleItemID: itemID, done: item?.completed == false)
         env.api.makeRequest(request) { [weak self] _, _, error in performUIUpdate {
@@ -193,7 +193,7 @@ public class ModuleItemDetailsViewController: UIViewController, ColoredNavViewPr
         } }
     }
 
-    func markAsViewed() {
+    private func markAsViewed() {
         let request = PostMarkModuleItemRead(courseID: courseID, moduleID: moduleID, moduleItemID: itemID)
         env.api.makeRequest(request) { [weak self] _, _, error in performUIUpdate {
             if error == nil {
