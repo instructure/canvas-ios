@@ -154,4 +154,45 @@ class QuizzesTests: E2ETestCase {
         XCTAssertTrue(detailsTakeQuizButton.isVisible)
         XCTAssertTrue(detailsTakeQuizButton.hasLabel(label: "View Results"))
     }
+
+    func testNewQuiz() {
+        // MARK: Seed the usual stuff with a New Quiz
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+        let featureFlagResponse = seeder.setFeatureFlag(featureFlag: .newQuiz, state: .on)
+        XCTAssertEqual(featureFlagResponse.state, DSFeatureFlagState.on.rawValue)
+
+        let teacher = seeder.createUser()
+        seeder.enrollTeacher(teacher, in: course)
+
+        let quiz = NewQuizzesHelper.createNewQuiz(course: course)
+        NewQuizzesHelper.createTrueFalseNewQuizItem(course: course, quiz: quiz)
+
+        // MARK: Get the user logged in
+        logInDSUser(student)
+        let profileButton = DashboardHelper.profileButton.waitUntil(.visible)
+        XCTAssertTrue(profileButton.isVisible)
+
+        // MARK: Navigate to quizzes, open quiz and tap "Launch External Tool" button
+        Helper.navigateToQuizzes(course: course)
+        let quizCell = Helper.cell(index: 0).waitUntil(.visible)
+        let titleLabel = Helper.titleLabel(cell: quizCell).waitUntil(.visible)
+        XCTAssertTrue(quizCell.isVisible)
+        XCTAssertTrue(titleLabel.hasLabel(label: quiz.title))
+
+        quizCell.hit()
+        let launchExternalToolButton = AssignmentsHelper.Details.submitAssignmentButton.waitUntil(.visible)
+        XCTAssertTrue(launchExternalToolButton.isVisible)
+        XCTAssertTrue(launchExternalToolButton.hasLabel(label: "Launch External Tool"))
+
+        // MARK: Check if the external tool gets launched
+        launchExternalToolButton.hit()
+        let url = app.find(id: "URL", type: .button).waitUntil(.visible)
+        url.waitUntil(.value(expected: "mobileqa.quiz-lti-iad-prod.instructure.com", strict: false))
+        let externalTitleLabel = app.find(label: quiz.title, type: .staticText).waitUntil(.visible)
+        XCTAssertTrue(url.isVisible)
+        XCTAssertTrue(url.hasValue(value: "mobileqa.quiz-lti-iad-prod.instructure.com", strict: false))
+        XCTAssertTrue(externalTitleLabel.isVisible)
+    }
 }

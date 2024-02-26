@@ -32,9 +32,9 @@ public class NewQuizzesHelper: BaseHelper {
         let quizItemBody = CreateDSNewQuizItemRequest.RequestedDSNewQuizItem(
             entry: .init(
                 title: title, item_body: question, interaction_type_slug: .trueFalse,
-                interaction_data: .init(true_choice: "RIGHT!", false_choice: "WRONG!")),
-            scoring_data: .init(value: true),
-            scoring_algorithm: .trueFalse)
+                interaction_data: .init(true_choice: "RIGHT!", false_choice: "WRONG!"),
+                scoring_data: .init(value: true),
+                scoring_algorithm: .trueFalse))
         return seeder.createNewQuizItem(courseId: course.id, quizId: quiz.id, quizItemBody: quizItemBody)
     }
 
