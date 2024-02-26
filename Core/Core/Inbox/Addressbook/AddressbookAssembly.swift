@@ -45,6 +45,7 @@ public enum AddressBookAssembly {
     public static func makeAddressbookRoleViewController(
         env: AppEnvironment = .shared,
         recipientContext: RecipientContext,
+        teacherOnly: Bool,
         recipientDidSelect: PassthroughRelay<Recipient>,
         selectedRecipients: CurrentValueSubject<[Recipient], Never>
     ) -> UIViewController {
@@ -53,6 +54,7 @@ public enum AddressBookAssembly {
             env: env,
             router: env.router,
             recipientContext: recipientContext,
+            teacherOnly: teacherOnly,
             interactor: interactor,
             recipientDidSelect: recipientDidSelect,
             selectedRecipients: selectedRecipients

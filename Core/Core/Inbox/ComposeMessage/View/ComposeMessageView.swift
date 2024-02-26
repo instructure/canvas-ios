@@ -114,7 +114,7 @@ public struct ComposeMessageView: View {
         VStack(spacing: 0) {
             courseView
             Divider()
-            if model.selectedContext != nil {
+            if model.selectedContext != nil || model.alwaysShowRecipients {
                 toView
                 Divider()
             }

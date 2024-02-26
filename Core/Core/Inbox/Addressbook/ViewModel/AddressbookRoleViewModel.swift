@@ -29,7 +29,7 @@ class AddressbookRoleViewModel: ObservableObject {
     @Published public private(set) var roleRecipients: [String: [Recipient]] = [:]
 
     public var isRolesViewVisible: Bool {
-        searchText.value.isEmpty && !roles.isEmpty
+        searchText.value.isEmpty && !roles.isEmpty && !teachersOnly
     }
 
     public var isAllRecipientButtonVisible: Bool {
@@ -68,11 +68,13 @@ class AddressbookRoleViewModel: ObservableObject {
         }
         return isNotStudent
     }
+    private let teachersOnly: Bool
 
     public init(
         env: AppEnvironment,
         router: Router,
         recipientContext: RecipientContext,
+        teacherOnly: Bool = false,
         interactor: AddressbookInteractor,
         recipientDidSelect: PassthroughRelay<Recipient>,
         selectedRecipients: CurrentValueSubject<[Recipient], Never>
@@ -81,6 +83,7 @@ class AddressbookRoleViewModel: ObservableObject {
         self.recipientContext = recipientContext
         self.router = router
         self.env = env
+        self.teachersOnly = teacherOnly
 
         setupOutputBindings(selectedRecipients: selectedRecipients)
         setupInputBindings(recipientDidSelect: recipientDidSelect, selectedRecipients: selectedRecipients)

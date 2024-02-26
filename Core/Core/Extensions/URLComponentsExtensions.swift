@@ -146,6 +146,13 @@ public extension URLComponents {
         return host != sessionHost
     }
 
+    static func parse(_ url: String, queryItems: [URLQueryItem]) -> URLComponents {
+        var components = parse(url)
+        components.queryItems = queryItems
+
+        return components
+    }
+
     func queryValue(for queryName: String) -> String? {
         queryItems?.first(where: { $0.name == queryName })?.value
     }

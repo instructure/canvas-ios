@@ -230,13 +230,21 @@ class AssignmentDetailsViewController: UIViewController, CoreWebViewLinkDelegate
             name,
             assignment.htmlURL?.absoluteString ?? ""
         )
-        let compose = ComposeViewController.create(
-            context: .course(courseID),
-            observeeID: studentID,
-            recipients: teachers.all,
-            subject: subject,
-            hiddenMessage: hiddenMessage
+
+        let composeMessageOptions = ComposeMessageOptions(
+            disabledFields: .init(contextDisabled: true),
+            fieldsContents: .init(
+                selectedContext: .init(name: title ?? "", context: .course(courseID)),
+                selectedRecipients: teachers.all.map { Recipient(searchRecipient: $0) },
+                subjectText: subject
+            ),
+            extras: .init(hiddenMessage: hiddenMessage, teacherOnly: true)
         )
-        env.router.show(compose, from: self, options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/conversations/compose")
+
+        router.route(
+            to: URLComponents.parse("/conversations/compose", queryItems: composeMessageOptions.queryItems),
+            from: self,
+            options: .modal(embedInNav: true)
+        )
     }
 }

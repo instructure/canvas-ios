@@ -40,6 +40,8 @@ class ComposeMessageViewModel: ObservableObject {
 
     }
 
+    private(set) var alwaysShowRecipients: Bool = false
+
     // MARK: - Inputs
     public let sendButtonDidTap = PassthroughRelay<WeakViewController>()
     public let cancelButtonDidTap = PassthroughRelay<WeakViewController>()
@@ -67,6 +69,9 @@ class ComposeMessageViewModel: ObservableObject {
     private lazy var files = uploadManager.subscribe(batchID: batchId) { [weak self] in
         self?.update()
     }
+    private var hiddenMessage: String = ""
+    private var autoTeacherSelect: Bool = false
+    private var teacherOnly: Bool = false
 
     public init(router: Router, options: ComposeMessageOptions, interactor: ComposeMessageInteractor, scheduler: AnySchedulerOf<DispatchQueue> = .main) {
         self.interactor = interactor
@@ -94,6 +99,16 @@ class ComposeMessageViewModel: ObservableObject {
         self.selectedRecipients.value = fieldContents.selectedRecipients
         self.subject = fieldContents.subjectText
         self.bodyText = fieldContents.bodyText
+
+        let extras = options.extras
+        self.hiddenMessage = extras.hiddenMessage
+        self.autoTeacherSelect = extras.autoTeacherSelect
+        self.alwaysShowRecipients = extras.alwaysShowRecipients
+        self.teacherOnly = extras.teacherOnly
+
+        if autoTeacherSelect {
+            selectedRecipients.send([.init(ids: [], name: String(localized: "Teachers"), avatarURL: nil)])
+        }
     }
 
     private func setIncludedMessages(messageType: ComposeMessageOptions.MessageType) {
@@ -140,6 +155,10 @@ class ComposeMessageViewModel: ObservableObject {
         self.selectedContext = selectedContext
         selectedRecipients.value.removeAll()
 
+        if let context = selectedContext?.context, autoTeacherSelect {
+            selectedRecipients.send([.init(id: "\(context.canvasContextID)_teachers", name: String(localized: "Teachers"), avatarURL: nil)])
+        }
+
         closeCourseSelectorDelayed(viewController)
     }
 
@@ -153,7 +172,11 @@ class ComposeMessageViewModel: ObservableObject {
 
     public func addRecipientButtonDidTap(viewController: WeakViewController) {
         guard let context = selectedContext else { return }
-        let addressbook = AddressBookAssembly.makeAddressbookRoleViewController(recipientContext: context, recipientDidSelect: recipientDidSelect, selectedRecipients: selectedRecipients)
+        let addressbook = AddressBookAssembly.makeAddressbookRoleViewController(
+            recipientContext: context,
+            teacherOnly: teacherOnly,
+            recipientDidSelect: recipientDidSelect,
+            selectedRecipients: selectedRecipients)
         router.show(addressbook, from: viewController, options: .modal(.automatic, isDismissable: false, embedInNav: true, addDoneButton: false, animated: true))
     }
 
@@ -193,9 +216,14 @@ class ComposeMessageViewModel: ObservableObject {
         guard let context = selectedContext else { return nil }
         let recipientIDs = Array(Set(recipients.flatMap { $0.ids }))
 
+        var body = bodyText
+        if !hiddenMessage.isEmpty {
+            body = "\(bodyText)\n\(hiddenMessage)"
+        }
+
         return MessageParameters(
             subject: subject,
-            body: bodyText,
+            body: body,
             recipientIDs: recipientIDs,
             attachmentIDs: attachments.compactMap { $0.id },
             context: context.context,

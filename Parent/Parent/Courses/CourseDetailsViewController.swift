@@ -181,14 +181,24 @@ class CourseDetailsViewController: HorizontalMenuViewController {
             var template = NSLocalizedString("Regarding: %@, %@", comment: "Regarding <John Doe>, <Grades | Syllabus>")
             let subject = String.localizedStringWithFormat(template, name, tabTitle)
             template = NSLocalizedString("Regarding: %@, %@", comment: "Regarding <John Doe>, [link to grades or syllabus]")
-            let compose = ComposeViewController.create(
-                context: .course(courseID),
-                observeeID: studentID,
-                recipients: teachers.all,
-                subject: subject,
-                hiddenMessage: String.localizedStringWithFormat(template, name, associatedTabConversationLink())
+            let hiddenMessage = String.localizedStringWithFormat(template, name, associatedTabConversationLink())
+
+            let composeMessageOptions = ComposeMessageOptions(
+                disabledFields: .init(contextDisabled: true),
+                fieldsContents: .init(
+                    selectedContext: .init(name: title ?? "", context: .course(courseID)),
+                    selectedRecipients: teachers.all.map { Recipient(searchRecipient: $0) },
+                    subjectText: subject
+                ),
+                extras: .init(hiddenMessage: hiddenMessage, teacherOnly: true)
             )
-            env.router.show(compose, from: self, options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/conversations/compose")
+
+            router.route(
+                to: URLComponents.parse("/conversations/compose", queryItems: composeMessageOptions.queryItems),
+                from: self,
+                options: .modal(embedInNav: true)
+            )
+            
             replyButton?.isEnabled = true
         }
     }
