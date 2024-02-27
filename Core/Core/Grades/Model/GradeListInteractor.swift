@@ -22,7 +22,11 @@ import Foundation
 
 public protocol GradeListInteractor {
     var courseID: String { get }
-    func getGrades(arrangeBy: GradeArrangementOptions, ignoreCache: Bool) -> AnyPublisher<GradeListData, Error>
+    func getGrades(
+        arrangeBy: GradeArrangementOptions,
+        baseOnGradedAssignment: Bool,
+        ignoreCache: Bool
+    ) -> AnyPublisher<GradeListData, Error>
     func updateGradingPeriod(id: String?)
 }
 
@@ -82,7 +86,11 @@ public final class GradeListInteractorLive: GradeListInteractor {
         )
     }
 
-    public func getGrades(arrangeBy: GradeArrangementOptions, ignoreCache: Bool) -> AnyPublisher<GradeListData, Error> {
+    public func getGrades(
+        arrangeBy: GradeArrangementOptions,
+        baseOnGradedAssignment: Bool,
+        ignoreCache: Bool
+    ) -> AnyPublisher<GradeListData, Error> {
         Publishers.Zip3(
             colorListStore.getEntities(
                 ignoreCache: ignoreCache
@@ -108,6 +116,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
         .flatMap { [unowned self] in
             let course = $0.0.1
             let gradingPeriods = $0.0.2
+            let assignments = $0.1
             let enrollments = $0.2
             let courseEnrollment = course.enrollmentForGrades(userId: userID)
             let isGradingPeriodHidden = courseEnrollment?.multipleGradingPeriodsEnabled == false
@@ -115,25 +124,29 @@ public final class GradeListInteractorLive: GradeListInteractor {
             if !isInitialGradingPeriodSet {
                 isInitialGradingPeriodSet = true
                 updateGradingPeriod(id: courseEnrollment?.currentGradingPeriodID)
-                return getGrades(arrangeBy: arrangeBy, ignoreCache: true).eraseToAnyPublisher()
+                return getGrades(
+                    arrangeBy: arrangeBy,
+                    baseOnGradedAssignment: baseOnGradedAssignment,
+                    ignoreCache: true
+                ).eraseToAnyPublisher()
             }
 
             let assignmentSections: [GradeListData.AssignmentSections]
             switch arrangeBy {
             case .dueDate:
                 assignmentSections = arrangeAssignmentsByDueDate(
-                    assignments: $0.1
+                    assignments: assignments
                 )
             case .groupName:
                 assignmentSections = arrangeAssignmentsByGroupNames(
-                    assignments: $0.1
+                    assignments: assignments
                 )
             }
 
             return calculateTotalGrade(
                 course: course,
                 enrollments: enrollments,
-                gradingPeriods: gradingPeriods
+                baseOnGradedAssignments: baseOnGradedAssignment
             )
             .map { [unowned self] totalGradeText in
                 GradeListData(
@@ -270,7 +283,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
     private func calculateTotalGrade(
         course: Course,
         enrollments: [Enrollment],
-        gradingPeriods _: [GradingPeriod]
+        baseOnGradedAssignments: Bool
     ) -> AnyPublisher<String?, Never> {
         let courseEnrollment = course.enrollmentForGrades(userId: userID)
         let gradeEnrollment = enrollments.first {
@@ -281,8 +294,11 @@ public final class GradeListInteractorLive: GradeListInteractor {
         }
         let hideQuantitativeData = course.hideQuantitativeData == true
 
-        if course.hideFinalGrades == true {
-            return Just(String(localized: "N/A")).eraseToAnyPublisher()
+        // When these conditions are met we don't show any grade, instead we display a lock icon.
+        if courseEnrollment?.multipleGradingPeriodsEnabled == true,
+           courseEnrollment?.totalsForAllGradingPeriodsOption == false,
+           gradingPeriodID == nil {
+            return Just(nil).eraseToAnyPublisher()
         } else if hideQuantitativeData {
             if let gradingPeriodID = gradingPeriodID {
                 if let letterGrade = gradeEnrollment?.currentGrade(gradingPeriodID: gradingPeriodID) ?? gradeEnrollment?.finalGrade(gradingPeriodID: gradingPeriodID) {
@@ -311,10 +327,18 @@ public final class GradeListInteractorLive: GradeListInteractor {
             var letterGrade: String?
             var localGrade: String?
             if let gradingPeriodID = gradingPeriodID {
-                localGrade = gradeEnrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
+                if baseOnGradedAssignments {
+                    localGrade = gradeEnrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
+                } else {
+                    localGrade = gradeEnrollment?.formattedFinalScore(gradingPeriodID: gradingPeriodID)
+                }
                 letterGrade = gradeEnrollment?.currentGrade(gradingPeriodID: gradingPeriodID) ?? gradeEnrollment?.finalGrade(gradingPeriodID: gradingPeriodID)
             } else {
-                localGrade = courseEnrollment?.formattedCurrentScore(gradingPeriodID: nil)
+                if baseOnGradedAssignments {
+                    localGrade = courseEnrollment?.formattedCurrentScore(gradingPeriodID: nil)
+                } else {
+                    localGrade = gradeEnrollment?.formattedFinalScore(gradingPeriodID: nil)
+                }
                 if courseEnrollment?.multipleGradingPeriodsEnabled == true, courseEnrollment?.totalsForAllGradingPeriodsOption == false {
                     letterGrade = nil
                 } else {

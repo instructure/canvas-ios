@@ -30,7 +30,6 @@ public struct GradeListView: View, ScreenViewTrackable {
 
     // MARK: - Private properties
 
-    @State private var isBaseOnGradedToggleOn = true
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
@@ -40,7 +39,7 @@ public struct GradeListView: View, ScreenViewTrackable {
         offlineViewModel: OfflineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
     ) {
         self.viewModel = viewModel
-        self.offlineModeViewModel = offlineViewModel
+        offlineModeViewModel = offlineViewModel
         screenViewTrackingParameters = ScreenViewTrackingParameters(
             eventName: "/courses/\(viewModel.courseID)/grades"
         )
@@ -53,16 +52,24 @@ public struct GradeListView: View, ScreenViewTrackable {
             RefreshableScrollView {
                 VStack(spacing: 0) {
                     switch viewModel.state {
-                    case .loading:
+                    case .initialLoading:
                         loadingView()
+                    case let .refreshing(data):
+                        dataView(
+                            data,
+                            isRefreshing: true,
+                            isEmpty: false
+                        )
                     case let .data(data):
                         dataView(
                             data,
+                            isRefreshing: false,
                             isEmpty: false
                         )
                     case let .empty(data):
                         dataView(
                             data,
+                            isRefreshing: false,
                             isEmpty: true
                         )
                     case .error:
@@ -90,12 +97,13 @@ public struct GradeListView: View, ScreenViewTrackable {
     @ViewBuilder
     private func dataView(
         _ gradeListData: GradeListData,
+        isRefreshing: Bool,
         isEmpty: Bool
     ) -> some View {
         let verticalPadding: CGFloat = gradeListData.isGradingPeriodHidden && isEmpty ? 0 : 16
         courseSummaryView(
             courseName: gradeListData.courseName ?? "",
-            totalGrade: gradeListData.totalGradeText ?? String(localized: "N/A"),
+            totalGrade: gradeListData.totalGradeText,
             isEmpty: isEmpty && gradeListData.isGradingPeriodHidden
         )
         HStack(spacing: 8) {
@@ -117,7 +125,14 @@ public struct GradeListView: View, ScreenViewTrackable {
 
         Divider()
 
-        if isEmpty {
+        if isRefreshing {
+            GeometryReader { proxy in
+                loadingView()
+                    .padding(.top, 16)
+                    .frame(width: proxy.size.width)
+                    .frame(minHeight: proxy.size.height)
+            }
+        } else if isEmpty {
             GeometryReader { proxy in
                 emptyView()
                     .padding(.top, 16)
@@ -161,7 +176,7 @@ public struct GradeListView: View, ScreenViewTrackable {
     @ViewBuilder
     private func courseSummaryView(
         courseName: String,
-        totalGrade: String,
+        totalGrade: String?,
         isEmpty: Bool
     ) -> some View {
         VStack(spacing: 0) {
@@ -169,8 +184,10 @@ public struct GradeListView: View, ScreenViewTrackable {
                 courseName: courseName,
                 totalGrade: totalGrade
             )
-//            Divider()
-//            togglesView()
+            if totalGrade != nil {
+                Divider()
+                togglesView()
+            }
         }
         .cornerRadius(6)
         .overlay(
@@ -185,42 +202,83 @@ public struct GradeListView: View, ScreenViewTrackable {
     @ViewBuilder
     private func courseDetailsView(
         courseName: String,
-        totalGrade: String
+        totalGrade: String?
     ) -> some View {
-        VStack(spacing: 4) {
-            HStack(spacing: 4) {
-                Text("Course", bundle: .core)
-                    .foregroundStyle(Color.textDark)
-                    .font(.regular14)
-                    .accessibilityHidden(true)
-                Spacer()
-                Text("Total", bundle: .core)
-                    .foregroundStyle(Color.textDark)
-                    .font(.regular14)
-                    .accessibilityHidden(true)
+        if let totalGrade {
+            VStack(spacing: 4) {
+                HStack(spacing: 4) {
+                    courseLabelText()
+                    Spacer()
+                    totalLabelText()
+                }
+                HStack(spacing: 4) {
+                    courseNameText(courseName)
+                    Spacer()
+                    totalGradeText(totalGrade)
+                }
             }
+            .padding(.top, 12)
+            .padding(.horizontal, 16)
+            .padding(.bottom, 16)
+        } else {
             HStack(spacing: 4) {
-                Text(courseName)
-                    .foregroundStyle(Color.textDarkest)
-                    .font(.semibold28)
-                    .accessibilityLabel(Text("\(courseName) course"))
+                VStack(alignment: .leading, spacing: 4) {
+                    courseLabelText()
+                    courseNameText(courseName)
+                }
                 Spacer()
-                Text(totalGrade)
-                    .foregroundStyle(Color.textDarkest)
-                    .font(.semibold28)
-                    .accessibilityLabel(Text("Total grade is \(totalGrade)", bundle: .core))
-                    .accessibilityIdentifier("CourseTotalGrade")
+                Image(uiImage: .lockLine)
+                    .resizable()
+                    .frame(width: 40, height: 40)
             }
+            .padding(.top, 12)
+            .padding(.horizontal, 16)
+            .padding(.bottom, 16)
         }
-        .padding(.top, 12)
-        .padding(.horizontal, 16)
-        .padding(.bottom, 16)
+    }
+
+    @ViewBuilder
+    private func courseLabelText() -> some View {
+        Text("Course", bundle: .core)
+            .foregroundStyle(Color.textDark)
+            .font(.regular14)
+            .accessibilityHidden(true)
+    }
+
+    @ViewBuilder
+    private func totalLabelText() -> some View {
+        Text("Total", bundle: .core)
+            .foregroundStyle(Color.textDark)
+            .font(.regular14)
+            .accessibilityHidden(true)
+    }
+
+    @ViewBuilder
+    private func totalGradeText(_ totalGrade: String) -> some View {
+        Text(totalGrade)
+            .foregroundStyle(Color.textDarkest)
+            .font(.semibold28)
+            .accessibilityLabel(Text("Total grade is \(totalGrade)", bundle: .core))
+            .accessibilityIdentifier("CourseTotalGrade")
+    }
+
+    @ViewBuilder
+    private func courseNameText(_ courseName: String) -> some View {
+        Text(courseName)
+            .foregroundStyle(Color.textDarkest)
+            .font(.semibold28)
+            .accessibilityLabel(Text("\(courseName) course"))
     }
 
     @ViewBuilder
     private func togglesView() -> some View {
         VStack(spacing: 0) {
-            Toggle(isOn: $isBaseOnGradedToggleOn) {
+            let binding = Binding {
+                viewModel.baseOnGradedAssignment.value
+            } set: { isOn in
+                viewModel.baseOnGradedAssignment.accept(isOn)
+            }
+            Toggle(isOn: binding) {
                 Text("Base on graded assignments", bundle: .core)
                     .foregroundStyle(Color.textDarkest)
                     .font(.regular16)
@@ -231,18 +289,18 @@ public struct GradeListView: View, ScreenViewTrackable {
             .frame(height: 51)
             .padding(.horizontal, 16)
 
-            Divider()
-
-            Toggle(isOn: $isBaseOnGradedToggleOn) {
-                Text("Show What-if Score", bundle: .core)
-                    .foregroundStyle(Color.textDarkest)
-                    .font(.regular16)
-                    .fixedSize()
-                    .lineLimit(1)
-            }
-            .toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
-            .frame(height: 51)
-            .padding(.horizontal, 16)
+//            Divider()
+//
+//            Toggle(isOn: $viewModel.isWhatIfScoreOn) {
+//                Text("Show What-if Score", bundle: .core)
+//                    .foregroundStyle(Color.textDarkest)
+//                    .font(.regular16)
+//                    .fixedSize()
+//                    .lineLimit(1)
+//            }
+//            .toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
+//            .frame(height: 51)
+//            .padding(.horizontal, 16)
         }
     }
 
@@ -336,9 +394,9 @@ public struct GradeListView: View, ScreenViewTrackable {
                         Spacer()
                     }
                     .frame(height: 51)
-                    .background(Color.backgroundLight)
-                    Divider().padding(.top, -3)
+                    Divider()
                 }
+                .background(Color.backgroundLight)
             ) {
                 ForEach(section.assignments) { assignment in
                     VStack(spacing: 0) {
