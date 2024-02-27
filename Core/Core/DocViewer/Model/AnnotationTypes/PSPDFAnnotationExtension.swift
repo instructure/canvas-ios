@@ -132,6 +132,9 @@ extension Annotation {
         let type: APIDocViewerAnnotationType
         var inreplyto: String?
         var inklist: APIDocViewerInklist?
+        var width: Double? = Double(lineWidth)
+        var rect: [[Double]]? = pointsFrom(boundingBox)
+
         switch self {
         case is HighlightAnnotation:
             type = .highlight
@@ -158,6 +161,8 @@ extension Annotation {
         case is DocViewerCommentReplyAnnotation:
             type = .commentReply
             inreplyto = (self as? DocViewerCommentReplyAnnotation)?.inReplyToName
+            width = nil
+            rect = nil
         case is DocViewerPointAnnotation, is NoteAnnotation:
             type = .text // point
         default:
@@ -182,10 +187,10 @@ extension Annotation {
             contents: contents,
             inreplyto: inreplyto,
             coords: rects?.map { coordsFrom($0) },
-            rect: pointsFrom(boundingBox),
+            rect: rect,
             font: fontName.flatMap { "\(Int(fontSize / fontSizeTransform))pt \($0)" },
             inklist: inklist,
-            width: Double(lineWidth)
+            width: width
         )
     }
 }
