@@ -295,9 +295,9 @@ public final class GradeListInteractorLive: GradeListInteractor {
         let hideQuantitativeData = course.hideQuantitativeData == true
 
         // When these conditions are met we don't show any grade, instead we display a lock icon.
-        if courseEnrollment?.multipleGradingPeriodsEnabled == true,
-           courseEnrollment?.totalsForAllGradingPeriodsOption == false,
-           gradingPeriodID == nil {
+        if (courseEnrollment?.multipleGradingPeriodsEnabled == true &&
+           courseEnrollment?.totalsForAllGradingPeriodsOption == false &&
+            gradingPeriodID == nil) || course.hideFinalGrades {
             return Just(nil).eraseToAnyPublisher()
         } else if hideQuantitativeData {
             if let gradingPeriodID = gradingPeriodID {
