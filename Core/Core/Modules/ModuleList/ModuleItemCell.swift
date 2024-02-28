@@ -37,7 +37,7 @@ class ModuleItemCell: UITableViewCell {
 
     let env = AppEnvironment.shared
 
-    func update(_ item: ModuleItem, indexPath: IndexPath, color: UIColor?) {
+    func update(_ item: ModuleItem, indexPath: IndexPath, color: UIColor?, publishInteractor: ModulePublishInteractor) {
         backgroundColor = .backgroundLightest
         selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         let isLocked = item.isLocked || item.masteryPath?.locked == true
@@ -93,7 +93,6 @@ class ModuleItemCell: UITableViewCell {
         nameLabel.accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row).nameLabel"
         dueLabel.accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row).dueLabel"
 
-        let isPublishAvailable = ModulePublishInteractor(app: env.app).isPublishActionAvailable
         switch item.type {
         case .file:
             publishMenuButton.isHidden = true
@@ -101,7 +100,7 @@ class ModuleItemCell: UITableViewCell {
         default:
             let action: ModulePublishItem.Action = item.published == true ? .unpublish : .publish
             let host = viewController ?? UIViewController()
-            publishMenuButton.isHidden = !isPublishAvailable
+            publishMenuButton.isHidden = !publishInteractor.isPublishActionAvailable
             publishMenuButton.menu = .modulePublishOnItem(action: action,
                                                           host: host)
             accessibilityCustomActions = .modulePublishActionsOnItem(action: action, host: host)

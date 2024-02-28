@@ -23,12 +23,7 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var publishedIconView: PublishedIconView!
     @IBOutlet weak var collapsableIndicator: UIImageView!
     @IBOutlet weak var lockedButton: UIButton!
-    @IBOutlet weak var publishMenuButton: UIButton! {
-        didSet {
-            publishMenuButton.isHidden = !ModulePublishInteractor(app: AppEnvironment.shared.app).isPublishActionAvailable
-            publishMenuButton.showsMenuAsPrimaryAction = true
-        }
-    }
+    @IBOutlet weak var publishMenuButton: UIButton!
 
     var isExpanded = true
     var onTap: (() -> Void)?
@@ -44,7 +39,14 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         loadFromXib().backgroundColor = .backgroundLight
     }
 
-    func update(_ module: Module, section: Int, isExpanded: Bool, host: UIViewController, onTap: @escaping () -> Void) {
+    func update(
+        _ module: Module,
+        section: Int,
+        isExpanded: Bool,
+        host: UIViewController,
+        publishInteractor: ModulePublishInteractor,
+        onTap: @escaping () -> Void
+    ) {
         self.isExpanded = isExpanded
         self.onTap = onTap
         titleLabel.text = module.name
@@ -67,7 +69,10 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
 
         if publishMenuButton.menu == nil {
             publishMenuButton.menu = .modulePublishOnModule(host: host)
+            publishMenuButton.showsMenuAsPrimaryAction = true
         }
+
+        publishMenuButton.isHidden = !publishInteractor.isPublishActionAvailable
     }
 
     @IBAction func handleTap() {

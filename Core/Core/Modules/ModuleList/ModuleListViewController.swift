@@ -58,6 +58,7 @@ public class ModuleListViewController: ScreenViewTrackableViewController, Colore
             AppEnvironment.shared.userDefaults?.collapsedModules = collapsedIDs
         }
     }
+    private let publishInteractor = ModulePublishInteractor(app: AppEnvironment.shared.app)
 
     public static func create(courseID: String, moduleID: String? = nil) -> ModuleListViewController {
         let controller = loadFromStoryboard()
@@ -134,7 +135,7 @@ public class ModuleListViewController: ScreenViewTrackableViewController, Colore
 
     private func setupBulkPublishButtonInNavBar() {
         guard navigationItem.rightBarButtonItem == nil,
-              ModulePublishInteractor(app: AppEnvironment.shared.app).isPublishActionAvailable
+              publishInteractor.isPublishActionAvailable
         else { return }
 
         let button = UIBarButtonItem(image: .moreLine)
@@ -204,7 +205,7 @@ extension ModuleListViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let module = modules[section] else { return nil }
         let header = tableView.dequeueHeaderFooter(ModuleSectionHeaderView.self)
-        header.update(module, section: section, isExpanded: isSectionExpanded(section), host: self) { [weak self] in
+        header.update(module, section: section, isExpanded: isSectionExpanded(section), host: self, publishInteractor: publishInteractor) { [weak self] in
             self?.toggleSection(section)
         }
         header.onLockTap = { [weak self] in
@@ -259,7 +260,7 @@ extension ModuleListViewController: UITableViewDataSource {
         default:
             let cell: ModuleItemCell = tableView.dequeue(for: indexPath)
             if let item = item {
-                cell.update(item, indexPath: indexPath, color: color)
+                cell.update(item, indexPath: indexPath, color: color, publishInteractor: publishInteractor)
             }
             return cell
         }
