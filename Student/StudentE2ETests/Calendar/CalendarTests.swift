@@ -155,9 +155,8 @@ class CalendarTests: E2ETestCase {
         let calendarTab = Helper.TabBar.calendarTab.waitUntil(.visible)
         XCTAssertTrue(calendarTab.isVisible)
 
-        calendarTab.hit()
-
         // MARK: Navigate to Recurring event and check recurrency
+        calendarTab.hit()
         let recurringEventItem1 = Helper.navigateToEvent(event: events.recurring!)
         let recurringEventTitle1 = Helper.titleLabelOfEvent(eventCell: recurringEventItem1).waitUntil(.visible)
         XCTAssertTrue(recurringEventItem1.isVisible)
