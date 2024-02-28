@@ -29,7 +29,7 @@ public struct GradeListView: View, ScreenViewTrackable {
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     // MARK: - Private properties
-
+    @State private var isBaseOnGradedAssignmentEnabled = true
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
@@ -276,6 +276,7 @@ public struct GradeListView: View, ScreenViewTrackable {
             let binding = Binding {
                 viewModel.baseOnGradedAssignment.value
             } set: { isOn in
+                isBaseOnGradedAssignmentEnabled = isOn
                 viewModel.baseOnGradedAssignment.accept(isOn)
             }
             Toggle(isOn: binding) {
@@ -286,6 +287,7 @@ public struct GradeListView: View, ScreenViewTrackable {
                     .lineLimit(1)
             }
             .toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
+            .accessibilityValue(isBaseOnGradedAssignmentEnabled ? "On" : "Off")
             .frame(height: 51)
             .padding(.horizontal, 16)
 
