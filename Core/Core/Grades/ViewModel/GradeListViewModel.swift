@@ -130,7 +130,6 @@ public final class GradeListViewModel: ObservableObject {
                 .first()
             }
             .receive(on: scheduler)
-            .throttle(for: .seconds(1), scheduler: scheduler, latest: true)
             .assign(to: &$state)
 
         didSelectAssignment
