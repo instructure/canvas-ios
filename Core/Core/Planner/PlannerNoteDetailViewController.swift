@@ -38,5 +38,6 @@ public class PlannerNoteDetailViewController: UIViewController {
         titleLabel.text = plannable.title
         dateLabel.text = plannable.date?.dateTimeString
         detailsLabel.text = plannable.details
+        detailsLabel.sizeToFit()
     }
 }
