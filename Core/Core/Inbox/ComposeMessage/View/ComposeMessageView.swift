@@ -37,12 +37,15 @@ public struct ComposeMessageView: View {
                     Divider()
                     propertiesView
                     Divider()
-                    bodyView
-                        .frame(height: geometry.size.height)
-                    if !model.includedMessages.isEmpty {
-                        includedMessages
+                    VStack(spacing: 0) {
+                        bodyView
+                            .frame(minHeight: geometry.size.height / 2)
+                        attachmentsView
+                        if !model.includedMessages.isEmpty {
+                            includedMessages
+                        }
                     }
-                    attachmentsView
+                    .frame(minHeight: geometry.size.height)
                     Spacer()
 
                 }
