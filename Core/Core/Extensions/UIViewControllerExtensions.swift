@@ -132,7 +132,7 @@ extension UIViewController {
         child.didMove(toParent: self)
     }
 
-    public func syncNavigationBar(with viewController: UIViewController) -> [NSKeyValueObservation] {
+    func syncNavigationBar(with viewController: UIViewController) -> [NSKeyValueObservation] {
         title = viewController.title
         navigationItem.title = viewController.title
         navigationItem.titleView = viewController.navigationItem.titleView
