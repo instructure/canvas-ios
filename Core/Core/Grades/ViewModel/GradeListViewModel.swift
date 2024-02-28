@@ -117,6 +117,8 @@ public final class GradeListViewModel: ObservableObject {
                     baseOnGradedAssignment: baseOnGradedAssignment,
                     ignoreCache: ignoreCache
                 )
+                .first()
+                .receive(on: scheduler)
                 .map { [unowned self] listData -> ViewState in
                     lastKnownDataState = listData
 

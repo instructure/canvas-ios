@@ -36,7 +36,6 @@ public final class GradeListInteractorLive: GradeListInteractor {
 
     public let courseID: String
     private let userID: String?
-    private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Private properties
 
@@ -52,12 +51,10 @@ public final class GradeListInteractorLive: GradeListInteractor {
 
     public init(
         courseID: String,
-        userID: String?,
-        scheduler: AnySchedulerOf<DispatchQueue> = .global()
+        userID: String?
     ) {
         self.courseID = courseID
         self.userID = userID
-        self.scheduler = scheduler
 
         assignmentListStore = ReactiveStore(
             useCase: GetAssignmentsByGroup(
@@ -117,13 +114,16 @@ public final class GradeListInteractorLive: GradeListInteractor {
                 loadAllPages: true
             )
         )
-        .subscribe(on: scheduler)
-        .receive(on: scheduler)
-        .flatMap { [unowned self] in
-            let course = $0.0.1
-            let gradingPeriods = $0.0.2
-            let assignments = $0.1
-            let enrollments = $0.2
+        .flatMap { [weak self] params -> AnyPublisher<GradeListData, Error> in
+            guard let self = self else {
+                return Empty(completeImmediately: true)
+                    .setFailureType(to: Error.self)
+                    .eraseToAnyPublisher()
+            }
+            let course = params.0.1
+            let gradingPeriods = params.0.2
+            let assignments = params.1
+            let enrollments = params.2
             let courseEnrollment = course.enrollmentForGrades(userId: userID)
             let isGradingPeriodHidden = courseEnrollment?.multipleGradingPeriodsEnabled == false
 
@@ -154,8 +154,13 @@ public final class GradeListInteractorLive: GradeListInteractor {
                 enrollments: enrollments,
                 baseOnGradedAssignments: baseOnGradedAssignment
             )
-            .map { [unowned self] totalGradeText in
-                GradeListData(
+            .flatMap { [weak self] totalGradeText -> AnyPublisher<GradeListData, Error> in
+                guard let self = self else {
+                    return Empty(completeImmediately: true)
+                        .setFailureType(to: Error.self)
+                        .eraseToAnyPublisher()
+                }
+                return Just(GradeListData(
                     id: UUID.string,
                     userID: userID ?? "",
                     courseName: course.name,
@@ -165,9 +170,10 @@ public final class GradeListInteractorLive: GradeListInteractor {
                     gradingPeriods: gradingPeriods,
                     currentGradingPeriod: getGradingPeriod(id: gradingPeriodID, gradingPeriods: gradingPeriods),
                     totalGradeText: totalGradeText
-                )
+                ))
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
             }
-            .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
         }
         .eraseToAnyPublisher()

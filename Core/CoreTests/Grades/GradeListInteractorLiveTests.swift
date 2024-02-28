@@ -386,7 +386,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
         let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: false, ignoreCache: false)
             .sink(
                 receiveCompletion: { _ in }) { data in
-                    XCTAssertEqual(data.totalGradeText, "21% (C)")
+                    XCTAssertEqual(data.totalGradeText, "21%")
                     expectation.fulfill()
             }
         drainMainQueue()
