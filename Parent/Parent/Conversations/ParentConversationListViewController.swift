@@ -98,25 +98,16 @@ class ParentConversationListViewController: UIViewController, ConversationCourse
     }
 
     func courseSelected(course: Course, user: User) {
-        let hiddenMessage = String.localizedStringWithFormat(
-            NSLocalizedString("Regarding: %@", bundle: .parent, comment: ""),
-            user.name
+        let compose = ComposeViewController.create(
+            context: .course(course.id),
+            observeeID: user.id,
+            subject: course.name,
+            hiddenMessage: String.localizedStringWithFormat(
+                NSLocalizedString("Regarding: %@", bundle: .parent, comment: ""),
+                user.name
+            )
         )
-
-        let composeMessageOptions = ComposeMessageOptions(
-            disabledFields: .init(contextDisabled: true),
-            fieldsContents: .init(
-                selectedContext: .init(name: course.name ?? "", context: .course(course.id)),
-                subjectText: course.name ?? ""
-            ),
-            extras: .init(hiddenMessage: hiddenMessage, teacherOnly: true)
-        )
-
-        router.route(
-            to: URLComponents.parse("/conversations/compose", queryItems: composeMessageOptions.queryItems),
-            from: self,
-            options: .modal(embedInNav: true)
-        )
+        env.router.show(compose, from: self, options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/conversations/compose")
     }
 }
 
