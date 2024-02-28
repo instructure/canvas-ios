@@ -273,17 +273,10 @@ public struct GradeListView: View, ScreenViewTrackable {
     @ViewBuilder
     private func togglesView() -> some View {
         VStack(spacing: 0) {
-            let binding = Binding {
-                viewModel.baseOnGradedAssignment.value
-            } set: { isOn in
-                viewModel.baseOnGradedAssignment.accept(isOn)
-            }
-            Toggle(isOn: binding) {
+            Toggle(isOn: $viewModel.baseOnGradedAssignment) {
                 Text("Base on graded assignments", bundle: .core)
                     .foregroundStyle(Color.textDarkest)
                     .font(.regular16)
-                    .fixedSize()
-                    .lineLimit(1)
             }
             .toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
             .frame(height: 51)

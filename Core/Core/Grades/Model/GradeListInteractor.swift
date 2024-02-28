@@ -18,6 +18,7 @@
 
 import Combine
 import CombineExt
+import CombineSchedulers
 import Foundation
 
 public protocol GradeListInteractor {
@@ -35,6 +36,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
 
     public let courseID: String
     private let userID: String?
+    private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Private properties
 
@@ -50,10 +52,12 @@ public final class GradeListInteractorLive: GradeListInteractor {
 
     public init(
         courseID: String,
-        userID: String?
+        userID: String?,
+        scheduler: AnySchedulerOf<DispatchQueue> = .global()
     ) {
         self.courseID = courseID
         self.userID = userID
+        self.scheduler = scheduler
 
         assignmentListStore = ReactiveStore(
             useCase: GetAssignmentsByGroup(
@@ -113,6 +117,8 @@ public final class GradeListInteractorLive: GradeListInteractor {
                 loadAllPages: true
             )
         )
+        .subscribe(on: scheduler)
+        .receive(on: scheduler)
         .flatMap { [unowned self] in
             let course = $0.0.1
             let gradingPeriods = $0.0.2

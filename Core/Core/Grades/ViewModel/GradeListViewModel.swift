@@ -50,11 +50,14 @@ public final class GradeListViewModel: ObservableObject {
 
     // MARK: - Input
 
-    let baseOnGradedAssignment = CurrentValueRelay<Bool>(true)
-    let selectedGradingPeriod = PassthroughRelay<GradingPeriod?>()
-    let selectedGroupByOption = CurrentValueRelay<GradeArrangementOptions>(.groupName)
     let pullToRefreshDidTrigger = PassthroughRelay<(() -> Void)?>()
     let didSelectAssignment = PassthroughRelay<(WeakViewController, Assignment)>()
+
+    // MARK: - Input / Output
+
+    @Published var baseOnGradedAssignment = true
+    let selectedGradingPeriod = PassthroughRelay<GradingPeriod?>()
+    let selectedGroupByOption = CurrentValueRelay<GradeArrangementOptions>(.groupName)
 
     // MARK: - Private properties
 
@@ -91,26 +94,27 @@ public final class GradeListViewModel: ObservableObject {
             }
             .store(in: &subscriptions)
 
-        baseOnGradedAssignment
+        $baseOnGradedAssignment
             .sink { _ in
                 triggerRefresh.accept((false, nil))
             }
             .store(in: &subscriptions)
 
         triggerRefresh.prepend((false, nil))
-            .flatMap { [unowned self] params in
+            .receive(on: scheduler)
+            .flatMapLatest { [unowned self] params in
                 let ignoreCache = params.0
                 let refreshCompletion = params.1
 
                 // Changing the grading period fires an API request that takes time,
-                // so we need to show a loading indicator. 
+                // so we need to show a loading indicator.
                 if let lastKnownDataState, refreshCompletion == nil, ignoreCache {
                     state = .refreshing(lastKnownDataState)
                 }
 
                 return interactor.getGrades(
                     arrangeBy: selectedGroupByOption.value,
-                    baseOnGradedAssignment: baseOnGradedAssignment.value,
+                    baseOnGradedAssignment: baseOnGradedAssignment,
                     ignoreCache: ignoreCache
                 )
                 .map { [unowned self] listData -> ViewState in
