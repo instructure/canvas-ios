@@ -47,7 +47,7 @@ class GradesTests: E2ETestCase {
         let courseCardGradeLabel = DashboardHelperParent.courseGradeLabel(course: course).waitUntil(.visible)
         XCTAssertTrue(courseCard.isVisible)
         XCTAssertTrue(courseCardGradeLabel.isVisible)
-        XCTAssertTrue(courseCardGradeLabel.hasLabel(label: totalGrade))
+        XCTAssertTrue(courseCardGradeLabel.hasLabel(label: totalGrade), "\(courseCardGradeLabel.label) != \(totalGrade)")
 
         // MARK: Tap on course, check grades
         courseCard.hit()
