@@ -329,10 +329,11 @@ public final class GradeListInteractorLive: GradeListInteractor {
             if let gradingPeriodID = gradingPeriodID {
                 if baseOnGradedAssignments {
                     localGrade = gradeEnrollment?.formattedCurrentScore(gradingPeriodID: gradingPeriodID)
+                    letterGrade = gradeEnrollment?.currentGrade(gradingPeriodID: gradingPeriodID)
                 } else {
                     localGrade = gradeEnrollment?.formattedFinalScore(gradingPeriodID: gradingPeriodID)
+                    letterGrade = gradeEnrollment?.finalGrade(gradingPeriodID: gradingPeriodID)
                 }
-                letterGrade = gradeEnrollment?.currentGrade(gradingPeriodID: gradingPeriodID) ?? gradeEnrollment?.finalGrade(gradingPeriodID: gradingPeriodID)
             } else {
                 if baseOnGradedAssignments {
                     localGrade = courseEnrollment?.formattedCurrentScore(gradingPeriodID: nil)
