@@ -391,8 +391,8 @@ public struct GradeListView: View, ScreenViewTrackable {
                 }
                 .background(Color.backgroundLight)
             ) {
-                ForEach(section.assignments) { assignment in
-                    LazyVStack(spacing: 0) {
+                LazyVStack(spacing: 0) {
+                    ForEach(section.assignments) { assignment in
                         Button {
                             viewModel.didSelectAssignment.accept((viewController, assignment))
                         } label: {
