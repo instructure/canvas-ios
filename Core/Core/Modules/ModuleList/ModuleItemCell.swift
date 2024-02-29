@@ -102,7 +102,7 @@ class ModuleItemCell: UITableViewCell {
             let host = viewController ?? UIViewController()
             publishMenuButton.isHidden = !publishInteractor.isPublishActionAvailable
             publishMenuButton.menu = .moduleItemPublishMenu(action: action,
-                                                          host: host)
+                                                            host: host)
             accessibilityCustomActions = .moduleItemPublishA11yActions(action: action, host: host)
         }
 

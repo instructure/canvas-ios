@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -198,7 +199,7 @@
                                                     <rect key="frame" x="16" y="14" width="343" height="24.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text subheader" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQS-d3-6zu" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="2.5" width="315" height="19.5"/>
+                                                            <rect key="frame" x="0.0" y="2.5" width="287" height="19.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                                             <color key="textColor" red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -208,12 +209,26 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ahp-vo-ISY" customClass="PublishedIconView" customModule="Core">
-                                                            <rect key="frame" x="319" y="0.5" width="24" height="24"/>
+                                                            <rect key="frame" x="291" y="0.5" width="24" height="24"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="24" id="jt5-oJ-Eux"/>
                                                                 <constraint firstAttribute="height" constant="24" id="zc0-hu-MBy"/>
                                                             </constraints>
                                                         </imageView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kpH-2r-Het">
+                                                            <rect key="frame" x="319" y="0.5" width="24" height="24"/>
+                                                            <accessibility key="accessibilityConfiguration">
+                                                                <bool key="isElement" value="NO"/>
+                                                            </accessibility>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="24" id="NcZ-AE-Oig"/>
+                                                                <constraint firstAttribute="height" constant="24" id="gCI-Td-AUX"/>
+                                                            </constraints>
+                                                            <state key="normal" title="Button"/>
+                                                            <buttonConfiguration key="configuration" style="plain" image="moreLine">
+                                                                <color key="baseForegroundColor" name="textDarkest"/>
+                                                            </buttonConfiguration>
+                                                        </button>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="oQS-d3-6zu" firstAttribute="leading" secondItem="CdB-fh-KOY" secondAttribute="leading" id="vGD-pt-zd8"/>
@@ -233,6 +248,7 @@
                                         <connections>
                                             <outlet property="indentConstraint" destination="vGD-pt-zd8" id="hUU-x3-cYU"/>
                                             <outlet property="label" destination="oQS-d3-6zu" id="u6y-MD-3yy"/>
+                                            <outlet property="publishMenuButton" destination="kpH-2r-Het" id="dhR-vm-v3p"/>
                                             <outlet property="publishedIconView" destination="ahp-vo-ISY" id="XDB-qL-SxY"/>
                                         </connections>
                                     </tableViewCell>

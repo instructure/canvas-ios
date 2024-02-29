@@ -254,7 +254,7 @@ extension ModuleListViewController: UITableViewDataSource {
         case .subHeader:
             let cell: ModuleItemSubHeaderCell = tableView.dequeue(for: indexPath)
             if let item = item {
-                cell.update(item)
+                cell.update(item, publishInteractor: publishInteractor)
             }
             return cell
         default:

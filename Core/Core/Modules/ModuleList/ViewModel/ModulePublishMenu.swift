@@ -174,8 +174,8 @@ private extension UIAlertController {
 
     convenience init(modulePublishItem: ModulePublishItem) {
         self.init(title: modulePublishItem.action.alertTitle,
-                   message: modulePublishItem.confirmMessage,
-                   preferredStyle: .alert)
+                  message: modulePublishItem.confirmMessage,
+                  preferredStyle: .alert)
         addAction(AlertAction(modulePublishItem.action.alertConfirmation, style: .default) { _ in
         })
         addAction(AlertAction(String(localized: "Cancel"), style: .cancel))
