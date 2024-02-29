@@ -34,7 +34,7 @@ class ModulePublishMenuTests: XCTestCase {
     // MARK: - Nav Bar Actions
 
     func testPublishAllModulesAndItems() {
-        let testee = UIMenu.modulePublishOnNavBar(host: hostView, router: router)
+        let testee = UIMenu.modulesPublishMenu(host: hostView, router: router)
         let publishMenu = testee.children[0] as! UIMenu
         let publishAll = publishMenu.children[0] as! UIAction
 
@@ -48,7 +48,7 @@ class ModulePublishMenuTests: XCTestCase {
     }
 
     func testPublishModulesOnly() {
-        let testee = UIMenu.modulePublishOnNavBar(host: hostView, router: router)
+        let testee = UIMenu.modulesPublishMenu(host: hostView, router: router)
         let publishMenu = testee.children[0] as! UIMenu
         let publishModules = publishMenu.children[1] as! UIAction
 
@@ -62,7 +62,7 @@ class ModulePublishMenuTests: XCTestCase {
     }
 
     func testUnpublishAllModulesAndItems() {
-        let testee = UIMenu.modulePublishOnNavBar(host: hostView, router: router)
+        let testee = UIMenu.modulesPublishMenu(host: hostView, router: router)
         let unpublishMenu = testee.children[1] as! UIMenu
         let unpublishAll = unpublishMenu.children[0] as! UIAction
 
@@ -78,7 +78,7 @@ class ModulePublishMenuTests: XCTestCase {
     // MARK: - Module Actions
 
     func testPublishModuleAndAllItems() {
-        let testee = UIMenu.modulePublishOnModule(host: hostView, router: router)
+        let testee = UIMenu.modulePublishMenu(host: hostView, router: router)
         let publishMenu = testee.children[0] as! UIMenu
         let publishModule = publishMenu.children[0] as! UIAction
 
@@ -92,8 +92,8 @@ class ModulePublishMenuTests: XCTestCase {
     }
 
     func testPublishModuleAndAllItemsA11yAction() {
-        let testee = [UIAccessibilityCustomAction].modulePublishActionsOnModule(host: hostView,
-                                                                                router: router)[0]
+        let testee = [UIAccessibilityCustomAction].modulePublishA11yActions(host: hostView,
+                                                                            router: router)[0]
 
         _ = testee.actionHandler!(testee)
 
@@ -104,7 +104,7 @@ class ModulePublishMenuTests: XCTestCase {
     }
 
     func testPublishModuleOnly() {
-        let testee = UIMenu.modulePublishOnModule(host: hostView, router: router)
+        let testee = UIMenu.modulePublishMenu(host: hostView, router: router)
         let publishMenu = testee.children[0] as! UIMenu
         let publishModule = publishMenu.children[1] as! UIAction
 
@@ -118,8 +118,8 @@ class ModulePublishMenuTests: XCTestCase {
     }
 
     func testPublishModuleOnlyA11yAction() {
-        let testee = [UIAccessibilityCustomAction].modulePublishActionsOnModule(host: hostView,
-                                                                                router: router)[1]
+        let testee = [UIAccessibilityCustomAction].modulePublishA11yActions(host: hostView,
+                                                                            router: router)[1]
 
         _ = testee.actionHandler!(testee)
 
@@ -130,7 +130,7 @@ class ModulePublishMenuTests: XCTestCase {
     }
 
     func testUnpublishModule() {
-        let testee = UIMenu.modulePublishOnModule(host: hostView, router: router)
+        let testee = UIMenu.modulePublishMenu(host: hostView, router: router)
         let publishMenu = testee.children[1] as! UIMenu
         let publishModule = publishMenu.children[0] as! UIAction
 
@@ -144,8 +144,8 @@ class ModulePublishMenuTests: XCTestCase {
     }
 
     func testUnpublishModuleA11yAction() {
-        let testee = [UIAccessibilityCustomAction].modulePublishActionsOnModule(host: hostView,
-                                                                                router: router)[2]
+        let testee = [UIAccessibilityCustomAction].modulePublishA11yActions(host: hostView,
+                                                                            router: router)[2]
 
         _ = testee.actionHandler!(testee)
 
@@ -158,7 +158,7 @@ class ModulePublishMenuTests: XCTestCase {
     // MARK: - Item Actions
 
     func testPublishItem() {
-        let testee = UIMenu.modulePublishOnItem(action: .publish, host: hostView, router: router)
+        let testee = UIMenu.moduleItemPublishMenu(action: .publish, host: hostView, router: router)
         let publishItem = testee.children[0] as! UIAction
 
         publishItem.performWithSender(nil, target: nil)
@@ -171,9 +171,9 @@ class ModulePublishMenuTests: XCTestCase {
     }
 
     func testPublishItemA11yAction() {
-        let testee = [UIAccessibilityCustomAction].modulePublishActionsOnItem(action: .publish,
-                                                                              host: hostView,
-                                                                              router: router)[0]
+        let testee = [UIAccessibilityCustomAction].moduleItemPublishA11yActions(action: .publish,
+                                                                                host: hostView,
+                                                                                router: router)[0]
 
         _ = testee.actionHandler!(testee)
 
@@ -184,7 +184,7 @@ class ModulePublishMenuTests: XCTestCase {
     }
 
     func testUnpublishItem() {
-        let testee = UIMenu.modulePublishOnItem(action: .unpublish, host: hostView, router: router)
+        let testee = UIMenu.moduleItemPublishMenu(action: .unpublish, host: hostView, router: router)
         let publishItem = testee.children[0] as! UIAction
 
         publishItem.performWithSender(nil, target: nil)
@@ -197,9 +197,9 @@ class ModulePublishMenuTests: XCTestCase {
     }
 
     func testUnpublishItemA11yAction() {
-        let testee = [UIAccessibilityCustomAction].modulePublishActionsOnItem(action: .unpublish,
-                                                                              host: hostView,
-                                                                              router: router)[0]
+        let testee = [UIAccessibilityCustomAction].moduleItemPublishA11yActions(action: .unpublish,
+                                                                                host: hostView,
+                                                                                router: router)[0]
 
         _ = testee.actionHandler!(testee)
 
