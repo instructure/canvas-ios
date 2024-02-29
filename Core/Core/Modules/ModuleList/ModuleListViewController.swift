@@ -58,7 +58,7 @@ public class ModuleListViewController: ScreenViewTrackableViewController, Colore
             AppEnvironment.shared.userDefaults?.collapsedModules = collapsedIDs
         }
     }
-    private let publishInteractor = ModulePublishInteractor(app: AppEnvironment.shared.app)
+    private lazy var publishInteractor = ModulePublishInteractor(app: AppEnvironment.shared.app, courseId: courseID)
 
     public static func create(courseID: String, moduleID: String? = nil) -> ModuleListViewController {
         let controller = loadFromStoryboard()

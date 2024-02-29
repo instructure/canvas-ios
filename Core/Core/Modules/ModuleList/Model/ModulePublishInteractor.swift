@@ -16,12 +16,38 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Combine
 
 class ModulePublishInteractor {
-    let isPublishActionAvailable: Bool
+    public let isPublishActionAvailable: Bool
+    public private(set) var moduleItemsUpdating = CurrentValueSubject<Set<String>, Never>(Set())
 
-    init(app: AppEnvironment.App?) {
+    private let courseId: String
+    private var subscriptions = Set<AnyCancellable>()
+
+    init(app: AppEnvironment.App?, courseId: String) {
+        self.courseId = courseId
         isPublishActionAvailable = app == .teacher && ExperimentalFeature.teacherBulkPublish.isEnabled
+    }
+
+    func changeItemPublishedState(
+        moduleId: String,
+        moduleItemId: String,
+        action: PutModuleItemPublishRequest.Action
+    ) {
+        moduleItemsUpdating.value.insert(moduleItemId)
+        let useCase = PutModuleItemPublishState(
+            courseId: courseId,
+            moduleId: moduleId,
+            moduleItemId: moduleItemId,
+            action: action
+        )
+        ReactiveStore(useCase: useCase)
+            .forceRefresh()
+            .sink { [weak moduleItemsUpdating] in
+                guard let moduleItemsUpdating else { return }
+                moduleItemsUpdating.value.remove(moduleItemId)
+            }
+            .store(in: &subscriptions)
     }
 }

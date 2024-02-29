@@ -19,27 +19,51 @@
 @testable import Core
 import XCTest
 
-class ModulePublishInteractorTests: XCTestCase {
+class ModulePublishInteractorTests: CoreTestCase {
 
     func testPublishAvailability() {
         ExperimentalFeature.teacherBulkPublish.isEnabled = false
-        var testee = ModulePublishInteractor(app: nil)
+        var testee = ModulePublishInteractor(app: nil, courseId: "")
         XCTAssertFalse(testee.isPublishActionAvailable)
-        testee = ModulePublishInteractor(app: .parent)
+        testee = ModulePublishInteractor(app: .parent, courseId: "")
         XCTAssertFalse(testee.isPublishActionAvailable)
-        testee = ModulePublishInteractor(app: .student)
+        testee = ModulePublishInteractor(app: .student, courseId: "")
         XCTAssertFalse(testee.isPublishActionAvailable)
-        testee = ModulePublishInteractor(app: .teacher)
+        testee = ModulePublishInteractor(app: .teacher, courseId: "")
         XCTAssertFalse(testee.isPublishActionAvailable)
 
         ExperimentalFeature.teacherBulkPublish.isEnabled = true
-        testee = ModulePublishInteractor(app: nil)
+        testee = ModulePublishInteractor(app: nil, courseId: "")
         XCTAssertFalse(testee.isPublishActionAvailable)
-        testee = ModulePublishInteractor(app: .parent)
+        testee = ModulePublishInteractor(app: .parent, courseId: "")
         XCTAssertFalse(testee.isPublishActionAvailable)
-        testee = ModulePublishInteractor(app: .student)
+        testee = ModulePublishInteractor(app: .student, courseId: "")
         XCTAssertFalse(testee.isPublishActionAvailable)
-        testee = ModulePublishInteractor(app: .teacher)
+        testee = ModulePublishInteractor(app: .teacher, courseId: "")
         XCTAssertTrue(testee.isPublishActionAvailable)
+    }
+
+    func testPublishModuleItem() {
+        let testee = ModulePublishInteractor(app: .teacher, courseId: "testCourseId")
+        let itemUpdateExpectation = expectation(description: "Item updates received")
+        let subscription = testee
+            .moduleItemsUpdating
+            .print()
+            .dropFirst()
+            .prefix(2)
+            .collect()
+            .sink { updates in
+                itemUpdateExpectation.fulfill()
+                XCTAssertEqual(updates, [Set(["testModuleItemId"]), Set()])
+            }
+
+        // WHEN
+        testee.changeItemPublishedState(moduleId: "testModuleId",
+                                        moduleItemId: "testModuleItemId",
+                                        action: .publish)
+
+        // THEN
+        waitForExpectations(timeout: 0.1)
+        subscription.cancel()
     }
 }
