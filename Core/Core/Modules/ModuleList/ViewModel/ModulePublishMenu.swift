@@ -20,7 +20,7 @@ import UIKit
 
 extension UIMenu {
 
-    static func modulesPublishMenu(
+    static func makePublishModulesMenu(
         host: UIViewController,
         router: Router = AppEnvironment.shared.router
     ) -> UIMenu {
@@ -30,7 +30,7 @@ extension UIMenu {
         ])
     }
 
-    static func modulePublishMenu(
+    static func makePublishModuleMenu(
         host: UIViewController,
         router: Router = AppEnvironment.shared.router
     ) -> UIMenu {
@@ -40,20 +40,21 @@ extension UIMenu {
         ])
     }
 
-    static func moduleItemPublishMenu(
+    static func makePublishModuleItemMenu(
         action: ModulePublishItem.Action,
         host: UIViewController,
         router: Router = AppEnvironment.shared.router
     ) -> UIMenu {
-        let item: ModulePublishItem
+        let items: [ModulePublishItem]
 
-        if action == .publish {
-            item = ModulePublishMenu.Item.publish[0]
-        } else {
-            item = ModulePublishMenu.Item.unpublish[0]
+        switch action {
+        case .publish:
+            items = ModulePublishMenu.Item.publish
+        case .unpublish:
+            items = ModulePublishMenu.Item.unpublish
         }
 
-        return UIMenu(modulePublishItems: [item], host: host, router: router)
+        return UIMenu(modulePublishItems: items, host: host, router: router)
     }
 }
 

@@ -34,7 +34,7 @@ class ModulePublishMenuTests: XCTestCase {
     // MARK: - Nav Bar Actions
 
     func testPublishAllModulesAndItems() {
-        let testee = UIMenu.modulesPublishMenu(host: hostView, router: router)
+        let testee = UIMenu.makePublishModulesMenu(host: hostView, router: router)
         let publishMenu = testee.children[0] as! UIMenu
         let publishAll = publishMenu.children[0] as! UIAction
 
@@ -48,7 +48,7 @@ class ModulePublishMenuTests: XCTestCase {
     }
 
     func testPublishModulesOnly() {
-        let testee = UIMenu.modulesPublishMenu(host: hostView, router: router)
+        let testee = UIMenu.makePublishModulesMenu(host: hostView, router: router)
         let publishMenu = testee.children[0] as! UIMenu
         let publishModules = publishMenu.children[1] as! UIAction
 
@@ -62,7 +62,7 @@ class ModulePublishMenuTests: XCTestCase {
     }
 
     func testUnpublishAllModulesAndItems() {
-        let testee = UIMenu.modulesPublishMenu(host: hostView, router: router)
+        let testee = UIMenu.makePublishModulesMenu(host: hostView, router: router)
         let unpublishMenu = testee.children[1] as! UIMenu
         let unpublishAll = unpublishMenu.children[0] as! UIAction
 
@@ -78,7 +78,7 @@ class ModulePublishMenuTests: XCTestCase {
     // MARK: - Module Actions
 
     func testPublishModuleAndAllItems() {
-        let testee = UIMenu.modulePublishMenu(host: hostView, router: router)
+        let testee = UIMenu.makePublishModuleMenu(host: hostView, router: router)
         let publishMenu = testee.children[0] as! UIMenu
         let publishModule = publishMenu.children[0] as! UIAction
 
@@ -104,7 +104,7 @@ class ModulePublishMenuTests: XCTestCase {
     }
 
     func testPublishModuleOnly() {
-        let testee = UIMenu.modulePublishMenu(host: hostView, router: router)
+        let testee = UIMenu.makePublishModuleMenu(host: hostView, router: router)
         let publishMenu = testee.children[0] as! UIMenu
         let publishModule = publishMenu.children[1] as! UIAction
 
@@ -130,7 +130,7 @@ class ModulePublishMenuTests: XCTestCase {
     }
 
     func testUnpublishModule() {
-        let testee = UIMenu.modulePublishMenu(host: hostView, router: router)
+        let testee = UIMenu.makePublishModuleMenu(host: hostView, router: router)
         let publishMenu = testee.children[1] as! UIMenu
         let publishModule = publishMenu.children[0] as! UIAction
 
@@ -158,7 +158,7 @@ class ModulePublishMenuTests: XCTestCase {
     // MARK: - Item Actions
 
     func testPublishItem() {
-        let testee = UIMenu.moduleItemPublishMenu(action: .publish, host: hostView, router: router)
+        let testee = UIMenu.makePublishModuleItemMenu(action: .publish, host: hostView, router: router)
         let publishItem = testee.children[0] as! UIAction
 
         publishItem.performWithSender(nil, target: nil)
@@ -184,7 +184,7 @@ class ModulePublishMenuTests: XCTestCase {
     }
 
     func testUnpublishItem() {
-        let testee = UIMenu.moduleItemPublishMenu(action: .unpublish, host: hostView, router: router)
+        let testee = UIMenu.makePublishModuleItemMenu(action: .unpublish, host: hostView, router: router)
         let publishItem = testee.children[0] as! UIAction
 
         publishItem.performWithSender(nil, target: nil)

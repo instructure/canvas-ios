@@ -53,6 +53,7 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         publishedIconView.published = module.published
         lockedButton.isHidden = module.state != .locked
         collapsableIndicator.transform = CGAffineTransform(rotationAngle: isExpanded ? 0 : .pi)
+        setupPublishMenu(host: host, publishInteractor: publishInteractor)
         accessibilityLabel = [
             module.name,
             publishedIconView.isHidden ? "" :
@@ -66,13 +67,6 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
         accessibilityTraits.insert(.button)
         accessibilityIdentifier = "ModuleList.\(section)"
         accessibilityCustomActions = publishMenuButton.isHidden ? [] : .modulePublishA11yActions(host: host)
-
-        if publishMenuButton.menu == nil {
-            publishMenuButton.menu = .modulePublishMenu(host: host)
-            publishMenuButton.showsMenuAsPrimaryAction = true
-        }
-
-        publishMenuButton.isHidden = !publishInteractor.isPublishActionAvailable
     }
 
     @IBAction func handleTap() {
@@ -86,5 +80,17 @@ class ModuleSectionHeaderView: UITableViewHeaderFooterView {
 
     @IBAction func lockTapped() {
         onLockTap?()
+    }
+
+    private func setupPublishMenu(
+        host: UIViewController,
+        publishInteractor: ModulePublishInteractor
+    ) {
+        if publishMenuButton.menu == nil {
+            publishMenuButton.menu = .makePublishModuleMenu(host: host)
+            publishMenuButton.showsMenuAsPrimaryAction = true
+        }
+
+        publishMenuButton.isHidden = !publishInteractor.isPublishActionAvailable
     }
 }

@@ -139,7 +139,7 @@ public class ModuleListViewController: ScreenViewTrackableViewController, Colore
         else { return }
 
         let button = UIBarButtonItem(image: .moreLine)
-        button.menu = .modulesPublishMenu(host: self)
+        button.menu = .makePublishModulesMenu(host: self)
         button.accessibilityLabel = String(localized: "Publish options")
         navigationItem.setRightBarButton(button, animated: true)
     }
