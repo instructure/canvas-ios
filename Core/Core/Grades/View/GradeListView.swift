@@ -30,6 +30,7 @@ public struct GradeListView: View, ScreenViewTrackable {
 
     // MARK: - Private properties
 
+    @State private var isScoreEditorPresented = false
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
@@ -49,45 +50,81 @@ public struct GradeListView: View, ScreenViewTrackable {
 
     public var body: some View {
         GeometryReader { geometry in
-            RefreshableScrollView {
-                VStack(spacing: 0) {
-                    switch viewModel.state {
-                    case .initialLoading:
-                        loadingView()
-                    case let .refreshing(data):
-                        dataView(
-                            data,
-                            isRefreshing: true,
-                            isEmpty: false
-                        )
-                    case let .data(data):
-                        dataView(
-                            data,
-                            isRefreshing: false,
-                            isEmpty: false
-                        )
-                    case let .empty(data):
-                        dataView(
-                            data,
-                            isRefreshing: false,
-                            isEmpty: true
-                        )
-                    case .error:
-                        errorView()
+            ZStack {
+                RefreshableScrollView {
+                    VStack(spacing: 0) {
+                        switch viewModel.state {
+                        case .initialLoading:
+                            loadingView()
+                        case let .refreshing(data):
+                            dataView(
+                                data,
+                                isRefreshing: true,
+                                isEmpty: false
+                            )
+                        case let .data(data):
+                            dataView(
+                                data,
+                                isRefreshing: false,
+                                isEmpty: false
+                            )
+                        case let .empty(data):
+                            dataView(
+                                data,
+                                isRefreshing: false,
+                                isEmpty: true
+                            )
+                        case .error:
+                            errorView()
+                        }
+                    }
+                    .frame(width: geometry.size.width)
+                    .frame(minHeight: geometry.size.height)
+                } refreshAction: { endRefreshing in
+                    viewModel.pullToRefreshDidTrigger.accept(endRefreshing)
+                }
+                .background(Color.backgroundLightest)
+                if isScoreEditorPresented {
+                    WhatIfScoreEditorView(isPresented: $isScoreEditorPresented) {
+                        print("left tapped")
                     }
                 }
-                .frame(width: geometry.size.width)
-                .frame(minHeight: geometry.size.height)
-            } refreshAction: { endRefreshing in
-                viewModel.pullToRefreshDidTrigger.accept(endRefreshing)
             }
-            .background(Color.backgroundLightest)
+            .animation(.smooth, value: isScoreEditorPresented)
         }
         .navigationTitle(String(localized: "Grades"))
+        .toolbar {
+            RevertWhatIfScoreButton(isWhatIfScoreEnabled: viewModel.isWhatIfScoreEnabled) {
+                print("tap")
+            }
+        }
+    }
+
+    // This is workaround, because .toolbar doesn't allow optional `ToolBarContent`.
+    private struct RevertWhatIfScoreButton: ToolbarContent {
+        let isWhatIfScoreEnabled: Bool
+        let buttonDidTap: () -> Void
+
+        var body: some ToolbarContent {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                if isWhatIfScoreEnabled {
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            buttonDidTap()
+                        }) {
+                            Image(uiImage: .replyLine)
+                                .resizable()
+                                .foregroundColor(Color.white)
+                        }
+                    }
+                }
+            }
+        }
     }
 
     @ViewBuilder
-    func loadingView() -> some View {
+    private func loadingView() -> some View {
         ZStack {
             ProgressView()
                 .progressViewStyle(.indeterminateCircle())
@@ -282,18 +319,20 @@ public struct GradeListView: View, ScreenViewTrackable {
             .frame(height: 51)
             .padding(.horizontal, 16)
 
-//            Divider()
-//
-//            Toggle(isOn: $viewModel.isWhatIfScoreOn) {
-//                Text("Show What-if Score", bundle: .core)
-//                    .foregroundStyle(Color.textDarkest)
-//                    .font(.regular16)
-//                    .fixedSize()
-//                    .lineLimit(1)
-//            }
-//            .toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
-//            .frame(height: 51)
-//            .padding(.horizontal, 16)
+            if viewModel.isWhatIfScoreEnabled {
+                Divider()
+
+                Toggle(isOn: $viewModel.isWhatIfScoreOn) {
+                    Text("Show What-if Score", bundle: .core)
+                        .foregroundStyle(Color.textDarkest)
+                        .font(.regular16)
+                        .fixedSize()
+                        .lineLimit(1)
+                }
+                .toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
+                .frame(height: 51)
+                .padding(.horizontal, 16)
+            }
         }
     }
 
@@ -396,7 +435,13 @@ public struct GradeListView: View, ScreenViewTrackable {
                         Button {
                             viewModel.didSelectAssignment.accept((viewController, assignment))
                         } label: {
-                            GradeRowView(assignment: assignment, userID: userID)
+                            GradeRowView(
+                                assignment: assignment,
+                                userID: userID,
+                                isWhatIfScoreEnabled: viewModel.isWhatIfScoreEnabled
+                            ) {
+                                isScoreEditorPresented.toggle()
+                            }
                         }
                         .buttonStyle(ContextButton(contextColor: courseColor))
                         Divider()

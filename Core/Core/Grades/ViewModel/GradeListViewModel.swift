@@ -46,6 +46,7 @@ public final class GradeListViewModel: ObservableObject {
 
     @Published private(set) var state: ViewState = .initialLoading
     @Published public var isWhatIfScoreOn = false
+    @Published public var isWhatIfScoreEnabled = false
     public var courseID: String { interactor.courseID }
 
     // MARK: - Input
@@ -74,6 +75,8 @@ public final class GradeListViewModel: ObservableObject {
         self.interactor = interactor
 
         let triggerRefresh = PassthroughRelay<(IgnoreCache, RefreshCompletion)>()
+
+        isWhatIfScoreEnabled = interactor.isWhatIfScoreEnabled()
 
         pullToRefreshDidTrigger
             .sink {
