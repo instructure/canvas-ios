@@ -58,6 +58,7 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
             AppEnvironment.shared.userDefaults?.collapsedModules = collapsedIDs
         }
     }
+    private let publishInteractor = ModulePublishInteractor(app: AppEnvironment.shared.app)
 
     public static func create(courseID: String, moduleID: String? = nil) -> ModuleListViewController {
         let controller = loadFromStoryboard()
@@ -126,6 +127,21 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
         tableView.tableFooterView?.setNeedsLayout()
         tableView.reloadData()
         scrollToModule()
+
+        if spinnerView.isHidden, emptyView.isHidden, errorView.isHidden {
+            setupBulkPublishButtonInNavBar()
+        }
+    }
+
+    private func setupBulkPublishButtonInNavBar() {
+        guard navigationItem.rightBarButtonItem == nil,
+              publishInteractor.isPublishActionAvailable
+        else { return }
+
+        let button = UIBarButtonItem(image: .moreLine)
+        button.menu = .makePublishModulesMenu(host: self)
+        button.accessibilityLabel = String(localized: "Publish options")
+        navigationItem.setRightBarButton(button, animated: true)
     }
 
     private func reloadCourse() {
@@ -189,7 +205,7 @@ extension ModuleListViewController: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let module = modules[section] else { return nil }
         let header = tableView.dequeueHeaderFooter(ModuleSectionHeaderView.self)
-        header.update(module, section: section, isExpanded: isSectionExpanded(section)) { [weak self] in
+        header.update(module, section: section, isExpanded: isSectionExpanded(section), host: self, publishInteractor: publishInteractor) { [weak self] in
             self?.toggleSection(section)
         }
         header.onLockTap = { [weak self] in
@@ -238,13 +254,13 @@ extension ModuleListViewController: UITableViewDataSource {
         case .subHeader:
             let cell: ModuleItemSubHeaderCell = tableView.dequeue(for: indexPath)
             if let item = item {
-                cell.update(item)
+                cell.update(item, publishInteractor: publishInteractor)
             }
             return cell
         default:
             let cell: ModuleItemCell = tableView.dequeue(for: indexPath)
             if let item = item {
-                cell.update(item, indexPath: indexPath, color: color)
+                cell.update(item, indexPath: indexPath, color: color, publishInteractor: publishInteractor)
             }
             return cell
         }
