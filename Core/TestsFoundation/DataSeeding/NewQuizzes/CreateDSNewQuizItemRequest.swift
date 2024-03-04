@@ -36,17 +36,11 @@ extension CreateDSNewQuizItemRequest {
     public struct RequestedDSNewQuizItem: Encodable {
         let entry_type: String
         let entry: DSEntry
-        let scoring_data: DSScoringData
-        let scoring_algorithm: String
 
         public init(entry_type: String = "Item",
-                    entry: DSEntry,
-                    scoring_data: DSScoringData,
-                    scoring_algorithm: DSScoringAlgorithm) {
+                    entry: DSEntry) {
             self.entry_type = entry_type
             self.entry = entry
-            self.scoring_data = scoring_data
-            self.scoring_algorithm = scoring_algorithm.rawValue
         }
     }
 
@@ -61,15 +55,21 @@ extension CreateDSNewQuizItemRequest {
         let item_body: String
         let interaction_type_slug: String
         let interaction_data: DSInteractionData
+        let scoring_data: DSScoringData
+        let scoring_algorithm: String
 
         public init(title: String,
                     item_body: String,
                     interaction_type_slug: DSInteractionTypeSlug,
-                    interaction_data: DSInteractionData) {
+                    interaction_data: DSInteractionData,
+                    scoring_data: DSScoringData,
+                    scoring_algorithm: DSScoringAlgorithm) {
             self.title = title
             self.item_body = item_body
             self.interaction_type_slug = interaction_type_slug.rawValue
             self.interaction_data = interaction_data
+            self.scoring_data = scoring_data
+            self.scoring_algorithm = scoring_algorithm.rawValue
         }
     }
 

@@ -74,10 +74,10 @@ struct APIDocViewerAnnotation: Codable, Equatable, Comparable {
     let contents: String?
     let inreplyto: String?
     let coords: [[[Double]]]?
-    let rect: [[Double]]?
+    var rect: [[Double]]?
     let font: String?
     let inklist: APIDocViewerInklist?
-    let width: Double?
+    var width: Double?
 
     static func < (lhs: APIDocViewerAnnotation, rhs: APIDocViewerAnnotation) -> Bool {
         guard let lhsCreationDate = lhs.created_at, let rhsCreationDate = rhs.created_at else {

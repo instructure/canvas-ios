@@ -36,11 +36,14 @@ extension CreateDSNewQuizRequest {
     public struct RequestedDSNewQuiz: Encodable {
         let title: String
         let instructions: String
+        let published: Bool
 
         public init(title: String = "Quiz Title",
-                    instructions: String = "Quiz Instructions") {
+                    instructions: String = "Quiz Instructions",
+                    published: Bool = true) {
             self.title = title
             self.instructions = instructions
+            self.published = published
         }
     }
 

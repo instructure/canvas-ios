@@ -20,7 +20,7 @@ public struct DSNewQuiz: Codable {
     public let id: String
     public let title: String
     public let instructions: String
-    public let points_possible: Int
+    public let points_possible: Float?
     public let published: Bool
     public let grading_type: String
 }

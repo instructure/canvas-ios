@@ -156,6 +156,9 @@ extension HelmSplitViewController: UISplitViewControllerDelegate {
                 }
             }
 
+            // Updating titles again _after_ separation, because on iOS 16 traitCollectionDidChange(_:) is called before splitViewController(_:separateSecondaryFrom:)
+            updateTitleViews()
+
             return newDeets
         }
         

@@ -28,10 +28,16 @@ class ModuleItemCell: UITableViewCell {
     @IBOutlet weak var publishedIconView: PublishedIconView!
     @IBOutlet weak var indentConstraint: NSLayoutConstraint!
     @IBOutlet weak var completedStatusView: UIImageView!
+    @IBOutlet weak var publishMenuButton: UIButton! {
+        didSet {
+            publishMenuButton.isHidden = true
+            publishMenuButton.showsMenuAsPrimaryAction = true
+        }
+    }
 
     let env = AppEnvironment.shared
 
-    func update(_ item: ModuleItem, indexPath: IndexPath, color: UIColor?) {
+    func update(_ item: ModuleItem, indexPath: IndexPath, color: UIColor?, publishInteractor: ModulePublishInteractor) {
         backgroundColor = .backgroundLightest
         selectedBackgroundView = ContextCellBackgroundView.create(color: color)
         let isLocked = item.isLocked || item.masteryPath?.locked == true
@@ -86,5 +92,19 @@ class ModuleItemCell: UITableViewCell {
         accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row)"
         nameLabel.accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row).nameLabel"
         dueLabel.accessibilityIdentifier = "ModuleList.\(indexPath.section).\(indexPath.row).dueLabel"
+
+        switch item.type {
+        case .file:
+            publishMenuButton.isHidden = true
+            accessibilityCustomActions = []
+        default:
+            let action: ModulePublishItem.Action = item.published == true ? .unpublish : .publish
+            let host = viewController ?? UIViewController()
+            publishMenuButton.isHidden = !publishInteractor.isPublishActionAvailable
+            publishMenuButton.menu = .makePublishModuleItemMenu(action: action,
+                                                            host: host)
+            accessibilityCustomActions = .moduleItemPublishA11yActions(action: action, host: host)
+        }
+
     }
 }
