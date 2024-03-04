@@ -189,8 +189,8 @@ class ModuleItemCell: UITableViewCell {
                 moduleItem.type?.label,
                 moduleItem.title,
                 moduleItem.published == true
-                    ? NSLocalizedString("published", bundle: .core, comment: "")
-                    : NSLocalizedString("unpublished", bundle: .core, comment: ""),
+                    ? String(localized: "published")
+                    : String(localized: "unpublished"),
             ].compactMap { $0 }.joined(separator: ", ")
         }
     }
