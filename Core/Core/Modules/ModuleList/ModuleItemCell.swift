@@ -38,10 +38,12 @@ class ModuleItemCell: UITableViewCell {
 
     let env = AppEnvironment.shared
     var publishStateObserver: AnyCancellable?
+    var isFirstUpdate = true
 
     override func prepareForReuse() {
         super.prepareForReuse()
         publishStateObserver = nil
+        isFirstUpdate = true
     }
 
     func update(
@@ -120,9 +122,12 @@ class ModuleItemCell: UITableViewCell {
             .map { $0.contains(item.id) }
             .removeDuplicates()
             .sink { [weak self] isUpdating in
-                self?.updatePublishMenuActions(moduleItem: item, publishInteractor: publishInteractor)
-                self?.updatePublishedUIState(isUpdating: isUpdating, isItemPublished: item.published ?? false)
-                self?.updateA11yLabelForPublishState(moduleItem: item)
+                guard let self else { return }
+                let animated = !isFirstUpdate
+                isFirstUpdate = false
+                updatePublishMenuActions(moduleItem: item, publishInteractor: publishInteractor)
+                updatePublishedUIState(isUpdating: isUpdating, isItemPublished: item.published ?? false, animated: animated)
+                updateA11yLabelForPublishState(moduleItem: item)
             }
     }
 
@@ -147,7 +152,7 @@ class ModuleItemCell: UITableViewCell {
         )
     }
 
-    private func updatePublishedUIState(isUpdating: Bool, isItemPublished: Bool) {
+    private func updatePublishedUIState(isUpdating: Bool, isItemPublished: Bool, animated: Bool) {
         if isUpdating {
             publishInProgressIndicator?.startAnimating()
         }
@@ -156,7 +161,7 @@ class ModuleItemCell: UITableViewCell {
         publishedIconView?.published = isItemPublished
         publishedIconView?.alpha = isUpdating ? 1 : 0
 
-        UIView.animate(withDuration: 0.3) { [weak publishInProgressIndicator, weak publishedIconView] in
+        UIView.animate(withDuration: animated ? 0.3 : 0.0) { [weak publishInProgressIndicator, weak publishedIconView] in
             publishInProgressIndicator?.alpha = isUpdating ? 1 : 0
             publishedIconView?.alpha = isUpdating ? 0 : 1
         } completion: { [weak publishInProgressIndicator] _ in
