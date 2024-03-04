@@ -47,10 +47,10 @@ class PutModuleItemPublishStateTests: CoreTestCase {
             moduleItemId: "testModuleItem",
             action: .publish
         )
-        
+
         // WHEN
         XCTAssertFinish(testee.fetchWithFuture())
-        
+
         // THEN
         XCTAssertEqual(dbItem.published, true)
     }
