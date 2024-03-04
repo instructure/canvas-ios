@@ -40,6 +40,33 @@ class GradeListViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, .empty(emptySections))
     }
 
+    func testRefreshState() {
+        var states: [GradeListViewModel.ViewState] = []
+        let interactor = GradeListInteractorMock(dataToReturn: gradeListData)
+        let expectation = expectation(description: "Publisher sends value.")
+        let testee = GradeListViewModel(
+            interactor: interactor,
+            router: PreviewEnvironment.shared.router,
+            scheduler: .immediate
+        )
+
+        let subscription = testee.$state
+            .sink { _ in
+
+            } receiveValue: { state in
+                states.append(state)
+                if states.count == 3 {
+                    expectation.fulfill()
+                }
+            }
+
+        testee.pullToRefreshDidTrigger.accept((nil))
+        XCTAssertEqual(states[1], .refreshing(gradeListData))
+        XCTAssertEqual(states[2], .data(gradeListData))
+        waitForExpectations(timeout: 0.1)
+        subscription.cancel()
+    }
+
     func testSelectedGradingPeriod() {
         let interactor = GradeListInteractorMock()
         let testee = GradeListViewModel(
@@ -107,6 +134,7 @@ private extension GradeListViewModelTests {
         var courseID: String { "" }
         func getGrades(
             arrangeBy _: Core.GradeArrangementOptions,
+            baseOnGradedAssignment _: Bool,
             ignoreCache _: Bool
         ) -> AnyPublisher<Core.GradeListData, Error> {
             Fail(error: NSError.instructureError("")).eraseToAnyPublisher()
@@ -119,6 +147,7 @@ private extension GradeListViewModelTests {
         var courseID: String { "" }
         func getGrades(
             arrangeBy _: Core.GradeArrangementOptions,
+            baseOnGradedAssignment _: Bool,
             ignoreCache _: Bool
         ) -> AnyPublisher<Core.GradeListData, Error> {
             Just(emptySections)
@@ -142,6 +171,7 @@ private extension GradeListViewModelTests {
 
         func getGrades(
             arrangeBy: Core.GradeArrangementOptions,
+            baseOnGradedAssignment _: Bool,
             ignoreCache: Bool
         ) -> AnyPublisher<Core.GradeListData, Error> {
             self.ignoreCache = ignoreCache

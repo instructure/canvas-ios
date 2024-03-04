@@ -27,10 +27,12 @@ public enum GradeArrangementOptions {
 }
 
 public final class GradeListViewModel: ObservableObject {
-    typealias RefreshCompletion = (() -> Void)?
+    typealias RefreshCompletion = (() -> Void)
+    typealias IgnoreCache = Bool
 
     enum ViewState: Equatable {
-        case loading
+        case initialLoading
+        case refreshing(GradeListData)
         case data(GradeListData)
         case empty(GradeListData)
         case error
@@ -42,18 +44,24 @@ public final class GradeListViewModel: ObservableObject {
 
     // MARK: - Output
 
-    @Published private(set) var state: ViewState = .loading
+    @Published private(set) var state: ViewState = .initialLoading
+    @Published public var isWhatIfScoreOn = false
     public var courseID: String { interactor.courseID }
 
     // MARK: - Input
 
+    let pullToRefreshDidTrigger = PassthroughRelay<(RefreshCompletion)?>()
+    let didSelectAssignment = PassthroughRelay<(WeakViewController, Assignment)>()
+
+    // MARK: - Input / Output
+
+    @Published var baseOnGradedAssignment = true
     let selectedGradingPeriod = PassthroughRelay<GradingPeriod?>()
     let selectedGroupByOption = CurrentValueRelay<GradeArrangementOptions>(.groupName)
-    let pullToRefreshDidTrigger = PassthroughRelay<(() -> Void)?>()
-    let didSelectAssignment = PassthroughRelay<(WeakViewController, Assignment)>()
 
     // MARK: - Private properties
 
+    private var lastKnownDataState: GradeListData?
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
@@ -65,17 +73,11 @@ public final class GradeListViewModel: ObservableObject {
     ) {
         self.interactor = interactor
 
-        let triggerRefresh = PassthroughRelay<(Bool, RefreshCompletion)>()
+        let triggerRefresh = PassthroughRelay<(IgnoreCache, RefreshCompletion?)>()
 
         pullToRefreshDidTrigger
             .sink {
                 triggerRefresh.accept((true, $0))
-            }
-            .store(in: &subscriptions)
-
-        selectedGroupByOption
-            .sink { _ in
-                triggerRefresh.accept((false, nil))
             }
             .store(in: &subscriptions)
 
@@ -86,14 +88,40 @@ public final class GradeListViewModel: ObservableObject {
             }
             .store(in: &subscriptions)
 
-        triggerRefresh
-            .prepend((false, nil))
-            .flatMap { [unowned selectedGroupByOption] ignoreCache, refreshCompletion in
-                interactor.getGrades(
+        selectedGroupByOption
+            .sink { _ in
+                triggerRefresh.accept((false, nil))
+            }
+            .store(in: &subscriptions)
+
+        $baseOnGradedAssignment
+            .sink { _ in
+                triggerRefresh.accept((false, nil))
+            }
+            .store(in: &subscriptions)
+
+        triggerRefresh.prepend((false, nil))
+            .receive(on: scheduler)
+            .flatMapLatest { [unowned self] params in
+                let ignoreCache = params.0
+                let refreshCompletion = params.1
+
+                // Changing the grading period fires an API request that takes time,
+                // so we need to show a loading indicator.
+                if let lastKnownDataState, refreshCompletion == nil, ignoreCache {
+                    state = .refreshing(lastKnownDataState)
+                }
+
+                return interactor.getGrades(
                     arrangeBy: selectedGroupByOption.value,
+                    baseOnGradedAssignment: baseOnGradedAssignment,
                     ignoreCache: ignoreCache
                 )
-                .map { listData -> ViewState in
+                .first()
+                .receive(on: scheduler)
+                .map { [unowned self] listData -> ViewState in
+                    lastKnownDataState = listData
+
                     if listData.assignmentSections.count == 0 {
                         return ViewState.empty(listData)
                     } else {

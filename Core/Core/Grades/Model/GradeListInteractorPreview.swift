@@ -24,7 +24,7 @@ import Foundation
 final class GradeListInteractorPreview: GradeListInteractor {
     var courseID: String { "courseID" }
 
-    func getGrades(arrangeBy _: GradeArrangementOptions, ignoreCache _: Bool) -> AnyPublisher<GradeListData, Error> {
+    func getGrades(arrangeBy _: GradeArrangementOptions, baseOnGradedAssignment _: Bool, ignoreCache _: Bool) -> AnyPublisher<GradeListData, Error> {
         let context = PreviewEnvironment.shared.database.viewContext
         return Just(
             GradeListData(
