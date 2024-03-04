@@ -19,8 +19,8 @@
 import Foundation
 import SafariServices
 
-public class ModuleListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol, ErrorViewController {
-    let refreshControl = CircleRefreshControl()
+public final class ModuleListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol, ErrorViewController {
+    private let refreshControl = CircleRefreshControl()
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -29,10 +29,10 @@ public class ModuleListViewController: ScreenViewTrackableViewController, Colore
     @IBOutlet weak var tableView: UITableView!
     public let titleSubtitleView = TitleSubtitleView.create()
 
-    let env = AppEnvironment.shared
+    private let env = AppEnvironment.shared
     public var color: UIColor?
-    var courseID = ""
-    var moduleID: String?
+    private var courseID = ""
+    private var moduleID: String?
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
         eventName: "/courses/\(courses.first?.id ?? "")/modules"
     )
@@ -50,7 +50,7 @@ public class ModuleListViewController: ScreenViewTrackableViewController, Colore
         self?.update()
     }
 
-    var isPageDisabled: Bool {
+    private var isPageDisabled: Bool {
         tabs.first { $0.id == "modules" } == nil && courses.first?.defaultView != .modules
     }
     private var collapsedIDs: [String: [String]] = AppEnvironment.shared.userDefaults?.collapsedModules ?? [:] {
@@ -112,7 +112,7 @@ public class ModuleListViewController: ScreenViewTrackableViewController, Colore
         navigationController?.navigationBar.useContextColor(color)
     }
 
-    func update() {
+    private func update() {
         let pending = modules.pending || tabs.pending || courses.pending
         spinnerView.isHidden = !pending || refreshControl.isRefreshing
         emptyView.isHidden = modules.pending || !modules.isEmpty || modules.error != nil || isPageDisabled
@@ -139,17 +139,17 @@ public class ModuleListViewController: ScreenViewTrackableViewController, Colore
         else { return }
 
         let button = UIBarButtonItem(image: .moreLine)
-        button.menu = .modulePublishOnNavBar(host: self)
+        button.menu = .makePublishModulesMenu(host: self)
         button.accessibilityLabel = String(localized: "Publish options")
         navigationItem.setRightBarButton(button, animated: true)
     }
 
-    func reloadCourse() {
+    private func reloadCourse() {
         updateNavBar(subtitle: courses.first?.name, color: courses.first?.color)
         view.tintColor = color
     }
 
-    @objc func refresh() {
+    @objc private func refresh() {
         modules.refresh(force: true) { [weak self] _ in
             self?.refreshControl.endRefreshing()
         }
@@ -157,12 +157,12 @@ public class ModuleListViewController: ScreenViewTrackableViewController, Colore
         courses.refresh(force: true)
     }
 
-    func isSectionExpanded(_ section: Int) -> Bool {
+    private func isSectionExpanded(_ section: Int) -> Bool {
         guard let module = modules[section] else { return false }
         return collapsedIDs[courseID]?.contains(module.id) != true
     }
 
-    func scrollToModule() {
+    private func scrollToModule() {
         if let moduleID = moduleID, let section = modules.all.firstIndex(where: { $0.id == moduleID }), section < tableView.numberOfSections {
             let indexPath = IndexPath(row: 0, section: section)
             tableView.scrollToRow(at: indexPath, at: .top, animated: true)
@@ -170,7 +170,7 @@ public class ModuleListViewController: ScreenViewTrackableViewController, Colore
         }
     }
 
-    @objc func moduleItemViewDidLoad(_ notification: Notification) {
+    @objc private func moduleItemViewDidLoad(_ notification: Notification) {
         guard
             splitViewController?.isCollapsed == false,
             let userInfo = notification.userInfo,
@@ -214,7 +214,7 @@ extension ModuleListViewController: UITableViewDataSource {
         return header
     }
 
-    func toggleSection(_ section: Int) {
+    private func toggleSection(_ section: Int) {
         guard let module = modules[section] else { return }
         if isSectionExpanded(section) {
             collapsedIDs[courseID]?.append(module.id)
@@ -224,7 +224,7 @@ extension ModuleListViewController: UITableViewDataSource {
         tableView.reloadSections([section], with: .automatic)
     }
 
-    func showLockedMessage(module: Module) {
+    private func showLockedMessage(module: Module) {
         guard let message = module.lockedMessage else { return }
         let alert = UIAlertController(
             title: NSLocalizedString("Locked", bundle: .core, comment: ""),
@@ -254,7 +254,7 @@ extension ModuleListViewController: UITableViewDataSource {
         case .subHeader:
             let cell: ModuleItemSubHeaderCell = tableView.dequeue(for: indexPath)
             if let item = item {
-                cell.update(item)
+                cell.update(item, publishInteractor: publishInteractor)
             }
             return cell
         default:

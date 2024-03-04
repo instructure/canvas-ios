@@ -23,10 +23,15 @@ class ModuleItemSubHeaderCell: UITableViewCell {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var publishedIconView: PublishedIconView!
     @IBOutlet weak var indentConstraint: NSLayoutConstraint!
+    @IBOutlet weak var publishMenuButton: UIButton! {
+        didSet {
+            publishMenuButton.showsMenuAsPrimaryAction = true
+        }
+    }
 
     let env = AppEnvironment.shared
 
-    func update(_ item: ModuleItem) {
+    func update(_ item: ModuleItem, publishInteractor: ModulePublishInteractor) {
         backgroundColor = .backgroundLightest
         isUserInteractionEnabled = env.app == .teacher || !item.isLocked
         label.text = item.title
@@ -43,5 +48,14 @@ class ModuleItemSubHeaderCell: UITableViewCell {
                     : NSLocalizedString("unpublished", bundle: .core, comment: ""),
             ].joined(separator: ", ")
         }
+
+        let action: PutModuleItemPublishRequest.Action = item.published == true ? .unpublish : .publish
+        let host = viewController ?? UIViewController()
+        publishMenuButton.isHidden = !publishInteractor.isPublishActionAvailable
+        publishMenuButton.menu = .makePublishModuleItemMenu(action: action,
+                                                            host: host,
+                                                            actionDidPerform: {
+            publishInteractor.changeItemPublishedState(moduleId: item.moduleID, moduleItemId: item.id, action: action)
+        })
     }
 }

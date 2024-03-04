@@ -19,7 +19,7 @@
 import Foundation
 import UIKit
 
-public class ModuleItemSequenceViewController: UIViewController {
+public final class ModuleItemSequenceViewController: UIViewController {
     public typealias AssetType = GetModuleItemSequenceRequest.AssetType
 
     @IBOutlet weak var pagesContainer: UIView!
@@ -29,22 +29,22 @@ public class ModuleItemSequenceViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
 
     /// These should get set only once in viewDidLoad
-    var leftBarButtonItems: [UIBarButtonItem]?
-    var rightBarButtonItems: [UIBarButtonItem]?
+    private var leftBarButtonItems: [UIBarButtonItem]?
+    private var rightBarButtonItems: [UIBarButtonItem]?
 
-    let env = AppEnvironment.shared
-    var courseID: String!
-    var assetType: AssetType!
-    var assetID: String!
-    var url: URLComponents!
+    private let env = AppEnvironment.shared
+    private var courseID: String!
+    private var assetType: AssetType!
+    private var assetID: String!
+    private var url: URLComponents!
 
     let pages = PagesViewController()
-    var observations: [NSKeyValueObservation]?
+    private var observations: [NSKeyValueObservation]?
 
-    lazy var store = env.subscribe(GetModuleItemSequence(courseID: courseID, assetType: assetType, assetID: assetID)) { [weak self] in
+    private lazy var store = env.subscribe(GetModuleItemSequence(courseID: courseID, assetType: assetType, assetID: assetID)) { [weak self] in
         self?.update(embed: true)
     }
-    var sequence: ModuleItemSequence? { store.first }
+    private var sequence: ModuleItemSequence? { store.first }
 
     public static func create(courseID: String, assetType: AssetType, assetID: String, url: URLComponents) -> Self {
         let controller = loadFromStoryboard()
@@ -55,7 +55,7 @@ public class ModuleItemSequenceViewController: UIViewController {
         return controller
     }
 
-    override public func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         leftBarButtonItems = navigationItem.leftBarButtonItems
         rightBarButtonItems = navigationItem.rightBarButtonItems
@@ -76,22 +76,22 @@ public class ModuleItemSequenceViewController: UIViewController {
 
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        if let viewController = currentViewController() {
+        if let viewController = pages.currentPage {
             observations = syncNavigationBar(with: viewController)
         }
     }
 
-    func update(embed: Bool) {
+    private func update(embed: Bool) {
         if store.requested, store.pending {
             return
         }
-        if embed, let viewController = currentViewController() {
+        if embed, let viewController = createCurrentViewController() {
             setCurrentPage(viewController)
         }
         showSequenceButtons(prev: sequence?.prev != nil, next: sequence?.next != nil)
     }
 
-    func currentViewController() -> UIViewController? {
+    private func createCurrentViewController() -> UIViewController? {
         guard let url = url.url else { return nil }
         if let current = sequence?.current {
             return ModuleItemDetailsViewController.create(courseID: courseID, moduleID: current.moduleID, itemID: current.id)
@@ -108,7 +108,7 @@ public class ModuleItemSequenceViewController: UIViewController {
         }
     }
 
-    func showSequenceButtons(prev: Bool, next: Bool) {
+    private func showSequenceButtons(prev: Bool, next: Bool) {
         let show = prev || next
         self.buttonsContainer.isHidden = show == false
         self.buttonsHeightConstraint.constant = show ? 56 : 0
@@ -117,7 +117,7 @@ public class ModuleItemSequenceViewController: UIViewController {
         self.view.layoutIfNeeded()
     }
 
-    func show(item: ModuleItemSequenceNode, direction: PagesViewController.Direction? = nil) {
+    private func show(item: ModuleItemSequenceNode, direction: PagesViewController.Direction? = nil) {
         let details = ModuleItemDetailsViewController.create(courseID: courseID, moduleID: item.moduleID, itemID: item.id)
         setCurrentPage(details, direction: direction)
         store = env.subscribe(GetModuleItemSequence(courseID: courseID, assetType: .moduleItem, assetID: item.id)) { [weak self] in
@@ -126,19 +126,19 @@ public class ModuleItemSequenceViewController: UIViewController {
         store.refresh(force: true)
     }
 
-    func setCurrentPage(_ page: UIViewController, direction: PagesViewController.Direction? = nil) {
+    private func setCurrentPage(_ page: UIViewController, direction: PagesViewController.Direction? = nil) {
         pages.setCurrentPage(page, direction: direction)
         navigationItem.rightBarButtonItems = rightBarButtonItems
         navigationItem.leftBarButtonItems = leftBarButtonItems
         observations = syncNavigationBar(with: page)
     }
 
-    @IBAction func goPrevious() {
+    @IBAction private func goPrevious() {
         guard let prev = sequence?.prev else { return }
         show(item: prev, direction: .reverse)
     }
 
-    @IBAction func goNext() {
+    @IBAction private func goNext() {
         guard let next = sequence?.next else { return }
         show(item: next, direction: .forward)
     }

@@ -31,10 +31,10 @@ class ModulePublishMenuTests: XCTestCase {
         router = TestRouter()
     }
 
-    // MARK: - Nav Bar Actions
+    // MARK: - All Modules Actions
 
     func testPublishAllModulesAndItems() {
-        let testee = UIMenu.modulePublishOnNavBar(host: hostView, router: router)
+        let testee = UIMenu.makePublishModulesMenu(host: hostView, router: router)
         let publishMenu = testee.children[0] as! UIMenu
         let publishAll = publishMenu.children[0] as! UIAction
 
@@ -48,7 +48,7 @@ class ModulePublishMenuTests: XCTestCase {
     }
 
     func testPublishModulesOnly() {
-        let testee = UIMenu.modulePublishOnNavBar(host: hostView, router: router)
+        let testee = UIMenu.makePublishModulesMenu(host: hostView, router: router)
         let publishMenu = testee.children[0] as! UIMenu
         let publishModules = publishMenu.children[1] as! UIAction
 
@@ -62,7 +62,7 @@ class ModulePublishMenuTests: XCTestCase {
     }
 
     func testUnpublishAllModulesAndItems() {
-        let testee = UIMenu.modulePublishOnNavBar(host: hostView, router: router)
+        let testee = UIMenu.makePublishModulesMenu(host: hostView, router: router)
         let unpublishMenu = testee.children[1] as! UIMenu
         let unpublishAll = unpublishMenu.children[0] as! UIAction
 
@@ -78,7 +78,7 @@ class ModulePublishMenuTests: XCTestCase {
     // MARK: - Module Actions
 
     func testPublishModuleAndAllItems() {
-        let testee = UIMenu.modulePublishOnModule(host: hostView, router: router)
+        let testee = UIMenu.makePublishModuleMenu(host: hostView, router: router)
         let publishMenu = testee.children[0] as! UIMenu
         let publishModule = publishMenu.children[0] as! UIAction
 
@@ -92,8 +92,8 @@ class ModulePublishMenuTests: XCTestCase {
     }
 
     func testPublishModuleAndAllItemsA11yAction() {
-        let testee = [UIAccessibilityCustomAction].modulePublishActionsOnModule(host: hostView,
-                                                                                router: router)[0]
+        let testee = [UIAccessibilityCustomAction].modulePublishA11yActions(host: hostView,
+                                                                            router: router)[0]
 
         _ = testee.actionHandler!(testee)
 
@@ -104,7 +104,7 @@ class ModulePublishMenuTests: XCTestCase {
     }
 
     func testPublishModuleOnly() {
-        let testee = UIMenu.modulePublishOnModule(host: hostView, router: router)
+        let testee = UIMenu.makePublishModuleMenu(host: hostView, router: router)
         let publishMenu = testee.children[0] as! UIMenu
         let publishModule = publishMenu.children[1] as! UIAction
 
@@ -118,8 +118,8 @@ class ModulePublishMenuTests: XCTestCase {
     }
 
     func testPublishModuleOnlyA11yAction() {
-        let testee = [UIAccessibilityCustomAction].modulePublishActionsOnModule(host: hostView,
-                                                                                router: router)[1]
+        let testee = [UIAccessibilityCustomAction].modulePublishA11yActions(host: hostView,
+                                                                            router: router)[1]
 
         _ = testee.actionHandler!(testee)
 
@@ -130,7 +130,7 @@ class ModulePublishMenuTests: XCTestCase {
     }
 
     func testUnpublishModule() {
-        let testee = UIMenu.modulePublishOnModule(host: hostView, router: router)
+        let testee = UIMenu.makePublishModuleMenu(host: hostView, router: router)
         let publishMenu = testee.children[1] as! UIMenu
         let publishModule = publishMenu.children[0] as! UIAction
 
@@ -144,8 +144,8 @@ class ModulePublishMenuTests: XCTestCase {
     }
 
     func testUnpublishModuleA11yAction() {
-        let testee = [UIAccessibilityCustomAction].modulePublishActionsOnModule(host: hostView,
-                                                                                router: router)[2]
+        let testee = [UIAccessibilityCustomAction].modulePublishA11yActions(host: hostView,
+                                                                            router: router)[2]
 
         _ = testee.actionHandler!(testee)
 
@@ -159,10 +159,10 @@ class ModulePublishMenuTests: XCTestCase {
 
     func testPublishItem() {
         let actionExpectation = expectation(description: "Action performed")
-        let testee = UIMenu.modulePublishOnItem(action: .publish,
-                                                host: hostView,
-                                                router: router,
-                                                actionDidPerform: { actionExpectation.fulfill() })
+        let testee = UIMenu.makePublishModuleItemMenu(action: .publish,
+                                                      host: hostView,
+                                                      router: router,
+                                                      actionDidPerform: { actionExpectation.fulfill() })
         let publishItem = testee.children[0] as! UIAction
 
         publishItem.performWithSender(nil, target: nil)
@@ -177,10 +177,10 @@ class ModulePublishMenuTests: XCTestCase {
 
     func testPublishItemA11yAction() {
         let actionExpectation = expectation(description: "Action performed")
-        let testee = [UIAccessibilityCustomAction].modulePublishActionsOnItem(action: .publish,
-                                                                              host: hostView,
-                                                                              router: router,
-                                                                              actionDidPerform: { actionExpectation.fulfill() })[0]
+        let testee = [UIAccessibilityCustomAction].moduleItemPublishA11yActions(action: .publish,
+                                                                                host: hostView,
+                                                                                router: router,
+                                                                                actionDidPerform: { actionExpectation.fulfill() })[0]
 
         _ = testee.actionHandler!(testee)
 
@@ -193,10 +193,10 @@ class ModulePublishMenuTests: XCTestCase {
 
     func testUnpublishItem() {
         let actionExpectation = expectation(description: "Action performed")
-        let testee = UIMenu.modulePublishOnItem(action: .unpublish,
-                                                host: hostView,
-                                                router: router,
-                                                actionDidPerform: { actionExpectation.fulfill() })
+        let testee = UIMenu.makePublishModuleItemMenu(action: .unpublish,
+                                      		          host: hostView,
+	                                                  router: router,
+      		                                          actionDidPerform: { actionExpectation.fulfill() })
         let publishItem = testee.children[0] as! UIAction
 
         publishItem.performWithSender(nil, target: nil)
@@ -211,10 +211,10 @@ class ModulePublishMenuTests: XCTestCase {
 
     func testUnpublishItemA11yAction() {
         let actionExpectation = expectation(description: "Action performed")
-        let testee = [UIAccessibilityCustomAction].modulePublishActionsOnItem(action: .unpublish,
-                                                                              host: hostView,
-                                                                              router: router,
-                                                                              actionDidPerform: { actionExpectation.fulfill() })[0]
+        let testee = [UIAccessibilityCustomAction].moduleItemPublishA11yActions(action: .unpublish,
+                                                                                host: hostView,
+                                                                                router: router,
+                                                                                actionDidPerform: { actionExpectation.fulfill() })[0]
 
         _ = testee.actionHandler!(testee)
 
@@ -225,7 +225,9 @@ class ModulePublishMenuTests: XCTestCase {
         waitForExpectations(timeout: 0.1)
     }
 
-    func checkAlert(
+    // MARK: - Private
+
+    private func checkAlert(
         title: String,
         message: String,
         defaultActionTitle: String

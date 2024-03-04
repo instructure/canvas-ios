@@ -139,12 +139,8 @@ class ModuleItemCell: UITableViewCell {
             )
         }
         let host = viewController ?? UIViewController()
-        publishMenuButton.menu = .modulePublishOnItem(
-            action: action,
-            host: host,
-            actionDidPerform: performUpdate
-        )
-        accessibilityCustomActions = .modulePublishActionsOnItem(
+        publishMenuButton.menu = .makePublishModuleItemMenu(action: action, host: host, actionDidPerform: performUpdate)
+        accessibilityCustomActions = .moduleItemPublishA11yActions(
             action: action,
             host: host,
             actionDidPerform: performUpdate

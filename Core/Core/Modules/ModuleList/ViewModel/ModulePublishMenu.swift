@@ -18,67 +18,19 @@
 
 import UIKit
 
-struct ModulePublishMenu {
-
-    static var NavBar = (
-        publish: [
-            ModulePublishItem(title: String(localized: "Publish All Modules And Items"),
-                              confirmMessage: String(localized: "This will make all modules and items visible to students."),
-                              action: .publish),
-            ModulePublishItem(title: String(localized: "Publish Modules Only"),
-                              confirmMessage: String(localized: "This will make only the modules visible to students."),
-                              action: .publish),
-        ],
-        unpublish: [
-            ModulePublishItem(title: String(localized: "Unpublish All Modules And Items"),
-                              confirmMessage: String(localized: "This will make all modules and items invisible to students."),
-                              action: .unpublish),
-        ]
-    )
-
-    static var Module = (
-        publish: [
-            ModulePublishItem(title: String(localized: "Publish Module And All Items"),
-                              confirmMessage: String(localized: "This will make the module and all items visible to students."),
-                              action: .publish),
-            ModulePublishItem(title: String(localized: "Publish Module Only"),
-                              confirmMessage: String(localized: "This will make only the module visible to students."),
-                              action: .publish),
-        ],
-        unpublish: [
-            ModulePublishItem(title: String(localized: "Unpublish Module And All Items"),
-                              confirmMessage: String(localized: "This will make the module and all items invisible to students."),
-                              action: .unpublish),
-        ]
-    )
-
-    static var Item = (
-        publish: [
-            ModulePublishItem(title: String(localized: "Publish"),
-                              confirmMessage: String(localized: "This will make only this item visible to students."),
-                              action: .publish),
-        ],
-        unpublish: [
-            ModulePublishItem(title: String(localized: "Unpublish"),
-                              confirmMessage: String(localized: "This will make only this item invisible to students."),
-                              action: .unpublish),
-        ]
-    )
-}
-
 extension UIMenu {
 
-    static func modulePublishOnNavBar(
+    static func makePublishModulesMenu(
         host: UIViewController,
         router: Router = AppEnvironment.shared.router
     ) -> UIMenu {
         UIMenu(children: [
-            UIMenu(modulePublishItems: ModulePublishMenu.NavBar.publish, host: host, router: router, actionDidPerform: {}),
-            UIMenu(modulePublishItems: ModulePublishMenu.NavBar.unpublish, host: host, router: router, actionDidPerform: {}),
+            UIMenu(modulePublishItems: ModulePublishMenu.Modules.publish, host: host, router: router, actionDidPerform: {}),
+            UIMenu(modulePublishItems: ModulePublishMenu.Modules.unpublish, host: host, router: router, actionDidPerform: {}),
         ])
     }
 
-    static func modulePublishOnModule(
+    static func makePublishModuleMenu(
         host: UIViewController,
         router: Router = AppEnvironment.shared.router
     ) -> UIMenu {
@@ -88,21 +40,104 @@ extension UIMenu {
         ])
     }
 
-    static func modulePublishOnItem(
+    static func makePublishModuleItemMenu(
         action: PutModuleItemPublishRequest.Action,
         host: UIViewController,
         router: Router = AppEnvironment.shared.router,
         actionDidPerform: @escaping () -> Void
     ) -> UIMenu {
+        let items: [ModulePublishItem]
+
+        switch action {
+        case .publish:
+            items = ModulePublishMenu.Item.publish
+        case .unpublish:
+            items = ModulePublishMenu.Item.unpublish
+        }
+
+        return UIMenu(modulePublishItems: items, host: host, router: router, actionDidPerform: actionDidPerform)
+    }
+}
+
+extension Array where Element == UIAccessibilityCustomAction {
+
+    static func modulePublishA11yActions(
+        host: UIViewController,
+        router: Router = AppEnvironment.shared.router
+    ) -> [UIAccessibilityCustomAction] {
+        [
+            .init(modulePublishItem: ModulePublishMenu.Module.publish[0], host: host, router: router, actionDidPerform: {}),
+            .init(modulePublishItem: ModulePublishMenu.Module.publish[1], host: host, router: router, actionDidPerform: {}),
+            .init(modulePublishItem: ModulePublishMenu.Module.unpublish[0], host: host, router: router, actionDidPerform: {}),
+        ]
+    }
+
+    static func moduleItemPublishA11yActions(
+        action: PutModuleItemPublishRequest.Action,
+        host: UIViewController,
+        router: Router = AppEnvironment.shared.router,
+        actionDidPerform: @escaping () -> Void
+    ) -> [UIAccessibilityCustomAction] {
         let item: ModulePublishItem
 
-        if action == .publish {
+        switch action {
+        case .publish:
             item = ModulePublishMenu.Item.publish[0]
-        } else {
+        case .unpublish:
             item = ModulePublishMenu.Item.unpublish[0]
         }
 
-        return UIMenu(modulePublishItems: [item], host: host, router: router, actionDidPerform: actionDidPerform)
+        return [.init(modulePublishItem: item, host: host, router: router, actionDidPerform: actionDidPerform)]
+    }
+}
+
+// MARK: - Private Helpers
+
+private struct ModulePublishMenu {
+
+    struct Modules {
+        static let publish = [
+            ModulePublishItem(title: String(localized: "Publish All Modules And Items"),
+                              confirmMessage: String(localized: "This will make all modules and items visible to students."),
+                              action: .publish),
+            ModulePublishItem(title: String(localized: "Publish Modules Only"),
+                              confirmMessage: String(localized: "This will make only the modules visible to students."),
+                              action: .publish),
+        ]
+        static let unpublish = [
+            ModulePublishItem(title: String(localized: "Unpublish All Modules And Items"),
+                              confirmMessage: String(localized: "This will make all modules and items invisible to students."),
+                              action: .unpublish),
+        ]
+    }
+
+    struct Module {
+        static let publish = [
+            ModulePublishItem(title: String(localized: "Publish Module And All Items"),
+                              confirmMessage: String(localized: "This will make the module and all items visible to students."),
+                              action: .publish),
+            ModulePublishItem(title: String(localized: "Publish Module Only"),
+                              confirmMessage: String(localized: "This will make only the module visible to students."),
+                              action: .publish),
+        ]
+        static let unpublish = [
+            ModulePublishItem(title: String(localized: "Unpublish Module And All Items"),
+                              confirmMessage: String(localized: "This will make the module and all items invisible to students."),
+                              action: .unpublish),
+        ]
+    }
+
+    struct Item {
+        static let publish = [
+            ModulePublishItem(title: String(localized: "Publish"),
+                              confirmMessage: String(localized: "This will make only this item visible to students."),
+                              action: .publish),
+        ]
+        static let unpublish = [
+            ModulePublishItem(title: String(localized: "Unpublish"),
+                              confirmMessage: String(localized: "This will make only this item invisible to students."),
+                              action: .unpublish),
+        ]
     }
 }
 
@@ -116,14 +151,7 @@ private extension UIMenu {
     ) {
         self.init(
             options: .displayInline,
-            children: modulePublishItems.map {
-                UIAction(
-                    modulePublishItem: $0,
-                    host: host,
-                    router: router,
-                    actionDidPerform: actionDidPerform
-                )
-            }
+            children: modulePublishItems.map { UIAction(modulePublishItem: $0, host: host, router: router, actionDidPerform: actionDidPerform) }
         )
     }
 }
@@ -141,10 +169,7 @@ private extension UIAction {
             image: modulePublishItem.icon,
             handler: { [weak host] _ in
                 guard let host else { return }
-                let alert = UIAlertController(
-                    modulePublishItem: modulePublishItem,
-                    actionDidPerform: actionDidPerform
-                )
+                let alert = UIAlertController(modulePublishItem: modulePublishItem, actionDidPerform: actionDidPerform)
                 router.show(alert, from: host, options: .modal())
             }
        )
@@ -158,8 +183,8 @@ private extension UIAlertController {
         actionDidPerform: @escaping () -> Void
     ) {
         self.init(title: modulePublishItem.action.alertTitle,
-                   message: modulePublishItem.confirmMessage,
-                   preferredStyle: .alert)
+                  message: modulePublishItem.confirmMessage,
+                  preferredStyle: .alert)
         addAction(AlertAction(modulePublishItem.action.alertConfirmation, style: .default) { _ in
             actionDidPerform()
         })
@@ -184,48 +209,6 @@ private extension PutModuleItemPublishRequest.Action {
     }
 }
 
-// MARK: - Accessibility Support
-
-extension Array where Element == UIAccessibilityCustomAction {
-
-    static func modulePublishActionsOnModule(
-        host: UIViewController,
-        router: Router = AppEnvironment.shared.router
-    ) -> [UIAccessibilityCustomAction] {
-        [
-            .init(modulePublishItem: ModulePublishMenu.Module.publish[0],
-                  host: host,
-                  router: router,
-                  actionDidPerform: {}),
-            .init(modulePublishItem: ModulePublishMenu.Module.publish[1],
-                  host: host,
-                  router: router,
-                  actionDidPerform: {}),
-            .init(modulePublishItem: ModulePublishMenu.Module.unpublish[0],
-                  host: host,
-                  router: router,
-                  actionDidPerform: {}),
-        ]
-    }
-
-    static func modulePublishActionsOnItem(
-        action: PutModuleItemPublishRequest.Action,
-        host: UIViewController,
-        router: Router = AppEnvironment.shared.router,
-        actionDidPerform: @escaping () -> Void
-    ) -> [UIAccessibilityCustomAction] {
-        let item: ModulePublishItem
-
-        if action == .publish {
-            item = ModulePublishMenu.Item.publish[0]
-        } else {
-            item = ModulePublishMenu.Item.unpublish[0]
-        }
-
-        return [.init(modulePublishItem: item, host: host, router: router, actionDidPerform: actionDidPerform)]
-    }
-}
-
 private extension UIAccessibilityCustomAction {
 
     convenience init(
@@ -236,10 +219,7 @@ private extension UIAccessibilityCustomAction {
     ) {
         self.init(name: modulePublishItem.title) { [weak host] _ in
             guard let host else { return false }
-            let alert = UIAlertController(
-                modulePublishItem: modulePublishItem,
-                actionDidPerform: actionDidPerform
-            )
+            let alert = UIAlertController(modulePublishItem: modulePublishItem, actionDidPerform: actionDidPerform)
             router.show(alert, from: host, options: .modal())
             return true
         }

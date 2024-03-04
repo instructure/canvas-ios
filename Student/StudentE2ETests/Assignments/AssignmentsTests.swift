@@ -98,13 +98,13 @@ class AssignmentsTests: E2ETestCase {
         XCTAssertTrue(submitAssignmentButton.isVisible)
         XCTAssertTrue(submitAssignmentButton.hasLabel(label: "Submit Assignment"))
 
-        GradesHelper.submitAssignment(course: course, student: student, assignment: assignment)
-        pullToRefresh()
-        XCTAssertTrue(statusLabel.waitUntil(.visible).hasLabel(label: "Submitted"))
-
         let submissionButton = DetailsHelper.submissionButton.waitUntil(.visible)
         XCTAssertTrue(submissionButton.isVisible)
         XCTAssertTrue(submissionButton.hasLabel(label: "Submission & Rubric"))
+
+        GradesHelper.submitAssignment(course: course, student: student, assignment: assignment)
+        pullToRefresh()
+        XCTAssertTrue(statusLabel.waitUntil(.visible).hasLabel(label: "Submitted"))
 
         XCTAssertTrue(submitAssignmentButton.waitUntil(.visible).isVisible)
         XCTAssertTrue(submitAssignmentButton.hasLabel(label: "Resubmit Assignment"))
