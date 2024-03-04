@@ -23,6 +23,7 @@ import UIKit
 class ModuleItemCell: UITableViewCell {
     static let IndentMultiplier: CGFloat = 10
 
+    @IBOutlet weak var contentStackView: UIStackView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dueLabel: UILabel!
     @IBOutlet weak var iconView: UIImageView!
@@ -60,6 +61,8 @@ class ModuleItemCell: UITableViewCell {
         nameLabel.isEnabled = isUserInteractionEnabled
         nameLabel.textColor = nameLabel.isEnabled ? .textDarkest : .textLight
         iconView.image = item.masteryPath?.locked == true ? UIImage.lockLine : item.type?.icon
+        contentStackView.setCustomSpacing(16, after: iconView)
+        iconView.isHidden = (iconView.image == nil)
         publishedIconView.published = item.published
 
         completedStatusView.isHidden = env.app == .teacher || item.completionRequirement == nil

@@ -249,21 +249,11 @@ extension ModuleListViewController: UITableViewDataSource {
         if indexPath.row == module?.items.count {
             return tableView.dequeue(for: indexPath) as EmptyCell
         }
-        let item = module?.items[indexPath.row]
-        switch item?.type {
-        case .subHeader:
-            let cell: ModuleItemSubHeaderCell = tableView.dequeue(for: indexPath)
-            if let item = item {
-                cell.update(item, publishInteractor: publishInteractor)
-            }
-            return cell
-        default:
-            let cell: ModuleItemCell = tableView.dequeue(for: indexPath)
-            if let item = item {
-                cell.update(item, indexPath: indexPath, color: color, publishInteractor: publishInteractor)
-            }
-            return cell
+        let cell: ModuleItemCell = tableView.dequeue(for: indexPath)
+        if let item = module?.items[indexPath.row] {
+            cell.update(item, indexPath: indexPath, color: color, publishInteractor: publishInteractor)
         }
+        return cell
     }
 }
 
