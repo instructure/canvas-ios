@@ -344,13 +344,13 @@ class ModuleListViewControllerTests: CoreTestCase {
             ),
         ])
         loadView()
-        let cell = try XCTUnwrap(viewController.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ModuleItemSubHeaderCell)
-        XCTAssertEqual(cell.label.text, "I am a sub header")
+        let cell = try XCTUnwrap(viewController.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ModuleItemCell)
+        XCTAssertEqual(cell.nameLabel.text, "I am a sub header")
         XCTAssertEqual(cell.indentConstraint.constant, 20)
         XCTAssertEqual(cell.publishedIconView.published, true)
         XCTAssertTrue(cell.isUserInteractionEnabled)
         XCTAssertEqual(cell.accessibilityLabel, "I am a sub header, published")
-        let other = try XCTUnwrap(viewController.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? ModuleItemSubHeaderCell)
+        let other = try XCTUnwrap(viewController.tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? ModuleItemCell)
         XCTAssertEqual(other.accessibilityLabel, "other subheader, unpublished")
 
     }

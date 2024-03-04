@@ -148,11 +148,18 @@ class ModuleItemCell: UITableViewCell {
         }
         let host = viewController ?? UIViewController()
         publishMenuButton.menu = .makePublishModuleItemMenu(action: action, host: host, actionDidPerform: performUpdate)
-        accessibilityCustomActions = .moduleItemPublishA11yActions(
-            action: action,
-            host: host,
-            actionDidPerform: performUpdate
-        )
+
+        accessibilityCustomActions = {
+            if publishMenuButton.isHidden {
+                return []
+            }
+
+            return .moduleItemPublishA11yActions(
+                action: action,
+                host: host,
+                actionDidPerform: performUpdate
+            )
+        }()
     }
 
     private func updatePublishedUIState(isUpdating: Bool, isItemPublished: Bool, animated: Bool) {
