@@ -27,7 +27,7 @@ public enum GradeArrangementOptions {
 }
 
 public final class GradeListViewModel: ObservableObject {
-    typealias RefreshCompletion = (() -> Void)?
+    typealias RefreshCompletion = (() -> Void)
     typealias IgnoreCache = Bool
 
     enum ViewState: Equatable {
@@ -51,7 +51,7 @@ public final class GradeListViewModel: ObservableObject {
 
     // MARK: - Input
 
-    let pullToRefreshDidTrigger = PassthroughRelay<(() -> Void)?>()
+    let pullToRefreshDidTrigger = PassthroughRelay<(RefreshCompletion)?>()
     let didSelectAssignment = PassthroughRelay<(WeakViewController, Assignment)>()
 
     // MARK: - Input / Output
@@ -74,7 +74,7 @@ public final class GradeListViewModel: ObservableObject {
     ) {
         self.interactor = interactor
 
-        let triggerRefresh = PassthroughRelay<(IgnoreCache, RefreshCompletion)>()
+        let triggerRefresh = PassthroughRelay<(IgnoreCache, RefreshCompletion?)>()
 
         isWhatIfScoreEnabled = interactor.isWhatIfScoreEnabled()
 

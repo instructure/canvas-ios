@@ -314,9 +314,10 @@ public struct GradeListView: View, ScreenViewTrackable {
                 Text("Base on graded assignments", bundle: .core)
                     .foregroundStyle(Color.textDarkest)
                     .font(.regular16)
+                    .multilineTextAlignment(.leading)
             }
             .toggleStyle(SwitchToggleStyle(tint: Color(Brand.shared.primary)))
-            .frame(height: 51)
+            .frame(minHeight: 51)
             .padding(.horizontal, 16)
 
             if viewModel.isWhatIfScoreEnabled {
