@@ -20,7 +20,8 @@ import Combine
 
 class ModulePublishInteractor {
     public let isPublishActionAvailable: Bool
-    public private(set) var moduleItemsUpdating = CurrentValueSubject<Set<String>, Never>(Set())
+    public let moduleItemsUpdating = CurrentValueSubject<Set<String>, Never>(Set())
+    public let statusUpdates = PassthroughSubject<String, Never>()
 
     private let courseId: String
     private var subscriptions = Set<AnyCancellable>()
@@ -42,12 +43,31 @@ class ModulePublishInteractor {
             moduleItemId: moduleItemId,
             action: action
         )
-        ReactiveStore(useCase: useCase)
-            .forceRefresh()
-            .sink { [weak moduleItemsUpdating] in
+        ReactiveStore(offlineModeInteractor: nil, useCase: useCase)
+            .getEntities(
+                ignoreCache: true,
+                keepObservingDatabaseChanges: false
+            )
+            .mapToVoid()
+            .sink(receiveCompletion: { [weak moduleItemsUpdating, weak statusUpdates] result in
                 guard let moduleItemsUpdating else { return }
                 moduleItemsUpdating.value.remove(moduleItemId)
-            }
+                statusUpdates?.send(result.moduleItemStatusUpdateText(for: action))
+            }, receiveValue: {})
             .store(in: &subscriptions)
+    }
+}
+
+extension Subscribers.Completion<Error> {
+
+    func moduleItemStatusUpdateText(for action: PutModuleItemPublishRequest.Action) -> String {
+        switch self {
+        case .finished:
+            switch action {
+            case .publish: return String(localized: "Item published.")
+            case .unpublish: return String(localized: "Item unpublished.")
+            }
+        case .failure: return String(localized: "Failed to update module item.")
+        }
     }
 }

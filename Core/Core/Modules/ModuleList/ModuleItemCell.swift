@@ -51,7 +51,8 @@ class ModuleItemCell: UITableViewCell {
         _ item: ModuleItem,
         indexPath: IndexPath,
         color: UIColor?,
-        publishInteractor: ModulePublishInteractor
+        publishInteractor: ModulePublishInteractor,
+        host: UIViewController
     ) {
         backgroundColor = .backgroundLightest
         selectedBackgroundView = ContextCellBackgroundView.create(color: color)
@@ -111,12 +112,13 @@ class ModuleItemCell: UITableViewCell {
             publishMenuButton.isHidden = !publishInteractor.isPublishActionAvailable
         }
 
-        subscribeToPublishStateUpdates(item, publishInteractor: publishInteractor)
+        subscribeToPublishStateUpdates(item, publishInteractor: publishInteractor, host: host)
     }
 
     private func subscribeToPublishStateUpdates(
         _ item: ModuleItem,
-        publishInteractor: ModulePublishInteractor
+        publishInteractor: ModulePublishInteractor,
+        host: UIViewController
     ) {
         guard publishStateObserver == nil else { return }
 
@@ -124,11 +126,11 @@ class ModuleItemCell: UITableViewCell {
             .moduleItemsUpdating
             .map { $0.contains(item.id) }
             .removeDuplicates()
-            .sink { [weak self] isUpdating in
-                guard let self else { return }
+            .sink { [weak self, weak host] isUpdating in
+                guard let self, let host else { return }
                 let animated = !isFirstUpdate
                 isFirstUpdate = false
-                updatePublishMenuActions(moduleItem: item, publishInteractor: publishInteractor)
+                updatePublishMenuActions(moduleItem: item, publishInteractor: publishInteractor, host: host)
                 updatePublishedUIState(isUpdating: isUpdating, isItemPublished: item.published ?? false, animated: animated)
                 updateA11yLabelForPublishState(moduleItem: item)
             }
@@ -136,7 +138,8 @@ class ModuleItemCell: UITableViewCell {
 
     private func updatePublishMenuActions(
         moduleItem: ModuleItem,
-        publishInteractor: ModulePublishInteractor
+        publishInteractor: ModulePublishInteractor,
+        host: UIViewController
     ) {
         let action: PutModuleItemPublishRequest.Action = moduleItem.published == true ? .unpublish : .publish
         let performUpdate = {
@@ -146,7 +149,6 @@ class ModuleItemCell: UITableViewCell {
                 action: action
             )
         }
-        let host = viewController ?? UIViewController()
         publishMenuButton.menu = .makePublishModuleItemMenu(action: action, host: host, actionDidPerform: performUpdate)
 
         accessibilityCustomActions = {

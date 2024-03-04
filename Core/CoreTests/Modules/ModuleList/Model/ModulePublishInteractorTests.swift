@@ -17,6 +17,7 @@
 //
 
 @testable import Core
+import Combine
 import XCTest
 
 class ModulePublishInteractorTests: CoreTestCase {
@@ -43,7 +44,7 @@ class ModulePublishInteractorTests: CoreTestCase {
         XCTAssertTrue(testee.isPublishActionAvailable)
     }
 
-    func testPublishModuleItem() {
+    func testUpdatesItemPublishState() {
         let testee = ModulePublishInteractor(app: .teacher, courseId: "testCourseId")
         let itemUpdateExpectation = expectation(description: "Item updates received")
         let subscription = testee
@@ -65,5 +66,42 @@ class ModulePublishInteractorTests: CoreTestCase {
         // THEN
         waitForExpectations(timeout: 0.1)
         subscription.cancel()
+    }
+
+    func testSendsStatusUpdateMessagesOnItemPublishing() {
+        let testee = ModulePublishInteractor(app: .teacher, courseId: "testCourseId")
+        let expectation = expectation(description: "Published update received")
+        let subscription = testee
+            .statusUpdates
+            .sink { update in
+                expectation.fulfill()
+                XCTAssertEqual(update, "Item published.")
+            }
+
+        // WHEN
+        testee.changeItemPublishedState(
+            moduleId: "1",
+            moduleItemId: "2",
+            action: .publish
+        )
+
+        // THEN
+        waitForExpectations(timeout: 0.1)
+        subscription.cancel()
+    }
+}
+
+class TestStatusUpdateTests: XCTestCase {
+
+    func testModuleItemUpdates() {
+        var testee: Subscribers.Completion<Error> = .finished
+        XCTAssertEqual(testee.moduleItemStatusUpdateText(for: .publish), "Item published.")
+
+        testee = .finished
+        XCTAssertEqual(testee.moduleItemStatusUpdateText(for: .unpublish), "Item unpublished.")
+
+        testee = .failure(NSError.internalError())
+        XCTAssertEqual(testee.moduleItemStatusUpdateText(for: .unpublish), "Failed to update module item.")
+
     }
 }
