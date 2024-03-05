@@ -28,10 +28,6 @@ public extension UITraitCollection {
         UITraitCollection(userInterfaceStyle: .dark)
     }
 
-    static var current: UITraitCollection {
-        UITraitCollection(userInterfaceStyle: .current)
-    }
-
     var isDarkInterface: Bool { userInterfaceStyle == .dark }
     var isLightInterface: Bool { userInterfaceStyle == .light }
 }
