@@ -141,6 +141,7 @@ private extension GradeListViewModelTests {
         }
 
         func updateGradingPeriod(id _: String?) {}
+        func isWhatIfScoreEnabled() -> Bool { false }
     }
 
     class GradeListInteractorEmptySectionsMock: GradeListInteractor {
@@ -156,6 +157,7 @@ private extension GradeListViewModelTests {
         }
 
         func updateGradingPeriod(id _: String?) {}
+        func isWhatIfScoreEnabled() -> Bool { false }
     }
 
     class GradeListInteractorMock: GradeListInteractor {
@@ -191,6 +193,8 @@ private extension GradeListViewModelTests {
         func updateGradingPeriod(id: String?) {
             gradingPeriod = id
         }
+
+        func isWhatIfScoreEnabled() -> Bool { false }
     }
 }
 
