@@ -31,7 +31,7 @@ class ModulePublishMenuTests: XCTestCase {
         router = TestRouter()
     }
 
-    // MARK: - Nav Bar Actions
+    // MARK: - All Modules Actions
 
     func testPublishAllModulesAndItems() {
         let testee = UIMenu.makePublishModulesMenu(host: hostView, router: router)
@@ -158,7 +158,11 @@ class ModulePublishMenuTests: XCTestCase {
     // MARK: - Item Actions
 
     func testPublishItem() {
-        let testee = UIMenu.makePublishModuleItemMenu(action: .publish, host: hostView, router: router)
+        let actionExpectation = expectation(description: "Action performed")
+        let testee = UIMenu.makePublishModuleItemMenu(action: .publish,
+                                                      host: hostView,
+                                                      router: router,
+                                                      actionDidPerform: { actionExpectation.fulfill() })
         let publishItem = testee.children[0] as! UIAction
 
         publishItem.performWithSender(nil, target: nil)
@@ -168,12 +172,15 @@ class ModulePublishMenuTests: XCTestCase {
         checkAlert(title: "Publish?",
                    message: "This will make only this item visible to students.",
                    defaultActionTitle: "Publish")
+        waitForExpectations(timeout: 0.1)
     }
 
     func testPublishItemA11yAction() {
+        let actionExpectation = expectation(description: "Action performed")
         let testee = [UIAccessibilityCustomAction].moduleItemPublishA11yActions(action: .publish,
                                                                                 host: hostView,
-                                                                                router: router)[0]
+                                                                                router: router,
+                                                                                actionDidPerform: { actionExpectation.fulfill() })[0]
 
         _ = testee.actionHandler!(testee)
 
@@ -181,10 +188,15 @@ class ModulePublishMenuTests: XCTestCase {
         checkAlert(title: "Publish?",
                    message: "This will make only this item visible to students.",
                    defaultActionTitle: "Publish")
+        waitForExpectations(timeout: 0.1)
     }
 
     func testUnpublishItem() {
-        let testee = UIMenu.makePublishModuleItemMenu(action: .unpublish, host: hostView, router: router)
+        let actionExpectation = expectation(description: "Action performed")
+        let testee = UIMenu.makePublishModuleItemMenu(action: .unpublish,
+                                      		          host: hostView,
+	                                                  router: router,
+      		                                          actionDidPerform: { actionExpectation.fulfill() })
         let publishItem = testee.children[0] as! UIAction
 
         publishItem.performWithSender(nil, target: nil)
@@ -194,12 +206,15 @@ class ModulePublishMenuTests: XCTestCase {
         checkAlert(title: "Unpublish?",
                    message: "This will make only this item invisible to students.",
                    defaultActionTitle: "Unpublish")
+        waitForExpectations(timeout: 0.1)
     }
 
     func testUnpublishItemA11yAction() {
+        let actionExpectation = expectation(description: "Action performed")
         let testee = [UIAccessibilityCustomAction].moduleItemPublishA11yActions(action: .unpublish,
                                                                                 host: hostView,
-                                                                                router: router)[0]
+                                                                                router: router,
+                                                                                actionDidPerform: { actionExpectation.fulfill() })[0]
 
         _ = testee.actionHandler!(testee)
 
@@ -207,9 +222,12 @@ class ModulePublishMenuTests: XCTestCase {
         checkAlert(title: "Unpublish?",
                    message: "This will make only this item invisible to students.",
                    defaultActionTitle: "Unpublish")
+        waitForExpectations(timeout: 0.1)
     }
 
-    func checkAlert(
+    // MARK: - Private
+
+    private func checkAlert(
         title: String,
         message: String,
         defaultActionTitle: String
@@ -226,5 +244,6 @@ class ModulePublishMenuTests: XCTestCase {
         XCTAssertEqual(alert.actions[0].style, .default)
         XCTAssertEqual(alert.actions[1].title, "Cancel")
         XCTAssertEqual(alert.actions[1].style, .cancel)
+        (alert.actions[0] as? AlertAction)?.handler?(alert.actions[0])
     }
 }

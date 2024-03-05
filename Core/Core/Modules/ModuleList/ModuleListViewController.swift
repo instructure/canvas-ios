@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Combine
 import SafariServices
 
 public final class ModuleListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol, ErrorViewController {
@@ -58,7 +58,8 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
             AppEnvironment.shared.userDefaults?.collapsedModules = collapsedIDs
         }
     }
-    private let publishInteractor = ModulePublishInteractor(app: AppEnvironment.shared.app)
+    private lazy var publishInteractor = ModulePublishInteractor(app: AppEnvironment.shared.app, courseId: courseID)
+    private var snackBarUpdatesSubscription: AnyCancellable?
 
     public static func create(courseID: String, moduleID: String? = nil) -> ModuleListViewController {
         let controller = loadFromStoryboard()
@@ -130,6 +131,7 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
 
         if spinnerView.isHidden, emptyView.isHidden, errorView.isHidden {
             setupBulkPublishButtonInNavBar()
+            setupPublishActionSnackBarUpdates()
         }
     }
 
@@ -142,6 +144,17 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
         button.menu = .makePublishModulesMenu(host: self)
         button.accessibilityLabel = String(localized: "Publish options")
         navigationItem.setRightBarButton(button, animated: true)
+    }
+
+    private func setupPublishActionSnackBarUpdates() {
+        guard snackBarUpdatesSubscription == nil else {
+            return
+        }
+        snackBarUpdatesSubscription = publishInteractor
+            .statusUpdates
+            .sink(receiveValue: { [weak self] update in
+                self?.findSnackBarViewModel()?.showSnack(update)
+            })
     }
 
     private func reloadCourse() {
@@ -249,21 +262,11 @@ extension ModuleListViewController: UITableViewDataSource {
         if indexPath.row == module?.items.count {
             return tableView.dequeue(for: indexPath) as EmptyCell
         }
-        let item = module?.items[indexPath.row]
-        switch item?.type {
-        case .subHeader:
-            let cell: ModuleItemSubHeaderCell = tableView.dequeue(for: indexPath)
-            if let item = item {
-                cell.update(item, publishInteractor: publishInteractor)
-            }
-            return cell
-        default:
-            let cell: ModuleItemCell = tableView.dequeue(for: indexPath)
-            if let item = item {
-                cell.update(item, indexPath: indexPath, color: color, publishInteractor: publishInteractor)
-            }
-            return cell
+        let cell: ModuleItemCell = tableView.dequeue(for: indexPath)
+        if let item = module?.items[indexPath.row] {
+            cell.update(item, indexPath: indexPath, color: color, publishInteractor: publishInteractor, host: self)
         }
+        return cell
     }
 }
 

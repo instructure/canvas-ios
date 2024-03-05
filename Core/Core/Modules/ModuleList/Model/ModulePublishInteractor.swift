@@ -16,12 +16,63 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Combine
 
 class ModulePublishInteractor {
-    let isPublishActionAvailable: Bool
+    public let isPublishActionAvailable: Bool
+    public let moduleItemsUpdating = CurrentValueSubject<Set<String>, Never>(Set())
+    public let statusUpdates = PassthroughSubject<String, Never>()
 
-    init(app: AppEnvironment.App?) {
+    private let courseId: String
+    private var subscriptions = Set<AnyCancellable>()
+
+    init(app: AppEnvironment.App?, courseId: String) {
+        self.courseId = courseId
         isPublishActionAvailable = app == .teacher && ExperimentalFeature.teacherBulkPublish.isEnabled
+    }
+
+    func changeItemPublishedState(
+        moduleId: String,
+        moduleItemId: String,
+        action: PutModuleItemPublishRequest.Action
+    ) {
+        moduleItemsUpdating.value.insert(moduleItemId)
+        let useCase = PutModuleItemPublishState(
+            courseId: courseId,
+            moduleId: moduleId,
+            moduleItemId: moduleItemId,
+            action: action
+        )
+        ReactiveStore(offlineModeInteractor: nil, useCase: useCase)
+            .getEntities(
+                ignoreCache: true,
+                keepObservingDatabaseChanges: false
+            )
+            .mapToVoid()
+            .sink(receiveCompletion: { [weak moduleItemsUpdating, weak statusUpdates] result in
+                guard let moduleItemsUpdating else { return }
+                moduleItemsUpdating.value.remove(moduleItemId)
+                statusUpdates?.send(result.moduleItemStatusUpdateText(for: action))
+            }, receiveValue: {})
+            .store(in: &subscriptions)
+    }
+}
+
+extension Subscribers.Completion<Error> {
+
+    func moduleItemStatusUpdateText(for action: PutModuleItemPublishRequest.Action) -> String {
+        switch self {
+        case .finished:
+            switch action {
+            case .publish: return String(localized: "Item Published")
+            case .unpublish: return String(localized: "Item Unpublished")
+            }
+        case .failure:
+            switch action {
+            case .publish: return String(localized: "Failed To Publish Item")
+            case .unpublish: return String(localized: "Failed To Unpublish Item")
+            }
+
+        }
     }
 }
