@@ -43,7 +43,6 @@ struct WhatIfScoreEditorView: View {
                     RoundedRectangle(cornerRadius: 4)
                         .stroke(Color.textDark, lineWidth: 0.25)
                 )
-//                .padding(.vertical, 16)
                 .padding(.bottom, 14)
                 .padding(.horizontal, 24)
 
@@ -108,7 +107,6 @@ struct WhatIfScoreEditorView: View {
     private var titleLabel: some View {
         Text("What-if Score")
             .font(.system(size: 17, weight: .semibold, design: .default))
-//            .foregroundColor(.textDarkest)
             .multilineTextAlignment(.center)
             .frame(height: 25)
             .padding(.top, 16)
@@ -119,7 +117,6 @@ struct WhatIfScoreEditorView: View {
     private var whatIfLabel: some View {
         Text("What-if")
             .font(.system(size: 13, weight: .regular, design: .default))
-//            .foregroundColor(.textDark)
             .padding(.vertical, 12)
             .padding(.trailing, 0)
             .accessibilityHidden(true)
@@ -128,7 +125,6 @@ struct WhatIfScoreEditorView: View {
     private var maximumLabel: some View {
         Text("Maximum")
             .font(.system(size: 13, weight: .regular, design: .default))
-//            .foregroundColor(.textDark)
             .padding(.vertical, 12)
             .padding(.trailing, 0)
             .accessibilityHidden(true)
@@ -138,7 +134,6 @@ struct WhatIfScoreEditorView: View {
         TextField("44", text: $whatIfScore)
             .keyboardType(.decimalPad)
             .font(.system(size: 13, weight: .regular, design: .default))
-//            .foregroundColor(.textDarkest)
             .frame(height: 19)
             .padding(.vertical, 12)
             .accessibilityLabel(Text("What-if score is \(whatIfScore)"))
@@ -147,7 +142,6 @@ struct WhatIfScoreEditorView: View {
     private var maximumScoreText: some View {
         Text("100")
             .font(.system(size: 13, weight: .regular, design: .default))
-//            .foregroundColor(.textDarkest)
             .frame(height: 19)
             .padding(.vertical, 12)
             .accessibilityLabel(Text("Maximum score is 100."))
@@ -159,8 +153,7 @@ struct WhatIfScoreEditorView: View {
         } label: {
             Text("Cancel")
                 .fontWeight(.semibold)
-//                .font(.system(size: 16, weight: .bold))
-//                .foregroundColor(.electric)
+                .foregroundStyle(Color.blue)
                 .multilineTextAlignment(.center)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
         }
@@ -172,8 +165,7 @@ struct WhatIfScoreEditorView: View {
             doneButtonDidTap?()
         } label: {
             Text("Done")
-//                .font(.system(size: 16))
-//                .foregroundColor(.electric)
+                .foregroundStyle(Color.blue)
                 .multilineTextAlignment(.center)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
         }
