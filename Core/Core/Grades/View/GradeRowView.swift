@@ -39,6 +39,7 @@ public struct GradeRowView: View {
             }
             .padding(.vertical, 12)
         }
+        .background(Color.backgroundLightest)
         .accessibilityElement(children: .combine)
         .accessibilityIdentifier("GradeListCell.\(assignment.id)")
     }

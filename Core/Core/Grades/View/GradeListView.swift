@@ -30,6 +30,8 @@ public struct GradeListView: View, ScreenViewTrackable {
 
     // MARK: - Private properties
 
+    @State private var offsets = CGSize.zero
+    @AccessibilityFocusState private var isScoreEditorFocused: Bool
     @State private var isScoreEditorPresented = false
     private var subscriptions = Set<AnyCancellable>()
 
@@ -85,19 +87,24 @@ public struct GradeListView: View, ScreenViewTrackable {
                 }
                 .background(Color.backgroundLightest)
                 if isScoreEditorPresented {
-                    WhatIfScoreEditorView(isPresented: $isScoreEditorPresented) {
-                        print("left tapped")
-                    }
+                    WhatIfScoreEditorView(isPresented: $isScoreEditorPresented) {}.accessibilityFocused($isScoreEditorFocused)
                 }
             }
             .animation(.smooth, value: isScoreEditorPresented)
+            .onChange(of: isScoreEditorPresented) { newValue in
+                isScoreEditorFocused =  newValue
+            }
         }
         .navigationTitle(String(localized: "Grades"))
         .toolbar {
             RevertWhatIfScoreButton(isWhatIfScoreEnabled: viewModel.isWhatIfScoreEnabled) {
-                print("tap")
+                viewModel.isShowingRevertDialog = true
             }
         }
+        .confirmationAlert(
+            isPresented: $viewModel.isShowingRevertDialog,
+            presenting: viewModel.confirmRevertAlertViewModel
+        )
     }
 
     // This is workaround, because .toolbar doesn't allow optional `ToolBarContent`.
@@ -416,40 +423,73 @@ public struct GradeListView: View, ScreenViewTrackable {
         assignmentSections: [GradeListData.AssignmentSections],
         userID: String
     ) -> some View {
-        ForEach(assignmentSections) { section in
-            Section(header:
-                VStack(spacing: 2) {
-                    HStack(spacing: 0) {
-                        Text(section.title ?? "")
-                            .foregroundStyle(Color.textDark)
-                            .font(.semibold14)
-                            .padding(.horizontal, 16)
-                        Spacer()
-                    }
-                    .frame(height: 51)
-                    Divider()
-                }
-                .background(Color.backgroundLight)
-            ) {
-                LazyVStack(spacing: 0) {
+        List {
+            ForEach(assignmentSections) { section in
+                Section(header: listSectionView(title: section.title)) {
                     ForEach(section.assignments) { assignment in
-                        Button {
-                            viewModel.didSelectAssignment.accept((viewController, assignment))
-                        } label: {
-                            GradeRowView(
-                                assignment: assignment,
-                                userID: userID,
-                                isWhatIfScoreEnabled: viewModel.isWhatIfScoreEnabled
-                            ) {
-                                isScoreEditorPresented.toggle()
-                            }
-                        }
-                        .buttonStyle(ContextButton(contextColor: courseColor))
-                        Divider()
+                        listRowView(
+                            assignment: assignment,
+                            userID: userID,
+                            courseColor: courseColor
+                        )
                     }
                 }
+                .listSectionSeparator(.hidden)
             }
         }
+        .background(Color.backgroundLightest)
+        .iOS16HideListScrollContentBackground()
+        .listStyle(.plain)
+    }
+
+    @ViewBuilder
+    private func listSectionView(title: String?) -> some View {
+        VStack(spacing: 2) {
+            HStack(spacing: 0) {
+                Text(title ?? "")
+                    .foregroundStyle(Color.textDark)
+                    .font(.semibold14)
+                    .padding(.horizontal, 16)
+                Spacer()
+            }
+        }
+        .frame(height: 35)
+        .padding(.horizontal, -16)
+    }
+
+    @ViewBuilder
+    private func listRowView(
+        assignment: Assignment,
+        userID: String,
+        courseColor: UIColor?
+    ) -> some View {
+        Button {
+            viewModel.didSelectAssignment.accept((viewController, assignment))
+        } label: {
+            GradeRowView(
+                assignment: assignment,
+                userID: userID,
+                isWhatIfScoreEnabled: viewModel.isWhatIfScoreEnabled
+            ) {
+                isScoreEditorPresented.toggle()
+            }
+        }
+        .listRowInsets(EdgeInsets())
+        .iOS16RemoveListRowSeparatorLeadingInset()
+//        .buttonStyle(ContextButton(contextColor: courseColor))
+        .swipeActions(edge: .trailing) { revertWhatIfScoreSwipeButton }
+    }
+
+    private var revertWhatIfScoreSwipeButton: some View {
+        Button {
+            viewModel.isShowingRevertDialog = true
+        } label: {
+            Image(uiImage: .replyLine)
+                .resizable()
+                .frame(width: 24, height: 24)
+                .foregroundColor(Color.textLightest)
+        }
+        .tint(Color.backgroundDark)
     }
 }
 

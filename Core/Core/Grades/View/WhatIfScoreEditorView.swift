@@ -19,12 +19,14 @@
 import SwiftUI
 
 struct WhatIfScoreEditorView: View {
-    @Binding var isPresented: Bool
+    // MARK: - Dependencies
 
+    @Binding var isPresented: Bool
     var doneButtonDidTap: (() -> Void)?
 
+    // MARK: - Private properties
+
     @State private var whatIfScore = ""
-    @State private var maximumScore = ""
 
     var body: some View {
         ZStack {
@@ -61,7 +63,6 @@ struct WhatIfScoreEditorView: View {
             .cornerRadius(6)
             .padding(.horizontal, 48)
         }
-        .zIndex(2)
     }
 
     private var labels: some View {
@@ -85,6 +86,7 @@ struct WhatIfScoreEditorView: View {
                     Image(uiImage: .replyLine)
                         .resizable()
                         .frame(width: 14, height: 14)
+                        .foregroundColor(.textDark)
                 }
                 .frame(width: 44, height: 42)
                 .padding(.trailing, -16)
@@ -124,16 +126,19 @@ struct WhatIfScoreEditorView: View {
     }
 
     private var whatIfScoreText: some View {
-        TextField("86", text: $whatIfScore)
+        TextField("44", text: $whatIfScore)
+            .keyboardType(.decimalPad)
             .font(.regular14)
             .foregroundColor(.textDarkest)
+            .frame(height: 19)
             .padding(.vertical, 12)
     }
 
     private var maximumScoreText: some View {
-        TextField("100", text: $maximumScore)
+        Text("100")
             .font(.regular14)
             .foregroundColor(.textDarkest)
+            .frame(height: 19)
             .padding(.vertical, 12)
     }
 
@@ -162,3 +167,19 @@ struct WhatIfScoreEditorView: View {
         }
     }
 }
+
+#if DEBUG
+struct WhatIfScoreEditorViewPreview: PreviewProvider {
+    static var previews: some View {
+        WhatIfScoreEditorView(
+            isPresented: .constant(true),
+            doneButtonDidTap: nil
+        ).preferredColorScheme(.dark)
+        WhatIfScoreEditorView(
+            isPresented: .constant(true),
+            doneButtonDidTap: nil
+        ).preferredColorScheme(.light)
+    }
+}
+
+#endif
