@@ -20,6 +20,10 @@ import Combine
 import SwiftUI
 
 public struct GradeListView: View, ScreenViewTrackable {
+    private enum AccessibilityFocusArea: Hashable, Equatable {
+        case list, editor
+    }
+
     // MARK: - Dependencies
 
     @ObservedObject private var viewModel: GradeListViewModel
@@ -31,8 +35,8 @@ public struct GradeListView: View, ScreenViewTrackable {
     // MARK: - Private properties
 
     @State private var offsets = CGSize.zero
-    @AccessibilityFocusState private var isScoreEditorFocused: Bool
     @State private var isScoreEditorPresented = false
+    @AccessibilityFocusState private var accessibilityFocus: AccessibilityFocusArea?
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
@@ -85,15 +89,11 @@ public struct GradeListView: View, ScreenViewTrackable {
                 } refreshAction: { endRefreshing in
                     viewModel.pullToRefreshDidTrigger.accept(endRefreshing)
                 }
+                .accessibilityHidden(isScoreEditorPresented)
                 .background(Color.backgroundLightest)
-                if isScoreEditorPresented {
-                    WhatIfScoreEditorView(isPresented: $isScoreEditorPresented) {}.accessibilityFocused($isScoreEditorFocused)
-                }
+                whatIfScoreEditorView()
             }
             .animation(.smooth, value: isScoreEditorPresented)
-            .onChange(of: isScoreEditorPresented) { newValue in
-                isScoreEditorFocused =  newValue
-            }
         }
         .navigationTitle(String(localized: "Grades"))
         .toolbar {
@@ -105,29 +105,6 @@ public struct GradeListView: View, ScreenViewTrackable {
             isPresented: $viewModel.isShowingRevertDialog,
             presenting: viewModel.confirmRevertAlertViewModel
         )
-    }
-
-    // This is workaround, because .toolbar doesn't allow optional `ToolBarContent`.
-    private struct RevertWhatIfScoreButton: ToolbarContent {
-        let isWhatIfScoreEnabled: Bool
-        let buttonDidTap: () -> Void
-
-        var body: some ToolbarContent {
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
-                if isWhatIfScoreEnabled {
-                    HStack {
-                        Spacer()
-                        Button(action: {
-                            buttonDidTap()
-                        }) {
-                            Image(uiImage: .replyLine)
-                                .resizable()
-                                .foregroundColor(Color.white)
-                        }
-                    }
-                }
-            }
-        }
     }
 
     @ViewBuilder
@@ -189,6 +166,7 @@ public struct GradeListView: View, ScreenViewTrackable {
                 assignmentSections: gradeListData.assignmentSections,
                 userID: gradeListData.userID
             )
+            .accessibilityFocused($accessibilityFocus, equals: .list)
             Spacer(minLength: 0)
         }
     }
@@ -461,7 +439,7 @@ public struct GradeListView: View, ScreenViewTrackable {
     private func listRowView(
         assignment: Assignment,
         userID: String,
-        courseColor: UIColor?
+        courseColor _: UIColor?
     ) -> some View {
         Button {
             viewModel.didSelectAssignment.accept((viewController, assignment))
@@ -476,8 +454,33 @@ public struct GradeListView: View, ScreenViewTrackable {
         }
         .listRowInsets(EdgeInsets())
         .iOS16RemoveListRowSeparatorLeadingInset()
-//        .buttonStyle(ContextButton(contextColor: courseColor))
         .swipeActions(edge: .trailing) { revertWhatIfScoreSwipeButton }
+//        .buttonStyle(ContextButton(contextColor: courseColor))
+        .accessibilityAction(named: Text("Edit What-if score")) {
+            isScoreEditorPresented.toggle()
+        }
+        .accessibilityAction(named: Text("Revert to official score")) {
+            viewModel.isShowingRevertDialog = true
+        }
+    }
+
+    @ViewBuilder
+    private func whatIfScoreEditorView() -> some View {
+        if isScoreEditorPresented {
+            WhatIfScoreEditorView(isPresented: $isScoreEditorPresented) {}
+                .accessibilitySortPriority(1)
+                .accessibilityFocused($accessibilityFocus, equals: .editor)
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                        accessibilityFocus = .editor
+                    }
+                }
+                .onDisappear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                        accessibilityFocus = .list
+                    }
+                }
+        }
     }
 
     private var revertWhatIfScoreSwipeButton: some View {
@@ -490,6 +493,31 @@ public struct GradeListView: View, ScreenViewTrackable {
                 .foregroundColor(Color.textLightest)
         }
         .tint(Color.backgroundDark)
+    }
+}
+
+// This is workaround, because .toolbar doesn't allow optional `ToolBarContent`.
+private struct RevertWhatIfScoreButton: ToolbarContent {
+    let isWhatIfScoreEnabled: Bool
+    let buttonDidTap: () -> Void
+
+    var body: some ToolbarContent {
+        ToolbarItemGroup(placement: .navigationBarTrailing) {
+            if isWhatIfScoreEnabled {
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        buttonDidTap()
+                    }) {
+                        Image(uiImage: .replyLine)
+                            .resizable()
+                            .foregroundColor(Color.white)
+                    }
+                    .accessibilityLabel(Text("Revert"))
+                    .accessibilityHint(Text("Double tap to revert to official score."))
+                }
+            }
+        }
     }
 }
 

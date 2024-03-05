@@ -80,22 +80,28 @@ struct WhatIfScoreEditorView: View {
             HStack(spacing: 8) {
                 whatIfScoreText
                 Spacer()
-                Button {
-                    whatIfScore = ""
-                } label: {
-                    Image(uiImage: .replyLine)
-                        .resizable()
-                        .frame(width: 14, height: 14)
-                        .foregroundColor(.textDark)
-                }
-                .frame(width: 44, height: 42)
-                .padding(.trailing, -16)
+                revertButton
             }
             Divider()
             maximumScoreText
         }
         .padding(.trailing, 20)
         .frame(height: 89)
+    }
+
+    private var revertButton: some View {
+        Button {
+            whatIfScore = ""
+        } label: {
+            Image(uiImage: .replyLine)
+                .resizable()
+                .frame(width: 14, height: 14)
+                .foregroundColor(.textDark)
+        }
+        .frame(width: 44, height: 42)
+        .padding(.trailing, -16)
+        .accessibilityLabel(Text("Revert"))
+        .accessibilityHint(Text("Double tap to remove what-if score"))
     }
 
     private var titleLabel: some View {
@@ -115,6 +121,7 @@ struct WhatIfScoreEditorView: View {
             .foregroundColor(.textDark)
             .padding(.vertical, 12)
             .padding(.trailing, 0)
+            .accessibilityHidden(true)
     }
 
     private var maximumLabel: some View {
@@ -123,6 +130,7 @@ struct WhatIfScoreEditorView: View {
             .foregroundColor(.textDark)
             .padding(.vertical, 12)
             .padding(.trailing, 0)
+            .accessibilityHidden(true)
     }
 
     private var whatIfScoreText: some View {
@@ -132,6 +140,7 @@ struct WhatIfScoreEditorView: View {
             .foregroundColor(.textDarkest)
             .frame(height: 19)
             .padding(.vertical, 12)
+            .accessibilityLabel(Text("What-if score is \(whatIfScore)"))
     }
 
     private var maximumScoreText: some View {
@@ -140,6 +149,7 @@ struct WhatIfScoreEditorView: View {
             .foregroundColor(.textDarkest)
             .frame(height: 19)
             .padding(.vertical, 12)
+            .accessibilityLabel(Text("Maximum score is 100."))
     }
 
     private var cancelButton: some View {
