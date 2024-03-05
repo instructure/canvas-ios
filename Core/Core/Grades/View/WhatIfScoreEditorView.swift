@@ -31,7 +31,7 @@ struct WhatIfScoreEditorView: View {
     var body: some View {
         ZStack {
             Color.black
-                .opacity(0.5)
+                .opacity(0.4)
                 .edgesIgnoringSafeArea(.all)
             VStack(spacing: 0) {
                 titleLabel
@@ -41,9 +41,10 @@ struct WhatIfScoreEditorView: View {
                 }
                 .overlay(
                     RoundedRectangle(cornerRadius: 4)
-                        .stroke(Color.borderMedium, lineWidth: 1)
+                        .stroke(Color.textDark, lineWidth: 0.25)
                 )
-                .padding(.vertical, 16)
+//                .padding(.vertical, 16)
+                .padding(.bottom, 14)
                 .padding(.horizontal, 24)
 
                 Divider()
@@ -59,8 +60,8 @@ struct WhatIfScoreEditorView: View {
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 44)
                 .padding([.horizontal, .bottom], 0)
             }
-            .background(Color.backgroundLight)
-            .cornerRadius(6)
+            .background(.ultraThickMaterial)
+            .cornerRadius(10)
             .padding(.horizontal, 48)
         }
     }
@@ -106,19 +107,19 @@ struct WhatIfScoreEditorView: View {
 
     private var titleLabel: some View {
         Text("What-if Score")
-            .font(.semibold16)
-            .foregroundColor(.textDarkest)
+            .font(.system(size: 17, weight: .semibold, design: .default))
+//            .foregroundColor(.textDarkest)
             .multilineTextAlignment(.center)
             .frame(height: 25)
             .padding(.top, 16)
-            .padding(.bottom, 8)
+            .padding(.bottom, 12)
             .padding(.horizontal, 16)
     }
 
     private var whatIfLabel: some View {
         Text("What-if")
-            .font(.regular14)
-            .foregroundColor(.textDark)
+            .font(.system(size: 13, weight: .regular, design: .default))
+//            .foregroundColor(.textDark)
             .padding(.vertical, 12)
             .padding(.trailing, 0)
             .accessibilityHidden(true)
@@ -126,8 +127,8 @@ struct WhatIfScoreEditorView: View {
 
     private var maximumLabel: some View {
         Text("Maximum")
-            .font(.regular14)
-            .foregroundColor(.textDark)
+            .font(.system(size: 13, weight: .regular, design: .default))
+//            .foregroundColor(.textDark)
             .padding(.vertical, 12)
             .padding(.trailing, 0)
             .accessibilityHidden(true)
@@ -136,8 +137,8 @@ struct WhatIfScoreEditorView: View {
     private var whatIfScoreText: some View {
         TextField("44", text: $whatIfScore)
             .keyboardType(.decimalPad)
-            .font(.regular14)
-            .foregroundColor(.textDarkest)
+            .font(.system(size: 13, weight: .regular, design: .default))
+//            .foregroundColor(.textDarkest)
             .frame(height: 19)
             .padding(.vertical, 12)
             .accessibilityLabel(Text("What-if score is \(whatIfScore)"))
@@ -145,8 +146,8 @@ struct WhatIfScoreEditorView: View {
 
     private var maximumScoreText: some View {
         Text("100")
-            .font(.regular14)
-            .foregroundColor(.textDarkest)
+            .font(.system(size: 13, weight: .regular, design: .default))
+//            .foregroundColor(.textDarkest)
             .frame(height: 19)
             .padding(.vertical, 12)
             .accessibilityLabel(Text("Maximum score is 100."))
@@ -157,8 +158,9 @@ struct WhatIfScoreEditorView: View {
             isPresented = false
         } label: {
             Text("Cancel")
-                .font(.semibold14)
-                .foregroundColor(.electric)
+                .fontWeight(.semibold)
+//                .font(.system(size: 16, weight: .bold))
+//                .foregroundColor(.electric)
                 .multilineTextAlignment(.center)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
         }
@@ -170,8 +172,8 @@ struct WhatIfScoreEditorView: View {
             doneButtonDidTap?()
         } label: {
             Text("Done")
-                .font(.regular14)
-                .foregroundColor(.electric)
+//                .font(.system(size: 16))
+//                .foregroundColor(.electric)
                 .multilineTextAlignment(.center)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
         }
@@ -184,11 +186,15 @@ struct WhatIfScoreEditorViewPreview: PreviewProvider {
         WhatIfScoreEditorView(
             isPresented: .constant(true),
             doneButtonDidTap: nil
-        ).preferredColorScheme(.dark)
+        )
+        .previewLayout(.sizeThatFits)
+        .preferredColorScheme(.dark)
         WhatIfScoreEditorView(
             isPresented: .constant(true),
             doneButtonDidTap: nil
-        ).preferredColorScheme(.light)
+        )
+        .previewLayout(.sizeThatFits)
+        .preferredColorScheme(.light)
     }
 }
 
