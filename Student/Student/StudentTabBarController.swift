@@ -20,7 +20,8 @@ import UIKit
 import CanvasCore
 import Core
 
-class StudentTabBarController: UITabBarController {
+class StudentTabBarController: UITabBarController, SnackBarProvider {
+    let snackBarViewModel = SnackBarViewModel()
     private var previousSelectedIndex = 0
 
     override func viewDidLoad() {
@@ -46,6 +47,7 @@ class StudentTabBarController: UITabBarController {
         tabBar.useGlobalNavStyle()
         NotificationCenter.default.addObserver(self, selector: #selector(checkForPolicyChanges), name: UIApplication.didBecomeActiveNotification, object: nil)
         reportScreenView(for: selectedIndex, viewController: viewControllers![selectedIndex])
+        addSnackBar()
     }
 
     override func viewDidAppear(_ animated: Bool) {

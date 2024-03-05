@@ -25,8 +25,8 @@ extension UIMenu {
         router: Router = AppEnvironment.shared.router
     ) -> UIMenu {
         UIMenu(children: [
-            UIMenu(modulePublishItems: ModulePublishMenu.Modules.publish, host: host, router: router),
-            UIMenu(modulePublishItems: ModulePublishMenu.Modules.unpublish, host: host, router: router),
+            UIMenu(modulePublishItems: ModulePublishMenu.Modules.publish, host: host, router: router, actionDidPerform: {}),
+            UIMenu(modulePublishItems: ModulePublishMenu.Modules.unpublish, host: host, router: router, actionDidPerform: {}),
         ])
     }
 
@@ -35,15 +35,16 @@ extension UIMenu {
         router: Router = AppEnvironment.shared.router
     ) -> UIMenu {
         UIMenu(children: [
-            UIMenu(modulePublishItems: ModulePublishMenu.Module.publish, host: host, router: router),
-            UIMenu(modulePublishItems: ModulePublishMenu.Module.unpublish, host: host, router: router),
+            UIMenu(modulePublishItems: ModulePublishMenu.Module.publish, host: host, router: router, actionDidPerform: {}),
+            UIMenu(modulePublishItems: ModulePublishMenu.Module.unpublish, host: host, router: router, actionDidPerform: {}),
         ])
     }
 
     static func makePublishModuleItemMenu(
-        action: ModulePublishItem.Action,
+        action: PutModuleItemPublishRequest.Action,
         host: UIViewController,
-        router: Router = AppEnvironment.shared.router
+        router: Router = AppEnvironment.shared.router,
+        actionDidPerform: @escaping () -> Void
     ) -> UIMenu {
         let items: [ModulePublishItem]
 
@@ -54,7 +55,7 @@ extension UIMenu {
             items = ModulePublishMenu.Item.unpublish
         }
 
-        return UIMenu(modulePublishItems: items, host: host, router: router)
+        return UIMenu(modulePublishItems: items, host: host, router: router, actionDidPerform: actionDidPerform)
     }
 }
 
@@ -65,26 +66,28 @@ extension Array where Element == UIAccessibilityCustomAction {
         router: Router = AppEnvironment.shared.router
     ) -> [UIAccessibilityCustomAction] {
         [
-            .init(modulePublishItem: ModulePublishMenu.Module.publish[0], host: host, router: router),
-            .init(modulePublishItem: ModulePublishMenu.Module.publish[1], host: host, router: router),
-            .init(modulePublishItem: ModulePublishMenu.Module.unpublish[0], host: host, router: router),
+            .init(modulePublishItem: ModulePublishMenu.Module.publish[0], host: host, router: router, actionDidPerform: {}),
+            .init(modulePublishItem: ModulePublishMenu.Module.publish[1], host: host, router: router, actionDidPerform: {}),
+            .init(modulePublishItem: ModulePublishMenu.Module.unpublish[0], host: host, router: router, actionDidPerform: {}),
         ]
     }
 
     static func moduleItemPublishA11yActions(
-        action: ModulePublishItem.Action,
+        action: PutModuleItemPublishRequest.Action,
         host: UIViewController,
-        router: Router = AppEnvironment.shared.router
+        router: Router = AppEnvironment.shared.router,
+        actionDidPerform: @escaping () -> Void
     ) -> [UIAccessibilityCustomAction] {
         let item: ModulePublishItem
 
-        if action == .publish {
+        switch action {
+        case .publish:
             item = ModulePublishMenu.Item.publish[0]
-        } else {
+        case .unpublish:
             item = ModulePublishMenu.Item.unpublish[0]
         }
 
-        return [.init(modulePublishItem: item, host: host, router: router)]
+        return [.init(modulePublishItem: item, host: host, router: router, actionDidPerform: actionDidPerform)]
     }
 }
 
@@ -143,11 +146,12 @@ private extension UIMenu {
     convenience init(
         modulePublishItems: [ModulePublishItem],
         host: UIViewController,
-        router: Router = AppEnvironment.shared.router
+        router: Router = AppEnvironment.shared.router,
+        actionDidPerform: @escaping () -> Void
     ) {
         self.init(
             options: .displayInline,
-            children: modulePublishItems.map { UIAction(modulePublishItem: $0, host: host, router: router) }
+            children: modulePublishItems.map { UIAction(modulePublishItem: $0, host: host, router: router, actionDidPerform: actionDidPerform) }
         )
     }
 }
@@ -157,14 +161,15 @@ private extension UIAction {
     convenience init(
         modulePublishItem: ModulePublishItem,
         host: UIViewController,
-        router: Router = AppEnvironment.shared.router
+        router: Router = AppEnvironment.shared.router,
+        actionDidPerform: @escaping () -> Void
     ) {
         self.init(
             title: modulePublishItem.title,
             image: modulePublishItem.icon,
             handler: { [weak host] _ in
                 guard let host else { return }
-                let alert = UIAlertController(modulePublishItem: modulePublishItem)
+                let alert = UIAlertController(modulePublishItem: modulePublishItem, actionDidPerform: actionDidPerform)
                 router.show(alert, from: host, options: .modal())
             }
        )
@@ -173,17 +178,21 @@ private extension UIAction {
 
 private extension UIAlertController {
 
-    convenience init(modulePublishItem: ModulePublishItem) {
+    convenience init(
+        modulePublishItem: ModulePublishItem,
+        actionDidPerform: @escaping () -> Void
+    ) {
         self.init(title: modulePublishItem.action.alertTitle,
                   message: modulePublishItem.confirmMessage,
                   preferredStyle: .alert)
         addAction(AlertAction(modulePublishItem.action.alertConfirmation, style: .default) { _ in
+            actionDidPerform()
         })
         addAction(AlertAction(String(localized: "Cancel"), style: .cancel))
     }
 }
 
-private extension ModulePublishItem.Action {
+private extension PutModuleItemPublishRequest.Action {
 
     var alertTitle: String {
         switch self {
@@ -205,11 +214,12 @@ private extension UIAccessibilityCustomAction {
     convenience init(
         modulePublishItem: ModulePublishItem,
         host: UIViewController,
-        router: Router = AppEnvironment.shared.router
+        router: Router = AppEnvironment.shared.router,
+        actionDidPerform: @escaping () -> Void
     ) {
         self.init(name: modulePublishItem.title) { [weak host] _ in
             guard let host else { return false }
-            let alert = UIAlertController(modulePublishItem: modulePublishItem)
+            let alert = UIAlertController(modulePublishItem: modulePublishItem, actionDidPerform: actionDidPerform)
             router.show(alert, from: host, options: .modal())
             return true
         }

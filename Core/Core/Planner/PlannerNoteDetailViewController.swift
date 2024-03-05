@@ -33,10 +33,15 @@ public class PlannerNoteDetailViewController: UIViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
+
         navigationController?.setNavigationBarHidden(false, animated: false)
-        title = NSLocalizedString("To Do", bundle: .core, comment: "")
+        title = String(localized: "To Do")
+
+        view.backgroundColor = .backgroundLightest
+
         titleLabel.text = plannable.title
         dateLabel.text = plannable.date?.dateTimeString
         detailsLabel.text = plannable.details
+        detailsLabel.sizeToFit()
     }
 }

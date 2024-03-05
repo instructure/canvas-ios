@@ -19,14 +19,9 @@
 import Foundation
 
 struct ModulePublishItem {
-    enum Action: Equatable {
-        case publish
-        case unpublish
-    }
-
     let title: String
     let confirmMessage: String
-    let action: Action
+    let action: PutModuleItemPublishRequest.Action
     var icon: UIImage {
         switch action {
         case .publish: return .completeLine
