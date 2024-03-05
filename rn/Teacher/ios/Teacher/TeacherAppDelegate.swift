@@ -419,10 +419,10 @@ extension TeacherAppDelegate {
 
         if FirebaseOptions.defaultOptions()?.apiKey != nil {
             FirebaseApp.configure()
+            configureRemoteConfig()
             Core.Analytics.shared.handler = self
         }
         CanvasCrashlytics.setupForReactNative()
-        configureRemoteConfig()
     }
 }
 
