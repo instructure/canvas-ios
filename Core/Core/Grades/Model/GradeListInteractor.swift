@@ -202,7 +202,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
     }
 
     public func isWhatIfScoreEnabled() -> Bool {
-        ExperimentalFeature.whatIfScore.isEnabled
+        ExperimentalFeature.whatIfScore.isEnabled && AppEnvironment.shared.app == .student
     }
 
     private func getGradingPeriod(id: String?, gradingPeriods: [GradingPeriod]) -> GradingPeriod? {

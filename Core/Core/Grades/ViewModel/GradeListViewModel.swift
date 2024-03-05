@@ -27,7 +27,7 @@ public enum GradeArrangementOptions {
 }
 
 public final class GradeListViewModel: ObservableObject {
-    typealias RefreshCompletion = (() -> Void)
+    typealias RefreshCompletion = () -> Void
     typealias IgnoreCache = Bool
 
     enum ViewState: Equatable {
@@ -51,7 +51,7 @@ public final class GradeListViewModel: ObservableObject {
 
     // MARK: - Input
 
-    let pullToRefreshDidTrigger = PassthroughRelay<(RefreshCompletion)?>()
+    let pullToRefreshDidTrigger = PassthroughRelay<RefreshCompletion?>()
     let didSelectAssignment = PassthroughRelay<(WeakViewController, Assignment)>()
     let confirmRevertAlertViewModel = ConfirmationAlertViewModel(
         title: String(localized: "Revert to Official Score?"),
@@ -64,7 +64,7 @@ public final class GradeListViewModel: ObservableObject {
     // MARK: - Input / Output
 
     @Published var baseOnGradedAssignment = true
-    @Published var isShowingRevertDialog = false 
+    @Published var isShowingRevertDialog = false
     let selectedGradingPeriod = PassthroughRelay<GradingPeriod?>()
     let selectedGroupByOption = CurrentValueRelay<GradeArrangementOptions>(.groupName)
 
