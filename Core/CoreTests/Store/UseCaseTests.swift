@@ -184,7 +184,6 @@ class UseCaseTests: CoreTestCase {
         }
         let useCase = UseCase()
         let expectation = expectation(description: "Fetch fails.")
-        var subscription: AnyCancellable?
 
         DispatchQueue.global().async {
             useCase.fetch { _, _, error in
@@ -195,7 +194,6 @@ class UseCaseTests: CoreTestCase {
             }
         }
         waitForExpectations(timeout: 0.1)
-        subscription?.cancel()
     }
 }
 
