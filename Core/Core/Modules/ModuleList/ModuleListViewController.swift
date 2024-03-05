@@ -152,7 +152,6 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
         }
         snackBarUpdatesSubscription = publishInteractor
             .statusUpdates
-            .map { $0.capitalized }
             .sink(receiveValue: { [weak self] update in
                 self?.findSnackBarViewModel()?.showSnack(update)
             })
