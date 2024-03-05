@@ -64,10 +64,10 @@ extension Subscribers.Completion<Error> {
         switch self {
         case .finished:
             switch action {
-            case .publish: return String(localized: "Item published.")
-            case .unpublish: return String(localized: "Item unpublished.")
+            case .publish: return String(localized: "Item published")
+            case .unpublish: return String(localized: "Item unpublished")
             }
-        case .failure: return String(localized: "Failed to update module item.")
+        case .failure: return String(localized: "Failed to update module item")
         }
     }
 }

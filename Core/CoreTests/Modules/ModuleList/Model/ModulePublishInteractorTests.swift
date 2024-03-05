@@ -75,7 +75,7 @@ class ModulePublishInteractorTests: CoreTestCase {
             .statusUpdates
             .sink { update in
                 expectation.fulfill()
-                XCTAssertEqual(update, "Item published.")
+                XCTAssertEqual(update, "Item published")
             }
 
         // WHEN
@@ -95,13 +95,13 @@ class TestStatusUpdateTests: XCTestCase {
 
     func testModuleItemUpdates() {
         var testee: Subscribers.Completion<Error> = .finished
-        XCTAssertEqual(testee.moduleItemStatusUpdateText(for: .publish), "Item published.")
+        XCTAssertEqual(testee.moduleItemStatusUpdateText(for: .publish), "Item published")
 
         testee = .finished
-        XCTAssertEqual(testee.moduleItemStatusUpdateText(for: .unpublish), "Item unpublished.")
+        XCTAssertEqual(testee.moduleItemStatusUpdateText(for: .unpublish), "Item unpublished")
 
         testee = .failure(NSError.internalError())
-        XCTAssertEqual(testee.moduleItemStatusUpdateText(for: .unpublish), "Failed to update module item.")
+        XCTAssertEqual(testee.moduleItemStatusUpdateText(for: .unpublish), "Failed to update module item")
 
     }
 }
