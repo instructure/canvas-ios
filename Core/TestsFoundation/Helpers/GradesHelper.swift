@@ -21,6 +21,10 @@ import Core
 public class GradesHelper: BaseHelper {
     public static var totalGrade: XCUIElement { app.find(id: "CourseTotalGrade") }
 
+    public static func labelOfAG(assignmentGroup: DSAssignmentGroup) -> XCUIElement {
+        return app.find(label: assignmentGroup.name, type: .staticText)
+    }
+
     public static func cell(assignment: DSAssignment? = nil, assignmentId: String? = nil) -> XCUIElement {
         return app.find(id: "GradeListCell.\(assignment?.id ?? assignmentId!)")
     }
@@ -87,6 +91,7 @@ public class GradesHelper: BaseHelper {
     public static func gradeAssignments(grades: [String], course: DSCourse, assignments: [DSAssignment], user: DSUser) {
         for i in 0..<assignments.count {
             gradeAssignment(grade: grades[i], course: course, assignment: assignments[i], user: user)
+            sleep(1)
         }
     }
 

@@ -259,4 +259,64 @@ class GradesTests: E2ETestCase {
         XCTAssertTrue(passFailAssignmentCell.isVisible)
         XCTAssertTrue(totalGradeLabel.hasLabel(label: "Total grade is \(totalGrade)"))
     }
+
+    func testAssignmentGroupsWithGradedAssignments() {
+        // MARK: Seed the usual stuff with assignment groups and graded submissions
+        let student = seeder.createUser()
+        let course = seeder.createCourse()
+        seeder.enrollStudent(student, in: course)
+
+        let testAG1 = AssignmentsHelper.createAssignmentGroup(in: course, name: "Test AG 1")
+        let testAG2 = AssignmentsHelper.createAssignmentGroup(in: course, name: "Test AG 2")
+
+        let maxPointOfAssignment: Float = 10
+        let assignment1 = AssignmentsHelper.createAssignment(
+            course: course,
+            name: "Assignment for Test AG 1",
+            pointsPossible: maxPointOfAssignment,
+            assignmentGroup: testAG1
+        )
+        let assignment2 = AssignmentsHelper.createAssignment(
+            course: course,
+            name: "Assignment for Test AG 2",
+            pointsPossible: maxPointOfAssignment,
+            assignmentGroup: testAG2
+        )
+        GradesHelper.submitAssignment(course: course, student: student, assignment: assignment1)
+        GradesHelper.submitAssignment(course: course, student: student, assignment: assignment2)
+
+        let gradeOfAssignment1 = "9"
+        let gradeOfAssignment2 = "7"
+        GradesHelper.gradeAssignment(grade: gradeOfAssignment1, course: course, assignment: assignment1, user: student)
+        GradesHelper.gradeAssignment(grade: gradeOfAssignment2, course: course, assignment: assignment2, user: student)
+        let expectedTotalGrade = "80%"
+
+        // MARK: Get the user logged in
+        logInDSUser(student)
+        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
+        XCTAssertTrue(courseCard.isVisible)
+
+        // MARK: Navigate to Grades page, check for assignment groups and grades
+        GradesHelper.navigateToGrades(course: course)
+        let totalGradeLabel = GradesHelper.totalGrade.waitUntil(.visible)
+        XCTAssertTrue(totalGradeLabel.isVisible)
+        XCTAssertTrue(totalGradeLabel.hasLabel(label: "Total grade is \(expectedTotalGrade)"))
+
+        let labelOfAG1 = GradesHelper.labelOfAG(assignmentGroup: testAG1).waitUntil(.visible)
+        let labelOfAG2 = GradesHelper.labelOfAG(assignmentGroup: testAG2).waitUntil(.visible)
+        XCTAssertTrue(labelOfAG1.isVisible)
+        XCTAssertTrue(labelOfAG2.isVisible)
+
+        let assignmentCellOfTestAG1 = GradesHelper.cell(assignment: assignment1).waitUntil(.visible)
+        let assignmentCellOfTestAG2 = GradesHelper.cell(assignment: assignment2).waitUntil(.visible)
+        XCTAssertTrue(assignmentCellOfTestAG1.isVisible)
+        XCTAssertTrue(assignmentCellOfTestAG2.isVisible)
+
+        let gradeLabelOfAssignment1 = GradesHelper.gradeLabel(assignmentCell: assignmentCellOfTestAG1).waitUntil(.visible)
+        let gradeLabelOfAssignment2 = GradesHelper.gradeLabel(assignmentCell: assignmentCellOfTestAG2).waitUntil(.visible)
+        XCTAssertTrue(gradeLabelOfAssignment1.isVisible)
+        XCTAssertTrue(gradeLabelOfAssignment2.isVisible)
+        XCTAssertTrue(gradeLabelOfAssignment1.hasLabel(label: "Grade, \(gradeOfAssignment1) out of \(Int(maxPointOfAssignment))"))
+        XCTAssertTrue(gradeLabelOfAssignment2.hasLabel(label: "Grade, \(gradeOfAssignment2) out of \(Int(maxPointOfAssignment))"))
+    }
 }
