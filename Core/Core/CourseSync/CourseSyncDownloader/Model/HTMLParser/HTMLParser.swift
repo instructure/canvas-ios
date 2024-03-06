@@ -33,51 +33,61 @@ class HTMLParser {
         self.loginSession = loginSession
         self.interactor = downloadInteractor
 
-        self.imageRegex = try! NSRegularExpression(pattern: "<img[^>]*src=\"([^\"]*)\"[^>]*>")
-        self.fileLinkRegex = try! NSRegularExpression(pattern: "<a[^>]*class=\"instructure_file_link[^>]*href=\"([^\"]*)\"[^>]*>")
-        self.internalFileRegex = try! NSRegularExpression(pattern: ".*\(loginSession.baseURL).*files/(\\d+)")
+        do {
+            self.imageRegex = try NSRegularExpression(pattern: "<img[^>]*src=\"([^\"]*)\"[^>]*>")
+        } catch {
+            self.imageRegex = NSRegularExpression()
+        }
+
+        do {
+            self.fileLinkRegex = try NSRegularExpression(pattern: "<a[^>]*class=\"instructure_file_link[^>]*href=\"([^\"]*)\"[^>]*>")
+        } catch {
+            self.fileLinkRegex = NSRegularExpression()
+        }
+
+        do {
+            self.internalFileRegex = try NSRegularExpression(pattern: ".*\(loginSession.baseURL).*files/(\\d+)")
+        } catch {
+            self.internalFileRegex = NSRegularExpression()
+        }
     }
-    
-    func parse(_ content: String) -> PassthroughSubject<String, Error> {
-        let resultValue = PassthroughSubject<String, Error>()
+
+    func parse(_ content: String) -> AnyPublisher<String, Error> {
         let imageURLs = findImageMatches(content)
-        imageURLs.publisher
+        return imageURLs.publisher
+            .setFailureType(to: URLError.self)
             .flatMap { url in
-                self.interactor.download(url)
-                    .replaceError(with: (data: Data(), response: URLResponse()))
+                print(url)
+                return self.interactor.download(url)
                     .map {
-                        (url, $0)
+                        return (url, $0)
                     }
             }
+            .mapError { error in
+                return error
+            }
+            .replaceError(with: (URL.Directories.documents, (Data(), URLResponse())))
             .flatMap { [unowned self] (url, result) in
-                self.interactor.save(result)
+                return self.interactor.save(result)
                     .map {
-                        (url, $0)
+                        print($0)
+                        return (url, $0)
                     }
             }
             .collect()
-            .sink(receiveCompletion: { result in
-                switch result {
-                case .failure:
-                    print()
-                case .finished:
-                    break
+            .map { [content] urls in
+                var newContent = content
+                urls.forEach { (originalURL, localURL) in
+                    newContent = newContent.replacingOccurrences(of: originalURL.absoluteString, with: localURL.absoluteString)
                 }
-            }, receiveValue: { [content] urls in
-                var result = content
-                urls.forEach { (originalUrl, localUrl) in
-                    result = result.replacingOccurrences(of: originalUrl.absoluteString, with: localUrl.absoluteString)
-                }
-                resultValue.send(result)
-            })
-            .store(in: &subscriptions)
-
-        return resultValue
+                return newContent
+            }
+            .eraseToAnyPublisher()
     }
 
     func findImageMatches(_ content: String) -> [URL] {
         imageRegex
-            .matches(in: content, range: NSMakeRange(0, content.count))
+            .matches(in: content, range: NSRange(location: 0, length: content.count))
             .compactMap { result in
                 let rawString = NSString(string: content).substring(with: result.range)
                 let groupedAttributes = rawString.split(separator: " ")

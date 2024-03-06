@@ -20,60 +20,41 @@ import Foundation
 import Combine
 
 protocol HTMLDownloadInteractor {
-    func download(_ url: URL) -> PassthroughSubject<(data: Data, response: URLResponse), URLError>
-    func save(_ result: (data: Data, response: URLResponse)) -> PassthroughSubject<URL, Error>
+    func download(_ url: URL) -> AnyPublisher<(data: Data, response: URLResponse), URLError>
+    func save(_ result: (data: Data, response: URLResponse)) -> AnyPublisher<URL, Error>
 }
 
 class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
-    private var subscriptions = Set<AnyCancellable>()
     private let loginSession: LoginSession
 
     init(loginSession: LoginSession) {
         self.loginSession = loginSession
     }
 
-    func download( _ url: URL) -> PassthroughSubject<(data: Data, response: URLResponse), URLError> {
+    func download( _ url: URL) -> AnyPublisher<(data: Data, response: URLResponse), URLError> {
         let resultValue = PassthroughSubject<(data: Data, response: URLResponse), URLError>()
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        
+
         if url.baseURL == loginSession.baseURL {
             request.setValue("Authentication", forHTTPHeaderField: "Bearer \(loginSession.accessToken ?? "")")
         }
 
-        URLSession.shared.dataTaskPublisher(for: request)
-            .sink(receiveCompletion: { result in
-                switch result {
-                case .failure(let error):
-                    resultValue.send(completion: .failure(error))
-                case .finished:
-                    break
-                }
-            }, receiveValue: { result in
-                resultValue.send(result)
-            })
-            .store(in: &subscriptions)
-
-        return resultValue
+        return URLSession.shared.dataTaskPublisher(for: request)
+            .eraseToAnyPublisher()
     }
 
-    func save(_ result: (data: Data, response: URLResponse)) -> PassthroughSubject<URL, Error> {
-        let resultValue = PassthroughSubject<URL, Error>()
+    func save(_ result: (data: Data, response: URLResponse)) -> AnyPublisher<URL, Error> {
         var saveURL = URL.Directories.documents.appendingPathComponent(UUID.string)
-        if let url = result.response.url{
-            saveURL = URL.Directories.documents
-                .appendingPathComponent(url.lastPathComponent)
-                .appendingPathExtension(".")
-                .appendingPathExtension(url.pathExtension)
-        }
-        do {
-            try result.data.write(to: saveURL)
-            resultValue.send(saveURL)
-        }
-        catch {
-            resultValue.send(completion: .failure(NSError.instructureError(String(localized: "Failed to save image"))))
+        if let url = result.response.url {
+            saveURL = URL.Directories.documents.appendingPathComponent(url.lastPathComponent)
         }
 
-        return resultValue
+        do {
+            try result.data.write(to: saveURL)
+            return Result.Publisher(saveURL).eraseToAnyPublisher()
+        } catch {
+            return Result.Publisher(.failure(NSError.instructureError(String(localized: "Failed to save image")))).eraseToAnyPublisher()
+        }
     }
 }

@@ -25,7 +25,16 @@ public extension CourseSyncPagesInteractor {
 }
 
 public final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor, CourseSyncContentInteractor {
-    public init() {}
+
+    let loginSession: LoginSession
+    let downloadInteractor: HTMLDownloadInteractorLive
+    let htmlParser: HTMLParser
+
+    public init() {
+        loginSession = AppEnvironment.shared.currentSession!
+        downloadInteractor = HTMLDownloadInteractorLive(loginSession: loginSession)
+        htmlParser = HTMLParser(loginSession: loginSession, downloadInteractor: downloadInteractor)
+    }
 
     public func getContent(courseId: String) -> AnyPublisher<Void, Error> {
         Publishers.Zip(
@@ -41,6 +50,29 @@ public final class CourseSyncPagesInteractorLive: CourseSyncPagesInteractor, Cou
                 )
             )
             .getEntities(ignoreCache: true)
+            .flatMap { pages in
+                Publishers.Sequence(sequence: pages)
+                    .setFailureType(to: Error.self)
+                    .flatMap { page in
+                        print("START PARSE")
+                        return self.htmlParser.parse(page.body)
+                            .map {
+                                print("PARSED")
+                                return (page, $0)
+                            }
+                    }
+                    .map { (page, parsedBody) in
+                        page.body = parsedBody
+                        return page
+                    }
+                    .map { page in
+                        if let context = page.managedObjectContext {
+                            try? context.save()
+                            print("SAVED")
+                        }
+                    }
+                    .collect()
+            }
         )
         .map { _ in () }
         .eraseToAnyPublisher()
